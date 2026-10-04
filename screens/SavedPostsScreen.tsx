@@ -18,8 +18,8 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
-import LoadErrorState from "../components/ui/LoadErrorState";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageTabs } from "../components/page/PageKit";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -37,12 +37,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_INSET,
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
   minimalFlat,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
 } from "../theme/minimal";
 
 type ActiveTab = "all" | "folders";
@@ -254,6 +249,7 @@ const SavedPostsScreen: React.FC = () => {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
         <ScreenHeader
+          icon="bookmarks"
           title={selectedFolder.name}
           subtitle={selectedFolder.description || t("savedPosts.collectionSubtitle")}
           canGoBack
@@ -270,9 +266,10 @@ const SavedPostsScreen: React.FC = () => {
               accessibilityRole="button"
               accessibilityLabel={t("savedPosts.collectionOptions")}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              className="w-10 h-10 items-center justify-center active:opacity-70"
+              className="items-center justify-center bg-theme-neutrals-800 active:opacity-70"
+              style={{ width: 36, height: 36, borderRadius: 10 }}
             >
-              <Icon name="MoveVertical" size={22} color="#E5E7EB" />
+              <Icon name="MoveVertical" size={18} color="#E5E7EB" />
             </TouchableOpacity>
           }
         />
@@ -412,49 +409,18 @@ const SavedPostsScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("screens.savedPosts")} canGoBack />
+      <ScreenHeader icon="bookmarks" title={t("screens.savedPosts")} canGoBack />
 
-      {/* Tabs. Minimal: file tabs on one full-width baseline, the active tab
-          lifting off it (see theme/minimal), instead of a segmented pill. */}
-      <View style={[styles.tabsContainer, isMinimal && styles.minimalTabsContainer]}>
-        <TouchableOpacity
-          onPress={() => setActiveTab("all")}
-          style={[
-            styles.tabButton,
-            activeTab === "all" && styles.tabButtonActive,
-            isMinimal && (activeTab === "all" ? minimalTabActive : minimalTab),
+      <View>
+        <PageTabs
+          value={activeTab}
+          onChange={setActiveTab}
+          tabs={[
+            { id: "all", label: t("savedPosts.allSaved") },
+            { id: "folders", label: t("savedPosts.collections") },
           ]}
-          activeOpacity={0.8}
-        >
-          <Text
-            style={[
-              styles.tabText,
-              activeTab === "all" && styles.tabTextActive,
-              isMinimal && { color: activeTab === "all" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-            ]}
-          >
-            {t("savedPosts.allSaved")}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setActiveTab("folders")}
-          style={[
-            styles.tabButton,
-            activeTab === "folders" && styles.tabButtonActive,
-            isMinimal && (activeTab === "folders" ? minimalTabActive : minimalTab),
-          ]}
-          activeOpacity={0.8}
-        >
-          <Text
-            style={[
-              styles.tabText,
-              activeTab === "folders" && styles.tabTextActive,
-              isMinimal && { color: activeTab === "folders" ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-            ]}
-          >
-            {t("savedPosts.collections")}
-          </Text>
-        </TouchableOpacity>
+          style={{ paddingBottom: 10 }}
+        />
       </View>
 
       {activeTab === "all" ? (
@@ -495,15 +461,12 @@ const SavedPostsScreen: React.FC = () => {
               }
               ListEmptyComponent={
                 foldersError ? (
-                  <LoadErrorState
-                    message={t("savedPosts.fetchFoldersFailed")}
-                    onRetry={() => fetchFoldersList()}
+                  <PageEmpty
+                    title={t("savedPosts.fetchFoldersFailed")}
+                    action={<KitButton variant="quiet" label={t("common.tryAgain")} onPress={() => fetchFoldersList()} />}
                   />
                 ) : (
-                  <View style={styles.emptyGrid}>
-                    <Icon name="Folder" size={48} color="#A1A1AA" />
-                    <Text style={styles.emptyGridText}>{t("savedPosts.noCollections")}</Text>
-                  </View>
+                  <PageEmpty icon="bookmarks" title={t("savedPosts.noCollections")} />
                 )
               }
               showsVerticalScrollIndicator={false}
@@ -710,13 +673,6 @@ const SavedPostsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  minimalTabsContainer: {
-    ...minimalTabStrip,
-    padding: 0,
-    marginHorizontal: 0,
-    marginTop: 4,
-    marginBottom: 10,
-  },
   minimalCreateCard: {
     justifyContent: "flex-start",
     backgroundColor: "transparent",
@@ -734,33 +690,6 @@ const styles = StyleSheet.create({
   minimalFolderIcon: {
     backgroundColor: "transparent",
     alignItems: "flex-start",
-  },
-  tabsContainer: {
-    flexDirection: "row",
-    backgroundColor: "rgba(255,255,255,0.03)",
-    marginHorizontal: 16,
-    marginVertical: 10,
-    borderRadius: 14,
-    padding: 4,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.05)",
-  },
-  tabButton: {
-    flex: 1,
-    paddingVertical: 10,
-    alignItems: "center",
-    borderRadius: 10,
-  },
-  tabButtonActive: {
-    backgroundColor: "rgba(255,255,255,0.08)",
-  },
-  tabText: {
-    color: "#A6A9AC",
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  tabTextActive: {
-    color: "#F9FBFF",
   },
   centerSpinner: {
     flex: 1,
@@ -838,15 +767,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 6,
     lineHeight: 16,
-  },
-  emptyGrid: {
-    alignItems: "center",
-    paddingVertical: 60,
-  },
-  emptyGridText: {
-    color: "#A6A9AC",
-    fontSize: 14,
-    marginTop: 12,
   },
   modalBackdrop: {
     flex: 1,

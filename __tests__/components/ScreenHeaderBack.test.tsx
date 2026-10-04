@@ -8,9 +8,13 @@ jest.mock('react-native', () => ({
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android },
   Keyboard: { dismiss: jest.fn() },
   I18nManager: { isRTL: false },
+  StyleSheet: { create: (styles: Record<string, unknown>) => styles, absoluteFill: {} },
 }));
+jest.mock('expo-image', () => ({ Image: 'Image' }));
+jest.mock('../../components/ui/ChromeSurface', () => () => null);
+jest.mock('../../theme/icons', () => ({ themeIconUrl: () => undefined }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
-jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false, theme: 'system' }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
 const mockListeners: Record<string, Array<() => void>> = {};

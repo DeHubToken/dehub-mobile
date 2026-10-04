@@ -14,6 +14,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import { supabase } from "../../services/supabase";
 import { appLocale } from "../../libs/date.util";
 import { FIELD_TEXT } from "../../theme/inputs";
+import { PageSection } from "../page/PageKit";
 
 interface BridgeTransfer {
   txHash: string;
@@ -69,11 +70,10 @@ export default function BridgeQueue() {
   const visible = filtered.slice(0, shown);
 
   return (
-    <View style={styles.card}>
-      <View style={styles.head}>
-        <Text style={styles.title}>{t("bridge.queueTitle")}</Text>
-        <Text style={styles.count}>{t("bridge.transferCount", { count: transfers.length })}</Text>
-      </View>
+    <PageSection
+      title={t("bridge.queueTitle")}
+      action={<Text style={styles.count}>{t("bridge.transferCount", { count: transfers.length })}</Text>}
+    >
 
       <View style={styles.searchBox}>
         <Icon name="Search" size={14} color="rgba(255,255,255,0.35)" />
@@ -138,21 +138,11 @@ export default function BridgeQueue() {
           )}
         </View>
       )}
-    </View>
+    </PageSection>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    marginTop: 16,
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.03)",
-  },
-  head: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 12 },
-  title: { color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: "600", letterSpacing: 1, textTransform: "uppercase" },
   count: { color: "rgba(255,255,255,0.35)", fontSize: 11 },
   searchBox: {
     flexDirection: "row",

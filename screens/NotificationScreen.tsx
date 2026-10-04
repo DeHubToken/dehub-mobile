@@ -4,12 +4,12 @@ import {
   View,
   Text,
   FlatList,
-  ScrollView,
   TouchableOpacity,
   ActivityIndicator,
   Platform,
   UIManager,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated, {
   Easing,
@@ -21,8 +21,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
-import GlassIndicator from "../components/ui/GlassIndicator";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageTabs, useFlatPage } from "../components/page/PageKit";
 import { 
   getNotifications, 
   markNotificationAsRead, 
@@ -71,11 +71,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import { DhbCoin } from "../components/common/DhbCoin";
 import {
   MINIMAL_HAIRLINE,
-  MINIMAL_TAB_LINE,
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
   MINIMAL_WASH,
-  minimalTab,
 } from "../theme/minimal";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
@@ -158,34 +154,6 @@ function apiTypesForFilter(filter: NotificationTypeFilter): string[] | undefined
   return types.length ? types : undefined;
 }
 
-/**
- * The tab pill slides exactly like web's GlassIndicator: 400ms on the same
- * expo-out curve, no overshoot. Web also renders the pill at the right spot
- * with no animation until a user click moves it — placedRef gives the first
- * placement here the same treatment instead of sliding in from {0,0}.
- */
-const TAB_SLIDE = { duration: 400, easing: Easing.bezier(0.16, 1, 0.3, 1) };
-const TAB_HEIGHT = 44;
-
-// Minimal file-tab strip parts (see TypeTabs): the full-width baseline, and
-// the sliding tab — outlined on three sides, its black fill covering the
-// baseline beneath it because it spans the strip's full height.
-const MINIMAL_STRIP_BASELINE = {
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  bottom: 0,
-  height: 1,
-  backgroundColor: MINIMAL_TAB_LINE,
-} as const;
-const MINIMAL_TAB_INDICATOR = {
-  backgroundColor: '#000',
-  borderWidth: 0,
-  borderTopWidth: 1,
-  borderLeftWidth: 1,
-  borderRightWidth: 1,
-  borderColor: MINIMAL_TAB_LINE,
-} as const;
 // Minimal swaps every filled chip and small button in a row for a 1px
 // outline, so the only fill left on a row is the unread wash.
 const MINIMAL_OUTLINE = {
@@ -201,151 +169,53 @@ interface TypeTabsProps {
   activityCounts: Record<NotificationTypeFilter, number>;
 }
 
+// Icon-only page-kit chips with the unread count beside the icon, as web's
+// notifications strip draws them. The tab name is the chip's accessibility label.
 const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
-  const tabWidths = useRef<Record<string, number>>({});
-  const tabPositions = useRef<Record<string, number>>({});
-  const indicatorX = useSharedValue(0);
-  const indicatorW = useSharedValue(0);
-  const placedRef = useRef(false);
+  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
+  const flatPage = useFlatPage();
+  // Ink on the active chip, matching the page kit: white on the bright canvas
+  // accents, near-black on white (System) and the rest.
+  const activeInk =
+    !flatPage && !!appTheme.accent && ["hazy", "swarms", "lavalamp", "island"].includes(appTheme.theme)
+      ? "#FFFFFF"
+      : "#0B0B0C";
   const orderedTabKeys = useMemo(
     () => orderNotificationTabKeys(TYPE_TABS.map(({ key }) => key), activityCounts, 'all'),
     [activityCounts],
   );
 
-  const indicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: indicatorX.value }],
-    width: indicatorW.value,
-  }));
-
-  const moveIndicator = useCallback((x: number, w: number) => {
-    if (!placedRef.current) {
-      placedRef.current = true;
-      indicatorX.value = x;
-      indicatorW.value = w;
-      return;
-    }
-    indicatorX.value = withTiming(x, TAB_SLIDE);
-    indicatorW.value = withTiming(w, TAB_SLIDE);
-  }, [indicatorX, indicatorW]);
-
-  const handleLayout = useCallback((key: string, x: number, width: number) => {
-    tabWidths.current[key] = width;
-    tabPositions.current[key] = x;
-    if (key === selected) {
-      moveIndicator(x, width);
-    }
-  }, [selected, moveIndicator]);
-
-  useEffect(() => {
-    const x = tabPositions.current[selected];
-    const w = tabWidths.current[selected];
-    if (x !== undefined && w !== undefined) {
-      moveIndicator(x, w);
-    }
-  }, [selected, moveIndicator]);
-
   return (
-    // Minimal: a file-tab strip. The baseline is its own view under the
-    // ScrollView rather than a border on it, because a ScrollView clips its
-    // children — the sliding tab could never reach down over a border. Drawn
-    // underneath instead, the tab's black fill simply paints over it.
-    <View
-      className={isMinimal ? undefined : "border-b border-zinc-800/50"}
-      style={isMinimal ? { backgroundColor: '#000' } : { paddingVertical: 8 }}
-    >
-      {isMinimal && <View style={MINIMAL_STRIP_BASELINE} pointerEvents="none" />}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: isMinimal ? 0 : 12 }}
-      >
-        <View style={{ flexDirection: 'row', gap: isMinimal ? 0 : 8, position: 'relative' }}>
-          <Animated.View
-            style={[
-              indicatorStyle,
-              {
-                position: 'absolute',
-                top: 0,
-                height: TAB_HEIGHT,
-                borderRadius: 12,
-                backgroundColor: 'rgba(255,255,255,0.2)',
-                borderWidth: 1,
-                borderColor: 'rgba(255,255,255,0.4)',
-              },
-              isMinimal && MINIMAL_TAB_INDICATOR,
-            ]}
-          />
-
-          {orderedTabKeys.map((tabKey) => {
-            const tab = TYPE_TABS.find(({ key }) => key === tabKey)!;
-            const isActive = selected === tab.key;
-            const count = counts[tab.key];
-            return (
-              <TouchableOpacity
-                key={tab.key}
-                onPress={() => onSelect(tab.key)}
-                activeOpacity={0.7}
-                accessibilityRole="button"
+    <View>
+      <PageTabs
+        value={selected}
+        onChange={onSelect}
+        style={{ paddingBottom: 10 }}
+        tabs={orderedTabKeys.map((tabKey) => {
+          const tab = TYPE_TABS.find(({ key }) => key === tabKey)!;
+          const isActive = selected === tab.key;
+          const count = counts[tab.key];
+          return {
+            id: tab.key,
+            label: '',
+            icon: (
+              <View
+                accessible
                 accessibilityLabel={t(tab.label)}
-                accessibilityState={{ selected: isActive }}
-                onLayout={(e) => {
-                  const { x, width } = e.nativeEvent.layout;
-                  handleLayout(tab.key, x, width);
-                }}
-                style={[
-                  {
-                    height: TAB_HEIGHT,
-                    paddingHorizontal: 14,
-                    borderRadius: 12,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 4,
-                  },
-                  !isActive && { backgroundColor: '#27272a' },
-                  isMinimal && minimalTab,
-                ]}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginRight: -6 }}
               >
-                <Icon
-                  name={tab.icon as any}
-                  size={14}
-                  color={isActive ? (isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : '#fff') : (isMinimal ? MINIMAL_TAB_TEXT : '#a1a1aa')}
-                />
-                {count > 0 && (
-                  // A flat white/20 fill sits on top of the glass tab pill, so
-                  // the count read as a see-through hole rather than a badge.
-                  // iOS gets the real glass bead (GlassIndicator, blurred);
-                  // Android has no working blur, so it takes an opaque fill.
-                  <View
-                    style={{
-                      // Minimal: no glass bead — a small flat fill.
-                      backgroundColor: isMinimal
-                        ? '#27272a'
-                        : Platform.OS === 'ios' ? 'rgba(24,24,27,0.55)' : '#52525b',
-                      borderRadius: 9,
-                      minWidth: 18,
-                      height: 18,
-                      paddingHorizontal: 4,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    {Platform.OS === 'ios' && !isMinimal && (
-                      <GlassIndicator borderRadius={9} blurIntensity={30} />
-                    )}
-                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: '700' }}>
-                      {count > 99 ? '99+' : count}
-                    </Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </ScrollView>
+                <Icon name={tab.icon as any} size={16} color={isActive ? activeInk : '#a1a1aa'} />
+                {count > 0 ? (
+                  <Text style={{ color: isActive ? activeInk : '#d4d4d8', fontSize: 12, fontWeight: '700' }}>
+                    {count > 99 ? '99+' : count}
+                  </Text>
+                ) : null}
+              </View>
+            ),
+          };
+        })}
+      />
     </View>
   );
 });
@@ -1839,18 +1709,21 @@ const NotificationScreen = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader 
+      <ScreenHeader
+        icon="notifications"
         title={t("notifications.title")}
         rightContent={
           <TouchableOpacity
             onPress={handleMarkAllRead}
             disabled={!hasUnread}
-            className="px-3 py-1"
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityRole="button"
+            accessibilityLabel={t('notifications.markAllRead')}
+            accessibilityState={{ disabled: !hasUnread }}
+            className="items-center justify-center bg-theme-neutrals-800"
+            style={{ width: 36, height: 36, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Text className={`text-sm font-medium ${hasUnread ? 'text-theme-neutrals-100' : 'text-theme-neutrals-500'}`}>
-              {t('notifications.markAllRead')}
-            </Text>
+            <Icon name="CheckCheck" size={18} color="#F4F4F5" />
           </TouchableOpacity>
         }
       />

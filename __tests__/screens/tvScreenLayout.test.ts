@@ -7,8 +7,10 @@ describe("Live TV layout", () => {
   // RN gives a horizontal ScrollView flexGrow 1 / flexShrink 1 by default, so
   // with no style of its own the country strip split the spare height with the
   // loader (and short grids) and floated the chips mid-screen.
+  // The strip is the page kit's PageTabs now; a plain wrapping View keeps it
+  // from taking part in the column's flex.
   it("keeps the country strip one row high", () => {
-    expect(source).toMatch(/horizontal[\s\S]{0,120}style=\{styles\.chipScroll\}/);
+    expect(source).toMatch(/<View style=\{styles\.chipScroll\}>\s*<PageTabs/);
     expect(source).toMatch(/chipScroll:\s*\{\s*flexGrow:\s*0,\s*flexShrink:\s*0\s*\}/);
   });
 

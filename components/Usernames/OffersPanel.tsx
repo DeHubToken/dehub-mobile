@@ -31,6 +31,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import { DhbCoin } from "../common/DhbCoin";
 import { DeHubLoader } from "../DeHubLoader";
 import { useMyUsernameMarket, useUsernameMarketConfig } from "../../hooks/useUsernameMarket";
@@ -326,12 +327,11 @@ const OffersPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
 
   if (!isAuthed) {
     return (
-      <View style={styles.center}>
-        <Text style={styles.emptyText}>{t("usernames.signInForOffers")}</Text>
-        <Pressable style={styles.primaryBtn} onPress={onSignIn}>
-          <Text style={styles.primaryBtnText}>{t("usernames.signIn")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="usernames"
+        title={t("usernames.signInForOffers")}
+        action={<KitButton label={t("usernames.signIn")} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -354,29 +354,36 @@ const OffersPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
         contentContainerStyle={[styles.scroll, { paddingBottom: insets.bottom + 96 }]}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.sectionTitle}>{t("usernames.offersForYou")}</Text>
-        {incoming.length === 0 ? (
-          <Text style={styles.empty}>{t("usernames.noIncomingOffers")}</Text>
-        ) : (
-          incoming.map((offer) => <IncomingRow key={offer.id} offer={offer} />)
-        )}
+        <PageSection title={t("usernames.offersForYou")}>
+          <View style={styles.list}>
+            {incoming.length === 0 ? (
+              <Text style={styles.empty}>{t("usernames.noIncomingOffers")}</Text>
+            ) : (
+              incoming.map((offer) => <IncomingRow key={offer.id} offer={offer} />)
+            )}
+          </View>
+        </PageSection>
 
-        <Text style={styles.sectionTitle}>{t("usernames.offersYouMade")}</Text>
-        {outgoing.length === 0 ? (
-          <Text style={styles.empty}>{t("usernames.noOutgoingOffers")}</Text>
-        ) : (
-          outgoing.map((offer) => (
-            <OutgoingRow key={offer.id} offer={offer} onPay={() => setPaying(asListing(offer))} />
-          ))
-        )}
+        <PageSection title={t("usernames.offersYouMade")}>
+          <View style={styles.list}>
+            {outgoing.length === 0 ? (
+              <Text style={styles.empty}>{t("usernames.noOutgoingOffers")}</Text>
+            ) : (
+              outgoing.map((offer) => (
+                <OutgoingRow key={offer.id} offer={offer} onPay={() => setPaying(asListing(offer))} />
+              ))
+            )}
+          </View>
+        </PageSection>
 
         {past.length > 0 && (
-          <>
-            <Text style={styles.sectionTitle}>{t("usernames.offerHistory")}</Text>
-            {past.map((offer) => (
-              <PastRow key={offer.id} offer={offer} />
-            ))}
-          </>
+          <PageSection title={t("usernames.offerHistory")}>
+            <View style={styles.list}>
+              {past.map((offer) => (
+                <PastRow key={offer.id} offer={offer} />
+              ))}
+            </View>
+          </PageSection>
         )}
       </ScrollView>
 
@@ -393,7 +400,8 @@ const OffersPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  scroll: { paddingHorizontal: 16, gap: 10 },
+  scroll: {},
+  list: { gap: 10 },
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 14 },
   emptyText: { color: "#A1A1AA", fontSize: 13, textAlign: "center", paddingHorizontal: 32 },
@@ -403,11 +411,6 @@ const styles = StyleSheet.create({
     color: "#808089",
     fontSize: 11.5,
     lineHeight: 17,
-    padding: 14,
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
   },
 
   card: {

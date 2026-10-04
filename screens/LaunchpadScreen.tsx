@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { CoinCard, LiveActivity, TrendingBar } from "../components/Launchpad/parts";
 import { useUser } from "../context/AuthContext";
@@ -73,9 +74,9 @@ export default function LaunchpadScreen() {
   }, [tokensQuery, trendingQuery, tradesQuery]);
 
   const header = (
-    <View style={{ gap: 14, marginBottom: 14 }}>
+    <View style={{ marginBottom: 14 }}>
       {/* Hero */}
-      <View style={styles.hero}>
+      <PageSection>
         <View style={styles.badgeRow}>
           <Icon name="Rocket" size={13} color="rgba(255,255,255,0.6)" />
           <Text style={styles.badge}>{t("launchpad.phaseBadge")}</Text>
@@ -83,53 +84,33 @@ export default function LaunchpadScreen() {
         <Text style={styles.heroTitle}>{t("launchpad.heroTitle")}</Text>
         <Text style={styles.heroSub}>{t("launchpad.heroSubtitle")}</Text>
         {DIGITAL_PURCHASES_ENABLED && (
-          <Pressable style={styles.createBtn} onPress={openCreate} accessibilityRole="button">
-            <Icon name="Plus" size={16} color="#000000" />
-            <Text style={styles.createText}>{t("launchpad.createCoin")}</Text>
-          </Pressable>
+          <KitButton
+            label={t("launchpad.createCoin")}
+            onPress={openCreate}
+            style={{ marginTop: 14, alignSelf: "flex-start" }}
+          />
+        )}
+      </PageSection>
+
+      <View style={[styles.gutter, { marginTop: 12 }]}>
+        {/* Search */}
+        <View style={styles.searchBox}>
+          <Icon name="Search" size={16} color="rgba(255,255,255,0.4)" />
+          <TextInput
+            value={search}
+            onChangeText={setSearch}
+            placeholder={t("launchpad.searchPlaceholder")}
+            placeholderTextColor="rgba(255,255,255,0.4)"
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={[styles.searchInput, FIELD_TEXT]}
+          />
+        </View>
+
+        {(trendingQuery.data?.length ?? 0) > 0 && (
+          <TrendingBar tokens={trendingQuery.data ?? []} onOpen={openCoin} />
         )}
       </View>
-
-      {/* Filters */}
-      <FlatList
-        horizontal
-        data={FILTERS}
-        keyExtractor={(f) => f.id}
-        showsHorizontalScrollIndicator={false}
-        style={{ marginHorizontal: -16 }}
-        contentContainerStyle={{ gap: 6, paddingHorizontal: 16 }}
-        renderItem={({ item: f }) => {
-          const active = filter === f.id;
-          return (
-            <Pressable
-              onPress={() => setFilter(f.id)}
-              style={[styles.chip, active && styles.chipActive]}
-              accessibilityRole="button"
-              accessibilityState={{ selected: active }}
-            >
-              <Text style={[styles.chipText, active && styles.chipTextActive]}>{t(f.labelKey)}</Text>
-            </Pressable>
-          );
-        }}
-      />
-
-      {/* Search */}
-      <View style={styles.searchBox}>
-        <Icon name="Search" size={16} color="rgba(255,255,255,0.4)" />
-        <TextInput
-          value={search}
-          onChangeText={setSearch}
-          placeholder={t("launchpad.searchPlaceholder")}
-          placeholderTextColor="rgba(255,255,255,0.4)"
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={[styles.searchInput, FIELD_TEXT]}
-        />
-      </View>
-
-      {(trendingQuery.data?.length ?? 0) > 0 && (
-        <TrendingBar tokens={trendingQuery.data ?? []} onOpen={openCoin} />
-      )}
     </View>
   );
 
@@ -138,39 +119,60 @@ export default function LaunchpadScreen() {
       <DeHubLoader size={48} />
     </View>
   ) : tokensQuery.isError ? (
-    <View style={styles.emptyCard}>
-      <Text style={styles.emptyText}>{t("launchpad.loadFailed")}</Text>
-      <Pressable onPress={() => tokensQuery.refetch()} style={styles.linkBtn} accessibilityRole="button">
-        <Text style={styles.linkText}>{t("launchpad.retry")}</Text>
-      </Pressable>
-    </View>
+    <PageEmpty
+      title={t("launchpad.loadFailed")}
+      action={<KitButton label={t("launchpad.retry")} onPress={() => tokensQuery.refetch()} />}
+    />
   ) : (
-    <View style={styles.emptyCard}>
-      <Text style={styles.emptyText}>{t("launchpad.noCoins")}</Text>
-      {DIGITAL_PURCHASES_ENABLED && !search && (
-        <Pressable onPress={openCreate} style={styles.linkBtn} accessibilityRole="button">
-          <Text style={styles.linkText}>{t("launchpad.beTheFirst")}</Text>
-        </Pressable>
-      )}
-    </View>
+    <PageEmpty
+      title={t("launchpad.noCoins")}
+      action={
+        DIGITAL_PURCHASES_ENABLED && !search ? (
+          <KitButton variant="quiet" label={t("launchpad.beTheFirst")} onPress={openCreate} />
+        ) : undefined
+      }
+    />
   );
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("launchpad.title")} />
+      <ScreenHeader
+        title={t("launchpad.title")}
+        subtitle={t("launchpad.phaseBadge")}
+        rightContent={
+          DIGITAL_PURCHASES_ENABLED ? (
+            <Pressable onPress={openCreate} accessibilityRole="button" accessibilityLabel={t("launchpad.createCoin")}>
+              <View style={styles.islandBtn}>
+                <Icon name="Plus" size={18} color="#FFFFFF" />
+              </View>
+            </Pressable>
+          ) : undefined
+        }
+      />
+      <View style={styles.tabsWrap}>
+        <PageTabs
+          value={filter}
+          onChange={setFilter}
+          tabs={FILTERS.map((f) => ({ id: f.id, label: t(f.labelKey) }))}
+        />
+      </View>
       <FlatList
         data={filtered}
         keyExtractor={(x: LaunchpadToken) => x.id}
-        renderItem={({ item }) => <CoinCard token={item} onPress={() => openCoin(item.id)} />}
+        renderItem={({ item }) => (
+          <View style={styles.gutter}>
+            <CoinCard token={item} onPress={() => openCoin(item.id)} />
+          </View>
+        )}
         ListHeaderComponent={header}
         ListEmptyComponent={empty}
         ListFooterComponent={
-          <View style={{ marginTop: 14 }}>
+          <View style={[styles.gutter, { marginTop: 14 }]}>
             <LiveActivity trades={tradesQuery.data ?? []} />
           </View>
         }
         ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: insets.bottom + 32 }}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 32 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
@@ -182,12 +184,15 @@ export default function LaunchpadScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  hero: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(0,0,0,0.6)",
-    padding: 18,
+  tabsWrap: { flexGrow: 0 },
+  gutter: { paddingHorizontal: 16, gap: 14 },
+  islandBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,0.07)",
   },
   badgeRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   badge: { color: "rgba(255,255,255,0.6)", fontSize: 11, textTransform: "uppercase", letterSpacing: 0.6 },

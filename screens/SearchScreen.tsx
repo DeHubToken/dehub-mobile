@@ -12,7 +12,8 @@ import {
   ActivityIndicator,
   BackHandler,
   FlatList,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Animated, {
@@ -1049,7 +1050,7 @@ const SearchScreen: React.FC = () => {
         style={[styles.header, headerAnimatedStyle]}
         onLayout={onHeaderLayout}
       >
-        <ScreenHeader title={t("nav.explore")} canGoBack={false} />
+        <ScreenHeader icon="search" title={t("nav.explore")} canGoBack={false} />
 
         {/* Carries its own opaque background — the two rows below the
             ScreenHeader have none of their own, and the feed now scrolls

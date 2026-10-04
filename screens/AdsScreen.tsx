@@ -27,7 +27,8 @@ import {
   Modal,
   KeyboardAvoidingView,
   Alert,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
@@ -36,6 +37,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
 import { toastError } from "../libs/toast";
@@ -425,6 +427,7 @@ export default function AdsScreen() {
       <ScreenHeader
         title={t("nav.ads")}
         subtitle={t("ads.subtitle")}
+        icon="ads"
         rightContent={
           tab === "campaigns" && hasAccount ? (
             <Pressable
@@ -434,28 +437,25 @@ export default function AdsScreen() {
               accessibilityRole="button"
               accessibilityLabel={t("ads.newCampaign")}
             >
-              <Icon name="Plus" size={20} color="#000000" />
+              <Icon name="Plus" size={20} color="#FFFFFF" />
             </Pressable>
           ) : undefined
         }
       />
 
-      <View style={styles.segment}>
-        {(["overview", "campaigns", "billing"] as const).map((tabKey) => (
-          <Pressable
-            key={tabKey}
-            onPress={() => setTab(tabKey)}
-            style={[styles.segmentBtn, tab === tabKey && styles.segmentBtnActive]}
-          >
-            <Text style={[styles.segmentText, tab === tabKey && styles.segmentTextActive]}>
-              {t(`ads.tabs.${tabKey}`)}
-            </Text>
-          </Pressable>
-        ))}
+      <View>
+        <PageTabs
+          value={tab}
+          onChange={setTab}
+          tabs={(["overview", "campaigns", "billing"] as const).map((tabKey) => ({
+            id: tabKey,
+            label: t(`ads.tabs.${tabKey}`),
+          }))}
+        />
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
+        contentContainerStyle={{ paddingTop: 6, paddingBottom: insets.bottom + 28 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <DeHubRefreshControl
@@ -468,25 +468,25 @@ export default function AdsScreen() {
         {account.isLoading ? (
           <DeHubLoader size={56} style={{ marginTop: 40 }} />
         ) : !hasAccount ? (
-          <View style={styles.card}>
-            <Icon name="Megaphone" size={34} color="#3F3F46" />
-            <Text style={styles.emptyTitle}>{t("ads.advertiseTitle")}</Text>
-            <Text style={styles.dim}>{t("ads.advertiseDescription")}</Text>
-            <Pressable
-              onPress={() => ensureAccount.mutate(undefined)}
-              disabled={ensureAccount.isPending}
-              style={[styles.primaryBtn, ensureAccount.isPending && styles.disabled]}
-            >
-              {ensureAccount.isPending ? (
-                <ActivityIndicator color="#000000" />
-              ) : (
-                <Text style={styles.primaryBtnText}>{t("ads.openAccount")}</Text>
-              )}
-            </Pressable>
-          </View>
+          <PageSection>
+            <PageEmpty
+              icon="ads"
+              title={t("ads.advertiseTitle")}
+              body={t("ads.advertiseDescription")}
+              action={
+                <KitButton
+                  label={t("ads.openAccount")}
+                  onPress={() => ensureAccount.mutate(undefined)}
+                  disabled={ensureAccount.isPending}
+                  icon={ensureAccount.isPending ? <ActivityIndicator size="small" color="#808089" /> : undefined}
+                />
+              }
+            />
+          </PageSection>
         ) : tab === "overview" ? (
           <>
-            <View style={styles.card}>
+            <PageSection>
+              <View style={styles.card}>
               <Text style={styles.dim}>{t("ads.availableCredit")}</Text>
               <Text style={styles.balance}>{usd(account.data!.balance_usd)}</Text>
               <Text style={styles.dim}>
@@ -495,10 +495,10 @@ export default function AdsScreen() {
                   deposited: usd(account.data!.total_deposited_usd),
                 })}
               </Text>
-            </View>
+              </View>
+            </PageSection>
 
-            <View style={styles.card}>
-              <Text style={styles.cardTitle}>{t("ads.performance")}</Text>
+            <PageSection title={t("ads.performance")}>
               <View style={styles.kpiRow}>
                 <Kpi label={t("ads.impressions")} value={formatCompactNumber(kpis.impressions)} />
                 <Kpi label={t("ads.clicks")} value={formatCompactNumber(kpis.clicks)} />
@@ -522,19 +522,19 @@ export default function AdsScreen() {
                   </View>
                 </View>
               </View>
-            </View>
+            </PageSection>
           </>
         ) : tab === "campaigns" ? (
           campaigns.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginTop: 30 }} />
           ) : (campaigns.data ?? []).length === 0 ? (
-            <View style={styles.card}>
-              <Icon name="Megaphone" size={32} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>{t("ads.noCampaigns")}</Text>
-              <Pressable onPress={() => setFormOpen(true)} style={styles.primaryBtn}>
-                <Text style={styles.primaryBtnText}>{t("ads.createCampaign")}</Text>
-              </Pressable>
-            </View>
+            <PageSection>
+              <PageEmpty
+                icon="ads"
+                title={t("ads.noCampaigns")}
+                action={<KitButton label={t("ads.createCampaign")} onPress={() => setFormOpen(true)} />}
+              />
+            </PageSection>
           ) : (
             (campaigns.data ?? []).map((c) => {
               const pct =
@@ -542,7 +542,8 @@ export default function AdsScreen() {
                   ? Math.min(100, (Number(c.spent_usd) / Number(c.total_budget_usd)) * 100)
                   : 0;
               return (
-                <Pressable key={c.id} style={styles.card} onPress={() => campaignMenu(c)}>
+                <PageSection key={c.id}>
+                <Pressable style={styles.card} onPress={() => campaignMenu(c)}>
                   <View style={styles.rowBetween}>
                     <Text style={styles.campaignName} numberOfLines={1}>
                       {c.name}
@@ -568,12 +569,14 @@ export default function AdsScreen() {
                     {t("ads.spentOf", { spent: usd(c.spent_usd), total: usd(c.total_budget_usd) })}
                   </Text>
                 </Pressable>
+                </PageSection>
               );
             })
           )
         ) : (
           <>
-            <View style={styles.card}>
+            <PageSection>
+              <View style={styles.card}>
               <Text style={styles.dim}>{t("ads.availableCredit")}</Text>
               <Text style={styles.balance}>{usd(account.data!.balance_usd)}</Text>
 
@@ -611,10 +614,10 @@ export default function AdsScreen() {
                 )}
               </Pressable>
               <Text style={styles.hint}>{t("ads.topUpExplanation")}</Text>
-            </View>
+              </View>
+            </PageSection>
 
-            <View style={styles.card}>
-              <Text style={styles.cardTitle}>{t("ads.paymentHistory")}</Text>
+            <PageSection title={t("ads.paymentHistory")}>
               {payments.isLoading ? (
                 <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 18 }} />
               ) : (payments.data ?? []).length === 0 ? (
@@ -634,7 +637,7 @@ export default function AdsScreen() {
                   </View>
                 ))
               )}
-            </View>
+            </PageSection>
           </>
         )}
       </ScrollView>
@@ -648,26 +651,12 @@ export default function AdsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   addBtn: {
-    width: 34, height: 34, borderRadius: 12, backgroundColor: "#FFFFFF",
+    width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center", justifyContent: "center",
   },
 
-  segment: {
-    flexDirection: "row", gap: 4, marginHorizontal: 16, marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 12, padding: 3,
-  },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
-  segmentTextActive: { color: "#FFFFFF" },
-
-  card: {
-    borderRadius: 12, backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1, borderColor: "rgba(255,255,255,0.10)", padding: 16, gap: 6,
-  },
-  cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 4 },
+  card: { gap: 6 },
   dim: { color: "#A1A1AA", fontSize: 12, lineHeight: 17 },
-  emptyTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginTop: 6 },
   balance: { color: "#FFFFFF", fontSize: 30, fontWeight: "800" },
   hint: { color: "#808089", fontSize: 12, lineHeight: 16, marginTop: 8 },
 

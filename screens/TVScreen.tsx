@@ -18,12 +18,12 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
-  ScrollView,
   TextInput,
   Modal,
   Platform,
   useWindowDimensions,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -35,6 +35,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageTabs } from "../components/page/PageKit";
 import useKeyboard from "../hooks/useKeyboard";
 import TVChatPanel from "../components/TV/TVChatPanel";
 import { theme } from "../theme";
@@ -266,15 +267,15 @@ export default function TVScreen() {
   const countryPills = useMemo(() => (countries.data ?? []).slice(0, 40), [countries.data]);
 
   return (
-    <View style={styles.root}>
+    <View className="bg-theme-neutrals-900" style={styles.root}>
       <ScreenHeader
+        icon="tv"
         title={t("nav.tv")}
         subtitle={
           countries.data?.[0]?.count
             ? t("tv.channelCount", { count: countries.data[0].count })
             : t("tv.subtitle")
         }
-        rightContent={<Icon name="Tv" size={22} color={theme.colors.accent} />}
       />
 
       <View style={styles.searchWrap}>
@@ -299,33 +300,18 @@ export default function TVScreen() {
         )}
       </View>
 
-      {/* flexGrow/flexShrink 0, as StoresScreen's chipScroll: RN gives horizontal
-          scrollers flexGrow 1, so the strip would otherwise take height from the
-          loader and the channel grid. The chips carry a fixed height (styles.chip). */}
+      {/* Wrapped in a plain View: RN gives horizontal scrollers flexGrow 1,
+          so the strip would otherwise take height from the loader and grid. */}
       {!debounced.trim() && (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.chipScroll}
-          contentContainerStyle={styles.chipRow}
-        >
-          {countryPills.map((c) => (
-            <Pressable
-              key={c.id}
-              onPress={() => setCountry(c.id)}
-              hitSlop={{ top: 8, bottom: 8 }}
-              style={({ pressed }) => [
-                styles.chip,
-                country === c.id && styles.chipActive,
-                pressed && { opacity: 0.7 },
-              ]}
-            >
-              <Text style={[styles.chipText, country === c.id && styles.chipTextActive]}>
-                {c.label} ({c.count})
-              </Text>
-            </Pressable>
-          ))}
-        </ScrollView>
+        <View style={styles.chipScroll}>
+          <PageTabs
+            size="sm"
+            value={country}
+            onChange={setCountry}
+            tabs={countryPills.map((c) => ({ id: c.id, label: c.label, count: c.count }))}
+            style={{ paddingVertical: 10 }}
+          />
+        </View>
       )}
 
       {channels.isLoading ? (
@@ -333,13 +319,10 @@ export default function TVScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : channels.isError ? (
-        <View style={styles.center}>
-          <Icon name="TriangleAlert" size={38} color={theme.colors.neutrals[700]} />
-          <Text style={styles.dim}>{t("tv.loadFailed")}</Text>
-          <Pressable onPress={() => channels.refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.retry")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          title={t("tv.loadFailed")}
+          action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => channels.refetch()} />}
+        />
       ) : (
         <FlatList
           data={channels.data ?? []}
@@ -363,12 +346,7 @@ export default function TVScreen() {
             />
           }
           ListEmptyComponent={
-            <View style={styles.center}>
-              <Icon name="Tv" size={38} color={theme.colors.neutrals[700]} />
-              <Text style={styles.dim}>
-                {debounced ? t("tv.noSearchResults") : t("tv.noChannels")}
-              </Text>
-            </View>
+            <PageEmpty icon="tv" title={debounced ? t("tv.noSearchResults") : t("tv.noChannels")} />
           }
         />
       )}
@@ -380,7 +358,8 @@ export default function TVScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#010305" },
+  root: { flex: 1 },
+  chipScroll: { flexGrow: 0, flexShrink: 0 },
   backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
 
   searchWrap: {
@@ -398,23 +377,6 @@ const styles = StyleSheet.create({
   },
   searchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
 
-  chipScroll: { flexGrow: 0, flexShrink: 0 },
-  chipRow: { gap: 8, paddingHorizontal: H_PADDING, paddingVertical: 10, alignItems: "center" },
-  chip: {
-    paddingHorizontal: 13,
-    // A fixed height, not vertical padding: text-only chips in a centred
-    // horizontal ScrollView were measured into the strip's leftover height on
-    // Android and rendered with their labels cut through the middle.
-    height: 30,
-    justifyContent: "center",
-    borderRadius: 8,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  chipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  chipText: { color: "#A1A1AA", fontSize: 12, lineHeight: 16, fontWeight: "600" },
-  chipTextActive: { color: "#000000" },
 
   card: {
     borderRadius: 14,
@@ -449,14 +411,6 @@ const styles = StyleSheet.create({
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60, gap: 10 },
   dim: { color: theme.colors.neutrals[400], fontSize: 12, textAlign: "center" },
-  retryBtn: {
-    marginTop: 6,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: theme.colors.neutrals[800],
-  },
-  retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
 
   playerRoot: { flex: 1, backgroundColor: "#000000" },
   playerHeader: {

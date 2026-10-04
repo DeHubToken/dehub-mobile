@@ -30,13 +30,12 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   Alert,
   FlatList,
-  Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+} from "react-native";
+
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { useFocusEffect } from "@react-navigation/native";
@@ -45,6 +44,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageTabs, useFlatPage } from "../components/page/PageKit";
 import Icon, { type IconName } from "../components/ui/Icon";
 import {
   LiveStageCard,
@@ -59,14 +59,7 @@ import { sameWallet, type AudioSpace } from "../hooks/useStages";
 import { getStagePlaybackState, stopStageRecording } from "../libs/stage-playback";
 import { theme } from "../theme";
 import { useAppTheme } from "../context/ThemeContext";
-import {
-  MINIMAL_INSET,
-  MINIMAL_TAB_LINE,
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalFlat,
-  minimalTab,
-} from "../theme/minimal";
+import { MINIMAL_INSET } from "../theme/minimal";
 
 type StagesTab = "live" | "upcoming" | "recorded" | "hosting";
 
@@ -105,7 +98,15 @@ type Row =
 
 export default function StagesScreen() {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
+  const { isMinimal } = appTheme;
+  const flatPage = useFlatPage();
+  // Ink on the active tab chip / primary button, matching the page kit: white
+  // on the bright canvas accents, near-black on white (System) and the rest.
+  const activeInk =
+    !flatPage && !!appTheme.accent && ["hazy", "swarms", "lavalamp", "island"].includes(appTheme.theme)
+      ? "#FFFFFF"
+      : "#0B0B0C";
   const insets = useSafeAreaInsets();
   const queryClient = useQueryClient();
 
@@ -482,23 +483,27 @@ export default function StagesScreen() {
           );
         case "empty":
           return (
-            <View style={[styles.empty, isMinimal && minimalFlat]}>
-              <Icon name={item.icon} size={40} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>{item.title}</Text>
-              <Text style={styles.emptyHint}>{item.hint}</Text>
-              {!!item.ctaLabel && (
-                <TouchableOpacity onPress={item.onCta} style={styles.emptyCta} accessibilityRole="button">
-                  <Icon name="Plus" size={15} color="#FFFFFF" />
-                  <Text style={styles.emptyCtaText}>{item.ctaLabel}</Text>
-                </TouchableOpacity>
-              )}
-            </View>
+            <PageEmpty
+              icon={<View style={{ marginBottom: 12 }}><Icon name={item.icon} size={40} color="#3F3F46" /></View>}
+              title={item.title}
+              body={item.hint}
+              action={
+                item.ctaLabel ? (
+                  <KitButton
+                    label={item.ctaLabel}
+                    onPress={item.onCta}
+                    icon={<Icon name="Plus" size={15} color={activeInk} />}
+                  />
+                ) : undefined
+              }
+            />
           );
         default:
           return null;
       }
     },
     [
+      activeInk,
       busyId,
       handleCancelScheduled,
       handleDeleteRecorded,
@@ -529,10 +534,11 @@ export default function StagesScreen() {
       : isLoading && nothingLoadedYet;
 
   return (
-    <View style={styles.root}>
+    <View className="bg-theme-neutrals-900" style={styles.root}>
       <ScreenHeader
         // The nav label for this exact destination, already translated in every
         // locale — a second "Stages" key would be the same word twice.
+        icon="stages"
         title={t("nav.stages")}
         subtitle={subtitle}
         rightContent={
@@ -548,60 +554,19 @@ export default function StagesScreen() {
         }
       />
 
-      {/* Scrolls horizontally: four chips with translated labels do not fit
-          across a phone in every language, and a clipped tab is an unreachable
-          one. Web's strip scrolls for the same reason.
-
-          Minimal turns the chips into file tabs. The baseline is a view behind
-          the ScrollView, not a border on it: a ScrollView clips its children,
-          so the active tab could never reach down over a border, but drawn
-          underneath, the tab's full-height black fill simply paints over it. */}
-      <View style={isMinimal ? styles.minimalStrip : undefined}>
-      {isMinimal && <View style={styles.minimalBaseline} pointerEvents="none" />}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={[styles.tabRow, isMinimal && styles.minimalTabRow]}
-        style={styles.tabScroller}
-      >
-        {tabs.map((tab) => {
-          const active = activeTab === tab.key;
-          return (
-            <Pressable
-              key={tab.key}
-              onPress={() => chooseTab(tab.key)}
-              hitSlop={{ top: 8, bottom: 8 }}
-              style={[
-                styles.tabChip,
-                active && styles.tabChipActive,
-                isMinimal && styles.minimalTabChip,
-                isMinimal && active && styles.minimalTabChipActive,
-              ]}
-              accessibilityRole="button"
-              accessibilityState={{ selected: active }}
-            >
-              <Icon
-                name={tab.icon}
-                size={14}
-                color={
-                  isMinimal
-                    ? active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
-                    : active ? "#000000" : "#A1A1AA"
-                }
-              />
-              <Text
-                style={[
-                  styles.tabText,
-                  active && styles.tabTextActive,
-                  isMinimal && { color: active ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-                ]}
-              >
-                {t(tab.labelKey)}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      {/* Scrolls horizontally (PageTabs does): four chips with translated
+          labels do not fit across a phone in every language. */}
+      <View>
+        <PageTabs
+          value={activeTab}
+          onChange={chooseTab}
+          tabs={tabs.map((tab) => ({
+            id: tab.key,
+            label: t(tab.labelKey),
+            icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
+          }))}
+          style={{ paddingBottom: 10 }}
+        />
       </View>
 
       {showFirstLoad ? (
@@ -613,13 +578,11 @@ export default function StagesScreen() {
           data={rows}
           keyExtractor={(row) => row.key}
           renderItem={renderItem}
-          // Minimal: stages are full-width hairline rows, so no side inset and
-          // no gap between them — the cards carry their own text inset.
+          // No side inset: the page kit frames each stage (a card with its own
+          // margin on the canvas themes, a full-width row on System/minimal).
           contentContainerStyle={{
-            paddingHorizontal: isMinimal ? 0 : 12,
             paddingTop: 4,
             paddingBottom: insets.bottom + 32,
-            gap: isMinimal ? 0 : 12,
           }}
           showsVerticalScrollIndicator={false}
           // Cards carry a cover image and a player each, so a long archive is
@@ -651,83 +614,22 @@ export default function StagesScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#010305" },
+  root: { flex: 1 },
   createBtn: {
     width: 36,
     height: 36,
-    borderRadius: theme.radius.lg,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.1)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
-  },
-  // The scroller must not stretch: without a fixed height it takes the whole
-  // remaining column and the list underneath gets none of it.
-  tabScroller: {
-    flexGrow: 0,
-    flexShrink: 0,
-  },
-  tabRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingBottom: 10,
-  },
-  tabChip: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    paddingHorizontal: 14,
-    paddingVertical: 7,
-    // Chips are square-cornered app chrome, not pills — theme/radius.ts.
-    borderRadius: theme.radius.md,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  tabChipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  tabText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  tabTextActive: { color: "#000000" },
-  minimalStrip: {
-    backgroundColor: "#000",
-    marginBottom: 4,
-  },
-  minimalBaseline: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 1,
-    backgroundColor: MINIMAL_TAB_LINE,
-  },
-  minimalTabRow: {
-    gap: 0,
-    paddingHorizontal: 0,
-    paddingBottom: 0,
-    alignItems: "stretch",
-  },
-  // 44pt tall so the tab stays a comfortable target once its chip is gone.
-  minimalTabChip: {
-    ...minimalTab,
-    minHeight: 44,
-    paddingVertical: 0,
-  },
-  minimalTabChipActive: {
-    backgroundColor: "#000",
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: MINIMAL_TAB_LINE,
   },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 2,
-    marginTop: 4,
+    paddingHorizontal: 16,
+    marginTop: 8,
   },
   sectionTitle: {
     color: "#FFFFFF",
@@ -742,46 +644,6 @@ const styles = StyleSheet.create({
   },
   sectionAction: {
     color: "#A1A1AA",
-    fontSize: 13,
-    fontWeight: "600",
-  },
-  empty: {
-    alignItems: "center",
-    paddingVertical: 40,
-    paddingHorizontal: 24,
-    borderRadius: theme.radius.xl,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-  },
-  emptyTitle: {
-    color: "#FFFFFF",
-    fontSize: 15,
-    fontWeight: "700",
-    marginTop: 12,
-    textAlign: "center",
-  },
-  emptyHint: {
-    color: "#808089",
-    fontSize: 13,
-    lineHeight: 18,
-    marginTop: 6,
-    textAlign: "center",
-  },
-  emptyCta: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginTop: 16,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: theme.radius.lg,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-  },
-  emptyCtaText: {
-    color: "#FAFAFA",
     fontSize: 13,
     fontWeight: "600",
   },

@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { theme } from "../theme";
 import { toastInfo, toastError } from "../libs";
@@ -58,7 +59,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
   const going = rsvp === "going";
   const interested = rsvp === "interested";
   return (
-    <View style={styles.card}>
+    <PageSection flush>
       {event.cover_image_url ? (
         <Image source={storageImageSource(event.cover_image_url, windowWidth)} style={styles.cover} contentFit="cover" transition={150} />
       ) : (
@@ -111,7 +112,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
           </Pressable>
         </View>
       </View>
-    </View>
+    </PageSection>
   );
 };
 
@@ -175,24 +176,16 @@ export default function EventsScreen() {
   }, [filter, t]);
 
   return (
-    <View style={styles.root}>
-      <ScreenHeader title={t("nav.events")} subtitle={t("events.subtitle")} />
+    <View className="bg-theme-neutrals-900" style={styles.root}>
+      <ScreenHeader icon="events" title={t("nav.events")} subtitle={t("events.subtitle")} />
 
-      {/* Filter tabs */}
-      <View style={styles.filterRow}>
-        {FILTERS.map((f) => {
-          const active = filter === f.key;
-          return (
-            <Pressable
-              key={f.key}
-              onPress={() => setFilter(f.key)}
-              hitSlop={{ top: 8, bottom: 8 }}
-              style={[styles.filterChip, active && styles.filterChipActive]}
-            >
-              <Text style={[styles.filterText, active && styles.filterTextActive]}>{t(f.labelKey)}</Text>
-            </Pressable>
-          );
-        })}
+      <View>
+        <PageTabs
+          value={filter}
+          onChange={setFilter}
+          tabs={FILTERS.map((f) => ({ id: f.key, label: t(f.labelKey) }))}
+          style={{ paddingBottom: 10 }}
+        />
       </View>
 
       {isLoading ? (
@@ -200,27 +193,22 @@ export default function EventsScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : isError ? (
-        <View style={styles.center}>
-          <Text style={styles.emptyText}>{t("events.loadFailed")}</Text>
-          <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>{t("common.retry")}</Text>
-          </Pressable>
-        </View>
+        <PageEmpty
+          title={t("events.loadFailed")}
+          action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => refetch()} />}
+        />
       ) : (
         <FlatList
           data={events}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
+          contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingTop: 4 }}
           showsVerticalScrollIndicator={false}
           refreshControl={
             <DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />
           }
           ListEmptyComponent={
-            <View style={styles.center}>
-              <Icon name="CalendarDays" size={44} color="#3F3F46" />
-              <Text style={styles.emptyText}>{emptyLabel}</Text>
-            </View>
+            <PageEmpty icon="events" title={emptyLabel} />
           }
         />
       )}
@@ -230,41 +218,11 @@ export default function EventsScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#010305" },
-  filterRow: { flexDirection: "row", gap: 8, paddingHorizontal: 12, paddingBottom: 10 },
-  filterChip: {
-    paddingHorizontal: 16,
-    paddingVertical: 7,
-    borderRadius: 8,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  filterChipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  filterText: { color: "#A1A1AA", fontSize: 13, fontWeight: "600" },
-  filterTextActive: { color: "#000000" },
+  root: { flex: 1 },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#808089", fontSize: 13, marginTop: 12 },
-  retryBtn: {
-    marginTop: 14,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.16)",
-  },
-  retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
-  card: {
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.07)",
-    overflow: "hidden",
-  },
   cover: { width: "100%", height: 150, backgroundColor: "#18181B" },
   coverPlaceholder: { alignItems: "center", justifyContent: "center" },
-  cardBody: { padding: 12, gap: 6 },
+  cardBody: { padding: 16, gap: 6 },
   dateText: { color: theme.colors.accent, fontSize: 12, fontWeight: "600" },
   eventTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", lineHeight: 20 },
   locationRow: { flexDirection: "row", alignItems: "center", gap: 5 },

@@ -35,6 +35,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { KitButton, PageEmpty, PageSection } from "../page/PageKit";
 import {
   useAccountMarketConfig,
   useCancelAccountListing,
@@ -76,13 +77,11 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
 
   if (!isAuthed) {
     return (
-      <View style={styles.center}>
-        <Icon name="IdCard" size={40} color="#3F3F46" />
-        <Text style={styles.emptyText}>{t("accounts.signInToSell")}</Text>
-        <Pressable onPress={onSignIn} style={styles.primaryBtn}>
-          <Text style={styles.primaryBtnText}>{t("accounts.signIn")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="accounts"
+        title={t("accounts.signInToSell")}
+        action={<KitButton label={t("accounts.signIn")} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -123,7 +122,8 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
         {/* An interrupted purchase outranks the sell form — the buyer has
             already paid and this is the button that finishes it. */}
         {stuck.map((sale) => (
-          <View key={sale.id} style={styles.resumeCard}>
+          <PageSection key={sale.id}>
+          <View style={styles.resumeCard}>
             <Text style={styles.resumeTitle}>
               {t("accounts.resumeTitle", { handle: sale.username })}
             </Text>
@@ -146,8 +146,10 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
               <Text style={styles.primaryBtnText}>{t("accounts.resumeTransfer")}</Text>
             </Pressable>
           </View>
+          </PageSection>
         ))}
 
+        <PageSection>
         <View style={styles.form}>
           <View>
             <Text style={styles.fieldLabel}>{t("accounts.youAreSelling")}</Text>
@@ -225,10 +227,11 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
             )}
           </View>
         </View>
+        </PageSection>
 
         {((mine?.sold.length ?? 0) > 0 || (mine?.bought.length ?? 0) > 0 || history.length > 0) && (
+          <PageSection title={t("accounts.history")}>
           <View style={styles.historyBlock}>
-            <Text style={styles.historyTitle}>{t("accounts.history")}</Text>
             {mine!.sold.map((s) => (
               <SaleRow key={s.id} sale={s} label={t("accounts.sold")} />
             ))}
@@ -241,6 +244,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
               <HistoryRow key={l.id} listing={l} soldLabel={t("accounts.sold")} />
             ))}
           </View>
+          </PageSection>
         )}
       </ScrollView>
     </KeyboardAvoidingView>
@@ -280,30 +284,16 @@ const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string }> = (
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  scroll: { paddingHorizontal: 16, gap: 14 },
+  scroll: {},
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 14 },
   emptyText: { color: "#A1A1AA", fontSize: 13, textAlign: "center", paddingHorizontal: 32 },
 
-  resumeCard: {
-    borderRadius: 14,
-    padding: 14,
-    backgroundColor: "rgba(255,255,255,0.10)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.30)",
-    gap: 10,
-  },
+  resumeCard: { gap: 10 },
   resumeTitle: { color: "#D4D4D8", fontSize: 14, fontWeight: "700" },
   resumeText: { color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
-  form: {
-    borderRadius: 14,
-    padding: 14,
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    gap: 16,
-  },
+  form: { gap: 16 },
   field: { gap: 6 },
   fieldLabel: { color: "#808089", fontSize: 11, fontWeight: "600" },
   currentHandle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", marginTop: 2, flexShrink: 0 },

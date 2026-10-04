@@ -36,15 +36,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { useAppTheme } from "../../context/ThemeContext";
-import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
-  minimalRow,
-  minimalTab,
-  minimalTabActive,
-  minimalTabStrip,
-} from "../../theme/minimal";
+import { KitButton, PageEmpty, PageSection, PageTabs } from "../page/PageKit";
 import {
   useMyStores,
   useMyListings,
@@ -590,11 +582,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   onSignIn,
 }) => {
   const { t } = useTranslation();
-  // Minimal: sub-tabs become file tabs and the listing/order cards become
-  // edge-to-edge hairline rows. The banner header and buttons stay.
-  const { isMinimal } = useAppTheme();
   const { width: windowWidth } = useWindowDimensions();
-  const rowStyle = [styles.row, isMinimal && styles.minimalRow];
+  const rowStyle = styles.row;
   const {
     data: stores = [],
     isLoading: loadingStores,
@@ -674,12 +663,11 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
   if (!isAuthed) {
     return (
-      <View style={styles.center}>
-        <Text style={styles.dim}>{t("stores.signInManage")}</Text>
-        <Pressable onPress={onSignIn} style={[styles.primaryBtn, { marginTop: 14 }]}>
-          <Text style={styles.primaryBtnText}>{t("common.signIn")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="stores"
+        title={t("stores.signInManage")}
+        action={<KitButton label={t("common.signIn")} onPress={onSignIn} />}
+      />
     );
   }
 
@@ -695,31 +683,32 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   // seller to open a duplicate. Cached stores still win over a failed refresh.
   if (storesError && stores.length === 0) {
     return (
-      <View style={styles.center}>
-        <Text style={styles.dim}>{t("common.failedToLoad")}</Text>
-        <Pressable onPress={() => refetchStores()} style={[styles.primaryBtn, { marginTop: 14 }]}>
-          <Text style={styles.primaryBtnText}>{t("common.retry")}</Text>
-        </Pressable>
-      </View>
+      <PageEmpty
+        icon="stores"
+        title={t("common.failedToLoad")}
+        action={<KitButton label={t("common.retry")} onPress={() => refetchStores()} />}
+      />
     );
   }
 
   // No store yet — web drops straight into the setup flow.
   if (stores.length === 0) {
     return (
-      <View style={styles.center}>
-        <Icon name="Store" size={44} color="#3F3F46" />
-        <Text style={styles.emptyTitle}>{t("stores.openYourStore")}</Text>
-        <Text style={styles.dim}>{t("stores.openStoreDescription")}</Text>
-        <Pressable
-          onPress={() => {
-            setEditingStore(null);
-            setStoreFormOpen(true);
-          }}
-          style={[styles.primaryBtn, { marginTop: 16 }]}
-        >
-          <Text style={styles.primaryBtnText}>{t("stores.createStore")}</Text>
-        </Pressable>
+      <View>
+        <PageEmpty
+          icon="stores"
+          title={t("stores.openYourStore")}
+          body={t("stores.openStoreDescription")}
+          action={
+            <KitButton
+              label={t("stores.createStore")}
+              onPress={() => {
+                setEditingStore(null);
+                setStoreFormOpen(true);
+              }}
+            />
+          }
+        />
         <StoreForm visible={storeFormOpen} onClose={() => setStoreFormOpen(false)} />
       </View>
     );
@@ -735,9 +724,10 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
   return (
     <ScrollView
-      contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 28 }}
+      contentContainerStyle={{ paddingBottom: 28 }}
       showsVerticalScrollIndicator={false}
     >
+      <PageSection>
       {/* Store header */}
       <View style={styles.storeHeader}>
         {!!activeStore?.banner_url && (
@@ -779,8 +769,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
       {/* Store switcher when there's more than one */}
       {stores.length > 1 && (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10, marginHorizontal: -12 }}>
-          <View style={{ flexDirection: "row", gap: 8, paddingHorizontal: 12 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10, marginHorizontal: -16 }}>
+          <View style={{ flexDirection: "row", gap: 8, paddingHorizontal: 16 }}>
             {stores.map((s) => (
               <Pressable
                 key={s.id}
@@ -800,47 +790,31 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
       {/* Actions */}
       <View style={styles.actionRow}>
-        <Pressable
+        <KitButton
+          label={t("stores.newListing")}
           onPress={() => setListingFormOpen(true)}
-          style={[styles.primaryBtn, { flex: 1 }]}
-        >
-          <Text style={styles.primaryBtnText}>{t("stores.newListing")}</Text>
-        </Pressable>
-        <Pressable
+          style={{ flex: 1 }}
+        />
+        <KitButton
+          variant="quiet"
+          label={t("stores.newStore")}
           onPress={() => {
             setEditingStore(null);
             setStoreFormOpen(true);
           }}
-          style={styles.secondaryBtn}
-        >
-          <Text style={styles.secondaryBtnText}>{t("stores.newStore")}</Text>
-        </Pressable>
+        />
       </View>
+      </PageSection>
 
       {/* Sub tabs */}
-      <View style={[styles.segment, isMinimal && styles.minimalSegment]}>
-        {TABS.map((t) => (
-          <Pressable
-            key={t.key}
-            onPress={() => setSubTab(t.key)}
-            style={[
-              styles.segmentBtn,
-              subTab === t.key && styles.segmentBtnActive,
-              isMinimal && (subTab === t.key ? minimalTabActive : minimalTab),
-            ]}
-          >
-            <Text
-              style={[
-                styles.segmentText,
-                subTab === t.key && styles.segmentTextActive,
-                isMinimal && { color: subTab === t.key ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT },
-              ]}
-            >
-              {t.label} ({t.count})
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+      <PageTabs
+        size="sm"
+        value={subTab}
+        onChange={setSubTab}
+        tabs={TABS.map((tab) => ({ id: tab.key, label: tab.label, count: tab.count }))}
+      />
+
+      <PageSection flush>
 
       {subTab === "listings" ? (
         storeListings.length === 0 ? (
@@ -915,6 +889,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           );
         })
       )}
+      </PageSection>
 
       <StoreForm
         visible={storeFormOpen}
@@ -961,34 +936,16 @@ const styles = StyleSheet.create({
   },
 
   actionRow: { flexDirection: "row", gap: 8, marginTop: 12 },
-  segment: {
-    flexDirection: "row",
-    gap: 4,
-    marginTop: 12,
-    marginBottom: 10,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderRadius: 12,
-    padding: 3,
-  },
-  // -12 cancels the scroll gutter so the baseline / hairlines run edge to edge.
-  minimalSegment: { ...minimalTabStrip, marginHorizontal: -12, padding: 0, gap: 0, marginBottom: 0 },
-  segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 9, alignItems: "center" },
-  segmentBtnActive: { backgroundColor: "rgba(255,255,255,0.15)" },
-  segmentText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
-  segmentTextActive: { color: "#FFFFFF" },
 
   row: {
     flexDirection: "row",
     alignItems: "center",
     gap: 11,
-    padding: 10,
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-    marginBottom: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "rgba(255,255,255,0.08)",
   },
-  minimalRow: { ...minimalRow, marginHorizontal: -12, marginBottom: 0, paddingHorizontal: 16 },
   rowThumb: {
     width: 44,
     height: 44,

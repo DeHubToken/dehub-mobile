@@ -27,6 +27,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { KitButton, PageSection } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import { useWebCheckout } from "../hooks/useWebCheckout";
@@ -185,9 +186,9 @@ export default function PremiumScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("nav.premium")} />
+      <ScreenHeader title={t("nav.premium")} icon="subscriptions" />
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Hero */}
@@ -217,15 +218,15 @@ export default function PremiumScreen() {
 
         {/* Tiers */}
         {TIERS.map((tier) => (
-          <View key={tier.priceId} style={[styles.card, tier.highlight && styles.cardHighlight]}>
-            {tier.highlight && (
-              <View style={styles.bestValue}>
-                <Text style={styles.bestValueText}>{t("premium.bestValue")}</Text>
-              </View>
-            )}
+          <PageSection key={tier.priceId}>
             <View style={styles.tierHead}>
               <Icon name={tier.icon} size={16} color="#FFFFFF" />
               <Text style={styles.tierName}>{tier.name}</Text>
+              {tier.highlight && (
+                <View style={styles.bestValue}>
+                  <Text style={styles.bestValueText}>{t("premium.bestValue")}</Text>
+                </View>
+              )}
             </View>
             <Text style={styles.tagline}>{t(tier.taglineKey)}</Text>
 
@@ -276,7 +277,7 @@ export default function PremiumScreen() {
                 )}
               </Pressable>
             )}
-          </View>
+          </PageSection>
         ))}
 
         {/* Before the user leaves the app, say where they are going and why
@@ -288,6 +289,7 @@ export default function PremiumScreen() {
         )}
 
         {/* Deep dives */}
+        <PageSection>
         <View style={styles.dives}>
           {DEEP_DIVES.map((d) => (
             <View key={d.key} style={styles.dive}>
@@ -299,28 +301,32 @@ export default function PremiumScreen() {
             </View>
           ))}
         </View>
+        </PageSection>
 
         {/* Staker reward — staking is itself a purchase flow, so it follows
             the App Store gate like the wallet does. */}
         {DIGITAL_PURCHASES_ENABLED && (
-          <View style={[styles.card, styles.center]}>
+          <PageSection style={styles.center}>
             <View style={styles.stakerHead}>
               <Icon name="Crown" size={13} color="#A1A1AA" />
               <Text style={styles.stakerKicker}>{t("premium.stakerThankYou")}</Text>
             </View>
             <Text style={styles.stakerTitle}>{t("premium.stakeGetPremium")}</Text>
             <Text style={styles.stakerBlurb}>{t("premium.stakeBlurb")}</Text>
-            <Pressable style={styles.cta} onPress={openStaking} accessibilityRole="button">
-              <Text style={styles.ctaText}>{t("premium.viewStakingTiers")}</Text>
-            </Pressable>
-          </View>
+            <KitButton
+              style={styles.stakerCta}
+              onPress={openStaking}
+              label={t("premium.viewStakingTiers")}
+            />
+          </PageSection>
         )}
 
         {/* FAQ */}
-        <Text style={styles.sectionTitle}>{t("premium.questions")}</Text>
-        {FAQ_KEYS.filter((k) => canBuy || k !== PAYMENT_FAQ).map((k) => (
-          <FaqItem key={k} k={k} />
-        ))}
+        <PageSection title={t("premium.questions")}>
+          {FAQ_KEYS.filter((k) => canBuy || k !== PAYMENT_FAQ).map((k) => (
+            <FaqItem key={k} k={k} />
+          ))}
+        </PageSection>
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>{t("premium.footerNote")}</Text>
@@ -338,7 +344,7 @@ export default function PremiumScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  hero: { alignItems: "center", paddingTop: 12, paddingBottom: 20, paddingHorizontal: 8 },
+  hero: { alignItems: "center", paddingTop: 12, paddingBottom: 20, paddingHorizontal: 16 },
   pill: {
     flexDirection: "row",
     alignItems: "center",
@@ -358,20 +364,10 @@ const styles = StyleSheet.create({
   heroStaker: { color: "#71717A", fontSize: 12, textAlign: "center", marginTop: 12 },
   link: { color: "#D4D4D8", textDecorationLine: "underline" },
   checking: { paddingVertical: 8, alignItems: "center" },
-  card: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(0,0,0,0.6)",
-    padding: 16,
-    marginBottom: 16,
-  },
-  cardHighlight: { borderColor: "rgba(255,255,255,0.30)", marginTop: 8 },
   center: { alignItems: "center" },
+  stakerCta: { alignSelf: "stretch", marginTop: 18 },
   bestValue: {
-    position: "absolute",
-    top: -11,
-    alignSelf: "center",
+    marginLeft: "auto",
     paddingHorizontal: 10,
     paddingVertical: 3,
     borderRadius: 999,
@@ -435,8 +431,8 @@ const styles = StyleSheet.create({
   ctaPrimary: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
   ctaText: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
   ctaTextPrimary: { color: "#000000" },
-  notice: { color: "#71717A", fontSize: 12, lineHeight: 17, textAlign: "center", marginBottom: 20, paddingHorizontal: 8 },
-  dives: { gap: 22, marginVertical: 12, paddingHorizontal: 4 },
+  notice: { color: "#71717A", fontSize: 12, lineHeight: 17, textAlign: "center", marginTop: 8, marginBottom: 20, paddingHorizontal: 16 },
+  dives: { gap: 22 },
   dive: { gap: 6 },
   diveIcon: {
     width: 48,
@@ -455,18 +451,13 @@ const styles = StyleSheet.create({
   stakerKicker: { color: "#A1A1AA", fontSize: 12 },
   stakerTitle: { color: "#FFFFFF", fontSize: 20, fontWeight: "700", textAlign: "center" },
   stakerBlurb: { color: "#A1A1AA", fontSize: 13, lineHeight: 20, textAlign: "center", marginTop: 8 },
-  sectionTitle: { color: "#FFFFFF", fontSize: 19, fontWeight: "700", textAlign: "center", marginTop: 12, marginBottom: 12 },
   faqItem: {
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.03)",
-    paddingHorizontal: 14,
-    marginBottom: 8,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: "rgba(255,255,255,0.10)",
   },
   faqHead: { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 14 },
   faqQ: { flex: 1, color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
   faqA: { color: "#A1A1AA", fontSize: 13, lineHeight: 20, paddingBottom: 14 },
-  footer: { marginTop: 20, gap: 8, alignItems: "center", paddingHorizontal: 8 },
+  footer: { marginTop: 20, gap: 8, alignItems: "center", paddingHorizontal: 16 },
   footerText: { color: "#71717A", fontSize: 12, textAlign: "center", lineHeight: 18 },
 });

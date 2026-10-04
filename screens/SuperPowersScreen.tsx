@@ -28,7 +28,7 @@ import {
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
-import { theme } from "../theme";
+import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import { badgeImage } from "../libs";
 import { BadgeProgress } from "../components/Badge/BadgeProgress";
 import {
@@ -109,13 +109,14 @@ export default function SuperPowersScreen() {
       <ScreenHeader
         title={t("superpowers.screenTitle")}
         subtitle={t("superpowers.screenSubtitle")}
-        rightContent={<Icon name="Zap" size={22} color={theme.colors.accent} />}
+        icon="superpowers"
       />
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.intro}>{t("superpowers.intro")}</Text>
 
         {/* ── Your allowance ───────────────────────────────────────────── */}
+        <PageSection>
         {loadingStatus ? (
           <View style={styles.loading}>
             <ActivityIndicator color="#fff" />
@@ -132,32 +133,26 @@ export default function SuperPowersScreen() {
         ) : statusFailed && !status ? (
           // A failed request is not "no badge". The panel below would show a
           // holder a zero badge balance, and offer DHB where purchases are on.
-          <View style={styles.panel}>
-            <Text style={styles.body}>{t("superpowers.loadFailed")}</Text>
-            <Pressable
-              onPress={() => void refetchStatus()}
-              style={styles.cta}
-              accessibilityRole="button"
-            >
-              <Text style={styles.ctaText}>{t("common.tryAgain")}</Text>
-            </Pressable>
-          </View>
+          <PageEmpty
+            title={t("superpowers.loadFailed")}
+            action={<KitButton label={t("common.tryAgain")} onPress={() => void refetchStatus()} />}
+          />
         ) : (
           // Team up is available without buying tokens or holding a badge.
           <View style={styles.panel}>
             <Text style={styles.muted}>{t("superpowers.teamUpOpenToAll")}</Text>
             <BadgeProgress balance={status?.badgeBalance ?? 0} compact />
-            {DIGITAL_PURCHASES_ENABLED && <Pressable
+            {DIGITAL_PURCHASES_ENABLED && <KitButton
               onPress={() => setBuyOpen(true)}
               style={styles.cta}
-            >
-              <Text style={styles.ctaText}>{t("superpowers.getDhb")}</Text>
-            </Pressable>}
+              label={t("superpowers.getDhb")}
+            />}
           </View>
         )}
+        </PageSection>
 
         {/* ── The twelve powers ────────────────────────────────────────── */}
-        <Text style={styles.heading}>{t("superpowers.twelvePowers")}</Text>
+        <PageSection title={t("superpowers.twelvePowers")}>
         <View style={styles.powerGrid}>
           {powers.map((power, index) => {
             // Held AND built. A locked card stays inert rather than opening a
@@ -235,9 +230,10 @@ export default function SuperPowersScreen() {
             );
           })}
         </View>
+        </PageSection>
 
         {/* ── The ladder ───────────────────────────────────────────────── */}
-        <Text style={styles.heading}>{t("superpowers.whatEachTierGrants")}</Text>
+        <PageSection title={t("superpowers.whatEachTierGrants")}>
         {loadingLadder ? (
           <View style={styles.loading}>
             <ActivityIndicator color="#fff" />
@@ -275,7 +271,8 @@ export default function SuperPowersScreen() {
         )}
 
         {/* The honest sentence, once, where the numbers are. */}
-        <Text style={styles.footnote}>{t("superpowers.rotationNote")}</Text>
+        <Text style={[styles.footnote, { marginTop: 12 }]}>{t("superpowers.rotationNote")}</Text>
+        </PageSection>
       </ScrollView>
 
       {DIGITAL_PURCHASES_ENABLED && <BuyDhbSheet visible={buyOpen} onClose={() => setBuyOpen(false)} onDelivered={() => void refetchStatus()} />}
@@ -385,16 +382,11 @@ export default function SuperPowersScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
-  content: { padding: 16, paddingBottom: 48, gap: 16 },
-  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
+  content: { paddingTop: 4, paddingBottom: 48 },
+  intro: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, paddingHorizontal: 16, paddingBottom: 12 },
   loading: { paddingVertical: 32, alignItems: "center" },
 
-  panel: {
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderRadius: 18,
-    padding: 16,
-    gap: 12,
-  },
+  panel: { gap: 12 },
   tierRow: { flexDirection: "row", alignItems: "center", gap: 12 },
   badge: { width: 44, height: 44 },
   tierText: { flex: 1, minWidth: 0 },
@@ -403,15 +395,7 @@ const styles = StyleSheet.create({
   footnote: { color: "#808089", fontSize: 12, lineHeight: 17 },
   body: { color: "#fff", fontSize: 13, lineHeight: 19 },
 
-  cta: {
-    alignSelf: "flex-start",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
-    borderRadius: 12,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-  },
-  ctaText: { color: "#fff", fontSize: 13 },
+  cta: { alignSelf: "flex-start" },
 
   spendRow: { flexDirection: "row", alignItems: "center", gap: 12 },
   spendCol: { gap: 6 },

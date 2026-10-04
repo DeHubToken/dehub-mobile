@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Keyboard, I18nManager, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +8,8 @@ import { colors } from '../theme/colors';
 import { useAppTheme } from '../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../theme/minimal';
 import { useCanGoBack } from '../hooks/useCanGoBack';
+import ChromeSurface from './ui/ChromeSurface';
+import { themeIconUrl } from '../theme/icons';
 
 /**
  * Height of the title row in points. The dehub mark bar used to sit above it;
@@ -41,6 +44,8 @@ export interface ScreenHeaderProps {
    *  top bar and no title, just a round back button floating over the media,
    *  the same one the web post page shows. */
   overlay?: boolean;
+  /** Page identity artwork key (theme/icons.ts), drawn in the theme's own style. */
+  icon?: string;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = ({
@@ -52,10 +57,12 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   titleAccessory,
   onBackPress,
   overlay = false,
+  icon,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme } = useAppTheme();
+  const iconUrl = icon ? themeIconUrl(theme, icon) : undefined;
   // Not a one-off canGoBack() during render: a screen the menu opens renders
   // before its stack has saved the push, and one that never re-renders
   // (Careers) kept no arrow. The hook also reads the render-time stack and
@@ -143,64 +150,106 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   }
 
   return (
-    <View className="bg-theme-neutrals-900">
-    <View
-      className="flex-row items-center justify-between px-4 bg-theme-neutrals-900"
-      style={{
-        height: SCREEN_HEADER_TITLE_HEIGHT,
-        paddingTop: 0,
-        ...(Platform.OS === 'android' ? { elevation: 0 } : {}),
-        // Inside the fixed height, so SCREEN_HEADER_HEIGHT is unchanged.
-        ...(isMinimal ? { borderBottomWidth: 1, borderBottomColor: MINIMAL_HAIRLINE } : {}),
-      }}
-    >
-      <View className="flex-row items-center flex-1">
-        {showBack && (
-          <TouchableOpacity
-            onPress={handleBack}
-            className="w-10 h-10 mr-2 items-center justify-center active:opacity-70"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel={t("common.goBack")}
-          >
-            {/* Icons are not mirrored by the layout; back points right in RTL. */}
-            <Ionicons
-              name="arrow-back"
-              size={22}
-              color={colors.neutrals[100]}
-              style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
-            />
-          </TouchableOpacity>
+    <View className="bg-theme-neutrals-900" style={styles.bar}>
+      {/* The floating title island, the same capsule material as the home
+          feed's: glass on iOS, solid on Android, a hairline frame on minimal. */}
+      <View style={styles.island}>
+        {isMinimal ? (
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.minimalFrame]} />
+        ) : (
+          <ChromeSurface radius={ISLAND_RADIUS} />
         )}
-        {leftContent ? (
-          <View className="mr-2">{leftContent}</View>
-        ) : null}
-        <View className="flex-shrink">
-          <View className="flex-row items-center">
-            <Text
-              numberOfLines={1}
-              className="text-theme-neutrals-100 text-2xl font-medium tracking-wide flex-shrink"
+        <View className="flex-row items-center flex-1" style={{ minWidth: 0 }}>
+          {showBack && (
+            <TouchableOpacity
+              onPress={handleBack}
+              className="active:opacity-70"
+              style={styles.square}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel={t("common.goBack")}
             >
-              {title}
-            </Text>
-            {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
-          </View>
-          {subtitle ? (
-            <Text
-              numberOfLines={1}
-              className="text-theme-neutrals-400 text-xs mt-0.5 tracking-wide"
-            >
-              {subtitle}
-            </Text>
+              {/* Icons are not mirrored by the layout; back points right in RTL. */}
+              <Ionicons
+                name="arrow-back"
+                size={19}
+                color={colors.neutrals[100]}
+                style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+              />
+            </TouchableOpacity>
+          )}
+          {iconUrl ? (
+            <Image source={{ uri: iconUrl }} style={styles.icon} contentFit="contain" cachePolicy="disk" />
           ) : null}
+          {leftContent ? (
+            <View className="mr-2">{leftContent}</View>
+          ) : null}
+          <View className="flex-shrink">
+            <View className="flex-row items-center">
+              <Text
+                numberOfLines={1}
+                className="text-theme-neutrals-100 flex-shrink"
+                style={styles.title}
+              >
+                {title}
+              </Text>
+              {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
+            </View>
+            {subtitle ? (
+              <Text
+                numberOfLines={1}
+                className="text-theme-neutrals-400"
+                style={styles.subtitle}
+              >
+                {subtitle}
+              </Text>
+            ) : null}
+          </View>
         </View>
-      </View>
-      {rightContent ? (
-        <View className="ml-3 flex-row items-center">{rightContent}</View>
-      ) : null}
+        {rightContent ? (
+          <View className="ml-3 flex-row items-center" style={{ gap: 6 }}>{rightContent}</View>
+        ) : null}
       </View>
     </View>
   );
 };
+
+/** The island's corner: the home capsule's soft corner, never a full circle. */
+const ISLAND_RADIUS = 15;
+
+const styles = StyleSheet.create({
+  bar: {
+    height: SCREEN_HEADER_TITLE_HEIGHT,
+    paddingHorizontal: 8,
+    justifyContent: 'center',
+    ...(Platform.OS === 'android' ? { elevation: 0 } : {}),
+  },
+  island: {
+    height: 52,
+    borderRadius: ISLAND_RADIUS,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 8,
+  },
+  minimalFrame: {
+    borderRadius: ISLAND_RADIUS,
+    borderWidth: 1,
+    borderColor: MINIMAL_HAIRLINE,
+    backgroundColor: '#000',
+  },
+  square: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    marginRight: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  icon: { width: 30, height: 30, marginRight: 8 },
+  title: { fontSize: 17, fontWeight: '700', letterSpacing: 0.1 },
+  subtitle: { fontSize: 11.5, marginTop: 1 },
+});
 
 export default ScreenHeader;

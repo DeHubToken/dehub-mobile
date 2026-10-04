@@ -6,16 +6,15 @@ import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusedInterval } from "../hooks/useFocusedInterval";
 import {
   View,
-  Text,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import DpayLoader from "../components/Dpay/DpayLoader";
-import Icon, { type IconName } from "../components/ui/Icon";
+import type { IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import { PageSection, PageTabs } from "../components/page/PageKit";
 import DpayInfoCards from "../components/Dpay/DpayInfoCards";
 import DpayTopUpForm from "../components/Dpay/DpayTopUpForm";
 import NearIntentBuy from "../components/Dpay/NearIntentBuy";
@@ -194,7 +193,7 @@ const DpayScreen: React.FC = () => {
       keyboardVerticalOffset={keyboardOffset}
       className="flex-1 bg-theme-neutrals-900"
     >
-      <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} />
+      <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} icon="buy" />
       <ScrollView
         className="flex-1 px-0"
         keyboardShouldPersistTaps="handled"
@@ -207,50 +206,44 @@ const DpayScreen: React.FC = () => {
         <ProfileAssets />
 
         {/* Tab switcher */}
-        <View className="flex-row px-4 gap-2 mb-5">
-          {TABS.map((tab) => (
-            <TouchableOpacity
-              key={tab.key}
-              onPress={() => setActiveTab(tab.key)}
-              className={`flex-1 py-2.5 rounded-xl items-center justify-center border ${
-                activeTab === tab.key
-                  ? "bg-white/15 border-white/25"
-                  : "bg-white/[0.04] border-white/10"
-              }`}
-            >
-              <View className="mb-0.5">
-                <Icon
-                  name={tab.icon}
-                  size={14}
-                  color={activeTab === tab.key ? "#FFFFFF" : "rgba(255,255,255,0.5)"}
-                />
-              </View>
-              <Text
-                className={`text-[11px] font-medium ${
-                  activeTab === tab.key ? "text-white" : "text-white/50"
-                }`}
-              >
-                {tab.labelKey ? t(tab.labelKey) : tab.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <PageTabs
+          value={activeTab}
+          onChange={setActiveTab}
+          tabs={TABS.map((tab) => ({ id: tab.key, label: tab.labelKey ? t(tab.labelKey) : tab.label }))}
+          style={{ paddingHorizontal: 16, paddingBottom: 12 }}
+        />
 
         {/* Tab content */}
-        <View className="px-4">
-          {activeTab === "buy" && (
-            <>
+        {activeTab === "buy" && (
+          <>
+            <PageSection>
               <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
+            </PageSection>
+            {/* The top-up form and NEAR buy are shared with the gift and buy
+                sheets and draw their own cards. */}
+            <View className="px-4 py-3">
               <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />
               <NearIntentBuy />
-              <DpayTransactions />
-              <DpayAbout />
-            </>
-          )}
-          {activeTab === "stake" && <StakingTab />}
-          {activeTab === "bridge" && <BridgeTab />}
-          {activeTab === "solana" && <SolanaTab />}
-        </View>
+            </View>
+            <DpayTransactions />
+            <DpayAbout />
+          </>
+        )}
+        {activeTab === "stake" && (
+          <PageSection>
+            <StakingTab />
+          </PageSection>
+        )}
+        {activeTab === "bridge" && (
+          <PageSection>
+            <BridgeTab />
+          </PageSection>
+        )}
+        {activeTab === "solana" && (
+          <PageSection>
+            <SolanaTab />
+          </PageSection>
+        )}
       </ScrollView>
       <DeHubRefreshMark refreshing={refreshing} />
     </KeyboardAvoidingView>
