@@ -1,4 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
+import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, TextInput} from "react-native";
 import SmartImage from "../common/SmartImage";
@@ -76,7 +77,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
               {name}
             </Text>
             {badgeImg ? (
-              <BadgeArtwork source={badgeImg} style={{ width: 15, height: 15 }} contentFit="contain" />
+              <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 15, 0, 21)} contentFit="contain" />
             ) : null}
           </View>
           <Ionicons name="arrow-redo" size={18} color="#A6A9AC" />

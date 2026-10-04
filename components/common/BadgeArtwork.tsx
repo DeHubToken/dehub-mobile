@@ -14,14 +14,14 @@ interface Props {
   cachePolicy?: "memory-disk";
 }
 
-function PlayingBadge({ poster, animation, onError }: { poster: number; animation: number; onError: () => void }) {
+function PlayingBadge({ poster, animation, imageStyle, motionStyle, onError }: { poster: number; animation: number; imageStyle: ImageStyle; motionStyle: ImageStyle; onError: () => void }) {
   const [ready, setReady] = useState(false);
   return <>
     <Image source={poster} resizeMode="contain" fadeDuration={0}
-      style={[styles.image, { opacity: ready ? 0 : 1 }]} testID="holder-badge-poster" />
+      style={[imageStyle, { opacity: ready ? 0 : 1 }]} testID="holder-badge-poster" />
     <MotionImage source={animation} contentFit="contain" autoplay useAppleWebpCodec={false}
       transition={0} cachePolicy="memory-disk" onDisplay={() => setReady(true)} onError={onError}
-      style={[StyleSheet.absoluteFillObject, { opacity: ready ? 1 : 0 }]}
+      style={[motionStyle, { opacity: ready ? 1 : 0 }]}
       testID="holder-badge-motion" />
   </>;
 }
@@ -39,6 +39,27 @@ function BadgeArtwork({ source, style }: Props) {
   const active = hovered || pressed || focused;
   const playing = active && !reducedMotion && !!art && failedAnimation !== art.animation;
   const poster = tier === "Killer Whale" ? source : art?.poster ?? source;
+  const flat = StyleSheet.flatten(style) ?? {};
+  const gutter = typeof flat.padding === "number" ? flat.padding : 0;
+  const canvas = typeof flat.height === "number" ? flat.height - gutter * 2 : undefined;
+  // Percentage-sized native images and absoluteFill disagree about padding.
+  // Give both layers the same explicit canvas, including at compact sizes.
+  const imageStyle: ImageStyle = canvas === undefined ? styles.image : {
+    position: "absolute", width: canvas, height: canvas, left: gutter, top: gutter,
+  };
+  const stillBounds = tier === "Killer Whale"
+    ? { left: 19, top: 17, right: 109, bottom: 121 }
+    : art?.posterBounds;
+  let motionStyle = imageStyle;
+  if (canvas !== undefined && stillBounds && art?.bounds) {
+    const motion = art.bounds;
+    const motionCanvas = canvas * (stillBounds.bottom - stillBounds.top) / (motion.bottom - motion.top);
+    motionStyle = {
+      position: "absolute", width: motionCanvas, height: motionCanvas,
+      left: gutter + canvas * (stillBounds.left + stillBounds.right) / 256 - motionCanvas * (motion.left + motion.right) / 256,
+      top: gutter + canvas * stillBounds.bottom / 128 - motionCanvas * motion.bottom / 128,
+    };
+  }
 
   return (
     <Pressable
@@ -64,10 +85,12 @@ function BadgeArtwork({ source, style }: Props) {
           key={art.animation}
           poster={poster}
           animation={art.animation}
+          imageStyle={imageStyle}
+          motionStyle={motionStyle}
           onError={() => setFailedAnimation(art.animation)}
         />
       ) : (
-        <Image source={poster} resizeMode="contain" fadeDuration={0} style={styles.image} testID="holder-badge-poster" />
+        <Image source={poster} resizeMode="contain" fadeDuration={0} style={imageStyle} testID="holder-badge-poster" />
       )}
     </Pressable>
   );

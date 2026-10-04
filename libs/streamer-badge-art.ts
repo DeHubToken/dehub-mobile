@@ -98,3 +98,14 @@ export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boo
     <path d="${EMBLEMS[id]}" fill="none" stroke="${metal}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
     ${ticks}</g></svg>`;
 }
+
+/** Visible frame including its stroke and the two-unit lower shadow. */
+export function streamerBadgeBounds(id: StreamerBadgeId, theme: string) {
+  if (theme === 'minimal' || theme === 'war') return { left: 8, top: 10, right: 112, bottom: 112 };
+  const index = STREAMER_BADGE_IDS.indexOf(id);
+  const [left, top, right, bottom] = [
+    [6, 6, 114, 116], [15, 4, 105, 118], [15, 5, 105, 117],
+    [7, 7, 113, 115], [3, 3, 117, 119],
+  ][Math.max(0, index) % 5];
+  return { left, top, right, bottom };
+}

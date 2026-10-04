@@ -87,11 +87,11 @@ export const CinematicAuthorChip = memo(function CinematicAuthorChip({
               ref={badgeRef}
               hitSlop={6}
               onPress={() => openBadgeShowcase(tierForBadgeImage(badgeImage), badgeRef.current)}
-              style={{ marginLeft: 3, height: 16, justifyContent: "center" }}
+              style={{ marginLeft: 3, height: 17, justifyContent: "center" }}
             >
               <BadgeArtwork
                 source={badgeImage}
-                style={[getBadgeOpticalStyle(badgeImage, 13, 0, 16), { marginLeft: 0 }]}
+                style={[getBadgeOpticalStyle(badgeImage, 14, 0, 17), { marginLeft: 0 }]}
                 resizeMode="contain"
                 fadeDuration={0}
               />
