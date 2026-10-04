@@ -409,12 +409,12 @@ describe('libs/misc', () => {
       ["Great White Shark", 8, 13, 121, 120],
       ["Blue Whale", 7, 13, 119, 121],
       ["Megalodon", 8, 15, 120, 117],
-    ])('fits %s to capital height and the name baseline', (tier, left, top, right, bottom) => {
+    ])('fits %s to 110% capital height and the name baseline', (tier, left, top, right, bottom) => {
       const source = badgeImageFor(String(tier));
       expect(source).toBeDefined();
       const style = getBadgeOpticalStyle(source!, 16, 0, 20);
       const pixels = style.height - 2 * style.padding;
-      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.732);
+      expect(pixels * (Number(bottom) - Number(top)) / 128).toBeCloseTo(16 * 0.732 * 1.1);
       const artworkBottom = -style.height / 2 + style.padding + pixels * Number(bottom) / 128 + style.transform[0].translateY;
       expect(artworkBottom).toBeCloseTo(16 * 0.3375);
       expect(style.marginLeft + style.padding + pixels * Number(left) / 128).toBeCloseTo(3);
