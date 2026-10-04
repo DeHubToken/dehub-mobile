@@ -14,6 +14,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useWeb3Provider, useERC20Contract } from './use-web3';
 import { writeContractAA } from '../libs/aa.write';
 import { DHB_ADDRESSESS } from '../config/constants';
+import { useAuthActions } from '../context/AuthContext';
+import { refreshBadgeBalance } from '../services/staking.service';
 import {
   fetchDaoTreasury,
   DAO_TREASURY_ADDRESS,
@@ -63,6 +65,7 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
   const dhbAddress = chainId ? DHB_ADDRESSESS[chainId] : undefined;
   const tokenContract = useERC20Contract(dhbAddress);
   const queryClient = useQueryClient();
+  const { refreshUser } = useAuthActions();
   const [walletDhb, setWalletDhb] = useState(0);
 
   const supported = !!chainId && DAO_CONTRIBUTION_CHAINS.includes(chainId);
@@ -120,11 +123,16 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
         .catch(() => true);
       return { txHash: hash, chainId, confirmed };
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
       refreshBalance();
       queryClient.invalidateQueries({ queryKey: DAO_TREASURY_QUERY_KEY });
       // The log index trails the head by a block or two.
       setTimeout(() => queryClient.invalidateQueries({ queryKey: DAO_TREASURY_QUERY_KEY }), 8_000);
+      void result.confirmed.then(async confirmed => {
+        if (!confirmed || !account) return;
+        await refreshBadgeBalance(account);
+        await refreshUser();
+      }).catch(() => {});
     },
   });
 

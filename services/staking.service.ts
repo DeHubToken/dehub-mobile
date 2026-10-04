@@ -33,3 +33,13 @@ export async function refreshStakingPosition(
     return null;
   }
 }
+
+/** Reconcile a confirmed DAO contribution into the shared badge balance. */
+export async function refreshBadgeBalance(address: string): Promise<StakingRefreshResult | null> {
+  try {
+    const res: any = await apiClient.post(`/badge/refresh/${address}`, {}, { isAuthRequired: false });
+    return res?.result ?? null;
+  } catch {
+    return null;
+  }
+}
