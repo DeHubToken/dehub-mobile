@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Sosial girişlər tövsiyə olunur.",
     "importWalletPurpose": "Bu alət DeHub.io-dan mövcud hesabları idxal etmək üçündür.",
     "importSecretPlaceholder": "12 və ya 24 söz, ya da özəl açar",
-    "invalidImportSecret": "Bu, etibarlı 12/24-söz ifadəsi və ya özəl açar deyil"
+    "invalidImportSecret": "Bu, etibarlı 12/24-söz ifadəsi və ya özəl açar deyil",
+    "walletSignupBlocked": "Bu pulqabı tamamilə yenidir. Yeni pulqabılara hesab açmaq üçün balans və ya əvvəlki əməliyyat lazımdır. Aşağıdakı seçimlərdən biri ilə qeydiyyatdan keçin, sonra bu pulqabını Ayarlardan qoşun."
   },
   "messages": {
     "smartRepliesOff": "Təklif olunan cavablar söndürüldü",

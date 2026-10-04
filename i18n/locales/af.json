@@ -1857,7 +1857,8 @@
     "importWalletRecommended": "Sosiale logboeke word aanbeveel.",
     "importWalletPurpose": "Hierdie instrument is vir die invoer van bestaande rekeninge vanaf DeHub.io.",
     "importSecretPlaceholder": "12 of 24 woorde, of ’n privaat sleutel",
-    "invalidImportSecret": "Dit is nie ’n geldige 12/24-woordfrase of privaat sleutel nie"
+    "invalidImportSecret": "Dit is nie ’n geldige 12/24-woordfrase of privaat sleutel nie",
+    "walletSignupBlocked": "Hierdie beursie is splinternuut. Nuwe beursies het 'n saldo of 'n vorige transaksie nodig om 'n rekening oop te maak. Teken aan met een van die opsies hieronder en koppel dan hierdie beursie in Instellings."
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorde afgeskakel",

@@ -71,7 +71,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const { t } = useTranslation();
   const { signInWithWallet, signInWithSupabaseSession, completeUsername, signOut } = useAuthActions();
   const { needsUsername, provisionalUser, isLoading: authLoading } = useAuthState();
-  const { isWalletLoading, isWalletSheetOpen, handleWalletConnect } = useWalletAuth();
+  const { isWalletLoading, isWalletSheetOpen, isSignupBlocked, handleWalletConnect } = useWalletAuth();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
@@ -665,7 +665,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               {t("auth.signInToContinueBody")}
             </Text>
           </View>
-          <AuthErrorNotice message={inlineError} style={{ marginBottom: 16 }} />
+          <AuthErrorNotice message={inlineError ?? (isSignupBlocked && authStep === "main" ? t("auth.walletSignupBlocked") : null)} style={{ marginBottom: 16 }} />
           {authStep === "main" ? (
             <SignInSavedProfiles disabled={isBusy} />
           ) : null}

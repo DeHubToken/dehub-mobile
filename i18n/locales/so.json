@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Calaamadaha bulshada waxaa lagula talinayaa.",
     "importWalletPurpose": "Qalabkani waa soo dejinta xisaabaadka jira ee DeHub.io.",
     "importSecretPlaceholder": "12 ama 24 eray, ama furaha gaarka ah",
-    "invalidImportSecret": "Taasi ma aha weedho sax ah 12/24 eray ama furaha gaarka ah"
+    "invalidImportSecret": "Taasi ma aha weedho sax ah 12/24 eray ama furaha gaarka ah",
+    "walletSignupBlocked": "Boorsadan waa mid cusub oo dhan. Boorsooyinka cusub waxay u baahan yihiin haraa ama macaamil hore si ay u furaan akoon. Isku diiwaangeli mid ka mid ah xulashooyinka hoose, kadibna ku xir boorsadan Dejinta."
   },
   "messages": {
     "smartRepliesOff": "Jawaabaha la soo jeediyay waa la damiyay",

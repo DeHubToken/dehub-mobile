@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Ka tūtohutia ngā pūkete pāpori.",
     "importWalletPurpose": "Ko tenei taputapu mo te kawemai i nga kaute o mua mai i DeHub.io.",
     "importSecretPlaceholder": "12 ranei 24 kupu, ranei te kī tūmataiti",
-    "invalidImportSecret": "Ehara i te kupu 12/24 kupu tika, i te kī tūmataiti rānei"
+    "invalidImportSecret": "Ehara i te kupu 12/24 kupu tika, i te kī tūmataiti rānei",
+    "walletSignupBlocked": "He hou katoa tēnei pūkoro. Me whai toenga, he tauwhitinga o mua rānei ngā pūkoro hou kia huaki pūkete. Haina mai mā tētahi o ngā kōwhiringa i raro, kātahi ka hono i tēnei pūkoro mai i ngā Tautuhinga."
   },
   "messages": {
     "smartRepliesOff": "Kua whakawetohia ngā whakautu tūtohu",

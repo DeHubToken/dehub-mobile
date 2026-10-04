@@ -1881,7 +1881,8 @@
     "importWalletRecommended": "Inirerekomenda ang mga social login.",
     "importWalletPurpose": "Ang tool na ito ay para sa pag - import ng mga umiiral na account mula sa DeHub.io.",
     "importSecretPlaceholder": "12 o 24 salita, o isang private key",
-    "invalidImportSecret": "Ito ay hindi isang validong 12/24-salitang pangungusap o private key"
+    "invalidImportSecret": "Ito ay hindi isang validong 12/24-salitang pangungusap o private key",
+    "walletSignupBlocked": "Bagong-bago ang wallet na ito. Kailangan ng bagong wallet ng balanse o naunang transaksyon para makapagbukas ng account. Mag-sign up gamit ang isa sa mga opsyon sa ibaba, pagkatapos ay ikonekta ang wallet na ito mula sa Settings."
   },
   "messages": {
     "smartRepliesOff": "Naka-off na ang mga iminungkahing sagot",

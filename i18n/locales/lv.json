@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Ieteicams pierakstīties sociālajos tīklos.",
     "importWalletPurpose": "Šis rīks ir paredzēts esošu kontu importēšanai no DeHub.io.",
     "importSecretPlaceholder": "12 vai 24 vārdi, vai privātā atslēga",
-    "invalidImportSecret": "Tas nav derīga 12/24 vārdu frāze vai privātā atslēga"
+    "invalidImportSecret": "Tas nav derīga 12/24 vārdu frāze vai privātā atslēga",
+    "walletSignupBlocked": "Šis maks ir pavisam jauns. Jauniem makiem konta atvēršanai vajadzīgs atlikums vai iepriekšēja transakcija. Reģistrējies ar kādu no tālāk norādītajām iespējām un pēc tam pievieno šo maku Iestatījumos."
   },
   "messages": {
     "smartRepliesOff": "Ieteiktās atbildes izslēgtas",

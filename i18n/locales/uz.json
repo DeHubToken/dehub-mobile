@@ -1852,7 +1852,8 @@
     "importWalletRecommended": "Ijtimoiy tarmoqlarga kirish tavsiya etiladi.",
     "importWalletPurpose": "Ushbu vosita DeHub.io dan mavjud hisoblarni import qilish uchun mo'ljallangan.",
     "importSecretPlaceholder": "12 yoki 24 so‘z, yoki maxfiy kalit",
-    "invalidImportSecret": "Bu yaroqli 12/24‑so‘zli ibora yoki maxfiy kalit emas"
+    "invalidImportSecret": "Bu yaroqli 12/24‑so‘zli ibora yoki maxfiy kalit emas",
+    "walletSignupBlocked": "Bu hamyon butunlay yangi. Yangi hamyonlarga hisob ochish uchun balans yoki oldingi tranzaksiya kerak. Quyidagi variantlardan biri bilan roʻyxatdan oʻting, soʻng bu hamyonni Sozlamalardan ulang."
   },
   "messages": {
     "smartRepliesOff": "Tavsiya etilgan javoblar o'chirildi",

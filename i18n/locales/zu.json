@@ -1835,7 +1835,8 @@
     "importWalletRecommended": "Ukungena ku-akhawunti komphakathi kuyatuswa.",
     "importWalletPurpose": "Leli thuluzi lokungenisa ama-akhawunti akhona ku-DeHub.io.",
     "importSecretPlaceholder": "Amagama angu-12 noma angu-24, noma ukhiye wangasese",
-    "invalidImportSecret": "Lowo akuwona umusho wamagama angu-12/24 ovumelekile noma ukhiye wangasese"
+    "invalidImportSecret": "Lowo akuwona umusho wamagama angu-12/24 ovumelekile noma ukhiye wangasese",
+    "walletSignupBlocked": "Lesi sikhwama sisha nya. Izikhwama ezintsha zidinga ibhalansi noma ukuthengiselana kwangaphambili ukuze zivule i-akhawunti. Bhalisa ngenye yezinketho ezingezansi, bese uxhuma lesi sikhwama kuZilungiselelo."
   },
   "messages": {
     "smartRepliesOff": "Izimpendulo eziphakanyisiwe zivaliwe",

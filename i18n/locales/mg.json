@@ -1857,7 +1857,8 @@
     "importWalletRecommended": "Amporisihina ny fidirana ara-tsosialy.",
     "importWalletPurpose": "Ity fitaovana ity dia manafatra ny kaonty efa misy ao amin'ny DeHub.io.",
     "importSecretPlaceholder": "12 na 24 teny, na lakile manokana",
-    "invalidImportSecret": "Tsy teny 12/24 na lakile manokana mety io"
+    "invalidImportSecret": "Tsy teny 12/24 na lakile manokana mety io",
+    "walletSignupBlocked": "Vaovao tanteraka ity kitapom-bola ity. Mila vola na fifanakalozana teo aloha ny kitapom-bola vaovao vao afaka manokatra kaonty. Misoratra anarana amin'ny iray amin'ireo safidy etsy ambany, avy eo ampifandraiso amin'ny Fikirana ity kitapom-bola ity."
   },
   "messages": {
     "smartRepliesOff": "Novonoina ny valiny atolotra",

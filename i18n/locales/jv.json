@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Login sosial disaranake.",
     "importWalletPurpose": "Piranti iki kanggo ngimpor akun sing wis ana saka DeHub.io.",
     "importSecretPlaceholder": "12 utawa 24 tembung, utawa kunci pribadi",
-    "invalidImportSecret": "Iku dudu frasa 12/24 tembung utawa kunci pribadi sing sah"
+    "invalidImportSecret": "Iku dudu frasa 12/24 tembung utawa kunci pribadi sing sah",
+    "walletSignupBlocked": "Dompet iki anyar banget. Dompet anyar butuh saldo utawa transaksi sadurunge kanggo mbukak akun. Daftar nganggo salah siji pilihan ing ngisor, banjur sambungake dompet iki saka Setelan."
   },
   "messages": {
     "smartRepliesOff": "Wangsulan sing disaranake dipateni",

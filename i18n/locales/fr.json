@@ -1834,7 +1834,8 @@
     "importWalletRecommended": "Les connexions sociales sont recommandées.",
     "importWalletPurpose": "Cet outil permet d'importer des comptes existants à partir de DeHub.io.",
     "importSecretPlaceholder": "12 ou 24 mots, ou une clé privée",
-    "invalidImportSecret": "Ce n'est ni une phrase valide de 12/24 mots ni une clé privée"
+    "invalidImportSecret": "Ce n'est ni une phrase valide de 12/24 mots ni une clé privée",
+    "walletSignupBlocked": "Ce portefeuille est tout neuf. Les nouveaux portefeuilles doivent avoir un solde ou une transaction passée pour ouvrir un compte. Inscrivez-vous avec l'une des options ci-dessous, puis connectez ce portefeuille depuis les Paramètres."
   },
   "messages": {
     "smartRepliesOff": "Réponses suggérées désactivées",

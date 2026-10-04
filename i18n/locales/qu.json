@@ -1835,7 +1835,8 @@
     "importWalletRecommended": "Social yaykuykunaqa allinmi.",
     "importWalletPurpose": "Kay yanapakuyqa DeHub.io kaqmanta kunan kaq yupaykunata apamunapaqmi.",
     "importSecretPlaceholder": "12 utaq 24 simikuna, utaq huk llave privada",
-    "invalidImportSecret": "Chayqa manam allin 12/24 simiyuq rimaychu nitaq sapalla llavechu"
+    "invalidImportSecret": "Chayqa manam allin 12/24 simiyuq rimaychu nitaq sapalla llavechu",
+    "walletSignupBlocked": "Kay qullqi wayaqaqa musuqmi. Musuq qullqi wayaqakunaqa qullqiyuq kanan otaq ñawpaq rantinakuyniyuq kanan tiyan cuentata kichanapaq. Uraypi kaq akllanakunamanta hukwan qillqakuy, chaymanta kay qullqi wayaqata Churanakunamanta tinkichiy."
   },
   "messages": {
     "smartRepliesOff": "Ñisqa kutichiykunaqa wañuchisqa",
