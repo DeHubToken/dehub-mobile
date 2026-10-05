@@ -215,10 +215,9 @@ function objectToQueryString(obj?: Record<string, any>): string {
  * // Get feed with user context (uses auth token automatically)
  * const myFeed = await getUnifiedFeed();
  */
-export async function getUnifiedFeed(
-  params?: UnifiedFeedParams
-): Promise<UnifiedFeedResponse> {
+function feedQuery(params?: UnifiedFeedParams, signal = false): string {
   const queryParams = removeUndefined({
+    signal: signal ? true : undefined,
     page: params?.page ?? 1,
     limit: params?.limit ?? 20,
     sortBy: params?.sortBy,
@@ -239,8 +238,20 @@ export async function getUnifiedFeed(
     followingOnly: params?.followingOnly,
   });
 
-  const query = objectToQueryString(queryParams);
-  const url = `/feed${query}`;
+  return objectToQueryString(queryParams);
+}
+
+/** Non-rendering poll; older servers may return a full compatible response. */
+export async function getUnifiedFeedSignal(params?: UnifiedFeedParams): Promise<Pick<UnifiedFeedResponse, 'status' | 'result'>> {
+  const res = await apiClient.get<Pick<UnifiedFeedResponse, 'status' | 'result'>>(
+    `/feed${feedQuery({ ...params, page: 1, limit: Math.min(params?.limit ?? 20, 20) }, true)}`,
+    { isAuthRequired: true },
+  );
+  return { status: res.status ?? true, result: res.result || [] };
+}
+
+export async function getUnifiedFeed(params?: UnifiedFeedParams): Promise<UnifiedFeedResponse> {
+  const url = `/feed${feedQuery(params)}`;
 
   try {
     const res = await apiClient.get<UnifiedFeedResponse>(url, {

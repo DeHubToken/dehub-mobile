@@ -21,7 +21,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { AppState, type AppStateStatus } from "react-native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUnifiedFeed, type UnifiedFeedParams } from "../services/feed.unified.service";
+import { getUnifiedFeedSignal, type UnifiedFeedParams } from "../services/feed.unified.service";
 import { mergeLiveCounts, type RawFeedRow } from "../libs/liveCounts";
 
 /** Rows pulled per poll. Also the ceiling on the count the pill can show. */
@@ -117,7 +117,7 @@ export function useNewPostsSignal({
 
   const { data } = useQuery({
     queryKey: ["home-feed-head", params ?? {}],
-    queryFn: () => getUnifiedFeed({ ...(params || {}), page: 1, limit: HEAD_SIZE }),
+    queryFn: () => getUnifiedFeedSignal({ ...(params || {}), limit: HEAD_SIZE }),
     enabled: polling,
     refetchInterval: polling ? LIVE_ENGAGEMENT_POLL_MS : false,
     staleTime: LIVE_ENGAGEMENT_POLL_MS / 2,
