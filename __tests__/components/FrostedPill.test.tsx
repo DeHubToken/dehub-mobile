@@ -28,9 +28,12 @@ it('samples the supplied target using the Android 12+ path', () => {
   expect(tree.root.findAllByType('View' as any)[0].props.style[1]).toMatchObject({ borderRadius: 12, overflow: 'hidden' });
 });
 
-it.each([false, true])('keeps a readable solid fallback when a supported source is unavailable (%s)', supported => {
+it.each([
+  { supported: false, target: { current: {} } },
+  { supported: true, target: undefined },
+])('keeps a readable solid fallback when support=$supported', ({ supported, target }) => {
   mockSupported = supported;
-  mockTarget = undefined;
+  mockTarget = target;
   act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
   expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
   expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === '#18181B')).toBe(true);
