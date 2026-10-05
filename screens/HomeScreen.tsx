@@ -36,10 +36,9 @@ import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
-import { useIsFetching, useQueryClient } from "@tanstack/react-query";
+import { useIsFetching } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
-import { getUnifiedFeed, getShortsFeed } from "../services/feed.unified.service";
 import type {
   FeedRange,
   FeedSortBy,
@@ -48,7 +47,6 @@ import type {
 } from "../services/feed.unified.service";
 import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../navigation/tabPressIntent";
-import { ScreenNames } from "../navigation/ScreenNames";
 import type { BottomTabParamList } from "../navigation/types";
 import { isKidsModeLocked } from "../libs/kids-mode-lock";
 import {
@@ -127,21 +125,6 @@ const EDGE_RESISTANCE = 0.28;
 // swipe turns the page instead of snapping back. Waiting for half a screen of
 // travel is precisely what read as slow.
 const VELOCITY_PROJECTION = 0.12;
-// Gap between warm-up steps. One list per tick: mounting all six in a single
-// commit (what the old 2.5s timer did) stalls the JS thread for long enough to
-// drop a visible run of frames.
-const WARM_STEP_MS = 220;
-const PREFETCH_STEP_MS = 260;
-// The other bottom tabs, in the order people reach for them. They are `lazy`
-// in BottomTabNavigator, so without this the first press on each paid for
-// evaluating the screen's module, mounting it and running its first fetches —
-// all after the tap, with nothing on screen to show for it. Preloading mounts
-// them hidden once the pager warm-up above has finished, and the first press
-// becomes the same instant swap as every later one.
-const PRELOAD_TABS = [ScreenNames.DM, ScreenNames.Explore, ScreenNames.AIChat] as const;
-// Starts after the last warm-up and prefetch step has had a moment to land.
-const PRELOAD_START_MS = 2_200;
-const PRELOAD_STEP_MS = 600;
 
 /**
  * Pager slot for a post type. Filter-panel-only types ("feed-simple") have no
@@ -242,10 +225,9 @@ export default function HomeScreen() {
   // ride a deferred value so the tap itself never waits on it.
   const deferredIndex = useDeferredValue(activeIndex);
 
-  // Pages mount on first approach and stay mounted; warm-up fills in the rest a
-  // page at a time. Hidden pages sit off-screen in the pager row, so they cost
-  // no compositing at all — the old build stacked all six as absolutely
-  // positioned siblings at opacity 0.
+  // Pages mount on first approach and stay mounted. Keep unvisited pages out
+  // of startup work, matching web's navigation-intent loading. PagerPage
+  // controls drawing while preserving each visited list's state.
   const [mountedTabs, setMountedTabs] = useState<ReadonlySet<TabKey>>(
     () => new Set<TabKey>(["all"]),
   );
@@ -342,8 +324,7 @@ export default function HomeScreen() {
     [filters.postType],
   );
 
-  // Each feed list has a hard-wired postType. Query keys stay identical to the
-  // prefetch keys below.
+  // Each feed list has a hard-wired postType and its own stable query key.
   const feedListParamsByType = useMemo(() => {
     return {
       all: homeSlotPostType ? { ...feedParams, postType: homeSlotPostType } : feedParams,
@@ -599,11 +580,8 @@ export default function HomeScreen() {
   const { active: filterLoaderActive, begin: beginFilterTransition } =
     useFeedFilterTransition(feedQueriesInFlight > 0);
 
-  // ── Warm-up ──────────────────────────────────────────────────────────────
+  // ── Navigation ───────────────────────────────────────────────────────────
   const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
-  const queryClient = useQueryClient();
-  const feedParamsRef = useRef(feedParams);
-  feedParamsRef.current = feedParams;
 
   // Each pager page mounts on its first visit. Gesture handlers select the
   // intended page before the animation commits; hidden screens do no boot work.
