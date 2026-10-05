@@ -99,7 +99,7 @@ import {
 import { dmSendQueue } from "../services/dm/dm.send";
 import { ensureDmEncryption, retryDmEncryption, type DmEncryptionStatus } from "../libs/dm-e2ee/setup";
 import { decryptIncoming } from "../libs/dm-e2ee/peer";
-import { decryptFromPeerSync, onIdentityChange, prepareOutgoing } from "../libs/dm-e2ee/keys";
+import { onIdentityChange, prepareOutgoing } from "../libs/dm-e2ee/keys";
 import { getAccount, isFollowing as checkIsFollowing } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
 import { truncateAddress } from "../libs/strings.util";
@@ -417,17 +417,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   // Build the combined list: optimistic + store (newest first for inverted FlatList)
   const messageList = useMemo(() => {
     const base = [...storeMessages].reverse(); // store is asc → flip to desc
-    // Filter out any optimistic messages that the server has already confirmed
-    const stillPending = optimisticMsgs.filter(
-      (p) =>
-        !base.some(
-          (m) =>
-            m._id === p._tempId ||
-            (m.content === p.content &&
-              m.author === "me" &&
-              Math.abs(+new Date(m.createdAt) - +new Date(p.createdAt)) < 5000),
-        ),
-    );
+    // The queue removes the exact pending entry after persistence. Matching
+    // text here hides a repeated reply (including a failed one) behind an
+    // earlier message with the same words.
+    const stillPending = optimisticMsgs.filter(p => !base.some(m => m._id === p._tempId));
     return [...(stillPending as DmMessage[]), ...base];
   }, [storeMessages, optimisticMsgs]);
 
@@ -1379,17 +1372,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     const onServerMsg = (payload: any) => {
       const cId = resolveConvId(payload?.conversation, payload?.dmId);
       if (cId !== convId) return;
-      // The queue already removes optimistic on success.
-      // This is a safety net for edge cases (e.g. queue finished
-      // but the store wasn't cleaned up — reconcile by content match).
+      // Text/GIF confirmation belongs to the send queue, which inserts the
+      // saved message before removing its pending entry. Keep only the media
+      // upload safety net here, and never consume an incoming message.
+      if (payload?.author !== "me" || payload?.msgType !== "media") return;
       const list = (dmState as any).optimisticByConversation?.[convId] as OptimisticMessage[] | undefined;
       if (!list?.length) return;
-      // The echo carries ciphertext; the optimistic entry holds plaintext.
-      const content = decryptFromPeerSync(peer.address, payload?.content || "") ?? "";
       const msgType = payload?.msgType || "";
       const match = list.find((p) => {
-        if (msgType === "msg") return p.msgType === "msg" && p.content === content;
-        if (msgType === "gif") return p.msgType === "gif";
         if (msgType === "media") return p.msgType === "media";
         return false;
       });
