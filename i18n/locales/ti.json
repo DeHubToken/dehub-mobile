@@ -8650,6 +8650,7 @@
     "checkoutUnavailable": "ናይ ክፍሊት መደብ ሕጂ ኣይርከብን። ብቕጽሊ ድሕሪ ሓደ ጽዓት ፈትንዎ።"
   },
   "pricing": {
+    "perSeatMonthly": "ንሓደ መቐመጢ/ወርሒ",
     "plansForEveryWorkflow": "ነፍሲ ወከፍ መደብ ንነፍሲ ወከፍ ስራሕ",
     "findTheRightFit": "ካብ ግለ-ሰብ ክሳብ ጽርግያ ዝሰርሑ ሓይሊታት፣ እቲ ዝግባእ መሪጽካ",
     "monthly": "ወርሓዊ",

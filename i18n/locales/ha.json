@@ -8677,6 +8677,7 @@
     "checkoutUnavailable": "Biyan kuɗi ba ya samuwa a yanzu. Da fatan za a gwada sake daga baya."
   },
   "pricing": {
+    "perSeatMonthly": "a kowace kujera/wata",
     "plansForEveryWorkflow": "Shirye-shirye don kowane aiki",
     "findTheRightFit": "Daga mutane zuwa ƙungiyoyin kamfanoni, sami dacewa da ta dace",
     "monthly": "Wata-wata",

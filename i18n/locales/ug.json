@@ -8680,6 +8680,7 @@
     "checkoutUnavailable": "Checkout ھازىرچە بار ئەمەس. قايتا سىناپ بېقىڭ."
   },
   "pricing": {
+    "perSeatMonthly": "ئورۇن/ئايلىق",
     "plansForEveryWorkflow": "ھەر بىر خىزمەت ئۈچۈن پىلانلار",
     "findTheRightFit": "شەخسلەردىن باشلاپ كارخانا گۇرۇپپىلىرىغىچە، توغرا ماس كېلىدىغاننى تېپىڭ",
     "monthly": "ئايلىق",

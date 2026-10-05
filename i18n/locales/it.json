@@ -8733,6 +8733,7 @@
     "checkoutUnavailable": "Il check-out non è disponibile al momento. Riprova più tardi."
   },
   "pricing": {
+    "perSeatMonthly": "per posto/mese",
     "plansForEveryWorkflow": "Piani per ogni flusso di lavoro",
     "findTheRightFit": "Da individui a team aziendali, trova la soluzione giusta",
     "monthly": "Mensile",

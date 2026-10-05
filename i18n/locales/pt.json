@@ -8738,6 +8738,7 @@
     "checkoutUnavailable": "O checkout não está disponível no momento. Tente novamente mais tarde."
   },
   "pricing": {
+    "perSeatMonthly": "por assento/mês",
     "plansForEveryWorkflow": "Planos para cada fluxo de trabalho",
     "findTheRightFit": "De indivíduos a equipes empresariais, encontre o ajuste certo",
     "monthly": "Mensal",

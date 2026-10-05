@@ -8721,6 +8721,7 @@
     "checkoutUnavailable": "الدفع غير متاح حاليًا. يرجى المحاولة مرة أخرى لاحقًا."
   },
   "pricing": {
+    "perSeatMonthly": "لكل مقعد/شهر",
     "plansForEveryWorkflow": "خطط لكل سير عمل",
     "findTheRightFit": "من الأفراد إلى فرق المؤسسات، ابحث عن الخيار المناسب",
     "monthly": "شهري",

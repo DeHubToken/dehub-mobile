@@ -8733,6 +8733,7 @@
     "checkoutUnavailable": "Die Kasse ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut."
   },
   "pricing": {
+    "perSeatMonthly": "pro Platz/Monat",
     "plansForEveryWorkflow": "Pläne für jeden Workflow",
     "findTheRightFit": "Von Einzelpersonen bis zu Enterprise-Teams, finden Sie die richtige Lösung",
     "monthly": "Monatlich",

@@ -8702,6 +8702,7 @@
     "checkoutUnavailable": "Kasaforta nuk është e disponueshme tani. Ju lutemi provoni përsëri më vonë."
   },
   "pricing": {
+    "perSeatMonthly": "për vend/muaj",
     "plansForEveryWorkflow": "Plane për çdo proces pune",
     "findTheRightFit": "Nga individë deri te ekipet e ndërmarrjeve, gjeni përshtatjen e duhur",
     "monthly": "Mujore",

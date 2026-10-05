@@ -8702,6 +8702,7 @@
     "checkoutUnavailable": "Šiuo metu išvykimas negalimas. Bandykite dar kartą vėliau."
   },
   "pricing": {
+    "perSeatMonthly": "už vietą/mėn.",
     "plansForEveryWorkflow": "Planai kiekvienam darbo procesui",
     "findTheRightFit": "Nuo pavienių asmenų iki įmonių komandų – raskite tinkamiausią",
     "monthly": "Mėnesinis",

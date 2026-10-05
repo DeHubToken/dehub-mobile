@@ -248,7 +248,7 @@ function PlanCard({
     <PageSection>
       <View style={styles.cardHead}>
         <Text style={styles.planName}>{plan.name.toUpperCase()}</Text>
-        {canBuy && (
+          {canBuy && annual && (
           <View style={styles.discount}>
             <Text style={styles.discountText}>{t("pricing.percentOff", { pct: plan.discountPct })}</Text>
           </View>
@@ -276,7 +276,7 @@ function PlanCard({
             {annual && <Text style={styles.strike}>{`$${plan.monthly}`}</Text>}
             <Text style={styles.price}>{`$${price}`}</Text>
           </View>
-          <Text style={styles.per}>{annual ? t(plan.perLabelKey) : t("premium.perMonth")}</Text>
+          <Text style={styles.per}>{t(annual ? plan.perLabelKey : plan.seats ? "pricing.perSeatMonthly" : "premium.perMonth")}</Text>
           {annual && plan.savingsUsd !== undefined && (
             <Text style={styles.meta}>{t("pricing.savings", { amount: plan.savingsUsd })}</Text>
           )}

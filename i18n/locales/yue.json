@@ -8688,6 +8688,7 @@
     "checkoutUnavailable": "結帳目前無法使用。請稍後再試。"
   },
   "pricing": {
+    "perSeatMonthly": "每座位/月",
     "plansForEveryWorkflow": "適合各種工作流程的方案",
     "findTheRightFit": "從個人到企業團隊，找到最適合的方案",
     "monthly": "每月",

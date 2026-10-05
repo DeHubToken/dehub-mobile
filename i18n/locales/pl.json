@@ -8802,6 +8802,7 @@
     "checkoutUnavailable": "Płatność nie jest teraz dostępna. Spróbuj ponownie później."
   },
   "pricing": {
+    "perSeatMonthly": "na stanowisko/mies.",
     "plansForEveryWorkflow": "Plany dla każdego przepływu pracy",
     "findTheRightFit": "Od osób indywidualnych do zespołów korporacyjnych, znajdź odpowiednie rozwiązanie",
     "monthly": "Miesięcznie",

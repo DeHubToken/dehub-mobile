@@ -8701,6 +8701,7 @@
     "checkoutUnavailable": "Çıxış hazırda mövcud deyil. Daha sonra yenidən cəhd edin."
   },
   "pricing": {
+    "perSeatMonthly": "hər oturacaq/ay",
     "plansForEveryWorkflow": "Hər bir iş axını üçün planlar",
     "findTheRightFit": "Fərdlərdən korporativ komandalara qədər, uyğun seçimi tapın",
     "monthly": "Aylıq",

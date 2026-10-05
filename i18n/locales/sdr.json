@@ -8766,6 +8766,7 @@
     "checkoutUnavailable": "Checkout ھازىر بار ئەمەس. قايتا سىناپ بېقىڭ."
   },
   "pricing": {
+    "perSeatMonthly": "प्रति सीट/महीना",
     "plansForEveryWorkflow": "ھەر بىر خىزمەت ئۈچۈن پىلان",
     "findTheRightFit": "شەخسلەردىن باشلاپ كارخانا گۇرۇپپىلىرىغىچە، توغرا تاللاشنى تېپىڭ",
     "monthly": "ئايلىق",

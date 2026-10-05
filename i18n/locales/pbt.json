@@ -8665,6 +8665,7 @@
     "checkoutUnavailable": "چیک آوټ اوس مهال شتون نلري. مهرباني وکړئ وروسته بیا هڅه وکړئ."
   },
   "pricing": {
+    "perSeatMonthly": "د هر څوکۍ/میاشت",
     "plansForEveryWorkflow": "د هر کاري جریان لپاره پلانونه",
     "findTheRightFit": "له افرادو څخه تر تصدۍ ټیمونو پورې، مناسب فټ ومومئ",
     "monthly": "میاشتنی",

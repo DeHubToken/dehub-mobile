@@ -8685,6 +8685,7 @@
     "checkoutUnavailable": "ચેકઆઉટ અત્યારે ઉપલબ્ધ નથી. કૃપા કરીને પછીથી ફરી પ્રયાસ કરો."
   },
   "pricing": {
+    "perSeatMonthly": "પ્રતિ સીટ/મહિને",
     "plansForEveryWorkflow": "દરેક વર્કફ્લો માટે પ્લાન",
     "findTheRightFit": "વ્યક્તિઓથી લઈને એન્ટરપ્રાઇઝ ટીમો સુધી, યોગ્ય ફિટ શોધો",
     "monthly": "માસિક",

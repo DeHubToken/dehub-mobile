@@ -8960,6 +8960,7 @@
     "checkoutUnavailable": "Daftar keluar tidak tersedia buat masa ini. Sila cuba lagi kemudian."
   },
   "pricing": {
+    "perSeatMonthly": "setiap tempat duduk/bln",
     "plansForEveryWorkflow": "Rancangan untuk setiap aliran kerja",
     "findTheRightFit": "Daripada individu hingga pasukan perusahaan, cari yang sesuai",
     "monthly": "Bulanan",

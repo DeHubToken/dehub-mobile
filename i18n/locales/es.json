@@ -8735,6 +8735,7 @@
     "checkoutUnavailable": "La salida no está disponible en este momento. Inténtalo de nuevo más tarde."
   },
   "pricing": {
+    "perSeatMonthly": "por licencia y mes",
     "plansForEveryWorkflow": "Planes para cada forma de trabajar",
     "findTheRightFit": "De particulares a equipos de empresa, encuentra el plan que encaja",
     "monthly": "Mensual",

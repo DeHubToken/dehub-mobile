@@ -8673,6 +8673,7 @@
     "checkoutUnavailable": "چیک آؤٹ ہن دستیاب نئیں۔ براہ کرم بعد وچ فیر کوشش کرو۔"
   },
   "pricing": {
+    "perSeatMonthly": "فی سیٹ/مہینہ",
     "plansForEveryWorkflow": "ہر ورک فلو لئی پلان",
     "findTheRightFit": "افراد تو لے کے انٹرپرائز ٹیماں تک، صحیح فٹ تلاش کرو",
     "monthly": "ماہانہ",

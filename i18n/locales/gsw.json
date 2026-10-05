@@ -8725,6 +8725,7 @@
     "checkoutUnavailable": "Checkout isch grad nöd verfügbar. Bitte versuech's spöter no mal."
   },
   "pricing": {
+    "perSeatMonthly": "pro Sitzplatz/Monet",
     "plansForEveryWorkflow": "Plän für jede Workflow",
     "findTheRightFit": "Vo Einzelpersone bis zu Enterprise-Teams, findsch de richtige Fit",
     "monthly": "Monatlich",

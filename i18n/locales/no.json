@@ -8699,6 +8699,7 @@
     "checkoutUnavailable": "Kasse er ikke tilgjengelig akkurat nå. Vennligst prøv igjen senere."
   },
   "pricing": {
+    "perSeatMonthly": "per bruker/mnd",
     "plansForEveryWorkflow": "Planer for enhver arbeidsflyt",
     "findTheRightFit": "Fra enkeltpersoner til bedriftsteam, finn den rette passformen",
     "monthly": "Månedlig",

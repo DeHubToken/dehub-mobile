@@ -8700,6 +8700,7 @@
     "checkoutUnavailable": "چیک آؤٹ ابھی دستیاب نہیں ہے ۔ براہ کرم بعد میں دوبارہ کوشش کریں ۔"
   },
   "pricing": {
+    "perSeatMonthly": "فی نشست/ماہ",
     "plansForEveryWorkflow": "ہر ورک فلو کے لیے منصوبے",
     "findTheRightFit": "افراد سے لے کر انٹرپرائز ٹیموں تک، صحیح فٹ تلاش کریں",
     "monthly": "ماہانہ",

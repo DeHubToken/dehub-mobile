@@ -8703,6 +8703,7 @@
     "checkoutUnavailable": "Odlazak trenutačno nije dostupan. Pokušajte ponovno kasnije."
   },
   "pricing": {
+    "perSeatMonthly": "po mjestu/mj.",
     "plansForEveryWorkflow": "Planovi za svaki radni tok",
     "findTheRightFit": "Od pojedinaca do enterprise timova, pronađi odgovarajući plan",
     "monthly": "Mjesečno",

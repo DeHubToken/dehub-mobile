@@ -8706,6 +8706,7 @@
     "checkoutUnavailable": "Utcheckning är inte tillgänglig just nu. Vänligen försök igen senare."
   },
   "pricing": {
+    "perSeatMonthly": "per plats/mån",
     "plansForEveryWorkflow": "Planer för varje arbetsflöde",
     "findTheRightFit": "Från individer till företagsteam, hitta rätt passform",
     "monthly": "Månadsvis",

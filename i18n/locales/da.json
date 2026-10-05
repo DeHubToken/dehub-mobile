@@ -8704,6 +8704,7 @@
     "checkoutUnavailable": "Udtjekning er ikke tilgængelig lige nu. Prøv igen senere."
   },
   "pricing": {
+    "perSeatMonthly": "pr. plads/md",
     "plansForEveryWorkflow": "Planer for hvert arbejdsflow",
     "findTheRightFit": "Fra enkeltpersoner til enterprise-teams finder du det rigtige valg",
     "monthly": "Månedlig",

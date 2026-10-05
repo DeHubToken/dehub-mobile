@@ -8704,6 +8704,7 @@
     "checkoutUnavailable": "Kutoka hakupatikani kwa sasa. Tafadhali jaribu tena baadaye."
   },
   "pricing": {
+    "perSeatMonthly": "kwa kila kiti/mwezi",
     "plansForEveryWorkflow": "Mipango kwa kila workflow",
     "findTheRightFit": "Kutoka kwa watu binafsi hadi timu za enterprise, tafuta inayofaa",
     "monthly": "Kila mwezi",

@@ -8714,6 +8714,7 @@
     "checkoutUnavailable": "目前无法退房。 请稍后重试。"
   },
   "pricing": {
+    "perSeatMonthly": "每席位每月",
     "plansForEveryWorkflow": "适配每种工作流的方案",
     "findTheRightFit": "从个人到企业团队，都能找到合适的方案",
     "monthly": "按月",

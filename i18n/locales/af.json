@@ -8828,6 +8828,7 @@
     "checkoutUnavailable": "Checkout is nie op die oomblik beskikbaar nie. Probeer asseblief later weer."
   },
   "pricing": {
+    "perSeatMonthly": "per sitplek/mnd",
     "plansForEveryWorkflow": "Planne vir elke werkstroom",
     "findTheRightFit": "Van individue tot ondernemingsspanne, vind die regte pas",
     "monthly": "Maandeliks",

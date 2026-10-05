@@ -8733,6 +8733,7 @@
     "checkoutUnavailable": "현재 체크아웃할 수 없습니다. 나중에 다시 시도해주세요."
   },
   "pricing": {
+    "perSeatMonthly": "좌석당/월",
     "plansForEveryWorkflow": "모든 워크플로우를 위한 플랜",
     "findTheRightFit": "개인부터 엔터프라이즈 팀까지, 적합한 플랜을 찾으세요",
     "monthly": "월간",

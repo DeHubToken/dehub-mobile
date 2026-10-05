@@ -8615,6 +8615,7 @@
     "checkoutUnavailable": "Niha kirîn ne berdest e. Ji kerema xwe paşê dîsa biceribînin."
   },
   "pricing": {
+    "perSeatMonthly": "لە کورسییەکدا/مانگێکدا",
     "plansForEveryWorkflow": "پلان بۆ هەموو ڕەوتێک",
     "findTheRightFit": "لە تاکەکانەوە بۆ تیمی دامەزراوە، گونجاوترین بدۆزەرەوە",
     "monthly": "مانگانە",

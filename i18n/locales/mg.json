@@ -8783,6 +8783,7 @@
     "checkoutUnavailable": "Tsy azo atao amin'izao ny fandoavam-bola. Mba miezaha indray aoriana."
   },
   "pricing": {
+    "perSeatMonthly": "isaky ny seza/volana",
     "plansForEveryWorkflow": "Mikasa ny hikolokoloana amin'ny asa rehetra",
     "findTheRightFit": "Avy amin'ny olona mankany amin'ny ekipa orinasa, mahita ny mety",
     "monthly": "Isam-bolana",
