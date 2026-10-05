@@ -29,6 +29,9 @@ export const BADGE_MATERIALS: Record<string, BadgeMaterial> = {
   war: { highlight: '#b7ffff', metal: '#4fe3e0', shade: '#215d5c', face: '#0e1412', edge: '#3a9392', panel: '#0e1412', text: '#d9f2ee', muted: '#a0bdb7' },
   osaka: { highlight: '#e4fffc', metal: '#a1dfdf', shade: '#7765a7', face: '#142a2e', edge: '#9bbdc6', panel: '#14232b', text: '#efffff', muted: '#b1c9d0' },
   jungle: { highlight: '#fff6e2', metal: '#c29a64', shade: '#523c26', face: '#261c13', edge: '#8ace74', panel: '#261c13', text: '#f4e9d1', muted: '#c9b998' },
+  island: { highlight: '#f2fffb', metal: '#9cd8cf', shade: '#315e61', face: '#102d32', edge: '#79ada8', panel: '#10282d', text: '#e6f7f3', muted: '#a5c5c0' },
+  hacker: { highlight: '#dcffe4', metal: '#76df95', shade: '#234a30', face: '#07130c', edge: '#498b5f', panel: '#08170e', text: '#d0f5d9', muted: '#8fb69a' },
+  horror: { highlight: '#f8e7e3', metal: '#c5a5a0', shade: '#562b30', face: '#1d1014', edge: '#94535a', panel: '#180d11', text: '#f0dfdc', muted: '#baa1a0' },
 };
 export const badgeMaterial = (theme: string): BadgeMaterial => BADGE_MATERIALS[theme] ?? silver;
 
@@ -64,6 +67,17 @@ const FRAMES = [
   'M60 8L90 18 108 43V77L90 102 60 112 30 102 12 77V43L30 18Z',
 ] as const;
 const ANGULAR_FRAME = 'M25 11H95L109 25V95L95 109H25L11 95V25Z';
+// Fine interior facets disappear first at name size; retain each badge's silhouette.
+const COMPACT_EMBLEMS: Partial<Record<StreamerBadgeId, string>> = {
+  'on-air': 'M60 50v35M49 85h22M46 41a24 24 0 0 0 0 31M74 41a24 24 0 0 1 0 31',
+  'night-owl': 'M40 39l8 8q12-7 24 0l8-8v26q0 18-20 24-20-6-20-24zM49 60h3M68 60h3M55 73l5 6 5-6',
+  storyteller: 'M60 48q-13-10-27-5v37q14-5 27 5 13-10 27-5V43q-14-5-27 5v37',
+  arena: 'M30 49q30-21 60 0v27q-30 21-60 0zM30 49q30 21 60 0M60 63v25',
+  'iron-streak': 'M61 31c3 17 17 23 18 38a19 19 0 0 1-38 0c0-10 6-17 12-23 0 9 2 13 6 16 7-9 7-20 2-31z',
+  headliner: 'M60 32l8 18 20 2-15 14 4 20-17-10-17 10 4-20-15-14 20-2z',
+  icon: 'M60 29l28 21-10 29-18 14-18-14-10-29zM32 50h56M45 50l15 43 15-43',
+  veteran: 'M60 40l14 20-14 20-14-20zM38 39q-22 28 8 48M82 39q22 28-8 48',
+};
 
 /** High-resolution SVG for native vectors and the showcase's rasterised textures. */
 export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boolean, instance = 'badge', detail: 'full' | 'compact' = 'full'): string {
@@ -72,6 +86,7 @@ export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boo
   const p = badgeMaterial(theme);
   const key = instance.replace(/[^a-zA-Z0-9_-]/g, '') + id;
   const compact = detail === 'compact';
+  const glyph = compact ? COMPACT_EMBLEMS[id] ?? EMBLEMS[id] : EMBLEMS[id];
   const metal = p.flat ? p.metal : `url(#${key}-metal)`;
   const face = p.flat ? p.face : `url(#${key}-face)`;
   const emblem = p.flat ? p.metal : `url(#${key}-emblem)`;
@@ -94,8 +109,8 @@ export function streamerBadgeSvg(id: StreamerBadgeId, theme: string, earned: boo
       <path d="${frame}" transform="translate(7.2 7.2) scale(.88)" fill="${face}" stroke="${p.shade}" stroke-width="1.2"/>
       ${!compact ? `<path d="${frame}" transform="translate(9.6 9.6) scale(.84)" fill="none" stroke="${p.edge}" stroke-width=".65" opacity=".6"/>` : ''}
       <g transform="${compact ? 'translate(-4.8 -4.8) scale(1.08)' : 'translate(4.8 3.3) scale(.92)'}" fill="none">
-        ${!compact && !p.flat ? `<path d="${EMBLEMS[id]}" transform="translate(0 1)" stroke="${p.shade}" stroke-width="5.5"/>` : ''}
-        <path d="${EMBLEMS[id]}" stroke="${emblem}" stroke-width="${compact ? 4.6 : 3.8}"/>
+        ${!compact && !p.flat ? `<path d="${glyph}" transform="translate(0 1)" stroke="${p.shade}" stroke-width="5.5"/>` : ''}
+        <path d="${glyph}" stroke="${emblem}" stroke-width="${compact ? 4.6 : 3.8}"/>
       </g>
       ${!compact ? marks : ''}
     </g></svg>`;
