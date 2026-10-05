@@ -34,10 +34,11 @@ type Props = {
   onScrub: (ratio: number) => void;
   onCommit: (ratio: number) => void;
   onCancel: () => void;
+  line?: React.ReactNode;
   children: React.ReactNode;
 };
 
-export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, children }: Props) {
+export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children }: Props) {
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
   const width = useRef(1);
@@ -79,7 +80,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
             }}
           />
           <Animated.View pointerEvents="none" style={[styles.line, { opacity }]}>
-            <View style={[styles.played, { width: `${progress}%` }]} />
+            {line ?? <View style={[styles.played, { width: `${progress}%` }]} />}
           </Animated.View>
           <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, { opacity }]}>
             {children}
