@@ -301,6 +301,9 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     const target = isDmEvent(event) ? dmClientRef.current : clientRef.current;
+    if (event === DMSocketEvent.SendMessage && !target) {
+      throw new Error("Not connected to chat. Check your connection and try again.");
+    }
     target?.emit(event, payload, ack);
   }, [isDmEvent]);
 
