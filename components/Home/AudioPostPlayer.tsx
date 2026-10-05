@@ -10,7 +10,7 @@ import {
   Modal,
   StyleSheet,
   LayoutChangeEvent,
-  Platform,
+  Animated as NativeAnimated,
 } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
@@ -33,6 +33,8 @@ import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
+import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph";
+import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -197,7 +199,7 @@ export const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, edgeLine =
 
   return (
     <View
-      style={{ height: edgeLine ? (Platform.OS === "android" ? 48 : 14) : 18, justifyContent: edgeLine ? "flex-end" : "center" }}
+      style={{ height: edgeLine ? 3 : 18, justifyContent: edgeLine ? "flex-end" : "center" }}
       hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
     >
       <View className="h-[3px] bg-white/20 rounded-full overflow-hidden">
@@ -421,6 +423,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   // The displayed playhead, 0–1. Shared so a drag moves the waveform and the
   // scrubber on the UI thread without a React render per pixel.
   const position = useSharedValue(0);
+  const controlsOpacity = useRef(new NativeAnimated.Value(1)).current;
   const isDraggingRef = useRef(false);
   // Read at player-creation time, so a level set before the track loaded is not
   // lost the moment it does.
@@ -899,14 +902,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     position.value = withTiming(clamp01(progressRef.current), { duration: 120, easing: Easing.linear });
   }, [position]);
 
-  const seekBarSurface = useSeekSurface({
-    position,
-    onScrubStart: handleScrubStart,
-    onScrub: handleScrub,
-    onCommit: handleSeek,
-    onCancel: handleScrubCancel,
-    claimOnStart: true,
-  });
+  const handleBottomScrub = useCallback((ratio: number) => {
+    position.value = ratio;
+    handleScrub(ratio);
+  }, [position, handleScrub]);
+  const handleBottomSeek = useCallback((ratio: number) => {
+    position.value = ratio;
+    void handleSeek(ratio);
+  }, [position, handleSeek]);
 
   const artworkSurface = useSeekSurface({
     position,
@@ -989,12 +992,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               onPress={handlePlayPause}
               activeOpacity={0.7}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              className="w-8 h-8 rounded-xl bg-white/10 items-center justify-center"
+              style={styles.squareControl}
+              className="items-center justify-center"
             >
               {shownLoading ? (
-                <Icon name="Loader" size={14} color="#fff" />
+                <MediaControlIcon name="Loader" />
               ) : (
-                <Icon name={shownPlaying ? "Pause" : "Play"} size={14} color="#fff" />
+                <MediaControlIcon name={shownPlaying ? "Pause" : "Play"} />
               )}
             </TouchableOpacity>
 
@@ -1004,12 +1008,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               </ScrubSurface>
             </View>
 
-            <Text
-              className="text-white/50 text-[10px]"
-              style={{ fontVariant: ["tabular-nums"] }}
-            >
+            <MediaControlText style={styles.timeText}>
               {fmtDuration(shownPlaying ? shownTime : shownDuration)}
-            </Text>
+            </MediaControlText>
           </View>
         </View>
       </View>
@@ -1049,8 +1050,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
             accessibilityRole="button"
             accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
+            style={styles.squareControl}
           >
-            <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
+            <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
           </TouchableOpacity>
           <View style={{ width: 48, height: CONTROL_SIZE, justifyContent: "center" }}>
             <PagerSafe>
@@ -1074,59 +1076,65 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
   const renderBottomChrome = () => (
     <View pointerEvents="box-none" style={styles.bottomChrome}>
+      <VideoScrubZone
+        enabled={shownDuration > 0}
+        opacity={controlsOpacity}
+        showControls
+        label={t("player.progress")}
+        progress={shownProgress * 100}
+        onStart={handleScrubStart}
+        onScrub={handleBottomScrub}
+        onCommit={handleBottomSeek}
+        onCancel={handleScrubCancel}
+        line={<SeekBar position={position} hue={0} edgeLine />}
+      >
       {/* Plain play/countdown, styles, pop-out and fullscreen above the edge line. */}
       <View pointerEvents="box-none" className="flex-row items-center gap-1 px-1">
-        <TouchableOpacity
+        <VideoScrubButton
           onPress={handlePlayPause}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="rounded-xl items-center justify-center"
+          hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
           style={styles.squareControl}
           accessibilityRole="button"
           accessibilityLabel={shownPlaying ? t("audioPost.pause") : t("audioPost.play")}
         >
           {shownLoading ? (
-            <Icon name="Loader" size={16} color="#fff" />
+            <MediaControlIcon name="Loader" />
           ) : (
-            <Icon name={shownPlaying ? "Pause" : "Play"} size={16} color="#fff" />
+            <MediaControlIcon name={shownPlaying ? "Pause" : "Play"} />
           )}
-        </TouchableOpacity>
+        </VideoScrubButton>
 
-        <Text style={styles.timeText}>
+        <View pointerEvents="none"><MediaControlText style={styles.timeText}>
           {fmtDuration(Math.max(0, Math.ceil(shownDuration - shownTime)))}
-        </Text>
+        </MediaControlText></View>
 
-        <View className="flex-1">
-          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
-        </View>
-        <TouchableOpacity
+        <View pointerEvents="none" style={{ flex: 1 }} />
+        <VideoScrubButton
           onPress={handlePopOut}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-          className="rounded-xl items-center justify-center"
+          hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
           style={[styles.squareControl, isPoppedOut && styles.squareControlOn]}
           accessibilityRole="button"
           accessibilityState={{ selected: isPoppedOut }}
           accessibilityLabel={isPoppedOut ? t("audioPost.closeCornerPlayer") : t("audioPost.popOut")}
         >
-          <Icon name="PictureInPicture2" size={15} color="#fff" />
-        </TouchableOpacity>
+          <MediaControlIcon name="PictureInPicture2" />
+        </VideoScrubButton>
 
-        <TouchableOpacity
+        <VideoScrubButton
           onPress={() => setIsFullscreen((v) => !v)}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 4, right: 8 }}
-          className="rounded-xl items-center justify-center"
+          hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
           style={styles.squareControl}
           accessibilityRole="button"
           accessibilityLabel={isFullscreen ? t("common.exitFullscreen") : t("common.fullscreen")}
         >
-          <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
-        </TouchableOpacity>
+          <MediaControlIcon name={isFullscreen ? "Minimize" : "Maximize"} />
+        </VideoScrubButton>
       </View>
-      <ScrubSurface surface={seekBarSurface}>
-        <SeekBar position={position} hue={0} edgeLine />
-      </ScrubSurface>
+      </VideoScrubZone>
+      {/* Keep preset scrolling outside the seek gesture, above its empty slot. */}
+      <View style={styles.stylePicker}>
+        <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+      </View>
     </View>
   );
 
@@ -1217,9 +1225,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    height: 48,
     paddingHorizontal: 0,
     paddingBottom: 0,
     gap: 0,
+  },
+  stylePicker: {
+    position: "absolute",
+    bottom: 14,
+    left: 80,
+    right: 80,
+    height: CONTROL_SIZE,
+    justifyContent: "center",
   },
   squareControl: {
     width: CONTROL_SIZE,
@@ -1231,10 +1248,11 @@ const styles = StyleSheet.create({
   },
   timeText: {
     color: "#fff",
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "500",
     textAlign: "center",
-    minWidth: 28,
+    minWidth: 36,
+    fontVariant: ["tabular-nums"],
   },
   fullscreenRoot: {
     flex: 1,
