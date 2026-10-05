@@ -52,7 +52,8 @@ const mockWallet = {
     }
     if (method === "personal_sign") {
       const [message, address] = params as [string, string];
-      return "0x" + Buffer.from(`${address}:${message}`).toString("hex").padEnd(130, "0").slice(0, 130);
+      const text = message.startsWith("0x") ? Buffer.from(message.slice(2), "hex").toString("utf8") : message;
+      return "0x" + Buffer.from(`${address}:${text}`).toString("hex").padEnd(130, "0").slice(0, 130);
     }
     throw new Error(`unexpected ${method}`);
   },

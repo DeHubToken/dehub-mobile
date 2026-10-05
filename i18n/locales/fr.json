@@ -1844,6 +1844,8 @@
     "turnOffSmartReplies": "Désactiver les réponses suggérées",
     "encrypted": "Chiffré de bout en bout",
     "encryptionOff": "Chiffrement désactivé sur cet appareil",
+    "encryptionTurningOn": "En attente de votre portefeuille pour activer le chiffrement…",
+    "encryptionSetupFailed": "La configuration du chiffrement a échoué. Veuillez réessayer.",
     "encryptionTurnOn": "Activer",
     "cannotDecrypt": "Message chiffré — impossible à ouvrir sur cet appareil",
     "title": "Messages",
