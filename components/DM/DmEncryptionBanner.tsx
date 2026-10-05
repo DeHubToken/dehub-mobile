@@ -37,8 +37,12 @@ const DmEncryptionBannerComponent: React.FC<DmEncryptionBannerProps> = ({
       className="flex-row items-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50"
     >
       <Ionicons name="lock-open-outline" size={14} color="#F4F4F5" />
-      <Text className="flex-1 text-[12px] text-theme-neutrals-100 ml-1.5">
-        {t("messages.encryptionOff")}
+      <Text accessibilityLiveRegion="polite" className="flex-1 text-[12px] text-theme-neutrals-100 ml-1.5">
+        {busy
+          ? t("messages.encryptionTurningOn", { defaultValue: "Waiting for your wallet to turn on encryption…" })
+          : status === "error"
+            ? t("messages.encryptionSetupFailed", { defaultValue: "Encryption setup failed. Please try again." })
+            : t("messages.encryptionOff")}
       </Text>
       <TouchableOpacity onPress={onRetry} disabled={busy} className="pl-3 py-1">
         {busy ? (

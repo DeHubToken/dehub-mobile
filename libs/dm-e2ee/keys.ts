@@ -13,7 +13,9 @@
  * placeholder.
  */
 import * as SecureStore from "expo-secure-store";
+import { Buffer } from "buffer";
 import { apiClient } from "../api.client";
+import { prepareWalletRelay, waitForWalletSignature } from "../wallet-relay";
 import { getEoaSigningProvider, getSigningProvider, OPEN_WALLET_METHOD } from "../provider.registry";
 import { WalletLockedError } from "../wallet-lock";
 import {
@@ -192,12 +194,15 @@ async function personalSign(message: string, address: string, live?: any): Promi
     const accounts = (await provider.request({ method: "eth_accounts" })) as string[];
     if (accounts?.[0]) signer = accounts[0];
   } catch { /* fall back to the identity address */ }
-  // Same argument-order fallback as libs/web3.auth.sign.ts — shims disagree.
+  const encoded = `0x${Buffer.from(message, 'utf8').toString('hex')}`;
+  await prepareWalletRelay(provider);
+  // Retry argument order only for invalid parameters, never a refused signature.
   try {
-    return (await provider.request({ method: "personal_sign", params: [message, signer] })) as string;
+    return await waitForWalletSignature<string>(() => provider.request({ method: "personal_sign", params: [encoded, signer] }));
   } catch (e) {
-    if ((e as any)?.name === "WalletLockedError") throw e;
-    return (await provider.request({ method: "personal_sign", params: [signer, message] })) as string;
+    const error = e as { code?: number; message?: string };
+    if (error?.code !== -32602 && !/invalid params|invalid parameters/i.test(error?.message ?? '')) throw e;
+    return await waitForWalletSignature<string>(() => provider.request({ method: "personal_sign", params: [signer, encoded] }));
   }
 }
 
