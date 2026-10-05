@@ -30,6 +30,7 @@ import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { requestVideoPlayback } from "../../libs/video-start";
+import { createLogger } from "../../libs/logger";
 import {
   getPlaybackRateFor,
   setPlaybackRate as persistPlaybackRate,
@@ -80,6 +81,7 @@ import {
 
 /** Card content width — mirrors FeedCard, which lays this player out. */
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
+const playbackLog = createLogger("FeedVideoPlayer");
 
 /**
  * Tallest the media may get. A portrait clip stops growing here and narrows
@@ -638,16 +640,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       void requestVideoPlayback(current, videoUrl!, () =>
         playerRef.current === current && ownsPlayerRef.current() &&
         playbackAllowedRef.current && canStartVideo(current),
-      ).catch(() => {
-        if (playerRef.current === current && ownsPlayerRef.current()) stopPlayback();
+      ).catch((error) => {
+        if (playerRef.current === current && ownsPlayerRef.current()) {
+          playbackLog.error("Video source retry failed", error, { tokenId });
+          stopPlayback();
+        }
       });
-    } catch {
+    } catch (error) {
+      playbackLog.error("Video play request failed", error, { tokenId });
       stopPlayback();
       return;
     }
     isPlayingRef.current = true;
     setIsPlaying(true);
-  }, [canPlay, videoUrl, stopPlayback]);
+  }, [canPlay, videoUrl, tokenId, stopPlayback]);
 
   /**
    * Submit the intent even while loading. The shared player already has its
@@ -687,9 +693,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } catch {}
     try {
       subs.push(
-        player.addListener("statusChange", ({ status }) => {
+        player.addListener("statusChange", ({ status, error }) => {
           if (!ownsPlayerRef.current()) return;
           setIsBuffering(status === "loading");
+          if (status === "error") {
+            playbackLog.error("Video source failed", error?.message || "Unknown error", { tokenId });
+            stopPlayback();
+          }
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
@@ -723,7 +733,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, flushPendingPlay, maybeSkipSegment]);
+  }, [player, flushPendingPlay, maybeSkipSegment, stopPlayback, tokenId]);
 
   // The other side of the same race: readiness landing before the intent, or a
   // source that was already attached when the intent was queued.
