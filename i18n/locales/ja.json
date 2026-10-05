@@ -8711,6 +8711,7 @@
     "checkoutUnavailable": "チェックアウトは現在ご利用いただけません。 しばらくしてからもう一度お試しください。"
   },
   "pricing": {
+    "perSeatMonthly": "座席あたり/月",
     "plansForEveryWorkflow": "すべてのワークフロー向けプラン",
     "findTheRightFit": "個人からエンタープライズチームまで、適切なプランを見つけてください",
     "monthly": "月額",

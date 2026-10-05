@@ -8733,6 +8733,7 @@
     "checkoutUnavailable": "Çıkış şu anda yapılamıyor. Lütfen daha sonra tekrar deneyin."
   },
   "pricing": {
+    "perSeatMonthly": "kullanıcı başına aylık",
     "plansForEveryWorkflow": "Her iş akışına uygun planlar",
     "findTheRightFit": "Bireysel kullanıcıdan kurumsal ekiplere, size uyanı bulun",
     "monthly": "Aylık",

@@ -8683,6 +8683,7 @@
     "checkoutUnavailable": "Kaore i te watea te Utu i tenei wa. Tena koa ngana ano a muri ake nei."
   },
   "pricing": {
+    "perSeatMonthly": "ia nohoanga/marama",
     "plansForEveryWorkflow": "Mahere mo ia mahi",
     "findTheRightFit": "Mai i nga takitahi ki nga roopu umanga, kimihia te pai",
     "monthly": "Marama",

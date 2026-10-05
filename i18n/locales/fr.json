@@ -9004,6 +9004,7 @@
     "checkoutUnavailable": "Le paiement n'est pas disponible pour le moment. Veuillez réessayer plus tard."
   },
   "pricing": {
+    "perSeatMonthly": "par siège/mois",
     "plansForEveryWorkflow": "Plans pour chaque flux de travail",
     "findTheRightFit": "Des individus aux équipes d'entreprise, trouvez la solution qui vous convient",
     "monthly": "Mensuel",

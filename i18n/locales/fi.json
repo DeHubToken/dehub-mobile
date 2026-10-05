@@ -8702,6 +8702,7 @@
     "checkoutUnavailable": "Uloskirjautuminen ei ole juuri nyt mahdollista. Yritä myöhemmin uudelleen."
   },
   "pricing": {
+    "perSeatMonthly": "per paikka/kk",
     "plansForEveryWorkflow": "Suunnitelmat jokaiselle työnkululle",
     "findTheRightFit": "Yksilöistä yritystiimeihin, löydä sopiva vaihtoehto",
     "monthly": "Kuukausittain",

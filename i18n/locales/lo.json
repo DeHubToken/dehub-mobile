@@ -8657,6 +8657,7 @@
     "checkoutUnavailable": "Checkout ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະນີ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."
   },
   "pricing": {
+    "perSeatMonthly": "ຕໍ່ບ່ອນນັ່ງ/ເດືອນ",
     "plansForEveryWorkflow": "ແຜນສຳລັບທຸກໆການເຮັດວຽກ",
     "findTheRightFit": "ຈາກບຸກຄົນຈົນເຖິງທີມວິສາຫະກິດ, ຊອກຫາສິ່ງທີ່ເໝາະສົມ",
     "monthly": "ລາຍເດືອນ",

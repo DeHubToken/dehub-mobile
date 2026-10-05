@@ -8738,6 +8738,7 @@
     "checkoutUnavailable": "تسجيل المغادرة غير متاح في الوقت الحالي. يُرجى إعادة المحاولة لاحقًا."
   },
   "pricing": {
+    "perSeatMonthly": "لكل مقعد شهرياً",
     "plansForEveryWorkflow": "خطط تناسب كل أسلوب عمل",
     "findTheRightFit": "من الأفراد إلى فرق المؤسسات، اعثر على ما يناسبك",
     "monthly": "شهري",

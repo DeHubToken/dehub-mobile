@@ -8988,6 +8988,7 @@
     "checkoutUnavailable": "Afrekenen is momenteel niet mogelijk. Probeer het later opnieuw."
   },
   "pricing": {
+    "perSeatMonthly": "per seat/mnd",
     "plansForEveryWorkflow": "Plannen voor elke workflow",
     "findTheRightFit": "Van individuen tot enterprise-teams, vind de juiste oplossing",
     "monthly": "Maandelijks",

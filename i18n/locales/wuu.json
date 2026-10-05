@@ -8656,6 +8656,7 @@
     "checkoutUnavailable": "结账目前不可用。请稍后重试。"
   },
   "pricing": {
+    "perSeatMonthly": "每席位/月",
     "plansForEveryWorkflow": "适合各种工作流程的套餐",
     "findTheRightFit": "从个人到企业团队，找到最适合你的选择",
     "monthly": "月度",

@@ -8676,6 +8676,7 @@
     "checkoutUnavailable": "چيڪ آئوٽ هن وقت دستياب ناهي. مھرباني ڪري بعد ۾ ٻيهر ڪوشش ڪريو."
   },
   "pricing": {
+    "perSeatMonthly": "في سيٽ/مهينو",
     "plansForEveryWorkflow": "هر ورڪ فلو لاءِ منصوبا",
     "findTheRightFit": "فرد کان وٺي انٽرپرائز ٽيمن تائين، صحيح فٽ ڳوليو",
     "monthly": "مهيني",
