@@ -17,6 +17,7 @@ import { DM_VIDEO_MAX_SIZE } from "./dm.types";
 import * as FileSystem from "expo-file-system/legacy";
 import { prepareOutgoing } from "../../libs/dm-e2ee/keys";
 import { peerAddressForConversation } from "../../libs/dm-e2ee/peer";
+import { confirmDmSend, type DmSendPayload } from "../../libs/dm-send-confirmation";
 
 const log = createLogger("DmSendQueue");
 
@@ -497,7 +498,7 @@ class DmSendQueue {
   }
 
   private async emitText(job: TextSendJob, convId: ID, txHash?: string, tipTxHash?: string): Promise<void> {
-    const payload: Record<string, unknown> = {
+    const payload: DmSendPayload & Record<string, unknown> = {
       dmId: convId,
       content: await this.wireContent(convId, job.address, job.content),
       type: "msg",
@@ -507,12 +508,20 @@ class DmSendQueue {
     if (txHash) payload.txHash = txHash;
     if (tipTxHash) payload.tipTxHash = tipTxHash;
 
-    this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload);
+    const sent = await confirmDmSend<DmMessage>({
+      // `disconnected` is the core socket's event; `disconnect` routes to /dm.
+      on: (event, handler) => event === "disconnected" ? () => {} : this.ws!.on(event, handler),
+      emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
+    }, payload);
+    dmActions.upsertMessages(convId, [{
+      ...sent, content: job.content, author: "me", isRead: false,
+      ...(sent.content !== job.content ? { encrypted: true } : {}),
+    }]);
     log.debug("emitText sent:", convId);
   }
 
   private async emitGif(job: GifSendJob, convId: ID, txHash?: string, tipTxHash?: string): Promise<void> {
-    const payload: Record<string, unknown> = {
+    const payload: DmSendPayload & Record<string, unknown> = {
       dmId: convId,
       content: await this.wireContent(convId, job.address, job.caption || ""),
       type: "gif",
@@ -522,7 +531,14 @@ class DmSendQueue {
     if (txHash) payload.txHash = txHash;
     if (tipTxHash) payload.tipTxHash = tipTxHash;
 
-    this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload);
+    const sent = await confirmDmSend<DmMessage>({
+      on: (event, handler) => event === "disconnected" ? () => {} : this.ws!.on(event, handler),
+      emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
+    }, payload);
+    dmActions.upsertMessages(convId, [{
+      ...sent, content: job.caption || "", author: "me", isRead: false,
+      ...(sent.content !== (job.caption || "") ? { encrypted: true } : {}),
+    }]);
     log.debug("emitGif sent:", convId);
   }
 

@@ -161,6 +161,7 @@ export class WebSocketClient {
       this.clearConnectAttemptTimer();
       this.stopHeartbeat();
       this.stopPingCheck();
+      this.emitInternal("disconnect");
       this.emitInternal("disconnected");
     });
 
@@ -272,7 +273,10 @@ export class WebSocketClient {
     this.stopHeartbeat();
     this.stopPingCheck();
     this.socket = null;
-    if (wasLive) this.emitInternal("disconnected");
+    if (wasLive) {
+      this.emitInternal("disconnect");
+      this.emitInternal("disconnected");
+    }
   }
 
   disconnect() {
@@ -428,6 +432,12 @@ export class WebSocketClient {
     payload?: T,
     ack?: (resp?: any, err?: any) => void
   ) {
+    // A timed-out chat send must not sit in a queue and go out later after
+    // the user has been told it failed. A fresh attempt can reconnect first.
+    if (event === "sendMessage" && !this.socket?.connected) {
+      this.connect();
+      throw new Error("Not connected to chat. Check your connection and try again.");
+    }
     // Queue if not connected yet
     if (!this.socket || !this.socket.connected) {
       this.queuedEmits.push({ event, payload, ack });
