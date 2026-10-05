@@ -1,5 +1,5 @@
 import {
-  getUnifiedFeed, getShortsFeed,
+  getUnifiedFeed, getUnifiedFeedSignal, getShortsFeed,
   isVideoItem, isLiveItem, isImagePostItem,
   isTextPostItem, isAudioPostItem, isFeedPostItem, isShortItem,
 } from '../../services/feed.unified.service';
@@ -71,6 +71,24 @@ describe('services/feed.unified.service', () => {
       const feed = await getUnifiedFeed();
       expect(feed.pagination).toBeDefined();
       expect(feed.pagination.hasMore).toBe(false);
+    });
+  });
+
+  describe('getUnifiedFeedSignal', () => {
+    it('preserves feed filters and auth while requesting only a bounded head', async () => {
+      mockGet.mockResolvedValueOnce({ status: true, signal: true, result: [{ tokenId: 1, totalViews: 9 }] });
+      const result = await getUnifiedFeedSignal({ page: 9, limit: 100, sortBy: 'createdAt', status: 'all', followingOnly: true, category: 'art', isPPV: true, minter: '0xcreator' });
+      const [url, options] = mockGet.mock.calls[0];
+      expect(url).toContain('signal=true');
+      expect(url).toContain('page=1');
+      expect(url).toContain('limit=20');
+      expect(url).toContain('followingOnly=true');
+      expect(url).toContain('category=art');
+      expect(url).toContain('isPPV=true');
+      expect(url).toContain('minter=0xcreator');
+      expect(options.isAuthRequired).toBe(true);
+      expect(result.result[0].totalViews).toBe(9);
+      expect(result).not.toHaveProperty('pagination');
     });
   });
 
