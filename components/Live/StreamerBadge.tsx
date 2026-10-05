@@ -39,7 +39,7 @@ const StreamerBadge: React.FC<Props> = ({ address, canSelect = false, size, font
       onPress={() => openStreamerShowcase(equipped.id, address, canSelect, badgeRef.current)}
     >
       <View style={{ position: "absolute", left: -bounds.left * scale, top: -bounds.top * scale }}>
-        <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance)} width={120 * scale} height={120 * scale} />
+        <SvgXml xml={streamerBadgeSvg(equipped.id, theme, true, instance, 'compact')} width={120 * scale} height={120 * scale} />
       </View>
     </Pressable>
   );
