@@ -1266,7 +1266,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const hasLabels = showRepostLabel || !!(item as any).__boosted;
   // A revealed landing photo and videos stay flush; warnings retain clearance.
   const chromeInset = cinematicFeed ? topChromeInset + (topChromeInset > 0 && contentType === "image" && !firstImageHeaderBelow ? 3 : 0) : 0;
-  const leadInset = hasLabels ? 0 : chromeInset;
+  // Text, audio, articles and warnings clear the capsule as a whole card.
+  // Reserve the space once, before labels, author and any quoted media.
+  const textTopInset = cinematicMedia ? 0 : chromeInset;
+  const leadInset = hasLabels ? 0 : chromeInset - textTopInset;
   // The first post keeps the top of its picture clear under the capsule: its
   // author and buttons move to the bottom of the media instead, and badges
   // sit just under the capsule.
@@ -2273,7 +2276,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </View>
     ) : null;
     const labels = hasLabels ? (
-      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingBottom: 8, paddingTop: firstImageHeaderBelow ? 10 : chromeInset, gap: 6 }}>
+      <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingBottom: 8, paddingTop: firstImageHeaderBelow ? 10 : chromeInset - textTopInset, gap: 6 }}>
         {showRepostLabel && (
           <View className="flex-row items-center gap-1.5">
             <Icon name="Repeat2" size={14} color="#9CA3AF" />
@@ -2305,9 +2308,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // media spans the screen, and posts are split by a hairline across
         // the whole width with 12pt of room either side of it.
         onLayout={handleMinimalLayout}
-        // The first row starts flush with the top of the list, under the
-        // capsule; leadInset (or the labels) makes the room instead.
-        style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: 0 } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
+        // Media starts under the capsule; a leading text card clears it.
+        style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: textTopInset } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
       >
         {!firstImageHeaderBelow && labels}
         {cinematicMedia && !chipOverMedia ? (
