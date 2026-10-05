@@ -17,6 +17,8 @@ interface ScrubGestureArgs {
   /** The gesture was taken away (a sheet opened, the card recycled). */
   onCancel?: () => void;
   enabled?: boolean;
+  /** Disable tap recognition when child buttons own stationary taps. */
+  tapEnabled?: boolean;
   /**
    * Claim the touch as soon as it moves at all, instead of waiting for sideways
    * travel. For a dedicated track — a scrub bar — where nothing else on the
@@ -52,6 +54,7 @@ export const useScrubGesture = ({
   onCommit,
   onCancel,
   enabled = true,
+  tapEnabled = true,
   immediate = false,
   blocks,
 }: ScrubGestureArgs) => {
@@ -70,7 +73,7 @@ export const useScrubGesture = ({
     // A dedicated track claims the touch on its first pixel of movement; a
     // shared surface waits for clearly sideways travel so a flick still scrolls.
     if (immediate) pan.minDistance(0);
-    else pan.activeOffsetX([-ACTIVATE_PX, ACTIVATE_PX]);
+    else pan.activeOffsetX([-ACTIVATE_PX, ACTIVATE_PX]).failOffsetY([-ACTIVATE_PX, ACTIVATE_PX]);
 
     pan
       // Callbacks touch React state and the player, so they belong on the JS
@@ -90,11 +93,11 @@ export const useScrubGesture = ({
       });
 
     const tap = Gesture.Tap()
-      .enabled(enabled)
+      .enabled(enabled && tapEnabled)
       .maxDistance(ACTIVATE_PX)
       .runOnJS(true)
       .onEnd((e, success) => {
-        if (!success) return;
+        if (!success || !tapEnabled) return;
         onScrubStart?.();
         onCommit(ratioAt(e.x));
       });
@@ -107,8 +110,8 @@ export const useScrubGesture = ({
       tap.blocksExternalGesture(...blocked);
     }
 
-    return Gesture.Race(pan, tap);
-  }, [enabled, immediate, onScrubStart, onScrub, onCommit, onCancel, pagerRef, blocks]);
+    return tapEnabled ? Gesture.Race(pan, tap) : pan;
+  }, [enabled, immediate, tapEnabled, onScrubStart, onScrub, onCommit, onCancel, pagerRef, blocks]);
 
   // RNGH runs beside the JS responder system, not inside it, so an ancestor
   // Pressable never learns that the scrub took the touch: the feed card's own
