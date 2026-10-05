@@ -99,6 +99,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { useKeyedState } from "../../hooks/useItemState";
+import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { speechAvailable } from "../../hooks/useVoiceDub";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
@@ -1254,7 +1255,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const overlayTitle = (isTranslated ? translatedTexts.title : localTitle) || "";
   // Video and live carry the author and buttons over the picture; a photo
   // gets a plain header row above it instead, and nothing over it.
-  const chipOverMedia = cinematicMedia && contentType !== "image";
+  const firstVideoAspect = useMediaAspect(cinematicMedia && topChromeInset > 0 && isVideo ? thumbnail : null, tokenId);
+  const firstVideoHeaderAbove = cinematicMedia && topChromeInset > 0 && isVideo && firstVideoAspect >= 1;
+  const chipOverMedia = cinematicMedia && contentType !== "image" && !firstVideoHeaderAbove;
   // Match the landing video: only the first photo puts its identity below media.
   const firstImageHeaderBelow = cinematicMedia && contentType === "image" && topChromeInset > 0;
   // Under the capsule the first thing in the post moves down: the repost or
@@ -1281,13 +1284,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     () => (cinematicMedia
       ? {
           topInset: chipOverMedia ? mediaBand : 0,
-          controlsTop: firstVideoHeaderBelow ? 6 : undefined,
+          controlsTop: firstVideoHeaderBelow || firstVideoHeaderAbove ? 6 : undefined,
           bottomInset: chipAtBottom && !firstVideoHeaderBelow ? bottomBand : 0,
           setTools: chipOverMedia && !firstVideoHeaderBelow ? setMediaTools : undefined,
           setBarUp: chipAtBottom ? setMediaBarUp : undefined,
         }
       : null),
-    [cinematicMedia, chipOverMedia, chipAtBottom, firstVideoHeaderBelow, mediaBand, bottomBand, setMediaBarUp],
+    [cinematicMedia, chipOverMedia, chipAtBottom, firstVideoHeaderBelow, firstVideoHeaderAbove, mediaBand, bottomBand, setMediaBarUp],
   );
   // Media that already spans the screen: square, no top gap.
   const edgeMedia = immersive || cinematicMedia;
@@ -2308,7 +2311,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       >
         {!firstImageHeaderBelow && labels}
         {cinematicMedia && !chipOverMedia ? (
-          // Only the landing photo starts with media; later photos keep their header above.
+          // Square and wide landing videos keep the same plain header as photos.
           <>
             {!firstImageHeaderBelow && photoHeader}
             {photoMedia}
