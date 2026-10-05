@@ -29,12 +29,14 @@ origin; production publishing is held until device checks are complete.
 - SDK 55 PiP restoration is keyed by child ID rather than indexing a visibility
   list, superseding the previous bounds-check patch. Enter/exit still needs QA.
 - Patch application fails installation when a required patch cannot apply.
+- Argon2 keeps its existing native hashing implementation. Its Android build
+  uses Maven Central and an explicit namespace for Gradle 9 and current AGP.
 
 ## Release gate
 
 | Area | Required verification | State |
 | --- | --- | --- |
-| Cloud | Typecheck, existing tests, patch application, signed APK build | Typecheck and patch application passed; tests and APK pending |
+| Cloud | Typecheck, existing tests, patch application, signed APK build | Initial typecheck, tests and patch application passed; native build and updated commit pending |
 | Installation | Compare certificates; preserve existing app data | Pending |
 | Startup | Cold/warm launch, background/resume, crash and ANR logs | Pending |
 | Feed | All six tabs, fast scroll, pagination, refresh, filters, pager drags | Pending |
