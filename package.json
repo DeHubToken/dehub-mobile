@@ -70,7 +70,7 @@
     "date-fns": "^4.1.0",
     "empty-module": "^0.0.2",
     "ethers": "^5.7.2",
-    "expo": "~54.0.34",
+    "expo": "~55.0.0",
     "expo-apple-authentication": "~8.0.7",
     "expo-application": "~7.0.7",
     "expo-asset": "~12.0.8",
@@ -113,10 +113,10 @@
     "nativewind": "4.2.1",
     "ox": "^0.8.9",
     "process": "^0.11.10",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-i18next": "^17.0.7",
-    "react-native": "0.81.5",
+    "react-native": "0.83.2",
     "react-native-agora": "^4.5.4",
     "react-native-argon2": "^4.0.0",
     "react-native-dotenv": "^3.4.11",
@@ -156,21 +156,21 @@
     "patch-package": "^8.0.0",
     "react-native-css-transformer": "^2.0.0",
     "react-native-svg-transformer": "^1.5.0",
-    "react-test-renderer": "^19.1.0",
+    "react-test-renderer": "19.2.0",
     "tailwindcss": "^3.4.0",
     "ts-jest": "^29.4.9",
     "typescript": "^5.1.3"
   },
   "overrides": {
     "valtio": "1.11.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-native-web": "^0.21.0",
     "permissionless": "0.2.57",
     "postcss": "^8.5.18"
   },
   "resolutions": {
     "valtio": "1.11.2",
-    "react": "19.1.0"
+    "react": "19.2.0"
   }
 }

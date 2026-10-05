@@ -1,0 +1,43 @@
+name: Prepare SDK 55 dependencies
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - package.json
+      - .github/workflows/sdk55-prepare.yml
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    if: github.head_ref == 'upgrade/sdk55-android-frost-20261005' && github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: '1'
+      npm_config_legacy_peer_deps: 'true'
+      npm_config_ignore_scripts: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --legacy-peer-deps
+      - run: npx expo install --fix --npm
+      - name: Collect aligned dependencies and native reference
+        run: |
+          mkdir sdk55-prepared
+          cp package.json package-lock.json sdk55-prepared/
+          npm pack expo-template-bare-minimum@55 --pack-destination sdk55-prepared
+          cp node_modules/expo/bundledNativeModules.json sdk55-prepared/
+          cp -r node_modules/expo-audio/android sdk55-prepared/audio-android
+          cp -r node_modules/expo-video/android sdk55-prepared/video-android
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdk55-prepared
+          path: sdk55-prepared/
+          retention-days: 7
