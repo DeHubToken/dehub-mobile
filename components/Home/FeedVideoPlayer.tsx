@@ -29,6 +29,8 @@ import { feedVolumeResponder } from "../../libs/feed-volume-responder";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
+import { requestVideoPlayback } from "../../libs/video-start";
+import { createLogger } from "../../libs/logger";
 import {
   getPlaybackRateFor,
   setPlaybackRate as persistPlaybackRate,
@@ -79,6 +81,7 @@ import {
 
 /** Card content width — mirrors FeedCard, which lays this player out. */
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
+const playbackLog = createLogger("FeedVideoPlayer");
 
 /**
  * Tallest the media may get. A portrait clip stops growing here and narrows
@@ -428,7 +431,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // source so mounting doesn't create an empty player and immediately replace
   // it with a second native instance when playback is requested.
   const [sourceRequested, setSourceRequested] = useState(startOnMount || autoplaySettled);
-  // A play intent waiting for the deferred source to reach readyToPlay.
+  // A play intent to submit to the shared native player.
   const pendingPlayRef = useRef(false);
 
   // Only attach the media source while the card is visible AND intent exists.
@@ -445,6 +448,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // A rate pinned to this creator applies from the first frame; everyone
     // else plays at whatever rate was last used generally.
     p.playbackRate = getPlaybackRateFor(creator);
+    // On iOS, assigning the rate also starts AVPlayer. Playback needs an intent.
+    p.pause();
     p.bufferOptions = ACTIVE_FEED_BUFFER_OPTIONS;
   });
   const ownsPlayerRef = useRef(ownsPlayer);
@@ -630,35 +635,35 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // card scrolls off-screen. A deferred call (autoplay timer) can land after
     // release and throw "Cannot use shared object that was already released".
     try {
-      playerRef.current.volume = getVolume();
-      playerRef.current.play();
-    } catch {
+      const current = playerRef.current;
+      current.volume = getVolume();
+      void requestVideoPlayback(current, videoUrl!, () =>
+        playerRef.current === current && ownsPlayerRef.current() &&
+        playbackAllowedRef.current && canStartVideo(current),
+      ).catch((error) => {
+        if (playerRef.current === current && ownsPlayerRef.current()) {
+          playbackLog.error("Video source retry failed", error, { tokenId });
+          stopPlayback();
+        }
+      });
+    } catch (error) {
+      playbackLog.error("Video play request failed", error, { tokenId });
       stopPlayback();
       return;
     }
     isPlayingRef.current = true;
     setIsPlaying(true);
-  }, [canPlay, stopPlayback]);
+  }, [canPlay, videoUrl, tokenId, stopPlayback]);
 
   /**
-   * Honour a queued play intent once the source is actually playable.
-   *
-   * Normally the readyToPlay statusChange delivers this. But a card whose
-   * source never detached — it stayed on screen, or it left and came back
-   * inside one render pass — is ALREADY readyToPlay, so no status change ever
-   * fires and the intent sits there forever. That is the "and then even after
-   * scrolling it still won't play" half of the bug. Every path that sets the
-   * intent calls this straight after, and the effect below catches the race
-   * arriving from the other direction.
+   * Submit the intent even while loading. The shared player already has its
+   * source; native playback queues until it can start. Waiting for readyToPlay
+   * here can leave a paused iOS player loading without ever receiving play().
    */
   const flushPendingPlay = useCallback(() => {
     if (!pendingPlayRef.current) return;
     const p = playerRef.current;
     if (!p) return;
-    let ready = false;
-    // Reading status on a released shared object throws, same as play() does.
-    try { ready = p.status === "readyToPlay"; } catch { return; }
-    if (!ready) return;
     pendingPlayRef.current = false;
     // Seed mute from the shared cache the same way the old direct path did.
     try {
@@ -688,9 +693,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } catch {}
     try {
       subs.push(
-        player.addListener("statusChange", ({ status }) => {
+        player.addListener("statusChange", ({ status, error }) => {
           if (!ownsPlayerRef.current()) return;
           setIsBuffering(status === "loading");
+          if (status === "error") {
+            playbackLog.error("Video source failed", error?.message || "Unknown error", { tokenId });
+            stopPlayback();
+          }
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
@@ -724,7 +733,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, flushPendingPlay, maybeSkipSegment]);
+  }, [player, flushPendingPlay, maybeSkipSegment, stopPlayback, tokenId]);
 
   // The other side of the same race: readiness landing before the intent, or a
   // source that was already attached when the intent was queued.
@@ -761,10 +770,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // Settings → Appearance → Auto-play videos, mirroring web's AutoplayContext
     // gate in VideoCard. Same as Data Saver, this only suppresses *auto* play.
     if (!autoplayEnabled) return;
-    // The card survived the settle delay, so this is a real stop, not a fling
-    // passing through. Attach the source now; statusChange plays it on ready.
-    // The timer only ever fires with no source attached — a tap in the window
-    // sets hasStartedAutoplay, which re-runs this effect and clears the timer.
+    // The card survived the settle delay, so submit autoplay now. A tap in
+    // this window sets hasStartedAutoplay and cancels the timer.
     autoplayTimerRef.current = setTimeout(() => {
       if (isPlayingRef.current || !canPlay) return;
       autoStartRef.current = true;
@@ -851,11 +858,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // resumes in this tick, and a spinner would only flash for one frame on
     // every pause/resume.
     if (!(videoReady && firstFrameRendered)) beginStarting();
-    // One path for both cases. On a card that never got a source (Data Saver,
-    // autoplay off, not the autoplay target, or the tap beat the settle timer)
-    // this attaches it and plays on readyToPlay, with the buffering spinner
-    // covering the gap. On one already loaded, flushPendingPlay starts it in
-    // this same tick.
+    // Submit play in this tick whether the source has buffered yet or not.
+    // The spinner covers the wait for the native player's first frame.
     autoStartRef.current = false;
     videoSession.userPaused = false;
     pendingPlayRef.current = true;
