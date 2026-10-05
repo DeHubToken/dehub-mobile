@@ -29,7 +29,8 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from "react-native-reanimated";
-import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
+import { useAudioRecorder, RecordingPresets, type AudioRecorder } from "expo-audio";
+import { configureForRecording, releaseRecording } from "../../libs/audioSession";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { useTranslation } from "react-i18next";
 
@@ -79,7 +80,8 @@ export const useVoiceRecorder = ({
   onRecordingComplete,
   onCancel,
 }: UseVoiceRecorderOpts): VoiceRecorderHandle => {
-  const recordingRef = useRef<Audio.Recording | null>(null);
+  const audioRecorder = useAudioRecorder({ ...RecordingPresets.HIGH_QUALITY, isMeteringEnabled: true });
+  const recordingRef = useRef<AudioRecorder | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [elapsedMs, setElapsedMs] = useState(0);
   const [isStopping, setIsStopping] = useState(false);
@@ -104,7 +106,7 @@ export const useVoiceRecorder = ({
           const rec = recordingRef.current;
           let level: number;
           if (rec) {
-            const st = await rec.getStatusAsync();
+            const st = rec.getStatus();
             level = normMeter((st as any).metering);
           } else {
             // Recording not ready yet — show gentle idle animation
@@ -132,15 +134,15 @@ export const useVoiceRecorder = ({
     try {
       const rec = recordingRef.current;
       if (rec) {
-        const s = await rec.getStatusAsync();
-        if (s.isRecording) await rec.stopAndUnloadAsync();
+        const s = rec.getStatus();
+        if (s.isRecording) await rec.stop();
       }
     } catch {}
     recordingRef.current = null;
     setIsRecording(false);
     setElapsedMs(0);
     setMeterBars([]);
-    Audio.setAudioModeAsync({ allowsRecordingIOS: false }).catch(() => {});
+    releaseRecording().catch(() => {});
     onCancel();
   }, [onCancel]);
 
@@ -154,15 +156,15 @@ export const useVoiceRecorder = ({
         onCancel();
         return;
       }
-      const status = await rec.getStatusAsync();
-      if (status.isRecording) await rec.stopAndUnloadAsync();
-      const uri = rec.getURI();
+      const status = rec.getStatus();
+      if (status.isRecording) await rec.stop();
+      const uri = rec.uri;
       const durationMs = status.durationMillis || elapsedMs;
       recordingRef.current = null;
       setIsRecording(false);
       setElapsedMs(0);
       setMeterBars([]);
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: false });
+      await releaseRecording();
       if (uri && durationMs > 500) {
         onRecordingComplete({
           uri,
@@ -190,8 +192,8 @@ export const useVoiceRecorder = ({
       if (recordingRef.current) {
         try {
           const prev = recordingRef.current;
-          const s = await prev.getStatusAsync();
-          if (s.isRecording || s.canRecord) await prev.stopAndUnloadAsync();
+          const s = prev.getStatus();
+          if (s.isRecording) await prev.stop();
         } catch {}
         recordingRef.current = null;
       }
@@ -207,18 +209,10 @@ export const useVoiceRecorder = ({
         return;
       }
 
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: true,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-        interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
-      });
-      const recording = new Audio.Recording();
-      await recording.prepareToRecordAsync({
-        ...Audio.RecordingOptionsPresets.HIGH_QUALITY,
-        isMeteringEnabled: true,
-      });
-      await recording.startAsync();
+      await configureForRecording();
+      const recording = audioRecorder;
+      await recording.prepareToRecordAsync();
+      recording.record();
       recordingRef.current = recording;
 
       // Only show recording UI + start timer AFTER recording is actually running
@@ -228,9 +222,16 @@ export const useVoiceRecorder = ({
     } catch (e) {
       console.error("[VoiceRecorder] start error", e);
       setIsRecording(false);
+      releaseRecording().catch(() => {});
       onCancel();
     }
-  }, [onCancel]);
+  }, [onCancel, audioRecorder]);
+
+  useEffect(() => () => {
+    const rec = recordingRef.current;
+    recordingRef.current = null;
+    if (rec) rec.stop().catch(() => {}).finally(() => releaseRecording().catch(() => {}));
+  }, []);
 
   return {
     isRecording,

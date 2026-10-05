@@ -109,7 +109,7 @@ const GeneratedVideo: React.FC<{
         style={[s.media, { height: (mediaWidth * 9) / 16 }]}
         contentFit="cover"
         nativeControls
-        allowsFullscreen
+        fullscreenOptions={{ enable: true }}
       />
       {actions.length > 0 && <MediaActions actions={actions} placement="top" />}
     </View>
