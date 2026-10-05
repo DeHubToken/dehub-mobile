@@ -23,6 +23,14 @@ Required verification: hosted tests for grant compatibility, annual quantities, 
 
 ## Remaining stages
 
+### Compact feed head
+
+`GET /api/feed?signal=true` shares the ordinary feed's filters, authenticated visibility and head order. It returns only identity, timestamps, renderability and engagement fields. The head is capped at 20 and has no full-feed pagination/count query. Random sorting preserves the existing shuffle and access checks before compacting the response.
+
+Both clients request this mode for the existing foreground head poll. Full feed pages, scroll position, optimistic engagement and mobile scroll deferral stay intact. Web uses the response's explicit `authenticated` marker for expired-session recovery because count responses deliberately omit viewer flags. Older servers remain compatible by returning their ordinary full response.
+
+Deploy and verify the shared API first, then publish the clients. Compare one matched full/compact response pair and eligible token IDs; check Chrome and Android head signaling/count updates. Refreshing visible cards beyond the head remains a separate follow-up.
+
 1. Compact feed head and visible engagement updates instead of full feed polling.
 2. Persistent avatar/cover revisions that change on upload.
 3. Scoped presence and event delivery with reconnect recovery for calls/messages.
