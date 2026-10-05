@@ -4,6 +4,15 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { VideoScrubButton, VideoScrubZone } from '../../components/Home/VideoScrubZone';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', Pressable: 'Pressable',
+  StyleSheet: {
+    create: (styles: unknown) => styles,
+    flatten: (styles: unknown) => Array.isArray(styles) ? Object.assign({}, ...styles) : styles,
+    absoluteFill: {},
+  },
+  Animated: { View: 'AnimatedView', Value: class { setValue = jest.fn(); } },
+}));
 
 let mockScrubOptions: any;
 jest.mock('../../hooks/useScrubGesture', () => ({
@@ -32,11 +41,11 @@ describe('video scrub zone', () => {
     fireEvent(s.zone, 'touchStart', s.event());
     mockScrubOptions.onScrubStart();
     mockScrubOptions.onCommit(0.75);
-    fireEvent.press(s.getByRole('button', { name: 'Play' }), s.event(150));
+    fireEvent.press(s.getByLabelText('Play'), s.event(150));
     expect(s.onCommit).toHaveBeenCalledWith(0.75);
     expect(s.buttonPress).not.toHaveBeenCalled();
     fireEvent(s.zone, 'touchStart', s.event());
-    fireEvent.press(s.getByRole('button', { name: 'Play' }), s.event());
+    fireEvent.press(s.getByLabelText('Play'), s.event());
     expect(s.buttonPress).toHaveBeenCalledTimes(1);
   });
 
@@ -54,7 +63,7 @@ describe('video scrub zone', () => {
     fireEvent(s.zone, 'touchStart', s.event());
     fireEvent(s.zone, 'touchMove', s.event(20, 420));
     fireEvent.press(s.getByTestId('video-scrub-tap'), s.event());
-    fireEvent.press(s.getByRole('button', { name: 'Play' }), s.event());
+    fireEvent.press(s.getByLabelText('Play'), s.event());
     expect(s.onCommit).not.toHaveBeenCalled();
     expect(s.buttonPress).not.toHaveBeenCalled();
   });
