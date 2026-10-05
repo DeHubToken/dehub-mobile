@@ -394,7 +394,7 @@ const FeatureCard: React.FC<{
   defaultCommentsOpen?: boolean;
 }> = ({ feature, myVote, onVote, isAuthed, defaultCommentsOpen = false }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
   const [showComments, setShowComments] = useState(defaultCommentsOpen);
@@ -456,7 +456,7 @@ const FeatureCard: React.FC<{
   }, [feature.id, feature.title]);
 
   return (
-    <View style={[styles.card, isMinimal && styles.minimalCard]}>
+    <View style={[styles.card, skin?.card, isMinimal && styles.minimalCard]}>
       {/* Header — avatar, name, @handle · time, author menu */}
       <View style={styles.cardHead}>
         <Pressable
@@ -859,7 +859,7 @@ export default function FeatureRequestsScreen() {
   // Minimal: the header bento and request cards become edge-to-edge hairline
   // groups, the Requests/Shipping/Shipped strip becomes file tabs. Search,
   // chips and buttons keep their fill.
-  const { isMinimal, theme: themeName } = useAppTheme();
+  const { isMinimal, skin, theme: themeName } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const navigation = useNavigation<any>();
@@ -1027,7 +1027,7 @@ export default function FeatureRequestsScreen() {
   // The root SafeAreaView above the navigator already pays the status bar
   // inset; paying it again here pushed the header down a second band.
   return (
-    <View style={[styles.root, { paddingTop: 6 }]}>
+    <View className="bg-theme-background" style={[styles.root, { paddingTop: 6 }]}>
       {/* Back sits above the bento, not inside it. Web's app shell carries the
           back affordance in its own chrome; folding it into the title row here
           cost ~40pt and left "Feature Requests" one device width from
@@ -1045,7 +1045,7 @@ export default function FeatureRequestsScreen() {
       )}
 
       {/* Header bento — the whole page header on web at this width. */}
-      <View style={[styles.bento, isMinimal && styles.minimalBento]}>
+      <View style={[styles.bento, skin?.card, isMinimal && styles.minimalBento]}>
         <View style={styles.bentoTop}>
           {iconFailed ? (
             <View style={styles.headerIconFallback}>
@@ -1293,7 +1293,7 @@ const GLASS_BG = "rgba(255,255,255,0.12)";
 const GLASS_BORDER = "rgba(255,255,255,0.30)";
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
+  root: { flex: 1 },
 
   // Header bento — zinc-900, 16pt radius, 16pt padding, 8pt page gutter.
   bento: {

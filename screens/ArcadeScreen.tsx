@@ -98,7 +98,7 @@ const ArcadeScreen = () => {
   );
 
   return (
-    <View style={styles.screen}>
+    <View className="bg-theme-background" style={styles.screen}>
       <ScreenHeader title={t("nav.arcade")} icon="arcade" />
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
@@ -136,7 +136,7 @@ const ArcadeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.neutrals[900] },
+  screen: { flex: 1 },
   content: { paddingTop: 4 },
   intro: {
     color: "#A1A1AA",
