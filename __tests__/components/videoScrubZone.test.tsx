@@ -3,6 +3,8 @@ import { Animated, Text } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 import { VideoScrubButton, VideoScrubZone } from '../../components/Home/VideoScrubZone';
 
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+
 let mockScrubOptions: any;
 jest.mock('../../hooks/useScrubGesture', () => ({
   useScrubGesture: (options: any) => {
