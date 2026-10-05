@@ -1844,6 +1844,8 @@
     "turnOffSmartReplies": "Turn off suggested replies",
     "encrypted": "End-to-end encrypted",
     "encryptionOff": "Encryption is off on this device",
+    "encryptionTurningOn": "Waiting for your wallet to turn on encryption…",
+    "encryptionSetupFailed": "Encryption setup failed. Please try again.",
     "encryptionTurnOn": "Turn on",
     "cannotDecrypt": "Encrypted message — can't be opened on this device",
     "title": "Messages",
