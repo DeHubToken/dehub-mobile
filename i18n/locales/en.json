@@ -9015,6 +9015,7 @@
     "pooledNeverExpires": "Pooled across the workspace — never expires",
     "perMonthBilledAnnually": "per month, billed annually",
     "perSeatBilledAnnually": "per seat/mo, billed annually",
+    "perSeatMonthly": "per seat/month",
     "savings": "Save ${{amount}} compared to monthly",
     "seats_one": "{{count}} seat",
     "seats_other": "{{count}} seats",
