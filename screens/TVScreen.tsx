@@ -158,7 +158,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
               player={player}
               style={StyleSheet.absoluteFill}
               contentFit="contain"
-              allowsFullscreen
+              fullscreenOptions={{ enable: true }}
               nativeControls
             />
           )}

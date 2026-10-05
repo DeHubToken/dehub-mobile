@@ -57,6 +57,7 @@ import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomS
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
+import { FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 
@@ -891,6 +892,56 @@ export default function HomeScreen() {
           accessibilityLabel={t("common.close")}
         />
       ) : null}
+      <FrostedContent>
+      <GestureDetector gesture={homeGestures}>
+        <Animated.View style={[styles.pagerViewport, viewportShape, feedClipStyle]}>
+          <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
+          <PagerGestureProvider gestureRef={pagerGestureRef}>
+            <Animated.View
+              style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}
+            >
+              {TAB_ORDER.map((key, index) => (
+                <View
+                  key={key}
+                  // Off-screen is not free on Android. The renderer prepares
+                  // every bitmap in every drawn child before each frame, and a
+                  // page that sits a screen-width to the side is still drawn
+                  // into the row. Six mounted feeds put ~340 image textures in
+                  // the GPU cache — 112MB of a 121MB budget on a fresh launch,
+                  // measured on a Galaxy S24+ — and once a session tipped over
+                  // the budget every frame evicted and re-uploaded, which was
+                  // the "slow bitmap upload" jank on every tab and the taps
+                  // that would not land. `display: none` maps to INVISIBLE on
+                  // Android: skipped at draw, so its textures become
+                  // purgeable, while React state and the query cache stay put.
+                  // PagerPage reveals neighbours only as a drag reaches them.
+                  // The slot itself always keeps its width. Hiding the slot
+                  // took it out of the row's layout, every page after it slid
+                  // one slot left, and the pager's translate — index times
+                  // pageWidth — then landed on the wrong list: the Images tab
+                  // showed the video feed and the Video tab an empty slot. The
+                  // hide lives on the inner wrapper instead.
+                  style={{ width: pageWidth }}
+                  pointerEvents={index === activeIndex ? "auto" : "none"}
+                >
+                  <PagerPage index={index} progress={progress}>
+                    <HomePullRefreshContext.Provider value={index === activeIndex ? homePull.provider : null}>
+                      {renderPage(key, index)}
+                    </HomePullRefreshContext.Provider>
+                  </PagerPage>
+                </View>
+              ))}
+            </Animated.View>
+          </PagerGestureProvider>
+
+          {/* Covers the pager, never the header: the filter panel and nav bar
+              stay live so the user can keep adjusting while this is up. */}
+          {filterLoaderActive && <FeedFilterLoader topInset={feedInset} />}
+          </Animated.View>
+        </Animated.View>
+      </GestureDetector>
+      </FrostedContent>
+
       <Animated.View
         style={[styles.headerClip, glassNav ? styles.headerClear : null, island ? { overflow: "visible" } : null, headerAnimatedStyle]}
         // The island's header is mostly empty space around the capsule; taps
@@ -951,53 +1002,7 @@ export default function HomeScreen() {
         />
       </Animated.View>
 
-      <GestureDetector gesture={homeGestures}>
-        <Animated.View style={[styles.pagerViewport, viewportShape, feedClipStyle]}>
-          <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
-          <PagerGestureProvider gestureRef={pagerGestureRef}>
-            <Animated.View
-              style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}
-            >
-              {TAB_ORDER.map((key, index) => (
-                <View
-                  key={key}
-                  // Off-screen is not free on Android. The renderer prepares
-                  // every bitmap in every drawn child before each frame, and a
-                  // page that sits a screen-width to the side is still drawn
-                  // into the row. Six mounted feeds put ~340 image textures in
-                  // the GPU cache — 112MB of a 121MB budget on a fresh launch,
-                  // measured on a Galaxy S24+ — and once a session tipped over
-                  // the budget every frame evicted and re-uploaded, which was
-                  // the "slow bitmap upload" jank on every tab and the taps
-                  // that would not land. `display: none` maps to INVISIBLE on
-                  // Android: skipped at draw, so its textures become
-                  // purgeable, while React state and the query cache stay put.
-                  // PagerPage reveals neighbours only as a drag reaches them.
-                  // The slot itself always keeps its width. Hiding the slot
-                  // took it out of the row's layout, every page after it slid
-                  // one slot left, and the pager's translate — index times
-                  // pageWidth — then landed on the wrong list: the Images tab
-                  // showed the video feed and the Video tab an empty slot. The
-                  // hide lives on the inner wrapper instead.
-                  style={{ width: pageWidth }}
-                  pointerEvents={index === activeIndex ? "auto" : "none"}
-                >
-                  <PagerPage index={index} progress={progress}>
-                    <HomePullRefreshContext.Provider value={index === activeIndex ? homePull.provider : null}>
-                      {renderPage(key, index)}
-                    </HomePullRefreshContext.Provider>
-                  </PagerPage>
-                </View>
-              ))}
-            </Animated.View>
-          </PagerGestureProvider>
 
-          {/* Covers the pager, never the header: the filter panel and nav bar
-              stay live so the user can keep adjusting while this is up. */}
-          {filterLoaderActive && <FeedFilterLoader topInset={feedInset} />}
-          </Animated.View>
-        </Animated.View>
-      </GestureDetector>
 
       {feedProfileVisible ? (
         <View

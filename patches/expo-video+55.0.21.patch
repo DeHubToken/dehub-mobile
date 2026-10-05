@@ -1,0 +1,16 @@
+diff --git a/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt b/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
+--- a/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
++++ b/node_modules/expo-video/android/src/main/java/expo/modules/video/playbackService/ExpoVideoPlaybackService.kt
+@@ -158,6 +158,12 @@
+   }
+ 
+   override fun onTaskRemoved(rootIntent: Intent?) {
++    // Releasing a session alone leaves its player running after task dismissal.
++    for (session in mediaSessions.values.toList()) {
++      session.player.pause()
++      session.player.stop()
++      session.player.clearMediaItems()
++    }
+     cleanup()
+     stopSelf()
+   }
