@@ -33,7 +33,7 @@ import GlassIndicator from "../ui/GlassIndicator";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
-import type { DmMessage, DmMsgType, DmMediaUrl, ReplyPreview } from "../../services/dm/dm.types";
+import type { DmMessage, DmMsgType, DmMediaUrl, ReplyPreview, OptimisticMessage } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
 import DehubLinkCard from "../common/DehubLinkCard";
@@ -539,15 +539,18 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       {message.encrypted && (
         <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#808089"} />
       )}
-      {isMine && (
+      {isMine && isUploadFailed && (
+        <Text className="text-[11px] text-white/80">{t("dm.failedToSend")}</Text>
+      )}
+      {isMine && !isUploadFailed && (
         <Icon
-          name={message.isRead ? "CheckCheck" : "Check"}
+          name={(message as OptimisticMessage)._optimistic ? "Clock" : message.isRead ? "CheckCheck" : "Check"}
           size={12}
           color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
         />
       )}
     </View>
-  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted, t]);
+  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted, message, isUploadFailed, t]);
 
 
   const bubbleBg = isMine
