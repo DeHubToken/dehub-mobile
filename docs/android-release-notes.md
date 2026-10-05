@@ -1,9 +1,5 @@
-Android 1.18.1 adds the swipe-up shorts feed: watching any video fullscreen, swipe up to drop into an endless mix of trending, new and all-time most viewed, liked and commented clips.
+Android 1.18.2 fixes theme surfaces across Messages, public chat, Prompt, Requests, Builder, Apps and Arcade. Conversation actions stay hidden until their row is swiped, including on transparent canvas themes.
 
-Creator now generates images, videos, music, speech and 3D models directly in the app. Choose models, reference images, framing and clip length, explore 182 image and video presets including the 24 released Open Higgsfield recipes, review the price, and save or share your results. Video, audio and mesh jobs resume when you return to the app.
-
-Native creations are saved to the same private account library as web. The payment sheet shows the server quote for the selected duration and texture quality.
-
-It also carries every app update published since 1.18.0, including the full-width video and image post pages, the faster home feed, photo filters, crop and drawing in the post composer, the mini app store, in-app shared links, and keyboard and bottom-sheet fixes across the app.
+The Android navigation bar uses light controls without the pale contrast strip, letting the active theme continue to the bottom of the screen.
 
 Install this APK over the existing DeHub installation. No uninstall or data clearing is required.
