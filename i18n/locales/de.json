@@ -1844,6 +1844,8 @@
     "turnOffSmartReplies": "Antwortvorschläge ausschalten",
     "encrypted": "Ende-zu-Ende-verschlüsselt",
     "encryptionOff": "Verschlüsselung ist auf diesem Gerät aus",
+    "encryptionTurningOn": "Warte auf dein Wallet, um die Verschlüsselung zu aktivieren…",
+    "encryptionSetupFailed": "Die Einrichtung der Verschlüsselung ist fehlgeschlagen. Bitte versuche es erneut.",
     "encryptionTurnOn": "Aktivieren",
     "cannotDecrypt": "Verschlüsselte Nachricht — kann auf diesem Gerät nicht geöffnet werden",
     "title": "Nachrichten",
