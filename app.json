@@ -6,17 +6,12 @@
     "version": "1.18.2",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
-    "notification": {
-      "icon": "./assets/AppIcons/notification_badge.png",
-      "color": "#8e8e93"
-    },
     "userInterfaceStyle": "dark",
     "androidNavigationBar": {
       "barStyle": "light-content",
       "backgroundColor": "#000000",
       "enforceContrast": false
     },
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/AppIcons/playstore.png",
       "resizeMode": "contain",
@@ -27,7 +22,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"
     },
-    "runtimeVersion": "1.18.0",
+    "runtimeVersion": "sdk55-frost-1",
     "ios": {
       "supportsTablet": false,
       "jsEngine": "hermes",
@@ -292,6 +287,7 @@
       [
         "expo-notifications",
         {
+          "icon": "./assets/AppIcons/notification_badge.png",
           "color": "#8e8e93",
           "defaultChannel": "default"
         }
@@ -325,9 +321,8 @@
         "expo-build-properties",
         {
           "android": {
-            "androidGradlePlugin": "8.8.0",
-            "compileSdkVersion": 35,
-            "targetSdkVersion": 35,
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
             "enableSeparateBuildPerCPUArchitecture": true,
             "usesCleartextTraffic": true
           }

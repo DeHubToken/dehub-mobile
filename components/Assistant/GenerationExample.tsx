@@ -13,7 +13,7 @@ import { openInApp } from '../../libs/links.utils';
 
 function ExampleVideo({ url, width }: { url: string; width: number }) {
   const player = useVideoPlayer(url, (instance) => { instance.muted = true; });
-  return <VideoView player={player} nativeControls allowsFullscreen contentFit="contain" style={{ width, height: width * 9 / 16 }} />;
+  return <VideoView player={player} nativeControls fullscreenOptions={{ enable: true }} contentFit="contain" style={{ width, height: width * 9 / 16 }} />;
 }
 
 export default function GenerationExample({ kind, model }: { kind: CreatorMode; model?: string }) {

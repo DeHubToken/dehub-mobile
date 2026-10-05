@@ -29,7 +29,8 @@ import Animated, {
 } from "react-native-reanimated";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
-import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
+import { useAudioRecorder, RecordingPresets, createAudioPlayer, type AudioRecorder, type AudioPlayer } from "expo-audio";
+import { configureForRecording, releaseRecording, configureForDuckedPlayback } from "../libs/audioSession";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useEvent } from "expo";
@@ -369,18 +370,20 @@ export default function UploadScreen() {
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
   const [audioRecordingElapsed, setAudioRecordingElapsed] = useState(0);
-  const audioRecordingRef = useRef<Audio.Recording | null>(null);
+  const audioRecorder = useAudioRecorder({ ...RecordingPresets.HIGH_QUALITY, isMeteringEnabled: true });
+  const audioRecordingRef = useRef<AudioRecorder | null>(null);
   const audioTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioStartTimeRef = useRef(0);
   const [audioMeterBars, setAudioMeterBars] = useState<number[]>([]);
   const audioMeterBarsRef = useRef<number[]>([]);
   const [showAudioMenu, setShowAudioMenu] = useState(false);
-  const audioPreviewRef = useRef<Audio.Sound | null>(null);
+  const audioPreviewRef = useRef<AudioPlayer | null>(null);
+  const audioPreviewListenerRef = useRef<{ remove: () => void } | null>(null);
   const [isAudioPreviewPlaying, setIsAudioPreviewPlaying] = useState(false);
 
   // Stable callback for global audio focus — pauses audio preview when another source plays
   const handleStopAudioPreviewFocus = useCallback(() => {
-    audioPreviewRef.current?.pauseAsync().catch(() => {});
+    audioPreviewRef.current?.pause();
     setIsAudioPreviewPlaying(false);
   }, []);
   const [isMuted, setIsMuted] = useState(true);
@@ -1875,7 +1878,8 @@ export default function UploadScreen() {
   const handleRemoveAudio = useCallback(async () => {
     // Stop preview if playing
     if (audioPreviewRef.current) {
-      try { await audioPreviewRef.current.unloadAsync(); } catch {}
+      audioPreviewListenerRef.current?.remove();
+      try { audioPreviewRef.current.remove(); } catch {}
       audioPreviewRef.current = null;
       setIsAudioPreviewPlaying(false);
     }
@@ -1899,19 +1903,10 @@ export default function UploadScreen() {
         return;
       }
 
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: true,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-        interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
-      });
-
-      const recording = new Audio.Recording();
-      await recording.prepareToRecordAsync({
-        ...Audio.RecordingOptionsPresets.HIGH_QUALITY,
-        isMeteringEnabled: true,
-      });
-      await recording.startAsync();
+      await configureForRecording();
+      const recording = audioRecorder;
+      await recording.prepareToRecordAsync();
+      recording.record();
       audioRecordingRef.current = recording;
       setIsAudioRecording(true);
       setAudioRecordingElapsed(0);
@@ -1931,7 +1926,7 @@ export default function UploadScreen() {
           const rec = audioRecordingRef.current;
           let level = 0.08 + Math.random() * 0.12;
           if (rec) {
-            const st = await rec.getStatusAsync();
+            const st = rec.getStatus();
             const dB = (st as any).metering;
             if (dB != null && dB > -160) {
               level = Math.max(0.05, Math.min(1, (dB + 40) / 40));
@@ -1946,9 +1941,10 @@ export default function UploadScreen() {
       }, 150);
     } catch (e) {
       console.error("[UploadScreen] audio recording start error:", e);
+      releaseRecording().catch(() => {});
       toastError(t("upload.recordFailed"));
     }
-  }, []);
+  }, [audioRecorder]);
 
   const handleStopAudioRecording = useCallback(async () => {
     if (audioTimerRef.current) {
@@ -1958,15 +1954,15 @@ export default function UploadScreen() {
     try {
       const rec = audioRecordingRef.current;
       if (!rec) return;
-      const status = await rec.getStatusAsync();
-      if (status.isRecording) await rec.stopAndUnloadAsync();
-      const uri = rec.getURI();
+      const status = rec.getStatus();
+      if (status.isRecording) await rec.stop();
+      const uri = rec.uri;
       const durationMs = status.durationMillis || audioRecordingElapsed;
       audioRecordingRef.current = null;
       setIsAudioRecording(false);
       setAudioRecordingElapsed(0);
       setAudioMeterBars([]);
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: false });
+      await releaseRecording();
 
       if (uri && durationMs > 500) {
         movePendingBodyToTitle();
@@ -1991,15 +1987,15 @@ export default function UploadScreen() {
     try {
       const rec = audioRecordingRef.current;
       if (rec) {
-        const s = await rec.getStatusAsync();
-        if (s.isRecording) await rec.stopAndUnloadAsync();
+        const s = rec.getStatus();
+        if (s.isRecording) await rec.stop();
       }
     } catch {}
     audioRecordingRef.current = null;
     setIsAudioRecording(false);
     setAudioRecordingElapsed(0);
     setAudioMeterBars([]);
-    Audio.setAudioModeAsync({ allowsRecordingIOS: false }).catch(() => {});
+    releaseRecording().catch(() => {});
   }, []);
 
   const handlePickAudioFile = useCallback(async () => {
@@ -2033,7 +2029,7 @@ export default function UploadScreen() {
   const handleToggleAudioPreview = useCallback(async () => {
     try {
       if (isAudioPreviewPlaying && audioPreviewRef.current) {
-        await audioPreviewRef.current.pauseAsync();
+        audioPreviewRef.current.pause();
         setIsAudioPreviewPlaying(false);
         releaseAudioFocus(handleStopAudioPreviewFocus);
         return;
@@ -2042,37 +2038,32 @@ export default function UploadScreen() {
       requestAudioFocus(handleStopAudioPreviewFocus);
 
       if (audioPreviewRef.current) {
-        const status = await audioPreviewRef.current.getStatusAsync();
-        if (status.isLoaded) {
-          if (status.didJustFinish || status.positionMillis >= (status.durationMillis || 0)) {
-            await audioPreviewRef.current.setPositionAsync(0);
+        const preview = audioPreviewRef.current;
+        if (preview.isLoaded) {
+          if (preview.duration > 0 && preview.currentTime >= preview.duration) {
+            await preview.seekTo(0);
           }
-          await audioPreviewRef.current.playAsync();
+          preview.play();
           setIsAudioPreviewPlaying(true);
           return;
         }
       }
 
       if (!pickedAudio) return;
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-      });
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: pickedAudio.uri },
-        { shouldPlay: true },
-      );
+      await configureForDuckedPlayback();
+      audioPreviewListenerRef.current?.remove();
+      audioPreviewRef.current?.remove();
+      const sound = createAudioPlayer({ uri: pickedAudio.uri });
       audioPreviewRef.current = sound;
       setIsAudioPreviewPlaying(true);
-      sound.setOnPlaybackStatusUpdate((s) => {
+      audioPreviewListenerRef.current = sound.addListener("playbackStatusUpdate", (s) => {
         if (!s.isLoaded) return;
         if (s.didJustFinish) {
           setIsAudioPreviewPlaying(false);
           releaseAudioFocus(handleStopAudioPreviewFocus);
         }
       });
+      sound.play();
     } catch (e) {
       console.error("[UploadScreen] audio preview error:", e);
       releaseAudioFocus(handleStopAudioPreviewFocus);
@@ -2085,12 +2076,13 @@ export default function UploadScreen() {
       if (audioTimerRef.current) clearInterval(audioTimerRef.current);
       const rec = audioRecordingRef.current;
       if (rec) {
-        rec.stopAndUnloadAsync().catch(() => {});
+        rec.stop().catch(() => {}).finally(() => releaseRecording().catch(() => {}));
         audioRecordingRef.current = null;
       }
       const preview = audioPreviewRef.current;
       if (preview) {
-        preview.unloadAsync().catch(() => {});
+        audioPreviewListenerRef.current?.remove();
+        preview.remove();
         audioPreviewRef.current = null;
       }
     };
@@ -2101,7 +2093,7 @@ export default function UploadScreen() {
     useCallback(() => {
       return () => {
         if (isAudioPreviewPlaying && audioPreviewRef.current) {
-          audioPreviewRef.current.pauseAsync().catch(() => {});
+          audioPreviewRef.current.pause();
           setIsAudioPreviewPlaying(false);
         }
         if (isAudioRecording && audioRecordingRef.current) {
