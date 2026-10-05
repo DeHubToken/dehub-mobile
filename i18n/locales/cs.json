@@ -8703,6 +8703,7 @@
     "checkoutUnavailable": "Odjezd momentálně není k dispozici. Zkuste to prosím znovu později."
   },
   "pricing": {
+    "perSeatMonthly": "za místo/měsíc",
     "plansForEveryWorkflow": "Plány pro každý pracovní postup",
     "findTheRightFit": "Od jednotlivců až po podnikové týmy, najděte si ten správný",
     "monthly": "Měsíčně",

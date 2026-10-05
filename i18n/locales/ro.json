@@ -8717,6 +8717,7 @@
     "checkoutUnavailable": "Check-out-ul nu este disponibil momentan. Te rugăm să încerci din nou mai târziu."
   },
   "pricing": {
+    "perSeatMonthly": "pe loc/lună",
     "plansForEveryWorkflow": "Planuri pentru fiecare flux de lucru",
     "findTheRightFit": "De la indivizi la echipe enterprise, găsește varianta potrivită",
     "monthly": "Lunar",

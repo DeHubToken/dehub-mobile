@@ -8683,6 +8683,7 @@
     "checkoutUnavailable": "चेकआउट अभी उपलब्ध नहीं है। कृपया बाद में पुनः प्रयास करें।"
   },
   "pricing": {
+    "perSeatMonthly": "प्रति सीट/महीना",
     "plansForEveryWorkflow": "हर वर्कफ़्लो के लिए प्लान",
     "findTheRightFit": "व्यक्तियों से लेकर एंटरप्राइज़ टीमों तक, सही फ़िट खोजें",
     "monthly": "मासिक",

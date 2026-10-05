@@ -8820,6 +8820,7 @@
     "checkoutUnavailable": "Hiện không thể trả phòng. Vui lòng thử lại sau."
   },
   "pricing": {
+    "perSeatMonthly": "mỗi ghế/tháng",
     "plansForEveryWorkflow": "Kế hoạch cho mọi quy trình làm việc",
     "findTheRightFit": "Từ cá nhân đến các đội enterprise, tìm sự phù hợp",
     "monthly": "Hàng tháng",

@@ -8633,6 +8633,7 @@
     "checkoutUnavailable": "I-Checkout ayitholakali njengamanje. Sicela uzame futhi kamuva."
   },
   "pricing": {
+    "perSeatMonthly": "sigiyɔrɔ kelen o kelen, kalo o kalo",
     "plansForEveryWorkflow": "Izinhlelo zawo wonke ama-workflow",
     "findTheRightFit": "Kusukela kubantu ngabanye kuye emaqenjini ezinkampani, thola okufanele kwakho",
     "monthly": "Nyanga zonke",

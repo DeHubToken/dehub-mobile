@@ -8698,6 +8698,7 @@
     "checkoutUnavailable": "Checkout በአሁኑ ጊዜ አይገኝም። እባክዎ ቆየት ብለው እንደገና ይሞክሩ።"
   },
   "pricing": {
+    "perSeatMonthly": "በመቀመጫ በወር",
     "plansForEveryWorkflow": "ለእያንዳንዱ የስራ ፍሰት እቅዶች",
     "findTheRightFit": "ከግለሰቦች እስከ የድርጅት ቡድኖች፣ ትክክለኛውን ተስማሚ ያግኙ",
     "monthly": "በወር",

@@ -8688,6 +8688,7 @@
     "checkoutUnavailable": "הצ'ק - אאוט לא זמין כרגע. יש לנסות שוב מאוחר יותר."
   },
   "pricing": {
+    "perSeatMonthly": "לכל מושב/חודש",
     "plansForEveryWorkflow": "תוכניות לכל זרימת עבודה",
     "findTheRightFit": "מאנשים בודדים ועד לצוותי enterprise, מצא את ההתאמה הנכונה",
     "monthly": "חודשי",

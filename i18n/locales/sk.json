@@ -8868,6 +8868,7 @@
     "checkoutUnavailable": "Pokladňa momentálne nie je k dispozícii. Skúste to prosím neskôr."
   },
   "pricing": {
+    "perSeatMonthly": "na používateľa/mes.",
     "plansForEveryWorkflow": "Plány pre každý pracovný postup",
     "findTheRightFit": "Od jednotlivcov po podnikové tímy, nájdite to správne riešenie",
     "monthly": "Mesačne",

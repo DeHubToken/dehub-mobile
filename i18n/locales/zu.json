@@ -8714,6 +8714,7 @@
     "checkoutUnavailable": "I-Checkout ayitholakali njengamanje. Sicela uzame futhi kamuva."
   },
   "pricing": {
+    "perSeatMonthly": "isihlalo ngasinye/ngenyanga",
     "plansForEveryWorkflow": "Izinhlelo zawo wonke ama-workflow",
     "findTheRightFit": "Kusuka kubantu ngabanye kuye emaqenjini ezinkampani, thola okufanele kwenziwe",
     "monthly": "Nyanga zonke",

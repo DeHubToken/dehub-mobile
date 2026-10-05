@@ -8702,6 +8702,7 @@
     "checkoutUnavailable": "Lahkumine pole praegu võimalik. Proovi hiljem uuesti."
   },
   "pricing": {
+    "perSeatMonthly": "istme kohta/kuu",
     "plansForEveryWorkflow": "Plaanid igale töövoogule",
     "findTheRightFit": "Alates üksikisikutest kuni ettevõtte meeskondadeni, leidke sobiv variant",
     "monthly": "Igakuine",

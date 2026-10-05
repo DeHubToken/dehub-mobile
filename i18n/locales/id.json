@@ -8731,6 +8731,7 @@
     "checkoutUnavailable": "Check - out tidak tersedia saat ini. Silakan coba lagi nanti."
   },
   "pricing": {
+    "perSeatMonthly": "per kursi/bln",
     "plansForEveryWorkflow": "Paket untuk setiap alur kerja",
     "findTheRightFit": "Dari perorangan hingga tim perusahaan, temukan yang paling pas",
     "monthly": "Bulanan",

@@ -8703,6 +8703,7 @@
     "checkoutUnavailable": "La sortida no està disponible en aquests moments. Torna-ho a provar més tard."
   },
   "pricing": {
+    "perSeatMonthly": "per lloc/mes",
     "plansForEveryWorkflow": "Plans per a cada flux de treball",
     "findTheRightFit": "Des de persones individuals fins a equips empresarials, troba l'opció adequada",
     "monthly": "Mensual",

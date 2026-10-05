@@ -8757,6 +8757,7 @@
     "checkoutUnavailable": "To'lov sahifasi hozirda mavjud emas. Iltimos, keyinroq qayta urinib ko'ring."
   },
   "pricing": {
+    "perSeatMonthly": "har bir o‘rindiq/oy",
     "plansForEveryWorkflow": "Har bir ish jarayoni uchun rejalar",
     "findTheRightFit": "Jismoniy shaxslardan tortib, korporativ jamoalargacha, mos keladiganini toping",
     "monthly": "Oylik",

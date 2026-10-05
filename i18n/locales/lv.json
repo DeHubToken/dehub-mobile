@@ -8702,6 +8702,7 @@
     "checkoutUnavailable": "Izrakstīšanās pašlaik nav pieejama. Lūdzu, vēlāk mēģiniet vēlreiz."
   },
   "pricing": {
+    "perSeatMonthly": "par vietu/mēnesī",
     "plansForEveryWorkflow": "Plāni katrai darba plūsmai",
     "findTheRightFit": "No individuāliem lietotājiem līdz uzņēmumu komandām, atrodiet piemērotāko",
     "monthly": "Mēnesī",

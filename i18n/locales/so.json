@@ -8678,6 +8678,7 @@
     "checkoutUnavailable": "Checkout hadda ma heli karo. Fadlan mar kale isku day hadhow."
   },
   "pricing": {
+    "perSeatMonthly": "kursi kasta/bil",
     "plansForEveryWorkflow": "Qorshayaasha shaqo kasta",
     "findTheRightFit": "Laga bilaabo shakhsiyaadka ilaa kooxaha ganacsiga, hel midka ku habboon",
     "monthly": "Bilicda",
