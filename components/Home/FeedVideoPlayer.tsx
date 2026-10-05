@@ -1324,6 +1324,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
+          {bareControls && (
+            <GestureDetector gesture={seekGesture}>
+              <View
+                style={styles.bareScrubTouch}
+                onLayout={onSeekTrackLayout}
+                {...seekTouchGuard}
+                accessibilityRole="adjustable"
+                accessibilityLabel={t("player.progress")}
+              >
+                <Animated.View pointerEvents="none" style={{ opacity: controlsOpacity }}>
+                  <View style={styles.bareScrubLine}>
+                    <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
+                  </View>
+                </Animated.View>
+              </View>
+            </GestureDetector>
+          )}
           {(
             <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
             {/* The pause button is the size of its glyph and lives above the
@@ -1417,20 +1434,22 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
                   <Pressable
                     onPress={() => handleVideoPress()}
-                    hitSlop={4}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
                     style={styles.bareButton}
                   >
                     <BareIcon name={isPlaying ? "Pause" : "Play"} />
                   </Pressable>
-                  <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
-                  <View style={{ flex: 1 }} />
+                  <View pointerEvents="none">
+                    <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
+                  </View>
+                  <View pointerEvents="none" style={{ flex: 1 }} />
                 {captionControls && (
                   <Pressable
                     onPress={() => { captionControls.toggle(); startHideTimer(); }}
                     onLongPress={captionControls.openLanguages}
-                    hitSlop={4}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("subtitles.title")}
                     accessibilityState={{ selected: captionControls.enabled }}
@@ -1445,7 +1464,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 )}
                 <Pressable
                   onPress={handleToggleSpeed}
-                  hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
+                  hitSlop={{ top: 6, bottom: 0, left: 0, right: 0 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
@@ -1454,7 +1473,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 </Pressable>
                 <Pressable
                   onPress={handleToggleLoop}
-                  hitSlop={4}
+                  hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("player.toggleLoop")}
                   accessibilityState={{ selected: isLooping }}
@@ -1467,7 +1486,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     onPress={() => {
                       videoViewRef.current?.startPictureInPicture().catch(() => toastInfo(t("player.pipUnavailable")));
                     }}
-                    hitSlop={4}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("player.pictureInPicture")}
                     style={styles.bareButton}
@@ -1477,7 +1496,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 )}
                   <Pressable
                     onPress={handleFullscreen}
-                    hitSlop={4}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("common.fullscreen")}
                     style={styles.bareButton}
@@ -1485,24 +1504,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     <BareIcon name="Maximize" />
                   </Pressable>
                 </View>
-                {/* Android's seek target lives outside the fading controls. */}
-                {Platform.OS === "android" ? (
-                  <View pointerEvents="none" style={styles.bareScrubSpacer} />
-                ) : (
-                <GestureDetector gesture={seekGesture}>
-                  <View
-                    style={styles.bareScrubTouch}
-                    onLayout={onSeekTrackLayout}
-                    {...seekTouchGuard}
-                    accessibilityRole="adjustable"
-                    accessibilityLabel={t("player.progress")}
-                  >
-                    <View style={styles.bareScrubLine}>
-                      <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
-                    </View>
-                  </View>
-                </GestureDetector>
-                )}
+                <View pointerEvents="none" style={styles.bareScrubSpacer} />
               </View>
             ) : (
             <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
@@ -1529,23 +1531,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             </View>
             )}
           </Animated.View>
-          )}
-          {Platform.OS === "android" && bareControls && (
-            <GestureDetector gesture={seekGesture}>
-              <View
-                style={styles.androidScrubTouch}
-                onLayout={onSeekTrackLayout}
-                {...seekTouchGuard}
-                accessibilityRole="adjustable"
-                accessibilityLabel={t("player.progress")}
-              >
-                <Animated.View pointerEvents="none" style={{ opacity: controlsOpacity }}>
-                  <View style={styles.bareScrubLine}>
-                    <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
-                  </View>
-                </Animated.View>
-              </View>
-            </GestureDetector>
           )}
         </>
       )}
@@ -1846,17 +1831,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     marginBottom: 0,
   },
+  // Keep the original gap; the larger seek target sits behind the button row.
+  bareScrubSpacer: { height: 14 },
   bareScrubTouch: {
-    height: 32,
-    justifyContent: "flex-end",
-  },
-  bareScrubSpacer: { height: 48 },
-  androidScrubTouch: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    height: 48,
+    height: Platform.OS === "android" ? 48 : 32,
     justifyContent: "flex-end",
   },
   bareScrubLine: {
