@@ -10,7 +10,7 @@ jest.mock('react-native-gesture-handler', () => {
   const createGesture = () => {
     const callbacks: Record<string, (...args: any[]) => void> = {};
     const gesture: Record<string, any> = { callbacks };
-    for (const method of ['enabled', 'minDistance', 'activeOffsetX', 'runOnJS', 'maxDistance', 'blocksExternalGesture']) {
+    for (const method of ['enabled', 'minDistance', 'activeOffsetX', 'failOffsetY', 'runOnJS', 'maxDistance', 'blocksExternalGesture']) {
       gesture[method] = () => gesture;
     }
     for (const method of ['onStart', 'onUpdate', 'onEnd', 'onFinalize']) {
