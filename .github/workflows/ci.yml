@@ -21,7 +21,6 @@ jobs:
   # 20-file suite does not need.
   verify:
     name: Typecheck & Test
-    if: github.event_name != 'pull_request' || !github.event.pull_request.draft || github.head_ref != 'upgrade/sdk55-android-frost-20261005'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -171,3 +170,52 @@ jobs:
             android-preview.json
             preview-apk-url.txt
           retention-days: 30
+
+  android-frost-preview:
+    name: Android frost preview
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'upgrade/sdk55-android-frost-20261005'
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx patch-package --error-on-fail
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build signed SDK 55 test APK
+        run: eas build --platform android --profile test-apk --non-interactive --wait --json > android-frost-preview.json
+      - name: Download completed test artifact
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('android-frost-preview.json', 'utf8'));
+          const build = Array.isArray(result) ? result[0] : result;
+          if (build.status !== 'FINISHED' || !build.artifacts?.buildUrl) throw new Error('No completed preview APK');
+          fs.writeFileSync('preview-apk-url.txt', build.artifacts.buildUrl);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `[SDK 55 preview APK](${build.artifacts.buildUrl})\n`);
+          NODE
+          curl --fail --location --retry 3 "$(cat preview-apk-url.txt)" --output dehub-frost-preview.apk
+          sha256sum dehub-frost-preview.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dehub-frost-preview
+          path: |
+            dehub-frost-preview.apk
+            android-frost-preview.json
+            preview-apk-url.txt
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-frost-build-result
+          path: android-frost-preview.json
+          if-no-files-found: ignore

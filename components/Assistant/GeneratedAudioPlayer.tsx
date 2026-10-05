@@ -13,7 +13,8 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { configureForBackgroundPlayback, releaseBackgroundPlayback } from '../../libs/audioSession';
 import Icon from '../ui/Icon';
 import { createLogger } from '../../libs/logger';
 import { useTranslation } from 'react-i18next';
@@ -59,7 +60,9 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   onPost,
 }) => {
   const { t } = useTranslation();
-  const soundRef = useRef<Audio.Sound | null>(null);
+  const soundRef = useRef<AudioPlayer | null>(null);
+  const listenerRef = useRef<{ remove: () => void } | null>(null);
+  const generationRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [positionMillis, setPositionMillis] = useState(0);
@@ -73,7 +76,10 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
     return () => {
       const sound = soundRef.current;
       soundRef.current = null;
-      sound?.unloadAsync().catch(() => {});
+      generationRef.current++;
+      listenerRef.current?.remove();
+      sound?.remove();
+      if (sound) releaseBackgroundPlayback().catch(() => {});
     };
   }, []);
 
@@ -81,21 +87,26 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   useEffect(() => {
     const sound = soundRef.current;
     soundRef.current = null;
+    generationRef.current++;
+    listenerRef.current?.remove();
+    listenerRef.current = null;
     setIsPlaying(false);
     setPositionMillis(0);
     setDurationMillis(0);
-    sound?.unloadAsync().catch(() => {});
+    sound?.remove();
+    if (sound) releaseBackgroundPlayback().catch(() => {});
   }, [audioUrl]);
 
   const toggle = useCallback(async () => {
     try {
       if (soundRef.current) {
-        const status = await soundRef.current.getStatusAsync();
-        if (status.isLoaded && status.isPlaying) {
-          await soundRef.current.pauseAsync();
+        const sound = soundRef.current;
+        if (sound.playing) {
+          sound.pause();
           setIsPlaying(false);
         } else {
-          await soundRef.current.playAsync();
+          if (sound.duration > 0 && sound.currentTime >= sound.duration) await sound.seekTo(0);
+          sound.play();
           setIsPlaying(true);
         }
         return;
@@ -106,29 +117,22 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
       // where the user switches away to act on what it is telling them, and
       // cutting it off at that exact moment is the least useful behaviour
       // available. Only reached on an explicit press.
-      await Audio.setAudioModeAsync({
-        playsInSilentModeIOS: true,
-        staysActiveInBackground: true,
-        interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-        interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
-        shouldDuckAndroid: true,
-      });
-
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: audioUrl },
-        { shouldPlay: true, progressUpdateIntervalMillis: 250 },
-        (status) => {
+      const generation = generationRef.current;
+      await configureForBackgroundPlayback();
+      if (generation !== generationRef.current) return;
+      const sound = createAudioPlayer({ uri: audioUrl }, { updateInterval: 250 });
+      soundRef.current = sound;
+      listenerRef.current = sound.addListener('playbackStatusUpdate', (status) => {
           if (!status.isLoaded) return;
-          setPositionMillis(status.positionMillis || 0);
-          if (status.durationMillis) setDurationMillis(status.durationMillis);
-          setIsPlaying(!!status.isPlaying);
+          setPositionMillis(status.currentTime * 1000);
+          if (status.duration) setDurationMillis(status.duration * 1000);
+          setIsPlaying(status.playing);
           if (status.didJustFinish) {
             setIsPlaying(false);
-            setPositionMillis(status.durationMillis || 0);
+            setPositionMillis(status.duration * 1000);
           }
-        },
-      );
-      soundRef.current = sound;
+      });
+      sound.play();
       setIsPlaying(true);
     } catch (err) {
       log.error('playback failed:', err);
