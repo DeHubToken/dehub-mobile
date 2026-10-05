@@ -219,3 +219,42 @@ jobs:
           name: android-frost-build-result
           path: android-frost-preview.json
           if-no-files-found: ignore
+
+  ios-sdk55-compile:
+    name: iOS SDK 55 compile
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'upgrade/sdk55-android-frost-20261005'
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+      - run: npm ci --legacy-peer-deps
+      - name: Resolve upgraded native pods
+        working-directory: ios
+        run: pod update --repo-update
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdk55-pod-lock
+          path: ios/Podfile.lock
+          retention-days: 14
+      - name: Compile simulator native integrations
+        run: |
+          set -o pipefail
+          xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
+            -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/sdk55-ios" \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee ios-sdk55-build.log | xcbeautify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-sdk55-build-log
+          path: ios-sdk55-build.log
+          if-no-files-found: ignore
