@@ -28,6 +28,7 @@ import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../..
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
+import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { requestVideoPlayback } from "../../libs/video-start";
 import { createLogger } from "../../libs/logger";
@@ -1108,6 +1109,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const handleScrubStart = useCallback(() => {
     scrubbingRef.current = true;
+    setShowControls(true);
     clearHideTimer();
   }, [clearHideTimer]);
 
@@ -1324,23 +1326,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
-          {bareControls && (
-            <GestureDetector gesture={seekGesture}>
-              <View
-                style={styles.bareScrubTouch}
-                onLayout={onSeekTrackLayout}
-                {...seekTouchGuard}
-                accessibilityRole="adjustable"
-                accessibilityLabel={t("player.progress")}
-              >
-                <Animated.View pointerEvents="none" style={{ opacity: controlsOpacity }}>
-                  <View style={styles.bareScrubLine}>
-                    <View style={[styles.bareScrubPlayed, { width: `${progressPercent}%` }]} />
-                  </View>
-                </Animated.View>
-              </View>
-            </GestureDetector>
-          )}
           {(
             <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
             {/* The pause button is the size of its glyph and lives above the
@@ -1427,86 +1412,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </Pressable>
             </View>}
 
-            {bareControls ? (
-              // Video posts: play/pause, the time and fullscreen as bare
-              // icons, over a thin line along the very bottom of the picture.
-              <View pointerEvents="box-none" style={styles.bareBottom}>
-                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
-                  <Pressable
-                    onPress={() => handleVideoPress()}
-                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
-                    style={styles.bareButton}
-                  >
-                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
-                  </Pressable>
-                  <View pointerEvents="none">
-                    <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
-                  </View>
-                  <View pointerEvents="none" style={{ flex: 1 }} />
-                {captionControls && (
-                  <Pressable
-                    onPress={() => { captionControls.toggle(); startHideTimer(); }}
-                    onLongPress={captionControls.openLanguages}
-                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("subtitles.title")}
-                    accessibilityState={{ selected: captionControls.enabled }}
-                    style={styles.bareButton}
-                  >
-                    {captionControls.loading ? (
-                      <Spinner size={16} />
-                    ) : (
-                      <BareIcon name="Captions" />
-                    )}
-                  </Pressable>
-                )}
-                <Pressable
-                  onPress={handleToggleSpeed}
-                  hitSlop={{ top: 6, bottom: 0, left: 0, right: 0 }}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("player.playbackSpeed")}
-                  style={styles.bareSpeed}
-                >
-                  <MediaControlText style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</MediaControlText>
-                </Pressable>
-                <Pressable
-                  onPress={handleToggleLoop}
-                  hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("player.toggleLoop")}
-                  accessibilityState={{ selected: isLooping }}
-                  style={styles.bareButton}
-                >
-                  <BareIcon name="Repeat" />
-                </Pressable>
-                {pipSupported() && (
-                  <Pressable
-                    onPress={() => {
-                      videoViewRef.current?.startPictureInPicture().catch(() => toastInfo(t("player.pipUnavailable")));
-                    }}
-                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("player.pictureInPicture")}
-                    style={styles.bareButton}
-                  >
-                    <BareIcon name="PictureInPicture2" />
-                  </Pressable>
-                )}
-                  <Pressable
-                    onPress={handleFullscreen}
-                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("common.fullscreen")}
-                    style={styles.bareButton}
-                  >
-                    <BareIcon name="Maximize" />
-                  </Pressable>
-                </View>
-                <View pointerEvents="none" style={styles.bareScrubSpacer} />
-              </View>
-            ) : (
+            {!bareControls && (
             <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
               <View style={styles.progressRow}>
                 <View>
@@ -1531,6 +1437,93 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             </View>
             )}
           </Animated.View>
+          )}
+          {bareControls && (
+            <VideoScrubZone
+              enabled={videoDuration > 0}
+              opacity={controlsOpacity}
+              showControls={showControls}
+              label={t("player.progress")}
+              progress={progressPercent}
+              onStart={handleScrubStart}
+              onScrub={handleScrub}
+              onCommit={handleSeekCommit}
+              onCancel={handleScrubCancel}
+            >
+                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
+                  <VideoScrubButton
+                    onPress={() => handleVideoPress()}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
+                  </VideoScrubButton>
+                  <View pointerEvents="none">
+                    <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
+                  </View>
+                  <View pointerEvents="none" style={{ flex: 1 }} />
+                {captionControls && (
+                  <VideoScrubButton
+                    onPress={() => { captionControls.toggle(); startHideTimer(); }}
+                    onLongPress={captionControls.openLanguages}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("subtitles.title")}
+                    accessibilityState={{ selected: captionControls.enabled }}
+                    style={styles.bareButton}
+                  >
+                    {captionControls.loading ? (
+                      <Spinner size={16} />
+                    ) : (
+                      <BareIcon name="Captions" />
+                    )}
+                  </VideoScrubButton>
+                )}
+                <VideoScrubButton
+                  onPress={handleToggleSpeed}
+                  hitSlop={{ top: 6, bottom: 0, left: 0, right: 0 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("player.playbackSpeed")}
+                  style={styles.bareSpeed}
+                >
+                  <MediaControlText style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</MediaControlText>
+                </VideoScrubButton>
+                <VideoScrubButton
+                  onPress={handleToggleLoop}
+                  hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("player.toggleLoop")}
+                  accessibilityState={{ selected: isLooping }}
+                  style={styles.bareButton}
+                >
+                  <BareIcon name="Repeat" />
+                </VideoScrubButton>
+                {pipSupported() && (
+                  <VideoScrubButton
+                    onPress={() => {
+                      videoViewRef.current?.startPictureInPicture().catch(() => toastInfo(t("player.pipUnavailable")));
+                    }}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("player.pictureInPicture")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name="PictureInPicture2" />
+                  </VideoScrubButton>
+                )}
+                  <VideoScrubButton
+                    onPress={handleFullscreen}
+                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("common.fullscreen")}
+                    style={styles.bareButton}
+                  >
+                    <BareIcon name="Maximize" />
+                  </VideoScrubButton>
+                </View>
+            </VideoScrubZone>
           )}
         </>
       )}
@@ -1830,27 +1823,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 2,
     marginBottom: 0,
-  },
-  // Keep the original gap; the larger seek target sits behind the button row.
-  bareScrubSpacer: { height: 14 },
-  bareScrubTouch: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: Platform.OS === "android" ? 48 : 32,
-    justifyContent: "flex-end",
-  },
-  bareScrubLine: {
-    height: 3,
-    borderWidth: 0.5,
-    borderColor: "rgba(0,0,0,0.65)",
-    overflow: "hidden",
-    backgroundColor: "rgba(255,255,255,0.3)",
-  },
-  bareScrubPlayed: {
-    height: "100%",
-    backgroundColor: "#FFFFFF",
   },
   bareVolumeTrack: { left: 0 },
   volumeTrack: {
