@@ -1,0 +1,14 @@
+{
+  "version": "2026-10",
+  "offers": {
+    "creator_monthly": { "displayPriceUsd": 19, "monthlyAllowanceDhb": 15000, "periodMonths": 1 },
+    "creator_annual": { "displayPriceUsd": 15, "monthlyAllowanceDhb": 12000, "periodMonths": 12 },
+    "ultra_monthly": { "displayPriceUsd": 129, "monthlyAllowanceDhb": 105000, "periodMonths": 1 },
+    "ultra_annual": { "displayPriceUsd": 99, "monthlyAllowanceDhb": 80000, "periodMonths": 12 },
+    "team_monthly": { "displayPriceUsd": 79, "monthlyAllowanceDhb": 63000, "periodMonths": 1 },
+    "team_annual": { "displayPriceUsd": 65, "monthlyAllowanceDhb": 52000, "periodMonths": 12 },
+    "scale_monthly": { "displayPriceUsd": 215, "monthlyAllowanceDhb": 175000, "periodMonths": 1 },
+    "scale_annual": { "displayPriceUsd": 150, "monthlyAllowanceDhb": 120000, "periodMonths": 12 }
+  },
+  "examplePricesDhb": { "nanoBananaPro": 108, "veoFast": 423, "veo": 1658 }
+}

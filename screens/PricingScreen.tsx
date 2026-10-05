@@ -20,6 +20,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { PageSection, PageTabs } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useWebCheckout } from "../hooks/useWebCheckout";
+import { aiPlanBreakdownVars, getAiPlanOffer, type AiPlanTier } from "../libs/aiPlanOffers";
 
 type Billing = "monthly" | "annual";
 
@@ -30,7 +31,7 @@ interface Line {
 }
 
 interface Plan {
-  id: string;
+  id: AiPlanTier;
   /** Product tier name. Not translated — it is what the plan is called. */
   name: string;
   discountPct: number;
@@ -59,8 +60,8 @@ const PLANS: Plan[] = [
     discountPct: 21,
     headlineKey: "pricing.headlineCreator",
     breakdown: [
-      { key: "pricing.dhbPerMonth", vars: { amount: "23,000" } },
-      { key: "pricing.equivalence", vars: { videos: 54, videoModel: "Veo 3.1 Fast", images: 212, imageModel: "Nano Banana Pro" } },
+      { key: "pricing.dhbPerMonth" },
+      { key: "pricing.equivalence" },
       { key: "pricing.realDhbSpendAnywhere" },
     ],
     monthly: 19,
@@ -88,8 +89,8 @@ const PLANS: Plan[] = [
     taglineKey: "pricing.bestValue",
     headlineKey: "pricing.headlineUltra",
     breakdown: [
-      { key: "pricing.dhbPerMonth", vars: { amount: "130,000" } },
-      { key: "pricing.equivalence", vars: { videos: 78, videoModel: "Veo 3.1", images: "1,203", imageModel: "Nano Banana Pro" } },
+      { key: "pricing.dhbPerMonth" },
+      { key: "pricing.equivalence" },
       { key: "pricing.realDhbNeverExpires" },
     ],
     monthly: 129,
@@ -126,8 +127,8 @@ const PLANS: Plan[] = [
     discountPct: 18,
     headlineKey: "pricing.headlineTeam",
     breakdown: [
-      { key: "pricing.dhbPerSeat", vars: { amount: "88,000" } },
-      { key: "pricing.equivalence", vars: { videos: 53, videoModel: "Veo 3.1", images: 814, imageModel: "Nano Banana Pro" } },
+      { key: "pricing.dhbPerSeat" },
+      { key: "pricing.equivalence" },
       { key: "pricing.pooledNeverExpires" },
     ],
     monthly: 79,
@@ -178,8 +179,8 @@ const PLANS: Plan[] = [
     discountPct: 30,
     headlineKey: "pricing.headlineScale",
     breakdown: [
-      { key: "pricing.dhbPerSeat", vars: { amount: "210,000" } },
-      { key: "pricing.equivalence", vars: { videos: 126, videoModel: "Veo 3.1", images: "1,944", imageModel: "Nano Banana Pro" } },
+      { key: "pricing.dhbPerSeat" },
+      { key: "pricing.equivalence" },
       { key: "pricing.pooledNeverExpires" },
     ],
     monthly: 215,
@@ -239,7 +240,7 @@ function PlanCard({
 }) {
   const { t } = useTranslation();
   const annual = billing === "annual";
-  const price = annual ? plan.annual : plan.monthly;
+  const price = getAiPlanOffer(plan.id, billing).displayPriceUsd;
   const priceId = annual ? plan.annualPriceId : plan.monthlyPriceId;
   const busy = opening === priceId;
 
@@ -264,7 +265,7 @@ function PlanCard({
       <View style={styles.breakdown}>
         {plan.breakdown.map((line) => (
           <Text key={line.key + JSON.stringify(line.vars ?? {})} style={styles.breakdownText}>
-            {t(line.key, line.vars)}
+            {t(line.key, aiPlanBreakdownVars(line.key, plan.id, billing, line.vars))}
           </Text>
         ))}
       </View>
@@ -338,8 +339,7 @@ export default function PricingScreen() {
           <Text style={styles.title}>{t("pricing.plansForEveryWorkflow")}</Text>
           <Text style={styles.subtitle}>{t("pricing.findTheRightFit")}</Text>
 
-          {canBuy && (
-            <View style={styles.toggle}>
+          <View style={styles.toggle}>
               <PageTabs
                 style={{ flexGrow: 1, justifyContent: "center" }}
                 value={billing}
@@ -349,8 +349,7 @@ export default function PricingScreen() {
                   { id: "annual", label: `${t("pricing.annual")} · ${t("pricing.upToDiscount", { pct: 30 })}` },
                 ]}
               />
-            </View>
-          )}
+          </View>
         </View>
 
         {checking && (

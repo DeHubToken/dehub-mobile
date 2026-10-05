@@ -3,6 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "jsx": "react-native",
     "noImplicitAny": false,
     "module": "esnext", // or "es2020", "es2022", etc.
