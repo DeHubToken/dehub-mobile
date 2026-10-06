@@ -42,6 +42,9 @@ The frost version is not available until the new internal release is active.
   uses Maven Central and an explicit namespace for Gradle 9 and current AGP.
 - The existing Torus login browser also uses Maven Central and an explicit
   Android namespace; its manifest no longer declares the package attribute.
+- Legacy external-storage writes are limited to Android 10 and older in the app
+  manifest. This resolves the differing SDK limits declared by Expo ImagePicker
+  and the existing crop picker; modern media permissions remain separate.
 - Cloud JavaScript bundling and Android/iOS native compilation must pass before
   the signed bundle build and internal-track submission begin.
 
@@ -49,7 +52,7 @@ The frost version is not available until the new internal release is active.
 
 | Area | Required verification | State |
 | --- | --- | --- |
-| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Prior typecheck and tests passed; prior builds failed on Torus Gradle, Livepeer expo-av and Expo Swift import compatibility; fixes await cloud checks |
+| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Updated typecheck, tests, patch application and JavaScript bundling passed; Android compile exposed an ImagePicker/crop-picker manifest merge conflict, now fixed; native compilation and the signed build remain pending |
 | Tester release | Google Play internal-track processing and active release version | Pending; existing track still serves 1.17.6 |
 | Installation | Install the Play tester update; preserve existing app data | Pending |
 | Startup | Cold/warm launch, background/resume, crash and ANR logs | Pending |

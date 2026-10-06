@@ -256,6 +256,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Check Android JavaScript imports before the signed build
         run: npx expo export --platform android --output-dir "$RUNNER_TEMP/sdk55-js-preflight"
+      - name: Check upgraded Android manifest merges
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:processReleaseMainManifest --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
       - name: Compile upgraded Android integrations
         working-directory: android
         env:
