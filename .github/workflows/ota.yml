@@ -50,11 +50,10 @@ on:
         description: Run the preflight and stop without publishing.
         type: boolean
         default: false
-
-concurrency:
-  # Not cancel-in-progress: a half-run publish is worse than a queued one.
-  group: ota-publish
-  cancel-in-progress: false
+      source_ref:
+        description: Exact commit SHA for an isolated native-runtime preview; leave blank for the dispatched ref.
+        required: false
+        default: ''
 
 jobs:
   decide:
@@ -69,6 +68,8 @@ jobs:
       sha: ${{ steps.pick.outputs.sha }}
       branches: ${{ steps.pick.outputs.branches }}
       last: ${{ steps.pick.outputs.last }}
+      runtime: ${{ steps.runtime.outputs.runtime }}
+      queue: ${{ steps.runtime.outputs.queue }}
     steps:
       - name: Pick
         id: pick
@@ -76,6 +77,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           INPUT_BRANCH: ${{ github.event.inputs.branch }}
+          INPUT_SOURCE_REF: ${{ github.event.inputs.source_ref }}
           EVENT: ${{ github.event_name }}
           DISPATCH_SHA: ${{ github.sha }}
         run: |
@@ -84,6 +86,13 @@ jobs:
 
           if [ "$EVENT" = "workflow_dispatch" ]; then
             # A manual dispatch is the release: publish exactly what was asked.
+            if [ -n "$INPUT_SOURCE_REF" ]; then
+              if [[ ! "$INPUT_SOURCE_REF" =~ ^[0-9a-f]{40}$ ]] || [ "$INPUT_BRANCH" != "preview" ]; then
+                echo "::error::An isolated source must be an exact commit SHA published only to preview."
+                exit 1
+              fi
+              DISPATCH_SHA="$(gh api "repos/$REPO/commits/$INPUT_SOURCE_REF" --jq .sha)"
+            fi
             echo "publish=true" >> "$GITHUB_OUTPUT"
             echo "sha=$DISPATCH_SHA" >> "$GITHUB_OUTPUT"
             echo "branches=${INPUT_BRANCH:-production preview}" >> "$GITHUB_OUTPUT"
@@ -137,9 +146,44 @@ jobs:
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "publish=true" >> "$GITHUB_OUTPUT"
 
+      - name: Resolve the native update runtime
+        id: runtime
+        if: steps.pick.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SELECTED_SHA: ${{ steps.pick.outputs.sha }}
+          INPUT_SOURCE_REF: ${{ github.event.inputs.source_ref }}
+        run: |
+          runtime_for() {
+            gh api "repos/$REPO/contents/app.json?ref=$1" --jq .content \
+              | base64 --decode | jq -er '.expo.runtimeVersion | select(type == "string")'
+          }
+          RUNTIME="$(runtime_for "$SELECTED_SHA")"
+          MAIN_RUNTIME="$(runtime_for main)"
+          if [[ ! "$RUNTIME" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$ ]]; then
+            echo "::error::The selected commit must declare a fixed, valid update runtime."
+            exit 1
+          fi
+          if [ -n "$INPUT_SOURCE_REF" ] && [ "$RUNTIME" = "$MAIN_RUNTIME" ]; then
+            echo "::error::An isolated source must use a different native runtime from main."
+            exit 1
+          fi
+          echo "runtime=$RUNTIME" >> "$GITHUB_OUTPUT"
+          QUEUE=ota-publish
+          if [ "$RUNTIME" != "$MAIN_RUNTIME" ]; then QUEUE="ota-publish-$RUNTIME"; fi
+          echo "queue=$QUEUE" >> "$GITHUB_OUTPUT"
+          echo "Selected commit $SELECTED_SHA with update runtime $RUNTIME."
+
   publish:
     name: Publish JS bundle
     needs: decide
+    # GitHub replaces an older pending job in the same group even when
+    # cancel-in-progress is false. Separate native runtimes must not replace
+    # each other's repairs; updates for the same runtime remain serialized.
+    concurrency:
+      group: ${{ needs.decide.outputs.queue }}
+      cancel-in-progress: false
     # A dispatch always runs (check_only included). A scheduled run only runs
     # when decide found a green, unpublished commit on main - see its gates.
     if: needs.decide.outputs.publish == 'true'
@@ -274,6 +318,7 @@ jobs:
 
       - name: Record the published commit
         if: >-
+          github.ref_name == 'main' && github.event.inputs.source_ref == '' &&
           env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
           contains(format(' {0} ', needs.decide.outputs.branches), ' preview ')
         run: |
