@@ -55,11 +55,11 @@ const API_HOSTS = [
  * what web's `buildAvatarSourceUrl` has always done. A `statics/` prefix comes
  * off on the way, same as for a stored path.
  */
-function apiHostedAvatar(url: string): boolean {
+function apiHostedProfileImage(url: string, folder: 'avatars' | 'covers'): boolean {
   const match = /^https?:\/\/([^/?#]+)\/([^?#]*)/i.exec(url);
   if (!match) return false;
   if (!API_HOSTS.includes(match[1].toLowerCase())) return false;
-  return /^(?:statics\/)?avatars\/[^/]+$/i.test(match[2]);
+  return new RegExp(`^(?:statics/)?${folder}/[^/]+$`, 'i').test(match[2]);
 }
 
 /**
@@ -104,7 +104,7 @@ export function getAvatarUrl(
   // ours still gets sized. An avatar addressed on the API host is the one
   // exception — it falls through to the flattening below, which is where it
   // resolves.
-  if (isAlreadyAddressable(url) && !apiHostedAvatar(url)) {
+  if (isAlreadyAddressable(url) && !apiHostedProfileImage(url, 'avatars')) {
     return cdnImage(url, { width: sizePt });
   }
   const fileName = url.split("/").pop();
@@ -131,7 +131,7 @@ export function getCoverUrl(
   if (!url) return DEFAULT_BANNER_SENTINEL;
   // Same trap as getAvatarUrl: an absolute URL must not be reduced to its last
   // path segment and re-based onto our CDN.
-  if (isAlreadyAddressable(url)) return cdnImage(url, { width: widthPt });
+  if (isAlreadyAddressable(url) && !apiHostedProfileImage(url, 'covers')) return cdnImage(url, { width: widthPt });
   const fileName = url.split("/").pop();
   return cdnImage(`${env.CDN_BASE_URL}/covers/${fileName}`, { width: widthPt });
 }
@@ -218,7 +218,7 @@ export function getImageUrl(
  * Preserves original extension including .octet-stream, .gif, .jpeg, etc.
  */
 export function getExtension(path: string): string {
-  const match = path.match(/\.([a-zA-Z0-9-]+)$/);
+  const match = path.split(/[?#]/, 1)[0].match(/\.([a-zA-Z0-9-]+)$/);
   if (!match) return 'jpg';
   return match[1].toLowerCase();
 }

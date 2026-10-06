@@ -17,6 +17,13 @@ jest.mock('../../config/env', () => ({
 
 describe('libs/misc', () => {
   describe('getAvatarUrl', () => {
+    it('preserves content revisions and uses the platform-compatible image format', () => {
+      const key = '0xrevision-0123456789abcdef0123456789abcdef.webp';
+      expect(getAvatarUrl(`statics/avatars/${key}`)).toBe(
+        `https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/${key}`
+      );
+      expect(getAvatarUrl(`https://api.dehub.io/avatars/${key}`, 0)).toBe(`https://cdn.test.dehub.io/avatars/${key}`);
+    });
     it('returns default for null/undefined/empty', () => {
       expect(getAvatarUrl(null)).toBe('default-avatar');
       expect(getAvatarUrl(undefined)).toBe('default-avatar');
@@ -130,6 +137,12 @@ describe('libs/misc', () => {
   });
 
   describe('getCoverUrl', () => {
+    it('preserves revision filenames from stored and API-hosted cover paths', () => {
+      const key = '0xrevision-0123456789abcdef0123456789abcdef.webp';
+      expect(getCoverUrl(`statics/covers/${key}`)).toBe(`https://cdn.test.dehub.io/covers/${key}`);
+      expect(getCoverUrl(`https://api.dehub.io/statics/covers/${key}`)).toBe(`https://cdn.test.dehub.io/covers/${key}`);
+      expect(getExtension(`covers/${key}?v=saved`)).toBe('webp');
+    });
     it('returns default for falsy input', () => {
       expect(getCoverUrl(null)).toBe('default-banner');
       expect(getCoverUrl(undefined)).toBe('default-banner');
