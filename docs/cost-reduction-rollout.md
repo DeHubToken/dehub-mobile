@@ -62,3 +62,19 @@ Keep translation caches, existing payment checks, private-content constraints, r
 An account with `showOnline` off joins `online-users` only while an active Messages page or open chat needs online dots. An opted-in account continues publishing without visible dots. Web releases this channel when its tab is hidden, matching mobile's foreground behavior; mobile dots on unfocused cached screens add no reader demand. Opening the surface restores the channel immediately. Reader demand is reference counted, so closing one of several visible dots cannot disconnect the others.
 
 Keep the existing topic and wallet keys during this rollout so older mobile/web clients remain compatible. Publishing stays opt-in, and presence from another active device remains visible. This reduces the global channel's receiver audience; it is not a per-contact protocol migration. Test opt-in privacy, multiple readers, hidden/focused screens and publisher foreground transitions in hosted CI, then verify real dots on staging and Android before marking complete.
+
+### Incoming call checks
+
+Web and mobile share simultaneous startup, subscription and fallback queries for
+the same wallet and call generation. A ringing broadcast received during a query
+queues one recovery query if the first result did not establish a call. Queries
+select only the six fields needed to show and join a call, and background surfaces
+do not query. Web also recovers immediately on visibility and network recovery;
+mobile keeps its existing foreground recovery.
+
+Keep the current fallback cadence and ring expiry. Database broadcasts can fail,
+so a subscribed channel alone is insufficient evidence to remove fallback checks.
+The native 60-second fallback remains slower than the ring lifetime; a measured
+delivery/recovery design is still needed before relying on it for missed broadcasts.
+Hosted hook tests cover coalescing, a ring arriving during a query, background
+gating and wallet changes. Android call delivery remains a handset check.

@@ -52,6 +52,7 @@ export function useCall(): UseCallReturn {
   const currentCallRef = useRef<CallSession | null>(null);
   const startedAtRef = useRef<number | null>(null);
   const generationRef = useRef(0);
+  const ringCheckRef = useRef<{ wallet: string; generation: number; recover: boolean } | null>(null);
   const joiningRef = useRef(false);
   const mediaRef = useRef<CallMedia | null>(null);
   const callTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -180,31 +181,50 @@ export function useCall(): UseCallReturn {
     }
   }, [clearTimeouts, publishCall, disposeMedia, endCall]);
 
-  const checkForRing = useCallback(async () => {
-    if (!userAddress || currentCallRef.current) return;
+  const checkForRing = useCallback(async (recover = false): Promise<void> => {
+    if (!userAddress || currentCallRef.current || AppState.currentState !== "active") return;
     const generation = generationRef.current;
-    const { data } = await supabase.from("call_sessions").select("*")
-      .eq("recipient_address", userAddress).eq("status", "ringing")
-      .order("created_at", { ascending: false }).limit(1).single();
-    if (!data || generationRef.current !== generation || currentCallRef.current) return;
-    const age = Date.now() - new Date(data.created_at).getTime();
-    if (!Number.isFinite(age) || age > 45_000) return;
-    const ringGeneration = ++generationRef.current;
-    publishCall(data as CallSession);
-    setIsIncoming(true); setMinimized(false);
-    visualActivity.setCall(true, true);
-    revokeAllFeedVideo(); revokeAudioFocus();
-    callTimeoutRef.current = setTimeout(() => {
-      if (generationRef.current === ringGeneration && !joiningRef.current) void endCall();
-    }, Math.max(0, 45_000 - age));
+    const pending = ringCheckRef.current;
+    if (pending?.wallet === userAddress && pending.generation === generation) {
+      // A ring may have been inserted after the running query took its snapshot.
+      pending.recover ||= recover;
+      return;
+    }
+    const request = { wallet: userAddress, generation, recover: false };
+    ringCheckRef.current = request;
+    try {
+      const { data } = await supabase.from("call_sessions").select("id,caller_address,recipient_address,status,call_type,created_at")
+        .eq("recipient_address", userAddress).eq("status", "ringing")
+        .order("created_at", { ascending: false }).limit(1).single();
+      if (!data || generationRef.current !== generation || currentCallRef.current || AppState.currentState !== "active") return;
+      const age = Date.now() - new Date(data.created_at).getTime();
+      if (!Number.isFinite(age) || age > 45_000) return;
+      const ringGeneration = ++generationRef.current;
+      publishCall(data as CallSession);
+      setIsIncoming(true); setMinimized(false);
+      visualActivity.setCall(true, true);
+      revokeAllFeedVideo(); revokeAudioFocus();
+      callTimeoutRef.current = setTimeout(() => {
+        if (generationRef.current === ringGeneration && !joiningRef.current) void endCall();
+      }, Math.max(0, 45_000 - age));
+    } catch (error) {
+      log.warn("Incoming call check failed", error);
+    } finally {
+      if (ringCheckRef.current === request) {
+        ringCheckRef.current = null;
+        if (request.recover && generationRef.current === generation) void checkRef.current();
+      }
+    }
   }, [userAddress, publishCall, endCall]);
+  const checkRef = useRef(checkForRing);
+  checkRef.current = checkForRing;
 
   useEffect(() => {
     if (!userAddress) return;
     const channel = supabase.channel(`call:${userAddress}`, { config: { private: true } })
       .on("broadcast", { event: "call" }, message => {
         const ping = message.payload as Pick<CallSession, "id" | "status"> | undefined;
-        if (ping?.status === "ringing") void checkForRing();
+        if (ping?.status === "ringing") void checkForRing(true);
         else if (ping?.status === "ended" && ping.id === currentCallRef.current?.id) void endCall();
       }).subscribe(status => { if (status === "SUBSCRIBED") void checkForRing(); });
     const poll = () => { if (AppState.currentState === "active") void checkForRing(); };
