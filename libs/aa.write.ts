@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { parseTxError, applyGasMargin } from "./web3.util";
 import { createLogger } from "./logger";
 import { userOperationErrorDetail } from "./user-operation-error";
+import { prepareWalletRelay } from "./wallet-relay";
 
 type Hex = `0x${string}`;
 
@@ -47,6 +48,11 @@ export async function writeContractAA(
   if (!contract) throw new Error("Contract instance is required");
   if (!contract.address) throw new Error("Contract address missing on instance");
   const context = options?.context || "send";
+
+  // Ethers wraps the EIP-1193 provider one level down. Restore a persisted
+  // WalletConnect socket before preflight or sending can hand off to the wallet.
+  const provider = contract.signer?.provider ?? contract.provider;
+  await prepareWalletRelay(provider?.provider ?? provider);
 
   // Pass value into preflight calls so payable functions (e.g. native-ETH swaps)
   // simulate/estimate correctly instead of reverting on the static call.
