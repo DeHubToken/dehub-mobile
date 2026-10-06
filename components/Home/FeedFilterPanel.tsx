@@ -80,6 +80,8 @@ interface FeedFilterPanelProps {
   innerScrollEnabled?: boolean;
   /** Removes the card shell when a parent drawer already provides the surface. */
   embedded?: boolean;
+  /** Override inactive controls for surfaces that need full contrast. */
+  inactiveTextColor?: string;
 }
 
 
@@ -90,9 +92,10 @@ interface GlassPillProps {
   label: string;
   selected: boolean;
   onPress: () => void;
+  inactiveTextColor?: string;
 }
 
-const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress }) => (
+const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress, inactiveTextColor = "#a1a1aa" }) => (
   <TouchableOpacity
     accessibilityRole="button"
     accessibilityState={{ selected }}
@@ -107,7 +110,7 @@ const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress }) 
     <Text
       style={[
         pillStyles.text,
-        selected ? pillStyles.textActive : pillStyles.textInactive,
+        selected ? pillStyles.textActive : { color: inactiveTextColor },
       ]}
     >
       {label}
@@ -137,9 +140,6 @@ const pillStyles = StyleSheet.create({
   },
   textActive: {
     color: "#ffffff",
-  },
-  textInactive: {
-    color: "#a1a1aa", // zinc-400
   },
 });
 
@@ -270,6 +270,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   maxHeight = MAX_HEIGHT,
   innerScrollEnabled = true,
   embedded = false,
+  inactiveTextColor,
 }) => {
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
@@ -378,6 +379,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           <GlassFilterRow title={t("filters.sort").toUpperCase()}>
             {SORT_OPTIONS.map((option) => (
               <GlassPill
+                inactiveTextColor={inactiveTextColor}
                 key={option.id}
                 label={option.label}
                 selected={filters.sortBy === option.id}
@@ -401,12 +403,14 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
             />
             <FadeEdgeRow>
               <GlassPill
+                inactiveTextColor={inactiveTextColor}
                 label={t("filters.all")}
                 selected={!selectedCategory}
                 onPress={() => handleSelectCategory("All")}
               />
               {filteredCategories.map((cat) => (
                 <GlassPill
+                  inactiveTextColor={inactiveTextColor}
                   key={cat}
                   label={cat.charAt(0).toUpperCase() + cat.slice(1)}
                   selected={selectedCategory === cat}
@@ -423,6 +427,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         <GlassFilterRow title={t("filters.uploadDate").toUpperCase()}>
           {DATE_RANGE_OPTIONS.map((option) => (
             <GlassPill
+              inactiveTextColor={inactiveTextColor}
               key={option.id || "all"}
               label={option.label}
               selected={filters.dateRange === option.id}
@@ -435,6 +440,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           <GlassFilterRow title={t("filters.postType").toUpperCase()}>
             {POST_TYPE_OPTIONS.map((option) => (
               <GlassPill
+                inactiveTextColor={inactiveTextColor}
                 key={option.id}
                 label={option.label}
                 selected={filters.postType === option.id}
@@ -450,6 +456,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
             <FadeEdgeRow>
               {CONTENT_ACCESS_OPTIONS.map((option) => (
                 <GlassPill
+                  inactiveTextColor={inactiveTextColor}
                   key={option.id}
                   label={option.label}
                   selected={filters.contentAccess.includes(option.id)}
@@ -475,7 +482,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           accessibilityLabel={t("filters.resetFilters")}
           style={panelStyles.resetButton}
         >
-          <Icon name="RefreshCw" size={14} color="#808089" />
+          <Icon name="RefreshCw" size={14} color={inactiveTextColor ?? "#808089"} />
         </TouchableOpacity>
       )}
     </Animated.View>
