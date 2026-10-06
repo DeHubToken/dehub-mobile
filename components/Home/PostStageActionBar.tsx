@@ -15,7 +15,7 @@ import {
   type ReactionCounts,
 } from "../../libs/reactions";
 import { haptic } from "../../libs/haptics";
-import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
+import { maybeShowReactionTip } from "../../libs/reaction-tip";
 import { subscribePostTipped } from "../../libs/tip-events";
 import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -176,10 +176,10 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={() => {
             if (trayOpen) { setTrayOpen(false); return; }
-            if (!liked && !disliked && reactionsEnabled) maybeShowReactionTip();
+            if (!liked && !disliked && reactionsEnabled) void maybeShowReactionTip(viewerAddress);
             onLike();
           }}
-          onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setTrayOpen(true); } : undefined}
+          onLongPress={reactionsEnabled ? () => setTrayOpen(true) : undefined}
         >
           {thumbGlyph ? (
             <ReactionEmoji
