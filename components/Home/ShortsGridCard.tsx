@@ -265,6 +265,7 @@ export { useShortsCardSize, GRID_GAP };
 
 const styles = StyleSheet.create({
   card: {
+    aspectRatio: 9 / 16,
     borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "#1A1A1A",
