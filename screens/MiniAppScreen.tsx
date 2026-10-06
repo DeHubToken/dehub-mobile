@@ -435,7 +435,7 @@ export default function MiniAppScreen() {
 
   if (app === undefined) {
     return (
-      <View style={[styles.screen, styles.center]}>
+      <View className="flex-1 bg-theme-background" style={styles.center}>
         <ActivityIndicator color="#71717A" />
       </View>
     );
@@ -445,7 +445,7 @@ export default function MiniAppScreen() {
     // popTo returns to the store already underneath, or swaps this dead page
     // for one (a cold link), so back never lands here again.
     return (
-      <View style={styles.screen}>
+      <View className="flex-1 bg-theme-background">
         <View style={styles.header}>
           <Pressable
             onPress={close}
