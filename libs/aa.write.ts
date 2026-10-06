@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 import { receiptRpcUrls, waitForSubmittedReceipt } from './transaction-receipt';
-import { NETWORK_URLS } from '../config/web3.constants';
 import { parseTxError, applyGasMargin } from "./web3.util";
 import { createLogger } from "./logger";
 import { userOperationErrorDetail } from "./user-operation-error";
@@ -97,6 +96,7 @@ export async function writeContractAA(
     const hash: string | undefined = resp?.hash;
     const wait = async (confirmations = 1) => {
       if (!hash) return resp.wait?.(confirmations);
+      const { NETWORK_URLS } = await import('../config/web3.constants');
       const chainId = resp.chainId || (await provider?.getNetwork?.())?.chainId;
       const readers = receiptRpcUrls(chainId, NETWORK_URLS[chainId]).map(url => async () => {
         const rpc = new ethers.providers.StaticJsonRpcProvider({ url, timeout: 8000, throttleLimit: 1 }, chainId);
