@@ -7586,7 +7586,12 @@
     "volume24h": "ปริมาณ 24 ชม.",
     "liquidity": "สภาพคล่อง",
     "change1h": "การเปลี่ยนแปลง 1 ชม.",
-    "viewOnDexScreener": "ดูบน DexScreener"
+    "viewOnDexScreener": "ดูบน DexScreener",
+    "listingTitle": "โทเคนใกล้จะลิสต์แล้ว!",
+    "listingBody": "$DHB ยังไม่เปิดซื้อขาย รับอีเมลทันทีที่ลิสต์",
+    "notifyMe": "แจ้งเตือนฉัน",
+    "listingPrivacy": "เราจะใช้ข้อมูลนี้เพื่อแจ้งคุณเมื่อ $DHB ลิสต์เท่านั้น",
+    "listingJoined": "คุณอยู่ในรายชื่อแล้ว เราจะส่งอีเมลไปที่ {{email}} ทันทีที่ $DHB ลิสต์"
   },
   "linkCard": {
     "inviteRevoked": "คำเชิญถูกเพิกถอน",

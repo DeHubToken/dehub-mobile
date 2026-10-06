@@ -7601,7 +7601,12 @@
     "volume24h": "24х Запремина",
     "liquidity": "Ликвидност",
     "change1h": "1х Промена",
-    "viewOnDexScreener": "Прикажи на DexScreener-у"
+    "viewOnDexScreener": "Прикажи на DexScreener-у",
+    "listingTitle": "Листинг токена ускоро!",
+    "listingBody": "$DHB се још не тргује. Добијте е-пошту чим буде листиран.",
+    "notifyMe": "Обавести ме",
+    "listingPrivacy": "Користићемо ово само да вас обавестимо када $DHB буде листиран.",
+    "listingJoined": "На листи сте. Послаћемо е-пошту на {{email}} чим $DHB буде листиран."
   },
   "affiliateLanding": {
     "title": "Прилагоди своју страницу позивнице",

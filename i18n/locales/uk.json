@@ -8072,7 +8072,12 @@
     "volume24h": "Обсяг за 24 години",
     "liquidity": "Ліквідність",
     "change1h": "Зміна за 1 годину",
-    "viewOnDexScreener": "Переглянути на DexScreener"
+    "viewOnDexScreener": "Переглянути на DexScreener",
+    "listingTitle": "Лістинг токена незабаром!",
+    "listingBody": "$DHB ще не торгується. Отримайте лист, щойно його буде залістовано.",
+    "notifyMe": "Повідомити мене",
+    "listingPrivacy": "Ми використаємо це лише щоб повідомити вас про лістинг $DHB.",
+    "listingJoined": "Ви в списку. Ми напишемо на {{email}}, щойно $DHB буде залістовано."
   },
   "linkCard": {
     "inviteRevoked": "Запрошення відкликано",

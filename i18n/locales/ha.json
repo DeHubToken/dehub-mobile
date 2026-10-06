@@ -7534,7 +7534,12 @@
     "volume24h": "24h Juzu'i",
     "liquidity": "Ruwa",
     "change1h": "Canjin 1h",
-    "viewOnDexScreener": "Duba akan DexScreener"
+    "viewOnDexScreener": "Duba akan DexScreener",
+    "listingTitle": "Za a jera token nan ba da jimawa ba!",
+    "listingBody": "Ba a fara cinikin $DHB ba tukuna. Sami imel da zarar an jera shi.",
+    "notifyMe": "Sanar da ni",
+    "listingPrivacy": "Za mu yi amfani da wannan ne kawai don sanar da kai lokacin da aka jera $DHB.",
+    "listingJoined": "Kana cikin jerin. Za mu aika imel zuwa {{email}} da zarar an jera $DHB."
   },
   "linkCard": {
     "inviteRevoked": "An soke gayyata",

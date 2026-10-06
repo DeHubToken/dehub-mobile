@@ -7816,7 +7816,12 @@
     "volume24h": "Jilid 24j",
     "liquidity": "Kemeruapan",
     "change1h": "Perubahan 1j",
-    "viewOnDexScreener": "Lihat di DexScreener"
+    "viewOnDexScreener": "Lihat di DexScreener",
+    "listingTitle": "Penyenaraian token akan datang!",
+    "listingBody": "$DHB belum didagangkan. Dapatkan e-mel sebaik sahaja ia disenaraikan.",
+    "notifyMe": "Maklumkan saya",
+    "listingPrivacy": "Kami hanya akan menggunakannya untuk memaklumkan anda apabila $DHB disenaraikan.",
+    "listingJoined": "Anda dalam senarai. Kami akan menghantar e-mel ke {{email}} sebaik sahaja $DHB disenaraikan."
   },
   "linkCard": {
     "inviteRevoked": "Jemputan dibatalkan",

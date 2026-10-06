@@ -7658,7 +7658,12 @@
     "volume24h": "Wolumen 24h",
     "liquidity": "Płynność",
     "change1h": "Zmiana 1h",
-    "viewOnDexScreener": "Zobacz na DexScreener"
+    "viewOnDexScreener": "Zobacz na DexScreener",
+    "listingTitle": "Notowanie tokena już wkrótce!",
+    "listingBody": "$DHB nie jest jeszcze w obrocie. Otrzymaj e-mail, gdy tylko zostanie notowany.",
+    "notifyMe": "Powiadom mnie",
+    "listingPrivacy": "Użyjemy tego tylko, by powiadomić Cię o notowaniu $DHB.",
+    "listingJoined": "Jesteś na liście. Napiszemy na {{email}}, gdy tylko $DHB zostanie notowany."
   },
   "linkCard": {
     "inviteRevoked": "Zaproszenie odwołane",

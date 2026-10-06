@@ -7528,7 +7528,12 @@
     "volume24h": "24 сааттык көлөм",
     "liquidity": "Ликвиддүүлүк",
     "change1h": "1 сааттык өзгөрүү",
-    "viewOnDexScreener": "DexScreenerден көрүү"
+    "viewOnDexScreener": "DexScreenerден көрүү",
+    "listingTitle": "Токен листинги жакында!",
+    "listingBody": "$DHB азырынча сатылбайт. Листингге чыккан замат email алыңыз.",
+    "notifyMe": "Мага кабарла",
+    "listingPrivacy": "Муну $DHB листингге чыкканда сизге кабарлоо үчүн гана колдонобуз.",
+    "listingJoined": "Сиз тизмедесиз. $DHB листингге чыккан замат {{email}} дарегине кат жөнөтөбүз."
   },
   "linkCard": {
     "inviteRevoked": "Чакыруу жокко чыгарылды",

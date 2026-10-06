@@ -7739,7 +7739,12 @@
     "volume24h": "24h Volume",
     "liquidity": "Liquidity",
     "change1h": "1h Baguhin",
-    "viewOnDexScreener": "Tingnan sa DexScreener"
+    "viewOnDexScreener": "Tingnan sa DexScreener",
+    "listingTitle": "Malapit nang ma-list ang token!",
+    "listingBody": "Hindi pa naka-trade ang $DHB. Makatanggap ng email sa sandaling ma-list ito.",
+    "notifyMe": "Abisuhan ako",
+    "listingPrivacy": "Gagamitin lang namin ito para ipaalam sa iyo kapag na-list na ang $DHB.",
+    "listingJoined": "Nasa listahan ka na. Mag-e-email kami sa {{email}} sa sandaling ma-list ang $DHB."
   },
   "linkCard": {
     "inviteRevoked": "Kinansela ang imbitasyon",

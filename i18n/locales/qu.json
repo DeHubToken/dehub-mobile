@@ -7569,7 +7569,12 @@
     "volume24h": "24h Volumen nisqa",
     "liquidity": "Liquidez nisqa",
     "change1h": "1h Tikray",
-    "viewOnDexScreener": "DexScreener nisqapi qhaway"
+    "viewOnDexScreener": "DexScreener nisqapi qhaway",
+    "listingTitle": "Token qillqakuyqa qayllapiña!",
+    "listingBody": "$DHB manaraq rantinakunchu. Qillqakusqan pachallapi email chaskiy.",
+    "notifyMe": "Willaway",
+    "listingPrivacy": "Kayta $DHB qillqakuptin willanaykipaqlla llamk'achisaqku.",
+    "listingJoined": "Listapiñam kanki. $DHB qillqakusqan pachallapi {{email}} nisqaman email apachisaqku."
   },
   "linkCard": {
     "inviteRevoked": "Invite revocado nisqa",

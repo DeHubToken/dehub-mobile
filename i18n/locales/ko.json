@@ -7589,7 +7589,12 @@
     "volume24h": "24시간 거래량",
     "liquidity": "유동성",
     "change1h": "1시간 변화율",
-    "viewOnDexScreener": "DexScreener에서 보기"
+    "viewOnDexScreener": "DexScreener에서 보기",
+    "listingTitle": "토큰 상장이 곧 시작됩니다!",
+    "listingBody": "$DHB는 아직 거래되지 않습니다. 상장되는 즉시 이메일로 알려드릴게요.",
+    "notifyMe": "알림 받기",
+    "listingPrivacy": "$DHB 상장 소식을 알려드리는 데에만 사용합니다.",
+    "listingJoined": "명단에 등록되었습니다. $DHB가 상장되면 바로 {{email}}(으)로 이메일을 보내드릴게요."
   },
   "linkCard": {
     "inviteRevoked": "초대 취소됨",

@@ -7521,7 +7521,12 @@
     "volume24h": "۲۴ ساعته حجم",
     "liquidity": "مایع",
     "change1h": "۱ ساعته بدلون",
-    "viewOnDexScreener": "DexScreener باندې وګورئ"
+    "viewOnDexScreener": "DexScreener باندې وګورئ",
+    "listingTitle": "د ټوکن لیستېدل ډېر ژر!",
+    "listingBody": "$DHB لا تر اوسه نه پلورل کېږي. کله چې لیست شي سمدستي برېښنالیک ترلاسه کړئ.",
+    "notifyMe": "ما خبر کړئ",
+    "listingPrivacy": "موږ به دا یوازې د دې لپاره کاروو چې کله $DHB لیست شي تاسو خبر کړو.",
+    "listingJoined": "تاسو په لیست کې یاست. کله چې $DHB لیست شي، موږ به {{email}} ته برېښنالیک ولېږو."
   },
   "linkCard": {
     "inviteRevoked": "بلنه لغوه شوه",

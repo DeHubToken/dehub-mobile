@@ -7558,7 +7558,12 @@
     "volume24h": "Vëllimi 24 orë",
     "liquidity": "Likuiditeti",
     "change1h": "Ndryshimi 1 orë",
-    "viewOnDexScreener": "Shihni në DexScreener"
+    "viewOnDexScreener": "Shihni në DexScreener",
+    "listingTitle": "Listimi i tokenit së shpejti!",
+    "listingBody": "$DHB nuk tregtohet ende. Merr një email sapo të listohet.",
+    "notifyMe": "Më njofto",
+    "listingPrivacy": "Do ta përdorim vetëm për të të njoftuar kur $DHB të listohet.",
+    "listingJoined": "Je në listë. Do t'i shkruajmë {{email}} sapo $DHB të listohet."
   },
   "linkCard": {
     "inviteRevoked": "Ftesa u anulua",

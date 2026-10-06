@@ -7594,7 +7594,12 @@
     "volume24h": "Объем за 24 часа",
     "liquidity": "Ликвидность",
     "change1h": "Изменение за 1 час",
-    "viewOnDexScreener": "Посмотреть на DexScreener"
+    "viewOnDexScreener": "Посмотреть на DexScreener",
+    "listingTitle": "Листинг токена скоро!",
+    "listingBody": "$DHB пока не торгуется. Получите письмо, как только он появится на бирже.",
+    "notifyMe": "Уведомить меня",
+    "listingPrivacy": "Мы используем это только чтобы сообщить вам о листинге $DHB.",
+    "listingJoined": "Вы в списке. Мы напишем на {{email}}, как только $DHB появится на бирже."
   },
   "linkCard": {
     "inviteRevoked": "Приглашение отозвано",

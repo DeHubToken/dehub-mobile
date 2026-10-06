@@ -7471,7 +7471,12 @@
     "volume24h": "24 demjimêran deng",
     "liquidity": "Lîkvîdîte",
     "change1h": "Guhertina 1 demjimêran",
-    "viewOnDexScreener": "Li ser DexScreener binêre"
+    "viewOnDexScreener": "Li ser DexScreener binêre",
+    "listingTitle": "Lîstekirina tokenê nêzîk e!",
+    "listingBody": "$DHB hîn nayê bazirganîkirin. Gava ku lîste bibe e-nameyekê bistîne.",
+    "notifyMe": "Min agahdar bike",
+    "listingPrivacy": "Em ê vê tenê bikar bînin da ku gava $DHB lîste bibe te agahdar bikin.",
+    "listingJoined": "Tu di lîsteyê de yî. Gava ku $DHB lîste bibe em ê e-nameyekê ji {{email}} re bişînin."
   },
   "linkCard": {
     "inviteRevoked": "Daxwazname hat betalkirin",

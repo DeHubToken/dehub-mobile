@@ -7562,7 +7562,12 @@
     "volume24h": "24h Volym",
     "liquidity": "Likviditet",
     "change1h": "1h Ändring",
-    "viewOnDexScreener": "Visa på DexScreener"
+    "viewOnDexScreener": "Visa på DexScreener",
+    "listingTitle": "Token-listning kommer snart!",
+    "listingBody": "$DHB handlas inte än. Få ett mejl så fort den listas.",
+    "notifyMe": "Meddela mig",
+    "listingPrivacy": "Vi använder det bara för att meddela dig när $DHB listas.",
+    "listingJoined": "Du står på listan. Vi mejlar {{email}} så fort $DHB listas."
   },
   "linkCard": {
     "inviteRevoked": "Inbjudan återkallad",

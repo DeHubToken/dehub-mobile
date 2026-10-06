@@ -7528,7 +7528,12 @@
     "volume24h": "24h Olu",
     "liquidity": "Mmiri",
     "change1h": "1h Mgbanwe",
-    "viewOnDexScreener": "Lelee na DexScreener"
+    "viewOnDexScreener": "Lelee na DexScreener",
+    "listingTitle": "Ndepụta token na-abịa n'oge na-adịghị anya!",
+    "listingBody": "Amalitebeghị ịzụ ahịa $DHB. Nweta email ozugbo e depụtara ya.",
+    "notifyMe": "Gwa m",
+    "listingPrivacy": "Anyị ga-eji ya naanị gwa gị mgbe e depụtara $DHB.",
+    "listingJoined": "Ị nọ na ndepụta. Anyị ga-eziga email na {{email}} ozugbo e depụtara $DHB."
   },
   "linkCard": {
     "inviteRevoked": "A kagburu oku",

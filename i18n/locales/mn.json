@@ -7521,7 +7521,12 @@
     "volume24h": "24 цагийн эзлэхүүн",
     "liquidity": "Нягтрал",
     "change1h": "1 цагийн өөрчлөлт",
-    "viewOnDexScreener": "DexScreener дээр үзэх"
+    "viewOnDexScreener": "DexScreener дээр үзэх",
+    "listingTitle": "Токен удахгүй бүртгэгдэнэ!",
+    "listingBody": "$DHB арилжаалагдаж эхлээгүй байна. Бүртгэгдмэгц имэйл аваарай.",
+    "notifyMe": "Надад мэдэгдэх",
+    "listingPrivacy": "Үүнийг зөвхөн $DHB бүртгэгдэх үед танд мэдэгдэхэд ашиглана.",
+    "listingJoined": "Та жагсаалтад орлоо. $DHB бүртгэгдмэгц {{email}} хаяг руу имэйл илгээнэ."
   },
   "linkCard": {
     "inviteRevoked": "Урилга цуцлагдсан",

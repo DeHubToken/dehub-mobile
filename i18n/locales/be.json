@@ -7581,7 +7581,12 @@
     "volume24h": "Аб'ём за 24 гадзіны",
     "liquidity": "Ліквіднасць",
     "change1h": "Змена за 1 гадзіну",
-    "viewOnDexScreener": "Прагляд на DexScreener"
+    "viewOnDexScreener": "Прагляд на DexScreener",
+    "listingTitle": "Лістынг токена хутка!",
+    "listingBody": "$DHB пакуль не гандлюецца. Атрымайце ліст, як толькі ён з'явіцца на біржы.",
+    "notifyMe": "Паведаміць мне",
+    "listingPrivacy": "Мы выкарыстаем гэта толькі каб паведаміць вам пра лістынг $DHB.",
+    "listingJoined": "Вы ў спісе. Мы напішам на {{email}}, як толькі $DHB з'явіцца на біржы."
   },
   "linkCard": {
     "inviteRevoked": "Запрашэнне адменена",

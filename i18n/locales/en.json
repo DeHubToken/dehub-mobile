@@ -7851,7 +7851,12 @@
     "volume24h": "24h Volume",
     "liquidity": "Liquidity",
     "change1h": "1h Change",
-    "viewOnDexScreener": "View on DexScreener"
+    "viewOnDexScreener": "View on DexScreener",
+    "listingTitle": "Token listing soon!",
+    "listingBody": "$DHB isn't trading yet. Get an email the moment it lists.",
+    "notifyMe": "Notify me",
+    "listingPrivacy": "We'll only use this to tell you when $DHB lists.",
+    "listingJoined": "You're on the list. We'll email {{email}} the moment $DHB lists."
   },
   "linkCard": {
     "inviteRevoked": "Invite revoked",

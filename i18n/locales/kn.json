@@ -7532,7 +7532,12 @@
     "volume24h": "24ಗಂ ಪರಿಮಾಣ",
     "liquidity": "ಲಿಕ್ವಿಡಿಟಿ",
     "change1h": "1ಗಂ ಬದಲಾವಣೆ",
-    "viewOnDexScreener": "DexScreener ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ"
+    "viewOnDexScreener": "DexScreener ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ",
+    "listingTitle": "ಟೋಕನ್ ಲಿಸ್ಟಿಂಗ್ ಶೀಘ್ರದಲ್ಲೇ!",
+    "listingBody": "$DHB ಇನ್ನೂ ವಹಿವಾಟು ಆರಂಭಿಸಿಲ್ಲ. ಲಿಸ್ಟ್ ಆದ ತಕ್ಷಣ ಇಮೇಲ್ ಪಡೆಯಿರಿ.",
+    "notifyMe": "ನನಗೆ ತಿಳಿಸಿ",
+    "listingPrivacy": "$DHB ಲಿಸ್ಟ್ ಆದಾಗ ನಿಮಗೆ ತಿಳಿಸಲು ಮಾತ್ರ ಇದನ್ನು ಬಳಸುತ್ತೇವೆ.",
+    "listingJoined": "ನೀವು ಪಟ್ಟಿಯಲ್ಲಿದ್ದೀರಿ. $DHB ಲಿಸ್ಟ್ ಆದ ತಕ್ಷಣ {{email}} ಗೆ ಇಮೇಲ್ ಮಾಡುತ್ತೇವೆ."
   },
   "linkCard": {
     "inviteRevoked": "ಆಹ್ವಾನವನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ",

@@ -7591,7 +7591,12 @@
     "volume24h": "Volumen 24h",
     "liquidity": "Liquidez",
     "change1h": "Cambio 1h",
-    "viewOnDexScreener": "Ver en DexScreener"
+    "viewOnDexScreener": "Ver en DexScreener",
+    "listingTitle": "¡El token se listará pronto!",
+    "listingBody": "$DHB aún no cotiza. Recibe un correo en cuanto se liste.",
+    "notifyMe": "Avísame",
+    "listingPrivacy": "Solo lo usaremos para avisarte cuando $DHB se liste.",
+    "listingJoined": "Ya estás en la lista. Escribiremos a {{email}} en cuanto $DHB se liste."
   },
   "linkCard": {
     "inviteRevoked": "Invitación revocada",

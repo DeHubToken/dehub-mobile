@@ -7594,7 +7594,12 @@
     "volume24h": "حجم التداول خلال 24 ساعة",
     "liquidity": "السيولة",
     "change1h": "تغير خلال ساعة واحدة",
-    "viewOnDexScreener": "عرض على DexScreener"
+    "viewOnDexScreener": "عرض على DexScreener",
+    "listingTitle": "إدراج العملة قريباً!",
+    "listingBody": "لم يبدأ تداول $DHB بعد. احصل على بريد إلكتروني لحظة إدراجه.",
+    "notifyMe": "أعلمني",
+    "listingPrivacy": "سنستخدم هذا فقط لإبلاغك عند إدراج $DHB.",
+    "listingJoined": "أنت على القائمة. سنراسل {{email}} لحظة إدراج $DHB."
   },
   "linkCard": {
     "inviteRevoked": "تم إلغاء الدعوة",

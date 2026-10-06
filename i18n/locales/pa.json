@@ -7555,7 +7555,12 @@
     "volume24h": "24 ਘੰਟੇ ਵਾਲੀਅਮ",
     "liquidity": "ਤਰਲਤਾ",
     "change1h": "1 ਘੰਟੇ ਤਬਦੀਲੀ",
-    "viewOnDexScreener": "DexScreener 'ਤੇ ਦੇਖੋ"
+    "viewOnDexScreener": "DexScreener 'ਤੇ ਦੇਖੋ",
+    "listingTitle": "ਟੋਕਨ ਲਿਸਟਿੰਗ ਜਲਦੀ!",
+    "listingBody": "$DHB ਦੀ ਟ੍ਰੇਡਿੰਗ ਅਜੇ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਈ। ਲਿਸਟ ਹੁੰਦੇ ਹੀ ਈਮੇਲ ਪ੍ਰਾਪਤ ਕਰੋ।",
+    "notifyMe": "ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ",
+    "listingPrivacy": "ਅਸੀਂ ਇਸਨੂੰ ਸਿਰਫ਼ $DHB ਲਿਸਟ ਹੋਣ 'ਤੇ ਤੁਹਾਨੂੰ ਦੱਸਣ ਲਈ ਵਰਤਾਂਗੇ।",
+    "listingJoined": "ਤੁਸੀਂ ਸੂਚੀ ਵਿੱਚ ਹੋ। $DHB ਲਿਸਟ ਹੁੰਦੇ ਹੀ ਅਸੀਂ {{email}} 'ਤੇ ਈਮੇਲ ਭੇਜਾਂਗੇ।"
   },
   "linkCard": {
     "inviteRevoked": "ਸੱਦਾ ਰੱਦ ਕੀਤਾ ਗਿਆ",

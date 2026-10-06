@@ -7589,7 +7589,12 @@
     "volume24h": "Volume 24h",
     "liquidity": "Liquidità",
     "change1h": "Variazione 1h",
-    "viewOnDexScreener": "Visualizza su DexScreener"
+    "viewOnDexScreener": "Visualizza su DexScreener",
+    "listingTitle": "Il listing del token arriva presto!",
+    "listingBody": "$DHB non è ancora negoziabile. Ricevi un'email appena viene listato.",
+    "notifyMe": "Avvisami",
+    "listingPrivacy": "Lo useremo solo per avvisarti quando $DHB verrà listato.",
+    "listingJoined": "Sei nella lista. Scriveremo a {{email}} appena $DHB verrà listato."
   },
   "linkCard": {
     "inviteRevoked": "Invito revocato",

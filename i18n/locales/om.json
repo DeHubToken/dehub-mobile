@@ -7587,7 +7587,12 @@
     "volume24h": "24h Jildii",
     "liquidity": "Dhangala’aa (Liquidity) ta’uu",
     "change1h": "1h Jijjiirama",
-    "viewOnDexScreener": "DexScreener irratti ilaali"
+    "viewOnDexScreener": "DexScreener irratti ilaali",
+    "listingTitle": "Galmeen tookanii dhiyootti!",
+    "listingBody": "$DHB ammallee hin daldalamu. Akkuma galmaa'eetti imeelii argadhu.",
+    "notifyMe": "Na beeksisi",
+    "listingPrivacy": "Kana kan itti fayyadamnu yeroo $DHB galmaa'u si beeksisuuf qofa.",
+    "listingJoined": "Tarree keessa jirta. Akkuma $DHB galmaa'eetti {{email}} irratti imeelii ergina."
   },
   "linkCard": {
     "inviteRevoked": "Invite haqameera",

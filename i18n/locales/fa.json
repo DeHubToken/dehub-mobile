@@ -7584,7 +7584,12 @@
     "volume24h": "حجم ۲۴ ساعته",
     "liquidity": "نقدینگی",
     "change1h": "تغییر ۱ ساعته",
-    "viewOnDexScreener": "مشاهده در DexScreener"
+    "viewOnDexScreener": "مشاهده در DexScreener",
+    "listingTitle": "لیست شدن توکن به‌زودی!",
+    "listingBody": "$DHB هنوز معامله نمی‌شود. به محض لیست شدن ایمیل دریافت کنید.",
+    "notifyMe": "به من خبر بده",
+    "listingPrivacy": "فقط برای اطلاع‌رسانی لیست شدن $DHB از این استفاده می‌کنیم.",
+    "listingJoined": "شما در فهرست هستید. به محض لیست شدن $DHB به {{email}} ایمیل می‌زنیم."
   },
   "linkCard": {
     "inviteRevoked": "دعوت لغو شد",

@@ -7526,7 +7526,12 @@
     "volume24h": "24h ଭଲ୍ୟୁମ୍",
     "liquidity": "ଲିକ୍ୱିଡିଟି",
     "change1h": "1h ପରିବର୍ତ୍ତନ",
-    "viewOnDexScreener": "DexScreener ରେ ଦେଖନ୍ତୁ"
+    "viewOnDexScreener": "DexScreener ରେ ଦେଖନ୍ତୁ",
+    "listingTitle": "ଟୋକେନ୍ ଲିଷ୍ଟିଂ ଶୀଘ୍ର!",
+    "listingBody": "$DHB ଏପର୍ଯ୍ୟନ୍ତ ଟ୍ରେଡ୍ ହେଉନାହିଁ। ଲିଷ୍ଟ ହେବା ମାତ୍ରେ ଇମେଲ୍ ପାଆନ୍ତୁ।",
+    "notifyMe": "ମୋତେ ଜଣାନ୍ତୁ",
+    "listingPrivacy": "$DHB ଲିଷ୍ଟ ହେଲେ ଆପଣଙ୍କୁ ଜଣାଇବା ପାଇଁ ହିଁ ଆମେ ଏହା ବ୍ୟବହାର କରିବୁ।",
+    "listingJoined": "ଆପଣ ତାଲିକାରେ ଅଛନ୍ତି। $DHB ଲିଷ୍ଟ ହେବା ମାତ୍ରେ ଆମେ {{email}} କୁ ଇମେଲ୍ ପଠାଇବୁ।"
   },
   "linkCard": {
     "inviteRevoked": "ଆମନ୍ତ୍ରଣ ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି",

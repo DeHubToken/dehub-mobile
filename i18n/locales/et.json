@@ -7558,7 +7558,12 @@
     "volume24h": "24h maht",
     "liquidity": "Likviidsus",
     "change1h": "1h muutus",
-    "viewOnDexScreener": "Vaata DexScreeneris"
+    "viewOnDexScreener": "Vaata DexScreeneris",
+    "listingTitle": "Tokeni noteerimine tuleb peagi!",
+    "listingBody": "$DHB-ga veel ei kaubelda. Saa e-kiri kohe, kui see noteeritakse.",
+    "notifyMe": "Teavita mind",
+    "listingPrivacy": "Kasutame seda ainult selleks, et anda teada, kui $DHB noteeritakse.",
+    "listingJoined": "Oled nimekirjas. Saadame kirja aadressile {{email}} kohe, kui $DHB noteeritakse."
   },
   "linkCard": {
     "inviteRevoked": "Kutse tühistatud",
