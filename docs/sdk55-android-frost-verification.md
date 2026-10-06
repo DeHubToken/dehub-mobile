@@ -12,8 +12,14 @@ use the theme backdrop until they register a separate content target.
 
 The preview runtime is `sdk55-frost-1`, distinct from existing SDK 54 binaries.
 It must be installed as a native build. Do not publish this JavaScript to the
-SDK 54 update runtime. The test APK uses the preview channel and staging locale
-origin; production publishing is held until device checks are complete.
+SDK 54 update runtime. The Google Play internal-testing bundle uses the preview
+channel and staging locale origin. Production publishing is held until device
+checks are complete. Google Play signs the tester update with the existing app
+signing certificate, preserving the installed app and its data.
+
+The existing "Internal testers | Team" list is selected in Play Console. Its
+join link is https://play.google.com/apps/internaltest/4700504887929249417.
+The frost version is not available until the new internal release is active.
 
 ## Migration checks
 
@@ -21,7 +27,10 @@ origin; production publishing is held until device checks are complete.
 - Legacy audio playback/recording moved from expo-av to expo-audio.
 - Video fullscreen props updated to the supported API.
 - Android host and Hermes compiler path updated from the Expo 55 native template.
-- iOS Podfile updated from the same native template; lockfile verification pending.
+- iOS Podfile and AppDelegate updated from the same native template. The lockfile
+  was resolved on a GitHub-hosted macOS runner; full compilation remains pending.
+- Livepeer client/query context uses the supported core-react exports. The unused
+  native player package was removed because its barrel imports retired expo-av.
 - Audio/video task-dismissal fixes rebased onto SDK 55 packages.
 - SDK 55 audio binds a normally started service, replacing the older foreground
   start/pending-player path. The old service-start patch no longer matches that
@@ -31,13 +40,18 @@ origin; production publishing is held until device checks are complete.
 - Patch application fails installation when a required patch cannot apply.
 - Argon2 keeps its existing native hashing implementation. Its Android build
   uses Maven Central and an explicit namespace for Gradle 9 and current AGP.
+- The existing Torus login browser also uses Maven Central and an explicit
+  Android namespace; its manifest no longer declares the package attribute.
+- Cloud JavaScript bundling and Android/iOS native compilation must pass before
+  the signed bundle build and internal-track submission begin.
 
 ## Release gate
 
 | Area | Required verification | State |
 | --- | --- | --- |
-| Cloud | Typecheck, existing tests, patch application, signed APK build | Initial typecheck, tests and patch application passed; native build and updated commit pending |
-| Installation | Compare certificates; preserve existing app data | Pending |
+| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Prior typecheck and tests passed; prior builds failed on Torus Gradle, Livepeer expo-av and Expo Swift import compatibility; fixes await cloud checks |
+| Tester release | Google Play internal-track processing and active release version | Pending; existing track still serves 1.17.6 |
+| Installation | Install the Play tester update; preserve existing app data | Pending |
 | Startup | Cold/warm launch, background/resume, crash and ANR logs | Pending |
 | Feed | All six tabs, fast scroll, pagination, refresh, filters, pager drags | Pending |
 | Chrome | Top/bottom pills, theme changes, drawers, overlays, back navigation | Pending |

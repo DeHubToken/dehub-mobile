@@ -172,8 +172,8 @@ jobs:
           retention-days: 30
 
   android-frost-preview:
-    name: Android frost preview
-    needs: verify
+    name: Google Play frost testers
+    needs: [verify, android-sdk55-preflight, ios-sdk55-compile]
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'upgrade/sdk55-android-frost-20261005'
     runs-on: ubuntu-latest
     timeout-minutes: 150
@@ -191,34 +191,78 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Build signed SDK 55 test APK
-        run: eas build --platform android --profile test-apk --non-interactive --wait --json > android-frost-preview.json
-      - name: Download completed test artifact
+      - name: Build signed SDK 55 tester bundle
+        run: eas build --platform android --profile store-testing --non-interactive --wait --json > android-frost-preview.json
+      - name: Download and verify completed tester bundle
         run: |
+          export EXPECTED_SOURCE_SHA="$(git rev-parse HEAD)"
           node <<'NODE'
           const fs = require('fs');
           const result = JSON.parse(fs.readFileSync('android-frost-preview.json', 'utf8'));
           const build = Array.isArray(result) ? result[0] : result;
-          if (build.status !== 'FINISHED' || !build.artifacts?.buildUrl) throw new Error('No completed preview APK');
-          fs.writeFileSync('preview-apk-url.txt', build.artifacts.buildUrl);
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `[SDK 55 preview APK](${build.artifacts.buildUrl})\n`);
+          if (build.status !== 'FINISHED' || build.platform !== 'ANDROID' || !build.artifacts?.buildUrl) throw new Error('No completed Android tester bundle');
+          if (build.gitCommitHash !== process.env.EXPECTED_SOURCE_SHA) throw new Error('Tester bundle uses a different source commit');
+          if (!/^[0-9a-f-]{36}$/i.test(build.id)) throw new Error('Invalid tester build ID');
+          fs.writeFileSync('preview-bundle-url.txt', build.artifacts.buildUrl);
+          fs.writeFileSync('tester-build-id.txt', build.id);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `[SDK 55 tester bundle](${build.artifacts.buildUrl})\n`);
           NODE
-          curl --fail --location --retry 3 "$(cat preview-apk-url.txt)" --output dehub-frost-preview.apk
-          sha256sum dehub-frost-preview.apk
+          curl --fail --location --retry 3 "$(cat preview-bundle-url.txt)" --output dehub-frost-preview.aab
+          unzip -t dehub-frost-preview.aab
+          unzip -l dehub-frost-preview.aab | grep 'base/manifest/AndroidManifest.xml'
+          jarsigner -verify dehub-frost-preview.aab
+          sha256sum dehub-frost-preview.aab
       - uses: actions/upload-artifact@v4
         with:
           name: dehub-frost-preview
           path: |
-            dehub-frost-preview.apk
+            dehub-frost-preview.aab
             android-frost-preview.json
-            preview-apk-url.txt
+            preview-bundle-url.txt
+            tester-build-id.txt
           retention-days: 14
+      - name: Release verified bundle to Google Play internal testers
+        run: eas submit --platform android --profile store-testing --id "$(cat tester-build-id.txt)" --non-interactive --wait
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: android-frost-build-result
           path: android-frost-preview.json
           if-no-files-found: ignore
+
+  android-sdk55-preflight:
+    name: Android SDK 55 preflight
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'upgrade/sdk55-android-frost-20261005'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Check Android JavaScript imports before the signed build
+        run: npx expo export --platform android --output-dir "$RUNNER_TEMP/sdk55-js-preflight"
+      - name: Compile upgraded Android integrations
+        working-directory: android
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '2'
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:compileReleaseKotlin --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
 
   ios-sdk55-compile:
     name: iOS SDK 55 compile
@@ -238,7 +282,7 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - name: Resolve upgraded native pods
         working-directory: ios
-        run: pod update --repo-update
+        run: pod install --deployment
       - uses: actions/upload-artifact@v4
         with:
           name: sdk55-pod-lock
