@@ -89,6 +89,9 @@ jobs:
       - name: Wallet picker patch regression checks
         run: node --test scripts/wallet-picker.test.cjs
 
+      - name: Release animation runtime regression checks
+        run: node scripts/animation-runtime.test.cjs
+
       # Thresholds are enforced by coverageThreshold in jest.config.js, so a
       # coverage regression fails this step directly.
       - name: Run tests with coverage

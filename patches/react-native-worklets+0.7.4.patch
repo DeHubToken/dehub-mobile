@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-native-worklets/src/platformChecker.ts b/node_modules/react-native-worklets/src/platformChecker.ts
+--- a/node_modules/react-native-worklets/src/platformChecker.ts
++++ b/node_modules/react-native-worklets/src/platformChecker.ts
+@@ -2,7 +2,8 @@
+ 
+ import { Platform } from 'react-native';
+ 
+-export const IS_JEST: boolean = !!process.env.JEST_WORKER_ID;
++export const IS_JEST: boolean =
++  typeof globalThis.jest !== 'undefined' || process.env.NODE_ENV === 'test';
+ export const IS_WEB: boolean = Platform.OS === 'web';
+ export const IS_WINDOWS: boolean = Platform.OS === 'windows';
+ export const SHOULD_BE_USE_WEB: boolean = IS_JEST || IS_WEB || IS_WINDOWS;
+diff --git a/node_modules/react-native-worklets/lib/module/platformChecker.js b/node_modules/react-native-worklets/lib/module/platformChecker.js
+--- a/node_modules/react-native-worklets/lib/module/platformChecker.js
++++ b/node_modules/react-native-worklets/lib/module/platformChecker.js
+@@ -1,7 +1,8 @@
+ 'use strict';
+ 
+ import { Platform } from 'react-native';
+-export const IS_JEST = !!process.env.JEST_WORKER_ID;
++export const IS_JEST =
++  typeof globalThis.jest !== 'undefined' || process.env.NODE_ENV === 'test';
+ export const IS_WEB = Platform.OS === 'web';
+ export const IS_WINDOWS = Platform.OS === 'windows';
+ export const SHOULD_BE_USE_WEB = IS_JEST || IS_WEB || IS_WINDOWS;
