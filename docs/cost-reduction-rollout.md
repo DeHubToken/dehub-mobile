@@ -41,6 +41,14 @@ Web reads the stored filename for covers and direct avatar fallback, with stable
 
 Verify identical and changed uploads, transparent formats, canonical compatibility, and revision erasure in hosted tests. Check profile/feed rendering in Chrome and Android after deployment before recording the stage as verified.
 
+### Message history and reconnect recovery
+
+Web refreshes the newest 30 messages every 15 seconds while a thread is visible, rather than requesting every loaded history page. A separate head query shares recovery across observers and keeps background tabs quiet. It merges decrypted replies, pending sends, confirmed read receipts and displaced history; a full head without any overlap falls back to ordinary history recovery. DM transport reconnects, explicit retries and encryption-identity changes retain a full refresh. Older-page requests now send the API's `skip` offset, calculated from unique persisted messages as incoming replies shift pagination.
+
+Mobile already fetches a bounded newest page. It now recovers that page on screen focus, foreground and actual DM transport reconnection, coalescing simultaneous recovery triggers and rejecting responses after the thread is replaced. Existing socket delivery, older-message paging and encrypted storage remain in place. No recurring native message timer is added.
+
+Required verification: hosted tests for one-page polling with loaded history, optimistic sends/read flags, deletions, pagination offsets, burst recovery, focus/foreground/reconnect coalescing and stale response guards; then a real thread on staging and Android. Older edits/deletions outside the head still rely on their socket events or an explicit history refresh; server change cursors remain a follow-up.
+
 1. Compact feed head and visible engagement updates instead of full feed polling.
 2. Persistent avatar/cover revisions that change on upload.
 3. Scoped presence and event delivery with reconnect recovery for calls/messages.
