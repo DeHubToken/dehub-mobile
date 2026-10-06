@@ -7536,7 +7536,12 @@
     "volume24h": "24h والیوم",
     "liquidity": "لیکویڈیٹی",
     "change1h": "1h تبدیلی",
-    "viewOnDexScreener": "DexScreener پر دیکھیں"
+    "viewOnDexScreener": "DexScreener پر دیکھیں",
+    "listingTitle": "ٹوکن لسٹنگ جلدی!",
+    "listingBody": "$DHB ہݨ تئیں ٹریڈ کائنی تھیندا۔ لسٹ تھیندے ای ای میل گھنو۔",
+    "notifyMe": "میکوں ݙساؤ",
+    "listingPrivacy": "اساں ایکوں بس $DHB لسٹ تھیوݨ تے تہاکوں ݙساوݨ کیتے ورتسوں۔",
+    "listingJoined": "تساں لسٹ وچ ہو۔ $DHB لسٹ تھیندے ای اساں {{email}} تے ای میل بھیجسوں۔"
   },
   "linkCard": {
     "inviteRevoked": "دعوت منسوخ کر دی گئی",

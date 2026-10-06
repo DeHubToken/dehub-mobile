@@ -7553,7 +7553,12 @@
     "volume24h": "24ч Обем",
     "liquidity": "Ликвидност",
     "change1h": "1ч Промяна",
-    "viewOnDexScreener": "Преглед в DexScreener"
+    "viewOnDexScreener": "Преглед в DexScreener",
+    "listingTitle": "Листването на токена предстои!",
+    "listingBody": "$DHB все още не се търгува. Получете имейл в момента, в който бъде листнат.",
+    "notifyMe": "Уведоми ме",
+    "listingPrivacy": "Ще използваме това само за да ви уведомим, когато $DHB бъде листнат.",
+    "listingJoined": "Вие сте в списъка. Ще изпратим имейл до {{email}} веднага щом $DHB бъде листнат."
   },
   "linkCard": {
     "inviteRevoked": "Покана отменена",

@@ -7511,7 +7511,12 @@
     "volume24h": "24 ሰዓት ጥራዝ",
     "liquidity": "ፈሳሲነት",
     "change1h": "1ይ ለውጢ",
-    "viewOnDexScreener": "ኣብ DexScreener ርአ"
+    "viewOnDexScreener": "ኣብ DexScreener ርአ",
+    "listingTitle": "ቶከን ብቐረባ ክምዝገብ እዩ!",
+    "listingBody": "$DHB ገና ኣይተሸጠን። ምስ ተመዝገበ ብቕጽበት ኢመይል ተቐበል።",
+    "notifyMe": "ኣፍልጠኒ",
+    "listingPrivacy": "እዚ $DHB ምስ ተመዝገበ ንምሕባርካ ጥራይ ኢና ንጥቀመሉ።",
+    "listingJoined": "ኣብ ዝርዝር ኣለኻ። $DHB ምስ ተመዝገበ ብቕጽበት ናብ {{email}} ኢመይል ክንሰድድ ኢና።"
   },
   "linkCard": {
     "inviteRevoked": "ተቛረጸ",

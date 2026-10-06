@@ -7552,7 +7552,12 @@
     "volume24h": "24 గంటల వాల్యూమ్",
     "liquidity": "లిక్విడిటీ",
     "change1h": "1 గంట మార్పు",
-    "viewOnDexScreener": "DexScreenerలో వీక్షించండి"
+    "viewOnDexScreener": "DexScreenerలో వీక్షించండి",
+    "listingTitle": "టోకెన్ లిస్టింగ్ త్వరలో!",
+    "listingBody": "$DHB ఇంకా ట్రేడ్ అవ్వడం లేదు. లిస్ట్ అయిన వెంటనే ఇమెయిల్ పొందండి.",
+    "notifyMe": "నాకు తెలియజేయండి",
+    "listingPrivacy": "$DHB లిస్ట్ అయినప్పుడు మీకు తెలియజేయడానికి మాత్రమే దీన్ని ఉపయోగిస్తాము.",
+    "listingJoined": "మీరు జాబితాలో ఉన్నారు. $DHB లిస్ట్ అయిన వెంటనే {{email}}కు ఇమెయిల్ పంపుతాము."
   },
   "linkCard": {
     "inviteRevoked": "ఆహ్వానం రద్దు చేయబడింది",

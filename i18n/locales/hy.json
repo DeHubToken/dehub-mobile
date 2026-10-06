@@ -7558,7 +7558,12 @@
     "volume24h": "24-ժամյա ծավալ",
     "liquidity": "Հեղուկություն",
     "change1h": "1-ժամյա փոփոխություն",
-    "viewOnDexScreener": "Դիտել DexScreener-ում"
+    "viewOnDexScreener": "Դիտել DexScreener-ում",
+    "listingTitle": "Թոքենի ցուցակումը շուտով!",
+    "listingBody": "$DHB-ով դեռ առևտուր չի արվում։ Ստացեք նամակ, հենց այն ցուցակվի։",
+    "notifyMe": "Տեղեկացրեք ինձ",
+    "listingPrivacy": "Սա կօգտագործենք միայն $DHB-ի ցուցակման մասին ձեզ տեղեկացնելու համար։",
+    "listingJoined": "Դուք ցուցակում եք։ Հենց $DHB-ն ցուցակվի, կգրենք {{email}} հասցեին։"
   },
   "linkCard": {
     "inviteRevoked": "Հրավերը չեղարկվել է",

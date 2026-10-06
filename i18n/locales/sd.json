@@ -7532,7 +7532,12 @@
     "volume24h": "24h حجم",
     "change1h": "1h تبديلي",
     "viewOnDexScreener": "DexScreener تي ڏسو",
-    "liquidity": "ليويڊائيزيشن"
+    "liquidity": "ليويڊائيزيشن",
+    "listingTitle": "ٽوڪن لسٽنگ جلد!",
+    "listingBody": "$DHB اڃا واپار ۾ ناهي. لسٽ ٿيندي ئي اي ميل حاصل ڪريو.",
+    "notifyMe": "مونکي ٻڌايو",
+    "listingPrivacy": "اسان هن کي صرف $DHB لسٽ ٿيڻ تي توهان کي ٻڌائڻ لاءِ استعمال ڪنداسين.",
+    "listingJoined": "توهان لسٽ ۾ آهيو. $DHB لسٽ ٿيندي ئي اسان {{email}} تي اي ميل موڪلينداسين."
   },
   "linkCard": {
     "inviteRevoked": "دعوت رد ڪئي وئي",

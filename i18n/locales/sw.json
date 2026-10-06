@@ -7560,7 +7560,12 @@
     "volume24h": "Kiasi cha saa 24",
     "liquidity": "Uwezo wa Kifedha",
     "change1h": "Mabadiliko ya saa 1",
-    "viewOnDexScreener": "Tazama kwenye DexScreener"
+    "viewOnDexScreener": "Tazama kwenye DexScreener",
+    "listingTitle": "Uorodheshaji wa tokeni unakuja hivi karibuni!",
+    "listingBody": "$DHB bado haiuzwi. Pata barua pepe mara tu itakapoorodheshwa.",
+    "notifyMe": "Nijulishe",
+    "listingPrivacy": "Tutatumia hii tu kukujulisha $DHB itakapoorodheshwa.",
+    "listingJoined": "Uko kwenye orodha. Tutatuma barua pepe kwa {{email}} mara tu $DHB itakapoorodheshwa."
   },
   "linkCard": {
     "inviteRevoked": "Mwaliko uliorejeshwa",

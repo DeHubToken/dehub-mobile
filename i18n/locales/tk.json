@@ -7534,7 +7534,12 @@
     "volume24h": "24 sagatlyk göwrüm",
     "liquidity": "Sowda",
     "change1h": "1 sagat üýtgeşiklik",
-    "viewOnDexScreener": "DexScreener-de görmek"
+    "viewOnDexScreener": "DexScreener-de görmek",
+    "listingTitle": "Token listingi ýakynda!",
+    "listingBody": "$DHB entek söwda edilmeýär. Listinge çykan badyna e-poçta alyň.",
+    "notifyMe": "Maňa habar ber",
+    "listingPrivacy": "Muny diňe $DHB listinge çykanda size habar bermek üçin ulanarys.",
+    "listingJoined": "Siz sanawda. $DHB listinge çykan badyna {{email}} salgysyna hat ibereris."
   },
   "linkCard": {
     "inviteRevoked": "Çakylyk ýatyryldy",

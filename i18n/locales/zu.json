@@ -7570,7 +7570,12 @@
     "volume24h": "Umqulu we-24h",
     "liquidity": "Uketshezi",
     "change1h": "Ushintsho lwe-1h",
-    "viewOnDexScreener": "Buka ku-DexScreener"
+    "viewOnDexScreener": "Buka ku-DexScreener",
+    "listingTitle": "Ukufakwa kwethokheni ohlwini kuyeza maduze!",
+    "listingBody": "I-$DHB ayikahwebi okwamanje. Thola i-imeyili ngokushesha uma isifakiwe ohlwini.",
+    "notifyMe": "Ngazise",
+    "listingPrivacy": "Sizoyisebenzisa kuphela ukukwazisa uma i-$DHB isifakiwe ohlwini.",
+    "listingJoined": "Usohlwini. Sizothumela i-imeyili ku-{{email}} ngokushesha uma i-$DHB isifakiwe ohlwini."
   },
   "linkCard": {
     "inviteRevoked": "Isimemo sikhanseliwe",

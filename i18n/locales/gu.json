@@ -7541,7 +7541,12 @@
     "volume24h": "24 કલાકનું વોલ્યુમ",
     "liquidity": "લિક્વિડિટી",
     "change1h": "1 કલાકનો ફેરફાર",
-    "viewOnDexScreener": "DexScreener પર જુઓ"
+    "viewOnDexScreener": "DexScreener પર જુઓ",
+    "listingTitle": "ટોકન લિસ્ટિંગ ટૂંક સમયમાં!",
+    "listingBody": "$DHB હજુ ટ્રેડ થતું નથી. લિસ્ટ થતાં જ ઈમેલ મેળવો.",
+    "notifyMe": "મને જાણ કરો",
+    "listingPrivacy": "અમે આનો ઉપયોગ ફક્ત $DHB લિસ્ટ થાય ત્યારે તમને જાણ કરવા માટે કરીશું.",
+    "listingJoined": "તમે યાદીમાં છો. $DHB લિસ્ટ થતાં જ અમે {{email}} પર ઈમેલ કરીશું."
   },
   "linkCard": {
     "inviteRevoked": "આમંત્રણ રદ કર્યું",

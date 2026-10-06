@@ -7573,7 +7573,12 @@
     "volume24h": "Volum 24h",
     "liquidity": "Lichiditate",
     "change1h": "Schimbare 1h",
-    "viewOnDexScreener": "Vezi pe DexScreener"
+    "viewOnDexScreener": "Vezi pe DexScreener",
+    "listingTitle": "Listarea tokenului în curând!",
+    "listingBody": "$DHB nu se tranzacționează încă. Primește un e-mail imediat ce este listat.",
+    "notifyMe": "Anunță-mă",
+    "listingPrivacy": "Vom folosi asta doar ca să te anunțăm când $DHB este listat.",
+    "listingJoined": "Ești pe listă. Vom scrie la {{email}} imediat ce $DHB este listat."
   },
   "linkCard": {
     "inviteRevoked": "Invitație revocată",

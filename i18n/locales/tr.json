@@ -7589,7 +7589,12 @@
     "volume24h": "24 saatlik Hacim",
     "liquidity": "Likidite",
     "change1h": "1 saatlik Değişim",
-    "viewOnDexScreener": "DexScreener'da Görüntüle"
+    "viewOnDexScreener": "DexScreener'da Görüntüle",
+    "listingTitle": "Token listelemesi yakında!",
+    "listingBody": "$DHB henüz işlem görmüyor. Listelendiği anda e-posta al.",
+    "notifyMe": "Bana haber ver",
+    "listingPrivacy": "Bunu yalnızca $DHB listelendiğinde sana haber vermek için kullanacağız.",
+    "listingJoined": "Listedesin. $DHB listelendiği anda {{email}} adresine e-posta göndereceğiz."
   },
   "linkCard": {
     "inviteRevoked": "Davet geri alındı",

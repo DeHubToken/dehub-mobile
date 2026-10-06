@@ -7499,7 +7499,12 @@
     "change1h": "1h Change",
     "viewOnDexScreener": "Luk am fo DexScreener",
     "noData": "We no see any data for ${{symbol}}",
-    "loadFailed": "We no fit load di token data"
+    "loadFailed": "We no fit load di token data",
+    "listingTitle": "Token listing di come soon!",
+    "listingBody": "$DHB never start for trade. Get email di time wey e list.",
+    "notifyMe": "Tell me",
+    "listingPrivacy": "We go use am only for tell you when $DHB list.",
+    "listingJoined": "You don dey for di list. We go send email for {{email}} di time wey $DHB list."
   },
   "linkCard": {
     "inviteRevoked": "Invite don kansel",

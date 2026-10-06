@@ -7555,7 +7555,12 @@
     "volume24h": "24t volum",
     "liquidity": "Likviditet",
     "change1h": "1t endring",
-    "viewOnDexScreener": "Vis på DexScreener"
+    "viewOnDexScreener": "Vis på DexScreener",
+    "listingTitle": "Token-notering kommer snart!",
+    "listingBody": "$DHB handles ikke ennå. Få en e-post så snart den blir notert.",
+    "notifyMe": "Varsle meg",
+    "listingPrivacy": "Vi bruker dette kun til å si fra når $DHB blir notert.",
+    "listingJoined": "Du står på listen. Vi sender e-post til {{email}} så snart $DHB blir notert."
   },
   "linkCard": {
     "inviteRevoked": "Invitasjon tilbakekalt",

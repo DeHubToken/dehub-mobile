@@ -7727,7 +7727,12 @@
     "volume24h": "২৪ ঘন্টা ভলিউম",
     "liquidity": "তারল্য",
     "change1h": "১ ঘন্টা পরিবর্তন",
-    "viewOnDexScreener": "DexScreener এ দেখুন"
+    "viewOnDexScreener": "DexScreener এ দেখুন",
+    "listingTitle": "টোকেন লিস্টিং তাড়াতাড়ি আইসেছে!",
+    "listingBody": "$DHB এলাও ট্রেড হয় না। লিস্ট হইলেই ইমেইল পাইমেন।",
+    "notifyMe": "মোক জানান",
+    "listingPrivacy": "হামরা এইটা খালি $DHB লিস্ট হইলে তোমাক জানাবার জইন্যে ব্যবহার করমো।",
+    "listingJoined": "তোমরা লিস্টোত আছেন। $DHB লিস্ট হইলেই হামরা {{email}}-ত ইমেইল পাঠামো।"
   },
   "linkCard": {
     "inviteRevoked": "আমন্ত্রণ বাতিল করা হয়েছে",

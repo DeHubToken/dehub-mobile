@@ -7506,7 +7506,12 @@
     "volume24h": "24 घंटे की मात्रा",
     "liquidity": "तरलता",
     "change1h": "1 घंटे का परिवर्तन",
-    "viewOnDexScreener": "DexScreener पर देखें"
+    "viewOnDexScreener": "DexScreener पर देखें",
+    "listingTitle": "टोकनसूचीकरणं शीघ्रम्!",
+    "listingBody": "$DHB इत्यस्य व्यापारः अद्यापि न आरब्धः। सूचीकृते सति एव विद्युत्पत्रं प्राप्नुत।",
+    "notifyMe": "मां सूचयतु",
+    "listingPrivacy": "$DHB सूचीकृते सति भवन्तं सूचयितुम् एव वयम् एतत् उपयोक्ष्यामः।",
+    "listingJoined": "भवान् सूच्यां वर्तते। $DHB सूचीकृते सति एव वयं {{email}} प्रति विद्युत्पत्रं प्रेषयिष्यामः।"
   },
   "linkCard": {
     "inviteRevoked": "आमंत्रण रद्द किया गया",

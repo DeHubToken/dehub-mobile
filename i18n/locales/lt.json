@@ -7558,7 +7558,12 @@
     "volume24h": "24 val. Tūris",
     "liquidity": "Likvidumas",
     "change1h": "1 val. Pokytis",
-    "viewOnDexScreener": "Peržiūrėti „DexScreener“"
+    "viewOnDexScreener": "Peržiūrėti „DexScreener“",
+    "listingTitle": "Žetono listingas jau netrukus!",
+    "listingBody": "$DHB dar neprekiaujama. Gaukite el. laišką, kai tik jis bus įtrauktas į biržą.",
+    "notifyMe": "Pranešti man",
+    "listingPrivacy": "Naudosime tai tik pranešti, kai $DHB bus įtrauktas į biržą.",
+    "listingJoined": "Esate sąraše. Kai tik $DHB bus įtrauktas į biržą, parašysime adresu {{email}}."
   },
   "linkCard": {
     "inviteRevoked": "Kvietimas atšauktas",
