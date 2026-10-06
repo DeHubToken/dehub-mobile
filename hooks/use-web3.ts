@@ -427,7 +427,8 @@ export async function prepareDhbSpend(
     // Wait for it. The AA provider usually waits internally, but the plain-EOA
     // fallback returns at broadcast, and that is the path where the transfer
     // can outrun its own approval.
-    await approval?.wait?.(1);
+    const receipt = await approval?.wait?.(1);
+    if (receipt?.status !== 1) throw new Error(i18n.t('wallet.transactionFailed'));
   }
 
   return owner;

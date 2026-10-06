@@ -253,7 +253,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [amount, setAmount] = useState(isLocked ? String(lockedAmount) : "");
   const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
   const [phase, setPhase] = useState<
-    "idle" | "funding" | "approving" | "sending" | "sent" | "error"
+    "idle" | "funding" | "approving" | "sending" | "pending" | "sent" | "error"
   >("idle");
   // Another token to pay with; it becomes DHB on Base before the tip is sent.
   const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
@@ -263,6 +263,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [recipientPrivate, setRecipientPrivate] = useState(false);
   const [privacyChecking, setPrivacyChecking] = useState(false);
   const sendInFlight = useRef(false);
+  const pendingConfirmation = useRef<{ hash?: string; amount: number; confirm: () => Promise<void> } | null>(null);
 
   useEffect(() => {
     if (!visible || !toAddress) return;
@@ -319,22 +320,23 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     // A locked sheet resets TO its amount, not to empty. This runs on every
     // open, so clearing here would blank the figure the moment the sheet
     // appeared and leave the approve button disabled with nothing to explain it.
-    setAmount(isLocked ? String(lockedAmount) : "");
+    const pending = pendingConfirmation.current;
+    setAmount(pending ? String(pending.amount) : isLocked ? String(lockedAmount) : "");
     setSelectedPreset(null);
-    setPhase("idle");
-    setTipError(null);
+    setPhase(pending ? 'pending' : 'idle');
+    setTipError(pending ? t('staking.pendingSubmitted', { amount: pending.amount.toLocaleString() }) + '\n' + (pending.hash ?? '') : null);
     setLastAmount(null);
-  }, [isLocked, lockedAmount]);
+  }, [isLocked, lockedAmount, t]);
 
   // ── Quick amount press ───────────────────────────────────────────────────
   const handlePresetPress = useCallback((preset: number) => {
-    if (isLocked) return;
+    if (isLocked || pendingConfirmation.current) return;
     setSelectedPreset(preset);
     setAmount(String(preset));
   }, [isLocked]);
 
   const handleInputChange = useCallback((val: string) => {
-    if (isLocked) return;
+    if (isLocked || pendingConfirmation.current) return;
     // Allow decimals for SOL tips; integer-only for DHB.
     const cleaned = isSolanaTip
       ? sanitizeAmountInput(val, 9)
@@ -345,6 +347,18 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
+    // A retry of a submitted tip only reads its receipt, never signs again.
+    if (pendingConfirmation.current) {
+      const pending = pendingConfirmation.current;
+      if (sendInFlight.current) return;
+      sendInFlight.current = true;
+      setPhase('sending');
+      void pending.confirm().catch(() => {
+        setPhase('pending');
+        setTipError(t('staking.pendingSubmitted', { amount: pending.amount.toLocaleString() }) + '\n' + (pending.hash ?? ''));
+      }).finally(() => { sendInFlight.current = false; });
+      return;
+    }
     // The privacy lookup below is awaited before `phase` moves off "idle", so
     // a second tap in that window would send a second tip. Lock synchronously.
     requireAuth(async () => {
@@ -449,7 +463,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             });
           } catch (e) {
             setPhase("error");
-            haptic.error();
+              haptic.error();
             setTipError(fundingErrorText(t as any, e) || t("tip.payFailed", "Could not convert {{symbol}} to DHB", { symbol: payWith.symbol }));
             return;
           }
@@ -478,77 +492,77 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             { context: "send" },
           );
 
-          // res.hash means the transaction was actually submitted — that's
-          // success. .wait() below only polls for the receipt, which some
-          // public RPC tiers (e.g. publicnode's free tier) reject as an
-          // "archive request"; that's an RPC availability problem, not
-          // evidence the tip failed, and reporting it as one after DHB
-          // already moved is what actually broke — the send succeeds, the
-          // user sees "failed", and persistTipRecord below never runs.
-          //
-          // A receipt we never got is not evidence either way, so it stays
-          // "sent". A receipt that arrives SAYING status 0 is evidence: the
-          // transaction reverted and no DHB moved. Under account abstraction
-          // wait() resolves on a reverted transaction rather than throwing —
-          // services/post-quota-payment.ts and hooks/useAiPayment.ts both
-          // guard on exactly this — so without the check below a revert takes
-          // the success path: "sent", a tip_records row for money that never
-          // moved, a decremented balance, and on the TV path a request
-          // resolved as approved against a failed hash.
-          let receipt: any;
-          try {
-            receipt = await res.wait?.(1);
-          } catch (waitErr) {
-            console.warn("[Tip] Receipt wait failed (tip was still sent):", waitErr);
-          }
-          if (receipt && receipt.status !== undefined && receipt.status !== 1) {
-            setPhase("error");
-          haptic.error();
-            setTipError(t("wallet.transactionFailed"));
+          // Only a confirmed receipt can update tip history or the displayed balance.
+          const confirmTip = async () => {
+            let receipt: any;
+            try { receipt = await res.wait?.(1); }
+            catch (error: any) {
+              if (error?.code === 'TRANSACTION_REPLACED' && error.cancelled) {
+                pendingConfirmation.current = null;
+                setPhase('error');
+                setTipError(t('wallet.transactionFailed'));
+                return;
+              }
+              throw error;
+            }
+            if (!receipt) throw new Error('Receipt unavailable');
+            pendingConfirmation.current = null;
+            if (receipt.status !== 1) {
+              setPhase("error");
+            haptic.error();
+              setTipError(t("wallet.transactionFailed"));
+              return;
+            }
+            setPhase("sent");
+            haptic.success();
+            setLastAmount(numericAmount);
+
+            // Record the tip the way web does. Mobile tips never wrote a
+            // tip_records row, which is why they're missing from the earnings
+            // screens; comment tips additionally need the row for their totals.
+            // DHB path only — Solana tips are SOL-denominated and would corrupt
+            // the DHB sums this table feeds.
+            const txHash: string =
+              receipt?.transactionHash || res.hash || "";
+            if (txHash && account) {
+              void persistTipRecord({
+                senderAddress: account,
+                receiverAddress: toAddress,
+                amount: numericAmount,
+                chainId,
+                txHash,
+                tokenId,
+                commentId: commentId ?? null,
+              });
+            }
+
+            // Optimistic balance patch
+            try {
+              await patchUser((prev) => ({
+                tokenBalances: {
+                  ...(prev.tokenBalances || {}),
+                  DHB: Math.max(
+                    0,
+                    Number((prev.tokenBalances || {}).DHB || 0) - numericAmount,
+                  ),
+                },
+              } as any));
+            } catch {}
+
+            if (commentId != null) emitPostTipped(commentTipKey(commentId));
+            else if (tokenId) emitPostTipped(tokenId);
+            onSuccess?.(numericAmount, txHash || undefined);
+            setAmount("");
+            setSelectedPreset(null);
+          };
+          pendingConfirmation.current = { hash: res.hash, amount: numericAmount, confirm: confirmTip };
+          await confirmTip();
+        } catch (e) {
+          if (pendingConfirmation.current) {
+            setPhase('pending');
+            setTipError(t('staking.pendingSubmitted', { amount: numericAmount.toLocaleString() }) + '\n' + (pendingConfirmation.current.hash ?? ''));
             return;
           }
-          setPhase("sent");
-          haptic.success();
-          setLastAmount(numericAmount);
-
-          // Record the tip the way web does. Mobile tips never wrote a
-          // tip_records row, which is why they're missing from the earnings
-          // screens; comment tips additionally need the row for their totals.
-          // DHB path only — Solana tips are SOL-denominated and would corrupt
-          // the DHB sums this table feeds.
-          const txHash: string =
-            (res as any)?.hash || receipt?.transactionHash || "";
-          if (txHash && account) {
-            void persistTipRecord({
-              senderAddress: account,
-              receiverAddress: toAddress,
-              amount: numericAmount,
-              chainId,
-              txHash,
-              tokenId,
-              commentId: commentId ?? null,
-            });
-          }
-
-          // Optimistic balance patch
-          try {
-            await patchUser((prev) => ({
-              tokenBalances: {
-                ...(prev.tokenBalances || {}),
-                DHB: Math.max(
-                  0,
-                  Number((prev.tokenBalances || {}).DHB || 0) - numericAmount,
-                ),
-              },
-            } as any));
-          } catch {}
-
-          if (commentId != null) emitPostTipped(commentTipKey(commentId));
-          else if (tokenId) emitPostTipped(tokenId);
-          onSuccess?.(numericAmount, txHash || undefined);
-          setAmount("");
-          setSelectedPreset(null);
-        } catch (e) {
           setPhase("error");
           haptic.error();
           setTipError(parseTxError(e, "send"));
@@ -810,6 +824,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                             ? t("tip.approving", "Approving...")
                             : phase === "sending"
                               ? t("tip.sending", "Sending...")
+                              : phase === "pending"
+                                ? t('toasts.confirming_transaction')
                               : phase === "error"
                                 ? t("common.retry", "Retry")
                                 : t("tip.send", "Send")}
