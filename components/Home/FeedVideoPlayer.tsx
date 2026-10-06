@@ -1334,7 +1334,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           {/* The video tap target is a sibling behind the controls. Nesting the
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
-          <Pressable {...mediaTap} style={StyleSheet.absoluteFill} />
+          <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
           {(
             <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
             {/* The pause button is the size of its glyph and lives above the
@@ -1460,15 +1460,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               onCancel={handleScrubCancel}
             >
                 <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
-                  <VideoScrubButton
-                    onPress={() => handleVideoPress()}
-                    hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}
-                    style={styles.bareButton}
-                  >
-                    <BareIcon name={isPlaying ? "Pause" : "Play"} />
-                  </VideoScrubButton>
                   <View pointerEvents="none">
                     <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
                   </View>
@@ -2034,6 +2025,7 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  */
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
+    const { t } = useTranslation();
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal: minimalTheme } = useAppTheme();
     const bleed = useFeedBleed();
@@ -2042,7 +2034,6 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const windowSize = useWindowDimensions();
     const cropFeedVideo = !postPage && windowSize.width < 768;
     const cropMedia = !postPage && (cropFeedVideo || !!bleed);
-    const bareControls = true;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -2074,27 +2065,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </View>
         )}
         {!hideControls && (
-          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]}>
-            {bareControls ? (
-              <View style={styles.bareBottom} pointerEvents="none">
-                <View style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
-                  <View style={styles.bareButton}>
-                    <BareIcon name="Play" />
-                  </View>
-                </View>
-              </View>
-            ) : (
-              <>
-                <MediaShade color={PLAY_SHADE} />
-                <View style={styles.glassPlayButton}>
-                  <View style={styles.glassOverlay} />
-                  <View style={{ marginLeft: 2 }}>
-                    <Icon name="Play" size={24} color="#fff" />
-                  </View>
-                </View>
-              </>
-            )}
-          </Pressable>
+          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")} />
         )}
         {postPage && !hideControls && duration ? (
           <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
