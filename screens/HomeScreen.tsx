@@ -509,11 +509,12 @@ export default function HomeScreen() {
 
   // Under the island nothing is reserved for the capsule: the home feed
   // starts at the top of the screen and its first row makes room under the
-  // capsule itself (firstRowInset). The grids keep a plain inset so their
-  // first row of tiles is not hidden. The tab pill, when open, hangs over the
+  // capsule itself (firstRowInset). Media grids start behind the capsule like
+  // the video feed. The tab pill, when open, hangs over the
   // feed rather than pushing it down, and the capsule slides away and back
   // with the same scroll signal the old header used.
   const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
+  const mediaGridInset = island ? 0 : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed;
@@ -778,7 +779,7 @@ export default function HomeScreen() {
           gridRef={imageGridRef}
           params={feedParams}
           pageSize={20}
-          headerInset={feedInset}
+          headerInset={mediaGridInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -826,7 +827,7 @@ export default function HomeScreen() {
           active={isPlaybackActive}
           params={feedParams}
           pageSize={20}
-          headerInset={feedInset}
+          headerInset={mediaGridInset}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
