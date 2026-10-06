@@ -27,7 +27,7 @@ const GlassIndicator: React.FC<GlassIndicatorProps> = ({
   borderRadius = 12,
   blurIntensity,
 }) => {
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   // Minimal has no glass: no blur, gradient or highlight lines, just the one
   // flat outline that marks the selection.
   if (isMinimal) {
@@ -35,6 +35,14 @@ const GlassIndicator: React.FC<GlassIndicatorProps> = ({
       <View
         style={[StyleSheet.absoluteFill, styles.minimalOutline]}
         pointerEvents="none"
+      />
+    );
+  }
+  if (skin) {
+    return (
+      <View
+        pointerEvents="none"
+        style={[StyleSheet.absoluteFill, skin.centre, { borderRadius: skin.square ? 0 : borderRadius }]}
       />
     );
   }

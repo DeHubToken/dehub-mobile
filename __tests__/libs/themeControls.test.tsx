@@ -1,5 +1,6 @@
 const { createElement } = jest.requireActual('react') as typeof import('react');
 import { getThemeSkin } from '../../theme/skins';
+import { themeAccent, tintSkin } from '../../theme/themeColor';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setControlMaterial, controlProps } = require('../../libs/jsx/controls');
 
@@ -20,6 +21,14 @@ it('keeps existing theme cards and selected navigation surfaces intact', () => {
       children: createElement('Text', { style: { color: skin.tabIcon } }, 'Menu') };
     expect(controlProps(props)).toBe(props);
   }
+});
+
+it('keeps tinted cards and their muted metadata intact when buttons share the material', () => {
+  const skin = tintSkin(getThemeSkin('island')!, themeAccent('island', {}, []));
+  setControlMaterial({ surface: skin.centre, foreground: skin.centreIcon, ownedSurfaces: [skin.card] });
+  const props = { onPress: jest.fn(), style: [skin.card, { borderRadius: 12 }],
+    children: createElement('Text', { style: { color: '#A1A1AA' } }, 'Updated yesterday') };
+  expect(controlProps(props)).toBe(props);
 });
 
 it('themes inline neutral actions and their dark labels without changing the action', () => {

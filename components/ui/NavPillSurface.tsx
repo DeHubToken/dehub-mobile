@@ -5,6 +5,7 @@ import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
 import HudBrackets from "../theme/HudBrackets";
 import IosGlassPill from "./IosGlassPill";
+import ChromeSurface from "./ChromeSurface";
 
 export const NAV_PILL_RADIUS = 16;
 export const NAV_PILL_SHADOW = Platform.select({
@@ -22,7 +23,9 @@ export default function NavPillSurface() {
   const radius = Number(skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS);
   return (
     <>
-      {iosGlass ? (
+      {iosGlass && skin ? (
+        <ChromeSurface radius={radius} />
+      ) : iosGlass ? (
         <IosGlassPill
           tint={glassTint(String(skin?.barFill.backgroundColor ?? styles.fill.backgroundColor), 0.22)}
           borderRadius={radius}
@@ -37,7 +40,7 @@ export default function NavPillSurface() {
           { borderRadius: radius },
         ]} />
       )}
-      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
+      {skin?.grain && !iosGlass ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
       <View pointerEvents="none" style={[
         styles.border,
         isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },

@@ -14,6 +14,7 @@ jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => mockTheme })
 jest.mock('../../theme/colors', () => ({ MINIMAL_HAIRLINE: 'rgba(255,255,255,0.22)' }));
 jest.mock('../../theme/skins', () => ({ GRAIN: 1, glassTint: (colour: string, alpha: number) => `${colour}:${alpha}` }));
 jest.mock('../../components/ui/IosGlassPill', () => (props: any) => require('react').createElement('IosGlassPill', props));
+jest.mock('../../components/ui/ChromeSurface', () => (props: any) => require('react').createElement('ChromeSurface', props));
 jest.mock('../../components/theme/HudBrackets', () => (props: any) => require('react').createElement('HudBrackets', props));
 
 let tree: ReactTestRenderer;
@@ -36,6 +37,15 @@ it('iOS retains the bottom navigation liquid glass tint and radius', () => {
   (Platform as any).OS = 'ios';
   act(() => { tree = create(<NavPillSurface />); });
   expect(tree.root.findByType('IosGlassPill' as any).props).toMatchObject({ tint: '#18181B:0.22', borderRadius: NAV_PILL_RADIUS });
+});
+
+it('iOS canvas navigation uses themed chrome without stacking System glass or grain', () => {
+  (Platform as any).OS = 'ios';
+  mockTheme.skin = { barBorder: { borderRadius: 11 }, grain: true };
+  act(() => { tree = create(<NavPillSurface />); });
+  expect(tree.root.findByType('ChromeSurface' as any).props.radius).toBe(11);
+  expect(tree.root.findAllByType('IosGlassPill' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('Image' as any)).toHaveLength(0);
 });
 
 it.each(['isLight', 'isMinimal'])('iOS keeps %s solid', (mode) => {
