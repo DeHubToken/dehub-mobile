@@ -75,6 +75,7 @@ function decodeRevertReason(text: string): string {
 }
 
 export function parseTxError(err: any, context: TxContext): string {
+  if (err?.code === 'TRANSACTION_CONFIRMATION_PENDING') return err.message;
   if (!err)
     return context === "approve" ? "Approval failed" : "Transaction failed";
   const code = err.code || err.error?.code;
