@@ -353,7 +353,7 @@ export default function CommandCentreScreen() {
   ];
 
   return (
-    <View style={styles.root}>
+    <View className="bg-theme-background" style={styles.root}>
       <ScreenHeader
         title={t("commandCentre.title")}
         subtitle={t("commandCentre.mobileSubtitle")}
@@ -530,7 +530,7 @@ export default function CommandCentreScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#010305" },
+  root: { flex: 1 },
 
   dim: { color: "#A1A1AA", fontSize: 12 },
 
