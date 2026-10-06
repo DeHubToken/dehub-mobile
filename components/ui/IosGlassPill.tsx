@@ -13,8 +13,8 @@ type Props = {
  * iOS liquid glass for the floating pills: the system's ultra-thin material
  * (the same backdrop iOS draws under its own tab bars), a thin theme wash, a
  * specular sheen across the top half and a bright rim. A dark blur under a
- * heavy tint read as a smoked slab rather than glass. iOS only; Android has
- * no safe backdrop blur and keeps its solid pills.
+ * heavy tint read as a smoked slab rather than glass. FrostedPill supplies
+ * the separately targeted Android material.
  */
 export default function IosGlassPill({ tint, borderRadius }: Props) {
   return (

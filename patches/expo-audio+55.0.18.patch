@@ -1,0 +1,28 @@
+diff --git a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
+--- a/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
++++ b/node_modules/expo-audio/android/src/main/java/expo/modules/audio/service/AudioControlsService.kt
+@@ -416,6 +416,24 @@
+     notificationManager.cancel(notificationId)
+   }
+ 
++  override fun onTaskRemoved(rootIntent: Intent?) {
++    val player = currentPlayer?.ref
++    val context = appContext
++    if (context != null) {
++      context.mainQueue.launch {
++        player?.pause()
++        player?.stop()
++        player?.clearMediaItems()
++        hideNotification()
++        clearSessionInternal()
++        stopSelf()
++      }
++    } else {
++      stopForeground(STOP_FOREGROUND_REMOVE)
++      stopSelf()
++    }
++  }
++
+   override fun onDestroy() {
+     super.onDestroy()
+ 

@@ -19,7 +19,10 @@ jest.mock('../../context/ThemeContext', () => ({
   },
 }));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'TouchableOpacity', Platform: { OS: 'android' },
+  View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'TouchableOpacity',
+  // ChromeSurface now reaches @react-navigation/native through FrostedBackdrop,
+  // whose theme fonts call Platform.select while the module loads.
+  Platform: { OS: 'android', select: (spec: Record<string, unknown>) => spec.android ?? spec.native ?? spec.default },
   StyleSheet: { create: (styles: unknown) => styles, absoluteFill: { position: 'absolute' } },
 }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));

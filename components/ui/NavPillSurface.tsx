@@ -4,8 +4,8 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
 import HudBrackets from "../theme/HudBrackets";
-import IosGlassPill from "./IosGlassPill";
 import ChromeSurface from "./ChromeSurface";
+import FrostedPill from "./FrostedPill";
 
 export const NAV_PILL_RADIUS = 16;
 export const NAV_PILL_SHADOW = Platform.select({
@@ -13,20 +13,20 @@ export const NAV_PILL_SHADOW = Platform.select({
   default: {},
 });
 
-/** The bottom navigation's material, shared by the home header pill.
- * iOS keeps its liquid glass; Android keeps the same solid theme fill and rim. */
+/** The navigation material shared by the bottom bar and home header pill. */
 export default function NavPillSurface() {
   const { colors, isLight, isMinimal, skin } = useAppTheme();
-  const iosGlass = Platform.OS === "ios" && !isLight && !isMinimal;
+  const glass = !isLight && !isMinimal;
+  const iosThemed = glass && Platform.OS === "ios" && !!skin;
   // Every painted layer must share the rim's shape. The capsule leaves its
   // controls unclipped, so a square fill otherwise shows behind rounded corners.
   const radius = Number(skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS);
   return (
     <>
-      {iosGlass && skin ? (
+      {iosThemed ? (
         <ChromeSurface radius={radius} />
-      ) : iosGlass ? (
-        <IosGlassPill
+      ) : glass ? (
+        <FrostedPill
           tint={glassTint(String(skin?.barFill.backgroundColor ?? styles.fill.backgroundColor), 0.22)}
           borderRadius={radius}
         />
@@ -40,7 +40,7 @@ export default function NavPillSurface() {
           { borderRadius: radius },
         ]} />
       )}
-      {skin?.grain && !iosGlass ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
+      {skin?.grain && !iosThemed ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
       <View pointerEvents="none" style={[
         styles.border,
         isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },

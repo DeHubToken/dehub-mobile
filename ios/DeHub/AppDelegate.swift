@@ -1,9 +1,9 @@
-import Expo
+internal import Expo
 import React
 import ReactAppDependencyProvider
 
-@UIApplicationMain
-public class AppDelegate: ExpoAppDelegate {
+@main
+class AppDelegate: ExpoAppDelegate {
   var window: UIWindow?
 
   var reactNativeDelegate: ExpoReactNativeFactoryDelegate?
@@ -19,7 +19,6 @@ public class AppDelegate: ExpoAppDelegate {
 
     reactNativeDelegate = delegate
     reactNativeFactory = factory
-    bindReactNativeFactory(factory)
 
     // Camera looks have to exist in ProcessorProvider before the broadcaster
     // ever names one — react-native-webrtc resolves them by name at capture

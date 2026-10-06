@@ -16,7 +16,7 @@ import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
-import IosGlassPill from "../ui/IosGlassPill";
+import FrostedPill from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
 
 interface NavItem {
@@ -252,21 +252,17 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
           {skin ? (
-            // A canvas theme's strip (theme/skins.ts). Android paints the
-            // theme's surface solid; iOS lays a thin tint of it over a native
-            // blur, so posts blur through like the web's liquid glass.
+            // Keep the theme's existing outline and texture over shared frost.
             <>
-              {Platform.OS === "ios" ? (
-                <IosGlassPill
+                <FrostedPill
                   tint={glassTint(String(skin.strip.backgroundColor), 0.22)}
                   borderRadius={Number(skin.strip.borderRadius ?? 0)}
                 />
-              ) : null}
               <View
                 style={[
                   StyleSheet.absoluteFill,
                   skin.strip,
-                  Platform.OS === "ios" ? { backgroundColor: "transparent" } : null,
+                  { backgroundColor: "transparent" },
                 ]}
                 pointerEvents="none"
               />
@@ -276,18 +272,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             </>
           ) : (
             <>
-              {/* Android's experimental blur (dimezisBlurView) crashes with
-                  IndexOutOfBoundsException when list views mutate during its
-                  pre-draw snapshot — real blur is iOS-only, Android gets a
-                  translucent glass-tinted fallback. */}
-              {Platform.OS === "ios" ? (
-                <IosGlassPill tint="rgba(20, 20, 24, 0.18)" borderRadius={NAV_PILL_RADIUS} />
-              ) : (
-                <>
-                  <View style={styles.androidBlurFallback} />
-                  <View style={styles.glassOverlay} pointerEvents="none" />
-                </>
-              )}
+              <FrostedPill tint="rgba(20, 20, 24, 0.18)" borderRadius={NAV_PILL_RADIUS} />
             </>
           )}
 
