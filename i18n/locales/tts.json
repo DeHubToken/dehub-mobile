@@ -7552,7 +7552,12 @@
     "volume24h": "ปริมาณ 24 ชม.",
     "liquidity": "สภาพคล่อง",
     "change1h": "การเปลี่ยนแปลง 1 ชม.",
-    "viewOnDexScreener": "ดูบน DexScreener"
+    "viewOnDexScreener": "ดูบน DexScreener",
+    "listingTitle": "โทเคนใกล้สิลิสต์แล้วเด้อ!",
+    "listingBody": "$DHB ยังบ่ทันเปิดซื้อขาย รับอีเมลโลดตอนมันลิสต์",
+    "notifyMe": "บอกข้อยแหน่",
+    "listingPrivacy": "เฮาสิใช้อันนี้บอกเจ้าตอน $DHB ลิสต์เท่านั้น",
+    "listingJoined": "เจ้าอยู่ในรายชื่อแล้ว เฮาสิส่งอีเมลไปหา {{email}} โลดตอน $DHB ลิสต์"
   },
   "linkCard": {
     "inviteRevoked": "คำเชิญถูกเพิกถอน",

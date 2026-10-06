@@ -7583,7 +7583,12 @@
     "volume24h": "24 घंटे की मात्रा",
     "liquidity": "तरलता",
     "change1h": "1 घंटे का परिवर्तन",
-    "viewOnDexScreener": "DexScreener पर देखें"
+    "viewOnDexScreener": "DexScreener पर देखें",
+    "listingTitle": "टोकन लिस्टिंग जल्दी आवत हे!",
+    "listingBody": "$DHB के ट्रेडिंग अभी चालू नइ होए हे। लिस्ट होतेच ईमेल पाव।",
+    "notifyMe": "मोला बताहू",
+    "listingPrivacy": "हमन एला सिरिफ $DHB लिस्ट होए म तुमन ला बताए बर बउरबो।",
+    "listingJoined": "तुमन लिस्ट म हव। $DHB लिस्ट होतेच हमन {{email}} म ईमेल भेजबो।"
   },
   "linkCard": {
     "inviteRevoked": "आमंत्रण रद्द कर दिया गया",

@@ -7561,7 +7561,12 @@
     "volume24h": "24 órás forgalom",
     "liquidity": "Likviditás",
     "change1h": "1 órás változás",
-    "viewOnDexScreener": "Megtekintés a DexScreeneren"
+    "viewOnDexScreener": "Megtekintés a DexScreeneren",
+    "listingTitle": "Hamarosan jön a token tőzsdei bevezetése!",
+    "listingBody": "A $DHB-vel még nem lehet kereskedni. Kapj e-mailt, amint bevezetik.",
+    "notifyMe": "Értesíts",
+    "listingPrivacy": "Csak arra használjuk, hogy szóljunk, amikor a $DHB-t bevezetik.",
+    "listingJoined": "Rajta vagy a listán. Írunk a(z) {{email}} címre, amint a $DHB-t bevezetik."
   },
   "linkCard": {
     "inviteRevoked": "Meghívó visszavonva",

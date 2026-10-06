@@ -7558,7 +7558,12 @@
     "volume24h": "24h volyymi",
     "liquidity": "Likviditeetti",
     "change1h": "1h muutos",
-    "viewOnDexScreener": "Katso DexScreenerissä"
+    "viewOnDexScreener": "Katso DexScreenerissä",
+    "listingTitle": "Tokenin listaus tulossa pian!",
+    "listingBody": "$DHB:llä ei vielä käydä kauppaa. Saat sähköpostin heti, kun se listataan.",
+    "notifyMe": "Ilmoita minulle",
+    "listingPrivacy": "Käytämme tätä vain kertoaksemme, kun $DHB listataan.",
+    "listingJoined": "Olet listalla. Lähetämme viestin osoitteeseen {{email}} heti, kun $DHB listataan."
   },
   "linkCard": {
     "inviteRevoked": "Kutsu peruutettu",

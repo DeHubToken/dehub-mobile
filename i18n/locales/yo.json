@@ -7536,7 +7536,12 @@
     "volume24h": "Ìwọ̀n 24h",
     "liquidity": "Ìwọ̀n omi",
     "change1h": "Ìyípadà 1h",
-    "viewOnDexScreener": "Wo lori DexScreener"
+    "viewOnDexScreener": "Wo lori DexScreener",
+    "listingTitle": "Àkọsílẹ̀ token ń bọ̀ láìpẹ́!",
+    "listingBody": "A kò tíì máa ṣòwò $DHB. Gba ímeèlì ní kété tí a bá kọ ọ́ sílẹ̀.",
+    "notifyMe": "Fi tó mi létí",
+    "listingPrivacy": "A ó lò ó nìkan láti sọ fún ọ nígbà tí a bá kọ $DHB sílẹ̀.",
+    "listingJoined": "O wà nínú àkójọ. A ó fi ímeèlì ránṣẹ́ sí {{email}} ní kété tí a bá kọ $DHB sílẹ̀."
   },
   "linkCard": {
     "inviteRevoked": "Ìpín tí a fagihàn",

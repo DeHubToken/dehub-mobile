@@ -7535,7 +7535,12 @@
     "volume24h": "Mugga 24h",
     "liquidity": "Dhaqaale",
     "change1h": "Isbeddelka 1h",
-    "viewOnDexScreener": "Ku arag DexScreener"
+    "viewOnDexScreener": "Ku arag DexScreener",
+    "listingTitle": "Liiska token-ka dhawaan!",
+    "listingBody": "$DHB weli lagama ganacsado. Hel iimayl isla marka la liis-gareeyo.",
+    "notifyMe": "I ogeysii",
+    "listingPrivacy": "Waxaan u isticmaali doonnaa oo keliya inaan kuu sheegno marka $DHB la liis-gareeyo.",
+    "listingJoined": "Waxaad ku jirtaa liiska. Waxaan iimayl u diri doonnaa {{email}} isla marka $DHB la liis-gareeyo."
   },
   "linkCard": {
     "inviteRevoked": "Cidhibta la joojiyay",

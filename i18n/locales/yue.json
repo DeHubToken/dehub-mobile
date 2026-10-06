@@ -7546,7 +7546,12 @@
     "volume24h": "24小時交易量",
     "liquidity": "流動性",
     "change1h": "1小時變動",
-    "viewOnDexScreener": "在 DexScreener 上查看"
+    "viewOnDexScreener": "在 DexScreener 上查看",
+    "listingTitle": "代幣即將上市！",
+    "listingBody": "$DHB 仲未開始交易。一上市就會收到電郵。",
+    "notifyMe": "通知我",
+    "listingPrivacy": "我哋只會用嚟喺 $DHB 上市時通知你。",
+    "listingJoined": "你已經喺名單上。$DHB 一上市我哋就會電郵去 {{email}}。"
   },
   "linkCard": {
     "inviteRevoked": "邀請已撤銷",

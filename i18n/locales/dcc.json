@@ -7520,7 +7520,12 @@
     "volume24h": "24h حجم",
     "liquidity": "لیکویڈیٹی",
     "change1h": "1h تبدیلی",
-    "viewOnDexScreener": "DexScreener پر دیکھیں"
+    "viewOnDexScreener": "DexScreener پر دیکھیں",
+    "listingTitle": "ٹوکن لسٹنگ جلد آ رئی ہے!",
+    "listingBody": "$DHB ابھی ٹریڈ نکو ہو رہا۔ لسٹ ہوتے ہی ای میل پاؤ۔",
+    "notifyMe": "مجھے بتاؤ",
+    "listingPrivacy": "ہم اس کو صرف $DHB لسٹ ہونے پو تمے بتانے کے واسطے استعمال کرتے۔",
+    "listingJoined": "تم لسٹ میں ہیں۔ $DHB لسٹ ہوتے ہی ہم {{email}} پو ای میل بھیجتے۔"
   },
   "linkCard": {
     "inviteRevoked": "دعوت منسوخ کر دی گئی",

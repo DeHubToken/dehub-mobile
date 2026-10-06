@@ -7559,7 +7559,12 @@
     "volume24h": "Volum 24h",
     "liquidity": "Liquiditat",
     "change1h": "Canvi 1h",
-    "viewOnDexScreener": "Veure a DexScreener"
+    "viewOnDexScreener": "Veure a DexScreener",
+    "listingTitle": "El token es llistarà aviat!",
+    "listingBody": "$DHB encara no cotitza. Rep un correu electrònic tan bon punt es llisti.",
+    "notifyMe": "Avisa'm",
+    "listingPrivacy": "Només ho farem servir per avisar-te quan $DHB es llisti.",
+    "listingJoined": "Ja ets a la llista. Enviarem un correu a {{email}} tan bon punt $DHB es llisti."
   },
   "linkCard": {
     "inviteRevoked": "Invitació revocada",

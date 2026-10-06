@@ -7676,7 +7676,12 @@
     "volume24h": "Khối lượng 24 giờ",
     "liquidity": "Thanh khoản",
     "change1h": "Thay đổi 1 giờ",
-    "viewOnDexScreener": "Xem trên DexScreener"
+    "viewOnDexScreener": "Xem trên DexScreener",
+    "listingTitle": "Token sắp được niêm yết!",
+    "listingBody": "$DHB chưa được giao dịch. Nhận email ngay khi được niêm yết.",
+    "notifyMe": "Thông báo cho tôi",
+    "listingPrivacy": "Chúng tôi chỉ dùng thông tin này để báo cho bạn khi $DHB được niêm yết.",
+    "listingJoined": "Bạn đã có tên trong danh sách. Chúng tôi sẽ gửi email đến {{email}} ngay khi $DHB được niêm yết."
   },
   "linkCard": {
     "inviteRevoked": "Lời mời đã bị thu hồi",

@@ -7568,7 +7568,12 @@
     "volume24h": "Όγκος 24 ωρών",
     "liquidity": "Ρευστότητα",
     "change1h": "Αλλαγή 1 ώρας",
-    "viewOnDexScreener": "Προβολή στο DexScreener"
+    "viewOnDexScreener": "Προβολή στο DexScreener",
+    "listingTitle": "Η καταχώριση του token έρχεται σύντομα!",
+    "listingBody": "Το $DHB δεν διαπραγματεύεται ακόμα. Λάβετε email μόλις καταχωριστεί.",
+    "notifyMe": "Ειδοποίησέ με",
+    "listingPrivacy": "Θα το χρησιμοποιήσουμε μόνο για να σας ενημερώσουμε όταν καταχωριστεί το $DHB.",
+    "listingJoined": "Είστε στη λίστα. Θα στείλουμε email στο {{email}} μόλις καταχωριστεί το $DHB."
   },
   "linkCard": {
     "inviteRevoked": "Η πρόσκληση ανακλήθηκε",

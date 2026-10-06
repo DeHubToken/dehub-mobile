@@ -7613,7 +7613,12 @@
     "volume24h": "24 soatlik savdo hajmi",
     "liquidity": "Likvidlik",
     "change1h": "1 soatlik o'zgarish",
-    "viewOnDexScreener": "DexScreener'da ko'rish"
+    "viewOnDexScreener": "DexScreener'da ko'rish",
+    "listingTitle": "Token listingi tez kunda!",
+    "listingBody": "$DHB hali savdoga chiqmagan. Listingga chiqishi bilan email oling.",
+    "notifyMe": "Menga xabar bering",
+    "listingPrivacy": "Bundan faqat $DHB listingga chiqqanda sizga xabar berish uchun foydalanamiz.",
+    "listingJoined": "Siz roʻyxatdasiz. $DHB listingga chiqishi bilan {{email}} manziliga xat yuboramiz."
   },
   "linkCard": {
     "inviteRevoked": "Taklif bekor qilindi",

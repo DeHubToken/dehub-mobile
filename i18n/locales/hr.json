@@ -7559,7 +7559,12 @@
     "volume24h": "24-satni volumen",
     "liquidity": "Likvidnost",
     "change1h": "1-satna promjena",
-    "viewOnDexScreener": "Prikaži na DexScreeneru"
+    "viewOnDexScreener": "Prikaži na DexScreeneru",
+    "listingTitle": "Uvrštavanje tokena uskoro!",
+    "listingBody": "$DHB se još ne trguje. Primite e-poruku čim bude uvršten.",
+    "notifyMe": "Obavijesti me",
+    "listingPrivacy": "Koristit ćemo ovo samo da vas obavijestimo kada $DHB bude uvršten.",
+    "listingJoined": "Na popisu ste. Poslat ćemo e-poruku na {{email}} čim $DHB bude uvršten."
   },
   "linkCard": {
     "inviteRevoked": "Pozivnica je opozvana",

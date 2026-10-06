@@ -7581,7 +7581,12 @@
     "volume24h": "24h Volumen",
     "liquidity": "Liquidität",
     "change1h": "1h Veränderung",
-    "viewOnDexScreener": "Auf DexScreener anzeigen"
+    "viewOnDexScreener": "Auf DexScreener anzeigen",
+    "listingTitle": "Token-Listing chunnt bald!",
+    "listingBody": "$DHB wird no nöd ghandlet. Überchum e E-Mail, sobald es glistet isch.",
+    "notifyMe": "Säg mer Bscheid",
+    "listingPrivacy": "Mir bruuched das nur, zum dir Bscheid gäh, wenn $DHB glistet wird.",
+    "listingJoined": "Du bisch uf de Lischte. Mir schriibed a {{email}}, sobald $DHB glistet isch."
   },
   "linkCard": {
     "inviteRevoked": "Einladung widerrufen",

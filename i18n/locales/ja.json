@@ -7571,7 +7571,12 @@
     "volume24h": "24時間出来高",
     "liquidity": "流動性",
     "change1h": "1時間変化",
-    "viewOnDexScreener": "DexScreenerで表示"
+    "viewOnDexScreener": "DexScreenerで表示",
+    "listingTitle": "トークン上場はもうすぐ！",
+    "listingBody": "$DHBはまだ取引されていません。上場したらすぐにメールでお知らせします。",
+    "notifyMe": "通知を受け取る",
+    "listingPrivacy": "$DHBの上場をお知らせする目的にのみ使用します。",
+    "listingJoined": "リストに登録されました。$DHBが上場したらすぐに{{email}}へメールします。"
   },
   "linkCard": {
     "inviteRevoked": "招待が無効になりました",

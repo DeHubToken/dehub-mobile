@@ -7558,7 +7558,12 @@
     "volume24h": "24h apjoms",
     "liquidity": "Likviditāte",
     "change1h": "1h izmaiņas",
-    "viewOnDexScreener": "Skatīt vietnē DexScreener"
+    "viewOnDexScreener": "Skatīt vietnē DexScreener",
+    "listingTitle": "Tokena listings drīzumā!",
+    "listingBody": "$DHB vēl netiek tirgots. Saņem e-pastu, tiklīdz tas tiks iekļauts biržā.",
+    "notifyMe": "Paziņot man",
+    "listingPrivacy": "Mēs to izmantosim tikai, lai paziņotu, kad $DHB tiks iekļauts biržā.",
+    "listingJoined": "Tu esi sarakstā. Tiklīdz $DHB tiks iekļauts biržā, mēs rakstīsim uz {{email}}."
   },
   "linkCard": {
     "inviteRevoked": "Uzaicinājums atcelts",

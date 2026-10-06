@@ -8,6 +8,8 @@ import {
   Linking,
   StyleSheet,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
 import Animated, {
@@ -28,6 +30,8 @@ import {
   type DexPair,
   type OhlcvCandle,
 } from "../../services/dexscreener.service";
+import { isDhbListingSymbol } from "../../libs/dhb-listing";
+import { DhbListingSoon } from "./DhbListingSoon";
 
 const SHEET_HEIGHT = 520;
 
@@ -129,9 +133,12 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
   const [error, setError] = useState<string | null>(null);
 
   const clean = symbol.replace(/^\$/, "").toUpperCase();
+  // $DHB is not trading yet: there is no market to look up, so the sheet shows
+  // the listing-soon signup instead of "No data found".
+  const isDhb = isDhbListingSymbol(clean);
 
   const load = useCallback(async () => {
-    if (!clean) return;
+    if (!clean || isDhb) return;
     setLoading(true);
     setError(null);
     setPair(null);
@@ -147,7 +154,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
     } finally {
       setLoading(false);
     }
-  }, [clean, t]);
+  }, [clean, isDhb, t]);
 
   useEffect(() => {
     if (visible) {
@@ -197,96 +204,104 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
         </Animated.View>
 
-        <Animated.View style={[styles.sheet, { paddingBottom: Math.max(insets.bottom, 16) }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, styles.sheetBg]} />
+        {/* Lifts the sheet over the keyboard for the $DHB email field. */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.keyboardAvoider}
+          pointerEvents="box-none"
+        >
+          <Animated.View style={[styles.sheet, { paddingBottom: Math.max(insets.bottom, 16) }, sheetStyle]}>
+            <View style={[StyleSheet.absoluteFill, styles.sheetBg]} />
 
-          {/* Drag handle */}
-          <GestureDetector gesture={pan}>
-            <Animated.View style={styles.handleWrap}>
-              <View style={styles.handle} />
-            </Animated.View>
-          </GestureDetector>
+            {/* Drag handle */}
+            <GestureDetector gesture={pan}>
+              <Animated.View style={styles.handleWrap}>
+                <View style={styles.handle} />
+              </Animated.View>
+            </GestureDetector>
 
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.symbol}>${clean}</Text>
-            <TouchableOpacity onPress={closeSheet} hitSlop={8}>
-              <Icon name="X" size={20} color="#8B8D90" />
-            </TouchableOpacity>
-          </View>
-
-          {loading ? (
-            <View style={styles.center}>
-              <DeHubLoader size={56} />
-              <Text style={styles.loadingText}>{t("cashtag.fetching")}</Text>
-            </View>
-          ) : error ? (
-            <View style={styles.center}>
-              <Icon name="CircleAlert" size={40} color="#4B5563" />
-              <Text style={styles.errorText}>{error}</Text>
-              <TouchableOpacity onPress={load} style={styles.retryBtn}>
-                <Text style={styles.retryText}>{t("common.retry")}</Text>
+            {/* Header */}
+            <View style={styles.header}>
+              <Text style={styles.symbol}>${clean}</Text>
+              <TouchableOpacity onPress={closeSheet} hitSlop={8}>
+                <Icon name="X" size={20} color="#8B8D90" />
               </TouchableOpacity>
             </View>
-          ) : pair ? (
-            // Scrolls so the DexScreener link stays reachable when the nav bar
-            // or a large system font eats into the fixed sheet height.
-            <ScrollView style={styles.content} contentContainerStyle={styles.contentInner} bounces={false}>
-              {/* Price row */}
-              <View style={styles.priceRow}>
-                <Text style={styles.price}>{formatPrice(pair.priceUsd)}</Text>
-                {change24h != null && (
-                  <View style={[styles.changeBadge, { backgroundColor: isPositive ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.12)" }]}>
-                    <Icon name={isPositive ? "TrendingUp" : "TrendingDown"} size={13} color={changeColor} />
-                    <Text style={[styles.changeText, { color: changeColor }]}>
-                      {isPositive ? "+" : ""}{change24h.toFixed(2)}% 24h
-                    </Text>
-                  </View>
-                )}
+
+            {isDhb ? (
+              <ScrollView style={styles.content} bounces={false} keyboardShouldPersistTaps="handled">
+                <DhbListingSoon />
+              </ScrollView>
+            ) : loading ? (
+              <View style={styles.center}>
+                <DeHubLoader size={56} />
+                <Text style={styles.loadingText}>{t("cashtag.fetching")}</Text>
               </View>
-
-              {/* Network badge */}
-              <Text style={styles.network}>{pair.chainId.toUpperCase()} · {pair.dexId}</Text>
-
-              {/* Chart */}
-              <PriceChart candles={candles} positive={isPositive} />
-
-              {/* Stats */}
-              <View style={styles.statsContainer}>
-                <StatRow label={t("cashtag.marketCap")} value={formatCompact(pair.marketCap ?? pair.fdv)} />
-                <StatRow label={t("cashtag.volume24h")} value={formatCompact(pair.volume?.h24)} />
-                <StatRow label={t("cashtag.liquidity")} value={formatCompact(pair.liquidity?.usd)} />
-                {pair.priceChange?.h1 != null && (
-                  <StatRow
-                    label={t("cashtag.change1h")}
-                    value={`${pair.priceChange.h1 >= 0 ? "+" : ""}${pair.priceChange.h1.toFixed(2)}%`}
-                  />
-                )}
+            ) : error ? (
+              <View style={styles.center}>
+                <Icon name="CircleAlert" size={40} color="#4B5563" />
+                <Text style={styles.errorText}>{error}</Text>
+                <TouchableOpacity onPress={load} style={styles.retryBtn}>
+                  <Text style={styles.retryText}>{t("common.retry")}</Text>
+                </TouchableOpacity>
               </View>
+            ) : pair ? (
+              // Scrolls so the DexScreener link stays reachable when the nav bar
+              // or a large system font eats into the fixed sheet height.
+              <ScrollView style={styles.content} contentContainerStyle={styles.contentInner} bounces={false}>
+                {/* Price row */}
+                <View style={styles.priceRow}>
+                  <Text style={styles.price}>{formatPrice(pair.priceUsd)}</Text>
+                  {change24h != null && (
+                    <View style={[styles.changeBadge, { backgroundColor: isPositive ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.12)" }]}>
+                      <Icon name={isPositive ? "TrendingUp" : "TrendingDown"} size={13} color={changeColor} />
+                      <Text style={[styles.changeText, { color: changeColor }]}>
+                        {isPositive ? "+" : ""}{change24h.toFixed(2)}% 24h
+                      </Text>
+                    </View>
+                  )}
+                </View>
 
-              {/* DexScreener link */}
-              <TouchableOpacity
-                onPress={() => Linking.openURL(pair.url)}
-                style={styles.dexLink}
-                activeOpacity={0.8}
-              >
-                <Icon name="ExternalLink" size={14} color="#D4D4D8" />
-                <Text style={styles.dexLinkText}>{t("cashtag.viewOnDexScreener")}</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          ) : null}
-        </Animated.View>
+                {/* Network badge */}
+                <Text style={styles.network}>{pair.chainId.toUpperCase()} · {pair.dexId}</Text>
+
+                {/* Chart */}
+                <PriceChart candles={candles} positive={isPositive} />
+
+                {/* Stats */}
+                <View style={styles.statsContainer}>
+                  <StatRow label={t("cashtag.marketCap")} value={formatCompact(pair.marketCap ?? pair.fdv)} />
+                  <StatRow label={t("cashtag.volume24h")} value={formatCompact(pair.volume?.h24)} />
+                  <StatRow label={t("cashtag.liquidity")} value={formatCompact(pair.liquidity?.usd)} />
+                  {pair.priceChange?.h1 != null && (
+                    <StatRow
+                      label={t("cashtag.change1h")}
+                      value={`${pair.priceChange.h1 >= 0 ? "+" : ""}${pair.priceChange.h1.toFixed(2)}%`}
+                    />
+                  )}
+                </View>
+
+                {/* DexScreener link */}
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(pair.url)}
+                  style={styles.dexLink}
+                  activeOpacity={0.8}
+                >
+                  <Icon name="ExternalLink" size={14} color="#D4D4D8" />
+                  <Text style={styles.dexLinkText}>{t("cashtag.viewOnDexScreener")}</Text>
+                </TouchableOpacity>
+              </ScrollView>
+            ) : null}
+          </Animated.View>
+        </KeyboardAvoidingView>
       </GestureHandlerRootView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardAvoider: { flex: 1, justifyContent: "flex-end" },
   sheet: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
     height: SHEET_HEIGHT,
     maxHeight: "88%",
     borderTopLeftRadius: 24,

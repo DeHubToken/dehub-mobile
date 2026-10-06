@@ -7557,7 +7557,12 @@
     "volume24h": "24 saatlıq həcm",
     "liquidity": "Likvidlik",
     "change1h": "1 saatlıq dəyişiklik",
-    "viewOnDexScreener": "DexScreener-də bax"
+    "viewOnDexScreener": "DexScreener-də bax",
+    "listingTitle": "Token listinqi tezliklə!",
+    "listingBody": "$DHB hələ ticarətdə deyil. Listinqə çıxan kimi e-poçt alın.",
+    "notifyMe": "Mənə xəbər ver",
+    "listingPrivacy": "Bunu yalnız $DHB listinqə çıxanda sizə xəbər vermək üçün istifadə edəcəyik.",
+    "listingJoined": "Siyahıdasınız. $DHB listinqə çıxan kimi {{email}} ünvanına e-poçt göndərəcəyik."
   },
   "linkCard": {
     "inviteRevoked": "Dəvət ləğv edildi",

@@ -7546,7 +7546,12 @@
     "volume24h": "נפח 24 שעות",
     "liquidity": "נזילות",
     "change1h": "שינוי שעה",
-    "viewOnDexScreener": "הצג ב-DexScreener"
+    "viewOnDexScreener": "הצג ב-DexScreener",
+    "listingTitle": "רישום הטוקן בקרוב!",
+    "listingBody": "$DHB עדיין לא נסחר. קבלו מייל ברגע שהוא יירשם.",
+    "notifyMe": "עדכנו אותי",
+    "listingPrivacy": "נשתמש בזה רק כדי לעדכן אתכם כש-$DHB יירשם.",
+    "listingJoined": "אתם ברשימה. נשלח מייל ל-{{email}} ברגע ש-$DHB יירשם."
   },
   "linkCard": {
     "inviteRevoked": "ההזמנה בוטלה",

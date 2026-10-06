@@ -7538,7 +7538,12 @@
     "volume24h": "24 سائەتلىك ھەجىم",
     "liquidity": "سۇيۇقلۇق",
     "change1h": "1 سائەتلىك ئۆزگىرىش",
-    "viewOnDexScreener": "DexScreener دا كۆرۈڭ"
+    "viewOnDexScreener": "DexScreener دا كۆرۈڭ",
+    "listingTitle": "توكېن تىزىملىنىشى پات يېقىندا!",
+    "listingBody": "$DHB تېخى سودا قىلىنمايدۇ. تىزىملانغان ھامان ئېلخەت تاپشۇرۇۋېلىڭ.",
+    "notifyMe": "ماڭا ئۇقتۇرۇڭ",
+    "listingPrivacy": "بۇنى پەقەت $DHB تىزىملانغاندا سىزگە ئۇقتۇرۇش ئۈچۈنلا ئىشلىتىمىز.",
+    "listingJoined": "سىز تىزىملىكتە. $DHB تىزىملانغان ھامان {{email}} غا ئېلخەت ئەۋەتىمىز."
   },
   "linkCard": {
     "inviteRevoked": "تەكلىپ بىكار قىلىندى",
