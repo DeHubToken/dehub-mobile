@@ -171,7 +171,7 @@ interface FeedVideoPlayerProps {
   bountyCurrency: string;
   isVisible: boolean;
   /** True only on the card the feed has handed autoplay to while scrolling.
-   *  Every other visible card still mounts, still shows its play button and
+   *  Every other visible card keeps its tappable poster and
    *  still starts on a tap — it just does not start on its own. Defaults to
    *  true for callers with no notion of an active row. */
   isAutoplayActive?: boolean;
@@ -2108,7 +2108,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // Waiting inside the active component is too late: useVideoPlayer(null)
   // still allocates an ExoPlayer. Keep passing cards as posters for the whole
   // dwell window; taps and picture-in-picture bypass that wait.
-  const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY);
+  const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY, true);
   const retained = isVisible && hasPostVideoSession(videoUrl);
   const mountPlayer = (visible || retained) && (retained || inPictureInPicture || wanted || autoplaySettled || needsChrome);
 
