@@ -110,6 +110,7 @@ import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { createLogger } from "../libs/logger";
 import { useDmPin } from "../hooks/useDmPin";
 import { useCallActions } from "../context/CallContext";
+import { useDmHeadRecovery } from "../hooks/useDmHeadRecovery";
 
 /** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
 function resolveConvId(...vals: unknown[]): string {
@@ -733,28 +734,37 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [address]);
 
 
-  useEffect(() => {
+  const normalizeAuthor = useCallback(
+    (m: any): DmMessage => {
+      if (m.author === "me" || m.author === "other") return m;
+      const senderId = String(m?.sender?._id || m?.sender || "");
+      const senderAddr = String(m?.sender?.address || "").toLowerCase();
+      const mine =
+        (userId && senderId === userId) ||
+        (address && senderAddr === address);
+      return { ...m, author: mine ? "me" : "other" };
+    },
+    [userId, address],
+  );
+
+  const recoverHead = useCallback(async (isCurrent: () => boolean) => {
     if (!currentConvId || !address) return;
     setInitialLoading(true);
-    getMessages(currentConvId, { address, limit: PAGE_SIZE })
-      .then(async (resp) => {
-        const msgs = resp?.messages || [];
-        if (msgs.length) {
-          const normalized = await decryptIncoming(currentConvId, address, msgs.map((m: any) => normalizeAuthor(m)));
-          const mineFromServer = normalized.filter((m: any) => m.author === "me");
-          log.info("[TICK_DEBUG] initial fetch — my messages isRead states:", mineFromServer.map((m: any) => ({
-            msgId: m._id,
-            content: m.content?.slice(0, 30),
-            isRead: m.isRead,
-          })));
-          dmActions.upsertMessages(currentConvId, normalized);
-        }
-        if (msgs.length < PAGE_SIZE) setHasMore(false);
-        if (userId) dmActions.markAllRead(currentConvId, userId);
-      })
-      .catch((e) => log.error("fetch initial messages", e))
-      .finally(() => setInitialLoading(false));
-  }, [currentConvId, address, identityTick]);
+    try {
+      const resp = await getMessages(currentConvId, { address, limit: PAGE_SIZE });
+      const msgs = resp?.messages || [];
+      const normalized = await decryptIncoming(currentConvId, address, msgs.map(normalizeAuthor));
+      if (!isCurrent()) return;
+      if (normalized.length) dmActions.upsertMessages(currentConvId, normalized);
+      if (msgs.length < PAGE_SIZE) setHasMore(false);
+      if (userId) dmActions.markAllRead(currentConvId, userId);
+    } catch (e) {
+      log.error("recover message head", e);
+    } finally {
+      if (isCurrent()) setInitialLoading(false);
+    }
+  }, [currentConvId, address, identityTick, normalizeAuthor, userId]);
+  useDmHeadRecovery(recoverHead, allow && !!currentConvId && !!address);
 
 
   const loadMore = useCallback(async () => {
@@ -911,20 +921,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     const t = setTimeout(() => setRemoteTyping(false), 5000);
     return () => clearTimeout(t);
   }, [remoteTyping]);
-
-
-  const normalizeAuthor = useCallback(
-    (m: any): DmMessage => {
-      if (m.author === "me" || m.author === "other") return m;
-      const senderId = String(m?.sender?._id || m?.sender || "");
-      const senderAddr = String(m?.sender?.address || "").toLowerCase();
-      const mine =
-        (userId && senderId === userId) ||
-        (address && senderAddr === address);
-      return { ...m, author: mine ? "me" : "other" };
-    },
-    [userId, address],
-  );
 
 
   const ensureConversation = useCallback(async (): Promise<ID> => {
