@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import { LivepeerConfig, createReactClient, studioProvider } from '@livepeer/react-native';
+import { studioProvider } from '@livepeer/core-react';
+import { createReactClient } from '@livepeer/core-react/client';
+import { LivepeerConfig } from '@livepeer/core-react/context';
 import env from './env';
 
 // Minimal, eagerly-created client. Avoids dynamic wrapping complexity.

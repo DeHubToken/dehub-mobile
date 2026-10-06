@@ -4,32 +4,7 @@ import { resolve } from "node:path";
 const ROOT = resolve(__dirname, "../..");
 const SEARCH_DIRS = ["components", "screens", "navigation", "hooks", "libs", "context"];
 
-/**
- * The only files allowed to import expo-blur.
- *
- * expo-blur does not blur on Android: `BlurMethod.NONE` is the default, and
- * nothing here passes `experimentalBlurMethod`, so a BlurView paints a flat
- * tint — `alpha = intensity/100 * 0.69` over #191919 for tint="dark". Panels
- * built on one are therefore translucent, and the text on them competes with
- * whatever is behind. Enabling the real blur is not the alternative either:
- * dimezisBlurView re-snapshots the root view every frame and throws
- * IndexOutOfBoundsException when a list mutates its children mid-draw.
- *
- * So a BlurView is only defensible on a surface that is *meant* to show what
- * is behind it:
- *
- *  - the four context menus and GlassModal put theirs on the full-screen
- *    scrim, never on the panel — a scrim exists to reveal what it covers;
- *  - the feed nav pill and its sliding indicator are the swallow effect, where
- *    content reading through the glass is the point;
- *  - the bottom tab bar pill, whose BlurView renders on iOS only (real native
- *    glass there); ChromeSurface now draws that pill's selected theme material
- *    on iOS too. Neither renderer creates a BlurView on Android, which is
- *    covered by their rendering tests.
- *
- * Anything else is a panel, a card, a menu or a control, and must be opaque.
- * Adding a file here needs a reason that fits one of the two cases above.
- */
+/** Scrims and navigation frost own blur; ordinary card surfaces remain opaque. */
 const ALLOWED = [
   "components/Comments/CommentContextMenu.tsx",
   "components/DM/ConversationContextMenu.tsx",
@@ -39,6 +14,8 @@ const ALLOWED = [
   "components/ui/GlassIndicator.tsx",
   "components/ui/GlassModal.tsx",
   "components/ui/IosGlassPill.tsx",
+  "components/ui/FrostedPill.tsx",
+  "components/ui/FrostedBackdrop.tsx",
 ];
 
 function walk(dir: string, out: string[] = []): string[] {

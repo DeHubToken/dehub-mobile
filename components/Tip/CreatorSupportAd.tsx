@@ -63,7 +63,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
   }, [ad, wallet, player, credited, height, onMessage, t]);
   return <View ref={box} collapsable={false} style={{ gap: 8 }}>
     <Text style={{ color: '#fff', fontSize: 13 }}>{t('creatorSupport.sponsoredBy', { advertiser: ad.advertiser })} · {ad.headline}</Text>
-    <VideoView player={player} nativeControls allowsFullscreen={false} contentFit="contain" style={{ height: 180, width: '100%', borderRadius: 10 }} />
+    <VideoView player={player} nativeControls fullscreenOptions={{ enable: false }} contentFit="contain" style={{ height: 180, width: '100%', borderRadius: 10 }} />
     <Text style={{ color: '#A6A9AC', fontSize: 12 }}>{t('creatorSupport.progress', { seconds: Math.floor(watched), amount: ad.creatorShareUsd.toFixed(4) })}</Text>
   </View>;
 }

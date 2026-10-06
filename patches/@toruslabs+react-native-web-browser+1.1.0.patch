@@ -1,0 +1,37 @@
+diff --git a/node_modules/@toruslabs/react-native-web-browser/android/build.gradle b/node_modules/@toruslabs/react-native-web-browser/android/build.gradle
+--- a/node_modules/@toruslabs/react-native-web-browser/android/build.gradle
++++ b/node_modules/@toruslabs/react-native-web-browser/android/build.gradle
+@@ -5,7 +5,6 @@ buildscript {
+   repositories {
+     google()
+     mavenCentral()
+-    jcenter()
+   }
+ 
+   dependencies {
+@@ -29,6 +28,7 @@ def getExtOrIntegerDefault(name) {
+ }
+ 
+ android {
++  namespace 'com.reactnativewebbrowser'
+   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+   defaultConfig {
+     minSdkVersion 21
+@@ -57,7 +57,6 @@ android {
+ 
+ repositories {
+   mavenCentral()
+-  jcenter()
+   google()
+ 
+   def found = false
+diff --git a/node_modules/@toruslabs/react-native-web-browser/android/src/main/AndroidManifest.xml b/node_modules/@toruslabs/react-native-web-browser/android/src/main/AndroidManifest.xml
+--- a/node_modules/@toruslabs/react-native-web-browser/android/src/main/AndroidManifest.xml
++++ b/node_modules/@toruslabs/react-native-web-browser/android/src/main/AndroidManifest.xml
+@@ -1,5 +1,4 @@
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-  package="com.reactnativewebbrowser">
++<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+   <queries>
+     <intent>
