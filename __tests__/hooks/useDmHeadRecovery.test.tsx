@@ -1,5 +1,5 @@
 import { act, cleanup, renderHook } from '@testing-library/react-native';
-import { AppState } from 'react-native';
+import { AppState, type AppStateStatus } from 'react-native';
 
 jest.mock('react-native-css-interop', () => ({ createInteropElement: require('react').createElement }));
 let mockFocused = true;
@@ -10,7 +10,7 @@ jest.mock('../../context/WebSocketContext', () => ({ useWebSocketApi: () => ({ o
 jest.mock('../../hooks/useFocusedInterval', () => ({ useIsScreenFocused: () => mockFocused }));
 import { useDmHeadRecovery } from '../../hooks/useDmHeadRecovery';
 
-let foreground: (state: string) => void;
+let foreground: (state: AppStateStatus) => void;
 beforeEach(() => {
   mockFocused = true;
   jest.clearAllMocks();
