@@ -75,6 +75,17 @@ describe('services/feed.unified.service', () => {
   });
 
   describe('getUnifiedFeedSignal', () => {
+    it('sends bounded visible IDs in the same request and keeps them separate from the new-post head', async () => {
+      mockGet.mockResolvedValueOnce({ status: true, result: [{ tokenId: 30 }], visibleResult: [{ tokenId: 1, totalViews: 77 }] });
+      const result = await getUnifiedFeedSignal({ sortBy: 'random' }, [1, 1, -1, ...Array.from({ length: 25 }, (_, i) => i + 2)]);
+      expect(mockGet).toHaveBeenCalledTimes(1);
+      const url = new URL(`https://fixture.invalid${mockGet.mock.calls[0][0]}`);
+      expect(url.searchParams.get('visibleTokenIds')?.split(',')).toHaveLength(20);
+      expect(url.searchParams.get('visibleTokenIds')?.split(',')[0]).toBe('1');
+      expect(result.result).toEqual([{ tokenId: 30 }]);
+      expect(result.visibleResult).toEqual([{ tokenId: 1, totalViews: 77 }]);
+    });
+
     it('preserves feed filters and auth while requesting only a bounded head', async () => {
       mockGet.mockResolvedValueOnce({ status: true, signal: true, result: [{ tokenId: 1, totalViews: 9 }] });
       const result = await getUnifiedFeedSignal({ page: 9, limit: 100, sortBy: 'createdAt', status: 'all', followingOnly: true, category: 'art', isPPV: true, minter: '0xcreator' });
