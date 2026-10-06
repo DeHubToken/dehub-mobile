@@ -112,6 +112,7 @@ const mediaBoxWidth = (
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
+  if (!postPage && win.width < 768) return fullWidth;
   const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
   return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
 };
@@ -134,6 +135,11 @@ const pipSupported = () => {
  */
 const bleedBoxAspect = (win: { width: number; height: number }, mediaAspect: number) =>
   Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width));
+
+/** Match the mobile web feed: 3:4 at most, capped at 65% of the screen.
+ *  Cover fitting crops equally from the top and bottom of taller clips. */
+const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number) =>
+  Math.max(mediaAspect, 3 / 4, boxWidth / Math.min(600, win.height * 0.65));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -527,6 +533,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
+  const cropFeedVideo = !postPage && windowSize.width < 768;
+  const cropMedia = !postPage && (cropFeedVideo || !!bleed);
   const bareControls = true;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1198,10 +1206,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
-          // Fills the card when the clip is wide enough; a portrait clip caps
-          // at the max media height and shrinks its own width, hugged to the
-          // left in the feed and centred on the post page.
+          aspectRatio: cropFeedVideo
+            ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
+            : !postPage && bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
+          // Phone feeds keep the card width and crop tall clips. Larger screens
+          // narrow portrait clips; the post page keeps the full frame centred.
           width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
           alignSelf: isMinimal || postPage ? "center" : "flex-start",
@@ -1221,7 +1230,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <SmartImage
           source={{ uri: thumbnail }}
           style={styles.thumbnail}
-          contentFit={bleed ? "cover" : "contain"}
+          contentFit={cropMedia ? "cover" : "contain"}
           recyclingKey={thumbnail}
           transition={0}
         />
@@ -1236,7 +1245,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           ref={videoViewRef}
           player={player}
           focusable={false}
-          contentFit={bleed ? "cover" : "contain"}
+          contentFit={cropMedia ? "cover" : "contain"}
           nativeControls={false}
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
@@ -2031,6 +2040,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
+    const cropFeedVideo = !postPage && windowSize.width < 768;
+    const cropMedia = !postPage && (cropFeedVideo || !!bleed);
     const bareControls = true;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
@@ -2038,7 +2049,9 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         style={[
           styles.container,
           {
-            aspectRatio: bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
+            aspectRatio: cropFeedVideo
+              ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
+              : !postPage && bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
             width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
@@ -2051,7 +2064,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           <SmartImage
             source={{ uri: thumbnail }}
             style={styles.thumbnail}
-            contentFit={bleed ? "cover" : "contain"}
+            contentFit={cropMedia ? "cover" : "contain"}
             recyclingKey={thumbnail}
             transition={0}
           />
