@@ -40,7 +40,7 @@ describe('home feed scroll settle timing', () => {
     // the loading footer at every page boundary.
     // listData is feedItems plus the header, shorts and suggested rows, rebuilt
     // the moment feedItems changes and from nothing scroll-related.
-    expect(feed).toMatch(/const listData = useMemo<FeedRow\[\]>\([\s\S]*?\}, \[feedItems, showShortsCarousel\]\);/);
+    expect(feed).toMatch(/const listData = useMemo<FeedRow\[\]>\([\s\S]*?\}, \[feedItems, showShortsCarousel, shortsItems\]\);/);
     expect(feed).not.toMatch(/holdPendingRef|releaseAppendRef/);
     expect(feed).toMatch(/onEndReachedThreshold=\{3\}/);
   });

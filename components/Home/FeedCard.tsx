@@ -2537,7 +2537,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         paddingTop: 22,
         paddingHorizontal: MINIMAL_TEXT_INSET,
         paddingBottom: 18,
-        borderBottomWidth: 1,
+        borderBottomWidth: hideDivider ? 0 : 1,
         borderBottomColor: MINIMAL_HAIRLINE,
       } : skin ? [
         // A canvas theme's bento (theme/skins.ts): smoked glass, War's cyan
