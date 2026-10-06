@@ -3,7 +3,9 @@ import { act, cleanup, renderHook } from '@testing-library/react-native';
 jest.mock('react-native-css-interop', () => ({ createInteropElement: require('react').createElement }));
 const mockInsert = jest.fn(); const mockToken = jest.fn(); const mockUpdate = jest.fn();
 const mockCreate = jest.fn();
-jest.mock('../../context/AuthContext', () => ({ useAuth: () => ({ user: { walletAddress: 'alice' } }) }));
+const mockCheck = jest.fn(); const mockCallPing = jest.fn(); const mockSubscription = jest.fn();
+let mockWallet = 'alice';
+jest.mock('../../context/AuthContext', () => ({ useAuth: () => ({ user: { walletAddress: mockWallet } }) }));
 jest.mock('../../config/agora.config', () => ({ AGORA_APP_ID: 'app' }));
 jest.mock('../../libs/logger', () => ({ createLogger: () => ({ warn: jest.fn(), error: jest.fn() }) }));
 jest.mock('../../libs/api.client', () => ({ apiClient: { post: () => Promise.resolve() } }));
@@ -15,9 +17,12 @@ jest.mock('../../services/supabase', () => ({
     from: () => ({
       insert: () => ({ select: () => ({ single: () => mockInsert() }) }),
       update: (data: unknown) => ({ eq: (field: string, id: string) => mockUpdate(data, field, id) }),
-      select: () => { const q = { eq: () => q, order: () => q, limit: () => q, single: () => Promise.resolve({ data: null }) }; return q; },
+      select: () => { const q = { eq: () => q, order: () => q, limit: () => q, single: () => mockCheck() }; return q; },
     }),
-    channel: () => { const c = { on: () => c, subscribe: () => c }; return c; },
+    channel: () => { const c = {
+      on: (_type: string, _filter: unknown, handler: (...args: any[]) => any) => { mockCallPing.mockImplementation(handler); return c; },
+      subscribe: (handler: (...args: any[]) => any) => { mockSubscription.mockImplementation(handler); return c; },
+    }; return c; },
     removeChannel: jest.fn(),
   },
 }));
@@ -29,6 +34,7 @@ jest.mock('react-native-agora', () => ({
 }));
 import { useCall } from '../../hooks/useCall';
 import { visualActivity } from '../../libs/visualActivity';
+import { AppState } from 'react-native';
 
 const session = { id: 'call-1', caller_address: 'alice', recipient_address: 'bob', status: 'ringing', call_type: 'audio', created_at: new Date().toISOString() };
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>(r => { resolve = r; }); return { promise, resolve }; }
@@ -36,6 +42,8 @@ let handler: { onUserJoined: (...args: unknown[]) => void; onUserOffline: () => 
 let engine: Record<string, jest.Mock>;
 beforeEach(() => {
   jest.useFakeTimers(); jest.clearAllMocks();
+  mockWallet = 'alice'; mockCheck.mockResolvedValue({ data: null });
+  Object.defineProperty(AppState, 'currentState', { configurable: true, writable: true, value: 'active' });
   engine = Object.fromEntries(['initialize', 'registerEventHandler', 'unregisterEventHandler', 'setChannelProfile', 'setClientRole', 'enableAudio', 'enableLocalAudio', 'muteLocalAudioStream', 'setDefaultAudioRouteToSpeakerphone', 'setEnableSpeakerphone', 'enableVideo', 'enableLocalVideo', 'startPreview', 'stopPreview', 'muteLocalVideoStream', 'joinChannel', 'leaveChannel', 'release', 'switchCamera'].map(name => [name, jest.fn(() => 0)]));
   engine.registerEventHandler.mockImplementation(h => { handler = h; });
   mockCreate.mockReturnValue(engine);
@@ -43,6 +51,39 @@ beforeEach(() => {
   mockToken.mockResolvedValue({ token: 'token', uid: 1 }); mockUpdate.mockResolvedValue({ error: null });
 });
 afterEach(() => { cleanup(); visualActivity.setCall(false, false); jest.clearAllTimers(); jest.useRealTimers(); });
+
+it('shares startup, subscription and fallback checks and recovers a ring arriving during the query', async () => {
+  const initial = deferred<{ data: null }>();
+  mockCheck.mockReturnValueOnce(initial.promise).mockImplementationOnce(async () => ({ data: {
+    ...session, caller_address: 'bob', recipient_address: 'alice', created_at: new Date().toISOString(),
+  } }));
+  const { result } = renderHook(useCall);
+  act(() => { mockSubscription('SUBSCRIBED'); jest.advanceTimersByTime(60_000); });
+  expect(mockCheck).toHaveBeenCalledTimes(1);
+  act(() => { mockCallPing({ payload: { id: 'call-1', status: 'ringing' } }); });
+  await act(async () => { initial.resolve({ data: null }); for (let i = 0; i < 5; i++) await Promise.resolve(); });
+  expect(mockCheck).toHaveBeenCalledTimes(2);
+  expect(result.current.isIncoming).toBe(true);
+});
+
+it('skips background query triggers', async () => {
+  Object.defineProperty(AppState, 'currentState', { configurable: true, writable: true, value: 'background' });
+  renderHook(useCall);
+  await act(async () => { mockSubscription('SUBSCRIBED'); mockCallPing({ payload: { status: 'ringing' } }); jest.advanceTimersByTime(60_000); });
+  expect(mockCheck).not.toHaveBeenCalled();
+});
+
+it('ignores a previous wallet query without blocking the new wallet', async () => {
+  const alice = deferred<{ data: typeof session }>(); const bob = deferred<{ data: typeof session }>();
+  mockCheck.mockReturnValueOnce(alice.promise).mockReturnValueOnce(bob.promise);
+  const { result, rerender } = renderHook(useCall);
+  mockWallet = 'bob'; rerender({});
+  expect(mockCheck).toHaveBeenCalledTimes(2);
+  await act(async () => { alice.resolve({ data: { ...session, recipient_address: 'alice', created_at: new Date().toISOString() } }); });
+  expect(result.current.currentCall).toBeNull();
+  await act(async () => { bob.resolve({ data: { ...session, recipient_address: 'bob', created_at: new Date().toISOString() } }); });
+  expect(result.current.isIncoming).toBe(true);
+});
 
 it('releases the camera, microphone and engine when the peer leaves, even if one teardown step throws', async () => {
   const { result } = renderHook(useCall);
