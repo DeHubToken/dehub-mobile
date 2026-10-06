@@ -37,14 +37,14 @@ function barProps() {
 }
 
 describe('post page action bar', () => {
-  it('is five tiles: like, comments, repost, tip, save — no share, dislike or info', () => {
+  it('is five tiles: like, comments, share, tip, save — no repost glyph, dislike or info', () => {
     const view = render(<PostStageActionBar {...barProps()} />);
     const tiles = view.UNSAFE_getAllByType('Pressable' as any).filter((n) => n.props.accessibilityRole === 'button');
     expect(tiles).toHaveLength(5);
     const icons = view.UNSAFE_getAllByType('Icon' as any).map((n) => n.props.name);
-    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Repeat2', 'Gem', 'Bookmark']);
+    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Share2', 'Gem', 'Bookmark']);
     expect(icons).not.toContain('ThumbsDown');
-    expect(icons).not.toContain('Share2');
+    expect(icons).not.toContain('Repeat2');
     expect(icons).not.toContain('Info');
     expect(view.getByText('128')).toBeTruthy();
     expect(view.getByText('46')).toBeTruthy();
@@ -55,7 +55,7 @@ describe('post page action bar', () => {
   it('drops the tip tile where tips are not offered', () => {
     const view = render(<PostStageActionBar {...barProps()} onTip={undefined} />);
     const icons = view.UNSAFE_getAllByType('Icon' as any).map((n) => n.props.name);
-    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Repeat2', 'Bookmark']);
+    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Share2', 'Bookmark']);
   });
 
   it('displays the dislike total beside a held dislike on the post page', () => {

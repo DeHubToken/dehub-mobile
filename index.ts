@@ -1,3 +1,5 @@
+// First, so it timestamps the start of our JavaScript before anything else runs.
+import "./libs/launchTiming";
 import "react-native-gesture-handler";
 import "react-native-get-random-values";
 import "react-native-url-polyfill/auto";

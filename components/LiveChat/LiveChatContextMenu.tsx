@@ -21,6 +21,7 @@ import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { theme } from "../../theme";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
+import { replyQuoteText } from "../../libs/livechat-cache";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import EmojiSheet from "../Upload/EmojiSheet";
 import { expandEmojiTokens } from "../common/EmojiText";
@@ -131,7 +132,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
       </View>
 
       {/* Reply preview */}
-      {(message.replyToContent || message.replyTo?.content) && (
+      {(message.replyToContent || message.replyTo) && (
         <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1.5">
           <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
             {message.replyTo?.senderUsername ||
@@ -141,7 +142,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
               "user"}
           </Text>
           <Text className="text-white/50 text-xs" numberOfLines={1}>
-            {message.replyToContent || message.replyTo?.content}
+            {replyQuoteText(message, t)}
           </Text>
         </View>
       )}
