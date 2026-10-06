@@ -38,3 +38,20 @@ response contract. Client-side token limits and wallet quotes are not actual
 provider usage. Keep existing caches, payments and model capability requirements.
 
 Reference: [Google compatible streaming usage](https://ai.google.dev/gemini-api/docs/openai).
+
+Text translation also shares the daily aggregates. Only requests reaching model
+tiers create a meter: L1/L2 cache hits, same-language responses and MyMemory
+responses add no provider-accounting write. Free-model, direct Google, fal and
+gateway attempts flush together once per translation, including rejected paid
+output. The provider order, daily cap and public/private routing stay unchanged.
+Fallback reasons belong to the current request, including unset keys, parked
+accounts and HTTP failures; no shared last-failure variable supplies them.
+
+Native Google `usageMetadata` reports candidate output and thoughts separately.
+The output total includes both and the reasoning counter is its thoughts subset;
+cached input is already inside prompt input. Missing fal token reports remain
+unknown. A free-model response rejected by translation validation is still counted
+as a completed free-provider attempt. The counters do not infer a token bill
+from character length or deduct cached input twice.
+
+Reference: [Google native usage metadata](https://ai.google.dev/api/generate-content#UsageMetadata).
