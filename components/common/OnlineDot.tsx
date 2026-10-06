@@ -21,11 +21,11 @@ const GREEN = "#34d399";
  */
 export default function OnlineDot({ address }: { address?: string | null }) {
   const { t } = useTranslation();
-  const isOnline = useIsOnline(address);
   // Messages is preloaded behind Home. An endless pulse there kept Android's
   // UI thread committing a frame for a dot nobody could see, through every
   // frame of a feed scroll; it runs only while its screen is in front.
   const focused = useIsFocused();
+  const isOnline = useIsOnline(address, focused);
   const pulse = useSharedValue(0);
 
   useEffect(() => {

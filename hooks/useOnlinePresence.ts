@@ -7,11 +7,12 @@ import {
   getShowOnline,
   onlineFromChannel,
   publishOnline,
+  usePresenceReaders,
 } from "../libs/online-presence";
 
 /**
- * Joins the shared presence channel while signed in so the green dots on
- * Messages can be read, and tracks this account only while the switch is on
+ * Joins the shared presence channel when opted in or a focused dot needs it,
+ * and tracks this account only while the switch is on
  * and the app is in the foreground — backgrounding untracks straight away
  * rather than leaving a dot lit until the OS kills the socket.
  */
@@ -27,6 +28,8 @@ export function useOnlinePresence() {
     return getShowOnline(customs);
   }, [user?.customs]);
   const [active, setActive] = useState(AppState.currentState === "active");
+  const hasReaders = usePresenceReaders();
+  const needed = showOnline || hasReaders;
 
   useEffect(() => {
     const sub = AppState.addEventListener("change", (s: AppStateStatus) => setActive(s === "active"));
@@ -34,7 +37,7 @@ export function useOnlinePresence() {
   }, []);
 
   useEffect(() => {
-    if (!me || !active) return;
+    if (!me || !active || !needed) return;
     const channel = supabase.channel(ONLINE_PRESENCE_TOPIC, { config: { presence: { key: me } } });
     channel
       .on("presence", { event: "sync" }, () => publishOnline(onlineFromChannel(channel)))
@@ -46,5 +49,5 @@ export function useOnlinePresence() {
       void supabase.removeChannel(channel);
       publishOnline(new Set());
     };
-  }, [me, showOnline, active]);
+  }, [me, showOnline, active, needed]);
 }
