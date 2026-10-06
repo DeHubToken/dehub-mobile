@@ -36,7 +36,7 @@ it('opens no channel with no opt-in or focused readers', () => {
 
 it('reads without publishing while a focused dot needs presence', () => {
   renderHook(useOnlinePresence);
-  const reader = renderHook(({ focused }) => useIsOnline('bob', focused), { initialProps: { focused: true } });
+  const reader = renderHook(({ focused }: { focused: boolean }) => useIsOnline('bob', focused), { initialProps: { focused: true } });
   expect(mockChannel).toHaveBeenCalledTimes(1);
   expect(mockTrack).not.toHaveBeenCalled();
   reader.rerender({ focused: false });
