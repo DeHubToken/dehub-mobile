@@ -91,7 +91,7 @@ describe('post media presentation', () => {
     const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
     const suggested = readSource('components', 'Home', 'SuggestedAccountsSection.tsx');
 
-    expect(list).toContain('hideDivider={item.__listKey === beforeSuggestedKey}');
+    expect(list).toContain('hideDivider={item.__listKey === beforeSuggestedKey || item.__listKey === beforeShortsKey}');
     expect(suggested).toContain('borderBottomColor: CINEMATIC_HAIRLINE,');
     expect(suggested).toContain('return cinematic ? <View style={styles.lineOnly} /> : null;');
   });
