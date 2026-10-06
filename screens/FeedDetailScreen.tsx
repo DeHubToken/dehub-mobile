@@ -1577,8 +1577,9 @@ export default function FeedDetailScreen() {
           // reads through; iOS keeps the glass.
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
             <LinearGradient
-              colors={[stageDockFade, stagePage]}
-              style={{ position: "absolute", left: 0, right: 0, top: -28, height: 28 }}
+              colors={[stageDockFade, stagePage + "0A", stagePage + "1F", stagePage + "3D"]}
+              locations={[0, 0.35, 0.7, 1]}
+              style={{ position: "absolute", left: 0, right: 0, top: -48, height: 48 }}
             />
             {Platform.OS === "ios" ? (
               <LinearGradient colors={[stagePage + "CC", stagePage]} style={StyleSheet.absoluteFill} />
