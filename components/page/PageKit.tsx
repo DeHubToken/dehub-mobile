@@ -47,6 +47,7 @@ function useKitColors() {
     // The brighter accents (hazy, swarms, lavalamp, island) carry white ink, as on web.
     activeInk: themed && BRIGHT_INK_THEMES.has(app.theme) ? "#FFFFFF" : "#0B0B0C",
     card: app.colors?.card ?? "#18181B",
+    cardMaterial: app.skin?.card,
   };
 }
 
@@ -148,7 +149,7 @@ export function PageSection({
     ? { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: c.hairline, paddingVertical: flush ? 0 : 18, paddingHorizontal: flush ? 0 : 16 }
     : { backgroundColor: c.card, borderRadius: 12, marginHorizontal: 8, marginBottom: 10, padding: flush ? 0 : 16, overflow: "hidden" };
   return (
-    <View style={[frame, style as object]}>
+    <View style={[frame, !c.flat && c.cardMaterial, style as object]}>
       {title || eyebrow || action ? (
         <View style={[styles.sectionHead, flush && { paddingHorizontal: 16, paddingTop: 16 }]}>
           <View style={{ flexShrink: 1 }}>
