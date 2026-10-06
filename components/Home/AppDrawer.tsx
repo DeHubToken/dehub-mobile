@@ -156,6 +156,8 @@ const NAV_ITEMS: DrawerItem[] = [
 // Row → 3D artwork (web ThemeIconKey). Rows without a bespoke render borrow the
 // closest one: a flat glyph beside the glossy set reads as a broken tile, so
 // the glyph is only the fallback for art that fails to download.
+// Theme artwork belongs to phone menus. The web desktop sidebar keeps its
+// original Film and Wand2 glyphs for Editor and Creator.
 const ICON_KEYS: Record<string, string> = {
   "creator.editor": "videos", "commandCentre.creator": "paint",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
