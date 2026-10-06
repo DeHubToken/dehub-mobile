@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Pressable, Text, View, type LayoutChangeEvent } from "react-native";
+import { Pressable, Text, type LayoutChangeEvent } from "react-native";
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { haptic } from "../../libs/haptics";
 
 export interface SwipeAction {
@@ -67,6 +68,7 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
   enabled = true,
   children,
 }) => {
+  const { t } = useTranslation();
   const translateX = useSharedValue(0);
   const start = useSharedValue(0);
   const rowWidth = useSharedValue(0);
@@ -187,12 +189,18 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
   }));
 
   const contentStyle = useAnimatedStyle(() => ({
+    width: rowWidth.value > 0 ? rowWidth.value + Math.max(total, -translateX.value) : undefined,
     transform: [{ translateX: translateX.value }],
+  }));
+
+  const foregroundStyle = useAnimatedStyle(() => ({
+    width: rowWidth.value > 0 ? rowWidth.value : undefined,
   }));
 
   // Grows past its resting width as the row is dragged further, so the last
   // action fills everything the finger has uncovered.
   const actionsStyle = useAnimatedStyle(() => ({
+    left: rowWidth.value,
     width: Math.max(total, -translateX.value),
   }));
 
@@ -211,23 +219,26 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
     <Animated.View style={[{ overflow: "hidden" }, rowStyle]} onLayout={onLayout}>
       <GestureDetector gesture={pan}>
         <Animated.View style={contentStyle}>
-          <View className={backgroundClassName}>{children}</View>
-          {/* A tap on an open row closes it instead of opening the thread. */}
-          {open && (
-            <Pressable
-              onPress={close}
-              accessibilityRole="button"
-              style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
-            />
-          )}
-          {/* Actions move with the row, outside its resting bounds. They cannot
-              bleed through a canvas theme's transparent foreground. */}
+          <Animated.View className={backgroundClassName} style={foregroundStyle}>
+            {children}
+            {/* A tap on an open row closes it instead of opening the thread. */}
+            {open && (
+              <Pressable
+                onPress={close}
+                accessibilityRole="button"
+                accessibilityLabel={t("common.close")}
+                style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+              />
+            )}
+          </Animated.View>
+          {/* The track contains both the foreground and actions so Android
+              reports the revealed buttons' full accessibility bounds. */}
           <Animated.View
             pointerEvents={open ? "auto" : "none"}
             accessibilityElementsHidden={!open}
             importantForAccessibility={open ? "auto" : "no-hide-descendants"}
             style={[
-              { position: "absolute", top: 0, bottom: 0, left: "100%", flexDirection: "row" },
+              { position: "absolute", top: 0, bottom: 0, flexDirection: "row" },
               actionsStyle,
             ]}
           >
