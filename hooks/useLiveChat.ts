@@ -16,6 +16,7 @@ import type {
 } from "../services/livechat.service";
 import { getLiveChatMessages, getLiveChatOnlineCount } from "../services/livechat.service";
 import { normalizeMsg } from "../libs/livechat-normalize";
+import { readRecentChat, writeRecentChat } from "../libs/livechat-cache";
 
 const log = createLogger("LiveChat");
 
@@ -134,12 +135,25 @@ export const useLiveChat = (
     }
 
     let cancelled = false;
-    // A different room is a different conversation: drop the last one's
-    // messages now instead of leaving them on screen until the join lands.
-    setMessages([]);
+    // A different room is a different conversation: swap in the public room's
+    // last known lines (a stream starts empty) instead of leaving the old
+    // room's on screen.
+    setMessages(roomId ? [] : readRecentChat());
     setRoom(null);
     setHasMore(true);
     setJoining(true); // Show loading immediately
+
+    // History over plain HTTP, in parallel with the socket. The join's own copy
+    // waits behind the socket handshake and the token read, which on a phone
+    // network is several round trips; this one is one. Whichever lands first
+    // paints, and the join always has the last word.
+    getLiveChatMessages({ limit: 50, roomId })
+      .then((res) => {
+        if (cancelled || joinedRef.current || !res?.messages?.length) return;
+        setMessages(res.messages.map(normalizeMsg).reverse());
+        setHasMore(res.hasMore);
+      })
+      .catch((e) => log.debug("History prefetch failed:", e));
 
     const connect = async () => {
       const token = await getAuthToken();
@@ -351,6 +365,17 @@ export const useLiveChat = (
     };
     // A new room is a new socket: the gateway holds one room per connection.
   }, [isSignedIn, roomId, requireRoom]);
+
+  // Keep the public room's last screenful for the next open. Stream rooms are
+  // skipped: they are short-lived and one per stream, so they would only pile
+  // up on the phone. Debounced, or a busy room would rewrite it on every
+  // arrival; the room is read now, not when the timer fires, so a switch in
+  // between cannot file one room's lines under another.
+  useEffect(() => {
+    if (messages.length === 0 || roomIdRef.current) return;
+    const timer = setTimeout(() => writeRecentChat(undefined, messages), 2000);
+    return () => clearTimeout(timer);
+  }, [messages]);
 
   // Pause/resume on app background — reconnect + rejoin
   useEffect(() => {
