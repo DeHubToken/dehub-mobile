@@ -14,7 +14,13 @@
       "channel": "preview"
     },
     "store-testing": {
+      "distribution": "store",
       "channel": "preview",
+      "autoIncrement": true,
+      "environment": "preview",
+      "env": {
+        "EXPO_PUBLIC_LOCALE_PACK_ORIGIN": "https://staging.dehub.io"
+      },
       "android": {
         "buildType": "app-bundle"
       }
@@ -52,7 +58,8 @@
   "submit": {
     "store-testing": {
       "android": {
-        "track": "internal"
+        "track": "internal",
+        "releaseStatus": "completed"
       }
     },
     "production": {
