@@ -45,14 +45,16 @@ The frost version is not available until the new internal release is active.
 - Legacy external-storage writes are limited to Android 10 and older in the app
   manifest. This resolves the differing SDK limits declared by Expo ImagePicker
   and the existing crop picker; modern media permissions remain separate.
-- Cloud JavaScript bundling and Android/iOS native compilation must pass before
-  the signed bundle build and internal-track submission begin.
+- Cloud JavaScript bundling and Android manifest merging must pass before the
+  signed bundle build and internal-track submission begin. Android native
+  compilation passed on the prior commit and runs again in the signed build.
+  iOS compilation runs separately and must pass before production shipping.
 
 ## Release gate
 
 | Area | Required verification | State |
 | --- | --- | --- |
-| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Updated typecheck, tests, patch application and JavaScript bundling passed; Android compile exposed an ImagePicker/crop-picker manifest merge conflict, now fixed; native compilation and the signed build remain pending |
+| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Updated typecheck, tests, patch application, JavaScript bundling and Android native compilation passed; iOS compile exposed obsolete bindReactNativeFactory startup wiring, now removed to match Expo 55; updated iOS compilation and the signed build remain pending |
 | Tester release | Google Play internal-track processing and active release version | Pending; existing track still serves 1.17.6 |
 | Installation | Install the Play tester update; preserve existing app data | Pending |
 | Startup | Cold/warm launch, background/resume, crash and ANR logs | Pending |
