@@ -19,12 +19,16 @@ runs:
         sudo udevadm control --reload-rules
         sudo udevadm trigger --name-match=kvm
         test -r /dev/kvm && test -w /dev/kvm
+    - name: Assemble the profiling app before starting the emulator
+      shell: bash
+      run: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:assembleNonMinifiedRelease -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 35
         target: aosp_atd
         arch: x86_64
         disable-linux-hw-accel: false
+        emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
         disable-animations: true
         script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
     - name: Require generated profiles
