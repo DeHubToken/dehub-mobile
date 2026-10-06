@@ -11,11 +11,20 @@ runs:
       with:
         distribution: temurin
         java-version: '17'
+    - name: Enable emulator hardware acceleration
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --name-match=kvm
+        test -r /dev/kvm && test -w /dev/kvm
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 35
         target: aosp_atd
         arch: x86_64
+        disable-linux-hw-accel: false
         disable-animations: true
         script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
     - name: Require generated profiles
