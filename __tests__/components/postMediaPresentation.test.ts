@@ -116,13 +116,13 @@ describe('post media presentation', () => {
     expect(list).toContain('if (!answersTabPress || !isFocused || !active) return;');
   });
 
-  it('fills the width with cinematic media, capped like the post page and cropped past it', () => {
+  it('fills the width with cinematic media and caps feed videos at 75% of the screen', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
     expect(containedImage).toContain('postPageMaxHeightFor(screenHeight, availableWidth),\n          ),');
     expect(containedImage).toContain('contentFit={bleed ? "cover" : "contain"}');
-    expect(video).toContain('Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width))');
+    expect(video).toContain('Math.max(mediaAspect, boxWidth / (win.height * 0.75))');
     expect(video).toContain('width: bleed ? windowSize.width : mediaBoxWidth(');
   });
 

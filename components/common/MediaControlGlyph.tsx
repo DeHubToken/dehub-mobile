@@ -3,15 +3,17 @@ import React from "react";
 import { View, Text, StyleSheet, type StyleProp, type TextStyle } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 
-// The same dark outline under every white video control, with no button frame.
-export function MediaControlIcon({ name, size = 18 }: { name: IconName; size?: number }) {
-  const caption = (outline: boolean) => <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={outline ? "rgba(0,0,0,0.8)" : "#FFFFFF"} strokeLinecap="round" strokeLinejoin="round">
+// Active controls invert the white glyph and dark outline, with no button frame.
+export function MediaControlIcon({ name, size = 18, active = false }: { name: IconName; size?: number; active?: boolean }) {
+  const foreground = active ? "#000000" : "#FFFFFF";
+  const outlineColor = active ? "#FFFFFF" : "rgba(0,0,0,0.8)";
+  const caption = (outline: boolean) => <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={outline ? outlineColor : foreground} strokeLinecap="round" strokeLinejoin="round">
     <Rect x={3} y={5} width={18} height={14} rx={2} strokeWidth={outline ? 3 : 1.75} />
     <Path d="M10 9H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2M17 9h-2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2" strokeWidth={outline ? 2.5 : 1.25} />
   </Svg>;
   return <View style={{ width: size, height: size }}>
-    <View style={StyleSheet.absoluteFill}>{name === "Captions" ? caption(true) : <Icon name={name} size={size} color="rgba(0,0,0,0.8)" strokeWidth={3} />}</View>
-    {name === "Captions" ? caption(false) : <Icon name={name} size={size} color="#FFFFFF" strokeWidth={1.75} />}
+    <View style={StyleSheet.absoluteFill}>{name === "Captions" ? caption(true) : <Icon name={name} size={size} color={outlineColor} strokeWidth={3} />}</View>
+    {name === "Captions" ? caption(false) : <Icon name={name} size={size} color={foreground} strokeWidth={1.75} />}
   </View>;
 }
 

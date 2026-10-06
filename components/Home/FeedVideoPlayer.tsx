@@ -85,13 +85,6 @@ const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 const playbackLog = createLogger("FeedVideoPlayer");
 
 /**
- * Tallest the media may get. A portrait clip stops growing here and narrows
- * its own width instead, so a vertical video takes about a screen rather than
- * scrolling for three.
- */
-const maxMediaHeightFor = (screenHeight: number) => Math.round(Math.min(600, screenHeight * 0.6));
-
-/**
  * Post page cap: the clip is the page, so it grows to most of the screen, and
  * at least as tall as a full-width 9:16 clip so a vertical video spans the
  * whole width.
@@ -112,8 +105,8 @@ const mediaBoxWidth = (
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  if (!postPage && win.width < 768) return fullWidth;
-  const maxHeight = postPage ? postPageMaxHeightFor(win.height, fullWidth) : maxMediaHeightFor(win.height);
+  if (!postPage) return fullWidth;
+  const maxHeight = postPageMaxHeightFor(win.height, fullWidth);
   return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
 };
 
@@ -127,19 +120,10 @@ const pipSupported = () => {
   }
 };
 
-/**
- * Cinematic feed (system theme, home): the box is always the full width, and
- * as tall as the clip up to the post page cap. A clip thinner than that is
- * cropped to the box rather than letterboxed; 9:16 always fits whole, since
- * the cap is never below a full-width 9:16 frame.
- */
-const bleedBoxAspect = (win: { width: number; height: number }, mediaAspect: number) =>
-  Math.max(mediaAspect, win.width / postPageMaxHeightFor(win.height, win.width));
-
-/** Match the mobile web feed: 3:4 at most, capped at 65% of the screen.
+/** Match the web feed: full column width, capped at 75% of the screen.
  *  Cover fitting crops equally from the top and bottom of taller clips. */
 const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number) =>
-  Math.max(mediaAspect, 3 / 4, boxWidth / Math.min(600, win.height * 0.65));
+  Math.max(mediaAspect, boxWidth / (win.height * 0.75));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -533,7 +517,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
-  const cropFeedVideo = !postPage && windowSize.width < 768;
+  const cropFeedVideo = !postPage;
   const cropMedia = !postPage && (cropFeedVideo || !!bleed);
   const bareControls = true;
 
@@ -1039,12 +1023,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [ownsVideo, player, videoSession, stopPlayback]);
 
   const handleToggleLoop = useCallback(() => {
-    if (!playerRef.current) return;
-    const nextLoop = !isLooping;
+    if (!playerRef.current || !ownsPlayerRef.current()) return;
+    const nextLoop = !playerRef.current.loop;
     playerRef.current.loop = nextLoop;
     setIsLooping(nextLoop);
     startHideTimer();
-  }, [isLooping, startHideTimer]);
+  }, [startHideTimer]);
 
   const handleToggleSpeed = useCallback(() => {
     if (!playerRef.current) return;
@@ -1207,9 +1191,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         {
           aspectRatio: cropFeedVideo
             ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
-            : !postPage && bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
-          // Phone feeds keep the card width and crop tall clips. Larger screens
-          // narrow portrait clips; the post page keeps the full frame centred.
+            : mediaAspect,
+          // Feed videos fill the column; the post page keeps the full frame centred.
           width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
           alignSelf: isMinimal || postPage ? "center" : "flex-start",
@@ -1391,8 +1374,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <MediaControlText style={styles.bareSpeedText}>{playbackRate}x</MediaControlText>
               </Pressable>
               
-              <Pressable onPress={handleToggleLoop} style={styles.bareButton}>
-                <BareIcon name="Repeat" />
+              <Pressable
+                onPress={handleToggleLoop}
+                style={styles.bareButton}
+                accessibilityRole="button"
+                accessibilityLabel={t("player.toggleLoop")}
+                accessibilityState={{ selected: isLooping }}
+              >
+                <BareIcon name="Repeat" active={isLooping} />
               </Pressable>
 
               <View>
@@ -1497,7 +1486,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityState={{ selected: isLooping }}
                   style={styles.bareButton}
                 >
-                  <BareIcon name="Repeat" />
+                  <BareIcon name="Repeat" active={isLooping} />
                 </VideoScrubButton>
                 {pipSupported() && (
                   <VideoScrubButton
@@ -2026,7 +2015,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
-    const cropFeedVideo = !postPage && windowSize.width < 768;
+    const cropFeedVideo = !postPage;
     const cropMedia = !postPage && (cropFeedVideo || !!bleed);
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
@@ -2036,7 +2025,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           {
             aspectRatio: cropFeedVideo
               ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
-              : !postPage && bleed ? bleedBoxAspect(windowSize, mediaAspect) : mediaAspect,
+              : mediaAspect,
             width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
