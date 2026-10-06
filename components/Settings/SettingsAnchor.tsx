@@ -38,9 +38,10 @@ import {
  * nothing at all on minimal (web dissolves bentos into the page there).
  */
 export function useSettingsBentoStyle(): ViewStyle {
-  const { colors, isMinimal, skin } = useAppTheme();
+  const { colors, isMinimal, skin, theme } = useAppTheme();
   if (skin) return skin.card;
-  if (isMinimal) return { backgroundColor: 'transparent', borderRadius: 0 };
+  // Minimal and System (full immersive) have no bento: rows sit on the page.
+  if (isMinimal || theme === 'system') return { backgroundColor: 'transparent', borderRadius: 0 };
   return { backgroundColor: colors.neutrals[800], borderRadius: 16 };
 }
 
