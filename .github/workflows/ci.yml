@@ -22,7 +22,7 @@ jobs:
   verify:
     name: Typecheck & Test
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -96,6 +96,20 @@ jobs:
       # coverage regression fails this step directly.
       - name: Run tests with coverage
         run: npm run test:ci
+
+      - name: Export SDK 55 with duplicate-library mapping disabled
+        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'verify/sdk55-speed-compat-20261006'
+        env:
+          DEHUB_METRO_DEDUPE: '0'
+        run: npx expo export --platform android --source-maps --output-dir "$RUNNER_TEMP/sdk55-dedupe-off"
+
+      - name: Export SDK 55 with duplicate-library mapping enabled
+        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'verify/sdk55-speed-compat-20261006'
+        run: npx expo export --platform android --source-maps --output-dir "$RUNNER_TEMP/sdk55-dedupe-on"
+
+      - name: Check bundle size and unchanged patched module coverage
+        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'verify/sdk55-speed-compat-20261006'
+        run: node scripts/check-sdk55-speed-bundles.cjs "$RUNNER_TEMP/sdk55-dedupe-off" "$RUNNER_TEMP/sdk55-dedupe-on"
 
       - name: Upload coverage report
         if: always()
