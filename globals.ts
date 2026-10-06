@@ -1,5 +1,6 @@
 import { Buffer } from "buffer";
 import { createLogger } from './libs/logger';
+import { installLazyTextCodecs } from './libs/lazyTextCodecs';
 
 if (!global.Buffer) {
   // Assign Buffer polyfill
@@ -124,15 +125,7 @@ try {
 process.browser = true; // Some libs test this flag
 
 // TextEncoder / TextDecoder polyfill (used by certain encoding libs)
-try {
-  if (typeof (global as any).TextEncoder === 'undefined' || typeof (global as any).TextDecoder === 'undefined') {
-    const TextEncodingPolyfill = require('text-encoding');
-    (global as any).TextEncoder = TextEncodingPolyfill.TextEncoder;
-    (global as any).TextDecoder = TextEncodingPolyfill.TextDecoder;
-  }
-} catch (e) {
-  console.warn('[globals] text-encoding polyfill failed', e);
-}
+installLazyTextCodecs(global as any);
 
 // Debug sample (can be commented out after validation)
 try {
