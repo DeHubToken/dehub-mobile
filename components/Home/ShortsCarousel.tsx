@@ -5,22 +5,21 @@
  * (long-form first) interleaved with this month's most-viewed photo posts
  * that carry a soundtrack. Renders nothing until data arrives.
  */
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { View, FlatList, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
-import { useAppTheme } from "../../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { isShortsPhoto, interleaveShorts } from "../../libs/shortsPhotos";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import ShortsGridCard from "./ShortsGridCard";
 
-/** Same as SuggestedAccountsSection: step out over the feed list's side padding in minimal. */
-const MINIMAL_LIST_GUTTER = 8;
+/** Step out over the feed list's side padding, with no frame around the rail. */
+const LIST_GUTTER = 8;
+const EMPTY_ITEMS: UnifiedFeedItem[] = [];
 const REEL_SIZE = 10;
 /** /feed has no duration filter, so over-fetch to find enough long-form. Matches web. */
 const VIDEO_FETCH_LIMIT = 50;
@@ -39,16 +38,19 @@ async function fetchCarousel(): Promise<UnifiedFeedItem[]> {
   return interleaveShorts(ranked, (photos.result || []).filter(isShortsPhoto)).slice(0, REEL_SIZE);
 }
 
-const ShortsCarousel: React.FC = () => {
-  const { isMinimal } = useAppTheme();
-  const navigation = useNavigation<any>();
+export function useHomeShortsCarousel(enabled: boolean): UnifiedFeedItem[] {
   const shortsEnabled = useAppPrefs().shorts;
-  const { data: items = [] } = useQuery({
+  const { data: items = EMPTY_ITEMS } = useQuery({
     queryKey: ["home-shorts-carousel"],
     queryFn: fetchCarousel,
-    enabled: shortsEnabled,
+    enabled: enabled && shortsEnabled,
     staleTime: 5 * 60 * 1000,
   });
+  return enabled && shortsEnabled ? items : EMPTY_ITEMS;
+}
+
+const ShortsCarousel: React.FC<{ items: UnifiedFeedItem[] }> = ({ items }) => {
+  const navigation = useNavigation<any>();
 
   const handlePress = useCallback((index: number) => {
     navigation.navigate(ScreenNames.ShortsViewer, {
@@ -71,9 +73,7 @@ const ShortsCarousel: React.FC = () => {
 
   // Keeps a sideways drag on the rail from turning Home's feed tabs.
   const scrollGuard = useHorizontalScrollGuard();
-  const contentStyle = useMemo(() => ({ paddingHorizontal: isMinimal ? MINIMAL_INSET : 8 }), [isMinimal]);
-
-  if (!shortsEnabled || items.length === 0) return null;
+  if (items.length === 0) return null;
 
   const list = (
     <FlatList
@@ -83,21 +83,11 @@ const ShortsCarousel: React.FC = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       nestedScrollEnabled
-      contentContainerStyle={contentStyle}
     />
   );
 
   return (
-    <View
-      className={isMinimal ? undefined : "mb-3"}
-      style={isMinimal ? {
-        marginHorizontal: -MINIMAL_LIST_GUTTER,
-        paddingTop: 14,
-        paddingBottom: 14,
-        borderBottomWidth: 1,
-        borderBottomColor: MINIMAL_HAIRLINE,
-      } : undefined}
-    >
+    <View style={{ marginHorizontal: -LIST_GUTTER, marginVertical: 12 }}>
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list}
     </View>
   );
