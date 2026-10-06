@@ -22,6 +22,8 @@
  */
 
 import React, { memo, useCallback, useEffect, useState } from "react";
+import { useUser } from "../../context/AuthContext";
+import { markReactionTipSeen } from "../../libs/reaction-tip";
 import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import Animated, {
@@ -108,6 +110,11 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
   onClosed,
 }) => {
   const { t } = useTranslation();
+  const user = useUser();
+  const walletAddress = user?.walletAddress || user?.address;
+  useEffect(() => {
+    if (open) markReactionTipSeen(walletAddress);
+  }, [open, walletAddress]);
   const { colors } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
