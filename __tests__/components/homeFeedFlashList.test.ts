@@ -156,6 +156,8 @@ describe('home feed on FlashList: visibility', () => {
       },
       activeRef: { current: true },
       visibleKeysRef: { current: new Set<string>() },
+      visibleCountIdsRef: { current: [] as number[] },
+      feedRowId: (row: any) => row?.tokenId ?? row?.id ?? row?.stream?.tokenId,
       visibleTokensRef: { current: new Map() },
       visibilityStore: { update: jest.fn() },
       isVideoItem,
@@ -185,6 +187,7 @@ describe('home feed on FlashList: visibility', () => {
     const { ctx, tick } = handler();
     tick([0, head], [1, image(1)], [2, suggested], [3, video(2)]);
     expect(ctx.visibilityStore.update).toHaveBeenLastCalledWith(new Set(['i1', 'v2']), 'v2');
+    expect(ctx.visibleCountIdsRef.current).toEqual([1, 2]);
   });
 
   it('hands autoplay to a live row ahead of a video above it', () => {
@@ -200,6 +203,7 @@ describe('home feed on FlashList: visibility', () => {
     tick([1, video(9)], [2, image(2)]);
     expect(ctx.visibilityStore.update).toHaveBeenLastCalledWith(new Set(['v9', 'i2']), 'v9');
     expect(ctx.visibleKeysRef.current).toEqual(new Set(['v9', 'i2']));
+    expect(ctx.visibleCountIdsRef.current).toEqual([9, 2]);
   });
 
   it('reports each post to its view tracker once on arrival and once on leaving', () => {
@@ -220,6 +224,7 @@ describe('home feed on FlashList: visibility', () => {
     const { ctx, trackers, tick } = handler([1, 3]);
     tick([1, video(1)], [2, video(2)], [3, image(3)], [4, image(4)]);
     expect(ctx.visibilityStore.update).toHaveBeenLastCalledWith(new Set(['v2', 'i4']), 'v2');
+    expect(ctx.visibleCountIdsRef.current).toEqual([2, 4]);
     expect(trackers.has('3')).toBe(false);
     expect(trackers.get('4')!.onVisibilityChange.mock.calls).toEqual([[0.6]]);
   });
