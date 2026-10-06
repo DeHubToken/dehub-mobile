@@ -19,7 +19,8 @@ signing certificate, preserving the installed app and its data.
 
 The existing "Internal testers | Team" list is selected in Play Console. Its
 join link is https://play.google.com/apps/internaltest/4700504887929249417.
-The frost version is not available until the new internal release is active.
+The repaired 1.18.2 build 79 was submitted successfully to the internal track
+on 6 October. Play processing and availability must be checked separately.
 
 ## Migration checks
 
@@ -54,17 +55,21 @@ The frost version is not available until the new internal release is active.
   values in a release bundle. Reanimated and Worklets use actual Jest/runtime
   detection instead. Cloud checks reproduce the old detector as a negative
   control and validate native release, actual Jest and web behavior.
-  The repair can reach build 78 through the matching preview update runtime;
-  a replacement native tester build must embed the same fix.
+  The matching preview update repaired build 78 on the Galaxy S24+. Its next
+  launch loaded the feed, retained the existing session and remained alive for
+  more than five minutes with an empty crash buffer. Native build 79 embeds
+  the same repair and passed signed bundle verification and internal submission.
+  The rebased 1.18.3 candidate includes subsequent theme and media-grid changes;
+  its cloud checks and final device regression remain required.
 
 ## Release gate
 
 | Area | Required verification | State |
 | --- | --- | --- |
-| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | All build-78 cloud checks passed; startup-repair regression checks and replacement bundle pending |
-| Tester release | Google Play internal-track processing and active release version | 1.18.2 (78) active; startup repair pending |
-| Installation | Install the Play tester update; preserve existing app data | Play update to 78 confirmed by ADB; session and wallet checks require startup recovery |
-| Startup | Cold/warm launch, background/resume, crash and ANR logs | Failed on build 78: animation mapper TypeError captured by ADB; repaired runtime pending retest |
+| Cloud | Typecheck, existing tests, patch application, JavaScript bundle, Android/iOS compile, signed AAB build | Repair source 483647d passed all checks in run 37485574086; rebased 1.18.3 candidate pending |
+| Tester release | Google Play internal-track processing and active release version | 1.18.2 (79) submitted successfully; availability pending verification |
+| Installation | Install the Play tester update; preserve existing app data | Build 78 retained its data after the repair OTA; build 79 installation and wallet checks pending |
+| Startup | Cold/warm launch, background/resume, crash and ANR logs | Repair OTA launches and loads the feed without new crashes; full lifecycle and replacement-build checks pending |
 | Feed | All six tabs, fast scroll, pagination, refresh, filters, pager drags | Pending |
 | Chrome | Top/bottom pills, theme changes, drawers, overlays, back navigation | Pending |
 | Media | Images, video, fullscreen, PiP, audio play/pause/seek and lock-screen controls | Pending |
