@@ -32,8 +32,12 @@ const on = inspect(onDir);
 let checked = 0;
 for (const folder of patchedPackagePaths(path.join(__dirname, '../patches'))) {
   const needle = folder + '/';
-  const original = [...off.sources].filter(source => source.includes(needle)).sort();
-  const enabled = [...on.sources].filter(source => source.includes(needle)).sort();
+  const belongsToFolder = source => {
+    const at = source.indexOf('node_modules/');
+    return at >= 0 && source.slice(at).startsWith(needle);
+  };
+  const original = [...off.sources].filter(belongsToFolder).sort();
+  const enabled = [...on.sources].filter(belongsToFolder).sort();
   assert.deepEqual(enabled, original, 'Patched module coverage changed for ' + folder);
   if (original.length > 0) checked++;
   if (/react-native-(reanimated|worklets)$/.test(folder)) {
