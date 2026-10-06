@@ -19,7 +19,6 @@ class AppDelegate: ExpoAppDelegate {
 
     reactNativeDelegate = delegate
     reactNativeFactory = factory
-    bindReactNativeFactory(factory)
 
     // Camera looks have to exist in ProcessorProvider before the broadcaster
     // ever names one — react-native-webrtc resolves them by name at capture

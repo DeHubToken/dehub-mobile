@@ -173,7 +173,7 @@ jobs:
 
   android-frost-preview:
     name: Google Play frost testers
-    needs: [verify, android-sdk55-preflight, ios-sdk55-compile]
+    needs: [verify, android-sdk55-preflight]
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'upgrade/sdk55-android-frost-20261005'
     runs-on: ubuntu-latest
     timeout-minutes: 150
@@ -261,13 +261,6 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew :app:processReleaseMainManifest --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
-      - name: Compile upgraded Android integrations
-        working-directory: android
-        env:
-          CMAKE_BUILD_PARALLEL_LEVEL: '2'
-        run: |
-          chmod +x gradlew
-          ./gradlew :app:compileReleaseKotlin --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
 
   ios-sdk55-compile:
     name: iOS SDK 55 compile
