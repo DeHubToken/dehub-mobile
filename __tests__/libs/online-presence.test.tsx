@@ -5,7 +5,7 @@ jest.mock('react-native-css-interop', () => ({ createInteropElement: require('re
 afterEach(() => { cleanup(); publishOnline(new Set()); });
 
 it('keeps demand only for focused dots', () => {
-  const hook = renderHook(({ focused }) => ({
+  const hook = renderHook(({ focused }: { focused: boolean }) => ({
     online: useIsOnline('ALICE', focused), readers: usePresenceReaders(),
   }), { initialProps: { focused: true } });
   expect(hook.result.current.readers).toBe(true);
