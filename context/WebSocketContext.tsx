@@ -55,6 +55,8 @@ export interface WebSocketApi {
    * component subscribing to the status for the rest of its life.
    */
   isCoreConnected: () => boolean;
+  /** Recover an open thread after the DM transport reconnects. */
+  onDmReconnect: (listener: () => void) => () => void;
   /** Direct access to the underlying client for advanced use-cases (avoid in generic UI code) */
   client?: WebSocketClient | null;
 }
@@ -127,6 +129,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const connectedCoreRef = useRef<boolean>(false);
   const connectedDMRef = useRef<boolean>(false);
   const reconnectListenersRef = useRef<Set<() => void>>(new Set());
+  const dmReconnectListenersRef = useRef<Set<() => void>>(new Set());
   // No domain state kept (stream-specific logic removed)
 
   // ── Subscriptions ─────────────────────────────────────────────────────────
@@ -219,6 +222,9 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         log.info('connected (dm namespace)');
         connectedDMRef.current = true;
         setConnected(true);
+        dmReconnectListenersRef.current.forEach((fn) => {
+          try { fn(); } catch {}
+        });
         reconnectListenersRef.current.forEach((fn) => {
           try { fn(); } catch {}
         });
@@ -337,6 +343,10 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
   }, []);
   const isCoreConnected = useCallback(() => connectedCoreRef.current, []);
+  const onDmReconnect = useCallback((listener: () => void) => {
+    dmReconnectListenersRef.current.add(listener);
+    return () => { dmReconnectListenersRef.current.delete(listener); };
+  }, []);
 
   // `client` is read off the ref at memo time, as before. It is created once
   // per provider (see the identity gate above), so the api value is rebuilt
@@ -344,9 +354,9 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // single change per session in practice — and stays put through reconnects.
   const clientCreated = coreConnected || !!clientRef.current;
   const api = useMemo<WebSocketApi>(
-    () => ({ emit, emitAuthed, on, off, isCoreConnected, client: clientRef.current }),
+    () => ({ emit, emitAuthed, on, off, isCoreConnected, onDmReconnect, client: clientRef.current }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [emit, emitAuthed, on, off, isCoreConnected, clientCreated],
+    [emit, emitAuthed, on, off, isCoreConnected, onDmReconnect, clientCreated],
   );
   const status = useMemo<WebSocketStatus>(
     () => ({ connected, coreConnected, connectionEpoch }),
