@@ -23,7 +23,9 @@ const SEARCH_DIRS = ["components", "screens", "navigation", "hooks", "libs", "co
  *  - the feed nav pill and its sliding indicator are the swallow effect, where
  *    content reading through the glass is the point;
  *  - the bottom tab bar pill, whose BlurView renders on iOS only (real native
- *    glass there); Android paints it solid.
+ *    glass there); ChromeSurface now draws that pill's selected theme material
+ *    on iOS too. Neither renderer creates a BlurView on Android, which is
+ *    covered by their rendering tests.
  *
  * Anything else is a panel, a card, a menu or a control, and must be opaque.
  * Adding a file here needs a reason that fits one of the two cases above.
@@ -33,6 +35,7 @@ const ALLOWED = [
   "components/DM/ConversationContextMenu.tsx",
   "components/DM/MessageContextMenu.tsx",
   "components/LiveChat/LiveChatContextMenu.tsx",
+  "components/ui/ChromeSurface.tsx",
   "components/ui/GlassIndicator.tsx",
   "components/ui/GlassModal.tsx",
   "components/ui/IosGlassPill.tsx",

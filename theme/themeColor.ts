@@ -135,6 +135,11 @@ export function tintSkin(skin: ThemeSkin, accent: Rgb): ThemeSkin {
   return {
     ...skin,
     card: withFill(skin.card, rgba(card, 0.7)),
+    centre: {
+      ...skin.card,
+      backgroundColor: rgba(card, 0.7),
+      borderRadius: skin.centre.borderRadius,
+    },
     strip: withFill(skin.strip, rgba(pill, 1)),
     barFill: withFill(skin.barFill, rgba(pill, 1)),
   };

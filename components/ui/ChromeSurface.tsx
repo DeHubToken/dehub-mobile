@@ -1,8 +1,11 @@
 import React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Image, Platform, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { BlurView } from "expo-blur";
 import IosGlassPill from "./IosGlassPill";
 import { useAppTheme } from "../../context/ThemeContext";
+import { GRAIN } from "../../theme/skins";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
 /** Solid fill Android (and web) draws in place of glass: fully opaque, so
  *  nothing behind it reads through the icons. */
@@ -63,6 +66,21 @@ function solidTint(rgb: Rgb): string {
  */
 export default function ChromeSurface({ radius, tinted = false }: { radius: number; tinted?: boolean }) {
   const accent = useChromeAccent();
+  const { skin, isMinimal } = useAppTheme();
+  if (isMinimal) {
+    return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000", borderRadius: 0, borderWidth: 1, borderColor: MINIMAL_HAIRLINE }]} />;
+  }
+  if (skin) {
+    const corner = skin.square ? 0 : radius;
+    const material = tinted ? skin.centre : skin.card;
+    return (
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: corner, overflow: "hidden" }]}>
+        {Platform.OS === "ios" ? <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} /> : null}
+        <View style={[StyleSheet.absoluteFill, material, { borderRadius: corner }]} />
+        {skin.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} /> : null}
+      </View>
+    );
+  }
   if (tinted) {
     // iOS: the shared glass (its thin dark material is the base, and it
     // brings its own sheen and rim) with the accent washed over it.
