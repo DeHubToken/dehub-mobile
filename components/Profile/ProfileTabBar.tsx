@@ -10,8 +10,6 @@ import Icon, { type IconName } from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import {
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
   minimalTab,
   minimalTabActive,
   minimalTabStrip,
@@ -90,20 +88,12 @@ function ProfileTabBarInner<Key extends string>({
               <Icon
                 name={item.icon}
                 size={18}
-                color={
-                  focused
-                    ? isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : "#FFFFFF"
-                    : isMinimal ? MINIMAL_TAB_TEXT : "#808089"
-                }
+                color="#FFFFFF"
                 strokeWidth={2}
               />
               <Text
                 numberOfLines={1}
-                style={[
-                  styles.count,
-                  isMinimal && styles.minimalCount,
-                  focused && styles.countActive,
-                ]}
+                style={styles.count}
               >
                 {typeof item.count === "number"
                   ? formatCompactNumber(item.count)
@@ -150,14 +140,11 @@ const styles = StyleSheet.create({
   },
   count: {
     textAlign: "center",
-    color: "#808089",
+    color: "#FFFFFF",
     fontSize: 10,
     lineHeight: 12,
     marginTop: 1,
     fontWeight: "500",
-  },
-  countActive: {
-    color: "#FFFFFF",
   },
   minimalOuterWrap: {
     paddingHorizontal: 0,
@@ -166,9 +153,6 @@ const styles = StyleSheet.create({
     ...minimalTabStrip,
     paddingVertical: 0,
     alignItems: "flex-end",
-  },
-  minimalCount: {
-    color: MINIMAL_TAB_TEXT,
   },
 });
 
