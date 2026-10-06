@@ -322,7 +322,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }
   const [refreshing, setRefreshing] = useState(false);
   const { isMinimal, theme: appTheme, skin } = useAppTheme();
-  const shortsItems = useHomeShortsCarousel(showShortsCarousel);
   // Row visibility lives outside React state so a viewability tick re-renders
   // only the rows it changed, not every mounted cell. See libs/feedVisibility.
   // Created dark when this list mounts as a hidden pager page (the warm-up
@@ -788,6 +787,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       ...rest,
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, queuedBoostPosts]);
+
+  const shortsItems = useHomeShortsCarousel(showShortsCarousel && feedItems.length > SHORTS_AFTER_INDEX);
 
   // Runs once the list has laid out a change: on every content size change,
   // and a frame after a new boost.
