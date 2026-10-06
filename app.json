@@ -3,7 +3,7 @@
     "scheme": "dehub",
     "name": "DeHub",
     "slug": "dehubmobile",
-    "version": "1.18.1",
+    "version": "1.18.2",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
     "notification": {
@@ -11,6 +11,11 @@
       "color": "#8e8e93"
     },
     "userInterfaceStyle": "dark",
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000000",
+      "enforceContrast": false
+    },
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/AppIcons/playstore.png",

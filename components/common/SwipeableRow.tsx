@@ -29,10 +29,7 @@ export interface SwipeAction {
 
 interface SwipeableRowProps {
   actions: SwipeAction[];
-  /**
-   * The row content must be opaque or the action panel shows through it while
-   * the row is at rest. Pass whatever the surrounding list sits on.
-   */
+  /** Row surface; transparent theme fills are safe because actions sit beside it. */
   backgroundClassName?: string;
   enabled?: boolean;
   children: React.ReactNode;
@@ -212,53 +209,10 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
 
   return (
     <Animated.View style={[{ overflow: "hidden" }, rowStyle]} onLayout={onLayout}>
-      <Animated.View
-        style={[
-          { position: "absolute", top: 0, bottom: 0, right: 0, flexDirection: "row" },
-          actionsStyle,
-        ]}
-      >
-        {actions.map((action, i) => {
-          const isLast = i === actions.length - 1;
-          return (
-            <Pressable
-              key={action.key}
-              onPress={() => {
-                if (action.destructive) {
-                  dismissThen(action.onPress);
-                  return;
-                }
-                close();
-                action.onPress();
-              }}
-              accessibilityRole="button"
-              accessibilityLabel={action.label}
-              style={({ pressed }) => ({
-                width: isLast && stretches ? undefined : ACTION_WIDTH,
-                flex: isLast && stretches ? 1 : undefined,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: action.color,
-                opacity: pressed ? 0.75 : 1,
-              })}
-            >
-              <Ionicons name={action.icon} size={21} color="#FFFFFF" />
-              <Text
-                numberOfLines={1}
-                style={{ color: "#FFFFFF", fontSize: 11, fontWeight: "600", marginTop: 4, paddingHorizontal: 4 }}
-              >
-                {action.label}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </Animated.View>
-
       <GestureDetector gesture={pan}>
         <Animated.View style={contentStyle}>
           <View className={backgroundClassName}>{children}</View>
-          {/* A tap on an open row closes it, as in Mail, instead of opening
-              whatever the row links to. */}
+          {/* A tap on an open row closes it instead of opening the thread. */}
           {open && (
             <Pressable
               onPress={close}
@@ -266,6 +220,53 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
               style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
             />
           )}
+          {/* Actions move with the row, outside its resting bounds. They cannot
+              bleed through a canvas theme's transparent foreground. */}
+          <Animated.View
+            pointerEvents={open ? "auto" : "none"}
+            accessibilityElementsHidden={!open}
+            importantForAccessibility={open ? "auto" : "no-hide-descendants"}
+            style={[
+              { position: "absolute", top: 0, bottom: 0, left: "100%", flexDirection: "row" },
+              actionsStyle,
+            ]}
+          >
+            {actions.map((action, i) => {
+              const isLast = i === actions.length - 1;
+              return (
+                <Pressable
+                  key={action.key}
+                  onPress={() => {
+                    if (action.destructive) {
+                      dismissThen(action.onPress);
+                      return;
+                    }
+                    close();
+                    action.onPress();
+                  }}
+                  accessibilityRole="button"
+                  accessibilityLabel={action.label}
+                  style={({ pressed }) => ({
+                    width: isLast && stretches ? undefined : ACTION_WIDTH,
+                    flex: isLast && stretches ? 1 : undefined,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: action.color,
+                    opacity: pressed ? 0.75 : 1,
+                  })}
+                >
+                  <Ionicons name={action.icon} size={21} color="#FFFFFF" />
+                  <Text
+                    numberOfLines={1}
+                    style={{ color: "#FFFFFF", fontSize: 11, fontWeight: "600", marginTop: 4, paddingHorizontal: 4 }}
+                  >
+                    {action.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </Animated.View>
+
         </Animated.View>
       </GestureDetector>
     </Animated.View>

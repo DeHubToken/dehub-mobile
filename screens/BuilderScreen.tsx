@@ -67,7 +67,7 @@ export default function BuilderScreen() {
   const canSend = !!prompt.trim();
 
   return (
-    <View style={styles.screen}>
+    <View className="bg-theme-background" style={styles.screen}>
       <ScreenHeader title={t("creator.toolBuilder")} />
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
         <ScrollView
@@ -162,7 +162,7 @@ export default function BuilderScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#000" },
+  screen: { flex: 1 },
   title: { color: "#fff", fontSize: 30, fontWeight: "800", textAlign: "center", lineHeight: 35 },
   subtitle: { color: "#c9c9ce", fontSize: 15, lineHeight: 22, textAlign: "center", marginTop: 12, paddingHorizontal: 6 },
   composer: { padding: 14 },
