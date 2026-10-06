@@ -7599,7 +7599,12 @@
     "volume24h": "24 сағаттық көлем",
     "liquidity": "Ликвидтілік",
     "change1h": "1 сағаттық өзгеріс",
-    "viewOnDexScreener": "DexScreener сайтында көру"
+    "viewOnDexScreener": "DexScreener сайтында көру",
+    "listingTitle": "Токен листингі жақында!",
+    "listingBody": "$DHB әлі саудаланбайды. Листингке шыққан сәтте email алыңыз.",
+    "notifyMe": "Маған хабарла",
+    "listingPrivacy": "Мұны тек $DHB листингке шыққанда сізге хабарлау үшін қолданамыз.",
+    "listingJoined": "Сіз тізімдесіз. $DHB листингке шыққан сәтте {{email}} мекенжайына хат жібереміз."
   },
   "linkCard": {
     "inviteRevoked": "Шақыру жойылды",

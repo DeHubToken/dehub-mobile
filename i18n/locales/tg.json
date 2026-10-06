@@ -7504,7 +7504,12 @@
     "volume24h": "Ҳаҷми 24-соата",
     "liquidity": "Ликвидӣ",
     "change1h": "Тағйироти 1-соата",
-    "viewOnDexScreener": "Дар DexScreener дидан"
+    "viewOnDexScreener": "Дар DexScreener дидан",
+    "listingTitle": "Листинги токен ба наздикӣ!",
+    "listingBody": "$DHB ҳоло савдо намешавад. Ҳамин ки рӯйхат шавад, мактуб гиред.",
+    "notifyMe": "Ба ман хабар диҳед",
+    "listingPrivacy": "Мо инро танҳо барои хабар додан дар бораи листинги $DHB истифода мебарем.",
+    "listingJoined": "Шумо дар рӯйхат ҳастед. Ҳамин ки $DHB рӯйхат шавад, ба {{email}} мактуб мефиристем."
   },
   "linkCard": {
     "inviteRevoked": "Даъватнома бекор карда шуд",

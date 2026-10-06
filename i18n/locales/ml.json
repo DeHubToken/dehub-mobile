@@ -7547,7 +7547,12 @@
     "volume24h": "24 മണിക്കൂറിനുള്ളിലെ വോളിയം",
     "liquidity": "ലേയത്വം",
     "change1h": "1 മണിക്കൂറിലെ മാറ്റം",
-    "viewOnDexScreener": "DexScreener-ൽ കാണുക"
+    "viewOnDexScreener": "DexScreener-ൽ കാണുക",
+    "listingTitle": "ടോക്കൺ ലിസ്റ്റിംഗ് ഉടൻ!",
+    "listingBody": "$DHB ഇതുവരെ ട്രേഡ് ചെയ്യുന്നില്ല. ലിസ്റ്റ് ചെയ്താലുടൻ ഇമെയിൽ നേടൂ.",
+    "notifyMe": "എന്നെ അറിയിക്കുക",
+    "listingPrivacy": "$DHB ലിസ്റ്റ് ചെയ്യുമ്പോൾ നിങ്ങളെ അറിയിക്കാൻ മാത്രമേ ഇത് ഉപയോഗിക്കൂ.",
+    "listingJoined": "നിങ്ങൾ ലിസ്റ്റിലുണ്ട്. $DHB ലിസ്റ്റ് ചെയ്താലുടൻ {{email}} ലേക്ക് ഇമെയിൽ അയയ്ക്കും."
   },
   "linkCard": {
     "inviteRevoked": "ക്ഷണം റദ്ദാക്കി",

@@ -7536,7 +7536,12 @@
     "volume24h": "Volume 24 jam",
     "liquidity": "Likuiditas",
     "change1h": "Owahan 1 jam",
-    "viewOnDexScreener": "Deleng ing DexScreener"
+    "viewOnDexScreener": "Deleng ing DexScreener",
+    "listingTitle": "Listing token enggal teka!",
+    "listingBody": "$DHB durung didol-tuku. Entuk email sanalika wis kadaftar.",
+    "notifyMe": "Kabari aku",
+    "listingPrivacy": "Iki mung bakal digunakake kanggo ngabari sampeyan nalika $DHB kadaftar.",
+    "listingJoined": "Sampeyan wis ana ing dhaptar. Kita bakal ngirim email menyang {{email}} sanalika $DHB kadaftar."
   },
   "linkCard": {
     "inviteRevoked": "Undhangan dicabut",

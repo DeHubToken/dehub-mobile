@@ -7587,7 +7587,12 @@
     "volume24h": "Volume 24 jam",
     "liquidity": "Likuiditas",
     "change1h": "Perubahan 1 jam",
-    "viewOnDexScreener": "Lihat di DexScreener"
+    "viewOnDexScreener": "Lihat di DexScreener",
+    "listingTitle": "Listing token segera hadir!",
+    "listingBody": "$DHB belum diperdagangkan. Dapatkan email begitu terdaftar.",
+    "notifyMe": "Beri tahu saya",
+    "listingPrivacy": "Kami hanya akan menggunakannya untuk memberi tahu Anda saat $DHB terdaftar.",
+    "listingJoined": "Anda sudah masuk daftar. Kami akan mengirim email ke {{email}} begitu $DHB terdaftar."
   },
   "linkCard": {
     "inviteRevoked": "Undangan dicabut",

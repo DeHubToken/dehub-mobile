@@ -7577,7 +7577,12 @@
     "volume24h": "حجم التداول خلال 24 ساعة",
     "liquidity": "السيولة",
     "change1h": "التغيير خلال ساعة واحدة",
-    "viewOnDexScreener": "عرض على DexScreener"
+    "viewOnDexScreener": "عرض على DexScreener",
+    "listingTitle": "إدراج التوكن قريب!",
+    "listingBody": "$DHB مازال ما تداولش. غادي يوصلك إيميل غير يتدرج.",
+    "notifyMe": "علمني",
+    "listingPrivacy": "غادي نستعملوه غير باش نعلموك ملي يتدرج $DHB.",
+    "listingJoined": "راك فاللائحة. غادي نصيفطو إيميل لـ {{email}} غير يتدرج $DHB."
   },
   "linkCard": {
     "inviteRevoked": "تم إلغاء الدعوة",

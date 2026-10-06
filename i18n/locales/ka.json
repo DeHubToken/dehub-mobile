@@ -7600,7 +7600,12 @@
     "volume24h": "24-საათიანი მოცულობა",
     "liquidity": "ლიკვიდურობა",
     "change1h": "1-საათიანი ცვლილება",
-    "viewOnDexScreener": "ნახვა DexScreener-ზე"
+    "viewOnDexScreener": "ნახვა DexScreener-ზე",
+    "listingTitle": "ტოკენის ლისტინგი მალე!",
+    "listingBody": "$DHB-ით ვაჭრობა ჯერ არ დაწყებულა. მიიღეთ ელფოსტა, როგორც კი ის ჩაილისტება.",
+    "notifyMe": "შემატყობინეთ",
+    "listingPrivacy": "ამას გამოვიყენებთ მხოლოდ იმისთვის, რომ გაცნობოთ $DHB-ის ლისტინგის შესახებ.",
+    "listingJoined": "თქვენ სიაში ხართ. როგორც კი $DHB ჩაილისტება, მივწერთ {{email}}-ზე."
   },
   "linkCard": {
     "inviteRevoked": "მოწვევა გაუქმებულია",

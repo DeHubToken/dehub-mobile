@@ -7639,7 +7639,12 @@
     "volume24h": "Volume 24 ora",
     "liquidity": "Fahaizana",
     "change1h": "Fiovàna 1 ora",
-    "viewOnDexScreener": "Jereo ao amin'ny DexScreener"
+    "viewOnDexScreener": "Jereo ao amin'ny DexScreener",
+    "listingTitle": "Ho avy tsy ho ela ny fisoratana ny token!",
+    "listingBody": "Tsy mbola amidy ny $DHB. Mahazoa mailaka raha vao voasoratra izy.",
+    "notifyMe": "Ampahafantaro ahy",
+    "listingPrivacy": "Hampiasainay ihany ity hampahafantarana anao rehefa voasoratra ny $DHB.",
+    "listingJoined": "Ao amin'ny lisitra ianao. Handefa mailaka any amin'ny {{email}} izahay raha vao voasoratra ny $DHB."
   },
   "linkCard": {
     "inviteRevoked": "Nofoanan'ny fanasana",

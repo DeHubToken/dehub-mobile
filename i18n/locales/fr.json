@@ -7860,7 +7860,12 @@
     "volume24h": "Volume sur 24h",
     "liquidity": "Liquidité",
     "change1h": "Changement sur 1h",
-    "viewOnDexScreener": "Voir sur DexScreener"
+    "viewOnDexScreener": "Voir sur DexScreener",
+    "listingTitle": "Cotation du token bientôt !",
+    "listingBody": "$DHB n'est pas encore échangé. Recevez un e-mail dès sa cotation.",
+    "notifyMe": "Me prévenir",
+    "listingPrivacy": "Nous l'utiliserons uniquement pour vous prévenir de la cotation de $DHB.",
+    "listingJoined": "Vous êtes sur la liste. Nous écrirons à {{email}} dès que $DHB sera coté."
   },
   "linkCard": {
     "inviteRevoked": "Invitation révoquée",

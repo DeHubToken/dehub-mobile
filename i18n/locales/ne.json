@@ -7590,7 +7590,12 @@
     "volume24h": "२४ घन्टाको भोल्युम",
     "liquidity": "तरलता",
     "change1h": "१ घन्टाको परिवर्तन",
-    "viewOnDexScreener": "DexScreener मा हेर्नुहोस्"
+    "viewOnDexScreener": "DexScreener मा हेर्नुहोस्",
+    "listingTitle": "टोकन लिस्टिङ छिट्टै!",
+    "listingBody": "$DHB को कारोबार अझै सुरु भएको छैन। लिस्ट हुनेबित्तिकै इमेल पाउनुहोस्।",
+    "notifyMe": "मलाई जानकारी दिनुहोस्",
+    "listingPrivacy": "$DHB लिस्ट हुँदा तपाईंलाई जानकारी दिन मात्र हामी यो प्रयोग गर्नेछौं।",
+    "listingJoined": "तपाईं सूचीमा हुनुहुन्छ। $DHB लिस्ट हुनेबित्तिकै हामी {{email}} मा इमेल पठाउनेछौं।"
   },
   "linkCard": {
     "inviteRevoked": "निमन्त्रणा रद्द गरियो",

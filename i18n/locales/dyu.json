@@ -7504,7 +7504,12 @@
     "volume24h": "Volume 24 jam",
     "liquidity": "Likuiditas",
     "change1h": "Perubahan 1 jam",
-    "viewOnDexScreener": "Lihat di DexScreener"
+    "viewOnDexScreener": "Lihat di DexScreener",
+    "listingTitle": "Tokɛn bɛna sɔrɔ sɔɔni!",
+    "listingBody": "$DHB ma san ni feere daminɛ fɔlɔ. I bɛna email sɔrɔ a bɔli waati la.",
+    "notifyMe": "N kibaro",
+    "listingPrivacy": "An bɛna nin kɛ dɔrɔn ka i kibaro $DHB bɔli la.",
+    "listingJoined": "I bɛ lisi kɔnɔ. An bɛna email ci {{email}} ma $DHB bɔli waati la."
   },
   "linkCard": {
     "inviteRevoked": "Undangan dicabut",

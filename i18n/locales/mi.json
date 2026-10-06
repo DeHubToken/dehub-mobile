@@ -7540,7 +7540,12 @@
     "volume24h": "Rōrahi 24h",
     "liquidity": "Waiwai",
     "change1h": "Huringa 1h",
-    "viewOnDexScreener": "Tirohia i runga i te DexScreener"
+    "viewOnDexScreener": "Tirohia i runga i te DexScreener",
+    "listingTitle": "Ka rārangi te tohu ā tōna wā tata!",
+    "listingBody": "Kāore anō kia hokohokona a $DHB. Whiwhi īmēra ina rārangitia.",
+    "notifyMe": "Whakamōhio mai",
+    "listingPrivacy": "Ka whakamahia tēnei hei whakamōhio noa i a koe ina rārangitia a $DHB.",
+    "listingJoined": "Kei te rārangi koe. Ka īmēra mātou ki {{email}} ina rārangitia a $DHB."
   },
   "linkCard": {
     "inviteRevoked": "Kua whakakorea te pōhiri",

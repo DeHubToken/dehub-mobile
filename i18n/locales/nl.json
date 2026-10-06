@@ -7844,7 +7844,12 @@
     "volume24h": "24u Volume",
     "liquidity": "Liquiditeit",
     "change1h": "1u Verandering",
-    "viewOnDexScreener": "Bekijk op DexScreener"
+    "viewOnDexScreener": "Bekijk op DexScreener",
+    "listingTitle": "Token-notering komt eraan!",
+    "listingBody": "$DHB wordt nog niet verhandeld. Ontvang een e-mail zodra het genoteerd wordt.",
+    "notifyMe": "Breng me op de hoogte",
+    "listingPrivacy": "We gebruiken dit alleen om je te laten weten wanneer $DHB genoteerd wordt.",
+    "listingJoined": "Je staat op de lijst. We mailen {{email}} zodra $DHB genoteerd wordt."
   },
   "linkCard": {
     "inviteRevoked": "Uitnodiging ingetrokken",

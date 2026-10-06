@@ -7570,7 +7570,12 @@
     "volume24h": "ປະລິມານ 24 ຊົ່ວໂມງ",
     "liquidity": "ສະພາບຄ່ອງ",
     "change1h": "ການປ່ຽນແປງ 1 ຊົ່ວໂມງ",
-    "viewOnDexScreener": "ເບິ່ງໃນ DexScreener"
+    "viewOnDexScreener": "ເບິ່ງໃນ DexScreener",
+    "listingTitle": "ການລົງທະບຽນໂທເຄັນມາໄວໆນີ້!",
+    "listingBody": "$DHB ຍັງບໍ່ທັນມີການຊື້ຂາຍ. ຮັບອີເມວທັນທີທີ່ມັນລົງທະບຽນ.",
+    "notifyMe": "ແຈ້ງເຕືອນຂ້ອຍ",
+    "listingPrivacy": "ພວກເຮົາຈະໃຊ້ອັນນີ້ພຽງເພື່ອແຈ້ງໃຫ້ທ່ານຮູ້ເມື່ອ $DHB ລົງທະບຽນ.",
+    "listingJoined": "ທ່ານຢູ່ໃນລາຍຊື່ແລ້ວ. ພວກເຮົາຈະສົ່ງອີເມວຫາ {{email}} ທັນທີທີ່ $DHB ລົງທະບຽນ."
   },
   "affiliateLanding": {
     "title": "ປັບແຕ່ງໜ້າເຊີນຂອງທ່ານ",

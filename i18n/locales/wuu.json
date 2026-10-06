@@ -7513,7 +7513,12 @@
     "volume24h": "24小时成交量",
     "liquidity": "流动性",
     "change1h": "1小时变化",
-    "viewOnDexScreener": "在 DexScreener 上查看"
+    "viewOnDexScreener": "在 DexScreener 上查看",
+    "listingTitle": "代币就要上线了！",
+    "listingBody": "$DHB还呒没开始交易。一上线就发邮件拨侬。",
+    "notifyMe": "通知我",
+    "listingPrivacy": "阿拉只用伊来通知侬$DHB上线。",
+    "listingJoined": "侬已经勒名单里了。$DHB一上线阿拉就发邮件到{{email}}。"
   },
   "linkCard": {
     "inviteRevoked": "邀请已撤销",

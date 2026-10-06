@@ -7554,7 +7554,12 @@
     "volume24h": "24 ሰዓት መጠን",
     "liquidity": "ፈሳሽነት",
     "change1h": "1 ሰዓት ለውጥ",
-    "viewOnDexScreener": "በDexScreener ላይ ይመልከቱ"
+    "viewOnDexScreener": "በDexScreener ላይ ይመልከቱ",
+    "listingTitle": "ቶክን በቅርቡ ይዘረዘራል!",
+    "listingBody": "$DHB ገና መገበያየት አልጀመረም። ሲዘረዘር ወዲያውኑ ኢሜይል ያግኙ።",
+    "notifyMe": "አሳውቁኝ",
+    "listingPrivacy": "ይህንን $DHB ሲዘረዘር ለማሳወቅ ብቻ እንጠቀምበታለን።",
+    "listingJoined": "በዝርዝሩ ውስጥ ነዎት። $DHB እንደተዘረዘረ ወደ {{email}} ኢሜይል እንልካለን።"
   },
   "linkCard": {
     "inviteRevoked": "ግብዣ ተሰርዟል",

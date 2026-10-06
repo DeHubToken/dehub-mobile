@@ -7724,7 +7724,12 @@
     "volume24h": "24h Objem",
     "liquidity": "Likvidita",
     "change1h": "1h Zmena",
-    "viewOnDexScreener": "Zobraziť na DexScreener"
+    "viewOnDexScreener": "Zobraziť na DexScreener",
+    "listingTitle": "Listing tokenu už čoskoro!",
+    "listingBody": "$DHB sa zatiaľ neobchoduje. Dostaňte e-mail hneď, ako bude listovaný.",
+    "notifyMe": "Upozorniť ma",
+    "listingPrivacy": "Použijeme to len na to, aby sme vám dali vedieť, keď bude $DHB listovaný.",
+    "listingJoined": "Ste na zozname. Hneď ako bude $DHB listovaný, napíšeme na {{email}}."
   },
   "linkCard": {
     "inviteRevoked": "Pozvánka bola zrušená",
