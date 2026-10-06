@@ -50,6 +50,7 @@ const ProfileFilterDrawer: React.FC<ProfileFilterDrawerProps> = ({
         visible
         embedded
         innerScrollEnabled
+        inactiveTextColor="#ffffff"
       />
     </GlassModal>
   );

@@ -7,7 +7,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../../theme/minimal";
 
 // Minimal: no filled chips. Every control is a bare 1px outline, and the
-// selected one is picked out by a brighter outline and white text — the same
+// selected one is picked out by a brighter outline — the same
 // line colour as the active file tab — rather than a lighter fill.
 const MINIMAL_CHIP = { backgroundColor: "transparent", borderWidth: 1, borderColor: MINIMAL_HAIRLINE } as const;
 const MINIMAL_CHIP_ACTIVE = { borderColor: MINIMAL_TAB_LINE } as const;
@@ -121,7 +121,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
             hitSlop={8}
             accessibilityLabel={search ? "Clear search" : "Close search"}
           >
-            <Icon name="X" size={14} color="#a1a1aa" />
+            <Icon name="X" size={14} color="#ffffff" />
           </Pressable>
         </View>
       ) : (
@@ -139,7 +139,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           className="h-10 w-10 rounded-xl items-center justify-center bg-white/5 border border-white/10"
           style={isMinimal ? MINIMAL_CHIP : undefined}
         >
-          <Icon name="Search" size={16} color="#a1a1aa" />
+          <Icon name="Search" size={16} color="#ffffff" />
         </Pressable>
         <Pressable
           onPress={onFiltersToggle}
@@ -161,7 +161,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           <Icon
             name="SlidersHorizontal"
             size={16}
-            color={filtersOpen || activeFilterCount > 0 ? "#ffffff" : "#a1a1aa"}
+            color="#ffffff"
           />
           {activeFilterCount > 0 && (
             <Text className="text-white text-xs font-medium">{activeFilterCount}</Text>
@@ -180,7 +180,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               }
               style={isMinimal ? [MINIMAL_CHIP, isActive && MINIMAL_CHIP_ACTIVE] : undefined}
             >
-              <Text className={isActive ? "text-white text-xs font-medium" : isMinimal ? "text-zinc-400 text-xs font-medium" : "text-zinc-300 text-xs font-medium"}>
+              <Text className="text-white text-xs font-medium">
                 {t(labelKey, fallback)}
               </Text>
             </Pressable>
