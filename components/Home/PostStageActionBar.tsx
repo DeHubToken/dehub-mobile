@@ -97,8 +97,8 @@ function Tile({ label, a11y, on, onPress, onLongPress, children, radius, mono }:
 /**
  * The post page's one big action bar: like (hold for every reaction, 👎
  * last), comments, repost + share, tip and save, as equal tiles with the icon
- * over its count or label. Share, the thumbs-down and post info have no tile
- * of their own: share sits in the repost sheet, 👎 in the like tray, info in ⋯.
+ * over its count or label. The share tile opens the repost + share sheet; the
+ * thumbs-down and post info have no tile: 👎 sits in the like tray, info in ⋯.
  */
 function PostStageActionBarComponent({
   liked,
@@ -214,7 +214,8 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onRepost}
         >
-          <Icon name="Repeat2" size={21} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
+          {/* Same share glyph and sizing as the feed's share button. */}
+          <Icon name="Share2" size={reposted ? 20 : 18} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
         </Tile>
       </View>
       {onTip ? (
