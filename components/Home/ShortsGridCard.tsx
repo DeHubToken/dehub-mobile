@@ -217,7 +217,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
       <View style={styles.overlay} pointerEvents="none" />
 
       <View style={styles.bottomInfo} pointerEvents="none">
-        <View className="flex-row items-center gap-1.5 mb-1">
+        <View style={styles.metadataRow}>
           <Image
             // getAvatarUrl hands back the "default-avatar" sentinel, which expo-image
             // cannot load, so the creator showed as an empty dot.
@@ -225,19 +225,18 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
             style={[styles.avatar, isMinimal && styles.minimalAvatar]}
             contentFit="cover"
           />
-          <Text numberOfLines={1} style={styles.username}>
-            @{username}
-          </Text>
-        </View>
-
-        <View className="flex-row items-center gap-3">
-          <View className="flex-row items-center gap-1">
-            <Icon name="Eye" size={12} color="#E0E0E0" />
-            <Text style={styles.statText}>{formatCompactNumber(views)}</Text>
-          </View>
-          <View className="flex-row items-center gap-1">
-            <Icon name="Heart" size={12} color="#E0E0E0" />
-            <Text style={styles.statText}>{formatCompactNumber(likes)}</Text>
+          <View style={styles.creatorInfo}>
+            <Text style={styles.username}>@{username}</Text>
+            <View style={styles.statsRow}>
+              <View style={styles.stat}>
+                <Icon name="Eye" size={9} strokeWidth={1.6} color="#EDEDED" />
+                <Text style={styles.statText}>{formatCompactNumber(views)}</Text>
+              </View>
+              <View style={styles.stat}>
+                <Icon name="ThumbsUp" size={9} strokeWidth={1.6} color="#EDEDED" />
+                <Text style={styles.statText}>{formatCompactNumber(likes)}</Text>
+              </View>
+            </View>
           </View>
         </View>
       </View>
@@ -282,23 +281,51 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingHorizontal: 8,
-    paddingBottom: 8,
+    paddingBottom: 6,
     paddingTop: 20,
   },
+  metadataRow: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    columnGap: 4,
+  },
   avatar: {
-    width: 20,
-    height: 20,
-    borderRadius: 3,
+    width: 24,
+    height: 24,
+    borderRadius: 5,
     backgroundColor: "#333",
+  },
+  creatorInfo: {
+    flex: 1,
+    minWidth: 0,
+    minHeight: 24,
+    justifyContent: "space-between",
+    rowGap: 4,
   },
   username: {
     color: "#FFFFFF",
-    fontSize: 12,
-    fontWeight: "600",
-    flex: 1,
+    fontSize: 10,
+    lineHeight: 11,
+    fontWeight: "500",
+    letterSpacing: -0.1,
+    includeFontPadding: false,
+  },
+  statsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    columnGap: 10,
+    rowGap: 2,
+  },
+  stat: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 2,
   },
   statText: {
-    color: "#E0E0E0",
-    fontSize: 11,
+    color: "#EDEDED",
+    fontSize: 9,
+    lineHeight: 10,
+    includeFontPadding: false,
   },
 });
