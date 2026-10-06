@@ -165,7 +165,7 @@ export default function AppsScreen() {
   const build = () => openInApp(`${WEBSITE_LINK}/apps/dev`);
 
   return (
-    <View style={styles.screen}>
+    <View className="bg-theme-background" style={styles.screen}>
       <ScreenHeader
         title={t("miniApps.store.title")}
         rightContent={
@@ -319,7 +319,7 @@ export default function AppsScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.neutrals[900] },
+  screen: { flex: 1 },
   content: { paddingTop: 4, gap: 8 },
   gutter: { marginHorizontal: 16 },
   intro: { color: "#A1A1AA", fontSize: 12, lineHeight: 18, paddingHorizontal: 16 },

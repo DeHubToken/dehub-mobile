@@ -232,7 +232,7 @@ export default function PromptScreen() {
     // navigator is already wrapped in a full-edge <SafeAreaView> in App.tsx's
     // BootGate, so adding the device inset again counted the notch twice and
     // left a dead band above the header — the same trap AppDrawer hit.
-    <View style={styles.root}>
+    <View className="bg-theme-background" style={styles.root}>
       <View style={styles.header}>
         <Pressable
           onPress={handleBack}
@@ -392,7 +392,7 @@ export default function PromptScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
+  root: { flex: 1 },
   header: {
     flexDirection: "row",
     alignItems: "center",

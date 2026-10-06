@@ -783,7 +783,7 @@ const ArcadeChessOnlineScreen = () => {
   }
 
   return (
-    <View style={styles.screen}>
+    <View className="bg-theme-background" style={styles.screen}>
       <ScreenHeader title={t("arcade.chessOnline.title")} onBackPress={leaveScreen} />
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
@@ -885,7 +885,7 @@ const ArcadeChessOnlineScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.neutrals[900] },
+  screen: { flex: 1 },
   content: { paddingHorizontal: 12, paddingTop: 8, gap: 10 },
   intro: { color: "#A1A1AA", fontSize: 12, lineHeight: 18, paddingHorizontal: 2 },
   link: { color: "#A1A1AA", fontSize: 12, textDecorationLine: "underline", paddingHorizontal: 2 },
