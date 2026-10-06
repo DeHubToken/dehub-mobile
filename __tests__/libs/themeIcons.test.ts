@@ -8,7 +8,7 @@ it('uses the transparent power artwork in the same active theme pack', () => {
 
 it('requests the active raster family with one shared cache revision', () => {
   for (const theme of APP_THEMES) {
-    for (const key of ['home', 'usernames', 'tv', 'accounts', 'arcade', 'fractions', 'staking', 'command', 'superpowers']) {
+    for (const key of ['home', 'usernames', 'tv', 'accounts', 'arcade', 'fractions', 'staking', 'command', 'superpowers', 'paint']) {
       expect(themeIconUrl(theme, key)).toContain(`/theme-icons/${theme}/${key}.webp?v=${THEME_ICON_REVISION}`);
     }
   }
