@@ -5,7 +5,7 @@
  * sign-in-free renderer for a Builder app. This is where a shared link lands.
  */
 import React, { useState } from "react";
-import { Pressable, Share, StyleSheet, View } from "react-native";
+import { Pressable, Share, View } from "react-native";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
@@ -35,7 +35,7 @@ export default function BuilderPreviewScreen() {
   ];
 
   return (
-    <View style={styles.screen}>
+    <View className="flex-1 bg-theme-background">
       <ScreenHeader
         title={t("builder.preview")}
         subtitle={t("builder.previewHint")}
@@ -56,7 +56,3 @@ export default function BuilderPreviewScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#000" },
-});
