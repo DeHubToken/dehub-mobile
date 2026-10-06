@@ -62,7 +62,7 @@ import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
-import ShortsCarousel from "./ShortsCarousel";
+import ShortsCarousel, { useHomeShortsCarousel } from "./ShortsCarousel";
 import { useInfiniteQuery, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
 import { useBoostQueue } from "../../hooks/useSuperpowers";
@@ -788,6 +788,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, queuedBoostPosts]);
 
+  const shortsItems = useHomeShortsCarousel(showShortsCarousel && feedItems.length > SHORTS_AFTER_INDEX);
+
   // Runs once the list has laid out a change: on every content size change,
   // and a frame after a new boost.
   const handleContentSizeChange = useCallback(() => {
@@ -859,11 +861,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     const rows: FeedRow[] = [HEADER_ROW];
     feedItems.forEach((row, i) => {
       rows.push(row);
-      if (showShortsCarousel && i === SHORTS_AFTER_INDEX) rows.push(SHORTS_ROW);
+      if (showShortsCarousel && shortsItems.length > 0 && i === SHORTS_AFTER_INDEX) rows.push(SHORTS_ROW);
       if (i === SUGGEST_AFTER_INDEX) rows.push(SUGGESTED_ROW);
     });
     return rows;
-  }, [feedItems, showShortsCarousel]);
+  }, [feedItems, showShortsCarousel, shortsItems]);
 
   // Ticks are skipped while hidden, and FlashList only reports rows whose
   // index changed viewability, so a new page, a prepended boost or a filter
@@ -1156,24 +1158,26 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // The post straight above the who-to-follow row, which carries the one
   // hairline there (under itself), so the post drops its own.
   const beforeSuggestedKey = feedItems[SUGGEST_AFTER_INDEX]?.__listKey;
+  // The shorts rail separates the posts itself once it has content to show.
+  const beforeShortsKey = shortsItems.length > 0 ? feedItems[SHORTS_AFTER_INDEX]?.__listKey : undefined;
   const renderItem = useCallback<ListRenderItem<FeedRow>>(
     ({ item }) => {
       if (item.__synthetic === "header") return headerBlock;
       if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;
-      if (item.__synthetic === "shorts") return <ShortsCarousel />;
+      if (item.__synthetic === "shorts") return <ShortsCarousel items={shortsItems} />;
       return (
         <VisibleFeedCard
           item={item}
           store={visibilityStore}
           onCategorySelect={onCategorySelect}
           topChromeInset={item.__listKey === firstRowKey ? firstCardInset : undefined}
-          hideDivider={item.__listKey === beforeSuggestedKey}
+          hideDivider={item.__listKey === beforeSuggestedKey || item.__listKey === beforeShortsKey}
         />
       );
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey],
+    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKey, shortsItems],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer

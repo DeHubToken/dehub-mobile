@@ -94,7 +94,7 @@ describe('home feed on FlashList: module scope', () => {
 
 describe('home feed on FlashList: rows', () => {
   const { HEADER_ROW, SUGGESTED_ROW, SUGGEST_AFTER_INDEX, SHORTS_ROW, SHORTS_AFTER_INDEX } = moduleScope();
-  const build = (feedItems: unknown[], showShortsCarousel = false) =>
+  const build = (feedItems: unknown[], showShortsCarousel = false, shortsItems: unknown[] = [{}]) =>
     run(slice(feed, '  const listData = useMemo<FeedRow[]>(', '  // Ticks are skipped while hidden') + '\nlistData', {
       useMemo: (fn: () => unknown) => fn(),
       feedItems,
@@ -104,6 +104,7 @@ describe('home feed on FlashList: rows', () => {
       SHORTS_ROW,
       SHORTS_AFTER_INDEX,
       showShortsCarousel,
+      shortsItems,
     });
   const post = (n: number) => ({ tokenId: n, __listKey: `k${n}` });
 
@@ -121,6 +122,7 @@ describe('home feed on FlashList: rows', () => {
       '__feed-header', 'k0', 'k1', '__shorts-carousel', 'k2', 'k3', 'k4', '__suggested-accounts', 'k5',
     ]);
     expect([...build([0, 1, 2].map(post))].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
+    expect([...build([0, 1, 2].map(post), true, [])].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
   });
 
   it('adds no suggested row to a short feed and no rows at all to an empty one', () => {
@@ -137,7 +139,7 @@ describe('home feed on FlashList: rows', () => {
     const renderItem = slice(feed, '  const renderItem = useCallback<ListRenderItem<FeedRow>>(', '  // One fixed-height slot');
     expect(renderItem).toContain('if (item.__synthetic === "header") return headerBlock;');
     expect(renderItem).toContain('if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;');
-    expect(renderItem).toContain('if (item.__synthetic === "shorts") return <ShortsCarousel />;');
+    expect(renderItem).toContain('if (item.__synthetic === "shorts") return <ShortsCarousel items={shortsItems} />;');
     expect(renderItem).not.toMatch(/\bindex\b/);
   });
 });
