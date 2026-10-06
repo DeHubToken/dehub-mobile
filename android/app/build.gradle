@@ -196,8 +196,14 @@ android {
     }
     packagingOptions {
         jniLibs {
-            def enableLegacyPackaging = findProperty('expo.useLegacyPackaging') ?: 'false'
-            useLegacyPackaging enableLegacyPackaging.toBoolean()
+            // Play bundles keep native libraries uncompressed: Play compresses
+            // the download itself and the installed app maps them in place. An
+            // APK is downloaded as-is from dehub.io/apk, where the uncompressed
+            // libraries were most of its 181 MB (110.6 MB of .so files that
+            // compress to 46.3 MB), so APK builds store them compressed and
+            // Android unpacks them once at install.
+            def enableLegacyPackaging = !isBundleBuild || (findProperty('expo.useLegacyPackaging') ?: 'false').toBoolean()
+            useLegacyPackaging enableLegacyPackaging
         }
     }
     androidResources {
