@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { haptic } from "../../libs/haptics";
 
 export interface SwipeAction {
@@ -67,6 +68,7 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
   enabled = true,
   children,
 }) => {
+  const { t } = useTranslation();
   const translateX = useSharedValue(0);
   const start = useSharedValue(0);
   const rowWidth = useSharedValue(0);
@@ -224,7 +226,7 @@ const SwipeableRow: React.FC<SwipeableRowProps> = ({
               <Pressable
                 onPress={close}
                 accessibilityRole="button"
-                accessibilityLabel="Close swipe actions"
+                accessibilityLabel={t("common.close")}
                 style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
               />
             )}

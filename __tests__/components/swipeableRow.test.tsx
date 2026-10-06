@@ -6,6 +6,7 @@ const mockHandlers: Record<string, (...args: any[]) => void> = {};
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable' }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Icon' }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../libs/haptics', () => ({ haptic: { select: jest.fn() } }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
@@ -54,7 +55,7 @@ it('keeps actions outside a transparent row and reveals only the swiped row', ()
   expect(panelBox).toMatchObject({ left: 390, width: 156 });
   expect(flatten(track().props.style).width).toBe(panelBox.left + panelBox.width);
   const closeButton = tree!.root.findAllByType('Pressable' as any)
-    .find((node) => node.props.accessibilityLabel === 'Close swipe actions')!;
+    .find((node) => node.props.accessibilityLabel === 'common.close')!;
   expect(flatten(closeButton.parent!.props.style).width).toBe(390);
   expect(panel().props).toMatchObject({ pointerEvents: 'auto', accessibilityElementsHidden: false });
   act(() => { tree!.root.findAllByType('Pressable' as any).find((node) => node.props.accessibilityLabel === 'Block')!.props.onPress(); });
