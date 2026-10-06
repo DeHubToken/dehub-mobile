@@ -1076,9 +1076,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // mute in the top corner, with subtitles, speed, loop and picture in picture
   // beside fullscreen on the bottom play/countdown row.
   // The post page uses the same phone controls; tablets keep the glass row.
-  // Level with the author chip over the picture; on the first post (its chip
-  // at the bottom) just under the capsule instead.
-  const bareTop = bleed?.controlsTop ?? (bleed ? (bleed.bottomInset ? bleed.topInset : BARE_ROW_TOP_BESIDE_CHIP) : 6);
+  // Anchor mute to the media corner unless card chrome reserves a top inset.
+  const bareTop = bleed?.controlsTop ?? (bleed?.bottomInset ? bleed.topInset : 6);
   // Tell a card with chrome along the bottom when the player bar is up, so
   // that chrome lifts above it only then.
   const setBarUp = bleed?.setBarUp;
@@ -1459,7 +1458,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               onCommit={handleSeekCommit}
               onCancel={handleScrubCancel}
             >
-                <View pointerEvents="box-none" style={[styles.bareBottomRow, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
+                <View pointerEvents="box-none" style={[styles.bareBottomRow, (edgeToEdge || mediaAspect >= 1) && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
                   <View pointerEvents="none">
                     <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
                   </View>
@@ -1663,11 +1662,6 @@ const GATED_SHADE = "rgba(0,0,0,0.3)";
 // pressables as buttons (libs/jsx/controls.js) would otherwise give it the
 // theme's control frame, a rounded border inside the picture in every theme.
 const BARE_LAYER = { backgroundColor: "transparent" } as const;
-
-/** Phones, told from tablets by the shorter side (web's 768px breakpoint). */
-/** The bare row's top beside the author chip: 32pt buttons centred on the
- *  38pt chip that starts 12pt down. */
-const BARE_ROW_TOP_BESIDE_CHIP = 15;
 
 /**
  * A white glyph straight on the picture. The shadow is a dark, heavier copy
