@@ -28,6 +28,8 @@ export interface LiveChatReplyTo {
   senderAddress: string;
   senderUsername?: string;
   sender?: LiveChatUser;
+  /** Set for a reply to a photo, GIF or voice note, which have no text to quote. */
+  messageType?: string;
 }
 
 export interface LiveChatMessageData {
