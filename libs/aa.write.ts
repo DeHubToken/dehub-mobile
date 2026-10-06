@@ -1,4 +1,6 @@
 import { ethers } from "ethers";
+import { receiptRpcUrls, waitForSubmittedReceipt } from './transaction-receipt';
+import { NETWORK_URLS } from '../config/web3.constants';
 import { parseTxError, applyGasMargin } from "./web3.util";
 import { createLogger } from "./logger";
 import { userOperationErrorDetail } from "./user-operation-error";
@@ -93,7 +95,17 @@ export async function writeContractAA(
     if (gasLimitBN) overrides.gasLimit = gasLimitBN;
     const resp = await contract[functionName](...args, overrides);
     const hash: string | undefined = resp?.hash;
-    const wait = async (confirmations = 1) => resp.wait?.(confirmations);
+    const wait = async (confirmations = 1) => {
+      if (!hash) return resp.wait?.(confirmations);
+      const chainId = resp.chainId || (await provider?.getNetwork?.())?.chainId;
+      const readers = receiptRpcUrls(chainId, NETWORK_URLS[chainId]).map(url => async () => {
+        const rpc = new ethers.providers.StaticJsonRpcProvider({ url, timeout: 8000, throttleLimit: 1 }, chainId);
+        const receipt = await rpc.getTransactionReceipt(hash);
+        if (receipt && confirmations > 1 && await rpc.getBlockNumber() < receipt.blockNumber + confirmations - 1) return null;
+        return receipt;
+      });
+      return waitForSubmittedReceipt(hash, () => resp.wait?.(confirmations), readers);
+    };
     return { hash, wait };
   } catch (eoaErr: any) {
     // TEMP DEBUG (remove once Pimlico sponsorship issue is diagnosed)
