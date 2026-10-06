@@ -261,7 +261,7 @@ const NavButton = memo<{
   }, [animProgress, index, scale]);
 
   if (isCenter) {
-    const glyphColor = isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
+    const glyphColor = isLight ? colors.foreground : isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
     return (
       <NativeAnimatedPressable
         accessibilityRole="button"
@@ -275,9 +275,9 @@ const NavButton = memo<{
           pointerEvents="none"
           style={[
             styles.centerIconWrap,
-            isLight && { backgroundColor: 'rgba(26,26,26,0.06)', borderColor: 'rgba(26,26,26,0.25)' },
             isMinimal && { backgroundColor: 'transparent', borderColor: MINIMAL_TAB_LINE },
             skin && skin.centre,
+            isLight && { backgroundColor: '#f3f3f3', borderColor: 'rgba(0,0,0,0.20)' },
           ]}
         >
           {/* Native strokes stay visible without an elevated blur surface or deferred SVG mount. */}
