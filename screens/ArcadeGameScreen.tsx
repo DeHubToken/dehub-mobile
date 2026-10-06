@@ -384,7 +384,7 @@ const ArcadeGameScreen = () => {
 
   if (!game) {
     return (
-      <View style={styles.screen}>
+      <View className="flex-1 bg-theme-background">
         <StatusBar hidden />
         <NotInTheArcade slug={slug} onBack={goBack} />
       </View>
