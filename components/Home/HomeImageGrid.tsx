@@ -108,13 +108,13 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress, animate }) =
   }, [settled]);
   useEffect(syncAnimation, [syncAnimation]);
 
-  if (!imageUri) return <View style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_PLACEHOLDER_BG : "#262626" }} />;
+  if (!imageUri) return <View style={[styles.tile, { width: size, height: size, backgroundColor: isMinimal ? MINIMAL_PLACEHOLDER_BG : "#262626" }]} />;
 
   return (
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={handlePress}
-      style={{ width: size, height: size, backgroundColor: isMinimal ? MINIMAL_TILE_BG : "#262626" }}
+      style={[styles.tile, { width: size, height: size, backgroundColor: isMinimal ? MINIMAL_TILE_BG : "#262626" }]}
     >
       <Image
         ref={imageRef}
@@ -465,7 +465,6 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         // Reserve room for the floating nav pill; without it the last grid row
         // is stuck underneath it.
         contentContainerStyle={{ paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET }}
-        style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
         maxToRenderPerBatch={1}
@@ -516,6 +515,11 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 };
 
 const styles = StyleSheet.create({
+  tile: {
+    aspectRatio: 1,
+    borderRadius: 12,
+    overflow: "hidden",
+  },
   multipleImagesIcon: {
     position: "absolute",
     top: 8,
@@ -535,7 +539,7 @@ const styles = StyleSheet.create({
     gap: GRID_GAP,
   },
   skeletonItem: {
-    borderRadius: 0,
+    borderRadius: 12,
   },
   minimalSkeletonItem: {
     backgroundColor: MINIMAL_PLACEHOLDER_BG,
