@@ -69,6 +69,7 @@ jobs:
       branches: ${{ steps.pick.outputs.branches }}
       last: ${{ steps.pick.outputs.last }}
       runtime: ${{ steps.runtime.outputs.runtime }}
+      queue: ${{ steps.runtime.outputs.queue }}
     steps:
       - name: Pick
         id: pick
@@ -159,15 +160,19 @@ jobs:
               | base64 --decode | jq -er '.expo.runtimeVersion | select(type == "string")'
           }
           RUNTIME="$(runtime_for "$SELECTED_SHA")"
+          MAIN_RUNTIME="$(runtime_for main)"
           if [[ ! "$RUNTIME" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$ ]]; then
             echo "::error::The selected commit must declare a fixed, valid update runtime."
             exit 1
           fi
-          if [ -n "$INPUT_SOURCE_REF" ] && [ "$RUNTIME" = "$(runtime_for main)" ]; then
+          if [ -n "$INPUT_SOURCE_REF" ] && [ "$RUNTIME" = "$MAIN_RUNTIME" ]; then
             echo "::error::An isolated source must use a different native runtime from main."
             exit 1
           fi
           echo "runtime=$RUNTIME" >> "$GITHUB_OUTPUT"
+          QUEUE=ota-publish
+          if [ "$RUNTIME" != "$MAIN_RUNTIME" ]; then QUEUE="ota-publish-$RUNTIME"; fi
+          echo "queue=$QUEUE" >> "$GITHUB_OUTPUT"
           echo "Selected commit $SELECTED_SHA with update runtime $RUNTIME."
 
   publish:
@@ -177,7 +182,7 @@ jobs:
     # cancel-in-progress is false. Separate native runtimes must not replace
     # each other's repairs; updates for the same runtime remain serialized.
     concurrency:
-      group: ota-publish-${{ needs.decide.outputs.runtime }}
+      group: ${{ needs.decide.outputs.queue }}
       cancel-in-progress: false
     # A dispatch always runs (check_only included). A scheduled run only runs
     # when decide found a green, unpublished commit on main - see its gates.
