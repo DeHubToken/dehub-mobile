@@ -56,3 +56,9 @@ Required verification: hosted tests for one-page polling with loaded history, op
 5. Remaining supported direct provider routes and server cost accounting.
 
 Keep translation caches, existing payment checks, private-content constraints, responsive media variants and background lifecycle gates. Compare one bounded before/after usage window; do not create recurring monitors.
+
+### Presence audience
+
+An account with `showOnline` off joins `online-users` only while an active Messages page or open chat needs online dots. An opted-in account continues publishing without visible dots. Web releases this channel when its tab is hidden, matching mobile's foreground behavior; mobile dots on unfocused cached screens add no reader demand. Opening the surface restores the channel immediately. Reader demand is reference counted, so closing one of several visible dots cannot disconnect the others.
+
+Keep the existing topic and wallet keys during this rollout so older mobile/web clients remain compatible. Publishing stays opt-in, and presence from another active device remains visible. This reduces the global channel's receiver audience; it is not a per-contact protocol migration. Test opt-in privacy, multiple readers, hidden/focused screens and publisher foreground transitions in hosted CI, then verify real dots on staging and Android before marking complete.
