@@ -73,6 +73,8 @@ interface UseNewPostsSignalOptions {
    * the scroll settles.
    */
   scrolling?: RefObject<boolean>;
+  /** Current native viewability set, read only when the scheduled poll fires. */
+  visibleTokenIds?: RefObject<readonly number[]>;
 }
 
 /** The identity a feed row is known by, across both queries. */
@@ -107,6 +109,7 @@ export function useNewPostsSignal({
   knownIds,
   isRenderable,
   scrolling,
+  visibleTokenIds,
 }: UseNewPostsSignalOptions) {
   const appIsActive = useAppIsActive();
   const queryClient = useQueryClient();
@@ -117,7 +120,7 @@ export function useNewPostsSignal({
 
   const { data } = useQuery({
     queryKey: ["home-feed-head", params ?? {}],
-    queryFn: () => getUnifiedFeedSignal({ ...(params || {}), limit: HEAD_SIZE }),
+    queryFn: () => getUnifiedFeedSignal({ ...(params || {}), limit: HEAD_SIZE }, visibleTokenIds?.current ?? []),
     enabled: polling,
     refetchInterval: polling ? LIVE_ENGAGEMENT_POLL_MS : false,
     staleTime: LIVE_ENGAGEMENT_POLL_MS / 2,
@@ -138,7 +141,7 @@ export function useNewPostsSignal({
   }, [queryClient]);
 
   useEffect(() => {
-    const rows = data?.result as unknown as RawFeedRow[] | undefined;
+    const rows = data ? [...data.result, ...(data.visibleResult ?? [])] as unknown as RawFeedRow[] : undefined;
     if (!rows?.length) return;
     if (scrolling?.current) {
       pendingRows.current = rows;

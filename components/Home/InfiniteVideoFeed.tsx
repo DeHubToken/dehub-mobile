@@ -332,6 +332,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [],
   );
   const visibleKeysRef = useRef<Set<string>>(new Set());
+  const visibleCountIdsRef = useRef<number[]>([]);
   const listRef = useRef<FlashListRef<FeedRow>>(null);
   // Posts (not videos) currently reported to their view tracker, by list key.
   const visibleTokensRef = useRef<Map<string, TokenId>>(new Map());
@@ -489,6 +490,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Track visible posts for audio preloading/pausing (works for all users).
     // The header and suggested-accounts rows are not posts.
     const posts = viewableItems.filter(v => v.isViewable && !!v.item?.__listKey && !v.item.__synthetic && hasHeight(v));
+    visibleCountIdsRef.current = [...new Set(posts.map(v => Number(feedRowId(v.item))))]
+      .filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 20);
     const next = new Set(posts.map(v => v.item.__listKey));
     visibleKeysRef.current = next;
 
@@ -1060,6 +1063,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const { newPostCount, atCap: newPostsAtCap, flushLiveCounts } = useNewPostsSignal({
     enabled: active && isFocused,
     scrolling: scrollingRef,
+    visibleTokenIds: visibleCountIdsRef,
     chronological: (params?.sortBy ?? "createdAt") === "createdAt",
     params,
     newestCreatedAt: newestRenderedCreatedAt,

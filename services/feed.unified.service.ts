@@ -179,6 +179,7 @@ export interface FeedPagination {
 export interface UnifiedFeedResponse {
   status: boolean;
   result: UnifiedFeedItem[];
+  visibleResult?: UnifiedFeedItem[];
   pagination: FeedPagination;
 }
 
@@ -215,9 +216,11 @@ function objectToQueryString(obj?: Record<string, any>): string {
  * // Get feed with user context (uses auth token automatically)
  * const myFeed = await getUnifiedFeed();
  */
-function feedQuery(params?: UnifiedFeedParams, signal = false): string {
+function feedQuery(params?: UnifiedFeedParams, signal = false, visibleTokenIds: readonly number[] = []): string {
+  const visible = [...new Set(visibleTokenIds)].filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 20);
   const queryParams = removeUndefined({
     signal: signal ? true : undefined,
+    visibleTokenIds: signal && visible.length ? visible.join(',') : undefined,
     page: params?.page ?? 1,
     limit: params?.limit ?? 20,
     sortBy: params?.sortBy,
@@ -242,12 +245,12 @@ function feedQuery(params?: UnifiedFeedParams, signal = false): string {
 }
 
 /** Non-rendering poll; older servers may return a full compatible response. */
-export async function getUnifiedFeedSignal(params?: UnifiedFeedParams): Promise<Pick<UnifiedFeedResponse, 'status' | 'result'>> {
-  const res = await apiClient.get<Pick<UnifiedFeedResponse, 'status' | 'result'>>(
-    `/feed${feedQuery({ ...params, page: 1, limit: Math.min(params?.limit ?? 20, 20) }, true)}`,
+export async function getUnifiedFeedSignal(params?: UnifiedFeedParams, visibleTokenIds: readonly number[] = []): Promise<Pick<UnifiedFeedResponse, 'status' | 'result' | 'visibleResult'>> {
+  const res = await apiClient.get<Pick<UnifiedFeedResponse, 'status' | 'result' | 'visibleResult'>>(
+    `/feed${feedQuery({ ...params, page: 1, limit: Math.min(params?.limit ?? 20, 20) }, true, visibleTokenIds)}`,
     { isAuthRequired: true },
   );
-  return { status: res.status ?? true, result: res.result || [] };
+  return { status: res.status ?? true, result: res.result || [], visibleResult: res.visibleResult ?? [] };
 }
 
 export async function getUnifiedFeed(params?: UnifiedFeedParams): Promise<UnifiedFeedResponse> {
