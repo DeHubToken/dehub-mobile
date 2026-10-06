@@ -31,6 +31,16 @@ Both clients request this mode for the existing foreground head poll. Full feed 
 
 Deploy and verify the shared API first, then publish the clients. Compare one matched full/compact response pair and eligible token IDs; check Chrome and Android head signaling/count updates. Refreshing visible cards beyond the head remains a separate follow-up.
 
+The 5 October deployed public chronological sample returned the same 20 IDs in the same order: 30,631 bytes for the full response versus 7,611 for the signal response, a 75.2% reduction before compression. This is a response-size measurement, not a monthly bill saving. The backend and client PRs are merged; Android application remains pending device reconnection and publication verification.
+
+### Profile image revisions
+
+New profile uploads return an avatar/cover filename containing a hash of the optimized bytes. Identical output reuses that source key; changed pixels produce a new key. Canonical account filenames remain available for older clients during rollout. Keep the existing profile cache lifetime and image format/size ladder.
+
+Web reads the stored filename for covers and direct avatar fallback, with stable legacy URLs and explicit local upload invalidation. Mobile preserves the same revision path and redirects API-hosted covers to the CDN. Saved upload keys are retained privately for account erasure, including previous revisions; erasure continues to preserve media shared by another account.
+
+Verify identical and changed uploads, transparent formats, canonical compatibility, and revision erasure in hosted tests. Check profile/feed rendering in Chrome and Android after deployment before recording the stage as verified.
+
 1. Compact feed head and visible engagement updates instead of full feed polling.
 2. Persistent avatar/cover revisions that change on upload.
 3. Scoped presence and event delivery with reconnect recovery for calls/messages.
