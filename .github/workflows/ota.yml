@@ -274,7 +274,7 @@ jobs:
 
       - name: Record the published commit
         if: >-
-          env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
+          github.ref_name == 'main' && env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
           contains(format(' {0} ', needs.decide.outputs.branches), ' preview ')
         run: |
           # The scheduled run compares main against this tag to decide whether
