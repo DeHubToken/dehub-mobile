@@ -35,6 +35,10 @@ function flatten(style) {
   return style && typeof style === 'object' ? style : {};
 }
 
+function containsStyle(style, surface) {
+  return style === surface || (Array.isArray(style) && style.some((item) => containsStyle(item, surface)));
+}
+
 function paintStyle(style) {
   if (typeof style === 'function') return (state) => paintStyle(style(state));
   const flat = flatten(style);
@@ -84,11 +88,16 @@ function paintChildren(children) {
 function controlProps(props) {
   if (!material || !props || (typeof props.onPress !== 'function' && props.accessibilityRole !== 'button')) return props;
   // Empty colour swatches and aspect-ratio preview tiles carry content colours.
-  const flat = flatten(typeof props.style === 'function'
-    ? props.style({ pressed: false, hovered: false, focused: false }) : props.style);
+  const restingStyle = typeof props.style === 'function'
+    ? props.style({ pressed: false, hovered: false, focused: false }) : props.style;
+  const flat = flatten(restingStyle);
   if (React.Children.count(props.children) === 0 || flat.aspectRatio !== undefined) return props;
+  // A clickable card still owns its surface and muted metadata, even when
+  // buttons use the same fill and rim.
+  if (material.ownedSurfaces?.some((surface) => containsStyle(restingStyle, surface))) return props;
   const fill = flat.backgroundColor;
-  const ownMaterial = fill === material.surface.backgroundColor && flat.borderColor === material.surface.borderColor;
+  const ownMaterial = fill === material.surface.backgroundColor && flat.borderColor === material.surface.borderColor
+    && flat.borderRadius === material.surface.borderRadius;
   const ownsSurface = material.ownedSurfaces?.some((surface) => fill !== undefined
     && fill === surface.backgroundColor && flat.borderColor === surface.borderColor);
   if (ownsSurface && !ownMaterial) return props;

@@ -50,7 +50,7 @@ const MINIMAL_SEPARATOR = { height: 1, backgroundColor: MINIMAL_HAIRLINE } as co
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -428,14 +428,14 @@ const DirectMessagesInner: React.FC = () => {
               accessibilityRole="button"
               accessibilityLabel={t("settings.title")}
             >
-              <Icon name="Settings" size={18} color="#E5E7EB" />
+              <Icon name="Settings" size={18} color={skin?.centreIcon ?? "#E5E7EB"} />
             </TouchableOpacity>
           }
         />
 
         {/* Search bar with + button */}
         <View className="px-4 mb-2">
-          <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl h-11">
+          <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl h-11" style={skin && [skin.card, { borderRadius: skin.square ? 0 : 12 }]}>
             <View className="pl-3 pr-2">
               <Icon name="Search" size={16} color="#A1A1AA" />
             </View>
@@ -457,7 +457,7 @@ const DirectMessagesInner: React.FC = () => {
               accessibilityLabel={t("dm.newDm")}
             >
               <GlassIndicator borderRadius={10} />
-              <Icon name="Plus" size={16} color="#FFFFFF" />
+              <Icon name="Plus" size={16} color={skin?.centreIcon ?? "#FFFFFF"} />
             </TouchableOpacity>
           </View>
         </View>
