@@ -36,6 +36,10 @@ function run(code, platform, jestRuntime = false) {
     process: { env: { NODE_ENV: 'production' } },
     ...(jestRuntime ? { jest: {} } : {}),
     require(name) {
+      if (name.startsWith('@babel/runtime/helpers/')) return require(name);
+      if (/^react-native-web\/dist\/(cjs\/)?exports\/Platform$/.test(name)) {
+        return { OS: platform };
+      }
       assert.equal(name, 'react-native');
       return { Platform: { OS: platform } };
     },
