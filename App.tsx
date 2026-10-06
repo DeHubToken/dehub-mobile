@@ -65,6 +65,7 @@ import i18n from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
+import { flushNavigationTiming, markNavigationSettled, reportLaunchRevealed, trackNavigationTiming } from "./libs/launchTiming";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
@@ -162,6 +163,7 @@ export default function App() {
       logger.info("App went to background");
       // Flush any pending feed view batches when app goes to background
       forceFlushBatchViews();
+      flushNavigationTiming();
     }, []),
   });
 
@@ -301,6 +303,10 @@ const BOOT_STALL_MS = 15000;
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, isLight, theme } = useAppTheme();
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
+  // Read when the preloader lifts, to tell signed-in launches from the rest.
+  const isSignedInRef = useRef(isSignedIn);
+  isSignedInRef.current = isSignedIn;
+  useEffect(() => trackNavigationTiming(navigationRef), []);
   const user = useUser();
   const isAuthenticated = isSignedIn && !needsUsername;
 
@@ -332,6 +338,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     (state: NavigationState | undefined) => {
       try {
         onStateChange(state);
+        markNavigationSettled(navigationRef.getCurrentRoute());
         recordScreenView(navigationRef.getCurrentRoute()?.name);
         syncMediaInsets();
       } catch (error) {
@@ -365,6 +372,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (revealingRef.current) return;
     revealingRef.current = true;
     markBootRevealed();
+    reportLaunchRevealed({ signedIn: isSignedInRef.current });
     // Native splash hands off underneath the opaque cover: by the time it is
     // gone, the RN view above it already paints the same black-and-mark.
     ExpoSplashScreen.hideAsync().catch(() => { });
@@ -456,6 +464,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
               }}
               onReady={() => {
                 logger.info("Navigation container ready");
+                markNavigationSettled(navigationRef.getCurrentRoute());
                 setNavReady(true);
                 syncMediaInsets();
               }}
