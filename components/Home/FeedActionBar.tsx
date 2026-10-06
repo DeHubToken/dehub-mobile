@@ -14,7 +14,7 @@ import {
 } from "../../libs/reactions";
 import { ReactionEmoji } from "./ReactionEmoji";
 import { haptic } from "../../libs/haptics";
-import { maybeShowReactionTip, markReactionTipSeen } from "../../libs/reaction-tip";
+import { maybeShowReactionTip } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { subscribePostTipped } from "../../libs/tip-events";
 import { TipGemIcon } from "./TipGemIcon";
@@ -327,10 +327,10 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
             if (trayOpen) { setTrayOpen(false); return; }
             // A first plain like is when the viewer has found the button but
             // not the tray behind it — point them at it, once.
-            if (!liked && !disliked && reactionsEnabled) maybeShowReactionTip();
+            if (!liked && !disliked && reactionsEnabled) void maybeShowReactionTip(viewerAddress);
             onLike();
           }}
-          onLongPress={reactionsEnabled ? () => { markReactionTipSeen(); setTrayOpen(true); } : undefined}
+          onLongPress={reactionsEnabled ? () => setTrayOpen(true) : undefined}
           iconName="ThumbsUp"
           glyph={thumbGlyph}
           glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
