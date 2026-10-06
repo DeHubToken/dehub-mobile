@@ -13,7 +13,10 @@ const mockChannel = jest.fn(() => {
   };
   return channel;
 });
-jest.mock('../../services/supabase', () => ({ supabase: { channel: mockChannel, removeChannel: mockRemove } }));
+jest.mock('../../services/supabase', () => ({ supabase: {
+  channel: () => mockChannel(),
+  removeChannel: (...args: unknown[]) => mockRemove(...args),
+} }));
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ walletAddress: 'ALICE', customs: { showOnline: mockOptIn ? 'on' : 'off' } }) }));
 import { useOnlinePresence } from '../../hooks/useOnlinePresence';
 import { useIsOnline } from '../../libs/online-presence';
