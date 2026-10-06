@@ -6,6 +6,7 @@ const mockHandlers: Record<string, (...args: any[]) => void> = {};
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable' }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Icon' }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../libs/haptics', () => ({ haptic: { select: jest.fn() } }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
@@ -36,7 +37,7 @@ it('keeps actions outside a transparent row and reveals only the swiped row', ()
     { key: 'delete', label: 'Delete', icon: 'trash-outline', color: '#DC2626', onPress: jest.fn(), destructive: true },
   ]}><React.Fragment>Conversation</React.Fragment></SwipeableRow>); });
   const panel = () => tree!.root.findAllByType('AnimatedView' as any)
-    .find((node) => flatten(node.props.style).left === '100%')!;
+    .find((node) => node.props.importantForAccessibility !== undefined)!;
   const track = () => panel().parent!;
   expect(flatten(tree!.root.findAllByType('AnimatedView' as any)[0].props.style).overflow).toBe('hidden');
   expect(flatten(track().props.style).transform).toEqual([{ translateX: 0 }]);
@@ -50,6 +51,12 @@ it('keeps actions outside a transparent row and reveals only the swiped row', ()
     mockHandlers.onEnd({ velocityX: 0 });
   });
   expect(flatten(track().props.style).transform).toEqual([{ translateX: -156 }]);
+  const panelBox = flatten(panel().props.style);
+  expect(panelBox).toMatchObject({ left: 390, width: 156 });
+  expect(flatten(track().props.style).width).toBe(panelBox.left + panelBox.width);
+  const closeButton = tree!.root.findAllByType('Pressable' as any)
+    .find((node) => node.props.accessibilityLabel === 'common.close')!;
+  expect(flatten(closeButton.parent!.props.style).width).toBe(390);
   expect(panel().props).toMatchObject({ pointerEvents: 'auto', accessibilityElementsHidden: false });
   act(() => { tree!.root.findAllByType('Pressable' as any).find((node) => node.props.accessibilityLabel === 'Block')!.props.onPress(); });
   expect(block).toHaveBeenCalledTimes(1);
