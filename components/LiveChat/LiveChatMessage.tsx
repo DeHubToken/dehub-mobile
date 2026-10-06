@@ -18,6 +18,7 @@ import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBad
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import { resolveChatGif, gifCaption, gifBox } from "../../libs/chat-gif";
+import { replyQuoteText } from "../../libs/livechat-cache";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
@@ -223,7 +224,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           </Text>
         </View>
 
-        {(message.replyToContent || message.replyTo?.content) && (
+        {(message.replyToContent || message.replyTo) && (
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={() => {
@@ -240,7 +241,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
                 "user"}…
             </Text>
             <Text className="text-white/50 text-xs" numberOfLines={1}>
-              {message.replyToContent || message.replyTo?.content}
+              {replyQuoteText(message, t)}
             </Text>
           </TouchableOpacity>
         )}
