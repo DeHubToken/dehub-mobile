@@ -1039,12 +1039,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [ownsVideo, player, videoSession, stopPlayback]);
 
   const handleToggleLoop = useCallback(() => {
-    if (!playerRef.current) return;
-    const nextLoop = !isLooping;
+    if (!playerRef.current || !ownsPlayerRef.current()) return;
+    const nextLoop = !playerRef.current.loop;
     playerRef.current.loop = nextLoop;
     setIsLooping(nextLoop);
     startHideTimer();
-  }, [isLooping, startHideTimer]);
+  }, [startHideTimer]);
 
   const handleToggleSpeed = useCallback(() => {
     if (!playerRef.current) return;
@@ -1392,8 +1392,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <MediaControlText style={styles.bareSpeedText}>{playbackRate}x</MediaControlText>
               </Pressable>
               
-              <Pressable onPress={handleToggleLoop} style={styles.bareButton}>
-                <BareIcon name="Repeat" />
+              <Pressable
+                onPress={handleToggleLoop}
+                style={styles.bareButton}
+                accessibilityRole="button"
+                accessibilityLabel={t("player.toggleLoop")}
+                accessibilityState={{ selected: isLooping }}
+              >
+                <BareIcon name="Repeat" active={isLooping} />
               </Pressable>
 
               <View>
@@ -1507,7 +1513,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityState={{ selected: isLooping }}
                   style={styles.bareButton}
                 >
-                  <BareIcon name="Repeat" />
+                  <BareIcon name="Repeat" active={isLooping} />
                 </VideoScrubButton>
                 {pipSupported() && (
                   <VideoScrubButton
