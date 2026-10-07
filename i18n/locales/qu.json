@@ -6942,6 +6942,13 @@
       "delete": "Chinkachiy"
     },
     "export": {
+      "scope": "Rango de descarga",
+      "downloadTimeline": "Tukuy pacha chiru",
+      "downloadSelection": "Akllasqa video clips ({{count}})",
+      "downloadClips": "Sapa video clip ({{count}})",
+      "rangeHint": "Kachkanku captionskuna hina kallpanakuypas sapa cutiypi. Sapa archivon 2.2-segundo DeHub phutiyninta yapan. Marma archivokuna juntaman descarganakun ZIP hina.",
+      "exportingClips": "{{total}} nisqamanta {{current}} nisqa clipta hawaman apachispa.",
+      "archiveTooLarge": "Chay uraykachiyqa 512 MiB nisqamanta aswan hatunmi. Aswan pisi k&#39;itikunata hawaman apachiy icha aswan pisi qhawayta akllay.",
       "gifHint": "Mana t’uqyayniyuq animación de bucle. 60 segundoskama, 640 pixelkama, 15 fpskama. Incluyen logotipo tukukuyniyki.",
       "gifTooLong": "Tiempo chiruta 60 segundos utaq pisiman kuchuy, utaq MP4 utaq WebM akllay.",
       "format": "Willañiqip laya",

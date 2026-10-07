@@ -6928,6 +6928,13 @@
       "delete": "Dzēst"
     },
     "export": {
+      "scope": "Lejupielādes diapazons",
+      "downloadTimeline": "Visa laika skala",
+      "downloadSelection": "Atlasītie videoklipi ({{count}})",
+      "downloadClips": "Katrs videoklips ({{count}})",
+      "rangeHint": "Katram griezumam saglabā parakstus un skaņu. Katrs fails pievieno 2,2 sekunžu DeHub beigas. Vairāki faili tiek lejupielādēti kopā kā PASTA INDEKSS.",
+      "exportingClips": "Notiek klipa eksportēšana {{current}} no {{total}}",
+      "archiveTooLarge": "Lejupielāde pārsniedz 512 MiB. Eksportējiet mazāk klipu vai izvēlieties zemāku izšķirtspēju.",
       "gifHint": "Cikliska animācija bez skaņas. Līdz 60 sekundēm, 640 pikseļi un 15 kadri/s. Ietver jūsu logotipa beigas.",
       "gifTooLong": "Apgrieziet laika skalu līdz 60 sekundēm vai mazāk vai izvēlieties MP4 vai WebM.",
       "format": "Faila tips",

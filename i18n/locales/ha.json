@@ -6910,6 +6910,13 @@
       "delete": "Share"
     },
     "export": {
+      "scope": "Download kewayon",
+      "downloadTimeline": "Dukan Layin Lokaci",
+      "downloadSelection": "Shirye-shiryen bidiyo da aka zaɓa ({{count}})",
+      "downloadClips": "Kowane bidiyon bidiyo ({{count}})",
+      "rangeHint": "Kiyaye captions da sauti ga kowane yanke. Kowane fayil yana ƙara 2.2 seconds DeHub ƙarewa. Fayilolin da yawa suna saukewa tare azaman ZIP.",
+      "exportingClips": "Fitarwa clip {{current}} na {{total}}",
+      "archiveTooLarge": "Saukewa ya wuce 512 MiB. Fitarwa ƙananan shirye-shiryen bidiyo ko zaɓi ƙananan ƙuduri.",
       "gifHint": "Madauki animation ba tare da sauti ba. Har zuwa 60 seconds, 640 pixels da 15 fps. Ya haɗa da ƙarshen tambarinku.",
       "gifTooLong": "Trim da lokaci line zuwa 60 seconds ko žasa, ko zabi MP4 ko WebM.",
       "format": "Nau'in fayil",

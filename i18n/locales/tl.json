@@ -7109,6 +7109,13 @@
       "delete": "Tanggalin"
     },
     "export": {
+      "scope": "I - download ang range",
+      "downloadTimeline": "Buong timeline",
+      "downloadSelection": "Mga napiling video clip ({{count}})",
+      "downloadClips": "Bawat video clip ({{count}})",
+      "rangeHint": "Pinapanatili ang mga caption at tunog para sa bawat hiwa. Ang bawat file ay nagdaragdag ng 2.2 - segundong pagtatapos ng DeHub. Maramihang mga file i - download nang sama - sama bilang isang ZIP.",
+      "exportingClips": "Nag - e - export ng clip {{current}} ng {{total}}",
+      "archiveTooLarge": "Ang pag - download ay lumampas sa 512 MiB. Mag - export ng mas kaunting mga clip o pumili ng mas mababang resolusyon.",
       "gifHint": "Pag-ikot na animasyon nang walang tunog. Hanggang 60 segundo, 640 pixel at 15 fps. Kasama ang pagtatapos ng iyong logo.",
       "gifTooLong": "Putulin ang timeline sa 60 segundo o mas mababa, o pumili ng MP4 o WebM.",
       "format": "Uri ng file",

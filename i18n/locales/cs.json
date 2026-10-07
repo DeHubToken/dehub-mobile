@@ -6931,6 +6931,13 @@
       "delete": "Odstranit"
     },
     "export": {
+      "scope": "Stáhnout rozsah",
+      "downloadTimeline": "Celý časový úsek",
+      "downloadSelection": "Vybrané video klipy ({{count}})",
+      "downloadClips": "Každý video klip ({{count}})",
+      "rangeHint": "Uchovává titulky a zvuk pro každý střih. Každý soubor přidává 2,2‑sekundové zakončení DeHub. Více souborů se stáhne společně jako ZIP.",
+      "exportingClips": "Exportování klipu {{current}} z {{total}}",
+      "archiveTooLarge": "Stahování přesahuje 512 MiB. Exportujte méně klipů nebo zvolte nižší rozlišení.",
       "gifHint": "Smyčková animace bez zvuku. Až 60 sekund, 640 pixelů a 15 snímků za sekundu. Zahrnuje zakončení vašeho loga.",
       "gifTooLong": "Ořízněte časovou osu na 60 sekund nebo méně, nebo vyberte MP4 nebo WebM.",
       "format": "Typ souboru",

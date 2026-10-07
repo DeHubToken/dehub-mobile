@@ -6943,6 +6943,13 @@
       "delete": "Șterge"
     },
     "export": {
+      "scope": "Gama de descărcare",
+      "downloadTimeline": "Întregul calendar",
+      "downloadSelection": "Videoclipuri selectate ({{count}})",
+      "downloadClips": "Fiecare videoclip ({{count}})",
+      "rangeHint": "Păstrează subtitrările și sunetul pentru fiecare tăietură. Fiecare fișier adaugă un DeHub de 2,2 secunde. Mai multe fișiere se descarcă împreună ca ZIP.",
+      "exportingClips": "Se exportă clipul {{current}} din {{total}}",
+      "archiveTooLarge": "Descărcarea depășește 512 MiB. Exportă mai puține clipuri sau alege o rezoluție mai mică.",
       "gifHint": "Animație în buclă fără sunet. Până la 60 de secunde, 640 pixeli și 15 fps. Include sigla care se termină.",
       "gifTooLong": "Decupați cronologia la 60 de secunde sau mai puțin sau alegeți MP4 sau WebM.",
       "format": "Tip fișier",

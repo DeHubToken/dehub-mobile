@@ -6908,6 +6908,13 @@
       "delete": "Poz"
     },
     "export": {
+      "scope": "Çykyş aralygy",
+      "downloadTimeline": "Bütin wagt haty",
+      "downloadSelection": "Saýlanan video klipler ({{count}})",
+      "downloadClips": "Her bir video ({{count}})",
+      "rangeHint": "Her kes üçin baştutanlary we sesleri saklaň. Her bir faýl 2.2 saniyelik DeHub soňuny goşýar. Köp faýllar bir zip hökmünde bir ýere alnyp barylýar.",
+      "exportingClips": "{{current}} of {{total}}",
+      "archiveTooLarge": "Çykyş 512 MB-den artdy. Kiçi klipleri eksport ediň ýa-da kiçijik çözünürligi saýlaň.",
       "gifHint": "Sesiz tekrarlanan animasiýa. 60 sekunt çenli, 640 piksel we 15 fps. Logotýpiňiziň soňuny öz içine alýar.",
       "gifTooLong": "60 saniýede ýa-da ondan az wagtda wagt sarp ediň ýa-da MP4 ýa-da WebM saýlaň.",
       "format": "Faýl görnüşi",

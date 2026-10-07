@@ -6929,6 +6929,13 @@
       "delete": "Izbriši"
     },
     "export": {
+      "scope": "Preuzmi raspon",
+      "downloadTimeline": "Cijeli vremenski okvir",
+      "downloadSelection": "Odabrani video isječci ({{count}})",
+      "downloadClips": "Svaki video isječak ({{count}})",
+      "rangeHint": "Zadržava titlove i zvuk za svaki rez. Svaka datoteka dodaje 2,2 sekunde DeHub završetka. Više datoteka se preuzima zajedno kao ZIP.",
+      "exportingClips": "Izvoz isječka {{current}} od {{total}}",
+      "archiveTooLarge": "Preuzimanje premašuje 512 MiB. Izvezite manje isječaka ili odaberite nižu rezoluciju.",
       "gifHint": "Petlja animacija bez zvuka. Do 60 sekundi, 640 piksela i 15 fps. Uključuje završetak s vašim logom.",
       "gifTooLong": "Skratite vremensku crtu na 60 sekundi ili manje ili odaberite MP4 ili WebM.",
       "format": "Vrsta datoteke",

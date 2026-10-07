@@ -6876,8 +6876,15 @@
       "delete": "Нест кардан"
     },
     "export": {
-      "gifHint": "Ҳалқаи аниматсия бе садо. То 60 сония, 640 пиксел ва 15 fps. Ang iyong logo ay naglalaman ng pagtatapos.",
-      "gifTooLong": "Trim ang timeline sa 60 segundo o mas madaling, o piliin ang MP4 o WebM.",
+      "scope": "Қисми боргирӣ",
+      "downloadTimeline": "Ҷадвали пурраи вақт",
+      "downloadSelection": "Клипҳои интихобшудаи видео ({{count}})",
+      "downloadClips": "Ҳар як клипи видеоӣ ({{count}})",
+      "rangeHint": "Зернависҳо ва садои ҳар буриш нигоҳ дошта мешаванд. Ба ҳар файл анҷоми 2.2-сониягии DeHub илова мешавад. Чанд файл якҷоя ҳамчун ZIP боргирӣ мешаванд.",
+      "exportingClips": "Содир кардани клипи {{current}} аз {{total}}",
+      "archiveTooLarge": "Андозаи боргирӣ аз 512 MiB зиёд аст. Клипҳои камтар содир кунед ё қарори пасттарро интихоб кунед.",
+      "gifHint": "Аниматсияи такроршаванда бе садо. То 60 сония, 640 пиксел ва 15 кадр дар сония. Анҷом бо логотип дохил мешавад.",
+      "gifTooLong": "Ҷадвали вақтро то 60 сония ё камтар буред ё MP4 ё WebM интихоб кунед.",
       "format": "Намуди файл",
       "png": "Тасвири PNG",
       "jpg": "Тасвири JPG",

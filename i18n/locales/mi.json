@@ -6910,6 +6910,13 @@
       "delete": "Mukua"
     },
     "export": {
+      "scope": "Tikiake whānuitanga",
+      "downloadTimeline": "He raupapa wā katoa",
+      "downloadSelection": "Ngā ataata i tīpakohia ({{count}})",
+      "downloadClips": "Ko nga ataata katoa ({{count}})",
+      "rangeHint": "Kia mau ki nga upoko me nga tangi mo ia tapahi. Ka tāpirihia e ia kōnae he mutunga o te 2.2 hēkona DeHub. Tikiake ngā kōnae maha rite te ZIP.",
+      "exportingClips": "Kupu kaweake {{current}} {{total}}",
+      "archiveTooLarge": "Ko te tikiake neke atu i te 512 MiB. Te kaweake i te iti ake o ngā kōpae, te whiriwhiri rānei i tētahi whakataunga iti ake.",
       "gifHint": "Whakaahua aunoa me te kore oro. Tae atu ki te 60 hēkona, 640 pixel me te 15 fps. Kei roto i to tohu mutunga.",
       "gifTooLong": "Tīpakohia te raupapa wā ki te 60 hēkona iti iho ranei, ranei whiriwhiri MP4 WebM ranei.",
       "format": "Momo konae",

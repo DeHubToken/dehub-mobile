@@ -6804,6 +6804,13 @@
       "delete": "Delete"
     },
     "export": {
+      "scope": "Di part wey you wan download",
+      "downloadTimeline": "Di whole timeline",
+      "downloadSelection": "Video clips wey you select ({{count}})",
+      "downloadClips": "Every video clip ({{count}})",
+      "rangeHint": "E keep caption and sound for each cut. E add 2.2-second DeHub ending to each file. Plenty files go download together inside one ZIP.",
+      "exportingClips": "Dey export clip {{current}} out of {{total}}",
+      "archiveTooLarge": "Di download pass 512 MiB. Export fewer clips or choose lower resolution.",
       "gifHint": "Looping animation wey no get sound. Reach up to 60 seconds, 640 pixels and 15 fps. E include your logo for di end.",
       "gifTooLong": "Cut di timeline make e no pass 60 seconds, or choose MP4 or WebM.",
       "format": "File type",

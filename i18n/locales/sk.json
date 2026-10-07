@@ -7094,6 +7094,13 @@
       "delete": "Odstrániť"
     },
     "export": {
+      "scope": "Rozsah sťahovania",
+      "downloadTimeline": "Celá časová os",
+      "downloadSelection": "Vybrané videoklipy ({{count}})",
+      "downloadClips": "Každý videoklip ({{count}})",
+      "rangeHint": "Zachováva popisky a zvuk pri každom strihu. Každý súbor pridáva 2,2-sekundovú koncovku DeHub. Viaceré súbory sa sťahujú spolu ako ZIPS.",
+      "exportingClips": "Exportovanie klipu {{current}} z {{total}}",
+      "archiveTooLarge": "Sťahovanie presahuje 512 MiB. Exportujte menej klipov alebo vyberte nižšie rozlíšenie.",
       "gifHint": "Opakujúca sa animácia bez zvuku. Až do 60 sekúnd, 640 pixelov a 15 fps. Obsahuje koniec s vaším logom.",
       "gifTooLong": "Orežte časovú os na 60 sekúnd alebo menej, alebo vyberte MP4 alebo WebM.",
       "format": "Typ súboru",

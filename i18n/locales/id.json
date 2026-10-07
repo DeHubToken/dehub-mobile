@@ -7007,6 +7007,13 @@
       "delete": "Hapus"
     },
     "export": {
+      "scope": "Rentang unduhan",
+      "downloadTimeline": "Seluruh linimasa",
+      "downloadSelection": "Klip video yang dipilih ({{count}})",
+      "downloadClips": "Setiap klip video ({{count}})",
+      "rangeHint": "Menyimpan keterangan dan suara untuk setiap potongan. Setiap file menambahkan akhiran DeHub 2,2 detik. Beberapa file diunduh bersama sebagai ZIP.",
+      "exportingClips": "Mengekspor klip {{current}} dari {{total}}",
+      "archiveTooLarge": "Unduhan melebihi 512 MiB. Ekspor lebih sedikit klip atau pilih resolusi yang lebih rendah.",
       "gifHint": "Animasi berulang tanpa suara. Hingga 60 detik, 640 piksel, dan 15 fps. Termasuk akhiran logo Anda.",
       "gifTooLong": "Potong garis waktu hingga 60 detik atau kurang, atau pilih MP4 atau WebM.",
       "format": "Jenis file",

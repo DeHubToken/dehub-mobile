@@ -6909,6 +6909,13 @@
       "delete": "Tirtir"
     },
     "export": {
+      "scope": "Soo dejisan kala duwan",
+      "downloadTimeline": "Jadwalka waqtiga oo dhan",
+      "downloadSelection": "Muuqaallada fiidiyowga ee la xushay ({{count}})",
+      "downloadClips": "Clip kasta oo fiidiyoow ah ({{count}})",
+      "rangeHint": "Kaydso kabaha iyo dhawaaqa goynta kasta. Fayl kasta wuxuu ku darayaa 2.2 ilbiriqsi DeHub dhammaadka. Faylal badan ayaa si wadajir ah u soo dejisan sida ZIP.",
+      "exportingClips": "Dhoofinta clip {{current}} ee {{total}}",
+      "archiveTooLarge": "Soo dejinta ayaa ka badan 512 MiB. Dhoofinta clips yar ama dooro xal hoose.",
       "gifHint": "Soo saarista animation aan cod lahayn. Ilaa 60 ilbiriqsi, 640 pixels iyo 15 fps. Waxaa ku jira astaantaada dhammaadka.",
       "gifTooLong": "Trim jadwalka jadwalka ilaa 60 ilbiriqsi ama ka yar, ama dooro MP4 ama WebM.",
       "format": "Nooca faylka",

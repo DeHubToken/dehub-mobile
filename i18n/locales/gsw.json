@@ -6957,6 +6957,13 @@
       "delete": "Lösche"
     },
     "export": {
+      "scope": "Download‑Bereich",
+      "downloadTimeline": "Ganzä Zytlini",
+      "downloadSelection": "Usgwählte Video‑Clips ({{count}})",
+      "downloadClips": "Alli Video‑Clips ({{count}})",
+      "rangeHint": "Behält Untertitel und Ton für jedä Schnitt. Jede Datei fügt e 2,2‑Sekunde DeHub‑Endi hinzu. Mehreri Dateiä werde zäme als ZIP glade.",
+      "exportingClips": "Exportiere Clip {{current}} vo {{total}}",
+      "archiveTooLarge": "Dr Download überschritt 512 MiB. Exportier weniger Clips oder wähl e nidrigeri Uflösig.",
       "gifHint": "Looping-Animation ohni Ton. Bis zu 60 Sekunde, 640 Pixel und 15 fps. Inkludiert dis Logo am Ändi.",
       "gifTooLong": "Schniide d'Timeline uf höchstens 60 Sekunde zrugg, oder wähl MP4 oder WebM.",
       "format": "Dateityp",
