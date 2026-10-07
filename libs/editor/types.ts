@@ -186,6 +186,8 @@ export interface ClipAudio {
 export interface MediaClip extends BaseClip {
   kind: "video" | "audio" | "image";
   mediaId: string;
+  /** Source-timed subject alpha frames; null restores the original background. */
+  videoMatte?: import("./videoMatte").VideoMatte | null;
   /** Source media natural duration (seconds), if applicable. */
   sourceDuration?: number;
   /** Source-timed music beats for timeline markers and cut alignment. */

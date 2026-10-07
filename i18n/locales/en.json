@@ -6893,24 +6893,24 @@
       "hint": "Process clips up to 10 minutes. Noise reduction works best with steady background noise."
     },
     "pages": {
-    "add":  "Add page",
-    "duplicate":  "Duplicate page",
-    "delete":  "Delete page",
-    "page":  "Page {{number}}",
-    "position":  "Page {{current}} of {{total}}",
-    "label":  "Pages",
-    "allZip":  "All {{count}} pages (ZIP)",
-    "thisPage":  "This page only",
-    "exporting":  "Rendering page {{current}} of {{total}}…"
-},
+      "add": "Add page",
+      "duplicate": "Duplicate page",
+      "delete": "Delete page",
+      "page": "Page {{number}}",
+      "position": "Page {{current}} of {{total}}",
+      "label": "Pages",
+      "allZip": "All {{count}} pages (ZIP)",
+      "thisPage": "This page only",
+      "exporting": "Rendering page {{current}} of {{total}}…"
+    },
     "captions": {
-        "action":  "Auto captions",
-        "working":  "Listening… {{percent}}%",
-        "downloading":  "Getting the speech model ready… {{percent}}%",
-        "hint":  "Turns speech into timed captions you can restyle. Runs on your device: free and private. The first use downloads the model.",
-        "done":  "Added {{count}} captions.",
-        "noSpeech":  "No speech found in this clip.",
-        "failed":  "Couldn\u0027t create captions for this clip."
+      "action": "Auto captions",
+      "working": "Listening… {{percent}}%",
+      "downloading": "Getting the speech model ready… {{percent}}%",
+      "hint": "Turns speech into timed captions you can restyle. Runs on your device: free and private. The first use downloads the model.",
+      "done": "Added {{count}} captions.",
+      "noSpeech": "No speech found in this clip.",
+      "failed": "Couldn't create captions for this clip."
     },
     "app": {
       "newDesign": "New design",
@@ -7303,6 +7303,12 @@
       "changed": "The source project changed. Find highlights again.",
       "limit": "Use up to 10 minutes of source speech. A very long unbroken transcript must be split first.",
       "projectTitle": "{{title}} — Highlights"
+    },
+    "videoMatte": {
+      "frames": "Removing background · {{completed}} / {{total}} frames",
+      "hint": "Runs on this device. Trim to {{seconds}} source seconds or less first; the first run downloads the model.",
+      "restore": "Restore background",
+      "cancel": "Cancel"
     }
   },
   "creator": {
