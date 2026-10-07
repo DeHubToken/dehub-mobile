@@ -75,6 +75,8 @@ import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { ShotTools } from "../components/editor/ShotTools";
+import { HighlightTools } from "../components/editor/HighlightTools";
+import { highlightProject, sameHighlightSource } from "../libs/editor/highlights";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
@@ -285,7 +287,7 @@ type Tool =
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand"
-  | "shots" | "speed" | "sound" | "transition" | "animate" | "motion";
+  | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
   id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
@@ -382,6 +384,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // Timeline: the playhead, playback and the strip under the page.
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const highlightPreviewEnd = useRef<number | null>(null);
+  useEffect(() => {
+    if (highlightPreviewEnd.current !== null && time >= highlightPreviewEnd.current) {
+      const end = highlightPreviewEnd.current; highlightPreviewEnd.current = null;
+      setPlaying(false); setTime(end);
+    }
+  }, [time]);
   const [timelineOpen, setTimelineOpen] = useState<boolean | null>(null);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [mediaLoading, setMediaLoading] = useState(0);
@@ -881,6 +890,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (selected.kind === "video") {
       return [
         { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
+        { id: "highlights", icon: "Sparkles", label: t("editor.highlights.title") },
         { id: "captions", icon: "Type", label: captionProgress ? t(captionProgress.stage === "download" ? "editor.captions.downloading" : "editor.captions.working", { percent: Math.round(captionProgress.fraction * 100) }) : t("editor.captions.action") },
         { id: "split", icon: "Scissors", label: t("editor.video.split") },
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
@@ -1040,6 +1050,21 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected && (selected.kind === "video" || selected.kind === "audio")) {
       if (tool === "shots" && selected.kind === "video") return <ShotTools key={selected.id} clip={selected} detect={detectShots} apply={splitShots} preview={at => { setPlaying(false); setTime(at); }} />;
+      if (tool === "highlights" && selected.kind === "video") return <HighlightTools key={selected.id} clip={selected} current={h.latest}
+        transcribe={(clip, progress, signal) => {
+          setPlaying(false);
+          if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+          return canvasRef.current.transcribe(clip, progress, signal);
+        }}
+        create={async (original, clipId, ranges, title) => {
+          const matches = () => { const now = h.latest(); return !!now && sameHighlightSource(original, now); };
+          if (!matches()) return false;
+          const next = highlightProject(original, clipId, ranges, { id: newId(10), title }, () => newId(10));
+          await saveProject(original); if (!matches()) return false;
+          await saveProject(next); if (!matches()) return false;
+          h.commit(next); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
+          return true;
+        }} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {
