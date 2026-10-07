@@ -151,6 +151,7 @@ function LivePlayer({ url }: { url: string }) {
       player={player}
       onFirstFrameRender={() => setFirstFrame(true)}
       nativeControls={false}
+      allowsVideoFrameAnalysis={false}
       contentFit="cover"
       // A SurfaceView is composited beneath the app window, so the card's
       // rounded-corner clip never reached it on Android.

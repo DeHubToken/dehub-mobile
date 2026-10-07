@@ -116,6 +116,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
         style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
         contentFit="cover"
         nativeControls={false}
+        allowsVideoFrameAnalysis={false}
         onFirstFrameRender={() => setFirstFrameRendered(true)}
         // TextureView instead of Android's default SurfaceView so the video
         // renders in the view hierarchy and can't punch through / overlap
