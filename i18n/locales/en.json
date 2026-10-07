@@ -7302,7 +7302,12 @@
       "created": "Highlight edit saved. The original project is retained.",
       "changed": "The source project changed. Find highlights again.",
       "limit": "Use up to 10 minutes of source speech. A very long unbroken transcript must be split first.",
-      "projectTitle": "{{title}} — Highlights"
+      "projectTitle": "{{title}} — Highlights",
+      "reviewTitle": "Refine highlights",
+      "reviewPlaceholder": "Keep only the backup tips, or remove moment 2…",
+      "reviewResult": "Selected {{count}} of {{total}} moments. Review them before creating the edit.",
+      "reviewFailed": "Could not update the selection. Your previous choices are still selected.",
+      "undoSelection": "Undo selection"
     },
     "videoMatte": {
       "frames": "Removing background · {{completed}} / {{total}} frames",
