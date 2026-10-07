@@ -7459,6 +7459,7 @@
     "exampleOutput": "Esempio di output",
     "referenceInsert": "Inserisci {{tag}} nella prompt",
     "referenceLibrary": "Usa da libreria",
+    "referenceUpload": "Carica",
     "referenceSingle": "Usa un'immagine per ricostruire l'oggetto",
     "referenceHint": "Tappa su un nome risorsa per riferirti ad essa nella tua prompt. Aggiungi fino a quattro immagini e un clip",
     "referenceOneClip": "Allega un clip di riferimento",

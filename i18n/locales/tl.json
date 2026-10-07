@@ -7553,6 +7553,7 @@
     "exampleOutput": "Halimbawa ng output",
     "referenceInsert": "Ipasok ang {{tag}} sa prompt",
     "referenceLibrary": "Gamitin mula sa library",
+    "referenceUpload": "Mag-upload",
     "referenceSingle": "Gamitin ang isang larawan upang i-reconstruct ang object.",
     "referenceHint": "I-tap ang pangalan ng asset para i-refer ito sa iyong prompt. Magdagdag ng hanggang apat na larawan at isang clip.",
     "referenceOneClip": "Ikabit ang isang reference clip.",

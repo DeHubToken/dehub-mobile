@@ -7374,6 +7374,7 @@
     "exampleOutput": "Eksempel på output",
     "referenceInsert": "Indsæt {{tag}} i prompt",
     "referenceLibrary": "Brug fra bibliotek",
+    "referenceUpload": "Upload",
     "referenceSingle": "Brug ét billede til at rekonstruere genstanden.",
     "referenceHint": "Tryk på et asset-navn for at henvise til det i din prompt. Tilføj op til fire billeder og en klip.",
     "referenceOneClip": "Vedhæft en referencerklip",

@@ -7352,6 +7352,7 @@
     "exampleOutput": "مىسال چىقىرىش",
     "referenceInsert": "Promptda {{tag}}ni qoshish",
     "referenceLibrary": "Kitobdan foydalanish",
+    "referenceUpload": "چۈشۈرۈش",
     "referenceSingle": "Narsani tiklanish uchun bitta rasimdan foydalanish",
     "referenceHint": "Asset ismini tanlab, uni promptda eslatish. Eng ko'p 4 ta rasim va 1 ta video qoshish mumkin",
     "referenceOneClip": "Bir eslatma video qoshish",

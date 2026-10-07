@@ -7461,6 +7461,7 @@
     "exampleOutput": "Ejemplo de salida",
     "referenceInsert": "Insertar {{tag}} en el mensaje",
     "referenceLibrary": "Usar de la biblioteca",
+    "referenceUpload": "Subir",
     "referenceSingle": "Usar una imagen para reconstruir el objeto.",
     "referenceHint": "Toca el nombre de un recurso para referenciarlo en tu mensaje. Añade hasta cuatro imágenes y un clip.",
     "referenceOneClip": "Adjuntar un clip de referencia.",

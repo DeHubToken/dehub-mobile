@@ -7360,6 +7360,7 @@
     "exampleOutput": "輸出例子",
     "referenceInsert": "於提示中插入 {{tag}}",
     "referenceLibrary": "使用來自圖庫",
+    "referenceUpload": "上傳",
     "referenceSingle": "使用一張圖像重建物件。",
     "referenceHint": "點擊資產名稱以在提示中參考它。最多附加四張圖片及一段影片。",
     "referenceOneClip": "附加一段參考影片。",

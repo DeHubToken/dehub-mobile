@@ -7391,6 +7391,7 @@
     "exampleOutput": "مثال على المخرجات",
     "referenceInsert": "دخل {{tag}} فالبرومت",
     "referenceLibrary": "استعمل من المكتبة",
+    "referenceUpload": "تحميل",
     "referenceSingle": "استعمل صورة وحدة باش تعاود تبني الكائن.",
     "referenceHint": "ضغط على اسم الأستيت باش تشير ليه فالبرومت ديالك. زيد حتى ربعة ديال الصور وواحد كلّيب.",
     "referenceOneClip": "ربط واحد كلّيب مرجعي.",

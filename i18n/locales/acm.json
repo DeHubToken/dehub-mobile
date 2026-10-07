@@ -7310,6 +7310,7 @@
     "exampleOutput": "مثال على الإخراج",
     "referenceInsert": "إدخل {{tag}} في البرومبت",
     "referenceLibrary": "استخدم من المكتبة",
+    "referenceUpload": "تحميل",
     "referenceSingle": "استخدم صورة وحدة لإعادة بناء الشيء.",
     "referenceHint": "اضغط على اسم الأستيت حتى تسويه مرجع بالبرومبت. أضف لحد أربع صور ومقاطع وحدة.",
     "referenceOneClip": "أرفق مقطع مرجعي واحد.",

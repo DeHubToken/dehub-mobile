@@ -7327,6 +7327,7 @@
     "exampleOutput": "示例输出",
     "referenceInsert": "吾提示中插入 {{tag}}",
     "referenceLibrary": "由图书馆取用",
+    "referenceUpload": "上传",
     "referenceSingle": "用一张图像重建物件",
     "referenceHint": "点选一张资产名称，在吾提示中参考它。附加最多四张图像和一段影片。",
     "referenceOneClip": "附加一段参考影片",

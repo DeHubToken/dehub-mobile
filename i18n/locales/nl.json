@@ -7658,6 +7658,7 @@
     "exampleOutput": "Voorbeeldoutput",
     "referenceInsert": "Voeg {{tag}} toe aan de prompt",
     "referenceLibrary": "Gebruik van de bibliotheek",
+    "referenceUpload": "Uploaden",
     "referenceSingle": "Gebruik één afbeelding om het object te reconstrueren.",
     "referenceHint": "Tik op een assetnaam om deze in je prompt te verwijzen. Voeg maximaal vier afbeeldingen en één clip toe.",
     "referenceOneClip": "Voeg één referentieclip toe.",

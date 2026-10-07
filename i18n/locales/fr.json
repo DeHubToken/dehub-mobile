@@ -7751,6 +7751,7 @@
     "exampleOutput": "Exemple de sortie",
     "referenceInsert": "Insérer {{tag}} dans la demande",
     "referenceLibrary": "Utiliser depuis la bibliothèque",
+    "referenceUpload": "Télécharger",
     "referenceSingle": "Utiliser une image pour reconstruire l'objet.",
     "referenceHint": "Cliquez sur le nom d'un actif pour le référencer dans votre demande. Ajoutez jusqu'à quatre images et une vidéo.",
     "referenceOneClip": "Joindre une vidéo de référence.",

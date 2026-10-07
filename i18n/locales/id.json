@@ -7450,6 +7450,7 @@
     "exampleOutput": "Contoh keluaran",
     "referenceInsert": "Masukkan {{tag}} dalam prompt",
     "referenceLibrary": "Gunakan dari library",
+    "referenceUpload": "Unggah",
     "referenceSingle": "Gunakan satu gambar untuk merekonstruksi objek.",
     "referenceHint": "Tekan nama aset untuk merujuknya dalam prompt Anda. Lampirkan hingga empat gambar dan satu klip.",
     "referenceOneClip": "Lampirkan satu klip referensi.",

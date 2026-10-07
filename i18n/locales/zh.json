@@ -7437,6 +7437,7 @@
     "exampleOutput": "示例输出",
     "referenceInsert": "在提示中插入 {{tag}}",
     "referenceLibrary": "使用库中的内容",
+    "referenceUpload": "上传",
     "referenceSingle": "使用一张图片重建对象。",
     "referenceHint": "点击资产名称以在提示中引用它。最多添加四张图片和一个剪辑。",
     "referenceOneClip": "附加一个参考剪辑。",

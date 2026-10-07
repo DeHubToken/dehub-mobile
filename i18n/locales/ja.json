@@ -7434,6 +7434,7 @@
     "exampleOutput": "出力例",
     "referenceInsert": "プロンプトに {{tag}} を挿入",
     "referenceLibrary": "ライブラリから使用",
+    "referenceUpload": "アップロード",
     "referenceSingle": "1枚の画像でオブジェクトを再構成",
     "referenceHint": "アセット名をタップしてプロンプトで参照。最大4枚の画像と1つのクリップを追加",
     "referenceOneClip": "1つの参照クリップを添付",

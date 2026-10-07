@@ -7387,6 +7387,7 @@
     "exampleOutput": "Exemplu de ieșire",
     "referenceInsert": "Introdu {{tag}} în prompt",
     "referenceLibrary": "Folosește din bibliotecă",
+    "referenceUpload": "Încarcă",
     "referenceSingle": "Folosește o imagine pentru a reconstrui obiectul.",
     "referenceHint": "Apasă pe un nume de asset pentru a-l referi în promptul tău. Adaugă până la patru imagini și un clip.",
     "referenceOneClip": "Atașează un clip de referință.",
