@@ -101,7 +101,7 @@ export function setPublicChatAlertsPerHour(value: number) {
 }
 
 /**
- * Whether the reader is looking at public chat right now.
+ * Whether the reader is looking at public chat in the foreground right now.
  *
  * LiveChatScreen owns this — it is the only surface that knows. The alert
  * engine reads it to decide whether to hold a socket at all: with the room on
