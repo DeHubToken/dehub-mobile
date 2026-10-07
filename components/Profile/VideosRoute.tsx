@@ -1,6 +1,7 @@
 import React from 'react';
 import type { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import CompactVideoInfiniteList from '../Home/CompactVideoInfiniteList';
+import { useCinematicPhone } from '../../hooks/useCinematicPhone';
 
 // Fallback address provided
 const FALLBACK_ADDRESS = '0x4B12Ca78C722253cd174Db212E2122b1E635a18A';
@@ -39,8 +40,10 @@ const VideosRoute: React.FC<VideosRouteProps> = ({
   hasBounty,
   isLocked,
 }) => {
+  const cinematicPhone = useCinematicPhone();
   return (
     <CompactVideoInfiniteList
+      cinematic={cinematicPhone && !!listHeader}
       listRef={listRef}
       address={address || FALLBACK_ADDRESS}
       bottomPadding={80}

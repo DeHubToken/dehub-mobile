@@ -17,6 +17,10 @@ import {
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
+import FeedCard from "./FeedCard";
+import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { getUserVideos, getUserLiveVideos, getLikedNFTs } from "../../services/user.service";
 import { GetNFTsResult } from "../../services/nft.service";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
@@ -31,6 +35,7 @@ interface CompactVideoInfiniteListProps {
   variant?: "videos" | "live" | "liked";
   ListHeaderComponent?: React.ReactElement | null;
   showCreator?: boolean; // forward to CompactVideoCard
+  cinematic?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onBeforeNavigate?: () => void;
   /** Ordering, threaded from the profile toolbar. Presets cannot express "oldest". */
@@ -60,6 +65,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   variant = "videos",
   ListHeaderComponent = null,
   showCreator = true,
+  cinematic = false,
   onScroll,
   sortBy,
   sortOrder,
@@ -155,8 +161,30 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
     return `${item.id || (item as any).tokenId || "vid"}-${created}-${index}`;
   }, []);
 
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    isItemAutoplayActive,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor as (item: unknown, index: number) => string);
+
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<VideoItem>) => {
+    ({ item, index }: ListRenderItemInfo<VideoItem>) => {
+      if (cinematic) {
+        const key = keyExtractor(item, index);
+        return (
+          <View className="px-2">
+            <FeedCard
+              item={item as unknown as UnifiedFeedItem}
+              cinematic
+              isVisible={isItemVisible(key)}
+              isAutoplayActive={isItemAutoplayActive(key)}
+              onBeforeNavigate={onBeforeNavigate}
+            />
+          </View>
+        );
+      }
       return (
         <CompactVideoCard
           nft={item as any}
@@ -166,7 +194,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
         />
       );
     },
-    [resolvedEnablePreview, showCreator, onBeforeNavigate]
+    [cinematic, keyExtractor, isItemVisible, isItemAutoplayActive, resolvedEnablePreview, showCreator, onBeforeNavigate]
   );
 
   const ListFooter = useMemo(() => {
@@ -186,6 +214,9 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
       data={items}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
+      extraData={cinematic ? visibilityExtraData : undefined}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
       onScroll={onScroll}
@@ -203,7 +234,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
         />
       }
       contentContainerStyle={{
-        paddingVertical: 8,
+        paddingTop: cinematic ? 0 : 8,
         paddingBottom: bottomPadding,
       }}
       ListEmptyComponent={
@@ -217,6 +248,8 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
                 : "Video posts will appear here"
             }
           />
+        ) : cinematic ? (
+          <View className="px-2"><FeedCardSkeleton count={6} cinematic edgeInset={8} /></View>
         ) : (
           <View>
             {Array.from({ length: 6 }).map((_, i) => (

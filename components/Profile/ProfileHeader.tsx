@@ -52,6 +52,7 @@ import BadgePatronChip from "../common/BadgePatronChip";
 import TotalReachPill from "./TotalReachPill";
 import ProfileLinksPill from "./ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
 // Minimal header buttons: no glass slab, just a 1px outline, and a 44pt box so
@@ -67,6 +68,7 @@ const ProfileHeader = () => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
+  const cinematicPhone = useCinematicPhone();
   // The cover is full-bleed, so it is fetched at the window's own (live) width.
   const { width: COVER_WIDTH_PT } = useWindowDimensions();
   const user = useUser() as any;
@@ -285,7 +287,7 @@ const ProfileHeader = () => {
       >
         {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
         <View
-          className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          className={isMinimal || cinematicPhone ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
           style={{ height: 140 }}
         >
           <SmartImage
@@ -318,7 +320,7 @@ const ProfileHeader = () => {
       </TouchableOpacity>
 
       {/* Content */}
-      <View className="px-5">
+      <View className={cinematicPhone ? "px-4" : "px-5"}>
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View>

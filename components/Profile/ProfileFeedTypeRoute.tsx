@@ -2,6 +2,8 @@ import React, { useCallback } from "react";
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from "../Feed/InfiniteFeed";
 import FeedCard from "../Home/FeedCard";
+import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import {
   getUnifiedFeed,
   type FeedPostType,
@@ -40,6 +42,8 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   onBeforeNavigate,
 }) => {
   const { isSignedIn } = useAuthState();
+  const cinematicPhone = useCinematicPhone();
+  const cinematic = cinematicPhone && !!listHeader;
 
   const fetchPage = useCallback(
     async (page: number, limit: number): Promise<GetNFTsResponse> => {
@@ -65,8 +69,9 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
     ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
-      <View className={listHeader ? 'px-4' : undefined}>
+      <View className={cinematic ? 'px-2' : listHeader ? 'px-4' : undefined}>
         <FeedCard
+          cinematic={cinematic}
           item={item as UnifiedFeedItem}
           isVisible={isVisible}
           isAutoplayActive={isAutoplayActive}
@@ -74,7 +79,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         />
       </View>
     ),
-    [listHeader, onBeforeNavigate],
+    [cinematic, listHeader, onBeforeNavigate],
   );
 
   return (
@@ -90,6 +95,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         enableBackToTop={false}
         onScroll={onScroll}
         headerComponent={listHeader}
+        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} cinematic edgeInset={8} /></View> : undefined}
         emptyComponent={(
           <ProfileEmptyState
             kind={emptyKind}
