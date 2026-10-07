@@ -6816,6 +6816,12 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "beats": {
+      "markers": "Taktmarkierungen",
+      "sync": "Schnitte synchronisieren",
+      "none": "Kein zuverlässiger Takt gefunden.",
+      "unchanged": "Die Schnitte konnten nicht ausgerichtet werden."
+    },
     "audioTools": {
       "normalize": "Volum normalisiere",
       "denoise": "Ruusig reduziere",

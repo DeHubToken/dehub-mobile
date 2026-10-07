@@ -6870,6 +6870,12 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "beats": {
+      "markers": "Beat markers",
+      "sync": "Sync cuts",
+      "none": "No reliable beats found.",
+      "unchanged": "No cuts could be aligned."
+    },
     "audioTools": {
       "normalize": "Normalize volume",
       "denoise": "Reduce noise",

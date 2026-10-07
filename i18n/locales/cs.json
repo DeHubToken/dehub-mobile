@@ -6790,6 +6790,12 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "beats": {
+      "markers": "Značky rytmu",
+      "sync": "Synchronizovat střihy",
+      "none": "Nebyl nalezen spolehlivý rytmus.",
+      "unchanged": "Střihy se nepodařilo zarovnat."
+    },
     "audioTools": {
       "normalize": "Normalizovat hlasitost",
       "denoise": "Snižte hluk",

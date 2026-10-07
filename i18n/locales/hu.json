@@ -6791,6 +6791,12 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ütemjelölők",
+      "sync": "Vágások szinkronizálása",
+      "none": "Nem található megbízható ütem.",
+      "unchanged": "A vágásokat nem sikerült igazítani."
+    },
     "audioTools": {
       "normalize": "Hangerő normalizálása",
       "denoise": "Csökkentse a zajt",

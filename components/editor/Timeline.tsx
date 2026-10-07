@@ -19,6 +19,8 @@ import type { Clip, ProjectSnapshot, Track } from "../../libs/editor/types";
 import { findAdjacentNext, fmtTime, projectDuration, timelineRows } from "../../libs/editor/timeline";
 import { keyTimes } from "../../libs/editor/keyframes";
 
+import { snapToBeat, timelineBeatTimes } from "../../libs/editor/beats";
+
 const ROW_H = 44;
 const AUDIO_ROW_H = 34;
 const HANDLE_W = 18;
@@ -71,6 +73,8 @@ export default function Timeline(props: Props) {
   const [pps, setPps] = useState(40);
   const duration = projectDuration(project);
   const rows = useMemo(() => timelineRows(project), [project]);
+
+  const beats = useMemo(() => timelineBeatTimes(project.clips, project.tracks), [project.clips, project.tracks]);
 
   const live = useRef({ props, pps, time, duration });
   live.current = { props, pps, time, duration };
@@ -126,6 +130,7 @@ export default function Timeline(props: Props) {
         <View onLayout={onLayout} style={{ overflow: "hidden", paddingVertical: 8 }} collapsable={false}>
           {/* Ruler */}
           <View style={{ height: 16, marginLeft: offset, width: contentW }}>
+            {beats.filter(s => s * pps + offset >= 0 && s * pps + offset <= width).map(s => <View key={s} pointerEvents="none" style={{ position: "absolute", left: s * pps, bottom: 0, width: 1, height: 7, backgroundColor: "#fcd34d" }} />)}
             {ticks(duration, pps).map((s) => (
               <Text key={s} className="text-theme-neutrals-500" style={[styles.tick, { left: s * pps }]}>
                 {Math.floor(s / 60)}:{String(Math.floor(s % 60)).padStart(2, "0")}
@@ -147,8 +152,9 @@ export default function Timeline(props: Props) {
               strip={strip.pan}
               label={(c) => clipLabel(c, t)}
               onSelect={props.onSelect}
+              beats={beats}
               onTrim={props.onTrim}
-              onMove={props.onMove}
+              onMove={(id,start,phase) => props.onMove(id,snapToBeat(start,timelineBeatTimes(project.clips.filter(c => c.id !== id),project.tracks),8/pps),phase)}
               onTransition={props.onTransition}
               onToggleMute={props.onToggleMute}
               keys={{ onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, onOpen: props.onKeyOpen, label: t("editor.motion.timelineKey") }}
@@ -188,6 +194,7 @@ function Row(props: {
   keys: KeyHandlers;
   time: number;
   muteLabel: string;
+  beats: number[];
 }) {
   const { track, project, pps, offset } = props;
   const h = track.kind === "audio" ? AUDIO_ROW_H : ROW_H;
@@ -203,6 +210,7 @@ function Row(props: {
             pps={pps}
             height={h}
             selected={c.id === props.selectedId}
+            beats={props.beats}
             thumb={"mediaId" in c ? props.thumbs[c.mediaId] : undefined}
             strip={props.strip}
             label={props.label(c)}
@@ -245,6 +253,7 @@ function Row(props: {
 }
 
 function ClipBlock(props: {
+  beats: number[];
   clip: Clip;
   pps: number;
   height: number;
@@ -265,6 +274,7 @@ function ClipBlock(props: {
   const live = useRef(props);
   live.current = props;
   const startAt = useRef(0);
+  const trimAt = useRef(0);
 
   const gestures = useMemo(() => {
     const tap = Gesture.Tap().runOnJS(true).onEnd(() => live.current.onSelect(live.current.clip.id));
@@ -282,8 +292,9 @@ function ClipBlock(props: {
         .runOnJS(true)
         .minDistance(1)
         .blocksExternalGesture(props.strip)
-        .onUpdate((e) => live.current.onTrim(live.current.clip.id, edge, e.translationX / live.current.pps, "live"))
-        .onEnd((e) => live.current.onTrim(live.current.clip.id, edge, e.translationX / live.current.pps, "end"));
+        .onStart(() => { const c = live.current.clip; trimAt.current = edge === "in" ? c.start : c.start+c.duration; })
+        .onUpdate((e) => live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "live"))
+        .onEnd((e) => live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "end"));
     return {
       body: Gesture.Exclusive(move.blocksExternalGesture(props.strip), tap),
       inEdge: handle("in"),

@@ -6953,6 +6953,12 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "beats": {
+      "markers": "Značky rytmu",
+      "sync": "Synchronizovať strihy",
+      "none": "Nenašiel sa spoľahlivý rytmus.",
+      "unchanged": "Strihy sa nepodarilo zarovnať."
+    },
     "audioTools": {
       "normalize": "Normalizácia objemu",
       "denoise": "Zníženie hluku",

@@ -6968,6 +6968,12 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "beats": {
+      "markers": "Mga marka ng kumpas",
+      "sync": "Isabay ang mga putol",
+      "none": "Walang maaasahang kumpas na nakita.",
+      "unchanged": "Hindi maitugma ang mga putol."
+    },
     "audioTools": {
       "normalize": "I-normalisa ang volume",
       "denoise": "Bawasan ang ingay",

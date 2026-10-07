@@ -6842,6 +6842,12 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritm belgilari",
+      "sync": "Kesimlarni sinxronlash",
+      "none": "Ishonchli ritm topilmadi.",
+      "unchanged": "Kesimlarni tekislab bo‘lmadi."
+    },
     "audioTools": {
       "normalize": "Ovoz balandligini normallashtirish",
       "denoise": "Shovqinni kamaytiring",

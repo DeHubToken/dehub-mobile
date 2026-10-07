@@ -6791,6 +6791,12 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "beats": {
+      "markers": "Rytmmarkörer",
+      "sync": "Synkronisera klipp",
+      "none": "Ingen tillförlitlig rytm hittades.",
+      "unchanged": "Klippen kunde inte justeras."
+    },
     "audioTools": {
       "normalize": "Normalisera volym",
       "denoise": "Minska brus",

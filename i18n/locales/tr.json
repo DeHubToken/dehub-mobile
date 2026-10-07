@@ -6867,6 +6867,12 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritim işaretleri",
+      "sync": "Kesimleri eşitle",
+      "none": "Güvenilir ritim bulunamadı.",
+      "unchanged": "Kesimler hizalanamadı."
+    },
     "audioTools": {
       "normalize": "Sesi normalleştir",
       "denoise": "Gürültüyü azaltın",

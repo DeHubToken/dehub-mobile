@@ -6787,6 +6787,12 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "beats": {
+      "markers": "Rütmimärgid",
+      "sync": "Sünkrooni lõiked",
+      "none": "Usaldusväärset rütmi ei leitud.",
+      "unchanged": "Lõike ei saanud joondada."
+    },
     "audioTools": {
       "normalize": "Normaliseeri helitugevus",
       "denoise": "Vähenda müra",

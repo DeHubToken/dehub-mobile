@@ -6876,6 +6876,12 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "beats": {
+      "markers": "Marcadores de ritmo",
+      "sync": "Sincronizar cortes",
+      "none": "No se encontró un ritmo fiable.",
+      "unchanged": "No se pudieron alinear los cortes."
+    },
     "audioTools": {
       "normalize": "Normalizar volumen",
       "denoise": "Reduce el ruido",

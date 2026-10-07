@@ -6788,6 +6788,12 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "beats": {
+      "markers": "Marcadors de ritme",
+      "sync": "Sincronitza els talls",
+      "none": "No s'ha trobat un ritme fiable.",
+      "unchanged": "No s'han pogut alinear els talls."
+    },
     "audioTools": {
       "normalize": "Normalitza el volum",
       "denoise": "Redueix el soroll",
