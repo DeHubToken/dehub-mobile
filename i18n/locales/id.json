@@ -6866,6 +6866,13 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "shots": {
+      "detect": "Deteksi perubahan adegan",
+      "split": "Pisahkan pada potongan terpilih",
+      "none": "Tidak ditemukan perubahan adegan.",
+      "hint": "Tinjau potongan dahulu · ≤10 menit",
+      "preview": "Pratinjau"
+    },
     "beats": {
       "markers": "Penanda ketukan",
       "sync": "Sinkronkan potongan",

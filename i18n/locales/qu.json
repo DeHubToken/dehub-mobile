@@ -6801,6 +6801,13 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "shots": {
+      "detect": "Rikch'ay tikraykunata maskay",
+      "split": "Akllasqa kuchuykunapi rakiy",
+      "none": "Mana rikch'ay tikraykuna tarisqachu.",
+      "hint": "Ñawpaqta kuchuykunata qhaway · ≤10 min",
+      "preview": "Ñawpaq qhaway"
+    },
     "beats": {
       "markers": "Ritmu unancha",
       "sync": "Kuchuykunata tupachiy",

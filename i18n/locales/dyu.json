@@ -6736,6 +6736,13 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "shots": {
+      "detect": "Sɛnɛ yɛlɛmaw ɲini",
+      "split": "Tilɛ ka taamasiɲɛw sugandilen kɛ",
+      "none": "Sɛnɛ yɛlɛma ma sɔrɔ.",
+      "hint": "Taamasiɲɛw lajɛ fɔlɔ · ≤10 min",
+      "preview": "Lajɛ"
+    },
     "beats": {
       "markers": "Fɔli taamasiɲɛw",
       "sync": "Klipuw bɛnkɛ",

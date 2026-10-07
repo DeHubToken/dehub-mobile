@@ -6673,6 +6673,13 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "shots": {
+      "detect": "Guhertinên dîmenê bibîne",
+      "split": "Li birînên hilbijartî parçe bike",
+      "none": "Guhertina dîmenê nehat dîtin.",
+      "hint": "Pêşî birînan binirxîne · ≤10 xulek",
+      "preview": "Pêşdîtin"
+    },
     "beats": {
       "markers": "Nîşanên rîtmê",
       "sync": "Birînan hevdem bike",

@@ -6789,6 +6789,13 @@
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   },
   "editor": {
+    "shots": {
+      "detect": "Tambua mabadiliko ya mandhari",
+      "split": "Gawanya kwenye mikato iliyochaguliwa",
+      "none": "Hakuna mabadiliko ya mandhari yaliyopatikana.",
+      "hint": "Kagua mikato kwanza · ≤dakika 10",
+      "preview": "Hakiki"
+    },
     "beats": {
       "markers": "Alama za mdundo",
       "sync": "Sawazisha mikato",

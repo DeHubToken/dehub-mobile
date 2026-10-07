@@ -6870,6 +6870,13 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "shots": {
+      "detect": "Detect scene changes",
+      "split": "Split selected cuts",
+      "none": "No scene changes found.",
+      "hint": "Review cuts first · ≤10 min",
+      "preview": "Preview"
+    },
     "beats": {
       "markers": "Beat markers",
       "sync": "Sync cuts",

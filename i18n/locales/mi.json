@@ -6769,6 +6769,13 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "editor": {
+    "shots": {
+      "detect": "Kimihia ngā huringa whakaaturanga",
+      "split": "Wehea ki ngā tapahi kua tīpakohia",
+      "none": "Kāore he huringa whakaaturanga i kitea.",
+      "hint": "Arotakea ngā tapahi i te tuatahi · ≤10 min",
+      "preview": "Arokite"
+    },
     "beats": {
       "markers": "Ngā tohu manawataki",
       "sync": "Whakaritea ngā tapahi",

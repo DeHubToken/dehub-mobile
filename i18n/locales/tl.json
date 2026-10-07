@@ -6968,6 +6968,13 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "shots": {
+      "detect": "Tukuyin ang pagbabago ng eksena",
+      "split": "Hatiin sa mga napiling putol",
+      "none": "Walang nahanap na pagbabago ng eksena.",
+      "hint": "Suriin muna ang mga putol · ≤10 minuto",
+      "preview": "Preview"
+    },
     "beats": {
       "markers": "Mga marka ng kumpas",
       "sync": "Isabay ang mga putol",

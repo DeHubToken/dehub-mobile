@@ -6819,6 +6819,13 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "shots": {
+      "detect": "Jijjiirama mul'ataa barbaadi",
+      "split": "Bakka murame filatametti qoodi",
+      "none": "Jijjiiramni mul'ataa hin argamne.",
+      "hint": "Dura bakka murame ilaali · ≤10 daqiiqaa",
+      "preview": "Dursee ilaali"
+    },
     "beats": {
       "markers": "Mallattoolee rukuttaa",
       "sync": "Kutaa walsimsiisi",

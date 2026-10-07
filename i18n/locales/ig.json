@@ -6767,6 +6767,13 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "shots": {
+      "detect": "Chọpụta mgbanwe ihe nkiri",
+      "split": "Kewaa na mbepụ ahọpụtara",
+      "none": "Achọtaghị mgbanwe ihe nkiri.",
+      "hint": "Lelee mbepụ mbụ · ≤10 min",
+      "preview": "Nlele"
+    },
     "beats": {
       "markers": "Akara ụda",
       "sync": "Mee ka mbepụ kwekọọ",

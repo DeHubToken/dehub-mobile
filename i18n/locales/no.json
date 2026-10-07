@@ -6786,6 +6786,13 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "shots": {
+      "detect": "Finn sceneskift",
+      "split": "Del ved valgte klipp",
+      "none": "Ingen sceneskift funnet.",
+      "hint": "Se gjennom klipp først · ≤10 min",
+      "preview": "Forhåndsvisning"
+    },
     "beats": {
       "markers": "Rytmemarkører",
       "sync": "Synkroniser klipp",

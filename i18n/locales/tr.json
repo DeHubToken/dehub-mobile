@@ -6867,6 +6867,13 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "shots": {
+      "detect": "Sahne değişikliklerini algıla",
+      "split": "Seçilen kesimlerde böl",
+      "none": "Sahne değişikliği bulunamadı.",
+      "hint": "Önce kesimleri inceleyin · ≤10 dk",
+      "preview": "Önizleme"
+    },
     "beats": {
       "markers": "Ritim işaretleri",
       "sync": "Kesimleri eşitle",

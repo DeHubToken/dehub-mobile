@@ -6817,6 +6817,13 @@
     "noStories": "还没有动态"
   },
   "editor": {
+    "shots": {
+      "detect": "检测场景变化",
+      "split": "在所选切点分割",
+      "none": "未找到场景变化。",
+      "hint": "先检查切点 · ≤10分钟",
+      "preview": "预览"
+    },
     "beats": {
       "markers": "节拍标记",
       "sync": "同步剪辑",
