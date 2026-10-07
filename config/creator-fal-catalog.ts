@@ -1,4 +1,4 @@
-/** Creator catalogue checked against fal's public schemas on 4 October 2026.
+/** Creator catalogue checked against fal's public schemas on 7 October 2026.
  * Prices use the ceiling of the exposed options and exclude temporary discounts.
  * The browser imports this metadata too; keep it free of runtime dependencies.
  */
@@ -31,7 +31,8 @@ export interface CreatorFalVideoModel {
   supportsVideoInput?: boolean;
   requiresVideoInput?: boolean;
   referenceMode?: 'edit' | 'motion';
-  family: 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion';
+  maxPromptLength?: number;
+  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion';
   falTextModel: string;
   falImageModel: string;
   falEndFrameModel?: string;
@@ -50,6 +51,36 @@ function video(spec: VideoSpec): CreatorFalVideoModel {
 }
 
 export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
+  'kling-3-turbo-pro': video({
+    id: 'kling-3-turbo-pro', name: 'Kling 3 Turbo Pro', vendor: 'Kling', emoji: '⚡', tier: 'fast',
+    description: 'Faster Kling motion with synchronized sound',
+    family: 'klingturbo', falTextModel: 'fal-ai/kling-video/v3/turbo/pro/text-to-video', falImageModel: 'fal-ai/kling-video/v3/turbo/pro/image-to-video',
+    minDuration: 3, maxDuration: 15, defaultDuration: 5, perSecondCostUsd: 0.14,
+    resolutions: ['1080p'], aspectRatios: ['16:9', '9:16', '1:1'], hasAudio: true, maxPromptLength: 3072,
+  }),
+  'kling-3-turbo-standard': video({
+    id: 'kling-3-turbo-standard', name: 'Kling 3 Turbo Standard', vendor: 'Kling', emoji: '⚡', tier: 'fast',
+    description: 'Faster Kling motion with synchronized sound',
+    family: 'klingturbo', falTextModel: 'fal-ai/kling-video/v3/turbo/standard/text-to-video', falImageModel: 'fal-ai/kling-video/v3/turbo/standard/image-to-video',
+    minDuration: 3, maxDuration: 15, defaultDuration: 5, perSecondCostUsd: 0.112,
+    resolutions: ['720p'], aspectRatios: ['16:9', '9:16', '1:1'], hasAudio: true, maxPromptLength: 3072,
+  }),
+  'vidu-q3': video({
+    id: 'vidu-q3', name: 'Vidu Q3', vendor: 'Vidu', emoji: '🎬', tier: 'premium',
+    description: 'Video with sound and start-to-end frame transitions',
+    family: 'viduq3', falTextModel: 'fal-ai/vidu/q3/text-to-video', falImageModel: 'fal-ai/vidu/q3/image-to-video',
+    minDuration: 1, maxDuration: 16, defaultDuration: 5, perSecondCostUsd: 0.154,
+    resolutions: ['540p', '720p', '1080p'], aspectRatios: ['16:9', '9:16', '4:3', '3:4', '1:1'],
+    hasAudio: true, supportsSeed: true, supportsEndFrame: true, maxPromptLength: 2000,
+  }),
+  'vidu-q3-turbo': video({
+    id: 'vidu-q3-turbo', name: 'Vidu Q3 Turbo', vendor: 'Vidu', emoji: '🎬', tier: 'fast',
+    description: 'Video with sound and start-to-end frame transitions',
+    family: 'viduq3', falTextModel: 'fal-ai/vidu/q3/text-to-video/turbo', falImageModel: 'fal-ai/vidu/q3/image-to-video/turbo',
+    minDuration: 1, maxDuration: 16, defaultDuration: 5, perSecondCostUsd: 0.077,
+    resolutions: ['540p', '720p', '1080p'], aspectRatios: ['16:9', '9:16', '4:3', '3:4', '1:1'],
+    hasAudio: true, supportsSeed: true, supportsEndFrame: true, maxPromptLength: 2000,
+  }),
   'kling-o3-edit': {
     ...video({
       id: 'kling-o3-edit', name: 'Kling O3 Character Swap', vendor: 'Kling', emoji: '🎭', tier: 'premium',
@@ -77,7 +108,8 @@ export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
   'flux-3-video': video({
     id: 'flux-3-video', name: 'FLUX 3', vendor: 'Black Forest Labs', emoji: '🌲', tier: 'premium',
     description: 'Video and sound from text, images, or start and end frames',
-    family: 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video',
+    maxPromptLength?: number;
+  family: 'klingturbo' | 'viduq3' | 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video',
     falImageModel: 'blackforestlabs/flux-3/image-to-video',
     falEndFrameModel: 'blackforestlabs/flux-3/first-last-frame-to-video',
     minDuration: 5, maxDuration: 20, defaultDuration: 5, perSecondCostUsd: 0.29,
@@ -87,7 +119,8 @@ export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
   'flux-3-draft': video({
     id: 'flux-3-draft', name: 'FLUX 3 Draft', vendor: 'Black Forest Labs', emoji: '⚡', tier: 'fast',
     description: 'Affordable 720p previews with native sound',
-    family: 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video/draft',
+    maxPromptLength?: number;
+  family: 'klingturbo' | 'viduq3' | 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video/draft',
     falImageModel: 'blackforestlabs/flux-3/image-to-video/draft',
     falEndFrameModel: 'blackforestlabs/flux-3/first-last-frame-to-video/draft',
     minDuration: 5, maxDuration: 20, defaultDuration: 5, perSecondCostUsd: 0.06,
@@ -211,6 +244,11 @@ export interface CreatorFalImageModel {
   text: string;
   edit?: string;
   sizing: 'image_size' | 'aspect_ratio';
+  /** Explicit dimensions below one megapixel, preserving the selected ratio. */
+  exactImageSize?: boolean;
+  maxPromptLength?: number;
+  maxReferenceImages?: number;
+  editImageField?: 'reference_image_urls';
   editUsesPlural?: boolean;
   extra?: Record<string, unknown>;
   editExtra?: Record<string, unknown>;
@@ -218,6 +256,140 @@ export interface CreatorFalImageModel {
   aspectRatios?: string[];
 }
 export const CREATOR_FAL_IMAGE_MODELS: Record<string, CreatorFalImageModel> = {
+  'flux-schnell': {
+    id: 'flux-schnell', name: 'FLUX.1 Schnell', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'fast',
+    description: 'Near-instant compositions and inexpensive drafts', baseCostUsd: 0.003, supportsEdit: false,
+    text: 'fal-ai/flux/schnell',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-dev': {
+    id: 'flux-dev', name: 'FLUX.1 Dev', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Detailed photography and reliable prompt following', baseCostUsd: 0.025, supportsEdit: false,
+    text: 'fal-ai/flux/dev',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-krea': {
+    id: 'flux-krea', name: 'FLUX.1 Krea', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Natural photographic texture and expressive portraits', baseCostUsd: 0.025, supportsEdit: false,
+    text: 'fal-ai/flux/krea',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-dev': {
+    id: 'flux-2-dev', name: 'FLUX.2 Dev', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Detailed compositions and accurate colour direction', baseCostUsd: 0.012, supportsEdit: false,
+    text: 'fal-ai/flux-2',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-turbo': {
+    id: 'flux-2-turbo', name: 'FLUX.2 Turbo', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'fast',
+    description: 'Quick iterations with FLUX.2 detail', baseCostUsd: 0.008, supportsEdit: false,
+    text: 'fal-ai/flux-2/turbo',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-flash': {
+    id: 'flux-2-flash', name: 'FLUX.2 Flash', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'fast',
+    description: 'Low-cost FLUX.2 previews', baseCostUsd: 0.005, supportsEdit: false,
+    text: 'fal-ai/flux-2/flash',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-klein-4b': {
+    id: 'flux-2-klein-4b', name: 'FLUX.2 Klein 4B', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'fast',
+    description: 'Fast generation and edits with multiple references', baseCostUsd: 0.01, supportsEdit: true,
+    text: 'fal-ai/flux-2/klein/4b', edit: 'fal-ai/flux-2/klein/4b/edit', editUsesPlural: true,
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-klein-9b': {
+    id: 'flux-2-klein-9b', name: 'FLUX.2 Klein 9B', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Sharper text, realism and reference image editing', baseCostUsd: 0.011, supportsEdit: true,
+    text: 'fal-ai/flux-2/klein/9b', edit: 'fal-ai/flux-2/klein/9b/edit', editUsesPlural: true,
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-klein-4b-base': {
+    id: 'flux-2-klein-4b-base', name: 'FLUX.2 Klein 4B Base', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Full sampling for deliberate visual compositions', baseCostUsd: 0.009, supportsEdit: false,
+    text: 'fal-ai/flux-2/klein/4b/base',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'flux-2-klein-9b-base': {
+    id: 'flux-2-klein-9b-base', name: 'FLUX.2 Klein 9B Base', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'standard',
+    description: 'Detailed base model for complex scenes', baseCostUsd: 0.011, supportsEdit: false,
+    text: 'fal-ai/flux-2/klein/9b/base',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'hidream-i1-full': {
+    id: 'hidream-i1-full', name: 'HiDream I1 Full', vendor: 'HiDream', emoji: '🎨', tier: 'premium',
+    description: 'Detailed illustration and faithful compositions', baseCostUsd: 0.05, supportsEdit: false,
+    text: 'fal-ai/hidream-i1-full',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'hidream-i1-dev': {
+    id: 'hidream-i1-dev', name: 'HiDream I1 Dev', vendor: 'HiDream', emoji: '🎨', tier: 'standard',
+    description: 'Balanced illustration and photographic detail', baseCostUsd: 0.03, supportsEdit: false,
+    text: 'fal-ai/hidream-i1-dev',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'hidream-i1-fast': {
+    id: 'hidream-i1-fast', name: 'HiDream I1 Fast', vendor: 'HiDream', emoji: '🎨', tier: 'fast',
+    description: 'Fast visual exploration at a lower cost', baseCostUsd: 0.01, supportsEdit: false,
+    text: 'fal-ai/hidream-i1-fast',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'hidream-o1': {
+    id: 'hidream-o1', name: 'HiDream O1', vendor: 'HiDream', emoji: '🎨', tier: 'standard',
+    description: 'Create and combine subjects from reference images', baseCostUsd: 0.01, supportsEdit: true,
+    text: 'fal-ai/hidream-o1-image', edit: 'fal-ai/hidream-o1-image', editUsesPlural: true,
+    sizing: 'image_size', exactImageSize: true,
+    editImageField: 'reference_image_urls',
+  },
+  'sd-3.5-large': {
+    id: 'sd-3.5-large', name: 'Stable Diffusion 3.5 Large', vendor: 'Stability AI', emoji: '🎨', tier: 'premium',
+    description: 'Rich detail across photography and illustration', baseCostUsd: 0.065, supportsEdit: false,
+    text: 'fal-ai/stable-diffusion-v35-large',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'sd-3.5-medium': {
+    id: 'sd-3.5-medium', name: 'Stable Diffusion 3.5 Medium', vendor: 'Stability AI', emoji: '🎨', tier: 'standard',
+    description: 'Versatile styles and accessible creative drafts', baseCostUsd: 0.02, supportsEdit: false,
+    text: 'fal-ai/stable-diffusion-v35-medium',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'sd-3.5-turbo': {
+    id: 'sd-3.5-turbo', name: 'Stable Diffusion 3.5 Turbo', vendor: 'Stability AI', emoji: '🎨', tier: 'fast',
+    description: 'Rapid four-step image generation', baseCostUsd: 0.015, supportsEdit: false,
+    text: 'fal-ai/stable-diffusion-v35-large/turbo',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'sana': {
+    id: 'sana', name: 'Sana', vendor: 'NVIDIA', emoji: '🎨', tier: 'fast',
+    description: 'Efficient generation for inexpensive concept sketches', baseCostUsd: 0.001, supportsEdit: false,
+    text: 'fal-ai/sana',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'lumina-2': {
+    id: 'lumina-2', name: 'Lumina Image 2', vendor: 'Alpha-VLLM', emoji: '🎨', tier: 'premium',
+    description: 'Expressive scenes with strong prompt alignment', baseCostUsd: 0.075, supportsEdit: false,
+    text: 'fal-ai/lumina-image/v2',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'qwen-image-2512': {
+    id: 'qwen-image-2512', name: 'Qwen Image 2512', vendor: 'Alibaba', emoji: '🎨', tier: 'standard',
+    description: 'Natural detail and multilingual text rendering', baseCostUsd: 0.02, supportsEdit: false,
+    text: 'fal-ai/qwen-image-2512',
+    sizing: 'image_size', exactImageSize: true,
+  },
+  'qwen-image-max': {
+    id: 'qwen-image-max', name: 'Qwen Image Max', vendor: 'Alibaba', emoji: '🎨', tier: 'premium',
+    description: 'Polished typography and reference image edits', baseCostUsd: 0.075, supportsEdit: true,
+    text: 'fal-ai/qwen-image-max/text-to-image', edit: 'fal-ai/qwen-image-max/edit', editUsesPlural: true,
+    sizing: 'image_size', exactImageSize: true,
+    maxPromptLength: 800, maxReferenceImages: 3,
+  },
+  'nucleus-image': {
+    id: 'nucleus-image', name: 'Nucleus Image', vendor: 'Nucleus', emoji: '🎨', tier: 'fast',
+    description: 'Affordable detailed scenes in common formats', baseCostUsd: 0.02, supportsEdit: false,
+    text: 'fal-ai/nucleus-image',
+    sizing: 'aspect_ratio', aspectRatios: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3'],
+  },
   'flux-3-image': {
     id: 'flux-3-image', name: 'FLUX 3 Image', vendor: 'Black Forest Labs', emoji: '🌲', tier: 'premium',
     description: 'Detailed generation and precise image editing', baseCostUsd: 0.048, supportsEdit: true,
@@ -281,3 +453,8 @@ export const CREATOR_FAL_IMAGE_MODELS: Record<string, CreatorFalImageModel> = {
     text: 'alibaba/qwen-image-3/text-to-image', edit: 'alibaba/qwen-image-3/edit', sizing: 'image_size', editUsesPlural: true,
   },
 };
+
+/** Both pickers expose only ratios supported by the selected endpoint. */
+export function creatorFalImageAspects(modelId: string): string[] {
+  return CREATOR_FAL_IMAGE_MODELS[modelId]?.aspectRatios ?? ['1:1', '4:5', '16:9', '9:16', '3:2', '2:3', '21:9'];
+}
