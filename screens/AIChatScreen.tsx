@@ -105,6 +105,9 @@ import {
 import { getDeviceLanguage } from '../services/translation.service';
 import { toastError, toastSuccess } from '../libs/toast';
 import { ScreenNames } from '../navigation/ScreenNames';
+import { importGeneratedMedia } from '../libs/editor/importGeneratedMedia';
+import { generatedProject } from '../libs/editor/generatedProject';
+import { saveProject, MediaTooLargeError } from '../libs/editor/storage';
 import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
 import ScreenHeader from '../components/ScreenHeader';
@@ -203,6 +206,9 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const route = useRoute<any>();
   const user = useUser();
   const downloadVideo = useVideoDownload();
+  const [editingMediaUrl, setEditingMediaUrl] = useState<string | null>(null);
+  const editorImport = useRef<AbortController | null>(null);
+  useEffect(() => () => editorImport.current?.abort(), []);
   const { isSignedIn, needsUsername } = useAuthState();
   const [supportVisible, setSupportVisible] = useState(false);
   // Read once for the header badge. The sheet runs the same query, so opening
@@ -1474,6 +1480,25 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     [navigation],
   );
 
+  const handleEditMedia = useCallback(async (url: string, kind: 'image' | 'video' | 'audio') => {
+    if (editorImport.current) return;
+    const controller = new AbortController();
+    editorImport.current = controller;
+    setEditingMediaUrl(url);
+    try {
+      const media = await importGeneratedMedia({ url, kind }, controller.signal);
+      if (controller.signal.aborted) return;
+      const project = generatedProject(media);
+      await saveProject(project);
+      if (!controller.signal.aborted) navigation.push(ScreenNames.MediaEditor, { projectId: project.id });
+    } catch (error) {
+      if (!controller.signal.aborted) toastError(error instanceof MediaTooLargeError ? t('editor.video.tooLarge') : t('common.somethingWentWrong'));
+    } finally {
+      if (!controller.signal.aborted) setEditingMediaUrl(null);
+      if (editorImport.current === controller) editorImport.current = null;
+    }
+  }, [navigation, t]);
+
   /* ── Composer helpers ────────────────────────────────────────────────── */
 
   const handleAttach = useCallback(async () => {
@@ -1573,11 +1598,13 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           ? downloadVideo({ url: uri, title: "dehub-video", username: user?.username })
           : saveToLibrary(uri, kind)}
         onPostMedia={handlePostMedia}
+        onEditMedia={handleEditMedia}
+        editingMediaUrl={editingMediaUrl}
         onShareAudio={shareAudio}
         onRetry={item.isError ? handleRetry : undefined}
       />
     ),
-    [handleImagePress, handleAttachGenerated, handlePostMedia, handleRetry, downloadVideo, user?.username],
+    [handleImagePress, handleAttachGenerated, handlePostMedia, handleEditMedia, editingMediaUrl, handleRetry, downloadVideo, user?.username],
   );
 
   const keyExtractor = useCallback(

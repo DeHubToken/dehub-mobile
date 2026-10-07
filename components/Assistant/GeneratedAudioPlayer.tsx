@@ -52,12 +52,18 @@ interface GeneratedAudioPlayerProps {
   audioUrl: string;
   onSave?: (url: string) => void;
   onPost?: (url: string) => void;
+  onEdit?: (url: string) => void;
+  editing?: boolean;
+  editDisabled?: boolean;
 }
 
 const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   audioUrl,
   onSave,
   onPost,
+  onEdit,
+  editing,
+  editDisabled,
 }) => {
   const { t } = useTranslation();
   const soundRef = useRef<AudioPlayer | null>(null);
@@ -183,6 +189,13 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
           {fmtTime(positionMillis)} / {durationMillis ? fmtTime(durationMillis) : '--:--'}
         </Text>
         <View style={s.actions}>
+          {onEdit && (
+            <TouchableOpacity onPress={() => { soundRef.current?.pause(); setIsPlaying(false); onEdit(audioUrl); }}
+              disabled={editDisabled || editing} style={s.actionBtn} activeOpacity={0.7}
+              accessibilityRole="button" accessibilityLabel={t('creator.editInTimeline')}>
+              {editing ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name="Scissors" size={16} color="#A6A9AC" />}
+            </TouchableOpacity>
+          )}
           {onSave && (
             <TouchableOpacity
               onPress={() => onSave(audioUrl)}
