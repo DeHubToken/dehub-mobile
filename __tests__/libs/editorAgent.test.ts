@@ -67,9 +67,10 @@ describe("editor agent on the phone (same ops as the web)", () => {
     expect(base.clips).toHaveLength(0);
   });
 
-  it("reports what only the web does instead of failing silently", async () => {
+  it("reports unsupported pages and fails captions with no media target", async () => {
     const { report } = await applyOps(newProject("1:1", "t"), [{ op: "captions" }, { op: "add_page" }]);
-    expect(report.unsupported).toEqual(["captions", "add_page"]);
+    expect(report.unsupported).toEqual(["add_page"]);
+    expect(report.failed).toBe(2);
   });
 
   it("swaps a picture for its cut-out when the phone can remove backgrounds", async () => {
