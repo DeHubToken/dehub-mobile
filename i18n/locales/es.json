@@ -389,6 +389,7 @@
     "compactModeDesc": "Reducir el espaciado para más contenido",
     "autoPlay": "Reproducción automática",
     "autoPlayDesc": "Reproducir vídeos automáticamente",
+    "autoplayPausePrompt": "¿Desactivar la reproducción automática?",
     "autoPlayMuted": "Iniciar reproducción automática sin sonido",
     "autoPlayMutedDesc": "Los vídeos que se reproducen solos siempre empiezan con el sonido apagado",
     "showAnimations": "Mostrar animaciones",

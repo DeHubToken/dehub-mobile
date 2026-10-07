@@ -389,6 +389,7 @@
     "compactModeDesc": "Riduci lo spazio per più contenuti",
     "autoPlay": "Riproduzione automatica video",
     "autoPlayDesc": "Riproduci automaticamente i video nel feed",
+    "autoplayPausePrompt": "Disattivare la riproduzione automatica?",
     "autoPlayMuted": "Avvia la riproduzione automatica senza audio",
     "autoPlayMutedDesc": "I video che partono da soli iniziano sempre con l'audio disattivato",
     "showAnimations": "Mostra animazioni",
