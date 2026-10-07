@@ -34,6 +34,7 @@ import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
+import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
 import { storage } from "../libs/storage";
 import { bootRevealed } from "../libs/bootReveal";
 import { TAB_BAR_PILL_HEIGHT } from "./tabBarLayout";
@@ -325,8 +326,8 @@ const NavButton = memo<{
         />
       </View>
       {badgeCount > 0 && (
-        <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: colors.accent }]} pointerEvents="none">
-          <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
+        <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
+          <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
             {badgeCount > 99 ? "99+" : badgeCount}
           </Text>
         </View>
@@ -419,6 +420,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
+  const messagesUnread = dmUnread + usePublicChatUnreadCount();
   // Resting state by default: a mount that happens underneath the boot
   // preloader (every cold start) must appear settled, or the user catches the
   // tail of this choreography as movement right on top of the reveal. The
@@ -649,7 +651,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
                 index={index}
                 tabW={tabW}
                 animProgress={animProgress}
-                badgeCount={tab.name === ScreenNames.DM && isAuthed ? dmUnread : 0}
+                badgeCount={tab.name === ScreenNames.DM && isAuthed ? messagesUnread : 0}
               />
             );
           })}
