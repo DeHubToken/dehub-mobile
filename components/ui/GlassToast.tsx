@@ -20,6 +20,7 @@ export interface GlassToastProps {
   actionLabel?: string;
   actionIcon?: ImageSourcePropType;
   onActionPress?: () => void;
+  children?: React.ReactNode;
 }
 
 /**
@@ -47,6 +48,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
   actionLabel,
   actionIcon,
   onActionPress,
+  children,
 }) => {
   const { t } = useTranslation();
   if (!title) return null;
@@ -82,6 +84,8 @@ const GlassToast: React.FC<GlassToastProps> = ({
               {description}
             </Text>
           )}
+
+          {children}
 
           {actionLabel && onActionPress && (
             <TouchableOpacity

@@ -389,6 +389,7 @@
     "compactModeDesc": "Réduire l'espacement pour plus de contenu",
     "autoPlay": "Lecture automatique",
     "autoPlayDesc": "Lire automatiquement les vidéos",
+    "autoplayPausePrompt": "Désactiver la lecture automatique ?",
     "autoPlayMuted": "Lecture automatique sans le son",
     "autoPlayMutedDesc": "Les vidéos qui se lancent seules démarrent toujours sans le son",
     "showAnimations": "Afficher les animations",

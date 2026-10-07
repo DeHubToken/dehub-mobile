@@ -66,6 +66,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
+import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
@@ -308,6 +309,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // flag persists across launches, so otherwise opening the app somewhere
   // quiet plays whatever sound was left on last time.
   const autoStartRef = useRef(false);
+  const { recordPause, cancelPause } = useAutoplayPausePrompt(tokenId);
   const shouldStartMuted = useCallback(
     () => getCachedMuted() || (autoStartRef.current && getAppPrefs().autoplayMuted),
     [],
@@ -596,7 +598,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
     component: 'FeedVideoPlayer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && playbackAllowedRef.current && canPlay &&
-      (isVisible || isPictureInPicturePlayer(player)) && canStartVideo(player),
+      (isVisible || isPictureInPicturePlayer(player)) && canStartVideo(player) &&
+      !videoSession.userPaused && (!autoStartRef.current || getAppPrefs().autoplay),
   });
   useEffect(() => {
     if (playbackPhase === 'failed') {
@@ -788,7 +791,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // autoplay again when the scroll comes back to it.
   useEffect(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(playerRef.current)) return;
-    if (isAutoplayActive || userStartedRef.current) return;
+    if ((isAutoplayActive && autoplayEnabled) || userStartedRef.current) return;
     pendingPlayRef.current = false;
     if (isPlayingRef.current) stopPlayback();
     setSourceRequested(false);
@@ -796,7 +799,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setVideoReady(false);
     setFirstFrameRendered(false);
     endStarting();
-  }, [isAutoplayActive, stopPlayback, endStarting]);
+  }, [isAutoplayActive, autoplayEnabled, stopPlayback, endStarting]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -823,6 +826,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // underneath the full-size tap surface, so every tap on it just blinked
     // the overlay while the video kept going.
     if (isPlayingRef.current) {
+      if (autoStartRef.current && !postPage) recordPause();
       videoSession.userPaused = true;
       stopPlayback();
       setShowControls(true);
@@ -834,6 +838,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // on. Reversing the pause half of a double tap preserves the earlier
     // autoplay ownership instead of accidentally turning it into background
     // manual playback.
+    cancelPause();
     userStartedRef.current = !preserveAutoplay;
     if (!preserveAutoplay) onUserStarted?.();
     // Before any of the state churn below: the viewer gets a spinner in the
@@ -845,7 +850,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!(videoReady && firstFrameRendered)) beginStarting();
     // Submit play in this tick whether the source has buffered yet or not.
     // The spinner covers the wait for the native player's first frame.
-    autoStartRef.current = false;
+    autoStartRef.current = preserveAutoplay;
     videoSession.userPaused = false;
     pendingPlayRef.current = true;
     setHasStartedAutoplay(true);
@@ -853,7 +858,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     flushPendingPlay();
     setShowControls(true);
     startHideTimer();
-  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered]);
+  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer, onUserStarted, beginStarting, videoReady, firstFrameRendered, postPage, recordPause, cancelPause]);
 
   // The post page's pinned mini player mirrors this player and can toggle it.
   const videoPressRef = useRef(handleVideoPress);
