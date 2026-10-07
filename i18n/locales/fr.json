@@ -7301,6 +7301,13 @@
       }
     },
     "highlights": {
+      "chatSuggest": "Trouve les meilleurs moments de cette vidéo",
+      "chatFound": "{{count}} moments trouvés. Prévisualisez-les, affinez la sélection, puis créez un montage séparé.",
+      "chatHint": "Sélection des moments forts. Indiquez quoi garder ou retirer, ou revenez au montage.",
+      "chatExit": "Retour au montage",
+      "chatSelectVideo": "Sélectionnez d’abord une seule vidéo visible et déverrouillée.",
+      "chatCaptionsMissing": "Cette vidéo n’a pas de sous-titres actuels. Reformulez sans « avec les sous-titres actuels » pour la transcrire.",
+      "chatLimit": "Utilisez une vidéo de 10 minutes maximum et une durée de moments forts de 15, 30 ou 60 secondes.",
       "title": "Moments forts",
       "find": "Trouver les moments forts",
       "privacy": "La vidéo reste sur votre appareil. La parole est transcrite ici ; le texte est envoyé pour sélectionner les moments forts. Vérifiez chaque passage avant de créer un montage séparé.",

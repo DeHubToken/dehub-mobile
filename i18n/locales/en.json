@@ -7290,6 +7290,13 @@
       }
     },
     "highlights": {
+      "chatSuggest": "Find the best moments in this video",
+      "chatFound": "Found {{count}} moments. Preview them, refine the selection, then create a separate edit.",
+      "chatHint": "Reviewing highlights. Type what to keep or remove, or return to editing.",
+      "chatExit": "Back to editing",
+      "chatSelectVideo": "Select one visible, unlocked video first.",
+      "chatCaptionsMissing": "This video has no current captions. Ask again without 'using current captions' to transcribe it.",
+      "chatLimit": "Use a video up to 10 minutes and a 15, 30 or 60 second highlight budget.",
       "title": "Highlights",
       "find": "Find highlights",
       "privacy": "Video stays on your device. Speech is transcribed here; transcript text is sent for highlight ranking. Review every moment before creating a separate edit.",
