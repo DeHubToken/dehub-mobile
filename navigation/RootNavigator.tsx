@@ -1,7 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuthState } from "../context/AuthContext";
-import AppNavigator from "./AppNavigator";
 import { ScreenNames } from "./ScreenNames";
 import type { RootStackParamList } from "./types";
 import { createLogger } from "../libs/logger";
@@ -66,7 +65,7 @@ export default function RootNavigator() {
         This prevents React from unmounting/remounting when auth state changes.
         Navigation between stacks is handled imperatively by screens.
       */}
-      <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
+      <Stack.Screen name={ScreenNames.App} getComponent={() => require('./AppNavigator').default} />
       {/* Lazy: a returning signed-in user never reaches this stack, but a
           static import still had Hermes evaluate all four auth screens — and
           the wallet SDKs they pull in — before the first frame. */}

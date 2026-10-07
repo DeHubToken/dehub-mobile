@@ -5,6 +5,26 @@ describe('settled video preloading', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
+  it('reports a rejected active source so recovery can reload the unchanged URL', async () => {
+    const player = { replaceAsync: jest.fn().mockRejectedValue(new Error('offline')) };
+    const error = jest.fn();
+    renderHook(() => useSettledVideoSource(player, 'clip', true, jest.fn(), error));
+    await act(async () => {});
+    expect(error).toHaveBeenCalledTimes(1);
+  });
+
+  it('serializes a slow preload before attaching the newly active source', async () => {
+    let finish!: () => void;
+    const player = { replaceAsync: jest.fn().mockImplementationOnce(() => new Promise<void>(resolve => { finish = resolve; })).mockResolvedValue(undefined) };
+    const ready = jest.fn();
+    const { rerender } = renderHook<void, { source: string }>(({ source }) => useSettledVideoSource(player, source, true, ready), { initialProps: { source: 'old' } });
+    rerender({ source: 'new' });
+    expect(player.replaceAsync).toHaveBeenCalledTimes(1);
+    await act(async () => finish());
+    expect(player.replaceAsync.mock.calls).toEqual([['old'], ['new']]);
+    expect(ready).toHaveBeenCalledTimes(1);
+  });
+
   it('cancels skipped neighbours and unloads retained distant cells', async () => {
     const player = { replaceAsync: jest.fn().mockResolvedValue(undefined) };
     const ready = jest.fn();

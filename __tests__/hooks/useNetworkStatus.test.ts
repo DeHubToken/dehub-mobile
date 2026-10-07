@@ -84,6 +84,24 @@ describe('hooks/useNetworkStatus', () => {
     expect(unsubscribe).toHaveBeenCalled();
   });
 
+  it('keeps unknown reachability usable when the initial probe rejects', async () => {
+    mockFetch.mockRejectedValue(new Error('native probe unavailable'));
+    const { result } = renderHook(() => useNetworkStatus());
+    await act(async () => {});
+    expect(result.current.hasInternet).toBeNull();
+    await act(async () => { await result.current.checkConnection(); });
+    expect(result.current.hasInternet).toBeNull();
+  });
+
+  it('does not overwrite a newer radio event with a stale initial probe', async () => {
+    let finish!: (state: any) => void;
+    mockFetch.mockReturnValueOnce(new Promise(resolve => { finish = resolve; }));
+    const { result } = renderHook(() => useNetworkStatus());
+    act(() => subscriberCallback?.({ isConnected: true, isInternetReachable: true }));
+    await act(async () => finish({ isConnected: false, isInternetReachable: false }));
+    expect(result.current.hasInternet).toBe(true);
+  });
+
   // ── Offline debounce ──────────────────────────────────────────────────────
   //
   // App.tsx renders the offline screen over the app when hasInternet goes

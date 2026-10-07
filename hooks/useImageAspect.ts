@@ -1,9 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 import type { ImageLoadEventData } from "expo-image";
 import { FEED_IMAGE_FALLBACK_ASPECT } from "../libs/feed-image-layout";
+import { storage } from '../libs/storage';
+import { createMediaAspectCache } from '../libs/media-aspect-cache';
 
-const aspectRatioCache = new Map<string, number>();
-const MAX_CACHE_ENTRIES = 1000;
+const aspectRatioCache = createMediaAspectCache(
+  () => storage.getString('media-aspects-v1'), value => storage.set('media-aspects-v1', value),
+);
 
 /**
  * expo-image reports the size of the bitmap it decoded, and it decodes at the
@@ -17,10 +20,6 @@ const MAX_CACHE_ENTRIES = 1000;
 const RATIO_TOLERANCE = 0.01;
 
 function cacheAspectRatio(uri: string, ratio: number) {
-  if (aspectRatioCache.size >= MAX_CACHE_ENTRIES) {
-    const oldest = aspectRatioCache.keys().next().value;
-    if (oldest !== undefined) aspectRatioCache.delete(oldest);
-  }
   aspectRatioCache.set(uri, ratio);
 }
 
