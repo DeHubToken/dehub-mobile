@@ -1,5 +1,7 @@
 import { PersistentVideoView } from '../common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
+import { applyVideoVolume } from '../../libs/dub-mix';
+import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
 import { useMediaVolume } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
@@ -441,7 +443,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     p.showNowPlayingNotification = true;
     p.loop = true;
     p.muted = getCachedMuted();
-    p.volume = getVolume();
+    applyVideoVolume(p, getVolume());
     p.timeUpdateEventInterval = 0.5;
     // A rate pinned to this creator applies from the first frame; everyone
     // else plays at whatever rate was last used generally.
@@ -631,7 +633,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // release and throw "Cannot use shared object that was already released".
     try {
       const current = playerRef.current;
-      current.volume = getVolume();
+      applyVideoVolume(current, getVolume());
       recovery.start();
     } catch (error) {
       playbackLog.error("Video play request failed", error, { tokenId });
@@ -939,19 +941,21 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // fine; this is the video's own level, and it persists the same way the
   // playback rate does.
   const volume = useMediaVolume();
+  const [dubAvailable, setDubAvailable] = useState(false);
+  const [dubVolumeOpen, setDubVolumeOpen] = useState(false);
   const [volumeAdjusting, setVolumeAdjusting] = useState(false);
   const volumeRef = useRef(volume);
 
   useEffect(() => {
     volumeRef.current = volume;
-    try { if (playerRef.current) playerRef.current.volume = volume; } catch {}
+    try { if (playerRef.current) applyVideoVolume(playerRef.current, volume); } catch {}
   }, [volume, player]);
 
   const applyVolume = useCallback((next: number) => {
     const level = Math.max(0, Math.min(1, next));
     volumeRef.current = level;
     persistVolume(level);
-    if (playerRef.current) playerRef.current.volume = level;
+    if (playerRef.current) applyVideoVolume(playerRef.current, level);
 
     // Dragging to the bottom is how you mute, and dragging off it is how you
     // come back — otherwise the icon and the level disagree.
@@ -971,11 +975,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         feedVolumeResponder({
           onHoldStart: () => {
             clearHideTimer();
-            setVolumeAdjusting(true);
+            if (!dubAvailable) setVolumeAdjusting(true);
             // Muted, the slider is at the bottom whatever the stored level is.
             return isMuted ? 0 : volumeRef.current;
           },
-          onVolume: applyVolume,
+          onVolume: (next) => { if (!dubAvailable) applyVolume(next); },
+          onHoldRelease: () => { if (dubAvailable) setDubVolumeOpen(true); },
           onTap: handleToggleMute,
           onEnd: () => {
             setVolumeAdjusting(false);
@@ -983,7 +988,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           },
         }),
       ),
-    [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer],
+    [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer, dubAvailable],
   );
 
   const [isLooping, setIsLooping] = useState(true);
@@ -1336,6 +1341,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     {...volumePanResponder.panHandlers}
                     accessibilityRole="button"
                     accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
+                    accessibilityActions={dubAvailable ? [{ name: "longpress", label: t("dub.audio") }] : undefined}
+                    onAccessibilityAction={(event) => { if (dubAvailable && event.nativeEvent.actionName === "longpress") setDubVolumeOpen(true); }}
                   >
                     <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
                   </View>
@@ -1371,7 +1378,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </Pressable>
 
               <View>
-                <View style={styles.bareButton} {...volumePanResponder.panHandlers}>
+                <View style={styles.bareButton} {...volumePanResponder.panHandlers}
+                  accessibilityRole="button" accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
+                  accessibilityActions={dubAvailable ? [{ name: "longpress", label: t("dub.audio") }] : undefined}
+                  onAccessibilityAction={(event) => { if (dubAvailable && event.nativeEvent.actionName === "longpress") setDubVolumeOpen(true); }}>
                   <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
                 </View>
                 {volumeAdjusting && (
@@ -1513,8 +1523,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           isPlaying={isPlaying}
           hideButton={bareControls}
           onControls={bareControls ? setCaptionControls : undefined}
+          onDubAvailableChange={setDubAvailable}
         />
       )}
+
+      <DubVolumeSheet visible={dubVolumeOpen && dubAvailable} onClose={() => setDubVolumeOpen(false)}
+        muted={isMuted || volume === 0} onToggleMute={() => { if (volume === 0) applyVolume(0.8); else handleToggleMute(); }}
+        onUnmute={() => { if (isMuted || volume === 0) applyVolume(volume || 0.8); }} />
 
       {tapAnimReaction && (
         <View
