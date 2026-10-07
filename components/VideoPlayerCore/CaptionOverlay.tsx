@@ -59,7 +59,7 @@ interface Props {
   controlsVisible?: boolean;
   /** Lift the caption line above whatever sits at the bottom of the player. */
   bottomOffset?: number;
-  /** The video's player — the dub follows its clock and ducks its volume. */
+  /** The video's player — the dub follows its clock and keeps its audio quiet. */
   player?: VideoPlayer | null;
   /** Unused since the dub reads play state off the player; kept for callers. */
   isPlaying?: boolean;
