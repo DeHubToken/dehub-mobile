@@ -32,7 +32,8 @@ import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
-import { flushVideoPlayIntent, requestVideoPlayback } from "../../libs/video-start";
+import { flushVideoPlayIntent } from "../../libs/video-start";
+import { usePlaybackRecovery } from "../../hooks/usePlaybackRecovery";
 import { createLogger } from "../../libs/logger";
 import {
   getPlaybackRateFor,
@@ -319,7 +320,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Read by the tap handler, which must see the current value inside the same
   // tick that opened the window rather than the previous render's state.
   const isStartingRef = useRef(false);
-  const startTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [videoReady, setVideoReady] = useState(false);
   // Android can hand the VideoView a surface still holding a frame from a
   // neighbouring card's video. Keep the view transparent (thumbnail shows
@@ -573,34 +573,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const userStartedRef = useRef(false);
 
   const endStarting = useCallback(() => {
-    if (startTimeoutRef.current) {
-      clearTimeout(startTimeoutRef.current);
-      startTimeoutRef.current = null;
-    }
     isStartingRef.current = false;
     setIsStarting(false);
   }, []);
 
-  /**
-   * Open the tap→first-frame window, with a hard stop on it.
-   *
-   * A source that never becomes playable — dead URL, no network, a transcode
-   * that lied about being done — would otherwise leave the card spinning
-   * forever. After ten seconds it gives the play button back so the viewer can
-   * try again instead of staring at a spinner.
-   */
+  /** Show immediate feedback; the recovery watchdog bounds the first-frame wait. */
   const beginStarting = useCallback(() => {
-    if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current);
     isStartingRef.current = true;
     setIsStarting(true);
-    startTimeoutRef.current = setTimeout(() => {
-      startTimeoutRef.current = null;
-      isStartingRef.current = false;
-      setIsStarting(false);
-    }, 10000);
   }, []);
-
-  useEffect(() => () => { if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current); }, []);
 
   // The window closes on the first frame, not on `isPlaying`: play() resolving
   // before the surface has drawn anything would swap the spinner for a poster
@@ -610,9 +591,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [isStarting, isPlaying, firstFrameRendered, endStarting]);
 
   const playbackAllowedRef = useRef(false);
+  const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
+    component: 'FeedVideoPlayer', postId: tokenId,
+    allowed: () => ownsPlayerRef.current() && playbackAllowedRef.current && canPlay &&
+      (isVisible || isPictureInPicturePlayer(player)) && canStartVideo(player),
+  });
+  useEffect(() => {
+    if (playbackPhase === 'failed') {
+      pendingPlayRef.current = false;
+      isPlayingRef.current = false;
+      setIsPlaying(false);
+      endStarting();
+    }
+  }, [playbackPhase, endStarting]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || (isPictureInPicturePlayer(playerRef.current) && !visualActivity.isCallBusy())) return;
     playbackAllowedRef.current = false;
+    recovery.stop();
     pendingPlayRef.current = false;
     if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
     try { playerRef.current?.pause(); } catch {}
@@ -622,7 +617,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     endStarting();
     releaseFeedVideoFocus(stopPlayback);
     releaseAudioFocus(stopPlayback);
-  }, [endStarting, videoSession]);
+  }, [endStarting, videoSession, recovery]);
 
   const startPlayback = useCallback(() => {
     if (!ownsPlayerRef.current()) return;
@@ -637,15 +632,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       const current = playerRef.current;
       current.volume = getVolume();
-      void requestVideoPlayback(current, videoUrl!, () =>
-        playerRef.current === current && ownsPlayerRef.current() &&
-        playbackAllowedRef.current && canStartVideo(current),
-      ).catch((error) => {
-        if (playerRef.current === current && ownsPlayerRef.current()) {
-          playbackLog.error("Video source retry failed", error, { tokenId });
-          stopPlayback();
-        }
-      });
+      recovery.start();
     } catch (error) {
       playbackLog.error("Video play request failed", error, { tokenId });
       stopPlayback();
@@ -653,7 +640,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     }
     isPlayingRef.current = true;
     setIsPlaying(true);
-  }, [canPlay, videoUrl, tokenId, stopPlayback]);
+  }, [canPlay, videoUrl, tokenId, stopPlayback, recovery]);
 
   /**
    * Start loading immediately, but retain the intent until the native item is
@@ -662,6 +649,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
    */
   const flushPendingPlay = useCallback((readyEvent = false) => {
     if (!pendingPlayRef.current) return;
+    if (readyEvent && !recovery.wanted) return;
     const p = playerRef.current;
     if (!p) return;
     // Seed mute from the shared cache the same way the old direct path did.
@@ -671,7 +659,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       setIsMuted(m);
     } catch {}
     flushVideoPlayIntent(pendingPlayRef, readyEvent || p.status === "readyToPlay", startPlayback);
-  }, [startPlayback]);
+  }, [startPlayback, recovery]);
 
   useEffect(() => {
     if (!player) return;
@@ -695,10 +683,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         player.addListener("statusChange", ({ status, error }) => {
           if (!ownsPlayerRef.current()) return;
           setIsBuffering(status === "loading");
-          if (status === "error") {
-            playbackLog.error("Video source failed", error?.message || "Unknown error", { tokenId });
-            stopPlayback();
-          }
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
@@ -1244,12 +1228,22 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           // while scrolling and recycling. A TextureView renders inside the
           // normal view hierarchy, so it respects z-order and clipping.
           surfaceType="textureView"
-          onFirstFrameRender={() => setFirstFrameRendered(true)}
+          onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
           style={[styles.thumbnail, { opacity: firstFrameRendered && (hideControls
             ? (hasStartedAutoplay && videoReady)
             : (isPlaying || hasStartedAutoplay)
           ) ? 1 : 0 }]}
         />
+      )}
+
+      {playbackPhase === 'failed' && canPlay && (
+        <View style={[styles.statusOverlay, { zIndex: 20 }]}>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('player.retry')}
+            style={styles.retryButton} onPress={() => handleVideoPress()}>
+            <Icon name="RotateCcw" size={18} color="#fff" />
+            <Text style={styles.retryButtonText}>{t('player.retry')}</Text>
+          </TouchableOpacity>
+        </View>
       )}
 
       {isProcessing && (

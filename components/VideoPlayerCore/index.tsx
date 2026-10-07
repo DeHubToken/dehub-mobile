@@ -1,4 +1,5 @@
 import { usePersistentVideoPlayer } from '../../hooks/usePersistentVideoPlayer';
+import { usePlaybackRecovery } from '../../hooks/usePlaybackRecovery';
 import { PersistentVideoView } from '../common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import React, {
@@ -12,6 +13,7 @@ import {
   View,
   ActivityIndicator,
   Pressable,
+  Text,
   StatusBar,
   StyleSheet,
   useWindowDimensions,
@@ -158,7 +160,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [fullscreen, setFullscreen] = useState(false);
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
-  const [hasError, setHasError] = useState(false);
   const [isLooping, setIsLooping] = useState(loop);
   const [playbackRate, setPlaybackRate] = useState(() => (liveMode ? 1 : getPlaybackRateFor(creator)));
   const [isInPiP, setIsInPiP] = useState(false);
@@ -248,11 +249,16 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
-    if (!liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(p)) {
-      p.play();
-    }
   });
   const player = sharedLivePlayer ?? ownPlayer;
+  const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, sourceUrl, {
+    component: 'VideoPlayerCore', postId: tokenId,
+    allowed: () => (navigation.isFocused() || isPictureInPicturePlayer(player)) && !visualActivity.isCallBusy() && canStartVideo(player),
+  });
+  const hasError = playbackPhase === 'failed';
+  useEffect(() => {
+    if (hasError) { setIsBuffering(false); onError?.(new Error('Playback unavailable')); }
+  }, [hasError, onError]);
 
   // The shared player was set up as a silent feed preview; give it this
   // screen's sound and background behaviour. A picture already on screen
@@ -273,18 +279,19 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Start live HLS after the player has been configured and attached, as the
   // feed preview does. Live timelines must not enter the file-repeat path.
   useEffect(() => {
-    if (liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(player)) {
-      player.play();
+    if (autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(player)) {
+      recovery.start();
     }
-  }, [player, liveMode, autoplay, sourceUrl]);
+  }, [player, autoplay, sourceUrl, recovery]);
 
   const stopPlayback = useCallback(() => {
     if (isPictureInPicturePlayer(player) && !visualActivity.isCallBusy()) return;
     setPlayRequested(false);
+    recovery.stop();
     try { player.pause(); } catch {}
     releaseAudioFocus(stopPlayback);
     releaseFeedVideoFocus(stopPlayback);
-  }, [player]);
+  }, [player, recovery]);
 
   useEffect(() => () => stopPlayback(), [stopPlayback]);
   const callInProgress = useCallInProgress();
@@ -368,15 +375,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
         setIsBuffering(status === 'loading');
 
-        if (status === 'error') {
-          setHasError(true);
-          logger.error('[VideoPlayerCore] Playback error:', error);
-          onError?.(new Error(String(error)));
-        }
-
-        if (!isReady && (status === 'readyToPlay' || status === 'loading')) {
+        if (status === 'readyToPlay') {
           setIsReady(true);
-          setHasError(false);
+          if (recovery.wanted) recovery.start();
         }
       }),
 
@@ -422,7 +423,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback]);
+  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback, recovery]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
@@ -433,6 +434,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         // The persistent view protects automatic PiP; manual PiP is hosted at the root.
         return;
       }
+      recovery.stop();
       try {
         player.pause();
         player.muted = true;
@@ -440,7 +442,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     });
 
     return unsubscribe;
-  }, [navigation, player]);
+  }, [navigation, player, recovery]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('blur', () => {
@@ -454,15 +456,16 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     if (visualActivity.isCallBusy()) return;
     if (player.playing) {
       setPlayRequested(false);
+      recovery.stop();
       player.pause();
       clearHideTimer();
     } else {
       setPlayRequested(true);
       if (liveMode && player.status !== 'readyToPlay') setIsBuffering(true);
-      player.play();
+      recovery.start();
       scheduleHide();
     }
-  }, [player, liveMode, clearHideTimer, scheduleHide]);
+  }, [player, liveMode, clearHideTimer, scheduleHide, recovery]);
 
   const toggleLoop = useCallback(() => {
     const nextLoop = !isLooping;
@@ -812,7 +815,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             viewRef.current = r as VideoView | null;
           }}
           player={player}
-          onFirstFrameRender={() => setFirstFrameSource(sourceUrl)}
+          onFirstFrameRender={() => { setFirstFrameSource(sourceUrl); recovery.progress(); }}
           focusable={false}
           style={styles.video}
           contentFit="contain"
@@ -845,10 +848,12 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
       {/* Error state */}
       {hasError && (
-        <View className="absolute inset-0 items-center justify-center dark-surface bg-black/80">
-          <View className="items-center">
+        <View style={{ zIndex: 30 }} className="absolute inset-0 items-center justify-center dark-surface bg-black/80">
+          <Pressable accessibilityRole="button" accessibilityLabel={t('player.retry')}
+            className="items-center p-4" onPress={() => { setPlayRequested(true); recovery.start(); }}>
             <Ionicons name="alert-circle" size={46} color="#8B8D90" />
-          </View>
+            <Text style={{ color: '#fff', marginTop: 12 }}>{t('player.retry')}</Text>
+          </Pressable>
         </View>
       )}
 

@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { ActivityIndicator, Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { useTranslation } from 'react-i18next';
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
 import SmartImage from "../common/SmartImage";
@@ -42,6 +43,10 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   drawBitmap = true,
   postPage = false,
 }) => {
+  const { t } = useTranslation();
+  const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
+  const [attempt, setAttempt] = useState(0);
+  const status = result?.uri === uri ? result.status : 'loading';
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
@@ -101,9 +106,11 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           height: dimensions.height,
           borderRadius: edgeToEdge || postPage ? 0 : FEED_BENTO_RADIUS,
           overflow: "hidden",
+          backgroundColor: 'rgba(128,128,128,0.08)',
         }}
       >
         {drawBitmap && <SmartImage
+          key={`${uri}:${attempt}`}
           source={source}
           contentFit={bleed ? "cover" : "contain"}
           cachePolicy="memory-disk"
@@ -111,8 +118,17 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           recyclingKey={uri}
           priority={priority}
           autoplay={animate}
-          onLoad={onLoad}
+          onLoad={event => { onLoad(event); setResult({ uri, status: 'loaded' }); }}
+          onError={() => setResult({ uri, status: 'failed' })}
         />}
+        {drawBitmap && status === 'loading' && <View pointerEvents="none" style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color="#888" /></View>}
+        {drawBitmap && status === 'failed' && <View style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')}
+            style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 20, backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 22 }}
+            onPress={event => { event.stopPropagation(); setResult(undefined); setAttempt(n => n + 1); }}>
+            <Text style={{ color: '#fff' }}>{t('common.retry')}</Text>
+          </Pressable>
+        </View>}
       </View>
     </View>
   );
