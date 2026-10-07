@@ -1,3 +1,4 @@
+import { videoMatteCommand } from "./videoMatte";
 /**
  * Editor AI agent, mobile half.
  *
@@ -134,7 +135,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const last = messages[messages.length - 1];
-  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) : null;
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) ?? videoMatteCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
   return askSceneAgent(messages, scene, signal);
 }
@@ -273,6 +274,7 @@ export interface ApplyContext {
   templateOps?: (id: string) => AgentOp[] | null;
   /** Cut the subject out of a picture on the phone; resolves with the new media id. */
   removeBackground?: (mediaId: string) => Promise<string | null>;
+  removeVideoBackground?: (clip: MediaClip) => Promise<MediaClip["videoMatte"]>;
   /** The playhead; placing a keyframed layer writes a key here (web placementPatchAt). */
   time?: number;
 }
@@ -548,7 +550,13 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
       }
       case "remove_background": {
         const clip = find(op.id);
-        if (!clip || clip.kind !== "image") return false;
+        if (!clip || clip.locked || (clip.kind !== "image" && clip.kind !== "video")) return false;
+        if (clip.kind === "video") {
+          if (!ctx.removeVideoBackground) { report.unsupported.push(String(op.op)); return false; }
+          const matte = await ctx.removeVideoBackground(clip);
+          if (!matte) return false;
+          p = updateClip(p, clip.id, { videoMatte: matte }); return true;
+        }
         if (!ctx.removeBackground) { report.unsupported.push(String(op.op)); return false; }
         const mediaId = await ctx.removeBackground(clip.mediaId);
         if (!mediaId) return false;

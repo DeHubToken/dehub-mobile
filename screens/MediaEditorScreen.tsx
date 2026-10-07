@@ -27,6 +27,7 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUser } from "../context/AuthContext";
 import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
+import { VIDEO_MATTE_ASSET_PREFIX, type VideoMatteProgress } from "../libs/editor/videoMatte";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import { saveGif } from "../libs/editor/saveGif";
 import { saveEditorDownload } from "../libs/editor/saveEditorDownload";
@@ -381,6 +382,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // Background removal in progress: the model download, then the cut itself.
   const [cutting, setCutting] = useState<{ fraction: number } | null>(null);
   const cuttingRef = useRef(false);
+  const videoMatteController = useRef<AbortController | null>(null);
+  const [videoMatteProgress, setVideoMatteProgress] = useState<VideoMatteProgress | null>(null);
+  useEffect(() => () => videoMatteController.current?.abort(), []);
+  useEffect(() => { videoMatteController.current?.abort(); }, [project?.id]);
   // Timeline: the playhead, playback and the strip under the page.
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -659,7 +664,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   // Runs on the phone inside the canvas page; resolves with the cut-out's media id.
   const cutoutMedia = async (mediaId: string): Promise<string | null> => {
-    if (cuttingRef.current) return null;
+    if (cuttingRef.current || videoMatteController.current) return null;
     cuttingRef.current = true;
     setCutting({ fraction: 0 });
     try {
@@ -676,8 +681,31 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
+  const cutoutVideo = async (clip: MediaClip): Promise<MediaClip["videoMatte"]> => {
+    if (!project || cuttingRef.current || videoMatteController.current || !canvasRef.current || clip.locked) return null;
+    const controller = new AbortController(); videoMatteController.current = controller; setPlaying(false);
+    setVideoMatteProgress({ stage: "frames", fraction: 0, completed: 0, total: 0 });
+    try {
+      const out = await canvasRef.current.removeVideoBackground(clip, project.settings.fps, setVideoMatteProgress, controller.signal);
+      if (controller.signal.aborted) return null;
+      const meta = await saveCutout(out.dataUrl, out.plan.atlasWidth, out.plan.atlasHeight, VIDEO_MATTE_ASSET_PREFIX + newId());
+      if (controller.signal.aborted) return null;
+      return { ...out.plan, mediaId: meta.id };
+    } finally { videoMatteController.current = null; setVideoMatteProgress(null); }
+  };
+
   const removeBackground = async () => {
-    if (!selected || selected.kind !== "image") return;
+    if (!selected || !project || selected.locked || (selected.kind !== "image" && selected.kind !== "video")) return;
+    if (selected.kind === "video") {
+      if (selected.videoMatte) { h.commit(updateClip(project, selected.id, { videoMatte: null })); return; }
+      const before = project.id, clip = selected;
+      try {
+        const matte = await cutoutVideo(clip), now = h.latest(), current = now?.clips.find(c => c.id === clip.id);
+        if (!matte || now?.id !== before || current?.kind !== "video" || current.locked || current.mediaId !== clip.mediaId || current.trimIn !== clip.trimIn || current.duration !== clip.duration || (current.speed ?? 1) !== (clip.speed ?? 1)) return;
+        h.commit(updateClip(now, clip.id, { videoMatte: matte })); toastSuccess(t("editor.bgRemove.done"));
+      } catch (error) { if (!(error instanceof Error && error.name === "AbortError")) toastError(error instanceof Error ? error.message : t("editor.app.bgRemoveFailed")); }
+      return;
+    }
     const clipId = selected.id;
     const mediaId = await cutoutMedia(selected.mediaId);
     const now = h.latest();
@@ -781,7 +809,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
     setChatBusy(true);
     try {
-      const media = await listMedia();
+      const media = (await listMedia()).filter(m => !m.name.startsWith(VIDEO_MATTE_ASSET_PREFIX));
       const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
       const { project: next, report } = await applyOps(project, ops, {
         importStock: importStockAsset,
@@ -790,6 +818,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         applyBrand: (p) => applyBrand(p, brand),
         templateOps: (id) => templateOps(id, t),
         removeBackground: cutoutMedia,
+        removeVideoBackground: cutoutVideo,
         transcribe,
         processAudio,
         detectBeats,
@@ -890,6 +919,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
+        { id: "removeBg", icon: "Scissors", label: t(selected.videoMatte ? "editor.videoMatte.restore" : "editor.bgRemove.action") },
         { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
         { id: "highlights", icon: "Sparkles", label: t("editor.highlights.title") },
         { id: "captions", icon: "Type", label: captionProgress ? t(captionProgress.stage === "download" ? "editor.captions.downloading" : "editor.captions.working", { percent: Math.round(captionProgress.fraction * 100) }) : t("editor.captions.action") },
@@ -1340,6 +1370,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
             if (r) h.commit(r.project);
           }}
         />
+        {videoMatteProgress && (
+          <View className="absolute top-3 left-6 right-6 items-center">
+            <View className="flex-row items-center rounded-full bg-black/75 px-4 py-2" style={{ gap: 8 }}>
+              <DeHubLoader size={18} />
+              <Text className="text-white text-xs">{videoMatteProgress.stage === "download" ? t("editor.bgRemove.downloading", { percent: Math.round(videoMatteProgress.fraction * 100) }) : t("editor.videoMatte.frames", { completed: videoMatteProgress.completed, total: videoMatteProgress.total })}</Text>
+              <Pressable accessibilityRole="button" onPress={() => videoMatteController.current?.abort()}><Text className="text-white text-xs underline">{t("editor.videoMatte.cancel")}</Text></Pressable>
+            </View>
+          </View>
+        )}
         {cutting && (
           <View pointerEvents="none" className="absolute top-3 left-6 right-6 items-center">
             <View className="flex-row items-center rounded-full bg-black/75 px-4 py-2" style={{ gap: 8 }}>

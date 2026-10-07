@@ -223,7 +223,7 @@ export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {
 }
 
 export function updateClip(p: ProjectSnapshot, id: string, patch: ClipPatch): ProjectSnapshot {
-  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...patch } as Clip) : c)) };
+  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...(c.kind === "video" && "mediaId" in patch && patch.mediaId !== undefined && patch.mediaId !== c.mediaId ? { videoMatte: null } : {}), ...patch } as Clip) : c)) };
 }
 
 /** Placement with defaults filled in; text reads its anchor from x/y. */
@@ -328,7 +328,7 @@ export function visibleLayers(p: ProjectSnapshot, t: number): Clip[] {
 /** Media ids the project points at, for loading and for spotting missing files. */
 export function mediaIds(p: ProjectSnapshot): string[] {
   const ids = new Set<string>();
-  for (const c of p.clips) if ("mediaId" in c) ids.add(c.mediaId);
+  for (const c of p.clips) if ("mediaId" in c) { ids.add(c.mediaId); if (c.kind === "video" && c.videoMatte) ids.add(c.videoMatte.mediaId); }
   return [...ids];
 }
 
