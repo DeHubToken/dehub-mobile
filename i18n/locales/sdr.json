@@ -6998,6 +6998,8 @@
       "delete": "مٹاؤ"
     },
     "export": {
+      "gifHint": "बिना आवाज़ के लूपिंग एनीमेशन। 60 सेकेंड तक, 640 पिक्सेल और 15 fps। आपके लोगो के अंत सहित।",
+      "gifTooLong": "Timeline ke 60 second se kam kar de, nai to MP4 ya WebM chuni.",
       "format": "فائل کے قسم",
       "png": "PNG تصویر",
       "jpg": "JPG تصویر",

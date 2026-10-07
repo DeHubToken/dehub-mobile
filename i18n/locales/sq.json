@@ -6928,6 +6928,8 @@
       "delete": "Fshi"
     },
     "export": {
+      "gifHint": "Lakimi i animacionit pa zë. Deri në 60 sekonda, 640 piksele dhe 15 fps. Përfshin fundin e logos.",
+      "gifTooLong": "Cuti kohëzgjatjen në 60 sekonda ose më pak, ose zgjidh MP4 ose WebM.",
       "format": "Lloji i skedarit",
       "png": "Imazh PNG",
       "jpg": "Imazh JPG",

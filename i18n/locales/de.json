@@ -7018,6 +7018,8 @@
       "delete": "Löschen"
     },
     "export": {
+      "gifHint": "Schleifenanimation ohne Ton. Bis zu 60 Sekunden, 640 Pixel und 15 fps. Enthält Ihr Logo-Ende.",
+      "gifTooLong": "Schneiden Sie die Zeitleiste auf 60 Sekunden oder weniger zu, oder wählen Sie MP4 oder WebM.",
       "format": "Dateityp",
       "png": "PNG-Bild",
       "jpg": "JPG-Bild",

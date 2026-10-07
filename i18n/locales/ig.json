@@ -6908,6 +6908,8 @@
       "delete": "Hichaa"
     },
     "export": {
+      "gifHint": "Looping animation na-enweghị ụda. Ruo 60 sekọnd, 640 pikselụ na 15 fps. Gụnyere gị logo agwụcha.",
+      "gifTooLong": "Wepụ usoro iheomume ka 60 sekọnd ma ọ bụ obere, ma ọ bụ họrọ MP4 ma ọ bụ WebM.",
       "format": "Ụdị faịlụ",
       "png": "PNG onyonyo",
       "jpg": "JPG onyonyo",

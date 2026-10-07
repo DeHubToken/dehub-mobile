@@ -6928,6 +6928,8 @@
       "delete": "Ištrinti"
     },
     "export": {
+      "gifHint": "Ciklinė animacija be garso. Iki 60 sekundžių, 640 pikselių ir 15 fps. Su jūsų logotipo pabaiga.",
+      "gifTooLong": "Sutrumpinkite laiko juostą iki 60 sekundžių ar mažiau arba pasirinkite MP4 arba WebM.",
       "format": "Failo tipas",
       "png": "PNG vaizdas",
       "jpg": "JPG vaizdas",

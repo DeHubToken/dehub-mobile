@@ -7109,6 +7109,8 @@
       "delete": "Tanggalin"
     },
     "export": {
+      "gifHint": "Pag-ikot na animasyon nang walang tunog. Hanggang 60 segundo, 640 pixel at 15 fps. Kasama ang pagtatapos ng iyong logo.",
+      "gifTooLong": "Putulin ang timeline sa 60 segundo o mas mababa, o pumili ng MP4 o WebM.",
       "format": "Uri ng file",
       "png": "PNG na imahe",
       "jpg": "JPG na imahe",

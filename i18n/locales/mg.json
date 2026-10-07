@@ -7009,6 +7009,8 @@
       "delete": "Hamafa"
     },
     "export": {
+      "gifHint": "Looping sarimiaina tsy misy feo. Hatramin'ny 60 segondra, ny 640 pixel ary ny 15 fps. [Izao va no tanànanao miravoravo?]",
+      "gifTooLong": "Karakarao ny timeline amin'ny 60 segondra na latsaka, na misafidy MP4 na WebM.",
       "format": "Karazana rakitra",
       "png": "Sary PNG",
       "jpg": "Sary JPG",
