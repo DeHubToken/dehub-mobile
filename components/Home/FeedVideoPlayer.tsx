@@ -4,6 +4,8 @@ import { useMediaVolume } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
+import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
+import { useQueryClient } from "@tanstack/react-query";
 import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -399,13 +401,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
    * and find the original again.
    */
   const [retryState, setRetryState] = useState<"idle" | "sending" | "queued">("idle");
+  const processingClient = useQueryClient();
   const handleRetryTranscode = useCallback(async () => {
     if (tokenId == null) return;
     setRetryState("sending");
     try {
       await retryTranscode(tokenId);
-      // The post moves to 'pending' on the next feed read; until then this
-      // stands in for it, so the button cannot be pressed twice.
+      markVideoProcessing(processingClient, tokenId);
+      // The shared status query follows this accepted retry through completion.
       setRetryState("queued");
       toastSuccess(t("player.retryQueued"));
     } catch (e: any) {
@@ -414,7 +417,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // is already processing, or something transient went wrong.
       toastError(e?.message || t("player.retryFailed"));
     }
-  }, [tokenId, t]);
+  }, [tokenId, t, processingClient]);
   const canPlay = !isContentGated && !!videoUrl && !isProcessing && !isFailed;
 
   // True once something has actually asked for media: the autoplay settle
@@ -2080,7 +2083,8 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const [wanted, setWanted] = useCellState(false, [postKey]);
   const [inPictureInPicture, setInPictureInPicture] = useCellState(false, [postKey]);
 
-  const { isVisible, isAutoplayActive = true, isContentGated, transcodingStatus, videoUrl, onPress } = props;
+  const { isVisible, isAutoplayActive = true, isContentGated, videoUrl, onPress } = props;
+  const transcodingStatus = useVideoProcessingStatus(props.tokenId, props.transcodingStatus, isVisible && playbackAllowed);
   const needsChrome =
     isContentGated || transcodingStatus === "pending" || transcodingStatus === "on" || transcodingStatus === "failed";
   const visible = (isVisible && playbackAllowed) || (inPictureInPicture && !callInProgress);
@@ -2115,6 +2119,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
     <FeedVideoPlayerActive
       key={postKey}
       {...props}
+      transcodingStatus={transcodingStatus}
       isVisible={visible}
       isAutoplayActive={isAutoplayActive || inPictureInPicture}
       onPictureInPictureChange={setInPictureInPicture}
