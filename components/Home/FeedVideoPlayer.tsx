@@ -1316,30 +1316,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
+          {!isStarting && (!isPlaying || showControls) && (
+            <Animated.View style={[styles.centreButton, { opacity: isPlaying ? controlsOpacity : 1 }]}>
+              <Pressable onPress={() => handleVideoPress()} style={styles.centreTransport}
+                accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}>
+                <BareIcon name={isPlaying ? "Pause" : "Play"} size={32} />
+              </Pressable>
+            </Animated.View>
+          )}
           {(
             <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
-            {/* The pause button is the size of its glyph and lives above the
-                tap surface. It used to be a full-size layer drawn underneath
-                that surface, so it could be seen but never pressed. */}
-            {!bareControls && isPlaying && !isContentGated && !isProcessing && !isFailed && (
-              <Pressable
-                onPress={() => {
-                  videoSession.userPaused = true;
-                  stopPlayback();
-                  setShowControls(true);
-                  startHideTimer();
-                }}
-                style={styles.centreButton}
-                hitSlop={12}
-                accessibilityRole="button"
-                accessibilityLabel={t("audioPost.pause")}
-              >
-                <View style={styles.glassPlayButton}>
-                  <View style={styles.glassOverlay} />
-                  <Icon name="Pause" size={24} color="#fff" />
-                </View>
-              </Pressable>
-            )}
             {bareControls ? (
               <View pointerEvents="box-none" style={[styles.bareRow, { top: bareTop }]}>
                 {/* Tap to mute, drag up or down to set the volume. */}
@@ -1742,6 +1728,13 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
   },
+  centreTransport: {
+    width: 56,
+    height: 56,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
+  },
   glassPlayButton: {
     width: 56,
     height: 56,
@@ -2046,7 +2039,9 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
           </View>
         )}
         {!hideControls && (
-          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")} />
+          <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")}>
+            <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
+          </Pressable>
         )}
         {postPage && !hideControls && duration ? (
           <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
