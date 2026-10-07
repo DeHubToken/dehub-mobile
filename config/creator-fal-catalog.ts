@@ -108,8 +108,7 @@ export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
   'flux-3-video': video({
     id: 'flux-3-video', name: 'FLUX 3', vendor: 'Black Forest Labs', emoji: '🌲', tier: 'premium',
     description: 'Video and sound from text, images, or start and end frames',
-    maxPromptLength?: number;
-  family: 'klingturbo' | 'viduq3' | 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video',
+    family: 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video',
     falImageModel: 'blackforestlabs/flux-3/image-to-video',
     falEndFrameModel: 'blackforestlabs/flux-3/first-last-frame-to-video',
     minDuration: 5, maxDuration: 20, defaultDuration: 5, perSecondCostUsd: 0.29,
@@ -119,8 +118,7 @@ export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
   'flux-3-draft': video({
     id: 'flux-3-draft', name: 'FLUX 3 Draft', vendor: 'Black Forest Labs', emoji: '⚡', tier: 'fast',
     description: 'Affordable 720p previews with native sound',
-    maxPromptLength?: number;
-  family: 'klingturbo' | 'viduq3' | 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video/draft',
+    family: 'flux3', falTextModel: 'blackforestlabs/flux-3/text-to-video/draft',
     falImageModel: 'blackforestlabs/flux-3/image-to-video/draft',
     falEndFrameModel: 'blackforestlabs/flux-3/first-last-frame-to-video/draft',
     minDuration: 5, maxDuration: 20, defaultDuration: 5, perSecondCostUsd: 0.06,
