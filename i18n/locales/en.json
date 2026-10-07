@@ -389,6 +389,7 @@
     "compactModeDesc": "Reduce spacing for more content",
     "autoPlay": "Auto-play Videos",
     "autoPlayDesc": "Automatically play videos in feed",
+    "autoplayPausePrompt": "Turn off autoplay?",
     "autoPlayMuted": "Start autoplay muted",
     "autoPlayMutedDesc": "Videos that play on their own always start with the sound off",
     "showAnimations": "Show Animations",
