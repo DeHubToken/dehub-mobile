@@ -158,6 +158,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
   const videoMatteReqs = useRef(new Map<string, { clip: MediaClip; resolve: (r: { plan: VideoMattePlan; dataUrl: string }) => void; reject: (e: Error) => void; progress?: (p: VideoMatteProgress) => void; cleanup: () => void; reset: () => void }>());
+  const sentMattes = useRef(new Set<string>());
   const mediaAcks = useRef(new Map<string, () => void>());
   type VideoReq = {
     resolve: (v: { uri: string; ext: string }) => void;
@@ -231,6 +232,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (!ready) return;
     let cancelled = false;
     const missing: string[] = [];
+    const liveIds = ids ? ids.split("|") : [];
+    for (const id of sentMattes.current) if (!liveIds.includes(id)) { sentMedia.current.delete(id); sentMattes.current.delete(id); }
+    post({ type: "mattePrune", ids: liveIds });
     (async () => {
       for (const id of ids ? ids.split("|") : []) {
         if (sentMedia.current.has(id)) continue;
@@ -266,7 +270,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (cancelled) return;
         if (!src) { missing.push(id); continue; }
         sentMedia.current.add(id);
-        post({ type: "media", id, src });
+        if (meta?.name.startsWith(".dehub-video-matte-")) sentMattes.current.add(id);
+        post({ type: "media", id, src, internalMatte: meta?.name.startsWith(".dehub-video-matte-") });
       }
       if (!cancelled) props.onMissingMedia?.(missing);
     })();

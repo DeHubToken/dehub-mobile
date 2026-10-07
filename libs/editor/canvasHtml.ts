@@ -67,6 +67,7 @@ canvas{display:block;width:100%;height:100%;}
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
+  var matteImages = new Set(), allowedMatteImages = new Set();
   var state = null;
   var queued = false;
   var lastFrame = "";
@@ -1596,9 +1597,13 @@ canvas{display:block;width:100%;height:100%;}
       schedule();
     } else if (m.type === "videoAck") {
       sendNextChunk(m.reqId);
+    } else if (m.type === "mattePrune") {
+      allowedMatteImages = new Set(m.ids || []);
+      matteImages.forEach(function(id) { if (!allowedMatteImages.has(id)) { var image = images.get(id); if (image) image.src = ""; images.delete(id); matteImages.delete(id); } });
     } else if (m.type === "media") {
       var img = new Image();
-      img.onload = function () { images.set(m.id, img); filterCache.clear(); schedule(); };
+      if (m.internalMatte) matteImages.add(m.id);
+      img.onload = function () { if (m.internalMatte && !allowedMatteImages.has(m.id)) { img.src = ""; return; } images.set(m.id, img); filterCache.clear(); schedule(); };
       img.onerror = function () { post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
     } else if (m.type === "stats") {
