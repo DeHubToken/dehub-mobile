@@ -7313,7 +7313,12 @@
       "created": "Montage enregistré. Le projet original est conservé.",
       "changed": "Le projet source a changé. Relancez la recherche.",
       "limit": "Utilisez au maximum 10 minutes de parole source. Une très longue transcription sans pause doit être divisée au préalable.",
-      "projectTitle": "{{title}} — Moments forts"
+      "projectTitle": "{{title}} — Moments forts",
+      "reviewTitle": "Affiner les moments forts",
+      "reviewPlaceholder": "Garde uniquement les conseils de sauvegarde, ou retire le moment 2…",
+      "reviewResult": "{{count}} moments sélectionnés sur {{total}}. Vérifiez-les avant de créer le montage.",
+      "reviewFailed": "La sélection n’a pas pu être mise à jour. Vos choix précédents sont conservés.",
+      "undoSelection": "Annuler la sélection"
     },
     "videoMatte": {
       "frames": "Suppression du fond · {{completed}} / {{total}} images",

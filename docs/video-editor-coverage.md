@@ -135,3 +135,8 @@ Caption fitting and focused speech fixes are published on web and through Androi
 ### Audio fades through cuts
 
 Trims, splits, scene and highlight cuts keep a clip-local piecewise gain curve, including partial fades. Preview and video range-export audio scheduling use the same runtime. Playback-speed and beat-alignment changes scale curve times; volume changes keep the curve and explicit fade changes replace it. Manual web trims and splits use source-rate offsets. Video background removal was also verified on staging with a moving non-human subject, original audio, branded ending, undo/restore and saved project reopen; initial 600-frame and physical-device limits remain.
+
+
+## Review highlight selections in conversation
+
+After finding spoken highlights, the review panel accepts requests about the suggested moments. Explicit numbered selection commands run locally; topic requests send only the existing suggestions and checked selection to the current text planner. Only existing suggestion ids can be selected. Source clips, timestamps and the original project cannot be edited by this review request. The result updates the visible checkboxes, reports the selected count and offers Undo selection before creating the separate edit. Failed, cancelled and stale requests retain the previous choices. This flow refines the available suggestions; finding additional moments still uses Find highlights. Cloud checks, staging review and native publication remain pending.
