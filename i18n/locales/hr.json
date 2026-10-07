@@ -6788,6 +6788,12 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "beats": {
+      "markers": "Oznake ritma",
+      "sync": "Sinkroniziraj rezove",
+      "none": "Nije pronađen pouzdan ritam.",
+      "unchanged": "Rezove nije bilo moguće poravnati."
+    },
     "audioTools": {
       "normalize": "Normalizirajte glasnoću",
       "denoise": "Smanjite buku",

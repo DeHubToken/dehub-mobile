@@ -7073,6 +7073,12 @@
     }
   },
   "editor": {
+    "beats": {
+      "markers": "Beatmarkeringen",
+      "sync": "Cuts synchroniseren",
+      "none": "Geen betrouwbare beat gevonden.",
+      "unchanged": "De cuts konden niet worden uitgelijnd."
+    },
     "audioTools": {
       "normalize": "Volume normaliseren",
       "denoise": "Geluid verminderen",

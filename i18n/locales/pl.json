@@ -6887,6 +6887,12 @@
     }
   },
   "editor": {
+    "beats": {
+      "markers": "Znaczniki rytmu",
+      "sync": "Synchronizuj cięcia",
+      "none": "Nie znaleziono wiarygodnego rytmu.",
+      "unchanged": "Nie udało się wyrównać cięć."
+    },
     "audioTools": {
       "normalize": "Normalizuj objętość",
       "denoise": "Redukcja hałasu",

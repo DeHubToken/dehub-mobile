@@ -6819,6 +6819,12 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "beats": {
+      "markers": "Mallattoolee rukuttaa",
+      "sync": "Kutaa walsimsiisi",
+      "none": "Rukutaan amanamaan hin argamne.",
+      "unchanged": "Kutaan walsimuun hin danda'amne."
+    },
     "audioTools": {
       "normalize": "Sagalee idilee normalize gochuu",
       "denoise": "Sagalee hir&#39;isuu",

@@ -6736,6 +6736,12 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "beats": {
+      "markers": "Fɔli taamasiɲɛw",
+      "sync": "Klipuw bɛnkɛ",
+      "none": "Fɔli dafalen ma sɔrɔ.",
+      "unchanged": "Klipuw ma se ka bɛnkɛ."
+    },
     "audioTools": {
       "normalize": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
       "denoise": "Ka mankan nɔgɔya",
