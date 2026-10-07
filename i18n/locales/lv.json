@@ -6928,6 +6928,8 @@
       "delete": "Dzēst"
     },
     "export": {
+      "gifHint": "Cikliska animācija bez skaņas. Līdz 60 sekundēm, 640 pikseļi un 15 kadri/s. Ietver jūsu logotipa beigas.",
+      "gifTooLong": "Apgrieziet laika skalu līdz 60 sekundēm vai mazāk vai izvēlieties MP4 vai WebM.",
       "format": "Faila tips",
       "png": "PNG attēls",
       "jpg": "JPG attēls",

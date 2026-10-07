@@ -7186,6 +7186,8 @@
       "delete": "Hapus"
     },
     "export": {
+      "gifHint": "Animasi gelung tanpa bunyi. Sehingga 60 saat, 640 piksel dan 15 fps. Termasuk pengakhiran logo anda.",
+      "gifTooLong": "Potong garis masa kepada 60 saat atau kurang, atau pilih MP4 atau WebM.",
       "format": "Jenis fail",
       "png": "Imej PNG",
       "jpg": "Imej JPG",

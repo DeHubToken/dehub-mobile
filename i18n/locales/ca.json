@@ -6929,6 +6929,8 @@
       "delete": "Elimina"
     },
     "export": {
+      "gifHint": "Animació en bucle sense so. Fins a 60 segons, 640 píxels i 15 fps. Inclou l'acabat del logotip.",
+      "gifTooLong": "Retalla la línia de temps a 60 segons o menys, o tria MP4 o WebM.",
       "format": "Tipus de fitxer",
       "png": "Imatge PNG",
       "jpg": "Imatge JPG",

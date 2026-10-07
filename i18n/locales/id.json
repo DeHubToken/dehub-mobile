@@ -7007,6 +7007,8 @@
       "delete": "Hapus"
     },
     "export": {
+      "gifHint": "Animasi berulang tanpa suara. Hingga 60 detik, 640 piksel, dan 15 fps. Termasuk akhiran logo Anda.",
+      "gifTooLong": "Potong garis waktu hingga 60 detik atau kurang, atau pilih MP4 atau WebM.",
       "format": "Jenis file",
       "png": "Gambar PNG",
       "jpg": "Gambar JPG",

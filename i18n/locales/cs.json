@@ -6931,6 +6931,8 @@
       "delete": "Odstranit"
     },
     "export": {
+      "gifHint": "Smyčková animace bez zvuku. Až 60 sekund, 640 pixelů a 15 snímků za sekundu. Zahrnuje zakončení vašeho loga.",
+      "gifTooLong": "Ořízněte časovou osu na 60 sekund nebo méně, nebo vyberte MP4 nebo WebM.",
       "format": "Typ souboru",
       "png": "PNG obrázek",
       "jpg": "JPG obrázek",

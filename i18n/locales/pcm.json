@@ -6804,6 +6804,8 @@
       "delete": "Delete"
     },
     "export": {
+      "gifHint": "Looping animation wey no get sound. Reach up to 60 seconds, 640 pixels and 15 fps. E include your logo for di end.",
+      "gifTooLong": "Cut di timeline make e no pass 60 seconds, or choose MP4 or WebM.",
       "format": "File type",
       "png": "PNG picture",
       "jpg": "JPG picture",

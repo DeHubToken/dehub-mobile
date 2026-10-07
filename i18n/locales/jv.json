@@ -6911,6 +6911,8 @@
       "delete": "Busak"
     },
     "export": {
+      "gifHint": "Animasi looping tanpa swara. nganti 60 detik, 640 piksel lan 15 fps. Kalebu logo panjenengan ing pungkasan.",
+      "gifTooLong": "Potong timeline nganti 60 detik utawa kurang, utawa pilih MP4 utawa WebM.",
       "format": "Jinis file",
       "png": "Gambar PNG",
       "jpg": "Gambar JPG",

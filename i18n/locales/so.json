@@ -6909,6 +6909,8 @@
       "delete": "Tirtir"
     },
     "export": {
+      "gifHint": "Soo saarista animation aan cod lahayn. Ilaa 60 ilbiriqsi, 640 pixels iyo 15 fps. Waxaa ku jira astaantaada dhammaadka.",
+      "gifTooLong": "Trim jadwalka jadwalka ilaa 60 ilbiriqsi ama ka yar, ama dooro MP4 ama WebM.",
       "format": "Nooca faylka",
       "png": "Sawirka PNG",
       "jpg": "Sawirka JPG",

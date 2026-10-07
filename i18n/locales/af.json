@@ -7054,6 +7054,8 @@
       "delete": "Skrap"
     },
     "export": {
+      "gifHint": "Loop animasie sonder klank. Tot 60 sekondes, 640 pixels en 15 fps. Sluit jou logo einde.",
+      "gifTooLong": "Sny die tydlyn na 60 sekondes of minder, of kies MP4 of WebM.",
       "format": "Lêertipe",
       "png": "PNG-beeld",
       "jpg": "JPG-beeld",

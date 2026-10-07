@@ -6942,6 +6942,8 @@
       "delete": "Chinkachiy"
     },
     "export": {
+      "gifHint": "Mana t’uqyayniyuq animación de bucle. 60 segundoskama, 640 pixelkama, 15 fpskama. Incluyen logotipo tukukuyniyki.",
+      "gifTooLong": "Tiempo chiruta 60 segundos utaq pisiman kuchuy, utaq MP4 utaq WebM akllay.",
       "format": "Willañiqip laya",
       "png": "PNG siq'i",
       "jpg": "JPG siq'i",

@@ -7008,6 +7008,8 @@
       "delete": "Sil"
     },
     "export": {
+      "gifHint": "Ses olmadan döngüsel animasyon. 60 saniyeye kadar, 640 piksel ve 15 fps. Logonuzun sonunu içerir.",
+      "gifTooLong": "Zaman çizelgesini 60 saniye veya daha az olacak şekilde kısaltın veya MP4 veya WebM'yi seçin.",
       "format": "Dosya türü",
       "png": "PNG resmi",
       "jpg": "JPG resmi",

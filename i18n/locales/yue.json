@@ -6919,6 +6919,8 @@
       "delete": "刪除"
     },
     "export": {
+      "gifHint": "冇聲嘅循環動畫。長達 60 秒、 640 像素同 15 fps 。包括你嘅標誌結尾。",
+      "gifTooLong": "將時間線剪到 60 秒或以下，或選擇 MP4 或 WebM。",
       "format": "檔案類型",
       "png": "PNG 圖片",
       "jpg": "JPG 圖片",
