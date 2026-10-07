@@ -60,7 +60,7 @@ export interface EditorCanvasHandle {
    * Render the timeline to a video file (MP4 where the phone can, see
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
-  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif"; range?: ExportRange }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif"; range?: ExportRange; snapshot?: ProjectSnapshot; replaceEnding?: boolean }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
   cancelExport: () => void;
 }
 
@@ -240,6 +240,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           try {
             await sendAndWait(id, { type: "mediaBegin", id, kind: meta.kind, mime: meta.mimeType });
             for (let pos = 0; ; pos += MEDIA_CHUNK) {
+              if (cancelled) return;
               const b64 = await readMediaChunk(meta, pos, MEDIA_CHUNK);
               if (!b64) break;
               await sendAndWait(id, { type: "mediaChunk", id, b64 });
@@ -282,6 +283,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         done?.();
         break;
       }
+      case "mediaFailed":
+        live.current.props.onMissingMedia?.([msg.id]);
+        break;
       case "mediaReady":
         live.current.props.onMediaReady?.(msg.id, { duration: msg.duration, width: msg.width, height: msg.height });
         break;
@@ -527,7 +531,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
         }, 180000);
       }),
-    exportVideo: ({ width, height, bitrate, title, username, format, range }, onProgress) =>
+    exportVideo: ({ width, height, bitrate, title, username, format, range, snapshot, replaceEnding }, onProgress) =>
       new Promise((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         // A phone that pauses the page (app in the background) stalls the
@@ -552,7 +556,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           title,
           out: null,
         });
-        post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range });
+        post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range, snapshot, replaceEnding });
       }),
   }), [post]);
 

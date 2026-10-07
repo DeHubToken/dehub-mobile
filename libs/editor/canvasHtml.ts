@@ -27,6 +27,8 @@
  *
  * Written as plain ES2017 inside String.raw: no backticks and no "${" below.
  */
+import { ENDING_FILE_RUNTIME } from "./endingFileRuntime";
+import { ENDING_VISUAL_RUNTIME } from "./endingVisualRuntime";
 import { BRAND_OUTRO_DURATION } from "./brandOutro";
 import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
 import { BRAND_OUTRO_SOURCES } from "./brandOutroSources";
@@ -52,6 +54,8 @@ canvas{display:block;width:100%;height:100%;}
 <script>
 (function () {
   "use strict";
+  __ENDING_FILE_RUNTIME__
+  __ENDING_VISUAL_RUNTIME__
   __BRAND_OUTRO_RUNTIME__
   __MEDIA_LEASES_RUNTIME__
   __EXPORT_RANGES_RUNTIME__
@@ -1161,13 +1165,39 @@ canvas{display:block;width:100%;height:100%;}
     return session.ready.then(step).then(function (buffer) { return { blob: new Blob([buffer], { type: "image/gif" }), ext: "gif" }; }).finally(function () { session.close(); if (gifSession === session) gifSession = null; });
   }
 
-  function exportVideo(m) {
+  async function exportVideo(m) {
     if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
     stopPlaying();
     exporting = true;
     videoJobId = m.reqId;
     exportAborted = false;
-    var snap = state.snapshot;
+    var snap = m.snapshot || state.snapshot;
+    if (m.replaceEnding && snap.clips.length === 1 && snap.clips[0].kind === "video") {
+      try {
+        var sourceClip = snap.clips[0], sourceBlob = blobs.get(sourceClip.mediaId);
+        if (!sourceBlob) throw new Error("Video source missing");
+        var boundary = readEndingBoundary(new Uint8Array(await sourceBlob.slice(-48).arrayBuffer()), sourceClip.sourceDuration);
+        if (boundary == null) {
+          var artwork = await loadBrandOutroArtwork();
+          var probe = document.createElement("video"), probeUrl = URL.createObjectURL(sourceBlob);
+          probe.muted = true; probe.playsInline = true; probe.preload = "auto";
+          try {
+            await new Promise(function(resolve, reject) {
+              var timer = setTimeout(function() { reject(new Error("Video probe timed out")); }, 20000);
+              probe.onloadeddata = function() { clearTimeout(timer); resolve(); };
+              probe.onerror = function() { clearTimeout(timer); reject(new Error("Video probe failed")); };
+              probe.src = probeUrl;
+            });
+            boundary = await legacyEndingBoundary(probe, artwork.logo, drawBrandOutro);
+          } finally { probe.pause(); probe.removeAttribute("src"); probe.load(); URL.revokeObjectURL(probeUrl); }
+        }
+        if (videoJobId !== m.reqId || exportAborted) return;
+        if (boundary != null) snap = Object.assign({}, snap, { clips: [Object.assign({}, sourceClip, { duration: boundary })] });
+      } catch (e) {
+        if (videoJobId === m.reqId) { exporting = false; videoJobId = null; post({ type: "videoFailed", reqId: m.reqId, error: String(e.message || e) }); }
+        return;
+      }
+    }
     var fps = snap.settings.fps || 30;
     var W = m.format === "gif" ? Math.max(1, Math.round(m.width)) : Math.max(2, Math.round(m.width) & ~1);
     var H = m.format === "gif" ? Math.max(1, Math.round(m.height)) : Math.max(2, Math.round(m.height) & ~1);
@@ -1208,7 +1238,7 @@ canvas{display:block;width:100%;height:100%;}
         videoJobId = null;
         exporting = false;
         schedule();
-        outgoing.set(m.reqId, { blob: out.blob, ext: out.ext, offset: 0 });
+        outgoing.set(m.reqId, { blob: out.ext === "gif" ? out.blob : stampEnding(out.blob, contentDuration, out.ext), ext: out.ext, offset: 0 });
         sendNextChunk(m.reqId);
       })
       .catch(function (e) {
@@ -1600,4 +1630,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");

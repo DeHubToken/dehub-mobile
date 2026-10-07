@@ -149,6 +149,7 @@ export interface PostOptionsMenuProps {
    * looking for it.
    */
   onToggleSave?: () => void;
+  onDownloadVideo?: () => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
   /** Open the AI sheet for this post, for hosts that carry no AI button of their own. */
@@ -233,6 +234,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onMuteChange,
   isSaved = false,
   onToggleSave,
+  onDownloadVideo,
   onInfoPress,
   onAskAi,
   hideReportContent = false,  hideEdit = false,  isAudio = false,}) => {
@@ -521,6 +523,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Bookmark / pin / post info — first, as in the web drawer. A host
               that also shows these on its action bar still passes them: the
               menu is where people look for an action by name. */}
+          {!!onDownloadVideo && (
+            <OptionRow icon="download-outline" label={t("postOptions.download")}
+              onPress={() => { onClose(); onDownloadVideo(); }} />
+          )}
           {!!onToggleSave && (
             <OptionRow
               icon={isSaved ? "bookmark" : "bookmark-outline"}
