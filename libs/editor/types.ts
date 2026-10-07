@@ -13,6 +13,7 @@ export interface Track {
   id: string;
   kind: TrackKind;
   name: string;
+  role?: "captions";
   muted: boolean;
   hidden: boolean;
 }

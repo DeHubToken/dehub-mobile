@@ -33,7 +33,7 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Project media library commands | Implemented | This release | Address local video/audio/image assets by media id. |
 | Automatic captions | Implemented | This release | Local speech recognition; editable text, trims and speed respected. |
 | Caption appearance | This release | This release | Classic, boxed and bold styles; no overlap or captions past clip end. |
-| Subtitle file import/export | Gap | Gap | Editable SRT/VTT text with retained timestamps. |
+| Subtitle file import/export | This release | This release | Editable SRT/VTT text with retained timestamps. |
 | Scene/page navigation | This release | This release | Add, duplicate, navigate and delete scenes; preserve crossing source ranges and export empty appended scenes. |
 | Voiceover recording | Gap | Gap | Record into a separate sound layer at the playhead. |
 | Camera recording | Gap | Gap | Record and import within the editor using existing capture capabilities. |
@@ -54,7 +54,7 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Still exports | PNG / JPG | PNG / JPG | Render the selected frame without a video ending. |
 | Direct DeHub posting | Implemented | Implemented | Post the edited result with correct media metadata. |
 | Branded video ending | Implemented | Implemented | 2.2-second logo animation, creator @username and original sound; silent sources included. |
-| Reliable numeric requests | This release | This release | Exact cuts run locally; complex requests retain the existing planning route. |
+| Reliable numeric requests | Implemented | Implemented | Exact cuts run locally; complex requests retain the existing planning route. |
 | Honest operation results | This release | This release | Empty or failed operations cannot display a success confirmation. |
 
 ## Download ending concepts
@@ -84,3 +84,7 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 
 - Numeric cuts verified on staging commit 1ecabeada: the exact ten one-second clip request produced ten timeline clips; one Undo restored the original and Redo restored ten. Project saved. Proof: editor-ten-clips-staging.jpg.
 - Scene release adds matching source-aware duplication/deletion, explicit scene navigation on mobile, complete timeline duration, and fenced operation-array parsing. Cloud checks and publication pending.
+
+- Precise numeric cuts: staging commit 1ecabead showed ten separate one-second clips, with one-step undo and redo verified.
+- Scene editing: web PR 2298; boundary cuts preserve source offsets, speed, motion and blank scene duration.
+- Subtitle files: import SRT/VTT as editable captions; save only visible caption tracks in either format with millisecond timestamps. Android uses the folder picker; iOS uses Save to Files.
