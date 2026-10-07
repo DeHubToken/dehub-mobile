@@ -282,10 +282,15 @@ const WalletUnlockHost: React.FC = () => {
       address,
       payload,
     );
+    if (await getPendingWalletReplacement(supabaseUserId, derivedAddress)) {
+      await finishWalletReplacement(derivedAddress, privateKey, signInWithWallet);
+      settle(false);
+      return;
+    }
     await adoptKeyForSession(supabaseUserId, derivedAddress, privateKey, current.sessionAddress);
     rememberSuccessfulWalletUnlock();
     settle(true);
-  }, [settle]);
+  }, [settle, signInWithWallet]);
 
   /**
    * The recovery-phrase route into a wallet this phone cannot open. Pinned to
