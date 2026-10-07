@@ -284,6 +284,8 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
   };
 
   const one = async (op: AgentOp): Promise<boolean> => {
+    const target = find(op.id);
+    if (target?.locked && op.op !== "select" && !(op.op === "update" && op.locked === false)) return false;
     if (TIMELINE_OPS.includes(op.op)) {
       if (op.op === "audio" && op.speed !== undefined) {
         const changed = await one({ op: "speed", id: op.id, speed: op.speed });
