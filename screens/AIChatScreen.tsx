@@ -115,7 +115,7 @@ import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAsse
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -1078,7 +1078,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       if (creator) {
         const issue = creatorInputIssue(creator, !!sourceImage, tpl);
         if (issue) { toastError(t(issue)); return; }
-        setPendingPrompt(prepareCreatorPrompt(text, tpl));
+        const resolved = prepareCreatorPrompt(text, tpl);
+        const limit = creatorPromptLimit(creator);
+        if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
+        setPendingPrompt(resolved);
         setPendingSourceImage(sourceImage);
         setPendingLogoImage(undefined);
         setPendingPosterConfig(null);
@@ -1204,6 +1207,9 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     if (creator) {
       const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
       if (issue) { toastError(t(issue)); return; }
+      const resolved = prepareCreatorPrompt(text, activeTemplate);
+      const limit = creatorPromptLimit(creator);
+      if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
     submitLock.current = true;
     setIsLoading(true);
