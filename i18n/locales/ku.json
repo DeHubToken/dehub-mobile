@@ -6673,6 +6673,15 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "captions": {
+        "action":  "ژێرنووسی خۆکار",
+        "working":  "گوێ دەگرێت… {{percent}}%",
+        "downloading":  "ئامادەکردنی مۆدێلی قسەکردن… {{percent}}%",
+        "hint":  "قسە دەگۆڕێت بۆ ژێرنووسی کاتبەندکراو کە دەتوانیت شێوازەکەی بگۆڕیت. لەسەر ئامێرەکەت کار دەکات: بێبەرامبەر و تایبەت. یەکەم بەکارهێنان مۆدێلەکە دادەگرێت.",
+        "done":  "{{count}} ژێرنووس زیادکرا.",
+        "noSpeech":  "هیچ قسەیەک لەم کلیپەدا نەدۆزرایەوە.",
+        "failed":  "نەتوانرا ژێرنووس بۆ ئەم کلیپە دروست بکرێت."
+    },
     "app": {
       "newDesign": "Sêwirana nû",
       "yourDesigns": "Sêwiranên te",

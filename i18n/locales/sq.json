@@ -6787,6 +6787,15 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "editor": {
+    "captions": {
+        "action":  "Titra automatike",
+        "working":  "Duke dëgjuar… {{percent}}%",
+        "downloading":  "Duke përgatitur modelin e të folurit… {{percent}}%",
+        "hint":  "E kthen të folurin në titra të sinkronizuara që mund t\u0027i ristilosh. Punon në pajisjen tënde: falas dhe privat. Përdorimi i parë shkarkon modelin.",
+        "done":  "U shtuan {{count}} titra.",
+        "noSpeech":  "Nuk u gjet e folur në këtë klip.",
+        "failed":  "Nuk u krijuan dot titra për këtë klip."
+    },
     "app": {
       "newDesign": "Dizajn i ri",
       "yourDesigns": "Dizajnet tuaja",

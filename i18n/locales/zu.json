@@ -6800,6 +6800,15 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "captions": {
+        "action":  "Imibhalo engezansi ezenzakalelayo",
+        "working":  "Kuyalalelwa… {{percent}}%",
+        "downloading":  "Kulungiswa imodeli yenkulumo… {{percent}}%",
+        "hint":  "Iguqula inkulumo ibe yimibhalo engezansi enesikhathi ongashintsha isitayela sayo. Isebenza kudivayisi yakho: mahhala futhi iyimfihlo. Ukusetshenziswa kokuqala kulanda imodeli.",
+        "done":  "Kwengezwe imibhalo engezansi engu-{{count}}.",
+        "noSpeech":  "Ayikho inkulumo etholakele kule klip.",
+        "failed":  "Ayikwazanga ukwenza imibhalo engezansi yale klip."
+    },
     "app": {
       "newDesign": "Umklamo omusha",
       "yourDesigns": "Imiklamo yakho",

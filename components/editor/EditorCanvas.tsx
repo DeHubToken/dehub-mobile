@@ -22,7 +22,10 @@ import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from ".
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
-import type { ProjectSnapshot, TextClip } from "../../libs/editor/types";
+import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
+import type { CaptionWord } from "../../libs/editor/captionLayout";
+
+export type CaptionProgress = { stage: "download" | "transcribing"; fraction: number };
 
 export interface LayerBox {
   id: string;
@@ -34,6 +37,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
+  transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void) => Promise<CaptionWord[]>;
   /** Render the page at full size and return it as a data URL. */
   exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
@@ -136,6 +140,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const sentMedia = useRef(new Set<string>());
   const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
+  const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; timer: ReturnType<typeof setTimeout> }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
   const mediaAcks = useRef(new Map<string, () => void>());
@@ -313,6 +318,21 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         done?.(typeof msg.mean === "number" ? { mean: msg.mean, std: msg.std, sat: msg.sat } : null);
         break;
       }
+      case "captionsProgress": {
+        const r = captionReqs.current.get(msg.reqId);
+        const stage = msg.stage === "progress" ? "download" : "transcribing";
+        r?.progress?.({ stage, fraction: Math.min(1, Math.max(0, Number(stage === "download" ? msg.loaded : msg.done) / Math.max(1, Number(msg.total) || 0))) });
+        break;
+      }
+      case "captionsDone": case "captionsFailed": {
+        const r = captionReqs.current.get(msg.reqId);
+        if (!r) break;
+        clearTimeout(r.timer);
+        captionReqs.current.delete(msg.reqId);
+        if (msg.type === "captionsDone" && Array.isArray(msg.words)) r.resolve(msg.words);
+        else r.reject(new Error(msg.error || "captions failed"));
+        break;
+      }
       case "cutoutProgress": {
         const total = Number(msg.total) || 0;
         cutoutReqs.current.get(msg.reqId)?.progress?.(total ? Math.min(1, Number(msg.loaded) / total) : 0);
@@ -350,6 +370,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
+    for (const r of captionReqs.current.values()) { clearTimeout(r.timer); r.reject(new Error("canvas restarted")); }
+    captionReqs.current.clear();
     for (const r of cutoutReqs.current.values()) r.done(null);
     cutoutReqs.current.clear();
     for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(new Error("canvas restarted")); }
@@ -361,6 +383,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    transcribe: (clip, onProgress) => new Promise<CaptionWord[]>((resolve, reject) => {
+      const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const timer = setTimeout(() => { captionReqs.current.delete(reqId); post({ type: "captionsCancel" }); reject(new Error("captions timed out")); }, 30 * 60 * 1000);
+      captionReqs.current.set(reqId, { resolve, reject, progress: onProgress, timer });
+      post({ type: "captions", reqId, clip });
+    }),
     exportImage: (format, quality = 0.92) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;

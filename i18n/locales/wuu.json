@@ -6775,6 +6775,15 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "captions": {
+        "action":  "自动字幕",
+        "working":  "正在聆听… {{percent}}%",
+        "downloading":  "正在准备语音模型… {{percent}}%",
+        "hint":  "将语音转换为带时间轴的字幕，样式可随意调整。在您的设备上运行：免费且私密。首次使用时会下载模型。",
+        "done":  "已添加 {{count}} 条字幕。",
+        "noSpeech":  "此片段中未检测到语音。",
+        "failed":  "无法为此片段生成字幕。"
+    },
     "app": {
       "newDesign": "新设计",
       "yourDesigns": "侬个设计",

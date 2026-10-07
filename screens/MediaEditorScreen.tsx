@@ -33,7 +33,9 @@ import * as DocumentPicker from "expo-document-picker";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
-import EditorCanvas, { type EditorCanvasHandle } from "../components/editor/EditorCanvas";
+import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
+import { captionLayers } from "../libs/editor/captionLayout";
+import { newId } from "../libs/editor/project";
 import {
   AdjustPanel,
   ArrangePanel,
@@ -269,7 +271,7 @@ type Tool =
   | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
-  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split";
+  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
   icon: IconName;
   label: string;
 }
@@ -345,6 +347,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [renaming, setRenaming] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
   // Freehand pen; while set, one finger draws on the page.
   const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
   // AI chat and brand kit.
@@ -649,6 +652,25 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     toastSuccess(t("editor.bgRemove.done"));
   };
 
+  const transcribe = async (clip: MediaClip) => {
+    if (!canvasRef.current || captionProgress) throw new Error("captions unavailable");
+    setCaptionProgress({ stage: "transcribing", fraction: 0 });
+    try { return await canvasRef.current.transcribe(clip, setCaptionProgress); }
+    finally { setCaptionProgress(null); }
+  };
+  const addCaptions = async () => {
+    if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
+    const clip = selected;
+    try {
+      const result = captionLayers(clip, await transcribe(clip), () => newId(10));
+      const current = h.latest();
+      if (!current || current.clips.find(c => c.id === clip.id) !== clip) return;
+      if (!result.clips.length) { toastSuccess(t("editor.captions.noSpeech")); return; }
+      h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+      toastSuccess(t("editor.captions.done", { count: result.clips.length }));
+    } catch { toastError(t("editor.captions.failed")); }
+  };
+
   const sendToAgent = async (text: string) => {
     if (!project || chatBusy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -663,11 +685,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         applyBrand: (p) => applyBrand(p, brand),
         templateOps: (id) => templateOps(id, t),
         removeBackground: cutoutMedia,
+        transcribe,
         time: canvasTime,
       });
+      if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
       let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
+      if (!ops.length) content = t("editor.agent.nothingToDo");
       if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
       if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
       if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
@@ -697,6 +722,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
+    if (id === "captions") { void addCaptions(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "removeBg") { void removeBackground(); return; }
     if (id === "edit" && selectedId) { setEditingText(selectedId); return; }
@@ -741,6 +767,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       : [];
     if (selected.kind === "audio") {
       return [
+        { id: "captions", icon: "Type", label: captionProgress ? t(captionProgress.stage === "download" ? "editor.captions.downloading" : "editor.captions.working", { percent: Math.round(captionProgress.fraction * 100) }) : t("editor.captions.action") },
         { id: "split", icon: "Scissors", label: t("editor.video.split") },
         { id: "sound", icon: "Volume2", label: t("editor.video.volumeTool") },
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
@@ -750,6 +777,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
+        { id: "captions", icon: "Type", label: captionProgress ? t(captionProgress.stage === "download" ? "editor.captions.downloading" : "editor.captions.working", { percent: Math.round(captionProgress.fraction * 100) }) : t("editor.captions.action") },
         { id: "split", icon: "Scissors", label: t("editor.video.split") },
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
         { id: "sound", icon: "Volume2", label: t("editor.video.volumeTool") },
@@ -803,7 +831,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       { id: "fit", icon: "Expand", label: t("editor.app.fit") },
       ...common,
     ];
-  }, [selected, t, showTimeline, project]);
+  }, [selected, t, showTimeline, project, captionProgress]);
 
   const panelProps = {
     live: (p: Patch) => patchSelected(p, "live"),

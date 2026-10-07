@@ -30,6 +30,7 @@
 import { BRAND_OUTRO_DURATION } from "./brandOutro";
 import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
 import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
+import { CAPTIONS_WORKER } from "./captionsWorker";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -1268,6 +1269,39 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   var lastEvent = null;
+  var captionsWorker = null;
+  var captionsBusy = false;
+  function transcribeClip(m) {
+    if (captionsBusy) { post({ type: "captionsFailed", reqId: m.reqId, error: "busy" }); return; }
+    var c = m.clip;
+    var src = videos.get(c.mediaId) || audios.get(c.mediaId);
+    if (!src || !blobs.has(c.mediaId)) { post({ type: "captionsFailed", reqId: m.reqId, error: "media" }); return; }
+    captionsBusy = true;
+    var ac = new (window.AudioContext || window.webkitAudioContext)();
+    blobs.get(c.mediaId).arrayBuffer().then(function (bytes) { return ac.decodeAudioData(bytes); })
+      .then(function (decoded) {
+        var seconds = Math.min(c.duration * (c.speed || 1), decoded.duration - c.trimIn, 600);
+        if (seconds <= 0) throw new Error("empty");
+        var off = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, Math.ceil(seconds * 16000), 16000);
+        var source = off.createBufferSource(); source.buffer = decoded; source.connect(off.destination); source.start(0, c.trimIn, seconds);
+        return off.startRendering();
+      }).then(function (decoded) {
+        ac.close();
+        if (!captionsWorker) {
+          var workerUrl = URL.createObjectURL(new Blob([__CAPTIONS_WORKER_SOURCE__], { type: "text/javascript" }));
+          captionsWorker = new Worker(workerUrl, { type: "module" }); URL.revokeObjectURL(workerUrl);
+        }
+        captionsWorker.onmessage = function (event) {
+          var data = event.data || {};
+          if (data.id !== m.reqId) return;
+          if (data.type === "done" || data.type === "error") captionsBusy = false;
+          post({ type: data.type === "done" ? "captionsDone" : data.type === "error" ? "captionsFailed" : "captionsProgress", reqId: m.reqId, words: data.words, error: data.message, stage: data.type, loaded: data.loaded, total: data.total, done: data.done });
+        };
+        captionsWorker.onerror = function () { captionsBusy = false; captionsWorker.terminate(); captionsWorker = null; post({ type: "captionsFailed", reqId: m.reqId, error: "worker" }); };
+        var audio = decoded.getChannelData(0).slice();
+        captionsWorker.postMessage({ id: m.reqId, audio: audio }, [audio.buffer]);
+      }).catch(function (error) { ac.close(); captionsBusy = false; post({ type: "captionsFailed", reqId: m.reqId, error: String(error.message || error) }); });
+  }
   function onMessage(ev) {
     // Android dispatches on document, which bubbles to window: handle it once.
     if (ev === lastEvent) return;
@@ -1344,6 +1378,11 @@ canvas{display:block;width:100%;height:100%;}
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
     } else if (m.type === "cutout") {
       cutout(m);
+    } else if (m.type === "captions") {
+      transcribeClip(m);
+    } else if (m.type === "captionsCancel") {
+      if (captionsWorker) captionsWorker.terminate();
+      captionsWorker = null; captionsBusy = false;
     } else if (m.type === "path") {
       // Where a keyed layer's centre travels over its clip (web Compositor
       // motionPath): the same boxes the handles use, sampled across the clip.
@@ -1379,4 +1418,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";");
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";");

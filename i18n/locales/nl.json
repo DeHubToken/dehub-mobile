@@ -7073,6 +7073,15 @@
     }
   },
   "editor": {
+    "captions": {
+        "action":  "Automatische ondertiteling",
+        "working":  "Luisteren… {{percent}}%",
+        "downloading":  "Spraakmodel klaarmaken… {{percent}}%",
+        "hint":  "Zet spraak om in getimede ondertitels die je kunt restylen. Draait op je apparaat: gratis en privé. Bij het eerste gebruik wordt het model gedownload.",
+        "done":  "{{count}} ondertitels toegevoegd.",
+        "noSpeech":  "Geen spraak gevonden in deze clip.",
+        "failed":  "Kon geen ondertitels maken voor deze clip."
+    },
     "app": {
       "newDesign": "Nieuw ontwerp",
       "yourDesigns": "Je ontwerpen",

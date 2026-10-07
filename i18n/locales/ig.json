@@ -6767,6 +6767,15 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "captions": {
+        "action":  "Ndepụta okwu akpaka",
+        "working":  "Na-ege ntị… {{percent}}%",
+        "downloading":  "Na-akwado ụdị okwu… {{percent}}%",
+        "hint":  "Na-atụgharị okwu ka ọ bụrụ ndepụta nwere oge ị nwere ike ịgbanwe ụdị ya. Ọ na-arụ ọrụ na ngwaọrụ gị: n\u0027efu na nzuzo. Ojiji mbụ na-ebudata ụdị ahụ.",
+        "done":  "Etinyere ndepụta {{count}}.",
+        "noSpeech":  "Ahụghị okwu ọ bụla na klip a.",
+        "failed":  "Enweghị ike ịmepụta ndepụta maka klip a."
+    },
     "app": {
       "newDesign": "Nhazi ọhụrụ",
       "yourDesigns": "Nhazi gị",

@@ -6736,6 +6736,15 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "captions": {
+        "action":  "Sɛbɛnni yɛrɛma",
+        "working":  "Lamɛnni bɛ taa… {{percent}}%",
+        "downloading":  "Kuma modɛli bɛ labɛn… {{percent}}%",
+        "hint":  "A bɛ kuma yɛlɛma ka kɛ sɛbɛnni ye min bɛ bɛn waati ma, i bɛ se k\u0027u cogoya yɛlɛma. A bɛ baara i ka minɛn kan: fu ani gundo la. Fɔlɔ baara la, modɛli bɛ jigi.",
+        "done":  "Sɛbɛnni {{count}} farala a kan.",
+        "noSpeech":  "Kuma si ma sɔrɔ nin klipu in kɔnɔ.",
+        "failed":  "Sɛbɛnni ma se ka dilan nin klipu in kama."
+    },
     "app": {
       "newDesign": "Desɛn kura",
       "yourDesigns": "I ka desɛnw",

@@ -6788,6 +6788,15 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "captions": {
+        "action":  "Subtítols automàtics",
+        "working":  "Escoltant… {{percent}}%",
+        "downloading":  "Preparant el model de veu… {{percent}}%",
+        "hint":  "Converteix la veu en subtítols sincronitzats que pots personalitzar. Funciona al teu dispositiu: gratuït i privat. El primer ús descarrega el model.",
+        "done":  "S\u0027han afegit {{count}} subtítols.",
+        "noSpeech":  "No s\u0027ha trobat veu en aquest clip.",
+        "failed":  "No s\u0027han pogut crear subtítols per a aquest clip."
+    },
     "app": {
       "newDesign": "Disseny nou",
       "yourDesigns": "Els teus dissenys",

@@ -6968,6 +6968,15 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "captions": {
+        "action":  "Auto captions",
+        "working":  "Nakikinig… {{percent}}%",
+        "downloading":  "Inihahanda ang speech model… {{percent}}%",
+        "hint":  "Ginagawang naka-time na caption ang pananalita na puwede mong baguhin ang istilo. Tumatakbo sa device mo: libre at pribado. Ida-download ang model sa unang paggamit.",
+        "done":  "Nagdagdag ng {{count}} caption.",
+        "noSpeech":  "Walang nakitang pananalita sa clip na ito.",
+        "failed":  "Hindi makagawa ng caption para sa clip na ito."
+    },
     "app": {
       "newDesign": "Bagong disenyo",
       "yourDesigns": "Ang iyong mga disenyo",
