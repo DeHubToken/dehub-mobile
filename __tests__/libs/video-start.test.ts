@@ -1,6 +1,26 @@
-import { requestVideoPlayback } from '../../libs/video-start';
+import { flushVideoPlayIntent, requestVideoPlayback } from '../../libs/video-start';
 
 describe('video startup', () => {
+  it('replays a loading request when the native item becomes ready, then consumes it', () => {
+    const pending = { current: true };
+    const play = jest.fn();
+    flushVideoPlayIntent(pending, false, play);
+    expect(play).toHaveBeenCalledTimes(1);
+    flushVideoPlayIntent(pending, true, play);
+    expect(play).toHaveBeenCalledTimes(2);
+    flushVideoPlayIntent(pending, true, play);
+    expect(play).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not restart a canceled loading request when readiness arrives', () => {
+    const pending = { current: true };
+    const play = jest.fn();
+    flushVideoPlayIntent(pending, false, play);
+    pending.current = false;
+    flushVideoPlayIntent(pending, true, play);
+    expect(play).toHaveBeenCalledTimes(1);
+  });
+
   it('submits play while iOS is loading instead of waiting for an event', () => {
     const player = {
       status: 'loading' as const,
