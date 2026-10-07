@@ -19,6 +19,7 @@ import { queryClient } from "../config/queryClient";
 import { transcriptKey, type TranscriptRecord } from "./useTranscript";
 import { findVoice } from "./useVoiceDub";
 import { createLogger } from "../libs/logger";
+import { autoTranslateEnabled, subscribeAutoTranslate } from "../libs/auto-translate-setting";
 
 const logger = createLogger("useVideoDub");
 
@@ -29,15 +30,17 @@ const LANG_KEY = "video-voice-dub-lang";
 
 export interface DubSettings {
   on: boolean;
+  automatic?: boolean;
   /** What to speak in. Null means the app's language. */
   lang: string | null;
 }
 
 function read(): DubSettings {
   try {
-    return { on: storage.getString(ON_KEY) === "true", lang: storage.getString(LANG_KEY) || null };
+    const saved = storage.getString(ON_KEY);
+    return { on: saved !== "false", automatic: saved == null, lang: storage.getString(LANG_KEY) || null };
   } catch {
-    return { on: false, lang: null };
+    return { on: true, automatic: true, lang: null };
   }
 }
 
@@ -45,22 +48,28 @@ let current: DubSettings = read();
 const listeners = new Set<() => void>();
 
 export function getDubSettings(): DubSettings {
+  const on = current.automatic ? autoTranslateEnabled() : current.on;
+  if (on !== current.on) current = { ...current, on };
   return current;
 }
 
 export function setDubSettings(next: Partial<DubSettings>): void {
   current = { ...current, ...next };
+  if (next.on !== undefined) current.automatic = false;
   try {
-    storage.set(ON_KEY, String(current.on));
+    if (!current.automatic) storage.set(ON_KEY, String(current.on));
     if (current.lang) storage.set(LANG_KEY, current.lang);
+    else storage.delete(LANG_KEY);
   } catch {}
   listeners.forEach((listener) => listener());
 }
 
 function subscribe(listener: () => void) {
   listeners.add(listener);
+  const unsubscribeAuto = subscribeAutoTranslate(listener);
   return () => {
     listeners.delete(listener);
+    unsubscribeAuto();
   };
 }
 
