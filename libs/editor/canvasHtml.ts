@@ -33,6 +33,7 @@ import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
 import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
+import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -51,6 +52,7 @@ canvas{display:block;width:100%;height:100%;}
   "use strict";
   __BRAND_OUTRO_RUNTIME__
   __MEDIA_LEASES_RUNTIME__
+  __GIF_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -846,6 +848,7 @@ canvas{display:block;width:100%;height:100%;}
   var lastLayersPost = 0;
   var exporting = false;
   var exportAborted = false;
+  var gifSession = null;
   function currentTime() {
     if (playing && playStart) return playStart.time + (performance.now() - playStart.wall) / 1000;
     return state ? state.time : 0;
@@ -1124,6 +1127,32 @@ canvas{display:block;width:100%;height:100%;}
     reader.readAsDataURL(o.blob.slice(o.offset, end));
   }
 
+  function encodeGif(snap, W, H, fps, duration, progress, ending) {
+    var plan = gifPlan(W, H, 1, duration, fps);
+    var cv = document.createElement("canvas"); cv.width = plan.width; cv.height = plan.height;
+    var g = cv.getContext("2d", { willReadFrequently: true });
+    if (!g) return Promise.reject(new Error("GIF canvas"));
+    var session = gifWorkerSession(plan.width, plan.height, gifWorkerSource);
+    gifSession = session;
+    var frame = 0;
+    function step() {
+      if (exportAborted) return Promise.reject(new Error("aborted"));
+      if (frame >= plan.frames) return session.finish();
+      var t = frame / plan.fps;
+      var ops = t < ending.contentDuration ? computeRenderOps(snap, t, plan.width, false) : [];
+      prepareVideoSources(ops);
+      return Promise.all(ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })).then(function () {
+        if (exportAborted) throw new Error("aborted");
+        g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.clearRect(0, 0, plan.width, plan.height);
+        g.fillStyle = snap.settings.background; g.fillRect(0, 0, plan.width, plan.height);
+        drawOps(g, plan.width, plan.height, ops, t);
+        if (t >= ending.contentDuration) drawBrandOutro(g, plan.width, plan.height, t - ending.contentDuration, ending.username, ending.logo);
+        return session.frame(g.getImageData(0, 0, plan.width, plan.height).data, gifFrameDelay(frame, plan));
+      }).then(function () { frame++; progress(0.03 + 0.94 * frame / plan.frames); return step(); });
+    }
+    return session.ready.then(step).then(function (buffer) { return { blob: new Blob([buffer], { type: "image/gif" }), ext: "gif" }; }).finally(function () { session.close(); if (gifSession === session) gifSession = null; });
+  }
+
   function exportVideo(m) {
     if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
     stopPlaying();
@@ -1135,6 +1164,7 @@ canvas{display:block;width:100%;height:100%;}
     var H = Math.max(2, Math.round(m.height) & ~1);
     var contentDuration = timelineEnd(snap.clips, snap.settings);
     if (contentDuration <= 0) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "empty" }); return; }
+    if (m.format === "gif" && contentDuration > 60) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "GIF supports up to 60 seconds" }); return; }
     var duration = contentDuration + brandOutroDuration;
     var ending = { contentDuration: contentDuration, username: m.username || "", logo: new Image() };
     var logoReady = new Promise(function (resolve, reject) {
@@ -1150,8 +1180,10 @@ canvas{display:block;width:100%;height:100%;}
     progress(0);
     var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     Promise.all([logoReady, Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])])
-      .then(function () { return mixAudio(snap, duration, contentDuration); })
+      .then(function () { return m.format === "gif" ? null : mixAudio(snap, duration, contentDuration); })
       .then(function (mixed) {
+        if (exportAborted) throw new Error("aborted");
+        if (m.format === "gif") return encodeGif(snap, W, H, fps, duration, progress, ending);
         progress(0.04);
         var canCodecs = typeof VideoEncoder === "function" && typeof VideoFrame === "function";
         return (canCodecs ? pickVideoConfig(W, H, fps, m.bitrate) : Promise.resolve(null)).then(function (vcfg) {
@@ -1448,6 +1480,7 @@ canvas{display:block;width:100%;height:100%;}
       exportVideo(m);
     } else if (m.type === "exportAbort") {
       exportAborted = true;
+      if (gifSession) gifSession.close();
       exporting = false;
       outgoing.clear();
       schedule();
@@ -1528,4 +1561,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER));
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
