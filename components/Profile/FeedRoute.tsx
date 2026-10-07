@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
+import FeedCardSkeleton from '../Feed/FeedCardSkeleton';
+import { useCinematicPhone } from '../../hooks/useCinematicPhone';
 import { getUnifiedFeed, type FeedPostType, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
 import { useAuthState } from '../../context/AuthContext';
@@ -55,6 +57,8 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   isLocked,
 }) => {
   const { t } = useTranslation();
+  const cinematicPhone = useCinematicPhone();
+  const cinematic = cinematicPhone && !!listHeader;
   const { isSignedIn } = useAuthState();
   const user = useUser() as any;
   const ownAddress = user?.walletAddress || user?.address;
@@ -106,8 +110,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
     ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
-      <View className="px-4">
+      <View className={cinematic ? 'px-2' : 'px-4'}>
         <FeedCard
+          cinematic={cinematic}
           item={item as UnifiedFeedItem}
           isVisible={isVisible}
           isAutoplayActive={isAutoplayActive}
@@ -115,7 +120,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         />
       </View>
     ),
-    [onBeforeNavigate],
+    [cinematic, onBeforeNavigate],
   );
 
   return (
@@ -146,6 +151,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
         headerComponent={listHeader}
+        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} cinematic edgeInset={8} /></View> : undefined}
         onScroll={onScroll}
         scrollEnabled={scrollEnabled}
         emptyComponent={(

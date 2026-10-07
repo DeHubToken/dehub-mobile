@@ -1,23 +1,25 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useAppTheme } from '../../context/ThemeContext';
+import { useCinematicPhone } from '../../hooks/useCinematicPhone';
 import { MINIMAL_HAIRLINE } from '../../theme/minimal';
 
 // Skeleton placeholder matching the current UserProfileHeader layout
 const UserProfileSkeleton: React.FC = () => {
   const { isMinimal } = useAppTheme();
+  const cinematicPhone = useCinematicPhone();
   return (
     <View>
       {/* Cover image */}
       {/* Minimal mirrors the real header: edge-to-edge cover. */}
       <View
-        className={isMinimal ? 'overflow-hidden' : 'mx-4 rounded-xl overflow-hidden'}
+        className={isMinimal || cinematicPhone ? 'overflow-hidden' : 'mx-4 rounded-xl overflow-hidden'}
         style={{ height: 140 }}
       >
         <View className="w-full h-full bg-theme-neutrals-800 animate-pulse" />
       </View>
 
-      <View className="px-5">
+      <View className={cinematicPhone ? 'px-4' : 'px-5'}>
         {/* Avatar + follow button row */}
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View

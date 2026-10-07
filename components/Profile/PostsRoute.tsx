@@ -21,6 +21,7 @@ import { getMyPosts, getUserReplies, type UserReplyItem } from "../../services/u
 import { useUser } from "../../context/AuthContext";
 import { theme } from "../../theme";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
@@ -64,6 +65,8 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   onBeforeNavigate,
 }) => {
   const { t } = useTranslation();
+  const cinematicPhone = useCinematicPhone();
+  const cinematic = cinematicPhone && !!listHeader;
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const ownAddress = user?.walletAddress || user?.address;
@@ -212,8 +215,9 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     ({ item }: { item: ProfilePostRow }) => {
       if (item.kind === "reply") {
         return (
-          <View className="px-4">
+          <View className={cinematic ? undefined : "px-4"}>
             <UserReplyCard
+              cinematic={cinematic}
               item={item.item}
               onPress={(reply) => {
                 const tokenId = reply.tokenId ?? reply.post?.tokenId;
@@ -229,8 +233,9 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         );
       }
       return (
-        <View className="px-4">
+        <View className={cinematic ? "px-2" : "px-4"}>
           <FeedCard
+            cinematic={cinematic}
             item={item.item}
             isVisible={isItemVisible(item.key)}
             isAutoplayActive={isItemAutoplayActive(item.key)}
@@ -239,7 +244,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         </View>
       );
     },
-    [isItemVisible, isItemAutoplayActive, navigation, onBeforeNavigate],
+    [cinematic, isItemVisible, isItemAutoplayActive, navigation, onBeforeNavigate],
   );
 
   if (loading) {
@@ -301,7 +306,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         renderItem={renderRow}
         contentContainerStyle={{
           paddingBottom: TAB_BAR_CONTENT_INSET,
-          paddingTop: 8,
+          paddingTop: cinematic ? 0 : 8,
         }}
         windowSize={7}
         maxToRenderPerBatch={4}

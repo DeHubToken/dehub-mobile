@@ -7,6 +7,7 @@ import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import ProfileEmptyState from "./ProfileEmptyState";
 
 interface PinnedRouteProps {
@@ -21,6 +22,8 @@ const PAGE_SIZE = 20;
 
 const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, listHeader, onBeforeNavigate }) => {
   const { t } = useTranslation();
+  const cinematicPhone = useCinematicPhone();
+  const cinematic = cinematicPhone && !!listHeader;
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -132,15 +135,18 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, listRef, onScroll, l
       data={items}
       keyExtractor={keyExtractor}
       renderItem={({ item, index }) => (
-        <FeedCard
-          item={item}
-          isVisible={isItemVisible(keyExtractor(item, index))}
-          isAutoplayActive={isItemAutoplayActive(keyExtractor(item, index))}
-          onBeforeNavigate={onBeforeNavigate}
-        />
+        <View style={cinematic ? { paddingHorizontal: 8 } : undefined}>
+          <FeedCard
+            cinematic={cinematic}
+            item={item}
+            isVisible={isItemVisible(keyExtractor(item, index))}
+            isAutoplayActive={isItemAutoplayActive(keyExtractor(item, index))}
+            onBeforeNavigate={onBeforeNavigate}
+          />
+        </View>
       )}
       ListHeaderComponent={listHeader}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
+      contentContainerStyle={{ paddingHorizontal: cinematic ? 0 : 16, paddingTop: cinematic ? 0 : 8, paddingBottom: 80 }}
       windowSize={7}
       maxToRenderPerBatch={4}
       initialNumToRender={4}
