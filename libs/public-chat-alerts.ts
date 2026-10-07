@@ -7,11 +7,9 @@
  * Mirrors web's `src/lib/public-chat-alerts.ts` down to the storage key names,
  * so the two clients mean the same thing by the same setting.
  *
- * Off by default, deliberately: public chat is the one room anybody can post
- * in, so it is the one feed whose volume is set by strangers. Opting in is
- * opting into a stranger's typing speed, which is why the ceiling ships with
- * the switch rather than after it. 69 an hour is the top of the dial — past
- * roughly one a minute a notification stream stops being information.
+ * On by default while the room is quiet, with a saved opt-out taking priority.
+ * The rate limit counts cards rather than messages, so busy stretches arrive
+ * together instead of filling the notification tray.
  *
  * MMKV, like libs/auto-translate-setting: the alert engine reads this inside a
  * socket handler that has to decide before the next message lands.
@@ -26,6 +24,9 @@ import { storage } from './storage';
 /** Web's key names — see dehubweb src/lib/public-chat-alerts.ts. */
 const ENABLED_KEY = 'dehub_public_chat_alerts';
 const RATE_KEY = 'dehub_public_chat_alerts_per_hour';
+
+/** New readers hear from the room unless they turn its alerts off. */
+export const PUBLIC_CHAT_DEFAULT_ENABLED = true;
 
 /** Highest number of cards an hour a reader may ask public chat for. */
 export const PUBLIC_CHAT_MAX_PER_HOUR = 69;
@@ -57,9 +58,10 @@ function emit() {
 
 export function publicChatAlertsEnabled(): boolean {
   try {
-    return storage.getString(ENABLED_KEY) === 'true';
+    const raw = storage.getString(ENABLED_KEY);
+    return raw === undefined ? PUBLIC_CHAT_DEFAULT_ENABLED : raw === 'true';
   } catch {
-    return false;
+    return PUBLIC_CHAT_DEFAULT_ENABLED;
   }
 }
 
