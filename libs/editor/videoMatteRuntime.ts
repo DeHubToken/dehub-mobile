@@ -55,6 +55,7 @@ function videoMattePlan(clip, width, height, sourceDuration, fps) {
   var start = clip.trimIn, end = start + clip.duration * speed;
   if (clip.kind !== "video" || !Number.isFinite(speed) || speed <= 0 || !Number.isFinite(start) || start < 0 || !Number.isFinite(end) || end <= start || !Number.isFinite(sourceDuration) || end > sourceDuration + 0.002 || !Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0 || !Number.isFinite(fps) || fps < 1 || fps > 120) throw new Error("Invalid video range for background removal");
   var frames = Math.ceil((end - start) * fps - 1e-8);
+  if (frames < 1) throw new Error("Video range is too short for background removal");
   if (frames > 600) throw new Error("Trim this clip to " + (600 / fps).toFixed(1) + " source seconds before removing its background");
   var scale = Math.min(1, 512 / Math.max(width, height));
   var w = Math.max(1, Math.floor(width * scale)), h = Math.max(1, Math.floor(height * scale));
@@ -135,7 +136,8 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal) {
     cancelled(); video.muted = true; video.playsInline = true; video.preload = "auto";
     if (sourceUrl.indexOf("blob:") !== 0) video.crossOrigin = "anonymous";
     await waitEvent(video, "loadeddata", function () { video.src = sourceUrl; video.load(); }, 30000);
-    var plan = videoMattePlan(clip, video.videoWidth, video.videoHeight, video.duration, fps);
+    var sourceDuration = Number.isFinite(video.duration) ? video.duration : clip.sourceDuration;
+    var plan = videoMattePlan(clip, video.videoWidth, video.videoHeight, sourceDuration, fps);
     atlas.width = plan.atlasWidth; atlas.height = plan.atlasHeight;
     var a = atlas.getContext("2d"), c = capture.getContext("2d"), m = mask.getContext("2d");
     if (!a || !c || !m) throw new Error("Background removal requires a canvas");
@@ -144,7 +146,7 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal) {
     mask.width = 512; mask.height = 512;
     for (var index = 0; index < plan.frames; index++) {
       cancelled();
-      var time = Math.min(video.duration - 0.001, plan.start + index / plan.fps);
+      var time = Math.min(sourceDuration - 0.001, plan.start + index / plan.fps);
       if (Math.abs(video.currentTime - time) >= 0.0005 || video.readyState < 2) await waitEvent(video, "seeked", function () { video.currentTime = time; }, 10000);
       c.drawImage(video, 0, 0, capture.width, capture.height);
       var blob = await new Promise(function (resolve, reject) { capture.toBlob(function (b) { b ? resolve(b) : reject(new Error("Video frame could not be read")); }, "image/png"); });

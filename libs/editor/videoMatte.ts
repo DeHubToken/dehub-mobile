@@ -27,6 +27,7 @@ export function videoMattePlan(clip: MediaClip, width: number, height: number, s
   var start = clip.trimIn, end = start + clip.duration * speed;
   if (clip.kind !== "video" || !Number.isFinite(speed) || speed <= 0 || !Number.isFinite(start) || start < 0 || !Number.isFinite(end) || end <= start || !Number.isFinite(sourceDuration) || end > sourceDuration + 0.002 || !Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0 || !Number.isFinite(fps) || fps < 1 || fps > 120) throw new Error("Invalid video range for background removal");
   var frames = Math.ceil((end - start) * fps - 1e-8);
+  if (frames < 1) throw new Error("Video range is too short for background removal");
   if (frames > 600) throw new Error("Trim this clip to " + (600 / fps).toFixed(1) + " source seconds before removing its background");
   var scale = Math.min(1, 512 / Math.max(width, height));
   var w = Math.max(1, Math.floor(width * scale)), h = Math.max(1, Math.floor(height * scale));
