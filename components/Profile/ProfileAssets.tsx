@@ -1,6 +1,6 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import InfoTooltip from "../ui/InfoTooltip";
 import dhbIcon from "../../assets/tokens/DHB.png";
@@ -27,6 +27,16 @@ import { getArcUsdcBalance } from "../../libs/arc-wallet";
 import { useTranslation } from "react-i18next";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useSubscriptionCredits } from "../../hooks/useSubscriptionCredits";
+import Icon from "../ui/Icon";
+import { FIELD_TEXT } from "../../theme/inputs";
+
+const ASSET_NAMES: Record<string, string> = {
+  DHB: "DeHub",
+  ETH: "Ethereum",
+  BNB: "BNB",
+  USDC: "USD Coin",
+  USDT: "Tether",
+};
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
@@ -39,13 +49,14 @@ const BalanceSkeleton: React.FC = () => (
   </View>
 );
 
-const ProfileAssets = () => {
+const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   const user = useUser();
   const { balancesLoading } = useAuthState();
   const { chainId } = useProvider();
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { data: subscriptionCredits } = useSubscriptionCredits();
 
   const mountedRef = React.useRef(true);
@@ -131,6 +142,11 @@ const ProfileAssets = () => {
   }, [walletBalances, chainId, dhbPosition]);
 
   const { t } = useTranslation();
+  const query = searchable ? searchQuery.trim().toLowerCase() : "";
+  const matchesAsset = (name: string) => name.toLowerCase().includes(query);
+  const filteredAssets = assets.filter(asset => matchesAsset(`${asset.name} ${ASSET_NAMES[asset.name] ?? ""}`));
+  const showArc = arcUsdc > 0 && matchesAsset(`USDC USD Coin Arc ${t("assets.arcUsdc")}`);
+  const showSubscription = !!subscriptionCredits && subscriptionCredits.tokens > 0 && matchesAsset(t("credits.subscriptionTokens"));
   const [transferOpen, setTransferOpen] = useState(false);
   const [tradeOpen, setTradeOpen] = useState(false);
   const dhbActions = [
@@ -154,8 +170,8 @@ const ProfileAssets = () => {
 
 
   return (
-    <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-xl p-4 relative">
-      <View className="flex-row items-center justify-between mb-2">
+    <View className={`mx-4 ${searchable ? "mb-4" : "my-3"} bg-theme-neutrals-800 rounded-xl p-4 relative`}>
+      <View className="flex-row items-center justify-between mb-4">
         <Text className="text-base text-white font-semibold">{t("assets.title")}</Text>
         <InfoTooltip
           open={showInfo}
@@ -225,9 +241,29 @@ const ProfileAssets = () => {
         </InfoTooltip>
       </View>
 
-      {assets.map((asset) => (
+      {searchable && (
+        <View className="h-11 mb-4 flex-row items-center gap-2 bg-theme-neutrals-700 rounded-xl px-3">
+          <Icon name="Search" size={16} color="#8B8D90" />
+          <TextInput
+            accessibilityLabel={t("wallet.searchTokens")}
+            placeholder={t("wallet.searchTokens")}
+            placeholderTextColor="#8B8D90"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="search"
+            className="flex-1 min-w-0 h-full text-white text-sm"
+            style={FIELD_TEXT}
+          />
+        </View>
+      )}
+      {filteredAssets.length === 0 && !showArc && !showSubscription && (
+        <Text className="text-sm text-theme-neutrals-400 text-center py-4">{t("common.noResults")}</Text>
+      )}
+      {filteredAssets.map((asset) => (
         <View key={asset.name} className="mb-1">
-          <View className="flex-row items-center justify-between py-2">
+          <View className="flex-row items-center justify-between gap-3 py-3">
             <TouchableOpacity
               className="flex-row items-center flex-1"
               onPress={asset.hasActions ? toggleDHBOptions : undefined}
@@ -256,11 +292,11 @@ const ProfileAssets = () => {
           </View>
 
           {asset.hasActions && showDHBOptions && (
-            <View className="ml-9 mt-1 mb-2 flex-row space-x-2">
+            <View className="mt-3 mb-2 flex-row gap-2">
               {dhbActions.map((action) => (
                 <TouchableOpacity
                   key={action.key}
-                  className={`py-2 px-3 rounded-xl flex-1 mx-1 ${
+                  className={`py-3 px-2 rounded-xl flex-1 min-w-0 ${
                     action.disabled ? "bg-theme-neutrals-800" : "bg-theme-neutrals-700"
                   }`}
                   onPress={
@@ -281,6 +317,8 @@ const ProfileAssets = () => {
                       <Ionicons name="stats-chart-outline" size={18} color="#FFFFFF" className="mb-1" />
                     )}
                     <Text
+                      numberOfLines={1}
+                      adjustsFontSizeToFit
                       className={`text-xs ${
                         action.disabled ? "text-gray-500" : "text-white"
                       }`}
@@ -294,9 +332,9 @@ const ProfileAssets = () => {
           )}
         </View>
       ))}
-      {arcUsdc > 0 && (
+      {showArc && (
         <View className="mb-1">
-          <View className="flex-row items-center justify-between py-2">
+          <View className="flex-row items-center justify-between gap-3 py-3">
             <View className="flex-row items-center flex-1">
               <View className="mr-3">
                 <Image source={usdcIcon} className="w-8 h-8 rounded-full" />
@@ -316,9 +354,9 @@ const ProfileAssets = () => {
       )}
       {/* Subscription tokens count like tokens but hold their dollar value and
           only spend on AI generation, so every way out says so. */}
-      {subscriptionCredits && subscriptionCredits.tokens > 0 && (
+      {showSubscription && subscriptionCredits && (
         <View className="mb-1">
-          <View className="flex-row items-center justify-between py-2">
+          <View className="flex-row items-center justify-between gap-3 py-3">
             <View className="flex-row items-center flex-1">
               <View className="mr-3">
                 <Image source={dhbIcon} className="w-8 h-8 rounded-full" />
@@ -338,11 +376,11 @@ const ProfileAssets = () => {
               </Text>
             </View>
           </View>
-          <View className="ml-9 mt-1 mb-2 flex-row">
+          <View className="mt-3 mb-2 flex-row gap-2">
             {(["send", "trade", "withdraw"] as const).map((key) => (
               <TouchableOpacity
                 key={key}
-                className="py-2 px-3 rounded-xl flex-1 mx-1 bg-theme-neutrals-700"
+                className="py-3 px-2 rounded-xl flex-1 min-w-0 bg-theme-neutrals-700"
                 onPress={() => toastInfo(t("credits.untradableTokens"))}
               >
                 <Text className="text-xs text-white text-center">
