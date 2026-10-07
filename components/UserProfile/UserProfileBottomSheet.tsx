@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Modal, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import ScreenHeader from "../ScreenHeader";
 import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
+import ProfileSurface from "./ProfileSurface";
 import UnfollowSheet from "./UnfollowSheet";
 import { useUserProfileData } from "../../hooks/useUserProfileData";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -183,12 +184,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   }
 
   return (
-    <Modal
+    <ProfileSurface
       visible={visible}
-      animationType="slide"
-      onRequestClose={onClose}
-      presentationStyle="fullScreen"
-      statusBarTranslucent
+      onClose={onClose}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
         {/* Its own nav state: a modal sits above the tabs, so the home bar is
@@ -270,7 +268,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         onUnfollow={handleUnfollow}
         isCancelRequest={isFollowRequestPending}
       />
-    </Modal>
+    </ProfileSurface>
   );
 };
 

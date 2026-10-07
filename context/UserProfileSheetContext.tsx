@@ -1,4 +1,6 @@
 import React, { createContext, useCallback, useContext, useRef, useState, useMemo, useEffect } from 'react';
+import { View } from 'react-native';
+import { FeedPlaybackActiveContext } from '../libs/visualActivity';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
 import { useAppTheme } from './ThemeContext';
@@ -106,15 +108,20 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
 
   return (
     <UserProfileSheetContext.Provider value={contextValue}>
-      <UserProfilePresentationContext.Provider value={presentationContextValue}>
-        {children}
-      </UserProfilePresentationContext.Provider>
-      <UserProfileBottomSheet
-        visible={visible && presentation === 'modal'}
-        usernameOrAddress={identifier}
-        onClose={hideUserProfile}
-        initialHeightPct={options?.initialHeightPct}
-      />
+      <View style={{ flex: 1 }}>
+        <UserProfilePresentationContext.Provider value={presentationContextValue}>
+          {/* Keep covered feeds paused through the profile's closing animation. */}
+          <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal'}>
+            {children}
+          </FeedPlaybackActiveContext.Provider>
+        </UserProfilePresentationContext.Provider>
+        <UserProfileBottomSheet
+          visible={visible && presentation === 'modal'}
+          usernameOrAddress={identifier}
+          onClose={hideUserProfile}
+          initialHeightPct={options?.initialHeightPct}
+        />
+      </View>
     </UserProfileSheetContext.Provider>
   );
 };
