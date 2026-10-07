@@ -28,4 +28,6 @@ it('preserves semantic colours, dark button labels, light fills and non-text pro
   }
   const props = { style: { color: '#A1A1AA', backgroundColor: '#808089' }, className: 'text-zinc-500' };
   expect(readableTextProps(View, props)).toBe(props);
+  const light = { className: 'bg-white text-zinc-500' };
+  expect(readableTextProps(Text, light)).toBe(light);
 });
