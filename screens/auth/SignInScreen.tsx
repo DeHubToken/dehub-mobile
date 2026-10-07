@@ -55,7 +55,8 @@ import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provisio
 import { takeWalletSetupIntent } from "../../libs/wallet-setup-intent";
 import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
 import { fetchWalletReliably } from "../../libs/wallet-core/store";
-import { deriveFromSecret, isValidMnemonic } from "../../libs/wallet-core/derive";
+import { getPendingWalletReplacement, completeWalletReplacement } from '../../libs/wallet-core/replacement';
+import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { assertWalletAddress } from "../../libs/wallet-core/assert-wallet-address";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, setEoaSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
@@ -254,6 +255,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         log.warn("completeLocalSignIn:aa-resolve-failed", e);
       }
 
+      if (opts?.beforeSignIn && signInAddress.toLowerCase() === evmAddress.toLowerCase()) {
+        throw new Error(t('walletSetup.couldNotStartOver'));
+      }
       setSigningProvider(localProvider);
       // Kept separately: `localProvider` is the Safe above, and a message
       // signed by a Safe is a different value from the owner's signature over
@@ -320,29 +324,24 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       // it onto the new address before the sign-in, so the sign-in finds it
       // instead of minting a fresh, empty one under a generated username
       // while the old account keeps the handle forever.
-      const replacing =
-        walletSetupRequest?.mode === "create" ? walletSetupRequest.replacing : undefined;
+      const replacing = walletSetupRequest?.mode === "create" ? walletSetupRequest.replacing
+        : walletSetupRequest?.supabaseUserId ? await getPendingWalletReplacement(walletSetupRequest.supabaseUserId, address) : null;
       await completeLocalSignIn(address, privateKey, web3AuthMeta, {
         beforeSignIn: replacing
           ? async (signInAddress, chainId) => {
               try {
                 await AuthService.rotateWallet(signInAddress, chainId);
                 log.info("walletSetup:rotate:ok", {
-                  from: `${replacing.address.slice(0, 6)}...${replacing.address.slice(-4)}`,
                   to: `${signInAddress.slice(0, 6)}...${signInAddress.slice(-4)}`,
                 });
               } catch (e: any) {
-                // Never block the sign-in on this. The replacement wallet is
-                // already saved and is now the only one this identity has, so
-                // refusing to continue would strand the user signed out with
-                // no way back. A backend that predates the endpoint lands
-                // here too, and its behaviour is what shipped before: a new
-                // account, which the reset screen warned about.
-                log.warn("walletSetup:rotate:failed-continuing-as-new-account", e);
+                log.warn("walletSetup:rotate:failed", e);
+                throw e;
               }
             }
           : undefined,
       });
+      if (replacing) await completeWalletReplacement(address);
       if (walletSetupRequest?.supabaseUserId) {
         await markProvisionedIdentity(walletSetupRequest.supabaseUserId);
       }
@@ -390,7 +389,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       const existingSecret =
         prior && prior.supabaseUserId === walletSetupRequest.supabaseUserId
           ? prior.secret
-          : undefined;
+          : generateMnemonic12();
+      pendingCreateRef.current = { supabaseUserId: walletSetupRequest.supabaseUserId, secret: existingSecret };
 
       const created = await createAndSaveEvmWalletForIdentity(
         walletSetupRequest.supabaseUserId,
@@ -470,7 +470,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const handleResetWallet = useCallback(async () => {
     if (
       !walletSetupRequest ||
-      (walletSetupRequest.mode !== "biometric-unlock" &&
+      (walletSetupRequest.mode !== "unlock" && walletSetupRequest.mode !== "biometric-unlock" &&
         walletSetupRequest.mode !== "web-passkey-sync")
     ) {
       return;
@@ -493,10 +493,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over."
       );
     }
-    // No payload at all is the web-passkey-sync case and is fine to replace.
-    // A payload that is NOT hkdf is a password wrap, which means the wallet
-    // became unlockable since this screen was drawn — never overwrite that.
-    if (wallet.payload && getPayloadKdf(wallet.payload) !== "hkdf") {
+    // A changed password backup may restore access on another device. An
+    // unchanged password wrap does not imply the user still knows its password.
+    if (wallet.payload && getPayloadKdf(wallet.payload) !== "hkdf" &&
+        (walletSetupRequest.mode === "web-passkey-sync" ||
+         wallet.payload.ciphertext !== walletSetupRequest.payload.ciphertext)) {
       throw new Error(
         "This wallet now has a password backup, so it can be unlocked. Close this and sign in again."
       );
