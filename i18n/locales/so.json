@@ -6768,6 +6768,12 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "beats": {
+      "markers": "Calaamadaha garaaca",
+      "sync": "Isku waafaji goynta",
+      "none": "Garaac lagu kalsoon yahay lama helin.",
+      "unchanged": "Goynta lama waafajin karin."
+    },
     "audioTools": {
       "normalize": "Caadi mugga",
       "denoise": "Hoos u dhig buuqa",

@@ -6770,6 +6770,12 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "beats": {
+      "markers": "Tandha ketukan",
+      "sync": "Selarasake potongan",
+      "none": "Ora ana ketukan sing dipercaya.",
+      "unchanged": "Potongan ora bisa diselarasake."
+    },
     "audioTools": {
       "normalize": "Normalake volume",
       "denoise": "Kurangi gangguan",

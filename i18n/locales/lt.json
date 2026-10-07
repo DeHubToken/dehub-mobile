@@ -6787,6 +6787,12 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritmo žymekliai",
+      "sync": "Sinchronizuoti kirpimus",
+      "none": "Patikimas ritmas nerastas.",
+      "unchanged": "Kirpimų nepavyko sulygiuoti."
+    },
     "audioTools": {
       "normalize": "Normalizuoti garsumą",
       "denoise": "Sumažinkite triukšmą",

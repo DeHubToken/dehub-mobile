@@ -6866,6 +6866,12 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "beats": {
+      "markers": "Penanda ketukan",
+      "sync": "Sinkronkan potongan",
+      "none": "Ketukan yang andal tidak ditemukan.",
+      "unchanged": "Potongan tidak dapat disejajarkan."
+    },
     "audioTools": {
       "normalize": "Normalisasi volume",
       "denoise": "Mengurangi kebisingan",

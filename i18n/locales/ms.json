@@ -7045,6 +7045,12 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "beats": {
+      "markers": "Penanda rentak",
+      "sync": "Segerakkan potongan",
+      "none": "Tiada rentak yang boleh dipercayai ditemui.",
+      "unchanged": "Potongan tidak dapat dijajarkan."
+    },
     "audioTools": {
       "normalize": "Normalkan isipadu",
       "denoise": "Kurangkan bunyi bising",

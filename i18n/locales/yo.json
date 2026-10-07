@@ -6769,6 +6769,12 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "beats": {
+      "markers": "Àmì ìlù",
+      "sync": "Mú àwọn gígé bá ara mu",
+      "none": "A kò rí ìlù tí a lè gbẹ́kẹ̀ lé.",
+      "unchanged": "A kò lè mú àwọn gígé bá ara mu."
+    },
     "audioTools": {
       "normalize": "Ṣe deede iwọn didun",
       "denoise": "Dinku ariwo",

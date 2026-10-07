@@ -6767,6 +6767,12 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritm bellikleri",
+      "sync": "Kesimleri sazlaşdyr",
+      "none": "Ygtybarly ritm tapylmady.",
+      "unchanged": "Kesimleri deňleşdirip bolmady."
+    },
     "audioTools": {
       "normalize": "Saýlamalary normallaşdyr",
       "denoise": "Sesleri azaltmak",

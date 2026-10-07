@@ -6800,6 +6800,12 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "beats": {
+      "markers": "Izimpawu zesigqi",
+      "sync": "Vumelanisa ukusika",
+      "none": "Asikho isigqi esithembekile esitholakele.",
+      "unchanged": "Ukusika akukwazanga ukuvumelaniswa."
+    },
     "audioTools": {
       "normalize": "Yenza ivolumu ibe evamile",
       "denoise": "Nciphisa umsindo",

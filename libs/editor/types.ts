@@ -188,6 +188,8 @@ export interface MediaClip extends BaseClip {
   mediaId: string;
   /** Source media natural duration (seconds), if applicable. */
   sourceDuration?: number;
+  /** Source-timed music beats for timeline markers and cut alignment. */
+  beats?: import("./beats").ClipBeatMap;
   effects?: ClipEffects;
   audio?: ClipAudio;
   /** Playback rate for video/audio sources. 1 = normal, 2 = 2x, 0.5 = half. Default 1. */

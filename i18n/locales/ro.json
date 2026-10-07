@@ -6802,6 +6802,12 @@
     }
   },
   "editor": {
+    "beats": {
+      "markers": "Marcaje de ritm",
+      "sync": "Sincronizează tăieturile",
+      "none": "Nu s-a găsit un ritm sigur.",
+      "unchanged": "Tăieturile nu au putut fi aliniate."
+    },
     "audioTools": {
       "normalize": "Normalizați volumul",
       "denoise": "Reduceți zgomotul",

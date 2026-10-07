@@ -1385,7 +1385,7 @@ canvas{display:block;width:100%;height:100%;}
   function processAudioClip(m) {
     if (audioJob) { post({ type: "audioFailed", reqId: m.reqId, error: "busy" }); return; }
     var c = m.clip, blob = blobs.get(c.mediaId);
-    if (!blob || c.locked || c.duration > 600 || ["normalize", "denoise", "voice"].indexOf(m.mode) < 0) { post({ type: "audioFailed", reqId: m.reqId, error: "audio" }); return; }
+    if (!blob || c.locked || c.duration > 600 || ["normalize", "denoise", "voice", "beats"].indexOf(m.mode) < 0) { post({ type: "audioFailed", reqId: m.reqId, error: "audio" }); return; }
     var job = { reqId: m.reqId, context: null, worker: null }; audioJob = job;
     Promise.resolve().then(function () {
       job.context = new (window.AudioContext || window.webkitAudioContext)();
@@ -1408,6 +1408,10 @@ canvas{display:block;width:100%;height:100%;}
         var data = event.data;
         if (data.type === "progress") post({ type: "audioProgress", reqId: m.reqId, fraction: data.fraction * 0.9 });
         else if (data.type === "error") { cancelAudioTool(m.reqId); post({ type: "audioFailed", reqId: m.reqId, error: data.message }); }
+        else if (data.type === "beats") {
+          cancelAudioTool(m.reqId);
+          post({ type: "beatsReady", reqId: m.reqId, times: data.times, bpm: data.bpm, confidence: data.confidence });
+        }
         else if (data.type === "done") {
           job.worker.terminate(); job.worker = null;
           audioOutgoing.set(m.reqId, { blob: new Blob([data.wav], { type: "audio/wav" }), offset: 0, duration: c.duration }); sendAudioChunk(m.reqId);

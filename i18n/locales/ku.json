@@ -6673,6 +6673,12 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "beats": {
+      "markers": "Nîşanên rîtmê",
+      "sync": "Birînan hevdem bike",
+      "none": "Rîtmeke pêbawer nehat dîtin.",
+      "unchanged": "Birîn nehatin lihevkirin."
+    },
     "audioTools": {
       "normalize": "ئاستی دەنگ هاوسەنگ بکە",
       "denoise": "ژاوەژاو کەم بکە",
