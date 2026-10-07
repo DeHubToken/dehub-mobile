@@ -849,6 +849,7 @@ canvas{display:block;width:100%;height:100%;}
   var exporting = false;
   var exportAborted = false;
   var gifSession = null;
+  var videoJobId = null;
   function currentTime() {
     if (playing && playStart) return playStart.time + (performance.now() - playStart.wall) / 1000;
     return state ? state.time : 0;
@@ -1157,11 +1158,12 @@ canvas{display:block;width:100%;height:100%;}
     if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
     stopPlaying();
     exporting = true;
+    videoJobId = m.reqId;
     exportAborted = false;
     var snap = state.snapshot;
     var fps = snap.settings.fps || 30;
-    var W = Math.max(2, Math.round(m.width) & ~1);
-    var H = Math.max(2, Math.round(m.height) & ~1);
+    var W = m.format === "gif" ? Math.max(1, Math.round(m.width)) : Math.max(2, Math.round(m.width) & ~1);
+    var H = m.format === "gif" ? Math.max(1, Math.round(m.height)) : Math.max(2, Math.round(m.height) & ~1);
     var contentDuration = timelineEnd(snap.clips, snap.settings);
     if (contentDuration <= 0) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "empty" }); return; }
     if (m.format === "gif" && contentDuration > 60) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "GIF supports up to 60 seconds" }); return; }
@@ -1194,12 +1196,16 @@ canvas{display:block;width:100%;height:100%;}
         });
       })
       .then(function (out) {
+        if (videoJobId !== m.reqId || exportAborted) return;
+        videoJobId = null;
         exporting = false;
         schedule();
         outgoing.set(m.reqId, { blob: out.blob, ext: out.ext, offset: 0 });
         sendNextChunk(m.reqId);
       })
       .catch(function (e) {
+        if (videoJobId !== m.reqId) return;
+        videoJobId = null;
         exporting = false;
         schedule();
         post({ type: "videoFailed", reqId: m.reqId, error: String((e && e.message) || e) });
@@ -1480,6 +1486,8 @@ canvas{display:block;width:100%;height:100%;}
       exportVideo(m);
     } else if (m.type === "exportAbort") {
       exportAborted = true;
+      videoJobId = null;
+      outgoing.clear();
       if (gifSession) gifSession.close();
       exporting = false;
       outgoing.clear();

@@ -29,7 +29,6 @@ import { useUser } from "../context/AuthContext";
 import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import { saveGif } from "../libs/editor/saveGif";
-import * as FileSystem from "expo-file-system/legacy";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import * as DocumentPicker from "expo-document-picker";
@@ -1064,7 +1063,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const plan = gifPlan(project.settings.width, project.settings.height, 1, duration + BRAND_OUTRO_DURATION, project.settings.fps);
       const out = await canvasRef.current.exportVideo({ width: plan.width, height: plan.height, bitrate: 0, title: project.title, username: outroUsername(user?.username), format: "gif" }, setRendering);
       uri = out.uri; await saveGif(uri, project.title);
-    } catch { toastError(t("editor.app.exportFailed")); }
+    } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
     finally { if (uri) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); setRendering(null); }
   };
 
@@ -1102,11 +1101,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           },
         });
       }
-    } catch {
-      toastError(t("editor.app.exportFailed"));
-    } finally {
-      setRendering(null);
-    }
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
+    } finally { setRendering(null); }
   };
 
   const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post") => {
@@ -1316,6 +1313,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
             <>
               <Text className="text-white text-sm font-semibold">{t("editor.video.rendering", { percent: Math.round(rendering * 100) })}</Text>
               <Text className="text-theme-neutrals-300 text-xs px-8 text-center">{t("editor.video.exportHint")}</Text>
+              <Pressable accessibilityRole="button" onPress={() => canvasRef.current?.cancelExport()} className="rounded-xl border border-white/20 px-5 py-3">
+                <Text className="text-white">{t("editor.export.cancel")}</Text>
+              </Pressable>
             </>
           )}
         </View>
