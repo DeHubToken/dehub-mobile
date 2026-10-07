@@ -6905,6 +6905,15 @@
     }
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Chuẩn hóa âm lượng",
+      "denoise": "Giảm tiếng ồn",
+      "voice": "Tăng cường giọng nói",
+      "working": "Đang xử lý âm thanh... {{percent}}%",
+      "done": "Đã thêm âm thanh đã xử lý. Hoàn tác khôi phục bản gốc.",
+      "failed": "Không thể xử lý âm thanh này. Bản gốc không thay đổi.",
+      "hint": "Các clip quy trình tối đa 10 phút. Giảm tiếng ồn hoạt động tốt nhất với tiếng ồn nền ổn định."
+    },
     "pages": {
     "add":  "Thêm trang",
     "duplicate":  "Nhân bản trang",

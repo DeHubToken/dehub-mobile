@@ -6913,6 +6913,15 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normaliseer volume",
+      "denoise": "Verminder geraas",
+      "voice": "Verbeter stem",
+      "working": "Verwerking klank... {{percent}}%",
+      "done": "Verwerkte klank bygevoeg. Ontdoen herstel die oorspronklike.",
+      "failed": "Ek kon nie die geluid verwerk nie. Die oorspronklike is onveranderd.",
+      "hint": "Verwerk snitte tot 10 minute. Geraasvermindering werk die beste met bestendige agtergrond geraas."
+    },
     "pages": {
     "add":  "Voeg bladsy by",
     "duplicate":  "Dupliseer bladsy",

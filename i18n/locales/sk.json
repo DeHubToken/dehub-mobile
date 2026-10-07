@@ -6953,6 +6953,15 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalizácia objemu",
+      "denoise": "Zníženie hluku",
+      "voice": "Vylepšite hlas",
+      "working": "Spracováva sa zvuk... {{percent}}%",
+      "done": "Pridaný spracovaný zvuk. Vrátenie späť obnoví pôvodný zvuk.",
+      "failed": "Tento zvuk sa nepodarilo spracovať. Originál zostáva nezmenený.",
+      "hint": "Spracujte klipy do 10 minút. Redukcia šumu funguje najlepšie pri stabilnom šumu pozadia."
+    },
     "pages": {
     "add":  "Pridať stranu",
     "duplicate":  "Duplikovať stranu",

@@ -6855,6 +6855,15 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "标准化音量",
+      "denoise": "降低噪音",
+      "voice": "增强语音",
+      "working": "正在处理声音... {{percent}} %",
+      "done": "已添加处理的声音。撤消还原始声音。",
+      "failed": "无法处理此声音。 原件不变。",
+      "hint": "处理剪辑长达10分钟。 降噪效果最好，背景噪音稳定。"
+    },
     "pages": {
     "add":  "添加页面",
     "duplicate":  "复制页面",

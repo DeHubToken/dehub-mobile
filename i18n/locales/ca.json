@@ -6788,6 +6788,15 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalitza el volum",
+      "denoise": "Redueix el soroll",
+      "voice": "Millora la veu",
+      "working": "S'està processant el so... {{percent}}%",
+      "done": "S'ha afegit el so processat. Desfés restaura l'original.",
+      "failed": "No s'ha pogut processar aquest so. L'original no canvia.",
+      "hint": "Processa clips de fins a 10 minuts. La reducció de soroll funciona millor amb soroll de fons constant."
+    },
     "pages": {
     "add":  "Afegeix una pàgina",
     "duplicate":  "Duplica la pàgina",

@@ -6736,6 +6736,15 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+      "denoise": "Ka mankan nɔgɔya",
+      "voice": "Ka dɔ fara a ka fɔta kan",
+      "done": "O kɔ, a ye dɔ fara a ka fɔta kan.",
+      "failed": "O mankan nin tɛ se ka yɛlɛma. Nka, a daminɛ na, a tun tɛ yɛlɛma.",
+      "hint": "Aw ye a to a ka maga aw la miniti 10 ɲɔgɔn. Ni mankan be bɔ yɔrɔ min na, a ka fisa a ka bɔ yɔrɔ min na.",
+      "working": "Kan bɛ labɛn... {{percent}}%"
+    },
     "pages": {
     "add":  "Ɲɛ fara a kan",
     "duplicate":  "Ɲɛ in dabila fila",

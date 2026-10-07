@@ -6842,6 +6842,15 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Ovoz balandligini normallashtirish",
+      "denoise": "Shovqinni kamaytiring",
+      "voice": "Ovozni yaxshilash",
+      "working": "Ovoz qayta ishlanmoqda... {{percent}}%",
+      "done": "Qayta ishlangan ovoz qo&#39;shildi. Bekor qilish asl tovushni tiklaydi.",
+      "failed": "Bu tovushni qayta ishlab bo&#39;lmadi. Asl nusxasi o&#39;zgartirilmagan.",
+      "hint": "Kliplarni 10 daqiqagacha qayta ishlang. Shovqinni kamaytirish barqaror fon shovqini bilan eng yaxshi ishlaydi."
+    },
     "pages": {
     "add":  "Sahifa qo\u0027shish",
     "duplicate":  "Sahifadan nusxa olish",

@@ -6769,6 +6769,15 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Te rōrahi ritenga",
+      "denoise": "Te whakaiti i te haruru",
+      "voice": "Whakapai ake i te reo",
+      "working": "Te tukatuka o te oro... {{percent}}%",
+      "done": "I tāpirihia te tangi tukatuka. Ka whakahoutia e Undo te taketake.",
+      "failed": "Kaore e taea e au te whakatika i tenei tangi. Ko te taketake e kore e huri.",
+      "hint": "Ka tae atu ki te 10 meneti te roa o te tukanga. Ko te whakaiti i te tangi e pai ana ki te haruru o muri."
+    },
     "pages": {
     "add":  "Tāpiri whārangi",
     "duplicate":  "Tārua whārangi",

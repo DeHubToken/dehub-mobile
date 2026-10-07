@@ -6729,6 +6729,15 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Make volume normal",
+      "denoise": "Cut noise",
+      "voice": "Make voice better",
+      "working": "Processing sound... {{percent}}%",
+      "done": "Processed sound don add. Undo go bring back the original.",
+      "failed": "Dem no fit process dis sound. The original no change.",
+      "hint": "Process clips reach 10 minutes. Noise reduction work best wit steady background noise."
+    },
     "pages": {
     "add":  "Add page",
     "duplicate":  "Copy page",

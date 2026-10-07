@@ -6787,6 +6787,15 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalisoi äänenvoimakkuus",
+      "denoise": "Vähennä melua",
+      "voice": "Paranna ääntä",
+      "working": "Käsitellään ääntä... {{percent}}%",
+      "done": "Käsitelty ääni lisätty. Kumoa palauttaa alkuperäisen.",
+      "failed": "Tätä ääntä ei voitu käsitellä. Alkuperäinen on muuttumaton.",
+      "hint": "Käsittele leikkeet jopa 10 minuutin ajan. Melunvaimennus toimii parhaiten tasaisen taustamelun kanssa."
+    },
     "pages": {
     "add":  "Lisää sivu",
     "duplicate":  "Monista sivu",

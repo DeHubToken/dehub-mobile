@@ -6779,6 +6779,15 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "正規化音量",
+      "denoise": "減少噪音",
+      "voice": "增強聲音",
+      "working": "處理聲 … … {{percent}} %",
+      "done": "加咗處理過嘅聲音。復原會還原原始版本。",
+      "failed": "無法處理此聲音。原始的未有更改。",
+      "hint": "處理片段最多10分鐘。降噪效果最好係穩定嘅背景噪音。"
+    },
     "pages": {
     "add":  "加頁",
     "duplicate":  "複製呢頁",

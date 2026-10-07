@@ -6817,6 +6817,15 @@
     "noStories": "还没有动态"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "规范音量",
+      "denoise": "降低噪音",
+      "voice": "增强人声",
+      "working": "正在处理声音... {{percent}}%",
+      "done": "已添加处理后的声音。撤销将恢复原始音频。",
+      "failed": "无法处理此声音。原始音频保持不变。",
+      "hint": "处理时长最长为10分钟的剪辑。噪音消除在背景噪音稳定时效果最佳。"
+    },
     "pages": {
     "add":  "添加页面",
     "duplicate":  "复制页面",

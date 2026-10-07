@@ -6877,6 +6877,15 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Lautstärke normalisieren",
+      "denoise": "Geräuschreduzierung",
+      "voice": "Stimme verbessern",
+      "working": "Ton wird verarbeitet... {{percent}}%",
+      "done": "Verarbeiteter Ton hinzugefügt. Rückgängig stellt das Original wieder her.",
+      "failed": "Dieses Geräusch konnte nicht verarbeitet werden. Das Original ist unverändert.",
+      "hint": "Bearbeiten Sie Clips bis zu 10 Minuten. Die Rauschunterdrückung funktioniert am besten bei stetigen Hintergrundgeräuschen."
+    },
     "pages": {
     "add":  "Seite hinzufügen",
     "duplicate":  "Seite duplizieren",

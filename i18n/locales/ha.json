@@ -6769,6 +6769,15 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalize girma",
+      "denoise": "Rage hayaniya",
+      "voice": "Inganta murya",
+      "working": "Sautin sarrafawa... {{percent}}%",
+      "done": "Sautin da aka sarrafa ya kara. Undo ya dawo da asali.",
+      "failed": "Ba zan iya aiwatar da wannan sauti ba. Asali ba shi da canji.",
+      "hint": "Shirya shirye-shiryen bidiyo har zuwa minti 10. Sauti rage aiki mafi kyau tare da m baya amo."
+    },
     "pages": {
     "add":  "Ƙara shafi",
     "duplicate":  "Kwafi shafi",

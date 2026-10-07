@@ -6816,6 +6816,15 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Volum normalisiere",
+      "denoise": "Ruusig reduziere",
+      "voice": "Stimm verstärke",
+      "working": "Ton wird verarbeitet... {{percent}}%",
+      "done": "Verarbeitete Ton hinzugefügt. Rückgängig stellt das Original wieder her.",
+      "failed": "Ton konnt nöd verarbeitet werde. S'Original bleibt unverändert.",
+      "hint": "Verarbeite Clips bis zu 10 Minute. Ruusigreduzierung funktioniert am beschte bi konstanter Hintergrundruusig."
+    },
     "pages": {
     "add":  "Siite dezue tue",
     "duplicate":  "Siite dupliziere",

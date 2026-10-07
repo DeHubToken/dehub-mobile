@@ -6802,6 +6802,15 @@
     }
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalizați volumul",
+      "denoise": "Reduceți zgomotul",
+      "voice": "Îmbunătățește vocea",
+      "working": "Sunet de procesare... {{percent}}%",
+      "done": "Sunetul procesat a fost adăugat. Anularea restaurează originalul.",
+      "failed": "Nu s-a putut procesa acest sunet. Originalul este neschimbat.",
+      "hint": "Clipuri de proces de până la 10 minute. Reducerea zgomotului funcționează cel mai bine cu zgomot de fond constant."
+    },
     "pages": {
     "add":  "Adaugă pagină",
     "duplicate":  "Duplică pagina",

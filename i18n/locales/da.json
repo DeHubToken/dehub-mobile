@@ -6792,6 +6792,15 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normaliser lydstyrken",
+      "denoise": "Reducer støj",
+      "voice": "Forbedr stemmen",
+      "working": "Behandler lyd... {{percent}} %",
+      "done": "Behandlet lyd tilføjet. Fortryd gendanner originalen.",
+      "failed": "Kunne ikke behandle denne lyd. Originalen er uændret.",
+      "hint": "Behandl klip i op til 10 minutter. Støjreduktion fungerer bedst med konstant baggrundsstøj."
+    },
     "pages": {
     "add":  "Tilføj side",
     "duplicate":  "Dupliker side",

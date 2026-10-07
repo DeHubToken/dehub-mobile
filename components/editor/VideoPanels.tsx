@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Chip, ChipRow, Labeled, Range, type LayerClip, type Patch } from "./EditorPanels";
 import type { ClipAnimationKind, MediaClip, Transition, TransitionKind } from "../../libs/editor/types";
 import { MAX_TRANSITION_DURATION, MIN_TRANSITION_DURATION, SPEEDS, TRANSITION_KINDS } from "../../libs/editor/timeline";
+import { AUDIO_TOOL_MODES, type AudioToolMode } from "../../libs/editor/audioTools";
 
 interface PanelProps<C> {
   clip: C;
@@ -30,7 +31,7 @@ export function SpeedPanel({ clip, onPick }: { clip: MediaClip; onPick: (speed: 
   );
 }
 
-export function SoundPanel({ clip, live, settle }: PanelProps<MediaClip>) {
+export function SoundPanel({ clip, live, settle, processAudio, progress, cancelAudio }: PanelProps<MediaClip> & { processAudio: (mode: AudioToolMode) => void; progress: number | null; cancelAudio: () => void }) {
   const { t } = useTranslation();
   const a = clip.audio ?? {};
   const vol = a.volume ?? 1;
@@ -65,6 +66,11 @@ export function SoundPanel({ clip, live, settle }: PanelProps<MediaClip>) {
         onDone={settle}
       />
       <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.fadeHint")}</Text>
+      <ChipRow>
+        {AUDIO_TOOL_MODES.map(mode => <Chip key={mode} label={t(`editor.audioTools.${mode}`)} disabled={progress !== null || !!clip.locked || clip.duration > 600} active={false} onPress={() => processAudio(mode)} />)}
+      </ChipRow>
+      {progress !== null && <View style={{ gap: 4 }}><Text className="text-theme-neutrals-300 text-xs">{t("editor.audioTools.working", { percent: Math.round(progress * 100) })}</Text><ChipRow><Chip label={t("common.cancel")} active={false} onPress={cancelAudio} /></ChipRow></View>}
+      <Text className="text-theme-neutrals-400 text-xs">{t("editor.audioTools.hint")}</Text>
     </View>
   );
 }

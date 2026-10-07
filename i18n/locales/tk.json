@@ -6767,6 +6767,15 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Saýlamalary normallaşdyr",
+      "denoise": "Sesleri azaltmak",
+      "voice": "Sesi gowulandyrmak",
+      "working": "Ses işleme... {{percent}}%",
+      "done": "Gaýtam, aslyny gaýtaryp ber.",
+      "failed": "Men bu sesleri eşitmedim. Asl nusga üýtgän däldir.",
+      "hint": "Gotdibz 10 Ses azaldylmagy berk arkaýyn gürültü bilen iň gowy işleşýär."
+    },
     "pages": {
     "add":  "Sahypa goş",
     "duplicate":  "Sahypany göçür",

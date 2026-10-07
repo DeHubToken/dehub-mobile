@@ -6791,6 +6791,15 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Hangerő normalizálása",
+      "denoise": "Csökkentse a zajt",
+      "voice": "Hang javítása",
+      "working": "Hang feldolgozása... {{percent}}%",
+      "done": "Feldolgozott hang hozzáadva. Visszavonás visszaállítja az eredetit.",
+      "failed": "Nem sikerült feldolgozni ezt a hangot. Az eredeti változatlan.",
+      "hint": "A folyamatcsipeszek legfeljebb 10 percig tartanak. A zajcsökkentés az egyenletes háttérzaj mellett működik a legjobban."
+    },
     "pages": {
     "add":  "Oldal hozzáadása",
     "duplicate":  "Oldal duplikálása",

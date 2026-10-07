@@ -6968,6 +6968,15 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "I-normalisa ang volume",
+      "denoise": "Bawasan ang ingay",
+      "voice": "Pahusayin ang boses",
+      "working": "Processing sound... {{percent}}%",
+      "done": "Nagdagdag ng naprosesong tunog. Ibabalik ng undo ang orihinal.",
+      "failed": "Hindi maproseso ang tunog na ito. Ang orihinal ay hindi nagbago.",
+      "hint": "Magproseso ng mga clip hanggang 10 minuto. Ang pagbabawas ng ingay ay pinakamahusay na gumagana sa matatag na ingay sa background."
+    },
     "pages": {
     "add":  "Magdagdag ng pahina",
     "duplicate":  "I-duplicate ang pahina",

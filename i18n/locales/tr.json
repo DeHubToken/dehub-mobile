@@ -6867,6 +6867,15 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Sesi normalleştir",
+      "denoise": "Gürültüyü azaltın",
+      "voice": "Sesi geliştir",
+      "working": "Ses işleniyor... {{percent}}%",
+      "done": "İşlenmiş ses eklendi. Geri al orijinali geri yükler.",
+      "failed": "Bu ses işlenemedi. Orijinali değişmemiştir.",
+      "hint": "Klipleri 10 dakikaya kadar işleyin. Gürültü azaltma, sabit arka plan gürültüsü ile en iyi sonucu verir."
+    },
     "pages": {
     "add":  "Sayfa ekle",
     "duplicate":  "Sayfayı çoğalt",

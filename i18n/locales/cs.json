@@ -6790,6 +6790,15 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalizovat hlasitost",
+      "denoise": "Snižte hluk",
+      "voice": "Vylepšete hlas",
+      "working": "Zpracování zvuku... {{percent}}%",
+      "done": "Byl přidán zpracovaný zvuk. Zpět obnoví originál.",
+      "failed": "Tento zvuk se nepodařilo zpracovat. Originál zůstává nezměněn.",
+      "hint": "Zpracování klipů až 10 minut. Redukce šumu funguje nejlépe při stálém šumu na pozadí."
+    },
     "pages": {
     "add":  "Přidat stránku",
     "duplicate":  "Duplikovat stránku",

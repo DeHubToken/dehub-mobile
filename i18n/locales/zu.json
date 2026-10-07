@@ -6800,6 +6800,15 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Yenza ivolumu ibe evamile",
+      "denoise": "Nciphisa umsindo",
+      "voice": "Thuthukisa izwi",
+      "working": "Iphrosesa umsindo... {{percent}}%",
+      "done": "Umsindo ophrosesiwe ufakiwe. Lungisa okokuqala.",
+      "failed": "Ayikwazanga ukuphrosesa lo msindo. Okwasekuqaleni akushintshiwe.",
+      "hint": "Phrosesa iziqeshana ezifika emizuzwini engu-10. Ukunciphisa umsindo kusebenza kangcono kunomsindo wesizinda ozinzile."
+    },
     "pages": {
     "add":  "Engeza ikhasi",
     "duplicate":  "Phinda ikhasi",

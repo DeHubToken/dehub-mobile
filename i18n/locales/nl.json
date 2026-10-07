@@ -7073,6 +7073,15 @@
     }
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Volume normaliseren",
+      "denoise": "Geluid verminderen",
+      "voice": "Stem verbeteren",
+      "working": "Geluid verwerken... {{percent}}%",
+      "done": "Verwerkt geluid toegevoegd. Ongedaan maken herstelt het origineel.",
+      "failed": "Kon dit geluid niet verwerken. Het origineel is ongewijzigd.",
+      "hint": "Verwerk clips tot 10 minuten. Ruisonderdrukking werkt het beste bij constante achtergrondgeluiden."
+    },
     "pages": {
     "add":  "Pagina toevoegen",
     "duplicate":  "Pagina dupliceren",
