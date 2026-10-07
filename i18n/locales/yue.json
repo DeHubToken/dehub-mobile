@@ -6919,6 +6919,13 @@
       "delete": "刪除"
     },
     "export": {
+      "scope": "下載範圍",
+      "downloadTimeline": "成個時間線",
+      "downloadSelection": "所選影片片段（ {{count}} ）",
+      "downloadClips": "每一段影片（ {{count}} ）",
+      "rangeHint": "為每個剪輯保留字幕同聲音。每個檔案都會加入一個2.2秒嘅 DeHub 結尾。多個檔案一齊以 ZIP 形式下載。",
+      "exportingClips": "匯出片段 {{current}} 嘅 {{total}}",
+      "archiveTooLarge": "下載量超過512 MiB 。匯出少啲片段或者揀較低解像度。",
       "gifHint": "冇聲嘅循環動畫。長達 60 秒、 640 像素同 15 fps 。包括你嘅標誌結尾。",
       "gifTooLong": "將時間線剪到 60 秒或以下，或選擇 MP4 或 WebM。",
       "format": "檔案類型",

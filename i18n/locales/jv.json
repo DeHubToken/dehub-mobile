@@ -6911,6 +6911,13 @@
       "delete": "Busak"
     },
     "export": {
+      "scope": "Unduh rentang",
+      "downloadTimeline": "Seluruh garis wektu",
+      "downloadSelection": "Klip video sing dipilih ({{count}})",
+      "downloadClips": "Saben klip video ({{count}})",
+      "rangeHint": "Njaga caption lan swara kanggo saben potongan. Saben file nambah pungkasan DeHub 2,2 detik. Akeh file diunduh bebarengan minangka ZIP.",
+      "exportingClips": "Ngekspor klip {{current}} saka {{total}}",
+      "archiveTooLarge": "Unduhan ngluwihi 512 MiB. Ekspor luwih sithik klip utawa pilih resolusi sing luwih murah.",
       "gifHint": "Animasi looping tanpa swara. nganti 60 detik, 640 piksel lan 15 fps. Kalebu logo panjenengan ing pungkasan.",
       "gifTooLong": "Potong timeline nganti 60 detik utawa kurang, utawa pilih MP4 utawa WebM.",
       "format": "Jinis file",

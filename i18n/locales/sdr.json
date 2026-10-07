@@ -6998,6 +6998,13 @@
       "delete": "مٹاؤ"
     },
     "export": {
+      "scope": "डाउनलोड रेंज",
+      "downloadTimeline": "पूरा टाइमलाइन",
+      "downloadSelection": "चुने गेल वीडियो क्लिप्स ({{count}})",
+      "downloadClips": "हर वीडियो क्लिप ({{count}})",
+      "rangeHint": "हर कट खातिर कैप्शन आ साउंड रखे हे। हर फाइल में 2.2 सेकंड के DeHub अंत जोड़ल जाला। कई फाइल एक साथ ZIP में डाउनलोड होई।",
+      "exportingClips": "क्लिप {{current}} के निर्यात कर रहल बानी {{total}} में से",
+      "archiveTooLarge": "डाउनलोड 512 MiB से अधिक बा। कम क्लिप निर्यात करीं या कम रिज़ॉल्यूशन चुनलीं।",
       "gifHint": "बिना आवाज़ के लूपिंग एनीमेशन। 60 सेकेंड तक, 640 पिक्सेल और 15 fps। आपके लोगो के अंत सहित।",
       "gifTooLong": "Timeline ke 60 second se kam kar de, nai to MP4 ya WebM chuni.",
       "format": "فائل کے قسم",

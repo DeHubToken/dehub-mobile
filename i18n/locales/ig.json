@@ -6908,6 +6908,13 @@
       "delete": "Hichaa"
     },
     "export": {
+      "scope": "Download nso",
+      "downloadTimeline": "Usoroiheomume niile",
+      "downloadSelection": "Vidio ndị a họọrọ ({{count}})",
+      "downloadClips": "Onye ọ bụla video clip ({{count}})",
+      "rangeHint": "Na-edebe nkọwa na ụda maka ịkpụ ọ bụla. Onye ọ bụla faịlụ tinye a 2.2-abụọ DeHub agwụcha. Ọtụtụ faịlụ budata ọnụ dị ka a ZIP.",
+      "exportingClips": "Mbupụ clip {{current}} nke {{total}}",
+      "archiveTooLarge": "Ọnụ ọgụgụ kasị elu bụ 512 MB. Export ole na ole mkpachị ma ọ bụ họrọ a ala mkpebi.",
       "gifHint": "Looping animation na-enweghị ụda. Ruo 60 sekọnd, 640 pikselụ na 15 fps. Gụnyere gị logo agwụcha.",
       "gifTooLong": "Wepụ usoro iheomume ka 60 sekọnd ma ọ bụ obere, ma ọ bụ họrọ MP4 ma ọ bụ WebM.",
       "format": "Ụdị faịlụ",

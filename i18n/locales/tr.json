@@ -7008,6 +7008,13 @@
       "delete": "Sil"
     },
     "export": {
+      "scope": "İndirme aralığı",
+      "downloadTimeline": "Tüm zaman çizelgesi",
+      "downloadSelection": "Seçili video klipler ({{count}})",
+      "downloadClips": "Her video klip ({{count}})",
+      "rangeHint": "Her kesim için altyazı ve sesi korur. Her dosya 2,2 saniyelik DeHub sonu ekler. Birden fazla dosya birlikte ZIP olarak indirilir.",
+      "exportingClips": "{{current}} / {{total}} klip dışa aktarılıyor",
+      "archiveTooLarge": "İndirme 512 MiB'yi aşıyor. Daha az klip dışa aktarın veya daha düşük bir çözünürlük seçin.",
       "gifHint": "Ses olmadan döngüsel animasyon. 60 saniyeye kadar, 640 piksel ve 15 fps. Logonuzun sonunu içerir.",
       "gifTooLong": "Zaman çizelgesini 60 saniye veya daha az olacak şekilde kısaltın veya MP4 veya WebM'yi seçin.",
       "format": "Dosya türü",

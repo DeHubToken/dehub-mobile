@@ -7054,6 +7054,13 @@
       "delete": "Skrap"
     },
     "export": {
+      "scope": "Laai reeks af",
+      "downloadTimeline": "Hele tydlyn",
+      "downloadSelection": "Geselekteerde video-knipsels ({{count}})",
+      "downloadClips": "Elke video clip ({{count}})",
+      "rangeHint": "Hou onderskrifte en klank vir elke snit. Elke lêer voeg 'n 2.2 sekonde DeHub einde. Veelvuldige lêers aflaai saam as 'n ZIP.",
+      "exportingClips": "Voer clip uit {{current}} van {{total}}",
+      "archiveTooLarge": "Die poskode is meer as 512 MB. Voer minder snitte uit of kies 'n laer resolusie.",
       "gifHint": "Loop animasie sonder klank. Tot 60 sekondes, 640 pixels en 15 fps. Sluit jou logo einde.",
       "gifTooLong": "Sny die tydlyn na 60 sekondes of minder, of kies MP4 of WebM.",
       "format": "Lêertipe",

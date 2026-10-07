@@ -6928,6 +6928,13 @@
       "delete": "Ištrinti"
     },
     "export": {
+      "scope": "Atsisiuntimo diapazonas",
+      "downloadTimeline": "Visa laiko juosta",
+      "downloadSelection": "Pasirinkti vaizdo įrašai ({{count}})",
+      "downloadClips": "Kiekvienas vaizdo klipas ({{count}})",
+      "rangeHint": "Išlaiko kiekvieno pjūvio antraštes ir garsą. Kiekvienas failas prideda 2,2 sekundės „DeHub“ pabaigą. Keli failai atsisiunčiami kartu kaip „ZIP“.",
+      "exportingClips": "Eksportuojamas {{current}} klipas iš {{total}}",
+      "archiveTooLarge": "Atsisiuntimas viršija 512 MiB. Eksportuokite mažiau klipų arba pasirinkite mažesnę skiriamąją gebą.",
       "gifHint": "Ciklinė animacija be garso. Iki 60 sekundžių, 640 pikselių ir 15 fps. Su jūsų logotipo pabaiga.",
       "gifTooLong": "Sutrumpinkite laiko juostą iki 60 sekundžių ar mažiau arba pasirinkite MP4 arba WebM.",
       "format": "Failo tipas",

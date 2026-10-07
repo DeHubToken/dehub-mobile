@@ -7046,6 +7046,13 @@
       "delete": "Xóa"
     },
     "export": {
+      "scope": "Phạm vi tải xuống",
+      "downloadTimeline": "Toàn bộ dòng thời gian",
+      "downloadSelection": "Các video clip đã chọn ({{count}})",
+      "downloadClips": "Mỗi video clip ({{count}})",
+      "rangeHint": "Giữ phụ đề và âm thanh cho mỗi lần cắt. Mỗi tệp thêm một kết thúc DeHub 2,2 giây. Nhiều tệp tải xuống cùng nhau dưới dạng ZIP.",
+      "exportingClips": "Xuất clip {{current}} trong số {{total}}",
+      "archiveTooLarge": "Tải xuống vượt quá 512 MiB. Xuất ít clip hơn hoặc chọn độ phân giải thấp hơn.",
       "gifHint": "Lặp lại hoạt ảnh mà không có âm thanh. Lên đến 60 giây, 640 pixel và 15 khung hình/giây. Bao gồm phần cuối logo của bạn.",
       "gifTooLong": "Cắt dòng thời gian thành 60 giây hoặc ít hơn, hoặc chọn MP4 hoặc WebM.",
       "format": "Loại tệp",

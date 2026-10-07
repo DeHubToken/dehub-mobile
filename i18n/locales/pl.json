@@ -7028,6 +7028,13 @@
       "delete": "Usuń"
     },
     "export": {
+      "scope": "Zakres pobierania",
+      "downloadTimeline": "Cała oś czasu",
+      "downloadSelection": "Wybrane klipy wideo ({{count}})",
+      "downloadClips": "Każdy klip wideo ({{count}})",
+      "rangeHint": "Zachowuje podpisy i dźwięk dla każdego cięcia. Każdy plik dodaje 2,2-sekundowe zakończenie DeHub. Wiele plików pobiera się razem jako ZIP.",
+      "exportingClips": "Eksportowanie klipu {{current}} z {{total}}",
+      "archiveTooLarge": "Pobieranie przekracza 512 MiB. Eksportuj mniej klipów lub wybierz niższą rozdzielczość.",
       "gifHint": "Animacja zapętlania bez dźwięku. Do 60 sekund, 640 pikseli i 15 fps. Zawiera końcówkę Twojego logo.",
       "gifTooLong": "Przytnij oś czasu do 60 sekund lub mniej albo wybierz MP4 lub WebM.",
       "format": "Typ pliku",

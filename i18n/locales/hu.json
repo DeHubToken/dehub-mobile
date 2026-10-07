@@ -6932,6 +6932,13 @@
       "delete": "Törlés"
     },
     "export": {
+      "scope": "Letöltési tartomány",
+      "downloadTimeline": "Teljes idővonal",
+      "downloadSelection": "Kiválasztott videoklipek ({{count}})",
+      "downloadClips": "Minden videoklip ({{count}})",
+      "rangeHint": "Megtartja a feliratokat és a hangot minden vágáshoz. Minden fájlhoz 2,2 másodperces DeHub befejezés adódik. Több fájl együtt ZIP-ként töltődik le.",
+      "exportingClips": "{{current}}/{{total}} klip exportálása",
+      "archiveTooLarge": "A letöltés meghaladja az 512 MiB-ot. Exportáljon kevesebb klipet, vagy válasszon alacsonyabb felbontást.",
       "gifHint": "Az animáció hurkolása hang nélkül. Akár 60 másodpercig, 640 képpontig és 15 képkocka/másodpercig. Tartalmazza a logód végét.",
       "gifTooLong": "Vágja le az idővonalat legfeljebb 60 másodpercre, vagy válassza az MP4 vagy a WebM lehetőséget.",
       "format": "Fájltípus",
