@@ -1470,15 +1470,19 @@ canvas{display:block;width:100%;height:100%;}
   }
   var captionsWorker = null;
   var captionsBusy = false;
+  var captionsJob = null;
   function transcribeClip(m) {
     if (captionsBusy) { post({ type: "captionsFailed", reqId: m.reqId, error: "busy" }); return; }
     var c = m.clip;
+    if (!(c.duration * (c.speed || 1) > 0) || c.duration * (c.speed || 1) > 600) { post({ type: "captionsFailed", reqId: m.reqId, error: "highlight_limit" }); return; }
     var src = videos.get(c.mediaId) || audios.get(c.mediaId);
     if (!src || !blobs.has(c.mediaId)) { post({ type: "captionsFailed", reqId: m.reqId, error: "media" }); return; }
     captionsBusy = true;
+    captionsJob = m.reqId;
     var ac = new (window.AudioContext || window.webkitAudioContext)();
     blobs.get(c.mediaId).arrayBuffer().then(function (bytes) { return ac.decodeAudioData(bytes); })
       .then(function (decoded) {
+        if (captionsJob !== m.reqId) { ac.close(); return null; }
         var seconds = Math.min(c.duration * (c.speed || 1), decoded.duration - c.trimIn, 600);
         if (seconds <= 0) throw new Error("empty");
         var off = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, Math.ceil(seconds * 16000), 16000);
@@ -1486,20 +1490,21 @@ canvas{display:block;width:100%;height:100%;}
         return off.startRendering();
       }).then(function (decoded) {
         ac.close();
+        if (!decoded || captionsJob !== m.reqId) return;
         if (!captionsWorker) {
           var workerUrl = URL.createObjectURL(new Blob([__CAPTIONS_WORKER_SOURCE__], { type: "text/javascript" }));
           captionsWorker = new Worker(workerUrl, { type: "module" }); URL.revokeObjectURL(workerUrl);
         }
         captionsWorker.onmessage = function (event) {
           var data = event.data || {};
-          if (data.id !== m.reqId) return;
-          if (data.type === "done" || data.type === "error") captionsBusy = false;
+          if (data.id !== m.reqId || captionsJob !== m.reqId) return;
+          if (data.type === "done" || data.type === "error") { captionsBusy = false; captionsJob = null; }
           post({ type: data.type === "done" ? "captionsDone" : data.type === "error" ? "captionsFailed" : "captionsProgress", reqId: m.reqId, words: data.words, error: data.message, stage: data.type, loaded: data.loaded, total: data.total, done: data.done });
         };
-        captionsWorker.onerror = function () { captionsBusy = false; captionsWorker.terminate(); captionsWorker = null; post({ type: "captionsFailed", reqId: m.reqId, error: "worker" }); };
+        captionsWorker.onerror = function () { if (captionsJob !== m.reqId) return; captionsBusy = false; captionsJob = null; captionsWorker.terminate(); captionsWorker = null; post({ type: "captionsFailed", reqId: m.reqId, error: "worker" }); };
         var audio = decoded.getChannelData(0).slice();
         captionsWorker.postMessage({ id: m.reqId, audio: audio }, [audio.buffer]);
-      }).catch(function (error) { ac.close(); captionsBusy = false; post({ type: "captionsFailed", reqId: m.reqId, error: String(error.message || error) }); });
+      }).catch(function (error) { ac.close(); if (captionsJob !== m.reqId) return; captionsBusy = false; captionsJob = null; post({ type: "captionsFailed", reqId: m.reqId, error: String(error.message || error) }); });
   }
   function onMessage(ev) {
     // Android dispatches on document, which bubbles to window: handle it once.
@@ -1593,8 +1598,10 @@ canvas{display:block;width:100%;height:100%;}
     } else if (m.type === "audioCancel") {
       cancelAudioTool(m.reqId);
     } else if (m.type === "captionsCancel") {
-      if (captionsWorker) captionsWorker.terminate();
-      captionsWorker = null; captionsBusy = false;
+      if (!m.reqId || captionsJob === m.reqId) {
+        if (captionsWorker) captionsWorker.terminate();
+        captionsWorker = null; captionsBusy = false; captionsJob = null;
+      }
     } else if (m.type === "path") {
       // Where a keyed layer's centre travels over its clip (web Compositor
       // motionPath): the same boxes the handles use, sampled across the clip.

@@ -42,7 +42,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
-  transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void) => Promise<CaptionWord[]>;
+  transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void, signal?: AbortSignal) => Promise<CaptionWord[]>;
   detectShots: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<ShotAnalysis>;
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
@@ -149,7 +149,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const sentMedia = useRef(new Set<string>());
   const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
-  const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; timer: ReturnType<typeof setTimeout> }>());
+  const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
   const shotReqs = useRef(new Map<string, { clip: MediaClip; resolve: (v: ShotAnalysis) => void; reject: (e: Error) => void; progress?: (f: number) => void; cleanup: () => void }>());
   const beatReqs = useRef(new Map<string, { resolve: (v: BeatAnalysis) => void; reject: (e: Error) => void; progress?: (v: number) => void; cleanup: () => void }>());
@@ -392,7 +392,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       case "captionsDone": case "captionsFailed": {
         const r = captionReqs.current.get(msg.reqId);
         if (!r) break;
-        clearTimeout(r.timer);
+        r.cleanup();
         captionReqs.current.delete(msg.reqId);
         if (msg.type === "captionsDone" && Array.isArray(msg.words)) r.resolve(msg.words);
         else r.reject(new Error(msg.error || "captions failed"));
@@ -437,7 +437,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const restart = useCallback(() => {
     for (const r of audioReqs.current.values()) { r.out?.discard(); r.cleanup(); r.reject(new Error("canvas restarted")); }
     audioReqs.current.clear();
-    for (const r of captionReqs.current.values()) { clearTimeout(r.timer); r.reject(new Error("canvas restarted")); }
+    for (const r of captionReqs.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
     captionReqs.current.clear();
     for (const r of cutoutReqs.current.values()) r.done(null);
     cutoutReqs.current.clear();
@@ -494,10 +494,17 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "processAudio", reqId, clip, mode });
     }),
-    transcribe: (clip, onProgress) => new Promise<CaptionWord[]>((resolve, reject) => {
+    transcribe: (clip, onProgress, signal) => new Promise<CaptionWord[]>((resolve, reject) => {
+      if (signal?.aborted) { reject(new Error("cancelled")); return; }
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-      const timer = setTimeout(() => { captionReqs.current.delete(reqId); post({ type: "captionsCancel" }); reject(new Error("captions timed out")); }, 30 * 60 * 1000);
-      captionReqs.current.set(reqId, { resolve, reject, progress: onProgress, timer });
+      const cancel = () => {
+        const r = captionReqs.current.get(reqId); if (!r) return;
+        captionReqs.current.delete(reqId); r.cleanup(); post({ type: "captionsCancel", reqId }); reject(new Error("cancelled"));
+      };
+      const timer = setTimeout(cancel, 30 * 60 * 1000);
+      const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", cancel); };
+      captionReqs.current.set(reqId, { resolve, reject, progress: onProgress, cleanup });
+      signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
     exportImage: (format, quality = 0.92) =>

@@ -103,3 +103,12 @@ Beat-sync OTA run 37669325724 completed successfully for mobile merge 54326bffe3
 Universal download PRs web #2320 and mobile #1698 passed cloud checks and merged. Web production and staging published commit 173d0d246d9020653d1162e5eef4133b923f7ab4. Mobile OTA run 37678803251 was dispatched from exact merge 51743509474f93bebc9d3c69b47f837839e6de5b. Actual feed-download and physical-device evidence remain separate.
 
 Live scene analysis found that the hidden decoder did not start when its HTML was navigated as a blob URL. The browser now loads the same bounded scanner through the iframe's inline document; the native WebView already embeds that scanner inline. Both clients retain diagnostic errors on failed analysis. Browser handshake isolation, cancellation and startup-timeout cleanup are covered in cloud tests. Staging hard-cut verification remains pending.
+
+
+### Speech highlights
+
+The selected video can be ranked for useful spoken moments at a 15, 30 or 60 second target length. Speech is transcribed on the device; an explicit option can reuse current timed captions. The action explains that transcript text is sent to the existing text planning route. Raw media remains on the device. Complete sentence boundaries and pauses define the available source ranges; fabricated, weak, overlapping and out-of-range suggestions are rejected. Long transcripts are sent in complete bounded groups rather than silently discarded by scene compaction.
+
+Each suggestion shows its actual transcript, source times, selection control and a bounded playback preview. Creating the selected edit saves a separate project and retains the original. Every intersecting video, caption and soundtrack is copied with source-aware trims and motion. The edit uses the normal export ending. Speech-free action footage still needs visual highlight analysis; this release does not claim that capability. Cloud checks, staging highlight review/export and native publication remain pending.
+
+The preceding universal ending update published mobile commit 51743509474f93bebc9d3c69b47f837839e6de5b successfully to production and preview on Android and iOS (OTA run 37678803251). The actual staging feed file retained the original 56.730333 seconds of pictures and sound, then added the 2.2-second icon ending with dehub.io/algiers. Scene cuts verified on staging commit 5967f773: cuts at 2.016 and 4.016 seconds produced three clips, retained six seconds total, and passed one Undo/Redo. Physical-device verification remains separate.
