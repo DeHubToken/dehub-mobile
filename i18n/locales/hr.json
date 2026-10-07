@@ -7373,6 +7373,7 @@
     "exampleOutput": "Primjer izlaza",
     "referenceInsert": "Umetni {{tag}} u upit",
     "referenceLibrary": "Koristi iz biblioteke",
+    "referenceUpload": "Učitaj",
     "referenceSingle": "Koristi jednu sliku za rekonstrukciju objekta",
     "referenceHint": "Tapni ime resursa da ga citiraš u svom upitu. Dodaj do četiri slike i jedan klip.",
     "referenceOneClip": "Prikači jedan referentni klip",

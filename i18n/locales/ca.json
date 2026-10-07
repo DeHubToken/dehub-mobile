@@ -7373,6 +7373,7 @@
     "exampleOutput": "Sortida d'exemple",
     "referenceInsert": "Insereix {{tag}} al prompt",
     "referenceLibrary": "Utilitza de la biblioteca",
+    "referenceUpload": "Pujar",
     "referenceSingle": "Utilitza una imatge per reconstruir l'objecte.",
     "referenceHint": "Premeu el nom d'un asset per fer-hi referència al vostre prompt. Afegiu fins a quatre imatges i un clip.",
     "referenceOneClip": "Adjunta un clip de referència.",

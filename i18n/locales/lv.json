@@ -7372,6 +7372,7 @@
     "exampleOutput": "Izvades piemērs",
     "referenceInsert": "Iekļau {{tag}} uzprātā",
     "referenceLibrary": "Izmantoj no bibliotēkas",
+    "referenceUpload": "Augšupielādēt",
     "referenceSingle": "Izmantoj vienu attēlu, lai atjaunotu objektu",
     "referenceHint": "Spied uz resursa nosaukuma, lai to referencētu savā uzprātā. Pievienoj līdz četriem attēliem un vienam klipam",
     "referenceOneClip": "Pievienoj vienu referenču klipu",

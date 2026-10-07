@@ -7630,6 +7630,7 @@
     "exampleOutput": "Contoh output",
     "referenceInsert": "Sisipkan {{tag}} dalam prompt",
     "referenceLibrary": "Gunakan dari perpustakaan",
+    "referenceUpload": "Muat Naik",
     "referenceSingle": "Gunakan satu imej untuk membina semula objek.",
     "referenceHint": "Ketik nama aset untuk merujuknya dalam prompt anda. Tambahkan sehingga empat imej dan satu klip.",
     "referenceOneClip": "Lampirkan satu klip rujukan.",

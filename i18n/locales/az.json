@@ -7371,6 +7371,7 @@
     "exampleOutput": "Nümunə çıxış",
     "referenceInsert": "Promptda {{tag}} əlavə edin",
     "referenceLibrary": "Kitabxanadan istifadə edin",
+    "referenceUpload": "Yükle",
     "referenceSingle": "Objekti yenidən yaratmaq üçün bir şəkil istifadə edin.",
     "referenceHint": "Promptda istifadə etmək üçün bir aktivin adını toxunun. Üçək şəkil və bir klip əlavə edin.",
     "referenceOneClip": "Bir referans klip əlavə edin.",

@@ -7383,6 +7383,7 @@
     "exampleOutput": "Ejemplo salida",
     "referenceInsert": "{{tag}} prompt-pi yaykuchiy",
     "referenceLibrary": "library-manta allichiy",
+    "referenceUpload": "Kargay",
     "referenceSingle": "huk imagen-ta allichispa objeto-ta reconstituiy",
     "referenceHint": "asset sutinta tapiy prompt-pi referenciay. tawa imagen-kama huk clip-kama yapay",
     "referenceOneClip": "huk referencia clip-ta yapay",

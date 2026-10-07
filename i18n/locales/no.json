@@ -7369,6 +7369,7 @@
     "exampleOutput": "Eksempel på utdata",
     "referenceInsert": "Sett inn {{tag}} i prompten",
     "referenceLibrary": "Bruk fra bibliotek",
+    "referenceUpload": "Last opp",
     "referenceSingle": "Bruk ett bilde til å rekonstruere objektet",
     "referenceHint": "Trykk på en ressursnavn for å referere til den i din prompt. Legg til opp til fire bilder og en klipp.",
     "referenceOneClip": "Fest en referanseklipp",

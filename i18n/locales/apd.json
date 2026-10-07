@@ -7322,6 +7322,7 @@
     "exampleOutput": "مثال على الإخراج",
     "referenceInsert": "أدخل {{tag}} في الـ prompt",
     "referenceLibrary": "استخدم من المكتبة",
+    "referenceUpload": "تحميل",
     "referenceSingle": "استخدم صورة واحدة لإعادة بناء العنصر.",
     "referenceHint": "اضغط على اسم الأصل عشان ترفعه في الـ prompt. أضف لحد أربعة صور وكليب واحد.",
     "referenceOneClip": "أرفق كليب مرجعي.",

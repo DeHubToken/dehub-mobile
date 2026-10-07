@@ -7331,6 +7331,7 @@
     "exampleOutput": "ຜົນຜະລິດຕົວຢ່າງ",
     "referenceInsert": "ໃສ່ {{tag}} ໃນ prompt",
     "referenceLibrary": "ໃຊ້ຈາກຫ້ອງສະຫມຸດ",
+    "referenceUpload": "ອັບໂຫລດ",
     "referenceSingle": "ໃຊ້ຮູບພາບດຽວເພື່ອສ້າງຕົວຈິງຂອງວັດຖຸ.",
     "referenceHint": "ແຕະຊື່ asset ເພື່ອອ້າງອີງມັນໃນ prompt ຂອງທ່ານ. ເພີ່ມຮູບພາບສູງສຸດ 4 ຮູບ ແລະ 1 clip.",
     "referenceOneClip": "ແນບ clip ອ້າງອີງດຽວ.",

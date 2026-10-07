@@ -7376,6 +7376,7 @@
     "exampleOutput": "Exempelutmatning",
     "referenceInsert": "Lägg till {{tag}} i uppmaningen",
     "referenceLibrary": "Använd från bibliotek",
+    "referenceUpload": "Ladda upp",
     "referenceSingle": "Använd ett bild för att rekonstruera objektet",
     "referenceHint": "Tryck på ett tillgångsnamn för att referera till det i din uppmaning. Lägg till upp till fyra bilder och en klippning.",
     "referenceOneClip": "Fäster en referensklippning",

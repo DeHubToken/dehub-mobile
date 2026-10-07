@@ -7366,6 +7366,7 @@
     "exampleOutput": "ตัวอย่างผลลัพธ์",
     "referenceInsert": "แทนที่ {{tag}} ลงในคำสั่ง",
     "referenceLibrary": "ใช้จากห้องเก็บ",
+    "referenceUpload": "อัปโหลด",
     "referenceSingle": "ใช้ภาพหนึ่งเพื่อสร้างวัตถุใหม่",
     "referenceHint": "กดชื่อทรัพยากรเพื่ออ้างอิงในคำสั่งของคุณ ใส่ภาพได้สูงสุด 4 ภาพ และคลิป 1 คลิป",
     "referenceOneClip": "แนบคลิปอ้างอิงหนึ่ง",

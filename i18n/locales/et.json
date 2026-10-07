@@ -7372,6 +7372,7 @@
     "exampleOutput": "Näidisväljund",
     "referenceInsert": "Sisesta {{tag}} küsimisse",
     "referenceLibrary": "Kasuta raamatukogast",
+    "referenceUpload": "Üleslaadimine",
     "referenceSingle": "Kasuta ühte pildit rekonstruktsiooni jaoks",
     "referenceHint": "Tapita assetinime, et viidata sellele küsimises. Lisaks võib lisada kuni neli pildit ja üks klipp.",
     "referenceOneClip": "Liida üks viiteklipp",

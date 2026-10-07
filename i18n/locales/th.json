@@ -7400,6 +7400,7 @@
     "exampleOutput": "ตัวอย่างเอาต์พุต",
     "referenceInsert": "แทรก {{tag}} ในพรอมต์",
     "referenceLibrary": "ใช้จากไลบรารี",
+    "referenceUpload": "อัปโหลด",
     "referenceSingle": "ใช้ภาพเดียวเพื่อสร้างวัตถุใหม่",
     "referenceHint": "แตะชื่อแอสเซ็ตเพื่ออ้างอิงในพรอมต์ของคุณ เพิ่มได้สูงสุดสี่ภาพและหนึ่งคลิป",
     "referenceOneClip": "แนบคลิปอ้างอิงหนึ่งคลิป",
