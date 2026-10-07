@@ -25,6 +25,7 @@ import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../l
 import type { AudioToolMode } from "../../libs/editor/audioTools";
 import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import type { CaptionWord } from "../../libs/editor/captionLayout";
+import type { ExportRange } from "../../libs/editor/exportRanges";
 
 export type CaptionProgress = { stage: "download" | "transcribing"; fraction: number };
 
@@ -54,7 +55,7 @@ export interface EditorCanvasHandle {
    * Render the timeline to a video file (MP4 where the phone can, see
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
-  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif" }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif"; range?: ExportRange }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
   cancelExport: () => void;
 }
 
@@ -474,7 +475,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
         }, 180000);
       }),
-    exportVideo: ({ width, height, bitrate, title, username, format }, onProgress) =>
+    exportVideo: ({ width, height, bitrate, title, username, format, range }, onProgress) =>
       new Promise((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         // A phone that pauses the page (app in the background) stalls the
@@ -499,7 +500,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           title,
           out: null,
         });
-        post({ type: "exportVideo", reqId, width, height, bitrate, username, format });
+        post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range });
       }),
   }), [post]);
 
