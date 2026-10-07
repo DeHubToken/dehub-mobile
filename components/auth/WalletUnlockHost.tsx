@@ -21,15 +21,13 @@
  * check and an unreachable wallet record still come back false, and each says
  * so in the toast.
  *
- * One thing it deliberately does NOT do: mint a replacement wallet from a
- * signed-in session. The backend keys accounts by address, so a reset here
- * would drop the user into a different account than the one they are looking
- * at. "Start over" signs out instead, and the sign-in flow — which owns that
- * explanation — offers the reset.
+ * Replacement cancels the action requesting the old signature, archives the
+ * old wallet, and moves the existing profile before authenticating the new
+ * smart wallet. External-wallet sessions still use their own recovery route.
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import i18n from "i18next";
-import WalletSetupScreen, { type WalletSetupRequest } from "./WalletSetupScreen";
+import WalletSetupScreen, { type WalletSetupRequest, type CreateProtection, type CreateResult } from "./WalletSetupScreen";
 import {
   registerWalletUnlockHandler,
   setWalletUnlockRefusal,
@@ -43,6 +41,7 @@ import {
   finishBiometricUnlock,
   releaseWalletKeyForSignIn,
   switchActiveWalletForIdentity,
+  createAndSaveEvmWalletForIdentity,
   type EvmWalletResolution,
 } from "../../libs/identity-wallet";
 import {
@@ -51,7 +50,10 @@ import {
 } from "../../libs/wallets.local";
 import { getAuthUser } from "../../libs/auth.utils";
 import { decryptString } from "../../libs/wallet-core/crypto";
-import { deriveFromSecret } from "../../libs/wallet-core/derive";
+import { deriveFromSecret, generateMnemonic12 } from "../../libs/wallet-core/derive";
+import { fetchWalletReliably } from '../../libs/wallet-core/store';
+import { getPendingWalletReplacement } from '../../libs/wallet-core/replacement';
+import { finishWalletReplacement } from '../../libs/wallet-core/finish-replacement';
 import { verifyWalletKeyForAccount } from '../../libs/wallet-core/local-key-recovery';
 import { assertWalletAddress } from '../../libs/wallet-core/assert-wallet-address';
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
@@ -135,16 +137,18 @@ async function sessionAddressOf(): Promise<string | null> {
 }
 
 const WalletUnlockHost: React.FC = () => {
-  const { signOut } = useAuthActions();
+  const { signOut, signInWithWallet } = useAuthActions();
   const [pending, setPending] = useState<Pending | null>(null);
   // Held separately from state so the resolver survives the unmount-safety
   // checks below: a promise nobody settles would hang the signing call that
   // is waiting on it forever, which is worse than a refused unlock.
   const pendingRef = useRef<Pending | null>(null);
+  const replacementSecretRef = useRef<string | null>(null);
 
   const settle = useCallback((unlocked: boolean) => {
     const current = pendingRef.current;
     pendingRef.current = null;
+    replacementSecretRef.current = null;
     setPending(null);
     closeWalletUnlockPrompt();
     if (current) {
@@ -204,6 +208,10 @@ const WalletUnlockHost: React.FC = () => {
           // concurrent unlock between the shim giving up and this running.)
           const pk = await releaseWalletKeyForSignIn(resolution.address);
           if (!pk) return refuse("ready-but-key-not-released", i18n.t("wallet.unlockCancelled"));
+          if (await getPendingWalletReplacement(supabaseUserId, resolution.address)) {
+            await finishWalletReplacement(resolution.address, pk, signInWithWallet);
+            return false;
+          }
           await adoptKeyForSession(supabaseUserId, resolution.address, pk, sessionAddress);
           log.info("unlock:adopted-existing-device-key");
           return true;
@@ -236,7 +244,7 @@ const WalletUnlockHost: React.FC = () => {
       // Anything still waiting is answered rather than abandoned.
       if (pendingRef.current) settle(false);
     };
-  }, [settle]);
+  }, [settle, signInWithWallet]);
 
   const handleUnlock = useCallback(async (password: string) => {
     const current = pendingRef.current;
@@ -246,6 +254,11 @@ const WalletUnlockHost: React.FC = () => {
     const secret = await decryptString(payload, password);
     const derived = deriveFromSecret(secret);
     await assertWalletAddress(derived.ethAddress, address);
+    if (await getPendingWalletReplacement(supabaseUserId, derived.ethAddress)) {
+      await finishWalletReplacement(derived.ethAddress, derived.ethPrivateKey, signInWithWallet);
+      settle(false);
+      return;
+    }
     await adoptKeyForSession(
       supabaseUserId,
       derived.ethAddress,
@@ -258,7 +271,7 @@ const WalletUnlockHost: React.FC = () => {
     // surprise fingerprint sheet.
     rememberSuccessfulWalletUnlock();
     settle(true);
-  }, [settle]);
+  }, [settle, signInWithWallet]);
 
   const handleBiometricUnlock = useCallback(async () => {
     const current = pendingRef.current;
@@ -269,10 +282,15 @@ const WalletUnlockHost: React.FC = () => {
       address,
       payload,
     );
+    if (await getPendingWalletReplacement(supabaseUserId, derivedAddress)) {
+      await finishWalletReplacement(derivedAddress, privateKey, signInWithWallet);
+      settle(false);
+      return;
+    }
     await adoptKeyForSession(supabaseUserId, derivedAddress, privateKey, current.sessionAddress);
     rememberSuccessfulWalletUnlock();
     settle(true);
-  }, [settle]);
+  }, [settle, signInWithWallet]);
 
   /**
    * The recovery-phrase route into a wallet this phone cannot open. Pinned to
@@ -310,15 +328,52 @@ const WalletUnlockHost: React.FC = () => {
     settle(true);
   }, [settle]);
 
-  /**
-   * "Start over" from a live session: sign out and let the sign-in flow offer
-   * the reset, which it explains properly. See the header for why the reset
-   * itself must not run here.
-   */
+  /** Continue an identity-backed replacement without asking for the old key. */
   const handleResetWallet = useCallback(async () => {
-    settle(false);
-    await signOut();
+    const current = pendingRef.current;
+    const request = current?.request;
+    if (!current || !request) return;
+    if (request.mode === 'restore') {
+      settle(false);
+      await signOut();
+      return;
+    }
+    if (request.mode !== 'unlock' && request.mode !== 'biometric-unlock' && request.mode !== 'web-passkey-sync') return;
+    const { wallet, failed } = await fetchWalletReliably(request.supabaseUserId);
+    if (failed || !wallet || wallet.ethAddress.toLowerCase() !== request.address.toLowerCase()) {
+      throw new Error(i18n.t('walletSetup.couldNotStartOver'));
+    }
+    // Cancel the action that asked for the old signature. Renewal completes
+    // its own sign-in before a new action can use the replacement wallet.
+    current.resolve(false);
+    replacementSecretRef.current = null;
+    const next: Pending = {
+      ...current,
+      request: { mode: 'create', supabaseUserId: request.supabaseUserId,
+        replacing: { address: wallet.ethAddress, clearOtherSeedCopies: false } },
+      resolve: () => {},
+    };
+    pendingRef.current = next;
+    setPending(next);
   }, [settle, signOut]);
+
+  const handleCreate = useCallback(async (protection: CreateProtection): Promise<CreateResult> => {
+    const request = pendingRef.current?.request;
+    if (request?.mode !== 'create' || !request.replacing) return undefined;
+    const secret = replacementSecretRef.current ?? generateMnemonic12();
+    replacementSecretRef.current = secret;
+    const created = await createAndSaveEvmWalletForIdentity(request.supabaseUserId, protection, secret, request.replacing);
+    return { recoveryPhrase: created.secret, address: created.address };
+  }, []);
+
+  const handleCreateConfirmed = useCallback(async () => {
+    const request = pendingRef.current?.request;
+    const secret = replacementSecretRef.current;
+    if (request?.mode !== 'create' || !request.replacing || !secret) return;
+    const derived = deriveFromSecret(secret);
+    await finishWalletReplacement(derived.ethAddress, derived.ethPrivateKey, signInWithWallet);
+    settle(false);
+  }, [settle, signInWithWallet]);
 
   /**
    * The external-wallet route: reopen the WalletConnect picker and wait for
@@ -395,7 +450,8 @@ const WalletUnlockHost: React.FC = () => {
       onSwitchAccount={handleSwitchAccount}
       onResetWallet={handleResetWallet}
       onConnectWallet={handleConnectWallet}
-      onCreate={async () => undefined}
+      onCreate={handleCreate}
+      onCreateConfirmed={handleCreateConfirmed}
     />
   );
 };
