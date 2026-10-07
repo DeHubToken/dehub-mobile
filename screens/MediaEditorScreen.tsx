@@ -65,6 +65,7 @@ import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
+import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
@@ -267,7 +268,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background" | "stock" | "scenes"
+  | "page" | "background" | "stock" | "scenes" | "subtitles"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -761,6 +762,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
         { id: "stock", icon: "Search", label: t("common.search") },
+        { id: "subtitles", icon: "Type", label: "SRT / VTT" },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
         { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
@@ -854,6 +856,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const renderPanel = () => {
     if (!project || !tool) return null;
+    if (tool === "subtitles") return <SubtitleFilesPanel key={project.id} project={project} onAdd={(result) => {
+      const current = h.latest();
+      if (!current || current.id !== project.id) return;
+      h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+    }} />;
     if (tool === "stock") return <StockPanel onAdd={(media) => {
       const current = h.latest();
       if (!current) return;

@@ -24,7 +24,7 @@ export function groupWords(words: CaptionWord[], maxWords = 5, maxSeconds = 2.6)
 /** Convert speech timestamps to ordinary editable text layers without overlaps. */
 export function captionLayers(clip: MediaClip, words: CaptionWord[], id: () => string, style: CaptionStyle = "classic") {
   const lines = groupWords(words);
-  const track: Track = { id: id(), kind: "text", name: "Captions", hidden: false, muted: false };
+  const track: Track = { id: id(), kind: "text", name: "Captions", role: "captions", hidden: false, muted: false };
   const speed = clip.speed && clip.speed > 0 ? clip.speed : 1;
   const clips: TextClip[] = [];
   lines.forEach((line, i) => {
