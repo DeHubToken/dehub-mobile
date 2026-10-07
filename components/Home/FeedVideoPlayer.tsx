@@ -320,7 +320,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Read by the tap handler, which must see the current value inside the same
   // tick that opened the window rather than the previous render's state.
   const isStartingRef = useRef(false);
-  const startTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [videoReady, setVideoReady] = useState(false);
   // Android can hand the VideoView a surface still holding a frame from a
   // neighbouring card's video. Keep the view transparent (thumbnail shows
@@ -574,29 +573,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const userStartedRef = useRef(false);
 
   const endStarting = useCallback(() => {
-    if (startTimeoutRef.current) {
-      clearTimeout(startTimeoutRef.current);
-      startTimeoutRef.current = null;
-    }
     isStartingRef.current = false;
     setIsStarting(false);
   }, []);
 
-  /**
-   * Open the tap→first-frame window, with a hard stop on it.
-   *
-   * A source that never becomes playable — dead URL, no network, a transcode
-   * that lied about being done — would otherwise leave the card spinning
-   * forever. After ten seconds it gives the play button back so the viewer can
-   * try again instead of staring at a spinner.
-   */
+  /** Show immediate feedback; the recovery watchdog bounds the first-frame wait. */
   const beginStarting = useCallback(() => {
-    if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current);
     isStartingRef.current = true;
     setIsStarting(true);
   }, []);
-
-  useEffect(() => () => { if (startTimeoutRef.current) clearTimeout(startTimeoutRef.current); }, []);
 
   // The window closes on the first frame, not on `isPlaying`: play() resolving
   // before the surface has drawn anything would swap the spinner for a poster
