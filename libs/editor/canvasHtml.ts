@@ -805,14 +805,6 @@ canvas{display:block;width:100%;height:100%;}
 
   // Keep every video and sound at the right spot for time t (web Compositor).
   // silent: the sound comes from elsewhere (the realtime export's mix).
-  function audioGainAt(clip, time) {
-    var local = time - clip.start;
-    if (local < 0 || local >= clip.duration) return 0;
-    var fadeIn = Math.max(0, Math.min(clip.duration, clip.audio && clip.audio.fadeIn || 0));
-    var fadeOut = Math.max(0, Math.min(clip.duration - fadeIn, clip.audio && clip.audio.fadeOut || 0));
-    var envelope = Math.min(1, fadeIn > 0 ? local / fadeIn : 1, fadeOut > 0 ? (clip.duration - local) / fadeOut : 1);
-    return Math.max(0, (clip.audio && clip.audio.volume != null ? clip.audio.volume : 1) * envelope);
-  }
   function syncMedia(snap, t, isPlaying, ops, silent) {
     prepareVideoSources(ops);
     var liveV = new Set();

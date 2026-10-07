@@ -1,3 +1,4 @@
+import { scaleClipAudio } from "./audioEnvelope";
 import type { Clip, ClipKeyframes, Keyframe, MediaClip, Track } from "./types";
 
 export interface BeatAnalysis { times: number[]; bpm: number; confidence: number }
@@ -43,7 +44,7 @@ function fitBeatClip(c: Clip, start: number, duration: number): Clip {
     animateIn: c.animateIn ? { ...c.animateIn, duration: Math.min(duration, c.animateIn.duration*ratio) } : undefined,
     animateOut: c.animateOut ? { ...c.animateOut, duration: Math.min(duration, c.animateOut.duration*ratio) } : undefined,
     transitionOut: c.transitionOut ? { ...c.transitionOut, duration: Math.min(duration/2, c.transitionOut.duration) } : undefined,
-    ...(c.kind === "video" ? { speed: c.duration*(c.speed ?? 1)/duration, audio: { ...c.audio, fadeIn: Math.min(duration, (c.audio?.fadeIn ?? 0)*ratio), fadeOut: Math.min(duration, (c.audio?.fadeOut ?? 0)*ratio) } } : {}),
+    ...(c.kind === "video" ? { speed: c.duration*(c.speed ?? 1)/duration, audio: scaleClipAudio(c, ratio) } : {}),
   } as Clip;
 }
 
