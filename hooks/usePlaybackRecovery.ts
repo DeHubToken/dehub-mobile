@@ -51,6 +51,7 @@ export function usePlaybackRecovery(player: VideoPlayer, source: string | null |
         previousTime = currentTime;
       }),
     ];
+    if (player.playing) { recovery.watch(); recovery.progress(); }
     return () => { subs.forEach(sub => sub.remove()); recovery.stop(); };
   }, [player, recovery]);
   return { recovery, phase };
