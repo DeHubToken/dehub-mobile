@@ -7028,6 +7028,8 @@
       "delete": "Usuń"
     },
     "export": {
+      "gifHint": "Animacja zapętlania bez dźwięku. Do 60 sekund, 640 pikseli i 15 fps. Zawiera końcówkę Twojego logo.",
+      "gifTooLong": "Przytnij oś czasu do 60 sekund lub mniej albo wybierz MP4 lub WebM.",
       "format": "Typ pliku",
       "png": "Obraz PNG",
       "jpg": "Obraz JPG",

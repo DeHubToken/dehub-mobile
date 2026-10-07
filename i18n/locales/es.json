@@ -7017,6 +7017,8 @@
       "delete": "Eliminar"
     },
     "export": {
+      "gifHint": "Animación en bucle sin sonido. Hasta 60 segundos, 640 píxeles y 15 fps. Incluye la terminación de tu logotipo.",
+      "gifTooLong": "Recorte la línea de tiempo a 60 segundos o menos, o elija MP4 o WebM.",
       "format": "Tipo de archivo",
       "png": "Imagen PNG",
       "jpg": "Imagen JPG",

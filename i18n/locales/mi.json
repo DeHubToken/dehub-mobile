@@ -6910,6 +6910,8 @@
       "delete": "Mukua"
     },
     "export": {
+      "gifHint": "Whakaahua aunoa me te kore oro. Tae atu ki te 60 hēkona, 640 pixel me te 15 fps. Kei roto i to tohu mutunga.",
+      "gifTooLong": "Tīpakohia te raupapa wā ki te 60 hēkona iti iho ranei, ranei whiriwhiri MP4 WebM ranei.",
       "format": "Momo konae",
       "png": "Pikitia PNG",
       "jpg": "Pikitia JPG",

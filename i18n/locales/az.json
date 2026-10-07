@@ -6928,6 +6928,8 @@
       "delete": "Sil"
     },
     "export": {
+      "gifHint": "Səssiz animasiya. 60 saniyəyə qədər, 640 piksel və 15 fps. Loqo sonluğunuzu ehtiva edir.",
+      "gifTooLong": "Vaxt cədvəlini 60 saniyəyə və ya daha az müddətə düzəldin və ya MP4 və ya WebM seçin.",
       "format": "Fayl növü",
       "png": "PNG şəkil",
       "jpg": "JPG şəkil",

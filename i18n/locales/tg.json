@@ -6876,6 +6876,8 @@
       "delete": "Нест кардан"
     },
     "export": {
+      "gifHint": "Ҳалқаи аниматсия бе садо. То 60 сония, 640 пиксел ва 15 fps. Ang iyong logo ay naglalaman ng pagtatapos.",
+      "gifTooLong": "Trim ang timeline sa 60 segundo o mas madaling, o piliin ang MP4 o WebM.",
       "format": "Намуди файл",
       "png": "Тасвири PNG",
       "jpg": "Тасвири JPG",

@@ -6960,6 +6960,8 @@
       "delete": "Haquu"
     },
     "export": {
+      "gifHint": "Animeeshinii sagalee malee loop gochuu. Hanga sekondii 60, piikselii 640 fi fps 15. Xumura asxaa keessanii of keessaa qaba.",
+      "gifTooLong": "Sarara yeroo gara sekondii 60 fi isaa gadiitti muraa, ykn MP4 ykn WebM filadhu.",
       "format": "Gosa faayilii",
       "png": "Suuraa PNG",
       "jpg": "Suuraa JPG",

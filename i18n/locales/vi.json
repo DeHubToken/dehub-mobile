@@ -7046,6 +7046,8 @@
       "delete": "Xóa"
     },
     "export": {
+      "gifHint": "Lặp lại hoạt ảnh mà không có âm thanh. Lên đến 60 giây, 640 pixel và 15 khung hình/giây. Bao gồm phần cuối logo của bạn.",
+      "gifTooLong": "Cắt dòng thời gian thành 60 giây hoặc ít hơn, hoặc chọn MP4 hoặc WebM.",
       "format": "Loại tệp",
       "png": "Ảnh PNG",
       "jpg": "Ảnh JPG",

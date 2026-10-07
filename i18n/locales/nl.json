@@ -7214,6 +7214,8 @@
       "delete": "Verwijderen"
     },
     "export": {
+      "gifHint": "Lusanimatie zonder geluid. Tot 60 seconden, 640 pixels en 15 fps. Inclusief het einde van je logo.",
+      "gifTooLong": "Trim de tijdlijn tot 60 seconden of minder, of kies MP4 of WebM.",
       "format": "Bestandstype",
       "png": "PNG-afbeelding",
       "jpg": "JPG-afbeelding",

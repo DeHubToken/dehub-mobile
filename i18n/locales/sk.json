@@ -7094,6 +7094,8 @@
       "delete": "Odstrániť"
     },
     "export": {
+      "gifHint": "Opakujúca sa animácia bez zvuku. Až do 60 sekúnd, 640 pixelov a 15 fps. Obsahuje koniec s vaším logom.",
+      "gifTooLong": "Orežte časovú os na 60 sekúnd alebo menej, alebo vyberte MP4 alebo WebM.",
       "format": "Typ súboru",
       "png": "PNG obrázok",
       "jpg": "JPG obrázok",

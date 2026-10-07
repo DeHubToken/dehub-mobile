@@ -6908,6 +6908,8 @@
       "delete": "Poz"
     },
     "export": {
+      "gifHint": "Sesiz tekrarlanan animasiýa. 60 sekunt çenli, 640 piksel we 15 fps. Logotýpiňiziň soňuny öz içine alýar.",
+      "gifTooLong": "60 saniýede ýa-da ondan az wagtda wagt sarp ediň ýa-da MP4 ýa-da WebM saýlaň.",
       "format": "Faýl görnüşi",
       "png": "PNG suraty",
       "jpg": "JPG suraty",

@@ -6915,6 +6915,8 @@
       "delete": "删除"
     },
     "export": {
+      "gifHint": "无声循环动画。最长60秒，640像素，15帧每秒。包括你的logo结尾。",
+      "gifTooLong": "把时间线剪到60秒以下，或者选MP4或WebM。",
       "format": "文件类型",
       "png": "PNG 图像",
       "jpg": "JPG 图像",
