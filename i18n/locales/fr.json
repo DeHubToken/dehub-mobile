@@ -6874,6 +6874,17 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "pages": {
+    "add":  "Ajouter une page",
+    "duplicate":  "Dupliquer la page",
+    "delete":  "Supprimer la page",
+    "page":  "Page {{number}}",
+    "position":  "Page {{current}} sur {{total}}",
+    "label":  "Pages",
+    "allZip":  "Les {{count}} pages (ZIP)",
+    "thisPage":  "Cette page uniquement",
+    "exporting":  "Rendu de la page {{current}} sur {{total}}…"
+},
     "captions": {
         "action":  "Sous-titres auto",
         "working":  "Écoute… {{percent}} %",

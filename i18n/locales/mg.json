@@ -6868,6 +6868,17 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "pages": {
+    "add":  "Hanampy pejy",
+    "duplicate":  "Adikao ny pejy",
+    "delete":  "Fafao ny pejy",
+    "page":  "Pejy {{number}}",
+    "position":  "Pejy {{current}} amin\u0027ny {{total}}",
+    "label":  "Pejy",
+    "allZip":  "Ireo pejy {{count}} rehetra (ZIP)",
+    "thisPage":  "Ity pejy ity ihany",
+    "exporting":  "Mamorona ny pejy {{current}} amin\u0027ny {{total}}…"
+},
     "captions": {
         "action":  "Dikanteny mandeha ho azy",
         "working":  "Mihaino… {{percent}}%",

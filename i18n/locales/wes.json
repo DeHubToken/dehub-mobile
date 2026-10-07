@@ -6729,6 +6729,17 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "pages": {
+    "add":  "Add page",
+    "duplicate":  "Copy page",
+    "delete":  "Delete page",
+    "page":  "Page {{number}}",
+    "position":  "Page {{current}} for {{total}}",
+    "label":  "Page dem",
+    "allZip":  "All {{count}} page dem (ZIP)",
+    "thisPage":  "Na dis page only",
+    "exporting":  "Di make page {{current}} for {{total}}…"
+},
     "captions": {
         "action":  "Auto captions",
         "working":  "Di listen… {{percent}}%",

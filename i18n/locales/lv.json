@@ -6787,6 +6787,17 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "editor": {
+    "pages": {
+    "add":  "Pievienot lapu",
+    "duplicate":  "Dublēt lapu",
+    "delete":  "Dzēst lapu",
+    "page":  "{{number}}. lapa",
+    "position":  "{{current}}. lapa no {{total}}",
+    "label":  "Lapas",
+    "allZip":  "Visas {{count}} lapas (ZIP)",
+    "thisPage":  "Tikai šī lapa",
+    "exporting":  "Renderē {{current}}. lapu no {{total}}…"
+},
     "captions": {
         "action":  "Automātiskie subtitri",
         "working":  "Klausās… {{percent}}%",

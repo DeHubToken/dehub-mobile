@@ -6673,6 +6673,17 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "pages": {
+    "add":  "پەڕە زیاد بکە",
+    "duplicate":  "پەڕە دووبارە بکەرەوە",
+    "delete":  "پەڕە بسڕەوە",
+    "page":  "پەڕەی {{number}}",
+    "position":  "پەڕەی {{current}} لە {{total}}",
+    "label":  "پەڕەکان",
+    "allZip":  "هەموو {{count}} پەڕەکە (ZIP)",
+    "thisPage":  "تەنها ئەم پەڕەیە",
+    "exporting":  "ئامادەکردنی پەڕەی {{current}} لە {{total}}…"
+},
     "captions": {
         "action":  "ژێرنووسی خۆکار",
         "working":  "گوێ دەگرێت… {{percent}}%",

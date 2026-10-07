@@ -6750,6 +6750,17 @@
     "savePrompt": "ບັນທຶກໂພສນີ້ເປັນຮ່າງເພື່ອໃຫ້ສຳເລັດ ແລະ ໂພສພາຍຫຼັງ?"
   },
   "editor": {
+    "pages": {
+    "add":  "ເພີ່ມໜ້າ",
+    "duplicate":  "ສຳເນົາໜ້າ",
+    "delete":  "ລຶບໜ້າ",
+    "page":  "ໜ້າ {{number}}",
+    "position":  "ໜ້າ {{current}} ຈາກ {{total}}",
+    "label":  "ໜ້າ",
+    "allZip":  "ທັງໝົດ {{count}} ໜ້າ (ZIP)",
+    "thisPage":  "ສະເພາະໜ້ານີ້",
+    "exporting":  "ກຳລັງສ້າງໜ້າ {{current}} ຈາກ {{total}}…"
+},
     "captions": {
         "action":  "ຄຳບັນຍາຍອັດຕະໂນມັດ",
         "working":  "ກຳລັງຟັງ… {{percent}}%",

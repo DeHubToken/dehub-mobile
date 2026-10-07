@@ -6792,6 +6792,17 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tilføj side",
+    "duplicate":  "Dupliker side",
+    "delete":  "Slet side",
+    "page":  "Side {{number}}",
+    "position":  "Side {{current}} af {{total}}",
+    "label":  "Sider",
+    "allZip":  "Alle {{count}} sider (ZIP)",
+    "thisPage":  "Kun denne side",
+    "exporting":  "Gengiver side {{current}} af {{total}}…"
+},
     "captions": {
         "action":  "Automatiske undertekster",
         "working":  "Lytter… {{percent}} %",

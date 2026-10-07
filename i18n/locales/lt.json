@@ -6787,6 +6787,17 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "pages": {
+    "add":  "Pridėti puslapį",
+    "duplicate":  "Dubliuoti puslapį",
+    "delete":  "Ištrinti puslapį",
+    "page":  "Puslapis {{number}}",
+    "position":  "Puslapis {{current}} iš {{total}}",
+    "label":  "Puslapiai",
+    "allZip":  "Visi puslapiai ({{count}}) (ZIP)",
+    "thisPage":  "Tik šis puslapis",
+    "exporting":  "Generuojamas puslapis {{current}} iš {{total}}…"
+},
     "captions": {
         "action":  "Automatiniai subtitrai",
         "working":  "Klausomasi… {{percent}} %",

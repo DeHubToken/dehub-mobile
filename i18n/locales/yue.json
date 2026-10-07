@@ -6779,6 +6779,17 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "pages": {
+    "add":  "加頁",
+    "duplicate":  "複製呢頁",
+    "delete":  "刪除呢頁",
+    "page":  "第 {{number}} 頁",
+    "position":  "第 {{current}} 頁，共 {{total}} 頁",
+    "label":  "頁面",
+    "allZip":  "全部 {{count}} 頁（ZIP）",
+    "thisPage":  "淨係呢頁",
+    "exporting":  "處理緊第 {{current}} 頁，共 {{total}} 頁…"
+},
     "captions": {
         "action":  "自動字幕",
         "working":  "聽緊… {{percent}}%",

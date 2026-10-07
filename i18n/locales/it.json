@@ -6868,6 +6868,17 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "pages": {
+    "add":  "Aggiungi pagina",
+    "duplicate":  "Duplica pagina",
+    "delete":  "Elimina pagina",
+    "page":  "Pagina {{number}}",
+    "position":  "Pagina {{current}} di {{total}}",
+    "label":  "Pagine",
+    "allZip":  "Tutte le {{count}} pagine (ZIP)",
+    "thisPage":  "Solo questa pagina",
+    "exporting":  "Rendering pagina {{current}} di {{total}}…"
+},
     "captions": {
         "action":  "Sottotitoli automatici",
         "working":  "In ascolto… {{percent}}%",

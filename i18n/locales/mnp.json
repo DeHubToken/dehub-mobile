@@ -6817,6 +6817,17 @@
     "noStories": "还无故事"
   },
   "editor": {
+    "pages": {
+    "add":  "加一页",
+    "duplicate":  "复制许页",
+    "delete":  "删掉许页",
+    "page":  "第 {{number}} 页",
+    "position":  "第 {{current}} 页 / 共 {{total}} 页",
+    "label":  "页面",
+    "allZip":  "所有 {{count}} 页（ZIP）",
+    "thisPage":  "就许一页",
+    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
+},
     "captions": {
         "action":  "自动字幕",
         "working":  "正在听… {{percent}}%",

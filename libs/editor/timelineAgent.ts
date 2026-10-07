@@ -36,6 +36,7 @@ function slice(c: Clip, offset: number, duration: number, id: string, start = c.
     } } : {}),
   } as Clip;
 }
+export { slice as sliceTimelineClip };
 
 /** Pure, bounded operations; invalid requests leave the input untouched. */
 export function applyTimelineOp(state: Timeline, op: Op, makeId: () => string): TimelineResult | null {

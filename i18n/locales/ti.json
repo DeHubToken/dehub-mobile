@@ -6747,6 +6747,17 @@
     "savePrompt": "ነዚ ጽሑፍ እዚ ከም ናይ መወዳእታን ናይ ልኡኽን ረቂቕ ጌርካ ኣድሕንዶ ፧"
   },
   "editor": {
+    "pages": {
+    "add":  "ገጽ ወስኽ",
+    "duplicate":  "ገጽ ቅዳሕ",
+    "delete":  "ገጽ ሰርዝ",
+    "page":  "ገጽ {{number}}",
+    "position":  "ገጽ {{current}} ካብ {{total}}",
+    "label":  "ገጻት",
+    "allZip":  "ኩሎም {{count}} ገጻት (ZIP)",
+    "thisPage":  "እዚ ገጽ ጥራይ",
+    "exporting":  "ገጽ {{current}} ካብ {{total}} ይዳሎ ኣሎ…"
+},
     "captions": {
         "action":  "ኣውቶማቲክ ንኡስ ጽሑፋት",
         "working":  "ይሰምዕ ኣሎ… {{percent}}%",

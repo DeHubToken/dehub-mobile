@@ -6787,6 +6787,17 @@
     "savePrompt": "ਇਸ ਪੋਸਟ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਪੂਰਾ ਕਰਨ ਅਤੇ ਪੋਸਟ ਕਰਨ ਲਈ ਡਰਾਫਟ ਵਜੋਂ ਸੇਵ ਕਰੋ?"
   },
   "editor": {
+    "pages": {
+    "add":  "ਪੰਨਾ ਜੋੜੋ",
+    "duplicate":  "ਪੰਨੇ ਦੀ ਨਕਲ ਬਣਾਓ",
+    "delete":  "ਪੰਨਾ ਮਿਟਾਓ",
+    "page":  "ਪੰਨਾ {{number}}",
+    "position":  "{{total}} ਵਿੱਚੋਂ ਪੰਨਾ {{current}}",
+    "label":  "ਪੰਨੇ",
+    "allZip":  "ਸਾਰੇ {{count}} ਪੰਨੇ (ZIP)",
+    "thisPage":  "ਸਿਰਫ਼ ਇਹ ਪੰਨਾ",
+    "exporting":  "{{total}} ਵਿੱਚੋਂ ਪੰਨਾ {{current}} ਰੈਂਡਰ ਹੋ ਰਿਹਾ ਹੈ…"
+},
     "captions": {
         "action":  "ਆਟੋ ਕੈਪਸ਼ਨ",
         "working":  "ਸੁਣ ਰਹੇ ਹਾਂ… {{percent}}%",

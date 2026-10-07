@@ -6968,6 +6968,17 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "pages": {
+    "add":  "Magdagdag ng pahina",
+    "duplicate":  "I-duplicate ang pahina",
+    "delete":  "Burahin ang pahina",
+    "page":  "Pahina {{number}}",
+    "position":  "Pahina {{current}} ng {{total}}",
+    "label":  "Mga pahina",
+    "allZip":  "Lahat ng {{count}} pahina (ZIP)",
+    "thisPage":  "Ang pahinang ito lang",
+    "exporting":  "Nire-render ang pahina {{current}} ng {{total}}…"
+},
     "captions": {
         "action":  "Auto captions",
         "working":  "Nakikinig… {{percent}}%",

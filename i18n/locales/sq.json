@@ -6787,6 +6787,17 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "editor": {
+    "pages": {
+    "add":  "Shto faqe",
+    "duplicate":  "Dyfisho faqen",
+    "delete":  "Fshi faqen",
+    "page":  "Faqja {{number}}",
+    "position":  "Faqja {{current}} nga {{total}}",
+    "label":  "Faqet",
+    "allZip":  "Të gjitha {{count}} faqet (ZIP)",
+    "thisPage":  "Vetëm këtë faqe",
+    "exporting":  "Po përpunohet faqja {{current}} nga {{total}}…"
+},
     "captions": {
         "action":  "Titra automatike",
         "working":  "Duke dëgjuar… {{percent}}%",

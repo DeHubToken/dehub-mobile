@@ -6551,6 +6551,17 @@
     "savePrompt": "اِس پوسٹ کو ڈرافٹ میں محفوظ کرو تاکہ بعد میں پورا کر کے پوسٹ کر سکو؟"
   },
   "editor": {
+    "pages": {
+    "add":  "صفحہ جوڑو",
+    "duplicate":  "صفحے کی نقل بناؤ",
+    "delete":  "صفحہ مٹاؤ",
+    "page":  "صفحہ {{number}}",
+    "position":  "صفحہ {{current}} از {{total}}",
+    "label":  "صفحے",
+    "allZip":  "سارے {{count}} صفحے (ZIP)",
+    "thisPage":  "صرف یہ صفحہ",
+    "exporting":  "صفحہ {{current}} از {{total}} تیار ہو رہا…"
+},
     "captions": {
         "action":  "آٹو کیپشن",
         "working":  "سن رئیں… {{percent}}%",

@@ -6787,6 +6787,17 @@
     "savePrompt": "บันทึกโพสต์นี้เป็นฉบับร่างเพื่อแก้ไขและโพสต์ในภายหลังหรือไม่?"
   },
   "editor": {
+    "pages": {
+    "add":  "เพิ่มหน้า",
+    "duplicate":  "ทำซ้ำหน้า",
+    "delete":  "ลบหน้า",
+    "page":  "หน้า {{number}}",
+    "position":  "หน้า {{current}} จาก {{total}}",
+    "label":  "หน้า",
+    "allZip":  "ทั้งหมด {{count}} หน้า (ZIP)",
+    "thisPage":  "เฉพาะหน้านี้",
+    "exporting":  "กำลังเรนเดอร์หน้า {{current}} จาก {{total}}…"
+},
     "captions": {
         "action":  "คำบรรยายอัตโนมัติ",
         "working":  "กำลังฟัง… {{percent}}%",

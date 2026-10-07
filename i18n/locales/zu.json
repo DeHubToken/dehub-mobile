@@ -6800,6 +6800,17 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "pages": {
+    "add":  "Engeza ikhasi",
+    "duplicate":  "Phinda ikhasi",
+    "delete":  "Susa ikhasi",
+    "page":  "Ikhasi {{number}}",
+    "position":  "Ikhasi {{current}} kwangu-{{total}}",
+    "label":  "Amakhasi",
+    "allZip":  "Wonke amakhasi angu-{{count}} (ZIP)",
+    "thisPage":  "Leli khasi kuphela",
+    "exporting":  "Kulungiswa ikhasi {{current}} kwangu-{{total}}…"
+},
     "captions": {
         "action":  "Imibhalo engezansi ezenzakalelayo",
         "working":  "Kuyalalelwa… {{percent}}%",

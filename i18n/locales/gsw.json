@@ -6816,6 +6816,17 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "pages": {
+    "add":  "Siite dezue tue",
+    "duplicate":  "Siite dupliziere",
+    "delete":  "Siite lösche",
+    "page":  "Siite {{number}}",
+    "position":  "Siite {{current}} vo {{total}}",
+    "label":  "Siite",
+    "allZip":  "Alli {{count}} Siite (ZIP)",
+    "thisPage":  "Nur die Siite",
+    "exporting":  "Siite {{current}} vo {{total}} wird grenderet…"
+},
     "captions": {
         "action":  "Automatischi Untertitel",
         "working":  "Lost zue… {{percent}} %",

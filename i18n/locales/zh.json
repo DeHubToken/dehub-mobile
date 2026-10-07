@@ -6855,6 +6855,17 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "pages": {
+    "add":  "添加页面",
+    "duplicate":  "复制页面",
+    "delete":  "删除页面",
+    "page":  "第 {{number}} 页",
+    "position":  "第 {{current}} 页，共 {{total}} 页",
+    "label":  "页面",
+    "allZip":  "全部 {{count}} 页（ZIP）",
+    "thisPage":  "仅此页面",
+    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
+},
     "captions": {
         "action":  "自动字幕",
         "working":  "正在识别… {{percent}}%",
