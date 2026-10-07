@@ -6787,6 +6787,13 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "shots": {
+      "detect": "Leia stseenivahetused",
+      "split": "Jaga valitud lõikekohtades",
+      "none": "Stseenivahetusi ei leitud.",
+      "hint": "Vaata lõiked esmalt üle · ≤10 min",
+      "preview": "Eelvaade"
+    },
     "beats": {
       "markers": "Rütmimärgid",
       "sync": "Sünkrooni lõiked",

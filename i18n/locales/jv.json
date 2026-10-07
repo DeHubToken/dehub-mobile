@@ -6770,6 +6770,13 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "shots": {
+      "detect": "Goleki owah-owahan adegan",
+      "split": "Pisah ing potongan sing dipilih",
+      "none": "Ora ana owah-owahan adegan.",
+      "hint": "Priksa potongan dhisik · ≤10 menit",
+      "preview": "Pratinjau"
+    },
     "beats": {
       "markers": "Tandha ketukan",
       "sync": "Selarasake potongan",

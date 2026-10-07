@@ -6767,6 +6767,13 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "editor": {
+    "shots": {
+      "detect": "Sahna üýtgeşmelerini tap",
+      "split": "Saýlanan kesiklerde böl",
+      "none": "Sahna üýtgeşmesi tapylmady.",
+      "hint": "Ilki kesikleri gözden geçiriň · ≤10 min",
+      "preview": "Öňünden gör"
+    },
     "beats": {
       "markers": "Ritm bellikleri",
       "sync": "Kesimleri sazlaşdyr",

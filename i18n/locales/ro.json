@@ -6802,6 +6802,13 @@
     }
   },
   "editor": {
+    "shots": {
+      "detect": "Detectează schimbări de scenă",
+      "split": "Împarte la tăieturile selectate",
+      "none": "Nu s-au găsit schimbări de scenă.",
+      "hint": "Verifică întâi tăieturile · ≤10 min",
+      "preview": "Previzualizare"
+    },
     "beats": {
       "markers": "Marcaje de ritm",
       "sync": "Sincronizează tăieturile",

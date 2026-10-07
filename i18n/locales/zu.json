@@ -6800,6 +6800,13 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "shots": {
+      "detect": "Thola ushintsho lwezigcawu",
+      "split": "Hlukanisa ezindaweni ezikhethiwe",
+      "none": "Alukho ushintsho lwezigcawu olutholakele.",
+      "hint": "Hlola izindawo kuqala · ≤10 min",
+      "preview": "Buka kuqala"
+    },
     "beats": {
       "markers": "Izimpawu zesigqi",
       "sync": "Vumelanisa ukusika",

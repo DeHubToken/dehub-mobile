@@ -34,6 +34,7 @@ import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
+import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
@@ -55,6 +56,7 @@ canvas{display:block;width:100%;height:100%;}
   __MEDIA_LEASES_RUNTIME__
   __EXPORT_RANGES_RUNTIME__
   __GIF_RUNTIME__
+  __SHOT_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -1382,6 +1384,21 @@ canvas{display:block;width:100%;height:100%;}
     reader.onerror = function () { cancelAudioTool(reqId); post({ type: "audioFailed", reqId: reqId, error: "read" }); };
     reader.readAsDataURL(entry.blob.slice(entry.offset, end));
   }
+  var shotJob = null;
+  function cancelShotScan(reqId) {
+    if (!shotJob || shotJob.reqId !== reqId) return;
+    shotJob.abort.abort(); URL.revokeObjectURL(shotJob.url); shotJob = null;
+  }
+  function processShotScan(m) {
+    var blob = blobs.get(m.clip.mediaId);
+    if (shotJob || !blob) { post({ type: "shotsFailed", reqId: m.reqId, error: "video unavailable" }); return; }
+    var job = { reqId: m.reqId, abort: new AbortController(), url: URL.createObjectURL(blob) }; shotJob = job;
+    scanVideoShots(job.url, m.clip, job.abort.signal, function (fraction) { post({ type: "shotsProgress", reqId: m.reqId, fraction: fraction }); }).then(function (result) {
+      if (!job.abort.signal.aborted) post({ type: "shotsReady", reqId: m.reqId, times: result.times, sampled: result.sampled, precision: result.precision });
+    }).catch(function (error) {
+      if (!job.abort.signal.aborted) post({ type: "shotsFailed", reqId: m.reqId, error: String(error.message || error) });
+    }).finally(function () { URL.revokeObjectURL(job.url); if (shotJob === job) shotJob = null; });
+  }
   function processAudioClip(m) {
     if (audioJob) { post({ type: "audioFailed", reqId: m.reqId, error: "busy" }); return; }
     var c = m.clip, blob = blobs.get(c.mediaId);
@@ -1535,6 +1552,10 @@ canvas{display:block;width:100%;height:100%;}
       cutout(m);
     } else if (m.type === "captions") {
       transcribeClip(m);
+    } else if (m.type === "shots") {
+      processShotScan(m);
+    } else if (m.type === "shotsCancel") {
+      cancelShotScan(m.reqId);
     } else if (m.type === "processAudio") {
       processAudioClip(m);
     } else if (m.type === "audioAck") {
@@ -1579,4 +1600,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");

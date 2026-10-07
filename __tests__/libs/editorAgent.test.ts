@@ -7,6 +7,20 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("splits detected scenes without replacing source media or changing the original project", async () => {
+    const base = newProject("16:9", "scenes");
+    base.tracks = [{ id:"track",kind:"video",name:"Video",muted:false,hidden:false }];
+    const clip: MediaClip = {id:"v",kind:"video",mediaId:"source",trackId:"track",start:7,trimIn:4,speed:2,duration:4,sourceDuration:20};
+    base.clips = [clip];
+    const detectShots = jest.fn().mockResolvedValue({times:[1,2.5],sampled:17,precision:0.016});
+    const {project,report} = await applyOps(base,[{op:"detect_shots",id:"v"}],{detectShots});
+    expect(report).toMatchObject({applied:1,failed:0}); expect(detectShots).toHaveBeenCalledWith(clip);
+    expect(project.clips.map(c=>c.trimIn)).toEqual([4,6,9]); expect(base.clips).toEqual([clip]);
+    expect(project.clips.every(c=>c.kind==="video" && c.mediaId==="source" && c.speed===2)).toBe(true);
+    const empty = await applyOps(base,[{op:"detect_shots",id:"v"}],{detectShots:async()=>({times:[],sampled:17,precision:.016})});
+    expect(empty.report).toMatchObject({applied:0,failed:1}); expect(empty.project.clips).toEqual(base.clips);
+  });
+
   it("replaces the requested soundtrack in one project snapshot", async () => {
     const base = newProject("16:9", "sound");
     base.tracks = [{ id: "v", name: "Video", kind: "video", hidden: false, muted: false }];

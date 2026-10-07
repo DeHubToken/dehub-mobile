@@ -6905,6 +6905,13 @@
     }
   },
   "editor": {
+    "shots": {
+      "detect": "Phát hiện chuyển cảnh",
+      "split": "Chia tại điểm cắt đã chọn",
+      "none": "Không tìm thấy chuyển cảnh.",
+      "hint": "Xem lại điểm cắt trước · ≤10 phút",
+      "preview": "Xem trước"
+    },
     "beats": {
       "markers": "Dấu nhịp",
       "sync": "Đồng bộ các đoạn cắt",

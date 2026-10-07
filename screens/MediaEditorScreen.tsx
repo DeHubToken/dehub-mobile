@@ -74,6 +74,8 @@ import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
+import { ShotTools } from "../components/editor/ShotTools";
+import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { audioToolLayers, type AudioToolMode } from "../libs/editor/audioTools";
@@ -283,7 +285,7 @@ type Tool =
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand"
-  | "speed" | "sound" | "transition" | "animate" | "motion";
+  | "shots" | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
   id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
@@ -700,6 +702,20 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       audioController.current = null; setAudioProgress(null);
     }
   };
+  const detectShots = async (clip: MediaClip, signal?: AbortSignal, progress?: (fraction: number) => void) => {
+    if (!canvasRef.current || clip.locked) throw new Error("video unavailable");
+    const current = h.latest(); setPlaying(false);
+    const result = await canvasRef.current.detectShots(clip, signal, progress);
+    if (signal?.aborted || h.latest() !== current) throw new Error("design changed");
+    return result;
+  };
+  const splitShots = (clip: MediaClip, times: number[]) => {
+    const current = h.latest();
+    if (!current || current.clips.find(c => c.id === clip.id) !== clip) return false;
+    const result = applyTimelineOp(current, { op: "split_points", id: clip.id, times }, () => newId(10));
+    if (!result) return false;
+    h.commit({ ...current, clips: result.clips }); return true;
+  };
   const detectBeats = async (clip: MediaClip) => {
     if (!canvasRef.current || audioController.current || clip.locked) throw new Error("beats unavailable");
     const current = h.latest();
@@ -767,6 +783,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         transcribe,
         processAudio,
         detectBeats,
+        detectShots,
         time: canvasTime,
       });
       if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
@@ -863,6 +880,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
+        { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
         { id: "captions", icon: "Type", label: captionProgress ? t(captionProgress.stage === "download" ? "editor.captions.downloading" : "editor.captions.working", { percent: Math.round(captionProgress.fraction * 100) }) : t("editor.captions.action") },
         { id: "split", icon: "Scissors", label: t("editor.video.split") },
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
@@ -1021,6 +1039,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       );
     }
     if (selected && (selected.kind === "video" || selected.kind === "audio")) {
+      if (tool === "shots" && selected.kind === "video") return <ShotTools key={selected.id} clip={selected} detect={detectShots} apply={splitShots} preview={at => { setPlaying(false); setTime(at); }} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {

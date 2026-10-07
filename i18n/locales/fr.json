@@ -6881,6 +6881,13 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "shots": {
+      "detect": "Détecter les changements de scène",
+      "split": "Diviser aux coupes choisies",
+      "none": "Aucun changement de scène trouvé.",
+      "hint": "Vérifiez d'abord les coupes · ≤10 min",
+      "preview": "Aperçu"
+    },
     "beats": {
       "markers": "Repères de rythme",
       "sync": "Synchroniser les coupes",
