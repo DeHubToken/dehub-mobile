@@ -4,6 +4,7 @@ export interface VideoFrameSource {
   duration: number;
   readyState: number;
   seeking: boolean;
+  load?: () => void;
   error?: { code?: number } | null;
   addEventListener(type: string, listener: () => void): void;
   removeEventListener(type: string, listener: () => void): void;
@@ -21,12 +22,14 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
     let target = Math.max(0, time);
     let timer: ReturnType<typeof setTimeout> | undefined;
     let poll: ReturnType<typeof setInterval> | undefined;
+    let recovery: ReturnType<typeof setTimeout> | undefined;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
     function finish(error?: Error) {
       if (done) return;
       done = true;
       clearTimeout(timer);
       clearInterval(poll);
+      clearTimeout(recovery);
       for (const event of events) source.removeEventListener(event, check);
       source.removeEventListener("error", failed);
       options.signal?.removeEventListener("abort", aborted);
@@ -49,6 +52,14 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
       }
       if (requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005) finish();
     }
+    function recover() {
+      check();
+      if (done || !requested || !source.seeking || !source.load) return;
+      // Restart a stalled decoder once, then require the same exact source frame.
+      requested = false;
+      try { source.load(); } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
+      check();
+    }
     if (!Number.isFinite(time)) { finish(new Error("Invalid video frame time")); return; }
     timer = setTimeout(() => {
       check();
@@ -59,6 +70,7 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
     options.signal?.addEventListener("abort", aborted, { once: true });
     // Some paused decoders reach the requested frame without another seek event.
     poll = setInterval(check, 32);
+    recovery = setTimeout(recover, 2500);
     check();
   });
 }
@@ -71,12 +83,14 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
     let target = Math.max(0, time);
     let timer;
     let poll;
+    let recovery;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
     function finish(error) {
       if (done) return;
       done = true;
       clearTimeout(timer);
       clearInterval(poll);
+      clearTimeout(recovery);
       for (const event of events) source.removeEventListener(event, check);
       source.removeEventListener("error", failed);
       options.signal?.removeEventListener("abort", aborted);
@@ -99,6 +113,14 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
       }
       if (requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005) finish();
     }
+    function recover() {
+      check();
+      if (done || !requested || !source.seeking || !source.load) return;
+      // Restart a stalled decoder once, then require the same exact source frame.
+      requested = false;
+      try { source.load(); } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
+      check();
+    }
     if (!Number.isFinite(time)) { finish(new Error("Invalid video frame time")); return; }
     timer = setTimeout(() => {
       check();
@@ -109,6 +131,7 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
     options.signal?.addEventListener("abort", aborted, { once: true });
     // Some paused decoders reach the requested frame without another seek event.
     poll = setInterval(check, 32);
+    recovery = setTimeout(recover, 2500);
     check();
   });
 }`;
