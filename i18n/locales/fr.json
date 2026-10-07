@@ -6904,24 +6904,24 @@
       "hint": "Traitez les clips jusqu'à 10 minutes. La réduction du bruit fonctionne mieux avec un bruit de fond constant."
     },
     "pages": {
-    "add":  "Ajouter une page",
-    "duplicate":  "Dupliquer la page",
-    "delete":  "Supprimer la page",
-    "page":  "Page {{number}}",
-    "position":  "Page {{current}} sur {{total}}",
-    "label":  "Pages",
-    "allZip":  "Les {{count}} pages (ZIP)",
-    "thisPage":  "Cette page uniquement",
-    "exporting":  "Rendu de la page {{current}} sur {{total}}…"
-},
+      "add": "Ajouter une page",
+      "duplicate": "Dupliquer la page",
+      "delete": "Supprimer la page",
+      "page": "Page {{number}}",
+      "position": "Page {{current}} sur {{total}}",
+      "label": "Pages",
+      "allZip": "Les {{count}} pages (ZIP)",
+      "thisPage": "Cette page uniquement",
+      "exporting": "Rendu de la page {{current}} sur {{total}}…"
+    },
     "captions": {
-        "action":  "Sous-titres auto",
-        "working":  "Écoute… {{percent}} %",
-        "downloading":  "Préparation du modèle vocal… {{percent}} %",
-        "hint":  "Transforme la parole en sous-titres synchronisés que vous pouvez styliser. Fonctionne sur votre appareil : gratuit et privé. La première utilisation télécharge le modèle.",
-        "done":  "{{count}} sous-titres ajoutés.",
-        "noSpeech":  "Aucune parole détectée dans ce clip.",
-        "failed":  "Impossible de créer des sous-titres pour ce clip."
+      "action": "Sous-titres auto",
+      "working": "Écoute… {{percent}} %",
+      "downloading": "Préparation du modèle vocal… {{percent}} %",
+      "hint": "Transforme la parole en sous-titres synchronisés que vous pouvez styliser. Fonctionne sur votre appareil : gratuit et privé. La première utilisation télécharge le modèle.",
+      "done": "{{count}} sous-titres ajoutés.",
+      "noSpeech": "Aucune parole détectée dans ce clip.",
+      "failed": "Impossible de créer des sous-titres pour ce clip."
     },
     "app": {
       "newDesign": "Nouveau design",
@@ -7314,6 +7314,12 @@
       "changed": "Le projet source a changé. Relancez la recherche.",
       "limit": "Utilisez au maximum 10 minutes de parole source. Une très longue transcription sans pause doit être divisée au préalable.",
       "projectTitle": "{{title}} — Moments forts"
+    },
+    "videoMatte": {
+      "frames": "Suppression du fond · {{completed}} / {{total}} images",
+      "hint": "Traitement sur cet appareil. Limitez d’abord la source à {{seconds}} secondes ; le modèle se télécharge au premier usage.",
+      "restore": "Rétablir le fond",
+      "cancel": "Annuler"
     }
   },
   "creator": {
