@@ -53,24 +53,26 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Separate clip downloads | This release | This release | Export the selected video cuts or every visible video cut at its original global range, with matching captions, soundtrack, source offsets and a 2.2-second branded ending per file. One file saves directly; multiple files save together in a ZIP. Archives are bounded to 512 MiB and can be cancelled. |
 | Still exports | PNG / JPG | PNG / JPG | Render the selected frame without a video ending. |
 | Direct DeHub posting | Implemented | Implemented | Post the edited result with correct media metadata. |
-| Branded video ending | Implemented | Implemented | 2.2-second logo animation, creator @username and original sound; silent sources included. |
+| Branded video ending | Implemented | Implemented | 2.2-second logo animation, creator dehub.io/username credit and original sound; silent sources included. |
 | Reliable numeric requests | Implemented | Implemented | Exact cuts run locally; complex requests retain the existing planning route. |
 | Honest operation results | This release | This release | Empty or failed operations cannot display a success confirmation. |
 
 ## Download ending concepts
 
-All concepts end with the existing DeHub wordmark and the creator's @username. Sound is original and synthesized locally. The shipped default is Signal pulse.
+All ten rendered concepts use the official icon, a `dehub.io/username` credit, black textured backgrounds and silver chrome artwork matching the store images. Sound is original and synthesized locally. Chrome current is the export default.
 
-1. **Signal pulse:** wordmark reveals horizontally, a teal line pulses, two clear notes resolve.
-2. **Glass badge:** a translucent creator badge turns toward the viewer, with a soft glass tap.
-3. **Orbit:** small points circle the logo and settle under the handle, with an airy sweep.
-4. **Neon trace:** a thin light draws the mark, followed by the handle and a bright electronic ping.
-5. **Cinema stamp:** the mark lands as a clean closing credit, with a warm low impact.
-6. **Particle gather:** scattered particles form the logo while the handle fades in, with a rising shimmer.
-7. **Wave reveal:** a sound wave passes across the mark and becomes an underline, with a short bass note.
-8. **Creator card:** the username slides into a compact signature card, with a crisp click and chime.
-9. **Glitch lock:** two brief offsets snap into the clean mark and handle, with a restrained digital snap.
-10. **Spotlight:** a moving pool of light reveals the logo and creator credit, with a soft cinematic swell.
+1. **Chrome current:** the icon settles between a silver globe and stars while fine wave contours move behind the credit.
+2. **Camera flash:** a chrome camera slides in with a brief light flash and a sharp sound accent.
+3. **Power bloom:** the icon appears in a soft silver glow, followed by the creator URL and a low rising tone.
+4. **Star fall:** chrome stars sweep into place around the icon with a resolving chime.
+5. **Ribbon weave:** thin silver wave ribbons cross behind the icon and profile URL.
+6. **Silver press:** the icon lands over faint store-style typography with a low impact.
+7. **Creator orbit:** a globe, star and chain orbit the icon before the credit settles.
+8. **Mirror slide:** two halves of the icon meet, leaving a restrained reflection underneath.
+9. **Signal rush:** a chrome megaphone arrives with fine radiating contours and a short sweep.
+10. **Final frame:** the icon and creator URL settle into a thin silver frame.
+
+MP4/WebM downloads retain the ending sound. GIF downloads use the same animation without audio. Artwork and Exo typography are embedded, so offline native downloads do not fetch remote brand files.
 
 ## Release evidence
 
@@ -90,6 +92,8 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 - Recording: web PR 2302 and mobile PR 1681 merged with cloud checks passing. Microphone and camera save recordings to the media library on a separate track at the playhead. Web also captures a chosen screen/window with available system sound. Capture stops on cancellation or leaving the panel; voiceovers are bounded to ten minutes. Live capture verification remains pending.
 - Audio tools: shared worker processing creates a PCM WAV used in both preview and export. Video cleanup extracts its soundtrack and mutes the original sound; audio clips are replaced in place. Each change is one undo step. Exact cleanup requests run locally; compound requests require the updated editor-agent deployment. Web PR 2303 and mobile PR 1682 merged after cloud checks passed. The editor-agent handler was deployed from synced commit 8163d22e. Staging normalization created a WAV asset with one Undo/Redo; the downloaded 12.20-second H.264/AAC MP4 measured -16.0 dB RMS across the processed sound range and retained the ending chime. Mobile OTA run 37654241892 published the audio release after its configuration preflight passed. Physical-device verification remains pending.
 
-- GIF downloads: a shared worker emits GIF89a with per-frame delays, transparent disposal and an infinite-loop extension. Frame encoding is acknowledged before the next frame is rendered. Cloud tests independently decode the bytes, palette, transparency, timing and dictionary resets. Web downloads a GIF; Android saves to a chosen folder in bounded chunks and iOS opens Save to Files. Web PR 2307 and mobile PR 1686 merged after cloud checks passed. The staging GIF decoded as 183 frames at 640×360, with an infinite loop and a 12.20-second duration including the DeHub ending. Native publication and device verification remain separate checks.
+- GIF downloads: a shared worker emits GIF89a with per-frame delays, transparent disposal and an infinite-loop extension. Frame encoding is acknowledged before the next frame is rendered. Cloud tests independently decode the bytes, palette, transparency, timing and dictionary resets. Web downloads a GIF; Android saves to a chosen folder in bounded chunks and iOS opens Save to Files. Web PR 2307 and mobile PR 1686 merged after cloud checks passed. The staging GIF decoded as 183 frames at 640×360, with an infinite loop and a 12.20-second duration including the DeHub ending. Mobile OTA run 37656246129 published the GIF release after its configuration preflight passed. Physical-device verification remains pending.
 
-- Clip downloads: range/audio math and the archive writer are shared across web and mobile. Cloud tests cover ten distinct one-second ranges, source trims and playback speed, original caption times, partial fade envelopes, UTF-8 names, independent ZIP directory/CRC parsing, bounded reads, cancellation and partial-file cleanup. Cloud checks, staging downloads and native publication remain pending.
+- Clip downloads: range/audio math and the archive writer are shared across web and mobile. Cloud tests cover ten distinct one-second ranges, source trims and playback speed, original caption times, partial fade envelopes, UTF-8 names, independent ZIP directory/CRC parsing, bounded reads, cancellation and partial-file cleanup. Web PR 2309 and mobile PR 1687 merged after cloud checks passed. Staging archive downloads and native publication remain pending.
+
+- Icon ending correction: both renderers use the official mark cropped to its visible proportions, a silver material, store artwork and `dehub.io/username` credits. Matching motion, sound, responsive geometry and native-runtime tests are included. Cloud checks, staging downloads and native publication remain pending.
