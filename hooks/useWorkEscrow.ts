@@ -5,6 +5,7 @@ import { buildContract,useWeb3Provider } from './use-web3';
 import { writeContractAA } from '../libs/aa.write';
 import { createWorkEscrow } from '../libs/work-escrow-flow';
 import { workRpc,workReceipt } from '../libs/work-rpc';
+import { prepareWorkPayment } from '../libs/work-payment-flow';
 
 export const WORK_ABI=[
  'function createJob(address,uint8,uint256,uint256,uint256) returns (uint256)',
@@ -35,8 +36,11 @@ export function useWorkEscrow(wallet:string|null) {
  const currencyToken=(currency:string)=>currency==='USDC'?'0x833589fcd6edb6e08f4c7c32d4f71b54bda02913':'0xd20ab1015f6a2de4a6fddebab270113f689c2f7c';
  const units=(amount:string,currency:string)=>ethers.utils.parseUnits(amount,currency==='USDC'?6:18);
  const write=async(address:string,name:string,args:unknown[])=>{
-  const c=await contract(address);
-  try {await c.callStatic[name](...args);} catch(error:any) {throw Object.assign(new Error(error.reason || error.message || 'The escrow action is not available'),{code:'WORK_NOT_SENT'});}
+  const c=await prepareWorkPayment(async () => {
+   const ready=await contract(address);
+   await ready.callStatic[name](...args);
+   return ready;
+  });
   const sent=await writeContractAA(c,name,args,{context:'bounty-'+name});
   if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
   return {hash:sent.hash,wait:(count:number)=>sent.wait(count)};
