@@ -63,6 +63,7 @@ import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, Shapes
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
+import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
@@ -268,7 +269,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background" | "stock" | "scenes" | "subtitles"
+  | "page" | "background" | "stock" | "scenes" | "subtitles" | "record"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -763,6 +764,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "music", icon: "Music", label: t("editor.video.sound") },
         { id: "stock", icon: "Search", label: t("common.search") },
         { id: "subtitles", icon: "Type", label: "SRT / VTT" },
+        { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
         { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
@@ -860,6 +862,16 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const current = h.latest();
       if (!current || current.id !== project.id) return;
       h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+    }} />;
+    if (tool === "record") return <RecordingPanel key={project.id} at={canvasTime} onStart={() => setPlaying(false)} onAdd={(media, start) => {
+      const current = h.latest();
+      if (!current || current.id !== project.id) return;
+      const trackId = newId(8), clipId = newId(10);
+      h.commit({ ...current,
+        tracks: [...current.tracks, { id: trackId, kind: media.kind === "audio" ? "audio" : "video", name: media.name, muted: false, hidden: false }],
+        clips: [...current.clips, { id: clipId, kind: media.kind === "audio" ? "audio" : "video", trackId, start, duration: media.duration ?? 5, trimIn: 0, mediaId: media.id, sourceDuration: media.duration }],
+      });
+      setTimelineOpen(true); select(clipId);
     }} />;
     if (tool === "stock") return <StockPanel onAdd={(media) => {
       const current = h.latest();

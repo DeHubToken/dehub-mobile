@@ -528,9 +528,11 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         const tops = ctx.templateOps?.(String(op.template));
         if (!tops) return false;
         // A template replaces the design; its words come from the phone's language.
-        p = { ...p, clips: [] };
-        const inner = await applyOps(p, tops, { ...ctx, templateOps: undefined });
+        p = { ...p, clips: [], settings: { ...p.settings, pages: undefined } };
+        cursor = 0;
+        const inner = await applyOps(p, tops, { ...ctx, time: 0, templateOps: undefined });
         p = inner.project;
+        report.cursorTime = 0;
         return inner.report.applied > 0;
       }
       case "remove_background": {
