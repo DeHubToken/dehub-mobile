@@ -7022,6 +7022,8 @@
       "delete": "Supprimer"
     },
     "export": {
+      "gifHint": "Animation en boucle sans son. Jusqu'à 60 secondes, 640 pixels et 15 ips. Inclut la fin de votre logo.",
+      "gifTooLong": "Coupez la chronologie à 60 secondes ou moins, ou choisissez MP4 ou WebM.",
       "format": "Type de fichier",
       "png": "Image PNG",
       "jpg": "Image JPG",

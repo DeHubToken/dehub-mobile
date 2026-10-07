@@ -6932,6 +6932,8 @@
       "delete": "Radera"
     },
     "export": {
+      "gifHint": "Loopande animering utan ljud. Upp till 60 sekunder, 640 pixlar och 15 fps. Inkluderar din logotyp som slutar.",
+      "gifTooLong": "Trimma tidslinjen till 60 sekunder eller mindre, eller välj MP4 eller WebM.",
       "format": "Filtyp",
       "png": "PNG-bild",
       "jpg": "JPG-bild",

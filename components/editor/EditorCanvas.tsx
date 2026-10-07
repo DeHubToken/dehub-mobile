@@ -54,7 +54,8 @@ export interface EditorCanvasHandle {
    * Render the timeline to a video file (MP4 where the phone can, see
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
-  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif" }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  cancelExport: () => void;
 }
 
 interface Props {
@@ -179,6 +180,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       request.out?.discard(); request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId });
     }
     audioReqs.current.clear();
+    for (const request of videoReqs.current.values()) { request.out?.discard(); request.reject(new Error("canvas closed")); }
+    videoReqs.current.clear(); post({ type: "exportAbort" });
   }, [post]);
 
   // Draw on every change. Time alone only moves the playhead (seek), and
@@ -283,13 +286,14 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         const r = videoReqs.current.get(msg.reqId);
         if (!r) break;
         try {
-          if (!r.out) r.out = openVideoExport(r.title, msg.ext === "webm" ? "webm" : "mp4");
+          const ext = msg.ext === "gif" ? "gif" : msg.ext === "webm" ? "webm" : "mp4";
+          if (!r.out) r.out = openVideoExport(r.title, ext);
           r.out.append(msg.b64);
           if (msg.total) r.progress?.(0.97 + 0.03 * (Number(msg.done) / Number(msg.total)));
           if (msg.last) {
             r.out.close();
             videoReqs.current.delete(msg.reqId);
-            r.resolve({ uri: r.out.uri, ext: msg.ext === "webm" ? "webm" : "mp4" });
+            r.resolve({ uri: r.out.uri, ext });
           } else {
             post({ type: "videoAck", reqId: msg.reqId });
           }
@@ -414,6 +418,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    cancelExport: () => {
+      post({ type: "exportAbort" });
+      const error = new Error("export cancelled"); error.name = "AbortError";
+      for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(error); }
+      videoReqs.current.clear();
+    },
     processAudio: (clip, mode, signal, onProgress) => new Promise<{ uri: string; duration: number }>((resolve, reject) => {
       if (signal?.aborted) { reject(new Error("cancelled")); return; }
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -464,7 +474,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
         }, 180000);
       }),
-    exportVideo: ({ width, height, bitrate, title, username }, onProgress) =>
+    exportVideo: ({ width, height, bitrate, title, username, format }, onProgress) =>
       new Promise((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         // A phone that pauses the page (app in the background) stalls the
@@ -489,7 +499,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           title,
           out: null,
         });
-        post({ type: "exportVideo", reqId, width, height, bitrate, username });
+        post({ type: "exportVideo", reqId, width, height, bitrate, username, format });
       }),
   }), [post]);
 
