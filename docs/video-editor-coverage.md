@@ -38,8 +38,8 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Voiceover recording | This release | This release | Record into a separate sound layer at the playhead. |
 | Camera recording | This release | This release | Record and import within the editor using existing capture capabilities. |
 | Screen recording | This release | OS recorder import | Browser capture; native needs supported OS recording integration. |
-| Volume normalization | Gap | Gap | Measure the audible source range and apply bounded gain. |
-| Voice enhancement / noise reduction | Gap | Gap | Apply and preview actual audio processing. |
+| Volume normalization | This release | This release | Process the trimmed, speed-adjusted clip as WAV; target -16 dB RMS, cap amplification at 6x and normalized peaks at 0.95. Clips up to ten minutes. |
+| Voice enhancement / noise reduction | This release | This release | Sample the noise spectrum and reduce it with overlap-add filtering. Voice mode adds a 90 Hz high-pass filter, compression and normalization. Original media, fades and timing remain editable. |
 | Automatic beat synchronization | Gap | Gap | Detect beats from sound and align cuts to detected timestamps. |
 | Automatic highlights | Gap | Gap | Reviewable source ranges with measurable selection criteria. |
 | Automatic shot detection | Gap | Gap | Detect visual boundaries and offer editable cuts. |
@@ -75,18 +75,16 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 ## Release evidence
 
 - Timeline commands and default ending: web PR 2292 and mobile PR 1671, merged after cloud checks passed.
-- Web staging serves commit `29f3a5e970dd6b98d4dce1f21f8ec13f016c3fe5`.
 - A silent ten-second fixture exported from staging as a 12.20-second H.264 MP4 with stereo AAC sound. The closing frame contains the wordmark and signed-out `dehub.io` fallback. Creator-handle formatting and rendering are covered in both suites.
-- The first live cut request exposed an empty backend operation list despite a success reply. Local numeric handling and truthful empty-result reporting address this in the next release. Do not mark this live test passed until the actual timeline contains ten clips.
+- Exact numeric requests run locally and empty backend results are reported without a success confirmation.
 - Mobile publication and physical-device export verification remain separate from passing unit tests.
 
-- Stock media release: native photo/video/audio browser and imports with source credits; deduplicated search fallback on both clients. Cloud checks and native device verification pending.
+- Stock media: web PR 2296 and mobile PR 1676 merged with cloud checks passing. Native photo/video/audio imports retain source credits; repeated sources have independent decoders during overlaps. Physical-device verification remains pending.
 
 - Numeric cuts verified on staging commit 1ecabeada: the exact ten one-second clip request produced ten timeline clips; one Undo restored the original and Redo restored ten. Project saved. Proof: editor-ten-clips-staging.jpg.
-- Scene release adds matching source-aware duplication/deletion, explicit scene navigation on mobile, complete timeline duration, and fenced operation-array parsing. Cloud checks and publication pending.
+- Scene release: web PR 2298 and mobile PR 1677 merged with cloud checks passing. Matching source-aware duplication/deletion, scene navigation, complete timeline duration, and fenced operation-array parsing are implemented.
 
-- Precise numeric cuts: staging commit 1ecabead showed ten separate one-second clips, with one-step undo and redo verified.
-- Scene editing: web PR 2298; boundary cuts preserve source offsets, speed, motion and blank scene duration.
-- Subtitle files: import SRT/VTT as editable captions; save only visible caption tracks in either format with millisecond timestamps. Android uses the folder picker; iOS uses Save to Files.
+- Subtitle files: web PR 2300 and mobile PR 1679 merged with cloud checks passing. Import SRT/VTT as editable captions; save visible caption tracks in either format with millisecond timestamps. Android uses the folder picker; iOS uses Save to Files.
 
-- Recording: microphone and camera use existing browser/device capture APIs, save recordings to the media library and add a separate track at the playhead. Web also captures a chosen screen/window with available system sound. Capture stops on cancellation or leaving the panel; voiceovers are bounded to ten minutes.
+- Recording: web PR 2302 and mobile PR 1681 merged with cloud checks passing. Microphone and camera save recordings to the media library on a separate track at the playhead. Web also captures a chosen screen/window with available system sound. Capture stops on cancellation or leaving the panel; voiceovers are bounded to ten minutes. Live capture verification remains pending.
+- Audio tools: shared worker processing creates a PCM WAV used in both preview and export. Video cleanup extracts its soundtrack and mutes the original sound; audio clips are replaced in place. Each change is one undo step. Exact cleanup requests run locally; compound requests require the updated editor-agent deployment. Cloud checks, staging audio verification and native publication remain pending.
