@@ -60,14 +60,13 @@ export function reportLaunchRevealed(context: { signedIn: boolean }): void {
 
 /** Samples per summary row; a session that ends sooner is flushed on background. */
 const SUMMARY_EVERY = 25;
-/** A dispatch whose screen took longer than this was not a navigation the user waited on. */
-const MAX_SAMPLE_MS = 10_000;
 /** Routes listed in a summary; the metadata cap is 4,000 characters. */
 const MAX_ROUTES = 12;
 
 let pendingSince: number | null = null;
 let lastRouteKey: string | undefined;
 let samples: { route: string; ms: number }[] = [];
+let epoch = 0;
 
 type NavigationRefLike = {
   addListener: (type: "__unsafe_action__", cb: (e: { data?: { noop?: boolean } }) => void) => () => void;
@@ -96,10 +95,11 @@ export function markNavigationSettled(route: { key?: string; name?: string } | u
   lastRouteKey = route.key;
   if (startedAt == null) return;
   const name = route.name;
+  const startedEpoch = epoch;
   requestAnimationFrame(() =>
     requestAnimationFrame(() => {
       const elapsed = clock() - startedAt;
-      if (elapsed < 0 || elapsed > MAX_SAMPLE_MS) return;
+      if (epoch !== startedEpoch || !Number.isFinite(elapsed) || elapsed < 0) return;
       samples.push({ route: name, ms: ms(elapsed) });
       if (samples.length >= SUMMARY_EVERY) flushNavigationTiming();
     }),
@@ -137,6 +137,8 @@ export function summarizeNavigation(batch: { route: string; ms: number }[]) {
 
 /** Send what has been collected. Called on every summary and when the app backgrounds. */
 export function flushNavigationTiming(): void {
+  epoch++;
+  pendingSince = null;
   if (samples.length === 0) return;
   const batch = samples;
   samples = [];
@@ -145,6 +147,7 @@ export function flushNavigationTiming(): void {
 
 /** Test seam: reset module state between cases. */
 export function __resetNavigationTimingForTests(): void {
+  epoch++;
   pendingSince = null;
   lastRouteKey = undefined;
   samples = [];

@@ -57,18 +57,28 @@ export const useNetworkStatus = () => {
   );
 
   useEffect(() => {
+    let live = true;
+    let receivedEvent = false;
+    let hasReading = false;
     const unsubscribe = NetInfo.addEventListener((state) => {
-      apply(state.isConnected, state.isInternetReachable);
+      const initial = !hasReading;
+      hasReading = true;
+      receivedEvent = true;
+      apply(state.isConnected, state.isInternetReachable, initial);
     });
 
     // Initial state. Committed immediately in both directions: at boot there is
     // no previous state to protect, and a cold start with no network should show
     // the offline screen rather than a splash that sits there for four seconds.
     NetInfo.fetch().then((state) => {
-      apply(state.isConnected, state.isInternetReachable, true);
-    });
+      if (live && !receivedEvent) {
+        hasReading = true;
+        apply(state.isConnected, state.isInternetReachable, true);
+      }
+    }).catch(() => { /* Unknown reachability must not block the app shell. */ });
 
     return () => {
+      live = false;
       clearOfflineTimer();
       unsubscribe();
     };
@@ -76,8 +86,10 @@ export const useNetworkStatus = () => {
 
   /** Manual retry from the offline screen — applied at once, both ways. */
   const checkConnection = useCallback(async () => {
-    const state = await NetInfo.fetch();
-    apply(state.isConnected, state.isInternetReachable, true);
+    try {
+      const state = await NetInfo.fetch();
+      apply(state.isConnected, state.isInternetReachable, true);
+    } catch { /* Retain the last reading and let the user retry. */ }
   }, [apply]);
 
   return {

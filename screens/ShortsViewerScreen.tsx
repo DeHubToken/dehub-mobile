@@ -1,6 +1,7 @@
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
+import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -362,7 +363,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item), [item]);
-  const [soundtrackError, setSoundtrackError] = useState(false);
   const videoUrl = photoMedia?.soundtrackUrl || getVideoUrl(tokenId) || undefined;
   const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
   const minterAddress = item.minter || item.minterUser?.address || "";
@@ -576,26 +576,20 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   // Keep those players empty, and let neighbours buffer only after settling.
   const { liteMode } = useDataSaver();
   const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
-
-
-
+  const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
+    component: 'ShortsViewer', postId: tokenId,
+    allowed: () => (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
+  });
   const stopPlayback = useCallback(() => {
     if (isPictureInPicturePlayer(player)) return;
+    recovery.stop();
     try {
       player.staysActiveInBackground = false;
       player.showNowPlayingNotification = false;
       player.pause();
     } catch {}
     setIsPlaying(false);
-  }, [player]);
-
-  useEffect(() => {
-    if (!photoMedia) return;
-    const subscription = player.addListener('statusChange', ({ status }) => {
-      setSoundtrackError(status === 'error');
-    });
-    return () => subscription.remove();
-  }, [player, photoMedia]);
+  }, [player, recovery]);
 
   const playIfActive = useCallback(() => {
     if ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player)) {
@@ -603,17 +597,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
       return false;
     }
     try {
-      player.play();
+      recovery.start();
       setIsPlaying(true);
       return true;
     } catch {
       return false;
     }
-  }, [player, stopPlayback]);
+  }, [player, stopPlayback, recovery]);
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
-    if (!pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
-  });
+    if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
+  }, () => recovery.fail('source-rejected'));
 
   useEffect(() => {
     if (!player) return;
@@ -739,6 +733,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     if (!player) return;
     const onBlur = () => {
       if (isPictureInPicturePlayer(player)) return;
+      recovery.stop();
       try { player.pause(); } catch {}
     };
     const onFocus = () => {
@@ -751,7 +746,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
       unsubBlur();
       unsubFocus();
     };
-  }, [itemNavigation, player, isActive, isPausedByUser, playIfActive]);
+  }, [itemNavigation, player, isActive, isPausedByUser, playIfActive, recovery]);
 
   useEffect(() => {
     if (!player) return;
@@ -775,6 +770,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   togglePlayPauseRef.current = () => {
     if (!player || longPressActiveRef.current) return;
     if (isPlayingRef.current) {
+      recovery.stop();
       player.pause();
       setIsPlaying(false);
       setIsPausedByUser(true);
@@ -1197,10 +1193,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
       wasPlayingBeforeLongPress.current = isPlayingRef.current;
       setScreenshotMode(true);
       if (player) {
+        recovery.stop();
         try { player.pause(); } catch {}
       }
     }
-  }, [player, resetTapSequence]);
+  }, [player, resetTapSequence, recovery]);
 
   const handleLongPressOut = useCallback(() => {
     longPressActiveRef.current = false;
@@ -1335,17 +1332,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
             contentFit="contain"
             nativeControls={false}
             pointerEvents="none"
-            onFirstFrameRender={() => setFirstFrameRendered(true)}
+            onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
           />
         ) : null}
         {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
-        {photoMedia && soundtrackError && isActive && <Pressable accessibilityRole="button"
-          accessibilityLabel={`${t('common.retry')} · ${t('feed.music')}`} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
+        {playbackPhase === 'failed' && isActive && <Pressable accessibilityRole="button"
+          accessibilityLabel={t('common.retry')} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
           onPress={() => {
-            player.replaceAsync(photoMedia.soundtrackUrl!).then(() => {
-              if (isActiveRef.current) player.play();
-            }).catch(() => setSoundtrackError(true));
-          }}><Text style={{ color: '#fff' }}>{t('common.retry')} · {t('feed.music')}</Text></Pressable>}
+            setIsPausedByUser(false);
+            playIfActive();
+          }}><Text style={{ color: '#fff' }}>{t('common.retry')}</Text></Pressable>}
         </View>
       </GestureDetector>
 
