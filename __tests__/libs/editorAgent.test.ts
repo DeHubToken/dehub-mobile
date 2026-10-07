@@ -7,6 +7,15 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("replaces scene layouts with a template starting at zero", async () => {
+    const base = newProject("16:9", "old scenes");
+    base.settings.pages = [0, 5, 10];
+    const { project, report } = await applyOps(base, [{ op: "use_template", template: "test" }], { time: 12, templateOps: () => [{ op: "add_text", text: "New design" }] });
+    expect(report).toMatchObject({ applied: 1, failed: 0, cursorTime: 0 });
+    expect(project.settings.pages).toBeUndefined();
+    expect(project.clips[0]).toMatchObject({ kind: "text", start: 0 });
+    expect(base.settings.pages).toEqual([0, 5, 10]);
+  });
   it("navigates scenes and adds layers to the chosen scene", async () => {
     const base = newProject("16:9", "scenes");
     const { project, report } = await applyOps(base, [
