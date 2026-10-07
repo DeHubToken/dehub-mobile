@@ -32,6 +32,7 @@ import {
 } from '../../hooks/useTranscript';
 import { useDubSettings, setDubSettings } from '../../hooks/useVideoDub';
 import { useVoiceDub, baseLang, findVoice, speechAvailable } from '../../hooks/useVoiceDub';
+import { useMediaVolume } from '../../libs/video-preferences';
 import { toastInfo } from '../../libs';
 import {
   SUBTITLE_LANGUAGES,
@@ -67,6 +68,7 @@ interface Props {
   hideButton?: boolean;
   /** Hands the host the subtitle switch and the language sheet. */
   onControls?: (controls: CaptionControls | null) => void;
+  onDubAvailableChange?: (available: boolean) => void;
 }
 
 export type CaptionControls = {
@@ -84,6 +86,7 @@ const CaptionOverlay: React.FC<Props> = ({
   player = null,
   hideButton = false,
   onControls,
+  onDubAvailableChange,
 }) => {
   const { t, i18n } = useTranslation();
   // Before the `!ref` early return below, so the hook order never changes.
@@ -101,15 +104,16 @@ const CaptionOverlay: React.FC<Props> = ({
   const { on: dubOn, lang: dubPref } = useDubSettings();
 
   const [audible, setAudible] = useState(false);
+  const masterVolume = useMediaVolume();
   useEffect(() => {
     if (!player) { setAudible(false); return; }
-    const update = () => setAudible(player.playing && !player.muted && player.volume > 0);
+    const update = () => setAudible(player.playing && !player.muted && masterVolume > 0);
     update();
     const playSub = player.addListener('playingChange', update);
     const muteSub = player.addListener('mutedChange', update);
     const volumeSub = player.addListener('volumeChange', update);
     return () => { playSub.remove(); muteSub.remove(); volumeSub.remove(); };
-  }, [player]);
+  }, [player, masterVolume]);
 
   // Only fetch once the viewer has shown intent — including asking for a
   // dub, which is keyed on the transcript too.
@@ -153,20 +157,22 @@ const CaptionOverlay: React.FC<Props> = ({
     setVoiceSupported(null);
     setDubFailed(false);
     if (!speechAvailable) { setVoiceSupported(false); return; }
-    if (!dubOn || !audible || !dubLang) return;
+    if (!dubOn || !dubLang) return;
     let cancelled = false;
     void findVoice(dubLang).then((voice) => {
       if (!cancelled) setVoiceSupported(voice !== null);
     });
     return () => { cancelled = true; };
-  }, [dubOn, audible, dubLang]);
-  const wantDub = dubOn && audible && isReady && !!dubLang && !!player && voiceSupported === true && !dubFailed;
+  }, [dubOn, dubLang]);
+  const wantDub = dubOn && isReady && !!dubLang && !!player && voiceSupported === true && !dubFailed;
+  useEffect(() => { onDubAvailableChange?.(wantDub); }, [wantDub, onDubAvailableChange]);
+  useEffect(() => () => onDubAvailableChange?.(false), [onDubAvailableChange]);
   // Same query as the captions when both are in one language, so the second
   // one is a cache read.
   const { translation: dubTranslation } = useTranscriptTranslation(
     transcript?.id ?? null,
     dubLang ?? 'original',
-    !!ref && wantDub,
+    !!ref && wantDub && audible,
   );
   useVoiceDub({
     player,

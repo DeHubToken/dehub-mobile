@@ -54,6 +54,9 @@ import { DeHubLoader } from '../DeHubLoader';
 import ProgressBar from './ProgressBar';
 import SeekOverlay from './SeekOverlay';
 import CaptionOverlay from './CaptionOverlay';
+import DubVolumeSheet from './DubVolumeSheet';
+import { applyVideoVolume } from '../../libs/dub-mix';
+import { getVolume, setVolume, useMediaVolume } from '../../libs/video-preferences';
 import {
   PLAYER_CONSTANTS,
   SeekDirection,
@@ -165,6 +168,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [isInPiP, setIsInPiP] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
 
+  const volume = useMediaVolume();
+  const [dubAvailable, setDubAvailable] = useState(false);
+  const [dubVolumeOpen, setDubVolumeOpen] = useState(false);
+
   // Seek feedback animation
   const [seekFeedback, setSeekFeedback] = useState<{
     label: string;
@@ -238,6 +245,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const sharedLivePlayer = useSharedLivePlayer(liveMode ? sourceUrl : null);
   const ownPlayer: VideoPlayer = usePersistentVideoPlayer(sharedLivePlayer ? null : sourceUrl ?? null, (p) => {
     p.loop = !liveMode && loop;
+    if (!liveMode) applyVideoVolume(p, getVolume());
     p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
     // A rate pinned to this creator applies from the first frame. Live has no
@@ -259,6 +267,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   useEffect(() => {
     if (hasError) { setIsBuffering(false); onError?.(new Error('Playback unavailable')); }
   }, [hasError, onError]);
+  useEffect(() => {
+    if (!liveMode) { try { applyVideoVolume(player, volume); } catch {} }
+  }, [player, volume, liveMode]);
 
   // The shared player was set up as a silent feed preview; give it this
   // screen's sound and background behaviour. A picture already on screen
@@ -904,6 +915,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             <TopControls
               onClose={handleClosePress}
               onMute={toggleMute}
+              onVolumeHold={dubAvailable ? () => setDubVolumeOpen(true) : undefined}
               onFullscreen={toggleFullscreen}
               onRotateToPortrait={handleRotateToPortrait}
               onPiP={handlePiP}
@@ -945,6 +957,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       {/* Subtitles. Outside the controls block on purpose: hiding the chrome
           must not take the captions with it. */}
       <CaptionOverlay
+        onDubAvailableChange={setDubAvailable}
         tokenId={tokenId}
         positionMs={position}
         controlsVisible={showControls}
@@ -952,6 +965,16 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         player={player}
         isPlaying={isPlaying}
       />
+
+      <DubVolumeSheet visible={dubVolumeOpen && dubAvailable} onClose={() => setDubVolumeOpen(false)}
+        muted={isMuted || volume === 0} onToggleMute={() => {
+          if (volume === 0) { setVolume(0.8); if (isMuted) toggleMute(); }
+          else toggleMute();
+        }}
+        onUnmute={() => {
+          if (volume === 0) setVolume(0.8);
+          if (isMuted) toggleMute();
+        }} />
 
       {/* Seek Feedback Overlay */}
       {seekFeedback && (
