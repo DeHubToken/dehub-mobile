@@ -6768,25 +6768,34 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
-    "pages": {
-      "add": "Ku dar bog",
-      "duplicate": "Nuqul bogga",
-      "delete": "Tirtir bogga",
-      "page": "Bogga {{number}}",
-      "position": "Bogga {{current}} ee {{total}}",
-      "label": "Bogag",
-      "allZip": "Dhammaan {{count}} bog (ZIP)",
-      "thisPage": "Boggan oo kaliya",
-      "exporting": "Waxaa la diyaarinayaa bogga {{current}} ee {{total}}…"
+    "audioTools": {
+      "normalize": "Caadi mugga",
+      "denoise": "Hoos u dhig buuqa",
+      "voice": "Kordhinta codka",
+      "working": "Codkii geeddi-socodka... {{percent}}%",
+      "done": "Cod laga baaraandegay ayaa lagu daray. Undo waxay soo celisaa asalka.",
+      "failed": "Ma shaqeyn karo codkan. Asalka asalka ah waa mid aan la beddelin.",
+      "hint": "Fiidiyowyada geeddi-socodka ilaa 10 daqiiqo. Hoos u dhaca dhawaaqa wuxuu si fiican ula shaqeeyaa dhawaaqa asalka ah ee joogtada ah."
     },
+    "pages": {
+    "add":  "Ku dar bog",
+    "duplicate":  "Nuqul bogga",
+    "delete":  "Tirtir bogga",
+    "page":  "Bogga {{number}}",
+    "position":  "Bogga {{current}} ee {{total}}",
+    "label":  "Bogag",
+    "allZip":  "Dhammaan {{count}} bog (ZIP)",
+    "thisPage":  "Boggan oo kaliya",
+    "exporting":  "Waxaa la diyaarinayaa bogga {{current}} ee {{total}}…"
+},
     "captions": {
-      "action": "Qoraal toos ah",
-      "working": "Waa la dhageysanayaa… {{percent}}%",
-      "downloading": "Moodeelka hadalka waa la diyaarinayaa… {{percent}}%",
-      "hint": "Hadalka wuxuu u beddelaa qoraal waqti leh oo aad qaabkiisa beddeli karto. Wuxuu ku shaqeeyaa qalabkaaga: bilaash iyo gaar ah. Isticmaalka ugu horreeya wuxuu soo dejiyaa moodeelka.",
-      "done": "Waxaa lagu daray {{count}} qoraal.",
-      "noSpeech": "Hadal lagama helin muuqaalkan.",
-      "failed": "Looma samayn karin qoraal muuqaalkan."
+        "action":  "Qoraal toos ah",
+        "working":  "Waa la dhageysanayaa… {{percent}}%",
+        "downloading":  "Moodeelka hadalka waa la diyaarinayaa… {{percent}}%",
+        "hint":  "Hadalka wuxuu u beddelaa qoraal waqti leh oo aad qaabkiisa beddeli karto. Wuxuu ku shaqeeyaa qalabkaaga: bilaash iyo gaar ah. Isticmaalka ugu horreeya wuxuu soo dejiyaa moodeelka.",
+        "done":  "Waxaa lagu daray {{count}} qoraal.",
+        "noSpeech":  "Hadal lagama helin muuqaalkan.",
+        "failed":  "Looma samayn karin qoraal muuqaalkan."
     },
     "app": {
       "newDesign": "Naqshad cusub",
@@ -7155,15 +7164,6 @@
         "easeInOutBack": "Dib gelid iyo bixid",
         "hold": "Hay"
       }
-    },
-    "audioTools": {
-      "normalize": "Caadi mugga",
-      "denoise": "Hoos u dhig buuqa",
-      "voice": "Kordhinta codka",
-      "working": "Codkii geeddi-socodka... {{percent}}%",
-      "done": "Cod laga baaraandegay ayaa lagu daray. Undo waxay soo celisaa asalka.",
-      "failed": "Ma shaqeyn karo codkan. Asalka asalka ah waa mid aan la beddelin.",
-      "hint": "Fiidiyowyada geeddi-socodka ilaa 10 daqiiqo. Hoos u dhaca dhawaaqa wuxuu si fiican ula shaqeeyaa dhawaaqa asalka ah ee joogtada ah."
     }
   },
   "creator": {

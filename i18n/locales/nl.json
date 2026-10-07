@@ -7073,25 +7073,34 @@
     }
   },
   "editor": {
-    "pages": {
-      "add": "Pagina toevoegen",
-      "duplicate": "Pagina dupliceren",
-      "delete": "Pagina verwijderen",
-      "page": "Pagina {{number}}",
-      "position": "Pagina {{current}} van {{total}}",
-      "label": "Pagina's",
-      "allZip": "Alle {{count}} pagina's (ZIP)",
-      "thisPage": "Alleen deze pagina",
-      "exporting": "Pagina {{current}} van {{total}} renderen…"
+    "audioTools": {
+      "normalize": "Volume normaliseren",
+      "denoise": "Geluid verminderen",
+      "voice": "Stem verbeteren",
+      "working": "Geluid verwerken... {{percent}}%",
+      "done": "Verwerkt geluid toegevoegd. Ongedaan maken herstelt het origineel.",
+      "failed": "Kon dit geluid niet verwerken. Het origineel is ongewijzigd.",
+      "hint": "Verwerk clips tot 10 minuten. Ruisonderdrukking werkt het beste bij constante achtergrondgeluiden."
     },
+    "pages": {
+    "add":  "Pagina toevoegen",
+    "duplicate":  "Pagina dupliceren",
+    "delete":  "Pagina verwijderen",
+    "page":  "Pagina {{number}}",
+    "position":  "Pagina {{current}} van {{total}}",
+    "label":  "Pagina\u0027s",
+    "allZip":  "Alle {{count}} pagina\u0027s (ZIP)",
+    "thisPage":  "Alleen deze pagina",
+    "exporting":  "Pagina {{current}} van {{total}} renderen…"
+},
     "captions": {
-      "action": "Automatische ondertiteling",
-      "working": "Luisteren… {{percent}}%",
-      "downloading": "Spraakmodel klaarmaken… {{percent}}%",
-      "hint": "Zet spraak om in getimede ondertitels die je kunt restylen. Draait op je apparaat: gratis en privé. Bij het eerste gebruik wordt het model gedownload.",
-      "done": "{{count}} ondertitels toegevoegd.",
-      "noSpeech": "Geen spraak gevonden in deze clip.",
-      "failed": "Kon geen ondertitels maken voor deze clip."
+        "action":  "Automatische ondertiteling",
+        "working":  "Luisteren… {{percent}}%",
+        "downloading":  "Spraakmodel klaarmaken… {{percent}}%",
+        "hint":  "Zet spraak om in getimede ondertitels die je kunt restylen. Draait op je apparaat: gratis en privé. Bij het eerste gebruik wordt het model gedownload.",
+        "done":  "{{count}} ondertitels toegevoegd.",
+        "noSpeech":  "Geen spraak gevonden in deze clip.",
+        "failed":  "Kon geen ondertitels maken voor deze clip."
     },
     "app": {
       "newDesign": "Nieuw ontwerp",
@@ -7460,15 +7469,6 @@
         "easeInOutBack": "Terugveer in en uit",
         "hold": "Vasthouden"
       }
-    },
-    "audioTools": {
-      "normalize": "Volume normaliseren",
-      "denoise": "Geluid verminderen",
-      "voice": "Stem verbeteren",
-      "working": "Geluid verwerken... {{percent}}%",
-      "done": "Verwerkt geluid toegevoegd. Ongedaan maken herstelt het origineel.",
-      "failed": "Kon dit geluid niet verwerken. Het origineel is ongewijzigd.",
-      "hint": "Verwerk clips tot 10 minuten. Ruisonderdrukking werkt het beste bij constante achtergrondgeluiden."
     }
   },
   "creator": {

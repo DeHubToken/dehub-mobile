@@ -6819,25 +6819,34 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
-    "pages": {
-      "add": "Fuula dabaluu",
-      "duplicate": "Fuula garagalchuu",
-      "delete": "Fuula haquu",
-      "page": "Fuula {{number}}",
-      "position": "Fuula {{current}} kan {{total}} keessaa",
-      "label": "Fuulota",
-      "allZip": "Fuulota {{count}} hunda (ZIP)",
-      "thisPage": "Fuula kana qofa",
-      "exporting": "Fuula {{current}} kan {{total}} keessaa qopheessaa jira…"
+    "audioTools": {
+      "normalize": "Sagalee idilee normalize gochuu",
+      "denoise": "Sagalee hir&#39;isuu",
+      "voice": "Sagalee guddisuu",
+      "working": "Sagalee hojjechaa... {{percent}}%",
+      "done": "Sagaleen adeemsifame dabalameera. Undo&#39;n isa jalqabaa deebisa.",
+      "failed": "Sagalee kana adeemsisuu hin dandeenye. Orijinaalli hin jijjiiramne.",
+      "hint": "Kiliippii hanga daqiiqaa 10tti adeemsi. Sagalee hir&#39;isuun sagalee duubaa dhaabbataa ta&#39;een akka gaariitti hojjeta."
     },
+    "pages": {
+    "add":  "Fuula dabaluu",
+    "duplicate":  "Fuula garagalchuu",
+    "delete":  "Fuula haquu",
+    "page":  "Fuula {{number}}",
+    "position":  "Fuula {{current}} kan {{total}} keessaa",
+    "label":  "Fuulota",
+    "allZip":  "Fuulota {{count}} hunda (ZIP)",
+    "thisPage":  "Fuula kana qofa",
+    "exporting":  "Fuula {{current}} kan {{total}} keessaa qopheessaa jira…"
+},
     "captions": {
-      "action": "Barreeffama ofumaan",
-      "working": "Dhaggeeffachaa jira… {{percent}}%",
-      "downloading": "Moodeela sagalee qopheessaa jira… {{percent}}%",
-      "hint": "Haasaa gara barreeffama yeroo waliin simu kan bifa isaa jijjiiruu dandeessutti jijjiira. Meeshaa kee irratti hojjeta: bilisaa fi dhuunfaa. Yeroo jalqabaaf moodeelli buufama.",
-      "done": "Barreeffamni {{count}} dabalame.",
-      "noSpeech": "Kiliippii kana keessatti haasaan hin argamne.",
-      "failed": "Kiliippii kanaaf barreeffama uumuun hin danda'amne."
+        "action":  "Barreeffama ofumaan",
+        "working":  "Dhaggeeffachaa jira… {{percent}}%",
+        "downloading":  "Moodeela sagalee qopheessaa jira… {{percent}}%",
+        "hint":  "Haasaa gara barreeffama yeroo waliin simu kan bifa isaa jijjiiruu dandeessutti jijjiira. Meeshaa kee irratti hojjeta: bilisaa fi dhuunfaa. Yeroo jalqabaaf moodeelli buufama.",
+        "done":  "Barreeffamni {{count}} dabalame.",
+        "noSpeech":  "Kiliippii kana keessatti haasaan hin argamne.",
+        "failed":  "Kiliippii kanaaf barreeffama uumuun hin danda\u0027amne."
     },
     "app": {
       "newDesign": "Dizaayinii haaraa",
@@ -7206,15 +7215,6 @@
         "easeInOutBack": "Deebii seensaa fi ba’iinsa",
         "hold": "Qabi"
       }
-    },
-    "audioTools": {
-      "normalize": "Sagalee idilee normalize gochuu",
-      "denoise": "Sagalee hir&#39;isuu",
-      "voice": "Sagalee guddisuu",
-      "working": "Sagalee hojjechaa... {{percent}}%",
-      "done": "Sagaleen adeemsifame dabalameera. Undo&#39;n isa jalqabaa deebisa.",
-      "failed": "Sagalee kana adeemsisuu hin dandeenye. Orijinaalli hin jijjiiramne.",
-      "hint": "Kiliippii hanga daqiiqaa 10tti adeemsi. Sagalee hir&#39;isuun sagalee duubaa dhaabbataa ta&#39;een akka gaariitti hojjeta."
     }
   },
   "creator": {

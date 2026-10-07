@@ -6787,25 +6787,34 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "editor": {
-    "pages": {
-      "add": "Pievienot lapu",
-      "duplicate": "Dublēt lapu",
-      "delete": "Dzēst lapu",
-      "page": "{{number}}. lapa",
-      "position": "{{current}}. lapa no {{total}}",
-      "label": "Lapas",
-      "allZip": "Visas {{count}} lapas (ZIP)",
-      "thisPage": "Tikai šī lapa",
-      "exporting": "Renderē {{current}}. lapu no {{total}}…"
+    "audioTools": {
+      "normalize": "Normalizējiet skaļumu",
+      "denoise": "Samaziniet troksni",
+      "voice": "Uzlabot balsi",
+      "working": "Notiek skaņas apstrāde... {{percent}}%",
+      "done": "Pievienota apstrādāta skaņa. Atsaukšana atjauno oriģinālu.",
+      "failed": "Nevarēja apstrādāt šo skaņu. Oriģināls nav mainīts.",
+      "hint": "Apstrādājiet klipus līdz 10 minūtēm. Trokšņu samazināšana vislabāk darbojas ar vienmērīgu fona troksni."
     },
+    "pages": {
+    "add":  "Pievienot lapu",
+    "duplicate":  "Dublēt lapu",
+    "delete":  "Dzēst lapu",
+    "page":  "{{number}}. lapa",
+    "position":  "{{current}}. lapa no {{total}}",
+    "label":  "Lapas",
+    "allZip":  "Visas {{count}} lapas (ZIP)",
+    "thisPage":  "Tikai šī lapa",
+    "exporting":  "Renderē {{current}}. lapu no {{total}}…"
+},
     "captions": {
-      "action": "Automātiskie subtitri",
-      "working": "Klausās… {{percent}}%",
-      "downloading": "Sagatavo runas modeli… {{percent}}%",
-      "hint": "Pārvērš runu laikā sinhronizētos subtitros, kuru stilu vari mainīt. Darbojas tavā ierīcē: bez maksas un privāti. Pirmajā lietošanas reizē tiek lejupielādēts modelis.",
-      "done": "Pievienoti {{count}} subtitri.",
-      "noSpeech": "Šajā klipā netika atrasta runa.",
-      "failed": "Neizdevās izveidot subtitrus šim klipam."
+        "action":  "Automātiskie subtitri",
+        "working":  "Klausās… {{percent}}%",
+        "downloading":  "Sagatavo runas modeli… {{percent}}%",
+        "hint":  "Pārvērš runu laikā sinhronizētos subtitros, kuru stilu vari mainīt. Darbojas tavā ierīcē: bez maksas un privāti. Pirmajā lietošanas reizē tiek lejupielādēts modelis.",
+        "done":  "Pievienoti {{count}} subtitri.",
+        "noSpeech":  "Šajā klipā netika atrasta runa.",
+        "failed":  "Neizdevās izveidot subtitrus šim klipam."
     },
     "app": {
       "newDesign": "Jauns dizains",
@@ -7174,15 +7183,6 @@
         "easeInOutBack": "Atsitiens sākumā un beigās",
         "hold": "Turēt"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalizējiet skaļumu",
-      "denoise": "Samaziniet troksni",
-      "voice": "Uzlabot balsi",
-      "working": "Notiek skaņas apstrāde... {{percent}}%",
-      "done": "Pievienota apstrādāta skaņa. Atsaukšana atjauno oriģinālu.",
-      "failed": "Nevarēja apstrādāt šo skaņu. Oriģināls nav mainīts.",
-      "hint": "Apstrādājiet klipus līdz 10 minūtēm. Trokšņu samazināšana vislabāk darbojas ar vienmērīgu fona troksni."
     }
   },
   "creator": {

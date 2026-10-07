@@ -6729,25 +6729,34 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
-    "pages": {
-      "add": "Add page",
-      "duplicate": "Copy page",
-      "delete": "Delete page",
-      "page": "Page {{number}}",
-      "position": "Page {{current}} for {{total}}",
-      "label": "Page dem",
-      "allZip": "All {{count}} page dem (ZIP)",
-      "thisPage": "Na dis page only",
-      "exporting": "Di make page {{current}} for {{total}}…"
+    "audioTools": {
+      "normalize": "Make volume normal",
+      "denoise": "Cut noise",
+      "voice": "Make voice better",
+      "working": "Processing sound... {{percent}}%",
+      "done": "Processed sound don add. Undo go bring back the original.",
+      "failed": "Dem no fit process dis sound. The original no change.",
+      "hint": "Process clips reach 10 minutes. Noise reduction work best wit steady background noise."
     },
+    "pages": {
+    "add":  "Add page",
+    "duplicate":  "Copy page",
+    "delete":  "Delete page",
+    "page":  "Page {{number}}",
+    "position":  "Page {{current}} for {{total}}",
+    "label":  "Page dem",
+    "allZip":  "All {{count}} page dem (ZIP)",
+    "thisPage":  "Na dis page only",
+    "exporting":  "Di make page {{current}} for {{total}}…"
+},
     "captions": {
-      "action": "Auto captions",
-      "working": "Di listen… {{percent}}%",
-      "downloading": "Di make speech model ready… {{percent}}%",
-      "hint": "E di turn tok for timed captions weh you fit change dia style. E di run for yua device: free and private. Di first time, e go download di model.",
-      "done": "Don add {{count}} captions.",
-      "noSpeech": "No tok for dis clip.",
-      "failed": "E no fit make captions for dis clip."
+        "action":  "Auto captions",
+        "working":  "Di listen… {{percent}}%",
+        "downloading":  "Di make speech model ready… {{percent}}%",
+        "hint":  "E di turn tok for timed captions weh you fit change dia style. E di run for yua device: free and private. Di first time, e go download di model.",
+        "done":  "Don add {{count}} captions.",
+        "noSpeech":  "No tok for dis clip.",
+        "failed":  "E no fit make captions for dis clip."
     },
     "app": {
       "newDesign": "New design",
@@ -7114,15 +7123,6 @@
         "hold": "Hold am"
       },
       "recordHint": "Recording: wen yu move, resize, rotate or fade one layer wey di playhead dey inside, e go add keyframes for dat place."
-    },
-    "audioTools": {
-      "normalize": "Make volume normal",
-      "denoise": "Cut noise",
-      "voice": "Make voice better",
-      "working": "Processing sound... {{percent}}%",
-      "done": "Processed sound don add. Undo go bring back the original.",
-      "failed": "Dem no fit process dis sound. The original no change.",
-      "hint": "Process clips reach 10 minutes. Noise reduction work best wit steady background noise."
     }
   },
   "creator": {

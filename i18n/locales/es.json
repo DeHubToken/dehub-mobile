@@ -6876,25 +6876,34 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
-    "pages": {
-      "add": "Añadir página",
-      "duplicate": "Duplicar página",
-      "delete": "Eliminar página",
-      "page": "Página {{number}}",
-      "position": "Página {{current}} de {{total}}",
-      "label": "Páginas",
-      "allZip": "Las {{count}} páginas (ZIP)",
-      "thisPage": "Solo esta página",
-      "exporting": "Renderizando página {{current}} de {{total}}…"
+    "audioTools": {
+      "normalize": "Normalizar volumen",
+      "denoise": "Reduce el ruido",
+      "voice": "Mejora la voz",
+      "working": "Procesando sonido... {{percent}}%",
+      "done": "Sonido procesado añadido. Deshacer restaura el original.",
+      "failed": "No se ha podido procesar este sonido. El original no ha cambiado.",
+      "hint": "Procesar clips de hasta 10 minutos. La reducción de ruido funciona mejor con un ruido de fondo constante."
     },
+    "pages": {
+    "add":  "Añadir página",
+    "duplicate":  "Duplicar página",
+    "delete":  "Eliminar página",
+    "page":  "Página {{number}}",
+    "position":  "Página {{current}} de {{total}}",
+    "label":  "Páginas",
+    "allZip":  "Las {{count}} páginas (ZIP)",
+    "thisPage":  "Solo esta página",
+    "exporting":  "Renderizando página {{current}} de {{total}}…"
+},
     "captions": {
-      "action": "Subtítulos automáticos",
-      "working": "Escuchando… {{percent}}%",
-      "downloading": "Preparando el modelo de voz… {{percent}}%",
-      "hint": "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
-      "done": "Se añadieron {{count}} subtítulos.",
-      "noSpeech": "No se detectó voz en este clip.",
-      "failed": "No se pudieron crear subtítulos para este clip."
+        "action":  "Subtítulos automáticos",
+        "working":  "Escuchando… {{percent}}%",
+        "downloading":  "Preparando el modelo de voz… {{percent}}%",
+        "hint":  "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
+        "done":  "Se añadieron {{count}} subtítulos.",
+        "noSpeech":  "No se detectó voz en este clip.",
+        "failed":  "No se pudieron crear subtítulos para este clip."
     },
     "app": {
       "newDesign": "Nuevo diseño",
@@ -7263,15 +7272,6 @@
         "easeInOutBack": "Rebote al entrar y salir",
         "hold": "Mantener"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalizar volumen",
-      "denoise": "Reduce el ruido",
-      "voice": "Mejora la voz",
-      "working": "Procesando sonido... {{percent}}%",
-      "done": "Sonido procesado añadido. Deshacer restaura el original.",
-      "failed": "No se ha podido procesar este sonido. El original no ha cambiado.",
-      "hint": "Procesar clips de hasta 10 minutos. La reducción de ruido funciona mejor con un ruido de fondo constante."
     }
   },
   "creator": {

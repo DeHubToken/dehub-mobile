@@ -6792,25 +6792,34 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
-    "pages": {
-      "add": "Tilføj side",
-      "duplicate": "Dupliker side",
-      "delete": "Slet side",
-      "page": "Side {{number}}",
-      "position": "Side {{current}} af {{total}}",
-      "label": "Sider",
-      "allZip": "Alle {{count}} sider (ZIP)",
-      "thisPage": "Kun denne side",
-      "exporting": "Gengiver side {{current}} af {{total}}…"
+    "audioTools": {
+      "normalize": "Normaliser lydstyrken",
+      "denoise": "Reducer støj",
+      "voice": "Forbedr stemmen",
+      "working": "Behandler lyd... {{percent}} %",
+      "done": "Behandlet lyd tilføjet. Fortryd gendanner originalen.",
+      "failed": "Kunne ikke behandle denne lyd. Originalen er uændret.",
+      "hint": "Behandl klip i op til 10 minutter. Støjreduktion fungerer bedst med konstant baggrundsstøj."
     },
+    "pages": {
+    "add":  "Tilføj side",
+    "duplicate":  "Dupliker side",
+    "delete":  "Slet side",
+    "page":  "Side {{number}}",
+    "position":  "Side {{current}} af {{total}}",
+    "label":  "Sider",
+    "allZip":  "Alle {{count}} sider (ZIP)",
+    "thisPage":  "Kun denne side",
+    "exporting":  "Gengiver side {{current}} af {{total}}…"
+},
     "captions": {
-      "action": "Automatiske undertekster",
-      "working": "Lytter… {{percent}} %",
-      "downloading": "Gør talemodellen klar… {{percent}} %",
-      "hint": "Gør tale til tidsindstillede undertekster, som du kan restyle. Kører på din enhed: gratis og privat. Første gang downloades modellen.",
-      "done": "Tilføjede {{count}} undertekster.",
-      "noSpeech": "Ingen tale fundet i dette klip.",
-      "failed": "Kunne ikke lave undertekster til dette klip."
+        "action":  "Automatiske undertekster",
+        "working":  "Lytter… {{percent}} %",
+        "downloading":  "Gør talemodellen klar… {{percent}} %",
+        "hint":  "Gør tale til tidsindstillede undertekster, som du kan restyle. Kører på din enhed: gratis og privat. Første gang downloades modellen.",
+        "done":  "Tilføjede {{count}} undertekster.",
+        "noSpeech":  "Ingen tale fundet i dette klip.",
+        "failed":  "Kunne ikke lave undertekster til dette klip."
     },
     "app": {
       "newDesign": "Nyt design",
@@ -7179,15 +7188,6 @@
         "easeInOutBack": "Tilbage ind og ud",
         "hold": "Hold"
       }
-    },
-    "audioTools": {
-      "normalize": "Normaliser lydstyrken",
-      "denoise": "Reducer støj",
-      "voice": "Forbedr stemmen",
-      "working": "Behandler lyd... {{percent}} %",
-      "done": "Behandlet lyd tilføjet. Fortryd gendanner originalen.",
-      "failed": "Kunne ikke behandle denne lyd. Originalen er uændret.",
-      "hint": "Behandl klip i op til 10 minutter. Støjreduktion fungerer bedst med konstant baggrundsstøj."
     }
   },
   "creator": {

@@ -6867,25 +6867,34 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
-    "pages": {
-      "add": "Sayfa ekle",
-      "duplicate": "Sayfayı çoğalt",
-      "delete": "Sayfayı sil",
-      "page": "Sayfa {{number}}",
-      "position": "Sayfa {{current}} / {{total}}",
-      "label": "Sayfalar",
-      "allZip": "Tüm {{count}} sayfa (ZIP)",
-      "thisPage": "Yalnızca bu sayfa",
-      "exporting": "Sayfa {{current}} / {{total}} işleniyor…"
+    "audioTools": {
+      "normalize": "Sesi normalleştir",
+      "denoise": "Gürültüyü azaltın",
+      "voice": "Sesi geliştir",
+      "working": "Ses işleniyor... {{percent}}%",
+      "done": "İşlenmiş ses eklendi. Geri al orijinali geri yükler.",
+      "failed": "Bu ses işlenemedi. Orijinali değişmemiştir.",
+      "hint": "Klipleri 10 dakikaya kadar işleyin. Gürültü azaltma, sabit arka plan gürültüsü ile en iyi sonucu verir."
     },
+    "pages": {
+    "add":  "Sayfa ekle",
+    "duplicate":  "Sayfayı çoğalt",
+    "delete":  "Sayfayı sil",
+    "page":  "Sayfa {{number}}",
+    "position":  "Sayfa {{current}} / {{total}}",
+    "label":  "Sayfalar",
+    "allZip":  "Tüm {{count}} sayfa (ZIP)",
+    "thisPage":  "Yalnızca bu sayfa",
+    "exporting":  "Sayfa {{current}} / {{total}} işleniyor…"
+},
     "captions": {
-      "action": "Otomatik altyazı",
-      "working": "Dinleniyor… %{{percent}}",
-      "downloading": "Konuşma modeli hazırlanıyor… %{{percent}}",
-      "hint": "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
-      "done": "{{count}} altyazı eklendi.",
-      "noSpeech": "Bu klipte konuşma bulunamadı.",
-      "failed": "Bu klip için altyazı oluşturulamadı."
+        "action":  "Otomatik altyazı",
+        "working":  "Dinleniyor… %{{percent}}",
+        "downloading":  "Konuşma modeli hazırlanıyor… %{{percent}}",
+        "hint":  "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
+        "done":  "{{count}} altyazı eklendi.",
+        "noSpeech":  "Bu klipte konuşma bulunamadı.",
+        "failed":  "Bu klip için altyazı oluşturulamadı."
     },
     "app": {
       "newDesign": "Yeni tasarım",
@@ -7254,15 +7263,6 @@
         "easeInOutBack": "Geri tepme giriş ve çıkış",
         "hold": "Sabit tut"
       }
-    },
-    "audioTools": {
-      "normalize": "Sesi normalleştir",
-      "denoise": "Gürültüyü azaltın",
-      "voice": "Sesi geliştir",
-      "working": "Ses işleniyor... {{percent}}%",
-      "done": "İşlenmiş ses eklendi. Geri al orijinali geri yükler.",
-      "failed": "Bu ses işlenemedi. Orijinali değişmemiştir.",
-      "hint": "Klipleri 10 dakikaya kadar işleyin. Gürültü azaltma, sabit arka plan gürültüsü ile en iyi sonucu verir."
     }
   },
   "creator": {

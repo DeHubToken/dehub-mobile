@@ -6736,25 +6736,34 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
-    "pages": {
-      "add": "Ɲɛ fara a kan",
-      "duplicate": "Ɲɛ in dabila fila",
-      "delete": "Ɲɛ in bɔ",
-      "page": "Ɲɛ {{number}}",
-      "position": "Ɲɛ {{current}} {{total}} la",
-      "label": "Ɲɛw",
-      "allZip": "Ɲɛ {{count}} bɛɛ (ZIP)",
-      "thisPage": "Ɲɛ in dɔrɔn",
-      "exporting": "Ɲɛ {{current}} {{total}} la bɛ labɛn…"
+    "audioTools": {
+      "normalize": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
+      "denoise": "Ka mankan nɔgɔya",
+      "voice": "Ka dɔ fara a ka fɔta kan",
+      "done": "O kɔ, a ye dɔ fara a ka fɔta kan.",
+      "failed": "O mankan nin tɛ se ka yɛlɛma. Nka, a daminɛ na, a tun tɛ yɛlɛma.",
+      "hint": "Aw ye a to a ka maga aw la miniti 10 ɲɔgɔn. Ni mankan be bɔ yɔrɔ min na, a ka fisa a ka bɔ yɔrɔ min na.",
+      "working": "Kan bɛ labɛn... {{percent}}%"
     },
+    "pages": {
+    "add":  "Ɲɛ fara a kan",
+    "duplicate":  "Ɲɛ in dabila fila",
+    "delete":  "Ɲɛ in bɔ",
+    "page":  "Ɲɛ {{number}}",
+    "position":  "Ɲɛ {{current}} {{total}} la",
+    "label":  "Ɲɛw",
+    "allZip":  "Ɲɛ {{count}} bɛɛ (ZIP)",
+    "thisPage":  "Ɲɛ in dɔrɔn",
+    "exporting":  "Ɲɛ {{current}} {{total}} la bɛ labɛn…"
+},
     "captions": {
-      "action": "Sɛbɛnni yɛrɛma",
-      "working": "Lamɛnni bɛ taa… {{percent}}%",
-      "downloading": "Kuma modɛli bɛ labɛn… {{percent}}%",
-      "hint": "A bɛ kuma yɛlɛma ka kɛ sɛbɛnni ye min bɛ bɛn waati ma, i bɛ se k'u cogoya yɛlɛma. A bɛ baara i ka minɛn kan: fu ani gundo la. Fɔlɔ baara la, modɛli bɛ jigi.",
-      "done": "Sɛbɛnni {{count}} farala a kan.",
-      "noSpeech": "Kuma si ma sɔrɔ nin klipu in kɔnɔ.",
-      "failed": "Sɛbɛnni ma se ka dilan nin klipu in kama."
+        "action":  "Sɛbɛnni yɛrɛma",
+        "working":  "Lamɛnni bɛ taa… {{percent}}%",
+        "downloading":  "Kuma modɛli bɛ labɛn… {{percent}}%",
+        "hint":  "A bɛ kuma yɛlɛma ka kɛ sɛbɛnni ye min bɛ bɛn waati ma, i bɛ se k\u0027u cogoya yɛlɛma. A bɛ baara i ka minɛn kan: fu ani gundo la. Fɔlɔ baara la, modɛli bɛ jigi.",
+        "done":  "Sɛbɛnni {{count}} farala a kan.",
+        "noSpeech":  "Kuma si ma sɔrɔ nin klipu in kɔnɔ.",
+        "failed":  "Sɛbɛnni ma se ka dilan nin klipu in kama."
     },
     "app": {
       "newDesign": "Desɛn kura",
@@ -7123,15 +7132,6 @@
         "easeInOutBack": "Segin donni ni bɔli",
         "hold": "Minɛ"
       }
-    },
-    "audioTools": {
-      "normalize": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
-      "denoise": "Ka mankan nɔgɔya",
-      "voice": "Ka dɔ fara a ka fɔta kan",
-      "done": "O kɔ, a ye dɔ fara a ka fɔta kan.",
-      "failed": "O mankan nin tɛ se ka yɛlɛma. Nka, a daminɛ na, a tun tɛ yɛlɛma.",
-      "hint": "Aw ye a to a ka maga aw la miniti 10 ɲɔgɔn. Ni mankan be bɔ yɔrɔ min na, a ka fisa a ka bɔ yɔrɔ min na.",
-      "working": "Kan bɛ labɛn... {{percent}}%"
     }
   },
   "creator": {

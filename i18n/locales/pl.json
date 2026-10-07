@@ -6887,25 +6887,34 @@
     }
   },
   "editor": {
-    "pages": {
-      "add": "Dodaj stronę",
-      "duplicate": "Duplikuj stronę",
-      "delete": "Usuń stronę",
-      "page": "Strona {{number}}",
-      "position": "Strona {{current}} z {{total}}",
-      "label": "Strony",
-      "allZip": "Wszystkie strony: {{count}} (ZIP)",
-      "thisPage": "Tylko ta strona",
-      "exporting": "Renderowanie strony {{current}} z {{total}}…"
+    "audioTools": {
+      "normalize": "Normalizuj objętość",
+      "denoise": "Redukcja hałasu",
+      "voice": "Wzmocnij głos",
+      "working": "Przetwarzanie dźwięku... {{percent}}%",
+      "done": "Dodano przetworzony dźwięk. Cofnij przywraca oryginał.",
+      "failed": "Nie można przetworzyć tego dźwięku. Oryginał bez zmian.",
+      "hint": "Zaciski procesowe do 10 minut. Redukcja szumów działa najlepiej przy stałym szumie tła."
     },
+    "pages": {
+    "add":  "Dodaj stronę",
+    "duplicate":  "Duplikuj stronę",
+    "delete":  "Usuń stronę",
+    "page":  "Strona {{number}}",
+    "position":  "Strona {{current}} z {{total}}",
+    "label":  "Strony",
+    "allZip":  "Wszystkie strony: {{count}} (ZIP)",
+    "thisPage":  "Tylko ta strona",
+    "exporting":  "Renderowanie strony {{current}} z {{total}}…"
+},
     "captions": {
-      "action": "Napisy automatyczne",
-      "working": "Słucham… {{percent}}%",
-      "downloading": "Przygotowywanie modelu mowy… {{percent}}%",
-      "hint": "Zamienia mowę na zsynchronizowane napisy, których styl możesz zmienić. Działa na Twoim urządzeniu: za darmo i prywatnie. Przy pierwszym użyciu model zostanie pobrany.",
-      "done": "Dodano napisy: {{count}}.",
-      "noSpeech": "Nie wykryto mowy w tym klipie.",
-      "failed": "Nie udało się utworzyć napisów dla tego klipu."
+        "action":  "Napisy automatyczne",
+        "working":  "Słucham… {{percent}}%",
+        "downloading":  "Przygotowywanie modelu mowy… {{percent}}%",
+        "hint":  "Zamienia mowę na zsynchronizowane napisy, których styl możesz zmienić. Działa na Twoim urządzeniu: za darmo i prywatnie. Przy pierwszym użyciu model zostanie pobrany.",
+        "done":  "Dodano napisy: {{count}}.",
+        "noSpeech":  "Nie wykryto mowy w tym klipie.",
+        "failed":  "Nie udało się utworzyć napisów dla tego klipu."
     },
     "app": {
       "newDesign": "Nowy projekt",
@@ -7274,15 +7283,6 @@
         "easeInOutBack": "Odbicie na wejściu i wyjściu",
         "hold": "Wstrzymaj"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalizuj objętość",
-      "denoise": "Redukcja hałasu",
-      "voice": "Wzmocnij głos",
-      "working": "Przetwarzanie dźwięku... {{percent}}%",
-      "done": "Dodano przetworzony dźwięk. Cofnij przywraca oryginał.",
-      "failed": "Nie można przetworzyć tego dźwięku. Oryginał bez zmian.",
-      "hint": "Zaciski procesowe do 10 minut. Redukcja szumów działa najlepiej przy stałym szumie tła."
     }
   },
   "creator": {

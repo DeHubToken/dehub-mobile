@@ -6770,25 +6770,34 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
-    "pages": {
-      "add": "Tambah kaca",
-      "duplicate": "Duplikat kaca",
-      "delete": "Busak kaca",
-      "page": "Kaca {{number}}",
-      "position": "Kaca {{current}} saka {{total}}",
-      "label": "Kaca",
-      "allZip": "Kabeh {{count}} kaca (ZIP)",
-      "thisPage": "Mung kaca iki",
-      "exporting": "Nggawe kaca {{current}} saka {{total}}…"
+    "audioTools": {
+      "normalize": "Normalake volume",
+      "denoise": "Kurangi gangguan",
+      "voice": "Tingkatake swara",
+      "working": "Ngolah swara... {{percent}}%",
+      "done": "Swara sing wis diproses ditambahake. Undo bakal mbalekake sing asli.",
+      "failed": "Ora bisa ngolah swara iki. Asline tetep ora owah.",
+      "hint": "Proses klip nganti 10 menit. Pengurangan gangguan paling apik yen latar mburi tetep."
     },
+    "pages": {
+    "add":  "Tambah kaca",
+    "duplicate":  "Duplikat kaca",
+    "delete":  "Busak kaca",
+    "page":  "Kaca {{number}}",
+    "position":  "Kaca {{current}} saka {{total}}",
+    "label":  "Kaca",
+    "allZip":  "Kabeh {{count}} kaca (ZIP)",
+    "thisPage":  "Mung kaca iki",
+    "exporting":  "Nggawe kaca {{current}} saka {{total}}…"
+},
     "captions": {
-      "action": "Teks otomatis",
-      "working": "Lagi ngrungokake… {{percent}}%",
-      "downloading": "Lagi nyiapake model swara… {{percent}}%",
-      "hint": "Ngowahi omongan dadi teks sing pas wektune lan bisa diganti gayane. Mlaku ing piranti sampeyan: gratis lan pribadi. Nalika pisanan dienggo, model bakal diundhuh.",
-      "done": "{{count}} teks ditambahake.",
-      "noSpeech": "Ora ana omongan ing klip iki.",
-      "failed": "Ora bisa nggawe teks kanggo klip iki."
+        "action":  "Teks otomatis",
+        "working":  "Lagi ngrungokake… {{percent}}%",
+        "downloading":  "Lagi nyiapake model swara… {{percent}}%",
+        "hint":  "Ngowahi omongan dadi teks sing pas wektune lan bisa diganti gayane. Mlaku ing piranti sampeyan: gratis lan pribadi. Nalika pisanan dienggo, model bakal diundhuh.",
+        "done":  "{{count}} teks ditambahake.",
+        "noSpeech":  "Ora ana omongan ing klip iki.",
+        "failed":  "Ora bisa nggawe teks kanggo klip iki."
     },
     "app": {
       "newDesign": "Desain anyar",
@@ -7157,15 +7166,6 @@
         "easeInOutBack": "Mbalik mlebu lan metu",
         "hold": "Tahan"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalake volume",
-      "denoise": "Kurangi gangguan",
-      "voice": "Tingkatake swara",
-      "working": "Ngolah swara... {{percent}}%",
-      "done": "Swara sing wis diproses ditambahake. Undo bakal mbalekake sing asli.",
-      "failed": "Ora bisa ngolah swara iki. Asline tetep ora owah.",
-      "hint": "Proses klip nganti 10 menit. Pengurangan gangguan paling apik yen latar mburi tetep."
     }
   },
   "creator": {
