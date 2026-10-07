@@ -6789,24 +6789,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Afegeix una pàgina",
-    "duplicate":  "Duplica la pàgina",
-    "delete":  "Elimina la pàgina",
-    "page":  "Pàgina {{number}}",
-    "position":  "Pàgina {{current}} de {{total}}",
-    "label":  "Pàgines",
-    "allZip":  "Totes les {{count}} pàgines (ZIP)",
-    "thisPage":  "Només aquesta pàgina",
-    "exporting":  "Renderitzant la pàgina {{current}} de {{total}}…"
-},
+      "add": "Afegeix una pàgina",
+      "duplicate": "Duplica la pàgina",
+      "delete": "Elimina la pàgina",
+      "page": "Pàgina {{number}}",
+      "position": "Pàgina {{current}} de {{total}}",
+      "label": "Pàgines",
+      "allZip": "Totes les {{count}} pàgines (ZIP)",
+      "thisPage": "Només aquesta pàgina",
+      "exporting": "Renderitzant la pàgina {{current}} de {{total}}…"
+    },
     "captions": {
-        "action":  "Subtítols automàtics",
-        "working":  "Escoltant… {{percent}}%",
-        "downloading":  "Preparant el model de veu… {{percent}}%",
-        "hint":  "Converteix la veu en subtítols sincronitzats que pots personalitzar. Funciona al teu dispositiu: gratuït i privat. El primer ús descarrega el model.",
-        "done":  "S\u0027han afegit {{count}} subtítols.",
-        "noSpeech":  "No s\u0027ha trobat veu en aquest clip.",
-        "failed":  "No s\u0027han pogut crear subtítols per a aquest clip."
+      "action": "Subtítols automàtics",
+      "working": "Escoltant… {{percent}}%",
+      "downloading": "Preparant el model de veu… {{percent}}%",
+      "hint": "Converteix la veu en subtítols sincronitzats que pots personalitzar. Funciona al teu dispositiu: gratuït i privat. El primer ús descarrega el model.",
+      "done": "S'han afegit {{count}} subtítols.",
+      "noSpeech": "No s'ha trobat veu en aquest clip.",
+      "failed": "No s'han pogut crear subtítols per a aquest clip."
     },
     "app": {
       "newDesign": "Disseny nou",
@@ -7175,6 +7175,15 @@
         "easeInOutBack": "Rebot d’entrada i sortida",
         "hold": "Mantén"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalitza el volum",
+      "denoise": "Redueix el soroll",
+      "voice": "Millora la veu",
+      "working": "S'està processant el so... {{percent}}%",
+      "done": "S'ha afegit el so processat. Desfés restaura l'original.",
+      "failed": "No s'ha pogut processar aquest so. L'original no canvia.",
+      "hint": "Processa clips de fins a 10 minuts. La reducció de soroll funciona millor amb soroll de fons constant."
     }
   },
   "creator": {

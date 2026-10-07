@@ -6969,24 +6969,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Magdagdag ng pahina",
-    "duplicate":  "I-duplicate ang pahina",
-    "delete":  "Burahin ang pahina",
-    "page":  "Pahina {{number}}",
-    "position":  "Pahina {{current}} ng {{total}}",
-    "label":  "Mga pahina",
-    "allZip":  "Lahat ng {{count}} pahina (ZIP)",
-    "thisPage":  "Ang pahinang ito lang",
-    "exporting":  "Nire-render ang pahina {{current}} ng {{total}}…"
-},
+      "add": "Magdagdag ng pahina",
+      "duplicate": "I-duplicate ang pahina",
+      "delete": "Burahin ang pahina",
+      "page": "Pahina {{number}}",
+      "position": "Pahina {{current}} ng {{total}}",
+      "label": "Mga pahina",
+      "allZip": "Lahat ng {{count}} pahina (ZIP)",
+      "thisPage": "Ang pahinang ito lang",
+      "exporting": "Nire-render ang pahina {{current}} ng {{total}}…"
+    },
     "captions": {
-        "action":  "Auto captions",
-        "working":  "Nakikinig… {{percent}}%",
-        "downloading":  "Inihahanda ang speech model… {{percent}}%",
-        "hint":  "Ginagawang naka-time na caption ang pananalita na puwede mong baguhin ang istilo. Tumatakbo sa device mo: libre at pribado. Ida-download ang model sa unang paggamit.",
-        "done":  "Nagdagdag ng {{count}} caption.",
-        "noSpeech":  "Walang nakitang pananalita sa clip na ito.",
-        "failed":  "Hindi makagawa ng caption para sa clip na ito."
+      "action": "Auto captions",
+      "working": "Nakikinig… {{percent}}%",
+      "downloading": "Inihahanda ang speech model… {{percent}}%",
+      "hint": "Ginagawang naka-time na caption ang pananalita na puwede mong baguhin ang istilo. Tumatakbo sa device mo: libre at pribado. Ida-download ang model sa unang paggamit.",
+      "done": "Nagdagdag ng {{count}} caption.",
+      "noSpeech": "Walang nakitang pananalita sa clip na ito.",
+      "failed": "Hindi makagawa ng caption para sa clip na ito."
     },
     "app": {
       "newDesign": "Bagong disenyo",
@@ -7355,6 +7355,15 @@
         "easeInOutBack": "Balik na pasok at labas",
         "hold": "Hawakan"
       }
+    },
+    "audioTools": {
+      "normalize": "I-normalisa ang volume",
+      "denoise": "Bawasan ang ingay",
+      "voice": "Pahusayin ang boses",
+      "working": "Processing sound... {{percent}}%",
+      "done": "Nagdagdag ng naprosesong tunog. Ibabalik ng undo ang orihinal.",
+      "failed": "Hindi maproseso ang tunog na ito. Ang orihinal ay hindi nagbago.",
+      "hint": "Magproseso ng mga clip hanggang 10 minuto. Ang pagbabawas ng ingay ay pinakamahusay na gumagana sa matatag na ingay sa background."
     }
   },
   "creator": {

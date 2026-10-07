@@ -7046,24 +7046,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Tambah halaman",
-    "duplicate":  "Pendua halaman",
-    "delete":  "Padam halaman",
-    "page":  "Halaman {{number}}",
-    "position":  "Halaman {{current}} daripada {{total}}",
-    "label":  "Halaman",
-    "allZip":  "Semua {{count}} halaman (ZIP)",
-    "thisPage":  "Halaman ini sahaja",
-    "exporting":  "Memaparkan halaman {{current}} daripada {{total}}…"
-},
+      "add": "Tambah halaman",
+      "duplicate": "Pendua halaman",
+      "delete": "Padam halaman",
+      "page": "Halaman {{number}}",
+      "position": "Halaman {{current}} daripada {{total}}",
+      "label": "Halaman",
+      "allZip": "Semua {{count}} halaman (ZIP)",
+      "thisPage": "Halaman ini sahaja",
+      "exporting": "Memaparkan halaman {{current}} daripada {{total}}…"
+    },
     "captions": {
-        "action":  "Kapsyen automatik",
-        "working":  "Mendengar… {{percent}}%",
-        "downloading":  "Menyediakan model pertuturan… {{percent}}%",
-        "hint":  "Menukar pertuturan kepada kapsyen bermasa yang boleh anda gayakan semula. Berjalan pada peranti anda: percuma dan peribadi. Penggunaan pertama akan memuat turun model.",
-        "done":  "{{count}} kapsyen ditambah.",
-        "noSpeech":  "Tiada pertuturan ditemui dalam klip ini.",
-        "failed":  "Tidak dapat mencipta kapsyen untuk klip ini."
+      "action": "Kapsyen automatik",
+      "working": "Mendengar… {{percent}}%",
+      "downloading": "Menyediakan model pertuturan… {{percent}}%",
+      "hint": "Menukar pertuturan kepada kapsyen bermasa yang boleh anda gayakan semula. Berjalan pada peranti anda: percuma dan peribadi. Penggunaan pertama akan memuat turun model.",
+      "done": "{{count}} kapsyen ditambah.",
+      "noSpeech": "Tiada pertuturan ditemui dalam klip ini.",
+      "failed": "Tidak dapat mencipta kapsyen untuk klip ini."
     },
     "app": {
       "newDesign": "Reka bentuk baharu",
@@ -7432,6 +7432,15 @@
         "easeInOutBack": "Lantun masuk dan keluar",
         "hold": "Tahan"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalkan isipadu",
+      "denoise": "Kurangkan bunyi bising",
+      "voice": "Tingkatkan suara",
+      "working": "Memproses bunyi... {{percent}}%",
+      "done": "Bunyi yang diproses ditambah. Buat asal memulihkan yang asal.",
+      "failed": "Tidak dapat memproses bunyi ini. Asal tidak berubah.",
+      "hint": "Proses klip sehingga 10 minit. Pengurangan bunyi berfungsi paling baik dengan bunyi latar belakang yang mantap."
     }
   },
   "creator": {

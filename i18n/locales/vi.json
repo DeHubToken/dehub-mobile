@@ -6906,24 +6906,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Thêm trang",
-    "duplicate":  "Nhân bản trang",
-    "delete":  "Xóa trang",
-    "page":  "Trang {{number}}",
-    "position":  "Trang {{current}}/{{total}}",
-    "label":  "Trang",
-    "allZip":  "Tất cả {{count}} trang (ZIP)",
-    "thisPage":  "Chỉ trang này",
-    "exporting":  "Đang kết xuất trang {{current}}/{{total}}…"
-},
+      "add": "Thêm trang",
+      "duplicate": "Nhân bản trang",
+      "delete": "Xóa trang",
+      "page": "Trang {{number}}",
+      "position": "Trang {{current}}/{{total}}",
+      "label": "Trang",
+      "allZip": "Tất cả {{count}} trang (ZIP)",
+      "thisPage": "Chỉ trang này",
+      "exporting": "Đang kết xuất trang {{current}}/{{total}}…"
+    },
     "captions": {
-        "action":  "Phụ đề tự động",
-        "working":  "Đang nghe… {{percent}}%",
-        "downloading":  "Đang chuẩn bị mô hình giọng nói… {{percent}}%",
-        "hint":  "Chuyển lời nói thành phụ đề có mốc thời gian mà bạn có thể đổi kiểu. Chạy trên thiết bị của bạn: miễn phí và riêng tư. Lần dùng đầu tiên sẽ tải mô hình xuống.",
-        "done":  "Đã thêm {{count}} phụ đề.",
-        "noSpeech":  "Không tìm thấy lời nói trong đoạn này.",
-        "failed":  "Không thể tạo phụ đề cho đoạn này."
+      "action": "Phụ đề tự động",
+      "working": "Đang nghe… {{percent}}%",
+      "downloading": "Đang chuẩn bị mô hình giọng nói… {{percent}}%",
+      "hint": "Chuyển lời nói thành phụ đề có mốc thời gian mà bạn có thể đổi kiểu. Chạy trên thiết bị của bạn: miễn phí và riêng tư. Lần dùng đầu tiên sẽ tải mô hình xuống.",
+      "done": "Đã thêm {{count}} phụ đề.",
+      "noSpeech": "Không tìm thấy lời nói trong đoạn này.",
+      "failed": "Không thể tạo phụ đề cho đoạn này."
     },
     "app": {
       "newDesign": "Thiết kế mới",
@@ -7292,6 +7292,15 @@
         "easeInOutBack": "Bật lại vào và ra",
         "hold": "Giữ"
       }
+    },
+    "audioTools": {
+      "normalize": "Chuẩn hóa âm lượng",
+      "denoise": "Giảm tiếng ồn",
+      "voice": "Tăng cường giọng nói",
+      "working": "Đang xử lý âm thanh... {{percent}}%",
+      "done": "Đã thêm âm thanh đã xử lý. Hoàn tác khôi phục bản gốc.",
+      "failed": "Không thể xử lý âm thanh này. Bản gốc không thay đổi.",
+      "hint": "Các clip quy trình tối đa 10 phút. Giảm tiếng ồn hoạt động tốt nhất với tiếng ồn nền ổn định."
     }
   },
   "creator": {

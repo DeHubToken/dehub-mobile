@@ -6802,24 +6802,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Rapita yapay",
-    "duplicate":  "Rapita iskaychay",
-    "delete":  "Rapita qichuy",
-    "page":  "Rapi {{number}}",
-    "position":  "Rapi {{current}} / {{total}}",
-    "label":  "Rapikuna",
-    "allZip":  "Llapan {{count}} rapikuna (ZIP)",
-    "thisPage":  "Kay rapillata",
-    "exporting":  "Rapi {{current}} / {{total}} ruwakuchkan…"
-},
+      "add": "Rapita yapay",
+      "duplicate": "Rapita iskaychay",
+      "delete": "Rapita qichuy",
+      "page": "Rapi {{number}}",
+      "position": "Rapi {{current}} / {{total}}",
+      "label": "Rapikuna",
+      "allZip": "Llapan {{count}} rapikuna (ZIP)",
+      "thisPage": "Kay rapillata",
+      "exporting": "Rapi {{current}} / {{total}} ruwakuchkan…"
+    },
     "captions": {
-        "action":  "Kikinmanta subtítulos",
-        "working":  "Uyarichkan… {{percent}}%",
-        "downloading":  "Rimay modelota wakichichkan… {{percent}}%",
-        "hint":  "Rimayta pachaman tupachisqa subtítulosman tikran, sumaqchayta atinki. Equipoykipi llamkan: qasilla, sapallayki. Ñawpaq kutipi modelota uraykachin.",
-        "done":  "{{count}} subtítulos yapasqa.",
-        "noSpeech":  "Kay clippi mana rimay tarikunchu.",
-        "failed":  "Mana atikurqanchu kay clippaq subtítulosta ruwayta."
+      "action": "Kikinmanta subtítulos",
+      "working": "Uyarichkan… {{percent}}%",
+      "downloading": "Rimay modelota wakichichkan… {{percent}}%",
+      "hint": "Rimayta pachaman tupachisqa subtítulosman tikran, sumaqchayta atinki. Equipoykipi llamkan: qasilla, sapallayki. Ñawpaq kutipi modelota uraykachin.",
+      "done": "{{count}} subtítulos yapasqa.",
+      "noSpeech": "Kay clippi mana rimay tarikunchu.",
+      "failed": "Mana atikurqanchu kay clippaq subtítulosta ruwayta."
     },
     "app": {
       "newDesign": "Musuq diseño",
@@ -7188,6 +7188,15 @@
         "easeInOutBack": "Kutiy yaykuy lluqsiy",
         "hold": "Hap’iy"
       }
+    },
+    "audioTools": {
+      "normalize": "Volumen nisqa normalizay",
+      "denoise": "sonido chinkachiy",
+      "voice": "Kunkata kallpachay",
+      "working": "T&#39;uqyayta llamk&#39;achispa... {{percent}}%",
+      "done": "Procesado sonido yapasqa. Undo nisqa ñawpaq kaqta kutichin.",
+      "failed": "Mana kay t&#39;uqyayta procesayta atirqanchu. Originalqa manan cambiasqachu.",
+      "hint": "10 minutokama clips nisqakunata ruway. Rumi pisiyachiyqa aswan allintam llamkan mana kuyukuq qipa qapariywan."
     }
   },
   "creator": {

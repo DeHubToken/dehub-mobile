@@ -6788,24 +6788,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Səhifə əlavə et",
-    "duplicate":  "Səhifəni dublikat et",
-    "delete":  "Səhifəni sil",
-    "page":  "Səhifə {{number}}",
-    "position":  "Səhifə {{current}} / {{total}}",
-    "label":  "Səhifələr",
-    "allZip":  "Bütün {{count}} səhifə (ZIP)",
-    "thisPage":  "Yalnız bu səhifə",
-    "exporting":  "Səhifə {{current}} / {{total}} hazırlanır…"
-},
+      "add": "Səhifə əlavə et",
+      "duplicate": "Səhifəni dublikat et",
+      "delete": "Səhifəni sil",
+      "page": "Səhifə {{number}}",
+      "position": "Səhifə {{current}} / {{total}}",
+      "label": "Səhifələr",
+      "allZip": "Bütün {{count}} səhifə (ZIP)",
+      "thisPage": "Yalnız bu səhifə",
+      "exporting": "Səhifə {{current}} / {{total}} hazırlanır…"
+    },
     "captions": {
-        "action":  "Avtomatik altyazılar",
-        "working":  "Dinlənilir… {{percent}}%",
-        "downloading":  "Nitq modeli hazırlanır… {{percent}}%",
-        "hint":  "Nitqi yenidən üslublaya biləcəyiniz zamanlanmış altyazılara çevirir. Cihazınızda işləyir: pulsuz və məxfi. İlk istifadədə model endirilir.",
-        "done":  "{{count}} altyazı əlavə edildi.",
-        "noSpeech":  "Bu klipdə nitq tapılmadı.",
-        "failed":  "Bu klip üçün altyazı yaratmaq mümkün olmadı."
+      "action": "Avtomatik altyazılar",
+      "working": "Dinlənilir… {{percent}}%",
+      "downloading": "Nitq modeli hazırlanır… {{percent}}%",
+      "hint": "Nitqi yenidən üslublaya biləcəyiniz zamanlanmış altyazılara çevirir. Cihazınızda işləyir: pulsuz və məxfi. İlk istifadədə model endirilir.",
+      "done": "{{count}} altyazı əlavə edildi.",
+      "noSpeech": "Bu klipdə nitq tapılmadı.",
+      "failed": "Bu klip üçün altyazı yaratmaq mümkün olmadı."
     },
     "app": {
       "newDesign": "Yeni dizayn",
@@ -7174,6 +7174,15 @@
         "easeInOutBack": "Geri giriş və çıxış",
         "hold": "Saxla"
       }
+    },
+    "audioTools": {
+      "normalize": "Həcmi normallaşdırın",
+      "denoise": "Səs-küyü azaldın",
+      "voice": "Səsi artırın",
+      "working": "Səs emal edilir... {{percent}}%",
+      "done": "İşlənmiş səs əlavə edildi. Orijinalını geri qaytarın.",
+      "failed": "Bu səsi emal etmək mümkün olmadı. Orijinalı dəyişməzdir.",
+      "hint": "Klipləri 10 dəqiqəyə emal edin. Səs-küyün azaldılması ən yaxşı halda davamlı fon səs-küyü ilə işləyir."
     }
   },
   "creator": {

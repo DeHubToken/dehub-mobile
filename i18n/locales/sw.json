@@ -6790,24 +6790,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Ongeza ukurasa",
-    "duplicate":  "Nakili ukurasa",
-    "delete":  "Futa ukurasa",
-    "page":  "Ukurasa {{number}}",
-    "position":  "Ukurasa {{current}} kati ya {{total}}",
-    "label":  "Kurasa",
-    "allZip":  "Kurasa zote {{count}} (ZIP)",
-    "thisPage":  "Ukurasa huu pekee",
-    "exporting":  "Inatayarisha ukurasa {{current}} kati ya {{total}}…"
-},
+      "add": "Ongeza ukurasa",
+      "duplicate": "Nakili ukurasa",
+      "delete": "Futa ukurasa",
+      "page": "Ukurasa {{number}}",
+      "position": "Ukurasa {{current}} kati ya {{total}}",
+      "label": "Kurasa",
+      "allZip": "Kurasa zote {{count}} (ZIP)",
+      "thisPage": "Ukurasa huu pekee",
+      "exporting": "Inatayarisha ukurasa {{current}} kati ya {{total}}…"
+    },
     "captions": {
-        "action":  "Manukuu ya kiotomatiki",
-        "working":  "Inasikiliza… {{percent}}%",
-        "downloading":  "Inaandaa modeli ya usemi… {{percent}}%",
-        "hint":  "Hubadilisha usemi kuwa manukuu yaliyopangwa kwa wakati ambayo unaweza kubadilisha mtindo wake. Hufanya kazi kwenye kifaa chako: bila malipo na kwa faragha. Matumizi ya kwanza hupakua modeli.",
-        "done":  "Manukuu {{count}} yameongezwa.",
-        "noSpeech":  "Hakuna usemi uliopatikana kwenye klipu hii.",
-        "failed":  "Imeshindwa kuunda manukuu ya klipu hii."
+      "action": "Manukuu ya kiotomatiki",
+      "working": "Inasikiliza… {{percent}}%",
+      "downloading": "Inaandaa modeli ya usemi… {{percent}}%",
+      "hint": "Hubadilisha usemi kuwa manukuu yaliyopangwa kwa wakati ambayo unaweza kubadilisha mtindo wake. Hufanya kazi kwenye kifaa chako: bila malipo na kwa faragha. Matumizi ya kwanza hupakua modeli.",
+      "done": "Manukuu {{count}} yameongezwa.",
+      "noSpeech": "Hakuna usemi uliopatikana kwenye klipu hii.",
+      "failed": "Imeshindwa kuunda manukuu ya klipu hii."
     },
     "app": {
       "newDesign": "Muundo mpya",
@@ -7176,6 +7176,15 @@
         "easeInOutBack": "Rudi kuingia na kutoka",
         "hold": "Shikilia"
       }
+    },
+    "audioTools": {
+      "normalize": "Sawaisha sauti",
+      "denoise": "Punguza keusi",
+      "voice": "Boresha sauti",
+      "working": "Inashughulikia sauti... {{percent}}%",
+      "done": "Sauti iliyoshughulikiwa imeongezwa. Kutengua kunarejesha asili.",
+      "failed": "Haikuweza kushughulikia sauti hii. Asili haijabadilika.",
+      "hint": "Shughulikia vipande hadi dakika 10. Upunguzaji wa keusi hufanya kazi vizuri zaidi na keusi ya mandharinyuma isiyobadilika."
     }
   },
   "creator": {

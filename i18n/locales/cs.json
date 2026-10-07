@@ -6791,24 +6791,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Přidat stránku",
-    "duplicate":  "Duplikovat stránku",
-    "delete":  "Smazat stránku",
-    "page":  "Stránka {{number}}",
-    "position":  "Stránka {{current}} z {{total}}",
-    "label":  "Stránky",
-    "allZip":  "Všechny stránky ({{count}}) (ZIP)",
-    "thisPage":  "Pouze tato stránka",
-    "exporting":  "Vykreslování stránky {{current}} z {{total}}…"
-},
+      "add": "Přidat stránku",
+      "duplicate": "Duplikovat stránku",
+      "delete": "Smazat stránku",
+      "page": "Stránka {{number}}",
+      "position": "Stránka {{current}} z {{total}}",
+      "label": "Stránky",
+      "allZip": "Všechny stránky ({{count}}) (ZIP)",
+      "thisPage": "Pouze tato stránka",
+      "exporting": "Vykreslování stránky {{current}} z {{total}}…"
+    },
     "captions": {
-        "action":  "Automatické titulky",
-        "working":  "Poslouchám… {{percent}} %",
-        "downloading":  "Připravuji model řeči… {{percent}} %",
-        "hint":  "Převede řeč na časované titulky, které můžete upravit. Běží ve vašem zařízení: zdarma a soukromě. Při prvním použití se stáhne model.",
-        "done":  "Přidáno titulků: {{count}}.",
-        "noSpeech":  "V tomto klipu nebyla nalezena žádná řeč.",
-        "failed":  "Pro tento klip se nepodařilo vytvořit titulky."
+      "action": "Automatické titulky",
+      "working": "Poslouchám… {{percent}} %",
+      "downloading": "Připravuji model řeči… {{percent}} %",
+      "hint": "Převede řeč na časované titulky, které můžete upravit. Běží ve vašem zařízení: zdarma a soukromě. Při prvním použití se stáhne model.",
+      "done": "Přidáno titulků: {{count}}.",
+      "noSpeech": "V tomto klipu nebyla nalezena žádná řeč.",
+      "failed": "Pro tento klip se nepodařilo vytvořit titulky."
     },
     "app": {
       "newDesign": "Nový návrh",
@@ -7177,6 +7177,15 @@
         "easeInOutBack": "Zpětný náběh i doběh",
         "hold": "Podržet"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalizovat hlasitost",
+      "denoise": "Snižte hluk",
+      "voice": "Vylepšete hlas",
+      "working": "Zpracování zvuku... {{percent}}%",
+      "done": "Byl přidán zpracovaný zvuk. Zpět obnoví originál.",
+      "failed": "Tento zvuk se nepodařilo zpracovat. Originál zůstává nezměněn.",
+      "hint": "Zpracování klipů až 10 minut. Redukce šumu funguje nejlépe při stálém šumu na pozadí."
     }
   },
   "creator": {

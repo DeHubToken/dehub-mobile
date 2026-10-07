@@ -6788,24 +6788,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Lisa leht",
-    "duplicate":  "Dubleeri leht",
-    "delete":  "Kustuta leht",
-    "page":  "Leht {{number}}",
-    "position":  "Leht {{current}}/{{total}}",
-    "label":  "Lehed",
-    "allZip":  "Kõik {{count}} lehte (ZIP)",
-    "thisPage":  "Ainult see leht",
-    "exporting":  "Renderdan lehte {{current}}/{{total}}…"
-},
+      "add": "Lisa leht",
+      "duplicate": "Dubleeri leht",
+      "delete": "Kustuta leht",
+      "page": "Leht {{number}}",
+      "position": "Leht {{current}}/{{total}}",
+      "label": "Lehed",
+      "allZip": "Kõik {{count}} lehte (ZIP)",
+      "thisPage": "Ainult see leht",
+      "exporting": "Renderdan lehte {{current}}/{{total}}…"
+    },
     "captions": {
-        "action":  "Automaatsubtiitrid",
-        "working":  "Kuulan… {{percent}}%",
-        "downloading":  "Kõnemudelit valmistatakse ette… {{percent}}%",
-        "hint":  "Muudab kõne ajastatud subtiitriteks, mille stiili saad muuta. Töötab sinu seadmes: tasuta ja privaatne. Esimesel kasutusel laaditakse mudel alla.",
-        "done":  "Lisatud {{count}} subtiitrit.",
-        "noSpeech":  "Selles klipis kõnet ei leitud.",
-        "failed":  "Selle klipi jaoks ei õnnestunud subtiitreid luua."
+      "action": "Automaatsubtiitrid",
+      "working": "Kuulan… {{percent}}%",
+      "downloading": "Kõnemudelit valmistatakse ette… {{percent}}%",
+      "hint": "Muudab kõne ajastatud subtiitriteks, mille stiili saad muuta. Töötab sinu seadmes: tasuta ja privaatne. Esimesel kasutusel laaditakse mudel alla.",
+      "done": "Lisatud {{count}} subtiitrit.",
+      "noSpeech": "Selles klipis kõnet ei leitud.",
+      "failed": "Selle klipi jaoks ei õnnestunud subtiitreid luua."
     },
     "app": {
       "newDesign": "Uus kujundus",
@@ -7174,6 +7174,15 @@
         "easeInOutBack": "Tagasi algus ja lõpp",
         "hold": "Hoia"
       }
+    },
+    "audioTools": {
+      "normalize": "Normaliseeri helitugevus",
+      "denoise": "Vähenda müra",
+      "voice": "Hääle võimendamine",
+      "working": "Heli töötlemine... {{percent}}%",
+      "done": "Töödeldud heli on lisatud. Tagasivõtmine taastab originaali.",
+      "failed": "Seda heli ei saanud töödelda. Originaali ei muudeta.",
+      "hint": "Protsessi klippe kuni 10 minutit. Müra vähendamine toimib kõige paremini püsiva taustamüra korral."
     }
   },
   "creator": {

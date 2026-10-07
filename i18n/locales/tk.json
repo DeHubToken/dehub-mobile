@@ -6768,24 +6768,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Sahypa goş",
-    "duplicate":  "Sahypany göçür",
-    "delete":  "Sahypany poz",
-    "page":  "Sahypa {{number}}",
-    "position":  "Sahypa {{current}} / {{total}}",
-    "label":  "Sahypalar",
-    "allZip":  "Ähli {{count}} sahypa (ZIP)",
-    "thisPage":  "Diňe şu sahypa",
-    "exporting":  "Sahypa {{current}} / {{total}} taýýarlanýar…"
-},
+      "add": "Sahypa goş",
+      "duplicate": "Sahypany göçür",
+      "delete": "Sahypany poz",
+      "page": "Sahypa {{number}}",
+      "position": "Sahypa {{current}} / {{total}}",
+      "label": "Sahypalar",
+      "allZip": "Ähli {{count}} sahypa (ZIP)",
+      "thisPage": "Diňe şu sahypa",
+      "exporting": "Sahypa {{current}} / {{total}} taýýarlanýar…"
+    },
     "captions": {
-        "action":  "Awtomatik subtitrler",
-        "working":  "Diňleýär… {{percent}}%",
-        "downloading":  "Gürleýiş modeli taýýarlanýar… {{percent}}%",
-        "hint":  "Gürleýşi wagta laýyk subtitrlere öwürýär, olaryň stilini üýtgedip bilersiňiz. Enjamyňyzda işleýär: mugt we şahsy. Ilkinji ulanylanda model ýüklenýär.",
-        "done":  "{{count}} subtitr goşuldy.",
-        "noSpeech":  "Bu klipde gürleýiş tapylmady.",
-        "failed":  "Bu klip üçin subtitr döredip bolmady."
+      "action": "Awtomatik subtitrler",
+      "working": "Diňleýär… {{percent}}%",
+      "downloading": "Gürleýiş modeli taýýarlanýar… {{percent}}%",
+      "hint": "Gürleýşi wagta laýyk subtitrlere öwürýär, olaryň stilini üýtgedip bilersiňiz. Enjamyňyzda işleýär: mugt we şahsy. Ilkinji ulanylanda model ýüklenýär.",
+      "done": "{{count}} subtitr goşuldy.",
+      "noSpeech": "Bu klipde gürleýiş tapylmady.",
+      "failed": "Bu klip üçin subtitr döredip bolmady."
     },
     "app": {
       "newDesign": "Täze dizaýn",
@@ -7154,6 +7154,15 @@
         "easeInOutBack": "Yza giriş we çykyş",
         "hold": "Sakla"
       }
+    },
+    "audioTools": {
+      "normalize": "Saýlamalary normallaşdyr",
+      "denoise": "Sesleri azaltmak",
+      "voice": "Sesi gowulandyrmak",
+      "working": "Ses işleme... {{percent}}%",
+      "done": "Gaýtam, aslyny gaýtaryp ber.",
+      "failed": "Men bu sesleri eşitmedim. Asl nusga üýtgän däldir.",
+      "hint": "Gotdibz 10 Ses azaldylmagy berk arkaýyn gürültü bilen iň gowy işleşýär."
     }
   },
   "creator": {

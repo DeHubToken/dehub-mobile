@@ -6803,24 +6803,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Adaugă pagină",
-    "duplicate":  "Duplică pagina",
-    "delete":  "Șterge pagina",
-    "page":  "Pagina {{number}}",
-    "position":  "Pagina {{current}} din {{total}}",
-    "label":  "Pagini",
-    "allZip":  "Toate cele {{count}} pagini (ZIP)",
-    "thisPage":  "Doar această pagină",
-    "exporting":  "Se randează pagina {{current}} din {{total}}…"
-},
+      "add": "Adaugă pagină",
+      "duplicate": "Duplică pagina",
+      "delete": "Șterge pagina",
+      "page": "Pagina {{number}}",
+      "position": "Pagina {{current}} din {{total}}",
+      "label": "Pagini",
+      "allZip": "Toate cele {{count}} pagini (ZIP)",
+      "thisPage": "Doar această pagină",
+      "exporting": "Se randează pagina {{current}} din {{total}}…"
+    },
     "captions": {
-        "action":  "Subtitrări automate",
-        "working":  "Se ascultă… {{percent}}%",
-        "downloading":  "Se pregătește modelul de vorbire… {{percent}}%",
-        "hint":  "Transformă vorbirea în subtitrări sincronizate, cărora le poți schimba stilul. Rulează pe dispozitivul tău: gratuit și privat. La prima utilizare se descarcă modelul.",
-        "done":  "Au fost adăugate {{count}} subtitrări.",
-        "noSpeech":  "Nu s-a găsit vorbire în acest clip.",
-        "failed":  "Nu s-au putut crea subtitrări pentru acest clip."
+      "action": "Subtitrări automate",
+      "working": "Se ascultă… {{percent}}%",
+      "downloading": "Se pregătește modelul de vorbire… {{percent}}%",
+      "hint": "Transformă vorbirea în subtitrări sincronizate, cărora le poți schimba stilul. Rulează pe dispozitivul tău: gratuit și privat. La prima utilizare se descarcă modelul.",
+      "done": "Au fost adăugate {{count}} subtitrări.",
+      "noSpeech": "Nu s-a găsit vorbire în acest clip.",
+      "failed": "Nu s-au putut crea subtitrări pentru acest clip."
     },
     "app": {
       "newDesign": "Design nou",
@@ -7189,6 +7189,15 @@
         "easeInOutBack": "Recul la intrare și ieșire",
         "hold": "Menține"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalizați volumul",
+      "denoise": "Reduceți zgomotul",
+      "voice": "Îmbunătățește vocea",
+      "working": "Sunet de procesare... {{percent}}%",
+      "done": "Sunetul procesat a fost adăugat. Anularea restaurează originalul.",
+      "failed": "Nu s-a putut procesa acest sunet. Originalul este neschimbat.",
+      "hint": "Clipuri de proces de până la 10 minute. Reducerea zgomotului funcționează cel mai bine cu zgomot de fond constant."
     }
   },
   "creator": {

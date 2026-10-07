@@ -6880,24 +6880,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Adicionar página",
-    "duplicate":  "Duplicar página",
-    "delete":  "Excluir página",
-    "page":  "Página {{number}}",
-    "position":  "Página {{current}} de {{total}}",
-    "label":  "Páginas",
-    "allZip":  "Todas as {{count}} páginas (ZIP)",
-    "thisPage":  "Apenas esta página",
-    "exporting":  "Renderizando página {{current}} de {{total}}…"
-},
+      "add": "Adicionar página",
+      "duplicate": "Duplicar página",
+      "delete": "Excluir página",
+      "page": "Página {{number}}",
+      "position": "Página {{current}} de {{total}}",
+      "label": "Páginas",
+      "allZip": "Todas as {{count}} páginas (ZIP)",
+      "thisPage": "Apenas esta página",
+      "exporting": "Renderizando página {{current}} de {{total}}…"
+    },
     "captions": {
-        "action":  "Legendas automáticas",
-        "working":  "Ouvindo… {{percent}}%",
-        "downloading":  "Preparando o modelo de fala… {{percent}}%",
-        "hint":  "Transforma a fala em legendas sincronizadas que você pode personalizar. Roda no seu dispositivo: grátis e privado. No primeiro uso, o modelo é baixado.",
-        "done":  "{{count}} legendas adicionadas.",
-        "noSpeech":  "Nenhuma fala encontrada neste clipe.",
-        "failed":  "Não foi possível criar legendas para este clipe."
+      "action": "Legendas automáticas",
+      "working": "Ouvindo… {{percent}}%",
+      "downloading": "Preparando o modelo de fala… {{percent}}%",
+      "hint": "Transforma a fala em legendas sincronizadas que você pode personalizar. Roda no seu dispositivo: grátis e privado. No primeiro uso, o modelo é baixado.",
+      "done": "{{count}} legendas adicionadas.",
+      "noSpeech": "Nenhuma fala encontrada neste clipe.",
+      "failed": "Não foi possível criar legendas para este clipe."
     },
     "app": {
       "newDesign": "Novo design",
@@ -7266,6 +7266,15 @@
         "easeInOutBack": "Recuo na entrada e saída",
         "hold": "Manter"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalizar volume",
+      "denoise": "Reduza o ruído",
+      "voice": "Melhorar a voz",
+      "working": "A processar som... {{percent}}%",
+      "done": "Som processado adicionado. Desfazer restaura o original.",
+      "failed": "Não foi possível processar este som. O original permanece inalterado.",
+      "hint": "Processar clipes de até 10 minutos. A redução de ruído funciona melhor com ruído de fundo constante."
     }
   },
   "creator": {

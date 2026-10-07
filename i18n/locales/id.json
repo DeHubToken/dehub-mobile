@@ -6867,24 +6867,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Tambah halaman",
-    "duplicate":  "Duplikat halaman",
-    "delete":  "Hapus halaman",
-    "page":  "Halaman {{number}}",
-    "position":  "Halaman {{current}} dari {{total}}",
-    "label":  "Halaman",
-    "allZip":  "Semua {{count}} halaman (ZIP)",
-    "thisPage":  "Hanya halaman ini",
-    "exporting":  "Merender halaman {{current}} dari {{total}}…"
-},
+      "add": "Tambah halaman",
+      "duplicate": "Duplikat halaman",
+      "delete": "Hapus halaman",
+      "page": "Halaman {{number}}",
+      "position": "Halaman {{current}} dari {{total}}",
+      "label": "Halaman",
+      "allZip": "Semua {{count}} halaman (ZIP)",
+      "thisPage": "Hanya halaman ini",
+      "exporting": "Merender halaman {{current}} dari {{total}}…"
+    },
     "captions": {
-        "action":  "Teks otomatis",
-        "working":  "Mendengarkan… {{percent}}%",
-        "downloading":  "Menyiapkan model ucapan… {{percent}}%",
-        "hint":  "Mengubah ucapan menjadi teks berwaktu yang bisa kamu ubah gayanya. Berjalan di perangkatmu: gratis dan privat. Penggunaan pertama akan mengunduh modelnya.",
-        "done":  "{{count}} teks ditambahkan.",
-        "noSpeech":  "Tidak ada ucapan di klip ini.",
-        "failed":  "Tidak bisa membuat teks untuk klip ini."
+      "action": "Teks otomatis",
+      "working": "Mendengarkan… {{percent}}%",
+      "downloading": "Menyiapkan model ucapan… {{percent}}%",
+      "hint": "Mengubah ucapan menjadi teks berwaktu yang bisa kamu ubah gayanya. Berjalan di perangkatmu: gratis dan privat. Penggunaan pertama akan mengunduh modelnya.",
+      "done": "{{count}} teks ditambahkan.",
+      "noSpeech": "Tidak ada ucapan di klip ini.",
+      "failed": "Tidak bisa membuat teks untuk klip ini."
     },
     "app": {
       "newDesign": "Desain baru",
@@ -7253,6 +7253,15 @@
         "easeInOutBack": "Pantul masuk dan keluar",
         "hold": "Tahan"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalisasi volume",
+      "denoise": "Mengurangi kebisingan",
+      "voice": "Tingkatkan suara",
+      "working": "Memproses suara... {{percent}}%",
+      "done": "Suara yang diproses ditambahkan. Batal mengembalikan yang asli.",
+      "failed": "Tidak dapat memproses suara ini. Asli tidak berubah.",
+      "hint": "Proses klip hingga 10 menit. Pengurangan kebisingan bekerja paling baik dengan kebisingan latar belakang yang stabil."
     }
   },
   "creator": {
