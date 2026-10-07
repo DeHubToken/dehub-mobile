@@ -22,6 +22,7 @@ import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from ".
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
+import { validVideoMatte, type VideoMattePlan, type VideoMatteProgress } from "../../libs/editor/videoMatte";
 import type { AudioToolMode } from "../../libs/editor/audioTools";
 import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import type { CaptionWord } from "../../libs/editor/captionLayout";
@@ -42,6 +43,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
+  removeVideoBackground: (clip: MediaClip, fps: number, onProgress?: (p: VideoMatteProgress) => void, signal?: AbortSignal) => Promise<{ plan: VideoMattePlan; dataUrl: string }>;
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void, signal?: AbortSignal) => Promise<CaptionWord[]>;
   detectShots: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<ShotAnalysis>;
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
@@ -155,6 +157,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const beatReqs = useRef(new Map<string, { resolve: (v: BeatAnalysis) => void; reject: (e: Error) => void; progress?: (v: number) => void; cleanup: () => void }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
+  const videoMatteReqs = useRef(new Map<string, { clip: MediaClip; resolve: (r: { plan: VideoMattePlan; dataUrl: string }) => void; reject: (e: Error) => void; progress?: (p: VideoMatteProgress) => void; cleanup: () => void; reset: () => void }>());
+  const sentMattes = useRef(new Set<string>());
   const mediaAcks = useRef(new Map<string, () => void>());
   type VideoReq = {
     resolve: (v: { uri: string; ext: string }) => void;
@@ -184,6 +188,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
   useEffect(() => () => {
+    for (const [reqId, request] of videoMatteReqs.current) { request.cleanup(); request.reject(new Error("canvas closed")); post({ type: "videoMatteCancel", reqId }); }
+    videoMatteReqs.current.clear();
     for (const [reqId, request] of audioReqs.current) {
       request.out?.discard(); request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId });
     }
@@ -226,6 +232,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (!ready) return;
     let cancelled = false;
     const missing: string[] = [];
+    const liveIds = ids ? ids.split("|") : [];
+    for (const id of sentMattes.current) if (!liveIds.includes(id)) { sentMedia.current.delete(id); sentMattes.current.delete(id); }
+    post({ type: "mattePrune", ids: liveIds });
     (async () => {
       for (const id of ids ? ids.split("|") : []) {
         if (sentMedia.current.has(id)) continue;
@@ -261,7 +270,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (cancelled) return;
         if (!src) { missing.push(id); continue; }
         sentMedia.current.add(id);
-        post({ type: "media", id, src });
+        if (meta?.name.startsWith(".dehub-video-matte-")) sentMattes.current.add(id);
+        post({ type: "media", id, src, internalMatte: meta?.name.startsWith(".dehub-video-matte-") });
       }
       if (!cancelled) props.onMissingMedia?.(missing);
     })();
@@ -398,6 +408,20 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         else r.reject(new Error(msg.error || "captions failed"));
         break;
       }
+      case "videoMatteProgress": {
+        const request = videoMatteReqs.current.get(msg.reqId);
+        request?.reset(); request?.progress?.(msg.progress);
+        break;
+      }
+      case "videoMatteDone":
+      case "videoMatteFailed": {
+        const request = videoMatteReqs.current.get(msg.reqId); if (!request) break;
+        request.cleanup(); videoMatteReqs.current.delete(msg.reqId);
+        const result = msg.result;
+        if (msg.type === "videoMatteDone" && result && typeof result.dataUrl === "string" && result.dataUrl.startsWith("data:image/png;base64,") && validVideoMatte({ ...request.clip, videoMatte: { ...result.plan, mediaId: "pending" } })) request.resolve(result);
+        else request.reject(new Error(msg.error || "Background frames could not be saved"));
+        break;
+      }
       case "cutoutProgress": {
         const total = Number(msg.total) || 0;
         cutoutReqs.current.get(msg.reqId)?.progress?.(total ? Math.min(1, Number(msg.loaded) / total) : 0);
@@ -435,6 +459,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
+    for (const r of videoMatteReqs.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
+    videoMatteReqs.current.clear();
     for (const r of audioReqs.current.values()) { r.out?.discard(); r.cleanup(); r.reject(new Error("canvas restarted")); }
     audioReqs.current.clear();
     for (const r of captionReqs.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
@@ -528,6 +554,17 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (statsReqs.current.has(reqId)) { statsReqs.current.delete(reqId); resolve(null); }
         }, 5000);
       }),
+    removeVideoBackground: (clip, fps, onProgress, signal) => new Promise((resolve, reject) => {
+      const reqId = `matte_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      let timer: ReturnType<typeof setTimeout>;
+      const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", abort); };
+      const abort = () => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); const error = new Error("cancelled"); error.name = "AbortError"; reject(error); };
+      const reset = () => { clearTimeout(timer); timer = setTimeout(() => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); reject(new Error("Background removal stopped responding")); }, 200000); };
+      if (!ready || signal?.aborted) { abort(); return; }
+      signal?.addEventListener("abort", abort, { once: true });
+      videoMatteReqs.current.set(reqId, { clip, resolve, reject, progress: onProgress, cleanup, reset }); reset();
+      post({ type: "videoMatte", reqId, clip, fps });
+    }),
     removeBackground: (mediaId, onProgress) =>
       new Promise((resolve) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -565,7 +602,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         });
         post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range, snapshot, replaceEnding });
       }),
-  }), [post]);
+  }), [post, ready]);
 
   // ── gestures ──
 

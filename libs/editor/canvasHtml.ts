@@ -38,6 +38,7 @@ import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
 import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
+import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
 import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
@@ -62,9 +63,11 @@ canvas{display:block;width:100%;height:100%;}
   __EXPORT_RANGES_RUNTIME__
   __GIF_RUNTIME__
   __SHOT_RUNTIME__
+  __VIDEO_MATTE_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
+  var matteImages = new Set(), allowedMatteImages = new Set();
   var state = null;
   var queued = false;
   var lastFrame = "";
@@ -324,7 +327,7 @@ canvas{display:block;width:100%;height:100%;}
     c.closePath();
   }
 
-  function drawClip(c, W, H, keyed, t) {
+  function drawClip(c, W, H, keyed, t, sourceTime) {
     if (!isVisualClip(keyed) || keyed.hidden) return;
     // Keyframed placement is baked in first; everything below sees a plain clip.
     var clip = resolveClipAt(keyed, t);
@@ -347,20 +350,37 @@ canvas{display:block;width:100%;height:100%;}
     if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
     if (clip.kind === "text") drawText(c, clip, box, W, H);
     else if (clip.kind === "shape") drawShape(c, clip, box, H);
-    else drawMedia(c, clip, box, H);
+    else drawMedia(c, clip, box, H, sourceTime == null ? clip.trimIn + (t - clip.start) * speedOf(clip) : sourceTime);
     c.restore();
   }
 
-  function drawMedia(c, clip, box, H) {
+  var matteCanvas = null;
+  function drawMedia(c, clip, box, H, sourceTime) {
     var m = mediaSource(clip);
     if (!m) return;
     var cr = cropOf(clip);
     var sx = m.w * cr.left, sy = m.h * cr.top;
     var sw = m.w * (1 - cr.left - cr.right), sh = m.h * (1 - cr.top - cr.bottom);
     var el = m.el;
+    if (clip.kind === "video" && clip.videoMatte) {
+      var frame = videoMatteFrame(clip, sourceTime), image = images.get(clip.videoMatte.mediaId);
+      if (!frame || !image || image.naturalWidth !== clip.videoMatte.atlasWidth || image.naturalHeight !== clip.videoMatte.atlasHeight) return;
+      if (!matteCanvas) matteCanvas = document.createElement("canvas");
+      var scale = Math.min(1, 1920 / Math.max(sw, sh));
+      var width = Math.max(1, Math.round(sw * scale)), height = Math.max(1, Math.round(sh * scale));
+      if (matteCanvas.width !== width) matteCanvas.width = width;
+      if (matteCanvas.height !== height) matteCanvas.height = height;
+      var g = matteCanvas.getContext("2d"); if (!g) return;
+      g.setTransform(1, 0, 0, 1, 0, 0); if (SUPPORTS_FILTER) g.filter = "none"; g.globalAlpha = 1; g.globalCompositeOperation = "copy";
+      g.drawImage(el, sx, sy, sw, sh, 0, 0, width, height);
+      g.globalCompositeOperation = "destination-in";
+      g.drawImage(image, frame.x + frame.width * cr.left, frame.y + frame.height * cr.top, frame.width * (1 - cr.left - cr.right), frame.height * (1 - cr.top - cr.bottom), 0, 0, width, height);
+      g.globalCompositeOperation = "source-over";
+      el = matteCanvas; sx = 0; sy = 0; sw = width; sh = height;
+    }
     if (!SUPPORTS_FILTER && effectsList(clip).length) {
       // Engines without ctx.filter get the same colour maths done by hand.
-      el = filteredCrop(clip, m, sx, sy, sw, sh);
+      el = filteredCrop(clip, { el: el, w: sw, h: sh }, sx, sy, sw, sh);
       sx = 0; sy = 0; sw = el.width; sh = el.height;
     }
     if (needsGrade(clip.effects)) {
@@ -566,7 +586,7 @@ canvas{display:block;width:100%;height:100%;}
     var list = effectsList(clip);
     var key = clip.mediaId + "|" + [sx, sy, sw, sh].join(",") + "|" + JSON.stringify(list);
     var hit = filterCache.get(key);
-    if (hit) return hit;
+    if (hit && clip.kind !== "video") return hit;
     var k = Math.min(1, 1600 / Math.max(sw, sh));
     var tmp = document.createElement("canvas");
     tmp.width = Math.max(1, Math.round(sw * k));
@@ -595,7 +615,7 @@ canvas{display:block;width:100%;height:100%;}
     }
     tc.putImageData(data, 0, 0);
     if (filterCache.size > 24) filterCache.clear();
-    filterCache.set(key, tmp);
+    if (clip.kind !== "video") filterCache.set(key, tmp);
     return tmp;
   }
 
@@ -778,7 +798,7 @@ canvas{display:block;width:100%;height:100%;}
       if (op.translateX) c.translate(op.translateX, 0);
       if (op.clipRect) { c.beginPath(); c.rect(op.clipRect.x, 0, op.clipRect.w, H); c.clip(); }
       c.globalAlpha = op.alpha;
-      drawClip(c, W, H, op.clip, t);
+      drawClip(c, W, H, op.clip, t, localTimeOf(op, t));
       c.restore();
     });
   }
@@ -1197,6 +1217,9 @@ canvas{display:block;width:100%;height:100%;}
         return;
       }
     }
+    try {
+      assertVideoMattes(snap.clips.filter(function(c) { var track = trackOf(snap, c.trackId); return !c.hidden && track && !track.hidden; }), function(id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
+    } catch (error) { exporting = false; videoJobId = null; post({ type: "videoFailed", reqId: m.reqId, error: String(error.message || error) }); return; }
     var fps = snap.settings.fps || 30;
     var W = m.format === "gif" ? Math.max(1, Math.round(m.width)) : Math.max(2, Math.round(m.width) & ~1);
     var H = m.format === "gif" ? Math.max(1, Math.round(m.height)) : Math.max(2, Math.round(m.height) & ~1);
@@ -1388,6 +1411,25 @@ canvas{display:block;width:100%;height:100%;}
     }, "image/png");
   }
 
+  var videoMatteJob = null;
+  function cancelVideoMatte(reqId) {
+    if (videoMatteJob && (!reqId || videoMatteJob.reqId === reqId)) { videoMatteJob.controller.abort(); videoMatteJob = null; }
+  }
+  function processVideoMatte(m) {
+    if (videoMatteJob) { post({ type: "videoMatteFailed", reqId: m.reqId, error: "Background removal is already running" }); return; }
+    var source = videos.get(m.clip.mediaId);
+    if (!source) { post({ type: "videoMatteFailed", reqId: m.reqId, error: "Video source is still loading" }); return; }
+    var job = { reqId: m.reqId, controller: new AbortController() }; videoMatteJob = job;
+    createVideoMatte(source.currentSrc || source.src, m.clip, m.fps, function(progress) {
+      if (videoMatteJob === job) post({ type: "videoMatteProgress", reqId: m.reqId, progress: progress });
+    }, job.controller.signal).then(function(result) {
+      if (videoMatteJob === job) post({ type: "videoMatteDone", reqId: m.reqId, result: result });
+    }, function(error) {
+      if (videoMatteJob === job) post({ type: "videoMatteFailed", reqId: m.reqId, error: String(error.message || error) });
+    }).finally(function() { if (videoMatteJob === job) videoMatteJob = null; });
+  }
+  window.addEventListener("pagehide", function() { cancelVideoMatte(); });
+
   var lastEvent = null;
   __AUDIO_TOOLS_RUNTIME__
   var audioJob = null;
@@ -1555,9 +1597,13 @@ canvas{display:block;width:100%;height:100%;}
       schedule();
     } else if (m.type === "videoAck") {
       sendNextChunk(m.reqId);
+    } else if (m.type === "mattePrune") {
+      allowedMatteImages = new Set(m.ids || []);
+      matteImages.forEach(function(id) { if (!allowedMatteImages.has(id)) { var image = images.get(id); if (image) image.src = ""; images.delete(id); matteImages.delete(id); } });
     } else if (m.type === "media") {
       var img = new Image();
-      img.onload = function () { images.set(m.id, img); filterCache.clear(); schedule(); };
+      if (m.internalMatte) matteImages.add(m.id);
+      img.onload = function () { if (m.internalMatte && !allowedMatteImages.has(m.id)) { img.src = ""; return; } images.set(m.id, img); filterCache.clear(); schedule(); };
       img.onerror = function () { post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
     } else if (m.type === "stats") {
@@ -1582,6 +1628,10 @@ canvas{display:block;width:100%;height:100%;}
       if (!n) { post(none); return; }
       var mean = sum / n;
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
+    } else if (m.type === "videoMatte") {
+      processVideoMatte(m);
+    } else if (m.type === "videoMatteCancel") {
+      cancelVideoMatte(m.reqId);
     } else if (m.type === "cutout") {
       cutout(m);
     } else if (m.type === "captions") {
@@ -1618,6 +1668,7 @@ canvas{display:block;width:100%;height:100%;}
     } else if (m.type === "export") {
       var done = function () {
         try {
+          assertVideoMattes(state.snapshot.clips.filter(function(c) { var track = trackOf(state.snapshot, c.trackId); return !c.hidden && track && !track.hidden; }), function(id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
           render();
           var url = canvas.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92);
           post({ type: "exported", reqId: m.reqId, dataUrl: url });
@@ -1636,4 +1687,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
