@@ -1,3 +1,4 @@
+import { VIDEO_FRAME_RUNTIME } from "./videoFrame";
 /**
  * The page the editor canvas runs in.
  *
@@ -883,30 +884,10 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   // ── export: exporter.ts ──
+  __VIDEO_FRAME_RUNTIME__
   function seekVideo(v, t) {
-    return new Promise(function (resolve, reject) {
-      var done = false;
-      var timer = setTimeout(function () { finish(new Error("Video frame did not load")); }, 5000);
-      function finish(error) {
-        if (done) return;
-        done = true; clearTimeout(timer);
-        v.removeEventListener("seeked", onSeeked);
-        v.removeEventListener("loadeddata", start);
-        v.removeEventListener("error", onError);
-        if (error) reject(error); else resolve();
-      }
-      function onSeeked() { finish(); }
-      function onError() { finish(new Error("Video frame did not load")); }
-      function start() {
-        var target = Math.max(0, Math.min(isFinite(v.duration) ? v.duration - 0.001 : t, t));
-        if (Math.abs(v.currentTime - target) < 0.0005 && v.readyState >= 2) { finish(); return; }
-        v.addEventListener("seeked", onSeeked);
-        try { v.currentTime = target; } catch (error) { finish(error); }
-      }
-      v.addEventListener("error", onError);
-      if (v.readyState >= 2) start();
-      else v.addEventListener("loadeddata", start);
-    });
+    var job = videoJobId;
+    return waitForVideoFrame(v, t, { cancelled: function () { return exportAborted || job !== videoJobId; } });
   }
   function decodeAudio(buf) {
     return new Promise(function (resolve) {
@@ -1679,4 +1660,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
