@@ -37,7 +37,7 @@ describe("automatic speech highlights", () => {
     const result = await findHighlights(clip, words, { seconds: 15, focus: "Reliable backups" }, async (messages, scene) => {
       calls++; expect(messages[0].content).toContain("Reliable backups");
       expect(JSON.stringify(scene)).toContain("Verify restores.");
-      return { ops: [{ op: "trim", id: "video", offset: 10, duration: 3, score: 0.95 }, { op: "trim", id: "video", offset: 2, duration: 2, score: 0.8 }] };
+      return { ops: [{ op: "trim", id: "video", offset: 10, duration: 3, score: 0.95, focusMatch: true }, { op: "trim", id: "video", offset: 2, duration: 2, score: 0.8, focusMatch: true }] };
     });
     expect(result.map(r => r.text)).toEqual(["Always back up.", "Verify restores."]);
     expect(calls).toBe(1);
@@ -80,4 +80,21 @@ describe("automatic speech highlights", () => {
     expect(sameHighlightSource(original, { ...original, id: "elsewhere" })).toBe(false);
     expect(sameHighlightSource(original, { ...original, clips: [...original.clips] })).toBe(false);
   });
+});
+
+it("requires explicit topic compliance and rejects weaker ranges instead of filling the duration", async () => {
+  const suggestions = await findHighlights(clip, words, { seconds: 30, focus: "Backups only; skip introductions" }, async messages => {
+    expect(messages[0].content).toContain("MAXIMUM budget, never a quota");
+    expect(messages[0].content).toContain("STRICT USER CRITERIA");
+    return { ops: [
+      { op: "trim", id: "video", offset: 0, duration: 0.5, score: 0.95, focusMatch: false },
+      { op: "trim", id: "video", offset: 10, duration: 3, score: 0.9 },
+      { op: "trim", id: "video", offset: 2, duration: 2, score: 0.7, focusMatch: true },
+      { op: "trim", id: "video", offset: 2, duration: 2, score: 0.9, focusMatch: true },
+    ] };
+  });
+  expect(suggestions.map(range => range.text)).toEqual(["Always back up."]);
+  expect(await findHighlights(clip, words, { seconds: 30, focus: "Weather only" }, async () => ({ ops: [
+    { op: "trim", id: "video", offset: 2, duration: 2, score: 0.9, focusMatch: false },
+  ] }))).toEqual([]);
 });
