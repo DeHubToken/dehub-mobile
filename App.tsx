@@ -109,7 +109,7 @@ ExpoSplashScreen.preventAutoHideAsync().catch(() => {
 const iconFontLoad = loadIconFont();
 
 export default function App() {
-  const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
+  const { hasInternet, checkConnection } = useNetworkStatus();
 
   // Exo is the web app's global typeface (dehubweb/src/index.css:46). Nothing
   // loaded it here before, so every screen rendered in the platform default.
@@ -122,7 +122,13 @@ export default function App() {
     Exo_600SemiBold,
     Exo_700Bold,
   });
-  const fontsSettled = fontsLoaded || !!fontError;
+  const [fontDeadlineReached, setFontDeadlineReached] = useState(false);
+  useEffect(() => {
+    if (fontsLoaded || fontError) return;
+    const timer = setTimeout(() => setFontDeadlineReached(true), 1000);
+    return () => clearTimeout(timer);
+  }, [fontsLoaded, fontError]);
+  const fontsSettled = fontsLoaded || !!fontError || fontDeadlineReached;
   // Capped: a stuck load must never hold the splash. Icons just stay SVG.
   const [iconFontSettled, setIconFontSettled] = useState(false);
   useEffect(() => {
@@ -182,7 +188,9 @@ export default function App() {
   // and network resolve in parallel with the provider tree, which now mounts
   // immediately and does its boot work hidden behind the preloader instead of
   // serialised ahead of it.
-  const staged = fontsSettled && iconFontSettled && hasInternet !== null && isConnected !== null;
+  // Reachability is advisory. A stalled native probe must not prevent cached
+  // content and navigation from opening; confirmed offline still shows below.
+  const staged = fontsSettled && iconFontSettled;
 
   return (
     <AppThemeProvider>

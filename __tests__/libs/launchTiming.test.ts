@@ -71,6 +71,24 @@ describe("navigation timing", () => {
     expect(reportError).toHaveBeenCalledTimes(1);
     expect(reportError.mock.calls[0][2].metadata.n).toBe(25);
   });
+
+  it('keeps slow foreground navigation in the summary', () => {
+    actionListener({ data: {} });
+    jest.advanceTimersByTime(12_000);
+    markNavigationSettled({ key: 'slow', name: 'Home' });
+    flushFrames();
+    flushNavigationTiming();
+    expect(reportError.mock.calls[0][2].metadata.max).toBeGreaterThanOrEqual(12_000);
+  });
+
+  it('discards unfinished frame samples when the app backgrounds', () => {
+    actionListener({ data: {} });
+    markNavigationSettled({ key: 'pending', name: 'Profile' });
+    flushNavigationTiming();
+    flushFrames();
+    flushNavigationTiming();
+    expect(reportError).not.toHaveBeenCalled();
+  });
 });
 
 describe("summarizeNavigation", () => {

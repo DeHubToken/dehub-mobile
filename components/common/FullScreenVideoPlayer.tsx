@@ -1,4 +1,6 @@
 import { usePersistentVideoPlayer } from '../../hooks/usePersistentVideoPlayer';
+import { usePlaybackRecovery } from '../../hooks/usePlaybackRecovery';
+import { useSettledVideoSource } from '../../hooks/useSettledVideoSource';
 import { PersistentVideoView } from './PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -35,7 +37,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   const videoViewRef = useRef<VideoView>(null);
   const seekingRef = useRef<boolean>(false);
   const [sessionKey, setSessionKey] = useState<string | null>(null);
-  const player: VideoPlayer = usePersistentVideoPlayer(sourceUrl ?? null, (p) => {
+  const player: VideoPlayer = usePersistentVideoPlayer(null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
     p.loop = true;
@@ -44,6 +46,17 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     // do not auto-play here; wait for sourceLoad
   });
+
+  const { recovery, phase } = usePlaybackRecovery(player, sourceUrl, {
+    component: 'FullScreenVideoPlayer',
+    allowed: () => (visible || isPictureInPicturePlayer(player)) && canStartVideo(player),
+  });
+  useSettledVideoSource(player, visible || isPictureInPicturePlayer(player) ? sourceUrl : null, visible,
+    () => recovery.start(), () => recovery.fail('source-rejected'));
+  useEffect(() => {
+    if (visible) recovery.start();
+    else if (!isPictureInPicturePlayer(player)) recovery.stop();
+  }, [visible, recovery, player]);
 
   useEffect(() => {
     return () => {
@@ -72,7 +85,6 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       setIsPlaying(false);
       setIsLandscape(false);
       ScreenOrientation.unlockAsync().catch(() => {});
-  try { player.replace(null as any); } catch {}
     }
     return () => {
       // Ensure orientation is unlocked on unmount
@@ -80,17 +92,6 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
-
-  // Replace source whenever URI changes (ensures fresh load even for same URI across opens)
-  useEffect(() => {
-    if (!sourceUrl) return;
-    try { player.replace(sourceUrl); } catch {}
-    return () => {
-      if (isPictureInPicturePlayer(player)) return;
-      try { player.pause(); } catch {}
-  try { player.replace(null as any); } catch {}
-    };
-  }, [sourceUrl, player]);
 
   // Subscribe to player events and reflect into local state
   useEffect(() => {
@@ -101,9 +102,6 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       player.addListener('sourceLoad', ({ duration: durSec }) => {
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         setDuration(durMs);
-        if (visible && canStartVideo(player)) {
-          try { player.play(); } catch {}
-        }
       }),
       player.addListener('timeUpdate', ({ currentTime }) => {
         if (seekingRef.current) return;
@@ -121,22 +119,24 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   }, [visible]);
 
   const handleClose = useCallback(async () => {
+    recovery.stop();
     try { player.pause(); } catch {}
     await unlockOrientation();
     onClose();
-  }, [onClose, unlockOrientation, player]);
+  }, [onClose, unlockOrientation, player, recovery]);
 
   const handlePlayPause = useCallback(async () => {
     try {
       if (player.playing) {
+        recovery.stop();
         player.pause();
         setIsPlaying(false);
       } else {
-        player.play();
+        recovery.start();
         setIsPlaying(true);
       }
     } catch {}
-  }, [player]);
+  }, [player, recovery]);
 
   const handleRotate = useCallback(async () => {
     try {
@@ -193,12 +193,17 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
             style={{ flex: 1, backgroundColor: 'black' }}
             contentFit="contain"
             nativeControls={false}
+            onFirstFrameRender={() => recovery.progress()}
           />
         ) : (
           <View className="flex-1 items-center justify-center">
             <Text className="text-white">{t('player.noVideo')}</Text>
           </View>
         )}
+
+        {phase === 'failed' && <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('player.retry')}
+          style={{ position: 'absolute', top: '45%', alignSelf: 'center', padding: 20, backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 24 }}
+          onPress={() => recovery.start()}><Text style={{ color: '#fff' }}>{t('player.retry')}</Text></TouchableOpacity>}
 
         {/* Controls */}
         <View

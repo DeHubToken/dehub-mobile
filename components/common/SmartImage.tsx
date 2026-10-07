@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
-import { withStorageImageHeaders } from "../../libs/cdnImage";
+import { cdnImageSource, withStorageImageHeaders } from "../../libs/cdnImage";
 
 const warmed = new Set<string>();
 /** Warm one neighbour into the same native cache the visible image uses. */
@@ -79,7 +79,17 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   onError,
 }) => {
   const imageRef = useRef<Image>(null);
-  const resolvedSource = useMemo(() => withStorageImageHeaders(source), [source]);
+  const uri = typeof source === 'string' ? source : source && typeof source === 'object' && 'uri' in source ? source.uri : undefined;
+  const [failedUri, setFailedUri] = useState<string>();
+  const original = uri ? cdnImageSource(uri) : undefined;
+  const useOriginal = !!uri && failedUri === uri && original !== uri;
+  const resolvedSource = useMemo(() => withStorageImageHeaders(useOriginal
+    ? typeof source === 'object' ? { ...source, uri: original } : { uri: original }
+    : source), [source, useOriginal, original]);
+  const handleError = useCallback(() => {
+    if (uri && original !== uri && !useOriginal) { setFailedUri(uri); return; }
+    onError?.();
+  }, [uri, original, useOriginal, onError]);
   const animatedRef = useRef(false);
   const syncAnimation = useCallback(() => {
     if (!animatedRef.current || autoplay === undefined) return;
@@ -118,7 +128,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       onLoadStart={onLoadStart}
       onLoad={handleLoad}
       onLoadEnd={onLoadEnd}
-      onError={onError}
+      onError={handleError}
     />
   );
 };
