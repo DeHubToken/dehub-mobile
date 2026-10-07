@@ -14,7 +14,7 @@ export function ShotTools({ clip, detect, apply, preview }: { clip: MediaClip; d
     if (controller.current) return;
     const abort = new AbortController(); controller.current = abort; setProgress(0); setTimes(null);
     try { const result = await detect(clip, abort.signal, setProgress); if (!abort.signal.aborted) { setTimes(result.times); setChosen(result.times); } }
-    catch { if (!abort.signal.aborted) toastError(t("common.somethingWentWrong")); }
+    catch (error) { if (!abort.signal.aborted) { console.warn("[editor] scene analysis failed", error); toastError(t("common.somethingWentWrong")); } }
     finally { if (controller.current === abort) { controller.current = null; setProgress(null); } }
   };
   return <View style={{ gap: 8 }}>
