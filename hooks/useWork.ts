@@ -1,6 +1,6 @@
 import { useWorkEscrow,workRow,getWorkConfig } from './useWorkEscrow';
 import { workRpc, workReceipt } from '../libs/work-rpc';
-import { runWorkPayment } from '../libs/work-payment-flow';
+import { prepareWorkPayment, runWorkPayment } from '../libs/work-payment-flow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -595,6 +595,7 @@ function useSettleWorkPayment() {
   return async (wallet: string, submission: string, recoveryHash?: string) => runWorkPayment(submission, activeChain, {
     rpc: (name, args) => workRpc(wallet, name, args),
     send: async intent => {
+     const send = await prepareWorkPayment(async () => {
       const contract = intent.currency === 'USDC' ? usdcContract : dhbContract;
       if (!contract) throw new Error('Switch to Base for USDC payouts, or Base/BNB for DHB payouts.');
       const { data: job, error } = await supabase.from(TBL_JOBS).select('fund_tx_hash,onchain_job_id').eq('id', intent.job_id).single();
@@ -603,7 +604,7 @@ function useSettleWorkPayment() {
         const config=await getWorkConfig();
         const sub=await workRow('work_submissions',submission);
         if(!config.escrow_address) throw new Error('Escrow is unavailable');
-        return escrow.write(config.escrow_address,'approveSubmission',[(job as any).onchain_job_id,intent.worker_address,sub.approved_units,
+        return () => escrow.write(config.escrow_address,'approveSubmission',[(job as any).onchain_job_id,intent.worker_address,sub.approved_units,
           ethers.utils.sha256(ethers.utils.toUtf8Bytes(sub.proof_url.trim().toLowerCase())),ethers.utils.sha256(ethers.utils.toUtf8Bytes(intent.id))]);
       }
       const amount = ethers.utils.parseUnits(String(intent.amount), intent.currency === 'USDC' ? 6 : 18);
@@ -612,7 +613,9 @@ function useSettleWorkPayment() {
       if (signer.toLowerCase() === intent.worker_address.toLowerCase()) throw new Error('Cannot pay your own wallet');
       const balance = await contract.balanceOf(signer);
       if (balance.lt(amount)) throw new Error(`Not enough ${intent.currency} to cover this payout`);
-      const sent = await writeContractAA(contract, 'transfer', [intent.worker_address, amount], { context: 'bounty-payout' });
+      return () => writeContractAA(contract, 'transfer', [intent.worker_address, amount], { context: 'bounty-payout' });
+     });
+      const sent = await send();
       if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
       return { hash: sent.hash, wait: (confirmations: number) => sent.wait(confirmations) };
     },
