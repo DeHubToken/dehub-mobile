@@ -114,6 +114,7 @@ import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/po
 import { haptic } from "../libs/haptics";
 import { useAppTheme } from "../context/ThemeContext";
 import { minimalFlat } from "../theme/minimal";
+import { uploadLocalFileToBucket, fileExtension, contentTypeForExtension } from "../libs/storage-upload";
 
 /** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
 const SHOULD_MINT_KEY = "post_should_mint";
@@ -405,6 +406,7 @@ export default function UploadScreen() {
   const [quotedPost, setQuotedPost] = useState<Record<string, any> | undefined>(incomingQuotedPost);
 
   const [isLiveMode, setIsLiveMode] = useState(!!route.params?.live);
+  const [isStageMode, setIsStageMode] = useState(false);
   const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
@@ -652,9 +654,9 @@ export default function UploadScreen() {
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
   // Title input is forced for video/audio (they need a name on-chain) and for
   // live mode (the stream title); otherwise it follows the user's toggle.
-  const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode;
+  const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode || isStageMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
-  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid || articleMode) &&
+  const canPost = isStageMode ? !!titleText.trim() : !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid || articleMode) &&
     (!articleMode || (!!titleText.trim() && articleBody.trim().length >= ARTICLE_BODY_MIN && !hasMedia));
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
@@ -938,10 +940,12 @@ export default function UploadScreen() {
   } = useUploadLive();
 
   const { attachedSound, selectSound, clearSound } = usePostSound();
-  const { openModal: openStages } = useStages();
+  const { openModal: openStages, createSpace, scheduleSpace } = useStages();
   const [showSoundPicker, setShowSoundPicker] = useState(false);
   const [scheduledDate, setScheduledDate] = useState<Date | null>(null);
   const [showScheduleSheet, setShowScheduleSheet] = useState(false);
+  const composerSchedule = isLiveMode ? (liveSettings.scheduleEnabled ? liveSettings.scheduledDate : null) : scheduledDate;
+  const scheduleTitle = isStageMode ? t("stages.scheduleStage") : isLiveMode ? t("upload.scheduleLivestream") : t("upload.schedulePostTitle");
   const [crossPostOpen, setCrossPostOpen] = useState(false);
 
   const soundtrackEnabled =
@@ -1334,6 +1338,47 @@ export default function UploadScreen() {
     // the state this one has not caused a render for yet. See the ref's doc.
     if (activeIsUploading || submittingRef.current) return;
     haptic.press();
+    if (isStageMode) {
+      if (!titleText.trim()) return;
+      if (scheduledDate && (!Number.isFinite(scheduledDate.getTime()) || scheduledDate.getTime() <= Date.now())) {
+        toastError(t("stages.pickFutureTime"));
+        return;
+      }
+      submittingRef.current = true;
+      setIsSubmitting(true);
+      try {
+        let coverImageUrl: string | null = null;
+        const cover = liveThumbnailUri || pickedImages[0]?.uri || thumbnailUri;
+        if (cover) {
+          try {
+            const ext = fileExtension({ uri: cover }, "jpg");
+            coverImageUrl = await uploadLocalFileToBucket({ bucket: "community-media", path: `stages/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`, uri: cover, contentType: contentTypeForExtension(ext, "image/jpeg") });
+          } catch {
+            toastError(t("stages.coverUploadFailed"));
+          }
+        }
+        const space = scheduledDate
+          ? await scheduleSpace({ title: titleText.trim().slice(0, 100), description: bodyText.trim() || undefined, scheduledAt: scheduledDate.toISOString(), coverImageUrl })
+          : await createSpace(titleText.trim().slice(0, 100), bodyText.trim() || undefined, coverImageUrl);
+        if (!space) { toastError(t(scheduledDate ? "stages.scheduleFailed" : "stages.startFailed")); return; }
+        setTitleText("");
+        setBodyText("");
+        setScheduledDate(null);
+        setIsStageMode(false);
+        setLiveThumbnailUri(null);
+        setPickedImages([]);
+        setPickedVideo(null);
+        setThumbnailUri(null);
+        consumeRestoredDraft();
+        if (scheduledDate) {
+          toastSuccess(t("stages.stageScheduled"));
+          nav.navigate(ScreenNames.Stages);
+        } else {
+          openStages("live");
+        }
+      } finally { releaseSubmit(); }
+      return;
+    }
     if (isLiveMode) {
       // Live keeps its confirm step, and blocks the screen through the mint —
       // it is already guarded by `activeIsUploading`.
@@ -1385,6 +1430,7 @@ export default function UploadScreen() {
     canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
     submitPost, submitQuotePost, releaseSubmit,
+    isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft,
   ]);
 
   const buildDraftData = useCallback(() => ({
@@ -2147,22 +2193,22 @@ export default function UploadScreen() {
   return (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
-        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setShowTitle(false); }}>
-          <Text className={!isLiveMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); }}>
+          <Text className={!isLiveMode && !isStageMode && !articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("screens.post")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isLiveMode }}
-          onPress={() => { setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
+          onPress={() => { setIsStageMode(false); setArticleMode(false); if (!isLiveMode) handleToggleLiveMode(); }}>
           <Text className={isLiveMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.livestream")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
-        <TouchableOpacity accessibilityRole="button" onPress={() => openStages("create")}>
-          <Text className="text-white/55 text-xs font-medium">{t("nav.stages")}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: isStageMode }} onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(false); setIsStageMode(true); setPollEnabled(false); }}>
+          <Text className={isStageMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("nav.stages")}</Text>
         </TouchableOpacity>
         <Text className="text-white/25 text-xs">|</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: articleMode }}
-          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
+          onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(true); setShowTitle(true); setMonetization(emptyMonetization()); }}>
           <Text className={articleMode ? "text-white text-xs font-medium" : "text-white/55 text-xs font-medium"}>{t("articles.label")}</Text>
         </TouchableOpacity>
       </View>}
@@ -2200,18 +2246,18 @@ export default function UploadScreen() {
                 allowedChainIds={postChainIds}
               />
 
-              {!isLiveMode && !isQuoteMode && (
+              {!isQuoteMode && (
                 <TouchableOpacity
                   onPress={() => setShowScheduleSheet(true)}
                   activeOpacity={0.7}
                   className="w-9 h-9 rounded-xl items-center justify-center border"
                   style={{
-                    backgroundColor: scheduledDate ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)",
-                    borderColor: scheduledDate ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.2)",
+                    backgroundColor: composerSchedule ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)",
+                    borderColor: composerSchedule ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.2)",
                   }}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
-                  accessibilityLabel={scheduledDate ? t("upload.editSchedule") : t("upload.schedulePost")}
+                  accessibilityLabel={composerSchedule ? t("upload.editSchedule") : scheduleTitle}
                 >
                   <Icon name="Calendar" size={16} color="#fff" />
                 </TouchableOpacity>
@@ -2248,7 +2294,19 @@ export default function UploadScreen() {
             </View>
           </View>
 
-          {scheduledDate && (
+          {(isLiveMode || isStageMode) && (
+            <View className="flex-row flex-wrap mt-3" style={{ gap: 8 }}>
+              <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !composerSchedule }} onPress={() => { if (isLiveMode) setLiveSettings(prev => ({ ...prev, scheduleEnabled: false, scheduledDate: null })); else setScheduledDate(null); }} className="px-3 py-2 rounded-xl border border-white/20" style={{ backgroundColor: !composerSchedule ? "rgba(255,255,255,0.15)" : "transparent" }}>
+                <Text className="text-white text-xs">{t("stages.goLiveNow")}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !!composerSchedule }} onPress={() => setShowScheduleSheet(true)} className="flex-row items-center px-3 py-2 rounded-xl border border-white/20" style={{ gap: 6, backgroundColor: composerSchedule ? "rgba(245,158,11,0.2)" : "transparent" }}>
+                <Icon name="Calendar" size={14} color="#fff" />
+                <Text className="text-white text-xs">{scheduleTitle}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {composerSchedule && (
             <TouchableOpacity
               onPress={() => setShowScheduleSheet(true)}
               activeOpacity={0.7}
@@ -2259,7 +2317,7 @@ export default function UploadScreen() {
             >
               <Icon name="Clock" size={12} color="#FBBF24" />
               <Text className="text-amber-400 text-xs font-medium">
-                {scheduledDate.toLocaleString(undefined, {
+                {composerSchedule.toLocaleString(undefined, {
                   month: "short",
                   day: "numeric",
                   hour: "numeric",
@@ -2274,6 +2332,7 @@ export default function UploadScreen() {
           )}
 
           <View className="mt-3">
+            {isLiveMode && React.createElement(require("../components/Upload/ScheduledLivestreams").default, { address: authUser?.walletAddress || authUser?.address || "" })}
             {showTitleInput && !articleMode && (
               <TextInput
                 ref={titleRef}
@@ -3353,7 +3412,7 @@ export default function UploadScreen() {
             // precision tap.
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
-            accessibilityLabel={isLiveMode ? t("upload.goLive") : scheduledDate ? t("upload.schedule") : t("aiChat.post")}
+            accessibilityLabel={composerSchedule ? t("upload.schedule") : (isLiveMode || isStageMode) ? t("upload.goLive") : t("aiChat.post")}
             style={{
               backgroundColor: (isLiveMode ? canGoLive : canPost)
                 ? (!isLiveMode && scheduledDate ? '#D4D4D8' : '#fff')
@@ -3366,7 +3425,7 @@ export default function UploadScreen() {
               <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
             ) : (
               <Icon
-                name={isLiveMode ? "Radio" : "Send"}
+                name={composerSchedule ? "Calendar" : (isLiveMode || isStageMode) ? "Radio" : "Send"}
                 size={16}
                 color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'}
               />
@@ -3591,9 +3650,12 @@ export default function UploadScreen() {
       <ScheduleSheet
         visible={showScheduleSheet}
         onClose={() => setShowScheduleSheet(false)}
-        scheduledDate={scheduledDate}
+        scheduledDate={composerSchedule}
+        title={scheduleTitle}
+        minimumMinutes={isLiveMode ? 30 : 0}
         onSchedule={(date) => {
-          setScheduledDate(date);
+          if (isLiveMode) setLiveSettings(prev => ({ ...prev, scheduleEnabled: !!date, scheduledDate: date }));
+          else setScheduledDate(date);
         }}
       />
 
