@@ -34,8 +34,8 @@ try {
 /** The installed app can speak. False on builds that predate expo-speech. */
 export const speechAvailable = Speech !== null;
 
-/** The original track stays audible under the dub: music and tone still carry. */
-const DUCKED_VOLUME = 0.06;
+/** Keep music and ambience quiet for the entire dub, including speech gaps. */
+const ORIGINAL_VOLUME = 0.06;
 /** Faster than this and a synthetic voice stops being intelligible. */
 const MAX_RATE = 1.3;
 /** Roughly what a device voice gets through per second at rate 1. */
@@ -141,11 +141,10 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
     let voiceReady = false;
     let voice: string | undefined;
     let utterance = 0;
-    let ducked = false;
     let userVolume = player.volume;
     let expectedVolume = userVolume;
     const syncVolume = () => {
-      const target = ducked ? userVolume * DUCKED_VOLUME : userVolume;
+      const target = alive && voiceReady && !failed ? userVolume * ORIGINAL_VOLUME : userVolume;
       expectedVolume = target;
       try { if (Math.abs(player.volume - target) >= 0.001) player.volume = target; } catch {}
     };
@@ -154,12 +153,11 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       utterance++;
       stopIfMine(owner);
       spoken = -1;
-      ducked = false;
-      syncVolume();
     };
     const fail = () => {
       failed = true;
       silence();
+      syncVolume();
       failedRef.current?.();
     };
 
@@ -181,8 +179,6 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       const finish = () => {
         if (!current()) return;
         if (speaker === owner) speaker = null;
-        ducked = false;
-        syncVolume();
       };
       void Speech.stop().then(() => {
         if (!current() || speaker !== owner || !player.playing || player.muted) return;
@@ -194,8 +190,6 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
           onStart: () => {
             if (!current()) return;
             if (!player.playing || player.muted || userVolume === 0) { silence(); return; }
-            ducked = true;
-            syncVolume();
           },
           onDone: finish,
           onStopped: finish,
@@ -228,8 +222,8 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
     });
     const volumeSub = player.addListener("volumeChange", () => {
       if (Math.abs(player.volume - expectedVolume) >= 0.001) userVolume = player.volume;
+      syncVolume();
       if (userVolume === 0 || player.muted) silence();
-      else syncVolume();
     });
     const endSub = player.addListener("playToEnd", silence);
 
@@ -238,6 +232,7 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       if (found === null) { fail(); return; }
       voice = found?.identifier;
       voiceReady = true;
+      syncVolume();
       if (player.playing && !player.muted) speakAt(player.currentTime);
     }).catch(() => { if (alive) fail(); });
 
@@ -249,6 +244,7 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       volumeSub.remove();
       endSub.remove();
       silence();
+      syncVolume();
       if (owners.get(player) === owner) owners.delete(player);
     };
   }, [active, player, segments, lang, owner]);
