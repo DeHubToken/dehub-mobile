@@ -117,7 +117,7 @@ const DpayTransactions: React.FC = () => {
             ) : (
               <View className="w-4 h-4 mr-2 rounded-full bg-theme-neutrals-700" />
             )}
-            <Text className="text-gray-300 text-xs">{(tx.tokenSymbol || 'DHB').toUpperCase()}</Text>
+            <Text className="text-gray-300 text-xs">{!tx.tokenSymbol || tx.tokenSymbol === 'DHB' ? t("tip.tokensUnit") : tx.tokenSymbol.toUpperCase()}</Text>
           </View>
           <View className="flex-row items-center">
             {tx.stripeStatus ? <StatusPill label={String(tx.stripeStatus)} intent={stripeIntent} /> : null}

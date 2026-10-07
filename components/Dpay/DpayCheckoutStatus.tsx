@@ -245,7 +245,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           <Text className="text-white text-xl font-semibold mt-3">{t("dpay.success")}</Text>
           <Text className="text-gray-300 text-sm mt-1 text-center">
             {amountStr
-              ? t("dpay.sentTo", { amount: amountStr, symbol: tokenSymbol, address: miniAddress(address) })
+              ? t("dpay.sentTo", { amount: amountStr, symbol: tokenSymbol === "DHB" ? t("tip.tokensUnit") : tokenSymbol, address: miniAddress(address) })
               : t("dpay.tokensSentTo", { address: miniAddress(address) })}
           </Text>
           {canShare && (
