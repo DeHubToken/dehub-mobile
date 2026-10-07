@@ -6857,6 +6857,17 @@
     "underReview": "جائزے میں"
   },
   "editor": {
+    "pages": {
+    "add":  "پنّا جوڑو",
+    "duplicate":  "پنّا کے نقل بناؤ",
+    "delete":  "پنّا مٹاؤ",
+    "page":  "پنّا {{number}}",
+    "position":  "پنّا {{current}} / {{total}}",
+    "label":  "پنّا",
+    "allZip":  "سب {{count}} پنّا (ZIP)",
+    "thisPage":  "خالی ای پنّا",
+    "exporting":  "پنّا {{current}} / {{total}} بنت ہے…"
+},
     "captions": {
         "action":  "آٹو کیپشن",
         "working":  "سنت ہے… {{percent}}%",

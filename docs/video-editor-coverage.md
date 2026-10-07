@@ -34,7 +34,7 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Automatic captions | Implemented | This release | Local speech recognition; editable text, trims and speed respected. |
 | Caption appearance | This release | This release | Classic, boxed and bold styles; no overlap or captions past clip end. |
 | Subtitle file import/export | Gap | Gap | Editable SRT/VTT text with retained timestamps. |
-| Scene/page navigation | Implemented | Gap | Add, duplicate, navigate and move scene content. |
+| Scene/page navigation | This release | This release | Add, duplicate, navigate and delete scenes; preserve crossing source ranges and export empty appended scenes. |
 | Voiceover recording | Gap | Gap | Record into a separate sound layer at the playhead. |
 | Camera recording | Gap | Gap | Record and import within the editor using existing capture capabilities. |
 | Screen recording | Gap | Platform-specific gap | Browser capture; native needs supported OS recording integration. |
@@ -81,3 +81,6 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 - Mobile publication and physical-device export verification remain separate from passing unit tests.
 
 - Stock media release: native photo/video/audio browser and imports with source credits; deduplicated search fallback on both clients. Cloud checks and native device verification pending.
+
+- Numeric cuts verified on staging commit 1ecabeada: the exact ten one-second clip request produced ten timeline clips; one Undo restored the original and Redo restored ten. Project saved. Proof: editor-ten-clips-staging.jpg.
+- Scene release adds matching source-aware duplication/deletion, explicit scene navigation on mobile, complete timeline duration, and fenced operation-array parsing. Cloud checks and publication pending.

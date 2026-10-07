@@ -7,6 +7,18 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("navigates scenes and adds layers to the chosen scene", async () => {
+    const base = newProject("16:9", "scenes");
+    const { project, report } = await applyOps(base, [
+      { op: "add_text", text: "First" }, { op: "add_page" }, { op: "add_text", text: "Second" },
+      { op: "goto_page", index: 0 }, { op: "add_shape" },
+    ]);
+    expect(report).toMatchObject({ applied: 5, failed: 0, cursorTime: 0 });
+    expect(project.settings.pages).toEqual([0, 5]);
+    expect(project.clips[1]).toMatchObject({ start: 5, duration: 5 });
+    expect(project.clips[2]).toMatchObject({ start: 0, duration: 5 });
+    expect(describeScene(project, null, null, 6).currentPage).toBe(1);
+  });
   it("performs precise numeric cuts without a network planner", async () => {
     const base = newProject("16:9", "video");
     base.tracks = [{ id: "v", kind: "video", name: "Video", hidden: false, muted: false }];
@@ -82,9 +94,9 @@ describe("editor agent on the phone (same ops as the web)", () => {
     expect(base.clips).toHaveLength(0);
   });
 
-  it("reports unsupported pages and fails captions with no media target", async () => {
-    const { report } = await applyOps(newProject("1:1", "t"), [{ op: "captions" }, { op: "add_page" }]);
-    expect(report.unsupported).toEqual(["add_page"]);
+  it("reports unsupported generation and fails captions with no media target", async () => {
+    const { report } = await applyOps(newProject("1:1", "t"), [{ op: "captions" }, { op: "generate" }]);
+    expect(report.unsupported).toEqual(["generate"]);
     expect(report.failed).toBe(2);
   });
 

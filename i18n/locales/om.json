@@ -6819,6 +6819,17 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "pages": {
+    "add":  "Fuula dabaluu",
+    "duplicate":  "Fuula garagalchuu",
+    "delete":  "Fuula haquu",
+    "page":  "Fuula {{number}}",
+    "position":  "Fuula {{current}} kan {{total}} keessaa",
+    "label":  "Fuulota",
+    "allZip":  "Fuulota {{count}} hunda (ZIP)",
+    "thisPage":  "Fuula kana qofa",
+    "exporting":  "Fuula {{current}} kan {{total}} keessaa qopheessaa jira…"
+},
     "captions": {
         "action":  "Barreeffama ofumaan",
         "working":  "Dhaggeeffachaa jira… {{percent}}%",

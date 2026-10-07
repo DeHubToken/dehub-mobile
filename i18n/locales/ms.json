@@ -7045,6 +7045,17 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tambah halaman",
+    "duplicate":  "Pendua halaman",
+    "delete":  "Padam halaman",
+    "page":  "Halaman {{number}}",
+    "position":  "Halaman {{current}} daripada {{total}}",
+    "label":  "Halaman",
+    "allZip":  "Semua {{count}} halaman (ZIP)",
+    "thisPage":  "Halaman ini sahaja",
+    "exporting":  "Memaparkan halaman {{current}} daripada {{total}}…"
+},
     "captions": {
         "action":  "Kapsyen automatik",
         "working":  "Mendengar… {{percent}}%",

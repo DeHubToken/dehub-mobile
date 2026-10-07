@@ -7073,6 +7073,17 @@
     }
   },
   "editor": {
+    "pages": {
+    "add":  "Pagina toevoegen",
+    "duplicate":  "Pagina dupliceren",
+    "delete":  "Pagina verwijderen",
+    "page":  "Pagina {{number}}",
+    "position":  "Pagina {{current}} van {{total}}",
+    "label":  "Pagina\u0027s",
+    "allZip":  "Alle {{count}} pagina\u0027s (ZIP)",
+    "thisPage":  "Alleen deze pagina",
+    "exporting":  "Pagina {{current}} van {{total}} renderen…"
+},
     "captions": {
         "action":  "Automatische ondertiteling",
         "working":  "Luisteren… {{percent}}%",

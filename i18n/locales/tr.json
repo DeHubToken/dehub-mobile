@@ -6867,6 +6867,17 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "pages": {
+    "add":  "Sayfa ekle",
+    "duplicate":  "Sayfayı çoğalt",
+    "delete":  "Sayfayı sil",
+    "page":  "Sayfa {{number}}",
+    "position":  "Sayfa {{current}} / {{total}}",
+    "label":  "Sayfalar",
+    "allZip":  "Tüm {{count}} sayfa (ZIP)",
+    "thisPage":  "Yalnızca bu sayfa",
+    "exporting":  "Sayfa {{current}} / {{total}} işleniyor…"
+},
     "captions": {
         "action":  "Otomatik altyazı",
         "working":  "Dinleniyor… %{{percent}}",

@@ -6869,6 +6869,17 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "pages": {
+    "add":  "Añadir página",
+    "duplicate":  "Duplicar página",
+    "delete":  "Eliminar página",
+    "page":  "Página {{number}}",
+    "position":  "Página {{current}} de {{total}}",
+    "label":  "Páginas",
+    "allZip":  "Las {{count}} páginas (ZIP)",
+    "thisPage":  "Solo esta página",
+    "exporting":  "Renderizando página {{current}} de {{total}}…"
+},
     "captions": {
         "action":  "Subtítulos automáticos",
         "working":  "Escuchando… {{percent}}%",

@@ -6866,6 +6866,17 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tambah halaman",
+    "duplicate":  "Duplikat halaman",
+    "delete":  "Hapus halaman",
+    "page":  "Halaman {{number}}",
+    "position":  "Halaman {{current}} dari {{total}}",
+    "label":  "Halaman",
+    "allZip":  "Semua {{count}} halaman (ZIP)",
+    "thisPage":  "Hanya halaman ini",
+    "exporting":  "Merender halaman {{current}} dari {{total}}…"
+},
     "captions": {
         "action":  "Teks otomatis",
         "working":  "Mendengarkan… {{percent}}%",

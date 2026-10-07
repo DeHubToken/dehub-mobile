@@ -6782,6 +6782,17 @@
     "savePrompt": "हे पोस्ट समाप्त करण्यासाठी आणि नंतर पोस्ट करण्यासाठी मसुदा म्हणून जतन करा?"
   },
   "editor": {
+    "pages": {
+    "add":  "पान जोडा",
+    "duplicate":  "पानाची प्रत बनवा",
+    "delete":  "पान हटवा",
+    "page":  "पान {{number}}",
+    "position":  "{{total}} पैकी पान {{current}}",
+    "label":  "पाने",
+    "allZip":  "सर्व {{count}} पाने (ZIP)",
+    "thisPage":  "फक्त हे पान",
+    "exporting":  "{{total}} पैकी पान {{current}} रेंडर होत आहे…"
+},
     "captions": {
         "action":  "स्वयंचलित कॅप्शन",
         "working":  "ऐकत आहे… {{percent}}%",

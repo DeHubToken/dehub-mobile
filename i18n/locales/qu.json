@@ -6801,6 +6801,17 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "pages": {
+    "add":  "Rapita yapay",
+    "duplicate":  "Rapita iskaychay",
+    "delete":  "Rapita qichuy",
+    "page":  "Rapi {{number}}",
+    "position":  "Rapi {{current}} / {{total}}",
+    "label":  "Rapikuna",
+    "allZip":  "Llapan {{count}} rapikuna (ZIP)",
+    "thisPage":  "Kay rapillata",
+    "exporting":  "Rapi {{current}} / {{total}} ruwakuchkan…"
+},
     "captions": {
         "action":  "Kikinmanta subtítulos",
         "working":  "Uyarichkan… {{percent}}%",

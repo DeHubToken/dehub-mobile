@@ -6768,6 +6768,17 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "pages": {
+    "add":  "Ku dar bog",
+    "duplicate":  "Nuqul bogga",
+    "delete":  "Tirtir bogga",
+    "page":  "Bogga {{number}}",
+    "position":  "Bogga {{current}} ee {{total}}",
+    "label":  "Bogag",
+    "allZip":  "Dhammaan {{count}} bog (ZIP)",
+    "thisPage":  "Boggan oo kaliya",
+    "exporting":  "Waxaa la diyaarinayaa bogga {{current}} ee {{total}}…"
+},
     "captions": {
         "action":  "Qoraal toos ah",
         "working":  "Waa la dhageysanayaa… {{percent}}%",

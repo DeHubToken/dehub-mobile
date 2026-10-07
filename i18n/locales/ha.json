@@ -6769,6 +6769,17 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "pages": {
+    "add":  "Ƙara shafi",
+    "duplicate":  "Kwafi shafi",
+    "delete":  "Share shafi",
+    "page":  "Shafi {{number}}",
+    "position":  "Shafi {{current}} cikin {{total}}",
+    "label":  "Shafuka",
+    "allZip":  "Duk shafuka {{count}} (ZIP)",
+    "thisPage":  "Wannan shafin kawai",
+    "exporting":  "Ana shirya shafi {{current}} cikin {{total}}…"
+},
     "captions": {
         "action":  "Rubutun ƙasa na atomatik",
         "working":  "Ana saurare… {{percent}}%",

@@ -6788,6 +6788,17 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "pages": {
+    "add":  "Dodaj stranicu",
+    "duplicate":  "Dupliciraj stranicu",
+    "delete":  "Izbriši stranicu",
+    "page":  "Stranica {{number}}",
+    "position":  "Stranica {{current}} od {{total}}",
+    "label":  "Stranice",
+    "allZip":  "Sve stranice ({{count}}) (ZIP)",
+    "thisPage":  "Samo ova stranica",
+    "exporting":  "Renderiranje stranice {{current}} od {{total}}…"
+},
     "captions": {
         "action":  "Automatski titlovi",
         "working":  "Slušam… {{percent}} %",

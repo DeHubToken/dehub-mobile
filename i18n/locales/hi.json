@@ -6874,6 +6874,17 @@
     "savePrompt": "इस पोस्ट को ड्राफ़्ट के रूप में सेव करें और बाद में पोस्ट करें?"
   },
   "editor": {
+    "pages": {
+    "add":  "पेज जोड़ें",
+    "duplicate":  "पेज डुप्लिकेट करें",
+    "delete":  "पेज हटाएँ",
+    "page":  "पेज {{number}}",
+    "position":  "पेज {{current}} / {{total}}",
+    "label":  "पेज",
+    "allZip":  "सभी {{count}} पेज (ZIP)",
+    "thisPage":  "सिर्फ़ यह पेज",
+    "exporting":  "पेज {{current}} / {{total}} रेंडर हो रहा है…"
+},
     "captions": {
         "action":  "ऑटो कैप्शन",
         "working":  "सुन रहे हैं… {{percent}}%",

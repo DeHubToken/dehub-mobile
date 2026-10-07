@@ -6787,6 +6787,17 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "pages": {
+    "add":  "Lisa leht",
+    "duplicate":  "Dubleeri leht",
+    "delete":  "Kustuta leht",
+    "page":  "Leht {{number}}",
+    "position":  "Leht {{current}}/{{total}}",
+    "label":  "Lehed",
+    "allZip":  "Kõik {{count}} lehte (ZIP)",
+    "thisPage":  "Ainult see leht",
+    "exporting":  "Renderdan lehte {{current}}/{{total}}…"
+},
     "captions": {
         "action":  "Automaatsubtiitrid",
         "working":  "Kuulan… {{percent}}%",

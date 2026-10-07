@@ -6788,6 +6788,17 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "pages": {
+    "add":  "Afegeix una pàgina",
+    "duplicate":  "Duplica la pàgina",
+    "delete":  "Elimina la pàgina",
+    "page":  "Pàgina {{number}}",
+    "position":  "Pàgina {{current}} de {{total}}",
+    "label":  "Pàgines",
+    "allZip":  "Totes les {{count}} pàgines (ZIP)",
+    "thisPage":  "Només aquesta pàgina",
+    "exporting":  "Renderitzant la pàgina {{current}} de {{total}}…"
+},
     "captions": {
         "action":  "Subtítols automàtics",
         "working":  "Escoltant… {{percent}}%",

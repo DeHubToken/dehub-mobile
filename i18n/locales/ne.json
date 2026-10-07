@@ -6822,6 +6822,17 @@
     "relatedPosts": "सम्बन्धित पोस्टहरू"
   },
   "editor": {
+    "pages": {
+    "add":  "पृष्ठ थप्नुहोस्",
+    "duplicate":  "पृष्ठ दोहोर्याउनुहोस्",
+    "delete":  "पृष्ठ मेटाउनुहोस्",
+    "page":  "पृष्ठ {{number}}",
+    "position":  "पृष्ठ {{current}} / {{total}}",
+    "label":  "पृष्ठहरू",
+    "allZip":  "सबै {{count}} पृष्ठ (ZIP)",
+    "thisPage":  "यो पृष्ठ मात्र",
+    "exporting":  "पृष्ठ {{current}} / {{total}} रेन्डर हुँदै…"
+},
     "captions": {
         "action":  "स्वतः क्याप्सन",
         "working":  "सुनिँदै छ… {{percent}}%",

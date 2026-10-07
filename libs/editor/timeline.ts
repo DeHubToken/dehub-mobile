@@ -91,7 +91,7 @@ export function addClip(
   if (media.kind === "video") {
     ({ tracks, trackId } = mainVideoTrack(p));
     const onTrack = p.clips.filter((c) => c.trackId === trackId);
-    start = onTrack.reduce((m, c) => Math.max(m, c.start + c.duration), 0);
+    start = Math.max(at, onTrack.reduce((m, c) => Math.max(m, c.start + c.duration), 0));
   } else {
     ({ tracks, trackId } = audioTrackFor(p, at, duration));
     start = findFreeStart(p.clips, trackId, at, duration);

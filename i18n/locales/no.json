@@ -6786,6 +6786,17 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "pages": {
+    "add":  "Legg til side",
+    "duplicate":  "Dupliser side",
+    "delete":  "Slett side",
+    "page":  "Side {{number}}",
+    "position":  "Side {{current}} av {{total}}",
+    "label":  "Sider",
+    "allZip":  "Alle {{count}} sider (ZIP)",
+    "thisPage":  "Bare denne siden",
+    "exporting":  "Gjengir side {{current}} av {{total}}…"
+},
     "captions": {
         "action":  "Automatisk teksting",
         "working":  "Lytter… {{percent}} %",

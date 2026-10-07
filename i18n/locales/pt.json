@@ -6872,6 +6872,17 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "pages": {
+    "add":  "Adicionar página",
+    "duplicate":  "Duplicar página",
+    "delete":  "Excluir página",
+    "page":  "Página {{number}}",
+    "position":  "Página {{current}} de {{total}}",
+    "label":  "Páginas",
+    "allZip":  "Todas as {{count}} páginas (ZIP)",
+    "thisPage":  "Apenas esta página",
+    "exporting":  "Renderizando página {{current}} de {{total}}…"
+},
     "captions": {
         "action":  "Legendas automáticas",
         "working":  "Ouvindo… {{percent}}%",

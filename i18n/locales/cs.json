@@ -6790,6 +6790,17 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "pages": {
+    "add":  "Přidat stránku",
+    "duplicate":  "Duplikovat stránku",
+    "delete":  "Smazat stránku",
+    "page":  "Stránka {{number}}",
+    "position":  "Stránka {{current}} z {{total}}",
+    "label":  "Stránky",
+    "allZip":  "Všechny stránky ({{count}}) (ZIP)",
+    "thisPage":  "Pouze tato stránka",
+    "exporting":  "Vykreslování stránky {{current}} z {{total}}…"
+},
     "captions": {
         "action":  "Automatické titulky",
         "working":  "Poslouchám… {{percent}} %",

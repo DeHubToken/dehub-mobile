@@ -6813,6 +6813,17 @@
     "relatedPosts": "Звязаныя публікацыі"
   },
   "editor": {
+    "pages": {
+    "add":  "Дадаць старонку",
+    "duplicate":  "Дубляваць старонку",
+    "delete":  "Выдаліць старонку",
+    "page":  "Старонка {{number}}",
+    "position":  "Старонка {{current}} з {{total}}",
+    "label":  "Старонкі",
+    "allZip":  "Усе старонкі ({{count}}) (ZIP)",
+    "thisPage":  "Толькі гэтая старонка",
+    "exporting":  "Рэндэрынг старонкі {{current}} з {{total}}…"
+},
     "captions": {
         "action":  "Аўтасубтытры",
         "working":  "Слухаем… {{percent}}%",

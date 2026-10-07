@@ -6795,6 +6795,17 @@
     "relatedPosts": "ការបង្ហោះពាក់ព័ន្ធ"
   },
   "editor": {
+    "pages": {
+    "add":  "បន្ថែមទំព័រ",
+    "duplicate":  "ចម្លងទំព័រ",
+    "delete":  "លុបទំព័រ",
+    "page":  "ទំព័រ {{number}}",
+    "position":  "ទំព័រ {{current}} នៃ {{total}}",
+    "label":  "ទំព័រ",
+    "allZip":  "ទំព័រទាំង {{count}} (ZIP)",
+    "thisPage":  "តែទំព័រនេះប៉ុណ្ណោះ",
+    "exporting":  "កំពុងបង្កើតទំព័រ {{current}} នៃ {{total}}…"
+},
     "captions": {
         "action":  "អក្សររត់ស្វ័យប្រវត្តិ",
         "working":  "កំពុងស្ដាប់… {{percent}}%",

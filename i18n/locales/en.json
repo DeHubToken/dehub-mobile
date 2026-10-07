@@ -6863,6 +6863,17 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "pages": {
+    "add":  "Add page",
+    "duplicate":  "Duplicate page",
+    "delete":  "Delete page",
+    "page":  "Page {{number}}",
+    "position":  "Page {{current}} of {{total}}",
+    "label":  "Pages",
+    "allZip":  "All {{count}} pages (ZIP)",
+    "thisPage":  "This page only",
+    "exporting":  "Rendering page {{current}} of {{total}}…"
+},
     "captions": {
         "action":  "Auto captions",
         "working":  "Listening… {{percent}}%",
