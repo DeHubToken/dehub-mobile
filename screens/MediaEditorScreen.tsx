@@ -665,6 +665,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
       let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
+      if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
       if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
       if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
       setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied }]);

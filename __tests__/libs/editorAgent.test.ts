@@ -2,11 +2,27 @@ import { applyOps, describeScene } from "../../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND } from "../../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../../libs/editor/templates";
 import { addImage, newProject } from "../../libs/editor/project";
-import type { ShapeClip, TextClip } from "../../libs/editor/types";
+import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("segments video and exposes real video and audio timing to the shared planner", async () => {
+    const base = newProject("16:9", "video");
+    const video: MediaClip = { id: "v1", trackId: "v", kind: "video", mediaId: "m1", start: 0, duration: 10, trimIn: 3, sourceDuration: 30 };
+    base.tracks = [{ id: "v", kind: "video", name: "Video", muted: false, hidden: false }];
+    base.clips = [video, { ...video, id: "a1", kind: "audio", trackId: "a", start: 5, duration: 10 }];
+    const scene = describeScene(base, "v1", null);
+    expect(scene.page.duration).toBe(15);
+    expect(scene.layers).toHaveLength(2);
+    expect(scene.capabilities).toContain("segment");
+    expect(scene.layers[1]).toMatchObject({ id: "a1", kind: "audio", trimIn: 3 });
+    const { project, report } = await applyOps(base, [{ op: "segment", id: "v1", count: 10, duration: 1 }, { op: "audio", id: "new:0", volume: 0 }]);
+    expect(report).toMatchObject({ applied: 2, failed: 0 });
+    expect(project.clips.filter((c) => c.kind === "video")).toHaveLength(10);
+    expect(project.clips[1]).toMatchObject({ trimIn: 4, audio: { volume: 0 } });
+    expect(base.clips[0].duration).toBe(10);
+  });
   it("builds a design from ops in one new snapshot, leaving the input untouched", async () => {
     const base = newProject("16:9", "t");
     const { project, report } = await applyOps(base, [

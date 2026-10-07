@@ -45,6 +45,8 @@ import {
   type TextClip,
 } from "./types";
 import type { BrandKit } from "./brand";
+import { newId } from "./project";
+import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
 
 export interface AgentMessage {
   role: "user" | "assistant";
@@ -61,11 +63,11 @@ const round = (n: number, d = 3) => Math.round(n * 10 ** d) / 10 ** d;
 export function describeScene(p: ProjectSnapshot, selectedId: string | null, brand: BrandKit | null, playhead = 0) {
   const z = new Map(p.tracks.map((t, i) => [t.id, i]));
   const layers = p.clips
-    .filter((c) => c.kind !== "audio")
+    .slice()
     .sort((a, b) => (z.get(a.trackId) ?? 0) - (z.get(b.trackId) ?? 0))
     .map((c) => {
       const tr = getTransform(c);
-      const base: Record<string, unknown> = { id: c.id, kind: c.kind, start: round(c.start, 2), duration: round(c.duration, 2), x: round(tr.x), y: round(tr.y) };
+      const base: Record<string, unknown> = { id: c.id, trackId: c.trackId, kind: c.kind, start: round(c.start, 2), duration: round(c.duration, 2), x: round(tr.x), y: round(tr.y) };
       if (tr.rotation) base.rotation = round(tr.rotation, 1);
       if ((tr.opacity ?? 1) !== 1) base.opacity = round(tr.opacity ?? 1, 2);
       if (c.blend && c.blend !== "normal") base.blend = c.blend;
@@ -82,10 +84,19 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
       const out: Record<string, unknown> = { ...base, scale: round(tr.scale, 2) };
       if (m.fit === "cover") out.fit = "cover";
       if (m.effects) out.effects = m.effects;
+      out.mediaId = m.mediaId;
+      out.trimIn = round(m.trimIn);
+      out.sourceDuration = m.sourceDuration;
+      out.speed = m.speed ?? 1;
+      out.audio = m.audio;
+      out.crop = m.crop;
+      out.transitionOut = m.transitionOut;
       return out;
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "apply_brand", "add_logo", "use_template", "remove_background", "select"],
+    tracks: p.tracks.map(({ id, kind, muted, hidden }) => ({ id, kind, muted, hidden })),
     brand: hasBrand
       ? {
           colors: brand!.colors,
@@ -94,7 +105,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
           hasLogo: !!brand!.logoMediaId,
         }
       : undefined,
-    page: { width: p.settings.width, height: p.settings.height, aspect: p.settings.aspectPreset, background: p.settings.background, duration: 5 },
+    page: { width: p.settings.width, height: p.settings.height, aspect: p.settings.aspectPreset, background: p.settings.background, duration: p.clips.reduce((end, c) => Math.max(end, c.start + c.duration), 0) },
     playhead: round(playhead, 2),
     selected: selectedId ? [selectedId] : [],
     layers,
@@ -273,6 +284,18 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
   };
 
   const one = async (op: AgentOp): Promise<boolean> => {
+    if (TIMELINE_OPS.includes(op.op)) {
+      if (op.op === "audio" && op.speed !== undefined) {
+        const changed = await one({ op: "speed", id: op.id, speed: op.speed });
+        if (!changed) return false;
+        if (op.volume === undefined && op.fadeIn === undefined && op.fadeOut === undefined) return true;
+      }
+      const next = applyTimelineOp(p, { ...op, id: resolve(op.id), ids: Array.isArray(op.ids) ? op.ids.map(resolve) : op.ids }, () => newId(10));
+      if (!next) return false;
+      p = { ...p, clips: next.clips, tracks: next.tracks };
+      created.push(...next.created);
+      return true;
+    }
     switch (op.op) {
       case "set_canvas": {
         let aspect = op.aspect as AspectPreset | undefined;
@@ -463,7 +486,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         p = updateClip(p, clip.id, { mediaId });
         return true;
       }
-      case "add_page": case "goto_page": case "captions": case "generate": case "timing": case "audio": case "add_media":
+      case "add_page": case "goto_page": case "captions": case "generate": case "add_media":
         report.unsupported.push(String(op.op));
         return false;
       default:
@@ -472,11 +495,15 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
   };
 
   for (const op of ops) {
-    try {
-      if (await one(op)) report.applied++;
-      else report.failed++;
-    } catch {
-      report.failed++;
+    const expanded = op.op === "batch" ? expandBatch(op) : [op];
+    if (!expanded) { report.failed++; continue; }
+    for (const edit of expanded) {
+      try {
+        if (await one(edit)) report.applied++;
+        else report.failed++;
+      } catch {
+        report.failed++;
+      }
     }
   }
   return { project: { ...p, updatedAt: Date.now() }, report };
