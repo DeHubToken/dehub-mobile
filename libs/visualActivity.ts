@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 import { AppState, Platform } from "react-native";
 
 export function createVisualActivity() {
@@ -38,8 +38,12 @@ export function createVisualActivity() {
 }
 
 export const visualActivity = createVisualActivity();
-export const useFeedPlaybackAllowed = () =>
-  useSyncExternalStore(visualActivity.subscribe, visualActivity.isFeedPlaybackAllowed, () => true);
+export const FeedPlaybackActiveContext = createContext(true);
+export const useFeedPlaybackAllowed = () => {
+  const surfaceActive = useContext(FeedPlaybackActiveContext);
+  const appActive = useSyncExternalStore(visualActivity.subscribe, visualActivity.isFeedPlaybackAllowed, () => true);
+  return surfaceActive && appActive;
+};
 export const useCallInProgress = () =>
   useSyncExternalStore(visualActivity.subscribe, visualActivity.isCallBusy, () => false);
 export const useVisualActivity = () =>
