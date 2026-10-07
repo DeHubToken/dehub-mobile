@@ -1,11 +1,12 @@
-import type { MediaClip } from "./types";
+import type { ClipAudio, MediaClip } from "./types";
+import { AUDIO_ENVELOPE_RUNTIME } from "./audioEnvelopeRuntime";
 
-/** The same linear envelope used by preview and exported audio. */
-export function audioGainAt(clip: MediaClip, time: number): number {
-  const local = time - clip.start;
-  if (local < 0 || local >= clip.duration) return 0;
-  const fadeIn = Math.max(0, Math.min(clip.duration, clip.audio?.fadeIn ?? 0));
-  const fadeOut = Math.max(0, Math.min(clip.duration - fadeIn, clip.audio?.fadeOut ?? 0));
-  const envelope = Math.min(1, fadeIn > 0 ? local / fadeIn : 1, fadeOut > 0 ? (clip.duration - local) / fadeOut : 1);
-  return Math.max(0, (clip.audio?.volume ?? 1) * envelope);
-}
+export interface AudioEnvelopePoint { time: number; gain: number }
+const runtime = new Function(AUDIO_ENVELOPE_RUNTIME + "; return { audioEnvelopePoints, audioEnvelopeGain, audioGainAt, sliceClipAudio, scaleClipAudio };")() as {
+  audioEnvelopePoints: (clip: MediaClip) => AudioEnvelopePoint[];
+  audioEnvelopeGain: (points: AudioEnvelopePoint[], time: number) => number;
+  audioGainAt: (clip: MediaClip, time: number) => number;
+  sliceClipAudio: (clip: MediaClip, offset: number, duration: number) => ClipAudio | undefined;
+  scaleClipAudio: (clip: MediaClip, ratio: number) => ClipAudio | undefined;
+};
+export const { audioEnvelopePoints, audioEnvelopeGain, audioGainAt, sliceClipAudio, scaleClipAudio } = runtime;

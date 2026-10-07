@@ -1,5 +1,6 @@
 import type { Clip, ClipKeyframes, MediaClip, Track, TransitionKind } from "./types";
 import { shiftKeys } from "./keyframes";
+import { sliceClipAudio, scaleClipAudio } from "./audioEnvelope";
 
 /** Keep this contract and reducer identical in the web and mobile editors. */
 export const TIMELINE_OPS = ["split", "split_points", "segment", "trim", "remove_range", "sequence", "close_gaps", "repeat", "speed", "extract_audio", "audio", "transition", "timing"];
@@ -30,10 +31,7 @@ function slice(c: Clip, offset: number, duration: number, id: string, start = c.
     animateIn: offset > EPS ? undefined : c.animateIn,
     animateOut: end < c.duration - EPS ? undefined : c.animateOut,
     transitionOut: end < c.duration - EPS ? undefined : c.transitionOut,
-    ...(audible(c) ? { audio: { ...c.audio,
-      fadeIn: offset > EPS ? 0 : Math.min(c.audio?.fadeIn ?? 0, duration),
-      fadeOut: end < c.duration - EPS ? 0 : Math.min(c.audio?.fadeOut ?? 0, duration),
-    } } : {}),
+    ...(audible(c) ? { audio: sliceClipAudio(c, offset, duration) } : {}),
   } as Clip;
 }
 export { slice as sliceTimelineClip };
@@ -171,7 +169,7 @@ export function applyTimelineOp(state: Timeline, op: Op, makeId: () => string): 
       for (const prop of Object.keys(c.keyframes ?? {}) as (keyof ClipKeyframes)[]) keys[prop] = c.keyframes?.[prop]?.map((k) => ({ ...k, t: k.t * ratio }));
       const part: MediaClip = { ...c, speed, duration,
         keyframes: c.keyframes ? keys : undefined,
-        audio: { ...c.audio, fadeIn: (c.audio?.fadeIn ?? 0) * ratio, fadeOut: (c.audio?.fadeOut ?? 0) * ratio },
+        audio: scaleClipAudio(c, ratio),
         animateIn: c.animateIn ? { ...c.animateIn, duration: c.animateIn.duration * ratio } : undefined,
         animateOut: c.animateOut ? { ...c.animateOut, duration: c.animateOut.duration * ratio } : undefined,
         transitionOut: undefined,
@@ -200,6 +198,7 @@ export function applyTimelineOp(state: Timeline, op: Op, makeId: () => string): 
         audio[field] = value; changed = true;
       }
       if (!changed) return null;
+      if (op.fadeIn !== undefined || op.fadeOut !== undefined) delete audio.envelope;
       replace(c, [{ ...c, audio }]);
       return result();
     }
@@ -216,7 +215,7 @@ export function applyTimelineOp(state: Timeline, op: Op, makeId: () => string): 
       const start = number(op.start) ?? c.start;
       const duration = number(op.duration) ?? c.duration;
       if (start < 0 || duration < MIN || (audible(c) && c.sourceDuration !== undefined && c.trimIn + duration * rate(c) > c.sourceDuration + EPS)) return null;
-      const part = { ...c, start, duration } as Clip;
+      const part = slice(c, 0, duration, c.id, start);
       if (collision([part], new Set([c.id]))) return null;
       replace(c, [part]);
       return result();

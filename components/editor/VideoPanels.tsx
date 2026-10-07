@@ -53,7 +53,7 @@ export function SoundPanel({ clip, live, settle, processAudio, runBeats, progres
         min={0}
         max={maxFade}
         step={0.1}
-        onLive={(v) => live({ audio: { ...a, fadeIn: v } })}
+        onLive={(v) => live({ audio: { ...a, fadeIn: v, envelope: undefined } })}
         onDone={settle}
       />
       <Range
@@ -62,7 +62,7 @@ export function SoundPanel({ clip, live, settle, processAudio, runBeats, progres
         min={0}
         max={maxFade}
         step={0.1}
-        onLive={(v) => live({ audio: { ...a, fadeOut: v } })}
+        onLive={(v) => live({ audio: { ...a, fadeOut: v, envelope: undefined } })}
         onDone={settle}
       />
       <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.fadeHint")}</Text>
