@@ -6872,6 +6872,15 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "captions": {
+        "action":  "Legendas automáticas",
+        "working":  "Ouvindo… {{percent}}%",
+        "downloading":  "Preparando o modelo de fala… {{percent}}%",
+        "hint":  "Transforma a fala em legendas sincronizadas que você pode personalizar. Roda no seu dispositivo: grátis e privado. No primeiro uso, o modelo é baixado.",
+        "done":  "{{count}} legendas adicionadas.",
+        "noSpeech":  "Nenhuma fala encontrada neste clipe.",
+        "failed":  "Não foi possível criar legendas para este clipe."
+    },
     "app": {
       "newDesign": "Novo design",
       "yourDesigns": "Seus designs",

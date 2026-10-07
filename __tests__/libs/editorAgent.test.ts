@@ -1,4 +1,4 @@
-import { applyOps, describeScene } from "../../libs/editor/agent";
+import { applyOps, askAgent, describeScene } from "../../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND } from "../../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../../libs/editor/templates";
 import { addImage, newProject } from "../../libs/editor/project";
@@ -7,6 +7,31 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("performs precise numeric cuts without a network planner", async () => {
+    const base = newProject("16:9", "video");
+    base.tracks = [{ id: "v", kind: "video", name: "Video", hidden: false, muted: false }];
+    base.clips = [{ id: "v1", trackId: "v", kind: "video", mediaId: "m", start: 0, trimIn: 0, duration: 10 }];
+    const fetch = jest.spyOn(globalThis, "fetch").mockRejectedValue(new Error("offline"));
+    try {
+      const result = await askAgent([{ role: "user", content: "break up the video into 10 1 second clips" }], describeScene(base, "v1", null));
+      expect(fetch).not.toHaveBeenCalled();
+      const { project, report } = await applyOps(base, result.ops);
+      expect(report).toMatchObject({ applied: 1, failed: 0 });
+      expect(project.clips.map(c => c.trimIn)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    } finally { fetch.mockRestore(); }
+  });
+  it("adds editable speed-aware captions on a separate track in one snapshot", async () => {
+    const base = newProject("16:9", "speech");
+    const video: MediaClip = { id: "v", trackId: "t", kind: "video", mediaId: "m", start: 3, trimIn: 5, duration: 2, speed: 2 };
+    base.clips = [video];
+    const transcribe = jest.fn(async () => [{ text: "Hello.", start: 0, end: 1 }, { text: "World.", start: 2, end: 4 }]);
+    const { project, report } = await applyOps(base, [{ op: "captions", id: "v", style: "bold" }], { transcribe });
+    expect(transcribe).toHaveBeenCalledWith(video);
+    expect(report).toMatchObject({ applied: 1, failed: 0 });
+    expect(project.clips[1]).toMatchObject({ kind: "text", text: "Hello.", start: 3, color: "#f9ee58" });
+    expect(project.clips[2].start + project.clips[2].duration).toBe(5);
+    expect(base.clips).toEqual([video]);
+  });
   it("segments video and exposes real video and audio timing to the shared planner", async () => {
     const base = newProject("16:9", "video");
     const video: MediaClip = { id: "v1", trackId: "v", kind: "video", mediaId: "m1", start: 0, duration: 10, trimIn: 3, sourceDuration: 30 };

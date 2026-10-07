@@ -6768,6 +6768,15 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "captions": {
+        "action":  "Qoraal toos ah",
+        "working":  "Waa la dhageysanayaa… {{percent}}%",
+        "downloading":  "Moodeelka hadalka waa la diyaarinayaa… {{percent}}%",
+        "hint":  "Hadalka wuxuu u beddelaa qoraal waqti leh oo aad qaabkiisa beddeli karto. Wuxuu ku shaqeeyaa qalabkaaga: bilaash iyo gaar ah. Isticmaalka ugu horreeya wuxuu soo dejiyaa moodeelka.",
+        "done":  "Waxaa lagu daray {{count}} qoraal.",
+        "noSpeech":  "Hadal lagama helin muuqaalkan.",
+        "failed":  "Looma samayn karin qoraal muuqaalkan."
+    },
     "app": {
       "newDesign": "Naqshad cusub",
       "yourDesigns": "Naqshadahaaga",

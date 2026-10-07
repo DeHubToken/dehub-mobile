@@ -6663,6 +6663,15 @@
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   },
   "editor": {
+    "captions": {
+        "action":  "Auto captions",
+        "working":  "E dey listen… {{percent}}%",
+        "downloading":  "E dey ready di speech model… {{percent}}%",
+        "hint":  "E go turn talk to captions wey follow time, and you fit change how dem look. E dey run for your device: free and private. Di first time go download di model.",
+        "done":  "We don add {{count}} captions.",
+        "noSpeech":  "We no hear any talk for dis clip.",
+        "failed":  "We no fit make captions for dis clip."
+    },
     "app": {
       "newDesign": "New design",
       "yourDesigns": "Your designs",

@@ -6769,6 +6769,15 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "captions": {
+        "action":  "Rubutun ƙasa na atomatik",
+        "working":  "Ana saurare… {{percent}}%",
+        "downloading":  "Ana shirya samfurin magana… {{percent}}%",
+        "hint":  "Yana mayar da magana zuwa rubutun ƙasa masu lokaci da za ka iya canza salonsu. Yana aiki a na\u0027urarka: kyauta kuma na sirri. Amfani na farko zai sauke samfurin.",
+        "done":  "An ƙara rubutun ƙasa {{count}}.",
+        "noSpeech":  "Ba a sami magana a wannan bidiyo ba.",
+        "failed":  "An kasa ƙirƙirar rubutun ƙasa don wannan bidiyo."
+    },
     "app": {
       "newDesign": "Sabon zane",
       "yourDesigns": "Zanenka",

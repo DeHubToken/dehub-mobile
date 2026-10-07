@@ -6790,6 +6790,15 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatické titulky",
+        "working":  "Poslouchám… {{percent}} %",
+        "downloading":  "Připravuji model řeči… {{percent}} %",
+        "hint":  "Převede řeč na časované titulky, které můžete upravit. Běží ve vašem zařízení: zdarma a soukromě. Při prvním použití se stáhne model.",
+        "done":  "Přidáno titulků: {{count}}.",
+        "noSpeech":  "V tomto klipu nebyla nalezena žádná řeč.",
+        "failed":  "Pro tento klip se nepodařilo vytvořit titulky."
+    },
     "app": {
       "newDesign": "Nový návrh",
       "yourDesigns": "Vaše návrhy",

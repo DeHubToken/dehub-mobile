@@ -6802,6 +6802,15 @@
     }
   },
   "editor": {
+    "captions": {
+        "action":  "Subtitrări automate",
+        "working":  "Se ascultă… {{percent}}%",
+        "downloading":  "Se pregătește modelul de vorbire… {{percent}}%",
+        "hint":  "Transformă vorbirea în subtitrări sincronizate, cărora le poți schimba stilul. Rulează pe dispozitivul tău: gratuit și privat. La prima utilizare se descarcă modelul.",
+        "done":  "Au fost adăugate {{count}} subtitrări.",
+        "noSpeech":  "Nu s-a găsit vorbire în acest clip.",
+        "failed":  "Nu s-au putut crea subtitrări pentru acest clip."
+    },
     "app": {
       "newDesign": "Design nou",
       "yourDesigns": "Designurile tale",

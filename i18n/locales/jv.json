@@ -6770,6 +6770,15 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "captions": {
+        "action":  "Teks otomatis",
+        "working":  "Lagi ngrungokake… {{percent}}%",
+        "downloading":  "Lagi nyiapake model swara… {{percent}}%",
+        "hint":  "Ngowahi omongan dadi teks sing pas wektune lan bisa diganti gayane. Mlaku ing piranti sampeyan: gratis lan pribadi. Nalika pisanan dienggo, model bakal diundhuh.",
+        "done":  "{{count}} teks ditambahake.",
+        "noSpeech":  "Ora ana omongan ing klip iki.",
+        "failed":  "Ora bisa nggawe teks kanggo klip iki."
+    },
     "app": {
       "newDesign": "Desain anyar",
       "yourDesigns": "Desainmu",

@@ -6791,6 +6791,15 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatiska undertexter",
+        "working":  "Lyssnar… {{percent}} %",
+        "downloading":  "Förbereder talmodellen… {{percent}} %",
+        "hint":  "Gör om tal till tidsatta undertexter som du kan ändra stil på. Körs på din enhet: gratis och privat. Första gången laddas modellen ned.",
+        "done":  "{{count}} undertexter har lagts till.",
+        "noSpeech":  "Inget tal hittades i klippet.",
+        "failed":  "Det gick inte att skapa undertexter för klippet."
+    },
     "app": {
       "newDesign": "Ny design",
       "yourDesigns": "Dina designer",

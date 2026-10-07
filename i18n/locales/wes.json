@@ -6729,6 +6729,15 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "captions": {
+        "action":  "Auto captions",
+        "working":  "Di listen… {{percent}}%",
+        "downloading":  "Di make speech model ready… {{percent}}%",
+        "hint":  "E di turn tok for timed captions weh you fit change dia style. E di run for yua device: free and private. Di first time, e go download di model.",
+        "done":  "Don add {{count}} captions.",
+        "noSpeech":  "No tok for dis clip.",
+        "failed":  "E no fit make captions for dis clip."
+    },
     "app": {
       "newDesign": "New design",
       "yourDesigns": "Yua designs",

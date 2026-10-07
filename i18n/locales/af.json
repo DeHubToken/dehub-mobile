@@ -6913,6 +6913,15 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
+    "captions": {
+        "action":  "Outo-onderskrifte",
+        "working":  "Luister tans… {{percent}}%",
+        "downloading":  "Maak die spraakmodel gereed… {{percent}}%",
+        "hint":  "Verander spraak in getimede onderskrifte wat jy kan herstileer. Loop op jou toestel: gratis en privaat. Die eerste gebruik laai die model af.",
+        "done":  "{{count}} onderskrifte bygevoeg.",
+        "noSpeech":  "Geen spraak in hierdie snit gevind nie.",
+        "failed":  "Kon nie onderskrifte vir hierdie snit skep nie."
+    },
     "app": {
       "newDesign": "Nuwe ontwerp",
       "yourDesigns": "Jou ontwerpe",
