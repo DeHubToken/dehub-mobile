@@ -7355,6 +7355,7 @@
     "exampleOutput": "مثال على النتيجة",
     "referenceInsert": "أدخل {{tag}} في الموجه",
     "referenceLibrary": "استخدم من المكتبة",
+    "referenceUpload": "تحميل",
     "referenceSingle": "استخدم صورة واحدة لإعادة بناء الكائن.",
     "referenceHint": "اضغط على اسم الأصل للإشارة إليه في موجهك. أضف ما يصل إلى أربع صور ومقطع واحد.",
     "referenceOneClip": "أرفق مقطع مرجعي واحد.",

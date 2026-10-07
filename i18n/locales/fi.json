@@ -7372,6 +7372,7 @@
     "exampleOutput": "Esimerkkilähtö",
     "referenceInsert": "Lisää {{tag}} ohjeeseen",
     "referenceLibrary": "Käytä kirjastosta",
+    "referenceUpload": "Lataa",
     "referenceSingle": "Käytä yhtä kuvaa esineen rekonstruoimiseen",
     "referenceHint": "Napauta resurssin nimeä viittaamaan siihen ohjeessasi. Lisää enintään neljä kuvaa ja yksi video.",
     "referenceOneClip": "Liitä viitevideo",

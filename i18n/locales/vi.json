@@ -7490,6 +7490,7 @@
     "exampleOutput": "Đầu ra ví dụ",
     "referenceInsert": "Thêm {{tag}} vào yêu cầu",
     "referenceLibrary": "Sử dụng từ thư viện",
+    "referenceUpload": "Tải lên",
     "referenceSingle": "Sử dụng một hình ảnh để tái tạo đối tượng.",
     "referenceHint": "Nhấp vào tên tài sản để tham chiếu trong yêu cầu của bạn. Đính kèm tối đa bốn hình ảnh và một đoạn clip.",
     "referenceOneClip": "Đính kèm một đoạn clip tham chiếu.",

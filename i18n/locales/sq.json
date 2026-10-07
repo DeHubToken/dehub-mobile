@@ -7372,6 +7372,7 @@
     "exampleOutput": "Dalja e shembullit",
     "referenceInsert": "Shtoni {{tag}} në prompt",
     "referenceLibrary": "Përdorni nga libraria",
+    "referenceUpload": "Ngarkoni",
     "referenceSingle": "Përdorni një imazh për të ricostruar objektin.",
     "referenceHint": "Klikoni një emër aset për t’i referuar në promptin tuaj. Shtoni deri në katër imazhe dhe një klip.",
     "referenceOneClip": "Bashkangjitni një klip referencë.",

@@ -7318,6 +7318,7 @@
     "exampleOutput": "Намунаи хурӯҷ",
     "referenceInsert": "{{tag}} ro baravard konid",
     "referenceLibrary": "Dar library istifadah konid",
+    "referenceUpload": "Боргузорӣ",
     "referenceSingle": "Yek ta rasm baravard konid va ob’ekt ro ta’kid konid",
     "referenceHint": "Ism resursi ro tap konid va dar prompt istifadah konid. Baravard konid kamida 4 ta rasm va yek ta klip.",
     "referenceOneClip": "Yek ta klip referensi baravard konid",

@@ -35,14 +35,15 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
     onChange(mode === '3d' ? incoming.filter(a => a.kind === 'image').slice(0, 1) : all);
     onClose(); setLibraryVisible(false);
   };
-  const pick = async (video: boolean) => {
+  const pick = async () => {
     setBusy(true);
     try {
-      const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: video ? ['videos'] : ['images'],
-        allowsMultipleSelection: !video && mode !== '3d', selectionLimit: mode === '3d' ? 1 : 4, quality: 1 });
+      const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: mode === 'video' ? ['images', 'videos'] : ['images'],
+        allowsMultipleSelection: mode !== '3d', selectionLimit: mode === '3d' ? 1 : mode === 'video' ? 5 : 4, quality: 1 });
       if (result.canceled) return;
       const selected: CreatorReferenceAsset[] = [];
       for (const asset of result.assets) {
+        const video = asset.type === 'video';
         if ((asset.fileSize ?? 0) > (video ? 100 : 20) * 1024 * 1024) { toastError(t('stages.fileTooLarge', { max: video ? 100 : 20 })); return; }
         const seconds = video ? (asset.duration ?? 0) / 1000 : undefined;
         if (video && (!seconds || seconds < 3 || seconds > 30 || !/\.(mp4|mov)(?:\?|$)/i.test(asset.fileName ?? asset.uri))) {
@@ -70,7 +71,6 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
         </View>;
       })}
     </ScrollView>
-    <Pressable onPress={() => setLibraryVisible(true)} disabled={disabled} accessibilityRole="button" className="mt-2 self-start rounded-lg border border-theme-neutrals-700 px-3 py-1.5"><Text className="text-xs text-theme-neutrals-300">{t('creator.referenceLibrary')}</Text></Pressable>
     {!!assets.length && <Text className="mt-1 text-[11px] text-theme-neutrals-400">{t(mode === '3d' ? 'creator.referenceSingle' : 'creator.referenceHint')}</Text>}
     <Modal visible={pickerVisible || libraryVisible} transparent animationType="slide" onRequestClose={() => { onClose(); setLibraryVisible(false); }}>
       <View className="flex-1 justify-end bg-black/70">
@@ -79,9 +79,8 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
           <Text className="mb-3 text-lg font-bold text-theme-neutrals-100">{t('dm.attachImage')}</Text>
           {busy && <ActivityIndicator />}
           {!libraryVisible ? <>
-            <Pressable onPress={() => void pick(false)} disabled={busy} className="mb-2 rounded-xl bg-theme-neutrals-800 p-4"><Text className="text-theme-neutrals-100">{t('creator.navImage')}</Text></Pressable>
-            {mode === 'video' && <Pressable onPress={() => void pick(true)} disabled={busy} className="mb-2 rounded-xl bg-theme-neutrals-800 p-4"><Text className="text-theme-neutrals-100">{t('creator.referenceUploadClip')}</Text></Pressable>}
-            <Pressable onPress={() => { onClose(); setLibraryVisible(true); }} className="rounded-xl bg-theme-neutrals-800 p-4"><Text className="text-theme-neutrals-100">{t('creator.referenceLibrary')}</Text></Pressable>
+            <Pressable onPress={() => { onClose(); setLibraryVisible(true); }} disabled={busy} accessibilityRole="button" className="mb-2 rounded-xl bg-theme-neutrals-800 p-4"><Text className="text-theme-neutrals-100">{t('creator.referenceLibrary')}</Text></Pressable>
+            <Pressable onPress={() => void pick()} disabled={busy} accessibilityRole="button" className="rounded-xl bg-theme-neutrals-800 p-4"><Text className="text-theme-neutrals-100">{t('creator.referenceUpload')}</Text></Pressable>
           </> : <ScrollView>
             {library.isLoading && <ActivityIndicator />}
             {!choices.length && <Text className="text-theme-neutrals-400">{t(wallet ? 'creator.libraryEmpty' : 'creator.signInToSee')}</Text>}

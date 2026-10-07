@@ -7347,6 +7347,7 @@
     "exampleOutput": "مثال على الناتج",
     "referenceInsert": "حط {{tag}} في البرومبت",
     "referenceLibrary": "استخدم من المكتبة",
+    "referenceUpload": "رفع",
     "referenceSingle": "استخدم صورة وحدة عشان تعيد بناء الشي.",
     "referenceHint": "اضغط على اسم الأستيت عشان تشير له في البرومبت. زود لحد أربع صور وكمبيلي واحد.",
     "referenceOneClip": "أرفق كمبيلي مرجعي.",

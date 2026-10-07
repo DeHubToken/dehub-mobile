@@ -7472,6 +7472,7 @@
     "exampleOutput": "Przykładowe dane wyjściowe",
     "referenceInsert": "Wstaw {{tag}} w pole polecenia",
     "referenceLibrary": "Użyj z biblioteki",
+    "referenceUpload": "Prześlij",
     "referenceSingle": "Użyj jednego obrazka do odtworzenia obiektu",
     "referenceHint": "Kliknij nazwę zasobu, aby odwołać się do niego w swoim poleceniu. Dodaj do czterech obrazków i jeden klip.",
     "referenceOneClip": "Dołącz jeden klip odniesienia",
