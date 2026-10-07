@@ -49,6 +49,15 @@ import { newId } from "./project";
 import { captionLayers, type CaptionWord, type CaptionStyle } from "./captionLayout";
 import { preciseCommand } from "./preciseCommands";
 import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
+import { addClip } from "./timeline";
+import type { StockKind } from "./stock";
+
+export interface AgentMedia {
+  id: string;
+  name?: string;
+  kind: "image" | "video" | "audio";
+  duration?: number;
+}
 
 export interface AgentMessage {
   role: "user" | "assistant";
@@ -62,7 +71,7 @@ export interface AgentOp {
 
 const round = (n: number, d = 3) => Math.round(n * 10 ** d) / 10 ** d;
 
-export function describeScene(p: ProjectSnapshot, selectedId: string | null, brand: BrandKit | null, playhead = 0) {
+export function describeScene(p: ProjectSnapshot, selectedId: string | null, brand: BrandKit | null, playhead = 0, media: AgentMedia[] = []) {
   const z = new Map(p.tracks.map((t, i) => [t.id, i]));
   const layers = p.clips
     .slice()
@@ -97,7 +106,8 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
-    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "select"],
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "select"],
+    stockKinds: ["photo", "video", "audio"],
     tracks: p.tracks.map(({ id, kind, muted, hidden }) => ({ id, kind, muted, hidden })),
     brand: hasBrand
       ? {
@@ -111,8 +121,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     playhead: round(playhead, 2),
     selected: selectedId ? [selectedId] : [],
     layers,
-    // The phone keeps pictures per design; the agent adds new ones from stock.
-    library: [],
+    library: media.slice(0, 30).map(({ id, name, kind, duration }) => ({ id, name, kind, duration })),
   };
 }
 
@@ -240,8 +249,9 @@ function nearestAspect(ratio: number): Exclude<AspectPreset, "custom"> {
 
 export interface ApplyContext {
   transcribe?: (clip: MediaClip) => Promise<CaptionWord[]>;
-  /** Download a free stock photo into editor storage; resolves with its media id. */
-  importStock?: (query: string, orientation: "all" | "landscape" | "portrait" | "square") => Promise<string | null>;
+  /** Import a requested stock asset; legacy photo callbacks may return an id. */
+  importStock?: (query: string, orientation: "all" | "landscape" | "portrait" | "square", kind?: StockKind) => Promise<AgentMedia | string | null>;
+  media?: AgentMedia[];
   brand?: BrandKit | null;
   /** Restyle the design with the brand kit (libs/editor/brand.ts). */
   applyBrand?: (p: ProjectSnapshot) => ProjectSnapshot;
@@ -272,6 +282,19 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
     return m ? created[Number(m[1])] : id;
   };
   const find = (id: unknown): Clip | null => getClip(p, resolve(id) ?? null);
+
+  const insertMedia = (media: AgentMedia, op: AgentOp) => {
+    const before = p;
+    const r = media.kind === "image" ? addImage(p, media.id) : addClip(p, { ...media, kind: media.kind, duration: media.duration ?? 5 }, ctx.time ?? 0);
+    p = r.project;
+    created.push(r.clipId);
+    if (op.start !== undefined || op.duration !== undefined) {
+      const changed = applyTimelineOp(p, { op: "timing", id: r.clipId, start: op.start, duration: op.duration }, () => newId(10));
+      if (!changed) { p = before; created.pop(); return null; }
+      p = { ...p, clips: changed.clips, tracks: changed.tracks };
+    }
+    return r.clipId;
+  };
 
   const place = (clip: Clip, op: AgentOp) => {
     const patch: Record<string, unknown> = {};
@@ -449,19 +472,30 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         return true;
       }
       case "add_stock": {
-        if (!ctx.importStock || (op.kind && op.kind !== "photo" && op.kind !== "image")) {
+        if (!ctx.importStock) {
           report.unsupported.push(String(op.op));
           return false;
         }
         const query = str(op.query) ?? "";
         const orientation = (["landscape", "portrait", "square"].includes(op.orientation as string) ? op.orientation : "all") as "all" | "landscape" | "portrait" | "square";
-        const mediaId = await ctx.importStock(query, orientation);
-        if (!mediaId) { report.missingStock.push(query); return false; }
-        const r = addImage(p, mediaId);
-        p = r.project;
-        created.push(r.clipId);
-        const clip = getClip(p, r.clipId);
-        if (clip) place(clip, op);
+        const kind: StockKind = op.kind === "video" || op.kind === "audio" ? op.kind : "photo";
+        const asset = await ctx.importStock(query, orientation, kind);
+        if (!asset) { report.missingStock.push(query); return false; }
+        if (typeof asset === "string" && kind !== "photo") return false;
+        const media: AgentMedia = typeof asset === "string" ? { id: asset, kind: "image" } : asset;
+        const id = insertMedia(media, op);
+        if (!id) return false;
+        const clip = getClip(p, id);
+        if (clip && clip.kind !== "audio") place(clip, op);
+        return true;
+      }
+      case "add_media": {
+        const media = ctx.media?.find(m => m.id === op.mediaId);
+        if (!media) return false;
+        const id = insertMedia(media, op);
+        if (!id) return false;
+        const clip = getClip(p, id);
+        if (clip && clip.kind !== "audio") place(clip, op);
         return true;
       }
       case "apply_brand": {
@@ -505,7 +539,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         created.push(...captions.clips.map(c => c.id));
         return true;
       }
-      case "add_page": case "goto_page": case "generate": case "add_media":
+      case "add_page": case "goto_page": case "generate":
         report.unsupported.push(String(op.op));
         return false;
       default:

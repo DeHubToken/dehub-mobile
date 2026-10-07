@@ -1,104 +1,62 @@
-/**
- * Free stock photos for the AI agent and templates, downloaded into editor
- * storage on the phone. Same source and rules as the web
- * (dehubweb src/lib/editor/freeAssets.ts and agent.ts pickStock): the
- * `free-stock-assets` edge function first, Openverse directly if it is down,
- * the shape asked of Openverse itself (aspect_ratio), and clip-art skipped.
- */
 import * as FileSystem from "expo-file-system/legacy";
-import env from "../../config/env";
-import { importPicture } from "./storage";
+import { searchFreeAssets } from "./freeAssets";
+import { importClipFile, importPicture, type MediaMeta, type MediaProvenance } from "./storage";
+import { stockSearchPlan, type StockOrientation } from "./stockSearchPlan";
+export type { StockOrientation } from "./stockSearchPlan";
+export type StockKind = "photo" | "video" | "audio";
 
-export type StockOrientation = "all" | "landscape" | "portrait" | "square";
-
-interface StockItem {
-  title: string;
-  downloadUrl: string;
-  mimeType: string;
-  width?: number;
-  height?: number;
+export interface StockItem {
+  title: string; downloadUrl: string; mimeType: string;
+  thumbnailUrl?: string;
+  width?: number; height?: number; duration?: number;
+  source?: string; landingUrl?: string; creator?: string; creatorUrl?: string;
+  license?: string; licenseUrl?: string; attributionRequired?: boolean; attributionText?: string;
 }
-
 const NOT_A_PHOTO = /illustrat|clip ?art|vector|drawing|cartoon|icon|logo|diagram|sketch|svg/i;
-const OPENVERSE_ASPECT: Partial<Record<StockOrientation, string>> = { square: "square", landscape: "wide", portrait: "tall" };
-
-async function viaFunction(query: string, orientation: StockOrientation): Promise<StockItem[]> {
-  const key = env.SUPABASE_PUBLISHABLE_KEY;
-  const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/free-stock-assets`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ kind: "photo", query, page: 1, orientation }),
-  });
-  if (!res.ok) throw new Error(`stock ${res.status}`);
-  const data = await res.json();
-  return Array.isArray(data?.items) ? data.items : [];
+export async function searchStock(query: string, orientation: StockOrientation, kind: StockKind): Promise<StockItem[]> {
+  return (await searchFreeAssets({ kind, query, orientation })).items;
+}
+export function pickStock(items: StockItem[], kind: StockKind): StockItem | undefined {
+  const usable = items.filter(a => a.downloadUrl && (kind === "photo" ? /^image\//.test(a.mimeType) && !/svg/i.test(a.mimeType) : a.mimeType.startsWith(`${kind}/`)));
+  if (kind !== "photo") return usable.find(a => !a.duration || a.duration <= (kind === "video" ? 180 : 600));
+  const photos = usable.filter(a => !NOT_A_PHOTO.test(a.title));
+  return photos.find(a => (a.width ?? 0) >= 1000) ?? photos[0] ?? usable[0];
+}
+function provenance(item: StockItem): MediaProvenance {
+  return { source: item.source ?? "", sourceUrl: item.landingUrl ?? "", creator: item.creator ?? "", creatorUrl: item.creatorUrl,
+    license: item.license ?? "", licenseUrl: item.licenseUrl, attributionRequired: !!item.attributionRequired, attributionText: item.attributionText ?? "" };
+}
+function extension(item: StockItem, kind: StockKind): string {
+  const mime = item.mimeType.split(";")[0].toLowerCase();
+  const ext: Record<string, string> = { "image/png": "png", "image/webp": "webp", "image/jpeg": "jpg", "video/mp4": "mp4", "video/webm": "webm", "video/quicktime": "mov", "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav", "audio/mp4": "m4a", "audio/aac": "aac", "audio/flac": "flac" };
+  return ext[mime] ?? (kind === "photo" ? "jpg" : kind === "video" ? "mp4" : "mp3");
 }
 
-async function viaOpenverse(query: string, orientation: StockOrientation): Promise<StockItem[]> {
-  const url = new URL("https://api.openverse.org/v1/images/");
-  url.searchParams.set("q", query);
-  url.searchParams.set("page_size", "20");
-  url.searchParams.set("license", "cc0,pdm,by,by-sa");
-  url.searchParams.set("mature", "false");
-  url.searchParams.set("categories", "photograph");
-  const aspect = OPENVERSE_ASPECT[orientation];
-  if (aspect) url.searchParams.set("aspect_ratio", aspect);
-  const res = await fetch(url.toString());
-  if (!res.ok) throw new Error(`openverse ${res.status}`);
-  const data = await res.json();
-  return (data?.results ?? []).map((r: Record<string, unknown>) => ({
-    title: String(r.title ?? ""),
-    downloadUrl: String(r.url ?? ""),
-    mimeType: String(r.mime_type ?? "image/jpeg"),
-    width: Number(r.width) || undefined,
-    height: Number(r.height) || undefined,
-  }));
-}
-
-async function search(query: string, orientation: StockOrientation): Promise<StockItem[]> {
-  try {
-    return await viaFunction(query, orientation);
-  } catch {
-    try {
-      return await viaOpenverse(query, orientation);
-    } catch {
-      return [];
-    }
-  }
-}
-
-function pick(items: StockItem[]): StockItem | undefined {
-  const photos = items.filter((a) => a.downloadUrl && !NOT_A_PHOTO.test(a.title) && !a.mimeType.includes("svg"));
-  return photos.find((a) => (a.width ?? 0) >= 1000) ?? photos[0] ?? items.find((a) => a.downloadUrl);
-}
-
-/**
- * Find and import a stock photo; resolves with its media id, or null when
- * nothing matched. Loosens the search before giving up, like the web agent.
- */
-export async function importStockPhoto(query: string, orientation: StockOrientation = "all"): Promise<string | null> {
-  const short = query.split(/\s+/).slice(0, 2).join(" ");
-  const attempts: [string, StockOrientation][] = [[query, orientation], [query, "all"], [short, "all"]];
-  for (const [q, o] of attempts) {
-    const item = pick(await search(q, o));
+/** Download only on request, keeping the source licence beside the imported media. */
+export async function importStockAsset(query: string, orientation: StockOrientation = "all", kind: StockKind = "photo"): Promise<MediaMeta | null> {
+  for (const [q, o] of stockSearchPlan(query, orientation)) {
+    let items: StockItem[];
+    try { items = await searchStock(q, o, kind); } catch { return null; }
+    const item = pickStock(items, kind);
     if (!item) continue;
-    try {
-      const ext = /png/i.test(item.mimeType) ? "png" : "jpg";
-      const tmp = `${FileSystem.cacheDirectory ?? ""}stock-${Date.now()}.${ext}`;
-      const dl = await FileSystem.downloadAsync(item.downloadUrl, tmp);
-      if (dl.status < 200 || dl.status >= 300) continue;
-      const meta = await importPicture({
-        uri: dl.uri,
-        width: item.width ?? 1080,
-        height: item.height ?? 1080,
-        mimeType: item.mimeType,
-        fileName: `${(item.title || "stock").slice(0, 60)}.${ext}`,
-      });
-      await FileSystem.deleteAsync(tmp, { idempotent: true }).catch(() => {});
-      return meta.id;
-    } catch {
-      /* try the next attempt */
-    }
+    const imported = await importStockItem(item, kind);
+    if (imported) return imported;
   }
   return null;
+}
+
+export async function importStockItem(item: StockItem, kind: StockKind): Promise<MediaMeta | null> {
+    const ext = extension(item, kind);
+    const tmp = `${FileSystem.cacheDirectory ?? ""}stock-${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    try {
+      const dl = await FileSystem.downloadAsync(item.downloadUrl, tmp);
+      if (dl.status < 200 || dl.status >= 300) return null;
+      const picked = { uri: dl.uri, width: item.width ?? 1080, height: item.height ?? 1080, mimeType: item.mimeType,
+        fileName: `${(item.title || "stock").slice(0, 60)}.${ext}`, duration: item.duration, provenance: provenance(item) };
+      return kind === "photo" ? await importPicture(picked) : await importClipFile({ ...picked, kind });
+    } catch { return null; }
+    finally { await FileSystem.deleteAsync(tmp, { idempotent: true }).catch(() => {}); }
+}
+export async function importStockPhoto(query: string, orientation: StockOrientation = "all"): Promise<string | null> {
+  return (await importStockAsset(query, orientation, "photo"))?.id ?? null;
 }
