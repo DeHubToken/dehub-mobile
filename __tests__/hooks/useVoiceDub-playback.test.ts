@@ -92,7 +92,7 @@ describe('voice dub playback', () => {
 
   it('keeps the original quiet through seeking and restores it when dubbing is disabled', async () => {
     const player = makePlayer();
-    const { rerender } = renderHook(({ enabled }) => useVoiceDub({
+    const { rerender } = renderHook<void, { enabled: boolean }>(({ enabled }) => useVoiceDub({
       player: player as unknown as VideoPlayer, segments, lang: 'es', enabled,
     }), { initialProps: { enabled: true } });
     await act(async () => {});
