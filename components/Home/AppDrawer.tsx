@@ -29,6 +29,8 @@ import Avatar from "../common/Avatar";
 import { DhbCoin } from "../common/DhbCoin";
 import Icon, { type IconName } from "../ui/Icon";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
+import { useTotalUnreadMessagesCount } from "../../store/dm.store";
+import { usePublicChatUnreadCount } from "../../hooks/usePublicChatUnread";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
@@ -185,6 +187,7 @@ interface TileProps {
   iconColor?: string;
   width: number;
   active?: boolean;
+  badgeCount?: number;
   disabled?: boolean;
   soonLabel: string;
   skin: SheetSkin | null;
@@ -194,7 +197,7 @@ interface TileProps {
   onPress: () => void;
 }
 
-const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, disabled, soonLabel, skin, hud, square, onPress }) => {
+const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, badgeCount = 0, disabled, soonLabel, skin, hud, square, onPress }) => {
   const glyphColor = iconColor ?? (hud
     ? skin?.glow ?? "#22D3EE"
     : active ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.9)");
@@ -239,6 +242,13 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
         ) : (
           <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
         )}
+        {badgeCount > 0 && (
+          <View style={{ position: "absolute", top: -3, right: -5, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, backgroundColor: "#ef4444", alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ color: "#ffffff", fontSize: 10, fontWeight: "700" }}>
+              {badgeCount > 99 ? "99+" : badgeCount}
+            </Text>
+          </View>
+        )}
       </View>
       <Text
         style={[styles.tileLabel, active && styles.tileLabelActive, skin?.tabIcon ? { color: active ? skin.tabIconActive ?? skin.tabIcon : skin.tabIcon } : null]}
@@ -261,6 +271,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { isSignedIn } = useAuthState();
   const { signOut } = useAuthActions();
   const user = useUser();
+  const myUserId = user?.id;
+  const messagesUnread = useTotalUnreadMessagesCount(myUserId) + usePublicChatUnreadCount();
   const { t } = useTranslation();
   const appTheme = useAppTheme();
   const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? "minimal" : "system");
@@ -460,6 +472,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         iconColor={['hacker', 'island', 'horror'].includes(themeName) ? appTheme.colors.accent : undefined}
         width={tileWidth}
         active={!!item.screen && item.screen === activeRouteName && !item.params}
+        badgeCount={isSignedIn && item.screen === ScreenNames.DM ? messagesUnread : 0}
         disabled={item.disabled}
         soonLabel={t("screens.soon")}
         skin={skin}

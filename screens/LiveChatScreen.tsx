@@ -10,6 +10,7 @@ import {
   ListRenderItemInfo,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  AppState,
 } from "react-native";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Icon from "../components/ui/Icon";
@@ -38,7 +39,8 @@ import { runWithPermissions } from "../libs/permissions.util";
 import { toastError } from "../libs/toast";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { setPublicChatOpen } from "../libs/public-chat-alerts";
+import { isPublicChatOpen, setPublicChatOpen } from "../libs/public-chat-alerts";
+import { publicChatUnread } from "../hooks/usePublicChatUnread";
 
 /** How a message author is named in the ban and unban prompts. */
 const senderName = (msg: LiveChatMessageData) =>
@@ -96,6 +98,7 @@ const buildListItems = (
 const LiveChatScreen: React.FC = () => {
   const { t, i18n } = useTranslation();
   const user = useUser();
+  const account = user?.walletAddress || user?.address || "";
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
   // Lift by the keyboard height minus the bottom inset the root SafeAreaView
@@ -113,9 +116,18 @@ const LiveChatScreen: React.FC = () => {
   // reading, and a second socket into the room this screen holds is waste.
   useFocusEffect(
     useCallback(() => {
-      setPublicChatOpen(true);
-      return () => setPublicChatOpen(false);
-    }, []),
+      const sync = () => {
+        const reading = AppState.currentState === "active";
+        setPublicChatOpen(reading);
+        if (reading) publicChatUnread.markRead(account);
+      };
+      sync();
+      const subscription = AppState.addEventListener("change", sync);
+      return () => {
+        subscription.remove();
+        setPublicChatOpen(false);
+      };
+    }, [account]),
   );
 
   const {
@@ -140,6 +152,13 @@ const LiveChatScreen: React.FC = () => {
     reconnect,
     updateBannedList,
   } = useLiveChat();
+
+  useEffect(() => {
+    if (isPublicChatOpen()) {
+      const newest = messages.reduce((at, message) => Math.max(at, Date.parse(message.createdAt) || 0), Date.now());
+      publicChatUnread.markRead(account, newest);
+    }
+  }, [messages, account]);
 
   const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
   const [showReactionPicker, setShowReactionPicker] = useState<string | null>(null);
