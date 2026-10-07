@@ -30,6 +30,7 @@
  */
 
 import { useCallback, useEffect, useRef } from 'react';
+import { publicChatUnread } from './usePublicChatUnread';
 import { AppState } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { io, Socket } from 'socket.io-client';
@@ -40,7 +41,7 @@ import { createLogger } from '../libs/logger';
 import { isAssistantAddress } from '../libs/assistant';
 import { useUser, useAuthState } from '../context/AuthContext';
 import { sendLocalNotification } from '../services/push/push.service';
-import type { LiveChatMessageData } from '../services/livechat.service';
+import { getLiveChatMessages, type LiveChatMessageData } from '../services/livechat.service';
 import {
   PUBLIC_CHAT_ALLOWANCE_CHANNEL,
   usePublicChatAlertsEnabled,
@@ -158,12 +159,13 @@ export function usePublicChatAlerts() {
   flushRef.current = flush;
 
   useEffect(() => {
-    if (!alertsOn || !isSignedIn || chatOpen) return;
+    if (!isSignedIn || chatOpen) return;
 
     let cancelled = false;
     let socket: Socket | null = null;
 
     const me = (user?.walletAddress || user?.address || '').toLowerCase();
+    if (!me) return;
     const handle = (user?.username || '').toLowerCase();
 
     const connect = async () => {
@@ -190,8 +192,21 @@ export function usePublicChatAlerts() {
         log.debug('Connect error:', err.message);
       });
 
+      const track = (raw: LiveChatMessageData) => {
+        if (!raw) return false;
+        const from = (raw.sender?.address || raw.senderAddress || '').toLowerCase();
+        return publicChatUnread.record(me, {
+          id: raw._id,
+          createdAt: raw.createdAt,
+          sender: from,
+          excluded: raw.isDeleted || raw.messageType === 'system' || isAssistantAddress(from),
+        });
+      };
+      socket.on('livechat:roomJoined', (data: { messages?: LiveChatMessageData[] }) => {
+        if (!cancelled) data.messages?.forEach(track);
+      });
       socket.on(NEW_MESSAGE_EVENT, (raw: LiveChatMessageData) => {
-        if (!raw) return;
+        if (!track(raw) || !alertsOn) return;
 
         const from = (raw.sender?.address || raw.senderAddress || '').toLowerCase();
         if (from && from === me) return;
@@ -235,6 +250,9 @@ export function usePublicChatAlerts() {
           timerRef.current = setTimeout(() => flushRef.current(), FLUSH_DELAY_MS);
         }
       });
+      void getLiveChatMessages({ limit: 100 }).then((history) => {
+        if (!cancelled) history.messages.forEach(track);
+      }).catch(() => { /* socket history can still catch up */ });
     };
 
     void connect();

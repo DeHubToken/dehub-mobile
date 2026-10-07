@@ -43,6 +43,7 @@ import { useDMContext } from "../context/DMContext";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../theme/minimal";
+import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
 
 // Minimal: the list's separators run the full width in the shared hairline,
 // rather than an inset zinc rule.
@@ -53,6 +54,7 @@ const DirectMessagesInner: React.FC = () => {
   const { isMinimal, skin } = useAppTheme();
   const navigation = useNavigation<any>();
   const user = useUser();
+  const publicUnread = usePublicChatUnreadCount();
   const { isSignedIn, needsUsername } = useAuthState();
 
   const { contactsLoading, contactsError, refreshContacts } = useDMContext();
@@ -387,6 +389,13 @@ const DirectMessagesInner: React.FC = () => {
             </Text>
           </View>
         </View>
+        {publicUnread > 0 && (
+          <View style={{ minWidth: 20, height: 20, paddingHorizontal: 6, borderRadius: 10, backgroundColor: "#ef4444", alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ color: "#ffffff", fontSize: 12, fontWeight: "700" }}>
+              {publicUnread > 99 ? "99+" : publicUnread}
+            </Text>
+          </View>
+        )}
       </TouchableOpacity>
       {isMinimal ? (
         <View style={MINIMAL_SEPARATOR} />
@@ -395,7 +404,7 @@ const DirectMessagesInner: React.FC = () => {
       )}
       </>
     ),
-    [handleOpenLiveChat, isMinimal],
+    [handleOpenLiveChat, isMinimal, publicUnread, t],
   );
 
   const itemSeparator = useCallback(
