@@ -7427,6 +7427,7 @@
     "exampleOutput": "Misol chiqishi",
     "referenceInsert": "Promptga {{tag}} ni qo‘shing",
     "referenceLibrary": "Kutubxonadan foydalanish",
+    "referenceUpload": "Yuklash",
     "referenceSingle": "Ob&#39;ektni qayta tiklash uchun bitta rasmdan foydalaning.",
     "referenceHint": "So&#39;rovnomangizda unga havola qilish uchun obyekt nomiga teging. To&#39;rttagacha rasm va bitta klip qo&#39;shing.",
     "referenceOneClip": "Bitta ma&#39;lumotnoma qisqichini biriktiring.",

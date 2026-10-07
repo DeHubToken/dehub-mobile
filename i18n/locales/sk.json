@@ -7538,6 +7538,7 @@
     "exampleOutput": "Príklad výstupu",
     "referenceInsert": "Vlož {{tag}} do prikazu",
     "referenceLibrary": "Použi z knižnice",
+    "referenceUpload": "Nahrať",
     "referenceSingle": "Použi jednu obrázok na rekonstrukciu predmetu",
     "referenceHint": "Klepni na meno aktívneho materiálu, aby si ho odkazoval v prikaze. Pridať až štyri obrázky a jeden klip.",
     "referenceOneClip": "Pridať jeden odkazový klip",

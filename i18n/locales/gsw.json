@@ -7395,6 +7395,7 @@
     "exampleOutput": "Bispieloutput",
     "referenceInsert": "Füg {{tag}} in die Aufforderung ein",
     "referenceLibrary": "Benutz eine Bibliothek",
+    "referenceUpload": "Upload",
     "referenceSingle": "Nutze ein Bild, um das Objekt zu rekonstruieren",
     "referenceHint": "Tippe auf einen Asset-Namen, um ihn in deiner Aufforderung zu referenzieren. Füge bis zu vier Bilder und einen Clip hinzu.",
     "referenceOneClip": "Füge einen Referenz-Clip an",

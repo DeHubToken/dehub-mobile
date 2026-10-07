@@ -7383,6 +7383,7 @@
     "exampleOutput": "ဥပမာ ရလဒ်",
     "referenceInsert": "{{tag}} ကို prompt တွင် ထည့်သွင်းပါ",
     "referenceLibrary": "လိုက်ဖက်မှုမှ အသုံးပြုပါ",
+    "referenceUpload": "အပ်လုဒ်",
     "referenceSingle": "အရာဝတ္ထုကို ပြန်လည်တည်ဆောက်ရန် ပုံတစ်ခုကို အသုံးပြုပါ။",
     "referenceHint": "asset အမည်ကို ထိပြီး သင်၏ prompt တွင် ရည်ညွှန်းပါ။ ပုံလေးခု နှင့် clip တစ်ခု ထည့်သွင်းပါ။",
     "referenceOneClip": "reference clip တစ်ခု ကိုင်ဆောင်ပါ။",

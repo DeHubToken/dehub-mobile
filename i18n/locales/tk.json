@@ -7348,6 +7348,7 @@
     "exampleOutput": "Mysal çykdajy",
     "referenceInsert": "Promptta {{tag}}ni ýoklaýaýyýn.",
     "referenceLibrary": "Kütüphaneden ýoklayýn.",
+    "referenceUpload": "Ýüklemek",
     "referenceSingle": "Obýektni tek resimni saýlamak úçun ýoklayýn.",
     "referenceHint": "Promptta referens bermek úçun asset adýna tapýn. 4 resimni ýoklaýaýýp, bir video klipini ýoklayýn.",
     "referenceOneClip": "Bir referens video klipini ýoklayýn.",

@@ -7308,6 +7308,7 @@
     "exampleOutput": "Primer izlaza",
     "referenceInsert": "Унеси {{tag}} у наредбу",
     "referenceLibrary": "Корристи из библиотеке",
+    "referenceUpload": "Учитај",
     "referenceSingle": "Корристи једну слику да реконструишеш објекат.",
     "referenceHint": "Тапни на име асета да га понашаш у својој наредби. Прикачи до четири слике и један клип.",
     "referenceOneClip": "Прикачи један референцни клип.",

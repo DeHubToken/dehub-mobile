@@ -7397,6 +7397,7 @@
     "exampleOutput": "उदाहरन आउटपुट",
     "referenceInsert": "प्रॉम्प्ट म {{tag}} डारव",
     "referenceLibrary": "लाइब्रेरी ले उपयोग करव",
+    "referenceUpload": "अपलोड करा",
     "referenceSingle": "एक चित्र ले ऑब्जेक्ट ला पुनर्निर्माण करव.",
     "referenceHint": "एक एसेट नाम ला टैप करके ओकर संदर्भ प्रॉम्प्ट म जोड़व. चार तक चित्र अऊ एक क्लिप जोड़ सकथव.",
     "referenceOneClip": "एक संदर्भ क्लिप जोड़व.",

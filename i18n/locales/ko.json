@@ -7452,6 +7452,7 @@
     "exampleOutput": "예제 출력",
     "referenceInsert": "프롬프트에 {{tag}}를 삽입하세요",
     "referenceLibrary": "라이브러리에서 사용",
+    "referenceUpload": "업로드",
     "referenceSingle": "하나의 이미지를 사용하여 객체를 재구성하세요",
     "referenceHint": "자산 이름을 탭하여 프롬프트에서 참조하세요. 최대 네 개의 이미지와 하나의 클립을 추가하세요",
     "referenceOneClip": "참조 클립을 하나 첨부하세요",

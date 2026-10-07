@@ -7375,6 +7375,7 @@
     "exampleOutput": "Példa kimenet",
     "referenceInsert": "Illessze be a {{tag}}-et a promptba",
     "referenceLibrary": "Használja a könyvtárból",
+    "referenceUpload": "Feltöltés",
     "referenceSingle": "Használjon egy képet az objektum rekonstruálásához.",
     "referenceHint": "Koppintson egy eszköz nevére, hogy hivatkozzon rá a promptban. Adj hozzá legfeljebb négy képet és egy klipet.",
     "referenceOneClip": "Csatoljon egy referencia klipet.",

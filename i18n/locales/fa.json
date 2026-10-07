@@ -7398,6 +7398,7 @@
     "exampleOutput": "خروجی مثال",
     "referenceInsert": "در پرومپت {{tag}} را قرار دهید",
     "referenceLibrary": "از کتابخانه استفاده کنید",
+    "referenceUpload": "آپلود",
     "referenceSingle": "یک تصویر را برای بازسازی شیء استفاده کنید",
     "referenceHint": "نام یک دارایی را لمس کنید تا در پرومپت خود به آن اشاره کنید. تا چهار تصویر و یک کلیپ اضافه کنید",
     "referenceOneClip": "یک کلیپ مرجع پیوست کنید",

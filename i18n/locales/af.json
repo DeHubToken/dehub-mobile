@@ -7498,6 +7498,7 @@
     "exampleOutput": "Voorbeeld uitset",
     "referenceInsert": "Voeg {{tag}} in die prompt in",
     "referenceLibrary": "Gebruik vanaf biblioteek",
+    "referenceUpload": "Oplaai",
     "referenceSingle": "Gebruik een beeld om die voorwerp te herbou.",
     "referenceHint": "Tik op 'n bate se naam om dit in jou prompt te verwys. Voeg tot vier beelde en een knip toe.",
     "referenceOneClip": "Voeg een verwysingsklip toe.",

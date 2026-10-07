@@ -7350,6 +7350,7 @@
     "exampleOutput": "Conto output",
     "referenceInsert": "Masang {{tag}} ing prompt",
     "referenceLibrary": "Gunakake saka perpustakaan",
+    "referenceUpload": "Unggah",
     "referenceSingle": "Gunakake siji gambar kanggo mbangun maneh obyek.",
     "referenceHint": "Ketok jeneng aset kanggo nyambungake ing prompt sampeyan. Tambah nganti papat gambar lan siji klip.",
     "referenceOneClip": "Lampirake siji klip referensi.",

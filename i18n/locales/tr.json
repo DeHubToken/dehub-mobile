@@ -7452,6 +7452,7 @@
     "exampleOutput": "Örnek çıktı",
     "referenceInsert": "Prompt'a {{tag}}'i ekleyin",
     "referenceLibrary": "Kütüphaneden kullan",
+    "referenceUpload": "Yükle",
     "referenceSingle": "Nesneyi yeniden inşa etmek için bir resim kullan",
     "referenceHint": "Bir varlığı referans almak için adı tıklatın. En fazla dört resim ve bir klip ekleyin.",
     "referenceOneClip": "Bir referans klipi ekleyin",

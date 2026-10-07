@@ -7384,6 +7384,7 @@
     "exampleOutput": "Isibonelo sokukhishwa",
     "referenceInsert": "Faka {{tag}} ku-prompt",
     "referenceLibrary": "Sebenzisa evela enkoleksheni",
+    "referenceUpload": "Layisha",
     "referenceSingle": "Sebenzisa umfanekiso owodwa ukuze ubuye kumumo wento.",
     "referenceHint": "Thinta igama le-asset ukuze uyibheke ku-prompt yakho. Engeza kuze kube izithombe ezine kanye ne-clip eyodwa.",
     "referenceOneClip": "Namathisela i-clip yesethenjwa eyodwa.",

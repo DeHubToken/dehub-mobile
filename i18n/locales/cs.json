@@ -7373,6 +7373,7 @@
     "exampleOutput": "Příklad výstupu",
     "referenceInsert": "Vložte {{tag}} do dotazu",
     "referenceLibrary": "Použijte z knihovny",
+    "referenceUpload": "Nahrát",
     "referenceSingle": "Použijte jedno obrázek k rekonstrukci objektu",
     "referenceHint": "Klepněte na název assetu pro odkazování v vašem dotazu. Přidejte až čtyři obrázky a jeden klip.",
     "referenceOneClip": "Připojte jeden odkazový klip",

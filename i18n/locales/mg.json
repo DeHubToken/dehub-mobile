@@ -7453,6 +7453,7 @@
     "exampleOutput": "Santionany vokatra",
     "referenceInsert": "Sisipina {{tag}} ao amin'ny prompt",
     "referenceLibrary": "Mampiasa avy amin'ny library",
+    "referenceUpload": "Ampidiro",
     "referenceSingle": "Mampiasa sary iray mba hamerina ny zavatra.",
     "referenceHint": "Tsindrio ny anaran'ny asset mba hanondroana azy ao amin'ny prompt. Ampidiro hatrà efa sary sy clip iray.",
     "referenceOneClip": "Ampidiro clip reference iray.",

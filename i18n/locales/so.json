@@ -7350,6 +7350,7 @@
     "exampleOutput": "Tusaalaha wax soo saarka",
     "referenceInsert": "**{{tag}}** ku sheegay **prompt**ka.",
     "referenceLibrary": "**Library**ka awooday.",
+    "referenceUpload": "Soo dejiso",
     "referenceSingle": "**Object**ka awooday **image**ka oo wuxuu **reconstruct**ka.",
     "referenceHint": "**Asset**ka **name**ka **tap**kaad **prompt**ka awooday. **Image**ka kuwaa **4** iyo **clip**ka **1** ku sheegay.",
     "referenceOneClip": "**Reference clip**ka **1** ku sheegay.",
