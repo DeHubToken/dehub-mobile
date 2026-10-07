@@ -29,7 +29,7 @@
  */
 import { BRAND_OUTRO_DURATION } from "./brandOutro";
 import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
-import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
+import { BRAND_OUTRO_SOURCES } from "./brandOutroSources";
 import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
@@ -1005,7 +1005,7 @@ canvas{display:block;width:100%;height:100%;}
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
-          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo);
+          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo, ending.artwork);
           var frame = new VideoFrame(cv, { timestamp: Math.round(localTime * 1e6), duration: Math.round(1e6 / fps) });
           venc.encode(frame, { keyFrame: f % Math.max(1, Math.round(fps * 2)) === 0 });
           frame.close();
@@ -1097,7 +1097,7 @@ canvas{display:block;width:100%;height:100%;}
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
-          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo);
+          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo, ending.artwork);
           progress(0.05 + (localTime / duration) * 0.9);
           requestAnimationFrame(tick);
         };
@@ -1152,7 +1152,7 @@ canvas{display:block;width:100%;height:100%;}
         g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.clearRect(0, 0, plan.width, plan.height);
         g.fillStyle = snap.settings.background; g.fillRect(0, 0, plan.width, plan.height);
         drawOps(g, plan.width, plan.height, ops, t);
-        if (localTime >= ending.contentDuration) drawBrandOutro(g, plan.width, plan.height, localTime - ending.contentDuration, ending.username, ending.logo);
+        if (localTime >= ending.contentDuration) drawBrandOutro(g, plan.width, plan.height, localTime - ending.contentDuration, ending.username, ending.logo, ending.artwork);
         return session.frame(g.getImageData(0, 0, plan.width, plan.height).data, gifFrameDelay(frame, plan));
       }).then(function () { frame++; progress(0.03 + 0.94 * frame / plan.frames); return step(); });
     }
@@ -1175,11 +1175,10 @@ canvas{display:block;width:100%;height:100%;}
     var contentDuration = range.duration;
     if (m.format === "gif" && contentDuration > 60) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "GIF supports up to 60 seconds" }); return; }
     var duration = contentDuration + brandOutroDuration;
-    var ending = { contentDuration: contentDuration, rangeStart: range.start, username: m.username || "", logo: new Image() };
-    var logoReady = new Promise(function (resolve, reject) {
-      ending.logo.onload = resolve;
-      ending.logo.onerror = function () { reject(new Error("export logo")); };
-      ending.logo.src = brandOutroLogo;
+    var ending = { contentDuration: contentDuration, rangeStart: range.start, username: m.username || "", logo: null, artwork: null };
+    var logoReady = loadBrandOutroArtwork().then(function (artwork) {
+      ending.artwork = artwork;
+      ending.logo = artwork.logo;
     });
     var lastP = -1;
     var progress = function (p) {
@@ -1576,4 +1575,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
