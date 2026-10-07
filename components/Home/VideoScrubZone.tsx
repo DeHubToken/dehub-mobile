@@ -16,7 +16,7 @@ export function VideoScrubButton({ style, children, onPress, onLongPress, hitSlo
         style={styles.button}
         hitSlop={hitSlop}
         onPress={event => { event.stopPropagation(); if (!scrubbed?.current) onPress?.(event); }}
-        onLongPress={event => { if (!scrubbed?.current) onLongPress?.(event); }}
+        onLongPress={onLongPress ? event => { if (!scrubbed?.current) onLongPress(event); } : undefined}
       >
         {children}
       </Pressable>

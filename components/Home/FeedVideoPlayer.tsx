@@ -1454,8 +1454,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   <View pointerEvents="none" style={{ flex: 1 }} />
                 {captionControls && (
                   <VideoScrubButton
-                    onPress={() => { captionControls.toggle(); startHideTimer(); }}
-                    onLongPress={captionControls.openLanguages}
+                    onPress={() => { captionControls.openLanguages(); startHideTimer(); }}
                     hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("subtitles.title")}
