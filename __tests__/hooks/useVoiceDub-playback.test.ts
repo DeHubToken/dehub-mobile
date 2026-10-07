@@ -41,24 +41,31 @@ describe('voice dub playback', () => {
   beforeEach(() => (Speech.speak as jest.Mock).mockClear());
   afterEach(cleanup);
 
-  it('lowers the original only once speech starts and restores it on completion', async () => {
+  it('keeps the original quiet before speech, after completion and between lines', async () => {
     const { player } = await setup();
-    expect(player.volume).toBe(0.8);
+    expect(player.volume).toBeCloseTo(0.048);
     expect(line().volume).toBe(0.8);
     act(() => line().onStart());
     expect(player.volume).toBeCloseTo(0.048);
     act(() => line().onDone());
-    expect(player.volume).toBe(0.8);
+    expect(player.volume).toBeCloseTo(0.048);
     act(() => player.emit('timeUpdate', { currentTime: 0.5 }));
     expect(Speech.speak).toHaveBeenCalledTimes(1);
+    act(() => { player.currentTime = 3.5; player.emit('timeUpdate', { currentTime: 3.5 }); });
+    expect(player.volume).toBeCloseTo(0.048);
+    await act(async () => { player.currentTime = 4.1; player.emit('timeUpdate', { currentTime: 4.1 }); });
+    expect(line().volume).toBe(0.8);
+    expect(player.volume).toBeCloseTo(0.048);
   });
 
-  it('restores the latest viewer volume on pause', async () => {
-    const { player } = await setup();
+  it('keeps the original quiet on pause and restores the latest viewer volume on unmount', async () => {
+    const { player, unmount } = await setup();
     act(() => line().onStart());
     act(() => { player.volume = 0.5; });
     expect(player.volume).toBeCloseTo(0.03);
     act(() => { player.playing = false; player.emit('playingChange', { isPlaying: false }); });
+    expect(player.volume).toBeCloseTo(0.03);
+    unmount();
     expect(player.volume).toBe(0.5);
   });
 
@@ -81,5 +88,31 @@ describe('voice dub playback', () => {
     expect(player.volume).toBeCloseTo(0.048);
     unmount();
     expect(player.volume).toBe(0.8);
+  });
+
+  it('keeps the original quiet through seeking and restores it when dubbing is disabled', async () => {
+    const player = makePlayer();
+    const { rerender } = renderHook(({ enabled }) => useVoiceDub({
+      player: player as unknown as VideoPlayer, segments, lang: 'es', enabled,
+    }), { initialProps: { enabled: true } });
+    await act(async () => {});
+    act(() => { player.currentTime = 3.5; player.emit('timeUpdate', { currentTime: 3.5 }); });
+    expect(player.volume).toBeCloseTo(0.048);
+    rerender({ enabled: false });
+    expect(player.volume).toBe(0.8);
+  });
+
+  it.each(['mute', 'zero volume'])('stops speech when the viewer selects %s', async (control) => {
+    const { player, unmount } = await setup();
+    act(() => line().onStart());
+    act(() => {
+      if (control === 'mute') { player.muted = true; player.emit('mutedChange', { muted: true }); }
+      else player.volume = 0;
+    });
+    await act(async () => { player.currentTime = 4.1; player.emit('timeUpdate', { currentTime: 4.1 }); });
+    expect(Speech.speak).toHaveBeenCalledTimes(1);
+    expect(player.volume).toBeCloseTo(control === 'mute' ? 0.048 : 0);
+    unmount();
+    expect(player.volume).toBe(control === 'mute' ? 0.8 : 0);
   });
 });
