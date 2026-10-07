@@ -136,14 +136,15 @@ export function Toggle({ label, value, onChange }: { label: string; value: boole
   );
 }
 
-export function Chip({ label, active, onPress, icon }: { label: string; active?: boolean; onPress: () => void; icon?: IconName }) {
+export function Chip({ label, active, onPress, icon, disabled }: { label: string; active?: boolean; onPress: () => void; icon?: IconName; disabled?: boolean }) {
   return (
     <Pressable
       onPress={onPress}
+      disabled={disabled}
       accessibilityRole="button"
-      accessibilityState={{ selected: !!active }}
+      accessibilityState={{ selected: !!active, disabled: !!disabled }}
       className={`flex-row items-center rounded-xl px-3 py-2 border ${active ? "bg-white border-white" : "bg-white/10 border-white/20"}`}
-      style={{ gap: 6 }}
+      style={{ gap: 6, opacity: disabled ? 0.4 : 1 }}
     >
       {icon && <Icon name={icon} size={16} color={active ? "#000" : "#fff"} />}
       <Text className={active ? "text-black text-sm font-semibold" : "text-white text-sm"}>{label}</Text>

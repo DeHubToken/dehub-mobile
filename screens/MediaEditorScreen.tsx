@@ -30,6 +30,7 @@ import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system/legacy";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -68,6 +69,7 @@ import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
+import { audioToolLayers, type AudioToolMode } from "../libs/editor/audioTools";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
 import {
@@ -354,6 +356,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [exportOpen, setExportOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
+  const [audioProgress, setAudioProgress] = useState<number | null>(null);
+  const audioController = useRef<AbortController | null>(null);
+  useEffect(() => () => audioController.current?.abort(), []);
   // Freehand pen; while set, one finger draws on the page.
   const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
   // AI chat and brand kit.
@@ -668,6 +673,34 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     try { return await canvasRef.current.transcribe(clip, setCaptionProgress); }
     finally { setCaptionProgress(null); }
   };
+  const processAudio = async (clip: MediaClip, mode: AudioToolMode): Promise<string | null> => {
+    if (!canvasRef.current || audioController.current || clip.locked) return null;
+    const controller = new AbortController(); audioController.current = controller; setAudioProgress(0); setPlaying(false);
+    let temporary: string | null = null;
+    try {
+      const source = await getMedia(clip.mediaId);
+      if (!source || controller.signal.aborted) return null;
+      const result = await canvasRef.current.processAudio(clip, mode, controller.signal, setAudioProgress);
+      temporary = result.uri;
+      if (controller.signal.aborted) return null;
+      const meta = await importClipFile({ uri: result.uri, kind: "audio", mimeType: "audio/wav", fileName: source.name.replace(/\.[^.]+$/, "") + "-" + mode + ".wav", duration: result.duration, provenance: source.provenance });
+      return controller.signal.aborted ? null : meta.id;
+    } finally {
+      if (temporary) void FileSystem.deleteAsync(temporary, { idempotent: true }).catch(() => {});
+      audioController.current = null; setAudioProgress(null);
+    }
+  };
+  const runAudioTool = async (mode: AudioToolMode) => {
+    if (!selected || !project || (selected.kind !== "video" && selected.kind !== "audio")) return;
+    const clip = selected, projectId = project.id;
+    try {
+      const mediaId = await processAudio(clip, mode), current = h.latest();
+      if (!mediaId || !current || current.id !== projectId || current.clips.find(c => c.id === clip.id) !== clip) return;
+      const result = audioToolLayers(clip, mediaId, () => newId(10), current.tracks.find(track => track.id === clip.trackId));
+      h.commit({ ...current, clips: [...current.clips.map(c => c.id === clip.id ? result.clip : c), ...(result.added ? [result.added] : [])], tracks: result.track ? [...current.tracks, result.track] : current.tracks });
+      toastSuccess(t("editor.audioTools.done"));
+    } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+  };
   const addCaptions = async () => {
     if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
     const clip = selected;
@@ -698,6 +731,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         templateOps: (id) => templateOps(id, t),
         removeBackground: cutoutMedia,
         transcribe,
+        processAudio,
         time: canvasTime,
       });
       if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
@@ -953,7 +987,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected && (selected.kind === "video" || selected.kind === "audio")) {
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
-      if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} />;
+      if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {
         const next = findAdjacentNext(project, selected.id);
         if (!next) return null;

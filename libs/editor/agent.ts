@@ -28,6 +28,7 @@ import {
   type ClipPatch,
 } from "./project";
 import { applyFilterPreset } from "./filterPresets";
+import { audioToolLayers, audioToolCommand } from "./audioTools";
 import { cleanKeys, keyframeProps } from "./keyframes";
 import { EDITOR_FONTS, fontFamilyCss } from "./fonts";
 import {
@@ -107,7 +108,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
-    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "add_page", "goto_page", "delete_page", "select"],
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "process_audio", "add_page", "goto_page", "delete_page", "select"],
     stockKinds: ["photo", "video", "audio"],
     pages: getPages(p.settings, p.clips).map(page => ({ index: page.index, start: page.start, duration: page.end - page.start })),
     currentPage: pageAt(getPages(p.settings, p.clips), playhead).index,
@@ -130,7 +131,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const last = messages[messages.length - 1];
-  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) : null;
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
@@ -251,6 +252,7 @@ function nearestAspect(ratio: number): Exclude<AspectPreset, "custom"> {
 }
 
 export interface ApplyContext {
+  processAudio?: (clip: MediaClip, mode: import("./audioTools").AudioToolMode) => Promise<string | null>;
   transcribe?: (clip: MediaClip) => Promise<CaptionWord[]>;
   /** Import a requested stock asset; legacy photo callbacks may return an id. */
   importStock?: (query: string, orientation: "all" | "landscape" | "portrait" | "square", kind?: StockKind) => Promise<AgentMedia | string | null>;
@@ -553,6 +555,17 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         if (!captions.clips.length) return false;
         p = { ...p, tracks: [...p.tracks, captions.track], clips: [...p.clips, ...captions.clips] };
         created.push(...captions.clips.map(c => c.id));
+        return true;
+      }
+      case "process_audio": {
+        if (!ctx.processAudio) { report.unsupported.push(op.op); return false; }
+        const clip = find(op.id);
+        if (!clip || clip.locked || (clip.kind !== "video" && clip.kind !== "audio") || !["normalize", "denoise", "voice"].includes(String(op.mode))) return false;
+        const mediaId = await ctx.processAudio(clip, op.mode as import("./audioTools").AudioToolMode);
+        if (!mediaId) return false;
+        const result = audioToolLayers(clip, mediaId, () => newId(10), p.tracks.find(track => track.id === clip.trackId));
+        p = { ...p, clips: [...p.clips.map(c => c.id === clip.id ? result.clip : c), ...(result.added ? [result.added] : [])], tracks: result.track ? [...p.tracks, result.track] : p.tracks };
+        if (result.added) created.push(result.added.id);
         return true;
       }
       case "add_page": {

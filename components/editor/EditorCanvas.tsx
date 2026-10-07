@@ -22,6 +22,7 @@ import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from ".
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
+import type { AudioToolMode } from "../../libs/editor/audioTools";
 import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import type { CaptionWord } from "../../libs/editor/captionLayout";
 
@@ -38,6 +39,7 @@ export interface LayerBox {
 
 export interface EditorCanvasHandle {
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void) => Promise<CaptionWord[]>;
+  processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
   exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
@@ -141,6 +143,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; timer: ReturnType<typeof setTimeout> }>());
+  const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
   const mediaAcks = useRef(new Map<string, () => void>());
@@ -171,6 +174,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const post = useCallback((msg: unknown) => {
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
+  useEffect(() => () => {
+    for (const [reqId, request] of audioReqs.current) {
+      request.out?.discard(); request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId });
+    }
+    audioReqs.current.clear();
+  }, [post]);
 
   // Draw on every change. Time alone only moves the playhead (seek), and
   // while playing the page keeps its own clock.
@@ -324,6 +333,26 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         r?.progress?.({ stage, fraction: Math.min(1, Math.max(0, Number(stage === "download" ? msg.loaded : msg.done) / Math.max(1, Number(msg.total) || 0))) });
         break;
       }
+      case "audioProgress": audioReqs.current.get(msg.reqId)?.progress?.(Math.min(1, Math.max(0, Number(msg.fraction) || 0))); break;
+      case "audioChunk": {
+        const r = audioReqs.current.get(msg.reqId);
+        if (!r) break;
+        try {
+          if (!r.out) r.out = openVideoExport("processed-sound", "wav");
+          r.out.append(msg.b64);
+          r.progress?.(0.9 + 0.1 * Number(msg.done) / Math.max(1, Number(msg.total)));
+          if (msg.last) {
+            r.out.close(); audioReqs.current.delete(msg.reqId); r.cleanup(); r.resolve({ uri: r.out.uri, duration: Number(msg.duration) });
+          } else post({ type: "audioAck", reqId: msg.reqId });
+        } catch {
+          r.out?.discard(); audioReqs.current.delete(msg.reqId); r.cleanup(); post({ type: "audioCancel", reqId: msg.reqId }); r.reject(new Error("sound save failed"));
+        }
+        break;
+      }
+      case "audioFailed": {
+        const r = audioReqs.current.get(msg.reqId);
+        audioReqs.current.delete(msg.reqId); r?.out?.discard(); r?.cleanup(); r?.reject(new Error(msg.error || "sound processing failed")); break;
+      }
       case "captionsDone": case "captionsFailed": {
         const r = captionReqs.current.get(msg.reqId);
         if (!r) break;
@@ -370,6 +399,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
+    for (const r of audioReqs.current.values()) { r.out?.discard(); r.cleanup(); r.reject(new Error("canvas restarted")); }
+    audioReqs.current.clear();
     for (const r of captionReqs.current.values()) { clearTimeout(r.timer); r.reject(new Error("canvas restarted")); }
     captionReqs.current.clear();
     for (const r of cutoutReqs.current.values()) r.done(null);
@@ -383,6 +414,19 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    processAudio: (clip, mode, signal, onProgress) => new Promise<{ uri: string; duration: number }>((resolve, reject) => {
+      if (signal?.aborted) { reject(new Error("cancelled")); return; }
+      const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => {
+        const r = audioReqs.current.get(reqId); if (!r) return;
+        audioReqs.current.delete(reqId); r.out?.discard(); r.cleanup(); post({ type: "audioCancel", reqId }); reject(new Error("cancelled"));
+      };
+      const timer = setTimeout(cancel, 10 * 60 * 1000);
+      const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", cancel); };
+      audioReqs.current.set(reqId, { resolve, reject, progress: onProgress, out: null, cleanup });
+      signal?.addEventListener("abort", cancel, { once: true });
+      post({ type: "processAudio", reqId, clip, mode });
+    }),
     transcribe: (clip, onProgress) => new Promise<CaptionWord[]>((resolve, reject) => {
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       const timer = setTimeout(() => { captionReqs.current.delete(reqId); post({ type: "captionsCancel" }); reject(new Error("captions timed out")); }, 30 * 60 * 1000);
