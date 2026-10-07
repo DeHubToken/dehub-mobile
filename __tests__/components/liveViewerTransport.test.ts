@@ -64,8 +64,9 @@ describe('live viewer transport handover', () => {
 
   it('starts live playback after setup rather than during native player creation', () => {
     const core = readSource('components', 'VideoPlayerCore', 'index.tsx');
-    expect(core).toContain('if (!liveMode && autoplay && sourceUrl && !visualActivity.isCallBusy() && canStartVideo(p))');
-    expect(core).toMatch(/useEffect\(\(\) => \{\s+if \(liveMode && autoplay && sourceUrl && !visualActivity\.isCallBusy\(\) && canStartVideo\(player\)\) \{\s+player\.play\(\)/);
+    const setup = core.slice(core.indexOf('const ownPlayer:'), core.indexOf('const player = sharedLivePlayer'));
+    expect(setup).not.toMatch(/\.play\(/);
+    expect(core).toMatch(/useEffect\(\(\) => \{\s+if \(autoplay && sourceUrl && !visualActivity\.isCallBusy\(\) && canStartVideo\(player\)\) \{\s+recovery\.start\(\)/);
   });
 
   it('holds the ladder back while an attempt is in flight', () => {
