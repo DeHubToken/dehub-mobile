@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   useWindowDimensions,
+  ActivityIndicator,
 } from 'react-native';
 import SmartImage from "../common/SmartImage";
 import { Ionicons } from '@expo/vector-icons';
@@ -54,6 +55,8 @@ interface AssistantBubbleProps {
   onCopyImage?: (url: string) => void;
   onSaveMedia?: (url: string, kind: 'image' | 'video') => void;
   onPostMedia?: (url: string, kind: 'image' | 'video') => void;
+  onEditMedia?: (url: string, kind: 'image' | 'video' | 'audio') => void;
+  editingMediaUrl?: string | null;
   /** Generated audio goes out through the OS share sheet, not the camera roll. */
   onShareAudio?: (url: string) => void;
   /** Re-send the last user turn after an error. */
@@ -62,7 +65,7 @@ interface AssistantBubbleProps {
 
 /** The floating action row web overlays on generated media. */
 const MediaActions: React.FC<{
-  actions: { icon: string; label: string; onPress: () => void }[];
+  actions: { icon: string; label: string; onPress: () => void; busy?: boolean; disabled?: boolean }[];
   /** Top-right for a video: the native controller owns the bottom-right corner. */
   placement?: 'bottom' | 'top';
 }> = ({ actions, placement = 'bottom' }) => (
@@ -71,12 +74,13 @@ const MediaActions: React.FC<{
       <TouchableOpacity
         key={action.label}
         onPress={action.onPress}
+        disabled={action.disabled || action.busy}
         style={s.mediaActionBtn}
         activeOpacity={0.75}
         accessibilityRole="button"
         accessibilityLabel={action.label}
       >
-        <Icon name={action.icon as any} size={16} color="#F9FBFF" />
+        {action.busy ? <ActivityIndicator size="small" color="#F9FBFF" /> : <Icon name={action.icon as any} size={16} color="#F9FBFF" />}
       </TouchableOpacity>
     ))}
   </View>
@@ -86,7 +90,11 @@ const GeneratedVideo: React.FC<{
   url: string;
   onSave?: () => void;
   onPost?: () => void;
-}> = ({ url, onSave, onPost }) => {
+  onEdit?: () => void;
+  editing?: boolean;
+  editDisabled?: boolean;
+}> = ({ url, onSave, onPost, onEdit, editing, editDisabled }) => {
+  const { t } = useTranslation();
   const mediaWidth = useMediaWidth();
   // Muted + looping autoplay, as web's <video> does. Sound would be a surprise
   // in a chat thread; the controls unmute it.
@@ -98,6 +106,7 @@ const GeneratedVideo: React.FC<{
   });
 
   const actions = [
+    ...(onEdit ? [{ icon: 'Scissors', label: t('creator.editInTimeline'), onPress: () => { player.pause(); onEdit(); }, busy: editing, disabled: editDisabled }] : []),
     ...(onSave ? [{ icon: 'Download', label: 'Save video', onPress: onSave }] : []),
     ...(onPost ? [{ icon: 'Plus', label: 'Post video', onPress: onPost }] : []),
   ];
@@ -123,6 +132,8 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
   onCopyImage,
   onSaveMedia,
   onPostMedia,
+  onEditMedia,
+  editingMediaUrl,
   onShareAudio,
   onRetry,
 }) => {
@@ -210,11 +221,16 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
             url={message.videoUrl}
             onSave={onSaveMedia ? () => onSaveMedia(message.videoUrl!, 'video') : undefined}
             onPost={onPostMedia ? () => onPostMedia(message.videoUrl!, 'video') : undefined}
+            onEdit={onEditMedia ? () => onEditMedia(message.videoUrl!, 'video') : undefined}
+            editing={editingMediaUrl === message.videoUrl}
+            editDisabled={!!editingMediaUrl}
           />
         )}
 
         {message.audioUrl && (
-          <GeneratedAudioPlayer audioUrl={message.audioUrl} onSave={onShareAudio} />
+          <GeneratedAudioPlayer audioUrl={message.audioUrl} onSave={onShareAudio}
+            onEdit={onEditMedia ? url => onEditMedia(url, 'audio') : undefined}
+            editing={editingMediaUrl === message.audioUrl} editDisabled={!!editingMediaUrl} />
         )}
 
         {message.modelUrl && <Pressable accessibilityRole="button" accessibilityLabel={t('creator.studioOpenModel')}
@@ -237,6 +253,8 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
             </Pressable>
             <MediaActions
               actions={[
+                ...(onEditMedia ? [{ icon: 'Scissors', label: t('creator.editInTimeline'),
+                  onPress: () => onEditMedia(url, 'image'), busy: editingMediaUrl === url, disabled: !!editingMediaUrl }] : []),
                 ...(onAttachImage
                   ? [
                       {
