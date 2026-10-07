@@ -7299,6 +7299,21 @@
         "easeInOutBack": "Recul entrée et sortie",
         "hold": "Maintien"
       }
+    },
+    "highlights": {
+      "title": "Moments forts",
+      "find": "Trouver les moments forts",
+      "privacy": "La vidéo reste sur votre appareil. La parole est transcrite ici ; le texte est envoyé pour sélectionner les moments forts. Vérifiez chaque passage avant de créer un montage séparé.",
+      "focus": "Sujet souhaité (facultatif)",
+      "useCaptions": "Utiliser les sous-titres actuels",
+      "captionHint": "Seule la parole couverte par les sous-titres actuels sera prise en compte.",
+      "ranking": "Recherche des passages intéressants…",
+      "none": "Aucun passage parlé intéressant trouvé. Essayez un autre sujet ou une autre vidéo.",
+      "create": "Créer le montage des moments forts",
+      "created": "Montage enregistré. Le projet original est conservé.",
+      "changed": "Le projet source a changé. Relancez la recherche.",
+      "limit": "Utilisez au maximum 10 minutes de parole source. Une très longue transcription sans pause doit être divisée au préalable.",
+      "projectTitle": "{{title}} — Moments forts"
     }
   },
   "creator": {

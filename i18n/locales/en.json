@@ -7288,6 +7288,21 @@
         "easeInOutBack": "Back in and out",
         "hold": "Hold"
       }
+    },
+    "highlights": {
+      "title": "Highlights",
+      "find": "Find highlights",
+      "privacy": "Video stays on your device. Speech is transcribed here; transcript text is sent for highlight ranking. Review every moment before creating a separate edit.",
+      "focus": "Preferred topic (optional)",
+      "useCaptions": "Use current captions",
+      "captionHint": "Only speech covered by the current captions will be considered.",
+      "ranking": "Finding useful moments…",
+      "none": "No useful spoken moments found. Try a different topic or video.",
+      "create": "Create highlight edit",
+      "created": "Highlight edit saved. The original project is retained.",
+      "changed": "The source project changed. Find highlights again.",
+      "limit": "Use up to 10 minutes of source speech. A very long unbroken transcript must be split first.",
+      "projectTitle": "{{title}} — Highlights"
     }
   },
   "creator": {
