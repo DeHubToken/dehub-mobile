@@ -291,8 +291,9 @@ const CaptionOverlay: React.FC<Props> = ({
       )}
 
       {!hideButton && <Pressable
-        onPress={onToggle}
-        onLongPress={() => setPickerOpen(true)}
+        // A tap or hold opens on release, so the opening finger never lands
+        // on the new modal's backdrop and immediately dismisses it.
+        onPress={() => setPickerOpen(true)}
         hitSlop={8}
         accessibilityRole="button"
         accessibilityLabel={enabled ? 'Subtitles on' : 'Subtitles off'}
@@ -321,11 +322,7 @@ const CaptionOverlay: React.FC<Props> = ({
           <View style={styles.sheetHeader}>
             <Text style={styles.sheetTitle}>{t('subtitles.title')}</Text>
             <Pressable
-              onPress={() => {
-                const next = !enabled;
-                setEnabled(next);
-                setSubtitlesEnabled(next);
-              }}
+              onPress={onToggle}
               style={[styles.pill, enabled && styles.pillOn]}
             >
               <Text style={styles.pillText}>{enabled ? t('subtitles.on') : t('subtitles.off')}</Text>
