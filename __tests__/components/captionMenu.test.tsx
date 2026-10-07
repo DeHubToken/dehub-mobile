@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 import CaptionOverlay, { type CaptionControls } from '../../components/VideoPlayerCore/CaptionOverlay';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -48,7 +48,6 @@ describe('subtitle settings menu', () => {
     const onControls = (next: CaptionControls | null) => { controls = next; };
     const view = render(<CaptionOverlay tokenId={123} positionMs={0} hideButton onControls={onControls} />);
     // The feed invokes this from the button's onPress, after release.
-    const { act } = require('@testing-library/react-native');
     act(() => controls!.openLanguages());
     view.rerender(<CaptionOverlay tokenId={123} positionMs={500} hideButton controlsVisible={false} onControls={onControls} />);
     expect(view.UNSAFE_getByType('Modal' as any).props.visible).toBe(true);
