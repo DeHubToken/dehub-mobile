@@ -18,6 +18,17 @@ import { File as FsFile, Paths } from "expo-file-system";
 import type { ProjectSnapshot } from "./types";
 import { mediaIds, newId, parseProject } from "./project";
 
+export interface MediaProvenance {
+  source: string;
+  sourceUrl: string;
+  creator?: string;
+  creatorUrl?: string;
+  license: string;
+  licenseUrl?: string;
+  attributionRequired: boolean;
+  attributionText: string;
+}
+
 export interface MediaMeta {
   id: string;
   name: string;
@@ -33,6 +44,7 @@ export interface MediaMeta {
   thumb?: string;
   /** File name inside editor/media. */
   file: string;
+  provenance?: MediaProvenance;
   createdAt: number;
 }
 
@@ -108,6 +120,7 @@ export interface PickedPicture {
   height: number;
   mimeType?: string | null;
   fileName?: string | null;
+  provenance?: MediaProvenance;
 }
 
 /** Copy a picked picture into editor storage, scaled down if it is huge. */
@@ -130,6 +143,7 @@ export async function importPicture(picked: PickedPicture): Promise<MediaMeta> {
     id,
     name: picked.fileName || file,
     kind: "image",
+    provenance: picked.provenance,
     mimeType: png ? "image/png" : "image/jpeg",
     width: out.width,
     height: out.height,
@@ -158,6 +172,13 @@ export async function mediaDataUrl(meta: MediaMeta): Promise<string | null> {
   } catch {
     return null;
   }
+}
+
+export async function listMedia(): Promise<MediaMeta[]> {
+  await ensureDir(mediaDir());
+  const files = (await FileSystem.readDirectoryAsync(mediaDir())).filter(name => name.endsWith(".json"));
+  const all = await Promise.all(files.map(name => getMedia(name.slice(0, -5))));
+  return all.filter((media): media is MediaMeta => !!media).sort((a, b) => b.createdAt - a.createdAt);
 }
 
 /** Save a cut-out (PNG data URL from the canvas) as a new picture. */
@@ -199,6 +220,7 @@ export interface PickedClip {
   height?: number;
   /** Seconds. */
   duration?: number | null;
+  provenance?: MediaProvenance;
 }
 
 function extFor(p: PickedClip): string {
@@ -248,6 +270,7 @@ export async function importClipFile(picked: PickedClip): Promise<MediaMeta> {
     id,
     name: picked.fileName || file,
     kind: picked.kind,
+    provenance: picked.provenance,
     mimeType: mimeFor(ext, picked.kind),
     width: picked.width ?? 0,
     height: picked.height ?? 0,

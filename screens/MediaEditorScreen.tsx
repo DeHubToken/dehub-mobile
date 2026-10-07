@@ -62,6 +62,7 @@ import {
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import Timeline from "../components/editor/Timeline";
+import StockPanel from "../components/editor/StockPanel";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
@@ -85,7 +86,7 @@ import {
 import { applyOps, askAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../libs/editor/templates";
-import { importStockPhoto } from "../libs/editor/stock";
+import { importStockAsset } from "../libs/editor/stock";
 import { EDITOR_FONTS, fontFamilyCss as fontCssOf } from "../libs/editor/fonts";
 import {
   addImage,
@@ -107,6 +108,7 @@ import {
 import {
   deleteProject,
   getMedia,
+  listMedia,
   importClipFile,
   importPicture,
   MediaTooLargeError,
@@ -159,7 +161,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
     setTemplateBusy(id);
     try {
       const base = newProject(tpl.aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
-      const { project } = await applyOps(base, ops, { importStock: (q, o) => importStockPhoto(q, o) });
+      const { project } = await applyOps(base, ops, { importStock: importStockAsset });
       onCreate(project);
     } catch {
       toastError(t("common.somethingWentWrong"));
@@ -263,7 +265,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background"
+  | "page" | "background" | "stock"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -678,9 +680,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
     setChatBusy(true);
     try {
-      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime));
+      const media = await listMedia();
+      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
       const { project: next, report } = await applyOps(project, ops, {
-        importStock: (q, o) => importStockPhoto(q, o),
+        importStock: importStockAsset,
+        media,
         brand,
         applyBrand: (p) => applyBrand(p, brand),
         templateOps: (id) => templateOps(id, t),
@@ -749,6 +753,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
+        { id: "stock", icon: "Search", label: t("common.search") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
         { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
@@ -841,6 +846,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const renderPanel = () => {
     if (!project || !tool) return null;
+    if (tool === "stock") return <StockPanel onAdd={(media) => {
+      const current = h.latest();
+      if (!current) return;
+      const next = media.kind === "image" ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
+      h.commit(media.kind === "image" ? atPlayhead(next.project, next.clipId) : next.project);
+      select(next.clipId);
+    }} />;
     if (tool === "page") return <AspectPanel value={project.settings.aspectPreset} onPick={(a: Exclude<AspectPreset, "custom">) => h.commit(setAspect(project, a))} />;
     if (tool === "background") return <Swatches label={t("editor.app.background")} value={project.settings.background} onPick={(c) => h.commit(setBackground(project, c))} />;
     if (tool === "shapes") {
