@@ -6790,6 +6790,13 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "shots": {
+      "detect": "Najít změny scén",
+      "split": "Rozdělit ve vybraných střizích",
+      "none": "Nebyly nalezeny změny scén.",
+      "hint": "Nejprve zkontrolujte střihy · ≤10 min",
+      "preview": "Náhled"
+    },
     "beats": {
       "markers": "Značky rytmu",
       "sync": "Synchronizovat střihy",

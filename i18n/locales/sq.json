@@ -6787,6 +6787,13 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "editor": {
+    "shots": {
+      "detect": "Zbulo ndryshimet e skenës",
+      "split": "Ndaj te prerjet e zgjedhura",
+      "none": "Nuk u gjetën ndryshime skene.",
+      "hint": "Kontrollo fillimisht prerjet · ≤10 min",
+      "preview": "Parapamje"
+    },
     "beats": {
       "markers": "Shënuesit e ritmit",
       "sync": "Sinkronizo prerjet",

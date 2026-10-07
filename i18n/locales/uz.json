@@ -6842,6 +6842,13 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "shots": {
+      "detect": "Sahna o‘zgarishlarini aniqlash",
+      "split": "Tanlangan kesimlarda bo‘lish",
+      "none": "Sahna o‘zgarishi topilmadi.",
+      "hint": "Avval kesimlarni tekshiring · ≤10 daq",
+      "preview": "Oldindan ko‘rish"
+    },
     "beats": {
       "markers": "Ritm belgilari",
       "sync": "Kesimlarni sinxronlash",

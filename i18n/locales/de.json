@@ -6877,6 +6877,13 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "shots": {
+      "detect": "Szenenwechsel erkennen",
+      "split": "An ausgewählten Schnitten teilen",
+      "none": "Keine Szenenwechsel gefunden.",
+      "hint": "Schnitte zuerst prüfen · ≤10 Min.",
+      "preview": "Vorschau"
+    },
     "beats": {
       "markers": "Taktmarkierungen",
       "sync": "Schnitte synchronisieren",

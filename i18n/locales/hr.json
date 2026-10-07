@@ -6788,6 +6788,13 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "shots": {
+      "detect": "Otkrij promjene scena",
+      "split": "Podijeli na odabranim rezovima",
+      "none": "Nisu pronađene promjene scena.",
+      "hint": "Prvo pregledaj rezove · ≤10 min",
+      "preview": "Pregled"
+    },
     "beats": {
       "markers": "Oznake ritma",
       "sync": "Sinkroniziraj rezove",

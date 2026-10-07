@@ -6876,6 +6876,13 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "shots": {
+      "detect": "Detectar cambios de escena",
+      "split": "Dividir en los cortes elegidos",
+      "none": "No se encontraron cambios de escena.",
+      "hint": "Revisa los cortes primero · ≤10 min",
+      "preview": "Vista previa"
+    },
     "beats": {
       "markers": "Marcadores de ritmo",
       "sync": "Sincronizar cortes",
