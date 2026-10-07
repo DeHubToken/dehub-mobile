@@ -3,6 +3,17 @@ export type WorkPaymentIntent = {
   currency: 'DHB' | 'USDC'; amount: number | string; chain_id: number; state: string; tx_hash: string | null; created: boolean;
 };
 type ReceiptProof = { payload: string; signature: string } | null;
+
+// Only wrap preparation that cannot submit a transaction. Send failures may
+// already have reached the chain and must retain their reservation.
+export async function prepareWorkPayment<T>(prepare: () => Promise<T>): Promise<T> {
+  try { return await prepare(); }
+  catch (error) {
+    const message = error instanceof Error ? error.message : (error as { message?: string })?.message;
+    throw Object.assign(new Error(message || 'Could not prepare the bounty payment'), { code: 'WORK_NOT_SENT', cause: error });
+  }
+}
+
 export type WorkPaymentDependencies = {
   rpc: (name: string, args: Record<string, unknown>) => Promise<unknown>;
   send: (intent: WorkPaymentIntent) => Promise<{ hash: string; wait?: (confirmations: number) => Promise<unknown> }>;

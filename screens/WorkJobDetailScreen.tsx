@@ -579,7 +579,7 @@ export default function WorkJobDetailScreen() {
                         </View>
                       )}
                       {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:job.currency,gross})}</Text>}
-                      {submittedPayment && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
+                      {s.payout_state === 'broadcast' && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
                       {canManage && job.status==='disputed' && awaitingPayment && s.payout_state==='unpaid' && <Pressable onPress={()=>promptReject(s)}><Text style={styles.rejectText}>{t('work.detail.reject')}</Text></Pressable>}
                       {canManage && s.payout_state === 'signing' && (
                         <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
