@@ -29,6 +29,10 @@ import { useUser } from "../context/AuthContext";
 import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import { saveGif } from "../libs/editor/saveGif";
+import { saveEditorDownload } from "../libs/editor/saveEditorDownload";
+import { clipExportRanges, type ExportScope } from "../libs/editor/exportRanges";
+import { zipDownloadFiles } from "../libs/editor/zipDownloadFiles";
+import { ZIP_DOWNLOAD_LIMIT } from "../libs/editor/zipArchive";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import * as DocumentPicker from "expo-document-picker";
@@ -379,6 +383,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [mediaLoading, setMediaLoading] = useState(0);
   const [rendering, setRendering] = useState<number | null>(null);
+  const downloadController = useRef<AbortController | null>(null);
+  const [clipDownloadLabel, setClipDownloadLabel] = useState("");
+  useEffect(() => () => downloadController.current?.abort(), []);
   // Snapshot a timeline drag started from; each frame applies the whole drag to it.
   const dragBase = useRef<ProjectSnapshot | null>(null);
   const updateBrand = (kit: BrandKit) => { setBrand(kit); void saveBrand(kit); };
@@ -1053,7 +1060,57 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     return [...set];
   }, [project]);
 
-  const exportGif = async () => {
+  const exportClipDownloads = async (format: "mp4" | "gif", quality: "720" | "1080", scope: ExportScope) => {
+    if (!project || !canvasRef.current || rendering !== null) return;
+    const ranges = clipExportRanges(project, scope === "selection" ? (selectedId ? [selectedId] : []) : undefined);
+    if (!ranges.length) { toastError(t("editor.export.empty")); return; }
+    if (format === "gif" && ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT)) { toastError(t("editor.export.gifTooLong")); return; }
+    const ctl = new AbortController(); downloadController.current = ctl;
+    const checkAbort = () => { if (ctl.signal.aborted) { const error = new Error("Download cancelled"); error.name = "AbortError"; throw error; } };
+    setPlaying(false); setExportOpen(false); setRendering(0);
+    const files: { name: string; uri: string; ext: string }[] = [];
+    let archive: string | undefined;
+    let size = 0;
+    try {
+      const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(project.settings.width, project.settings.height));
+      for (const [index, range] of ranges.entries()) {
+        checkAbort();
+        setClipDownloadLabel(t("editor.export.exportingClips", { current: index + 1, total: ranges.length }));
+        const plan = gifPlan(project.settings.width, project.settings.height, 1, range.end - range.start + BRAND_OUTRO_DURATION, project.settings.fps);
+        const out = await canvasRef.current!.exportVideo({
+          width: format === "gif" ? plan.width : Math.round(project.settings.width * k),
+          height: format === "gif" ? plan.height : Math.round(project.settings.height * k),
+          bitrate: quality === "1080" ? 8_000_000 : 5_000_000,
+          title: range.name, username: outroUsername(user?.username), format: format === "gif" ? "gif" : undefined, range,
+        }, p => setRendering((index + p) / ranges.length * 0.95));
+        files.push({ name: `${range.name}.${out.ext}`, uri: out.uri, ext: out.ext });
+        checkAbort();
+        const info = await FileSystem.getInfoAsync(out.uri);
+        if (!info.exists || info.isDirectory || !info.size) throw new Error("Download file unavailable");
+        size += info.size;
+        if (size > ZIP_DOWNLOAD_LIMIT) throw new Error(t("editor.export.archiveTooLarge"));
+      }
+      checkAbort();
+      if (files.length === 1) {
+        const file = files[0];
+        await saveEditorDownload(file.uri, ranges[0].name, file.ext, file.ext === "gif" ? "image/gif" : `video/${file.ext}`, ctl.signal);
+      } else {
+        archive = await zipDownloadFiles(files, project.title, ctl.signal);
+        setRendering(1);
+        await saveEditorDownload(archive, `${project.title}-clips`, "zip", "application/zip", ctl.signal);
+      }
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") toastError((error as Error).message.includes("512 MiB") ? t("editor.export.archiveTooLarge") : t("editor.app.exportFailed"));
+    } finally {
+      for (const file of files) await FileSystem.deleteAsync(file.uri, { idempotent: true }).catch(() => {});
+      if (archive) await FileSystem.deleteAsync(archive, { idempotent: true }).catch(() => {});
+      if (downloadController.current === ctl) downloadController.current = null;
+      setClipDownloadLabel(""); setRendering(null);
+    }
+  };
+
+  const exportGif = async (scope: ExportScope = "timeline") => {
+    if (scope !== "timeline") { await exportClipDownloads("gif", "1080", scope); return; }
     if (!project || !canvasRef.current || rendering !== null) return;
     if (duration <= 0) { toastError(t("editor.export.empty")); return; }
     if (duration > GIF_CONTENT_LIMIT) { toastError(t("editor.export.gifTooLong")); return; }
@@ -1067,7 +1124,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     finally { if (uri) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); setRendering(null); }
   };
 
-  const exportVideo = async (quality: "720" | "1080", target: "photos" | "post") => {
+  const exportVideo = async (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope = "timeline") => {
+    if (scope !== "timeline") { await exportClipDownloads("mp4", quality, scope); return; }
     if (!project || !canvasRef.current) return;
     if (!project.clips.length || duration <= 0) { toastError(t("editor.export.empty")); return; }
     if (target === "photos") {
@@ -1312,8 +1370,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           {rendering !== null && (
             <>
               <Text className="text-white text-sm font-semibold">{t("editor.video.rendering", { percent: Math.round(rendering * 100) })}</Text>
+              {!!clipDownloadLabel && <Text className="text-white text-xs">{clipDownloadLabel}</Text>}
               <Text className="text-theme-neutrals-300 text-xs px-8 text-center">{t("editor.video.exportHint")}</Text>
-              <Pressable accessibilityRole="button" onPress={() => canvasRef.current?.cancelExport()} className="rounded-xl border border-white/20 px-5 py-3">
+              <Pressable accessibilityRole="button" onPress={() => { downloadController.current?.abort(); canvasRef.current?.cancelExport(); }} className="rounded-xl border border-white/20 px-5 py-3">
                 <Text className="text-white">{t("editor.export.cancel")}</Text>
               </Pressable>
             </>
@@ -1360,12 +1419,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         width={project.settings.width}
         height={project.settings.height}
         timeline={{ duration, fps: project.settings.fps }}
+        ranges={{ all: clipExportRanges(project), selected: clipExportRanges(project, selectedId ? [selectedId] : []) }}
         video={isVideoProject(project) ? { duration: duration + BRAND_OUTRO_DURATION, fps: project.settings.fps } : null}
         busy={busy || rendering !== null}
         onCancel={() => setExportOpen(false)}
         onExport={exportDesign}
-        onExportVideo={(q, target) => { void exportVideo(q, target); }}
-        onExportGif={() => { void exportGif(); }}
+        onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
+        onExportGif={scope => { void exportGif(scope); }}
       />
     </View>
   );
@@ -1431,26 +1491,31 @@ function ExportSheet(props: {
   width: number;
   height: number;
   timeline: { duration: number; fps: number };
+  ranges: { all: { start: number; end: number }[]; selected: { start: number; end: number }[] };
   /** Set for a video: exports the timeline instead of a frame. */
   video: { duration: number; fps: number } | null;
   busy: boolean;
   onCancel: () => void;
   onExport: (format: "png" | "jpeg", target: "photos" | "post") => void;
-  onExportVideo: (quality: "720" | "1080", target: "photos" | "post") => void;
-  onExportGif: () => void;
+  onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
+  onExportGif: (scope: ExportScope) => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
+  const [scope, setScope] = useState<ExportScope>("timeline");
   const isVideo = !!props.video && format === "mp4";
   const isGif = format === "gif";
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
-  useEffect(() => { if (props.visible) setFormat(props.video ? "mp4" : "png"); }, [props.visible, props.video]);
+  useEffect(() => { if (props.visible) { setFormat(props.video ? "mp4" : "png"); setScope("timeline"); } }, [props.visible, !!props.video]);
+  const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
+  const separate = (isVideo || isGif) && scope !== "timeline";
+  const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
   const go = (target: "photos" | "post") => {
-    if (isGif) props.onExportGif();
-    else if (isVideo) props.onExportVideo(quality, target);
+    if (isGif) props.onExportGif(scope);
+    else if (isVideo) props.onExportVideo(quality, target, scope);
     else props.onExport(format === "jpeg" ? "jpeg" : "png", target);
   };
   return (
@@ -1468,6 +1533,14 @@ function ExportSheet(props: {
             <Chip label={t("emojiPicker.tabGif")} active={isGif} onPress={() => setFormat("gif")} />
           </View>
         </View>
+        {(isVideo || isGif) && props.ranges.all.length > 0 && <View>
+          <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.scope")}</Text>
+          <View style={{ gap: 8 }}>
+            <Chip label={t("editor.export.downloadTimeline")} active={scope === "timeline"} onPress={() => setScope("timeline")} />
+            {props.ranges.selected.length > 0 && <Chip label={t("editor.export.downloadSelection", { count: props.ranges.selected.length })} active={scope === "selection"} onPress={() => setScope("selection")} />}
+            <Chip label={t("editor.export.downloadClips", { count: props.ranges.all.length })} active={scope === "clips"} onPress={() => setScope("clips")} />
+          </View>
+        </View>}
         {isVideo && (
           <View>
             <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.resolution")}</Text>
@@ -1478,23 +1551,23 @@ function ExportSheet(props: {
           </View>
         )}
         <Text className="text-theme-neutrals-400 text-xs">
-          {isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
+          {separate ? t("editor.export.rangeHint") : isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
             ? `${t("editor.export.outputVideo", { width: Math.round(props.width * k) & ~1, height: Math.round(props.height * k) & ~1, fps: props.video!.fps })} · ${t("editor.export.duration", { value: props.video!.duration.toFixed(1) })}`
             : format === "mp4" ? "" : t("editor.export.outputStill", { width: props.width, height: props.height })}
         </Text>
         {isVideo && <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.exportHint")}</Text>}
-        {isGif && <Text className="text-theme-neutrals-400 text-xs">{t(props.timeline.duration > GIF_CONTENT_LIMIT ? "editor.export.gifTooLong" : "editor.export.gifHint")}</Text>}
+        {isGif && <Text className="text-theme-neutrals-400 text-xs">{t(gifTooLong ? "editor.export.gifTooLong" : "editor.export.gifHint")}</Text>}
         <Pressable
-          disabled={props.busy || (isGif && props.timeline.duration > GIF_CONTENT_LIMIT)}
+          disabled={props.busy || gifTooLong || (separate && !ranges.length)}
           onPress={() => go("photos")}
           accessibilityRole="button"
           className="flex-row items-center justify-center rounded-xl bg-white py-3"
           style={{ gap: 8, opacity: props.busy ? 0.5 : 1 }}
         >
           <Icon name="Download" size={18} color="#000" />
-          <Text className="text-black font-semibold">{t(isGif ? "common.save" : "editor.app.saveToPhotos")}</Text>
+          <Text className="text-black font-semibold">{t(isGif || separate ? "common.save" : "editor.app.saveToPhotos")}</Text>
         </Pressable>
-        {!isGif && <Pressable
+        {!isGif && !separate && <Pressable
           disabled={props.busy}
           onPress={() => go("post")}
           accessibilityRole="button"

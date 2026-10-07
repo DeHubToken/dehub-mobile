@@ -34,6 +34,7 @@ import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
+import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -52,6 +53,7 @@ canvas{display:block;width:100%;height:100%;}
   "use strict";
   __BRAND_OUTRO_RUNTIME__
   __MEDIA_LEASES_RUNTIME__
+  __EXPORT_RANGES_RUNTIME__
   __GIF_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
@@ -898,11 +900,11 @@ canvas{display:block;width:100%;height:100%;}
       } catch (e) { resolve(null); }
     });
   }
-  function mixAudio(snap, duration, contentDuration) {
+  function mixAudio(snap, duration, range) {
     var clips = snap.clips.filter(function (c) {
       if (c.kind !== "audio" && c.kind !== "video") return false;
       var tr = trackOf(snap, c.trackId);
-      return blobs.has(c.mediaId) && !(tr && (tr.muted || tr.hidden)) && !c.hidden && c.start < contentDuration;
+      return blobs.has(c.mediaId) && !(tr && (tr.muted || tr.hidden)) && !c.hidden && c.start < range.end && c.start + c.duration > range.start;
     });
     if (duration <= 0) return Promise.resolve(null);
     var ids = [];
@@ -917,27 +919,19 @@ canvas{display:block;width:100%;height:100%;}
       clips.forEach(function (c) {
         var buf = buffers.get(c.mediaId);
         if (!buf) return;
-        var sp = speedOf(c);
+        var segment = exportAudioSegment(c, buf.duration, range);
+        if (!segment) return;
         var src = octx.createBufferSource();
         src.buffer = buf;
-        if (sp !== 1) src.playbackRate.value = sp;
+        src.playbackRate.value = segment.speed;
         var gain = octx.createGain();
-        var vol = c.audio && c.audio.volume != null ? c.audio.volume : 1;
-        var fIn = Math.max(0, Math.min(c.duration, (c.audio && c.audio.fadeIn) || 0));
-        var fOut = Math.max(0, Math.min(c.duration - fIn, (c.audio && c.audio.fadeOut) || 0));
-        var when = c.start;
-        var consumed = Math.min(c.duration * sp, Math.max(0, buf.duration - c.trimIn), (contentDuration - c.start) * sp);
-        var dur = consumed / sp;
-        if (dur <= 0) return;
-        gain.gain.setValueAtTime(fIn > 0 ? 0 : vol, when);
-        if (fIn > 0) gain.gain.linearRampToValueAtTime(vol, when + fIn);
-        if (fOut > 0) {
-          gain.gain.setValueAtTime(vol, when + Math.max(fIn, dur - fOut));
-          gain.gain.linearRampToValueAtTime(0, when + dur);
-        }
+        segment.envelope.forEach(function (key, index) {
+          if (!index) gain.gain.setValueAtTime(key.gain, key.time);
+          else gain.gain.linearRampToValueAtTime(key.gain, key.time);
+        });
         src.connect(gain);
         gain.connect(octx.destination);
-        src.start(when, c.trimIn, consumed);
+        src.start(segment.when, segment.offset, segment.sourceSeconds);
         any = true;
       });
       var sound = octx.createBuffer(2, Math.ceil(brandOutroDuration * rate), rate);
@@ -948,7 +942,7 @@ canvas{display:block;width:100%;height:100%;}
       var ending = octx.createBufferSource();
       ending.buffer = sound;
       ending.connect(octx.destination);
-      ending.start(contentDuration);
+      ending.start(range.duration);
       return octx.startRendering();
     });
   }
@@ -988,6 +982,7 @@ canvas{display:block;width:100%;height:100%;}
         output: function (chunk, meta) { muxer.addVideoChunk(chunk, meta); },
         error: function (e) { failure = e; },
       });
+      var aenc = null;
       venc.configure(vcfg);
       var cv = document.createElement("canvas");
       cv.width = W; cv.height = H;
@@ -998,8 +993,9 @@ canvas{display:block;width:100%;height:100%;}
         if (failure) return Promise.reject(failure);
         if (exportAborted) return Promise.reject(new Error("aborted"));
         if (f >= total) return Promise.resolve();
-        var t = f / fps;
-        var ops = t < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
+        var localTime = f / fps;
+        var t = ending.rangeStart + localTime;
+        var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
         prepareVideoSources(ops);
         var seeks = ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
           .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); });
@@ -1009,8 +1005,8 @@ canvas{display:block;width:100%;height:100%;}
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
-          if (t >= ending.contentDuration) drawBrandOutro(g, W, H, t - ending.contentDuration, ending.username, ending.logo);
-          var frame = new VideoFrame(cv, { timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / fps) });
+          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo);
+          var frame = new VideoFrame(cv, { timestamp: Math.round(localTime * 1e6), duration: Math.round(1e6 / fps) });
           venc.encode(frame, { keyFrame: f % Math.max(1, Math.round(fps * 2)) === 0 });
           frame.close();
           f++;
@@ -1023,7 +1019,7 @@ canvas{display:block;width:100%;height:100%;}
         venc.close();
         if (!mixed) return;
         progress(0.9);
-        var aenc = new AudioEncoder({
+        aenc = new AudioEncoder({
           output: function (chunk, meta) { muxer.addAudioChunk(chunk, meta); },
           error: function (e) { failure = e; },
         });
@@ -1032,6 +1028,8 @@ canvas{display:block;width:100%;height:100%;}
         var R = mixed.getChannelData(Math.min(1, mixed.numberOfChannels - 1));
         var CH = 1024;
         for (var i = 0; i < mixed.length; i += CH) {
+          if (exportAborted) throw new Error("aborted");
+          if (failure) throw failure;
           var n = Math.min(CH, mixed.length - i);
           var data = new Float32Array(n * 2);
           for (var j = 0; j < n; j++) { data[j * 2] = L[i + j]; data[j * 2 + 1] = R[i + j]; }
@@ -1044,6 +1042,9 @@ canvas{display:block;width:100%;height:100%;}
         if (failure) throw failure;
         muxer.finalize();
         return { blob: new Blob([target.buffer], { type: "video/mp4" }), ext: "mp4" };
+      }).finally(function () {
+        if (venc.state !== "closed") venc.close();
+        if (aenc && aenc.state !== "closed") aenc.close();
       });
     });
   }
@@ -1073,9 +1074,10 @@ canvas{display:block;width:100%;height:100%;}
       var parts = [];
       var rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: bitrate });
       rec.ondataavailable = function (e) { if (e.data && e.data.size) parts.push(e.data); };
-      rec.onerror = function (e) { reject(e.error || new Error("recorder")); };
+      rec.onerror = function (e) { stream.getTracks().forEach(function (track) { track.stop(); }); if (ac) ac.close(); reject(e.error || new Error("recorder")); };
       rec.onstop = function () {
         pauseAll();
+        stream.getTracks().forEach(function (track) { track.stop(); });
         if (ac) ac.close();
         var type = mime.split(";")[0];
         resolve({ blob: new Blob(parts, { type: type }), ext: type === "video/mp4" ? "mp4" : "webm" });
@@ -1085,25 +1087,27 @@ canvas{display:block;width:100%;height:100%;}
         if (src) src.start();
         var wall0 = performance.now();
         var tick = function () {
-          var t = (performance.now() - wall0) / 1000;
-          if (t >= duration || exportAborted) { rec.stop(); return; }
-          var ops = t < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
+          var localTime = (performance.now() - wall0) / 1000;
+          var t = ending.rangeStart + localTime;
+          if (localTime >= duration || exportAborted) { rec.stop(); return; }
+          var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
           syncMedia(snap, t, true, ops, true);
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
-          if (t >= ending.contentDuration) drawBrandOutro(g, W, H, t - ending.contentDuration, ending.username, ending.logo);
-          progress(0.05 + (t / duration) * 0.9);
+          if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo);
+          progress(0.05 + (localTime / duration) * 0.9);
           requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
       };
       // Start with every video parked on its first frame.
-      var ops0 = computeRenderOps(snap, 0, W, false);
+      var ops0 = computeRenderOps(snap, ending.rangeStart, W, false);
+      prepareVideoSources(ops0);
       Promise.all(ops0.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
-        .map(function (op) { return seekVideo(videos.get(op.clip.mediaId), localTimeOf(op, 0)); }))
+        .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, ending.rangeStart)); }))
         .then(function () { return ac ? ac.resume() : null; })
         .then(begin, begin);
     });
@@ -1139,15 +1143,16 @@ canvas{display:block;width:100%;height:100%;}
     function step() {
       if (exportAborted) return Promise.reject(new Error("aborted"));
       if (frame >= plan.frames) return session.finish();
-      var t = frame / plan.fps;
-      var ops = t < ending.contentDuration ? computeRenderOps(snap, t, plan.width, false) : [];
+      var localTime = frame / plan.fps;
+      var t = ending.rangeStart + localTime;
+      var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, plan.width, false) : [];
       prepareVideoSources(ops);
       return Promise.all(ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })).then(function () {
         if (exportAborted) throw new Error("aborted");
         g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.clearRect(0, 0, plan.width, plan.height);
         g.fillStyle = snap.settings.background; g.fillRect(0, 0, plan.width, plan.height);
         drawOps(g, plan.width, plan.height, ops, t);
-        if (t >= ending.contentDuration) drawBrandOutro(g, plan.width, plan.height, t - ending.contentDuration, ending.username, ending.logo);
+        if (localTime >= ending.contentDuration) drawBrandOutro(g, plan.width, plan.height, localTime - ending.contentDuration, ending.username, ending.logo);
         return session.frame(g.getImageData(0, 0, plan.width, plan.height).data, gifFrameDelay(frame, plan));
       }).then(function () { frame++; progress(0.03 + 0.94 * frame / plan.frames); return step(); });
     }
@@ -1164,11 +1169,13 @@ canvas{display:block;width:100%;height:100%;}
     var fps = snap.settings.fps || 30;
     var W = m.format === "gif" ? Math.max(1, Math.round(m.width)) : Math.max(2, Math.round(m.width) & ~1);
     var H = m.format === "gif" ? Math.max(1, Math.round(m.height)) : Math.max(2, Math.round(m.height) & ~1);
-    var contentDuration = timelineEnd(snap.clips, snap.settings);
-    if (contentDuration <= 0) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "empty" }); return; }
+    var range;
+    try { range = exportTimeRange(timelineEnd(snap.clips, snap.settings), m.range); }
+    catch (error) { exporting = false; videoJobId = null; post({ type: "videoFailed", reqId: m.reqId, error: String(error.message || error) }); return; }
+    var contentDuration = range.duration;
     if (m.format === "gif" && contentDuration > 60) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "GIF supports up to 60 seconds" }); return; }
     var duration = contentDuration + brandOutroDuration;
-    var ending = { contentDuration: contentDuration, username: m.username || "", logo: new Image() };
+    var ending = { contentDuration: contentDuration, rangeStart: range.start, username: m.username || "", logo: new Image() };
     var logoReady = new Promise(function (resolve, reject) {
       ending.logo.onload = resolve;
       ending.logo.onerror = function () { reject(new Error("export logo")); };
@@ -1182,7 +1189,7 @@ canvas{display:block;width:100%;height:100%;}
     progress(0);
     var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     Promise.all([logoReady, Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])])
-      .then(function () { return m.format === "gif" ? null : mixAudio(snap, duration, contentDuration); })
+      .then(function () { return m.format === "gif" ? null : mixAudio(snap, duration, range); })
       .then(function (mixed) {
         if (exportAborted) throw new Error("aborted");
         if (m.format === "gif") return encodeGif(snap, W, H, fps, duration, progress, ending);
@@ -1569,4 +1576,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");

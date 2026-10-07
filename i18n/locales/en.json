@@ -7011,6 +7011,13 @@
       "delete": "Delete"
     },
     "export": {
+      "scope": "Download range",
+      "downloadTimeline": "Whole timeline",
+      "downloadSelection": "Selected video clips ({{count}})",
+      "downloadClips": "Every video clip ({{count}})",
+      "rangeHint": "Keeps captions and sound for each cut. Each file adds a 2.2-second DeHub ending. Multiple files download together as a ZIP.",
+      "exportingClips": "Exporting clip {{current}} of {{total}}",
+      "archiveTooLarge": "The download exceeds 512 MiB. Export fewer clips or choose a lower resolution.",
       "gifHint": "Looping animation without sound. Up to 60 seconds, 640 pixels and 15 fps. Includes your logo ending.",
       "gifTooLong": "Trim the timeline to 60 seconds or less, or choose MP4 or WebM.",
       "format": "File type",
