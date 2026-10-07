@@ -22,7 +22,7 @@ export async function finishWalletReplacement(
   setSigningProvider(provider);
   setEoaSigningProvider(createLocalEip1193ProviderForChain(privateKey, chainId));
   try {
-    await AuthService.rotateWallet(accounts[0], chainId);
+    await AuthService.rotateWalletForReplacement(accounts[0], chainId);
     const meta = await getSupabaseAuthMeta();
     await provisionSolanaAddressForWallet(ownerAddress, privateKey);
     await signInWithWallet(accounts[0], chainId, privateKey, meta);

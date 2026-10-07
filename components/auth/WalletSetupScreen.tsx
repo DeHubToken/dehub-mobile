@@ -195,19 +195,14 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             {t("walletSetup.checkingWaysBack")}
           </Text>
           <ActivityIndicator color={authColors.label} style={{ marginVertical: 16 }} />
-          {/* Both probe reads are un-timed Supabase queries, so this can sit
-              here a while. Without its own way back, the only exit is the
-              screen-level Cancel — which closes the whole sheet and, on the
-              biometric-unlock route, wipes a half-typed recovery phrase that
-              exitResetReview deliberately preserves. */}
+          {/* Keep a way back while the optional recovery lookup runs. */}
           <AuthTextButton label={t("walletSetup.goBack")} onPress={onBack} />
         </View>
       );
     }
 
-    // Another wrap of the same seed exists. This user is not actually locked
-    // out, and must be told before being offered a way to throw the wallet
-    // away — this block, not the warning, is the important one for them.
+    // A stored wrap does not prove the user still has its credential. Offer
+    // recovery first, with an escape when that credential is also lost.
     if (hasOtherWayIn && !overrode) {
       const n = otherCopies.passkeys;
       return (
@@ -253,12 +248,6 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
         <Text style={[authText.body, { marginBottom: 16 }]}>
           {t("walletSetup.resetExplainer")}
         </Text>
-
-        {otherCopies.failed && (
-          <View style={{ marginBottom: 16 }}>
-            <AuthErrorNotice message={t("walletSetup.otherWaysCheckFailed")} />
-          </View>
-        )}
 
         <Text style={styles.resetHeading}>{t("walletSetup.whatYouLose")}</Text>
         {/* Stated as a loss, not softened with "but it's still on-chain".
