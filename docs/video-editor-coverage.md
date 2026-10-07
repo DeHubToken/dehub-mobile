@@ -35,9 +35,9 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Caption appearance | This release | This release | Classic, boxed and bold styles; no overlap or captions past clip end. |
 | Subtitle file import/export | This release | This release | Editable SRT/VTT text with retained timestamps. |
 | Scene/page navigation | This release | This release | Add, duplicate, navigate and delete scenes; preserve crossing source ranges and export empty appended scenes. |
-| Voiceover recording | Gap | Gap | Record into a separate sound layer at the playhead. |
-| Camera recording | Gap | Gap | Record and import within the editor using existing capture capabilities. |
-| Screen recording | Gap | Platform-specific gap | Browser capture; native needs supported OS recording integration. |
+| Voiceover recording | This release | This release | Record into a separate sound layer at the playhead. |
+| Camera recording | This release | This release | Record and import within the editor using existing capture capabilities. |
+| Screen recording | This release | OS recorder import | Browser capture; native needs supported OS recording integration. |
 | Volume normalization | Gap | Gap | Measure the audible source range and apply bounded gain. |
 | Voice enhancement / noise reduction | Gap | Gap | Apply and preview actual audio processing. |
 | Automatic beat synchronization | Gap | Gap | Detect beats from sound and align cuts to detected timestamps. |
@@ -88,3 +88,5 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 - Precise numeric cuts: staging commit 1ecabead showed ten separate one-second clips, with one-step undo and redo verified.
 - Scene editing: web PR 2298; boundary cuts preserve source offsets, speed, motion and blank scene duration.
 - Subtitle files: import SRT/VTT as editable captions; save only visible caption tracks in either format with millisecond timestamps. Android uses the folder picker; iOS uses Save to Files.
+
+- Recording: microphone and camera use existing browser/device capture APIs, save recordings to the media library and add a separate track at the playhead. Web also captures a chosen screen/window with available system sound. Capture stops on cancellation or leaving the panel; voiceovers are bounded to ten minutes.
