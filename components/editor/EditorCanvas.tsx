@@ -55,6 +55,7 @@ export interface EditorCanvasHandle {
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
   exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif" }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  cancelExport: () => void;
 }
 
 interface Props {
@@ -179,6 +180,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       request.out?.discard(); request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId });
     }
     audioReqs.current.clear();
+    for (const request of videoReqs.current.values()) { request.out?.discard(); request.reject(new Error("canvas closed")); }
+    videoReqs.current.clear(); post({ type: "exportAbort" });
   }, [post]);
 
   // Draw on every change. Time alone only moves the playhead (seek), and
@@ -415,6 +418,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    cancelExport: () => {
+      post({ type: "exportAbort" });
+      const error = new Error("export cancelled"); error.name = "AbortError";
+      for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(error); }
+      videoReqs.current.clear();
+    },
     processAudio: (clip, mode, signal, onProgress) => new Promise<{ uri: string; duration: number }>((resolve, reject) => {
       if (signal?.aborted) { reject(new Error("cancelled")); return; }
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
