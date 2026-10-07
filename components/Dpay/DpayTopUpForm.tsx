@@ -76,6 +76,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   const [statusVisible, setStatusVisible] = React.useState<boolean>(false);
   const [statusSid, setStatusSid] = React.useState<string | null>(null);
   const tokenSymbol = "DHB"; // backend symbol
+  const displaySymbol = t("tip.tokensUnit");
   const onRequestPriceRef =
     React.useRef<DpayTopUpFormProps["onRequestPrice"]>(onRequestPrice);
   React.useEffect(() => {
@@ -166,12 +167,12 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       return t("buyCoins.minDhbPurchase");
     // if (!computedPrice || computedPrice <= 0) return "Price unavailable. Try again shortly.";
     if (supplyOnChain === 0)
-      return t("dpay.noSupply", { symbol: tokenSymbol });
+      return t("dpay.noSupply", { symbol: displaySymbol });
     if (typeof supplyOnChain === "number" && netTokens > supplyOnChain) {
-      return t("dpay.noSupply", { symbol: tokenSymbol });
+      return t("dpay.noSupply", { symbol: displaySymbol });
     }
     return null;
-  }, [parsedAmount, computedPrice, supplyOnChain, netTokens, tokenSymbol, t]);
+  }, [parsedAmount, computedPrice, supplyOnChain, netTokens, displaySymbol, t]);
 
   const onChangeAmount = React.useCallback((txt: string) => {
     setAmountUsd(sanitizeAmountInput(txt, 2));
@@ -322,13 +323,13 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       const net = gross - gross * 0.1;
       if (supplyOnChain === 0) {
         toastError(
-          t("dpay.noSupply", { symbol: tokenSymbol })
+          t("dpay.noSupply", { symbol: displaySymbol })
         );
         return;
       }
       if (supplyOnChain <= net) {
         toastError(
-          t("dpay.insufficientSupply", { symbol: tokenSymbol, available: supplyOnChain })
+          t("dpay.insufficientSupply", { symbol: displaySymbol, available: supplyOnChain })
         );
         return;
       }
@@ -402,6 +403,8 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     currency,
     embedded,
     supplyData,
+    displaySymbol,
+    t,
   ]);
 
   const checkoutHtml = React.useMemo(() => {
@@ -427,7 +430,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           options={currencyOptions}
         />
         <View className="flex-row items-center justify-between mt-2">
-          <Text className="text-gray-400 text-[11px]">{t("dpay.currentPrice", { symbol: tokenSymbol })}</Text>
+          <Text className="text-gray-400 text-[11px]">{t("dpay.currentPrice", { symbol: displaySymbol })}</Text>
           <Text className="text-white text-sm tracking-wide">
             {typeof tokenPrice === "number"
               ? `${tokenPrice.toFixed(7)} ${currency.toUpperCase()}`
@@ -540,7 +543,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                 </View>
                 <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60" style={mLine}>
                   <Text className="text-gray-300 text-sm">
-                    {t("dpay.approxReceive", { symbol: tokenSymbol })}
+                    {t("dpay.approxReceive", { symbol: displaySymbol })}
                   </Text>
                   <Text className="text-white text-sm font-semibold">
                     {approxReceive}
