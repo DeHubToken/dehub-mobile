@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ic
 interface TopControlsProps {
   onClose: () => void;
   onMute: () => void;
+  onVolumeHold?: () => void;
   onFullscreen: () => void;
   onRotateToPortrait?: () => void;
   onPiP?: () => void;
@@ -22,6 +23,7 @@ interface TopControlsProps {
 const TopControls: React.FC<TopControlsProps> = ({
   onClose,
   onMute,
+  onVolumeHold,
   onFullscreen,
   onRotateToPortrait,
   onPiP,
@@ -35,6 +37,7 @@ const TopControls: React.FC<TopControlsProps> = ({
   showTitle = false,
 }) => {
   const { t } = useTranslation();
+  const volumeHeld = useRef(false);
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -124,6 +127,13 @@ const TopControls: React.FC<TopControlsProps> = ({
 
         <TouchableOpacity
           onPress={handleMute}
+          delayLongPress={220}
+          onLongPress={onVolumeHold ? () => { volumeHeld.current = true; } : undefined}
+          onPressOut={() => {
+            if (volumeHeld.current) { volumeHeld.current = false; onVolumeHold?.(); }
+          }}
+          accessibilityActions={onVolumeHold ? [{ name: 'longpress', label: t('dub.audio') }] : undefined}
+          onAccessibilityAction={(event) => { if (event.nativeEvent.actionName === 'longpress') onVolumeHold?.(); }}
           className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={isMuted ? t('common.unmute') : t('common.mute')}

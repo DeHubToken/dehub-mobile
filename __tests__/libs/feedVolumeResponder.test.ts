@@ -12,13 +12,15 @@ function harness(startVolume = 0.5) {
   let taps = 0;
   let ends = 0;
   let holds = 0;
+  let releases = 0;
   const handlers = feedVolumeResponder({
     onHoldStart: () => { holds++; return startVolume; },
     onVolume: (v) => levels.push(v),
     onTap: () => { taps++; },
     onEnd: () => { ends++; },
+    onHoldRelease: () => { releases++; },
   });
-  return { handlers, levels, counts: () => ({ taps, ends, holds }) };
+  return { handlers, levels, counts: () => ({ taps, ends, holds, releases }) };
 }
 
 describe('feed volume responder', () => {
@@ -31,6 +33,7 @@ describe('feed volume responder', () => {
     h.handlers.onPanResponderRelease!(event, gesture(0, 2));
 
     expect(h.counts().taps).toBe(1);
+    expect(h.counts().releases).toBe(0);
     expect(h.counts().holds).toBe(0);
     expect(h.levels).toEqual([]);
   });
@@ -46,6 +49,7 @@ describe('feed volume responder', () => {
     h.handlers.onPanResponderMove!(event, gesture(0, -80));
 
     expect(h.counts().holds).toBe(0);
+    expect(h.counts().releases).toBe(0);
     expect(h.levels).toEqual([]);
   });
 
@@ -84,5 +88,18 @@ describe('feed volume responder', () => {
     h.handlers.onPanResponderTerminate!(event, gesture(0, 0));
 
     expect(h.counts().ends).toBe(1);
+    expect(h.counts().releases).toBe(0);
   });
+
+  it('opens the dub mixer after releasing a hold without toggling mute', () => {
+    const h = harness();
+    h.handlers.onPanResponderGrant!(event, gesture(0, 0));
+    jest.advanceTimersByTime(VOLUME_HOLD_MS);
+    expect(h.counts().releases).toBe(0);
+    h.handlers.onPanResponderRelease!(event, gesture(0, 0));
+    expect(h.counts().releases).toBe(1);
+    expect(h.counts().taps).toBe(0);
+    expect(h.levels).toEqual([]);
+  });
+
 });

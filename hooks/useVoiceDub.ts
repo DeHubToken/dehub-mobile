@@ -16,6 +16,8 @@ import { useEffect, useRef } from "react";
 import type * as SpeechModule from "expo-speech";
 import type { VideoPlayer } from "expo-video";
 import type { TranscriptSegment } from "./useTranscript";
+import { getVolume, useMediaVolume } from '../libs/video-preferences';
+import { applyVideoVolume, dubVoiceVolume, setDubMixActive, useDubMix } from '../libs/dub-mix';
 
 /**
  * expo-speech is a native module and its entry throws on a binary built before
@@ -34,8 +36,6 @@ try {
 /** The installed app can speak. False on builds that predate expo-speech. */
 export const speechAvailable = Speech !== null;
 
-/** Keep music and ambience quiet for the entire dub, including speech gaps. */
-const ORIGINAL_VOLUME = 0.06;
 /** Faster than this and a synthetic voice stops being intelligible. */
 const MAX_RATE = 1.3;
 /** Roughly what a device voice gets through per second at rate 1. */
@@ -123,6 +123,9 @@ interface VoiceDubOptions {
 }
 
 export function useVoiceDub({ player, segments, lang, enabled, onFailed }: VoiceDubOptions) {
+  const master = useMediaVolume();
+  const mix = useDubMix();
+  const reconcileRef = useRef<(() => void) | null>(null);
   const active = speechAvailable && enabled && !!player && !!lang && !!segments?.length;
   const owner = useRef({}).current;
   const failedRef = useRef(onFailed);
@@ -141,15 +144,18 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
     let voiceReady = false;
     let voice: string | undefined;
     let utterance = 0;
-    let userVolume = player.volume;
-    let expectedVolume = userVolume;
+    let spokenChar = 0;
+    let resumeWord = { index: -1, offset: 0 };
+    let restartTimer: ReturnType<typeof setTimeout> | null = null;
+    let speechVolume = dubVoiceVolume(getVolume());
     const syncVolume = () => {
-      const target = alive && voiceReady && !failed ? userVolume * ORIGINAL_VOLUME : userVolume;
-      expectedVolume = target;
-      try { if (Math.abs(player.volume - target) >= 0.001) player.volume = target; } catch {}
+      setDubMixActive(player, alive && voiceReady && !failed);
+      try { applyVideoVolume(player, getVolume()); } catch {}
     };
 
     const silence = () => {
+      if (restartTimer !== null) clearTimeout(restartTimer);
+      restartTimer = null;
       utterance++;
       stopIfMine(owner);
       spoken = -1;
@@ -161,15 +167,16 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       failedRef.current?.();
     };
 
-    const speakAt = (t: number) => {
-      if (!alive || failed || !voiceReady || !Speech || userVolume === 0) return;
+    const speakAt = (t: number, charOffset = 0) => {
+      if (!alive || failed || !voiceReady || !Speech || restartTimer !== null || dubVoiceVolume(getVolume()) === 0) return;
       const i = segmentIndexAt(segments, t);
       if (i < 0 || i === spoken) return;
       const seg = segments[i];
       const remaining = seg.end - t;
       if (remaining < MIN_REMAINING_S) return;
       spoken = i;
-      const text = (seg.text ?? "").trim();
+      spokenChar = charOffset;
+      const text = (seg.text ?? "").slice(charOffset).trim();
       if (!text) return;
       // Never queue. An utterance still running from the last line is cut
       // here, or the dub falls behind the picture and never catches up.
@@ -185,12 +192,13 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
         Speech?.speak(text, {
           language: lang,
           voice,
-          volume: userVolume,
+          volume: dubVoiceVolume(getVolume()),
           rate: speechRate(text, seg.end - player.currentTime, player.playbackRate),
           onStart: () => {
             if (!current()) return;
-            if (!player.playing || player.muted || userVolume === 0) { silence(); return; }
+            if (!player.playing || player.muted || dubVoiceVolume(getVolume()) === 0) { silence(); return; }
           },
+          onBoundary: (event) => { if (current()) spokenChar = charOffset + event.charIndex; },
           onDone: finish,
           onStopped: finish,
           onError: () => { if (current()) fail(); },
@@ -204,7 +212,7 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
         lastT >= 0 && (currentTime < lastT - 0.25 || currentTime - lastT > SEEK_JUMP_S * rate);
       lastT = currentTime;
       if (jumped) silence();
-      if (!player.playing || player.muted || userVolume === 0) {
+      if (!player.playing || player.muted || dubVoiceVolume(getVolume()) === 0) {
         if (speaker === owner) silence();
         return;
       }
@@ -221,11 +229,29 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       if (muted) silence();
     });
     const volumeSub = player.addListener("volumeChange", () => {
-      if (Math.abs(player.volume - expectedVolume) >= 0.001) userVolume = player.volume;
       syncVolume();
-      if (userVolume === 0 || player.muted) silence();
+      if (getVolume() === 0 || player.muted) silence();
     });
     const endSub = player.addListener("playToEnd", silence);
+
+    const reconcile = () => {
+      syncVolume();
+      const next = dubVoiceVolume(getVolume());
+      if (next === speechVolume) return;
+      const previous = speechVolume;
+      speechVolume = next;
+      if (speaker === owner) resumeWord = { index: spoken, offset: spokenChar };
+      else if (restartTimer === null && previous > 0 && next > 0) return;
+      silence();
+      if (!next || failed || !player.playing || player.muted) return;
+      restartTimer = setTimeout(() => {
+        restartTimer = null;
+        if (!alive || !player.playing || player.muted) return;
+        const i = segmentIndexAt(segments, player.currentTime);
+        speakAt(player.currentTime, i === resumeWord.index ? resumeWord.offset : 0);
+      }, 120);
+    };
+    reconcileRef.current = reconcile;
 
     void findVoice(lang).then((found) => {
       if (!alive) return;
@@ -244,8 +270,10 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
       volumeSub.remove();
       endSub.remove();
       silence();
+      if (reconcileRef.current === reconcile) reconcileRef.current = null;
       syncVolume();
       if (owners.get(player) === owner) owners.delete(player);
     };
   }, [active, player, segments, lang, owner]);
+  useEffect(() => { reconcileRef.current?.(); }, [master, mix.voice, mix.original]);
 }
