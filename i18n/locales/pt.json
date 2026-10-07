@@ -5131,7 +5131,7 @@
   "walletBackup": {
     "title": "Fazer backup da carteira",
     "rowDesc": "Ver as suas 12 palavras ou a chave privada",
-    "backedUpOn": "Backup feito em {{date}}",
+    "backedUpOn": "Cópia guardada em {{date}}",
     "offerTitle": "Fazer backup da carteira?",
     "offerBody": "12 palavras que recuperam a sua carteira se perder o telemóvel ou a senha. Demora 30 segundos.",
     "offerBodyDeviceOnly": "A sua carteira só existe neste telemóvel. Sem estas palavras, perder o telemóvel é perder a carteira.",
@@ -5157,7 +5157,14 @@
     "showWords": "Mostrar palavras",
     "reminderBody": "Faça backup da carteira — 12 palavras que a recuperam se perder o telemóvel.",
     "backUp": "Fazer backup",
-    "notNow": "Agora não"
+    "notNow": "Agora não",
+    "phraseUnavailable": "A frase de recuperação não está disponível com esta sessão. Usa o acesso ou dispositivo original para a procurar. Podes continuar a guardar a chave privada.",
+    "phraseMismatch": "Esta cópia de segurança pertence a outra carteira. Usa o acesso original para veres a cópia correta.",
+    "backupDescription": "Guarda a tua frase de recuperação ou chave privada para poderes restaurar a tua carteira.",
+    "phraseOtherDevice": "Abre o DeHub no dispositivo onde protegeste esta carteira para veres a frase de recuperação. Também podes guardar a chave privada aqui.",
+    "phraseLoadFailed": "Não foi possível carregar a frase de recuperação. Tenta novamente ou abre o DeHub no dispositivo original.",
+    "noPhrase": "Esta carteira foi guardada com uma chave privada, por isso o DeHub não tem uma frase de recuperação para mostrar. Guarda esta chave para restaurar a mesma carteira.",
+    "keyWarning": "Qualquer pessoa com esta chave pode controlar a tua carteira. Guarda-a num local seguro e nunca a partilhes."
   },
   "transcript": {
     "title": "Transcrição",

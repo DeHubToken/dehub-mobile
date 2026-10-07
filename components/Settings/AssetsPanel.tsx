@@ -57,7 +57,7 @@ const BackupReminderBanner: React.FC<{ onBackUp: () => void; onDismiss: () => vo
   const { t } = useTranslation();
   return (
     <View className="mx-4 mt-4 p-4 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700">
-      <Text style={authText.body}>{t('walletBackup.reminderBody')}</Text>
+      <Text style={authText.body}>{t('walletBackup.backupDescription')}</Text>
       <View className="flex-row items-center mt-3" style={{ gap: 12 }}>
         <AuthButton variant="primary" size="compact" icon="shield-checkmark-outline" label={t('walletBackup.backUp')} onPress={onBackUp} />
         <AuthTextButton label={t('walletBackup.notNow')} onPress={onDismiss} />
@@ -222,7 +222,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           description={
             backedUpDate
               ? t('walletBackup.backedUpOn', { date: backedUpDate })
-              : t('walletBackup.rowDesc')
+              : t('walletBackup.backupDescription')
           }
           dot={!!backup.status && !backup.status.backedUpAt}
           onPress={() => setExportPkVisible(true)}

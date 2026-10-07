@@ -23,10 +23,9 @@ import { useSecureScreen } from "../../hooks/useSecureScreen";
 import { AuthButton, AuthErrorNotice, AuthField, AuthTextButton, authColors, authText } from "../auth/AuthControls";
 import { RecoveryPhraseGrid, RecoveryPhraseWarnings } from "../auth/RecoveryPhrase";
 import { getSupabaseUserId } from "../../services/auth/supabaseAuth.service";
-import { fetchWalletReliably } from "../../libs/wallet-core/store";
-import { decryptString, getPayloadKdf, type EncryptedPayload } from "../../libs/wallet-core/crypto";
-import { hasBiometricWrapKey, unlockWithBiometrics } from "../../libs/wallet-core/biometric-unlock";
-import { deriveFromSecret, isValidMnemonic } from "../../libs/wallet-core/derive";
+import { decryptString, type EncryptedPayload } from "../../libs/wallet-core/crypto";
+import { unlockWithBiometrics } from "../../libs/wallet-core/biometric-unlock";
+import { BackupMismatchError, loadBackupSource, phraseForBackup } from "../../libs/wallet-core/backup";
 import { markBackedUp } from "../../libs/wallet-core/backup-status";
 import { createLogger } from "../../libs/logger";
 
@@ -35,7 +34,7 @@ const log = createLogger("BackupWalletModal");
 type BackupWalletModalProps = {
   visible: boolean;
   onClose: () => void;
-  /** The 12 words were shown, and the backup was recorded at this time. */
+  /** The recovery phrase or private key was saved at this time. */
   onBackedUp?: (backedUpAt: string) => void;
 };
 
@@ -45,12 +44,13 @@ type Step = "warn" | "reveal";
  * Where the 12 words stand once the private key is in hand. The words live
  * only in the cloud row, encrypted, so showing them means opening it again:
  * with this phone's biometric key, or with the wallet password.
- *  - none: no phrase behind this wallet (imported from a key, or no cloud row)
- *    — only the private key is offered.
+ * A missing device wrap or failed lookup is distinct from a verified key-only
+ * backup, so the screen never claims a phrase does not exist without decrypting.
  */
 type Words =
   | { kind: "loading" }
-  | { kind: "none" }
+  | { kind: "none"; reason: "private-key" | "unavailable" | "other-device" }
+  | { kind: "error" }
   | { kind: "biometric" }
   | { kind: "password"; payload: EncryptedPayload }
   | { kind: "ready"; phrase: string };
@@ -118,68 +118,64 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
     sessionRef.current += 1;
   }, []);
 
-  /** Accept a decrypted secret only if it is a phrase for THIS key. */
+  useEffect(() => { if (!visible) reset(); }, [visible, reset]);
+
+  /** Verify both phrase and raw-key backups against the active key. */
   const acceptSecret = useCallback((secret: string, pk: string) => {
-    if (!isValidMnemonic(secret)) return false;
-    try {
-      if (deriveFromSecret(secret).ethPrivateKey.toLowerCase() !== pk.toLowerCase()) return false;
-    } catch {
-      return false;
-    }
-    setWords({ kind: "ready", phrase: deriveFromSecret(secret).secret });
-    return true;
+    const phrase = phraseForBackup(secret, pk);
+    setWords(phrase ? { kind: "ready", phrase } : { kind: "none", reason: "private-key" });
   }, []);
 
   const openWithBiometrics = useCallback(
     async (pk: string) => {
       const wallet = walletRef.current;
       if (!wallet) return;
+      const session = sessionRef.current;
       setWordsBusy(true);
       setWordsError(null);
       try {
         const secret = await unlockWithBiometrics(wallet.ethAddress, wallet.payload);
-        if (!acceptSecret(secret, pk)) setWords({ kind: "none" });
+        if (session !== sessionRef.current) return;
+        acceptSecret(secret, pk);
       } catch (e) {
+        if (session !== sessionRef.current) return;
         log.warn("words:biometric-failed", e);
         setWords({ kind: "biometric" });
-        setWordsError(t("walletSetup.biometricFailed"));
+        setWordsError(t(e instanceof BackupMismatchError ? "walletBackup.phraseMismatch" : "walletSetup.biometricFailed"));
       } finally {
-        setWordsBusy(false);
+        if (session === sessionRef.current) setWordsBusy(false);
       }
     },
     [acceptSecret, t]
   );
 
   /**
-   * Find the words behind the key just revealed. Anything that does not add
-   * up — no identity, no row, a row for another wallet, a secret that is a
-   * raw key — leaves the private key as the only thing to show.
+   * Find the phrase behind the key without treating failed reads as absence.
    */
   const loadWords = useCallback(
     async (pk: string) => {
       const session = sessionRef.current;
       setWords({ kind: "loading" });
+      setWordsError(null);
       try {
         const userId = await getSupabaseUserId();
-        if (!userId) return setWords({ kind: "none" });
-        const { wallet } = await fetchWalletReliably(userId);
         if (session !== sessionRef.current) return;
-        const pkAddress = deriveAddressFromPrivateKey(pk)?.toLowerCase();
-        if (!wallet?.payload || !pkAddress || wallet.ethAddress.toLowerCase() !== pkAddress) {
-          return setWords({ kind: "none" });
-        }
+        if (!userId) return setWords({ kind: "none", reason: "unavailable" });
+        const source = await loadBackupSource(userId, pk);
+        if (session !== sessionRef.current) return;
+        if (source.kind === "none") return setWords(source);
+        const wallet = source.wallet;
         walletRef.current = { userId, ethAddress: wallet.ethAddress, payload: wallet.payload };
-        if (getPayloadKdf(wallet.payload) === "hkdf") {
-          if (!(await hasBiometricWrapKey(wallet.ethAddress))) return setWords({ kind: "none" });
-          if (session !== sessionRef.current) return;
+        if (source.kind === "biometric") {
           setWords({ kind: "biometric" });
           await openWithBiometrics(pk);
           return;
         }
         setWords({ kind: "password", payload: wallet.payload });
       } catch (e) {
+        if (session !== sessionRef.current) return;
         log.warn("words:load-failed", e);
-        setWords({ kind: "none" });
+        setWords({ kind: "error" });
       }
     },
     [openWithBiometrics]
@@ -189,18 +185,21 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
     if (words.kind !== "password" || !privateKey || !walletPassword || wordsBusy) return;
     setWordsBusy(true);
     setWordsError(null);
+    const session = sessionRef.current;
     try {
       const secret = await decryptString(words.payload, walletPassword);
-      if (!acceptSecret(secret, privateKey)) setWords({ kind: "none" });
+      if (session !== sessionRef.current) return;
+      acceptSecret(secret, privateKey);
       setWalletPassword("");
-    } catch {
-      setWordsError(t("walletSetup.incorrectPassword"));
+    } catch (e) {
+      if (session !== sessionRef.current) return;
+      setWordsError(t(e instanceof BackupMismatchError ? "walletBackup.phraseMismatch" : "walletSetup.incorrectPassword"));
     } finally {
-      setWordsBusy(false);
+      if (session === sessionRef.current) setWordsBusy(false);
     }
   }, [words, privateKey, walletPassword, wordsBusy, acceptSecret, t]);
 
-  /** Seeing the words is the backup. Recorded once per opening. */
+  /** Record the backup once per opening after the user saves it. */
   const handleWordsRevealed = useCallback(() => {
     const wallet = walletRef.current;
     if (!wallet || markedRef.current) return;
@@ -218,6 +217,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
   }, [onClose, reset]);
 
   const fetchPrivateKey = useCallback(async () => {
+    const session = sessionRef.current;
     setIsFetching(true);
     setError("");
     try {
@@ -237,6 +237,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
       const ready = live.status === "ready" && live.provider;
       if (!ready) throw new Error("Wallet provider is not ready");
       const pk = await (live.provider as any)?.request?.({ method: "private_key" });
+      if (session !== sessionRef.current) return;
       if (!pk || typeof pk !== "string")
         throw new Error("Could not retrieve private key");
       setPrivateKey(pk);
@@ -247,11 +248,12 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
         .get("/private_key/exported", { isAuthRequired: true })
         .catch(() => {});
     } catch (e: any) {
+      if (session !== sessionRef.current) return;
       log.error("fetch-private-key:failed", e);
       setError(e?.message || t("settings.exportPkFailed"));
       toastError(e?.message || t("settings.exportPkFailed"));
     } finally {
-      setIsFetching(false);
+      if (session === sessionRef.current) setIsFetching(false);
     }
   }, [ensureProvider, providerStatus, provider, isLocal, t, loadWords]);
 
@@ -419,6 +421,23 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
               <ActivityIndicator color={authColors.label} style={{ marginVertical: 24 }} />
             )}
 
+            {words.kind === "none" && (
+              <Text style={[authText.body, { marginBottom: 12 }]}>
+                {t(words.reason === "private-key"
+                  ? "walletBackup.noPhrase"
+                  : words.reason === "other-device"
+                    ? "walletBackup.phraseOtherDevice"
+                    : "walletBackup.phraseUnavailable")}
+              </Text>
+            )}
+
+            {words.kind === "error" && (
+              <>
+                <AuthErrorNotice message={t("walletBackup.phraseLoadFailed")} style={{ marginBottom: 12 }} />
+                <AuthButton variant="primary" label={t("common.retry")} onPress={() => privateKey && void loadWords(privateKey)} />
+              </>
+            )}
+
             {words.kind === "ready" && (
               <>
                 <Text style={[authText.emphasis, { marginBottom: 8 }]}>{t("walletBackup.tabWords")}</Text>
@@ -516,13 +535,16 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
                     <Icon name={copied ? "Check" : "Copy"} size={18} color={authColors.label} />
                   </TouchableOpacity>
                 </View>
-                {words.kind === "none" && <RecoveryPhraseWarnings />}
+                <Text style={authText.body}>{t("walletBackup.keyWarning")}</Text>
               </>
             )}
 
             <View className="flex-row justify-end mt-4">
               <TouchableOpacity
-                onPress={handleClose}
+                onPress={() => {
+                  if ((words.kind === "none" || showAdvanced) && (!masked || copied)) handleWordsRevealed();
+                  handleClose();
+                }}
                 className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700"
               >
                 <Text className="text-white">{t("common.done")}</Text>
