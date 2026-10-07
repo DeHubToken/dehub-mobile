@@ -38,6 +38,7 @@ import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
 import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
+import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -243,24 +244,22 @@ canvas{display:block;width:100%;height:100%;}
     return { left: left, top: top, right: right, bottom: bottom };
   }
   function fontFor(text, size) { return (text.italic ? "italic " : "") + text.fontWeight + " " + size + "px " + text.fontFamily; }
-  function textLines(text) { var raw = text.uppercase ? text.text.toUpperCase() : text.text; return raw.split(/\n/); }
+  __TEXT_LAYOUT_RUNTIME__
   function setLetterSpacing(c, px) { c.letterSpacing = px + "px"; }
-  function layoutText(c, text, H) {
-    var size = (text.fontSize / 1080) * H;
-    var lh = size * (text.lineHeight == null ? 1.2 : text.lineHeight);
+  function layoutText(c, text, W, H) {
     c.save();
-    c.font = fontFor(text, size);
-    setLetterSpacing(c, ((text.letterSpacing || 0) / 1080) * H);
-    var lines = textLines(text);
-    var widths = lines.map(function (ln) { return c.measureText(ln).width; });
+    var result = measuredTextLayout(text, W, H, function(line, size, spacing) {
+      c.font = fontFor(text, size);
+      setLetterSpacing(c, spacing);
+      return c.measureText(line).width;
+    });
     c.restore();
-    var pad = text.background ? (text.background.padding / 1080) * H : size * 0.2;
-    return { size: size, lh: lh, lines: lines, widths: widths, maxW: Math.max.apply(null, widths.concat([1])), pad: pad };
+    return result;
   }
   function clipBox(c, clip, W, H) {
     var tr = getTransform(clip);
     if (clip.kind === "text") {
-      var l = layoutText(c, clip, H);
+      var l = layoutText(c, clip, W, H);
       var w = l.maxW + l.pad * 2;
       var h = l.lines.length * l.lh + l.pad * 2;
       var ax = clip.x * W;
@@ -346,7 +345,7 @@ canvas{display:block;width:100%;height:100%;}
     var filter = cssFilterFor(clip, anim.blurPx);
     if (SUPPORTS_FILTER) c.filter = filter;
     if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
-    if (clip.kind === "text") drawText(c, clip, box, H);
+    if (clip.kind === "text") drawText(c, clip, box, W, H);
     else if (clip.kind === "shape") drawShape(c, clip, box, H);
     else drawMedia(c, clip, box, H);
     c.restore();
@@ -499,10 +498,10 @@ canvas{display:block;width:100%;height:100%;}
     clearShadow(c);
   }
 
-  function drawText(c, text, box, H) {
-    var l = layoutText(c, text, H);
+  function drawText(c, text, box, W, H) {
+    var l = layoutText(c, text, W, H);
     c.font = fontFor(text, l.size);
-    setLetterSpacing(c, ((text.letterSpacing || 0) / 1080) * H);
+    setLetterSpacing(c, l.spacing);
     c.textBaseline = "middle";
     c.textAlign = text.align === "centre" ? "center" : text.align;
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
@@ -521,7 +520,7 @@ canvas{display:block;width:100%;height:100%;}
       applyShadow(c, text, H);
     }
     if (text.stroke && text.stroke.width > 0) {
-      c.lineWidth = (text.stroke.width / 1080) * H;
+      c.lineWidth = (text.stroke.width / 1080) * H * l.scale;
       c.strokeStyle = text.stroke.color;
       c.lineJoin = "round";
       l.lines.forEach(function (ln, i) { c.strokeText(ln, ax, startY + i * l.lh); });
@@ -1637,4 +1636,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+</body></html>`.replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");

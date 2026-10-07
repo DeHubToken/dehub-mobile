@@ -240,6 +240,10 @@ export interface TextClip extends BaseClip {
   letterSpacing?: number;
   /** Line height as a multiple of font size. Default 1.2. */
   lineHeight?: number;
+  /** Optional wrapping box as fractions of the page. Absent keeps manual line breaks. */
+  maxWidth?: number;
+  /** Fit wrapped text inside this height, keeping the requested font as an upper bound. */
+  maxHeight?: number;
 }
 
 export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow"] as const;

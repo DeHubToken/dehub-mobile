@@ -27,7 +27,7 @@ export function subtitleLayers(cues: SubtitleCue[], makeId: () => string, offset
   const track: Track = { id: makeId(), kind: "text", name: "Captions", role: "captions", hidden: false, muted: false };
   const clips: TextClip[] = cues.map(cue => ({
     id: makeId(), trackId: track.id, kind: "text", start: cue.start + offset, duration: cue.end - cue.start, trimIn: 0,
-    text: cue.text, fontFamily: "'Montserrat', sans-serif", fontSize: 64, fontWeight: 800, color: "#ffffff", align: "centre", x: 0.5, y: 0.84,
+    text: cue.text, fontFamily: "'Montserrat', sans-serif", fontSize: 64, fontWeight: 800, color: "#ffffff", align: "centre", x: 0.5, y: 0.84, maxWidth: 0.9, maxHeight: 0.28,
     stroke: { color: "#000000", width: 8 },
   }));
   return { track, clips };
