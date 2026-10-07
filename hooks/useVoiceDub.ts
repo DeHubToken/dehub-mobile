@@ -193,6 +193,7 @@ export function useVoiceDub({ player, segments, lang, enabled, onFailed }: Voice
           language: lang,
           voice,
           volume: dubVoiceVolume(getVolume()),
+          useApplicationAudioSession: true,
           rate: speechRate(text, seg.end - player.currentTime, player.playbackRate),
           onStart: () => {
             if (!current()) return;
