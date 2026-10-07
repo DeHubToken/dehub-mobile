@@ -3,6 +3,7 @@ import * as SecureStore from "expo-secure-store";
 import { requireDeviceOwner, type VerificationOutcome } from "./biometric-gate";
 import { createLogger } from "./logger";
 import { readWalletStorage, writeWalletStorage } from './wallet-core/secure-storage';
+import { deriveFromSecret, isRawPrivateKey } from './wallet-core/derive';
 
 const log = createLogger("wallets.local");
 
@@ -18,6 +19,7 @@ export interface LocalAccountDetails extends LocalAccount {
 
 const STORAGE_KEY = "@local_wallet_accounts_v1";
 const PK_PREFIX = "local_wallet_pk_"; // per-address key in SecureStore
+const PHRASE_PREFIX = "local_wallet_phrase_";
 
 // WHEN_UNLOCKED_THIS_DEVICE_ONLY rather than WHEN_UNLOCKED: the `THIS_DEVICE_ONLY`
 // suffix keeps raw private keys out of iCloud Keychain sync and out of encrypted
@@ -98,10 +100,16 @@ export async function upsertLocalAccount(acc: {
   address: string;
   username?: string;
   privateKey?: string | null;
+  recoveryPhrase?: string;
 }): Promise<LocalAccount[]> {
   const address = acc.address?.toLowerCase();
   log.info("upsert:start", { address, hasUsername: !!acc.username, hasPk: !!acc.privateKey });
   if (!address) return await readAll();
+  // Validate before publishing either the key or account metadata.
+  const phrase = acc.recoveryPhrase ? deriveFromSecret(acc.recoveryPhrase) : null;
+  if (phrase && (isRawPrivateKey(phrase.secret) || phrase.ethAddress.toLowerCase() !== address)) {
+    throw new Error('Recovery phrase does not match this wallet');
+  }
   const list = await readAll();
   const idx = list.findIndex((a) => a.address.toLowerCase() === address);
   const now = Date.now();
@@ -116,6 +124,7 @@ export async function upsertLocalAccount(acc: {
   if (acc.privateKey) {
     await setPrivateKeyForAddress(address, acc.privateKey);
   }
+  if (phrase) await writeWalletStorage(PHRASE_PREFIX + address, phrase.secret);
   await writeAll(list);
   log.info("upsert:done", { address });
   return list;
@@ -129,7 +138,10 @@ export async function removeLocalAccount(address: string): Promise<LocalAccount[
   await writeAll(next);
   // Remove private key from secure storage
   try {
-    await SecureStore.deleteItemAsync(PK_PREFIX + addr);
+    await Promise.all([
+      SecureStore.deleteItemAsync(PK_PREFIX + addr),
+      SecureStore.deleteItemAsync(PHRASE_PREFIX + addr),
+    ]);
     log.debug("secure:delete:ok", { address: addr });
   } catch {
     log.warn("secure:delete:error", { address: addr });
@@ -221,6 +233,19 @@ export async function getPrivateKeyForAddress(
   }
 
   return readWalletStorage(PK_PREFIX + addr);
+}
+
+/** Imported phrases use the same device-only storage and verification as keys. */
+export async function getRecoveryPhraseForAddress(
+  address: string,
+  options: KeyAccessOptions,
+): Promise<string | null> {
+  if (!address) return null;
+  const storageKey = PHRASE_PREFIX + address.toLowerCase();
+  if (!(await readWalletStorage(storageKey))) return null;
+  // Every reveal requires fresh verification, regardless of signer grace.
+  if (!(await getPrivateKeyForAddress(address, { ...options, forcePrompt: true }))) return null;
+  return readWalletStorage(storageKey);
 }
 
 /**
