@@ -19,7 +19,7 @@ export async function getUserScheduledLives(address: string): Promise<ScheduledL
     const res = await apiClient.get<any>(`/live/user/${encodeURIComponent(address)}/scheduled?futureOnly=false`, { isAuthRequired: true });
     const arr: any[] = Array.isArray(res?.result) ? res.result : Array.isArray(res) ? res : [];
     return arr
-      // .filter((i) => i && i.scheduledFor && new Date(i.scheduledFor).getTime() > Date.now())
+      .filter((i) => i && String(i.status).toUpperCase() === "SCHEDULED")
       .map((i) => ({
         streamId: i._id || i.streamId || i.id || String(i._id || i.streamId || i.id),
         name: i.title || i.name || '',

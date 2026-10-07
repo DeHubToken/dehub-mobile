@@ -2332,6 +2332,7 @@ export default function UploadScreen() {
           )}
 
           <View className="mt-3">
+            {isLiveMode && React.createElement(require("../components/Upload/ScheduledLivestreams").default, { address: authUser?.walletAddress || authUser?.address || "" })}
             {showTitleInput && !articleMode && (
               <TextInput
                 ref={titleRef}
