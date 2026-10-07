@@ -30,7 +30,7 @@ function makePlayer() {
   return player;
 }
 const line = () => (Speech.speak as jest.Mock).mock.calls.at(-1)![1] as {
-  onStart: () => void; onDone: () => void; onError: () => void; onBoundary: (event: { charIndex: number }) => void; volume: number;
+  onStart: () => void; onDone: () => void; onError: () => void; onBoundary: (event: { charIndex: number }) => void; volume: number; useApplicationAudioSession: boolean;
 };
 async function setup() {
   const player = makePlayer();
@@ -51,6 +51,7 @@ describe('voice dub playback', () => {
     const { player } = await setup();
     expect(player.volume).toBeCloseTo(0.008);
     expect(line().volume).toBe(0.8);
+    expect(line().useApplicationAudioSession).toBe(true);
     act(() => line().onStart());
     expect(player.volume).toBeCloseTo(0.008);
     act(() => line().onDone());
