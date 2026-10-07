@@ -67,7 +67,7 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
       const meta = registerDownloadMedia(source, request.title || "video", mime);
       mediaId = meta.id;
       const info = await new Promise<SourceInfo>((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error("Video metadata did not load")), 300000);
+        const timer = setTimeout(() => finish(new Error("Video metadata did not load")), 300000);
         const abort = () => finish(Object.assign(new Error("Download cancelled"), { name: "AbortError" }));
         const finish = (error?: Error, value?: SourceInfo) => {
           clearTimeout(timer); controller.signal.removeEventListener("abort", abort);
