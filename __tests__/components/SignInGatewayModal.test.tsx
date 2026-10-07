@@ -31,6 +31,7 @@ jest.mock('../../libs/provision-and-sign-in', () => ({}));
 jest.mock('../../libs/wallet-setup-intent', () => ({}));
 jest.mock('../../libs/wallet-core/crypto', () => ({}));
 jest.mock('../../libs/wallet-core/store', () => ({}));
+jest.mock('../../libs/wallet-core/replacement', () => ({}));
 jest.mock('../../libs/wallet-core/derive', () => ({}));
 jest.mock('../../libs/wallet-core/assert-wallet-address', () => ({}));
 jest.mock('../../services/localwallet.provider', () => ({}));
