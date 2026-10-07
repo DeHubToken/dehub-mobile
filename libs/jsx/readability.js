@@ -48,6 +48,7 @@ function readableTextProps(type, props) {
   // Lazy import: the JSX runtime is initialized before react-native.
   if (!native) native = require("react-native");
   if (type !== native.Text && type !== native.TextInput) return props;
+  if (typeof props.className === "string" && /(?:^|\s)bg-(?:white|(?:zinc|gray|neutral|slate)-[12]00)(?=\s|$)/.test(props.className)) return props;
   const style = readableStyle(props.style);
   const className = typeof props.className === "string" ? props.className.replace(MUTED_CLASS, "$1text-white") : props.className;
   const placeholderTextColor = type === native.TextInput && isMutedNeutral(props.placeholderTextColor)
