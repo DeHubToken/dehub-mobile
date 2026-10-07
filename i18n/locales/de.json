@@ -5155,7 +5155,14 @@
     "showWords": "Wörter anzeigen",
     "reminderBody": "Sichere dein Wallet – 12 Wörter, mit denen du es zurückbekommst, wenn du dein Handy verlierst.",
     "backUp": "Sichern",
-    "notNow": "Nicht jetzt"
+    "notNow": "Nicht jetzt",
+    "phraseUnavailable": "Die Wiederherstellungsphrase ist mit dieser Anmeldung nicht verfügbar. Prüfe sie mit deiner ursprünglichen Anmeldung oder auf deinem ursprünglichen Gerät. Du kannst deinen privaten Schlüssel weiterhin sichern.",
+    "phraseMismatch": "Diese Sicherung gehört zu einer anderen Wallet. Melde dich mit deiner ursprünglichen Anmeldung an, um die richtige Sicherung aufzurufen.",
+    "backupDescription": "Speichere deine Wiederherstellungsphrase oder deinen privaten Schlüssel, damit du deine Wallet wiederherstellen kannst.",
+    "phraseOtherDevice": "Öffne DeHub auf dem Gerät, auf dem du diese Wallet zuerst gesichert hast, um ihre Wiederherstellungsphrase zu sehen. Du kannst hier auch deinen privaten Schlüssel sichern.",
+    "phraseLoadFailed": "Deine Wiederherstellungsphrase konnte nicht geladen werden. Versuche es erneut oder öffne DeHub auf deinem ursprünglichen Gerät.",
+    "noPhrase": "Diese Wallet wurde mit einem privaten Schlüssel gespeichert. DeHub hat daher keine Wiederherstellungsphrase zum Anzeigen. Sichere diesen Schlüssel, um dieselbe Wallet wiederherzustellen.",
+    "keyWarning": "Wer diesen Schlüssel besitzt, kann deine Wallet kontrollieren. Bewahre ihn sicher auf und teile ihn niemals."
   },
   "transcript": {
     "title": "Transkript",

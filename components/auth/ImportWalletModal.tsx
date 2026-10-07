@@ -126,7 +126,11 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         setEoaSigningProvider(localProvider);
         try {
             // Persist the address + private key immediately; username will be added later in AuthContext
-            await upsertLocalAccount({ address, privateKey });
+            await upsertLocalAccount({
+              address,
+              privateKey,
+              recoveryPhrase: importSecretKind(secretInput) === "phrase" ? secretInput : undefined,
+            });
           await signInWithWallet(address, effectiveChainId, privateKey);
           // Local account persistence will occur centrally after username is available
           toastInfo(t("auth.walletImported"));

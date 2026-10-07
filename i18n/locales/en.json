@@ -5155,7 +5155,14 @@
     "showWords": "Show words",
     "reminderBody": "Back up your wallet — 12 words that bring it back if you lose your phone.",
     "backUp": "Back up",
-    "notNow": "Not now"
+    "notNow": "Not now",
+    "phraseUnavailable": "The recovery phrase is not available from this sign-in. Use your original login or device to check for it. You can still back up your private key.",
+    "phraseMismatch": "This backup belongs to a different wallet. Sign in with your original login to access the correct backup.",
+    "backupDescription": "Save your recovery phrase or private key so you can restore your wallet.",
+    "phraseOtherDevice": "Open DeHub on the device where you first secured this wallet to see its recovery phrase. You can also back up your private key here.",
+    "phraseLoadFailed": "Could not load your recovery phrase. Retry to check for it, or open DeHub on your original device.",
+    "noPhrase": "This wallet was saved using a private key, so DeHub has no recovery phrase to show. Back up this key to restore the same wallet.",
+    "keyWarning": "Anyone with this key can control your wallet. Save it somewhere safe and never share it."
   },
   "transcript": {
     "title": "Transcript",

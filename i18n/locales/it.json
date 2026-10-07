@@ -5127,7 +5127,7 @@
   "walletBackup": {
     "title": "Esegui il backup del wallet",
     "rowDesc": "Vedi le tue 12 parole o la chiave privata",
-    "backedUpOn": "Backup eseguito il {{date}}",
+    "backedUpOn": "Backup salvato il {{date}}",
     "offerTitle": "Eseguire il backup del wallet?",
     "offerBody": "12 parole che ti restituiscono il wallet se perdi il telefono o la password. Bastano 30 secondi.",
     "offerBodyDeviceOnly": "Il tuo wallet esiste solo su questo telefono. Senza queste parole, perdere il telefono significa perdere il wallet.",
@@ -5153,7 +5153,14 @@
     "showWords": "Mostra parole",
     "reminderBody": "Esegui il backup del wallet: 12 parole che lo recuperano se perdi il telefono.",
     "backUp": "Backup",
-    "notNow": "Non ora"
+    "notNow": "Non ora",
+    "phraseUnavailable": "La frase di recupero non è disponibile con questo accesso. Usa l'accesso o il dispositivo originale per cercarla. Puoi comunque salvare la chiave privata.",
+    "phraseMismatch": "Questo backup appartiene a un altro portafoglio. Usa il tuo accesso originale per vedere il backup corretto.",
+    "backupDescription": "Salva la frase di recupero o la chiave privata per poter ripristinare il tuo portafoglio.",
+    "phraseOtherDevice": "Apri DeHub sul dispositivo dove hai protetto questo portafoglio per vedere la frase di recupero. Puoi anche salvare la chiave privata qui.",
+    "phraseLoadFailed": "Impossibile caricare la frase di recupero. Riprova o apri DeHub sul dispositivo originale.",
+    "noPhrase": "Questo portafoglio è stato salvato con una chiave privata, quindi DeHub non ha una frase di recupero da mostrare. Salva questa chiave per ripristinare lo stesso portafoglio.",
+    "keyWarning": "Chiunque possieda questa chiave può controllare il tuo portafoglio. Conservala al sicuro e non condividerla mai."
   },
   "transcript": {
     "title": "Trascrizione",
