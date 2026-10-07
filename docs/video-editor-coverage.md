@@ -57,22 +57,11 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Reliable numeric requests | Implemented | Implemented | Exact cuts run locally; complex requests retain the existing planning route. |
 | Honest operation results | This release | This release | Empty or failed operations cannot display a success confirmation. |
 
-## Download ending concepts
+## Download ending
 
-All ten rendered concepts use the official icon, a `dehub.io/username` credit, black textured backgrounds and silver chrome artwork matching the store images. Sound is original and synthesized locally. Chrome current is the export default.
+Downloads use one simple black-and-white ending. A small official icon deforms through a spin in the centre, settles into its original proportions, then reveals `dehub.io/username` underneath. The icon and credit stay together in the middle of portrait, square and landscape output. Signed-out exports show `dehub.io`.
 
-1. **Chrome current:** the icon settles between a silver globe and stars while fine wave contours move behind the credit.
-2. **Camera flash:** a chrome camera slides in with a brief light flash and a sharp sound accent.
-3. **Power bloom:** the icon appears in a soft silver glow, followed by the creator URL and a low rising tone.
-4. **Star fall:** chrome stars sweep into place around the icon with a resolving chime.
-5. **Ribbon weave:** thin silver wave ribbons cross behind the icon and profile URL.
-6. **Silver press:** the icon lands over faint store-style typography with a low impact.
-7. **Creator orbit:** a globe, star and chain orbit the icon before the credit settles.
-8. **Mirror slide:** two halves of the icon meet, leaving a restrained reflection underneath.
-9. **Signal rush:** a chrome megaphone arrives with fine radiating contours and a short sweep.
-10. **Final frame:** the icon and creator URL settle into a thin silver frame.
-
-MP4/WebM downloads retain the ending sound. GIF downloads use the same animation without audio. Artwork and Exo typography are embedded, so offline native downloads do not fetch remote brand files.
+The ending lasts 2.2 seconds. MP4/WebM retains an original short sweep and resolving chime; GIF uses the same animation without sound. The official icon and Exo font are embedded for offline native exports.
 
 ## Release evidence
 
@@ -96,4 +85,6 @@ MP4/WebM downloads retain the ending sound. GIF downloads use the same animation
 
 - Clip downloads: range/audio math and the archive writer are shared across web and mobile. Cloud tests cover ten distinct one-second ranges, source trims and playback speed, original caption times, partial fade envelopes, UTF-8 names, independent ZIP directory/CRC parsing, bounded reads, cancellation and partial-file cleanup. Web PR 2309 and mobile PR 1687 merged after cloud checks passed. Staging archive downloads and native publication remain pending.
 
-- Icon ending correction: both renderers use the official mark cropped to its visible proportions, a silver material, store artwork and `dehub.io/username` credits. Matching motion, sound, responsive geometry and native-runtime tests are included. Cloud checks, staging downloads and native publication remain pending.
+- Icon profile credits: web PR 2310 and mobile PR 1688 merged after cloud checks passed. Both renderers use the official mark cropped to its visible proportions and `dehub.io/username` credits. The web release appeared on staging. Mobile publication run 37661758610 was dispatched; downloaded-file and physical-device verification remain pending.
+
+- Centred ending: the shared renderer uses a small white icon, an elastic spin and a masked profile-credit reveal on black. Tests cover centred safe placement across aspect ratios, deformation before settling, reveal order, sound bounds and identical native-runtime output. Cloud checks, publication and live export verification remain pending.
