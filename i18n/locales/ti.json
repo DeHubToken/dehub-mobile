@@ -6887,6 +6887,13 @@
       "delete": "ሰርዝ"
     },
     "export": {
+      "scope": "ስፍሓት ኣውጽእ",
+      "downloadTimeline": "ምሉእ ግዜ",
+      "downloadSelection": "ዝተመረጹ ቪድዮታት ({{count}})",
+      "downloadClips": "ነፍሲ ወከፍ ቪድዮ ({{count}})",
+      "rangeHint": "ንነፍሲ ወከፍ ድምጺን ድምጽን ይሕዝ ። ነፍሲ ወከፍ ፋይል 2.2 ካልኢት DeHub ይውስኽ ። ብዙሓት ፋይላት ብሓባር ከም ዚፕ ይወርዱ ።",
+      "exportingClips": "ካብ {{total}} ክሊፕታት {{current}} ይልኣኽ ኣሎ",
+      "archiveTooLarge": "እቲ ምውራድ ልዕሊ 512 ሚ. ንእሽቶ ክሊፕታት ኣውጽእ ወይ ትሑት ፍታሕ ሕረጽ ።",
       "gifHint": "ብዘይ ድምጺ ኣኒሜሽን ኣኒሜሽን ። ክሳብ 60 ካልኢት ፡ 640 ፒክሰል ፡ 15 fps ። እቲ ምልክታኻ ይዛዘም ።",
       "gifTooLong": "ነቲ ናይ ግዜ ሰሌዳ ናብ 60 ካልኢት ወይ ካብኡ ንታሕቲ ወይ MP4 ወይ WebM ምረጽ ።",
       "format": "ፋይል ዓይነት",

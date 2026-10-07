@@ -7017,6 +7017,13 @@
       "delete": "Eliminar"
     },
     "export": {
+      "scope": "Rango de descargas",
+      "downloadTimeline": "Línea de tiempo completa",
+      "downloadSelection": "Clips de vídeo seleccionados ({{count}})",
+      "downloadClips": "Cada videoclip ({{count}})",
+      "rangeHint": "Mantiene los subtítulos y el sonido para cada corte. Cada archivo añade una terminación DeHub de 2,2 segundos. Varios archivos se descargan juntos como un CÓDIGO POSTAL.",
+      "exportingClips": "Exportando clip {{current}} de {{total}}",
+      "archiveTooLarge": "La descarga supera los 512 MB. Exporta menos clips o elige una resolución más baja.",
       "gifHint": "Animación en bucle sin sonido. Hasta 60 segundos, 640 píxeles y 15 fps. Incluye la terminación de tu logotipo.",
       "gifTooLong": "Recorte la línea de tiempo a 60 segundos o menos, o elija MP4 o WebM.",
       "format": "Tipo de archivo",

@@ -1,4 +1,5 @@
 import { saveGif } from "../../libs/editor/saveGif";
+import { saveEditorDownload } from "../../libs/editor/saveEditorDownload";
 import { Platform, Share } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 
@@ -34,4 +35,12 @@ it("opens the existing iOS file share sheet", async () => {
   Platform.OS = "ios"; await saveGif("file://gif", "video");
   expect(Share.share).toHaveBeenCalledWith({ url: "file://gif" });
   expect(FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync).not.toHaveBeenCalled();
+});
+it("saves clip archives with the correct file type and discards a cancelled copy", async () => {
+  const ctl = new AbortController();
+  jest.mocked(FileSystem.readAsStringAsync).mockImplementationOnce(async () => { ctl.abort(); return "YWJj"; });
+  await expect(saveEditorDownload("file://zip", "ten-clips", "zip", "application/zip", ctl.signal)).rejects.toMatchObject({ name: "AbortError" });
+  expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", "ten-clips.zip", "application/zip");
+  expect(FileSystem.writeAsStringAsync).not.toHaveBeenCalled();
+  expect(FileSystem.deleteAsync).toHaveBeenCalledWith("content://gif", { idempotent: true });
 });

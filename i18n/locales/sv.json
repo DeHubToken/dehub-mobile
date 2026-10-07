@@ -6932,6 +6932,13 @@
       "delete": "Radera"
     },
     "export": {
+      "scope": "Nedladdningsintervall",
+      "downloadTimeline": "Hela tidslinjen",
+      "downloadSelection": "Valda videoklipp ({{count}})",
+      "downloadClips": "Varje videoklipp ({{count}})",
+      "rangeHint": "Håller bildtexter och ljud för varje snitt. Varje fil lägger till en 2,2-sekunders DeHub-ändelse. Flera filer laddas ner tillsammans som en ZIP.",
+      "exportingClips": "Exporterar klipp {{current}} av {{total}}",
+      "archiveTooLarge": "Nedladdningen överstiger 512 MiB. Exportera färre klipp eller välj en lägre upplösning.",
       "gifHint": "Loopande animering utan ljud. Upp till 60 sekunder, 640 pixlar och 15 fps. Inkluderar din logotyp som slutar.",
       "gifTooLong": "Trimma tidslinjen till 60 sekunder eller mindre, eller välj MP4 eller WebM.",
       "format": "Filtyp",

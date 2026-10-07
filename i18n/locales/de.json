@@ -7018,6 +7018,13 @@
       "delete": "Löschen"
     },
     "export": {
+      "scope": "Download-Bereich",
+      "downloadTimeline": "Gesamte Zeitleiste",
+      "downloadSelection": "Ausgewählte Videoclips ({{count}})",
+      "downloadClips": "Jeder Videoclip ({{count}})",
+      "rangeHint": "Hält Bildunterschriften und Ton für jeden Schnitt. Jede Datei fügt ein 2,2 Sekunden langes DeHub-Ende hinzu. Mehrere Dateien werden zusammen als ZIP heruntergeladen.",
+      "exportingClips": "Clip {{current}} von {{total}} wird exportiert",
+      "archiveTooLarge": "Der Download überschreitet 512 MiB. Exportieren Sie weniger Clips oder wählen Sie eine niedrigere Auflösung.",
       "gifHint": "Schleifenanimation ohne Ton. Bis zu 60 Sekunden, 640 Pixel und 15 fps. Enthält Ihr Logo-Ende.",
       "gifTooLong": "Schneiden Sie die Zeitleiste auf 60 Sekunden oder weniger zu, oder wählen Sie MP4 oder WebM.",
       "format": "Dateityp",

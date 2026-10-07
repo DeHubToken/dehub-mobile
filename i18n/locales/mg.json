@@ -7009,6 +7009,13 @@
       "delete": "Hamafa"
     },
     "export": {
+      "scope": "Download isan-karazany",
+      "downloadTimeline": "Manontolo ny fandaharam-potoana",
+      "downloadSelection": "Sary mihetsika voafantina ({{count}})",
+      "downloadClips": "Isaky ny horonantsary ({{count}})",
+      "rangeHint": "Mitahiry maribolana sy feo isaky ny tapaka. Ny rakitra tsirairay dia manampy ny DeHub 2.2 segondra. Multiple raki-daza miaraka télécharger toy ny Zip.",
+      "exportingClips": "Fanondranana horonantsary {{current}} {{total}}",
+      "archiveTooLarge": "Ny INSEE dia mampiasa ny kaodim-paositra 51250. Manondrana clips vitsy kokoa na mifidy ny fanapahan-kevitra ambany.",
       "gifHint": "Looping sarimiaina tsy misy feo. Hatramin'ny 60 segondra, ny 640 pixel ary ny 15 fps. [Izao va no tanànanao miravoravo?]",
       "gifTooLong": "Karakarao ny timeline amin'ny 60 segondra na latsaka, na misafidy MP4 na WebM.",
       "format": "Karazana rakitra",

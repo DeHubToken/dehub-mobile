@@ -7214,6 +7214,13 @@
       "delete": "Verwijderen"
     },
     "export": {
+      "scope": "Downloadbereik",
+      "downloadTimeline": "Hele tijdlijn",
+      "downloadSelection": "Geselecteerde videoclips ({{count}})",
+      "downloadClips": "Elke videoclip ({{count}})",
+      "rangeHint": "Behoudt bijschriften en geluid voor elke snede. Elk bestand voegt een DeHub-einde van 2,2 seconden toe. Meerdere bestanden samen downloaden als een ZIP.",
+      "exportingClips": "Clip exporteren {{current}} van {{total}}",
+      "archiveTooLarge": "De download overschrijdt 512 MiB. Exporteer minder clips of kies een lagere resolutie.",
       "gifHint": "Lusanimatie zonder geluid. Tot 60 seconden, 640 pixels en 15 fps. Inclusief het einde van je logo.",
       "gifTooLong": "Trim de tijdlijn tot 60 seconden of minder, of kies MP4 of WebM.",
       "format": "Bestandstype",

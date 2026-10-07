@@ -6960,6 +6960,13 @@
       "delete": "Haquu"
     },
     "export": {
+      "scope": "Buufadhu daangaa",
+      "downloadTimeline": "Guutuu yeroo",
+      "downloadSelection": "Kiliippiiwwan viidiyoo filataman ({{count}})",
+      "downloadClips": "Kiliippii viidiyoo hunda ({{count}})",
+      "rangeHint": "Tokkoon tokkoon muraadhaaf mata duree fi sagalee ni qabata. Tokkoon tokkoon faayilii xumura DeHub sekondii 2.2 dabalata. Faayiloonni hedduun akka ZIP tti walitti buufa.",
+      "exportingClips": "Kiliippii {{current}} kan {{total}} erguu",
+      "archiveTooLarge": "Buufanni isaa 512 MiB ol ta&#39;a. Kiliippiiwwan xiqqaa ergi ykn furmaata gadi aanaa filadhu.",
       "gifHint": "Animeeshinii sagalee malee loop gochuu. Hanga sekondii 60, piikselii 640 fi fps 15. Xumura asxaa keessanii of keessaa qaba.",
       "gifTooLong": "Sarara yeroo gara sekondii 60 fi isaa gadiitti muraa, ykn MP4 ykn WebM filadhu.",
       "format": "Gosa faayilii",

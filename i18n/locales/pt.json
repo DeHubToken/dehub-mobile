@@ -7020,6 +7020,13 @@
       "delete": "Eliminar"
     },
     "export": {
+      "scope": "Intervalo de transferências",
+      "downloadTimeline": "Linha do tempo inteira",
+      "downloadSelection": "Videoclipes selecionados ({{count}})",
+      "downloadClips": "Cada videoclipe ({{count}})",
+      "rangeHint": "Mantém legendas e som para cada corte. Cada arquivo adiciona um final DeHub de 2,2 segundos. Vários arquivos são baixados juntos como um ZIP.",
+      "exportingClips": "A exportar clipe {{current}} de {{total}}",
+      "archiveTooLarge": "O download excede 512 MiB. Exporte menos clipes ou escolha uma resolução mais baixa.",
       "gifHint": "Animação em loop sem som. Até 60 segundos, 640 pixels e 15 fps. Inclui o final do seu logotipo.",
       "gifTooLong": "Corte a linha do tempo para 60 segundos ou menos, ou escolha MP4 ou WebM.",
       "format": "Tipo de arquivo",

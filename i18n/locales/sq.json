@@ -6928,6 +6928,13 @@
       "delete": "Fshi"
     },
     "export": {
+      "scope": "Gama e shkarkimeve",
+      "downloadTimeline": "I gjithë afati kohor",
+      "downloadSelection": "Videoklipe të zgjedhura ({{count}})",
+      "downloadClips": "Çdo videoklip ({{count}})",
+      "rangeHint": "Mban diçiturat dhe tingujt për çdo prerje. Çdo skedar shton një përfundim DeHub prej 2.2 sekondash. Shkarko skedarë të shumëfishtë së bashku si një ZIP.",
+      "exportingClips": "Eksportimi i klipit {{current}} i {{total}}",
+      "archiveTooLarge": "Shkarkimi tejkalon 512 MiB. Eksporto më pak klipe ose zgjidh një rezolucion më të ulët.",
       "gifHint": "Lakimi i animacionit pa zë. Deri në 60 sekonda, 640 piksele dhe 15 fps. Përfshin fundin e logos.",
       "gifTooLong": "Cuti kohëzgjatjen në 60 sekonda ose më pak, ose zgjidh MP4 ose WebM.",
       "format": "Lloji i skedarit",

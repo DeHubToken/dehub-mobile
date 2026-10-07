@@ -7011,6 +7011,13 @@
       "delete": "삭제"
     },
     "export": {
+      "scope": "다운로드 범위",
+      "downloadTimeline": "전체 타임라인",
+      "downloadSelection": "선택한 동영상 클립 ({{count}})",
+      "downloadClips": "모든 동영상 클립 ({{count}})",
+      "rangeHint": "각 컷에 대해 캡션과 사운드를 유지합니다. 각 파일에는 2.2초 디허브 엔딩이 추가됩니다. 여러 파일이 zip으로 함께 다운로드됩니다.",
+      "exportingClips": "{{total}} 의 {{current}} 클립 내보내기",
+      "archiveTooLarge": "다운로드가 512MiB를 초과합니다. 더 적은 수의 클립을 내보내거나 더 낮은 해상도를 선택하세요.",
       "gifHint": "소리 없이 애니메이션을 반복합니다. 최대 60초, 640픽셀 및 15fps. 로고 엔딩이 포함되어 있습니다.",
       "gifTooLong": "타임라인을 60초 이하로 트리밍하거나 MP4 또는 WebM을 선택합니다.",
       "format": "파일 형식",
