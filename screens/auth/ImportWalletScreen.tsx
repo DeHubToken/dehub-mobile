@@ -133,7 +133,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     }
     try {
       setIsImporting(true);
-      // A phrase becomes its key here; everything after is the key path.
+      // Keep the original phrase in protected storage alongside its signing key.
       let privateKey: string;
       try {
         privateKey = privateKeyFromImportSecret(secretInput);
@@ -166,7 +166,11 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
       setEoaSigningProvider(localProvider);
 
       try {
-        await upsertLocalAccount({ address, privateKey });
+        await upsertLocalAccount({
+          address,
+          privateKey,
+          recoveryPhrase: importSecretKind(secretInput) === "phrase" ? secretInput : undefined,
+        });
         await signInWithWallet(address, effectiveChainId, privateKey);
         toastInfo(t("auth.walletImported"));
         setSecretInput("");
