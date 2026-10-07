@@ -35,7 +35,7 @@ try {
 export const speechAvailable = Speech !== null;
 
 /** The original track stays audible under the dub: music and tone still carry. */
-const DUCKED_VOLUME = 0.15;
+const DUCKED_VOLUME = 0.06;
 /** Faster than this and a synthetic voice stops being intelligible. */
 const MAX_RATE = 1.3;
 /** Roughly what a device voice gets through per second at rate 1. */
@@ -92,16 +92,20 @@ export async function findVoice(lang: string): Promise<SpeechModule.Voice | null
   if (!Speech) return null;
   const voices = await loadVoices();
   if (!voices.length) return undefined;
-  const base = baseLang(lang);
-  const matches = voices.filter((v) => baseLang(v.language) === base);
+  const aliases: Record<string, string> = { no: 'nb', tl: 'fil', iw: 'he', yue: 'zh' };
+  const base = aliases[baseLang(lang)] ?? baseLang(lang);
+  const matches = voices.filter((v) => (aliases[baseLang(v.language)] ?? baseLang(v.language)) === base);
   if (!matches.length) return null;
-  return matches.find((v) => v.quality === Speech?.VoiceQuality.Enhanced) ?? matches[0];
+  const exact = matches.filter((v) => v.language.toLowerCase().replace('_', '-') === lang.toLowerCase().replace('_', '-'));
+  const pool = exact.length ? exact : matches;
+  return pool.find((v) => v.quality === Speech?.VoiceQuality.Enhanced) ?? pool[0];
 }
 
 // The speech engine is one per device, but a feed mounts a player per card.
 // Only the instance that started the current utterance may stop it, or a
 // card scrolled past pausing itself would silence the one being watched.
 let speaker: object | null = null;
+const owners = new WeakMap<VideoPlayer, object>();
 function stopIfMine(owner: object) {
   if (speaker !== owner) return;
   speaker = null;
@@ -115,45 +119,52 @@ interface VoiceDubOptions {
   /** Language to speak in. */
   lang: string | null;
   enabled: boolean;
+  onFailed?: () => void;
 }
 
-export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions) {
+export function useVoiceDub({ player, segments, lang, enabled, onFailed }: VoiceDubOptions) {
   const active = speechAvailable && enabled && !!player && !!lang && !!segments?.length;
   const owner = useRef({}).current;
-
-  // Duck rather than mute: `muted` belongs to the player's mute button, and a
-  // dub should sit on top of the soundtrack rather than replace it.
-  useEffect(() => {
-    if (!active || !player) return;
-    let prevVolume = 1;
-    try {
-      prevVolume = player.volume;
-      player.volume = Math.min(prevVolume, DUCKED_VOLUME);
-    } catch {}
-    return () => {
-      try { player.volume = prevVolume; } catch {}
-    };
-  }, [active, player]);
-
-  const voiceRef = useRef<string | undefined>(undefined);
-  useEffect(() => {
-    voiceRef.current = undefined;
-    if (!active || !lang) return;
-    let cancelled = false;
-    void findVoice(lang).then((voice) => {
-      if (!cancelled) voiceRef.current = voice?.identifier;
-    });
-    return () => { cancelled = true; };
-  }, [active, lang]);
+  const failedRef = useRef(onFailed);
+  failedRef.current = onFailed;
 
   useEffect(() => {
     if (!active || !player || !segments || !lang) return;
+    if (owners.has(player)) return;
+    owners.set(player, owner);
     // The line most recently started. Reset to -1 whenever speech is cut, so
     // playback resumes with whatever line the playhead is on.
     let spoken = -1;
     let lastT = -1;
+    let alive = true;
+    let failed = false;
+    let voiceReady = false;
+    let voice: string | undefined;
+    let utterance = 0;
+    let ducked = false;
+    let userVolume = player.volume;
+    let expectedVolume = userVolume;
+    const syncVolume = () => {
+      const target = ducked ? userVolume * DUCKED_VOLUME : userVolume;
+      expectedVolume = target;
+      try { if (Math.abs(player.volume - target) >= 0.001) player.volume = target; } catch {}
+    };
+
+    const silence = () => {
+      utterance++;
+      stopIfMine(owner);
+      spoken = -1;
+      ducked = false;
+      syncVolume();
+    };
+    const fail = () => {
+      failed = true;
+      silence();
+      failedRef.current?.();
+    };
 
     const speakAt = (t: number) => {
+      if (!alive || failed || !voiceReady || !Speech || userVolume === 0) return;
       const i = segmentIndexAt(segments, t);
       if (i < 0 || i === spoken) return;
       const seg = segments[i];
@@ -164,19 +175,33 @@ export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions
       if (!text) return;
       // Never queue. An utterance still running from the last line is cut
       // here, or the dub falls behind the picture and never catches up.
-      if (!Speech) return;
-      void Speech.stop();
+      const id = ++utterance;
       speaker = owner;
-      Speech.speak(text, {
-        language: lang,
-        voice: voiceRef.current,
-        rate: speechRate(text, remaining, player.playbackRate),
-      });
-    };
-
-    const silence = () => {
-      stopIfMine(owner);
-      spoken = -1;
+      const current = () => alive && utterance === id;
+      const finish = () => {
+        if (!current()) return;
+        if (speaker === owner) speaker = null;
+        ducked = false;
+        syncVolume();
+      };
+      void Speech.stop().then(() => {
+        if (!current() || speaker !== owner || !player.playing || player.muted) return;
+        Speech?.speak(text, {
+          language: lang,
+          voice,
+          volume: userVolume,
+          rate: speechRate(text, seg.end - player.currentTime, player.playbackRate),
+          onStart: () => {
+            if (!current()) return;
+            if (!player.playing || player.muted || userVolume === 0) { silence(); return; }
+            ducked = true;
+            syncVolume();
+          },
+          onDone: finish,
+          onStopped: finish,
+          onError: () => { if (current()) fail(); },
+        });
+      }).catch(() => { if (current()) fail(); });
     };
 
     const onTime = ({ currentTime }: { currentTime: number }) => {
@@ -185,10 +210,11 @@ export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions
         lastT >= 0 && (currentTime < lastT - 0.25 || currentTime - lastT > SEEK_JUMP_S * rate);
       lastT = currentTime;
       if (jumped) silence();
-      if (!player.playing || player.muted) {
+      if (!player.playing || player.muted || userVolume === 0) {
         if (speaker === owner) silence();
         return;
       }
+      if (segmentIndexAt(segments, currentTime) < 0 && speaker === owner) silence();
       speakAt(currentTime);
     };
 
@@ -200,14 +226,30 @@ export function useVoiceDub({ player, segments, lang, enabled }: VoiceDubOptions
     const muteSub = player.addListener("mutedChange", ({ muted }: { muted: boolean }) => {
       if (muted) silence();
     });
+    const volumeSub = player.addListener("volumeChange", () => {
+      if (Math.abs(player.volume - expectedVolume) >= 0.001) userVolume = player.volume;
+      if (userVolume === 0 || player.muted) silence();
+      else syncVolume();
+    });
+    const endSub = player.addListener("playToEnd", silence);
 
-    if (player.playing && !player.muted) speakAt(player.currentTime);
+    void findVoice(lang).then((found) => {
+      if (!alive) return;
+      if (found === null) { fail(); return; }
+      voice = found?.identifier;
+      voiceReady = true;
+      if (player.playing && !player.muted) speakAt(player.currentTime);
+    }).catch(() => { if (alive) fail(); });
 
     return () => {
+      alive = false;
       timeSub.remove();
       playSub.remove();
       muteSub.remove();
-      stopIfMine(owner);
+      volumeSub.remove();
+      endSub.remove();
+      silence();
+      if (owners.get(player) === owner) owners.delete(player);
     };
   }, [active, player, segments, lang, owner]);
 }
