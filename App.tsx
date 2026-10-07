@@ -1,3 +1,4 @@
+import { VideoDownloadProvider } from "./context/VideoDownloadContext";
 import { ScreenNames } from "./navigation/ScreenNames";
 import {
   NavigationContainer,
@@ -474,6 +475,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                   <UserProfileSheetProvider>
                     <MessagingProvider>
                       <CallProvider>
+                        <VideoDownloadProvider>
                         <RootNavigator />
                         <PictureInPictureHost />
                         <NewMemberRegistrar />
@@ -485,6 +487,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
                         <AudioPostMiniPlayer />
+                        </VideoDownloadProvider>
                       </CallProvider>
                     </MessagingProvider>
                   </UserProfileSheetProvider>
