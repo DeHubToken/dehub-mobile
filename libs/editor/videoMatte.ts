@@ -55,3 +55,15 @@ export function assertVideoMattes(clips: Clip[], available: (id: string, width: 
     if (!validVideoMatte(clip) || clip.trimIn < clip.videoMatte.start - 1e-6 || end > clip.videoMatte.end + 1e-6 || !available(clip.videoMatte.mediaId, clip.videoMatte.atlasWidth, clip.videoMatte.atlasHeight)) throw new Error("Background-removal frames are missing for this range. Restore the background or remove it again before exporting.");
   }
 }
+
+/** Exact, unambiguous cut-out requests avoid a text-planning round trip. */
+export function videoMatteCommand(prompt: string, scene: unknown): { op: "remove_background"; id: string } | null {
+  const text = prompt.trim().toLowerCase().replace(/[.!?]+$/, "");
+  if (!/^(?:please\s+)?remove\s+(?:the\s+)?(?:video\s+)?background(?:\s+(?:from|of)\s+(?:(?:the|this|my)\s+)?(?:video|clip))?$/.test(text) || !scene || typeof scene !== "object") return null;
+  const value = scene as { selected?: string[]; layers?: { id: string; kind: string; locked?: boolean; hidden?: boolean }[] };
+  const layers = (value.layers ?? []).filter(c => !c.hidden), videos = layers.filter(c => c.kind === "video");
+  const selected = videos.filter(c => value.selected?.includes(c.id));
+  const explicit = /\b(?:video|clip)\b/.test(text);
+  const clip = selected.length === 1 && value.selected?.length === 1 ? selected[0] : !value.selected?.length && videos.length === 1 && (explicit || layers.filter(c => c.kind !== "audio").length === 1) ? videos[0] : undefined;
+  return clip && !clip.locked ? { op: "remove_background", id: clip.id } : null;
+}
