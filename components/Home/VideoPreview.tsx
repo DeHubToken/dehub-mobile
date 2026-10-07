@@ -342,6 +342,7 @@ export default function VideoPreview({
             player={player as any}
             contentFit="cover"
             nativeControls={false}
+            allowsVideoFrameAnalysis={false}
             style={{ width: "100%", height: "100%" }}
           />
           {phase === "buffering" && (

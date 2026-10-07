@@ -77,6 +77,7 @@ export const PersistentVideoView = forwardRef<VideoView, VideoViewProps>((props,
   }), [navigation, token]);
   if (entry?.props.player === props.player && entry) return <View style={props.style} />;
   return <VideoView {...props} ref={local}
+    allowsVideoFrameAnalysis={false}
     onPictureInPictureStart={() => {
       if (props.player) {
         props.player.staysActiveInBackground = true;
@@ -96,6 +97,7 @@ export function PictureInPictureHost() {
   const entry = useSyncExternalStore(subscribe, snapshot, snapshot);
   if (!entry) return null;
   return <VideoView {...entry.props}
+    allowsVideoFrameAnalysis={false}
     ref={view => { entry.view = view; if (view) entry.ready(view); }}
     style={styles.host}
     nativeControls={false}

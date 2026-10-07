@@ -30,7 +30,7 @@ import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
-import { requestVideoPlayback } from "../../libs/video-start";
+import { flushVideoPlayIntent, requestVideoPlayback } from "../../libs/video-start";
 import { createLogger } from "../../libs/logger";
 import {
   getPlaybackRateFor,
@@ -649,22 +649,21 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [canPlay, videoUrl, tokenId, stopPlayback]);
 
   /**
-   * Submit the intent even while loading. The shared player already has its
-   * source; native playback queues until it can start. Waiting for readyToPlay
-   * here can leave a paused iOS player loading without ever receiving play().
+   * Start loading immediately, but retain the intent until the native item is
+   * ready. iOS loads its initial item asynchronously, so an early play() can
+   * arrive before that item exists and must be repeated after readiness.
    */
-  const flushPendingPlay = useCallback(() => {
+  const flushPendingPlay = useCallback((readyEvent = false) => {
     if (!pendingPlayRef.current) return;
     const p = playerRef.current;
     if (!p) return;
-    pendingPlayRef.current = false;
     // Seed mute from the shared cache the same way the old direct path did.
     try {
       const m = shouldStartMuted();
       p.muted = m;
       setIsMuted(m);
     } catch {}
-    startPlayback();
+    flushVideoPlayIntent(pendingPlayRef, readyEvent || p.status === "readyToPlay", startPlayback);
   }, [startPlayback]);
 
   useEffect(() => {
@@ -698,7 +697,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             if (player.duration > 0) setVideoDuration(player.duration);
             // The deferred source has arrived; honour the intent that
             // attached it.
-            flushPendingPlay();
+            flushPendingPlay(true);
           }
         })
       );
