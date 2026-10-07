@@ -22,6 +22,7 @@ import type { FollowListItem } from "../../services/user.service";
 import TotalReachPill from "../Profile/TotalReachPill";
 import ProfileLinksPill from "../Profile/ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 
 const GLASS_GRADIENT: [string, string, string] = [
@@ -122,6 +123,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 }) => {
   const { t } = useI18n();
   const { isMinimal, skin } = useAppTheme();
+  const cinematicPhone = useCinematicPhone();
   const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
   // Bios go through the shared hook rather than a private translateText call,
@@ -259,7 +261,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
       >
         {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
         <View
-          className={isMinimal ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          className={isMinimal || cinematicPhone ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
           style={{ height: 140 }}
         >
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
@@ -272,13 +274,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 : { uri: storageImage(coverUrl as string, windowWidth) }
             }
             recyclingKey={coverUrl}
-            style={[{ width: "100%", height: "100%" }, isMinimal ? null : { borderRadius: 12 }]}
+            style={[{ width: "100%", height: "100%" }, isMinimal || cinematicPhone ? null : { borderRadius: 12 }]}
             contentFit="cover"
           />
         </View>
       </TouchableOpacity>
 
-      <View className="px-5">
+      <View className={cinematicPhone ? "px-4" : "px-5"}>
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <Avatar
             uri={avatarUrl || undefined}

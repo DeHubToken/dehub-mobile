@@ -5,6 +5,7 @@ import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs/misc";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 
 // Tile sizes follow from the outer padding and the gap, so each theme gets its
@@ -143,10 +144,12 @@ const GridRow = memo<{ row: GridRowData; data: ImagePost[]; m: GridMetrics; onPr
 
 const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, listRef, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
   const { isMinimal } = useAppTheme();
+  const cinematicPhone = useCinematicPhone();
+  const cinematic = cinematicPhone && !!ListHeaderComponent;
   const { width: screenWidth } = useWindowDimensions();
   const m = useMemo(
-    () => (isMinimal ? makeGridMetrics(screenWidth, 1, 0, "#000") : makeGridMetrics(screenWidth, 2, 16, "#1D1F21")),
-    [isMinimal, screenWidth],
+    () => (isMinimal ? makeGridMetrics(screenWidth, 1, 0, "#000") : makeGridMetrics(screenWidth, 2, cinematic ? 0 : 16, "#1D1F21")),
+    [isMinimal, cinematic, screenWidth],
   );
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 

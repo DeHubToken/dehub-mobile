@@ -337,12 +337,14 @@ const ThreadParentCommentRow: React.FC<{ parent: UserReplyParentComment; onUserP
 
 interface UserReplyCardProps {
   item: UserReplyItem;
+  cinematic?: boolean;
   onPress: (item: UserReplyItem) => void;
   onLongPress?: (item: UserReplyItem) => void;
 }
 
 const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   item,
+  cinematic = false,
   onPress,
   onLongPress,
 }) => {
@@ -451,6 +453,15 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         // Minimal: the card dissolves into a full-width row — no outline or
         // gap, one hairline underneath, text inset from the screen edge.
         isMinimal && { ...minimalRow, marginVertical: 0, paddingHorizontal: MINIMAL_INSET },
+        cinematic && {
+          borderWidth: 0,
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: "rgba(255,255,255,0.12)",
+          borderRadius: 0,
+          marginVertical: 0,
+          paddingHorizontal: 14,
+          paddingVertical: 22,
+        },
       ]}
     >
       {/* The post — the top of every thread. */}

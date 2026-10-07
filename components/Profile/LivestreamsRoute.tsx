@@ -1,6 +1,7 @@
 import React from "react";
 import type { NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import CompactVideoInfiniteList from "../Home/CompactVideoInfiniteList";
+import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 
 const FALLBACK_ADDRESS = "0x4B12Ca78C722253cd174Db212E2122b1E635a18A";
 
@@ -20,18 +21,22 @@ const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
   onScroll,
   listHeader,
   onBeforeNavigate,
-}) => (
-  <CompactVideoInfiniteList
+}) => {
+  const cinematicPhone = useCinematicPhone();
+  return (
+    <CompactVideoInfiniteList
+      cinematic={cinematicPhone && !!listHeader}
       listRef={listRef}
-    address={address || FALLBACK_ADDRESS}
-    variant="live"
-    enablePreview={false}
-    bottomPadding={80}
-    showCreator={showCreator}
-    onScroll={onScroll}
-    ListHeaderComponent={listHeader}
-    onBeforeNavigate={onBeforeNavigate}
-  />
-);
+      address={address || FALLBACK_ADDRESS}
+      variant="live"
+      enablePreview={false}
+      bottomPadding={80}
+      showCreator={showCreator}
+      onScroll={onScroll}
+      ListHeaderComponent={listHeader}
+      onBeforeNavigate={onBeforeNavigate}
+    />
+  );
+};
 
 export default LivestreamsRoute;
