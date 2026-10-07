@@ -6887,6 +6887,13 @@
     }
   },
   "editor": {
+    "shots": {
+      "detect": "Wykryj zmiany scen",
+      "split": "Podziel w wybranych cięciach",
+      "none": "Nie znaleziono zmian scen.",
+      "hint": "Najpierw sprawdź cięcia · ≤10 min",
+      "preview": "Podgląd"
+    },
     "beats": {
       "markers": "Znaczniki rytmu",
       "sync": "Synchronizuj cięcia",

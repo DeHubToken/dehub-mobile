@@ -6769,6 +6769,13 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "shots": {
+      "detect": "Wá ìyípadà ìṣẹ̀lẹ̀",
+      "split": "Pín ní àwọn ibi tí a yàn",
+      "none": "Kò sí ìyípadà ìṣẹ̀lẹ̀ tí a rí.",
+      "hint": "Ṣàyẹ̀wò ibi gígé kọ́kọ́ · ≤10 min",
+      "preview": "Àwòkọ́ṣe"
+    },
     "beats": {
       "markers": "Àmì ìlù",
       "sync": "Mú àwọn gígé bá ara mu",

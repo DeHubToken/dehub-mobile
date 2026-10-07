@@ -7073,6 +7073,13 @@
     }
   },
   "editor": {
+    "shots": {
+      "detect": "Scènewisselingen detecteren",
+      "split": "Splits bij gekozen knippunten",
+      "none": "Geen scènewisselingen gevonden.",
+      "hint": "Controleer eerst de knippunten · ≤10 min",
+      "preview": "Voorbeeld"
+    },
     "beats": {
       "markers": "Beatmarkeringen",
       "sync": "Cuts synchroniseren",

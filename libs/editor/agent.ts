@@ -28,6 +28,8 @@ import {
   type ClipPatch,
 } from "./project";
 import { applyFilterPreset } from "./filterPresets";
+import { shotCommand } from "./shots";
+import type { ShotAnalysis } from "./shots";
 import { alignBeatCuts, beatCommand, clipBeatMap, clipBeatTimes, type BeatAnalysis } from "./beats";
 import { audioToolLayers, audioToolCommand } from "./audioTools";
 import { cleanKeys, keyframeProps } from "./keyframes";
@@ -109,7 +111,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
-    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "process_audio", "beat_sync", "add_page", "goto_page", "delete_page", "select"],
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "process_audio", "beat_sync", "detect_shots", "add_page", "goto_page", "delete_page", "select"],
     stockKinds: ["photo", "video", "audio"],
     pages: getPages(p.settings, p.clips).map(page => ({ index: page.index, start: page.start, duration: page.end - page.start })),
     currentPage: pageAt(getPages(p.settings, p.clips), playhead).index,
@@ -132,7 +134,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const last = messages[messages.length - 1];
-  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) : null;
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
@@ -253,6 +255,7 @@ function nearestAspect(ratio: number): Exclude<AspectPreset, "custom"> {
 }
 
 export interface ApplyContext {
+  detectShots?: (clip: MediaClip) => Promise<ShotAnalysis>;
   detectBeats?: (clip: MediaClip) => Promise<BeatAnalysis>;
   processAudio?: (clip: MediaClip, mode: import("./audioTools").AudioToolMode) => Promise<string | null>;
   transcribe?: (clip: MediaClip) => Promise<CaptionWord[]>;
@@ -558,6 +561,14 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         p = { ...p, tracks: [...p.tracks, captions.track], clips: [...p.clips, ...captions.clips] };
         created.push(...captions.clips.map(c => c.id));
         return true;
+      }
+      case "detect_shots": {
+        const clip = find(op.id);
+        if (!ctx.detectShots || !clip || clip.kind !== "video" || clip.locked) return false;
+        const analysis = await ctx.detectShots(clip);
+        const result = applyTimelineOp(p, { op: "split_points", id: clip.id, times: analysis.times }, () => newId(10));
+        if (!result) return false;
+        p = { ...p, clips: result.clips }; created.push(...result.created); return true;
       }
       case "beat_sync": {
         const clip = find(op.id);

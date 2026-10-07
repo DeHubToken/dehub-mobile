@@ -6787,6 +6787,13 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "editor": {
+    "shots": {
+      "detect": "Atrast ainu maiņas",
+      "split": "Sadalīt atlasītajās griezuma vietās",
+      "none": "Ainu maiņas nav atrastas.",
+      "hint": "Vispirms pārskatiet griezumus · ≤10 min",
+      "preview": "Priekšskatījums"
+    },
     "beats": {
       "markers": "Ritma marķieri",
       "sync": "Sinhronizēt griezumus",

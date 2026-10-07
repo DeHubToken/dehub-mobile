@@ -6791,6 +6791,13 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "shots": {
+      "detect": "Hitta scenbyten",
+      "split": "Dela vid valda klipp",
+      "none": "Inga scenbyten hittades.",
+      "hint": "Granska klippen först · ≤10 min",
+      "preview": "Förhandsvisning"
+    },
     "beats": {
       "markers": "Rytmmarkörer",
       "sync": "Synkronisera klipp",

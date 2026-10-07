@@ -6788,6 +6788,13 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "shots": {
+      "detect": "Detecta canvis d'escena",
+      "split": "Divideix als talls seleccionats",
+      "none": "No s'han trobat canvis d'escena.",
+      "hint": "Revisa els talls primer · ≤10 min",
+      "preview": "Previsualitza"
+    },
     "beats": {
       "markers": "Marcadors de ritme",
       "sync": "Sincronitza els talls",

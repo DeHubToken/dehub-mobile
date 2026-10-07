@@ -2,7 +2,7 @@ import type { Clip, ClipKeyframes, MediaClip, Track, TransitionKind } from "./ty
 import { shiftKeys } from "./keyframes";
 
 /** Keep this contract and reducer identical in the web and mobile editors. */
-export const TIMELINE_OPS = ["split", "segment", "trim", "remove_range", "sequence", "close_gaps", "repeat", "speed", "extract_audio", "audio", "transition", "timing"];
+export const TIMELINE_OPS = ["split", "split_points", "segment", "trim", "remove_range", "sequence", "close_gaps", "repeat", "speed", "extract_audio", "audio", "transition", "timing"];
 type Op = { op: string; [key: string]: unknown };
 type Timeline = { clips: Clip[]; tracks: Track[] };
 export interface TimelineResult extends Timeline { created: string[] }
@@ -93,6 +93,14 @@ export function applyTimelineOp(state: Timeline, op: Op, makeId: () => string): 
       const offset = at - c.start;
       if (offset < MIN || c.duration - offset < MIN) return null;
       replace(c, [slice(c, 0, offset, c.id), slice(c, offset, c.duration - offset, id())]);
+      return result();
+    }
+    case "split_points": {
+      if (c.kind !== "video" || c.hidden || tracks.find(t => t.id === c.trackId)?.hidden || !Array.isArray(op.times) || !op.times.length || op.times.length > 99) return null;
+      const times = op.times as number[];
+      if (times.some((at, i) => number(at) === undefined || at < MIN || c.duration - at < MIN || (i > 0 && at - times[i - 1] < MIN))) return null;
+      const edges = [0, ...times, c.duration];
+      replace(c, edges.slice(0, -1).map((at, i) => slice(c, at, edges[i + 1] - at, i ? id() : c.id)));
       return result();
     }
     case "segment": {

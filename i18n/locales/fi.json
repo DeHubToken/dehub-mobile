@@ -6787,6 +6787,13 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "editor": {
+    "shots": {
+      "detect": "Tunnista kohtauksen vaihdot",
+      "split": "Jaa valituista leikkauskohdista",
+      "none": "Kohtauksen vaihtoja ei löytynyt.",
+      "hint": "Tarkista leikkaukset ensin · ≤10 min",
+      "preview": "Esikatselu"
+    },
     "beats": {
       "markers": "Rytmimerkit",
       "sync": "Synkronoi leikkaukset",
