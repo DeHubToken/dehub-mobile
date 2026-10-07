@@ -6791,6 +6791,15 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatikus feliratok",
+        "working":  "Figyelés… {{percent}}%",
+        "downloading":  "A beszédmodell előkészítése… {{percent}}%",
+        "hint":  "A beszédet időzített, átformázható feliratokká alakítja. Az eszközödön fut: ingyenes és privát. Az első használatkor letölti a modellt.",
+        "done":  "{{count}} felirat hozzáadva.",
+        "noSpeech":  "Ebben a klipben nincs beszéd.",
+        "failed":  "Nem sikerült feliratot készíteni ehhez a kliphez."
+    },
     "app": {
       "newDesign": "Új terv",
       "yourDesigns": "A terveid",

@@ -6905,6 +6905,15 @@
     }
   },
   "editor": {
+    "captions": {
+        "action":  "Phụ đề tự động",
+        "working":  "Đang nghe… {{percent}}%",
+        "downloading":  "Đang chuẩn bị mô hình giọng nói… {{percent}}%",
+        "hint":  "Chuyển lời nói thành phụ đề có mốc thời gian mà bạn có thể đổi kiểu. Chạy trên thiết bị của bạn: miễn phí và riêng tư. Lần dùng đầu tiên sẽ tải mô hình xuống.",
+        "done":  "Đã thêm {{count}} phụ đề.",
+        "noSpeech":  "Không tìm thấy lời nói trong đoạn này.",
+        "failed":  "Không thể tạo phụ đề cho đoạn này."
+    },
     "app": {
       "newDesign": "Thiết kế mới",
       "yourDesigns": "Thiết kế của bạn",

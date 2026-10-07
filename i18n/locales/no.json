@@ -6786,6 +6786,15 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatisk teksting",
+        "working":  "Lytter… {{percent}} %",
+        "downloading":  "Gjør klar talemodellen… {{percent}} %",
+        "hint":  "Gjør tale om til tidsbestemt teksting du kan style om. Kjører på enheten din: gratis og privat. Første gang lastes modellen ned.",
+        "done":  "La til {{count}} tekstlinjer.",
+        "noSpeech":  "Fant ingen tale i dette klippet.",
+        "failed":  "Kunne ikke lage teksting for dette klippet."
+    },
     "app": {
       "newDesign": "Nytt design",
       "yourDesigns": "Designene dine",

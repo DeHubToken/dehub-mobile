@@ -6787,6 +6787,15 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "editor": {
+    "captions": {
+        "action":  "Avtomatik altyazılar",
+        "working":  "Dinlənilir… {{percent}}%",
+        "downloading":  "Nitq modeli hazırlanır… {{percent}}%",
+        "hint":  "Nitqi yenidən üslublaya biləcəyiniz zamanlanmış altyazılara çevirir. Cihazınızda işləyir: pulsuz və məxfi. İlk istifadədə model endirilir.",
+        "done":  "{{count}} altyazı əlavə edildi.",
+        "noSpeech":  "Bu klipdə nitq tapılmadı.",
+        "failed":  "Bu klip üçün altyazı yaratmaq mümkün olmadı."
+    },
     "app": {
       "newDesign": "Yeni dizayn",
       "yourDesigns": "Dizaynlarınız",

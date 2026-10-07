@@ -6801,6 +6801,15 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "captions": {
+        "action":  "Kikinmanta subtítulos",
+        "working":  "Uyarichkan… {{percent}}%",
+        "downloading":  "Rimay modelota wakichichkan… {{percent}}%",
+        "hint":  "Rimayta pachaman tupachisqa subtítulosman tikran, sumaqchayta atinki. Equipoykipi llamkan: qasilla, sapallayki. Ñawpaq kutipi modelota uraykachin.",
+        "done":  "{{count}} subtítulos yapasqa.",
+        "noSpeech":  "Kay clippi mana rimay tarikunchu.",
+        "failed":  "Mana atikurqanchu kay clippaq subtítulosta ruwayta."
+    },
     "app": {
       "newDesign": "Musuq diseño",
       "yourDesigns": "Diseñoykikuna",

@@ -6868,6 +6868,15 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "captions": {
+        "action":  "Sottotitoli automatici",
+        "working":  "In ascolto… {{percent}}%",
+        "downloading":  "Preparazione del modello vocale… {{percent}}%",
+        "hint":  "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
+        "done":  "{{count}} sottotitoli aggiunti.",
+        "noSpeech":  "Nessun parlato trovato in questa clip.",
+        "failed":  "Impossibile creare i sottotitoli per questa clip."
+    },
     "app": {
       "newDesign": "Nuovo progetto",
       "yourDesigns": "I tuoi progetti",

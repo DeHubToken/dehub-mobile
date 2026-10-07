@@ -6788,6 +6788,15 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatski titlovi",
+        "working":  "Slušam… {{percent}} %",
+        "downloading":  "Pripremam model govora… {{percent}} %",
+        "hint":  "Pretvara govor u vremenski usklađene titlove kojima možete promijeniti stil. Radi na vašem uređaju: besplatno i privatno. Pri prvoj upotrebi preuzima se model.",
+        "done":  "Dodano titlova: {{count}}.",
+        "noSpeech":  "U ovom isječku nije pronađen govor.",
+        "failed":  "Nije moguće izraditi titlove za ovaj isječak."
+    },
     "app": {
       "newDesign": "Novi dizajn",
       "yourDesigns": "Tvoji dizajni",

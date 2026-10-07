@@ -6819,6 +6819,15 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "captions": {
+        "action":  "Barreeffama ofumaan",
+        "working":  "Dhaggeeffachaa jira… {{percent}}%",
+        "downloading":  "Moodeela sagalee qopheessaa jira… {{percent}}%",
+        "hint":  "Haasaa gara barreeffama yeroo waliin simu kan bifa isaa jijjiiruu dandeessutti jijjiira. Meeshaa kee irratti hojjeta: bilisaa fi dhuunfaa. Yeroo jalqabaaf moodeelli buufama.",
+        "done":  "Barreeffamni {{count}} dabalame.",
+        "noSpeech":  "Kiliippii kana keessatti haasaan hin argamne.",
+        "failed":  "Kiliippii kanaaf barreeffama uumuun hin danda\u0027amne."
+    },
     "app": {
       "newDesign": "Dizaayinii haaraa",
       "yourDesigns": "Dizaayinoota kee",

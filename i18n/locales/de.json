@@ -6870,6 +6870,15 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatische Untertitel",
+        "working":  "Hört zu… {{percent}} %",
+        "downloading":  "Sprachmodell wird vorbereitet… {{percent}} %",
+        "hint":  "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
+        "done":  "{{count}} Untertitel hinzugefügt.",
+        "noSpeech":  "In diesem Clip wurde keine Sprache erkannt.",
+        "failed":  "Für diesen Clip konnten keine Untertitel erstellt werden."
+    },
     "app": {
       "newDesign": "Neues Design",
       "yourDesigns": "Deine Designs",

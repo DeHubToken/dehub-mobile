@@ -6842,6 +6842,15 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "captions": {
+        "action":  "Avtomatik subtitrlar",
+        "working":  "Tinglanmoqda… {{percent}}%",
+        "downloading":  "Nutq modeli tayyorlanmoqda… {{percent}}%",
+        "hint":  "Nutqni vaqtga moslangan, uslubini o‘zgartirish mumkin bo‘lgan subtitrlarga aylantiradi. Qurilmangizda ishlaydi: bepul va maxfiy. Birinchi foydalanishda model yuklab olinadi.",
+        "done":  "{{count}} ta subtitr qo‘shildi.",
+        "noSpeech":  "Bu klipda nutq topilmadi.",
+        "failed":  "Bu klip uchun subtitr yaratib bo‘lmadi."
+    },
     "app": {
       "newDesign": "Yangi dizayn",
       "yourDesigns": "Dizaynlaringiz",
