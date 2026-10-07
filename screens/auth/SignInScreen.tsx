@@ -330,7 +330,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         beforeSignIn: replacing
           ? async (signInAddress, chainId) => {
               try {
-                await AuthService.rotateWallet(signInAddress, chainId);
+                await AuthService.rotateWalletForReplacement(signInAddress, chainId);
                 log.info("walletSetup:rotate:ok", {
                   to: `${signInAddress.slice(0, 6)}...${signInAddress.slice(-4)}`,
                 });
