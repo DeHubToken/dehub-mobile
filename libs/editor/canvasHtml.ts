@@ -27,6 +27,10 @@
  *
  * Written as plain ES2017 inside String.raw: no backticks and no "${" below.
  */
+import { BRAND_OUTRO_DURATION } from "./brandOutro";
+import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
+import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
+
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -42,6 +46,7 @@ canvas{display:block;width:100%;height:100%;}
 <script>
 (function () {
   "use strict";
+  __BRAND_OUTRO_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -746,6 +751,14 @@ canvas{display:block;width:100%;height:100%;}
 
   // Keep every video and sound at the right spot for time t (web Compositor).
   // silent: the sound comes from elsewhere (the realtime export's mix).
+  function audioGainAt(clip, time) {
+    var local = time - clip.start;
+    if (local < 0 || local >= clip.duration) return 0;
+    var fadeIn = Math.max(0, Math.min(clip.duration, clip.audio && clip.audio.fadeIn || 0));
+    var fadeOut = Math.max(0, Math.min(clip.duration - fadeIn, clip.audio && clip.audio.fadeOut || 0));
+    var envelope = Math.min(1, fadeIn > 0 ? local / fadeIn : 1, fadeOut > 0 ? (clip.duration - local) / fadeOut : 1);
+    return Math.max(0, (clip.audio && clip.audio.volume != null ? clip.audio.volume : 1) * envelope);
+  }
   function syncMedia(snap, t, isPlaying, ops, silent) {
     var liveV = new Set();
     var liveA = new Set();
@@ -756,7 +769,7 @@ canvas{display:block;width:100%;height:100%;}
       liveV.add(op.clip.mediaId);
       var localT = localTimeOf(op, t);
       var tr = trackOf(snap, op.clip.trackId);
-      var vol = op.clip.audio && op.clip.audio.volume != null ? op.clip.audio.volume : 1;
+      var vol = audioGainAt(op.clip, t);
       v.muted = silent || !isPlaying || (tr && tr.muted) || vol <= 0;
       try { v.volume = Math.max(0, Math.min(1, vol)); } catch (e) {}
       if (isPlaying) {
@@ -772,11 +785,12 @@ canvas{display:block;width:100%;height:100%;}
     snap.clips.forEach(function (c) {
       if (c.kind !== "audio" || !(t >= c.start && t < c.start + c.duration)) return;
       var a = audios.get(c.mediaId);
+      if (!a && videos.has(c.mediaId)) { a = new Audio(videos.get(c.mediaId).src); a.preload = "auto"; audios.set(c.mediaId, a); }
       if (!a) return;
       liveA.add(c.mediaId);
       var tr = trackOf(snap, c.trackId);
-      a.muted = silent || (tr && (tr.muted || tr.hidden));
-      try { a.volume = Math.max(0, Math.min(1, c.audio && c.audio.volume != null ? c.audio.volume : 1)); } catch (e) {}
+      a.muted = silent || c.hidden || (tr && (tr.muted || tr.hidden));
+      try { a.volume = Math.min(1, audioGainAt(c, t)); } catch (e) {}
       var localT = c.trimIn + (t - c.start) * speedOf(c);
       if (isPlaying) {
         if (a.playbackRate !== speedOf(c)) a.playbackRate = speedOf(c);
@@ -835,13 +849,13 @@ canvas{display:block;width:100%;height:100%;}
       } catch (e) { resolve(null); }
     });
   }
-  function mixAudio(snap, duration) {
+  function mixAudio(snap, duration, contentDuration) {
     var clips = snap.clips.filter(function (c) {
       if (c.kind !== "audio" && c.kind !== "video") return false;
       var tr = trackOf(snap, c.trackId);
-      return blobs.has(c.mediaId) && !(tr && (tr.muted || tr.hidden)) && !(c.kind === "video" && c.hidden);
+      return blobs.has(c.mediaId) && !(tr && (tr.muted || tr.hidden)) && !c.hidden && c.start < contentDuration;
     });
-    if (!clips.length || duration <= 0) return Promise.resolve(null);
+    if (duration <= 0) return Promise.resolve(null);
     var ids = [];
     clips.forEach(function (c) { if (ids.indexOf(c.mediaId) < 0) ids.push(c.mediaId); });
     var buffers = new Map();
@@ -863,7 +877,7 @@ canvas{display:block;width:100%;height:100%;}
         var fIn = Math.max(0, Math.min(c.duration, (c.audio && c.audio.fadeIn) || 0));
         var fOut = Math.max(0, Math.min(c.duration - fIn, (c.audio && c.audio.fadeOut) || 0));
         var when = c.start;
-        var consumed = Math.min(c.duration * sp, Math.max(0, buf.duration - c.trimIn));
+        var consumed = Math.min(c.duration * sp, Math.max(0, buf.duration - c.trimIn), (contentDuration - c.start) * sp);
         var dur = consumed / sp;
         if (dur <= 0) return;
         gain.gain.setValueAtTime(fIn > 0 ? 0 : vol, when);
@@ -877,7 +891,16 @@ canvas{display:block;width:100%;height:100%;}
         src.start(when, c.trimIn, consumed);
         any = true;
       });
-      return any ? octx.startRendering() : null;
+      var sound = octx.createBuffer(2, Math.ceil(brandOutroDuration * rate), rate);
+      for (var channel = 0; channel < 2; channel++) {
+        var data = sound.getChannelData(channel);
+        for (var frame = 0; frame < data.length; frame++) data[frame] = outroSoundSample(frame / rate);
+      }
+      var ending = octx.createBufferSource();
+      ending.buffer = sound;
+      ending.connect(octx.destination);
+      ending.start(contentDuration);
+      return octx.startRendering();
     });
   }
   function pickAvcLevel(w, h, fps) {
@@ -905,7 +928,7 @@ canvas{display:block;width:100%;height:100%;}
   }
   var MUXER_URL = "https://cdn.jsdelivr.net/npm/mp4-muxer@5.2.2/+esm";
 
-  function encodeWithCodecs(snap, W, H, fps, bitrate, duration, mixed, vcfg, progress) {
+  function encodeWithCodecs(snap, W, H, fps, bitrate, duration, mixed, vcfg, progress, ending) {
     return import(MUXER_URL).then(function (M) {
       var target = new M.ArrayBufferTarget();
       var opts = { target: target, video: { codec: "avc", width: W, height: H, frameRate: fps }, fastStart: "in-memory", firstTimestampBehavior: "offset" };
@@ -927,7 +950,7 @@ canvas{display:block;width:100%;height:100%;}
         if (exportAborted) return Promise.reject(new Error("aborted"));
         if (f >= total) return Promise.resolve();
         var t = f / fps;
-        var ops = computeRenderOps(snap, t, W, false);
+        var ops = t < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
         var seeks = ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
           .map(function (op) { return seekVideo(videos.get(op.clip.mediaId), localTimeOf(op, t)); });
         return Promise.all(seeks).then(function () {
@@ -936,6 +959,7 @@ canvas{display:block;width:100%;height:100%;}
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
+          if (t >= ending.contentDuration) drawBrandOutro(g, W, H, t - ending.contentDuration, ending.username, ending.logo);
           var frame = new VideoFrame(cv, { timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / fps) });
           venc.encode(frame, { keyFrame: f % Math.max(1, Math.round(fps * 2)) === 0 });
           frame.close();
@@ -976,7 +1000,7 @@ canvas{display:block;width:100%;height:100%;}
 
   // Phones without WebCodecs audio (iOS before 26): play the timeline in real
   // time into a MediaRecorder, with the same audio mix.
-  function recordRealtime(snap, W, H, fps, bitrate, duration, mixed, progress) {
+  function recordRealtime(snap, W, H, fps, bitrate, duration, mixed, progress, ending) {
     return new Promise(function (resolve, reject) {
       if (typeof MediaRecorder !== "function") { reject(new Error("unsupported")); return; }
       var types = ["video/mp4;codecs=avc1,mp4a", "video/mp4", "video/webm;codecs=vp8,opus", "video/webm"];
@@ -1013,13 +1037,14 @@ canvas{display:block;width:100%;height:100%;}
         var tick = function () {
           var t = (performance.now() - wall0) / 1000;
           if (t >= duration || exportAborted) { rec.stop(); return; }
-          var ops = computeRenderOps(snap, t, W, false);
+          var ops = t < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
           syncMedia(snap, t, true, ops, true);
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
+          if (t >= ending.contentDuration) drawBrandOutro(g, W, H, t - ending.contentDuration, ending.username, ending.logo);
           progress(0.05 + (t / duration) * 0.9);
           requestAnimationFrame(tick);
         };
@@ -1062,7 +1087,15 @@ canvas{display:block;width:100%;height:100%;}
     var fps = snap.settings.fps || 30;
     var W = Math.max(2, Math.round(m.width) & ~1);
     var H = Math.max(2, Math.round(m.height) & ~1);
-    var duration = timelineEnd(snap.clips);
+    var contentDuration = timelineEnd(snap.clips);
+    if (contentDuration <= 0) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "empty" }); return; }
+    var duration = contentDuration + brandOutroDuration;
+    var ending = { contentDuration: contentDuration, username: m.username || "", logo: new Image() };
+    var logoReady = new Promise(function (resolve, reject) {
+      ending.logo.onload = resolve;
+      ending.logo.onerror = function () { reject(new Error("export logo")); };
+      ending.logo.src = brandOutroLogo;
+    });
     var lastP = -1;
     var progress = function (p) {
       var r = Math.round(p * 100);
@@ -1070,15 +1103,15 @@ canvas{display:block;width:100%;height:100%;}
     };
     progress(0);
     var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])
-      .then(function () { return mixAudio(snap, duration); })
+    Promise.all([logoReady, Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])])
+      .then(function () { return mixAudio(snap, duration, contentDuration); })
       .then(function (mixed) {
         progress(0.04);
         var canCodecs = typeof VideoEncoder === "function" && typeof VideoFrame === "function";
         return (canCodecs ? pickVideoConfig(W, H, fps, m.bitrate) : Promise.resolve(null)).then(function (vcfg) {
           return (mixed ? audioSupported() : Promise.resolve(true)).then(function (audioOk) {
-            if (vcfg && audioOk) return encodeWithCodecs(snap, W, H, fps, m.bitrate, duration, mixed, vcfg, progress);
-            return recordRealtime(snap, W, H, fps, m.bitrate, duration, mixed, progress);
+            if (vcfg && audioOk) return encodeWithCodecs(snap, W, H, fps, m.bitrate, duration, mixed, vcfg, progress, ending);
+            return recordRealtime(snap, W, H, fps, m.bitrate, duration, mixed, progress, ending);
           });
         });
       })
@@ -1346,4 +1379,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`;
+</body></html>`.replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";");

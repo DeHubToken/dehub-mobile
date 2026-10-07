@@ -25,6 +25,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useUser } from "../context/AuthContext";
+import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import * as DocumentPicker from "expo-document-picker";
@@ -326,6 +328,7 @@ function useHistory(initial: ProjectSnapshot | null) {
 }
 
 function Workspace({ initial, projectId, pickVideo, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; onClose: () => void }) {
+  const user = useUser();
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
   const { height: windowHeight } = useWindowDimensions();
@@ -665,6 +668,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
       let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
+      if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
       if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
       if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
       setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied }]);
@@ -945,7 +949,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const height = Math.round(project.settings.height * Math.min(1, k));
     try {
       const out = await canvasRef.current.exportVideo(
-        { width, height, bitrate: quality === "1080" ? 8_000_000 : 5_000_000, title: project.title },
+        { width, height, bitrate: quality === "1080" ? 8_000_000 : 5_000_000, title: project.title, username: outroUsername(user?.username) },
         (p) => setRendering(p),
       );
       if (target === "photos") {
@@ -958,7 +962,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
             uri: out.uri,
             width: width & ~1,
             height: height & ~1,
-            duration: Math.round(duration * 1000),
+            duration: Math.round((duration + BRAND_OUTRO_DURATION) * 1000),
             mimeType: out.ext === "webm" ? "video/webm" : "video/mp4",
             fileName: `${(project.title || "video").slice(0, 40)}.${out.ext}`,
           },
@@ -1221,7 +1225,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         visible={exportOpen}
         width={project.settings.width}
         height={project.settings.height}
-        video={isVideoProject(project) ? { duration, fps: project.settings.fps } : null}
+        video={isVideoProject(project) ? { duration: duration + BRAND_OUTRO_DURATION, fps: project.settings.fps } : null}
         busy={busy || rendering !== null}
         onCancel={() => setExportOpen(false)}
         onExport={exportDesign}
