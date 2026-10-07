@@ -385,6 +385,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [time, setTime] = useState(0);
   const [playing, setPlaying] = useState(false);
   const highlightPreviewEnd = useRef<number | null>(null);
+  useEffect(() => { highlightPreviewEnd.current = null; }, [project?.id]);
   useEffect(() => {
     if (highlightPreviewEnd.current !== null && time >= highlightPreviewEnd.current) {
       const end = highlightPreviewEnd.current; highlightPreviewEnd.current = null;
