@@ -20,7 +20,6 @@ import DpayTopUpForm from "../components/Dpay/DpayTopUpForm";
 import NearIntentBuy from "../components/Dpay/NearIntentBuy";
 import DpayTransactions from "../components/Dpay/DpayTransactions";
 import DpayAbout from "../components/Dpay/DpayAbout";
-import DpayHeader from "../components/Dpay/DpayHeader";
 import StakingTab from "../components/Wallet/StakingTab";
 import BridgeTab from "../components/Wallet/BridgeTab";
 import SolanaTab from "../components/Wallet/SolanaTab";
@@ -197,20 +196,18 @@ const DpayScreen: React.FC = () => {
       <ScrollView
         className="flex-1 px-0"
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingBottom: 40 }}
+        contentContainerStyle={{ paddingTop: 16, paddingBottom: 40 }}
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
-        <DpayHeader />
-
         {/* Assets / token balances — moved here from the profile to match web. */}
-        <ProfileAssets />
+        <ProfileAssets searchable />
 
         {/* Tab switcher */}
         <PageTabs
           value={activeTab}
           onChange={setActiveTab}
           tabs={TABS.map((tab) => ({ id: tab.key, label: tab.labelKey ? t(tab.labelKey) : tab.label }))}
-          style={{ paddingHorizontal: 16, paddingBottom: 12 }}
+          style={{ paddingHorizontal: 16, paddingBottom: 16 }}
         />
 
         {/* Tab content */}
