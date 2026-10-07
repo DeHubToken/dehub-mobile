@@ -78,6 +78,44 @@ for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper",
       const nativeRejected = expect(nativePromise).rejects.toMatchObject({ name: "AbortError" });
       cancelled = true; jest.advanceTimersByTime(32); await nativeRejected; clean(source);
     });
+    it("reloads a stalled decoder once and restores the requested source timestamp", async () => {
+      const source = new Decoder(); let loads = 0;
+      const decoder = Object.assign(source, { load: () => { loads++; source.clock = 0; source.readyState = 0; source.seeking = false; } });
+      let settled = false;
+      const promise = wait(decoder, 12.72).then(() => { settled = true; });
+      source.readyState = 1;
+      jest.advanceTimersByTime(2500);
+      expect(loads).toBe(1); expect(source.clock).toBe(0);
+      await Promise.resolve(); expect(settled).toBe(false);
+      source.readyState = 1; source.emit("loadedmetadata");
+      expect(source.clock).toBe(12.72); expect(source.assignments).toBe(2);
+      source.readyState = 2; source.seeking = false; source.emit("seeked");
+      await promise; clean(source);
+    });
+    it("keeps the original deadline and never loops decoder reloads", async () => {
+      const source = new Decoder(); let loads = 0;
+      const decoder = Object.assign(source, { load: () => { loads++; source.readyState = 1; } });
+      const promise = wait(decoder, 12.72);
+      const rejected = expect(promise).rejects.toThrow("Video frame did not load at 12.720s");
+      jest.advanceTimersByTime(10000);
+      await rejected; expect(loads).toBe(1); clean(source);
+    });
+    it("does not reload after export cancellation", async () => {
+      const source = new Decoder(); let loads = 0;
+      const decoder = Object.assign(source, { load: () => { loads++; } });
+      const controller = new AbortController();
+      const promise = wait(decoder, 12.72, { signal: controller.signal });
+      const rejected = expect(promise).rejects.toMatchObject({ name: "AbortError" });
+      controller.abort(); jest.advanceTimersByTime(10000);
+      await rejected; expect(loads).toBe(0); clean(source);
+    });
+    it("reports a failed decoder reload and releases every pending timer", async () => {
+      const source = new Decoder();
+      const decoder = Object.assign(source, { load: () => { throw new Error("decoder reset failed"); } });
+      const promise = wait(decoder, 12.72);
+      const rejected = expect(promise).rejects.toThrow("decoder reset failed");
+      jest.advanceTimersByTime(2500); await rejected; clean(source);
+    });
     it("times out with the requested/current frame state without silently drawing it", async () => {
       const source = new Decoder(); const promise = wait(source, 5.15, { timeoutMs: 100 });
       const rejected = expect(promise).rejects.toThrow("Video frame did not load at 5.150s (current 5.150s, ready 2, seeking true)");
