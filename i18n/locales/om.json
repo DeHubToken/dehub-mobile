@@ -6819,6 +6819,15 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Sagalee idilee normalize gochuu",
+      "denoise": "Sagalee hir&#39;isuu",
+      "voice": "Sagalee guddisuu",
+      "working": "Sagalee hojjechaa... {{percent}}%",
+      "done": "Sagaleen adeemsifame dabalameera. Undo&#39;n isa jalqabaa deebisa.",
+      "failed": "Sagalee kana adeemsisuu hin dandeenye. Orijinaalli hin jijjiiramne.",
+      "hint": "Kiliippii hanga daqiiqaa 10tti adeemsi. Sagalee hir&#39;isuun sagalee duubaa dhaabbataa ta&#39;een akka gaariitti hojjeta."
+    },
     "pages": {
     "add":  "Fuula dabaluu",
     "duplicate":  "Fuula garagalchuu",

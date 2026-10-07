@@ -32,6 +32,7 @@ import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
 import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
 import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
+import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -1313,6 +1314,65 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   var lastEvent = null;
+  __AUDIO_TOOLS_RUNTIME__
+  var audioJob = null;
+  var audioOutgoing = new Map();
+  function cancelAudioTool(reqId) {
+    audioOutgoing.delete(reqId);
+    if (!audioJob || audioJob.reqId !== reqId) return;
+    if (audioJob.worker) audioJob.worker.terminate();
+    if (audioJob.context) { audioJob.context.close().catch(function () {}); audioJob.context = null; }
+    audioJob = null;
+  }
+  function sendAudioChunk(reqId) {
+    var entry = audioOutgoing.get(reqId);
+    if (!entry) return;
+    var end = Math.min(entry.blob.size, entry.offset + 768 * 1024), reader = new FileReader();
+    reader.onload = function () {
+      if (!audioOutgoing.has(reqId)) return;
+      var value = String(reader.result), last = end >= entry.blob.size;
+      entry.offset = end;
+      post({ type: "audioChunk", reqId: reqId, b64: value.slice(value.indexOf(",") + 1), last: last, done: end, total: entry.blob.size, duration: entry.duration });
+      if (last) { audioOutgoing.delete(reqId); audioJob = null; }
+    };
+    reader.onerror = function () { cancelAudioTool(reqId); post({ type: "audioFailed", reqId: reqId, error: "read" }); };
+    reader.readAsDataURL(entry.blob.slice(entry.offset, end));
+  }
+  function processAudioClip(m) {
+    if (audioJob) { post({ type: "audioFailed", reqId: m.reqId, error: "busy" }); return; }
+    var c = m.clip, blob = blobs.get(c.mediaId);
+    if (!blob || c.locked || c.duration > 600 || ["normalize", "denoise", "voice"].indexOf(m.mode) < 0) { post({ type: "audioFailed", reqId: m.reqId, error: "audio" }); return; }
+    var job = { reqId: m.reqId, context: null, worker: null }; audioJob = job;
+    Promise.resolve().then(function () {
+      job.context = new (window.AudioContext || window.webkitAudioContext)();
+      return blob.arrayBuffer().then(function (bytes) { return job.context.decodeAudioData(bytes); });
+    }).then(function (decoded) {
+      if (audioJob !== job) return null;
+      var selection = audioToolRange(c, decoded.duration), rate = Math.min(48000, decoded.sampleRate);
+      var off = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(Math.min(2, decoded.numberOfChannels), Math.ceil(selection.duration * rate), rate);
+      var source = off.createBufferSource(); source.buffer = decoded; source.playbackRate.value = selection.speed; source.connect(off.destination); source.start(0, selection.offset, selection.sourceSeconds);
+      return off.startRendering();
+    }).then(function (rendered) {
+      if (job.context) { job.context.close().catch(function () {}); job.context = null; }
+      if (!rendered || audioJob !== job) return;
+      var volume = Math.max(0, Math.min(2, c.audio && c.audio.volume != null ? c.audio.volume : 1)), channels = [];
+      for (var i = 0; i < rendered.numberOfChannels; i++) channels.push(rendered.getChannelData(i).map(function (v) { return v * volume; }));
+      var url = URL.createObjectURL(new Blob([__AUDIO_TOOLS_WORKER__], { type: "text/javascript" }));
+      try { job.worker = new Worker(url); } finally { URL.revokeObjectURL(url); }
+      job.worker.onmessage = function (event) {
+        if (audioJob !== job) return;
+        var data = event.data;
+        if (data.type === "progress") post({ type: "audioProgress", reqId: m.reqId, fraction: data.fraction * 0.9 });
+        else if (data.type === "error") { cancelAudioTool(m.reqId); post({ type: "audioFailed", reqId: m.reqId, error: data.message }); }
+        else if (data.type === "done") {
+          job.worker.terminate(); job.worker = null;
+          audioOutgoing.set(m.reqId, { blob: new Blob([data.wav], { type: "audio/wav" }), offset: 0, duration: c.duration }); sendAudioChunk(m.reqId);
+        }
+      };
+      job.worker.onerror = function () { cancelAudioTool(m.reqId); post({ type: "audioFailed", reqId: m.reqId, error: "worker" }); };
+      job.worker.postMessage({ channels: channels, rate: rendered.sampleRate, mode: m.mode }, channels.map(function (channel) { return channel.buffer; }));
+    }).catch(function (error) { if (audioJob !== job) return; cancelAudioTool(m.reqId); post({ type: "audioFailed", reqId: m.reqId, error: String(error.message || error) }); });
+  }
   var captionsWorker = null;
   var captionsBusy = false;
   function transcribeClip(m) {
@@ -1424,6 +1484,12 @@ canvas{display:block;width:100%;height:100%;}
       cutout(m);
     } else if (m.type === "captions") {
       transcribeClip(m);
+    } else if (m.type === "processAudio") {
+      processAudioClip(m);
+    } else if (m.type === "audioAck") {
+      sendAudioChunk(m.reqId);
+    } else if (m.type === "audioCancel") {
+      cancelAudioTool(m.reqId);
     } else if (m.type === "captionsCancel") {
       if (captionsWorker) captionsWorker.terminate();
       captionsWorker = null; captionsBusy = false;
@@ -1462,4 +1528,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME);
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER));

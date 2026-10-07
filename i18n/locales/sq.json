@@ -6787,6 +6787,15 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalizo volumin",
+      "denoise": "Redukto zhurmën",
+      "voice": "Përmirëso zërin",
+      "working": "Duke përpunuar tingullin... {{percent}}%",
+      "done": "Tingulli i përpunuar u shtua. Zhbëjeni origjinalin.",
+      "failed": "Nuk mund ta përpunoja këtë tingull. Origjinali është i pandryshuar.",
+      "hint": "Procesoni klipet deri në 10 minuta. Reduktimi i zhurmës funksionon më mirë me zhurmë të qëndrueshme në sfond."
+    },
     "pages": {
     "add":  "Shto faqe",
     "duplicate":  "Dyfisho faqen",

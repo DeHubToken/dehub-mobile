@@ -6770,6 +6770,15 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalake volume",
+      "denoise": "Kurangi gangguan",
+      "voice": "Tingkatake swara",
+      "working": "Ngolah swara... {{percent}}%",
+      "done": "Swara sing wis diproses ditambahake. Undo bakal mbalekake sing asli.",
+      "failed": "Ora bisa ngolah swara iki. Asline tetep ora owah.",
+      "hint": "Proses klip nganti 10 menit. Pengurangan gangguan paling apik yen latar mburi tetep."
+    },
     "pages": {
     "add":  "Tambah kaca",
     "duplicate":  "Duplikat kaca",

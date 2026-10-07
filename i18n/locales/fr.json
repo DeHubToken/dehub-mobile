@@ -6881,6 +6881,15 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normaliser le volume",
+      "denoise": "Réduire le bruit",
+      "voice": "Améliorer la voix",
+      "working": "Traitement du son... {{percent}}%",
+      "done": "Son traité ajouté. L'annulation restaure l'original.",
+      "failed": "Impossible de traiter ce son. L'original est inchangé.",
+      "hint": "Traitez les clips jusqu'à 10 minutes. La réduction du bruit fonctionne mieux avec un bruit de fond constant."
+    },
     "pages": {
     "add":  "Ajouter une page",
     "duplicate":  "Dupliquer la page",

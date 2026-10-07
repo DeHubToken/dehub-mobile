@@ -6791,6 +6791,15 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalisera volym",
+      "denoise": "Minska brus",
+      "voice": "Förbättra röst",
+      "working": "Bearbetar ljud... {{percent}}%",
+      "done": "Bearbetat ljud tillagt. Ångra återställer originalet.",
+      "failed": "Kunde inte bearbeta detta ljud. Originalet är oförändrat.",
+      "hint": "Bearbeta klipp upp till 10 minuter. Brusreducering fungerar bäst med jämn bakgrundsbrus."
+    },
     "pages": {
     "add":  "Lägg till sida",
     "duplicate":  "Duplicera sida",

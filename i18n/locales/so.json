@@ -6768,6 +6768,15 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Caadi mugga",
+      "denoise": "Hoos u dhig buuqa",
+      "voice": "Kordhinta codka",
+      "working": "Codkii geeddi-socodka... {{percent}}%",
+      "done": "Cod laga baaraandegay ayaa lagu daray. Undo waxay soo celisaa asalka.",
+      "failed": "Ma shaqeyn karo codkan. Asalka asalka ah waa mid aan la beddelin.",
+      "hint": "Fiidiyowyada geeddi-socodka ilaa 10 daqiiqo. Hoos u dhaca dhawaaqa wuxuu si fiican ula shaqeeyaa dhawaaqa asalka ah ee joogtada ah."
+    },
     "pages": {
     "add":  "Ku dar bog",
     "duplicate":  "Nuqul bogga",

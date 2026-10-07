@@ -6868,6 +6868,15 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Ovay ny haben'ilay kapila",
+      "denoise": "Ahena ny tabataba",
+      "voice": "Ampitomboy ny feo",
+      "working": "Fikarakarana feo... {{percent}}%",
+      "done": "Feo nampidirina. Avereno ilay niandohana.",
+      "failed": "Indrisy anefa fa tsy afaka manazava izany fahatsapana izany feno kokoa aho. Ny lahatsoratra voalohany dia tsy hanova na inona na inona.",
+      "hint": "Ny minitra ihany dia mila minitra 10. Noise fampihenana miasa tsara indrindra amin'ny fototra tapaka tabataba."
+    },
     "pages": {
     "add":  "Hanampy pejy",
     "duplicate":  "Adikao ny pejy",

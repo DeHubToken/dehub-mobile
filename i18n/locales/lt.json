@@ -6787,6 +6787,15 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalizuoti garsumą",
+      "denoise": "Sumažinkite triukšmą",
+      "voice": "Pagerinti balso kokybę",
+      "working": "Apdorojamas garsas... {{percent}}%",
+      "done": "Apdorotas garsas pridėtas. Anuliuoti atkuria originalą.",
+      "failed": "Nepavyko apdoroti šio garso. Originalas nesikeičia.",
+      "hint": "Apdorokite klipus iki 10 minučių. Triukšmo mažinimas geriausiai veikia esant pastoviam foniniam triukšmui."
+    },
     "pages": {
     "add":  "Pridėti puslapį",
     "duplicate":  "Dubliuoti puslapį",
