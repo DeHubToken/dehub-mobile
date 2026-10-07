@@ -32,6 +32,21 @@ describe("editor agent on the phone (same ops as the web)", () => {
     expect(project.clips[2].start + project.clips[2].duration).toBe(5);
     expect(base.clips).toEqual([video]);
   });
+  it("imports stock video and sound, then reuses library media without losing source bounds", async () => {
+    const base = newProject("16:9", "video");
+    const importStock = jest.fn(async (_q: string, _o: string, kind?: "photo" | "video" | "audio") => ({ id: kind + "1", kind: kind === "audio" ? "audio" as const : "video" as const, duration: kind === "audio" ? 4 : 12 }));
+    const media = [{ id: "local1", kind: "video" as const, duration: 8, name: "Local recording" }];
+    const { project, report } = await applyOps(base, [
+      { op: "add_stock", query: "ocean", kind: "video" }, { op: "add_stock", query: "ambient", kind: "audio" },
+      { op: "add_media", mediaId: "local1" }, { op: "trim", id: "new:2", offset: 1, duration: 5 },
+    ], { importStock, media, time: 2 });
+    expect(report).toMatchObject({ applied: 4, failed: 0 });
+    expect(project.clips[0]).toMatchObject({ kind: "video", duration: 12, sourceDuration: 12 });
+    expect(project.clips[1]).toMatchObject({ kind: "audio", start: 2, duration: 4 });
+    expect(project.clips[2]).toMatchObject({ kind: "video", mediaId: "local1", trimIn: 1, duration: 5, sourceDuration: 8 });
+    expect(describeScene(project, null, null, 0, media).library).toEqual(media);
+    expect(base.clips).toHaveLength(0);
+  });
   it("segments video and exposes real video and audio timing to the shared planner", async () => {
     const base = newProject("16:9", "video");
     const video: MediaClip = { id: "v1", trackId: "v", kind: "video", mediaId: "m1", start: 0, duration: 10, trimIn: 3, sourceDuration: 30 };

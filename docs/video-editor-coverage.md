@@ -28,9 +28,9 @@ Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video
 | Starter templates | Implemented | Implemented | Replace a design intentionally, then allow editing. |
 | Brand fonts, colours and logo | Implemented | Implemented | Apply the saved brand kit without damaging existing layers. |
 | Stock photos | Implemented | Implemented | Search, import and retain source licence information. |
-| Stock video | Implemented | Gap | Add video/audio imports and the corresponding client capability. |
-| Stock music and sound effects | Implemented | Gap | Import usable audio with its duration and provenance. |
-| Project media library commands | Implemented | Gap | Address local video/audio/image assets by media id. |
+| Stock video | Implemented | This release | Search and import video; preserve duration and licence details. |
+| Stock music and sound effects | Implemented | This release | Search and import audio with its duration and provenance. |
+| Project media library commands | Implemented | This release | Address local video/audio/image assets by media id. |
 | Automatic captions | Implemented | This release | Local speech recognition; editable text, trims and speed respected. |
 | Caption appearance | This release | This release | Classic, boxed and bold styles; no overlap or captions past clip end. |
 | Subtitle file import/export | Gap | Gap | Editable SRT/VTT text with retained timestamps. |
@@ -79,3 +79,5 @@ All concepts end with the existing DeHub wordmark and the creator's @username. S
 - A silent ten-second fixture exported from staging as a 12.20-second H.264 MP4 with stereo AAC sound. The closing frame contains the wordmark and signed-out `dehub.io` fallback. Creator-handle formatting and rendering are covered in both suites.
 - The first live cut request exposed an empty backend operation list despite a success reply. Local numeric handling and truthful empty-result reporting address this in the next release. Do not mark this live test passed until the actual timeline contains ten clips.
 - Mobile publication and physical-device export verification remain separate from passing unit tests.
+
+- Stock media release: native photo/video/audio browser and imports with source credits; deduplicated search fallback on both clients. Cloud checks and native device verification pending.
