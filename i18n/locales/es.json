@@ -6869,6 +6869,15 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "captions": {
+        "action":  "Subtítulos automáticos",
+        "working":  "Escuchando… {{percent}}%",
+        "downloading":  "Preparando el modelo de voz… {{percent}}%",
+        "hint":  "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
+        "done":  "Se añadieron {{count}} subtítulos.",
+        "noSpeech":  "No se detectó voz en este clip.",
+        "failed":  "No se pudieron crear subtítulos para este clip."
+    },
     "app": {
       "newDesign": "Nuevo diseño",
       "yourDesigns": "Tus diseños",

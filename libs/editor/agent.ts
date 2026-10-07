@@ -46,6 +46,8 @@ import {
 } from "./types";
 import type { BrandKit } from "./brand";
 import { newId } from "./project";
+import { captionLayers, type CaptionWord, type CaptionStyle } from "./captionLayout";
+import { preciseCommand } from "./preciseCommands";
 import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
 
 export interface AgentMessage {
@@ -95,7 +97,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
-    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "apply_brand", "add_logo", "use_template", "remove_background", "select"],
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "select"],
     tracks: p.tracks.map(({ id, kind, muted, hidden }) => ({ id, kind, muted, hidden })),
     brand: hasBrand
       ? {
@@ -115,6 +117,9 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 }
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
+  const last = messages[messages.length - 1];
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) : null;
+  if (direct) return { reply: "", ops: [direct] };
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",
@@ -234,6 +239,7 @@ function nearestAspect(ratio: number): Exclude<AspectPreset, "custom"> {
 }
 
 export interface ApplyContext {
+  transcribe?: (clip: MediaClip) => Promise<CaptionWord[]>;
   /** Download a free stock photo into editor storage; resolves with its media id. */
   importStock?: (query: string, orientation: "all" | "landscape" | "portrait" | "square") => Promise<string | null>;
   brand?: BrandKit | null;
@@ -488,7 +494,18 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         p = updateClip(p, clip.id, { mediaId });
         return true;
       }
-      case "add_page": case "goto_page": case "captions": case "generate": case "add_media":
+      case "captions": {
+        const clip = op.id ? find(op.id) : p.clips.find((c) => c.kind === "video" || c.kind === "audio");
+        if (!clip || clip.locked || (clip.kind !== "video" && clip.kind !== "audio") || !ctx.transcribe) return false;
+        const words = await ctx.transcribe(clip);
+        const style: CaptionStyle = op.style === "boxed" || op.style === "bold" ? op.style : "classic";
+        const captions = captionLayers(clip, words, () => newId(10), style);
+        if (!captions.clips.length) return false;
+        p = { ...p, tracks: [...p.tracks, captions.track], clips: [...p.clips, ...captions.clips] };
+        created.push(...captions.clips.map(c => c.id));
+        return true;
+      }
+      case "add_page": case "goto_page": case "generate": case "add_media":
         report.unsupported.push(String(op.op));
         return false;
       default:

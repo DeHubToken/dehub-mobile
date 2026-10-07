@@ -6868,6 +6868,15 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "captions": {
+        "action":  "Dikanteny mandeha ho azy",
+        "working":  "Mihaino… {{percent}}%",
+        "downloading":  "Manomana ny modely feo… {{percent}}%",
+        "hint":  "Mamadika ny teny ho dikanteny mifanaraka amin\u0027ny fotoana izay azonao ovaina ny endriny. Mandeha amin\u0027ny fitaovanao: maimaim-poana sy tsiambaratelo. Misintona ny modely amin\u0027ny fampiasana voalohany.",
+        "done":  "Dikanteny {{count}} no nampiana.",
+        "noSpeech":  "Tsy nisy teny hita tao amin\u0027ity clip ity.",
+        "failed":  "Tsy afaka namorona dikanteny ho an\u0027ity clip ity."
+    },
     "app": {
       "newDesign": "Famolavolana vaovao",
       "yourDesigns": "Ny famolavolanao",

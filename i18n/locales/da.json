@@ -6792,6 +6792,15 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "captions": {
+        "action":  "Automatiske undertekster",
+        "working":  "Lytter… {{percent}} %",
+        "downloading":  "Gør talemodellen klar… {{percent}} %",
+        "hint":  "Gør tale til tidsindstillede undertekster, som du kan restyle. Kører på din enhed: gratis og privat. Første gang downloades modellen.",
+        "done":  "Tilføjede {{count}} undertekster.",
+        "noSpeech":  "Ingen tale fundet i dette klip.",
+        "failed":  "Kunne ikke lave undertekster til dette klip."
+    },
     "app": {
       "newDesign": "Nyt design",
       "yourDesigns": "Dine designs",

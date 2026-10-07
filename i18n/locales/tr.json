@@ -6867,6 +6867,15 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "captions": {
+        "action":  "Otomatik altyazı",
+        "working":  "Dinleniyor… %{{percent}}",
+        "downloading":  "Konuşma modeli hazırlanıyor… %{{percent}}",
+        "hint":  "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
+        "done":  "{{count}} altyazı eklendi.",
+        "noSpeech":  "Bu klipte konuşma bulunamadı.",
+        "failed":  "Bu klip için altyazı oluşturulamadı."
+    },
     "app": {
       "newDesign": "Yeni tasarım",
       "yourDesigns": "Tasarımlarınız",

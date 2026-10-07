@@ -6866,6 +6866,15 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "captions": {
+        "action":  "Teks otomatis",
+        "working":  "Mendengarkan… {{percent}}%",
+        "downloading":  "Menyiapkan model ucapan… {{percent}}%",
+        "hint":  "Mengubah ucapan menjadi teks berwaktu yang bisa kamu ubah gayanya. Berjalan di perangkatmu: gratis dan privat. Penggunaan pertama akan mengunduh modelnya.",
+        "done":  "{{count}} teks ditambahkan.",
+        "noSpeech":  "Tidak ada ucapan di klip ini.",
+        "failed":  "Tidak bisa membuat teks untuk klip ini."
+    },
     "app": {
       "newDesign": "Desain baru",
       "yourDesigns": "Desain Anda",

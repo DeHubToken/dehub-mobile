@@ -6817,6 +6817,15 @@
     "noStories": "还无故事"
   },
   "editor": {
+    "captions": {
+        "action":  "自动字幕",
+        "working":  "正在听… {{percent}}%",
+        "downloading":  "正在准备语音模型… {{percent}}%",
+        "hint":  "把说话转成带时间的字幕，样式随你改。在你的设备上运行：免费又私密。第一次使用会下载模型。",
+        "done":  "已添加 {{count}} 条字幕。",
+        "noSpeech":  "这个片段里没有找到说话声。",
+        "failed":  "无法为这个片段生成字幕。"
+    },
     "app": {
       "newDesign": "新建设计",
       "yourDesigns": "你的设计",
