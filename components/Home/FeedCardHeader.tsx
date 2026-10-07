@@ -66,13 +66,12 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 
       {/* One pressable for the whole identity block (name, badge, handle)
           instead of three nested ones: same tap targets, the same hit slop,
-          three native views fewer per card. It is content-width and shrinks
-          so the name still truncates; the icon group below pushes itself to
-          the right edge with marginLeft: auto. */}
+          three native views fewer per card. It fills the space left by the
+          avatar and controls, so names truncate only at the available edge. */}
       <Pressable
         onPress={onUserPress}
         hitSlop={IDENTITY_HIT_SLOP}
-        style={{ flexShrink: 1, minWidth: 0, marginRight: 8 }}
+        style={{ flex: 1, minWidth: 0, marginRight: 8 }}
       >
         <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
           <Text
@@ -137,10 +136,10 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       <View
         style={{
           flexDirection: "row",
+          flexShrink: 0,
           alignItems: "center",
           gap: 8,
           alignSelf: "flex-end",
-          marginLeft: "auto",
           marginBottom: -HEADER_ICON_PAD,
           marginRight: -HEADER_ICON_PAD,
         }}
