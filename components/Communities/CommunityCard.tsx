@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   ownerText: { color: "#e4e4e7", fontSize: 12, fontWeight: "600" },
-  desc: { color: "#a1a1aa", fontSize: 12, marginTop: 2 },
-  members: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
+  desc: { color: "#fff", fontSize: 12, marginTop: 2 },
+  members: { color: "#fff", fontSize: 12, marginTop: 4 },
 });
 
 export default memo(CommunityCard);
