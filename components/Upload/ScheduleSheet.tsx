@@ -27,6 +27,8 @@ interface ScheduleSheetProps {
   onClose: () => void;
   scheduledDate: Date | null;
   onSchedule: (date: Date | null) => void;
+  title?: string;
+  minimumMinutes?: number;
 }
 
 export default function ScheduleSheet({
@@ -34,6 +36,8 @@ export default function ScheduleSheet({
   onClose,
   scheduledDate,
   onSchedule,
+  title,
+  minimumMinutes = 0,
 }: ScheduleSheetProps) {
   const { t } = useTranslation();
   const today = startOfToday();
@@ -100,9 +104,14 @@ export default function ScheduleSheet({
     if (!selectedDate) return;
     const combined = new Date(selectedDate);
     combined.setHours(selectedTime.getHours(), selectedTime.getMinutes(), 0, 0);
+    if (combined.getTime() <= Date.now() + minimumMinutes * 60 * 1000) return;
     onSchedule(combined);
     onClose();
-  }, [selectedDate, selectedTime, onSchedule, onClose]);
+  }, [selectedDate, selectedTime, onSchedule, onClose, minimumMinutes]);
+
+  const selectedAt = selectedDate ? new Date(selectedDate) : null;
+  selectedAt?.setHours(selectedTime.getHours(), selectedTime.getMinutes(), 0, 0);
+  const validTime = !!selectedAt && selectedAt.getTime() > Date.now() + minimumMinutes * 60 * 1000;
 
   const handleClear = useCallback(() => {
     onSchedule(null);
@@ -122,7 +131,7 @@ export default function ScheduleSheet({
     >
       {/* Header */}
       <View className="flex-row items-center justify-between px-4 pt-4 pb-3 border-b border-white/10">
-        <Text className="text-white font-semibold text-base">{t("upload.schedulePostTitle")}</Text>
+        <Text className="text-white font-semibold text-base">{title ?? t("upload.schedulePostTitle")}</Text>
 
         <TouchableOpacity
           onPress={onClose}
@@ -138,6 +147,8 @@ export default function ScheduleSheet({
         contentContainerStyle={{ paddingBottom: 16 }}
         keyboardShouldPersistTaps="handled"
       >
+        {minimumMinutes > 0 && <Text className="text-white/60 text-xs text-center mt-3">{t("upload.scheduleMin30")}</Text>}
+        {selectedDate && !validTime && <Text accessibilityRole="alert" className="text-amber-400 text-xs text-center mt-3">{minimumMinutes > 0 ? t("upload.scheduleMin30") : t("stages.pickFutureTime")}</Text>}
         {/* Month navigation */}
         <View className="flex-row items-center justify-between px-5 pt-4 pb-2">
           <TouchableOpacity
@@ -253,16 +264,16 @@ export default function ScheduleSheet({
         {/* Confirm button */}
         <TouchableOpacity
           onPress={handleConfirm}
-          disabled={!selectedDate}
+          disabled={!validTime}
           activeOpacity={0.7}
           className="mx-4 mt-4 py-3 rounded-xl items-center"
           style={{
-            backgroundColor: selectedDate ? "#fff" : "rgba(255,255,255,0.1)",
+            backgroundColor: validTime ? "#fff" : "rgba(255,255,255,0.1)",
           }}
         >
           <Text
             className="text-sm font-semibold"
-            style={{ color: selectedDate ? "#09090B" : "#808089" }}
+            style={{ color: validTime ? "#09090B" : "#808089" }}
           >
             {t("common.confirm")}
           </Text>

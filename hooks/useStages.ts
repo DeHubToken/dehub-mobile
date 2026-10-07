@@ -224,7 +224,7 @@ export interface UseStagesReturn {
   isTranscriptLoading: boolean;
   openModal: (view?: "browse" | "create" | "live") => void;
   closeModal: () => void;
-  createSpace: (title: string, description?: string) => Promise<AudioSpace | null>;
+  createSpace: (title: string, description?: string, coverImageUrl?: string | null) => Promise<AudioSpace | null>;
   scheduleSpace: (input: ScheduleSpaceInput) => Promise<AudioSpace | null>;
   startScheduledSpace: (spaceId: string) => Promise<boolean>;
   cancelScheduledSpace: (spaceId: string) => Promise<boolean>;
@@ -1057,7 +1057,7 @@ export function useStages(): UseStagesReturn {
 
   // ── Actions ───────────────────────────────────────────────────────────────
 
-  const createSpace = useCallback(async (title: string, description?: string): Promise<AudioSpace | null> => {
+  const createSpace = useCallback(async (title: string, description?: string, coverImageUrl?: string | null): Promise<AudioSpace | null> => {
     if (!userAddress) return null;
     setIsLoading(true);
     try {
@@ -1072,6 +1072,7 @@ export function useStages(): UseStagesReturn {
             title,
             description,
             status: "live",
+            cover_image_url: coverImageUrl ?? null,
             channel_name: channelName,
             speaker_count: 1,
             listener_count: 0,
