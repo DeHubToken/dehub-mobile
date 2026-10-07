@@ -6787,25 +6787,34 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "editor": {
-    "pages": {
-      "add": "Lisää sivu",
-      "duplicate": "Monista sivu",
-      "delete": "Poista sivu",
-      "page": "Sivu {{number}}",
-      "position": "Sivu {{current}}/{{total}}",
-      "label": "Sivut",
-      "allZip": "Kaikki {{count}} sivua (ZIP)",
-      "thisPage": "Vain tämä sivu",
-      "exporting": "Renderöidään sivua {{current}}/{{total}}…"
+    "audioTools": {
+      "normalize": "Normalisoi äänenvoimakkuus",
+      "denoise": "Vähennä melua",
+      "voice": "Paranna ääntä",
+      "working": "Käsitellään ääntä... {{percent}}%",
+      "done": "Käsitelty ääni lisätty. Kumoa palauttaa alkuperäisen.",
+      "failed": "Tätä ääntä ei voitu käsitellä. Alkuperäinen on muuttumaton.",
+      "hint": "Käsittele leikkeet jopa 10 minuutin ajan. Melunvaimennus toimii parhaiten tasaisen taustamelun kanssa."
     },
+    "pages": {
+    "add":  "Lisää sivu",
+    "duplicate":  "Monista sivu",
+    "delete":  "Poista sivu",
+    "page":  "Sivu {{number}}",
+    "position":  "Sivu {{current}}/{{total}}",
+    "label":  "Sivut",
+    "allZip":  "Kaikki {{count}} sivua (ZIP)",
+    "thisPage":  "Vain tämä sivu",
+    "exporting":  "Renderöidään sivua {{current}}/{{total}}…"
+},
     "captions": {
-      "action": "Automaattiset tekstitykset",
-      "working": "Kuunnellaan… {{percent}} %",
-      "downloading": "Valmistellaan puhemallia… {{percent}} %",
-      "hint": "Muuttaa puheen ajastetuiksi tekstityksiksi, joiden tyyliä voit muokata. Toimii laitteellasi: ilmainen ja yksityinen. Ensimmäisellä kerralla malli ladataan.",
-      "done": "Lisättiin {{count}} tekstitystä.",
-      "noSpeech": "Tästä leikkeestä ei löytynyt puhetta.",
-      "failed": "Tekstityksiä ei voitu luoda tälle leikkeelle."
+        "action":  "Automaattiset tekstitykset",
+        "working":  "Kuunnellaan… {{percent}} %",
+        "downloading":  "Valmistellaan puhemallia… {{percent}} %",
+        "hint":  "Muuttaa puheen ajastetuiksi tekstityksiksi, joiden tyyliä voit muokata. Toimii laitteellasi: ilmainen ja yksityinen. Ensimmäisellä kerralla malli ladataan.",
+        "done":  "Lisättiin {{count}} tekstitystä.",
+        "noSpeech":  "Tästä leikkeestä ei löytynyt puhetta.",
+        "failed":  "Tekstityksiä ei voitu luoda tälle leikkeelle."
     },
     "app": {
       "newDesign": "Uusi suunnitelma",
@@ -7174,15 +7183,6 @@
         "easeInOutBack": "Jousto alku ja loppu",
         "hold": "Pidä"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalisoi äänenvoimakkuus",
-      "denoise": "Vähennä melua",
-      "voice": "Paranna ääntä",
-      "working": "Käsitellään ääntä... {{percent}}%",
-      "done": "Käsitelty ääni lisätty. Kumoa palauttaa alkuperäisen.",
-      "failed": "Tätä ääntä ei voitu käsitellä. Alkuperäinen on muuttumaton.",
-      "hint": "Käsittele leikkeet jopa 10 minuutin ajan. Melunvaimennus toimii parhaiten tasaisen taustamelun kanssa."
     }
   },
   "creator": {

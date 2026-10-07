@@ -6787,25 +6787,34 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
-    "pages": {
-      "add": "Pridėti puslapį",
-      "duplicate": "Dubliuoti puslapį",
-      "delete": "Ištrinti puslapį",
-      "page": "Puslapis {{number}}",
-      "position": "Puslapis {{current}} iš {{total}}",
-      "label": "Puslapiai",
-      "allZip": "Visi puslapiai ({{count}}) (ZIP)",
-      "thisPage": "Tik šis puslapis",
-      "exporting": "Generuojamas puslapis {{current}} iš {{total}}…"
+    "audioTools": {
+      "normalize": "Normalizuoti garsumą",
+      "denoise": "Sumažinkite triukšmą",
+      "voice": "Pagerinti balso kokybę",
+      "working": "Apdorojamas garsas... {{percent}}%",
+      "done": "Apdorotas garsas pridėtas. Anuliuoti atkuria originalą.",
+      "failed": "Nepavyko apdoroti šio garso. Originalas nesikeičia.",
+      "hint": "Apdorokite klipus iki 10 minučių. Triukšmo mažinimas geriausiai veikia esant pastoviam foniniam triukšmui."
     },
+    "pages": {
+    "add":  "Pridėti puslapį",
+    "duplicate":  "Dubliuoti puslapį",
+    "delete":  "Ištrinti puslapį",
+    "page":  "Puslapis {{number}}",
+    "position":  "Puslapis {{current}} iš {{total}}",
+    "label":  "Puslapiai",
+    "allZip":  "Visi puslapiai ({{count}}) (ZIP)",
+    "thisPage":  "Tik šis puslapis",
+    "exporting":  "Generuojamas puslapis {{current}} iš {{total}}…"
+},
     "captions": {
-      "action": "Automatiniai subtitrai",
-      "working": "Klausomasi… {{percent}} %",
-      "downloading": "Ruošiamas kalbos modelis… {{percent}} %",
-      "hint": "Paverčia kalbą laiku susietais subtitrais, kurių stilių galite keisti. Veikia jūsų įrenginyje: nemokamai ir privačiai. Pirmą kartą atsisiunčiamas modelis.",
-      "done": "Pridėta subtitrų: {{count}}.",
-      "noSpeech": "Šiame klipe kalbos nerasta.",
-      "failed": "Nepavyko sukurti subtitrų šiam klipui."
+        "action":  "Automatiniai subtitrai",
+        "working":  "Klausomasi… {{percent}} %",
+        "downloading":  "Ruošiamas kalbos modelis… {{percent}} %",
+        "hint":  "Paverčia kalbą laiku susietais subtitrais, kurių stilių galite keisti. Veikia jūsų įrenginyje: nemokamai ir privačiai. Pirmą kartą atsisiunčiamas modelis.",
+        "done":  "Pridėta subtitrų: {{count}}.",
+        "noSpeech":  "Šiame klipe kalbos nerasta.",
+        "failed":  "Nepavyko sukurti subtitrų šiam klipui."
     },
     "app": {
       "newDesign": "Naujas dizainas",
@@ -7174,15 +7183,6 @@
         "easeInOutBack": "Atatranka pradžioje ir pabaigoje",
         "hold": "Išlaikyti"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalizuoti garsumą",
-      "denoise": "Sumažinkite triukšmą",
-      "voice": "Pagerinti balso kokybę",
-      "working": "Apdorojamas garsas... {{percent}}%",
-      "done": "Apdorotas garsas pridėtas. Anuliuoti atkuria originalą.",
-      "failed": "Nepavyko apdoroti šio garso. Originalas nesikeičia.",
-      "hint": "Apdorokite klipus iki 10 minučių. Triukšmo mažinimas geriausiai veikia esant pastoviam foniniam triukšmui."
     }
   },
   "creator": {

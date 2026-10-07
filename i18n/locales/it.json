@@ -6875,25 +6875,34 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
-    "pages": {
-      "add": "Aggiungi pagina",
-      "duplicate": "Duplica pagina",
-      "delete": "Elimina pagina",
-      "page": "Pagina {{number}}",
-      "position": "Pagina {{current}} di {{total}}",
-      "label": "Pagine",
-      "allZip": "Tutte le {{count}} pagine (ZIP)",
-      "thisPage": "Solo questa pagina",
-      "exporting": "Rendering pagina {{current}} di {{total}}…"
+    "audioTools": {
+      "normalize": "Normalizza il volume",
+      "denoise": "Ridurre il rumore",
+      "voice": "Migliora la voce",
+      "working": "Elaborazione suono in corso... {{percent}}%",
+      "done": "Aggiunto suono elaborato. Annulla ripristina l'originale.",
+      "failed": "Impossibile elaborare questo suono. L'originale rimane invariato.",
+      "hint": "Elabora clip fino a 10 minuti. La riduzione del rumore funziona meglio con un rumore di fondo costante."
     },
+    "pages": {
+    "add":  "Aggiungi pagina",
+    "duplicate":  "Duplica pagina",
+    "delete":  "Elimina pagina",
+    "page":  "Pagina {{number}}",
+    "position":  "Pagina {{current}} di {{total}}",
+    "label":  "Pagine",
+    "allZip":  "Tutte le {{count}} pagine (ZIP)",
+    "thisPage":  "Solo questa pagina",
+    "exporting":  "Rendering pagina {{current}} di {{total}}…"
+},
     "captions": {
-      "action": "Sottotitoli automatici",
-      "working": "In ascolto… {{percent}}%",
-      "downloading": "Preparazione del modello vocale… {{percent}}%",
-      "hint": "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
-      "done": "{{count}} sottotitoli aggiunti.",
-      "noSpeech": "Nessun parlato trovato in questa clip.",
-      "failed": "Impossibile creare i sottotitoli per questa clip."
+        "action":  "Sottotitoli automatici",
+        "working":  "In ascolto… {{percent}}%",
+        "downloading":  "Preparazione del modello vocale… {{percent}}%",
+        "hint":  "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
+        "done":  "{{count}} sottotitoli aggiunti.",
+        "noSpeech":  "Nessun parlato trovato in questa clip.",
+        "failed":  "Impossibile creare i sottotitoli per questa clip."
     },
     "app": {
       "newDesign": "Nuovo progetto",
@@ -7262,15 +7271,6 @@
         "easeInOutBack": "Ritorno in entrata e uscita",
         "hold": "Mantieni"
       }
-    },
-    "audioTools": {
-      "normalize": "Normalizza il volume",
-      "denoise": "Ridurre il rumore",
-      "voice": "Migliora la voce",
-      "working": "Elaborazione suono in corso... {{percent}}%",
-      "done": "Aggiunto suono elaborato. Annulla ripristina l'originale.",
-      "failed": "Impossibile elaborare questo suono. L'originale rimane invariato.",
-      "hint": "Elabora clip fino a 10 minuti. La riduzione del rumore funziona meglio con un rumore di fondo costante."
     }
   },
   "creator": {

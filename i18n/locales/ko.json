@@ -6870,25 +6870,34 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
-    "pages": {
-      "add": "페이지 추가",
-      "duplicate": "페이지 복제",
-      "delete": "페이지 삭제",
-      "page": "페이지 {{number}}",
-      "position": "{{total}}페이지 중 {{current}}페이지",
-      "label": "페이지",
-      "allZip": "전체 {{count}}페이지 (ZIP)",
-      "thisPage": "이 페이지만",
-      "exporting": "{{total}}페이지 중 {{current}}페이지 렌더링 중…"
+    "audioTools": {
+      "normalize": "음량 정상화",
+      "denoise": "소음 감소",
+      "voice": "목소리 개선",
+      "working": "소리 처리 중... {{percent}} %",
+      "done": "처리된 사운드가 추가되었습니다. 실행 취소하면 원본이 복원됩니다.",
+      "failed": "이 소리를 처리할 수 없습니다. 원본은 변경되지 않습니다.",
+      "hint": "최대 10분까지 클립을 처리합니다. 소음 감소는 안정적인 배경 소음과 가장 잘 작동합니다."
     },
+    "pages": {
+    "add":  "페이지 추가",
+    "duplicate":  "페이지 복제",
+    "delete":  "페이지 삭제",
+    "page":  "페이지 {{number}}",
+    "position":  "{{total}}페이지 중 {{current}}페이지",
+    "label":  "페이지",
+    "allZip":  "전체 {{count}}페이지 (ZIP)",
+    "thisPage":  "이 페이지만",
+    "exporting":  "{{total}}페이지 중 {{current}}페이지 렌더링 중…"
+},
     "captions": {
-      "action": "자동 자막",
-      "working": "듣는 중… {{percent}}%",
-      "downloading": "음성 모델 준비 중… {{percent}}%",
-      "hint": "음성을 스타일을 바꿀 수 있는 타이밍 자막으로 변환합니다. 기기에서 실행되어 무료이며 비공개입니다. 처음 사용할 때 모델을 다운로드합니다.",
-      "done": "자막 {{count}}개를 추가했습니다.",
-      "noSpeech": "이 클립에서 음성을 찾지 못했습니다.",
-      "failed": "이 클립의 자막을 만들 수 없습니다."
+        "action":  "자동 자막",
+        "working":  "듣는 중… {{percent}}%",
+        "downloading":  "음성 모델 준비 중… {{percent}}%",
+        "hint":  "음성을 스타일을 바꿀 수 있는 타이밍 자막으로 변환합니다. 기기에서 실행되어 무료이며 비공개입니다. 처음 사용할 때 모델을 다운로드합니다.",
+        "done":  "자막 {{count}}개를 추가했습니다.",
+        "noSpeech":  "이 클립에서 음성을 찾지 못했습니다.",
+        "failed":  "이 클립의 자막을 만들 수 없습니다."
     },
     "app": {
       "newDesign": "새 디자인",
@@ -7257,15 +7266,6 @@
         "easeInOutBack": "백 인 아웃",
         "hold": "고정"
       }
-    },
-    "audioTools": {
-      "normalize": "음량 정상화",
-      "denoise": "소음 감소",
-      "voice": "목소리 개선",
-      "working": "소리 처리 중... {{percent}} %",
-      "done": "처리된 사운드가 추가되었습니다. 실행 취소하면 원본이 복원됩니다.",
-      "failed": "이 소리를 처리할 수 없습니다. 원본은 변경되지 않습니다.",
-      "hint": "최대 10분까지 클립을 처리합니다. 소음 감소는 안정적인 배경 소음과 가장 잘 작동합니다."
     }
   },
   "creator": {

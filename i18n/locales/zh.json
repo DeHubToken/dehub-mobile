@@ -6855,25 +6855,34 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
-    "pages": {
-      "add": "添加页面",
-      "duplicate": "复制页面",
-      "delete": "删除页面",
-      "page": "第 {{number}} 页",
-      "position": "第 {{current}} 页，共 {{total}} 页",
-      "label": "页面",
-      "allZip": "全部 {{count}} 页（ZIP）",
-      "thisPage": "仅此页面",
-      "exporting": "正在渲染第 {{current}} 页，共 {{total}} 页…"
+    "audioTools": {
+      "normalize": "标准化音量",
+      "denoise": "降低噪音",
+      "voice": "增强语音",
+      "working": "正在处理声音... {{percent}} %",
+      "done": "已添加处理的声音。撤消还原始声音。",
+      "failed": "无法处理此声音。 原件不变。",
+      "hint": "处理剪辑长达10分钟。 降噪效果最好，背景噪音稳定。"
     },
+    "pages": {
+    "add":  "添加页面",
+    "duplicate":  "复制页面",
+    "delete":  "删除页面",
+    "page":  "第 {{number}} 页",
+    "position":  "第 {{current}} 页，共 {{total}} 页",
+    "label":  "页面",
+    "allZip":  "全部 {{count}} 页（ZIP）",
+    "thisPage":  "仅此页面",
+    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
+},
     "captions": {
-      "action": "自动字幕",
-      "working": "正在识别… {{percent}}%",
-      "downloading": "正在准备语音模型… {{percent}}%",
-      "hint": "将语音转换为带时间轴的字幕，可自由调整样式。在您的设备上运行：免费且私密。首次使用时会下载模型。",
-      "done": "已添加 {{count}} 条字幕。",
-      "noSpeech": "此片段中未检测到语音。",
-      "failed": "无法为此片段生成字幕。"
+        "action":  "自动字幕",
+        "working":  "正在识别… {{percent}}%",
+        "downloading":  "正在准备语音模型… {{percent}}%",
+        "hint":  "将语音转换为带时间轴的字幕，可自由调整样式。在您的设备上运行：免费且私密。首次使用时会下载模型。",
+        "done":  "已添加 {{count}} 条字幕。",
+        "noSpeech":  "此片段中未检测到语音。",
+        "failed":  "无法为此片段生成字幕。"
     },
     "app": {
       "newDesign": "新建设计",
@@ -7239,15 +7248,6 @@
         "easeInOutBack": "回弹缓入缓出",
         "hold": "定格"
       }
-    },
-    "audioTools": {
-      "normalize": "标准化音量",
-      "denoise": "降低噪音",
-      "voice": "增强语音",
-      "working": "正在处理声音... {{percent}} %",
-      "done": "已添加处理的声音。撤消还原始声音。",
-      "failed": "无法处理此声音。 原件不变。",
-      "hint": "处理剪辑长达10分钟。 降噪效果最好，背景噪音稳定。"
     }
   },
   "creator": {

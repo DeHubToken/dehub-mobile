@@ -6877,25 +6877,34 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
-    "pages": {
-      "add": "Seite hinzufügen",
-      "duplicate": "Seite duplizieren",
-      "delete": "Seite löschen",
-      "page": "Seite {{number}}",
-      "position": "Seite {{current}} von {{total}}",
-      "label": "Seiten",
-      "allZip": "Alle {{count}} Seiten (ZIP)",
-      "thisPage": "Nur diese Seite",
-      "exporting": "Seite {{current}} von {{total}} wird gerendert…"
+    "audioTools": {
+      "normalize": "Lautstärke normalisieren",
+      "denoise": "Geräuschreduzierung",
+      "voice": "Stimme verbessern",
+      "working": "Ton wird verarbeitet... {{percent}}%",
+      "done": "Verarbeiteter Ton hinzugefügt. Rückgängig stellt das Original wieder her.",
+      "failed": "Dieses Geräusch konnte nicht verarbeitet werden. Das Original ist unverändert.",
+      "hint": "Bearbeiten Sie Clips bis zu 10 Minuten. Die Rauschunterdrückung funktioniert am besten bei stetigen Hintergrundgeräuschen."
     },
+    "pages": {
+    "add":  "Seite hinzufügen",
+    "duplicate":  "Seite duplizieren",
+    "delete":  "Seite löschen",
+    "page":  "Seite {{number}}",
+    "position":  "Seite {{current}} von {{total}}",
+    "label":  "Seiten",
+    "allZip":  "Alle {{count}} Seiten (ZIP)",
+    "thisPage":  "Nur diese Seite",
+    "exporting":  "Seite {{current}} von {{total}} wird gerendert…"
+},
     "captions": {
-      "action": "Automatische Untertitel",
-      "working": "Hört zu… {{percent}} %",
-      "downloading": "Sprachmodell wird vorbereitet… {{percent}} %",
-      "hint": "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
-      "done": "{{count}} Untertitel hinzugefügt.",
-      "noSpeech": "In diesem Clip wurde keine Sprache erkannt.",
-      "failed": "Für diesen Clip konnten keine Untertitel erstellt werden."
+        "action":  "Automatische Untertitel",
+        "working":  "Hört zu… {{percent}} %",
+        "downloading":  "Sprachmodell wird vorbereitet… {{percent}} %",
+        "hint":  "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
+        "done":  "{{count}} Untertitel hinzugefügt.",
+        "noSpeech":  "In diesem Clip wurde keine Sprache erkannt.",
+        "failed":  "Für diesen Clip konnten keine Untertitel erstellt werden."
     },
     "app": {
       "newDesign": "Neues Design",
@@ -7264,15 +7273,6 @@
         "easeInOutBack": "Zurück ein und aus",
         "hold": "Halten"
       }
-    },
-    "audioTools": {
-      "normalize": "Lautstärke normalisieren",
-      "denoise": "Geräuschreduzierung",
-      "voice": "Stimme verbessern",
-      "working": "Ton wird verarbeitet... {{percent}}%",
-      "done": "Verarbeiteter Ton hinzugefügt. Rückgängig stellt das Original wieder her.",
-      "failed": "Dieses Geräusch konnte nicht verarbeitet werden. Das Original ist unverändert.",
-      "hint": "Bearbeiten Sie Clips bis zu 10 Minuten. Die Rauschunterdrückung funktioniert am besten bei stetigen Hintergrundgeräuschen."
     }
   },
   "creator": {

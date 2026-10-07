@@ -6767,25 +6767,34 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
-    "pages": {
-      "add": "Tinye peeji",
-      "duplicate": "Mepụta oyiri peeji",
-      "delete": "Hichapụ peeji",
-      "page": "Peeji {{number}}",
-      "position": "Peeji {{current}} n'ime {{total}}",
-      "label": "Peeji",
-      "allZip": "Peeji {{count}} niile (ZIP)",
-      "thisPage": "Naanị peeji a",
-      "exporting": "Na-akwado peeji {{current}} n'ime {{total}}…"
+    "audioTools": {
+      "normalize": "Hazie ụda",
+      "denoise": "Belata mkpọtụ",
+      "voice": "Enhance olu",
+      "working": "Hazie ụda... {{percent}}%",
+      "done": "Ụda esichara agbakwunyere. Wepụtagharịa nke mbụ.",
+      "failed": "Agaghị emenwu ụda a. Nke mbụ anaghị agbanwe agbanwe.",
+      "hint": "Usoro mkpachị ruo 10 nkeji. Mbelata mkpọtụ na-arụ ọrụ kacha mma na mkpọtụ ndabere siri ike."
     },
+    "pages": {
+    "add":  "Tinye peeji",
+    "duplicate":  "Mepụta oyiri peeji",
+    "delete":  "Hichapụ peeji",
+    "page":  "Peeji {{number}}",
+    "position":  "Peeji {{current}} n\u0027ime {{total}}",
+    "label":  "Peeji",
+    "allZip":  "Peeji {{count}} niile (ZIP)",
+    "thisPage":  "Naanị peeji a",
+    "exporting":  "Na-akwado peeji {{current}} n\u0027ime {{total}}…"
+},
     "captions": {
-      "action": "Ndepụta okwu akpaka",
-      "working": "Na-ege ntị… {{percent}}%",
-      "downloading": "Na-akwado ụdị okwu… {{percent}}%",
-      "hint": "Na-atụgharị okwu ka ọ bụrụ ndepụta nwere oge ị nwere ike ịgbanwe ụdị ya. Ọ na-arụ ọrụ na ngwaọrụ gị: n'efu na nzuzo. Ojiji mbụ na-ebudata ụdị ahụ.",
-      "done": "Etinyere ndepụta {{count}}.",
-      "noSpeech": "Ahụghị okwu ọ bụla na klip a.",
-      "failed": "Enweghị ike ịmepụta ndepụta maka klip a."
+        "action":  "Ndepụta okwu akpaka",
+        "working":  "Na-ege ntị… {{percent}}%",
+        "downloading":  "Na-akwado ụdị okwu… {{percent}}%",
+        "hint":  "Na-atụgharị okwu ka ọ bụrụ ndepụta nwere oge ị nwere ike ịgbanwe ụdị ya. Ọ na-arụ ọrụ na ngwaọrụ gị: n\u0027efu na nzuzo. Ojiji mbụ na-ebudata ụdị ahụ.",
+        "done":  "Etinyere ndepụta {{count}}.",
+        "noSpeech":  "Ahụghị okwu ọ bụla na klip a.",
+        "failed":  "Enweghị ike ịmepụta ndepụta maka klip a."
     },
     "app": {
       "newDesign": "Nhazi ọhụrụ",
@@ -7154,15 +7163,6 @@
         "easeInOutBack": "Laghachi ịbanye na ịpụ",
         "hold": "Jide"
       }
-    },
-    "audioTools": {
-      "normalize": "Hazie ụda",
-      "denoise": "Belata mkpọtụ",
-      "voice": "Enhance olu",
-      "working": "Hazie ụda... {{percent}}%",
-      "done": "Ụda esichara agbakwunyere. Wepụtagharịa nke mbụ.",
-      "failed": "Agaghị emenwu ụda a. Nke mbụ anaghị agbanwe agbanwe.",
-      "hint": "Usoro mkpachị ruo 10 nkeji. Mbelata mkpọtụ na-arụ ọrụ kacha mma na mkpọtụ ndabere siri ike."
     }
   },
   "creator": {

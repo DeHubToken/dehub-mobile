@@ -6870,6 +6870,15 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "audioTools": {
+      "normalize": "Normalize volume",
+      "denoise": "Reduce noise",
+      "voice": "Enhance voice",
+      "working": "Processing sound... {{percent}}%",
+      "done": "Processed sound added. Undo restores the original.",
+      "failed": "Couldn't process this sound. The original is unchanged.",
+      "hint": "Process clips up to 10 minutes. Noise reduction works best with steady background noise."
+    },
     "pages": {
     "add":  "Add page",
     "duplicate":  "Duplicate page",
@@ -6881,15 +6890,6 @@
     "thisPage":  "This page only",
     "exporting":  "Rendering page {{current}} of {{total}}…"
 },
-    "audioTools": {
-      "normalize": "Normalize volume",
-      "denoise": "Reduce noise",
-      "voice": "Enhance voice",
-      "working": "Processing sound... {{percent}}%",
-      "done": "Processed sound added. Undo restores the original.",
-      "failed": "Couldn't process this sound. The original is unchanged.",
-      "hint": "Process clips up to 10 minutes. Noise reduction works best with steady background noise."
-    },
     "captions": {
         "action":  "Auto captions",
         "working":  "Listening… {{percent}}%",

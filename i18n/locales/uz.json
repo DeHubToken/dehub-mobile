@@ -6842,25 +6842,34 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
-    "pages": {
-      "add": "Sahifa qo'shish",
-      "duplicate": "Sahifadan nusxa olish",
-      "delete": "Sahifani o'chirish",
-      "page": "{{number}}-sahifa",
-      "position": "{{current}}/{{total}} sahifa",
-      "label": "Sahifalar",
-      "allZip": "Barcha {{count}} sahifa (ZIP)",
-      "thisPage": "Faqat shu sahifa",
-      "exporting": "{{current}}/{{total}} sahifa tayyorlanmoqda…"
+    "audioTools": {
+      "normalize": "Ovoz balandligini normallashtirish",
+      "denoise": "Shovqinni kamaytiring",
+      "voice": "Ovozni yaxshilash",
+      "working": "Ovoz qayta ishlanmoqda... {{percent}}%",
+      "done": "Qayta ishlangan ovoz qo&#39;shildi. Bekor qilish asl tovushni tiklaydi.",
+      "failed": "Bu tovushni qayta ishlab bo&#39;lmadi. Asl nusxasi o&#39;zgartirilmagan.",
+      "hint": "Kliplarni 10 daqiqagacha qayta ishlang. Shovqinni kamaytirish barqaror fon shovqini bilan eng yaxshi ishlaydi."
     },
+    "pages": {
+    "add":  "Sahifa qo\u0027shish",
+    "duplicate":  "Sahifadan nusxa olish",
+    "delete":  "Sahifani o\u0027chirish",
+    "page":  "{{number}}-sahifa",
+    "position":  "{{current}}/{{total}} sahifa",
+    "label":  "Sahifalar",
+    "allZip":  "Barcha {{count}} sahifa (ZIP)",
+    "thisPage":  "Faqat shu sahifa",
+    "exporting":  "{{current}}/{{total}} sahifa tayyorlanmoqda…"
+},
     "captions": {
-      "action": "Avtomatik subtitrlar",
-      "working": "Tinglanmoqda… {{percent}}%",
-      "downloading": "Nutq modeli tayyorlanmoqda… {{percent}}%",
-      "hint": "Nutqni vaqtga moslangan, uslubini o‘zgartirish mumkin bo‘lgan subtitrlarga aylantiradi. Qurilmangizda ishlaydi: bepul va maxfiy. Birinchi foydalanishda model yuklab olinadi.",
-      "done": "{{count}} ta subtitr qo‘shildi.",
-      "noSpeech": "Bu klipda nutq topilmadi.",
-      "failed": "Bu klip uchun subtitr yaratib bo‘lmadi."
+        "action":  "Avtomatik subtitrlar",
+        "working":  "Tinglanmoqda… {{percent}}%",
+        "downloading":  "Nutq modeli tayyorlanmoqda… {{percent}}%",
+        "hint":  "Nutqni vaqtga moslangan, uslubini o‘zgartirish mumkin bo‘lgan subtitrlarga aylantiradi. Qurilmangizda ishlaydi: bepul va maxfiy. Birinchi foydalanishda model yuklab olinadi.",
+        "done":  "{{count}} ta subtitr qo‘shildi.",
+        "noSpeech":  "Bu klipda nutq topilmadi.",
+        "failed":  "Bu klip uchun subtitr yaratib bo‘lmadi."
     },
     "app": {
       "newDesign": "Yangi dizayn",
@@ -7229,15 +7238,6 @@
         "easeInOutBack": "Qaytish kirish va chiqish",
         "hold": "Ushlab turish"
       }
-    },
-    "audioTools": {
-      "normalize": "Ovoz balandligini normallashtirish",
-      "denoise": "Shovqinni kamaytiring",
-      "voice": "Ovozni yaxshilash",
-      "working": "Ovoz qayta ishlanmoqda... {{percent}}%",
-      "done": "Qayta ishlangan ovoz qo&#39;shildi. Bekor qilish asl tovushni tiklaydi.",
-      "failed": "Bu tovushni qayta ishlab bo&#39;lmadi. Asl nusxasi o&#39;zgartirilmagan.",
-      "hint": "Kliplarni 10 daqiqagacha qayta ishlang. Shovqinni kamaytirish barqaror fon shovqini bilan eng yaxshi ishlaydi."
     }
   },
   "creator": {

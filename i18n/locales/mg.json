@@ -6868,25 +6868,34 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
-    "pages": {
-      "add": "Hanampy pejy",
-      "duplicate": "Adikao ny pejy",
-      "delete": "Fafao ny pejy",
-      "page": "Pejy {{number}}",
-      "position": "Pejy {{current}} amin'ny {{total}}",
-      "label": "Pejy",
-      "allZip": "Ireo pejy {{count}} rehetra (ZIP)",
-      "thisPage": "Ity pejy ity ihany",
-      "exporting": "Mamorona ny pejy {{current}} amin'ny {{total}}…"
+    "audioTools": {
+      "normalize": "Ovay ny haben'ilay kapila",
+      "denoise": "Ahena ny tabataba",
+      "voice": "Ampitomboy ny feo",
+      "working": "Fikarakarana feo... {{percent}}%",
+      "done": "Feo nampidirina. Avereno ilay niandohana.",
+      "failed": "Indrisy anefa fa tsy afaka manazava izany fahatsapana izany feno kokoa aho. Ny lahatsoratra voalohany dia tsy hanova na inona na inona.",
+      "hint": "Ny minitra ihany dia mila minitra 10. Noise fampihenana miasa tsara indrindra amin'ny fototra tapaka tabataba."
     },
+    "pages": {
+    "add":  "Hanampy pejy",
+    "duplicate":  "Adikao ny pejy",
+    "delete":  "Fafao ny pejy",
+    "page":  "Pejy {{number}}",
+    "position":  "Pejy {{current}} amin\u0027ny {{total}}",
+    "label":  "Pejy",
+    "allZip":  "Ireo pejy {{count}} rehetra (ZIP)",
+    "thisPage":  "Ity pejy ity ihany",
+    "exporting":  "Mamorona ny pejy {{current}} amin\u0027ny {{total}}…"
+},
     "captions": {
-      "action": "Dikanteny mandeha ho azy",
-      "working": "Mihaino… {{percent}}%",
-      "downloading": "Manomana ny modely feo… {{percent}}%",
-      "hint": "Mamadika ny teny ho dikanteny mifanaraka amin'ny fotoana izay azonao ovaina ny endriny. Mandeha amin'ny fitaovanao: maimaim-poana sy tsiambaratelo. Misintona ny modely amin'ny fampiasana voalohany.",
-      "done": "Dikanteny {{count}} no nampiana.",
-      "noSpeech": "Tsy nisy teny hita tao amin'ity clip ity.",
-      "failed": "Tsy afaka namorona dikanteny ho an'ity clip ity."
+        "action":  "Dikanteny mandeha ho azy",
+        "working":  "Mihaino… {{percent}}%",
+        "downloading":  "Manomana ny modely feo… {{percent}}%",
+        "hint":  "Mamadika ny teny ho dikanteny mifanaraka amin\u0027ny fotoana izay azonao ovaina ny endriny. Mandeha amin\u0027ny fitaovanao: maimaim-poana sy tsiambaratelo. Misintona ny modely amin\u0027ny fampiasana voalohany.",
+        "done":  "Dikanteny {{count}} no nampiana.",
+        "noSpeech":  "Tsy nisy teny hita tao amin\u0027ity clip ity.",
+        "failed":  "Tsy afaka namorona dikanteny ho an\u0027ity clip ity."
     },
     "app": {
       "newDesign": "Famolavolana vaovao",
@@ -7255,15 +7264,6 @@
         "easeInOutBack": "Miverina miditra sy mivoaka",
         "hold": "Tazony"
       }
-    },
-    "audioTools": {
-      "normalize": "Ovay ny haben'ilay kapila",
-      "denoise": "Ahena ny tabataba",
-      "voice": "Ampitomboy ny feo",
-      "working": "Fikarakarana feo... {{percent}}%",
-      "done": "Feo nampidirina. Avereno ilay niandohana.",
-      "failed": "Indrisy anefa fa tsy afaka manazava izany fahatsapana izany feno kokoa aho. Ny lahatsoratra voalohany dia tsy hanova na inona na inona.",
-      "hint": "Ny minitra ihany dia mila minitra 10. Noise fampihenana miasa tsara indrindra amin'ny fototra tapaka tabataba."
     }
   },
   "creator": {

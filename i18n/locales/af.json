@@ -6913,25 +6913,34 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
-    "pages": {
-      "add": "Voeg bladsy by",
-      "duplicate": "Dupliseer bladsy",
-      "delete": "Skrap bladsy",
-      "page": "Bladsy {{number}}",
-      "position": "Bladsy {{current}} van {{total}}",
-      "label": "Bladsye",
-      "allZip": "Al {{count}} bladsye (ZIP)",
-      "thisPage": "Slegs hierdie bladsy",
-      "exporting": "Lewer bladsy {{current}} van {{total}}…"
+    "audioTools": {
+      "normalize": "Normaliseer volume",
+      "denoise": "Verminder geraas",
+      "voice": "Verbeter stem",
+      "working": "Verwerking klank... {{percent}}%",
+      "done": "Verwerkte klank bygevoeg. Ontdoen herstel die oorspronklike.",
+      "failed": "Ek kon nie die geluid verwerk nie. Die oorspronklike is onveranderd.",
+      "hint": "Verwerk snitte tot 10 minute. Geraasvermindering werk die beste met bestendige agtergrond geraas."
     },
+    "pages": {
+    "add":  "Voeg bladsy by",
+    "duplicate":  "Dupliseer bladsy",
+    "delete":  "Skrap bladsy",
+    "page":  "Bladsy {{number}}",
+    "position":  "Bladsy {{current}} van {{total}}",
+    "label":  "Bladsye",
+    "allZip":  "Al {{count}} bladsye (ZIP)",
+    "thisPage":  "Slegs hierdie bladsy",
+    "exporting":  "Lewer bladsy {{current}} van {{total}}…"
+},
     "captions": {
-      "action": "Outo-onderskrifte",
-      "working": "Luister tans… {{percent}}%",
-      "downloading": "Maak die spraakmodel gereed… {{percent}}%",
-      "hint": "Verander spraak in getimede onderskrifte wat jy kan herstileer. Loop op jou toestel: gratis en privaat. Die eerste gebruik laai die model af.",
-      "done": "{{count}} onderskrifte bygevoeg.",
-      "noSpeech": "Geen spraak in hierdie snit gevind nie.",
-      "failed": "Kon nie onderskrifte vir hierdie snit skep nie."
+        "action":  "Outo-onderskrifte",
+        "working":  "Luister tans… {{percent}}%",
+        "downloading":  "Maak die spraakmodel gereed… {{percent}}%",
+        "hint":  "Verander spraak in getimede onderskrifte wat jy kan herstileer. Loop op jou toestel: gratis en privaat. Die eerste gebruik laai die model af.",
+        "done":  "{{count}} onderskrifte bygevoeg.",
+        "noSpeech":  "Geen spraak in hierdie snit gevind nie.",
+        "failed":  "Kon nie onderskrifte vir hierdie snit skep nie."
     },
     "app": {
       "newDesign": "Nuwe ontwerp",
@@ -7300,15 +7309,6 @@
         "easeInOutBack": "Terug in en uit",
         "hold": "Hou"
       }
-    },
-    "audioTools": {
-      "normalize": "Normaliseer volume",
-      "denoise": "Verminder geraas",
-      "voice": "Verbeter stem",
-      "working": "Verwerking klank... {{percent}}%",
-      "done": "Verwerkte klank bygevoeg. Ontdoen herstel die oorspronklike.",
-      "failed": "Ek kon nie die geluid verwerk nie. Die oorspronklike is onveranderd.",
-      "hint": "Verwerk snitte tot 10 minute. Geraasvermindering werk die beste met bestendige agtergrond geraas."
     }
   },
   "creator": {
