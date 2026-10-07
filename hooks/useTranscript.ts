@@ -184,6 +184,8 @@ export function useTranscriptTranslation(
   language: string,
   enabled: boolean,
 ) {
+  // Match the server's stored language tag and share regional cache entries.
+  language = language.trim().toLowerCase().replace('_', '-');
   const qc = useQueryClient();
   const wanted = enabled && !!transcriptId && !!language && language !== "original";
   const key = ["transcript-translation", transcriptId, language] as const;

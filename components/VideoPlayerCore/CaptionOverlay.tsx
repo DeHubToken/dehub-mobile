@@ -31,7 +31,7 @@ import {
   type TranscriptSegment,
 } from '../../hooks/useTranscript';
 import { useDubSettings, setDubSettings } from '../../hooks/useVideoDub';
-import { useVoiceDub, baseLang, findVoice } from '../../hooks/useVoiceDub';
+import { useVoiceDub, baseLang, findVoice, speechAvailable } from '../../hooks/useVoiceDub';
 import { toastInfo } from '../../libs';
 import {
   SUBTITLE_LANGUAGES,
@@ -100,12 +100,23 @@ const CaptionOverlay: React.FC<Props> = ({
   const [fixOpen, setFixOpen] = useState(false);
   const { on: dubOn, lang: dubPref } = useDubSettings();
 
+  const [audible, setAudible] = useState(false);
+  useEffect(() => {
+    if (!player) { setAudible(false); return; }
+    const update = () => setAudible(player.playing && !player.muted && player.volume > 0);
+    update();
+    const playSub = player.addListener('playingChange', update);
+    const muteSub = player.addListener('mutedChange', update);
+    const volumeSub = player.addListener('volumeChange', update);
+    return () => { playSub.remove(); muteSub.remove(); volumeSub.remove(); };
+  }, [player]);
+
   // Only fetch once the viewer has shown intent — including asking for a
   // dub, which is keyed on the transcript too.
   const { transcript, status, inFlight, canRetry, start } = useTranscript(
     'video',
     ref,
-    !!ref && (enabled || pickerOpen || dubOn),
+    !!ref && (enabled || pickerOpen || (dubOn && audible)),
   );
 
   const isReady = status === 'ready';
@@ -133,10 +144,23 @@ const CaptionOverlay: React.FC<Props> = ({
   // the app language from the post menu. Speaking the video's own language
   // over itself would be noise, so that case is simply off.
   const dubLang = useMemo(() => {
-    const l = baseLang(dubPref || i18n.language);
-    return l && l !== sourceLang ? l : null;
-  }, [dubPref, i18n.language, sourceLang]);
-  const wantDub = dubOn && isReady && !!dubLang && !!player;
+    const l = dubPref || (targetLang !== 'original' ? targetLang : i18n.resolvedLanguage || i18n.language);
+    return sourceLang && l && baseLang(l) !== sourceLang ? l : null;
+  }, [dubPref, targetLang, i18n.resolvedLanguage, i18n.language, sourceLang]);
+  const [voiceSupported, setVoiceSupported] = useState<boolean | null>(null);
+  const [dubFailed, setDubFailed] = useState(false);
+  useEffect(() => {
+    setVoiceSupported(null);
+    setDubFailed(false);
+    if (!speechAvailable) { setVoiceSupported(false); return; }
+    if (!dubOn || !audible || !dubLang) return;
+    let cancelled = false;
+    void findVoice(dubLang).then((voice) => {
+      if (!cancelled) setVoiceSupported(voice !== null);
+    });
+    return () => { cancelled = true; };
+  }, [dubOn, audible, dubLang]);
+  const wantDub = dubOn && audible && isReady && !!dubLang && !!player && voiceSupported === true && !dubFailed;
   // Same query as the captions when both are in one language, so the second
   // one is a cache read.
   const { translation: dubTranslation } = useTranscriptTranslation(
@@ -149,12 +173,13 @@ const CaptionOverlay: React.FC<Props> = ({
     segments: dubTranslation?.status === 'ready' ? dubTranslation.segments : null,
     lang: dubLang,
     enabled: wantDub,
+    onFailed: () => setDubFailed(true),
   });
-  const dubHint = !wantDub || dubTranslation?.status === 'ready'
+  const dubHint = !dubOn || !audible || !dubLang
     ? null
-    : dubTranslation?.status === 'failed'
+    : dubFailed || voiceSupported === false || dubTranslation?.status === 'failed'
     ? t('dub.unavailable')
-    : t('dub.preparing');
+    : dubTranslation?.status === 'ready' && voiceSupported ? null : t('dub.preparing');
 
   // Captions on a language pick that; captions on Original borrow the app's
   // language. Either way it has to differ from what was spoken — an English
