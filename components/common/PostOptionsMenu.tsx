@@ -524,7 +524,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               that also shows these on its action bar still passes them: the
               menu is where people look for an action by name. */}
           {!!onDownloadVideo && (
-            <OptionRow icon="download-outline" label={t("common.download")}
+            <OptionRow icon="download-outline" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />
           )}
           {!!onToggleSave && (

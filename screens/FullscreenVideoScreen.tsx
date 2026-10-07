@@ -417,7 +417,7 @@ const FullscreenVideoScreen = () => {
             <View style={styles.topButtonGroup}>
               <PictureInPictureButton videoRef={videoViewRef} />
               {videoUrl && <Pressable style={styles.glassButton} accessibilityRole="button"
-                accessibilityLabel={t("common.download")}
+                accessibilityLabel={t("postOptions.download")}
                 onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || "video", username: creatorUsername }); }}>
                 <View style={styles.glassOverlay} /><Icon name="Download" size={20} color="#fff" />
               </Pressable>}
