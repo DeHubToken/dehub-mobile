@@ -136,6 +136,10 @@ export async function askAgent(messages: AgentMessage[], scene: unknown, signal?
   const last = messages[messages.length - 1];
   const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
+  return askSceneAgent(messages, scene, signal);
+}
+
+export async function askSceneAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",
