@@ -2,10 +2,12 @@
    semantic colours and disabled opacity independent of the text colour. */
 const WHITE = Object.freeze({ color: "#FFFFFF" });
 const cache = new WeakMap();
+const COOL_NEUTRALS = new Set(["#919ca9", "#6b7280", "#9ca3af", "#94a3b8", "#64748b", "#cbd5e1"]);
 let native;
 
 function isMutedNeutral(color) {
   if (typeof color !== "string") return false;
+  if (COOL_NEUTRALS.has(color.toLowerCase())) return true;
   const hex = /^#([\da-f]{3}|[\da-f]{6})$/i.exec(color);
   if (hex) {
     const value = hex[1].length === 3 ? hex[1].split("").map((c) => c + c).join("") : hex[1];

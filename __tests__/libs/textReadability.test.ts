@@ -19,6 +19,7 @@ it('brightens only complete neutral utility tokens and native placeholders', () 
   expect(result.className).toBe('text-white text-xs bg-zinc-600 border-zinc-500 focus:text-red-400');
   expect(result.placeholderTextColor).toBe('#FFFFFF');
   expect(readableTextProps(Text, { className: 'text-white/50' }).className).toBe('text-white');
+  expect(flatten(readableTextProps(Text, { style: { color: '#919CA9' } }).style).color).toBe('#FFFFFF');
 });
 
 it('preserves semantic colours, dark button labels, light fills and non-text props', () => {
