@@ -57,7 +57,7 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
   };
   let imageNumber = 0;
   const choices = (library.data?.pages.flatMap(page => page.jobs) ?? []).filter(job => job.url && (job.kind === 'image' || (mode === 'video' && job.kind === 'video')));
-  return <View className="px-4 pb-2">
+  return <View className={assets.length > 0 ? 'px-4 pb-2' : undefined}>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
       {assets.map(asset => {
         const tag = asset.kind === 'video' ? '@Video1' : `@Image${++imageNumber}`;
