@@ -1,3 +1,4 @@
+import { useVideoDownload } from "../context/VideoDownloadContext";
 /**
  * AI Assistant.
  * =============
@@ -201,6 +202,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
+  const downloadVideo = useVideoDownload();
   const { isSignedIn, needsUsername } = useAuthState();
   const [supportVisible, setSupportVisible] = useState(false);
   // Read once for the header badge. The sheet runs the same query, so opening
@@ -1567,13 +1569,15 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         onImagePress={handleImagePress}
         onAttachImage={handleAttachGenerated}
         onCopyImage={copyImage}
-        onSaveMedia={saveToLibrary}
+        onSaveMedia={(uri, kind) => kind === "video"
+          ? downloadVideo({ url: uri, title: "dehub-video", username: user?.username })
+          : saveToLibrary(uri, kind)}
         onPostMedia={handlePostMedia}
         onShareAudio={shareAudio}
         onRetry={item.isError ? handleRetry : undefined}
       />
     ),
-    [handleImagePress, handleAttachGenerated, handlePostMedia, handleRetry],
+    [handleImagePress, handleAttachGenerated, handlePostMedia, handleRetry, downloadVideo, user?.username],
   );
 
   const keyExtractor = useCallback(

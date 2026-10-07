@@ -92,3 +92,10 @@ The ending lasts 2.2 seconds. MP4/WebM retains an original short sweep and resol
 - Beat synchronization: web PR 2315 and mobile PR 1693 merged after cloud checks passed. Staging on web commit 58a14d15 detected all 20 onsets in a 120 BPM fixture. Nine internal cuts aligned to 0.75 through 8.75 seconds while the 0 and 10 second outer edges stayed fixed. The first clip played at 1.33x to preserve its source range. Undo restored the original cuts; Redo restored the synchronized boundaries. Native publication run 37669325724 was dispatched from exact merge 54326bffe; publication and physical-device verification remain separate.
 
 - Shot detection: both clients use the same bounded sampler and visual-change detector. Suggested cuts are reviewable before applying one source-aware split. Exact requests such as `split this video by scenes` run locally. Cloud checks, staging video evidence and native publication remain pending.
+
+
+### Feed download ending
+Video downloads from feed cards and the native fullscreen player now render through the same ending compositor as editor exports. The credit uses the post creator's username. Source aspect, content duration and audio are retained. Progress and cancellation are exposed; a failed render does not silently save the unbranded source.
+New MP4/WebM exports carry a small container marker recording the content boundary. Downloading them replaces the existing ending. Older files are checked against both the deform and settled icon frames; files that do not match retain all their original content. This visual check is conservative and cannot recognise altered/cropped endings.
+The native renderer is mounted only for a download and uses cache media without adding a project or library item. Physical-device saving and authenticated creator-credit verification remain separate from cloud checks.
+Beat-sync OTA run 37669325724 completed successfully for mobile merge 54326bffe3976f7157719a94f68e63fabea00c03. Scene-cut PRs web #2316 and mobile #1694 passed cloud checks and merged; their live/native publication evidence remains pending.

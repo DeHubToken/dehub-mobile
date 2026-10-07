@@ -169,6 +169,8 @@ interface FeedVideoPlayerProps {
   /** Hide play button, controls, progress bar, and duration badge (used for shorts). */
   /** Creator address — a rate pinned to this channel starts the video there. */
   creator?: string | null;
+  creatorUsername?: string;
+  downloadTitle?: string;
   hideControls?: boolean;
   /** Mounted by a tap on the poster that stood in for this card: start at once. */
   startOnMount?: boolean;
@@ -266,6 +268,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   onLockPress,
   onBountyPress,
   creator,
+  creatorUsername,
+  downloadTitle,
   hideControls = false,
   startOnMount = false,
   autoplaySettled = false,
@@ -1051,9 +1055,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     preparePostMediaNavigation(videoUrl);
     navigation.navigate(ScreenNames.FullscreenVideo as never, {
       videoUrl, startTime: time, isMuted: muted, thumbnail,
-      tokenId, isSignedIn,
+      tokenId, isSignedIn, creatorUsername, downloadTitle,
     } as never);
-  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
+  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation, creatorUsername, downloadTitle]);
 
   // Video posts: the player's buttons are bare icons with a soft shadow,
   // mute in the top corner, with subtitles, speed, loop and picture in picture

@@ -1,3 +1,5 @@
+import { useVideoDownload } from "../context/VideoDownloadContext";
+import { isHoldGated } from "../libs/content-gate";
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
@@ -1717,6 +1719,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 });
 
 const ShortsViewerScreen = () => {
+  const downloadVideo = useVideoDownload();
   const mediaInsets = useSafeAreaInsets();
   const { t } = useCopy();
   const route = useRoute<any>();
@@ -2297,6 +2300,11 @@ const ShortsViewerScreen = () => {
           currentCategories={activeItem.category || []}
           currentShopLinks={(activeItem as any).shopLinks}
           isSaved={activeEngagement.isSaved}
+          onDownloadVideo={activeItem.postType === "short" && !activeItem.imageUrls?.length &&
+            (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount))) &&
+            !(activeItem as { contentRating?: string }).contentRating?.includes("mature")
+            ? () => { const url = getVideoUrl(activeTokenId); if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername }); }
+            : undefined}
           onToggleSave={handleToggleSave}
           onFollowChange={handleFollowChange}
           onVisibilityChange={handleVisibilityChange}
