@@ -35,7 +35,7 @@ export function captionLayers(clip: MediaClip, words: CaptionWord[], id: () => s
     clips.push({
       id: id(), trackId: track.id, kind: "text", trimIn: 0, start, duration: end - start,
       text: line.text, fontFamily: "'Montserrat', sans-serif", fontSize: style === "bold" ? 78 : 64,
-      fontWeight: 800, color: style === "bold" ? "#f9ee58" : "#ffffff", align: "centre", x: 0.5, y: 0.84,
+      fontWeight: 800, color: style === "bold" ? "#f9ee58" : "#ffffff", align: "centre", x: 0.5, y: 0.84, maxWidth: 0.9, maxHeight: 0.28,
       stroke: style === "boxed" ? null : { color: "#000000", width: 8 },
       background: style === "boxed" ? { color: "#000000", opacity: 0.75, padding: 18, radius: 12 } : null,
       animateIn: style === "bold" ? { kind: "pop", duration: Math.min(0.12, (end - start) / 2) } : undefined,
