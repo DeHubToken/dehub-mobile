@@ -6915,6 +6915,13 @@
       "delete": "删除"
     },
     "export": {
+      "scope": "下载范围",
+      "downloadTimeline": "整个时间线",
+      "downloadSelection": "选中视频剪辑（{{count}}）",
+      "downloadClips": "每个视频剪辑（{{count}}）",
+      "rangeHint": "保留每段的字幕和音频。每个文件会加上 2.2 秒的 DeHub 结尾。多个文件会一起打包成 ZIP 下载。",
+      "exportingClips": "导出第 {{current}} 个剪辑（共 {{total}} 个）",
+      "archiveTooLarge": "下载文件超过 512 MiB。请导出更少的剪辑或选择更低的分辨率。",
       "gifHint": "无声循环动画。最长60秒，640像素，15帧每秒。包括你的logo结尾。",
       "gifTooLong": "把时间线剪到60秒以下，或者选MP4或WebM。",
       "format": "文件类型",

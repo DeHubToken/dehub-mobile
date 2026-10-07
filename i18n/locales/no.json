@@ -6927,6 +6927,13 @@
       "delete": "Slett"
     },
     "export": {
+      "scope": "Nedlastingsområde",
+      "downloadTimeline": "Hele tidslinjen",
+      "downloadSelection": "Utvalgte videoklipp ({{count}})",
+      "downloadClips": "Hvert videoklipp ({{count}})",
+      "rangeHint": "Beholder teksting og lyd for hvert klipp. Hver fil legger til en 2,2 sekunder lang DeHub-avslutning. Flere filer lastes ned sammen som en ZIP-fil.",
+      "exportingClips": "Eksporterer klipp {{current}} av {{total}}",
+      "archiveTooLarge": "Nedlastingen overstiger 512 MiB. Eksporter færre klipp eller velg en lavere oppløsning.",
       "gifHint": "Looping animasjon uten lyd. Opptil 60 sekunder, 640 piksler og 15 fps. Inkluderer din logoavslutning.",
       "gifTooLong": "Trim tidslinjen til 60 sekunder eller mindre, eller velg MP4 eller WebM.",
       "format": "Filtype",

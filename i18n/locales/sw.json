@@ -6930,6 +6930,13 @@
       "delete": "Futa"
     },
     "export": {
+      "scope": "Pakua masafa",
+      "downloadTimeline": "Ratiba nzima ya wakati",
+      "downloadSelection": "Klipu za video zilizochaguliwa ({{count}})",
+      "downloadClips": "Kila klipu ya video ({{count}})",
+      "rangeHint": "Hudumisha maelezo mafupi na sauti kwa kila kata. Kila faili huongeza mwisho wa DeHub wa sekunde 2.2. Faili nyingi zinapakuliwa pamoja kama ZIP.",
+      "exportingClips": "Kuhamisha klipu {{current}} ya {{total}}",
+      "archiveTooLarge": "Upakuaji unazidi MiB 512. Hamisha klipu chache au uchague azimio la chini.",
       "gifHint": "Uhuishaji wa kitanzi bila sauti. Hadi sekunde 60, pikseli 640 na fps 15. Inajumuisha nembo yako inayoisha.",
       "gifTooLong": "Punguza ratiba hadi sekunde 60 au chini, au uchague MP4 au WebM.",
       "format": "Aina ya faili",

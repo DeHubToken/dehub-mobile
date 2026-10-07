@@ -6910,6 +6910,13 @@
       "delete": "Paarẹ"
     },
     "export": {
+      "scope": "Ṣe igbasilẹ ibiti",
+      "downloadTimeline": "Gbogbo akoko",
+      "downloadSelection": "Awọn gige fidio ti a yan ({{count}})",
+      "downloadClips": "Gbogbo gige fidio ({{count}})",
+      "rangeHint": "Ṣe idaduro akọle ati ohun fun gige kọọkan. Gbogbo faili kun 2.2-aaya DeHub ipari. Ọpọlọpọ awọn faili ti wa ni igbasilẹ papọ gẹgẹbi ZIP.",
+      "exportingClips": "Ṣiṣejade gige {{current}} ti {{total}}",
+      "archiveTooLarge": "Igbasilẹ naa kọja 512 MiB. Ṣe igbasilẹ awọn gige diẹ sii tabi yan ipinnu kekere.",
       "gifHint": "Ṣíṣe àfarahàn láìní ohùn. Ó tó àáyá 60, pikselé 640 àti fps 15. Ó fi òpin sí àmì ẹ̀rí rẹ kún un.",
       "gifTooLong": "Ge akoko si iṣẹju-aaya 60 tabi kere si, tabi yan MP4 tabi WebM.",
       "format": "Irú faili",

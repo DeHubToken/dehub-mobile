@@ -7016,6 +7016,13 @@
       "delete": "Elimina"
     },
     "export": {
+      "scope": "Intervallo di download",
+      "downloadTimeline": "Intera sequenza temporale",
+      "downloadSelection": "Video selezionati ({{count}})",
+      "downloadClips": "Ogni clip video ({{count}})",
+      "rangeHint": "Mantiene didascalie e suoni per ogni taglio. Ogni file aggiunge un finale DeHub di 2,2 secondi. Più file vengono scaricati insieme come ZIP.",
+      "exportingClips": "Esportazione clip {{current}} di {{total}}",
+      "archiveTooLarge": "Il download supera i 512 MiB. Esporta meno clip o scegli una risoluzione inferiore.",
       "gifHint": "Animazione in loop senza suono. Fino a 60 secondi, 640 pixel e 15 fps. Include il finale del logo.",
       "gifTooLong": "Ritaglia la timeline a 60 secondi o meno, oppure scegli MP4 o WebM.",
       "format": "Tipo di file",

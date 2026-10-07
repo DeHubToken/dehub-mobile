@@ -6928,6 +6928,13 @@
       "delete": "Kustuta"
     },
     "export": {
+      "scope": "Allalaadimisvahemik",
+      "downloadTimeline": "Kogu ajajoon",
+      "downloadSelection": "Valitud videoklipid ({{count}})",
+      "downloadClips": "Iga videoklipp ({{count}})",
+      "rangeHint": "Säilitab iga lõike puhul tiitrid ja heli. Iga fail lisab 2,2-sekundilise DeHubi lõpu. Mitmed failid laaditakse koos alla ZIP-FAILINA.",
+      "exportingClips": "Eksporditakse klippi {{current}}/{{total}}",
+      "archiveTooLarge": "Allalaadimine ületab 512 MiB. Ekspordi vähem klippe või vali madalam eraldusvõime.",
       "gifHint": "Looping animatsioon ilma helita. Kuni 60 sekundit, 640 pikslit ja 15 kaadrit sekundis. Sisaldab sinu logo lõppu.",
       "gifTooLong": "Kärpige ajajoon kuni 60 sekundini või valige MP4 või WebM.",
       "format": "Failitüüp",

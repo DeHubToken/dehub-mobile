@@ -6928,6 +6928,13 @@
       "delete": "Sil"
     },
     "export": {
+      "scope": "Endirmə diap",
+      "downloadTimeline": "Bütün vaxt qrafiki",
+      "downloadSelection": "Seçilmiş video kliplər ({{count}})",
+      "downloadClips": "Hər bir video çarx ({{count}})",
+      "rangeHint": "Hər kəsim üçün başlıq və səs saxlayır. Hər bir fayl 2.2 saniyəlik DeHub sonluğunu əlavə edir. Bir neçə fayl birlikdə İNDEKS kimi endirilir.",
+      "exportingClips": "Klip ixrac olunur {{current}}{{total}}",
+      "archiveTooLarge": "Endirmə 512 MiB-dən çoxdur. Daha az klip ixrac edin və ya daha aşağı qətnamə seçin.",
       "gifHint": "Səssiz animasiya. 60 saniyəyə qədər, 640 piksel və 15 fps. Loqo sonluğunuzu ehtiva edir.",
       "gifTooLong": "Vaxt cədvəlini 60 saniyəyə və ya daha az müddətə düzəldin və ya MP4 və ya WebM seçin.",
       "format": "Fayl növü",

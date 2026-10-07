@@ -6941,6 +6941,13 @@
       "delete": "Susa"
     },
     "export": {
+      "scope": "Dawuniloda ububanzi",
+      "downloadTimeline": "Isikhathi esiphelele",
+      "downloadSelection": "Iziqeshana zevidiyo ezikhethiwe ({{count}})",
+      "downloadClips": "Isiqeshana ngasinye sevidiyo ({{count}})",
+      "rangeHint": "Igcina amazwibela nomsindo ekusikeni ngakunye. Ifayela ngalinye lifaka isiphetho semizuzwana engu-2.2 se-DeHub. Ukudawuniloda amafayela amaningi ndawonye NJENGE-ZIP.",
+      "exportingClips": "Ithumela ikliphu {{current}} ka {{total}}",
+      "archiveTooLarge": "Ukudawuniloda kudlula u-512 MiB. Thumela iziqeshana ezimbalwa noma ukhethe isixazululo esiphansi.",
       "gifHint": "I-looping animation ngaphandle komsindo. Kuze kube yimizuzwana engu-60, amaphikseli angu-640 nama-fps angu-15. Kuhlanganisa ukuphela kwe-logo yakho.",
       "gifTooLong": "Nciphisa umugqa wesikhathi ube yimizuzwana engu-60 noma ngaphansi, noma ukhethe i-MP4 noma i-WebM.",
       "format": "Uhlobo lwefayela",

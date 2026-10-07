@@ -6928,6 +6928,13 @@
       "delete": "Poista"
     },
     "export": {
+      "scope": "Latausalue",
+      "downloadTimeline": "Koko aikajana",
+      "downloadSelection": "Valitut videoleikkeet ({{count}})",
+      "downloadClips": "Jokainen videoleike ({{count}})",
+      "rangeHint": "Säilyttää kuvatekstit ja äänen jokaiselle leikkaukselle. Jokainen tiedosto lisää 2,2 sekunnin DeHub-lopun. Useita tiedostoja ladataan yhdessä zip-tiedostona.",
+      "exportingClips": "Viedään klippiä {{current}}/{{total}}",
+      "archiveTooLarge": "Lataus on yli 512 MiB. Vie vähemmän leikkeitä tai valitse pienempi resoluutio.",
       "gifHint": "Looping-animaatio ilman ääntä. Jopa 60 sekuntia, 640 pikseliä ja 15 kuvaa sekunnissa. Sisältää logosi lopun.",
       "gifTooLong": "Leikkaa aikajana enintään 60 sekuntiin tai valitse MP4 tai WebM.",
       "format": "Tiedostotyyppi",

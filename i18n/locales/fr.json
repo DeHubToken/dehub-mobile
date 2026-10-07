@@ -7022,6 +7022,13 @@
       "delete": "Supprimer"
     },
     "export": {
+      "scope": "Gamme de téléchargement",
+      "downloadTimeline": "Chronologie complète",
+      "downloadSelection": "Clips vidéo sélectionnés ({{count}})",
+      "downloadClips": "Chaque clip vidéo ({{count}})",
+      "rangeHint": "Conserve les légendes et le son pour chaque coupe. Chaque fichier ajoute une fin DeHub de 2,2 secondes. Plusieurs fichiers sont téléchargés ensemble sous forme de ZIP.",
+      "exportingClips": "Exportation du clip {{current}} de {{total}}",
+      "archiveTooLarge": "Le téléchargement dépasse 512 MiB. Exportez moins de clips ou choisissez une résolution inférieure.",
       "gifHint": "Animation en boucle sans son. Jusqu'à 60 secondes, 640 pixels et 15 ips. Inclut la fin de votre logo.",
       "gifTooLong": "Coupez la chronologie à 60 secondes ou moins, ou choisissez MP4 ou WebM.",
       "format": "Type de fichier",

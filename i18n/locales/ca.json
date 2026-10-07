@@ -6929,6 +6929,13 @@
       "delete": "Elimina"
     },
     "export": {
+      "scope": "Interval de descàrregues",
+      "downloadTimeline": "Cronologia sencera",
+      "downloadSelection": "Clips de vídeo seleccionats ({{count}})",
+      "downloadClips": "Cada videoclip ({{count}})",
+      "rangeHint": "Manté els subtítols i el so per a cada tall. Cada fitxer afegeix una terminació DeHub de 2,2 segons. Múltiples fitxers es descarreguen junts com un CODI POSTAL.",
+      "exportingClips": "S'està exportant el clip {{current}} de {{total}}",
+      "archiveTooLarge": "La descàrrega supera els 512 MiB. Exporta menys clips o tria una resolució més baixa.",
       "gifHint": "Animació en bucle sense so. Fins a 60 segons, 640 píxels i 15 fps. Inclou l'acabat del logotip.",
       "gifTooLong": "Retalla la línia de temps a 60 segons o menys, o tria MP4 o WebM.",
       "format": "Tipus de fitxer",
