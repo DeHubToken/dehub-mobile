@@ -1,3 +1,4 @@
+import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -59,6 +60,7 @@ const formatTime = (seconds: number) => {
 
 const FullscreenVideoScreen = () => {
   const { t } = useTranslation();
+  const downloadVideo = useVideoDownload();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
 
@@ -69,6 +71,8 @@ const FullscreenVideoScreen = () => {
     thumbnail,
     tokenId,
     isSignedIn = false,
+    creatorUsername,
+    downloadTitle,
   } = (route?.params as any) || {};
 
   const [isPlaying, setIsPlaying] = useState(true);
@@ -412,6 +416,11 @@ const FullscreenVideoScreen = () => {
 
             <View style={styles.topButtonGroup}>
               <PictureInPictureButton videoRef={videoViewRef} />
+              {videoUrl && <Pressable style={styles.glassButton} accessibilityRole="button"
+                accessibilityLabel={t("common.download")}
+                onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || "video", username: creatorUsername }); }}>
+                <View style={styles.glassOverlay} /><Icon name="Download" size={20} color="#fff" />
+              </Pressable>}
               <Pressable
                 onPress={handleToggleMute}
                 style={styles.glassButton}

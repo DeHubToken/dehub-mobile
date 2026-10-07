@@ -154,7 +154,18 @@ export async function importPicture(picked: PickedPicture): Promise<MediaMeta> {
   return meta;
 }
 
+const transientMedia = new Map<string, { meta: MediaMeta; uri: string }>();
+export function registerDownloadMedia(uri: string, name: string, mimeType: string): MediaMeta {
+  const id = "download-" + newId(12);
+  const meta: MediaMeta = { id, name, kind: "video", mimeType, width: 0, height: 0, file: "", createdAt: Date.now() };
+  transientMedia.set(id, { meta, uri });
+  return meta;
+}
+export function releaseDownloadMedia(id: string): void { transientMedia.delete(id); }
+
 export async function getMedia(id: string): Promise<MediaMeta | null> {
+  const transient = transientMedia.get(id);
+  if (transient) return transient.meta;
   try {
     return JSON.parse(await FileSystem.readAsStringAsync(`${mediaDir()}${id}.json`)) as MediaMeta;
   } catch {
@@ -165,7 +176,7 @@ export async function getMedia(id: string): Promise<MediaMeta | null> {
 /** The picture as a data URL, which is how it reaches the canvas. */
 export async function mediaDataUrl(meta: MediaMeta): Promise<string | null> {
   try {
-    const b64 = await FileSystem.readAsStringAsync(`${mediaDir()}${meta.file}`, {
+    const b64 = await FileSystem.readAsStringAsync(mediaFileUri(meta), {
       encoding: FileSystem.EncodingType.Base64,
     });
     return `data:${meta.mimeType};base64,${b64}`;
@@ -292,7 +303,7 @@ export async function updateMediaMeta(id: string, patch: Partial<Pick<MediaMeta,
 }
 
 export function mediaFileUri(meta: MediaMeta): string {
-  return `${mediaDir()}${meta.file}`;
+  return transientMedia.get(meta.id)?.uri ?? `${mediaDir()}${meta.file}`;
 }
 
 export function mediaThumbUri(meta: MediaMeta): string | null {

@@ -1,3 +1,4 @@
+import { useVideoDownload } from "../../context/VideoDownloadContext";
 import { watchedLabel } from "../../i18n/watched-label";
 import { SessionExpiredError } from "../../libs/api.client";
 import { createLogger } from "../../libs/logger";
@@ -339,6 +340,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     item.minter ||
     t("settings.unknown");
   const username = minterUser?.username || item.minterUsername || item.minter || "";
+  const downloadVideo = useVideoDownload();
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
   // Following belongs to the creator, not the post, so a follow made from
   // this card is held against the creator's address.
@@ -1576,6 +1578,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       duration={duration}
       tokenId={tokenId}
       creator={minterAddress}
+      creatorUsername={minterUser?.username || item.minterUsername}
+      downloadTitle={localTitle || "video"}
       isContentGated={isActuallyGated}
       isPPVLocked={isActuallyLockedPPV}
       isHoldingsLocked={isActuallyLockedHoldings}
@@ -1976,6 +1980,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           }
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+          onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
+            ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
+            : undefined}
           canDub={isVideo && !isLive && !isActuallyGated && speechAvailable}
           // Also on the action bar as icons. Both are wanted: the icon is for
           // the thumb, the labelled row is for anyone who opens the menu
