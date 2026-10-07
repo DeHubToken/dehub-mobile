@@ -23,6 +23,8 @@ interface Props {
 export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
+  const [modelSearch, setModelSearch] = useState('');
+  useEffect(() => { setModelSearch(''); }, [picker, settings.mode]);
   const [durationDraft, setDurationDraft] = useState(String(settings.durationSeconds));
   const editingDuration = useRef(false);
   useEffect(() => {
@@ -51,6 +53,10 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     onChange(normalizeCreatorSettings(next));
     setPicker(null);
   };
+  const query = modelSearch.trim().toLocaleLowerCase();
+  const visibleOptions = picker === 'model' && query
+    ? options.filter(option => `${option.name} ${option.description ?? ''} ${option.id}`.toLocaleLowerCase().includes(query))
+    : options;
   const chip = (label: string, action: () => void, active = false) => (
     <Pressable key={label} onPress={action} disabled={disabled} accessibilityRole="button"
       accessibilityState={{ disabled, selected: active }} accessibilityLabel={label}
@@ -113,8 +119,15 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
             <Pressable onPress={() => setPicker(null)} className="mb-3 self-end p-2" accessibilityRole="button">
               <Text className="text-theme-neutrals-100">{t('common.close')}</Text>
             </Pressable>
+            {picker === 'model' && <TextInput
+              value={modelSearch} onChangeText={setModelSearch}
+              placeholder={t('common.search')} accessibilityLabel={t('common.search')}
+              placeholderTextColor="#71717A" autoCorrect={false}
+              className="mb-3 rounded-xl bg-theme-neutrals-800 px-4 py-3 text-theme-neutrals-100"
+            />}
             <ScrollView keyboardShouldPersistTaps="handled">
-              {options.map((option) => (
+              {!visibleOptions.length && <Text className="p-4 text-theme-neutrals-400">{t('common.noResults')}</Text>}
+              {visibleOptions.map((option) => (
                 <Pressable key={option.id} onPress={() => choose(option.id)} className="mb-2 rounded-2xl bg-theme-neutrals-800 p-4" accessibilityRole="button">
                   <Text className="font-bold text-theme-neutrals-100">{option.name}</Text>
                   {!!option.description && <Text className="mt-1 text-xs text-theme-neutrals-400">{option.description}</Text>}

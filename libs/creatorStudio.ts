@@ -1,5 +1,5 @@
 import { IMAGE_MODELS, VIDEO_MODELS, AI_TOOL_MODELS, imageModelSupportsEdit } from '../config/ai-models.constants';
-import { CREATOR_FAL_IMAGE_MODELS } from '../config/creator-fal-catalog';
+import { CREATOR_FAL_IMAGE_MODELS, CREATOR_FAL_VIDEO_MODELS, creatorFalImageAspects } from '../config/creator-fal-catalog';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { CREATOR_VIDEO_RULES } from '../config/creator-video-rules';
 import { applyTemplate, type CreatorTemplate } from './creatorTemplates';
@@ -40,7 +40,7 @@ export function creatorDurations(model: string): number[] {
 export function creatorAspects(settings: CreatorStudioSettings): string[] {
   return settings.mode === 'video'
     ? CREATOR_VIDEO_RULES[settings.model]?.aspectRatios ?? ['16:9', '9:16', '1:1']
-    : ['1:1', '4:5', '16:9', '9:16', '3:2', '2:3', '21:9'];
+    : creatorFalImageAspects(settings.model);
 }
 export function normalizeCreatorSettings(settings: CreatorStudioSettings): CreatorStudioSettings {
   const models = creatorModels(settings.mode);
@@ -74,10 +74,15 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
 export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate): string {
   return preset ? applyTemplate(preset, text) : text.trim();
 }
+export function creatorPromptLimit(settings: CreatorStudioSettings): number | undefined {
+  return settings.mode === 'image' ? CREATOR_FAL_IMAGE_MODELS[settings.model]?.maxPromptLength ?? 4000
+    : settings.mode === 'video' ? CREATOR_FAL_VIDEO_MODELS[settings.model]?.maxPromptLength : undefined;
+}
 export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boolean, preset?: CreatorTemplate): string | null {
   const assets = settings.referenceAssets ?? [];
   const images = assets.filter(a => a.kind === 'image');
   const clip = assets.find(a => a.kind === 'video');
+  if (settings.mode === 'image' && images.length > (CREATOR_FAL_IMAGE_MODELS[settings.model]?.maxReferenceImages ?? 4)) return 'creator.referenceTooMany';
   if (settings.mode === 'image' && images.length > 1 && !CREATOR_FAL_IMAGE_MODELS[settings.model]?.editUsesPlural) return 'creator.referenceMultiModel';
   if (settings.mode === 'video') {
     const model = VIDEO_MODELS[settings.model];
