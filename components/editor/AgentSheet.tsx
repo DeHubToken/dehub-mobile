@@ -11,6 +11,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { DeHubLoader } from "../DeHubLoader";
 import { useKeyboard } from "../../hooks/useKeyboard";
+import type { HighlightChatState } from "../../libs/editor/highlightChat";
+import { shotTime } from "../../libs/editor/shots";
 
 export interface ChatEntry {
   id: string;
@@ -28,9 +30,16 @@ interface Props {
   onUndo: () => void;
   onClose: () => void;
   onClear: () => void;
+  highlights?: HighlightChatState;
+  highlightSourceChanged?: boolean;
+  onHighlightToggle?: (index: number) => void;
+  onHighlightUndo?: () => void;
+  onHighlightPreview?: (index: number) => void;
+  onHighlightCreate?: () => void;
+  onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
@@ -54,6 +63,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
     t("editor.agent.suggestTitle"),
     t("editor.agent.suggestFilter"),
     t("editor.agent.suggestStory"),
+    t("editor.highlights.chatSuggest"),
   ];
 
   return (
@@ -105,6 +115,25 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                 </View>
               </View>
             ))}
+            {highlights?.clipId && <View className="rounded-xl border border-white/15 p-3" style={{ gap: 8 }}>
+              <Text className="text-white text-sm font-medium">{t("editor.highlights.reviewTitle")}</Text>
+              <Text className="text-theme-neutrals-300 text-xs">{t("editor.highlights.chatHint")}</Text>
+              {highlightSourceChanged && <Text className="text-theme-neutrals-300 text-xs">{t("editor.highlights.changed")}</Text>}
+              {highlights.progress && <Text accessibilityLiveRegion="polite" className="text-theme-neutrals-300 text-xs">{t(highlights.progress.stage === "download" ? "editor.captions.downloading" : highlights.progress.stage === "transcribe" ? "editor.captions.working" : highlights.progress.stage === "create" ? "common.loading" : "editor.highlights.ranking", { percent: Math.round(highlights.progress.fraction * 100) })}</Text>}
+              {highlights.ranges?.map((range, index) => <View key={`${range.start}-${range.end}`} className="border-t border-white/10 pt-2" style={{ gap: 4 }}>
+                <Pressable accessibilityRole="checkbox" accessibilityLabel={`${index + 1}: ${shotTime(range.start)}–${shotTime(range.end)}`} accessibilityState={{ checked: highlights.chosen.includes(index), disabled: busy || !!highlightSourceChanged }} disabled={busy || highlightSourceChanged} onPress={() => onHighlightToggle?.(index)} className="flex-row items-center" style={{ gap: 8 }}>
+                  <Icon name={highlights.chosen.includes(index) ? "Check" : "Square"} size={16} color="#fff" />
+                  <Text className="text-white text-xs">{index + 1}. {shotTime(range.start)}–{shotTime(range.end)}</Text>
+                </Pressable>
+                <Text className="text-theme-neutrals-300 text-xs" numberOfLines={3}>{range.text}</Text>
+                <Pressable accessibilityRole="button" accessibilityLabel={t("editor.shots.preview")} disabled={busy || highlightSourceChanged} onPress={() => onHighlightPreview?.(index)}><Text className="text-white text-xs">{t("editor.shots.preview")}</Text></Pressable>
+              </View>)}
+              <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+                {highlights.undo && <Pressable accessibilityRole="button" disabled={busy || highlightSourceChanged} onPress={onHighlightUndo} className="rounded-lg border border-white/20 px-2 py-1"><Text className="text-theme-neutrals-300 text-xs">{t("editor.highlights.undoSelection")}</Text></Pressable>}
+                {!!highlights.ranges?.length && <Pressable accessibilityRole="button" disabled={busy || highlightSourceChanged || !highlights.chosen.length} onPress={onHighlightCreate} className="rounded-lg bg-white px-2 py-1" style={{ opacity: busy || highlightSourceChanged || !highlights.chosen.length ? 0.4 : 1 }}><Text className="text-black text-xs">{t("editor.highlights.create")} ({highlights.chosen.length})</Text></Pressable>}
+                <Pressable accessibilityRole="button" onPress={onHighlightClose} className="rounded-lg border border-white/20 px-2 py-1"><Text className="text-theme-neutrals-300 text-xs">{t(highlights.busy ? "common.cancel" : "editor.highlights.chatExit")}</Text></Pressable>
+              </View>
+            </View>}
             {busy && (
               <View className="flex-row items-center" style={{ gap: 8 }}>
                 <DeHubLoader size={20} />
@@ -117,12 +146,13 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             <TextInput
               value={draft}
               onChangeText={setDraft}
-              placeholder={t("editor.agent.placeholder")}
+              placeholder={t(highlights?.ranges?.length ? "editor.highlights.reviewPlaceholder" : "editor.agent.placeholder")}
               placeholderTextColor="#6b7280"
               multiline
               className="flex-1 text-white px-1"
               style={{ maxHeight: 120, minHeight: 36, textAlignVertical: "top" }}
-              accessibilityLabel={t("editor.agent.placeholder")}
+              accessibilityLabel={t(highlights?.ranges?.length ? "editor.highlights.reviewPlaceholder" : "editor.agent.placeholder")}
+              maxLength={highlights?.ranges?.length ? 800 : undefined}
             />
             <Pressable
               onPress={() => send(draft)}

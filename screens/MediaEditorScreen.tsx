@@ -77,7 +77,9 @@ import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
-import { highlightProject, sameHighlightSource } from "../libs/editor/highlights";
+import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
+import { highlightChatRequest, type HighlightChatResult } from "../libs/editor/highlightChat";
+import { useHighlightChat } from "../libs/editor/useHighlightChat";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
@@ -101,7 +103,7 @@ import {
   splitClip,
   trimClip,
 } from "../libs/editor/timeline";
-import { applyOps, askAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
+import { applyOps, askAgent, askSceneAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../libs/editor/templates";
 import { importStockAsset } from "../libs/editor/stock";
@@ -377,6 +379,17 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [chatOpen, setChatOpen] = useState(false);
   const [chat, setChat] = useState<ChatEntry[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
+  const [highlightChatState, highlightChat] = useHighlightChat({
+    current: h.latest,
+    plan: askSceneAgent,
+    transcribe: (clip, progress, signal) => {
+      setPlaying(false);
+      if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+      return canvasRef.current.transcribe(clip, p => progress(p.stage === "download" ? "download" : "transcribe", p.fraction), signal);
+    },
+    create: (original, clipId, ranges, signal) => createHighlights(original, clipId, ranges, t("editor.highlights.projectTitle", { title: original.title }), signal),
+  });
+  const highlightSourceChanged = highlightChatState.clipId !== null && !highlightChat.matchesSource(project);
   const [brand, setBrand] = useState<BrandKit>(EMPTY_BRAND);
   useEffect(() => { loadBrand().then(setBrand); }, []);
   // Background removal in progress: the model download, then the cut itself.
@@ -802,11 +815,33 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } catch { toastError(t("editor.captions.failed")); }
   };
 
+  const createHighlights = async (original: ProjectSnapshot, clipId: string, ranges: HighlightRange[], title: string, signal?: AbortSignal) => {
+    const matches = () => { const now = h.latest(); return !signal?.aborted && !!now && sameHighlightSource(original, now); };
+    if (!matches()) return false;
+    const next = highlightProject(original, clipId, ranges, { id: newId(10), title }, () => newId(10));
+    await saveProject(original); if (!matches()) return false;
+    await saveProject(next); if (!matches()) return false;
+    h.commit(next); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
+    return true;
+  };
+  const recordHighlights = (result: HighlightChatResult) => {
+    if (result.status === "cancelled") return;
+    const errors = { selectVideo: "editor.highlights.chatSelectVideo", changed: "editor.highlights.changed", limit: "editor.highlights.chatLimit", captionsMissing: "editor.highlights.chatCaptionsMissing", failed: "editor.highlights.reviewFailed" };
+    const content = result.status === "error" ? t(errors[result.error]) : result.status === "created" ? t("editor.highlights.created") : result.status === "reviewed" ? t("editor.highlights.reviewResult", result) : result.count ? t("editor.highlights.chatFound", result) : t("editor.highlights.none");
+    setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
+  };
+  const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string) => {
-    if (!project || chatBusy) return;
+    if (!project || chatBusy || highlightChat.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
+    const request = highlightChatRequest(text);
+    if (request || highlightChat.reviewing) {
+      highlightPreviewEnd.current = null; setPlaying(false);
+      recordHighlights(request ? await highlightChat.start(request, selectedId ? [selectedId] : []) : await highlightChat.review(text));
+      return;
+    }
     setChatBusy(true);
     try {
       const media = (await listMedia()).filter(m => !m.name.startsWith(VIDEO_MATTE_ASSET_PREFIX));
@@ -1087,15 +1122,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
           return canvasRef.current.transcribe(clip, progress, signal);
         }}
-        create={async (original, clipId, ranges, title) => {
-          const matches = () => { const now = h.latest(); return !!now && sameHighlightSource(original, now); };
-          if (!matches()) return false;
-          const next = highlightProject(original, clipId, ranges, { id: newId(10), title }, () => newId(10));
-          await saveProject(original); if (!matches()) return false;
-          await saveProject(next); if (!matches()) return false;
-          h.commit(next); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
-          return true;
-        }} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
+        create={createHighlights} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {
@@ -1517,11 +1544,18 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       <AgentSheet
         visible={chatOpen}
         entries={chat}
-        busy={chatBusy}
+        busy={chatBusy || highlightChatState.busy}
+        highlights={highlightChatState}
+        highlightSourceChanged={highlightSourceChanged}
+        onHighlightToggle={index => highlightChat.toggle(index)}
+        onHighlightUndo={() => highlightChat.undo()}
+        onHighlightPreview={index => { const preview = highlightChat.preview(index); if (!preview) return; highlightPreviewEnd.current = preview.end; setTime(preview.start); setPlaying(true); setChatOpen(false); }}
+        onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
+        onHighlightClose={closeHighlightChat}
         onSend={(text) => { void sendToAgent(text); }}
         onUndo={h.undo}
         onClose={() => setChatOpen(false)}
-        onClear={() => setChat([])}
+        onClear={() => { closeHighlightChat(); setChat([]); }}
       />
 
       <ExportSheet
