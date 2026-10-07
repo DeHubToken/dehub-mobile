@@ -146,8 +146,8 @@ export async function fetchWalletReliably(
  *  - each `user_wallet_passkeys` row still opens the OLD seed with one
  *    browser passkey.
  *
- * Which makes this first and foremost a way to tell a user they are NOT
- * locked out, before offering to let them abandon anything.
+ * Offer these recovery routes before replacement, without assuming the user
+ * still has their credentials. Replacement archives the wraps atomically.
  */
 export type OtherSeedCopies = {
   recovery: boolean;
@@ -160,37 +160,60 @@ export async function probeOtherSeedCopies(userId: string): Promise<OtherSeedCop
   let recovery = false;
   let passkeys = 0;
   let failed = false;
+  const controller = new AbortController();
+  let expired = false;
 
+  const reads = Promise.all([
+    (async () => {
+      try {
+        // PK is user_id, so maybeSingle is safe here (unlike the passkeys table).
+        const { data, error } = await db()
+          .from("user_wallet_recovery")
+          .select("user_id")
+          .eq("user_id", userId)
+          .abortSignal(controller.signal)
+          .maybeSingle();
+        if (error) throw new Error(error.message);
+        recovery = !!data;
+      } catch (e) {
+        failed = true;
+        // eslint-disable-next-line no-console
+        console.warn("[probeOtherSeedCopies] recovery read failed", e);
+      }
+    })(),
+    (async () => {
+      try {
+        // One row PER CREDENTIAL — never single-row this table.
+        const { count, error } = await db()
+          .from("user_wallet_passkeys")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .abortSignal(controller.signal);
+        if (error) throw new Error(error.message);
+        passkeys = typeof count === "number" ? count : 0;
+      } catch (e) {
+        failed = true;
+        // eslint-disable-next-line no-console
+        console.warn("[probeOtherSeedCopies] passkeys read failed", e);
+      }
+    })(),
+  ]);
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<void>((resolve) => {
+    timer = setTimeout(() => {
+      expired = true;
+      controller.abort();
+      resolve();
+    }, 8_000);
+  });
   try {
-    // PK is user_id, so maybeSingle is safe here (unlike the passkeys table).
-    const { data, error } = await db()
-      .from("user_wallet_recovery")
-      .select("user_id")
-      .eq("user_id", userId)
-      .maybeSingle();
-    if (error) throw new Error(error.message);
-    recovery = !!data;
-  } catch (e) {
-    failed = true;
-    // eslint-disable-next-line no-console
-    console.warn("[probeOtherSeedCopies] recovery read failed", e);
+    // Recovery metadata is advisory. A stalled lookup must not trap someone
+    // on this screen; the replacement RPC still validates and archives it.
+    await Promise.race([reads, deadline]);
+  } finally {
+    if (timer !== undefined) clearTimeout(timer);
   }
-
-  try {
-    // One row PER CREDENTIAL — never single-row this table.
-    const { count, error } = await db()
-      .from("user_wallet_passkeys")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", userId);
-    if (error) throw new Error(error.message);
-    passkeys = typeof count === "number" ? count : 0;
-  } catch (e) {
-    failed = true;
-    // eslint-disable-next-line no-console
-    console.warn("[probeOtherSeedCopies] passkeys read failed", e);
-  }
-
-  return { recovery, passkeys, failed };
+  return { recovery, passkeys, failed: failed || expired };
 }
 
 /**
