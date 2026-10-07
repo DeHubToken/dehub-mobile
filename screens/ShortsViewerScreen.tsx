@@ -606,7 +606,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   }, [player, stopPlayback, recovery]);
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
-    if (!pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
+    if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
   }, () => recovery.fail('source-rejected'));
 
   useEffect(() => {

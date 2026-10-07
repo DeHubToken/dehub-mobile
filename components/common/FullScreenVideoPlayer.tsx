@@ -52,7 +52,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     allowed: () => (visible || isPictureInPicturePlayer(player)) && canStartVideo(player),
   });
   useSettledVideoSource(player, visible || isPictureInPicturePlayer(player) ? sourceUrl : null, visible,
-    () => recovery.start(), () => recovery.fail('source-rejected'));
+    () => { if (recovery.wanted) recovery.start(); }, () => recovery.fail('source-rejected'));
   useEffect(() => {
     if (visible) recovery.start();
     else if (!isPictureInPicturePlayer(player)) recovery.stop();

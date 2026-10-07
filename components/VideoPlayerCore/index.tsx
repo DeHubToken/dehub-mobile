@@ -377,6 +377,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
         if (status === 'readyToPlay') {
           setIsReady(true);
+          if (recovery.wanted) recovery.start();
         }
       }),
 
@@ -422,7 +423,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback]);
+  }, [player, onPlayStateChange, onReady, onProgress, onVideoSize, isReady, duration, onError, maybeSkipSegment, stopPlayback, recovery]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove

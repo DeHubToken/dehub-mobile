@@ -664,6 +664,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
    */
   const flushPendingPlay = useCallback((readyEvent = false) => {
     if (!pendingPlayRef.current) return;
+    if (readyEvent && !recovery.wanted) return;
     const p = playerRef.current;
     if (!p) return;
     // Seed mute from the shared cache the same way the old direct path did.
@@ -673,7 +674,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       setIsMuted(m);
     } catch {}
     flushVideoPlayIntent(pendingPlayRef, readyEvent || p.status === "readyToPlay", startPlayback);
-  }, [startPlayback]);
+  }, [startPlayback, recovery]);
 
   useEffect(() => {
     if (!player) return;
