@@ -31,6 +31,7 @@ import { BRAND_OUTRO_DURATION } from "./brandOutro";
 import { BRAND_OUTRO_RUNTIME } from "./brandOutroRuntime";
 import { BRAND_OUTRO_LOGO } from "./brandOutroLogo";
 import { CAPTIONS_WORKER } from "./captionsWorker";
+import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -48,6 +49,7 @@ canvas{display:block;width:100%;height:100%;}
 (function () {
   "use strict";
   __BRAND_OUTRO_RUNTIME__
+  __MEDIA_LEASES_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -214,7 +216,7 @@ canvas{display:block;width:100%;height:100%;}
   function isVisualClip(clip) { return clip.kind === "video" || clip.kind === "image" || clip.kind === "text" || clip.kind === "shape"; }
   function mediaSource(clip) {
     if (clip.kind === "video") {
-      var v = videos.get(clip.mediaId);
+      var v = videoAliases.get(clip.id) || videos.get(clip.mediaId);
       return v && v.videoWidth ? { el: v, w: v.videoWidth, h: v.videoHeight } : null;
     }
     if (clip.kind !== "image") return null;
@@ -617,6 +619,26 @@ canvas{display:block;width:100%;height:100%;}
   // and play from blob URLs: same-origin, so the canvas stays exportable.
   var videos = new Map();
   var audios = new Map();
+  var videoAliases = new Map();
+  var extraVideos = new Map();
+  var extraAudio = new Map();
+  function cloneMedia(source) {
+    var copy = source.cloneNode(false);
+    copy.muted = true;
+    copy.preload = "auto";
+    copy.src = source.src;
+    copy.onloadeddata = schedule;
+    copy.onseeked = function () { if (!playing) schedule(); };
+    holder.appendChild(copy);
+    copy.load();
+    return copy;
+  }
+  function releaseMedia(source) {
+    source.pause(); source.removeAttribute("src"); source.load(); source.remove();
+  }
+  function prepareVideoSources(ops) {
+    videoAliases = leaseMedia(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return op.clip; }), videos, extraVideos, cloneMedia, releaseMedia);
+  }
   var blobs = new Map();
   var incoming = new Map();
   var holder = document.createElement("div");
@@ -761,13 +783,14 @@ canvas{display:block;width:100%;height:100%;}
     return Math.max(0, (clip.audio && clip.audio.volume != null ? clip.audio.volume : 1) * envelope);
   }
   function syncMedia(snap, t, isPlaying, ops, silent) {
+    prepareVideoSources(ops);
     var liveV = new Set();
     var liveA = new Set();
     ops.forEach(function (op) {
       if (op.clip.kind !== "video") return;
-      var v = videos.get(op.clip.mediaId);
+      var v = videoAliases.get(op.clip.id);
       if (!v) return;
-      liveV.add(op.clip.mediaId);
+      liveV.add(v);
       var localT = localTimeOf(op, t);
       var tr = trackOf(snap, op.clip.trackId);
       var vol = audioGainAt(op.clip, t);
@@ -783,12 +806,15 @@ canvas{display:block;width:100%;height:100%;}
         if (Math.abs(v.currentTime - localT) > 0.03) v.currentTime = localT;
       }
     });
-    snap.clips.forEach(function (c) {
-      if (c.kind !== "audio" || !(t >= c.start && t < c.start + c.duration)) return;
-      var a = audios.get(c.mediaId);
-      if (!a && videos.has(c.mediaId)) { a = new Audio(videos.get(c.mediaId).src); a.preload = "auto"; audios.set(c.mediaId, a); }
+    var activeAudio = snap.clips.filter(function (c) { return c.kind === "audio" && t >= c.start && t < c.start + c.duration; });
+    activeAudio.forEach(function (c) {
+      if (!audios.has(c.mediaId) && videos.has(c.mediaId)) { var a = new Audio(videos.get(c.mediaId).src); a.preload = "auto"; audios.set(c.mediaId, a); }
+    });
+    var audioAliases = leaseMedia(activeAudio, audios, extraAudio, cloneMedia, releaseMedia);
+    activeAudio.forEach(function (c) {
+      var a = audioAliases.get(c.id);
       if (!a) return;
-      liveA.add(c.mediaId);
+      liveA.add(a);
       var tr = trackOf(snap, c.trackId);
       a.muted = silent || c.hidden || (tr && (tr.muted || tr.hidden));
       try { a.volume = Math.min(1, audioGainAt(c, t)); } catch (e) {}
@@ -801,12 +827,14 @@ canvas{display:block;width:100%;height:100%;}
         if (!a.paused) a.pause();
       }
     });
-    videos.forEach(function (v, id) { if (!liveV.has(id) && !v.paused) v.pause(); });
-    audios.forEach(function (a, id) { if (!liveA.has(id) && !a.paused) a.pause(); });
+    videos.forEach(function (v) { if (!liveV.has(v) && !v.paused) v.pause(); });
+    audios.forEach(function (a) { if (!liveA.has(a) && !a.paused) a.pause(); });
   }
   function pauseAll() {
     videos.forEach(function (v) { if (!v.paused) v.pause(); });
     audios.forEach(function (a) { if (!a.paused) a.pause(); });
+    extraVideos.forEach(function (v) { if (!v.paused) v.pause(); });
+    extraAudio.forEach(function (a) { if (!a.paused) a.pause(); });
   }
 
   // ── playback clock ──
@@ -831,14 +859,28 @@ canvas{display:block;width:100%;height:100%;}
 
   // ── export: exporter.ts ──
   function seekVideo(v, t) {
-    return new Promise(function (resolve) {
-      var target = Math.max(0, Math.min(isFinite(v.duration) ? v.duration - 0.001 : t, t));
-      if (Math.abs(v.currentTime - target) < 0.0005 && v.readyState >= 2) { resolve(); return; }
+    return new Promise(function (resolve, reject) {
       var done = false;
-      var finish = function () { if (done) return; done = true; v.removeEventListener("seeked", finish); resolve(); };
-      v.addEventListener("seeked", finish);
-      setTimeout(finish, 3000);
-      try { v.currentTime = target; } catch (e) { finish(); }
+      var timer = setTimeout(function () { finish(new Error("Video frame did not load")); }, 5000);
+      function finish(error) {
+        if (done) return;
+        done = true; clearTimeout(timer);
+        v.removeEventListener("seeked", onSeeked);
+        v.removeEventListener("loadeddata", start);
+        v.removeEventListener("error", onError);
+        if (error) reject(error); else resolve();
+      }
+      function onSeeked() { finish(); }
+      function onError() { finish(new Error("Video frame did not load")); }
+      function start() {
+        var target = Math.max(0, Math.min(isFinite(v.duration) ? v.duration - 0.001 : t, t));
+        if (Math.abs(v.currentTime - target) < 0.0005 && v.readyState >= 2) { finish(); return; }
+        v.addEventListener("seeked", onSeeked);
+        try { v.currentTime = target; } catch (error) { finish(error); }
+      }
+      v.addEventListener("error", onError);
+      if (v.readyState >= 2) start();
+      else v.addEventListener("loadeddata", start);
     });
   }
   function decodeAudio(buf) {
@@ -952,8 +994,9 @@ canvas{display:block;width:100%;height:100%;}
         if (f >= total) return Promise.resolve();
         var t = f / fps;
         var ops = t < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
+        prepareVideoSources(ops);
         var seeks = ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
-          .map(function (op) { return seekVideo(videos.get(op.clip.mediaId), localTimeOf(op, t)); });
+          .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); });
         return Promise.all(seeks).then(function () {
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
@@ -1418,4 +1461,4 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";");
+</body></html>`.replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var brandOutroLogo = " + JSON.stringify(BRAND_OUTRO_LOGO) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME);
