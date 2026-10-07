@@ -19,9 +19,9 @@ interface AuthResponse {
 }
 
 /**
- * Thrown when the backend has no wallet linked to this Supabase identity yet
- * (or the link is ambiguous). The caller must fall back to the signature
- * flow, which is what creates the link — a normal state for a first-ever
+ * Thrown when the backend has no wallet linked to this Supabase identity yet.
+ * The caller must fall back to the signature flow, which creates the link —
+ * a normal state for a first-ever
  * login on this identity, not an error to surface to the user.
  */
 export class WalletNotLinkedError extends Error {
@@ -217,8 +217,8 @@ export const AuthService = {
       require("./auth/supabaseAuth.service") as typeof import("./auth/supabaseAuth.service");
     const supabaseAccessToken = await getSupabaseAccessToken();
     if (!supabaseAccessToken) {
-      throw new WalletNotLinkedError(
-        "You are not signed in with a phone, email or Google account on this device.",
+      throw new Error(
+        "Sign in again with your phone, email or Google account to finish creating your new wallet.",
       );
     }
 
@@ -232,10 +232,26 @@ export const AuthService = {
         { isAuthRequired: false },
       );
     } catch (error: any) {
-      if (error?.code === "WALLET_NOT_LINKED" || error?.code === "WALLET_LINK_AMBIGUOUS") {
+      if (error?.code === "WALLET_LINK_AMBIGUOUS") {
+        throw new WalletLinkAmbiguousError(error?.message);
+      }
+      if (error?.code === "WALLET_NOT_LINKED") {
         throw new WalletNotLinkedError(error?.message);
       }
       throw error;
+    }
+  },
+
+  /**
+   * An unfinished signup can have a cloud wallet without a DeHub profile.
+   * Only a confirmed missing profile permits signup with the replacement;
+   * expired identity sessions, conflicting links and other failures must stop.
+   */
+  async rotateWalletForReplacement(address: string, chainId: number): Promise<void> {
+    try {
+      await AuthService.rotateWallet(address, chainId);
+    } catch (error) {
+      if (!(error instanceof WalletNotLinkedError)) throw error;
     }
   },
 

@@ -173,9 +173,9 @@ describe('services/auth.service', () => {
   describe('rotateWallet', () => {
     it('refuses without a social session — there is no account to identify', async () => {
       mockGetSupabaseAccessToken.mockResolvedValueOnce(null);
-      await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(
-        WalletNotLinkedError,
-      );
+      const error = await AuthService.rotateWallet(NEW_ADDRESS, 8453).catch((e) => e);
+      expect(error).toBeInstanceOf(Error);
+      expect(error).not.toBeInstanceOf(WalletNotLinkedError);
       expect(mockApiPost).not.toHaveBeenCalled();
     });
 
@@ -196,16 +196,13 @@ describe('services/auth.service', () => {
       expect(opts).toEqual({ isAuthRequired: false });
     });
 
-    it('reports an unlinked or ambiguous identity as recoverable', async () => {
-      // The caller falls back to signing in as a new account rather than
-      // stranding the user, so these must be distinguishable from a real fault.
-      for (const code of ['WALLET_NOT_LINKED', 'WALLET_LINK_AMBIGUOUS']) {
-        mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
-        mockApiPost.mockRejectedValueOnce({ code });
-        await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(
-          WalletNotLinkedError,
-        );
-      }
+    it('distinguishes an unfinished signup from conflicting profile links', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockRejectedValueOnce({ code: 'WALLET_NOT_LINKED' });
+      await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(WalletNotLinkedError);
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockRejectedValueOnce({ code: 'WALLET_LINK_AMBIGUOUS' });
+      await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(WalletLinkAmbiguousError);
     });
 
     it('lets a real fault through untranslated', async () => {
@@ -215,5 +212,33 @@ describe('services/auth.service', () => {
         code: 'ADDRESS_IN_USE',
       });
     });
+  });
+
+  describe('rotateWalletForReplacement', () => {
+    it('continues after moving an existing profile', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockResolvedValueOnce({ status: true });
+      await expect(AuthService.rotateWalletForReplacement(NEW_ADDRESS, 8453)).resolves.toBeUndefined();
+    });
+
+    it('allows a replacement to finish an interrupted signup with no profile to move', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockRejectedValueOnce({ code: 'WALLET_NOT_LINKED' });
+      await expect(AuthService.rotateWalletForReplacement(NEW_ADDRESS, 8453)).resolves.toBeUndefined();
+    });
+
+    it('requires a renewed identity session instead of treating it as a missing profile', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce(null);
+      await expect(AuthService.rotateWalletForReplacement(NEW_ADDRESS, 8453)).rejects.toThrow('Sign in again');
+      expect(mockApiPost).not.toHaveBeenCalled();
+    });
+
+    it.each(['WALLET_LINK_AMBIGUOUS', 'ADDRESS_IN_USE', 'INVALID_SIGNATURE', 'IDENTITY_TOKEN_INVALID'])(
+      'stops replacement sign-in when rotation refuses with %s', async (code) => {
+        mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+        mockApiPost.mockRejectedValueOnce({ code, message: 'cannot rotate' });
+        await expect(AuthService.rotateWalletForReplacement(NEW_ADDRESS, 8453)).rejects.toBeDefined();
+      },
+    );
   });
 });
