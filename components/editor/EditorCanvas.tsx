@@ -48,7 +48,7 @@ export interface EditorCanvasHandle {
    * Render the timeline to a video file (MP4 where the phone can, see
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
-  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
 }
 
 interface Props {
@@ -392,7 +392,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (cutoutReqs.current.has(reqId)) { cutoutReqs.current.delete(reqId); resolve(null); }
         }, 180000);
       }),
-    exportVideo: ({ width, height, bitrate, title }, onProgress) =>
+    exportVideo: ({ width, height, bitrate, title, username }, onProgress) =>
       new Promise((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         // A phone that pauses the page (app in the background) stalls the
@@ -417,7 +417,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           title,
           out: null,
         });
-        post({ type: "exportVideo", reqId, width, height, bitrate });
+        post({ type: "exportVideo", reqId, width, height, bitrate, username });
       }),
   }), [post]);
 
