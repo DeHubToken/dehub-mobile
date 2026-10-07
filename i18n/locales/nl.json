@@ -389,6 +389,7 @@
     "compactModeDesc": "Verminder afstand voor meer inhoud",
     "autoPlay": "Automatisch afspelen",
     "autoPlayDesc": "Video's automatisch afspelen in de feed",
+    "autoplayPausePrompt": "Automatisch afspelen uitschakelen?",
     "autoPlayMuted": "Autoplay zonder geluid starten",
     "autoPlayMutedDesc": "Video's die vanzelf afspelen, starten altijd zonder geluid",
     "showAnimations": "Animaties tonen",

@@ -389,6 +389,7 @@
     "compactModeDesc": "Weniger Abstand für mehr Inhalt",
     "autoPlay": "Automatische Wiedergabe",
     "autoPlayDesc": "Videos automatisch abspielen",
+    "autoplayPausePrompt": "Automatische Wiedergabe ausschalten?",
     "autoPlayMuted": "Autoplay stumm starten",
     "autoPlayMutedDesc": "Videos, die von selbst abspielen, starten immer ohne Ton",
     "showAnimations": "Animationen anzeigen",
