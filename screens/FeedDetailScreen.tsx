@@ -1575,7 +1575,7 @@ export default function FeedDetailScreen() {
           // (the bottom nav is not on this screen). A fade band above it and,
           // on Android, the page colour solid under it, so comment text never
           // reads through; iOS keeps the glass.
-          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 0 }]}>
             <LinearGradient
               colors={[stageDockFade, stagePage + "0A", stagePage + "1F", stagePage + "3D"]}
               locations={[0, 0.35, 0.7, 1]}
@@ -1597,6 +1597,8 @@ export default function FeedDetailScreen() {
           // Minimal: a black bar under one full-width hairline.
           style={stage
             ? {
+                position: "relative",
+                zIndex: 1,
                 marginBottom: inputLift + 8,
                 marginTop: 4,
                 marginHorizontal: 10,
@@ -1604,6 +1606,9 @@ export default function FeedDetailScreen() {
                 borderWidth: 1,
                 borderColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.12)",
                 overflow: "hidden",
+                // Android paints the fill on the card itself so an absolute
+                // background child cannot cover the field and its controls.
+                backgroundColor: Platform.OS === "android" ? stageSurface : undefined,
               }
             : isMinimal
             ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
@@ -1611,11 +1616,9 @@ export default function FeedDetailScreen() {
               ? { marginBottom: inputLift, backgroundColor: skin.page }
               : { marginBottom: inputLift }}
         >
-          {stage && (Platform.OS === "ios" ? (
+          {stage && Platform.OS === "ios" && (
             <IosGlassPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} />
-          ) : (
-            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: stageSurface }]} />
-          ))}
+          )}
           {/* Replying / Editing indicator */}
           {(replyTo || editingComment) && !recorder.isRecording && (
             <View
@@ -1730,6 +1733,7 @@ export default function FeedDetailScreen() {
                   placeholderTextColor={theme.colors.mutedForeground}
                   className="flex-1 text-sm text-theme-neutrals-100"
                   style={{
+                    color: theme.colors.foreground,
                     // Seven lines of 14px text before it starts scrolling. The
                     // send control is a sibling, not an overlay, so the box is
                     // free to grow into the row.
