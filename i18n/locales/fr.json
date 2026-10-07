@@ -5159,7 +5159,14 @@
     "showWords": "Afficher les mots",
     "reminderBody": "Sauvegardez votre portefeuille : 12 mots pour le récupérer si vous perdez votre téléphone.",
     "backUp": "Sauvegarder",
-    "notNow": "Pas maintenant"
+    "notNow": "Pas maintenant",
+    "phraseUnavailable": "La phrase de récupération n'est pas disponible avec cette connexion. Utilisez votre connexion ou appareil d'origine pour la retrouver. Vous pouvez toujours sauvegarder votre clé privée.",
+    "phraseMismatch": "Cette sauvegarde appartient à un autre portefeuille. Utilisez votre connexion d'origine pour accéder à la bonne sauvegarde.",
+    "backupDescription": "Enregistrez votre phrase de récupération ou votre clé privée pour pouvoir restaurer votre portefeuille.",
+    "phraseOtherDevice": "Ouvrez DeHub sur l'appareil où vous avez sécurisé ce portefeuille pour voir sa phrase de récupération. Vous pouvez aussi sauvegarder votre clé privée ici.",
+    "phraseLoadFailed": "Impossible de charger votre phrase de récupération. Réessayez ou ouvrez DeHub sur votre appareil d'origine.",
+    "noPhrase": "Ce portefeuille a été enregistré avec une clé privée. DeHub ne dispose donc pas de phrase de récupération à afficher. Sauvegardez cette clé pour restaurer le même portefeuille.",
+    "keyWarning": "Toute personne possédant cette clé peut contrôler votre portefeuille. Conservez-la en lieu sûr et ne la partagez jamais."
   },
   "transcript": {
     "title": "Transcription",

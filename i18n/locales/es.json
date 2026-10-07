@@ -5129,7 +5129,7 @@
   "walletBackup": {
     "title": "Hacer copia de seguridad del monedero",
     "rowDesc": "Ver tus 12 palabras o tu clave privada",
-    "backedUpOn": "Copia de seguridad: {{date}}",
+    "backedUpOn": "Copia guardada el {{date}}",
     "offerTitle": "¿Hacer copia de seguridad del monedero?",
     "offerBody": "12 palabras que recuperan tu monedero si pierdes el teléfono o la contraseña. Tarda 30 segundos.",
     "offerBodyDeviceOnly": "Tu monedero solo existe en este teléfono. Sin estas palabras, perder el teléfono significa perder el monedero.",
@@ -5155,7 +5155,14 @@
     "showWords": "Mostrar palabras",
     "reminderBody": "Haz una copia de seguridad del monedero: 12 palabras que lo recuperan si pierdes el teléfono.",
     "backUp": "Hacer copia",
-    "notNow": "Ahora no"
+    "notNow": "Ahora no",
+    "phraseUnavailable": "La frase de recuperación no está disponible con este inicio de sesión. Usa tu acceso o dispositivo original para buscarla. Aún puedes guardar tu clave privada.",
+    "phraseMismatch": "Esta copia de seguridad pertenece a otra cartera. Usa tu inicio de sesión original para acceder a la copia correcta.",
+    "backupDescription": "Guarda tu frase de recuperación o clave privada para poder restaurar tu cartera.",
+    "phraseOtherDevice": "Abre DeHub en el dispositivo donde protegiste esta cartera para ver su frase de recuperación. También puedes guardar tu clave privada aquí.",
+    "phraseLoadFailed": "No se pudo cargar tu frase de recuperación. Reinténtalo o abre DeHub en tu dispositivo original.",
+    "noPhrase": "Esta cartera se guardó con una clave privada, por lo que DeHub no tiene una frase de recuperación que mostrar. Guarda esta clave para restaurar la misma cartera.",
+    "keyWarning": "Cualquiera que tenga esta clave puede controlar tu cartera. Guárdala en un lugar seguro y nunca la compartas."
   },
   "transcript": {
     "title": "Transcripción",
