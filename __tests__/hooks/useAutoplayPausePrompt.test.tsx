@@ -7,6 +7,10 @@ import { useAutoplayPausePrompt } from '../../hooks/useAutoplayPausePrompt';
 import { AUTOPLAY_PAUSE_CONFIRM_MS, AUTOPLAY_PROMPT_STORAGE_KEY } from '../../libs/autoplay-pause-prompt';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', Switch: 'Switch',
+  StyleSheet: { flatten: (style: unknown) => style },
+}));
 jest.mock('sonner-native', () => ({ toast: { custom: jest.fn(), dismiss: jest.fn() } }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../hooks/useAppPrefs', () => ({
