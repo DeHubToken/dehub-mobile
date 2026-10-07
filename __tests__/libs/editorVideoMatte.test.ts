@@ -1,6 +1,6 @@
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { mediaIds, newProject, parseProject, updateClip } from "../../libs/editor/project";
-import { assertVideoMattes, validVideoMatte, videoMatteFrame, videoMattePlan } from "../../libs/editor/videoMatte";
+import { videoMatteCommand, assertVideoMattes, validVideoMatte, videoMatteFrame, videoMattePlan } from "../../libs/editor/videoMatte";
 import { VIDEO_MATTE_CORE, VIDEO_MATTE_RUNTIME, VIDEO_MATTE_WORKER } from "../../libs/editor/videoMatteRuntime";
 import type { MediaClip } from "../../libs/editor/types";
 const clip = (patch: Partial<MediaClip> = {}): MediaClip => ({ id: "v", trackId: "t", kind: "video", mediaId: "source", start: 7, trimIn: 4, duration: 2, speed: 2, ...patch });
@@ -50,4 +50,14 @@ it("keeps masks in the saved project media set, and discards them when footage i
   expect(updateClip(project,c.id,{mediaId:"new"}).clips[0]).toMatchObject({mediaId:"new",videoMatte:null});
   const program=/<script>([\s\S]*)<\/script>/.exec(EDITOR_CANVAS_HTML)![1];
   expect(()=>new Function(program)).not.toThrow();
+});
+
+it("handles exact video cut-out requests without choosing ambiguous or locked layers", () => {
+  const scene={selected:["v"],layers:[{id:"v",kind:"video"},{id:"image",kind:"image"}]};
+  for(const prompt of ["remove the background", "Please remove background from this video.", "remove the video background"])
+    expect(videoMatteCommand(prompt,scene)).toEqual({op:"remove_background",id:"v"});
+  expect(videoMatteCommand("remove background",{...scene,selected:[]})).toBeNull();
+  expect(videoMatteCommand("remove background from the video",{...scene,selected:[]})).toEqual({op:"remove_background",id:"v"});
+  expect(videoMatteCommand("remove background and add captions",scene)).toBeNull();
+  expect(videoMatteCommand("remove background",{selected:["v"],layers:[{id:"v",kind:"video",locked:true}]})).toBeNull();
 });
