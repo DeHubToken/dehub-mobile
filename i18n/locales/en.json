@@ -7317,6 +7317,7 @@
     }
   },
   "creator": {
+    "editInTimeline": "Edit in timeline",
     "presetExtraGlassCausticsName": "Glass caustics",
     "presetExtraGlassCausticsHint": "Sunlight bends through clear glass",
     "presetExtraRainyProductName": "Rainy product",
