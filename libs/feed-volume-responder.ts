@@ -16,6 +16,8 @@ export interface FeedVolumeResponderOptions {
   onTap: () => void;
   /** Finger lifted or the gesture was taken away. */
   onEnd: () => void;
+  /** Open a mixer only after the held finger lifts, never on cancellation. */
+  onHoldRelease?: () => void;
 }
 
 /**
@@ -78,6 +80,7 @@ export function feedVolumeResponder(opts: FeedVolumeResponderOptions): PanRespon
     onPanResponderRelease: (_event, gesture) => {
       const wasHolding = holding;
       finish();
+      if (wasHolding) opts.onHoldRelease?.();
       if (!wasHolding && Math.hypot(gesture.dx, gesture.dy) <= SLOP) opts.onTap();
     },
     onPanResponderTerminate: finish,
