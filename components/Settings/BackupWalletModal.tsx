@@ -28,6 +28,7 @@ import { unlockWithBiometrics } from "../../libs/wallet-core/biometric-unlock";
 import { BackupMismatchError, loadBackupSource, phraseForBackup } from "../../libs/wallet-core/backup";
 import { markBackedUp } from "../../libs/wallet-core/backup-status";
 import { createLogger } from "../../libs/logger";
+import { getRecoveryPhraseForAddress } from "../../libs/wallets.local";
 
 const log = createLogger("BackupWalletModal");
 
@@ -158,6 +159,16 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
       setWords({ kind: "loading" });
       setWordsError(null);
       try {
+        const address = deriveAddressFromPrivateKey(pk);
+        const localPhrase = address ? await getRecoveryPhraseForAddress(address, {
+          purpose: t("walletBackup.showWords"),
+          forcePrompt: true,
+        }) : null;
+        if (session !== sessionRef.current) return;
+        if (localPhrase) {
+          acceptSecret(localPhrase, pk);
+          return;
+        }
         const userId = await getSupabaseUserId();
         if (session !== sessionRef.current) return;
         if (!userId) return setWords({ kind: "none", reason: "unavailable" });
@@ -178,7 +189,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
         setWords({ kind: "error" });
       }
     },
-    [openWithBiometrics]
+    [openWithBiometrics, acceptSecret, t]
   );
 
   const openWithPassword = useCallback(async () => {
