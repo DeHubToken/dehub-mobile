@@ -130,3 +130,8 @@ The 512-pixel general-subject model uses WebGPU when available and the same mode
 Cloud checks cover source-clock addressing, canvas and memory bounds, invalid/missing masks, source replacement, decoder cancellation and program syntax. Actual moving-subject segmentation quality and downloaded compositing require staging verification after publication. Phone execution requires a physical device; publishing an update alone does not establish that verification.
 
 Caption fitting and focused speech fixes are published on web and through Android/iOS production and preview updates. Mobile run 37687104064 passed configuration preflight and published the exact merged commit 0f1a1a46df36d2bf37d4d0e023715e3f57c92ecf.
+
+
+### Audio fades through cuts
+
+Trims, splits, scene and highlight cuts keep a clip-local piecewise gain curve, including partial fades. Preview and video range-export audio scheduling use the same runtime. Playback-speed and beat-alignment changes scale curve times; volume changes keep the curve and explicit fade changes replace it. Manual web trims and splits use source-rate offsets. Video background removal was also verified on staging with a moving non-human subject, original audio, branded ending, undo/restore and saved project reopen; initial 600-frame and physical-device limits remain.

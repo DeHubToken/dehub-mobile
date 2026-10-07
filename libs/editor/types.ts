@@ -181,6 +181,8 @@ export interface ClipAudio {
   fadeIn?: number;
   /** seconds of linear fade-out */
   fadeOut?: number;
+  /** Clip-local linear gain points, including inactive points for edge restoration; volume stays separate. */
+  envelope?: import("./audioEnvelope").AudioEnvelopePoint[];
 }
 
 export interface MediaClip extends BaseClip {

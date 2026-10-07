@@ -7,7 +7,7 @@
  */
 import type { Clip, MediaClip, ProjectSnapshot, Track, TrackKind, Transition, TransitionKind } from "./types";
 import { newId, timelineEnd } from "./project";
-import { shiftKeys } from "./keyframes";
+import { applyTimelineOp, sliceTimelineClip } from "./timelineAgent";
 
 /** Shortest a clip can be trimmed to, in seconds (web MIN_CLIP is 0.05; a finger needs more). */
 export const MIN_CLIP = 0.2;
@@ -159,7 +159,7 @@ export function trimClip(p: ProjectSnapshot, id: string, edge: "in" | "out", del
     return {
       ...p,
       clips: p.clips.map((c) => {
-        if (c.id === id) return { ...c, trimIn: newTrimIn, duration: newDur } as Clip;
+        if (c.id === id) return sliceTimelineClip(c, (newTrimIn - clip.trimIn) / sp, newDur, c.id, c.start);
         if (c.trackId === clip.trackId && c.start >= end - 1e-6) return { ...c, start: Math.max(0, c.start + shift) } as Clip;
         return c;
       }),
@@ -185,7 +185,7 @@ export function trimClip(p: ProjectSnapshot, id: string, edge: "in" | "out", del
     duration = Math.max(MIN_CLIP, newDur);
   }
   // Keys are clip-relative; trimming the head must not slide the motion along.
-  const next = { ...clip, start, duration, trimIn, keyframes: shiftKeys(clip.keyframes, clip.start - start) } as Clip;
+  const next = sliceTimelineClip(clip, start - clip.start, duration, clip.id, start);
   return { ...p, clips: p.clips.map((c) => (c.id === id ? next : c)) };
 }
 
@@ -225,45 +225,20 @@ export function splitClip(p: ProjectSnapshot, id: string, t: number): { project:
   const c = p.clips.find((x) => x.id === id);
   if (!c || t <= c.start + MIN_CLIP / 2 || t >= c.start + c.duration - MIN_CLIP / 2) return null;
   const local = t - c.start;
-  const { transitionOut, ...rest } = c;
-  const left = { ...rest, duration: local } as Clip;
-  const right = {
-    ...c,
-    id: newId(10),
-    start: t,
-    duration: c.duration - local,
-    trimIn: c.kind === "video" || c.kind === "audio" ? c.trimIn + local * speedOf(c) : c.trimIn,
-    animateIn: undefined,
-    keyframes: shiftKeys(c.keyframes, -local),
-  } as Clip;
-  if (c.animateOut) (left as Clip).animateOut = undefined;
+  const left = sliceTimelineClip(c, 0, local, c.id);
+  const right = sliceTimelineClip(c, local, c.duration - local, newId(10), t);
   const clips: Clip[] = [];
   for (const x of p.clips) {
     if (x.id === id) clips.push(left, right);
     else clips.push(x);
   }
-  void transitionOut;
   return { project: { ...p, clips }, rightId: right.id };
 }
 
 /** Change playback speed; the clip gets shorter or longer on the timeline. */
 export function setSpeed(p: ProjectSnapshot, id: string, speed: number): ProjectSnapshot {
-  const c = p.clips.find((x) => x.id === id);
-  if (!c || (c.kind !== "video" && c.kind !== "audio")) return p;
-  const old = speedOf(c);
-  const sourceLen = c.duration * old;
-  let duration = Math.max(MIN_CLIP, sourceLen / speed);
-  // Faster fits anywhere; slower may run into the next clip on the track.
-  const next = p.clips
-    .filter((x) => x.trackId === c.trackId && x.id !== c.id && x.start >= c.start + c.duration - 1e-6)
-    .reduce((m, x) => Math.min(m, x.start), Infinity);
-  let clips = p.clips;
-  if (c.start + duration > next) {
-    const push = c.start + duration - next;
-    clips = clips.map((x) => (x.trackId === c.trackId && x.id !== c.id && x.start >= c.start + c.duration - 1e-6 ? ({ ...x, start: x.start + push } as Clip) : x));
-  }
-  duration = Math.max(MIN_CLIP, duration);
-  return { ...p, clips: clips.map((x) => (x.id === id ? ({ ...x, speed: speed === 1 ? undefined : speed, duration } as Clip) : x)) };
+  const next = applyTimelineOp(p, { op: "speed", id, speed }, () => newId(10));
+  return next ? { ...p, clips: next.clips, tracks: next.tracks } : p;
 }
 
 /** The clip whose start touches this clip's end on the same track (web findAdjacentNext). */
