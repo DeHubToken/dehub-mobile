@@ -7,6 +7,19 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("replaces the requested soundtrack in one project snapshot", async () => {
+    const base = newProject("16:9", "sound");
+    base.tracks = [{ id: "v", name: "Video", kind: "video", hidden: false, muted: false }];
+    const clip: MediaClip = { id: "c", trackId: "v", kind: "video", mediaId: "source", start: 2, duration: 3, trimIn: 4, speed: 2, audio: { volume: 0.5, fadeIn: 0.2 } };
+    base.clips = [clip];
+    const processAudio = jest.fn().mockResolvedValue("processed");
+    const { project, report } = await applyOps(base, [{ op: "process_audio", id: "c", mode: "voice" }], { processAudio });
+    expect(processAudio).toHaveBeenCalledWith(clip, "voice");
+    expect(report).toMatchObject({ applied: 1, failed: 0 });
+    expect(project.clips[0]).toMatchObject({ mediaId: "source", start: 2, trimIn: 4, speed: 2, audio: { volume: 0 } });
+    expect(project.clips[1]).toMatchObject({ mediaId: "processed", kind: "audio", start: 2, duration: 3, trimIn: 0, speed: 1, audio: { volume: 1, fadeIn: 0.2 } });
+    expect(base.clips).toEqual([clip]); expect(clip.audio?.volume).toBe(0.5);
+  });
   it("replaces scene layouts with a template starting at zero", async () => {
     const base = newProject("16:9", "old scenes");
     base.settings.pages = [0, 5, 10];

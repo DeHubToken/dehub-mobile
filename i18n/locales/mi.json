@@ -6770,24 +6770,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Tāpiri whārangi",
-    "duplicate":  "Tārua whārangi",
-    "delete":  "Muku whārangi",
-    "page":  "Whārangi {{number}}",
-    "position":  "Whārangi {{current}} o {{total}}",
-    "label":  "Ngā whārangi",
-    "allZip":  "Ngā whārangi {{count}} katoa (ZIP)",
-    "thisPage":  "Tēnei whārangi anake",
-    "exporting":  "E whakaputa ana i te whārangi {{current}} o {{total}}…"
-},
+      "add": "Tāpiri whārangi",
+      "duplicate": "Tārua whārangi",
+      "delete": "Muku whārangi",
+      "page": "Whārangi {{number}}",
+      "position": "Whārangi {{current}} o {{total}}",
+      "label": "Ngā whārangi",
+      "allZip": "Ngā whārangi {{count}} katoa (ZIP)",
+      "thisPage": "Tēnei whārangi anake",
+      "exporting": "E whakaputa ana i te whārangi {{current}} o {{total}}…"
+    },
     "captions": {
-        "action":  "Tapanga aunoa",
-        "working":  "E whakarongo ana… {{percent}}%",
-        "downloading":  "E whakareri ana i te tauira kōrero… {{percent}}%",
-        "hint":  "Ka huri i te kōrero hei tapanga whai wā ka taea e koe te panoni te āhua. Ka rere ki tō pūrere: utu kore, tūmataiti hoki. Ka tikiake te tauira i te whakamahinga tuatahi.",
-        "done":  "Kua tāpiritia ngā tapanga {{count}}.",
-        "noSpeech":  "Kāore he kōrero i kitea i tēnei topenga.",
-        "failed":  "Kāore i taea te hanga tapanga mō tēnei topenga."
+      "action": "Tapanga aunoa",
+      "working": "E whakarongo ana… {{percent}}%",
+      "downloading": "E whakareri ana i te tauira kōrero… {{percent}}%",
+      "hint": "Ka huri i te kōrero hei tapanga whai wā ka taea e koe te panoni te āhua. Ka rere ki tō pūrere: utu kore, tūmataiti hoki. Ka tikiake te tauira i te whakamahinga tuatahi.",
+      "done": "Kua tāpiritia ngā tapanga {{count}}.",
+      "noSpeech": "Kāore he kōrero i kitea i tēnei topenga.",
+      "failed": "Kāore i taea te hanga tapanga mō tēnei topenga."
     },
     "app": {
       "newDesign": "Hoahoa hou",
@@ -7156,6 +7156,15 @@
         "easeInOutBack": "Hoki tomo me te puta",
         "hold": "Pupuri"
       }
+    },
+    "audioTools": {
+      "normalize": "Te rōrahi ritenga",
+      "denoise": "Te whakaiti i te haruru",
+      "voice": "Whakapai ake i te reo",
+      "working": "Te tukatuka o te oro... {{percent}}%",
+      "done": "I tāpirihia te tangi tukatuka. Ka whakahoutia e Undo te taketake.",
+      "failed": "Kaore e taea e au te whakatika i tenei tangi. Ko te taketake e kore e huri.",
+      "hint": "Ka tae atu ki te 10 meneti te roa o te tukanga. Ko te whakaiti i te tangi e pai ana ki te haruru o muri."
     }
   },
   "creator": {

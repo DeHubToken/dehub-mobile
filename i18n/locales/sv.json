@@ -6792,24 +6792,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Lägg till sida",
-    "duplicate":  "Duplicera sida",
-    "delete":  "Ta bort sida",
-    "page":  "Sida {{number}}",
-    "position":  "Sida {{current}} av {{total}}",
-    "label":  "Sidor",
-    "allZip":  "Alla {{count}} sidor (ZIP)",
-    "thisPage":  "Endast denna sida",
-    "exporting":  "Renderar sida {{current}} av {{total}}…"
-},
+      "add": "Lägg till sida",
+      "duplicate": "Duplicera sida",
+      "delete": "Ta bort sida",
+      "page": "Sida {{number}}",
+      "position": "Sida {{current}} av {{total}}",
+      "label": "Sidor",
+      "allZip": "Alla {{count}} sidor (ZIP)",
+      "thisPage": "Endast denna sida",
+      "exporting": "Renderar sida {{current}} av {{total}}…"
+    },
     "captions": {
-        "action":  "Automatiska undertexter",
-        "working":  "Lyssnar… {{percent}} %",
-        "downloading":  "Förbereder talmodellen… {{percent}} %",
-        "hint":  "Gör om tal till tidsatta undertexter som du kan ändra stil på. Körs på din enhet: gratis och privat. Första gången laddas modellen ned.",
-        "done":  "{{count}} undertexter har lagts till.",
-        "noSpeech":  "Inget tal hittades i klippet.",
-        "failed":  "Det gick inte att skapa undertexter för klippet."
+      "action": "Automatiska undertexter",
+      "working": "Lyssnar… {{percent}} %",
+      "downloading": "Förbereder talmodellen… {{percent}} %",
+      "hint": "Gör om tal till tidsatta undertexter som du kan ändra stil på. Körs på din enhet: gratis och privat. Första gången laddas modellen ned.",
+      "done": "{{count}} undertexter har lagts till.",
+      "noSpeech": "Inget tal hittades i klippet.",
+      "failed": "Det gick inte att skapa undertexter för klippet."
     },
     "app": {
       "newDesign": "Ny design",
@@ -7178,6 +7178,15 @@
         "easeInOutBack": "Studs in och ut",
         "hold": "Håll"
       }
+    },
+    "audioTools": {
+      "normalize": "Normalisera volym",
+      "denoise": "Minska brus",
+      "voice": "Förbättra röst",
+      "working": "Bearbetar ljud... {{percent}}%",
+      "done": "Bearbetat ljud tillagt. Ångra återställer originalet.",
+      "failed": "Kunde inte bearbeta detta ljud. Originalet är oförändrat.",
+      "hint": "Bearbeta klipp upp till 10 minuter. Brusreducering fungerar bäst med jämn bakgrundsbrus."
     }
   },
   "creator": {

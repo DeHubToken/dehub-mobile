@@ -6792,24 +6792,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Oldal hozzáadása",
-    "duplicate":  "Oldal duplikálása",
-    "delete":  "Oldal törlése",
-    "page":  "{{number}}. oldal",
-    "position":  "{{current}}. oldal / {{total}}",
-    "label":  "Oldalak",
-    "allZip":  "Mind a(z) {{count}} oldal (ZIP)",
-    "thisPage":  "Csak ez az oldal",
-    "exporting":  "{{current}}. oldal renderelése / {{total}}…"
-},
+      "add": "Oldal hozzáadása",
+      "duplicate": "Oldal duplikálása",
+      "delete": "Oldal törlése",
+      "page": "{{number}}. oldal",
+      "position": "{{current}}. oldal / {{total}}",
+      "label": "Oldalak",
+      "allZip": "Mind a(z) {{count}} oldal (ZIP)",
+      "thisPage": "Csak ez az oldal",
+      "exporting": "{{current}}. oldal renderelése / {{total}}…"
+    },
     "captions": {
-        "action":  "Automatikus feliratok",
-        "working":  "Figyelés… {{percent}}%",
-        "downloading":  "A beszédmodell előkészítése… {{percent}}%",
-        "hint":  "A beszédet időzített, átformázható feliratokká alakítja. Az eszközödön fut: ingyenes és privát. Az első használatkor letölti a modellt.",
-        "done":  "{{count}} felirat hozzáadva.",
-        "noSpeech":  "Ebben a klipben nincs beszéd.",
-        "failed":  "Nem sikerült feliratot készíteni ehhez a kliphez."
+      "action": "Automatikus feliratok",
+      "working": "Figyelés… {{percent}}%",
+      "downloading": "A beszédmodell előkészítése… {{percent}}%",
+      "hint": "A beszédet időzített, átformázható feliratokká alakítja. Az eszközödön fut: ingyenes és privát. Az első használatkor letölti a modellt.",
+      "done": "{{count}} felirat hozzáadva.",
+      "noSpeech": "Ebben a klipben nincs beszéd.",
+      "failed": "Nem sikerült feliratot készíteni ehhez a kliphez."
     },
     "app": {
       "newDesign": "Új terv",
@@ -7178,6 +7178,15 @@
         "easeInOutBack": "Visszalendülő kezdés és befejezés",
         "hold": "Tartás"
       }
+    },
+    "audioTools": {
+      "normalize": "Hangerő normalizálása",
+      "denoise": "Csökkentse a zajt",
+      "voice": "Hang javítása",
+      "working": "Hang feldolgozása... {{percent}}%",
+      "done": "Feldolgozott hang hozzáadva. Visszavonás visszaállítja az eredetit.",
+      "failed": "Nem sikerült feldolgozni ezt a hangot. Az eredeti változatlan.",
+      "hint": "A folyamatcsipeszek legfeljebb 10 percig tartanak. A zajcsökkentés az egyenletes háttérzaj mellett működik a legjobban."
     }
   },
   "creator": {

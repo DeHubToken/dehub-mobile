@@ -6770,24 +6770,24 @@
   },
   "editor": {
     "pages": {
-    "add":  "Fi ojú-ìwé kún un",
-    "duplicate":  "Ṣe ẹ̀dà ojú-ìwé",
-    "delete":  "Pa ojú-ìwé rẹ́",
-    "page":  "Ojú-ìwé {{number}}",
-    "position":  "Ojú-ìwé {{current}} nínú {{total}}",
-    "label":  "Àwọn ojú-ìwé",
-    "allZip":  "Gbogbo ojú-ìwé {{count}} (ZIP)",
-    "thisPage":  "Ojú-ìwé yìí nìkan",
-    "exporting":  "Ń ṣe ojú-ìwé {{current}} nínú {{total}}…"
-},
+      "add": "Fi ojú-ìwé kún un",
+      "duplicate": "Ṣe ẹ̀dà ojú-ìwé",
+      "delete": "Pa ojú-ìwé rẹ́",
+      "page": "Ojú-ìwé {{number}}",
+      "position": "Ojú-ìwé {{current}} nínú {{total}}",
+      "label": "Àwọn ojú-ìwé",
+      "allZip": "Gbogbo ojú-ìwé {{count}} (ZIP)",
+      "thisPage": "Ojú-ìwé yìí nìkan",
+      "exporting": "Ń ṣe ojú-ìwé {{current}} nínú {{total}}…"
+    },
     "captions": {
-        "action":  "Àkọlé aládàáṣe",
-        "working":  "Ń gbọ́… {{percent}}%",
-        "downloading":  "Ń ṣètò àwòṣe ọ̀rọ̀ sísọ… {{percent}}%",
-        "hint":  "Ó ń sọ ọ̀rọ̀ sísọ di àkọlé tí a ṣètò àkókò rẹ̀, tí o lè yí ìrísí rẹ̀ padà. Ó ń ṣiṣẹ́ lórí ẹ̀rọ rẹ: ọ̀fẹ́ àti àṣírí. Ìlò àkọ́kọ́ yóò ṣe ìgbàsílẹ̀ àwòṣe náà.",
-        "done":  "A ti ṣàfikún àkọlé {{count}}.",
-        "noSpeech":  "A kò rí ọ̀rọ̀ sísọ nínú agekuru yìí.",
-        "failed":  "A kò lè ṣẹ̀dá àkọlé fún agekuru yìí."
+      "action": "Àkọlé aládàáṣe",
+      "working": "Ń gbọ́… {{percent}}%",
+      "downloading": "Ń ṣètò àwòṣe ọ̀rọ̀ sísọ… {{percent}}%",
+      "hint": "Ó ń sọ ọ̀rọ̀ sísọ di àkọlé tí a ṣètò àkókò rẹ̀, tí o lè yí ìrísí rẹ̀ padà. Ó ń ṣiṣẹ́ lórí ẹ̀rọ rẹ: ọ̀fẹ́ àti àṣírí. Ìlò àkọ́kọ́ yóò ṣe ìgbàsílẹ̀ àwòṣe náà.",
+      "done": "A ti ṣàfikún àkọlé {{count}}.",
+      "noSpeech": "A kò rí ọ̀rọ̀ sísọ nínú agekuru yìí.",
+      "failed": "A kò lè ṣẹ̀dá àkọlé fún agekuru yìí."
     },
     "app": {
       "newDesign": "Àpẹẹrẹ tuntun",
@@ -7156,6 +7156,15 @@
         "easeInOutBack": "Padà wọlé àti jáde",
         "hold": "Dì mú"
       }
+    },
+    "audioTools": {
+      "normalize": "Ṣe deede iwọn didun",
+      "denoise": "Dinku ariwo",
+      "voice": "Mú ohùn sunwọ̀n sí i",
+      "working": "Sise ohun... {{percent}}%",
+      "done": "Oríṣìíríṣìí ohun tí a fi kún un. Undo mú oríṣìíríṣìí padà.",
+      "failed": "N kò lè ṣe àgbékalẹ̀ ìró yìí. Àkọ́kọ́ náà kò yí padà.",
+      "hint": "Àwọn àmúyẹ fun gbígbọ́ orin ko le ṣiṣẹ lori ẹ̀rọ rẹ Àkọlé fídíò Ìdènà ariwo máa ń ṣiṣẹ́ dáradára pẹ̀lú ariwo àtẹ̀yìnwá tí ó dúró ṣánṣán."
     }
   },
   "creator": {
