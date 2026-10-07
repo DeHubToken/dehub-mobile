@@ -46,7 +46,7 @@ function readableStyle(style) {
 const MUTED_CLASS = /(^|\s)text-(?:(?:zinc|gray|neutral|slate)-[3456]00|theme-neutrals-[3456]00|muted-foreground|white\/(?:30|40|50|60|70))(?:\/(?:\d+|\[[^\]]+\]))?(?=\s|$)/g;
 
 function readableTextProps(type, props) {
-  if (!props) return props;
+  if (!type || !props) return props;
   // Lazy import: the JSX runtime is initialized before react-native.
   if (!native) native = require("react-native");
   if (type !== native.Text && type !== native.TextInput) return props;

@@ -1,4 +1,5 @@
 import { Text, TextInput, View } from 'react-native';
+jest.mock('react-native', () => ({ Text: 'Text', TextInput: 'TextInput', View: 'View' }));
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { readableTextProps } = require('../../libs/jsx/readability');
 const flatten = (style: any): any => Array.isArray(style)
