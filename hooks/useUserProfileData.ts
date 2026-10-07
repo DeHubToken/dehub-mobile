@@ -7,6 +7,9 @@ import {
   getBadgeName,
   getBadgeUrl,
   resolveBadgeBalance,
+  resolveBadgeLock,
+  resolveBadgeUsername,
+  type BadgeLock,
   getDefaultBanner,
   shareProfile,
 } from "../libs/misc";
@@ -35,6 +38,7 @@ export interface RemoteUser {
   avatarImageUrl?: string;
   coverImageUrl?: string;
   badgeBalance?: number;
+  badgeLock?: BadgeLock | null;
   stakedDHB?: number;
   createdAt?: string;
   followers?: number;
@@ -281,8 +285,12 @@ export const useUserProfileData = (
     const badgeVal = resolveBadgeBalance(data as any);
     const fromBalances = badgeVal > 0 ? badgeVal : maxStacked((data as any)?.balanceData);
     const stakedDHB = fromBalances > 0 ? fromBalances : ((data as any)?.stakedDHB || 0);
-    const badge = getBadgeName(stakedDHB);
-    const badgeImage = getBadgeUrl(stakedDHB);
+    const badgeContext = {
+      username: resolveBadgeUsername(data),
+      lock: resolveBadgeLock(data),
+    };
+    const badge = getBadgeName(stakedDHB, badgeContext);
+    const badgeImage = getBadgeUrl(stakedDHB, badgeContext);
     const address = data?.address || "";
     const hasUsername = !!data?.username;
     const username = data?.username || address;

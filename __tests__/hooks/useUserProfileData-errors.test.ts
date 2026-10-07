@@ -15,6 +15,8 @@ jest.mock("../../libs/misc", () => ({
   getBadgeName: () => "",
   getBadgeUrl: () => "",
   resolveBadgeBalance: () => 0,
+  resolveBadgeLock: () => undefined,
+  resolveBadgeUsername: () => undefined,
   getDefaultBanner: () => null,
   shareProfile: jest.fn(),
 }));
