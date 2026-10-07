@@ -1,5 +1,5 @@
 const vi = jest;
-import { runWorkPayment, type WorkPaymentDependencies } from '../../libs/work-payment-flow';
+import { prepareWorkPayment, runWorkPayment, type WorkPaymentDependencies } from '../../libs/work-payment-flow';
 
 const hash = '0x' + 'a'.repeat(64);
 const intent = { id: 'payment', submission_id: 'submission', job_id: 'job', payer_address: 'poster', worker_address: 'worker',
@@ -70,5 +70,17 @@ describe('bounty payment recovery', () => {
     rpc.mockRejectedValue(new Error('Invalid wallet session'));
     await expect(runWorkPayment('submission',8453,deps)).rejects.toThrow('Invalid wallet session');
     expect(deps.send).not.toHaveBeenCalled();
+  });
+  it.each(['Balance lookup failed', 'Wallet is not ready', 'The signing wallet does not match your bounty account'])('releases a reservation when preparation fails: %s', async message => {
+    const { deps, rpc } = setup();
+    const broadcast = vi.fn(async () => ({ hash }));
+    deps.send = async () => {
+      await prepareWorkPayment(async () => { throw new Error(message); });
+      return broadcast();
+    };
+    await expect(runWorkPayment('submission',8453,deps)).rejects.toThrow(message);
+    expect(broadcast).not.toHaveBeenCalled();
+    expect(rpc).toHaveBeenCalledWith('work_cancel_signature',{p_intent:'payment'});
+    expect(deps.receipt).not.toHaveBeenCalled();
   });
 });
