@@ -6786,6 +6786,12 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "beats": {
+      "markers": "Rytmemarkører",
+      "sync": "Synkroniser klipp",
+      "none": "Ingen pålitelig rytme funnet.",
+      "unchanged": "Klippene kunne ikke justeres."
+    },
     "audioTools": {
       "normalize": "Normaliser volum",
       "denoise": "Reduser støy",

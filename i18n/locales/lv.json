@@ -6787,6 +6787,12 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritma marķieri",
+      "sync": "Sinhronizēt griezumus",
+      "none": "Uzticams ritms nav atrasts.",
+      "unchanged": "Griezumus nevarēja izlīdzināt."
+    },
     "audioTools": {
       "normalize": "Normalizējiet skaļumu",
       "denoise": "Samaziniet troksni",

@@ -6787,6 +6787,12 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "editor": {
+    "beats": {
+      "markers": "Ritm işarələri",
+      "sync": "Kəsikləri sinxronlaşdır",
+      "none": "Etibarlı ritm tapılmadı.",
+      "unchanged": "Kəsikləri uyğunlaşdırmaq mümkün olmadı."
+    },
     "audioTools": {
       "normalize": "Həcmi normallaşdırın",
       "denoise": "Səs-küyü azaldın",

@@ -31,7 +31,7 @@ export function SpeedPanel({ clip, onPick }: { clip: MediaClip; onPick: (speed: 
   );
 }
 
-export function SoundPanel({ clip, live, settle, processAudio, progress, cancelAudio }: PanelProps<MediaClip> & { processAudio: (mode: AudioToolMode) => void; progress: number | null; cancelAudio: () => void }) {
+export function SoundPanel({ clip, live, settle, processAudio, runBeats, progress, cancelAudio }: PanelProps<MediaClip> & { runBeats: (align: boolean) => void; processAudio: (mode: AudioToolMode) => void; progress: number | null; cancelAudio: () => void }) {
   const { t } = useTranslation();
   const a = clip.audio ?? {};
   const vol = a.volume ?? 1;
@@ -69,6 +69,11 @@ export function SoundPanel({ clip, live, settle, processAudio, progress, cancelA
       <ChipRow>
         {AUDIO_TOOL_MODES.map(mode => <Chip key={mode} label={t(`editor.audioTools.${mode}`)} disabled={progress !== null || !!clip.locked || clip.duration > 600} active={false} onPress={() => processAudio(mode)} />)}
       </ChipRow>
+      <ChipRow>
+        <Chip label={t("editor.beats.markers")} disabled={progress !== null || !!clip.locked || clip.duration > 600} active={false} onPress={() => runBeats(false)} />
+        <Chip label={t("editor.beats.sync")} disabled={progress !== null || !!clip.locked || clip.duration > 600} active={false} onPress={() => runBeats(true)} />
+      </ChipRow>
+      <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.speed")} · 0.25–4×</Text>
       {progress !== null && <View style={{ gap: 4 }}><Text className="text-theme-neutrals-300 text-xs">{t("editor.audioTools.working", { percent: Math.round(progress * 100) })}</Text><ChipRow><Chip label={t("common.cancel")} active={false} onPress={cancelAudio} /></ChipRow></View>}
       <Text className="text-theme-neutrals-400 text-xs">{t("editor.audioTools.hint")}</Text>
     </View>

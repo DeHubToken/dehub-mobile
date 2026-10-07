@@ -6913,6 +6913,12 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
+    "beats": {
+      "markers": "Maatslagmerkers",
+      "sync": "Sinkroniseer snitte",
+      "none": "Geen betroubare maatslae gevind nie.",
+      "unchanged": "Geen snitte kon belyn word nie."
+    },
     "audioTools": {
       "normalize": "Normaliseer volume",
       "denoise": "Verminder geraas",

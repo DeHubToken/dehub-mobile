@@ -1,3 +1,4 @@
+import { BEAT_RUNTIME } from "./beatRuntime";
 /** The same sound processing runs in browser and phone workers. Keep both copies identical. */
 export const AUDIO_TOOLS_RUNTIME = String.raw`
 var AUDIO_TOOL_LIMIT = 600;
@@ -116,10 +117,15 @@ function audioWav(channels, rate) {
 }
 `;
 
-export const AUDIO_TOOLS_WORKER = AUDIO_TOOLS_RUNTIME + String.raw`
+export const AUDIO_TOOLS_WORKER = AUDIO_TOOLS_RUNTIME + BEAT_RUNTIME + String.raw`
 self.onmessage = function (event) {
   var data = event.data;
   try {
+    if (data.mode === "beats") {
+      var beats = detectMusicBeats(data.channels, data.rate, function(fraction) { self.postMessage({ type: "progress", fraction: fraction }); });
+      self.postMessage({ type: "beats", times: beats.times, bpm: beats.bpm, confidence: beats.confidence });
+      return;
+    }
     var result = processAudioSamples(data.channels, data.rate, data.mode, function (fraction) { self.postMessage({ type: "progress", fraction: fraction }); });
     var wav = audioWav(result.channels, data.rate);
     self.postMessage({ type: "done", wav: wav, before: result.before, after: result.after, gain: result.gain }, [wav]);

@@ -6769,6 +6769,12 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "beats": {
+      "markers": "Alamomin kari",
+      "sync": "Daidaita yanke",
+      "none": "Ba a sami ingantaccen kari ba.",
+      "unchanged": "Ba a iya daidaita yanke ba."
+    },
     "audioTools": {
       "normalize": "Normalize girma",
       "denoise": "Rage hayaniya",

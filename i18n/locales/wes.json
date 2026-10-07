@@ -6729,6 +6729,12 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "beats": {
+      "markers": "Beat mark dem",
+      "sync": "Make cut dem match",
+      "none": "We no see beat we fit trust.",
+      "unchanged": "We no fit make cut dem match."
+    },
     "audioTools": {
       "normalize": "Make volume normal",
       "denoise": "Cut noise",

@@ -27,6 +27,8 @@ import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/typ
 import type { CaptionWord } from "../../libs/editor/captionLayout";
 import type { ExportRange } from "../../libs/editor/exportRanges";
 
+import type { BeatAnalysis } from "../../libs/editor/beats";
+
 export type CaptionProgress = { stage: "download" | "transcribing"; fraction: number };
 
 export interface LayerBox {
@@ -40,6 +42,7 @@ export interface LayerBox {
 
 export interface EditorCanvasHandle {
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void) => Promise<CaptionWord[]>;
+  detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
   exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
@@ -146,6 +149,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; timer: ReturnType<typeof setTimeout> }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
+  const beatReqs = useRef(new Map<string, { resolve: (v: BeatAnalysis) => void; reject: (e: Error) => void; progress?: (v: number) => void; cleanup: () => void }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
   const mediaAcks = useRef(new Map<string, () => void>());
@@ -181,6 +185,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       request.out?.discard(); request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId });
     }
     audioReqs.current.clear();
+    for (const [reqId,request] of beatReqs.current) { request.cleanup(); request.reject(new Error("cancelled")); post({ type: "audioCancel", reqId }); }
+    beatReqs.current.clear();
     for (const request of videoReqs.current.values()) { request.out?.discard(); request.reject(new Error("canvas closed")); }
     videoReqs.current.clear(); post({ type: "exportAbort" });
   }, [post]);
@@ -338,7 +344,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         r?.progress?.({ stage, fraction: Math.min(1, Math.max(0, Number(stage === "download" ? msg.loaded : msg.done) / Math.max(1, Number(msg.total) || 0))) });
         break;
       }
-      case "audioProgress": audioReqs.current.get(msg.reqId)?.progress?.(Math.min(1, Math.max(0, Number(msg.fraction) || 0))); break;
+      case "beatsReady": {
+        const r = beatReqs.current.get(msg.reqId); beatReqs.current.delete(msg.reqId); r?.cleanup();
+        if (Array.isArray(msg.times) && Number.isFinite(msg.bpm) && Number.isFinite(msg.confidence)) r?.resolve({ times: msg.times, bpm: msg.bpm, confidence: msg.confidence });
+        else r?.reject(new Error("invalid beats"));
+        break;
+      }
+      case "audioProgress": beatReqs.current.get(msg.reqId)?.progress?.(Math.min(1, Math.max(0, Number(msg.fraction) || 0))); audioReqs.current.get(msg.reqId)?.progress?.(Math.min(1, Math.max(0, Number(msg.fraction) || 0))); break;
       case "audioChunk": {
         const r = audioReqs.current.get(msg.reqId);
         if (!r) break;
@@ -355,6 +367,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         break;
       }
       case "audioFailed": {
+        const beat = beatReqs.current.get(msg.reqId); beatReqs.current.delete(msg.reqId); beat?.cleanup(); beat?.reject(new Error(msg.error || "beat analysis failed"));
         const r = audioReqs.current.get(msg.reqId);
         audioReqs.current.delete(msg.reqId); r?.out?.discard(); r?.cleanup(); r?.reject(new Error(msg.error || "sound processing failed")); break;
       }
@@ -425,6 +438,19 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(error); }
       videoReqs.current.clear();
     },
+    detectBeats: (clip, signal, onProgress) => new Promise<BeatAnalysis>((resolve, reject) => {
+      if (signal?.aborted) { reject(new Error("cancelled")); return; }
+      const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => {
+        const r = beatReqs.current.get(reqId); if (!r) return;
+        beatReqs.current.delete(reqId); r.cleanup(); post({ type: "audioCancel", reqId }); reject(new Error("cancelled"));
+      };
+      const timer = setTimeout(cancel, 10 * 60 * 1000);
+      const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", cancel); };
+      beatReqs.current.set(reqId, { resolve, reject, progress: onProgress, cleanup });
+      signal?.addEventListener("abort", cancel, { once: true });
+      post({ type: "processAudio", reqId, clip, mode: "beats" });
+    }),
     processAudio: (clip, mode, signal, onProgress) => new Promise<{ uri: string; duration: number }>((resolve, reject) => {
       if (signal?.aborted) { reject(new Error("cancelled")); return; }
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;

@@ -6868,6 +6868,12 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "beats": {
+      "markers": "Marika gadona",
+      "sync": "Ampifanaraho ny tapa-dahatsary",
+      "none": "Tsy nahitana gadona azo antoka.",
+      "unchanged": "Tsy azo nampifanarahana ny tapa-dahatsary."
+    },
     "audioTools": {
       "normalize": "Ovay ny haben'ilay kapila",
       "denoise": "Ahena ny tabataba",

@@ -6775,6 +6775,12 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "beats": {
+      "markers": "节拍标记",
+      "sync": "同步剪辑",
+      "none": "未找到可靠的节拍。",
+      "unchanged": "无法对齐剪辑。"
+    },
     "audioTools": {
       "normalize": "归一化音量",
       "denoise": "降噪",

@@ -6792,6 +6792,12 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "beats": {
+      "markers": "Rytmemarkører",
+      "sync": "Synkroniser klip",
+      "none": "Ingen pålidelig rytme fundet.",
+      "unchanged": "Klippene kunne ikke tilpasses."
+    },
     "audioTools": {
       "normalize": "Normaliser lydstyrken",
       "denoise": "Reducer støj",

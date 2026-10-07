@@ -6870,6 +6870,12 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
+    "beats": {
+      "markers": "비트 마커",
+      "sync": "컷 동기화",
+      "none": "신뢰할 수 있는 비트를 찾지 못했습니다.",
+      "unchanged": "컷을 정렬할 수 없었습니다."
+    },
     "audioTools": {
       "normalize": "음량 정상화",
       "denoise": "소음 감소",

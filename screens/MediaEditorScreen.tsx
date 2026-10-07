@@ -74,6 +74,7 @@ import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
+import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { audioToolLayers, type AudioToolMode } from "../libs/editor/audioTools";
 import { MotionPanel } from "../components/editor/MotionPanel";
@@ -699,6 +700,30 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       audioController.current = null; setAudioProgress(null);
     }
   };
+  const detectBeats = async (clip: MediaClip) => {
+    if (!canvasRef.current || audioController.current || clip.locked) throw new Error("beats unavailable");
+    const current = h.latest();
+    const controller = new AbortController(); audioController.current = controller; setAudioProgress(0); setPlaying(false);
+    try {
+      const result = await canvasRef.current.detectBeats(clip, controller.signal, setAudioProgress);
+      if (controller.signal.aborted || h.latest() !== current) throw new Error("cancelled");
+      return result;
+    } finally { audioController.current = null; setAudioProgress(null); }
+  };
+  const runBeatTool = async (align: boolean) => {
+    if (!selected || !project || (selected.kind !== "audio" && selected.kind !== "video") || selected.locked) return;
+    const clip = selected;
+    try {
+      const analysis = await detectBeats(clip), current = h.latest();
+      if (!current || current.clips.find(c => c.id === clip.id) !== clip) return;
+      const beats = clipBeatMap(clip, analysis), marked = { ...clip, beats };
+      if (!beats.sourceTimes.length) { toastSuccess(t("editor.beats.none")); return; }
+      const clips = current.clips.map(c => c.id === clip.id ? marked : c);
+      const result = align ? alignBeatCuts(clips, current.tracks, clipBeatTimes(marked)) : { clips, changed: 0 };
+      h.commit({ ...current, clips: result.clips });
+      toastSuccess(t(align && !result.changed ? "editor.beats.unchanged" : "editor.audioTools.done"));
+    } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+  };
   const runAudioTool = async (mode: AudioToolMode) => {
     if (!selected || !project || (selected.kind !== "video" && selected.kind !== "audio")) return;
     const clip = selected, projectId = project.id;
@@ -741,6 +766,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         removeBackground: cutoutMedia,
         transcribe,
         processAudio,
+        detectBeats,
         time: canvasTime,
       });
       if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
@@ -996,7 +1022,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected && (selected.kind === "video" || selected.kind === "audio")) {
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
-      if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
+      if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {
         const next = findAdjacentNext(project, selected.id);
         if (!next) return null;

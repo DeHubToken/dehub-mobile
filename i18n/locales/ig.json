@@ -6767,6 +6767,12 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "beats": {
+      "markers": "Akara ụda",
+      "sync": "Mee ka mbepụ kwekọọ",
+      "none": "Achọtaghị ụda a pụrụ ịtụkwasị obi.",
+      "unchanged": "Enweghị ike ime ka mbepụ kwekọọ."
+    },
     "audioTools": {
       "normalize": "Hazie ụda",
       "denoise": "Belata mkpọtụ",
