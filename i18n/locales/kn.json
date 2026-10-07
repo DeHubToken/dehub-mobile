@@ -6764,6 +6764,17 @@
     "savePrompt": "ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಡ್ರಾಫ್ಟ್ ಆಗಿ ಉಳಿಸಿ ಮತ್ತು ನಂತರ ಪೋಸ್ಟ್ ಮಾಡಿ?"
   },
   "editor": {
+    "pages": {
+    "add":  "ಪುಟ ಸೇರಿಸಿ",
+    "duplicate":  "ಪುಟವನ್ನು ನಕಲಿಸಿ",
+    "delete":  "ಪುಟ ಅಳಿಸಿ",
+    "page":  "ಪುಟ {{number}}",
+    "position":  "ಪುಟ {{current}} / {{total}}",
+    "label":  "ಪುಟಗಳು",
+    "allZip":  "ಎಲ್ಲಾ {{count}} ಪುಟಗಳು (ZIP)",
+    "thisPage":  "ಈ ಪುಟ ಮಾತ್ರ",
+    "exporting":  "ಪುಟ {{current}} / {{total}} ರೆಂಡರ್ ಆಗುತ್ತಿದೆ…"
+},
     "captions": {
         "action":  "ಸ್ವಯಂ ಶೀರ್ಷಿಕೆಗಳು",
         "working":  "ಆಲಿಸಲಾಗುತ್ತಿದೆ… {{percent}}%",

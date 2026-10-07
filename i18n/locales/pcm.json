@@ -6663,6 +6663,17 @@
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   },
   "editor": {
+    "pages": {
+    "add":  "Add page",
+    "duplicate":  "Copy page",
+    "delete":  "Delete page",
+    "page":  "Page {{number}}",
+    "position":  "Page {{current}} of {{total}}",
+    "label":  "Page Dem",
+    "allZip":  "All {{count}} page dem (ZIP)",
+    "thisPage":  "Na only dis page",
+    "exporting":  "E dey render page {{current}} of {{total}}…"
+},
     "captions": {
         "action":  "Auto captions",
         "working":  "E dey listen… {{percent}}%",

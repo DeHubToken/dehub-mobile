@@ -6756,6 +6756,17 @@
     "savePrompt": "دا پوسټ د بشپړولو او وروسته پوسټ کولو لپاره د یوې پروژې په توګه خوندي کړئ."
   },
   "editor": {
+    "pages": {
+    "add":  "پاڼه اضافه کړئ",
+    "duplicate":  "پاڼه دوه ځله کړئ",
+    "delete":  "پاڼه ړنګه کړئ",
+    "page":  "پاڼه {{number}}",
+    "position":  "پاڼه {{current}} له {{total}} څخه",
+    "label":  "پاڼې",
+    "allZip":  "ټولې {{count}} پاڼې (ZIP)",
+    "thisPage":  "یوازې دا پاڼه",
+    "exporting":  "د {{total}} څخه {{current}} پاڼه جوړېږي…"
+},
     "captions": {
         "action":  "اتومات سرلیکونه",
         "working":  "اورېدل کېږي… {{percent}}%",

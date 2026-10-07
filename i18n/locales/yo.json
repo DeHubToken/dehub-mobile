@@ -6769,6 +6769,17 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "pages": {
+    "add":  "Fi ojú-ìwé kún un",
+    "duplicate":  "Ṣe ẹ̀dà ojú-ìwé",
+    "delete":  "Pa ojú-ìwé rẹ́",
+    "page":  "Ojú-ìwé {{number}}",
+    "position":  "Ojú-ìwé {{current}} nínú {{total}}",
+    "label":  "Àwọn ojú-ìwé",
+    "allZip":  "Gbogbo ojú-ìwé {{count}} (ZIP)",
+    "thisPage":  "Ojú-ìwé yìí nìkan",
+    "exporting":  "Ń ṣe ojú-ìwé {{current}} nínú {{total}}…"
+},
     "captions": {
         "action":  "Àkọlé aládàáṣe",
         "working":  "Ń gbọ́… {{percent}}%",

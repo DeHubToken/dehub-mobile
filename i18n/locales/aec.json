@@ -6828,6 +6828,17 @@
     "noStories": "مافيش قصص لسه"
   },
   "editor": {
+    "pages": {
+    "add":  "ضيف صفحة",
+    "duplicate":  "كرّر الصفحة",
+    "delete":  "امسح الصفحة",
+    "page":  "صفحة {{number}}",
+    "position":  "صفحة {{current}} من {{total}}",
+    "label":  "الصفحات",
+    "allZip":  "كل الصفحات الـ{{count}} (ZIP)",
+    "thisPage":  "الصفحة دي بس",
+    "exporting":  "بيجهّز صفحة {{current}} من {{total}}…"
+},
     "captions": {
         "action":  "ترجمة تلقائية",
         "working":  "بيسمع… {{percent}}%",

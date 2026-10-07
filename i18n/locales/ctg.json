@@ -6943,6 +6943,17 @@
     "noStories": "এহনো কুনো গল্প নাই"
   },
   "editor": {
+    "pages": {
+    "add":  "পেইজ যোগ গরো",
+    "duplicate":  "পেইজ ডুপ্লিকেট গরো",
+    "delete":  "পেইজ মুছি ফেলো",
+    "page":  "পেইজ {{number}}",
+    "position":  "পেইজ {{current}} / {{total}}",
+    "label":  "পেইজগিন",
+    "allZip":  "বেক {{count}}গান পেইজ (ZIP)",
+    "thisPage":  "খালি এই পেইজ",
+    "exporting":  "পেইজ {{current}} / {{total}} রেন্ডার অর…"
+},
     "captions": {
         "action":  "অটো ক্যাপশন",
         "working":  "শুনছে… {{percent}}%",

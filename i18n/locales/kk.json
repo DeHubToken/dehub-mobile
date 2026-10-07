@@ -6831,6 +6831,17 @@
     "relatedPosts": "Байланысты жазбалар"
   },
   "editor": {
+    "pages": {
+    "add":  "Бет қосу",
+    "duplicate":  "Бетті көшірмелеу",
+    "delete":  "Бетті жою",
+    "page":  "{{number}}-бет",
+    "position":  "{{total}} беттің {{current}}-беті",
+    "label":  "Беттер",
+    "allZip":  "Барлық {{count}} бет (ZIP)",
+    "thisPage":  "Тек осы бет",
+    "exporting":  "{{total}} беттің {{current}}-беті өңделуде…"
+},
     "captions": {
         "action":  "Автоматты субтитрлер",
         "working":  "Тыңдап жатыр… {{percent}}%",

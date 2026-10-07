@@ -684,8 +684,9 @@ canvas{display:block;width:100%;height:100%;}
     }
   }
 
-  function timelineEnd(clips) {
-    return clips.reduce(function (m, c) { return Math.max(m, c.start + c.duration); }, 0);
+  function timelineEnd(clips, settings) {
+    var end = clips.reduce(function (m, c) { return Math.max(m, c.start + c.duration); }, 0);
+    return settings && settings.pages && settings.pages.length ? Math.max(end, settings.pages[settings.pages.length - 1] + 5) : end;
   }
   function speedOf(c) { return c.speed && c.speed > 0 ? c.speed : 1; }
   function trackOf(snap, id) {
@@ -1131,7 +1132,7 @@ canvas{display:block;width:100%;height:100%;}
     var fps = snap.settings.fps || 30;
     var W = Math.max(2, Math.round(m.width) & ~1);
     var H = Math.max(2, Math.round(m.height) & ~1);
-    var contentDuration = timelineEnd(snap.clips);
+    var contentDuration = timelineEnd(snap.clips, snap.settings);
     if (contentDuration <= 0) { exporting = false; post({ type: "videoFailed", reqId: m.reqId, error: "empty" }); return; }
     var duration = contentDuration + brandOutroDuration;
     var ending = { contentDuration: contentDuration, username: m.username || "", logo: new Image() };
@@ -1178,7 +1179,7 @@ canvas{display:block;width:100%;height:100%;}
     var snap = state.snapshot;
     var W = snap.settings.width, H = snap.settings.height;
     var t = currentTime();
-    var end = timelineEnd(snap.clips);
+    var end = timelineEnd(snap.clips, snap.settings);
     var now = performance.now();
     if (playing && t >= end) {
       t = end;

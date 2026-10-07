@@ -6769,6 +6769,17 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tāpiri whārangi",
+    "duplicate":  "Tārua whārangi",
+    "delete":  "Muku whārangi",
+    "page":  "Whārangi {{number}}",
+    "position":  "Whārangi {{current}} o {{total}}",
+    "label":  "Ngā whārangi",
+    "allZip":  "Ngā whārangi {{count}} katoa (ZIP)",
+    "thisPage":  "Tēnei whārangi anake",
+    "exporting":  "E whakaputa ana i te whārangi {{current}} o {{total}}…"
+},
     "captions": {
         "action":  "Tapanga aunoa",
         "working":  "E whakarongo ana… {{percent}}%",

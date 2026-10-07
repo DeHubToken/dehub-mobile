@@ -6842,6 +6842,17 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "pages": {
+    "add":  "Sahifa qo\u0027shish",
+    "duplicate":  "Sahifadan nusxa olish",
+    "delete":  "Sahifani o\u0027chirish",
+    "page":  "{{number}}-sahifa",
+    "position":  "{{current}}/{{total}} sahifa",
+    "label":  "Sahifalar",
+    "allZip":  "Barcha {{count}} sahifa (ZIP)",
+    "thisPage":  "Faqat shu sahifa",
+    "exporting":  "{{current}}/{{total}} sahifa tayyorlanmoqda…"
+},
     "captions": {
         "action":  "Avtomatik subtitrlar",
         "working":  "Tinglanmoqda… {{percent}}%",

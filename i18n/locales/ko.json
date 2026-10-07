@@ -6870,6 +6870,17 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
+    "pages": {
+    "add":  "페이지 추가",
+    "duplicate":  "페이지 복제",
+    "delete":  "페이지 삭제",
+    "page":  "페이지 {{number}}",
+    "position":  "{{total}}페이지 중 {{current}}페이지",
+    "label":  "페이지",
+    "allZip":  "전체 {{count}}페이지 (ZIP)",
+    "thisPage":  "이 페이지만",
+    "exporting":  "{{total}}페이지 중 {{current}}페이지 렌더링 중…"
+},
     "captions": {
         "action":  "자동 자막",
         "working":  "듣는 중… {{percent}}%",

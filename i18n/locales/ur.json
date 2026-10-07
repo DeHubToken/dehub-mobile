@@ -6788,6 +6788,17 @@
     "savePrompt": "اس پوسٹ کو ختم کرنے اور بعد میں پوسٹ کرنے کے لیے بطور ڈرافٹ محفوظ کریں ؟"
   },
   "editor": {
+    "pages": {
+    "add":  "صفحہ شامل کریں",
+    "duplicate":  "صفحے کی نقل بنائیں",
+    "delete":  "صفحہ حذف کریں",
+    "page":  "صفحہ {{number}}",
+    "position":  "{{total}} میں سے صفحہ {{current}}",
+    "label":  "صفحات",
+    "allZip":  "تمام {{count}} صفحات (ZIP)",
+    "thisPage":  "صرف یہ صفحہ",
+    "exporting":  "{{total}} میں سے صفحہ {{current}} رینڈر ہو رہا ہے…"
+},
     "captions": {
         "action":  "خودکار کیپشنز",
         "working":  "سن رہے ہیں… {{percent}}%",

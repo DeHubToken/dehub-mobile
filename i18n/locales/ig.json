@@ -6767,6 +6767,17 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tinye peeji",
+    "duplicate":  "Mepụta oyiri peeji",
+    "delete":  "Hichapụ peeji",
+    "page":  "Peeji {{number}}",
+    "position":  "Peeji {{current}} n\u0027ime {{total}}",
+    "label":  "Peeji",
+    "allZip":  "Peeji {{count}} niile (ZIP)",
+    "thisPage":  "Naanị peeji a",
+    "exporting":  "Na-akwado peeji {{current}} n\u0027ime {{total}}…"
+},
     "captions": {
         "action":  "Ndepụta okwu akpaka",
         "working":  "Na-ege ntị… {{percent}}%",

@@ -6802,6 +6802,17 @@
     }
   },
   "editor": {
+    "pages": {
+    "add":  "Adaugă pagină",
+    "duplicate":  "Duplică pagina",
+    "delete":  "Șterge pagina",
+    "page":  "Pagina {{number}}",
+    "position":  "Pagina {{current}} din {{total}}",
+    "label":  "Pagini",
+    "allZip":  "Toate cele {{count}} pagini (ZIP)",
+    "thisPage":  "Doar această pagină",
+    "exporting":  "Se randează pagina {{current}} din {{total}}…"
+},
     "captions": {
         "action":  "Subtitrări automate",
         "working":  "Se ascultă… {{percent}}%",

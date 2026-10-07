@@ -6780,6 +6780,17 @@
     "savePrompt": "לשמור את הפוסט הזה כטיוטה לסיום ולפרסום מאוחר יותר?"
   },
   "editor": {
+    "pages": {
+    "add":  "הוסף עמוד",
+    "duplicate":  "שכפל עמוד",
+    "delete":  "מחק עמוד",
+    "page":  "עמוד {{number}}",
+    "position":  "עמוד {{current}} מתוך {{total}}",
+    "label":  "עמודים",
+    "allZip":  "כל {{count}} העמודים (ZIP)",
+    "thisPage":  "רק העמוד הזה",
+    "exporting":  "מעבד עמוד {{current}} מתוך {{total}}…"
+},
     "captions": {
         "action":  "כתוביות אוטומטיות",
         "working":  "מאזין… {{percent}}%",

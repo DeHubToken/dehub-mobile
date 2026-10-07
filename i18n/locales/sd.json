@@ -6767,6 +6767,17 @@
     "savePrompt": "هن پوسٽ کي مسوده جي طور تي محفوظ ڪريو ختم ڪرڻ ۽ بعد ۾ پوسٽ ڪرڻ لاء ؟"
   },
   "editor": {
+    "pages": {
+    "add":  "صفحو شامل ڪريو",
+    "duplicate":  "صفحي جي ڪاپي ٺاهيو",
+    "delete":  "صفحو ڊاهيو",
+    "page":  "صفحو {{number}}",
+    "position":  "صفحو {{current}} مان {{total}}",
+    "label":  "صفحا",
+    "allZip":  "سڀ {{count}} صفحا (ZIP)",
+    "thisPage":  "صرف هي صفحو",
+    "exporting":  "صفحو {{current}} مان {{total}} تيار ٿي رهيو آهي…"
+},
     "captions": {
         "action":  "خودڪار ڪيپشن",
         "working":  "ٻڌي رهيو آهي… {{percent}}%",

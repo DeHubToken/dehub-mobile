@@ -6782,6 +6782,17 @@
     "savePrompt": "تبغى تحفظ البوست هذا كمسودة عشان تكمله وتنزلّه بعدين؟"
   },
   "editor": {
+    "pages": {
+    "add":  "إضافة صفحة",
+    "duplicate":  "تكرار الصفحة",
+    "delete":  "حذف الصفحة",
+    "page":  "صفحة {{number}}",
+    "position":  "صفحة {{current}} من {{total}}",
+    "label":  "الصفحات",
+    "allZip":  "كل الصفحات ({{count}}) (ZIP)",
+    "thisPage":  "هذي الصفحة بس",
+    "exporting":  "جاري تجهيز الصفحة {{current}} من {{total}}…"
+},
     "captions": {
         "action":  "ترجمة تلقائية",
         "working":  "جاري الاستماع… {{percent}}%",

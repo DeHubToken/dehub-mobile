@@ -6870,6 +6870,17 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "pages": {
+    "add":  "Seite hinzufügen",
+    "duplicate":  "Seite duplizieren",
+    "delete":  "Seite löschen",
+    "page":  "Seite {{number}}",
+    "position":  "Seite {{current}} von {{total}}",
+    "label":  "Seiten",
+    "allZip":  "Alle {{count}} Seiten (ZIP)",
+    "thisPage":  "Nur diese Seite",
+    "exporting":  "Seite {{current}} von {{total}} wird gerendert…"
+},
     "captions": {
         "action":  "Automatische Untertitel",
         "working":  "Hört zu… {{percent}} %",

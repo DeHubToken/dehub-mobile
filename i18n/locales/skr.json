@@ -6779,6 +6779,17 @@
     "savePrompt": "ایں پوسٹ کوں مسودے دے طور تے محفوظ کر کے بعد اچ مکمل کر تے پوسٹ کریسو؟"
   },
   "editor": {
+    "pages": {
+    "add":  "ورقہ شامل کرو",
+    "duplicate":  "ورقے دی نقل بݨاؤ",
+    "delete":  "ورقہ مٹاؤ",
+    "page":  "ورقہ {{number}}",
+    "position":  "ورقہ {{current}} از {{total}}",
+    "label":  "ورقے",
+    "allZip":  "سارے {{count}} ورقے (ZIP)",
+    "thisPage":  "بس اے ورقہ",
+    "exporting":  "ورقہ {{current}} از {{total}} تیار تھیندا پئے…"
+},
     "captions": {
         "action":  "آٹو کیپشن",
         "working":  "سݨدا پئے… {{percent}}%",

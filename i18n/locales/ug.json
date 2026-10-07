@@ -6769,6 +6769,17 @@
     "savePrompt": "بۇ يازمىنى پۈتتۈرۈش ۋە كېيىنچە يوللاش لايىھەسى سۈپىتىدە ساقلاپ قويامدۇ ؟"
   },
   "editor": {
+    "pages": {
+    "add":  "بەت قوشۇش",
+    "duplicate":  "بەتنى كۆپەيتىش",
+    "delete":  "بەتنى ئۆچۈرۈش",
+    "page":  "{{number}}-بەت",
+    "position":  "بەت {{current}} / {{total}}",
+    "label":  "بەتلەر",
+    "allZip":  "بارلىق {{count}} بەت (ZIP)",
+    "thisPage":  "پەقەت بۇ بەت",
+    "exporting":  "بەت {{current}} / {{total}} ھاسىل قىلىنىۋاتىدۇ…"
+},
     "captions": {
         "action":  "ئاپتوماتىك خەت",
         "working":  "ئاڭلاۋاتىدۇ… {{percent}}%",

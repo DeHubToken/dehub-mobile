@@ -6770,6 +6770,17 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "pages": {
+    "add":  "Tambah kaca",
+    "duplicate":  "Duplikat kaca",
+    "delete":  "Busak kaca",
+    "page":  "Kaca {{number}}",
+    "position":  "Kaca {{current}} saka {{total}}",
+    "label":  "Kaca",
+    "allZip":  "Kabeh {{count}} kaca (ZIP)",
+    "thisPage":  "Mung kaca iki",
+    "exporting":  "Nggawe kaca {{current}} saka {{total}}…"
+},
     "captions": {
         "action":  "Teks otomatis",
         "working":  "Lagi ngrungokake… {{percent}}%",

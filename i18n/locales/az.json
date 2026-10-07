@@ -6787,6 +6787,17 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "editor": {
+    "pages": {
+    "add":  "Səhifə əlavə et",
+    "duplicate":  "Səhifəni dublikat et",
+    "delete":  "Səhifəni sil",
+    "page":  "Səhifə {{number}}",
+    "position":  "Səhifə {{current}} / {{total}}",
+    "label":  "Səhifələr",
+    "allZip":  "Bütün {{count}} səhifə (ZIP)",
+    "thisPage":  "Yalnız bu səhifə",
+    "exporting":  "Səhifə {{current}} / {{total}} hazırlanır…"
+},
     "captions": {
         "action":  "Avtomatik altyazılar",
         "working":  "Dinlənilir… {{percent}}%",

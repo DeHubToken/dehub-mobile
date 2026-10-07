@@ -6953,6 +6953,17 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "pages": {
+    "add":  "Pridať stranu",
+    "duplicate":  "Duplikovať stranu",
+    "delete":  "Odstrániť stranu",
+    "page":  "Strana {{number}}",
+    "position":  "Strana {{current}} z {{total}}",
+    "label":  "Strany",
+    "allZip":  "Všetky strany ({{count}}) (ZIP)",
+    "thisPage":  "Iba táto strana",
+    "exporting":  "Vykresľuje sa strana {{current}} z {{total}}…"
+},
     "captions": {
         "action":  "Automatické titulky",
         "working":  "Počúvam… {{percent}} %",

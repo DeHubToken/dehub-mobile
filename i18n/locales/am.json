@@ -6788,6 +6788,17 @@
     "savePrompt": "ይህን ልጥፍ በኋላ ለማጠናቀቅ እና ለመለጠፍ ረቂቅ አድርጎ ያስቀምጡ?"
   },
   "editor": {
+    "pages": {
+    "add":  "ገጽ አክል",
+    "duplicate":  "ገጹን አባዛ",
+    "delete":  "ገጹን ሰርዝ",
+    "page":  "ገጽ {{number}}",
+    "position":  "ገጽ {{current}} ከ{{total}}",
+    "label":  "ገጾች",
+    "allZip":  "ሁሉም {{count}} ገጾች (ZIP)",
+    "thisPage":  "ይህ ገጽ ብቻ",
+    "exporting":  "ገጽ {{current}} ከ{{total}} በማዘጋጀት ላይ…"
+},
     "captions": {
         "action":  "ራስ-ሰር የግርጌ ጽሑፎች",
         "working":  "በማዳመጥ ላይ… {{percent}}%",

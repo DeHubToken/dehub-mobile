@@ -63,6 +63,8 @@ import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, Shapes
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
+import ScenesPanel from "../components/editor/ScenesPanel";
+import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
@@ -265,7 +267,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background" | "stock"
+  | "page" | "background" | "stock" | "scenes"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -407,7 +409,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const showTimeline = !!project && (timelineOpen ?? isVideoProject(project));
   const duration = project ? projectDuration(project) : 0;
   // The moment the page shows; keyed layers are edited as they stand here.
-  const canvasTime = showTimeline ? time : STILL_TIME;
+  const canvasTime = showTimeline || project?.settings.pages?.length ? time : STILL_TIME;
   // Keys need the playhead, so recording only runs while the timeline shows.
   const recording = recordMotion && showTimeline;
 
@@ -472,8 +474,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   // In a video, a new picture, text or shape shows from the playhead for a few
   // seconds instead of the whole video.
-  const atPlayhead = (p: ProjectSnapshot, clipId: string) =>
-    showTimeline && isVideoProject(p) ? retimeToPlayhead(p, clipId, time) : p;
+  const atPlayhead = (p: ProjectSnapshot, clipId: string) => {
+    if (showTimeline && isVideoProject(p)) return retimeToPlayhead(p, clipId, time);
+    if (!p.settings.pages?.length) return p;
+    const page = pageAt(getPages(p.settings, p.clips), time);
+    return updateClip(p, clipId, { start: page.start, duration: page.end - page.start });
+  };
 
   const addVideos = async () => {
     if (!project) return;
@@ -504,7 +510,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           });
           // The first video of a new design sets the page shape.
           if (!next.clips.length && meta.width && meta.height) next = setAspect(next, nearestAspect(meta.width / meta.height));
-          const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 });
+          const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 }, project.settings.pages?.length ? time : 0);
           next = r.project;
           lastId = r.clipId;
         } catch (e) {
@@ -695,6 +701,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
       if (report.applied > 0) h.commit(next);
       if (report.selectedId) setSelectedId(report.selectedId);
+      if (report.cursorTime !== undefined) { setTime(report.cursorTime); setPlaying(false); }
       let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
       if (!ops.length) content = t("editor.agent.nothingToDo");
       if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
@@ -759,6 +766,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "layers", icon: "Layers", label: t("editor.rail.layers") },
         { id: "brand", icon: "Stamp", label: t("editor.brand.heading") },
         { id: "page", icon: "RectangleVertical", label: t("editor.app.pageSize") },
+        { id: "scenes", icon: "Layers", label: t("editor.pages.label") },
         { id: "background", icon: "PaintBucket", label: t("editor.app.background") },
       ];
     }
@@ -853,6 +861,22 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       h.commit(media.kind === "image" ? atPlayhead(next.project, next.clipId) : next.project);
       select(next.clipId);
     }} />;
+    if (tool === "scenes") {
+      const pages = getPages(project.settings, project.clips);
+      return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index}
+        onPick={start => { setPlaying(false); setTime(start); setSelectedId(null); }}
+        onAdd={duplicate => {
+          const page = appendPage(project.settings, project.clips, canvasTime, duplicate, () => newId(10));
+          h.commit({ ...project, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }}
+        onDelete={index => {
+          const page = removePage(project.settings, project.clips, index, () => newId(10));
+          if (!page) { toastError(t("common.somethingWentWrong")); return; }
+          h.commit({ ...project, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }} />;
+    }
     if (tool === "page") return <AspectPanel value={project.settings.aspectPreset} onPick={(a: Exclude<AspectPreset, "custom">) => h.commit(setAspect(project, a))} />;
     if (tool === "background") return <Swatches label={t("editor.app.background")} value={project.settings.background} onPick={(c) => h.commit(setBackground(project, c))} />;
     if (tool === "shapes") {

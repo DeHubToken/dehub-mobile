@@ -6787,6 +6787,17 @@
     "savePrompt": "Պահե ՞ լ այս գրառումը որպես սևագիր ՝ ավելի ուշ ավարտելու և հրապարակելու համար ։"
   },
   "editor": {
+    "pages": {
+    "add":  "Ավելացնել էջ",
+    "duplicate":  "Կրկնօրինակել էջը",
+    "delete":  "Ջնջել էջը",
+    "page":  "Էջ {{number}}",
+    "position":  "Էջ {{current}}՝ {{total}}-ից",
+    "label":  "Էջեր",
+    "allZip":  "Բոլոր {{count}} էջերը (ZIP)",
+    "thisPage":  "Միայն այս էջը",
+    "exporting":  "Էջ {{current}}՝ {{total}}-ից, մշակվում է…"
+},
     "captions": {
         "action":  "Ավտոմատ ենթագրեր",
         "working":  "Լսում է… {{percent}}%",

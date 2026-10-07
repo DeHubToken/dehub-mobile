@@ -6789,6 +6789,17 @@
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   },
   "editor": {
+    "pages": {
+    "add":  "Ongeza ukurasa",
+    "duplicate":  "Nakili ukurasa",
+    "delete":  "Futa ukurasa",
+    "page":  "Ukurasa {{number}}",
+    "position":  "Ukurasa {{current}} kati ya {{total}}",
+    "label":  "Kurasa",
+    "allZip":  "Kurasa zote {{count}} (ZIP)",
+    "thisPage":  "Ukurasa huu pekee",
+    "exporting":  "Inatayarisha ukurasa {{current}} kati ya {{total}}…"
+},
     "captions": {
         "action":  "Manukuu ya kiotomatiki",
         "working":  "Inasikiliza… {{percent}}%",

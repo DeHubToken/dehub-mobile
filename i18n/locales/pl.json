@@ -6887,6 +6887,17 @@
     }
   },
   "editor": {
+    "pages": {
+    "add":  "Dodaj stronę",
+    "duplicate":  "Duplikuj stronę",
+    "delete":  "Usuń stronę",
+    "page":  "Strona {{number}}",
+    "position":  "Strona {{current}} z {{total}}",
+    "label":  "Strony",
+    "allZip":  "Wszystkie strony: {{count}} (ZIP)",
+    "thisPage":  "Tylko ta strona",
+    "exporting":  "Renderowanie strony {{current}} z {{total}}…"
+},
     "captions": {
         "action":  "Napisy automatyczne",
         "working":  "Słucham… {{percent}}%",

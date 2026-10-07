@@ -6832,6 +6832,17 @@
     "relatedPosts": "დაკავშირებული პოსტები"
   },
   "editor": {
+    "pages": {
+    "add":  "გვერდის დამატება",
+    "duplicate":  "გვერდის დუბლირება",
+    "delete":  "გვერდის წაშლა",
+    "page":  "გვერდი {{number}}",
+    "position":  "გვერდი {{current}} / {{total}}",
+    "label":  "გვერდები",
+    "allZip":  "ყველა გვერდი ({{count}}) (ZIP)",
+    "thisPage":  "მხოლოდ ეს გვერდი",
+    "exporting":  "რენდერდება გვერდი {{current}} / {{total}}…"
+},
     "captions": {
         "action":  "ავტომატური სუბტიტრები",
         "working":  "ვუსმენთ… {{percent}}%",

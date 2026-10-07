@@ -6782,6 +6782,17 @@
     "savePrompt": "هل تريد حفظ هذا المنشور كمسودة لإنهاء نشره لاحقًا؟"
   },
   "editor": {
+    "pages": {
+    "add":  "ضيف صفحة",
+    "duplicate":  "كرر الصفحة",
+    "delete":  "امسح الصفحة",
+    "page":  "صفحة {{number}}",
+    "position":  "صفحة {{current}} من {{total}}",
+    "label":  "الصفحات",
+    "allZip":  "كل الصفحات ({{count}}) (ZIP)",
+    "thisPage":  "الصفحة دي بس",
+    "exporting":  "بيجهز صفحة {{current}} من {{total}}…"
+},
     "captions": {
         "action":  "ترجمة تلقائية",
         "working":  "بنسمع… {{percent}}%",

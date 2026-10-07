@@ -6802,6 +6802,17 @@
     "relatedPosts": "ဆက်စပ်ပို့စ်များ"
   },
   "editor": {
+    "pages": {
+    "add":  "စာမျက်နှာ ထည့်ရန်",
+    "duplicate":  "စာမျက်နှာ ပွားရန်",
+    "delete":  "စာမျက်နှာ ဖျက်ရန်",
+    "page":  "စာမျက်နှာ {{number}}",
+    "position":  "စာမျက်နှာ {{current}} / {{total}}",
+    "label":  "စာမျက်နှာများ",
+    "allZip":  "စာမျက်နှာ {{count}} ခုလုံး (ZIP)",
+    "thisPage":  "ဤစာမျက်နှာသာ",
+    "exporting":  "စာမျက်နှာ {{current}} / {{total}} ကို ပြုလုပ်နေသည်…"
+},
     "captions": {
         "action":  "အလိုအလျောက် စာတန်းထိုး",
         "working":  "နားထောင်နေသည်… {{percent}}%",

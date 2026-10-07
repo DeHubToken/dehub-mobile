@@ -6778,6 +6778,17 @@
     "savePrompt": "આ પોસ્ટને સમાપ્ત કરવા અને પછી પોસ્ટ કરવા માટે ડ્રાફ્ટ તરીકે સાચવો?"
   },
   "editor": {
+    "pages": {
+    "add":  "પૃષ્ઠ ઉમેરો",
+    "duplicate":  "પૃષ્ઠની નકલ કરો",
+    "delete":  "પૃષ્ઠ કાઢી નાખો",
+    "page":  "પૃષ્ઠ {{number}}",
+    "position":  "પૃષ્ઠ {{current}} / {{total}}",
+    "label":  "પૃષ્ઠો",
+    "allZip":  "બધા {{count}} પૃષ્ઠો (ZIP)",
+    "thisPage":  "ફક્ત આ પૃષ્ઠ",
+    "exporting":  "પૃષ્ઠ {{current}} / {{total}} રેન્ડર થઈ રહ્યું છે…"
+},
     "captions": {
         "action":  "ઑટો કૅપ્શન",
         "working":  "સાંભળી રહ્યું છે… {{percent}}%",

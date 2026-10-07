@@ -58,6 +58,7 @@ export interface AgentMedia {
   kind: "image" | "video" | "audio";
   duration?: number;
 }
+import { appendPage, getPages, pageAt, removePage, timelineDuration } from "./pages";
 
 export interface AgentMessage {
   role: "user" | "assistant";
@@ -106,8 +107,10 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
     });
   const hasBrand = !!brand && (brand.colors.length > 0 || !!brand.headingFont || !!brand.bodyFont || !!brand.logoMediaId);
   return {
-    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "select"],
+    capabilities: [...TIMELINE_OPS, "batch", "set_canvas", "add_text", "add_shape", "update", "place", "effects", "crop", "style", "animate", "keyframes", "order", "duplicate", "delete", "add_stock", "add_media", "apply_brand", "add_logo", "use_template", "remove_background", "captions", "add_page", "goto_page", "delete_page", "select"],
     stockKinds: ["photo", "video", "audio"],
+    pages: getPages(p.settings, p.clips).map(page => ({ index: page.index, start: page.start, duration: page.end - page.start })),
+    currentPage: pageAt(getPages(p.settings, p.clips), playhead).index,
     tracks: p.tracks.map(({ id, kind, muted, hidden }) => ({ id, kind, muted, hidden })),
     brand: hasBrand
       ? {
@@ -117,7 +120,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
           hasLogo: !!brand!.logoMediaId,
         }
       : undefined,
-    page: { width: p.settings.width, height: p.settings.height, aspect: p.settings.aspectPreset, background: p.settings.background, duration: p.clips.reduce((end, c) => Math.max(end, c.start + c.duration), 0) },
+    page: { width: p.settings.width, height: p.settings.height, aspect: p.settings.aspectPreset, background: p.settings.background, duration: timelineDuration(p.settings, p.clips) },
     playhead: round(playhead, 2),
     selected: selectedId ? [selectedId] : [],
     layers,
@@ -270,10 +273,12 @@ export interface ApplyReport {
   /** Asked for something the phone does not do yet (captions, AI generation, pages). */
   unsupported: string[];
   selectedId: string | null;
+  cursorTime?: number;
 }
 
 export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: ApplyContext = {}): Promise<{ project: ProjectSnapshot; report: ApplyReport }> {
   let p = start;
+  let cursor = ctx.time ?? 0;
   const report: ApplyReport = { applied: 0, failed: 0, missingStock: [], unsupported: [], selectedId: null };
   const created: string[] = [];
   const resolve = (id: unknown): string | undefined => {
@@ -282,12 +287,18 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
     return m ? created[Number(m[1])] : id;
   };
   const find = (id: unknown): Clip | null => getClip(p, resolve(id) ?? null);
+  const onPage = (id: string) => {
+    if (!p.settings.pages?.length) return;
+    const page = pageAt(getPages(p.settings, p.clips), cursor);
+    p = updateClip(p, id, { start: page.start, duration: page.end - page.start });
+  };
 
   const insertMedia = (media: AgentMedia, op: AgentOp) => {
     const before = p;
-    const r = media.kind === "image" ? addImage(p, media.id) : addClip(p, { ...media, kind: media.kind, duration: media.duration ?? 5 }, ctx.time ?? 0);
+    const r = media.kind === "image" ? addImage(p, media.id) : addClip(p, { ...media, kind: media.kind, duration: media.duration ?? 5 }, cursor);
     p = r.project;
     created.push(r.clipId);
+    if (media.kind === "image") onPage(r.clipId);
     if (op.start !== undefined || op.duration !== undefined) {
       const changed = applyTimelineOp(p, { op: "timing", id: r.clipId, start: op.start, duration: op.duration }, () => newId(10));
       if (!changed) { p = before; created.pop(); return null; }
@@ -307,7 +318,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
       const v = bool(op[k]);
       if (v !== undefined) patch[k] = v;
     }
-    const out: Record<string, unknown> = Object.keys(patch).length ? { ...placementPatchAt(clip, patch, ctx.time ?? 0) } : {};
+    const out: Record<string, unknown> = Object.keys(patch).length ? { ...placementPatchAt(clip, patch, cursor) } : {};
     if ((op.fit === "cover" || op.fit === "contain") && (clip.kind === "image" || clip.kind === "video")) out.fit = op.fit;
     if (Object.keys(out).length) p = updateClip(p, clip.id, out as ClipPatch);
   };
@@ -344,6 +355,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         const r = addText(p, typeof op.text === "string" ? op.text : "");
         p = r.project;
         created.push(r.clipId);
+        onPage(r.clipId);
         const patch: Partial<TextClip> = textPatch(op);
         const x = num(op.x);
         const y = num(op.y);
@@ -360,6 +372,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         const r = addShape(p, kind, { ...shapePatch(op), ...layerPatch(op) });
         p = r.project;
         created.push(r.clipId);
+        onPage(r.clipId);
         const clip = getClip(p, r.clipId);
         if (clip) place(clip, op);
         return true;
@@ -508,6 +521,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         if (!id) return false;
         const r = addImage(p, id);
         p = updateClip(r.project, r.clipId, { transform: { x: 0.88, y: 0.1, scale: 0.16, rotation: 0 } });
+        onPage(r.clipId);
         return true;
       }
       case "use_template": {
@@ -539,7 +553,29 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         created.push(...captions.clips.map(c => c.id));
         return true;
       }
-      case "add_page": case "goto_page": case "generate":
+      case "add_page": {
+        const page = appendPage(p.settings, p.clips, cursor, op.duplicate === true, () => newId(10));
+        created.push(...page.clips.slice(p.clips.length).map(c => c.id));
+        p = { ...p, clips: page.clips, settings: page.settings };
+        cursor = page.start; report.cursorTime = cursor;
+        return true;
+      }
+      case "goto_page": {
+        const index = num(op.index);
+        const page = index !== undefined ? getPages(p.settings, p.clips)[index] : undefined;
+        if (!page) return false;
+        cursor = page.start; report.cursorTime = cursor;
+        return true;
+      }
+      case "delete_page": {
+        const index = num(op.index);
+        const page = index !== undefined ? removePage(p.settings, p.clips, index, () => newId(10)) : null;
+        if (!page) return false;
+        p = { ...p, clips: page.clips, settings: page.settings };
+        cursor = page.start; report.cursorTime = cursor;
+        return true;
+      }
+      case "generate":
         report.unsupported.push(String(op.op));
         return false;
       default:

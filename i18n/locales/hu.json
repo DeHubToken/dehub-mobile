@@ -6791,6 +6791,17 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "pages": {
+    "add":  "Oldal hozzáadása",
+    "duplicate":  "Oldal duplikálása",
+    "delete":  "Oldal törlése",
+    "page":  "{{number}}. oldal",
+    "position":  "{{current}}. oldal / {{total}}",
+    "label":  "Oldalak",
+    "allZip":  "Mind a(z) {{count}} oldal (ZIP)",
+    "thisPage":  "Csak ez az oldal",
+    "exporting":  "{{current}}. oldal renderelése / {{total}}…"
+},
     "captions": {
         "action":  "Automatikus feliratok",
         "working":  "Figyelés… {{percent}}%",

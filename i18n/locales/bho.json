@@ -6778,6 +6778,17 @@
     "savePrompt": "पोस्ट के अंत में, कुछ भी लिखें और कुछ भी लिखें?"
   },
   "editor": {
+    "pages": {
+    "add":  "पन्ना जोड़ीं",
+    "duplicate":  "पन्ना के कॉपी बनाईं",
+    "delete":  "पन्ना हटाईं",
+    "page":  "पन्ना {{number}}",
+    "position":  "पन्ना {{current}} / {{total}}",
+    "label":  "पन्ना",
+    "allZip":  "सगरी {{count}} पन्ना (ZIP)",
+    "thisPage":  "खाली ई पन्ना",
+    "exporting":  "पन्ना {{current}} / {{total}} बन रहल बा…"
+},
     "captions": {
         "action":  "ऑटो कैप्शन",
         "working":  "सुनत बानी… {{percent}}%",

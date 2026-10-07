@@ -6736,6 +6736,17 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "pages": {
+    "add":  "Ɲɛ fara a kan",
+    "duplicate":  "Ɲɛ in dabila fila",
+    "delete":  "Ɲɛ in bɔ",
+    "page":  "Ɲɛ {{number}}",
+    "position":  "Ɲɛ {{current}} {{total}} la",
+    "label":  "Ɲɛw",
+    "allZip":  "Ɲɛ {{count}} bɛɛ (ZIP)",
+    "thisPage":  "Ɲɛ in dɔrɔn",
+    "exporting":  "Ɲɛ {{current}} {{total}} la bɛ labɛn…"
+},
     "captions": {
         "action":  "Sɛbɛnni yɛrɛma",
         "working":  "Lamɛnni bɛ taa… {{percent}}%",

@@ -6855,6 +6855,17 @@
     "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
   },
   "editor": {
+    "pages": {
+    "add":  "ページを追加",
+    "duplicate":  "ページを複製",
+    "delete":  "ページを削除",
+    "page":  "ページ {{number}}",
+    "position":  "ページ {{current}} / {{total}}",
+    "label":  "ページ",
+    "allZip":  "全{{count}}ページ（ZIP）",
+    "thisPage":  "このページのみ",
+    "exporting":  "ページ {{current}} / {{total}} をレンダリング中…"
+},
     "captions": {
         "action":  "自動字幕",
         "working":  "聞き取り中… {{percent}}%",

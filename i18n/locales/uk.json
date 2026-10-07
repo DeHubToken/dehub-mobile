@@ -7301,6 +7301,17 @@
     }
   },
   "editor": {
+    "pages": {
+    "add":  "Додати сторінку",
+    "duplicate":  "Дублювати сторінку",
+    "delete":  "Видалити сторінку",
+    "page":  "Сторінка {{number}}",
+    "position":  "Сторінка {{current}} з {{total}}",
+    "label":  "Сторінки",
+    "allZip":  "Усі сторінки: {{count}} (ZIP)",
+    "thisPage":  "Лише ця сторінка",
+    "exporting":  "Рендеринг сторінки {{current}} з {{total}}…"
+},
     "captions": {
         "action":  "Автосубтитри",
         "working":  "Слухаю… {{percent}}%",
