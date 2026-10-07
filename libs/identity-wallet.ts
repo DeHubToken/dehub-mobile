@@ -24,6 +24,7 @@ import {
 } from "./wallet-core/store";
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
 import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
+import { replaceStoredWallet } from './wallet-core/replacement';
 import { assertWalletAddress } from "./wallet-core/assert-wallet-address";
 import { findLocalWalletKeyAddress, recoverLocalWalletKey } from './wallet-core/local-key-recovery';
 import {
@@ -391,12 +392,16 @@ export async function createAndSaveEvmWalletForIdentity(
     const marker: ResetCleanupMarker = {
       abandoned: abandoning.address.toLowerCase(),
       replacement: derived.ethAddress.toLowerCase(),
-      clearOtherSeedCopies: abandoning.clearOtherSeedCopies,
+      clearOtherSeedCopies: false,
     };
     await writeMapEntry(RESET_CLEANUP_KEY, supabaseUserId, JSON.stringify(marker));
   }
 
-  await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
+  if (abandoning) {
+    await replaceStoredWallet(supabaseUserId, abandoning.address, derived.ethAddress, encrypted);
+  } else {
+    await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
+  }
 
   if (abandoning) {
     // Only now. Until the upsert landed, the old wallet was still this
@@ -404,7 +409,7 @@ export async function createAndSaveEvmWalletForIdentity(
     await runResetCleanup(supabaseUserId, {
       abandoned: abandoning.address.toLowerCase(),
       replacement: derived.ethAddress.toLowerCase(),
-      clearOtherSeedCopies: abandoning.clearOtherSeedCopies,
+      clearOtherSeedCopies: false,
       attempts: 0,
     });
   }

@@ -105,16 +105,8 @@ export interface WalletSetupScreenProps {
    * by `password`.
    */
   onSwitchAccount?: (secret: string, password: string) => Promise<void>;
-  /**
-   * The two states where nothing anywhere can open the wallet on file, and
-   * nowhere else:
-   *  - biometric-unlock with the device wrap key absent (HKDF payload, and the
-   *    key that opens it is on a device this isn't);
-   *  - web-passkey-sync, where the row has an address and no payload at all.
-   * Abandon that wallet and switch this screen to `create`. This screen owns
-   * the confirmation gate; the caller owns the pre-flight re-read of the cloud
-   * row and the mode switch.
-   */
+  /** Confirm replacement of an existing identity wallet, then enter create.
+   * The caller re-reads the cloud record before proceeding. */
   onResetWallet?: () => Promise<void>;
   /**
    * restore mode: the wallet lives in an external wallet app (Trust, MetaMask)
@@ -173,23 +165,8 @@ interface ResetWalletPanelProps {
 /**
  * The last-resort escape from a wallet nothing can open.
  *
- * Every claim below was checked against what the code actually does, because
- * the previous version of this screen was wrong about exactly this and cost a
- * user their account:
- *
- *  - The DeHub account really is lost. The backend keys accounts on the wallet
- *    ADDRESS, so a new address is a signup: `isNewAccount: true`, a generated
- *    username, every counter at zero.
- *  - The old account is orphaned rather than deleted. Its document survives
- *    with its username, which is why that username can never be reclaimed, and
- *    the first sign-in with the new wallet actively unlinks the Supabase
- *    identity from it.
- *  - The funds are NOT destroyed. They sit at an address on-chain. Anyone who
- *    later finds that wallet's phrase or key can still reach them, here or in
- *    any other wallet app. Saying "your balance is lost" would be false.
- *  - The originating handset keeps its own local copy of the key while DeHub
- *    is still installed on it — so "export it there first" is real advice, not
- *    a hedge.
+ * The profile moves to the new wallet. On-chain balances stay at the old
+ * address; archived ciphertext still requires its original credentials.
  */
 const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
   ({
@@ -295,33 +272,8 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           head={t("walletSetup.loseFundsHead")}
           body={t("walletSetup.loseFundsBody", { address: short })}
         />
-        {/* Gated on "might exist", not on "we know it exists". The reset
-            clears both tables either way, so when the probe couldn't read
-            them the honest line is that we don't know and are clearing them
-            regardless — saying nothing would let a user with a recovery code
-            proceed believing the list was complete. */}
-        {(otherCopies.recovery || otherCopies.failed) && (
-          <ResetPoint
-            tone="lose"
-            head={t("walletSetup.loseRecoveryHead")}
-            body={
-              otherCopies.recovery
-                ? t("walletSetup.loseRecoveryBody")
-                : t("walletSetup.loseRecoveryUnknownBody")
-            }
-          />
-        )}
-        {(otherCopies.passkeys > 0 || otherCopies.failed) && (
-          <ResetPoint
-            tone="lose"
-            head={t("walletSetup.losePasskeysHead")}
-            body={
-              otherCopies.passkeys > 0
-                ? t("walletSetup.losePasskeysBody")
-                : t("walletSetup.losePasskeysUnknownBody")
-            }
-          />
-        )}
+        {/* The replacement RPC archives recovery and passkey ciphertext.
+            Those records are no longer active wraps for the new wallet. */}
 
         <Text style={[styles.resetHeading, { marginTop: 16 }]}>{t("walletSetup.whatYouKeep")}</Text>
         {/* The account is a record, and the wallet address is one field on it.
@@ -332,11 +284,6 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           tone="keep"
           head={t("walletSetup.keepAccountHead")}
           body={t("walletSetup.keepAccountBody")}
-        />
-        <ResetPoint
-          tone="keep"
-          head={t("walletSetup.keepMessagesHead")}
-          body={t("walletSetup.keepMessagesBody")}
         />
         <ResetPoint
           tone="keep"
@@ -504,7 +451,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     useEffect(() => {
       if (
         resetStage !== "review" ||
-        (request?.mode !== "biometric-unlock" && request?.mode !== "web-passkey-sync")
+        (request?.mode !== "unlock" && request?.mode !== "biometric-unlock" && request?.mode !== "web-passkey-sync")
       ) {
         return;
       }
@@ -1002,7 +949,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 {t("walletSetup.protectWallet")}
               </Text>
 
-              {biometricAvailable && (
+              {biometricAvailable && !(request?.mode === 'create' && request.replacing) && (
                 <View style={styles.segment} accessibilityRole="tablist">
                   {(["biometric", "password"] as const).map((choice) => {
                     const active = protectionChoice === choice;
@@ -1499,7 +1446,25 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             </View>
           )}
 
-          {mode === "unlock" && (
+          {mode === "unlock" && resetStage === "review" && (
+            <ResetWalletPanel
+              address={request?.mode === "unlock" ? request.address : ""}
+              otherCopies={otherCopies}
+              overrode={overrodeOtherCopies}
+              onOverride={() => setOverrodeOtherCopies(true)}
+              acknowledged={resetAcknowledged}
+              onToggleAcknowledged={() => setResetAcknowledged((v) => !v)}
+              confirmText={resetConfirmText}
+              onChangeConfirmText={setResetConfirmText}
+              canReset={canReset}
+              busy={busy}
+              error={error}
+              onConfirm={handleResetPress}
+              onBack={exitResetReview}
+            />
+          )}
+
+          {mode === "unlock" && resetStage === "hidden" && (
             <View>
               <Text style={[authText.body, { marginBottom: 20 }]}>
                 {unlockPasskeyOnly
@@ -1535,6 +1500,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
                   {t("walletSetup.unlockingWallet")}
                 </Text>
+              )}
+              {!!onResetWallet && (
+                <AuthTextButton
+                  label={t("walletSetup.startOverTitle")}
+                  onPress={enterResetReview}
+                  disabled={busy}
+                  style={{ marginTop: 16 }}
+                />
               )}
             </View>
           )}
