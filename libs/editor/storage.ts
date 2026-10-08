@@ -1,3 +1,4 @@
+import { exportBaseName } from "./exportName";
 /**
  * On-device storage for editor projects and the pictures they use.
  *
@@ -324,7 +325,7 @@ export async function readMediaChunk(meta: MediaMeta, position: number, length: 
  * page hands it over, so the whole video never sits in memory here.
  */
 export function openVideoExport(title: string, ext: string) {
-  const safe = title.replace(/[\\/:*?"<>|\s.]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "video";
+  const safe = exportBaseName(title);
   const file = new FsFile(Paths.cache, `${safe}-${Date.now()}.${ext}`);
   file.create({ overwrite: true });
   const handle = file.open();
@@ -373,7 +374,7 @@ export function base64ToBytes(b64: string): Uint8Array {
 /** Write an exported data URL to a cache file and return its uri. */
 export async function writeExport(dataUrl: string, format: "png" | "jpeg", title: string): Promise<string> {
   const base64 = dataUrl.slice(dataUrl.indexOf(",") + 1);
-  const safe = title.replace(/[\\/:*?"<>|\s.]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "design";
+  const safe = exportBaseName(title, "design");
   const path = `${FileSystem.cacheDirectory ?? FileSystem.documentDirectory}${safe}-${Date.now()}.${format === "png" ? "png" : "jpg"}`;
   await FileSystem.writeAsStringAsync(path, base64, { encoding: FileSystem.EncodingType.Base64 });
   return path;
