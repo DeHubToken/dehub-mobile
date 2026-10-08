@@ -6969,6 +6969,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Basurahan",
       "title": "Mga proyekto sa cloud",
       "restore": "Ibalik"
     },

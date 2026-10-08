@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Modal, Pressable, ScrollView, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useUser } from "../../context/AuthContext";
 import Icon from "../ui/Icon";
@@ -12,8 +12,11 @@ import { appLocale } from "../../libs/date.util";
 export function CloudProjects({ visible, onClose, current, onOpen, preserve }: { visible: boolean; onClose(): void; current(): ProjectSnapshot | null; onOpen(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void> }) {
   const { t } = useTranslation(), user = useUser();
   const address = user?.walletAddress || user?.address;
+  const [query, setQuery] = useState("");
   const cloud = useCloudProjects(address, nativeCloudProjectSession, { current, open: onOpen, preserve });
   useEffect(() => { if (visible && address) void cloud.refresh(); }, [visible, address]);
+  useEffect(() => { setQuery(""); }, [address]);
+  const matching = cloud.projects.filter(project => (project.title || t("creator.untitled")).toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   const date = (value: string) => new Date(value).toLocaleString(appLocale());
   return <Modal visible={visible} transparent animationType="slide" onRequestClose={() => { if (!cloud.busy) onClose(); }}>
     <View className="flex-1 justify-end bg-black/60">
@@ -35,8 +38,13 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve }: {
         {cloud.busy && <DeHubLoader size={32} />}
         {!!cloud.error && <Text accessibilityRole="alert" className="text-red-300">{cloud.error}</Text>}
         {cloud.saved && <Text className="text-white">{t("settings.streamKey.titleSaved")}</Text>}
+        <View className="flex-row" style={{ gap: 8 }}>
+          <Pressable disabled={cloud.busy || !cloud.available} onPress={() => { void cloud.switchView(false); }} accessibilityRole="button" accessibilityState={{ selected: !cloud.viewTrash }} className="rounded-xl px-4 py-2" style={{ backgroundColor: cloud.viewTrash ? "transparent" : "rgba(255,255,255,0.1)", opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}><Text className="text-white">{t("editor.app.yourDesigns")}</Text></Pressable>
+          <Pressable disabled={cloud.busy || !cloud.available} onPress={() => { void cloud.switchView(true); }} accessibilityRole="button" accessibilityState={{ selected: cloud.viewTrash }} className="flex-row items-center rounded-xl px-4 py-2" style={{ gap: 6, backgroundColor: cloud.viewTrash ? "rgba(255,255,255,0.1)" : "transparent", opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}><Icon name="Trash2" size={16} color="#fff" /><Text className="text-white">{t("editor.cloud.trash")}</Text></Pressable>
+        </View>
+        {!cloud.selected && <TextInput value={query} onChangeText={setQuery} placeholder={t("common.search")} accessibilityLabel={t("common.search")} editable={cloud.available} autoCorrect={false} autoCapitalize="none" placeholderTextColor="#888" className="rounded-xl border border-white/15 px-3 py-3 text-white" />}
         <View className="flex-row items-center justify-between">
-          <Text className="text-white font-semibold">{cloud.selected ? t("accounts.history") : t("editor.app.yourDesigns")}</Text>
+          <Text className="text-white font-semibold">{cloud.selected ? t("accounts.history") : cloud.viewTrash ? t("editor.cloud.trash") : t("editor.app.yourDesigns")}</Text>
           <Pressable disabled={cloud.busy || !cloud.available} onPress={() => { if (cloud.selected) cloud.clearHistory(); else void cloud.refresh(); }} accessibilityRole="button" accessibilityLabel={cloud.selected ? t("common.goBack") : t("dex.refresh")} className="p-2">
             <Icon name={cloud.selected ? "ChevronLeft" : "RefreshCw"} size={20} color="#fff" />
           </Pressable>
@@ -49,12 +57,14 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve }: {
               <Pressable disabled={cloud.busy} onPress={() => { void cloud.open(version.projectId, version.revision); }} accessibilityRole="button" className="flex-row items-center rounded-lg bg-white/10 p-3" style={{ gap: 6 }}><Icon name="Copy" size={16} color="#fff" /><Text className="text-white">{t("common.copy")}</Text></Pressable>
               <Pressable disabled={cloud.busy || version.revision === cloud.selected?.revision} onPress={() => { void cloud.restore(version.revision); }} accessibilityRole="button" className="flex-row items-center rounded-lg bg-white/10 p-3" style={{ gap: 6, opacity: version.revision === cloud.selected?.revision ? 0.4 : 1 }}><Icon name="RotateCcw" size={16} color="#fff" /><Text className="text-white">{t("editor.cloud.restore")}</Text></Pressable>
             </View>
-          </View>) : cloud.projects.map(project => <View key={project.projectId} className="flex-row items-center rounded-xl border border-white/10 p-3" style={{ gap: 8 }}>
-            <Pressable disabled={cloud.busy} onPress={() => { void cloud.open(project.projectId); }} accessibilityRole="button" className="flex-1">
+          </View>) : matching.map(project => <View key={project.projectId} className="flex-row items-center rounded-xl border border-white/10 p-3" style={{ gap: 8 }}>
+            <Pressable disabled={cloud.busy || cloud.viewTrash} onPress={() => { void cloud.open(project.projectId); }} accessibilityRole="button" className="flex-1">
               <Text className="text-white font-medium" numberOfLines={1}>{project.title || t("creator.untitled")}</Text><Text className="text-theme-neutrals-400 text-xs">{project.revision}{" · "}{date(project.savedAt)}</Text>
             </Pressable>
-            <Pressable disabled={cloud.busy} onPress={() => { void cloud.showHistory(project); }} accessibilityRole="button" accessibilityLabel={t("accounts.history")} className="p-2"><Icon name="History" size={20} color="#fff" /></Pressable>
+            {!cloud.viewTrash && <Pressable disabled={cloud.busy} onPress={() => { void cloud.showHistory(project); }} accessibilityRole="button" accessibilityLabel={t("accounts.history")} className="p-2"><Icon name="History" size={20} color="#fff" /></Pressable>}
+            <Pressable disabled={cloud.busy} onPress={() => { void cloud.setTrash(project, !cloud.viewTrash); }} accessibilityRole="button" accessibilityLabel={`${t(cloud.viewTrash ? "editor.cloud.restore" : "editor.cloud.trash")}: ${project.title}`} className="flex-row items-center p-2" style={{ gap: 6 }}><Icon name={cloud.viewTrash ? "RotateCcw" : "Trash2"} size={20} color="#fff" />{cloud.viewTrash && <Text className="text-white">{t("editor.cloud.restore")}</Text>}</Pressable>
           </View>)}
+          {!cloud.selected && !matching.length && cloud.available && !cloud.busy && !cloud.error && <Text className="text-theme-neutrals-400">{t("common.noResults")}</Text>}
         </ScrollView>
       </View>
     </View>

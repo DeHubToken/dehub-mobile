@@ -6806,6 +6806,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Κάδος",
       "title": "Έργα στο cloud",
       "restore": "Επαναφορά"
     },

@@ -6780,6 +6780,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "垃圾桶",
       "title": "雲端項目",
       "restore": "還原"
     },

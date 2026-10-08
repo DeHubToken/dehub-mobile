@@ -6889,6 +6889,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Kosz",
       "title": "Projekty w chmurze",
       "restore": "Przywróć"
     },

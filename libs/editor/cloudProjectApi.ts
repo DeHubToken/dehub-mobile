@@ -18,7 +18,8 @@ export function cloudProjectApi(address: string) {
     return data as T;
   }
   return {
-    list: () => rpc<CloudProjectSummary[]>("editor_cloud_list"),
+    list: (trashed = false) => rpc<CloudProjectSummary[]>(trashed ? "editor_cloud_list_trash" : "editor_cloud_list"),
+    setTrash: (project: CloudProjectSummary, trashed: boolean) => rpc<CloudProjectSummary>("editor_cloud_set_trash", { p_id: project.projectId, p_expected_revision: project.revision, p_expected_state: project.stateVersion ?? 0, p_trashed: trashed }),
     history: (id: string) => rpc<CloudProjectSummary[]>("editor_cloud_history", { p_id: id }),
     async load(id: string, revision?: number): Promise<CloudProjectVersion> {
       const result = await rpc<CloudProjectVersion>("editor_cloud_load", { p_id: id, p_revision: revision ?? null });

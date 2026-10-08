@@ -6877,6 +6877,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Cestino",
       "title": "Progetti nel cloud",
       "restore": "Ripristina"
     },

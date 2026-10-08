@@ -18,7 +18,7 @@ export interface CloudProjectMedia {
   provenance?: { source: string; sourceUrl: string; creator?: string; creatorUrl?: string; license: string; licenseUrl?: string; attributionRequired: boolean; attributionText: string };
 }
 export interface CloudProjectDocument { version: 1; snapshot: ProjectSnapshot; media: CloudProjectMedia[] }
-export interface CloudProjectSummary { projectId: string; title: string; revision: number; savedAt: string }
+export interface CloudProjectSummary { projectId: string; title: string; revision: number; savedAt: string; stateVersion?: number; trashedAt?: string | null }
 export interface CloudProjectVersion { projectId: string; revision: number; headRevision: number; savedAt: string; document: CloudProjectDocument }
 export interface CloudProjectSaved { projectId: string; revision: number; savedAt: string }
 export interface CloudProjectBinding { wallet: string; projectId: string; revision: number }
