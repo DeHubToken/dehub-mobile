@@ -6788,6 +6788,10 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizualni vrhunci",
+      "visualPrivacy": "Pošaljite odabrane kadrove za vizualnu analizu."
+    },
     "review": {
       "title": "Pregled projekta",
       "shared": "Podijeljeno s vama",

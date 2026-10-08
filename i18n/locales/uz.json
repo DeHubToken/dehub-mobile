@@ -6842,6 +6842,10 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizual muhim lahzalar",
+      "visualPrivacy": "Vizual tahlil uchun tanlangan kadrlarni yuboring."
+    },
     "review": {
       "title": "Loyihani ko‘rib chiqish",
       "shared": "Siz bilan ulashilgan",

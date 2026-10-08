@@ -6880,6 +6880,10 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momentos visuais de destaque",
+      "visualPrivacy": "Enviar fotogramas selecionados para análise visual."
+    },
     "review": {
       "title": "Revisão do projeto",
       "shared": "Partilhado consigo",

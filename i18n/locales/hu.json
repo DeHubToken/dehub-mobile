@@ -6791,6 +6791,10 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizuális csúcspontok",
+      "visualPrivacy": "Kiválasztott képkockák küldése vizuális elemzéshez."
+    },
     "review": {
       "title": "Projekt áttekintése",
       "shared": "Veled megosztva",

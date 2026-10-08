@@ -6905,6 +6905,10 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Khoảnh khắc hình ảnh nổi bật",
+      "visualPrivacy": "Gửi các khung hình đã chọn để phân tích hình ảnh."
+    },
     "review": {
       "title": "Đánh giá dự án",
       "shared": "Được chia sẻ với bạn",

@@ -6876,6 +6876,10 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momenti visivi salienti",
+      "visualPrivacy": "Invia fotogrammi selezionati per l'analisi visiva."
+    },
     "review": {
       "title": "Revisione del progetto",
       "shared": "Condiviso con te",

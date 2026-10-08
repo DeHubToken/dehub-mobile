@@ -7321,6 +7321,8 @@
       }
     },
     "highlights": {
+      "visual": "Moments visuels forts",
+      "visualPrivacy": "Envoyer des images sélectionnées pour l'analyse visuelle.",
       "chatSuggest": "Trouve les meilleurs moments de cette vidéo",
       "chatFound": "{{count}} moments trouvés. Prévisualisez-les, affinez la sélection, puis créez un montage séparé.",
       "chatHint": "Sélection des moments forts. Indiquez quoi garder ou retirer, ou revenez au montage.",

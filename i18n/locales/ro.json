@@ -6802,6 +6802,10 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Momente vizuale importante",
+      "visualPrivacy": "Trimite cadrele selectate pentru analiză vizuală."
+    },
     "review": {
       "title": "Revizuirea proiectului",
       "shared": "Partajat cu tine",

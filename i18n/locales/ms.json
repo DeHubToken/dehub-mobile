@@ -7045,6 +7045,10 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Sorotan visual",
+      "visualPrivacy": "Hantar bingkai terpilih untuk analisis visual."
+    },
     "review": {
       "title": "Semakan projek",
       "shared": "Dikongsi dengan anda",

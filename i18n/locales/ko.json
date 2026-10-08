@@ -6871,6 +6871,10 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
+    "highlights": {
+      "visual": "영상 하이라이트",
+      "visualPrivacy": "영상 분석을 위해 선택한 프레임을 전송합니다."
+    },
     "review": {
       "title": "프로젝트 검토",
       "shared": "나와 공유됨",

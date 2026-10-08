@@ -6968,6 +6968,10 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "highlights": {
+      "visual": "Mga tampok na biswal",
+      "visualPrivacy": "Ipadala ang napiling mga frame para sa biswal na pagsusuri."
+    },
     "review": {
       "title": "Pagsusuri ng proyekto",
       "shared": "Ibinahagi sa iyo",
