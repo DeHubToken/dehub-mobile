@@ -6787,6 +6787,13 @@
     "savePrompt": "Vai saglabāt šo ziņu kā melnrakstu, lai pabeigtu un publicētu vēlāk?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Aplauzt rindas",
+      "width": "Teksta platums",
+      "shrink": "Samazināt tekstu, lai tas ietilptu",
+      "height": "Teksta augstums",
+      "captions": "Pielāgot subtitru celiņu"
+    },
     "cloud": {
       "trash": "Atkritne",
       "title": "Mākoņprojekti",

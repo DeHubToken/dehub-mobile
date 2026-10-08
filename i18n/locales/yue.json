@@ -6779,6 +6779,13 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "textFit": {
+      "wrap": "自動換行",
+      "width": "文字闊度",
+      "shrink": "縮細文字以配合",
+      "height": "文字高度",
+      "captions": "調整字幕軌道大小"
+    },
     "cloud": {
       "trash": "垃圾桶",
       "title": "雲端項目",

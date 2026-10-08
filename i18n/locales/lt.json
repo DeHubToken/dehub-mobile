@@ -6787,6 +6787,13 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Laužyti eilutes",
+      "width": "Teksto plotis",
+      "shrink": "Sumažinti tekstą, kad tilptų",
+      "height": "Teksto aukštis",
+      "captions": "Pritaikyti subtitrų takelį"
+    },
     "cloud": {
       "trash": "Šiukšlinė",
       "title": "Debesijos projektai",

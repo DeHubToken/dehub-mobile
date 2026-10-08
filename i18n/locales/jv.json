@@ -6770,6 +6770,13 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Bungkus larik",
+      "width": "Ambane teks",
+      "shrink": "Cilikake teks supaya pas",
+      "height": "Dhuwure teks",
+      "captions": "Pasake trek subtitle"
+    },
     "cloud": {
       "trash": "Sampah",
       "title": "Proyek awan",

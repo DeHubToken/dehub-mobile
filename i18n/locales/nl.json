@@ -7074,6 +7074,13 @@
     }
   },
   "editor": {
+    "textFit": {
+      "wrap": "Regels afbreken",
+      "width": "Tekstbreedte",
+      "shrink": "Tekst verkleinen tot deze past",
+      "height": "Teksthoogte",
+      "captions": "Ondertitelspoor passend maken"
+    },
     "cloud": {
       "trash": "Prullenbak",
       "title": "Cloudprojecten",

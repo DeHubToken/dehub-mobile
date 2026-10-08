@@ -6816,6 +6816,13 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ziile umbreche",
+      "width": "Textbreiti",
+      "shrink": "Text verchliinere, bis er passt",
+      "height": "Texthöchi",
+      "captions": "Untertitelspur iipasse"
+    },
     "cloud": {
       "trash": "Papierchorb",
       "title": "Cloud-Projekt",

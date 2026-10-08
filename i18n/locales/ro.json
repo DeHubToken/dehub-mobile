@@ -6802,6 +6802,13 @@
     }
   },
   "editor": {
+    "textFit": {
+      "wrap": "Încadrează rândurile",
+      "width": "Lățimea textului",
+      "shrink": "Micșorează textul ca să încapă",
+      "height": "Înălțimea textului",
+      "captions": "Potrivește pista de subtitrări"
+    },
     "cloud": {
       "trash": "Coș de gunoi",
       "title": "Proiecte în cloud",

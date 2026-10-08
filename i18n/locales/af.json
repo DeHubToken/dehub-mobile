@@ -6913,6 +6913,13 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Reëls omvou",
+      "width": "Tekswydte",
+      "shrink": "Verklein teks om te pas",
+      "height": "Tekshoogte",
+      "captions": "Pas onderskrifbaan"
+    },
     "cloud": {
       "trash": "Asblik",
       "title": "Wolkprojekte",
