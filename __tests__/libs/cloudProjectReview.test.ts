@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { projectReviewCopy, projectReviewDraft, projectReviewTime, projectReviewWallet } from "../../libs/editor/cloudProjectReview";
+import { projectReviewCopy, projectReviewDraft, projectReviewIsErased, projectReviewTime, projectReviewWallet } from "../../libs/editor/cloudProjectReview";
 import type { CloudProjectDocument, CloudProjectMedia } from "../../libs/editor/cloudProjectFormat";
 const owner = `0x${"1".repeat(40)}`;
 const id = "11111111-1111-4111-8111-111111111111", video = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa", mask = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
@@ -41,4 +41,9 @@ describe("project review copies and feedback", () => {
     expect(() => projectReviewWallet("username")).toThrow();
     expect(() => projectReviewDraft({ body: "Reply", atSeconds: 1, revision: 1, parentId: "other-project-thread" })).toThrow();
   });
+});
+
+it("recognizes erased authors without hiding ordinary review feedback", () => {
+  expect(projectReviewIsErased({ authorWallet: "0x0000000000000000000000000000000000000000" })).toBe(true);
+  expect(projectReviewIsErased({ authorWallet: owner })).toBe(false);
 });
