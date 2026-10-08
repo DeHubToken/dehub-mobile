@@ -35,4 +35,5 @@ data licensing is separate from this per-link API integration; no bulk data is u
 
 Run the prediction parser, normalization and request-cache regression tests in the
 existing GitHub CI suites. Verify the deployed composer and shared cards on
-staging.dehub.io, including an event with multiple questions and a Manifold link.
+https://dehub.io, including an event with multiple questions and a Manifold link.
+Staging is retired; use the same path on production for existing verification links.
