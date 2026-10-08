@@ -17,14 +17,15 @@ interface DhbCoinProps {
   /** Match the surrounding font size; defaults to body text. */
   size?: number;
   style?: StyleProp<ImageStyle>;
+  label?: string;
 }
 
-export function DhbCoin({ size = 13, style }: DhbCoinProps) {
+export function DhbCoin({ size = 13, style, label = "DHB" }: DhbCoinProps) {
   return (
     <Image
       source={DEHUB_COIN}
       resizeMode="contain"
-      accessibilityLabel="DHB"
+      accessibilityLabel={label}
       style={[{ width: size, height: size }, style]}
     />
   );
