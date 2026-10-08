@@ -20,9 +20,75 @@ class Decoder {
 const runtimeWait = new Function("return (" + VIDEO_FRAME_RUNTIME + ")")() as typeof waitForVideoFrame;
 for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper", runtimeWait]] as const) {
   describe(name, () => {
-    beforeEach(() => jest.useFakeTimers());
-    afterEach(() => jest.useRealTimers());
+    const originalAnimation = Object.getOwnPropertyDescriptor(globalThis, "requestAnimationFrame");
+    const originalCancellation = Object.getOwnPropertyDescriptor(globalThis, "cancelAnimationFrame");
+    beforeEach(() => {
+      jest.useFakeTimers();
+      Object.defineProperty(globalThis, "requestAnimationFrame", { configurable: true, writable: true, value: undefined });
+      Object.defineProperty(globalThis, "cancelAnimationFrame", { configurable: true, writable: true, value: undefined });
+    });
+    afterEach(() => {
+      if (originalAnimation) Object.defineProperty(globalThis, "requestAnimationFrame", originalAnimation); else delete (globalThis as { requestAnimationFrame?: unknown }).requestAnimationFrame;
+      if (originalCancellation) Object.defineProperty(globalThis, "cancelAnimationFrame", originalCancellation); else delete (globalThis as { cancelAnimationFrame?: unknown }).cancelAnimationFrame;
+      jest.useRealTimers();
+    });
+    function redraws() {
+      let next = 0;
+      const callbacks = new Map<number, () => void>();
+      Object.defineProperty(globalThis, "requestAnimationFrame", { configurable: true, writable: true, value: (callback: () => void) => { callbacks.set(++next, callback); return next; } });
+      Object.defineProperty(globalThis, "cancelAnimationFrame", { configurable: true, writable: true, value: (id: number) => callbacks.delete(id) });
+      return { callbacks, tick: () => { const pending = [...callbacks.values()]; callbacks.clear(); pending.forEach(callback => callback()); } };
+    }
     const clean = (source: Decoder) => { expect(source.listenerCount).toBe(0); expect(jest.getTimerCount()).toBe(0); };
+    it("waits for the drawing surface after seeked, including repeated source frames", async () => {
+      const paint = redraws(); const source = new Decoder(); let settled = false;
+      const promise = wait(source, 2.5).then(() => { settled = true; });
+      source.seeking = false; source.emit("seeked");
+      await Promise.resolve(); expect(settled).toBe(false);
+      paint.tick(); await Promise.resolve(); expect(settled).toBe(false);
+      paint.tick(); await promise; expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("accepts a presented video frame and cancels the redraw fallback", async () => {
+      const paint = redraws(); const source = new Decoder();
+      let callback: (() => void) | undefined; const cancelled: number[] = [];
+      const decoder = Object.assign(source, {
+        requestVideoFrameCallback: (ready: () => void) => { callback = ready; return 42; },
+        cancelVideoFrameCallback: (id: number) => { cancelled.push(id); },
+      });
+      const promise = wait(decoder, 2.5);
+      source.seeking = false; source.emit("seeked"); callback!();
+      await promise; expect(cancelled).toEqual([42]); expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("does not accept a late presentation after the decoder returns to seeking", async () => {
+      const paint = redraws(); const source = new Decoder(); let settled = false;
+      const promise = wait(source, 2.5).then(() => { settled = true; });
+      source.seeking = false; source.emit("seeked"); paint.tick();
+      source.seeking = true; source.emit("loadeddata"); paint.tick();
+      await Promise.resolve(); expect(settled).toBe(false);
+      source.seeking = false; source.emit("seeked"); paint.tick(); paint.tick();
+      await promise; expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("releases presentation callbacks on cancellation and ignores late callbacks", async () => {
+      const paint = redraws(); const source = new Decoder(); const controller = new AbortController();
+      let callback: (() => void) | undefined; let cancellations = 0;
+      const decoder = Object.assign(source, {
+        requestVideoFrameCallback: (ready: () => void) => { callback = ready; return 42; },
+        cancelVideoFrameCallback: () => { cancellations++; },
+      });
+      const promise = wait(decoder, 2.5, { signal: controller.signal });
+      const rejected = expect(promise).rejects.toMatchObject({ name: "AbortError" });
+      source.seeking = false; source.emit("seeked"); controller.abort();
+      await rejected; callback!(); paint.tick();
+      expect(cancellations).toBe(1); expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("keeps the frame deadline when the browser never presents", async () => {
+      const paint = redraws(); const source = new Decoder();
+      const promise = wait(source, 2.5, { timeoutMs: 100 });
+      const rejected = expect(promise).rejects.toThrow("Video frame did not load at 2.500s");
+      source.seeking = false; source.emit("seeked");
+      jest.advanceTimersByTime(100); await rejected;
+      expect(paint.callbacks.size).toBe(0); clean(source);
+    });
     it("uses an already decoded frame without an unnecessary seek", async () => {
       const source = new Decoder(); source.clock = 5.15;
       await wait(source, 5.15);
