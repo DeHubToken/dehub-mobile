@@ -32,7 +32,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
         <Text className="text-theme-neutrals-300 text-xs">{t("filters.duration")}</Text>
         <NumericValue value={s.duration} label={`${t("filters.duration")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, s.offset, value)} />
       </View>
-      {button(`${t("editor.shots.preview")} ${shotTime(s.offset)}–${shotTime(s.offset + s.duration)}`, () => onPreview(index))}
+      {button(`${t("editor.shots.preview")} ${previewRange(s.offset, s.duration)}`, () => onPreview(index), disabled || state.error === "limit")}
     </View>)}
     <Text className="text-theme-neutrals-300 text-xs">{t("editor.video.transition")}</Text>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(`${state.transition === null ? "✓ " : ""}${t("editor.video.none")}`, () => session.transition(null))}{button(`${state.transition === "fade" ? "✓ " : ""}${t("editor.video.tFade")}`, () => session.transition("fade"))}</View>
@@ -50,4 +50,9 @@ function NumericValue({ value, label, disabled, commit }: { value: number; label
   const [text, setText] = useState(String(value));
   useEffect(() => { if (Number.isFinite(value) && (!text.trim() || Number(text.replace(",", ".")) !== value)) setText(String(value)); }, [value]);
   return <TextInput accessibilityLabel={label} editable={!disabled} keyboardType="decimal-pad" value={text} onChangeText={next => { setText(next); commit(/^\d+(?:[.,]\d*)?$/.test(next) ? Number(next.replace(",", ".")) : NaN); }} className="rounded-lg border border-white/20 px-2 py-1 text-white" style={{ minWidth: 60 }} />;
+}
+
+function previewRange(offset: number, duration: number) {
+  return Number.isFinite(offset) && Number.isFinite(duration) && offset >= 0 && duration > 0
+    ? `${shotTime(offset)}–${shotTime(offset + duration)}` : "—";
 }
