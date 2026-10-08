@@ -9,4 +9,4 @@ export const resolveProfilePresentation = (
   source?: string,
   theme?: string,
 ): ProfilePresentation =>
-  theme !== 'system' && feedHostActive && source !== 'deeplink' ? 'feed' : 'modal';
+  theme !== 'system' && theme !== 'immersive' && feedHostActive && source !== 'deeplink' ? 'feed' : 'modal';

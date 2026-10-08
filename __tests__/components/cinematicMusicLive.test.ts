@@ -9,7 +9,7 @@ describe("cinematic Music and Live tabs (System theme, phones)", () => {
     const home = read("screens", "HomeScreen.tsx");
     const hook = read("hooks", "useCinematicPhone.ts");
 
-    expect(hook).toContain('theme === "system" && !skin && Math.min(width, height) <= CINEMATIC_PHONE_MAX_WIDTH');
+    expect(hook).toContain('theme === "immersive" && !skin && Math.min(width, height) <= CINEMATIC_PHONE_MAX_WIDTH');
     expect(hook).toContain("CINEMATIC_PHONE_MAX_WIDTH = 639");
     expect(home).toContain("if (cinematicPhone) {\n        return (\n          <CinematicMusic");
     expect(home).toContain('if (feedType === "live" && cinematicPhone) {');

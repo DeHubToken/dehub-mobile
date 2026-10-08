@@ -157,19 +157,19 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
   const isFocused = useIsFocused();
-  const { skin, theme } = useAppTheme();
+  const { skin, theme, colors } = useAppTheme();
   const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const { requireAuth } = useAuthActions();
   // System floats its glass pill over the feed like the canvas themes do, so
   // it gets the same clear header and the same cut around the pill.
-  const glassNav = !!skin || theme === "system";
-  // System's island: the whole top bar is one small capsule, with nothing
+  const glassNav = !!skin || theme === "system" || theme === "immersive";
+  // Immersive's island: the whole top bar is one small capsule, with nothing
   // painted around it, that slides away on a scroll down and back on a
   // scroll up like the old bar; the feed runs under it to the top
   // of the screen. Its chevron opens a feed menu rather than the tab pill;
   // the pill only comes back for a sub-view's back slot.
-  const island = theme === "system" && !skin;
+  const island = theme === "immersive" && !skin;
   // Phones only (web's useCinematicPhone): the Music and Live tabs' own layouts.
   const cinematicPhone = useCinematicPhone();
   const [islandMenuOpen, setIslandMenuOpen] = useState(false);
@@ -480,7 +480,9 @@ export default function HomeScreen() {
   // viewport slides down to the pill's top and its content slides back up by
   // the same amount: two transforms on the UI thread, no layout per frame.
   const navPillTop = useSharedValue(0);
+  const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
+    setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1);
     // One point below the pill's top edge, so rounding between the measured
     // layout and the transform can never leave a hairline of feed showing
     // above the pill; the pill's rim covers that point.
@@ -949,6 +951,12 @@ export default function HomeScreen() {
         pointerEvents={island ? "box-none" : "auto"}
         onLayout={onHeaderLayout}
       >
+        {theme === "system" && pillTopInHeader > 0 ? (
+          <View
+            pointerEvents="none"
+            style={{ position: "absolute", top: 0, left: 0, right: 0, height: pillTopInHeader, backgroundColor: colors.background }}
+          />
+        ) : null}
         {island ? (
           <IslandCapsule
             activeIndex={activeIndex}
