@@ -30,7 +30,7 @@ export interface RichPreview {
 const SLUG = /^[a-zA-Z0-9_.-]{1,180}$/;
 const ENS = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.eth$/i;
 const CID = /^(?:Qm[1-9A-HJ-NP-Za-km-z]{44}|b[a-z2-7]{20,120})$/;
-const GATEWAYS = new Set(['ipfs.io', 'dweb.link', 'gateway.pinata.cloud', 'cloudflare-ipfs.com']);
+const GATEWAYS = new Set(['ipfs.filebase.io', 'ipfs.io', 'dweb.link', 'gateway.pinata.cloud', 'cloudflare-ipfs.com']);
 const str = (v: unknown, limit = 500): string => typeof v === 'string' ? v.slice(0, limit) : '';
 
 /** Only public HTTPS media, never executable URLs, credentials, or private hosts. */
@@ -49,7 +49,7 @@ function ipfsLink(id: string, path: string): RichLink | null {
     const segments = path.split('/').filter(Boolean).map(decodeURIComponent);
     if (segments.some(s => s === '.' || s === '..' || /[\\/\x00-\x1f]/.test(s))) return null;
     const suffix = segments.length ? '/' + segments.map(encodeURIComponent).join('/') : '';
-    return { provider: 'ipfs', id, kind: segments.at(-1), url: 'https://ipfs.io/ipfs/' + id + suffix };
+    return { provider: 'ipfs', id, kind: segments.at(-1), url: 'https://ipfs.filebase.io/ipfs/' + id + suffix };
   } catch { return null; }
 }
 

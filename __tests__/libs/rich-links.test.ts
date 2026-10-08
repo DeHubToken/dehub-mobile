@@ -15,7 +15,9 @@ describe('share link recognition', () => {
     expect(link('github.com/org/repo/pull/42').id).toBe('org/repo/pulls/42');
     expect(link('https://github.com/org/repo/releases/tag/v1.2.3').kind).toBe('release');
     expect(link('vitalik.eth').url).toBe('https://app.ens.domains/vitalik.eth');
-    expect(link('ipfs://' + cid + '/picture.png').url).toBe('https://ipfs.io/ipfs/' + cid + '/picture.png');
+    expect(link('ipfs://' + cid + '/picture.png').url).toBe('https://ipfs.filebase.io/ipfs/' + cid + '/picture.png');
+    expect(link('https://ipfs.io/ipfs/' + cid).url).toBe('https://ipfs.filebase.io/ipfs/' + cid);
+    expect(link('https://ipfs.filebase.io/ipfs/' + cid).id).toBe(cid);
     expect(link('https://dweb.link/ipfs/' + cid).id).toBe(cid);
   });
   it('rejects spoofed domains, non-public routes, traversal and executable URLs', () => {
@@ -30,7 +32,7 @@ describe('share link recognition', () => {
   });
   it('extracts ENS and IPFS in text order without picking suffixes from emails or hostile hosts', () => {
     expect(extractShareUrls('hello vitalik.eth then (github.com/org/repo), ipfs://' + cid)).toEqual([
-      'https://app.ens.domains/vitalik.eth', 'https://github.com/org/repo', 'https://ipfs.io/ipfs/' + cid,
+      'https://app.ens.domains/vitalik.eth', 'https://github.com/org/repo', 'https://ipfs.filebase.io/ipfs/' + cid,
     ]);
     expect(extractShareUrls('person@vitalik.eth vitalik.eth.attacker.com data.pdf 2.5x')).toEqual([]);
     expect(extractShareUrls('dehub.io/work https://dehub.io/work')).toEqual(['https://dehub.io/work']);

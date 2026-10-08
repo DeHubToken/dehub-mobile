@@ -18,11 +18,11 @@ Pasting a supported link produces a source-attributed card in the composer, feed
 - [DefiLlama](https://api-docs.defillama.com/): use the small public /tvl/{protocol} endpoint, avoiding full protocol history per card.
 - [GitHub](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api): public unauthenticated REST; the limit is 60 requests/hour per originating IP. Shared-IP users can hit this limit. Private repository access is not requested.
 - [ENS](https://docs.ens.domains/web/resolution/): read the mainnet registry and standard resolver through the public Ethereum RPC. Wildcard/CCIP resolvers, Unicode names and NFT avatar resolution are not included. A failed resolution never displays a fabricated address.
-- [IPFS gateways](https://docs.ipfs.tech/reference/http/gateway/): HEAD retrieves type and size. Only raster images up to 10 MB auto-render; HTML/SVG remain links. Retrieval does not pin content or independently verify its hash.
+- [Filebase public IPFS gateway](https://filebase.com/docs/ipfs/concepts/what-is-an-ipfs-gateway): best-effort public retrieval, limited to 200 requests/minute and intended for light usage. Legacy gateway links resolve through Filebase because [ipfs.io and dweb.link retired](https://gatewaychanges.ipfs.io/). HEAD retrieves type and size. Only raster images up to 10 MB auto-render; HTML/SVG remain links. Retrieval does not pin content or independently verify its hash. Sustained traffic needs a separately provisioned gateway; no paid gateway is enabled here.
 
 Successful previews cache for five minutes, failures for one minute, with 100 entries and concurrent request deduplication per client. Requests abort after eight seconds and never retry in a loop. Every card retains its original provider link and shows when its data was fetched, or a failed-to-load state. No trading, wallet signatures, transactions, paid services, new database tables or Edge Function deployment are required.
 
-Both clients use the same parser and normalizer. Keep src/lib/rich-links.ts in web and libs/rich-links.ts in mobile identical; only the lazy ENS namehash import differs between existing ethers versions. UI labels reuse translated strings.
+Both clients use the same parser and normalizer. Keep rich-links.ts and rich-link-data.ts in web src/lib and mobile libs identical; only ens-hash.ts differs between existing ethers versions. UI labels reuse translated strings.
 
 ## Production verification
 
