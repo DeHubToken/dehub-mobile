@@ -17,6 +17,10 @@ export function cloudProjectReviewApi(client: SupabaseClient, wallet: string, co
       return rpc<ProjectReviewMember>("editor_cloud_review_share", { p_id: id, p_member: recipient, p_role: role, p_expected_state: expectedState });
     },
     accept: (project: ProjectReviewInvitation) => rpc<ProjectReviewMember>("editor_cloud_review_accept", { p_owner: project.ownerWallet, p_id: project.projectId, p_expected_state: project.stateVersion }),
+    leave: (project: ProjectReviewInvitation) => {
+      if (project.memberWallet !== wallet) throw new Error("Project invitation changed");
+      return rpc<ProjectReviewMember>("editor_cloud_review_leave", { p_owner: projectReviewWallet(project.ownerWallet), p_id: project.projectId, p_expected_state: project.stateVersion });
+    },
     async load(owner: string, id: string, revision?: number): Promise<CloudProjectVersion> {
       const sourceOwner = projectReviewWallet(owner);
       const result = await rpc<CloudProjectVersion>("editor_cloud_review_load", { p_owner: sourceOwner, p_id: id, p_revision: revision ?? null });
