@@ -6867,6 +6867,28 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Sorotan visual",
+      "visualPrivacy": "Kirim bingkai terpilih untuk analisis visual."
+    },
+    "review": {
+      "title": "Tinjauan proyek",
+      "shared": "Dibagikan kepada Anda",
+      "time": "Waktu (s)",
+      "assign": "Tetapkan dompet"
+    },
+    "textFit": {
+      "wrap": "Bungkus baris",
+      "width": "Lebar teks",
+      "shrink": "Perkecil teks agar pas",
+      "height": "Tinggi teks",
+      "captions": "Sesuaikan trek takarir"
+    },
+    "cloud": {
+      "trash": "Sampah",
+      "title": "Proyek cloud",
+      "restore": "Pulihkan"
+    },
     "shots": {
       "detect": "Deteksi perubahan adegan",
       "split": "Pisahkan pada potongan terpilih",

@@ -15,6 +15,7 @@
 import { supabase } from '../services/supabase';
 import { createLogger } from './logger';
 import { fetchPredictionPreview, parsePredictionLink, type PredictionPreview } from './predictions';
+import { fetchRichPreview, parseRichLink, extractShareUrls, type RichDetails } from './rich-links';
 
 const log = createLogger('LinkPreview');
 
@@ -25,6 +26,7 @@ export interface LinkPreviewData {
   image: string | null;
   siteName: string;
   prediction?: PredictionPreview['prediction'];
+  rich?: RichDetails;
 }
 
 const previewCache = new Map<string, LinkPreviewData>();
@@ -32,6 +34,8 @@ const previewCache = new Map<string, LinkPreviewData>();
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
+  const rich = parseRichLink(url);
+  if (rich) return fetchRichPreview(rich);
   const cached = previewCache.get(url);
   if (cached) return cached;
 
@@ -62,41 +66,6 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
   }
 }
 
-// The character class excludes whitespace, angle brackets and anything above
-// the Latin-1 range, matching web's extractUrlsFromText exactly so a link
-// scanned out of the same text stops at the same character on both clients.
-// Built from code points rather than a literal escape sequence in the
-// character class, so the source file holds only plain ASCII.
-//
-// The scheme is optional, same as `chat-links.ts`'s own matcher: a bare
-// "dehub.io/work" is exactly as much a link as "https://dehub.io/work" is,
-// and chat-links.ts already linkifies it that way for tap-to-open. This one
-// used to require the scheme, so a caption or comment reading "check this
-// out: dehub.io/work" rendered as a clickable link but never got a preview
-// card — the text linkified fine, this just never saw it as a URL to fetch.
-const NON_ASCII_RANGE = String.fromCodePoint(0x80) + '-' + String.fromCodePoint(0xffff);
-const URL_REGEX = new RegExp(
-  '(?:https?:\\/\\/)?(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?\\/[^\\s<>' + NON_ASCII_RANGE + ']*',
-  'g',
-);
-
-/**
- * Every URL in a block of text, deduped, trailing sentence punctuation
- * stripped, normalized to carry an explicit scheme so every caller downstream
- * (the fetch, cache keys) can assume one is always present. Deliberately
- * narrower than `chat-links.ts`'s bare-domain matcher — that one drives
- * tap-to-open linkification everywhere in the app and matches a curated TLD
- * list; this one only feeds the preview fetch and requires a path, so it
- * skips a bare domain or something like "2.5x" or "report.pdf".
- */
 export function extractUrlsFromText(text: string): string[] {
-  const matches = text.match(URL_REGEX);
-  if (!matches) return [];
-
-  const cleaned = matches.map((url) => {
-    const trimmed = url.replace(/[.,;:!?)}\]]+$/, '');
-    return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
-  });
-
-  return [...new Set(cleaned)];
+  return extractShareUrls(text);
 }

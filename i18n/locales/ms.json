@@ -7046,6 +7046,28 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Sorotan visual",
+      "visualPrivacy": "Hantar bingkai terpilih untuk analisis visual."
+    },
+    "review": {
+      "title": "Semakan projek",
+      "shared": "Dikongsi dengan anda",
+      "time": "Masa (s)",
+      "assign": "Tetapkan dompet"
+    },
+    "textFit": {
+      "wrap": "Balut baris",
+      "width": "Lebar teks",
+      "shrink": "Kecilkan teks agar muat",
+      "height": "Tinggi teks",
+      "captions": "Laraskan trek sari kata"
+    },
+    "cloud": {
+      "trash": "Sampah",
+      "title": "Projek awan",
+      "restore": "Pulihkan"
+    },
     "shots": {
       "detect": "Kesan perubahan adegan",
       "split": "Pisahkan pada potongan terpilih",

@@ -6790,6 +6790,28 @@
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Matukio bora ya picha",
+      "visualPrivacy": "Tuma fremu zilizochaguliwa kwa uchambuzi wa picha."
+    },
+    "review": {
+      "title": "Ukaguzi wa mradi",
+      "shared": "Umeshirikiwa",
+      "time": "Muda (s)",
+      "assign": "Kabidhi pochi"
+    },
+    "textFit": {
+      "wrap": "Vunja mistari",
+      "width": "Upana wa maandishi",
+      "shrink": "Punguza maandishi yatoshee",
+      "height": "Urefu wa maandishi",
+      "captions": "Rekebisha wimbo wa manukuu"
+    },
+    "cloud": {
+      "trash": "Tupio",
+      "title": "Miradi ya wingu",
+      "restore": "Rejesha"
+    },
     "shots": {
       "detect": "Tambua mabadiliko ya mandhari",
       "split": "Gawanya kwenye mikato iliyochaguliwa",

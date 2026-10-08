@@ -6817,6 +6817,28 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuelli Höchepünkt",
+      "visualPrivacy": "Usgewählti Einzelbilder für d visuelli Analyse schicke."
+    },
+    "review": {
+      "title": "Projektprüefig",
+      "shared": "Mit dir teilt",
+      "time": "Ziit (s)",
+      "assign": "Wallet zuewiise"
+    },
+    "textFit": {
+      "wrap": "Ziile umbreche",
+      "width": "Textbreiti",
+      "shrink": "Text verchliinere, bis er passt",
+      "height": "Texthöchi",
+      "captions": "Untertitelspur iipasse"
+    },
+    "cloud": {
+      "trash": "Papierchorb",
+      "title": "Cloud-Projekt",
+      "restore": "Wiederhärstelle"
+    },
     "shots": {
       "detect": "Szenenwechsel erkennen",
       "split": "An ausgewählten Schnitten teilen",

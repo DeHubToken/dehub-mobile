@@ -6768,6 +6768,28 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Oge ọhụụ pụtara ìhè",
+      "visualPrivacy": "Ziga frem ahọpụtara maka nyocha ọhụụ."
+    },
+    "review": {
+      "title": "Nyocha ọrụ",
+      "shared": "Ekekọrịtara gị",
+      "time": "Oge (s)",
+      "assign": "Kenye waleti"
+    },
+    "textFit": {
+      "wrap": "Kewaa ahịrị",
+      "width": "Obosara ederede",
+      "shrink": "Belata ederede ka ọ dabara",
+      "height": "Ogologo ederede",
+      "captions": "Hazie egwu ndepụta okwu"
+    },
+    "cloud": {
+      "trash": "Ihe mkpofu",
+      "title": "Ọrụ igwe ojii",
+      "restore": "Weghachite"
+    },
     "shots": {
       "detect": "Chọpụta mgbanwe ihe nkiri",
       "split": "Kewaa na mbepụ ahọpụtara",

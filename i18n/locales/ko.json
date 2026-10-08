@@ -6872,6 +6872,28 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
+    "highlights": {
+      "visual": "영상 하이라이트",
+      "visualPrivacy": "영상 분석을 위해 선택한 프레임을 전송합니다."
+    },
+    "review": {
+      "title": "프로젝트 검토",
+      "shared": "나와 공유됨",
+      "time": "시간 (s)",
+      "assign": "지갑 지정"
+    },
+    "textFit": {
+      "wrap": "줄 바꿈",
+      "width": "텍스트 너비",
+      "shrink": "텍스트를 맞게 축소",
+      "height": "텍스트 높이",
+      "captions": "자막 트랙 맞추기"
+    },
+    "cloud": {
+      "trash": "휴지통",
+      "title": "클라우드 프로젝트",
+      "restore": "복원"
+    },
     "shots": {
       "detect": "장면 전환 감지",
       "split": "선택한 지점에서 분할",

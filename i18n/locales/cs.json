@@ -6791,6 +6791,28 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizuální zajímavosti",
+      "visualPrivacy": "Odeslat vybrané snímky k vizuální analýze."
+    },
+    "review": {
+      "title": "Kontrola projektu",
+      "shared": "Sdíleno s vámi",
+      "time": "Čas (s)",
+      "assign": "Přiřadit peněženku"
+    },
+    "textFit": {
+      "wrap": "Zalamovat řádky",
+      "width": "Šířka textu",
+      "shrink": "Zmenšit text, aby se vešel",
+      "height": "Výška textu",
+      "captions": "Přizpůsobit stopu titulků"
+    },
+    "cloud": {
+      "trash": "Koš",
+      "title": "Cloudové projekty",
+      "restore": "Obnovit"
+    },
     "shots": {
       "detect": "Najít změny scén",
       "split": "Rozdělit ve vybraných střizích",

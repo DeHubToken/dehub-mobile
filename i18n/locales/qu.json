@@ -6802,6 +6802,28 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "highlights": {
+      "visual": "Videopi aswan allin pachakuna",
+      "visualPrivacy": "Akllasqa videopa rikch'ayninkunata qhawarinapaq apachiy."
+    },
+    "review": {
+      "title": "Rurayta qhawana",
+      "shared": "Qamwan rakisqa",
+      "time": "Pacha (s)",
+      "assign": "Billeterata akllay"
+    },
+    "textFit": {
+      "wrap": "Siq'ikunata t'aqay",
+      "width": "Qillqap kinraynin",
+      "shrink": "Qillqata huch'uyachiy haykunanpaq",
+      "height": "Qillqap sayaynin",
+      "captions": "Uray qillqa ñanta tupachiy"
+    },
+    "cloud": {
+      "trash": "Qupa",
+      "title": "Puyu llamkaykuna",
+      "restore": "Kutichiy"
+    },
     "shots": {
       "detect": "Rikch'ay tikraykunata maskay",
       "split": "Akllasqa kuchuykunapi rakiy",
