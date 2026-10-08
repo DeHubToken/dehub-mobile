@@ -107,7 +107,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                 >
                   <Text className={e.role === "user" ? "text-black text-sm" : "text-white text-sm"}>{e.content}</Text>
                   {e.generate && (
-                    <Pressable onPress={() => onOpenGenerator(e.generate!)} disabled={busy} accessibilityRole="button" accessibilityLabel={t("editor.agent.openGenerator")} className="flex-row items-center self-start rounded-lg bg-white px-2 py-1 mt-2" style={{ gap: 4, opacity: busy ? 0.4 : 1 }}>
+                    <Pressable onPress={() => { if (!busy && e.generate) onOpenGenerator(e.generate); }} disabled={busy} accessibilityRole="button" accessibilityState={{ disabled: busy }} accessibilityLabel={t("editor.agent.openGenerator")} className="flex-row items-center self-start rounded-lg bg-white px-2 py-1 mt-2" style={{ gap: 4, opacity: busy ? 0.4 : 1 }}>
                       <Icon name="Wand" size={12} color="#000" />
                       <Text className="text-black text-xs">{t("editor.agent.openGenerator")}</Text>
                     </Pressable>

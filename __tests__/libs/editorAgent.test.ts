@@ -146,9 +146,10 @@ describe("editor agent on the phone (same ops as the web)", () => {
     expect(base.clips).toHaveLength(0);
   });
 
-  it("reports unsupported generation and fails captions with no media target", async () => {
+  it("rejects an unspecified generation type and captions with no media target", async () => {
     const { report } = await applyOps(newProject("1:1", "t"), [{ op: "captions" }, { op: "generate" }]);
-    expect(report.unsupported).toEqual(["generate"]);
+    expect(report.unsupported).toEqual([]);
+    expect(report.generate).toBeUndefined();
     expect(report.failed).toBe(2);
   });
 
