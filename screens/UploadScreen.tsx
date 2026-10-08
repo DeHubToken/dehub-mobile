@@ -113,6 +113,7 @@ import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
 import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/post-text-limit";
 import { haptic } from "../libs/haptics";
 import { useAppTheme } from "../context/ThemeContext";
+import LinkPreviewCard from "../components/common/LinkPreviewCard";
 import { minimalFlat } from "../theme/minimal";
 import { uploadLocalFileToBucket, fileExtension, contentTypeForExtension } from "../libs/storage-upload";
 
@@ -2392,6 +2393,8 @@ export default function UploadScreen() {
                 onRemoveCover={() => { setArticleImageUri(null); setSocialImageUri(null); }}
               />
             )}
+
+            {!articleMode && <LinkPreviewCard text={bodyText} />}
 
             <MentionSuggestions
               visible={bodyMentions.showSuggestions}
