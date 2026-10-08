@@ -6779,6 +6779,10 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "cloud": {
+      "title": "雲端項目",
+      "restore": "還原"
+    },
     "shots": {
       "detect": "检测场景变化",
       "split": "在所选切点分割",

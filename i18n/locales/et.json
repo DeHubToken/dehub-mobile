@@ -6787,6 +6787,10 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "cloud": {
+      "title": "Pilveprojektid",
+      "restore": "Taasta"
+    },
     "shots": {
       "detect": "Leia stseenivahetused",
       "split": "Jaga valitud lõikekohtades",

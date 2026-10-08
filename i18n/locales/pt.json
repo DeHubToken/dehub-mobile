@@ -6880,6 +6880,10 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projetos na nuvem",
+      "restore": "Restaurar"
+    },
     "shots": {
       "detect": "Detectar mudanças de cena",
       "split": "Dividir nos cortes selecionados",

@@ -6878,6 +6878,10 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloud-Projekte",
+      "restore": "Wiederherstellen"
+    },
     "shots": {
       "detect": "Szenenwechsel erkennen",
       "split": "An ausgewählten Schnitten teilen",

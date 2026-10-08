@@ -6791,6 +6791,10 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "cloud": {
+      "title": "Molnprojekt",
+      "restore": "Återställ"
+    },
     "shots": {
       "detect": "Hitta scenbyten",
       "split": "Dela vid valda klipp",

@@ -6788,6 +6788,10 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projectes al núvol",
+      "restore": "Restaura"
+    },
     "shots": {
       "detect": "Detecta canvis d'escena",
       "split": "Divideix als talls seleccionats",

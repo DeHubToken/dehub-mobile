@@ -6789,6 +6789,10 @@
     "savePrompt": "Hifadhi chapisho hili kama rasimu ya kukamilisha na kuchapisha baadaye?"
   },
   "editor": {
+    "cloud": {
+      "title": "Miradi ya wingu",
+      "restore": "Rejesha"
+    },
     "shots": {
       "detect": "Tambua mabadiliko ya mandhari",
       "split": "Gawanya kwenye mikato iliyochaguliwa",

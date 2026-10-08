@@ -6767,6 +6767,10 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "cloud": {
+      "title": "Ọrụ igwe ojii",
+      "restore": "Weghachite"
+    },
     "shots": {
       "detect": "Chọpụta mgbanwe ihe nkiri",
       "split": "Kewaa na mbepụ ahọpụtara",

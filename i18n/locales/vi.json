@@ -6905,6 +6905,10 @@
     }
   },
   "editor": {
+    "cloud": {
+      "title": "Dự án đám mây",
+      "restore": "Khôi phục"
+    },
     "shots": {
       "detect": "Phát hiện chuyển cảnh",
       "split": "Chia tại điểm cắt đã chọn",
