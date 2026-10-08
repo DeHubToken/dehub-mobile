@@ -1,7 +1,7 @@
 import { localCopyOfCloudProject, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectMedia } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 
-export type ProjectReviewRole = "viewer" | "commenter";
+export type ProjectReviewRole = "viewer" | "commenter" | "editor";
 export interface ProjectReviewMember {
   ownerWallet: string; projectId: string; memberWallet: string; role: ProjectReviewRole;
   accepted: boolean; revoked: boolean; stateVersion: number;
