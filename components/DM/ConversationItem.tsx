@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
 import { useDraftText } from "../../hooks/useDraft";
 import SwipeableRow, { type SwipeAction } from "../common/SwipeableRow";
+import { useAppTheme } from "../../context/ThemeContext";
 
 interface ConversationItemProps {
   conversation: DmConversation;
@@ -42,6 +43,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   onBlock,
 }) => {
   const { t } = useTranslation();
+  const { colors } = useAppTheme();
   const other = useMemo(
     () => getOtherParticipant(conversation, myUserId, myAddress),
     [conversation, myUserId, myAddress],
@@ -219,9 +221,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           <View className="flex-row items-center gap-1.5">
             <View className="flex-1 min-w-0 flex-row items-center gap-1.5">
               <Text
-                className={`text-[15px] font-semibold ${
-                  unreadCount > 0 ? "text-white" : "text-theme-neutrals-100"
-                }`}
+                className="text-[15px] font-semibold text-white"
                 style={{ flexShrink: 1 }}
                 numberOfLines={1}
               >
@@ -234,7 +234,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               <NewMemberChip address={other?.address} />
               {username && (
                 <Text
-                  className="text-zinc-400 text-[12px]"
+                  className="text-white text-[12px]"
                   style={{ flexShrink: 1, maxWidth: "45%" }}
                   numberOfLines={1}
                 >
@@ -252,21 +252,21 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
             {!draft && (previewIcon === "gif" ? (
-              <Text style={{ fontSize: 10, fontWeight: '800', color: unreadCount > 0 ? '#FFFFFF' : '#A6A9AC' }}>GIF</Text>
+              <Text style={{ fontSize: 10, fontWeight: '800', color: colors.foreground }}>GIF</Text>
             ) : previewIcon && (
-              <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Gem" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
+              <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Gem" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={colors.foreground} />
             ))}
             {draft ? (
-              <Text className="text-[13px] flex-1 text-theme-neutrals-400" numberOfLines={1}>
+              <Text className="text-[13px] flex-1 text-white" numberOfLines={1}>
                 <Text className="text-white font-medium">{t("dm.draftLabel")} </Text>
                 {draft}
               </Text>
             ) : (
               <Text
-                className={`text-[13px] flex-1 ${
+                className={`text-[13px] flex-1 text-white ${
                   unreadCount > 0
-                    ? "text-white font-medium"
-                    : "text-theme-neutrals-400"
+                    ? "font-bold"
+                    : "font-normal"
                 }`}
                 numberOfLines={1}
               >
@@ -274,9 +274,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               </Text>
             )}
             <Text
-              className={`text-[11px] ${
-                unreadCount > 0 ? "text-accent" : "text-theme-neutrals-500"
-              }`}
+              className="text-[11px] text-white"
             >
               {timeStr}
             </Text>
