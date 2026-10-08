@@ -6800,6 +6800,10 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "cloud": {
+      "title": "Amaphrojekthi efu",
+      "restore": "Buyisela"
+    },
     "shots": {
       "detect": "Thola ushintsho lwezigcawu",
       "split": "Hlukanisa ezindaweni ezikhethiwe",

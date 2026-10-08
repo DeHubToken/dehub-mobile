@@ -6792,6 +6792,10 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloudprojekter",
+      "restore": "Gendan"
+    },
     "shots": {
       "detect": "Find sceneskift",
       "split": "Opdel ved valgte klip",

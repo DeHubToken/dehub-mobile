@@ -6787,6 +6787,10 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "editor": {
+    "cloud": {
+      "title": "Bulud layihələri",
+      "restore": "Bərpa et"
+    },
     "shots": {
       "detect": "Səhnə dəyişikliklərini tap",
       "split": "Seçilmiş kəsiklərdə böl",

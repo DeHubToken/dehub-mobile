@@ -6770,6 +6770,10 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "cloud": {
+      "title": "Proyek awan",
+      "restore": "Pulihake"
+    },
     "shots": {
       "detect": "Goleki owah-owahan adegan",
       "split": "Pisah ing potongan sing dipilih",

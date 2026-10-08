@@ -6953,6 +6953,10 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloudové projekty",
+      "restore": "Obnoviť"
+    },
     "shots": {
       "detect": "Nájsť zmeny scén",
       "split": "Rozdeliť vo vybraných strihoch",

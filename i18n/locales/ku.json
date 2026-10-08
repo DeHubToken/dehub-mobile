@@ -6673,6 +6673,10 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projeyên ewrê",
+      "restore": "Vegere"
+    },
     "shots": {
       "detect": "Guhertinên dîmenê bibîne",
       "split": "Li birînên hilbijartî parçe bike",

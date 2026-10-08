@@ -6767,6 +6767,10 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "editor": {
+    "cloud": {
+      "title": "Bulut taslamalary",
+      "restore": "Dikelt"
+    },
     "shots": {
       "detect": "Sahna üýtgeşmelerini tap",
       "split": "Saýlanan kesiklerde böl",

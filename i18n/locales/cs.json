@@ -6790,6 +6790,10 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloudové projekty",
+      "restore": "Obnovit"
+    },
     "shots": {
       "detect": "Najít změny scén",
       "split": "Rozdělit ve vybraných střizích",
