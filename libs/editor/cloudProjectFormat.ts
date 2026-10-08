@@ -1,5 +1,7 @@
 import type { ProjectSnapshot } from "./types";
 
+export class CloudProjectConflict extends Error {}
+
 export const CLOUD_PROJECT_BUCKET = "editor-project-media";
 export const CLOUD_PROJECT_MAX_BYTES = 8 * 1024 * 1024;
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
