@@ -61,4 +61,14 @@ describe("shared project review transfers", () => {
     expect(f.local.get(first.snapshot.id)?.clips[0].start).toBe(5);
     expect(JSON.stringify(f.document)).toBe(original);
   });
+  it("owner review copies reuse their own immutable media without uploading it again", async () => {
+    const f=fixture(); f.deps.wallet=owner;
+    f.deps.upload=async()=>{throw new Error("An owner source should be reused");};
+    const session=cloudProjectSession(f.deps), copy=await session.openReview(owner,projectId,3);
+    await session.save(copy.snapshot);
+    expect(f.saves[0].id).not.toBe(projectId);
+    expect(f.saves[0].revision).toBe(0);
+    expect(f.saves[0].document.media).toEqual(f.document.media);
+    expect((f.saves[0].document.snapshot.clips[0] as {mediaId:string}).mediaId).toBe(mediaId);
+  });
 });

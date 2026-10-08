@@ -100,7 +100,8 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const copy = projectReviewCopy(version.document, owner, deps.uuid);
         for (const media of copy.media) { check(); await deps.hydrate(media, check, owner); check(); }
         await deps.saveLocal(copy.snapshot); check();
-        await deps.writeLink(copy.snapshot.id, { wallet, projectId: deps.uuid(), revision: 0, media: {} }); check();
+        const ownedMedia = owner.toLowerCase()===wallet ? Object.fromEntries(copy.media.map((media,index)=>[media.id,version.document.media[index]])) : {};
+        await deps.writeLink(copy.snapshot.id, { wallet, projectId: deps.uuid(), revision: 0, media: ownedMedia }); check();
         return { snapshot: copy.snapshot, revision: version.revision };
       });
     },
