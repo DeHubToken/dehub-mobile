@@ -5,6 +5,8 @@ export interface VideoFrameSource {
   readyState: number;
   seeking: boolean;
   load?: () => void;
+  requestVideoFrameCallback?(callback: () => void): number;
+  cancelVideoFrameCallback?(handle: number): void;
   error?: { code?: number } | null;
   addEventListener(type: string, listener: () => void): void;
   removeEventListener(type: string, listener: () => void): void;
@@ -23,10 +25,51 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
     let timer: ReturnType<typeof setTimeout> | undefined;
     let poll: ReturnType<typeof setInterval> | undefined;
     let recovery: ReturnType<typeof setTimeout> | undefined;
+    let needsPresentation = source.seeking || source.readyState < 2;
+    let presentationStarted = false;
+    let presented = false;
+    let generation = 0;
+    let animation: number | undefined;
+    let videoCallback: number | undefined;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
+    function clearPresentation() {
+      generation++;
+      if (animation !== undefined && typeof cancelAnimationFrame === "function") cancelAnimationFrame(animation);
+      if (videoCallback !== undefined) source.cancelVideoFrameCallback?.(videoCallback);
+      animation = undefined;
+      videoCallback = undefined;
+      presentationStarted = false;
+      presented = false;
+    }
+    function decoded() {
+      return requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005;
+    }
+    function presentation() {
+      if (presentationStarted) return;
+      // Seeking can finish before the paused frame reaches the drawing surface.
+      // A video callback acknowledges a new frame. Two redraws also handle
+      // repeated seeks within the same source frame, which need no new callback.
+      if (typeof requestAnimationFrame !== "function") { finish(); return; }
+      presentationStarted = true;
+      const expectedGeneration = generation;
+      function ready() {
+        if (done || generation !== expectedGeneration) return;
+        if (!decoded()) { clearPresentation(); return; }
+        presented = true;
+        check();
+      }
+      try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
+      animation = requestAnimationFrame(() => {
+        if (done || generation !== expectedGeneration) return;
+        animation = undefined;
+        if (!decoded()) { clearPresentation(); return; }
+        animation = requestAnimationFrame(ready);
+      });
+    }
     function finish(error?: Error) {
       if (done) return;
       done = true;
+      clearPresentation();
       clearTimeout(timer);
       clearInterval(poll);
       clearTimeout(recovery);
@@ -47,16 +90,20 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
         requested = true;
         target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : time, time));
         if (Math.abs(source.currentTime - target) >= 0.0005) {
+          needsPresentation = true;
           try { source.currentTime = target; } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
         }
       }
-      if (requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005) finish();
+      if (!decoded()) { if (presentationStarted) clearPresentation(); return; }
+      if (!needsPresentation || presented) finish(); else presentation();
     }
     function recover() {
       check();
       if (done || !requested || !source.seeking || !source.load) return;
       // Restart a stalled decoder once, then require the same exact source frame.
       requested = false;
+      needsPresentation = true;
+      clearPresentation();
       try { source.load(); } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
       check();
     }
@@ -84,10 +131,51 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
     let timer;
     let poll;
     let recovery;
+    let needsPresentation = source.seeking || source.readyState < 2;
+    let presentationStarted = false;
+    let presented = false;
+    let generation = 0;
+    let animation;
+    let videoCallback;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
+    function clearPresentation() {
+      generation++;
+      if (animation !== undefined && typeof cancelAnimationFrame === "function") cancelAnimationFrame(animation);
+      if (videoCallback !== undefined) source.cancelVideoFrameCallback?.(videoCallback);
+      animation = undefined;
+      videoCallback = undefined;
+      presentationStarted = false;
+      presented = false;
+    }
+    function decoded() {
+      return requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005;
+    }
+    function presentation() {
+      if (presentationStarted) return;
+      // Seeking can finish before the paused frame reaches the drawing surface.
+      // A video callback acknowledges a new frame. Two redraws also handle
+      // repeated seeks within the same source frame, which need no new callback.
+      if (typeof requestAnimationFrame !== "function") { finish(); return; }
+      presentationStarted = true;
+      const expectedGeneration = generation;
+      function ready() {
+        if (done || generation !== expectedGeneration) return;
+        if (!decoded()) { clearPresentation(); return; }
+        presented = true;
+        check();
+      }
+      try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
+      animation = requestAnimationFrame(() => {
+        if (done || generation !== expectedGeneration) return;
+        animation = undefined;
+        if (!decoded()) { clearPresentation(); return; }
+        animation = requestAnimationFrame(ready);
+      });
+    }
     function finish(error) {
       if (done) return;
       done = true;
+      clearPresentation();
       clearTimeout(timer);
       clearInterval(poll);
       clearTimeout(recovery);
@@ -108,16 +196,20 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
         requested = true;
         target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : time, time));
         if (Math.abs(source.currentTime - target) >= 0.0005) {
+          needsPresentation = true;
           try { source.currentTime = target; } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
         }
       }
-      if (requested && !source.seeking && source.readyState >= 2 && Math.abs(source.currentTime - target) < 0.0005) finish();
+      if (!decoded()) { if (presentationStarted) clearPresentation(); return; }
+      if (!needsPresentation || presented) finish(); else presentation();
     }
     function recover() {
       check();
       if (done || !requested || !source.seeking || !source.load) return;
       // Restart a stalled decoder once, then require the same exact source frame.
       requested = false;
+      needsPresentation = true;
+      clearPresentation();
       try { source.load(); } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
       check();
     }
