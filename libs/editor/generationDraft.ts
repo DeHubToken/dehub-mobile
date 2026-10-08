@@ -17,7 +17,7 @@ export function generationDraft(value: unknown, aspect?: string): GenerationDraf
 
 /** Explicit requests can prepare a draft without asking the remote edit planner. */
 export function generationChatRequest(text: string): ({ op: "generate"; [field: string]: unknown } & GenerationDraft) | null {
-  const prefix = /^(?:(?:can|could|would) you\s+|please\s+|(?:peux|pouvez)[ -](?:tu|vous)\s+|s['’]il (?:te|vous) pla[iî]t\s+)*(?:generate|create|g[eé]n[eé]r(?:e|er|ez)|cr[eé](?:e|er|ez))\s+(?:(?:an?|some|une?|des|de la|du)\s+)?(image|picture|photo|illustration|video|vid[eé]o|voice[ -]?over|speech|narration|voix off)\b\s*([\s\S]*)$/i.exec(text.trim());
+  const prefix = /^(?:(?:can|could|would) you\s+|please\s+|(?:peux|pouvez)[ -](?:tu|vous)\s+|s['’]il (?:te|vous) pla[iî]t\s+)*(?:generate|create|g[eé]n[eéè]r(?:e|er|ez)|cr[eé](?:e|er|ez))\s+(?:(?:an?|some|une?|des|de la|du)\s+)?(image|picture|photo|illustration|video|vid[eé]o|voice[ -]?over|speech|narration|voix off)\b\s*([\s\S]*)$/i.exec(text.trim());
   if (!prefix) return null;
   const medium = prefix[1].toLowerCase();
   const kind = /^(video|vidéo)$/.test(medium) ? "video" : /^(voice[ -]?over|speech|narration|voix off)$/.test(medium) ? "voice" : "image";
