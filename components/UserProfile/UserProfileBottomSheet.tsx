@@ -195,8 +195,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         <TabBarHideProvider>
         <View
           className="flex-1 bg-theme-neutrals-900"
-          style={{ paddingTop: insets.top }}
+          style={{ paddingTop: insets.top, paddingLeft: insets.left, paddingRight: insets.right }}
         >
+          {/* Absolute header controls need a parent inside the safe area;
+              top: 0 on the padded outer view still reaches the status bar. */}
+          <View style={{ flex: 1 }}>
           <ScreenHeader
             title={profileData?.displayName || "Profile"}
             subtitle={profileData?.username ? `@${profileData.username}` : undefined}
@@ -258,6 +261,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onRegisterMenuTrigger={handleRegisterMenuTrigger}
           />
           <StandaloneTabBar onBeforeNavigate={onClose} />
+          </View>
         </View>
         </TabBarHideProvider>
       </GestureHandlerRootView>

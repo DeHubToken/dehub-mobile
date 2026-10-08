@@ -5,7 +5,7 @@
  * and applies the result as one undo step.
  */
 import React, { useEffect, useRef, useState } from "react";
-import { KeyboardAvoidingView, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Pressable, ScrollView, Switch, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -29,7 +29,8 @@ interface Props {
   visible: boolean;
   entries: ChatEntry[];
   busy: boolean;
-  onSend: (text: string) => void;
+  onSend: (text: string, useVisual: boolean) => void;
+  visualScope: string;
   onUndo: () => void;
   onClose: () => void;
   onClear: () => void;
@@ -44,11 +45,14 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
   const [draft, setDraft] = useState("");
+  const [visualConsent, setVisualConsent] = useState<string | null>(null);
+  const useVisual = visualConsent === visualScope;
+  useEffect(() => { setVisualConsent(null); }, [visible, visualScope]);
   const scroll = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
     const v = text.trim();
     if (!v || busy) return;
     setDraft("");
-    onSend(v);
+    onSend(v, useVisual);
   };
 
   const suggestions = [
@@ -84,7 +88,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             <Icon name="Sparkles" size={18} color="#fff" />
             <Text className="flex-1 text-white text-base font-semibold">{t("editor.agent.introTitle")}</Text>
             {entries.length > 0 && (
-              <Pressable onPress={onClear} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("editor.agent.clear")}>
+              <Pressable onPress={() => { setVisualConsent(null); onClear(); }} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("editor.agent.clear")}>
                 <Icon name="Trash2" size={18} color="#9ca3af" />
               </Pressable>
             )}
@@ -154,6 +158,11 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             )}
           </ScrollView>
 
+          {!highlights?.ranges?.length && !assembly?.state.sourceId && <View style={{ gap: 4 }} className="mt-2 mb-1">
+            <Text className="text-theme-neutrals-400 text-xs">{t("editor.highlights.title")}</Text>
+            <View className="flex-row items-center" style={{ gap: 8 }}><Text className="flex-1 text-theme-neutrals-300 text-xs">{t("editor.highlights.visual")}</Text><Switch value={useVisual} onValueChange={enabled => setVisualConsent(enabled ? visualScope : null)} disabled={busy} accessibilityLabel={t("editor.highlights.visual")} /></View>
+            {useVisual && <Text className="text-theme-neutrals-400 text-xs">{t("editor.highlights.visualPrivacy")}</Text>}
+          </View>}
           <View className="flex-row items-end rounded-2xl bg-black/40 border border-white/15 px-2 py-2 mb-4 mt-1" style={{ gap: 8 }}>
             <TextInput
               value={draft}

@@ -1,7 +1,7 @@
 import { localCopyOfCloudProject, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectMedia } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 
-export type ProjectReviewRole = "viewer" | "commenter";
+export type ProjectReviewRole = "viewer" | "commenter" | "editor";
 export interface ProjectReviewMember {
   ownerWallet: string; projectId: string; memberWallet: string; role: ProjectReviewRole;
   accepted: boolean; revoked: boolean; stateVersion: number;
@@ -53,4 +53,9 @@ export function projectReviewTime(seconds: number): string {
 }
 export function projectReviewSnapshotKey(snapshot: ProjectSnapshot): string {
   return JSON.stringify({ ...snapshot, updatedAt: 0 });
+}
+
+/** The service replaces erased authors with a reserved address, retaining the thread. */
+export function projectReviewIsErased(comment: Pick<ProjectReviewComment, "authorWallet">): boolean {
+  return comment.authorWallet === "0x0000000000000000000000000000000000000000";
 }

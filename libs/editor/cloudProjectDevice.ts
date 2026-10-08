@@ -21,12 +21,12 @@ export function nativeCloudProjectSession(address: string, check: () => void) {
       await ensure(linkDir());
       await FileSystem.writeAsStringAsync(linkPath(id), JSON.stringify(link));
     },
-    upload: async (localId, cloudId, guard) => {
+    upload: async (localId, cloudId, guard, shared) => {
       const meta = await getMedia(localId); guard();
       if (!meta) throw new Error("A project source is missing from this device");
       const uri = mediaFileUri(meta), info = await FileSystem.getInfoAsync(uri); guard();
       if (!info.exists || info.isDirectory || !info.size) throw new Error("A project source is missing from this device");
-      const slot = await api.prepareMedia(cloudId, info.size, extension(meta.file || meta.name, meta.mimeType)); guard();
+      const slot = await (shared ? api.editing.prepareMedia(shared.owner, shared.projectId, cloudId, info.size, extension(meta.file || meta.name, meta.mimeType)) : api.prepareMedia(cloudId, info.size, extension(meta.file || meta.name, meta.mimeType))); guard();
       // Stream disk bytes to the signed endpoint; images and masks retain their exact pixels.
       const response = await FileSystem.uploadAsync(slot.signedUrl, uri, { httpMethod: "PUT", uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT, headers: { "Content-Type": meta.mimeType, "x-upsert": "false" } }); guard();
       if (response.status < 200 || response.status >= 300) throw new Error("A project source could not be uploaded");
