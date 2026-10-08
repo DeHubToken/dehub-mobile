@@ -44,3 +44,26 @@ it("blocks malformed range/source-change creation and retains the typed draft fo
   screen.rerender(<Harness changed />); fireEvent.press(screen.getByLabelText("nav.create")); expect(create).not.toHaveBeenCalled();
   await act(async () => { session.reset(); });
 });
+
+it("reviews imported files on an empty source through actual selection, preview and soundtrack controls", async () => {
+  const source = { ...original, clips: [], tracks: [] }, before = JSON.stringify(source), preview = jest.fn();
+  const assets = [{ id: "photo", name: "Imported photo", kind: "image" as const },
+    { id: "video", name: "Imported footage", kind: "video" as const, duration: 6 },
+    { id: "song", name: "Imported song", kind: "audio" as const, duration: 3 }];
+  function LibraryHarness() {
+    const [state, controller] = useAssembly({ current: () => source, library: () => assets, create }); session = controller;
+    React.useEffect(() => { controller.start({ seconds: 10, selected: false, transition: "fade", music: true }, [], assets); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ photo: "Imported photo", video: "Imported footage", song: "Imported song" }}
+      onPreview={index => preview(controller.preview(index))} onCreate={() => { void controller.create(); }} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<LibraryHarness />);
+  expect(screen.getByLabelText("Imported photo").props.accessibilityState.checked).toBe(false);
+  fireEvent.press(screen.getByLabelText("Imported photo")); fireEvent.press(screen.getByLabelText("Imported footage"));
+  expect(session.state.shots.map(s => s.duration)).toEqual([5, 5]);
+  fireEvent.press(screen.getAllByLabelText(/^editor.shots.preview /).find(node => node.props.accessibilityRole === "button")!);
+  expect(preview).toHaveBeenCalledWith(expect.objectContaining({ libraryClip: expect.objectContaining({ mediaId: "photo", start: 0, duration: 5 }) }));
+  fireEvent.press(screen.getByLabelText("Imported song")); expect(session.state.soundId).toBe("@assembly-library:song");
+  expect(JSON.stringify(source)).toBe(before);
+  await act(async () => fireEvent.press(screen.getByLabelText("nav.create")));
+  expect(create).toHaveBeenCalledWith(source, expect.objectContaining({ soundId: "@assembly-library:song" }), expect.any(AbortSignal), expect.any(Array));
+});
