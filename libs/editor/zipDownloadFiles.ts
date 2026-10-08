@@ -5,7 +5,7 @@ import { exportBaseName } from "./exportName";
 import { writeZipArchive, type ZipEntry } from "./zipArchive";
 
 /** Write directly to a cache file without keeping the video archive in memory. */
-export async function zipDownloadFiles(files: { name: string; uri: string }[], title: string, signal?: AbortSignal): Promise<string> {
+export async function zipDownloadFiles(files: { name: string; uri: string }[], title: string, signal?: AbortSignal, kind: "clips" | "pages" = "clips"): Promise<string> {
   const entries: ZipEntry[] = [];
   for (const file of files) {
     const info = await FileSystem.getInfoAsync(file.uri);
@@ -15,7 +15,7 @@ export async function zipDownloadFiles(files: { name: string; uri: string }[], t
     });
   }
   const name = exportBaseName(title);
-  const file = new FsFile(Paths.cache, `${name}-clips-${Date.now()}-${Math.random().toString(36).slice(2)}.zip`);
+  const file = new FsFile(Paths.cache, `${name}-${kind}-${Date.now()}-${Math.random().toString(36).slice(2)}.zip`);
   file.create({ overwrite: true });
   const handle = file.open();
   try {
