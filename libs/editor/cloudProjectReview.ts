@@ -54,3 +54,8 @@ export function projectReviewTime(seconds: number): string {
 export function projectReviewSnapshotKey(snapshot: ProjectSnapshot): string {
   return JSON.stringify({ ...snapshot, updatedAt: 0 });
 }
+
+/** The service replaces erased authors with a reserved address, retaining the thread. */
+export function projectReviewIsErased(comment: Pick<ProjectReviewComment, "authorWallet">): boolean {
+  return comment.authorWallet === "0x0000000000000000000000000000000000000000";
+}
