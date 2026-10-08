@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * MiniAppScreen
  * =============
@@ -375,7 +376,7 @@ export default function MiniAppScreen() {
             const wallet = `${app.ownerWallet.slice(0, 6)}…${app.ownerWallet.slice(-4)}`;
             const confirmed = await confirm(
               t("miniApps.pay.title", { name: app.name }),
-              `${request.amount.toLocaleString()} DHB${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.body", { wallet })}`,
+              `${request.amount.toLocaleString()} ${tokenLabel()}${request.memo ? ` · ${request.memo}` : ""}\n\n${t("miniApps.pay.body", { wallet })}`,
               t("miniApps.pay.confirm", { amount: request.amount.toLocaleString() }),
             );
             if (!confirmed) return fail("rejected", "The user declined to pay.");

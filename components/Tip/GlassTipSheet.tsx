@@ -1,6 +1,6 @@
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
- * GlassTipSheet — bottom sheet for sending on-chain DHB tips.
+ * GlassTipSheet — bottom sheet for sending on-chain token tips.
  *
  * Visual design matches the web "Send Tip" modal (quick-amount grid + custom
  * input), while the on-chain flow mirrors TipModal (approve → sendTip).
@@ -337,7 +337,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
   const handleInputChange = useCallback((val: string) => {
     if (isLocked || pendingConfirmation.current) return;
-    // Allow decimals for SOL tips; integer-only for DHB.
+    // Allow decimals for SOL tips; integer-only for tokens.
     const cleaned = isSolanaTip
       ? sanitizeAmountInput(val, 9)
       : sanitizeAmountInput(val, 0);
@@ -464,7 +464,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           } catch (e) {
             setPhase("error");
               haptic.error();
-            setTipError(fundingErrorText(t as any, e) || t("tip.payFailed", "Could not convert {{symbol}} to DHB", { symbol: payWith.symbol }));
+            setTipError(fundingErrorText(t as any, e) || t("tip.payFailed", "Could not convert {{symbol}} to tokens", { symbol: payWith.symbol }));
             return;
           }
         }
@@ -755,7 +755,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <Text style={styles.balanceText}>
                     {isSolanaTip
                       ? t("tip.paidInSol", "Paid in SOL on Solana")
-                      : t("tip.balance", "Balance: {{amount}} DHB", {
+                      : t("tip.balance", "Balance: {{amount}} tokens", {
                           amount: formatCompactNumber(balance),
                         })}
                   </Text>
