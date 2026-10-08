@@ -156,6 +156,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { toastError, toastSuccess } from "../libs";
 import { appLocale } from "../libs/date.util";
+import { CloudProjects } from "../components/editor/CloudProjects";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
 type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
@@ -181,6 +182,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
   const { t } = useTranslation();
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
   const [templateBusy, setTemplateBusy] = useState<string | null>(null);
+  const [cloudOpen, setCloudOpen] = useState(false);
 
   // A template is the same list of operations the AI agent uses; photos are
   // fetched from the free stock library now, on the phone.
@@ -219,6 +221,9 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
         contentContainerStyle={{ padding: 16, gap: 10 }}
         ListHeaderComponent={
           <View style={{ gap: 10 }} className="mb-4">
+            <Pressable accessibilityRole="button" onPress={() => setCloudOpen(true)} className="flex-row items-center rounded-2xl border border-white/10 px-4 py-3" style={{ gap: 12 }}>
+              <Icon name="CloudUpload" size={22} color="#fff" /><Text className="text-white font-semibold">{t("editor.cloud.title")}</Text>
+            </Pressable>
             <Pressable
               accessibilityRole="button"
               onPress={onNewVideo}
@@ -288,6 +293,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
           </Pressable>
         )}
       />
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={() => null} preserve={async () => {}} onOpen={onCreate} />
     </View>
   );
 }
@@ -381,6 +387,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [editingText, setEditingText] = useState<string | null>(null);
   const [renaming, setRenaming] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const [cloudOpen, setCloudOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
   const [audioProgress, setAudioProgress] = useState<number | null>(null);
@@ -1447,6 +1454,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         <IconButton icon="Sparkles" label={t("editor.rail.agent")} onPress={() => setChatOpen(true)} />
         <IconButton icon="Undo2" label={t("editor.app.undo")} onPress={h.undo} disabled={!h.canUndo} />
         <IconButton icon="Redo2" label={t("editor.app.redo")} onPress={h.redo} disabled={!h.canRedo} />
+        <IconButton icon="CloudUpload" label={t("editor.cloud.title")} onPress={() => { setPlaying(false); setCloudOpen(true); }} />
         <Pressable
           onPress={() => setExportOpen(true)}
           accessibilityRole="button"
@@ -1459,6 +1467,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
+        setPlaying(false); setTime(0); setSelectedId(null); setTool(null); setMissing(false);
+        persisted.current = true; h.reset(p); setCloudOpen(false);
+      }} />
 
       {/* Page */}
       <View className="flex-1 px-3 pb-3">

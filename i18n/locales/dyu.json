@@ -6736,6 +6736,10 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "cloud": {
+      "title": "Sanguma baara",
+      "restore": "Segi a la"
+    },
     "shots": {
       "detect": "Sɛnɛ yɛlɛmaw ɲini",
       "split": "Tilɛ ka taamasiɲɛw sugandilen kɛ",

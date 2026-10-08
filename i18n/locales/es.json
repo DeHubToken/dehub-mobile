@@ -6877,6 +6877,10 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "cloud": {
+      "title": "Proyectos en la nube",
+      "restore": "Restaurar"
+    },
     "shots": {
       "detect": "Detectar cambios de escena",
       "split": "Dividir en los cortes elegidos",

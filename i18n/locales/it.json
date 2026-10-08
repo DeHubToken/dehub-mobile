@@ -6876,6 +6876,10 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "cloud": {
+      "title": "Progetti nel cloud",
+      "restore": "Ripristina"
+    },
     "shots": {
       "detect": "Rileva cambi di scena",
       "split": "Dividi ai tagli selezionati",

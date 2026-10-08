@@ -6786,6 +6786,10 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "cloud": {
+      "title": "Skyprosjekter",
+      "restore": "Gjenopprett"
+    },
     "shots": {
       "detect": "Finn sceneskift",
       "split": "Del ved valgte klipp",

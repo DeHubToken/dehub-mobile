@@ -6866,6 +6866,10 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "cloud": {
+      "title": "Proyek cloud",
+      "restore": "Pulihkan"
+    },
     "shots": {
       "detect": "Deteksi perubahan adegan",
       "split": "Pisahkan pada potongan terpilih",

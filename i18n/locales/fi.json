@@ -6787,6 +6787,10 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "editor": {
+    "cloud": {
+      "title": "Pilviprojektit",
+      "restore": "Palauta"
+    },
     "shots": {
       "detect": "Tunnista kohtauksen vaihdot",
       "split": "Jaa valituista leikkauskohdista",

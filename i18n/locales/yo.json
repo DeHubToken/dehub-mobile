@@ -6769,6 +6769,10 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "cloud": {
+      "title": "Àwọn iṣẹ́ àwọsánmà",
+      "restore": "Mú padà"
+    },
     "shots": {
       "detect": "Wá ìyípadà ìṣẹ̀lẹ̀",
       "split": "Pín ní àwọn ibi tí a yàn",

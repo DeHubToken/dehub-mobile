@@ -6882,6 +6882,10 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projets dans le cloud",
+      "restore": "Restaurer"
+    },
     "shots": {
       "detect": "Détecter les changements de scène",
       "split": "Diviser aux coupes choisies",

@@ -7074,6 +7074,10 @@
     }
   },
   "editor": {
+    "cloud": {
+      "title": "Cloudprojecten",
+      "restore": "Herstellen"
+    },
     "shots": {
       "detect": "Scènewisselingen detecteren",
       "split": "Splits bij gekozen knippunten",

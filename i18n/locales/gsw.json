@@ -6816,6 +6816,10 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloud-Projekt",
+      "restore": "Wiederhärstelle"
+    },
     "shots": {
       "detect": "Szenenwechsel erkennen",
       "split": "An ausgewählten Schnitten teilen",

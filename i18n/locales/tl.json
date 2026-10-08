@@ -6968,6 +6968,10 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "cloud": {
+      "title": "Mga proyekto sa cloud",
+      "restore": "Ibalik"
+    },
     "shots": {
       "detect": "Tukuyin ang pagbabago ng eksena",
       "split": "Hatiin sa mga napiling putol",

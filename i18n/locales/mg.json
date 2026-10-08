@@ -6868,6 +6868,10 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "cloud": {
+      "title": "Tetikasa ao amin’ny rahona",
+      "restore": "Avereno"
+    },
     "shots": {
       "detect": "Fantaro ny fiovan'ny seho",
       "split": "Zarao amin'ny fanapahana voafidy",

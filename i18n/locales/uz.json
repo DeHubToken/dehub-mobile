@@ -6842,6 +6842,10 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "cloud": {
+      "title": "Bulut loyihalari",
+      "restore": "Tiklash"
+    },
     "shots": {
       "detect": "Sahna o‘zgarishlarini aniqlash",
       "split": "Tanlangan kesimlarda bo‘lish",
