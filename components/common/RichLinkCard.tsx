@@ -13,7 +13,7 @@ import { configureForPlayback } from '../../libs/audioSession';
 import { useAppTheme } from '../../context/ThemeContext';
 import { minimalFlat } from '../../theme/minimal';
 
-const statusKeys = { open: 'support.status.open', closed: 'support.status.closed', active: 'governance.active', pending: 'work.status.pending', locked: 'filters.locked' };
+const statusKeys = { open: 'support.status.open', closed: 'support.status.closed', active: 'commandCentre.active', pending: 'work.status.pending', locked: 'filters.locked' };
 const duration = (value: number) => Math.floor(value / 60) + ':' + String(Math.floor(value % 60)).padStart(2, '0');
 
 export default function RichLinkCard({ preview, style }: { preview: RichPreview; style?: StyleProp<ViewStyle> }) {
@@ -41,7 +41,7 @@ export default function RichLinkCard({ preview, style }: { preview: RichPreview;
       {!!data.identifier && <Text style={styles.identifier}>{data.identifier}</Text>}
       {!!data.metrics.length && <View style={styles.metrics}>
         {data.metrics.map(item => <View key={item.kind} style={styles.row}>
-          {item.kind === 'stars' ? <Icon name="Star" size={13} color="#d4d4d8" /> : item.kind === 'forks' ? <Icon name="GitFork" size={13} color="#d4d4d8" /> :
+          {item.kind === 'stars' ? <Icon name="Star" size={13} color="#d4d4d8" /> : item.kind === 'forks' ? <Icon name="Network" size={13} color="#d4d4d8" /> :
             item.kind === 'duration' ? <Icon name="Clock" size={13} color="#d4d4d8" /> :
             <Text style={styles.muted}>{t(item.kind === 'tvl' ? 'staking.totalValueLocked' : item.kind === 'power' ? 'badgeShowcase.perks.votes' : 'music.tracks')}</Text>}
           <Text style={styles.value}>{metric(item)}</Text>
