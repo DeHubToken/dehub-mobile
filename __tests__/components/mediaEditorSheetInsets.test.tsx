@@ -7,7 +7,7 @@ import AgentSheet from '../../components/editor/AgentSheet';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TextInput: 'TextInput', Modal: 'Modal',
-  Pressable: 'Pressable', ScrollView: 'ScrollView',
+  Pressable: 'Pressable', ScrollView: 'ScrollView', Switch: 'Switch',
   KeyboardAvoidingView: 'KeyboardAvoidingView',
   Platform: { OS: 'android' },
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
@@ -23,7 +23,7 @@ const editor = readFileSync(join(process.cwd(), 'screens', 'MediaEditorScreen.ts
 
 const renderSheet = () =>
   render(
-    <AgentSheet visible entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} onOpenGenerator={jest.fn()} />,
+    <AgentSheet visible visualScope="source-a" entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} onOpenGenerator={jest.fn()} />,
   );
 
 const sheetOf = (screen: ReturnType<typeof renderSheet>) => {
@@ -40,7 +40,7 @@ describe('media editor AI sheet', () => {
     const voice = { kind: 'voice' as const, prompt: 'First sentence. Keep the last sentence.' };
     const video = { kind: 'video' as const, prompt: 'Waves at night', aspect: '9:16' };
     const props = {
-      visible: true, busy: false, onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
+      visible: true, visualScope: 'source-a', busy: false, onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
       onClear: jest.fn(), onOpenGenerator: jest.fn(),
       entries: [
         { id: 'voice', role: 'assistant' as const, content: 'Voice draft', generate: voice },
@@ -57,6 +57,40 @@ describe('media editor AI sheet', () => {
     screen.rerender(<AgentSheet {...props} busy />);
     fireEvent.press(screen.getAllByLabelText('editor.agent.openGenerator')[0]);
     expect(props.onOpenGenerator).toHaveBeenCalledTimes(2);
+  });
+
+  it('requires frame consent for the current video and clears it when the source or sheet changes', () => {
+    const props = {
+      visible: true, visualScope: 'source-a', entries: [], busy: false,
+      onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
+      onClear: jest.fn(), onOpenGenerator: jest.fn(),
+    };
+    const screen = render(<AgentSheet {...props} />);
+    const control = () => screen.getByLabelText('editor.highlights.visual');
+    const send = () => {
+      fireEvent.changeText(screen.getByLabelText('editor.agent.placeholder'), 'Find 15 second highlights');
+      fireEvent.press(screen.getByLabelText('editor.agent.send'));
+    };
+    expect(control().props.value).toBe(false);
+    expect(screen.queryByText('editor.highlights.visualPrivacy')).toBeNull();
+    send();
+    expect(props.onSend).toHaveBeenLastCalledWith('Find 15 second highlights', false);
+    fireEvent(control(), 'valueChange', true);
+    expect(screen.getByText('editor.highlights.visualPrivacy')).toBeTruthy();
+    send();
+    expect(props.onSend).toHaveBeenLastCalledWith('Find 15 second highlights', true);
+    screen.rerender(<AgentSheet {...props} visualScope="source-b" />);
+    expect(control().props.value).toBe(false);
+    send();
+    expect(props.onSend).toHaveBeenLastCalledWith('Find 15 second highlights', false);
+    screen.rerender(<AgentSheet {...props} />);
+    expect(control().props.value).toBe(false);
+    fireEvent(control(), 'valueChange', true);
+    screen.rerender(<AgentSheet {...props} visible={false} />);
+    screen.rerender(<AgentSheet {...props} />);
+    expect(control().props.value).toBe(false);
+    screen.rerender(<AgentSheet {...props} busy />);
+    expect(control().props.disabled).toBe(true);
   });
 
   it('lifts on Android from a keyboard view that fills the modal, backdrop included', () => {
