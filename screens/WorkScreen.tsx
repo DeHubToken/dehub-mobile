@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkScreen
  * ==========
@@ -84,11 +85,11 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
         </View>
         <View style={{ alignItems: "flex-end" }}>
           <Text style={styles.budget}>
-            {num(job.total_budget)} {job.currency}
+            {num(job.total_budget)} {tokenLabel(job.currency)}
           </Text>
           {job.job_type !== "contract" && (
             <Text style={styles.perUnit}>
-              {job.price_per_unit} {job.currency}/
+              {job.price_per_unit} {tokenLabel(job.currency)}/
               {job.job_type === "clipping" ? t("work.thousandViews") : t("work.task")}
             </Text>
           )}
@@ -279,7 +280,7 @@ export default function WorkScreen() {
             style={[styles.chip, currency === currencyKey && styles.chipActive]}
           >
             <Text style={[styles.chipText, currency === currencyKey && styles.chipTextActive]}>
-              {currencyKey === "all" ? t("work.allCurrencies") : currencyKey}
+              {currencyKey === "all" ? t("work.allCurrencies") : tokenLabel(currencyKey)}
             </Text>
           </Pressable>
         ))}

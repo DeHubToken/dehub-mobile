@@ -137,7 +137,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
         !intent.treasuryAddress ||
         !intent.dhbAmountWei
       ) {
-        throw new Error("The DHB subscription checkout is not ready. Try again shortly");
+        throw new Error("The token subscription checkout is not ready. Try again shortly");
       }
 
       // Paying with another token: DeHub Pay (or Uniswap as the fallback)

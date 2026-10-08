@@ -127,7 +127,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
       {inApp ? (
         <>
           <Text style={styles.hintText}>
-            {t("ppv.payHint", "Pay with anything in your wallet. It becomes DHB and unlocks straight away.")}
+            {t("ppv.payHint", "Pay with anything in your wallet. It becomes tokens and unlocks straight away.")}
           </Text>
           <TipPayWith
             visible

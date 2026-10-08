@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkEditScreen
  * ==============
@@ -277,7 +278,7 @@ export default function WorkEditScreen() {
                       style={[styles.currencyBtn, currency === c && styles.currencyBtnActive]}
                     >
                       <Text style={[styles.currencyText, currency === c && styles.currencyTextActive]}>
-                        {c}
+                        {tokenLabel(c)}
                       </Text>
                     </Pressable>
                   ))}
@@ -315,7 +316,7 @@ export default function WorkEditScreen() {
                 <View style={styles.totalRow}>
                   <Text style={styles.totalLabel}>{t("work.totalEscrow")}</Text>
                   <Text style={styles.totalValue}>
-                    {total.toLocaleString(appLocale(), { maximumFractionDigits: 4 })} {currency}
+                    {total.toLocaleString(appLocale(), { maximumFractionDigits: 4 })} {tokenLabel(currency)}
                   </Text>
                 </View>
               </View>
@@ -329,7 +330,7 @@ export default function WorkEditScreen() {
                 </View>
                 <Text style={styles.totalValue}>
                   {Number(job.total_budget).toLocaleString(appLocale(), { maximumFractionDigits: 4 })}{" "}
-                  {job.currency}
+                  {tokenLabel(job.currency)}
                 </Text>
               </View>
               <Text style={styles.totalHint}>{t(budgetLockReasonKey(job))}</Text>

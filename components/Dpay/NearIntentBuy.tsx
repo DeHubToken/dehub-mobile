@@ -1,3 +1,4 @@
+import { tokenLabel } from '../../libs/token-label';
 import { sendSolanaPurchase, connectPurchaseSolanaWallet } from '../../services/solana-purchase';
 import { usePaymentPicker } from '../../hooks/use-payment-picker';
 import { loadPaymentBalances } from '../../services/payment-balances';
@@ -18,7 +19,7 @@ import { cryptoPurchaseApi } from '../../services/crypto-purchase.service';
 import { canSendPayment, estimateMinutes, formatPaymentAmount, paymentChainName, purchasePhase, validDhbAmount } from '../../libs/crypto-purchase';
 import { useCryptoPurchase } from '../../hooks/useCryptoPurchase';
 import Icon from '../ui/Icon';
-import dhbLogo from '../../assets/tokens/DHB.png';
+import dhbLogo from '../../assets/web-icons/dehub-coin.png';
 import { sanitizeAmountInput } from "../../libs/amount-input";
 
 const tokenLogos: Record<string, number> = {
@@ -40,7 +41,7 @@ function PaymentPair({ payAmount, paySymbol, payChain, receiveAmount, editable =
     <View className="items-center -my-3 z-10"><View className="w-9 h-9 items-center justify-center rounded-xl border border-white/15 bg-theme-neutrals-900"><Icon name="ArrowDown" size={16} color="#ffffff" /></View></View>
     <View className="rounded-2xl border border-white/15 bg-white/[0.07] px-4 py-3.5">
       <View className="flex-row justify-between"><Text className="text-theme-neutrals-400 text-xs">{t('buyCoins.youReceive')}</Text><Text className="text-theme-neutrals-400 text-xs">{paymentChainName('base')}</Text></View>
-      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" />{editable ? <TextInput value={receiveAmount > 0 ? String(receiveAmount) : ''} onChangeText={(v) => onReceiveChange?.(sanitizeAmountInput(v))} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youReceive')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">DHB</Text></View>
+      <View className="flex-row items-center mt-2"><Image source={dhbLogo} className="w-9 h-9 rounded-full mr-3" resizeMode="contain" />{editable ? <TextInput value={receiveAmount > 0 ? String(receiveAmount) : ''} onChangeText={(v) => onReceiveChange?.(sanitizeAmountInput(v))} keyboardType="decimal-pad" accessibilityLabel={t('buyCoins.youReceive')} className="flex-1 text-white text-xl font-semibold p-0" /> : <Text numberOfLines={1} className="flex-1 text-white text-xl font-semibold">{receiveAmount > 0 ? receiveAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—'}</Text>}<Text className="text-white text-sm font-semibold ml-2">{tokenLabel()}</Text></View>
     </View>
   </View>;
 }
