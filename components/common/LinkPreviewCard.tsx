@@ -12,7 +12,7 @@
  * caption or a busy chat thread is a lot of unwanted layout shift for very
  * little payoff.
  */
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
 import { runWhenSettled } from '../../libs/run-when-settled';
 import { Image } from 'expo-image';
@@ -26,6 +26,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { fetchAppByDomain, type MiniAppListing } from '../../services/miniapps.service';
+import { parsePredictionLink } from '../../libs/predictions';
+import PredictionDetails from './PredictionDetails';
 
 /** The first URL in the text that isn't one of our own entity links. */
 function firstExternalUrl(text?: string | null): string | null {
@@ -59,7 +61,6 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const url = useMemo(() => firstExternalUrl(text), [text]);
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
   const [loading, setLoading] = useState(!!url);
-  const fetchedFor = useRef<string | null>(null);
   const { isMinimal } = useAppTheme();
   // A link to a registered mini app's own site opens the app, the way a
   // shared link does on Farcaster, instead of leaving for the browser.
@@ -68,17 +69,11 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (!url) {
-      setLoading(false);
-      return;
-    }
-    if (fetchedFor.current === url) return;
-    fetchedFor.current = url;
-
     let cancelled = false;
-    setLoading(true);
+    setLoading(!!url);
     setPreview(null);
     setApp(null);
+    if (!url) return;
     // Not while the feed is still moving: the fetch, its parse and the card
     // swap can all wait for the scroll to settle.
     const cancel = runWhenSettled(() => {
@@ -88,7 +83,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       } catch {
         /* unreadable host: no app lookup */
       }
-      void fetchAppByDomain(host).then((row) => {
+      if (!parsePredictionLink(url)) void fetchAppByDomain(host).then((row) => {
         if (!cancelled) setApp(row);
       });
       fetchLinkPreview(url).then((data) => {
@@ -130,7 +125,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
           </Text>
         </View>
         {!!preview.title && (
-          <Text style={styles.title} numberOfLines={1}>
+          <Text style={styles.title} numberOfLines={preview.prediction ? undefined : 1}>
             {preview.title}
           </Text>
         )}
@@ -139,6 +134,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
             {preview.description}
           </Text>
         )}
+        <PredictionDetails preview={preview} />
       </View>
     </TouchableOpacity>
   );
