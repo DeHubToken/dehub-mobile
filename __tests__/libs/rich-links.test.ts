@@ -1,5 +1,5 @@
-import { extractShareUrls, fetchRichPreview, parseRichLink, publicMediaUrl } from '../../libs/rich-links';
-import { normalizeRichPreview } from '../../libs/rich-link-data';
+import { extractShareUrls, parseRichLink, publicMediaUrl } from '../../libs/rich-links';
+import { fetchRichPreview, normalizeRichPreview } from '../../libs/rich-link-data';
 
 const originalFetch = globalThis.fetch;
 afterEach(() => { globalThis.fetch = originalFetch; jest.restoreAllMocks(); });
