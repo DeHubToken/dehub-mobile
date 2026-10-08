@@ -7075,6 +7075,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Prullenbak",
       "title": "Cloudprojecten",
       "restore": "Herstellen"
     },

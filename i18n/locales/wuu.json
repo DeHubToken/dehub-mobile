@@ -6776,6 +6776,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "回收站",
       "title": "云端项目",
       "restore": "恢复"
     },

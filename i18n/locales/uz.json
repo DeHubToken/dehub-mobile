@@ -6843,6 +6843,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Chiqindi qutisi",
       "title": "Bulut loyihalari",
       "restore": "Tiklash"
     },

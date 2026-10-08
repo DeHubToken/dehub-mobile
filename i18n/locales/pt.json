@@ -6881,6 +6881,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Lixeira",
       "title": "Projetos na nuvem",
       "restore": "Restaurar"
     },

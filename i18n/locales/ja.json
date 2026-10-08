@@ -6857,6 +6857,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "ゴミ箱",
       "title": "クラウドプロジェクト",
       "restore": "復元"
     },

@@ -6879,6 +6879,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Papierkorb",
       "title": "Cloud-Projekte",
       "restore": "Wiederherstellen"
     },

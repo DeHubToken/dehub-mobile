@@ -17,8 +17,9 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
   const [projects, setProjects] = useState<CloudProjectSummary[]>([]), [history, setHistory] = useState<CloudProjectSummary[]>([]);
+  const [viewTrash, setViewTrash] = useState(false);
   const [selected, setSelected] = useState<CloudProjectSummary | null>(null);
-  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setError(""); setSaved(false); }, [wallet]);
+  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setError(""); setSaved(false); }, [wallet]);
   async function run(action: (device: Device, check: () => void) => Promise<void>) {
     if (busyRef.current || !device) return;
     const selectedWallet = wallet;
@@ -28,13 +29,20 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : "Cloud project operation failed"); }
     finally { busyRef.current = false; if (mounted.current) setBusy(false); }
   }
-  return { available: !!device, busy, error, saved, projects, history, selected,
+  return { available: !!device, busy, error, saved, projects, history, selected, viewTrash,
     clearHistory: () => { setSelected(null); setHistory([]); },
-    refresh: () => run(async ({ api }, check) => { const rows = await api.list(); check(); setProjects(rows); }),
+    refresh: () => run(async ({ api }, check) => { const rows = await api.list(viewTrash); check(); setProjects(rows); }),
+    switchView: (trashed: boolean) => run(async ({ api }, check) => {
+      const rows = await api.list(trashed); check(); setProjects(rows); setViewTrash(trashed); setSelected(null); setHistory([]);
+    }),
+    setTrash: (project: CloudProjectSummary, trashed: boolean) => run(async ({ api }, check) => {
+      await api.setTrash(project, trashed); check();
+      const rows = await api.list(viewTrash); check(); setProjects(rows); setSelected(null); setHistory([]);
+    }),
     save: (copy = false) => run(async ({ api, session }, check) => {
       const snapshot = scope.current.context.current(); if (!snapshot) return;
       await session.save(snapshot, copy); check(); setSaved(true);
-      const rows = await api.list(); check(); setProjects(rows); setSelected(null); setHistory([]);
+      const rows = await api.list(); check(); setViewTrash(false); setProjects(rows); setSelected(null); setHistory([]);
     }),
     showHistory: (project: CloudProjectSummary) => run(async ({ api }, check) => {
       const rows = await api.history(project.projectId); check();
@@ -54,7 +62,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const snapshot = await session.restore(selected.projectId, revision, selected.revision); check();
       if (scope.current.context.current()?.id !== previousId) throw new Error("The current project changed during transfer");
       await scope.current.context.open(snapshot); check();
-      const rows = await api.list(); check(); setProjects(rows); setSelected(null); setHistory([]); setSaved(true);
+      const rows = await api.list(); check(); setViewTrash(false); setProjects(rows); setSelected(null); setHistory([]); setSaved(true);
     }),
   };
 }

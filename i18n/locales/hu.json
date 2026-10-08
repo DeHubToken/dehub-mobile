@@ -6792,6 +6792,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Kuka",
       "title": "Felhőprojektek",
       "restore": "Visszaállítás"
     },
