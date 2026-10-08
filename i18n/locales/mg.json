@@ -6868,6 +6868,12 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "review": {
+      "title": "Famerenana tetikasa",
+      "shared": "Nozaraina taminao",
+      "time": "Fotoana (s)",
+      "assign": "Manendry kitapom-bola"
+    },
     "textFit": {
       "wrap": "Zarao ny andalana",
       "width": "Sakan'ny lahatsoratra",

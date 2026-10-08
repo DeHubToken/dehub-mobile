@@ -6791,6 +6791,12 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "review": {
+      "title": "Projekt áttekintése",
+      "shared": "Veled megosztva",
+      "time": "Idő (s)",
+      "assign": "Tárca hozzárendelése"
+    },
     "textFit": {
       "wrap": "Sortörés",
       "width": "Szöveg szélessége",

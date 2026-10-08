@@ -6876,6 +6876,12 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "review": {
+      "title": "Revisione del progetto",
+      "shared": "Condiviso con te",
+      "time": "Tempo (s)",
+      "assign": "Assegna portafoglio"
+    },
     "textFit": {
       "wrap": "A capo automatico",
       "width": "Larghezza del testo",

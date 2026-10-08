@@ -6787,6 +6787,12 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "review": {
+      "title": "Projekti ülevaatus",
+      "shared": "Sinuga jagatud",
+      "time": "Aeg (s)",
+      "assign": "Määra rahakott"
+    },
     "textFit": {
       "wrap": "Murra ridu",
       "width": "Teksti laius",

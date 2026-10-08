@@ -6871,6 +6871,12 @@
     "savePrompt": "이 게시물을 초안으로 저장하여 완료하고 나중에 게시하시겠습니까?"
   },
   "editor": {
+    "review": {
+      "title": "프로젝트 검토",
+      "shared": "나와 공유됨",
+      "time": "시간 (s)",
+      "assign": "지갑 지정"
+    },
     "textFit": {
       "wrap": "줄 바꿈",
       "width": "텍스트 너비",

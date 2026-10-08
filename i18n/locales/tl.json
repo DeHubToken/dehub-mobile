@@ -6968,6 +6968,12 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "review": {
+      "title": "Pagsusuri ng proyekto",
+      "shared": "Ibinahagi sa iyo",
+      "time": "Oras (s)",
+      "assign": "Magtalaga ng wallet"
+    },
     "textFit": {
       "wrap": "Ibalot ang mga linya",
       "width": "Lapad ng teksto",

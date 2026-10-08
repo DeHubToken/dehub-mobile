@@ -51,3 +51,6 @@ export function projectReviewTime(seconds: number): string {
   const ticks = Math.round(Math.max(0, seconds) * 100), whole = Math.floor(ticks / 100);
   return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}.${String(ticks % 100).padStart(2, "0")}`;
 }
+export function projectReviewSnapshotKey(snapshot: ProjectSnapshot): string {
+  return JSON.stringify({ ...snapshot, updatedAt: 0 });
+}
