@@ -26,10 +26,10 @@ type Rgb = [number, number, number];
 const HAIRLINE = "rgba(255,255,255,0.08)";
 const BRIGHT_INK_THEMES = new Set<string>(["hazy", "swarms", "lavalamp", "island"]);
 
-/** System and minimal draw pages flat and full width, like the home feed. */
+/** Keep the established page layouts in both dark themes. */
 export function useFlatPage(): boolean {
   const { theme, skin, isMinimal } = useAppTheme();
-  return isMinimal || (theme === "system" && !skin);
+  return isMinimal || ((theme === "system" || theme === "immersive") && !skin);
 }
 
 function useKitColors() {

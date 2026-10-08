@@ -115,7 +115,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     };
   }, []);
 
-  if (overlay || theme === 'system') {
+  if (overlay || theme === 'system' || theme === 'immersive') {
     if (!showBack && !rightContent) return null;
     return (
       <View

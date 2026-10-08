@@ -204,7 +204,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             title={profileData?.displayName || "Profile"}
             subtitle={profileData?.username ? `@${profileData.username}` : undefined}
             canGoBack
-            overlay={theme === "system"}
+            overlay={theme === "system" || theme === "immersive"}
             onBackPress={onClose}
             rightContent={
               !isOwnProfile && menuTrigger ? (

@@ -40,7 +40,7 @@ describe('mobile app themes', () => {
   it('gives every canvas theme a solid page colour and a skin, and system and minimal none', () => {
     for (const name of APP_THEMES) {
       const skin = getThemeSkin(name);
-      if (name === 'system' || name === 'minimal') {
+      if (name === 'system' || name === 'immersive' || name === 'minimal') {
         expect(skin).toBeNull();
         continue;
       }
