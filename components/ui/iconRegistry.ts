@@ -110,7 +110,6 @@ import Gamepad2Icon from "lucide-react-native/dist/esm/icons/gamepad-2";
 import GaugeIcon from "lucide-react-native/dist/esm/icons/gauge";
 import GemIcon from "lucide-react-native/dist/esm/icons/gem";
 import GiftIcon from "lucide-react-native/dist/esm/icons/gift";
-import GitForkIcon from "lucide-react-native/dist/esm/icons/git-fork";
 import GlobeIcon from "lucide-react-native/dist/esm/icons/globe";
 import GripIcon from "lucide-react-native/dist/esm/icons/grip";
 import HammerIcon from "lucide-react-native/dist/esm/icons/hammer";
@@ -404,7 +403,6 @@ export const iconRegistry = {
   Gauge: GaugeIcon,
   Gem: GemIcon,
   Gift: GiftIcon,
-  GitFork: GitForkIcon,
   Globe: GlobeIcon,
   Grip: GripIcon,
   Hammer: HammerIcon,
