@@ -52,7 +52,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
   const [draft, setDraft] = useState("");
   const [visualConsent, setVisualConsent] = useState<string | null>(null);
   const useVisual = visualConsent === visualScope;
-  useEffect(() => { setVisualConsent(null); }, [visible]);
+  useEffect(() => { setVisualConsent(null); }, [visible, visualScope]);
   const scroll = useRef<ScrollView>(null);
 
   useEffect(() => {

@@ -8,7 +8,7 @@ export interface HighlightChatRequest { seconds: number; focus: string; useCapti
 
 /** Consent follows the selected project and source assets, without filenames or URLs. */
 export function highlightVisualScope(project: ProjectSnapshot, selectedIds: string[]): string {
-  return JSON.stringify([project.id, selectedIds, project.clips.filter(clip => clip.kind === "video").map(clip => [clip.id, clip.mediaId])]);
+  return JSON.stringify([project.id, selectedIds, project.clips.filter((clip): clip is MediaClip => clip.kind === "video").map(clip => [clip.id, clip.mediaId])]);
 }
 
 /** Explicit requests use the highlight workflow before ordinary timeline planning. */
