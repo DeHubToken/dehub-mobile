@@ -57,6 +57,12 @@ describe("editable assembly", () => {
   it("loops a chosen trimmed/rate-adjusted soundtrack through the complete edit without duplicating it as an overlay", () => {
     const copy = build(), sounds = copy.clips.filter(c => c.kind === "audio") as MediaClip[];
     expect(sounds.map(c => [c.start, c.duration, c.trimIn, c.speed, c.audio?.volume])).toEqual([[0, 3, 1, 0.5, 0.2], [3, 3, 1, 0.5, 0.2], [6, 1, 1, 0.5, 0.2]]);
+    const defaults = project(); defaults.clips = defaults.clips.map(c => c.id === sound.id ? { ...c, audio: undefined } : c);
+    const unchangedLevel = build(defaults);
+    expect((unchangedLevel.clips.find(c => c.kind === "audio") as MediaClip).audio?.volume ?? 1).toBe(1);
+    defaults.tracks.find(t => t.id === sound.trackId)!.muted = true;
+    const mutedCopy = build(defaults), chosenSound = mutedCopy.clips.find(c => c.kind === "audio")!;
+    expect(mutedCopy.tracks.find(t => t.id === chosenSound.trackId)?.muted).toBe(true);
     expect(new Set(copy.clips.map(c => c.id)).size).toBe(copy.clips.length);
     const source = project(); source.tracks[1].muted = true; expect((build(source).clips.find(c => c.kind === "video") as MediaClip).audio?.volume).toBe(0);
   });

@@ -110,10 +110,9 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
       const length = Math.min(availableDuration(sound), duration - time);
       const part = sliceTimelineClip(sound, 0, length, makeId(), time) as MediaClip;
       part.trackId = musicTrackId; part.transitionOut = undefined;
-      part.audio = { ...part.audio, volume: sound.audio?.volume ?? 0.3 };
       clips.push(part); time = round(time + length);
     }
-    tracks.push({ id: musicTrackId, kind: "audio", name: original.tracks.find(t => t.id === sound.trackId)?.name ?? original.title, hidden: false, muted: false });
+    tracks.push({ id: musicTrackId, kind: "audio", name: original.tracks.find(t => t.id === sound.trackId)?.name ?? original.title, hidden: false, muted: original.tracks.find(t => t.id === sound.trackId)?.muted ?? false });
   }
   const settings = { ...original.settings }; delete settings.pages;
   if (clips.length > 5000) invalid();
