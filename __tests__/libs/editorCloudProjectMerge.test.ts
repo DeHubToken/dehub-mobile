@@ -53,8 +53,8 @@ describe("three-way shared timeline merge", () => {
   });
   it("combines new sources and clips added independently", () => {
     const { base, local, remote } = versions(); local.media.push(media(source2)); remote.media.push(media(source3));
-    local.snapshot.clips.push({ ...local.snapshot.clips[0], id: "left", mediaId: source2 });
-    remote.snapshot.clips.push({ ...remote.snapshot.clips[0], id: "right", mediaId: source3 });
+    local.snapshot.clips.push({ ...local.snapshot.clips[0], id: "left", kind: "video", mediaId: source2 });
+    remote.snapshot.clips.push({ ...remote.snapshot.clips[0], id: "right", kind: "video", mediaId: source3 });
     const result = run(base, local, remote); expect(result.conflicts).toEqual([]);
     expect(result.document?.media.map(m => m.id).sort()).toEqual([sourceId, source2, source3]);
     expect(result.document?.snapshot.clips.map(c => c.id)).toEqual(["a", "b", "c", "left", "right"]);
