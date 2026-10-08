@@ -19,11 +19,14 @@ it("waits for a new decoder to load before seeking and clears the watchdog", asy
     const events = new Map<string, () => void>();
     let clock = 0;
     const video = { readyState: 0, seeking: false, get currentTime() { return clock; }, set currentTime(time: number) { clock = time; this.seeking = true; }, duration: 10, addEventListener: (n: string, f: () => void) => events.set(n, f), removeEventListener: (n: string) => events.delete(n) };
-    const seeking = seek(video, 8);
+    let presented = false;
+    const seeking = seek(video, 8).then(() => { presented = true; });
     expect(video.currentTime).toBe(0);
     video.readyState = 2; events.get("loadeddata")!();
     expect(video.currentTime).toBe(8);
-    video.seeking = false; events.get("seeked")!(); await seeking;
+    video.seeking = false; events.get("seeked")!();
+    await Promise.resolve(); expect(presented).toBe(false);
+    jest.advanceTimersByTime(64); await seeking;
     expect(events.size).toBe(0); expect(jest.getTimerCount()).toBe(0);
   } finally { jest.useRealTimers(); }
 });
