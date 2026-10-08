@@ -1,5 +1,6 @@
 import { Platform, Share } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
+import { exportFilename } from "./exportName";
 import { ZIP_DOWNLOAD_LIMIT } from "./zipArchive";
 
 export async function saveEditorDownload(uri: string, title: string, ext: string, mime: string, signal?: AbortSignal): Promise<void> {
@@ -12,7 +13,7 @@ export async function saveEditorDownload(uri: string, title: string, ext: string
   const info = await FileSystem.getInfoAsync(uri);
   const limit = ext === "gif" ? 100 * 1024 * 1024 : ZIP_DOWNLOAD_LIMIT;
   if (!info.exists || info.isDirectory || !info.size || info.size > limit || !/^(gif|mp4|webm|zip)$/.test(ext)) throw new Error("Download file unavailable");
-  const name = (title || "video").replace(/[\\/:*?"<>|\s.]+/g, "-").slice(0, 60) + "." + ext;
+  const name = exportFilename(title, ext);
   const destination = await FileSystem.StorageAccessFramework.createFileAsync(permission.directoryUri, name, mime);
   try {
     const chunk = 3 * 256 * 1024;

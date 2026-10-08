@@ -30,6 +30,7 @@ import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { VIDEO_MATTE_ASSET_PREFIX, type VideoMatteProgress } from "../libs/editor/videoMatte";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import { saveGif } from "../libs/editor/saveGif";
+import { exportBaseName, exportFilename } from "../libs/editor/exportName";
 import { saveEditorDownload } from "../libs/editor/saveEditorDownload";
 import { clipExportRanges, type ExportScope } from "../libs/editor/exportRanges";
 import { zipDownloadFiles } from "../libs/editor/zipDownloadFiles";
@@ -1240,7 +1241,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           bitrate: quality === "1080" ? 8_000_000 : 5_000_000,
           title: range.name, username: outroUsername(user?.username), format: format === "gif" ? "gif" : undefined, range,
         }, p => setRendering((index + p) / ranges.length * 0.95));
-        files.push({ name: `${range.name}.${out.ext}`, uri: out.uri, ext: out.ext });
+        files.push({ name: exportFilename(range.name, out.ext), uri: out.uri, ext: out.ext });
         checkAbort();
         const info = await FileSystem.getInfoAsync(out.uri);
         if (!info.exists || info.isDirectory || !info.size) throw new Error("Download file unavailable");
@@ -1254,7 +1255,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       } else {
         archive = await zipDownloadFiles(files, project.title, ctl.signal);
         setRendering(1);
-        await saveEditorDownload(archive, `${project.title}-clips`, "zip", "application/zip", ctl.signal);
+        await saveEditorDownload(archive, exportBaseName(project.title, "video", "-clips"), "zip", "application/zip", ctl.signal);
       }
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError((error as Error).message.includes("512 MiB") ? t("editor.export.archiveTooLarge") : t("editor.app.exportFailed"));
@@ -1312,7 +1313,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
             height: height & ~1,
             duration: Math.round((duration + BRAND_OUTRO_DURATION) * 1000),
             mimeType: out.ext === "webm" ? "video/webm" : "video/mp4",
-            fileName: `${(project.title || "video").slice(0, 40)}.${out.ext}`,
+            fileName: exportFilename(project.title, out.ext),
           },
         });
       }
