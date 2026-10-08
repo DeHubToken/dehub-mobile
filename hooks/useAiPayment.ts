@@ -290,7 +290,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
       }
 
       if (receipt && receipt.status !== undefined && receipt.status !== 1) {
-        throw new Error('The DHB transfer did not go through. Nothing has been charged.');
+        throw new Error('The token transfer did not go through. Nothing has been charged.');
       }
       const txHash: string = String(
         receipt?.transactionHash || receipt?.hash || submittedHash,

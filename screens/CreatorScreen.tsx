@@ -123,7 +123,7 @@ export default function CreatorScreen() {
             style={{ borderRadius: 22, flexDirection: 'row', alignItems: 'center', padding: 8, gap: 12 }}
           >
             <View className="h-12 w-12 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}>
-              <SmartImage source={require('../assets/tokens/DHB.png')} style={{ width: 30, height: 30 }} contentFit="contain" />
+              <SmartImage source={require('../assets/web-icons/dehub-coin.png')} style={{ width: 30, height: 30 }} contentFit="contain" />
             </View>
             <View style={{ flex: 1 }}>
               <Text className="text-[19px] font-black" style={{ color: accentInk }}>{t('creator.startCreating')}</Text>
