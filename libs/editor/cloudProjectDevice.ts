@@ -15,7 +15,7 @@ export function nativeCloudProjectSession(address: string, check: () => void) {
   const wallet = address.toLowerCase(), api = cloudProjectApi(wallet);
   const linkDir = () => `${root()}cloud/${wallet}/`;
   const linkPath = (id: string) => { if (!/^[a-zA-Z0-9_-]{1,80}$/.test(id)) throw new Error("Invalid local project ID"); return `${linkDir()}${id}.json`; };
-  return { api, session: cloudProjectSession({ wallet, check, api, uuid: () => Crypto.randomUUID(), saveLocal: saveProject,
+  return { api, uuid: () => Crypto.randomUUID(), session: cloudProjectSession({ wallet, check, api, uuid: () => Crypto.randomUUID(), saveLocal: saveProject,
     readLink: async id => { try { return JSON.parse(await FileSystem.readAsStringAsync(linkPath(id))) as CloudProjectLink; } catch { return null; } },
     writeLink: async (id, link) => {
       await ensure(linkDir());
@@ -34,7 +34,7 @@ export function nativeCloudProjectSession(address: string, check: () => void) {
       for (const field of ["width", "height", "duration"] as const) if ((meta[field] || 0) > 0) source[field] = meta[field];
       return source;
     },
-    hydrate: async (source, guard) => {
+    hydrate: async (source, guard, sourceOwner = wallet) => {
       if (source.size > MAX_MEDIA_BYTES) throw new Error("This project source exceeds the phone editor's file limit");
       const meta = await getMedia(source.id); guard();
       if (meta) { const info = await FileSystem.getInfoAsync(mediaFileUri(meta)); guard(); if (info.exists && !info.isDirectory && info.size === source.size) return; }
@@ -42,7 +42,7 @@ export function nativeCloudProjectSession(address: string, check: () => void) {
       const ext = source.storagePath.split(".").pop()!, file = `${source.id}.${ext}`;
       const temp = `${dir}${Crypto.randomUUID()}.tmp`;
       try {
-        const url = await api.sourceUrl(source.storagePath); guard();
+        const url = await api.sourceUrl(source.storagePath, sourceOwner); guard();
         const result = await FileSystem.downloadAsync(url, temp); guard();
         const info = await FileSystem.getInfoAsync(temp); guard();
         if (result.status !== 200 || !info.exists || info.isDirectory || info.size !== source.size) throw new Error("A saved project source is incomplete");

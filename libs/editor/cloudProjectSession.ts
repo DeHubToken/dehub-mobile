@@ -1,5 +1,6 @@
 import { localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
+import { projectReviewCopy } from "./cloudProjectReview";
 
 export interface CloudProjectLink extends CloudProjectBinding {
   media: Record<string, CloudProjectMedia>;
@@ -13,12 +14,13 @@ export interface CloudProjectSessionDeps {
     save(id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved>;
     load(id: string, revision?: number): Promise<CloudProjectVersion>;
     restore(id: string, revision: number, head: number, requestId: string): Promise<CloudProjectSaved>;
+    review?: { load(owner: string, id: string, revision?: number): Promise<CloudProjectVersion> };
   };
   readLink(localId: string): Promise<CloudProjectLink | null>;
   writeLink(localId: string, link: CloudProjectLink): Promise<void>;
   saveLocal(snapshot: ProjectSnapshot): Promise<void>;
   upload(localId: string, cloudId: string, check: () => void): Promise<CloudProjectMedia>;
-  hydrate(source: CloudProjectMedia, check: () => void): Promise<void>;
+  hydrate(source: CloudProjectMedia, check: () => void, sourceOwner?: string): Promise<void>;
 }
 
 /** Include auxiliary masks as well as the visible source and extracted audio. */
@@ -90,6 +92,17 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     },
     open(id: string, revision?: number) {
       return exclusive(async () => { const version = await deps.api.load(id, revision); check(); return importVersion(version, revision !== undefined); });
+    },
+    openReview(owner: string, id: string, revision?: number) {
+      return exclusive(async () => {
+        if (!deps.api.review) throw new Error("Project review is unavailable");
+        const version = await deps.api.review.load(owner, id, revision); check();
+        const copy = projectReviewCopy(version.document, owner, deps.uuid);
+        for (const media of copy.media) { check(); await deps.hydrate(media, check, owner); check(); }
+        await deps.saveLocal(copy.snapshot); check();
+        await deps.writeLink(copy.snapshot.id, { wallet, projectId: deps.uuid(), revision: 0, media: {} }); check();
+        return { snapshot: copy.snapshot, revision: version.revision };
+      });
     },
     restore(id: string, revision: number, expectedHead: number) {
       return exclusive(async () => {
