@@ -2,7 +2,7 @@ import React from "react";
 import { act, fireEvent, render } from "@testing-library/react-native";
 import AssemblyReview from "../../components/editor/AssemblyReview";
 import { useAssembly } from "../../libs/editor/useAssembly";
-import type { AssemblySession } from "../../libs/editor/assembly";
+import { assemblyRequest, type AssemblySession } from "../../libs/editor/assembly";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
 jest.mock("react-native-css-interop/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
@@ -66,4 +66,25 @@ it("reviews imported files on an empty source through actual selection, preview 
   expect(JSON.stringify(source)).toBe(before);
   await act(async () => fireEvent.press(screen.getByLabelText("nav.create")));
   expect(create).toHaveBeenCalledWith(source, expect.objectContaining({ soundId: "@assembly-library:song" }), expect.any(AbortSignal), expect.any(Array));
+});
+
+it("reviews file-only prompts through actual native controls in named order with named music", async () => {
+  const source = { ...original, clips: [], tracks: [] }, before = JSON.stringify(source);
+  const assets = [{ id: "photo", name: "Photo.png", kind: "image" as const },
+    { id: "video", name: "Footage.mp4", kind: "video" as const, duration: 6 },
+    { id: "song", name: "Song.wav", kind: "audio" as const, duration: 3 }];
+  function NamedHarness() {
+    const [state, controller] = useAssembly({ current: () => source, library: () => assets, create }); session = controller;
+    React.useEffect(() => { controller.start(assemblyRequest('Create a 10 second video from Footage.mp4 then Photo.png with Song.wav')!, [], assets); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ photo: "Photo.png", video: "Footage.mp4", song: "Song.wav" }}
+      onPreview={jest.fn()} onCreate={() => { void controller.create(); }} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<NamedHarness />);
+  expect(screen.getByLabelText("Footage.mp4").props.accessibilityState.checked).toBe(true);
+  expect(screen.getByText("1. Footage.mp4")).toBeTruthy(); expect(screen.getByText("2. Photo.png")).toBeTruthy();
+  expect(screen.getByLabelText("✓ Song.wav")).toBeTruthy(); expect(JSON.stringify(source)).toBe(before);
+  await act(async () => fireEvent.press(screen.getByLabelText("nav.create")));
+  expect(create).toHaveBeenCalledWith(source, expect.objectContaining({
+    shots: [{ id: "@assembly-library:video", offset: 0, duration: 5 }, { id: "@assembly-library:photo", offset: 0, duration: 5 }], soundId: "@assembly-library:song",
+  }), expect.any(AbortSignal), expect.any(Array));
 });
