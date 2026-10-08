@@ -355,7 +355,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                       </View>
                       <View style={s.modelRowRight}>
                         <Text style={s.modelPrice}>${rowUsd.toFixed(2)}</Text>
-                        <Text style={s.modelDhb}>~{formatDhb(rowDhb)} <DhbCoin /></Text>
+                        <Text style={s.modelDhb}>~{formatDhb(rowDhb)} <DhbCoin label={t('tip.tokensUnit')} /></Text>
                       </View>
                     </TouchableOpacity>
                   );
@@ -433,7 +433,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             {needsTokens && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>
-                  This costs {formatDhb(priceDhb)} <DhbCoin /> and you hold {formatDhb(walletDhb)}.
+                  This costs {formatDhb(priceDhb)} <DhbCoin label={t('tip.tokensUnit')} /> and you hold {formatDhb(walletDhb)}.
                 </Text>
               </View>
             )}
