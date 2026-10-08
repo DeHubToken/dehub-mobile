@@ -6842,6 +6842,13 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Satrlarni o‘rash",
+      "width": "Matn kengligi",
+      "shrink": "Matnni sig‘ishi uchun kichraytirish",
+      "height": "Matn balandligi",
+      "captions": "Subtitr yo‘lini moslashtirish"
+    },
     "cloud": {
       "trash": "Chiqindi qutisi",
       "title": "Bulut loyihalari",

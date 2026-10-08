@@ -6882,6 +6882,13 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Retour à la ligne",
+      "width": "Largeur du texte",
+      "shrink": "Réduire le texte pour l’ajuster",
+      "height": "Hauteur du texte",
+      "captions": "Ajuster la piste de sous-titres"
+    },
     "cloud": {
       "trash": "Corbeille",
       "title": "Projets dans le cloud",

@@ -6736,6 +6736,13 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Sɛbɛnni tɔgɔw tilan",
+      "width": "Sɛbɛnni bonya",
+      "shrink": "Sɛbɛnni dɔgɔya ka a bɛn",
+      "height": "Sɛbɛnni janya",
+      "captions": "Sɛbɛnni sira bɛn"
+    },
     "cloud": {
       "trash": "Ɲamanw",
       "title": "Sanguma baara",

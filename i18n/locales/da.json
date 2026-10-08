@@ -6792,6 +6792,13 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ombryd linjer",
+      "width": "Tekstbredde",
+      "shrink": "Formindsk teksten, så den passer",
+      "height": "Teksthøjde",
+      "captions": "Tilpas undertekstspor"
+    },
     "cloud": {
       "trash": "Papirkurv",
       "title": "Cloudprojekter",

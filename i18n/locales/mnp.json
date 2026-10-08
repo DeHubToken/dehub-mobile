@@ -6817,6 +6817,13 @@
     "noStories": "还无故事"
   },
   "editor": {
+    "textFit": {
+      "wrap": "自动换行",
+      "width": "文字宽度",
+      "shrink": "缩小文字以适应",
+      "height": "文字高度",
+      "captions": "调整字幕轨道大小"
+    },
     "cloud": {
       "trash": "回收站",
       "title": "云端项目",

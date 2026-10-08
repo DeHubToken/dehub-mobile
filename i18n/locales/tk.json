@@ -6767,6 +6767,13 @@
     "savePrompt": "Bu posty soňuna çenli goýup, soňuna çenli goýup bilermisiňiz?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Setirleri böl",
+      "width": "Tekstiň ini",
+      "shrink": "Teksti sygjak ýaly kiçelt",
+      "height": "Tekstiň beýikligi",
+      "captions": "Subtitr ýoluny sazla"
+    },
     "cloud": {
       "trash": "Zibil",
       "title": "Bulut taslamalary",

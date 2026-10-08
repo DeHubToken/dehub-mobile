@@ -6878,6 +6878,13 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Zeilen umbrechen",
+      "width": "Textbreite",
+      "shrink": "Text verkleinern, bis er passt",
+      "height": "Texthöhe",
+      "captions": "Untertitelspur einpassen"
+    },
     "cloud": {
       "trash": "Papierkorb",
       "title": "Cloud-Projekte",
