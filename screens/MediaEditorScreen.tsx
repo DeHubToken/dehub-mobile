@@ -29,6 +29,7 @@ import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { VIDEO_MATTE_ASSET_PREFIX, type VideoMatteProgress } from "../libs/editor/videoMatte";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import ExportSheet from "../components/editor/ExportSheet";
+import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
 import { exportPageArchive } from "../libs/editor/exportPageArchive";
 import { pageExportFrames, type PageExportScope } from "../libs/editor/pageExports";
 import { saveGif } from "../libs/editor/saveGif";
@@ -72,8 +73,10 @@ import {
 } from "../components/editor/EditorPanels";
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
-import { assemblyProject, assemblyRequest, persistAssembly, type AssemblyPlan } from "../libs/editor/assembly";
+import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
+import { createAssemblyEdit } from "../libs/editor/applyAssembly";
 import { useAssembly } from "../libs/editor/useAssembly";
+import type { AssemblyAsset } from "../libs/editor/assemblyLibrary";
 import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
 import type { GenerationDraft } from "../libs/editor/generationDraft";
 import Timeline from "../components/editor/Timeline";
@@ -402,8 +405,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     create: (original, clipId, ranges, signal) => createHighlights(original, clipId, ranges, t("editor.highlights.projectTitle", { title: original.title }), signal),
   });
   const [assemblyNames, setAssemblyNames] = useState<Record<string, string>>({});
-  const [assemblyState, assembly] = useAssembly({ current: h.latest, create: (original, plan, signal) => createAssembly(original, plan, signal) });
+  const [libraryPreview, setLibraryPreview] = useState<MediaClip | null>(null);
+  const assemblyPreparation = useRef<AbortController | null>(null);
+  useEffect(() => () => assemblyPreparation.current?.abort(), []);
+  useEffect(() => { assemblyPreparation.current?.abort(); setLibraryPreview(null); }, [project?.id]);
+  const [assemblyState, assembly] = useAssembly({ current: h.latest, library: listMedia, create: (original, plan, signal, library) => createAssembly(original, plan, signal, library) });
   const assemblySourceChanged = assemblyState.sourceId !== null && !assembly.matchesSource(project);
+  useEffect(() => { if (assemblySourceChanged || !assemblyState.sourceId) setLibraryPreview(null); }, [assemblySourceChanged, assemblyState.sourceId]);
   const highlightSourceChanged = highlightChatState.clipId !== null && !highlightChat.matchesSource(project);
   const [brand, setBrand] = useState<BrandKit>(EMPTY_BRAND);
   useEffect(() => { loadBrand().then(setBrand); }, []);
@@ -854,13 +862,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } catch { toastError(t("editor.captions.failed")); }
   };
 
-  const createAssembly = async (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal) => {
-    const next = assemblyProject(original, plan, { id: newId(10), title: `${original.title} — ${t("editor.video.video")}` }, () => newId(10));
-    return persistAssembly(original, next, { current: h.latest, save: saveProject, commit: (source, copy) => {
-      h.fork(source, copy); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
-    } }, signal);
+  const createAssembly = async (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => {
+    return createAssemblyEdit(original, plan, `${original.title} — ${t("editor.video.video")}`, {
+      current: h.latest, commit: (source, copy) => {
+        h.fork(source, copy); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
+      },
+    }, signal, library);
   };
-  const closeAssembly = () => { highlightPreviewEnd.current = null; setPlaying(false); assembly.reset(); };
+  const closeAssembly = () => { assemblyPreparation.current?.abort(); assemblyPreparation.current = null; setChatBusy(false); setLibraryPreview(null); highlightPreviewEnd.current = null; setPlaying(false); assembly.reset(); };
   const createHighlights = async (original: ProjectSnapshot, clipId: string, ranges: HighlightRange[], title: string, signal?: AbortSignal) => {
     const matches = () => { const now = h.latest(); return !signal?.aborted && !!now && sameHighlightSource(original, now); };
     if (!matches()) return false;
@@ -878,7 +887,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string) => {
-    if (!project || chatBusy || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
+    if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
@@ -886,8 +895,17 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (draftRequest || assembly.state.sourceId) {
       highlightPreviewEnd.current = null; setPlaying(false);
       if (draftRequest) {
-        highlightChat.reset(); assembly.start(draftRequest, selectedId ? [selectedId] : []);
-        void listMedia().then(media => setAssemblyNames(Object.fromEntries(media.map(m => [m.id, m.name])))).catch(() => {});
+        highlightChat.reset(); assembly.reset(); setLibraryPreview(null);
+        const controller = new AbortController(); assemblyPreparation.current = controller; setChatBusy(true);
+        try {
+          const media = await listMedia();
+          if (controller.signal.aborted || !editorMounted.current || assemblyPreparation.current !== controller) return;
+          const now = h.latest();
+          if (!now || !sameHighlightSource(project, now)) { setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return; }
+          setAssemblyNames(Object.fromEntries(media.map(item => [item.id, item.name])));
+          assembly.start(draftRequest, selectedId ? [selectedId] : [], media);
+        } catch { if (!controller.signal.aborted && editorMounted.current) setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return; }
+        finally { if (assemblyPreparation.current === controller) { assemblyPreparation.current = null; setChatBusy(false); } }
       }
       const reviewed = draftRequest || assembly.review(text);
       setChat(old => [...old, { id: entryId(), role: "assistant", content: t(reviewed ? "easyTrade.reviewTitle" : "editor.agent.nothingToDo") }]);
@@ -1611,12 +1629,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         }}
       />
 
+      {libraryPreview && <AssemblyMediaPreview clip={libraryPreview} project={project} name={assemblyNames[libraryPreview.mediaId] ?? t("editor.video.video")}
+        onClose={() => { setLibraryPreview(null); if (assembly.matchesSource()) setChatOpen(true); }} />}
+
       <AgentSheet
         visible={chatOpen}
         entries={chat}
         busy={chatBusy || openingGenerator || highlightChatState.busy || assemblyState.busy}
         assembly={{ state: assemblyState, session: assembly, changed: assemblySourceChanged, names: assemblyNames,
-          onPreview: index => { const range = assembly.preview(index); if (!range) return; highlightPreviewEnd.current = range.end; setSelectedId(range.id); setTime(range.start); setPlaying(true); setChatOpen(false); },
+          onPreview: index => { const range = assembly.preview(index); if (!range) return; if (range.libraryClip) { setPlaying(false); setLibraryPreview(range.libraryClip); setChatOpen(false); return; } highlightPreviewEnd.current = range.end; setSelectedId(range.id); setTime(range.start); setPlaying(true); setChatOpen(false); },
           onCreate: () => { highlightPreviewEnd.current = null; setPlaying(false); void assembly.create().then(saved => { if (saved) setChat(old => [...old, { id: `${Date.now()}-assembly`, role: "assistant", content: t("common.done") }]); }); }, onClose: closeAssembly }}
         highlights={highlightChatState}
         highlightSourceChanged={highlightSourceChanged}
@@ -1628,7 +1649,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onSend={(text) => { void sendToAgent(text); }}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
-        onClose={() => { if (assembly.state.busy) closeAssembly(); setChatOpen(false); }}
+        onClose={() => { if (assembly.state.busy || assemblyPreparation.current) closeAssembly(); setChatOpen(false); }}
         onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); }}
       />
 
