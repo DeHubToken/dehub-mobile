@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "postingChain": "Blockchain voor berichten",
     "showOnline": "Laat zien wanneer ik online ben",
     "showOnlineDesc": "Mensen die je een bericht stuurt, zien een groene stip naast je naam terwijl je DeHub gebruikt",
     "smartReplies": "Voorgestelde antwoorden",
@@ -8368,6 +8369,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockchain voor berichten",
         "title": "Instellingen",
         "intro": "Pas uw DeHub-ervaring aan met taal-, privacy- en weergavevoorkeuren.",
         "steps": {

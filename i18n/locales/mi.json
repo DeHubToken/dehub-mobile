@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} pou"
   },
   "settings": {
+    "postingChain": "Poraka mekameka mō ngā whakairinga",
     "showOnline": "Whakaatu i te wa e ahau i runga i te ipurangi",
     "showOnlineDesc": "Ko nga tangata e tuku ana koe ka kite i tetahi tohu matomato i te taha o to ingoa i a koe e whakamahi ana i te DeHub",
     "smartReplies": "Ngā whakautu tūtohu",
@@ -8062,6 +8063,7 @@
         }
       },
       "settings": {
+    "postingChain": "Poraka mekameka mō ngā whakairinga",
         "title": "Tautuhinga",
         "intro": "Whakaritea to wheako DeHub mā te reo, te tūmataitinga, me ngā manakohanga whakaatu.",
         "steps": {

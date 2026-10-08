@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "postingChain": "Blockchain maka mbipụta",
     "showOnline": "Gosi mgbe m nọ n 'ịntanetị",
     "showOnlineDesc": "Ndị mmadụ ị na-eziga ozi na-ahụ ntụpọ akwụkwọ ndụ akwụkwọ ndụ n 'akụkụ aha gị mgbe ị na-eji DeHub",
     "smartReplies": "Nzaghachi atụrụ aro",
@@ -8051,6 +8052,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockchain maka mbipụta",
         "title": "Ntọala",
         "intro": "Hazie ahụmịhe DeHub gị na asụsụ, nzuzo, na mmasị ngosi.",
         "steps": {

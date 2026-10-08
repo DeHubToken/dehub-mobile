@@ -195,6 +195,7 @@
     "postCount_other": "post {{count}}"
   },
   "settings": {
+    "postingChain": "Blokisɛn min bɛ kɛ postiw la",
     "showOnline": "N'i be n' ka site web kan, i ka n' ka site web yira",
     "showOnlineDesc": "Mɔgɔ minw be kuma, olu be yɔrɔ dɔ ye i tɔgɔ gɛrɛfɛ n'i be DeHub ta",
     "smartReplies": "Jaabi fɔlenw",
@@ -8020,6 +8021,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blokisɛn min bɛ kɛ postiw la",
         "title": "Settings",
         "steps": {
           "1": "I ka ɲi ka \"Siga\" sɔrɔ barokun nin na.",

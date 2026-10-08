@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} inlägg"
   },
   "settings": {
+    "postingChain": "Blockkedja för inlägg",
     "showOnline": "Visa när jag är online",
     "showOnlineDesc": "Personer du skickar meddelanden till ser en grön prick bredvid ditt namn när du använder DeHub",
     "smartReplies": "Föreslagna svar",
@@ -8085,6 +8086,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockkedja för inlägg",
         "title": "Inställningar",
         "intro": "Anpassa din DeHub-upplevelse med språk-, integritets- och visningsinställningar.",
         "steps": {

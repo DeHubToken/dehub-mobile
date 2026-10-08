@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} 件の投稿"
   },
   "settings": {
+    "postingChain": "投稿用ブロックチェーン",
     "showOnline": "オンライン中に表示する",
     "showOnlineDesc": "DeHubを使用している間、メッセージを送る相手に名前の横に緑色の点が表示されます",
     "smartReplies": "返信の候補",
@@ -8095,6 +8096,7 @@
         }
       },
       "settings": {
+    "postingChain": "投稿用ブロックチェーン",
         "title": "設定",
         "intro": "言語、プライバシー、表示設定でDeHubのエクスペリエンスをカスタマイズします。",
         "steps": {

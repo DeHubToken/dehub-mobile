@@ -49,8 +49,7 @@ export default function PostingChainSetting() {
     <>
       <SettingsLinkRow
         icon="Globe"
-        label="Posting chain"
-        description="The blockchain used for your posts on this device."
+        label={t('settings.postingChain')}
         value={selected.name}
         disabled={saving}
         onPress={() => setOpen(true)}
@@ -58,7 +57,7 @@ export default function PostingChainSetting() {
       <SettingsOptionModal
         visible={open}
         onClose={() => setOpen(false)}
-        title="Posting chain"
+        title={t('settings.postingChain')}
         value={String(selected.id)}
         options={chains.map(chain => ({ value: String(chain.id), label: chain.name }))}
         onSelect={value => void selectChain(value)}
