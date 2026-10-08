@@ -35,7 +35,7 @@ describe("native imported-file assembly persistence", () => {
     const source = original(), commit = jest.fn();
     for (const problem of ["metadata", "missing", "empty", "replaced"] as const) {
       jest.mocked(getMedia).mockImplementation(async id => problem === "metadata" ? null : { ...media.find(item => item.id === id)!, ...(problem === "replaced" ? { createdAt: 999 } : {}) });
-      jest.mocked(getInfoAsync).mockResolvedValue(problem === "missing" ? { exists: false, uri: "file:///missing" } : { exists: true, isDirectory: false, uri: "file:///asset", size: problem === "empty" ? 0 : 100, modificationTime: 1 });
+      jest.mocked(getInfoAsync).mockResolvedValue(problem === "missing" ? { exists: false, isDirectory: false, uri: "file:///missing" } : { exists: true, isDirectory: false, uri: "file:///asset", size: problem === "empty" ? 0 : 100, modificationTime: 1 });
       expect(await createAssemblyEdit(source, plan, "Copy", { current: () => source, commit }, new AbortController().signal, media)).toBe(false);
     }
     expect(saveProject).not.toHaveBeenCalled(); expect(commit).not.toHaveBeenCalled(); expect(source.clips).toEqual([]);
