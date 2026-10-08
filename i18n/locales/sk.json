@@ -6953,6 +6953,13 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Zalamovať riadky",
+      "width": "Šírka textu",
+      "shrink": "Zmenšiť text, aby sa zmestil",
+      "height": "Výška textu",
+      "captions": "Prispôsobiť stopu titulkov"
+    },
     "cloud": {
       "trash": "Kôš",
       "title": "Cloudové projekty",

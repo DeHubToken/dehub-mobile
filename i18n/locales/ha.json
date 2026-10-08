@@ -6769,6 +6769,13 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Karya layuka",
+      "width": "Faɗin rubutu",
+      "shrink": "Rage rubutu ya dace",
+      "height": "Tsayin rubutu",
+      "captions": "Daidaita waƙar ƙaramin rubutu"
+    },
     "cloud": {
       "trash": "Kwandon shara",
       "title": "Ayyukan gajimare",

@@ -6786,6 +6786,13 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Bryt linjer",
+      "width": "Tekstbredde",
+      "shrink": "Forminsk teksten så den passer",
+      "height": "Teksthøyde",
+      "captions": "Tilpass undertekstspor"
+    },
     "cloud": {
       "trash": "Papirkurv",
       "title": "Skyprosjekter",

@@ -6968,6 +6968,13 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ibalot ang mga linya",
+      "width": "Lapad ng teksto",
+      "shrink": "Paliitin ang teksto para magkasya",
+      "height": "Taas ng teksto",
+      "captions": "Iangkop ang track ng subtitle"
+    },
     "cloud": {
       "trash": "Basurahan",
       "title": "Mga proyekto sa cloud",

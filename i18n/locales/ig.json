@@ -6767,6 +6767,13 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Kewaa ahịrị",
+      "width": "Obosara ederede",
+      "shrink": "Belata ederede ka ọ dabara",
+      "height": "Ogologo ederede",
+      "captions": "Hazie egwu ndepụta okwu"
+    },
     "cloud": {
       "trash": "Ihe mkpofu",
       "title": "Ọrụ igwe ojii",

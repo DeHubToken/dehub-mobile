@@ -6788,6 +6788,13 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ajusta les línies",
+      "width": "Amplada del text",
+      "shrink": "Redueix el text perquè hi càpiga",
+      "height": "Alçada del text",
+      "captions": "Ajusta la pista de subtítols"
+    },
     "cloud": {
       "trash": "Paperera",
       "title": "Projectes al núvol",

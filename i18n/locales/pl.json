@@ -6888,6 +6888,13 @@
     }
   },
   "editor": {
+    "textFit": {
+      "wrap": "Zawijaj wiersze",
+      "width": "Szerokość tekstu",
+      "shrink": "Zmniejsz tekst, aby się zmieścił",
+      "height": "Wysokość tekstu",
+      "captions": "Dopasuj ścieżkę napisów"
+    },
     "cloud": {
       "trash": "Kosz",
       "title": "Projekty w chmurze",

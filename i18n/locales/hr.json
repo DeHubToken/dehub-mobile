@@ -6788,6 +6788,13 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Prelamanje redaka",
+      "width": "Širina teksta",
+      "shrink": "Smanji tekst da stane",
+      "height": "Visina teksta",
+      "captions": "Prilagodi zapis titlova"
+    },
     "cloud": {
       "trash": "Smeće",
       "title": "Projekti u oblaku",

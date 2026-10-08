@@ -6790,6 +6790,13 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Zalamovat řádky",
+      "width": "Šířka textu",
+      "shrink": "Zmenšit text, aby se vešel",
+      "height": "Výška textu",
+      "captions": "Přizpůsobit stopu titulků"
+    },
     "cloud": {
       "trash": "Koš",
       "title": "Cloudové projekty",

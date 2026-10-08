@@ -6868,6 +6868,13 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Satırları kaydır",
+      "width": "Metin genişliği",
+      "shrink": "Metni sığacak kadar küçült",
+      "height": "Metin yüksekliği",
+      "captions": "Altyazı izini sığdır"
+    },
     "cloud": {
       "trash": "Çöp kutusu",
       "title": "Bulut projeleri",

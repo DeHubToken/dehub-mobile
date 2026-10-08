@@ -6768,6 +6768,13 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Kala jab sadaradaha",
+      "width": "Ballaca qoraalka",
+      "shrink": "Yaree qoraalka si uu u galo",
+      "height": "Dhererka qoraalka",
+      "captions": "Hagaaji jidka qoraalka hoose"
+    },
     "cloud": {
       "trash": "Qashin",
       "title": "Mashaariicda daruurta",

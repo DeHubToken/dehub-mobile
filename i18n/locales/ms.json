@@ -7045,6 +7045,13 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Balut baris",
+      "width": "Lebar teks",
+      "shrink": "Kecilkan teks agar muat",
+      "height": "Tinggi teks",
+      "captions": "Laraskan trek sari kata"
+    },
     "cloud": {
       "trash": "Sampah",
       "title": "Projek awan",

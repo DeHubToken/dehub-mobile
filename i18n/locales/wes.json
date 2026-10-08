@@ -6729,6 +6729,13 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Break di lines",
+      "width": "Text width",
+      "shrink": "Make text small make e fit",
+      "height": "Text height",
+      "captions": "Make subtitle track fit"
+    },
     "cloud": {
       "trash": "Dustbin",
       "title": "Cloud projects",

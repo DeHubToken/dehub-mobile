@@ -6866,6 +6866,13 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Bungkus baris",
+      "width": "Lebar teks",
+      "shrink": "Perkecil teks agar pas",
+      "height": "Tinggi teks",
+      "captions": "Sesuaikan trek takarir"
+    },
     "cloud": {
       "trash": "Sampah",
       "title": "Proyek cloud",
