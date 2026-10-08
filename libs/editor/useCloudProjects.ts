@@ -17,6 +17,21 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     if (!mounted.current || scope.current.wallet !== wallet) throw new Error("Cloud project account changed");
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
+  const currentId = context.current()?.id || "";
+  const [sharedLink, setSharedLink] = useState<{id:string;wallet:string;owner:string|null}|null>(null);
+  const sharedOwner = sharedLink?.id === currentId && sharedLink.wallet === wallet ? sharedLink.owner : null;
+  const linkPending = !!currentId && !!device && (sharedLink?.id !== currentId || sharedLink.wallet !== wallet);
+  useEffect(() => {
+    let alive = true;
+    setSharedLink(null);
+    if (device && currentId) void device.session.sharedOwner(currentId).then(owner => {
+      if (alive && mounted.current && scope.current.wallet === wallet) setSharedLink({id:currentId,wallet,owner});
+    }).catch(() => {
+      if (alive && mounted.current && scope.current.wallet === wallet) setError("Could not read this project's cloud link");
+    });
+    return () => { alive = false; };
+  }, [wallet, device, currentId]);
+
   const [projects, setProjects] = useState<CloudProjectSummary[]>([]), [history, setHistory] = useState<CloudProjectSummary[]>([]);
   const [viewTrash, setViewTrash] = useState(false);
   const [selected, setSelected] = useState<CloudProjectSummary | null>(null);
@@ -35,7 +50,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : "Cloud project operation failed"); }
     finally { busyRef.current = false; if (mounted.current) setBusy(false); }
   }
-  return { available: !!device, busy, error, saved, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
+  return { available: !!device, busy, error, saved, sharedOwner, linkPending, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
     clearHistory: () => { setSelected(null); setHistory([]); },
     refresh: () => run(async ({ api }, check) => {
       if (viewShared) { const rows=await api.review.inbox(); check(); setSharedProjects(rows); }
@@ -94,6 +109,15 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       if (!review || comment.ownerWallet!==review.ownerWallet || comment.projectId!==review.projectId) throw new Error("Project review changed");
       await api.review.resolve(comment,!comment.resolved); check(); const rows=await api.review.comments(review.ownerWallet,review.projectId); check(); setComments(rows);
     }),
+    openShared: (success?: () => void) => run(async ({session},check) => {
+      if (!review || (review.ownerWallet !== wallet && review.role !== "editor")) throw new Error("Project editing access is unavailable");
+      const previous = scope.current.context.current(), previousKey = previous ? projectReviewSnapshotKey(previous) : "";
+      await scope.current.context.preserve(); check();
+      const snapshot = await session.openShared(review.ownerWallet, review.projectId); check();
+      const now = scope.current.context.current();
+      if (now?.id !== previous?.id || (now ? projectReviewSnapshotKey(now) : "") !== previousKey) throw new Error("The current project changed during transfer");
+      await scope.current.context.open(snapshot); check(); setSharedLink({id:snapshot.id,wallet,owner:review.ownerWallet}); success?.();
+    }),
     openReview: (revision?: number, seconds=0, success?: () => void) => run(async ({session},check) => {
       if (!review) return;
       const targetRevision=revision ?? review.revision, opened=openedReview.current, current=scope.current.context.current();
@@ -116,7 +140,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     }),
     save: (copy = false) => run(async ({ api, session }, check) => {
       const snapshot = scope.current.context.current(); if (!snapshot) return;
-      await session.save(snapshot, copy); check(); setSaved(true);
+      await session.save(snapshot, copy); check(); if (copy) setSharedLink({id:snapshot.id,wallet,owner:null}); setSaved(true);
       const rows = await api.list(); check(); setViewTrash(false); setViewShared(false); clearReview(); setProjects(rows); setSelected(null); setHistory([]);
     }),
     showHistory: (project: CloudProjectSummary) => run(async ({ api }, check) => {
