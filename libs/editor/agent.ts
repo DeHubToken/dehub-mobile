@@ -1,4 +1,5 @@
 import { videoMatteCommand } from "./videoMatte";
+import { generationChatRequest, generationDraft, type GenerationDraft } from "./generationDraft";
 /**
  * Editor AI agent, mobile half.
  *
@@ -135,7 +136,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const last = messages[messages.length - 1];
-  const direct = last?.role === "user" && scene && typeof scene === "object" ? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) ?? videoMatteCommand(last.content, scene) : null;
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? generationChatRequest(last.content) ?? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) ?? videoMatteCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
   return askSceneAgent(messages, scene, signal);
 }
@@ -283,7 +284,9 @@ export interface ApplyReport {
   applied: number;
   failed: number;
   missingStock: string[];
-  /** Asked for something the phone does not do yet (captions, AI generation, pages). */
+  /** Prepared for review in Creator Studio; no model has run. */
+  generate?: GenerationDraft;
+  /** Asked for an operation the phone does not support. */
   unsupported: string[];
   selectedId: string | null;
   cursorTime?: number;
@@ -625,9 +628,12 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         cursor = page.start; report.cursorTime = cursor;
         return true;
       }
-      case "generate":
-        report.unsupported.push(String(op.op));
-        return false;
+      case "generate": {
+        const draft = generationDraft(op, p.settings.aspectPreset);
+        if (!draft) return false;
+        report.generate = draft;
+        return true;
+      }
       default:
         return false;
     }
@@ -638,13 +644,13 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
     if (!expanded) { report.failed++; continue; }
     for (const edit of expanded) {
       try {
-        if (await one(edit)) report.applied++;
+        if (await one(edit)) { if (edit.op !== "generate") report.applied++; }
         else report.failed++;
       } catch {
         report.failed++;
       }
     }
   }
-  return { project: { ...p, updatedAt: Date.now() }, report };
+  return { project: p === start ? start : { ...p, updatedAt: Date.now() }, report };
 }
 
