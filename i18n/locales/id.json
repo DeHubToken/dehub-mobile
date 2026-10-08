@@ -8111,7 +8111,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain postingan",
         "title": "Pengaturan",
         "intro": "Sesuaikan pengalaman DeHub Anda dengan preferensi bahasa, privasi, dan tampilan.",
         "steps": {

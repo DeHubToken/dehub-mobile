@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "postingChain": "发帖区块链",
     "showOnline": "显示我在线辰光",
     "showOnlineDesc": "搿个辰光，搿个用DeHub，搿个名字旁边会得看到一个绿点。",
     "smartReplies": "建议回复",

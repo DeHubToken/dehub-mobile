@@ -8123,7 +8123,6 @@
         }
       },
       "settings": {
-    "postingChain": "Cadena de bloques de las publicaciones",
         "title": "Configuración",
         "intro": "Personaliza tu experiencia en DeHub con preferencias de idioma, privacidad y visualización.",
         "steps": {
