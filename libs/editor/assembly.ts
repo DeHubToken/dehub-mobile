@@ -1,5 +1,6 @@
 import { sliceTimelineClip } from "./timelineAgent";
 import { sameHighlightSource } from "./highlights";
+import { assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, selectedAssemblyAssets, type AssemblyAsset } from "./assemblyLibrary";
 import type { Clip, MediaClip, ProjectSnapshot, Track, TransitionKind } from "./types";
 
 export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean }
@@ -59,8 +60,9 @@ export function assemblyPlan(project: ProjectSnapshot, request: AssemblyRequest,
 }
 
 /** A separate project retains source trims, speed, motion, captions and sound. */
-export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, identity: { id: string; title: string }, makeId: () => string): ProjectSnapshot {
-  const media = assemblyMedia(original), sounds = assemblySounds(original), duration = assemblyDuration(plan);
+export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, identity: { id: string; title: string }, makeId: () => string, library: readonly AssemblyAsset[] = []): ProjectSnapshot {
+  const sources = assemblyLibrarySource(original, library);
+  const media = assemblyMedia(sources), sounds = assemblySounds(sources), duration = assemblyDuration(plan);
   if (!identity.id || identity.id === original.id || !plan.shots.length || plan.shots.length > 100 || !finite(duration) || duration > 600
     || new Set(plan.shots.map(s => s.id)).size !== plan.shots.length || (plan.transition !== null && !transitions.includes(plan.transition))
     || (plan.soundId !== null && !sounds.some(c => c.id === plan.soundId))) invalid();
@@ -81,7 +83,8 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
     if (next && plan.transition) copied.transitionOut = { kind: plan.transition, duration: Math.min(0.4, shot.duration / 2, next.duration / 2) };
     clips.push(copied);
     const from = source.start + Math.min(shot.offset, source.duration - 0.05), sourceEnd = source.start + source.duration, to = Math.min(from + shot.duration, sourceEnd);
-    for (const overlay of original.clips) {
+    const overlays = original.clips.some(clip => clip.id === source.id) ? original.clips : [];
+    for (const overlay of overlays) {
       if (overlay.kind !== "text" && overlay.kind !== "shape" && overlay.kind !== "audio") continue;
       if (overlay.id === plan.soundId) continue;
       const start = Math.max(from, overlay.start), end = Math.min(to, overlay.start + overlay.duration);
@@ -112,7 +115,7 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
       part.trackId = musicTrackId; part.transitionOut = undefined;
       clips.push(part); time = round(time + length);
     }
-    tracks.push({ id: musicTrackId, kind: "audio", name: original.tracks.find(t => t.id === sound.trackId)?.name ?? original.title, hidden: false, muted: original.tracks.find(t => t.id === sound.trackId)?.muted ?? false });
+    tracks.push({ id: musicTrackId, kind: "audio", name: sources.tracks.find(t => t.id === sound.trackId)?.name ?? original.title, hidden: false, muted: sources.tracks.find(t => t.id === sound.trackId)?.muted ?? false });
   }
   const settings = { ...original.settings }; delete settings.pages;
   if (clips.length > 5000) invalid();
@@ -121,7 +124,7 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
 
 export interface AssemblyState extends AssemblyPlan { sourceId: string | null; media: MediaClip[]; sounds: MediaClip[]; busy: boolean; error: "selectMedia" | "limit" | "changed" | "failed" | null; undo: AssemblyPlan | null }
 export const emptyAssembly = (): AssemblyState => ({ sourceId: null, media: [], sounds: [], shots: [], transition: null, soundId: null, busy: false, error: null, undo: null });
-export interface AssemblyRuntime { current: () => ProjectSnapshot | null; create: (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal) => Promise<boolean> }
+export interface AssemblyRuntime { current: () => ProjectSnapshot | null; library?: () => AssemblyAsset[] | Promise<AssemblyAsset[]>; create: (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => Promise<boolean> }
 export async function persistAssembly(original: ProjectSnapshot, next: ProjectSnapshot, runtime: {
   current: () => ProjectSnapshot | null; save: (project: ProjectSnapshot) => Promise<void>; commit: (original: ProjectSnapshot, next: ProjectSnapshot) => void | Promise<void>;
 }, signal?: AbortSignal): Promise<boolean> {
@@ -134,16 +137,22 @@ export async function persistAssembly(original: ProjectSnapshot, next: ProjectSn
 export class AssemblySession {
   state = emptyAssembly();
   private source: ProjectSnapshot | null = null;
+  private catalog: AssemblyAsset[] = [];
+  private request: AssemblyRequest | null = null;
+  private editedRanges = false;
   private controller: AbortController | null = null;
   constructor(private runtime: AssemblyRuntime, private changed: (state: AssemblyState) => void) {}
   private patch(value: Partial<AssemblyState>) { this.state = { ...this.state, ...value }; this.changed(this.state); }
   matchesSource(current = this.runtime.current()) { return !!this.source && !!current && sameHighlightSource(this.source, current); }
   dispose() { this.controller?.abort(); this.controller = null; }
-  reset() { this.dispose(); this.source = null; this.state = emptyAssembly(); this.changed(this.state); }
-  start(request: AssemblyRequest, selected: string[]) {
+  reset() { this.dispose(); this.source = null; this.catalog = []; this.request = null; this.editedRanges = false; this.state = emptyAssembly(); this.changed(this.state); }
+  start(request: AssemblyRequest, selected: string[], library: readonly AssemblyAsset[] = []) {
     if (this.state.busy) return;
     this.reset(); const source = this.runtime.current(); if (!source) { this.patch({ error: "selectMedia" }); return; }
-    this.source = source; this.patch({ sourceId: source.id, media: assemblyMedia(source), sounds: assemblySounds(source) });
+    this.source = source; this.catalog = assemblyCatalog(library); this.request = request;
+    const sources = assemblyLibrarySource(source, this.catalog);
+    this.patch({ sourceId: source.id, media: assemblyMedia(sources), sounds: assemblySounds(sources), transition: request.transition });
+    if (!assemblyMedia(source).length && this.state.media.length) return;
     try { this.patch(assemblyPlan(source, request, selected)); }
     catch { this.patch({ error: this.state.media.length ? "limit" : "selectMedia" }); }
   }
@@ -151,15 +160,27 @@ export class AssemblySession {
     if (this.state.busy) return;
     if (!this.matchesSource()) { this.patch({ error: "changed" }); return; }
     const plan = { ...this.state, ...value };
-    const valid = finite(assemblyDuration(plan)) && assemblyDuration(plan) <= 600 && plan.shots.length <= 100 && plan.shots.every(s => {
+    const target = !this.editedRanges && this.catalog.length ? this.request?.seconds : undefined;
+    const valid = finite(assemblyDuration(plan)) && assemblyDuration(plan) <= 600
+      && (target === undefined || !plan.shots.length || Math.abs(assemblyDuration(plan) - target) <= 1e-6)
+      && plan.shots.length <= 100 && plan.shots.every(s => {
       const clip = this.state.media.find(c => c.id === s.id);
       return clip && finite(s.offset) && finite(s.duration) && s.offset >= 0 && s.duration >= 0.05 && s.offset + s.duration <= availableDuration(clip) + 1e-6;
     });
     this.patch({ ...value, error: valid ? null : "limit", undo: { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId } });
   }
   toggle(id: string) {
+    if (this.state.busy || !this.matchesSource()) return;
     const clip = this.state.media.find(c => c.id === id); if (!clip) return;
-    this.edit({ shots: this.state.shots.some(s => s.id === id) ? this.state.shots.filter(s => s.id !== id) : [...this.state.shots, { id, offset: 0, duration: Math.min(5, clip.duration) }] });
+    let shots = this.state.shots.some(s => s.id === id) ? this.state.shots.filter(s => s.id !== id) : [...this.state.shots, { id, offset: 0, duration: Math.min(5, clip.duration) }];
+    if (!this.editedRanges && this.request && shots.length && this.catalog.length) {
+      try {
+        const allocated = assemblyPlan(assemblyLibrarySource(this.source!, this.catalog), { ...this.request, selected: true }, shots.map(shot => shot.id));
+        const lengths = new Map(allocated.shots.map(shot => [shot.id, shot.duration]));
+        shots = shots.map(shot => ({ ...shot, duration: lengths.get(shot.id)! }));
+      } catch { this.edit({ shots }); this.patch({ error: "limit" }); return; }
+    }
+    this.edit({ shots });
   }
   move(index: number, delta: -1 | 1) {
     if (!Number.isInteger(index) || index < 0 || index >= this.state.shots.length || index + delta < 0 || index + delta >= this.state.shots.length) return;
@@ -169,6 +190,7 @@ export class AssemblySession {
     if (this.state.busy || !this.matchesSource()) return;
     const clip = this.state.media.find(c => c.id === id);
     if (!clip) return;
+    this.editedRanges = true;
     this.edit({ shots: this.state.shots.map(s => s.id === id ? { id, offset, duration } : s) });
   }
   transition(value: TransitionKind | null) { if (value === null || transitions.includes(value)) this.edit({ transition: value }); }
@@ -188,13 +210,25 @@ export class AssemblySession {
     return false;
   }
   undo() { if (!this.state.busy && this.matchesSource() && this.state.undo) { this.edit(this.state.undo); this.patch({ undo: null }); } }
-  preview(index: number) { const shot = this.state.shots[index], clip = shot && this.state.media.find(c => c.id === shot.id); return !this.state.busy && this.state.error !== "limit" && this.matchesSource() && clip ? { id: clip.id, start: clip.start + Math.min(shot.offset, clip.duration - 0.05), end: clip.start + Math.min(shot.offset + shot.duration, clip.duration) } : null; }
+  preview(index: number): { id: string; start: number; end: number; libraryClip?: MediaClip } | null {
+    const shot = this.state.shots[index], clip = shot && this.state.media.find(c => c.id === shot.id);
+    if (this.state.busy || this.state.error === "limit" || !this.matchesSource() || !clip) return null;
+    const range = { id: clip.id, start: clip.start + Math.min(shot.offset, clip.duration - 0.05), end: clip.start + Math.min(shot.offset + shot.duration, clip.duration) };
+    return this.source!.clips.some(source => source.id === clip.id) ? range : { ...range, libraryClip: sliceTimelineClip(clip, shot.offset, shot.duration, clip.id, 0) as MediaClip };
+  }
   async create(): Promise<boolean> {
     if (this.state.busy || !this.state.shots.length || this.state.error === "limit") return false;
     if (!this.source || !this.matchesSource()) { this.patch({ error: "changed" }); return false; }
     const controller = new AbortController(); this.controller = controller; this.patch({ busy: true, error: null });
     try {
-      const saved = await this.runtime.create(this.source, { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId }, controller.signal);
+      const source = this.source, plan = { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId };
+      if (selectedAssemblyAssets(source, plan, this.catalog).length) {
+        if (!this.runtime.library || !assemblyCatalogMatches(source, plan, this.catalog, await this.runtime.library())) {
+          if (this.controller === controller) this.patch({ error: "changed" }); return false;
+        }
+      }
+      if (this.controller !== controller || controller.signal.aborted || !this.matchesSource()) return false;
+      const saved = await this.runtime.create(source, plan, controller.signal, this.catalog);
       if (this.controller !== controller || controller.signal.aborted) return false;
       if (saved) { this.reset(); return true; } this.patch({ error: "changed" }); return false;
     } catch { if (this.controller === controller && !controller.signal.aborted) this.patch({ error: "failed" }); return false; }
