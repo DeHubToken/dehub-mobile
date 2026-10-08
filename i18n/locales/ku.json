@@ -6673,6 +6673,28 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Xalên girîng ên dîtbarî",
+      "visualPrivacy": "Çarçoveyên bijartî ji bo analîza dîtbarî bişînin."
+    },
+    "review": {
+      "title": "Vekolîna projeyê",
+      "shared": "Bi te re parvekirî",
+      "time": "Dem (s)",
+      "assign": "Cuzdan diyar bike"
+    },
+    "textFit": {
+      "wrap": "Rêzan bibire",
+      "width": "Firehiya nivîsê",
+      "shrink": "Nivîsê biçûk bike da ku bicîh bibe",
+      "height": "Bilindahiya nivîsê",
+      "captions": "Rêya binnivîsê lihev bîne"
+    },
+    "cloud": {
+      "trash": "Çop",
+      "title": "Projeyên ewrê",
+      "restore": "Vegere"
+    },
     "shots": {
       "detect": "Guhertinên dîmenê bibîne",
       "split": "Li birînên hilbijartî parçe bike",

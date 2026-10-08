@@ -6905,6 +6905,28 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Khoảnh khắc hình ảnh nổi bật",
+      "visualPrivacy": "Gửi các khung hình đã chọn để phân tích hình ảnh."
+    },
+    "review": {
+      "title": "Đánh giá dự án",
+      "shared": "Được chia sẻ với bạn",
+      "time": "Thời gian (s)",
+      "assign": "Chỉ định ví"
+    },
+    "textFit": {
+      "wrap": "Ngắt dòng",
+      "width": "Chiều rộng văn bản",
+      "shrink": "Thu nhỏ văn bản cho vừa",
+      "height": "Chiều cao văn bản",
+      "captions": "Điều chỉnh rãnh phụ đề cho vừa"
+    },
+    "cloud": {
+      "trash": "Thùng rác",
+      "title": "Dự án đám mây",
+      "restore": "Khôi phục"
+    },
     "shots": {
       "detect": "Phát hiện chuyển cảnh",
       "split": "Chia tại điểm cắt đã chọn",

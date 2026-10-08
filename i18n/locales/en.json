@@ -6871,6 +6871,24 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "review": {
+      "title": "Project review",
+      "shared": "Shared with you",
+      "time": "Time (s)",
+      "assign": "Assign wallet"
+    },
+    "textFit": {
+      "wrap": "Wrap lines",
+      "width": "Text width",
+      "shrink": "Shrink text to fit",
+      "height": "Text height",
+      "captions": "Fit caption track"
+    },
+    "cloud": {
+      "trash": "Trash",
+      "title": "Cloud projects",
+      "restore": "Restore"
+    },
     "shots": {
       "detect": "Detect scene changes",
       "split": "Split selected cuts",
@@ -7292,6 +7310,8 @@
       }
     },
     "highlights": {
+      "visual": "Visual highlights",
+      "visualPrivacy": "Send sampled frames for visual analysis.",
       "chatSuggest": "Find the best moments in this video",
       "chatFound": "Found {{count}} moments. Preview them, refine the selection, then create a separate edit.",
       "chatHint": "Reviewing highlights. Type what to keep or remove, or return to editing.",

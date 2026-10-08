@@ -6768,6 +6768,28 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Daqiiqadaha muuqaalka ugu fiican",
+      "visualPrivacy": "Dir xargaha la doortay si muuqaalka loo falanqeeyo."
+    },
+    "review": {
+      "title": "Dib u eegista mashruuca",
+      "shared": "Lala wadaagay adiga",
+      "time": "Waqti (s)",
+      "assign": "U qoondee boorsada"
+    },
+    "textFit": {
+      "wrap": "Kala jab sadaradaha",
+      "width": "Ballaca qoraalka",
+      "shrink": "Yaree qoraalka si uu u galo",
+      "height": "Dhererka qoraalka",
+      "captions": "Hagaaji jidka qoraalka hoose"
+    },
+    "cloud": {
+      "trash": "Qashin",
+      "title": "Mashaariicda daruurta",
+      "restore": "Soo celi"
+    },
     "shots": {
       "detect": "Ogow isbeddellada muuqaalka",
       "split": "U qaybi goynta la doortay",

@@ -6868,6 +6868,28 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} marika"
   },
   "editor": {
+    "highlights": {
+      "visual": "Fotoana miavaka hita maso",
+      "visualPrivacy": "Alefaso ny sary voafantina hanaovana fanadihadiana hita maso."
+    },
+    "review": {
+      "title": "Famerenana tetikasa",
+      "shared": "Nozaraina taminao",
+      "time": "Fotoana (s)",
+      "assign": "Manendry kitapom-bola"
+    },
+    "textFit": {
+      "wrap": "Zarao ny andalana",
+      "width": "Sakan'ny lahatsoratra",
+      "shrink": "Ahena ny lahatsoratra mba hifanaraka",
+      "height": "Haavon'ny lahatsoratra",
+      "captions": "Ampifanaraho ny lalan'ny dikanteny"
+    },
+    "cloud": {
+      "trash": "Fako",
+      "title": "Tetikasa ao amin’ny rahona",
+      "restore": "Avereno"
+    },
     "shots": {
       "detect": "Fantaro ny fiovan'ny seho",
       "split": "Zarao amin'ny fanapahana voafidy",

@@ -6729,6 +6729,28 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Video fine moments",
+      "visualPrivacy": "Send frames wey you choose make we check wetin dey show."
+    },
+    "review": {
+      "title": "Check project",
+      "shared": "Dem share am with you",
+      "time": "Time (s)",
+      "assign": "Choose wallet"
+    },
+    "textFit": {
+      "wrap": "Break di lines",
+      "width": "Text width",
+      "shrink": "Make text small make e fit",
+      "height": "Text height",
+      "captions": "Make subtitle track fit"
+    },
+    "cloud": {
+      "trash": "Dustbin",
+      "title": "Cloud projects",
+      "restore": "Bring am back"
+    },
     "shots": {
       "detect": "Find scene changes",
       "split": "Split for cuts wey you choose",

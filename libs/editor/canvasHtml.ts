@@ -37,6 +37,7 @@ import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
+import { VISUAL_FRAME_RUNTIME } from "./visualFrameRuntime";
 import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
@@ -64,6 +65,7 @@ canvas{display:block;width:100%;height:100%;}
   __EXPORT_RANGES_RUNTIME__
   __GIF_RUNTIME__
   __SHOT_RUNTIME__
+  __VISUAL_FRAME_RUNTIME__
   __VIDEO_MATTE_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
@@ -1463,6 +1465,21 @@ canvas{display:block;width:100%;height:100%;}
     reader.onerror = function () { cancelAudioTool(reqId); post({ type: "audioFailed", reqId: reqId, error: "read" }); };
     reader.readAsDataURL(entry.blob.slice(entry.offset, end));
   }
+  var visualJob = null;
+  function cancelVisualScan(reqId) {
+    if (!visualJob || visualJob.reqId !== reqId) return;
+    visualJob.abort.abort(); URL.revokeObjectURL(visualJob.url); visualJob = null;
+  }
+  function processVisualScan(m) {
+    var blob = blobs.get(m.clip.mediaId);
+    if (visualJob || !blob) { post({ type: "visualFailed", reqId: m.reqId, error: "video unavailable" }); return; }
+    var job = { reqId: m.reqId, abort: new AbortController(), url: URL.createObjectURL(blob) }; visualJob = job;
+    sampleVisualFrames(job.url, m.clip, m.windows, job.abort.signal, function (fraction) { post({ type: "visualProgress", reqId: m.reqId, fraction: fraction }); }).then(function (frames) {
+      if (!job.abort.signal.aborted) post({ type: "visualReady", reqId: m.reqId, frames: frames });
+    }).catch(function (error) {
+      if (!job.abort.signal.aborted) post({ type: "visualFailed", reqId: m.reqId, error: String(error.message || error) });
+    }).finally(function () { URL.revokeObjectURL(job.url); if (visualJob === job) visualJob = null; });
+  }
   var shotJob = null;
   function cancelShotScan(reqId) {
     if (!shotJob || shotJob.reqId !== reqId) return;
@@ -1644,6 +1661,10 @@ canvas{display:block;width:100%;height:100%;}
       cutout(m);
     } else if (m.type === "captions") {
       transcribeClip(m);
+    } else if (m.type === "visualFrames") {
+      processVisualScan(m);
+    } else if (m.type === "visualCancel") {
+      cancelVisualScan(m.reqId);
     } else if (m.type === "shots") {
       processShotScan(m);
     } else if (m.type === "shotsCancel") {
@@ -1683,5 +1704,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
   .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");

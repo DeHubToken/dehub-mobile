@@ -6787,6 +6787,28 @@
     "savePrompt": "Kas salvestada see postitus mustandina, et see hiljem lõpetada ja postitada?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuaalsed tipphetked",
+      "visualPrivacy": "Saada valitud kaadrid visuaalseks analüüsiks."
+    },
+    "review": {
+      "title": "Projekti ülevaatus",
+      "shared": "Sinuga jagatud",
+      "time": "Aeg (s)",
+      "assign": "Määra rahakott"
+    },
+    "textFit": {
+      "wrap": "Murra ridu",
+      "width": "Teksti laius",
+      "shrink": "Vähenda teksti, et see mahuks",
+      "height": "Teksti kõrgus",
+      "captions": "Sobita subtiitrite rada"
+    },
+    "cloud": {
+      "trash": "Prügikast",
+      "title": "Pilveprojektid",
+      "restore": "Taasta"
+    },
     "shots": {
       "detect": "Leia stseenivahetused",
       "split": "Jaga valitud lõikekohtades",
