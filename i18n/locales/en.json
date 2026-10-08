@@ -7310,6 +7310,8 @@
       }
     },
     "highlights": {
+      "visual": "Visual highlights",
+      "visualPrivacy": "Send sampled frames for visual analysis.",
       "chatSuggest": "Find the best moments in this video",
       "chatFound": "Found {{count}} moments. Preview them, refine the selection, then create a separate edit.",
       "chatHint": "Reviewing highlights. Type what to keep or remove, or return to editing.",

@@ -6888,6 +6888,10 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Wizualne najważniejsze momenty",
+      "visualPrivacy": "Wyślij wybrane klatki do analizy wizualnej."
+    },
     "review": {
       "title": "Przegląd projektu",
       "shared": "Udostępnione tobie",

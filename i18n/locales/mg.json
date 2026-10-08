@@ -6868,6 +6868,10 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "highlights": {
+      "visual": "Fotoana miavaka hita maso",
+      "visualPrivacy": "Alefaso ny sary voafantina hanaovana fanadihadiana hita maso."
+    },
     "review": {
       "title": "Famerenana tetikasa",
       "shared": "Nozaraina taminao",

@@ -6768,6 +6768,10 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Daqiiqadaha muuqaalka ugu fiican",
+      "visualPrivacy": "Dir xargaha la doortay si muuqaalka loo falanqeeyo."
+    },
     "review": {
       "title": "Dib u eegista mashruuca",
       "shared": "Lala wadaagay adiga",

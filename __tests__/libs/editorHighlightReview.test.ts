@@ -18,15 +18,15 @@ describe("highlight review", () => {
     await expect(reviewHighlights(ranges, [0], "keep 9", noRequest)).rejects.toThrow("highlight_review_invalid");
   });
 
-  it("ranks only existing transcript suggestions and returns complete checked selection", async () => {
+  it("ranks only existing evidence suggestions and returns complete checked selection", async () => {
     const before = JSON.stringify(ranges);
     const result = await reviewHighlights(ranges, [1], "Keep only the backup tips", async (messages, raw) => {
       expect(messages[0].content).toContain("COMPLETE final selection");
       expect(messages[0].content).toContain("Keep only the backup tips");
-      const scene = raw as { capabilities: string[]; selected: string[]; layers: { id: string; transcript: string }[] };
+      const scene = raw as { capabilities: string[]; selected: string[]; layers: { id: string; evidence: string }[] };
       expect(scene.capabilities).toEqual(["select"]);
       expect(scene.selected).toEqual(["highlight-2"]);
-      expect(scene.layers.map(layer => layer.transcript)).toEqual(ranges.map(range => range.text));
+      expect(scene.layers.map(layer => layer.evidence)).toEqual(ranges.map(range => range.text));
       return { ops: [{ op: "select", id: "highlight-3" }, { op: "select", id: "highlight-1" }, { op: "select", id: "highlight-1" }] };
     });
     expect(result).toEqual([0, 2]); expect(JSON.stringify(ranges)).toBe(before);

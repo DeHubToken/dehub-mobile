@@ -6779,6 +6779,10 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "highlights": {
+      "visual": "畫面精華片段",
+      "visualPrivacy": "傳送揀選嘅畫格作畫面分析。"
+    },
     "review": {
       "title": "項目審閱",
       "shared": "同你分享",

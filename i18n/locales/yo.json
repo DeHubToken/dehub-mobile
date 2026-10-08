@@ -6769,6 +6769,10 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Àwọn ìṣẹ̀lẹ̀ àwòrán pàtàkì",
+      "visualPrivacy": "Fi àwọn férémù tí a yàn ránṣẹ́ fún ìtúpalẹ̀ àwòrán."
+    },
     "review": {
       "title": "Àyẹ̀wò iṣẹ́",
       "shared": "Pín pẹ̀lú rẹ",

@@ -6769,6 +6769,10 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Muhimman lokutan gani",
+      "visualPrivacy": "Aika zaɓaɓɓun firam don nazarin hoto."
+    },
     "review": {
       "title": "Bitar aiki",
       "shared": "An raba tare da kai",

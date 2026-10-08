@@ -1206,6 +1206,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
           return canvasRef.current.transcribe(clip, progress, signal);
         }}
+        sampleVisual={(clip, windows, signal, progress) => {
+          setPlaying(false);
+          if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+          return canvasRef.current.sampleVisual(clip, windows, signal, progress);
+        }}
         create={createHighlights} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
