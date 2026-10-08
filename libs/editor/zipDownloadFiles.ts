@@ -1,6 +1,7 @@
 import * as FileSystem from "expo-file-system/legacy";
 import { File as FsFile, Paths } from "expo-file-system";
 import { base64ToBytes } from "./storage";
+import { exportBaseName } from "./exportName";
 import { writeZipArchive, type ZipEntry } from "./zipArchive";
 
 /** Write directly to a cache file without keeping the video archive in memory. */
@@ -13,7 +14,7 @@ export async function zipDownloadFiles(files: { name: string; uri: string }[], t
       read: async (position, length) => base64ToBytes(await FileSystem.readAsStringAsync(file.uri, { encoding: FileSystem.EncodingType.Base64, position, length })),
     });
   }
-  const name = (title || "video").replace(/[\\/:*?"<>|\s.]+/g, "-").slice(0, 40);
+  const name = exportBaseName(title);
   const file = new FsFile(Paths.cache, `${name}-clips-${Date.now()}-${Math.random().toString(36).slice(2)}.zip`);
   file.create({ overwrite: true });
   const handle = file.open();
