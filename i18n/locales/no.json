@@ -8079,7 +8079,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blokkjede for innlegg",
         "title": "Innstillinger",
         "intro": "Tilpass din DeHub-opplevelse med språk-, personvern- og visningsinnstillinger.",
         "steps": {

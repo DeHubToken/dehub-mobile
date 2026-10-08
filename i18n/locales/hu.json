@@ -8085,7 +8085,6 @@
         }
       },
       "settings": {
-    "postingChain": "Bejegyzések blokklánca",
         "title": "Beállítások",
         "intro": "Testreszabhatja DeHub élményét a nyelv, az adatvédelem és a megjelenítési beállításokkal.",
         "steps": {

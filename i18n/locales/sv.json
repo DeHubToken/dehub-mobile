@@ -8086,7 +8086,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockkedja för inlägg",
         "title": "Inställningar",
         "intro": "Anpassa din DeHub-upplevelse med språk-, integritets- och visningsinställningar.",
         "steps": {

@@ -8114,7 +8114,6 @@
         }
       },
       "settings": {
-    "postingChain": "게시물 블록체인",
         "title": "설정",
         "intro": "언어, 개인 정보 보호 및 표시 기본 설정을 사용하여 DeHub 환경을 사용자 지정하세요.",
         "steps": {

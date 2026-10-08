@@ -8083,7 +8083,6 @@
         }
       },
       "settings": {
-    "postingChain": "Cadena de blocs de les publicacions",
         "title": "Configuració",
         "intro": "Personalitzeu la vostra experiència DeHub amb preferències d'idioma, privadesa i visualització.",
         "steps": {

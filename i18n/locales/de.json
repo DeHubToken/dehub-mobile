@@ -8121,7 +8121,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain für Beiträge",
         "title": "Einstellungen",
         "intro": "Passen Sie Ihr DeHub-Erlebnis mit Sprach-, Datenschutz- und Anzeigeeinstellungen an.",
         "steps": {

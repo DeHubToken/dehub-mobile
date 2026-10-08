@@ -8121,7 +8121,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain dei post",
         "title": "Impostazioni",
         "intro": "Personalizza la tua esperienza DeHub con preferenze di lingua, privacy e visualizzazione.",
         "steps": {

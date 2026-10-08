@@ -8263,7 +8263,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain para sa mga post",
         "title": "Mga Setting",
         "intro": "I-customize ang iyong karanasan sa DeHub gamit ang mga kagustuhan sa wika, privacy, at display.",
         "steps": {

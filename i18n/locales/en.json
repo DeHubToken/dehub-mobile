@@ -8417,7 +8417,6 @@
         }
       },
       "settings": {
-    "postingChain": "Posting chain",
         "title": "Settings",
         "intro": "Customize your DeHub experience with language, privacy, and display preferences.",
         "steps": {

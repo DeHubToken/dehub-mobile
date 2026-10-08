@@ -8183,7 +8183,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain postów",
         "title": "Ustawienia",
         "intro": "Dostosuj swoje doświadczenie na DeHub, wybierając preferencje językowe, prywatności i wyświetlania.",
         "steps": {

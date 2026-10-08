@@ -8084,7 +8084,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain til opslag",
         "title": "Indstillinger",
         "intro": "Tilpas din DeHub-oplevelse med sprog-, privatlivs- og visningspræferencer.",
         "steps": {

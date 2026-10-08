@@ -8082,7 +8082,6 @@
         }
       },
       "settings": {
-    "postingChain": "Blockchain për postimet",
         "title": "Cilësimet",
         "intro": "Personalizoni përvojën tuaj në DeHub me preferencat e gjuhës, privatësisë dhe shfaqjes.",
         "steps": {

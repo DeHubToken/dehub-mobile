@@ -8082,7 +8082,6 @@
         }
       },
       "settings": {
-    "postingChain": "Julkaisujen lohkoketju",
         "title": "Asetukset",
         "intro": "Mukauta DeHub-kokemustasi kieli-, yksityisyys- ja näyttöasetuksilla.",
         "steps": {
