@@ -69,6 +69,8 @@ import {
 } from "../components/editor/EditorPanels";
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
+import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
+import type { GenerationDraft } from "../libs/editor/generationDraft";
 import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
@@ -379,6 +381,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [chatOpen, setChatOpen] = useState(false);
   const [chat, setChat] = useState<ChatEntry[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
+  const [openingGenerator, setOpeningGenerator] = useState(false);
+  const generatorOpeningRef = useRef(false);
   const [highlightChatState, highlightChat] = useHighlightChat({
     current: h.latest,
     plan: askSceneAgent,
@@ -451,6 +455,30 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     saveTimer.current = setTimeout(() => { void flush(); }, 700);
   }, [project, flush]);
   useEffect(() => () => { void flush(); }, [flush]);
+
+  const editorMounted = useRef(true);
+  useEffect(() => { editorMounted.current = true; return () => { editorMounted.current = false; }; }, []);
+  const openDraft = useMemo(() => generationDraftOpener({
+    current: () => editorMounted.current ? latest.current : null,
+    save: async p => {
+      if (saveTimer.current) { clearTimeout(saveTimer.current); saveTimer.current = null; }
+      await saveProject(p);
+      persisted.current = true;
+    },
+    open: draft => {
+      setPlaying(false);
+      setChatOpen(false);
+      nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
+    },
+  }), [nav]);
+  const openGenerator = async (draft: GenerationDraft) => {
+    if (generatorOpeningRef.current) return;
+    generatorOpeningRef.current = true;
+    setOpeningGenerator(true);
+    try { await openDraft(draft); }
+    catch { if (editorMounted.current) toastError(t("common.somethingWentWrong")); }
+    finally { generatorOpeningRef.current = false; if (editorMounted.current) setOpeningGenerator(false); }
+  };
 
   const selected = project ? getClip(project, selectedId) : null;
   const showTimeline = !!project && (timelineOpen ?? isVideoProject(project));
@@ -832,7 +860,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string) => {
-    if (!project || chatBusy || highlightChat.state.busy) return;
+    if (!project || chatBusy || openingGenerator || highlightChat.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
@@ -866,10 +894,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (report.cursorTime !== undefined) { setTime(report.cursorTime); setPlaying(false); }
       let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
       if (!ops.length) content = t("editor.agent.nothingToDo");
+      if (report.generate && !report.applied && !reply) content = t("editor.agent.openGenerator");
       if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
       if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
       if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
-      setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied }]);
+      setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied, generate: report.generate }]);
     } catch (e) {
       const code = e instanceof Error ? e.message : "";
       setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
@@ -1544,7 +1573,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       <AgentSheet
         visible={chatOpen}
         entries={chat}
-        busy={chatBusy || highlightChatState.busy}
+        busy={chatBusy || openingGenerator || highlightChatState.busy}
         highlights={highlightChatState}
         highlightSourceChanged={highlightSourceChanged}
         onHighlightToggle={index => highlightChat.toggle(index)}
@@ -1553,6 +1582,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
         onHighlightClose={closeHighlightChat}
         onSend={(text) => { void sendToAgent(text); }}
+        onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
         onClose={() => setChatOpen(false)}
         onClear={() => { closeHighlightChat(); setChat([]); }}

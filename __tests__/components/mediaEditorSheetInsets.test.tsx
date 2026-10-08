@@ -1,7 +1,7 @@
 import React from 'react';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import AgentSheet from '../../components/editor/AgentSheet';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -23,7 +23,7 @@ const editor = readFileSync(join(process.cwd(), 'screens', 'MediaEditorScreen.ts
 
 const renderSheet = () =>
   render(
-    <AgentSheet visible entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} />,
+    <AgentSheet visible entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} onOpenGenerator={jest.fn()} />,
   );
 
 const sheetOf = (screen: ReturnType<typeof renderSheet>) => {
@@ -34,6 +34,29 @@ const sheetOf = (screen: ReturnType<typeof renderSheet>) => {
 describe('media editor AI sheet', () => {
   afterEach(() => {
     mockKeyboard.isVisible = false;
+  });
+
+  it('reopens the chosen voice or video request and disables review while busy', () => {
+    const voice = { kind: 'voice' as const, prompt: 'First sentence. Keep the last sentence.' };
+    const video = { kind: 'video' as const, prompt: 'Waves at night', aspect: '9:16' };
+    const props = {
+      visible: true, busy: false, onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
+      onClear: jest.fn(), onOpenGenerator: jest.fn(),
+      entries: [
+        { id: 'voice', role: 'assistant' as const, content: 'Voice draft', generate: voice },
+        { id: 'video', role: 'assistant' as const, content: 'Video draft', generate: video },
+      ],
+    };
+    const screen = render(<AgentSheet {...props} />);
+    const review = screen.getAllByLabelText('editor.agent.openGenerator');
+    fireEvent.press(review[1]);
+    expect(props.onOpenGenerator).toHaveBeenLastCalledWith(video);
+    fireEvent.press(review[0]);
+    expect(props.onOpenGenerator).toHaveBeenLastCalledWith(voice);
+    expect(props.onUndo).not.toHaveBeenCalled();
+    screen.rerender(<AgentSheet {...props} busy />);
+    fireEvent.press(screen.getAllByLabelText('editor.agent.openGenerator')[0]);
+    expect(props.onOpenGenerator).toHaveBeenCalledTimes(2);
   });
 
   it('lifts on Android from a keyboard view that fills the modal, backdrop included', () => {
