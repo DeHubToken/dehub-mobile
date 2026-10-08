@@ -43,3 +43,10 @@ it("injects complete range and audio helpers in the native export page", () => {
   const script = EDITOR_CANVAS_HTML.slice(EDITOR_CANVAS_HTML.indexOf("<script>") + 8, EDITOR_CANVAS_HTML.lastIndexOf("</script>"));
   expect(() => new Function(script)).not.toThrow();
 });
+
+it("keeps Unicode titles and distinct clip indices in archive names", () => {
+  const ranges = clipExportRanges({ ...project, title: "🎬東京".repeat(100) });
+  expect(new Set(ranges.map(range => range.name)).size).toBe(10);
+  expect(ranges[9].name).toMatch(/-clip-010$/);
+  expect(ranges.every(range => range.name.startsWith("🎬東京"))).toBe(true);
+});

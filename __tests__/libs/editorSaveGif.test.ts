@@ -1,5 +1,6 @@
 import { saveGif } from "../../libs/editor/saveGif";
 import { saveEditorDownload } from "../../libs/editor/saveEditorDownload";
+import { exportBaseName, exportFilename } from "../../libs/editor/exportName";
 import { Platform, Share } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 
@@ -17,7 +18,7 @@ beforeEach(() => {
 });
 it("writes the GIF in bounded base64 pieces without replacing earlier chunks", async () => {
   await saveGif("file://gif", "my/video");
-  expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", "my-video.gif", "image/gif");
+  expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", "my_video.gif", "image/gif");
   expect(FileSystem.readAsStringAsync).toHaveBeenCalledTimes(3);
   expect(FileSystem.readAsStringAsync).toHaveBeenNthCalledWith(1, "file://gif", { encoding: "base64", position: 0, length: 786432 });
   expect(FileSystem.readAsStringAsync).toHaveBeenNthCalledWith(3, "file://gif", { encoding: "base64", position: 1572864, length: 27136 });
@@ -43,4 +44,11 @@ it("saves clip archives with the correct file type and discards a cancelled copy
   expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", "ten-clips.zip", "application/zip");
   expect(FileSystem.writeAsStringAsync).not.toHaveBeenCalled();
   expect(FileSystem.deleteAsync).toHaveBeenCalledWith("content://gif", { idempotent: true });
+});
+
+it("keeps long Unicode clip names intact in the Android download folder", async () => {
+  const title = exportBaseName("🎬東京".repeat(100), "video", "-clip-010");
+  await saveEditorDownload("file://clip", title, "mp4", "video/mp4");
+  expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", exportFilename(title, "mp4"), "video/mp4");
+  expect(jest.mocked(FileSystem.StorageAccessFramework.createFileAsync).mock.calls[0][1]).toMatch(/-clip-010\.mp4$/);
 });
