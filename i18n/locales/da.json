@@ -6792,6 +6792,12 @@
     "savePrompt": "Gem dette opslag som et udkast for at afslutte og slå det op senere?"
   },
   "editor": {
+    "review": {
+      "title": "Projektgennemgang",
+      "shared": "Delt med dig",
+      "time": "Tid (s)",
+      "assign": "Tildel tegnebog"
+    },
     "textFit": {
       "wrap": "Ombryd linjer",
       "width": "Tekstbredde",

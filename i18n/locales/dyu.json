@@ -6736,6 +6736,12 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "review": {
+      "title": "Porozɛ lajɛ",
+      "shared": "I fɛ tila",
+      "time": "Waati (s)",
+      "assign": "Warimarayɔrɔ sugandi"
+    },
     "textFit": {
       "wrap": "Sɛbɛnni tɔgɔw tilan",
       "width": "Sɛbɛnni bonya",

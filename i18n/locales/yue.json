@@ -6779,6 +6779,12 @@
     "savePrompt": "將呢個帖子儲存為草稿，等遲啲完成同發佈？"
   },
   "editor": {
+    "review": {
+      "title": "項目審閱",
+      "shared": "同你分享",
+      "time": "時間 (s)",
+      "assign": "分配錢包"
+    },
     "textFit": {
       "wrap": "自動換行",
       "width": "文字闊度",

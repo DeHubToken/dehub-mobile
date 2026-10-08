@@ -6769,6 +6769,12 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "editor": {
+    "review": {
+      "title": "Arotake kaupapa",
+      "shared": "I tiritiria ki a koe",
+      "time": "Wā (s)",
+      "assign": "Tautapa pūkoro"
+    },
     "textFit": {
       "wrap": "Whati ngā rārangi",
       "width": "Whānui kuputuhi",

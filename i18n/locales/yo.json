@@ -6769,6 +6769,12 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "review": {
+      "title": "Àyẹ̀wò iṣẹ́",
+      "shared": "Pín pẹ̀lú rẹ",
+      "time": "Àkókò (s)",
+      "assign": "Yan àpò owó"
+    },
     "textFit": {
       "wrap": "Pín àwọn ìlà",
       "width": "Ìbú ọ̀rọ̀",

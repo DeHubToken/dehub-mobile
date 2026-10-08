@@ -6788,6 +6788,12 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "review": {
+      "title": "Pregled projekta",
+      "shared": "Podijeljeno s vama",
+      "time": "Vrijeme (s)",
+      "assign": "Dodijeli novčanik"
+    },
     "textFit": {
       "wrap": "Prelamanje redaka",
       "width": "Širina teksta",

@@ -6802,6 +6802,12 @@
     }
   },
   "editor": {
+    "review": {
+      "title": "Revizuirea proiectului",
+      "shared": "Partajat cu tine",
+      "time": "Timp (s)",
+      "assign": "Atribuie portofel"
+    },
     "textFit": {
       "wrap": "Încadrează rândurile",
       "width": "Lățimea textului",
