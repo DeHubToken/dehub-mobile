@@ -6771,6 +6771,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Sampah",
       "title": "Proyek awan",
       "restore": "Pulihake"
     },

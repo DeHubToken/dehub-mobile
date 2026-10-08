@@ -6730,6 +6730,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Dustbin",
       "title": "Cloud projects",
       "restore": "Bring am back"
     },

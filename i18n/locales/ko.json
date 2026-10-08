@@ -6872,6 +6872,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "휴지통",
       "title": "클라우드 프로젝트",
       "restore": "복원"
     },

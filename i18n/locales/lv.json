@@ -6788,6 +6788,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Atkritne",
       "title": "Mākoņprojekti",
       "restore": "Atjaunot"
     },

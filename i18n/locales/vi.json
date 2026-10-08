@@ -6906,6 +6906,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Thùng rác",
       "title": "Dự án đám mây",
       "restore": "Khôi phục"
     },

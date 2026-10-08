@@ -6883,6 +6883,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Corbeille",
       "title": "Projets dans le cloud",
       "restore": "Restaurer"
     },

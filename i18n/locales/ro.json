@@ -6803,6 +6803,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Coș de gunoi",
       "title": "Proiecte în cloud",
       "restore": "Restaurează"
     },

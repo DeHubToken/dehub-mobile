@@ -6867,6 +6867,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Sampah",
       "title": "Proyek cloud",
       "restore": "Pulihkan"
     },

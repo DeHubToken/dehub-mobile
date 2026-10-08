@@ -6878,6 +6878,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Papelera",
       "title": "Proyectos en la nube",
       "restore": "Restaurar"
     },

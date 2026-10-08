@@ -6791,6 +6791,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Koš",
       "title": "Cloudové projekty",
       "restore": "Obnovit"
     },

@@ -6817,6 +6817,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Papierchorb",
       "title": "Cloud-Projekt",
       "restore": "Wiederhärstelle"
     },
