@@ -899,7 +899,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const recordHighlights = (result: HighlightChatResult) => {
     if (result.status === "cancelled") return;
     const errors = { selectVideo: "editor.highlights.chatSelectVideo", changed: "editor.highlights.changed", limit: "editor.highlights.chatLimit", captionsMissing: "editor.highlights.chatCaptionsMissing", failed: "editor.highlights.reviewFailed" };
-    const content = result.status === "error" ? t(errors[result.error]) : result.status === "created" ? t("editor.highlights.created") : result.status === "reviewed" ? t("editor.highlights.reviewResult", result) : result.count ? t("editor.highlights.chatFound", result) : t("editor.highlights.none");
+    const content = result.status === "error" ? t(errors[result.error]) : result.status === "created" ? t("editor.highlights.created") : result.status === "reviewed" ? t("editor.highlights.reviewResult", result) : result.count ? t("editor.highlights.chatFound", result) : t(highlightChat.state.visual ? "follow.noResults" : "editor.highlights.none");
     setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };

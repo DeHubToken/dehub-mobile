@@ -28,6 +28,7 @@ export function highlightChatRequest(prompt: string): HighlightChatRequest | nul
 export type HighlightChatError = "selectVideo" | "changed" | "limit" | "captionsMissing" | "failed";
 export interface HighlightChatState {
   clipId: string | null;
+  visual?: boolean;
   ranges: HighlightRange[] | null;
   chosen: number[];
   undo: number[] | null;
@@ -78,7 +79,7 @@ export class HighlightChatSession {
     const captions = request.useCaptions && !visual ? highlightCaptionWords(original, clip) : null;
     if (captions && !captions.length) return this.fail("captionsMissing");
     const controller = new AbortController(); this.controller = controller; this.source = original;
-    this.patch({ clipId: clip.id, busy: true, progress: { stage: visual ? "rank" : "transcribe", fraction: 0 } });
+    this.patch({ clipId: clip.id, visual, busy: true, progress: { stage: visual ? "rank" : "transcribe", fraction: 0 } });
     try {
       let ranges: HighlightRange[];
       if (visual) {
