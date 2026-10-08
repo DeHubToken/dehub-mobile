@@ -185,7 +185,7 @@ const CaptionOverlay: React.FC<Props> = ({
     player,
     segments: dubTranslation?.status === 'ready' ? dubTranslation.segments : null,
     lang: dubLang,
-    enabled: wantDub && !cachedUrl && !dubFailed,
+    enabled: wantDub && audible && !cachedUrl && !dubFailed,
     onFailed: () => setDubFailed(true),
   });
   useCachedDubAudio(player, cachedUrl, () => setAudioFailed(true));
