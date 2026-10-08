@@ -3,6 +3,7 @@ import { CREATOR_FAL_IMAGE_MODELS, CREATOR_FAL_VIDEO_MODELS, creatorFalImageAspe
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { CREATOR_VIDEO_RULES } from '../config/creator-video-rules';
 import { applyTemplate, type CreatorTemplate } from './creatorTemplates';
+import { generationDraft, type GenerationDraft } from './editor/generationDraft';
 
 export type CreatorMode = 'image' | 'video' | 'audio' | '3d';
 export interface CreatorReferenceAsset {
@@ -59,6 +60,16 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
   if (!aspects.includes(next.aspect)) next.aspect = aspects[0];
   if (next.mode === '3d' && next.textureQuality === 'HD' && !MODEL3D_MODELS[model]?.hdMultiplier) next.textureQuality = 'standard';
   return next;
+}
+
+export function creatorSettingsForEditorDraft(value: unknown): { settings: CreatorStudioSettings; draft: GenerationDraft } | null {
+  const draft = generationDraft(value);
+  if (!draft) return null;
+  const mode: CreatorMode = draft.kind === 'voice' ? 'audio' : draft.kind;
+  return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
+    ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),
+    ...(draft.aspect ? { aspect: draft.aspect } : {}),
+  }) };
 }
 
 export function creatorVideoOptions(settings: CreatorStudioSettings) {
