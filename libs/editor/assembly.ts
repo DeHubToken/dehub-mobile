@@ -1,9 +1,10 @@
+import { assemblyFilePrompt, namedAssemblySelection } from "./namedAssembly";
 import { sliceTimelineClip } from "./timelineAgent";
 import { sameHighlightSource } from "./highlights";
 import { assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, selectedAssemblyAssets, type AssemblyAsset } from "./assemblyLibrary";
 import type { Clip, MediaClip, ProjectSnapshot, Track, TransitionKind } from "./types";
 
-export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean }
+export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean; filePrompt?: string; musicExcluded?: boolean }
 export interface AssemblyShot { id: string; offset: number; duration: number }
 export interface AssemblyPlan { shots: AssemblyShot[]; transition: TransitionKind | null; soundId: string | null }
 const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
@@ -15,14 +16,16 @@ const availableDuration = (clip: MediaClip) => clip.kind === "image" ? 600 : cli
 
 /** Requests for an editable assembly never start a generation provider. */
 export function assemblyRequest(prompt: string): AssemblyRequest | null {
-  const text = prompt.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const files = assemblyFilePrompt(prompt);
+  const text = files.text.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   if (!/^(?:(?:please|can you|could you|would you|peux-tu|peux tu|s'il te plait)\s+)*(?:make|create|generate|build|assemble|combine|join|creer|cree|assembler|assemble|combiner|combine)\b/.test(text)) return null;
   if (!/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text) && !/\b(?:video|montage|slideshow|film|reel|story|edit)\b/.test(text.split(/\b(?:from|using|with|a partir de|avec)\b/)[0])) return null;
   if (!/\b(?:clips?|videos?|photos?|images?|footage|media|medias?)\b/.test(text) || /\b(?:highlights?|best moments?|meilleurs? moments?|temps forts?)\b/.test(text)) return null;
-  if (!/\b(?:from|using|with my|with these|out of|a partir de|avec mes|avec ces|selected|selectionnes?)\b/.test(text) && !/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text)) return null;
+  if (!/\b(?:from|using|with my|with these|out of|a partir de|avec mes|avec ces|selected|selectionnes?)\b/.test(text) && !(files.named && /\b(?:with|avec)\b/.test(text)) && !/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text)) return null;
   const duration = text.match(/\b(\d+(?:\.\d+)?)\s*[- ]?\s*(?:seconds?|secs?|s|secondes?)\b/);
   const seconds = duration ? Number(duration[1]) : undefined;
-  return { ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionnes?)\b/.test(text),
+  return { ...(files.named ? { filePrompt: prompt, musicExcluded: /\b(?:without|no|sans)\s+(?:music|soundtrack|musique|audio)\b/.test(text) } : {}),
+    ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionnes?)\b/.test(text),
     transition: /\b(?:without|no|sans)\s+(?:transitions?|fades?|fondus?)\b/.test(text) ? null : /\b(?:fades?|dissolves?|transitions?|fondus?)\b/.test(text) ? "fade" : null,
     music: /\b(?:music|soundtrack|musique)\b/.test(text) && !/\b(?:without|no|sans)\s+(?:music|soundtrack|musique)\b/.test(text) };
 }
@@ -152,6 +155,16 @@ export class AssemblySession {
     this.source = source; this.catalog = assemblyCatalog(library); this.request = request;
     const sources = assemblyLibrarySource(source, this.catalog);
     this.patch({ sourceId: source.id, media: assemblyMedia(sources), sounds: assemblySounds(sources), transition: request.transition });
+    if (request.filePrompt) {
+      const chosen = namedAssemblySelection(request.filePrompt, this.state.media, this.state.sounds, library, request.selected ? selected : undefined);
+      if (!chosen) { this.patch({ error: "selectMedia" }); return; }
+      try {
+        const plan = assemblyPlan(sources, { ...request, selected: true }, chosen.ids);
+        this.patch({ ...plan, shots: chosen.ids.map(id => plan.shots.find(shot => shot.id === id)!),
+          soundId: request.musicExcluded ? null : chosen.soundId ?? plan.soundId });
+      } catch { this.patch({ error: "limit" }); }
+      return;
+    }
     if (!assemblyMedia(source).length && this.state.media.length) return;
     try { this.patch(assemblyPlan(source, request, selected)); }
     catch { this.patch({ error: this.state.media.length ? "limit" : "selectMedia" }); }
