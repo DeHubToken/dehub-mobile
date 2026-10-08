@@ -6770,6 +6770,12 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "review": {
+      "title": "Priksa proyek",
+      "shared": "Dibagi karo sampeyan",
+      "time": "Wektu (s)",
+      "assign": "Temtokake dompet"
+    },
     "textFit": {
       "wrap": "Bungkus larik",
       "width": "Ambane teks",

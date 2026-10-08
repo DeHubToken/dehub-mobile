@@ -1,4 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cloudProjectReviewApi } from "./cloudProjectReviewApi";
+import { projectReviewWallet } from "./cloudProjectReview";
 import { walletScopedClient } from "../../services/supabase";
 import { CLOUD_PROJECT_BUCKET, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectSaved, type CloudProjectSummary, type CloudProjectVersion } from "./cloudProjectFormat";
 
@@ -18,6 +20,7 @@ export function cloudProjectApi(address: string) {
     return data as T;
   }
   return {
+    review: cloudProjectReviewApi(client, wallet, message => new CloudProjectConflict(message)),
     list: (trashed = false) => rpc<CloudProjectSummary[]>(trashed ? "editor_cloud_list_trash" : "editor_cloud_list"),
     setTrash: (project: CloudProjectSummary, trashed: boolean) => rpc<CloudProjectSummary>("editor_cloud_set_trash", { p_id: project.projectId, p_expected_revision: project.revision, p_expected_state: project.stateVersion ?? 0, p_trashed: trashed }),
     history: (id: string) => rpc<CloudProjectSummary[]>("editor_cloud_history", { p_id: id }),
@@ -37,8 +40,9 @@ export function cloudProjectApi(address: string) {
       if (error || !data) throw new Error(error?.message || "Cloud media upload could not be prepared");
       return data;
     },
-    async sourceUrl(path: string) {
-      if (!path.startsWith(`${wallet}/`) || path.includes("..")) throw new Error("Invalid cloud media path");
+    async sourceUrl(path: string, sourceOwner = wallet) {
+      const owner = projectReviewWallet(sourceOwner);
+      if (!path.startsWith(`${owner}/`) || path.includes("..")) throw new Error("Invalid cloud media path");
       const { data, error } = await client.storage.from(CLOUD_PROJECT_BUCKET).createSignedUrl(path, 3600);
       if (error || !data?.signedUrl) throw new Error(error?.message || "Cloud media is unavailable");
       return data.signedUrl;

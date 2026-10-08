@@ -6868,6 +6868,12 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "review": {
+      "title": "Proje incelemesi",
+      "shared": "Sizinle paylaşılan",
+      "time": "Zaman (s)",
+      "assign": "Cüzdan ata"
+    },
     "textFit": {
       "wrap": "Satırları kaydır",
       "width": "Metin genişliği",

@@ -6769,6 +6769,12 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "review": {
+      "title": "Bitar aiki",
+      "shared": "An raba tare da kai",
+      "time": "Lokaci (s)",
+      "assign": "Sanya walat"
+    },
     "textFit": {
       "wrap": "Karya layuka",
       "width": "Faɗin rubutu",

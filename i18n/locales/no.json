@@ -6786,6 +6786,12 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "review": {
+      "title": "Prosjektgjennomgang",
+      "shared": "Delt med deg",
+      "time": "Tid (s)",
+      "assign": "Tildel lommebok"
+    },
     "textFit": {
       "wrap": "Bryt linjer",
       "width": "Tekstbredde",

@@ -6790,6 +6790,12 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "review": {
+      "title": "Kontrola projektu",
+      "shared": "Sdíleno s vámi",
+      "time": "Čas (s)",
+      "assign": "Přiřadit peněženku"
+    },
     "textFit": {
       "wrap": "Zalamovat řádky",
       "width": "Šířka textu",

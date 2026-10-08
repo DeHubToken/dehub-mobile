@@ -6788,6 +6788,12 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "review": {
+      "title": "Revisió del projecte",
+      "shared": "Compartit amb tu",
+      "time": "Temps (s)",
+      "assign": "Assigna una cartera"
+    },
     "textFit": {
       "wrap": "Ajusta les línies",
       "width": "Amplada del text",

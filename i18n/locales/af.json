@@ -6913,6 +6913,12 @@
     "newPost": "Nuwe plasing"
   },
   "editor": {
+    "review": {
+      "title": "Projekhersiening",
+      "shared": "Met jou gedeel",
+      "time": "Tyd (s)",
+      "assign": "Wys beursie toe"
+    },
     "textFit": {
       "wrap": "Reëls omvou",
       "width": "Tekswydte",

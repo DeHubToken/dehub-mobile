@@ -6905,6 +6905,12 @@
     }
   },
   "editor": {
+    "review": {
+      "title": "Đánh giá dự án",
+      "shared": "Được chia sẻ với bạn",
+      "time": "Thời gian (s)",
+      "assign": "Chỉ định ví"
+    },
     "textFit": {
       "wrap": "Ngắt dòng",
       "width": "Chiều rộng văn bản",

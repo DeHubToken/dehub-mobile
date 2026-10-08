@@ -6819,6 +6819,12 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "review": {
+      "title": "Sakatta'iinsa pirojektii",
+      "shared": "Si waliin qoodame",
+      "time": "Yeroo (s)",
+      "assign": "Waletii ramadi"
+    },
     "textFit": {
       "wrap": "Sarara cabsuu",
       "width": "Bal'ina barruu",
