@@ -1,7 +1,7 @@
 /**
  * Badge delegation — lending your tier to other accounts
  * ======================================================
- * Settings → Assets, under the wallet rows, because a badge is bought with DHB
+ * Settings → Assets, under the wallet rows, because a badge is bought with tokens
  * and this is the wallet tab. Mirrors web's `BadgeDelegationSection`.
  *
  * What the panel has to say outright, because none of it is guessable from a

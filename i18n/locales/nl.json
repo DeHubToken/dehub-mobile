@@ -2410,7 +2410,7 @@
     "otherTokens": "Andere tokens",
     "otherTokensDesc": "Koop ETH of USDC op Base met je kaart",
     "shareToFeed": "Deel met mijn feed",
-    "sharePostTemplate": "Ik heb zojuist {{amount}} $DHB toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub #DHB",
+    "sharePostTemplate": "Ik heb zojuist {{amount}} tokens toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub",
     "minDhbPurchase": "Minimale token aankoop is $0,50"
   },
   "agents": {
@@ -6096,7 +6096,7 @@
     "paymentSentWith": "Verzonden met {{amount}}",
     "planRestricted": "Deze gebruiker vereist een abonnement om berichten te ontvangen.",
     "planTypeNotAllowed": "Het abonnement van deze maker staat dit soort bericht niet toe.",
-    "planMinTip": "De fooi voor deze maker moet minstens {{amount}} DHB zijn."
+    "planMinTip": "De fooi voor deze maker moet minstens {{amount}} tokens zijn."
   },
   "editPost": {
     "mediaPermission": "Toestemming voor de mediabibliotheek is vereist",
@@ -6664,7 +6664,7 @@
   },
   "dex": {
     "lowestPrice": "Laagste prijs · USD",
-    "lpDhb": "LP · DHB",
+    "lpDhb": "LP · tokens",
     "lpUsd": "LP · USD",
     "totalLiquidity": "Totale liquiditeit · USD",
     "lowestSell": "Laagste verkoop · USDC",
@@ -6689,12 +6689,12 @@
       "trade": "Kopen / Verkopen"
     },
     "depth": "Diepte",
-    "depthHint": "Cumulatieve DHB · sleep om te inspecteren",
+    "depthHint": "Cumulatieve tokens · sleep om te inspecteren",
     "chartHint": "Marktreferentie · USD · sleep om te inspecteren",
     "noHistory": "Geen transacties in dit venster. Kies een langere tijdsperiode.",
     "chartError": "Referentiegrafiek niet beschikbaar. Het orderboek en het orderformulier blijven beschikbaar.",
-    "depthNote": "Geschatte liquiditeit van geverifieerde DHB/USDC-posities op beide netwerken. Elke positie wordt afgewikkeld op zijn eigen netwerk.",
-    "referenceNote": "USD-referentie gewogen naar liquiditeit in het grootste DHB-pool op elk netwerk. Dit is geen uitvoeringsquote.",
+    "depthNote": "Geschatte liquiditeit van geverifieerde tokens/USDC-posities op beide netwerken. Elke positie wordt afgewikkeld op zijn eigen netwerk.",
+    "referenceNote": "USD-referentie gewogen naar liquiditeit in het grootste tokens-pool op elk netwerk. Dit is geen uitvoeringsquote.",
     "partialHistory": "Sommige geschiedenis heeft gedeeltelijke netwerkdekking.",
     "source": "{{name}} bron",
     "spread": "Spread · USD",
@@ -6721,7 +6721,7 @@
     "ready": "Klaar om op te nemen",
     "converting": "Converteren",
     "waiting": "Wachten",
-    "withdrawReview": "Neem {{dhb}} DHB en {{usdc}} USDC op {{chain}}? Bedragen worden vernieuwd voor ondertekening; prijs tolerantie is 0,5%.",
+    "withdrawReview": "Neem {{dhb}} tokens en {{usdc}} USDC op {{chain}}? Bedragen worden vernieuwd voor ondertekening; prijs tolerantie is 0,5%.",
     "cancel": "Annuleren",
     "onchain": "Bekijk op ketting",
     "retry": "Opnieuw proberen",
@@ -6740,18 +6740,18 @@
       "swap": "Bevestig de ruil in je portemonnee...",
       "swapConfirm": "Wachten op de omwisseling om te bevestigen..."
     },
-    "title": "DHB / USD",
-    "heading": "DHB / USD",
+    "title": "tokens / USD",
+    "heading": "tokens / USD",
     "intro": "Stel je koop- of verkoopprijs in met een Uniswap v4-positie. Orders worden gevuld naarmate de handel door hun bereik beweegt.",
     "buySell": "Kopen / Verkopen",
-    "buy": "DHB kopen",
-    "sell": "DHB verkopen",
+    "buy": "tokens kopen",
+    "sell": "tokens verkopen",
     "marketDepth": "Marktdiepte",
     "orderBook": "Orderboek",
     "bids": "Biedingen · Kopen",
     "asks": "Vragen · Verkopen",
     "price": "Prijs",
-    "totalDhb": "Totaal DHB",
+    "totalDhb": "Totaal tokens",
     "noOrders": "Geen orders",
     "noBids": "Geen biedingen",
     "noDepth": "Diepte verschijnt wanneer posities worden vermeld.",
@@ -6759,17 +6759,17 @@
     "balanceToken": "{{chain}} · {{amount}} {{token}} beschikbaar",
     "noBalanceToken": "Geen {{token}} op Base of BNB Chain",
     "connectToken": "Koppel een wallet met {{token}}",
-    "reviewToken": "Beoordeling: stort {{amount}} {{token}} op {{chain}} tegen {{minPrice}}–{{maxPrice}} USDC per DHB. Je wallet vraagt om goedkeuringen en maakt de positie aan.",
-    "buyExplanation": "Stort alleen USDC. Je maximale bod is de hogere prijs; de positie wordt gevuld naarmate DHB door het bereik zakt.",
-    "sellExplanation": "Stort alleen DHB. Je minimale vraag is de lagere prijs; de positie wordt gevuld naarmate DHB omhoog beweegt door het bereik.",
+    "reviewToken": "Beoordeling: stort {{amount}} {{token}} op {{chain}} tegen {{minPrice}}–{{maxPrice}} USDC per tokens. Je wallet vraagt om goedkeuringen en maakt de positie aan.",
+    "buyExplanation": "Stort alleen USDC. Je maximale bod is de hogere prijs; de positie wordt gevuld naarmate tokens door het bereik zakt.",
+    "sellExplanation": "Stort alleen tokens. Je minimale vraag is de lagere prijs; de positie wordt gevuld naarmate tokens omhoog beweegt door het bereik.",
     "feeNote": "0% LP-vergoeding · netwerkgas is van toepassing.",
-    "newPosition": "Nieuwe DHB / USDC-positie",
-    "amount": "DHB-hoeveelheid",
-    "minimum": "Minimaal USD per DHB",
-    "maximum": "Maximaal USD per DHB",
-    "balance": "{{chain}} · {{amount}} vloeibare DHB",
-    "noBalance": "Geen vloeibare DHB op Base of BNB Chain",
-    "reviewDetail": "Beoordeling: {{amount}} DHB noteren op {{chain}} voor {{minPrice}}–{{maxPrice}} USDC per DHB. Je wallet zal om goedkeuringen vragen en de positie minten.",
+    "newPosition": "Nieuwe tokens / USDC-positie",
+    "amount": "tokens-hoeveelheid",
+    "minimum": "Minimaal USD per tokens",
+    "maximum": "Maximaal USD per tokens",
+    "balance": "{{chain}} · {{amount}} vloeibare tokens",
+    "noBalance": "Geen vloeibare tokens op Base of BNB Chain",
+    "reviewDetail": "Beoordeling: {{amount}} tokens noteren op {{chain}} voor {{minPrice}}–{{maxPrice}} USDC per tokens. Je wallet zal om goedkeuringen vragen en de positie minten.",
     "approve": "Goedkeuren en creëren",
     "review": "Positie beoordelen",
     "allListings": "Alle noteringen",
@@ -6777,7 +6777,7 @@
     "noListings": "Nog geen noteringen.",
     "previous": "Vorige",
     "next": "Volgende",
-    "connectDhb": "Koppel een wallet met vloeibare DHB",
+    "connectDhb": "Koppel een wallet met vloeibare tokens",
     "checkAmount": "Controleer het bedrag",
     "created": "Positie gecreëerd",
     "withdrawn": "Positie teruggetrokken naar je wallet",
@@ -6788,11 +6788,11 @@
     "bookPrice": "{{chain}} boekprijs · USD",
     "marketPrice": "Marktprijs · USD",
     "sellBelowMarket": "Deze verkoop is {{percent}}% onder de marktprijs van ${{price}}. Iemand kan het direct kopen en elders doorverkopen.",
-    "buyAboveMarket": "Deze aankoop is {{percent}}% boven de marktprijs van ${{price}}. Je betaalt meer dan DHB elders verhandelt.",
+    "buyAboveMarket": "Deze aankoop is {{percent}}% boven de marktprijs van ${{price}}. Je betaalt meer dan tokens elders verhandelt.",
     "useMarket": "Marktprijs gebruiken",
     "noFunding": "Geen {{token}} beschikbaar op {{chain}}.",
     "noListingsChain": "Nog geen noteringen op {{chain}}.",
-    "listedDhb": "Genoteerde DHB · {{chain}}",
+    "listedDhb": "Genoteerde tokens · {{chain}}",
     "payWith": "Betalen met",
     "noBaseFunds": "Geen ETH, USDC of USDT op basis",
     "reviewSwap": "Wissel eerst {{amountIn}} {{symbol}} voor {{usdc}} USDC op Base. Ongebruikte {{symbol}} wordt geretourneerd in dezelfde transactie.",
@@ -7015,8 +7015,8 @@
     "description": "Welkom op de homepagina"
   },
   "glossary": {
-    "title": "DHB Woordenlijst",
-    "description": "Een uitgebreide lijst van termen die gebruikt worden in het DHB ecosysteem.",
+    "title": "tokens Woordenlijst",
+    "description": "Een uitgebreide lijst van termen die gebruikt worden in het tokens ecosysteem.",
     "searchPlaceholder": "Zoek termen...",
     "noResults": "Geen termen gevonden die overeenkomen met je zoekopdracht.",
     "table": {
@@ -7029,7 +7029,7 @@
         "definition": "Een gedecentraliseerde autonome organisatie (DAO) is een entiteit zonder centrale leiding. Beslissingen worden genomen van onderaf, beheerd door een community die georganiseerd is rond een specifieke set regels die zijn vastgelegd in een blockchain."
       },
       "dhb": {
-        "term": "DHB",
+        "term": "tokens",
         "definition": "De native token van het DHB netwerk, gebruikt voor governance, staking en het belonen van deelnemers."
       },
       "defi": {
@@ -7042,7 +7042,7 @@
       },
       "staking": {
         "term": "Staking",
-        "definition": "Het proces van het vasthouden van cryptocurrency om een blockchain netwerk te ondersteunen en beloningen te verdienen. Door DHB te staken, kunnen gebruikers bijdragen aan de veiligheid en efficiëntie van het netwerk."
+        "definition": "Het proces van het vasthouden van cryptocurrency om een blockchain netwerk te ondersteunen en beloningen te verdienen. Door tokens te staken, kunnen gebruikers bijdragen aan de veiligheid en efficiëntie van het netwerk."
       },
       "yieldFarming": {
         "term": "Yield Farming",
@@ -7125,8 +7125,8 @@
     "delete":  "Pagina verwijderen",
     "page":  "Pagina {{number}}",
     "position":  "Pagina {{current}} van {{total}}",
-    "label":  "Pagina\u0027s",
-    "allZip":  "Alle {{count}} pagina\u0027s (ZIP)",
+    "label":  "Pagina's",
+    "allZip":  "Alle {{count}} pagina's (ZIP)",
     "thisPage":  "Alleen deze pagina",
     "exporting":  "Pagina {{current}} van {{total}} renderen…"
 },
@@ -7923,10 +7923,10 @@
     "change1h": "1u Verandering",
     "viewOnDexScreener": "Bekijk op DexScreener",
     "listingTitle": "Token-notering komt eraan!",
-    "listingBody": "$DHB wordt nog niet verhandeld. Ontvang een e-mail zodra het genoteerd wordt.",
+    "listingBody": "tokens wordt nog niet verhandeld. Ontvang een e-mail zodra het genoteerd wordt.",
     "notifyMe": "Breng me op de hoogte",
-    "listingPrivacy": "We gebruiken dit alleen om je te laten weten wanneer $DHB genoteerd wordt.",
-    "listingJoined": "Je staat op de lijst. We mailen {{email}} zodra $DHB genoteerd wordt."
+    "listingPrivacy": "We gebruiken dit alleen om je te laten weten wanneer tokens genoteerd wordt.",
+    "listingJoined": "Je staat op de lijst. We mailen {{email}} zodra tokens genoteerd wordt."
   },
   "linkCard": {
     "inviteRevoked": "Uitnodiging ingetrokken",
@@ -8724,7 +8724,7 @@
     "topUpTitle": "Top-up en bespaar",
     "discount": "{{percent}}% korting",
     "noDiscount": "Volledige prijs",
-    "total": "Totaal ${{usd}}, betaald in DHB",
+    "total": "Totaal ${{usd}}, betaald in tokens",
     "buy": "Credits kopen",
     "buying": "Wachten op betaling…",
     "bought": "{{count}} post credits toegevoegd",
@@ -8754,7 +8754,7 @@
     "skippedToast": "Overgeslagen {{platforms}}: deze post heeft niet de foto of video die ze nodig hebben.",
     "uploadFailed": "Kan uw media niet uploaden voor cross-posting.",
     "creditRules": "Elke post kost credits per platform: {{x}} voor X, {{farcaster}} voor Farcaster en {{other}} voor elk ander platform. Geplande berichten gebruiken credits wanneer je ze plant.",
-    "payAsYouGoCredits": "Is je tegoed op? Ontbrekende tegoeden worden gekocht in DHB voor ${{price}} per stuk wanneer je post.",
+    "payAsYouGoCredits": "Is je tegoed op? Ontbrekende tegoeden worden gekocht in tokens voor ${{price}} per stuk wanneer je post.",
     "topUpCredits": "{{count}} credits",
     "perCredit": "${{price}} per tegoed",
     "pendingApproval": "Wachten tot je dehub goedkeurt in de Farcaster-app",
@@ -8917,7 +8917,7 @@
     "graduatesAtValue": "$ 42.000 mcap",
     "graduationTarget": "Doelstelling afstuderen:",
     "graduationTargetValue": "$ 42.000 marktkapitalisatie",
-    "heroSubtitle": "DHB-gekoppelde bonding curve. Graduatie naar Uniswap bij $42K marktkapitalisatie.",
+    "heroSubtitle": "tokens-gekoppelde bonding curve. Graduatie naar Uniswap bij $42K marktkapitalisatie.",
     "heroTitle": "BEDRIJF TOKENISEREN",
     "imageFilesOnly": "Alleen afbeeldingsbestanden",
     "imageHint": "PNG/JPG/gif · tot 5 MB",
@@ -9266,9 +9266,9 @@
     },
     "pay": {
       "title": "Betaal je {{name}}?",
-      "body": "De DHB gaat rechtstreeks naar de portemonnee van de app, {{wallet}}. Betalingen kunnen niet worden teruggedraaid.",
-      "confirm": "Betaal {{amount}} DHB",
-      "sent": "Betaald {{amount}} DHB aan {{name}}."
+      "body": "De tokens gaat rechtstreeks naar de portemonnee van de app, {{wallet}}. Betalingen kunnen niet worden teruggedraaid.",
+      "confirm": "Betaal {{amount}} tokens",
+      "sent": "Betaald {{amount}} tokens aan {{name}}."
     },
     "add": {
       "title": "Vul {{name}} toe?",

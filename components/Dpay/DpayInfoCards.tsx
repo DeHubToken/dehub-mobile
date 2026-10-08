@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 import baseIcon from "../../assets/chains/base-icon.png";
-import dhbIcon from "../../assets/tokens/DHB.png";
+import dhbIcon from "../../assets/web-icons/dehub-coin.png";
 
 type Props = {
   transfersTotal?: number | null;

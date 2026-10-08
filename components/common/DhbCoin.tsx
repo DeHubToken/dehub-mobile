@@ -1,3 +1,4 @@
+import { tokenLabel } from '../../libs/token-label';
 /**
  * The gold DeHub coin, inline, in place of the "DHB" ticker text.
  *
@@ -20,7 +21,7 @@ interface DhbCoinProps {
   label?: string;
 }
 
-export function DhbCoin({ size = 13, style, label = "DHB" }: DhbCoinProps) {
+export function DhbCoin({ size = 13, style, label = tokenLabel() }: DhbCoinProps) {
   return (
     <Image
       source={DEHUB_COIN}

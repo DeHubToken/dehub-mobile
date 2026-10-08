@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkHistoryScreen
  * =================
@@ -126,7 +127,7 @@ export default function WorkHistoryScreen() {
           <Pill label={statusLabel(job.status)} bg={st.bg} fg={st.fg} />
         </View>
         <Text style={styles.meta}>
-          {num(job.total_budget)} {job.currency} · {new Date(job.created_at).toLocaleDateString(appLocale())}
+          {num(job.total_budget)} {tokenLabel(job.currency)} · {new Date(job.created_at).toLocaleDateString(appLocale())}
         </Text>
         {job.fund_tx_hash ? (
           <TxLink label={t("work.escrowTx")} txHash={job.fund_tx_hash} />
@@ -176,7 +177,7 @@ export default function WorkHistoryScreen() {
         </View>
         <Text style={styles.meta}>
           {new Date(s.created_at).toLocaleDateString(appLocale())}
-          {(paid || awaitingPayment) && due > 0 && job ? ` · ${num(due)} ${job.currency}` : ""}
+          {(paid || awaitingPayment) && due > 0 && job ? ` · ${num(due)} ${tokenLabel(job.currency)}` : ""}
         </Text>
         {s.payout_tx_hash ? (
           <TxLink label={t("work.payoutTx")} txHash={s.payout_tx_hash} chain={s.payout_chain_id ?? 8453} />
