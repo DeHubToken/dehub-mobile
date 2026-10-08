@@ -49,11 +49,11 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     await deps.writeLink(localId, link); check();
     return saved;
   }
-  async function importVersion(version: CloudProjectVersion): Promise<ProjectSnapshot> {
+  async function importVersion(version: CloudProjectVersion, separateCopy = false): Promise<ProjectSnapshot> {
     for (const media of version.document.media) { check(); await deps.hydrate(media, check); check(); }
     const copy = localCopyOfCloudProject(version.document, wallet, deps.uuid());
     check(); await deps.saveLocal(copy); check();
-    await deps.writeLink(copy.id, { wallet, projectId: version.projectId, revision: version.headRevision,
+    await deps.writeLink(copy.id, { wallet, projectId: separateCopy ? deps.uuid() : version.projectId, revision: separateCopy ? 0 : version.revision,
       media: Object.fromEntries(version.document.media.map(media => [media.id, media])) });
     check(); return copy;
   }
@@ -89,7 +89,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       });
     },
     open(id: string, revision?: number) {
-      return exclusive(async () => { const version = await deps.api.load(id, revision); check(); return importVersion(version); });
+      return exclusive(async () => { const version = await deps.api.load(id, revision); check(); return importVersion(version, revision !== undefined); });
     },
     restore(id: string, revision: number, expectedHead: number) {
       return exclusive(async () => {
