@@ -6877,6 +6877,13 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ajustar líneas",
+      "width": "Ancho del texto",
+      "shrink": "Reducir el texto para que encaje",
+      "height": "Altura del texto",
+      "captions": "Ajustar pista de subtítulos"
+    },
     "cloud": {
       "trash": "Papelera",
       "title": "Proyectos en la nube",

@@ -6673,6 +6673,13 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Rêzan bibire",
+      "width": "Firehiya nivîsê",
+      "shrink": "Nivîsê biçûk bike da ku bicîh bibe",
+      "height": "Bilindahiya nivîsê",
+      "captions": "Rêya binnivîsê lihev bîne"
+    },
     "cloud": {
       "trash": "Çop",
       "title": "Projeyên ewrê",

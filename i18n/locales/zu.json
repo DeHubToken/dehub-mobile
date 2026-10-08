@@ -6800,6 +6800,13 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Songa imigqa",
+      "width": "Ububanzi bombhalo",
+      "shrink": "Nciphisa umbhalo ukuze ulingane",
+      "height": "Ukuphakama kombhalo",
+      "captions": "Lungisa ithrekhi yemibhalo engezansi"
+    },
     "cloud": {
       "trash": "Umgqomo kadoti",
       "title": "Amaphrojekthi efu",

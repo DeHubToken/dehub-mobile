@@ -6871,6 +6871,13 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Wrap lines",
+      "width": "Text width",
+      "shrink": "Shrink text to fit",
+      "height": "Text height",
+      "captions": "Fit caption track"
+    },
     "cloud": {
       "trash": "Trash",
       "title": "Cloud projects",

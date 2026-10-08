@@ -17,6 +17,7 @@ import { FILTER_PRESETS, matchPreset } from "../../libs/editor/filterPresets";
 import { EDITOR_FONTS, fontFamilyCss, nearestWeight, primaryFamily } from "../../libs/editor/fonts";
 import { getTransform, placementPatch, placementPatchAt, type Arrange, type ClipPatch } from "../../libs/editor/project";
 import { resolveClipAt } from "../../libs/editor/keyframes";
+import { textFitEnabled, textFitPatch, textWrapEnabled, textWrapPatch } from "../../libs/editor/textFit";
 import type {
   AspectPreset,
   ClipShadow,
@@ -386,9 +387,10 @@ export function TextColourPanel({ clip, commit }: PanelProps<TextClip>) {
   return <Swatches label={t("editor.layer.colour")} value={clip.color} onPick={(c) => commit({ color: c })} />;
 }
 
-export function TextStylePanel({ clip, live, commit, settle }: PanelProps<TextClip>) {
+export function TextStylePanel({ clip, live, commit, settle, onFitCaptions, captionsFitted }: PanelProps<TextClip> & { onFitCaptions?: () => void; captionsFitted?: boolean }) {
   const { t } = useTranslation();
   const bold = clip.fontWeight >= 600;
+  const wrapping = textWrapEnabled(clip), fitting = textFitEnabled(clip);
   return (
     <View>
       <ChipRow>
@@ -404,6 +406,11 @@ export function TextStylePanel({ clip, live, commit, settle }: PanelProps<TextCl
         <Range label={t("editor.app.fontSize", { value: Math.round(clip.fontSize) })} value={clip.fontSize} min={12} max={400} step={1} onLive={(v) => live({ fontSize: v })} onDone={settle} />
         <Range label={t("editor.layer.letterSpacing", { value: Math.round(clip.letterSpacing ?? 0) })} value={clip.letterSpacing ?? 0} min={-10} max={80} step={1} onLive={(v) => live({ letterSpacing: v })} onDone={settle} />
         <Range label={t("editor.layer.lineSpacing", { value: (clip.lineHeight ?? 1.2).toFixed(1) })} value={clip.lineHeight ?? 1.2} min={0.7} max={3} step={0.05} onLive={(v) => live({ lineHeight: v })} onDone={settle} />
+        <Toggle label={t("editor.textFit.wrap", { defaultValue: "Wrap lines" })} value={wrapping} onChange={on => commit(textWrapPatch(clip, on))} />
+        {wrapping && <Range label={`${t("editor.textFit.width", { defaultValue: "Text width" })} · ${Math.round(clip.maxWidth! * 100)}%`} value={clip.maxWidth!} min={0.05} max={1} step={0.01} onLive={value => live({ maxWidth: value })} onDone={settle} />}
+        <Toggle label={t("editor.textFit.shrink", { defaultValue: "Shrink text to fit" })} value={fitting} onChange={on => commit(textFitPatch(clip, on))} />
+        {fitting && <Range label={`${t("editor.textFit.height", { defaultValue: "Text height" })} · ${Math.round(clip.maxHeight! * 100)}%`} value={clip.maxHeight!} min={0.05} max={1} step={0.01} onLive={value => live({ maxHeight: value })} onDone={settle} />}
+        {onFitCaptions && <Pressable disabled={captionsFitted} onPress={onFitCaptions} accessibilityRole="button" accessibilityState={{ disabled: captionsFitted }} className="rounded-xl border border-white/15 px-4 py-3" style={{ opacity: captionsFitted ? 0.4 : 1 }}><Text className="text-white">{t("editor.textFit.captions", { defaultValue: "Fit caption track" })}</Text></Pressable>}
       </View>
     </View>
   );

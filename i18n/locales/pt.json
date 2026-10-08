@@ -6880,6 +6880,13 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Quebrar linhas",
+      "width": "Largura do texto",
+      "shrink": "Reduzir o texto para caber",
+      "height": "Altura do texto",
+      "captions": "Ajustar faixa de legendas"
+    },
     "cloud": {
       "trash": "Lixeira",
       "title": "Projetos na nuvem",

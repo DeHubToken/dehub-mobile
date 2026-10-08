@@ -6868,6 +6868,13 @@
     "txTipReceived": "{{name}} nanome fanomezana anao — {{amount}} DHB"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Zarao ny andalana",
+      "width": "Sakan'ny lahatsoratra",
+      "shrink": "Ahena ny lahatsoratra mba hifanaraka",
+      "height": "Haavon'ny lahatsoratra",
+      "captions": "Ampifanaraho ny lalan'ny dikanteny"
+    },
     "cloud": {
       "trash": "Fako",
       "title": "Tetikasa ao amin’ny rahona",

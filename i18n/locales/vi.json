@@ -6905,6 +6905,13 @@
     }
   },
   "editor": {
+    "textFit": {
+      "wrap": "Ngắt dòng",
+      "width": "Chiều rộng văn bản",
+      "shrink": "Thu nhỏ văn bản cho vừa",
+      "height": "Chiều cao văn bản",
+      "captions": "Điều chỉnh rãnh phụ đề cho vừa"
+    },
     "cloud": {
       "trash": "Thùng rác",
       "title": "Dự án đám mây",

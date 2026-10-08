@@ -6769,6 +6769,13 @@
     "savePrompt": "Fipamọ ifiweranṣẹ yii bi agbese lati pari ati firanṣẹ nigbamii?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Pín àwọn ìlà",
+      "width": "Ìbú ọ̀rọ̀",
+      "shrink": "Dín ọ̀rọ̀ kù kí ó lè wọlé",
+      "height": "Gíga ọ̀rọ̀",
+      "captions": "Mú ipa ọ̀rọ̀ abẹ́lẹ̀ bá a mu"
+    },
     "cloud": {
       "trash": "Àpótí ìdọ̀tí",
       "title": "Àwọn iṣẹ́ àwọsánmà",

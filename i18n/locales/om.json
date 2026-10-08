@@ -6819,6 +6819,13 @@
     "relatedPosts": "Barreeffamoota Walqabatan"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Sarara cabsuu",
+      "width": "Bal'ina barruu",
+      "shrink": "Barruu akka seenuuf xiqqeessi",
+      "height": "Olka'iinsa barruu",
+      "captions": "Daandii barruu jalaa sirreessi"
+    },
     "cloud": {
       "trash": "Qodaa balfaa",
       "title": "Pirojektoota duumessaa",

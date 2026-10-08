@@ -47,6 +47,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
 import { captionLayers } from "../libs/editor/captionLayout";
+import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
 import {
   AdjustPanel,
@@ -1251,7 +1252,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (selected.kind === "text") {
       if (tool === "font") return <FontPanel clip={selected} {...panelProps} />;
       if (tool === "colour") return <TextColourPanel clip={selected} {...panelProps} />;
-      if (tool === "style") return <TextStylePanel clip={selected} {...panelProps} />;
+      if (tool === "style") return <TextStylePanel clip={selected} {...panelProps}
+        onFitCaptions={project.tracks.some(track => track.id === selected.trackId && track.role === "captions") ? () => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const next = fitCaptionTrack(current, selected.trackId);
+          if (next !== current) h.commit(next);
+        } : undefined}
+        captionsFitted={fitCaptionTrack(project, selected.trackId) === project} />;
       if (tool === "label") return <LabelPanel clip={selected} {...panelProps} />;
       if (tool === "outline") return <OutlinePanel clip={selected} {...panelProps} />;
       return null;

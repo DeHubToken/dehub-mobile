@@ -6791,6 +6791,13 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Sortörés",
+      "width": "Szöveg szélessége",
+      "shrink": "Szöveg kicsinyítése a kerethez",
+      "height": "Szöveg magassága",
+      "captions": "Feliratsáv igazítása"
+    },
     "cloud": {
       "trash": "Kuka",
       "title": "Felhőprojektek",

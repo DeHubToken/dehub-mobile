@@ -6801,6 +6801,13 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "textFit": {
+      "wrap": "Siq'ikunata t'aqay",
+      "width": "Qillqap kinraynin",
+      "shrink": "Qillqata huch'uyachiy haykunanpaq",
+      "height": "Qillqap sayaynin",
+      "captions": "Uray qillqa ñanta tupachiy"
+    },
     "cloud": {
       "trash": "Qupa",
       "title": "Puyu llamkaykuna",
