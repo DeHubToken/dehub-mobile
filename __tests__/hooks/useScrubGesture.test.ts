@@ -119,7 +119,10 @@ describe('scrub touch ownership', () => {
 
   it('keeps the recognizer stable through preview renders and uses current callbacks', () => {
     const firstCommit = jest.fn(), nextCommit = jest.fn();
-    const { result, rerender } = renderHook(({ onCommit }) => useScrubGesture({ onScrub: jest.fn(), onCommit }), { initialProps: { onCommit: firstCommit } });
+    const { result, rerender } = renderHook<ReturnType<typeof useScrubGesture>, { onCommit: jest.Mock }>(
+      ({ onCommit }) => useScrubGesture({ onScrub: jest.fn(), onCommit }),
+      { initialProps: { onCommit: firstCommit } },
+    );
     result.current.onLayout({ nativeEvent: { layout: { width: 200, height: 48 } } } as LayoutChangeEvent);
     const initialGesture = result.current.gesture;
     const { pan } = initialGesture as unknown as CapturedGestures;
