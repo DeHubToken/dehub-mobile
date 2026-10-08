@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} پوسٹاں"
   },
   "settings": {
+    "postingChain": "पोस्ट के लेल ब्लॉकचेन",
     "showOnline": "Nga u shfaq kur jam online",
     "showOnlineDesc": "Mensen die je een bericht sturen, zien een groen stipje naast je naam terwijl je DeHub gebruikt",
     "smartReplies": "تجویز کیل جواب",
@@ -8145,6 +8146,7 @@
         }
       },
       "settings": {
+    "postingChain": "पोस्ट के लेल ब्लॉकचेन",
         "title": "تنظیمات",
         "intro": "د ژبې، محرمیت، او ښودلو ترجیحاتو سره خپل DeHub تجربه تنظیم کړئ.",
         "steps": {

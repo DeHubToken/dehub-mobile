@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} maxxansa"
   },
   "settings": {
+    "postingChain": "Biloookcheenii maxxansaa",
     "showOnline": "Yeroon toora interneetii irra jiru agarsiisi",
     "showOnlineDesc": "Namoonni ergaa ergitu osoo DeHub fayyadamtu maqaa kee cinaatti tuqaa magariisa argu",
     "smartReplies": "Deebiiwwan yaadaman",
@@ -8110,6 +8111,7 @@
         }
       },
       "settings": {
+    "postingChain": "Biloookcheenii maxxansaa",
         "title": "Qindaa'ina",
         "intro": "Aduunyaa DeHub kee afaan, dhunfaa fi agarsiisa irratti qindaa'i.",
         "steps": {

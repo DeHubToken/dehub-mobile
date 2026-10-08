@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} kiriman"
   },
   "settings": {
+    "postingChain": "Blockchain kanggo kiriman",
     "showOnline": "Tampilake kapan aku lagi online",
     "showOnlineDesc": "Wong sing kok peseni bakal weruh titik ijo ing sandinge jenengmu nalika lagi nggunakake DeHub",
     "smartReplies": "Wangsulan sing disaranake",
@@ -8059,6 +8060,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockchain kanggo kiriman",
         "title": "Setelan",
         "intro": "Kustomisasi pengalaman DeHub sampeyan kanthi pilihan basa, privasi, lan tampilan.",
         "steps": {

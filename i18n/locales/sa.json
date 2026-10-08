@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} पोस्ट"
   },
   "settings": {
+    "postingChain": "प्रकाशनस्य ब्लॉकचेन",
     "showOnline": "ऑनलाईन सूचनाः When I am online",
     "showOnlineDesc": "हरितवर्णेन युक्तं त्वया दृष्टं यदिदं त्वया ॥",
     "smartReplies": "सूचिताः प्रत्युत्तराणि",
@@ -7990,6 +7991,7 @@
         }
       },
       "settings": {
+    "postingChain": "प्रकाशनस्य ब्लॉकचेन",
         "title": "सेटिंग्स",
         "intro": "भाषा, गोपनीयता और प्रदर्शन प्राथमिकताओं के साथ अपने DeHub अनुभव को अनुकूलित करें।",
         "steps": {

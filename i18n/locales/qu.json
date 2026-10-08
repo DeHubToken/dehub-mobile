@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} kaqkuna"
   },
   "settings": {
+    "postingChain": "Qillqakunapaq blockchain",
     "showOnline": "Internetpi kachkaptiy qawachiy",
     "showOnlineDesc": "Runakuna willakuyniyki huk verde ch&#39;ikuta sutiykip ladunpi rikunku DeHub llamk&#39;achkanki",
     "smartReplies": "Ñisqa kutichiykuna",
@@ -8092,6 +8093,7 @@
         }
       },
       "settings": {
+    "postingChain": "Qillqakunapaq blockchain",
         "title": "Settings",
         "intro": "Kikinpa DeHub kaqniykiwan allin kaqta ruway, simi, kikinpa kaqniykiwan, rikuyta.",
         "steps": {

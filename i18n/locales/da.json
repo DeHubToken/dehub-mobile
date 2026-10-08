@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} opslag"
   },
   "settings": {
+    "postingChain": "Blockchain til opslag",
     "showOnline": "Vis, når jeg er online",
     "showOnlineDesc": "Personer, du sender en besked til, ser en grøn prik ved siden af dit navn, mens du bruger DeHub",
     "smartReplies": "Foreslåede svar",
@@ -8083,6 +8084,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockchain til opslag",
         "title": "Indstillinger",
         "intro": "Tilpas din DeHub-oplevelse med sprog-, privatlivs- og visningspræferencer.",
         "steps": {

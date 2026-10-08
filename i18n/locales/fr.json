@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "postingChain": "Blockchain des publications",
     "showOnline": "Montrer quand je suis en ligne",
     "showOnlineDesc": "Les personnes que vous envoyez un message voient un point vert à côté de votre nom lorsque vous utilisez DeHub",
     "smartReplies": "Réponses suggérées",
@@ -8425,6 +8426,7 @@
         }
       },
       "settings": {
+    "postingChain": "Blockchain des publications",
         "title": "Paramètres",
         "intro": "Personnalisez votre expérience DeHub avec vos préférences de langue, de confidentialité et d'affichage.",
         "steps": {

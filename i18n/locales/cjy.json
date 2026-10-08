@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "postingChain": "发帖区块链",
     "showOnline": "显示我在线时",
     "showOnlineDesc": "当你使用 DeHub 时，你的联系人会在你的名字旁看到一个绿色点",
     "smartReplies": "建议回复",
@@ -8105,6 +8106,7 @@
         }
       },
       "settings": {
+    "postingChain": "发帖区块链",
         "title": "设置",
         "intro": "通过语言、隐私和显示偏好来自定义您的 DeHub 体验。",
         "steps": {

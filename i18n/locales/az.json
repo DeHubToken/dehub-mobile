@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} paylaşım"
   },
   "settings": {
+    "postingChain": "Paylaşım blokçeyni",
     "showOnline": "Onlayn olduğum vaxtı göstərin",
     "showOnlineDesc": "Mesaj göndərdiyiniz insanlar DeHub-dan istifadə edərkən adınızın yanında yaşıl nöqtə görür",
     "smartReplies": "Təklif olunan cavablar",
@@ -8080,6 +8081,7 @@
         }
       },
       "settings": {
+    "postingChain": "Paylaşım blokçeyni",
         "title": "Parametrlər",
         "intro": "Dil, məxfilik və ekran seçimləri ilə DeHub təcrübənizi fərdiləşdirin.",
         "steps": {

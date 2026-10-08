@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} بوستات"
   },
   "settings": {
+    "postingChain": "شبكة النشر",
     "showOnline": "وريني لمن أكون أونلاين",
     "showOnlineDesc": "الناس اللي بترسل ليهم رسائل شوفوا نقطة خضرا جنب اسمك وانت بتستخدم DeHub",
     "smartReplies": "الردود المقترحة",
@@ -8031,6 +8032,7 @@
         }
       },
       "settings": {
+    "postingChain": "شبكة النشر",
         "title": "الإعدادات",
         "intro": "خصص تجربتك في DeHub مع تفضيلات اللغة والخصوصية والعرض.",
         "steps": {
