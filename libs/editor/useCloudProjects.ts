@@ -93,10 +93,11 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       if (opened && opened.owner===review.ownerWallet && opened.projectId===review.projectId && opened.revision===targetRevision && current?.id===opened.localId && projectReviewSnapshotKey(current)===opened.snapshotKey) {
         scope.current.context.seek?.(seconds); success?.(); return;
       }
-      const previousId=scope.current.context.current()?.id;
+      const previous=scope.current.context.current(), previousId=previous?.id, previousKey=previous ? projectReviewSnapshotKey(previous) : "";
       await scope.current.context.preserve(); check();
       const result=await session.openReview(review.ownerWallet,review.projectId,targetRevision); check();
-      if (scope.current.context.current()?.id!==previousId) throw new Error("The current project changed during transfer");
+      const afterTransfer=scope.current.context.current();
+      if (afterTransfer?.id!==previousId || (afterTransfer ? projectReviewSnapshotKey(afterTransfer) : "")!==previousKey) throw new Error("The current project changed during transfer");
       await scope.current.context.open(result.snapshot); check();
       openedReview.current={localId:result.snapshot.id,owner:review.ownerWallet,projectId:review.projectId,revision:result.revision,snapshotKey:projectReviewSnapshotKey(scope.current.context.current() || result.snapshot)};
       scope.current.context.seek?.(seconds);
