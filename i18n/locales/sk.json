@@ -6953,6 +6953,28 @@
     "noStories": "Zatiaľ žiadne príbehy"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizuálne zaujímavosti",
+      "visualPrivacy": "Odoslať vybrané snímky na vizuálnu analýzu."
+    },
+    "review": {
+      "title": "Kontrola projektu",
+      "shared": "Zdieľané s vami",
+      "time": "Čas (s)",
+      "assign": "Priradiť peňaženku"
+    },
+    "textFit": {
+      "wrap": "Zalamovať riadky",
+      "width": "Šírka textu",
+      "shrink": "Zmenšiť text, aby sa zmestil",
+      "height": "Výška textu",
+      "captions": "Prispôsobiť stopu titulkov"
+    },
+    "cloud": {
+      "trash": "Kôš",
+      "title": "Cloudové projekty",
+      "restore": "Obnoviť"
+    },
     "shots": {
       "detect": "Nájsť zmeny scén",
       "split": "Rozdeliť vo vybraných strihoch",

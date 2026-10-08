@@ -6800,6 +6800,28 @@
     "savePrompt": "Gcina le phosti njengedrafti ukuze uqedele futhi uphoste kamuva?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Izikhathi ezigqamile ezibonwayo",
+      "visualPrivacy": "Thumela amafreyimu akhethiwe ukuze kuhlaziywe izithombe."
+    },
+    "review": {
+      "title": "Ukubuyekezwa kwephrojekthi",
+      "shared": "Kwabelwane nawe",
+      "time": "Isikhathi (s)",
+      "assign": "Nikeza isikhwama"
+    },
+    "textFit": {
+      "wrap": "Songa imigqa",
+      "width": "Ububanzi bombhalo",
+      "shrink": "Nciphisa umbhalo ukuze ulingane",
+      "height": "Ukuphakama kombhalo",
+      "captions": "Lungisa ithrekhi yemibhalo engezansi"
+    },
+    "cloud": {
+      "trash": "Umgqomo kadoti",
+      "title": "Amaphrojekthi efu",
+      "restore": "Buyisela"
+    },
     "shots": {
       "detect": "Thola ushintsho lwezigcawu",
       "split": "Hlukanisa ezindaweni ezikhethiwe",

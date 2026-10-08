@@ -6856,6 +6856,28 @@
     "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
   },
   "editor": {
+    "highlights": {
+      "visual": "映像のハイライト",
+      "visualPrivacy": "選んだフレームを映像分析のために送信します。"
+    },
+    "review": {
+      "title": "プロジェクトレビュー",
+      "shared": "あなたと共有",
+      "time": "時間 (s)",
+      "assign": "ウォレットを割り当て"
+    },
+    "textFit": {
+      "wrap": "行を折り返す",
+      "width": "テキストの幅",
+      "shrink": "収まるようにテキストを縮小",
+      "height": "テキストの高さ",
+      "captions": "字幕トラックを収める"
+    },
+    "cloud": {
+      "trash": "ゴミ箱",
+      "title": "クラウドプロジェクト",
+      "restore": "復元"
+    },
     "shots": {
       "detect": "シーンの切り替わりを検出",
       "split": "選択した位置で分割",

@@ -6770,6 +6770,28 @@
     "savePrompt": "Simpen kiriman menika dados draf kangge ngrampungaken lan ngirimaken mengko?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Sorotan visual",
+      "visualPrivacy": "Kirim pigura sing dipilih kanggo analisis visual."
+    },
+    "review": {
+      "title": "Priksa proyek",
+      "shared": "Dibagi karo sampeyan",
+      "time": "Wektu (s)",
+      "assign": "Temtokake dompet"
+    },
+    "textFit": {
+      "wrap": "Bungkus larik",
+      "width": "Ambane teks",
+      "shrink": "Cilikake teks supaya pas",
+      "height": "Dhuwure teks",
+      "captions": "Pasake trek subtitle"
+    },
+    "cloud": {
+      "trash": "Sampah",
+      "title": "Proyek awan",
+      "restore": "Pulihake"
+    },
     "shots": {
       "detect": "Goleki owah-owahan adegan",
       "split": "Pisah ing potongan sing dipilih",

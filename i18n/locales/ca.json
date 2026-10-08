@@ -6788,6 +6788,28 @@
     "savePrompt": "Vols desar aquesta publicació com a esborrany per acabar-la i publicar-la més tard?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Moments visuals destacats",
+      "visualPrivacy": "Envia fotogrames seleccionats per a l'anàlisi visual."
+    },
+    "review": {
+      "title": "Revisió del projecte",
+      "shared": "Compartit amb tu",
+      "time": "Temps (s)",
+      "assign": "Assigna una cartera"
+    },
+    "textFit": {
+      "wrap": "Ajusta les línies",
+      "width": "Amplada del text",
+      "shrink": "Redueix el text perquè hi càpiga",
+      "height": "Alçada del text",
+      "captions": "Ajusta la pista de subtítols"
+    },
+    "cloud": {
+      "trash": "Paperera",
+      "title": "Projectes al núvol",
+      "restore": "Restaura"
+    },
     "shots": {
       "detect": "Detecta canvis d'escena",
       "split": "Divideix als talls seleccionats",

@@ -6842,6 +6842,28 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizual muhim lahzalar",
+      "visualPrivacy": "Vizual tahlil uchun tanlangan kadrlarni yuboring."
+    },
+    "review": {
+      "title": "Loyihani ko‘rib chiqish",
+      "shared": "Siz bilan ulashilgan",
+      "time": "Vaqt (s)",
+      "assign": "Hamyon tayinlash"
+    },
+    "textFit": {
+      "wrap": "Satrlarni o‘rash",
+      "width": "Matn kengligi",
+      "shrink": "Matnni sig‘ishi uchun kichraytirish",
+      "height": "Matn balandligi",
+      "captions": "Subtitr yo‘lini moslashtirish"
+    },
+    "cloud": {
+      "trash": "Chiqindi qutisi",
+      "title": "Bulut loyihalari",
+      "restore": "Tiklash"
+    },
     "shots": {
       "detect": "Sahna o‘zgarishlarini aniqlash",
       "split": "Tanlangan kesimlarda bo‘lish",

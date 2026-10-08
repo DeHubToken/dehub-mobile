@@ -28,6 +28,8 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 import { fetchAppByDomain, type MiniAppListing } from '../../services/miniapps.service';
 import { parsePredictionLink } from '../../libs/predictions';
 import PredictionDetails from './PredictionDetails';
+import { parseRichLink } from '../../libs/rich-links';
+import RichLinkCard from './RichLinkCard';
 
 /** The first URL in the text that isn't one of our own entity links. */
 function firstExternalUrl(text?: string | null): string | null {
@@ -83,7 +85,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       } catch {
         /* unreadable host: no app lookup */
       }
-      if (!parsePredictionLink(url)) void fetchAppByDomain(host).then((row) => {
+      if (!parsePredictionLink(url) && !parseRichLink(url)) void fetchAppByDomain(host).then((row) => {
         if (!cancelled) setApp(row);
       });
       fetchLinkPreview(url).then((data) => {
@@ -101,6 +103,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   if (!url) return null;
   if (loading) return <View style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
   if (!preview) return null;
+  if (preview.rich) return <RichLinkCard preview={{ ...preview, rich: preview.rich }} style={style} />;
 
   // Minimal: no card. The image spans the text column and the site, title and
   // description sit under it flush with the post text, so nothing is boxed.

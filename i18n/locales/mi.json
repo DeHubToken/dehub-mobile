@@ -6769,6 +6769,28 @@
     "savePrompt": "Whakaorangia tenei pou hei whakatakotoranga hei whakaoti me te tuku i muri mai?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Ngā wā ataata whakahirahira",
+      "visualPrivacy": "Tukuna ngā tāpare kua tīpakohia hei tātari ā-ataata."
+    },
+    "review": {
+      "title": "Arotake kaupapa",
+      "shared": "I tiritiria ki a koe",
+      "time": "Wā (s)",
+      "assign": "Tautapa pūkoro"
+    },
+    "textFit": {
+      "wrap": "Whati ngā rārangi",
+      "width": "Whānui kuputuhi",
+      "shrink": "Whakaitia te kuputuhi kia uru",
+      "height": "Teitei kuputuhi",
+      "captions": "Whakaurua te ara kupu hauraro"
+    },
+    "cloud": {
+      "trash": "Ipu para",
+      "title": "Ngā kaupapa kapua",
+      "restore": "Whakaora"
+    },
     "shots": {
       "detect": "Kimihia ngā huringa whakaaturanga",
       "split": "Wehea ki ngā tapahi kua tīpakohia",

@@ -6787,6 +6787,28 @@
     "savePrompt": "Do ta ruash këtë postim si draft për ta përfunduar dhe për ta postuar më vonë?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momentet pamore kryesore",
+      "visualPrivacy": "Dërgo kuadrot e zgjedhura për analizë pamore."
+    },
+    "review": {
+      "title": "Shqyrtimi i projektit",
+      "shared": "Ndarë me ju",
+      "time": "Koha (s)",
+      "assign": "Cakto portofolin"
+    },
+    "textFit": {
+      "wrap": "Mbështill rreshtat",
+      "width": "Gjerësia e tekstit",
+      "shrink": "Zvogëlo tekstin që të përshtatet",
+      "height": "Lartësia e tekstit",
+      "captions": "Përshtat pistën e titrave"
+    },
+    "cloud": {
+      "trash": "Koshi",
+      "title": "Projekte në re",
+      "restore": "Rikthe"
+    },
     "shots": {
       "detect": "Zbulo ndryshimet e skenës",
       "split": "Ndaj te prerjet e zgjedhura",

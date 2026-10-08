@@ -6663,6 +6663,28 @@
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Video better moments",
+      "visualPrivacy": "Send selected frames make we analyse wetin dey show."
+    },
+    "review": {
+      "title": "Check project",
+      "shared": "Dem share am with you",
+      "time": "Time (s)",
+      "assign": "Choose wallet"
+    },
+    "textFit": {
+      "wrap": "Break lines",
+      "width": "Text width",
+      "shrink": "Make text small so e fit",
+      "height": "Text height",
+      "captions": "Make subtitle track fit"
+    },
+    "cloud": {
+      "trash": "Dustbin",
+      "title": "Cloud projects",
+      "restore": "Bring am back"
+    },
     "shots": {
       "detect": "Find scene changes",
       "split": "Split for cuts wey you choose",

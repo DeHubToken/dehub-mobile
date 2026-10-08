@@ -6736,6 +6736,28 @@
     "savePrompt": "I be se ka barokun nin laban ani k'a bila a kan cogo di?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Filimu jaa yɔrɔbaaw",
+      "visualPrivacy": "Filimu jaa sugandilenw ci ka u sɛgɛsɛgɛ."
+    },
+    "review": {
+      "title": "Porozɛ lajɛ",
+      "shared": "I fɛ tila",
+      "time": "Waati (s)",
+      "assign": "Warimarayɔrɔ sugandi"
+    },
+    "textFit": {
+      "wrap": "Sɛbɛnni tɔgɔw tilan",
+      "width": "Sɛbɛnni bonya",
+      "shrink": "Sɛbɛnni dɔgɔya ka a bɛn",
+      "height": "Sɛbɛnni janya",
+      "captions": "Sɛbɛnni sira bɛn"
+    },
+    "cloud": {
+      "trash": "Ɲamanw",
+      "title": "Sanguma baara",
+      "restore": "Segi a la"
+    },
     "shots": {
       "detect": "Sɛnɛ yɛlɛmaw ɲini",
       "split": "Tilɛ ka taamasiɲɛw sugandilen kɛ",

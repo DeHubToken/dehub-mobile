@@ -6877,6 +6877,28 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momentos visuales destacados",
+      "visualPrivacy": "Enviar fotogramas seleccionados para el análisis visual."
+    },
+    "review": {
+      "title": "Revisión del proyecto",
+      "shared": "Compartido contigo",
+      "time": "Tiempo (s)",
+      "assign": "Asignar cartera"
+    },
+    "textFit": {
+      "wrap": "Ajustar líneas",
+      "width": "Ancho del texto",
+      "shrink": "Reducir el texto para que encaje",
+      "height": "Altura del texto",
+      "captions": "Ajustar pista de subtítulos"
+    },
+    "cloud": {
+      "trash": "Papelera",
+      "title": "Proyectos en la nube",
+      "restore": "Restaurar"
+    },
     "shots": {
       "detect": "Detectar cambios de escena",
       "split": "Dividir en los cortes elegidos",
