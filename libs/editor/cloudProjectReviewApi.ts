@@ -5,7 +5,7 @@ import { projectReviewDraft, projectReviewWallet, type ProjectReviewComment, typ
 export function cloudProjectReviewApi(client: SupabaseClient, wallet: string, conflict: (message: string) => Error) {
   async function rpc<T>(name: string, args: Record<string, unknown> = {}): Promise<T> {
     const { data, error } = await client.rpc(name, args);
-    if (error) throw error.code === "40001" ? conflict(error.message) : new Error(error.message);
+    if (error) throw (error.code === "PT409" || error.code === "40001") ? conflict(error.message) : new Error(error.message);
     return data as T;
   }
   return {

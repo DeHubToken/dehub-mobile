@@ -14,7 +14,7 @@ export function cloudProjectApi(address: string) {
   async function rpc<T>(name: string, args: Record<string, unknown> = {}): Promise<T> {
     const { data, error } = await client.rpc(name, args);
     if (error) {
-      if (error.code === "40001") throw new CloudProjectConflict(error.message);
+      if ((error.code === "PT409" || error.code === "40001")) throw new CloudProjectConflict(error.message);
       throw new Error(error.message);
     }
     return data as T;
