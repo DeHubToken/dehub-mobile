@@ -1,9 +1,15 @@
 import { findHighlights, highlightCaptionWords, sameHighlightSource, type HighlightRange } from "./highlights";
+import { findVisualHighlights, type VisualAnalyser, type VisualSampler } from "./visualHighlights";
 import { reviewHighlights } from "./highlightReview";
 import type { CaptionWord } from "./captionLayout";
 import type { MediaClip, ProjectSnapshot } from "./types";
 
-export interface HighlightChatRequest { seconds: number; focus: string; useCaptions: boolean }
+export interface HighlightChatRequest { seconds: number; focus: string; useCaptions: boolean; useVisual?: boolean; visualScope?: string }
+
+/** Consent follows the selected project and source assets, without filenames or URLs. */
+export function highlightVisualScope(project: ProjectSnapshot, selectedIds: string[]): string {
+  return JSON.stringify([project.id, selectedIds, project.clips.filter(clip => clip.kind === "video").map(clip => [clip.id, clip.mediaId])]);
+}
 
 /** Explicit requests use the highlight workflow before ordinary timeline planning. */
 export function highlightChatRequest(prompt: string): HighlightChatRequest | null {
@@ -36,6 +42,7 @@ export interface HighlightChatRuntime {
   current: () => ProjectSnapshot | null;
   transcribe: (clip: MediaClip, progress: (stage: "download" | "transcribe", fraction: number) => void, signal: AbortSignal) => Promise<CaptionWord[]>;
   plan: Planner;
+  visual?: { sample: VisualSampler; analyse: VisualAnalyser };
   create: (original: ProjectSnapshot, clipId: string, ranges: HighlightRange[], signal: AbortSignal) => Promise<boolean>;
 }
 
@@ -66,26 +73,44 @@ export class HighlightChatSession {
     if (!clip || clip.locked || clip.hidden || original.tracks.find(track => track.id === clip.trackId)?.hidden) return this.fail("selectVideo");
     const speed = clip.speed ?? 1;
     if (![15, 30, 60].includes(request.seconds) || !Number.isFinite(clip.duration) || clip.duration < 1 || !Number.isFinite(speed) || speed <= 0 || clip.duration * speed > 600) return this.fail("limit");
-    const captions = request.useCaptions ? highlightCaptionWords(original, clip) : null;
+    const visual = request.useVisual === true;
+    if (visual && request.visualScope !== highlightVisualScope(original, selectedIds)) return this.fail("changed");
+    const captions = request.useCaptions && !visual ? highlightCaptionWords(original, clip) : null;
     if (captions && !captions.length) return this.fail("captionsMissing");
     const controller = new AbortController(); this.controller = controller; this.source = original;
-    this.patch({ clipId: clip.id, busy: true, progress: { stage: "transcribe", fraction: 0 } });
+    this.patch({ clipId: clip.id, busy: true, progress: { stage: visual ? "rank" : "transcribe", fraction: 0 } });
     try {
-      const words = captions ?? await this.runtime.transcribe(clip, (stage, fraction) => {
-        if (this.alive(controller)) this.patch({ progress: { stage, fraction: Math.max(0, Math.min(1, fraction)) } });
-      }, controller.signal);
-      if (!this.alive(controller)) return { status: "cancelled" };
-      if (!this.matchesSource()) return this.fail("changed");
-      this.patch({ progress: { stage: "rank", fraction: 0 } });
-      const ranges = await findHighlights(clip, words, request, this.runtime.plan, controller.signal, fraction => {
-        if (this.alive(controller)) this.patch({ progress: { stage: "rank", fraction } });
-      });
+      let ranges: HighlightRange[];
+      if (visual) {
+        const runtime = this.runtime.visual;
+        if (!runtime) throw new Error("Visual analysis unavailable");
+        const checkSource = () => {
+          if (!this.alive(controller) || !this.matchesSource()) throw new Error("Source changed");
+        };
+        ranges = await findVisualHighlights(clip, { optIn: true, seconds: request.seconds, focus: request.focus },
+          (source, windows, signal, progress) => { checkSource(); return runtime.sample(source, windows, signal, progress); },
+          (batch, signal) => { checkSource(); return runtime.analyse(batch, signal); },
+          controller.signal, fraction => {
+            if (this.alive(controller)) this.patch({ progress: { stage: "rank", fraction } });
+          });
+      } else {
+        const words = captions ?? await this.runtime.transcribe(clip, (stage, fraction) => {
+          if (this.alive(controller)) this.patch({ progress: { stage, fraction: Math.max(0, Math.min(1, fraction)) } });
+        }, controller.signal);
+        if (!this.alive(controller)) return { status: "cancelled" };
+        if (!this.matchesSource()) return this.fail("changed");
+        this.patch({ progress: { stage: "rank", fraction: 0 } });
+        ranges = await findHighlights(clip, words, request, this.runtime.plan, controller.signal, fraction => {
+          if (this.alive(controller)) this.patch({ progress: { stage: "rank", fraction } });
+        });
+      }
       if (!this.alive(controller)) return { status: "cancelled" };
       if (!this.matchesSource()) return this.fail("changed");
       this.patch({ ranges, chosen: ranges.map((_, i) => i), undo: null, error: null });
       return { status: "found", count: ranges.length, total: ranges.length };
     } catch (error) {
       if (!this.alive(controller)) return { status: "cancelled" };
+      if (!this.matchesSource()) return this.fail("changed");
       return this.fail(error instanceof Error && error.message === "highlight_limit" ? "limit" : "failed");
     } finally { this.complete(controller); }
   }
@@ -110,6 +135,7 @@ export class HighlightChatSession {
       return { status: "reviewed", count: chosen.length, total: ranges.length };
     } catch (error) {
       if (!this.alive(controller)) return { status: "cancelled" };
+      if (!this.matchesSource()) return this.fail("changed");
       return this.fail(error instanceof Error && error.message === "highlight_limit" ? "limit" : "failed");
     } finally { this.complete(controller); }
   }

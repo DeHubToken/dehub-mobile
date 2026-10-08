@@ -89,7 +89,8 @@ import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
 import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
-import { highlightChatRequest, type HighlightChatResult } from "../libs/editor/highlightChat";
+import { highlightChatRequest, highlightVisualScope, type HighlightChatResult } from "../libs/editor/highlightChat";
+import { analyseVisualHighlights } from "../libs/editor/visualHighlightApi";
 import { useHighlightChat } from "../libs/editor/useHighlightChat";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
@@ -405,6 +406,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [highlightChatState, highlightChat] = useHighlightChat({
     current: h.latest,
     plan: askSceneAgent,
+    visual: {
+      sample: (clip, windows, signal, progress) => {
+        setPlaying(false);
+        if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+        return canvasRef.current.sampleVisual(clip, windows, signal, progress);
+      },
+      analyse: analyseVisualHighlights,
+    },
     transcribe: (clip, progress, signal) => {
       setPlaying(false);
       if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
@@ -894,7 +903,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
-  const sendToAgent = async (text: string) => {
+  const sendToAgent = async (text: string, useVisual = false) => {
     if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
@@ -922,7 +931,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const request = highlightChatRequest(text);
     if (request || highlightChat.reviewing) {
       highlightPreviewEnd.current = null; setPlaying(false);
-      recordHighlights(request ? await highlightChat.start(request, selectedId ? [selectedId] : []) : await highlightChat.review(text));
+      recordHighlights(request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text));
       return;
     }
     setChatBusy(true);
@@ -1671,7 +1680,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onHighlightPreview={index => { const preview = highlightChat.preview(index); if (!preview) return; highlightPreviewEnd.current = preview.end; setTime(preview.start); setPlaying(true); setChatOpen(false); }}
         onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
         onHighlightClose={closeHighlightChat}
-        onSend={(text) => { void sendToAgent(text); }}
+        onSend={(text, useVisual) => { void sendToAgent(text, useVisual); }}
+        visualScope={highlightVisualScope(project, selectedId ? [selectedId] : [])}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
         onClose={() => { if (assembly.state.busy || assemblyPreparation.current) closeAssembly(); setChatOpen(false); }}
