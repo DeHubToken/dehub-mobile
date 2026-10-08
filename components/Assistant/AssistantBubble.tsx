@@ -212,7 +212,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
       <View style={hasMedia ? s.wideColumn : s.column}>
         {displayText.length > 0 && (
           <View style={[s.content, s.aiContent]}>
-            <MarkdownText content={displayText} style={{ fontSize: 14 }} />
+            <MarkdownText content={message.isError ? displayText.replace(/\bDHB\b/g, t('tip.tokensUnit')) : displayText} style={{ fontSize: 14 }} />
           </View>
         )}
 
