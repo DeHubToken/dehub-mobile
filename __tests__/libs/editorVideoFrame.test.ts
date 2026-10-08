@@ -90,9 +90,9 @@ for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper",
       expect(paint.callbacks.size).toBe(0); clean(source);
     });
     it("uses an already decoded frame without an unnecessary seek", async () => {
-      const source = new Decoder(); source.clock = 5.15;
+      const paint = redraws(); const source = new Decoder(); source.clock = 5.15;
       await wait(source, 5.15);
-      expect(source.assignments).toBe(0); clean(source);
+      expect(source.assignments).toBe(0); expect(paint.callbacks.size).toBe(0); clean(source);
     });
     it("recovers when a paused decoder becomes ready without a seek event", async () => {
       const source = new Decoder(); const promise = wait(source, 5.15);
