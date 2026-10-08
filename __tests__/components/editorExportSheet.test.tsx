@@ -9,8 +9,8 @@ jest.mock("react-native-safe-area-context", () => ({ useSafeAreaInsets: () => ({
 jest.mock("../../components/ui/Icon", () => "Icon");
 jest.mock("../../components/editor/EditorPanels", () => ({
   Chip: ({ label, active, onPress }: { label: string; active: boolean; onPress: () => void }) => {
-    const react = require("react");
-    return react.createElement("Pressable", { accessibilityLabel: label, accessibilityRole: "button", accessibilityState: { selected: active }, onPress }, react.createElement("Text", null, label));
+    const element = require("react").createElement;
+    return element("Pressable", { accessibilityLabel: label, accessibilityRole: "button", accessibilityState: { selected: active }, onPress }, element("Text", null, label));
   },
 }));
 
