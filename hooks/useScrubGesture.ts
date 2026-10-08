@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import type { LayoutChangeEvent } from "react-native";
 import { Gesture } from "react-native-gesture-handler";
 import type { GestureType } from "react-native-gesture-handler";
+import { runOnJS, useSharedValue } from "react-native-reanimated";
 import { usePagerGestureRef } from "../context/PagerGestureContext";
 
 /** Sideways travel that turns a touch into a scrub instead of a tap. */
@@ -26,6 +27,8 @@ interface ScrubGestureArgs {
    * something else (artwork, a card), so a vertical flick still scrolls.
    */
   immediate?: boolean;
+  /** Dedicated seek strip below the shared button row, in layout points. */
+  immediateBottom?: number;
   /**
    * Further gestures the scrub must outrank — the Shorts viewer's own pager,
    * for instance, which is not the Home pager this hook finds through context.
@@ -56,40 +59,76 @@ export const useScrubGesture = ({
   enabled = true,
   tapEnabled = true,
   immediate = false,
+  immediateBottom = 0,
   blocks,
 }: ScrubGestureArgs) => {
   const widthRef = useRef(1);
+  const height = useSharedValue(0);
+  const touch = useSharedValue({ x: 0, y: 0, dedicated: false, decided: false });
+  const callbacks = useRef({ onScrubStart, onScrub, onCommit, onCancel });
+  callbacks.current = { onScrubStart, onScrub, onCommit, onCancel };
+  const started = useRef(false);
+
+  const start = useCallback((x: number) => {
+    started.current = true;
+    callbacks.current.onScrubStart?.();
+    callbacks.current.onScrub(Math.max(0, Math.min(1, x / widthRef.current)));
+  }, []);
+  const preview = useCallback((x: number) => {
+    callbacks.current.onScrub(Math.max(0, Math.min(1, x / widthRef.current)));
+  }, []);
+  const commit = useCallback((x: number) => {
+    callbacks.current.onCommit(Math.max(0, Math.min(1, x / widthRef.current)));
+  }, []);
+  const finish = useCallback((success: boolean) => {
+    if (!success && started.current) callbacks.current.onCancel?.();
+    started.current = false;
+  }, []);
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     widthRef.current = e.nativeEvent.layout.width || 1;
-  }, []);
+    height.value = e.nativeEvent.layout.height;
+  }, [height]);
 
   const pagerRef = usePagerGestureRef();
 
   const gesture = useMemo(() => {
-    const ratioAt = (x: number) => Math.max(0, Math.min(1, x / widthRef.current));
-
-    const pan = Gesture.Pan().enabled(enabled);
-    // A dedicated track claims the touch on its first pixel of movement; a
-    // shared surface waits for clearly sideways travel so a flick still scrolls.
-    if (immediate) pan.minDistance(0);
-    else pan.activeOffsetX([-ACTIVATE_PX, ACTIVATE_PX]).failOffsetY([-ACTIVATE_PX, ACTIVATE_PX]);
-
-    pan
-      // Callbacks touch React state and the player, so they belong on the JS
-      // thread — the default is the UI thread and would need runOnJS at every
-      // call site.
-      .runOnJS(true)
-      .onStart((e) => {
-        onScrubStart?.();
-        onScrub(ratioAt(e.x));
+    // Decide direction on the UI thread before the pager can activate. A fixed
+    // failOffsetY rejects even mostly-horizontal drags when one event crosses
+    // both thresholds. Once claimed, vertical drift must not release the scrub.
+    const pan = Gesture.Pan().enabled(enabled).maxPointers(1)
+      .manualActivation(true)
+      .shouldCancelWhenOutside(false)
+      .onTouchesDown((event, manager) => {
+        const point = event.allTouches[0];
+        if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+        touch.value = {
+          x: point.absoluteX, y: point.absoluteY, decided: false,
+          dedicated: immediate || (immediateBottom > 0 && point.y >= height.value - immediateBottom),
+        };
       })
-      .onUpdate((e) => onScrub(ratioAt(e.x)))
+      .onTouchesMove((event, manager) => {
+        const point = event.allTouches[0];
+        if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+        const origin = touch.value;
+        if (origin.decided) return;
+        const dx = Math.abs(point.absoluteX - origin.x);
+        const dy = Math.abs(point.absoluteY - origin.y);
+        if (origin.dedicated || (dx > ACTIVATE_PX && dx > dy)) {
+          touch.value = { ...origin, decided: true };
+          manager.activate();
+        } else if (dy > ACTIVATE_PX && dy >= dx) {
+          touch.value = { ...origin, decided: true };
+          manager.fail();
+        }
+      })
+      .onStart((e) => { runOnJS(start)(e.x); })
+      .onUpdate((e) => { runOnJS(preview)(e.x); })
       .onEnd((e, success) => {
-        if (success) onCommit(ratioAt(e.x));
+        if (success) runOnJS(commit)(e.x);
       })
       .onFinalize((_e, success) => {
-        if (!success) onCancel?.();
+        runOnJS(finish)(success);
       });
 
     const tap = Gesture.Tap()
@@ -98,8 +137,9 @@ export const useScrubGesture = ({
       .runOnJS(true)
       .onEnd((e, success) => {
         if (!success || !tapEnabled) return;
-        onScrubStart?.();
-        onCommit(ratioAt(e.x));
+        start(e.x);
+        commit(e.x);
+        finish(true);
       });
 
     // Composition does not carry `blocksExternalGesture` down to the members,
@@ -111,7 +151,7 @@ export const useScrubGesture = ({
     }
 
     return tapEnabled ? Gesture.Race(pan, tap) : pan;
-  }, [enabled, immediate, tapEnabled, onScrubStart, onScrub, onCommit, onCancel, pagerRef, blocks]);
+  }, [enabled, immediate, immediateBottom, tapEnabled, pagerRef, blocks, height, touch, start, preview, commit, finish]);
 
   // RNGH runs beside the JS responder system, not inside it, so an ancestor
   // Pressable never learns that the scrub took the touch: the feed card's own
