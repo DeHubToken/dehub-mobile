@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -64,7 +65,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
     setBusy(true); setError('');
     try {
       const value = Number(amount);
-      if (!(value > 0) || value > balance) throw new Error(t('dex.checkAmount', { token: spend.symbol }));
+      if (!(value > 0) || value > balance) throw new Error(t('dex.checkAmount', { token: tokenLabel(spend.symbol) }));
       if (!quote) {
         const [whole, fraction = ''] = amount.split('.');
         const units = BigInt(ethers.utils.parseUnits(fraction ? `${whole}.${fraction.slice(0, spend.decimals)}` : whole, spend.decimals).toString());
@@ -73,7 +74,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
       }
       const provider = await signer(ChainId.BASE_MAINNET, t('dex.unlockWallet'));
       await runSwap(quote, provider, address);
-      toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(side === 'buy' ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), 18)) : value), symbol: 'DHB' }));
+      toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(side === 'buy' ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), 18)) : value), symbol: tokenLabel() }));
       setAmount(''); setQuote(null); setRevision((n) => n + 1); onDone();
     } catch (e) { setError(dexActionError(e, t('dex.prepareFailed'))); }
     finally { setBusy(false); }
@@ -92,9 +93,9 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
       {side === 'buy' && <><Text style={[s.muted, s.label]}>{t('dex.payWith')}</Text><View style={s.row}>{(['USDC', 'ETH'] as const).map((value) => <TouchableOpacity key={value} disabled={locked} style={[s.chip, pay === value && s.chipActive]} onPress={() => setPay(value)}>
         <Text style={pay === value ? s.white : s.muted}>{value} · {balances ? formatSize(value === 'ETH' ? balances.eth : balances.usdc) : '—'}</Text></TouchableOpacity>)}</View></>}
       <Text style={[s.muted, s.label]}>{t(side === 'buy' ? 'dex.spend' : 'dex.sellAmount')}</Text>
-      <View style={s.inputWrap}><TextInput editable={!locked} accessibilityLabel={t('dex.amountToken', { token: spend.symbol })} keyboardType="decimal-pad" placeholder="0.00" placeholderTextColor="#596675" value={amount} onChangeText={(v) => setAmount(v.replace(',', '.').trim())} style={s.input} /><Text style={s.unit}>{spend.symbol}</Text></View>
-      <View style={s.between}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{balances ? `${formatSize(balance)} ${spend.symbol}` : t('dex.checking')}</Text></View>
-      <View style={s.between}><Text style={s.muted}>{t('dex.pool.youReceive')}</Text><Text style={s.white}>{out != null ? `${formatSize(out)} ${side === 'buy' ? 'DHB' : 'USDC'}` : '—'}</Text></View>
+      <View style={s.inputWrap}><TextInput editable={!locked} accessibilityLabel={t('dex.amountToken', { token: tokenLabel(spend.symbol) })} keyboardType="decimal-pad" placeholder="0.00" placeholderTextColor="#596675" value={amount} onChangeText={(v) => setAmount(v.replace(',', '.').trim())} style={s.input} /><Text style={s.unit}>{tokenLabel(spend.symbol)}</Text></View>
+      <View style={s.between}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{balances ? `${formatSize(balance)} ${tokenLabel(spend.symbol)}` : t('dex.checking')}</Text></View>
+      <View style={s.between}><Text style={s.muted}>{t('dex.pool.youReceive')}</Text><Text style={s.white}>{out != null ? `${formatSize(out)} ${side === 'buy' ? tokenLabel() : 'USDC'}` : '—'}</Text></View>
       {!!error && <Text accessibilityRole="alert" style={s.alert}>{error}</Text>}
       <TouchableOpacity disabled={locked || !(Number(amount) > 0)} onPress={() => void submit()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: locked || !(Number(amount) > 0) ? 0.5 : 1 }]}>
         {busy && <ActivityIndicator color="#061410" />}

@@ -93,7 +93,7 @@ const SECTIONS: GlossarySection[] = [
   {
     title: "Wallet & Tokens",
     entries: [
-      { icon: "Coins", title: "DHB Token", description: { key: "screens.glossaryDhbTokenDesc" } },
+      { icon: "Coins", title: "DeHub tokens", description: { key: "screens.glossaryDhbTokenDesc" } },
       { icon: "Wallet", title: "Wallet", description: { key: "screens.glossaryWalletDesc" } },
       { icon: "ArrowUpDown", title: "Swap", description: "Exchange one token for another directly within the app. Swaps happen on-chain using decentralized exchanges." },
       { icon: "TrendingUp", title: "Staking", description: { key: "screens.glossaryStakingDesc" } },

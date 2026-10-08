@@ -255,7 +255,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         />
       </SettingsSection>
 
-      {/* A badge is bought with DHB, so lending one belongs with the rest of
+      {/* A badge is bought with tokens, so lending one belongs with the rest of
           what DHB buys rather than off in Profile. */}
       <BadgeDelegationSection />
 

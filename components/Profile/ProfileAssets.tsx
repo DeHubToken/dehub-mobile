@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import InfoTooltip from "../ui/InfoTooltip";
-import dhbIcon from "../../assets/tokens/DHB.png";
+import dhbIcon from "../../assets/web-icons/dehub-coin.png";
 import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
 import ethIcon from "../../assets/chains/base-icon.png";

@@ -2215,7 +2215,7 @@
     "otherTokens": "その他のトークン",
     "otherTokensDesc": "カードで Base 上の ETH または USDC を購入",
     "shareToFeed": "フィードにシェアする",
-    "sharePostTemplate": "DeHubのスタックに{{amount}} $ DHBを追加しました。 コミュニティと一緒に構築しましょう。# DeHub # DHB",
+    "sharePostTemplate": "DeHubのスタックに{{amount}} $ DHBを追加しました。 コミュニティと一緒に構築しましょう。# DeHub # トークン",
     "minDhbPurchase": "最小トークン購入額は $0.50 です"
   },
   "agents": {
@@ -5944,7 +5944,7 @@
     "paymentSentWith": "{{amount}} で送信済み",
     "planRestricted": "このユーザーにメッセージを送るにはサブスクリプションが必要です。",
     "planTypeNotAllowed": "このクリエイターのプランでは、この種類のメッセージは送れません。",
-    "planMinTip": "このクリエイターへのチップは {{amount}} DHB 以上にしてください。"
+    "planMinTip": "このクリエイターへのチップは {{amount}} トークン 以上にしてください。"
   },
   "editPost": {
     "mediaPermission": "メディアライブラリへのアクセス許可が必要です",
@@ -6511,7 +6511,7 @@
   },
   "dex": {
     "lowestPrice": "最安値 · USD",
-    "lpDhb": "LP・DHB",
+    "lpDhb": "LP・トークン",
     "lpUsd": "LP・USD",
     "totalLiquidity": "流動性合計 · USD",
     "lowestSell": "最低売出 · USDC",
@@ -6568,7 +6568,7 @@
     "ready": "引き出し準備完了",
     "converting": "コンバート中",
     "waiting": "待機中",
-    "withdrawReview": "{{dhb}} DHB と {{usdc}} USDC を {{chain}} で引き出しますか？署名前に金額が更新されます。価格許容範囲は 0.5% です。",
+    "withdrawReview": "{{dhb}} トークン と {{usdc}} USDC を {{chain}} で引き出しますか？署名前に金額が更新されます。価格許容範囲は 0.5% です。",
     "cancel": "キャンセル",
     "onchain": "オンチェーンで表示",
     "retry": "再試行",
@@ -6604,7 +6604,7 @@
     "balanceToken": "{{chain}} · {{amount}} {{token}} 利用可能",
     "noBalanceToken": "BaseまたはBNBチェーンに{{token}}はありません",
     "connectToken": "{{token}} を保有するウォレットを接続してください",
-    "reviewToken": "レビュー：{{chain}} で {{minPrice}} ～ {{maxPrice}} USDC/DHB の価格で {{amount}} 枚の {{token}} を預け入れます。ウォレットが承認をリクエストし、ポジションを作成します。",
+    "reviewToken": "レビュー：{{chain}} で {{minPrice}} ～ {{maxPrice}} USDC/トークン の価格で {{amount}} 枚の {{token}} を預け入れます。ウォレットが承認をリクエストし、ポジションを作成します。",
     "buyExplanation": "USDCのみを預け入れてください。最大買い注文価格は上限価格です。ポジションは、DHBが範囲を下回って取引されると約定します。",
     "sellExplanation": "DHBのみを預け入れてください。最小売り注文価格は下限価格です。ポジションは、DHBが範囲を上回って取引されると約定します。",
     "feeNote": "LP手数料0% · ネットワークガス代がかかります。",
@@ -8987,8 +8987,8 @@
     },
     "pay": {
       "body": "DHBはアプリのウォレットに直接振り込まれる、{{wallet}}。支払いは取り消せません。",
-      "confirm": "支払い {{amount}} DHB",
-      "sent": "支払い {{amount}} DHB を {{name}} に。",
+      "confirm": "支払い {{amount}} トークン",
+      "sent": "支払い {{amount}} トークン を {{name}} に。",
       "title": "{{name}}を支払いますか？"
     },
     "add": {

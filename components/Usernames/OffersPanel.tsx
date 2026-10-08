@@ -9,7 +9,7 @@
  * Accepting one takes no money and moves no handle — it holds your name for
  * one buyer until they pay, and you can take that back. Every state here that
  * looks like a completed trade is actually a promise, and a reader who thinks
- * otherwise will either spend a name they still own or wait for DHB that was
+ * otherwise will either spend a name they still own or wait for tokens that was
  * never sent.
  *
  * Paying for an accepted offer reuses the ordinary buy sheet. An accepted
