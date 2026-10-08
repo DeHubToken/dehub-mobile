@@ -86,12 +86,16 @@ describe("cloud project transfer and revision recovery", () => {
     const copy = await env.session().save(p, true);
     expect(copy.projectId).not.toBe(first.projectId); expect(copy.revision).toBe(1); expect(env.revisions.get(first.projectId)).toBe(4);
   });
-  it("opens a reviewed version as a distinct local project after hydrating every source", async () => {
+  it("opens a history copy independently and reuses media without changing the original cloud project", async () => {
     const env = setup(), p = draft(), saved = await env.session().save(p); env.revisions.set(saved.projectId, 3);
     const copy = await env.session().open(saved.projectId, 1);
     expect(copy.id).not.toBe(p.id); expect(copy.id).not.toBe(saved.projectId);
     expect(env.locals.get(p.id)).toEqual(p); expect(env.hydrated).toHaveLength(1);
-    expect(env.links.get(copy.id)?.revision).toBe(3);
+    expect(env.links.get(copy.id)?.revision).toBe(0);
+    expect(env.links.get(copy.id)?.projectId).not.toBe(saved.projectId);
+    const fork = await env.session().save(copy);
+    expect(fork.projectId).not.toBe(saved.projectId); expect(fork.revision).toBe(1);
+    expect(env.revisions.get(saved.projectId)).toBe(3); expect(env.uploaded).toHaveLength(1);
   });
   it("rejects an account switch during hydration before writing or opening a local copy", async () => {
     const env = setup(), saved = await env.session().save(draft());
@@ -104,5 +108,15 @@ describe("cloud project transfer and revision recovery", () => {
     await expect(env.session().restore(saved.projectId, 1, 2)).rejects.toThrow("Newer cloud");
     const copy = await env.session().restore(saved.projectId, 1, 3);
     expect(env.links.get(copy.id)?.revision).toBe(4);
+  });
+  it("does not adopt an unseen head created while a restored version is downloading", async () => {
+    const env = setup(), saved = await env.session().save(draft()); env.revisions.set(saved.projectId, 3);
+    const load = env.deps.api.load;
+    env.deps.api.load = async (id, revision) => { const version = await load(id, revision); env.revisions.set(id, 5); return { ...version, headRevision: 5 }; };
+    const copy = await env.session().restore(saved.projectId, 1, 3);
+    expect(env.links.get(copy.id)?.revision).toBe(4);
+    await expect(env.session().save({ ...copy, title: "My restored edit" })).rejects.toThrow("Newer cloud");
+    expect(env.revisions.get(saved.projectId)).toBe(5);
+    expect(env.locals.get(copy.id)?.title).toBe("My restored edit");
   });
 });
