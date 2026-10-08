@@ -7,6 +7,22 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it("prepares a voice draft offline without changing the source snapshot", async () => {
+    const base = newProject("9:16", "Original video");
+    const fetch = jest.spyOn(globalThis, "fetch").mockRejectedValue(new Error("offline"));
+    try {
+      const result = await askAgent([{ role: "user", content: 'Create a voiceover saying "Hello, DeHub."' }], describeScene(base, null, null));
+      const { project, report } = await applyOps(base, result.ops);
+      expect(report).toMatchObject({ applied: 0, failed: 0, unsupported: [], generate: { kind: "voice", prompt: "Hello, DeHub." } });
+      expect(fetch).not.toHaveBeenCalled();
+      expect(project).toBe(base);
+      expect(await applyOps(base, [{ op: "generate", kind: "music", prompt: "ambient" }])).toMatchObject({ report: { applied: 0, failed: 1 } });
+      const second = await applyOps(base, [{ op: "generate", kind: "video", prompt: "Waves" }]);
+      expect(second.report.generate).toEqual({ kind: "video", prompt: "Waves", aspect: "9:16" });
+      expect(report.generate?.prompt).toBe("Hello, DeHub.");
+    } finally { fetch.mockRestore(); }
+  });
+
   it("splits detected scenes without replacing source media or changing the original project", async () => {
     const base = newProject("16:9", "scenes");
     base.tracks = [{ id:"track",kind:"video",name:"Video",muted:false,hidden:false }];

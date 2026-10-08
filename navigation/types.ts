@@ -10,6 +10,7 @@ import type {
 } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps, CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
+import type { GenerationDraft } from '../libs/editor/generationDraft';
 
 export type RootStackParamList = {
   [ScreenNames.App]: NavigatorScreenParams<AppStackParamList> | undefined;
@@ -35,7 +36,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
-  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion' } | undefined;
+  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
    *  without the public lookup; a shared link carries only `id`. */

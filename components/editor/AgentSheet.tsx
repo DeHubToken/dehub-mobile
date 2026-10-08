@@ -13,12 +13,14 @@ import { DeHubLoader } from "../DeHubLoader";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import type { HighlightChatState } from "../../libs/editor/highlightChat";
 import { shotTime } from "../../libs/editor/shots";
+import type { GenerationDraft } from "../../libs/editor/generationDraft";
 
 export interface ChatEntry {
   id: string;
   role: "user" | "assistant";
   content: string;
   applied?: number;
+  generate?: GenerationDraft;
   error?: boolean;
 }
 
@@ -30,6 +32,7 @@ interface Props {
   onUndo: () => void;
   onClose: () => void;
   onClear: () => void;
+  onOpenGenerator: (draft: GenerationDraft) => void;
   highlights?: HighlightChatState;
   highlightSourceChanged?: boolean;
   onHighlightToggle?: (index: number) => void;
@@ -39,7 +42,7 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
@@ -103,6 +106,12 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                   style={{ maxWidth: "88%" }}
                 >
                   <Text className={e.role === "user" ? "text-black text-sm" : "text-white text-sm"}>{e.content}</Text>
+                  {e.generate && (
+                    <Pressable onPress={() => onOpenGenerator(e.generate!)} disabled={busy} accessibilityRole="button" className="flex-row items-center self-start rounded-lg bg-white px-2 py-1 mt-2" style={{ gap: 4, opacity: busy ? 0.4 : 1 }}>
+                      <Icon name="Wand" size={12} color="#000" />
+                      <Text className="text-black text-xs">{t("editor.agent.openGenerator")}</Text>
+                    </Pressable>
+                  )}
                   {!!e.applied && (
                     <View className="flex-row items-center mt-1" style={{ gap: 8 }}>
                       <Text className="text-theme-neutrals-400 text-xs">{t("editor.agent.changes", { count: e.applied })}</Text>

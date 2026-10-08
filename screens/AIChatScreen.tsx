@@ -115,7 +115,7 @@ import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAsse
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -273,8 +273,9 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const [assetPickerVisible, setAssetPickerVisible] = useState(false);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
+  const editorDraft = studio ? creatorSettingsForEditorDraft(route.params?.editorDraft) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(() => normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
+  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(() => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
     model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }));
   useEffect(() => {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
@@ -366,7 +367,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   // The Prompt entry screen hands its text over as a route param. Seed the
   // composer with it rather than auto-sending, so the user still gets a look
   // at what will be asked — same as web, which lands on /app?prompt=…
-  const initialPrompt: string | undefined = route.params?.initialPrompt;
+  const initialPrompt: string | undefined = editorDraft?.draft.prompt ?? route.params?.initialPrompt;
   useEffect(() => {
     if (initialPrompt) setInput(initialPrompt);
   }, [initialPrompt]);
