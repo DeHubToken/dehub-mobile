@@ -60,8 +60,8 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
       }
       try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
       animation = requestAnimationFrame(() => {
-        animation = undefined;
         if (done || generation !== expectedGeneration) return;
+        animation = undefined;
         if (!decoded()) { clearPresentation(); return; }
         animation = requestAnimationFrame(ready);
       });
@@ -166,8 +166,8 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
       }
       try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
       animation = requestAnimationFrame(() => {
-        animation = undefined;
         if (done || generation !== expectedGeneration) return;
+        animation = undefined;
         if (!decoded()) { clearPresentation(); return; }
         animation = requestAnimationFrame(ready);
       });
