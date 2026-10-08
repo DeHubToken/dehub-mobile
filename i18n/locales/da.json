@@ -6793,6 +6793,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Papirkurv",
       "title": "Cloudprojekter",
       "restore": "Gendan"
     },

@@ -6869,6 +6869,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Çöp kutusu",
       "title": "Bulut projeleri",
       "restore": "Geri yükle"
     },

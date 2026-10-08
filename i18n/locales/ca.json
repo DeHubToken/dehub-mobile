@@ -6789,6 +6789,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Paperera",
       "title": "Projectes al núvol",
       "restore": "Restaura"
     },

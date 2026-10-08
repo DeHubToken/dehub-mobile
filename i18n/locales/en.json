@@ -6872,6 +6872,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Trash",
       "title": "Cloud projects",
       "restore": "Restore"
     },

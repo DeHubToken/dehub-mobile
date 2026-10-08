@@ -6789,6 +6789,7 @@
   },
   "editor": {
     "cloud": {
+      "trash": "Smeće",
       "title": "Projekti u oblaku",
       "restore": "Vrati"
     },
