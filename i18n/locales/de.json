@@ -6878,6 +6878,12 @@
     "savePrompt": "Diesen Beitrag als Entwurf speichern, um ihn später abzuschließen und zu veröffentlichen?"
   },
   "editor": {
+    "review": {
+      "title": "Projektprüfung",
+      "shared": "Mit dir geteilt",
+      "time": "Zeit (s)",
+      "assign": "Wallet zuweisen"
+    },
     "textFit": {
       "wrap": "Zeilen umbrechen",
       "width": "Textbreite",

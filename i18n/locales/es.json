@@ -6877,6 +6877,12 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "review": {
+      "title": "Revisión del proyecto",
+      "shared": "Compartido contigo",
+      "time": "Tiempo (s)",
+      "assign": "Asignar cartera"
+    },
     "textFit": {
       "wrap": "Ajustar líneas",
       "width": "Ancho del texto",

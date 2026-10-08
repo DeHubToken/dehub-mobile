@@ -6842,6 +6842,12 @@
     "relatedPosts": "Bogʻliq postlar"
   },
   "editor": {
+    "review": {
+      "title": "Loyihani ko‘rib chiqish",
+      "shared": "Siz bilan ulashilgan",
+      "time": "Vaqt (s)",
+      "assign": "Hamyon tayinlash"
+    },
     "textFit": {
       "wrap": "Satrlarni o‘rash",
       "width": "Matn kengligi",

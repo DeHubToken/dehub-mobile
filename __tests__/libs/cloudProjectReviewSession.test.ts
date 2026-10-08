@@ -51,4 +51,14 @@ describe("shared project review transfers", () => {
     await expect(cloudProjectSession(f.deps).openReview(`0x${"3".repeat(40)}`,projectId)).rejects.toThrow();
     expect(f.hydrated).toHaveLength(0); expect(f.local.size).toBe(0);
   });
+  it("reopening a saved review after local retiming preserves the edited copy and returns the original frame clock", async () => {
+    const f=fixture(), session=cloudProjectSession(f.deps), original=JSON.stringify(f.document);
+    const first=await session.openReview(owner,projectId,3);
+    first.snapshot.clips[0].start=5; await f.deps.saveLocal(first.snapshot);
+    const second=await session.openReview(owner,projectId,3);
+    expect(second.snapshot.id).not.toBe(first.snapshot.id);
+    expect(second.snapshot.clips[0].start).toBe(0);
+    expect(f.local.get(first.snapshot.id)?.clips[0].start).toBe(5);
+    expect(JSON.stringify(f.document)).toBe(original);
+  });
 });

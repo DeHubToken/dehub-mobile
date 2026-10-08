@@ -6663,6 +6663,12 @@
     "savePrompt": "You wan save dis post as draft make you finish am and post later?"
   },
   "editor": {
+    "review": {
+      "title": "Check project",
+      "shared": "Dem share am with you",
+      "time": "Time (s)",
+      "assign": "Choose wallet"
+    },
     "textFit": {
       "wrap": "Break lines",
       "width": "Text width",

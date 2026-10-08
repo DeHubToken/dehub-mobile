@@ -3,7 +3,7 @@ import type { cloudProjectApi } from "./cloudProjectApi";
 import type { cloudProjectSession } from "./cloudProjectSession";
 import type { CloudProjectSummary } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
-import { projectReviewDraft, projectReviewWallet, type ProjectReviewComment, type ProjectReviewDraft, type ProjectReviewInvitation, type ProjectReviewMember, type ProjectReviewRole, type ProjectReviewTarget } from "./cloudProjectReview";
+import { projectReviewDraft, projectReviewSnapshotKey, projectReviewWallet, type ProjectReviewComment, type ProjectReviewDraft, type ProjectReviewInvitation, type ProjectReviewMember, type ProjectReviewRole, type ProjectReviewTarget } from "./cloudProjectReview";
 
 interface Context { current(): ProjectSnapshot | null; open(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; seek?(seconds: number): void }
 type Device = { api: ReturnType<typeof cloudProjectApi>; session: ReturnType<typeof cloudProjectSession>; uuid(): string };
@@ -23,7 +23,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   const [viewShared, setViewShared] = useState(false), [sharedProjects, setSharedProjects] = useState<ProjectReviewInvitation[]>([]);
   const [review, setReview] = useState<ProjectReviewTarget | null>(null), [members, setMembers] = useState<ProjectReviewMember[]>([]), [comments, setComments] = useState<ProjectReviewComment[]>([]);
   const pendingComment = useRef<{fingerprint: string; id: string} | null>(null);
-  const openedReview = useRef<{localId: string; owner: string; projectId: string; revision: number} | null>(null);
+  const openedReview = useRef<{localId: string; owner: string; projectId: string; revision: number; snapshotKey: string} | null>(null);
   const clearReview = () => { setReview(null); setMembers([]); setComments([]); };
   useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setViewShared(false); setSharedProjects([]); clearReview(); setError(""); setSaved(false); pendingComment.current=null; openedReview.current=null; }, [wallet]);
   async function run(action: (device: Device, check: () => void) => Promise<void>) {
@@ -47,12 +47,24 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     switchShared: () => run(async ({ api }, check) => { const rows=await api.review.inbox(); check(); setSharedProjects(rows); setViewShared(true); setViewTrash(false); setSelected(null); setHistory([]); clearReview(); }),
     acceptReview: (project: ProjectReviewInvitation) => run(async ({api},check) => { await api.review.accept(project); check(); const rows=await api.review.inbox(); check(); setSharedProjects(rows); }),
     showReview: (target: ProjectReviewTarget) => run(async ({api},check) => {
+      if (target.ownerWallet!==wallet) {
+        const invitations=await api.review.inbox(); check();
+        const live=invitations.find(row=>row.ownerWallet===target.ownerWallet && row.projectId===target.projectId && row.accepted);
+        if (!live) { clearReview(); throw new Error("Project review is unavailable"); }
+        target={...target,role:live.role};
+      }
       const rows=await api.review.comments(target.ownerWallet,target.projectId); check();
       const people=target.ownerWallet===wallet ? await api.review.members(target.projectId) : []; check();
       setReview(target); setComments(rows); setMembers(people); setSelected(null); setHistory([]);
     }),
     refreshReview: () => run(async ({api},check) => {
       if (!review) return;
+      if (review.ownerWallet!==wallet) {
+        const invitations=await api.review.inbox(); check();
+        const live=invitations.find(row=>row.ownerWallet===review.ownerWallet && row.projectId===review.projectId && row.accepted);
+        if (!live) { clearReview(); throw new Error("Project review is unavailable"); }
+        setReview({...review,role:live.role});
+      }
       const rows=await api.review.comments(review.ownerWallet,review.projectId); check();
       const people=review.ownerWallet===wallet ? await api.review.members(review.projectId) : []; check();
       setComments(rows); setMembers(people);
@@ -77,8 +89,8 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     }),
     openReview: (revision?: number, seconds=0, success?: () => void) => run(async ({session},check) => {
       if (!review) return;
-      const targetRevision=revision ?? review.revision, opened=openedReview.current;
-      if (opened && opened.owner===review.ownerWallet && opened.projectId===review.projectId && opened.revision===targetRevision && scope.current.context.current()?.id===opened.localId) {
+      const targetRevision=revision ?? review.revision, opened=openedReview.current, current=scope.current.context.current();
+      if (opened && opened.owner===review.ownerWallet && opened.projectId===review.projectId && opened.revision===targetRevision && current?.id===opened.localId && projectReviewSnapshotKey(current)===opened.snapshotKey) {
         scope.current.context.seek?.(seconds); success?.(); return;
       }
       const previousId=scope.current.context.current()?.id;
@@ -86,7 +98,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const result=await session.openReview(review.ownerWallet,review.projectId,targetRevision); check();
       if (scope.current.context.current()?.id!==previousId) throw new Error("The current project changed during transfer");
       await scope.current.context.open(result.snapshot); check();
-      openedReview.current={localId:result.snapshot.id,owner:review.ownerWallet,projectId:review.projectId,revision:result.revision};
+      openedReview.current={localId:result.snapshot.id,owner:review.ownerWallet,projectId:review.projectId,revision:result.revision,snapshotKey:projectReviewSnapshotKey(scope.current.context.current() || result.snapshot)};
       scope.current.context.seek?.(seconds);
       success?.();
     }),

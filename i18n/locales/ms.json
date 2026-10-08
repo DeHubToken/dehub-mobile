@@ -7045,6 +7045,12 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "review": {
+      "title": "Semakan projek",
+      "shared": "Dikongsi dengan anda",
+      "time": "Masa (s)",
+      "assign": "Tetapkan dompet"
+    },
     "textFit": {
       "wrap": "Balut baris",
       "width": "Lebar teks",

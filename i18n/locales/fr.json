@@ -6882,6 +6882,12 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "review": {
+      "title": "Révision du projet",
+      "shared": "Partagé avec vous",
+      "time": "Temps (s)",
+      "assign": "Attribuer un portefeuille"
+    },
     "textFit": {
       "wrap": "Retour à la ligne",
       "width": "Largeur du texte",

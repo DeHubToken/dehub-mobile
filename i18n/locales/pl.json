@@ -6888,6 +6888,12 @@
     }
   },
   "editor": {
+    "review": {
+      "title": "Przegląd projektu",
+      "shared": "Udostępnione tobie",
+      "time": "Czas (s)",
+      "assign": "Przypisz portfel"
+    },
     "textFit": {
       "wrap": "Zawijaj wiersze",
       "width": "Szerokość tekstu",

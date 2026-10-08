@@ -6767,6 +6767,12 @@
     "savePrompt": "Chekwaa ọkwa a dịka akwụkwọ iji mezue ma bipụ ma emesịa?"
   },
   "editor": {
+    "review": {
+      "title": "Nyocha ọrụ",
+      "shared": "Ekekọrịtara gị",
+      "time": "Oge (s)",
+      "assign": "Kenye waleti"
+    },
     "textFit": {
       "wrap": "Kewaa ahịrị",
       "width": "Obosara ederede",

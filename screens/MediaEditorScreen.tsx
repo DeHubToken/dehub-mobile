@@ -1475,7 +1475,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
-      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} onSeek={seconds => { setPlaying(false); setTime(seconds); }} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
         setPlaying(false); setTime(0); setSelectedId(null); setTool(null); setMissing(false);
         persisted.current = true; h.reset(p); setCloudOpen(false);
       }} />

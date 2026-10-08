@@ -6866,6 +6866,12 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "review": {
+      "title": "Tinjauan proyek",
+      "shared": "Dibagikan kepada Anda",
+      "time": "Waktu (s)",
+      "assign": "Tetapkan dompet"
+    },
     "textFit": {
       "wrap": "Bungkus baris",
       "width": "Lebar teks",

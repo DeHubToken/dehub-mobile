@@ -6787,6 +6787,12 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "review": {
+      "title": "Projekto peržiūra",
+      "shared": "Bendrinama su jumis",
+      "time": "Laikas (s)",
+      "assign": "Priskirti piniginę"
+    },
     "textFit": {
       "wrap": "Laužyti eilutes",
       "width": "Teksto plotis",
