@@ -1,5 +1,6 @@
 import { saveGif } from "../../libs/editor/saveGif";
 import { saveEditorDownload } from "../../libs/editor/saveEditorDownload";
+import { exportBaseName, exportFilename } from "../../libs/editor/exportName";
 import { Platform, Share } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 
@@ -46,7 +47,6 @@ it("saves clip archives with the correct file type and discards a cancelled copy
 });
 
 it("keeps long Unicode clip names intact in the Android download folder", async () => {
-  const { exportBaseName, exportFilename } = await import("../../libs/editor/exportName");
   const title = exportBaseName("🎬東京".repeat(100), "video", "-clip-010");
   await saveEditorDownload("file://clip", title, "mp4", "video/mp4");
   expect(FileSystem.StorageAccessFramework.createFileAsync).toHaveBeenCalledWith("content://downloads", exportFilename(title, "mp4"), "video/mp4");
