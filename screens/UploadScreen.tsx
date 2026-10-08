@@ -53,8 +53,8 @@ import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
 import { useBannedAccount } from "../hooks/useBannedAccount";
 import { BannedAccountNotice } from "../components/common/BannedAccountNotice";
 import { useWeb3Provider } from "../hooks/use-web3";
-import ChainSelector, { EVM_CHAINS } from "../components/common/ChainSelector";
-import { isChainAASupported, isSmartAccountIdentity } from "../libs/wallet-core/smart-account";
+import { getChainOption } from "../components/common/ChainSelector";
+import { useAppPrefs } from "../hooks/useAppPrefs";
 import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
@@ -249,52 +249,49 @@ export default function UploadScreen() {
   const { switchChain } = useAuthActions();
   const { isSwitchingChain } = useProvider();
   const { chainId: activeChainId } = useWeb3Provider();
-  // Post mint chain — EVM follows the active wallet chain; Solana (#41) is a local
-  // override (no wallet switch) that signs via the Web3Auth ed25519 key.
+  const { postingChainId } = useAppPrefs();
+  const preferredChainId = getChainOption(postingChainId)?.id ?? defaultChainId;
+  // Settings owns the preference; prepare its wallet when the composer is focused.
   const [postChainId, setPostChainId] = useState<number | undefined>(undefined);
   const [solanaAddress, setSolanaAddress] = useState<string | null>(null);
-  const effectivePostChainId = postChainId ?? activeChainId;
-  // The above stays optional — no provider has reported a chain yet on first
-  // paint — but a fee has to be priced against a real one either way.
-  const mintChainId = effectivePostChainId ?? defaultChainId;
-  // A Safe smart account exists only where account abstraction is configured.
-  // Offering the others would mean posting from the owner EOA, which the backend
-  // keys as a separate account — so don't offer them. switchChain refuses the
-  // same pick anyway; this keeps it from being presented as a choice at all.
-  const postChainIds = useMemo(
-    () =>
-      isSmartAccountIdentity(authUser?.walletAddress || authUser?.address)
-        ? EVM_CHAINS.filter((c) => isChainAASupported(c.id)).map((c) => c.id)
-        : undefined,
-    [authUser?.walletAddress, authUser?.address],
-  );
-  const handleMintChainChange = useCallback(
-    async (targetChainId: number) => {
-      if (isSolanaChain(targetChainId)) {
+  const effectivePostChainId = preferredChainId;
+  const mintChainId = effectivePostChainId;
+  // Provider updates during a switch must not start another switch or cancel
+  // the readiness check. Read the latest wallet when focus/preference changes.
+  const postingWalletRef = useRef({ activeChainId, switchChain });
+  postingWalletRef.current = { activeChainId, switchChain };
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
+    setPostChainId(undefined);
+    const prepareChain = async () => {
+      if (isSolanaChain(preferredChainId)) {
         const addr = await getSolanaAddress();
+        if (cancelled) return;
         if (!addr) {
           toastError(t("upload.solanaUnavailable"));
           return;
         }
-        try {
-          const status = await getSolanaMintStatus();
-          if (status.mintingEnabled === false) {
-            toastError(status.message || t("upload.solanaTempUnavailable"));
-            return;
-          }
-        } catch {
-          // Status endpoint optional — don't block if it fails.
+        const status = await getSolanaMintStatus().catch(() => null);
+        if (cancelled) return;
+        if (status?.mintingEnabled === false) {
+          toastError(status.message || t("upload.solanaTempUnavailable"));
+          return;
         }
         setSolanaAddress(addr);
-        setPostChainId(targetChainId);
-        return;
+      } else {
+        setSolanaAddress(null);
+        const wallet = postingWalletRef.current;
+        if (preferredChainId !== wallet.activeChainId) await wallet.switchChain(preferredChainId);
       }
-      // EVM chain — switch the active wallet chain.
-      setSolanaAddress(null);
-      setPostChainId(targetChainId);
-      if (targetChainId !== activeChainId) switchChain(targetChainId).catch(() => {});
-    },
-    [activeChainId, switchChain]
+      if (!cancelled) setPostChainId(preferredChainId);
+    };
+    void prepareChain().catch(() => {
+      if (!cancelled) toastError('Could not switch to your posting chain. Choose a chain in Settings and try again.');
+    });
+    return () => { cancelled = true; };
+  }, [preferredChainId]));
+  const postingChainReady = !isSwitchingChain && postChainId === preferredChainId && (
+    isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
   );
   const titleRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
@@ -1337,7 +1334,7 @@ export default function UploadScreen() {
   const handlePost = useCallback(async () => {
     // `submittingRef`, not `isSubmitting`: a second tap in the same frame reads
     // the state this one has not caused a render for yet. See the ref's doc.
-    if (activeIsUploading || submittingRef.current) return;
+    if (activeIsUploading || submittingRef.current || (!isStageMode && !postingChainReady)) return;
     haptic.press();
     if (isStageMode) {
       if (!titleText.trim()) return;
@@ -1428,7 +1425,7 @@ export default function UploadScreen() {
       if (!queued) releaseSubmit();
     }
   }, [
-    canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo,
+    canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
     submitPost, submitQuotePost, releaseSubmit,
     isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft,
@@ -2223,7 +2220,7 @@ export default function UploadScreen() {
         <Pressable className="flex-1" onPress={Keyboard.dismiss} accessible={false}>
         <View className="px-4 pt-4">
           {/* Match web's composer header exactly: identity on the left, then
-              chain, schedule and drafts on the right. The editor starts below
+              schedule and drafts on the right. The editor starts below
               this row and owns the full width. */}
           <View className="flex-row items-center justify-between">
             <Avatar
@@ -2237,16 +2234,6 @@ export default function UploadScreen() {
             />
 
             <View className="flex-row items-center gap-2">
-              <ChainSelector
-                selectedChainId={effectivePostChainId}
-                onChange={handleMintChainChange}
-                variant="icon"
-                disabled={activeIsUploading || isSwitchingChain}
-                title={t("upload.chooseDatabase")}
-                includeSolana
-                allowedChainIds={postChainIds}
-              />
-
               {!isQuoteMode && (
                 <TouchableOpacity
                   onPress={() => setShowScheduleSheet(true)}
@@ -3407,7 +3394,7 @@ export default function UploadScreen() {
 
           <TouchableOpacity
             onPress={handlePost}
-            disabled={isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight)}
+            disabled={(!isStageMode && !postingChainReady) || (isLiveMode ? (!canGoLive || postInFlight) : (!canPost || postInFlight))}
             activeOpacity={0.8}
             className="h-8 px-4 rounded-xl items-center justify-center"
             // The pill stays 32pt to match web; the slop carries it to a

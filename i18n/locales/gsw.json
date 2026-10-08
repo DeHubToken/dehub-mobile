@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} Posts"
   },
   "settings": {
+    "postingChain": "Blockchain für Biiträg",
     "showOnline": "Zeig, wenn i online bi.",
     "showOnlineDesc": "Mensch, wo du schicksch, gseht e grün Punkt neben dinem Name, wänn du DeHub nutzt.",
     "smartReplies": "Antwortvorschläg",

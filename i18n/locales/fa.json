@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} پست"
   },
   "settings": {
+    "postingChain": "بلاک‌چین انتشار پست",
     "showOnline": "نمایش وقتی آنلاین هستم",
     "showOnlineDesc": "افرادی که به آنها پیام می‌دهید، هنگام استفاده از DeHub، یک نقطه سبز در کنار نام شما می‌بینند",
     "smartReplies": "پاسخ‌های پیشنهادی",

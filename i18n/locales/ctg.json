@@ -199,6 +199,7 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "postingChain": "পোস্টর ব্লকচেইন",
     "showOnline": "আমার অনলাইন থাকলে দেখাও",
     "smartReplies": "পরামর্শ দেওয়া জবাব",
     "smartRepliesDesc": "চ্যাটত টিপ মারিবার লাই দুইটা জবাব বানায়। পরামর্শর উপরর × ইতা বন্ধ গরি দেয়।",

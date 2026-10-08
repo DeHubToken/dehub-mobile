@@ -195,6 +195,7 @@
     "postCount_other": "Sako {{count}}"
   },
   "settings": {
+    "postingChain": "Blockchain na wallafawa",
     "showOnline": "Nuna lokacin da nake kan layi",
     "showOnlineDesc": "Mutanen da kake sako suna ganin kore dot kusa da sunanka yayin da kake amfani da DeHub",
     "smartReplies": "Amsoshin da aka ba da shawara",

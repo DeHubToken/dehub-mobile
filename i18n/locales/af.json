@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} plasings"
   },
   "settings": {
+    "postingChain": "Blokketting vir plasings",
     "showOnline": "Toon wanneer ik online kom",
     "showOnlineDesc": "Mense wat jy boodskap sien 'n groen kolletjie langs jou naam terwyl jy DeHub gebruik",
     "smartReplies": "Voorgestelde antwoorde",

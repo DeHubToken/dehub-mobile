@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} post"
   },
   "settings": {
+    "postingChain": "Blokzincîra weşanê",
     "showOnline": "Dema ku ez serhêl im nîşan bide",
     "showOnlineDesc": "Kesên ku hûn peyamên wan dişînin dema ku hûn DeHub bikar tînin li kêleka navê we xalek kesk dibînin.",
     "smartReplies": "Bersivên pêşniyarkirî",

@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} postów"
   },
   "settings": {
+    "postingChain": "Blockchain postów",
     "showOnline": "Pokaż, gdy jestem online",
     "showOnlineDesc": "Osoby, do których piszesz, widzą zieloną kropkę obok Twojego imienia podczas korzystania z DeHub",
     "smartReplies": "Sugerowane odpowiedzi",

@@ -191,6 +191,7 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "postingChain": "পোস্টের ব্লকচেইন",
     "showOnline": "আপনি কখন আনলাইন আছেন",
     "showOnlineDesc": "আপনার নামের পাশে আপনি ডিহাব ব্যবহার করছেন যখন আপনার কাছে লাল ডট দেখা যায়",
     "smartReplies": "পরামর্শ দেওয়া জবাব",

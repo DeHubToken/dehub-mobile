@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} postitust"
   },
   "settings": {
+    "postingChain": "Postituste plokiahel",
     "showOnline": "Näita, kui ma olen võrgus",
     "showOnlineDesc": "Inimesed, kellele sõnumi saadad, näevad DeHubi kasutamise ajal sinu nime kõrval rohelist täppi",
     "smartReplies": "Soovitatud vastused",

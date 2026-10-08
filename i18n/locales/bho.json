@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} पोस्ट"
   },
   "settings": {
+    "postingChain": "पोस्ट खातिर ब्लॉकचेन",
     "showOnline": "कहीं भी, कभी भी ऑनलाइन पंजीकरण ।",
     "showOnlineDesc": "DeHub के उपयोग करते समय लोग आपके नाम के बगल में एक हरी डॉट देख रहे हो",
     "smartReplies": "सुझावल जवाब",

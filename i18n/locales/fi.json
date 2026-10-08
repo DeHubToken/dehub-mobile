@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} julkaisua"
   },
   "settings": {
+    "postingChain": "Julkaisujen lohkoketju",
     "showOnline": "Näytä, kun olen online-tilassa",
     "showOnlineDesc": "Viestisi näkevät vihreän pisteen nimesi vieressä, kun käytät DeHubia",
     "smartReplies": "Ehdotetut vastaukset",

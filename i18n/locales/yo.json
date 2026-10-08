@@ -195,6 +195,7 @@
     "postCount_other": "{{count}} awọn ifiweranṣẹ"
   },
   "settings": {
+    "postingChain": "Blockchain fún àwọn àtẹ̀jáde",
     "showOnline": "Fi hàn nígbà tí mo wà lórí ayélujára",
     "showOnlineDesc": "Àwọn ènìyàn tí o fi àtẹ̀jíṣẹ́ ránṣẹ́ rí àmì aláwọ̀ ewé lẹ́gbẹ̀ẹ́ orúkọ rẹ nígbà tí ò ń lo DeHub",
     "smartReplies": "Àwọn èsì tí a dábàá",
