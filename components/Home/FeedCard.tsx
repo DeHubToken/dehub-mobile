@@ -101,7 +101,6 @@ import { useTranslation as useCopy } from "react-i18next";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { useKeyedState } from "../../hooks/useItemState";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
-import { speechAvailable } from "../../hooks/useVoiceDub";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -1983,7 +1982,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
             ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
-          canDub={isVideo && !isLive && !isActuallyGated && speechAvailable}
+          canDub={isVideo && !isLive && !isActuallyGated}
           // Also on the action bar as icons. Both are wanted: the icon is for
           // the thumb, the labelled row is for anyone who opens the menu
           // looking for the action by name.

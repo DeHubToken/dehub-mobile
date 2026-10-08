@@ -18,7 +18,7 @@ import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
-import { t } from "i18next";
+import i18n, { t } from "i18next";
 import { toastError, toastInfo } from "../libs/toast";
 import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
@@ -800,7 +800,7 @@ export function useStages(): UseStagesReturn {
     setIsTtsVoicesLoading(true);
     try {
       const res = await fetch(
-        `${env.SUPABASE_URL}/functions/v1/elevenlabs-voices?page_size=30`,
+        `${env.SUPABASE_URL}/functions/v1/elevenlabs-voices?page_size=30&provider=google&language=${encodeURIComponent(i18n.resolvedLanguage || i18n.language || 'en-US')}`,
         {
           headers: {
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
@@ -842,7 +842,10 @@ export function useStages(): UseStagesReturn {
           body: JSON.stringify({ text: text.trim(), voiceId }),
         },
       );
-      if (!response.ok) throw new Error(`TTS failed (${response.status})`);
+      if (!response.ok) {
+        const detail = await response.json().catch(() => ({})) as { error?: string };
+        throw new Error(detail.error || `TTS failed (${response.status})`);
+      }
 
       const arrayBuffer = await response.arrayBuffer();
       const bytes = new Uint8Array(arrayBuffer);
@@ -862,6 +865,7 @@ export function useStages(): UseStagesReturn {
       getStageEngine().startAudioMixing(rawTempPath, false, 1);
     } catch (err) {
       log.error("TTS generation failed:", err);
+      toastError(err instanceof Error ? err.message : t('stages.previewFailed'));
     } finally {
       setIsTtsGenerating(false);
     }

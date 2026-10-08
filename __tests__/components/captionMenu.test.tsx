@@ -27,6 +27,8 @@ jest.mock('../../hooks/useTranscriptCorrections', () => ({
   useTranscriptCorrections: () => ({ accepted: new Map() }), applyCorrections: (lines: unknown) => lines,
 }));
 jest.mock('../../hooks/useVideoDub', () => ({ useDubSettings: () => ({ on: mockDubOn, lang: null }), setDubSettings: jest.fn() }));
+jest.mock('../../hooks/useCachedVideoDub', () => ({ useCachedVideoDub: jest.fn(() => undefined) }));
+jest.mock('../../hooks/useCachedDubAudio', () => ({ useCachedDubAudio: jest.fn() }));
 jest.mock('../../hooks/useVoiceDub', () => ({ useVoiceDub: jest.fn(), baseLang: (lang: string) => lang, findVoice: jest.fn(() => Promise.resolve({ identifier: 'es' })), speechAvailable: true }));
 jest.mock('../../libs/subtitlePrefs', () => ({
   SUBTITLE_LANGUAGES: [{ code: 'original', name: 'Original' }], SUBTITLE_SIZES: { xs: 11 },
