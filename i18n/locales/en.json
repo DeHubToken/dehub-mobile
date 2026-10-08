@@ -6871,6 +6871,10 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloud projects",
+      "restore": "Restore"
+    },
     "shots": {
       "detect": "Detect scene changes",
       "split": "Split selected cuts",

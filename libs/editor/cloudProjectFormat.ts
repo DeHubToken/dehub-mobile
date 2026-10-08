@@ -67,6 +67,9 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (["video", "audio", "image"].includes(String(clip.kind))) {
       const source = media.get(String(clip.mediaId));
       if (!source || !compatible(String(clip.kind), source.kind)) fail();
+      if (clip.kind === "video" && clip.videoMatte) {
+        if (!object(clip.videoMatte) || clip.videoMatte.sourceMediaId !== clip.mediaId || !media.has(String(clip.videoMatte.mediaId)) || media.get(String(clip.videoMatte.mediaId))?.kind !== "image") fail();
+      }
     }
     clips.add(clip.id);
   }
@@ -85,6 +88,13 @@ export function makeCloudProjectDocument(snapshot: ProjectSnapshot, projectId: s
       if (!source || !compatible(clip.kind, source.kind)) fail();
       clip.mediaId = source.id;
       refs.set(source.id, source);
+      if (clip.kind === "video" && clip.videoMatte) {
+        const matte = uploaded.get(clip.videoMatte.mediaId);
+        if (!matte || matte.kind !== "image") fail();
+        clip.videoMatte.mediaId = matte.id;
+        clip.videoMatte.sourceMediaId = source.id;
+        refs.set(matte.id, matte);
+      }
     }
   }
   return parseCloudProjectDocument({ version: 1, snapshot: copy, media: [...refs.values()] }, wallet);

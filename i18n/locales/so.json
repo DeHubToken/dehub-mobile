@@ -6768,6 +6768,10 @@
     "savePrompt": "Keydso qoraalkan sida qoraalka ah si aad u dhammaystirto oo aad u dhajiso goor dambe?"
   },
   "editor": {
+    "cloud": {
+      "title": "Mashaariicda daruurta",
+      "restore": "Soo celi"
+    },
     "shots": {
       "detect": "Ogow isbeddellada muuqaalka",
       "split": "U qaybi goynta la doortay",

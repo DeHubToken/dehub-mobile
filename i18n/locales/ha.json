@@ -6769,6 +6769,10 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "cloud": {
+      "title": "Ayyukan gajimare",
+      "restore": "Mayar"
+    },
     "shots": {
       "detect": "Gano sauyin fage",
       "split": "Raba a yankunan da aka zaɓa",

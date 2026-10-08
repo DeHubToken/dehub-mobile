@@ -7045,6 +7045,10 @@
     "savePrompt": "Simpan hantaran ini sebagai draf untuk diselesaikan dan disiarkan kemudian?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projek awan",
+      "restore": "Pulihkan"
+    },
     "shots": {
       "detect": "Kesan perubahan adegan",
       "split": "Pisahkan pada potongan terpilih",

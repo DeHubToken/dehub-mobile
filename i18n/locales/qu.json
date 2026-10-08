@@ -6801,6 +6801,10 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "cloud": {
+      "title": "Puyu llamkaykuna",
+      "restore": "Kutichiy"
+    },
     "shots": {
       "detect": "Rikch'ay tikraykunata maskay",
       "split": "Akllasqa kuchuykunapi rakiy",

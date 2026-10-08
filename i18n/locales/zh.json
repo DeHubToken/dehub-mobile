@@ -6856,6 +6856,10 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "cloud": {
+      "title": "云端项目",
+      "restore": "恢复"
+    },
     "shots": {
       "detect": "检测场景变化",
       "split": "在所选切点分割",

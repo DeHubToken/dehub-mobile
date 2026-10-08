@@ -6868,6 +6868,10 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "cloud": {
+      "title": "Bulut projeleri",
+      "restore": "Geri yükle"
+    },
     "shots": {
       "detect": "Sahne değişikliklerini algıla",
       "split": "Seçilen kesimlerde böl",

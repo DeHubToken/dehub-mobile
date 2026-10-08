@@ -6788,6 +6788,10 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "cloud": {
+      "title": "Projekti u oblaku",
+      "restore": "Vrati"
+    },
     "shots": {
       "detect": "Otkrij promjene scena",
       "split": "Podijeli na odabranim rezovima",

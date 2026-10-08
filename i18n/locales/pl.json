@@ -6888,6 +6888,10 @@
     }
   },
   "editor": {
+    "cloud": {
+      "title": "Projekty w chmurze",
+      "restore": "Przywróć"
+    },
     "shots": {
       "detect": "Wykryj zmiany scen",
       "split": "Podziel w wybranych cięciach",

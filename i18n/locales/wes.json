@@ -6729,6 +6729,10 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "cloud": {
+      "title": "Cloud projects",
+      "restore": "Bring am back"
+    },
     "shots": {
       "detect": "Find scene changes",
       "split": "Split for cuts wey you choose",
