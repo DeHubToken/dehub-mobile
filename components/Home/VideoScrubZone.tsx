@@ -46,6 +46,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
   const { gesture, onLayout } = useScrubGesture({
     enabled,
     tapEnabled: false,
+    immediateBottom: 14,
     onScrubStart: startScrub,
     onScrub,
     onCommit,
