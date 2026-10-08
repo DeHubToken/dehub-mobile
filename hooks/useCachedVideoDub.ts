@@ -7,7 +7,7 @@ type CachedDub = { status: string; audioUrl?: string };
 const PROVIDER = 'chatterbox-multilingual-v3';
 
 /** One shared render per video/language. Realtime supplies completion, with no polling. */
-export function useCachedVideoDub(transcriptId: string | null, language: string | null, enabled: boolean) {
+export function useCachedVideoDub(transcriptId: string | null, language: string | null, enabled: boolean): CachedDub | undefined {
   const lang = dubLanguage(language);
   const active = enabled && !!transcriptId && hasCachedDubLanguage(lang);
   const client = useQueryClient();
@@ -47,5 +47,5 @@ export function useCachedVideoDub(transcriptId: string | null, language: string 
     // The identity is the transcript and normalized language.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, transcriptId, lang, client]);
-  return query.data;
+  return query.isError ? { status: 'unavailable' } : query.data;
 }
