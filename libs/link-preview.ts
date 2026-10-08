@@ -14,6 +14,7 @@
  */
 import { supabase } from '../services/supabase';
 import { createLogger } from './logger';
+import { fetchPredictionPreview, parsePredictionLink, type PredictionPreview } from './predictions';
 
 const log = createLogger('LinkPreview');
 
@@ -23,11 +24,14 @@ export interface LinkPreviewData {
   description: string;
   image: string | null;
   siteName: string;
+  prediction?: PredictionPreview['prediction'];
 }
 
 const previewCache = new Map<string, LinkPreviewData>();
 
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
+  const prediction = parsePredictionLink(url);
+  if (prediction) return fetchPredictionPreview(prediction);
   const cached = previewCache.get(url);
   if (cached) return cached;
 
