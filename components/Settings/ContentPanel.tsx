@@ -24,6 +24,7 @@ import { useMatureContent } from '../../hooks/useMatureContent';
 import { MATURE_CONTENT_ENABLED } from '../../config/storefront';
 import { useKidsMode } from '../../hooks/useKidsMode';
 import KidsModePad from './KidsModePad';
+import PostingChainSetting from './PostingChainSetting';
 
 const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility: string }> = ({
   onOpenPrivacy,
@@ -43,6 +44,8 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
         className="mt-4"
         anchor="post-settings"
       >
+        <PostingChainSetting />
+        <Divider />
         <SettingsLinkRow
           icon="Globe"
           label={t('settings.defaultPostVisibility')}
