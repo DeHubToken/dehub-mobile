@@ -33,6 +33,10 @@ it("reorders and trims draft shots through the actual controls without changing 
 });
 it("blocks malformed range/source-change creation and retains the typed draft for correction", async () => {
   const screen = render(<Harness />);
+  fireEvent.changeText(screen.getByLabelText("editor.shots.preview 1"), "");
+  expect(screen.getByLabelText("editor.shots.preview —").props.disabled).toBe(true);
+  expect(screen.getByLabelText("nav.create").props.disabled).toBe(true);
+  expect(screen.queryByText(/NaN/)).toBeNull();
   fireEvent.changeText(screen.getByLabelText("editor.shots.preview 1"), "4");
   expect(session.state.error).toBe("limit"); expect(screen.getByLabelText("nav.create").props.disabled).toBe(true);
   fireEvent.press(screen.getByLabelText("nav.create")); expect(create).not.toHaveBeenCalled();
