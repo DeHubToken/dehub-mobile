@@ -207,7 +207,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                   "Attach DeHub tokens as a tip to your message",
                 )}
                 {minAmount > 1
-                  ? `. ${t("tip.minAmount", "Min {{amount}} DHB.", {
+                  ? `. ${t("tip.minAmount", "Min {{amount}} tokens.", {
                       amount: Number(minAmount).toLocaleString(),
                     })}`
                   : ""}
