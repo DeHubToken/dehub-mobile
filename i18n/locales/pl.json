@@ -6889,6 +6889,28 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Wizualne najważniejsze momenty",
+      "visualPrivacy": "Wyślij wybrane klatki do analizy wizualnej."
+    },
+    "review": {
+      "title": "Przegląd projektu",
+      "shared": "Udostępnione tobie",
+      "time": "Czas (s)",
+      "assign": "Przypisz portfel"
+    },
+    "textFit": {
+      "wrap": "Zawijaj wiersze",
+      "width": "Szerokość tekstu",
+      "shrink": "Zmniejsz tekst, aby się zmieścił",
+      "height": "Wysokość tekstu",
+      "captions": "Dopasuj ścieżkę napisów"
+    },
+    "cloud": {
+      "trash": "Kosz",
+      "title": "Projekty w chmurze",
+      "restore": "Przywróć"
+    },
     "shots": {
       "detect": "Wykryj zmiany scen",
       "split": "Podziel w wybranych cięciach",

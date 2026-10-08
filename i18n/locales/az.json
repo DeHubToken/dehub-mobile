@@ -6788,6 +6788,28 @@
     "savePrompt": "Bu postu daha sonra bitirmək və dərc etmək üçün taslak kimi saxlamaq istəyirsiniz?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizual məqamlar",
+      "visualPrivacy": "Vizual təhlil üçün seçilmiş kadrları göndərin."
+    },
+    "review": {
+      "title": "Layihə baxışı",
+      "shared": "Sizinlə paylaşılanlar",
+      "time": "Vaxt (s)",
+      "assign": "Pul kisəsi təyin et"
+    },
+    "textFit": {
+      "wrap": "Sətirləri bük",
+      "width": "Mətn eni",
+      "shrink": "Mətni sığacaq qədər kiçilt",
+      "height": "Mətn hündürlüyü",
+      "captions": "Altyazı yolunu uyğunlaşdır"
+    },
+    "cloud": {
+      "trash": "Zibil qutusu",
+      "title": "Bulud layihələri",
+      "restore": "Bərpa et"
+    },
     "shots": {
       "detect": "Səhnə dəyişikliklərini tap",
       "split": "Seçilmiş kəsiklərdə böl",

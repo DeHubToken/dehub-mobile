@@ -6789,6 +6789,28 @@
     "savePrompt": "Želite li spremiti ovu objavu kao skicu kako biste je dovršili i objavili kasnije?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizualni vrhunci",
+      "visualPrivacy": "Pošaljite odabrane kadrove za vizualnu analizu."
+    },
+    "review": {
+      "title": "Pregled projekta",
+      "shared": "Podijeljeno s vama",
+      "time": "Vrijeme (s)",
+      "assign": "Dodijeli novčanik"
+    },
+    "textFit": {
+      "wrap": "Prelamanje redaka",
+      "width": "Širina teksta",
+      "shrink": "Smanji tekst da stane",
+      "height": "Visina teksta",
+      "captions": "Prilagodi zapis titlova"
+    },
+    "cloud": {
+      "trash": "Smeće",
+      "title": "Projekti u oblaku",
+      "restore": "Vrati"
+    },
     "shots": {
       "detect": "Otkrij promjene scena",
       "split": "Podijeli na odabranim rezovima",

@@ -7075,6 +7075,28 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuele hoogtepunten",
+      "visualPrivacy": "Geselecteerde frames voor visuele analyse versturen."
+    },
+    "review": {
+      "title": "Projectbeoordeling",
+      "shared": "Met jou gedeeld",
+      "time": "Tijd (s)",
+      "assign": "Wallet toewijzen"
+    },
+    "textFit": {
+      "wrap": "Regels afbreken",
+      "width": "Tekstbreedte",
+      "shrink": "Tekst verkleinen tot deze past",
+      "height": "Teksthoogte",
+      "captions": "Ondertitelspoor passend maken"
+    },
+    "cloud": {
+      "trash": "Prullenbak",
+      "title": "Cloudprojecten",
+      "restore": "Herstellen"
+    },
     "shots": {
       "detect": "Scènewisselingen detecteren",
       "split": "Splits bij gekozen knippunten",

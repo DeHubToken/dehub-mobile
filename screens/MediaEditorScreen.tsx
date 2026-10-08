@@ -47,6 +47,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
 import { captionLayers } from "../libs/editor/captionLayout";
+import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
 import {
   AdjustPanel,
@@ -88,7 +89,8 @@ import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
 import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
-import { highlightChatRequest, type HighlightChatResult } from "../libs/editor/highlightChat";
+import { highlightChatRequest, highlightVisualScope, type HighlightChatResult } from "../libs/editor/highlightChat";
+import { analyseVisualHighlights } from "../libs/editor/visualHighlightApi";
 import { useHighlightChat } from "../libs/editor/useHighlightChat";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
@@ -156,6 +158,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { toastError, toastSuccess } from "../libs";
 import { appLocale } from "../libs/date.util";
+import { CloudProjects } from "../components/editor/CloudProjects";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
 type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
@@ -181,6 +184,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
   const { t } = useTranslation();
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
   const [templateBusy, setTemplateBusy] = useState<string | null>(null);
+  const [cloudOpen, setCloudOpen] = useState(false);
 
   // A template is the same list of operations the AI agent uses; photos are
   // fetched from the free stock library now, on the phone.
@@ -219,6 +223,9 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
         contentContainerStyle={{ padding: 16, gap: 10 }}
         ListHeaderComponent={
           <View style={{ gap: 10 }} className="mb-4">
+            <Pressable accessibilityRole="button" onPress={() => setCloudOpen(true)} className="flex-row items-center rounded-2xl border border-white/10 px-4 py-3" style={{ gap: 12 }}>
+              <Icon name="CloudUpload" size={22} color="#fff" /><Text className="text-white font-semibold">{t("editor.cloud.title")}</Text>
+            </Pressable>
             <Pressable
               accessibilityRole="button"
               onPress={onNewVideo}
@@ -288,6 +295,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
           </Pressable>
         )}
       />
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={() => null} preserve={async () => {}} onOpen={onCreate} />
     </View>
   );
 }
@@ -381,6 +389,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [editingText, setEditingText] = useState<string | null>(null);
   const [renaming, setRenaming] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const [cloudOpen, setCloudOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
   const [audioProgress, setAudioProgress] = useState<number | null>(null);
@@ -397,6 +406,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [highlightChatState, highlightChat] = useHighlightChat({
     current: h.latest,
     plan: askSceneAgent,
+    visual: {
+      sample: (clip, windows, signal, progress) => {
+        setPlaying(false);
+        if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+        return canvasRef.current.sampleVisual(clip, windows, signal, progress);
+      },
+      analyse: analyseVisualHighlights,
+    },
     transcribe: (clip, progress, signal) => {
       setPlaying(false);
       if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
@@ -882,11 +899,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const recordHighlights = (result: HighlightChatResult) => {
     if (result.status === "cancelled") return;
     const errors = { selectVideo: "editor.highlights.chatSelectVideo", changed: "editor.highlights.changed", limit: "editor.highlights.chatLimit", captionsMissing: "editor.highlights.chatCaptionsMissing", failed: "editor.highlights.reviewFailed" };
-    const content = result.status === "error" ? t(errors[result.error]) : result.status === "created" ? t("editor.highlights.created") : result.status === "reviewed" ? t("editor.highlights.reviewResult", result) : result.count ? t("editor.highlights.chatFound", result) : t("editor.highlights.none");
+    const content = result.status === "error" ? t(errors[result.error]) : result.status === "created" ? t("editor.highlights.created") : result.status === "reviewed" ? t("editor.highlights.reviewResult", result) : result.count ? t("editor.highlights.chatFound", result) : t(highlightChat.state.visual ? "follow.noResults" : "editor.highlights.none");
     setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
-  const sendToAgent = async (text: string) => {
+  const sendToAgent = async (text: string, useVisual = false) => {
     if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
@@ -914,7 +931,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const request = highlightChatRequest(text);
     if (request || highlightChat.reviewing) {
       highlightPreviewEnd.current = null; setPlaying(false);
-      recordHighlights(request ? await highlightChat.start(request, selectedId ? [selectedId] : []) : await highlightChat.review(text));
+      recordHighlights(request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text));
       return;
     }
     setChatBusy(true);
@@ -1198,6 +1215,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
           return canvasRef.current.transcribe(clip, progress, signal);
         }}
+        sampleVisual={(clip, windows, signal, progress) => {
+          setPlaying(false);
+          if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+          return canvasRef.current.sampleVisual(clip, windows, signal, progress);
+        }}
         create={createHighlights} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
@@ -1244,7 +1266,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (selected.kind === "text") {
       if (tool === "font") return <FontPanel clip={selected} {...panelProps} />;
       if (tool === "colour") return <TextColourPanel clip={selected} {...panelProps} />;
-      if (tool === "style") return <TextStylePanel clip={selected} {...panelProps} />;
+      if (tool === "style") return <TextStylePanel clip={selected} {...panelProps}
+        onFitCaptions={project.tracks.some(track => track.id === selected.trackId && track.role === "captions") ? () => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const next = fitCaptionTrack(current, selected.trackId);
+          if (next !== current) h.commit(next);
+        } : undefined}
+        captionsFitted={fitCaptionTrack(project, selected.trackId) === project} />;
       if (tool === "label") return <LabelPanel clip={selected} {...panelProps} />;
       if (tool === "outline") return <OutlinePanel clip={selected} {...panelProps} />;
       return null;
@@ -1447,6 +1476,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         <IconButton icon="Sparkles" label={t("editor.rail.agent")} onPress={() => setChatOpen(true)} />
         <IconButton icon="Undo2" label={t("editor.app.undo")} onPress={h.undo} disabled={!h.canUndo} />
         <IconButton icon="Redo2" label={t("editor.app.redo")} onPress={h.redo} disabled={!h.canRedo} />
+        <IconButton icon="CloudUpload" label={t("editor.cloud.title")} onPress={() => { setPlaying(false); setCloudOpen(true); }} />
         <Pressable
           onPress={() => setExportOpen(true)}
           accessibilityRole="button"
@@ -1459,6 +1489,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} onSeek={seconds => { setPlaying(false); setTime(seconds); }} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
+        setPlaying(false); setTime(0); setSelectedId(null); setTool(null); setMissing(false);
+        persisted.current = true; h.reset(p); setCloudOpen(false);
+      }} />
 
       {/* Page */}
       <View className="flex-1 px-3 pb-3">
@@ -1646,7 +1680,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onHighlightPreview={index => { const preview = highlightChat.preview(index); if (!preview) return; highlightPreviewEnd.current = preview.end; setTime(preview.start); setPlaying(true); setChatOpen(false); }}
         onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
         onHighlightClose={closeHighlightChat}
-        onSend={(text) => { void sendToAgent(text); }}
+        onSend={(text, useVisual) => { void sendToAgent(text, useVisual); }}
+        visualScope={highlightVisualScope(project, selectedId ? [selectedId] : [])}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
         onClose={() => { if (assembly.state.busy || assemblyPreparation.current) closeAssembly(); setChatOpen(false); }}

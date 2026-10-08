@@ -6803,6 +6803,28 @@
     }
   },
   "editor": {
+    "highlights": {
+      "visual": "Momente vizuale importante",
+      "visualPrivacy": "Trimite cadrele selectate pentru analiză vizuală."
+    },
+    "review": {
+      "title": "Revizuirea proiectului",
+      "shared": "Partajat cu tine",
+      "time": "Timp (s)",
+      "assign": "Atribuie portofel"
+    },
+    "textFit": {
+      "wrap": "Încadrează rândurile",
+      "width": "Lățimea textului",
+      "shrink": "Micșorează textul ca să încapă",
+      "height": "Înălțimea textului",
+      "captions": "Potrivește pista de subtitrări"
+    },
+    "cloud": {
+      "trash": "Coș de gunoi",
+      "title": "Proiecte în cloud",
+      "restore": "Restaurează"
+    },
     "shots": {
       "detect": "Detectează schimbări de scenă",
       "split": "Împarte la tăieturile selectate",

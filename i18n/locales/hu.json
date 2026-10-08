@@ -6792,6 +6792,28 @@
     "savePrompt": "Szeretnéd elmenteni ezt a bejegyzést piszkozatként, hogy később befejezd és közzéadd?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizuális csúcspontok",
+      "visualPrivacy": "Kiválasztott képkockák küldése vizuális elemzéshez."
+    },
+    "review": {
+      "title": "Projekt áttekintése",
+      "shared": "Veled megosztva",
+      "time": "Idő (s)",
+      "assign": "Tárca hozzárendelése"
+    },
+    "textFit": {
+      "wrap": "Sortörés",
+      "width": "Szöveg szélessége",
+      "shrink": "Szöveg kicsinyítése a kerethez",
+      "height": "Szöveg magassága",
+      "captions": "Feliratsáv igazítása"
+    },
+    "cloud": {
+      "trash": "Kuka",
+      "title": "Felhőprojektek",
+      "restore": "Visszaállítás"
+    },
     "shots": {
       "detect": "Jelenetváltások felismerése",
       "split": "Felosztás a kijelölt vágásoknál",

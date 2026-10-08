@@ -6770,6 +6770,28 @@
     "savePrompt": "Ajiye wannan sakon a matsayin juzu'i don kammalawa da bugawa daga baya?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Muhimman lokutan gani",
+      "visualPrivacy": "Aika zaɓaɓɓun firam don nazarin hoto."
+    },
+    "review": {
+      "title": "Bitar aiki",
+      "shared": "An raba tare da kai",
+      "time": "Lokaci (s)",
+      "assign": "Sanya walat"
+    },
+    "textFit": {
+      "wrap": "Karya layuka",
+      "width": "Faɗin rubutu",
+      "shrink": "Rage rubutu ya dace",
+      "height": "Tsayin rubutu",
+      "captions": "Daidaita waƙar ƙaramin rubutu"
+    },
+    "cloud": {
+      "trash": "Kwandon shara",
+      "title": "Ayyukan gajimare",
+      "restore": "Mayar"
+    },
     "shots": {
       "detect": "Gano sauyin fage",
       "split": "Raba a yankunan da aka zaɓa",

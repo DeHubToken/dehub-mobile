@@ -6877,6 +6877,28 @@
     "savePrompt": "Salvare questo post come bozza da terminare e pubblicare in seguito?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momenti visivi salienti",
+      "visualPrivacy": "Invia fotogrammi selezionati per l'analisi visiva."
+    },
+    "review": {
+      "title": "Revisione del progetto",
+      "shared": "Condiviso con te",
+      "time": "Tempo (s)",
+      "assign": "Assegna portafoglio"
+    },
+    "textFit": {
+      "wrap": "A capo automatico",
+      "width": "Larghezza del testo",
+      "shrink": "Riduci il testo per adattarlo",
+      "height": "Altezza del testo",
+      "captions": "Adatta la traccia dei sottotitoli"
+    },
+    "cloud": {
+      "trash": "Cestino",
+      "title": "Progetti nel cloud",
+      "restore": "Ripristina"
+    },
     "shots": {
       "detect": "Rileva cambi di scena",
       "split": "Dividi ai tagli selezionati",

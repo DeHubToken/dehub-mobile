@@ -6969,6 +6969,28 @@
     "loadMore": "Mag-load ng higit pa"
   },
   "editor": {
+    "highlights": {
+      "visual": "Mga tampok na biswal",
+      "visualPrivacy": "Ipadala ang napiling mga frame para sa biswal na pagsusuri."
+    },
+    "review": {
+      "title": "Pagsusuri ng proyekto",
+      "shared": "Ibinahagi sa iyo",
+      "time": "Oras (s)",
+      "assign": "Magtalaga ng wallet"
+    },
+    "textFit": {
+      "wrap": "Ibalot ang mga linya",
+      "width": "Lapad ng teksto",
+      "shrink": "Paliitin ang teksto para magkasya",
+      "height": "Taas ng teksto",
+      "captions": "Iangkop ang track ng subtitle"
+    },
+    "cloud": {
+      "trash": "Basurahan",
+      "title": "Mga proyekto sa cloud",
+      "restore": "Ibalik"
+    },
     "shots": {
       "detect": "Tukuyin ang pagbabago ng eksena",
       "split": "Hatiin sa mga napiling putol",

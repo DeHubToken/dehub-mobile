@@ -6881,6 +6881,28 @@
     "savePrompt": "Guardar esta publicação como rascunho para terminar e publicar mais tarde?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Momentos visuais de destaque",
+      "visualPrivacy": "Enviar fotogramas selecionados para análise visual."
+    },
+    "review": {
+      "title": "Revisão do projeto",
+      "shared": "Partilhado consigo",
+      "time": "Tempo (s)",
+      "assign": "Atribuir carteira"
+    },
+    "textFit": {
+      "wrap": "Quebrar linhas",
+      "width": "Largura do texto",
+      "shrink": "Reduzir o texto para caber",
+      "height": "Altura do texto",
+      "captions": "Ajustar faixa de legendas"
+    },
+    "cloud": {
+      "trash": "Lixeira",
+      "title": "Projetos na nuvem",
+      "restore": "Restaurar"
+    },
     "shots": {
       "detect": "Detectar mudanças de cena",
       "split": "Dividir nos cortes selecionados",

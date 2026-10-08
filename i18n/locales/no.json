@@ -6787,6 +6787,28 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuelle høydepunkter",
+      "visualPrivacy": "Send utvalgte bilder til visuell analyse."
+    },
+    "review": {
+      "title": "Prosjektgjennomgang",
+      "shared": "Delt med deg",
+      "time": "Tid (s)",
+      "assign": "Tildel lommebok"
+    },
+    "textFit": {
+      "wrap": "Bryt linjer",
+      "width": "Tekstbredde",
+      "shrink": "Forminsk teksten så den passer",
+      "height": "Teksthøyde",
+      "captions": "Tilpass undertekstspor"
+    },
+    "cloud": {
+      "trash": "Papirkurv",
+      "title": "Skyprosjekter",
+      "restore": "Gjenopprett"
+    },
     "shots": {
       "detect": "Finn sceneskift",
       "split": "Del ved valgte klipp",
