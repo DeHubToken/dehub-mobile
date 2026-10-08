@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { useCloudProjects } from "../../libs/editor/useCloudProjects";
-import { projectReviewTime, type ProjectReviewComment, type ProjectReviewRole } from "../../libs/editor/cloudProjectReview";
+import { projectReviewIsErased, projectReviewTime, type ProjectReviewComment, type ProjectReviewRole } from "../../libs/editor/cloudProjectReview";
 import Icon from "../ui/Icon";
 
 export function ProjectReviewPanel({cloud,wallet}: {cloud:ReturnType<typeof useCloudProjects>;wallet:string}) {
@@ -28,10 +28,10 @@ export function ProjectReviewPanel({cloud,wallet}: {cloud:ReturnType<typeof useC
     <Text className="text-white font-semibold">{t("settings.comments")}</Text>
     {!roots.length && <Text className="text-theme-neutrals-400">{t("common.noResults")}</Text>}
     {roots.map(comment=><View key={comment.id} className="rounded-xl border border-white/10 p-3" style={{gap:8,opacity:comment.resolved?0.6:1}}>
-      <View className="flex-row flex-wrap items-center" style={{gap:8}}>{button(`${comment.revision} · ${projectReviewTime(comment.atSeconds)}`,()=>{void cloud.openReview(comment.revision,comment.atSeconds);})}<Text className="text-theme-neutrals-400 text-xs">{short(comment.authorWallet)}{comment.resolved?` · ${t("support.status.resolved")}`:""}</Text></View>
-      <Text className="text-white">{comment.body}</Text>
+      <View className="flex-row flex-wrap items-center" style={{gap:8}}>{button(`${comment.revision} · ${projectReviewTime(comment.atSeconds)}`,()=>{void cloud.openReview(comment.revision,comment.atSeconds);})}<Text className="text-theme-neutrals-400 text-xs">{projectReviewIsErased(comment) ? t("common.anonymous") : short(comment.authorWallet)}{comment.resolved?` · ${t("support.status.resolved")}`:""}</Text></View>
+      <Text className="text-white">{projectReviewIsErased(comment) ? t("profile.replyThread.commentUnavailable") : comment.body}</Text>
       {!!comment.assigneeWallet && <Text className="text-theme-neutrals-400 text-xs">{t("editor.review.assign")}{" · "}{short(comment.assigneeWallet)}</Text>}
-      {cloud.comments.filter(child=>child.parentId===comment.id).map(child=><View key={child.id} className="border-l border-white/20 pl-3" style={{gap:4}}><Text className="text-theme-neutrals-400 text-xs">{short(child.authorWallet)}</Text><Text className="text-white">{child.body}</Text></View>)}
+      {cloud.comments.filter(child=>child.parentId===comment.id).map(child=><View key={child.id} className="border-l border-white/20 pl-3" style={{gap:4}}><Text className="text-theme-neutrals-400 text-xs">{projectReviewIsErased(child) ? t("common.anonymous") : short(child.authorWallet)}</Text><Text className="text-white">{projectReviewIsErased(child) ? t("profile.replyThread.commentUnavailable") : child.body}</Text></View>)}
       {canComment && <View className="flex-row flex-wrap" style={{gap:8}}>{button(t("tv.reply"),()=>setReply(comment))}{(owner || comment.authorWallet===wallet || comment.assigneeWallet===wallet) && button(comment.resolved?t("support.status.open"):t("work.resolve"),()=>{void cloud.resolveReviewComment(comment);})}</View>}
     </View>)}
     {canComment && <View className="rounded-xl border border-white/10 p-3" style={{gap:10}}>
