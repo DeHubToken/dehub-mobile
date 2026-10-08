@@ -6790,6 +6790,10 @@
     "savePrompt": "Chcete tento příspěvek uložit jako koncept a dokončit a publikovat později?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vizuální zajímavosti",
+      "visualPrivacy": "Odeslat vybrané snímky k vizuální analýze."
+    },
     "review": {
       "title": "Kontrola projektu",
       "shared": "Sdíleno s vámi",

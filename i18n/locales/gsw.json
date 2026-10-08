@@ -6816,6 +6816,10 @@
     "savePrompt": "Möchtsch das Inserat als Entwurf speichere zum spöter fertig mache und poste?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuelli Höchepünkt",
+      "visualPrivacy": "Usgewählti Einzelbilder für d visuelli Analyse schicke."
+    },
     "review": {
       "title": "Projektprüefig",
       "shared": "Mit dir teilt",

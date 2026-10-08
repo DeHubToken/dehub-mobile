@@ -6856,6 +6856,10 @@
     "savePrompt": "将此帖子保存为草稿，以便稍后完成并发布？"
   },
   "editor": {
+    "highlights": {
+      "visual": "画面精彩片段",
+      "visualPrivacy": "发送选取的帧进行画面分析。"
+    },
     "review": {
       "title": "项目审阅",
       "shared": "与你共享",

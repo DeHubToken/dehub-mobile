@@ -6866,6 +6866,10 @@
     "savePrompt": "Simpan postingan ini sebagai draf untuk diselesaikan dan diposting nanti?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Sorotan visual",
+      "visualPrivacy": "Kirim bingkai terpilih untuk analisis visual."
+    },
     "review": {
       "title": "Tinjauan proyek",
       "shared": "Dibagikan kepada Anda",

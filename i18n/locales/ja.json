@@ -6856,6 +6856,10 @@
     "savePrompt": "この投稿を下書きとして保存して、後で投稿しますか？"
   },
   "editor": {
+    "highlights": {
+      "visual": "映像のハイライト",
+      "visualPrivacy": "選んだフレームを映像分析のために送信します。"
+    },
     "review": {
       "title": "プロジェクトレビュー",
       "shared": "あなたと共有",

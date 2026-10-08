@@ -6729,6 +6729,10 @@
     "savePrompt": "You wan save dis post as draft so you go finish am and post am afta?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Video fine moments",
+      "visualPrivacy": "Send frames wey you choose make we check wetin dey show."
+    },
     "review": {
       "title": "Check project",
       "shared": "Dem share am with you",

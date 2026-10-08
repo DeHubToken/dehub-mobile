@@ -6787,6 +6787,10 @@
     "savePrompt": "Tallennetaanko tämä julkaisu luonnoksena, jotta se voidaan viimeistellä ja julkaista myöhemmin?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuaaliset kohokohdat",
+      "visualPrivacy": "Lähetä valitut ruudut visuaalista analyysia varten."
+    },
     "review": {
       "title": "Projektin tarkistus",
       "shared": "Jaettu kanssasi",
