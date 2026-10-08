@@ -14,6 +14,7 @@ import { useKeyboard } from "../../hooks/useKeyboard";
 import type { HighlightChatState } from "../../libs/editor/highlightChat";
 import { shotTime } from "../../libs/editor/shots";
 import type { GenerationDraft } from "../../libs/editor/generationDraft";
+import AssemblyReview from "./AssemblyReview";
 
 export interface ChatEntry {
   id: string;
@@ -33,6 +34,7 @@ interface Props {
   onClose: () => void;
   onClear: () => void;
   onOpenGenerator: (draft: GenerationDraft) => void;
+  assembly?: React.ComponentProps<typeof AssemblyReview>;
   highlights?: HighlightChatState;
   highlightSourceChanged?: boolean;
   onHighlightToggle?: (index: number) => void;
@@ -42,7 +44,7 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
@@ -143,6 +145,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                 <Pressable accessibilityRole="button" onPress={onHighlightClose} className="rounded-lg border border-white/20 px-2 py-1"><Text className="text-theme-neutrals-300 text-xs">{t(highlights.busy ? "common.cancel" : "editor.highlights.chatExit")}</Text></Pressable>
               </View>
             </View>}
+            {assembly && <AssemblyReview {...assembly} />}
             {busy && (
               <View className="flex-row items-center" style={{ gap: 8 }}>
                 <DeHubLoader size={20} />
