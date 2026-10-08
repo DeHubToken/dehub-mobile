@@ -21,6 +21,21 @@ export function cloudProjectApi(address: string) {
   }
   return {
     review: cloudProjectReviewApi(client, wallet, message => new CloudProjectConflict(message)),
+    editing: {
+      async load(owner: string, id: string): Promise<CloudProjectVersion> {
+        const sourceOwner = projectReviewWallet(owner);
+        const result = await rpc<CloudProjectVersion>("editor_cloud_edit_load", { p_owner: sourceOwner, p_id: id });
+        return { ...result, document: parseCloudProjectDocument(result.document, sourceOwner) };
+      },
+      save: (owner: string, id: string, document: CloudProjectDocument, revision: number, requestId: string) =>
+        rpc<CloudProjectSaved>("editor_cloud_edit_save", { p_owner: projectReviewWallet(owner), p_id: id, p_document: parseCloudProjectDocument(document, projectReviewWallet(owner)), p_expected_revision: revision, p_request_id: requestId }),
+      async prepareMedia(owner: string, projectId: string, id: string, size: number, extension: string) {
+        const slot = await rpc<{path: string}>("editor_cloud_prepare_shared_media", { p_owner: projectReviewWallet(owner), p_project: projectId, p_id: id, p_size: size, p_extension: extension });
+        const { data, error } = await client.storage.from(CLOUD_PROJECT_BUCKET).createSignedUploadUrl(slot.path, { upsert: false });
+        if (error || !data) throw new Error(error?.message || "Shared media upload could not be prepared");
+        return data;
+      },
+    },
     list: (trashed = false) => rpc<CloudProjectSummary[]>(trashed ? "editor_cloud_list_trash" : "editor_cloud_list"),
     setTrash: (project: CloudProjectSummary, trashed: boolean) => rpc<CloudProjectSummary>("editor_cloud_set_trash", { p_id: project.projectId, p_expected_revision: project.revision, p_expected_state: project.stateVersion ?? 0, p_trashed: trashed }),
     history: (id: string) => rpc<CloudProjectSummary[]>("editor_cloud_history", { p_id: id }),

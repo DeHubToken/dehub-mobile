@@ -29,13 +29,14 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve, onS
           <Pressable disabled={cloud.busy} onPress={onClose} accessibilityRole="button" accessibilityLabel={t("common.close")} className="p-2"><Icon name="X" size={20} color="#fff" /></Pressable>
         </View>
         {!!current() && <View className="flex-row flex-wrap" style={{ gap: 8 }}>
-          <Pressable disabled={cloud.busy || !cloud.available} onPress={() => { void cloud.save(); }} accessibilityRole="button" className="flex-row items-center rounded-xl bg-white px-4 py-3" style={{ gap: 6, opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}>
+          <Pressable disabled={cloud.busy || !cloud.available || cloud.linkPending} onPress={() => { void cloud.save(); }} accessibilityRole="button" className="flex-row items-center rounded-xl bg-white px-4 py-3" style={{ gap: 6, opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}>
             <Icon name="CloudUpload" size={17} color="#000" /><Text className="text-black font-semibold">{t("common.save")}</Text>
           </Pressable>
-          <Pressable disabled={cloud.busy || !cloud.available} onPress={() => { void cloud.save(true); }} accessibilityRole="button" className="flex-row items-center rounded-xl border border-white/20 px-4 py-3" style={{ gap: 6, opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}>
+          <Pressable disabled={cloud.busy || !cloud.available || cloud.linkPending} onPress={() => { void cloud.save(true); }} accessibilityRole="button" className="flex-row items-center rounded-xl border border-white/20 px-4 py-3" style={{ gap: 6, opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}>
             <Icon name="Copy" size={17} color="#fff" /><Text className="text-white">{t("common.save")}{" · "}{t("common.copy")}</Text>
           </Pressable>
         </View>}
+        {cloud.sharedOwner && <View className="rounded-xl border border-white/15 p-3" style={{gap:4}}><Text className="text-white">{t("editor.review.shared")}{" · "}{t("common.edit")}</Text><Text className="text-theme-neutrals-300 text-xs">{t("common.save")}{" → "}{cloud.sharedOwner}</Text><Text className="text-theme-neutrals-400 text-xs">{t("common.copy")}{" → "}{address?.toLowerCase()}</Text></View>}
         {!cloud.available && <Text className="text-theme-neutrals-400">{t("common.signIn")}</Text>}
         {cloud.busy && <DeHubLoader size={32} />}
         {!!cloud.error && <Text accessibilityRole="alert" className="text-red-300">{cloud.error}</Text>}
@@ -53,7 +54,7 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve, onS
           </Pressable>
         </View>}
         <ScrollView keyboardShouldPersistTaps="handled" style={{ flexShrink: 1 }} contentContainerStyle={{ gap: 10, paddingBottom: 24 }}>
-          {cloud.review ? <ProjectReviewPanel cloud={cloud} wallet={address?.toLowerCase() || ""} /> : cloud.viewShared ? matchingShared.map(project => <View key={`${project.ownerWallet}:${project.projectId}`} className="rounded-xl border border-white/10 p-3" style={{ gap: 8 }}><Text className="text-white font-medium">{project.title || t("creator.untitled")}</Text><Text className="text-theme-neutrals-400 text-xs">{project.revision}{" · "}{project.role === "viewer" ? t("depin.viewer") : t("settings.comments")}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>
+          {cloud.review ? <ProjectReviewPanel cloud={cloud} wallet={address?.toLowerCase() || ""} /> : cloud.viewShared ? matchingShared.map(project => <View key={`${project.ownerWallet}:${project.projectId}`} className="rounded-xl border border-white/10 p-3" style={{ gap: 8 }}><Text className="text-white font-medium">{project.title || t("creator.untitled")}</Text><Text className="text-theme-neutrals-400 text-xs">{project.revision}{" · "}{project.role === "editor" ? t("common.edit") : project.role === "viewer" ? t("depin.viewer") : t("settings.comments")}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>
               <Pressable accessibilityRole="button" disabled={cloud.busy} onPress={() => { if (project.accepted) void cloud.showReview(project); else void cloud.acceptReview(project); }} className="rounded-xl bg-white/10 p-3"><Text className="text-white">{project.accepted ? t("editor.review.title") : t("settings.accept")}</Text></Pressable>
               <Pressable accessibilityRole="button" disabled={cloud.busy} onPress={() => { void cloud.leaveReview(project); }} className="rounded-xl border border-white/10 p-3"><Text className="text-white">{project.accepted ? t("communities.leave") : t("settings.decline")}</Text></Pressable>
             </View></View>) : cloud.selected ? cloud.history.map(version => <View key={version.revision} className="rounded-xl border border-white/10 p-3" style={{ gap: 8 }}>
