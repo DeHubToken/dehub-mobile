@@ -144,8 +144,9 @@ const ThemeSample: React.FC<{
           <View
             style={{
               height: 12,
+              ...(value === 'immersive' ? { width: 52, alignSelf: 'center' as const } : {}),
               borderRadius: s.square ? 0 : 6,
-              backgroundColor: s.flat ? 'transparent' : s.bento,
+              backgroundColor: s.flat && value !== 'immersive' ? 'transparent' : s.bento,
               borderWidth: 1,
               borderColor: s.border,
               flexDirection: 'row',
