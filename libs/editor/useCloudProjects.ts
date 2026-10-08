@@ -46,6 +46,13 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     }),
     switchShared: () => run(async ({ api }, check) => { const rows=await api.review.inbox(); check(); setSharedProjects(rows); setViewShared(true); setViewTrash(false); setSelected(null); setHistory([]); clearReview(); }),
     acceptReview: (project: ProjectReviewInvitation) => run(async ({api},check) => { await api.review.accept(project); check(); const rows=await api.review.inbox(); check(); setSharedProjects(rows); }),
+    leaveReview: (project: ProjectReviewInvitation) => run(async ({api},check) => {
+      await api.review.leave(project); check();
+      setSharedProjects(rows=>rows.filter(row=>row.ownerWallet!==project.ownerWallet || row.projectId!==project.projectId));
+      if (review?.ownerWallet===project.ownerWallet && review.projectId===project.projectId) { clearReview(); pendingComment.current=null; }
+      if (openedReview.current?.owner===project.ownerWallet && openedReview.current.projectId===project.projectId) openedReview.current=null;
+      const rows=await api.review.inbox(); check(); setSharedProjects(rows);
+    }),
     showReview: (target: ProjectReviewTarget) => run(async ({api},check) => {
       if (target.ownerWallet!==wallet) {
         const invitations=await api.review.inbox(); check();
