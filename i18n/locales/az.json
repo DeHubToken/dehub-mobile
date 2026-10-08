@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} paylaşım"
   },
   "settings": {
+    "postingChain": "Paylaşım blokçeyni",
     "showOnline": "Onlayn olduğum vaxtı göstərin",
     "showOnlineDesc": "Mesaj göndərdiyiniz insanlar DeHub-dan istifadə edərkən adınızın yanında yaşıl nöqtə görür",
     "smartReplies": "Təklif olunan cavablar",

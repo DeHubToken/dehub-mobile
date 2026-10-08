@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} โพสต์"
   },
   "settings": {
+    "postingChain": "บล็อกเชนสำหรับโพสต์",
     "showOnline": "แสดงตอนข่อยออนไลน์",
     "showOnlineDesc": "คนอื่นที่ส่งข้อความหาเจ้าสิเห็นจุดสีเขียวอยู่ข้างชื่อเจ้าตอนที่เจ้ากำลังใช้ DeHub",
     "smartReplies": "คำตอบแนะนำ",

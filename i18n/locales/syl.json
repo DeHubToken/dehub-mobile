@@ -200,6 +200,7 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "postingChain": "পোস্টর ব্লকচেইন",
     "showOnline": "কবে অনলাইন আছি দেখাও",
     "showOnlineDesc": "DeHub ব্যবহার করার সময় আপনার নামের পাশে একটি সবুজ ডট দেখতে পাবেন।",
     "smartReplies": "প্রস্তাবিত উত্তর",

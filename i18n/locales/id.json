@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} postingan"
   },
   "settings": {
+    "postingChain": "Blockchain postingan",
     "showOnline": "Tampilkan saat saya online",
     "showOnlineDesc": "Orang yang Anda kirimi pesan melihat titik hijau di samping nama Anda saat Anda menggunakan DeHub",
     "smartReplies": "Balasan yang disarankan",
