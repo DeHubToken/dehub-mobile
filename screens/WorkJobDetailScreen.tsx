@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkJobDetailScreen
  * ===================
@@ -334,9 +335,9 @@ export default function WorkJobDetailScreen() {
             )}
 
             <View style={styles.statRow}>
-              <Stat label={t("work.detail.total")} value={`${num(job.total_budget)} ${job.currency}`} />
+              <Stat label={t("work.detail.total")} value={`${num(job.total_budget)} ${tokenLabel(job.currency)}`} />
               {job.job_type !== "contract" ? (
-                <Stat label={t("work.detail.perUnit")} value={`${job.price_per_unit} ${job.currency}`} />
+                <Stat label={t("work.detail.perUnit")} value={`${job.price_per_unit} ${tokenLabel(job.currency)}`} />
               ) : (
                 <Stat label={t("work.detail.type")} value={t("work.types.contract")} />
               )}
@@ -578,7 +579,7 @@ export default function WorkJobDetailScreen() {
                             onChangeText={evidence => setClipChecks(prev => ({...prev,[s.id]:{...check,evidence}}))} style={styles.input} />
                         </View>
                       )}
-                      {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:job.currency,gross})}</Text>}
+                      {job.fund_tx_hash && <Text style={styles.dim}>{t('work.integrity.feeNotice',{net:due,currency:tokenLabel(job.currency),gross})}</Text>}
                       {s.payout_state === 'broadcast' && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
                       {canManage && job.status==='disputed' && awaitingPayment && s.payout_state==='unpaid' && <Pressable onPress={()=>promptReject(s)}><Text style={styles.rejectText}>{t('work.detail.reject')}</Text></Pressable>}
                       {canManage && s.payout_state === 'signing' && (
@@ -594,7 +595,7 @@ export default function WorkJobDetailScreen() {
                         <Text style={styles.paidText}>
                           {t("work.detail.paid", {
                             amount: s.payout_amount,
-                            currency: job.currency,
+                            currency: tokenLabel(job.currency),
                           })}
                         </Text>
                       )}
@@ -604,12 +605,12 @@ export default function WorkJobDetailScreen() {
                           {isPoster
                             ? t("work.detail.awaitingPaymentPoster", {
                                 amount: due,
-                                currency: job.currency,
+                                currency: tokenLabel(job.currency),
                                 defaultValue: "Accepted, not paid — {{amount}} {{currency}} outstanding.",
                               })
                             : t("work.detail.awaitingPaymentWorker", {
                                 amount: due,
-                                currency: job.currency,
+                                currency: tokenLabel(job.currency),
                                 defaultValue: "Accepted — {{amount}} {{currency}} has not been sent yet.",
                               })}
                         </Text>
@@ -643,7 +644,7 @@ export default function WorkJobDetailScreen() {
                             <Text style={styles.approveText}>
                               {t("work.detail.approveAndPay", {
                                 amount: due,
-                                currency: job.currency,
+                                currency: tokenLabel(job.currency),
                                 defaultValue: "Approve & pay {{amount}} {{currency}}",
                               })}
                             </Text>
@@ -700,7 +701,7 @@ export default function WorkJobDetailScreen() {
                             <Text style={styles.approveText}>
                               {submittedPayment ? t('work.integrity.checkPayment') : t("work.detail.payNow", {
                                 amount: due,
-                                currency: job.currency,
+                                currency: tokenLabel(job.currency),
                                 defaultValue: "Pay {{amount}} {{currency}}",
                               })}
                             </Text>

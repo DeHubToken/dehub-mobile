@@ -1,3 +1,4 @@
+import { tokenLabel } from '../../libs/token-label';
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -283,7 +284,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
                 accessibilityLabel={t("easyTrade.sellTitle")}
                 onChangeText={(v) => { setAmount(decimal(v)); setQuote(null); setAiReply(""); }}
                 className="flex-1 px-4 py-4 text-3xl font-semibold text-white" />
-              <Text className="pr-4 text-sm text-theme-neutrals-400">DHB</Text>
+              <Text className="pr-4 text-sm text-theme-neutrals-400">{tokenLabel()}</Text>
             </View>
             <View className="flex-row items-center justify-between mt-3 mb-4">
               <Text className="text-xs text-theme-neutrals-400 flex-1">{t("easyTrade.available", { amount: formatSize(Number(units18(balance))) })}</Text>
@@ -295,7 +296,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
               ))}
             </View>
             {balance === 0n && <Text className="text-xs text-theme-neutrals-400 mb-3">{t("easyTrade.noDhb")}</Text>}
-            {!!amount && !amountOk && balance > 0n && <Text className="text-xs text-red-300 mb-3">{t("dex.checkAmount", { token: "DHB" })}</Text>}
+            {!!amount && !amountOk && balance > 0n && <Text className="text-xs text-red-300 mb-3">{t("dex.checkAmount", { token: tokenLabel() })}</Text>}
             <Primary label={t("easyTrade.next")} disabled={!amountOk} onPress={() => void toPrice()} />
           </View>
         )}
@@ -341,7 +342,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
           <View>
             <View className={`${row} mb-3`}>
               {[
-                [t("easyTrade.youSell"), `${formatSize(Number(amount))} DHB`],
+                [t("easyTrade.youSell"), `${formatSize(Number(amount))} ${tokenLabel()}`],
                 [t("easyTrade.method"), route === "list" ? t("easyTrade.methodList", { price: formatPrice(myPrice) }) : t("easyTrade.methodInstant")],
                 [route === "list" ? t("easyTrade.ifFilled") : t("easyTrade.youGet"), `${formatSize(route === "list" ? Number(amount) * myPrice : quotedUsdc)} USDC`],
               ].map(([label, value], i) => (

@@ -110,7 +110,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const userTokenBal = (user?.tokenBalances?.[tokenSymbol] ?? 0) as number;
   // Solana balance is enforced on-chain by the transfer itself.
   const insufficient = !isSolanaPpv && numericAmount > userTokenBal;
-  // ETH → DHB auto-swap available only for DHB PPV on Base (#44)
+  // ETH → DHB auto-swap available only for tokens PPV on Base (#44)
   const canAutoSwap = tokenSymbol === "DHB" && chainId === 8453;
   const isSelf =
     !!user?.walletAddress &&
