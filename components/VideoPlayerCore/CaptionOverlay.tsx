@@ -32,6 +32,9 @@ import {
 } from '../../hooks/useTranscript';
 import { useDubSettings, setDubSettings } from '../../hooks/useVideoDub';
 import { useVoiceDub, baseLang, findVoice, speechAvailable } from '../../hooks/useVoiceDub';
+import { useCachedVideoDub } from '../../hooks/useCachedVideoDub';
+import { useCachedDubAudio } from '../../hooks/useCachedDubAudio';
+import { hasCachedDubLanguage } from '../../libs/cached-dub-languages';
 import { useMediaVolume } from '../../libs/video-preferences';
 import { toastInfo } from '../../libs';
 import {
@@ -153,9 +156,11 @@ const CaptionOverlay: React.FC<Props> = ({
   }, [dubPref, targetLang, i18n.resolvedLanguage, i18n.language, sourceLang]);
   const [voiceSupported, setVoiceSupported] = useState<boolean | null>(null);
   const [dubFailed, setDubFailed] = useState(false);
+  const [audioFailed, setAudioFailed] = useState(false);
   useEffect(() => {
     setVoiceSupported(null);
     setDubFailed(false);
+    setAudioFailed(false);
     if (!speechAvailable) { setVoiceSupported(false); return; }
     if (!dubOn || !dubLang) return;
     let cancelled = false;
@@ -163,8 +168,8 @@ const CaptionOverlay: React.FC<Props> = ({
       if (!cancelled) setVoiceSupported(voice !== null);
     });
     return () => { cancelled = true; };
-  }, [dubOn, dubLang]);
-  const wantDub = dubOn && isReady && !!dubLang && !!player && voiceSupported === true && !dubFailed;
+  }, [dubOn, dubLang, transcript?.id]);
+  const wantDub = dubOn && isReady && !!dubLang && !!player && (hasCachedDubLanguage(dubLang) || voiceSupported === true);
   useEffect(() => { onDubAvailableChange?.(wantDub); }, [wantDub, onDubAvailableChange]);
   useEffect(() => () => onDubAvailableChange?.(false), [onDubAvailableChange]);
   // Same query as the captions when both are in one language, so the second
@@ -174,18 +179,22 @@ const CaptionOverlay: React.FC<Props> = ({
     dubLang ?? 'original',
     !!ref && wantDub && audible,
   );
+  const cachedDub = useCachedVideoDub(transcript?.id ?? null, dubLang, wantDub && audible && dubTranslation?.status === 'ready');
+  const cachedUrl = wantDub && !audioFailed ? cachedDub?.audioUrl ?? null : null;
   useVoiceDub({
     player,
     segments: dubTranslation?.status === 'ready' ? dubTranslation.segments : null,
     lang: dubLang,
-    enabled: wantDub,
+    enabled: wantDub && !cachedUrl && !dubFailed,
     onFailed: () => setDubFailed(true),
   });
+  useCachedDubAudio(player, cachedUrl, () => setAudioFailed(true));
+  const remoteUnavailable = audioFailed || !hasCachedDubLanguage(dubLang) || cachedDub?.status === 'failed' || cachedDub?.status === 'unavailable';
   const dubHint = !dubOn || !audible || !dubLang
     ? null
-    : dubFailed || voiceSupported === false || dubTranslation?.status === 'failed'
+    : ((dubFailed || voiceSupported === false) && remoteUnavailable) || dubTranslation?.status === 'failed'
     ? t('dub.unavailable')
-    : dubTranslation?.status === 'ready' && voiceSupported ? null : t('dub.preparing');
+    : cachedUrl || (dubTranslation?.status === 'ready' && voiceSupported && !dubFailed) ? null : t('dub.preparing');
 
   // Captions on a language pick that; captions on Original borrow the app's
   // language. Either way it has to differ from what was spoken — an English
@@ -208,7 +217,7 @@ const CaptionOverlay: React.FC<Props> = ({
     // On anyway — the transcript may arrive later, but a missing voice will
     // not, and silence with no reason given reads as broken.
     void findVoice(nextDubLang).then((voice) => {
-      if (voice === null) toastInfo(t('dub.noVoice'));
+      if (voice === null && !hasCachedDubLanguage(nextDubLang)) toastInfo(t('dub.noVoice'));
     });
   };
 

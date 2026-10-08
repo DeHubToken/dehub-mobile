@@ -18,6 +18,7 @@ import { supabase } from "../services/supabase";
 import { queryClient } from "../config/queryClient";
 import { transcriptKey, type TranscriptRecord } from "./useTranscript";
 import { findVoice } from "./useVoiceDub";
+import { hasCachedDubLanguage } from '../libs/cached-dub-languages';
 import { createLogger } from "../libs/logger";
 import { autoTranslateEnabled, subscribeAutoTranslate } from "../libs/auto-translate-setting";
 
@@ -108,6 +109,7 @@ export async function checkDubbable(
   }
   if (status !== "ready") return "no-transcript";
 
+  if (hasCachedDubLanguage(lang)) return "ok";
   const voice = await findVoice(lang);
   return voice === null ? "no-voice" : "ok";
 }
