@@ -6801,6 +6801,10 @@
     "typeVideo": "Video"
   },
   "editor": {
+    "highlights": {
+      "visual": "Videopi aswan allin pachakuna",
+      "visualPrivacy": "Akllasqa videopa rikch'ayninkunata qhawarinapaq apachiy."
+    },
     "review": {
       "title": "Rurayta qhawana",
       "shared": "Qamwan rakisqa",

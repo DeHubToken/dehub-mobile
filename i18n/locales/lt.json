@@ -6787,6 +6787,10 @@
     "savePrompt": "Išsaugoti šį įrašą kaip juodraštį, kad užbaigtumėte ir paskelbtumėte vėliau?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Vaizdo akcentai",
+      "visualPrivacy": "Siųsti pasirinktus kadrus vaizdinei analizei."
+    },
     "review": {
       "title": "Projekto peržiūra",
       "shared": "Bendrinama su jumis",

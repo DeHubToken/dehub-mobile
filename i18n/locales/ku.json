@@ -6673,6 +6673,10 @@
     "savePrompt": "Vê peyamê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Xalên girîng ên dîtbarî",
+      "visualPrivacy": "Çarçoveyên bijartî ji bo analîza dîtbarî bişînin."
+    },
     "review": {
       "title": "Vekolîna projeyê",
       "shared": "Bi te re parvekirî",

@@ -6791,6 +6791,10 @@
     "savePrompt": "Spara det här inlägget som ett utkast för att slutföra och publicera senare?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuella höjdpunkter",
+      "visualPrivacy": "Skicka utvalda bildrutor för visuell analys."
+    },
     "review": {
       "title": "Projektgranskning",
       "shared": "Delat med dig",

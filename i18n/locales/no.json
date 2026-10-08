@@ -6786,6 +6786,10 @@
     "savePrompt": "Lagre dette innlegget som et utkast for å fullføre og publisere senere?"
   },
   "editor": {
+    "highlights": {
+      "visual": "Visuelle høydepunkter",
+      "visualPrivacy": "Send utvalgte bilder til visuell analyse."
+    },
     "review": {
       "title": "Prosjektgjennomgang",
       "shared": "Delt med deg",
