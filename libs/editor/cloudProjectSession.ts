@@ -1,12 +1,14 @@
-import { localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
+import { CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 import { projectReviewCopy } from "./cloudProjectReview";
+import { mergeCloudProjectEdits, sameCloudProjectEdit } from "./cloudProjectMerge";
 
 export interface CloudProjectLink extends CloudProjectBinding {
   media: Record<string, CloudProjectMedia>;
   sharedOwner?: string;
-  pending?: { requestId: string; document: CloudProjectDocument; expectedRevision: number };
+  pending?: { requestId: string; document: CloudProjectDocument; expectedRevision: number; originalDocument?: CloudProjectDocument; mergedLocalIds?: string[] };
 }
+export interface CloudProjectSaveResult extends CloudProjectSaved { mergedSnapshot?: ProjectSnapshot; mergedDocument?: CloudProjectDocument }
 export interface CloudProjectSessionDeps {
   wallet: string;
   uuid(): string;
@@ -48,14 +50,44 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     if (!deps.api.editing) throw new Error("Shared project editing is unavailable");
     return deps.api.editing;
   }
-  async function finishPending(localId: string, link: CloudProjectLink): Promise<CloudProjectSaved | null> {
-    const pending = link.pending;
+  async function finishPending(localId: string, link: CloudProjectLink): Promise<CloudProjectSaveResult | null> {
+    let pending = link.pending;
     if (!pending) return null;
+    const send = () => link.sharedOwner
+      ? requireEditing().save(link.sharedOwner, link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId)
+      : deps.api.save(link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId);
     check();
-    const saved = link.sharedOwner
-      ? await requireEditing().save(link.sharedOwner, link.projectId, pending.document, pending.expectedRevision, pending.requestId)
-      : await deps.api.save(link.projectId, pending.document, pending.expectedRevision, pending.requestId);
-    check(); link.revision = saved.revision; delete link.pending;
+    let saved: CloudProjectSaved;
+    try { saved = await send(); }
+    catch (cause) {
+      check();
+      if (!(cause instanceof CloudProjectConflict) || !link.sharedOwner || !deps.api.review) throw cause;
+      const latest = await requireEditing().load(link.sharedOwner, link.projectId); check();
+      const base = await deps.api.review.load(link.sharedOwner, link.projectId, pending.expectedRevision); check();
+      const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, link.sharedOwner);
+      if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest shared version or save a personal copy.");
+      pending = { requestId: deps.uuid(), expectedRevision: latest.revision, document: result.document, originalDocument: pending.originalDocument || pending.document };
+      link.pending = pending; await deps.writeLink(localId, link); check();
+      // One rebase per explicit save. A second collision is left for the person to retry.
+      saved = await send();
+    }
+    check();
+    if (link.sharedOwner && pending.originalDocument) {
+      let index = 0;
+      const copy = projectReviewCopy(pending.document, link.sharedOwner, pending.mergedLocalIds ? () => pending!.mergedLocalIds![index++] : deps.uuid);
+      if (!pending.mergedLocalIds) {
+        pending.mergedLocalIds = [copy.snapshot.id, ...copy.media.map(media => media.id)];
+        await deps.writeLink(localId, link); check();
+      }
+      for (const media of copy.media) { await deps.hydrate(media, check, link.sharedOwner); check(); }
+      await deps.saveLocal(copy.snapshot); check();
+      await deps.writeLink(copy.snapshot.id, { wallet, projectId: link.projectId, sharedOwner: link.sharedOwner, revision: saved.revision,
+        media: Object.fromEntries(copy.media.map((media, i) => [media.id, pending!.document.media[i]])) }); check();
+      // The original draft keeps its original base, so a later save cannot erase remote changes.
+      delete link.pending; await deps.writeLink(localId, link); check();
+      return { ...saved, mergedSnapshot: copy.snapshot, mergedDocument: pending.document };
+    }
+    link.revision = saved.revision; delete link.pending;
     await deps.writeLink(localId, link); check();
     return saved;
   }
@@ -68,7 +100,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     check(); return copy;
   }
   return {
-    save(snapshot: ProjectSnapshot, separateCopy = false) {
+    save(snapshot: ProjectSnapshot, separateCopy = false): Promise<CloudProjectSaveResult> {
       // Capture before awaiting: edits made during transfer stay in the editor.
       const captured = JSON.parse(JSON.stringify(snapshot, (_key, value) => {
         if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
@@ -81,19 +113,25 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const link: CloudProjectLink = owned && !separateCopy ? owned : { wallet, projectId: deps.uuid(), revision: 0, media: owned?.sharedOwner ? {} : { ...owned?.media } };
         const pending = link.pending;
         const recovered = await finishPending(captured.id, link);
-        // A retry of unchanged content is one revision, even after a reload.
+        // A recovered merged save uses the original input to recognize the retry.
         if (pending && recovered && cloudProjectMediaIds(captured).every(id => link.media[id])) {
           const candidate = makeCloudProjectDocument(captured, link.projectId, link.sharedOwner || wallet, new Map(Object.entries(link.media)));
-          const withoutTime = (doc: CloudProjectDocument) => JSON.stringify({ ...doc, snapshot: { ...doc.snapshot, updatedAt: 0 } });
-          if (withoutTime(candidate) === withoutTime(pending.document)) return recovered;
+          if (sameCloudProjectEdit(candidate, pending.originalDocument || pending.document)) return recovered;
         }
         for (const localId of cloudProjectMediaIds(captured)) {
           if (link.media[localId]) continue;
           check(); link.media[localId] = await deps.upload(localId, deps.uuid(), check, link.sharedOwner ? { owner: link.sharedOwner, projectId: link.projectId } : undefined); check();
           await deps.writeLink(captured.id, link); check();
         }
-        const document = makeCloudProjectDocument(captured, link.projectId, link.sharedOwner || wallet, new Map(Object.entries(link.media)));
-        link.pending = { requestId: deps.uuid(), document, expectedRevision: link.revision };
+        let document = makeCloudProjectDocument(captured, link.projectId, link.sharedOwner || wallet, new Map(Object.entries(link.media)));
+        const originalDocument = document;
+        if (pending && recovered?.mergedDocument && link.sharedOwner) {
+          const rebased = mergeCloudProjectEdits(pending.originalDocument || pending.document, document, recovered.mergedDocument, link.sharedOwner);
+          if (!rebased.document) throw new CloudProjectConflict("Newer local edits conflict with the shared version. Your draft was kept; open the latest shared version or save a personal copy.");
+          document = rebased.document;
+        }
+        link.pending = { requestId: deps.uuid(), document, expectedRevision: recovered?.mergedDocument ? recovered.revision : link.revision,
+          ...(recovered?.mergedDocument ? { originalDocument } : {}) };
         await deps.writeLink(captured.id, link); check();
         return (await finishPending(captured.id, link))!;
       });
