@@ -1157,6 +1157,41 @@ canvas{display:block;width:100%;height:100%;}
     return session.ready.then(step).then(function (buffer) { return { blob: new Blob([buffer], { type: "image/gif" }), ext: "gif" }; }).finally(function () { session.close(); if (gifSession === session) gifSession = null; });
   }
 
+  async function exportImage(m) {
+    if (!state || exporting) { post({ type: "exportFailed", reqId: m.reqId, error: "busy" }); return; }
+    var snap = state.snapshot;
+    var at = m.time === undefined ? currentTime() : Number(m.time);
+    if (!Number.isFinite(at) || at < 0) { post({ type: "exportFailed", reqId: m.reqId, error: "Invalid frame time" }); return; }
+    stopPlaying(); exporting = true; exportAborted = false; videoJobId = m.reqId;
+    var fontTimer;
+    var check = function () { if (exportAborted || videoJobId !== m.reqId) throw new Error("Export cancelled"); };
+    try {
+      var ready = document.fonts && document.fonts.ready ? document.fonts.ready.catch(function () {}) : Promise.resolve();
+      await Promise.race([ready, new Promise(function (resolve) { fontTimer = setTimeout(resolve, 3000); })]);
+      clearTimeout(fontTimer); check();
+      var W = snap.settings.width, H = snap.settings.height;
+      var t = Math.max(0, Math.min(at, timelineEnd(snap.clips, snap.settings) - 1 / Math.max(1, snap.settings.fps)));
+      var ops = computeRenderOps(snap, t, W, false);
+      ops.forEach(function (op) {
+        if (op.clip.kind === "image" && !images.has(op.clip.mediaId)) throw new Error("Page media is still loading");
+        if (op.clip.kind === "video" && !videos.has(op.clip.mediaId)) throw new Error("Page media is still loading");
+      });
+      assertVideoMattes(ops.map(function (op) { return op.clip; }), function (id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
+      prepareVideoSources(ops);
+      await Promise.all(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); }));
+      check();
+      var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+      var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
+      g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H);
+      drawOps(g, W, H, ops, t); check();
+      post({ type: "exported", reqId: m.reqId, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
+    } catch (error) { post({ type: "exportFailed", reqId: m.reqId, error: String(error.message || error) }); }
+    finally {
+      clearTimeout(fontTimer);
+      if (videoJobId === m.reqId) { videoJobId = null; exporting = false; schedule(); }
+    }
+  }
+
   async function exportVideo(m) {
     if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
     stopPlaying();
@@ -1639,19 +1674,7 @@ canvas{display:block;width:100%;height:100%;}
       var kpts = (m.keys || []).map(function (kt) { return centreAt(pc.start + kt); });
       post({ type: "path", reqId: m.reqId, pts: pts, keys: kpts });
     } else if (m.type === "export") {
-      var done = function () {
-        try {
-          assertVideoMattes(state.snapshot.clips.filter(function(c) { var track = trackOf(state.snapshot, c.trackId); return !c.hidden && track && !track.hidden; }), function(id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
-          render();
-          var url = canvas.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92);
-          post({ type: "exported", reqId: m.reqId, dataUrl: url });
-        } catch (e) {
-          post({ type: "exportFailed", reqId: m.reqId, error: String((e && e.message) || e) });
-        }
-      };
-      // Wait for web fonts, but never forever: offline, the fallback font still exports.
-      var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-      Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })]).then(done, done);
+      exportImage(m);
     }
   }
   document.addEventListener("message", onMessage);

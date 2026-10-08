@@ -49,7 +49,7 @@ export interface EditorCanvasHandle {
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
-  exportImage: (format: "png" | "jpeg", quality?: number) => Promise<string>;
+  exportImage: (format: "png" | "jpeg", quality?: number, time?: number) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
   /**
@@ -149,7 +149,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [stroke, setStroke] = useState<[number, number][] | null>(null);
   const strokeRef = useRef<[number, number][] | null>(null);
   const sentMedia = useRef(new Set<string>());
-  const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void }>());
+  const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void; cleanup: () => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
@@ -200,6 +200,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     shotReqs.current.clear();
     for (const request of videoReqs.current.values()) { request.out?.discard(); request.reject(new Error("canvas closed")); }
     videoReqs.current.clear(); post({ type: "exportAbort" });
+    for (const request of exports.current.values()) { request.cleanup(); request.reject(new Error("canvas closed")); }
+    exports.current.clear();
   }, [post]);
 
   // Draw on every change. Time alone only moves the playhead (seek), and
@@ -348,6 +350,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         break;
       }
       case "exported":
+        exports.current.get(msg.reqId)?.cleanup();
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
         break;
@@ -439,6 +442,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         break;
       }
       case "exportFailed":
+        exports.current.get(msg.reqId)?.cleanup();
         exports.current.get(msg.reqId)?.reject(new Error(msg.error || "export failed"));
         exports.current.delete(msg.reqId);
         break;
@@ -470,6 +474,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(new Error("canvas restarted")); }
     videoReqs.current.clear();
     for (const done of mediaAcks.current.values()) done();
+    for (const r of exports.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
+    exports.current.clear();
     mediaAcks.current.clear();
     setReady(false);
     setWebKey((n) => n + 1);
@@ -481,6 +487,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       const error = new Error("export cancelled"); error.name = "AbortError";
       for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(error); }
       videoReqs.current.clear();
+      for (const r of exports.current.values()) { r.cleanup(); r.reject(error); }
+      exports.current.clear();
     },
     detectShots: (clip, signal, onProgress) => new Promise<ShotAnalysis>((resolve, reject) => {
       if (signal?.aborted) { reject(new Error("cancelled")); return; }
@@ -533,17 +541,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
-    exportImage: (format, quality = 0.92) =>
+    exportImage: (format, quality = 0.92, time) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        exports.current.set(reqId, { resolve, reject });
-        post({ type: "export", reqId, format, quality });
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           if (exports.current.has(reqId)) {
             exports.current.delete(reqId);
+            post({ type: "exportAbort" });
             reject(new Error("export timed out"));
           }
         }, 30000);
+        exports.current.set(reqId, { resolve, reject, cleanup: () => clearTimeout(timer) });
+        post({ type: "export", reqId, format, quality, time });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {

@@ -93,10 +93,10 @@ describe('media editor screen insets', () => {
   });
 
   it('keeps the export sheet buttons above the nav bar', () => {
-    const exportSheet = editor.slice(editor.indexOf('function ExportSheet('));
+    const exportSheet = readFileSync(join(process.cwd(), "components", "editor", "ExportSheet.tsx"), "utf8");
     expect(exportSheet).toContain('const insets = useSafeAreaInsets();');
     expect(exportSheet).toContain('paddingBottom: insets.bottom + 20');
-    expect(editor.match(/useSafeAreaInsets\(\)/g)).toHaveLength(1);
+    expect(editor).not.toContain("useSafeAreaInsets()");
   });
 
   it('lifts the text and rename prompt on Android too', () => {
