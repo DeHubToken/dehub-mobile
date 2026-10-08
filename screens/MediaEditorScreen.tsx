@@ -72,6 +72,8 @@ import {
 } from "../components/editor/EditorPanels";
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
+import { assemblyProject, assemblyRequest, persistAssembly, type AssemblyPlan } from "../libs/editor/assembly";
+import { useAssembly } from "../libs/editor/useAssembly";
 import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
 import type { GenerationDraft } from "../libs/editor/generationDraft";
 import Timeline from "../components/editor/Timeline";
@@ -324,6 +326,9 @@ function useHistory(initial: ProjectSnapshot | null) {
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
     reset: (p: ProjectSnapshot) => { past.current = []; future.current = []; setProject(p); },
+    fork: (original: ProjectSnapshot, next: ProjectSnapshot) => {
+      past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; setProject(next);
+    },
     /** Not an undo step: facts the canvas measured, like a video's real length. */
     replace: (p: ProjectSnapshot) => { if (liveBase.current) liveBase.current = p; setProject(p); },
     commit: (next: ProjectSnapshot) => {
@@ -396,6 +401,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     },
     create: (original, clipId, ranges, signal) => createHighlights(original, clipId, ranges, t("editor.highlights.projectTitle", { title: original.title }), signal),
   });
+  const [assemblyNames, setAssemblyNames] = useState<Record<string, string>>({});
+  const [assemblyState, assembly] = useAssembly({ current: h.latest, create: (original, plan, signal) => createAssembly(original, plan, signal) });
+  const assemblySourceChanged = assemblyState.sourceId !== null && !assembly.matchesSource(project);
   const highlightSourceChanged = highlightChatState.clipId !== null && !highlightChat.matchesSource(project);
   const [brand, setBrand] = useState<BrandKit>(EMPTY_BRAND);
   useEffect(() => { loadBrand().then(setBrand); }, []);
@@ -846,6 +854,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } catch { toastError(t("editor.captions.failed")); }
   };
 
+  const createAssembly = async (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal) => {
+    const next = assemblyProject(original, plan, { id: newId(10), title: `${original.title} — ${t("editor.video.video")}` }, () => newId(10));
+    return persistAssembly(original, next, { current: h.latest, save: saveProject, commit: (source, copy) => {
+      h.fork(source, copy); setSelectedId(null); setPlaying(false); setTime(0); setTimelineOpen(true);
+    } }, signal);
+  };
+  const closeAssembly = () => { highlightPreviewEnd.current = null; setPlaying(false); assembly.reset(); };
   const createHighlights = async (original: ProjectSnapshot, clipId: string, ranges: HighlightRange[], title: string, signal?: AbortSignal) => {
     const matches = () => { const now = h.latest(); return !signal?.aborted && !!now && sameHighlightSource(original, now); };
     if (!matches()) return false;
@@ -863,10 +878,21 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string) => {
-    if (!project || chatBusy || openingGenerator || highlightChat.state.busy) return;
+    if (!project || chatBusy || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
+    const draftRequest = assemblyRequest(text);
+    if (draftRequest || assembly.state.sourceId) {
+      highlightPreviewEnd.current = null; setPlaying(false);
+      if (draftRequest) {
+        highlightChat.reset(); assembly.start(draftRequest, selectedId ? [selectedId] : []);
+        void listMedia().then(media => setAssemblyNames(Object.fromEntries(media.map(m => [m.id, m.name])))).catch(() => {});
+      }
+      const reviewed = draftRequest || assembly.review(text);
+      setChat(old => [...old, { id: entryId(), role: "assistant", content: t(reviewed ? "easyTrade.reviewTitle" : "editor.agent.nothingToDo") }]);
+      return;
+    }
     const request = highlightChatRequest(text);
     if (request || highlightChat.reviewing) {
       highlightPreviewEnd.current = null; setPlaying(false);
@@ -1588,7 +1614,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       <AgentSheet
         visible={chatOpen}
         entries={chat}
-        busy={chatBusy || openingGenerator || highlightChatState.busy}
+        busy={chatBusy || openingGenerator || highlightChatState.busy || assemblyState.busy}
+        assembly={{ state: assemblyState, session: assembly, changed: assemblySourceChanged, names: assemblyNames,
+          onPreview: index => { const range = assembly.preview(index); if (!range) return; highlightPreviewEnd.current = range.end; setSelectedId(range.id); setTime(range.start); setPlaying(true); setChatOpen(false); },
+          onCreate: () => { highlightPreviewEnd.current = null; setPlaying(false); void assembly.create().then(saved => { if (saved) setChat(old => [...old, { id: `${Date.now()}-assembly`, role: "assistant", content: t("common.done") }]); }); }, onClose: closeAssembly }}
         highlights={highlightChatState}
         highlightSourceChanged={highlightSourceChanged}
         onHighlightToggle={index => highlightChat.toggle(index)}
@@ -1599,8 +1628,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onSend={(text) => { void sendToAgent(text); }}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
-        onClose={() => setChatOpen(false)}
-        onClear={() => { closeHighlightChat(); setChat([]); }}
+        onClose={() => { if (assembly.state.busy) closeAssembly(); setChatOpen(false); }}
+        onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); }}
       />
 
       <ExportSheet
