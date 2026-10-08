@@ -1,4 +1,5 @@
 import { appLocale } from '../libs/date.util';
+import { tokenLabel } from '../libs/token-label';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from './common/SmartImage';
@@ -174,7 +175,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
               </View>
               {!paid && <><Text style={[s.muted, s.label]}>{t('dex.payWith')}</Text>
                 <View style={s.chips}>{(balances.length ? balances : FEE_ASSETS.map((asset) => ({ asset, amount: 0, usd: 0 }))).map((b) => <TouchableOpacity key={b.asset.symbol} disabled={!!busy} accessibilityRole="radio" accessibilityState={{ selected: selected === b.asset.symbol }} style={[s.chip, selected === b.asset.symbol && s.chipActive]} onPress={() => setPayWith(b.asset.symbol)}>
-                  <Text style={selected === b.asset.symbol ? s.white : s.muted}>{b.asset.symbol} · ${b.usd.toLocaleString(appLocale(), { maximumFractionDigits: 2 })}</Text></TouchableOpacity>)}</View></>}
+                  <Text style={selected === b.asset.symbol ? s.white : s.muted}>{tokenLabel(b.asset.symbol)} · ${b.usd.toLocaleString(appLocale(), { maximumFractionDigits: 2 })}</Text></TouchableOpacity>)}</View></>}
               {!paid && selected !== 'DHB' && <Text style={s.help}>{t('dex.pools.swapNote', { symbol: selected })}</Text>}
               {paid && <Text style={s.help}>{t('dex.pools.alreadyPaid')}</Text>}
             </>}

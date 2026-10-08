@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkDisputesScreen
  * ==================
@@ -130,7 +131,7 @@ export default function WorkDisputesScreen() {
         {j && (
           <View style={styles.budgetBox}>
             <Text style={styles.budgetText}>
-              {t("work.unreleased", { amount: fmt(remaining), currency: j.currency })}
+              {t("work.unreleased", { amount: fmt(remaining), currency: tokenLabel(j.currency) })}
             </Text>
             <Text style={styles.dim}>
               {escrowed ? t("work.onchainId", { id: j.onchain_job_id ?? "—" }) : t("work.notEscrowed")}
@@ -168,7 +169,7 @@ export default function WorkDisputesScreen() {
         </Field>
         <View style={{ flexDirection: "row", gap: 8 }}>
           <View style={{ flex: 1 }}>
-            <Field label={t("work.workerAmount", { currency: j?.currency || "" })}>
+            <Field label={t("work.workerAmount", { currency: j ? tokenLabel(j.currency) : "" })}>
               <TextInput
                 value={v.worker}
                 onChangeText={(x) => set({ worker: x })}
@@ -180,7 +181,7 @@ export default function WorkDisputesScreen() {
             </Field>
           </View>
           {escrowed && <View style={{ flex: 1 }}>
-            <Field label={t("work.posterRefund", { currency: j?.currency || "" })}>
+            <Field label={t("work.posterRefund", { currency: j ? tokenLabel(j.currency) : "" })}>
               <TextInput
                 value={v.poster}
                 onChangeText={(x) => set({ poster: x })}

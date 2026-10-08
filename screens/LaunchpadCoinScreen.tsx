@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * LaunchpadCoinScreen
  * ===================
@@ -103,7 +104,7 @@ function TradePanel({ token }: { token: LaunchpadToken }) {
           );
         })}
       </View>
-      <Text style={styles.fieldLabel}>{t("launchpad.amountIn", { symbol: side === "buy" ? "DHB" : token.symbol })}</Text>
+      <Text style={styles.fieldLabel}>{t("launchpad.amountIn", { symbol: side === "buy" ? tokenLabel() : token.symbol })}</Text>
       <TextInput
         value={amount}
         onChangeText={(v) => setAmount(sanitizeAmountInput(v))}
@@ -250,7 +251,7 @@ export default function LaunchpadCoinScreen() {
             k={t("launchpad.curve")}
             v={t(CURVE_KEYS[token.curve_type ?? "standard"] ?? "launchpad.curveStandard")}
           />
-          <Row k={t("launchpad.pair")} v="DHB" />
+          <Row k={t("launchpad.pair")} v={tokenLabel()} />
         </View>
 
         <FeeBreakdown />

@@ -204,10 +204,10 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               <Text style={styles.recipientText}>
                 {t(
                   "tip.attachDescription",
-                  "Attach DHB tokens as a tip to your message",
+                  "Attach DeHub tokens as a tip to your message",
                 )}
                 {minAmount > 1
-                  ? `. ${t("tip.minAmount", "Min {{amount}} DHB.", {
+                  ? `. ${t("tip.minAmount", "Min {{amount}} tokens.", {
                       amount: Number(minAmount).toLocaleString(),
                     })}`
                   : ""}
@@ -311,9 +311,9 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                     ]}
                   >
                     {exceedsBalance
-                      ? t("tip.insufficientDhb", "Insufficient DHB")
+                      ? t("tip.insufficientDhb", "Insufficient tokens")
                       : isValid
-                        ? t("tip.attachAmount", "Attach {{amount}} DHB", {
+                        ? t("tip.attachAmount", "Attach {{amount}} tokens", {
                             amount: numericValue.toLocaleString(),
                           })
                         : t("tip.enterAmount", "Enter amount")}

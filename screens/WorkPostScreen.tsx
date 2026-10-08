@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * WorkPostScreen
  * ==============
@@ -289,7 +290,7 @@ export default function WorkPostScreen() {
                           currency === c && styles.currencyTextActive,
                         ]}
                       >
-                        {c}
+                        {tokenLabel(c)}
                       </Text>
                     </Pressable>
                   ))}
@@ -357,7 +358,7 @@ export default function WorkPostScreen() {
                 <View style={styles.totalRow}>
                   <Text style={styles.totalLabel}>{t("work.integrity.totalBudget")}</Text>
                   <Text style={styles.totalValue}>
-                    {total.toLocaleString(undefined, { maximumFractionDigits: 4 })} {currency}
+                    {total.toLocaleString(undefined, { maximumFractionDigits: 4 })} {tokenLabel(currency)}
                   </Text>
                 </View>
                 <Text style={styles.totalWarn}>

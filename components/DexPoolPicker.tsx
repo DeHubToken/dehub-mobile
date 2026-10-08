@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 import React, { useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from './common/SmartImage';
@@ -10,7 +11,6 @@ import DexAddPoolSheet from './DexAddPoolSheet';
 
 const DEHUB_COIN = require('../assets/web-icons/dehub-coin.png');
 // Ticker and venue names, not prose: the same in every language.
-const HOUSE_PAIR = 'DHB / USD';
 const HOUSE_VENUE = 'DeHub · Base';
 
 export function usePools() {
@@ -38,7 +38,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
     if (!q) return pools;
     return pools.filter((p) => p.symbol.toLowerCase().includes(q) || p.name.toLowerCase().includes(q) || p.token_address.toLowerCase() === q);
   }, [pools, query]);
-  const showHouse = !query || 'dhb dehub'.includes(query.trim().toLowerCase());
+  const showHouse = !query || `dhb dehub tokens ${tokenLabel()}`.toLowerCase().includes(query.trim().toLowerCase());
 
   const close = () => { setOpen(false); setQuery(''); };
   const goHouse = () => { close(); if (current) navigation.navigate(ScreenNames.Dex); };
@@ -47,7 +47,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
   return <View style={s.row}>
     <DexPoolAvatar pool={current} />
     <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('dex.pools.title')} style={s.pairButton} onPress={() => setOpen(true)}>
-      <Text style={s.pair}>{current ? current.symbol : 'DHB'} <Text style={s.muted}>/</Text> USD</Text>
+      <Text style={s.pair}>{current ? current.symbol : tokenLabel()} <Text style={s.muted}>/</Text> USD</Text>
       <Text style={s.chevron}>▾</Text>
     </TouchableOpacity>
     {rightContent}
@@ -58,7 +58,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
           <TextInput autoFocus placeholder={t('dex.pools.search')} accessibilityLabel={t('dex.pools.search')} placeholderTextColor="#596675" value={query} onChangeText={setQuery} style={s.search} autoCapitalize="none" autoCorrect={false} />
           <ScrollView style={s.list} keyboardShouldPersistTaps="handled">
             {showHouse && <TouchableOpacity accessibilityRole="button" style={[s.item, !current && s.itemActive]} onPress={goHouse}>
-              <DexPoolAvatar pool={null} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{HOUSE_PAIR}</Text><Text style={s.muted}>{HOUSE_VENUE}</Text></View>
+              <DexPoolAvatar pool={null} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{tokenLabel()} / USD</Text><Text style={s.muted}>{HOUSE_VENUE}</Text></View>
             </TouchableOpacity>}
             {filtered.map((pool) => <TouchableOpacity accessibilityRole="button" key={pool.id} style={[s.item, current?.id === pool.id && s.itemActive]} onPress={() => goPool(pool)}>
               <DexPoolAvatar pool={pool} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{pool.symbol} / USD</Text><Text style={s.muted} numberOfLines={1}>{pool.name} · {POOL_CHAIN_INFO[pool.chain].name}</Text></View>

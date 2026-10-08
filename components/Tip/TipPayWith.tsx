@@ -1,5 +1,6 @@
+import { tokenLabel } from '../../libs/token-label';
 /**
- * "Pay with" for anything paid in DHB: tips, gifts, pay-per-view,
+ * "Pay with" for anything paid in tokens: tips, gifts, pay-per-view,
  * subscriptions. Mirror of web's TipPayWith.
  *
  * DHB stays the default and behaves exactly as before. When the Safe does not
@@ -130,11 +131,11 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
                 {" · "}
                 {planUsesDpay(plan)
                   ? plan.kind === "bridge"
-                    ? t("tip.payViaBridgeDpay", "Moved to Base and paid to DeHub Pay, DHB arrives in about a minute")
-                    : t("tip.payViaDpay", "Paid to DeHub Pay, DHB arrives in about 30s")
+                    ? t("tip.payViaBridgeDpay", "Moved to Base and paid to DeHub Pay, tokens arrive in about a minute")
+                    : t("tip.payViaDpay", "Paid to DeHub Pay, tokens arrive in about 30s")
                   : plan.kind === "bridge"
-                    ? t("tip.payViaBridge", "Swapped to DHB on Uniswap, arrives in ~{{seconds}}s", { seconds: Math.max(2, plan.fillSeconds) })
-                    : t("tip.payViaSwap", "Swapped to DHB on Uniswap")}
+                    ? t("tip.payViaBridge", "Swapped to tokens on Uniswap, arrives in ~{{seconds}}s", { seconds: Math.max(2, plan.fillSeconds) })
+                    : t("tip.payViaSwap", "Swapped to tokens on Uniswap")}
               </Text>
             </Text>
           ) : null}
@@ -146,7 +147,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
           {!requireSource && (
             <TouchableOpacity style={[styles.item, !value && styles.itemActive]} onPress={() => pick(null)}>
               <Image source={DEHUB_COIN} style={styles.coin} resizeMode="contain" />
-              <Text style={styles.itemText}>DHB</Text>
+              <Text style={styles.itemText}>{tokenLabel()}</Text>
               <Text style={styles.itemValue}>{dhbHeld.toLocaleString(undefined, { maximumFractionDigits: 2 })}</Text>
             </TouchableOpacity>
           )}
@@ -202,8 +203,8 @@ export function tipStageLabel(
     case "bridge": return t("tip.stageBridge", "Sending {{symbol}} from {{chain}}…", vars);
     case "arriving": return t("tip.stageArriving", "Arriving on Base, usually a few seconds…");
     case "pay": return t("tip.stagePay", "Paying DeHub Pay with {{symbol}}…", vars);
-    case "delivering": return t("tip.stageDelivering", "DeHub Pay is sending your DHB…");
-    case "swap": return t("tip.stageSwap", "Buying DHB on Uniswap…");
+    case "delivering": return t("tip.stageDelivering", "DeHub Pay is sending your tokens…");
+    case "swap": return t("tip.stageSwap", "Buying tokens on Uniswap…");
     default: return t("tip.payQuoting", "Getting the best price…");
   }
 }

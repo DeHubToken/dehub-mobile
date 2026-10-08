@@ -1239,7 +1239,7 @@ export default function UploadScreen() {
     ).catch(() => null);
 
     if (quotaCost?.chargeable && quotaCost.amountDhb > 0) {
-      // The App Store build cannot sell the extra slot for DHB (guideline
+      // The App Store build cannot sell the extra slot for tokens (guideline
       // 3.1.1), so past the free allowance it simply waits for tomorrow.
       if (!DIGITAL_PURCHASES_ENABLED) {
         toastError(

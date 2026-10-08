@@ -1,3 +1,4 @@
+import { tokenLabel } from '../libs/token-label';
 /**
  * LaunchpadCreateScreen
  * =====================
@@ -282,7 +283,7 @@ export default function LaunchpadCreateScreen() {
             <View style={styles.infoBox}>
               <Text style={styles.infoText}>
                 {`${t("launchpad.basePair")} `}
-                <Text style={styles.infoStrong}>{"DHB"}</Text>
+                <Text style={styles.infoStrong}>{tokenLabel()}</Text>
               </Text>
               <Text style={styles.infoText}>
                 {`${t("launchpad.graduationTarget")} `}
@@ -305,7 +306,7 @@ export default function LaunchpadCreateScreen() {
               <Row k={t("launchpad.fieldTicker")} v={`$${symbol}`} />
               <Row k={t("launchpad.fieldChain")} v={chainLabel(chainId)} />
               <Row k={t("launchpad.fieldCurve")} v={t(CURVE_KEYS[curveType])} />
-              <Row k={t("launchpad.pair")} v="DHB" />
+              <Row k={t("launchpad.pair")} v={tokenLabel()} />
               <Row k={t("launchpad.graduatesAt")} v={t("launchpad.graduatesAtValue")} />
             </View>
             <Text style={styles.note}>{t("launchpad.mockNote")}</Text>

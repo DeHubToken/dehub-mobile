@@ -996,7 +996,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       // Check balance
       const balance = await tokenContract.balanceOf(account);
       if (ethers.BigNumber.from(balance).lt(amountBN)) {
-        throw new Error(`Insufficient DHB balance. Need ${feeAmount} DHB.`);
+        throw new Error(`Insufficient tokens balance. Need ${feeAmount} DHB.`);
       }
 
       // Approve if needed
