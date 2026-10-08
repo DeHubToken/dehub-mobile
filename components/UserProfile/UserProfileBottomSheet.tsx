@@ -171,6 +171,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onRemoveFollower={handleRemoveFollower}
           onRegisterMenuTrigger={handleRegisterMenuTrigger}
         />
+        <ScreenHeader overlay title="" canGoBack onBackPress={onClose} />
         <UnfollowSheet
           visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
           username={profileData?.username || usernameOrAddress || ""}
