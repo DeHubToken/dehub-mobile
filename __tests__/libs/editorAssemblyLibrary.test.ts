@@ -74,7 +74,7 @@ describe("assembly from actual imported files", () => {
     const source = project(), chosen = plan();
     expect(assemblyCatalogMatches(source, chosen, assets, assets.filter(a => a.id !== "video"))).toBe(false);
     expect(assemblyCatalogMatches(source, chosen, assets, assets.map(a => a.id === "video" ? { ...a, duration: 7 } : a))).toBe(false);
-    expect(assemblyCatalogMatches(source, { ...chosen, shots: [{ id: "fabricated", offset: 0, duration: 1 }] }, assets, assets)).toBe(false);
+    expect(assemblyCatalogMatches(source, { ...chosen, shots: [{ id: "fabricated" }] }, assets, assets)).toBe(false);
     expect(assemblyCatalogMatches(source, chosen, assets, assets.map(a => a.id === "photo-b" ? { ...a, size: 999 } : a))).toBe(true);
     let calls = 0;
     const session = new AssemblySession({ current: () => source, library: () => [], create: async () => { calls++; return true; } }, () => {});
