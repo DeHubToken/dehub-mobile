@@ -379,3 +379,12 @@ export async function writeExport(dataUrl: string, format: "png" | "jpeg", title
   await FileSystem.writeAsStringAsync(path, base64, { encoding: FileSystem.EncodingType.Base64 });
   return path;
 }
+
+/** Remove only a newly generated mask page after an abandoned operation. */
+export async function discardVideoMattePage(id: string): Promise<void> {
+  if (!/^[a-z0-9]{1,100}$/i.test(id)) throw new Error("Invalid background page ID");
+  const meta = await getMedia(id);
+  if (!meta || meta.kind !== "image" || !meta.name.startsWith(".dehub-video-matte-") || meta.file !== `${id}.png`) return;
+  await FileSystem.deleteAsync(`${mediaDir()}${meta.file}`, { idempotent: true });
+  await FileSystem.deleteAsync(`${mediaDir()}${id}.json`, { idempotent: true });
+}

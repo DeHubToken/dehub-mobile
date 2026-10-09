@@ -1,6 +1,6 @@
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { mediaIds, newProject, parseProject, updateClip } from "../../libs/editor/project";
-import { videoMatteCommand, assertVideoMattes, validVideoMatte, videoMatteFrame, videoMattePlan } from "../../libs/editor/videoMatte";
+import { videoMatteCommand, assertVideoMattes, validVideoMatte, videoMatteFrame, videoMattePlan, videoMattePagePlan, videoMatteMediaIds, validVideoMattePageOutput } from "../../libs/editor/videoMatte";
 import { VIDEO_MATTE_CORE, VIDEO_MATTE_RUNTIME, VIDEO_MATTE_WORKER } from "../../libs/editor/videoMatteRuntime";
 import type { MediaClip } from "../../libs/editor/types";
 const clip = (patch: Partial<MediaClip> = {}): MediaClip => ({ id: "v", trackId: "t", kind: "video", mediaId: "source", start: 7, trimIn: 4, duration: 2, speed: 2, ...patch });
@@ -32,7 +32,7 @@ describe("source-timed video masks", () => {
       const invalid={...c,videoMatte:value};expect(validVideoMatte(invalid)).toBe(false);expect(runtime.validVideoMatte(invalid)).toBe(false);expect(()=>assertVideoMattes([invalid],()=>true)).toThrow();
     }
     expect(()=>assertVideoMattes([{...c,videoMatte:matte}],()=>false)).toThrow("missing");
-    expect(()=>videoMattePlan(clip({duration:21,speed:1}),640,360,40,30)).toThrow("Trim");
+    expect(()=>videoMattePlan(clip({duration:601,speed:1}),640,360,700,30)).toThrow("Trim");
     expect(()=>videoMattePlan(clip({trimIn:39}),640,360,40,30)).toThrow("Invalid");
     expect(()=>videoMattePlan(clip({speed:NaN}),640,360,40,30)).toThrow("Invalid");
   });
@@ -60,4 +60,28 @@ it("handles exact video cut-out requests without choosing ambiguous or locked la
   expect(videoMatteCommand("remove background from the video",{...scene,selected:[]})).toEqual({op:"remove_background",id:"v"});
   expect(videoMatteCommand("remove background and add captions",scene)).toBeNull();
   expect(videoMatteCommand("remove background",{selected:["v"],layers:[{id:"v",kind:"video",locked:true}]})).toBeNull();
+});
+
+
+it("keeps full-rate detail across source-clock page boundaries and rejects incomplete pages", () => {
+  const c=clip({duration:41,speed:1}), plan=videoMattePlan(c,1920,1080,100,30);
+  const short=videoMattePlan({...c,duration:20},1920,1080,100,30);
+  expect([plan.width,plan.height,plan.fps]).toEqual([short.width,short.height,30]);
+  const pages=Array.from({length:Math.ceil(plan.frames/600)},(_,i)=>({...videoMattePagePlan(plan,i),mediaId:`page-${i}`}));
+  const m={...plan,mediaId:pages[0].mediaId,pages}, masked={...c,videoMatte:m};
+  expect(validVideoMatte(masked)).toBe(true);
+  expect(videoMatteMediaIds(m)).toEqual(["page-0","page-1","page-2"]);
+  for(const index of [0,599,600,601,1199,1200,1229]) {
+    const at=plan.start+index/30, frame=videoMatteFrame(masked,at)!;
+    expect(frame.index).toBe(index);expect(frame.mediaId).toBe(`page-${Math.floor(index/600)}`);
+    expect(frame.x+frame.width).toBeLessThanOrEqual(frame.atlasWidth);expect(frame.y+frame.height).toBeLessThanOrEqual(frame.atlasHeight);
+    expect(runtime.videoMatteFrame(masked,at)).toEqual(frame);
+  }
+  expect(()=>assertVideoMattes([masked],id=>id!=="page-1")).toThrow("missing");
+  for(const bad of [pages.slice(0,2),[pages[0],{...pages[1],firstFrame:599},pages[2]],[pages[0],{...pages[1],mediaId:pages[0].mediaId},pages[2]]]) {
+    const invalid={...c,videoMatte:{...m,pages:bad}};
+    expect(validVideoMatte(invalid)).toBe(false);expect(runtime.validVideoMatte(invalid)).toBe(false);
+  }
+  expect(validVideoMattePageOutput(c,plan,{...pages[1],dataUrl:"data:image/png;base64,AAAA"},1)).toBe(true);
+  expect(validVideoMattePageOutput(c,plan,{...pages[1],atlasWidth:999999,dataUrl:"data:image/png;base64,AAAA"},1)).toBe(false);
 });

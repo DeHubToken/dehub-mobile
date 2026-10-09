@@ -7,7 +7,7 @@ function runtime() {
   const env = {
     state: { time: 2.6, snapshot: { clips: [op.clip], settings: { width: 640, height: 360, fps: 30, background: "black", pages: [0, 5] } } },
     post: jest.fn(), ops: jest.fn(() => [op]), seek: jest.fn().mockResolvedValue(undefined), draw: jest.fn(),
-    prepare: jest.fn(), matte: jest.fn(), schedule: jest.fn(), pause: jest.fn(),
+    prepare: jest.fn(), matte: jest.fn(), mattePages: jest.fn().mockResolvedValue(undefined), schedule: jest.fn(), pause: jest.fn(),
     videos: new Map([["source", {}]]), images: new Map(), aliases: new Map([["video", {}]]),
     document: { fonts: { ready: Promise.resolve() }, createElement: jest.fn(() => ({ width: 0, height: 0, getContext: () => context, toDataURL: jest.fn(() => "data:image/png;base64,YQ==") })) },
   };
@@ -15,6 +15,7 @@ function runtime() {
     var state = env.state, exporting = false, exportAborted = false, videoJobId = null;
     var document = env.document, post = env.post, stopPlaying = env.pause, schedule = env.schedule;
     var videos = env.videos, images = env.images, videoAliases = env.aliases;
+    var matteMeta = new Map(), prepareMatteOps = env.mattePages;
     var computeRenderOps = env.ops, seekVideo = env.seek, drawOps = env.draw, prepareVideoSources = env.prepare, assertVideoMattes = env.matte;
     function currentTime() { return state.time; }
     function timelineEnd() { return 10; }
@@ -47,4 +48,17 @@ it("drops cancelled or missing-media captures instead of saving the wrong frame"
   await result.capture({ reqId: "missing", format: "png", time: 5 });
   expect(env.post).toHaveBeenCalledWith({ type: "exportFailed", reqId: "missing", error: "Page media is still loading" });
   expect(result.active()).toBe(false);
+});
+it("waits for the selected mask page before drawing and fails rather than capturing a missing page", async () => {
+  const { env, result } = runtime();
+  let finish!: () => void;
+  env.mattePages.mockImplementationOnce(() => new Promise<void>(resolve => { finish = resolve; }));
+  const pending = result.capture({ reqId: "masked", format: "png", time: 5 });
+  await new Promise(resolve => setImmediate(resolve));
+  expect(env.mattePages).toHaveBeenCalledWith(env.ops.mock.results[0].value, 5, false);
+  expect(env.draw).not.toHaveBeenCalled(); finish(); await pending;
+  expect(env.post).toHaveBeenCalledWith(expect.objectContaining({ type: "exported", reqId: "masked" }));
+  env.draw.mockClear(); env.post.mockClear(); env.mattePages.mockRejectedValueOnce(new Error("Background page is missing"));
+  await result.capture({ reqId: "missing-mask", format: "png", time: 5 });
+  expect(env.draw).not.toHaveBeenCalled(); expect(env.post).toHaveBeenCalledWith({ type: "exportFailed", reqId: "missing-mask", error: "Background page is missing" });
 });
