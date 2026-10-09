@@ -40,6 +40,43 @@ for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper",
       return { callbacks, tick: () => { const pending = [...callbacks.values()]; callbacks.clear(); pending.forEach(callback => callback()); } };
     }
     const clean = (source: Decoder) => { expect(source.listenerCount).toBe(0); expect(jest.getTimerCount()).toBe(0); };
+    it("reads a decoded canvas frame when browser paint callbacks never run", async () => {
+      const paint = redraws(); const source = new Decoder(); let settled = false;
+      const promise = wait(source, 2.267, { forCanvasRead: true }).then(() => { settled = true; });
+      source.readyState = 4; source.seeking = false; source.emit("seeked");
+      await Promise.resolve(); expect(settled).toBe(false);
+      jest.advanceTimersByTime(2); await promise;
+      expect(source.currentTime).toBe(2.267); expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("rejects a changed or undecoded source while canvas tasks are queued", async () => {
+      const paint = redraws(); const source = new Decoder(); let settled = false;
+      const promise = wait(source, 2.267, { forCanvasRead: true }).then(() => { settled = true; });
+      source.seeking = false; source.emit("seeked");
+      source.clock = 2.233; source.emit("timeupdate");
+      jest.advanceTimersByTime(2); await Promise.resolve(); expect(settled).toBe(false);
+      source.clock = 2.267; source.seeking = true; source.emit("loadeddata");
+      jest.advanceTimersByTime(2); await Promise.resolve(); expect(settled).toBe(false);
+      source.seeking = false; source.emit("seeked");
+      jest.advanceTimersByTime(2); await promise; expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("cancels queued canvas reads and ignores later decoder events", async () => {
+      const paint = redraws(); const source = new Decoder(); const controller = new AbortController();
+      const promise = wait(source, 2.267, { forCanvasRead: true, signal: controller.signal });
+      const rejected = expect(promise).rejects.toMatchObject({ name: "AbortError" });
+      source.seeking = false; source.emit("seeked"); jest.advanceTimersByTime(0);
+      controller.abort(); await rejected; jest.advanceTimersByTime(10000); source.emit("seeked");
+      expect(paint.callbacks.size).toBe(0); clean(source);
+    });
+    it("keeps the deadline and media-error guards for canvas reads", async () => {
+      const paint = redraws(); const source = new Decoder();
+      const promise = wait(source, 2.267, { forCanvasRead: true, timeoutMs: 100 });
+      const rejected = expect(promise).rejects.toThrow("Video frame did not load at 2.267s");
+      source.seeking = false; source.clock = 2.233; source.readyState = 4; source.emit("seeked");
+      jest.advanceTimersByTime(100); await rejected; clean(source);
+      source.error = { code: 3 };
+      await expect(wait(source, 2.267, { forCanvasRead: true })).rejects.toThrow("media error 3");
+      expect(paint.callbacks.size).toBe(0); clean(source);
+    });
     it("waits for the drawing surface after seeked, including repeated source frames", async () => {
       const paint = redraws(); const source = new Decoder(); let settled = false;
       const promise = wait(source, 2.5).then(() => { settled = true; });
