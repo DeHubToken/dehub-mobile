@@ -128,7 +128,7 @@ describe('hooks/useTranslation', () => {
 
     it('resets an edited post even when its post key has not changed', async () => {
       const { result, rerender } = renderHook(
-        ({ content }) => useTranslation({ content }, 'es', true, true, 'same-post'),
+        ({ content }: { content: string }) => useTranslation({ content }, 'es', true, true, 'same-post'),
         { initialProps: { content: SPANISH_POST.description } },
       );
       await runQueuedWork();
