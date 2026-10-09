@@ -196,6 +196,7 @@
     "trendingTopics": "热门话题"
   },
   "settings": {
+    "postingChain": "发帖区块链",
     "showOnline": "顯示我線上",
     "showOnlineDesc": "DeHub 期间，你发信息的人会看到你名字旁边有个绿点",
     "smartReplies": "建议回复",

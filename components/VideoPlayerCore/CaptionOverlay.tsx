@@ -170,7 +170,9 @@ const CaptionOverlay: React.FC<Props> = ({
     return () => { cancelled = true; };
   }, [dubOn, dubLang, transcript?.id]);
   const wantDub = dubOn && isReady && !!dubLang && !!player && (hasCachedDubLanguage(dubLang) || voiceSupported === true);
-  useEffect(() => { onDubAvailableChange?.(wantDub); }, [wantDub, onDubAvailableChange]);
+  // Let viewers set both levels while a selected dub is loading or muted.
+  const dubControlsAvailable = !!ref && dubOn && !!player && (!sourceLang || !!dubLang);
+  useEffect(() => { onDubAvailableChange?.(dubControlsAvailable); }, [dubControlsAvailable, onDubAvailableChange]);
   useEffect(() => () => onDubAvailableChange?.(false), [onDubAvailableChange]);
   // Same query as the captions when both are in one language, so the second
   // one is a cache read.

@@ -18,6 +18,8 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
   const currentId = context.current()?.id || "";
+  const [mergeCopy, setMergeCopy] = useState<{wallet:string;localId:string;owner:string;snapshot:ProjectSnapshot;revision:number}|null>(null);
+  const availableMergeCopy = mergeCopy?.wallet === wallet && mergeCopy.localId === currentId ? mergeCopy : null;
   const [sharedLink, setSharedLink] = useState<{id:string;wallet:string;owner:string|null}|null>(null);
   const sharedOwner = sharedLink?.id === currentId && sharedLink.wallet === wallet ? sharedLink.owner : null;
   const linkPending = !!currentId && !!device && (sharedLink?.id !== currentId || sharedLink.wallet !== wallet);
@@ -40,7 +42,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   const pendingComment = useRef<{fingerprint: string; id: string} | null>(null);
   const openedReview = useRef<{localId: string; owner: string; projectId: string; revision: number; snapshotKey: string} | null>(null);
   const clearReview = () => { setReview(null); setMembers([]); setComments([]); };
-  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setViewShared(false); setSharedProjects([]); clearReview(); setError(""); setSaved(false); pendingComment.current=null; openedReview.current=null; }, [wallet]);
+  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setViewShared(false); setSharedProjects([]); clearReview(); setError(""); setSaved(false); setMergeCopy(null); pendingComment.current=null; openedReview.current=null; }, [wallet]);
   async function run(action: (device: Device, check: () => void) => Promise<void>) {
     if (busyRef.current || !device) return;
     const selectedWallet = wallet;
@@ -50,7 +52,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : "Cloud project operation failed"); }
     finally { busyRef.current = false; if (mounted.current) setBusy(false); }
   }
-  return { available: !!device, busy, error, saved, sharedOwner, linkPending, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
+  return { available: !!device, busy, error, saved, sharedOwner, linkPending, mergeCopy: availableMergeCopy, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
     clearHistory: () => { setSelected(null); setHistory([]); },
     refresh: () => run(async ({ api }, check) => {
       if (viewShared) { const rows=await api.review.inbox(); check(); setSharedProjects(rows); }
@@ -138,9 +140,33 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       await api.setTrash(project, trashed); check();
       const rows = await api.list(viewTrash); check(); setProjects(rows); setSelected(null); setHistory([]);
     }),
+    openMergeCopy: () => run(async (_device, check) => {
+      if (!availableMergeCopy) return;
+      const before = scope.current.context.current(), key = before ? projectReviewSnapshotKey(before) : "";
+      await scope.current.context.preserve(); check();
+      const current = scope.current.context.current();
+      if (current?.id !== before?.id || (current ? projectReviewSnapshotKey(current) : "") !== key) throw new Error("The current project changed during transfer");
+      await scope.current.context.open(availableMergeCopy.snapshot); check();
+      setSharedLink({id:availableMergeCopy.snapshot.id,wallet,owner:availableMergeCopy.owner}); setMergeCopy(null);
+    }),
     save: (copy = false) => run(async ({ api, session }, check) => {
-      const snapshot = scope.current.context.current(); if (!snapshot) return;
-      await session.save(snapshot, copy); check(); if (copy) setSharedLink({id:snapshot.id,wallet,owner:null}); setSaved(true);
+      const currentSnapshot = scope.current.context.current(); if (!currentSnapshot) return;
+      const snapshot = JSON.parse(JSON.stringify(currentSnapshot, (_key, value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        return value;
+      })) as ProjectSnapshot;
+      const capturedKey = projectReviewSnapshotKey(snapshot), sourceOwner = await session.sharedOwner(snapshot.id); check();
+      const result = await session.save(snapshot, copy); check();
+      if (result?.mergedSnapshot && sourceOwner) {
+        const current = scope.current.context.current();
+        if (current?.id === snapshot.id && projectReviewSnapshotKey(current) === capturedKey) {
+          await scope.current.context.open(result.mergedSnapshot); check(); setSharedLink({id:result.mergedSnapshot.id,wallet,owner:sourceOwner}); setMergeCopy(null);
+        } else if (current?.id === snapshot.id) {
+          setMergeCopy({wallet,localId:snapshot.id,owner:sourceOwner,snapshot:result.mergedSnapshot,revision:result.revision});
+        }
+      }
+      if (copy) { setSharedLink({id:snapshot.id,wallet,owner:null}); setMergeCopy(null); }
+      setSaved(true);
       const rows = await api.list(); check(); setViewTrash(false); setViewShared(false); clearReview(); setProjects(rows); setSelected(null); setHistory([]);
     }),
     showHistory: (project: CloudProjectSummary) => run(async ({ api }, check) => {

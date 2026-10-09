@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "postingChain": "شبكة النشر",
     "showOnline": "فرّج لي متى أنا أونلاين",
     "showOnlineDesc": "الناس اللي تبعث لهم رسائل يشوفوا نقطة خضرا جنب اسمك وإنت تستخدم DeHub",
     "smartReplies": "الردود المقترحة",

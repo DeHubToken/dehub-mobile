@@ -2,9 +2,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { cloudProjectReviewApi } from "./cloudProjectReviewApi";
 import { projectReviewWallet } from "./cloudProjectReview";
 import { walletScopedClient } from "../../services/supabase";
-import { CLOUD_PROJECT_BUCKET, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectSaved, type CloudProjectSummary, type CloudProjectVersion } from "./cloudProjectFormat";
+import { CloudProjectConflict, CLOUD_PROJECT_BUCKET, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectSaved, type CloudProjectSummary, type CloudProjectVersion } from "./cloudProjectFormat";
 
-export class CloudProjectConflict extends Error {}
+export { CloudProjectConflict } from "./cloudProjectFormat";
 
 /** Each call stays pinned to its selected account and requires a signed session. */
 export function cloudProjectApi(address: string) {
@@ -14,7 +14,7 @@ export function cloudProjectApi(address: string) {
   async function rpc<T>(name: string, args: Record<string, unknown> = {}): Promise<T> {
     const { data, error } = await client.rpc(name, args);
     if (error) {
-      if (error.code === "40001") throw new CloudProjectConflict(error.message);
+      if ((error.code === "PT409" || error.code === "40001")) throw new CloudProjectConflict(error.message);
       throw new Error(error.message);
     }
     return data as T;

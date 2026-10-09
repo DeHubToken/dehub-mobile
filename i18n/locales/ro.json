@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} postări"
   },
   "settings": {
+    "postingChain": "Blockchain pentru postări",
     "showOnline": "Afișează când sunt online",
     "showOnlineDesc": "Persoanele cărora le trimiți mesaje văd un punct verde lângă numele tău în timp ce folosești DeHub",
     "smartReplies": "Răspunsuri sugerate",

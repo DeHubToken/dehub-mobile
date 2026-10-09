@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} objave"
   },
   "settings": {
+    "postingChain": "Blockchain za objave",
     "showOnline": "Prikaži kad sam na mreži",
     "showOnlineDesc": "Osobe kojima pošaljete poruku vide zelenu točku pored vašeg imena dok koristite DeHub",
     "smartReplies": "Predloženi odgovori",

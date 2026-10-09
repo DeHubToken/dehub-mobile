@@ -37,6 +37,7 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve, onS
           </Pressable>
         </View>}
         {cloud.sharedOwner && <View className="rounded-xl border border-white/15 p-3" style={{gap:4}}><Text className="text-white">{t("editor.review.shared")}{" · "}{t("common.edit")}</Text><Text className="text-theme-neutrals-300 text-xs">{t("common.save")}{" → "}{cloud.sharedOwner}</Text><Text className="text-theme-neutrals-400 text-xs">{t("common.copy")}{" → "}{address?.toLowerCase()}</Text></View>}
+        {cloud.mergeCopy && <View className="rounded-xl border border-white/15 p-3" style={{gap:8}}><Text className="text-white">{t("editor.review.title")}{" · "}{t("common.copy")}{" · "}{cloud.mergeCopy.revision}</Text><Pressable accessibilityRole="button" accessibilityLabel={`${t("common.edit")} · ${t("common.copy")}`} disabled={cloud.busy} onPress={()=>{void cloud.openMergeCopy();}} className="rounded-xl border border-white/15 px-3 py-2"><Text className="text-white">{t("common.edit")}{" · "}{t("common.copy")}</Text></Pressable></View>}
         {!cloud.available && <Text className="text-theme-neutrals-400">{t("common.signIn")}</Text>}
         {cloud.busy && <DeHubLoader size={32} />}
         {!!cloud.error && <Text accessibilityRole="alert" className="text-red-300">{cloud.error}</Text>}

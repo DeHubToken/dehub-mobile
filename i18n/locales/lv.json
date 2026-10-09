@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} ziņas"
   },
   "settings": {
+    "postingChain": "Ierakstu blokķēde",
     "showOnline": "Rādīt, kad esmu tiešsaistē",
     "showOnlineDesc": "Kamēr izmantojat DeHub, personas, kurām sūtāt ziņojumus, blakus jūsu vārdam redz zaļu punktu",
     "smartReplies": "Ieteiktās atbildes",

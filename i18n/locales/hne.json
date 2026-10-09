@@ -190,6 +190,7 @@
     "trendingTopics": "ट्रेंडिंग टॉपिक्स"
   },
   "settings": {
+    "postingChain": "पोस्ट बर ब्लॉकचेन",
     "showOnline": "जब ऑनलाइन दिखावव",
     "showOnlineDesc": "जब आप DeHub का उपयोग करत हंवय, तो आप अपन नाम के बगल म एक हरित बिंदु देख सकत हंवय",
     "smartReplies": "सुझाए गे जवाब",

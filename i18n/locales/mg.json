@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} lahatsoratra"
   },
   "settings": {
+    "postingChain": "Blockchain ho an’ny lahatsoratra",
     "showOnline": "Asehoy rehefa an-tserasera aho",
     "showOnlineDesc": "Ny olona izay alefanao dia mahita teboka maitso eo akaikin'ny anaranao raha mampiasa DeHub ianao",
     "smartReplies": "Valiny atolotra",

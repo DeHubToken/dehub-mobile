@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} příspěvků"
   },
   "settings": {
+    "postingChain": "Blockchain příspěvků",
     "showOnline": "Zobrazit, když jsem online",
     "showOnlineDesc": "Lidé, kterým posíláte zprávu, uvidí zelenou tečku vedle vašeho jména, když používáte službu DeHub",
     "smartReplies": "Navrhované odpovědi",
