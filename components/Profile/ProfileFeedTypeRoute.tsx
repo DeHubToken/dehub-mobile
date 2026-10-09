@@ -95,7 +95,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         enableBackToTop={false}
         onScroll={onScroll}
         headerComponent={listHeader}
-        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} cinematic edgeInset={8} /></View> : undefined}
+        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} /></View> : undefined}
         emptyComponent={(
           <ProfileEmptyState
             kind={emptyKind}
