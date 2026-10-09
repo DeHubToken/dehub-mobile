@@ -1,4 +1,3 @@
-import SkeletonBlock from "../Feed/SkeletonBlock";
 import React, { memo } from "react";
 import { View } from "react-native";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -23,28 +22,28 @@ const CompactVideoCardSkeletonComponent: React.FC = () => {
         style={isMinimal ? { ...minimalRow, paddingHorizontal: MINIMAL_INSET, paddingVertical: 10 } : undefined}
       >
         {/* Thumbnail - 16:9 aspect ratio */}
-        <SkeletonBlock
-          className="rounded-xl"
+        <View
+          className="rounded-xl bg-theme-neutrals-800"
           style={[{ width: 150, aspectRatio: 16 / 9 }, ph]}
         />
 
         {/* Content */}
         <View className="flex-1 ml-3 py-1">
           {/* Title - 2 lines */}
-          <SkeletonBlock className="w-full h-4 rounded" style={ph} />
-          <SkeletonBlock className="w-3/4 h-4 rounded mt-1.5" style={ph} />
+          <View className="w-full h-4 bg-theme-neutrals-800 rounded" style={ph} />
+          <View className="w-3/4 h-4 bg-theme-neutrals-800 rounded mt-1.5" style={ph} />
 
           {/* Creator row */}
           <View className="flex-row items-center mt-2">
-            <SkeletonBlock className="w-20 h-3 rounded" style={ph} />
-            <SkeletonBlock className="w-4 h-4 rounded ml-1.5" style={ph} />
+            <View className="w-20 h-3 bg-theme-neutrals-800 rounded" style={ph} />
+            <View className="w-4 h-4 rounded bg-theme-neutrals-800 ml-1.5" style={ph} />
           </View>
 
           {/* Stats row - views, likes, time */}
           <View className="flex-row items-center mt-2 gap-3">
-            <SkeletonBlock className="w-10 h-3 rounded" style={ph} />
-            <SkeletonBlock className="w-10 h-3 rounded" style={ph} />
-            <SkeletonBlock className="w-12 h-3 rounded" style={ph} />
+            <View className="w-10 h-3 bg-theme-neutrals-800 rounded" style={ph} />
+            <View className="w-10 h-3 bg-theme-neutrals-800 rounded" style={ph} />
+            <View className="w-12 h-3 bg-theme-neutrals-800 rounded" style={ph} />
           </View>
         </View>
       </View>
