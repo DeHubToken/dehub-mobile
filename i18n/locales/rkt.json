@@ -7294,6 +7294,17 @@
         "easeInOutBack": "ফেরত শুরু ও শেষে",
         "hold": "ধরে রাখুন"
       }
+    },
+    "live": {
+      "join": "Join live session",
+      "joining": "Joining live session…",
+      "leave": "Leave live session",
+      "connected_one": "{{count}} connected · Cloud version {{revision}}",
+      "connected_other": "{{count}} connected · Cloud version {{revision}}",
+      "hint": "Share your presence with this project's editors.",
+      "disconnected": "Disconnected. Join again to reconnect.",
+      "saveHint": "Use Save to cloud to share timeline changes.",
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
     }
   },
   "creator": {
