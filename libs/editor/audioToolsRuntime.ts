@@ -37,65 +37,111 @@ function audioFft(real, imag, inverse) {
   }
   if (inverse) for (var q = 0; q < n; q++) { real[q] /= n; imag[q] /= n; }
 }
-function reduceAudioNoise(input, rate, progress) {
-  var N = 1024, hop = N / 2, bins = N / 2 + 1;
-  var window = new Float32Array(N), real = new Float64Array(N), imag = new Float64Array(N);
-  var output = new Float32Array(input.length), weight = new Float32Array(input.length);
+function reduceAudioNoise(channels, rate, progress) {
+  var N = 1024, hop = N / 2, bins = N / 2 + 1, length = channels[0].length;
+  if (length < N) return channels.map(function (channel) { return channel.slice(); });
+  var window = new Float32Array(N), weight = new Float32Array(length);
+  var real = channels.map(function () { return new Float64Array(N); });
+  var imag = channels.map(function () { return new Float64Array(N); });
+  var output = channels.map(function () { return new Float32Array(length); });
   for (var i = 0; i < N; i++) window[i] = Math.sin(Math.PI * (i + 0.5) / N);
   function spectrum(offset) {
-    for (var j = 0; j < N; j++) { real[j] = (input[offset + j] || 0) * window[j]; imag[j] = 0; }
-    audioFft(real, imag, false);
+    for (var c = 0; c < channels.length; c++) {
+      for (var j = 0; j < N; j++) { real[c][j] = (channels[c][offset + j] || 0) * window[j]; imag[c][j] = 0; }
+      audioFft(real[c], imag[c], false);
+    }
   }
-  var frames = Math.max(1, Math.ceil(input.length / hop));
-  var samples = Math.min(48, frames), history = [];
+  var frames = Math.max(1, Math.ceil(length / hop)), samples = Math.min(48, frames), history = [];
   for (var s = 0; s < samples; s++) {
-    spectrum(Math.round(s * Math.max(0, input.length - N) / Math.max(1, samples - 1)));
-    var powers = new Float64Array(bins);
-    for (var b = 0; b < bins; b++) powers[b] = real[b] * real[b] + imag[b] * imag[b];
-    history.push(powers);
+    spectrum(Math.round(s * (length - N) / Math.max(1, samples - 1)));
+    var energy = 0, powers = channels.map(function (_, c) {
+      var power = new Float64Array(bins);
+      for (var b = 0; b < bins; b++) { power[b] = real[c][b] * real[c][b] + imag[c][b] * imag[c][b]; energy += power[b]; }
+      return power;
+    });
+    history.push({ powers: powers, energy: energy });
   }
-  var floor = new Float64Array(bins), smooth = new Float64Array(bins); smooth.fill(1);
-  for (var f = 0; f < bins; f++) {
-    var values = history.map(function (p) { return p[f]; }).sort(function (a, b) { return a - b; });
-    floor[f] = values[Math.floor((values.length - 1) * 0.15)];
-  }
-  // Overlap-add includes padded leading frames, preserving both ends of a short sound.
-  for (var offset = -hop, frame = 0; offset < input.length; offset += hop, frame++) {
+  var ranked = history.slice().sort(function (a, b) { return a.energy - b.energy; });
+  var median = ranked[Math.floor(ranked.length / 2)].energy;
+  // Use quiet passages when present; a continuous note must not become its own noise profile.
+  var quiet = ranked.filter(function (frame) { return frame.energy < median * 0.25; }).slice(0, 16);
+  var profiles = channels.map(function (_, c) {
+    var profile = new Float64Array(bins);
+    for (var bin = 0; bin < bins; bin++) {
+      if (quiet.length >= 3) {
+        for (var q = 0; q < quiet.length; q++) profile[bin] += quiet[q].powers[c][bin] / quiet.length;
+      } else {
+        var values = history.map(function (frame) { return frame.powers[c][bin]; }).sort(function (a, b) { return a - b; });
+        profile[bin] = values[Math.floor((values.length - 1) * 0.25)] / -Math.log(0.75);
+      }
+    }
+    if (quiet.length < 3) {
+      var capped = profile.slice();
+      // Nearby spectral valleys bound noise beneath sustained speech harmonics.
+      for (var f = 0; f < bins; f++) {
+        var neighbors = [];
+        for (var k = Math.max(0, f - 8); k <= Math.min(bins - 1, f + 8); k++) if (Math.abs(k - f) > 2) neighbors.push(profile[k]);
+        neighbors.sort(function (a, b) { return a - b; });
+        if (neighbors.length) capped[f] = Math.min(profile[f], neighbors[Math.floor((neighbors.length - 1) * 0.4)] * 1.4);
+      }
+      return capped;
+    }
+    return profile;
+  });
+  var smooth = new Float64Array(bins), gains = new Float64Array(bins); smooth.fill(1);
+  // Link both channels without downmixing: opposite-phase stereo must remain audible.
+  for (var offset = -hop, frame = 0; offset < length; offset += hop, frame++) {
     spectrum(offset);
     for (var bin = 0; bin < bins; bin++) {
-      var power = real[bin] * real[bin] + imag[bin] * imag[bin];
-      var gain = Math.sqrt(Math.max(0.025, 1 - 0.9 * floor[bin] / Math.max(1e-12, power)));
-      // Keep the very lowest frequencies quiet; use the sampled spectrum elsewhere.
-      if (bin * rate / N < 65) gain *= 0.35;
-      smooth[bin] = gain < smooth[bin] ? gain * 0.65 + smooth[bin] * 0.35 : gain * 0.2 + smooth[bin] * 0.8;
-      real[bin] *= smooth[bin]; imag[bin] *= smooth[bin];
-      if (bin > 0 && bin < N / 2) { real[N - bin] *= smooth[bin]; imag[N - bin] *= smooth[bin]; }
+      var gain = 0.2;
+      for (var c = 0; c < channels.length; c++) {
+        var power = real[c][bin] * real[c][bin] + imag[c][bin] * imag[c][bin];
+        gain = Math.max(gain, Math.sqrt(Math.max(0.04, 1 - 1.1 * profiles[c][bin] / Math.max(1e-12, power))));
+      }
+      gains[bin] = gain;
     }
-    audioFft(real, imag, true);
+    for (var bin = 0; bin < bins; bin++) {
+      var gain = gains[bin] * 0.6 + gains[Math.max(0, bin - 1)] * 0.2 + gains[Math.min(bins - 1, bin + 1)] * 0.2;
+      smooth[bin] = gain < smooth[bin] ? gain * 0.65 + smooth[bin] * 0.35 : gain * 0.35 + smooth[bin] * 0.65;
+      for (var c = 0; c < channels.length; c++) {
+        real[c][bin] *= smooth[bin]; imag[c][bin] *= smooth[bin];
+        if (bin > 0 && bin < N / 2) { real[c][N - bin] *= smooth[bin]; imag[c][N - bin] *= smooth[bin]; }
+      }
+    }
+    for (var c = 0; c < channels.length; c++) audioFft(real[c], imag[c], true);
     for (var w = 0; w < N; w++) {
       var index = offset + w;
-      if (index >= 0 && index < input.length) { output[index] += real[w] * window[w]; weight[index] += window[w] * window[w]; }
+      if (index >= 0 && index < length) {
+        for (var c = 0; c < channels.length; c++) output[c][index] += real[c][w] * window[w];
+        weight[index] += window[w] * window[w];
+      }
     }
     if (frame % 32 === 0 && progress) progress(Math.min(1, frame / frames));
   }
-  for (var z = 0; z < output.length; z++) output[z] /= Math.max(0.00001, weight[z]);
+  for (var c = 0; c < channels.length; c++) for (var z = 0; z < length; z++) output[c][z] /= Math.max(0.00001, weight[z]);
   return output;
 }
 function processAudioSamples(channels, rate, mode, progress) {
   if (["normalize", "denoise", "voice"].indexOf(mode) < 0 || !channels.length || channels.length > 2 || !Number.isFinite(rate) || rate < 8000 || rate > 48000 || !channels[0].length || channels[0].length > rate * AUDIO_TOOL_LIMIT || channels.some(function (c) { return c.length !== channels[0].length; })) throw new Error("audio");
-  var before = audioLevels(channels), output = channels.map(function (channel, c) {
-    var clean = channel.map(function (v) { return Number.isFinite(v) ? v : 0; });
-    if (mode !== "normalize") clean = reduceAudioNoise(clean, rate, function (p) { if (progress) progress((c + p) / channels.length * 0.85); });
-    if (mode === "voice") {
-      var alpha = Math.exp(-2 * Math.PI * 90 / rate), previous = 0, filtered = 0;
-      for (var i = 0; i < clean.length; i++) {
-        var x = clean[i]; filtered = alpha * (filtered + x - previous); previous = x;
-        var amplitude = Math.abs(filtered), threshold = 0.28;
-        clean[i] = amplitude > threshold ? Math.sign(filtered) * (threshold + (amplitude - threshold) / 3) : filtered;
+  var before = audioLevels(channels), output = channels.map(function (channel) { return channel.map(function (v) { return Number.isFinite(v) ? v : 0; }); });
+  if (mode !== "normalize") output = reduceAudioNoise(output, rate, function (p) { if (progress) progress(p * 0.85); });
+  if (mode === "voice") {
+    var alpha = Math.exp(-2 * Math.PI * 90 / rate);
+    for (var c = 0; c < output.length; c++) {
+      var previous = 0, filtered = 0;
+      for (var i = 0; i < output[c].length; i++) {
+        var x = output[c][i]; filtered = alpha * (filtered + x - previous); previous = x; output[c][i] = filtered;
       }
     }
-    return clean;
-  });
+    for (var i = 0; i < output[0].length; i++) {
+      var amplitude = 0, threshold = 0.28;
+      for (var c = 0; c < output.length; c++) amplitude = Math.max(amplitude, Math.abs(output[c][i]));
+      if (amplitude > threshold) {
+        var factor = (threshold + (amplitude - threshold) / 3) / amplitude;
+        for (var c = 0; c < output.length; c++) output[c][i] *= factor;
+      }
+    }
+  }
   var levels = audioLevels(output), gain = 1;
   if (mode !== "denoise" && levels.rms > 0.00001) gain = Math.min(6, Math.pow(10, -16 / 20) / levels.rms, 0.95 / Math.max(0.00001, levels.peak));
   if (gain !== 1) for (var c = 0; c < output.length; c++) for (var i = 0; i < output[c].length; i++) output[c][i] *= gain;
