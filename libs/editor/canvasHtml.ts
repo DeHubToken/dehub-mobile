@@ -74,9 +74,10 @@ canvas{display:block;width:100%;height:100%;}
   var matteImages = new Set(), allowedMatteImages = new Set();
   __VIDEO_MATTE_PAGE_CACHE_RUNTIME__
   var matteMeta = new Map(), matteRequests = new Map(), matteSequence = 0;
+  var matteInstance = Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
   var mattePageCache = createVideoMattePageCache(images, function(frame) {
     return new Promise(function(resolve, reject) {
-      var reqId = "matte-page-" + (++matteSequence);
+      var reqId = "matte-page-" + matteInstance + "-" + (++matteSequence);
       var timer = setTimeout(function() { matteRequests.delete(reqId); reject(new Error("Background page did not load")); }, 30000);
       matteRequests.set(reqId, { finish: function(error, image) { clearTimeout(timer); matteRequests.delete(reqId); error ? reject(error) : resolve(image); } });
       post({ type: "matteNeed", reqId: reqId, id: frame.mediaId });
