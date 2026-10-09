@@ -118,6 +118,7 @@ export const isExtraStyle = (s: string): s is ExtraStyle => EXTRA_SET.has(s);
 const THEME_DEFAULT: Record<string, string> = {
   minimal: 'static',
   system: 'glint',
+  immersive: 'glint',
   light: 'paper',
   cosmic: 'warp',
   hazy: 'haze',

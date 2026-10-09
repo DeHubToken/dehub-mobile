@@ -250,7 +250,7 @@ interface FeedCardProps {
   /** Post page for a post with no media on top (text, audio, quotes): no
    *  bento, full width, the text on the same inset as an immersive post. */
   flat?: boolean;
-  /** Home feed, system theme only: no bento, media edge to edge with the
+  /** Home feed, Immersive theme only: no bento, media edge to edge with the
    *  author and caption laid over it, the actions underneath. Ignored under
    *  every other theme. */
   cinematic?: boolean;
@@ -1240,11 +1240,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     isCurrentlyLive, hasMultipleImages,
   ]);
 
-  // Cinematic (system theme, home feed): a post with a picture or a player
+  // Cinematic (Immersive theme, home feed): a post with a picture or a player
   // runs it edge to edge with the author, buttons and caption over it. Posts
   // without one (text, audio, articles, a post behind the mature warning)
   // lose the bento too but keep the header above the text.
-  const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;
+  const cinematicFeed = cinematic && theme === "immersive" && !skin && !isMinimal && !immersive && !flat;
   const cinematicMedia =
     cinematicFeed &&
     !matureGate.isGated &&
