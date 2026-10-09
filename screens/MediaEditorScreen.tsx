@@ -149,6 +149,7 @@ import {
   listProjects,
   loadProject,
   saveCutout,
+  discardVideoMattePage,
   saveProject,
   writeExport,
 } from "../libs/editor/storage";
@@ -763,13 +764,26 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (!project || cuttingRef.current || videoMatteController.current || !canvasRef.current || clip.locked) return null;
     const controller = new AbortController(); videoMatteController.current = controller; setPlaying(false);
     setVideoMatteProgress({ stage: "frames", fraction: 0, completed: 0, total: 0 });
+    const before = project.id, stored: string[] = []; let disposed = false, complete = false;
+    const current = () => {
+      const now = h.latest(), target = now?.clips.find(c => c.id === clip.id);
+      return !disposed && !controller.signal.aborted && now?.id === before && target?.kind === "video" && !target.locked && target.mediaId === clip.mediaId && target.trimIn === clip.trimIn && target.duration === clip.duration && (target.speed ?? 1) === (clip.speed ?? 1);
+    };
+    const cancelled = () => { const error = new Error("Background removal cancelled"); error.name = "AbortError"; return error; };
     try {
-      const out = await canvasRef.current.removeVideoBackground(clip, project.settings.fps, setVideoMatteProgress, controller.signal);
-      if (controller.signal.aborted) return null;
-      const meta = await saveCutout(out.dataUrl, out.plan.atlasWidth, out.plan.atlasHeight, VIDEO_MATTE_ASSET_PREFIX + newId());
-      if (controller.signal.aborted) return null;
-      return { ...out.plan, mediaId: meta.id };
-    } finally { videoMatteController.current = null; setVideoMatteProgress(null); }
+      const out = await canvasRef.current.removeVideoBackground(clip, project.settings.fps, setVideoMatteProgress, controller.signal, async page => {
+        if (!current()) throw cancelled();
+        const meta = await saveCutout(page.dataUrl, page.atlasWidth, page.atlasHeight, VIDEO_MATTE_ASSET_PREFIX + newId());
+        if (!current()) { await discardVideoMattePage(meta.id); throw cancelled(); }
+        stored.push(meta.id); return meta.id;
+      });
+      if (!current() || !out.matte) return null;
+      complete = true; return out.matte;
+    } finally {
+      disposed = true;
+      if (!complete) await Promise.all(stored.map(discardVideoMattePage));
+      videoMatteController.current = null; setVideoMatteProgress(null);
+    }
   };
 
   const removeBackground = async () => {
