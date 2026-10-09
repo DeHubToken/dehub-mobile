@@ -1,4 +1,5 @@
 import { appLocale } from "../../libs/date.util";
+import { formatBridgeAmount } from "../../libs/bridge-amount";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback } from "react";
 import {
@@ -376,9 +377,7 @@ const BridgeTab: React.FC = () => {
                 </View>
                 <View className="flex-1 min-w-0">
                   <Text className="text-white text-sm font-medium">
-                    {(Number(t.amount) || 0).toLocaleString(appLocale(), {
-                      maximumFractionDigits: 4,
-                    })}{" "}
+                    {formatBridgeAmount(t.amount, appLocale())}{" "}
                     <DhbCoin />
                   </Text>
                   <Text className="text-white/50 text-xs mt-0.5">
