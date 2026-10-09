@@ -178,7 +178,7 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
       cancelled();
       var time = Math.min(sourceDuration - 0.001, plan.start + index / plan.fps);
       frameIndex = index; frameTotal = plan.frames; sourceTime = time; phase = "decoding a frame";
-      await waitForVideoFrame(video, time, { signal: signal });
+      await waitForVideoFrame(video, time, { signal: signal, forCanvasRead: true });
       phase = "reading a frame";
       c.drawImage(video, 0, 0, capture.width, capture.height);
       var blob = await new Promise(function (resolve, reject) { capture.toBlob(function (b) { b ? resolve(b) : reject(new Error("Video frame could not be read")); }, "image/png"); });
