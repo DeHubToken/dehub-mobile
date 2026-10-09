@@ -991,6 +991,7 @@ export default function HomeScreen() {
           hasActiveFilters={hasActiveFilters}
           onPostTypeChange={handleNavPostTypeChange}
           onFilterPress={handleFilterPress}
+          onActiveTabLongPress={handleIslandFilters}
           backMode={feedProfileVisible || !!imageFeed}
           onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
         />
