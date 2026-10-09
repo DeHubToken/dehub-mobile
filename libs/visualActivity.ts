@@ -24,6 +24,8 @@ export function createVisualActivity() {
     isVisualActive: () => foreground && focused && settled && !callCovered,
     isForeground: () => foreground && focused,
     isCallBusy: () => callBusy,
+    // Native sheets move Android window focus without hiding their owning feed.
+    isFeedSurfaceActive: () => foreground && !callBusy,
     isFeedPlaybackAllowed: () => foreground && focused && settled && !callBusy,
     setForeground: (next: boolean) => { if (foreground !== next) { foreground = next; settle(); } },
     setFocused: (next: boolean) => { if (focused !== next) { focused = next; settle(); } },
@@ -42,6 +44,11 @@ export const FeedPlaybackActiveContext = createContext(true);
 export const useFeedPlaybackAllowed = () => {
   const surfaceActive = useContext(FeedPlaybackActiveContext);
   const appActive = useSyncExternalStore(visualActivity.subscribe, visualActivity.isFeedPlaybackAllowed, () => true);
+  return surfaceActive && appActive;
+};
+export const useFeedSurfaceActive = () => {
+  const surfaceActive = useContext(FeedPlaybackActiveContext);
+  const appActive = useSyncExternalStore(visualActivity.subscribe, visualActivity.isFeedSurfaceActive, () => true);
   return surfaceActive && appActive;
 };
 export const useCallInProgress = () =>

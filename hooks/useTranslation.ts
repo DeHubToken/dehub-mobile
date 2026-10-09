@@ -1,7 +1,7 @@
-import { useCallback, useRef, useMemo, useEffect } from 'react';
+import { useCallback, useRef, useMemo, useEffect, useSyncExternalStore } from 'react';
 import { useTranslation as useI18n } from 'react-i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
-import { autoTranslateEnabled } from '../libs/auto-translate-setting';
+import { autoTranslateEnabled, subscribeAutoTranslate } from '../libs/auto-translate-setting';
 import { queueAutoTranslate } from '../libs/auto-translate-queue';
 import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
 import { useRecyclingState } from './useCellState';
@@ -21,12 +21,12 @@ interface UseTranslationResult {
 // so an emoji-only post still counts as empty and gets no button.
 const MIN_TRANSLATABLE_LENGTH = 1;
 
-// Auto-translate leaves unlabelled Latin text under 30 letters alone, since a
+// Auto-translate leaves unlabelled Latin text under 15 characters alone, since a
 // word or two cannot be told apart from the reader's own language. Live chat is
 // the exception: nearly every line is that short ("hoş geldiniz.", "turn it
 // up"), so chat never auto-translated at all. A chat line only needs a few
 // letters; "gm", "ok" and "lol" stay as written.
-const MIN_AUTO_LETTERS = 30;
+const MIN_AUTO_LENGTH = 15;
 const MIN_CHAT_AUTO_LETTERS = 4;
 
 // One shared empty result, so a reset hands back the same object every time.
@@ -78,6 +78,11 @@ export function useTranslation(
   isPublic: boolean = false,
   resetKey?: string,
 ): UseTranslationResult {
+  const { i18n } = useI18n();
+  const targetLang = useMemo(() => getUserLanguage(), [i18n.language]);
+  const autoEnabled = useSyncExternalStore(subscribeAutoTranslate, autoTranslateEnabled);
+  const combinedText = useMemo(() => JSON.stringify(texts), [texts]);
+  const translationKey = `${combinedText}::${targetLang}`;
   // Whether a request is out, tracked in a ref rather than read off `isLoading`.
   // The state value is a snapshot of the render the callback was created in, so
   // guarding on it would reject any second call made before React re-renders —
@@ -101,22 +106,16 @@ export function useTranslation(
   };
   // Reset in the same render as resetKey changes, so the next post never
   // paints with this one's translation.
-  const [isTranslated, setIsTranslated] = useRecyclingState(false, [resetKey], onReset);
-  const [translatedTexts, setTranslatedTexts] = useRecyclingState<Record<string, string>>(NO_TEXTS, [resetKey]);
-  const [isLoading, setIsLoading] = useRecyclingState(false, [resetKey]);
+  const [isTranslated, setIsTranslated] = useRecyclingState(false, [resetKey, translationKey], onReset);
+  const [translatedTexts, setTranslatedTexts] = useRecyclingState<Record<string, string>>(NO_TEXTS, [resetKey, translationKey]);
+  const [isLoading, setIsLoading] = useRecyclingState(false, [resetKey, translationKey]);
   // The source language as the server reported it, for posts the backend never
   // labelled. Without this an auto-translated legacy post would show no control
   // at all, leaving the reader no way back to the original.
-  const [resolvedLang, setResolvedLang] = useRecyclingState<string | null>(null, [resetKey]);
+  const [resolvedLang, setResolvedLang] = useRecyclingState<string | null>(null, [resetKey, translationKey]);
   useEffect(() => () => {
     genRef.current += 1;
   }, []);
-
-  // Subscribing to i18n re-runs this hook when the user switches language in
-  // Settings, so the translation follows the new language without an app
-  // restart.
-  const { i18n } = useI18n();
-  const targetLang = useMemo(() => getUserLanguage(), [i18n.language]);
 
   const hasEnoughText = useMemo(() => {
     const combined = Object.values(texts).join(' ');
@@ -230,9 +229,13 @@ export function useTranslation(
   }, [runTranslate]);
 
   const handleShowOriginal = useCallback(() => {
+    genRef.current += 1;
+    inFlightRef.current = false;
+    autoDoneRef.current = translationKey;
     isTranslatedRef.current = false;
     setIsTranslated(false);
-  }, []);
+    setIsLoading(false);
+  }, [translationKey]);
 
   // Auto-translate.
   //
@@ -242,9 +245,8 @@ export function useTranslation(
   // waiting behind a burst of translate calls nobody asked for.
   //
   // Fires once per (text, language) rather than per render, and a reader who
-  // has pressed "show original" is not overridden — autoDone is set before the
-  // work is queued, so the manual controls stay exactly as they were.
-  const combinedText = useMemo(() => Object.values(texts).join(' '), [texts]);
+  // has pressed "show original" is not overridden. A queued job is only marked
+  // done when it starts, so cancelling a wait does not lose the translation.
   const runRef = useRef(runTranslate);
   useEffect(() => {
     runRef.current = runTranslate;
@@ -252,22 +254,27 @@ export function useTranslation(
 
   useEffect(() => {
     if (!auto) return;
-    if (!autoTranslateEnabled()) return;
+    if (!autoEnabled) return;
     if (!hasEnoughText) return;
     // Nothing to do when the backend has already labelled the post as being in
     // the reader's language. The edge function would answer `sameLanguage` to
     // the same effect, but not asking is cheaper than being told — and on a
     // feed whose majority language matches the reader, this is most of it.
     if (reliableBackendLang && baseLang(reliableBackendLang) === baseLang(targetLang)) return;
-    const minLetters = auto === 'chat' ? MIN_CHAT_AUTO_LETTERS : MIN_AUTO_LETTERS;
-    if (!reliableBackendLang && combinedProse.length < minLetters && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
+    const tooShort = auto === 'chat'
+      ? combinedProse.length < MIN_CHAT_AUTO_LETTERS
+      : Object.values(texts).join(' ').trim().length < MIN_AUTO_LENGTH;
+    if (!reliableBackendLang && tooShort && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
 
-    const key = `${combinedText}::${targetLang}`;
+    const key = translationKey;
     if (autoDoneRef.current === key) return;
-    autoDoneRef.current = key;
 
-    return queueAutoTranslate(() => runRef.current(true));
-  }, [combinedText, targetLang, hasEnoughText, auto, reliableBackendLang, combinedProse, resetKey]);
+    return queueAutoTranslate(() => {
+      if (autoDoneRef.current === key || !autoTranslateEnabled()) return Promise.resolve();
+      autoDoneRef.current = key;
+      return runRef.current(true);
+    });
+  }, [translationKey, targetLang, hasEnoughText, auto, autoEnabled, reliableBackendLang, combinedProse, resetKey]);
 
   return { isTranslated, translatedTexts, isLoading, handleTranslate, handleShowOriginal, shouldShow, sourceLang: combinedProse.length >= 60 ? knownLang || null : null };
 }
