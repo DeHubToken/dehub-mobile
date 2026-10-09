@@ -27,6 +27,7 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useUser } from "../context/AuthContext";
 import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { VIDEO_MATTE_ASSET_PREFIX, type VideoMatteProgress } from "../libs/editor/videoMatte";
+import { backgroundRemovalScope, matchesBackgroundRemovalScope, backgroundRemovalFailureMessage, type BackgroundRemovalFailure } from "../libs/editor/backgroundRemovalFailure";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import ExportSheet from "../components/editor/ExportSheet";
 import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
@@ -439,6 +440,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const cuttingRef = useRef(false);
   const videoMatteController = useRef<AbortController | null>(null);
   const [videoMatteProgress, setVideoMatteProgress] = useState<VideoMatteProgress | null>(null);
+  const [videoMatteFailure, setVideoMatteFailure] = useState<BackgroundRemovalFailure | null>(null);
   useEffect(() => () => videoMatteController.current?.abort(), []);
   useEffect(() => { videoMatteController.current?.abort(); }, [project?.id]);
   // Timeline: the playhead, playback and the strip under the page.
@@ -765,6 +767,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const controller = new AbortController(); videoMatteController.current = controller; setPlaying(false);
     setVideoMatteProgress({ stage: "frames", fraction: 0, completed: 0, total: 0 });
     const before = project.id, stored: string[] = []; let disposed = false, complete = false;
+    const scope = backgroundRemovalScope(before, clip); setVideoMatteFailure(null);
     const current = () => {
       const now = h.latest(), target = now?.clips.find(c => c.id === clip.id);
       return !disposed && !controller.signal.aborted && now?.id === before && target?.kind === "video" && !target.locked && target.mediaId === clip.mediaId && target.trimIn === clip.trimIn && target.duration === clip.duration && (target.speed ?? 1) === (clip.speed ?? 1);
@@ -777,8 +780,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         if (!current()) { await discardVideoMattePage(meta.id); throw cancelled(); }
         stored.push(meta.id); return meta.id;
       });
-      if (!current() || !out.matte) return null;
+      if (!current()) return null;
+      if (!out.matte) throw new Error(t("editor.app.bgRemoveFailed"));
       complete = true; return out.matte;
+    } catch (error) {
+      const now = h.latest();
+      if (!controller.signal.aborted && !(error instanceof Error && error.name === "AbortError") && matchesBackgroundRemovalScope(scope, now?.id, now?.clips.find(c => c.id === clip.id))) {
+        setVideoMatteFailure({ ...scope!, message: backgroundRemovalFailureMessage(error, t("editor.app.bgRemoveFailed")) });
+      }
+      throw error;
     } finally {
       disposed = true;
       if (!complete) await Promise.all(stored.map(discardVideoMattePage));
@@ -1542,6 +1552,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
               <Text className="text-white text-xs">{videoMatteProgress.stage === "download" ? t("editor.bgRemove.downloading", { percent: Math.round(videoMatteProgress.fraction * 100) }) : t("editor.videoMatte.frames", { completed: videoMatteProgress.completed, total: videoMatteProgress.total })}</Text>
               <Pressable accessibilityRole="button" onPress={() => videoMatteController.current?.abort()}><Text className="text-white text-xs underline">{t("editor.videoMatte.cancel")}</Text></Pressable>
             </View>
+          </View>
+        )}
+        {!videoMatteProgress && selected?.kind === "video" && !selected.videoMatte && matchesBackgroundRemovalScope(videoMatteFailure, project.id, selected) && (
+          <View className="absolute top-3 left-6 right-6 rounded-xl bg-black/90 p-3" accessibilityRole="alert" accessibilityLiveRegion="polite">
+            <Text className="text-white text-xs">{videoMatteFailure?.message}</Text>
+            <Pressable accessibilityRole="button" onPress={() => setVideoMatteFailure(null)} className="mt-2 self-end"><Text className="text-white text-xs underline">{t("common.close")}</Text></Pressable>
           </View>
         )}
         {cutting && (
