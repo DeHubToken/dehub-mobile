@@ -30,7 +30,7 @@ import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
-import AudioPostPlayer from "./AudioPostPlayer";
+import AudioPostPlayer from "./ProtectedAudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
 import { CommentBottomSheet } from "../Comments";
@@ -79,6 +79,8 @@ import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
 import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
+import FeedGatePreview from "./FeedGatePreview";
+import FeedAudioContent from "./FeedAudioContent";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
 import AddToFolderSheet from "./AddToFolderSheet";
@@ -202,7 +204,7 @@ const votesInFlight = new Set<string>();
 export function resolveContentType(item: UnifiedFeedItem): PostContentType {
   if (item.postType === "live") return "live";
   if (item.postType === "short") return "short";
-  if (item.postType === "feed-audio" && !!item.audioUrl) return "audio";
+  if (item.postType === "feed-audio") return "audio";
   const hasVideo = !!(
     (item as any).videoDuration ||
     item.postType === "video" ||
@@ -1382,7 +1384,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // --- Content renderers ---
   const renderImageContent = () => {
-    if (!hasImages) return null;
+    // A paywall belongs to the post, even when audio has no cover.
+    if (!hasImages && !isActuallyGated) return null;
 
     // Combo-locked image (PPV + holdings): dual icon overlay (matches web ImageCard behaviour)
     if (isActuallyComboLocked) {
@@ -1392,13 +1395,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
-          <SmartImage
-            source={{ uri: lockedPreviewUri }}
-            style={{ width: "100%", height: "100%" }}
-            recyclingKey={lockedPreviewUri}
-            priority={prioritizeMedia ? "high" : "normal"}
-            blurRadius={20}
-          />
+          <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
             <View className="absolute top-3 left-3 flex-row gap-2" style={lockBadgeTop}>
               <View className="flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1">
@@ -1439,13 +1436,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
-          <SmartImage
-            source={{ uri: lockedPreviewUri }}
-            style={{ width: "100%", height: "100%" }}
-            recyclingKey={lockedPreviewUri}
-            priority={prioritizeMedia ? "high" : "normal"}
-            blurRadius={20}
-          />
+          <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
             <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1" style={lockBadgeTop}>
               <Icon name="Ticket" size={12} color="#fff" />
@@ -1474,13 +1465,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
-          <SmartImage
-            source={{ uri: lockedPreviewUri }}
-            style={{ width: "100%", height: "100%" }}
-            recyclingKey={lockedPreviewUri}
-            priority={prioritizeMedia ? "high" : "normal"}
-            blurRadius={20}
-          />
+          <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
             <View className="w-14 h-14 rounded-2xl dark-surface bg-black/50 items-center justify-center mb-2">
               <Icon name="Star" size={24} color="#fff" />
@@ -1500,13 +1485,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
-          <SmartImage
-            source={{ uri: lockedPreviewUri }}
-            style={{ width: "100%", height: "100%" }}
-            recyclingKey={lockedPreviewUri}
-            priority={prioritizeMedia ? "high" : "normal"}
-            blurRadius={20}
-          />
+          <FeedGatePreview uri={lockedPreviewUri} priority={prioritizeMedia ? "high" : "normal"} />
           <View className="absolute inset-0 dark-surface bg-black/30 items-center justify-center">
             <View className="absolute top-3 left-3 flex-row items-center gap-1 dark-surface bg-black/60 rounded-full px-2.5 py-1" style={lockBadgeTop}>
               <Icon name="Lock" size={12} color="#fff" />
@@ -1756,13 +1735,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         return bleed(renderVideoThumbnail());
       case "audio": {
         const audio = (
-          <>
-            {bleed(renderImageContent())}
-            {tokenId != null && (
+          <FeedAudioContent gated={isActuallyGated} cover={bleed(renderImageContent())}>
+            {tokenId != null && !!item.audioUrl && (
               // Keyed on the post: a fresh player per post rather than a
               // reset of its progress, duration, style, mute, lock-screen
               // claim, pending seek and recorded listen one by one.
               <AudioPostPlayer
+                requiresAccess={!!isPayPerView || isLocked || !!(item as any).plansDetails?.length}
                 key={postKey}
                 audioUrl={getAudioUrl(item.audioUrl!)}
                 duration={item.audioDuration || 0}
@@ -1787,7 +1766,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 postPage={stage}
               />
             )}
-          </>
+          </FeedAudioContent>
         );
         // The cinematic feed runs the player edge to edge like other media;
         // the rest of the post keeps its text inset.
