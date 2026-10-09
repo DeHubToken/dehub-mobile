@@ -22,7 +22,7 @@ it("stores each completed mask page before decoding the next and keeps source-fr
   const run=new Function("document","Worker","URL","ImageData","FileReader","navigator","seen",VIDEO_MATTE_RUNTIME+`; function waitForVideoFrame(video,time){seen.push(time);video.currentTime=time;return Promise.resolve();} return createVideoMatte;`)(documentStub,WorkerStub,{createObjectURL:()=>"blob:worker",revokeObjectURL(){}},class {constructor(..._args:unknown[]){}},Reader,{},seen) as (url:string,clip:MediaClip,fps:number,progress:(p:unknown)=>void,signal:AbortSignal|undefined,sink:VideoMattePageSink)=>Promise<VideoMatteResult>;
   const pages:VideoMattePageOutput[]=[], source:MediaClip={id:"v",trackId:"t",kind:"video",mediaId:"source",start:10,trimIn:3,duration:601/30,speed:1};
   const pending=run("blob:source",source,30,()=>{},undefined,async page=>{pages.push(page);if(pages.length===1){first();await continuePage;}return `mask-${pages.length}`;});
-  await atPage;expect(seen).toHaveLength(600);expect(pages).toHaveLength(1);saved();
+  await Promise.race([atPage,pending]);expect(seen).toHaveLength(600);expect(pages).toHaveLength(1);saved();
   const result=await pending;expect(seen).toHaveLength(601);expect(seen[0]).toBe(3);expect(seen[600]).toBe(23);
   expect(pages.map(p=>[p.firstFrame,p.frames])).toEqual([[0,600],[600,1]]);
   expect(result.matte?.pages?.map(p=>p.mediaId)).toEqual(["mask-1","mask-2"]);
