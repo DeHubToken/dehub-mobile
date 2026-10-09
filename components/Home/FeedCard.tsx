@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Pressable,
+  Platform,
   StyleSheet,
   Image,
   type LayoutChangeEvent,
@@ -2555,7 +2556,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       ] : {
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
-        backgroundColor: 'rgba(255,255,255,0.03)',
+        // System on Android has no post fill; transparent also keeps the
+        // control-material pass from repainting this card as a grey button.
+        backgroundColor: Platform.OS === 'android' && theme === 'system'
+          ? 'transparent'
+          : 'rgba(255,255,255,0.03)',
         borderRadius: FEED_BENTO_RADIUS,
         paddingTop: 12,
         paddingHorizontal: 12,
