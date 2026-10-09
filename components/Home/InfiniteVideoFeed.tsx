@@ -321,7 +321,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     __listKey: string;
   }
   const [refreshing, setRefreshing] = useState(false);
-  const { isMinimal, theme: appTheme, skin } = useAppTheme();
+  const { isMinimal } = useAppTheme();
   // Row visibility lives outside React state so a viewability tick re-renders
   // only the rows it changed, not every mounted cell. See libs/feedVisibility.
   // Created dark when this list mounts as a hidden pager page (the warm-up
@@ -380,7 +380,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // How far down anything pinned to the top of the list (the refresh mark,
   // the new-posts pill, the skeleton) has to sit to clear the header.
   const chromeInset = headerInset + firstRowInset;
-  const skeletonSpacerStyle = useMemo(() => ({ height: appTheme === "system" && !skin && firstRowInset ? headerInset : chromeInset }), [appTheme, skin, firstRowInset, headerInset, chromeInset]);
+  const skeletonSpacerStyle = useMemo(() => ({ height: chromeInset }), [chromeInset]);
   // Whether the header row drew anything, so the room under floating chrome
   // goes to it rather than to the first post.
   const [headerFilled, setHeaderFilled] = useState(false);
@@ -1266,13 +1266,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     return (
       // Minimal: no side padding, so the skeleton rows span the screen the
       // way minimal FeedCards do once they step out over the list gutter.
-      <View className="flex-1" style={listContentStyle}>
+      <View className={isMinimal ? "flex-1" : "flex-1 px-2"}>
         {/* Pushed below the collapsible header. The early return drops the
             list's ListHeaderComponent, which is where the header spacer lives —
             without this the skeleton starts at y=0 and its first cards render
             behind the header, so the wait looks broken as well as slow. */}
         <View style={skeletonSpacerStyle} />
-        <FeedCardSkeleton count={4} cinematic topChromeInset={firstRowInset} edgeInset={8} />
+        <FeedCardSkeleton count={4} />
       </View>
     );
   }

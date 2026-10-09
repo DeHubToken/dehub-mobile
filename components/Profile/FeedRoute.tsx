@@ -151,7 +151,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
         headerComponent={listHeader}
-        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} cinematic edgeInset={8} /></View> : undefined}
+        loadingComponent={cinematic ? <View className="px-2"><FeedCardSkeleton count={4} /></View> : undefined}
         onScroll={onScroll}
         scrollEnabled={scrollEnabled}
         emptyComponent={(
