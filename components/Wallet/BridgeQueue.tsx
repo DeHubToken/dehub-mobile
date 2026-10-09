@@ -13,6 +13,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DhbCoin } from "../common/DhbCoin";
 import { supabase } from "../../services/supabase";
 import { appLocale } from "../../libs/date.util";
+import { formatBridgeAmount } from "../../libs/bridge-amount";
 import { FIELD_TEXT } from "../../theme/inputs";
 import { PageSection } from "../page/PageKit";
 
@@ -124,7 +125,7 @@ export default function BridgeQueue() {
               </View>
               <View style={{ alignItems: "flex-end" }}>
                 <Text style={styles.amount}>
-                  {x.amount} <DhbCoin size={11} />
+                  {formatBridgeAmount(x.amount, appLocale())} <DhbCoin size={11} />
                 </Text>
                 <Text style={styles.hash}>{when(x.timestamp)}</Text>
               </View>
