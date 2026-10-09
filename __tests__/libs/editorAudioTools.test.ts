@@ -84,3 +84,43 @@ describe("sound processing changes samples rather than playback metadata", () =>
     self.onmessage({ data: { channels: [], rate, mode: "unknown" } }); expect(messages.at(-1).type).toBe("error");
   });
 });
+
+describe("voice cleanup preserves harmonic detail and stereo position", () => {
+  it.each([8000, 16000, 44100, 48000])("retains continuous voice harmonics at %i Hz", (sampleRate) => {
+    const source = Float32Array.from({ length: sampleRate }, (_, i) => 0.14 * Math.sin(i / sampleRate * 2 * Math.PI * 220) + 0.07 * Math.sin(i / sampleRate * 2 * Math.PI * 440));
+    const result = runtime.processAudioSamples([source], sampleRate, "denoise").channels[0];
+    let input = 0, cross = 0;
+    for (let i = Math.floor(sampleRate * 0.1); i < sampleRate * 0.9; i++) { input += source[i] ** 2; cross += source[i] * result[i]; }
+    expect(cross / input).toBeGreaterThan(0.95);
+  });
+  it.each(["denoise", "voice"])("keeps proportional opposite-phase stereo balanced for %s", (mode) => {
+    const left = tone(0.7), right = left.map(x => -x * 0.25);
+    const result = runtime.processAudioSamples([left, right], rate, mode).channels;
+    let error = 0;
+    for (let i = 0; i < left.length; i++) error = Math.max(error, Math.abs(result[1][i] + result[0][i] * 0.25));
+    expect(error).toBeLessThan(0.00001);
+    expect(runtime.audioLevels(result).peak).toBeGreaterThan(0.05);
+  });
+  it("preserves short attacks and the final sample", () => {
+    const source = new Float32Array([0.4, -0.2, 0.1, 0, -0.3]);
+    const result = runtime.processAudioSamples([source], rate, "denoise").channels[0];
+    expect([...result]).toEqual([...source]); expect(result).not.toBe(source);
+  });
+  it("keeps silence and invalid input samples finite", () => {
+    const source = new Float32Array(rate); source[400] = NaN; source[800] = Infinity;
+    const result = runtime.processAudioSamples([source, source], rate, "denoise");
+    expect(result.after.peak).toBe(0); expect(result.channels.every((channel: Float32Array) => channel.every(Number.isFinite))).toBe(true);
+  });
+  it("does not learn noise from digital padding or erase isolated transients", () => {
+    const source = new Float32Array(rate * 2), reference = tone(0.2);
+    source.set(reference, rate / 2);
+    const result = runtime.processAudioSamples([source], rate, "denoise").channels[0];
+    let input = 0, cross = 0;
+    for (let i = rate * 0.6; i < rate * 1.4; i++) { input += source[i] ** 2; cross += source[i] * result[i]; }
+    expect(cross / input).toBeGreaterThan(0.95);
+    const transient = new Float32Array(rate * 2); transient[rate] = 0.5;
+    const preserved = runtime.processAudioSamples([transient], rate, "denoise").channels[0];
+    expect([...preserved]).toEqual([...transient]);
+  });
+
+});
