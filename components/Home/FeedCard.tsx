@@ -22,6 +22,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { GRAIN } from "../../theme/skins";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
+import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrubBoundary";
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
@@ -736,11 +737,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [isDeleted, setIsDeleted] = useKeyedState(postKey, false);
 
   // --- Handlers ---
+  const scrubBoundary = useFeedScrubBoundary();
   const handleUserPress = useCallback(() => {
+    if (scrubBoundary.claimed.value) return;
     const id = username || minterAddress;
     if (!id) return;
     showUserProfile(id);
-  }, [username, minterAddress, showUserProfile]);
+  }, [username, minterAddress, showUserProfile, scrubBoundary.claimed]);
 
   // A subscriber gate is opened by subscribing, so send them where the plans
   // are sold rather than to the post they cannot read.
@@ -767,6 +770,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [disablePress, isLive, isShort, tokenId, item]);
 
   const handleCardPress = useCallback(() => {
+    if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
     preparePostMediaNavigation(getVideoUrl(tokenId));
     if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
@@ -797,7 +801,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [
     disablePress, isLive, isShort, isOwnerPost, item, tokenId,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
@@ -1569,6 +1573,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   };
 
   const renderVideoThumbnail = () => (
+    <FeedScrubContext.Provider value={stage ? null : scrubBoundary.controller}>
     <FeedVideoPlayer
       thumbnail={thumbnail}
       postPage={fullContent}
@@ -1601,6 +1606,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       onLockPress={handleCardPress}
       onBountyPress={handleBountyBadgePress}
     />
+    </FeedScrubContext.Provider>
   );
 
   // What a live card says when there is no picture to show — behind the player
@@ -2308,7 +2314,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     ) : null;
 
     return (
+      <GestureDetector gesture={scrubBoundary.gesture}>
       <Pressable
+        collapsable={false}
         onPress={disablePress ? undefined : handleCardPress}
         disabled={disablePress}
         // No bento: the post steps out over the list's side padding so its
@@ -2513,11 +2521,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {sheets}
       </Pressable>
+      </GestureDetector>
     );
   }
 
   return (
+    <GestureDetector gesture={scrubBoundary.gesture}>
     <Pressable
+      collapsable={false}
       onPress={disablePress ? undefined : handleCardPress}
       disabled={disablePress}
       // Matches the web feed tile (dehubweb HomeFeed.tsx:1066 + index.css:1264):
@@ -2788,6 +2799,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {sheets}
     </Pressable>
+    </GestureDetector>
   );
 };
 
