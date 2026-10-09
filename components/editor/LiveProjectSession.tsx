@@ -6,7 +6,7 @@ import { useCloudProjectPresence } from "../../libs/editor/useCloudProjectPresen
 import { nativeCloudProjectSession } from "../../libs/editor/cloudProjectDevice";
 import { ensureWalletSession } from "../../libs/wallet-session";
 export function LiveProjectSession({ projectId }: { projectId: string }) {
-  const { user } = useUser(), { t } = useTranslation(), address = user?.walletAddress || user?.address;
+  const user = useUser(), { t } = useTranslation(), address = user?.walletAddress || user?.address;
   const live = useCloudProjectPresence(address, projectId, nativeCloudProjectSession, ensureWalletSession);
   useEffect(() => { const subscription = AppState.addEventListener("change", state => { if (state !== "active") live.leave(); }); return () => subscription.remove(); }, [address, projectId]);
   const joined = live.status === "connected", waiting = live.status === "connecting";
