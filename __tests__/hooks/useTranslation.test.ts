@@ -1,6 +1,6 @@
 import { renderHook, act, waitFor } from '@testing-library/react-native';
 import { useTranslation } from '../../hooks/useTranslation';
-import { translateText } from '../../services/translation.service';
+import { translateText, getUserLanguage } from '../../services/translation.service';
 import { setAutoTranslateEnabled } from '../../libs/auto-translate-setting';
 import { queueAutoTranslate } from '../../libs/auto-translate-queue';
 import { storage } from '../../libs/storage';
@@ -12,8 +12,9 @@ jest.mock('../../services/translation.service', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: 'tr' } }),
+  useTranslation: () => ({ t: (k: string) => k, i18n: { language: mockLanguage } }),
 }));
+let mockLanguage = 'tr';
 
 jest.mock('../../libs', () => ({
   toastLoading: jest.fn(() => 'toast-id'),
@@ -28,8 +29,9 @@ jest.mock('../../libs', () => ({
 const mockQueued: Array<() => Promise<unknown>> = [];
 jest.mock('../../libs/auto-translate-queue', () => ({
   queueAutoTranslate: jest.fn((run: () => Promise<unknown>) => {
-    mockQueued.push(run);
-    return jest.fn();
+    let cancelled = false;
+    mockQueued.push(() => cancelled ? Promise.resolve() : run());
+    return jest.fn(() => { cancelled = true; });
   }),
 }));
 
@@ -50,6 +52,8 @@ describe('hooks/useTranslation', () => {
     jest.clearAllMocks();
     mockQueued.length = 0;
     storage.clearAll();
+    mockLanguage = 'tr';
+    (getUserLanguage as jest.Mock).mockImplementation(() => mockLanguage);
     mockTranslate.mockResolvedValue({
       translatedText: 'çevrilmiş',
       sourceLang: 'es',
@@ -58,6 +62,82 @@ describe('hooks/useTranslation', () => {
   });
 
   describe('auto-translate', () => {
+    it('translates the short captions that web translates', async () => {
+      renderHook(() => useTranslation({ content: 'Buenos dias amigos' }, undefined, true, true));
+      await runQueuedWork();
+      expect(mockTranslate).toHaveBeenCalledWith('Buenos dias amigos', 'tr', 'auto', { isPublic: true });
+    });
+
+    it('reacts when auto-translate is enabled on an already mounted post', async () => {
+      setAutoTranslateEnabled(false);
+      const { result } = renderHook(() => useTranslation(SPANISH_POST, 'es'));
+      act(() => setAutoTranslateEnabled(true));
+      await runQueuedWork();
+      expect(result.current.isTranslated).toBe(true);
+    });
+
+    it('does not lose work cancelled before the queue starts', async () => {
+      const { result } = renderHook(() => useTranslation(SPANISH_POST, 'es'));
+      act(() => setAutoTranslateEnabled(false));
+      await runQueuedWork();
+      expect(mockTranslate).not.toHaveBeenCalled();
+      act(() => setAutoTranslateEnabled(true));
+      await runQueuedWork();
+      expect(result.current.isTranslated).toBe(true);
+    });
+
+    it('reschedules when the language label arrives before the queue starts', async () => {
+      const { result, rerender } = renderHook(
+        ({ language }: { language?: string }) => useTranslation(SPANISH_POST, language),
+        { initialProps: { language: undefined } },
+      );
+      rerender({ language: 'es' });
+      await runQueuedWork();
+      expect(result.current.isTranslated).toBe(true);
+      expect(mockTranslate).toHaveBeenCalledTimes(2);
+    });
+
+    it('translates into a newly selected language after a successful translation', async () => {
+      const { result, rerender } = renderHook(() => useTranslation(SPANISH_POST, 'es'));
+      await runQueuedWork();
+      mockLanguage = 'fr';
+      rerender({});
+      expect(result.current.isTranslated).toBe(false);
+      await runQueuedWork();
+      expect(mockTranslate).toHaveBeenCalledWith('Hola', 'fr', 'es', { isPublic: false });
+      expect(result.current.isTranslated).toBe(true);
+    });
+
+    it('drops the previous language response while the new language is in flight', async () => {
+      let answerOld!: (value: unknown) => void;
+      let answerNew!: (value: unknown) => void;
+      mockTranslate
+        .mockImplementationOnce(() => new Promise(resolve => { answerOld = resolve; }))
+        .mockImplementationOnce(() => new Promise(resolve => { answerNew = resolve; }));
+      const { result, rerender } = renderHook(() => useTranslation({ content: SPANISH_POST.description }, 'es', false));
+      act(() => result.current.handleTranslate());
+      mockLanguage = 'fr';
+      rerender({});
+      act(() => result.current.handleTranslate());
+      await act(async () => answerOld({ translatedText: 'old language', sourceLang: 'es', sameLanguage: false }));
+      expect(result.current.isTranslated).toBe(false);
+      expect(result.current.isLoading).toBe(true);
+      await act(async () => answerNew({ translatedText: 'new language', sourceLang: 'es', sameLanguage: false }));
+      expect(result.current.translatedTexts.content).toBe('new language');
+    });
+
+    it('resets an edited post even when its post key has not changed', async () => {
+      const { result, rerender } = renderHook(
+        ({ content }) => useTranslation({ content }, 'es', true, true, 'same-post'),
+        { initialProps: { content: SPANISH_POST.description } },
+      );
+      await runQueuedWork();
+      rerender({ content: 'Otra publicación completamente distinta sobre el tiempo de hoy en la ciudad.' });
+      expect(result.current.isTranslated).toBe(false);
+      await runQueuedWork();
+      expect(mockTranslate).toHaveBeenCalledTimes(2);
+    });
+
     it('translates a foreign post without being asked', async () => {
       const { result } = renderHook(() => useTranslation(SPANISH_POST, 'es'));
 
