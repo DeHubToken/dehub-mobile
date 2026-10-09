@@ -1863,8 +1863,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               />
             </View>
 
+            {/* Keep each mode's native controls separate: Android submits on
+                touch-down and clears the text before touch-up. Reusing the
+                Send Pressable as GIF would deliver that release to the picker. */}
             {inputText.trim() || editingComment ? (
-              <View style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
+              <View key="text-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
               <Pressable
                   onPress={handleEmojiPress}
                   onTouchStart={handleEmojiTouchStart}
@@ -1896,7 +1899,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               </Pressable>
               </View>
             ) : (
-              <View style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
+              <View key="attachment-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
                 <Pressable
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
