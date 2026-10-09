@@ -36,6 +36,10 @@ jobs:
         env:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: node tests/editor/audio-quality.mjs libs/editor/audioToolsRuntime.ts "$BASE_REF" audio-quality-results.json
+      - name: Install speech reference decoder
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
       - name: Measure real read-speech examples with steady noise
         env:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
