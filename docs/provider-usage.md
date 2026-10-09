@@ -55,3 +55,28 @@ as a completed free-provider attempt. The counters do not infer a token bill
 from character length or deduct cached input twice.
 
 Reference: [Google native usage metadata](https://ai.google.dev/api/generate-content#UsageMetadata).
+
+
+## Post categorization
+
+Post categorization is shared by web and mobile through `auto-categorize`.
+It uses the configured free-provider routes only; it does not call Google or
+Lovable's completion gateway. Plain text is sent as a string so it reaches
+Groq and the eligible public-content fallback tiers. Image inputs opt into
+Groq's Qwen 3.8 vision route with the same required classification tool.
+When vision is unavailable, posts with written text or transcripts can use
+that text; the saved reasoning identifies this fallback. Image-only posts stay
+pending if vision fails. Private transcripts never reach training providers.
+
+A provider outage stops the current backfill after its in-flight wave and
+leaves unprocessed posts eligible for a later scheduled run. Existing categories
+and confidence filtering are preserved. Provider attempts remain recorded under
+`categorize`; the saved model is the provider's actual returned model.
+The existing response retains `creditsExhausted: false` and adds
+`providersUnavailable`. No mobile binary update is required for this shared
+server behavior. Deploy `auto-categorize` with its checked-in shared modules;
+a frontend publication does not deploy it. Other completion routes are unchanged.
+
+These calls still use hosted compute and the configured providers' quotas.
+This removes categorization's paid completion fallback, not its Cloud hosting.
+Reference: [Groq vision and tool use](https://console.groq.com/docs/vision).
