@@ -15,6 +15,8 @@ export interface VideoFrameWaitOptions {
   signal?: AbortSignal;
   cancelled?: () => boolean;
   timeoutMs?: number;
+  /** Canvas reads need the decoded source frame, independently of display repaint callbacks. */
+  forCanvasRead?: boolean;
 }
 
 export function waitForVideoFrame(source: VideoFrameSource, time: number, options: VideoFrameWaitOptions = {}): Promise<void> {
@@ -31,9 +33,11 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
     let generation = 0;
     let animation: number | undefined;
     let videoCallback: number | undefined;
+    let frameTask: ReturnType<typeof setTimeout> | undefined;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
     function clearPresentation() {
       generation++;
+      clearTimeout(frameTask); frameTask = undefined;
       if (animation !== undefined && typeof cancelAnimationFrame === "function") cancelAnimationFrame(animation);
       if (videoCallback !== undefined) source.cancelVideoFrameCallback?.(videoCallback);
       animation = undefined;
@@ -49,7 +53,6 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
       // Seeking can finish before the paused frame reaches the drawing surface.
       // A video callback acknowledges a new frame. Two redraws also handle
       // repeated seeks within the same source frame, which need no new callback.
-      if (typeof requestAnimationFrame !== "function") { finish(); return; }
       presentationStarted = true;
       const expectedGeneration = generation;
       function ready() {
@@ -58,6 +61,18 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
         presented = true;
         check();
       }
+      if (options.forCanvasRead) {
+        // Hidden processing frames may never repaint. Require the same decoded
+        // source position across queued tasks before reading its canvas pixels.
+        frameTask = setTimeout(() => {
+          frameTask = undefined;
+          if (done || generation !== expectedGeneration) return;
+          if (!decoded()) { clearPresentation(); return; }
+          frameTask = setTimeout(ready, 0);
+        }, 0);
+        return;
+      }
+      if (typeof requestAnimationFrame !== "function") { finish(); return; }
       try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
       animation = requestAnimationFrame(() => {
         if (done || generation !== expectedGeneration) return;
@@ -137,9 +152,11 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
     let generation = 0;
     let animation;
     let videoCallback;
+    let frameTask;
     const events = ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"];
     function clearPresentation() {
       generation++;
+      clearTimeout(frameTask); frameTask = undefined;
       if (animation !== undefined && typeof cancelAnimationFrame === "function") cancelAnimationFrame(animation);
       if (videoCallback !== undefined) source.cancelVideoFrameCallback?.(videoCallback);
       animation = undefined;
@@ -155,7 +172,6 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
       // Seeking can finish before the paused frame reaches the drawing surface.
       // A video callback acknowledges a new frame. Two redraws also handle
       // repeated seeks within the same source frame, which need no new callback.
-      if (typeof requestAnimationFrame !== "function") { finish(); return; }
       presentationStarted = true;
       const expectedGeneration = generation;
       function ready() {
@@ -164,6 +180,18 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
         presented = true;
         check();
       }
+      if (options.forCanvasRead) {
+        // Hidden processing frames may never repaint. Require the same decoded
+        // source position across queued tasks before reading its canvas pixels.
+        frameTask = setTimeout(() => {
+          frameTask = undefined;
+          if (done || generation !== expectedGeneration) return;
+          if (!decoded()) { clearPresentation(); return; }
+          frameTask = setTimeout(ready, 0);
+        }, 0);
+        return;
+      }
+      if (typeof requestAnimationFrame !== "function") { finish(); return; }
       try { videoCallback = source.requestVideoFrameCallback?.(ready); } catch { /* Redraw fallback for older engines. */ }
       animation = requestAnimationFrame(() => {
         if (done || generation !== expectedGeneration) return;
