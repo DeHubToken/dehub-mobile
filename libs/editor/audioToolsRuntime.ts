@@ -37,7 +37,7 @@ function audioFft(real, imag, inverse) {
   }
   if (inverse) for (var q = 0; q < n; q++) { real[q] /= n; imag[q] /= n; }
 }
-function reduceAudioNoise(channels, rate, progress) {
+function reduceAudioNoise(channels, rate, progress, inspect) {
   var N = rate > 24000 ? 2048 : 1024, hop = N / 2, bins = N / 2 + 1, length = channels[0].length;
   if (length < N) return channels.map(function (channel) { return channel.slice(); });
   var window = new Float32Array(N), weight = new Float32Array(length);
@@ -51,7 +51,7 @@ function reduceAudioNoise(channels, rate, progress) {
       audioFft(real[c], imag[c], false);
     }
   }
-  var frames = Math.max(1, Math.ceil(length / hop)), samples = Math.min(48, frames), history = [];
+  var frames = Math.max(1, Math.ceil(length / hop)), samples = Math.min(192, frames), history = [];
   for (var s = 0; s < samples; s++) {
     spectrum(Math.round(s * (length - N) / Math.max(1, samples - 1)));
     var energy = 0, powers = channels.map(function (_, c) {
@@ -66,7 +66,8 @@ function reduceAudioNoise(channels, rate, progress) {
   if (ranked.length < 8) return channels.map(function (channel) { return channel.slice(); });
   var median = ranked[Math.floor(ranked.length / 2)].energy;
   // Use quiet passages when present; a continuous note must not become its own noise profile.
-  var quiet = ranked.filter(function (frame) { return frame.energy < median * 0.25; }).slice(0, 16);
+  var quiet = ranked.filter(function (frame) { return frame.energy < median * 0.25 && frame.energy <= ranked[0].energy * 1.8; }).slice(0, 12);
+  if (inspect) inspect({ sampledFrames: samples, activeFrames: ranked.length, quietFrames: quiet.length, lowestToMedian: ranked[0].energy / Math.max(1e-30, median) });
   var profiles = channels.map(function (_, c) {
     var profile = new Float64Array(bins);
     for (var bin = 0; bin < bins; bin++) {
@@ -86,6 +87,8 @@ function reduceAudioNoise(channels, rate, progress) {
         neighbors.sort(function (a, b) { return a - b; });
         if (neighbors.length) capped[f] = Math.min(profile[f], neighbors[Math.floor((neighbors.length - 1) * 0.4)] * 1.4);
       }
+      // Without a reliable quiet passage, favor preserving speech over aggressive subtraction.
+      for (var f = 0; f < bins; f++) capped[f] *= 0.25;
       return capped;
     }
     return profile;
@@ -123,10 +126,10 @@ function reduceAudioNoise(channels, rate, progress) {
   for (var c = 0; c < channels.length; c++) for (var z = 0; z < length; z++) output[c][z] /= Math.max(0.00001, weight[z]);
   return output;
 }
-function processAudioSamples(channels, rate, mode, progress) {
+function processAudioSamples(channels, rate, mode, progress, inspect) {
   if (["normalize", "denoise", "voice"].indexOf(mode) < 0 || !channels.length || channels.length > 2 || !Number.isFinite(rate) || rate < 8000 || rate > 48000 || !channels[0].length || channels[0].length > rate * AUDIO_TOOL_LIMIT || channels.some(function (c) { return c.length !== channels[0].length; })) throw new Error("audio");
   var before = audioLevels(channels), output = channels.map(function (channel) { return channel.map(function (v) { return Number.isFinite(v) ? v : 0; }); });
-  if (mode !== "normalize") output = reduceAudioNoise(output, rate, function (p) { if (progress) progress(p * 0.85); });
+  if (mode !== "normalize") output = reduceAudioNoise(output, rate, function (p) { if (progress) progress(p * 0.85); }, inspect);
   if (mode === "voice") {
     var alpha = Math.exp(-2 * Math.PI * 90 / rate);
     for (var c = 0; c < output.length; c++) {
