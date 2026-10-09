@@ -1,3 +1,4 @@
+import { videoMatteMediaIds } from "./videoMatte";
 import { CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 import { notifyCloudProjectSaved } from "./cloudProjectEvents";
@@ -33,7 +34,7 @@ export function cloudProjectMediaIds(snapshot: ProjectSnapshot): string[] {
   const ids = new Set<string>();
   for (const clip of snapshot.clips) if ("mediaId" in clip) {
     ids.add(clip.mediaId);
-    if (clip.kind === "video" && clip.videoMatte) ids.add(clip.videoMatte.mediaId);
+    if (clip.kind === "video") for (const id of videoMatteMediaIds(clip.videoMatte)) ids.add(id);
   }
   return [...ids];
 }

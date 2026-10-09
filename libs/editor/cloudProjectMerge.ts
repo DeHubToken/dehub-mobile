@@ -1,3 +1,4 @@
+import { videoMatteMediaIds } from "./videoMatte";
 import { parseCloudProjectDocument, type CloudProjectDocument } from "./cloudProjectFormat";
 
 export interface CloudProjectMergeConflict { path: string[]; kind: "changed" | "removed" | "order" | "references" | "timing" }
@@ -62,7 +63,7 @@ export function mergeCloudProjectEdits(base: CloudProjectDocument, local: CloudP
   const combined=merge(documentWithoutTime(base),documentWithoutTime(local),documentWithoutTime(remote),[]) as CloudProjectDocument;
   if(conflicts.length) return {document:null,conflicts};
   const used=new Set<string>();
-  for(const clip of combined.snapshot.clips) if("mediaId" in clip){used.add(clip.mediaId);if(clip.kind==="video" && clip.videoMatte)used.add(clip.videoMatte.mediaId);}
+  for(const clip of combined.snapshot.clips) if("mediaId" in clip){used.add(clip.mediaId);if(clip.kind==="video")for(const id of videoMatteMediaIds(clip.videoMatte))used.add(id);}
   combined.media=combined.media.filter(source=>used.has(source.id));
   combined.snapshot.updatedAt=Math.max(local.snapshot.updatedAt,remote.snapshot.updatedAt);
   try { parseCloudProjectDocument(combined,owner); }

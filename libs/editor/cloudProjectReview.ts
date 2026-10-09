@@ -42,6 +42,7 @@ export function projectReviewCopy(document: CloudProjectDocument, owner: string,
     clip.mediaId = ids.get(clip.mediaId)!;
     if (clip.kind === "video" && clip.videoMatte) {
       clip.videoMatte.mediaId = ids.get(clip.videoMatte.mediaId)!;
+      if (clip.videoMatte.pages) clip.videoMatte.pages = clip.videoMatte.pages.map(page => ({ ...page, mediaId: ids.get(page.mediaId)! }));
       clip.videoMatte.sourceMediaId = clip.mediaId;
     }
   }

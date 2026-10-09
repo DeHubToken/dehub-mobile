@@ -1,3 +1,4 @@
+import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
 
 export class CloudProjectConflict extends Error {}
@@ -71,6 +72,12 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
       if (!source || !compatible(String(clip.kind), source.kind)) fail();
       if (clip.kind === "video" && clip.videoMatte) {
         if (!object(clip.videoMatte) || clip.videoMatte.sourceMediaId !== clip.mediaId || !media.has(String(clip.videoMatte.mediaId)) || media.get(String(clip.videoMatte.mediaId))?.kind !== "image") fail();
+        if (clip.videoMatte.pages !== undefined) {
+          const typedClip = clip as unknown as import("./types").MediaClip;
+          if (!validVideoMatte(typedClip)) fail();
+          for (const id of videoMatteMediaIds(typedClip.videoMatte)) if (media.get(id)?.kind !== "image") fail();
+          for (const page of typedClip.videoMatte!.pages!) if (media.get(page.mediaId)?.width !== page.atlasWidth || media.get(page.mediaId)?.height !== page.atlasHeight) fail();
+        }
       }
     }
     clips.add(clip.id);
@@ -91,11 +98,15 @@ export function makeCloudProjectDocument(snapshot: ProjectSnapshot, projectId: s
       clip.mediaId = source.id;
       refs.set(source.id, source);
       if (clip.kind === "video" && clip.videoMatte) {
-        const matte = uploaded.get(clip.videoMatte.mediaId);
-        if (!matte || matte.kind !== "image") fail();
-        clip.videoMatte.mediaId = matte.id;
+        const ids = new Map<string, string>();
+        for (const id of videoMatteMediaIds(clip.videoMatte)) {
+          const matte = uploaded.get(id);
+          if (!matte || matte.kind !== "image") fail();
+          ids.set(id, matte.id); refs.set(matte.id, matte);
+        }
+        clip.videoMatte.mediaId = ids.get(clip.videoMatte.mediaId)!;
+        if (clip.videoMatte.pages) clip.videoMatte.pages = clip.videoMatte.pages.map(page => ({ ...page, mediaId: ids.get(page.mediaId)! }));
         clip.videoMatte.sourceMediaId = source.id;
-        refs.set(matte.id, matte);
       }
     }
   }
