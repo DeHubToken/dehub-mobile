@@ -158,6 +158,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { toastError, toastSuccess } from "../libs";
 import { appLocale } from "../libs/date.util";
+import { LiveProjectSession } from "../components/editor/LiveProjectSession";
 import { CloudProjects } from "../components/editor/CloudProjects";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
@@ -1486,6 +1487,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
+      <LiveProjectSession projectId={project.id} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
