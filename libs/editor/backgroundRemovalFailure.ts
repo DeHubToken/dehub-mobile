@@ -11,6 +11,10 @@ export interface BackgroundRemovalScope {
 }
 export interface BackgroundRemovalFailure extends BackgroundRemovalScope { message: string }
 
+export function isBackgroundRemovalCancellation(error: unknown): boolean {
+  return typeof error === "object" && error !== null && "name" in error && error.name === "AbortError";
+}
+
 export function backgroundRemovalScope(projectId: string | undefined, clip: Clip | undefined): BackgroundRemovalScope | null {
   if (!projectId || !clip || clip.locked || (clip.kind !== "image" && clip.kind !== "video")) return null;
   return { projectId, clipId: clip.id, mediaId: clip.mediaId, kind: clip.kind, trimIn: clip.trimIn, duration: clip.duration, speed: clip.speed ?? 1 };
