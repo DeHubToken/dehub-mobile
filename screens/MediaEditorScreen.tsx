@@ -27,7 +27,7 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useUser } from "../context/AuthContext";
 import { BRAND_OUTRO_DURATION, outroUsername } from "../libs/editor/brandOutro";
 import { VIDEO_MATTE_ASSET_PREFIX, type VideoMatteProgress } from "../libs/editor/videoMatte";
-import { backgroundRemovalScope, matchesBackgroundRemovalScope, backgroundRemovalFailureMessage, type BackgroundRemovalFailure } from "../libs/editor/backgroundRemovalFailure";
+import { backgroundRemovalScope, matchesBackgroundRemovalScope, backgroundRemovalFailureMessage, isBackgroundRemovalCancellation, type BackgroundRemovalFailure } from "../libs/editor/backgroundRemovalFailure";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import ExportSheet from "../components/editor/ExportSheet";
 import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
@@ -785,7 +785,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       complete = true; return out.matte;
     } catch (error) {
       const now = h.latest();
-      if (!controller.signal.aborted && !(error instanceof Error && error.name === "AbortError") && matchesBackgroundRemovalScope(scope, now?.id, now?.clips.find(c => c.id === clip.id))) {
+      if (!controller.signal.aborted && !isBackgroundRemovalCancellation(error) && matchesBackgroundRemovalScope(scope, now?.id, now?.clips.find(c => c.id === clip.id))) {
         setVideoMatteFailure({ ...scope!, message: backgroundRemovalFailureMessage(error, t("editor.app.bgRemoveFailed")) });
       }
       throw error;
@@ -805,7 +805,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const matte = await cutoutVideo(clip), now = h.latest(), current = now?.clips.find(c => c.id === clip.id);
         if (!matte || now?.id !== before || current?.kind !== "video" || current.locked || current.mediaId !== clip.mediaId || current.trimIn !== clip.trimIn || current.duration !== clip.duration || (current.speed ?? 1) !== (clip.speed ?? 1)) return;
         h.commit(updateClip(now, clip.id, { videoMatte: matte })); toastSuccess(t("editor.bgRemove.done"));
-      } catch (error) { if (!(error instanceof Error && error.name === "AbortError")) toastError(error instanceof Error ? error.message : t("editor.app.bgRemoveFailed")); }
+      } catch (error) { if (!isBackgroundRemovalCancellation(error)) toastError(error instanceof Error ? error.message : t("editor.app.bgRemoveFailed")); }
       return;
     }
     const clipId = selected.id;
