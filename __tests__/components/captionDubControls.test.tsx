@@ -6,6 +6,11 @@ import CaptionOverlay from '../../components/VideoPlayerCore/CaptionOverlay';
 let mockDubOn = true;
 let mockSourceLang = '';
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView', ActivityIndicator: 'ActivityIndicator',
+  Modal: ({ visible, children }: { visible: boolean; children: React.ReactNode }) => visible ? children : null,
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
+}));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'es' } }) }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
