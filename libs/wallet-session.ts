@@ -139,6 +139,15 @@ export async function retryWalletSession(wallet: string): Promise<UnsignedReason
   return lastFailure.get(w)?.reason ?? "mint_error";
 }
 
+/** Explicit signed-session access for first-frame WebSocket authentication. */
+export async function ensureWalletSession(wallet: string): Promise<Session | null> {
+  const w = wallet.toLowerCase();
+  if (!/^0x[a-f0-9]{40}$/.test(w)) return null;
+  await load();
+  const session = await ensure(w, fetch);
+  return session && session.expiresAt - 30000 > Date.now() ? session : null;
+}
+
 const TIMED_OUT = Symbol("timed out");
 
 function timeout<T>(p: Promise<T>, ms: number): Promise<T | typeof TIMED_OUT> {
