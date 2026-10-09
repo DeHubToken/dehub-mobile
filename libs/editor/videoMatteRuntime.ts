@@ -113,6 +113,7 @@ function assertVideoMattes(clips, available) {
 export const VIDEO_MATTE_RUNTIME = VIDEO_FRAME_RUNTIME + "\n" + VIDEO_MATTE_CORE + "\nvar videoMatteWorkerSource = " + JSON.stringify(VIDEO_MATTE_WORKER) + ";\n" + String.raw`
 async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storePage) {
   var video = document.createElement("video"), atlas = document.createElement("canvas"), capture = document.createElement("canvas"), mask = document.createElement("canvas");
+  var phase = "opening the video", frameIndex = null, frameTotal = null, sourceTime = null;
   var worker = null, workerUrl = null, mode = typeof navigator !== "undefined" && navigator.gpu ? "webgpu" : "wasm", sequence = 0;
   function cancelled() { if (signal && signal.aborted) throw new DOMException("Background removal cancelled", "AbortError"); }
   function waitEvent(target, eventName, begin, timeout) {
@@ -162,6 +163,7 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
     cancelled(); video.muted = true; video.playsInline = true; video.preload = "auto";
     if (sourceUrl.indexOf("blob:") !== 0) video.crossOrigin = "anonymous";
     await waitEvent(video, "loadeddata", function () { video.src = sourceUrl; video.load(); }, 30000);
+    phase = "preparing the video range";
     var sourceDuration = Number.isFinite(video.duration) ? video.duration : clip.sourceDuration;
     var plan = videoMattePlan(clip, video.videoWidth, video.videoHeight, sourceDuration, fps);
     if (plan.frames > 600 && !storePage) throw new Error("Long background removal requires page storage");
@@ -175,10 +177,12 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
     for (var index = 0; index < plan.frames; index++) {
       cancelled();
       var time = Math.min(sourceDuration - 0.001, plan.start + index / plan.fps);
+      frameIndex = index; frameTotal = plan.frames; sourceTime = time; phase = "decoding a frame";
       await waitForVideoFrame(video, time, { signal: signal });
+      phase = "reading a frame";
       c.drawImage(video, 0, 0, capture.width, capture.height);
       var blob = await new Promise(function (resolve, reject) { capture.toBlob(function (b) { b ? resolve(b) : reject(new Error("Video frame could not be read")); }, "image/png"); });
-      var pixels;
+      var pixels; phase = "removing the background";
       try { pixels = await infer(blob, index, plan.frames); }
       catch (e) {
         cancelled();
@@ -187,6 +191,7 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
         pixels = await infer(blob, index, plan.frames);
       }
       cancelled();
+      phase = "assembling a mask";
       if (!(pixels instanceof Uint8ClampedArray) || pixels.length !== 512 * 512 * 4) throw new Error("Background-removal frame is incomplete");
       m.putImageData(new ImageData(pixels, 512, 512), 0, 0);
       var localIndex = index - page.firstFrame;
@@ -194,11 +199,13 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
       onProgress({ stage: "frames", fraction: (index + 1) / plan.frames, completed: index + 1, total: plan.frames });
       if (localIndex + 1 === page.frames) {
         cancelled();
+        phase = "encoding a mask page";
         var png = await new Promise(function (resolve, reject) { atlas.toBlob(function (b) { b ? resolve(b) : reject(new Error("Background frames could not be saved")); }, "image/png"); });
         if (png.size > 16 * 1024 * 1024) throw new Error("Background frames are too large; trim this clip first");
         var dataUrl = await new Promise(function (resolve, reject) { var reader = new FileReader(); reader.onload = function () { resolve(reader.result); }; reader.onerror = function () { reject(new Error("Background frames could not be saved")); }; reader.readAsDataURL(png); });
         cancelled();
         if (!storePage) return { plan: plan, dataUrl: dataUrl };
+        phase = "saving a mask page";
         var mediaId = await storePage(Object.assign({}, page, { dataUrl: dataUrl }), plan, pageIndex);
         cancelled();
         if (typeof mediaId !== "string" || !mediaId.length || mediaId.length > 256 || pages.some(function(p) { return p.mediaId === mediaId; })) throw new Error("Background page could not be stored");
@@ -212,6 +219,10 @@ async function createVideoMatte(sourceUrl, clip, fps, onProgress, signal, storeP
       }
     }
     cancelled(); return { plan: plan, matte: Object.assign({}, plan, { mediaId: pages[0].mediaId, pages: pages }) };
+  } catch (error) {
+    if ((signal && signal.aborted) || (error && error.name === "AbortError")) throw error;
+    var location = frameIndex == null ? "" : " (frame " + (frameIndex + 1) + " of " + frameTotal + ", " + sourceTime.toFixed(3) + "s)";
+    throw new Error("Video background removal failed while " + phase + location + ": " + String(error && error.message || error));
   } finally {
     if (worker) worker.terminate(); if (workerUrl) URL.revokeObjectURL(workerUrl);
     video.pause(); video.removeAttribute("src"); video.load(); atlas.width = 1; atlas.height = 1; capture.width = 1; capture.height = 1; mask.width = 1; mask.height = 1;
