@@ -4,12 +4,16 @@ on:
     paths:
       - 'libs/editor/audioToolsRuntime.ts'
       - 'tests/editor/audio-quality.mjs'
+      - 'tests/editor/speech-quality.mjs'
+      - 'tests/editor/speech-reference-source.json'
       - '.github/workflows/editor-audio-quality.yml'
   push:
     branches: [main]
     paths:
       - 'libs/editor/audioToolsRuntime.ts'
       - 'tests/editor/audio-quality.mjs'
+      - 'tests/editor/speech-quality.mjs'
+      - 'tests/editor/speech-reference-source.json'
       - '.github/workflows/editor-audio-quality.yml'
 permissions:
   contents: read
@@ -32,9 +36,15 @@ jobs:
         env:
           BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: node tests/editor/audio-quality.mjs libs/editor/audioToolsRuntime.ts "$BASE_REF" audio-quality-results.json
+      - name: Measure real read-speech examples with steady noise
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: node tests/editor/speech-quality.mjs libs/editor/audioToolsRuntime.ts "$BASE_REF"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: editor-audio-quality
-          path: audio-quality-results.json
+          path: |
+            audio-quality-results.json
+            speech-quality-results.json
           if-no-files-found: error
