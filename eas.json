@@ -4,14 +4,6 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "home-uix-review": {
-      "extends": "test-apk",
-      "channel": "home-uix-review",
-      "environment": "production",
-      "env": {
-        "EXPO_PUBLIC_LOCALE_PACK_ORIGIN": "https://dehub.io"
-      }
-    },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
