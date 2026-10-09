@@ -15,54 +15,6 @@ env:
   NODE_VERSION: '20'
 
 jobs:
-  home-uix-review:
-    name: Home UI review APK
-    needs: verify
-    if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'ui/home-classic-immersive-review') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/ui/home-classic-immersive-review')
-    runs-on: ubuntu-latest
-    timeout-minutes: 150
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --legacy-peer-deps
-      - run: npx patch-package --error-on-fail
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - name: Build signed review APK on its own update channel
-        run: eas build --platform android --profile home-uix-review --non-interactive --wait --json > home-review-build.json
-      - name: Record and verify review APK
-        env:
-          REVIEW_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const output = JSON.parse(fs.readFileSync('home-review-build.json', 'utf8'));
-          const build = Array.isArray(output) ? output[0] : output;
-          if (build.status !== 'FINISHED' || !build.artifacts?.buildUrl || build.gitCommitHash !== process.env.REVIEW_SHA) throw new Error('Review APK does not match this branch commit');
-          fs.writeFileSync('home-review-apk-url.txt', build.artifacts.buildUrl);
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `Review commit: ${build.gitCommitHash}\n\n[Install Home UI review APK](${build.artifacts.buildUrl})\n`);
-          NODE
-          curl --fail --location --retry 3 "$(cat home-review-apk-url.txt)" --output dehub-home-review.apk
-          BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
-          "$BUILD_TOOLS/apksigner" verify --verbose dehub-home-review.apk
-          "$BUILD_TOOLS/aapt" dump badging dehub-home-review.apk | head -n 1
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: home-uix-review-apk
-          path: |
-            dehub-home-review.apk
-            home-review-build.json
-            home-review-apk-url.txt
-          if-no-files-found: ignore
-
   # Typecheck and tests share one runner and one install. They were two jobs,
   # and `cache: npm` caches the download but not node_modules — so a dependency
   # tree this size paid the install twice per run to buy parallelism that a
