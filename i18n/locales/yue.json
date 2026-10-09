@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} 個帖子"
   },
   "settings": {
+    "postingChain": "發帖區塊鏈",
     "showOnline": "當我上網嗰陣顯示",
     "showOnlineDesc": "當你用緊 DeHub 嗰陣，你發訊息嘅人會見到你個名旁邊有個綠色點",
     "smartReplies": "建議回覆",

@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} publicacions"
   },
   "settings": {
+    "postingChain": "Cadena de blocs de les publicacions",
     "showOnline": "Mostra quan estic en línia",
     "showOnlineDesc": "Les persones a les quals enviïs missatges veuen un punt verd al costat del teu nom mentre utilitzes DeHub",
     "smartReplies": "Respostes suggerides",

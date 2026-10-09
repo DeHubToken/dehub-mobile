@@ -192,6 +192,7 @@
     "nothingTrending": "Nothing di trend for this window yet."
   },
   "settings": {
+    "postingChain": "Blockchain wey you go use post",
     "showOnlineDesc": "Di pipo wey you dey message go see smol green dot for your name when you dey use DeHub",
     "smartReplies": "Ansa dem weh wi propose",
     "smartRepliesDesc": "E di rait tu ansa weh yu fit tosh fo chat. Da × fo di propose dem di of-am.",

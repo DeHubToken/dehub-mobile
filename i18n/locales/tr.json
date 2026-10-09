@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "postingChain": "Gönderi blokzinciri",
     "showOnline": "Çevrimiçi olduğumda göster",
     "showOnlineDesc": "Mesaj gönderdiğiniz kişiler, DeHub'ı kullanırken adınızın yanında yeşil bir nokta görür",
     "smartReplies": "Önerilen yanıtlar",

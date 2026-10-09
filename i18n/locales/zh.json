@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "postingChain": "发帖区块链",
     "showOnline": "在我上线时显示",
     "showOnlineDesc": "当您使用DeHub时，您发送消息的人会在您的姓名旁边看到一个绿点",
     "smartReplies": "建议回复",

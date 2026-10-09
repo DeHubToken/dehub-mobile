@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "postingChain": "شبكة النشر",
     "showOnline": "فرجلي إمتى أنا أونلاين",
     "showOnlineDesc": "الناس اللي بتراسلهم بيشوفوا نقطة خضرا جنب اسمك وإنت عم تستخدم ديهاب",
     "smartReplies": "الردود المقترحة",

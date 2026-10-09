@@ -44,6 +44,7 @@ const KEYS = {
   // device-local switches that filtered nothing; the one real filter is the
   // account-level showMatureContent (see hooks/useMatureContent.ts).
   autoSaveDrafts: 'dehub_auto_save_drafts',
+  postingChainId: 'dehub_posting_chain',
   // Hide watched videos in the feeds. Same key web writes, so the two clients
   // mean the same thing by it if these ever move to a synced store.
   hideWatched: 'feed-hide-watched',
@@ -76,6 +77,7 @@ export interface AppPrefs {
   quietHoursStart: number;
   quietHoursEnd: number;
   autoSaveDrafts: boolean;
+  postingChainId: number;
   hideWatched: boolean;
   skipSegments: boolean;
   geoBlockedCountries: string[];
@@ -102,6 +104,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   quietHoursStart: 22,
   quietHoursEnd: 8,
   autoSaveDrafts: true,
+  postingChainId: 8453,
   hideWatched: false,
   // Off by default: skipping a sponsor read is a decision about someone
   // else's income, so it is one the viewer makes deliberately rather than one
@@ -171,6 +174,7 @@ function init() {
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
+        postingChainId: parseNum(get('postingChainId') ?? String(DEFAULT_APP_PREFS.postingChainId), DEFAULT_APP_PREFS.postingChainId),
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),

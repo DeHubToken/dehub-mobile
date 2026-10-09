@@ -196,6 +196,7 @@
     "postCount_other": "machapisho {{count}}"
   },
   "settings": {
+    "postingChain": "Mnyororo wa bloku wa machapisho",
     "showOnline": "Onyesha wakati niko mtandaoni",
     "showOnlineDesc": "Watu unaotuma ujumbe wanaona nukta ya kijani karibu na jina lako unapotumia DeHub",
     "smartReplies": "Majibu yanayopendekezwa",

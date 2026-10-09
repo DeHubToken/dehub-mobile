@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} bejegyzés"
   },
   "settings": {
+    "postingChain": "Bejegyzések blokklánca",
     "showOnline": "Megjelenítés, amikor online vagyok",
     "showOnlineDesc": "Azok a személyek, akiknek üzenetet küldesz, egy zöld pontot látnak a neved mellett, miközben a DeHubot használod",
     "smartReplies": "Javasolt válaszok",

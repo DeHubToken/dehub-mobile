@@ -196,6 +196,7 @@
     "postCount_other": "{{count}} innlegg"
   },
   "settings": {
+    "postingChain": "Blokkjede for innlegg",
     "showOnline": "Vis når jeg er pålogget",
     "showOnlineDesc": "Folk du sender meldinger til ser en grønn prikk ved siden av navnet ditt mens du bruker DeHub",
     "smartReplies": "Foreslåtte svar",
