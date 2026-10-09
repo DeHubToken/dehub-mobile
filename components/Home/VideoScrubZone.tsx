@@ -1,8 +1,9 @@
-import React, { createContext, useCallback, useContext, useRef } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useScrubGesture } from '../../hooks/useScrubGesture';
+import { FeedScrubContext, SCRUB_HIT_HEIGHT } from '../../hooks/useFeedScrubBoundary';
 
 const ScrubbedTouch = createContext<React.MutableRefObject<boolean> | null>(null);
 
@@ -39,14 +40,26 @@ type Props = {
 };
 
 export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children }: Props) {
+  const boundary = useContext(FeedScrubContext);
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
   const width = useRef(1);
   const startScrub = useCallback(() => { scrubbed.current = true; onStart(); }, [onStart]);
+  const latest = useRef({ start: startScrub, preview: onScrub, commit: onCommit, cancel: onCancel });
+  latest.current = { start: startScrub, preview: onScrub, commit: onCommit, cancel: onCancel };
+  useEffect(() => {
+    if (!enabled || !boundary) return;
+    return boundary.register({
+      start: () => latest.current.start(),
+      preview: ratio => latest.current.preview(ratio),
+      commit: ratio => latest.current.commit(ratio),
+      cancel: () => latest.current.cancel(),
+    });
+  }, [enabled, boundary]);
   const { gesture, onLayout } = useScrubGesture({
     enabled,
     tapEnabled: false,
-    immediateBottom: 14,
+    immediateBottom: SCRUB_HIT_HEIGHT,
     onScrubStart: startScrub,
     onScrub,
     onCommit,
@@ -56,16 +69,23 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
     <ScrubbedTouch.Provider value={scrubbed}>
       <GestureDetector gesture={gesture}>
         <View
+          ref={boundary?.trackRef}
+          collapsable={false}
           testID="video-scrub-zone"
           style={styles.zone}
           onLayout={event => { width.current = event.nativeEvent.layout.width || 1; onLayout(event); }}
           onTouchStart={event => {
+            event.stopPropagation();
+            if (enabled && boundary) boundary.claimed.value = true;
             scrubbed.current = false;
             origin.current = { x: event.nativeEvent.pageX, y: event.nativeEvent.pageY };
           }}
           onTouchMove={event => {
+            event.stopPropagation();
             if (Math.hypot(event.nativeEvent.pageX - origin.current.x, event.nativeEvent.pageY - origin.current.y) > 6) scrubbed.current = true;
           }}
+          onTouchEnd={event => event.stopPropagation()}
+          onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
           <Pressable
             testID="video-scrub-tap"
@@ -93,7 +113,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
 }
 
 const styles = StyleSheet.create({
-  zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 48 },
+  zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: SCRUB_HIT_HEIGHT },
   row: { position: 'absolute', bottom: 14, left: 0, right: 0 },
   line: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.65)', overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.3)' },
   played: { height: '100%', backgroundColor: '#FFFFFF' },

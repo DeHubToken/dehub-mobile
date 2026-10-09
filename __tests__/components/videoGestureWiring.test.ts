@@ -36,7 +36,7 @@ describe('video gesture wiring', () => {
     expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: Platform\.OS === "android" \? 48 : 32,/);
     const zone = readSource('components', 'Home', 'VideoScrubZone.tsx');
     expect(zone).toContain('tapEnabled: false');
-    expect(zone).toMatch(/zone:\s*\{[^}]*height: 48/);
+    expect(zone).toMatch(/zone:\s*\{[^}]*height: SCRUB_HIT_HEIGHT/);
   });
 
   it('gives the shorts viewer a draggable timeline that outranks its pager', () => {
