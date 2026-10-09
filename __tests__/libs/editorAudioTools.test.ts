@@ -111,4 +111,16 @@ describe("voice cleanup preserves harmonic detail and stereo position", () => {
     const result = runtime.processAudioSamples([source, source], rate, "denoise");
     expect(result.after.peak).toBe(0); expect(result.channels.every((channel: Float32Array) => channel.every(Number.isFinite))).toBe(true);
   });
+  it("does not learn noise from digital padding or erase isolated transients", () => {
+    const source = new Float32Array(rate * 2), reference = tone(0.2);
+    source.set(reference, rate / 2);
+    const result = runtime.processAudioSamples([source], rate, "denoise").channels[0];
+    let input = 0, cross = 0;
+    for (let i = rate * 0.6; i < rate * 1.4; i++) { input += source[i] ** 2; cross += source[i] * result[i]; }
+    expect(cross / input).toBeGreaterThan(0.95);
+    const transient = new Float32Array(rate * 2); transient[rate] = 0.5;
+    const preserved = runtime.processAudioSamples([transient], rate, "denoise").channels[0];
+    expect([...preserved]).toEqual([...transient]);
+  });
+
 });

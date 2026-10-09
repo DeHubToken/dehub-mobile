@@ -61,7 +61,9 @@ function reduceAudioNoise(channels, rate, progress) {
     });
     history.push({ powers: powers, energy: energy });
   }
-  var ranked = history.slice().sort(function (a, b) { return a.energy - b.energy; });
+  // Digital padding is not a recording of the background noise.
+  var ranked = history.filter(function (frame) { return frame.energy > 1e-20; }).sort(function (a, b) { return a.energy - b.energy; });
+  if (ranked.length < 8) return channels.map(function (channel) { return channel.slice(); });
   var median = ranked[Math.floor(ranked.length / 2)].energy;
   // Use quiet passages when present; a continuous note must not become its own noise profile.
   var quiet = ranked.filter(function (frame) { return frame.energy < median * 0.25; }).slice(0, 16);
@@ -71,7 +73,7 @@ function reduceAudioNoise(channels, rate, progress) {
       if (quiet.length >= 3) {
         for (var q = 0; q < quiet.length; q++) profile[bin] += quiet[q].powers[c][bin] / quiet.length;
       } else {
-        var values = history.map(function (frame) { return frame.powers[c][bin]; }).sort(function (a, b) { return a - b; });
+        var values = ranked.map(function (frame) { return frame.powers[c][bin]; }).sort(function (a, b) { return a - b; });
         profile[bin] = values[Math.floor((values.length - 1) * 0.25)] / -Math.log(0.75);
       }
     }
