@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, useRef, useMemo } from "react";
+import React, { memo, useCallback, useState, useRef, useMemo, useEffect } from "react";
 import { View, Pressable, StyleSheet, Platform, Image } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
@@ -54,6 +54,7 @@ interface FeedNavBarProps {
   hasActiveFilters: boolean;
   onPostTypeChange: (postType: PostTypeOption) => void;
   onFilterPress: () => void;
+  onActiveTabLongPress: () => void;
   /**
    * While a sub-view is up over the feed (the image drawer), the leading slot
    * stops being the filter toggle and becomes that sub-view's way out — the
@@ -77,16 +78,36 @@ const NavButton = memo<{
   label: string;
   active: boolean;
   onPress: () => void;
+  onLongPress: () => void;
   minimal?: boolean;
   /** A canvas theme's icon colours (theme/skins.ts). */
   tint?: { on: string; off: string };
-}>(({ icon, label, active, onPress, minimal = false, tint }) => (
+}>(({ icon, label, active, onPress, onLongPress, minimal = false, tint }) => {
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const cancelled = useRef(false);
+  useEffect(() => { cancelled.current = true; }, [active]);
+  return (
   // These six are the most-used control in the app and were icon-only with no
   // label, so a screen reader announced all of them identically as "button".
   // NAV_ITEMS already carries the right words in `tooltip`; `selected` is what
   // conveys which tab you are on, since the icon does it visually via colour.
   <Pressable
     onPress={onPress}
+    delayLongPress={500}
+    onPressIn={(event) => {
+      touchStart.current = { x: event.nativeEvent.pageX, y: event.nativeEvent.pageY };
+      cancelled.current = !active;
+    }}
+    onTouchMove={(event) => {
+      const start = touchStart.current;
+      if (!start || event.nativeEvent.touches.length > 1 || Math.hypot(event.nativeEvent.pageX - start.x, event.nativeEvent.pageY - start.y) > 5) {
+        cancelled.current = true;
+      }
+    }}
+    onTouchStart={(event) => { if (event.nativeEvent.touches.length > 1) cancelled.current = true; }}
+    onTouchCancel={() => { cancelled.current = true; }}
+    onPressOut={() => { cancelled.current = true; }}
+    onLongPress={active ? () => { if (!cancelled.current) onLongPress(); } : undefined}
     style={styles.navButton}
     accessibilityRole="tab"
     accessibilityLabel={label}
@@ -103,7 +124,8 @@ const NavButton = memo<{
       </View>
     )}
   </Pressable>
-));
+  );
+});
 
 const FeedNavBar: React.FC<FeedNavBarProps> = ({
   activeIndex,
@@ -112,6 +134,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   hasActiveFilters,
   onPostTypeChange,
   onFilterPress,
+  onActiveTabLongPress,
   backMode = false,
   onBackPress,
 }) => {
@@ -239,6 +262,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                   label={item.tooltip}
                   active={index === activeIndex}
                   onPress={() => handleNavPress(item.postType)}
+                  onLongPress={onActiveTabLongPress}
                   minimal
                 />
               </View>
@@ -337,6 +361,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 label={item.tooltip}
                 active={index === activeIndex}
                 onPress={() => handleNavPress(item.postType)}
+                  onLongPress={onActiveTabLongPress}
                 tint={tint}
               />
             ))}
