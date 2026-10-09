@@ -5,6 +5,10 @@ import FeedAudioContent from '../../components/Home/FeedAudioContent';
 import FeedGatePreview from '../../components/Home/FeedGatePreview';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Pressable: 'Pressable',
+  StyleSheet: { flatten: (style: unknown) => style },
+}));
 jest.mock('../../components/common/SmartImage', () => ({ __esModule: true,
   default: (props: any) => require('react').createElement(require('react-native').View, { ...props, testID: 'cover-image' }),
 }));

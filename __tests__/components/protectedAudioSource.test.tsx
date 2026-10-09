@@ -3,6 +3,11 @@ import { render } from '@testing-library/react-native';
 import ProtectedAudioPostPlayer from '../../components/Home/ProtectedAudioPostPlayer';
 const mockQuery = { data: undefined as { url: string } | undefined, isError: false, refetch: jest.fn() };
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Pressable: 'Pressable', ActivityIndicator: 'ActivityIndicator',
+  StyleSheet: { flatten: (style: unknown) => style },
+}));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('@tanstack/react-query', () => ({ useQuery: () => mockQuery }));
 jest.mock('../../libs', () => ({ apiClient: { get: jest.fn() } }));
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'buyer' }) }));
