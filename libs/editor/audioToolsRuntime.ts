@@ -64,10 +64,10 @@ function reduceAudioNoise(channels, rate, progress, inspect) {
   // Digital padding is not a recording of the background noise.
   var ranked = history.filter(function (frame) { return frame.energy > 1e-20; }).sort(function (a, b) { return a.energy - b.energy; });
   if (ranked.length < 8) return channels.map(function (channel) { return channel.slice(); });
-  var median = ranked[Math.floor(ranked.length / 2)].energy;
+  var reference = ranked[Math.floor((ranked.length - 1) * 0.75)].energy;
   // Use quiet passages when present; a continuous note must not become its own noise profile.
-  var quiet = ranked.filter(function (frame) { return frame.energy < median * 0.25 && frame.energy <= ranked[0].energy * 1.8; }).slice(0, 12);
-  if (inspect) inspect({ sampledFrames: samples, activeFrames: ranked.length, quietFrames: quiet.length, lowestToMedian: ranked[0].energy / Math.max(1e-30, median) });
+  var quiet = ranked.filter(function (frame) { return frame.energy < reference * 0.35 && frame.energy <= ranked[0].energy * 1.8; }).slice(0, 12);
+  if (inspect) inspect({ sampledFrames: samples, activeFrames: ranked.length, quietFrames: quiet.length, lowestToReference: ranked[0].energy / Math.max(1e-30, reference) });
   var profiles = channels.map(function (_, c) {
     var profile = new Float64Array(bins);
     for (var bin = 0; bin < bins; bin++) {
@@ -106,8 +106,9 @@ function reduceAudioNoise(channels, rate, progress, inspect) {
       gains[bin] = gain;
     }
     for (var bin = 0; bin < bins; bin++) {
-      var gain = gains[bin] * 0.6 + gains[Math.max(0, bin - 1)] * 0.2 + gains[Math.min(bins - 1, bin + 1)] * 0.2;
-      smooth[bin] = gain < smooth[bin] ? gain * 0.65 + smooth[bin] * 0.35 : gain * 0.35 + smooth[bin] * 0.65;
+      // Smooth valleys without pulling a voice peak down into adjacent noise bins.
+      var gain = Math.max(gains[bin], gains[bin] * 0.6 + gains[Math.max(0, bin - 1)] * 0.2 + gains[Math.min(bins - 1, bin + 1)] * 0.2);
+      smooth[bin] = gain < smooth[bin] ? gain * 0.5 + smooth[bin] * 0.5 : gain * 0.85 + smooth[bin] * 0.15;
       for (var c = 0; c < channels.length; c++) {
         real[c][bin] *= smooth[bin]; imag[c][bin] *= smooth[bin];
         if (bin > 0 && bin < N / 2) { real[c][N - bin] *= smooth[bin]; imag[c][N - bin] *= smooth[bin]; }
