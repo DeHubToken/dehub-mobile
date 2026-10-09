@@ -38,7 +38,7 @@ function audioFft(real, imag, inverse) {
   if (inverse) for (var q = 0; q < n; q++) { real[q] /= n; imag[q] /= n; }
 }
 function reduceAudioNoise(channels, rate, progress) {
-  var N = 1024, hop = N / 2, bins = N / 2 + 1, length = channels[0].length;
+  var N = rate > 24000 ? 2048 : 1024, hop = N / 2, bins = N / 2 + 1, length = channels[0].length;
   if (length < N) return channels.map(function (channel) { return channel.slice(); });
   var window = new Float32Array(N), weight = new Float32Array(length);
   var real = channels.map(function () { return new Float64Array(N); });
