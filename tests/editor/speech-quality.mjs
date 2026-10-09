@@ -12,6 +12,11 @@ const before = audioRuntime(execFileSync('git', ['show', `${baseRef}:${sourcePat
 const manifest = JSON.parse(readFileSync('tests/editor/speech-reference-source.json', 'utf8'));
 const folder = mkdtempSync(join(tmpdir(), 'editor-speech-'));
 const rate = 16000, measurements = [];
+function processed(runtime, input) {
+  let noiseProfile = null;
+  const channels = runtime.processAudioSamples([input], rate, 'denoise', null, value => { noiseProfile = value; }).channels;
+  return {samples: channels[0], noiseProfile};
+}
 function quality(value, clean) {
   let signal = 0, error = 0, cross = 0;
   for (let i = 0; i < clean.length; i++) { signal += clean[i] ** 2; error += (value[i] - clean[i]) ** 2; cross += clean[i] * value[i]; }
@@ -27,8 +32,8 @@ for (const file of manifest.files) {
   const decoded = execFileSync('ffmpeg', ['-v','error','-i',input,'-t','30','-ar',String(rate),'-ac','1','-f','f32le','pipe:1'], {maxBuffer:4000000});
   const clean = Float32Array.from({length:decoded.length/4}, (_, i) => decoded.readFloatLE(i*4));
   assert.ok(clean.length > rate && clean.every(Number.isFinite));
-  const cleanQuality = quality(current.processAudioSamples([clean], rate, 'denoise').channels[0], clean);
-  measurements.push({id:file.id, noise:'clean', seconds:clean.length/rate, current:cleanQuality, before:quality(before.processAudioSamples([clean], rate, 'denoise').channels[0],clean)});
+  const cleanResult = processed(current, clean), cleanQuality = quality(cleanResult.samples, clean);
+  measurements.push({id:file.id, noise:'clean', seconds:clean.length/rate, noiseProfile:cleanResult.noiseProfile, current:cleanQuality, before:quality(before.processAudioSamples([clean], rate, 'denoise').channels[0],clean)});
   for (const kind of ['white', 'colored', 'hum']) {
     let seed = 7, previous = 0, energy = 0, cleanEnergy = 0;
     const noise = Float32Array.from({length:clean.length}, (_, i) => {
@@ -40,9 +45,9 @@ for (const file of manifest.files) {
     });
     const scale = Math.sqrt(cleanEnergy/energy/10);
     const noisy = clean.map((value,i) => value+noise[i]*scale);
-    const inputQuality = quality(noisy,clean), proposed = quality(current.processAudioSamples([noisy],rate,'denoise').channels[0],clean);
+    const result = processed(current, noisy), inputQuality = quality(noisy,clean), proposed = quality(result.samples,clean);
     const previousQuality = quality(before.processAudioSamples([noisy],rate,'denoise').channels[0],clean);
-    measurements.push({id:file.id,noise:kind,seconds:clean.length/rate,input:inputQuality,current:proposed,before:previousQuality,improvementDb:proposed.snrDb-inputQuality.snrDb});
+    measurements.push({id:file.id,noise:kind,seconds:clean.length/rate,noiseProfile:result.noiseProfile,input:inputQuality,current:proposed,before:previousQuality,improvementDb:proposed.snrDb-inputQuality.snrDb});
   }
 }
 const proof = {sourcePath,baseRef,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),fixtures:manifest,measurements,scope:'Four read-speech examples and three deterministic 10 dB noise profiles; a bounded quality benchmark, not a general speech-quality certification.'};
