@@ -1082,6 +1082,8 @@ canvas{display:block;width:100%;height:100%;}
   // time into a MediaRecorder, with the same audio mix.
   function recordRealtime(snap, W, H, fps, bitrate, duration, mixed, progress, ending) {
     return new Promise(function (resolve, reject) {
+      var job = videoJobId;
+      function cancelled() { return exportAborted || videoJobId !== job; }
       if (typeof MediaRecorder !== "function") { reject(new Error("unsupported")); return; }
       var types = ["video/mp4;codecs=avc1,mp4a", "video/mp4", "video/webm;codecs=vp8,opus", "video/webm"];
       var mime = null;
@@ -1105,37 +1107,50 @@ canvas{display:block;width:100%;height:100%;}
       rec.ondataavailable = function (e) { if (e.data && e.data.size) parts.push(e.data); };
       rec.onerror = function (e) { stream.getTracks().forEach(function (track) { track.stop(); }); if (ac) ac.close(); reject(e.error || new Error("recorder")); };
       rec.onstop = function () {
-        pauseAll();
+        if (videoJobId === job) pauseAll();
         stream.getTracks().forEach(function (track) { track.stop(); });
         if (ac) ac.close();
+        if (cancelled()) { reject(new Error("Export cancelled")); return; }
         var type = mime.split(";")[0];
         resolve({ blob: new Blob(parts, { type: type }), ext: type === "video/mp4" ? "mp4" : "webm" });
       };
       var begin = function () {
+        if (cancelled()) { stream.getTracks().forEach(function(track) { track.stop(); }); if (ac) ac.close(); reject(new Error("Export cancelled")); return; }
         rec.start(1000);
         if (src) src.start();
         var wall0 = performance.now();
         var tick = async function () {
           var localTime = (performance.now() - wall0) / 1000;
           var t = ending.rangeStart + localTime;
-          if (localTime >= duration || exportAborted) { rec.stop(); return; }
+          if (localTime >= duration || cancelled()) { rec.stop(); return; }
           var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
+          var pausedAt = null;
           if (!matteOpsReady(ops, t)) {
-            var pausedAt = performance.now();
+            pausedAt = performance.now();
             try {
               rec.pause(); pauseAll(); if (ac) await ac.suspend();
               await prepareMatteOps(ops, t, true);
-              if (exportAborted) { rec.stop(); return; }
-              if (ac) await ac.resume(); rec.resume(); wall0 += performance.now() - pausedAt;
-            } catch (error) { exportAborted = true; if (rec.state !== "inactive") rec.stop(); reject(error); return; }
+              if (cancelled()) { rec.stop(); return; }
+              prepareVideoSources(ops);
+              await Promise.all(ops.filter(function(op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); }).map(function(op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); }));
+              if (cancelled()) { rec.stop(); return; }
+            } catch (error) { if (rec.state !== "inactive") rec.stop(); reject(error); return; }
           } else prepareMatteOps(ops, t, true).catch(function() {});
-          syncMedia(snap, t, true, ops, true);
+          syncMedia(snap, t, pausedAt === null, ops, true);
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
           g.fillStyle = snap.settings.background;
           g.fillRect(0, 0, W, H);
           drawOps(g, W, H, ops, t);
           if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo, ending.artwork);
+          if (pausedAt !== null) {
+            try {
+              if (ac) await ac.resume();
+              if (cancelled()) { rec.stop(); return; }
+              syncMedia(snap, t, true, ops, true);
+              rec.resume(); wall0 += performance.now() - pausedAt;
+            } catch (error) { if (rec.state !== "inactive") rec.stop(); reject(error); return; }
+          }
           progress(0.05 + (localTime / duration) * 0.9);
           requestAnimationFrame(tick);
         };
