@@ -43,18 +43,18 @@ describe('post media presentation', () => {
     expect(containedImage).toContain('style={{ width: "100%", height: "100%" }}');
   });
 
-  it('runs home feed media edge to edge under the system theme only', () => {
+  it('runs home feed media edge to edge under the Immersive theme only', () => {
     const card = readSource('components', 'Home', 'FeedCard.tsx');
     const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
 
-    expect(card).toContain('const cinematicFeed = cinematic && theme === "system" && !skin && !isMinimal && !immersive && !flat;');
+    expect(card).toContain('const cinematicFeed = cinematic && theme === "immersive" && !skin && !isMinimal && !immersive && !flat;');
     expect(card).toContain('<FeedBleedContext.Provider value={feedBleed}>');
     // Preserve the current 20pt spacing around the full-width separator.
     expect(card).toMatch(/paddingVertical: 20,\s+borderBottomWidth: StyleSheet\.hairlineWidth,/);
     expect(list).toContain('      cinematic\n');
   });
 
-  it('starts the system home feed under the capsule with no band behind it', () => {
+  it('starts the Immersive home feed under the capsule with no band behind it', () => {
     const home = readSource('screens', 'HomeScreen.tsx');
     const list = readSource('components', 'Home', 'InfiniteVideoFeed.tsx');
     const card = readSource('components', 'Home', 'FeedCard.tsx');

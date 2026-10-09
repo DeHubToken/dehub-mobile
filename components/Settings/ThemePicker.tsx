@@ -45,6 +45,7 @@ const GLASS = {
 
 const SWATCHES: Record<AppThemeName, Swatch> = {
   system: { page: '#000000', bento: '#18181b', border: 'rgba(255,255,255,0.06)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff' },
+  immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true },
   minimal: { page: '#000000', bento: 'transparent', border: 'rgba(255,255,255,0.1)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', square: true, flat: true },
   cosmic: { page: '#040407', image: require('../../assets/theme-previews/cosmic.webp'), ...GLASS },
   hazy: { page: '#0a0714', image: require('../../assets/theme-previews/hazy.webp'), ...GLASS },
@@ -143,8 +144,9 @@ const ThemeSample: React.FC<{
           <View
             style={{
               height: 12,
+              ...(value === 'immersive' ? { width: 52, alignSelf: 'center' as const } : {}),
               borderRadius: s.square ? 0 : 6,
-              backgroundColor: s.flat ? 'transparent' : s.bento,
+              backgroundColor: s.flat && value !== 'immersive' ? 'transparent' : s.bento,
               borderWidth: 1,
               borderColor: s.border,
               flexDirection: 'row',

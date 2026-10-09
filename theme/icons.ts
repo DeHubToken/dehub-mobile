@@ -13,6 +13,7 @@ const PNG_KEYS = new Set([
 
 /** Every supported theme owns a complete custom artwork family. */
 export function themeIconUrl(theme: string, key: string): string | undefined {
+  if (theme === 'immersive') theme = 'system';
   if (!RASTER_THEMES.has(theme)) return undefined;
   const extension = PNG_KEYS.has(key) ? 'png' : 'webp';
   return `${WEBSITE_LINK}/theme-icons/${theme}/${key}.${extension}?v=${THEME_ICON_REVISION}`;

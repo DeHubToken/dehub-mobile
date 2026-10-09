@@ -24,7 +24,7 @@ it.each(['cosmic', 'island', 'war'] as const)('preserves the %s card material in
   act(() => tree!.unmount());
 });
 
-it.each(['system', 'minimal'] as const)('keeps %s sections flat between hairlines', (theme) => {
+it.each(['system', 'immersive', 'minimal'] as const)('keeps %s sections flat between hairlines', (theme) => {
   mockTheme = { theme, skin: null, isMinimal: theme === 'minimal', colors: { card: '#18181B' } };
   let tree: ReturnType<typeof create>;
   act(() => { tree = create(<PageSection>Content</PageSection>); });

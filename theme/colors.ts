@@ -6,6 +6,7 @@
  */
 export const APP_THEMES = [
   'system',
+  'immersive',
   'minimal',
   'cosmic',
   'hazy',
@@ -159,6 +160,7 @@ export const horrorColors = canvasColors('#0B0C0D', {
 
 const palettes: Record<AppThemeName, ThemeColors> = {
   system: systemColors,
+  immersive: systemColors,
   minimal: minimalColors,
   cosmic: cosmicColors,
   hazy: hazyColors,

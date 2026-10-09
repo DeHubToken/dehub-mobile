@@ -48,8 +48,8 @@ const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const { isMinimal, theme, skin } = useAppTheme();
-  // The system theme lays the home feed out as a cinematic list (FeedCard).
-  const cinematic = !isMinimal && theme === "system" && !skin;
+  // Immersive lays the home feed out as a cinematic list (FeedCard).
+  const cinematic = !isMinimal && theme === "immersive" && !skin;
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   /** Addresses followed or dismissed this session — never shown again. */
   const [hiddenAddresses, setHiddenAddresses] = useState<Set<string>>(new Set());
