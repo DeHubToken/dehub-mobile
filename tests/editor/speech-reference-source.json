@@ -1,0 +1,34 @@
+{
+  "source": "LibriSpeech ASR examples distributed in Narsil/asr_dummy and used by the Transformers audio documentation",
+  "sourceDescription": "https://huggingface.co/datasets/Narsil/asr_dummy/blob/main/asr_dummy.py",
+  "license": "CC BY 4.0",
+  "licenseSource": "https://www.openslr.org/12/",
+  "credit": "LibriSpeech: Vassil Panayotov, Guoguo Chen, Daniel Povey, Sanjeev Khudanpur; read audiobook recordings from LibriVox",
+  "repositoryRevision": "8d141c84e3f84c54cd7bbaa851d24edd0f559734",
+  "files": [
+    {
+      "id": 1,
+      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/8d141c84e3f84c54cd7bbaa851d24edd0f559734/1.flac",
+      "sha256": "30885601173f96b0d8ddd020dc959b055c6c1582b85a33e3fcab8c4b08ed94c2",
+      "bytes": 183318
+    },
+    {
+      "id": 2,
+      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/8d141c84e3f84c54cd7bbaa851d24edd0f559734/2.flac",
+      "sha256": "3fc09ec6d4cc496c530b2019b17bd8fc8ef8a43d6697090971dd1d52cc3d4d89",
+      "bytes": 58350
+    },
+    {
+      "id": 3,
+      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/8d141c84e3f84c54cd7bbaa851d24edd0f559734/3.flac",
+      "sha256": "66277a3fa3df407261dc2a3ce685a7ceef19999ab0c10531bee5257cb64cb59d",
+      "bytes": 116299
+    },
+    {
+      "id": 4,
+      "url": "https://huggingface.co/datasets/Narsil/asr_dummy/resolve/8d141c84e3f84c54cd7bbaa851d24edd0f559734/4.flac",
+      "sha256": "17b4a44454b65c0e40417ac0b183a618b0225e90ca3d8610ce688b452ddc7983",
+      "bytes": 565675
+    }
+  ]
+}
