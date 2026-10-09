@@ -1,5 +1,6 @@
 import { CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
+import { notifyCloudProjectSaved } from "./cloudProjectEvents";
 import { projectReviewCopy } from "./cloudProjectReview";
 import { mergeCloudProjectEdits, sameCloudProjectEdit } from "./cloudProjectMerge";
 
@@ -72,6 +73,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       saved = await send();
     }
     check();
+    notifyCloudProjectSaved({ wallet, owner: link.sharedOwner || wallet, projectId: link.projectId, revision: saved.revision });
     if (link.sharedOwner && pending.originalDocument) {
       let index = 0;
       const copy = projectReviewCopy(pending.document, link.sharedOwner, pending.mergedLocalIds ? () => pending!.mergedLocalIds![index++] : deps.uuid);
@@ -149,6 +151,10 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
           media: Object.fromEntries(copy.media.map((media, index) => [media.id, version.document.media[index]])) });
         check(); return copy.snapshot;
       });
+    },
+    async binding(localId: string) {
+      const link = await deps.readLink(localId); check();
+      return link?.wallet === wallet && link.revision > 0 ? { owner: link.sharedOwner || wallet, projectId: link.projectId, revision: link.revision } : null;
     },
     async sharedOwner(localId: string) {
       const link = await deps.readLink(localId); check(); return link?.wallet === wallet ? link.sharedOwner || null : null;

@@ -249,7 +249,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
             }
           />
         ) : cinematic ? (
-          <View className="px-2"><FeedCardSkeleton count={6} cinematic edgeInset={8} /></View>
+          <View className="px-2"><FeedCardSkeleton count={6} /></View>
         ) : (
           <View>
             {Array.from({ length: 6 }).map((_, i) => (
