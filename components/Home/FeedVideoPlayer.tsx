@@ -3,7 +3,7 @@ import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPic
 import { applyVideoVolume } from '../../libs/dub-mix';
 import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
 import { useMediaVolume } from '../../libs/video-preferences';
-import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
+import { useFeedPlaybackAllowed, useFeedSurfaceActive, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
@@ -2087,6 +2087,7 @@ FeedVideoPoster.displayName = "FeedVideoPoster";
  */
 const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   const playbackAllowed = useFeedPlaybackAllowed();
+  const surfaceActive = useFeedSurfaceActive();
   const callInProgress = useCallInProgress();
   const { autoplay: autoplayEnabled } = useAppPrefs();
   const { liteMode } = useDataSaver();
@@ -2107,7 +2108,8 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // still allocates an ExoPlayer. Keep passing cards as posters for the whole
   // dwell window; taps and picture-in-picture bypass that wait.
   const autoplaySettled = useSettledAutoplay(autoplayHere, videoUrl, AUTOPLAY_DELAY, true);
-  const retained = isVisible && hasPostVideoSession(videoUrl);
+  // Pausing for a native sheet must not unmount the sheet's owning player.
+  const retained = isVisible && surfaceActive && hasPostVideoSession(videoUrl);
   const mountPlayer = (visible || retained) && (retained || inPictureInPicture || wanted || autoplaySettled || needsChrome);
 
   // Off screen, the tap is forgotten: coming back autoplays or shows the
