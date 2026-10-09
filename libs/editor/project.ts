@@ -1,3 +1,4 @@
+import { videoMatteMediaIds } from "./videoMatte";
 /**
  * Editing operations on a ProjectSnapshot.
  *
@@ -328,7 +329,7 @@ export function visibleLayers(p: ProjectSnapshot, t: number): Clip[] {
 /** Media ids the project points at, for loading and for spotting missing files. */
 export function mediaIds(p: ProjectSnapshot): string[] {
   const ids = new Set<string>();
-  for (const c of p.clips) if ("mediaId" in c) { ids.add(c.mediaId); if (c.kind === "video" && c.videoMatte) ids.add(c.videoMatte.mediaId); }
+  for (const c of p.clips) if ("mediaId" in c) { ids.add(c.mediaId); if (c.kind === "video") for (const id of videoMatteMediaIds(c.videoMatte)) ids.add(id); }
   return [...ids];
 }
 

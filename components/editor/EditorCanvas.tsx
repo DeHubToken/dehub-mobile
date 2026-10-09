@@ -22,7 +22,7 @@ import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from ".
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
-import { validVideoMatte, type VideoMattePlan, type VideoMatteProgress } from "../../libs/editor/videoMatte";
+import { validVideoMatte, validVideoMattePageOutput, videoMatteMediaIds, type VideoMattePage, type VideoMattePageSink, type VideoMatteResult, type VideoMatteProgress } from "../../libs/editor/videoMatte";
 import type { AudioToolMode } from "../../libs/editor/audioTools";
 import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import type { CaptionWord } from "../../libs/editor/captionLayout";
@@ -44,7 +44,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
-  removeVideoBackground: (clip: MediaClip, fps: number, onProgress?: (p: VideoMatteProgress) => void, signal?: AbortSignal) => Promise<{ plan: VideoMattePlan; dataUrl: string }>;
+  removeVideoBackground: (clip: MediaClip, fps: number, onProgress?: (p: VideoMatteProgress) => void, signal?: AbortSignal, storePage?: VideoMattePageSink) => Promise<VideoMatteResult>;
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void, signal?: AbortSignal) => Promise<CaptionWord[]>;
   sampleVisual: (clip: MediaClip, windows: VisualWindow[], signal: AbortSignal, progress: (fraction: number) => void) => Promise<VisualFrame[]>;
   detectShots: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<ShotAnalysis>;
@@ -160,7 +160,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const beatReqs = useRef(new Map<string, { resolve: (v: BeatAnalysis) => void; reject: (e: Error) => void; progress?: (v: number) => void; cleanup: () => void }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
-  const videoMatteReqs = useRef(new Map<string, { clip: MediaClip; resolve: (r: { plan: VideoMattePlan; dataUrl: string }) => void; reject: (e: Error) => void; progress?: (p: VideoMatteProgress) => void; cleanup: () => void; reset: () => void }>());
+  const videoMatteReqs = useRef(new Map<string, { clip: MediaClip; resolve: (r: VideoMatteResult) => void; fps: number; pages: VideoMattePage[]; storePage?: VideoMattePageSink; storing?: boolean; planKey?: string; reject: (e: Error) => void; progress?: (p: VideoMatteProgress) => void; cleanup: () => void; reset: () => void }>());
   const sentMattes = useRef(new Set<string>());
   const mediaAcks = useRef(new Map<string, () => void>());
   type VideoReq = {
@@ -235,6 +235,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // Hand the page each picture, video and sound once.
   const ids = useMemo(() => mediaIds(project).join("|"), [project]);
+  const liveMatteIds = useRef(new Set<string>());
+  liveMatteIds.current = new Set(project.clips.flatMap(c => c.kind === "video" ? videoMatteMediaIds(c.videoMatte) : []));
   useEffect(() => {
     if (!ready) return;
     let cancelled = false;
@@ -243,6 +245,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     for (const id of sentMattes.current) if (!liveIds.includes(id)) { sentMedia.current.delete(id); sentMattes.current.delete(id); }
     post({ type: "mattePrune", ids: liveIds });
     (async () => {
+      loading.current += 1; props.onMediaLoading?.(loading.current);
+      try {
       for (const id of ids ? ids.split("|") : []) {
         if (sentMedia.current.has(id)) continue;
         const meta = await getMedia(id);
@@ -273,6 +277,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           }
           continue;
         }
+        if (liveMatteIds.current.has(id) || meta?.name.startsWith(".dehub-video-matte-")) {
+          if (!meta || meta.kind !== "image") { missing.push(id); continue; }
+          sentMedia.current.add(id); sentMattes.current.add(id);
+          post({ type: "matteMeta", id, width: meta.width, height: meta.height });
+          continue;
+        }
         const src = meta ? await mediaDataUrl(meta) : null;
         if (cancelled) return;
         if (!src) { missing.push(id); continue; }
@@ -281,6 +291,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         post({ type: "media", id, src, internalMatte: meta?.name.startsWith(".dehub-video-matte-") });
       }
       if (!cancelled) props.onMissingMedia?.(missing);
+      } finally { loading.current -= 1; props.onMediaLoading?.(loading.current); }
     })();
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -294,6 +305,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         sentMedia.current.clear();
         setReady(true);
         break;
+      case "matteNeed": {
+        if (!liveMatteIds.current.has(msg.id)) { post({ type: "mattePage", reqId: msg.reqId, error: "Background page is missing" }); break; }
+        void (async () => {
+          const meta = await getMedia(msg.id);
+          const src = meta?.kind === "image" ? await mediaDataUrl(meta) : null;
+          if (!liveMatteIds.current.has(msg.id)) return;
+          post({ type: "mattePage", reqId: msg.reqId, src, ...(src ? {} : { error: "Background page could not be read" }) });
+        })().catch(() => post({ type: "mattePage", reqId: msg.reqId, error: "Background page could not be read" }));
+        break;
+      }
       case "mediaAck": {
         const done = mediaAcks.current.get(msg.id);
         mediaAcks.current.delete(msg.id);
@@ -430,12 +451,34 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         request?.reset(); request?.progress?.(msg.progress);
         break;
       }
+      case "videoMattePage": {
+        const request = videoMatteReqs.current.get(msg.reqId); if (!request) break;
+        request.reset();
+        if (!request.storePage || request.storing || msg.pageIndex !== request.pages.length || msg.plan?.fps !== request.fps || !validVideoMattePageOutput(request.clip, msg.plan, msg.page, msg.pageIndex) || (request.planKey !== undefined && request.planKey !== JSON.stringify(msg.plan))) {
+          request.cleanup(); videoMatteReqs.current.delete(msg.reqId); post({ type: "videoMatteCancel", reqId: msg.reqId }); request.reject(new Error("Invalid background page")); break;
+        }
+        request.storing = true; request.planKey = JSON.stringify(msg.plan);
+        void request.storePage(msg.page, msg.plan, msg.pageIndex).then(id => {
+          if (videoMatteReqs.current.get(msg.reqId) !== request) return;
+          if (typeof id !== "string" || !id.length || request.pages.some(page => page.mediaId === id)) throw new Error("Invalid background page ID");
+          const { dataUrl: _dataUrl, ...page } = msg.page;
+          request.pages.push({ ...page, mediaId: id }); request.storing = false; request.reset();
+          post({ type: "videoMattePageSaved", reqId: msg.reqId, pageIndex: msg.pageIndex, mediaId: id });
+        }).catch(error => {
+          if (videoMatteReqs.current.get(msg.reqId) !== request) return;
+          request.cleanup(); videoMatteReqs.current.delete(msg.reqId); post({ type: "videoMatteCancel", reqId: msg.reqId }); request.reject(error instanceof Error ? error : new Error(String(error)));
+        });
+        break;
+      }
       case "videoMatteDone":
       case "videoMatteFailed": {
         const request = videoMatteReqs.current.get(msg.reqId); if (!request) break;
         request.cleanup(); videoMatteReqs.current.delete(msg.reqId);
         const result = msg.result;
-        if (msg.type === "videoMatteDone" && result && typeof result.dataUrl === "string" && result.dataUrl.startsWith("data:image/png;base64,") && validVideoMatte({ ...request.clip, videoMatte: { ...result.plan, mediaId: "pending" } })) request.resolve(result);
+        const complete = request.storePage
+          ? result?.matte && !request.storing && request.planKey === JSON.stringify(result.plan) && JSON.stringify(result.matte) === JSON.stringify({ ...result.plan, mediaId: request.pages[0]?.mediaId, pages: request.pages }) && validVideoMatte({ ...request.clip, videoMatte: result.matte })
+          : result && typeof result.dataUrl === "string" && result.dataUrl.startsWith("data:image/png;base64,") && validVideoMatte({ ...request.clip, videoMatte: { ...result.plan, mediaId: "pending" } });
+        if (msg.type === "videoMatteDone" && complete) request.resolve(result);
         else request.reject(new Error(msg.error || "Background frames could not be saved"));
         break;
       }
@@ -589,7 +632,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           if (statsReqs.current.has(reqId)) { statsReqs.current.delete(reqId); resolve(null); }
         }, 5000);
       }),
-    removeVideoBackground: (clip, fps, onProgress, signal) => new Promise((resolve, reject) => {
+    removeVideoBackground: (clip, fps, onProgress, signal, storePage) => new Promise((resolve, reject) => {
       const reqId = `matte_${Date.now()}_${Math.random().toString(36).slice(2)}`;
       let timer: ReturnType<typeof setTimeout>;
       const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", abort); };
@@ -597,8 +640,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       const reset = () => { clearTimeout(timer); timer = setTimeout(() => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); reject(new Error("Background removal stopped responding")); }, 200000); };
       if (!ready || signal?.aborted) { abort(); return; }
       signal?.addEventListener("abort", abort, { once: true });
-      videoMatteReqs.current.set(reqId, { clip, resolve, reject, progress: onProgress, cleanup, reset }); reset();
-      post({ type: "videoMatte", reqId, clip, fps });
+      videoMatteReqs.current.set(reqId, { clip, fps, pages: [], storePage, resolve, reject, progress: onProgress, cleanup, reset }); reset();
+      post({ type: "videoMatte", reqId, clip, fps, paged: !!storePage });
     }),
     removeBackground: (mediaId, onProgress) =>
       new Promise((resolve) => {

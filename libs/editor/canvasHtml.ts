@@ -1,3 +1,4 @@
+import { VIDEO_MATTE_PAGE_CACHE_RUNTIME } from "./videoMattePageCache";
 import { VIDEO_FRAME_RUNTIME } from "./videoFrame";
 /**
  * The page the editor canvas runs in.
@@ -71,6 +72,32 @@ canvas{display:block;width:100%;height:100%;}
   var ctx = canvas.getContext("2d");
   var images = new Map();
   var matteImages = new Set(), allowedMatteImages = new Set();
+  __VIDEO_MATTE_PAGE_CACHE_RUNTIME__
+  var matteMeta = new Map(), matteRequests = new Map(), matteSequence = 0;
+  var mattePageCache = createVideoMattePageCache(images, function(frame) {
+    return new Promise(function(resolve, reject) {
+      var reqId = "matte-page-" + (++matteSequence);
+      var timer = setTimeout(function() { matteRequests.delete(reqId); reject(new Error("Background page did not load")); }, 30000);
+      matteRequests.set(reqId, { finish: function(error, image) { clearTimeout(timer); matteRequests.delete(reqId); error ? reject(error) : resolve(image); } });
+      post({ type: "matteNeed", reqId: reqId, id: frame.mediaId });
+    });
+  }, function(image) { image.src = ""; });
+  function matteFramesOf(ops, time, prefetch) {
+    var frames = [];
+    ops.forEach(function(op) {
+      if (op.clip.kind !== "video" || !op.clip.videoMatte) return;
+      var sourceTime = localTimeOf(op, time), frame = videoMatteFrame(op.clip, sourceTime);
+      if (!frame) throw new Error("Background-removal frames are missing for this range");
+      frames.push(frame);
+      if (prefetch) { var next = videoMatteFrame(op.clip, sourceTime + speedOf(op.clip)); if (next && next.mediaId !== frame.mediaId) frames.push(next); }
+    });
+    return frames;
+  }
+  function prepareMatteOps(ops, time, prefetch) { try { return mattePageCache.select(matteFramesOf(ops, time, prefetch)); } catch (error) { return Promise.reject(error); } }
+  function matteOpsReady(ops, time) {
+    try { return matteFramesOf(ops, time, false).every(function(frame) { var image = images.get(frame.mediaId); return image && image.naturalWidth === frame.atlasWidth && image.naturalHeight === frame.atlasHeight; }); } catch (_) { return false; }
+  }
+  window.addEventListener("pagehide", function() { mattePageCache.dispose(); matteRequests.forEach(function(r) { r.finish(new Error("Canvas closed")); }); });
   var state = null;
   var queued = false;
   var lastFrame = "";
@@ -366,8 +393,8 @@ canvas{display:block;width:100%;height:100%;}
     var sw = m.w * (1 - cr.left - cr.right), sh = m.h * (1 - cr.top - cr.bottom);
     var el = m.el;
     if (clip.kind === "video" && clip.videoMatte) {
-      var frame = videoMatteFrame(clip, sourceTime), image = images.get(clip.videoMatte.mediaId);
-      if (!frame || !image || image.naturalWidth !== clip.videoMatte.atlasWidth || image.naturalHeight !== clip.videoMatte.atlasHeight) return;
+      var frame = videoMatteFrame(clip, sourceTime), image = frame ? images.get(frame.mediaId) : null;
+      if (!frame || !image || image.naturalWidth !== frame.atlasWidth || image.naturalHeight !== frame.atlasHeight) return;
       if (!matteCanvas) matteCanvas = document.createElement("canvas");
       var scale = Math.min(1, 1920 / Math.max(sw, sh));
       var width = Math.max(1, Math.round(sw * scale)), height = Math.max(1, Math.round(sh * scale));
@@ -809,6 +836,7 @@ canvas{display:block;width:100%;height:100%;}
   // Keep every video and sound at the right spot for time t (web Compositor).
   // silent: the sound comes from elsewhere (the realtime export's mix).
   function syncMedia(snap, t, isPlaying, ops, silent) {
+    if (!exporting) prepareMatteOps(ops, t, isPlaying).catch(function() {});
     prepareVideoSources(ops);
     var liveV = new Set();
     var liveA = new Set();
@@ -999,7 +1027,7 @@ canvas{display:block;width:100%;height:100%;}
         prepareVideoSources(ops);
         var seeks = ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
           .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); });
-        return Promise.all(seeks).then(function () {
+        return Promise.all([prepareMatteOps(ops, t, false)].concat(seeks)).then(function () {
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
           g.fillStyle = snap.settings.background;
@@ -1086,11 +1114,20 @@ canvas{display:block;width:100%;height:100%;}
         rec.start(1000);
         if (src) src.start();
         var wall0 = performance.now();
-        var tick = function () {
+        var tick = async function () {
           var localTime = (performance.now() - wall0) / 1000;
           var t = ending.rangeStart + localTime;
           if (localTime >= duration || exportAborted) { rec.stop(); return; }
           var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, W, false) : [];
+          if (!matteOpsReady(ops, t)) {
+            var pausedAt = performance.now();
+            try {
+              rec.pause(); pauseAll(); if (ac) await ac.suspend();
+              await prepareMatteOps(ops, t, true);
+              if (exportAborted) { rec.stop(); return; }
+              if (ac) await ac.resume(); rec.resume(); wall0 += performance.now() - pausedAt;
+            } catch (error) { exportAborted = true; if (rec.state !== "inactive") rec.stop(); reject(error); return; }
+          } else prepareMatteOps(ops, t, true).catch(function() {});
           syncMedia(snap, t, true, ops, true);
           g.setTransform(1, 0, 0, 1, 0, 0);
           g.globalAlpha = 1;
@@ -1106,10 +1143,10 @@ canvas{display:block;width:100%;height:100%;}
       // Start with every video parked on its first frame.
       var ops0 = computeRenderOps(snap, ending.rangeStart, W, false);
       prepareVideoSources(ops0);
-      Promise.all(ops0.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
-        .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, ending.rangeStart)); }))
+      Promise.all([prepareMatteOps(ops0, ending.rangeStart, true)].concat(ops0.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); })
+        .map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, ending.rangeStart)); })))
         .then(function () { return ac ? ac.resume() : null; })
-        .then(begin, begin);
+        .then(begin, function(error) { stream.getTracks().forEach(function(track) { track.stop(); }); if (ac) ac.close(); reject(error); });
     });
   }
 
@@ -1147,7 +1184,7 @@ canvas{display:block;width:100%;height:100%;}
       var t = ending.rangeStart + localTime;
       var ops = localTime < ending.contentDuration ? computeRenderOps(snap, t, plan.width, false) : [];
       prepareVideoSources(ops);
-      return Promise.all(ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })).then(function () {
+      return Promise.all([prepareMatteOps(ops, t, false)].concat(ops.filter(function (op) { return op.clip.kind === "video" && videos.has(op.clip.mediaId); }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); }))).then(function () {
         if (exportAborted) throw new Error("aborted");
         g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.clearRect(0, 0, plan.width, plan.height);
         g.fillStyle = snap.settings.background; g.fillRect(0, 0, plan.width, plan.height);
@@ -1178,9 +1215,9 @@ canvas{display:block;width:100%;height:100%;}
         if (op.clip.kind === "image" && !images.has(op.clip.mediaId)) throw new Error("Page media is still loading");
         if (op.clip.kind === "video" && !videos.has(op.clip.mediaId)) throw new Error("Page media is still loading");
       });
-      assertVideoMattes(ops.map(function (op) { return op.clip; }), function (id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
+      assertVideoMattes(ops.map(function (op) { return op.clip; }), function (id, width, height) { var meta = matteMeta.get(id); return !!meta && meta.width === width && meta.height === height; });
       prepareVideoSources(ops);
-      await Promise.all(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); }));
+      await Promise.all([prepareMatteOps(ops, t, false)].concat(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })));
       check();
       var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
@@ -1228,7 +1265,7 @@ canvas{display:block;width:100%;height:100%;}
       }
     }
     try {
-      assertVideoMattes(snap.clips.filter(function(c) { var track = trackOf(snap, c.trackId); return !c.hidden && track && !track.hidden; }), function(id, width, height) { var image = images.get(id); return !!image && image.naturalWidth === width && image.naturalHeight === height; });
+      assertVideoMattes(snap.clips.filter(function(c) { var track = trackOf(snap, c.trackId); return !c.hidden && track && !track.hidden; }), function(id, width, height) { var meta = matteMeta.get(id); return !!meta && meta.width === width && meta.height === height; });
     } catch (error) { exporting = false; videoJobId = null; post({ type: "videoFailed", reqId: m.reqId, error: String(error.message || error) }); return; }
     var fps = snap.settings.fps || 30;
     var W = m.format === "gif" ? Math.max(1, Math.round(m.width)) : Math.max(2, Math.round(m.width) & ~1);
@@ -1429,10 +1466,19 @@ canvas{display:block;width:100%;height:100%;}
     if (videoMatteJob) { post({ type: "videoMatteFailed", reqId: m.reqId, error: "Background removal is already running" }); return; }
     var source = videos.get(m.clip.mediaId);
     if (!source) { post({ type: "videoMatteFailed", reqId: m.reqId, error: "Video source is still loading" }); return; }
-    var job = { reqId: m.reqId, controller: new AbortController() }; videoMatteJob = job;
+    var job = { reqId: m.reqId, controller: new AbortController(), pendingPage: null }; videoMatteJob = job;
+    function storePage(page, plan, pageIndex) {
+      return new Promise(function(resolve, reject) {
+        function aborted() { job.pendingPage = null; reject(new DOMException("Background removal cancelled", "AbortError")); }
+        if (job.controller.signal.aborted) { aborted(); return; }
+        job.controller.signal.addEventListener("abort", aborted, { once: true });
+        job.pendingPage = { pageIndex: pageIndex, resolve: function(id) { job.controller.signal.removeEventListener("abort", aborted); job.pendingPage = null; resolve(id); } };
+        post({ type: "videoMattePage", reqId: job.reqId, plan: plan, page: page, pageIndex: pageIndex });
+      });
+    }
     createVideoMatte(source.currentSrc || source.src, m.clip, m.fps, function(progress) {
       if (videoMatteJob === job) post({ type: "videoMatteProgress", reqId: m.reqId, progress: progress });
-    }, job.controller.signal).then(function(result) {
+    }, job.controller.signal, m.paged ? storePage : null).then(function(result) {
       if (videoMatteJob === job) post({ type: "videoMatteDone", reqId: m.reqId, result: result });
     }, function(error) {
       if (videoMatteJob === job) post({ type: "videoMatteFailed", reqId: m.reqId, error: String(error.message || error) });
@@ -1622,8 +1668,18 @@ canvas{display:block;width:100%;height:100%;}
       schedule();
     } else if (m.type === "videoAck") {
       sendNextChunk(m.reqId);
+    } else if (m.type === "matteMeta") {
+      if (allowedMatteImages.has(m.id)) matteMeta.set(m.id, { width: m.width, height: m.height });
+    } else if (m.type === "mattePage") {
+      var request = matteRequests.get(m.reqId); if (!request) return;
+      if (m.error || typeof m.src !== "string" || !m.src.startsWith("data:image/png;base64,") || m.src.length > 22 + 4 * Math.ceil(16 * 1024 * 1024 / 3)) { request.finish(new Error(m.error || "Invalid background page")); return; }
+      var image = new Image();
+      image.onload = function() { image.onload = null; image.onerror = null; request.finish(null, image); schedule(); };
+      image.onerror = function() { image.src = ""; request.finish(new Error("Background page could not be decoded")); };
+      image.src = m.src;
     } else if (m.type === "mattePrune") {
       allowedMatteImages = new Set(m.ids || []);
+      matteMeta.forEach(function(_, id) { if (!allowedMatteImages.has(id)) matteMeta.delete(id); });
       matteImages.forEach(function(id) { if (!allowedMatteImages.has(id)) { var image = images.get(id); if (image) image.src = ""; images.delete(id); matteImages.delete(id); } });
     } else if (m.type === "media") {
       var img = new Image();
@@ -1655,6 +1711,9 @@ canvas{display:block;width:100%;height:100%;}
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
     } else if (m.type === "videoMatte") {
       processVideoMatte(m);
+    } else if (m.type === "videoMattePageSaved") {
+      var job = videoMatteJob;
+      if (job && job.reqId === m.reqId && job.pendingPage && job.pendingPage.pageIndex === m.pageIndex) job.pendingPage.resolve(m.mediaId);
     } else if (m.type === "videoMatteCancel") {
       cancelVideoMatte(m.reqId);
     } else if (m.type === "cutout") {
@@ -1704,5 +1763,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+</body></html>`.replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
   .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
