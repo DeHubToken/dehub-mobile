@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Avoaka amin'ny rojo ity lahatsoratra ity",
     "giftBoost": "Manolotra boost",
     "giftBoostDesc": "Lanio ny iray amin'ny anao amin'ity lahatsoratra ity",
-    "askAi": "Anontanio ny AI"
+    "askAi": "Anontanio ny AI",
+    "aiOverview": "MANDRAKIZAY"
   },
   "filters": {
     "sort": "Alamino",
@@ -6915,24 +6916,24 @@
       "hint": "Ny minitra ihany dia mila minitra 10. Noise fampihenana miasa tsara indrindra amin'ny fototra tapaka tabataba."
     },
     "pages": {
-    "add":  "Hanampy pejy",
-    "duplicate":  "Adikao ny pejy",
-    "delete":  "Fafao ny pejy",
-    "page":  "Pejy {{number}}",
-    "position":  "Pejy {{current}} amin'ny {{total}}",
-    "label":  "Pejy",
-    "allZip":  "Ireo pejy {{count}} rehetra (ZIP)",
-    "thisPage":  "Ity pejy ity ihany",
-    "exporting":  "Mamorona ny pejy {{current}} amin'ny {{total}}…"
-},
+      "add": "Hanampy pejy",
+      "duplicate": "Adikao ny pejy",
+      "delete": "Fafao ny pejy",
+      "page": "Pejy {{number}}",
+      "position": "Pejy {{current}} amin'ny {{total}}",
+      "label": "Pejy",
+      "allZip": "Ireo pejy {{count}} rehetra (ZIP)",
+      "thisPage": "Ity pejy ity ihany",
+      "exporting": "Mamorona ny pejy {{current}} amin'ny {{total}}…"
+    },
     "captions": {
-        "action":  "Dikanteny mandeha ho azy",
-        "working":  "Mihaino… {{percent}}%",
-        "downloading":  "Manomana ny modely feo… {{percent}}%",
-        "hint":  "Mamadika ny teny ho dikanteny mifanaraka amin'ny fotoana izay azonao ovaina ny endriny. Mandeha amin'ny fitaovanao: maimaim-poana sy tsiambaratelo. Misintona ny modely amin'ny fampiasana voalohany.",
-        "done":  "Dikanteny {{count}} no nampiana.",
-        "noSpeech":  "Tsy nisy teny hita tao amin'ity clip ity.",
-        "failed":  "Tsy afaka namorona dikanteny ho an'ity clip ity."
+      "action": "Dikanteny mandeha ho azy",
+      "working": "Mihaino… {{percent}}%",
+      "downloading": "Manomana ny modely feo… {{percent}}%",
+      "hint": "Mamadika ny teny ho dikanteny mifanaraka amin'ny fotoana izay azonao ovaina ny endriny. Mandeha amin'ny fitaovanao: maimaim-poana sy tsiambaratelo. Misintona ny modely amin'ny fampiasana voalohany.",
+      "done": "Dikanteny {{count}} no nampiana.",
+      "noSpeech": "Tsy nisy teny hita tao amin'ity clip ity.",
+      "failed": "Tsy afaka namorona dikanteny ho an'ity clip ity."
     },
     "app": {
       "newDesign": "Famolavolana vaovao",

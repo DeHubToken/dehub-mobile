@@ -1022,7 +1022,8 @@
     "mintPostDesc": "この投稿をオンチェーンで公開します",
     "giftBoost": "ブーストを贈る",
     "giftBoostDesc": "自分のブーストをこの投稿に使います",
-    "askAi": "AIに質問"
+    "askAi": "AIに質問",
+    "aiOverview": "AIの概要"
   },
   "filters": {
     "sort": "並べ替え",

@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Bu ýazgyny zynjyrda çap et",
     "giftBoost": "Güýçlendirme sowgat et",
     "giftBoostDesc": "Özüňkiden birini şu ýazga sarp et",
-    "askAi": "AI-den sora"
+    "askAi": "AI-den sora",
+    "aiOverview": "Görüş"
   },
   "filters": {
     "sort": "Tertiple",
@@ -6814,24 +6815,24 @@
       "hint": "Gotdibz 10 Ses azaldylmagy berk arkaýyn gürültü bilen iň gowy işleşýär."
     },
     "pages": {
-    "add":  "Sahypa goş",
-    "duplicate":  "Sahypany göçür",
-    "delete":  "Sahypany poz",
-    "page":  "Sahypa {{number}}",
-    "position":  "Sahypa {{current}} / {{total}}",
-    "label":  "Sahypalar",
-    "allZip":  "Ähli {{count}} sahypa (ZIP)",
-    "thisPage":  "Diňe şu sahypa",
-    "exporting":  "Sahypa {{current}} / {{total}} taýýarlanýar…"
-},
+      "add": "Sahypa goş",
+      "duplicate": "Sahypany göçür",
+      "delete": "Sahypany poz",
+      "page": "Sahypa {{number}}",
+      "position": "Sahypa {{current}} / {{total}}",
+      "label": "Sahypalar",
+      "allZip": "Ähli {{count}} sahypa (ZIP)",
+      "thisPage": "Diňe şu sahypa",
+      "exporting": "Sahypa {{current}} / {{total}} taýýarlanýar…"
+    },
     "captions": {
-        "action":  "Awtomatik subtitrler",
-        "working":  "Diňleýär… {{percent}}%",
-        "downloading":  "Gürleýiş modeli taýýarlanýar… {{percent}}%",
-        "hint":  "Gürleýşi wagta laýyk subtitrlere öwürýär, olaryň stilini üýtgedip bilersiňiz. Enjamyňyzda işleýär: mugt we şahsy. Ilkinji ulanylanda model ýüklenýär.",
-        "done":  "{{count}} subtitr goşuldy.",
-        "noSpeech":  "Bu klipde gürleýiş tapylmady.",
-        "failed":  "Bu klip üçin subtitr döredip bolmady."
+      "action": "Awtomatik subtitrler",
+      "working": "Diňleýär… {{percent}}%",
+      "downloading": "Gürleýiş modeli taýýarlanýar… {{percent}}%",
+      "hint": "Gürleýşi wagta laýyk subtitrlere öwürýär, olaryň stilini üýtgedip bilersiňiz. Enjamyňyzda işleýär: mugt we şahsy. Ilkinji ulanylanda model ýüklenýär.",
+      "done": "{{count}} subtitr goşuldy.",
+      "noSpeech": "Bu klipde gürleýiş tapylmady.",
+      "failed": "Bu klip üçin subtitr döredip bolmady."
     },
     "app": {
       "newDesign": "Täze dizaýn",

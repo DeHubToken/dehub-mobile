@@ -1022,7 +1022,8 @@
     "mintPostDesc": "把这个帖子发布到链上",
     "giftBoost": "赠送一次助推",
     "giftBoostDesc": "把你的一次助推花在这个帖子上",
-    "askAi": "问AI"
+    "askAi": "问AI",
+    "aiOverview": "AI概述"
   },
   "filters": {
     "sort": "排序",

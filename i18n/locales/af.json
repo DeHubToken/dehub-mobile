@@ -1023,7 +1023,8 @@
     "mintPostDesc": "Publiseer hierdie plasing op die ketting",
     "giftBoost": "Skenk 'n hupstoot",
     "giftBoostDesc": "Bestee een van joune op hierdie plasing",
-    "askAi": "Vra KI"
+    "askAi": "Vra KI",
+    "aiOverview": "AI-oorsig"
   },
   "filters": {
     "sort": "Sorteer",
@@ -6960,24 +6961,24 @@
       "hint": "Verwerk snitte tot 10 minute. Geraasvermindering werk die beste met bestendige agtergrond geraas."
     },
     "pages": {
-    "add":  "Voeg bladsy by",
-    "duplicate":  "Dupliseer bladsy",
-    "delete":  "Skrap bladsy",
-    "page":  "Bladsy {{number}}",
-    "position":  "Bladsy {{current}} van {{total}}",
-    "label":  "Bladsye",
-    "allZip":  "Al {{count}} bladsye (ZIP)",
-    "thisPage":  "Slegs hierdie bladsy",
-    "exporting":  "Lewer bladsy {{current}} van {{total}}…"
-},
+      "add": "Voeg bladsy by",
+      "duplicate": "Dupliseer bladsy",
+      "delete": "Skrap bladsy",
+      "page": "Bladsy {{number}}",
+      "position": "Bladsy {{current}} van {{total}}",
+      "label": "Bladsye",
+      "allZip": "Al {{count}} bladsye (ZIP)",
+      "thisPage": "Slegs hierdie bladsy",
+      "exporting": "Lewer bladsy {{current}} van {{total}}…"
+    },
     "captions": {
-        "action":  "Outo-onderskrifte",
-        "working":  "Luister tans… {{percent}}%",
-        "downloading":  "Maak die spraakmodel gereed… {{percent}}%",
-        "hint":  "Verander spraak in getimede onderskrifte wat jy kan herstileer. Loop op jou toestel: gratis en privaat. Die eerste gebruik laai die model af.",
-        "done":  "{{count}} onderskrifte bygevoeg.",
-        "noSpeech":  "Geen spraak in hierdie snit gevind nie.",
-        "failed":  "Kon nie onderskrifte vir hierdie snit skep nie."
+      "action": "Outo-onderskrifte",
+      "working": "Luister tans… {{percent}}%",
+      "downloading": "Maak die spraakmodel gereed… {{percent}}%",
+      "hint": "Verander spraak in getimede onderskrifte wat jy kan herstileer. Loop op jou toestel: gratis en privaat. Die eerste gebruik laai die model af.",
+      "done": "{{count}} onderskrifte bygevoeg.",
+      "noSpeech": "Geen spraak in hierdie snit gevind nie.",
+      "failed": "Kon nie onderskrifte vir hierdie snit skep nie."
     },
     "app": {
       "newDesign": "Nuwe ontwerp",

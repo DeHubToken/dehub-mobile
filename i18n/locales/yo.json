@@ -1021,7 +1021,8 @@
     "mintPostDesc": "Tẹ ìfìwéránṣẹ́ yìí jáde lórí ẹ̀wọ̀n",
     "giftBoost": "Ta boost lọ́rẹ",
     "giftBoostDesc": "Ná ọ̀kan nínú tìrẹ lórí ìfìwéránṣẹ́ yìí",
-    "askAi": "Béèrè lọ́wọ́ AI"
+    "askAi": "Béèrè lọ́wọ́ AI",
+    "aiOverview": "Àkíyèsí AI"
   },
   "filters": {
     "sort": "Tò",
@@ -6816,24 +6817,24 @@
       "hint": "Àwọn àmúyẹ fun gbígbọ́ orin ko le ṣiṣẹ lori ẹ̀rọ rẹ Àkọlé fídíò Ìdènà ariwo máa ń ṣiṣẹ́ dáradára pẹ̀lú ariwo àtẹ̀yìnwá tí ó dúró ṣánṣán."
     },
     "pages": {
-    "add":  "Fi ojú-ìwé kún un",
-    "duplicate":  "Ṣe ẹ̀dà ojú-ìwé",
-    "delete":  "Pa ojú-ìwé rẹ́",
-    "page":  "Ojú-ìwé {{number}}",
-    "position":  "Ojú-ìwé {{current}} nínú {{total}}",
-    "label":  "Àwọn ojú-ìwé",
-    "allZip":  "Gbogbo ojú-ìwé {{count}} (ZIP)",
-    "thisPage":  "Ojú-ìwé yìí nìkan",
-    "exporting":  "Ń ṣe ojú-ìwé {{current}} nínú {{total}}…"
-},
+      "add": "Fi ojú-ìwé kún un",
+      "duplicate": "Ṣe ẹ̀dà ojú-ìwé",
+      "delete": "Pa ojú-ìwé rẹ́",
+      "page": "Ojú-ìwé {{number}}",
+      "position": "Ojú-ìwé {{current}} nínú {{total}}",
+      "label": "Àwọn ojú-ìwé",
+      "allZip": "Gbogbo ojú-ìwé {{count}} (ZIP)",
+      "thisPage": "Ojú-ìwé yìí nìkan",
+      "exporting": "Ń ṣe ojú-ìwé {{current}} nínú {{total}}…"
+    },
     "captions": {
-        "action":  "Àkọlé aládàáṣe",
-        "working":  "Ń gbọ́… {{percent}}%",
-        "downloading":  "Ń ṣètò àwòṣe ọ̀rọ̀ sísọ… {{percent}}%",
-        "hint":  "Ó ń sọ ọ̀rọ̀ sísọ di àkọlé tí a ṣètò àkókò rẹ̀, tí o lè yí ìrísí rẹ̀ padà. Ó ń ṣiṣẹ́ lórí ẹ̀rọ rẹ: ọ̀fẹ́ àti àṣírí. Ìlò àkọ́kọ́ yóò ṣe ìgbàsílẹ̀ àwòṣe náà.",
-        "done":  "A ti ṣàfikún àkọlé {{count}}.",
-        "noSpeech":  "A kò rí ọ̀rọ̀ sísọ nínú agekuru yìí.",
-        "failed":  "A kò lè ṣẹ̀dá àkọlé fún agekuru yìí."
+      "action": "Àkọlé aládàáṣe",
+      "working": "Ń gbọ́… {{percent}}%",
+      "downloading": "Ń ṣètò àwòṣe ọ̀rọ̀ sísọ… {{percent}}%",
+      "hint": "Ó ń sọ ọ̀rọ̀ sísọ di àkọlé tí a ṣètò àkókò rẹ̀, tí o lè yí ìrísí rẹ̀ padà. Ó ń ṣiṣẹ́ lórí ẹ̀rọ rẹ: ọ̀fẹ́ àti àṣírí. Ìlò àkọ́kọ́ yóò ṣe ìgbàsílẹ̀ àwòṣe náà.",
+      "done": "A ti ṣàfikún àkọlé {{count}}.",
+      "noSpeech": "A kò rí ọ̀rọ̀ sísọ nínú agekuru yìí.",
+      "failed": "A kò lè ṣẹ̀dá àkọlé fún agekuru yìí."
     },
     "app": {
       "newDesign": "Àpẹẹrẹ tuntun",
