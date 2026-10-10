@@ -4,7 +4,7 @@ import { Gesture } from 'react-native-gesture-handler';
 import { measure, runOnJS, useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { usePagerGestureRef } from '../context/PagerGestureContext';
 
-export const SCRUB_HIT_HEIGHT = 80;
+export const SCRUB_HIT_HEIGHT = 64;
 export const SCRUB_BELOW_SLOP = 24;
 
 type ScrubCallbacks = {
