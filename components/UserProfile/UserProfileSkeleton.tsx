@@ -23,8 +23,8 @@ const UserProfileSkeleton: React.FC = () => {
         {/* Avatar + follow button row */}
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View
-            className="bg-theme-neutrals-700 animate-pulse"
-            style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#010305' }}
+            className="animate-pulse"
+            style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#18181b', backgroundColor: '#18181b' }}
           />
           {/* Minimal's header button is a 44pt hairline outline, not a slab. */}
           {isMinimal ? (
