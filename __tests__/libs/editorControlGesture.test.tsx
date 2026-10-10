@@ -7,6 +7,10 @@ import { EditorRange } from "../../components/editor/EditorRange";
 import { EditorControlGestureContext } from "../../components/editor/EditorControlGesture";
 jest.mock("react-native-css-interop",()=>({createInteropElement:require("react").createElement}));
 jest.mock("react-native-css-interop/jsx-runtime",()=>jest.requireActual("react/jsx-runtime"));
+jest.mock("react-native",()=>({
+  View:"View",Text:"Text",TextInput:"TextInput",Image:"Image",Switch:"Switch",ScrollView:"ScrollView",Modal:"Modal",Pressable:"Pressable",
+  StyleSheet:{create:(styles:unknown)=>styles,flatten:(styles:unknown)=>styles},
+}));
 jest.mock("@react-native-community/slider",()=>{
   return function SliderBridge(props:unknown){return require("react").createElement(require("react-native").View,{...(props as object),testID:"control-slider"});};
 });
