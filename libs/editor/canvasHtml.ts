@@ -38,6 +38,7 @@ import { CAPTIONS_WORKER } from "./captionsWorker";
 import { MEDIA_LEASES_RUNTIME } from "./mediaLeasesRuntime";
 import { AUDIO_TOOLS_RUNTIME, AUDIO_TOOLS_WORKER } from "./audioToolsRuntime";
 import { GIF_RUNTIME, GIF_WORKER } from "./gifRuntime";
+import { GIF_TIMELINE_RUNTIME } from "./gifTimelineRuntime";
 import { VISUAL_FRAME_RUNTIME } from "./visualFrameRuntime";
 import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
@@ -65,12 +66,14 @@ canvas{display:block;width:100%;height:100%;}
   __MEDIA_LEASES_RUNTIME__
   __EXPORT_RANGES_RUNTIME__
   __GIF_RUNTIME__
+  __GIF_TIMELINE_RUNTIME__
   __SHOT_RUNTIME__
   __VISUAL_FRAME_RUNTIME__
   __VIDEO_MATTE_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
+  var gifImages = new Map(), imageLoads = new Map();
   var matteImages = new Set(), allowedMatteImages = new Set();
   __VIDEO_MATTE_PAGE_CACHE_RUNTIME__
   var matteMeta = new Map(), matteRequests = new Map(), matteSequence = 0;
@@ -260,14 +263,15 @@ canvas{display:block;width:100%;height:100%;}
     return t;
   }
   function isVisualClip(clip) { return clip.kind === "video" || clip.kind === "image" || clip.kind === "text" || clip.kind === "shape"; }
-  function mediaSource(clip) {
+  function mediaSource(clip, sourceTime) {
     if (clip.kind === "video") {
       var v = videoAliases.get(clip.id) || videos.get(clip.mediaId);
       return v && v.videoWidth ? { el: v, w: v.videoWidth, h: v.videoHeight } : null;
     }
     if (clip.kind !== "image") return null;
     var img = images.get(clip.mediaId);
-    return img && img.naturalWidth ? { el: img, w: img.naturalWidth, h: img.naturalHeight } : null;
+    var gif = gifImages.get(clip.mediaId);
+    return img && img.naturalWidth ? { el: gif && sourceTime != null ? gif.frame(sourceTime) : img, w: img.naturalWidth, h: img.naturalHeight } : null;
   }
   function cropOf(clip) {
     var c = clip.crop;
@@ -387,7 +391,7 @@ canvas{display:block;width:100%;height:100%;}
 
   var matteCanvas = null;
   function drawMedia(c, clip, box, H, sourceTime) {
-    var m = mediaSource(clip);
+    var m = mediaSource(clip, sourceTime);
     if (!m) return;
     var cr = cropOf(clip);
     var sx = m.w * cr.left, sy = m.h * cr.top;
@@ -617,7 +621,7 @@ canvas{display:block;width:100%;height:100%;}
     var list = effectsList(clip);
     var key = clip.mediaId + "|" + [sx, sy, sw, sh].join(",") + "|" + JSON.stringify(list);
     var hit = filterCache.get(key);
-    if (hit && clip.kind !== "video") return hit;
+    if (hit && clip.kind !== "video" && !gifImages.has(clip.mediaId)) return hit;
     var k = Math.min(1, 1600 / Math.max(sw, sh));
     var tmp = document.createElement("canvas");
     tmp.width = Math.max(1, Math.round(sw * k));
@@ -646,7 +650,7 @@ canvas{display:block;width:100%;height:100%;}
     }
     tc.putImageData(data, 0, 0);
     if (filterCache.size > 24) filterCache.clear();
-    if (clip.kind !== "video") filterCache.set(key, tmp);
+    if (clip.kind !== "video" && !gifImages.has(clip.mediaId)) filterCache.set(key, tmp);
     return tmp;
   }
 
@@ -1701,11 +1705,30 @@ canvas{display:block;width:100%;height:100%;}
       allowedMatteImages = new Set(m.ids || []);
       matteMeta.forEach(function(_, id) { if (!allowedMatteImages.has(id)) matteMeta.delete(id); });
       matteImages.forEach(function(id) { if (!allowedMatteImages.has(id)) { var image = images.get(id); if (image) image.src = ""; images.delete(id); matteImages.delete(id); } });
+    } else if (m.type === "imagePrune") {
+      var livePictures = new Set(m.ids || []);
+      images.forEach(function(image, id) {
+        if (!livePictures.has(id) && !matteImages.has(id)) { image.src = ""; images.delete(id); gifImages.delete(id); }
+      });
+      imageLoads.forEach(function(image, id) {
+        if (!livePictures.has(id)) { image.src = ""; imageLoads.delete(id); }
+      });
     } else if (m.type === "media") {
       var img = new Image();
+      var replaced = imageLoads.get(m.id); if (replaced) replaced.src = "";
+      imageLoads.set(m.id, img);
       if (m.internalMatte) matteImages.add(m.id);
-      img.onload = function () { if (m.internalMatte && !allowedMatteImages.has(m.id)) { img.src = ""; return; } images.set(m.id, img); filterCache.clear(); schedule(); };
-      img.onerror = function () { post({ type: "mediaFailed", id: m.id }); };
+      var gif = null;
+      try {
+        if (/^data:image\/gif(?:;[^,]*)?;base64,/i.test(m.src)) gif = createGifCanvas(b64ToBytes(m.src.slice(m.src.indexOf(",") + 1)));
+      } catch (error) { imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); return; }
+      img.onload = function () {
+        if (imageLoads.get(m.id) !== img || (m.internalMatte && !allowedMatteImages.has(m.id))) { img.src = ""; return; }
+        imageLoads.delete(m.id); images.set(m.id, img);
+        if (gif) gifImages.set(m.id, gif); else gifImages.delete(m.id);
+        filterCache.clear(); schedule();
+      };
+      img.onerror = function () { if (imageLoads.get(m.id) !== img) return; imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
     } else if (m.type === "stats") {
       // Picture statistics for Auto enhance, from a 64x64 sample (web autoEnhance.ts).
@@ -1784,4 +1807,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";");
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME);
