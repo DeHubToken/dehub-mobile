@@ -1,3 +1,4 @@
+import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
@@ -1620,7 +1621,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           the window the panel scrolls instead. */}
       {tool && (
         <View className="bg-theme-neutrals-900 border-t border-white/10 px-4 pt-3 pb-1" style={{ maxHeight: Math.min(260, windowHeight * 0.35) }}>
-          <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
+          <EditorControlGestureContext.Provider key={`${project.id}:${selectedId}:${tool}`} value={{ scope: `${project.id}:${selectedId}:${tool}`, begin: () => h.holdEdits(projectReviewSnapshotKey(project)) }}>
+            <ScrollView keyboardShouldPersistTaps="handled">{renderPanel()}</ScrollView>
+          </EditorControlGestureContext.Provider>
         </View>
       )}
 
