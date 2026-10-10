@@ -17,7 +17,7 @@ it("releases a failed native preview when a known page becomes available", () =>
 });
 it("invalidates stale decoded pages when the native project sources change", () => {
   const cache = { refreshSources: jest.fn() }, meta = new Map([["old", {}]]), image = { src: "old" }, images = new Map([["old", image]]), mattes = new Set(["old"]);
-  const receive = new Function("m", "mattePageCache", "matteMeta", "matteImages", "images", 'var allowedMatteImages; ' + branch("mattePrune", "media") + '; return allowedMatteImages;');
+  const receive = new Function("m", "mattePageCache", "matteMeta", "matteImages", "images", 'var allowedMatteImages; ' + branch("mattePrune", "imagePrune") + '; return allowedMatteImages;');
   const allowed = receive({ ids: ["new"] }, cache, meta, mattes, images);
   expect(cache.refreshSources).toHaveBeenCalledTimes(1); expect([...allowed]).toEqual(["new"]); expect(meta.size).toBe(0); expect(images.size).toBe(0); expect(image.src).toBe("");
 });
