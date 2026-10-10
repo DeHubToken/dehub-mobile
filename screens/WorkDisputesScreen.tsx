@@ -1,3 +1,4 @@
+import { useDraftState } from '../hooks/useDraftState';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkDisputesScreen
@@ -66,7 +67,7 @@ export default function WorkDisputesScreen() {
 
   const { data: disputes = [], isLoading, isError, refetch } = useAdminDisputes(admin);
   const resolve = useAdminResolveDispute();
-  const [drafts, setDrafts] = useState<Record<string, Draft>>({});
+  const [drafts, setDrafts] = useDraftState<Record<string, Draft>>(`form:screens/WorkDisputesScreen.tsx:drafts:${'disputes'}`, {});
 
   const escrowed = false;
 

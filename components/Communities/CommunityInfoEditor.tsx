@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 /**
  * CommunityInfoEditor
  * ===================
@@ -30,15 +31,15 @@ export function CommunityInfoEditor({ community, onSaved }: CommunityInfoEditorP
   const moderation = useCommunityModeration(community.id);
 
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(community.name);
-  const [description, setDescription] = useState(community.description ?? "");
+  const [name, setName] = useDraftState(`form:components/Communities/CommunityInfoEditor.tsx:name:${community.id}`, community.name);
+  const [description, setDescription] = useDraftState(`form:components/Communities/CommunityInfoEditor.tsx:description:${community.id}`, community.description ?? "");
 
   // Re-seed whenever the community itself changes, so a save elsewhere (or the
   // parent's reload) does not leave stale text in a closed editor.
   useEffect(() => {
-    setName(community.name);
-    setDescription(community.description ?? "");
-  }, [community.name, community.description]);
+    setName.initialize(community.name);
+    setDescription.initialize(community.description ?? "");
+  }, [community.name, community.description, setDescription, setName]);
 
   const saving = moderation.busy === "__community__";
   const trimmedName = name.trim();
@@ -54,6 +55,7 @@ export function CommunityInfoEditor({ community, onSaved }: CommunityInfoEditorP
       t("communities.infoUpdated", { defaultValue: "Community updated" }),
     );
     if (ok) {
+      setName.complete(name, trimmedName); setDescription.complete(description, trimmedDescription);
       setOpen(false);
       await onSaved();
     }

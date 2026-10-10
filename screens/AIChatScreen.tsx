@@ -1,3 +1,4 @@
+import { useDraftState } from '../hooks/useDraftState';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 /**
  * AI Assistant.
@@ -222,7 +223,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const walletAddress = user?.walletAddress || user?.address || null;
   const userId = walletAddress || 'anon';
   const {
-    conversationId,
+    conversationId, draftScope,
     getConversationId,
     patchStoredMessage,
     messages,
@@ -234,10 +235,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     deleteConversation,
     clearAll,
     refreshConversations,
-  } = useAIConversation(userId);
+  } = useAIConversation(userId, studio ? 'creator' : 'assistant');
 
-  const [input, setInput] = useState('');
-  const mentions = useMentions(input, setInput);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
@@ -280,6 +279,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   useEffect(() => {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
+  const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
+  const mentions = useMentions(input, setInput);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
   const librarySaves = useRef(new Set<string>());
@@ -292,7 +293,6 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     studioDrafts.current[studioSettings.mode] = { settings: studioSettings, prompt: input, templateId, image: attachedImage };
     const draft = studioDrafts.current[mode];
     setStudioSettings(draft?.settings ?? CREATOR_DEFAULTS[mode]);
-    setInput(draft?.prompt ?? '');
     setTemplateId(draft?.templateId ?? null);
     setAttachedImage(draft?.image ?? null);
   };
@@ -369,8 +369,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   // at what will be asked — same as web, which lands on /app?prompt=…
   const initialPrompt: string | undefined = editorDraft?.draft.prompt ?? route.params?.initialPrompt;
   useEffect(() => {
-    if (initialPrompt) setInput(initialPrompt);
-  }, [initialPrompt]);
+    if (initialPrompt) setInput.initialize(initialPrompt);
+  }, [initialPrompt, setInput]);
 
   const userContext: AIUserContext | undefined = useMemo(() => {
     if (!user) return undefined;
@@ -419,6 +419,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
   const doSendChat = useCallback(
     async (text: string, history: AIChatMessage[]) => {
+      const submitted = input;
       setIsLoading(true);
       setActiveTools([]);
       scrollToEnd();
@@ -467,6 +468,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             setStreamingContent(null);
             setIsLoading(false);
             setActiveTools([]);
+            if (setInput.complete(submitted, '')) setAttachedImage(null);
             commit(streamed || 'No response');
             scrollToEnd();
           },
@@ -1136,6 +1138,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             imageUrl: Image.resolveAssetSource(DEHUB_LOGO).uri,
           },
         ]);
+        setInput.complete(input, '');
         scrollToEnd();
         return;
       }
@@ -1244,8 +1247,6 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       }
     }
     await saveMessage(history);
-    setInput('');
-    setAttachedImage(null);
 
     await routePrompt(text, history, sourceImage, hadAttachment, activeTemplate?.id, creator);
     } catch (error) {
@@ -1567,7 +1568,6 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     streamRef.current = null;
     setStreamingContent(null);
     startNewConversation();
-    setInput('');
     setAttachedImage(null);
     setIsLoading(false);
   }, [startNewConversation]);
@@ -1582,8 +1582,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       for (const key of failedLibrarySaves.current) librarySaves.current.delete(key);
       failedLibrarySaves.current.clear();
       loadConversation(entry);
-      setInput('');
-    },
+      },
     [loadConversation],
   );
 
@@ -2013,7 +2012,7 @@ const s = StyleSheet.create({
   },
 });
 
-export default function AIChatScreen() {
+function AIChatScreenForAccount() {
   return (
     <SignInGate>
       <AIChatScreenInner />
@@ -2022,5 +2021,11 @@ export default function AIChatScreen() {
 }
 
 export function CreatorStudioScreen() {
-  return <AIChatScreenInner studio />;
+  const user = useUser();
+  return <AIChatScreenInner key={user?.walletAddress || user?.address || 'guest'} studio />;
+}
+
+export default function AIChatScreen() {
+  const user = useUser();
+  return <AIChatScreenForAccount key={user?.walletAddress || user?.address || 'guest'} />;
 }
