@@ -2,6 +2,8 @@ require File.join(File.dirname(`node --print "require.resolve('expo/package.json
 require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
 
 require 'json'
+require_relative '../scripts/configure-screen-capture-targets'
+configure_screen_capture_targets(__dir__)
 podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties.json'))) rescue {}
 
 def ccache_enabled?(podfile_properties)
@@ -59,5 +61,15 @@ target 'DeHub' do
       :mac_catalyst_enabled => false,
       :ccache_enabled => ccache_enabled?(podfile_properties),
     )
+    # Resource bundles also need the app's supported deployment target.
+    minimum_ios = Gem::Version.new(podfile_properties['ios.deploymentTarget'] || '15.1')
+    installer.pods_project.targets.each do |pod_target|
+      pod_target.build_configurations.each do |configuration|
+        current = configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_s
+        if !current.match?(/\A\d+(?:\.\d+)*\z/) || Gem::Version.new(current) < minimum_ios
+          configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_ios.to_s
+        end
+      end
+    end
   end
 end

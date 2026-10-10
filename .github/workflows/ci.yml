@@ -127,6 +127,173 @@ jobs:
             echo "No coverage summary produced." >> $GITHUB_STEP_SUMMARY
           fi
 
+  editor-screen-capture-android:
+    name: Android screen capture compile
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/editor-system-screen-recording-mobile-20261010'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Prove the capture module is included in native autolinking
+        run: |
+          npx expo-modules-autolinking resolve --platform android --json > screen-capture-modules.json
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('screen-capture-modules.json', 'utf8'));
+          const projects = result.modules.flatMap(module => module.projects ?? []);
+          const capture = projects.filter(project => /\/modules\/screen-capture\/android$/.test(project.sourceDir));
+          if (capture.length !== 1 || !/^[a-zA-Z0-9_-]+$/.test(capture[0].name)) throw new Error('Screen capture native module was not resolved exactly once');
+          fs.writeFileSync('screen-capture-gradle-project.txt', capture[0].name);
+          NODE
+      - name: Compile native capture and test framing and PCM mixing
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          CAPTURE_PROJECT="$(cat ../screen-capture-gradle-project.txt)"
+          ./gradlew :app:processDebugMainManifest :app:compileDebugKotlin ":${CAPTURE_PROJECT}:testDebugUnitTest" --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screen-capture-native-resolution
+          path: |
+            screen-capture-modules.json
+            screen-capture-gradle-project.txt
+            modules/screen-capture/android/build/reports/tests/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  editor-screen-capture-recovery-ios:
+    name: iOS screen capture media and recovery
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/editor-system-screen-recording-mobile-20261010'
+    runs-on: xcode-27
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - run: sudo xcode-select -s /Applications/Xcode_27.app/Contents/Developer
+      - name: Validate media encoding, audio blending, and persisted ownership
+        run: swift test --package-path modules/screen-capture --xunit-output screen-capture-recovery.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screen-capture-recovery-ios
+          path: screen-capture-recovery.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+  editor-screen-capture-ios:
+    name: iOS screen capture compile
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/editor-system-screen-recording-mobile-20261010'
+    runs-on: xcode-27
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Select stable iOS 27 SDK
+        run: |
+          sudo xcode-select -s /Applications/Xcode_27.app/Contents/Developer
+          xcodebuild -version
+          test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" = '27'
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          cp "$SDK/System/Library/Frameworks/ScreenCaptureKit.framework/Headers/SCStream.h" screen-capture-sdk-stream.h
+          printf '%s\n' 'import ScreenCaptureKit' > "$RUNNER_TEMP/screen-capture-sdk-check.swift"
+          swiftc -typecheck -sdk "$SDK" -target arm64-apple-ios15.1 "$RUNNER_TEMP/screen-capture-sdk-check.swift"
+          python3 <<'PY'
+          import pathlib, shutil, subprocess
+          developer = pathlib.Path(subprocess.check_output(['xcode-select', '-p'], text=True).strip())
+          roots = [developer / 'Library/Xcode/Templates', *developer.glob('Platforms/*/Developer/Library/Xcode/Templates')]
+          found = []
+          for templates in roots:
+              for source in templates.rglob('*'):
+                  if 'broadcast' not in str(source.relative_to(templates)).lower():
+                      continue
+                  found.append(str(source))
+                  if source.is_file() and source.suffix in {'.plist', '.swift', '.h', '.m'}:
+                      target = pathlib.Path('screen-capture-sdk-templates') / source.relative_to(developer)
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copyfile(source, target)
+          pathlib.Path('screen-capture-sdk-broadcast-templates.txt').write_text('\n'.join(found))
+          PY
+      - run: npm ci --legacy-peer-deps
+      - name: Resolve the capture pod and embedded broadcast extensions
+        working-directory: ios
+        run: |
+          pod install
+          ruby ../scripts/configure-screen-capture-targets.rb
+          cp DeHub.xcodeproj/project.pbxproj "$RUNNER_TEMP/screen-capture-project-first.pbxproj"
+          ruby ../scripts/configure-screen-capture-targets.rb
+          cmp DeHub.xcodeproj/project.pbxproj "$RUNNER_TEMP/screen-capture-project-first.pbxproj"
+          ruby -rxcodeproj <<'RUBY'
+          project = Xcodeproj::Project.open('DeHub.xcodeproj')
+          app = project.targets.find { |target| target.name == 'DeHub' }
+          embed = app.copy_files_build_phases.find { |phase| phase.name == 'Embed Screen Capture' }
+          %w[DeHubCaptureSetup DeHubCaptureUpload].each do |name|
+            target = project.targets.find { |item| item.name == name }
+            raise "Missing embedded target #{name}" unless target && embed.files.any? { |file| file.file_ref == target.product_reference }
+            raise "Missing target dependency #{name}" unless app.dependencies.any? { |dependency| dependency.target == target }
+          end
+          RUBY
+          grep -q 'DeHubScreenCapture' Podfile.lock
+      - name: Compile the host module and both broadcast extensions
+        run: |
+          set -o pipefail
+          xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
+            -configuration Debug -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$RUNNER_TEMP/screen-capture-ios" \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee screen-capture-ios-build.log | xcbeautify
+          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app/PlugIns/DeHubCaptureSetup.appex"
+          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app/PlugIns/DeHubCaptureUpload.appex"
+          python3 <<'PY'
+          import os, pathlib, plistlib
+          app = pathlib.Path(os.environ['RUNNER_TEMP']) / 'screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app'
+          with (app / 'Info.plist').open('rb') as file:
+              parent = plistlib.load(file)
+          for name in ['DeHubCaptureSetup', 'DeHubCaptureUpload']:
+              with (app / 'PlugIns' / f'{name}.appex' / 'Info.plist').open('rb') as file:
+                  extension = plistlib.load(file)
+              for key in ['CFBundleShortVersionString', 'CFBundleVersion']:
+                  assert extension[key] == parent[key], f'{name}: {key} must match its containing app'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screen-capture-ios-compile
+          path: |
+            screen-capture-ios-build.log
+            screen-capture-sdk-stream.h
+            screen-capture-sdk-broadcast-templates.txt
+            screen-capture-sdk-templates/
+            ios/Podfile.lock
+            ios/DeHub.xcodeproj/project.pbxproj
+          if-no-files-found: ignore
+          retention-days: 14
+
   speed-preview:
     name: Android speed preview
     needs: verify
