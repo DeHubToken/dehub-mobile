@@ -127,6 +127,58 @@ jobs:
             echo "No coverage summary produced." >> $GITHUB_STEP_SUMMARY
           fi
 
+  editor-screen-capture-android:
+    name: Android screen capture compile
+    needs: verify
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/editor-system-screen-recording-mobile-20261010'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Prove the capture module is included in native autolinking
+        run: |
+          npx expo-modules-autolinking resolve --platform android > screen-capture-modules.json
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('screen-capture-modules.json', 'utf8'));
+          const projects = result.modules.flatMap(module => module.projects ?? []);
+          const capture = projects.filter(project => /\/modules\/screen-capture\/android$/.test(project.sourceDir));
+          if (capture.length !== 1 || !/^[a-zA-Z0-9_-]+$/.test(capture[0].name)) throw new Error('Screen capture native module was not resolved exactly once');
+          fs.writeFileSync('screen-capture-gradle-project.txt', capture[0].name);
+          NODE
+      - name: Compile native capture and test framing and PCM mixing
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          CAPTURE_PROJECT="$(cat ../screen-capture-gradle-project.txt)"
+          ./gradlew :app:processDebugMainManifest :app:compileDebugKotlin ":${CAPTURE_PROJECT}:testDebugUnitTest" --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screen-capture-native-resolution
+          path: |
+            screen-capture-modules.json
+            screen-capture-gradle-project.txt
+            modules/screen-capture/android/build/reports/tests/
+          if-no-files-found: ignore
+          retention-days: 14
+
   speed-preview:
     name: Android speed preview
     needs: verify

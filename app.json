@@ -22,7 +22,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"
     },
-    "runtimeVersion": "sdk55-frost-1",
+    "runtimeVersion": "sdk55-screen-capture-1",
     "ios": {
       "supportsTablet": false,
       "jsEngine": "hermes",
@@ -65,6 +65,8 @@
         "CAMERA",
         "RECORD_AUDIO",
         "android.permission.RECORD_AUDIO",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION",
+        "android.permission.FOREGROUND_SERVICE_MICROPHONE",
         "android.permission.MODIFY_AUDIO_SETTINGS",
         "android.permission.ACCESS_NETWORK_STATE",
         "android.permission.CAMERA",
