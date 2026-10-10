@@ -7432,7 +7432,9 @@
       "matchScenes": "Passende Szenen finden",
       "noMatch": "Keine passenden Szenen gefunden. Versuche ein anderes Thema oder eine andere Auswahl.",
       "matchLimit": "Wähle bis zu 10 Clips oder Fotos. Videos müssen zwischen einer Sekunde und 10 Minuten lang sein.",
-      "matchDuration": "Die passenden Aufnahmen sind kürzer als das gewünschte Video. Verkürze die Dauer oder wähle weitere Medien."
+      "matchDuration": "Die passenden Aufnahmen sind kürzer als das gewünschte Video. Verkürze die Dauer oder wähle weitere Medien.",
+      "matchFailed": "Die Szenensuche ist nicht verfügbar. Deine ausgewählten Clips und Zeiten bleiben unverändert. Du kannst sie manuell prüfen.",
+      "reviewManually": "Clips manuell prüfen"
     }
   },
   "creator": {
