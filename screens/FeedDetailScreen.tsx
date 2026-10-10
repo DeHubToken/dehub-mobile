@@ -53,6 +53,7 @@ import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
+import { useStageBack } from "../components/Home/PostStage";
 import IosGlassPill from "../components/ui/IosGlassPill";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -1289,6 +1290,8 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
+  const postVideo = !!item && (resolveContentType(item) === "video" || resolveContentType(item) === "short");
+  const handlePostBack = useStageBack();
   const handleStageAnchor = useCallback((y: number) => {
     stageAnchorRef.current = y;
   }, []);
@@ -1346,6 +1349,7 @@ function FeedDetailContent() {
       {item && stage ? (
         <FeedCard
           item={item}
+          onBack={handlePostBack}
           fullContent
           disablePress
           prioritizeMedia
@@ -1358,6 +1362,7 @@ function FeedDetailContent() {
       ) : item && immersive ? (
         <FeedCard
           item={item}
+          onBack={handlePostBack}
           fullContent
           disablePress
           prioritizeMedia
@@ -1450,7 +1455,7 @@ function FeedDetailContent() {
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1561,7 +1566,7 @@ function FeedDetailContent() {
           {renderCommentTabs()}
         </View>
       )}
-      {immersive && !stage && <ScreenHeader title={t("screens.post")} overlay />}
+      {immersive && !stage && !postVideo && <ScreenHeader title={t("screens.post")} overlay />}
       {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}

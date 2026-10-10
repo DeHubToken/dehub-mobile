@@ -92,7 +92,7 @@ import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import RepostShareSheet from "./RepostShareSheet";
 import PostStageActionBar from "./PostStageActionBar";
-import { PostStageChrome, PostStageCreator } from "./PostStage";
+import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage";
 import { clearPostStage, patchPostStage } from "../../libs/postStage";
 import { followUser, unfollowUser } from "../../services/user.service";
 import CashtagSheet from "./CashtagSheet";
@@ -232,6 +232,8 @@ function formatShortTimeAgo(dateStr?: string): string {
 
 interface FeedCardProps {
   item: UnifiedFeedItem;
+  /** Dedicated post navigation, rendered beside the player's volume control. */
+  onBack?: () => void;
   onCategorySelect?: (category: string) => void;
   fullContent?: boolean;
   disablePress?: boolean;
@@ -280,6 +282,7 @@ const IMMERSIVE_INSET = 16;
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
   item,
+  onBack,
   onCategorySelect,
   fullContent = false,
   disablePress = false,
@@ -321,6 +324,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
 
   const contentType = useMemo(() => resolveContentType(item), [item]);
+  const postVideo = !!onBack && (contentType === "video" || contentType === "short");
 
   // --- Data derivation ---
   const stream = (item as any).stream;
@@ -1556,6 +1560,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <FeedVideoPlayer
       thumbnail={thumbnail}
       postPage={fullContent}
+      onBack={postVideo ? onBack : undefined}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
       isOwner={!!isOwnerPost}
@@ -2048,10 +2053,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            <PostStageChrome overMedia onAi={handleAiPress} onMore={handleOpenOptions} />
+            {!postVideo && <PostStageChrome overMedia onAi={handleAiPress} onMore={handleOpenOptions} />}
           </View>
         ) : (
-          <PostStageChrome overMedia={false} onAi={handleAiPress} onMore={handleOpenOptions} />
+          <PostStageChrome overMedia={false} onAi={postVideo ? undefined : handleAiPress} onMore={postVideo ? undefined : handleOpenOptions} />
         )}
         <PostStageCreator
           avatarUrl={avatar}
@@ -2162,6 +2167,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </>
           )}
         </View>
+        {postVideo && <PostStageActions onAi={handleAiPress} onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
         <PostStageActionBar
           liked={liked}
           disliked={disliked}
@@ -2605,6 +2611,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
       {/* No wrapper row: the header is a full-width row of its own, and a
           card is ~100 native views, each one paid for at mount mid-fling. */}
+      {postVideo && matureGate.isGated && <PostStageChrome overMedia={false} />}
       <FeedCardHeader
         avatarUrl={avatar}
         displayName={displayName}
@@ -2612,10 +2619,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         address={minterAddress}
         badgeImage={badgeImg}
         onUserPress={handleUserPress}
-        onMenuPress={handleOpenOptions}
-        onAiPress={handleAiPress}
+        onMenuPress={postVideo ? undefined : handleOpenOptions}
+        onAiPress={postVideo ? undefined : handleAiPress}
         onBoostPress={
-          isOwnerPost && isSignedIn && tokenId != null
+          !postVideo && isOwnerPost && isSignedIn && tokenId != null
             ? handleBoostPress
             : undefined
         }
@@ -2775,6 +2782,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         )}
       </View>
 
+      {postVideo && <PostStageActions onAi={handleAiPress} onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
       {actionBar}
 
       {sheets}
