@@ -5,7 +5,7 @@ import env from "../config/env";
 /** Keep the production text-card route in step with the web share drawer. */
 export function getTextPostShareImageUrl(tokenId: number | string): string {
   if (!/^[1-9]\d{0,14}$/.test(String(tokenId))) throw new Error("Invalid post id");
-  return `https://dehub.io/_og/post/v2/${tokenId}.png`;
+  return `https://dehub.io/_og/post/v3/${tokenId}.png`;
 }
 
 /**
