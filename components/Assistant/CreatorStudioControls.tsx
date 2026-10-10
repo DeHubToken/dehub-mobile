@@ -2,7 +2,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import Icon from '../ui/Icon';
+import Icon, { type IconName } from '../ui/Icon';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
 import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
@@ -20,6 +20,8 @@ interface Props {
   onWorkflow?: (workflow: 'swap' | 'motion') => void;
   disabled: boolean;
 }
+
+const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
 export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
   const { t } = useTranslation();
@@ -58,30 +60,36 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
   const visibleOptions = picker === 'model' && query
     ? options.filter(option => `${option.name} ${option.description ?? ''} ${option.id}`.toLocaleLowerCase().includes(query))
     : options;
-  const chip = (label: string, action: () => void, active = false) => (
+  const chip = (label: string, action: () => void, active = false, fullLabel = label) => (
     <Pressable key={label} onPress={action} disabled={disabled} accessibilityRole="button"
-      accessibilityState={{ disabled, selected: active }} accessibilityLabel={label}
-      className={`rounded-xl border px-3 py-2 ${active ? 'border-theme-neutrals-100 bg-theme-neutrals-700' : 'border-theme-neutrals-700 bg-theme-neutrals-800'}`}>
+      accessibilityState={{ disabled, selected: active }} accessibilityLabel={fullLabel}
+      className={`rounded-xl border px-2 py-2 ${active ? 'border-theme-neutrals-100 bg-theme-neutrals-700' : 'border-theme-neutrals-700 bg-theme-neutrals-800'}`}>
       <Text className="text-xs font-semibold text-theme-neutrals-100">{label}</Text>
     </Pressable>
   );
   return (
     <View className="gap-2 px-4 pb-2">
-      <View className="flex-row gap-2">
+      <View className="flex-row flex-wrap items-center gap-1">
         {onAttach && (
           <Pressable onPress={onAttach} disabled={disabled} accessibilityRole="button"
             accessibilityState={{ disabled }} accessibilityLabel={t('dm.attachImage')}
-            hitSlop={6} className="items-center justify-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-2.5">
-            <Icon name="Paperclip" size={18} color={disabled ? '#3F3F46' : '#A1A1AA'} />
+            className="h-9 w-7 items-center justify-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800">
+            <Icon name="Paperclip" size={16} color={disabled ? '#3F3F46' : '#A1A1AA'} />
           </Pressable>
         )}
-        {(Object.keys(CREATOR_MODE_KEYS) as CreatorMode[]).map((mode) => chip(t(CREATOR_MODE_KEYS[mode]), () => onMode(mode), mode === settings.mode))}
-      </View>
-      <View className="flex-row flex-wrap gap-2">
-        {chip(selected?.name ?? settings.model, () => setPicker('model'))}
+        <View className="flex-row rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 p-0.5">
+          {(Object.keys(CREATOR_MODE_KEYS) as CreatorMode[]).map((mode) => (
+            <Pressable key={mode} onPress={() => onMode(mode)} disabled={disabled} accessibilityRole="button"
+              accessibilityState={{ disabled, selected: mode === settings.mode }} accessibilityLabel={t(CREATOR_MODE_KEYS[mode])}
+              className={`h-8 w-7 items-center justify-center rounded-lg ${mode === settings.mode ? 'bg-theme-neutrals-700' : ''}`}>
+              <Icon name={MODE_ICONS[mode]} size={15} color={mode === settings.mode ? '#FAFAFA' : '#A1A1AA'} />
+            </Pressable>
+          ))}
+        </View>
+        {chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
         {(settings.mode === 'image' || (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
         {settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
-          <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-2">
+          <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-1.5">
             <TextInput
               value={durationDraft}
               onFocus={() => { editingDuration.current = true; }}
@@ -99,14 +107,16 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
               selectTextOnFocus
               editable={!disabled}
               accessibilityLabel={t('filters.duration')}
-              className="w-10 py-2 text-center text-base font-semibold text-theme-neutrals-100"
+              className="w-5 py-1.5 text-center text-base font-semibold text-theme-neutrals-100"
             />
-            <Text className="pr-1 text-xs text-theme-neutrals-400">{t('filters.duration')}</Text>
+            <Text className="text-xs text-theme-neutrals-400">s</Text>
           </View>
         )}
         {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t('creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
+      </View>
+      <View className="flex-row flex-wrap gap-2">
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
         {settings.mode === 'video' && onWorkflow && <>
           {chip(t('creator.characterSwap'), () => onWorkflow('swap'), settings.model === 'kling-o3-edit')}
