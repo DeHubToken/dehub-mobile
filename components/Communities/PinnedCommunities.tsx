@@ -30,6 +30,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { ButtonLoader } from "../DeHubLoader";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalRow } from "../../theme/minimal";
+import { PinnedCommunityStrip } from "./PinnedCommunityStage";
 
 const MAX_PINS = 3;
 
@@ -42,9 +43,11 @@ interface Props {
    * opens underneath the still-presented sheet.
    */
   onNavigate?: () => void;
+  /** Share the loaded pin with the header without a second request. */
+  renderHeader?: (featuredCommunity: Community | null) => React.ReactNode;
 }
 
-const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate }) => {
+const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNavigate, renderHeader }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   // Pin banners fill the full-width row behind the text.
@@ -57,7 +60,11 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
   const [loading, setLoading] = useState(true);
 
   const loadPins = useCallback(async () => {
-    if (!walletAddress) return;
+    if (!walletAddress) {
+      setPinned([]);
+      setLoading(false);
+      return;
+    }
     try {
       const rows = await getPinnedCommunities(walletAddress);
       setPinned(
@@ -88,12 +95,22 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
     [navigation, onNavigate],
   );
 
-  if (loading) return null;
-  if (pinned.length === 0 && !isOwnProfile) return null;
+  const featured = renderHeader ? pinned.find((community) => community.banner_url) ?? null : null;
+  const remaining = pinned.filter((community) => community.id !== featured?.id);
+  if (loading || (pinned.length === 0 && !isOwnProfile)) return <>{renderHeader?.(null)}</>;
 
   return (
-    <View style={[styles.wrap, isMinimal && styles.minimalWrap]}>
-      {pinned.map((community) => (
+    <>
+      {renderHeader?.(featured)}
+      {featured && (
+        <PinnedCommunityStrip
+          community={featured}
+          onOpen={() => openCommunity(featured.slug)}
+          onManagePins={isOwnProfile ? () => setPickerOpen(true) : undefined}
+        />
+      )}
+    <View style={[styles.wrap, isMinimal && styles.minimalWrap, renderHeader && styles.inset, featured && remaining.length === 0 && styles.emptyWrap]}>
+      {remaining.map((community) => (
         <TouchableOpacity
           key={community.pinId}
           style={[styles.pinCard, isMinimal && minimalRow]}
@@ -142,7 +159,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
           )}
         </TouchableOpacity>
       ))}
-      {isOwnProfile && pinned.length < MAX_PINS && (
+      {isOwnProfile && !featured && pinned.length < MAX_PINS && (
         <TouchableOpacity style={[styles.addPin, isMinimal && { marginTop: 8 }]} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>
           <Icon name="Plus" size={14} color="#808089" />
           <Text style={styles.addPinText}>{t("communities.pinCommunity")}</Text>
@@ -159,6 +176,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
         nextOrder={pinned.length}
       />
     </View>
+    </>
   );
 };
 
@@ -280,6 +298,8 @@ function PinPickerModal({
 
 const styles = StyleSheet.create({
   wrap: { marginTop: 12, gap: 8 },
+  inset: { marginHorizontal: 12 },
+  emptyWrap: { marginTop: 0 },
   // Minimal: pins stack as hairline-separated rows, so no gap between them.
   minimalWrap: { gap: 0 },
   pinCard: {
