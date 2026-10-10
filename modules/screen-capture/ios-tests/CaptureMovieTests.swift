@@ -81,7 +81,7 @@ final class CaptureMovieTests: XCTestCase {
     let (url, _) = try await record(audio: true)
     let separate = try await AVURLAsset(url: url).loadTracks(withMediaType: .audio)
     XCTAssertEqual(separate.count, 2)
-    try await blendCaptureAudio(file: url, isCurrent: { true })
+    try await blendCaptureAudio(file: url, isCurrent: { XCTAssertTrue(Thread.isMainThread); return true })
     let asset = AVURLAsset(url: url)
     let tracks = try await asset.loadTracks(withMediaType: .audio)
     XCTAssertEqual(tracks.count, 1)
