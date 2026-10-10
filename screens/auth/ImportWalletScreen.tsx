@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   View,
@@ -59,6 +60,7 @@ interface ImportWalletScreenProps {
 const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   navigation,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isLoading: authLoading, needsUsername } = useAuthState();
   const { signInWithWallet } = useAuthActions();
@@ -355,13 +357,13 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                       onPress={() => handleUseAccount(account.address)}
                       disabled={busy}
                       style={styles.useButton}
-                      accessibilityLabel={`Use account ${account.username || miniAddress(account.address)}`}
+                      accessibilityLabel={_copy("copy.01acc2c0f94b", { defaultValue: "Use account {{value1}}", value1: account.username || miniAddress(account.address) })}
                     />
                     <AuthIconButton
                       icon="trash-outline"
                       onPress={() => handleDeleteAccount(account.address)}
                       disabled={busy}
-                      accessibilityLabel={`Remove account ${account.username || miniAddress(account.address)}`}
+                      accessibilityLabel={_copy("copy.8456b09b5e76", { defaultValue: "Remove account {{value1}}", value1: account.username || miniAddress(account.address) })}
                     />
                   </View>
                 </View>

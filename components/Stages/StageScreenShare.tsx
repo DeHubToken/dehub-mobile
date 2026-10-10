@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { RtcSurfaceView, RenderModeType, VideoSourceType } from "react-native-agora";
@@ -30,6 +31,7 @@ interface StageScreenShareProps {
 }
 
 const StageScreenShare: React.FC<StageScreenShareProps> = ({ sharerName, maxHeight }) => {
+  const { t: _copy } = _useCopy();
   const { screenShareUid } = useStages();
 
   if (screenShareUid == null) return null;
@@ -47,7 +49,7 @@ const StageScreenShare: React.FC<StageScreenShareProps> = ({ sharerName, maxHeig
       <View style={styles.label} pointerEvents="none">
         <Icon name="MonitorUp" size={12} color="rgba(255,255,255,0.7)" />
         <Text style={styles.labelText} numberOfLines={1}>
-          {sharerName ? `@${sharerName} is sharing` : "Screen share"}
+          {sharerName ? _copy("copy.50e7258dccec", { defaultValue: "@{{value1}} is sharing", value1: sharerName }) : _copy("copy.3c1cea35e701", { defaultValue: "Screen share" })}
         </Text>
       </View>
     </View>

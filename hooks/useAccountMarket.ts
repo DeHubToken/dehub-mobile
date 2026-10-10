@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Account marketplace data layer
  * ==============================
@@ -112,6 +113,7 @@ export function useMyAccountMarket(enabled: boolean) {
 }
 
 export function useCreateAccountListing() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: accountMarketService.createListing,
@@ -120,20 +122,21 @@ export function useCreateAccountListing() {
       qc.invalidateQueries({ queryKey: ['account-market-browse'] });
       toastSuccess(`@${result.username} is on the market`);
     },
-    onError: (err) => toastError(err, 'Could not create that listing'),
+    onError: (err) => toastError(err, _copy("copy.c7d6eda2cce9", { defaultValue: "Could not create that listing" })),
   });
 }
 
 export function useCancelAccountListing() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: accountMarketService.cancelListing,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['account-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account-market-browse'] });
-      toastSuccess('Listing withdrawn');
+      toastSuccess(_copy("copy.fecd0f90ada2", { defaultValue: "Listing withdrawn" }));
     },
-    onError: (err) => toastError(err, 'Could not withdraw that listing'),
+    onError: (err) => toastError(err, _copy("copy.9a0d8a96317a", { defaultValue: "Could not withdraw that listing" })),
   });
 }
 
@@ -196,6 +199,7 @@ export type BuyStage = 'idle' | 'quoting' | 'paying' | 'confirming';
  * has already cost them the account's price.
  */
 export function useBuyAccount() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   const user = useUser() as any;
   const { refreshUser } = useAuthActions();
@@ -299,7 +303,7 @@ export function useBuyAccount() {
     },
     onError: (err) => {
       setStage('idle');
-      toastError(err, 'Could not complete that purchase');
+      toastError(err, _copy("copy.dc1d3da1f19d", { defaultValue: "Could not complete that purchase" }));
     },
   });
 
@@ -322,6 +326,7 @@ export function useBuyAccount() {
  * txHash, chain and receive address — so this is the "Resume transfer" button.
  */
 export function useResumeAccountClaim() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (input: { listingId: string; txHash: string; chainId: number; receiveAddress?: string }) =>
@@ -331,7 +336,7 @@ export function useResumeAccountClaim() {
       qc.invalidateQueries({ queryKey: ['account-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account-market-browse'] });
     },
-    onError: (err) => toastError(err, 'Could not resume that transfer'),
+    onError: (err) => toastError(err, _copy("copy.7ee9e63278f0", { defaultValue: "Could not resume that transfer" })),
   });
 }
 

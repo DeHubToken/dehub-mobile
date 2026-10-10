@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
@@ -59,6 +60,7 @@ const formatTime = (seconds: number) => {
 };
 
 const FullscreenVideoScreen = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const downloadVideo = useVideoDownload();
   const route = useRoute<any>();
@@ -449,7 +451,7 @@ const FullscreenVideoScreen = () => {
               onPress={handleTogglePlay}
               style={styles.glassPlayButton}
               accessibilityRole="button"
-              accessibilityLabel={isPlaying ? "Pause" : "Play"}
+              accessibilityLabel={isPlaying ? _copy("copy.858e4ba7a29f", { defaultValue: "Pause" }) : _copy("copy.436e61016e26", { defaultValue: "Play" })}
             >
               <View style={styles.glassOverlay} />
               <Icon name={isPlaying ? "Pause" : "Play"} size={32} color="#fff" />

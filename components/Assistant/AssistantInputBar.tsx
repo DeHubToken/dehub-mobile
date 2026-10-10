@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState } from 'react';
 import {
   View,
@@ -42,6 +43,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   sendLabel,
   allowEmpty = false,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const maxInputHeight = useWindowDimensions().height * 0.3;
   // Grow with the text, as web's auto-expanding textarea does. A single-line
@@ -75,7 +77,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       <View style={s.inputRow}>
         <TextInput
           style={[s.input, { height: Math.min(Math.max(20, height), maxInputHeight) }]}
-          placeholder={placeholder ?? (attachedImage ? 'Describe your edits…' : 'Ask me anything...')}
+          placeholder={placeholder ?? (attachedImage ? _copy("copy.413880aa438d", { defaultValue: "Describe your edits…" }) : _copy("copy.ff918d248470", { defaultValue: "Ask me anything..." }))}
           placeholderTextColor="#8B8D90"
           value={value}
           onChangeText={onChangeText}

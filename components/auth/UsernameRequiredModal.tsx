@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser, onComplete, onSignOut }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [username, setUsername] = useSurfaceDraft("components/auth/UsernameRequiredModal.tsx:username", '');
   const [displayName, setDisplayName] = useSurfaceDraft("components/auth/UsernameRequiredModal.tsx:displayName", '');
@@ -80,7 +82,7 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
       const finalUser: User = { ...provisionalUser, username: username.trim(), displayName: displayName.trim() };
   // token already stored during initial sign in
       await setAuthUser(finalUser);
-      toastSuccess('Username set');
+      toastSuccess(_copy("copy.c9a2d61de5a7", { defaultValue: "Username set" }));
       onComplete(finalUser);
     } catch (e: any) {
       setError(e?.message || 'Failed to set username');

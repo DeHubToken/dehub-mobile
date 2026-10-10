@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Badge Patron Chip (mobile)
  * ==========================
@@ -27,6 +28,7 @@ interface BadgePatronChipProps {
 }
 
 const BadgePatronChip: FC<BadgePatronChipProps> = ({ lookupId }) => {
+  const { t: _copy } = _useCopy();
   const [expanded, setExpanded] = useState(false);
 
   const { data } = useQuery({
@@ -52,14 +54,13 @@ const BadgePatronChip: FC<BadgePatronChipProps> = ({ lookupId }) => {
       onPress={() => setExpanded(prev => !prev)}
       activeOpacity={0.7}
       accessibilityRole="button"
-      accessibilityLabel={`This ${data.tier} badge was lent by ${who}`}
+      accessibilityLabel={_copy("copy.41fb2caed82f", { defaultValue: "This {{value1}} badge was lent by {{value2}}", value1: data.tier, value2: who })}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       className="flex-row items-center rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5"
     >
       {source ? <Image source={source} className="w-3 h-3" /> : null}
       {expanded ? (
-        <Text className="text-white text-[11px] font-medium ml-1" numberOfLines={1}>
-          Lent by {who}
+        <Text className="text-white text-[11px] font-medium ml-1" numberOfLines={1}>{_copy("copy.407d8f7e8ded", { defaultValue: "Lent by " })}{who}
         </Text>
       ) : (
         <Icon name="ChevronDown" size={10} color="#FFFFFF" />

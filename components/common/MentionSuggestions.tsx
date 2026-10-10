@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -26,6 +27,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
   onSelect,
   loading,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Android can resize the sheet as soon as the focused input loses its
   // keyboard. Select on touch-down, before that resize can move this row out
@@ -71,7 +73,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
           onPress={() => selectOnPress(item)}
           style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
           accessibilityRole="button"
-          accessibilityLabel={`Mention @${item.username}`}
+          accessibilityLabel={_copy("copy.6aad3f5a25b5", { defaultValue: "Mention @{{value1}}", value1: item.username })}
           className="flex-row items-center px-4 py-2.5"
         >
           <Avatar
@@ -115,7 +117,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
         </Pressable>
       );
     },
-    [selectOnPress, selectOnTouchStart, t],
+    [selectOnPress, selectOnTouchStart, t, _copy],
   );
 
   if (!visible) return null;

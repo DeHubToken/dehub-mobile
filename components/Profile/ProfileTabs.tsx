@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
 import { useAnimatedScrollHandler } from "react-native-reanimated";
@@ -30,6 +31,7 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 type ProfileRoute = { key: string; title: string; icon: IconName };
 
 const ProfileTabs: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const { t } = useTranslation();
   const address = useMemo(
@@ -72,7 +74,7 @@ const ProfileTabs: React.FC = () => {
       { key: "subscribers", title: t("profile.tabSubscribers", "Subs"), icon: "Star" },
       { key: "songs", title: t("profile.tabAudio", "Audio"), icon: "Play" },
       { key: "live", title: t("profile.tabLive", "Live"), icon: "Radio" },
-      { key: "fractions", title: "Fractions", icon: "ChartPie" },
+      { key: "fractions", title: _copy("copy.487aaa977933", { defaultValue: "Fractions" }), icon: "ChartPie" },
       { key: "pinned", title: t("profile.tabPinned", "Pinned"), icon: "Pin" },
     ];
     // Public playlists only earn a tab once there is one to show.
@@ -85,7 +87,7 @@ const ProfileTabs: React.FC = () => {
         ((counts as Record<string, number | undefined>)[a.key] ?? 0),
     );
     return [home, ...rest];
-  }, [counts, t]);
+  }, [counts, t, _copy]);
 
   const tabItems = useMemo<ProfileTabItem[]>(
     () =>

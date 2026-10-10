@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * The Arcade registry (native).
  * =============================
@@ -148,10 +149,9 @@ export interface ArcadeGame {
 export const ARCADE_GAMES: ArcadeGame[] = [
   {
     slug: 'gods-eye',
-    title: "God's Eye",
+    get title() { return _translateCopy("copy.925917aad5b0", { defaultValue: "God's Eye" }); },
     tagline: 'Find the DeHub community across a living 3D Earth.',
-    description:
-      'Explore a live spatial-intelligence globe and, if you choose, place a deliberately approximate version of yourself among the DeHub community.',
+    get description() { return _translateCopy("copy.9cc9f71c23f2", { defaultValue: "Explore a live spatial-intelligence globe and, if you choose, place a deliberately approximate version of yourself among the DeHub community." }); },
     action: 'Open the globe',
     art: `${WEBSITE_LINK}/arcade/gods-eye.gif`,
     artAlt: "God's Eye View orbiting a live 3D globe through its spatial-intelligence displays",
@@ -167,10 +167,9 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'kings-gambit',
-    title: "King's Gambit",
+    get title() { return _translateCopy("copy.f0052e2e699b", { defaultValue: "King's Gambit" }); },
     tagline: 'Cinematic 3D chess. Three civilisations, one board.',
-    description:
-      'Chess with an army behind every piece. Three rigged civilisations march, strike and fall across a marble board in four battlegrounds, at three engine strengths.',
+    get description() { return _translateCopy("copy.81631a8fce75", { defaultValue: "Chess with an army behind every piece. Three rigged civilisations march, strike and fall across a marble board in four battlegrounds, at three engine strengths." }); },
     action: 'Play',
     art: `${WEBSITE_LINK}/arcade/kings-gambit.webp`,
     artAlt: "Two armies of sculpted 3D chess figures facing each other across a lit board in King's Gambit",
@@ -192,10 +191,9 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'claude-of-duty',
-    title: 'Claude of Duty',
+    get title() { return _translateCopy("copy.60b676c3ea06", { defaultValue: "Claude of Duty" }); },
     tagline: 'A browser FPS with every asset generated at boot.',
-    description:
-      'A first-person shooter that ships no art at all: every mesh, texture, weapon and sound is generated in JavaScript on your machine while the level loads.',
+    get description() { return _translateCopy("copy.7242e3ca17b3", { defaultValue: "A first-person shooter that ships no art at all: every mesh, texture, weapon and sound is generated in JavaScript on your machine while the level loads." }); },
     action: 'Deploy',
     art: `${WEBSITE_LINK}/arcade/claude-of-duty.webp`,
     artAlt: 'First-person view down a weapon across the procedurally generated terrain of Claude of Duty',
@@ -224,10 +222,9 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'jungle-trail',
-    title: 'Jungle Trail',
+    get title() { return _translateCopy("copy.b4c84bb16148", { defaultValue: "Jungle Trail" }); },
     tagline: 'Walk a rainforest that is built the moment you arrive.',
-    description:
-      'A first-person walk through a procedurally generated rainforest — a hundred thousand plants, weather and a day cycle, all grown on your machine as you arrive.',
+    get description() { return _translateCopy("copy.96b3207d2940", { defaultValue: "A first-person walk through a procedurally generated rainforest — a hundred thousand plants, weather and a day cycle, all grown on your machine as you arrive." }); },
     action: 'Walk in',
     art: `${WEBSITE_LINK}/arcade/jungle-trail.webp`,
     artAlt: 'A path through dense procedurally generated rainforest canopy in Jungle Trail',
@@ -256,11 +253,10 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'trenchstar',
-    title: 'Chartopia',
+    get title() { return _translateCopy("copy.d9bac180ccc1", { defaultValue: "Chartopia" }); },
     brand: require('../assets/brand/chartopia-brand-v1.webp'),
     tagline: 'Stand in a trading floor built out of live markets.',
-    description:
-      'The mother of all arenas. Trade like a time traveller with dozens of screens. Enjoy live feeds from Binance, Dexscreener or any thing you want from videos, to browser tabs and all between.',
+    get description() { return _translateCopy("copy.a61d44ba33d5", { defaultValue: "The mother of all arenas. Trade like a time traveller with dozens of screens. Enjoy live feeds from Binance, Dexscreener or any thing you want from videos, to browser tabs and all between." }); },
     action: 'Take the desk',
     art: `${WEBSITE_LINK}/arcade/trenchstar.webp`,
     artAlt:
@@ -297,10 +293,9 @@ export const ARCADE_GAMES: ArcadeGame[] = [
   },
   {
     slug: 'street-slayer',
-    title: 'Street Slayer',
+    get title() { return _translateCopy("copy.71b386d38529", { defaultValue: "Street Slayer" }); },
     tagline: 'A neon-street brawler, made for DeHub alone.',
-    description:
-      'A side-scrolling beat ’em up down a neon-lit street: pick one of three fighters, then punch, kick and throw your way through everything the block sends at you.',
+    get description() { return _translateCopy("copy.7a56c707abec", { defaultValue: "A side-scrolling beat ’em up down a neon-lit street: pick one of three fighters, then punch, kick and throw your way through everything the block sends at you." }); },
     action: 'Fight',
     art: `${WEBSITE_LINK}/arcade/street-slayer.webp`,
     artAlt:

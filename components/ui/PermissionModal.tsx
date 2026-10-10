@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -53,6 +54,7 @@ type ModalState =
   | { mode: "settings"; config: PermissionModalConfig; resolve: Resolver<void> };
 
 const PermissionModalProvider: React.FC = memo(() => {
+  const { t: _copy } = _useCopy();
   const [state, setState] = useState<ModalState>({ mode: "hidden" });
   /** Guard against stale resolves after unmount */
   const mountedRef = useRef(true);
@@ -131,7 +133,7 @@ const PermissionModalProvider: React.FC = memo(() => {
             onPress={isSettings ? handleOpenSettings : handleContinue}
           >
             <Text className="text-white font-semibold text-[15px]">
-              {isSettings ? "Open Settings" : "Continue"}
+              {isSettings ? _copy("copy.3f940108cb1e", { defaultValue: "Open Settings" }) : _copy("copy.31fbef162594", { defaultValue: "Continue" })}
             </Text>
           </TouchableOpacity>
         </AccentButtonGradient>
@@ -142,7 +144,7 @@ const PermissionModalProvider: React.FC = memo(() => {
           onPress={dismiss}
         >
           <Text className="text-theme-neutrals-400 text-sm font-medium">
-            {isSettings ? "Cancel" : "Not Now"}
+            {isSettings ? _copy("copy.19766ed6ccb2", { defaultValue: "Cancel" }) : _copy("copy.ccb4c324f516", { defaultValue: "Not Now" })}
           </Text>
         </TouchableOpacity>
       </View>

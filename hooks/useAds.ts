@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { canonicalTierName } from '../libs/misc';
 /**
  * POVR ads data layer
@@ -211,6 +212,7 @@ export function useAdAccount() {
 }
 
 export function useEnsureAdAccount() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -236,7 +238,7 @@ export function useEnsureAdAccount() {
     onSuccess: () => qc.invalidateQueries({ queryKey: keys.account(wallet) }),
     onError: (e: any) => {
       log.error("ensure ad account failed:", e);
-      toastError(e, "Could not open an advertiser account");
+      toastError(e, _copy("copy.39b5fa189a39", { defaultValue: "Could not open an advertiser account" }));
     },
   });
 }
@@ -260,6 +262,7 @@ export function useAdCampaigns() {
 }
 
 export function useCreateCampaign() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -278,16 +281,17 @@ export function useCreateCampaign() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: keys.campaigns(wallet) });
-      toastSuccess("Campaign created");
+      toastSuccess(_copy("copy.5745acb8ad07", { defaultValue: "Campaign created" }));
     },
     onError: (e: any) => {
       log.error("create campaign failed:", e);
-      toastError(e, "Could not create campaign");
+      toastError(e, _copy("copy.b88218e6f14f", { defaultValue: "Could not create campaign" }));
     },
   });
 }
 
 export function useUpdateCampaign() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -301,12 +305,13 @@ export function useUpdateCampaign() {
     onSuccess: () => qc.invalidateQueries({ queryKey: keys.campaigns(wallet) }),
     onError: (e: any) => {
       log.error("update campaign failed:", e);
-      toastError(e, "Could not update campaign");
+      toastError(e, _copy("copy.9945e1ba014d", { defaultValue: "Could not update campaign" }));
     },
   });
 }
 
 export function useDeleteCampaign() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -319,11 +324,11 @@ export function useDeleteCampaign() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: keys.campaigns(wallet) });
-      toastSuccess("Campaign deleted");
+      toastSuccess(_copy("copy.8a380d18f180", { defaultValue: "Campaign deleted" }));
     },
     onError: (e: any) => {
       log.error("delete campaign failed:", e);
-      toastError(e, "Could not delete campaign");
+      toastError(e, _copy("copy.5a61153cd198", { defaultValue: "Could not delete campaign" }));
     },
   });
 }
@@ -404,6 +409,7 @@ export function useAdPayments() {
  * path as the Stores checkout); this only asks the edge function to confirm it.
  */
 export function useTopUpCredit() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -430,11 +436,11 @@ export function useTopUpCredit() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: keys.account(wallet) });
       qc.invalidateQueries({ queryKey: keys.payments(wallet) });
-      toastSuccess("Credit added");
+      toastSuccess(_copy("copy.9839f82c0b29", { defaultValue: "Credit added" }));
     },
     onError: (e: any) => {
       log.error("top-up failed:", e);
-      toastError(e, "Top-up could not be verified");
+      toastError(e, _copy("copy.7d2a89979970", { defaultValue: "Top-up could not be verified" }));
     },
   });
 }

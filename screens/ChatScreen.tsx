@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from "../hooks/useDraftState";
 import React, {
   useCallback,
@@ -146,6 +147,7 @@ const log = createLogger("ChatScreen");
 
 
 const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -1625,7 +1627,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         title={title}
         leftContent={LeftHeader}
         rightContent={RightHeader}
-        subtitle={remoteTyping ? "typing…" : undefined}
+        subtitle={remoteTyping ? _copy("copy.30f5934e6249", { defaultValue: "typing…" }) : undefined}
         titleAccessory={<OnlineDot address={peer.address} />}
       />
 
@@ -1719,7 +1721,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 className="bg-theme-neutrals-700/90 rounded-xl px-3 py-2 flex-row items-center"
               >
                 <Icon name="ChevronDown" size={16} color="#E5E7EB" />
-                <Text className="text-theme-neutrals-100 text-xs ml-1">New</Text>
+                <Text className="text-theme-neutrals-100 text-xs ml-1">{_copy("copy.18fdd549b2ed", { defaultValue: "New" })}</Text>
               </TouchableOpacity>
             </Animated.View>
           )}
@@ -1743,7 +1745,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             ) : dmDisabled ? (
               <View className="px-4 py-3 bg-theme-neutrals-800 border-t border-theme-neutrals-700/50">
                 <Text className="text-theme-neutrals-400 text-xs">
-                  {dmReason || "This account is not accepting messages right now."}
+                  {dmReason || _copy("copy.944ae402da39", { defaultValue: "This account is not accepting messages right now." })}
                 </Text>
                 {iBlockedThem && !!currentConvId && (
                   <TouchableOpacity

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useEffect, useRef } from "react";
 import { View, Text } from "react-native";
@@ -71,6 +72,7 @@ const BannerRow: React.FC<{
 const GiftBannerRow: React.FC<{
   event: EventBannerData & { amount: number; message?: string };
 }> = memo(({ event }) => {
+  const { t: _copy } = _useCopy();
   const opacity = useSharedValue(0);
   const translateX = useSharedValue(-40);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -99,21 +101,21 @@ const GiftBannerRow: React.FC<{
       <Text className="text-white/80 text-[11px] ml-1.5 font-semibold" numberOfLines={1}>
         {event.displayName}
       </Text>
-      <Text style={{ color: 'rgba(255,255,255,0.6)' }} className="text-[11px] ml-1">
-        sent {event.amount.toLocaleString()} <DhbCoin />
+      <Text style={{ color: 'rgba(255,255,255,0.6)' }} className="text-[11px] ml-1">{_copy("copy.831df2f1931a", { defaultValue: "sent " })}{event.amount.toLocaleString()} <DhbCoin />
       </Text>
     </Animated.View>
   );
 });
 
 const LiveEventBanner: React.FC<LiveEventBannerProps> = ({ joinEvent, giftEvent }) => {
+  const { t: _copy } = _useCopy();
   if (!joinEvent && !giftEvent) return null;
   return (
     <View className="px-3 mb-1" pointerEvents="none">
       {joinEvent ? (
         <BannerRow
           event={joinEvent}
-          label="joined"
+          label={_copy("copy.6b963cc1c2d7", { defaultValue: "joined" })}
           bgClass="dark-surface bg-black/40"
           textColor="#D4D4D8"
         />

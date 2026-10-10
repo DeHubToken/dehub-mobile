@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -278,6 +279,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   onReplyPress,
   highlighted = false,
 }) => {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
@@ -790,7 +792,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       onLongPress={handleLongPress}
                       activeOpacity={0.7}
                       accessibilityRole="button"
-                      accessibilityLabel={`Download ${(item as any).name || "attachment"}`}
+                      accessibilityLabel={_copy("copy.8fe1a08e1a39", { defaultValue: "Download {{value1}}", value1: (item as any).name || _copy("copy.602a5e69c302", { defaultValue: "attachment" }) })}
                       className="flex-row items-center px-3 py-2.5"
                       style={{ maxWidth: MAX_IMAGE_WIDTH }}
                     >

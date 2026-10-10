@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * ENS name — prove you hold a `.eth` name and be reachable at dehub.io/<name>
@@ -64,6 +65,7 @@ const shortAddress = (address: string) =>
   address.length > 12 ? `${address.slice(0, 6)}…${address.slice(-4)}` : address;
 
 export function EnsHandleSection() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const user = useUser();
   const { patchUser } = useAuthActions();
@@ -317,7 +319,7 @@ export function EnsHandleSection() {
                   setChallenge(null);
                   setPreviewError(null);
                 }}
-                placeholder="yourname.eth"
+                placeholder={_copy("copy.419f1a83fab2", { defaultValue: "yourname.eth" })}
                 placeholderTextColor="#52525b"
                 autoCapitalize="none"
                 autoCorrect={false}

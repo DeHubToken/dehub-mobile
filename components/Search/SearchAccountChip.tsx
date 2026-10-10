@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { FC, useCallback } from "react";
@@ -24,6 +25,7 @@ export interface FollowState {
 }
 
 const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange }) => {
+  const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
@@ -90,8 +92,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
         @{username}
       </Text>
       <Text className="text-theme-neutrals-500 text-[10px] mt-0.5">
-        {formatCompactNumber(followers)} followers
-      </Text>
+        {formatCompactNumber(followers)}{_copy("copy.916a8b871759", { defaultValue: " followers" })}</Text>
 
       {!isOwnAccount && (
         <GlassFollowButton

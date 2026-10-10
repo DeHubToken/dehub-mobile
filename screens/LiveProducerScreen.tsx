@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { confirmChatDelivery } from '../libs/chat-delivery';
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import {
@@ -78,6 +79,7 @@ const STARVED_KBPS = 150;
 const STARVED_SAMPLES = 2;
 
 const LiveProducerScreen: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
@@ -386,7 +388,7 @@ const LiveProducerScreen: React.FC = () => {
       }
       addChatActivity({
         status: StreamActivityType.START,
-        meta: { message: "Stream has started." },
+        meta: { message: _copy("copy.9ec39f767fbb", { defaultValue: "Stream has started." }) },
       });
     });
     make(LivestreamEvents.EndStream, (data) => {
@@ -402,7 +404,7 @@ const LiveProducerScreen: React.FC = () => {
       // Stage change handled by hook via bind, but we can snapshot viewers
       addChatActivity({
         status: StreamActivityType.END,
-        meta: { message: "Stream has ended." },
+        meta: { message: _copy("copy.f9f4ff9b77f5", { defaultValue: "Stream has ended." }) },
       });
     });
     const updater = createViewCountUpdater({

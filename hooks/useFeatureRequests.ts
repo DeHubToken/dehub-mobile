@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Feature Requests data layer
  * ===========================
@@ -340,6 +341,7 @@ type VoteVars = {
 };
 
 export function useVoteFeatureRequest() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
 
@@ -444,7 +446,7 @@ export function useVoteFeatureRequest() {
         queryClient.setQueryData(["feature-request-votes", wallet], context.previousVotes);
       }
       log.error("Vote failed:", err);
-      toastError(err, "Vote failed. Please try again.");
+      toastError(err, _copy("copy.485fbbcb6b0e", { defaultValue: "Vote failed. Please try again." }));
     },
 
     // Deliberately no onSettled invalidation (matches web): refetching
@@ -539,6 +541,7 @@ async function requestAssistantReply(
 }
 
 export function useSubmitComment() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
   const user = useUser() as any;
@@ -598,12 +601,13 @@ export function useSubmitComment() {
     },
     onError: (error) => {
       log.error("Post comment failed:", error);
-      toastError(error, "Failed to post comment");
+      toastError(error, _copy("copy.791ab06be905", { defaultValue: "Failed to post comment" }));
     },
   });
 }
 
 export function useDeleteComment() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
 
@@ -630,11 +634,11 @@ export function useDeleteComment() {
         queryKey: ["feature-request-comments", variables.featureRequestId],
       });
       patchCommentCount(queryClient, variables.featureRequestId, -1);
-      toastSuccess("Comment deleted");
+      toastSuccess(_copy("copy.7199a134a339", { defaultValue: "Comment deleted" }));
     },
     onError: (error) => {
       log.error("Delete comment failed:", error);
-      toastError(error, "Failed to delete comment");
+      toastError(error, _copy("copy.c65a5314ca9e", { defaultValue: "Failed to delete comment" }));
     },
   });
 }
@@ -669,6 +673,7 @@ function isMissingColumn(error: any, column: string): boolean {
 }
 
 export function useSubmitFeatureRequest() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
   const user = useUser() as any;
@@ -737,17 +742,18 @@ export function useSubmitFeatureRequest() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
       queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
-      toastSuccess("Feature request submitted!");
+      toastSuccess(_copy("copy.27873a08f25d", { defaultValue: "Feature request submitted!" }));
     },
     onError: (error) => {
       log.error("Submit feature request failed:", error);
-      toastError(error, "Failed to submit feature request");
+      toastError(error, _copy("copy.c7ea1b9c02fb", { defaultValue: "Failed to submit feature request" }));
     },
   });
 }
 
 /** Author-only edit of their own request. Mirrors web's useEditFeatureRequest. */
 export function useEditFeatureRequest() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
 
@@ -779,17 +785,18 @@ export function useEditFeatureRequest() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
-      toastSuccess("Feature request updated!");
+      toastSuccess(_copy("copy.b8af57e311aa", { defaultValue: "Feature request updated!" }));
     },
     onError: (error) => {
       log.error("Edit feature request failed:", error);
-      toastError(error, "Failed to update feature request");
+      toastError(error, _copy("copy.db455cae992e", { defaultValue: "Failed to update feature request" }));
     },
   });
 }
 
 /** Author-only delete. Mirrors web's useDeleteFeatureRequest. */
 export function useDeleteFeatureRequest() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
 
@@ -807,11 +814,11 @@ export function useDeleteFeatureRequest() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
       queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
-      toastSuccess("Feature request deleted");
+      toastSuccess(_copy("copy.be692c8e223e", { defaultValue: "Feature request deleted" }));
     },
     onError: (error) => {
       log.error("Delete feature request failed:", error);
-      toastError(error, "Failed to delete feature request");
+      toastError(error, _copy("copy.b500b2068ac7", { defaultValue: "Failed to delete feature request" }));
     },
   });
 }

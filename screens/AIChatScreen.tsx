@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../hooks/useDraftState';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 /**
@@ -203,6 +204,7 @@ const posterRenderer = (cfg: PosterConfig): 'template' | 'scene' =>
   cfg.style === 'dehub-template' || cfg.style === 'auto' ? 'template' : 'scene';
 
 function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
@@ -1625,7 +1627,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         onRetry={item.isError ? handleRetry : undefined}
       />
     ),
-    [handleImagePress, handleAttachGenerated, handlePostMedia, handleEditMedia, editingMediaUrl, handleRetry, downloadVideo, user?.username],
+    [handleImagePress, handleAttachGenerated, handlePostMedia, handleEditMedia, editingMediaUrl, handleRetry, downloadVideo, user?.username, _copy],
   );
 
   const keyExtractor = useCallback(
@@ -1767,7 +1769,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
                 <View style={s.typingBubble}>
                   <ActivityIndicator size="small" color="#F4F4F5" />
                   <Text style={s.typingText}>
-                    {activeTools.length > 0 ? describeTools(activeTools) : 'Thinking...'}
+                    {activeTools.length > 0 ? describeTools(activeTools) : _copy("copy.b4739a4f0865", { defaultValue: "Thinking..." })}
                   </Text>
                 </View>
               </View>

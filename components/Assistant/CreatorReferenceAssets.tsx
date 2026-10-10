@@ -60,7 +60,7 @@ export default memo(function CreatorReferenceAssets({ assets, mode, onChange, on
   return <View className={assets.length > 0 ? 'px-4 pb-2' : undefined}>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
       {assets.map(asset => {
-        const tag = asset.kind === 'video' ? '@Video1' : `@Image${++imageNumber}`;
+        const tag = asset.kind === 'video' ? "@Video1" : `@Image${++imageNumber}`;
         return <View key={asset.uri} className="flex-row items-center gap-2 rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 p-1">
           <CreatorMediaPreview kind={asset.kind} url={asset.uri} posterUrl={asset.posterUrl} width={40} height={40} />
           <Pressable onPress={() => onMention(tag)} disabled={disabled} accessibilityLabel={t('creator.referenceInsert', { tag })} accessibilityRole="button">

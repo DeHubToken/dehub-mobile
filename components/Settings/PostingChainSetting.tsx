@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState } from 'react';
 import { t } from 'i18next';
 import { SettingsLinkRow, SettingsOptionModal } from './SettingsPrimitives';
@@ -10,6 +11,7 @@ import { getSolanaAddress, getSolanaMintStatus } from '../../services/solana.ser
 import { toastError } from '../../libs/toast';
 
 export default function PostingChainSetting() {
+  const { t: _copy } = _useCopy();
   const { postingChainId } = useAppPrefs();
   const user = useUser();
   const [open, setOpen] = useState(false);
@@ -39,7 +41,7 @@ export default function PostingChainSetting() {
       }
       setAppPref('postingChainId', next);
     } catch {
-      toastError('Could not save posting chain. Please try again.');
+      toastError(_copy("copy.b17c87d6ac6b", { defaultValue: "Could not save posting chain. Please try again." }));
     } finally {
       setSaving(false);
     }

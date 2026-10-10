@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 // "Connect Wallet" sign-in — authenticates with an EXTERNAL wallet app
 // (MetaMask, Trust Wallet, Coinbase Wallet, ...) via Reown AppKit/WalletConnect,
 // instead of DeHub provisioning a local wallet (see identity-wallet.ts).
@@ -29,6 +30,7 @@ const log = createLogger("useWalletAuth");
 const getDefaultChainId = () => ChainId.BASE_MAINNET;
 
 export const useWalletAuth = () => {
+  const { t: _copy } = _useCopy();
   const [isWalletLoading, setIsWalletLoading] = useState(false);
   // True while AppKit's own wallet-picker sheet is on screen. AppKit renders
   // that sheet with react-native-modal's `coverScreen: false`, i.e. inline in
@@ -91,7 +93,7 @@ export const useWalletAuth = () => {
       if (authenticatingRef.current) return;
       if (!walletProvider) {
         log.warn("authenticate:no-provider");
-        toastError(null, "Wallet connected but not ready to sign yet. Please try again.");
+        toastError(null, _copy("copy.7f7cc5e7783e", { defaultValue: "Wallet connected but not ready to sign yet. Please try again." }));
         return;
       }
       authenticatingRef.current = true;
@@ -111,14 +113,14 @@ export const useWalletAuth = () => {
         log.error("authenticate:error", error);
         if (isWalletRelayPublishError(error) || /Wallet signature timed out|Request expired/i.test((error as Error)?.message ?? '')) {
           reconnectRequiredRef.current = true;
-          toastError(null, 'Wallet connection interrupted. Tap Connect Wallet to reconnect.');
+          toastError(null, _copy("copy.699830e56105", { defaultValue: "Wallet connection interrupted. Tap Connect Wallet to reconnect." }));
         } else if (isWalletSignupBlocked(error)) {
           // The same wallet will be refused every time, so the next tap opens
           // the picker for another wallet instead of signing with this one.
           reconnectRequiredRef.current = true;
           setIsSignupBlocked(true);
         } else {
-          toastError(error, "Wallet authentication failed. Please try again.");
+          toastError(error, _copy("copy.0ac2773360a1", { defaultValue: "Wallet authentication failed. Please try again." }));
         }
       } finally {
         authenticatingRef.current = false;
@@ -126,7 +128,7 @@ export const useWalletAuth = () => {
         setIsWalletLoading(false);
       }
     },
-    [walletProvider, signInWithWallet]
+    [walletProvider, signInWithWallet, _copy]
   );
 
   const handleWalletConnect = useCallback(async () => {
@@ -144,7 +146,7 @@ export const useWalletAuth = () => {
       } catch (error) {
         awaitingUserInitiatedConnectRef.current = false;
         reconnectRequiredRef.current = true;
-        toastError(error, 'Wallet reconnection failed. Please try again.');
+        toastError(error, _copy("copy.511c14feaf85", { defaultValue: "Wallet reconnection failed. Please try again." }));
       } finally {
         authenticatingRef.current = false;
         setIsWalletLoading(false);
@@ -161,7 +163,7 @@ export const useWalletAuth = () => {
     }
     awaitingUserInitiatedConnectRef.current = true;
     await open();
-  }, [accountAddress, currentChainId, walletProvider, open, authenticateWithWallet]);
+  }, [accountAddress, currentChainId, walletProvider, open, authenticateWithWallet, _copy]);
 
   // Once AppKit finishes connecting (address + chain + provider all become
   // available), authenticate automatically — the user already proved wallet

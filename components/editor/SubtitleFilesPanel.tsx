@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState } from "react";
 import { Platform, Pressable, Share, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,7 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 import { exportSubtitles, parseSubtitles, subtitleClips, subtitleLayers, SUBTITLE_FORMATS, type SubtitleFormat } from "../../libs/editor/subtitles";
 
 export default function SubtitleFilesPanel({ project, onAdd }: { project: ProjectSnapshot; onAdd: (layers: ReturnType<typeof subtitleLayers>) => void }) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
@@ -50,7 +52,7 @@ export default function SubtitleFilesPanel({ project, onAdd }: { project: Projec
   };
   return <View style={{ gap: 12 }}>
     <Pressable accessibilityRole="button" disabled={busy} onPress={() => { void importFile(); }} className="rounded-xl bg-white px-4 py-3">
-      <Text className="text-black">{t(busy ? "common.loading" : "common.select")} SRT / VTT</Text>
+      <Text className="text-black">{t(busy ? "common.loading" : "common.select")}{_copy("copy.450683b66da4", { defaultValue: " SRT / VTT" })}</Text>
     </Pressable>
     <View className="flex-row" style={{ gap: 8 }}>
       {SUBTITLE_FORMATS.map(format => <Pressable key={format} accessibilityRole="button" disabled={busy || !captions.length} onPress={() => { void download(format); }} className="flex-1 rounded-xl border border-white/10 px-4 py-3" style={{ opacity: captions.length ? 1 : 0.4 }}>

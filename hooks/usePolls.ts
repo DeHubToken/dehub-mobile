@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useState, useCallback, useEffect, useRef } from "react";
 import { runWhenSettled } from "../libs/run-when-settled";
 import {
@@ -220,13 +221,14 @@ export function usePoll(tokenId: number | null) {
 }
 
 export function useCreatePoll() {
+  const { t: _copy } = _useCopy();
   const [loading, setLoading] = useState(false);
 
   const create = useCallback(async (params: CreatePollParams) => {
     setLoading(true);
     try {
       const res = await createPoll(params);
-      toastSuccess("Poll created");
+      toastSuccess(_copy("copy.05ea13855698", { defaultValue: "Poll created" }));
       return res.result;
     } catch (e: any) {
       toastError(e?.message || "Failed to create poll");
@@ -234,12 +236,13 @@ export function useCreatePoll() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [_copy]);
 
   return { createPoll: create, loading };
 }
 
 export function useVoteOnPoll() {
+  const { t: _copy } = _useCopy();
   const [loading, setLoading] = useState(false);
 
   const vote = useCallback(
@@ -248,7 +251,7 @@ export function useVoteOnPoll() {
       try {
         const res = await voteOnPoll(tokenId, optionIndexes);
         invalidatePoll(tokenId);
-        toastSuccess("Vote recorded");
+        toastSuccess(_copy("copy.78c1c6f9aef3", { defaultValue: "Vote recorded" }));
         return res.result;
       } catch (e: any) {
         toastError(e?.message || "Failed to vote");
@@ -257,13 +260,14 @@ export function useVoteOnPoll() {
         setLoading(false);
       }
     },
-    [],
+    [_copy],
   );
 
   return { vote, loading };
 }
 
 export function useRemovePollVote() {
+  const { t: _copy } = _useCopy();
   const [loading, setLoading] = useState(false);
 
   const remove = useCallback(async (tokenId: number) => {
@@ -271,19 +275,20 @@ export function useRemovePollVote() {
     try {
       await removePollVote(tokenId);
       invalidatePoll(tokenId);
-      toastSuccess("Vote removed");
+      toastSuccess(_copy("copy.fc26f8c718dd", { defaultValue: "Vote removed" }));
     } catch (e: any) {
       toastError(e?.message || "Failed to remove vote");
       throw e;
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [_copy]);
 
   return { removeVote: remove, loading };
 }
 
 export function useClosePoll() {
+  const { t: _copy } = _useCopy();
   const [loading, setLoading] = useState(false);
 
   const close = useCallback(async (tokenId: number) => {
@@ -291,14 +296,14 @@ export function useClosePoll() {
     try {
       await closePoll(tokenId);
       invalidatePoll(tokenId);
-      toastSuccess("Poll closed");
+      toastSuccess(_copy("copy.6611b6805965", { defaultValue: "Poll closed" }));
     } catch (e: any) {
       toastError(e?.message || "Failed to close poll");
       throw e;
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [_copy]);
 
   return { closePoll: close, loading };
 }

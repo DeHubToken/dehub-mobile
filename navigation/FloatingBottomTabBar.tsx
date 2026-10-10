@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import {
@@ -236,6 +237,7 @@ const NavButton = memo<{
   animProgress: NativeAnimated.Value;
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
+  const { t: _copy } = _useCopy();
   const { colors, isLight, isMinimal, skin } = useAppTheme();
   const scale = useRef(new NativeAnimated.Value(1)).current;
 
@@ -297,7 +299,7 @@ const NavButton = memo<{
       // reader on its own. `selected` handles the first; the count is folded
       // into the label because a sibling Text inside a labelled Pressable is
       // not announced.
-      accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
+      accessibilityLabel={badgeCount > 0 ? _copy("copy.79cea90fab21", { defaultValue: "{{value1}}, {{value2}} unread", value1: label, value2: badgeCount }) : label}
       accessibilityState={{ selected: isActive }}
       onPress={handlePress}
       onPressIn={handlePressIn}
@@ -345,6 +347,7 @@ const ScrollNavButton = memo<{
   badgeCount?: number;
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
+  const { t: _copy } = _useCopy();
     const { colors, isLight, isMinimal, skin } = useAppTheme();
     const scale = useRef(new NativeAnimated.Value(1)).current;
     useEffect(() => () => scale.stopAnimation(), [scale]);
@@ -380,7 +383,7 @@ const ScrollNavButton = memo<{
     return (
       <NativeAnimatedPressable
         accessibilityRole="button"
-        accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
+        accessibilityLabel={badgeCount > 0 ? _copy("copy.79cea90fab21", { defaultValue: "{{value1}}, {{value2}} unread", value1: label, value2: badgeCount }) : label}
         onPress={handlePress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}

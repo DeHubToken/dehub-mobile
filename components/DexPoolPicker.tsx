@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 import React, { useMemo, useState } from 'react';
@@ -27,6 +28,7 @@ export function DexPoolAvatar({ pool, size = 34 }: { pool: Pick<DexPool, 'image_
 
 /** The pair title. Opens the list of every pool and the button to add one. */
 export default function DexPoolPicker({ current, rightContent }: { current: DexPool | null; rightContent?: React.ReactNode }) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [open, setOpen] = useState(false);
@@ -59,10 +61,10 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
           <TextInput autoFocus placeholder={t('dex.pools.search')} accessibilityLabel={t('dex.pools.search')} placeholderTextColor="#596675" value={query} onChangeText={setQuery} style={s.search} autoCapitalize="none" autoCorrect={false} />
           <ScrollView style={s.list} keyboardShouldPersistTaps="handled">
             {showHouse && <TouchableOpacity accessibilityRole="button" style={[s.item, !current && s.itemActive]} onPress={goHouse}>
-              <DexPoolAvatar pool={null} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{tokenLabel()} / USD</Text><Text style={s.muted}>{HOUSE_VENUE}</Text></View>
+              <DexPoolAvatar pool={null} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{tokenLabel()}{_copy("copy.3d1d43659027", { defaultValue: " / USD" })}</Text><Text style={s.muted}>{HOUSE_VENUE}</Text></View>
             </TouchableOpacity>}
             {filtered.map((pool) => <TouchableOpacity accessibilityRole="button" key={pool.id} style={[s.item, current?.id === pool.id && s.itemActive]} onPress={() => goPool(pool)}>
-              <DexPoolAvatar pool={pool} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{pool.symbol} / USD</Text><Text style={s.muted} numberOfLines={1}>{pool.name} · {POOL_CHAIN_INFO[pool.chain].name}</Text></View>
+              <DexPoolAvatar pool={pool} size={28} /><View style={s.itemText}><Text style={s.itemTitle}>{pool.symbol}{_copy("copy.3d1d43659027", { defaultValue: " / USD" })}</Text><Text style={s.muted} numberOfLines={1}>{pool.name} · {POOL_CHAIN_INFO[pool.chain].name}</Text></View>
             </TouchableOpacity>)}
             {isLoading && <View style={s.note}><ActivityIndicator color="#20c997" /><Text style={s.muted}>{t('dex.pools.loading')}</Text></View>}
             {!isLoading && !!query && !filtered.length && <Text style={[s.muted, s.note]}>{t('dex.pools.noMatch')}</Text>}

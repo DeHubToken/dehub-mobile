@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, {
   memo,
   useCallback,
@@ -317,6 +318,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   showShortsCarousel = false,
   showBoostSlot = false,
 }) => {
+  const { t: _copy } = _useCopy();
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
   }
@@ -1313,7 +1315,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             onHoverIn={() => setNewPostsHovered(true)}
             onHoverOut={() => setNewPostsHovered(false)}
             accessibilityRole="button"
-            accessibilityLabel={`${newPostCount} new posts, tap to refresh`}
+            accessibilityLabel={_copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount })}
             className={islandChrome ? "flex-row items-center justify-center gap-1.5 px-2 py-2" : "flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"}
             style={islandChrome ? { width: ISLAND_CAPSULE_WIDTH, paddingTop: 52, borderRadius: 15, overflow: "hidden" } : undefined}
           >

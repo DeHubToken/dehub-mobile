@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
 import { accountDraftKey, useDraftState } from '../hooks/useDraftState';
 import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
@@ -132,6 +133,7 @@ function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
   onMove: (from: number, to: number) => void;
   onDrag: (index: number | null, x?: number, y?: number) => void;
 }) {
+  const { t: _copy } = _useCopy();
   const responder = useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: () => true,
@@ -149,7 +151,7 @@ function PhotoOrderHandle({ index, count, columnWidth, onMove, onDrag }: {
   return (
     <View {...responder.panHandlers} style={{ position: "absolute", left: 8, bottom: 8, zIndex: 10 }}
       className="bg-black/80 rounded-lg px-2 py-1 flex-row items-center"
-      accessible accessibilityRole="button" accessibilityLabel={`Drag to reorder photo ${index + 1} of ${count}`}>
+      accessible accessibilityRole="button" accessibilityLabel={_copy("copy.8912e65bf642", { defaultValue: "Drag to reorder photo {{value1}} of {{value2}}", value1: index + 1, value2: count })}>
       <Icon name="Grip" size={16} color="#fff" />
       <Text className="text-white text-xs ml-1">{index + 1}</Text>
     </View>
@@ -228,6 +230,7 @@ const isVideoAsset = (asset: PickedAsset): boolean =>
   asset.type === "video" || !!asset.mimeType?.startsWith("video/");
 
 export default function UploadScreen() {
+  const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
   // (padding kept); media frames, pickers and menus stay as they are.
   const { isMinimal, theme } = useAppTheme();
@@ -288,10 +291,10 @@ export default function UploadScreen() {
       if (!cancelled) setPostChainId(preferredChainId);
     };
     void prepareChain().catch(() => {
-      if (!cancelled) toastError('Could not switch to your posting chain. Choose a chain in Settings and try again.');
+      if (!cancelled) toastError(_copy("copy.f0ed7becd58e", { defaultValue: "Could not switch to your posting chain. Choose a chain in Settings and try again." }));
     });
     return () => { cancelled = true; };
-  }, [preferredChainId]));
+  }, [preferredChainId, _copy]));
   const postingChainReady = !isSwitchingChain && postChainId === preferredChainId && (
     isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
   );
@@ -1285,7 +1288,7 @@ export default function UploadScreen() {
       const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
       const openBuyDehub = () => nav.navigate(ScreenNames.Dpay, { initialTab: "buy" });
       if (held < owed) {
-        toastWithAction("info", t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
+        toastWithAction(_copy("copy.06271baf4953", { defaultValue: "info" }), t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
           actionIcon: require("../assets/web-icons/dehub-coin.png"),
           description: t("upload.quotaShortfall", {
             cost: owed.toLocaleString(),
@@ -1295,7 +1298,7 @@ export default function UploadScreen() {
         });
         return false;
       }
-      toastWithAction("info", t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
+      toastWithAction(_copy("copy.06271baf4953", { defaultValue: "info" }), t("upload.tierVisibility"), t("upload.buyTokens"), openBuyDehub, {
         actionIcon: require("../assets/web-icons/dehub-coin.png"),
         duration: 10_000,
       });
@@ -1311,7 +1314,7 @@ export default function UploadScreen() {
       releaseSubmit();
     }, 120);
     return true;
-  }, [captureActiveDraft, getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
+  }, [captureActiveDraft, getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav, _copy]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -2898,7 +2901,7 @@ export default function UploadScreen() {
                           next[idx] = t;
                           setPollOptions(next);
                         }}
-                        placeholder={`Option ${idx + 1}`}
+                        placeholder={_copy("copy.c553678c42d5", { defaultValue: "Option {{value1}}", value1: idx + 1 })}
                         placeholderTextColor="#6F7174"
                         maxLength={60}
                         className="flex-1 text-white text-sm ml-2"
@@ -2942,7 +2945,7 @@ export default function UploadScreen() {
 
                 <Text className="text-theme-neutrals-500 text-xs mb-1.5">{t("filters.duration")}</Text>
                 <View className="flex-row gap-2">
-                  {[{ label: "1 day", hours: 24 }, { label: "3 days", hours: 72 }, { label: "7 days", hours: 168 }].map((d) => (
+                  {[{ label: _copy("copy.fa665d95d29e", { defaultValue: "1 day" }), hours: 24 }, { label: _copy("copy.360719440e92", { defaultValue: "3 days" }), hours: 72 }, { label: _copy("copy.7f920bb639c9", { defaultValue: "7 days" }), hours: 168 }].map((d) => (
                     <TouchableOpacity
                       key={d.hours}
                       onPress={() => setPollDurationHours(d.hours)}
@@ -2990,7 +2993,7 @@ export default function UploadScreen() {
                       row cannot, so they share one line when both apply. */}
                   {mintRequired || (effectiveShouldMint && mintFeeLabel) ? (
                     <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                      ({[mintRequired ? "required for bounty" : null, effectiveShouldMint ? mintFeeLabel : null]
+                      ({[mintRequired ? _copy("copy.811ec3714ad8", { defaultValue: "required for bounty" }) : null, effectiveShouldMint ? mintFeeLabel : null]
                         .filter(Boolean)
                         .join(" · ")})
                     </Text>
@@ -3143,7 +3146,7 @@ export default function UploadScreen() {
                   <Text className="text-white text-sm ml-3">{t("upload.shop")}</Text>
                   {shopRows ? (
                     <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                      ({shopRows} of {shopAllowance.allowance})
+                      ({shopRows}{_copy("copy.a4282e4b2298", { defaultValue: " of " })}{shopAllowance.allowance})
                     </Text>
                   ) : null}
                 </View>
@@ -3179,9 +3182,7 @@ export default function UploadScreen() {
                   <Icon name="EyeOff" size={18} color="#fff" />
                   <Text className="text-white text-sm ml-3">{t("upload.matureContent")}</Text>
                   {isMature ? (
-                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                      (not shown on the public feed)
-                    </Text>
+                    <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>{_copy("copy.214371ade41e", { defaultValue: "(not shown on the public feed)" })}</Text>
                   ) : null}
                 </View>
                 <CustomSwitch value={isMature} onValueChange={setIsMature} />

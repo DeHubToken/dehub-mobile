@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import {
@@ -244,6 +245,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
 // ── LiveStageModal ─────────────────────────────────────────────────────────
 
 const LiveStageModal: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { height: windowHeight } = useWindowDimensions();
   const {
     isModalOpen,
@@ -420,7 +422,7 @@ const LiveStageModal: React.FC = () => {
                   }}
                 >
                   <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: "#FAFAFA" }} />
-                  <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>REC</Text>
+                  <Text style={{ color: "#F4F4F5", fontSize: 10, fontWeight: "700" }}>{_copy("copy.50a45e647dbb", { defaultValue: "REC" })}</Text>
                 </View>
               )}
               {!isConnected && (

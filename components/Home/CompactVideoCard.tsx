@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
@@ -37,6 +38,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   showCreator = true,
   onBeforeNavigate,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
@@ -272,8 +274,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
 
           <View className="flex-row items-center mt-1">
             <Text className="text-theme-neutrals-300 text-xs">
-              {views} views
-            </Text>
+              {views}{_copy("copy.46e244a50f70", { defaultValue: " views" })}</Text>
             <Ionicons
               name="ellipse"
               size={4}
@@ -288,15 +289,12 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
               {isLive && (
                 <View className={chipClass}>
-                  <Text className={chipTextClass}>
-                    LIVE
-                  </Text>
+                  <Text className={chipTextClass}>{_copy("copy.35e0d0360a0a", { defaultValue: "LIVE" })}</Text>
                 </View>
               )}
               {isPayPerView && (
                 <View className={chipClass}>
-                  <Text className={chipTextClass}>
-                    PPV {payPerViewAmount} {payPerViewTokenSymbol}
+                  <Text className={chipTextClass}>{_copy("copy.1226cd46b31a", { defaultValue: "PPV " })}{payPerViewAmount} {payPerViewTokenSymbol}
                   </Text>
                 </View>
               )}
@@ -309,8 +307,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               )}
               {isLocked && (
                 <View className={chipClass}>
-                  <Text className={chipTextClass}>
-                    LOCK {lockContentAmount} {lockContentTokenSymbol}
+                  <Text className={chipTextClass}>{_copy("copy.92452ecd3d29", { defaultValue: "LOCK " })}{lockContentAmount} {lockContentTokenSymbol}
                   </Text>
                 </View>
               )}

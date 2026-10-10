@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -74,6 +75,7 @@ function fmtDate(iso: string): string {
 
 // ─── Pie chart (SVG) ─────────────────────────────────────────────────────────
 function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const total = tips + ppv;
   const R = 60, CX = 70, CY = 70;
@@ -95,8 +97,8 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
 
   // Build arcs
   const slices: { pct: number; color: string; label: string }[] = [
-    { pct: tips / total, color: SOURCE_COLORS.tips, label: "Tips" },
-    { pct: ppv / total, color: SOURCE_COLORS.ppv, label: "PPV" },
+    { pct: tips / total, color: SOURCE_COLORS.tips, label: _copy("copy.3838a4d8cb8c", { defaultValue: "Tips" }) },
+    { pct: ppv / total, color: SOURCE_COLORS.ppv, label: _copy("copy.bd9e3879bc60", { defaultValue: "PPV" }) },
   ].filter((s) => s.pct > 0);
 
   const toRad = (deg: number) => (deg * Math.PI) / 180;

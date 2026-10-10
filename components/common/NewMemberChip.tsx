@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * New Member Chip (mobile)
  * ========================
@@ -33,6 +34,7 @@ const OVER_MEDIA = {
 } as const;
 
 const NewMemberChip: FC<NewMemberChipProps> = ({ address, overMedia = false }) => {
+  const { t: _copy } = _useCopy();
   const { isNew } = useIsNewMember(address);
 
   if (!isNew) return null;
@@ -61,9 +63,7 @@ const NewMemberChip: FC<NewMemberChipProps> = ({ address, overMedia = false }) =
           lineHeight: CHIP_TEXT_LINE_HEIGHT,
           fontWeight: "600",
         }}
-      >
-        New
-      </Text>
+      >{_copy("copy.18fdd549b2ed", { defaultValue: "New" })}</Text>
     </View>
   );
 };

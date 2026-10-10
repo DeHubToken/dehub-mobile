@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import {
@@ -44,6 +45,7 @@ function SponsoredAdVideo({ uri }: { uri: string }) {
 
 /** Native presentation and viewability tracking for a served POVR creative. */
 export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const containerRef = useRef<View | null>(null);
   const visibleSinceRef = useRef<number | null>(null);
@@ -134,7 +136,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
           <Text className="text-[11px] text-theme-neutrals-400">{t("ads.sponsored")}</Text>
         </View>
         <View className="rounded bg-yellow-500 px-1.5 py-0.5">
-          <Text className="text-xs font-bold text-black">AD</Text>
+          <Text className="text-xs font-bold text-black">{_copy("copy.c7bf4bbdbcd8", { defaultValue: "AD" })}</Text>
         </View>
       </View>
 
@@ -196,7 +198,7 @@ export default function SponsoredAdCard({ ad }: SponsoredAdCardProps) {
             style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : undefined}
           >
             <Text className="text-sm font-medium text-theme-neutrals-100">
-              {ad.ctaLabel || "Learn more"}
+              {ad.ctaLabel || _copy("copy.1445799c033a", { defaultValue: "Learn more" })}
             </Text>
             <Ionicons name="open-outline" size={14} color="#E4E4E7" />
           </View>

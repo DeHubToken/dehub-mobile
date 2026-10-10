@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../../i18n/copy';
 /**
  * RecentActionsTab
  * ================
@@ -53,27 +54,27 @@ const FILTER_SETS: Record<Exclude<FilterKey, "all">, Set<string>> = {
 };
 
 const FILTERS: { key: FilterKey; labelKey: string; label: string }[] = [
-  { key: "all", labelKey: "all", label: "All" },
-  { key: "members", labelKey: "members", label: "Members" },
-  { key: "messages", labelKey: "messages", label: "Messages" },
-  { key: "settings", labelKey: "settings", label: "Settings" },
-  { key: "invites", labelKey: "invites", label: "Invites" },
+  { key: "all", labelKey: "all", get label() { return _translateCopy("copy.a52ace420f21", { defaultValue: "All" }); } },
+  { key: "members", labelKey: "members", get label() { return _translateCopy("copy.1044a4c056d0", { defaultValue: "Members" }); } },
+  { key: "messages", labelKey: "messages", get label() { return _translateCopy("copy.04d7b4833927", { defaultValue: "Messages" }); } },
+  { key: "settings", labelKey: "settings", get label() { return _translateCopy("copy.74a883a037bc", { defaultValue: "Settings" }); } },
+  { key: "invites", labelKey: "invites", get label() { return _translateCopy("copy.f212a985ab16", { defaultValue: "Invites" }); } },
 ];
 
 /** Raw settings-patch keys → the chip copy. The four ticker_* keys collapse. */
 const SETTING_KEY_LABELS: Record<string, { key: string; label: string }> = {
-  name: { key: "name", label: "name" },
-  description: { key: "description", label: "description" },
-  avatar_url: { key: "avatar", label: "avatar" },
-  banner_url: { key: "banner", label: "banner" },
-  is_private: { key: "privacy", label: "privacy" },
-  rules: { key: "rules", label: "rules" },
-  slow_mode_seconds: { key: "slowMode", label: "slow mode" },
-  default_permissions: { key: "permissions", label: "permissions" },
-  ticker_symbol: { key: "ticker", label: "ticker" },
-  ticker_contract_address: { key: "ticker", label: "ticker" },
-  ticker_chain_id: { key: "ticker", label: "ticker" },
-  ticker_pair_address: { key: "ticker", label: "ticker" },
+  name: { key: "name", get label() { return _translateCopy("copy.82a3537ff0db", { defaultValue: "name" }); } },
+  description: { key: "description", get label() { return _translateCopy("copy.c9046f7a37ad", { defaultValue: "description" }); } },
+  avatar_url: { key: "avatar", get label() { return _translateCopy("copy.87bbe879c7a5", { defaultValue: "avatar" }); } },
+  banner_url: { key: "banner", get label() { return _translateCopy("copy.8c7ed2d9be59", { defaultValue: "banner" }); } },
+  is_private: { key: "privacy", get label() { return _translateCopy("copy.a4cc6bc01a92", { defaultValue: "privacy" }); } },
+  rules: { key: "rules", get label() { return _translateCopy("copy.6c621d1a0513", { defaultValue: "rules" }); } },
+  slow_mode_seconds: { key: "slowMode", get label() { return _translateCopy("copy.127f76178911", { defaultValue: "slow mode" }); } },
+  default_permissions: { key: "permissions", get label() { return _translateCopy("copy.4fe3cdd404ea", { defaultValue: "permissions" }); } },
+  ticker_symbol: { key: "ticker", get label() { return _translateCopy("copy.2c6bc1588bbd", { defaultValue: "ticker" }); } },
+  ticker_contract_address: { key: "ticker", get label() { return _translateCopy("copy.2c6bc1588bbd", { defaultValue: "ticker" }); } },
+  ticker_chain_id: { key: "ticker", get label() { return _translateCopy("copy.2c6bc1588bbd", { defaultValue: "ticker" }); } },
+  ticker_pair_address: { key: "ticker", get label() { return _translateCopy("copy.2c6bc1588bbd", { defaultValue: "ticker" }); } },
 };
 
 const DURATION_ACTIONS = new Set(["ban_member", "mute_member"]);

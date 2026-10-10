@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The assistant's settings sheet.
@@ -91,9 +92,9 @@ const SectionHeader: React.FC<{ icon: IconName; label: string }> = ({ icon, labe
 );
 
 const TIERS: { key: VideoModel['tier']; label: string }[] = [
-  { key: 'premium', label: 'Premium' },
-  { key: 'standard', label: 'Standard' },
-  { key: 'fast', label: 'Fast' },
+  { key: 'premium', get label() { return _translateCopy("copy.de88c121a82a", { defaultValue: "Premium" }); } },
+  { key: 'standard', get label() { return _translateCopy("copy.ef6691545d2c", { defaultValue: "Standard" }); } },
+  { key: 'fast', get label() { return _translateCopy("copy.6c582b62e0e5", { defaultValue: "Fast" }); } },
 ];
 
 const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = ({

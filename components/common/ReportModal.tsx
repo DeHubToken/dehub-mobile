@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * ReportModal - Glass modal for reporting content or users
@@ -29,39 +30,39 @@ interface ReportReason {
 }
 
 const CONTENT_REASONS: ReportReason[] = [
-  { id: "sexual_content", label: "Sexual content", icon: "eye-off-outline" },
-  { id: "violent_content", label: "Violent or graphic content", icon: "warning-outline" },
-  { id: "hateful_content", label: "Hateful content", icon: "ban-outline" },
-  { id: "harassment_bullying", label: "Harassment or bullying", icon: "hand-left-outline" },
-  { id: "harmful_dangerous", label: "Harmful or dangerous acts", icon: "flame-outline" },
-  { id: "misinformation", label: "Misinformation", icon: "megaphone-outline" },
-  { id: "child_abuse", label: "Child abuse", icon: "shield-outline" },
-  { id: "spam_misleading", label: "Spam or misleading", icon: "alert-circle-outline" },
-  { id: "scam_fraud", label: "Scam or fraud", icon: "card-outline" },
-  { id: "infringes_rights", label: "Infringes my rights", icon: "document-text-outline" },
-  { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
+  { id: "sexual_content", get label() { return _translateCopy("copy.cedfe045ae82", { defaultValue: "Sexual content" }); }, icon: "eye-off-outline" },
+  { id: "violent_content", get label() { return _translateCopy("copy.a256fa7383a6", { defaultValue: "Violent or graphic content" }); }, icon: "warning-outline" },
+  { id: "hateful_content", get label() { return _translateCopy("copy.e826deeabf0f", { defaultValue: "Hateful content" }); }, icon: "ban-outline" },
+  { id: "harassment_bullying", get label() { return _translateCopy("copy.56dc2b3bb2e5", { defaultValue: "Harassment or bullying" }); }, icon: "hand-left-outline" },
+  { id: "harmful_dangerous", get label() { return _translateCopy("copy.d739e32abeff", { defaultValue: "Harmful or dangerous acts" }); }, icon: "flame-outline" },
+  { id: "misinformation", get label() { return _translateCopy("copy.34d52e35bd31", { defaultValue: "Misinformation" }); }, icon: "megaphone-outline" },
+  { id: "child_abuse", get label() { return _translateCopy("copy.f8378f4395ce", { defaultValue: "Child abuse" }); }, icon: "shield-outline" },
+  { id: "spam_misleading", get label() { return _translateCopy("copy.97ab5d0657d3", { defaultValue: "Spam or misleading" }); }, icon: "alert-circle-outline" },
+  { id: "scam_fraud", get label() { return _translateCopy("copy.5f0f908b54ed", { defaultValue: "Scam or fraud" }); }, icon: "card-outline" },
+  { id: "infringes_rights", get label() { return _translateCopy("copy.052ec74b513d", { defaultValue: "Infringes my rights" }); }, icon: "document-text-outline" },
+  { id: "other", get label() { return _translateCopy("copy.f97e9da0e3b8", { defaultValue: "Other" }); }, icon: "ellipsis-horizontal-outline" },
 ];
 
 const USER_REASONS: ReportReason[] = [
-  { id: "impersonation", label: "Impersonation", icon: "person-outline" },
-  { id: "harassment_bullying", label: "Harassment or bullying", icon: "hand-left-outline" },
-  { id: "hateful_behavior", label: "Hateful behavior", icon: "ban-outline" },
-  { id: "spam", label: "Spam", icon: "alert-circle-outline" },
-  { id: "scam_fraud", label: "Scam or fraud", icon: "card-outline" },
-  { id: "underage", label: "Underage user", icon: "shield-outline" },
-  { id: "inappropriate_profile", label: "Inappropriate profile", icon: "eye-off-outline" },
-  { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
+  { id: "impersonation", get label() { return _translateCopy("copy.059551570001", { defaultValue: "Impersonation" }); }, icon: "person-outline" },
+  { id: "harassment_bullying", get label() { return _translateCopy("copy.56dc2b3bb2e5", { defaultValue: "Harassment or bullying" }); }, icon: "hand-left-outline" },
+  { id: "hateful_behavior", get label() { return _translateCopy("copy.da4e2f35bc9d", { defaultValue: "Hateful behavior" }); }, icon: "ban-outline" },
+  { id: "spam", get label() { return _translateCopy("copy.94a9eac404c8", { defaultValue: "Spam" }); }, icon: "alert-circle-outline" },
+  { id: "scam_fraud", get label() { return _translateCopy("copy.5f0f908b54ed", { defaultValue: "Scam or fraud" }); }, icon: "card-outline" },
+  { id: "underage", get label() { return _translateCopy("copy.eb4b1b7d76ea", { defaultValue: "Underage user" }); }, icon: "shield-outline" },
+  { id: "inappropriate_profile", get label() { return _translateCopy("copy.de6f2ae9f71d", { defaultValue: "Inappropriate profile" }); }, icon: "eye-off-outline" },
+  { id: "other", get label() { return _translateCopy("copy.f97e9da0e3b8", { defaultValue: "Other" }); }, icon: "ellipsis-horizontal-outline" },
 ];
 
 const COMMENT_REASONS: ReportReason[] = [
-  { id: "spam", label: "Spam", icon: "alert-circle-outline" },
-  { id: "harassment", label: "Harassment", icon: "hand-left-outline" },
-  { id: "hate_speech", label: "Hate speech", icon: "ban-outline" },
-  { id: "sexual_content", label: "Sexual content", icon: "eye-off-outline" },
-  { id: "violence", label: "Violence", icon: "warning-outline" },
-  { id: "scam_or_fraud", label: "Scam or fraud", icon: "card-outline" },
-  { id: "misinformation", label: "Misinformation", icon: "megaphone-outline" },
-  { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
+  { id: "spam", get label() { return _translateCopy("copy.94a9eac404c8", { defaultValue: "Spam" }); }, icon: "alert-circle-outline" },
+  { id: "harassment", get label() { return _translateCopy("copy.98a7655d026a", { defaultValue: "Harassment" }); }, icon: "hand-left-outline" },
+  { id: "hate_speech", get label() { return _translateCopy("copy.5b1a77cb0894", { defaultValue: "Hate speech" }); }, icon: "ban-outline" },
+  { id: "sexual_content", get label() { return _translateCopy("copy.cedfe045ae82", { defaultValue: "Sexual content" }); }, icon: "eye-off-outline" },
+  { id: "violence", get label() { return _translateCopy("copy.16d186a18037", { defaultValue: "Violence" }); }, icon: "warning-outline" },
+  { id: "scam_or_fraud", get label() { return _translateCopy("copy.5f0f908b54ed", { defaultValue: "Scam or fraud" }); }, icon: "card-outline" },
+  { id: "misinformation", get label() { return _translateCopy("copy.34d52e35bd31", { defaultValue: "Misinformation" }); }, icon: "megaphone-outline" },
+  { id: "other", get label() { return _translateCopy("copy.f97e9da0e3b8", { defaultValue: "Other" }); }, icon: "ellipsis-horizontal-outline" },
 ];
 
 export type ReportType = "content" | "user" | "comment";

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useEffect, useRef, useCallback, useState, useMemo } from 'react';
 import { FlatList, Text, View, TouchableOpacity } from 'react-native';
 import { appLocale } from "../../libs/date.util";
@@ -20,6 +21,7 @@ interface Props {
 }
 
 const ChatMessageList: React.FC<Props> = ({ messages, onPressUser, onLongPressMessage }) => {
+  const { t: _copy } = _useCopy();
   const listRef = useRef<FlatList<ChatMessage>>(null);
   const [autoScroll, setAutoScroll] = useState(true);
 
@@ -49,13 +51,13 @@ const ChatMessageList: React.FC<Props> = ({ messages, onPressUser, onLongPressMe
           {item.user}
         </Text>
         {item.isGift ? (
-          <Text className="text-[12px] text-amber-300 font-medium">sent a gift x{item.amount}</Text>
+          <Text className="text-[12px] text-amber-300 font-medium">{_copy("copy.3fe124164120", { defaultValue: "sent a gift x" })}{item.amount}</Text>
         ) : (
           <Text className="text-[12px] text-white/90 flex-shrink">{item.message}</Text>
         )}
       </TouchableOpacity>
     );
-  }, [onPressUser, onLongPressMessage]);
+  }, [onPressUser, onLongPressMessage, _copy]);
 
   const keyExtractor = useCallback((item: ChatMessage) => item.id, []);
 

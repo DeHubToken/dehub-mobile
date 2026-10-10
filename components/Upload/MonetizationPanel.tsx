@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * MonetizationPanel
@@ -151,6 +152,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   postChainId,
   onCreatePlan,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const isSolana = isSolanaChain(postChainId);
   // The gate is the creator's own plans, so with none there is nothing to gate
@@ -371,7 +373,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Icon name="CreditCard" size={20} color="#fff" />
-          <Text className="text-white text-sm ml-3">PPV</Text>
+          <Text className="text-white text-sm ml-3">{_copy("copy.bd9e3879bc60", { defaultValue: "PPV" })}</Text>
         </View>
         <CustomSwitch
           value={state.ppvEnabled || expandedSection === "ppv"}

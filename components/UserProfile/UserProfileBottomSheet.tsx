@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -36,6 +37,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   embedded = false,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
   const [menuTrigger, setMenuTrigger] = React.useState<(() => void) | null>(null);
@@ -201,7 +203,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
               top: 0 on the padded outer view still reaches the status bar. */}
           <View style={{ flex: 1 }}>
           <ScreenHeader
-            title={profileData?.displayName || "Profile"}
+            title={profileData?.displayName || _copy("copy.d696a35bdd18", { defaultValue: "Profile" })}
             subtitle={profileData?.username ? `@${profileData.username}` : undefined}
             canGoBack
             overlay={theme === "system" || theme === "immersive"}

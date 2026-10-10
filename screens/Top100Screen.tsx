@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * Top100Screen
@@ -43,10 +44,10 @@ const PAGE_SIZE = 100;
 
 /** Metals keep their chemical-symbol pills; kinds are told apart by label only. */
 const METAL_COLORS: Record<string, { bg: string; fg: string; label: string }> = {
-  GOLD: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Au" },
-  SILVER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Ag" },
-  COPPER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Cu" },
-  PLATINUM: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Pt" },
+  GOLD: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", get label() { return _translateCopy("copy.3325c2b56f2b", { defaultValue: "Au" }); } },
+  SILVER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", get label() { return _translateCopy("copy.468415f0e112", { defaultValue: "Ag" }); } },
+  COPPER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", get label() { return _translateCopy("copy.b62c681738d1", { defaultValue: "Cu" }); } },
+  PLATINUM: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", get label() { return _translateCopy("copy.b602b7029be6", { defaultValue: "Pt" }); } },
 };
 
 const KIND_TINT: Record<string, string> = {

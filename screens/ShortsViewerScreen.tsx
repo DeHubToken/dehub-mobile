@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
@@ -342,6 +343,7 @@ interface ShortItemProps {
 }
 
 const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+  const { t: _copy } = _useCopy();
   const playbackAllowed = useFeedPlaybackAllowed();
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
   const player = usePersistentVideoPlayer(null, (p) => {
@@ -1558,7 +1560,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
                       otherwise a clamped caption offers no hint it opens. */}
                   {shownDescription.length > 80 || shownTitle.length > 40 ? (
                     <Text style={styles.captionMore}>
-                      {captionExpanded ? "less" : "more"}
+                      {captionExpanded ? _copy("copy.4fdd3b6201a2", { defaultValue: "less" }) : _copy("copy.187897ce0afc", { defaultValue: "more" })}
                     </Text>
                   ) : null}
                 </Pressable>
@@ -1656,8 +1658,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
                     onLongPress={() => setOpenTray("positive")}
                     accessibilityLabel={
                       myReaction
-                        ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-                        : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
+                        ? _copy("copy.a3156ed263d2", { defaultValue: "{{value1}} — hold to change your reaction", value1: reactionMeta(myReaction).label })
+                        : _copy("copy.12b91b0ac5dd", { defaultValue: "{{value1}} — hold to react", value1: reactionMeta(leadReaction ?? "like").label })
                     }
                   />
                 </View>
@@ -1715,6 +1717,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 });
 
 const ShortsViewerScreen = () => {
+  const { t: _copy } = _useCopy();
   const downloadVideo = useVideoDownload();
   const mediaInsets = useSafeAreaInsets();
   const { t } = useCopy();
@@ -2231,7 +2234,7 @@ const ShortsViewerScreen = () => {
               <View
                 style={styles.topButton}
                 hitSlop={CHROME_HIT_SLOP}
-                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+                accessibilityLabel={isMuted ? _copy("copy.ce4ee4efc5e3", { defaultValue: "Unmute" }) : _copy("copy.8dd6857baf02", { defaultValue: "Mute" })}
                 {...volumePanResponder.panHandlers}
               >
                 <ChromeFill />
