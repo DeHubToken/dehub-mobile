@@ -26,6 +26,7 @@ export interface VideoAreaProps {
   /** See VideoPlayerCore — the live viewer draws its own scrub line. */
   seekRef?: React.MutableRefObject<((ratio: number) => void) | null>;
   isLive?: boolean;
+  suppressLoadingFeedback?: boolean;
   onPPVSuccess?: () => void;
   /** When true, video fills the entire container instead of using 16:9 aspect ratio */
   fullscreen?: boolean;
@@ -49,6 +50,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   onProgress,
   seekRef,
   isLive,
+  suppressLoadingFeedback,
   onPPVSuccess,
   fullscreen,
   hideTopControls,
@@ -373,6 +375,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         autoplay
         loop={!isLive}
         liveMode={!!isLive}
+        suppressLoadingFeedback={suppressLoadingFeedback}
         hideTopControls={hideTopControls}
         hideControls={fullscreen && !!isLive}
         fillContainer={fullscreen}

@@ -1622,7 +1622,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
            self-hosted ingest renders none) and the stream only appeared after
            opening the post. */
         <LiveFeedPreview
-          streamId={isCurrentlyLive && !isOwnerPost ? liveReactionStreamId : undefined}
+          streamId={isCurrentlyLive ? liveReactionStreamId : undefined}
+          streamStatus={status}
+          isOwner={isOwnerPost}
+          paused={livePaused}
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}
