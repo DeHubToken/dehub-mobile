@@ -398,6 +398,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Dao]: DeepLinkPaths.DAO,
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
+          [ScreenNames.Feedback]: 'feedback',
 
           [ScreenNames.GovernanceProposal]: {
             path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
