@@ -328,7 +328,7 @@ const ProfileHeader = () => {
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
               name={displayName}
               size={88}
-              style={{ borderWidth: 3, borderColor: "#010305" }}
+              style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
               onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl
