@@ -16,7 +16,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import { TrenchstarIcon } from "../components/trenchstar/TrenchstarIcon";
 import ScreenHeader from "../components/ScreenHeader";
 import { PageSection } from "../components/page/PageKit";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -65,7 +64,7 @@ const GameCard = ({
     <View style={styles.cardBody}>
       <Text style={styles.description}>{game.description}</Text>
       <View style={styles.playButton}>
-        {game.slug === "trenchstar" ? <TrenchstarIcon name="play" size={24} /> : <Icon name="Play" size={13} color={colors.accentForeground} />}
+        <Icon name="Play" size={13} color={colors.accentForeground} />
         <Text style={styles.playLabel}>{game.action}</Text>
       </View>
       {onPlayOnline ? (
