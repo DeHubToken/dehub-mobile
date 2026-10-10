@@ -141,8 +141,8 @@ it("preserves Redo and releases the microphone when a take is cancelled", async 
 
 async function screenView() {
   mockScreenCapabilities.mockResolvedValue({ available: true, systemAudio: true, microphone: true, background: true });
-  let view!: ReturnType<typeof render>;
-  await act(async () => { view = render(<Harness />); });
+  const view = render(<Harness />);
+  await act(async () => {});
   return view;
 }
 async function recordScreen(view: ReturnType<typeof render>) {
@@ -168,7 +168,7 @@ it("keeps screen capture running in the background and saves once at its origina
 
 it("passes the voiceover option without taking over the standalone audio recorder", async () => {
   const view = await screenView();
-  await act(async () => fireEvent.press(view.getAllByText("comments.recordVoice")[1]));
+  await act(async () => fireEvent.press(view.getByLabelText("comments.recordVoice")));
   await recordScreen(view);
   expect(mockScreenStart).toHaveBeenCalledWith(expect.objectContaining({ microphone: true }));
   expect(mockConfigure).not.toHaveBeenCalled(); expect(mockRecorder.record).not.toHaveBeenCalled();

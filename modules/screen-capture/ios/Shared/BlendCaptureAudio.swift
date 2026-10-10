@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 
 /** The durable capture keeps both sources until the host can create one mixed audio track. */
+@MainActor
 func blendCaptureAudio(file: URL, isCurrent: @escaping () -> Bool) async throws {
   guard isCurrent(), !Task.isCancelled else { throw CancellationError() }
   let asset = AVURLAsset(url: file)
