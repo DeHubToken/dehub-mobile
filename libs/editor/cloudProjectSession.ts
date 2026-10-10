@@ -1,3 +1,5 @@
+import { projectMediaProjection } from "./projectMediaProjection";
+import { mergeLocalProjectEdits } from "./projectHistory";
 import { videoMatteMediaIds } from "./videoMatte";
 import { CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
@@ -39,14 +41,16 @@ export function cloudProjectMediaIds(snapshot: ProjectSnapshot): string[] {
   return [...ids];
 }
 
+const cloudSessionLocks = new Set<string>();
+
 /** Local drafts survive failures. A lost save response is retried with the same nonce. */
 export function cloudProjectSession(deps: CloudProjectSessionDeps) {
   const { wallet, check } = deps;
   let busy = false;
   async function exclusive<T>(run: () => Promise<T>): Promise<T> {
-    if (busy) throw new Error("A cloud project operation is already running");
-    check(); busy = true;
-    try { return await run(); } finally { busy = false; }
+    if (busy || cloudSessionLocks.has(wallet)) throw new Error("A cloud project operation is already running");
+    check(); busy = true; cloudSessionLocks.add(wallet);
+    try { return await run(); } finally { busy = false; cloudSessionLocks.delete(wallet); }
   }
   function requireEditing() {
     if (!deps.api.editing) throw new Error("Shared project editing is unavailable");
@@ -139,6 +143,39 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
           ...(recovered?.mergedDocument ? { originalDocument } : {}) };
         await deps.writeLink(captured.id, link); check();
         return (await finishPending(captured.id, link))!;
+      });
+    },
+    receiveSaved(snapshot: ProjectSnapshot, accept: (snapshot: ProjectSnapshot) => void, guard: () => void = check) {
+      const captured = JSON.parse(JSON.stringify(snapshot, (_key, value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        return value;
+      })) as ProjectSnapshot;
+      return exclusive(async () => {
+        const verify = () => { check(); guard(); };
+        verify();
+        const link = await deps.readLink(captured.id); verify();
+        if (!link || link.wallet !== wallet || link.revision < 1) throw new Error("Save this project to cloud before receiving shared changes.");
+        if (link.pending) throw new CloudProjectConflict("Finish the pending cloud save before receiving shared changes. Your local draft was kept.");
+        const sourceOwner = link.sharedOwner || wallet;
+        const latest = link.sharedOwner ? await requireEditing().load(sourceOwner,link.projectId) : await deps.api.load(link.projectId); verify();
+        if (latest.projectId !== link.projectId || latest.document.snapshot.id !== link.projectId) throw new Error("Shared project changed during transfer");
+        if (latest.revision <= link.revision) return { changed: false, revision: link.revision };
+        if (link.sharedOwner && !deps.api.review) throw new Error("Shared project history is unavailable");
+        const base = link.sharedOwner ? await deps.api.review!.load(sourceOwner,link.projectId,link.revision) : await deps.api.load(link.projectId,link.revision); verify();
+        if (base.projectId !== link.projectId || base.revision !== link.revision || base.document.snapshot.id !== link.projectId) throw new Error("Shared project base changed during transfer");
+        const original = projectMediaProjection(base.document,sourceOwner,captured.id,link.media,deps.uuid);
+        const incoming = projectMediaProjection(latest.document,sourceOwner,captured.id,original.bindings,deps.uuid);
+        const merged = mergeLocalProjectEdits(original.snapshot,captured,incoming.snapshot);
+        if (!merged.snapshot) throw new CloudProjectConflict("Shared changes overlap your local edits. Your draft and Undo were kept; open a separate cloud copy or save a personal copy.");
+        const used = new Set(cloudProjectMediaIds(merged.snapshot));
+        const media = new Map([...original.media,...incoming.media].map(source => [source.id,source]));
+        for (const source of media.values()) if (used.has(source.id)) { verify(); await deps.hydrate(source,verify,sourceOwner); verify(); }
+        // Retain the mapping before applying, so an interrupted transfer never invents a second device ID.
+        link.media = incoming.bindings; await deps.writeLink(captured.id,link); verify();
+        accept(merged.snapshot); verify();
+        await deps.saveLocal(merged.snapshot); verify();
+        link.revision = latest.revision; await deps.writeLink(captured.id,link); verify();
+        return { changed: true, revision: latest.revision };
       });
     },
     open(id: string, revision?: number) {

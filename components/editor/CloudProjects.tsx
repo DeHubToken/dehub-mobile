@@ -10,11 +10,11 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 import { appLocale } from "../../libs/date.util";
 import { ProjectReviewPanel } from "./ProjectReviewPanel";
 
-export function CloudProjects({ visible, onClose, current, onOpen, preserve, onSeek }: { visible: boolean; onClose(): void; current(): ProjectSnapshot | null; onOpen(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; onSeek?(seconds: number): void }) {
+export function CloudProjects({ visible, onClose, current, onOpen, preserve, onSeek, onReceive }: { visible: boolean; onClose(): void; current(): ProjectSnapshot | null; onOpen(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; onSeek?(seconds: number): void; onReceive?(snapshot: ProjectSnapshot, expectedKey: string): number | void }) {
   const { t } = useTranslation(), user = useUser();
   const address = user?.walletAddress || user?.address;
   const [query, setQuery] = useState("");
-  const cloud = useCloudProjects(address, nativeCloudProjectSession, { current, open: onOpen, preserve, seek: onSeek });
+  const cloud = useCloudProjects(address, nativeCloudProjectSession, { current, open: onOpen, preserve, seek: onSeek, receive: onReceive });
   useEffect(() => { if (visible && address) void cloud.refresh(); }, [visible, address]);
   useEffect(() => { setQuery(""); }, [address]);
   const matching = cloud.projects.filter(project => (project.title || t("creator.untitled")).toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
@@ -35,6 +35,14 @@ export function CloudProjects({ visible, onClose, current, onOpen, preserve, onS
           <Pressable disabled={cloud.busy || !cloud.available || cloud.linkPending} onPress={() => { void cloud.save(true); }} accessibilityRole="button" className="flex-row items-center rounded-xl border border-white/20 px-4 py-3" style={{ gap: 6, opacity: cloud.busy || !cloud.available ? 0.4 : 1 }}>
             <Icon name="Copy" size={17} color="#fff" /><Text className="text-white">{t("common.save")}{" · "}{t("common.copy")}</Text>
           </Pressable>
+        </View>}
+        {!!current() && <View style={{gap:8}}>
+          <Pressable disabled={!cloud.canReceive || cloud.busy} accessibilityRole="button" accessibilityLabel={t("editor.sharedTimeline.receive")} onPress={() => { void cloud.receiveChanges(); }} className="flex-row items-center rounded-xl border border-white/20 px-4 py-3" style={{gap:8,opacity:!cloud.canReceive || cloud.busy ? .4 : 1}}>
+            <Icon name="RefreshCw" size={17} color="#fff" /><Text className="text-white">{t("editor.sharedTimeline.receive")}</Text>
+          </Pressable>
+          <Text className="text-theme-neutrals-400 text-xs">{t("editor.sharedTimeline.hint")}</Text>
+          {cloud.received && <Text accessibilityRole="text" className="text-white">{t(cloud.received.changed ? "editor.sharedTimeline.received" : "editor.sharedTimeline.upToDate", {revision:cloud.received.revision})}</Text>}
+          {!!cloud.received?.protectedUndo && <Text className="text-theme-neutrals-400 text-xs">{t("editor.sharedTimeline.protectedUndo")}</Text>}
         </View>}
         {cloud.sharedOwner && <View className="rounded-xl border border-white/15 p-3" style={{gap:4}}><Text className="text-white">{t("editor.review.shared")}{" · "}{t("common.edit")}</Text><Text className="text-theme-neutrals-300 text-xs">{t("common.save")}{" → "}{cloud.sharedOwner}</Text><Text className="text-theme-neutrals-400 text-xs">{t("common.copy")}{" → "}{address?.toLowerCase()}</Text></View>}
         {cloud.mergeCopy && <View className="rounded-xl border border-white/15 p-3" style={{gap:8}}><Text className="text-white">{t("editor.review.title")}{" · "}{t("common.copy")}{" · "}{cloud.mergeCopy.revision}</Text><Pressable accessibilityRole="button" accessibilityLabel={`${t("common.edit")} · ${t("common.copy")}`} disabled={cloud.busy} onPress={()=>{void cloud.openMergeCopy();}} className="rounded-xl border border-white/15 px-3 py-2"><Text className="text-white">{t("common.edit")}{" · "}{t("common.copy")}</Text></Pressable></View>}

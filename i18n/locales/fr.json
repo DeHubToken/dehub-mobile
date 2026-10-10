@@ -7442,6 +7442,13 @@
         "turnHint": "Montrez le moment du changement.",
         "authorHint": "Votre nom"
       }
+    },
+    "sharedTimeline": {
+      "receive": "Recevoir les modifications",
+      "hint": "Appliquez les dernières modifications enregistrées. Vos modifications locales et l’annulation sont conservées.",
+      "received": "Version {{revision}} reçue.",
+      "upToDate": "Déjà à jour.",
+      "protectedUndo": "D’anciennes modifications locales chevauchent les modifications partagées. L’annulation préservera les modifications partagées."
     }
   },
   "creator": {

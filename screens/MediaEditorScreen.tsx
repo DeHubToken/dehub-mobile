@@ -162,12 +162,12 @@ import type { AppStackParamList } from "../navigation/types";
 import { toastError, toastSuccess } from "../libs";
 import { appLocale } from "../libs/date.util";
 import { LiveProjectSession } from "../components/editor/LiveProjectSession";
+import { useProjectHistory } from "../libs/editor/useProjectHistory";
 import { CloudProjects } from "../components/editor/CloudProjects";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
 type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
 
-const HISTORY_LIMIT = 50;
 
 export default function MediaEditorScreen() {
   const { t } = useTranslation();
@@ -331,68 +331,13 @@ interface ToolButton {
   label: string;
 }
 
-function useHistory(initial: ProjectSnapshot | null) {
-  const [project, setProject] = useState<ProjectSnapshot | null>(initial);
-  const past = useRef<ProjectSnapshot[]>([]);
-  const future = useRef<ProjectSnapshot[]>([]);
-  const liveBase = useRef<ProjectSnapshot | null>(null);
-  const current = useRef(project);
-  current.current = project;
-  const [, bump] = useState(0);
-
-  const push = (before: ProjectSnapshot) => {
-    past.current = [...past.current, before].slice(-HISTORY_LIMIT);
-    future.current = [];
-  };
-
-  return {
-    project,
-    /** The project as of now, for work that finishes after an await. */
-    latest: () => current.current,
-    canUndo: past.current.length > 0,
-    canRedo: future.current.length > 0,
-    reset: (p: ProjectSnapshot) => { past.current = []; future.current = []; setProject(p); },
-    fork: (original: ProjectSnapshot, next: ProjectSnapshot) => {
-      past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; setProject(next);
-    },
-    /** Not an undo step: facts the canvas measured, like a video's real length. */
-    replace: (p: ProjectSnapshot) => { if (liveBase.current) liveBase.current = p; setProject(p); },
-    commit: (next: ProjectSnapshot) => {
-      const before = liveBase.current ?? current.current;
-      liveBase.current = null;
-      if (before) push(before);
-      setProject(next);
-    },
-    live: (next: ProjectSnapshot) => {
-      if (!liveBase.current) liveBase.current = current.current;
-      setProject(next);
-    },
-    settle: () => {
-      if (liveBase.current) { push(liveBase.current); liveBase.current = null; bump((n) => n + 1); }
-    },
-    undo: () => {
-      const prev = past.current[past.current.length - 1];
-      if (!prev || !current.current) return;
-      past.current = past.current.slice(0, -1);
-      future.current = [current.current, ...future.current];
-      setProject(prev);
-    },
-    redo: () => {
-      const next = future.current[0];
-      if (!next || !current.current) return;
-      future.current = future.current.slice(1);
-      past.current = [...past.current, current.current];
-      setProject(next);
-    },
-  };
-}
 
 function Workspace({ initial, projectId, pickVideo, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; onClose: () => void }) {
   const user = useUser();
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
   const { height: windowHeight } = useWindowDimensions();
-  const h = useHistory(initial);
+  const h = useProjectHistory(initial);
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -1527,7 +1472,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
-      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} onSeek={seconds => { setPlaying(false); setTime(seconds); }} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
+      <CloudProjects visible={cloudOpen} onClose={() => setCloudOpen(false)} current={h.latest} onReceive={(snapshot,expectedKey) => {
+        const protectedUndo = h.receive(snapshot,expectedKey); setPlaying(false); setTime(value => Math.min(value,projectDuration(snapshot)));
+        if (selectedId && !snapshot.clips.some(clip => clip.id === selectedId)) setSelectedId(null);
+        return protectedUndo;
+      }} onSeek={seconds => { setPlaying(false); setTime(seconds); }} preserve={async () => { const p = h.latest(); if (p) await saveProject(p); }} onOpen={async p => {
         setPlaying(false); setTime(0); setSelectedId(null); setTool(null); setMissing(false);
         persisted.current = true; h.reset(p); setCloudOpen(false);
       }} />
