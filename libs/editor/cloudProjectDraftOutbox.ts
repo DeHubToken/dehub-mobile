@@ -40,8 +40,12 @@ function contentKey(document: CloudProjectDocument): string {
 export function parseCloudDraftOutbox(value: unknown, scope: CloudDraftScope): CloudDraftOutboxState | null {
   if (value === null || value === undefined) return null;
   if (!object(value) || value.version !== 1 || !id(value.clientId)
-    || value.wallet !== scope.wallet || value.owner !== scope.owner || value.projectId !== scope.projectId || value.localId !== scope.localId
-    || (value.lastRequestId !== null && !id(value.lastRequestId))) fail();
+    || value.wallet !== scope.wallet || value.owner !== scope.owner || value.projectId !== scope.projectId || value.localId !== scope.localId) fail();
+  let lastRequestId: string | null = null;
+  if (value.lastRequestId !== null) {
+    if (!id(value.lastRequestId)) fail();
+    lastRequestId = value.lastRequestId;
+  }
   let writer: CloudDraftWriter | null = null;
   if (value.writer !== null) {
     if (!object(value.writer) || !id(value.writer.writerId) || !integer(value.writer.nextSequence, 1, MAX_SEQUENCE) || !date(value.writer.expiresAt)) fail();
@@ -53,13 +57,13 @@ export function parseCloudDraftOutbox(value: unknown, scope: CloudDraftScope): C
     const request = value.pending;
     if (!writer || !object(request) || request.writerId !== writer.writerId || request.sequence !== writer.nextSequence
       || !integer(request.sequence, 1) || request.expectedRevision !== writer.checkpoint.draftRevision
-      || request.anchorRevision !== writer.checkpoint.headRevision || !id(request.requestId) || request.requestId === value.lastRequestId) fail();
+      || request.anchorRevision !== writer.checkpoint.headRevision || !id(request.requestId) || request.requestId === lastRequestId) fail();
     const document = parseCloudProjectDocument(request.document, scope.owner);
     if (document.snapshot.id !== scope.projectId) fail();
     pending = { writerId: writer.writerId, sequence: request.sequence, document, expectedRevision: writer.checkpoint.draftRevision,
       anchorRevision: writer.checkpoint.headRevision, requestId: request.requestId };
   }
-  return copy<CloudDraftOutboxState>({ ...scope, version: 1, clientId: value.clientId, writer, pending, lastRequestId: value.lastRequestId });
+  return copy<CloudDraftOutboxState>({ ...scope, version: 1, clientId: value.clientId, writer, pending, lastRequestId });
 }
 
 /** Explicit operations only: registration does not publish edits or retry in the background. */
