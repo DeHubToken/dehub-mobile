@@ -39,10 +39,13 @@ it.each([{ scopeKey: "b".repeat(64) }, { playheadMs: 9000 }])("rejects native co
   expect(mockNative.cancel).toHaveBeenCalledWith(result.sessionId);
 });
 it("filters foreign events by session, account, project, and original playhead", async () => {
-  const bridge = screenCaptureDriver(options), changed = jest.fn(); bridge.subscribe(result.sessionId, changed);
+  const delivered = deferred<typeof result & { state: string }>();
+  const bridge = screenCaptureDriver(options), changed = jest.fn(value => delivered.resolve(value)); bridge.subscribe(result.sessionId, changed);
+  await bridge.driver.start({ sessionId: result.sessionId, microphone: false });
   const listener = mockNative.addListener.mock.calls[0][1];
   listener({ ...result, sessionId: "foreign_123" }); listener({ ...result, scopeKey: "b".repeat(64) }); listener({ ...result, playheadMs: 9000 });
-  listener({ ...result, state: "completed" }); await Promise.resolve(); await Promise.resolve();
+  listener({ ...result, state: "completed" });
+  await expect(delivered.promise).resolves.toEqual({ ...result, state: "completed" });
   expect(changed).toHaveBeenCalledTimes(1);
 });
 it("resumes a retained completion without requesting fresh capture permission", async () => {
