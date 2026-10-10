@@ -7382,6 +7382,13 @@
         "turnHint": "展示变化发生的瞬间。",
         "authorHint": "你的名字"
       }
+    },
+    "sharedTimeline": {
+      "receive": "接收更改",
+      "hint": "应用最新保存的更改，同时保留本地编辑和撤销历史。",
+      "received": "已接收版本 {{revision}}。",
+      "upToDate": "已是最新版本。",
+      "protectedUndo": "较早的本地编辑与共享更改重叠。撤销操作将保留共享更改。"
     }
   },
   "creator": {

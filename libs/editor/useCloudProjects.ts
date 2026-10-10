@@ -5,7 +5,7 @@ import type { CloudProjectSummary } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 import { projectReviewDraft, projectReviewSnapshotKey, projectReviewWallet, type ProjectReviewComment, type ProjectReviewDraft, type ProjectReviewInvitation, type ProjectReviewMember, type ProjectReviewRole, type ProjectReviewTarget } from "./cloudProjectReview";
 
-interface Context { current(): ProjectSnapshot | null; open(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; seek?(seconds: number): void }
+interface Context { current(): ProjectSnapshot | null; open(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; seek?(seconds: number): void; receive?(snapshot: ProjectSnapshot, expectedKey: string): number | void }
 type Device = { api: ReturnType<typeof cloudProjectApi>; session: ReturnType<typeof cloudProjectSession>; uuid(): string };
 
 /** Transfers run only after an explicit action, pinned to the active account. */
@@ -18,6 +18,8 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
   const currentId = context.current()?.id || "";
+  const [received, setReceived] = useState<{ wallet: string; localId: string; revision: number; changed: boolean; protectedUndo: number } | null>(null);
+  const currentReceived = received?.wallet === wallet && received.localId === currentId ? received : null;
   const [mergeCopy, setMergeCopy] = useState<{wallet:string;localId:string;owner:string|null;snapshot:ProjectSnapshot;revision:number}|null>(null);
   const availableMergeCopy = mergeCopy?.wallet === wallet && mergeCopy.localId === currentId ? mergeCopy : null;
   const [sharedLink, setSharedLink] = useState<{id:string;wallet:string;owner:string|null}|null>(null);
@@ -42,7 +44,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   const pendingComment = useRef<{fingerprint: string; id: string} | null>(null);
   const openedReview = useRef<{localId: string; owner: string; projectId: string; revision: number; snapshotKey: string} | null>(null);
   const clearReview = () => { setReview(null); setMembers([]); setComments([]); };
-  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setViewShared(false); setSharedProjects([]); clearReview(); setError(""); setSaved(false); setMergeCopy(null); pendingComment.current=null; openedReview.current=null; }, [wallet]);
+  useEffect(() => { setProjects([]); setHistory([]); setSelected(null); setViewTrash(false); setViewShared(false); setSharedProjects([]); clearReview(); setError(""); setSaved(false); setReceived(null); setMergeCopy(null); pendingComment.current=null; openedReview.current=null; }, [wallet]);
   async function run(action: (device: Device, check: () => void) => Promise<void>) {
     if (busyRef.current || !device) return;
     const selectedWallet = wallet;
@@ -52,7 +54,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : "Cloud project operation failed"); }
     finally { busyRef.current = false; if (mounted.current) setBusy(false); }
   }
-  return { available: !!device, busy, error, saved, sharedOwner, linkPending, mergeCopy: availableMergeCopy, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
+  return { available: !!device, busy, error, saved, received: currentReceived, canReceive: !!device && !!context.receive && !!currentId && !linkPending, sharedOwner, linkPending, mergeCopy: availableMergeCopy, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
     clearHistory: () => { setSelected(null); setHistory([]); },
     refresh: () => run(async ({ api }, check) => {
       if (viewShared) { const rows=await api.review.inbox(); check(); setSharedProjects(rows); }
@@ -148,6 +150,23 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       if (current?.id !== before?.id || (current ? projectReviewSnapshotKey(current) : "") !== key) throw new Error("The current project changed during transfer");
       await scope.current.context.open(availableMergeCopy.snapshot); check();
       setSharedLink({id:availableMergeCopy.snapshot.id,wallet,owner:availableMergeCopy.owner}); setMergeCopy(null);
+    }),
+    receiveChanges: () => run(async ({ session }, check) => {
+      const captured = scope.current.context.current();
+      if (!captured || !scope.current.context.receive) return;
+      const expectedKey = projectReviewSnapshotKey(captured);
+      let applied = false, protectedUndo = 0;
+      const guard = () => {
+        check(); const now = scope.current.context.current();
+        if (now?.id !== captured.id || (!applied && projectReviewSnapshotKey(now) !== expectedKey)) throw new Error("The current project changed during transfer");
+      };
+      await scope.current.context.preserve(); guard();
+      const result = await session.receiveSaved(captured, snapshot => {
+        guard(); const receive = scope.current.context.receive;
+        if (!receive) throw new Error("Shared timeline updates are unavailable");
+        protectedUndo = receive(snapshot, expectedKey) || 0; applied = true;
+      }, guard);
+      guard(); setReceived({wallet,localId:captured.id,revision:result.revision,changed:result.changed,protectedUndo});
     }),
     save: (copy = false) => run(async ({ api, session }, check) => {
       const currentSnapshot = scope.current.context.current(); if (!currentSnapshot) return;
