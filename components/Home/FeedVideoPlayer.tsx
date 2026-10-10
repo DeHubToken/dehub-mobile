@@ -25,6 +25,7 @@ import {
   Animated,
   Easing,
   Platform,
+  I18nManager,
 } from "react-native";
 import { VideoView, VideoPlayer, isPictureInPictureSupported } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
@@ -136,6 +137,8 @@ interface FeedVideoPlayerProps {
   /** Post page: the clip fills the width or most of the screen height, at its
    *  real shape even when thinner than 9:16, and sits centred. */
   postPage?: boolean;
+  /** Post-page Back uses the same glyph and tap area as Volume. */
+  onBack?: () => void;
   videoUrl: string | undefined;
   /** Absent (older posts) or 'done' renders normally. 'pending'/'on' shows a
    *  processing spinner instead of attempting playback; 'failed' shows an
@@ -248,6 +251,7 @@ const LOVE_BLOOM = [
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
   postPage = false,
+  onBack,
   videoUrl,
   transcodingStatus,
   isOwner,
@@ -1308,7 +1312,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           accessibilityLabel={t("bounty.detailsLabel")}
           onPress={onBountyPress}
           activeOpacity={0.75}
-          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }, bleed && { top: bleed.topInset }]}
+          style={[styles.bountyPill, edgeToEdge && { left: MINIMAL_EDGE }, bleed && { top: bleed.topInset }, onBack && { top: bareTop + 38 }]}
         >
           <Image
             source={require("../../assets/web-icons/dehub-coin.png")}
@@ -1319,6 +1323,17 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
             {formatCompactNumber(bountyAmount)} {bountyCurrency}
           </Text>
         </TouchableOpacity>
+      )}
+
+      {onBack && !hideControls && (
+        <Animated.View
+          pointerEvents={canPlay && !showControls ? "none" : "box-none"}
+          style={[styles.mediaBack, { top: bareTop, opacity: canPlay ? controlsOpacity : 1 }]}
+        >
+          <Pressable onPress={onBack} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("common.goBack")} style={styles.bareButton}>
+            <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}><BareIcon name="ArrowLeft" /></View>
+          </Pressable>
+        </Animated.View>
       )}
 
       {!hideControls && !isContentGated && !isProcessing && !isFailed && (
@@ -1783,6 +1798,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
   },
+  mediaBack: {
+    position: "absolute",
+    left: 8,
+    zIndex: 10,
+  },
   bareButton: {
     width: 32,
     height: 32,
@@ -2018,8 +2038,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage">> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack">> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack }) => {
     const { t } = useTranslation();
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal: minimalTheme } = useAppTheme();
@@ -2062,6 +2082,11 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         {!hideControls && (
           <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")}>
             <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
+          </Pressable>
+        )}
+        {onBack && !hideControls && (
+          <Pressable onPress={onBack} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("common.goBack")} style={[styles.mediaBack, styles.bareButton, { top: 6 }]}>
+            <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}><BareIcon name="ArrowLeft" /></View>
           </Pressable>
         )}
         {postPage && !hideControls && duration ? (
@@ -2150,6 +2175,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       duration={props.duration}
       hideControls={props.hideControls}
       postPage={props.postPage}
+      onBack={props.onBack}
       onPress={onPosterPress}
     />
   );
