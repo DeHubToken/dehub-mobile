@@ -25,10 +25,11 @@ import type {
  *
  * Two rules this file exists to hold:
  *
- * 1. Every read carries the wallet header. A private community's roster and
+ * 1. Restricted reads carry the viewer's wallet header. A private community's roster and
  *    chat history are no longer world-readable, and the pending/banned lists are
  *    moderator-only, so an unheadered request comes back *empty* rather than
- *    failing — which reads as "there is nothing here".
+ *    failing — which reads as "there is nothing here". Public profile pins do
+ *    not authenticate as the profile owner.
  * 2. Every privileged write goes through a SECURITY DEFINER RPC. Direct UPDATE
  *    on communities and community_members is revoked; the old direct writes were
  *    filtered to zero rows by RLS and still reported success, which is how
@@ -184,14 +185,12 @@ export async function getCommunityMembership(
 }
 
 export async function getPinnedCommunities(walletAddress: string): Promise<PinnedCommunity[]> {
-  const { data, error } = await withWalletHeader(
-    supabase
-      .from("pinned_communities")
-      .select("*, communities(*)")
-      .eq("wallet_address", walletAddress.toLowerCase())
-      .order("display_order", { ascending: true }),
-    walletAddress,
-  );
+  // Pins are public. The profile owner is a filter, not the authenticated viewer.
+  const { data, error } = await supabase
+    .from("pinned_communities")
+    .select("*, communities(*)")
+    .eq("wallet_address", walletAddress.toLowerCase())
+    .order("display_order", { ascending: true });
   if (error) throw error;
   return (data ?? []) as unknown as PinnedCommunity[];
 }
