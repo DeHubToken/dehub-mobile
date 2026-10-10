@@ -13,6 +13,7 @@ func captureCanvas(width: Int, height: Int) -> CaptureCanvas {
 func fittedCaptureRect(source: CGSize, canvas: CaptureCanvas) -> CGRect {
   guard source.width.isFinite, source.height.isFinite, source.width > 0, source.height > 0 else { return .zero }
   let ratio = min(CGFloat(canvas.width) / source.width, CGFloat(canvas.height) / source.height)
-  let width = source.width * ratio, height = source.height * ratio
+  let width = min(CGFloat(canvas.width), source.width * ratio)
+  let height = min(CGFloat(canvas.height), source.height * ratio)
   return CGRect(x: (CGFloat(canvas.width) - width) / 2, y: (CGFloat(canvas.height) - height) / 2, width: width, height: height)
 }
