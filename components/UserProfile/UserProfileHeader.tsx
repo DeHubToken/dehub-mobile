@@ -286,7 +286,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             uri={avatarUrl || undefined}
             name={displayName}
             size={88}
-            style={{ borderWidth: 3, borderColor: "#010305" }}
+            style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
             onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
