@@ -1,7 +1,5 @@
-Android 1.18.3 adds frosted navigation pills on Android 12 and newer, with the same layout, icons and gestures. Older Android devices keep the existing fallback. The release also fixes animation startup after the Expo 55 upgrade.
+Android 1.18.4 restores the original animated welcome intro for new installations. The three full-screen slides introduce DeHub, followed by the swipe-to-start bar and sign-in screen.
 
-Theme surfaces stay consistent across Messages, public chat, Prompt, Requests, Builder, Apps and Arcade. Conversation actions stay hidden until their row is swiped, including on transparent canvas themes.
-
-The Android navigation bar uses light controls without the pale contrast strip, letting the active theme continue to the bottom of the screen.
+The restored intro is included in the APK, so it is available on the first launch without waiting for an over-the-air update. The existing loading splash stays in place.
 
 Install this APK over the existing DeHub installation. No uninstall or data clearing is required.
