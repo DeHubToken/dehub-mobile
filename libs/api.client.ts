@@ -34,6 +34,7 @@ const DEFAULT_TIMEOUT_MS = 20_000;
 
 /** Credentials were rejected and the auth UI has been reset to sign-in. */
 export class SessionExpiredError extends Error {
+  readonly status = 401;
   constructor() {
     super('Authentication required');
     this.name = 'SessionExpiredError';
@@ -272,12 +273,20 @@ export const apiClient = {
             }
             if (retryResponse.status === 401) {
               await tokenRefreshManager.invalidateSession(newToken);
+            } else {
+              // Preserve the final response: a rate limit or server failure
+              // after refreshing credentials is not another auth failure.
+              const retryData = await retryResponse.json().catch(() => ({}));
+              throw Object.assign(new Error(retryData?.message || retryData?.error || 'API request failed'), {
+                status: retryResponse.status,
+                ...(retryData?.code ? { code: retryData.code } : {}),
+              });
             }
             // Retry also failed — fall through to throw
           }
           // Refresh failed or retry failed — throw original 401
           throw await getAuthToken()
-            ? new Error('Authentication required')
+            ? Object.assign(new Error('Authentication required'), { status: 401 })
             : new SessionExpiredError();
         }
 

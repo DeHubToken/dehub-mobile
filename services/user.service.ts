@@ -213,9 +213,9 @@ export async function getAccount(usernameOrAddress: string) {
   try {
     return await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: true });
   } catch (err) {
-    // The profile itself is public. If the signed request fails (token
-    // refresh, session hiccup) still return the counts and profile fields,
-    // just without the viewer relationship.
+    // Public fallback only repairs rejected credentials. Replaying a rate
+    // limit, server failure or exhausted transport doubles work and waiting.
+    if ((err as { status?: number } | null)?.status !== 401) throw err;
     try {
       return await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: false });
     } catch {

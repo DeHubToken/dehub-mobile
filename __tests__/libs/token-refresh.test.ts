@@ -3,6 +3,7 @@ import { tokenRefreshManager } from '../../libs/token-refresh';
 import {
   setRefreshToken, setTokenExpiresAt, setAuthToken,
   getAuthToken, getRefreshToken,
+  setAuthUser, setStoredSupabaseUserId, rememberVerifiedProfile, isVerifiedCachedProfile,
 } from '../../libs/auth.utils';
 
 const mockStore = SecureStore as jest.Mocked<typeof SecureStore> & {
@@ -22,6 +23,39 @@ describe('libs/token-refresh', () => {
   });
 
   describe('attemptRefresh', () => {
+    it('preserves verified cached presentation after rotating the same session', async () => {
+      const user = { address: '0xabc', username: 'alice' };
+      await setAuthUser(user);
+      await setStoredSupabaseUserId('alice-uid');
+      await setAuthToken('old-access');
+      await setRefreshToken('old-refresh');
+      await rememberVerifiedProfile('alice-uid', user.address, 'old-access');
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => ({
+        accessToken: 'new-access', refreshToken: 'new-refresh', expiresIn: 3600,
+      }) });
+      await tokenRefreshManager.attemptRefresh();
+      expect(await isVerifiedCachedProfile(user, 'new-access', 'alice-uid')).toBe(true);
+      expect(await isVerifiedCachedProfile(user, 'old-access', 'alice-uid')).toBe(false);
+    });
+
+    it.each(['different-uid', 'different-token', 'different-address', 'missing-marker'])('does not promote an unverified cache after refresh: %s', async (mismatch) => {
+      const user = { address: '0xabc' };
+      await setAuthUser(user);
+      await setStoredSupabaseUserId('alice-uid');
+      await setAuthToken('old-access');
+      await setRefreshToken('old-refresh');
+      if (mismatch !== 'missing-marker') await rememberVerifiedProfile(
+        mismatch === 'different-uid' ? 'bob-uid' : 'alice-uid',
+        mismatch === 'different-address' ? '0xdef' : user.address,
+        mismatch === 'different-token' ? 'unrelated-token' : 'old-access',
+      );
+      mockFetch.mockResolvedValueOnce({ ok: true, json: async () => ({
+        accessToken: 'new-access', refreshToken: 'new-refresh', expiresIn: 3600,
+      }) });
+      await tokenRefreshManager.attemptRefresh();
+      expect(await isVerifiedCachedProfile(user, 'new-access', 'alice-uid')).toBe(false);
+    });
+
     it('notifies the UI after a rejected session has been cleared', async () => {
       await setAuthToken('old-access');
       await setRefreshToken('old-refresh');

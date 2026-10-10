@@ -194,6 +194,19 @@ describe('libs/api.client', () => {
   });
 
   describe('401 retry', () => {
+    it.each([429, 403, 503])('preserves HTTP %i after token refresh instead of reporting an auth failure', async (status) => {
+      const { tokenRefreshManager } = require('../../libs/token-refresh');
+      tokenRefreshManager.attemptRefresh.mockResolvedValueOnce('new-token');
+      mockStore.__store.auth_token = 'old-token';
+      mockFetch.mockResolvedValueOnce({ ok: false, status: 401,
+        headers: { get: () => 'application/json' }, json: async () => ({ message: 'Unauthorized' }) })
+        .mockResolvedValueOnce({ ok: false, status,
+          headers: { get: () => 'application/json' }, json: async () => ({ message: 'Try later' }) });
+      await expect(apiClient.get('/account_info/alice')).rejects.toMatchObject({ status, message: 'Try later' });
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+      expect(tokenRefreshManager.invalidateSession).not.toHaveBeenCalled();
+    });
+
     it('invalidates the refreshed session when the retry is also rejected', async () => {
       const { tokenRefreshManager } = require('../../libs/token-refresh');
       tokenRefreshManager.attemptRefresh.mockImplementationOnce(async () => {

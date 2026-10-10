@@ -46,6 +46,21 @@ describe('services/user.service', () => {
   beforeEach(() => jest.clearAllMocks());
 
   describe('getAccount', () => {
+    it('falls back to public profile only after rejected credentials', async () => {
+      const profile = { success: true, data: { result: { username: 'alice' } } };
+      mockGet.mockRejectedValueOnce(Object.assign(new Error('Authentication required'), { status: 401 }))
+        .mockResolvedValueOnce(profile);
+      await expect(getAccount('alice')).resolves.toEqual(profile);
+      expect(mockGet).toHaveBeenNthCalledWith(2, '/account_info/alice', { isAuthRequired: false });
+    });
+
+    it.each([429, 403, 404, 500, 503, undefined])('does not replay non-auth failure %s', async (status) => {
+      const error = Object.assign(new Error('Request failed'), { status });
+      mockGet.mockRejectedValueOnce(error);
+      await expect(getAccount('alice')).rejects.toBe(error);
+      expect(mockGet).toHaveBeenCalledTimes(1);
+    });
+
     it('calls /account_info with encoded username', async () => {
       mockGet.mockResolvedValueOnce({ success: true, data: { result: { username: 'alice' } } });
       await getAccount('alice');
