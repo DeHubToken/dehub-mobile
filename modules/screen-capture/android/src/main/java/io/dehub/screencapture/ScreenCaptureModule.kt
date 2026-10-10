@@ -33,7 +33,10 @@ class ScreenCaptureModule : Module() {
   private var pickerOwner: String? = null
   private val owned = CopyOnWriteArraySet<String>()
   private var applicationContext: Context? = null
-  private val observer: (Map<String, Any?>) -> Unit = { state -> sendEvent("screenRecordingState", state) }
+  private val observer: (Map<String, Any?>) -> Unit = { state ->
+    val id = state["sessionId"] as? String
+    if (id != null && owned.contains(id)) sendEvent("screenRecordingState", state)
+  }
   private val context: Context get() = applicationContext ?: requireNotNull(appContext.reactContext).applicationContext
 
   override fun definition() = ModuleDefinition {
@@ -41,13 +44,21 @@ class ScreenCaptureModule : Module() {
     Events("screenRecordingState")
     Function("capabilities") { mapOf("available" to true, "systemAudio" to (Build.VERSION.SDK_INT >= 29), "microphone" to true, "background" to true) }
     Function("status") { id: String -> if (owned.contains(id)) CaptureSessions.find(id)?.let { CaptureSessions.status(it) } else null }
+    Function("recover") { scopeKey: String -> CaptureSessions.recover(scopeKey).map { session -> owned.add(session.id); CaptureSessions.status(session) } }
+    Function("acknowledge") { id: String ->
+      if (owned.contains(id)) {
+        val session = requireNotNull(CaptureSessions.find(id))
+        check(session.state == "completed" && session.cleaned.isCompleted) { "Screen recording has not completed" }
+        CaptureSessions.forget(context, id); owned.remove(id)
+      }
+    }
 
-    AsyncFunction("start") Coroutine { id: String, microphone: Boolean, systemAudio: Boolean, title: String, save: String, cancel: String ->
+    AsyncFunction("start") Coroutine { id: String, scopeKey: String, playheadMs: Double, microphone: Boolean, systemAudio: Boolean, title: String, save: String, cancel: String ->
       withContext(Dispatchers.Main) {
         check(appContext.currentActivity != null && pickerOwner == null) { "Screen capture picker unavailable" }
         val audio = microphone || (systemAudio && Build.VERSION.SDK_INT >= 29)
         check(!audio || ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) { "Audio capture permission is required" }
-        val session = CaptureSessions.begin(context, id, microphone, systemAudio, title, save, cancel)
+        val session = CaptureSessions.begin(context, id, scopeKey, playheadMs, microphone, systemAudio, title, save, cancel)
         owned.add(id); pickerOwner = id
         try {
           val result = try { consent.launch(ProjectionConsent(id)) } finally { if (pickerOwner == id) pickerOwner = null }
@@ -72,13 +83,13 @@ class ScreenCaptureModule : Module() {
       check(!session.cancelled)
       session.stop?.invoke(false)
       val result = session.completed.await()
-      mapOf("sessionId" to id, "uri" to result.uri, "width" to result.width, "height" to result.height, "durationMs" to result.durationMs)
+      mapOf("sessionId" to id, "scopeKey" to session.scopeKey, "playheadMs" to session.playheadMs, "uri" to result.uri, "width" to result.width, "height" to result.height, "durationMs" to result.durationMs)
     }
     AsyncFunction("cancel") Coroutine { id: String ->
       if (owned.contains(id)) {
         val session = CaptureSessions.cancel(context, id)
         session?.cleaned?.await()
-        CaptureSessions.forget(id); owned.remove(id)
+        CaptureSessions.forget(context, id); owned.remove(id)
       }
     }
     RegisterActivityContracts {
@@ -90,7 +101,7 @@ class ScreenCaptureModule : Module() {
     OnCreate { applicationContext = requireNotNull(appContext.reactContext).applicationContext; CaptureSessions.reconcile(context); CaptureSessions.observers.add(observer) }
     OnDestroy {
       CaptureSessions.observers.remove(observer)
-      applicationContext?.let { context -> for (id in owned) CaptureSessions.cancel(context, id) }
+      applicationContext?.let { context -> for (id in owned) if (CaptureSessions.find(id)?.cleaned?.isCompleted == false) CaptureSessions.cancel(context, id) }
       owned.clear()
     }
   }
