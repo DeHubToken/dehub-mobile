@@ -8,10 +8,11 @@ const read = (...parts: string[]) =>
   readFileSync(resolve(__dirname, "../..", ...parts), "utf8");
 
 describe("long names shrink instead of spilling", () => {
-  it("quoted post: name and handle both shrink", () => {
+  it("quoted post: uses the feed header, whose name shrinks before the badge", () => {
     const src = read("components", "common", "QuotedPostEmbed.tsx");
-    expect(src).toContain('<Text className="text-white font-semibold text-xs shrink" numberOfLines={1}>');
-    expect(src).toContain('<Text className="text-theme-neutrals-500 text-xs shrink" numberOfLines={1}>');
+    expect(src).toContain("<FeedCardHeader");
+    const header = read("components", "Home", "FeedCardHeader.tsx");
+    expect(header).toContain("style={{ flexShrink: 1, minWidth: 0, color: \"#F9FBFF\"");
   });
 
   it("compact video card: the creator button shrinks, not just the text inside it", () => {
