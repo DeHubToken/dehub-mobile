@@ -343,7 +343,10 @@ const StakingTab: React.FC = () => {
   }, [amount, mode]);
 
   const clearPendingStake = async (attempt: StakeAttempt) => {
-    try { await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet)); } catch {}
+    try {
+      const saved = JSON.parse(await AsyncStorage.getItem(pendingStakeKey(attempt.wallet)) || 'null');
+      if (saved?.hash === attempt.hash) await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet));
+    } catch {}
     setPendingStake(previous => previous?.hash === attempt.hash ? null : previous);
   };
 
