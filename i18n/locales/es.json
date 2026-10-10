@@ -7230,7 +7230,10 @@
       "hideTimeline": "Ocultar línea de tiempo",
       "showTimeline": "Mostrar línea de tiempo",
       "play": "Reproducir",
-      "pause": "Pausar"
+      "pause": "Pausar",
+      "previousFrame": "Fotograma anterior",
+      "nextFrame": "Fotograma siguiente",
+      "playhead": "Cabezal de reproducción"
     },
     "video": {
       "video": "Vídeo",

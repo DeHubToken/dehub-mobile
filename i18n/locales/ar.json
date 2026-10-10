@@ -7226,7 +7226,10 @@
       "hideTimeline": "إخفاء الخط الزمني",
       "showTimeline": "إظهار الخط الزمني",
       "play": "تشغيل",
-      "pause": "إيقاف مؤقت"
+      "pause": "إيقاف مؤقت",
+      "previousFrame": "الإطار السابق",
+      "nextFrame": "الإطار التالي",
+      "playhead": "موضع التشغيل"
     },
     "video": {
       "video": "فيديو",
