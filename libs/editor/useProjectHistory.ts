@@ -8,7 +8,10 @@ const HISTORY_LIMIT = 50;
 
 export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (snapshot: ProjectSnapshot) => void) {
   const [project, setProject] = useState<ProjectSnapshot | null>(initial);
-  const publish = (snapshot: ProjectSnapshot) => { onChange?.(snapshot); setProject(snapshot); };
+  const scopeVersion=useRef(0);
+  const observers=useRef(new Set<()=>void>());
+  const observeProject=()=>{for(const observer of observers.current)observer();};
+  const publish = (snapshot: ProjectSnapshot) => { onChange?.(snapshot); setProject(snapshot); observeProject(); };
   const past = useRef<ProjectSnapshot[]>([]);
   const future = useRef<ProjectSnapshot[]>([]);
   const commandObservers = useRef(new Set<() => void>());
@@ -18,12 +21,12 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
   current.current = project;
   const [, bump] = useState(0);
   const gate = useRef<ReturnType<typeof projectEditGate> | null>(null);
-  if (!gate.current) gate.current = projectEditGate(() => { observeCommands(); bump(n => n + 1); });
+  if (!gate.current) gate.current = projectEditGate(() => { observeCommands(); observeProject(); bump(n => n + 1); });
 
   const mounted = useRef(true);
   useEffect(() => {
     mounted.current = true;
-    return () => { mounted.current = false; gate.current!.reset(false); observeCommands(); commandObservers.current.clear(); };
+    return () => { mounted.current = false; gate.current!.reset(false); observeCommands(); commandObservers.current.clear();observers.current.clear(); };
   }, []);
 
   const push = (before: ProjectSnapshot) => {
@@ -40,6 +43,8 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
 
   return {
     project,
+    scopeVersion:()=>scopeVersion.current,
+    subscribe:(observer:()=>void)=>{observers.current.add(observer);return ()=>{observers.current.delete(observer);};},
     /** The project as of now, for work that finishes after an await. */
     latest: () => current.current,
     isEditing: () => !!liveBase.current || gate.current!.isEditing(),
@@ -89,9 +94,9 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
     },
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
-    reset: (p: ProjectSnapshot) => { gate.current!.reset(false); past.current = []; future.current = []; liveBase.current = null; current.current = p; observeCommands(); publish(p); },
+    reset: (p: ProjectSnapshot) => { scopeVersion.current++;gate.current!.reset(false); past.current = []; future.current = []; liveBase.current = null; current.current = p; observeCommands(); publish(p); },
     fork: (original: ProjectSnapshot, next: ProjectSnapshot) => {
-      gate.current!.reset(false);
+      scopeVersion.current++;gate.current!.reset(false);
       past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; publish(next);
       observeCommands();
     },
@@ -121,7 +126,7 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
       if (liveBase.current) {
         if (current.current && projectReviewSnapshotKey(liveBase.current) !== projectReviewSnapshotKey(current.current)) push(liveBase.current);
         liveBase.current = null; bump((n) => n + 1);
-        observeCommands();
+        observeCommands();observeProject();
       }
     },
     undo: () => {

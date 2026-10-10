@@ -7358,7 +7358,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "Stop live edits",
+      "receiveEdits": "Receive live edits",
+      "shareEdits": "Share edits live",
+      "waiting": "Waiting for your edit to finish",
+      "transferring": "Transferring live edits…",
+      "sharing": "Sharing live edits",
+      "receiving": "Receiving live edits",
+      "paused": "Live edits paused",
+      "retryRecovery": "Retry recovery",
+      "personalCopy": "Save a personal copy",
+      "privateHint": "Presence alone shares no edits. Share edits live uploads new sources privately. Save to cloud keeps a permanent version."
     },
     "videoTemplates": {
       "heading": "Video starters",

@@ -6918,24 +6918,24 @@
       "hint": "최대 10분까지 클립을 처리합니다. 소음 감소는 안정적인 배경 소음과 가장 잘 작동합니다."
     },
     "pages": {
-    "add":  "페이지 추가",
-    "duplicate":  "페이지 복제",
-    "delete":  "페이지 삭제",
-    "page":  "페이지 {{number}}",
-    "position":  "{{total}}페이지 중 {{current}}페이지",
-    "label":  "페이지",
-    "allZip":  "전체 {{count}}페이지 (ZIP)",
-    "thisPage":  "이 페이지만",
-    "exporting":  "{{total}}페이지 중 {{current}}페이지 렌더링 중…"
-},
+      "add": "페이지 추가",
+      "duplicate": "페이지 복제",
+      "delete": "페이지 삭제",
+      "page": "페이지 {{number}}",
+      "position": "{{total}}페이지 중 {{current}}페이지",
+      "label": "페이지",
+      "allZip": "전체 {{count}}페이지 (ZIP)",
+      "thisPage": "이 페이지만",
+      "exporting": "{{total}}페이지 중 {{current}}페이지 렌더링 중…"
+    },
     "captions": {
-        "action":  "자동 자막",
-        "working":  "듣는 중… {{percent}}%",
-        "downloading":  "음성 모델 준비 중… {{percent}}%",
-        "hint":  "음성을 스타일을 바꿀 수 있는 타이밍 자막으로 변환합니다. 기기에서 실행되어 무료이며 비공개입니다. 처음 사용할 때 모델을 다운로드합니다.",
-        "done":  "자막 {{count}}개를 추가했습니다.",
-        "noSpeech":  "이 클립에서 음성을 찾지 못했습니다.",
-        "failed":  "이 클립의 자막을 만들 수 없습니다."
+      "action": "자동 자막",
+      "working": "듣는 중… {{percent}}%",
+      "downloading": "음성 모델 준비 중… {{percent}}%",
+      "hint": "음성을 스타일을 바꿀 수 있는 타이밍 자막으로 변환합니다. 기기에서 실행되어 무료이며 비공개입니다. 처음 사용할 때 모델을 다운로드합니다.",
+      "done": "자막 {{count}}개를 추가했습니다.",
+      "noSpeech": "이 클립에서 음성을 찾지 못했습니다.",
+      "failed": "이 클립의 자막을 만들 수 없습니다."
     },
     "app": {
       "newDesign": "새 디자인",
@@ -7324,7 +7324,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "실시간 편집 중지",
+      "receiveEdits": "실시간 편집 받기",
+      "shareEdits": "편집 내용 실시간 공유",
+      "waiting": "편집이 끝날 때까지 대기 중",
+      "transferring": "편집 내용 전송 중",
+      "sharing": "편집 내용 실시간 공유 중",
+      "receiving": "실시간 편집 수신 중",
+      "paused": "실시간 편집 일시 중지",
+      "retryRecovery": "복구 다시 시도",
+      "personalCopy": "개인 사본 저장",
+      "privateHint": "참여만으로 편집 내용이 업로드되지는 않습니다. 실시간 공유는 새 비공개 소스를 업로드하며, 저장은 영구 버전을 만듭니다."
     }
   },
   "creator": {
