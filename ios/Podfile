@@ -61,5 +61,15 @@ target 'DeHub' do
       :mac_catalyst_enabled => false,
       :ccache_enabled => ccache_enabled?(podfile_properties),
     )
+    # Resource bundles also need the app's supported deployment target.
+    minimum_ios = Gem::Version.new(podfile_properties['ios.deploymentTarget'] || '15.1')
+    installer.pods_project.targets.each do |pod_target|
+      pod_target.build_configurations.each do |configuration|
+        current = configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_s
+        if !current.match?(/\A\d+(?:\.\d+)*\z/) || Gem::Version.new(current) < minimum_ios
+          configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_ios.to_s
+        end
+      end
+    end
   end
 end
