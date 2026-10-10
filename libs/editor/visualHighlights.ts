@@ -13,7 +13,7 @@ export function visualWindowPlan(clip: MediaClip): VisualWindow[] {
 }
 
 /** Explicit visual mode never transcribes speech or sends source files and names. */
-export async function findVisualHighlights(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
+async function scanVisualWindows(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
   check(signal);
   if (options.optIn !== true || ![15, 30, 60].includes(options.seconds)) throw new Error("highlight_limit");
   const windows = visualWindowPlan(clip), candidates: HighlightRange[] = [];
@@ -36,10 +36,23 @@ export async function findVisualHighlights(clip: MediaClip, options: { optIn: tr
       && range.end > range.start && range.end - range.start <= options.seconds + 0.001));
     progress?.((page + 1) / count);
   }
+  return candidates;
+}
+
+function selectVisualRanges(candidates: HighlightRange[], limit: number, seconds: number): HighlightRange[] {
   const selected: HighlightRange[] = []; let duration = 0;
   for (const range of candidates.sort((a, b) => b.score - a.score || a.start - b.start)) {
-    if (selected.length >= 8 || duration + range.end - range.start > options.seconds + 0.001 || selected.some(m => range.start < m.end && range.end > m.start)) continue;
+    if (selected.length >= limit || duration + range.end - range.start > seconds + 0.001 || selected.some(m => range.start < m.end && range.end > m.start)) continue;
     selected.push(range); duration += range.end - range.start;
   }
   return selected.sort((a, b) => a.start - b.start);
+}
+
+export async function findVisualHighlights(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
+  return selectVisualRanges(await scanVisualWindows(clip, options, sample, analyse, signal, progress), 8, options.seconds);
+}
+
+/** Retain all disjoint matches from the same scan for an editable assembly. */
+export async function findVisualScenes(clip: MediaClip, options: { optIn: true; focus: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
+  return selectVisualRanges(await scanVisualWindows(clip, { ...options, seconds: 60 }, sample, analyse, signal, progress), 100, clip.duration);
 }
