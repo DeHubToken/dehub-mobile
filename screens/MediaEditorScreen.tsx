@@ -1,5 +1,6 @@
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
-import { useDraftState } from "../hooks/useDraftState";
+import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
+import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -172,6 +173,11 @@ type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
 
 
 export default function MediaEditorScreen() {
+  const user = useUser();
+  return <MediaEditorForAccount key={user?.walletAddress || user?.address || 'guest'} />;
+}
+
+function MediaEditorForAccount() {
   const { t } = useTranslation();
   const route = useRoute<Route>();
   const [openId, setOpenId] = useState<string | null>(route.params?.projectId ?? null);
@@ -188,6 +194,7 @@ export default function MediaEditorScreen() {
 
 function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; onCreate: (p: ProjectSnapshot) => void; onNewVideo: () => void }) {
   const { t } = useTranslation();
+  const recoveryScope = useAccountDraftKey('editor:recovery') ?? 'guest|editor:recovery';
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
   const [templateBusy, setTemplateBusy] = useState<string | null>(null);
   const [templateAspect, setTemplateAspect] = useState<VideoTemplateAspect>("9:16");
@@ -213,13 +220,19 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
     }
   };
 
-  const refresh = useCallback(() => { listProjects().then(setProjects); }, []);
+  const refresh = useCallback(() => {
+    listProjects().then(saved => {
+      const last = lastRecoveryProject(recoveryScope);
+      const recovered = last ? readEditorRecovery(recoveryScope, last) : null;
+      setProjects(recovered ? [recovered, ...saved.filter(p => p.id !== recovered.id)] : saved);
+    });
+  }, [recoveryScope]);
   useEffect(refresh, [refresh]);
 
   const confirmDelete = (p: ProjectSnapshot) => {
     Alert.alert(t("editor.app.deleteTitle"), t("editor.app.deleteBody", { title: p.title || t("creator.untitled") }), [
       { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => { deleteProject(p.id).then(refresh); } },
+      { text: t("common.delete"), style: "destructive", onPress: () => { deleteProject(p.id).then(() => { discardEditorRecovery(recoveryScope, p.id); refresh(); }); } },
     ]);
   };
 
@@ -339,7 +352,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
   const { height: windowHeight } = useWindowDimensions();
-  const h = useProjectHistory(initial);
+  const recoveryScope = useAccountDraftKey('editor:recovery') ?? 'guest|editor:recovery';
+  const recovered = useMemo(() => {
+    const id = initial?.id ?? projectId;
+    return id ? readEditorRecovery(recoveryScope, id) : null;
+  }, [recoveryScope, initial?.id, projectId]);
+  const h = useProjectHistory(recovered ?? initial, snapshot => writeEditorRecovery(recoveryScope, { ...snapshot, updatedAt: Date.now() }));
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -426,11 +444,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   // Open an existing design.
   useEffect(() => {
-    if (initial || !projectId) return;
+    if (initial || recovered || !projectId) return;
+    let cancelled = false;
     loadProject(projectId).then((p) => {
+      if (cancelled || h.latest()) return;
       if (p) h.reset(p);
       else { toastError(t("common.somethingWentWrong")); onClose(); }
     });
+    return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId]);
 
@@ -444,10 +465,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const flush = useCallback(async () => {
     if (saveTimer.current) { clearTimeout(saveTimer.current); saveTimer.current = null; }
     const p = latest.current;
-    if (!p || (!p.clips.length && !persisted.current)) return;
+    if (!p) return;
     persisted.current = true;
-    await saveProject({ ...p, updatedAt: Date.now() }).catch(() => {});
-  }, []);
+    const snapshot = readEditorRecovery(recoveryScope, p.id) ?? { ...p, updatedAt: Date.now() };
+    await saveProject(snapshot).then(() => completeEditorRecovery(recoveryScope, snapshot)).catch(() => {});
+  }, [recoveryScope]);
   useEffect(() => {
     if (!project) return;
     if (saveTimer.current) clearTimeout(saveTimer.current);

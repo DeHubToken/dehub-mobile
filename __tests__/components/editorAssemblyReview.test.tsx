@@ -1,3 +1,7 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }) }));
+jest.mock('@react-navigation/native', () => ({ NavigationRouteContext: require('react').createContext(undefined) }));
 import React from "react";
 import { act, fireEvent, render } from "@testing-library/react-native";
 import AssemblyReview from "../../components/editor/AssemblyReview";
@@ -88,3 +92,5 @@ it("reviews file-only prompts through actual native controls in named order with
     shots: [{ id: "@assembly-library:video", offset: 0, duration: 5 }, { id: "@assembly-library:photo", offset: 0, duration: 5 }], soundId: "@assembly-library:song",
   }), expect.any(AbortSignal), expect.any(Array));
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

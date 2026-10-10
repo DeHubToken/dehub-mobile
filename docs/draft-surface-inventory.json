@@ -1,1377 +1,5017 @@
 {
-  "status": "integration-in-progress",
-  "surfaces": [
+  "status": "source-audited; cloud and published verification tracked by the pull request",
+  "contract": [
+    "Preserve exact unfinished text, including whitespace and intentional empty edits.",
+    "Isolate account, logical entity and field; reopening/navigation is not discard.",
+    "Do not overwrite restored work with late server/default hydration.",
+    "Keep text on failed requests and upload queue acceptance; consume only confirmed successful snapshots.",
+    "Keep newer typing when an older submission completes."
+  ],
+  "scope": "Product text entry in the files below, including custom controls through their named parent owners.",
+  "exclusions": [
+    "Passwords, private keys, recovery phrases, API keys, signatures, one-time codes and destructive confirmations",
+    "File pickers, sliders, colours, booleans and internal diagnostic fixtures"
+  ],
+  "verificationLimit": "This is a source ownership inventory, not a claim that every field has been exercised on a physical device.",
+  "inputFileCount": 167,
+  "persistedFieldCount": 289,
+  "inputs": [
     {
       "file": "components/DexAddPoolSheet.tsx",
-      "fields": [
-        "address"
+      "inputs": [
+        {
+          "line": 156,
+          "value": "address",
+          "label": "{chain === 'solana' ? t('dex.pools.mintPlaceholder') : '0x…'}"
+        }
       ],
-      "setters": [
-        "setAddress"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/DexInstantDhbTrade.tsx",
-      "fields": [
-        "amount"
+      "inputs": [
+        {
+          "line": 97,
+          "value": "amount",
+          "label": "\"0.00\""
+        }
       ],
-      "setters": [
-        "setAmount"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/DexPoolPicker.tsx",
-      "fields": [
-        "query"
+      "inputs": [
+        {
+          "line": 59,
+          "value": "query",
+          "label": "{t('dex.pools.search')}"
+        }
       ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/ReviewModal.tsx",
-      "fields": [
-        "feedback",
-        "telegram",
-        "discord"
+      "inputs": [
+        {
+          "line": 379,
+          "value": "feedback",
+          "label": "{t(\"review.feedbackPlaceholder\")}"
+        },
+        {
+          "line": 395,
+          "value": "telegram",
+          "label": "\"@username\""
+        },
+        {
+          "line": 409,
+          "value": "discord",
+          "label": "\"username#0000\""
+        }
       ],
-      "setters": [
-        "setFeedback",
-        "setTelegram",
-        "setDiscord"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/SubscriptionCreditsTopUpSheet.tsx",
-      "fields": [
-        "custom"
+      "inputs": [
+        {
+          "line": 188,
+          "value": "custom",
+          "label": "{t(\"credits.topUpCustom\")}"
+        }
       ],
-      "setters": [
-        "setCustom"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Accounts/BuyAccountSheet.tsx",
-      "fields": [
-        "receiveAddress"
+      "inputs": [
+        {
+          "line": 240,
+          "value": "receiveAddress",
+          "label": "\"0x…\""
+        }
       ],
-      "setters": [
-        "setReceiveAddress"
-      ],
-      "identity": "draftIdentity(listing)"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Accounts/SellAccountPanel.tsx",
-      "fields": [
-        "priceDhb",
-        "description"
+      "inputs": [
+        {
+          "line": 162,
+          "value": "priceDhb",
+          "label": "{String(minPrice)}"
+        },
+        {
+          "line": 186,
+          "value": "description",
+          "label": "{t(\"accounts.pitchPlaceholder\")}"
+        }
       ],
-      "setters": [
-        "setPriceDhb",
-        "setDescription"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/article/ArticleEditor.tsx",
+      "inputs": [
+        {
+          "line": 79,
+          "value": "p.title",
+          "label": "{t('articles.titlePlaceholder')}"
+        },
+        {
+          "line": 114,
+          "value": "p.body",
+          "label": "{t('articles.bodyPlaceholder')}"
+        },
+        {
+          "line": 136,
+          "value": "p.summary",
+          "label": "{t('articles.summaryPlaceholder')}"
+        }
       ],
-      "identity": "route"
+      "owner": "UploadScreen/EditPostScreen: article fields supplied by the parent draft"
+    },
+    {
+      "file": "components/Assistant/AssistantInputBar.tsx",
+      "inputs": [
+        {
+          "line": 76,
+          "value": "value",
+          "label": "{placeholder ?? (attachedImage ? 'Describe your edits…' : 'Ask me anything...')}"
+        }
+      ],
+      "owner": "AIChatScreen: text at stable assistant/creator conversation identity"
     },
     {
       "file": "components/Assistant/CreatorStudioControls.tsx",
-      "fields": [
-        "modelSearch"
+      "inputs": [
+        {
+          "line": 85,
+          "value": "durationDraft",
+          "label": null
+        },
+        {
+          "line": 123,
+          "value": "modelSearch",
+          "label": "{t('common.search')}"
+        }
       ],
-      "setters": [
-        "setModelSearch"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Assistant/MusicConfirmSheet.tsx",
-      "fields": [
-        "title",
-        "lyrics",
-        "style"
+      "inputs": [
+        {
+          "line": 220,
+          "value": "title",
+          "label": "{t('musicSheet.titlePlaceholder')}"
+        },
+        {
+          "line": 229,
+          "value": "style",
+          "label": "{t('musicSheet.stylePlaceholder')}"
+        },
+        {
+          "line": 275,
+          "value": "lyrics",
+          "label": "{t('musicSheet.lyricsPlaceholder')}"
+        }
       ],
-      "setters": [
-        "setTitle",
-        "setLyrics",
-        "setStyle"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Assistant/PosterConfigSheet.tsx",
-      "fields": [
-        "tagline",
-        "extraNotes"
+      "inputs": [
+        {
+          "line": 523,
+          "value": "tagline",
+          "label": "{t(\"poster.headlinePlaceholder\")}"
+        },
+        {
+          "line": 593,
+          "value": "extraNotes",
+          "label": "{t(\"poster.notesPlaceholder\")}"
+        }
       ],
-      "setters": [
-        "setTagline",
-        "setExtraNotes"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Assistant/SupportTicketSheet.tsx",
-      "fields": [
-        "subject",
-        "description",
-        "stepsToReproduce"
+      "inputs": [
+        {
+          "line": 253,
+          "value": "subject",
+          "label": "{t('support.subjectPlaceholder')}"
+        },
+        {
+          "line": 263,
+          "value": "description",
+          "label": "{t('support.descriptionPlaceholder')}"
+        },
+        {
+          "line": 276,
+          "value": "stepsToReproduce",
+          "label": "{t('support.stepsPlaceholder')}"
+        }
       ],
-      "setters": [
-        "setSubject",
-        "setDescription",
-        "setStepsToReproduce"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/Assistant/TemplatesSheet.tsx",
-      "fields": [
-        "query"
+      "inputs": [
+        {
+          "line": 183,
+          "value": "query",
+          "label": "{t('common.search')}"
+        }
       ],
-      "setters": [
-        "setQuery"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/auth/AuthControls.tsx",
+      "inputs": [
+        {
+          "line": 276,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 285,
+          "value": null,
+          "label": null
+        }
       ],
-      "identity": "route"
+      "owner": "Reusable control; ordinary email/phone/profile values persist in callers; secrets excluded"
+    },
+    {
+      "file": "components/auth/EmailCodeEntry.tsx",
+      "inputs": [
+        {
+          "line": 25,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 44,
+          "value": "code",
+          "label": "{t(\"auth.sixDigitCode\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: one-time authentication code"
+    },
+    {
+      "file": "components/auth/EmailLoginFlow.tsx",
+      "inputs": [
+        {
+          "line": 32,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 33,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 79,
+          "value": "email",
+          "label": "\"user@example.com\""
+        },
+        {
+          "line": 98,
+          "value": "password",
+          "label": "{t(\"loginModal.password\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/auth/ImportWalletModal.tsx",
+      "inputs": [
+        {
+          "line": 235,
+          "value": "secretInput",
+          "label": "{t(\"walletSetup.recoveryPhraseLabel\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: wallet recovery secret"
+    },
+    {
+      "file": "components/auth/LegacyAccountWarningModal.tsx",
+      "inputs": [
+        {
+          "line": 241,
+          "value": "email",
+          "label": "\"name@example.com\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/auth/PhoneLoginFlow.tsx",
+      "inputs": [
+        {
+          "line": 40,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 88,
+          "value": "digits",
+          "label": "\"1 415 555 2671\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/auth/UsernameRequiredModal.tsx",
+      "inputs": [
+        {
+          "line": 100,
+          "value": "username",
+          "label": "{t(\"settings.username\")}"
+        },
+        {
+          "line": 138,
+          "value": "displayName",
+          "label": "{t(\"setProfile.displayNamePlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/auth/WalletSetupScreen.tsx",
+      "inputs": [
+        {
+          "line": 312,
+          "value": "confirmText",
+          "label": "{t(\"walletSetup.typeResetLabel\", { word: \"RESET\" }",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 983,
+          "value": "password",
+          "label": "{t(\"walletSetup.passwordMin\", { min: MIN_PASSWORD_LENGTH }",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 998,
+          "value": "confirm",
+          "label": "{t(\"walletSetup.confirmPassword\")}"
+        },
+        {
+          "line": 1114,
+          "value": "password",
+          "label": "{t(\"walletSetup.newPasswordMin\", { min: MIN_PASSWORD_LENGTH }",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 1127,
+          "value": "confirm",
+          "label": "{t(\"walletSetup.confirmPassword\")}"
+        },
+        {
+          "line": 1260,
+          "value": "restoreSecret",
+          "label": "{t(\"walletSetup.recoveryPhraseLabel\")}"
+        },
+        {
+          "line": 1280,
+          "value": "password",
+          "label": "{t(\"walletSetup.newWalletPasswordMin\", { min: MIN_PASSWORD_LENGTH }",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 1293,
+          "value": "confirm",
+          "label": "{t(\"walletSetup.confirmPassword\")}"
+        },
+        {
+          "line": 1364,
+          "value": "restoreSecret",
+          "label": "{t(\"walletSetup.recoveryPhraseLabel\")}"
+        },
+        {
+          "line": 1384,
+          "value": "password",
+          "label": "{t(\"walletSetup.newWalletPasswordMin\", { min: MIN_PASSWORD_LENGTH }",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 1397,
+          "value": "confirm",
+          "label": "{t(\"walletSetup.confirmPassword\")}"
+        },
+        {
+          "line": 1463,
+          "value": "password",
+          "label": "{t(\"walletSetup.walletPassword\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: passwords, recovery secrets and destructive confirmation"
     },
     {
       "file": "components/Cinema/FilmReviews.tsx",
-      "fields": [
-        "body"
+      "inputs": [
+        {
+          "line": 166,
+          "value": "body",
+          "label": "{t(\"cinema.reviewPlaceholder\")}"
+        }
       ],
-      "setters": [
-        "setBody"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Comments/CommentSection.tsx",
+      "inputs": [
+        {
+          "line": 206,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 1818,
+          "value": "inputText",
+          "label": null
+        }
       ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Comments/CommentsStageHeader.tsx",
+      "inputs": [
+        {
+          "line": 71,
+          "value": "query",
+          "label": "{t(\"common.search\")}"
+        }
+      ],
+      "owner": "CommentSection/FeedDetailScreen: search query"
+    },
+    {
+      "file": "components/Comments/CommentTabRow.tsx",
+      "inputs": [
+        {
+          "line": 93,
+          "value": "query",
+          "label": "{t(\"common.search\")}"
+        }
+      ],
+      "owner": "CommentSection/FeedDetailScreen: search query"
     },
     {
       "file": "components/Comments/CommonGroundSheet.tsx",
-      "fields": [
-        "otherSide",
-        "sharedGround"
+      "inputs": [
+        {
+          "line": 95,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 143,
+          "value": "otherSide",
+          "label": "{t(\"conversation.commonGround.step1Placeholder\")}"
+        },
+        {
+          "line": 162,
+          "value": "sharedGround",
+          "label": "{t(\"conversation.commonGround.step2Placeholder\")}"
+        }
       ],
-      "setters": [
-        "setOtherSide",
-        "setSharedGround"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/common/AddCustomEmojiPanel.tsx",
-      "fields": [
-        "link",
-        "name",
-        "pack"
+      "inputs": [
+        {
+          "line": 239,
+          "value": "link",
+          "label": "{t(\"emojiPicker.linkPlaceholder\")}"
+        },
+        {
+          "line": 251,
+          "value": "name",
+          "label": "{t(\"emojiPicker.namePlaceholder\")}"
+        },
+        {
+          "line": 267,
+          "value": "pack",
+          "label": "{t(\"emojiPicker.packPlaceholder\")}"
+        }
       ],
-      "setters": [
-        "setLink",
-        "setName",
-        "setPack"
-      ],
-      "identity": "route"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/common/BoostSheet.tsx",
-      "fields": [
-        "targetAccount"
-      ],
-      "setters": [
-        "setTargetAccount"
-      ],
-      "identity": "tokenId"
-    },
-    {
-      "file": "components/common/ReportModal.tsx",
-      "fields": [
-        "additionalInfo"
-      ],
-      "setters": [
-        "setAdditionalInfo"
-      ],
-      "identity": "JSON.stringify([type, tokenId, userId, commentId])"
-    },
-    {
-      "file": "components/common/SpendPowerSheet.tsx",
-      "fields": [
-        "query",
-        "targetAccount"
-      ],
-      "setters": [
-        "setQuery",
-        "setTargetAccount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/common/TeamUpSheet.tsx",
-      "fields": [
-        "name",
-        "description",
-        "search",
-        "requestMessage",
-        "editDescription"
-      ],
-      "setters": [
-        "setName",
-        "setDescription",
-        "setSearch",
-        "setRequestMessage",
-        "setEditDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Communities/CommunityChatPanel.tsx",
-      "fields": [
-        "text"
-      ],
-      "setters": [
-        "setText"
-      ],
-      "identity": "draftIdentity(community)"
-    },
-    {
-      "file": "components/Communities/CreateCommunitySheet.tsx",
-      "fields": [
-        "name",
-        "description"
-      ],
-      "setters": [
-        "setName",
-        "setDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Converter/PodcastImportSection.tsx",
-      "fields": [
-        "feedUrl"
-      ],
-      "setters": [
-        "setFeedUrl"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/CreatePollSheet.tsx",
-      "fields": [
-        "question"
-      ],
-      "setters": [
-        "setQuestion"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/DMSettingsModal.tsx",
-      "fields": [
-        "fee"
-      ],
-      "setters": [
-        "setFee"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/ForwardPickerModal.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/GifPicker.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/NewDMModal.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/DM/ShareToDmSheet.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Dpay/DpayTopUpForm.tsx",
-      "fields": [
-        "amountUsd"
-      ],
-      "setters": [
-        "setAmountUsd"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Dpay/NearIntentBuy.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Earnings/EarningsComparisonCard.tsx",
-      "fields": [
-        "estimatorViews"
-      ],
-      "setters": [
-        "setEstimatorViews"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/editor/AgentSheet.tsx",
-      "fields": [
-        "draft"
-      ],
-      "setters": [
-        "setDraft"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/editor/CloudProjects.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/editor/StockPanel.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Fractions/BrowseFractionsTab.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Home/AddToFolderSheet.tsx",
-      "fields": [
-        "newFolderName",
-        "newFolderDesc"
-      ],
-      "setters": [
-        "setNewFolderName",
-        "setNewFolderDesc"
-      ],
-      "identity": "tokenId"
-    },
-    {
-      "file": "components/Home/AppDrawer.tsx",
-      "fields": [
-        "menuQuery"
-      ],
-      "setters": [
-        "setMenuQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Home/AskAISheet.tsx",
-      "fields": [
-        "inputText"
-      ],
-      "setters": [
-        "setInputText"
-      ],
-      "identity": "postId"
-    },
-    {
-      "file": "components/Home/DhbListingSoon.tsx",
-      "fields": [
-        "email"
-      ],
-      "setters": [
-        "setEmail"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Home/FeedFilterPanel.tsx",
-      "fields": [
-        "categorySearch"
-      ],
-      "setters": [
-        "setCategorySearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/LiveViewer/StreamShopOverlay.tsx",
-      "fields": [
-        "shipping",
-        "notes"
-      ],
-      "setters": [
-        "setShipping",
-        "setNotes"
-      ],
-      "identity": "tokenId"
-    },
-    {
-      "file": "components/Music/MusicFeed.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Notifications/AppealSheet.tsx",
-      "fields": [
-        "reason"
-      ],
-      "setters": [
-        "setReason"
-      ],
-      "identity": "notificationId"
-    },
-    {
-      "file": "components/Post/SoundPickerSheet.tsx",
-      "fields": [
-        "searchText"
-      ],
-      "setters": [
-        "setSearchText"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Profile/ProfileAssets.tsx",
-      "fields": [
-        "searchQuery"
-      ],
-      "setters": [
-        "setSearchQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/BadgeDelegationSection.tsx",
-      "fields": [
-        "recipient"
-      ],
-      "setters": [
-        "setRecipient"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/DMSettingsSection.tsx",
-      "fields": [
-        "fee"
-      ],
-      "setters": [
-        "setFee"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/EmailSignInSection.tsx",
-      "fields": [
-        "email"
-      ],
-      "setters": [
-        "setEmail"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/EnsHandleSection.tsx",
-      "fields": [
-        "name"
-      ],
-      "setters": [
-        "setName"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/GeoBlockingSection.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/LanguageSelectModal.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/SettingsSearchBar.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/SmsNotificationsSheet.tsx",
-      "fields": [
-        "phone"
-      ],
-      "setters": [
-        "setPhone"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Settings/StreamKeySection.tsx",
-      "fields": [
-        "title"
-      ],
-      "setters": [
-        "setTitle"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Stages/CreateStageModal.tsx",
-      "fields": [
-        "title",
-        "description"
-      ],
-      "setters": [
-        "setTitle",
-        "setDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Stages/LiveStageModal.tsx",
-      "fields": [
-        "ttsText"
-      ],
-      "setters": [
-        "setTtsText"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Stages/StageTranscriptSheet.tsx",
-      "fields": [
-        "searchQuery",
-        "renameText"
-      ],
-      "setters": [
-        "setSearchQuery",
-        "setRenameText"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Stats/FeedbackSection.tsx",
-      "fields": [
-        "body",
-        "timeUsing"
-      ],
-      "setters": [
-        "setBody",
-        "setTimeUsing"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Stores/MyStoreTab.tsx",
-      "fields": [
-        "title",
-        "description",
-        "description",
-        "price",
-        "shippingInfo",
-        "stockQty",
-        "podUrl"
-      ],
-      "setters": [
-        "setTitle",
-        "setDescription",
-        "setDescription",
-        "setPrice",
-        "setShippingInfo",
-        "setStockQty",
-        "setPodUrl"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Subscription/PlanFormSheet.tsx",
-      "fields": [
-        "name",
-        "description",
-        "price",
-        "benefitInput"
-      ],
-      "setters": [
-        "setName",
-        "setDescription",
-        "setPrice",
-        "setBenefitInput"
-      ],
-      "identity": "draftIdentity(editPlan) ?? \"new\""
-    },
-    {
-      "file": "components/Tip/GiftModal.tsx",
-      "fields": [
-        "amount",
-        "message"
-      ],
-      "setters": [
-        "setAmount",
-        "setMessage"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Transfer/TransferModal.tsx",
-      "fields": [
-        "amount",
-        "query"
-      ],
-      "setters": [
-        "setAmount",
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/TV/TVChatPanel.tsx",
-      "fields": [
-        "text"
-      ],
-      "setters": [
-        "setText"
-      ],
-      "identity": "channelId"
-    },
-    {
-      "file": "components/ui/Dropdown.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Upload/CategoryDrawer.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Upload/EmojiSheet.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Usernames/MakeOfferSheet.tsx",
-      "fields": [
-        "amount",
-        "message"
-      ],
-      "setters": [
-        "setAmount",
-        "setMessage"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Usernames/OffersPanel.tsx",
-      "fields": [
-        "replacement"
-      ],
-      "setters": [
-        "setReplacement"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Usernames/SellUsernamePanel.tsx",
-      "fields": [
-        "priceUsd",
-        "replacement",
-        "description"
-      ],
-      "setters": [
-        "setPriceUsd",
-        "setReplacement",
-        "setDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Wallet/ArcSendSheet.tsx",
-      "fields": [
-        "to",
-        "amount"
-      ],
-      "setters": [
-        "setTo",
-        "setAmount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Wallet/BridgeQueue.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Wallet/BridgeTab.tsx",
-      "fields": [
-        "amount"
-      ],
-      "setters": [
-        "setAmount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Wallet/StakingTab.tsx",
-      "fields": [
-        "amount"
-      ],
-      "setters": [
-        "setAmount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Wallet/TradeSheet.tsx",
-      "fields": [
-        "amount",
-        "price",
-        "ask"
-      ],
-      "setters": [
-        "setAmount",
-        "setPrice",
-        "setAsk"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Work/ApplicationComments.tsx",
-      "fields": [
-        "body"
-      ],
-      "setters": [
-        "setBody"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "components/Communities/manage/AdministratorsTab.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "draftIdentity(community)"
-    },
-    {
-      "file": "components/Communities/manage/AdminRightsSheet.tsx",
-      "fields": [
-        "customTitle"
-      ],
-      "setters": [
-        "setCustomTitle"
-      ],
-      "identity": "draftIdentity([community, target])"
-    },
-    {
-      "file": "components/Communities/manage/DangerZone.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "draftIdentity(community)"
-    },
-    {
-      "file": "components/Communities/manage/InviteLinksTab.tsx",
-      "fields": [
-        "name"
-      ],
-      "setters": [
-        "setName"
-      ],
-      "identity": "draftIdentity(community)"
-    },
-    {
-      "file": "components/Communities/manage/MembersTab.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "draftIdentity(community)"
-    },
-    {
-      "file": "components/Communities/manage/RestrictionSheet.tsx",
-      "fields": [
-        "reason"
-      ],
-      "setters": [
-        "setReason"
-      ],
-      "identity": "draftIdentity([community, target])"
-    },
-    {
-      "file": "screens/AdsScreen.tsx",
-      "fields": [
-        "name",
-        "daily",
-        "total",
-        "ctaUrl"
-      ],
-      "setters": [
-        "setName",
-        "setDaily",
-        "setTotal",
-        "setCtaUrl"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/AgentsScreen.tsx",
-      "fields": [
-        "name",
-        "description"
-      ],
-      "setters": [
-        "setName",
-        "setDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/AppsScreen.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/BuilderScreen.tsx",
-      "fields": [
-        "prompt"
-      ],
-      "setters": [
-        "setPrompt"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/CinemaScreen.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/CommunitiesScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/ConverterScreen.tsx",
-      "fields": [
-        "url",
-        "reviewName",
-        "reviewDescription"
-      ],
-      "setters": [
-        "setUrl",
-        "setReviewName",
-        "setReviewDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/CreatorFlowScreen.tsx",
-      "fields": [
-        "newName"
-      ],
-      "setters": [
-        "setNewName"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/DaoScreen.tsx",
-      "fields": [
-        "amount"
-      ],
-      "setters": [
-        "setAmount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/DexPoolScreen.tsx",
-      "fields": [
-        "amount",
-        "price"
-      ],
-      "setters": [
-        "setAmount",
-        "setPrice"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/DirectMessagesScreen.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/EditProfileScreen.tsx",
-      "fields": [
-        "displayName",
-        "username",
-        "aboutMe"
-      ],
-      "setters": [
-        "setDisplayName",
-        "setUsername",
-        "setAboutMe"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/FeatureRequestsScreen.tsx",
-      "fields": [
-        "draft",
-        "title",
-        "description",
-        "device",
-        "search"
-      ],
-      "setters": [
-        "setDraft",
-        "setTitle",
-        "setDescription",
-        "setDevice",
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/FollowListScreen.tsx",
-      "fields": [
-        "searchQuery"
-      ],
-      "setters": [
-        "setSearchQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/GlossaryScreen.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/GovernanceProposalScreen.tsx",
-      "fields": [
-        "draft"
-      ],
-      "setters": [
-        "setDraft"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/GuideScreen.tsx",
-      "fields": [
-        "query"
-      ],
-      "setters": [
-        "setQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/LaunchpadCoinScreen.tsx",
-      "fields": [
-        "amount"
-      ],
-      "setters": [
-        "setAmount"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/LaunchpadCreateScreen.tsx",
-      "fields": [
-        "name",
-        "symbol",
-        "description",
-        "website",
-        "twitter",
-        "telegram"
-      ],
-      "setters": [
-        "setName",
-        "setSymbol",
-        "setDescription",
-        "setWebsite",
-        "setTwitter",
-        "setTelegram"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/LaunchpadScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/ListingDetailScreen.tsx",
-      "fields": [
-        "shipping",
-        "notes",
-        "reviewText"
-      ],
-      "setters": [
-        "setShipping",
-        "setNotes",
-        "setReviewText"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/MigrateScreen.tsx",
-      "fields": [
-        "profileUrl",
-        "draftName",
-        "draftDescription"
-      ],
-      "setters": [
-        "setProfileUrl",
-        "setDraftName",
-        "setDraftDescription"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/PackScreen.tsx",
-      "fields": [
-        "link",
-        "label"
-      ],
-      "setters": [
-        "setLink",
-        "setLabel"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/PacksScreen.tsx",
-      "fields": [
-        "name"
-      ],
-      "setters": [
-        "setName"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/PromptScreen.tsx",
-      "fields": [
-        "text"
-      ],
-      "setters": [
-        "setText"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/SavedPostsScreen.tsx",
-      "fields": [
-        "folderName",
-        "folderDesc"
-      ],
-      "setters": [
-        "setFolderName",
-        "setFolderDesc"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/SearchScreen.tsx",
-      "fields": [
-        "searchQuery"
-      ],
-      "setters": [
-        "setSearchQuery"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/StoresScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/Top100Screen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/TVScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/WorkEditScreen.tsx",
-      "fields": [
-        "title",
-        "description",
-        "targetUrl",
-        "pricePerUnit",
-        "maxUnits"
-      ],
-      "setters": [
-        "setTitle",
-        "setDescription",
-        "setTargetUrl",
-        "setPricePerUnit",
-        "setMaxUnits"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/WorkHistoryScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/WorkJobDetailScreen.tsx",
-      "fields": [
-        "coverLetter",
-        "proofUrl",
-        "proofText",
-        "reviewComment",
-        "disputeReason",
-        "rejectReason"
-      ],
-      "setters": [
-        "setCoverLetter",
-        "setProofUrl",
-        "setProofText",
-        "setReviewComment",
-        "setDisputeReason",
-        "setRejectReason"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/WorkPostScreen.tsx",
-      "fields": [
-        "title",
-        "description",
-        "targetUrl",
-        "pricePerUnit",
-        "maxUnits"
-      ],
-      "setters": [
-        "setTitle",
-        "setDescription",
-        "setTargetUrl",
-        "setPricePerUnit",
-        "setMaxUnits"
-      ],
-      "identity": "route"
-    },
-    {
-      "file": "screens/WorkScreen.tsx",
-      "fields": [
-        "search"
-      ],
-      "setters": [
-        "setSearch"
-      ],
-      "identity": "route"
+      "inputs": [
+        {
+          "line": 266,
+          "value": "targetAccount",
+          "label": "{t(\"superpowers.aimPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
       "file": "components/common/EditPostModal.tsx",
-      "fields": [
-        "title",
-        "description",
-        "articleBody",
-        "selectedCategories",
-        "shopLinks"
+      "inputs": [
+        {
+          "line": 446,
+          "value": "title",
+          "label": "{t(\"editPost.titlePlaceholder\")}"
+        },
+        {
+          "line": 470,
+          "value": "articleBody",
+          "label": "{t(\"articles.placeholder\")}"
+        },
+        {
+          "line": 480,
+          "value": "description",
+          "label": "{t(\"editPost.descPlaceholder\")}"
+        }
       ],
-      "setters": [
-        "setTitle",
-        "setDescription",
-        "setArticleBody",
-        "setSelectedCategories",
-        "setShopLinks"
-      ],
-      "identity": "`post:edit:${tokenId}`"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     },
     {
-      "file": "screens/UploadScreen.tsx",
-      "fields": [
-        "bodyText",
-        "titleText",
-        "showTitle",
-        "articleMode",
-        "articleBody",
-        "categories",
-        "monetization",
-        "pollEnabled",
-        "pollQuestion",
-        "pollOptions",
-        "pollDurationHours",
-        "pollIsMultiple"
+      "file": "components/common/ReportModal.tsx",
+      "inputs": [
+        {
+          "line": 335,
+          "value": "additionalInfo",
+          "label": null
+        }
       ],
-      "setters": [
-        "setBodyText",
-        "setTitleText",
-        "setShowTitle",
-        "setArticleMode",
-        "setArticleBody",
-        "setCategories",
-        "setMonetization",
-        "setPollEnabled",
-        "setPollQuestion",
-        "setPollOptions",
-        "setPollDurationHours",
-        "setPollIsMultiple"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/common/SpendPowerSheet.tsx",
+      "inputs": [
+        {
+          "line": 311,
+          "value": "query",
+          "label": null
+        },
+        {
+          "line": 487,
+          "value": "targetAccount",
+          "label": null
+        }
       ],
-      "identity": "draftScope"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "inputs": [
+        {
+          "line": 206,
+          "value": "editDescription",
+          "label": "{t('teamUp.descriptionPlaceholder')}"
+        },
+        {
+          "line": 376,
+          "value": "name",
+          "label": "{t('teamUp.namePlaceholder')}"
+        },
+        {
+          "line": 386,
+          "value": "description",
+          "label": "{t('teamUp.descriptionPlaceholder')}"
+        },
+        {
+          "line": 425,
+          "value": "search",
+          "label": "{t('teamUp.searchPlaceholder')}"
+        },
+        {
+          "line": 506,
+          "value": "requestMessage",
+          "label": "{t('teamUp.requestMessagePlaceholder')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/CommunityChatPanel.tsx",
+      "inputs": [
+        {
+          "line": 694,
+          "value": "text",
+          "label": "{t(\"communities.typeMessage\", { defaultValue: \"Type a message...\" }"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/CommunityInfoEditor.tsx",
+      "inputs": [
+        {
+          "line": 78,
+          "value": "name",
+          "label": "{t(\"communities.communityName\")}"
+        },
+        {
+          "line": 91,
+          "value": "description",
+          "label": "{t(\"communities.communityDescription\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/CreateCommunitySheet.tsx",
+      "inputs": [
+        {
+          "line": 140,
+          "value": "name",
+          "label": "{t(\"communities.communityName\")}"
+        },
+        {
+          "line": 150,
+          "value": "description",
+          "label": "{t(\"communities.whatsItAbout\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Converter/PodcastImportSection.tsx",
+      "inputs": [
+        {
+          "line": 184,
+          "value": "feedUrl",
+          "label": "{FEED_URL_PLACEHOLDER}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/ChatInputBar.tsx",
+      "inputs": [
+        {
+          "line": 153,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 763,
+          "value": "text",
+          "label": "{placeholder}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/CreatePollSheet.tsx",
+      "inputs": [
+        {
+          "line": 159,
+          "value": "question",
+          "label": "{t(\"dm.askSomething\")}"
+        },
+        {
+          "line": 181,
+          "value": "opt",
+          "label": "{`Option ${idx + 1}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/DMSettingsModal.tsx",
+      "inputs": [
+        {
+          "line": 232,
+          "value": "fee",
+          "label": "\"0\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/ForwardPickerModal.tsx",
+      "inputs": [
+        {
+          "line": 110,
+          "value": "search",
+          "label": "{t(\"messages.searchConversations\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/GifPicker.tsx",
+      "inputs": [
+        {
+          "line": 192,
+          "value": "query",
+          "label": "{t('dm.searchGifs')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/NewDMModal.tsx",
+      "inputs": [
+        {
+          "line": 97,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 269,
+          "value": "query",
+          "label": "{t(\"explorePage.search\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/ShareToDmSheet.tsx",
+      "inputs": [
+        {
+          "line": 133,
+          "value": "search",
+          "label": "{t(\"messages.searchConversations\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/DM/TipAmountSheet.tsx",
+      "inputs": [
+        {
+          "line": 259,
+          "value": "inputValue",
+          "label": "{t(\"tip.enterAmount\", \"Enter amount\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Dpay/DpayTopUpForm.tsx",
+      "inputs": [
+        {
+          "line": 453,
+          "value": "amountUsd",
+          "label": "\"10\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Dpay/NearIntentBuy.tsx",
+      "inputs": [
+        {
+          "line": 39,
+          "value": "payAmount || ''",
+          "label": null
+        },
+        {
+          "line": 45,
+          "value": "receiveAmount > 0 ? String(receiveAmount) : ''",
+          "label": null
+        },
+        {
+          "line": 179,
+          "value": "amountText",
+          "label": null
+        },
+        {
+          "line": 183,
+          "value": "search",
+          "label": "{t('nearBuy.search')}"
+        },
+        {
+          "line": 192,
+          "value": "flow.refund",
+          "label": "{t('nearBuy.refundPlaceholder')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Earnings/EarningsComparisonCard.tsx",
+      "inputs": [
+        {
+          "line": 218,
+          "value": "rpmText[r.key]",
+          "label": null
+        },
+        {
+          "line": 253,
+          "value": "estimatorViews",
+          "label": "{t(\"earningsVs.estimatorPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/AgentSheet.tsx",
+      "inputs": [
+        {
+          "line": 168,
+          "value": "draft",
+          "label": "{t(highlights?.ranges?.length ? \"editor.highlights.reviewPlaceholder\" : \"editor.agent.placeholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/AssemblyReview.tsx",
+      "inputs": [
+        {
+          "line": 54,
+          "value": "text",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/CloudProjects.tsx",
+      "inputs": [
+        {
+          "line": 59,
+          "value": "query",
+          "label": "{t(\"common.search\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/HighlightTools.tsx",
+      "inputs": [
+        {
+          "line": 94,
+          "value": "focus",
+          "label": "{t(\"editor.highlights.focus\")}"
+        },
+        {
+          "line": 108,
+          "value": "reviewDraft",
+          "label": "{t(\"editor.highlights.reviewPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/MotionPanel.tsx",
+      "inputs": [
+        {
+          "line": 415,
+          "value": "text",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "inputs": [
+        {
+          "line": 29,
+          "value": "recipient",
+          "label": "{t(\"dpay.walletAddress\")}"
+        },
+        {
+          "line": 45,
+          "value": "reply?String(reply.atSeconds):time",
+          "label": null
+        },
+        {
+          "line": 46,
+          "value": "body",
+          "label": "{t(\"settings.comments\")}"
+        },
+        {
+          "line": 47,
+          "value": "assignee",
+          "label": "{t(\"editor.review.assign\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/editor/StockPanel.tsx",
+      "inputs": [
+        {
+          "line": 48,
+          "value": "query",
+          "label": "{t(\"common.search\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Fractions/BrowseFractionsTab.tsx",
+      "inputs": [
+        {
+          "line": 95,
+          "value": "search",
+          "label": "{t(\"fractions.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Fractions/SheetParts.tsx",
+      "inputs": [
+        {
+          "line": 118,
+          "value": "value ? String(value) : \"\"",
+          "label": null
+        },
+        {
+          "line": 145,
+          "value": "value",
+          "label": "{decimal ? \"0.00\" : \"0\"}"
+        }
+      ],
+      "owner": "Fraction sheets: scoped price, amount and quantity fields supplied by callers"
+    },
+    {
+      "file": "components/Home/AddToFolderSheet.tsx",
+      "inputs": [
+        {
+          "line": 408,
+          "value": "newFolderName",
+          "label": "{t(\"addToFolder.namePlaceholder\")}"
+        },
+        {
+          "line": 419,
+          "value": "newFolderDesc",
+          "label": "{t(\"addToFolder.descriptionPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Home/AppDrawer.tsx",
+      "inputs": [
+        {
+          "line": 570,
+          "value": "menuQuery",
+          "label": "{t(\"sidebar.searchMenu\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Home/AskAISheet.tsx",
+      "inputs": [
+        {
+          "line": 597,
+          "value": "inputText",
+          "label": "{t(\"aiChat.askAboutPost\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Home/DhbListingSoon.tsx",
+      "inputs": [
+        {
+          "line": 106,
+          "value": "email",
+          "label": "{t(\"loginModal.emailPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Home/FeedFilterPanel.tsx",
+      "inputs": [
+        {
+          "line": 403,
+          "value": "categorySearch",
+          "label": "{t(\"filters.searchCategories\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Leaderboard/LeaderboardSearchBar.tsx",
+      "inputs": [
+        {
+          "line": 21,
+          "value": "value",
+          "label": "{t(\"leaderboard.searchUsers\")}"
+        }
+      ],
+      "owner": "Top100Screen: search query"
     },
     {
       "file": "components/LiveChat/LiveChatInput.tsx",
-      "fields": [
-        "text"
+      "inputs": [
+        {
+          "line": 99,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 347,
+          "value": "text",
+          "label": "{placeholder}"
+        }
       ],
-      "setters": [
-        "setText"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/LiveProducer/ProducerFloatingChat.tsx",
+      "inputs": [
+        {
+          "line": 233,
+          "value": "message",
+          "label": null
+        }
       ],
-      "identity": "public message or edit message id"
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/LiveViewer/LiveViewerActionBar.tsx",
+      "inputs": [
+        {
+          "line": 169,
+          "value": "message",
+          "label": "{placeholderText}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/LiveViewer/StreamShopOverlay.tsx",
+      "inputs": [
+        {
+          "line": 314,
+          "value": "shipping",
+          "label": "{t(\"liveShop.addressPlaceholder\")}"
+        },
+        {
+          "line": 327,
+          "value": "notes",
+          "label": "{t(\"liveShop.notePlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Music/MusicFeed.tsx",
+      "inputs": [
+        {
+          "line": 453,
+          "value": "search",
+          "label": "{t(\"music.searchRadio\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Notifications/AppealSheet.tsx",
+      "inputs": [
+        {
+          "line": 133,
+          "value": "reason",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/packs/PackGate.tsx",
+      "inputs": [
+        {
+          "line": 193,
+          "value": "target.newName",
+          "label": "{t(\"creatorPacks.packNamePlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Post/SoundPickerSheet.tsx",
+      "inputs": [
+        {
+          "line": 341,
+          "value": "searchText",
+          "label": "{t(\"upload.searchSoundsPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Profile/ProfileAssets.tsx",
+      "inputs": [
+        {
+          "line": 248,
+          "value": "searchQuery",
+          "label": "{t(\"wallet.searchTokens\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Profile/ProfileContentToolbar.tsx",
+      "inputs": [
+        {
+          "line": 80,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 105,
+          "value": "search",
+          "label": "{t(\"profile.searchThisChannel\", \"Search this channel\")}"
+        }
+      ],
+      "owner": "useProfileContentFilters: search per viewed profile"
+    },
+    {
+      "file": "components/Settings/BackupWalletModal.tsx",
+      "inputs": [
+        {
+          "line": 357,
+          "value": "confirmText",
+          "label": "{requiredPhrase}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 464,
+          "value": "walletPassword",
+          "label": "{t(\"walletSetup.walletPassword\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: wallet password and destructive confirmation"
+    },
+    {
+      "file": "components/Settings/BadgeDelegationSection.tsx",
+      "inputs": [
+        {
+          "line": 193,
+          "value": "recipient",
+          "label": "{t('settings.badgeDelegationPlaceholder')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/DMSettingsSection.tsx",
+      "inputs": [
+        {
+          "line": 286,
+          "value": "fee",
+          "label": "\"0\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/EmailSignInSection.tsx",
+      "inputs": [
+        {
+          "line": 193,
+          "value": "code",
+          "label": "\"123456\"",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 238,
+          "value": "email",
+          "label": "\"you@example.com\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/EnsHandleSection.tsx",
+      "inputs": [
+        {
+          "line": 312,
+          "value": "name",
+          "label": "\"yourname.eth\""
+        },
+        {
+          "line": 436,
+          "value": "signature",
+          "label": "{t('settings.ensPasteSignature', 'Paste signature (0x…)')}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/GeoBlockingSection.tsx",
+      "inputs": [
+        {
+          "line": 154,
+          "value": "search",
+          "label": "{t('settings.searchCountries')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/LanguageSelectModal.tsx",
+      "inputs": [
+        {
+          "line": 102,
+          "value": "search",
+          "label": "{t(\"settings.searchLanguages\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/SettingsSearchBar.tsx",
+      "inputs": [
+        {
+          "line": 52,
+          "value": "query",
+          "label": "{t('settings.searchPlaceholder', 'Search settings')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/SmsNotificationsSheet.tsx",
+      "inputs": [
+        {
+          "line": 322,
+          "value": "phone",
+          "label": "\"+447700900123\""
+        },
+        {
+          "line": 361,
+          "value": "code",
+          "label": "\"123456\"",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/StreamKeySection.tsx",
+      "inputs": [
+        {
+          "line": 222,
+          "value": "title",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/SwitchAccountModal.tsx",
+      "inputs": [
+        {
+          "line": 254,
+          "value": "email",
+          "label": "{t(\"switchAccount.oldEmail\")}"
+        },
+        {
+          "line": 305,
+          "value": "privateKey",
+          "label": "\"0x...\"",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 331,
+          "value": "password",
+          "label": "{t(\"switchAccount.password\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        },
+        {
+          "line": 348,
+          "value": "confirm",
+          "label": "{t(\"switchAccount.confirmPassword\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Settings/ThemeColorPicker.tsx",
+      "inputs": [
+        {
+          "line": 196,
+          "value": "hexValue",
+          "label": "{special ? labels[value] : undefined}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Stages/CreateStageModal.tsx",
+      "inputs": [
+        {
+          "line": 280,
+          "value": "title",
+          "label": "{t(\"stages.titlePlaceholder\")}"
+        },
+        {
+          "line": 292,
+          "value": "description",
+          "label": "{t(\"upload.descriptionOptional\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Stages/LiveStageModal.tsx",
+      "inputs": [
+        {
+          "line": 736,
+          "value": "ttsText",
+          "label": "{t(\"stages.ttsPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Stages/StageTranscriptSheet.tsx",
+      "inputs": [
+        {
+          "line": 631,
+          "value": "searchQuery",
+          "label": "{t(\"transcript.searchPlaceholder\")}"
+        },
+        {
+          "line": 779,
+          "value": "renameText",
+          "label": "{t(\"transcript.speakerPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Stats/FeedbackSection.tsx",
+      "inputs": [
+        {
+          "line": 144,
+          "value": "body",
+          "label": "{t(\"stats.feedback.placeholder\", \"In your own words…\")}"
+        },
+        {
+          "line": 153,
+          "value": "timeUsing",
+          "label": "{t(\"stats.feedback.timeUsingPlaceholder\", \"How long have you been here? (optional)\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "inputs": [
+        {
+          "line": 215,
+          "value": "name",
+          "label": "{t(\"stores.storeNamePlaceholder\")}"
+        },
+        {
+          "line": 224,
+          "value": "description",
+          "label": "{t(\"stores.storeDescriptionPlaceholder\")}"
+        },
+        {
+          "line": 415,
+          "value": "title",
+          "label": "{t(\"stores.titlePlaceholder\")}"
+        },
+        {
+          "line": 424,
+          "value": "description",
+          "label": "{t(\"stores.listingDescriptionPlaceholder\")}"
+        },
+        {
+          "line": 434,
+          "value": "price",
+          "label": "\"0.00\""
+        },
+        {
+          "line": 493,
+          "value": "podUrl",
+          "label": "{t(\"stores.podUrlPlaceholder\")}"
+        },
+        {
+          "line": 538,
+          "value": "stockQty",
+          "label": "{t(\"stores.stockPlaceholder\")}"
+        },
+        {
+          "line": 547,
+          "value": "shippingInfo",
+          "label": "{t(\"stores.shippingPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "inputs": [
+        {
+          "line": 328,
+          "value": "name",
+          "label": "{t(\"subscriptions.planNamePlaceholder\")}"
+        },
+        {
+          "line": 341,
+          "value": "description",
+          "label": "{t(\"subscriptions.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 360,
+          "value": "price",
+          "label": "\"0.00\""
+        },
+        {
+          "line": 411,
+          "value": "benefitInput",
+          "label": "{t(\"subscriptions.benefitPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Tip/GiftModal.tsx",
+      "inputs": [
+        {
+          "line": 441,
+          "value": "amount",
+          "label": "{t(\"liveGift.minPlaceholder\", { amount: minTip }"
+        },
+        {
+          "line": 474,
+          "value": "message",
+          "label": "{t(\"liveGift.ttsPlaceholder\", { defaultValue: \"Read out to the stream…\" }"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Tip/GlassTipSheet.tsx",
+      "inputs": [
+        {
+          "line": 739,
+          "value": "amount",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Transfer/TransferModal.tsx",
+      "inputs": [
+        {
+          "line": 347,
+          "value": "amount",
+          "label": "\"0\""
+        },
+        {
+          "line": 383,
+          "value": "query",
+          "label": "{t(\"transfer.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/TV/TVChatPanel.tsx",
+      "inputs": [
+        {
+          "line": 366,
+          "value": "text",
+          "label": "{t(\"tv.typeHere\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/ui/Dropdown.tsx",
+      "inputs": [
+        {
+          "line": 71,
+          "value": "query",
+          "label": "{t(\"common.search\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/CategoryDrawer.tsx",
+      "inputs": [
+        {
+          "line": 40,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 168,
+          "value": "query",
+          "label": "{atMax ? t(\"upload.categoryMaxReached\") : t(\"upload.categorySearchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/EmojiSheet.tsx",
+      "inputs": [
+        {
+          "line": 364,
+          "value": "query",
+          "label": "{t(\"emojiPicker.searchEmoji\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/ImageEditSheet.tsx",
+      "inputs": [
+        {
+          "line": 289,
+          "value": "pendingText.value",
+          "label": "{t(\"upload.typeText\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/LiveSettingsPanel.tsx",
+      "inputs": [
+        {
+          "line": 332,
+          "value": "tipDraft",
+          "label": "\"1000\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/MonetizationPanel.tsx",
+      "inputs": [
+        {
+          "line": 398,
+          "value": "ppvDraft.price",
+          "label": "\"10\""
+        },
+        {
+          "line": 454,
+          "value": "bountyDraft.viewers",
+          "label": "\"0\""
+        },
+        {
+          "line": 470,
+          "value": "bountyDraft.commenters",
+          "label": "\"0\""
+        },
+        {
+          "line": 486,
+          "value": "bountyDraft.rewardPerPerson",
+          "label": "{t(\"drawers.amountPerPerson\")}"
+        },
+        {
+          "line": 587,
+          "value": "tokenGateDraft.contractAddress",
+          "label": "{t(\"monetization.contractPlaceholder\")}"
+        },
+        {
+          "line": 600,
+          "value": "tokenGateDraft.tokenSymbol",
+          "label": "{t(\"monetization.symbolPlaceholder\")}"
+        },
+        {
+          "line": 617,
+          "value": "tokenGateDraft.minAmount",
+          "label": "\"10\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Upload/ShopSheet.tsx",
+      "inputs": [
+        {
+          "line": 229,
+          "value": "row.label",
+          "label": "{t(\"upload.shopLabelPlaceholder\")}"
+        },
+        {
+          "line": 237,
+          "value": "row.url",
+          "label": "\"https://amzn.to/...\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Usernames/MakeOfferSheet.tsx",
+      "inputs": [
+        {
+          "line": 102,
+          "value": "amount",
+          "label": "\"0\""
+        },
+        {
+          "line": 124,
+          "value": "message",
+          "label": "{t(\"profile.offerNotePlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Usernames/OffersPanel.tsx",
+      "inputs": [
+        {
+          "line": 187,
+          "value": "replacement",
+          "label": "{`${mine?.currentUsername || offer.username}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Usernames/SellUsernamePanel.tsx",
+      "inputs": [
+        {
+          "line": 194,
+          "value": "priceUsd",
+          "label": "{String(minPrice)}"
+        },
+        {
+          "line": 217,
+          "value": "replacement",
+          "label": "{`${mine.currentUsername}"
+        },
+        {
+          "line": 237,
+          "value": "description",
+          "label": "{t(\"usernames.pitchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/VideoPlayerCore/CaptionFixSheet.tsx",
+      "inputs": [
+        {
+          "line": 110,
+          "value": "text",
+          "label": "{t(\"transcript.fixPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Wallet/ArcSendSheet.tsx",
+      "inputs": [
+        {
+          "line": 72,
+          "value": "amount",
+          "label": "\"0\""
+        },
+        {
+          "line": 88,
+          "value": "to",
+          "label": "\"0x…\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Wallet/BridgeQueue.tsx",
+      "inputs": [
+        {
+          "line": 82,
+          "value": "search",
+          "label": "{t(\"bridge.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Wallet/BridgeTab.tsx",
+      "inputs": [
+        {
+          "line": 296,
+          "value": "amount",
+          "label": "\"0\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Wallet/StakingTab.tsx",
+      "inputs": [
+        {
+          "line": 712,
+          "value": "amount",
+          "label": "{t(\"staking.amount\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Wallet/TradeSheet.tsx",
+      "inputs": [
+        {
+          "line": 248,
+          "value": "ask",
+          "label": "{t(\"easyTrade.aiPlaceholder\")}"
+        },
+        {
+          "line": 284,
+          "value": "amount",
+          "label": "\"0\""
+        },
+        {
+          "line": 326,
+          "value": "price",
+          "label": "{marketRate ? marketRate.toFixed(6) : \"0.00\"}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Work/ApplicationComments.tsx",
+      "inputs": [
+        {
+          "line": 42,
+          "value": "body",
+          "label": "{t(\"comments.replyPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/AdministratorsTab.tsx",
+      "inputs": [
+        {
+          "line": 158,
+          "value": "search",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/AdminRightsSheet.tsx",
+      "inputs": [
+        {
+          "line": 250,
+          "value": "customTitle",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/DangerZone.tsx",
+      "inputs": [
+        {
+          "line": 161,
+          "value": "search",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/InviteLinksTab.tsx",
+      "inputs": [
+        {
+          "line": 316,
+          "value": "name",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/MembersTab.tsx",
+      "inputs": [
+        {
+          "line": 189,
+          "value": "search",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/RestrictionSheet.tsx",
+      "inputs": [
+        {
+          "line": 185,
+          "value": "reason",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "components/Communities/manage/RulesTab.tsx",
+      "inputs": [
+        {
+          "line": 158,
+          "value": "rule",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/AccountsScreen.tsx",
+      "inputs": [
+        {
+          "line": 206,
+          "value": "search",
+          "label": "{t(\"accounts.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/AdsScreen.tsx",
+      "inputs": [
+        {
+          "line": 206,
+          "value": "name",
+          "label": "{t(\"ads.campaignNamePlaceholder\")}"
+        },
+        {
+          "line": 230,
+          "value": "daily",
+          "label": "\"25\""
+        },
+        {
+          "line": 240,
+          "value": "total",
+          "label": "\"500\""
+        },
+        {
+          "line": 250,
+          "value": "ctaUrl",
+          "label": "\"https://…\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/AffiliateScreen.tsx",
+      "inputs": [
+        {
+          "line": 425,
+          "value": "landing.headline",
+          "label": "{DEFAULT_AFFILIATE_LANDING.headline}"
+        },
+        {
+          "line": 436,
+          "value": "landing.message",
+          "label": null
+        },
+        {
+          "line": 447,
+          "value": "landing.ctaLabel",
+          "label": null
+        },
+        {
+          "line": 454,
+          "value": "landing.destination",
+          "label": "\"/app\""
+        },
+        {
+          "line": 471,
+          "value": "cta.label",
+          "label": "{t(\"affiliateLanding.extraLabel\")}"
+        },
+        {
+          "line": 480,
+          "value": "cta.destination",
+          "label": "\"/editor\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/AgentsScreen.tsx",
+      "inputs": [
+        {
+          "line": 343,
+          "value": "name",
+          "label": "{t(\"agents.agentNamePlaceholder\")}"
+        },
+        {
+          "line": 353,
+          "value": "description",
+          "label": "{t(\"agents.agentDescriptionPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/AppsScreen.tsx",
+      "inputs": [
+        {
+          "line": 193,
+          "value": "query",
+          "label": "{t(\"miniApps.store.search\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/BuilderScreen.tsx",
+      "inputs": [
+        {
+          "line": 44,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 83,
+          "value": "prompt",
+          "label": "{t(\"builder.promptPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/CareersScreen.tsx",
+      "inputs": [
+        {
+          "line": 109,
+          "value": "value",
+          "label": "{placeholder}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/CinemaScreen.tsx",
+      "inputs": [
+        {
+          "line": 286,
+          "value": "query",
+          "label": "{searchType === \"movie\" ? t(\"cinema.searchFilms\") : t(\"cinema.searchSeries\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/CommunitiesScreen.tsx",
+      "inputs": [
+        {
+          "line": 161,
+          "value": "search",
+          "label": "{t(\"communities.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/ConverterScreen.tsx",
+      "inputs": [
+        {
+          "line": 511,
+          "value": "url",
+          "label": "{t('converter.placeholder')}"
+        },
+        {
+          "line": 692,
+          "value": "reviewName",
+          "label": "{reviewLoading ? '' : t('converter.reviewNamePlaceholder')}"
+        },
+        {
+          "line": 704,
+          "value": "reviewDescription",
+          "label": "{reviewLoading ? '' : t('converter.reviewDescriptionPlaceholder')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/CreatorFlowScreen.tsx",
+      "inputs": [
+        {
+          "line": 287,
+          "value": "newName",
+          "label": "{t(\"creatorFlow.flowName\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/CreatorsScreen.tsx",
+      "inputs": [
+        {
+          "line": 77,
+          "value": "value",
+          "label": "{placeholder}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/DaoScreen.tsx",
+      "inputs": [
+        {
+          "line": 296,
+          "value": "amount",
+          "label": "\"1000\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/DexPoolScreen.tsx",
+      "inputs": [
+        {
+          "line": 449,
+          "value": "price",
+          "label": null
+        },
+        {
+          "line": 451,
+          "value": "amount",
+          "label": "\"0.00\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/DexScreen.tsx",
+      "inputs": [
+        {
+          "line": 362,
+          "value": "value",
+          "label": "\"0.00\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/DirectMessagesScreen.tsx",
+      "inputs": [
+        {
+          "line": 452,
+          "value": "query",
+          "label": "{t(\"messages.searchConversations\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "inputs": [
+        {
+          "line": 465,
+          "value": "displayName",
+          "label": "{t(\"settings.yourDisplayName\")}"
+        },
+        {
+          "line": 477,
+          "value": "username",
+          "label": "\"@username\""
+        },
+        {
+          "line": 519,
+          "value": "aboutMe",
+          "label": "{t(\"settings.bioPlaceholder\")}"
+        },
+        {
+          "line": 561,
+          "value": "field.value",
+          "label": "{field.placeholder}"
+        },
+        {
+          "line": 578,
+          "value": "linked ? socialFollowers[field.reach] : \"\"",
+          "label": "{t(\"settings.socialFollowersPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "inputs": [
+        {
+          "line": 316,
+          "value": "draft",
+          "label": "{t(\"features.addComment\")}"
+        },
+        {
+          "line": 498,
+          "value": "editTitle",
+          "label": null
+        },
+        {
+          "line": 507,
+          "value": "editDescription",
+          "label": null
+        },
+        {
+          "line": 732,
+          "value": "title",
+          "label": "{t(\"features.titlePlaceholder\")}"
+        },
+        {
+          "line": 744,
+          "value": "description",
+          "label": "{t(\"features.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 759,
+          "value": "device",
+          "label": null
+        },
+        {
+          "line": 1090,
+          "value": "search",
+          "label": "{t(\"features.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/FeedDetailScreen.tsx",
+      "inputs": [
+        {
+          "line": 247,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 1720,
+          "value": "inputText",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/FollowListScreen.tsx",
+      "inputs": [
+        {
+          "line": 1130,
+          "value": "searchQuery",
+          "label": "{t(\"follow.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/GlossaryScreen.tsx",
+      "inputs": [
+        {
+          "line": 201,
+          "value": "query",
+          "label": "{t(\"screens.searchGlossary\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/GovernanceProposalScreen.tsx",
+      "inputs": [
+        {
+          "line": 167,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 383,
+          "value": "draft",
+          "label": "{replyTo ? t(\"governance.discussion.writeReply\") : t(\"governance.addComment\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/GuideScreen.tsx",
+      "inputs": [
+        {
+          "line": 131,
+          "value": "query",
+          "label": "{t(\"screens.searchGuide\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/LaunchpadCoinScreen.tsx",
+      "inputs": [
+        {
+          "line": 109,
+          "value": "amount",
+          "label": "\"0.00\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "inputs": [
+        {
+          "line": 175,
+          "value": "name",
+          "label": "{t(\"launchpad.namePlaceholder\")}"
+        },
+        {
+          "line": 185,
+          "value": "symbol",
+          "label": "\"PEPE\""
+        },
+        {
+          "line": 197,
+          "value": "description",
+          "label": "{t(\"launchpad.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 237,
+          "value": "website",
+          "label": "{t(\"launchpad.website\")}"
+        },
+        {
+          "line": 247,
+          "value": "twitter",
+          "label": "{t(\"launchpad.twitter\")}"
+        },
+        {
+          "line": 256,
+          "value": "telegram",
+          "label": "{t(\"launchpad.telegram\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/LaunchpadScreen.tsx",
+      "inputs": [
+        {
+          "line": 100,
+          "value": "search",
+          "label": "{t(\"launchpad.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/ListingDetailScreen.tsx",
+      "inputs": [
+        {
+          "line": 491,
+          "value": "shipping",
+          "label": "{t(\"stores.detail.shippingPlaceholder\")}"
+        },
+        {
+          "line": 502,
+          "value": "notes",
+          "label": "{t(\"stores.detail.notePlaceholder\")}"
+        },
+        {
+          "line": 544,
+          "value": "reviewText",
+          "label": "{t(\"stores.detail.reviewPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/MediaEditorScreen.tsx",
+      "inputs": [
+        {
+          "line": 1766,
+          "value": "value",
+          "label": "{props.placeholder}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/MigrateScreen.tsx",
+      "inputs": [
+        {
+          "line": 491,
+          "value": "profileUrl",
+          "label": "{t('migrate.placeholder')}"
+        },
+        {
+          "line": 755,
+          "value": "draftName",
+          "label": "{editing ? titleByKey.get(editing) ?? '' : ''}"
+        },
+        {
+          "line": 765,
+          "value": "draftDescription",
+          "label": "{t('migrate.editDescriptionPlaceholder')}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/PackScreen.tsx",
+      "inputs": [
+        {
+          "line": 274,
+          "value": "editingName",
+          "label": null
+        },
+        {
+          "line": 368,
+          "value": "label",
+          "label": "{t(pack.kind === \"emoji\" ? \"creatorPacks.shortcodePlaceholder\" : \"creatorPacks.stickerEmojiPlacehold"
+        },
+        {
+          "line": 379,
+          "value": "link",
+          "label": "{t(\"creatorPacks.linkPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/PacksScreen.tsx",
+      "inputs": [
+        {
+          "line": 205,
+          "value": "name",
+          "label": "{t(\"creatorPacks.packNamePlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/PromptScreen.tsx",
+      "inputs": [
+        {
+          "line": 143,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 271,
+          "value": "text",
+          "label": "{t(\"promptFeed.placeholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/SavedPostsScreen.tsx",
+      "inputs": [
+        {
+          "line": 352,
+          "value": "folderName",
+          "label": "{t(\"savedPosts.namePlaceholder\")}"
+        },
+        {
+          "line": 360,
+          "value": "folderDesc",
+          "label": "{t(\"savedPosts.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 540,
+          "value": "folderName",
+          "label": "{t(\"savedPosts.collectionNamePlaceholder\")}"
+        },
+        {
+          "line": 549,
+          "value": "folderDesc",
+          "label": "{t(\"savedPosts.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 607,
+          "value": "folderName",
+          "label": "{t(\"savedPosts.namePlaceholder\")}"
+        },
+        {
+          "line": 615,
+          "value": "folderDesc",
+          "label": "{t(\"savedPosts.descriptionPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/SearchScreen.tsx",
+      "inputs": [
+        {
+          "line": 296,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 1083,
+          "value": "searchQuery",
+          "label": "{t(\"search.searchDehub\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/SignInTvScreen.tsx",
+      "inputs": [
+        {
+          "line": 120,
+          "value": "code",
+          "label": "\"XXXX-XXXX\"",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: temporary device pairing code"
+    },
+    {
+      "file": "screens/StoresScreen.tsx",
+      "inputs": [
+        {
+          "line": 171,
+          "value": "search",
+          "label": "{t(\"stores.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/Top100Screen.tsx",
+      "inputs": [
+        {
+          "line": 163,
+          "value": "search",
+          "label": "{t(\"top100.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/TVScreen.tsx",
+      "inputs": [
+        {
+          "line": 287,
+          "value": "search",
+          "label": "{t(\"tv.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "inputs": [
+        {
+          "line": 298,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 2356,
+          "value": "titleText",
+          "label": "{t(\"features.titleLabel\")}"
+        },
+        {
+          "line": 2368,
+          "value": "bodyText",
+          "label": null
+        },
+        {
+          "line": 2881,
+          "value": "pollQuestion",
+          "label": "{t(\"upload.pollQuestion\")}"
+        },
+        {
+          "line": 2894,
+          "value": "opt",
+          "label": "{`Option ${idx + 1}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/UsernamesScreen.tsx",
+      "inputs": [
+        {
+          "line": 289,
+          "value": "search",
+          "label": "{t(\"usernames.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkDisputesScreen.tsx",
+      "inputs": [
+        {
+          "line": 161,
+          "value": "v.workerAddr",
+          "label": "\"0x…\""
+        },
+        {
+          "line": 174,
+          "value": "v.worker",
+          "label": "\"0\""
+        },
+        {
+          "line": 186,
+          "value": "v.poster",
+          "label": "\"0\""
+        },
+        {
+          "line": 198,
+          "value": "v.notes",
+          "label": null
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "inputs": [
+        {
+          "line": 215,
+          "value": "title",
+          "label": "{t(\"work.fields.titlePlaceholder\")}"
+        },
+        {
+          "line": 224,
+          "value": "description",
+          "label": "{t(\"work.fields.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 258,
+          "value": "targetUrl",
+          "label": "\"https://…\""
+        },
+        {
+          "line": 295,
+          "value": "pricePerUnit",
+          "label": "\"0.00\""
+        },
+        {
+          "line": 306,
+          "value": "maxUnits",
+          "label": "\"100\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkHistoryScreen.tsx",
+      "inputs": [
+        {
+          "line": 250,
+          "value": "search",
+          "label": "{t(\"work.searchByTitle\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "inputs": [
+        {
+          "line": 366,
+          "value": "coverLetter",
+          "label": "{t(\"work.detail.coverLetterPlaceholder\")}"
+        },
+        {
+          "line": 445,
+          "value": "proofUrl",
+          "label": "{t(\"work.detail.proofUrlPlaceholder\")}"
+        },
+        {
+          "line": 453,
+          "value": "proofText",
+          "label": "{t(\"work.detail.notesOptional\")}"
+        },
+        {
+          "line": 576,
+          "value": "check.views",
+          "label": "{t('work.integrity.verifiedViews')}"
+        },
+        {
+          "line": 578,
+          "value": "check.evidence",
+          "label": "{t('work.integrity.viewSourceUrl')}"
+        },
+        {
+          "line": 586,
+          "value": "recoveryHashes[s.id] || ''",
+          "label": "{t('work.integrity.hashPlaceholder')}"
+        },
+        {
+          "line": 730,
+          "value": "reviewComment",
+          "label": "{t(\"work.detail.reviewPlaceholder\")}"
+        },
+        {
+          "line": 796,
+          "value": "disputeReason",
+          "label": "{t(\"work.detail.disputePlaceholder\")}"
+        },
+        {
+          "line": 835,
+          "value": "rejectReason",
+          "label": "{t(\"work.detail.rejectionPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "inputs": [
+        {
+          "line": 9,
+          "value": null,
+          "label": null
+        },
+        {
+          "line": 201,
+          "value": "title",
+          "label": "{t(\"work.fields.titlePlaceholder\")}"
+        },
+        {
+          "line": 210,
+          "value": "description",
+          "label": "{t(\"work.fields.descriptionPlaceholder\")}"
+        },
+        {
+          "line": 246,
+          "value": "targetUrl",
+          "label": "\"https://…\""
+        },
+        {
+          "line": 308,
+          "value": "pricePerUnit",
+          "label": "\"0.00\""
+        },
+        {
+          "line": 320,
+          "value": "maxUnits",
+          "label": "\"100\""
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/WorkScreen.tsx",
+      "inputs": [
+        {
+          "line": 250,
+          "value": "search",
+          "label": "{t(\"work.searchPlaceholder\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
+    },
+    {
+      "file": "screens/auth/ImportWalletScreen.tsx",
+      "inputs": [
+        {
+          "line": 292,
+          "value": "secretInput",
+          "label": "{t(\"walletSetup.recoveryPhraseLabel\")}",
+          "exception": "Secret, temporary authentication value, or destructive confirmation; never persisted"
+        }
+      ],
+      "owner": "Excluded: wallet recovery secret"
+    },
+    {
+      "file": "screens/auth/SetProfileScreen.tsx",
+      "inputs": [
+        {
+          "line": 327,
+          "value": "username",
+          "label": "{t(\"settings.username\")}"
+        },
+        {
+          "line": 364,
+          "value": "displayName",
+          "label": "{t(\"settings.displayName\")}"
+        }
+      ],
+      "owner": "Selected persisted fields below, controlled parent state, or existing composer/project store"
     }
+  ],
+  "persistedFields": [
+    {
+      "file": "screens/AccountsScreen.tsx",
+      "line": 164,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/AccountsScreen.tsx:search\", () => String(route.params?.handle || \"\"));"
+    },
+    {
+      "file": "screens/AdsScreen.tsx",
+      "line": 145,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"screens/AdsScreen.tsx:name\", \"\");"
+    },
+    {
+      "file": "screens/AdsScreen.tsx",
+      "line": 147,
+      "field": "daily",
+      "setter": "setDaily",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [daily, setDaily] = useSurfaceDraft(\"screens/AdsScreen.tsx:daily\", \"\");"
+    },
+    {
+      "file": "screens/AdsScreen.tsx",
+      "line": 148,
+      "field": "total",
+      "setter": "setTotal",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [total, setTotal] = useSurfaceDraft(\"screens/AdsScreen.tsx:total\", \"\");"
+    },
+    {
+      "file": "screens/AdsScreen.tsx",
+      "line": 149,
+      "field": "ctaUrl",
+      "setter": "setCtaUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [ctaUrl, setCtaUrl] = useSurfaceDraft(\"screens/AdsScreen.tsx:ctaUrl\", \"\");"
+    },
+    {
+      "file": "screens/AffiliateScreen.tsx",
+      "line": 193,
+      "field": "landing",
+      "setter": "setLanding",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [landing, setLanding] = useSurfaceDraft<AffiliateLandingCustomization>(\"screens/AffiliateScreen.tsx:landing\", DEFAULT_AFFILIATE_LANDING);"
+    },
+    {
+      "file": "screens/AgentsScreen.tsx",
+      "line": 101,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"screens/AgentsScreen.tsx:name\", \"\");"
+    },
+    {
+      "file": "screens/AgentsScreen.tsx",
+      "line": 102,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"screens/AgentsScreen.tsx:description\", \"\");"
+    },
+    {
+      "file": "screens/AIChatScreen.tsx",
+      "line": 278,
+      "field": "studioSettings",
+      "setter": "setStudioSettings",
+      "owner": "useDraftState",
+      "declaration": "const [studioSettings, setStudioSettings] = useDraftState<CreatorStudioSettings>(`creator:${draftScope}:settings`, () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],"
+    },
+    {
+      "file": "screens/AIChatScreen.tsx",
+      "line": 283,
+      "field": "input",
+      "setter": "setInput",
+      "owner": "useDraftState",
+      "declaration": "const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');"
+    },
+    {
+      "file": "screens/AppsScreen.tsx",
+      "line": 78,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"screens/AppsScreen.tsx:query\", \"\");"
+    },
+    {
+      "file": "screens/BuilderScreen.tsx",
+      "line": 43,
+      "field": "prompt",
+      "setter": "setPrompt",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [prompt, setPrompt] = useSurfaceDraft(\"screens/BuilderScreen.tsx:prompt\", \"\");"
+    },
+    {
+      "file": "screens/CareersScreen.tsx",
+      "line": 131,
+      "field": "form",
+      "setter": "setForm",
+      "owner": "useDraftState",
+      "declaration": "const [form, setForm] = useDraftState<BDMForm>(`form:screens/CareersScreen.tsx:form:${'application'}`, EMPTY_FORM);"
+    },
+    {
+      "file": "screens/ChatScreen.tsx",
+      "line": 410,
+      "field": "replyTo",
+      "setter": "setReplyTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyTo, setReplyTo] = useDraftState<DmMessage | null>(draftKey ? `${draftKey}:reply` : null, null);"
+    },
+    {
+      "file": "screens/CinemaScreen.tsx",
+      "line": 140,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"screens/CinemaScreen.tsx:query\", \"\");"
+    },
+    {
+      "file": "screens/CommunitiesScreen.tsx",
+      "line": 43,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/CommunitiesScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/ConverterScreen.tsx",
+      "line": 104,
+      "field": "url",
+      "setter": "setUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [url, setUrl] = useSurfaceDraft(\"screens/ConverterScreen.tsx:url\", '');"
+    },
+    {
+      "file": "screens/ConverterScreen.tsx",
+      "line": 113,
+      "field": "reviewName",
+      "setter": "setReviewName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reviewName, setReviewName] = useSurfaceDraft(\"screens/ConverterScreen.tsx:reviewName\", '');"
+    },
+    {
+      "file": "screens/ConverterScreen.tsx",
+      "line": 114,
+      "field": "reviewDescription",
+      "setter": "setReviewDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reviewDescription, setReviewDescription] = useSurfaceDraft(\"screens/ConverterScreen.tsx:reviewDescription\", '');"
+    },
+    {
+      "file": "screens/CreatorFlowScreen.tsx",
+      "line": 80,
+      "field": "newName",
+      "setter": "setNewName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [newName, setNewName] = useSurfaceDraft(\"screens/CreatorFlowScreen.tsx:newName\", \"\");"
+    },
+    {
+      "file": "screens/CreatorsScreen.tsx",
+      "line": 96,
+      "field": "form",
+      "setter": "setForm",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [form, setForm] = useSurfaceDraft<CreatorForm>(\"screens/CreatorsScreen.tsx:form\", EMPTY_FORM);"
+    },
+    {
+      "file": "screens/DaoScreen.tsx",
+      "line": 128,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"screens/DaoScreen.tsx:amount\", \"\");"
+    },
+    {
+      "file": "screens/DexPoolScreen.tsx",
+      "line": 98,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"screens/DexPoolScreen.tsx:amount\", '');"
+    },
+    {
+      "file": "screens/DexPoolScreen.tsx",
+      "line": 99,
+      "field": "price",
+      "setter": "setPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [price, setPrice] = useSurfaceDraft(\"screens/DexPoolScreen.tsx:price\", '');"
+    },
+    {
+      "file": "screens/DexScreen.tsx",
+      "line": 87,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"screens/DexScreen.tsx:amount\", '');"
+    },
+    {
+      "file": "screens/DexScreen.tsx",
+      "line": 88,
+      "field": "minPrice",
+      "setter": "setMinPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [minPrice, setMinPrice] = useSurfaceDraft(\"screens/DexScreen.tsx:minPrice\", '0.001');"
+    },
+    {
+      "file": "screens/DexScreen.tsx",
+      "line": 90,
+      "field": "maxPrice",
+      "setter": "setMaxPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [maxPrice, setMaxPrice] = useSurfaceDraft(\"screens/DexScreen.tsx:maxPrice\", '0.001001');"
+    },
+    {
+      "file": "screens/DirectMessagesScreen.tsx",
+      "line": 74,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"screens/DirectMessagesScreen.tsx:query\", \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 87,
+      "field": "displayName",
+      "setter": "setDisplayName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [displayName, setDisplayName] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:displayName\", user?.displayName || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 88,
+      "field": "username",
+      "setter": "setUsername",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [username, setUsername] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:username\", user?.username || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 89,
+      "field": "aboutMe",
+      "setter": "setAboutMe",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [aboutMe, setAboutMe] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:aboutMe\", user?.aboutMe || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 90,
+      "field": "twitterLink",
+      "setter": "setTwitterLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [twitterLink, setTwitterLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:twitterLink\", user?.twitterLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 91,
+      "field": "instagramLink",
+      "setter": "setInstagramLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [instagramLink, setInstagramLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:instagramLink\", user?.instagramLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 92,
+      "field": "tiktokLink",
+      "setter": "setTiktokLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [tiktokLink, setTiktokLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:tiktokLink\", user?.tiktokLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 93,
+      "field": "youtubeLink",
+      "setter": "setYoutubeLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [youtubeLink, setYoutubeLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:youtubeLink\", user?.youtubeLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 94,
+      "field": "discordLink",
+      "setter": "setDiscordLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [discordLink, setDiscordLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:discordLink\", user?.discordLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 95,
+      "field": "telegramLink",
+      "setter": "setTelegramLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [telegramLink, setTelegramLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:telegramLink\", user?.telegramLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 96,
+      "field": "facebookLink",
+      "setter": "setFacebookLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [facebookLink, setFacebookLink] = useSurfaceDraft<string>(\"screens/EditProfileScreen.tsx:facebookLink\", user?.facebookLink || \"\");"
+    },
+    {
+      "file": "screens/EditProfileScreen.tsx",
+      "line": 100,
+      "field": "socialFollowers",
+      "setter": "setSocialFollowers",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [socialFollowers, setSocialFollowers] = useSurfaceDraft<SocialFollowerInputs>(\"screens/EditProfileScreen.tsx:socialFollowers\", () =>"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 241,
+      "field": "draft",
+      "setter": "setDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [draft, setDraft] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:draft\", \"\");"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 415,
+      "field": "editTitle",
+      "setter": "setEditTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [editTitle, setEditTitle] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:editTitle\", feature.title, feature.id);"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 416,
+      "field": "editDescription",
+      "setter": "setEditDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [editDescription, setEditDescription] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:editDescription\", feature.description, feature.id);"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 641,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:title\", \"\");"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 642,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:description\", \"\");"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 643,
+      "field": "device",
+      "setter": "setDevice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [device, setDevice] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:device\", \"\");"
+    },
+    {
+      "file": "screens/FeatureRequestsScreen.tsx",
+      "line": 878,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/FeatureRequestsScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/FeedDetailScreen.tsx",
+      "line": 174,
+      "field": "replyTo",
+      "setter": "setReplyTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyTo, setReplyTo] = useDraftState<ThreadedComment | null>(`comment:${tokenId}:reply`, () =>"
+    },
+    {
+      "file": "screens/FeedDetailScreen.tsx",
+      "line": 187,
+      "field": "inputText",
+      "setter": "setInputText",
+      "owner": "useDraftState",
+      "declaration": "const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? \"\");"
+    },
+    {
+      "file": "screens/FeedDetailScreen.tsx",
+      "line": 198,
+      "field": "commentQuery",
+      "setter": "setCommentQuery",
+      "owner": "useDraftState",
+      "declaration": "const [commentQuery, setCommentQuery] = useDraftState(`comment:${tokenId}:search`, \"\");"
+    },
+    {
+      "file": "screens/FollowListScreen.tsx",
+      "line": 337,
+      "field": "searchQuery",
+      "setter": "setSearchQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [searchQuery, setSearchQuery] = useSurfaceDraft(\"screens/FollowListScreen.tsx:searchQuery\", \"\");"
+    },
+    {
+      "file": "screens/GlossaryScreen.tsx",
+      "line": 169,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"screens/GlossaryScreen.tsx:query\", \"\");"
+    },
+    {
+      "file": "screens/GovernanceProposalScreen.tsx",
+      "line": 163,
+      "field": "draft",
+      "setter": "setDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [draft, setDraft] = useSurfaceDraft(\"screens/GovernanceProposalScreen.tsx:draft\", \"\");"
+    },
+    {
+      "file": "screens/GovernanceProposalScreen.tsx",
+      "line": 164,
+      "field": "replyTo",
+      "setter": "setReplyTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyTo, setReplyTo] = useDraftState<ProposalComment | null>(`proposal:${proposalId}:reply`, null);"
+    },
+    {
+      "file": "screens/GuideScreen.tsx",
+      "line": 104,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"screens/GuideScreen.tsx:query\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCoinScreen.tsx",
+      "line": 54,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"screens/LaunchpadCoinScreen.tsx:amount\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 89,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:name\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 90,
+      "field": "symbol",
+      "setter": "setSymbol",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [symbol, setSymbol] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:symbol\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 91,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:description\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 93,
+      "field": "website",
+      "setter": "setWebsite",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [website, setWebsite] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:website\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 94,
+      "field": "twitter",
+      "setter": "setTwitter",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [twitter, setTwitter] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:twitter\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadCreateScreen.tsx",
+      "line": 95,
+      "field": "telegram",
+      "setter": "setTelegram",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [telegram, setTelegram] = useSurfaceDraft(\"screens/LaunchpadCreateScreen.tsx:telegram\", \"\");"
+    },
+    {
+      "file": "screens/LaunchpadScreen.tsx",
+      "line": 46,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/LaunchpadScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/ListingDetailScreen.tsx",
+      "line": 139,
+      "field": "shipping",
+      "setter": "setShipping",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [shipping, setShipping] = useSurfaceDraft(\"screens/ListingDetailScreen.tsx:shipping\", \"\");"
+    },
+    {
+      "file": "screens/ListingDetailScreen.tsx",
+      "line": 140,
+      "field": "notes",
+      "setter": "setNotes",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [notes, setNotes] = useSurfaceDraft(\"screens/ListingDetailScreen.tsx:notes\", \"\");"
+    },
+    {
+      "file": "screens/ListingDetailScreen.tsx",
+      "line": 143,
+      "field": "reviewText",
+      "setter": "setReviewText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reviewText, setReviewText] = useSurfaceDraft(\"screens/ListingDetailScreen.tsx:reviewText\", \"\");"
+    },
+    {
+      "file": "screens/LiveChatScreen.tsx",
+      "line": 164,
+      "field": "replyingTo",
+      "setter": "setReplyingTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyingTo, setReplyingTo] = useDraftState<LiveChatMessageData | null>(\"public:reply\", null);"
+    },
+    {
+      "file": "screens/MediaEditorScreen.tsx",
+      "line": 1759,
+      "field": "value",
+      "setter": "setValue",
+      "owner": "useDraftState",
+      "declaration": "const [value, setValue] = useDraftState(props.draftScope, props.initial);"
+    },
+    {
+      "file": "screens/MigrateScreen.tsx",
+      "line": 118,
+      "field": "profileUrl",
+      "setter": "setProfileUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [profileUrl, setProfileUrl] = useSurfaceDraft(\"screens/MigrateScreen.tsx:profileUrl\", '');"
+    },
+    {
+      "file": "screens/MigrateScreen.tsx",
+      "line": 131,
+      "field": "draftName",
+      "setter": "setDraftName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [draftName, setDraftName] = useSurfaceDraft(\"screens/MigrateScreen.tsx:draftName\", '');"
+    },
+    {
+      "file": "screens/MigrateScreen.tsx",
+      "line": 132,
+      "field": "draftDescription",
+      "setter": "setDraftDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [draftDescription, setDraftDescription] = useSurfaceDraft(\"screens/MigrateScreen.tsx:draftDescription\", '');"
+    },
+    {
+      "file": "screens/PackScreen.tsx",
+      "line": 88,
+      "field": "editingName",
+      "setter": "setEditingName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [editingName, setEditingName] = useSurfaceDraft<string | null>(\"screens/PackScreen.tsx:editingName\", null, slug);"
+    },
+    {
+      "file": "screens/PackScreen.tsx",
+      "line": 89,
+      "field": "link",
+      "setter": "setLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [link, setLink] = useSurfaceDraft(\"screens/PackScreen.tsx:link\", \"\");"
+    },
+    {
+      "file": "screens/PackScreen.tsx",
+      "line": 90,
+      "field": "label",
+      "setter": "setLabel",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [label, setLabel] = useSurfaceDraft(\"screens/PackScreen.tsx:label\", \"\");"
+    },
+    {
+      "file": "screens/PacksScreen.tsx",
+      "line": 118,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"screens/PacksScreen.tsx:name\", \"\");"
+    },
+    {
+      "file": "screens/PromptScreen.tsx",
+      "line": 137,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [text, setText] = useSurfaceDraft(\"screens/PromptScreen.tsx:text\", \"\");"
+    },
+    {
+      "file": "screens/SavedPostsScreen.tsx",
+      "line": 69,
+      "field": "folderName",
+      "setter": "setFolderName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [folderName, setFolderName] = useSurfaceDraft(\"screens/SavedPostsScreen.tsx:folderName\", folderToEdit?.name ?? \"\", folderToEdit?._id ?? \"new\");"
+    },
+    {
+      "file": "screens/SavedPostsScreen.tsx",
+      "line": 70,
+      "field": "folderDesc",
+      "setter": "setFolderDesc",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [folderDesc, setFolderDesc] = useSurfaceDraft(\"screens/SavedPostsScreen.tsx:folderDesc\", folderToEdit?.description ?? \"\", folderToEdit?._id ?? \"new\");"
+    },
+    {
+      "file": "screens/SearchScreen.tsx",
+      "line": 259,
+      "field": "searchQuery",
+      "setter": "setSearchQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [searchQuery, setSearchQuery] = useSurfaceDraft(\"screens/SearchScreen.tsx:searchQuery\", \"\");"
+    },
+    {
+      "file": "screens/StoresScreen.tsx",
+      "line": 128,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/StoresScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/Top100Screen.tsx",
+      "line": 127,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/Top100Screen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/TVScreen.tsx",
+      "line": 238,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/TVScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 313,
+      "field": "bodyText",
+      "setter": "setBodyText",
+      "owner": "useDraftState",
+      "declaration": "const [bodyText, setBodyText] = useDraftState(draftScope + \":bodyText\", \"\");"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 316,
+      "field": "titleText",
+      "setter": "setTitleText",
+      "owner": "useDraftState",
+      "declaration": "const [titleText, setTitleText] = useDraftState(draftScope + \":titleText\", \"\");"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 317,
+      "field": "showTitle",
+      "setter": "setShowTitle",
+      "owner": "useDraftState",
+      "declaration": "const [showTitle, setShowTitle] = useDraftState(draftScope + \":showTitle\", false);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 318,
+      "field": "articleMode",
+      "setter": "setArticleMode",
+      "owner": "useDraftState",
+      "declaration": "const [articleMode, setArticleMode] = useDraftState(draftScope + \":articleMode\", false);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 319,
+      "field": "articleBody",
+      "setter": "setArticleBody",
+      "owner": "useDraftState",
+      "declaration": "const [articleBody, setArticleBody] = useDraftState(draftScope + \":articleBody\", \"\");"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 350,
+      "field": "categories",
+      "setter": "setCategories",
+      "owner": "useDraftState",
+      "declaration": "const [categories, setCategories] = useDraftState<string[]>(draftScope + \":categories\", []);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 392,
+      "field": "monetization",
+      "setter": "setMonetization",
+      "owner": "useDraftState",
+      "declaration": "const [monetization, setMonetization] = useDraftState<MonetizationState>(draftScope + \":monetization\", {"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 416,
+      "field": "pollEnabled",
+      "setter": "setPollEnabled",
+      "owner": "useDraftState",
+      "declaration": "const [pollEnabled, setPollEnabled] = useDraftState(draftScope + \":pollEnabled\", false);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 417,
+      "field": "pollQuestion",
+      "setter": "setPollQuestion",
+      "owner": "useDraftState",
+      "declaration": "const [pollQuestion, setPollQuestion] = useDraftState(draftScope + \":pollQuestion\", \"\");"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 418,
+      "field": "pollOptions",
+      "setter": "setPollOptions",
+      "owner": "useDraftState",
+      "declaration": "const [pollOptions, setPollOptions] = useDraftState(draftScope + \":pollOptions\", [\"\", \"\"]);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 419,
+      "field": "pollDurationHours",
+      "setter": "setPollDurationHours",
+      "owner": "useDraftState",
+      "declaration": "const [pollDurationHours, setPollDurationHours] = useDraftState(draftScope + \":pollDurationHours\", 24);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 420,
+      "field": "pollIsMultiple",
+      "setter": "setPollIsMultiple",
+      "owner": "useDraftState",
+      "declaration": "const [pollIsMultiple, setPollIsMultiple] = useDraftState(draftScope + \":pollIsMultiple\", false);"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "line": 519,
+      "field": "shopLinks",
+      "setter": "setShopLinks",
+      "owner": "useDraftState",
+      "declaration": "const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(draftScope + \":shopLinks\", []);"
+    },
+    {
+      "file": "screens/UsernamesScreen.tsx",
+      "line": 196,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/UsernamesScreen.tsx:search\", () => String(route.params?.handle || \"\"));"
+    },
+    {
+      "file": "screens/WorkDisputesScreen.tsx",
+      "line": 70,
+      "field": "drafts",
+      "setter": "setDrafts",
+      "owner": "useDraftState",
+      "declaration": "const [drafts, setDrafts] = useDraftState<Record<string, Draft>>(`form:screens/WorkDisputesScreen.tsx:drafts:${'disputes'}`, {});"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "line": 82,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"screens/WorkEditScreen.tsx:title\", \"\");"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "line": 83,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"screens/WorkEditScreen.tsx:description\", \"\");"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "line": 85,
+      "field": "targetUrl",
+      "setter": "setTargetUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [targetUrl, setTargetUrl] = useSurfaceDraft(\"screens/WorkEditScreen.tsx:targetUrl\", \"\");"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "line": 87,
+      "field": "pricePerUnit",
+      "setter": "setPricePerUnit",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [pricePerUnit, setPricePerUnit] = useSurfaceDraft(\"screens/WorkEditScreen.tsx:pricePerUnit\", \"\");"
+    },
+    {
+      "file": "screens/WorkEditScreen.tsx",
+      "line": 88,
+      "field": "maxUnits",
+      "setter": "setMaxUnits",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [maxUnits, setMaxUnits] = useSurfaceDraft(\"screens/WorkEditScreen.tsx:maxUnits\", \"\");"
+    },
+    {
+      "file": "screens/WorkHistoryScreen.tsx",
+      "line": 80,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/WorkHistoryScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 154,
+      "field": "coverLetter",
+      "setter": "setCoverLetter",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [coverLetter, setCoverLetter] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:coverLetter\", \"\");"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 155,
+      "field": "proofUrl",
+      "setter": "setProofUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [proofUrl, setProofUrl] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:proofUrl\", \"\");"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 156,
+      "field": "proofText",
+      "setter": "setProofText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [proofText, setProofText] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:proofText\", \"\");"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 159,
+      "field": "reviewComment",
+      "setter": "setReviewComment",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reviewComment, setReviewComment] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:reviewComment\", \"\", `${job?.id ?? \"\"}:${reviewTarget || \"default\"}`);"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 160,
+      "field": "disputeReason",
+      "setter": "setDisputeReason",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [disputeReason, setDisputeReason] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:disputeReason\", \"\");"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 163,
+      "field": "rejectReason",
+      "setter": "setRejectReason",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [rejectReason, setRejectReason] = useSurfaceDraft(\"screens/WorkJobDetailScreen.tsx:rejectReason\", \"\", rejectTarget?.id ?? null);"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 164,
+      "field": "clipChecks",
+      "setter": "setClipChecks",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [clipChecks, setClipChecks] = useSurfaceDraft<Record<string, { views: string; evidence: string }>>(\"work:clipChecks\", {}, job?.id ?? null);"
+    },
+    {
+      "file": "screens/WorkJobDetailScreen.tsx",
+      "line": 165,
+      "field": "recoveryHashes",
+      "setter": "setRecoveryHashes",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [recoveryHashes, setRecoveryHashes] = useSurfaceDraft<Record<string,string>>(\"work:recoveryHashes\", {}, job?.id ?? null);"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "line": 88,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"screens/WorkPostScreen.tsx:title\", \"\");"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "line": 89,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"screens/WorkPostScreen.tsx:description\", \"\");"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "line": 91,
+      "field": "targetUrl",
+      "setter": "setTargetUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [targetUrl, setTargetUrl] = useSurfaceDraft(\"screens/WorkPostScreen.tsx:targetUrl\", \"\");"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "line": 93,
+      "field": "pricePerUnit",
+      "setter": "setPricePerUnit",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [pricePerUnit, setPricePerUnit] = useSurfaceDraft(\"screens/WorkPostScreen.tsx:pricePerUnit\", \"\");"
+    },
+    {
+      "file": "screens/WorkPostScreen.tsx",
+      "line": 94,
+      "field": "maxUnits",
+      "setter": "setMaxUnits",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [maxUnits, setMaxUnits] = useSurfaceDraft(\"screens/WorkPostScreen.tsx:maxUnits\", \"\");"
+    },
+    {
+      "file": "screens/WorkScreen.tsx",
+      "line": 154,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"screens/WorkScreen.tsx:search\", \"\");"
+    },
+    {
+      "file": "screens/auth/SetProfileScreen.tsx",
+      "line": 66,
+      "field": "username",
+      "setter": "setUsername",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [username, setUsername] = useSurfaceDraft(\"screens/auth/SetProfileScreen.tsx:username\", \"\");"
+    },
+    {
+      "file": "screens/auth/SetProfileScreen.tsx",
+      "line": 67,
+      "field": "displayName",
+      "setter": "setDisplayName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [displayName, setDisplayName] = useSurfaceDraft(\"screens/auth/SetProfileScreen.tsx:displayName\", \"\");"
+    },
+    {
+      "file": "components/DexAddPoolSheet.tsx",
+      "line": 39,
+      "field": "address",
+      "setter": "setAddress",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [address, setAddress] = useSurfaceDraft(\"components/DexAddPoolSheet.tsx:address\", '');"
+    },
+    {
+      "file": "components/DexInstantDhbTrade.tsx",
+      "line": 26,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/DexInstantDhbTrade.tsx:amount\", '');"
+    },
+    {
+      "file": "components/DexPoolPicker.tsx",
+      "line": 34,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/DexPoolPicker.tsx:query\", '');"
+    },
+    {
+      "file": "components/ReviewModal.tsx",
+      "line": 49,
+      "field": "feedback",
+      "setter": "setFeedback",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [feedback, setFeedback] = useSurfaceDraft(\"components/ReviewModal.tsx:feedback\", \"\");"
+    },
+    {
+      "file": "components/ReviewModal.tsx",
+      "line": 50,
+      "field": "telegram",
+      "setter": "setTelegram",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [telegram, setTelegram] = useSurfaceDraft(\"components/ReviewModal.tsx:telegram\", \"\");"
+    },
+    {
+      "file": "components/ReviewModal.tsx",
+      "line": 51,
+      "field": "discord",
+      "setter": "setDiscord",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [discord, setDiscord] = useSurfaceDraft(\"components/ReviewModal.tsx:discord\", \"\");"
+    },
+    {
+      "file": "components/SubscriptionCreditsTopUpSheet.tsx",
+      "line": 54,
+      "field": "custom",
+      "setter": "setCustom",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [custom, setCustom] = useSurfaceDraft(\"components/SubscriptionCreditsTopUpSheet.tsx:custom\", \"\");"
+    },
+    {
+      "file": "components/Accounts/BuyAccountSheet.tsx",
+      "line": 57,
+      "field": "receiveAddress",
+      "setter": "setReceiveAddress",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [receiveAddress, setReceiveAddress] = useSurfaceDraft(\"components/Accounts/BuyAccountSheet.tsx:receiveAddress\", \"\", draftIdentity(listing));"
+    },
+    {
+      "file": "components/Accounts/SellAccountPanel.tsx",
+      "line": 63,
+      "field": "priceDhb",
+      "setter": "setPriceDhb",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [priceDhb, setPriceDhb] = useSurfaceDraft(\"components/Accounts/SellAccountPanel.tsx:priceDhb\", \"\");"
+    },
+    {
+      "file": "components/Accounts/SellAccountPanel.tsx",
+      "line": 64,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Accounts/SellAccountPanel.tsx:description\", \"\");"
+    },
+    {
+      "file": "components/Assistant/CreatorStudioControls.tsx",
+      "line": 27,
+      "field": "modelSearch",
+      "setter": "setModelSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [modelSearch, setModelSearch] = useSurfaceDraft(\"components/Assistant/CreatorStudioControls.tsx:modelSearch\", '');"
+    },
+    {
+      "file": "components/Assistant/CreatorStudioControls.tsx",
+      "line": 29,
+      "field": "durationDraft",
+      "setter": "setDurationDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [durationDraft, setDurationDraft] = useSurfaceDraft(\"components/Assistant/CreatorStudioControls.tsx:durationDraft\", String(settings.durationSeconds), `${settings.mode}:${settings.model}`);"
+    },
+    {
+      "file": "components/Assistant/MusicConfirmSheet.tsx",
+      "line": 115,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"components/Assistant/MusicConfirmSheet.tsx:title\", '');"
+    },
+    {
+      "file": "components/Assistant/MusicConfirmSheet.tsx",
+      "line": 116,
+      "field": "lyrics",
+      "setter": "setLyrics",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [lyrics, setLyrics] = useSurfaceDraft(\"components/Assistant/MusicConfirmSheet.tsx:lyrics\", '');"
+    },
+    {
+      "file": "components/Assistant/MusicConfirmSheet.tsx",
+      "line": 117,
+      "field": "style",
+      "setter": "setStyle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [style, setStyle] = useSurfaceDraft(\"components/Assistant/MusicConfirmSheet.tsx:style\", '');"
+    },
+    {
+      "file": "components/Assistant/PosterConfigSheet.tsx",
+      "line": 316,
+      "field": "tagline",
+      "setter": "setTagline",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [tagline, setTagline] = useSurfaceDraft(\"components/Assistant/PosterConfigSheet.tsx:tagline\", '');"
+    },
+    {
+      "file": "components/Assistant/PosterConfigSheet.tsx",
+      "line": 319,
+      "field": "extraNotes",
+      "setter": "setExtraNotes",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [extraNotes, setExtraNotes] = useSurfaceDraft(\"components/Assistant/PosterConfigSheet.tsx:extraNotes\", '');"
+    },
+    {
+      "file": "components/Assistant/SupportTicketSheet.tsx",
+      "line": 143,
+      "field": "subject",
+      "setter": "setSubject",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [subject, setSubject] = useSurfaceDraft(\"components/Assistant/SupportTicketSheet.tsx:subject\", '');"
+    },
+    {
+      "file": "components/Assistant/SupportTicketSheet.tsx",
+      "line": 144,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Assistant/SupportTicketSheet.tsx:description\", '');"
+    },
+    {
+      "file": "components/Assistant/SupportTicketSheet.tsx",
+      "line": 145,
+      "field": "stepsToReproduce",
+      "setter": "setStepsToReproduce",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [stepsToReproduce, setStepsToReproduce] = useSurfaceDraft(\"components/Assistant/SupportTicketSheet.tsx:stepsToReproduce\", '');"
+    },
+    {
+      "file": "components/Assistant/TemplatesSheet.tsx",
+      "line": 79,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/Assistant/TemplatesSheet.tsx:query\", '');"
+    },
+    {
+      "file": "components/auth/EmailLoginFlow.tsx",
+      "line": 30,
+      "field": "email",
+      "setter": "setEmail",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [email, setEmail] = useSurfaceDraft(\"components/auth/EmailLoginFlow.tsx:email\", \"\");"
+    },
+    {
+      "file": "components/auth/LegacyAccountWarningModal.tsx",
+      "line": 87,
+      "field": "email",
+      "setter": "setEmail",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [email, setEmail] = useSurfaceDraft(\"components/auth/LegacyAccountWarningModal.tsx:email\", \"\");"
+    },
+    {
+      "file": "components/auth/PhoneLoginFlow.tsx",
+      "line": 38,
+      "field": "digits",
+      "setter": "setDigits",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [digits, setDigits] = useSurfaceDraft(\"components/auth/PhoneLoginFlow.tsx:digits\", \"\");"
+    },
+    {
+      "file": "components/auth/PhoneLoginFlow.tsx",
+      "line": 39,
+      "field": "raw",
+      "setter": "setRaw",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [raw, setRaw] = useSurfaceDraft(\"components/auth/PhoneLoginFlow.tsx:raw\", \"\");"
+    },
+    {
+      "file": "components/auth/UsernameRequiredModal.tsx",
+      "line": 27,
+      "field": "username",
+      "setter": "setUsername",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [username, setUsername] = useSurfaceDraft(\"components/auth/UsernameRequiredModal.tsx:username\", '');"
+    },
+    {
+      "file": "components/auth/UsernameRequiredModal.tsx",
+      "line": 28,
+      "field": "displayName",
+      "setter": "setDisplayName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [displayName, setDisplayName] = useSurfaceDraft(\"components/auth/UsernameRequiredModal.tsx:displayName\", '');"
+    },
+    {
+      "file": "components/Cinema/FilmReviews.tsx",
+      "line": 102,
+      "field": "body",
+      "setter": "setBody",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [body, setBody] = useSurfaceDraft(\"components/Cinema/FilmReviews.tsx:body\", \"\", justwatchId);"
+    },
+    {
+      "file": "components/Comments/CommentSection.tsx",
+      "line": 225,
+      "field": "inputText",
+      "setter": "setInputText",
+      "owner": "useDraftState",
+      "declaration": "const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? \"\");"
+    },
+    {
+      "file": "components/Comments/CommonGroundSheet.tsx",
+      "line": 93,
+      "field": "otherSide",
+      "setter": "setOtherSide",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [otherSide, setOtherSide] = useSurfaceDraft(\"components/Comments/CommonGroundSheet.tsx:otherSide\", \"\");"
+    },
+    {
+      "file": "components/Comments/CommonGroundSheet.tsx",
+      "line": 94,
+      "field": "sharedGround",
+      "setter": "setSharedGround",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [sharedGround, setSharedGround] = useSurfaceDraft(\"components/Comments/CommonGroundSheet.tsx:sharedGround\", \"\");"
+    },
+    {
+      "file": "components/common/AddCustomEmojiPanel.tsx",
+      "line": 55,
+      "field": "link",
+      "setter": "setLink",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [link, setLink] = useSurfaceDraft(\"components/common/AddCustomEmojiPanel.tsx:link\", \"\");"
+    },
+    {
+      "file": "components/common/AddCustomEmojiPanel.tsx",
+      "line": 59,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/common/AddCustomEmojiPanel.tsx:name\", \"\");"
+    },
+    {
+      "file": "components/common/AddCustomEmojiPanel.tsx",
+      "line": 60,
+      "field": "pack",
+      "setter": "setPack",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [pack, setPack] = useSurfaceDraft(\"components/common/AddCustomEmojiPanel.tsx:pack\", \"\");"
+    },
+    {
+      "file": "components/common/BoostSheet.tsx",
+      "line": 76,
+      "field": "targetAccount",
+      "setter": "setTargetAccount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [targetAccount, setTargetAccount] = useSurfaceDraft(\"components/common/BoostSheet.tsx:targetAccount\", \"\", tokenId);"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "line": 93,
+      "field": "shopLinks",
+      "setter": "setShopLinks",
+      "owner": "useDraftState",
+      "declaration": "const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + \":shopLinks\", initialShopLinks ?? []);"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "line": 125,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useDraftState",
+      "declaration": "const [title, setTitle] = useDraftState(`post:edit:${tokenId}` + \":title\", initialTitle);"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "line": 126,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useDraftState",
+      "declaration": "const [description, setDescription] = useDraftState(`post:edit:${tokenId}` + \":description\", initialDescription);"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "line": 127,
+      "field": "articleBody",
+      "setter": "setArticleBody",
+      "owner": "useDraftState",
+      "declaration": "const [articleBody, setArticleBody] = useDraftState(`post:edit:${tokenId}` + \":articleBody\", initialArticleBody ?? \"\");"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "line": 139,
+      "field": "selectedCategories",
+      "setter": "setSelectedCategories",
+      "owner": "useDraftState",
+      "declaration": "const [selectedCategories, setSelectedCategories] ="
+    },
+    {
+      "file": "components/common/ReportModal.tsx",
+      "line": 94,
+      "field": "additionalInfo",
+      "setter": "setAdditionalInfo",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [additionalInfo, setAdditionalInfo] = useSurfaceDraft(\"components/common/ReportModal.tsx:additionalInfo\", \"\", JSON.stringify([type, tokenId, userId, commentId]));"
+    },
+    {
+      "file": "components/common/SpendPowerSheet.tsx",
+      "line": 71,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/common/SpendPowerSheet.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/common/SpendPowerSheet.tsx",
+      "line": 76,
+      "field": "targetAccount",
+      "setter": "setTargetAccount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [targetAccount, setTargetAccount] = useSurfaceDraft(\"components/common/SpendPowerSheet.tsx:targetAccount\", \"\");"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "line": 103,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/common/TeamUpSheet.tsx:name\", '');"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "line": 104,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/common/TeamUpSheet.tsx:description\", '');"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "line": 106,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/common/TeamUpSheet.tsx:search\", '');"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "line": 109,
+      "field": "requestMessage",
+      "setter": "setRequestMessage",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [requestMessage, setRequestMessage] = useSurfaceDraft(\"components/common/TeamUpSheet.tsx:requestMessage\", '', requesting);"
+    },
+    {
+      "file": "components/common/TeamUpSheet.tsx",
+      "line": 127,
+      "field": "editDescription",
+      "setter": "setEditDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [editDescription, setEditDescription] = useSurfaceDraft(\"components/common/TeamUpSheet.tsx:editDescription\", '', team?.id ?? null);"
+    },
+    {
+      "file": "components/Communities/CommunityChatPanel.tsx",
+      "line": 312,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useDraftState",
+      "declaration": "const [text, setText] = useDraftState(editing ? `community:${community.id}:edit:${editing.id}` : `community:${community.id}:composer`, editing?.content ?? \"\");"
+    },
+    {
+      "file": "components/Communities/CommunityChatPanel.tsx",
+      "line": 317,
+      "field": "replyTo",
+      "setter": "setReplyTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyTo, setReplyTo] = useDraftState<CommunityChatMessage | null>(`community:${community.id}:reply`, null);"
+    },
+    {
+      "file": "components/Communities/CommunityInfoEditor.tsx",
+      "line": 34,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useDraftState",
+      "declaration": "const [name, setName] = useDraftState(`form:components/Communities/CommunityInfoEditor.tsx:name:${community.id}`, community.name);"
+    },
+    {
+      "file": "components/Communities/CommunityInfoEditor.tsx",
+      "line": 35,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useDraftState",
+      "declaration": "const [description, setDescription] = useDraftState(`form:components/Communities/CommunityInfoEditor.tsx:description:${community.id}`, community.description ?? \"\");"
+    },
+    {
+      "file": "components/Communities/CreateCommunitySheet.tsx",
+      "line": 35,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/Communities/CreateCommunitySheet.tsx:name\", \"\");"
+    },
+    {
+      "file": "components/Communities/CreateCommunitySheet.tsx",
+      "line": 36,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Communities/CreateCommunitySheet.tsx:description\", \"\");"
+    },
+    {
+      "file": "components/Converter/PodcastImportSection.tsx",
+      "line": 98,
+      "field": "feedUrl",
+      "setter": "setFeedUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [feedUrl, setFeedUrl] = useSurfaceDraft(\"components/Converter/PodcastImportSection.tsx:feedUrl\", '');"
+    },
+    {
+      "file": "components/DM/ChatInputBar.tsx",
+      "line": 154,
+      "field": "ordinaryText",
+      "setter": "setOrdinaryText",
+      "owner": "useDraft",
+      "declaration": "const [ordinaryText, setOrdinaryText] = useDraft(draftKey);"
+    },
+    {
+      "file": "components/DM/ChatInputBar.tsx",
+      "line": 155,
+      "field": "editText",
+      "setter": "setEditText",
+      "owner": "useDraftState",
+      "declaration": "const [editText, setEditText] = useDraftState(editingMessage && draftKey ? `${draftKey}:edit:${editingMessage._id}` : null, editingMessage?.content || \"\");"
+    },
+    {
+      "file": "components/DM/CreatePollSheet.tsx",
+      "line": 46,
+      "field": "question",
+      "setter": "setQuestion",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [question, setQuestion] = useSurfaceDraft(\"components/DM/CreatePollSheet.tsx:question\", \"\");"
+    },
+    {
+      "file": "components/DM/DMSettingsModal.tsx",
+      "line": 57,
+      "field": "fee",
+      "setter": "setFee",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [fee, setFee] = useSurfaceDraft<string>(\"components/DM/DMSettingsModal.tsx:fee\", String(initial.fee));"
+    },
+    {
+      "file": "components/DM/ForwardPickerModal.tsx",
+      "line": 33,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/DM/ForwardPickerModal.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/DM/GifPicker.tsx",
+      "line": 55,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/DM/GifPicker.tsx:query\", '');"
+    },
+    {
+      "file": "components/DM/NewDMModal.tsx",
+      "line": 95,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft<string>(\"components/DM/NewDMModal.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/DM/ShareToDmSheet.tsx",
+      "line": 45,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/DM/ShareToDmSheet.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/DM/TipAmountSheet.tsx",
+      "line": 67,
+      "field": "inputValue",
+      "setter": "setInputValue",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [inputValue, setInputValue] = useSurfaceDraft(\"components/DM/TipAmountSheet.tsx:inputValue\","
+    },
+    {
+      "file": "components/Dpay/DpayTopUpForm.tsx",
+      "line": 64,
+      "field": "amountUsd",
+      "setter": "setAmountUsd",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amountUsd, setAmountUsd] = useSurfaceDraft<string>(\"components/Dpay/DpayTopUpForm.tsx:amountUsd\", initialUsdAmount);"
+    },
+    {
+      "file": "components/Dpay/NearIntentBuy.tsx",
+      "line": 62,
+      "field": "amountText",
+      "setter": "setAmountText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amountText, setAmountText] = useSurfaceDraft(\"components/Dpay/NearIntentBuy.tsx:amountText\", String(initialDhbAmount));"
+    },
+    {
+      "file": "components/Dpay/NearIntentBuy.tsx",
+      "line": 64,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Dpay/NearIntentBuy.tsx:search\", '');"
+    },
+    {
+      "file": "components/Earnings/EarningsComparisonCard.tsx",
+      "line": 100,
+      "field": "rpmText",
+      "setter": "setRpmText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [rpmText, setRpmText] = useSurfaceDraft<Record<string, string>>(\"components/Earnings/EarningsComparisonCard.tsx:rpmText\", () =>"
+    },
+    {
+      "file": "components/Earnings/EarningsComparisonCard.tsx",
+      "line": 102,
+      "field": "estimatorViews",
+      "setter": "setEstimatorViews",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [estimatorViews, setEstimatorViews] = useSurfaceDraft(\"components/Earnings/EarningsComparisonCard.tsx:estimatorViews\", \"\");"
+    },
+    {
+      "file": "components/editor/AgentSheet.tsx",
+      "line": 54,
+      "field": "draft",
+      "setter": "setDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [draft, setDraft] = useSurfaceDraft(\"components/editor/AgentSheet.tsx:draft\", \"\", projectId);"
+    },
+    {
+      "file": "components/editor/AssemblyReview.tsx",
+      "line": 51,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useDraftState",
+      "declaration": "const [text, setText] = useDraftState(draftScope, String(value));"
+    },
+    {
+      "file": "components/editor/CloudProjects.tsx",
+      "line": 17,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/editor/CloudProjects.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/editor/HighlightTools.tsx",
+      "line": 30,
+      "field": "reviewDraft",
+      "setter": "setReviewDraft",
+      "owner": "useDraftState",
+      "declaration": "const [reviewDraft, setReviewDraft] = useDraftState(`${draftScope}:review`, \"\"), [reviewEntries, setReviewEntries] = useState<{ role: \"user\" | \"assistant\"; content: string }[]>([]);"
+    },
+    {
+      "file": "components/editor/MotionPanel.tsx",
+      "line": 405,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useDraftState",
+      "declaration": "const [text, setText] = useDraftState(props.draftScope, String(props.value));"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "line": 12,
+      "field": "reply",
+      "setter": "setReply",
+      "owner": "useDraftState",
+      "declaration": "const [reply,setReply]=useDraftState<ProjectReviewComment|null>(scope ? `${scope}:reply` : null,null);"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "line": 13,
+      "field": "body",
+      "setter": "setBody",
+      "owner": "useDraftState",
+      "declaration": "const [body,setBody]=useDraftState(scope ? `${scope}:${reply?.id ?? 'root'}:body` : null,\"\");"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "line": 14,
+      "field": "time",
+      "setter": "setTime",
+      "owner": "useDraftState",
+      "declaration": "const [time,setTime]=useDraftState(scope ? `${scope}:time` : null,\"0\");"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "line": 15,
+      "field": "assignee",
+      "setter": "setAssignee",
+      "owner": "useDraftState",
+      "declaration": "const [assignee,setAssignee]=useDraftState(scope ? `${scope}:assignee` : null,\"\");"
+    },
+    {
+      "file": "components/editor/ProjectReviewPanel.tsx",
+      "line": 16,
+      "field": "recipient",
+      "setter": "setRecipient",
+      "owner": "useDraftState",
+      "declaration": "const [recipient,setRecipient]=useDraftState(scope ? `${scope}:recipient` : null,\"\");"
+    },
+    {
+      "file": "components/editor/StockPanel.tsx",
+      "line": 12,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/editor/StockPanel.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/Fractions/BrowseFractionsTab.tsx",
+      "line": 41,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Fractions/BrowseFractionsTab.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/Home/AddToFolderSheet.tsx",
+      "line": 75,
+      "field": "newFolderName",
+      "setter": "setNewFolderName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [newFolderName, setNewFolderName] = useSurfaceDraft(\"components/Home/AddToFolderSheet.tsx:newFolderName\", \"\", tokenId);"
+    },
+    {
+      "file": "components/Home/AddToFolderSheet.tsx",
+      "line": 76,
+      "field": "newFolderDesc",
+      "setter": "setNewFolderDesc",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [newFolderDesc, setNewFolderDesc] = useSurfaceDraft(\"components/Home/AddToFolderSheet.tsx:newFolderDesc\", \"\", tokenId);"
+    },
+    {
+      "file": "components/Home/AppDrawer.tsx",
+      "line": 283,
+      "field": "menuQuery",
+      "setter": "setMenuQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [menuQuery, setMenuQuery] = useSurfaceDraft(\"components/Home/AppDrawer.tsx:menuQuery\", \"\");"
+    },
+    {
+      "file": "components/Home/AskAISheet.tsx",
+      "line": 217,
+      "field": "inputText",
+      "setter": "setInputText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [inputText, setInputText] = useSurfaceDraft(\"components/Home/AskAISheet.tsx:inputText\", \"\", postId);"
+    },
+    {
+      "file": "components/Home/DhbListingSoon.tsx",
+      "line": 35,
+      "field": "email",
+      "setter": "setEmail",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [email, setEmail] = useSurfaceDraft(\"components/Home/DhbListingSoon.tsx:email\", \"\");"
+    },
+    {
+      "file": "components/Home/FeedFilterPanel.tsx",
+      "line": 285,
+      "field": "categorySearch",
+      "setter": "setCategorySearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [categorySearch, setCategorySearch] = useSurfaceDraft(\"components/Home/FeedFilterPanel.tsx:categorySearch\", \"\");"
+    },
+    {
+      "file": "components/LiveChat/LiveChatInput.tsx",
+      "line": 92,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useDraftState",
+      "declaration": "const [text, setText] = useDraftState(editingMessage ? `public:edit:${editingMessage._id}` : \"public:composer\", editingMessage?.content ?? \"\");"
+    },
+    {
+      "file": "components/LiveProducer/ProducerFloatingChat.tsx",
+      "line": 124,
+      "field": "message",
+      "setter": "setMessage",
+      "owner": "useDraftState",
+      "declaration": "const [message, setMessage] = useDraftState(draftScope, \"\");"
+    },
+    {
+      "file": "components/LiveViewer/LiveViewerActionBar.tsx",
+      "line": 95,
+      "field": "message",
+      "setter": "setMessage",
+      "owner": "useDraftState",
+      "declaration": "const [message, setMessage] = useDraftState(draftScope, \"\");"
+    },
+    {
+      "file": "components/LiveViewer/StreamShopOverlay.tsx",
+      "line": 151,
+      "field": "shipping",
+      "setter": "setShipping",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [shipping, setShipping] = useSurfaceDraft(\"components/LiveViewer/StreamShopOverlay.tsx:shipping\", \"\", tokenId);"
+    },
+    {
+      "file": "components/LiveViewer/StreamShopOverlay.tsx",
+      "line": 152,
+      "field": "notes",
+      "setter": "setNotes",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [notes, setNotes] = useSurfaceDraft(\"components/LiveViewer/StreamShopOverlay.tsx:notes\", \"\", tokenId);"
+    },
+    {
+      "file": "components/Music/MusicFeed.tsx",
+      "line": 192,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Music/MusicFeed.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/Notifications/AppealSheet.tsx",
+      "line": 54,
+      "field": "reason",
+      "setter": "setReason",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reason, setReason] = useSurfaceDraft(\"components/Notifications/AppealSheet.tsx:reason\", \"\", notificationId);"
+    },
+    {
+      "file": "components/packs/PackGate.tsx",
+      "line": 123,
+      "field": "newName",
+      "setter": "setNewName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [newName, setNewName] = useSurfaceDraft(\"components/packs/PackGate.tsx:newName\", \"\");"
+    },
+    {
+      "file": "components/Post/SoundPickerSheet.tsx",
+      "line": 59,
+      "field": "searchText",
+      "setter": "setSearchText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [searchText, setSearchText] = useSurfaceDraft(\"components/Post/SoundPickerSheet.tsx:searchText\", \"\");"
+    },
+    {
+      "file": "components/Profile/ProfileAssets.tsx",
+      "line": 60,
+      "field": "searchQuery",
+      "setter": "setSearchQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [searchQuery, setSearchQuery] = useSurfaceDraft(\"components/Profile/ProfileAssets.tsx:searchQuery\", \"\");"
+    },
+    {
+      "file": "components/Profile/useProfileContentFilters.ts",
+      "line": 66,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useDraftState",
+      "declaration": "const [search, setSearch] = useDraftState(`profile:${resetKey ?? \"own\"}:search`, \"\");"
+    },
+    {
+      "file": "components/Settings/BadgeDelegationSection.tsx",
+      "line": 84,
+      "field": "recipient",
+      "setter": "setRecipient",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [recipient, setRecipient] = useSurfaceDraft(\"components/Settings/BadgeDelegationSection.tsx:recipient\", '');"
+    },
+    {
+      "file": "components/Settings/DMSettingsSection.tsx",
+      "line": 43,
+      "field": "fee",
+      "setter": "setFee",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [fee, setFee] = useSurfaceDraft<string>(\"components/Settings/DMSettingsSection.tsx:fee\", String(initial.fee));"
+    },
+    {
+      "file": "components/Settings/EmailSignInSection.tsx",
+      "line": 47,
+      "field": "email",
+      "setter": "setEmail",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [email, setEmail] = useSurfaceDraft(\"components/Settings/EmailSignInSection.tsx:email\", '');"
+    },
+    {
+      "file": "components/Settings/EnsHandleSection.tsx",
+      "line": 75,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/Settings/EnsHandleSection.tsx:name\", '');"
+    },
+    {
+      "file": "components/Settings/GeoBlockingSection.tsx",
+      "line": 79,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Settings/GeoBlockingSection.tsx:search\", '');"
+    },
+    {
+      "file": "components/Settings/LanguageSelectModal.tsx",
+      "line": 23,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Settings/LanguageSelectModal.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/Settings/SettingsSearchBar.tsx",
+      "line": 37,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/Settings/SettingsSearchBar.tsx:query\", '');"
+    },
+    {
+      "file": "components/Settings/SmsNotificationsSheet.tsx",
+      "line": 74,
+      "field": "phone",
+      "setter": "setPhone",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [phone, setPhone] = useSurfaceDraft(\"components/Settings/SmsNotificationsSheet.tsx:phone\", '');"
+    },
+    {
+      "file": "components/Settings/StreamKeySection.tsx",
+      "line": 43,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"components/Settings/StreamKeySection.tsx:title\", '');"
+    },
+    {
+      "file": "components/Settings/SwitchAccountModal.tsx",
+      "line": 81,
+      "field": "email",
+      "setter": "setEmail",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [email, setEmail] = useSurfaceDraft(\"components/Settings/SwitchAccountModal.tsx:email\", \"\");"
+    },
+    {
+      "file": "components/Settings/ThemeColorPicker.tsx",
+      "line": 60,
+      "field": "hexDraft",
+      "setter": "setHexDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [hexDraft, setHexDraft] = useSurfaceDraft<string | null>(\"components/Settings/ThemeColorPicker.tsx:hexDraft\", null, theme);"
+    },
+    {
+      "file": "components/Stages/CreateStageModal.tsx",
+      "line": 43,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"components/Stages/CreateStageModal.tsx:title\", \"\");"
+    },
+    {
+      "file": "components/Stages/CreateStageModal.tsx",
+      "line": 44,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Stages/CreateStageModal.tsx:description\", \"\");"
+    },
+    {
+      "file": "components/Stages/LiveStageModal.tsx",
+      "line": 281,
+      "field": "ttsText",
+      "setter": "setTtsText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [ttsText, setTtsText] = useSurfaceDraft(\"components/Stages/LiveStageModal.tsx:ttsText\", \"\");"
+    },
+    {
+      "file": "components/Stages/StageTranscriptSheet.tsx",
+      "line": 145,
+      "field": "searchQuery",
+      "setter": "setSearchQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [searchQuery, setSearchQuery] = useSurfaceDraft(\"components/Stages/StageTranscriptSheet.tsx:searchQuery\", \"\");"
+    },
+    {
+      "file": "components/Stages/StageTranscriptSheet.tsx",
+      "line": 147,
+      "field": "renameText",
+      "setter": "setRenameText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [renameText, setRenameText] = useSurfaceDraft(\"components/Stages/StageTranscriptSheet.tsx:renameText\", \"\");"
+    },
+    {
+      "file": "components/Stats/FeedbackSection.tsx",
+      "line": 61,
+      "field": "body",
+      "setter": "setBody",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [body, setBody] = useSurfaceDraft(\"components/Stats/FeedbackSection.tsx:body\", \"\");"
+    },
+    {
+      "file": "components/Stats/FeedbackSection.tsx",
+      "line": 62,
+      "field": "timeUsing",
+      "setter": "setTimeUsing",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [timeUsing, setTimeUsing] = useSurfaceDraft(\"components/Stats/FeedbackSection.tsx:timeUsing\", \"\");"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 96,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"store:name\", existing?.name ?? \"\", existing?.id ?? \"new\");"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 97,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:description:0\", existing?.description ?? \"\", existing?.id ?? \"new\");"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 264,
+      "field": "title",
+      "setter": "setTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [title, setTitle] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:title\", \"\", storeId);"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 265,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:description:1\", \"\", storeId);"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 266,
+      "field": "price",
+      "setter": "setPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [price, setPrice] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:price\", \"\", storeId);"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 270,
+      "field": "shippingInfo",
+      "setter": "setShippingInfo",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [shippingInfo, setShippingInfo] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:shippingInfo\", \"\", storeId);"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 271,
+      "field": "stockQty",
+      "setter": "setStockQty",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [stockQty, setStockQty] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:stockQty\", \"\", storeId);"
+    },
+    {
+      "file": "components/Stores/MyStoreTab.tsx",
+      "line": 275,
+      "field": "podUrl",
+      "setter": "setPodUrl",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [podUrl, setPodUrl] = useSurfaceDraft(\"components/Stores/MyStoreTab.tsx:podUrl\", \"\", storeId);"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "line": 106,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/Subscription/PlanFormSheet.tsx:name\", \"\", draftIdentity(editPlan) ?? \"new\");"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "line": 107,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Subscription/PlanFormSheet.tsx:description\", \"\", draftIdentity(editPlan) ?? \"new\");"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "line": 108,
+      "field": "price",
+      "setter": "setPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [price, setPrice] = useSurfaceDraft(\"components/Subscription/PlanFormSheet.tsx:price\", \"\", draftIdentity(editPlan) ?? \"new\");"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "line": 111,
+      "field": "benefitInput",
+      "setter": "setBenefitInput",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [benefitInput, setBenefitInput] = useSurfaceDraft(\"components/Subscription/PlanFormSheet.tsx:benefitInput\", \"\", draftIdentity(editPlan) ?? \"new\");"
+    },
+    {
+      "file": "components/Subscription/PlanFormSheet.tsx",
+      "line": 112,
+      "field": "benefits",
+      "setter": "setBenefits",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [benefits, setBenefits] = useSurfaceDraft<string[]>(\"subscription:benefits\", [], draftIdentity(editPlan) ?? \"new\");"
+    },
+    {
+      "file": "components/Tip/GiftModal.tsx",
+      "line": 126,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft<string>(\"components/Tip/GiftModal.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Tip/GiftModal.tsx",
+      "line": 127,
+      "field": "message",
+      "setter": "setMessage",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [message, setMessage] = useSurfaceDraft<string>(\"components/Tip/GiftModal.tsx:message\", \"\");"
+    },
+    {
+      "file": "components/Tip/GlassTipSheet.tsx",
+      "line": 254,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Tip/GlassTipSheet.tsx:amount\", isLocked ? String(lockedAmount) : \"\", `${toAddress}:${tokenId ?? \"\"}:${commentId ?? \"\"}`);"
+    },
+    {
+      "file": "components/Transfer/TransferModal.tsx",
+      "line": 52,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft<string>(\"components/Transfer/TransferModal.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Transfer/TransferModal.tsx",
+      "line": 53,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft<string>(\"components/Transfer/TransferModal.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/TV/TVChatPanel.tsx",
+      "line": 224,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [text, setText] = useSurfaceDraft(\"components/TV/TVChatPanel.tsx:text\", \"\", channelId);"
+    },
+    {
+      "file": "components/TV/TVChatPanel.tsx",
+      "line": 225,
+      "field": "replyTo",
+      "setter": "setReplyTo",
+      "owner": "useDraftState",
+      "declaration": "const [replyTo, setReplyTo] = useDraftState<TvChatMessage | null>(`tv:${channelId}:reply`, null);"
+    },
+    {
+      "file": "components/ui/Dropdown.tsx",
+      "line": 31,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/ui/Dropdown.tsx:query\", \"\", JSON.stringify(options.map(option => option.value)));"
+    },
+    {
+      "file": "components/Upload/CategoryDrawer.tsx",
+      "line": 41,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/Upload/CategoryDrawer.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/Upload/EmojiSheet.tsx",
+      "line": 114,
+      "field": "query",
+      "setter": "setQuery",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [query, setQuery] = useSurfaceDraft(\"components/Upload/EmojiSheet.tsx:query\", \"\");"
+    },
+    {
+      "file": "components/Upload/ImageEditSheet.tsx",
+      "line": 90,
+      "field": "items",
+      "setter": "setItems",
+      "owner": "useDraftState",
+      "declaration": "const [items, setItems] = useDraftState<Annotation[]>(`annotation:${annotationScope}:items`, []);"
+    },
+    {
+      "file": "components/Upload/ImageEditSheet.tsx",
+      "line": 91,
+      "field": "pendingText",
+      "setter": "setPendingText",
+      "owner": "useDraftState",
+      "declaration": "const [pendingText, setPendingText] = useDraftState<{ at: Point; value: string } | null>(`annotation:${annotationScope}:text`, null);"
+    },
+    {
+      "file": "components/Upload/LiveSettingsPanel.tsx",
+      "line": 104,
+      "field": "tipDraft",
+      "setter": "setTipDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [tipDraft, setTipDraft] = useSurfaceDraft(\"components/Upload/LiveSettingsPanel.tsx:tipDraft\", state.minTip, draftScope);"
+    },
+    {
+      "file": "components/Upload/MonetizationPanel.tsx",
+      "line": 177,
+      "field": "ppvDraft",
+      "setter": "setPpvDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [ppvDraft, setPpvDraft] = useSurfaceDraft<PpvData>(\"components/Upload/MonetizationPanel.tsx:ppvDraft\", state.ppvData, draftScope);"
+    },
+    {
+      "file": "components/Upload/MonetizationPanel.tsx",
+      "line": 178,
+      "field": "bountyDraft",
+      "setter": "setBountyDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [bountyDraft, setBountyDraft] = useSurfaceDraft<BountyData>(\"components/Upload/MonetizationPanel.tsx:bountyDraft\", state.bountyData, draftScope);"
+    },
+    {
+      "file": "components/Upload/MonetizationPanel.tsx",
+      "line": 179,
+      "field": "tokenGateDraft",
+      "setter": "setTokenGateDraft",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [tokenGateDraft, setTokenGateDraft] = useSurfaceDraft<TokenGateData>(\"components/Upload/MonetizationPanel.tsx:tokenGateDraft\","
+    },
+    {
+      "file": "components/Upload/ShopSheet.tsx",
+      "line": 94,
+      "field": "rows",
+      "setter": "setRows",
+      "owner": "useDraftState",
+      "declaration": "const [rows, setRows] = useDraftState<ShopLink[]>(`${draftScope}:shop:rows`, value.links);"
+    },
+    {
+      "file": "components/Upload/ShopSheet.tsx",
+      "line": 95,
+      "field": "listingIds",
+      "setter": "setListingIds",
+      "owner": "useDraftState",
+      "declaration": "const [listingIds, setListingIds] = useDraftState<string[]>(`${draftScope}:shop:listings`, value.listingIds);"
+    },
+    {
+      "file": "components/Usernames/MakeOfferSheet.tsx",
+      "line": 52,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Usernames/MakeOfferSheet.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Usernames/MakeOfferSheet.tsx",
+      "line": 53,
+      "field": "message",
+      "setter": "setMessage",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [message, setMessage] = useSurfaceDraft(\"components/Usernames/MakeOfferSheet.tsx:message\", \"\");"
+    },
+    {
+      "file": "components/Usernames/OffersPanel.tsx",
+      "line": 136,
+      "field": "replacement",
+      "setter": "setReplacement",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [replacement, setReplacement] = useSurfaceDraft(\"components/Usernames/OffersPanel.tsx:replacement\", \"\", draftIdentity(offer));"
+    },
+    {
+      "file": "components/Usernames/SellUsernamePanel.tsx",
+      "line": 69,
+      "field": "priceUsd",
+      "setter": "setPriceUsd",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [priceUsd, setPriceUsd] = useSurfaceDraft(\"components/Usernames/SellUsernamePanel.tsx:priceUsd\", \"\");"
+    },
+    {
+      "file": "components/Usernames/SellUsernamePanel.tsx",
+      "line": 70,
+      "field": "replacement",
+      "setter": "setReplacement",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [replacement, setReplacement] = useSurfaceDraft(\"components/Usernames/SellUsernamePanel.tsx:replacement\", \"\");"
+    },
+    {
+      "file": "components/Usernames/SellUsernamePanel.tsx",
+      "line": 71,
+      "field": "description",
+      "setter": "setDescription",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [description, setDescription] = useSurfaceDraft(\"components/Usernames/SellUsernamePanel.tsx:description\", \"\");"
+    },
+    {
+      "file": "components/VideoPlayerCore/CaptionFixSheet.tsx",
+      "line": 54,
+      "field": "text",
+      "setter": "setText",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [text, setText] = useSurfaceDraft(\"components/VideoPlayerCore/CaptionFixSheet.tsx:text\", originalText, `${transcriptId}:${segmentIndex}`);"
+    },
+    {
+      "file": "components/Wallet/ArcSendSheet.tsx",
+      "line": 25,
+      "field": "to",
+      "setter": "setTo",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [to, setTo] = useSurfaceDraft(\"components/Wallet/ArcSendSheet.tsx:to\", \"\");"
+    },
+    {
+      "file": "components/Wallet/ArcSendSheet.tsx",
+      "line": 26,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Wallet/ArcSendSheet.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Wallet/BridgeQueue.tsx",
+      "line": 50,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Wallet/BridgeQueue.tsx:search\", \"\");"
+    },
+    {
+      "file": "components/Wallet/BridgeTab.tsx",
+      "line": 89,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Wallet/BridgeTab.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Wallet/StakingTab.tsx",
+      "line": 165,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Wallet/StakingTab.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Wallet/TradeSheet.tsx",
+      "line": 60,
+      "field": "amount",
+      "setter": "setAmount",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [amount, setAmount] = useSurfaceDraft(\"components/Wallet/TradeSheet.tsx:amount\", \"\");"
+    },
+    {
+      "file": "components/Wallet/TradeSheet.tsx",
+      "line": 62,
+      "field": "price",
+      "setter": "setPrice",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [price, setPrice] = useSurfaceDraft(\"components/Wallet/TradeSheet.tsx:price\", \"\");"
+    },
+    {
+      "file": "components/Wallet/TradeSheet.tsx",
+      "line": 70,
+      "field": "ask",
+      "setter": "setAsk",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [ask, setAsk] = useSurfaceDraft(\"components/Wallet/TradeSheet.tsx:ask\", \"\");"
+    },
+    {
+      "file": "components/Work/ApplicationComments.tsx",
+      "line": 17,
+      "field": "body",
+      "setter": "setBody",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [body, setBody] = useSurfaceDraft(\"components/Work/ApplicationComments.tsx:body\", \"\", application.id);"
+    },
+    {
+      "file": "components/Communities/manage/AdministratorsTab.tsx",
+      "line": 43,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Communities/manage/AdministratorsTab.tsx:search\", \"\", draftIdentity(community));"
+    },
+    {
+      "file": "components/Communities/manage/AdminRightsSheet.tsx",
+      "line": 92,
+      "field": "customTitle",
+      "setter": "setCustomTitle",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [customTitle, setCustomTitle] = useSurfaceDraft(\"components/Communities/manage/AdminRightsSheet.tsx:customTitle\", \"\", draftIdentity([community, target]));"
+    },
+    {
+      "file": "components/Communities/manage/DangerZone.tsx",
+      "line": 53,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Communities/manage/DangerZone.tsx:search\", \"\", draftIdentity(community));"
+    },
+    {
+      "file": "components/Communities/manage/InviteLinksTab.tsx",
+      "line": 219,
+      "field": "name",
+      "setter": "setName",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [name, setName] = useSurfaceDraft(\"components/Communities/manage/InviteLinksTab.tsx:name\", \"\", draftIdentity(community));"
+    },
+    {
+      "file": "components/Communities/manage/MembersTab.tsx",
+      "line": 59,
+      "field": "search",
+      "setter": "setSearch",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [search, setSearch] = useSurfaceDraft(\"components/Communities/manage/MembersTab.tsx:search\", \"\", draftIdentity(community));"
+    },
+    {
+      "file": "components/Communities/manage/RestrictionSheet.tsx",
+      "line": 69,
+      "field": "reason",
+      "setter": "setReason",
+      "owner": "useSurfaceDraft",
+      "declaration": "const [reason, setReason] = useSurfaceDraft(\"components/Communities/manage/RestrictionSheet.tsx:reason\", \"\", draftIdentity([community, target]));"
+    },
+    {
+      "file": "components/Communities/manage/RulesTab.tsx",
+      "line": 75,
+      "field": "rules",
+      "setter": "setRules",
+      "owner": "useDraftState",
+      "declaration": "const [rules, setRules] = useDraftState<string[]>(`form:components/Communities/manage/RulesTab.tsx:rules:${community.id}`, savedRules);"
+    },
+    {
+      "file": "hooks/useDraftConversation.ts",
+      "line": 8,
+      "field": "session",
+      "setter": "setSession",
+      "owner": "useDraftState",
+      "declaration": "const [session, setSession] = useDraftState<Session>(`${surface}:session`, { id: null, draft: 'new', aliases: {} });"
+    }
+  ],
+  "sharedOwners": [
+    "Draft cache and state hooks",
+    "Legacy comment text/reply/attachment caches",
+    "Post form and named-draft snapshots",
+    "Conversation session aliases",
+    "Creator flow/studio snapshots",
+    "Immediate editor recovery followed by asynchronous project storage"
   ]
 }

@@ -551,45 +551,63 @@ export function useAIConversation(userId: string, surface = 'assistant') {
     void loadConversation(entry);
   }, [conversations, loading, loadConversation]);
 
+  // Bind pending replies to the logical draft they started in, even after New Chat.
+  const writeKey = `${userId}|${draftSession.draft}`;
+  const liveWriteKey = useRef(writeKey);
+  liveWriteKey.current = writeKey;
+  const writeContexts = useRef(new Map<string, { id: string | null; remote: string | null; mirrored: number }>());
+  if (!writeContexts.current.has(writeKey)) writeContexts.current.set(writeKey, { id: conversationId, remote: null, mirrored: 0 });
+  const writeContext = writeContexts.current.get(writeKey)!;
+  if (conversationId) writeContext.id = conversationId;
+  const writeVersion = selectionVersion.current;
   const saveMessage = useCallback(
     async (newMessages: AIChatMessage[]) => {
       if (!userId) return;
-      setMessages(newMessages);
-
-      let cid = conversationIdRef.current;
+      const isCurrent = () => liveWriteKey.current === writeKey && selectionVersion.current === writeVersion;
+      if (isCurrent()) {
+        setMessages(newMessages);
+        writeContext.remote = remoteIdRef.current;
+        writeContext.mirrored = mirroredCountRef.current;
+      }
+      let cid = writeContext.id;
       const now = Date.now();
 
       if (!cid) {
         cid = generateId();
-        conversationIdRef.current = cid;
+        writeContext.id = cid;
+        if (isCurrent()) conversationIdRef.current = cid;
         draftSession.assign(cid);
       }
 
       // Mirror before writing the index, so the entry lands with its remoteId
       // and a later turn does not create a second remote thread.
-      const newlyAdded = newMessages.slice(mirroredCountRef.current);
+      const newlyAdded = newMessages.slice(writeContext.mirrored);
       if (signedIn && newlyAdded.length > 0) {
-        if (!remoteIdRef.current) {
+        if (!writeContext.remote) {
           const firstUser = newMessages.find((m) => m.role === 'user');
-          remoteIdRef.current = await createRemoteConversation(
+          writeContext.remote = await createRemoteConversation(
             userId,
             firstUser?.content || 'New conversation',
           );
         }
-        if (remoteIdRef.current) {
+        if (writeContext.remote) {
           for (const message of newlyAdded) {
-            await appendRemoteMessage(userId, remoteIdRef.current, message);
+            await appendRemoteMessage(userId, writeContext.remote, message);
           }
         }
       }
       // Count them as mirrored either way: a failed upload must not queue the
       // same turn again on the next keystroke.
-      mirroredCountRef.current = newMessages.length;
+      writeContext.mirrored = newMessages.length;
+      if (isCurrent()) {
+        remoteIdRef.current = writeContext.remote;
+        mirroredCountRef.current = writeContext.mirrored;
+      }
 
       await writeConversation(userId, cid, {
         messages: await slimForStorage(newMessages, dataUrlFilesRef.current),
         postContext,
-        remoteId: remoteIdRef.current ?? undefined,
+        remoteId: writeContext.remote ?? undefined,
       });
 
       const index = await readIndex(userId);
@@ -601,21 +619,21 @@ export function useAIConversation(userId: string, surface = 'assistant') {
 
       if (existingIdx >= 0) {
         index[existingIdx].updatedAt = now;
-        index[existingIdx].remoteId = remoteIdRef.current ?? index[existingIdx].remoteId;
+        index[existingIdx].remoteId = writeContext.remote ?? index[existingIdx].remoteId;
         if (newMessages.length <= 2) index[existingIdx].title = title;
       } else {
         index.unshift({
           id: cid!,
           title,
           updatedAt: now,
-          remoteId: remoteIdRef.current ?? undefined,
+          remoteId: writeContext.remote ?? undefined,
         });
       }
 
       await writeIndex(userId, index);
-      if (isMounted.current) setConversations([...index]);
+      if (isMounted.current && isCurrent()) setConversations([...index]);
     },
-    [userId, conversationId, postContext, signedIn, draftSession.assign],
+    [userId, postContext, signedIn, draftSession.assign, writeKey, writeVersion, writeContext],
   );
 
   const deleteConversation = useCallback(

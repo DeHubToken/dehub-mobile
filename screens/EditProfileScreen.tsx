@@ -339,6 +339,17 @@ const EditProfileScreen = () => {
       }
       payload.facebookLink = fb.normalized;
       await AuthService.updateProfile(payload);
+      setDisplayName.complete(displayName, displayName);
+      setUsername.complete(username, username);
+      setAboutMe.complete(aboutMe, aboutMe);
+      setTwitterLink.complete(twitterLink, twitterLink);
+      setInstagramLink.complete(instagramLink, instagramLink);
+      setTiktokLink.complete(tiktokLink, tiktokLink);
+      setYoutubeLink.complete(youtubeLink, youtubeLink);
+      setDiscordLink.complete(discordLink, discordLink);
+      setTelegramLink.complete(telegramLink, telegramLink);
+      setFacebookLink.complete(facebookLink, facebookLink);
+      setSocialFollowers.complete(socialFollowers, socialFollowers);
       await refreshUser?.();
       toastSuccess(t("toasts.profile_updated"));
       navigation.goBack();
@@ -352,11 +363,9 @@ const EditProfileScreen = () => {
     } finally {
       setSaving(false);
     }
-  }, [
-    displayName, username, aboutMe,
+  }, [displayName, username, aboutMe,
     twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
-    socialFollowers, localAvatar, localCover, user, patchUser, refreshUser, navigation, initial,
-  ]);
+    socialFollowers, localAvatar, localCover, user, patchUser, refreshUser, navigation, initial, setAboutMe, setDiscordLink, setDisplayName, setFacebookLink, setInstagramLink, setSocialFollowers, setTelegramLink, setTiktokLink, setTwitterLink, setUsername, setYoutubeLink]);
 
   const socialFields: SocialField[] = useMemo(
     () => [
