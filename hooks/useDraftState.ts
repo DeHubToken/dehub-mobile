@@ -61,6 +61,7 @@ export function useStoredDraftState<T>(key: string | null, initial: T | (() => T
     if (liveKey.current !== key) return;
     if (key && readDraft(key)) return;
     const value = typeof next === 'function' ? (next as (previous: T) => T)(current.current) : next;
+    if (Object.is(current.current, value) || JSON.stringify(current.current) === JSON.stringify(value)) return;
     current.current = value;
     setState({ key, value });
   };

@@ -1,3 +1,4 @@
+import { useDraftState } from '../../../hooks/useDraftState';
 /**
  * RulesTab
  * ========
@@ -71,7 +72,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
   const savedRules = useMemo(() => normaliseRules(community.rules), [community.rules]);
   const savedKey = keyOf(savedRules);
 
-  const [rules, setRules] = useState<string[]>(savedRules);
+  const [rules, setRules] = useDraftState<string[]>(`form:components/Communities/manage/RulesTab.tsx:rules:${community.id}`, savedRules);
   const [persistedKey, setPersistedKey] = useState<string>(savedKey);
   // Reconcile only when the prop itself changes, so a successful save is not
   // undone by the stale community object the parent is still holding.
@@ -80,19 +81,19 @@ export function RulesTab({ community, membership }: RulesTabProps) {
   useEffect(() => {
     if (propKeyRef.current === savedKey) return;
     propKeyRef.current = savedKey;
-    setRules(savedRules);
+    setRules.initialize(savedRules);
     setPersistedKey(savedKey);
-  }, [savedKey, savedRules]);
+  }, [savedKey, savedRules, setRules]);
 
   const dirty = keyOf(rules) !== persistedKey;
 
   const updateRule = useCallback((index: number, value: string) => {
     setRules((current) => current.map((rule, i) => (i === index ? value : rule)));
-  }, []);
+  }, [setRules]);
 
   const removeRule = useCallback((index: number) => {
     setRules((current) => current.filter((_, i) => i !== index));
-  }, []);
+  }, [setRules]);
 
   const moveRule = useCallback((index: number, direction: -1 | 1) => {
     setRules((current) => {
@@ -103,11 +104,11 @@ export function RulesTab({ community, membership }: RulesTabProps) {
       next.splice(target, 0, moved);
       return next;
     });
-  }, []);
+  }, [setRules]);
 
   const addRule = useCallback(() => {
     setRules((current) => (current.length >= MAX_RULES ? current : [...current, ""]));
-  }, []);
+  }, [setRules]);
 
   const handleSave = useCallback(() => {
     const next = rules.map((rule) => rule.trim()).filter(Boolean);
@@ -117,11 +118,11 @@ export function RulesTab({ community, membership }: RulesTabProps) {
         t("communities.manage.rulesUpdated", { defaultValue: "Rules updated" }),
       );
       if (ok) {
-        setRules(next);
+        setRules.complete(rules, next);
         setPersistedKey(keyOf(next));
       }
     })();
-  }, [rules, moderation, t]);
+  }, [rules, moderation, t, setRules]);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
