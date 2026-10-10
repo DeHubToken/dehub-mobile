@@ -142,6 +142,7 @@ export default function CreatorScreen() {
 
       <View className="mt-4 flex-row flex-wrap gap-2 px-4">
         {(['swap', 'motion'] as const).map(workflow => <Pressable key={workflow} onPress={() => openStudio('video', workflow)} accessibilityRole="button" className="rounded-xl border border-white/15 bg-theme-neutrals-800 px-4 py-3"><Text className="font-semibold text-theme-neutrals-100">{t(workflow === 'swap' ? 'creator.characterSwap' : 'creator.copyMotion')}</Text></Pressable>)}
+        <Pressable onPress={() => nav.navigate(ScreenNames.Maboroshi)} accessibilityRole="button" accessibilityHint={t('creator.toolMaboroshiDesc')} className="rounded-xl border border-white/15 bg-theme-neutrals-800 px-4 py-3"><Text className="font-semibold text-theme-neutrals-100">{t('creator.toolMaboroshi')}</Text></Pressable>
       </View>
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
