@@ -571,7 +571,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
-  const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
+  const liveReactionStreamId = isLive ? stream?._id || stream?.streamId || stream?.id : undefined;
   // The core namespace specifically: the shared flag is also true when only
   // the DM socket is up, which would send the reaction nowhere. Read at tap
   // time through the getter, not subscribed: the status half of the socket
@@ -1623,6 +1623,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
            self-hosted ingest renders none) and the stream only appeared after
            opening the post. */
         <LiveFeedPreview
+          streamId={isCurrentlyLive && !isOwnerPost ? liveReactionStreamId : undefined}
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}

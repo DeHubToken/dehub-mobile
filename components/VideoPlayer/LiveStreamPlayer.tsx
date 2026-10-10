@@ -35,6 +35,7 @@ import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import type { PostReaction } from "../../libs/reactions";
 import { useWebSocket } from "../../context/WebSocketContext";
+import { acquireStreamViewer } from '../../libs/stream-presence';
 import {
   LivestreamEvents,
   StreamActivityType,
@@ -129,6 +130,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     on: socketOn,
     emitAuthed: socketEmitAuthed,
     coreConnected: connected,
+    isCoreConnected,
     connectionEpoch,
   } = useWebSocket();
   const navigation = useNavigation<any>();
@@ -419,6 +421,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   >("unknown");
   const didJoinRef = useRef<boolean>(false);
   const didLeaveRef = useRef<boolean>(false);
+  const releasePresenceRef = useRef<(() => void) | null>(null);
 
   // Dedupe mechanics across reconnects: one send per stream per connection.
   // The epoch is the provider's, so a socket swapped out underneath us — a
@@ -543,11 +546,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     (sid?: string | null) => {
       const s = sid || streamId;
       if (!s) return;
-      if (!(isLiveEffective && isSignedIn && ownerStatus === "viewer")) return;
+      if (!(connected && isLiveEffective && isSignedIn && ownerStatus === "viewer" && isPlayable)) return;
       const key = makeKey(s);
       if (joinStreamSentKeyRef.current === key) return;
       try {
-        socketEmitAuthed(LivestreamEvents.JoinStream, { streamId: s });
+        const previousPresence = releasePresenceRef.current;
+        releasePresenceRef.current = acquireStreamViewer(socketEmitAuthed, isCoreConnected, connectedGenRef.current, s);
+        previousPresence?.();
         joinStreamSentKeyRef.current = key;
         didJoinRef.current = true;
         didLeaveRef.current = false;
@@ -560,6 +565,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       ownerStatus,
       makeKey,
       socketEmitAuthed,
+      connected,
+      isCoreConnected,
+      isPlayable,
     ]
   );
   useEffect(() => { maybeJoinStreamRef.current = maybeJoinStream; }, [maybeJoinStream]);
@@ -905,11 +913,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // tap (handleLiveLike) the same beat a tipper gets their celebration, so
     // the echo of their own reaction is dropped here rather than shown twice.
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
-      if (data?.streamId && data.streamId !== streamId) return;
-      // Backend sends { reactionType, user: <userRef> }
+      if (data?.streamId !== streamId) return;
+      // Suppress this device's optimistic echo, not another device on the same account.
       const type = data?.reactionType as ReactionType;
-      const from = String(data?.user?.address || "").toLowerCase();
-      if (from && myAddressRef.current && from === myAddressRef.current) return;
+      if (data?.isOwnReaction) return;
       const rUsername = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, rUsername, data?.weight);
     });
@@ -973,7 +980,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       didLeaveRef.current = true;
       console.log('[LiveStreamPlayer] unmount cleanup: emitting LeaveStream', { streamId: sid });
       try {
-        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
       } catch (e) {
         console.warn('[LiveStreamPlayer] unmount LeaveStream emit failed', e);
       }
@@ -1004,7 +1012,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinStreamSentKeyRef.current = null;
         console.log('[LiveStreamPlayer] blur cleanup: emitting LeaveStream', { streamId: sid });
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] blur LeaveStream emit failed', e);
         }
@@ -1030,7 +1039,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinStreamSentKeyRef.current = null;
         console.log('[LiveStreamPlayer] app background: emitting LeaveStream', { streamId: sid });
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] background LeaveStream emit failed', e);
         }
@@ -1059,7 +1069,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinRoomSentKeyRef.current = null;
         joinStreamSentKeyRef.current = null;
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
         } catch {}
       } else {
         try {
@@ -1073,7 +1084,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       if (!sid || didLeaveRef.current) return;
       didLeaveRef.current = true;
       try {
-        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
       } catch {}
     };
     try {
