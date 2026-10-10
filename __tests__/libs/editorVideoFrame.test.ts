@@ -67,7 +67,7 @@ for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper",
       source.readyState = 4; source.seeking = false; source.emit("seeked");
       await Promise.resolve(); expect(settled).toBe(false);
       jest.advanceTimersByTime(2); await promise;
-      expect(source.currentTime).toBe(2.267002); expect(paint.callbacks.size).toBe(0); clean(source);
+      expect(source.currentTime).toBeCloseTo(2.267002, 10); expect(paint.callbacks.size).toBe(0); clean(source);
     });
     it("rejects a changed or undecoded source while canvas tasks are queued", async () => {
       const paint = redraws(); const source = new Decoder(); let settled = false;

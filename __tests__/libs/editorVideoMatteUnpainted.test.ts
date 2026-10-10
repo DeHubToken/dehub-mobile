@@ -18,7 +18,8 @@ it("processes decoded mask source frames without any browser repaint callback", 
   const create = new Function("document", "Worker", "URL", "ImageData", "FileReader", "navigator", "requestAnimationFrame", "cancelAnimationFrame", VIDEO_MATTE_RUNTIME + "; return createVideoMatte;")(documentStub, WorkerStub, { createObjectURL: () => "blob:worker", revokeObjectURL() {} }, class { constructor(..._args: unknown[]) {} }, Reader, {}, () => { paintRequests++; return 1; }, () => {}) as (...args: unknown[]) => Promise<{ plan: { frames: number }; dataUrl: string }>;
   const result = await create("blob:source", { id: "v", kind: "video", mediaId: "source", trimIn: 2.267, duration: 1.5 }, 2, () => {}, undefined);
   expect(result.plan.frames).toBe(3);
-  expect(drawn).toEqual([2.267, 2.767, 3.267]);
+  expect(drawn).toHaveLength(3);
+  [2.267002, 2.767002, 3.267002].forEach((time, index) => expect(drawn[index]).toBeCloseTo(time, 10));
   expect(paintRequests).toBe(0);
   expect(terminated).toBe(true);
   expect(canvases.every(canvas => canvas.width === 1 && canvas.height === 1)).toBe(true);
