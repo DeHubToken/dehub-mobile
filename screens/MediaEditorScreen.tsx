@@ -1,4 +1,5 @@
 import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
+import { projectTask } from "../libs/editor/projectTask";
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
@@ -553,20 +554,25 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const addPhoto = async () => {
     if (!project) return;
-    const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["images"], quality: 1 });
-    if (res.canceled || !res.assets?.[0]) return;
-    setBusy(true);
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
+    if (!task) return;
     try {
-      const a = res.assets[0];
-      const meta = await importPicture({ uri: a.uri, width: a.width, height: a.height, mimeType: a.mimeType, fileName: a.fileName });
-      const { project: next, clipId } = addImage(project, meta.id);
-      h.commit(atPlayhead(next, clipId));
-      select(clipId);
-    } catch {
-      toastError(t("common.somethingWentWrong"));
-    } finally {
-      setBusy(false);
-    }
+      const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["images"], quality: 1 });
+      if (!task.isCurrent() || res.canceled || !res.assets?.[0]) return;
+      setBusy(true);
+      try {
+        const a = res.assets[0];
+        const meta = await importPicture({ uri: a.uri, width: a.width, height: a.height, mimeType: a.mimeType, fileName: a.fileName });
+        if (!task.isCurrent()) return;
+        const { project: next, clipId } = addImage(project, meta.id);
+        h.commit(atPlayhead(next, clipId));
+        select(clipId);
+      } catch {
+        toastError(t("common.somethingWentWrong"));
+      } finally {
+        setBusy(false);
+      }
+    } finally { task.release(); }
   };
 
   // In a video, a new picture, text or shape shows from the playhead for a few
@@ -580,72 +586,82 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const addVideos = async () => {
     if (!project) return;
-    const res = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["videos"],
-      allowsMultipleSelection: true,
-      selectionLimit: 20,
-      orderedSelection: true,
-      quality: 1,
-      // iPhone HEVC and slow-mo come back as plain H.264 the canvas can decode.
-      preferredAssetRepresentationMode: ImagePicker.UIImagePickerPreferredAssetRepresentationMode.Compatible,
-    });
-    if (res.canceled || !res.assets?.length) return;
-    setBusy(true);
-    let next = project;
-    let lastId: string | null = null;
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
+    if (!task) return;
     try {
-      for (const a of res.assets) {
-        try {
-          const meta = await importClipFile({
-            uri: a.uri,
-            kind: "video",
-            mimeType: a.mimeType,
-            fileName: a.fileName,
-            width: a.width,
-            height: a.height,
-            duration: a.duration ? a.duration / 1000 : null,
-          });
-          // The first video of a new design sets the page shape.
-          if (!next.clips.length && meta.width && meta.height) next = setAspect(next, nearestAspect(meta.width / meta.height));
-          const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 }, project.settings.pages?.length ? time : 0);
-          next = r.project;
-          lastId = r.clipId;
-        } catch (e) {
-          toastError(e instanceof MediaTooLargeError ? t("editor.video.tooLarge") : t("common.somethingWentWrong"));
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ["videos"],
+        allowsMultipleSelection: true,
+        selectionLimit: 20,
+        orderedSelection: true,
+        quality: 1,
+        // iPhone HEVC and slow-mo come back as plain H.264 the canvas can decode.
+        preferredAssetRepresentationMode: ImagePicker.UIImagePickerPreferredAssetRepresentationMode.Compatible,
+      });
+      if (!task.isCurrent() || res.canceled || !res.assets?.length) return;
+      setBusy(true);
+      let next = project;
+      let lastId: string | null = null;
+      try {
+        for (const a of res.assets) {
+          try {
+            const meta = await importClipFile({
+              uri: a.uri,
+              kind: "video",
+              mimeType: a.mimeType,
+              fileName: a.fileName,
+              width: a.width,
+              height: a.height,
+              duration: a.duration ? a.duration / 1000 : null,
+            });
+            if (!task.isCurrent()) return;
+            // The first video of a new design sets the page shape.
+            if (!next.clips.length && meta.width && meta.height) next = setAspect(next, nearestAspect(meta.width / meta.height));
+            const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 }, project.settings.pages?.length ? time : 0);
+            next = r.project;
+            lastId = r.clipId;
+          } catch (e) {
+            toastError(e instanceof MediaTooLargeError ? t("editor.video.tooLarge") : t("common.somethingWentWrong"));
+          }
         }
+        if (task.isCurrent() && next !== project) {
+          h.commit(next);
+          setTimelineOpen(true);
+          if (lastId) select(lastId);
+        }
+      } finally {
+        setBusy(false);
       }
-      if (next !== project) {
-        h.commit(next);
-        setTimelineOpen(true);
-        if (lastId) select(lastId);
-      }
-    } finally {
-      setBusy(false);
-    }
+    } finally { task.release(); }
   };
 
   const addMusic = async () => {
     if (!project) return;
-    const res = await DocumentPicker.getDocumentAsync({ type: "audio/*", copyToCacheDirectory: true });
-    if (res.canceled || !res.assets?.[0]) return;
-    setBusy(true);
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
+    if (!task) return;
     try {
-      const a = res.assets[0];
-      const meta = await importClipFile({ uri: a.uri, kind: "audio", mimeType: a.mimeType, fileName: a.name });
-      // Music runs under the whole video from the playhead; its real length
-      // arrives from the canvas (onMediaReady) and trims it to fit.
-      const end = projectDuration(project);
-      const at = showTimeline ? Math.min(time, Math.max(0, end - 0.5)) : 0;
-      const span = end - at > 1 ? end - at : 30;
-      const r = addClip(project, { id: meta.id, kind: "audio", duration: meta.duration ?? span }, at);
-      h.commit(r.project);
-      setTimelineOpen(true);
-      select(r.clipId);
-    } catch (e) {
-      toastError(e instanceof MediaTooLargeError ? t("editor.video.tooLarge") : t("common.somethingWentWrong"));
-    } finally {
-      setBusy(false);
-    }
+      const res = await DocumentPicker.getDocumentAsync({ type: "audio/*", copyToCacheDirectory: true });
+      if (!task.isCurrent() || res.canceled || !res.assets?.[0]) return;
+      setBusy(true);
+      try {
+        const a = res.assets[0];
+        const meta = await importClipFile({ uri: a.uri, kind: "audio", mimeType: a.mimeType, fileName: a.name });
+        // Music runs under the whole video from the playhead; its real length
+        // arrives from the canvas (onMediaReady) and trims it to fit.
+        if (!task.isCurrent()) return;
+        const end = projectDuration(project);
+        const at = showTimeline ? Math.min(time, Math.max(0, end - 0.5)) : 0;
+        const span = end - at > 1 ? end - at : 30;
+        const r = addClip(project, { id: meta.id, kind: "audio", duration: meta.duration ?? span }, at);
+        h.commit(r.project);
+        setTimelineOpen(true);
+        select(r.clipId);
+      } catch (e) {
+        toastError(e instanceof MediaTooLargeError ? t("editor.video.tooLarge") : t("common.somethingWentWrong"));
+      } finally {
+        setBusy(false);
+      }
+    } finally { task.release(); }
   };
 
   // The canvas measured a video or sound: keep its length honest.
@@ -711,18 +727,23 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // with the picture measured inside the canvas page.
   const autoEnhance = async () => {
     if (!project || !selected || selected.kind !== "image") return;
-    const stats = await canvasRef.current?.pictureStats(selected.mediaId);
-    if (!stats) { toastError(t("editor.adjust.autoFailed")); return; }
-    const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
-    const round = (v: number) => Math.round(v * 100) / 100;
-    h.commit(updateClip(project, selected.id, {
-      effects: {
-        ...selected.effects,
-        brightness: round(clamp(1 + (0.5 - stats.mean) * 0.8, 0.85, 1.3)),
-        contrast: round(clamp(1 + (0.22 - stats.std) * 1.5, 0.95, 1.3)),
-        saturation: round(clamp(1 + (0.35 - stats.sat) * 0.8, 1, 1.3)),
-      },
-    }));
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
+    if (!task) return;
+    try {
+      const stats = await canvasRef.current?.pictureStats(selected.mediaId);
+      if (!task.isCurrent()) return;
+      if (!stats) { toastError(t("editor.adjust.autoFailed")); return; }
+      const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
+      const round = (v: number) => Math.round(v * 100) / 100;
+      h.commit(updateClip(h.latest()!, selected.id, {
+        effects: {
+          ...selected.effects,
+          brightness: round(clamp(1 + (0.5 - stats.mean) * 0.8, 0.85, 1.3)),
+          contrast: round(clamp(1 + (0.22 - stats.std) * 1.5, 0.95, 1.3)),
+          saturation: round(clamp(1 + (0.35 - stats.sat) * 0.8, 1, 1.3)),
+        },
+      }));
+    } finally { task.release(); }
   };
 
   // Runs on the phone inside the canvas page; resolves with the cut-out's media id.
@@ -780,25 +801,30 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   const removeBackground = async () => {
     if (!selected || !project || selected.locked || (selected.kind !== "image" && selected.kind !== "video")) return;
-    if (selected.kind === "video") {
-      if (selected.videoMatte) { h.commit(updateClip(project, selected.id, { videoMatte: null })); return; }
-      const before = project.id, clip = selected;
-      try {
-        const matte = await cutoutVideo(clip), now = h.latest(), current = now?.clips.find(c => c.id === clip.id);
-        if (!matte || now?.id !== before || current?.kind !== "video" || current.locked || current.mediaId !== clip.mediaId || current.trimIn !== clip.trimIn || current.duration !== clip.duration || (current.speed ?? 1) !== (clip.speed ?? 1)) return;
-        h.commit(updateClip(now, clip.id, { videoMatte: matte })); toastSuccess(t("editor.bgRemove.done"));
-      } catch (error) { if (!isBackgroundRemovalCancellation(error)) toastError(error instanceof Error ? error.message : t("editor.app.bgRemoveFailed")); }
-      return;
-    }
-    const clipId = selected.id;
-    const mediaId = await cutoutMedia(selected.mediaId);
-    const now = h.latest();
-    if (!mediaId || !now || !now.clips.some((c) => c.id === clipId)) {
-      toastError(t("editor.app.bgRemoveFailed"));
-      return;
-    }
-    h.commit(updateClip(now, clipId, { mediaId }));
-    toastSuccess(t("editor.bgRemove.done"));
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
+    if (!task) return;
+    try {
+      if (selected.kind === "video") {
+        if (selected.videoMatte) { h.commit(updateClip(project, selected.id, { videoMatte: null })); return; }
+        const before = project.id, clip = selected;
+        try {
+          const matte = await cutoutVideo(clip), now = h.latest(), current = now?.clips.find(c => c.id === clip.id);
+          if (!task.isCurrent() || !matte || now?.id !== before || current?.kind !== "video" || current.locked || current.mediaId !== clip.mediaId || current.trimIn !== clip.trimIn || current.duration !== clip.duration || (current.speed ?? 1) !== (clip.speed ?? 1)) return;
+          h.commit(updateClip(now, clip.id, { videoMatte: matte })); toastSuccess(t("editor.bgRemove.done"));
+        } catch (error) { if (!isBackgroundRemovalCancellation(error)) toastError(error instanceof Error ? error.message : t("editor.app.bgRemoveFailed")); }
+        return;
+      }
+      const clipId = selected.id;
+      const mediaId = await cutoutMedia(selected.mediaId);
+      const now = h.latest();
+      if (!task.isCurrent()) return;
+      if (!mediaId || !now || !now.clips.some((c) => c.id === clipId)) {
+        toastError(t("editor.app.bgRemoveFailed"));
+        return;
+      }
+      h.commit(updateClip(now, clipId, { mediaId }));
+      toastSuccess(t("editor.bgRemove.done"));
+    } finally { task.release(); }
   };
 
   const transcribe = async (clip: MediaClip) => {
@@ -850,40 +876,52 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   };
   const runBeatTool = async (align: boolean) => {
     if (!selected || !project || (selected.kind !== "audio" && selected.kind !== "video") || selected.locked) return;
-    const clip = selected;
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
+    if (!task) return;
     try {
-      const analysis = await detectBeats(clip), current = h.latest();
-      if (!current || current.clips.find(c => c.id === clip.id) !== clip) return;
-      const beats = clipBeatMap(clip, analysis), marked = { ...clip, beats };
-      if (!beats.sourceTimes.length) { toastSuccess(t("editor.beats.none")); return; }
-      const clips = current.clips.map(c => c.id === clip.id ? marked : c);
-      const result = align ? alignBeatCuts(clips, current.tracks, clipBeatTimes(marked)) : { clips, changed: 0 };
-      h.commit({ ...current, clips: result.clips });
-      toastSuccess(t(align && !result.changed ? "editor.beats.unchanged" : "editor.audioTools.done"));
-    } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+      const clip = selected;
+      try {
+        const analysis = await detectBeats(clip), current = h.latest();
+        if (!task.isCurrent() || !current || current.clips.find(c => c.id === clip.id) !== clip) return;
+        const beats = clipBeatMap(clip, analysis), marked = { ...clip, beats };
+        if (!beats.sourceTimes.length) { toastSuccess(t("editor.beats.none")); return; }
+        const clips = current.clips.map(c => c.id === clip.id ? marked : c);
+        const result = align ? alignBeatCuts(clips, current.tracks, clipBeatTimes(marked)) : { clips, changed: 0 };
+        h.commit({ ...current, clips: result.clips });
+        toastSuccess(t(align && !result.changed ? "editor.beats.unchanged" : "editor.audioTools.done"));
+      } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+    } finally { task.release(); }
   };
   const runAudioTool = async (mode: AudioToolMode) => {
     if (!selected || !project || (selected.kind !== "video" && selected.kind !== "audio")) return;
-    const clip = selected, projectId = project.id;
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
+    if (!task) return;
     try {
-      const mediaId = await processAudio(clip, mode), current = h.latest();
-      if (!mediaId || !current || current.id !== projectId || current.clips.find(c => c.id === clip.id) !== clip) return;
-      const result = audioToolLayers(clip, mediaId, () => newId(10), current.tracks.find(track => track.id === clip.trackId));
-      h.commit({ ...current, clips: [...current.clips.map(c => c.id === clip.id ? result.clip : c), ...(result.added ? [result.added] : [])], tracks: result.track ? [...current.tracks, result.track] : current.tracks });
-      toastSuccess(t("editor.audioTools.done"));
-    } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+      const clip = selected, projectId = project.id;
+      try {
+        const mediaId = await processAudio(clip, mode), current = h.latest();
+        if (!task.isCurrent() || !mediaId || !current || current.id !== projectId || current.clips.find(c => c.id === clip.id) !== clip) return;
+        const result = audioToolLayers(clip, mediaId, () => newId(10), current.tracks.find(track => track.id === clip.trackId));
+        h.commit({ ...current, clips: [...current.clips.map(c => c.id === clip.id ? result.clip : c), ...(result.added ? [result.added] : [])], tracks: result.track ? [...current.tracks, result.track] : current.tracks });
+        toastSuccess(t("editor.audioTools.done"));
+      } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
+    } finally { task.release(); }
   };
   const addCaptions = async () => {
     if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
-    const clip = selected;
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
+    if (!task) return;
     try {
-      const result = captionLayers(clip, await transcribe(clip), () => newId(10));
-      const current = h.latest();
-      if (!current || current.clips.find(c => c.id === clip.id) !== clip) return;
-      if (!result.clips.length) { toastSuccess(t("editor.captions.noSpeech")); return; }
-      h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
-      toastSuccess(t("editor.captions.done", { count: result.clips.length }));
-    } catch { toastError(t("editor.captions.failed")); }
+      const clip = selected;
+      try {
+        const result = captionLayers(clip, await transcribe(clip), () => newId(10));
+        const current = h.latest();
+        if (!task.isCurrent() || !current || current.clips.find(c => c.id === clip.id) !== clip) return;
+        if (!result.clips.length) { toastSuccess(t("editor.captions.noSpeech")); return; }
+        h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+        toastSuccess(t("editor.captions.done", { count: result.clips.length }));
+      } catch { toastError(t("editor.captions.failed")); }
+    } finally { task.release(); }
   };
 
   const createAssembly = async (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => {
@@ -912,73 +950,80 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string, useVisual = false): Promise<boolean> => {
     if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return false;
-    const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-    const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
-    setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
-    const draftRequest = assemblyRequest(text);
-    if (draftRequest || assembly.state.sourceId) {
-      highlightPreviewEnd.current = null; setPlaying(false);
-      if (draftRequest) {
-        highlightChat.reset(); assembly.reset(); setLibraryPreview(null);
-        const controller = new AbortController(); assemblyPreparation.current = controller; setChatBusy(true);
-        try {
-          const media = await listMedia();
-          if (controller.signal.aborted || !editorMounted.current || assemblyPreparation.current !== controller) return false;
-          const now = h.latest();
-          if (!now || !sameHighlightSource(project, now)) { setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
-          setAssemblyNames(Object.fromEntries(media.map(item => [item.id, item.name])));
-          assembly.start(draftRequest, selectedId ? [selectedId] : [], media);
-        } catch { if (!controller.signal.aborted && editorMounted.current) setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
-        finally { if (assemblyPreparation.current === controller) { assemblyPreparation.current = null; setChatBusy(false); } }
-      }
-      const reviewed = draftRequest || assembly.review(text);
-      setChat(old => [...old, { id: entryId(), role: "assistant", content: t(reviewed ? "easyTrade.reviewTitle" : "editor.agent.nothingToDo") }]);
-      return !!reviewed;
-    }
-    const request = highlightChatRequest(text);
-    if (request || highlightChat.reviewing) {
-      highlightPreviewEnd.current = null; setPlaying(false);
-      const result = request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text);
-      recordHighlights(result);
-      return result.status !== "error" && result.status !== "cancelled";
-    }
-    setChatBusy(true);
+    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
+    if (!task) return false;
     try {
-      const media = (await listMedia()).filter(m => !m.name.startsWith(VIDEO_MATTE_ASSET_PREFIX));
-      const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
-      const { project: next, report } = await applyOps(project, ops, {
-        importStock: importStockAsset,
-        media,
-        brand,
-        applyBrand: (p) => applyBrand(p, brand),
-        templateOps: (id, aspect) => templateOps(id, t, aspect),
-        removeBackground: cutoutMedia,
-        removeVideoBackground: cutoutVideo,
-        transcribe,
-        processAudio,
-        detectBeats,
-        detectShots,
-        time: canvasTime,
-      });
-      if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
-      if (report.applied > 0) h.commit(next);
-      if (report.selectedId) setSelectedId(report.selectedId);
-      if (report.cursorTime !== undefined) { setTime(report.cursorTime); setPlaying(false); }
-      let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
-      if (!ops.length) content = t("editor.agent.nothingToDo");
-      if (report.generate && !report.applied && !reply) content = t("editor.agent.openGenerator");
-      if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
-      if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
-      if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
-      setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied, generate: report.generate }]);
-      return !report.failed;
-    } catch (e) {
-      const code = e instanceof Error ? e.message : "";
-      setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
-      return false;
-    } finally {
-      setChatBusy(false);
-    }
+      const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+      const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
+      setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
+      const draftRequest = assemblyRequest(text);
+      if (draftRequest || assembly.state.sourceId) {
+        highlightPreviewEnd.current = null; setPlaying(false);
+        if (draftRequest) {
+          highlightChat.reset(); assembly.reset(); setLibraryPreview(null);
+          const controller = new AbortController(); assemblyPreparation.current = controller; setChatBusy(true);
+          try {
+            const media = await listMedia();
+            if (!task.isCurrent() || controller.signal.aborted || !editorMounted.current || assemblyPreparation.current !== controller) return false;
+            const now = h.latest();
+            if (!now || !sameHighlightSource(project, now)) { setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
+            setAssemblyNames(Object.fromEntries(media.map(item => [item.id, item.name])));
+            assembly.start(draftRequest, selectedId ? [selectedId] : [], media);
+          } catch { if (!controller.signal.aborted && editorMounted.current) setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
+          finally { if (assemblyPreparation.current === controller) { assemblyPreparation.current = null; setChatBusy(false); } }
+        }
+        const reviewed = draftRequest || assembly.review(text);
+        setChat(old => [...old, { id: entryId(), role: "assistant", content: t(reviewed ? "easyTrade.reviewTitle" : "editor.agent.nothingToDo") }]);
+        return !!reviewed;
+      }
+      const request = highlightChatRequest(text);
+      if (request || highlightChat.reviewing) {
+        highlightPreviewEnd.current = null; setPlaying(false);
+        const result = request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text);
+        recordHighlights(result);
+        return result.status !== "error" && result.status !== "cancelled";
+      }
+      setChatBusy(true);
+      try {
+        const media = (await listMedia()).filter(m => !m.name.startsWith(VIDEO_MATTE_ASSET_PREFIX));
+        if (!task.isCurrent()) return false;
+        const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
+        if (!task.isCurrent()) return false;
+        const { project: next, report } = await applyOps(project, ops, {
+          importStock: importStockAsset,
+          media,
+          brand,
+          applyBrand: (p) => applyBrand(p, brand),
+          templateOps: (id, aspect) => templateOps(id, t, aspect),
+          removeBackground: cutoutMedia,
+          removeVideoBackground: cutoutVideo,
+          transcribe,
+          processAudio,
+          detectBeats,
+          detectShots,
+          time: canvasTime,
+        });
+        if (!task.isCurrent()) return false;
+        if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
+        if (report.applied > 0) h.commit(next);
+        if (report.selectedId) setSelectedId(report.selectedId);
+        if (report.cursorTime !== undefined) { setTime(report.cursorTime); setPlaying(false); }
+        let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
+        if (!ops.length) content = t("editor.agent.nothingToDo");
+        if (report.generate && !report.applied && !reply) content = t("editor.agent.openGenerator");
+        if (report.failed) content = `${report.applied ? t("editor.agent.done") + " " : ""}${t("editor.agent.failed")}`;
+        if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
+        if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
+        setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied, generate: report.generate }]);
+        return !report.failed;
+      } catch (e) {
+        const code = e instanceof Error ? e.message : "";
+        setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
+        return false;
+      } finally {
+        setChatBusy(false);
+      }
+    } finally { task.release(); }
   };
 
   // Started from the Video button: go straight to the video picker.
