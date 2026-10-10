@@ -54,6 +54,7 @@ import type { BrandKit } from "./brand";
 import { newId } from "./project";
 import { captionLayers, type CaptionWord, type CaptionStyle } from "./captionLayout";
 import { preciseCommand } from "./preciseCommands";
+import { videoTemplateAspect, videoTemplateCommand, type VideoTemplateAspect } from "./videoTemplates";
 import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
 import { addClip } from "./timeline";
 import type { StockKind } from "./stock";
@@ -136,7 +137,7 @@ export function describeScene(p: ProjectSnapshot, selectedId: string | null, bra
 
 export async function askAgent(messages: AgentMessage[], scene: unknown, signal?: AbortSignal): Promise<{ reply: string; ops: AgentOp[] }> {
   const last = messages[messages.length - 1];
-  const direct = last?.role === "user" && scene && typeof scene === "object" ? generationChatRequest(last.content) ?? preciseCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) ?? videoMatteCommand(last.content, scene) : null;
+  const direct = last?.role === "user" && scene && typeof scene === "object" ? generationChatRequest(last.content) ?? preciseCommand(last.content, scene) ?? videoTemplateCommand(last.content, scene) ?? audioToolCommand(last.content, scene) ?? beatCommand(last.content, scene) ?? shotCommand(last.content, scene) ?? videoMatteCommand(last.content, scene) : null;
   if (direct) return { reply: "", ops: [direct] };
   return askSceneAgent(messages, scene, signal);
 }
@@ -178,6 +179,7 @@ function fontCss(name: string): string {
 function fitText(p: ProjectSnapshot, id: string): ProjectSnapshot {
   const c = getClip(p, id);
   if (!c || c.kind !== "text") return p;
+  if (Number.isFinite(c.maxWidth) && c.maxWidth! > 0) return p;
   const longest = Math.max(...(c.uppercase ? c.text.toUpperCase() : c.text).split("\n").map((l) => l.length), 1);
   const perChar = (c.uppercase || c.text === c.text.toUpperCase() ? 0.66 : 0.56) * (c.fontWeight >= 700 ? 1.05 : 1);
   const est = (longest * c.fontSize * perChar * p.settings.height) / 1080 + (c.letterSpacing ?? 0) * longest;
@@ -206,6 +208,11 @@ function textPatch(op: AgentOp): Partial<TextClip> {
   if (ls !== undefined) p.letterSpacing = clamp(ls, -20, 200);
   const lh = num(op.lineHeight);
   if (lh !== undefined) p.lineHeight = clamp(lh, 0.6, 4);
+  for (const key of ["maxWidth", "maxHeight"] as const) {
+    const value = num(op[key]);
+    if (op[key] === null) p[key] = undefined;
+    else if (value !== undefined) p[key] = clamp(value, 0.05, 1);
+  }
   const bg = colour(op.bgColor);
   if (bg) p.background = { color: bg, opacity: clamp(num(op.bgOpacity) ?? 0.6, 0, 1), padding: 24, radius: 16 };
   const stroke = colour(op.strokeColor);
@@ -272,7 +279,7 @@ export interface ApplyContext {
   /** Restyle the design with the brand kit (libs/editor/brand.ts). */
   applyBrand?: (p: ProjectSnapshot) => ProjectSnapshot;
   /** Starter template by id, as ops (libs/editor/templates.ts). */
-  templateOps?: (id: string) => AgentOp[] | null;
+  templateOps?: (id: string, aspect?: VideoTemplateAspect) => AgentOp[] | null;
   /** Cut the subject out of a picture on the phone; resolves with the new media id. */
   removeBackground?: (mediaId: string) => Promise<string | null>;
   removeVideoBackground?: (clip: MediaClip) => Promise<MediaClip["videoMatte"]>;
@@ -541,7 +548,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         return true;
       }
       case "use_template": {
-        const tops = ctx.templateOps?.(String(op.template));
+        const tops = ctx.templateOps?.(String(op.template), videoTemplateAspect(op.aspect));
         if (!tops) return false;
         // A template replaces the design; its words come from the phone's language.
         p = { ...p, clips: [], settings: { ...p.settings, pages: undefined } };
