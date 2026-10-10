@@ -102,7 +102,7 @@ export const PostStageActions = memo(function PostStageActions({ onAi, onMore, o
   const { t } = useTranslation();
   return (
     <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
-      {onBoost ? <StageGlassSquare icon="Zap" label={t("postOptions.boostPost")} onPress={onBoost} plain size={32} /> : null}
+      {onBoost ? <StageGlassSquare icon="Rocket" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
       <StageGlassSquare icon="Sparkles" label={t("postOptions.askAi")} onPress={onAi} plain size={32} />
       <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} />
     </View>
