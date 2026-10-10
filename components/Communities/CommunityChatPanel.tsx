@@ -55,7 +55,7 @@ import { toastSuccess } from "../../libs/toast";
 import { useUser } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useCommunityChat } from "../../hooks/useCommunityChat";
-import { useKeyboardLift } from "../../hooks/useKeyboardLayout";
+import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
@@ -267,19 +267,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const { showUserProfile } = useUserProfileSheet();
 
   /**
-   * Edge-to-edge (Expo 54 / targetSdk 35) makes Android ignore `adjustResize`:
-   * the window no longer shrinks for the keyboard, so a KeyboardAvoidingView
-   * with no Android behavior did nothing and the composer sat under the keys.
-   * You could not see what you were typing, and the send button was not there
-   * to press - the first tap landed on the message list, which dismissed the
-   * keyboard, and only a second tap reached send.
-   *
-   * Lift by hand on both platforms, as ChatScreen and LiveChatScreen do. Not
-   * the raw keyboard height: that is measured to the physical bottom of the
-   * screen, while this panel already stops `insets.bottom` short of it thanks
-   * to the root SafeAreaView in App.tsx.
+   * Edge-to-edge Android does not shrink the window for the keyboard, so the
+   * panel lifts its composer by hand, measured against the keyboard's top
+   * (hooks/useComposerKeyboard). Working it out from the keyboard height and
+   * the insets left the box under the keys on some phones.
    */
-  const { lift: keyboardLift, isVisible: keyboardUp } = useKeyboardLift();
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0 });
+  const keyboardLift = composerKeyboard.lift;
   // The message actions sheet is a Modal, which is edge-to-edge and outside the
   // root SafeAreaView, so it has to clear the nav bar on its own.
   const insets = useSafeAreaInsets();
@@ -683,7 +677,12 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         loading={mentions.loading}
       />
 
-      <View style={[styles.composer, { paddingBottom: 8 }]}>
+      <View
+        ref={composerKeyboard.ref}
+        collapsable={false}
+        onLayout={composerKeyboard.onLayout}
+        style={[styles.composer, { paddingBottom: 8 }]}
+      >
         {composerNotice ? (
           <View style={styles.noticeRow}>
             <Icon name={noticeIcon} size={14} color="#808089" />

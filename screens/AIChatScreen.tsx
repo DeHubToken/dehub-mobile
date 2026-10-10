@@ -54,7 +54,7 @@ import MentionSuggestions from '../components/common/MentionSuggestions';
 import { useAuthState, useUser } from '../context/AuthContext';
 import { getAuthToken } from '../libs/auth.utils';
 import { useAIConversation, type ConversationEntry } from '../hooks/useAIConversation';
-import { useKeyboardLift } from '../hooks/useKeyboardLayout';
+import { useComposerKeyboard } from '../hooks/useComposerKeyboard';
 import { useMentions } from '../hooks/useMentions';
 import {
   streamAIChat,
@@ -215,9 +215,9 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   // Read once for the header badge. The sheet runs the same query, so opening
   // it costs no second request.
   const { data: supportTickets } = useMySupportTickets(!!user);
-  // Keyboard height minus the bottom inset the root SafeAreaView already spent
-  // — see hooks/useKeyboardLayout.ts.
-  const { lift: kbLift, isVisible: kbVisible } = useKeyboardLift();
+  // Composer lifted onto the keyboard's measured top — see hooks/useComposerKeyboard.ts.
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0, restingOffset: studio ? 0 : TAB_BAR_HEIGHT });
+  const { lift: kbLift, isVisible: kbVisible } = composerKeyboard;
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
 
   const walletAddress = user?.walletAddress || user?.address || null;
@@ -1779,7 +1779,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         />
       )}
 
-      <View style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
+      <View ref={composerKeyboard.ref} collapsable={false} onLayout={composerKeyboard.onLayout}
+        style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
         {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
