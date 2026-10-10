@@ -73,6 +73,7 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
     const source = media.find(c => c.id === shot.id);
     if (!source || !finite(shot.offset) || !finite(shot.duration) || shot.offset < 0 || shot.duration < 0.05 || shot.offset + shot.duration > availableDuration(source) + 1e-6) invalid();
   }
+  const primaryIds = new Set(plan.shots.map(shot => shot.id));
   const trackId = makeId(), clips: Clip[] = [];
   const layerTracks = new Map<string, { track: Track; below: boolean; order: number }>();
   const audioTracks = new Set<string>();
@@ -88,9 +89,11 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
     const from = source.start + Math.min(shot.offset, source.duration - 0.05), sourceEnd = source.start + source.duration, to = Math.min(from + shot.duration, sourceEnd);
     const overlays = original.clips.some(clip => clip.id === source.id) ? original.clips : [];
     for (const overlay of overlays) {
-      if (overlay.kind !== "text" && overlay.kind !== "shape" && overlay.kind !== "audio") continue;
       if (overlay.id === plan.soundId) continue;
-      const start = Math.max(from, overlay.start), end = Math.min(to, overlay.start + overlay.duration);
+      // Chosen footage becomes the main sequence; other media layers keep their composition.
+      if ((overlay.kind === "video" || overlay.kind === "image") && (primaryIds.has(overlay.id) || overlay.trackId === source.trackId)) continue;
+      const length = overlay.kind === "video" || overlay.kind === "audio" ? availableDuration(overlay) : overlay.duration;
+      const start = Math.max(from, overlay.start), end = Math.min(to, overlay.start + length);
       if (end - start < 0.05) continue;
       let destination = overlay.trackId;
       if (overlay.kind === "audio") audioTracks.add(overlay.trackId);
@@ -101,7 +104,7 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
         destination = layerTracks.get(key)!.track.id;
       }
       const copiedOverlay = sliceTimelineClip(overlay, start - overlay.start, end - start, makeId(), cursor + start - from);
-      if (source.kind === "image" && overlay.kind !== "audio" && end >= sourceEnd - 1e-6) copiedOverlay.duration += Math.max(0, shot.duration - (to - from));
+      if (source.kind === "image" && overlay.kind !== "audio" && overlay.kind !== "video" && end >= sourceEnd - 1e-6) copiedOverlay.duration += Math.max(0, shot.duration - (to - from));
       clips.push({ ...copiedOverlay, trackId: destination, transitionOut: undefined });
     }
     cursor = round(cursor + shot.duration);

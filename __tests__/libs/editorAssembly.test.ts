@@ -66,6 +66,62 @@ describe("editable assembly", () => {
     expect(new Set(copy.clips.map(c => c.id)).size).toBe(copy.clips.length);
     const source = project(); source.tracks[1].muted = true; expect((build(source).clips.find(c => c.kind === "video") as MediaClip).audio?.volume).toBe(0);
   });
+
+  it("retains trimmed picture-in-picture videos and image backgrounds with their source stacking, motion and audio", () => {
+    const source = project();
+    const backdrop: MediaClip = { id: "backdrop", mediaId: "backdrop-file", kind: "image", trackId: "b", start: 9, duration: 9, trimIn: 0, fit: "cover" };
+    const pip: MediaClip = { id: "pip", mediaId: "pip-file", kind: "video", trackId: "p", start: 10.5, duration: 6, trimIn: 3, speed: 0.5, sourceDuration: 10,
+      transform: { x: 0.8, y: 0.2, scale: 0.25, rotation: 12, opacity: 0.7 }, crop: { left: 0.1, right: 0, top: 0, bottom: 0.1 }, effects: { grayscale: 0.5 },
+      keyframes: { x: [{ t: 0, v: 0.7 }, { t: 6, v: 0.9 }] }, audio: { volume: 0.35, fadeIn: 1 }, animateIn: { kind: "fade", duration: 1 } };
+    source.clips.push(backdrop, pip); source.tracks.find(t => t.id === "p")!.muted = true;
+    const before = JSON.stringify(source); let id = 0;
+    const copy = assemblyProject(source, { shots: [{ id: "one", offset: 1, duration: 4 }], transition: null, soundId: null }, { id: "copy", title: "Pip" }, () => `pip-copy-${++id}`);
+    const main = copy.clips.find(c => c.kind === "video" && c.mediaId === "source")!;
+    const background = copy.clips.find(c => c.kind === "image" && c.mediaId === "backdrop-file")!;
+    const overlay = copy.clips.find(c => c.kind === "video" && c.mediaId === "pip-file") as MediaClip;
+    expect([background.start, background.duration, background.trimIn]).toEqual([0, 4, 0]);
+    expect([overlay.start, overlay.duration, overlay.trimIn, overlay.speed]).toEqual([0, 4, 3.25, 0.5]);
+    expect(overlay.transform).toEqual(pip.transform); expect(overlay.crop).toEqual(pip.crop); expect(overlay.effects).toEqual(pip.effects);
+    expect(overlay.keyframes?.x?.map(k => k.t)).toEqual([-0.5, 5.5]); expect(overlay.audio?.envelope?.[0].time).toBe(-0.5);
+    expect(overlay.audio?.volume).toBe(0.35); expect(overlay.animateIn).toBeUndefined(); expect(overlay.transitionOut).toBeUndefined();
+    expect(copy.tracks.find(t => t.id === overlay.trackId)?.muted).toBe(true);
+    expect(copy.tracks.findIndex(t => t.id === background.trackId)).toBeLessThan(copy.tracks.findIndex(t => t.id === main.trackId));
+    expect(copy.tracks.findIndex(t => t.id === overlay.trackId)).toBeGreaterThan(copy.tracks.findIndex(t => t.id === main.trackId));
+    expect(JSON.stringify(source)).toBe(before);
+  });
+  it("does not duplicate chosen assembly shots as overlays or retain neighbours on the same source track", () => {
+    const source = project(); source.clips[1] = { ...photo, start: 11, duration: 4 };
+    source.clips.push({ ...video, id: "same-track", mediaId: "neighbour", start: 11, duration: 1 });
+    let id = 0; const copy = assemblyProject(source, plan(), { id: "copy", title: "Chosen" }, () => `chosen-${++id}`);
+    expect(copy.clips.filter(c => c.kind === "video" || c.kind === "image")).toHaveLength(2);
+    expect(copy.clips.some(c => "mediaId" in c && c.mediaId === "neighbour")).toBe(false);
+  });
+  it("holds a photo's image overlay without stretching its picture-in-picture footage or narration", () => {
+    const source = project(); source.clips = [photo,
+      { ...photo, id: "image-overlay", mediaId: "logo", trackId: "b" },
+      { ...video, id: "moving-overlay", mediaId: "motion", trackId: "v", start: 20, duration: 6, trimIn: 0, speed: 1 },
+      { ...sound, start: 20 }];
+    let id = 0; const copy = assemblyProject(source, { shots: [{ id: "two", offset: 0, duration: 15 }], transition: null, soundId: null }, { id: "copy", title: "Held" }, () => `hold-${++id}`);
+    expect(copy.clips.find(c => c.kind === "image" && c.mediaId === "logo")?.duration).toBe(15);
+    expect(copy.clips.find(c => c.kind === "video" && c.mediaId === "motion")?.duration).toBe(6);
+    expect(copy.clips.find(c => c.kind === "audio")?.duration).toBe(3);
+  });
+  it("clips moving overlays at their available source length and keeps hidden/locked layers editable without making them visible", () => {
+    const source = project(); source.clips.push({ ...video, id: "short-overlay", mediaId: "short", trackId: "p", start: 10, duration: 8, trimIn: 4, speed: 2, sourceDuration: 8, hidden: true, locked: true });
+    source.tracks.find(t => t.id === "p")!.hidden = true;
+    let id = 0; const copy = assemblyProject(source, { shots: [{ id: "one", offset: 1, duration: 4 }], transition: null, soundId: null }, { id: "copy", title: "Bounded" }, () => `bound-${++id}`);
+    const overlay = copy.clips.find(c => c.kind === "video" && c.mediaId === "short") as MediaClip;
+    expect([overlay.start, overlay.duration, overlay.trimIn]).toEqual([0, 1, 6]);
+    expect(overlay.hidden).toBe(true); expect(overlay.locked).toBe(true); expect(copy.tracks.find(t => t.id === overlay.trackId)?.hidden).toBe(true);
+  });
+  it("keeps each overlay fragment aligned across reordered primary shots", () => {
+    const source = project(); source.clips.push({ ...photo, id: "logo-overlay", mediaId: "logo", trackId: "b", start: 11, duration: 12 });
+    const reordered = { ...plan(), shots: [...plan().shots].reverse() }; let id = 0;
+    const copy = assemblyProject(source, reordered, { id: "copy", title: "Reordered" }, () => `order-${++id}`);
+    expect(copy.clips.filter(c => c.kind === "image" && c.mediaId === "logo").map(c => [c.start, c.duration])).toEqual([[0, 3], [3, 4]]);
+    expect(new Set(copy.clips.map(c => c.id)).size).toBe(copy.clips.length);
+  });
+
   it("rejects malformed ranges, repeated ids, hidden sources and fabricated soundtrack identities", () => {
     for (const bad of [{ ...plan(), soundId: "fake" }, { ...plan(), shots: [...plan().shots, plan().shots[0]] }, { ...plan(), shots: [{ id: "one", offset: 7, duration: 4 }] }]) expect(() => assemblyProject(project(), bad, { id: "copy", title: "Copy" }, () => "x")).toThrow();
     const source = project(); source.tracks[1].hidden = true; expect(() => build(source)).toThrow();
