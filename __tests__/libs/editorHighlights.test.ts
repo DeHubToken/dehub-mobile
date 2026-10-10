@@ -108,7 +108,7 @@ describe("highlight alternatives respect ranking before overlap selection", () =
     const options = { seconds: 15, ...(focused ? { focus: "Reliable backups" } : {}) };
     const weaker = { op: "trim", id: "video", offset: 0, duration: 4, score: 0.8, focusMatch: true };
     const stronger = { op: "trim", id: "video", offset: 2, duration: 2, score: 0.95, focusMatch: true };
-    const results = [];
+    const results: Awaited<ReturnType<typeof findHighlights>>[] = [];
     for (const ops of [[weaker, stronger], [stronger, weaker]]) {
       results.push(await findHighlights(clip, words, options, async () => ({ ops })));
     }
