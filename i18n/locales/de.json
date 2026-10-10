@@ -7417,6 +7417,8 @@
     }
   },
   "creator": {
+    "toolMaboroshi": "Maboroshi",
+    "toolMaboroshiDesc": "Ersetze Figuren und Objekte, prüfe einen Entwurf und exportiere mit der ursprünglichen Tonspur.",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Ohne Titel",
