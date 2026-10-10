@@ -44,7 +44,7 @@ export default function MaboroshiScreen() {
       if (result.status !== 200) throw new Error('Download unavailable');
       await saveEditorDownload(local, 'Maboroshi', 'mp4', 'video/mp4');
     } catch {
-      Alert.alert(t('creator.toolMaboroshi'), t('common.error', 'Something went wrong. Please try again.'));
+      Alert.alert(t('creator.toolMaboroshi'), t('common.somethingWentWrong'));
     } finally {
       await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {});
       downloading.current = false;
@@ -54,7 +54,7 @@ export default function MaboroshiScreen() {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t('creator.toolMaboroshi')} />
-      {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('auth.signIn', 'Sign in')}</Text></Pressable>}
+      {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('common.signIn')}</Text></Pressable>}
       {failed && <Pressable accessibilityRole="button" onPress={() => { setFailed(false); web.current?.reload(); }} className="m-4 p-4"><Text className="text-center text-theme-neutrals-100">{t('common.retry', 'Try again')}</Text></Pressable>}
       <WebView key={wallet || 'guest'} ref={web} source={{ uri: STUDIO }} style={{ flex: 1, backgroundColor: '#090a0b' }}
         originWhitelist={['https://live.dehub.io']} javaScriptEnabled allowsInlineMediaPlayback
