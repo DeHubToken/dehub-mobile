@@ -1619,6 +1619,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
                 </Pressable>
               </View>
+              </View>
             ) : (
               <View className="flex-1 items-center justify-center py-16">
                 <Text style={{ color: "#8B8D90", fontSize: 14 }}>
@@ -1696,10 +1697,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
-        {/* The coach's cards above the field, and the AI button that offers a
-            tone check, a vibe rewrite and a spelling/grammar pass once there
-            is text. Advice only — Post stays live underneath. */}
-        {(coachStatus !== "idle" || (!editingComment && inputText.trim().length > 0)) &&
+        {/* Open advice stays above the composer; AI and Send share its action column. */}
+        {(coachStatus !== "idle" || aiMenu !== "closed") &&
           !commentsDisabled && !kidsOnlyThread && !accountBanned && (
           <View style={{ paddingHorizontal: COMPOSER.gutter, paddingTop: 8, gap: 6 }}>
             <CoachSuggestions
@@ -1744,18 +1743,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                       <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.fixSpelling")}</Text>
                     </Pressable>
                   )}
-                  <Pressable
-                    onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
-                    disabled={aiRewriting}
-                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("conversation.coach.aiMenu")}
-                    testID="comment-ai-menu"
-                    className="flex-row items-center"
-                    style={[aiChipStyle, isMinimal && aiChipMinimal]}
-                  >
-                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={13} color="#A6A9AC" />}
-                  </Pressable>
+
                 </View>
               </View>
             )}
@@ -1812,6 +1800,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             <View
               style={{
                 flex: 1,
+                minWidth: 0,
                 flexDirection: "row",
                 // `center`, not `flex-end`: a single line of 14px text is ~18 tall
                 // inside a 40 box, and flex-end pinned it to the bottom edge. Once
@@ -1823,7 +1812,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 borderColor: isMinimal ? MINIMAL_INPUT_LINE : "rgba(255,255,255,0.08)",
                 paddingHorizontal: 12,
                 paddingVertical: 8,
-                minHeight: COMPOSER.control,
+                minHeight: inputText.length > 0 && !editingComment ? 76 : COMPOSER.control,
               }}
             >
               <TextInput
@@ -1849,7 +1838,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   // Post control is a sibling, not an overlay, so the box is
                   // free to grow into the row.
                   maxHeight: 140,
-                  height: growingInput.height,
+                  height: Math.max(growingInput.height, inputText.length > 0 && !editingComment ? 58 : 0),
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.
@@ -1864,7 +1853,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 touch-down and clears the text before touch-up. Reusing the
                 Send Pressable as GIF would deliver that release to the picker. */}
             {inputText.trim() || editingComment ? (
-              <View key="text-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
+              <View key="text-actions" style={{ flexDirection: "row", alignItems: "flex-end", gap: COMPOSER.gap / 2 }}>
               <Pressable
                   onPress={handleEmojiPress}
                   onTouchStart={handleEmojiTouchStart}
@@ -1875,6 +1864,21 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 >
                 <Text style={{ fontSize: 18 }}>🙂</Text>
               </Pressable>
+              <View style={{ alignItems: "center", gap: 4 }}>
+                {!editingComment && inputText.trim().length > 0 && (
+                  <Pressable
+                    onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
+                    disabled={aiRewriting}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("conversation.coach.aiMenu")}
+                    testID="comment-ai-menu"
+                    className="flex-row items-center"
+                    style={[composerStyles.iconControl, { width: 32, height: 32 }]}
+                  >
+                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={15} color="#A6A9AC" />}
+                  </Pressable>
+                )}
               <Pressable
                 onPress={handlePostPress}
                 // Raw touch-start arrives before the keyboard/sheet responder

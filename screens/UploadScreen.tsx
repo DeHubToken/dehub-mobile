@@ -818,7 +818,7 @@ export default function UploadScreen() {
   }, [setArticleBody, setArticleMode, setBodyText, setCategories, setMonetization, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, setShowTitle, setTitleText]);
 
   const captureActiveDraft = useCallback(() => {
-    const account = user?.walletAddress || user?.address;
+    const account = authUser?.walletAddress || authUser?.address;
     const receipt: Record<string, string> = {};
     const values = { bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks };
     for (const [field, value] of Object.entries(values)) {
@@ -827,7 +827,7 @@ export default function UploadScreen() {
       if (key && readDraft(key) === expected) receipt[key] = expected;
     }
     return receipt;
-  }, [draftScope, user?.walletAddress, user?.address, bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks]);
+  }, [draftScope, authUser?.walletAddress, authUser?.address, bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks]);
 
   const clearActiveDraft = useCallback(() => {
     setBodyText.complete(bodyText, bodyText);

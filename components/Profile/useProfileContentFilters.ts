@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import type { FeedFilters } from "../Home/FeedFilterPanel";
@@ -62,7 +63,7 @@ export interface ProfileContentQuery {
 
 export function useProfileContentFilters(activeTab: string, resetKey?: string) {
   const [sort, setSort] = useState<ProfileSortMode>("newest");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useDraftState(`profile:${resetKey ?? "own"}:search`, "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(EMPTY_PROFILE_FILTERS);
@@ -80,7 +81,6 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
   // across profiles, so without this the previous person's filters carry over.
   useEffect(() => {
     setSort("newest");
-    setSearch("");
     setDebouncedSearch("");
     setFilters(EMPTY_PROFILE_FILTERS);
     setSelectedCategory("All");

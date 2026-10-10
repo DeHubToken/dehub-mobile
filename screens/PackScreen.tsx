@@ -302,7 +302,7 @@ export default function PackScreen() {
                 <Text numberOfLines={1} style={styles.title}>{pack.name}</Text>
                 {isOwner && (
                   <Pressable
-                    onPress={() => setEditingName(pack.name)}
+                    onPress={() => setEditingName.initialize(pack.name)}
                     accessibilityRole="button"
                     accessibilityLabel={t("creatorPacks.rename")}
                     hitSlop={8}

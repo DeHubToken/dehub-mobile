@@ -1,3 +1,6 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }) }));
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -33,6 +36,7 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 
 const mockNavigation = { canGoBack: jest.fn(() => true), goBack: jest.fn(), navigate: jest.fn() };
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   useNavigation: () => mockNavigation,
   useFocusEffect: () => {},
 }));
@@ -124,3 +128,5 @@ it('does not add the header height to the keyboard offset', async () => {
   expect(tree.root.findByType('KeyboardAvoidingView' as any).props.keyboardVerticalOffset).toBe(24);
   act(() => tree.unmount());
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

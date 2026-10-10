@@ -5,8 +5,9 @@ import { rebaseProjectHistory } from "./projectHistory";
 import { projectReviewSnapshotKey } from "./cloudProjectReview";
 const HISTORY_LIMIT = 50;
 
-export function useProjectHistory(initial: ProjectSnapshot | null) {
+export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (snapshot: ProjectSnapshot) => void) {
   const [project, setProject] = useState<ProjectSnapshot | null>(initial);
+  const publish = (snapshot: ProjectSnapshot) => { onChange?.(snapshot); setProject(snapshot); };
   const past = useRef<ProjectSnapshot[]>([]);
   const future = useRef<ProjectSnapshot[]>([]);
   const liveBase = useRef<ProjectSnapshot | null>(null);
@@ -32,16 +33,16 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
     },
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
-    reset: (p: ProjectSnapshot) => { gate.current!.reset(false); past.current = []; future.current = []; liveBase.current = null; current.current = p; setProject(p); },
+    reset: (p: ProjectSnapshot) => { gate.current!.reset(false); past.current = []; future.current = []; liveBase.current = null; current.current = p; publish(p); },
     fork: (original: ProjectSnapshot, next: ProjectSnapshot) => {
       gate.current!.reset(false);
-      past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; setProject(next);
+      past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; publish(next);
     },
     receive: (snapshot: ProjectSnapshot, expectedKey: string) => {
       const before = current.current;
       if (!before || liveBase.current || gate.current!.isEditing() || projectReviewSnapshotKey(before) !== expectedKey) throw new Error("The current project changed during transfer");
       const next = rebaseProjectHistory({current:before,past:past.current,future:future.current},snapshot);
-      past.current = next.past; future.current = next.future; current.current = next.current; setProject(next.current);
+      past.current = next.past; future.current = next.future; current.current = next.current; publish(next.current);
       return next.protectedPaths.length;
     },
     /** Not an undo step: facts the canvas measured, like a video's real length. */
@@ -51,18 +52,18 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
         const rebased = rebaseProjectHistory({current:current.current,past:[liveBase.current],future:[]},p);
         liveBase.current = rebased.past[0] ?? p;
       }
-      current.current = p; setProject(p);
+      current.current = p; publish(p);
     },
     commit: (next: ProjectSnapshot) => {
       const before = liveBase.current ?? current.current;
       liveBase.current = null;
       if (before) push(before);
-      current.current = next; setProject(next);
+      current.current = next; publish(next);
     },
     live: (next: ProjectSnapshot) => {
       if (next.id !== current.current?.id) return;
       if (!liveBase.current) liveBase.current = current.current;
-      current.current = next; setProject(next);
+      current.current = next; publish(next);
     },
     settle: () => {
       if (liveBase.current) {
@@ -75,14 +76,14 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
       if (!prev || !current.current) return;
       past.current = past.current.slice(0, -1);
       future.current = [current.current, ...future.current];
-      current.current = prev; setProject(prev);
+      current.current = prev; publish(prev);
     },
     redo: () => {
       const next = future.current[0];
       if (!next || !current.current) return;
       future.current = future.current.slice(1);
       past.current = [...past.current, current.current];
-      current.current = next; setProject(next);
+      current.current = next; publish(next);
     },
   };
 }

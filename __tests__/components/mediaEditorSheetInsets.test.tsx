@@ -1,3 +1,6 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('@react-navigation/native', () => ({ NavigationRouteContext: require('react').createContext(undefined) }));
 import React from 'react';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -139,3 +142,5 @@ describe('media editor screen insets', () => {
     expect(editor).toContain('<KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">');
   });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

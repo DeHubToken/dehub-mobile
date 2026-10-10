@@ -1,3 +1,6 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }) }));
 import React from 'react';
 import { readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
@@ -81,6 +84,7 @@ jest.mock('../../navigation/linking.config', () => ({
 
 const mockNavigation = { canGoBack: jest.fn(() => true), goBack: jest.fn(), navigate: jest.fn() };
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   useNavigation: () => mockNavigation,
   useRoute: () => ({ params: { storeId: 'store-1' } }),
 }));
@@ -236,3 +240,5 @@ describe('store and mini app strings', () => {
     }
   });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

@@ -1,3 +1,7 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }) }));
+jest.mock('@react-navigation/native', () => ({ NavigationRouteContext: require('react').createContext(undefined) }));
 import React from "react";
 import {fireEvent,render} from "@testing-library/react-native";
 import {ProjectReviewPanel} from "../../components/editor/ProjectReviewPanel";
@@ -21,3 +25,5 @@ it("does not offer shared saves to viewers",()=>{
   const env=setup("viewer"),screen=render(<ProjectReviewPanel cloud={env.cloud} wallet={actor}/>);
   expect(screen.queryByLabelText("common.edit")).toBeNull();fireEvent.press(screen.getByLabelText("common.copy"));expect(env.openReview).toHaveBeenCalledTimes(1);expect(env.openShared).not.toHaveBeenCalled();
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

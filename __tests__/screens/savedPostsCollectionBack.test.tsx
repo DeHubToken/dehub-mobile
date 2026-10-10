@@ -1,3 +1,5 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 
@@ -44,6 +46,7 @@ jest.mock('react-native', () => {
 // like the real hook does when a post is pushed on top.
 let mockSetFocused: (focused: boolean) => void = () => {};
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   useFocusEffect: (effect: () => void | (() => void)) => {
     const R = require('react');
     const [focused, setFocused] = R.useState(true);
@@ -54,7 +57,7 @@ jest.mock('@react-navigation/native', () => ({
 // Stable like the real t: fetchFoldersList depends on it.
 const mockT = (key: string) => key;
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: mockT }) }));
-jest.mock('../../context/AuthContext', () => ({ useAuthState: () => ({ isSignedIn: true, needsUsername: false }) }));
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }), useAuthState: () => ({ isSignedIn: true, needsUsername: false }) }));
 jest.mock('../../hooks/useGateToHome', () => ({ useGateToHome: () => {} }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('../../theme/minimal', () => ({
@@ -162,3 +165,5 @@ it('does not catch back on a post opened from the collection', async () => {
   expect(mockBackHandlers.size).toBe(1);
   expect(openCollection(tree)).toHaveLength(1);
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });
