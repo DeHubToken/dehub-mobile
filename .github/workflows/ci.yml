@@ -219,6 +219,8 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_27.app/Contents/Developer
           xcodebuild -version
           test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" = '27'
+          SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
+          cp "$SDK/System/Library/Frameworks/ScreenCaptureKit.framework/Headers/SCStream.h" screen-capture-sdk-stream.h
       - run: npm ci --legacy-peer-deps
       - name: Resolve the capture pod and embedded broadcast extensions
         working-directory: ios
@@ -255,6 +257,7 @@ jobs:
           name: screen-capture-ios-compile
           path: |
             screen-capture-ios-build.log
+            screen-capture-sdk-stream.h
             ios/Podfile.lock
             ios/DeHub.xcodeproj/project.pbxproj
           if-no-files-found: ignore
