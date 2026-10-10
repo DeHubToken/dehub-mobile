@@ -31,7 +31,7 @@ export function useWalletTokens() {
     tokens: isSignedIn && address ? queries.flatMap(query => query.data || []) : [],
     loading: queries.some(query => query.isLoading),
     refreshing: queries.some(query => query.isFetching),
-    failedChains: WALLET_CHAINS.filter((_, index) => queries[index].isError || queries[index].data?.some(token => token.balance === null)),
+    failedChains: WALLET_CHAINS.filter((_, index) => queries[index].isError || queries[index].data?.some(token => token.balance === null || token.incomplete)),
     refresh: () => Promise.all([solana.refetch(), prices.refetch(), ...queries.filter((_, i) => WALLET_CHAINS[i].id !== 101 || !!solana.data).map(query => query.refetch())]),
   };
 }
