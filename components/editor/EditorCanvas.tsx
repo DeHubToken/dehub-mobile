@@ -167,6 +167,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const cutoutReqs = useRef(new Map<string, { done: (v: Cutout) => void; progress?: (f: number) => void }>());
   const videoMatteReqs = useRef(new Map<string, { clip: MediaClip; resolve: (r: VideoMatteResult) => void; fps: number; pages: VideoMattePage[]; storePage?: VideoMattePageSink; storing?: boolean; planKey?: string; reject: (e: Error) => void; progress?: (p: VideoMatteProgress) => void; cleanup: () => void; reset: () => void }>());
   const sentMattes = useRef(new Set<string>());
+  const sentPictures = useRef(new Set<string>());
   const mediaAcks = useRef(new Map<string, () => void>());
   type VideoReq = {
     resolve: (v: { uri: string; ext: string }) => void;
@@ -255,7 +256,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const missing: string[] = [];
     const liveIds = ids ? ids.split("|") : [];
     for (const id of sentMattes.current) if (!liveIds.includes(id)) { sentMedia.current.delete(id); sentMattes.current.delete(id); }
+    for (const id of sentPictures.current) if (!liveIds.includes(id)) { sentMedia.current.delete(id); sentPictures.current.delete(id); }
     post({ type: "mattePrune", ids: liveIds });
+    post({ type: "imagePrune", ids: liveIds });
     (async () => {
       loading.current += 1; props.onMediaLoading?.(loading.current);
       try {
@@ -299,6 +302,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (cancelled) return;
         if (!src) { missing.push(id); continue; }
         sentMedia.current.add(id);
+        sentPictures.current.add(id);
         if (meta?.name.startsWith(".dehub-video-matte-")) sentMattes.current.add(id);
         post({ type: "media", id, src, internalMatte: meta?.name.startsWith(".dehub-video-matte-") });
       }
@@ -315,6 +319,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     switch (msg?.type) {
       case "ready":
         sentMedia.current.clear();
+        sentPictures.current.clear();
         setReady(true);
         break;
       case "matteNeed": {
