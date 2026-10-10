@@ -1,5 +1,5 @@
 import { projectEditGate } from "./projectEditGate";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ProjectSnapshot } from "./types";
 import { rebaseProjectHistory } from "./projectHistory";
 import { projectReviewSnapshotKey } from "./cloudProjectReview";
@@ -17,6 +17,12 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
   const gate = useRef<ReturnType<typeof projectEditGate> | null>(null);
   if (!gate.current) gate.current = projectEditGate(() => bump(n => n + 1));
 
+  const mounted = useRef(true);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; gate.current!.reset(false); };
+  }, []);
+
   const push = (before: ProjectSnapshot) => {
     past.current = [...past.current, before].slice(-HISTORY_LIMIT);
     future.current = [];
@@ -28,7 +34,7 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
     latest: () => current.current,
     isEditing: () => !!liveBase.current || gate.current!.isEditing(),
     holdEdits: (expectedKey?: string) => {
-      if (!current.current || (expectedKey !== undefined && projectReviewSnapshotKey(current.current) !== expectedKey)) return null;
+      if (!mounted.current || !current.current || (expectedKey !== undefined && projectReviewSnapshotKey(current.current) !== expectedKey)) return null;
       return gate.current!.hold();
     },
     canUndo: past.current.length > 0,
