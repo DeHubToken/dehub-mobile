@@ -240,6 +240,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               style={styles.minimalButton}
               accessibilityRole="button"
               accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+              accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {
                 const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
@@ -321,6 +322,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               style={styles.navButton}
               accessibilityRole="button"
               accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+              accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {
                 // In back mode the glass pill is suppressed even with filters

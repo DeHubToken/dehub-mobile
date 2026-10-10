@@ -21,6 +21,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
+import { menuEnter, menuExit } from './feedDrawerMotion';
 import {
   resolveEdgeFadeMask,
   resolveEdgeFadeSides,
@@ -82,10 +83,13 @@ interface FeedFilterPanelProps {
   embedded?: boolean;
   /** Override inactive controls for surfaces that need full contrast. */
   inactiveTextColor?: string;
+  /** Homepage System drawer: measured nav height hidden behind the pill. */
+  navOverlap?: number;
+  chipRadius?: number;
 }
 
 
-const MAX_HEIGHT = 440;
+export const FEED_FILTER_MAX_HEIGHT = 440;
 const PILL_BORDER_RADIUS = 15;
 
 interface GlassPillProps {
@@ -93,9 +97,10 @@ interface GlassPillProps {
   selected: boolean;
   onPress: () => void;
   inactiveTextColor?: string;
+  radius?: number;
 }
 
-const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress, inactiveTextColor = "#a1a1aa" }) => (
+const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress, inactiveTextColor = "#a1a1aa", radius = PILL_BORDER_RADIUS }) => (
   <TouchableOpacity
     accessibilityRole="button"
     accessibilityState={{ selected }}
@@ -103,10 +108,11 @@ const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress, in
     activeOpacity={0.7}
     style={[
       pillStyles.base,
+      { borderRadius: radius },
       selected ? pillStyles.active : pillStyles.inactive,
     ]}
   >
-    {selected && <ChromeSurface tinted radius={PILL_BORDER_RADIUS} />}
+    {selected && <ChromeSurface tinted radius={radius} />}
     <Text
       style={[
         pillStyles.text,
@@ -267,10 +273,12 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   hideContentAccess,
   hideSort,
   showFollowingSort = false,
-  maxHeight = MAX_HEIGHT,
+  maxHeight = FEED_FILTER_MAX_HEIGHT,
   innerScrollEnabled = true,
   embedded = false,
   inactiveTextColor,
+  navOverlap,
+  chipRadius = PILL_BORDER_RADIUS,
 }) => {
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
@@ -364,11 +372,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     setCategorySearch("");
   }, [onCategoryPress]);
 
-  return (
-    <Animated.View
-      style={[animatedStyle, embedded ? panelStyles.embeddedOuterWrap : panelStyles.outerWrap]}
-    >
-      {!embedded && <ChromeSurface radius={15} />}
+  const content = (
+    <>
+      {!embedded && <ChromeSurface radius={navOverlap != null ? 12 : 15} />}
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEnabled={innerScrollEnabled}
@@ -379,6 +385,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           <GlassFilterRow title={t("filters.sort").toUpperCase()}>
             {SORT_OPTIONS.map((option) => (
               <GlassPill
+                radius={chipRadius}
                 inactiveTextColor={inactiveTextColor}
                 key={option.id}
                 label={option.label}
@@ -403,6 +410,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
             />
             <FadeEdgeRow>
               <GlassPill
+                radius={chipRadius}
                 inactiveTextColor={inactiveTextColor}
                 label={t("filters.all")}
                 selected={!selectedCategory}
@@ -410,6 +418,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
               />
               {filteredCategories.map((cat) => (
                 <GlassPill
+                  radius={chipRadius}
                   inactiveTextColor={inactiveTextColor}
                   key={cat}
                   label={cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -427,6 +436,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         <GlassFilterRow title={t("filters.uploadDate").toUpperCase()}>
           {DATE_RANGE_OPTIONS.map((option) => (
             <GlassPill
+              radius={chipRadius}
               inactiveTextColor={inactiveTextColor}
               key={option.id || "all"}
               label={option.label}
@@ -440,6 +450,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           <GlassFilterRow title={t("filters.postType").toUpperCase()}>
             {POST_TYPE_OPTIONS.map((option) => (
               <GlassPill
+                radius={chipRadius}
                 inactiveTextColor={inactiveTextColor}
                 key={option.id}
                 label={option.label}
@@ -456,6 +467,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
             <FadeEdgeRow>
               {CONTENT_ACCESS_OPTIONS.map((option) => (
                 <GlassPill
+                  radius={chipRadius}
                   inactiveTextColor={inactiveTextColor}
                   key={option.id}
                   label={option.label}
@@ -485,11 +497,39 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           <Icon name="RefreshCw" size={14} color={inactiveTextColor ?? "#808089"} />
         </TouchableOpacity>
       )}
+    </>
+  );
+
+  if (navOverlap != null) {
+    return visible ? (
+      <Animated.View entering={menuEnter} exiting={menuExit} style={panelStyles.drawerWrap}>
+        <View style={[panelStyles.drawer, { height: maxHeight + navOverlap, paddingTop: navOverlap }]}>
+          {content}
+        </View>
+      </Animated.View>
+    ) : null;
+  }
+
+  return (
+    <Animated.View style={[animatedStyle, embedded ? panelStyles.embeddedOuterWrap : panelStyles.outerWrap]}>
+      {content}
     </Animated.View>
   );
 };
 
 const panelStyles = StyleSheet.create({
+  drawerWrap: {
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    right: 8,
+    zIndex: 1,
+    overflow: 'hidden',
+  },
+  drawer: {
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
   embeddedOuterWrap: {
     overflow: "hidden",
   },
