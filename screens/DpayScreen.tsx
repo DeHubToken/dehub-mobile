@@ -193,7 +193,7 @@ const DpayScreen: React.FC = () => {
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
         {/* Tab switcher */}
-        <PageTabs
+        <PageTabs<WalletTab>
           value={activeTab}
           onChange={setActiveTab}
           tabs={TABS.map((tab) => ({ id: tab.key, label: tab.labelKey ? t(tab.labelKey) : tab.label }))}
