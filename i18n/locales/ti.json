@@ -1014,7 +1014,8 @@
     "mintPostDesc": "ነዚ ጽሑፍ ኣብ ሰንሰለት ኣውጽኦ",
     "giftBoost": "ምብርባር ከም ህያብ ሃብ",
     "giftBoostDesc": "ካብ ናትካ ሓደ ኣብዚ ጽሑፍ ኣውጽእ",
-    "askAi": "AI ሕተት"
+    "askAi": "AI ሕተት",
+    "aiOverview": "ሓፈሻዊ ኣመለኻኽታ AI"
   },
   "filters": {
     "sort": "ደርድር",
@@ -6794,24 +6795,24 @@
       "hint": "እቲ መስርሕ ክሳብ 10 ደቓይቕ ይወስድ ። ናይ ድምጺ ምጉዳል ምስ ቀጻሊ ናይ ድሕረ ባይታ ድምጺ ብዝበለጸ ይሰርሕ ።"
     },
     "pages": {
-    "add":  "ገጽ ወስኽ",
-    "duplicate":  "ገጽ ቅዳሕ",
-    "delete":  "ገጽ ሰርዝ",
-    "page":  "ገጽ {{number}}",
-    "position":  "ገጽ {{current}} ካብ {{total}}",
-    "label":  "ገጻት",
-    "allZip":  "ኩሎም {{count}} ገጻት (ZIP)",
-    "thisPage":  "እዚ ገጽ ጥራይ",
-    "exporting":  "ገጽ {{current}} ካብ {{total}} ይዳሎ ኣሎ…"
-},
+      "add": "ገጽ ወስኽ",
+      "duplicate": "ገጽ ቅዳሕ",
+      "delete": "ገጽ ሰርዝ",
+      "page": "ገጽ {{number}}",
+      "position": "ገጽ {{current}} ካብ {{total}}",
+      "label": "ገጻት",
+      "allZip": "ኩሎም {{count}} ገጻት (ZIP)",
+      "thisPage": "እዚ ገጽ ጥራይ",
+      "exporting": "ገጽ {{current}} ካብ {{total}} ይዳሎ ኣሎ…"
+    },
     "captions": {
-        "action":  "ኣውቶማቲክ ንኡስ ጽሑፋት",
-        "working":  "ይሰምዕ ኣሎ… {{percent}}%",
-        "downloading":  "ሞዴል ዘረባ ይዳሎ ኣሎ… {{percent}}%",
-        "hint":  "ዘረባ ናብ ምስ ግዜ ዝሰማማዕ ንኡስ ጽሑፋት ይቕይሮ፡ ቅዲኡ ክትቕይሮ ትኽእል። ኣብ መሳርሒኻ ይሰርሕ፦ ብናጻን ብሕታውን። ናይ መጀመርታ ኣጠቓቕማ ነቲ ሞዴል የውርዶ።",
-        "done":  "{{count}} ንኡስ ጽሑፋት ተወሲኾም።",
-        "noSpeech":  "ኣብዚ ክሊፕ ዘረባ ኣይተረኽበን።",
-        "failed":  "ነዚ ክሊፕ ንኡስ ጽሑፋት ክፍጠር ኣይተኻእለን።"
+      "action": "ኣውቶማቲክ ንኡስ ጽሑፋት",
+      "working": "ይሰምዕ ኣሎ… {{percent}}%",
+      "downloading": "ሞዴል ዘረባ ይዳሎ ኣሎ… {{percent}}%",
+      "hint": "ዘረባ ናብ ምስ ግዜ ዝሰማማዕ ንኡስ ጽሑፋት ይቕይሮ፡ ቅዲኡ ክትቕይሮ ትኽእል። ኣብ መሳርሒኻ ይሰርሕ፦ ብናጻን ብሕታውን። ናይ መጀመርታ ኣጠቓቕማ ነቲ ሞዴል የውርዶ።",
+      "done": "{{count}} ንኡስ ጽሑፋት ተወሲኾም።",
+      "noSpeech": "ኣብዚ ክሊፕ ዘረባ ኣይተረኽበን።",
+      "failed": "ነዚ ክሊፕ ንኡስ ጽሑፋት ክፍጠር ኣይተኻእለን።"
     },
     "app": {
       "newDesign": "ሓድሽ ንድፊ",

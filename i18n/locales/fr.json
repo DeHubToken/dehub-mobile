@@ -1023,7 +1023,8 @@
     "mintPostDesc": "Publiez cette publication on-chain",
     "giftBoost": "Offrir un boost",
     "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication",
-    "askAi": "Demander à l'IA"
+    "askAi": "Demander à l'IA",
+    "aiOverview": "Vue d'ensemble de l'IA"
   },
   "filters": {
     "sort": "Trier",

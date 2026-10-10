@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Publikujte tento příspěvek on-chain",
     "giftBoost": "Darovat boost",
     "giftBoostDesc": "Utraťte jeden ze svých na tento příspěvek",
-    "askAi": "Zeptat se AI"
+    "askAi": "Zeptat se AI",
+    "aiOverview": "Přehled AI"
   },
   "filters": {
     "sort": "Řadit",
@@ -6837,24 +6838,24 @@
       "hint": "Zpracování klipů až 10 minut. Redukce šumu funguje nejlépe při stálém šumu na pozadí."
     },
     "pages": {
-    "add":  "Přidat stránku",
-    "duplicate":  "Duplikovat stránku",
-    "delete":  "Smazat stránku",
-    "page":  "Stránka {{number}}",
-    "position":  "Stránka {{current}} z {{total}}",
-    "label":  "Stránky",
-    "allZip":  "Všechny stránky ({{count}}) (ZIP)",
-    "thisPage":  "Pouze tato stránka",
-    "exporting":  "Vykreslování stránky {{current}} z {{total}}…"
-},
+      "add": "Přidat stránku",
+      "duplicate": "Duplikovat stránku",
+      "delete": "Smazat stránku",
+      "page": "Stránka {{number}}",
+      "position": "Stránka {{current}} z {{total}}",
+      "label": "Stránky",
+      "allZip": "Všechny stránky ({{count}}) (ZIP)",
+      "thisPage": "Pouze tato stránka",
+      "exporting": "Vykreslování stránky {{current}} z {{total}}…"
+    },
     "captions": {
-        "action":  "Automatické titulky",
-        "working":  "Poslouchám… {{percent}} %",
-        "downloading":  "Připravuji model řeči… {{percent}} %",
-        "hint":  "Převede řeč na časované titulky, které můžete upravit. Běží ve vašem zařízení: zdarma a soukromě. Při prvním použití se stáhne model.",
-        "done":  "Přidáno titulků: {{count}}.",
-        "noSpeech":  "V tomto klipu nebyla nalezena žádná řeč.",
-        "failed":  "Pro tento klip se nepodařilo vytvořit titulky."
+      "action": "Automatické titulky",
+      "working": "Poslouchám… {{percent}} %",
+      "downloading": "Připravuji model řeči… {{percent}} %",
+      "hint": "Převede řeč na časované titulky, které můžete upravit. Běží ve vašem zařízení: zdarma a soukromě. Při prvním použití se stáhne model.",
+      "done": "Přidáno titulků: {{count}}.",
+      "noSpeech": "V tomto klipu nebyla nalezena žádná řeč.",
+      "failed": "Pro tento klip se nepodařilo vytvořit titulky."
     },
     "app": {
       "newDesign": "Nový návrh",
