@@ -64,7 +64,7 @@ internal class ProjectionEncoder(
   private var callbackRegistered = false
   private var closed = false
   private val callback = object : MediaProjection.Callback() {
-    override fun onStop() { stopped() }
+    override fun onStop() { running.set(false); stopped() }
     override fun onCapturedContentResize(width: Int, height: Int) { if (width > 0 && height > 0) resize(CaptureSize(width, height)) }
   }
 
@@ -78,10 +78,10 @@ internal class ProjectionEncoder(
         setInteger(MediaFormat.KEY_FRAME_RATE, 30)
         setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1)
       }
-      video = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC).also {
-        it.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
-        videoSurface = it.createInputSurface()
-      }
+      val videoEncoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
+      video = videoEncoder
+      videoEncoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
+      videoSurface = videoEncoder.createInputSurface()
       fittedSurface = CaptureSurface(requireNotNull(videoSurface), size, initialSource, ::reportFailure)
       if (systemAudio && Build.VERSION.SDK_INT >= 29) inputs.add(playbackInput())
       if (microphone) inputs.add(microphoneInput())
@@ -91,9 +91,9 @@ internal class ProjectionEncoder(
           setInteger(MediaFormat.KEY_BIT_RATE, 128_000)
           setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, SAMPLES_PER_FRAME * 2)
         }
-        audio = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC).also {
-          it.configure(audioFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
-        }
+        val audioEncoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC)
+        audio = audioEncoder
+        audioEncoder.configure(audioFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
       }
       projection.registerCallback(callback, Handler(Looper.getMainLooper())); callbackRegistered = true
     } catch (error: Throwable) { close(true); throw error }
@@ -175,9 +175,11 @@ internal class ProjectionEncoder(
   private fun microphoneInput(): AudioRecord {
     val input = checkedInput(AudioRecord.Builder().setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION)
       .setAudioFormat(pcmFormat()).setBufferSizeInBytes(bufferSize()).build())
-    if (AcousticEchoCanceler.isAvailable()) AcousticEchoCanceler.create(input.audioSessionId)?.let { it.enabled = true; effects.add(it) }
-    if (NoiseSuppressor.isAvailable()) NoiseSuppressor.create(input.audioSessionId)?.let { it.enabled = true; effects.add(it) }
-    return input
+    try {
+      if (AcousticEchoCanceler.isAvailable()) AcousticEchoCanceler.create(input.audioSessionId)?.let { effects.add(it); it.enabled = true }
+      if (NoiseSuppressor.isAvailable()) NoiseSuppressor.create(input.audioSessionId)?.let { effects.add(it); it.enabled = true }
+      return input
+    } catch (error: Throwable) { input.release(); throw error }
   }
 
   private fun checkedInput(input: AudioRecord): AudioRecord {

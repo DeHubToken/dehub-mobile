@@ -71,7 +71,7 @@ class ScreenCaptureService : Service() {
         startForeground(NOTIFICATION_ID, notification, types)
       } else startForeground(NOTIFICATION_ID, notification)
       val permission = if (Build.VERSION.SDK_INT >= 33) intent.getParcelableExtra("permission", Intent::class.java)
-        else @Suppress("DEPRECATION") (intent.getParcelableExtra("permission") as? Intent)
+        else @Suppress("DEPRECATION") intent.getParcelableExtra<Intent>("permission")
       val token = requireNotNull(permission)
       projection = requireNotNull(getSystemService(MediaProjectionManager::class.java).getMediaProjection(intent.getIntExtra("resultCode", 0), token))
       starting = work.launch {
