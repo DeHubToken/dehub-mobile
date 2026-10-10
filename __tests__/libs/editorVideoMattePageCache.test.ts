@@ -12,6 +12,38 @@ for (const [label, create] of [["typed",createVideoMattePageCache],["canvas",new
       expect(loads).toEqual(["old","new"]);expect([...images.keys()]).toEqual(["new"]);expect(released).toHaveLength(1);
       await cache.select([frame("end")]);expect([...images.keys()]).toEqual(["end"]);cache.dispose();expect(images.size).toBe(0);expect(released).toHaveLength(3);
     });
+    it("retries a missing reopened source only after its availability changes", async () => {
+      const images = new Map<string, { naturalWidth: number; naturalHeight: number }>();
+      let available = false, calls = 0;
+      const cache = create(images, async () => { calls++; if (!available) throw new Error("Background page is missing"); return { naturalWidth: 10, naturalHeight: 10 }; }, () => {});
+      await expect(cache.select([frame("restored")])).rejects.toThrow("missing");
+      available = true;
+      await expect(cache.select([frame("restored")])).rejects.toThrow("missing");
+      expect(calls).toBe(1);
+      cache.refreshSources(); expect(calls).toBe(1);
+      await cache.select([frame("restored")]);
+      expect(calls).toBe(2); expect(images.has("restored")).toBe(true);
+      await cache.select([frame("restored")]); expect(calls).toBe(2); cache.dispose();
+    });
+    it("discards old pixels when sources change during a decode", async () => {
+      const images = new Map<string, { naturalWidth: number; naturalHeight: number; source: string }>(), released: string[] = [];
+      let finish!: (image: { naturalWidth: number; naturalHeight: number; source: string }) => void;
+      let calls = 0;
+      const cache = create(images, () => ++calls === 1 ? new Promise(resolve => { finish = resolve; }) : Promise.resolve({ naturalWidth: 10, naturalHeight: 10, source: "current" }), image => released.push(image.source));
+      const pending = cache.select([frame("same-id")]); cache.refreshSources();
+      finish({ naturalWidth: 10, naturalHeight: 10, source: "old" }); await pending;
+      expect(calls).toBe(2); expect(released).toEqual(["old"]); expect(images.get("same-id")?.source).toBe("current");
+      cache.refreshSources(); expect(images.size).toBe(0); expect(released).toEqual(["old", "current"]);
+      expect(calls).toBe(2); cache.dispose();
+    });
+    it("ignores an old source error after availability changes", async () => {
+      const images = new Map<string, { naturalWidth: number; naturalHeight: number }>();
+      let fail!: (reason: Error) => void, calls = 0;
+      const cache = create(images, () => ++calls === 1 ? new Promise((_resolve, reject) => { fail = reject; }) : Promise.resolve({ naturalWidth: 10, naturalHeight: 10 }), () => {});
+      const pending = cache.select([frame("same-id")]); cache.refreshSources(); fail(new Error("old missing source"));
+      await pending; expect(calls).toBe(2); expect(images.has("same-id")).toBe(true);
+      cache.dispose(); cache.refreshSources(); await expect(cache.select([frame("same-id")])).rejects.toThrow("closed"); expect(calls).toBe(2);
+    });
     it("handles a selection while an empty drain is finishing", async () => {
       const images=new Map<string,{naturalWidth:number;naturalHeight:number}>();
       const cache=create(images,async()=>({naturalWidth:10,naturalHeight:10}),()=>{});

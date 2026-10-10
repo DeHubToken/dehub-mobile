@@ -918,7 +918,7 @@ canvas{display:block;width:100%;height:100%;}
   __VIDEO_FRAME_RUNTIME__
   function seekVideo(v, t) {
     var job = videoJobId;
-    return waitForVideoFrame(v, t, { cancelled: function () { return exportAborted || job !== videoJobId; } });
+    return waitForVideoFrame(v, t, { forCanvasRead: true, cancelled: function () { return exportAborted || job !== videoJobId; } });
   }
   function decodeAudio(buf) {
     return new Promise(function (resolve) {
@@ -1685,7 +1685,10 @@ canvas{display:block;width:100%;height:100%;}
     } else if (m.type === "videoAck") {
       sendNextChunk(m.reqId);
     } else if (m.type === "matteMeta") {
-      if (allowedMatteImages.has(m.id)) matteMeta.set(m.id, { width: m.width, height: m.height });
+      if (allowedMatteImages.has(m.id)) {
+        matteMeta.set(m.id, { width: m.width, height: m.height });
+        mattePageCache.refreshSources(); schedule();
+      }
     } else if (m.type === "mattePage") {
       var request = matteRequests.get(m.reqId); if (!request) return;
       if (m.error || typeof m.src !== "string" || !m.src.startsWith("data:image/png;base64,") || m.src.length > 22 + 4 * Math.ceil(16 * 1024 * 1024 / 3)) { request.finish(new Error(m.error || "Invalid background page")); return; }
@@ -1694,6 +1697,7 @@ canvas{display:block;width:100%;height:100%;}
       image.onerror = function() { image.src = ""; request.finish(new Error("Background page could not be decoded")); };
       image.src = m.src;
     } else if (m.type === "mattePrune") {
+      mattePageCache.refreshSources();
       allowedMatteImages = new Set(m.ids || []);
       matteMeta.forEach(function(_, id) { if (!allowedMatteImages.has(id)) matteMeta.delete(id); });
       matteImages.forEach(function(id) { if (!allowedMatteImages.has(id)) { var image = images.get(id); if (image) image.src = ""; images.delete(id); matteImages.delete(id); } });

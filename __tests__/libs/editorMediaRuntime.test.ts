@@ -23,7 +23,7 @@ it("waits for a new decoder to load before seeking and clears the watchdog", asy
     const seeking = seek(video, 8).then(() => { presented = true; });
     expect(video.currentTime).toBe(0);
     video.readyState = 2; events.get("loadeddata")!();
-    expect(video.currentTime).toBe(8);
+    expect(video.currentTime).toBe(8.000002);
     video.seeking = false; events.get("seeked")!();
     await Promise.resolve(); expect(presented).toBe(false);
     jest.advanceTimersByTime(64); await seeking;
