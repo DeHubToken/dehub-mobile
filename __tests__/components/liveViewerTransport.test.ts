@@ -75,7 +75,8 @@ describe('live viewer transport handover', () => {
 
     // Starting HLS underneath a WebRTC attempt means the picture begins and
     // then restarts a second later when the session arrives.
-    expect(player).toContain('whepLive.pending ? (');
+    expect(player).toContain('whepLive.pending && !isPausedEffective ? (');
+    expect(player).toContain('suppressLoadingFeedback={isPausedEffective}');
     expect(hook).toContain('pending: !!endpoint && !media && !failed');
   });
 
