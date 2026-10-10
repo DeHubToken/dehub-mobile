@@ -7,6 +7,7 @@ export type StakeAttempt = {
   amount: string;
   amountHex: string;
   confirmed?: boolean;
+  submittedAt?: number;
 };
 
 export type StakeOutcome = 'confirmed' | 'reverted' | 'pending';
@@ -17,8 +18,8 @@ const addressTopic = (address: string) => `0x${address.slice(2).toLowerCase().pa
 /** Absence of a receipt or expected event is not evidence that money did not move. */
 export function classifyStakeReceipt(receipt: any, attempt: StakeAttempt): StakeOutcome {
   if (!receipt || receipt.transactionHash?.toLowerCase() !== attempt.hash.toLowerCase() || !receipt.blockHash) return 'pending';
-  if (receipt.status === '0x0' || receipt.status === 0) return 'reverted';
-  if (receipt.status !== '0x1' && receipt.status !== 1) return 'pending';
+  if (receipt.status === '0x0' || receipt.status === 0 || receipt.status === 'reverted') return 'reverted';
+  if (receipt.status !== '0x1' && receipt.status !== 1 && receipt.status !== 'success') return 'pending';
   if (!Array.isArray(receipt.logs)) return 'pending';
   const found = receipt.logs.some((log: any) =>
     !log.removed && log.address?.toLowerCase() === attempt.token.toLowerCase() &&
@@ -28,6 +29,32 @@ export function classifyStakeReceipt(receipt: any, attempt: StakeAttempt): Stake
     typeof log.data === 'string' && /^0x[0-9a-f]+$/i.test(log.data) &&
     hexValue(log.data) === hexValue(attempt.amountHex));
   return found ? 'confirmed' : 'pending';
+}
+
+/** Only use a replacement receipt returned by the wallet's nonce-aware waiter. */
+export function stakeFromReplacement(receipt: any, attempt: StakeAttempt): StakeAttempt | null {
+  if (!receipt?.blockHash || !/^0x[0-9a-f]{64}$/i.test(receipt.transactionHash ?? '')) return null;
+  if (!['0x1', 1, 'success'].includes(receipt.status) || !Array.isArray(receipt.logs)) return null;
+  const transfers = receipt.logs.filter((log: any) =>
+    !log.removed && log.address?.toLowerCase() === attempt.token.toLowerCase() &&
+    log.topics?.[0]?.toLowerCase() === TRANSFER &&
+    log.topics?.[1]?.toLowerCase() === addressTopic(attempt.wallet) &&
+    log.topics?.[2]?.toLowerCase() === addressTopic(attempt.pool) &&
+    typeof log.data === 'string' && /^0x[0-9a-f]+$/i.test(log.data));
+  if (transfers.length !== 1 || BigInt(transfers[0].data) <= BigInt(0)) return null;
+  const raw = BigInt(transfers[0].data).toString().padStart(19, '0');
+  const amount = `${raw.slice(0, -18)}.${raw.slice(-18)}`.replace(/\.?0+$/, '');
+  return { ...attempt, hash: receipt.transactionHash, amount, amountHex: transfers[0].data };
+}
+
+/** Refreshing history is bookkeeping; it cannot keep a mined transfer pending. */
+export async function refreshConfirmedStake(
+  refreshPosition: () => Promise<unknown>,
+  syncHistory: () => Promise<unknown>,
+  refreshBalances: () => Promise<unknown>,
+): Promise<void> {
+  await Promise.allSettled([refreshPosition(), syncHistory()]);
+  await refreshBalances();
 }
 
 export async function readStakeReceipt(url: string, hash: string): Promise<unknown> {

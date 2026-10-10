@@ -1,5 +1,4 @@
-
-import { classifyStakeReceipt, confirmStake, type StakeAttempt } from '../../libs/stake-confirmation';
+import { classifyStakeReceipt, confirmStake, refreshConfirmedStake, stakeFromReplacement, type StakeAttempt } from '../../libs/stake-confirmation';
 
 const attempt: StakeAttempt = {
   hash: `0x${'a'.repeat(64)}`, wallet: `0x${'1'.repeat(40)}`,
@@ -45,5 +44,33 @@ describe('stake confirmation', () => {
   it('leaves contradictory RPC receipts unresolved', async () => {
     expect(await confirmStake(attempt, [async () => receipt(), async () => ({ ...receipt(), status: '0x0' })])).toBe('pending');
   });
+  it('accepts the mined viem receipt without another network round trip', () => {
+    expect(classifyStakeReceipt({ ...receipt(), status: 'success' }, attempt)).toBe('confirmed');
+    expect(classifyStakeReceipt({ ...receipt(), status: 'reverted' }, attempt)).toBe('reverted');
+  });
+  it('reports the amount actually mined when the wallet replaces a deposit', () => {
+    const value = receipt();
+    value.transactionHash = `0x${'c'.repeat(64)}`;
+    value.logs[0].data = '0x22e1eb24578aa5375c80';
+    const replaced = stakeFromReplacement(value, { ...attempt, amount: '330000' });
+    expect(replaced).toMatchObject({ hash: value.transactionHash, amount: '164727.92159810365' });
+    expect(classifyStakeReceipt(value, replaced!)).toBe('confirmed');
+    expect(classifyStakeReceipt(value, attempt)).toBe('pending');
+  });
+  it('does not turn a wallet cancellation or unrelated transfer into a deposit', () => {
+    const value = receipt();
+    value.logs[0].topics[2] = `0x${'0'.repeat(24)}${attempt.wallet.slice(2)}`;
+    expect(stakeFromReplacement(value, attempt)).toBeNull();
+    expect(stakeFromReplacement({ ...receipt(), status: '0x0' }, attempt)).toBeNull();
+    expect(stakeFromReplacement({ ...receipt(), blockHash: null }, attempt)).toBeNull();
+  });
+  it('refreshes the balance even when deposit history is unavailable', async () => {
+    const calls: string[] = [];
+    await refreshConfirmedStake(
+      async () => { calls.push('position'); },
+      async () => { calls.push('history'); throw new Error('history offline'); },
+      async () => { calls.push('balances'); },
+    );
+    expect(calls).toEqual(['position', 'history', 'balances']);
+  });
 });
-

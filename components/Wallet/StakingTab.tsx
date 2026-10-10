@@ -23,7 +23,7 @@ import { refreshStakingPosition } from "../../services/staking.service";
 import { getAccount } from "../../services/user.service";
 import { dhbStaked } from "../../libs/dhb-position";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { confirmStake, readStakeReceipt, type StakeAttempt } from "../../libs/stake-confirmation";
+import { confirmStake, readStakeReceipt, refreshConfirmedStake, type StakeAttempt } from "../../libs/stake-confirmation";
 import { createLogger } from "../../libs/logger";
 import { legacyWalletAddresses } from "../../libs/legacy-wallet-addresses";
 const stakeLog = createLogger("Staking");
@@ -140,9 +140,12 @@ const StakingTab: React.FC = () => {
   const [pendingStake, setPendingStake] = useState<StakeAttempt | null>(null);
   const [pendingLoaded, setPendingLoaded] = useState(false);
   const checkingStake = useRef(false);
+  const reconcileTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => { clearTimeout(reconcileTimer.current); }, [walletAddress]);
   const receiptDiagnostics = useRef(new Set<string>());
   const sendingStake = useRef(false);
   const [walletBal, setWalletBal] = useState<number | null>(null);
+  const [walletBalExact, setWalletBalExact] = useState('0');
   const [protocolTotal, setProtocolTotal] = useState<number | null>(null);
   const [userStaked, setUserStaked] = useState<number>(0);
   /**
@@ -240,6 +243,7 @@ const StakingTab: React.FC = () => {
         ]);
 
       setWalletBal(parseFloat(ethers.utils.formatUnits(userWalletBal, 18)));
+      setWalletBalExact(ethers.utils.formatUnits(userWalletBal, 18));
       // A failed read keeps the last good figure rather than flashing a low one.
       if (totalStakedBal) {
         setProtocolTotal(parseFloat(ethers.utils.formatUnits(totalStakedBal, 18)));
@@ -338,41 +342,47 @@ const StakingTab: React.FC = () => {
     setEarlyConfirmed(false);
   }, [amount, mode]);
 
-  const checkPendingStake = async (attempt: StakeAttempt) => {
+  const clearPendingStake = async (attempt: StakeAttempt) => {
+    try {
+      const saved = JSON.parse(await AsyncStorage.getItem(pendingStakeKey(attempt.wallet)) || 'null');
+      if (saved?.hash === attempt.hash) await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet));
+    } catch {}
+    setPendingStake(previous => previous?.hash === attempt.hash ? null : previous);
+  };
+
+  const checkPendingStake = async (attempt: StakeAttempt, receipt?: unknown) => {
     if (checkingStake.current) return;
     checkingStake.current = true;
     try {
-      const outcome = await confirmStake(attempt, [BASE_RPC, 'https://base-rpc.publicnode.com'].map(url => () => readStakeReceipt(url, attempt.hash)), error => {
+      const urls = attempt.chainId === 56
+        ? [BNB_RPC, 'https://bsc-rpc.publicnode.com']
+        : [BASE_RPC, 'https://base-rpc.publicnode.com'];
+      const outcome = await confirmStake(attempt, receipt ? [async () => receipt] : urls.map(url => () => readStakeReceipt(url, attempt.hash)), error => {
         const diagnostic = `${attempt.hash}:${String(error)}`;
         if (receiptDiagnostics.current.has(diagnostic)) return;
         receiptDiagnostics.current.add(diagnostic);
         stakeLog.error('Receipt lookup unavailable', { hash: attempt.hash, chainId: attempt.chainId }, String(error));
       });
       if (outcome === 'pending') return;
+      await clearPendingStake(attempt);
+      recordStakeEvent('Stake outcome verified', attempt, outcome);
       if (outcome === 'confirmed') {
         if (!attempt.confirmed) {
-          attempt = { ...attempt, confirmed: true };
-          setPendingStake(previous => previous?.hash === attempt.hash ? attempt : previous);
-          try { await AsyncStorage.setItem(pendingStakeKey(attempt.wallet), JSON.stringify(attempt)); } catch {}
           toastSuccess(t("staking.stakeConfirmedOnBase", { amount: attempt.amount }));
         }
-        try {
-          const { error } = await supabase.functions.invoke('sync-staking-deposits', { body: { wallet: attempt.wallet } });
-          if (error) throw error;
-          const record = await supabase.from('staking_records').select('tx_hash').eq('tx_hash', attempt.hash).maybeSingle();
-          if (record.error || !record.data) return;
-        } catch (error) { stakeLog.error('Confirmed stake record pending sync', { hash: attempt.hash }, String(error)); return; }
-        // Awaited: the card now reads its staked figure from the API, so
-        // re-reading before the backend has credited the transfer would just
-        // show the old number again.
-        await refreshStakingPosition(attempt.wallet);
-        void fetchData();
+        void refreshConfirmedStake(
+          () => refreshStakingPosition(attempt.wallet),
+          async () => { await supabase.functions.invoke('sync-staking-deposits', { body: { wallet: attempt.wallet } }); },
+          fetchData,
+        ).catch(error => { stakeLog.error('Stake balance refresh unavailable', { hash: attempt.hash }, String(error)); });
+        // One reconciliation after the shared ledger's 25-block window.
+        clearTimeout(reconcileTimer.current);
+        reconcileTimer.current = setTimeout(() => {
+          void refreshStakingPosition(attempt.wallet).then(fetchData);
+        }, 60_000);
       } else {
         toastError(t("staking.stakeReverted"));
       }
-      recordStakeEvent('Stake outcome verified', attempt, outcome);
-      try { await AsyncStorage.removeItem(pendingStakeKey(attempt.wallet)); } catch {}
-      setPendingStake(previous => previous?.hash === attempt.hash ? null : previous);
     } finally { checkingStake.current = false; }
   };
 
@@ -392,14 +402,14 @@ const StakingTab: React.FC = () => {
   const pendingStakeIsOurs =
     !!pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase();
   useEffect(() => {
-    if (!pendingStakeIsOurs || !pendingStake) return;
+    if (isBusy || !pendingStakeIsOurs || !pendingStake) return;
     void checkPendingStake(pendingStake);
-  }, [pendingStake, pendingStakeIsOurs]);
+  }, [pendingStake, pendingStakeIsOurs, isBusy]);
   // An on-chain read every 15s, but only while the wallet is the screen being
   // looked at — not for as long as it sits in the stack under Home.
   useFocusedInterval(
-    () => { if (pendingStake) void checkPendingStake(pendingStake); },
-    pendingStakeIsOurs ? 15_000 : null,
+    () => { if (pendingStake && !isBusy) void checkPendingStake(pendingStake); },
+    pendingStakeIsOurs && !isBusy ? 15_000 : null,
     { catchUp: true },
   );
 
@@ -440,6 +450,12 @@ const StakingTab: React.FC = () => {
 
       const iface = new ethers.utils.Interface(ERC20_ABI);
       const amountWei = ethers.utils.parseUnits(amount, 18);
+      const readProvider = new ethers.providers.JsonRpcProvider(BASE_RPC);
+      const balance = await new ethers.Contract(DHB_BASE, ERC20_ABI, readProvider).balanceOf(walletAddress);
+      if (amountWei.gt(balance)) {
+        toastError(t("staking.insufficientOnBase"));
+        return;
+      }
       const data = iface.encodeFunctionData("transfer", [STAKING_ADDRESS, amountWei]);
 
       const txHash = await sendProvider.request({
@@ -450,13 +466,19 @@ const StakingTab: React.FC = () => {
       const attempt: StakeAttempt = {
         hash: txHash, wallet: walletAddress, chainId: targetChainId, token: DHB_BASE,
         pool: STAKING_ADDRESS, amount, amountHex: amountWei.toHexString(),
+        submittedAt: Date.now(),
       };
       setPendingStake(attempt);
       setAmount.complete(amount, '');
       try { await AsyncStorage.setItem(pendingStakeKey(walletAddress), JSON.stringify(attempt)); }
       catch (error) { stakeLog.error('Pending stake storage unavailable', { hash: txHash }, String(error)); }
       recordStakeEvent('Stake submitted; awaiting receipt', attempt);
-      toastInfo(t("staking.stakeSubmitted"));
+      try {
+        const receipt = await readProvider.waitForTransaction(txHash, 1, 15_000);
+        await checkPendingStake(attempt, receipt);
+      } catch {
+        // Keep the saved hash for read-only recovery; never send the transfer twice.
+      }
     } catch (err: any) {
       stakeLog.error('Stake request unresolved', { wallet: walletAddress }, err);
       const msg = String(err?.message || err).toLowerCase();
@@ -603,7 +625,7 @@ const StakingTab: React.FC = () => {
 
   return (
     <View className="flex-1">
-      {pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase() && (
+      {!isBusy && pendingStake && pendingStake.wallet.toLowerCase() === walletAddress?.toLowerCase() && (
         <View accessibilityRole="summary" className="mb-4 rounded-xl border border-white/20 p-3" style={mRow}>
           <Text className="text-white">{pendingStake.confirmed
             ? t("staking.pendingConfirmed", { amount: pendingStake.amount })
@@ -613,6 +635,13 @@ const StakingTab: React.FC = () => {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { void checkPendingStake(pendingStake); }}>
             <Text className="text-white underline mt-2">{t("staking.checkAgain")}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            recordStakeEvent('Stake tracking dismissed by user', pendingStake);
+            void clearPendingStake(pendingStake);
+            void refreshStakingPosition(pendingStake.wallet).then(fetchData);
+          }}>
+            <Text className="text-white underline mt-2">{t("common.close")}</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -719,7 +748,7 @@ const StakingTab: React.FC = () => {
             style={FIELD_TEXT}
           />
           <TouchableOpacity
-            onPress={() => setAmount(String(max))}
+            onPress={() => setAmount(mode === 'stake' ? walletBalExact : String(max))}
             className="px-2 py-3 -mr-1"
             hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }}
           >
