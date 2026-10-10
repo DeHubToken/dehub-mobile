@@ -7,8 +7,7 @@ import { EditorRange } from "../../components/editor/EditorRange";
 import { EditorControlGestureContext } from "../../components/editor/EditorControlGesture";
 jest.mock("react-native-css-interop",()=>({createInteropElement:require("react").createElement}));
 jest.mock("@react-native-community/slider",()=>{
-  const React=require("react"),{View}=require("react-native");
-  return function SliderBridge(props:unknown){return React.createElement(View,{...(props as object),testID:"control-slider"});};
+  return function SliderBridge(props:unknown){return require("react").createElement(require("react-native").View,{...(props as object),testID:"control-slider"});};
 });
 const fixture=():ProjectSnapshot=>({id:"device-project",title:"Film",updatedAt:1,settings:{width:1920,height:1080,fps:30,aspectPreset:"16:9",background:"#000000"},
   tracks:[{id:"v",kind:"video",name:"Video",muted:false,hidden:false}],clips:[{id:"a",kind:"video",trackId:"v",mediaId:"device-video",start:0,trimIn:0,duration:10,sourceDuration:20},
