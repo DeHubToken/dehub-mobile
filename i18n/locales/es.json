@@ -7425,6 +7425,13 @@
       "received": "Versión {{revision}} recibida.",
       "upToDate": "Ya está actualizado.",
       "protectedUndo": "Algunas ediciones locales anteriores coinciden con cambios compartidos. Deshacer conservará los cambios compartidos."
+    },
+    "assembly": {
+      "matchConsent": "Elegir clips y fotos que coincidan con mi petición",
+      "matchScenes": "Encontrar escenas relacionadas",
+      "noMatch": "No se encontraron escenas relacionadas. Prueba otro tema o selección.",
+      "matchLimit": "Elige hasta 10 clips o fotos. Los vídeos deben durar entre un segundo y 10 minutos.",
+      "matchDuration": "Las escenas relacionadas son más cortas que el vídeo solicitado. Reduce la duración o elige más contenido."
     }
   },
   "creator": {

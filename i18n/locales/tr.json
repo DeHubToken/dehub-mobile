@@ -6915,24 +6915,24 @@
       "hint": "Klipleri 10 dakikaya kadar işleyin. Gürültü azaltma, sabit arka plan gürültüsü ile en iyi sonucu verir."
     },
     "pages": {
-    "add":  "Sayfa ekle",
-    "duplicate":  "Sayfayı çoğalt",
-    "delete":  "Sayfayı sil",
-    "page":  "Sayfa {{number}}",
-    "position":  "Sayfa {{current}} / {{total}}",
-    "label":  "Sayfalar",
-    "allZip":  "Tüm {{count}} sayfa (ZIP)",
-    "thisPage":  "Yalnızca bu sayfa",
-    "exporting":  "Sayfa {{current}} / {{total}} işleniyor…"
-},
+      "add": "Sayfa ekle",
+      "duplicate": "Sayfayı çoğalt",
+      "delete": "Sayfayı sil",
+      "page": "Sayfa {{number}}",
+      "position": "Sayfa {{current}} / {{total}}",
+      "label": "Sayfalar",
+      "allZip": "Tüm {{count}} sayfa (ZIP)",
+      "thisPage": "Yalnızca bu sayfa",
+      "exporting": "Sayfa {{current}} / {{total}} işleniyor…"
+    },
     "captions": {
-        "action":  "Otomatik altyazı",
-        "working":  "Dinleniyor… %{{percent}}",
-        "downloading":  "Konuşma modeli hazırlanıyor… %{{percent}}",
-        "hint":  "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
-        "done":  "{{count}} altyazı eklendi.",
-        "noSpeech":  "Bu klipte konuşma bulunamadı.",
-        "failed":  "Bu klip için altyazı oluşturulamadı."
+      "action": "Otomatik altyazı",
+      "working": "Dinleniyor… %{{percent}}",
+      "downloading": "Konuşma modeli hazırlanıyor… %{{percent}}",
+      "hint": "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
+      "done": "{{count}} altyazı eklendi.",
+      "noSpeech": "Bu klipte konuşma bulunamadı.",
+      "failed": "Bu klip için altyazı oluşturulamadı."
     },
     "app": {
       "newDesign": "Yeni tasarım",
@@ -7322,6 +7322,13 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "assembly": {
+      "matchConsent": "Klipleri ve fotoğrafları isteğime göre seç",
+      "matchScenes": "İlgili sahneleri bul",
+      "noMatch": "İlgili sahne bulunamadı. Başka bir konu veya seçim deneyin.",
+      "matchLimit": "En fazla 10 klip veya fotoğraf seçin. Videolar bir saniye ile 10 dakika arasında olmalıdır.",
+      "matchDuration": "İlgili görüntüler istenen videodan daha kısa. Süreyi kısaltın veya daha fazla medya seçin."
     }
   },
   "creator": {

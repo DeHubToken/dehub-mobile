@@ -85,6 +85,7 @@ import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
 import { createAssemblyEdit } from "../libs/editor/applyAssembly";
 import { useAssembly } from "../libs/editor/useAssembly";
+import { findAssemblyScenes } from "../libs/editor/assemblyScenes";
 import type { AssemblyAsset } from "../libs/editor/assemblyLibrary";
 import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
 import type { GenerationDraft } from "../libs/editor/generationDraft";
@@ -409,7 +410,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const assemblyPreparation = useRef<AbortController | null>(null);
   useEffect(() => () => assemblyPreparation.current?.abort(), []);
   useEffect(() => { assemblyPreparation.current?.abort(); setLibraryPreview(null); }, [project?.id]);
-  const [assemblyState, assembly] = useAssembly({ current: h.latest, library: listMedia, create: (original, plan, signal, library) => createAssembly(original, plan, signal, library) });
+  const [assemblyState, assembly] = useAssembly({ current: h.latest, library: listMedia,
+    match: (clips, focus, signal, progress) => findAssemblyScenes(clips, focus, { optIn: true }, (clip, windows, abort, sampled) => {
+      setPlaying(false);
+      if (!canvasRef.current) return Promise.reject(new Error("canvas unavailable"));
+      return canvasRef.current.sampleVisual(clip, windows, abort, sampled);
+    }, analyseVisualHighlights, signal, progress),
+    create: (original, plan, signal, library) => createAssembly(original, plan, signal, library) });
   const assemblySourceChanged = assemblyState.sourceId !== null && !assembly.matchesSource(project);
   useEffect(() => { if (assemblySourceChanged || !assemblyState.sourceId) setLibraryPreview(null); }, [assemblySourceChanged, assemblyState.sourceId]);
   const highlightSourceChanged = highlightChatState.clipId !== null && !highlightChat.matchesSource(project);
