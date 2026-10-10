@@ -1,3 +1,6 @@
+import { withCloudProjectTransfer } from "./cloudProjectTransfer";
+import { cloudDraftOutbox, parseCloudDraftOutbox, type CloudDraftOutboxState } from "./cloudProjectDraftOutbox";
+import type { cloudProjectDraftApi } from "./cloudProjectDraft";
 import { projectMediaProjection } from "./projectMediaProjection";
 import { mergeLocalProjectEdits } from "./projectHistory";
 import { videoMatteMediaIds } from "./videoMatte";
@@ -10,17 +13,20 @@ import { mergeCloudProjectEdits, sameCloudProjectEdit } from "./cloudProjectMerg
 export interface CloudProjectLink extends CloudProjectBinding {
   media: Record<string, CloudProjectMedia>;
   sharedOwner?: string;
+  liveDraft?: CloudDraftOutboxState;
   pending?: { requestId: string; document: CloudProjectDocument; expectedRevision: number; originalDocument?: CloudProjectDocument; mergedLocalIds?: string[] };
 }
 export interface CloudProjectSaveResult extends CloudProjectSaved { mergedSnapshot?: ProjectSnapshot; mergedDocument?: CloudProjectDocument }
 export interface CloudProjectSessionDeps {
   wallet: string;
   uuid(): string;
+  now?(): number;
   check(): void;
   api: {
     save(id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved>;
     load(id: string, revision?: number): Promise<CloudProjectVersion>;
     restore(id: string, revision: number, head: number, requestId: string): Promise<CloudProjectSaved>;
+    drafts?: ReturnType<typeof cloudProjectDraftApi>;
     editing?: { load(owner: string, id: string): Promise<CloudProjectVersion>; save(owner: string, id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved> };
     review?: { load(owner: string, id: string, revision?: number): Promise<CloudProjectVersion> };
   };
@@ -41,16 +47,45 @@ export function cloudProjectMediaIds(snapshot: ProjectSnapshot): string[] {
   return [...ids];
 }
 
-const cloudSessionLocks = new Set<string>();
-
 /** Local drafts survive failures. A lost save response is retried with the same nonce. */
 export function cloudProjectSession(deps: CloudProjectSessionDeps) {
   const { wallet, check } = deps;
-  let busy = false;
-  async function exclusive<T>(run: () => Promise<T>): Promise<T> {
-    if (busy || cloudSessionLocks.has(wallet)) throw new Error("A cloud project operation is already running");
-    check(); busy = true; cloudSessionLocks.add(wallet);
-    try { return await run(); } finally { busy = false; cloudSessionLocks.delete(wallet); }
+  const exclusive = <T,>(run: () => Promise<T>) => withCloudProjectTransfer(wallet, check, run);
+  function rejectPendingDraft(localId: string, link: CloudProjectLink) {
+    const draft = parseCloudDraftOutbox(link.liveDraft, { wallet, owner: link.sharedOwner || wallet, projectId: link.projectId, localId });
+    if (draft?.pending) throw new CloudProjectConflict("Recover the pending live edit before transferring a saved version. Your local draft was kept.");
+  }
+  async function liveDraft(localId: string) {
+    check(); const original = await deps.readLink(localId); check();
+    if (!original || original.wallet !== wallet || original.revision < 1) throw new Error("Save this project to cloud before joining live sharing.");
+    if (!deps.api.drafts) throw new Error("Live project sharing is unavailable");
+    const api = deps.api.drafts, owner = original.sharedOwner || wallet;
+    async function currentLink() {
+      check(); const link = await deps.readLink(localId); check();
+      if (!link || link.wallet !== wallet || link.projectId !== original!.projectId
+        || (link.sharedOwner || wallet) !== owner || link.revision !== original!.revision) throw new Error("Shared project changed during transfer");
+      if (link.pending) throw new CloudProjectConflict("Finish the pending cloud save before sending live edits. Your local draft was kept.");
+      return link;
+    }
+    return cloudDraftOutbox({ scope: { wallet, owner, projectId: original.projectId, localId }, check, uuid: deps.uuid,
+      now: deps.now || Date.now,
+      read: async () => {
+        const link = await currentLink();
+        const state = parseCloudDraftOutbox(link.liveDraft, { wallet, owner, projectId: link.projectId, localId });
+        if (state?.writer && !state.pending && state.writer.checkpoint.headRevision !== link.revision)
+          throw new CloudProjectConflict("Receive the latest saved version before sending live edits. Your local draft was kept.");
+        return state;
+      },
+      write: async state => { const link = await currentLink(); await deps.writeLink(localId, { ...link, liveDraft: state }); check(); },
+      api: {
+        open: (sourceOwner, projectId, clientId) => api.open(sourceOwner, projectId, clientId),
+        save: async (sourceOwner, projectId, request) => {
+          const link = await currentLink();
+          if (request.anchorRevision !== link.revision) throw new CloudProjectConflict("Receive the latest saved version before sending live edits. Your local draft was kept.");
+          return api.save(sourceOwner, projectId, request);
+        },
+      },
+    });
   }
   function requireEditing() {
     if (!deps.api.editing) throw new Error("Shared project editing is unavailable");
@@ -96,7 +131,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       delete link.pending; await deps.writeLink(localId, link); check();
       return { ...saved, mergedSnapshot: copy.snapshot, mergedDocument: pending.document };
     }
-    link.revision = saved.revision; delete link.pending;
+    link.revision = saved.revision; delete link.pending; delete link.liveDraft;
     await deps.writeLink(localId, link); check();
     return saved;
   }
@@ -109,6 +144,16 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     check(); return copy;
   }
   return {
+    async registerLiveDraft(localId: string) { return (await liveDraft(localId)).register(); },
+    async recoverLiveDraft(localId: string) { return (await liveDraft(localId)).recover(); },
+    sendLiveDraft(localId: string, document: CloudProjectDocument) {
+      // Capture before reading device storage, so later edits cannot alter the request.
+      const captured = JSON.parse(JSON.stringify(document, (_key, value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        return value;
+      })) as CloudProjectDocument;
+      return liveDraft(localId).then(outbox => outbox.stage(captured));
+    },
     save(snapshot: ProjectSnapshot, separateCopy = false): Promise<CloudProjectSaveResult> {
       // Capture before awaiting: edits made during transfer stay in the editor.
       const captured = JSON.parse(JSON.stringify(snapshot, (_key, value) => {
@@ -119,6 +164,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         await deps.saveLocal(captured); check();
         const previous = await deps.readLink(captured.id); check();
         const owned = previous?.wallet === wallet ? previous : null;
+        if (owned) rejectPendingDraft(captured.id, owned);
         const link: CloudProjectLink = owned && !separateCopy ? owned : { wallet, projectId: deps.uuid(), revision: 0, media: owned?.sharedOwner ? {} : { ...owned?.media } };
         const pending = link.pending;
         const recovered = await finishPending(captured.id, link);
@@ -156,6 +202,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const link = await deps.readLink(captured.id); verify();
         if (!link || link.wallet !== wallet || link.revision < 1) throw new Error("Save this project to cloud before receiving shared changes.");
         if (link.pending) throw new CloudProjectConflict("Finish the pending cloud save before receiving shared changes. Your local draft was kept.");
+        rejectPendingDraft(captured.id, link);
         const sourceOwner = link.sharedOwner || wallet;
         const latest = link.sharedOwner ? await requireEditing().load(sourceOwner,link.projectId) : await deps.api.load(link.projectId); verify();
         if (latest.projectId !== link.projectId || latest.document.snapshot.id !== link.projectId) throw new Error("Shared project changed during transfer");
@@ -174,7 +221,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         link.media = incoming.bindings; await deps.writeLink(captured.id,link); verify();
         accept(merged.snapshot); verify();
         await deps.saveLocal(merged.snapshot); verify();
-        link.revision = latest.revision; await deps.writeLink(captured.id,link); verify();
+        link.revision = latest.revision; delete link.liveDraft; await deps.writeLink(captured.id,link); verify();
         return { changed: true, revision: latest.revision };
       });
     },
