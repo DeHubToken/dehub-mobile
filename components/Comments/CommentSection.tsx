@@ -1,4 +1,4 @@
-import { accountDraftKey, useDraftState } from '../../hooks/useDraftState';
+import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
@@ -25,6 +25,7 @@ import type { CommentLayout } from "./CommentContextMenu";
 import CommentMediaPreview from "./CommentMediaPreview";
 import type { MediaAttachment } from "./CommentMediaPreview";
 import {
+  commentDraftKey,
   loadCommentDraft,
   saveCommentDraft,
   clearCommentDraft,
@@ -218,7 +219,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Input state. Whatever was left unsent last time comes back with it — the
   // text and the reply it was aimed at — read once so the two can't disagree.
-  const commentDraftScope = accountDraftKey(user?.walletAddress || user?.address, `comments:${tokenId}`) ?? '';
+  const commentDraftScope = commentDraftKey(user?.walletAddress || user?.address, tokenId);
   const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
   const { isMinimal } = useAppTheme();
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
