@@ -539,7 +539,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   <TouchableOpacity
                     accessibilityRole="button"
                     accessibilityLabel={`${t("nav.wallet")} ${dhbBalance.toLocaleString()}`}
-                    onPress={() => navigate(ScreenNames.Dpay, { initialTab: "buy" })}
+                    onPress={() => navigate(ScreenNames.Dpay, { initialTab: "wallet" })}
                     activeOpacity={0.7}
                     style={[styles.balanceChip, square && styles.square]}
                   >

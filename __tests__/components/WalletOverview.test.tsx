@@ -12,14 +12,14 @@ jest.mock('../../components/ui/ChromeSurface', () => 'ChromeSurface');
 jest.mock('../../components/ui/GlassModal', () => ({ visible, children }: any) => visible ? children : null);
 jest.mock('../../components/page/PageKit', () => ({
   PageSection: ({ children }: any) => children,
-  KitButton: ({ label, onPress }: any) => React.createElement('Pressable', { accessibilityLabel: label, onPress }),
+  KitButton: ({ label, onPress }: any) => require('react').createElement('Pressable', { accessibilityLabel: label, onPress }),
   PageTabs: () => null,
 }));
 jest.mock('../../components/Feed/DeHubRefreshControl', () => ({ DeHubRefreshControl: 'RefreshControl' }));
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ ownBadgeBalance: 100, balanceData: [] }) }));
 jest.mock('../../hooks/useSubscriptionCredits', () => ({ useSubscriptionCredits: () => ({ data: null }) }));
 jest.mock('../../hooks/useDexSigner', () => ({ useDexSigner: () => jest.fn() }));
-jest.mock('../../hooks/useSurfaceDraft', () => ({ useSurfaceDraft: (_key: string, initial: string) => React.useState(initial) }));
+jest.mock('../../hooks/useSurfaceDraft', () => ({ useSurfaceDraft: (_key: string, initial: string) => require('react').useState(initial) }));
 jest.mock('../../libs/aa.write', () => ({ writeContractAA: jest.fn() }));
 jest.mock('../../libs/clipboard.utils', () => ({ copyToClipboard: jest.fn() }));
 jest.mock('../../libs/toast', () => ({ toastInfo: jest.fn(), toastSuccess: jest.fn() }));
