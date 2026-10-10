@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import SkeletonBlock from "../Feed/SkeletonBlock";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -219,23 +220,23 @@ const GridSkeleton: React.FC = () => {
       {[0, 1].map((p) => (
         <React.Fragment key={p}>
           <View style={styles.patternRow}>
-            <View style={[cell, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <SkeletonBlock style={[cell, { width: BIG_SIZE, height: BIG_SIZE, borderRadius: 0 }]} />
             <View style={styles.stackedColumn}>
-              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
+              <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
             </View>
           </View>
           <View style={styles.patternRow}>
             <View style={styles.stackedColumn}>
-              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-              <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
+              <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
             </View>
-            <View style={[cell, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <SkeletonBlock style={[cell, { width: BIG_SIZE, height: BIG_SIZE, borderRadius: 0 }]} />
           </View>
           <View style={styles.equalRow}>
-            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
+            <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
+            <SkeletonBlock style={[cell, { width: SMALL_SIZE, height: SMALL_SIZE, borderRadius: 0 }]} />
           </View>
         </React.Fragment>
       ))}
@@ -539,7 +540,6 @@ const styles = StyleSheet.create({
   },
   skeletonItem: {
     borderRadius: 12,
-    backgroundColor: "#262626",
   },
   minimalSkeletonItem: {
     backgroundColor: MINIMAL_PLACEHOLDER_BG,
