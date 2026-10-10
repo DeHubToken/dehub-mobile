@@ -607,7 +607,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // stream's own `totalViews` counts JOINS — one viewer whose connection drops
   // and returns three times makes it 3. See libs/viewers.util. So the row was
   // printing the peak under "watching now" and a reconnect tally under "Peak".
-  const { peakViewers: peakAudience } = seedViewerStats(stream);
+  const [observedPeak, setObservedPeak] = useKeyedState(postKey, 0);
+  const peakAudience = Math.max(seedViewerStats(stream).peakViewers, observedPeak);
+  const onLiveViewerCount = useCallback((count: number) => setObservedPeak(peak => Math.max(peak, count)), [setObservedPeak]);
   const liveLikes = stream?.likes || item.likes || 0;
 
   // --- Access info (for navigation) ---
@@ -1626,6 +1628,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           streamStatus={status}
           isOwner={isOwnerPost}
           paused={livePaused}
+          onViewerCount={onLiveViewerCount}
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}
