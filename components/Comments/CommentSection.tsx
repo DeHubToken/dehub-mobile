@@ -1619,7 +1619,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
                 </Pressable>
               </View>
-              </View>
             ) : (
               <View className="flex-1 items-center justify-center py-16">
                 <Text style={{ color: "#8B8D90", fontSize: 14 }}>
@@ -1898,6 +1897,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Icon name="Send" size={18} color={inputText.trim() ? "#010305" : "#6F7174"} />
                 )}
               </Pressable>
+              </View>
               </View>
             ) : (
               <View key="attachment-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
