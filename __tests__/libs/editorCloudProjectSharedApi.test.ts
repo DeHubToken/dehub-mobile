@@ -32,3 +32,24 @@ it("surfaces conflicts and stops reservation failures before signed upload",asyn
 it("rejects an invalid owner before contacting the shared save service",()=>{
   expect(()=>cloudProjectApi(actor).editing.save("someone",id,document,1,source)).toThrow("valid DeHub wallet");expect(mockRpc).not.toHaveBeenCalled();
 });
+
+it("sends saved and mutable draft baselines through the guarded save route",async()=>{
+  mockRpc.mockResolvedValue({data:{projectId:id,revision:2,savedAt:"2026-10-10"},error:null});
+  await cloudProjectApi(actor).checkpointSave(" "+owner.toUpperCase()+" ",id,document,1,7,source);
+  expect(mockRpc).toHaveBeenCalledWith("editor_cloud_checkpoint_save",{p_owner:owner,p_id:id,p_document:document,p_expected_revision:1,p_expected_draft_revision:7,p_request_id:source});
+});
+it("rejects invalid counters before attempting a guarded save",()=>{
+  for(const [saved,draft] of [[0,0],[1,-1],[1,0.5],[2147483646,0],[1,2147483646]])
+    expect(()=>cloudProjectApi(actor).checkpointSave(owner,id,document,saved,draft,source)).toThrow("Invalid saved or live draft baseline");
+  expect(mockRpc).not.toHaveBeenCalled();
+});
+it("validates private source ownership before a guarded save",()=>{
+  const invalid={...document,media:[{...document.media[0],storagePath:`${actor}/${source}/source.mp4`}]};
+  expect(()=>cloudProjectApi(actor).checkpointSave(owner,id,invalid,1,0,source)).toThrow("Invalid or incomplete");expect(mockRpc).not.toHaveBeenCalled();
+});
+it("returns a guarded conflict promptly and preserves permission errors",async()=>{
+  mockRpc.mockResolvedValue({data:null,error:{code:"PT409",message:"Newer live edits"}});
+  await expect(cloudProjectApi(actor).checkpointSave(owner,id,document,1,0,source)).rejects.toBeInstanceOf(CloudProjectConflict);
+  mockRpc.mockResolvedValue({data:null,error:{code:"42501",message:"Editing access revoked"}});
+  await expect(cloudProjectApi(actor).checkpointSave(owner,id,document,1,0,source)).rejects.toThrow("Editing access revoked");
+});
