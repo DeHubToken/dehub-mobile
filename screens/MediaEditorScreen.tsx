@@ -1,3 +1,4 @@
+import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -1495,6 +1496,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           fontCss={fontCss}
           selectedId={selectedId}
           onSelect={(id) => { setPlaying(false); select(id); }}
+          onGestureStart={() => h.holdEdits(projectReviewSnapshotKey(project))}
           onLiveChange={h.live}
           onGestureEnd={h.settle}
           recording={recording}
@@ -1552,6 +1554,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
       {showTimeline && (
         <Timeline
+            onGestureStart={() => h.holdEdits(projectReviewSnapshotKey(project))}
+            onGestureEnd={() => { h.settle(); dragBase.current = null; }}
           project={project}
           time={Math.min(time, duration)}
           playing={playing}

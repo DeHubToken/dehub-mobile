@@ -1,3 +1,4 @@
+import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 /**
  * The editor page: a WebView that draws the design (see libs/editor/canvasHtml)
  * under a touch layer that selects, drags, pinches and rotates layers.
@@ -77,7 +78,9 @@ interface Props {
   onSelect: (id: string | null) => void;
   /** Called on every gesture frame; not an undo step. */
   onLiveChange: (next: ProjectSnapshot) => void;
-  /** Called once when a gesture that changed something finishes. */
+  /** Own the baseline before the first gesture frame. */
+  onGestureStart?: () => ProjectEditLease | null;
+  /** Called once when a started gesture finishes, including a return to its origin. */
   onGestureEnd: () => void;
   onEditText: (id: string) => void;
   onMissingMedia?: (ids: string[]) => void;
@@ -128,6 +131,8 @@ function normaliseDeg(d: number): number {
 }
 
 interface Drag {
+  lease: ProjectEditLease | null;
+  finish: () => void;
   before: ProjectSnapshot;
   clipId: string;
   box: LayerBox | null;
@@ -186,6 +191,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const live = useRef({ props, layers, k });
   live.current = { props, layers, k };
   const drag = useRef<Drag | null>(null);
+  const strokeLease = useRef<ProjectEditLease | null>(null);
+  const strokeOwner = useRef<string | null>(null);
+  useEffect(() => () => {
+    const previous = drag.current; drag.current = null;
+    try { if (previous && (!previous.lease || previous.lease.isCurrent())) previous.finish(); } finally { previous?.lease?.release(); }
+    strokeRef.current = null; strokeLease.current?.release(); strokeLease.current = null;
+  }, [project.id]);
 
   const post = useCallback((msg: unknown) => {
     webRef.current?.postMessage(JSON.stringify(msg));
@@ -702,8 +714,11 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const boxOf = (id: string | null) => live.current.layers.find((l) => l.id === id) ?? null;
 
   const beginDrag = (clipId: string) => {
-    if (drag.current) { drag.current.active += 1; return; }
+    if (drag.current) { drag.current.active += 1; return true; }
+    const callback = live.current.props.onGestureStart, lease = callback?.() ?? null;
+    if (callback && !lease) return false;
     drag.current = {
+      lease, finish: live.current.props.onGestureEnd,
       before: live.current.props.project,
       clipId,
       box: boxOf(clipId),
@@ -713,12 +728,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       rotation: 0,
       active: 1,
     };
+    return true;
   };
 
   const applyDrag = () => {
     const d = drag.current;
     const scaleK = live.current.k;
-    if (!d || !scaleK) return;
+    if (!d || !scaleK || (d.lease && !d.lease.isCurrent()) || d.before.id !== live.current.props.project.id) return;
     const base = getClip(d.before, d.clipId);
     if (!base) return;
     const { width: PW, height: PH } = d.before.settings;
@@ -762,7 +778,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (d.active > 0) return;
     drag.current = null;
     setGuides({ v: false, h: false });
-    if (d.dx || d.dy || d.scale !== 1 || d.rotation) live.current.props.onGestureEnd();
+    try { if (!d.lease || d.lease.isCurrent()) d.finish(); } finally { d.lease?.release(); }
   };
 
   const gesture = useMemo(() => {
@@ -770,8 +786,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const joined = { pan: false, pinch: false, rotate: false };
     const join = (g: keyof typeof joined, id: string | null) => {
       if (!id || joined[g]) return;
-      joined[g] = true;
-      beginDrag(id);
+      if (beginDrag(id)) joined[g] = true;
     };
     const leave = (g: keyof typeof joined) => {
       if (!joined[g]) return;
@@ -785,6 +800,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .onStart((e) => {
         const { props: p } = live.current;
         if (p.pen) {
+          const lease = p.onGestureStart?.() ?? null;
+          if (p.onGestureStart && !lease) return;
+          strokeLease.current = lease; strokeOwner.current = p.project.id;
           const kk = live.current.k || 1;
           strokeRef.current = [[(e.x - e.translationX) / kk, (e.y - e.translationY) / kk], [e.x / kk, e.y / kk]];
           setStroke(strokeRef.current);
@@ -804,6 +822,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       })
       .onUpdate((e) => {
         if (strokeRef.current) {
+          if ((strokeLease.current && !strokeLease.current.isCurrent()) || strokeOwner.current !== live.current.props.project.id) return;
           const kk = live.current.k || 1;
           const pt: [number, number] = [e.x / kk, e.y / kk];
           const last = strokeRef.current[strokeRef.current.length - 1];
@@ -824,7 +843,10 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           const pts = strokeRef.current;
           strokeRef.current = null;
           setStroke(null);
-          live.current.props.onStroke?.(pts);
+          const lease = strokeLease.current; strokeLease.current = null;
+          try {
+            if ((!lease || lease.isCurrent()) && strokeOwner.current === live.current.props.project.id) live.current.props.onStroke?.(pts);
+          } finally { lease?.release(); }
           return;
         }
         leave("pan");

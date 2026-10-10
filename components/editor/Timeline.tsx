@@ -1,3 +1,4 @@
+import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 /**
  * The phone timeline: every layer, video and sound as a block in time, under
  * a fixed playhead in the middle. Drag the strip to scrub, pinch to zoom, tap
@@ -9,7 +10,7 @@
  * It only reports what the finger did; the screen turns that into project
  * changes with libs/editor/timeline.ts, as live changes until the finger lifts.
  */
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from "react-native";
 import { Image } from "expo-image";
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
@@ -47,6 +48,8 @@ interface Props {
   /** The finger moved the playhead. */
   onScrub: (time: number) => void;
   onSelect: (id: string | null) => void;
+  onGestureStart?: () => ProjectEditLease | null;
+  onGestureEnd?: () => void;
   onTrim: (id: string, edge: "in" | "out", delta: number, phase: "live" | "end") => void;
   onMove: (id: string, start: number, phase: "live" | "end") => void;
   onTransition: (clipId: string) => void;
@@ -164,11 +167,13 @@ export default function Timeline(props: Props) {
               label={(c) => clipLabel(c, t)}
               onSelect={props.onSelect}
               beats={beats}
+              onGestureStart={props.onGestureStart}
+              onGestureEnd={props.onGestureEnd}
               onTrim={props.onTrim}
               onMove={(id,start,phase) => props.onMove(id,snapToBeat(start,timelineBeatTimes(project.clips.filter(c => c.id !== id),project.tracks),8/pps),phase)}
               onTransition={props.onTransition}
               onToggleMute={props.onToggleMute}
-              keys={{ onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, onOpen: props.onKeyOpen, label: t("editor.motion.timelineKey") }}
+              keys={{ onGestureStart: props.onGestureStart, onGestureEnd: props.onGestureEnd, onScrub: props.onScrub, onRetime: props.onKeyRetime, onDelete: props.onKeyDelete, onOpen: props.onKeyOpen, label: t("editor.motion.timelineKey") }}
               time={props.time}
               muteLabel={track.muted ? t("editor.video.unmute") : t("editor.video.mute")}
             />
@@ -198,6 +203,8 @@ function Row(props: {
   strip: GestureType;
   label: (c: Clip) => string;
   onSelect: (id: string | null) => void;
+  onGestureStart: Props["onGestureStart"];
+  onGestureEnd: Props["onGestureEnd"];
   onTrim: Props["onTrim"];
   onMove: Props["onMove"];
   onTransition: (clipId: string) => void;
@@ -217,6 +224,7 @@ function Row(props: {
         {clips.map((c) => (
           <ClipBlock
             key={c.id}
+            scopeId={project.id}
             clip={c}
             pps={pps}
             height={h}
@@ -226,6 +234,8 @@ function Row(props: {
             strip={props.strip}
             label={props.label(c)}
             onSelect={props.onSelect}
+            onGestureStart={props.onGestureStart}
+            onGestureEnd={props.onGestureEnd}
             onTrim={props.onTrim}
             onMove={props.onMove}
             keys={props.keys}
@@ -264,6 +274,7 @@ function Row(props: {
 }
 
 function ClipBlock(props: {
+  scopeId: string;
   beats: number[];
   clip: Clip;
   pps: number;
@@ -273,6 +284,8 @@ function ClipBlock(props: {
   strip: GestureType;
   label: string;
   onSelect: (id: string | null) => void;
+  onGestureStart: Props["onGestureStart"];
+  onGestureEnd: Props["onGestureEnd"];
   onTrim: Props["onTrim"];
   onMove: Props["onMove"];
   keys: KeyHandlers;
@@ -286,26 +299,52 @@ function ClipBlock(props: {
   live.current = props;
   const startAt = useRef(0);
   const trimAt = useRef(0);
+  const editing = useRef(new Set<ProjectEditLease>());
+  const beginEditing = () => {
+    const callback = live.current.onGestureStart, lease = callback?.();
+    if (callback && !lease) return null;
+    if (lease) editing.current.add(lease);
+    return lease;
+  };
+  const finishEditing = (lease: ProjectEditLease | null | undefined) => {
+    try { if (!lease || lease.isCurrent()) live.current.onGestureEnd?.(); }
+    finally { lease?.release(); if (lease) editing.current.delete(lease); }
+  };
+  useEffect(() => () => {
+    for (const lease of editing.current) finishEditing(lease);
+    editing.current.clear();
+  }, [props.scopeId]);
 
   const gestures = useMemo(() => {
     const tap = Gesture.Tap().runOnJS(true).onEnd(() => live.current.onSelect(live.current.clip.id));
+    let moveLease: ProjectEditLease | null | undefined = null, moving = false;
     const move = Gesture.Pan()
       .runOnJS(true)
       .activateAfterLongPress(250)
       .onStart(() => {
+        moveLease = beginEditing(); moving = moveLease !== null;
+        if (!moving) return;
         startAt.current = live.current.clip.start;
         live.current.onSelect(live.current.clip.id);
       })
-      .onUpdate((e) => live.current.onMove(live.current.clip.id, startAt.current + e.translationX / live.current.pps, "live"))
-      .onEnd((e) => live.current.onMove(live.current.clip.id, startAt.current + e.translationX / live.current.pps, "end"));
-    const handle = (edge: "in" | "out") =>
-      Gesture.Pan()
+      .onUpdate((e) => { if (moving && (!moveLease || moveLease.isCurrent())) live.current.onMove(live.current.clip.id, startAt.current + e.translationX / live.current.pps, "live"); })
+      .onEnd((e) => { if (moving && (!moveLease || moveLease.isCurrent())) live.current.onMove(live.current.clip.id, startAt.current + e.translationX / live.current.pps, "end"); })
+      .onFinalize(() => { if (moving) finishEditing(moveLease); moving = false; moveLease = null; });
+    const handle = (edge: "in" | "out") => {
+      let lease: ProjectEditLease | null | undefined = null, active = false;
+      return Gesture.Pan()
         .runOnJS(true)
         .minDistance(1)
         .blocksExternalGesture(props.strip)
-        .onStart(() => { const c = live.current.clip; trimAt.current = edge === "in" ? c.start : c.start+c.duration; })
-        .onUpdate((e) => live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "live"))
-        .onEnd((e) => live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "end"));
+        .onStart(() => {
+          lease = beginEditing(); active = lease !== null;
+          if (!active) return;
+          const c = live.current.clip; trimAt.current = edge === "in" ? c.start : c.start+c.duration;
+        })
+        .onUpdate((e) => { if (active && (!lease || lease.isCurrent())) live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "live"); })
+        .onEnd((e) => { if (active && (!lease || lease.isCurrent())) live.current.onTrim(live.current.clip.id, edge, snapToBeat(trimAt.current+e.translationX/live.current.pps,live.current.beats,8/live.current.pps)-trimAt.current, "end"); })
+        .onFinalize(() => { if (active) finishEditing(lease); active = false; lease = null; });
+    };
     return {
       body: Gesture.Exclusive(move.blocksExternalGesture(props.strip), tap),
       inEdge: handle("in"),
@@ -338,6 +377,7 @@ function ClipBlock(props: {
       {times.map((kt, i) => (
         <KeyMark
           key={kt}
+          scopeId={props.scopeId}
           clip={clip}
           at={kt}
           here={i === hereIdx}
@@ -367,6 +407,8 @@ function ClipBlock(props: {
 }
 
 interface KeyHandlers {
+  onGestureStart: Props["onGestureStart"];
+  onGestureEnd: Props["onGestureEnd"];
   onScrub: (time: number) => void;
   onRetime: (clipId: string, from: number, to: number) => void;
   onDelete: (clipId: string, at: number) => void;
@@ -384,6 +426,7 @@ const KEY_EDGE = 8;
  * together), double-tap deletes it.
  */
 function KeyMark(props: {
+  scopeId: string;
   clip: Clip;
   at: number;
   /** Under the playhead. */
@@ -398,6 +441,12 @@ function KeyMark(props: {
   live.current = props;
   // Where the finger has dragged it to, until it lifts.
   const [drag, setDrag] = useState<number | null>(null);
+  const lease = useRef<ProjectEditLease | null | undefined>(null), active = useRef(false);
+  const finish = () => {
+    try { if (active.current && (!lease.current || lease.current.isCurrent())) live.current.handlers.onGestureEnd?.(); }
+    finally { active.current = false; lease.current?.release(); lease.current = null; }
+  };
+  useEffect(() => () => finish(), [props.scopeId]);
 
   const gesture = useMemo(() => {
     const target = (dx: number) => {
@@ -423,16 +472,21 @@ function KeyMark(props: {
       .runOnJS(true)
       .minDistance(4)
       .blocksExternalGesture(props.strip)
-      .onStart(focus)
-      .onUpdate((e) => setDrag(target(e.translationX)))
+      .onStart(() => {
+        lease.current = live.current.handlers.onGestureStart?.();
+        if (live.current.handlers.onGestureStart && !lease.current) return;
+        active.current = true; focus();
+      })
+      .onUpdate((e) => { if (active.current && (!lease.current || lease.current.isCurrent())) setDrag(target(e.translationX)); })
       .onEnd((e) => {
+        if (!active.current || (lease.current && !lease.current.isCurrent())) return;
         const p = live.current;
         const to = target(e.translationX);
         if (Math.abs(to - p.at) >= 0.005) p.handlers.onRetime(p.clip.id, p.at, to);
         p.handlers.onScrub(p.clip.start + to);
         open();
       })
-      .onFinalize(() => setDrag(null));
+      .onFinalize(() => { finish(); setDrag(null); });
     return Gesture.Race(pan, Gesture.Exclusive(doubleTap, tap));
     // The strip gesture is created once by the timeline.
     // eslint-disable-next-line react-hooks/exhaustive-deps
