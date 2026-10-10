@@ -7441,6 +7441,8 @@
     }
   },
   "creator": {
+    "toolMaboroshi": "Maboroshi",
+    "toolMaboroshiDesc": "Replace characters and objects, review a draft, then export with your original soundtrack.",
     "editInTimeline": "Edit in timeline",
     "presetExtraGlassCausticsName": "Glass caustics",
     "presetExtraGlassCausticsHint": "Sunlight bends through clear glass",

@@ -36,6 +36,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
+  [ScreenNames.Maboroshi]: undefined;
   [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
