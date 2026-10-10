@@ -117,9 +117,9 @@ const GettingStartedSheet: React.FC<GettingStartedSheetProps> = ({ visible, onCl
                           onPress={() => go(step)}
                           activeOpacity={0.8}
                           className="rounded-lg px-3 py-1.5"
-                          style={{ backgroundColor: colors.accent }}
+                          style={{ backgroundColor: "#FFFFFF" }}
                         >
-                          <Text className="text-theme-accent-foreground text-xs font-semibold">
+                          <Text className="text-xs font-semibold" style={{ color: "#09090B" }}>
                             {t("onboarding.checklist.go")}
                           </Text>
                         </TouchableOpacity>
