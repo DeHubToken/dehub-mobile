@@ -1,3 +1,4 @@
+import { pollHasEnded, pollVotePercent, pollOptionWins } from '../../libs/pollResults';
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -65,10 +66,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   // A poll whose end time has passed is over even while the stored isActive
   // flag still says true — only "Close" flips that flag. Treating it as open
   // showed a vote option the server then rejected as expired.
-  const isEnded =
-    !poll.isActive ||
-    !!poll.isExpired ||
-    (!!poll.expiresAt && new Date(poll.expiresAt).getTime() <= Date.now());
+  const isEnded = pollHasEnded(poll);
   const isOpen = !isEnded;
   const hasVoted = localVotedIndexes !== null || !!poll.userVote;
   // Results show once you've voted, and to everyone once the poll is over.
@@ -85,12 +83,11 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
       : poll.totalVotes;
 
   const getBarWidth = (index: number) => {
-    if (totalVotes === 0) return 0;
-    return Math.round((getCount(index) / totalVotes) * 100);
+    return pollVotePercent(getCount(index), totalVotes);
   };
 
   const topCount = Math.max(0, ...poll.options.map((o) => getCount(o.index)));
-  const isWinner = (index: number) => isEnded && topCount > 0 && getCount(index) === topCount;
+  const isWinner = (index: number) => pollOptionWins(getCount(index), topCount, isEnded);
 
   const applyOptimisticVote = (indexes: number[]) => {
     const counts: Record<number, number> = {};
