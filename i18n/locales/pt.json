@@ -7409,6 +7409,13 @@
         "turnHint": "Mostre o momento da mudança.",
         "authorHint": "O seu nome"
       }
+    },
+    "sharedTimeline": {
+      "receive": "Receber alterações",
+      "hint": "Aplique as últimas alterações salvas. As edições locais e Desfazer são mantidos.",
+      "received": "Versão {{revision}} recebida.",
+      "upToDate": "Já está atualizado.",
+      "protectedUndo": "Edições locais anteriores se sobrepõem às alterações compartilhadas. Desfazer preservará as alterações compartilhadas."
     }
   },
   "creator": {
