@@ -919,13 +919,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Stream paused/resumed with grace period countdown
     bind(LivestreamEvents.StreamPaused as any, (data: any) => {
+      if (data?.streamId !== streamId) return;
       setStreamPaused(true);
       setSocketStatus("PAUSED");
       const grace = typeof data?.gracePeriodSeconds === 'number' ? data.gracePeriodSeconds : 90;
       setGracePeriodSeconds(grace);
       setGraceCountdown(grace);
     });
-    bind(LivestreamEvents.StreamResumed as any, () => {
+    bind(LivestreamEvents.StreamResumed as any, (data: any) => {
+      if (data?.streamId !== streamId) return;
       setStreamPaused(false);
       setSocketStatus("LIVE");
       setGraceCountdown(0);
@@ -1489,7 +1491,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
           <LiveWebRtcView stream={whepLive.stream} />
-        ) : whepLive.pending ? (
+        ) : whepLive.pending && !isPausedEffective ? (
           /* An attempt is in flight. The ladder waits rather than starting
              underneath it: on a working network WebRTC arrives before HLS has
              buffered its first segments, and starting both means the viewer
@@ -1521,6 +1523,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             seekRef={seekRef}
             /* A replay is a finished file: it gets a scrubber, a live stream does not. */
             isLive={!isPlayingReplay}
+            suppressLoadingFeedback={isPausedEffective}
             fullscreen
             hideTopControls
             muted={isMuted}
