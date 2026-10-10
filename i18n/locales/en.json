@@ -7450,6 +7450,13 @@
       "received": "Received version {{revision}}.",
       "upToDate": "Already up to date.",
       "protectedUndo": "Older local edits overlap shared changes. Undo will preserve the shared changes."
+    },
+    "assembly": {
+      "matchConsent": "Match clips and photos to my prompt",
+      "matchScenes": "Find matching scenes",
+      "noMatch": "No matching scenes found. Try a different topic or selection.",
+      "matchLimit": "Choose up to 10 clips or photos. Videos must be between one second and 10 minutes long.",
+      "matchDuration": "Matching footage is shorter than the requested video. Shorten the duration or choose more media."
     }
   },
   "creator": {

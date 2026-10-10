@@ -7426,6 +7426,13 @@
       "received": "Version {{revision}} empfangen.",
       "upToDate": "Bereits aktuell.",
       "protectedUndo": "Ältere lokale Änderungen überschneiden sich mit geteilten Änderungen. Rückgängig bewahrt die geteilten Änderungen."
+    },
+    "assembly": {
+      "matchConsent": "Clips und Fotos passend zu meiner Anfrage auswählen",
+      "matchScenes": "Passende Szenen finden",
+      "noMatch": "Keine passenden Szenen gefunden. Versuche ein anderes Thema oder eine andere Auswahl.",
+      "matchLimit": "Wähle bis zu 10 Clips oder Fotos. Videos müssen zwischen einer Sekunde und 10 Minuten lang sein.",
+      "matchDuration": "Die passenden Aufnahmen sind kürzer als das gewünschte Video. Verkürze die Dauer oder wähle weitere Medien."
     }
   },
   "creator": {

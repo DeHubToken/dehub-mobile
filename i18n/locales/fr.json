@@ -7461,6 +7461,13 @@
       "received": "Version {{revision}} reçue.",
       "upToDate": "Déjà à jour.",
       "protectedUndo": "D’anciennes modifications locales chevauchent les modifications partagées. L’annulation préservera les modifications partagées."
+    },
+    "assembly": {
+      "matchConsent": "Adapter les clips et les photos à ma demande",
+      "matchScenes": "Trouver des scènes correspondantes",
+      "noMatch": "Aucune scène correspondante trouvée. Essayez un autre sujet ou une autre sélection.",
+      "matchLimit": "Choisissez jusqu’à 10 clips ou photos. Les vidéos doivent durer entre une seconde et 10 minutes.",
+      "matchDuration": "Les séquences correspondantes sont plus courtes que la vidéo demandée. Réduisez la durée ou choisissez davantage de médias."
     }
   },
   "creator": {

@@ -160,7 +160,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
-  const visualReqs = useRef(new Map<string, { windows: VisualWindow[]; resolve: (v: VisualFrame[]) => void; reject: (e: Error) => void; progress: (f: number) => void; cleanup: () => void }>());
+  const visualReqs = useRef(new Map<string, { windows: VisualWindow[]; resolve: (v: VisualFrame[]) => void; reject: (e: Error) => void; progress: (f: number) => void; cleanup: () => void; ack: () => void }>());
   const shotReqs = useRef(new Map<string, { clip: MediaClip; resolve: (v: ShotAnalysis) => void; reject: (e: Error) => void; progress?: (f: number) => void; cleanup: () => void }>());
   const beatReqs = useRef(new Map<string, { resolve: (v: BeatAnalysis) => void; reject: (e: Error) => void; progress?: (v: number) => void; cleanup: () => void }>());
   type Cutout = { dataUrl: string; width: number; height: number } | null;
@@ -415,6 +415,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         break;
       }
       case "visualProgress": visualReqs.current.get(msg.reqId)?.progress(Math.max(0, Math.min(1, Number(msg.fraction) || 0))); break;
+      case "visualSourceAck": visualReqs.current.get(msg.reqId)?.ack(); break;
       case "visualFailed": {
         const request = visualReqs.current.get(msg.reqId); visualReqs.current.delete(msg.reqId); request?.cleanup(); request?.reject(new Error(msg.error || "visual_frames_invalid")); break;
       }
@@ -565,16 +566,50 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       exports.current.clear();
     },
     sampleVisual: (clip, windows, signal, progress) => new Promise<VisualFrame[]>((resolve, reject) => {
-      if (!ready || signal.aborted || !validVisualWindows(windows, clip.duration)) { reject(new Error("visual_frames_invalid")); return; }
+      if (!ready || signal.aborted || visualReqs.current.size || !validVisualWindows(windows, clip.duration)) { reject(new Error("visual_frames_invalid")); return; }
       const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      let waiting: { resolve: () => void; reject: (error: Error) => void; timer: ReturnType<typeof setTimeout> } | null = null;
       const cancel = () => {
         const request = visualReqs.current.get(reqId); if (!request) return;
         visualReqs.current.delete(reqId); request.cleanup(); post({ type: "visualCancel", reqId }); reject(new Error("cancelled"));
       };
       const timer = setTimeout(cancel, 180000);
-      const cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
-      visualReqs.current.set(reqId, { windows, resolve, reject, progress, cleanup });
-      signal.addEventListener("abort", cancel, { once: true }); post({ type: "visualFrames", reqId, clip, windows });
+      const cleanup = () => {
+        clearTimeout(timer); signal.removeEventListener("abort", cancel);
+        const pending = waiting; waiting = null;
+        if (pending) { clearTimeout(pending.timer); pending.reject(new Error("cancelled")); }
+      };
+      const ack = () => { const pending = waiting; waiting = null; if (pending) { clearTimeout(pending.timer); pending.resolve(); } };
+      visualReqs.current.set(reqId, { windows, resolve, reject, progress, cleanup, ack });
+      signal.addEventListener("abort", cancel, { once: true });
+      const active = () => !signal.aborted && visualReqs.current.has(reqId);
+      const send = (message: unknown) => new Promise<void>((done, fail) => {
+        if (!active()) { fail(new Error("cancelled")); return; }
+        waiting = { resolve: done, reject: fail, timer: setTimeout(() => { waiting = null; fail(new Error("visual media timeout")); }, 30000) };
+        post(message);
+      });
+      // A chosen library file may never have appeared on the timeline. Transfer
+      // one acknowledged piece at a time into the isolated scan, then release it.
+      void (async () => {
+        try {
+          const media = await getMedia(clip.mediaId);
+          if (!media || media.kind !== clip.kind || !active()) throw new Error("visual media unavailable");
+          await send({ type: "visualSourceBegin", reqId, mime: media.mimeType });
+          for (let position = 0; ; position += MEDIA_CHUNK) {
+            if (!active()) throw new Error("cancelled");
+            const b64 = await readMediaChunk(media, position, MEDIA_CHUNK);
+            if (!active()) throw new Error("cancelled");
+            if (!b64) break;
+            await send({ type: "visualSourceChunk", reqId, b64 });
+            if (b64.length < Math.ceil(MEDIA_CHUNK / 3) * 4) break;
+          }
+          if (active()) post({ type: "visualFrames", reqId, clip, windows });
+        } catch (error) {
+          const request = visualReqs.current.get(reqId); if (!request) return;
+          visualReqs.current.delete(reqId); request.cleanup(); post({ type: "visualCancel", reqId });
+          reject(error instanceof Error ? error : new Error("visual media unavailable"));
+        }
+      })();
     }),
     detectShots: (clip, signal, onProgress) => new Promise<ShotAnalysis>((resolve, reject) => {
       if (signal?.aborted) { reject(new Error("cancelled")); return; }
