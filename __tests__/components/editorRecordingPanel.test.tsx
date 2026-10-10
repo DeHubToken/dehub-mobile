@@ -29,7 +29,7 @@ const recorded: MediaMeta = { id: "take", name: "take.m4a", kind: "audio", mimeT
 let history!: ReturnType<typeof useProjectHistory>, added = jest.fn(), time = 1000;
 function Harness({ at = 3 }: { at?: number }) {
   const h = useProjectHistory(source); history = h;
-  return <RecordingPanel at={at} scope={h.scopeVersion()} onStart={() => h.holdEdits()} onAdd={(media, start) => {
+  return <RecordingPanel at={at} scope={h.scopeVersion()} subscribe={h.subscribe} onStart={() => h.holdEdits()} onAdd={(media, start) => {
     added(media, start); const current = h.latest()!;
     h.commit({ ...current, tracks: [{ id: "track", kind: media.kind === "audio" ? "audio" : "video", name: media.name, muted: false, hidden: false }], clips: [{ id: "recording", kind: media.kind === "audio" ? "audio" : "video", trackId: "track", start, duration: media.duration ?? 2, trimIn: 0, mediaId: media.id }] });
   }} />;
@@ -77,6 +77,7 @@ it("discards an importing voiceover after reset and keeps a newer lease", async 
 
 it("cancels an active microphone when reset replaces the same project", async () => {
   const view = render(<Harness />); await record(view); time += 2000;
+  expect(mockRecorder.record).toHaveBeenCalledTimes(1); expect(history.isEditing()).toBe(true);
   await act(async () => history.reset(source));
   expect(mockRecorder.stop).toHaveBeenCalledTimes(1); expect(mockRelease).toHaveBeenCalledTimes(1); expect(mockImport).not.toHaveBeenCalled(); expect(history.isEditing()).toBe(false);
 });
