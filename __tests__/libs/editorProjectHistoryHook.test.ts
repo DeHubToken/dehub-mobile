@@ -2,12 +2,50 @@ import { act, cleanup, renderHook } from "@testing-library/react-native";
 import { useProjectHistory } from "../../libs/editor/useProjectHistory";
 import { projectReviewSnapshotKey } from "../../libs/editor/cloudProjectReview";
 import type { ProjectSnapshot } from "../../libs/editor/types";
+import { projectTask } from "../../libs/editor/projectTask";
 jest.mock("react-native-css-interop",()=>({createInteropElement:require("react").createElement}));
 afterEach(cleanup);
 const clone=<T,>(value:T):T=>JSON.parse(JSON.stringify(value));
 const fixture=():ProjectSnapshot=>({id:"device-project",title:"Film",updatedAt:1,settings:{width:1920,height:1080,fps:30,aspectPreset:"16:9",background:"#000000"},
   tracks:[{id:"v",kind:"video",name:"Video",muted:false,hidden:false}],clips:[{id:"a",kind:"video",trackId:"v",mediaId:"device-video",start:0,trimIn:0,duration:10,sourceDuration:20},
   {id:"b",kind:"video",trackId:"v",mediaId:"device-video",start:10,trimIn:0,duration:5,sourceDuration:20}]});
+
+describe("native processing ownership in the real history hook", () => {
+  it("holds receiving throughout a deferred result without batching other commands", async () => {
+    const {result}=renderHook(()=>useProjectHistory(fixture()));
+    let finish!:()=>void, task!:NonNullable<ReturnType<typeof projectTask>>;
+    act(()=>{task=projectTask(result.current.holdEdits())!;});
+    const processing=new Promise<void>(resolve=>{finish=resolve;}).then(()=>{
+      try { if (task.isCurrent()) {const next=clone(result.current.latest()!);next.clips[0].duration=8;result.current.commit(next);} }
+      finally {task.release();}
+    });
+    expect(()=>result.current.receive(fixture(),projectReviewSnapshotKey(fixture()))).toThrow("project changed");
+    const local=fixture();local.title="Local title";act(()=>result.current.commit(local));
+    await act(async()=>{finish();await processing;});
+    act(()=>result.current.undo());expect(result.current.latest()!.title).toBe("Local title");expect(result.current.latest()!.clips[0].duration).toBe(10);
+    act(()=>result.current.undo());expect(result.current.latest()!.title).toBe("Film");expect(result.current.canUndo).toBe(false);expect(result.current.isEditing()).toBe(false);
+  });
+  it("rejects processing acquired from a stale rendered baseline",()=>{
+    const {result}=renderHook(()=>useProjectHistory(fixture()));const next=fixture();next.title="New title";act(()=>result.current.commit(next));
+    expect(projectTask(result.current.holdEdits(projectReviewSnapshotKey(fixture())))).toBeNull();expect(result.current.isEditing()).toBe(false);
+  });
+  it("invalidates an old result after a same-ID reset while retaining a new task",()=>{
+    const {result}=renderHook(()=>useProjectHistory(fixture()));let old!:NonNullable<ReturnType<typeof projectTask>>,fresh!:typeof old;
+    act(()=>{old=projectTask(result.current.holdEdits())!;result.current.reset(fixture());fresh=projectTask(result.current.holdEdits())!;old.release();});
+    expect(old.isCurrent()).toBe(false);expect(fresh.isCurrent()).toBe(true);expect(result.current.isEditing()).toBe(true);
+    act(()=>fresh.release());expect(result.current.isEditing()).toBe(false);expect(result.current.canUndo).toBe(false);
+  });
+  it("invalidates processing and rejects stale acquisition when the workspace unmounts",()=>{
+    const {result,unmount}=renderHook(()=>useProjectHistory(fixture()));let task!:NonNullable<ReturnType<typeof projectTask>>;
+    act(()=>{task=projectTask(result.current.holdEdits())!;});unmount();
+    expect(task.isCurrent()).toBe(false);expect(result.current.holdEdits()).toBeNull();task.release();expect(result.current.canUndo).toBe(false);
+  });
+  it("releases failure without settling another task or clearing Redo",()=>{
+    const {result}=renderHook(()=>useProjectHistory(fixture()));const next=fixture();next.title="Local title";let failed!:NonNullable<ReturnType<typeof projectTask>>,other!:typeof failed;
+    act(()=>{result.current.commit(next);result.current.undo();failed=projectTask(result.current.holdEdits())!;other=projectTask(result.current.holdEdits())!;failed.release();failed.release();});
+    expect(other.isCurrent()).toBe(true);expect(result.current.canRedo).toBe(true);act(()=>{other.release();result.current.redo();});expect(result.current.latest()!.title).toBe("Local title");
+  });
+});
 describe("native shared timeline history adapter",()=>{
   it("keeps local Undo and Redo while received edits remain in each state",()=>{
     const {result}=renderHook(()=>useProjectHistory(fixture()));let first=fixture();first.title="Local title";
