@@ -54,15 +54,16 @@ try {
   }
   await page.evaluate(async ({ platform, fixture }) => {
     const bytes = Uint8Array.from(atob(fixture.base64), value => value.charCodeAt(0));
-    window.reference = new ImageDecoder({ data: bytes, type: 'image/gif' });
-    await window.reference.tracks.ready;
+    window.reference = await Promise.all(fixture.pngs.map(base64 => new Promise((resolve,reject)=>{
+      const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src='data:image/png;base64,'+base64;
+    })));
     window.referenceDelays = [12, 17, 23, 31];
     window.referenceIndex = seconds => { let tick = Math.floor(Math.max(0, seconds) * 100 + 1e-7) % 83; for (let index=0;index<4;index++){if(tick<window.referenceDelays[index])return index;tick-=window.referenceDelays[index]}return 3 };
     window.referencePixels = async (seconds, size) => {
-      const { image } = await window.reference.decode({ frameIndex: window.referenceIndex(seconds) });
+      const image = window.reference[window.referenceIndex(seconds)];
       const canvas = document.createElement('canvas'); canvas.width = canvas.height = size;
       const context = canvas.getContext('2d'); context.fillStyle='black';context.fillRect(0,0,size,size);
-      context.drawImage(image,0,0,size,size); image.close();
+      context.drawImage(image,0,0,size,size);
       return context.getImageData(0,0,size,size).data;
     };
     const clip = { id:'gif-clip',trackId:'visual',mediaId:'fixture',kind:'image',start:.4,duration:1.1,trimIn:.12,speed:2,fit:'contain' };
