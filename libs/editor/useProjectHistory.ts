@@ -1,7 +1,8 @@
 import { projectEditGate } from "./projectEditGate";
 import { useEffect, useRef, useState } from "react";
 import type { ProjectSnapshot } from "./types";
-import { rebaseProjectHistory } from "./projectHistory";
+import { rebaseProjectHistory, mergeLocalProjectEdits } from "./projectHistory";
+import { projectCommandHistory } from "./projectCommandHistory";
 import { projectReviewSnapshotKey } from "./cloudProjectReview";
 const HISTORY_LIMIT = 50;
 
@@ -10,6 +11,8 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
   const publish = (snapshot: ProjectSnapshot) => { onChange?.(snapshot); setProject(snapshot); };
   const past = useRef<ProjectSnapshot[]>([]);
   const future = useRef<ProjectSnapshot[]>([]);
+  const commandObservers = useRef(new Set<() => void>());
+  const observeCommands = () => { for (const observe of commandObservers.current) observe(); };
   const liveBase = useRef<ProjectSnapshot | null>(null);
   const current = useRef(project);
   current.current = project;
@@ -20,12 +23,19 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
   const mounted = useRef(true);
   useEffect(() => {
     mounted.current = true;
-    return () => { mounted.current = false; gate.current!.reset(false); };
+    return () => { mounted.current = false; gate.current!.reset(false); commandObservers.current.clear(); };
   }, []);
 
   const push = (before: ProjectSnapshot) => {
     past.current = [...past.current, before].slice(-HISTORY_LIMIT);
     future.current = [];
+    observeCommands();
+  };
+  const commit = (next: ProjectSnapshot) => {
+    const before = liveBase.current ?? current.current;
+    liveBase.current = null;
+    if (before) push(before);
+    current.current = next; publish(next);
   };
 
   return {
@@ -36,6 +46,31 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
     holdEdits: (expectedKey?: string) => {
       if (!mounted.current || !current.current || (expectedKey !== undefined && projectReviewSnapshotKey(current.current) !== expectedKey)) return null;
       return gate.current!.hold();
+    },
+    beginCommand: (expectedKey: string) => {
+      const base = current.current;
+      if (!mounted.current || !base || liveBase.current || projectReviewSnapshotKey(base) !== expectedKey) return null;
+      const lease = gate.current!.hold();
+      const group = projectCommandHistory<ProjectSnapshot>({
+        read: () => ({ current: current.current!, past: past.current, future: future.current }),
+        snapshot: value => value, entry: value => value,
+        write: value => { past.current = value.past; future.current = value.future; observeCommands(); bump(n => n + 1); },
+        isCurrent: () => mounted.current && lease.isCurrent() && current.current?.id === base.id && !liveBase.current,
+        limit: HISTORY_LIMIT,
+      });
+      const observe = () => { group.isCurrent(); }; commandObservers.current.add(observe);
+      return {
+        isCurrent: group.isCurrent,
+        capture: group.capture,
+        commit: (source: ProjectSnapshot, proposed: ProjectSnapshot) => {
+          if (!group.isCurrent()) return false;
+          const now = current.current!;
+          const result = mergeLocalProjectEdits(source, now, proposed);
+          if (!result.snapshot) return false;
+          group.capture(() => commit(result.snapshot!)); return true;
+        },
+        release: () => { commandObservers.current.delete(observe); lease.release(); },
+      };
     },
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
@@ -60,12 +95,7 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
       }
       current.current = p; publish(p);
     },
-    commit: (next: ProjectSnapshot) => {
-      const before = liveBase.current ?? current.current;
-      liveBase.current = null;
-      if (before) push(before);
-      current.current = next; publish(next);
-    },
+    commit,
     live: (next: ProjectSnapshot) => {
       if (next.id !== current.current?.id) return;
       if (!liveBase.current) liveBase.current = current.current;
@@ -81,6 +111,7 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
       const prev = past.current[past.current.length - 1];
       if (!prev || !current.current) return;
       past.current = past.current.slice(0, -1);
+      observeCommands();
       future.current = [current.current, ...future.current];
       current.current = prev; publish(prev);
     },
@@ -89,6 +120,7 @@ export function useProjectHistory(initial: ProjectSnapshot | null, onChange?: (s
       if (!next || !current.current) return;
       future.current = future.current.slice(1);
       past.current = [...past.current, current.current];
+      observeCommands();
       current.current = next; publish(next);
     },
   };

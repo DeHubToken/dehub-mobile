@@ -950,8 +950,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
   const sendToAgent = async (text: string, useVisual = false): Promise<boolean> => {
     if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return false;
-    const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
-    if (!task) return false;
+    const command = h.beginCommand(projectReviewSnapshotKey(project));
+    if (!command) return false;
+    let applying = false;
+    const task = { isCurrent: () => command.isCurrent() && editorMounted.current && (applying || h.latest() === project), release: command.release };
     try {
       const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
       const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
@@ -989,6 +991,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         if (!task.isCurrent()) return false;
         const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
         if (!task.isCurrent()) return false;
+        applying = true;
         const { project: next, report } = await applyOps(project, ops, {
           importStock: importStockAsset,
           media,
@@ -1004,9 +1007,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           time: canvasTime,
         });
         if (!task.isCurrent()) return false;
-        if (report.applied > 0 && h.latest() !== project) throw new Error("design changed during request");
-        if (report.applied > 0) h.commit(next);
-        if (report.selectedId) setSelectedId(report.selectedId);
+        if (report.applied > 0 && !command.commit(project, next)) throw new Error("design changed during request");
+        if (report.selectedId && h.latest()?.clips.some(clip => clip.id === report.selectedId)) setSelectedId(report.selectedId);
         if (report.cursorTime !== undefined) { setTime(report.cursorTime); setPlaying(false); }
         let content = reply || (ops.length ? t("editor.agent.done") : t("editor.agent.nothingToDo"));
         if (!ops.length) content = t("editor.agent.nothingToDo");
