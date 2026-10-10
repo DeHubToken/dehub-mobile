@@ -1,0 +1,11 @@
+# Private live draft checkpoints
+
+The draft API stores one mutable checkpoint per saved cloud project. Each document is limited to 8 MiB; an owner's drafts are limited to 64 MiB in total. Writes replace that checkpoint without adding permanent history. Explicit cloud Save continues to create immutable saved revisions.
+
+Only the signed owner or an accepted editor can load a draft or register a writer. Registration carries no local document. A room supports at most 32 active writers. Writer identities expire after one hour without a successful write; registering again after expiry creates a new writer identity. Direct draft and receipt table access is unavailable to clients.
+
+Every write includes the global draft revision, current saved anchor, writer identity, monotonically increasing sequence and request nonce. The latest content-bound receipt remains available if a response is lost and another writer subsequently changes the checkpoint. An older superseded sequence fails explicitly. An expired identity cannot replay an old request. Access is checked before receipt recovery.
+
+The load response keeps both the draft's saved anchor and the current saved head. A later cloud Save does not erase or silently reset the draft. Before writing against a new head, the client must reconcile the exact old anchor, current draft and new saved head. Private source references retain their owner/project scope; other accepted editors can hydrate sources referenced in the draft and include them in an explicit Save. Viewers do not gain access to unsaved draft media. Trash, revocation and signed-session expiry remove live access. Owner erasure removes drafts and receipts; contributor erasure removes their writer receipts while preserving the owner's document.
+
+This release provides storage and an identical web/mobile API. It does not start subscriptions or automatic uploads. The next integration needs an explicit Share edits live control, durable local pending requests, serialized collision recovery, bounded revision notifications and guarded incoming application that preserves Undo/Redo and private media mappings. Presence-only joining continues to carry no edits. Signed-in two-device and physical native execution are still unverified.

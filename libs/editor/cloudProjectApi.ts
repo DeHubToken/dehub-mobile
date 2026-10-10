@@ -1,3 +1,4 @@
+import { cloudProjectDraftApi } from "./cloudProjectDraft";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cloudProjectReviewApi } from "./cloudProjectReviewApi";
 import { projectReviewWallet } from "./cloudProjectReview";
@@ -20,6 +21,7 @@ export function cloudProjectApi(address: string) {
     return data as T;
   }
   return {
+    drafts: cloudProjectDraftApi(client),
     review: cloudProjectReviewApi(client, wallet, message => new CloudProjectConflict(message)),
     editing: {
       async load(owner: string, id: string): Promise<CloudProjectVersion> {
