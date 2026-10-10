@@ -301,14 +301,15 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             </>
           )}
 
-          {/* Sliding glass indicator — one indicator that translates between
-              tabs (web parity), driven on the UI thread for taps and drags */}
+          {/* FrostedPill owns the backdrop blur. The moving selection only
+              adds its tint and rim, matching the web nav without a second
+              blur sample that can leave a seam during tab transitions. */}
           <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, indicatorStyle]}>
             {skin ? (
               <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
             ) : (
               <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-                <GlassIndicator borderRadius={12} blurIntensity={30} />
+                <GlassIndicator borderRadius={12} />
               </View>
             )}
           </Reanimated.View>
@@ -336,7 +337,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                       <View
                         style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}
                       >
-                        <GlassIndicator borderRadius={12} blurIntensity={30} />
+                        <GlassIndicator borderRadius={12} />
                       </View>
                     ))}
                     <View style={{ opacity: pressed ? 0.6 : 1 }}>
