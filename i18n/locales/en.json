@@ -1429,6 +1429,7 @@
     "trade": "Trade",
     "import": "Import",
     "noTokensToSend": "No tokens with balance to send",
+    "solanaSendUnavailable": "Sending on Solana is not available yet",
     "unableOpenGateway": "Unable to open payment gateway",
     "failedPurchaseSession": "Failed to start purchase session",
     "searchTokens": "Search tokens...",

@@ -114,11 +114,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   };
 
   const handleTopUp = (_neededAmt: any, _neededSymbol: string) => {
-    if (chainId !== ChainId.BASE_MAINNET) {
-      toastInfo(t("assets.dpayBaseOnly"));
-      return;
-    }
-    navigation.navigate(ScreenNames.Dpay);
+    navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
   };
 
   const handleUnlockPPV = (_ppvAmt: any, _ppvSymbol: string) => {

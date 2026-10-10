@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { supportedTokens, ChainId, MULTICALL2_ADDRESSES } from "../config/constants";
+import { NETWORK_URLS } from "../config/web3.constants";
 import { createLogger } from "../libs/logger";
 
 // Simple JSON RPC endpoints (could be moved to env)
@@ -35,9 +36,9 @@ export class EthersService {
 
   getProvider(chainId: number) {
     if (!this.providers.has(chainId)) {
-      const url = RPC_ENDPOINTS[chainId];
+      const url = NETWORK_URLS[chainId] || RPC_ENDPOINTS[chainId];
       if (!url) throw new Error(`No RPC endpoint for chain ${chainId}`);
-      this.providers.set(chainId, new ethers.providers.JsonRpcProvider(url));
+      this.providers.set(chainId, new ethers.providers.StaticJsonRpcProvider({ url, timeout: 8000, throttleLimit: 1 }, chainId));
     }
     return this.providers.get(chainId)!;
   }

@@ -81,6 +81,13 @@ describe('a link that starts the app', () => {
 });
 
 describe('/app routes', () => {
+  it.each(['wallet', 'buy', 'stake'])('opens the native %s surface from both web URL forms', (page) => {
+    for (const path of [`/${page}`, `/app/${page}`]) {
+      const route = target(resolve(path));
+      expect(route.name).toBe('Dpay');
+      expect(route.params).toEqual({ initialTab: page });
+    }
+  });
   it('pins a shared feature request, whichever name the id comes under', () => {
     expect(target(resolve('/app/features?feature=abc')).params).toEqual({ requestId: 'abc' });
     expect(target(resolve('/features?request=abc&comments=1&comment=c9')).params).toEqual({
@@ -115,9 +122,9 @@ describe('/app routes', () => {
 
 describe('an /app link with no screen', () => {
   it('opens the web page in the in-app browser, never through the OS', async () => {
-    expect(resolve('/app/wallet?tab=send')).toBeUndefined();
+    expect(resolve('/app/unmapped-page?tab=send')).toBeUndefined();
     await flush();
-    expect(openBrowser).toHaveBeenCalledWith('https://dehub.io/app/wallet?tab=send', expect.anything());
+    expect(openBrowser).toHaveBeenCalledWith('https://dehub.io/app/unmapped-page?tab=send', expect.anything());
     expect(openURL).not.toHaveBeenCalled();
   });
 

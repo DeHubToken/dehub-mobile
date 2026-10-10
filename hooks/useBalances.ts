@@ -34,8 +34,11 @@ export function useBalances({ log, setBalancesLoading, setUser, isMountedRef, se
       log.debug("balances:bg:progress", { addr, balances });
       if (!isMountedRef.current) return;
       setUser((prev) => {
+        const currentAddress = prev?.walletAddress || prev?.address;
+        if (currentAddress?.toLowerCase() !== addr.toLowerCase()) return prev;
+        if (getChainId && getChainId() !== activeChainId) return prev;
         const merged: User | null = prev
-          ? ({ ...(prev as User), tokenBalances: { ...((prev as User)?.tokenBalances || {}), ...balances } } as User)
+          ? ({ ...(prev as User), tokenBalances: balances } as User)
           : prev;
         if (merged) setAuthUser(merged).catch(() => {});
         return merged;

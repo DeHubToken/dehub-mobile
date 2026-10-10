@@ -39,7 +39,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
           </View>
           <Text className="text-zinc-300 text-lg font-semibold ml-2">{t("dpay.tokensLabel")}</Text>
         </View>
-        <Text className="text-theme-accent text-2xl font-bold">
+        <Text numberOfLines={1} adjustsFontSizeToFit className="text-theme-accent text-2xl font-bold">
           {typeof transfersTotal === "number"
             ? transfersTotal.toLocaleString()
             : "—"}
@@ -62,7 +62,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               <Text className="text-[#F4F4F5]">{t("dpay.noSupplyShort")}</Text>
             </Text>
           ) : (
-            <Text className="text-theme-accent text-2xl font-bold">
+            <Text numberOfLines={1} adjustsFontSizeToFit className="text-theme-accent text-2xl font-bold">
               {supplyAmount.toLocaleString(undefined, {
                 maximumFractionDigits: 4,
               })}

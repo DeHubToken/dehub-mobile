@@ -494,6 +494,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.DePin]: DeepLinkPaths.DEPIN,
           [ScreenNames.Bridge]: DeepLinkPaths.BRIDGE,
+          [ScreenNames.Dpay]: 'app/wallet',
           [ScreenNames.LaunchpadCreate]: DeepLinkPaths.LAUNCHPAD_CREATE,
           [ScreenNames.LaunchpadCoin]: {
             path: DeepLinkPaths.LAUNCHPAD_COIN,
@@ -577,6 +578,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // &comment=<id>; the screen pins a request by requestId and opens its
     // thread at commentId, so the names are translated on the way in.
     const appSegs = segments[0] === 'app' ? segments.slice(1) : segments;
+    if (appSegs.length === 1 && ['wallet', 'buy', 'stake'].includes(appSegs[0])) {
+      return orOpenOnWeb(getStateFromPath(`/app/wallet?initialTab=${appSegs[0]}`, options));
+    }
     if (appSegs[0] === 'features' && appSegs.length === 1) {
       const query = renameQueryParams(queryString, {
         request: 'requestId',
