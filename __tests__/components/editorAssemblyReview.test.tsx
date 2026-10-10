@@ -94,3 +94,25 @@ it("reviews file-only prompts through actual native controls in named order with
 });
 
 beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });
+
+it("exposes manual review after analysis fails and requires that choice before creating", async () => {
+  const before = JSON.stringify(original), match = jest.fn(async () => { throw new Error("unavailable"); });
+  function FailedMatchHarness() {
+    const [state, controller] = useAssembly({ current: () => original, match, create }); session = controller;
+    React.useEffect(() => { controller.start({ seconds: 8, selected: false, transition: null, music: false, focus: "ocean" }, []); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ v: "Source video", p: "Photo" }} onPreview={jest.fn()} onCreate={() => { void controller.create(); }} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<FailedMatchHarness />);
+  fireEvent.press(screen.getByLabelText("editor.assembly.matchConsent"));
+  await act(async () => fireEvent.press(screen.getByLabelText("editor.assembly.matchScenes")));
+  expect(screen.getByText("editor.assembly.matchFailed")).toBeTruthy();
+  expect(screen.getByLabelText("nav.create").props.disabled).toBe(true);
+  fireEvent.press(screen.getByLabelText("editor.assembly.reviewManually"));
+  expect(screen.queryByText("editor.assembly.matchFailed")).toBeNull();
+  expect(screen.getByLabelText("editor.assembly.matchConsent").props.accessibilityState.checked).toBe(false);
+  expect(screen.getByLabelText("nav.create").props.disabled).toBe(false);
+  await act(async () => fireEvent.press(screen.getByLabelText("nav.create")));
+  expect(create).toHaveBeenCalledTimes(1); expect(match).toHaveBeenCalledTimes(1);
+  expect(create).toHaveBeenCalledWith(original, expect.objectContaining({ shots: [{ id: "one", offset: 0, duration: 4 }, { id: "two", offset: 0, duration: 4 }] }), expect.any(AbortSignal), expect.any(Array));
+  expect(JSON.stringify(original)).toBe(before);
+});

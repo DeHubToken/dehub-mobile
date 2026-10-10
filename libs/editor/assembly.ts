@@ -224,6 +224,13 @@ export class AssemblySession {
       return false;
     } finally { if (this.controller === controller) { this.controller = null; this.patch({ busy: false, matching: false }); } }
   }
+  reviewManually(): boolean {
+    if (this.state.busy || !this.matchesSource() || !["noMatch", "matchLimit", "matchDuration", "matchFailed"].includes(this.state.error ?? "")) return false;
+    const undo = this.state.undo;
+    this.edit({});
+    this.patch({ focus: "", matchProgress: 0, undo });
+    return this.state.error === null;
+  }
   toggle(id: string) {
     if (this.state.busy || !this.matchesSource()) return;
     const clip = this.state.media.find(c => c.id === id); if (!clip) return;
