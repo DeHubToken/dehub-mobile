@@ -33,6 +33,8 @@ interface Props {
   active: boolean;
   /** Shown on the placeholder when there is no poster — the stream's title. */
   label?: string;
+  /** Opens the live viewer. A tap on the picture is a tap on the post. */
+  onPress?: () => void;
 }
 
 /**
@@ -59,7 +61,7 @@ function usablePoster(thumbnail?: string): string | undefined {
  * not the card is the one playing. Keeping it in a child that only exists
  * while `active` is the difference between one player and one per live card.
  */
-function LivePlayer({ url }: { url: string }) {
+function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
   const [firstFrame, setFirstFrame] = useState(false);
   const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
@@ -139,9 +141,14 @@ function LivePlayer({ url }: { url: string }) {
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <Pressable accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
+      {/* A tap opens the live viewer, like a tap anywhere else on the card.
+          Swallowing it here to toggle the overlay meant the picture never
+          opened the stream. The controls still show for their first few
+          seconds and stay tappable on their own. */}
+      <Pressable accessibilityRole="button" accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
         event.stopPropagation();
-        setControlsVisible(value => !value);
+        if (onPress) onPress();
+        else setControlsVisible(value => !value);
       }}>
       {/* Unmounted while another screen is on top: a VideoView that mounts
           takes the player's picture, and the viewer is showing this player.
@@ -202,7 +209,7 @@ function useScreenFocused(): boolean {
   return focused;
 }
 
-function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
+function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress }: Props) {
   const poster = usablePoster(thumbnail);
   // A viewability tick can hand this slot to a card passing through a fling.
   // Wait before mounting LivePlayer: even a paused native player allocates its
@@ -237,7 +244,7 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label }: Props) {
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {settled && <LivePlayer key={url} url={url} />}
+      {settled && <LivePlayer key={url} url={url} onPress={onPress} />}
     </View>
   );
 }

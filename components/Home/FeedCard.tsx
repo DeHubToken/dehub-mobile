@@ -1623,6 +1623,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}
           label={liveFallbackLabel}
+          onPress={handleCardPress}
         />
       ) : hasThumb ? (
         <SmartImage
