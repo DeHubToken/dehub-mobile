@@ -26,7 +26,8 @@ jobs:
       - name: Prepare hosted browser and output decoder
         run: |
           npm install --prefix "$RUNNER_TEMP/editor-browser" --no-save --no-package-lock --ignore-scripts playwright@1.64.0 esbuild@0.25.12 mp4-muxer@5.2.2 webm-muxer@5.1.4
-          "$RUNNER_TEMP/editor-browser/node_modules/.bin/playwright" install --with-deps chromium
+          "$RUNNER_TEMP/editor-browser/node_modules/.bin/playwright" install-deps chromium
+          google-chrome --version
           sudo apt-get update
           sudo apt-get install -y ffmpeg
       - name: Verify real GIF scrubbing and branded MP4 frames

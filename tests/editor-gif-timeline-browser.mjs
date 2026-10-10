@@ -38,7 +38,7 @@ await new Promise(done => server.listen(0, '127.0.0.1', done));
 const origin = `http://127.0.0.1:${server.address().port}`;
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({ channel: 'chrome', headless: true });
   const page = await browser.newPage({ viewport: { width: 160, height: 160 } });
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
@@ -136,7 +136,7 @@ try {
   const pcm=execFileSync('ffmpeg',['-v','error','-i',filename,'-map','0:a:0','-f','f32le','-'],{maxBuffer:4*1024*1024});
   let peak=0;for(let at=0;at+4<=pcm.length;at+=4)peak=Math.max(peak,Math.abs(pcm.readFloatLE(at)));assert(peak>.001,'The ending sound must be audible');
   assert.deepEqual(errors,[]);
-  const report={platform,sourceSha:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),preview,encoded,frames,duration:Number(probe.format.duration),endingVisible:true,endingSoundPeak:peak,videoCodec:video.codec_name,audioCodec:audio.codec_name,physicalDeviceVerified:false};
+  const report={platform,browser:browser.version(),browserChannel:'chrome',sourceSha:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),preview,encoded,frames,duration:Number(probe.format.duration),endingVisible:true,endingSoundPeak:peak,videoCodec:video.codec_name,audioCodec:audio.codec_name,physicalDeviceVerified:false};
   await writeFile(resolve(directory,'report.json'),JSON.stringify(report,null,2));
   console.log(JSON.stringify({platform,sourceSha:report.sourceSha,previewFrames:preview.length,encodedFrames:encoded.length,minimumPSNR:Math.min(...encoded.map(f=>f.psnr)),frames,duration:report.duration,endingSoundPeak:peak}));
 } finally { await browser?.close(); await new Promise(done=>server.close(done)); }
