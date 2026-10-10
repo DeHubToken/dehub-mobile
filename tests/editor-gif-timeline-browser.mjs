@@ -43,6 +43,13 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto(origin);
+  const capabilities = await page.evaluate(async () => ({
+    video: await VideoEncoder.isConfigSupported({codec:'avc1.42E01F',width:160,height:160,bitrate:4000000,framerate:25}),
+    audio: await AudioEncoder.isConfigSupported({codec:'mp4a.40.2',sampleRate:48000,numberOfChannels:2,bitrate:192000}),
+  }));
+  await writeFile(resolve(directory,'codec-capabilities.json'),JSON.stringify(capabilities,null,2));
+  assert(capabilities.video.supported,'The hosted browser must support real H.264 encoding');
+  assert(capabilities.audio.supported,'The hosted browser must support real AAC encoding');
   if (platform === 'mobile') {
     const canvasHTML = await page.evaluate(() => window.canvasHTML);
     assert(!canvasHTML.includes('__GIF_TIMELINE_RUNTIME__'));
