@@ -75,10 +75,10 @@ describe('live preview loading feedback', () => {
     act(() => jest.advanceTimersByTime(400));
     act(() => jest.advanceTimersByTime(12_000));
     expect(view.queryByTestId('live-loader')).toBeNull();
-    expect(view.getByText('liveViewer.waitingForVideo')).toBeTruthy();
+    expect(view.getByText('live.reconnecting')).toBeTruthy();
     mockStatus = 'readyToPlay';
     fireEvent(view.getByTestId('live-video'), 'firstFrameRender');
-    expect(view.queryByText('liveViewer.waitingForVideo')).toBeNull();
+    expect(view.queryByText('live.reconnecting')).toBeNull();
   });
 
   it('pauses for a call and rejects a late native playing event until the call ends', () => {
