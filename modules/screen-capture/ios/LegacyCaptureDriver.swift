@@ -12,6 +12,7 @@ final class LegacyCaptureDriver: NSObject, CaptureDriver, RPBroadcastActivityVie
   private var controller: RPBroadcastController?
   private var consent: CheckedContinuation<Void, Error>?
   private var stopped = false
+  private var originalMicrophone: Bool?
 
   @MainActor
   init(ticket: CaptureTicket, ledger: CaptureLedger, presenter: UIViewController, changed: @escaping () -> Void) {
@@ -21,6 +22,8 @@ final class LegacyCaptureDriver: NSObject, CaptureDriver, RPBroadcastActivityVie
 
   @MainActor
   func start() async throws {
+    originalMicrophone = RPScreenRecorder.shared().isMicrophoneEnabled
+    RPScreenRecorder.shared().isMicrophoneEnabled = ticket.microphone
     try await withTaskCancellationHandler(operation: {
       try await withCheckedThrowingContinuation { done in
         guard !stopped else { done.resume(throwing: CancellationError()); return }
@@ -83,6 +86,10 @@ final class LegacyCaptureDriver: NSObject, CaptureDriver, RPBroadcastActivityVie
     else if let current = try? ledger.ticket(ticket.sessionId, scopeKey: ticket.scopeKey), current.state == .pending {
       try? ledger.fail(ticket.sessionId, scopeKey: ticket.scopeKey, cancelled: true)
     } else { try? ledger.requestFinish(ticket.sessionId, scopeKey: ticket.scopeKey) }
-    self.controller = nil; changed()
+    self.controller = nil
+    if let originalMicrophone, RPScreenRecorder.shared().isMicrophoneEnabled == ticket.microphone {
+      RPScreenRecorder.shared().isMicrophoneEnabled = originalMicrophone
+    }
+    self.originalMicrophone = nil; changed()
   }
 }

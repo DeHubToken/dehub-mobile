@@ -86,7 +86,7 @@ final class CaptureMovieWriter {
     let output = try AVAssetWriter(outputURL: file, fileType: .mp4); writer = output
     let videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: [
       AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: size.width, AVVideoHeightKey: size.height,
-      AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 6_000_000, AVVideoExpectedSourceFrameRateKey: 30, AVVideoMaxKeyFrameIntervalKey: 30],
+      AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 4_000_000, AVVideoExpectedSourceFrameRateKey: 30, AVVideoMaxKeyFrameIntervalKey: 30],
     ])
     videoInput.expectsMediaDataInRealTime = true
     guard output.canAdd(videoInput) else { throw CaptureLedgerError.unavailable }

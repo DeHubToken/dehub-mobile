@@ -150,6 +150,8 @@ async function recordScreen(view: ReturnType<typeof render>) {
 }
 
 it("keeps screen capture running in the background and saves once at its original playhead", async () => {
+  const video = { ...recorded, kind: "video" as const, name: "screen.mp4" };
+  mockImport.mockResolvedValue(video);
   const view = await screenView(); await recordScreen(view);
   const id = mockScreenStart.mock.calls[0][0].sessionId;
   act(() => { mockState = "background"; for (const listener of mockListeners) listener(mockState); });
@@ -158,7 +160,8 @@ it("keeps screen capture running in the background and saves once at its origina
   await act(async () => fireEvent.press(view.getByText("common.save")));
   expect(mockScreenFinish).toHaveBeenCalledWith(id); expect(mockScreenAcknowledge).toHaveBeenCalledWith(id);
   expect(mockImport).toHaveBeenCalledWith(expect.objectContaining({ kind: "video", duration: 2 }));
-  expect(added).toHaveBeenCalledWith(recorded, 3); expect(history.isEditing()).toBe(false);
+  expect(added).toHaveBeenCalledWith(video, 3); expect(history.isEditing()).toBe(false);
+  expect(history.latest()!.clips[0].kind).toBe("video");
   act(() => history.undo()); expect(history.latest()!.clips).toHaveLength(0);
   act(() => history.redo()); expect(history.latest()!.clips).toHaveLength(1);
 });

@@ -74,7 +74,7 @@ internal class ProjectionEncoder(
       muxer = MediaMuxer(file.absolutePath, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
       val format = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_AVC, size.width, size.height).apply {
         setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface)
-        setInteger(MediaFormat.KEY_BIT_RATE, 6_000_000)
+        setInteger(MediaFormat.KEY_BIT_RATE, 4_000_000)
         setInteger(MediaFormat.KEY_FRAME_RATE, 30)
         setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1)
       }
