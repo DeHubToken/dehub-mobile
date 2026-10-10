@@ -86,6 +86,7 @@ interface VideoPlayerCoreProps {
    */
   muted?: boolean;
   liveMode?: boolean;
+  suppressLoadingFeedback?: boolean;
   hideControls?: boolean;
   /** Suppress the built-in top controls row when an external header already provides close/mute. */
   hideTopControls?: boolean;
@@ -122,6 +123,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   initialMuted = false,
   muted,
   liveMode = false,
+  suppressLoadingFeedback = false,
   hideControls = false,
   hideTopControls = false,
   fillContainer = false,
@@ -842,7 +844,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       )}
 
       {/* Keep buffering visible when live or replay controls are hidden. */}
-      {sourceUrl && playRequested && !hasError &&
+      {!suppressLoadingFeedback && sourceUrl && playRequested && !hasError &&
         ((liveMode && firstFrameSource !== sourceUrl) ||
           (isBuffering && (liveMode || hideControls || !showControls))) && (
           <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}>

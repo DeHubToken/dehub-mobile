@@ -4,6 +4,7 @@ import LiveFeedPreview from '../../components/common/LiveFeedPreview';
 import { visualActivity } from '../../libs/visualActivity';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('react-native', () => ({
   View: 'View', Pressable: 'Pressable', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch',
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
@@ -30,6 +31,8 @@ jest.mock('../../components/DeHubLoader', () => ({
 }));
 jest.mock('../../components/common/SmartImage', () => () => null);
 jest.mock('../../components/ui/Icon', () => () => null);
+jest.mock('../../hooks/useStreamPresence', () => ({ useStreamPresence: jest.fn() }));
+jest.mock('../../hooks/useLivePaused', () => ({ useLivePaused: (_id: string, status: string) => status === 'PAUSED' }));
 
 describe('live preview loading feedback', () => {
   beforeEach(() => { jest.useFakeTimers(); mockStatus = 'loading'; });
@@ -58,6 +61,24 @@ describe('live preview loading feedback', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active={false} />);
     expect(view.queryByTestId('live-video')).toBeNull();
     expect(view.queryByTestId('live-loader')).toBeNull();
+  });
+
+  it('shows the paused state instead of spinning when the broadcaster is paused', () => {
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" streamStatus="PAUSED" active />);
+    act(() => jest.advanceTimersByTime(400));
+    expect(view.queryByTestId('live-loader')).toBeNull();
+    expect(view.getByText('liveViewer.streamPaused')).toBeTruthy();
+  });
+
+  it('replaces an unbounded loading animation with a waiting message', () => {
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
+    act(() => jest.advanceTimersByTime(400));
+    act(() => jest.advanceTimersByTime(12_000));
+    expect(view.queryByTestId('live-loader')).toBeNull();
+    expect(view.getByText('live.reconnecting')).toBeTruthy();
+    mockStatus = 'readyToPlay';
+    fireEvent(view.getByTestId('live-video'), 'firstFrameRender');
+    expect(view.queryByText('live.reconnecting')).toBeNull();
   });
 
   it('pauses for a call and rejects a late native playing event until the call ends', () => {

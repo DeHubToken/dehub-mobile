@@ -571,7 +571,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isCurrentlyLive = isStreamLive(stream, status === "LIVE" || status === "PAUSED");
-  const liveReactionStreamId = isLive ? stream?._id || stream?.id || (item as any)._id : undefined;
+  const liveReactionStreamId = isLive ? stream?._id || stream?.streamId || stream?.id : undefined;
   // The core namespace specifically: the shared flag is also true when only
   // the DM socket is up, which would send the reaction nowhere. Read at tap
   // time through the getter, not subscribed: the status half of the socket
@@ -607,7 +607,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // stream's own `totalViews` counts JOINS — one viewer whose connection drops
   // and returns three times makes it 3. See libs/viewers.util. So the row was
   // printing the peak under "watching now" and a reconnect tally under "Peak".
-  const { peakViewers: peakAudience } = seedViewerStats(stream);
+  const [observedPeak, setObservedPeak] = useKeyedState(postKey, 0);
+  const peakAudience = Math.max(seedViewerStats(stream).peakViewers, observedPeak);
+  const onLiveViewerCount = useCallback((count: number) => setObservedPeak(peak => Math.max(peak, count)), [setObservedPeak]);
   const liveLikes = stream?.likes || item.likes || 0;
 
   // --- Access info (for navigation) ---
@@ -1612,7 +1614,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow
             streamId={liveReactionStreamId}
-            selfAddress={userAddress ? String(userAddress).toLowerCase() : null}
             self={selfLiveReaction}
           />
         </View>
@@ -1623,6 +1624,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
            self-hosted ingest renders none) and the stream only appeared after
            opening the post. */
         <LiveFeedPreview
+          streamId={isCurrentlyLive ? liveReactionStreamId : undefined}
+          streamStatus={status}
+          isOwner={!!isOwnerPost}
+          paused={livePaused}
+          onViewerCount={onLiveViewerCount}
           url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive && !livePaused}

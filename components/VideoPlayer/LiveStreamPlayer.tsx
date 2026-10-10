@@ -35,6 +35,7 @@ import { useEngagementWeight } from "../../hooks/useEngagementWeight";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import type { PostReaction } from "../../libs/reactions";
 import { useWebSocket } from "../../context/WebSocketContext";
+import { acquireStreamViewer } from '../../libs/stream-presence';
 import {
   LivestreamEvents,
   StreamActivityType,
@@ -129,13 +130,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     on: socketOn,
     emitAuthed: socketEmitAuthed,
     coreConnected: connected,
+    isCoreConnected,
     connectionEpoch,
   } = useWebSocket();
   const navigation = useNavigation<any>();
 
   // Refs for cleanup closures — always read latest values, never stale
-  const socketEmitRef = useRef(socketEmitAuthed);
-  useEffect(() => { socketEmitRef.current = socketEmitAuthed; }, [socketEmitAuthed]);
   const streamIdRef = useRef<string | null>(null);
   const isSignedInRef = useRef(isSignedIn);
   useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
@@ -316,18 +316,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const { items: tipEffects, enqueueFromGift, clearAll: clearTipEffects } = useTipAnimations({ maxConcurrent: 2 });
   // Floating reaction bubbles
   const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
-  // Read through a ref: the socket bindings below are set up once per stream
-  // and must not be torn down when the signed-in account resolves.
-  const myAddress = String(
-    (user?.walletAddress || user?.address || "") as string
-  ).toLowerCase();
-  const myAddressRef = useRef(myAddress);
   /** Tx hashes of the gifts this viewer sent, so their echo off the room
    *  broadcast is recognised as theirs whatever address form it carries. */
   const ownGiftHashesRef = useRef<Set<string>>(new Set());
-  useEffect(() => {
-    myAddressRef.current = myAddress;
-  }, [myAddress]);
   // The viewer's own badge multiplier, so their thumb comes up as thick as the
   // server echo would have drawn it.
   const liveReactionWeight = useEngagementWeight();
@@ -419,6 +410,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   >("unknown");
   const didJoinRef = useRef<boolean>(false);
   const didLeaveRef = useRef<boolean>(false);
+  const releasePresenceRef = useRef<(() => void) | null>(null);
 
   // Dedupe mechanics across reconnects: one send per stream per connection.
   // The epoch is the provider's, so a socket swapped out underneath us — a
@@ -543,11 +535,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     (sid?: string | null) => {
       const s = sid || streamId;
       if (!s) return;
-      if (!(isLiveEffective && isSignedIn && ownerStatus === "viewer")) return;
+      if (!(connected && isLiveEffective && isSignedIn && ownerStatus === "viewer" && isPlayable)) return;
       const key = makeKey(s);
       if (joinStreamSentKeyRef.current === key) return;
       try {
-        socketEmitAuthed(LivestreamEvents.JoinStream, { streamId: s });
+        const previousPresence = releasePresenceRef.current;
+        releasePresenceRef.current = acquireStreamViewer(socketEmitAuthed, isCoreConnected, connectedGenRef.current, s);
+        previousPresence?.();
         joinStreamSentKeyRef.current = key;
         didJoinRef.current = true;
         didLeaveRef.current = false;
@@ -560,6 +554,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       ownerStatus,
       makeKey,
       socketEmitAuthed,
+      connected,
+      isCoreConnected,
+      isPlayable,
     ]
   );
   useEffect(() => { maybeJoinStreamRef.current = maybeJoinStream; }, [maybeJoinStream]);
@@ -905,11 +902,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // tap (handleLiveLike) the same beat a tipper gets their celebration, so
     // the echo of their own reaction is dropped here rather than shown twice.
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
-      if (data?.streamId && data.streamId !== streamId) return;
-      // Backend sends { reactionType, user: <userRef> }
+      if (data?.streamId !== streamId) return;
+      // Suppress this device's optimistic echo, not another device on the same account.
       const type = data?.reactionType as ReactionType;
-      const from = String(data?.user?.address || "").toLowerCase();
-      if (from && myAddressRef.current && from === myAddressRef.current) return;
+      if (data?.isOwnReaction) return;
       const rUsername = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, rUsername, data?.weight);
     });
@@ -923,13 +919,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Stream paused/resumed with grace period countdown
     bind(LivestreamEvents.StreamPaused as any, (data: any) => {
+      if (data?.streamId !== streamId) return;
       setStreamPaused(true);
       setSocketStatus("PAUSED");
       const grace = typeof data?.gracePeriodSeconds === 'number' ? data.gracePeriodSeconds : 90;
       setGracePeriodSeconds(grace);
       setGraceCountdown(grace);
     });
-    bind(LivestreamEvents.StreamResumed as any, () => {
+    bind(LivestreamEvents.StreamResumed as any, (data: any) => {
+      if (data?.streamId !== streamId) return;
       setStreamPaused(false);
       setSocketStatus("LIVE");
       setGraceCountdown(0);
@@ -973,7 +971,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       didLeaveRef.current = true;
       console.log('[LiveStreamPlayer] unmount cleanup: emitting LeaveStream', { streamId: sid });
       try {
-        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
       } catch (e) {
         console.warn('[LiveStreamPlayer] unmount LeaveStream emit failed', e);
       }
@@ -1004,7 +1003,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinStreamSentKeyRef.current = null;
         console.log('[LiveStreamPlayer] blur cleanup: emitting LeaveStream', { streamId: sid });
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+          releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] blur LeaveStream emit failed', e);
         }
@@ -1030,7 +1030,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinStreamSentKeyRef.current = null;
         console.log('[LiveStreamPlayer] app background: emitting LeaveStream', { streamId: sid });
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+          releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] background LeaveStream emit failed', e);
         }
@@ -1059,7 +1060,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinRoomSentKeyRef.current = null;
         joinStreamSentKeyRef.current = null;
         try {
-          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+          releasePresenceRef.current?.();
+          releasePresenceRef.current = null;
         } catch {}
       } else {
         try {
@@ -1073,7 +1075,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       if (!sid || didLeaveRef.current) return;
       didLeaveRef.current = true;
       try {
-        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        releasePresenceRef.current?.();
+        releasePresenceRef.current = null;
       } catch {}
     };
     try {
@@ -1488,7 +1491,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
           <LiveWebRtcView stream={whepLive.stream} />
-        ) : whepLive.pending ? (
+        ) : whepLive.pending && !isPausedEffective ? (
           /* An attempt is in flight. The ladder waits rather than starting
              underneath it: on a working network WebRTC arrives before HLS has
              buffered its first segments, and starting both means the viewer
@@ -1520,6 +1523,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             seekRef={seekRef}
             /* A replay is a finished file: it gets a scrubber, a live stream does not. */
             isLive={!isPlayingReplay}
+            suppressLoadingFeedback={isPausedEffective}
             fullscreen
             hideTopControls
             muted={isMuted}
