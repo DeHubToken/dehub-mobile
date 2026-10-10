@@ -12,7 +12,7 @@ import Icon from "../ui/Icon";
 
 type Take = { task: NonNullable<ReturnType<typeof projectTask>>; mode: "audio" | "camera"; at: number; active: boolean; cancelled: boolean; started: number; closeAudio: (() => Promise<void>) | null };
 
-export default function RecordingPanel({ at, scope, onAdd, onStart }: { at: number; scope: number; onAdd: (media: MediaMeta, start: number) => void; onStart: () => ProjectEditLease | null }) {
+export default function RecordingPanel({ at, scope, subscribe, onAdd, onStart }: { at: number; scope: number; subscribe: (changed: () => void) => () => void; onAdd: (media: MediaMeta, start: number) => void; onStart: () => ProjectEditLease | null }) {
   const { t } = useTranslation();
   const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
   const take = useRef<Take | null>(null), mounted = useRef(true);
@@ -49,7 +49,11 @@ export default function RecordingPanel({ at, scope, onAdd, onStart }: { at: numb
   useEffect(() => {
     mounted.current = true;
     const subscription = AppState.addEventListener("change", state => { if (state !== "active") void stopRef.current(true); });
-    return () => { mounted.current = false; subscription.remove(); take.current?.task.release(); void stopRef.current(true); };
+    const unsubscribe = subscribe(() => {
+      const owner = take.current;
+      if (owner && !owner.task.isCurrent()) { owner.task.release(); void stopRef.current(true); }
+    });
+    return () => { mounted.current = false; subscription.remove(); unsubscribe(); take.current?.task.release(); void stopRef.current(true); };
   }, []);
   useEffect(() => () => { take.current?.task.release(); void stopRef.current(true); }, [scope]);
   useEffect(() => {
