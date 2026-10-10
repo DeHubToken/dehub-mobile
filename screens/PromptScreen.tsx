@@ -207,7 +207,7 @@ export default function PromptScreen() {
         setStage("tune");
       }, ANALYSE_MS);
     },
-    [text],
+    [text, setText],
   );
 
   const handleWeightChange = useCallback((id: string, weight: number) => {

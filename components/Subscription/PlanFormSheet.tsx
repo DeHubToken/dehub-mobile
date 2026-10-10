@@ -109,7 +109,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   const [duration, setDuration] = useState(1);
   const [stage, setStage] = useState("");
   const [benefitInput, setBenefitInput] = useSurfaceDraft("components/Subscription/PlanFormSheet.tsx:benefitInput", "", draftIdentity(editPlan) ?? "new");
-  const [benefits, setBenefits] = useState<string[]>([]);
+  const [benefits, setBenefits] = useSurfaceDraft<string[]>("subscription:benefits", [], draftIdentity(editPlan) ?? "new");
   const [saving, setSaving] = useState(false);
   const [switchingChain, setSwitchingChain] = useState(false);
   const [selectedChainId, setSelectedChainId] = useState<number>(ChainId.BASE_MAINNET);
@@ -133,18 +133,18 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setPrice.initialize(originalDollarPrice > 0 ? String(originalDollarPrice) : "");
       // Legacy 999 lifetime plans fold onto 0 so the preset lights up.
       setDuration(normaliseDuration(editPlan.duration) ?? 1);
-      setBenefits(editPlan.benefits || []);
+      setBenefits.initialize(editPlan.benefits || []);
       setSelectedChainId(primaryPlanChain(editPlan)?.chainId || ChainId.BASE_MAINNET);
     } else {
       setName.initialize("");
       setDescription.initialize("");
       setPrice.initialize("");
       setDuration(1);
-      setBenefits([]);
+      setBenefits.initialize([]);
       setSelectedChainId(ChainId.BASE_MAINNET);
     }
     setBenefitInput.initialize("");
-  }, [editPlan, visible, originalDollarPrice, setBenefitInput, setDescription, setName, setPrice]);
+  }, [editPlan, visible, originalDollarPrice, setBenefitInput, setDescription, setName, setPrice, setBenefits]);
 
   // The subscription contract hook follows the active wallet chain. Keep it
   // aligned with the network selected in the header before the publish step.
@@ -172,11 +172,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     if (!trimmed) return;
     setBenefits(prev => [...prev, trimmed]);
     setBenefitInput("");
-  }, [benefitInput, setBenefitInput]);
+  }, [benefitInput, setBenefitInput, setBenefits]);
 
   const removeBenefit = useCallback((idx: number) => {
     setBenefits(prev => prev.filter((_, i) => i !== idx));
-  }, []);
+  }, [setBenefits]);
 
   const handleSave = useCallback(async () => {
     if (!name.trim()) {
@@ -273,7 +273,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         toastSuccess(t("subscriptions.planPublished"));
         onPublished?.();
       }
-      if (result) onSuccess(result);
+      if (result) {
+        setName.complete(name, name); setDescription.complete(description, description);
+        setPrice.complete(price, price); setBenefits.complete(benefits, benefits); setBenefitInput.clear();
+        onSuccess(result);
+      }
       onClose();
     } catch (e) {
       toastError(null, parseTxError(e, "send"));
@@ -281,7 +285,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       setSaving(false);
       setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, existingIsUsdPriced, originalDollarPrice, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose, t]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, existingIsUsdPriced, originalDollarPrice, selectedChainId, switchingChain, chainId, subscriptionContract, onSuccess, onPublished, onClose, t, setBenefitInput, setBenefits, setDescription, setName, setPrice]);
 
   return (
     <GlassModal

@@ -285,7 +285,7 @@ export default function ConverterScreen() {
         setSubmitting(false);
       }
     },
-    [refresh, t],
+    [refresh, t, setUrl],
   );
 
   /**
@@ -317,7 +317,7 @@ export default function ConverterScreen() {
         .catch(() => undefined)
         .finally(() => setReviewLoading(false));
     },
-    [],
+    [setReviewDescription, setReviewName],
   );
 
   const handleSubmit = useCallback(() => {

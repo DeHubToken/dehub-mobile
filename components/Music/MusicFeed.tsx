@@ -496,7 +496,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         )}
       </View>
     ),
-    [headerInset, tab, search, genre, isSearchingRadio, t],
+    [headerInset, tab, search, genre, isSearchingRadio, t, setSearch],
   );
 
   const listEmpty = useMemo(() => {

@@ -1,4 +1,4 @@
-import { confirmChatDelivery, roomMessageMatches } from '../../libs/chat-delivery';
+import { confirmChatDelivery, roomMessageMatches } from '../libs/chat-delivery';
 
 afterEach(() => jest.useRealTimers());
 function channel() {

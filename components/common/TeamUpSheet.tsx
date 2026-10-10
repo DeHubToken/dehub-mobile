@@ -106,9 +106,9 @@ export default function TeamUpSheet({
   const [search, setSearch] = useSurfaceDraft("components/common/TeamUpSheet.tsx:search", '');
   // The private team whose request note is being written, if any.
   const [requesting, setRequesting] = useState<string | null>(null);
-  const [requestMessage, setRequestMessage] = useSurfaceDraft("components/common/TeamUpSheet.tsx:requestMessage", '');
+  const [requestMessage, setRequestMessage] = useSurfaceDraft("components/common/TeamUpSheet.tsx:requestMessage", '', requesting);
   const [editing, setEditing] = useState(false);
-  const [editDescription, setEditDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:editDescription", '');
+  const [editDescription, setEditDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:editDescription", '', team?.id ?? null);
   const [editPrivate, setEditPrivate] = useState(false);
   const deferredSearch = useDeferredValue(search);
   const mine = useTeamUp(visible);
@@ -129,7 +129,7 @@ export default function TeamUpSheet({
   const tierLabel = (tier: string | null) => tier || t('teamUp.noBadgeYet');
 
   const startEditing = () => {
-    setEditDescription(team?.description ?? '');
+    setEditDescription.initialize(team?.description ?? '');
     setEditPrivate(team?.isPrivate ?? false);
     setEditing(true);
   };
@@ -144,7 +144,7 @@ export default function TeamUpSheet({
           toastSuccess(t('teamUp.joined', { name: target.name }));
         }
         setRequesting(null);
-        setRequestMessage('');
+        setRequestMessage.complete(requestMessage, '');
       },
       onError: (error: any) => toastError(errorText(
         error,
@@ -221,7 +221,7 @@ export default function TeamUpSheet({
                       onPress={() => update.mutate(
                         { description: editDescription, isPrivate: editPrivate },
                         {
-                          onSuccess: () => { setEditing(false); toastSuccess(t('teamUp.updated')); },
+                          onSuccess: () => { setEditDescription.complete(editDescription, editDescription); setEditing(false); toastSuccess(t('teamUp.updated')); },
                           onError: (error: any) => toastError(errorText(error, t('teamUp.updateFailed'))),
                         },
                       )}
@@ -479,7 +479,7 @@ export default function TeamUpSheet({
                       <Pressable
                         disabled={busy || composing}
                         style={[styles.joinButton, (busy || composing) && styles.disabled]}
-                        onPress={() => { setRequesting(candidate.id); setRequestMessage(''); }}
+                        onPress={() => { setRequesting(candidate.id); }}
                       >
                         <Text style={styles.joinButtonText}>{t('teamUp.requestToJoin')}</Text>
                       </Pressable>

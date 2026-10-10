@@ -176,7 +176,7 @@ export function useCommunityChat(
 
   const sendMessage = useCallback(
     async (content: string, replyToId?: string) => {
-      if (!communityId || !walletAddress) return;
+      if (!communityId || !walletAddress) throw new Error("Sign in to send a message");
       const msg = {
         community_id: communityId,
         wallet_address: walletAddress.toLowerCase(),
@@ -211,7 +211,7 @@ export function useCommunityChat(
 
   const editMessage = useCallback(
     async (messageId: string, newContent: string) => {
-      if (!walletAddress || !communityId) return;
+      if (!walletAddress || !communityId) throw new Error("Sign in to edit a message");
       const trimmed = newContent.trim();
       if (!trimmed) return;
 

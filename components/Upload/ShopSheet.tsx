@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 /**
  * Shop editor
  * ===========
@@ -49,6 +50,7 @@ export interface ShopBoardDraft {
 }
 
 interface ShopSheetProps {
+  draftScope: string;
   visible: boolean;
   onClose: () => void;
   value: ShopBoardDraft;
@@ -86,10 +88,11 @@ export default function ShopSheet({
   onSave,
   allowance,
   tier,
+  draftScope,
 }: ShopSheetProps) {
   const { t } = useTranslation();
-  const [rows, setRows] = useState<ShopLink[]>(value.links);
-  const [listingIds, setListingIds] = useState<string[]>(value.listingIds);
+  const [rows, setRows] = useDraftState<ShopLink[]>(`${draftScope}:shop:rows`, value.links);
+  const [listingIds, setListingIds] = useDraftState<string[]>(`${draftScope}:shop:listings`, value.listingIds);
 
   const { data: listings = [], isLoading: listingsLoading } = useMyListings();
   const sellable = useMemo(
@@ -102,9 +105,9 @@ export default function ShopSheet({
   // somebody is halfway through typing.
   useEffect(() => {
     if (!visible) return;
-    setRows(value.links);
-    setListingIds(value.listingIds);
-  }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
+    setRows.initialize(value.links);
+    setListingIds.initialize(value.listingIds);
+  }, [visible, setListingIds, setRows]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const update = (index: number, patch: Partial<ShopLink>) =>
     setRows((current) => current.map((row, i) => (i === index ? { ...row, ...patch } : row)));
@@ -269,6 +272,7 @@ export default function ShopSheet({
         <TouchableOpacity
           onPress={() => {
             onSave({ links: cleanedLinks, listingIds });
+            setRows.complete(rows, cleanedLinks); setListingIds.complete(listingIds, listingIds);
             onClose();
           }}
           disabled={!canSave}

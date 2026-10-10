@@ -194,7 +194,7 @@ export default function GovernanceProposalScreen() {
       setDraft((current) => (current.startsWith(prefix) ? current : prefix + current));
       inputRef.current?.focus();
     },
-    [isAuthed, navigation],
+    [isAuthed, navigation, setDraft],
   );
 
   const confirmDelete = useCallback(

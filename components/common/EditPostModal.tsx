@@ -789,6 +789,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       </ScrollView>
 
       <ShopSheet
+        draftScope={`post:edit:${tokenId}`}
         visible={shopSheetVisible}
         onClose={() => setShopSheetVisible(false)}
         value={{ links: shopLinks, listingIds }}
