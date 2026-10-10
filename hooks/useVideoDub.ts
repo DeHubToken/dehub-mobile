@@ -1,12 +1,8 @@
 /**
  * Dubbed audio for a video post: whether it is on, and in which language.
  *
- * The dub used to be a server render — a `video_dubs` row filled by a GPU
- * worker that was never deployed, so every request sat at 'pending' and the
- * captions sheet said "Preparing…" for as long as anyone looked. It is now
- * spoken on the device from the translated transcript (see useVoiceDub), so
- * there is no job to create and nothing to wait on beyond the translation the
- * captions already use.
+ * Device speech reads the translated transcript while shared cached audio is
+ * being prepared. Playback is opt-in; preparation is independent of the switch.
  *
  * The switch lives in two places — the Audio row in the captions sheet and
  * the Dub row in the post's "…" menu — so it is one store both read, rather
@@ -20,7 +16,6 @@ import { transcriptKey, type TranscriptRecord } from "./useTranscript";
 import { findVoice } from "./useVoiceDub";
 import { hasCachedDubLanguage } from '../libs/cached-dub-languages';
 import { createLogger } from "../libs/logger";
-import { autoTranslateEnabled, subscribeAutoTranslate } from "../libs/auto-translate-setting";
 
 const logger = createLogger("useVideoDub");
 
@@ -39,9 +34,10 @@ export interface DubSettings {
 function read(): DubSettings {
   try {
     const saved = storage.getString(ON_KEY);
-    return { on: saved !== "false", automatic: saved == null, lang: storage.getString(LANG_KEY) || null };
+    // Automatic playback never wrote this key. Only a deliberate on survives.
+    return { on: saved === "true", automatic: false, lang: storage.getString(LANG_KEY) || null };
   } catch {
-    return { on: true, automatic: true, lang: null };
+    return { on: false, automatic: false, lang: null };
   }
 }
 
@@ -49,8 +45,6 @@ let current: DubSettings = read();
 const listeners = new Set<() => void>();
 
 export function getDubSettings(): DubSettings {
-  const on = current.automatic ? autoTranslateEnabled() : current.on;
-  if (on !== current.on) current = { ...current, on };
   return current;
 }
 
@@ -67,10 +61,8 @@ export function setDubSettings(next: Partial<DubSettings>): void {
 
 function subscribe(listener: () => void) {
   listeners.add(listener);
-  const unsubscribeAuto = subscribeAutoTranslate(listener);
   return () => {
     listeners.delete(listener);
-    unsubscribeAuto();
   };
 }
 

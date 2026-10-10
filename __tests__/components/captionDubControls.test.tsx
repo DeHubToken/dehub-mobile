@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import type { VideoPlayer } from 'expo-video';
 import CaptionOverlay from '../../components/VideoPlayerCore/CaptionOverlay';
+jest.mock('../../hooks/useDubDiscovery', () => ({ useDubDiscovery: jest.fn() }));
 
 let mockDubOn = true;
 let mockSourceLang = '';
