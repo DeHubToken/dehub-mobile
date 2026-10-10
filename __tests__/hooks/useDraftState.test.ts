@@ -21,10 +21,12 @@ it('restores exact text after a new app storage load', () => {
   expect(next.result.current[0]).toBe('  unfinished\n\n');
 });
 it('isolates account and conversation changes without overwriting saved work', () => {
-  const field = renderHook(({ key }) => useStoredDraftState(key, ''), { initialProps: { key: accountDraftKey('alice', 'one') } });
+  let key = accountDraftKey('alice', 'one');
+  const field = renderHook(() => useStoredDraftState(key, ''));
   act(() => field.result.current[1]('alice draft'));
   const oldSetter = field.result.current[1];
-  field.rerender({ key: accountDraftKey('bob', 'one') });
+  key = accountDraftKey('bob', 'one');
+  field.rerender({});
   expect(field.result.current[0]).toBe('');
   act(() => field.result.current[1]('bob draft'));
   act(() => oldSetter(''));
@@ -40,4 +42,14 @@ it('retains failed submission, ignores late defaults, and clears after success',
   expect(JSON.parse(readDraft(key!)).value).toBe('draft');
   await Promise.resolve(); act(() => field.result.current[1].clear());
   expect(readDraft(key!)).toBe('');
+});
+
+it('successful submission preserves typing entered while it was pending', () => {
+  const key = accountDraftKey('alice', 'room');
+  const field = renderHook(() => useStoredDraftState(key, ''));
+  act(() => field.result.current[1]('first'));
+  act(() => field.result.current[1]('next'));
+  act(() => field.result.current[1].complete('first', ''));
+  expect(field.result.current[0]).toBe('next');
+  expect(JSON.parse(readDraft(key!)).value).toBe('next');
 });

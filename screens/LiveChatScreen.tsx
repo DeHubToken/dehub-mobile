@@ -360,11 +360,11 @@ const LiveChatScreen: React.FC = () => {
   }, []);
 
   const handleSend = useCallback(
-    (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
+    async (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
       if (editingMessage) {
-        editMessage(editingMessage._id, content);
+        if (!(await editMessage(editingMessage._id, content))) return false;
         setEditingMessage(null);
-        return;
+        return true;
       }
       // A picture that has finished uploading takes the send: it carries the
       // text as its caption, so the two must not go out as two messages. One
@@ -377,13 +377,13 @@ const LiveChatScreen: React.FC = () => {
           media: [{ url: attachment.url, type: "image", mimeType: "image/jpeg" }],
         };
         if (replyTo) media.replyTo = replyTo;
-        sendMessage(media);
+        if (!(await sendMessage(media))) return false;
         attachmentToken.current += 1;
         setAttachment(null);
         setReplyingTo(null);
         isAtBottomRef.current = true;
         setTimeout(() => scrollToBottom(true), 300);
-        return;
+        return true;
       }
       const payload: SendMessagePayload = { content };
       if (replyTo) payload.replyTo = replyTo;
@@ -392,9 +392,10 @@ const LiveChatScreen: React.FC = () => {
         payload.audioUrl = audioUrl;
         payload.audioDuration = audioDuration;
       }
-      sendMessage(payload);
+      if (!(await sendMessage(payload))) return false;
       isAtBottomRef.current = true;
       setTimeout(() => scrollToBottom(true), 300);
+      return true;
     },
     [sendMessage, scrollToBottom, editingMessage, editMessage, attachment]
   );

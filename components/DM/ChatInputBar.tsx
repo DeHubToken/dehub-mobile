@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
 import React, {
   memo,
@@ -57,9 +58,9 @@ export type ChatMediaAttachment = {
 };
 
 interface ChatInputBarProps {
-  onSendText: (text: string) => void;
-  onSendMedia: (attachment: ChatMediaAttachment, caption?: string) => void;
-  onSendGif: (url: string, caption?: string) => void;
+  onSendText: (text: string) => Promise<boolean>;
+  onSendMedia: (attachment: ChatMediaAttachment, caption?: string) => Promise<boolean>;
+  onSendGif: (url: string, caption?: string) => Promise<boolean>;
   onStartVoice: () => void;
   onTypingChange?: (isTyping: boolean) => void;
   disabled?: boolean;
@@ -150,13 +151,10 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 }) => {
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
-  /*
-   * Editing an existing message borrows the same box. Persisting then would
-   * save someone else's words over the user's draft, and cancelling would wipe
-   * it — so editing simply detaches from the store, and the parked draft comes
-   * back the moment edit mode ends.
-   */
-  const [text, setText] = useDraft(editingMessage ? null : draftKey);
+  const [ordinaryText, setOrdinaryText] = useDraft(draftKey);
+  const [editText, setEditText] = useDraftState(editingMessage && draftKey ? `${draftKey}:edit:${editingMessage._id}` : null, editingMessage?.content || "");
+  const text = editingMessage ? editText : ordinaryText;
+  const setText = editingMessage ? setEditText : setOrdinaryText;
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
@@ -244,7 +242,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const handlePickSuggestion = useCallback((suggestion: string) => {
     setText((prev) => (prev.trim() ? `${prev.trimEnd()} ${suggestion}` : suggestion));
     requestAnimationFrame(() => inputRef.current?.focus());
-  }, []);
+  }, [setText]);
 
   // Pre-fill with shared text on mount — but only into an empty box, so a
   // draft left in this thread days ago is not overwritten by a share.
@@ -259,15 +257,15 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     if (adopted) requestAnimationFrame(() => inputRef.current?.focus());
     // Only run once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setText]);
 
   // Pre-fill when editing
   useEffect(() => {
     if (editingMessage) {
-      setText(editingMessage.content || "");
+      setEditText.initialize(editingMessage.content || "");
       requestAnimationFrame(() => inputRef.current?.focus());
     }
-  }, [editingMessage]);
+  }, [editingMessage, setEditText]);
 
 
   const emitTyping = useCallback(
@@ -287,7 +285,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       if (typingTimer.current) clearTimeout(typingTimer.current);
       typingTimer.current = setTimeout(() => emitTyping(false), TYPING_IDLE_MS);
     },
-    [emitTyping],
+    [emitTyping, setText],
   );
 
   // Cleanup typing timer on unmount
@@ -300,8 +298,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   );
 
 
-  const handleSend = useCallback(() => {
-    if (sending) return;
+  const sendInFlight = useRef(false);
+  const handleSend = useCallback(async () => {
+    if (sending || sendInFlight.current) return;
+    sendInFlight.current = true;
+    try {
     haptic.tap();
 
     // Whatever is in the tray was drafted against a thread that no longer ends
@@ -312,18 +313,18 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     // GIF with optional caption
     if (gifUrl) {
       const caption = text.trim() || undefined;
-      onSendGif(gifUrl, caption);
+      if (!(await onSendGif(gifUrl, caption))) return;
       setGifUrl(null);
-      setText("");
+      setText(current => current === text ? "" : current);
       return;
     }
 
     // Media with optional caption
     if (media) {
       const caption = text.trim() || undefined;
-      onSendMedia(media, caption);
+      if (!(await onSendMedia(media, caption))) return;
       setMedia(null);
-      setText("");
+      setText(current => current === text ? "" : current);
       return;
     }
 
@@ -331,10 +332,12 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     const trimmed = text.trim();
     // Allow sending if there's text OR if a tip is attached (tip-only send)
     if (!trimmed && !tipAmount) return;
-    onSendText(trimmed);
-    setText("");
+    if (!(await onSendText(trimmed))) return;
+    if (editingMessage) setEditText.complete(text, "");
+    else setOrdinaryText(current => current === text ? "" : current);
     emitTyping(false);
-  }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount]);
+    } finally { sendInFlight.current = false; }
+  }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);
 
 
   const handlePickImage = useCallback(async () => {
@@ -448,9 +451,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   }, [onCancelReply]);
 
   const handleCancelEdit = useCallback(() => {
+    setEditText.clear();
     onCancelEdit?.();
-    setText("");
-  }, [onCancelEdit]);
+  }, [onCancelEdit, setEditText]);
 
 
   const handleEnhance = useCallback(async () => {
@@ -472,7 +475,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     } finally {
       setEnhancing(false);
     }
-  }, [text, enhancing]);
+  }, [text, enhancing, setText]);
 
   const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
   // Show send button when there's content OR a tip is attached (tip-only send)

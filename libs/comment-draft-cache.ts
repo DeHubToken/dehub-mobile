@@ -87,7 +87,7 @@ function persist(store: DraftStore): void {
 
 /** Is there anything in here worth keeping? */
 export function draftHasContent(draft: Pick<CommentDraft, "text" | "gifUrl">): boolean {
-  return Boolean(draft.text.trim() || draft.gifUrl);
+  return Boolean(draft.text.length || draft.gifUrl);
 }
 
 /**

@@ -92,11 +92,12 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   const { t } = useTranslation();
   const user = useUser();
   const selfAddr = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
+  const [query, setQuery] = useSurfaceDraft<string>("components/DM/NewDMModal.tsx:query", "");
   // Reset all local state
   const searchRef = useRef<TextInput | null>(null);
   const searchIdRef = useRef<number>(0);
   const reset = useCallback(() => {
-    setQuery("");
+    setQuery.initialize("");
     setResults([]);
     setShowResults(false);
     setLoading(false);
@@ -120,7 +121,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   );
 
   // Local state for user/address search
-  const [query, setQuery] = useSurfaceDraft<string>("components/DM/NewDMModal.tsx:query", "");
+
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<User[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);

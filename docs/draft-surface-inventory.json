@@ -1312,6 +1312,66 @@
         "setSearch"
       ],
       "identity": "route"
+    },
+    {
+      "file": "components/common/EditPostModal.tsx",
+      "fields": [
+        "title",
+        "description",
+        "articleBody",
+        "selectedCategories",
+        "shopLinks"
+      ],
+      "setters": [
+        "setTitle",
+        "setDescription",
+        "setArticleBody",
+        "setSelectedCategories",
+        "setShopLinks"
+      ],
+      "identity": "`post:edit:${tokenId}`"
+    },
+    {
+      "file": "screens/UploadScreen.tsx",
+      "fields": [
+        "bodyText",
+        "titleText",
+        "showTitle",
+        "articleMode",
+        "articleBody",
+        "categories",
+        "monetization",
+        "pollEnabled",
+        "pollQuestion",
+        "pollOptions",
+        "pollDurationHours",
+        "pollIsMultiple"
+      ],
+      "setters": [
+        "setBodyText",
+        "setTitleText",
+        "setShowTitle",
+        "setArticleMode",
+        "setArticleBody",
+        "setCategories",
+        "setMonetization",
+        "setPollEnabled",
+        "setPollQuestion",
+        "setPollOptions",
+        "setPollDurationHours",
+        "setPollIsMultiple"
+      ],
+      "identity": "draftScope"
+    },
+    {
+      "file": "components/LiveChat/LiveChatInput.tsx",
+      "fields": [
+        "text"
+      ],
+      "setters": [
+        "setText"
+      ],
+      "identity": "public message or edit message id"
     }
   ]
 }
