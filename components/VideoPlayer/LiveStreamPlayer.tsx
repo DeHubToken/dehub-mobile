@@ -316,18 +316,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const { items: tipEffects, enqueueFromGift, clearAll: clearTipEffects } = useTipAnimations({ maxConcurrent: 2 });
   // Floating reaction bubbles
   const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
-  // Read through a ref: the socket bindings below are set up once per stream
-  // and must not be torn down when the signed-in account resolves.
-  const myAddress = String(
-    (user?.walletAddress || user?.address || "") as string
-  ).toLowerCase();
-  const myAddressRef = useRef(myAddress);
   /** Tx hashes of the gifts this viewer sent, so their echo off the room
    *  broadcast is recognised as theirs whatever address form it carries. */
   const ownGiftHashesRef = useRef<Set<string>>(new Set());
-  useEffect(() => {
-    myAddressRef.current = myAddress;
-  }, [myAddress]);
   // The viewer's own badge multiplier, so their thumb comes up as thick as the
   // server echo would have drawn it.
   const liveReactionWeight = useEngagementWeight();
