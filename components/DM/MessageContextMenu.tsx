@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useMemo } from "react";
 import {
   View,
@@ -108,6 +109,7 @@ const FloatingMessage: React.FC<{
   isMine: boolean;
   senderInfo?: { displayName?: string; username?: string; avatarImageUrl?: string };
 }> = ({ message, isMine, senderInfo }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Live window size, not a module-level snapshot: on iPad the width changes
   // on rotation and the float's image used to overflow the screen.
@@ -333,7 +335,7 @@ const FloatingMessage: React.FC<{
                 {formatChatTimeSmart(message.createdAt, 0).split(",").pop()?.trim() || ""}
               </Text>
               {message.isEdited && (
-                <Text className="text-[10px] text-white/50">· edited</Text>
+                <Text className="text-[10px] text-white/50">{_copy("copy.0d79ff168b4a", { defaultValue: "· edited" })}</Text>
               )}
               {isMine && (
                 <Icon

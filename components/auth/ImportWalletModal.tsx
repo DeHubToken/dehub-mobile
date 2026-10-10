@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, StyleSheet, useWindowDimensions } from "react-native";
 import GlassModal from "../ui/GlassModal";
@@ -38,6 +39,7 @@ const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 
 const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   ({ visible, onClose }) => {
+  const { t: _copy } = _useCopy();
     const { t } = useTranslation();
     const LIST_MAX_HEIGHT = Math.round(useWindowDimensions().height * 0.45);
     const { isLoading: authLoading, needsUsername } = useAuthState();
@@ -224,11 +226,8 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       >
         <View style={styles.sheet}>
           <Text style={authText.modalTitle}>{t("auth.importWallet")}</Text>
-          <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>
-            Social logins are recommended. This tool is for importing existing accounts from{" "}
-            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
-              dehub.io
-            </Text>
+          <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>{_copy("copy.1655cc1b5278", { defaultValue: "Social logins are recommended. This tool is for importing existing accounts from" })}{" "}
+            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>{_copy("copy.ca7842e53ac8", { defaultValue: "dehub.io" })}</Text>
             .
           </Text>
 
@@ -325,11 +324,8 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             </ScrollView>
           )}
 
-          <Text style={[authText.caption, { textAlign: "center", marginTop: 16 }]}>
-            Learn more at{" "}
-            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
-              dehub.io
-            </Text>
+          <Text style={[authText.caption, { textAlign: "center", marginTop: 16 }]}>{_copy("copy.cc4b56f61014", { defaultValue: "Learn more at" })}{" "}
+            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>{_copy("copy.ca7842e53ac8", { defaultValue: "dehub.io" })}</Text>
           </Text>
         </View>
       </GlassModal>

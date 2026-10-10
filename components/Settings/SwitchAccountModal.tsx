@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useMemo, useState } from "react";
 import {
@@ -50,8 +51,8 @@ const inputWrapClass =
 
 const PROVIDERS: { key: LegacyProvider; label: string }[] = [
   { key: "google", label: "Google" },
-  { key: "apple", label: "Apple" },
-  { key: "twitter", label: "X (Twitter)" },
+  { key: "apple", get label() { return _translateCopy("copy.f223faa96f22", { defaultValue: "Apple" }); } },
+  { key: "twitter", get label() { return _translateCopy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }); } },
   { key: "discord", label: "Discord" },
 ];
 

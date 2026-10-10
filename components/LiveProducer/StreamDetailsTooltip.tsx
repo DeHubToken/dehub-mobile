@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -30,6 +31,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
   onClose,
   onInteract,
 }) => {
+  const { t: _copy } = _useCopy();
   const { width: screenWidth } = Dimensions.get('window');
   const tooltipWidth = Math.min(screenWidth - 64, 360);
   const [copiedKey, setCopiedKey] = useState(false);
@@ -125,7 +127,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                   </Text>
                 )}
                 <View className="mt-2 flex-row items-center">
-                  <Text className="text-white/50 text-[11px] mr-1">RTMP:</Text>
+                  <Text className="text-white/50 text-[11px] mr-1">{_copy("copy.8d6f0c73fbaf", { defaultValue: "RTMP:" })}</Text>
                   <TouchableOpacity
                     onPress={onCopy('server', LIVEPEER_RTMP_SERVER)}
                     className="flex-1"

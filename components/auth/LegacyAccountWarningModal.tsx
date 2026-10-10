@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
@@ -41,8 +43,8 @@ export interface LegacyAccountWarningModalProps {
 
 const PROVIDERS: { key: LegacyProvider; label: string }[] = [
   { key: "google", label: "Google" },
-  { key: "apple", label: "Apple" },
-  { key: "twitter", label: "X (Twitter)" },
+  { key: "apple", get label() { return _translateCopy("copy.f223faa96f22", { defaultValue: "Apple" }); } },
+  { key: "twitter", get label() { return _translateCopy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }); } },
   { key: "discord", label: "Discord" },
 ];
 
@@ -82,6 +84,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
   onCreateAnyway,
   onClose,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
   const [email, setEmail] = useSurfaceDraft("components/auth/LegacyAccountWarningModal.tsx:email", "");
@@ -247,7 +250,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
                 }
                 value={email}
                 onChangeText={setEmail}
-                placeholder="name@example.com"
+                placeholder={_copy("copy.7b17fb0bd173", { defaultValue: "name@example.com" })}
                 accessibilityLabel={t("legacy.oldAccountEmail")}
                 autoCapitalize="none"
                 autoCorrect={false}

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * StageRateButton — the playback-speed chip for stage recordings
  * =============================================================
@@ -18,6 +19,7 @@ export function formatStageRate(rate: number): string {
 }
 
 const StageRateButton: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { rate } = useStagePlayback();
 
   return (
@@ -26,7 +28,7 @@ const StageRateButton: React.FC = () => {
       style={[styles.chip, rate !== 1 && styles.chipOn]}
       hitSlop={6}
       accessibilityRole="button"
-      accessibilityLabel={`Playback speed ${formatStageRate(rate)}`}
+      accessibilityLabel={_copy("copy.9bf75671f22f", { defaultValue: "Playback speed {{value1}}", value1: formatStageRate(rate) })}
     >
       <Text style={styles.label}>{formatStageRate(rate)}</Text>
     </TouchableOpacity>

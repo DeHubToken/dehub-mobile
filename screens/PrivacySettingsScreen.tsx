@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -63,6 +64,7 @@ interface FollowRequest {
 }
 
 const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const { patchUser, refreshUser } = useAuthActions();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -659,7 +661,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <SettingsLinkRow
             icon="Ban"
             label={t('settings.blockedAccounts')}
-            description={blockedCount > 0 ? `${blockedCount} blocked` : t('settings.noneBlocked')}
+            description={blockedCount > 0 ? _copy("copy.fbd1210fffc5", { defaultValue: "{{value1}} blocked", value1: blockedCount }) : t('settings.noneBlocked')}
             onPress={() => setBlockedModalVisible(true)}
           />
         </SettingsSection>

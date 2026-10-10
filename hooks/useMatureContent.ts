@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Mature content setting — mirrors web's `useMatureContent`
  * (dehubweb src/hooks/use-mature-content.ts).
@@ -22,6 +23,7 @@ import { createLogger } from '../libs/logger';
 const logger = createLogger('useMatureContent');
 
 export function useMatureContent() {
+  const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const { patchUser } = useAuthActions() as any;
   const [saving, setSaving] = useState(false);
@@ -41,12 +43,12 @@ export function useMatureContent() {
       } catch (error) {
         logger.error('Failed to update mature content setting', error);
         await patchUser({ showMatureContent: !enabled }).catch(() => {});
-        toastError(error, 'Could not save that. Try again.');
+        toastError(error, _copy("copy.e0a91d4247fc", { defaultValue: "Could not save that. Try again." }));
       } finally {
         setSaving(false);
       }
     },
-    [patchUser],
+    [patchUser, _copy],
   );
 
   return { showMatureContent, setShowMatureContent, saving };

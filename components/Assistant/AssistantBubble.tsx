@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useMemo } from 'react';
 import {
   View,
@@ -94,6 +95,7 @@ const GeneratedVideo: React.FC<{
   editing?: boolean;
   editDisabled?: boolean;
 }> = ({ url, onSave, onPost, onEdit, editing, editDisabled }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const mediaWidth = useMediaWidth();
   // Muted + looping autoplay, as web's <video> does. Sound would be a surprise
@@ -107,8 +109,8 @@ const GeneratedVideo: React.FC<{
 
   const actions = [
     ...(onEdit ? [{ icon: 'Scissors', label: t('creator.editInTimeline'), onPress: () => { player.pause(); onEdit(); }, busy: editing, disabled: editDisabled }] : []),
-    ...(onSave ? [{ icon: 'Download', label: 'Save video', onPress: onSave }] : []),
-    ...(onPost ? [{ icon: 'Plus', label: 'Post video', onPress: onPost }] : []),
+    ...(onSave ? [{ icon: 'Download', label: _copy("copy.f416afe76d99", { defaultValue: "Save video" }), onPress: onSave }] : []),
+    ...(onPost ? [{ icon: 'Plus', label: _copy("copy.da5ef19d8108", { defaultValue: "Post video" }), onPress: onPost }] : []),
   ];
 
   return (
@@ -137,6 +139,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
   onShareAudio,
   onRetry,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const mediaWidth = useMediaWidth();
   const isUser = message.role === 'user';
@@ -259,19 +262,19 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
                   ? [
                       {
                         icon: 'Paperclip',
-                        label: 'Edit this image',
+                        label: _copy("copy.70db13133298", { defaultValue: "Edit this image" }),
                         onPress: () => onAttachImage(url),
                       },
                     ]
                   : []),
                 ...(onCopyImage
-                  ? [{ icon: 'Copy', label: 'Copy image', onPress: () => onCopyImage(url) }]
+                  ? [{ icon: 'Copy', label: _copy("copy.3cb27ae0fbca", { defaultValue: "Copy image" }), onPress: () => onCopyImage(url) }]
                   : []),
                 ...(onSaveMedia
                   ? [
                       {
                         icon: 'Download',
-                        label: 'Save image',
+                        label: _copy("copy.58e909c0f4cc", { defaultValue: "Save image" }),
                         onPress: () => onSaveMedia(url, 'image'),
                       },
                     ]
@@ -280,7 +283,7 @@ const AssistantBubble: React.FC<AssistantBubbleProps> = ({
                   ? [
                       {
                         icon: 'Plus',
-                        label: 'Post image',
+                        label: _copy("copy.60232c175e02", { defaultValue: "Post image" }),
                         onPress: () => onPostMedia(url, 'image'),
                       },
                     ]

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * FeatureRequestsScreen
@@ -637,6 +638,7 @@ const SubmitSheet: React.FC<{
   submitting: boolean;
   initialCategory?: FeatureCategory;
 }> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [title, setTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:title", "");
   const [description, setDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:description", "");
@@ -815,7 +817,7 @@ const SubmitSheet: React.FC<{
                     onPress={() => setAttachments((p) => p.filter((_, idx) => idx !== i))}
                     hitSlop={6}
                     accessibilityRole="button"
-                    accessibilityLabel={`Remove attachment ${i + 1}`}
+                    accessibilityLabel={_copy("copy.58e271dd9ad8", { defaultValue: "Remove attachment {{value1}}", value1: i + 1 })}
                   >
                     <Icon name="X" size={12} color="#FFFFFF" />
                   </Pressable>

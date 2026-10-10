@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -96,6 +97,7 @@ const formatTime = (iso: string): string => {
 };
 
 const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ message }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const sender = message.sender;
   const avatarUrl = getAvatarUrl(sender?.avatarUrl || "");
@@ -120,7 +122,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
         </Text>
         {isMod && (
           <View className="bg-white/10 rounded px-1 py-0.5">
-            <Text className="text-theme-neutrals-200 text-[10px] font-bold">MOD</Text>
+            <Text className="text-theme-neutrals-200 text-[10px] font-bold">{_copy("copy.a4d1abed0b2b", { defaultValue: "MOD" })}</Text>
           </View>
         )}
         {!!badgeImg && (
@@ -139,7 +141,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
               message.replyTo?.sender?.displayName ||
               message.replyTo?.sender?.username ||
               message.replyToSenderAddress?.slice(0, 8) ||
-              "user"}
+              _copy("copy.04f8996da763", { defaultValue: "user" })}
           </Text>
           <Text className="text-white/50 text-xs" numberOfLines={1}>
             {replyQuoteText(message, t)}

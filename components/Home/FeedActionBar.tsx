@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View, Pressable, Text } from "react-native";
@@ -228,6 +229,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onShowReactionInfo,
   isVisible = true,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Left-handed mode mirrors the whole row so the thumb lands on the left.
   const { leftHanded } = useAppPrefs();
@@ -341,8 +343,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           formatCount
           accessibilityLabel={
             myReaction
-              ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-              : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
+              ? _copy("copy.a3156ed263d2", { defaultValue: "{{value1}} — hold to change your reaction", value1: reactionMeta(myReaction).label })
+              : _copy("copy.12b91b0ac5dd", { defaultValue: "{{value1}} — hold to react", value1: reactionMeta(leadReaction ?? "like").label })
           }
         />
       </View>

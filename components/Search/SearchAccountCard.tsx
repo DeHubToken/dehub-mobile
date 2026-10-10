@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { FC, useCallback } from "react";
 import { View, Text, TouchableOpacity} from "react-native";
@@ -20,6 +21,7 @@ interface SearchAccountCardProps {
 }
 
 const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange }) => {
+  const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
@@ -108,8 +110,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
           </Text>
         ) : null}
         <Text className="text-theme-neutrals-600 text-[10px] mt-1">
-          {formatCompactNumber(followers)} followers
-        </Text>
+          {formatCompactNumber(followers)}{_copy("copy.916a8b871759", { defaultValue: " followers" })}</Text>
       </View>
       {renderFollowButton()}
     </TouchableOpacity>

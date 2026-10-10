@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Username marketplace data layer
  * ===============================
@@ -136,6 +137,7 @@ export function useUsernameHoldings(enabled: boolean) {
 
 /** Wear one of the names you own. Free, and reversible by switching back. */
 export function useActivateUsernameHolding() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   const { refreshUser } = useAuthActions();
   return useMutation({
@@ -158,12 +160,13 @@ export function useActivateUsernameHolding() {
       qc.invalidateQueries({ queryKey: ['account'] });
       qc.invalidateQueries({ queryKey: ['profile'] });
     },
-    onError: (err) => toastError(err, 'Could not switch to that username'),
+    onError: (err) => toastError(err, _copy("copy.efed4fbabf2a", { defaultValue: "Could not switch to that username" })),
   });
 }
 
 /** Give a held name back to the pool. There is no undo, so ask first. */
 export function useReleaseUsernameHolding() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameMarketService.releaseHolding,
@@ -173,11 +176,12 @@ export function useReleaseUsernameHolding() {
       qc.invalidateQueries({ queryKey: ['username-market-mine'] });
       qc.invalidateQueries({ queryKey: ['username-market-browse'] });
     },
-    onError: (err) => toastError(err, 'Could not release that username'),
+    onError: (err) => toastError(err, _copy("copy.ec3f63bdb486", { defaultValue: "Could not release that username" })),
   });
 }
 
 export function useCreateUsernameListing() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameMarketService.createListing,
@@ -186,20 +190,21 @@ export function useCreateUsernameListing() {
       qc.invalidateQueries({ queryKey: ['username-market-browse'] });
       toastSuccess(`@${result.username} is on the market`);
     },
-    onError: (err) => toastError(err, 'Could not create that listing'),
+    onError: (err) => toastError(err, _copy("copy.c7d6eda2cce9", { defaultValue: "Could not create that listing" })),
   });
 }
 
 export function useCancelUsernameListing() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameMarketService.cancelListing,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['username-market-mine'] });
       qc.invalidateQueries({ queryKey: ['username-market-browse'] });
-      toastSuccess('Listing withdrawn');
+      toastSuccess(_copy("copy.fecd0f90ada2", { defaultValue: "Listing withdrawn" }));
     },
-    onError: (err) => toastError(err, 'Could not withdraw that listing'),
+    onError: (err) => toastError(err, _copy("copy.9a0d8a96317a", { defaultValue: "Could not withdraw that listing" })),
   });
 }
 
@@ -214,6 +219,7 @@ export type BuyStage = 'idle' | 'quoting' | 'paying' | 'confirming';
  * has already cost them the handle's price.
  */
 export function useBuyUsername() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   const user = useUser() as any;
   const { refreshUser } = useAuthActions();
@@ -337,7 +343,7 @@ export function useBuyUsername() {
     },
     onError: (err) => {
       setStage('idle');
-      toastError(err, 'Could not complete that purchase');
+      toastError(err, _copy("copy.dc1d3da1f19d", { defaultValue: "Could not complete that purchase" }));
     },
   });
 

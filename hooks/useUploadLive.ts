@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * useUploadLive
  *
@@ -77,6 +78,7 @@ export type LiveUploadPayload = {
 
 
 export function useUploadLive() {
+  const { t: _copy } = _useCopy();
   const nav = useNavigation<any>();
   const user = useUser() as any;
   const { authMethod } = useProvider();
@@ -348,7 +350,7 @@ export function useUploadLive() {
         }
 
         goToStage("done");
-        toastSuccess("Livestream created!", {
+        toastSuccess(_copy("copy.836bd8cc6ad9", { defaultValue: "Livestream created!" }), {
           description: p.settings.scheduleEnabled
             ? "Your scheduled livestream is set."
             : "Navigating to your live producer…",
@@ -400,7 +402,7 @@ export function useUploadLive() {
       goToStage,
       streamCollectionContract,
       nav,
-    ],
+    , _copy],
   );
 
   return {

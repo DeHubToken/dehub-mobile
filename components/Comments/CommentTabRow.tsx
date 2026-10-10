@@ -48,6 +48,7 @@ function CommentTabRowComponent({
   onQuotes,
   onReposts,
 }: CommentTabRowProps) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const idle = isMinimal ? MINIMAL_TAB_TEXT : "#6F7174";

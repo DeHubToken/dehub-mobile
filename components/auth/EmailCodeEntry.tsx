@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
 import { AuthButton, AuthField, AuthTextButton, authText } from "./AuthControls";
@@ -20,6 +21,7 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
   loading,
   disabled,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [code, setCode] = useState("");
   const inputRef = useRef<TextInput>(null);
@@ -36,8 +38,7 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
 
   return (
     <View style={{ width: "100%", gap: 12 }}>
-      <Text style={[authText.body, { textAlign: "center" }]}>
-        Enter the code sent to{"\n"}
+      <Text style={[authText.body, { textAlign: "center" }]}>{_copy("copy.3892dc9387d3", { defaultValue: "Enter the code sent to" })}{"\n"}
         <Text style={authText.emphasis}>{email}</Text>
       </Text>
 

@@ -1,3 +1,4 @@
+import { formatRelativeTime } from '../i18n/date-locale';
 // Date & time utilities
 // (Filename uses 'utl' per user instruction; consider aliasing if needed later.)
 
@@ -65,6 +66,7 @@ export function formatJoinedDate(createdAt?: string | null): string | null {
 }
 
 function formatTime(date: Date) {
+  if (i18n.language && i18n.language !== 'en') return date.toLocaleTimeString(appLocale(), { hour: 'numeric', minute: '2-digit' });
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const ampm = hours >= 12 ? "PM" : "AM";
@@ -118,6 +120,7 @@ export function formatNotificationDate(isoDateString: Date | string) {
  * - 1 year ago / 3 years ago
  */
 export function formatRelativeFromNow(input?: string | number | Date | null): string {
+  if (i18n.language && i18n.language !== 'en') return formatRelativeTime(input, i18n.language);
   if (!input) return 'now';
   const d = input instanceof Date ? input : new Date(input);
   const t = d.getTime();
@@ -151,15 +154,25 @@ export function formatChatTimeSmart(
   input?: string | number | Date | null,
   thresholdHours = 6
 ): string {
-  if (!input) return 'now';
+  if (!input) return formatRelativeFromNow(input);
   const d = input instanceof Date ? input : new Date(input);
   const t = d.getTime();
-  if (!Number.isFinite(t)) return 'now';
+  if (!Number.isFinite(t)) return formatRelativeFromNow(null);
   const now = new Date();
   const diffMs = now.getTime() - t;
   const thresholdMs = Math.max(0, thresholdHours) * 3600 * 1000;
   if (diffMs < thresholdMs) {
     return formatRelativeFromNow(d);
+  }
+  if (i18n.language && i18n.language !== 'en') {
+    const time = formatTime(d);
+    if (d.toDateString() === now.toDateString()) return time;
+    const yesterday = new Date(now); yesterday.setDate(now.getDate() - 1);
+    if (d.toDateString() === yesterday.toDateString()) return time + ', ' + i18n.t('communities.time.yesterday');
+    const options: Intl.DateTimeFormatOptions = diffMs < 7 * 86400000
+      ? { weekday: 'short' }
+      : { day: 'numeric', month: 'short', ...(d.getFullYear() === now.getFullYear() ? {} : { year: 'numeric' as const }) };
+    return time + ', ' + d.toLocaleDateString(appLocale(), options);
   }
   // Absolute local time in h:mm am/pm
   const hh = d.getHours();

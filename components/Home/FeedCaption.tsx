@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * FeedCaption - Instagram-style expandable caption with hashtag categories
  * 
@@ -132,6 +133,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   resetKey,
   variant = "default",
 }) => {
+  const { t: _copy } = _useCopy();
   const verdictKey = `${maxLines}|${description ?? ""}`;
   // Both start over, in the same render, when the card is handed another
   // post, so an expanded caption or a "see more" never carries onto it. A
@@ -315,7 +317,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>
               <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 14.7, lineHeight: 18.9 }}>
-                {expanded ? "see less" : "see more"}
+                {expanded ? _copy("copy.8fc6889d642b", { defaultValue: "see less" }) : _copy("copy.b19a6f63eaf3", { defaultValue: "see more" })}
               </Text>
             </TouchableOpacity>
           )}

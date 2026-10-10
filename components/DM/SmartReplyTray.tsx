@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useEffect } from "react";
 import {
   View,
@@ -103,6 +104,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   onDismiss,
   dismissLabel,
 }) => {
+  const { t: _copy } = _useCopy();
   // 'idle' is unresolved, not empty: the call is on its way, so it reads as
   // loading rather than as a tray with nothing in it.
   const busy = status === "loading" || status === "idle";
@@ -144,7 +146,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
         justifyContent: "center",
       }}
       accessibilityRole="button"
-      accessibilityLabel={busy ? "Drafting replies" : "Draft new replies"}
+      accessibilityLabel={busy ? _copy("copy.b79dd4557485", { defaultValue: "Drafting replies" }) : _copy("copy.26c4675bcba1", { defaultValue: "Draft new replies" })}
       accessibilityState={{ disabled: busy }}
     >
       <ReplyOrb state={busy ? "thinking" : "idle"} size={ORB} />
@@ -172,7 +174,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
                   disabled={!s}
                   onPress={() => s && onPick(s.text)}
                   accessibilityRole="button"
-                  accessibilityLabel={s ? `${s.label}: ${s.text}` : "Drafting a reply"}
+                  accessibilityLabel={s ? `${s.label}: ${s.text}` : _copy("copy.bf5e759e3af9", { defaultValue: "Drafting a reply" })}
                   accessibilityState={{ disabled: !s }}
                   style={({ pressed }) => ({
                     flex: 1,
@@ -254,7 +256,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
           hitSlop={10}
           style={{ position: "absolute", right: 2, top: 2, padding: 6 }}
           accessibilityRole="button"
-          accessibilityLabel={dismissLabel ?? "Turn off suggested replies"}
+          accessibilityLabel={dismissLabel ?? _copy("copy.7dda1098a2d0", { defaultValue: "Turn off suggested replies" })}
         >
           <Icon name="X" size={14} color="#6F7174" />
         </TouchableOpacity>

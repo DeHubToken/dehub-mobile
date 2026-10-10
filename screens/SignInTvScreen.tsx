@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   View,
@@ -39,6 +40,7 @@ type Phase = 'entry' | 'confirm' | 'done';
  * is somebody approving a code that arrived by message.
  */
 export default function SignInTvScreen() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [code, setCode] = useState('');
@@ -124,7 +126,7 @@ export default function SignInTvScreen() {
                 setNotFound(false);
                 setLookupError(false);
               }}
-              placeholder="XXXX-XXXX"
+              placeholder={_copy("copy.713d24d02e26", { defaultValue: "XXXX-XXXX" })}
               placeholderTextColor="#6F7174"
               autoCapitalize="characters"
               autoCorrect={false}

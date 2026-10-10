@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useWorkEscrow,workRow,getWorkConfig } from './useWorkEscrow';
 import { workRpc, workReceipt } from '../libs/work-rpc';
 import { prepareWorkPayment, runWorkPayment } from '../libs/work-payment-flow';
@@ -371,6 +372,7 @@ export function isBudgetEditable(job: WorkJob): boolean {
 // ── Create job ──────────────────────────────────────────────────────────────
 
 export function useCreateJob() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -430,7 +432,7 @@ export function useCreateJob() {
     },
     onError: (e: any) => {
       log.error("Create job failed:", e);
-      toastError(e, "Failed to post job");
+      toastError(e, _copy("copy.4a9b1d39db85", { defaultValue: "Failed to post job" }));
     },
   });
 }
@@ -454,6 +456,7 @@ export function useJobApplications(jobId: string | undefined) {
 }
 
 export function useApplyToJob() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -482,16 +485,17 @@ export function useApplyToJob() {
     },
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-apps", v.job_id] });
-      toastSuccess("Application sent");
+      toastSuccess(_copy("copy.f4e93d19a0fc", { defaultValue: "Application sent" }));
     },
     onError: (e: any) => {
       log.error("Apply failed:", e);
-      toastError(e, "Failed to apply");
+      toastError(e, _copy("copy.b3ec56659c25", { defaultValue: "Failed to apply" }));
     },
   });
 }
 
 export function useAwardApplicant() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -515,11 +519,11 @@ export function useAwardApplicant() {
       qc.invalidateQueries({ queryKey: ["work-job"] });
       // Not "funds escrowed": with no contract deployed this awards the work and
       // nothing else. Money moves when the submission is approved and paid.
-      toastSuccess("Awarded — they can start work");
+      toastSuccess(_copy("copy.3f0abb77152a", { defaultValue: "Awarded — they can start work" }));
     },
     onError: (e: any) => {
       log.error("Award failed:", e);
-      toastError(e, "Failed to award");
+      toastError(e, _copy("copy.b979cda45ed2", { defaultValue: "Failed to award" }));
     },
   });
 }
@@ -543,6 +547,7 @@ export function useJobSubmissions(jobId: string | undefined) {
 }
 
 export function useSubmitProof() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -576,11 +581,11 @@ export function useSubmitProof() {
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-job"] });
-      toastSuccess("Proof submitted");
+      toastSuccess(_copy("copy.d48be1bf1414", { defaultValue: "Proof submitted" }));
     },
     onError: (e: any) => {
       log.error("Submit proof failed:", e);
-      toastError(e, "Failed to submit proof");
+      toastError(e, _copy("copy.5a10bd65eb3a", { defaultValue: "Failed to submit proof" }));
     },
   });
 }
@@ -625,6 +630,7 @@ function useSettleWorkPayment() {
 }
 
 export function useApproveSubmission() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   const settlePayment = useSettleWorkPayment();
@@ -659,13 +665,14 @@ export function useApproveSubmission() {
     },
     onError: (e: any) => {
       log.error("Approve failed:", e);
-      toastError(e, "Failed to approve");
+      toastError(e, _copy("copy.de0c2e40fd7a", { defaultValue: "Failed to approve" }));
     },
   });
 }
 
 
 export function usePaySubmission() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   const settlePayment = useSettleWorkPayment();
@@ -684,7 +691,7 @@ export function usePaySubmission() {
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-job"] });
-      toastSuccess("Payment checked — refresh the submission for its confirmed status");
+      toastSuccess(_copy("copy.d3381af6ba42", { defaultValue: "Payment checked — refresh the submission for its confirmed status" }));
     },
     onSettled: (_result, _error, variables) => {
       qc.invalidateQueries({ queryKey: ['work-subs', variables.job_id] });
@@ -692,12 +699,13 @@ export function usePaySubmission() {
     },
     onError: (e: any) => {
       log.error("Payout failed:", e);
-      toastError(e, "Payment failed");
+      toastError(e, _copy("copy.17aadc092fe6", { defaultValue: "Payment failed" }));
     },
   });
 }
 
 export function useRejectSubmission() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -709,11 +717,11 @@ export function useRejectSubmission() {
     },
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
-      toastSuccess("Submission rejected");
+      toastSuccess(_copy("copy.be61c03c480e", { defaultValue: "Submission rejected" }));
     },
     onError: (e: any) => {
       log.error("Reject failed:", e);
-      toastError(e, "Failed to reject");
+      toastError(e, _copy("copy.46960413b9a8", { defaultValue: "Failed to reject" }));
     },
   });
 }
@@ -741,6 +749,7 @@ export function useUserReviews(address: string | undefined) {
 }
 
 export function useLeaveReview() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -770,11 +779,11 @@ export function useLeaveReview() {
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-reviews", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-reviews-user", v.reviewee_address.toLowerCase()] });
-      toastSuccess("Review posted");
+      toastSuccess(_copy("copy.e3df893ed812", { defaultValue: "Review posted" }));
     },
     onError: (e: any) => {
       log.error("Leave review failed:", e);
-      toastError(e, "Failed to leave review");
+      toastError(e, _copy("copy.843991d1d9b3", { defaultValue: "Failed to leave review" }));
     },
   });
 }
@@ -782,6 +791,7 @@ export function useLeaveReview() {
 // ── Dispute ─────────────────────────────────────────────────────────────────
 
 export function useOpenDispute() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -798,11 +808,11 @@ export function useOpenDispute() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["work-job"] });
       qc.invalidateQueries({ queryKey: ["work-disputes-admin"] });
-      toastSuccess("Dispute opened — admin will review");
+      toastSuccess(_copy("copy.ef16819dcd3e", { defaultValue: "Dispute opened — admin will review" }));
     },
     onError: (e: any) => {
       log.error("Open dispute failed:", e);
-      toastError(e, "Failed to open dispute");
+      toastError(e, _copy("copy.f3749b3c1a06", { defaultValue: "Failed to open dispute" }));
     },
   });
 }
@@ -876,6 +886,7 @@ export function useAdminResolveDispute() {
 // ── Completion ──────────────────────────────────────────────────────────────
 
 export function useMarkComplete() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -887,11 +898,11 @@ export function useMarkComplete() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["work-job"] });
       qc.invalidateQueries({ queryKey: ["work-jobs-browse"] });
-      toastSuccess("Job marked complete");
+      toastSuccess(_copy("copy.db42881e01a7", { defaultValue: "Job marked complete" }));
     },
     onError: (e: any) => {
       log.error("Mark complete failed:", e);
-      toastError(e, "Failed");
+      toastError(e, _copy("copy.031a8f0f659d", { defaultValue: "Failed" }));
     },
   });
 }

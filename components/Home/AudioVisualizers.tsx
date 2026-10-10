@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 /**
  * Audio post visualizers — the mobile half of web's `visualizer-styles.ts`
  * =======================================================================
@@ -97,16 +98,16 @@ export type BaseVisualizerStyle =
 export type VisualizerStyle = BaseVisualizerStyle | ExtraStyle;
 
 export const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
-  { value: "static", label: "Default" },
-  { value: "bars", label: "Bars" },
-  { value: "waveform", label: "Wave" },
-  { value: "circular", label: "Radial" },
-  { value: "spectrum", label: "Spectrum" },
-  { value: "mirror", label: "Mirror" },
-  { value: "rings", label: "Rings" },
-  { value: "pulse", label: "Pulse" },
-  { value: "terrain", label: "Terrain" },
-  { value: "orb", label: "Orb" },
+  { value: "static", get label() { return _translateCopy("copy.21b111cbfe6e", { defaultValue: "Default" }); } },
+  { value: "bars", get label() { return _translateCopy("copy.f2c3526915d3", { defaultValue: "Bars" }); } },
+  { value: "waveform", get label() { return _translateCopy("copy.43eb1b148ebb", { defaultValue: "Wave" }); } },
+  { value: "circular", get label() { return _translateCopy("copy.02693d5af964", { defaultValue: "Radial" }); } },
+  { value: "spectrum", get label() { return _translateCopy("copy.fc457d42d767", { defaultValue: "Spectrum" }); } },
+  { value: "mirror", get label() { return _translateCopy("copy.90fade6fb78e", { defaultValue: "Mirror" }); } },
+  { value: "rings", get label() { return _translateCopy("copy.bab4c75d0722", { defaultValue: "Rings" }); } },
+  { value: "pulse", get label() { return _translateCopy("copy.f7a403c6cdf3", { defaultValue: "Pulse" }); } },
+  { value: "terrain", get label() { return _translateCopy("copy.5dd6e0396c9d", { defaultValue: "Terrain" }); } },
+  { value: "orb", get label() { return _translateCopy("copy.8483460e43ab", { defaultValue: "Orb" }); } },
   ...EXTRA_STYLES,
 ];
 

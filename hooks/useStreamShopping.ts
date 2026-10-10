@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Live shopping data layer
  * ========================
@@ -213,6 +214,7 @@ export function useStreamProducts(
  * security.
  */
 export function useStreamProductActions(tokenId: string | number | null | undefined) {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const queryClient = useQueryClient();
   const key = tokenId == null ? null : String(tokenId);
@@ -234,29 +236,29 @@ export function useStreamProductActions(tokenId: string | number | null | undefi
       ),
     onSuccess: () => {
       invalidate();
-      toastSuccess("Added to the stream");
+      toastSuccess(_copy("copy.b83e2b791732", { defaultValue: "Added to the stream" }));
     },
-    onError: (e: any) => toastError(e, "Could not add that item"),
+    onError: (e: any) => toastError(e, _copy("copy.b2903210a539", { defaultValue: "Could not add that item" })),
   });
 
   const detach = useMutation({
     mutationFn: (listingId: string) =>
       callFn("stream-products", { action: "detach", tokenId: key, listingId }, wallet),
     onSuccess: invalidate,
-    onError: (e: any) => toastError(e, "Could not remove that item"),
+    onError: (e: any) => toastError(e, _copy("copy.c749c07a8785", { defaultValue: "Could not remove that item" })),
   });
 
   const pin = useMutation({
     mutationFn: (listingId: string) =>
       callFn("stream-products", { action: "pin", tokenId: key, listingId }, wallet),
     onSuccess: invalidate,
-    onError: (e: any) => toastError(e, "Could not put that on air"),
+    onError: (e: any) => toastError(e, _copy("copy.6e0291b3c696", { defaultValue: "Could not put that on air" })),
   });
 
   const unpin = useMutation({
     mutationFn: () => callFn("stream-products", { action: "unpin", tokenId: key }, wallet),
     onSuccess: invalidate,
-    onError: (e: any) => toastError(e, "Could not take that off air"),
+    onError: (e: any) => toastError(e, _copy("copy.88f992e97439", { defaultValue: "Could not take that off air" })),
   });
 
   return { attach, detach, pin, unpin };
@@ -292,6 +294,7 @@ export function useLiveCheckout(
   tokenId: string | number | null | undefined,
   sendTransfer: (to: string, amountWholeTokens: number) => Promise<string>,
 ) {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const queryClient = useQueryClient();
   const key = tokenId == null ? null : String(tokenId);
@@ -365,7 +368,7 @@ export function useLiveCheckout(
     },
     onError: (e: any) => {
       log.error("live purchase failed", e);
-      toastError(e, "Purchase failed");
+      toastError(e, _copy("copy.42b7d537f55f", { defaultValue: "Purchase failed" }));
     },
   });
 

@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useRoute, type RouteProp } from "@react-navigation/native";
@@ -32,10 +33,10 @@ import type { AppStackParamList } from "../navigation/types";
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
 const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
-  { key: "wallet", label: "Wallet", labelKey: "wallet.title", icon: "Wallet" },
-  { key: "buy", label: "Buy Tokens", labelKey: "upload.buyTokens", icon: "CreditCard" },
-  { key: "stake", label: "Stake", icon: "Lock" },
-  { key: "bridge", label: "Bridge", icon: "ArrowLeftRight" },
+  { key: "wallet", get label() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, labelKey: "wallet.title", icon: "Wallet" },
+  { key: "buy", get label() { return _translateCopy("copy.989bd871eac5", { defaultValue: "Buy Tokens" }); }, labelKey: "upload.buyTokens", icon: "CreditCard" },
+  { key: "stake", get label() { return _translateCopy("copy.8939aea8419b", { defaultValue: "Stake" }); }, icon: "Lock" },
+  { key: "bridge", get label() { return _translateCopy("copy.3892e10346fd", { defaultValue: "Bridge" }); }, icon: "ArrowLeftRight" },
   { key: "solana", label: "Solana", icon: "Coins" },
 ];
 

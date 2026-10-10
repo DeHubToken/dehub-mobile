@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Spend one SuperPower, from the SuperPowers screen
@@ -63,6 +64,7 @@ interface SpendPowerSheetProps {
 }
 
 export default function SpendPowerSheet({ power, address, onClose }: SpendPowerSheetProps) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { data: status } = useSuperpowers();
   const { data: ladder } = useSuperpowerLadder();
@@ -386,7 +388,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                     )}
                     <View className="min-w-0 flex-1">
                       <Text numberOfLines={2} className="text-sm leading-5 text-white">
-                        {postText || postTitle || `Post #${id}`}
+                        {postText || postTitle || _copy("copy.a17c49cfedad", { defaultValue: "Post #{{value1}}", value1: id })}
                       </Text>
                       {postText && postTitle && postText !== postTitle ? (
                         <Text numberOfLines={1} className="mt-0.5 text-[11px] text-zinc-400">
@@ -550,8 +552,8 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
                   : t("superpowers.noBoostsLeft", { defaultValue: "No boosts left this cycle" })
                 : signals
                   ? isMegalodon
-                    ? "Signal Flare to everyone"
-                    : `Signal Flare to ${(signalFlarePeople ?? 0).toLocaleString()} people`
+                    ? _copy("copy.8e4b97ca7c6e", { defaultValue: "Signal Flare to everyone" })
+                    : _copy("copy.8ae18739e3f7", { defaultValue: "Signal Flare to {{value1}} people", value1: (signalFlarePeople ?? 0).toLocaleString() })
                   : t("superpowers.spendFor", {
                       power: power?.label ?? "",
                       minutes: status?.minutesPerBoost ?? 0,

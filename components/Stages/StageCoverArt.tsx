@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 /**
  * StageCoverArt — a stage's graphic, whole, at one ratio everywhere
  * =================================================================
@@ -41,7 +42,7 @@ const StageCoverArt: React.FC<StageCoverArtProps> = ({ uri, title, style }) => (
       contentFit="contain"
       transition={180}
       accessible={!!title}
-      accessibilityLabel={title ? `Cover graphic for ${title}` : undefined}
+      accessibilityLabel={title ? _translateCopy("copy.99ca327a47b5", { defaultValue: "Cover graphic for {{value1}}", value1: title }) : undefined}
     />
   </View>
 );

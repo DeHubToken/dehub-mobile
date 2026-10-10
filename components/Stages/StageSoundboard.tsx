@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * StageSoundboard — host/speaker soundboard for Stages, ported from web's
  * StageSoundboard.
@@ -71,6 +72,7 @@ interface CustomSound {
 }
 
 const StageSoundboard: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { playingSoundId, playSoundEffect, stopSoundEffect } = useStages();
   const { user } = useAuth();
@@ -207,9 +209,7 @@ const StageSoundboard: React.FC = () => {
             textTransform: "uppercase",
             letterSpacing: 1,
           }}
-        >
-          🎛️ Soundboard
-        </Text>
+        >{_copy("copy.02a867e195e5", { defaultValue: "🎛️ Soundboard" })}</Text>
         {!!playingSoundId && (
           <TouchableOpacity
             onPress={stopSoundEffect}

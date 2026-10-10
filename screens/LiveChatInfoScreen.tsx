@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../components/common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../libs/misc";
 import SmartImage from "../components/common/SmartImage";
@@ -120,6 +121,7 @@ const InfoRow: React.FC<{
 /* ─── Main Screen ───────────────────────────────────────────── */
 
 const LiveChatInfoScreen: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const route = useRoute<any>();
   const navigation = useNavigation();
@@ -147,7 +149,7 @@ const LiveChatInfoScreen: React.FC = () => {
     confirmText: string;
     confirmKind: "primary" | "danger" | "neutral";
     onConfirm: () => void;
-  }>({ visible: false, title: "", confirmText: "OK", confirmKind: "primary", onConfirm: () => {} });
+  }>({ visible: false, title: "", confirmText: _copy("copy.565339bc4d33", { defaultValue: "OK" }), confirmKind: "primary", onConfirm: () => {} });
 
   const showConfirm = useCallback(
     (opts: {

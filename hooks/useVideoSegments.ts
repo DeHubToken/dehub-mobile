@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * The read side of crowdsourced sponsor skipping.
  *
@@ -88,6 +89,7 @@ export function segmentAt(segments: VideoSegment[], time: number): VideoSegment 
 }
 
 export function useSegmentActions(tokenId: string | number | undefined) {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
 
   const invalidate = useCallback(() => {
@@ -99,7 +101,7 @@ export function useSegmentActions(tokenId: string | number | undefined) {
       submitVideoSegment({ tokenId: tokenId!, ...input }),
     onSuccess: () => {
       invalidate();
-      toastSuccess("Thanks — that section is marked for everyone");
+      toastSuccess(_copy("copy.f5d57264900f", { defaultValue: "Thanks — that section is marked for everyone" }));
     },
     onError: (error: Error) => toastError(error.message || "Could not save that section"),
   });
@@ -115,7 +117,7 @@ export function useSegmentActions(tokenId: string | number | undefined) {
     mutationFn: (segmentId: string) => removeVideoSegment(segmentId),
     onSuccess: () => {
       invalidate();
-      toastSuccess("Removed");
+      toastSuccess(_copy("copy.4118fb4fed0e", { defaultValue: "Removed" }));
     },
     onError: (error: Error) => toastError(error.message || "Could not remove that"),
   });

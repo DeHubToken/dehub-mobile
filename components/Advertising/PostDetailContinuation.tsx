@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useMemo } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
@@ -19,6 +20,7 @@ interface PostDetailContinuationProps {
 
 /** Ad first, then an explicitly paginated continuation of recent posts. */
 export default function PostDetailContinuation({ currentPostId }: PostDetailContinuationProps) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const { data: servedAds = [], isLoading: servedAdLoading } = useServedAds("related", { count: 1 });
@@ -85,7 +87,7 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
             >
               <Text className="text-xs text-theme-neutrals-400">{t("ads.sponsored")}</Text>
               <View className="rounded bg-yellow-500 px-1.5 py-0.5">
-                <Text className="text-xs font-bold text-black">AD</Text>
+                <Text className="text-xs font-bold text-black">{_copy("copy.c7bf4bbdbcd8", { defaultValue: "AD" })}</Text>
               </View>
             </View>
             <FeedCard item={houseAd} isAutoplayActive={false} />

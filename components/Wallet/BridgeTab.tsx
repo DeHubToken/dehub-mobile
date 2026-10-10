@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { appLocale } from "../../libs/date.util";
 import { formatBridgeAmount } from "../../libs/bridge-amount";
@@ -70,6 +71,7 @@ function formatDHB(raw: ethers.BigNumber | null): string {
 }
 
 const BridgeTab: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Minimal: section cards and transfer rows dissolve into hairline rows; the
   // chain chips, swap button, amount field and bridge button keep their fill.
@@ -234,9 +236,7 @@ const BridgeTab: React.FC = () => {
           <DhbCoin size={12} style={{ marginTop: 2 }} />
         </View>
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4" style={mFlat}>
-          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
-            BNB Chain
-          </Text>
+          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">{_copy("copy.5dc85dbc155e", { defaultValue: "BNB Chain" })}</Text>
           {loading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
@@ -285,9 +285,8 @@ const BridgeTab: React.FC = () => {
         </View>
 
         {/* Available balance */}
-        <Text className="text-white/60 text-xs mb-3">
-          Available:{" "}
-          <Text className="text-white/70 font-medium">{sourceBalF} <DhbCoin /></Text> on{" "}
+        <Text className="text-white/60 text-xs mb-3">{_copy("copy.72074a8a6836", { defaultValue: "Available:" })}{" "}
+          <Text className="text-white/70 font-medium">{sourceBalF} <DhbCoin /></Text>{_copy("copy.582bfe13a748", { defaultValue: " on" })}{" "}
           {sourceChain}
         </Text>
 
@@ -311,7 +310,7 @@ const BridgeTab: React.FC = () => {
             className="px-2 py-3 -mr-1"
             hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }}
           >
-            <Text className="text-white/50 text-xs font-bold uppercase">MAX</Text>
+            <Text className="text-white/50 text-xs font-bold uppercase">{_copy("copy.2d9c014a222d", { defaultValue: "MAX" })}</Text>
           </TouchableOpacity>
         </View>
 
@@ -381,8 +380,7 @@ const BridgeTab: React.FC = () => {
                     {formatBridgeAmount(t.amount, appLocale())}{" "}
                     <DhbCoin />
                   </Text>
-                  <Text className="text-white/50 text-xs mt-0.5">
-                    from {t.chain} · {timeAgo(t.timestamp)}
+                  <Text className="text-white/50 text-xs mt-0.5">{_copy("copy.49a6ddf9a439", { defaultValue: "from " })}{t.chain} · {timeAgo(t.timestamp)}
                   </Text>
                 </View>
                 <Ionicons name="open-outline" size={14} color="rgba(255,255,255,0.3)" />

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useRef, useMemo, useEffect, useSyncExternalStore } from 'react';
 import { useTranslation as useI18n } from 'react-i18next';
 import { translateText, getUserLanguage } from '../services/translation.service';
@@ -78,6 +79,7 @@ export function useTranslation(
   isPublic: boolean = false,
   resetKey?: string,
 ): UseTranslationResult {
+  const { t: _copy } = _useCopy();
   const { i18n } = useI18n();
   const targetLang = useMemo(() => getUserLanguage(), [i18n.language]);
   const autoEnabled = useSyncExternalStore(subscribeAutoTranslate, autoTranslateEnabled);
@@ -192,8 +194,8 @@ export function useTranslation(
           // looks broken.
           if (toastId !== null) {
             dismissToast(toastId);
-            if (partialFailure) toastError('Translation failed. Please try again.');
-            else toastSuccess('Already in your language');
+            if (partialFailure) toastError(_copy("copy.b9725da1e57f", { defaultValue: "Translation failed. Please try again." }));
+            else toastSuccess(_copy("copy.caac88c81c38", { defaultValue: "Already in your language" }));
           }
           return;
         }
@@ -205,13 +207,13 @@ export function useTranslation(
         }
         if (toastId !== null) {
           dismissToast(toastId);
-          if (partialFailure) toastError('Some text could not be translated.');
-          else toastSuccess('Post translated');
+          if (partialFailure) toastError(_copy("copy.31198ffcdcba", { defaultValue: "Some text could not be translated." }));
+          else toastSuccess(_copy("copy.bfd4303ae4e5", { defaultValue: "Post translated" }));
         }
       } catch {
         if (toastId !== null) {
           dismissToast(toastId);
-          toastError('Translation failed. Please try again.');
+          toastError(_copy("copy.b9725da1e57f", { defaultValue: "Translation failed. Please try again." }));
         }
       } finally {
         // After a reset the flag already belongs to the next post's request.
@@ -221,7 +223,7 @@ export function useTranslation(
         }
       }
     },
-    [texts, reliableBackendLang, targetLang, isPublic],
+    [texts, reliableBackendLang, targetLang, isPublic, _copy],
   );
 
   const handleTranslate = useCallback(() => {

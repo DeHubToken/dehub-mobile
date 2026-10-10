@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Settings — restructured to mirror web's settings system
  * (dehubweb src/pages/app/SettingsPage.tsx).
@@ -103,6 +104,7 @@ type TabKey =
   | "support";
 
 const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const { signOut } = useAuthActions();
@@ -321,7 +323,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           />
           <View className="flex-1 ml-3">
             <Text className="text-white text-base leading-5 font-medium">
-              {user?.displayName || user?.username || "Anonymous"}
+              {user?.displayName || user?.username || _copy("copy.e7a8aa2df7e5", { defaultValue: "Anonymous" })}
             </Text>
             <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
               @{user?.username || "—"}
@@ -388,8 +390,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         />
       </SettingsSection>
 
-      <Text className="text-center text-theme-neutrals-500 text-xs mt-6">
-        DeHub v{APP_VERSION}
+      <Text className="text-center text-theme-neutrals-500 text-xs mt-6">{_copy("copy.1f185710f28a", { defaultValue: "DeHub v" })}{APP_VERSION}
       </Text>
     </SettingsScrollView>
   );

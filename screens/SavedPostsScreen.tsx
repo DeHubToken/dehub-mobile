@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -44,6 +45,7 @@ import {
 type ActiveTab = "all" | "folders";
 
 const SavedPostsScreen: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -231,7 +233,7 @@ const SavedPostsScreen: React.FC = () => {
             )}
           </View>
           <Text style={styles.folderCount} numberOfLines={1}>
-            {item.itemCount} {item.itemCount === 1 ? "post" : "posts"}
+            {item.itemCount} {item.itemCount === 1 ? _copy("copy.72231043bc18", { defaultValue: "post" }) : _copy("copy.a44f1b975171", { defaultValue: "posts" })}
           </Text>
           {!!item.description && (
             <Text style={styles.folderDescription} numberOfLines={2}>

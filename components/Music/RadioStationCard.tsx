@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * RadioStationCard
  * ================
@@ -32,6 +33,7 @@ export interface RadioStationCardProps {
 }
 
 const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = "row" }) => {
+  const { t: _copy } = _useCopy();
   const { station: current, isPlaying, isLoading } = useRadioPlayer();
   const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
 
@@ -54,7 +56,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
       style={[styles.base, isCard ? styles.card : styles.row, isCurrent && styles.current]}
       accessibilityRole="button"
       accessibilityState={{ selected: isCurrent }}
-      accessibilityLabel={isThisPlaying ? `Pause ${station.name}` : `Play ${station.name}`}
+      accessibilityLabel={isThisPlaying ? _copy("copy.7a4ebea4b617", { defaultValue: "Pause {{value1}}", value1: station.name }) : _copy("copy.f2598220db3e", { defaultValue: "Play {{value1}}", value1: station.name })}
     >
       <View style={[styles.logoWrap, isCard && styles.logoWrapCard]}>
         {showLogo ? (
@@ -81,7 +83,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
 
       <View style={styles.info}>
         <Text style={styles.name} numberOfLines={1}>
-          {station.name?.trim() || "Unnamed station"}
+          {station.name?.trim() || _copy("copy.84ec629c3faa", { defaultValue: "Unnamed station" })}
         </Text>
         <Text style={styles.sub} numberOfLines={1}>
           {flag}

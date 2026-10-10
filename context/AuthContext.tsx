@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, {
   createContext,
   useState,
@@ -292,6 +293,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const { t: _copy } = _useCopy();
   const log = useMemo(() => createLogger("AuthContext"), []);
   const [user, setUser] = useState<User | null>(null);
   // Runtime operation loading (sign in/out). Starts false so UI (SignInScreen) remains mounted.
@@ -594,12 +596,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           log.error('switchChain:restore:failed', restoreError as any);
         }
       }
-      try { toastError(e, 'Failed to switch network'); } catch {}
+      try { toastError(e, _copy("copy.e1c71a6e23fc", { defaultValue: "Failed to switch network" })); } catch {}
       throw e;
     } finally {
       setIsSwitchingChain(false);
     }
-  }, [log, forceReinitProvider, getProviderAccount, signInWithWallet]);
+  }, [log, forceReinitProvider, getProviderAccount, signInWithWallet, _copy]);
 
   // One consolidated effect, split logically via guards:
   // - Once post-boot, refresh profile details (skip balances)
@@ -739,7 +741,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
         await rehydrateFromStorage();
         await completeProfileSwitch(id);
-        toastSuccess('Switched account');
+        toastSuccess(_copy("copy.d6dad8f19561", { defaultValue: "Switched account" }));
         return true;
       } catch (e) {
         log.warn('switchToProfile:failed', e as any);
@@ -749,7 +751,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return false;
       }
     },
-    [log, openAddProfile, rehydrateFromStorage]
+    [log, openAddProfile, rehydrateFromStorage, _copy]
   );
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 /**
  * AffiliateScreen
@@ -171,6 +172,7 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
 // ── Screen ──────────────────────────────────────────────────────────────────
 
 export default function AffiliateScreen() {
+  const { t: _copy } = _useCopy();
   const insets = useSafeAreaInsets();
   // The KeyboardAvoidingView is the outermost element, so only the device
   // inset sits above it; the header is inside and already in its layout.
@@ -457,7 +459,7 @@ export default function AffiliateScreen() {
             maxLength={200}
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="/app"
+            placeholder={_copy("copy.f53b52ad6d21", { defaultValue: "/app" })}
             placeholderTextColor="#52525B"
             style={styles.input}
           />
@@ -483,7 +485,7 @@ export default function AffiliateScreen() {
                 maxLength={200}
                 autoCapitalize="none"
                 autoCorrect={false}
-                placeholder="/editor"
+                placeholder={_copy("copy.ae16d3d53b5c", { defaultValue: "/editor" })}
                 placeholderTextColor="#52525B"
                 accessibilityLabel={t("affiliateLanding.destination")}
                 style={[styles.input, styles.ctaInput]}
