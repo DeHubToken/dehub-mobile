@@ -66,7 +66,7 @@ describe('post media presentation', () => {
     // bottom of the media, and the tools menu opens upward from there.
     expect(card).toContain('const chipAtBottom = chipOverMedia && leadInset > 0;');
     expect(card).toContain('fromBottom={chipAtBottom ? bottomBand + 8 : undefined}');
-    expect(card).toContain('onAskAi={cinematicFeed ? handleAiPress : undefined}');
+    expect(card).toContain('onAskAi={handleAiPress}');
   });
 
   it('puts the first post chrome in the bottom corners, lifting only over the player bar', () => {
@@ -82,7 +82,7 @@ describe('post media presentation', () => {
     expect(player).toContain('const barUp = !hideControls && showControls;');
     expect(player).toContain('setBarUp?.(barUp);');
     // No backing behind the bare icons, and a 32pt tap area.
-    expect(chrome).toContain('style={bare ? styles.bareButton : styles.button}');
+    expect(chrome).toContain('bare ? styles.bareButton : styles.button');
     expect(chrome).toContain('const BARE_ICON = 22;');
     expect(chrome).toContain('export const CINEMATIC_BARE_BUTTON = 32;');
   });

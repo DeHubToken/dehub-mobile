@@ -9,12 +9,11 @@ import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 
 const ICON_MUTED = "#6F7174";
-// Matches the web card's 23.5px header icons. The cluster is pulled up and
-// out by the same 4pt its buttons pad with, so the icons' top and right edges
-// land exactly on the card's 12pt inset — equal top and side, and hanging free
-// at the bottom rather than centred against a two-line identity block.
+// Cancel the buttons' padding so their artwork starts at the card's inset.
 const HEADER_ICON_SIZE = 22;
 const HEADER_ICON_PAD = 4;
+// Lucide's vertical dots end at x=14, including stroke, on a 24-unit grid.
+const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (10 / 24);
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -33,7 +32,6 @@ export interface FeedCardHeaderProps {
   onUserPress?: () => void;
   avatarSize?: number;
   onMenuPress?: () => void;
-  onAiPress?: () => void;
   onBoostPress?: () => void;
   isHidden?: boolean;
 }
@@ -47,14 +45,13 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   onUserPress,
   avatarSize = 32,
   onMenuPress,
-  onAiPress,
   onBoostPress,
   isHidden,
 }) => {
   const { t } = useTranslation();
   const badgeRef = useRef<View>(null);
   return (
-    <View className="flex-row items-end pb-2" style={{ minHeight: Math.max(avatarSize, username ? 40 : 20) + 8 }}>
+    <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
       <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -139,8 +136,8 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           flexShrink: 0,
           alignItems: "center",
           gap: 8,
-          alignSelf: "flex-end",
-          marginBottom: -HEADER_ICON_PAD,
+          alignSelf: "flex-start",
+          marginTop: -HEADER_ICON_PAD,
           marginRight: -HEADER_ICON_PAD,
         }}
       >
@@ -156,17 +153,6 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             <Icon name="Rocket" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
-        {onAiPress && (
-          <Pressable
-            onPress={onAiPress}
-            accessibilityRole="button"
-            accessibilityLabel={t("nav.assistant")}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: HEADER_ICON_PAD }}
-          >
-            <Icon name="Sparkles" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
-          </Pressable>
-        )}
         {onMenuPress && (
           <Pressable
             onPress={onMenuPress}
@@ -175,7 +161,9 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
-            <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            <View style={{ left: MENU_ICON_END_SPACE }}>
+              <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            </View>
           </Pressable>
         )}
       </View>
