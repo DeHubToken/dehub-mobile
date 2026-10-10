@@ -6924,24 +6924,24 @@
       "hint": "Procesar clips de hasta 10 minutos. La reducción de ruido funciona mejor con un ruido de fondo constante."
     },
     "pages": {
-    "add":  "Añadir página",
-    "duplicate":  "Duplicar página",
-    "delete":  "Eliminar página",
-    "page":  "Página {{number}}",
-    "position":  "Página {{current}} de {{total}}",
-    "label":  "Páginas",
-    "allZip":  "Las {{count}} páginas (ZIP)",
-    "thisPage":  "Solo esta página",
-    "exporting":  "Renderizando página {{current}} de {{total}}…"
-},
+      "add": "Añadir página",
+      "duplicate": "Duplicar página",
+      "delete": "Eliminar página",
+      "page": "Página {{number}}",
+      "position": "Página {{current}} de {{total}}",
+      "label": "Páginas",
+      "allZip": "Las {{count}} páginas (ZIP)",
+      "thisPage": "Solo esta página",
+      "exporting": "Renderizando página {{current}} de {{total}}…"
+    },
     "captions": {
-        "action":  "Subtítulos automáticos",
-        "working":  "Escuchando… {{percent}}%",
-        "downloading":  "Preparando el modelo de voz… {{percent}}%",
-        "hint":  "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
-        "done":  "Se añadieron {{count}} subtítulos.",
-        "noSpeech":  "No se detectó voz en este clip.",
-        "failed":  "No se pudieron crear subtítulos para este clip."
+      "action": "Subtítulos automáticos",
+      "working": "Escuchando… {{percent}}%",
+      "downloading": "Preparando el modelo de voz… {{percent}}%",
+      "hint": "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
+      "done": "Se añadieron {{count}} subtítulos.",
+      "noSpeech": "No se detectó voz en este clip.",
+      "failed": "No se pudieron crear subtítulos para este clip."
     },
     "app": {
       "newDesign": "Nuevo diseño",
@@ -7333,7 +7333,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "Detener edición en vivo",
+      "receiveEdits": "Recibir cambios en vivo",
+      "shareEdits": "Compartir cambios en vivo",
+      "waiting": "Esperando a que termine la edición",
+      "transferring": "Transfiriendo cambios",
+      "sharing": "Compartiendo cambios en vivo",
+      "receiving": "Recibiendo cambios en vivo",
+      "paused": "Edición en vivo pausada",
+      "retryRecovery": "Reintentar recuperación",
+      "personalCopy": "Guardar una copia personal",
+      "privateHint": "Unirse no sube tus cambios. Compartir en vivo sube las nuevas fuentes privadas; Guardar crea una versión permanente."
     },
     "videoTemplates": {
       "heading": "Plantillas de vídeo",

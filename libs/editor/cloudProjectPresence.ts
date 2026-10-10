@@ -1,5 +1,5 @@
 export interface PresenceTarget { owner: string; projectId: string; revision: number }
-export interface PresenceState { status: "idle" | "connecting" | "connected" | "disconnected" | "error"; revision: number; participants: { wallet: string; connections: number }[]; error: string }
+export interface PresenceState { status: "idle" | "connecting" | "connected" | "disconnected" | "error"; revision: number; draftRevision?: number; participants: { wallet: string; connections: number }[]; error: string }
 export interface PresenceSocket {
   onopen: (() => void) | null; onmessage: ((event: { data: unknown }) => void) | null; onclose: (() => void) | null; onerror: (() => void) | null;
   send(data: string): void; close(): void;
@@ -10,10 +10,11 @@ const idPattern = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}
 /** Explicitly joined, event-driven presence. No keepalive, reconnect loop or draft upload. */
 export function cloudProjectPresence(wallet: string, target: PresenceTarget, deps: { session(): Promise<{ token: string; expiresAt: number } | null>; socket(url: string): PresenceSocket; update(state: PresenceState): void }) {
   let socket: PresenceSocket | null = null, stopped = false, ready = false, revision = target.revision;
+  let draftRevision: number | undefined;
   let lastRefresh = 0, requestedRevision = target.revision;
   let deadline: ReturnType<typeof setTimeout> | undefined;
   let refreshTimer: ReturnType<typeof setTimeout> | undefined;
-  const update = (status: PresenceState["status"], error = "", participants: PresenceState["participants"] = []) => { if (!stopped) deps.update({ status, error, participants, revision }); };
+  const update = (status: PresenceState["status"], error = "", participants: PresenceState["participants"] = []) => { if (!stopped) deps.update({ status, error, participants, revision, ...(draftRevision===undefined?{}:{draftRevision}) }); };
   function finish(status: PresenceState["status"], error = "") {
     clearTimeout(deadline); clearTimeout(refreshTimer); ready = false;
     const old = socket; socket = null;
@@ -36,7 +37,8 @@ export function cloudProjectPresence(wallet: string, target: PresenceTarget, dep
           const data = JSON.parse(event.data);
           if (data.type === "error") { finish("error", "Live editing access is unavailable. Check your invitation and sign in again."); return; }
           if (data.type !== "presence" || !Number.isInteger(data.revision) || data.revision < revision || !Array.isArray(data.participants) || data.participants.length > 32 || data.participants.some((p: { wallet: string; connections: number }) => !p || !walletPattern.test(p.wallet) || !Number.isInteger(p.connections) || p.connections < 1 || p.connections > 32) || new Set(data.participants.map((p: { wallet: string }) => p.wallet)).size !== data.participants.length || !data.participants.some((p: { wallet: string }) => p.wallet === wallet)) throw new Error("message");
-          revision = data.revision; ready = true; clearTimeout(deadline); update("connected", "", data.participants);
+          if(data.draftRevision!==undefined&&(!Number.isInteger(data.draftRevision)||data.draftRevision<0||data.draftRevision>=2147483647||(draftRevision!==undefined&&data.draftRevision<draftRevision)))throw new Error("message");
+          draftRevision=data.draftRevision;revision = data.revision; ready = true; clearTimeout(deadline); update("connected", "", data.participants);
         } catch { finish("error", "Live session returned an invalid update."); }
       };
       socket.onclose = () => finish("disconnected");
