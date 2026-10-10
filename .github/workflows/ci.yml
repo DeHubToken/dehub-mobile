@@ -221,6 +221,8 @@ jobs:
           test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" = '27'
           SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
           cp "$SDK/System/Library/Frameworks/ScreenCaptureKit.framework/Headers/SCStream.h" screen-capture-sdk-stream.h
+          printf '%s\n' 'import ScreenCaptureKit' > "$RUNNER_TEMP/screen-capture-sdk-check.swift"
+          swiftc -typecheck -sdk "$SDK" -target arm64-apple-ios15.1 "$RUNNER_TEMP/screen-capture-sdk-check.swift"
           python3 <<'PY'
           import pathlib, shutil, subprocess
           developer = pathlib.Path(subprocess.check_output(['xcode-select', '-p'], text=True).strip())
@@ -261,15 +263,15 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
-            -configuration Debug -sdk iphonesimulator \
-            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -derivedDataPath "$RUNNER_TEMP/screen-capture-ios" \
             CODE_SIGNING_ALLOWED=NO build 2>&1 | tee screen-capture-ios-build.log | xcbeautify
-          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app/PlugIns/DeHubCaptureSetup.appex"
-          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app/PlugIns/DeHubCaptureUpload.appex"
+          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app/PlugIns/DeHubCaptureSetup.appex"
+          test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app/PlugIns/DeHubCaptureUpload.appex"
           python3 <<'PY'
           import os, pathlib, plistlib
-          app = pathlib.Path(os.environ['RUNNER_TEMP']) / 'screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app'
+          app = pathlib.Path(os.environ['RUNNER_TEMP']) / 'screen-capture-ios/Build/Products/Debug-iphoneos/DeHub.app'
           with (app / 'Info.plist').open('rb') as file:
               parent = plistlib.load(file)
           for name in ['DeHubCaptureSetup', 'DeHubCaptureUpload']:
