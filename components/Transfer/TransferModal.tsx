@@ -34,6 +34,7 @@ import { erc20TransferAA } from "../../libs/aa.write";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import AddressInputTools from "../common/AddressInputTools";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { formatNumber } from "../../libs/numbers.util";
 
 export interface TransferModalProps {
   open: boolean;
@@ -354,7 +355,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           />
           <View className="flex-row justify-between mt-2">
             <Text className="text-[11px] text-white/60">
-              {t("transfer.balance", { balance })} <DhbCoin />
+              {t("transfer.balance", { balance: formatNumber(balance) })} <DhbCoin />
             </Text>
           </View>
           {insufficient && (
