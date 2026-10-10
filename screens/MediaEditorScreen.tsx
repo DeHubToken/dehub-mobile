@@ -1,5 +1,6 @@
 import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
 import { projectTask } from "../libs/editor/projectTask";
+import { useEditorProjectDraft } from "../libs/editor/useEditorProjectDraft";
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
@@ -368,8 +369,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // playhead inside a layer key it there. Kept across selections, like the web.
   const [recordMotion, setRecordMotion] = useState(false);
   const [missing, setMissing] = useState(false);
-  const [editingText, setEditingText] = useState<string | null>(null);
-  const [renaming, setRenaming] = useState(false);
+  const drafts = useEditorProjectDraft({ rendered: project, current: h.latest, holdEdits: h.holdEdits, commit: h.commit });
   const [exportOpen, setExportOpen] = useState(false);
   const [cloudOpen, setCloudOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -716,7 +716,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const { project: next, clipId } = addText(project, t("editor.app.newText"));
     h.commit(atPlayhead(next, clipId));
     select(clipId);
-    setEditingText(clipId);
+    drafts.openText(clipId, h.latest());
   };
 
   const onArrange = (a: Arrange) => {
@@ -1046,7 +1046,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "captions") { void addCaptions(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "removeBg") { void removeBackground(); return; }
-    if (id === "edit" && selectedId) { setEditingText(selectedId); return; }
+    if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
       const r = kind === "video" || kind === "audio" ? duplicateInTime(project, selectedId) : duplicateClip(project, selectedId);
@@ -1511,7 +1511,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     );
   }
 
-  const textClip = editingText ? getClip(project, editingText) : null;
+  const draft = drafts.draft;
+  const textClip = draft?.kind === "text" ? draft.clip : null;
 
   // No inset padding here or on the toolbar: the root SafeAreaView in App.tsx
   // already keeps this screen clear of the status and navigation bars.
@@ -1520,7 +1521,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       {/* Top bar */}
       <View className="flex-row items-center px-2 py-2" style={{ gap: 4 }}>
         <IconButton icon="ChevronLeft" label={t("common.goBack")} onPress={() => { void close(); }} />
-        <Pressable className="flex-1 px-2" onPress={() => setRenaming(true)} accessibilityRole="button" accessibilityLabel={t("editor.app.rename")}>
+        <Pressable className="flex-1 px-2" onPress={() => { drafts.openTitle(); }} accessibilityRole="button" accessibilityLabel={t("editor.app.rename")}>
           <Text className="text-white font-semibold" numberOfLines={1}>{project.title || t("creator.untitled")}</Text>
         </Pressable>
         <IconButton
@@ -1572,7 +1573,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onLiveChange={h.live}
           onGestureEnd={h.settle}
           recording={recording}
-          onEditText={setEditingText}
+          onEditText={id => { drafts.openText(id); }}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
           pen={pen}
           onStroke={(pts) => {
@@ -1711,29 +1712,23 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       )}
 
       <TextPrompt
-        draftScope={`editor:${project.id}:text:${textClip?.id}`}
+        draftScope={`editor:${draft?.projectId ?? project.id}:text:${textClip?.id}`}
         visible={!!textClip && textClip.kind === "text"}
         title={t("editor.menu.editText")}
         initial={textClip?.kind === "text" ? textClip.text : ""}
         multiline
-        onCancel={() => setEditingText(null)}
-        onDone={(value) => {
-          if (textClip && value.trim()) h.commit(updateClip(project, textClip.id, { text: value }));
-          setEditingText(null);
-        }}
+        onCancel={() => drafts.cancel(draft)}
+        onDone={value => drafts.done(draft, value)}
       />
 
       <TextPrompt
-        draftScope={`editor:${project.id}:title`}
-        visible={renaming}
+        draftScope={`editor:${draft?.projectId ?? project.id}:title`}
+        visible={draft?.kind === "title"}
         title={t("editor.app.rename")}
-        initial={project.title}
+        initial={draft?.kind === "title" ? draft.title : project.title}
         placeholder={t("creator.untitled")}
-        onCancel={() => setRenaming(false)}
-        onDone={(value) => {
-          h.commit({ ...project, title: value.trim() || t("creator.untitled") });
-          setRenaming(false);
-        }}
+        onCancel={() => drafts.cancel(draft)}
+        onDone={value => drafts.done(draft, value, t("creator.untitled"))}
       />
 
       {libraryPreview && <AssemblyMediaPreview clip={libraryPreview} project={project} name={assemblyNames[libraryPreview.mediaId] ?? t("editor.video.video")}
@@ -1805,7 +1800,7 @@ function TextPrompt(props: {
   placeholder?: string;
   multiline?: boolean;
   onCancel: () => void;
-  onDone: (value: string) => void;
+  onDone: (value: string) => boolean;
 }) {
   const { t } = useTranslation();
   const [value, setValue] = useDraftState(props.draftScope, props.initial);
@@ -1828,7 +1823,7 @@ function TextPrompt(props: {
           />
           <View className="flex-row justify-end" style={{ gap: 8 }}>
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
-            <Chip label={t("common.done")} active onPress={() => { props.onDone(value); setValue.complete(value, value); }} />
+            <Chip label={t("common.done")} active onPress={() => { if (props.onDone(value)) setValue.complete(value, value); }} />
           </View>
         </View>
       </KeyboardAvoidingView>
