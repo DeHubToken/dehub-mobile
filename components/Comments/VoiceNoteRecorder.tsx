@@ -1,3 +1,6 @@
+import type { VoiceRecorderHandle } from '../../hooks/useVoiceRecorder';
+export { useVoiceRecorder } from '../../hooks/useVoiceRecorder';
+export type { VoiceNoteResult, UseVoiceRecorderOpts, VoiceRecorderHandle } from '../../hooks/useVoiceRecorder';
 /**
  * VoiceNoteRecorder — Simple tap-to-record voice note recorder.
  *
@@ -11,12 +14,11 @@
  *
  * Max 29 s client-side to prevent server 30 s rejection.
  */
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  Platform,
   ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -29,13 +31,9 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from "react-native-reanimated";
-import { useAudioRecorder, RecordingPresets, type AudioRecorder } from "expo-audio";
-import { configureForRecording, releaseRecording } from "../../libs/audioSession";
-import { runWithPermissions } from "../../libs/permissions.util";
 import { useTranslation } from "react-i18next";
 
 /* ─── Constants ─────────────────────────────────────────────── */
-const MAX_DURATION_MS = 29_000; // 29 s — prevents server 30 s rejection
 
 const WAVEFORM_BARS = 35;
 const BAR_W = 2.5;
@@ -48,203 +46,6 @@ const fmtTime = (ms: number): string => {
   return `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 };
 
-/** Normalize dB metering to 0‑1 */
-const normMeter = (dB: number | undefined): number => {
-  if (dB == null || dB <= -160) return 0.05;
-  return Math.max(0.05, Math.min(1, (dB + 40) / 40));
-};
-
-/* ─── Public types ──────────────────────────────────────────── */
-export interface VoiceNoteResult {
-  uri: string;
-  durationMs: number;
-  mimeType: string;
-}
-
-export interface UseVoiceRecorderOpts {
-  onRecordingComplete: (result: VoiceNoteResult) => void;
-  onCancel: () => void;
-}
-
-export interface VoiceRecorderHandle {
-  isRecording: boolean;
-  isStopping: boolean;
-  elapsedMs: number;
-  meterBars: number[];
-  startRecording: () => Promise<void>;
-  stopRecording: () => Promise<void>;
-  cancelRecording: () => Promise<void>;
-}
-
-export const useVoiceRecorder = ({
-  onRecordingComplete,
-  onCancel,
-}: UseVoiceRecorderOpts): VoiceRecorderHandle => {
-  const audioRecorder = useAudioRecorder({ ...RecordingPresets.HIGH_QUALITY, isMeteringEnabled: true });
-  const recordingRef = useRef<AudioRecorder | null>(null);
-  const [isRecording, setIsRecording] = useState(false);
-  const [elapsedMs, setElapsedMs] = useState(0);
-  const [isStopping, setIsStopping] = useState(false);
-  const [meterBars, setMeterBars] = useState<number[]>([]);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const startTimeRef = useRef<number>(0);
-  const meterBarsRef = useRef<number[]>([]);
-
-  /* ── Timer: elapsed + metering ──────────────────────────────── */
-  useEffect(() => {
-    if (isRecording) {
-      startTimeRef.current = Date.now();
-      meterBarsRef.current = [];
-      timerRef.current = setInterval(async () => {
-        const elapsed = Date.now() - startTimeRef.current;
-        setElapsedMs(elapsed);
-        if (elapsed >= MAX_DURATION_MS) {
-          stopRef.current();
-          return;
-        }
-        try {
-          const rec = recordingRef.current;
-          let level: number;
-          if (rec) {
-            const st = rec.getStatus();
-            level = normMeter((st as any).metering);
-          } else {
-            // Recording not ready yet — show gentle idle animation
-            level = 0.08 + Math.random() * 0.12;
-          }
-          const bars = meterBarsRef.current;
-          bars.push(level);
-          if (bars.length > WAVEFORM_BARS) bars.shift();
-          meterBarsRef.current = bars;
-          setMeterBars([...bars]);
-        } catch {}
-      }, 150);
-      return () => {
-        if (timerRef.current) clearInterval(timerRef.current);
-      };
-    }
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, [isRecording]);
-
-  /* ── cancel ────────────────────────────────────────────────── */
-  const cancelInternal = useCallback(async () => {
-    try {
-      const rec = recordingRef.current;
-      if (rec) {
-        const s = rec.getStatus();
-        if (s.isRecording) await rec.stop();
-      }
-    } catch {}
-    recordingRef.current = null;
-    setIsRecording(false);
-    setElapsedMs(0);
-    setMeterBars([]);
-    releaseRecording().catch(() => {});
-    onCancel();
-  }, [onCancel]);
-
-  /* ── stop ──────────────────────────────────────────────────── */
-  const stopInternal = useCallback(async () => {
-    if (isStopping) return;
-    setIsStopping(true);
-    try {
-      const rec = recordingRef.current;
-      if (!rec) {
-        onCancel();
-        return;
-      }
-      const status = rec.getStatus();
-      if (status.isRecording) await rec.stop();
-      const uri = rec.uri;
-      const durationMs = status.durationMillis || elapsedMs;
-      recordingRef.current = null;
-      setIsRecording(false);
-      setElapsedMs(0);
-      setMeterBars([]);
-      await releaseRecording();
-      if (uri && durationMs > 500) {
-        onRecordingComplete({
-          uri,
-          durationMs,
-          mimeType: Platform.OS === "ios" ? "audio/m4a" : "audio/mp4",
-        });
-      } else {
-        onCancel();
-      }
-    } catch (e) {
-      console.error("[VoiceRecorder] stop error", e);
-      onCancel();
-    } finally {
-      setIsStopping(false);
-    }
-  }, [isStopping, elapsedMs, onRecordingComplete, onCancel]);
-
-  // Stable refs for timer auto-stop
-  const stopRef = useRef(stopInternal);
-  stopRef.current = stopInternal;
-
-  /* ── start ─────────────────────────────────────────────────── */
-  const startRecording = useCallback(async () => {
-    try {
-      if (recordingRef.current) {
-        try {
-          const prev = recordingRef.current;
-          const s = prev.getStatus();
-          if (s.isRecording) await prev.stop();
-        } catch {}
-        recordingRef.current = null;
-      }
-
-      // Gate on permission BEFORE showing recording UI or starting the timer
-      let micGranted = false;
-      await runWithPermissions(["microphone"], async () => {
-        micGranted = true;
-      });
-      if (!micGranted) {
-        console.warn("[VoiceRecorder] mic permission denied");
-        onCancel();
-        return;
-      }
-
-      await configureForRecording();
-      const recording = audioRecorder;
-      await recording.prepareToRecordAsync();
-      recording.record();
-      recordingRef.current = recording;
-
-      // Only show recording UI + start timer AFTER recording is actually running
-      setIsRecording(true);
-      setElapsedMs(0);
-      setMeterBars([]);
-    } catch (e) {
-      console.error("[VoiceRecorder] start error", e);
-      setIsRecording(false);
-      releaseRecording().catch(() => {});
-      onCancel();
-    }
-  }, [onCancel, audioRecorder]);
-
-  useEffect(() => () => {
-    const rec = recordingRef.current;
-    recordingRef.current = null;
-    if (rec) rec.stop().catch(() => {}).finally(() => releaseRecording().catch(() => {}));
-  }, []);
-
-  return {
-    isRecording,
-    isStopping,
-    elapsedMs,
-    meterBars,
-    startRecording,
-    stopRecording: stopInternal,
-    cancelRecording: cancelInternal,
-  };
-};
-
-/* ─── Recording waveform bars ───────────────────────────────── */
 const RecordingWaveform: React.FC<{ bars: number[] }> = memo(({ bars }) => {
   const display =
     bars.length >= WAVEFORM_BARS
