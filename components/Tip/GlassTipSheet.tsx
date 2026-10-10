@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * GlassTipSheet — bottom sheet for sending on-chain token tips.
@@ -250,7 +251,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
   // ── Tip state ────────────────────────────────────────────────────────────
   const isLocked = typeof lockedAmount === "number" && lockedAmount > 0;
-  const [amount, setAmount] = useState(isLocked ? String(lockedAmount) : "");
+  const [amount, setAmount] = useSurfaceDraft("components/Tip/GlassTipSheet.tsx:amount", isLocked ? String(lockedAmount) : "", `${toAddress}:${tokenId ?? ""}:${commentId ?? ""}`);
   const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
   const [phase, setPhase] = useState<
     "idle" | "funding" | "approving" | "sending" | "pending" | "sent" | "error"
@@ -326,14 +327,14 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     setPhase(pending ? 'pending' : 'idle');
     setTipError(pending ? t('staking.pendingSubmitted', { amount: pending.amount.toLocaleString() }) + '\n' + (pending.hash ?? '') : null);
     setLastAmount(null);
-  }, [isLocked, lockedAmount, t]);
+  }, [isLocked, lockedAmount, t, setAmount]);
 
   // ── Quick amount press ───────────────────────────────────────────────────
   const handlePresetPress = useCallback((preset: number) => {
     if (isLocked || pendingConfirmation.current) return;
     setSelectedPreset(preset);
     setAmount(String(preset));
-  }, [isLocked]);
+  }, [isLocked, setAmount]);
 
   const handleInputChange = useCallback((val: string) => {
     if (isLocked || pendingConfirmation.current) return;
@@ -343,7 +344,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
       : sanitizeAmountInput(val, 0);
     setAmount(cleaned);
     setSelectedPreset(null);
-  }, [isSolanaTip, isLocked]);
+  }, [isSolanaTip, isLocked, setAmount]);
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
@@ -572,8 +573,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
         setTipError(parseTxError(e, "send"));
       }
     }
-  }, [
-    requireAuth,
+  }, [requireAuth,
     disableSend,
     recipientPrivate,
     phase,
@@ -595,8 +595,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     paymentChainId,
     payWith,
     canPayWithOther,
-    t,
-  ]);
+    t, setAmount]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
   if (!visible && isFullyClosed) return null;

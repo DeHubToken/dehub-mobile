@@ -124,8 +124,6 @@ const TransferModal: React.FC<TransferModalProps> = ({
     if (sending) return;
     onOpenChange(false);
     setTimeout(() => {
-      setAmount("");
-      setQuery("");
       setResults([]);
       setRecipient(null);
       setError(null);
@@ -196,6 +194,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
         await erc20TransferAA(tokenContract, toAddr, amountBN, {
           context: "send",
         });
+        setAmount.complete(amount, "");
+        setQuery.complete(query, "");
         close();
         toastSuccess(t("transfer.sent"));
         try {
@@ -221,8 +221,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         setSending(false);
       }
     });
-  }, [
-    requireAuth,
+  }, [requireAuth,
     t,
     sending,
     canSend,
@@ -232,8 +231,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
     amount,
     tokenDecimals,
     patchUser,
-    close,
-  ]);
+    close, query, setAmount, setQuery]);
 
   const renderItem = useCallback(
     ({ item }: { item: User }) => {
@@ -400,8 +398,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
               {recipientFromAddress && (
                 <TouchableOpacity
                   onPress={() => {
-                    setQuery("");
-                    setRecipient(null);
+                                  setRecipient(null);
                     setRecipientFromAddress(false);
                     setResults([]);
                     setShowResults(false);

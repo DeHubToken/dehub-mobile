@@ -143,7 +143,6 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
 
   const resetState = useCallback(() => {
     setSelectedReason(null);
-    setAdditionalInfo("");
     setSubmitted(false);
   }, [setAdditionalInfo]);
 
@@ -179,6 +178,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
           additionalInfo: additionalInfo.trim() || undefined,
         });
       }
+      setAdditionalInfo.complete(additionalInfo, "");
       setSubmitted(true);
     } catch (e: any) {
       console.error(`[ReportModal] ${type} report error`, e);
@@ -196,7 +196,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     } finally {
       setSubmitting(false);
     }
-  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t]);
+  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t, setAdditionalInfo]);
 
   if (submitted) {
     return (

@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useState } from "react";
@@ -63,9 +64,8 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [inputValue, setInputValue] = useState(
-    currentAmount > 0 ? String(currentAmount) : "",
-  );
+  const [inputValue, setInputValue] = useSurfaceDraft("components/DM/TipAmountSheet.tsx:inputValue",
+    currentAmount > 0 ? String(currentAmount) : "");
   const [selectedPreset, setSelectedPreset] = useState<number | null>(
     currentAmount > 0 && (PRESETS as readonly number[]).includes(currentAmount) ? currentAmount : null,
   );
@@ -77,7 +77,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
   useEffect(() => {
     if (visible) {
       setIsFullyClosed(false);
-      setInputValue(currentAmount > 0 ? String(currentAmount) : "");
+      setInputValue.initialize(currentAmount > 0 ? String(currentAmount) : "");
       setSelectedPreset(
         currentAmount > 0 && (PRESETS as readonly number[]).includes(currentAmount) ? currentAmount : null,
       );
@@ -94,7 +94,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
       );
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
-  }, [visible]);
+  }, [visible, setInputValue]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
@@ -131,13 +131,13 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
   const handlePreset = useCallback((amount: number) => {
     setSelectedPreset(amount);
     setInputValue(String(amount));
-  }, []);
+  }, [setInputValue]);
 
   const handleInputChange = useCallback((val: string) => {
     const cleaned = val.replace(/[^0-9]/g, "");
     setInputValue(cleaned);
     setSelectedPreset(null);
-  }, []);
+  }, [setInputValue]);
 
   const handleConfirm = useCallback(() => {
     const amount = parseFloat(inputValue);

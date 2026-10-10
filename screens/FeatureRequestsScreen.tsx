@@ -412,8 +412,8 @@ const FeatureCard: React.FC<{
     ? `@${feature.author_username}`
     : shortAddr(feature.author_wallet_address);
 
-  const [editTitle, setEditTitle] = useState(feature.title);
-  const [editDescription, setEditDescription] = useState(feature.description);
+  const [editTitle, setEditTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:editTitle", feature.title, feature.id);
+  const [editDescription, setEditDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:editDescription", feature.description, feature.id);
   const [editCategory, setEditCategory] = useState<FeatureCategory>(feature.category);
 
   const badge = STATUS_BADGE[feature.status];
@@ -448,7 +448,7 @@ const FeatureCard: React.FC<{
       },
       { text: t("common.cancel", "Cancel"), style: "cancel" },
     ]);
-  }, [feature, t, deleteMutation]);
+  }, [feature, t, deleteMutation, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
     void Share.share({

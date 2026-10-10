@@ -1,3 +1,4 @@
+import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
@@ -114,6 +115,12 @@ const threadLineStyles = StyleSheet.create({
 });
 
 export default function FeedDetailScreen() {
+  const user = useUser();
+  const route = useRoute<any>();
+  return <FeedDetailContent key={`${user?.walletAddress || user?.address || 'guest'}:${route.params?.tokenId ?? route.params?.id ?? route.params?.postId ?? route.params?.videoId ?? route.params?.nft?.tokenId ?? route.params?.nft?.id}`} />;
+}
+
+function FeedDetailContent() {
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
   const { width: windowWidth } = useWindowDimensions();
@@ -162,8 +169,9 @@ export default function FeedDetailScreen() {
   // Whatever was left unsent last time, restored whole: the text and the reply
   // it was aimed at. Backing out of this screen is the commonest way to lose a
   // comment, and it took the text with it before this.
-  const [restoredDraft] = useState(() => (tokenId == null ? null : loadCommentDraft(tokenId)));
-  const [replyTo, setReplyTo] = useState<ThreadedComment | null>(() =>
+  const draftKey = useAccountDraftKey(tokenId == null ? null : `comment:${tokenId}`);
+  const [restoredDraft] = useState(() => draftKey ? loadCommentDraft(draftKey) : null);
+  const [replyTo, setReplyTo] = useDraftState<ThreadedComment | null>(`comment:${tokenId}:reply`, () =>
     restoredDraft?.parentId == null
       ? null
       : ({
@@ -176,7 +184,7 @@ export default function FeedDetailScreen() {
         } as unknown as ThreadedComment),
   );
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
-  const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
   const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
@@ -187,7 +195,7 @@ export default function FeedDetailScreen() {
   // quotes, reposts, search and a sort that cycles Recent, Oldest and Liked.
   const [commentSort, setCommentSort] = useState<CommentSort>("recent");
   const [commentSearchOpen, setCommentSearchOpen] = useState(false);
-  const [commentQuery, setCommentQuery] = useState("");
+  const [commentQuery, setCommentQuery] = useDraftState(`comment:${tokenId}:search`, "");
   /**
    * Arriving from a notification shows the linked thread on its own until the
    * reader asks for the rest. A post with two hundred comments has none of them
@@ -212,14 +220,14 @@ export default function FeedDetailScreen() {
   // One entry per post, and an edit — which borrows the same box for text that
   // belongs to an existing comment — must not overwrite the draft underneath.
   useEffect(() => {
-    if (tokenId == null || editingComment) return;
-    saveCommentDraft(tokenId, {
+    if (!draftKey || editingComment) return;
+    saveCommentDraft(draftKey, {
       text: inputText,
       parentId: replyTo ? Number(replyTo.id) : undefined,
       parentUsername: replyTo?.user?.displayName || replyTo?.user?.username,
       gifUrl: mediaAttachment?.type === "gif" ? mediaAttachment.url : undefined,
     });
-  }, [tokenId, inputText, replyTo, mediaAttachment, editingComment]);
+  }, [draftKey, inputText, replyTo, mediaAttachment, editingComment]);
 
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
@@ -351,7 +359,7 @@ export default function FeedDetailScreen() {
   // nicely alongside whatever the user has already typed.
   const handleEmojiSelected = useCallback((emoji: string) => {
     setInputText((prev) => prev + emoji);
-  }, []);
+  }, [setInputText]);
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
@@ -607,7 +615,7 @@ export default function FeedDetailScreen() {
       }
     }
     requestAnimationFrame(() => inputRef.current?.focus());
-  }, [comments]);
+  }, [comments, setReplyTo]);
 
   /**
    * Place a freshly posted comment in the flat list. A reply goes directly under
@@ -733,8 +741,7 @@ export default function FeedDetailScreen() {
 
   const handleStartEdit = useCallback((comment: Comment) => {
     setEditingComment(comment);
-    setReplyTo(null);
-    setInputText(comment.content || "");
+
     inputRef.current?.focus();
   }, []);
 
@@ -1133,8 +1140,6 @@ export default function FeedDetailScreen() {
       setComments((prev) => insertThreaded(prev, optimistic, replyTarget));
 
       const savedMedia = mediaAttachment;
-      setMediaAttachment(null);
-      setReplyTo(null);
 
       try {
         let newId: number | undefined;
@@ -1152,20 +1157,21 @@ export default function FeedDetailScreen() {
           const res = await postAudioComment({ streamTokenId: tId, fileUri: savedMedia.uri, fileName, mimeType, commentId: replyToId });
           newId = res?.commentId;
         }
+        if (newId == null) throw new Error(t("comments.sendMediaFailed"));
         if (newId != null) {
+          setMediaAttachment(current => current === savedMedia ? null : current);
+          setReplyTo.complete(replyTarget, null);
           setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c)));
         }
       } catch (e) {
         console.error("[FeedDetailScreen] media post error", e);
         setComments((prev) => prev.filter((c) => c.id !== tempId));
-        // Hand the attachment back rather than making them pick it again.
-        setMediaAttachment(savedMedia);
         toastError(t("comments.sendMediaFailed"));
       } finally {
         setMediaPosting(false);
       }
     });
-  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded, t]);
+  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded, t, setReplyTo]);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
@@ -1174,12 +1180,12 @@ export default function FeedDetailScreen() {
     // comment instead. Blanking the box did neither: it destroyed a written
     // comment on a tap meant only to change who it was aimed at.
     if (editingComment) {
-      setInputText(tokenId == null ? "" : loadCommentDraft(tokenId)?.text ?? "");
+      setInputText.clear();
       mentions.reset();
     }
-    setReplyTo(null);
+    if (!editingComment) setReplyTo(null);
     setEditingComment(null);
-  }, [editingComment, tokenId, mentions]);
+  }, [editingComment, tokenId, mentions, setInputText, setReplyTo]);
 
   const handleSend = useCallback(() => {
     const text = inputText.trim();
@@ -1193,13 +1199,13 @@ export default function FeedDetailScreen() {
           setComments((prev) =>
             prev.map((c) => (c.id === commentId ? { ...c, content: text } : c))
           );
-          setEditingComment(null);
-          // Back to the draft the edit borrowed the box from, if there was one.
-          setInputText(tokenId == null ? "" : loadCommentDraft(tokenId)?.text ?? "");
-          mentions.reset();
-          Keyboard.dismiss();
           try {
             await editComment({ commentId, content: text });
+            if (setInputText.complete(inputText, "")) {
+              setEditingComment(current => current?.id === commentId ? null : current);
+              mentions.reset();
+              Keyboard.dismiss();
+            }
           } catch (e) {
             console.error('[FeedDetailScreen] editComment error', e);
             toastError(t("comments.editFailed"));
@@ -1227,11 +1233,7 @@ export default function FeedDetailScreen() {
         const replyTarget = replyTo;
         setComments((prev) => insertThreaded(prev, tempComment, replyTarget));
 
-        clearCommentDraft(tokenId);
-        if (replyTarget) setReplyTo(null);
-        setInputText("");
-        mentions.reset();
-        Keyboard.dismiss();
+
         
         try {
           const res = await postComment({
@@ -1240,7 +1242,13 @@ export default function FeedDetailScreen() {
             commentId: replyTarget?.id,
           });
           const newId = res?.result?.id ?? (res as any)?.id ?? undefined;
-          
+          if (newId == null) throw new Error(t("toasts.failed_to_post_comment"));
+          if (setInputText.complete(inputText, "")) {
+            if (draftKey) clearCommentDraft(draftKey);
+            setReplyTo.complete(replyTarget, null);
+            mentions.reset();
+            Keyboard.dismiss();
+          }
           if (newId != null) {
             setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
             // The server bumps the post's comment count for replies too, so
@@ -1252,11 +1260,6 @@ export default function FeedDetailScreen() {
           }
         } catch (e) {
           setComments((prev) => prev.filter((c) => c.id !== tempId));
-          // Put the message back in the box. It was cleared the moment Send
-          // was tapped, so a refusal used to destroy what was written — the
-          // one moment losing it hurts most.
-          setInputText(text);
-          setReplyTo(replyTarget);
           console.error("[FeedDetailScreen] postComment error", e);
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments
@@ -1267,7 +1270,7 @@ export default function FeedDetailScreen() {
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded, t]);
+  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded, t, setInputText, setReplyTo]);
 
   // No post to show and nothing to comment on: it is private, gone or failed to
   // load, and the message in the header is the whole page.
@@ -1299,7 +1302,6 @@ export default function FeedDetailScreen() {
   }, []);
   const toggleCommentSearch = useCallback(() => {
     setCommentSearchOpen((open) => {
-      if (open) setCommentQuery("");
       return !open;
     });
   }, []);
@@ -1320,7 +1322,6 @@ export default function FeedDetailScreen() {
 
   const closeCommentSearch = useCallback(() => {
     setCommentSearchOpen(false);
-    setCommentQuery("");
   }, []);
   const openCommentSearch = useCallback(() => setCommentSearchOpen(true), []);
   const openQuotes = useCallback(() => openRepostQuoteList("quotes"), [openRepostQuoteList]);
@@ -1337,7 +1338,7 @@ export default function FeedDetailScreen() {
       onQuotes={openQuotes}
       onReposts={openReposts}
     />
-  ), [commentSort, commentSearchOpen, commentQuery, closeCommentSearch, openCommentSearch, openQuotes, openReposts]);
+  ), [commentSort, commentSearchOpen, commentQuery, closeCommentSearch, openCommentSearch, openQuotes, openReposts, setCommentQuery]);
 
   const renderHeader = useCallback(() => (
     <View>
@@ -1449,7 +1450,7 @@ export default function FeedDetailScreen() {
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying

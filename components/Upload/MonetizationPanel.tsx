@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * MonetizationPanel
  *
@@ -171,21 +172,20 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   >(null);
 
   // Draft state for forms (not committed until confirm)
-  const [ppvDraft, setPpvDraft] = useState<PpvData>(state.ppvData);
-  const [bountyDraft, setBountyDraft] = useState<BountyData>(state.bountyData);
-  const [tokenGateDraft, setTokenGateDraft] = useState<TokenGateData>(
-    state.tokenGateData,
-  );
+  const [ppvDraft, setPpvDraft] = useSurfaceDraft<PpvData>("components/Upload/MonetizationPanel.tsx:ppvDraft", state.ppvData);
+  const [bountyDraft, setBountyDraft] = useSurfaceDraft<BountyData>("components/Upload/MonetizationPanel.tsx:bountyDraft", state.bountyData);
+  const [tokenGateDraft, setTokenGateDraft] = useSurfaceDraft<TokenGateData>("components/Upload/MonetizationPanel.tsx:tokenGateDraft",
+    state.tokenGateData);
 
   // Handle auto-expand from bottom bar icon tap
   useEffect(() => {
     if (autoExpandSection) {
       setExpandedSection(autoExpandSection);
       // Load current data into draft
-      if (autoExpandSection === "ppv") setPpvDraft(state.ppvData);
-      if (autoExpandSection === "bounty") setBountyDraft(state.bountyData);
+      if (autoExpandSection === "ppv") setPpvDraft.initialize(state.ppvData);
+      if (autoExpandSection === "bounty") setBountyDraft.initialize(state.bountyData);
       if (autoExpandSection === "tokenGated") {
-        setTokenGateDraft(state.tokenGateData);
+        setTokenGateDraft.initialize(state.tokenGateData);
         const addr = state.tokenGateData.contractAddress;
         setGateUseCustom(
           !!addr && !evmLockTokens.some((t) => t.address.toLowerCase() === addr.toLowerCase()),
@@ -194,7 +194,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       }
       onAutoExpandHandled?.();
     }
-  }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens]);
+  }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens, setBountyDraft, setPpvDraft, setTokenGateDraft]);
 
 
   const handlePpvToggle = useCallback(
@@ -207,7 +207,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         if (expandedSection === "ppv") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection],
+    [state, onChange, expandedSection, setPpvDraft],
   );
 
   const confirmPpv = useCallback(() => {
@@ -231,7 +231,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         if (expandedSection === "bounty") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection],
+    [state, onChange, expandedSection, setBountyDraft],
   );
 
   const confirmBounty = useCallback(() => {
@@ -263,7 +263,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         if (expandedSection === "tokenGated") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection, evmLockTokens],
+    [state, onChange, expandedSection, evmLockTokens, setTokenGateDraft],
   );
 
   const confirmTokenGate = useCallback(() => {

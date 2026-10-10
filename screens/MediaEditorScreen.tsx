@@ -1,4 +1,5 @@
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
+import { useDraftState } from "../hooks/useDraftState";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -1640,6 +1641,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       )}
 
       <TextPrompt
+        draftScope={`editor:${project.id}:text:${textClip?.id}`}
         visible={!!textClip && textClip.kind === "text"}
         title={t("editor.menu.editText")}
         initial={textClip?.kind === "text" ? textClip.text : ""}
@@ -1652,6 +1654,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       />
 
       <TextPrompt
+        draftScope={`editor:${project.id}:title`}
         visible={renaming}
         title={t("editor.app.rename")}
         initial={project.title}
@@ -1725,6 +1728,7 @@ function IconButton({ icon, label, onPress, disabled }: { icon: IconName; label:
 }
 
 function TextPrompt(props: {
+  draftScope: string;
   visible: boolean;
   title: string;
   initial: string;
@@ -1734,8 +1738,8 @@ function TextPrompt(props: {
   onDone: (value: string) => void;
 }) {
   const { t } = useTranslation();
-  const [value, setValue] = useState(props.initial);
-  useEffect(() => { if (props.visible) setValue(props.initial); }, [props.visible, props.initial]);
+  const [value, setValue] = useDraftState(props.draftScope, props.initial);
+  useEffect(() => { if (props.visible) setValue.initialize(props.initial); }, [props.visible, props.initial, setValue]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
@@ -1754,7 +1758,7 @@ function TextPrompt(props: {
           />
           <View className="flex-row justify-end" style={{ gap: 8 }}>
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
-            <Chip label={t("common.done")} active onPress={() => props.onDone(value)} />
+            <Chip label={t("common.done")} active onPress={() => { props.onDone(value); setValue.complete(value, value); }} />
           </View>
         </View>
       </KeyboardAvoidingView>

@@ -66,8 +66,8 @@ const SavedPostsScreen: React.FC = () => {
   const [folderToEdit, setFolderToEdit] = useState<BookmarkFolder | null>(null);
 
   // Text inputs
-  const [folderName, setFolderName] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderName", "");
-  const [folderDesc, setFolderDesc] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderDesc", "");
+  const [folderName, setFolderName] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderName", folderToEdit?.name ?? "", folderToEdit?._id ?? "new");
+  const [folderDesc, setFolderDesc] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderDesc", folderToEdit?.description ?? "", folderToEdit?._id ?? "new");
   // Public means the folder is a playlist on the profile.
   const [folderPublic, setFolderPublic] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -125,8 +125,8 @@ const SavedPostsScreen: React.FC = () => {
       const res = await createFolder(folderName, folderDesc, folderPublic);
       if (res.status) {
         toastSuccess(t("savedPosts.folderCreated", { name: res.result.name }));
-        setFolderName("");
-        setFolderDesc("");
+        setFolderName.complete(folderName, "");
+        setFolderDesc.complete(folderDesc, "");
         setFolderPublic(false);
         setShowCreateModal(false);
         fetchFoldersList(true);
@@ -151,8 +151,8 @@ const SavedPostsScreen: React.FC = () => {
       if (res.status) {
         toastSuccess(t("savedPosts.folderUpdated"));
         setFolderToEdit(null);
-        setFolderName("");
-        setFolderDesc("");
+        setFolderName.complete(folderName, "");
+        setFolderDesc.complete(folderDesc, "");
         setFolderPublic(false);
         setShowEditModal(false);
         fetchFoldersList(true);
@@ -193,8 +193,6 @@ const SavedPostsScreen: React.FC = () => {
 
   const openEditModal = (folder: BookmarkFolder) => {
     setFolderToEdit(folder);
-    setFolderName(folder.name);
-    setFolderDesc(folder.description || "");
     setFolderPublic(!!folder.isPublic);
     setShowEditModal(true);
   };
@@ -345,8 +343,6 @@ const SavedPostsScreen: React.FC = () => {
           animationType="slide"
           onRequestClose={() => {
             setShowEditModal(false);
-            setFolderName("");
-            setFolderDesc("");
             setFolderPublic(false);
           }}
         >
@@ -381,8 +377,6 @@ const SavedPostsScreen: React.FC = () => {
                 <TouchableOpacity
                   onPress={() => {
                     setShowEditModal(false);
-                    setFolderName("");
-                    setFolderDesc("");
                     setFolderPublic(false);
                   }}
                   style={styles.modalCancel}
@@ -443,8 +437,6 @@ const SavedPostsScreen: React.FC = () => {
               ListHeaderComponent={
                 <TouchableOpacity
                   onPress={() => {
-                    setFolderName("");
-                    setFolderDesc("");
                     setFolderPublic(false);
                     setShowCreateModal(true);
                   }}
@@ -536,8 +528,6 @@ const SavedPostsScreen: React.FC = () => {
         animationType="slide"
         onRequestClose={() => {
           setShowCreateModal(false);
-          setFolderName("");
-          setFolderDesc("");
           setFolderPublic(false);
         }}
       >
@@ -576,8 +566,6 @@ const SavedPostsScreen: React.FC = () => {
               <TouchableOpacity
                 onPress={() => {
                   setShowCreateModal(false);
-                  setFolderName("");
-                  setFolderDesc("");
                   setFolderPublic(false);
                 }}
                 style={styles.modalCancel}
@@ -607,8 +595,6 @@ const SavedPostsScreen: React.FC = () => {
         animationType="slide"
         onRequestClose={() => {
           setShowEditModal(false);
-          setFolderName("");
-          setFolderDesc("");
           setFolderPublic(false);
         }}
       >
@@ -646,8 +632,6 @@ const SavedPostsScreen: React.FC = () => {
               <TouchableOpacity
                 onPress={() => {
                   setShowEditModal(false);
-                  setFolderName("");
-                  setFolderDesc("");
                   setFolderPublic(false);
                 }}
                 style={styles.modalCancel}
