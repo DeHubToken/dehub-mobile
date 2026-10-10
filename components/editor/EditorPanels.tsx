@@ -59,7 +59,7 @@ export function Labeled({ label, children }: { label: string; children: React.Re
   );
 }
 
-export { EditorRange as Range };
+export { Range };
 
 const SWATCH_SLOP_Y = 7;
 
