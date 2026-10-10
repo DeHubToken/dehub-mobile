@@ -2,6 +2,7 @@ import {
   loadCommentDraft,
   saveCommentDraft,
   clearCommentDraft,
+  commentDraftKey,
   __resetCommentDraftCacheForTests,
 } from "../../libs/comment-draft-cache";
 import { storage } from "../../libs/storage";
@@ -19,6 +20,19 @@ describe("comment draft cache", () => {
   beforeEach(() => {
     storage.delete(STORAGE_KEY);
     __resetCommentDraftCacheForTests();
+  });
+
+  it('restores guest replies after restart without mixing posts or signed-in accounts', () => {
+    const guest = commentDraftKey(undefined, 42);
+    const account = commentDraftKey('ALICE', 42);
+    saveCommentDraft(guest, { text: '  guest reply\n', parentId: 7, parentUsername: 'ada' });
+    saveCommentDraft(account, { text: 'account reply' });
+    __resetCommentDraftCacheForTests();
+
+    expect(loadCommentDraft(commentDraftKey(null, 42))).toMatchObject({ text: '  guest reply\n', parentId: 7 });
+    expect(loadCommentDraft(commentDraftKey('alice', 42))?.text).toBe('account reply');
+    expect(loadCommentDraft(commentDraftKey(undefined, 43))).toBeNull();
+    expect(loadCommentDraft(commentDraftKey('bob', 42))).toBeNull();
   });
 
   it("gives a reply draft back on the next open, reply target and all", () => {
