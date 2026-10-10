@@ -7231,7 +7231,10 @@
       "hideTimeline": "Zeitleiste ausblenden",
       "showTimeline": "Zeitleiste anzeigen",
       "play": "Wiedergabe",
-      "pause": "Pause"
+      "pause": "Pause",
+      "previousFrame": "Vorheriges Bild",
+      "nextFrame": "Nächstes Bild",
+      "playhead": "Abspielposition"
     },
     "video": {
       "video": "Video",
