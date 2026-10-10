@@ -26,7 +26,7 @@ async function sampleVisualFrames(src, clip, windows, signal, progress) {
       for (var i = 0; i < 6; i++) {
         if (signal.aborted) throw new Error('cancelled');
         var at = Math.round((window.start + (i + 0.5) / 6 * (window.end - window.start)) * 1000) / 1000;
-        if (!image) await waitForVideoFrame(video, clip.trimIn + at * speed, { signal: signal });
+        if (!image) await waitForVideoFrame(video, clip.trimIn + at * speed, { signal: signal, forCanvasRead: true });
         if (!image && (!Number.isFinite(video.duration) || clip.trimIn + clip.duration * speed > video.duration + 0.05)) throw new Error('video source range');
         var width = image ? image.naturalWidth : video.videoWidth, height = image ? image.naturalHeight : video.videoHeight;
         if (!width || !height) throw new Error('visual source dimensions');
