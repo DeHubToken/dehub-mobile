@@ -138,7 +138,7 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
         {visible.map(item => <Pressable key={item.symbol} accessibilityRole="button" accessibilityLabel={`${item.symbol}, ${item.unknown ? t('common.failedToLoad') : format(item.amount)}`} onPress={() => setGroup(item)} style={s.tokenRow}>
           <TokenIcon symbol={item.symbol} />
           <View style={s.tokenName}><Text style={s.label}>{item.symbol}</Text><Text numberOfLines={1} style={s.muted}>{[...new Set(item.tokens.filter(token => Number(token.balance) > 0 || token.isCustom).map(token => networkName(token.chainId)))].join(' · ') || item.name}</Text></View>
-          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{item.unknown ? '≈ ' : ''}{format(item.amount)}</Text><Text style={s.muted}>{wallet.prices[item.symbol] ? `$${(item.amount * wallet.prices[item.symbol]).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
+          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{item.unknown ? (item.amount > 0 ? `≈ ${format(item.amount)}` : '—') : format(item.amount)}</Text><Text style={s.muted}>{wallet.prices[item.symbol] ? `$${(item.amount * wallet.prices[item.symbol]).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
           <Icon name="ChevronRight" size={16} color="#999" />
         </Pressable>)}
         {!wallet.loading && !visible.length && !wallet.failedChains.length && <Text style={s.empty}>{t(query ? 'common.noResults' : 'wallet.zeroBalance')}</Text>}
