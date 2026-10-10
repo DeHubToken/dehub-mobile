@@ -73,14 +73,13 @@ export function useStageBack() {
 }
 
 type ChromeProps = {
-  onAi?: () => void;
   onMore?: () => void;
   /** Over the media (immersive) or as a plain row above a text post. */
   overMedia: boolean;
 };
 
-/** Back, Ask AI and ⋯ — over the media as glass squares, or a plain row. */
-export const PostStageChrome = memo(function PostStageChrome({ onAi, onMore, overMedia }: ChromeProps) {
+/** Back and options — over the media as glass squares, or a plain row. */
+export const PostStageChrome = memo(function PostStageChrome({ onMore, overMedia }: ChromeProps) {
   const { t } = useTranslation();
   const back = useStageBack();
   return (
@@ -91,19 +90,17 @@ export const PostStageChrome = memo(function PostStageChrome({ onAi, onMore, ove
     >
       <StageGlassSquare icon="ArrowLeft" label={t("common.goBack")} onPress={back} plain={!overMedia} flip />
       <View style={{ flex: 1 }} pointerEvents="none" />
-      {onAi ? <StageGlassSquare icon="Sparkles" label={t("postOptions.askAi")} onPress={onAi} plain={!overMedia} /> : null}
       {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain={!overMedia} /> : null}
     </View>
   );
 });
 
 /** Video utilities belong to the details panel under the player. */
-export const PostStageActions = memo(function PostStageActions({ onAi, onMore, onBoost }: { onAi: () => void; onMore: () => void; onBoost?: () => void }) {
+export const PostStageActions = memo(function PostStageActions({ onMore, onBoost }: { onMore: () => void; onBoost?: () => void }) {
   const { t } = useTranslation();
   return (
     <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
       {onBoost ? <StageGlassSquare icon="Rocket" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
-      <StageGlassSquare icon="Sparkles" label={t("postOptions.askAi")} onPress={onAi} plain size={32} />
       <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} />
     </View>
   );

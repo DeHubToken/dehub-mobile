@@ -1981,8 +1981,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           isSaved={saved}
           onToggleSave={handleSavePress}
           onInfoPress={handleInfoPress}
-          // The cinematic card carries no AI button; the menu has it instead.
-          onAskAi={cinematicFeed ? handleAiPress : undefined}
+          onAskAi={handleAiPress}
         />
       )}
 
@@ -2053,10 +2052,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            {!postVideo && <PostStageChrome overMedia onAi={handleAiPress} onMore={handleOpenOptions} />}
+            {!postVideo && <PostStageChrome overMedia onMore={handleOpenOptions} />}
           </View>
         ) : (
-          <PostStageChrome overMedia={false} onAi={postVideo ? undefined : handleAiPress} onMore={postVideo ? undefined : handleOpenOptions} />
+          <PostStageChrome overMedia={false} onMore={postVideo ? undefined : handleOpenOptions} />
         )}
         <PostStageCreator
           avatarUrl={avatar}
@@ -2167,7 +2166,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </>
           )}
         </View>
-        {postVideo && <PostStageActions onAi={handleAiPress} onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
+        {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
         <PostStageActionBar
           liked={liked}
           disliked={disliked}
@@ -2354,9 +2353,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {isOwnerPost && isSignedIn && tokenId != null && (firstVideoHeaderBelow || (contentType !== "video" && contentType !== "short")) && (
                   <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
                 )}
-                {firstVideoHeaderBelow && (
-                  <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} bare />
-                )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
                     icon="Plus"
@@ -2365,6 +2361,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                     onPress={() => setToolsOpen(!toolsOpen)}
                     bare={chipAtBottom}
                   />
+                )}
+                {firstVideoHeaderBelow && (
+                  <CinematicIconButton icon="EllipsisVertical" label={t("player.moreOptions")} onPress={handleOpenOptions} bare alignEnd />
                 )}
               </View>
             </View>
@@ -2450,7 +2449,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare />
               )}
               <Pressable onPress={handleOpenOptions} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("player.moreOptions")} style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-                <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
+                <View style={{ left: 20 * (10 / 24) }}>
+                  <Icon name="EllipsisVertical" size={20} color="#FFFFFF" />
+                </View>
               </Pressable>
             </View>
           ) : null}
@@ -2540,7 +2541,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         paddingBottom: 12,
       } : isMinimal ? {
         marginHorizontal: -minimalGutter,
-        paddingTop: 22,
+        paddingTop: MINIMAL_TEXT_INSET,
         paddingHorizontal: MINIMAL_TEXT_INSET,
         paddingBottom: 18,
         borderBottomWidth: hideDivider ? 0 : 1,
@@ -2620,7 +2621,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         badgeImage={badgeImg}
         onUserPress={handleUserPress}
         onMenuPress={postVideo ? undefined : handleOpenOptions}
-        onAiPress={postVideo ? undefined : handleAiPress}
         onBoostPress={
           !postVideo && isOwnerPost && isSignedIn && tokenId != null
             ? handleBoostPress
@@ -2782,7 +2782,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         )}
       </View>
 
-      {postVideo && <PostStageActions onAi={handleAiPress} onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
+      {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
       {actionBar}
 
       {sheets}
