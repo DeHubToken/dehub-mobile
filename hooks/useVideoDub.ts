@@ -1,12 +1,8 @@
 /**
  * Dubbed audio for a video post: whether it is on, and in which language.
  *
- * The dub used to be a server render — a `video_dubs` row filled by a GPU
- * worker that was never deployed, so every request sat at 'pending' and the
- * captions sheet said "Preparing…" for as long as anyone looked. It is now
- * spoken on the device from the translated transcript (see useVoiceDub), so
- * there is no job to create and nothing to wait on beyond the translation the
- * captions already use.
+ * Device speech reads the translated transcript while shared cached audio is
+ * being prepared. Playback is opt-in; preparation is independent of the switch.
  *
  * The switch lives in two places — the Audio row in the captions sheet and
  * the Dub row in the post's "…" menu — so it is one store both read, rather
