@@ -18,6 +18,7 @@ import Icon from "../ui/Icon";
 import type { Clip, ProjectSnapshot, Track } from "../../libs/editor/types";
 import { findAdjacentNext, fmtTime, projectDuration, timelineRows } from "../../libs/editor/timeline";
 import { keyTimes } from "../../libs/editor/keyframes";
+import { stepTimelineFrame } from "../../libs/editor/frameStep";
 
 import { snapToBeat, timelineBeatTimes } from "../../libs/editor/beats";
 
@@ -114,6 +115,16 @@ export default function Timeline(props: Props) {
         >
           <Icon name={props.playing ? "Pause" : "Play"} size={18} color="#000" />
         </Pressable>
+        {([-1, 1] as const).map(direction => {
+          const disabled = duration <= 0 || (direction === -1 ? time <= 0 : time >= duration);
+          return <Pressable key={direction} accessibilityRole="button"
+            accessibilityLabel={direction === -1 ? t("editor.canvas.previousFrame") : t("editor.canvas.nextFrame")}
+            accessibilityState={{ disabled }} disabled={disabled}
+            onPress={() => { const current = live.current; const next = stepTimelineFrame(current.time, direction, current.props.project.settings.fps, current.duration); current.time = next; current.props.onScrub(next); }}
+            className="w-7 h-9 items-center justify-center" style={{ opacity: disabled ? 0.4 : 1 }}>
+            <Icon name={direction === -1 ? "ChevronLeft" : "ChevronRight"} size={18} color="#fff" />
+          </Pressable>;
+        })}
         <Text className="text-white text-xs" style={{ fontVariant: ["tabular-nums"] }}>
           {fmtTime(time)} / {fmtTime(duration)}
         </Text>

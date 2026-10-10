@@ -7208,7 +7208,10 @@
       "hideTimeline": "隐藏时间轴",
       "showTimeline": "显示时间轴",
       "play": "播放",
-      "pause": "暂停"
+      "pause": "暂停",
+      "previousFrame": "上一帧",
+      "nextFrame": "下一帧",
+      "playhead": "播放位置"
     },
     "video": {
       "video": "视频",

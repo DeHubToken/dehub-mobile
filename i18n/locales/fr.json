@@ -7231,7 +7231,10 @@
       "hideTimeline": "Masquer la chronologie",
       "showTimeline": "Afficher la chronologie",
       "play": "Lecture",
-      "pause": "Pause"
+      "pause": "Pause",
+      "previousFrame": "Image précédente",
+      "nextFrame": "Image suivante",
+      "playhead": "Tête de lecture"
     },
     "video": {
       "video": "Vidéo",

@@ -7220,7 +7220,10 @@
       "hideTimeline": "Hide timeline",
       "showTimeline": "Show timeline",
       "play": "Play",
-      "pause": "Pause"
+      "pause": "Pause",
+      "previousFrame": "Previous frame",
+      "nextFrame": "Next frame",
+      "playhead": "Playhead"
     },
     "video": {
       "video": "Video",
