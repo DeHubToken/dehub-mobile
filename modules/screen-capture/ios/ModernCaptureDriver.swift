@@ -35,7 +35,7 @@ final class ModernCaptureDriver: NSObject, CaptureDriver, SCContentSharingPicker
     picker.defaultConfiguration = configuration
     picker.add(self); picker.isActive = true
     try await withTaskCancellationHandler(operation: {
-      try await withCheckedThrowingContinuation { done in
+      try await withCheckedThrowingContinuation { (done: CheckedContinuation<Void, Error>) in
         guard !stopped else { done.resume(throwing: CancellationError()); return }
         consent = done; picker.present()
       }
