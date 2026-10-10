@@ -7328,7 +7328,9 @@
       "matchScenes": "İlgili sahneleri bul",
       "noMatch": "İlgili sahne bulunamadı. Başka bir konu veya seçim deneyin.",
       "matchLimit": "En fazla 10 klip veya fotoğraf seçin. Videolar bir saniye ile 10 dakika arasında olmalıdır.",
-      "matchDuration": "İlgili görüntüler istenen videodan daha kısa. Süreyi kısaltın veya daha fazla medya seçin."
+      "matchDuration": "İlgili görüntüler istenen videodan daha kısa. Süreyi kısaltın veya daha fazla medya seçin.",
+      "matchFailed": "Sahne eşleştirme kullanılamıyor. Seçtiğiniz klipler ve süreleri değişmedi. Bunları elle inceleyebilirsiniz.",
+      "reviewManually": "Klipleri elle incele"
     }
   },
   "creator": {

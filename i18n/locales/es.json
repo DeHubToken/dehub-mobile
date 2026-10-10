@@ -7431,7 +7431,9 @@
       "matchScenes": "Encontrar escenas relacionadas",
       "noMatch": "No se encontraron escenas relacionadas. Prueba otro tema o selección.",
       "matchLimit": "Elige hasta 10 clips o fotos. Los vídeos deben durar entre un segundo y 10 minutos.",
-      "matchDuration": "Las escenas relacionadas son más cortas que el vídeo solicitado. Reduce la duración o elige más contenido."
+      "matchDuration": "Las escenas relacionadas son más cortas que el vídeo solicitado. Reduce la duración o elige más contenido.",
+      "matchFailed": "La búsqueda de escenas no está disponible. Los clips seleccionados y sus tiempos no han cambiado. Puedes revisarlos manualmente.",
+      "reviewManually": "Revisar clips manualmente"
     }
   },
   "creator": {

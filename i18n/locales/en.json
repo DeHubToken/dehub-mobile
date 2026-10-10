@@ -7456,7 +7456,9 @@
       "matchScenes": "Find matching scenes",
       "noMatch": "No matching scenes found. Try a different topic or selection.",
       "matchLimit": "Choose up to 10 clips or photos. Videos must be between one second and 10 minutes long.",
-      "matchDuration": "Matching footage is shorter than the requested video. Shorten the duration or choose more media."
+      "matchDuration": "Matching footage is shorter than the requested video. Shorten the duration or choose more media.",
+      "matchFailed": "Scene matching is unavailable. Your selected clips and timings are unchanged. You can review them manually.",
+      "reviewManually": "Review clips manually"
     }
   },
   "creator": {

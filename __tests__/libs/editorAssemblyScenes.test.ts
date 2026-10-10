@@ -24,6 +24,35 @@ const assets: AssemblyAsset[] = [
 ];
 
 describe("content-aware assembly", () => {
+  it("requires explicit manual review after a failed scan and creates the unchanged draft without another analysis request", async () => {
+    const source = project(), before = JSON.stringify(source); let scans = 0, created: AssemblyPlan | undefined;
+    const session = new AssemblySession({ current: () => source, match: async () => { scans++; throw new Error("provider unavailable"); }, create: async (_source, plan) => { created = plan; return true; } }, () => {});
+    session.start(request, []); const plan = session.state.shots.map(shot => ({ ...shot }));
+    expect(await session.match(true)).toBe(false); expect(await session.create()).toBe(false);
+    expect(session.reviewManually()).toBe(true);
+    expect(session.state).toMatchObject({ error: null, focus: "", sceneMatches: {}, shots: plan });
+    expect(await session.create()).toBe(true); expect(created?.shots).toEqual(plan);
+    expect(scans).toBe(1); expect(JSON.stringify(source)).toBe(before);
+  });
+
+  it("keeps invalid ranges blocked when switching to manual review", async () => {
+    const source = project();
+    const session = new AssemblySession({ current: () => source, match: async () => { throw new Error("unavailable"); }, create: async () => true }, () => {});
+    session.start(request, []); session.range("video", 0, Number.NaN);
+    expect(await session.match(true)).toBe(false); expect(session.state.error).toBe("matchFailed");
+    expect(session.reviewManually()).toBe(false); expect(session.state.error).toBe("limit");
+    expect(await session.create()).toBe(false);
+  });
+
+  it("does not switch to manual review during a scan or after the source changes", async () => {
+    let source = project(), finish: (() => void) | undefined;
+    const session = new AssemblySession({ current: () => source, match: async () => { await new Promise<void>(resolve => { finish = resolve; }); throw new Error("unavailable"); }, create: async () => true }, () => {});
+    session.start(request, []); const pending = session.match(true);
+    expect(session.reviewManually()).toBe(false); finish!(); await pending;
+    source = { ...source, clips: [{ ...video, trimIn: 3 }, photo] };
+    expect(session.reviewManually()).toBe(false); expect(session.state.error).toBe("matchFailed");
+  });
+
   it("extracts a topic without sending ordinary join commands or named-file prompts to analysis", () => {
     expect(assemblyRequest("Create a 6 second video of forest animals from my clips without music")).toMatchObject({ seconds: 6, focus: "forest animals", music: false });
     expect(assemblyFocus("Create a montage showing a sunset using my photos with fades")).toBe("a sunset");
