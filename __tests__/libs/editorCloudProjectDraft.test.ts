@@ -16,7 +16,7 @@ const request = (): CloudDraftRequest => ({ writerId, sequence: 2, document, exp
 const receipt = () => ({ ownerWallet: owner, projectId, draftRevision: 5, anchorRevision: 3, sequence: 2, requestId, storedAt: at });
 const mockRpc = jest.fn<(...args: unknown[]) => Promise<unknown>>();
 const api = () => cloudProjectDraftApi({ rpc: mockRpc } as unknown as Pick<SupabaseClient, "rpc">);
-beforeEach(() => mockRpc.mockReset());
+beforeEach(() => { mockRpc.mockReset(); });
 it("loads the bounded draft without registering a writer or publishing edits", async () => {
   mockRpc.mockResolvedValue({ data: checkpoint(), error: null });
   const result = await api().load(" " + owner.toUpperCase() + " ", projectId);
