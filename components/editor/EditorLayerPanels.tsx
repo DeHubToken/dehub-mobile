@@ -267,7 +267,7 @@ export function BrandPanel(props: {
 // ── templates ──
 
 export function TemplateTiles(props: {
-  templates: { id: string; aspect: string; preview: { bg: string; fg: string }; title: string }[];
+  templates: { id: string; aspect: string; preview: { bg: string; fg: string }; title: string; detail?: string }[];
   busyId: string | null;
   onPick: (id: string) => void;
 }) {
@@ -279,12 +279,12 @@ export function TemplateTiles(props: {
           onPress={() => props.onPick(tpl.id)}
           disabled={!!props.busyId}
           accessibilityRole="button"
-          accessibilityLabel={tpl.title}
+          accessibilityLabel={tpl.detail ? `${tpl.title} · ${tpl.detail}` : tpl.title}
           className="rounded-2xl items-center justify-center p-3"
           style={{ width: "47%", aspectRatio: 1.4, backgroundColor: tpl.preview.bg, opacity: props.busyId && props.busyId !== tpl.id ? 0.5 : 1 }}
         >
           <Text style={{ color: tpl.preview.fg }} className="text-base font-black text-center uppercase" numberOfLines={2}>{tpl.title}</Text>
-          <Text style={{ color: tpl.preview.fg, opacity: 0.7 }} className="text-[10px] mt-1">{tpl.aspect}</Text>
+          <Text style={{ color: tpl.preview.fg, opacity: 0.7 }} className="text-[10px] mt-1">{tpl.aspect}{tpl.detail ? ` · ${tpl.detail}` : ""}</Text>
         </Pressable>
       ))}
     </View>

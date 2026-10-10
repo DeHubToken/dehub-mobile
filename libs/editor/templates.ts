@@ -7,20 +7,24 @@
  */
 import type { TFunction } from "i18next";
 import type { AspectPreset } from "./types";
+import { VIDEO_TEMPLATES, type VideoTemplateAspect } from "./videoTemplates";
 import type { AgentOp } from "./agent";
 
 export interface EditorTemplate {
   id: string;
   aspect: AspectPreset;
+  kind?: "video";
+  duration?: number;
   /** Preview tile colours and font; the real thing is built from ops. */
   preview: { bg: string; fg: string; font: string };
   titleKey: string;
-  ops: (t: TFunction) => AgentOp[];
+  ops: (t: TFunction, aspect?: VideoTemplateAspect) => AgentOp[];
 }
 
 const W = "#ffffff";
 
 export const TEMPLATES: EditorTemplate[] = [
+  ...VIDEO_TEMPLATES,
   {
     id: "sale",
     aspect: "1:1",
@@ -159,7 +163,7 @@ export const TEMPLATES: EditorTemplate[] = [
   },
 ];
 
-export function templateOps(id: string, t: TFunction): AgentOp[] | null {
+export function templateOps(id: string, t: TFunction, aspect?: VideoTemplateAspect): AgentOp[] | null {
   const tpl = TEMPLATES.find((x) => x.id === id);
-  return tpl ? tpl.ops(t) : null;
+  return tpl ? tpl.ops(t, aspect) : null;
 }
