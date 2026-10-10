@@ -221,16 +221,21 @@ jobs:
           test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" = '27'
           SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
           cp "$SDK/System/Library/Frameworks/ScreenCaptureKit.framework/Headers/SCStream.h" screen-capture-sdk-stream.h
-          find "$(xcode-select -p)/Library/Xcode/Templates" -iname '*Broadcast*' -print > screen-capture-sdk-broadcast-templates.txt
           python3 <<'PY'
           import pathlib, shutil, subprocess
           developer = pathlib.Path(subprocess.check_output(['xcode-select', '-p'], text=True).strip())
-          templates = developer / 'Library/Xcode/Templates'
-          for source in templates.rglob('*'):
-              if source.is_file() and 'broadcast' in str(source.relative_to(templates)).lower() and source.suffix in {'.plist', '.swift', '.h', '.m'}:
-                  target = pathlib.Path('screen-capture-sdk-templates') / source.relative_to(templates)
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  shutil.copyfile(source, target)
+          roots = [developer / 'Library/Xcode/Templates', *developer.glob('Platforms/*/Developer/Library/Xcode/Templates')]
+          found = []
+          for templates in roots:
+              for source in templates.rglob('*'):
+                  if 'broadcast' not in str(source.relative_to(templates)).lower():
+                      continue
+                  found.append(str(source))
+                  if source.is_file() and source.suffix in {'.plist', '.swift', '.h', '.m'}:
+                      target = pathlib.Path('screen-capture-sdk-templates') / source.relative_to(developer)
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copyfile(source, target)
+          pathlib.Path('screen-capture-sdk-broadcast-templates.txt').write_text('\n'.join(found))
           PY
       - run: npm ci --legacy-peer-deps
       - name: Resolve the capture pod and embedded broadcast extensions
@@ -262,6 +267,17 @@ jobs:
             CODE_SIGNING_ALLOWED=NO build 2>&1 | tee screen-capture-ios-build.log | xcbeautify
           test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app/PlugIns/DeHubCaptureSetup.appex"
           test -d "$RUNNER_TEMP/screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app/PlugIns/DeHubCaptureUpload.appex"
+          python3 <<'PY'
+          import os, pathlib, plistlib
+          app = pathlib.Path(os.environ['RUNNER_TEMP']) / 'screen-capture-ios/Build/Products/Debug-iphonesimulator/DeHub.app'
+          with (app / 'Info.plist').open('rb') as file:
+              parent = plistlib.load(file)
+          for name in ['DeHubCaptureSetup', 'DeHubCaptureUpload']:
+              with (app / 'PlugIns' / f'{name}.appex' / 'Info.plist').open('rb') as file:
+                  extension = plistlib.load(file)
+              for key in ['CFBundleShortVersionString', 'CFBundleVersion']:
+                  assert extension[key] == parent[key], f'{name}: {key} must match its containing app'
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
