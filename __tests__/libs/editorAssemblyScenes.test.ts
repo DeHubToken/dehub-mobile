@@ -4,7 +4,7 @@ import { visualSampleTimes, type VisualBatch } from "../../libs/editor/visualHig
 import type { VisualSampler } from "../../libs/editor/visualHighlights";
 import type { AssemblyAsset } from "../../libs/editor/assemblyLibrary";
 import type { MediaClip, ProjectSnapshot } from "../../libs/editor/types";
-import { JPEG } from "../../libs/editor/visualHighlightFixture";
+const JPEG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMooorjPmD/9k=";
 
 const video: MediaClip = { id: "video", kind: "video", mediaId: "private-video-id", trackId: "v", start: 4, duration: 12, trimIn: 2, speed: 2, sourceDuration: 30, audio: { volume: 0.4 }, transform: { x: 0.6, y: 0.4, scale: 0.8, rotation: 5, opacity: 0.9 } };
 const photo: MediaClip = { id: "photo", kind: "image", mediaId: "private-photo-id", trackId: "p", start: 30, duration: 6, trimIn: 0 };
