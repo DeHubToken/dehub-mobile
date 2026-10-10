@@ -3,6 +3,8 @@ import { act, fireEvent, render } from '@testing-library/react-native';
 import CaptionOverlay, { type CaptionControls } from '../../components/VideoPlayerCore/CaptionOverlay';
 import { useVoiceDub } from '../../hooks/useVoiceDub';
 import { useTranscript } from '../../hooks/useTranscript';
+import { useCachedVideoDub } from '../../hooks/useCachedVideoDub';
+import { useCachedDubAudio } from '../../hooks/useCachedDubAudio';
 
 let mockDubOn = false;
 let mockAppLang = 'en';
@@ -29,6 +31,7 @@ jest.mock('../../hooks/useTranscriptCorrections', () => ({
 jest.mock('../../hooks/useVideoDub', () => ({ useDubSettings: () => ({ on: mockDubOn, lang: null }), setDubSettings: jest.fn() }));
 jest.mock('../../hooks/useCachedVideoDub', () => ({ useCachedVideoDub: jest.fn(() => undefined) }));
 jest.mock('../../hooks/useCachedDubAudio', () => ({ useCachedDubAudio: jest.fn() }));
+jest.mock('../../hooks/useDubDiscovery', () => ({ useDubDiscovery: jest.fn() }));
 jest.mock('../../hooks/useVoiceDub', () => ({ useVoiceDub: jest.fn(), baseLang: (lang: string) => lang, findVoice: jest.fn(() => Promise.resolve({ identifier: 'es' })), speechAvailable: true }));
 jest.mock('../../libs/subtitlePrefs', () => ({
   SUBTITLE_LANGUAGES: [{ code: 'original', name: 'Original' }], SUBTITLE_SIZES: { xs: 11 },
@@ -66,12 +69,23 @@ describe('subtitle settings menu', () => {
     expect(view.UNSAFE_getByType('Modal' as any).props.visible).toBe(true);
   });
 
-  it('automatically speaks an audible foreign video in the app language with captions off', async () => {
+  it('plays an explicitly selected dub with captions off', async () => {
     mockDubOn = true; mockAppLang = 'es'; mockSourceLang = 'en';
     const player = { playing: true, muted: false, volume: 0.8, addListener: () => ({ remove: jest.fn() }) };
     render(<CaptionOverlay tokenId={123} positionMs={0} player={player as any} />);
     await act(async () => {});
     expect(useVoiceDub).toHaveBeenLastCalledWith(expect.objectContaining({ lang: 'es', enabled: true }));
+  });
+
+  it('prepares foreign-language audio without starting either playback engine', async () => {
+    mockAppLang = 'es'; mockSourceLang = 'en';
+    const player = { playing: true, muted: false, volume: 0.8, addListener: () => ({ remove: jest.fn() }) };
+    render(<CaptionOverlay tokenId={123} positionMs={0} player={player as any} />);
+    await act(async () => {});
+    expect(useTranscript).toHaveBeenCalledWith('video', '123', true);
+    expect(useCachedVideoDub).toHaveBeenLastCalledWith('transcript', 'es', true);
+    expect(useVoiceDub).toHaveBeenLastCalledWith(expect.objectContaining({ enabled: false }));
+    expect(useCachedDubAudio).toHaveBeenLastCalledWith(player, null, expect.any(Function));
   });
 
   it('does not fetch or speak a muted card', () => {

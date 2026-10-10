@@ -19,16 +19,27 @@ function load() {
   return { dub: dub!, auto: auto! };
 }
 
-describe('automatic dub preference', () => {
+describe('opt-in dub preference', () => {
   beforeEach(() => mockValues.clear());
 
-  it('defaults to automatic dubbing and follows auto-translate', () => {
+  it('defaults to original audio independently of auto-translate', () => {
     const { dub, auto } = load();
-    expect(dub.getDubSettings().on).toBe(true);
+    expect(dub.getDubSettings().on).toBe(false);
     auto.setAutoTranslateEnabled(false);
     expect(dub.getDubSettings().on).toBe(false);
     auto.setAutoTranslateEnabled(true);
-    expect(dub.getDubSettings().on).toBe(true);
+    expect(dub.getDubSettings().on).toBe(false);
+  });
+
+  it('preserves a saved explicit opt-in across reloads', () => {
+    mockValues.set('video-voice-dub-on', 'true');
+    expect(load().dub.getDubSettings().on).toBe(true);
+  });
+
+  it('does not turn the old server-dub key or invalid values into consent', () => {
+    mockValues.set('video-dub-on', 'true');
+    mockValues.set('video-voice-dub-on', '1');
+    expect(load().dub.getDubSettings().on).toBe(false);
   });
 
   it('preserves a saved off choice', () => {

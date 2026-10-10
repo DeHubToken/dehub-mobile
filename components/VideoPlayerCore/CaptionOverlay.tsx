@@ -35,6 +35,7 @@ import { useVoiceDub, baseLang, findVoice, speechAvailable } from '../../hooks/u
 import { useCachedVideoDub } from '../../hooks/useCachedVideoDub';
 import { useCachedDubAudio } from '../../hooks/useCachedDubAudio';
 import { hasCachedDubLanguage } from '../../libs/cached-dub-languages';
+import { useDubDiscovery } from '../../hooks/useDubDiscovery';
 import { useMediaVolume } from '../../libs/video-preferences';
 import { toastInfo } from '../../libs';
 import {
@@ -123,7 +124,7 @@ const CaptionOverlay: React.FC<Props> = ({
   const { transcript, status, inFlight, canRetry, start } = useTranscript(
     'video',
     ref,
-    !!ref && (enabled || pickerOpen || (dubOn && audible)),
+    !!ref && (enabled || pickerOpen || audible),
   );
 
   const isReady = status === 'ready';
@@ -162,14 +163,15 @@ const CaptionOverlay: React.FC<Props> = ({
     setDubFailed(false);
     setAudioFailed(false);
     if (!speechAvailable) { setVoiceSupported(false); return; }
-    if (!dubOn || !dubLang) return;
+    if (!audible || !dubLang) return;
     let cancelled = false;
     void findVoice(dubLang).then((voice) => {
       if (!cancelled) setVoiceSupported(voice !== null);
     });
     return () => { cancelled = true; };
-  }, [dubOn, dubLang, transcript?.id]);
+  }, [audible, dubLang, transcript?.id]);
   const wantDub = dubOn && isReady && !!dubLang && !!player && (hasCachedDubLanguage(dubLang) || voiceSupported === true);
+  const prepareDub = audible && isReady && !!dubLang && !!player && (hasCachedDubLanguage(dubLang) || voiceSupported === true);
   // Let viewers set both levels while a selected dub is loading or muted.
   const dubControlsAvailable = !!ref && dubOn && !!player && (!sourceLang || !!dubLang);
   useEffect(() => { onDubAvailableChange?.(dubControlsAvailable); }, [dubControlsAvailable, onDubAvailableChange]);
@@ -179,9 +181,9 @@ const CaptionOverlay: React.FC<Props> = ({
   const { translation: dubTranslation } = useTranscriptTranslation(
     transcript?.id ?? null,
     dubLang ?? 'original',
-    !!ref && wantDub && audible,
+    !!ref && prepareDub,
   );
-  const cachedDub = useCachedVideoDub(transcript?.id ?? null, dubLang, wantDub && audible && dubTranslation?.status === 'ready');
+  const cachedDub = useCachedVideoDub(transcript?.id ?? null, dubLang, prepareDub && dubTranslation?.status === 'ready');
   const cachedUrl = wantDub && !audioFailed ? cachedDub?.audioUrl ?? null : null;
   useVoiceDub({
     player,
@@ -191,6 +193,10 @@ const CaptionOverlay: React.FC<Props> = ({
     onFailed: () => setDubFailed(true),
   });
   useCachedDubAudio(player, cachedUrl, () => setAudioFailed(true));
+  const preferredLanguage = i18n.resolvedLanguage || i18n.language;
+  useDubDiscovery(player, ref, sourceLang, preferredLanguage,
+    isReady && (hasCachedDubLanguage(preferredLanguage) || (dubLang === preferredLanguage && voiceSupported === true)),
+    dubOn, () => setPickerOpen(true));
   const remoteUnavailable = audioFailed || !hasCachedDubLanguage(dubLang) || cachedDub?.status === 'failed' || cachedDub?.status === 'unavailable';
   const dubHint = !dubOn || !audible || !dubLang
     ? null
