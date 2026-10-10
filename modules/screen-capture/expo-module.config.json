@@ -1,5 +1,6 @@
 {
-  "platforms": ["android"],
+  "platforms": ["android", "apple"],
+  "apple": { "modules": ["ScreenCaptureModule"] },
   "android": {
     "modules": ["io.dehub.screencapture.ScreenCaptureModule"]
   }

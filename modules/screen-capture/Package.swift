@@ -6,7 +6,7 @@ let package = Package(
   platforms: [.macOS(.v13), .iOS(.v15)],
   products: [.library(name: "CaptureRecovery", targets: ["CaptureRecovery"])],
   targets: [
-    .target(name: "CaptureRecovery", path: "ios", sources: ["CaptureLedger.swift"]),
+    .target(name: "CaptureRecovery", path: "ios", sources: ["CaptureLedger.swift", "Shared/CaptureGeometry.swift", "Shared/CaptureMovieWriter.swift", "Shared/BlendCaptureAudio.swift"]),
     .testTarget(name: "CaptureRecoveryTests", dependencies: ["CaptureRecovery"], path: "ios-tests"),
   ]
 )

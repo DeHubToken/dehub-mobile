@@ -17,6 +17,11 @@ struct CaptureTicket: Codable, Equatable {
   var width: Int? = nil
   var height: Int? = nil
   var durationMs: Double? = nil
+  var captureProvider: String? = nil
+  var title: String? = nil
+  var saveLabel: String? = nil
+  var cancelLabel: String? = nil
+  var stopRequested: Bool? = nil
 
   var valid: Bool {
     Self.validId(sessionId) && Self.validId(hostInstanceId) &&
@@ -84,6 +89,17 @@ final class CaptureLedger {
     return try result.get()
   }
 
+  private func inspect<T>(_ action: (Saved) throws -> T) throws -> T {
+    var coordinationError: NSError?
+    var result: Result<T, Error>?
+    NSFileCoordinator(filePresenter: nil).coordinate(readingItemAt: ledgerURL, options: [], error: &coordinationError) { url in
+      result = Result { try action(read(url)) }
+    }
+    if let coordinationError { throw coordinationError }
+    guard let result else { throw CaptureLedgerError.unavailable }
+    return try result.get()
+  }
+
   func reserve(_ ticket: CaptureTicket) throws {
     guard ticket.valid, ticket.state == .pending, !ticket.cancelRequested,
       ticket.width == nil, ticket.height == nil, ticket.durationMs == nil else { throw CaptureLedgerError.invalidTicket }
@@ -108,9 +124,24 @@ final class CaptureLedger {
   }
 
   func ticket(_ sessionId: String, scopeKey: String) throws -> CaptureTicket? {
-    try change { saved in
+    try inspect { saved in
       guard let ticket = saved.tickets[sessionId], ticket.scopeKey == scopeKey else { return nil }
       return ticket
+    }
+  }
+
+  func pendingConsent() throws -> CaptureTicket? {
+    try inspect { saved in
+      let pending = saved.tickets.values.filter { $0.state == .pending && !$0.cancelRequested }
+      return pending.count == 1 ? pending.first : nil
+    }
+  }
+
+  func requestFinish(_ sessionId: String, scopeKey: String) throws {
+    try change { saved in
+      guard var ticket = saved.tickets[sessionId], ticket.scopeKey == scopeKey,
+        [.recording, .finishing, .completed].contains(ticket.state) else { throw CaptureLedgerError.wrongScope }
+      ticket.stopRequested = true; saved.tickets[sessionId] = ticket
     }
   }
 
@@ -152,14 +183,18 @@ final class CaptureLedger {
   }
 
   func invalidateDepartedPermissionRequests(hostInstanceId: String) throws {
-    try change { saved in
+    let incomplete: [String] = try change { saved in
       let departed = saved.tickets.values.filter { $0.state == .pending && $0.hostInstanceId != hostInstanceId }.map { $0.sessionId }
       for id in departed { saved.tickets.removeValue(forKey: id) }
+      let interrupted = saved.tickets.values.filter { $0.captureProvider == "stream" && $0.hostInstanceId != hostInstanceId && [.recording, .finishing].contains($0.state) }.map { $0.sessionId }
+      for id in interrupted { saved.tickets[id]?.state = .failed }
+      return interrupted
     }
+    for id in incomplete { try removeFile(id) }
   }
 
   func completed(scopeKey: String) throws -> [CaptureTicket] {
-    try change { saved in
+    try inspect { saved in
       try saved.tickets.values.filter { ticket in
         guard ticket.scopeKey == scopeKey, ticket.validCompleted else { return false }
         guard FileManager.default.fileExists(atPath: try recordingURL(ticket.sessionId).path) else { return false }
