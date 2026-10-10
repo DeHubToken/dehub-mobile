@@ -111,7 +111,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // Wallet and Staking are the same screen on native, split by tab — hence the
   // explicit initialTab on both, so arriving from one never inherits the
   // other's tab.
-  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" } },
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "wallet" } },
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" } },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },

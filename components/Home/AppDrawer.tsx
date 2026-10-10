@@ -110,7 +110,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true, storefrontHidden: true },
   // Passes initialTab explicitly so returning here from the Staking entry
   // (same screen, different tab) resets to Buy instead of keeping Stake.
-  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true, storefrontHidden: true },
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "wallet" }, requiresAuth: true, storefrontHidden: true },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
   { icon: "Mic", labelKey: "nav.stages", screen: ScreenNames.Stages },
   { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },

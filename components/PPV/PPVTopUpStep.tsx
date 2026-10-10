@@ -97,7 +97,7 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
 
   const goToBuy = () => {
     onClose();
-    navigation.navigate(ScreenNames.Dpay);
+    navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
   };
 
   return (

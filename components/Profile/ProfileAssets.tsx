@@ -95,7 +95,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   // Show skeleton only on the very first fetch — never during background refreshes
   // when we already have data to display.
   // Also show skeleton if balances have never loaded yet (provider not ready).
-  const showSkeleton = isInitialLoad;
+  const showSkeleton = isInitialLoad && balancesLoading;
 
   /**
    * DHB is a position, not a chain balance — held plus staked, across Base and
@@ -158,11 +158,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   ];
 
   const handleTopUp = React.useCallback(() => {
-    if (chainId !== ChainId.BASE_MAINNET) {
-      toastInfo(t("assets.dpayBaseOnly"));
-      return;
-    }
-    navigation.navigate(ScreenNames.Dpay);
+    navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
   }, [chainId, navigation, t]);
 
   const toggleDHBOptions = () => {
@@ -287,7 +283,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
               <BalanceSkeleton />
             ) : (
               <Text className="text-lg text-gray-300">
-                {formatCompactNumber(Number(asset.balance || 0))}
+                {isInitialLoad && asset.name !== "DHB" ? "—" : formatCompactNumber(Number(asset.balance || 0))}
               </Text>
             )}
           </View>

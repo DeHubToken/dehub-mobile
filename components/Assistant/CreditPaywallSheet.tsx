@@ -230,7 +230,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
     if (needsTokens) {
       onClose();
-      navigation.navigate(ScreenNames.Dpay);
+      navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
       return;
     }
 

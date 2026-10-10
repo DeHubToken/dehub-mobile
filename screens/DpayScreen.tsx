@@ -11,7 +11,6 @@ import {
   Platform,
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
-import DpayLoader from "../components/Dpay/DpayLoader";
 import type { IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { PageSection, PageTabs } from "../components/page/PageKit";
@@ -23,16 +22,17 @@ import DpayAbout from "../components/Dpay/DpayAbout";
 import StakingTab from "../components/Wallet/StakingTab";
 import BridgeTab from "../components/Wallet/BridgeTab";
 import SolanaTab from "../components/Wallet/SolanaTab";
-import ProfileAssets from "../components/Profile/ProfileAssets";
+import WalletOverview from "../components/Wallet/WalletOverview";
 import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import type { AppStackParamList } from "../navigation/types";
 
-type WalletTab = "buy" | "stake" | "bridge" | "solana";
+type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
 const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
+  { key: "wallet", label: "Wallet", labelKey: "wallet.title", icon: "Wallet" },
   { key: "buy", label: "Buy Tokens", labelKey: "upload.buyTokens", icon: "CreditCard" },
   { key: "stake", label: "Stake", icon: "Lock" },
   { key: "bridge", label: "Bridge", icon: "ArrowLeftRight" },
@@ -48,10 +48,10 @@ const DpayScreen: React.FC = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  // Drawer entries (Wallet / Staking) deep-link to a specific tab; default to Buy.
+  // Wallet opens its overview; purchase and staking shortcuts remain explicit.
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Dpay>>();
   const [activeTab, setActiveTab] = useState<WalletTab>(
-    route.params?.initialTab ?? "buy",
+    route.params?.initialTab ?? "wallet",
   );
 
   // Re-select the tab when the drawer navigates to Dpay while it is already
@@ -62,10 +62,9 @@ const DpayScreen: React.FC = () => {
   // drawer entry again.
   const routeParams = route.params;
   useEffect(() => {
-    if (routeParams?.initialTab) setActiveTab(routeParams.initialTab);
+    setActiveTab(routeParams?.initialTab ?? "wallet");
   }, [routeParams]);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
-  const [progress, setProgress] = React.useState<number>(0);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
   const [supplyAmount, setSupplyAmount] = React.useState<number | null>(null);
   const [supplyData, setSupplyData] = React.useState<Record<string, Record<string, number>> | null>(null);
@@ -112,15 +111,14 @@ const DpayScreen: React.FC = () => {
   };
 
   React.useEffect(() => {
+    if (activeTab !== "buy" || dataReady) return;
     let cancelled = false;
     async function bootstrap() {
       try {
-        setProgress(0.1);
         const [supplyRes, totalRes] = await Promise.all([
           getSupply().catch((e) => { console.warn('[DpayScreen] getSupply failed', e?.message || e); return null; }),
           getSuccessTotal().catch((e) => { console.warn('[DpayScreen] getSuccessTotal failed', e?.message || e); return null; }),
         ]);
-        setProgress(0.45);
         parseSupply(supplyRes);
         parseTotal(totalRes);
         try {
@@ -129,14 +127,13 @@ const DpayScreen: React.FC = () => {
         } catch {}
       } finally {
         if (!cancelled) {
-          setProgress(1);
           setDataReady(true);
         }
       }
     }
     bootstrap();
     return () => { cancelled = true; };
-  }, []);
+  }, [activeTab, dataReady]);
 
   // Only while this screen is the one on screen. It used to be a bare
   // setInterval in the effect above, which kept two network calls every ten
@@ -155,7 +152,7 @@ const DpayScreen: React.FC = () => {
         } catch {}
       })();
     },
-    POLL_INTERVAL_MS,
+    activeTab === "buy" ? POLL_INTERVAL_MS : null,
     { catchUp: true },
   );
 
@@ -178,12 +175,8 @@ const DpayScreen: React.FC = () => {
     }
   }, [requestPrice]);
 
-  if (!dataReady) {
-    return (
-      <View className="flex-1 bg-theme-neutrals-900">
-        <DpayLoader progress={progress} />
-      </View>
-    );
+  if (activeTab === "wallet") {
+    return <WalletOverview onBuy={() => setActiveTab("buy")} onStake={() => setActiveTab("stake")} />;
   }
 
   return (
@@ -192,16 +185,13 @@ const DpayScreen: React.FC = () => {
       keyboardVerticalOffset={keyboardOffset}
       className="flex-1 bg-theme-neutrals-900"
     >
-      <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} icon="buy" />
+      <ScreenHeader title={t(activeTab === "buy" ? "wallet.buy" : activeTab === "stake" ? "wallet.stake" : "wallet.title")} onBackPress={() => setActiveTab("wallet")} icon="buy" />
       <ScrollView
         className="flex-1 px-0"
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingTop: 16, paddingBottom: 40 }}
         refreshControl={<DeHubRefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
-        {/* Assets / token balances — moved here from the profile to match web. */}
-        <ProfileAssets searchable />
-
         {/* Tab switcher */}
         <PageTabs
           value={activeTab}
