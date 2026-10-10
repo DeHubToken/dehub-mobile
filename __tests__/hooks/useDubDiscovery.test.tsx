@@ -2,14 +2,17 @@ import React from 'react';
 import { act, render } from '@testing-library/react-native';
 import { UserContext } from '../../context/AuthContext';
 import { useDubDiscovery } from '../../hooks/useDubDiscovery';
+import { supabase } from '../../services/supabase';
+import { toastInfo } from '../../libs/toast';
 
-const mockRpc = jest.fn(), mockToast = jest.fn();
+const mockRpc = supabase.rpc as jest.Mock;
+const mockToast = toastInfo as jest.Mock;
 let mockOn = false, mockAt = 0;
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('../../context/AuthContext', () => ({ UserContext: require('react').createContext(undefined) }));
-jest.mock('../../services/supabase', () => ({ supabase: { rpc: mockRpc } }));
+jest.mock('../../services/supabase', () => ({ supabase: { rpc: jest.fn() } }));
 jest.mock('../../libs/supabase-wallet-client', () => ({ withWalletHeader: (query: unknown) => query }));
-jest.mock('../../libs/toast', () => ({ toastInfo: mockToast }));
+jest.mock('../../libs/toast', () => ({ toastInfo: jest.fn() }));
 jest.mock('../../hooks/useVideoDub', () => ({ getDubSettings: () => ({ on: mockOn }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
@@ -45,6 +48,7 @@ afterEach(() => jest.restoreAllMocks());
 it('claims once after an audible replay and opens controls without enabling dubbing', async () => {
   const p = player(), open = jest.fn();
   render(<Harness p={p} wallet="0x4444444444444444444444444444444444444444" open={open} />);
+  await act(async () => {});
   pass(p); expect(mockRpc).not.toHaveBeenCalled();
   p.currentTime = 0; p.emit('timeUpdate'); pass(p); await act(async () => {});
   expect(mockRpc).toHaveBeenCalledTimes(1); expect(mockToast).toHaveBeenCalledTimes(1);
