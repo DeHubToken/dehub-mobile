@@ -14,6 +14,8 @@ export interface CloudDraftReceipt {
   ownerWallet: string; projectId: string; draftRevision: number; anchorRevision: number;
   sequence: number; requestId: string; storedAt: string;
 }
+export type CloudDraftResolution = { status: "committed"; receipt: CloudDraftReceipt }
+  | { status: "fenced"; checkpoint: CloudDraftCheckpoint } | { status: "unknown" };
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const integer = (value: unknown, min: number): value is number => typeof value === "number" && Number.isInteger(value) && value >= min && value < 2147483647;
 const object = (value: unknown): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value);
@@ -51,6 +53,25 @@ export function cloudProjectDraftApi(client: Pick<SupabaseClient, "rpc">) {
       if (!object(result) || !id(result.writerId) || !integer(result.nextSequence, 1) || !date(result.expiresAt)) fail();
       return { writerId: result.writerId, nextSequence: result.nextSequence, expiresAt: result.expiresAt,
         checkpoint: parseCloudDraftCheckpoint(result.checkpoint, wallet, projectId) };
+    },
+    async resolve(owner: string, projectId: string, request: CloudDraftRequest): Promise<CloudDraftResolution> {
+      const wallet = scope(owner, projectId), captured = { ...request, document: parseCloudProjectDocument(request.document, wallet) };
+      if (captured.document.snapshot.id !== projectId || !id(captured.writerId) || !id(captured.requestId)
+        || !integer(captured.sequence, 1) || !integer(captured.expectedRevision, 0) || !integer(captured.anchorRevision, 1)) fail();
+      const result = await rpc("editor_cloud_draft_resolve", { p_owner: wallet, p_id: projectId, p_writer_id: captured.writerId,
+        p_sequence: captured.sequence, p_document: captured.document, p_expected_revision: captured.expectedRevision,
+        p_anchor_revision: captured.anchorRevision, p_request_id: captured.requestId });
+      if (!object(result) || result.ownerWallet !== wallet || result.projectId !== projectId || result.writerId !== captured.writerId
+        || result.sequence !== captured.sequence || result.requestId !== captured.requestId) fail();
+      if (result.status === "unknown") return { status: "unknown" };
+      if (result.status === "fenced") return { status: "fenced", checkpoint: parseCloudDraftCheckpoint(result.checkpoint, wallet, projectId) };
+      const receipt = result.receipt;
+      if (result.status !== "committed" || !object(receipt) || receipt.ownerWallet !== wallet || receipt.projectId !== projectId
+        || !integer(receipt.draftRevision, 1) || receipt.draftRevision !== captured.expectedRevision + 1
+        || receipt.anchorRevision !== captured.anchorRevision || receipt.sequence !== captured.sequence
+        || receipt.requestId !== captured.requestId || !date(receipt.storedAt)) fail();
+      return { status: "committed", receipt: { ownerWallet: wallet, projectId, draftRevision: receipt.draftRevision,
+        anchorRevision: captured.anchorRevision, sequence: captured.sequence, requestId: captured.requestId, storedAt: receipt.storedAt } };
     },
     async save(owner: string, projectId: string, request: CloudDraftRequest): Promise<CloudDraftReceipt> {
       const wallet = scope(owner, projectId);
