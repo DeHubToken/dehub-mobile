@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
@@ -94,8 +95,8 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
   const [tab, setTab] = useState<'chart' | 'book' | 'trade'>('chart');
   const [side, setSide] = useState<Side>('buy');
   const [mode, setMode] = useState<Mode>('limit');
-  const [amount, setAmount] = useState('');
-  const [price, setPrice] = useState('');
+  const [amount, setAmount] = useSurfaceDraft("screens/DexPoolScreen.tsx:amount", '');
+  const [price, setPrice] = useSurfaceDraft("screens/DexPoolScreen.tsx:price", '');
   const priceTouched = useRef(false);
   const [payNative, setPayNative] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -227,8 +228,8 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
     if (priceTouched.current || marketPrice == null) return;
     const step = increment;
     const seeded = side === 'sell' ? Math.ceil(marketPrice * 1.001 / step) * step : Math.floor(marketPrice * 0.999 / step) * step;
-    setPrice(String(Number(seeded.toPrecision(8))));
-  }, [marketPrice, side, increment]);
+    setPrice.initialize(String(Number(seeded.toPrecision(8))));
+  }, [marketPrice, side, increment, setPrice]);
   useEffect(() => { setInstantQuote(null); setFormError(''); }, [side, mode, amount, payNative]);
   // Leaving mid-order drops the step that records it once the chain confirms,
   // so the order or trade never shows up here. Hold the screen until it lands.
@@ -284,7 +285,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
     } as never), walletAddress);
     if (error) toastError(t('dex.registrationFailed'));
     toastSuccess(t('dex.created'));
-    setAmount(''); priceTouched.current = false; setMine(true);
+    setAmount.complete(amount, ''); priceTouched.current = false; setMine(true);
   }
 
   async function quoteInstant(): Promise<InstantQuote | null> {
@@ -326,7 +327,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
       } as never), walletAddress);
     }
     toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(tokenAmount), symbol }));
-    setAmount(''); setInstantQuote(null);
+    setAmount.complete(amount, ''); setInstantQuote(null);
   }
 
   async function submit() {
@@ -444,7 +445,7 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
         <TouchableOpacity disabled={busy} style={[s.instant, { borderColor: '#f05b72' }, mode === 'instant' && side === 'sell' && { backgroundColor: '#f05b72' }]} onPress={() => { setMode('instant'); setSide('sell'); }}><Text style={mode === 'instant' && side === 'sell' ? s.darkText : [s.instantText, { color: '#f05b72' }]}>⚡ {t('dex.pool.instantSell')}</Text></TouchableOpacity>
       </View>
       <View style={[s.inline, { marginBottom: 12 }]} accessibilityLabel={t('dex.pool.orderType')}>{(['limit', 'instant'] as const).map((value) => <TouchableOpacity key={value} disabled={busy} accessibilityRole="tab" accessibilityState={{ selected: mode === value }} style={[s.smallTab, mode === value && s.selected]} onPress={() => setMode(value)}><Text style={mode === value ? s.white : s.muted}>{value === 'instant' ? '⚡ ' : ''}{t(value === 'limit' ? 'dex.pool.limit' : 'dex.pool.instant')}</Text></TouchableOpacity>)}</View>
-      <View style={s.side}>{(['buy', 'sell'] as const).map((value) => <TouchableOpacity disabled={busy} key={value} onPress={() => { setSide(value); setAmount(''); priceTouched.current = false; }} style={[s.sideButton, side === value && { backgroundColor: value === 'buy' ? '#20c997' : '#f05b72' }]}><Text style={side === value ? s.darkText : s.muted}>{t(value === 'buy' ? 'dex.buy' : 'dex.sell')}</Text></TouchableOpacity>)}</View>
+      <View style={s.side}>{(['buy', 'sell'] as const).map((value) => <TouchableOpacity disabled={busy} key={value} onPress={() => { setSide(value); setAmount.complete(amount, ''); priceTouched.current = false; }} style={[s.sideButton, side === value && { backgroundColor: value === 'buy' ? '#20c997' : '#f05b72' }]}><Text style={side === value ? s.darkText : s.muted}>{t(value === 'buy' ? 'dex.buy' : 'dex.sell')}</Text></TouchableOpacity>)}</View>
       {mode === 'limit' && <View style={s.field}><Text style={s.muted}>{t(side === 'buy' ? 'dex.pool.buyAt' : 'dex.pool.sellAt')}</Text><View style={s.inputWrap}><TextInput accessibilityLabel={t(side === 'buy' ? 'dex.pool.buyAt' : 'dex.pool.sellAt')} editable={!busy} keyboardType="decimal-pad" value={price} onChangeText={(v) => { priceTouched.current = true; setPrice(decimalInput(v)); }} style={s.input} placeholderTextColor="#596675" /><Text style={s.unit}>USD</Text></View></View>}
       {side === 'buy' && mode === 'instant' && <View style={s.field}><Text style={s.muted}>{t('dex.payWith')}</Text><View style={[s.inline, { marginTop: 8 }]}>{[false, true].map((value) => <TouchableOpacity key={String(value)} disabled={busy} style={[s.smallTab, payNative === value && s.selected]} onPress={() => setPayNative(value)}><Text style={payNative === value ? s.white : s.muted}>{value ? nativeSymbol : 'USDC'} · {balances ? formatSize(value ? balances.native : balances.usdc) : '—'}</Text></TouchableOpacity>)}</View></View>}
       <View style={s.field}><Text style={s.muted}>{t(side === 'buy' ? 'dex.spend' : 'dex.sellAmount')}</Text><View style={s.inputWrap}><TextInput accessibilityLabel={t('dex.amountToken', { token: spendSymbol })} editable={!busy} keyboardType="decimal-pad" placeholder="0.00" placeholderTextColor="#596675" value={amount} onChangeText={(v) => setAmount(decimalInput(v))} style={s.input} /><Text style={s.unit}>{spendSymbol}</Text></View></View>

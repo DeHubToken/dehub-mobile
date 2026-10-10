@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,7 +41,8 @@ interface ProducerFloatingChatProps {
   isLive: boolean;
   chatEnabled: boolean;
   canSend: boolean;
-  onSendMessage: (content: string) => void;
+  draftScope: string | null;
+  onSendMessage: (content: string) => Promise<boolean>;
   onToggleChatEnabled?: () => void;
   settingsUpdating?: boolean;
 }
@@ -113,12 +115,14 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
   isLive,
   chatEnabled,
   canSend,
+  draftScope,
   onSendMessage,
   onToggleChatEnabled,
   settingsUpdating,
 }) => {
   const { t } = useTranslation();
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useDraftState(draftScope, "");
+  const sending = useRef(false);
   const listRef = useRef<FlatList<ProducerChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -140,12 +144,13 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
     [filteredActivities]
   );
 
-  const handleSend = useCallback(() => {
+  const handleSend = useCallback(async () => {
     const content = message.trim();
-    if (!content || !canSend) return;
-    onSendMessage(content);
-    setMessage("");
-  }, [message, canSend, onSendMessage]);
+    if (sending.current || !content || !canSend) return;
+    sending.current = true;
+    try { if (await onSendMessage(content)) setMessage.complete(message, ""); }
+    finally { sending.current = false; }
+  }, [message, canSend, onSendMessage, setMessage]);
 
   const renderItem = useCallback(
     ({ item }: { item: ProducerChatActivity }) => (

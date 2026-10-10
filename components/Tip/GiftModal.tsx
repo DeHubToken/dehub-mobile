@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
@@ -122,8 +123,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  const [amount, setAmount] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const [amount, setAmount] = useSurfaceDraft<string>("components/Tip/GiftModal.tsx:amount", "");
+  const [message, setMessage] = useSurfaceDraft<string>("components/Tip/GiftModal.tsx:message", "");
   const [phase, setPhase] = useState<
     "idle" | "funding" | "approving" | "sending" | "error"
   >("idle");
@@ -167,7 +168,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
 
   const selectTier = useCallback((val: number) => {
     setAmount(String(val));
-  }, []);
+  }, [setAmount]);
 
   const handleSend = useCallback(() => {
     requireAuth(async () => {
@@ -260,8 +261,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
         const tierName = (giftTiers as any).find(
           (t: any) => Number(amount) === t.min
         )?.name;
-        setAmount("");
-        setMessage("");
+        setAmount.complete(amount, "");
+        setMessage.complete(message, "");
         setPhase("idle");
         onOpenChange(false);
         toastSuccess(t("tip.sent") as string);
@@ -314,8 +315,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
         inFlight.current = false;
       }
     });
-  }, [
-    requireAuth,
+  }, [requireAuth,
     disableSend,
     phase,
     provider,
@@ -338,18 +338,17 @@ const GiftModal: React.FC<GiftModalProps> = ({
     stream,
     payWith,
     canPayWithOther,
-    t,
-  ]);
+    t, setAmount, setMessage]);
 
   useEffect(() => {
     if (!open) {
       // reset
-      setAmount("");
-      setMessage("");
+      setAmount.initialize("");
+      setMessage.initialize("");
       setGiftError(null);
       setPhase("idle");
     }
-  }, [open]);
+  }, [open, setAmount, setMessage]);
 
   const handleFunded = useCallback(() => {
     void refreshUser().finally(() => setBuyOpen(false));

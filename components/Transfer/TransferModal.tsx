@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
@@ -48,8 +49,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const { requireAuth, patchUser } = useAuthActions();
   const { provider } = useProvider();
   const { chainId, account } = useWeb3Provider();
-  const [amount, setAmount] = useState<string>("");
-  const [query, setQuery] = useState<string>("");
+  const [amount, setAmount] = useSurfaceDraft<string>("components/Transfer/TransferModal.tsx:amount", "");
+  const [query, setQuery] = useSurfaceDraft<string>("components/Transfer/TransferModal.tsx:query", "");
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<User[]>([]);
   const [recipient, setRecipient] = useState<User | null>(null);
@@ -123,8 +124,6 @@ const TransferModal: React.FC<TransferModalProps> = ({
     if (sending) return;
     onOpenChange(false);
     setTimeout(() => {
-      setAmount("");
-      setQuery("");
       setResults([]);
       setRecipient(null);
       setError(null);
@@ -132,7 +131,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
       setShowResults(false);
       setRecipientFromAddress(false);
     }, 250);
-  }, [onOpenChange, sending]);
+  }, [onOpenChange, sending, setAmount, setQuery]);
 
   const canSend = useMemo(() => {
     const a = Number(amount || 0);
@@ -195,6 +194,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
         await erc20TransferAA(tokenContract, toAddr, amountBN, {
           context: "send",
         });
+        setAmount.complete(amount, "");
+        setQuery.complete(query, "");
         close();
         toastSuccess(t("transfer.sent"));
         try {
@@ -220,8 +221,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         setSending(false);
       }
     });
-  }, [
-    requireAuth,
+  }, [requireAuth,
     t,
     sending,
     canSend,
@@ -231,8 +231,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
     amount,
     tokenDecimals,
     patchUser,
-    close,
-  ]);
+    close, query, setAmount, setQuery]);
 
   const renderItem = useCallback(
     ({ item }: { item: User }) => {
@@ -278,7 +277,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         </TouchableOpacity>
       );
     },
-    [recipient]
+    [recipient, setQuery]
   );
   // Typed, pasted and scanned text all go through here, so an address from the
   // clipboard or a QR code selects the recipient exactly like a typed one.
@@ -399,8 +398,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
               {recipientFromAddress && (
                 <TouchableOpacity
                   onPress={() => {
-                    setQuery("");
-                    setRecipient(null);
+                                  setRecipient(null);
                     setRecipientFromAddress(false);
                     setResults([]);
                     setShowResults(false);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import {
   View,
@@ -277,7 +278,7 @@ const LiveStageModal: React.FC = () => {
   } = useStages();
   const { requireAuth } = useAuthActions();
 
-  const [ttsText, setTtsText] = useState("");
+  const [ttsText, setTtsText] = useSurfaceDraft("components/Stages/LiveStageModal.tsx:ttsText", "");
   const [selectedVoiceId, setSelectedVoiceId] = useState("");
 
   const spaceTitle = currentSpace?.title ?? "";

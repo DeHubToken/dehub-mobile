@@ -1,4 +1,6 @@
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
+import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
+import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -171,6 +173,11 @@ type Route = RouteProp<AppStackParamList, typeof ScreenNames.MediaEditor>;
 
 
 export default function MediaEditorScreen() {
+  const user = useUser();
+  return <MediaEditorForAccount key={user?.walletAddress || user?.address || 'guest'} />;
+}
+
+function MediaEditorForAccount() {
   const { t } = useTranslation();
   const route = useRoute<Route>();
   const [openId, setOpenId] = useState<string | null>(route.params?.projectId ?? null);
@@ -187,6 +194,7 @@ export default function MediaEditorScreen() {
 
 function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; onCreate: (p: ProjectSnapshot) => void; onNewVideo: () => void }) {
   const { t } = useTranslation();
+  const recoveryScope = useAccountDraftKey('editor:recovery') ?? 'guest|editor:recovery';
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
   const [templateBusy, setTemplateBusy] = useState<string | null>(null);
   const [templateAspect, setTemplateAspect] = useState<VideoTemplateAspect>("9:16");
@@ -212,13 +220,19 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
     }
   };
 
-  const refresh = useCallback(() => { listProjects().then(setProjects); }, []);
+  const refresh = useCallback(() => {
+    listProjects().then(saved => {
+      const last = lastRecoveryProject(recoveryScope);
+      const recovered = last ? readEditorRecovery(recoveryScope, last) : null;
+      setProjects(recovered ? [recovered, ...saved.filter(p => p.id !== recovered.id)] : saved);
+    });
+  }, [recoveryScope]);
   useEffect(refresh, [refresh]);
 
   const confirmDelete = (p: ProjectSnapshot) => {
     Alert.alert(t("editor.app.deleteTitle"), t("editor.app.deleteBody", { title: p.title || t("creator.untitled") }), [
       { text: t("common.cancel"), style: "cancel" },
-      { text: t("common.delete"), style: "destructive", onPress: () => { deleteProject(p.id).then(refresh); } },
+      { text: t("common.delete"), style: "destructive", onPress: () => { deleteProject(p.id).then(() => { discardEditorRecovery(recoveryScope, p.id); refresh(); }); } },
     ]);
   };
 
@@ -338,7 +352,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
   const { height: windowHeight } = useWindowDimensions();
-  const h = useProjectHistory(initial);
+  const recoveryScope = useAccountDraftKey('editor:recovery') ?? 'guest|editor:recovery';
+  const recovered = useMemo(() => {
+    const id = initial?.id ?? projectId;
+    return id ? readEditorRecovery(recoveryScope, id) : null;
+  }, [recoveryScope, initial?.id, projectId]);
+  const h = useProjectHistory(recovered ?? initial, snapshot => writeEditorRecovery(recoveryScope, { ...snapshot, updatedAt: Date.now() }));
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -425,11 +444,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   // Open an existing design.
   useEffect(() => {
-    if (initial || !projectId) return;
+    if (initial || recovered || !projectId) return;
+    let cancelled = false;
     loadProject(projectId).then((p) => {
+      if (cancelled || h.latest()) return;
       if (p) h.reset(p);
       else { toastError(t("common.somethingWentWrong")); onClose(); }
     });
+    return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId]);
 
@@ -443,10 +465,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const flush = useCallback(async () => {
     if (saveTimer.current) { clearTimeout(saveTimer.current); saveTimer.current = null; }
     const p = latest.current;
-    if (!p || (!p.clips.length && !persisted.current)) return;
+    if (!p) return;
     persisted.current = true;
-    await saveProject({ ...p, updatedAt: Date.now() }).catch(() => {});
-  }, []);
+    const snapshot = readEditorRecovery(recoveryScope, p.id) ?? { ...p, updatedAt: Date.now() };
+    await saveProject(snapshot).then(() => completeEditorRecovery(recoveryScope, snapshot)).catch(() => {});
+  }, [recoveryScope]);
   useEffect(() => {
     if (!project) return;
     if (saveTimer.current) clearTimeout(saveTimer.current);
@@ -886,8 +909,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
-  const sendToAgent = async (text: string, useVisual = false) => {
-    if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return;
+  const sendToAgent = async (text: string, useVisual = false): Promise<boolean> => {
+    if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return false;
     const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
     setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
@@ -899,23 +922,24 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const controller = new AbortController(); assemblyPreparation.current = controller; setChatBusy(true);
         try {
           const media = await listMedia();
-          if (controller.signal.aborted || !editorMounted.current || assemblyPreparation.current !== controller) return;
+          if (controller.signal.aborted || !editorMounted.current || assemblyPreparation.current !== controller) return false;
           const now = h.latest();
-          if (!now || !sameHighlightSource(project, now)) { setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return; }
+          if (!now || !sameHighlightSource(project, now)) { setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
           setAssemblyNames(Object.fromEntries(media.map(item => [item.id, item.name])));
           assembly.start(draftRequest, selectedId ? [selectedId] : [], media);
-        } catch { if (!controller.signal.aborted && editorMounted.current) setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return; }
+        } catch { if (!controller.signal.aborted && editorMounted.current) setChat(old => [...old, { id: entryId(), role: "assistant", content: t("editor.agent.failed"), error: true }]); return false; }
         finally { if (assemblyPreparation.current === controller) { assemblyPreparation.current = null; setChatBusy(false); } }
       }
       const reviewed = draftRequest || assembly.review(text);
       setChat(old => [...old, { id: entryId(), role: "assistant", content: t(reviewed ? "easyTrade.reviewTitle" : "editor.agent.nothingToDo") }]);
-      return;
+      return !!reviewed;
     }
     const request = highlightChatRequest(text);
     if (request || highlightChat.reviewing) {
       highlightPreviewEnd.current = null; setPlaying(false);
-      recordHighlights(request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text));
-      return;
+      const result = request ? await highlightChat.start({ ...request, useVisual, visualScope: highlightVisualScope(project, selectedId ? [selectedId] : []), focus: request.focus || (useVisual ? text.slice(0, 240) : "") }, selectedId ? [selectedId] : []) : await highlightChat.review(text);
+      recordHighlights(result);
+      return result.status !== "error" && result.status !== "cancelled";
     }
     setChatBusy(true);
     try {
@@ -946,9 +970,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (report.missingStock.length) content += ` ${t("editor.agent.noStock", { query: report.missingStock.join(", ") })}`;
       if (report.unsupported.length) content += ` ${t("editor.app.agentWebOnly")}`;
       setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied, generate: report.generate }]);
+      return !report.failed;
     } catch (e) {
       const code = e instanceof Error ? e.message : "";
       setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
+      return false;
     } finally {
       setChatBusy(false);
     }
@@ -1637,6 +1663,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       )}
 
       <TextPrompt
+        draftScope={`editor:${project.id}:text:${textClip?.id}`}
         visible={!!textClip && textClip.kind === "text"}
         title={t("editor.menu.editText")}
         initial={textClip?.kind === "text" ? textClip.text : ""}
@@ -1649,6 +1676,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       />
 
       <TextPrompt
+        draftScope={`editor:${project.id}:title`}
         visible={renaming}
         title={t("editor.app.rename")}
         initial={project.title}
@@ -1677,7 +1705,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onHighlightPreview={index => { const preview = highlightChat.preview(index); if (!preview) return; highlightPreviewEnd.current = preview.end; setTime(preview.start); setPlaying(true); setChatOpen(false); }}
         onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
         onHighlightClose={closeHighlightChat}
-        onSend={(text, useVisual) => { void sendToAgent(text, useVisual); }}
+        onSend={sendToAgent}
+        projectId={project.id}
         visualScope={highlightVisualScope(project, selectedId ? [selectedId] : [])}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onUndo={h.undo}
@@ -1721,6 +1750,7 @@ function IconButton({ icon, label, onPress, disabled }: { icon: IconName; label:
 }
 
 function TextPrompt(props: {
+  draftScope: string;
   visible: boolean;
   title: string;
   initial: string;
@@ -1730,8 +1760,8 @@ function TextPrompt(props: {
   onDone: (value: string) => void;
 }) {
   const { t } = useTranslation();
-  const [value, setValue] = useState(props.initial);
-  useEffect(() => { if (props.visible) setValue(props.initial); }, [props.visible, props.initial]);
+  const [value, setValue] = useDraftState(props.draftScope, props.initial);
+  useEffect(() => { if (props.visible) setValue.initialize(props.initial); }, [props.visible, props.initial, setValue]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
@@ -1750,7 +1780,7 @@ function TextPrompt(props: {
           />
           <View className="flex-row justify-end" style={{ gap: 8 }}>
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
-            <Chip label={t("common.done")} active onPress={() => props.onDone(value)} />
+            <Chip label={t("common.done")} active onPress={() => { props.onDone(value); setValue.complete(value, value); }} />
           </View>
         </View>
       </KeyboardAvoidingView>

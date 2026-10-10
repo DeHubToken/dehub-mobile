@@ -102,6 +102,9 @@ export const MAX_RETRIES = 3;
 export const MAX_QUEUE_SIZE = 5;
 
 export interface UploadJob {
+  /** Exact composer snapshots; consumed only after publication. */
+  draftReceipt?: Record<string, string>;
+  sourceDraftId?: string;
   id: string;
   status: UploadJobStatus;
   progress: number;

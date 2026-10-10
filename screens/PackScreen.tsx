@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * PackScreen — dehub.io/packs/:slug
  *
@@ -84,9 +85,9 @@ export default function PackScreen() {
   const isSaved = !!pack && (saved.data ?? []).some((p) => p.id === pack.id);
 
   const [busy, setBusy] = useState(false);
-  const [editingName, setEditingName] = useState<string | null>(null);
-  const [link, setLink] = useState("");
-  const [label, setLabel] = useState("");
+  const [editingName, setEditingName] = useSurfaceDraft<string | null>("screens/PackScreen.tsx:editingName", null, slug);
+  const [link, setLink] = useSurfaceDraft("screens/PackScreen.tsx:link", "");
+  const [label, setLabel] = useSurfaceDraft("screens/PackScreen.tsx:label", "");
 
   if (isLoading) {
     return (
@@ -180,8 +181,8 @@ export default function PackScreen() {
     const { added, skipped } = await addPackItems(wallet, pack.id, entries);
     await invalidate();
     toastSuccess(t("creatorPacks.itemsAdded", { count: added, skipped }));
-    setLink("");
-    setLabel("");
+    setLink.complete(link, "");
+    setLabel.complete(label, "");
   };
 
   const pickFiles = async () => {
@@ -249,7 +250,7 @@ export default function PackScreen() {
     if (!wallet || !editingName?.trim()) return;
     void run(async () => {
       await renamePack(wallet, pack.id, editingName.trim());
-      setEditingName(null);
+      setEditingName.complete(editingName, null);
       await invalidate();
     });
   };
@@ -288,7 +289,7 @@ export default function PackScreen() {
                   <Icon name="Check" size={16} color="#FFFFFF" />
                 </Pressable>
                 <Pressable
-                  onPress={() => setEditingName(null)}
+                  onPress={() => setEditingName.complete(editingName, null)}
                   accessibilityRole="button"
                   accessibilityLabel={t("common.cancel")}
                   style={styles.iconBtn}
@@ -301,7 +302,7 @@ export default function PackScreen() {
                 <Text numberOfLines={1} style={styles.title}>{pack.name}</Text>
                 {isOwner && (
                   <Pressable
-                    onPress={() => setEditingName(pack.name)}
+                    onPress={() => setEditingName.initialize(pack.name)}
                     accessibilityRole="button"
                     accessibilityLabel={t("creatorPacks.rename")}
                     hitSlop={8}

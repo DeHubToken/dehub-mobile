@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * BuilderScreen — dehub.io/builder
  *
@@ -39,7 +40,7 @@ export default function BuilderScreen() {
   const keyboardOffset = useKeyboardOffset();
   const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const { requireAuth } = useAuthActions();
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useSurfaceDraft("screens/BuilderScreen.tsx:prompt", "");
   const inputRef = useRef<TextInput>(null);
 
   /** Open the @assistant thread, sending `body` into it when there is one. */
@@ -51,7 +52,7 @@ export default function BuilderScreen() {
         targetUser: { username: ASSISTANT_USERNAME, address: ASSISTANT_ADDRESS },
         ...(body ? { autoSendText: body } : {}),
       });
-      if (body) setPrompt("");
+      if (body) setPrompt.complete(prompt, "");
     });
   };
 

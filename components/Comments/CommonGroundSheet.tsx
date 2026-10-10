@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Common Ground sheet
  * ===================
@@ -89,8 +90,8 @@ const CommonGroundSheet: React.FC<CommonGroundSheetProps> = ({ visible, onClose,
   const coach = useConversationCoach();
 
   const [step, setStep] = useState<Step>(1);
-  const [otherSide, setOtherSide] = useState("");
-  const [sharedGround, setSharedGround] = useState("");
+  const [otherSide, setOtherSide] = useSurfaceDraft("components/Comments/CommonGroundSheet.tsx:otherSide", "");
+  const [sharedGround, setSharedGround] = useSurfaceDraft("components/Comments/CommonGroundSheet.tsx:sharedGround", "");
   const firstFieldRef = useRef<TextInput>(null);
 
   // A fresh set of steps every time the sheet opens — the answers are
@@ -98,14 +99,14 @@ const CommonGroundSheet: React.FC<CommonGroundSheetProps> = ({ visible, onClose,
   useEffect(() => {
     if (!visible) return;
     setStep(1);
-    setOtherSide("");
-    setSharedGround("");
+    setOtherSide.initialize("");
+    setSharedGround.initialize("");
     coach.reset();
     const id = setTimeout(() => firstFieldRef.current?.focus(), 250);
     return () => clearTimeout(id);
     // coach.reset is stable
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
+  }, [visible, setOtherSide, setSharedGround]);
 
   // The last step runs the coach on the draft. With coaching switched off
   // there is nothing to wait for and the Post button is there at once.

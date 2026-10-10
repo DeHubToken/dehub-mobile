@@ -1,3 +1,5 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { interpolate } from 'react-native-reanimated';
@@ -25,6 +27,7 @@ jest.mock('react-native', () => ({
   I18nManager: { isRTL: true },
 }));
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   CommonActions: { navigate: (payload: unknown) => ({ type: 'NAVIGATE', payload }) },
   useNavigation: () => ({ dispatch: jest.fn() }),
   useNavigationState: () => 'Home',
@@ -98,3 +101,5 @@ it('closes on a drag or fling down and ignores one up', () => {
   mockHandlers.onEnd({ velocityY: -1000 });
   expect(close).not.toHaveBeenCalled();
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

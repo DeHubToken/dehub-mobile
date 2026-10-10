@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useState, useCallback } from "react";
 import {
@@ -42,7 +43,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   const insets = useSafeAreaInsets();
   const { createPoll, loading } = useCreatePoll();
 
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useSurfaceDraft("components/DM/CreatePollSheet.tsx:question", "");
   const [options, setOptions] = useState(["", ""]);
   const [durationHours, setDurationHours] = useState(24);
   const [isMultipleChoice, setIsMultipleChoice] = useState(false);
@@ -79,14 +80,14 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
         isMultipleChoice,
       });
       if (result?.tokenId != null) {
-        setQuestion("");
+        setQuestion.complete(question, "");
         setOptions(["", ""]);
         setDurationHours(24);
         setIsMultipleChoice(false);
         onCreated(result.tokenId);
       }
     } catch {}
-  }, [canCreate, options, question, durationHours, isMultipleChoice, createPoll, onCreated]);
+  }, [canCreate, options, question, durationHours, isMultipleChoice, createPoll, onCreated, setQuestion]);
 
   if (!visible) return null;
 

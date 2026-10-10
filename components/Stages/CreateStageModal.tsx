@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Platform, ScrollView, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
@@ -39,8 +40,8 @@ const CreateStageModal: React.FC = () => {
   } = useStages();
 
   const [mode, setMode] = useState<Mode>("now");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useSurfaceDraft("components/Stages/CreateStageModal.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("components/Stages/CreateStageModal.tsx:description", "");
   const [error, setError] = useState("");
   const { t } = useTranslation();
 
@@ -66,8 +67,8 @@ const CreateStageModal: React.FC = () => {
   const handleBack = () => closeModal();
 
   const reset = () => {
-    setTitle("");
-    setDescription("");
+    setTitle.complete(title, "");
+    setDescription.complete(description, "");
     setCoverUri(null);
     setScheduledLink(null);
     setMode("now");
@@ -174,7 +175,7 @@ const CreateStageModal: React.FC = () => {
   // post renders the same card.
   if (scheduledLink) {
     return (
-      <GlassModal scrollable visible onClose={() => { reset(); closeModal(); }} presentation="bottom">
+      <GlassModal scrollable visible onClose={() => { closeModal(); }} presentation="bottom">
         <View style={styles.container}>
           <View style={styles.successIcon}>
             <Icon name="Check" size={26} color="#FFFFFF" />
@@ -223,7 +224,7 @@ const CreateStageModal: React.FC = () => {
 
           <TouchableOpacity
             style={styles.secondaryBtn}
-            onPress={() => { reset(); closeModal(); }}
+            onPress={() => { closeModal(); }}
           >
             <Text style={styles.secondaryText}>{t("common.done")}</Text>
           </TouchableOpacity>

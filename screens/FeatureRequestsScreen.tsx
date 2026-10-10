@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * FeatureRequestsScreen
  * =====================
@@ -237,7 +238,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   const { data: comments = [], isLoading } = useFeatureRequestComments(featureId);
   const submitComment = useSubmitComment();
   const deleteComment = useDeleteComment();
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:draft", "");
   const growingInput = useGrowingTextInput(draft, 32, 100);
 
   const send = useCallback(() => {
@@ -249,9 +250,9 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
     }
     submitComment.mutate(
       { featureRequestId: featureId, content },
-      { onSuccess: () => setDraft("") },
+      { onSuccess: () => setDraft.complete(draft, "") },
     );
-  }, [draft, submitComment, isAuthed, navigation, featureId]);
+  }, [draft, submitComment, isAuthed, navigation, featureId, setDraft]);
 
   const confirmDelete = useCallback(
     (commentId: string) => {
@@ -411,8 +412,8 @@ const FeatureCard: React.FC<{
     ? `@${feature.author_username}`
     : shortAddr(feature.author_wallet_address);
 
-  const [editTitle, setEditTitle] = useState(feature.title);
-  const [editDescription, setEditDescription] = useState(feature.description);
+  const [editTitle, setEditTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:editTitle", feature.title, feature.id);
+  const [editDescription, setEditDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:editDescription", feature.description, feature.id);
   const [editCategory, setEditCategory] = useState<FeatureCategory>(feature.category);
 
   const badge = STATUS_BADGE[feature.status];
@@ -447,7 +448,7 @@ const FeatureCard: React.FC<{
       },
       { text: t("common.cancel", "Cancel"), style: "cancel" },
     ]);
-  }, [feature, t, deleteMutation]);
+  }, [feature, t, deleteMutation, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
     void Share.share({
@@ -632,14 +633,14 @@ const SubmitSheet: React.FC<{
     description: string;
     category: FeatureCategory;
     attachments: FeatureAttachment[];
-  }) => void;
+  }) => Promise<unknown>;
   submitting: boolean;
   initialCategory?: FeatureCategory;
 }> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
   const { t } = useTranslation();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [device, setDevice] = useState("");
+  const [title, setTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:description", "");
+  const [device, setDevice] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:device", "");
   const [category, setCategory] = useState<FeatureCategory>(initialCategory || "new_feature");
   const [attachments, setAttachments] = useState<FeatureAttachment[]>([]);
 
@@ -683,27 +684,29 @@ const SubmitSheet: React.FC<{
   }, [attachments.length, t]);
 
   const reset = useCallback(() => {
-    setTitle("");
-    setDescription("");
-    setDevice("");
+    setTitle.complete(title, "");
+    setDescription.complete(description, "");
+    setDevice.complete(device, "");
     setCategory(initialCategory || "new_feature");
     setAttachments([]);
-  }, [initialCategory]);
+  }, [initialCategory, setDescription, setDevice, setTitle, description, device, title]);
 
   const handleClose = useCallback(() => {
-    reset();
     onClose();
   }, [reset, onClose]);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (!valid || submitting) return;
     // Web appends the device line to the description rather than storing it in
     // its own column — keep the two boards' rows identical.
     const fullDescription = device.trim()
       ? `${description.trim()}\n\n📱 Device & OS: ${device.trim()}`
       : description.trim();
-    onSubmit({ title, description: fullDescription, category, attachments });
-    reset();
+    try {
+      await onSubmit({ title, description: fullDescription, category, attachments });
+      reset();
+      onClose();
+    } catch { /* Mutation reports the failure; retain the form. */ }
   }, [valid, submitting, device, description, title, category, attachments, onSubmit, reset]);
 
   return (
@@ -872,7 +875,7 @@ export default function FeatureRequestsScreen() {
   const [tab, setTab] = useState<PageTab>("requests");
   const [sort, setSort] = useState<FeatureSort>("most_voted");
   const [category, setCategory] = useState<FeatureCategory | "all">("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:search", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [sheetOpen, setSheetOpen] = useState(false);
   const [iconFailed, setIconFailed] = useState(false);
@@ -1093,7 +1096,7 @@ export default function FeatureRequestsScreen() {
             returnKeyType="search"
           />
           {search.length > 0 && (
-            <Pressable onPress={() => setSearch("")} hitSlop={8}>
+            <Pressable onPress={() => setSearch.complete(search, "")} hitSlop={8}>
               <Icon name="X" size={15} color="#808089" />
             </Pressable>
           )}
@@ -1275,9 +1278,7 @@ export default function FeatureRequestsScreen() {
         onClose={() => setSheetOpen(false)}
         submitting={submitMutation.isPending}
         initialCategory={category !== "all" ? category : undefined}
-        onSubmit={(v) => {
-          submitMutation.mutate(v, { onSuccess: () => setSheetOpen(false) });
-        }}
+        onSubmit={(v) => submitMutation.mutateAsync(v)}
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>

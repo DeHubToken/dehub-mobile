@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * AppsScreen
  * ==========
@@ -74,7 +75,7 @@ export default function AppsScreen() {
   const [failed, setFailed] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const mounted = useRef(true);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("screens/AppsScreen.tsx:query", "");
   const { user } = useAuth();
   const [added, setAdded] = useState<AddedApp[]>([]);
   useEffect(() => {

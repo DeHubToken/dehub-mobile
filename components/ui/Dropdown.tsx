@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, TextInput, FlatList } from "react-native";
@@ -27,7 +28,7 @@ const Dropdown: React.FC<Props> = ({
 }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/ui/Dropdown.tsx:query", "", JSON.stringify(options.map(option => option.value)));
 
   const selected = useMemo(() => options.find((o) => o.value === value), [options, value]);
   const filtered = useMemo(() => {
@@ -40,9 +41,9 @@ const Dropdown: React.FC<Props> = ({
     (val: string) => {
       onChange(val);
       setOpen(false);
-      setQuery("");
+      setQuery.complete(query, "");
     },
-    [onChange]
+    [onChange, setQuery, query]
   );
 
   return (

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
@@ -161,7 +162,7 @@ const StakingTab: React.FC = () => {
   const [earned, setEarned] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState<"stake" | "unstake">("stake");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/StakingTab.tsx:amount", "");
   const [isBusy, setIsBusy] = useState(false);
   /** A manual "did my transfer land yet?" check is in flight. */
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -451,7 +452,7 @@ const StakingTab: React.FC = () => {
         pool: STAKING_ADDRESS, amount, amountHex: amountWei.toHexString(),
       };
       setPendingStake(attempt);
-      setAmount('');
+      setAmount.complete(amount, '');
       try { await AsyncStorage.setItem(pendingStakeKey(walletAddress), JSON.stringify(attempt)); }
       catch (error) { stakeLog.error('Pending stake storage unavailable', { hash: txHash }, String(error)); }
       recordStakeEvent('Stake submitted; awaiting receipt', attempt);
@@ -572,7 +573,7 @@ const StakingTab: React.FC = () => {
       }
 
       toastSuccess(t("staking.unstakeSent", { amount, hash: txHash.slice(0, 10) }));
-      setAmount("");
+      setAmount.complete(amount, "");
       setMode("stake");
       setTimeout(fetchData, 4000);
     } catch (err: any) {
@@ -684,7 +685,7 @@ const StakingTab: React.FC = () => {
               key={m}
               onPress={() => {
                 setMode(m);
-                setAmount("");
+                setAmount.complete(amount, "");
               }}
               className={`flex-1 py-2 rounded-lg items-center ${
                 mode === m ? "bg-white/15" : ""

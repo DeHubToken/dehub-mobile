@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -141,9 +142,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const [isTranslationLoading, setIsTranslationLoading] = useState(false);
 
   // UI filters & editing states
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useSurfaceDraft("components/Stages/StageTranscriptSheet.tsx:searchQuery", "");
   const [renamingSpeaker, setRenamingSpeaker] = useState<string | null>(null);
-  const [renameText, setRenameText] = useState("");
+  const [renameText, setRenameText] = useSurfaceDraft("components/Stages/StageTranscriptSheet.tsx:renameText", "");
 
   const stageId = space?.id;
   // The translation cache keys on the transcript row, not the stage — one
@@ -279,13 +280,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
       setTranscript(null);
       setTranslation(null);
       setLanguage("original");
-      setSearchQuery("");
+      setSearchQuery.initialize("");
       setRenamingSpeaker(null);
       setHasRetriedLegacy(false);
     } else {
       fetchTranscript();
     }
-  }, [visible, space?.recording_url, fetchTranscript]);
+  }, [visible, space?.recording_url, fetchTranscript, setSearchQuery]);
 
   // Realtime subscriptions
   useEffect(() => {
@@ -636,7 +637,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   style={FIELD_TEXT}
                 />
                 {searchQuery.length > 0 && (
-                  <TouchableOpacity onPress={() => setSearchQuery("")}>
+                  <TouchableOpacity onPress={() => setSearchQuery.complete(searchQuery, "")}>
                     <Icon name="X" size={12} color="#A6A9AC" />
                   </TouchableOpacity>
                 )}

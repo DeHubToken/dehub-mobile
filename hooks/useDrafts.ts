@@ -93,11 +93,13 @@ const readDrafts = async (address?: string): Promise<Draft[]> => {
   }
 };
 
-const writeDrafts = async (drafts: Draft[], address?: string): Promise<void> => {
+const writeDrafts = async (drafts: Draft[], address?: string): Promise<boolean> => {
   try {
     await AsyncStorage.setItem(draftsKey(address), JSON.stringify(drafts));
+    return true;
   } catch (e) {
     console.error("[useDrafts] write error:", e);
+    return false;
   }
 };
 
@@ -231,6 +233,13 @@ const removeRemote = async (remoteId?: string, address?: string): Promise<void> 
 };
 
 
+export async function consumePublishedDraft(id: string, address: string): Promise<void> {
+  const drafts = await readDrafts(address);
+  const target = drafts.find(draft => draft.id === id);
+  await writeDrafts(drafts.filter(draft => draft.id !== id), address);
+  await removeRemote(target?.remoteId, address);
+}
+
 export function useDrafts(address?: string) {
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(true);
@@ -271,7 +280,7 @@ export function useDrafts(address?: string) {
       const entry: Draft = { ...draft, id, createdAt: Date.now() };
       const updated = [entry, ...drafts];
       setDrafts(updated);
-      await writeDrafts(updated, address);
+      const savedLocally = await writeDrafts(updated, address);
 
       // The draft is already saved locally by this point, so the server write
       // is allowed to be slow or to fail without the caller waiting on it.
@@ -281,6 +290,7 @@ export function useDrafts(address?: string) {
         setDrafts(withRemote);
         await writeDrafts(withRemote, address);
       }
+      if (!savedLocally && !remoteId) throw new Error("Could not save this draft. Your text is still in the composer.");
       return id;
     },
     [drafts, address],

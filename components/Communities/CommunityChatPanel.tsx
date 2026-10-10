@@ -1,3 +1,5 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
+import { useDraftState } from '../../hooks/useDraftState';
 import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * CommunityChatPanel
@@ -306,13 +308,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     removeReaction,
   } = useCommunityChat(community.id, { isPrivate: community.is_private });
 
-  const [text, setText] = useState("");
+  const [editing, setEditing] = useState<CommunityChatMessage | null>(null);
+  const [text, setText] = useDraftState(editing ? `community:${community.id}:edit:${editing.id}` : `community:${community.id}:composer`, editing?.content ?? "");
   // @mention typeahead. Handles were already parsed out of sent text for
   // notifications, but nothing suggested anyone while typing, so a mention
   // only landed if you already knew the handle exactly.
   const mentions = useMentions(text, setText);
-  const [replyTo, setReplyTo] = useState<CommunityChatMessage | null>(null);
-  const [editing, setEditing] = useState<CommunityChatMessage | null>(null);
+  const [replyTo, setReplyTo] = useDraftState<CommunityChatMessage | null>(`community:${community.id}:reply`, null);
   const [sending, setSending] = useState(false);
   const [sheetFor, setSheetFor] = useState<CommunityChatMessage | null>(null);
   // Message whose full emoji picker is open. The action sheet closes first:
@@ -399,14 +401,16 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     try {
       if (editing) {
         await editMessage(editing.id, body);
-        setEditing(null);
-        setText("");
-        mentions.reset();
+        if (setText.complete(text, "")) {
+          setEditing(current => current?.id === editing.id ? null : current);
+          mentions.reset();
+        }
       } else {
         await sendMessage(body, replyTo?.id);
-        setText("");
-        mentions.reset();
-        setReplyTo(null);
+        if (setText.complete(text, "")) {
+          mentions.reset();
+          setReplyTo.complete(replyTo, null);
+        }
         atBottomRef.current = true;
         scrollToBottom();
         // Feedback only — the server enforces slow mode on its own.
@@ -417,8 +421,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     } finally {
       setSending(false);
     }
-  }, [
-    text,
+  }, [text,
     sending,
     editing,
     mentions,
@@ -427,8 +430,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     replyTo,
     scrollToBottom,
     slowModeApplies,
-    slowSeconds,
-  ]);
+    slowSeconds, setText, setReplyTo]);
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {
@@ -627,7 +629,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             </Text>
           </View>
           <Pressable
-            onPress={() => setReplyTo(null)}
+            onPress={() => setReplyTo.complete(replyTo, null)}
             hitSlop={15}
             accessibilityRole="button"
             accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
@@ -651,7 +653,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           <Pressable
             onPress={() => {
               setEditing(null);
-              setText("");
+              setText.clear();
             }}
             hitSlop={15}
             accessibilityRole="button"
@@ -806,9 +808,8 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                   <Pressable
                     style={styles.sheetRow}
                     onPress={() => {
-                      setReplyTo(null);
+                      setReplyTo.complete(replyTo, null);
                       setEditing(sheetFor);
-                      setText(sheetFor.content);
                       setSheetFor(null);
                     }}
                   >

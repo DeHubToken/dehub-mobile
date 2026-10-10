@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { ScrollView } from "react-native";
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useEffect, useState } from "react";
@@ -50,7 +51,7 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
   onFiled,
 }) => {
   const { t } = useTranslation();
-  const [reason, setReason] = useState("");
+  const [reason, setReason] = useSurfaceDraft("components/Notifications/AppealSheet.tsx:reason", "", notificationId);
   const [submitting, setSubmitting] = useState(false);
   // The Modal runs under the nav bar (edge-to-edge), so the footnote needs the
   // inset. Not while typing: the keyboard already lifts the sheet clear of it.
@@ -61,10 +62,10 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
   // whichever decision was opened next.
   useEffect(() => {
     if (!visible) {
-      setReason("");
+      setReason.initialize("");
       setSubmitting(false);
     }
-  }, [visible]);
+  }, [visible, setReason]);
 
   const trimmed = reason.trim();
   const canSubmit = trimmed.length >= MIN_REASON && !submitting;

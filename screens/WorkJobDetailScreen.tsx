@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkJobDetailScreen
@@ -150,18 +151,18 @@ export default function WorkJobDetailScreen() {
   const publishMutation=usePublishJob();
   const releaseMutation=useReleasePayment();
 
-  const [coverLetter, setCoverLetter] = useState("");
-  const [proofUrl, setProofUrl] = useState("");
-  const [proofText, setProofText] = useState("");
+  const [coverLetter, setCoverLetter] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:coverLetter", "");
+  const [proofUrl, setProofUrl] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:proofUrl", "");
+  const [proofText, setProofText] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:proofText", "");
   const [rating, setRating] = useState(5);
-  const [reviewComment, setReviewComment] = useState("");
   const [reviewTarget,setReviewTarget]=useState('');
-  const [disputeReason, setDisputeReason] = useState("");
+  const [reviewComment, setReviewComment] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:reviewComment", "", `${job?.id ?? ""}:${reviewTarget || "default"}`);
+  const [disputeReason, setDisputeReason] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:disputeReason", "");
   const [showDispute, setShowDispute] = useState(false);
   const [rejectTarget, setRejectTarget] = useState<WorkSubmission | null>(null);
-  const [rejectReason, setRejectReason] = useState("");
-  const [clipChecks, setClipChecks] = useState<Record<string, { views: string; evidence: string }>>({});
-  const [recoveryHashes, setRecoveryHashes] = useState<Record<string,string>>({});
+  const [rejectReason, setRejectReason] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:rejectReason", "", rejectTarget?.id ?? null);
+  const [clipChecks, setClipChecks] = useSurfaceDraft<Record<string, { views: string; evidence: string }>>("work:clipChecks", {}, job?.id ?? null);
+  const [recoveryHashes, setRecoveryHashes] = useSurfaceDraft<Record<string,string>>("work:recoveryHashes", {}, job?.id ?? null);
 
   const requireAuth = useCallback(() => {
     if (!me) {
@@ -197,7 +198,6 @@ export default function WorkJobDetailScreen() {
         return;
       }
       setRejectTarget(submission);
-      setRejectReason("");
     },
     [rejectMutation, t],
   );
@@ -377,7 +377,7 @@ export default function WorkJobDetailScreen() {
                       if (!requireAuth()) return;
                       applyMutation.mutate(
                         { job_id: job.id, cover_letter: coverLetter.trim() },
-                        { onSuccess: () => setCoverLetter("") },
+                        { onSuccess: () => setCoverLetter.complete(coverLetter, "") },
                       );
                     }}
                     style={[
@@ -471,8 +471,8 @@ export default function WorkJobDetailScreen() {
                         },
                         {
                           onSuccess: () => {
-                            setProofUrl("");
-                            setProofText("");
+                            setProofUrl.complete(proofUrl, "");
+                            setProofText.complete(proofText, "");
                           },
                         },
                       );
@@ -749,7 +749,7 @@ export default function WorkJobDetailScreen() {
                         rating,
                         comment: reviewComment.trim(),
                       },
-                      { onSuccess: () => setReviewComment("") },
+                      { onSuccess: () => setReviewComment.complete(reviewComment, "") },
                     );
                   }}
                   disabled={reviewMutation.isPending} style={[styles.primaryBtn,reviewMutation.isPending&&styles.disabled]}
@@ -808,9 +808,7 @@ export default function WorkJobDetailScreen() {
                     job_id: job.id,
                     onchain_job_id: job.onchain_job_id,
                     reason: disputeReason.trim(),
-                  });
-                  setShowDispute(false);
-                  setDisputeReason("");
+                  }, { onSuccess: () => { if (setDisputeReason.complete(disputeReason, "")) setShowDispute(false); } });
                 }}
                 style={[styles.disputeSubmit, !disputeReason.trim() && styles.disabled]}
               >
@@ -859,9 +857,7 @@ export default function WorkJobDetailScreen() {
                     submission_id: target.id,
                     job_id: job.id,
                     reason: rejectReason.trim(),
-                  });
-                  setRejectTarget(null);
-                  setRejectReason("");
+                  }, { onSuccess: () => { if (setRejectReason.complete(rejectReason, "")) setRejectTarget(null); } });
                 }}
                 style={[styles.rejectConfirm, !rejectReason.trim() && styles.disabled, { flex: 1 }]}
               >

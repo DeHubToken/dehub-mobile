@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { appLocale } from '../libs/date.util';
 import { tokenLabel } from '../libs/token-label';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -35,7 +36,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
   const signer = useDexSigner();
   const queryClient = useQueryClient();
   const [chain, setChain] = useState<PoolChain>('base');
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useSurfaceDraft("components/DexAddPoolSheet.tsx:address", '');
   const [check, setCheck] = useState<TokenCheck | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState('');
@@ -59,10 +60,10 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
     if (walletAddress) void AsyncStorage.getItem(paidKey(walletAddress)).then((raw) => {
       const saved = raw ? JSON.parse(raw) as PaidFee : null;
       if (!live || !saved || saved.wallet !== walletAddress.toLowerCase()) return;
-      setPaid(saved); setChain(saved.chain); setAddress(saved.tokenAddress);
+      setPaid(saved); setChain(saved.chain); setAddress.initialize(saved.tokenAddress);
     }).catch(() => {});
     return () => { live = false; };
-  }, [visible, walletAddress]);
+  }, [visible, walletAddress, setAddress]);
 
   // Look the token up as soon as the address is well formed.
   useEffect(() => {
@@ -131,7 +132,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
       writePaid(null);
       await queryClient.invalidateQueries({ queryKey: ['dex-pools'] });
       toastSuccess(t('dex.pools.created', { symbol: pool.symbol }));
-      onClose(); setAddress(''); setImage(null); setCheck(null);
+      onClose(); setAddress.complete(address, ''); setImage(null); setCheck(null);
       onCreated(pool);
     } catch (e) {
       setError(dexActionError(e, t('dex.pools.createFailed')));
@@ -184,7 +185,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
               {!!busy && <ActivityIndicator color="#061410" />}
               <Text style={s.darkText}>{busy ? busyLabel : !walletAddress ? t('dex.connectWallet') : paid ? t('dex.pools.finish') : !covers && check?.token ? t('dex.pools.notEnough') : t('dex.pools.payAndOpen', { amount: POOL_FEE_USD })}</Text>
             </TouchableOpacity>
-            {paid && !busy && <TouchableOpacity onPress={() => { writePaid(null); setAddress(''); onClose(); }}><Text style={[s.link, { textAlign: 'center', marginTop: 12 }]}>{t('dex.pools.discardPaid')}</Text></TouchableOpacity>}
+            {paid && !busy && <TouchableOpacity onPress={() => { writePaid(null); setAddress.complete(address, ''); onClose(); }}><Text style={[s.link, { textAlign: 'center', marginTop: 12 }]}>{t('dex.pools.discardPaid')}</Text></TouchableOpacity>}
           </View>
   </GlassModal>;
 }

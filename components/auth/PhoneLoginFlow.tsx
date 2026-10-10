@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { AuthButton, AuthField, authColors, authText } from "./AuthControls";
@@ -34,8 +35,8 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   // kept alongside them because the hint needs it: a pasted national number
   // reduces to digits that are perfectly valid for some other country, and only
   // the separators-without-a-"+" shape in the raw text gives that away.
-  const [digits, setDigits] = useState("");
-  const [raw, setRaw] = useState("");
+  const [digits, setDigits] = useSurfaceDraft("components/auth/PhoneLoginFlow.tsx:digits", "");
+  const [raw, setRaw] = useSurfaceDraft("components/auth/PhoneLoginFlow.tsx:raw", "");
   const inputRef = useRef<TextInput>(null);
   const containerRef = useRef<View>(null);
 
@@ -51,7 +52,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   const handleChange = useCallback((text: string) => {
     setRaw(text);
     setDigits(toNationalDigits(text));
-  }, []);
+  }, [setDigits, setRaw]);
 
   const handleSubmit = useCallback(() => {
     if (isValid) onSubmit(toE164(digits));

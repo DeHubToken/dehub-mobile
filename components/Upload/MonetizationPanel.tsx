@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * MonetizationPanel
  *
@@ -59,6 +60,7 @@ export type MonetizationState = {
 };
 
 type MonetizationPanelProps = {
+  draftScope?: string;
   state: MonetizationState;
   onChange: (next: MonetizationState) => void;
   /** Open plan setup above the composer without abandoning the post draft. */
@@ -141,6 +143,7 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({
 
 
 const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
+  draftScope = "post:new",
   state,
   onChange,
   autoExpandSection,
@@ -171,21 +174,20 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   >(null);
 
   // Draft state for forms (not committed until confirm)
-  const [ppvDraft, setPpvDraft] = useState<PpvData>(state.ppvData);
-  const [bountyDraft, setBountyDraft] = useState<BountyData>(state.bountyData);
-  const [tokenGateDraft, setTokenGateDraft] = useState<TokenGateData>(
-    state.tokenGateData,
-  );
+  const [ppvDraft, setPpvDraft] = useSurfaceDraft<PpvData>("components/Upload/MonetizationPanel.tsx:ppvDraft", state.ppvData, draftScope);
+  const [bountyDraft, setBountyDraft] = useSurfaceDraft<BountyData>("components/Upload/MonetizationPanel.tsx:bountyDraft", state.bountyData, draftScope);
+  const [tokenGateDraft, setTokenGateDraft] = useSurfaceDraft<TokenGateData>("components/Upload/MonetizationPanel.tsx:tokenGateDraft",
+    state.tokenGateData, draftScope);
 
   // Handle auto-expand from bottom bar icon tap
   useEffect(() => {
     if (autoExpandSection) {
       setExpandedSection(autoExpandSection);
       // Load current data into draft
-      if (autoExpandSection === "ppv") setPpvDraft(state.ppvData);
-      if (autoExpandSection === "bounty") setBountyDraft(state.bountyData);
+      if (autoExpandSection === "ppv") setPpvDraft.initialize(state.ppvData);
+      if (autoExpandSection === "bounty") setBountyDraft.initialize(state.bountyData);
       if (autoExpandSection === "tokenGated") {
-        setTokenGateDraft(state.tokenGateData);
+        setTokenGateDraft.initialize(state.tokenGateData);
         const addr = state.tokenGateData.contractAddress;
         setGateUseCustom(
           !!addr && !evmLockTokens.some((t) => t.address.toLowerCase() === addr.toLowerCase()),
@@ -194,20 +196,20 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       }
       onAutoExpandHandled?.();
     }
-  }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens]);
+  }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens, setBountyDraft, setPpvDraft, setTokenGateDraft]);
 
 
   const handlePpvToggle = useCallback(
     (val: boolean) => {
       if (val) {
-        setPpvDraft(state.ppvData);
+        setPpvDraft.initialize(state.ppvData);
         setExpandedSection("ppv");
       } else {
         onChange({ ...state, ppvEnabled: false });
         if (expandedSection === "ppv") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection],
+    [state, onChange, expandedSection, setPpvDraft],
   );
 
   const confirmPpv = useCallback(() => {
@@ -224,14 +226,14 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   const handleBountyToggle = useCallback(
     (val: boolean) => {
       if (val) {
-        setBountyDraft(state.bountyData);
+        setBountyDraft.initialize(state.bountyData);
         setExpandedSection("bounty");
       } else {
         onChange({ ...state, bountyEnabled: false });
         if (expandedSection === "bounty") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection],
+    [state, onChange, expandedSection, setBountyDraft],
   );
 
   const confirmBounty = useCallback(() => {
@@ -250,7 +252,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   const handleTokenGateToggle = useCallback(
     (val: boolean) => {
       if (val) {
-        setTokenGateDraft(state.tokenGateData);
+        setTokenGateDraft.initialize(state.tokenGateData);
         setGateError(null);
         // Re-open in custom mode if the saved gate token isn't one of the listed tokens.
         const addr = state.tokenGateData.contractAddress;
@@ -263,7 +265,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         if (expandedSection === "tokenGated") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection, evmLockTokens],
+    [state, onChange, expandedSection, evmLockTokens, setTokenGateDraft],
   );
 
   const confirmTokenGate = useCallback(() => {

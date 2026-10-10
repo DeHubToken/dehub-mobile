@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * DeHub's own ratings and reviews for one title. Mirrors web's FilmReviews:
  * reads are open, writing needs a signed-in wallet, and while the
@@ -98,12 +99,12 @@ export default function FilmReviews({
   const mine = data?.reviews.find((r) => r.address.toLowerCase() === me) ?? null;
   const others = data?.reviews.filter((r) => r.address.toLowerCase() !== me) ?? [];
   const [rating, setRating] = useState(0);
-  const [body, setBody] = useState("");
+  const [body, setBody] = useSurfaceDraft("components/Cinema/FilmReviews.tsx:body", "", justwatchId);
 
   useEffect(() => {
     setRating(mine?.rating ?? 0);
-    setBody(mine?.body ?? "");
-  }, [mine?.id, mine?.rating, mine?.body, justwatchId]);
+    setBody.initialize(mine?.body ?? "");
+  }, [mine?.id, mine?.rating, mine?.body, justwatchId, setBody]);
 
   if (error instanceof FilmReviewsUnavailableError) return null;
 
@@ -126,7 +127,7 @@ export default function FilmReviews({
     try {
       await remove.mutateAsync();
       setRating(0);
-      setBody("");
+      setBody.complete(body, "");
       toastSuccess(t("cinema.reviewRemoved"));
     } catch (e) {
       toastError(errorText(e, "cinema.reviewRemoveFailed"));

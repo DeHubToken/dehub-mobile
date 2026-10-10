@@ -1,3 +1,6 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('@react-navigation/native', () => ({ NavigationRouteContext: require('react').createContext(undefined) }));
 import React from 'react';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -16,6 +19,7 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 32, bottom: 48, left: 0, right: 0 }) }));
 const mockKeyboard = { isVisible: false, height: 0 };
 jest.mock('../../hooks/useKeyboard', () => ({ useKeyboard: () => mockKeyboard }));
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'alice' }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/DeHubLoader', () => ({ DeHubLoader: 'DeHubLoader' }));
 
@@ -23,7 +27,7 @@ const editor = readFileSync(join(process.cwd(), 'screens', 'MediaEditorScreen.ts
 
 const renderSheet = () =>
   render(
-    <AgentSheet visible visualScope="source-a" entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} onOpenGenerator={jest.fn()} />,
+    <AgentSheet projectId="project-a" visible visualScope="source-a" entries={[]} busy={false} onSend={jest.fn()} onUndo={jest.fn()} onClose={jest.fn()} onClear={jest.fn()} onOpenGenerator={jest.fn()} />,
   );
 
 const sheetOf = (screen: ReturnType<typeof renderSheet>) => {
@@ -40,7 +44,7 @@ describe('media editor AI sheet', () => {
     const voice = { kind: 'voice' as const, prompt: 'First sentence. Keep the last sentence.' };
     const video = { kind: 'video' as const, prompt: 'Waves at night', aspect: '9:16' };
     const props = {
-      visible: true, visualScope: 'source-a', busy: false, onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
+      projectId: 'project-a', visible: true, visualScope: 'source-a', busy: false, onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
       onClear: jest.fn(), onOpenGenerator: jest.fn(),
       entries: [
         { id: 'voice', role: 'assistant' as const, content: 'Voice draft', generate: voice },
@@ -61,7 +65,7 @@ describe('media editor AI sheet', () => {
 
   it('requires frame consent for the current video and clears it when the source or sheet changes', () => {
     const props = {
-      visible: true, visualScope: 'source-a', entries: [], busy: false,
+      projectId: 'project-a', visible: true, visualScope: 'source-a', entries: [], busy: false,
       onSend: jest.fn(), onUndo: jest.fn(), onClose: jest.fn(),
       onClear: jest.fn(), onOpenGenerator: jest.fn(),
     };
@@ -138,3 +142,5 @@ describe('media editor screen insets', () => {
     expect(editor).toContain('<KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">');
   });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

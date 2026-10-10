@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { tokenLabel } from '../../libs/token-label';
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -56,9 +57,9 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
 
   const [step, setStep] = useState<Step>("choose");
   const [balance, setBalance] = useState<bigint>(0n);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/TradeSheet.tsx:amount", "");
   const [mode, setMode] = useState<Mode>("market");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useSurfaceDraft("components/Wallet/TradeSheet.tsx:price", "");
   const [quote, setQuote] = useState<SwapCall | null>(null);
   const [quotedAt, setQuotedAt] = useState(0);
   const [route, setRoute] = useState<Route>("instant");
@@ -66,15 +67,15 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
   const [busy, setBusy] = useState(false);
   const [stage, setStage] = useState("");
   const [error, setError] = useState("");
-  const [ask, setAsk] = useState("");
+  const [ask, setAsk] = useSurfaceDraft("components/Wallet/TradeSheet.tsx:ask", "");
   const [asking, setAsking] = useState(false);
   const [aiReply, setAiReply] = useState("");
   const [result, setResult] = useState<{ route: Route; amount: string; usdc: number; price: number } | null>(null);
 
   useEffect(() => {
     if (!visible) {
-      setStep("choose"); setAmount(""); setMode("market"); setPrice(""); setQuote(null);
-      setNotice(""); setError(""); setStage(""); setResult(null); setAsk(""); setAiReply("");
+      setStep("choose"); setAmount.initialize(""); setMode("market"); setPrice.initialize(""); setQuote(null);
+      setNotice(""); setError(""); setStage(""); setResult(null); setAsk.initialize(""); setAiReply("");
       return;
     }
     let live = true;
@@ -83,7 +84,7 @@ export default function TradeSheet({ visible, onClose, address }: { visible: boo
         .then((value) => { if (live) setBalance(BigInt(value.toString())); }).catch(() => {});
     }
     return () => { live = false; };
-  }, [visible, address]);
+  }, [visible, address, setAmount, setAsk, setPrice]);
 
   const amountUnits = amount ? toUnits(amount) : null;
   const amountOk = amountUnits != null && amountUnits > 0n && amountUnits <= balance;

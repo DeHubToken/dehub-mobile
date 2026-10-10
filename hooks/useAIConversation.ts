@@ -1,3 +1,4 @@
+import { useDraftConversation } from './useDraftConversation';
 /**
  * Assistant conversation storage.
  * ===============================
@@ -381,19 +382,26 @@ export async function fetchAssistantMedia(wallet: string): Promise<AssistantMedi
   }
 }
 
-export function useAIConversation(userId: string) {
-  const [conversationId, setConversationId] = useState<string | null>(null);
+export function useAIConversation(userId: string, surface = 'assistant') {
+  const draftSession = useDraftConversation(surface);
+  const conversationId = draftSession.id;
   // Live copy for saveMessage. The reply is committed by a callback captured
   // before the first save assigned an id, so reading the state value there
   // minted a second id and wrote the thread twice.
-  const conversationIdRef = useRef<string | null>(null);
+  const conversationIdRef = useRef<string | null>(conversationId);
   // data URL -> cache file path, so a thread saved on every turn does not
   // rewrite the same image to disk each time (see slimForStorage).
   const dataUrlFilesRef = useRef(new Map<string, string>());
+  const selectionVersion = useRef(0);
+  const [restoring, setRestoring] = useState(!!conversationId);
+  const historyIndexLoaded = useRef(false);
   const updateConversationId = useCallback((id: string | null) => {
+    selectionVersion.current += 1;
+    setRestoring(false);
     conversationIdRef.current = id;
-    setConversationId(id);
-  }, []);
+    if (id === null) draftSession.start();
+    else draftSession.select(id);
+  }, [draftSession.start, draftSession.select]);
   /** The live conversation id, for work that outlives the render it started in. */
   const getConversationId = useCallback(() => conversationIdRef.current, []);
   const [messages, setMessages] = useState<AIChatMessage[]>([]);
@@ -438,6 +446,7 @@ export function useAIConversation(userId: string) {
     } catch (err) {
       log.error('Failed to load conversations', err);
     } finally {
+      historyIndexLoaded.current = true;
       if (isMounted.current) setLoading(false);
     }
   }, [userId, signedIn]);
@@ -452,7 +461,7 @@ export function useAIConversation(userId: string) {
     setPostContext(undefined);
     remoteIdRef.current = null;
     mirroredCountRef.current = 0;
-  }, []);
+  }, [updateConversationId]);
 
   /**
    * Put a turn on screen without saving it.
@@ -473,12 +482,17 @@ export function useAIConversation(userId: string) {
   const loadConversation = useCallback(
     async (entry: ConversationEntry) => {
       if (!userId) return;
+      updateConversationId(entry.id);
+      const version = selectionVersion.current;
+      setRestoring(true);
+      try {
 
       // Post-based chats stored in legacy format
       if (entry.postId) {
         const legacyKey = `${POST_CHAT_PREFIX}${userId.toLowerCase()}_${entry.postId}`;
         try {
           const raw = await AsyncStorage.getItem(legacyKey);
+      if (!isMounted.current || version !== selectionVersion.current) return;
           if (raw) {
             const parsed = JSON.parse(raw);
             const msgs: AIChatMessage[] = Array.isArray(parsed)
@@ -489,7 +503,6 @@ export function useAIConversation(userId: string) {
               : parsed.postContext;
             setMessages(msgs);
             setPostContext(ctx);
-            updateConversationId(entry.id);
             remoteIdRef.current = null;
             mirroredCountRef.current = msgs.length;
           }
@@ -503,9 +516,9 @@ export function useAIConversation(userId: string) {
       // device.
       if (entry.remoteOnly && entry.remoteId) {
         const msgs = await fetchRemoteMessages(userId, entry.remoteId);
+      if (!isMounted.current || version !== selectionVersion.current) return;
         setMessages(msgs);
         setPostContext(undefined);
-        updateConversationId(entry.id);
         remoteIdRef.current = entry.remoteId;
         mirroredCountRef.current = msgs.length;
         return;
@@ -513,55 +526,88 @@ export function useAIConversation(userId: string) {
 
       // Standard local conversation
       const data = await readConversation(userId, entry.id);
+      if (!isMounted.current || version !== selectionVersion.current) return;
       if (data) {
         setMessages(data.messages);
         setPostContext(data.postContext);
-        updateConversationId(entry.id);
         remoteIdRef.current = data.remoteId ?? entry.remoteId ?? null;
         mirroredCountRef.current = data.messages.length;
       }
+      } finally { if (isMounted.current && version === selectionVersion.current) setRestoring(false); }
     },
-    [userId],
+    [userId, updateConversationId],
   );
 
+  const restoreId = useRef(conversationId);
+  useEffect(() => {
+    const id = restoreId.current;
+    if (!id || conversationIdRef.current !== id) return;
+    const entry = conversations.find(item => item.id === id);
+    if (!entry) {
+      if (historyIndexLoaded.current) { restoreId.current = null; setRestoring(false); }
+      return;
+    }
+    restoreId.current = null;
+    void loadConversation(entry);
+  }, [conversations, loading, loadConversation]);
+
+  // Bind pending replies to the logical draft they started in, even after New Chat.
+  const writeKey = `${userId}|${draftSession.draft}`;
+  const liveWriteKey = useRef(writeKey);
+  liveWriteKey.current = writeKey;
+  const writeContexts = useRef(new Map<string, { id: string | null; remote: string | null; mirrored: number }>());
+  if (!writeContexts.current.has(writeKey)) writeContexts.current.set(writeKey, { id: conversationId, remote: null, mirrored: 0 });
+  const writeContext = writeContexts.current.get(writeKey)!;
+  if (conversationId) writeContext.id = conversationId;
+  const writeVersion = selectionVersion.current;
   const saveMessage = useCallback(
     async (newMessages: AIChatMessage[]) => {
       if (!userId) return;
-      setMessages(newMessages);
-
-      let cid = conversationIdRef.current;
+      const isCurrent = () => liveWriteKey.current === writeKey && selectionVersion.current === writeVersion;
+      if (isCurrent()) {
+        setMessages(newMessages);
+        writeContext.remote = remoteIdRef.current;
+        writeContext.mirrored = mirroredCountRef.current;
+      }
+      let cid = writeContext.id;
       const now = Date.now();
 
       if (!cid) {
         cid = generateId();
-        updateConversationId(cid);
+        writeContext.id = cid;
+        if (isCurrent()) conversationIdRef.current = cid;
+        draftSession.assign(cid);
       }
 
       // Mirror before writing the index, so the entry lands with its remoteId
       // and a later turn does not create a second remote thread.
-      const newlyAdded = newMessages.slice(mirroredCountRef.current);
+      const newlyAdded = newMessages.slice(writeContext.mirrored);
       if (signedIn && newlyAdded.length > 0) {
-        if (!remoteIdRef.current) {
+        if (!writeContext.remote) {
           const firstUser = newMessages.find((m) => m.role === 'user');
-          remoteIdRef.current = await createRemoteConversation(
+          writeContext.remote = await createRemoteConversation(
             userId,
             firstUser?.content || 'New conversation',
           );
         }
-        if (remoteIdRef.current) {
+        if (writeContext.remote) {
           for (const message of newlyAdded) {
-            await appendRemoteMessage(userId, remoteIdRef.current, message);
+            await appendRemoteMessage(userId, writeContext.remote, message);
           }
         }
       }
       // Count them as mirrored either way: a failed upload must not queue the
       // same turn again on the next keystroke.
-      mirroredCountRef.current = newMessages.length;
+      writeContext.mirrored = newMessages.length;
+      if (isCurrent()) {
+        remoteIdRef.current = writeContext.remote;
+        mirroredCountRef.current = writeContext.mirrored;
+      }
 
       await writeConversation(userId, cid, {
         messages: await slimForStorage(newMessages, dataUrlFilesRef.current),
         postContext,
-        remoteId: remoteIdRef.current ?? undefined,
+        remoteId: writeContext.remote ?? undefined,
       });
 
       const index = await readIndex(userId);
@@ -573,21 +619,21 @@ export function useAIConversation(userId: string) {
 
       if (existingIdx >= 0) {
         index[existingIdx].updatedAt = now;
-        index[existingIdx].remoteId = remoteIdRef.current ?? index[existingIdx].remoteId;
+        index[existingIdx].remoteId = writeContext.remote ?? index[existingIdx].remoteId;
         if (newMessages.length <= 2) index[existingIdx].title = title;
       } else {
         index.unshift({
           id: cid!,
           title,
           updatedAt: now,
-          remoteId: remoteIdRef.current ?? undefined,
+          remoteId: writeContext.remote ?? undefined,
         });
       }
 
       await writeIndex(userId, index);
-      if (isMounted.current) setConversations([...index]);
+      if (isMounted.current && isCurrent()) setConversations([...index]);
     },
-    [userId, conversationId, postContext, signedIn],
+    [userId, postContext, signedIn, draftSession.assign, writeKey, writeVersion, writeContext],
   );
 
   const deleteConversation = useCallback(
@@ -690,6 +736,7 @@ export function useAIConversation(userId: string) {
   );
 
   return {
+    draftScope: draftSession.draft,
     conversationId,
     getConversationId,
     patchStoredMessage,
@@ -697,6 +744,7 @@ export function useAIConversation(userId: string) {
     conversations,
     postContext,
     loading,
+    restoring,
     startNewConversation,
     appendLocalMessage,
     loadConversation,

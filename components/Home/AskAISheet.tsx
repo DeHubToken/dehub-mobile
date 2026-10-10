@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { isHoldGated } from "../../libs/content-gate";
 import React, {
@@ -213,7 +214,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   const userAddress = user?.walletAddress || user?.address || "anon";
   const cacheKey = String(postId);
   const [messages, setMessages] = useState<AIChatMessage[]>([]);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useSurfaceDraft("components/Home/AskAISheet.tsx:inputText", "", postId);
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const hasLoadedRef = useRef(false);
@@ -395,7 +396,6 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     const userMsg: AIChatMessage = { role: "user", content: text };
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
-    setInputText("");
     setIsLoading(true);
 
     setTimeout(() => {
@@ -422,6 +422,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
               imageUrl: imgRes.imageUrl,
             };
             setMessages((prev) => [...prev, imgMsg]);
+            setInputText.complete(inputText, "");
           } else {
             const fallbackMsg: AIChatMessage = {
               role: "assistant",
@@ -447,6 +448,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
 
         const aiMsg: AIChatMessage = { role: "assistant", content: res.response };
         setMessages((prev) => [...prev, aiMsg]);
+        setInputText.complete(inputText, "");
       }
 
       setTimeout(() => {
@@ -471,7 +473,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey]);
+  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey, setInputText]);
 
   const handleImagePress = useCallback(
     (url: string, allUrls: string[]) => {

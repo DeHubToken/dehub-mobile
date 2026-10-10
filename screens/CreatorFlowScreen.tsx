@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CreatorFlowScreen — /creator/flow
  * =================================
@@ -76,7 +77,7 @@ export default function CreatorFlowScreen() {
 
   const [menuFor, setMenuFor] = useState<RemoteFlow | null>(null);
   const [renaming, setRenaming] = useState<RemoteFlow | null>(null);
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useSurfaceDraft("screens/CreatorFlowScreen.tsx:newName", "");
   const [deleting, setDeleting] = useState<RemoteFlow | null>(null);
   const [busy, setBusy] = useState(false);
 

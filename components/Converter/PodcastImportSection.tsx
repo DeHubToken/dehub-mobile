@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * The Podcast tab of the converter — mirrors web's `PodcastImportSection`
  * (dehubweb src/components/app/converter/PodcastImportSection.tsx).
@@ -94,7 +95,7 @@ const EpisodeRow: React.FC<{
 const PodcastImportSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const [feedUrl, setFeedUrl] = useState('');
+  const [feedUrl, setFeedUrl] = useSurfaceDraft("components/Converter/PodcastImportSection.tsx:feedUrl", '');
   const [fetching, setFetching] = useState(false);
   const [preview, setPreview] = useState<PodcastPreview | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());

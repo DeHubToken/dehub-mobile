@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
@@ -312,10 +313,10 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
   const [dimension, setDimension] = useState<PosterConfig['dimension']>('portrait');
   const [style, setStyle] = useState('dehub-template');
   const [features, setFeatures] = useState<string[]>([]);
-  const [tagline, setTagline] = useState('');
+  const [tagline, setTagline] = useSurfaceDraft("components/Assistant/PosterConfigSheet.tsx:tagline", '');
   const [includeSocials, setIncludeSocials] = useState(false);
   const [includeWebsite, setIncludeWebsite] = useState(false);
-  const [extraNotes, setExtraNotes] = useState('');
+  const [extraNotes, setExtraNotes] = useSurfaceDraft("components/Assistant/PosterConfigSheet.tsx:extraNotes", '');
   const [logoVariant, setLogoVariant] = useState<LogoVariant>('primary');
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
   const [styleListOpen, setStyleListOpen] = useState(false);
@@ -330,10 +331,10 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
       setDimension(detectDimension(userPrompt));
       setStyle(detectStyle(userPrompt));
       setFeatures(detectFeatures(userPrompt));
-      setTagline(detectTagline(userPrompt));
+      setTagline.initialize(detectTagline(userPrompt));
       setIncludeSocials(detectSocials(userPrompt));
       setIncludeWebsite(detectWebsite(userPrompt));
-      setExtraNotes('');
+      setExtraNotes.initialize('');
       const lower = userPrompt.toLowerCase();
       if (/\bicon|symbol|mark|d-mark|small logo\b/.test(lower)) setLogoVariant('icon');
       else if (/\bboth logos?|lockup|icon\s*\+\s*wordmark|wordmark\s*\+\s*icon\b/.test(lower)) {
@@ -352,7 +353,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, userPrompt]);
+  }, [visible, userPrompt, setExtraNotes, setTagline]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(

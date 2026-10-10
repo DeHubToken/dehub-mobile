@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * ListingDetailScreen
  * ===================
@@ -24,8 +25,7 @@ import {
   Alert,
   Linking,
 } from "react-native";
-import { podProviderLabel, parsePodUrl } from "../libs/pod-providers";
-import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
+import { podProviderLabel, parsePodUrl } from "../libs/pod-providers";import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
@@ -135,11 +135,11 @@ export default function ListingDetailScreen() {
   const createReview = useCreateReview();
 
   const [imgIdx, setImgIdx] = useState(0);
-  const [shipping, setShipping] = useState("");
-  const [notes, setNotes] = useState("");
+  const [shipping, setShipping] = useSurfaceDraft("screens/ListingDetailScreen.tsx:shipping", "");
+  const [notes, setNotes] = useSurfaceDraft("screens/ListingDetailScreen.tsx:notes", "");
   const [buying, setBuying] = useState(false);
   const [rating, setRating] = useState(0);
-  const [reviewText, setReviewText] = useState("");
+  const [reviewText, setReviewText] = useSurfaceDraft("screens/ListingDetailScreen.tsx:reviewText", "");
 
   const dhbPrice = prices?.DHB ?? 0;
   const priceUsd = Number(listing?.price ?? 0);
@@ -220,8 +220,8 @@ export default function ListingDetailScreen() {
         notes: notes.trim() || undefined,
       });
 
-      setShipping("");
-      setNotes("");
+      setShipping.complete(shipping, "");
+      setNotes.complete(notes, "");
       void hasPurchased.refetch();
     } catch (err: any) {
       const msg = String(err?.message || err || "");
@@ -235,8 +235,7 @@ export default function ListingDetailScreen() {
     } finally {
       setBuying(false);
     }
-  }, [
-    isAuthed,
+  }, [isAuthed,
     navigation,
     listing,
     sellerAddress,
@@ -249,8 +248,7 @@ export default function ListingDetailScreen() {
     hasPurchased,
     tokenContract,
     chainId,
-    t,
-  ]);
+    t, setNotes, setShipping]);
 
   // The DHB transfer is irreversible, so show what is being paid, how much and
   // on which network before anything is signed.
@@ -283,11 +281,11 @@ export default function ListingDetailScreen() {
       {
         onSuccess: () => {
           setRating(0);
-          setReviewText("");
+          setReviewText.complete(reviewText, "");
         },
       },
     );
-  }, [rating, reviewText, createReview, listingId, t]);
+  }, [rating, reviewText, createReview, listingId, t, setReviewText]);
 
   if (isLoading && !listing) {
     return (

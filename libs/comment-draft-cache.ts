@@ -25,6 +25,11 @@ const STORAGE_KEY = "dehub-comment-drafts-v2";
 const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 /** Ceiling on entries; the oldest go first. */
 const MAX_DRAFTS = 100;
+
+export function commentDraftKey(account: string | null | undefined, tokenId: string | number): string {
+  const owner = account ? `account:${account.toLowerCase()}` : 'guest';
+  return `${owner}|comments:${tokenId}`;
+}
 /** Per-draft ceiling, well above any composer's own limit. */
 const MAX_CHARS = 20_000;
 
@@ -87,7 +92,7 @@ function persist(store: DraftStore): void {
 
 /** Is there anything in here worth keeping? */
 export function draftHasContent(draft: Pick<CommentDraft, "text" | "gifUrl">): boolean {
-  return Boolean(draft.text.trim() || draft.gifUrl);
+  return Boolean(draft.text.length || draft.gifUrl);
 }
 
 /**

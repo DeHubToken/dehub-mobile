@@ -1,3 +1,5 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { Keyboard } from 'react-native';
@@ -27,6 +29,7 @@ jest.mock('react-native', () => ({
   I18nManager: { isRTL: false },
 }));
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   CommonActions: { navigate: (payload: unknown) => ({ type: 'NAVIGATE', payload }) },
   useNavigation: () => ({ dispatch: mockDispatch }),
   useNavigationState: (select: (state: unknown) => unknown) => select({ index: 0, routes: [
@@ -164,3 +167,5 @@ it('leaves Home and the feed tabs off the resting menu but finds Home by search'
   fireEvent.press(view.getByLabelText('nav.home'));
   expect(mockDispatch).toHaveBeenCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Root', params: { screen: 'Home', params: undefined }, pop: true } } });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

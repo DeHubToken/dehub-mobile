@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The template picker.
@@ -75,7 +76,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [kind, setKind] = useState<TemplateKind>('video');
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSurfaceDraft("components/Assistant/TemplatesSheet.tsx:query", '');
   useEffect(() => { if (visible) setKind(initialKind); }, [visible, initialKind]);
   const templates = useMemo(() => {
     const search = query.trim().toLocaleLowerCase();
@@ -167,7 +168,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
               <TouchableOpacity
                 key={k}
                 style={[s.tab, kind === k && s.tabActive]}
-                onPress={() => { setKind(k); setQuery(''); }}
+                onPress={() => { setKind(k); setQuery.complete(query, ''); }}
                 activeOpacity={0.75}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: kind === k }}

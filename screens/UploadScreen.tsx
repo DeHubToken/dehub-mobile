@@ -1,3 +1,5 @@
+import { readDraft } from "../libs/draft-cache";
+import { accountDraftKey, useDraftState } from '../hooks/useDraftState';
 import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
 import { normalizeCategoryName } from "../libs/strings.util";
 import { t } from "i18next";
@@ -307,13 +309,14 @@ export default function UploadScreen() {
   // The main input is always the post description (500 chars), as on web.
   // The title is its own 140-char field: forced for video/audio, toggleable
   // for everything else via the "Title" switch in the extras section.
-  const [bodyText, setBodyText] = useState("");
+  const draftScope = `post:${incomingDraft?.id ?? (incomingQuotedTokenId ? `quote:${incomingQuotedTokenId}` : "new")}`;
+  const [bodyText, setBodyText] = useDraftState(draftScope + ":bodyText", "");
   const bodyMentions = useMentions(bodyText, setBodyText);
   const bodyAssets = useAssetPicker(bodyText, setBodyText);
-  const [titleText, setTitleText] = useState("");
-  const [showTitle, setShowTitle] = useState(false);
-  const [articleMode, setArticleMode] = useState(false);
-  const [articleBody, setArticleBody] = useState("");
+  const [titleText, setTitleText] = useDraftState(draftScope + ":titleText", "");
+  const [showTitle, setShowTitle] = useDraftState(draftScope + ":showTitle", false);
+  const [articleMode, setArticleMode] = useDraftState(draftScope + ":articleMode", false);
+  const [articleBody, setArticleBody] = useDraftState(draftScope + ":articleBody", "");
   const [articlePreview, setArticlePreview] = useState(false);
   const [articleSelection, setArticleSelection] = useState({ start: 0, end: 0 });
   const formatArticle = useCallback((before: string, after: string, placeholder: string, block = false) => {
@@ -322,7 +325,7 @@ export default function UploadScreen() {
     const prefix = block && start > 0 && articleBody[start - 1] !== "\n" ? "\n" : "";
     setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, 20000));
     setArticleSelection({ start: start + prefix.length + before.length, end: start + prefix.length + before.length + selected.length });
-  }, [articleBody, articleSelection]);
+  }, [articleBody, articleSelection, setArticleBody]);
   const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
   const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
   const pickArticleImage = useCallback(async () => {
@@ -340,11 +343,11 @@ export default function UploadScreen() {
   useEffect(() => {
     AsyncStorage.getItem(SHOW_TITLE_PREF_KEY)
       .then((v) => {
-        if (v === "true") setShowTitle(true);
+        if (v === "true") setShowTitle.initialize(true);
       })
       .catch(() => {});
-  }, []);
-  const [categories, setCategories] = useState<string[]>([]);
+  }, [setShowTitle]);
+  const [categories, setCategories] = useDraftState<string[]>(draftScope + ":categories", []);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [communityOpen, setCommunityOpen] = useState(false);
@@ -386,7 +389,7 @@ export default function UploadScreen() {
     setIsAudioPreviewPlaying(false);
   }, []);
   const [isMuted, setIsMuted] = useState(true);
-  const [monetization, setMonetization] = useState<MonetizationState>({
+  const [monetization, setMonetization] = useDraftState<MonetizationState>(draftScope + ":monetization", {
     ppvEnabled: false,
     ppvData: { price: "" },
     bountyEnabled: false,
@@ -410,11 +413,11 @@ export default function UploadScreen() {
   const [showLiveSettings, setShowLiveSettings] = useState(false);
   const [liveThumbnailUri, setLiveThumbnailUri] = useState<string | null>(null);
 
-  const [pollEnabled, setPollEnabled] = useState(false);
-  const [pollQuestion, setPollQuestion] = useState("");
-  const [pollOptions, setPollOptions] = useState(["", ""]);
-  const [pollDurationHours, setPollDurationHours] = useState(24);
-  const [pollIsMultiple, setPollIsMultiple] = useState(false);
+  const [pollEnabled, setPollEnabled] = useDraftState(draftScope + ":pollEnabled", false);
+  const [pollQuestion, setPollQuestion] = useDraftState(draftScope + ":pollQuestion", "");
+  const [pollOptions, setPollOptions] = useDraftState(draftScope + ":pollOptions", ["", ""]);
+  const [pollDurationHours, setPollDurationHours] = useDraftState(draftScope + ":pollDurationHours", 24);
+  const [pollIsMultiple, setPollIsMultiple] = useDraftState(draftScope + ":pollIsMultiple", false);
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
@@ -513,7 +516,7 @@ export default function UploadScreen() {
    * Empty is the toggle being off; there is no separate boolean, because a
    * board with no links in it and no board are the same post.
    */
-  const [shopLinks, setShopLinks] = useState<ShopLink[]>([]);
+  const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(draftScope + ":shopLinks", []);
   /**
    * The creator's own store listings picked for the board, by id.
    *
@@ -612,12 +615,12 @@ export default function UploadScreen() {
   // on a switch the user already made.
   useEffect(() => {
     if (!isSolanaChain(effectivePostChainId)) return;
-    setMonetization((prev) =>
+    setMonetization.initialize((prev) =>
       prev.bountyEnabled
         ? { ...prev, bountyEnabled: false }
         : prev,
     );
-  }, [effectivePostChainId]);
+  }, [effectivePostChainId, setMonetization]);
 
   const communitySlugs = useMemo(
     () => new Set(userCommunities.map((c) => c.slug)),
@@ -641,12 +644,12 @@ export default function UploadScreen() {
         return [community.slug, ...rest].slice(0, CATEGORIES_MAX);
       });
     },
-    [communitySlugs],
+    [communitySlugs, setCategories],
   );
 
   const handleClearCommunity = useCallback(() => {
     setCategories((prev) => prev.filter((c) => !communitySlugs.has(c)));
-  }, [communitySlugs]);
+  }, [communitySlugs, setCategories]);
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
@@ -728,8 +731,8 @@ export default function UploadScreen() {
   // (or a restored draft, whose effect runs after this one) never overwrites it.
   useEffect(() => {
     if (!incomingInitialText) return;
-    setBodyText((prev) => (prev ? prev : incomingInitialText));
-  }, [incomingInitialText]);
+    setBodyText.initialize((prev) => (prev ? prev : incomingInitialText));
+  }, [incomingInitialText, setBodyText]);
 
   // Pictures handed over by another surface, e.g. a design finished in the
   // editor. Same rule as the text above: they only fill an empty composer.
@@ -746,38 +749,38 @@ export default function UploadScreen() {
     if (!incomingDraft) return;
     restoredDraftIdRef.current = incomingDraft.id;
     if (incomingDraft.titleText != null) {
-      setTitleText(incomingDraft.titleText.slice(0, TITLE_MAX));
-      setBodyText(incomingDraft.bodyText);
-      if (incomingDraft.titleText.trim().length > 0) setShowTitle(true);
+      setTitleText.initialize(incomingDraft.titleText.slice(0, TITLE_MAX));
+      setBodyText.initialize(incomingDraft.bodyText);
+      if (incomingDraft.titleText.trim().length > 0) setShowTitle.initialize(true);
     } else if (incomingDraft.videoUri) {
       // Legacy draft from before the title/description split: bodyText held
       // the video title and description held the body.
-      setTitleText(incomingDraft.bodyText.slice(0, TITLE_MAX));
-      setBodyText(incomingDraft.description);
+      setTitleText.initialize(incomingDraft.bodyText.slice(0, TITLE_MAX));
+      setBodyText.initialize(incomingDraft.description);
     } else {
-      setBodyText(incomingDraft.bodyText || incomingDraft.description);
+      setBodyText.initialize(incomingDraft.bodyText || incomingDraft.description);
     }
     if (incomingDraft.articleBody) {
-      setArticleMode(true);
-      setArticleBody(incomingDraft.articleBody);
-      setShowTitle(true);
+      setArticleMode.initialize(true);
+      setArticleBody.initialize(incomingDraft.articleBody);
+      setShowTitle.initialize(true);
       const shareImageUri = incomingDraft.socialImageUri || incomingDraft.articleImageUri || null;
       setArticleImageUri(shareImageUri);
       setSocialImageUri(shareImageUri);
     }
-    setCategories(incomingDraft.categories);
+    setCategories.initialize(incomingDraft.categories);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
     // Web-created (and pre-monetization) drafts carry no monetization blob;
     // restoring undefined crashes the first monetization.ppvEnabled read.
-    setMonetization(incomingDraft.monetization ?? emptyMonetization());
+    setMonetization.initialize(incomingDraft.monetization ?? emptyMonetization());
     if (incomingDraft.poll) {
-      setPollEnabled(true);
-      setPollQuestion(incomingDraft.poll.question ?? "");
+      setPollEnabled.initialize(true);
+      setPollQuestion.initialize(incomingDraft.poll.question ?? "");
       const options = (incomingDraft.poll.options ?? []).map((o) => o.text ?? "");
-      setPollOptions(options.length >= 2 ? options : [...options, "", ""].slice(0, 2));
-      setPollDurationHours(incomingDraft.poll.duration ?? 24);
-      setPollIsMultiple(Boolean(incomingDraft.poll.isMultipleChoice));
+      setPollOptions.initialize(options.length >= 2 ? options : [...options, "", ""].slice(0, 2));
+      setPollDurationHours.initialize(incomingDraft.poll.duration ?? 24);
+      setPollIsMultiple.initialize(Boolean(incomingDraft.poll.isMultipleChoice));
     }
     if (incomingDraft.isMature) setIsMature(true);
     if (incomingDraft.isForKids) setIsForKids(true);
@@ -812,15 +815,44 @@ export default function UploadScreen() {
     // and remote. It is consumed when the composer actually produces
     // something from it — a queued post or a re-saved draft.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setArticleBody, setArticleMode, setBodyText, setCategories, setMonetization, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, setShowTitle, setTitleText]);
+
+  const captureActiveDraft = useCallback(() => {
+    const account = authUser?.walletAddress || authUser?.address;
+    const receipt: Record<string, string> = {};
+    const values = { bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks };
+    for (const [field, value] of Object.entries(values)) {
+      const key = accountDraftKey(account, `${draftScope}:${field}`);
+      const expected = JSON.stringify({ value });
+      if (key && readDraft(key) === expected) receipt[key] = expected;
+    }
+    return receipt;
+  }, [draftScope, authUser?.walletAddress, authUser?.address, bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks]);
+
+  const clearActiveDraft = useCallback(() => {
+    setBodyText.complete(bodyText, bodyText);
+    setTitleText.complete(titleText, titleText);
+    setShowTitle.complete(showTitle, showTitle);
+    setArticleMode.complete(articleMode, articleMode);
+    setArticleBody.complete(articleBody, articleBody);
+    setCategories.complete(categories, categories);
+    setMonetization.complete(monetization, monetization);
+    setPollEnabled.complete(pollEnabled, pollEnabled);
+    setPollQuestion.complete(pollQuestion, pollQuestion);
+    setPollOptions.complete(pollOptions, pollOptions);
+    setPollDurationHours.complete(pollDurationHours, pollDurationHours);
+    setPollIsMultiple.complete(pollIsMultiple, pollIsMultiple);
+    setShopLinks.complete(shopLinks, shopLinks);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks, setBodyText, setTitleText, setShowTitle, setArticleMode, setArticleBody, setCategories, setMonetization, setPollEnabled, setPollQuestion, setPollOptions, setPollDurationHours, setPollIsMultiple, setShopLinks]);
 
   /** Delete the restored draft once the composer has produced something from it. */
   const consumeRestoredDraft = useCallback(() => {
+    clearActiveDraft();
     const id = restoredDraftIdRef.current;
     if (!id) return;
     restoredDraftIdRef.current = null;
     deleteDraft(id).catch(() => {});
-  }, [deleteDraft]);
+  }, [deleteDraft, clearActiveDraft]);
 
   const addCategory = useCallback(
     (name: string) => {
@@ -830,14 +862,14 @@ export default function UploadScreen() {
       if (categories.length >= CATEGORIES_MAX) return;
       setCategories((prev) => [...prev, n]);
     },
-    [categories],
+    [categories, setCategories],
   );
 
   const removeCategory = useCallback((name: string) => {
     setCategories((prev) =>
       prev.filter((c) => c.toLowerCase() !== name.toLowerCase()),
     );
-  }, []);
+  }, [setCategories]);
 
   const formHasContent = useMemo(
     () =>
@@ -886,7 +918,7 @@ export default function UploadScreen() {
         setIsEnhancing(false);
       }
     },
-    [bodyText, isEnhancing, DESCRIPTION_MAX],
+    [bodyText, isEnhancing, DESCRIPTION_MAX, setBodyText],
   );
 
   /** "Generate Content" — hands off to the assistant, as web does. */
@@ -911,7 +943,7 @@ export default function UploadScreen() {
       bodySelectionRef.current = { start: caret, end: caret };
       return next;
     });
-  }, [DESCRIPTION_MAX]);
+  }, [DESCRIPTION_MAX, setBodyText]);
 
   const handleBodyChange = useCallback((text: string) => {
     if (text.length > DESCRIPTION_MAX) return;
@@ -1070,13 +1102,13 @@ export default function UploadScreen() {
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
-      setPollQuestion("");
+      setPollQuestion.complete(pollQuestion, "");
       setPollOptions(["", ""]);
       setPollDurationHours(24);
       setPollIsMultiple(false);
     }
     setPollEnabled((prev) => !prev);
-  }, [pollEnabled]);
+  }, [pollEnabled, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, pollQuestion]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -1269,9 +1301,8 @@ export default function UploadScreen() {
       });
     }
 
-    const ok = enqueueJob(payload);
+    const ok = enqueueJob({ ...payload, draftReceipt: captureActiveDraft(), sourceDraftId: restoredDraftIdRef.current ?? undefined });
     if (!ok) return false;
-    consumeRestoredDraft();
     // The guard is released here rather than the moment the job is queued: the
     // form is still filled in and the screen is still up for these 120ms, so a
     // tap landing in the gap would post the same thing a second time.
@@ -1280,7 +1311,7 @@ export default function UploadScreen() {
       releaseSubmit();
     }, 120);
     return true;
-  }, [getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
+  }, [captureActiveDraft, getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -1297,6 +1328,8 @@ export default function UploadScreen() {
       ? splitTitleFromText(bodyText, TITLE_MAX)
       : null;
     const ok = enqueueQuoteJob({
+      draftReceipt: captureActiveDraft(),
+      sourceDraftId: restoredDraftIdRef.current ?? undefined,
       bodyText: borrowed
         ? borrowed.title
         : (pickedVideo ? titleText.trim() : bodyText.trim()),
@@ -1310,7 +1343,6 @@ export default function UploadScreen() {
       quotedTokenId: Number(quotedTokenId),
     });
     if (!ok) return false;
-    consumeRestoredDraft();
     // Held through the navigation for the same reason as submitPost above.
     setTimeout(() => {
       navigateHome();
@@ -1319,7 +1351,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1359,8 +1391,8 @@ export default function UploadScreen() {
           ? await scheduleSpace({ title: titleText.trim().slice(0, 100), description: bodyText.trim() || undefined, scheduledAt: scheduledDate.toISOString(), coverImageUrl })
           : await createSpace(titleText.trim().slice(0, 100), bodyText.trim() || undefined, coverImageUrl);
         if (!space) { toastError(t(scheduledDate ? "stages.scheduleFailed" : "stages.startFailed")); return; }
-        setTitleText("");
-        setBodyText("");
+        setTitleText.complete(titleText, "");
+        setBodyText.complete(bodyText, "");
         setScheduledDate(null);
         setIsStageMode(false);
         setLiveThumbnailUri(null);
@@ -1424,12 +1456,10 @@ export default function UploadScreen() {
     } finally {
       if (!queued) releaseSubmit();
     }
-  }, [
-    canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
+  }, [canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
     submitPost, submitQuotePost, releaseSubmit,
-    isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft,
-  ]);
+    isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft, setBodyText, setTitleText]);
 
   const buildDraftData = useCallback(() => ({
     bodyText,
@@ -1488,9 +1518,10 @@ export default function UploadScreen() {
 
   /** "Discard" from discard warning modal */
   const handleDiscard = useCallback(() => {
+    clearActiveDraft();
     setShowDiscardModal(false);
     nav.goBack();
-  }, [nav]);
+  }, [nav, clearActiveDraft]);
 
   const generateThumbnail = useCallback(async (uri: string) => {
     try {
@@ -1568,7 +1599,7 @@ export default function UploadScreen() {
       setTitleText(title);
       setBodyText(description);
     }
-  }, [bodyText, titleText]);
+  }, [bodyText, titleText, setBodyText, setTitleText]);
 
   /** Size-checks a video asset and adopts it as the post's media. */
   const adoptVideoAsset = useCallback(
@@ -2163,7 +2194,7 @@ export default function UploadScreen() {
     setShowTitle(value);
     AsyncStorage.setItem(SHOW_TITLE_PREF_KEY, String(value)).catch(() => {});
     if (value) setTimeout(() => titleRef.current?.focus(), 100);
-  }, []);
+  }, [setShowTitle]);
 
   const openCategoryDrawer = useCallback(() => {
     setCategoryOpen(true);
@@ -2171,7 +2202,7 @@ export default function UploadScreen() {
 
   const handleMonetizationChange = useCallback((next: MonetizationState) => {
     setMonetization(next);
-  }, []);
+  }, [setMonetization]);
 
   // 0 when the keyboard is down: this screen already ends above the home
   // indicator, so padding by insets.bottom again left a dead strip.
@@ -3091,6 +3122,7 @@ export default function UploadScreen() {
 
             {!isQuoteMode && !articleMode && (
               <MonetizationPanel
+                draftScope={draftScope}
                 state={monetization}
                 onChange={handleMonetizationChange}
                 postChainId={effectivePostChainId}
@@ -3162,6 +3194,7 @@ export default function UploadScreen() {
       {isLiveMode && (
         <Animated.View style={liveSettingsAnimStyle}>
           <LiveSettingsPanel
+            draftScope={draftScope}
             state={liveSettings}
             onChange={handleLiveSettingsChange}
           />
@@ -3650,6 +3683,7 @@ export default function UploadScreen() {
       />
 
       <ShopSheet
+        draftScope={draftScope}
         visible={shopSheetVisible}
         onClose={() => setShopSheetVisible(false)}
         value={{ links: shopLinks, listingIds: shopListingIds }}

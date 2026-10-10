@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Unlocking text notifications: deposit, then prove the number.
  * ============================================================
@@ -70,7 +71,7 @@ export default function SmsNotificationsSheet({
   const canPayHere = PAYABLE_CHAIN_IDS.includes(activeChainId);
   const tokenContract = useERC20Contract(canPayHere ? DHB_ADDRESSESS[activeChainId] : undefined);
 
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useSurfaceDraft("components/Settings/SmsNotificationsSheet.tsx:phone", '');
   const [code, setCode] = useState('');
   const [quote, setQuote] = useState<SmsQuote | null>(null);
   const [busy, setBusy] = useState<'deposit' | 'code' | 'verify' | 'remove' | null>(null);

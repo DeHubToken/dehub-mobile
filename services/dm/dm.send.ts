@@ -134,6 +134,17 @@ class DmSendQueue {
   private slowProcessing = false;
 
   private counter = 0;
+  private deliveryWaiters = new Map<string, (sent: boolean) => void>();
+
+  /** Call immediately after enqueueing; resolves only after server confirmation. */
+  waitForDelivery(tempId: string): Promise<boolean> {
+    return new Promise(resolve => { this.deliveryWaiters.set(tempId, resolve); });
+  }
+
+  private settleDelivery(tempId: string, sent: boolean): void {
+    this.deliveryWaiters.get(tempId)?.(sent);
+    this.deliveryWaiters.delete(tempId);
+  }
 
   /** Call once from a top-level provider to inject WebSocket reference. */
   init(ws: WsRef): void {
@@ -371,9 +382,11 @@ class DmSendQueue {
       const job = this.fastQueue.shift()!;
       try {
         await this.executeFastJob(job);
+        this.settleDelivery(job.tempId, true);
       } catch (e: any) {
         log.error(`fast send failed [${job.kind}]:`, e?.message || e);
         dmActions.failOptimistic(job.conversationId, job.tempId, e?.message);
+        this.settleDelivery(job.tempId, false);
       }
     }
 
@@ -389,9 +402,11 @@ class DmSendQueue {
       const job = this.slowQueue.shift()!;
       try {
         await this.executeSlowJob(job);
+        this.settleDelivery(job.tempId, true);
       } catch (e: any) {
         log.error(`slow send failed [${job.kind}]:`, e?.message || e);
         dmActions.failOptimistic(job.conversationId, job.tempId, e?.message);
+        this.settleDelivery(job.tempId, false);
       }
     }
 

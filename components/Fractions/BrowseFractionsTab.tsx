@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Every open listing across every post — the market's front door. Before this
  * a fraction could only be bought by someone who already knew which post they
@@ -37,7 +38,7 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
   const insets = useSafeAreaInsets();
   const wallet = useFractionWallet();
   const [sort, setSort] = useState<MarketSort>("newest");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Fractions/BrowseFractionsTab.tsx:search", "");
   const debounced = useDebouncedValue(search, 300);
   const { data: listings = [], isLoading, isError, refetch, isRefetching } = useMarketListings(sort, debounced);
   const { data: sellerStats = {} } = useSellerStatsBatch(listings.map((l) => l.seller_address));
@@ -102,7 +103,7 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
           returnKeyType="search"
         />
         {search.length > 0 && (
-          <Pressable onPress={() => setSearch("")} hitSlop={8} accessibilityRole="button">
+          <Pressable onPress={() => setSearch.complete(search, "")} hitSlop={8} accessibilityRole="button">
             <Icon name="X" size={15} color="#808089" />
           </Pressable>
         )}

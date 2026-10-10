@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * The badge gate and pack chooser shared by every "add to a pack" form — the
  * mobile twin of dehubweb's components/app/packs/PackGate.tsx.
@@ -119,7 +120,7 @@ export function usePackTarget(wallet: string | null | undefined, kind: PackKind)
   const invalidate = useInvalidatePacks();
   const packs = (owned.data ?? []).filter((p) => p.kind === kind);
   const [choice, setChoice] = useState<string | null>(null);
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useSurfaceDraft("components/packs/PackGate.tsx:newName", "");
 
   const limits = status.data?.limits;
   const canCreate = !!limits && packs.length < limits.packs;
@@ -132,7 +133,7 @@ export function usePackTarget(wallet: string | null | undefined, kind: PackKind)
     if (!wallet) throw new PackError("Not signed in", "AUTH");
     const pack = await createPack(wallet, kind, newName.trim());
     setChoice(pack.id);
-    setNewName("");
+    setNewName.complete(newName, "");
     await invalidate();
     return pack;
   };

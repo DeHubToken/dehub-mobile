@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
@@ -56,7 +57,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useSurfaceDraft("components/Profile/ProfileAssets.tsx:searchQuery", "");
   const { data: subscriptionCredits } = useSubscriptionCredits();
 
   const mountedRef = React.useRef(true);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
@@ -71,8 +72,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
   const [folders, setFolders] = useState<FolderWithContainment[]>([]);
   const [loading, setLoading] = useState(false);
-  const [newFolderName, setNewFolderName] = useState("");
-  const [newFolderDesc, setNewFolderDesc] = useState("");
+  const [newFolderName, setNewFolderName] = useSurfaceDraft("components/Home/AddToFolderSheet.tsx:newFolderName", "", tokenId);
+  const [newFolderDesc, setNewFolderDesc] = useSurfaceDraft("components/Home/AddToFolderSheet.tsx:newFolderDesc", "", tokenId);
   const [newFolderPublic, setNewFolderPublic] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -124,8 +125,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
     if (visible) {
       setIsFullyClosed(false);
       setShowCreateForm(false);
-      setNewFolderName("");
-      setNewFolderDesc("");
+      setNewFolderName.initialize("");
+      setNewFolderDesc.initialize("");
       setNewFolderPublic(false);
       setNotice(null);
       loadFoldersAndContainment();
@@ -143,7 +144,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
       );
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
-  }, [visible, loadFoldersAndContainment, hiddenOffset, translateY, backdropOpacity]);
+  }, [visible, loadFoldersAndContainment, hiddenOffset, translateY, backdropOpacity, setNewFolderDesc, setNewFolderName]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
@@ -227,8 +228,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
       // Add to local state and immediately add item to it
       if (newFolder) {
-        setNewFolderName("");
-        setNewFolderDesc("");
+        setNewFolderName.complete(newFolderName, "");
+        setNewFolderDesc.complete(newFolderDesc, "");
         setNewFolderPublic(false);
         setShowCreateForm(false);
         
@@ -254,7 +255,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
     } finally {
       setCreating(false);
     }
-  }, [newFolderName, newFolderDesc, creating, tokenId, showNotice]);
+  }, [newFolderName, newFolderDesc, creating, tokenId, showNotice, setNewFolderDesc, setNewFolderName]);
 
   const renderFolderItem = ({ item }: { item: FolderWithContainment }) => {
     return (

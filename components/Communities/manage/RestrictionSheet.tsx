@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * RestrictionSheet
  * ================
@@ -65,7 +66,7 @@ export function RestrictionSheet({
   const canPurge = abilities.can("delete_messages");
 
   const [durationIndex, setDurationIndex] = useState(0);
-  const [reason, setReason] = useState("");
+  const [reason, setReason] = useSurfaceDraft("components/Communities/manage/RestrictionSheet.tsx:reason", "", draftIdentity([community, target]));
   const [alsoDelete, setAlsoDelete] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -74,10 +75,10 @@ export function RestrictionSheet({
   useEffect(() => {
     if (!visible) return;
     setDurationIndex(0);
-    setReason("");
+    setReason.initialize("");
     setAlsoDelete(false);
     setSubmitting(false);
-  }, [visible, targetWallet, mode]);
+  }, [visible, targetWallet, mode, setReason]);
 
   if (!target) return null;
 

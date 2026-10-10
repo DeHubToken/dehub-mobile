@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * MakeOfferSheet
  * ==============
@@ -48,8 +49,8 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
   const { data: config } = useUsernameMarketConfig();
   const createOffer = useCreateUsernameOffer();
 
-  const [amount, setAmount] = useState("");
-  const [message, setMessage] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Usernames/MakeOfferSheet.tsx:amount", "");
+  const [message, setMessage] = useSurfaceDraft("components/Usernames/MakeOfferSheet.tsx:message", "");
 
   const priceUsd = Number(amount);
   const valid =
@@ -70,8 +71,8 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
       { username, priceUsd, message: message.trim() || undefined },
       {
         onSuccess: () => {
-          setAmount("");
-          setMessage("");
+          setAmount.complete(amount, "");
+          setMessage.complete(message, "");
           onClose();
         },
       },

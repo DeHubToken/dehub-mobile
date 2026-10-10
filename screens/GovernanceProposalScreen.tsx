@@ -1,3 +1,5 @@
+import { useDraftState } from "../hooks/useDraftState";
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GovernanceProposalScreen
  * ========================
@@ -158,8 +160,8 @@ export default function GovernanceProposalScreen() {
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
 
-  const [draft, setDraft] = useState("");
-  const [replyTo, setReplyTo] = useState<ProposalComment | null>(null);
+  const [draft, setDraft] = useSurfaceDraft("screens/GovernanceProposalScreen.tsx:draft", "");
+  const [replyTo, setReplyTo] = useDraftState<ProposalComment | null>(`proposal:${proposalId}:reply`, null);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const scrollRef = useRef<ScrollView>(null);
   const inputRef = useRef<TextInput>(null);
@@ -193,7 +195,7 @@ export default function GovernanceProposalScreen() {
       setDraft((current) => (current.startsWith(prefix) ? current : prefix + current));
       inputRef.current?.focus();
     },
-    [isAuthed, navigation],
+    [isAuthed, navigation, setDraft, setReplyTo],
   );
 
   const confirmDelete = useCallback(
@@ -224,12 +226,12 @@ export default function GovernanceProposalScreen() {
       {
         onSuccess: () => {
           if (parent) setExpanded((prev) => new Set(prev).add(parent.parent_id ?? parent.id));
-          setDraft("");
-          setReplyTo(null);
+          setDraft.complete(draft, "");
+          setReplyTo.complete(replyTo, null);
         },
       },
     );
-  }, [draft, submitComment, proposalId, isAuthed, navigation, replyTo]);
+  }, [draft, submitComment, proposalId, isAuthed, navigation, replyTo, setDraft, setReplyTo]);
 
   const totalComments = useMemo(
     () => threads.reduce((sum, thread) => sum + 1 + thread.replies.length, 0),
@@ -366,7 +368,7 @@ export default function GovernanceProposalScreen() {
                     })}
                   </Text>
                   <Pressable
-                    onPress={() => setReplyTo(null)}
+                    onPress={() => setReplyTo.complete(replyTo, null)}
                     hitSlop={8}
                     accessibilityRole="button"
                     accessibilityLabel={t("common.cancel")}

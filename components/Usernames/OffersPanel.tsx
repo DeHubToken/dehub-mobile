@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * OffersPanel
  * ===========
@@ -132,7 +133,7 @@ function IncomingRow({ offer }: { offer: UsernameOffer }) {
   const decline = useDeclineUsernameOffer();
 
   const [answering, setAnswering] = useState(false);
-  const [replacement, setReplacement] = useState("");
+  const [replacement, setReplacement] = useSurfaceDraft("components/Usernames/OffersPanel.tsx:replacement", "", draftIdentity(offer));
 
   const replacementValid =
     /^[a-z0-9_-]{1,30}$/.test(replacement.trim().toLowerCase()) &&

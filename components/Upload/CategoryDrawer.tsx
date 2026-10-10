@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { memo, useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -37,14 +38,14 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
 }) => {
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/Upload/CategoryDrawer.tsx:query", "");
 
   useEffect(() => {
     if (visible) {
-      setQuery("");
+      setQuery.initialize("");
       setTimeout(() => inputRef.current?.focus(), 300);
     }
-  }, [visible]);
+  }, [visible, setQuery]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -63,9 +64,9 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
       if (!n) return;
       if (categories.length >= max) return;
       onAdd(n);
-      setQuery("");
+      setQuery.complete(query, "");
     },
-    [categories.length, max, onAdd]
+    [categories.length, max, onAdd, setQuery, query]
   );
 
   const handleSubmit = useCallback(() => {
@@ -179,7 +180,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               autoCorrect={false}
             />
             {query.length > 0 && (
-              <TouchableOpacity onPress={() => setQuery("")} hitSlop={14}>
+              <TouchableOpacity onPress={() => setQuery.complete(query, "")} hitSlop={14}>
                 <Ionicons name="close-circle" size={16} color="#6F7174" />
               </TouchableOpacity>
             )}

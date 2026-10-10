@@ -1,3 +1,4 @@
+import { useDraftState } from "../../hooks/useDraftState";
 import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -28,9 +29,9 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
       </View>
       <View className="flex-row items-center flex-wrap" style={{ gap: 8 }}>
         <Text className="text-theme-neutrals-300 text-xs">{t("editor.shots.preview")}</Text>
-        <NumericValue value={s.offset} label={`${t("editor.shots.preview")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, value, s.duration)} />
+        <NumericValue draftScope={`assembly:${state.sourceId}:${s.id}:offset`} value={s.offset} label={`${t("editor.shots.preview")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, value, s.duration)} />
         <Text className="text-theme-neutrals-300 text-xs">{t("filters.duration")}</Text>
-        <NumericValue value={s.duration} label={`${t("filters.duration")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, s.offset, value)} />
+        <NumericValue draftScope={`assembly:${state.sourceId}:${s.id}:duration`} value={s.duration} label={`${t("filters.duration")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, s.offset, value)} />
       </View>
       {button(`${t("editor.shots.preview")} ${previewRange(s.offset, s.duration)}`, () => onPreview(index), disabled || state.error === "limit")}
     </View>)}
@@ -46,9 +47,10 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
   </View>;
 }
 
-function NumericValue({ value, label, disabled, commit }: { value: number; label: string; disabled: boolean; commit: (value: number) => void }) {
-  const [text, setText] = useState(String(value));
-  useEffect(() => { if (Number.isFinite(value) && (!text.trim() || Number(text.replace(",", ".")) !== value)) setText(String(value)); }, [value]);
+function NumericValue({ draftScope, value, label, disabled, commit }: { draftScope: string; value: number; label: string; disabled: boolean; commit: (value: number) => void }) {
+  const [text, setText] = useDraftState(draftScope, String(value));
+  useEffect(() => { if (Number.isFinite(value) && (!text.trim() || Number(text.replace(",", ".")) !== value)) setText.initialize(String(value)); }, [value, setText]);
+  useEffect(() => { const next = /^\d+(?:[.,]\d*)?$/.test(text) ? Number(text.replace(",", ".")) : NaN; if (!Object.is(next, value)) commit(next); }, [draftScope]);
   return <TextInput accessibilityLabel={label} editable={!disabled} keyboardType="decimal-pad" value={text} onChangeText={next => { setText(next); commit(/^\d+(?:[.,]\d*)?$/.test(next) ? Number(next.replace(",", ".")) : NaN); }} className="rounded-lg border border-white/20 px-2 py-1 text-white" style={{ minWidth: 60 }} />;
 }
 

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   View,
@@ -110,7 +111,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const { t, i18n } = useTranslation();
   const maxV = useMemo(() => maxEmojiVersion(), []);
   const [ready, setReady] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/Upload/EmojiSheet.tsx:query", "");
   const [tone, setTone] = useState<SkinTone>(() => readSkinTone());
   const [toneOpen, setToneOpen] = useState(false);
   const [recents, setRecents] = useState<string[]>(() => readRecents());
@@ -135,12 +136,12 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     if (visible && !ready) setReady(true);
     if (visible && !customEmojisLoaded()) void loadCustomEmojis();
     if (!visible) {
-      setQuery("");
+      setQuery.initialize("");
       setAdding(false);
       setToneOpen(false);
       setPreview(null);
     }
-  }, [visible, ready]);
+  }, [visible, ready, setQuery]);
 
   const data = ready ? getEmojiData() : null;
   const english = ready ? getEnglishKeywords() : null;
@@ -261,7 +262,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   );
 
   const jumpTo = (key: SectionKey) => {
-    setQuery("");
+    setQuery.complete(query, "");
     setAdding(false);
     setActive(key);
     const index = sections.length ? rows.findIndex((r) => r.kind === "header" && r.section === key) : -1;
@@ -372,7 +373,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
               onSubmitEditing={() => results?.[0] && choose(results[0])}
             />
             {!!query && (
-              <Pressable onPress={() => setQuery("")} hitSlop={8} accessibilityLabel={t("common.close")}>
+              <Pressable onPress={() => setQuery.complete(query, "")} hitSlop={8} accessibilityLabel={t("common.close")}>
                 <Icon name="X" size={14} color="#a1a1aa" />
               </Pressable>
             )}

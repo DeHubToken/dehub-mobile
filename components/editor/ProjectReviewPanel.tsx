@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -7,9 +8,13 @@ import Icon from "../ui/Icon";
 
 export function ProjectReviewPanel({cloud,wallet}: {cloud:ReturnType<typeof useCloudProjects>;wallet:string}) {
   const {t}=useTranslation(), review=cloud.review;
-  const [body,setBody]=useState(""), [time,setTime]=useState("0"), [assignee,setAssignee]=useState("");
-  const [recipient,setRecipient]=useState(""), [role,setRole]=useState<ProjectReviewRole>("commenter"), [reply,setReply]=useState<ProjectReviewComment|null>(null);
-  useEffect(()=>{setBody("");setTime("0");setAssignee("");setRecipient("");setReply(null);},[review?.ownerWallet,review?.projectId,review?.revision]);
+  const scope = review ? `review:${review.ownerWallet}:${review.projectId}:${review.revision}` : null;
+  const [reply,setReply]=useDraftState<ProjectReviewComment|null>(scope ? `${scope}:reply` : null,null);
+  const [body,setBody]=useDraftState(scope ? `${scope}:${reply?.id ?? 'root'}:body` : null,"");
+  const [time,setTime]=useDraftState(scope ? `${scope}:time` : null,"0");
+  const [assignee,setAssignee]=useDraftState(scope ? `${scope}:assignee` : null,"");
+  const [recipient,setRecipient]=useDraftState(scope ? `${scope}:recipient` : null,"");
+  const [role,setRole]=useState<ProjectReviewRole>("commenter");
   if(!review) return null;
   const owner=review.ownerWallet===wallet, canComment=review.role!=="viewer", pending=cloud.busy || !cloud.available;
   const short=(value:string)=>`${value.slice(0,6)}…${value.slice(-4)}`;
@@ -22,7 +27,7 @@ export function ProjectReviewPanel({cloud,wallet}: {cloud:ReturnType<typeof useC
     {owner && <View className="rounded-xl border border-white/10 p-3" style={{gap:10}}>
       <Text className="text-white font-semibold">{t("postOptions.share")}</Text>
       <TextInput value={recipient} onChangeText={setRecipient} editable={!pending} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("dpay.walletAddress")} placeholder={t("dpay.walletAddress")} placeholderTextColor="rgba(255,255,255,0.5)" className="rounded-xl border border-white/15 px-3 py-3 text-white" style={{backgroundColor:"rgba(255,255,255,0.05)"}} />
-      <View className="flex-row flex-wrap" style={{gap:8}}>{(["viewer","commenter","editor"] as const).map(value=><Pressable key={value} accessibilityRole="button" accessibilityState={{selected:role===value}} disabled={pending} onPress={()=>setRole(value)} className="rounded-xl border border-white/15 px-3 py-2" style={{backgroundColor:role===value?"rgba(255,255,255,0.15)":"transparent"}}><Text className="text-white">{value==="editor"?t("common.edit"):value==="viewer"?t("depin.viewer"):t("settings.comments")}</Text></Pressable>)}{button(t("postOptions.share"),()=>{void cloud.shareReview(recipient,role,()=>setRecipient(""));},pending || !recipient.trim())}</View>
+      <View className="flex-row flex-wrap" style={{gap:8}}>{(["viewer","commenter","editor"] as const).map(value=><Pressable key={value} accessibilityRole="button" accessibilityState={{selected:role===value}} disabled={pending} onPress={()=>setRole(value)} className="rounded-xl border border-white/15 px-3 py-2" style={{backgroundColor:role===value?"rgba(255,255,255,0.15)":"transparent"}}><Text className="text-white">{value==="editor"?t("common.edit"):value==="viewer"?t("depin.viewer"):t("settings.comments")}</Text></Pressable>)}{button(t("postOptions.share"),()=>{void cloud.shareReview(recipient,role,()=>setRecipient.complete(recipient,""));},pending || !recipient.trim())}</View>
       {cloud.members.filter(member=>!member.revoked).map(member=><View key={member.memberWallet} className="flex-row items-center" style={{gap:6}}><Text className="flex-1 text-white text-xs">{short(member.memberWallet)}{" · "}{member.role==="editor"?t("common.edit"):member.role==="viewer"?t("depin.viewer"):t("settings.comments")}{" · "}{member.accepted?"✓":"…"}</Text>{button(t("communities.manage.revoke"),()=>{void cloud.shareReview(member.memberWallet,"none");})}</View>)}
     </View>}
     <Text className="text-white font-semibold">{t("settings.comments")}</Text>
@@ -35,12 +40,12 @@ export function ProjectReviewPanel({cloud,wallet}: {cloud:ReturnType<typeof useC
       {canComment && <View className="flex-row flex-wrap" style={{gap:8}}>{button(t("tv.reply"),()=>setReply(comment))}{(owner || comment.authorWallet===wallet || comment.assigneeWallet===wallet) && button(comment.resolved?t("support.status.open"):t("work.resolve"),()=>{void cloud.resolveReviewComment(comment);})}</View>}
     </View>)}
     {canComment && <View className="rounded-xl border border-white/10 p-3" style={{gap:10}}>
-      {reply && <View className="flex-row flex-wrap items-center" style={{gap:8}}><Text className="text-white text-xs">{t("tv.reply")}{" · "}{reply.revision}{" · "}{projectReviewTime(reply.atSeconds)}</Text>{button(t("common.cancel"),()=>setReply(null))}</View>}
+      {reply && <View className="flex-row flex-wrap items-center" style={{gap:8}}><Text className="text-white text-xs">{t("tv.reply")}{" · "}{reply.revision}{" · "}{projectReviewTime(reply.atSeconds)}</Text>{button(t("common.cancel"),()=>setReply.complete(reply, null))}</View>}
       <Text className="text-theme-neutrals-400 text-xs">{t("editor.review.time")}</Text>
       <TextInput value={reply?String(reply.atSeconds):time} onChangeText={setTime} keyboardType="decimal-pad" editable={!pending && !reply} accessibilityLabel={t("editor.review.time")} className="rounded-xl border border-white/15 px-3 py-3 text-white" style={{backgroundColor:"rgba(255,255,255,0.05)"}} />
       <TextInput value={body} onChangeText={setBody} multiline editable={!pending} accessibilityLabel={t("settings.comments")} placeholder={t("settings.comments")} placeholderTextColor="rgba(255,255,255,0.5)" className="rounded-xl border border-white/15 px-3 py-3 text-white" style={{backgroundColor:"rgba(255,255,255,0.05)",minHeight:80}} />
       {!reply && <TextInput value={assignee} onChangeText={setAssignee} editable={!pending} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.review.assign")} placeholder={t("editor.review.assign")} placeholderTextColor="rgba(255,255,255,0.5)" className="rounded-xl border border-white/15 px-3 py-3 text-white" style={{backgroundColor:"rgba(255,255,255,0.05)"}} />}
-      {button(t("editor.agent.send"),()=>{void cloud.addReviewComment({body,revision:reply?.revision ?? review.revision,atSeconds:reply?.atSeconds ?? Number(time.replace(",",".")),clipId:reply?.clipId,parentId:reply?.id,assigneeWallet:reply?null:assignee || null},()=>{setBody("");setReply(null);setAssignee("");});},pending || !body.trim() || (!reply && !time.trim()))}
+      {button(t("editor.agent.send"),()=>{void cloud.addReviewComment({body,revision:reply?.revision ?? review.revision,atSeconds:reply?.atSeconds ?? Number(time.replace(",",".")),clipId:reply?.clipId,parentId:reply?.id,assigneeWallet:reply?null:assignee || null},()=>{if(setBody.complete(body,"")){setReply.complete(reply, null);setAssignee.complete(assignee,"");}});},pending || !body.trim() || (!reply && !time.trim()))}
     </View>}
   </View>;
 }

@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { ScrollView } from "react-native";
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
@@ -50,7 +51,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
   originalText,
 }) => {
   const { t } = useTranslation();
-  const [text, setText] = useState(originalText);
+  const [text, setText] = useSurfaceDraft("components/VideoPlayerCore/CaptionFixSheet.tsx:text", originalText, `${transcriptId}:${segmentIndex}`);
   const { submit } = useCorrectionActions(transcriptId);
   // The Modal runs under the nav bar (edge-to-edge), so Submit needs the inset.
   // Not while typing: the keyboard already lifts the sheet clear of the bar.
@@ -60,8 +61,8 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
   // Each open starts from the line as it currently reads: a kept draft would
   // be filed against whichever line was open next.
   useEffect(() => {
-    if (visible) setText(originalText);
-  }, [visible, originalText]);
+    if (visible) setText.initialize(originalText);
+  }, [visible, originalText, setText]);
 
   const trimmed = text.trim();
   const canSubmit =
@@ -75,7 +76,7 @@ const CaptionFixSheet: React.FC<CaptionFixSheetProps> = ({
     if (!canSubmit) return;
     submit.mutate(
       { segmentIndex: segmentIndex!, text: trimmed, originalText },
-      { onSuccess: onClose },
+      { onSuccess: () => { setText.complete(text, text); onClose(); } },
     );
   };
 
