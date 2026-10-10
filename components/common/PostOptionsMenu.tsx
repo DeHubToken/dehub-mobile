@@ -152,7 +152,7 @@ export interface PostOptionsMenuProps {
   onDownloadVideo?: () => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
-  /** Open the AI sheet for this post, for hosts that carry no AI button of their own. */
+  /** Open the AI sheet for this post ("AI overview"). Posts carry no AI button of their own. */
   onAskAi?: () => void;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
@@ -560,7 +560,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {!!onAskAi && (
             <OptionRow
               icon="sparkles-outline"
-              label={t("postOptions.askAi")}
+              label={t("postOptions.aiOverview", "AI overview")}
               onPress={() => { onClose(); onAskAi(); }}
             />
           )}
