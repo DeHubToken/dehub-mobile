@@ -1,0 +1,42 @@
+name: Editor GIF timeline output
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'libs/editor/**'
+      - 'components/editor/**'
+      - '__tests__/libs/fixtures/gifTimeline.json'
+      - 'tests/editor-gif-timeline-browser.mjs'
+      - '.github/workflows/editor-gif-timeline.yml'
+permissions:
+  contents: read
+jobs:
+  browser-output:
+    name: GIF preview and encoded output
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare hosted browser and output decoder
+        run: |
+          npm install --prefix "$RUNNER_TEMP/editor-browser" --no-save --no-package-lock --ignore-scripts playwright@1.64.0 esbuild@0.25.12 mp4-muxer@5.2.2 webm-muxer@5.1.4
+          "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --version
+          brew install ffmpeg
+      - name: Verify real GIF scrubbing and branded MP4 frames
+        env:
+          EDITOR_PLATFORM: mobile
+          EDITOR_BROWSER_ROOT: ${{ runner.temp }}/editor-browser
+        run: node tests/editor-gif-timeline-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-gif-timeline-output
+          path: gif-timeline-browser-results/
+          if-no-files-found: ignore
+          retention-days: 14
