@@ -66,7 +66,7 @@ import i18n from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
-import { flushNavigationTiming, markNavigationSettled, reportLaunchRevealed, trackNavigationTiming } from "./libs/launchTiming";
+import { flushNavigationTiming, markLaunchPhase, markNavigationSettled, reportLaunchRevealed, trackNavigationTiming } from "./libs/launchTiming";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
@@ -91,6 +91,7 @@ import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
 
 const logger = createLogger("App");
+markLaunchPhase('appModuleReady');
 
 
 export const navigationRef = createNavigationContainerRef();
@@ -362,6 +363,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   // earlier would freeze the wrong route in place. Until then the preloader
   // below carries the screen alone.
   const settled = staged && !isBootLoading && isReady;
+  useEffect(() => {
+    if (staged) markLaunchPhase('fontsReady');
+  }, [staged]);
 
   // ── One-load reveal ────────────────────────────────────────────────────
   // The preloader below is mounted continuously across every boot phase and
@@ -381,7 +385,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (revealingRef.current) return;
     revealingRef.current = true;
     markBootRevealed();
-    reportLaunchRevealed({ signedIn: isSignedInRef.current });
+    reportLaunchRevealed({ signedIn: isSignedInRef.current, theme });
     // Native splash hands off underneath the opaque cover: by the time it is
     // gone, the RN view above it already paints the same black-and-mark.
     ExpoSplashScreen.hideAsync().catch(() => { });
@@ -390,7 +394,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
       duration: REVEAL_FADE_MS,
       useNativeDriver: true,
     }).start(() => setCoverMounted(false));
-  }, [coverOpacity]);
+  }, [coverOpacity, theme]);
 
   useEffect(() => {
     if (!staged || !navReady) return;
@@ -472,6 +476,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                 },
               }}
               onReady={() => {
+                markLaunchPhase('navigationReady');
                 logger.info("Navigation container ready");
                 markNavigationSettled(navigationRef.getCurrentRoute());
                 setNavReady(true);

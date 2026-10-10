@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { isTokenExpired } from "../libs/auth.utils";
 import { tokenRefreshManager } from "../libs/token-refresh";
+import { markLaunchPhase } from "../libs/launchTiming";
 
 type BootDeps<User> = {
   getAuthUser: <T>() => Promise<T | null>;
@@ -33,15 +34,18 @@ export function useAuthBoot<User>({
 }: BootDeps<User>) {
   useEffect(() => {
     const loadAuthState = async () => {
+      markLaunchPhase('authStarted');
       try {
         const [userData, token, seenAuth] = await Promise.all([
           getAuthUser<User>(),
           getAuthToken(),
           hasSeenAuth(),
         ]);
+        markLaunchPhase('authStorageReady');
         
         if (seenAuth) setIsFirstTimeUser(false);
         const verifiedCache = !!(userData && token && await canRestoreCachedProfile?.(userData, token));
+        markLaunchPhase('authCacheChecked');
         if (userData && token && verifiedCache && !isTokenExpired(token)) {
           setUser(userData);
           setIsSignedIn(true);
@@ -58,11 +62,17 @@ export function useAuthBoot<User>({
           // Keep protected actions signed out until the expired token refreshes.
         }
         // Replace a cached owner-wallet profile with the verified social profile.
-        if (userData && token && !verifiedCache && await reconcileProfile?.()) return;
+        if (userData && token && !verifiedCache) {
+          markLaunchPhase('authReconcileStarted');
+          const reconciled = await reconcileProfile?.();
+          markLaunchPhase('authReconcileReady');
+          if (reconciled) return;
+        }
 
         if (userData && token) {
           // Validate token expiration before restoring session
           if (isTokenExpired(token)) {
+            markLaunchPhase('authRefreshStarted');
             log.warn?.("boot:token-expired", "Stored token is expired, attempting refresh");
             // Try to refresh the token before giving up
             const newToken = await tokenRefreshManager.attemptRefresh();
@@ -98,6 +108,7 @@ export function useAuthBoot<User>({
       } catch (e) {
         log.error("boot:loadAuthState:error", e);
       } finally {
+        markLaunchPhase('authReady');
         setIsBootLoading(false);
       }
     };

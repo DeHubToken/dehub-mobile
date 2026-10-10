@@ -27,32 +27,45 @@ const finiteOrNull = (value: unknown): number | null =>
   typeof value === "number" && Number.isFinite(value) && value > 0 ? value : null;
 
 let launchReported = false;
+const launchPhases: Record<string, number> = {};
+
+export function markLaunchPhase(phase: 'appModuleReady' | 'authStarted' | 'authStorageReady' | 'authCacheChecked' | 'authReconcileStarted' | 'authReconcileReady' | 'authRefreshStarted' | 'authReady' | 'fontsReady' | 'navigationReady'): void {
+  if (!launchReported && launchPhases[phase] == null) launchPhases[phase] = ms(clock() - jsStartedAt);
+}
+
+/** Subtract native timestamps only from the same native clock. */
+export function nativeStartupDuration(start: unknown, end: unknown): number | null {
+  const from = finiteOrNull(start);
+  const to = finiteOrNull(end);
+  return from != null && to != null && to >= from ? ms(to - from) : null;
+}
 
 /**
  * Once per JavaScript start, when the preloader begins to lift. An activity
  * recreated on a live process remounts the app without rerunning this module,
  * so only real cold starts are reported.
  */
-export function reportLaunchRevealed(context: { signedIn: boolean }): void {
+export function reportLaunchRevealed(context: { signedIn: boolean; theme?: string }): void {
   if (launchReported) return;
   launchReported = true;
   const revealedAt = clock();
 
-  let runtimeStart: number | null = null;
-  let appStart: number | null = null;
+  let nativeInitToBundleMs: number | null = null;
   try {
     const startup = (globalThis as any).performance?.rnStartupTiming;
-    runtimeStart = finiteOrNull(startup?.initializeRuntimeStart);
-    appStart = finiteOrNull(startup?.startTime);
+    nativeInitToBundleMs = nativeStartupDuration(startup?.startTime, startup?.executeJavaScriptBundleEntryPointStart);
   } catch {
     // Older runtimes have no startup timing; the JS figure still stands.
   }
 
   report("LaunchTiming", "cold start", {
     jsToRevealMs: ms(revealedAt - jsStartedAt),
-    runtimeToRevealMs: runtimeStart != null && runtimeStart < jsStartedAt ? ms(revealedAt - runtimeStart) : null,
-    appStartToRevealMs: appStart != null && appStart < jsStartedAt ? ms(revealedAt - appStart) : null,
+    // Native startup timestamps and performance.now() have differed by days
+    // on real devices. Do not subtract them or call RN initialization app launch.
+    nativeInitToBundleMs,
+    phases: { ...launchPhases },
     signedIn: context.signedIn,
+    theme: context.theme,
   });
 }
 
@@ -65,7 +78,7 @@ const MAX_ROUTES = 12;
 
 let pendingSince: number | null = null;
 let lastRouteKey: string | undefined;
-let samples: { route: string; ms: number }[] = [];
+let samples: { route: string; ms: number; renderMs?: number; frameWaitMs?: number }[] = [];
 let epoch = 0;
 
 type NavigationRefLike = {
@@ -95,12 +108,13 @@ export function markNavigationSettled(route: { key?: string; name?: string } | u
   lastRouteKey = route.key;
   if (startedAt == null) return;
   const name = route.name;
+  const renderedAt = clock();
   const startedEpoch = epoch;
   requestAnimationFrame(() =>
     requestAnimationFrame(() => {
       const elapsed = clock() - startedAt;
       if (epoch !== startedEpoch || !Number.isFinite(elapsed) || elapsed < 0) return;
-      samples.push({ route: name, ms: ms(elapsed) });
+      samples.push({ route: name, ms: ms(elapsed), renderMs: ms(renderedAt - startedAt), frameWaitMs: ms(clock() - renderedAt) });
       if (samples.length >= SUMMARY_EVERY) flushNavigationTiming();
     }),
   );
@@ -110,7 +124,7 @@ const percentile = (sorted: number[], p: number) =>
   sorted[Math.min(sorted.length - 1, Math.floor((p / 100) * sorted.length))];
 
 /** Percentiles over a batch of samples, overall and for the busiest routes. */
-export function summarizeNavigation(batch: { route: string; ms: number }[]) {
+export function summarizeNavigation(batch: { route: string; ms: number; renderMs?: number; frameWaitMs?: number }[]) {
   const all = batch.map((s) => s.ms).sort((a, b) => a - b);
   const byRoute = new Map<string, number[]>();
   for (const s of batch) {
@@ -131,6 +145,7 @@ export function summarizeNavigation(batch: { route: string; ms: number }[]) {
     p75: percentile(all, 75),
     p90: percentile(all, 90),
     max: all[all.length - 1],
+    slowest: batch.filter(s => s.renderMs != null).sort((a, b) => b.ms - a.ms).slice(0, 3),
     routes,
   };
 }

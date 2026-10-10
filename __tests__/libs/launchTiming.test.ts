@@ -2,6 +2,7 @@ import {
   __resetNavigationTimingForTests,
   flushNavigationTiming,
   markNavigationSettled,
+  nativeStartupDuration,
   reportLaunchRevealed,
   summarizeNavigation,
   trackNavigationTiming,
@@ -16,6 +17,12 @@ const flushFrames = () => {
 };
 
 describe("launch timing", () => {
+  it('keeps native durations independent of the JavaScript clock', () => {
+    expect(nativeStartupDuration(42_000_000, 42_000_125)).toBe(125);
+    expect(nativeStartupDuration(undefined, 42_000_125)).toBeNull();
+    expect(nativeStartupDuration(200, 100)).toBeNull();
+    expect(nativeStartupDuration(100, Infinity)).toBeNull();
+  });
   it("reports one cold start per JavaScript start", () => {
     reportLaunchRevealed({ signedIn: true });
     reportLaunchRevealed({ signedIn: true });
@@ -26,6 +33,8 @@ describe("launch timing", () => {
     expect(options.level).toBe("info");
     expect(options.metadata).toMatchObject({ signedIn: true });
     expect(options.metadata.jsToRevealMs).toBeGreaterThanOrEqual(0);
+    expect(options.metadata).not.toHaveProperty('appStartToRevealMs');
+    expect(options.metadata).not.toHaveProperty('runtimeToRevealMs');
   });
 });
 
@@ -55,6 +64,7 @@ describe("navigation timing", () => {
     const [component, , options] = reportError.mock.calls[0];
     expect(component).toBe("NavigationTiming");
     expect(options.metadata).toMatchObject({ n: 1, routes: [expect.objectContaining({ route: "FeedDetail", n: 1 })] });
+    expect(options.metadata.slowest[0]).toMatchObject({ route: 'FeedDetail', renderMs: expect.any(Number), frameWaitMs: expect.any(Number) });
   });
 
   it("ignores no-op actions and changes that keep the same screen", () => {
