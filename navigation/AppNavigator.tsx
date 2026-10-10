@@ -105,6 +105,7 @@ function AppNavigatorContent() {
 
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => require('../screens/CreatorScreen').default} />
+        <Stack.Screen name={ScreenNames.Maboroshi} getComponent={() => require('../screens/MaboroshiScreen').default} />
         <Stack.Screen name={ScreenNames.CreatorStudio} getComponent={() => require('../screens/AIChatScreen').CreatorStudioScreen} />
         {/* A shared flow is readable signed-out; your flows and copying sign in. */}
         <Stack.Screen name={ScreenNames.CreatorFlow} getComponent={() => require('../screens/CreatorFlowScreen').default} />

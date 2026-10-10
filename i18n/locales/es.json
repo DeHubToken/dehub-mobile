@@ -7416,6 +7416,8 @@
     }
   },
   "creator": {
+    "toolMaboroshi": "Maboroshi",
+    "toolMaboroshiDesc": "Sustituye personajes y objetos, revisa un borrador y exporta con la banda sonora original.",
     "navStudio": "Estudio",
     "editor": "Editor",
     "untitled": "Sin título",
