@@ -377,7 +377,7 @@ export default function CommandCentreScreen() {
           title={t("commandCentre.balance")}
           action={
             <Pressable
-              onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
+              onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "wallet" })}
               style={styles.walletBtn}
             >
               <Icon name="Wallet" size={15} color="#000000" />

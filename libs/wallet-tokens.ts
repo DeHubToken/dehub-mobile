@@ -11,6 +11,7 @@ export interface WalletToken {
   chainId: number;
   isNative?: boolean;
   isCustom?: boolean;
+  incomplete?: boolean;
   /** Decimal string: safe to persist, and never rounded before sending. */
   balance: string | null;
 }
@@ -129,7 +130,8 @@ async function readSolanaTokens(owner: string, custom: TokenMetadata[]): Promise
   const tokens: WalletToken[] = [];
   const native = results[0];
   tokens.push({ address: '0x0', symbol: 'SOL', name: 'Solana', decimals: 9, chainId: 101, isNative: true,
-    balance: native.status === 'fulfilled' ? ethers.utils.formatUnits(String(native.value.value), 9) : null });
+    balance: native.status === 'fulfilled' ? ethers.utils.formatUnits(String(native.value.value), 9) : null,
+    incomplete: results.slice(1).some(result => result.status === 'rejected') });
   for (const result of results.slice(1)) {
     if (result.status !== 'fulfilled') continue;
     for (const account of result.value.value || []) {
@@ -145,6 +147,11 @@ async function readSolanaTokens(owner: string, custom: TokenMetadata[]): Promise
       tokens.push({ address: info.mint, chainId: 101, symbol: meta?.symbol || `${info.mint.slice(0, 4)}…${info.mint.slice(-4)}`,
         name: meta?.name || 'Solana token', decimals: info.tokenAmount.decimals, isCustom: !meta || custom.includes(meta as TokenMetadata),
         balance: ethers.utils.formatUnits(raw, info.tokenAmount.decimals) });
+    }
+  }
+  for (const token of custom) {
+    if (!tokens.some(existing => existing.address === token.address)) {
+      tokens.push({ ...token, balance: results.slice(1).every(result => result.status === 'fulfilled') ? '0' : null });
     }
   }
   return tokens;
