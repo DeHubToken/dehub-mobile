@@ -6,7 +6,7 @@ export type VisualAnalyser = (batch: VisualBatch, signal: AbortSignal) => Promis
 const check = (signal: AbortSignal) => { if (signal.aborted) throw new Error("cancelled"); };
 export function visualWindowPlan(clip: MediaClip): VisualWindow[] {
   const speed = clip.speed ?? 1;
-  if (clip.kind !== "video" || clip.hidden || clip.locked || !Number.isFinite(speed) || speed < 0.25 || speed > 4 || !Number.isFinite(clip.trimIn) || clip.trimIn < 0
+  if ((clip.kind !== "video" && clip.kind !== "image") || clip.hidden || clip.locked || !Number.isFinite(speed) || speed < 0.25 || speed > 4 || !Number.isFinite(clip.trimIn) || clip.trimIn < 0
     || !Number.isFinite(clip.duration) || clip.duration < 1 || clip.duration > 600 || clip.duration * speed > 600) throw new Error("highlight_limit");
   const count = Math.ceil(clip.duration / 6), round = (n: number) => Math.round(n * 1000) / 1000;
   return Array.from({ length: count }, (_, id) => ({ id, start: round(id * clip.duration / count), end: round((id + 1) * clip.duration / count) }));
