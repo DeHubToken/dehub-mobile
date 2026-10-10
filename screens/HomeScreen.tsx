@@ -35,6 +35,7 @@ import { storage } from "../libs/storage";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
+import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
 import { useIsFetching } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
@@ -258,7 +259,9 @@ export default function HomeScreen() {
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
-  const homePull = useHomePullRefresh(island && cinematicPhone && isFocused && !islandMenuOpen && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
+  // Every theme pulls the feed down itself (not the native spinner), so the
+  // pill can glow with the pull as the immersive capsule does.
+  const homePull = useHomePullRefresh(cinematicPhone && isFocused && !islandMenuOpen && !filterPanelVisible && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
   const pullDistance = homePull.motion.distance;
 
   // Sync header translateY to the bottom tab bar context
@@ -480,6 +483,7 @@ export default function HomeScreen() {
   // viewport slides down to the pill's top and its content slides back up by
   // the same amount: two transforms on the UI thread, no layout per frame.
   const navPillTop = useSharedValue(0);
+  const navPillBottom = useSharedValue(0);
   const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const [navOverlap, setNavOverlap] = useState(38);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
@@ -489,7 +493,9 @@ export default function HomeScreen() {
     // layout and the transform can never leave a hairline of feed showing
     // above the pill; the pill's rim covers that point.
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1;
-  }, [navPillTop]);
+    // Minimal's tab bar sits flush; the pill themes keep 2pt under the pill.
+    navPillBottom.value = e.nativeEvent.layout.y + e.nativeEvent.layout.height - (theme === 'minimal' ? 0 : 2);
+  }, [navPillTop, navPillBottom, theme]);
   const clipOn = glassNav && !island;
   // The cut follows the pill's silhouette, as on web: the viewport is inset to
   // the pill's sides and rounded with the theme's own pill radius, so nothing
@@ -1018,6 +1024,16 @@ export default function HomeScreen() {
 
         {theme !== 'system' ? filterPanel : null}
       </Animated.View>
+
+      {!island && showNavPill && !filterPanelVisible ? (
+        <FeedPillGlow
+          distance={pullDistance}
+          pillBottom={navPillBottom}
+          headerY={headerTranslateY}
+          width={pageWidth}
+          inset={theme === 'minimal' ? 0 : NAV_PILL_SIDE_INSET}
+        />
+      ) : null}
 
       {/* A sibling keeps the drawer below the pill and its complete touch
           area inside its parent without changing the measured feed inset. */}
