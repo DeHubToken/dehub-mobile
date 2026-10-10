@@ -40,13 +40,34 @@ for (const [name, wait] of [["web helper", waitForVideoFrame], ["canvas helper",
       return { callbacks, tick: () => { const pending = [...callbacks.values()]; callbacks.clear(); pending.forEach(callback => callback()); } };
     }
     const clean = (source: Decoder) => { expect(source.listenerCount).toBe(0); expect(jest.getTimerCount()).toBe(0); };
+    it.each([[30, 68], [30, 599], [120, 319], [24, 41]])("reads source frame %s fps at boundary %s after media-clock truncation", async (fps, index) => {
+      const source = new Decoder(); let pixelFrame = -1;
+      source.onSeek = () => { pixelFrame = Math.floor(Math.floor(source.clock * 1000000) / 1000000 * fps); };
+      const promise = wait(source, index / fps, { forCanvasRead: true });
+      source.seeking = false; source.emit("seeked");
+      jest.advanceTimersByTime(2); await promise;
+      expect(pixelFrame).toBe(index); clean(source);
+    });
+    it("does not reuse a nearby clock on the previous side of a frame boundary", async () => {
+      const source = new Decoder(); source.clock = 68 / 30 - 0.00001;
+      const promise = wait(source, 68 / 30, { forCanvasRead: true });
+      expect(source.assignments).toBe(1); expect(source.clock).toBeGreaterThan(68 / 30);
+      source.seeking = false; source.emit("seeked"); jest.advanceTimersByTime(2); await promise; clean(source);
+    });
+    it("keeps source start and end bounds for interior canvas samples", async () => {
+      const source = new Decoder();
+      await wait(source, 0, { forCanvasRead: true }); expect(source.assignments).toBe(0);
+      source.clock = source.duration - 0.001;
+      await wait(source, source.duration, { forCanvasRead: true });
+      expect(source.assignments).toBe(0); expect(source.clock).toBe(source.duration - 0.001); clean(source);
+    });
     it("reads a decoded canvas frame when browser paint callbacks never run", async () => {
       const paint = redraws(); const source = new Decoder(); let settled = false;
       const promise = wait(source, 2.267, { forCanvasRead: true }).then(() => { settled = true; });
       source.readyState = 4; source.seeking = false; source.emit("seeked");
       await Promise.resolve(); expect(settled).toBe(false);
       jest.advanceTimersByTime(2); await promise;
-      expect(source.currentTime).toBe(2.267); expect(paint.callbacks.size).toBe(0); clean(source);
+      expect(source.currentTime).toBeCloseTo(2.267002, 10); expect(paint.callbacks.size).toBe(0); clean(source);
     });
     it("rejects a changed or undecoded source while canvas tasks are queued", async () => {
       const paint = redraws(); const source = new Decoder(); let settled = false;
