@@ -14,7 +14,7 @@
  * Renders nothing at all for everyone else, which is nearly everyone.
  */
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import GlassModal from "../ui/GlassModal";
@@ -23,6 +23,8 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useOnboarding } from "../../context/OnboardingChecklistContext";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import GettingStartedSheet from "./GettingStartedSheet";
+
+const TOUR_ICON = require("../../assets/theme-icons/guide-system.webp");
 
 const GettingStartedCard: React.FC = () => {
   const { t } = useTranslation();
@@ -43,9 +45,7 @@ const GettingStartedCard: React.FC = () => {
       >
         <View className="rounded-xl p-6 mx-6">
           <View className="items-center mb-4">
-            <View className="bg-theme-accent/10 rounded-2xl p-4">
-              <Icon name="Compass" size={44} color={colors.accent} />
-            </View>
+            <Image source={TOUR_ICON} style={{ width: 72, height: 72 }} resizeMode="contain" />
           </View>
           <Text className="text-white text-2xl font-bold text-center mb-2">
             {t("onboarding.optIn.title")}
@@ -61,9 +61,9 @@ const GettingStartedCard: React.FC = () => {
               }}
               activeOpacity={0.8}
               className="rounded-xl py-3 px-6 items-center"
-              style={{ backgroundColor: colors.accent }}
+              style={{ backgroundColor: "#FFFFFF" }}
             >
-              <Text className="text-theme-accent-foreground text-base font-semibold">
+              <Text className="text-base font-semibold" style={{ color: "#09090B" }}>
                 {t("onboarding.optIn.yes")}
               </Text>
             </TouchableOpacity>
@@ -97,11 +97,11 @@ const GettingStartedCard: React.FC = () => {
           className="flex-row items-center rounded-2xl bg-theme-neutrals-800 border border-white/10 px-4 py-3"
           style={{ gap: 12 }}
         >
-          <Icon
-            name={onboarding.complete ? "Trophy" : "Compass"}
-            size={18}
-            color={colors.accent}
-          />
+          {onboarding.complete ? (
+            <Icon name="Trophy" size={18} color={colors.accent} />
+          ) : (
+            <Image source={TOUR_ICON} style={{ width: 28, height: 28 }} resizeMode="contain" />
+          )}
           <View className="flex-1">
             <Text className="text-white text-sm font-semibold">
               {onboarding.complete
