@@ -111,7 +111,7 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
           <Pressable accessibilityRole="button" accessibilityLabel={t('common.moreInfo')} onPress={() => setBreakdown(!breakdown)} hitSlop={10}><Icon name="Info" size={18} color="#aaa" /></Pressable>
           <Pressable accessibilityRole="button" accessibilityLabel={t('wallet.copyAddress')} onPress={() => setReceive(true)} hitSlop={10}><Icon name="Copy" size={18} color="#aaa" /></Pressable>
         </View>
-        <Text style={s.muted}>{t('wallet.totalWalletValue')}: {wallet.tokens.length && Object.keys(wallet.prices).length ? `${wallet.failedChains.length ? '≈ ' : ''}$${usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</Text>
+        <Text style={s.muted}>{t('wallet.totalWalletValue')}: {!wallet.loading && wallet.tokens.length && Object.keys(wallet.prices).length && !(wallet.failedChains.length && usd === 0) ? `${wallet.failedChains.length ? '≈ ' : ''}$${usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</Text>
         {breakdown && <View style={s.sectionGap}>
           <Text style={s.muted}>{t('assets.dhbPositionNote')}</Text>
           {rows.map(row => <View key={row.chain} style={s.listRow}><Text style={s.label}>{row.chain}</Text><Text style={s.muted}>{format(row.wallet)} {t('assets.held')} · {format(row.staked)} {t('assets.staked')}</Text></View>)}
