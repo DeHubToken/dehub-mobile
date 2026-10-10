@@ -26,7 +26,7 @@ jest.mock('react-native-gesture-handler', () => ({
 }));
 jest.mock('../../hooks/useFeedScrubBoundary', () => ({
   FeedScrubContext: require('react').createContext(null),
-  SCRUB_HIT_HEIGHT: 80,
+  SCRUB_HIT_HEIGHT: 64,
 }));
 
 function setup(showControls = true) {
@@ -42,8 +42,8 @@ function setup(showControls = true) {
 describe('video scrub zone', () => {
   it('enlarges only the invisible target while keeping the rail and button row anchored', () => {
     const s = setup();
-    expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80 });
-    expect(mockScrubOptions.immediateBottom).toBe(80);
+    expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64 });
+    expect(mockScrubOptions.immediateBottom).toBe(64);
     const layers = s.UNSAFE_getAllByType(Animated.View).map(layer => StyleSheet.flatten(layer.props.style));
     expect(layers).toEqual(expect.arrayContaining([
       expect.objectContaining({ bottom: 0, height: 3 }),
