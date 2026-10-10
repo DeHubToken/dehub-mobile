@@ -404,7 +404,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
               onChangeText={setCategorySearch}
               placeholder={t("filters.searchCategories")}
               placeholderTextColor="#808089"
-              style={panelStyles.searchInput}
+              style={[panelStyles.searchInput, navOverlap != null && panelStyles.hollowSearchInput]}
               autoCapitalize="none"
               autoCorrect={false}
             />
@@ -553,6 +553,10 @@ const panelStyles = StyleSheet.create({
     fontSize: 12,
     color: "#e4e4e7",
     marginBottom: 4,
+  },
+  hollowSearchInput: {
+    backgroundColor: "transparent",
+    borderColor: "rgba(255, 255, 255, 0.18)",
   },
   noMatches: {
     fontSize: 12,
