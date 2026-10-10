@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
@@ -234,7 +235,7 @@ export default function TVScreen() {
   const { width: screenW } = useWindowDimensions();
 
   const [country, setCountry] = useState("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/TVScreen.tsx:search", "");
   const [debounced, setDebounced] = useState("");
   const [playing, setPlaying] = useState<TVChannel | null>(null);
 

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * AI chat for the editor: describe the change, the agent makes it. Same
  * wording and flow as the web's AI panel (dehubweb
@@ -49,7 +50,7 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useSurfaceDraft("components/editor/AgentSheet.tsx:draft", "");
   const [visualConsent, setVisualConsent] = useState<string | null>(null);
   const useVisual = visualConsent === visualScope;
   useEffect(() => { setVisualConsent(null); }, [visible, visualScope]);

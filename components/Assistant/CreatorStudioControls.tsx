@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -23,8 +24,8 @@ interface Props {
 export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
-  const [modelSearch, setModelSearch] = useState('');
-  useEffect(() => { setModelSearch(''); }, [picker, settings.mode]);
+  const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
+  useEffect(() => { setModelSearch.initialize(''); }, [picker, settings.mode, setModelSearch]);
   const [durationDraft, setDurationDraft] = useState(String(settings.durationSeconds));
   const editingDuration = useRef(false);
   useEffect(() => {

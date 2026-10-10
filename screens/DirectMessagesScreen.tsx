@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -70,7 +71,7 @@ const DirectMessagesInner: React.FC = () => {
     (user as any)?.walletAddress || (user as any)?.address || ""
   ).toLowerCase();
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("screens/DirectMessagesScreen.tsx:query", "");
   const [menuVisible, setMenuVisible] = useState(false);
   const [dnd, setDnd] = useState(false);
   const [newDmVisible, setNewDmVisible] = useState(false);

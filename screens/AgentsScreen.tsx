@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * AgentsScreen
  * ============
@@ -97,8 +98,8 @@ export default function AgentsScreen() {
   const queryClient = useQueryClient();
 
   const [isCreating, setIsCreating] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useSurfaceDraft("screens/AgentsScreen.tsx:name", "");
+  const [description, setDescription] = useSurfaceDraft("screens/AgentsScreen.tsx:description", "");
   const [visibleKeys, setVisibleKeys] = useState<Set<string>>(new Set());
   const [revealing, setRevealing] = useState(false);
   // Keys registration just handed back. The list only carries a key for a

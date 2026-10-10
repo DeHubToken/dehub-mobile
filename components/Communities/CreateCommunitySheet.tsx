@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import {
   View,
@@ -31,8 +32,8 @@ interface Props {
 
 const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose, onCreated }) => {
   const { t } = useTranslation();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useSurfaceDraft("components/Communities/CreateCommunitySheet.tsx:name", "");
+  const [description, setDescription] = useSurfaceDraft("components/Communities/CreateCommunitySheet.tsx:description", "");
   const [isPrivate, setIsPrivate] = useState(false);
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * ReportModal - Glass modal for reporting content or users
  *
@@ -90,7 +91,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
-  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useSurfaceDraft("components/common/ReportModal.tsx:additionalInfo", "", JSON.stringify([type, tokenId, userId, commentId]));
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -144,7 +145,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     setSelectedReason(null);
     setAdditionalInfo("");
     setSubmitted(false);
-  }, []);
+  }, [setAdditionalInfo]);
 
   const handleClose = useCallback(() => {
     onClose();

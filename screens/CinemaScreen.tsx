@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CinemaScreen
  * ============
@@ -136,7 +137,7 @@ export default function CinemaScreen() {
   const [locale, setLocale] = useState(DEFAULT_LOCALE);
   const [localeReady, setLocaleReady] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("screens/CinemaScreen.tsx:query", "");
   const [searchType, setSearchType] = useState<ObjectType>("movie");
   const debounced = useDebounced(query.trim(), 350);
 

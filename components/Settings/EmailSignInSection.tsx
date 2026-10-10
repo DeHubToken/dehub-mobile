@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Sign-in email — attach an address a wallet account can log in with instead
  * ============================================================================
@@ -43,7 +44,7 @@ export function EmailSignInSection() {
   // `undefined` while the status is still being read, so nothing flashes a
   // form at somebody who already has an address attached.
   const [status, setStatus] = useState<EmailLinkStatus | null | undefined>(undefined);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useSurfaceDraft("components/Settings/EmailSignInSection.tsx:email", '');
   const [code, setCode] = useState('');
   const [awaitingCode, setAwaitingCode] = useState(false);
   const [busy, setBusy] = useState(false);

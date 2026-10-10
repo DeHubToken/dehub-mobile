@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * CommunityChatPanel
@@ -306,7 +307,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     removeReaction,
   } = useCommunityChat(community.id, { isPrivate: community.is_private });
 
-  const [text, setText] = useState("");
+  const [text, setText] = useSurfaceDraft("components/Communities/CommunityChatPanel.tsx:text", "", draftIdentity(community));
   // @mention typeahead. Handles were already parsed out of sent text for
   // notifications, but nothing suggested anyone while typing, so a mention
   // only landed if you already knew the handle exactly.
@@ -417,8 +418,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     } finally {
       setSending(false);
     }
-  }, [
-    text,
+  }, [text,
     sending,
     editing,
     mentions,
@@ -427,8 +427,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     replyTo,
     scrollToBottom,
     slowModeApplies,
-    slowSeconds,
-  ]);
+    slowSeconds, setText]);
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {

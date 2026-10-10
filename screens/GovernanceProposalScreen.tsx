@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GovernanceProposalScreen
  * ========================
@@ -158,7 +159,7 @@ export default function GovernanceProposalScreen() {
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
 
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useSurfaceDraft("screens/GovernanceProposalScreen.tsx:draft", "");
   const [replyTo, setReplyTo] = useState<ProposalComment | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const scrollRef = useRef<ScrollView>(null);
@@ -229,7 +230,7 @@ export default function GovernanceProposalScreen() {
         },
       },
     );
-  }, [draft, submitComment, proposalId, isAuthed, navigation, replyTo]);
+  }, [draft, submitComment, proposalId, isAuthed, navigation, replyTo, setDraft]);
 
   const totalComments = useMemo(
     () => threads.reduce((sum, thread) => sum + 1 + thread.replies.length, 0),

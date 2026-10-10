@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   View,
@@ -110,7 +111,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const { t, i18n } = useTranslation();
   const maxV = useMemo(() => maxEmojiVersion(), []);
   const [ready, setReady] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/Upload/EmojiSheet.tsx:query", "");
   const [tone, setTone] = useState<SkinTone>(() => readSkinTone());
   const [toneOpen, setToneOpen] = useState(false);
   const [recents, setRecents] = useState<string[]>(() => readRecents());
@@ -135,12 +136,12 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     if (visible && !ready) setReady(true);
     if (visible && !customEmojisLoaded()) void loadCustomEmojis();
     if (!visible) {
-      setQuery("");
+      setQuery.initialize("");
       setAdding(false);
       setToneOpen(false);
       setPreview(null);
     }
-  }, [visible, ready]);
+  }, [visible, ready, setQuery]);
 
   const data = ready ? getEmojiData() : null;
   const english = ready ? getEnglishKeywords() : null;

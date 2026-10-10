@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * MusicFeed — the Audio tab
  * =========================
@@ -188,7 +189,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   const [tab, setTab] = useState<MusicSubTab>("all");
   const [genre, setGenre] = useState<RadioGenreId>("top");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Music/MusicFeed.tsx:search", "");
   const debouncedSearch = useDebouncedValue(search, 300);
   const { user } = useAuth();
   const address = user?.walletAddress || user?.address || undefined;

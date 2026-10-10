@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * SellUsernamePanel
  * =================
@@ -65,9 +66,9 @@ const SellUsernamePanel: React.FC<Props> = ({
   const createListing = useCreateUsernameListing();
   const cancelListing = useCancelUsernameListing();
 
-  const [priceUsd, setPriceUsd] = useState("");
-  const [replacement, setReplacement] = useState("");
-  const [description, setDescription] = useState("");
+  const [priceUsd, setPriceUsd] = useSurfaceDraft("components/Usernames/SellUsernamePanel.tsx:priceUsd", "");
+  const [replacement, setReplacement] = useSurfaceDraft("components/Usernames/SellUsernamePanel.tsx:replacement", "");
+  const [description, setDescription] = useSurfaceDraft("components/Usernames/SellUsernamePanel.tsx:description", "");
 
   // Which of their names is on the form. The caller's choice wins; otherwise
   // the handle they are wearing, which is what this panel used to assume was
@@ -87,10 +88,10 @@ const SellUsernamePanel: React.FC<Props> = ({
   // clear it when switching to a name that has none — otherwise the previous
   // name's price sits in the box looking like this one's.
   useEffect(() => {
-    setPriceUsd(active ? String(active.priceUsd) : "");
-    setReplacement(active?.replacementUsername || "");
-    setDescription(active?.description || "");
-  }, [active?.id, sellingUsername]);
+    setPriceUsd.initialize(active ? String(active.priceUsd) : "");
+    setReplacement.initialize(active?.replacementUsername || "");
+    setDescription.initialize(active?.description || "");
+  }, [active?.id, sellingUsername, setDescription, setPriceUsd, setReplacement]);
 
   if (!isAuthed) {
     return (

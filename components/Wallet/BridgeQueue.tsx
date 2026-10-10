@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Every bridge transfer from the last seven days, from everyone — the "Bridges"
  * list at the foot of the web Bridge page. Read-only and public: the relay's
@@ -46,7 +47,7 @@ function when(unix: number): string {
 
 export default function BridgeQueue() {
   const { t } = useTranslation();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Wallet/BridgeQueue.tsx:search", "");
   const [shown, setShown] = useState(PAGE_SIZE);
 
   const { data: transfers = [], isLoading, isError, refetch } = useQuery({

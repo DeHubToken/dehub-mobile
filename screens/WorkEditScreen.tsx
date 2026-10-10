@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkEditScreen
@@ -78,13 +79,13 @@ export default function WorkEditScreen() {
   const { data: job, isLoading, isError, refetch } = useWorkJob(jobKey, seed);
   const updateJob = useUpdateJob();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useSurfaceDraft("screens/WorkEditScreen.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("screens/WorkEditScreen.tsx:description", "");
   const [platform, setPlatform] = useState<WorkPlatform>("x");
-  const [targetUrl, setTargetUrl] = useState("");
+  const [targetUrl, setTargetUrl] = useSurfaceDraft("screens/WorkEditScreen.tsx:targetUrl", "");
   const [currency, setCurrency] = useState<WorkCurrency>("DHB");
-  const [pricePerUnit, setPricePerUnit] = useState("");
-  const [maxUnits, setMaxUnits] = useState("");
+  const [pricePerUnit, setPricePerUnit] = useSurfaceDraft("screens/WorkEditScreen.tsx:pricePerUnit", "");
+  const [maxUnits, setMaxUnits] = useSurfaceDraft("screens/WorkEditScreen.tsx:maxUnits", "");
   const [deadline, setDeadline] = useState("");
   const [showDatePicker, setShowDatePicker] = useState(false);
   // Seed once, so a background refetch never stomps what is being typed.
@@ -92,16 +93,16 @@ export default function WorkEditScreen() {
 
   useEffect(() => {
     if (!job || seededId === job.id) return;
-    setTitle(job.title);
-    setDescription(job.description);
+    setTitle.initialize(job.title);
+    setDescription.initialize(job.description);
     setPlatform(job.platform ?? "x");
-    setTargetUrl(job.target_url ?? "");
+    setTargetUrl.initialize(job.target_url ?? "");
     setCurrency(job.currency);
-    setPricePerUnit(String(Number(job.price_per_unit) || 0));
-    setMaxUnits(String(Number(job.max_units) || 1));
+    setPricePerUnit.initialize(String(Number(job.price_per_unit) || 0));
+    setMaxUnits.initialize(String(Number(job.max_units) || 1));
     setDeadline(job.deadline ? job.deadline.slice(0, 10) : "");
     setSeededId(job.id);
-  }, [job, seededId]);
+  }, [job, seededId, setDescription, setMaxUnits, setPricePerUnit, setTargetUrl, setTitle]);
 
   const onDateChange = useCallback((_e: DateTimePickerEvent, selected?: Date) => {
     setShowDatePicker(Platform.OS === "ios");

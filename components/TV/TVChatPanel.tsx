@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 /**
  * TVChatPanel
@@ -219,7 +220,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   const listRef = useRef<FlatList<TvChatMessage>>(null);
   const atBottomRef = useRef(true);
 
-  const [text, setText] = useState("");
+  const [text, setText] = useSurfaceDraft("components/TV/TVChatPanel.tsx:text", "", channelId);
   const [replyTo, setReplyTo] = useState<TvChatMessage | null>(null);
   const [sending, setSending] = useState(false);
   // Message whose full emoji picker is open.
@@ -252,7 +253,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         setSending(false);
       }
     });
-  }, [text, sending, requireAuth, sendMessage, replyTo, scrollToBottom]);
+  }, [text, sending, requireAuth, sendMessage, replyTo, scrollToBottom, setText]);
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {

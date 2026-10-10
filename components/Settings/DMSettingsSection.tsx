@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, ActivityIndicator } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -39,7 +40,7 @@ const DMSettingsSection: React.FC = () => {
 
   const [dmsEnabled, setDmsEnabled] = useState<boolean>(initial.dmsEnabled);
   const [allowNew, setAllowNew] = useState<boolean>(initial.allowNew);
-  const [fee, setFee] = useState<string>(String(initial.fee));
+  const [fee, setFee] = useSurfaceDraft<string>("components/Settings/DMSettingsSection.tsx:fee", String(initial.fee));
   const [dmSubmitting, setDmSubmitting] = useState<boolean>(false);
   const [feeSubmitting, setFeeSubmitting] = useState<boolean>(false);
   const [feeSaved, setFeeSaved] = useState<boolean>(false);
@@ -66,8 +67,8 @@ const DMSettingsSection: React.FC = () => {
     if (dmSubmitting || feeSubmitting) return;
     setDmsEnabled(initial.dmsEnabled);
     setAllowNew(initial.allowNew);
-    setFee(String(initial.fee));
-  }, [dmKey]);
+    setFee.initialize(String(initial.fee));
+  }, [dmKey, setFee]);
 
   const optimisticPatch = useCallback(
     (next: { dmsEnabled: boolean; allowNew: boolean; fee: number }) => {
@@ -219,7 +220,7 @@ const DMSettingsSection: React.FC = () => {
   const onChangeFee = useCallback((t: string) => {
     const cleaned = t.replace(/[^0-9.]/g, "");
     setFee(cleaned);
-  }, []);
+  }, [setFee]);
 
   const onBlurFee = useCallback(() => {
     submit({ spinner: "fee" }).catch(() => {});

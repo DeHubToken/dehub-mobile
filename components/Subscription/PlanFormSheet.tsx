@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
@@ -102,12 +103,12 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   const subscriptionContract = useSubscriptionContract();
   const isEditing = !!editPlan;
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [name, setName] = useSurfaceDraft("components/Subscription/PlanFormSheet.tsx:name", "", draftIdentity(editPlan) ?? "new");
+  const [description, setDescription] = useSurfaceDraft("components/Subscription/PlanFormSheet.tsx:description", "", draftIdentity(editPlan) ?? "new");
+  const [price, setPrice] = useSurfaceDraft("components/Subscription/PlanFormSheet.tsx:price", "", draftIdentity(editPlan) ?? "new");
   const [duration, setDuration] = useState(1);
   const [stage, setStage] = useState("");
-  const [benefitInput, setBenefitInput] = useState("");
+  const [benefitInput, setBenefitInput] = useSurfaceDraft("components/Subscription/PlanFormSheet.tsx:benefitInput", "", draftIdentity(editPlan) ?? "new");
   const [benefits, setBenefits] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
   const [switchingChain, setSwitchingChain] = useState(false);
@@ -127,23 +128,23 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   // Populate fields when editing
   useEffect(() => {
     if (editPlan) {
-      setName(editPlan.name || "");
-      setDescription(editPlan.description || "");
-      setPrice(originalDollarPrice > 0 ? String(originalDollarPrice) : "");
+      setName.initialize(editPlan.name || "");
+      setDescription.initialize(editPlan.description || "");
+      setPrice.initialize(originalDollarPrice > 0 ? String(originalDollarPrice) : "");
       // Legacy 999 lifetime plans fold onto 0 so the preset lights up.
       setDuration(normaliseDuration(editPlan.duration) ?? 1);
       setBenefits(editPlan.benefits || []);
       setSelectedChainId(primaryPlanChain(editPlan)?.chainId || ChainId.BASE_MAINNET);
     } else {
-      setName("");
-      setDescription("");
-      setPrice("");
+      setName.initialize("");
+      setDescription.initialize("");
+      setPrice.initialize("");
       setDuration(1);
       setBenefits([]);
       setSelectedChainId(ChainId.BASE_MAINNET);
     }
-    setBenefitInput("");
-  }, [editPlan, visible, originalDollarPrice]);
+    setBenefitInput.initialize("");
+  }, [editPlan, visible, originalDollarPrice, setBenefitInput, setDescription, setName, setPrice]);
 
   // The subscription contract hook follows the active wallet chain. Keep it
   // aligned with the network selected in the header before the publish step.
@@ -171,7 +172,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     if (!trimmed) return;
     setBenefits(prev => [...prev, trimmed]);
     setBenefitInput("");
-  }, [benefitInput]);
+  }, [benefitInput, setBenefitInput]);
 
   const removeBenefit = useCallback((idx: number) => {
     setBenefits(prev => prev.filter((_, i) => i !== idx));

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
@@ -39,7 +40,7 @@ const CommunitiesScreen: React.FC = () => {
   const { requireAuth } = useAuthActions();
   const walletAddress = user?.address || user?.walletAddress || "";
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/CommunitiesScreen.tsx:search", "");
   const [sortMode, setSortMode] = useState<SortMode>("top");
   const [userRows, setUserRows] = useState<UserCommunityRow[]>([]);
   const [allCommunities, setAllCommunities] = useState<Community[]>([]);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -45,9 +46,9 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const { t } = useTranslation();
   const [step, setStep] = useState<ReviewStep>("initial");
   const [rating, setRating] = useState(0);
-  const [feedback, setFeedback] = useState("");
-  const [telegram, setTelegram] = useState("");
-  const [discord, setDiscord] = useState("");
+  const [feedback, setFeedback] = useSurfaceDraft("components/ReviewModal.tsx:feedback", "");
+  const [telegram, setTelegram] = useSurfaceDraft("components/ReviewModal.tsx:telegram", "");
+  const [discord, setDiscord] = useSurfaceDraft("components/ReviewModal.tsx:discord", "");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Animation values

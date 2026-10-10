@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Feedback — the permanent testimonial hub (mobile twin)
  * ======================================================
@@ -57,8 +58,8 @@ export default function FeedbackSection() {
   const { isSignedIn } = useAuthState();
   const walletAddress = user?.walletAddress || user?.address || null;
 
-  const [body, setBody] = useState("");
-  const [timeUsing, setTimeUsing] = useState("");
+  const [body, setBody] = useSurfaceDraft("components/Stats/FeedbackSection.tsx:body", "");
+  const [timeUsing, setTimeUsing] = useSurfaceDraft("components/Stats/FeedbackSection.tsx:timeUsing", "");
   const [allowPromo, setAllowPromo] = useState(false);
   const [allowName, setAllowName] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -114,7 +115,7 @@ export default function FeedbackSection() {
     } finally {
       setSubmitting(false);
     }
-  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress]);
+  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress, setBody, setTimeUsing]);
 
   return (
     <>

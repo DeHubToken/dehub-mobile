@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * LaunchpadScreen
  * ===============
@@ -42,7 +43,7 @@ export default function LaunchpadScreen() {
   const wallet = user?.walletAddress || user?.address || null;
 
   const [filter, setFilter] = useState<LaunchpadFilter>("new");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/LaunchpadScreen.tsx:search", "");
 
   const tokensQuery = useLaunchpadTokens(filter, wallet);
   const trendingQuery = useTrendingLaunchpadTokens();

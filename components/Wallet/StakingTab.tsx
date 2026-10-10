@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
@@ -161,7 +162,7 @@ const StakingTab: React.FC = () => {
   const [earned, setEarned] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState<"stake" | "unstake">("stake");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/StakingTab.tsx:amount", "");
   const [isBusy, setIsBusy] = useState(false);
   /** A manual "did my transfer land yet?" check is in flight. */
   const [isRefreshing, setIsRefreshing] = useState(false);

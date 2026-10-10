@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * FeatureRequestsScreen
  * =====================
@@ -237,7 +238,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   const { data: comments = [], isLoading } = useFeatureRequestComments(featureId);
   const submitComment = useSubmitComment();
   const deleteComment = useDeleteComment();
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:draft", "");
   const growingInput = useGrowingTextInput(draft, 32, 100);
 
   const send = useCallback(() => {
@@ -251,7 +252,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
       { featureRequestId: featureId, content },
       { onSuccess: () => setDraft("") },
     );
-  }, [draft, submitComment, isAuthed, navigation, featureId]);
+  }, [draft, submitComment, isAuthed, navigation, featureId, setDraft]);
 
   const confirmDelete = useCallback(
     (commentId: string) => {
@@ -637,9 +638,9 @@ const SubmitSheet: React.FC<{
   initialCategory?: FeatureCategory;
 }> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
   const { t } = useTranslation();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [device, setDevice] = useState("");
+  const [title, setTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:description", "");
+  const [device, setDevice] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:device", "");
   const [category, setCategory] = useState<FeatureCategory>(initialCategory || "new_feature");
   const [attachments, setAttachments] = useState<FeatureAttachment[]>([]);
 
@@ -688,7 +689,7 @@ const SubmitSheet: React.FC<{
     setDevice("");
     setCategory(initialCategory || "new_feature");
     setAttachments([]);
-  }, [initialCategory]);
+  }, [initialCategory, setDescription, setDevice, setTitle]);
 
   const handleClose = useCallback(() => {
     reset();
@@ -872,7 +873,7 @@ export default function FeatureRequestsScreen() {
   const [tab, setTab] = useState<PageTab>("requests");
   const [sort, setSort] = useState<FeatureSort>("most_voted");
   const [category, setCategory] = useState<FeatureCategory | "all">("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:search", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [sheetOpen, setSheetOpen] = useState(false);
   const [iconFailed, setIconFailed] = useState(false);

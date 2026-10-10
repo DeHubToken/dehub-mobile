@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -281,7 +282,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   chipRadius = PILL_BORDER_RADIUS,
 }) => {
   const { t } = useTranslation();
-  const [categorySearch, setCategorySearch] = useState("");
+  const [categorySearch, setCategorySearch] = useSurfaceDraft("components/Home/FeedFilterPanel.tsx:categorySearch", "");
 
   const SORT_OPTIONS = useMemo(() => [
     // Keep the default home sort at the leading edge of the filter row.
@@ -370,7 +371,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   const handleSelectCategory = useCallback((cat: string) => {
     onCategoryPress?.(cat);
     setCategorySearch("");
-  }, [onCategoryPress]);
+  }, [onCategoryPress, setCategorySearch]);
 
   const content = (
     <>

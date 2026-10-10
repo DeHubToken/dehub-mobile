@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GuideScreen
  * ===========
@@ -100,7 +101,7 @@ export default function GuideScreen() {
   const { t, i18n } = useTranslation();
   const sections = useMemo(() => buildSections(t), [t, i18n.language]);
   const insets = useSafeAreaInsets();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("screens/GuideScreen.tsx:query", "");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([SECTION_DEFS[0].id]));
 
   const tokens = useMemo(

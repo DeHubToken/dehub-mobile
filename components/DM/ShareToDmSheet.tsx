@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo, useState } from "react";
@@ -41,7 +42,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   const { t } = useTranslation();
   const user = useUser();
   const conversations = useDmContacts();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/DM/ShareToDmSheet.tsx:search", "");
 
   const myUserId = (user as any)?._id || (user as any)?.id;
   const myAddress = (user as any)?.walletAddress || (user as any)?.address;

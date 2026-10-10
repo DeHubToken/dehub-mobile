@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Linking, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
@@ -94,8 +95,8 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
   const [tab, setTab] = useState<'chart' | 'book' | 'trade'>('chart');
   const [side, setSide] = useState<Side>('buy');
   const [mode, setMode] = useState<Mode>('limit');
-  const [amount, setAmount] = useState('');
-  const [price, setPrice] = useState('');
+  const [amount, setAmount] = useSurfaceDraft("screens/DexPoolScreen.tsx:amount", '');
+  const [price, setPrice] = useSurfaceDraft("screens/DexPoolScreen.tsx:price", '');
   const priceTouched = useRef(false);
   const [payNative, setPayNative] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -227,8 +228,8 @@ function PoolTerminal({ pool }: { pool: DexPool }) {
     if (priceTouched.current || marketPrice == null) return;
     const step = increment;
     const seeded = side === 'sell' ? Math.ceil(marketPrice * 1.001 / step) * step : Math.floor(marketPrice * 0.999 / step) * step;
-    setPrice(String(Number(seeded.toPrecision(8))));
-  }, [marketPrice, side, increment]);
+    setPrice.initialize(String(Number(seeded.toPrecision(8))));
+  }, [marketPrice, side, increment, setPrice]);
   useEffect(() => { setInstantQuote(null); setFormError(''); }, [side, mode, amount, payNative]);
   // Leaving mid-order drops the step that records it once the chain confirms,
   // so the order or trade never shows up here. Hold the screen until it lands.

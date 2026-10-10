@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * PackScreen — dehub.io/packs/:slug
  *
@@ -85,8 +86,8 @@ export default function PackScreen() {
 
   const [busy, setBusy] = useState(false);
   const [editingName, setEditingName] = useState<string | null>(null);
-  const [link, setLink] = useState("");
-  const [label, setLabel] = useState("");
+  const [link, setLink] = useSurfaceDraft("screens/PackScreen.tsx:link", "");
+  const [label, setLabel] = useSurfaceDraft("screens/PackScreen.tsx:label", "");
 
   if (isLoading) {
     return (

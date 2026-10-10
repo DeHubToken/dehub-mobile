@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * AdsScreen
  * =========
@@ -141,11 +142,11 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const create = useCreateCampaign();
-  const [name, setName] = useState("");
+  const [name, setName] = useSurfaceDraft("screens/AdsScreen.tsx:name", "");
   const [objective, setObjective] = useState<string>("awareness");
-  const [daily, setDaily] = useState("");
-  const [total, setTotal] = useState("");
-  const [ctaUrl, setCtaUrl] = useState("");
+  const [daily, setDaily] = useSurfaceDraft("screens/AdsScreen.tsx:daily", "");
+  const [total, setTotal] = useSurfaceDraft("screens/AdsScreen.tsx:total", "");
+  const [ctaUrl, setCtaUrl] = useSurfaceDraft("screens/AdsScreen.tsx:ctaUrl", "");
   const [tiers, setTiers] = useState<string[]>([]);
   const [creatorSupport, setCreatorSupport] = useState(false);
 
@@ -177,7 +178,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
         },
       },
     );
-  }, [valid, create, name, objective, daily, total, tiers, ctaUrl, creatorSupport, onClose]);
+  }, [valid, create, name, objective, daily, total, tiers, ctaUrl, creatorSupport, onClose, setCtaUrl, setDaily, setName, setTotal]);
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>

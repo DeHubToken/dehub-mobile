@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -21,8 +22,8 @@ interface ArcSendSheetProps {
 
 const ArcSendSheet: React.FC<ArcSendSheetProps> = ({ open, onClose, address, balance, onSent }) => {
   const { t } = useTranslation();
-  const [to, setTo] = useState("");
-  const [amount, setAmount] = useState("");
+  const [to, setTo] = useSurfaceDraft("components/Wallet/ArcSendSheet.tsx:to", "");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/ArcSendSheet.tsx:amount", "");
   const [sending, setSending] = useState(false);
 
   const trimmedTo = to.trim();

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkJobDetailScreen
@@ -150,16 +151,16 @@ export default function WorkJobDetailScreen() {
   const publishMutation=usePublishJob();
   const releaseMutation=useReleasePayment();
 
-  const [coverLetter, setCoverLetter] = useState("");
-  const [proofUrl, setProofUrl] = useState("");
-  const [proofText, setProofText] = useState("");
+  const [coverLetter, setCoverLetter] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:coverLetter", "");
+  const [proofUrl, setProofUrl] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:proofUrl", "");
+  const [proofText, setProofText] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:proofText", "");
   const [rating, setRating] = useState(5);
-  const [reviewComment, setReviewComment] = useState("");
+  const [reviewComment, setReviewComment] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:reviewComment", "");
   const [reviewTarget,setReviewTarget]=useState('');
-  const [disputeReason, setDisputeReason] = useState("");
+  const [disputeReason, setDisputeReason] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:disputeReason", "");
   const [showDispute, setShowDispute] = useState(false);
   const [rejectTarget, setRejectTarget] = useState<WorkSubmission | null>(null);
-  const [rejectReason, setRejectReason] = useState("");
+  const [rejectReason, setRejectReason] = useSurfaceDraft("screens/WorkJobDetailScreen.tsx:rejectReason", "");
   const [clipChecks, setClipChecks] = useState<Record<string, { views: string; evidence: string }>>({});
   const [recoveryHashes, setRecoveryHashes] = useState<Record<string,string>>({});
 
