@@ -13,7 +13,6 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Pressable,
-  Platform,
   StyleSheet,
   Image,
   type LayoutChangeEvent,
@@ -2519,7 +2518,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       onPress={disablePress ? undefined : handleCardPress}
       disabled={disablePress}
       // Matches the web feed tile (dehubweb HomeFeed.tsx:1066 + index.css:1264):
-      // translucent white fill and hairline rather than an opaque grey outline,
+      // a hairline over the page, with no fill in System on either platform,
       // 6pt vertical margin = 12pt inter-card gap (web `space-y-3`, was 8pt),
       // and one 12pt inset on every edge. Keeping the action row's bottom
       // inset equal to its side inset makes the controls sit squarely in the
@@ -2554,9 +2553,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       ] : {
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
-        // System on Android has no post fill; transparent also keeps the
+        // System has no post fill on either platform; transparent also keeps the
         // control-material pass from repainting this card as a grey button.
-        backgroundColor: Platform.OS === 'android' && theme === 'system'
+        backgroundColor: theme === 'system'
           ? 'transparent'
           : 'rgba(255,255,255,0.03)',
         borderRadius: FEED_BENTO_RADIUS,
