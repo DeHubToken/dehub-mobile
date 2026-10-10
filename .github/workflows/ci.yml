@@ -153,7 +153,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Prove the capture module is included in native autolinking
         run: |
-          npx expo-modules-autolinking resolve --platform android > screen-capture-modules.json
+          npx expo-modules-autolinking resolve --platform android --json > screen-capture-modules.json
           node <<'NODE'
           const fs = require('fs');
           const result = JSON.parse(fs.readFileSync('screen-capture-modules.json', 'utf8'));
