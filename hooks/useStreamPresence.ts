@@ -8,9 +8,9 @@ import { acquireStreamViewer } from '../libs/stream-presence';
 import { LivestreamEvents } from '../services/enums/livestream.enum';
 
 /** Presence follows playback, visibility and the app's foreground state. */
-export function useStreamPresence(streamId: string | undefined, watching: boolean) {
+export function useStreamPresence(streamId: string | undefined, watching: boolean, onViewerCount?: (count: number) => void) {
   const { isSignedIn } = useAuthState();
-  const { emitAuthed, isCoreConnected, coreConnected, connectionEpoch } = useWebSocket();
+  const { on, emitAuthed, isCoreConnected, coreConnected, connectionEpoch } = useWebSocket();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
   useEffect(() => {
     const subscription = AppState.addEventListener('change', state => setForeground(state === 'active'));
@@ -18,15 +18,21 @@ export function useStreamPresence(streamId: string | undefined, watching: boolea
   }, []);
   useEffect(() => {
     if (!streamId || !watching || !foreground) return;
+    const receiveCount = (data: any) => {
+      if (data?.streamId === streamId && typeof data.viewerCount === 'number') onViewerCount?.(data.viewerCount);
+    };
     if (isSignedIn) {
       if (!coreConnected) return;
-      return acquireStreamViewer(emitAuthed, isCoreConnected, connectionEpoch, streamId);
+      const off = on(LivestreamEvents.ViewCountUpdate, receiveCount);
+      const release = acquireStreamViewer(emitAuthed, isCoreConnected, connectionEpoch, streamId);
+      return () => { off(); release(); };
     }
     // The shared application socket is only created for signed-in accounts.
     const socket = io((env.WEBSOCKET_URL || 'https://api.dehub.io').replace(/\/socket\.io\/?$/i, ''), {
       transports: ['websocket', 'polling'],
     });
     socket.on('connect', () => socket.emit(LivestreamEvents.AnonJoinStream, { streamId }));
+    socket.on(LivestreamEvents.ViewCountUpdate, receiveCount);
     return () => { socket.disconnect(); };
-  }, [streamId, watching, foreground, isSignedIn, coreConnected, connectionEpoch, emitAuthed, isCoreConnected]);
+  }, [streamId, watching, foreground, isSignedIn, coreConnected, connectionEpoch, emitAuthed, isCoreConnected, on, onViewerCount]);
 }
