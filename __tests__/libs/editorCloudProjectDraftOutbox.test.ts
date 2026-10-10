@@ -43,6 +43,20 @@ function setup() {
     clock: (value: number) => { now = value; }, switchAccount: () => { active = false; } };
 }
 
+it("refuses to stage against a checkpoint that changed after capture",async()=>{
+  const env=setup();await env.outbox().register();const accepted=copy(env.state().writer!.checkpoint),newer=env.state();
+  newer.writer!.checkpoint.draftRevision=1;env.set(newer);
+  await expect(env.outbox().stage(changed(),accepted)).rejects.toThrow("baseline changed");
+  expect(env.state()).toEqual(newer);expect(env.requests).toEqual([]);expect(env.events).toEqual(["write","open","write"]);
+});
+it("recovers an existing exact request before considering a later captured checkpoint",async()=>{
+  const env=setup();await env.outbox().register();env.loseSave();await expect(env.outbox().stage(changed("First"))).rejects.toThrow();
+  const pending=copy(env.state().pending!),accepted=copy(env.state().writer!.checkpoint);accepted.draftRevision=100;
+  const result=await env.outbox().stage(changed("Later"),accepted);
+  expect(env.requests[1]).toEqual(pending);expect(result.recovered).toBe(true);expect(result.capturedSent).toBe(false);
+  expect(env.state().pending).toBeNull();expect(env.state().writer!.checkpoint.document.snapshot.title).toBe("First");
+});
+
 it("persists a stable device client before registration and never sends edits while joining", async () => {
   const env = setup(); await env.outbox().register();
   expect(env.events).toEqual(["write", "open", "write"]); expect(env.clients).toEqual([clientId]);
