@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 import BadgeArtwork from "../components/common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../libs/misc";
 /**
@@ -160,7 +161,7 @@ export default function AccountsScreen() {
   const [sort, setSort] = useState<AccountSort>("newest");
   // A shared listing link (dehub.io/accounts?handle=x) lands here with the
   // handle already in the box, the same as web's ?handle= param.
-  const [search, setSearch] = useState(() => String(route.params?.handle || ""));
+  const [search, setSearch] = useSurfaceDraft("screens/AccountsScreen.tsx:search", () => String(route.params?.handle || ""));
   const [band, setBand] = useState<string | null>(null);
   const [selected, setSelected] = useState<AccountListing | null>(null);
 

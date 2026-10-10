@@ -97,9 +97,8 @@ const EarningsComparisonCard: React.FC = () => {
   const [totalViews, setTotalViews] = useState(0);
   const [postCount, setPostCount] = useState(0);
   const [dhbPrice, setDhbPrice] = useState(0);
-  const [rpmText, setRpmText] = useState<Record<string, string>>(() =>
-    Object.fromEntries(PLATFORMS.map((p) => [p.key, String(p.defaultRpm)])),
-  );
+  const [rpmText, setRpmText] = useSurfaceDraft<Record<string, string>>("components/Earnings/EarningsComparisonCard.tsx:rpmText", () =>
+    Object.fromEntries(PLATFORMS.map((p) => [p.key, String(p.defaultRpm)])));
   const [estimatorViews, setEstimatorViews] = useSurfaceDraft("components/Earnings/EarningsComparisonCard.tsx:estimatorViews", "");
 
   useEffect(() => {

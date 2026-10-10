@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 import BadgeArtwork from "../components/common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../libs/misc";
 /**
@@ -192,7 +193,7 @@ export default function UsernamesScreen() {
   const [sort, setSort] = useState<UsernameSort>("newest");
   // A shared listing link (dehub.io/usernames?handle=x) lands here with the
   // handle already in the box, the same as web's ?handle= param.
-  const [search, setSearch] = useState(() => String(route.params?.handle || ""));
+  const [search, setSearch] = useSurfaceDraft("screens/UsernamesScreen.tsx:search", () => String(route.params?.handle || ""));
   const [band, setBand] = useState<string | null>(null);
   const [selected, setSelected] = useState<UsernameListing | null>(null);
   // The handle a bid is being made for. Set from the "somebody holds this"

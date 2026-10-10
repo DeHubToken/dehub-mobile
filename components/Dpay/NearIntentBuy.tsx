@@ -59,7 +59,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
   const wallet = (user?.walletAddress || user?.address || '') as string;
   const focused = useIsFocused();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
-  const [amountText, setAmountText] = useState(String(initialDhbAmount));
+  const [amountText, setAmountText] = useSurfaceDraft("components/Dpay/NearIntentBuy.tsx:amountText", String(initialDhbAmount));
   const deliveredRef = React.useRef<string | null>(null);
   const [search, setSearch] = useSurfaceDraft("components/Dpay/NearIntentBuy.tsx:search", '');
   const [agreed, setAgreed] = useState(false);

@@ -104,9 +104,6 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const handleReset = () => {
     setStep("initial");
     setRating(0);
-    setFeedback("");
-    setTelegram("");
-    setDiscord("");
     setIsSubmitting(false);
     // Reset animation states
     contentOpacity.value = 1;
@@ -210,6 +207,9 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       }
 
       console.log("Feedback submitted successfully:", result);
+      setFeedback.complete(feedback, "");
+      setTelegram.complete(telegram, "");
+      setDiscord.complete(discord, "");
       toastSuccess(t("review.thankYou"));
       handleClose();
     } catch (error: any) {

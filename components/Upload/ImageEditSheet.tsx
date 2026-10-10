@@ -1,3 +1,4 @@
+import { useDraftState } from "../../hooks/useDraftState";
 /**
  * The composer's photo tools: Filters (the web's FilterEditor) and Draw &
  * write (the web's ImageAnnotator). Both hand back a new file with the edit
@@ -85,8 +86,9 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
   const [tool, setTool] = useState<"draw" | "text">("draw");
   const [color, setColor] = useState(COLORS[2]);
   const [sizeStep, setSizeStep] = useState(1);
-  const [items, setItems] = useState<Annotation[]>([]);
-  const [pendingText, setPendingText] = useState<{ at: Point; value: string } | null>(null);
+  const annotationScope = uri;
+  const [items, setItems] = useDraftState<Annotation[]>(`annotation:${annotationScope}:items`, []);
+  const [pendingText, setPendingText] = useDraftState<{ at: Point; value: string } | null>(`annotation:${annotationScope}:text`, null);
   const drawing = useRef(false);
 
   useEffect(() => {
@@ -168,7 +170,7 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
     if (pending && text) {
       setItems((prev) => [...prev, { kind: "text", at: pending.at, text, color, size: TEXT_SIZES[sizeStep] }]);
     }
-  }, [color, sizeStep]);
+  }, [color, sizeStep, setItems]);
 
   const onTouchStart = (e: GestureResponderEvent) => {
     const p = pointFrom(e);
@@ -228,6 +230,8 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
     try {
       const result = await bakeEdit(uri, mode === "filter" ? { filter: settings } : { items: finalItems }, mimeType);
       onApply(result, mode === "filter" ? { settings, presetId } : undefined);
+      setItems.complete(items, []);
+      setPendingText.complete(pendingText, null);
     } catch (err) {
       console.warn("[ImageEditSheet] bake failed:", err);
       toastError(t("upload.editFailed"));

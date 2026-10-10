@@ -41,7 +41,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
   }, [pools, query]);
   const showHouse = !query || `dhb dehub tokens ${tokenLabel()}`.toLowerCase().includes(query.trim().toLowerCase());
 
-  const close = () => { setOpen(false); setQuery(''); };
+  const close = () => { setOpen(false); };
   const goHouse = () => { close(); if (current) navigation.navigate(ScreenNames.Dex); };
   const goPool = (pool: DexPool) => { close(); navigation.navigate(ScreenNames.DexPool, { chain: pool.chain, address: pool.token_address }); };
 

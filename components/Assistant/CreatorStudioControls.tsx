@@ -26,11 +26,11 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
   useEffect(() => { setModelSearch.initialize(''); }, [picker, settings.mode, setModelSearch]);
-  const [durationDraft, setDurationDraft] = useState(String(settings.durationSeconds));
+  const [durationDraft, setDurationDraft] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:durationDraft", String(settings.durationSeconds), `${settings.mode}:${settings.model}`);
   const editingDuration = useRef(false);
   useEffect(() => {
-    if (!editingDuration.current) setDurationDraft(String(settings.durationSeconds));
-  }, [settings.durationSeconds, settings.model, settings.mode]);
+    if (!editingDuration.current) setDurationDraft.initialize(String(settings.durationSeconds));
+  }, [settings.durationSeconds, settings.model, settings.mode, setDurationDraft]);
   const commitDuration = () => {
     editingDuration.current = false;
     const durationSeconds = durationDraft.trim() && Number.isFinite(Number(durationDraft))

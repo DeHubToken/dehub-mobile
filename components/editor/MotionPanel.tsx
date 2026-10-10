@@ -1,3 +1,4 @@
+import { useDraftState } from "../../hooks/useDraftState";
 /**
  * Motion: keyframes for a layer's position, size, rotation and transparency,
  * and the curve each keyframe eases out with. The phone version of the web's
@@ -215,6 +216,7 @@ export function MotionPanel(props: {
               )}
               <ValueField
                 key={`${p}:${value}`}
+                draftScope={`motion:${clip.id}:${p}:${local}`}
                 value={value}
                 unit={unit(p)}
                 label={labels[p]}
@@ -399,12 +401,11 @@ function ScrubLabel(props: { label: string; hint: string; disabled?: boolean; on
 }
 
 /** Number box that commits when the keyboard is dismissed. */
-function ValueField(props: { value: number; unit: string; label: string; keyed?: boolean; disabled?: boolean; onDone: (n: number) => void }) {
-  const [text, setText] = useState(String(props.value));
+function ValueField(props: { draftScope: string; value: number; unit: string; label: string; keyed?: boolean; disabled?: boolean; onDone: (n: number) => void }) {
+  const [text, setText] = useDraftState(props.draftScope, String(props.value));
   const done = () => {
     const n = Number(text.replace(",", "."));
-    if (Number.isFinite(n)) props.onDone(n);
-    else setText(String(props.value));
+    if (text.trim() && Number.isFinite(n)) { props.onDone(n); setText.complete(text, String(n)); }
   };
   return (
     <View

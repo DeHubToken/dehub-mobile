@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * LiveSettingsPanel
  *
@@ -98,7 +99,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   // Draft tip value (not committed until confirm)
-  const [tipDraft, setTipDraft] = useState(state.minTip);
+  const [tipDraft, setTipDraft] = useSurfaceDraft("components/Upload/LiveSettingsPanel.tsx:tipDraft", state.minTip);
 
 
   const handleChatToggle = useCallback(
@@ -177,7 +178,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   const handleMinTipRowPress = useCallback(() => {
     setTipDraft(state.minTip);
     setExpandedSection((prev) => (prev === "minTip" ? null : "minTip"));
-  }, [state.minTip]);
+  }, [state.minTip, setTipDraft]);
 
   const confirmTip = useCallback(() => {
     const num = Number(tipDraft);

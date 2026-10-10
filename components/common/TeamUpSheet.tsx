@@ -108,7 +108,6 @@ export default function TeamUpSheet({
   const [requesting, setRequesting] = useState<string | null>(null);
   const [requestMessage, setRequestMessage] = useSurfaceDraft("components/common/TeamUpSheet.tsx:requestMessage", '', requesting);
   const [editing, setEditing] = useState(false);
-  const [editDescription, setEditDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:editDescription", '', team?.id ?? null);
   const [editPrivate, setEditPrivate] = useState(false);
   const deferredSearch = useDeferredValue(search);
   const mine = useTeamUp(visible);
@@ -125,6 +124,7 @@ export default function TeamUpSheet({
     || approve.isPending || deny.isPending || leave.isPending || remove.isPending;
   const myAddress = address?.toLowerCase() ?? '';
   const team = mine.data;
+  const [editDescription, setEditDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:editDescription", '', team?.id ?? null);
   const isOwner = !!team && team.ownerAddress.toLowerCase() === myAddress;
   const tierLabel = (tier: string | null) => tier || t('teamUp.noBadgeYet');
 

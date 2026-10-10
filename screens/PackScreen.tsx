@@ -85,7 +85,7 @@ export default function PackScreen() {
   const isSaved = !!pack && (saved.data ?? []).some((p) => p.id === pack.id);
 
   const [busy, setBusy] = useState(false);
-  const [editingName, setEditingName] = useState<string | null>(null);
+  const [editingName, setEditingName] = useSurfaceDraft<string | null>("screens/PackScreen.tsx:editingName", null, slug);
   const [link, setLink] = useSurfaceDraft("screens/PackScreen.tsx:link", "");
   const [label, setLabel] = useSurfaceDraft("screens/PackScreen.tsx:label", "");
 

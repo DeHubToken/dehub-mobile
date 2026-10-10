@@ -35,8 +35,6 @@ const ArcSendSheet: React.FC<ArcSendSheetProps> = ({ open, onClose, address, bal
 
   const close = () => {
     if (sending) return;
-    setTo("");
-    setAmount("");
     onClose();
   };
 
@@ -47,8 +45,8 @@ const ArcSendSheet: React.FC<ArcSendSheetProps> = ({ open, onClose, address, bal
       await sendArcUsdc(address, trimmedTo, amount);
       toastSuccess(t("transfer.sent"));
       onSent();
-      setTo("");
-      setAmount("");
+      setTo.complete(to, "");
+      setAmount.complete(amount, "");
       onClose();
     } catch (e: any) {
       const message =
