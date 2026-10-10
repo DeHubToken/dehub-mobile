@@ -1,9 +1,10 @@
 import * as FileSystem from "expo-file-system/legacy";
-import { searchFreeAssets } from "./freeAssets";
+import { searchFreeAssets, type FreeAssetKind, type FreeAssetSearch } from "./freeAssets";
 import { importClipFile, importPicture, type MediaMeta, type MediaProvenance } from "./storage";
 import { stockSearchPlan, type StockOrientation } from "./stockSearchPlan";
 export type { StockOrientation } from "./stockSearchPlan";
 export type StockKind = "photo" | "video" | "audio";
+export type StockLibraryKind = FreeAssetKind;
 
 export interface StockItem {
   title: string; downloadUrl: string; mimeType: string;
@@ -15,6 +16,9 @@ export interface StockItem {
 const NOT_A_PHOTO = /illustrat|clip ?art|vector|drawing|cartoon|icon|logo|diagram|sketch|svg/i;
 export async function searchStock(query: string, orientation: StockOrientation, kind: StockKind): Promise<StockItem[]> {
   return (await searchFreeAssets({ kind, query, orientation })).items;
+}
+export function searchStockPage(query: string, orientation: StockOrientation, kind: StockLibraryKind, page = 1, signal?: AbortSignal): Promise<FreeAssetSearch> {
+  return searchFreeAssets({ kind, query, orientation, page, signal });
 }
 export function pickStock(items: StockItem[], kind: StockKind): StockItem | undefined {
   const usable = items.filter(a => a.downloadUrl && (kind === "photo" ? /^image\//.test(a.mimeType) && !/svg/i.test(a.mimeType) : a.mimeType.startsWith(`${kind}/`)));
@@ -28,7 +32,7 @@ function provenance(item: StockItem): MediaProvenance {
 }
 function extension(item: StockItem, kind: StockKind): string {
   const mime = item.mimeType.split(";")[0].toLowerCase();
-  const ext: Record<string, string> = { "image/png": "png", "image/webp": "webp", "image/jpeg": "jpg", "video/mp4": "mp4", "video/webm": "webm", "video/quicktime": "mov", "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav", "audio/mp4": "m4a", "audio/aac": "aac", "audio/flac": "flac" };
+  const ext: Record<string, string> = { "image/png": "png", "image/webp": "webp", "image/jpeg": "jpg", "image/gif": "gif", "image/svg+xml": "svg", "video/mp4": "mp4", "video/webm": "webm", "video/quicktime": "mov", "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav", "audio/mp4": "m4a", "audio/aac": "aac", "audio/flac": "flac" };
   return ext[mime] ?? (kind === "photo" ? "jpg" : kind === "video" ? "mp4" : "mp3");
 }
 
@@ -56,6 +60,11 @@ export async function importStockItem(item: StockItem, kind: StockKind): Promise
       return kind === "photo" ? await importPicture(picked) : await importClipFile({ ...picked, kind });
     } catch { return null; }
     finally { await FileSystem.deleteAsync(tmp, { idempotent: true }).catch(() => {}); }
+}
+export function importStockLibraryItem(item: StockItem, kind: StockLibraryKind): Promise<MediaMeta | null> {
+  const mediaKind = kind === "animation" ? "video" : kind === "gif" || kind === "graphic" ? "photo" : kind;
+  if (!item.mimeType.startsWith(mediaKind === "photo" ? "image/" : `${mediaKind}/`)) return Promise.resolve(null);
+  return importStockItem(item, mediaKind);
 }
 export async function importStockPhoto(query: string, orientation: StockOrientation = "all"): Promise<string | null> {
   return (await importStockAsset(query, orientation, "photo"))?.id ?? null;

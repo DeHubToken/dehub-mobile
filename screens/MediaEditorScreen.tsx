@@ -578,10 +578,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
 
   // In a video, a new picture, text or shape shows from the playhead for a few
   // seconds instead of the whole video.
-  const atPlayhead = (p: ProjectSnapshot, clipId: string) => {
-    if (showTimeline && isVideoProject(p)) return retimeToPlayhead(p, clipId, time);
+  const atPlayhead = (p: ProjectSnapshot, clipId: string, start = time) => {
+    if (showTimeline && isVideoProject(p)) return retimeToPlayhead(p, clipId, start);
     if (!p.settings.pages?.length) return p;
-    const page = pageAt(getPages(p.settings, p.clips), time);
+    const page = pageAt(getPages(p.settings, p.clips), start);
     return updateClip(p, clipId, { start: page.start, duration: page.end - page.start });
   };
 
@@ -1192,11 +1192,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       });
       setTimelineOpen(true); select(clipId);
     }} />;
-    if (tool === "stock") return <StockPanel onAdd={(media) => {
+    if (tool === "stock") return <StockPanel at={canvasTime} scope={h.scopeVersion()} subscribe={h.subscribe} onStart={() => { setPlaying(false); return h.holdEdits(); }} onAdd={(media, start) => {
       const current = h.latest();
       if (!current) return;
-      const next = media.kind === "image" ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
-      h.commit(media.kind === "image" ? atPlayhead(next.project, next.clipId) : next.project);
+      const next = media.kind === "image" ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, start);
+      h.commit(media.kind === "image" ? atPlayhead(next.project, next.clipId, start) : next.project);
       select(next.clipId);
     }} />;
     if (tool === "scenes") {

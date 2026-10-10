@@ -1,4 +1,4 @@
-import { importStockAsset, importStockItem, pickStock } from "../../libs/editor/stock";
+import { importStockAsset, importStockItem, importStockLibraryItem, searchStockPage, pickStock } from "../../libs/editor/stock";
 import { searchFreeAssets } from "../../libs/editor/freeAssets";
 import { importClipFile, importPicture } from "../../libs/editor/storage";
 import * as FileSystem from "expo-file-system/legacy";
@@ -27,4 +27,25 @@ it("imports sound as audio and deletes the temporary download on failure", async
 it("rejects oversized-duration stock and mismatched media", () => {
   expect(pickStock([{ ...clip, duration: 200 }, { ...clip, mimeType: "image/jpeg" }], "video")).toBeUndefined();
   expect(pickStock([{ ...clip, mimeType: "audio/ogg" }], "audio")).toBeDefined();
+});
+it("requests the selected stock type, shape and next provider page", async () => {
+  const controller = new AbortController();
+  jest.mocked(searchFreeAssets).mockResolvedValue({ items: [], page: 2, hasMore: true } as never);
+  expect(await searchStockPage("abstract", "portrait", "animation", 2, controller.signal)).toMatchObject({ page: 2, hasMore: true });
+  expect(searchFreeAssets).toHaveBeenCalledWith({ kind: "animation", query: "abstract", orientation: "portrait", page: 2, signal: controller.signal });
+});
+it("imports motion assets as video without treating them as pictures", async () => {
+  jest.mocked(importClipFile).mockResolvedValue({ id: "motion", kind: "video" } as never);
+  expect(await importStockLibraryItem(clip, "animation")).toMatchObject({ kind: "video" });
+  expect(importClipFile).toHaveBeenCalledWith(expect.objectContaining({ kind: "video", duration: 12 }));
+  expect(importPicture).not.toHaveBeenCalled();
+});
+it.each([["graphic", "image/svg+xml", "svg"], ["gif", "image/gif", "gif"]] as const)("keeps %s source format and credits through import", async (kind, mimeType, ext) => {
+  jest.mocked(importPicture).mockResolvedValue({ id: "art", kind: "image" } as never);
+  expect(await importStockLibraryItem({ ...clip, mimeType }, kind)).toMatchObject({ kind: "image" });
+  expect(importPicture).toHaveBeenCalledWith(expect.objectContaining({ mimeType, fileName: `Ocean.${ext}`, provenance: expect.objectContaining({ attributionText: "Ocean by Creator" }) }));
+});
+it("rejects a provider file whose media type does not match its stock category", async () => {
+  expect(await importStockLibraryItem(clip, "gif")).toBeNull();
+  expect(FileSystem.downloadAsync).not.toHaveBeenCalled();
 });
