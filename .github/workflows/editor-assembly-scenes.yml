@@ -1,0 +1,42 @@
+name: Editor assembly scene sampling
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'libs/editor/**'
+      - 'components/editor/**'
+      - 'screens/MediaEditorScreen.tsx'
+      - 'tests/editor-assembly-scenes-browser.mjs'
+      - '.github/workflows/editor-assembly-scenes.yml'
+permissions:
+  contents: read
+jobs:
+  browser-frames:
+    name: Real photo and video scene frames
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare hosted browser and source decoder
+        run: |
+          npm install --prefix "$RUNNER_TEMP/editor-browser" --no-save --no-package-lock --ignore-scripts playwright@1.64.0 esbuild@0.25.12
+          "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --version
+          brew install ffmpeg
+      - name: Verify actual still decoding, video trims and cancellation
+        env:
+          EDITOR_PLATFORM: mobile
+          EDITOR_BROWSER_ROOT: ${{ runner.temp }}/editor-browser
+        run: node tests/editor-assembly-scenes-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-assembly-scene-frames
+          path: assembly-scenes-browser-results/
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1,10 +1,11 @@
 import { assemblyFilePrompt, namedAssemblySelection } from "./namedAssembly";
+import { assemblyFocus, type AssemblySceneMatcher } from "./assemblyScenes";
 import { sliceTimelineClip } from "./timelineAgent";
 import { sameHighlightSource } from "./highlights";
 import { assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, selectedAssemblyAssets, type AssemblyAsset } from "./assemblyLibrary";
 import type { Clip, MediaClip, ProjectSnapshot, Track, TransitionKind } from "./types";
 
-export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean; filePrompt?: string; musicExcluded?: boolean }
+export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean; filePrompt?: string; musicExcluded?: boolean; focus?: string }
 export interface AssemblyShot { id: string; offset: number; duration: number }
 export interface AssemblyPlan { shots: AssemblyShot[]; transition: TransitionKind | null; soundId: string | null }
 const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
@@ -24,7 +25,8 @@ export function assemblyRequest(prompt: string): AssemblyRequest | null {
   if (!/\b(?:from|using|with my|with these|out of|a partir de|avec mes|avec ces|selected|selectionnes?)\b/.test(text) && !(files.named && /\b(?:with|avec)\b/.test(text)) && !/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text)) return null;
   const duration = text.match(/\b(\d+(?:\.\d+)?)\s*[- ]?\s*(?:seconds?|secs?|s|secondes?)\b/);
   const seconds = duration ? Number(duration[1]) : undefined;
-  return { ...(files.named ? { filePrompt: prompt, musicExcluded: /\b(?:without|no|sans)\s+(?:music|soundtrack|musique|audio)\b/.test(text) } : {}),
+  const focus = files.named ? undefined : assemblyFocus(prompt);
+  return { ...(focus ? { focus } : {}), ...(files.named ? { filePrompt: prompt, musicExcluded: /\b(?:without|no|sans)\s+(?:music|soundtrack|musique|audio)\b/.test(text) } : {}),
     ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionnes?)\b/.test(text),
     transition: /\b(?:without|no|sans)\s+(?:transitions?|fades?|fondus?)\b/.test(text) ? null : /\b(?:fades?|dissolves?|transitions?|fondus?)\b/.test(text) ? "fade" : null,
     music: /\b(?:music|soundtrack|musique)\b/.test(text) && !/\b(?:without|no|sans)\s+(?:music|soundtrack|musique)\b/.test(text) };
@@ -128,9 +130,9 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
   return { ...original, ...identity, settings, clips, tracks, updatedAt: Date.now() };
 }
 
-export interface AssemblyState extends AssemblyPlan { sourceId: string | null; media: MediaClip[]; sounds: MediaClip[]; busy: boolean; error: "selectMedia" | "limit" | "changed" | "failed" | null; undo: AssemblyPlan | null }
-export const emptyAssembly = (): AssemblyState => ({ sourceId: null, media: [], sounds: [], shots: [], transition: null, soundId: null, busy: false, error: null, undo: null });
-export interface AssemblyRuntime { current: () => ProjectSnapshot | null; library?: () => AssemblyAsset[] | Promise<AssemblyAsset[]>; create: (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => Promise<boolean> }
+export interface AssemblyState extends AssemblyPlan { sourceId: string | null; media: MediaClip[]; sounds: MediaClip[]; busy: boolean; error: "selectMedia" | "limit" | "changed" | "failed" | "noMatch" | "matchLimit" | "matchDuration" | "matchFailed" | null; undo: AssemblyPlan | null; focus?: string; matching?: boolean; matchProgress?: number; sceneMatches?: Record<string, string> }
+export const emptyAssembly = (): AssemblyState => ({ sourceId: null, media: [], sounds: [], shots: [], transition: null, soundId: null, busy: false, error: null, undo: null, focus: "", matching: false, matchProgress: 0, sceneMatches: {} });
+export interface AssemblyRuntime { current: () => ProjectSnapshot | null; library?: () => AssemblyAsset[] | Promise<AssemblyAsset[]>; match?: AssemblySceneMatcher; create: (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => Promise<boolean> }
 export async function persistAssembly(original: ProjectSnapshot, next: ProjectSnapshot, runtime: {
   current: () => ProjectSnapshot | null; save: (project: ProjectSnapshot) => Promise<void>; commit: (original: ProjectSnapshot, next: ProjectSnapshot) => void | Promise<void>;
 }, signal?: AbortSignal): Promise<boolean> {
@@ -157,7 +159,7 @@ export class AssemblySession {
     this.reset(); const source = this.runtime.current(); if (!source) { this.patch({ error: "selectMedia" }); return; }
     this.source = source; this.catalog = assemblyCatalog(library); this.request = request;
     const sources = assemblyLibrarySource(source, this.catalog);
-    this.patch({ sourceId: source.id, media: assemblyMedia(sources), sounds: assemblySounds(sources), transition: request.transition });
+    this.patch({ sourceId: source.id, media: assemblyMedia(sources), sounds: assemblySounds(sources), transition: request.transition, focus: request.focus ?? "" });
     if (request.filePrompt) {
       const chosen = namedAssemblySelection(request.filePrompt, this.state.media, this.state.sounds, library, request.selected ? selected : undefined);
       if (!chosen) { this.patch({ error: "selectMedia" }); return; }
@@ -183,7 +185,44 @@ export class AssemblySession {
       const clip = this.state.media.find(c => c.id === s.id);
       return clip && finite(s.offset) && finite(s.duration) && s.offset >= 0 && s.duration >= 0.05 && s.offset + s.duration <= availableDuration(clip) + 1e-6;
     });
-    this.patch({ ...value, error: valid ? null : "limit", undo: { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId } });
+    this.patch({ ...value, sceneMatches: {}, error: valid ? null : "limit", undo: { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId } });
+  }
+  focus(value: string) { if (!this.state.busy && this.matchesSource()) this.patch({ focus: value.slice(0, 240), sceneMatches: {} }); }
+  async match(optIn: true): Promise<boolean> {
+    if (optIn !== true || this.state.busy || !this.source || !this.request || !this.matchesSource() || !this.runtime.match) return false;
+    const source = this.source, request = this.request, focus = this.state.focus?.trim() ?? "", chosen = new Set(this.state.shots.map(shot => shot.id));
+    const media = this.state.media.filter(clip => chosen.has(clip.id));
+    if (focus.length < 2 || !media.length || media.length > 10) { this.patch({ error: "matchLimit" }); return false; }
+    const previous: AssemblyPlan = { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId };
+    const controller = new AbortController(); this.controller = controller;
+    const current = () => this.controller === controller && !controller.signal.aborted && this.matchesSource();
+    this.patch({ busy: true, matching: true, matchProgress: 0, error: null });
+    try {
+      const scenes = await this.runtime.match(media, focus, controller.signal, fraction => {
+        if (current()) this.patch({ matchProgress: Math.max(0, Math.min(1, fraction)) });
+        else if (this.controller === controller && !controller.signal.aborted) { this.patch({ error: "changed" }); controller.abort(); }
+      });
+      if (!current()) { if (this.controller === controller && !controller.signal.aborted) this.patch({ error: "changed" }); return false; }
+      if (!Array.isArray(scenes) || scenes.length > media.length || new Set(scenes.map(scene => scene.id)).size !== scenes.length
+        || scenes.some(scene => { const clip = media.find(value => value.id === scene.id); return !clip || !finite(scene.offset) || !finite(scene.duration) || !finite(scene.score) || scene.score < 0.75 || scene.score > 1 || scene.offset < 0 || scene.duration < 0.05 || scene.offset + scene.duration > availableDuration(clip) + 1e-6 || typeof scene.text !== "string" || scene.text.length < 4 || scene.text.length > 240; })) throw new Error("assembly_scene_invalid");
+      if (!scenes.length) { this.patch({ error: "noMatch" }); return false; }
+      if (this.catalog.length && this.runtime.library && !assemblyCatalogMatches(source, previous, this.catalog, await this.runtime.library())) {
+        if (current()) this.patch({ error: "changed" }); return false;
+      }
+      if (!current()) return false;
+      const ranked = [...scenes].sort((a, b) => b.score - a.score || previous.shots.findIndex(shot => shot.id === a.id) - previous.shots.findIndex(shot => shot.id === b.id));
+      const ordered = request.filePrompt ? previous.shots.map(shot => ranked.find(scene => scene.id === shot.id)).filter((scene): scene is NonNullable<typeof scene> => !!scene) : ranked;
+      const clips = ordered.map(scene => sliceTimelineClip(media.find(clip => clip.id === scene.id)!, scene.offset, scene.duration, scene.id, 0));
+      let plan: AssemblyPlan;
+      try { plan = assemblyPlan({ ...assemblyLibrarySource(source, this.catalog), clips }, { ...request, selected: true }, ordered.map(scene => scene.id)); }
+      catch { this.patch({ error: "matchDuration" }); return false; }
+      plan = { shots: ordered.map(scene => ({ ...plan.shots.find(shot => shot.id === scene.id)!, offset: scene.offset })), transition: previous.transition, soundId: previous.soundId };
+      this.patch({ ...plan, undo: previous, sceneMatches: Object.fromEntries(ordered.map(scene => [scene.id, scene.text])), error: null });
+      return true;
+    } catch (error) {
+      if (this.controller === controller && !controller.signal.aborted) this.patch({ error: this.matchesSource() ? error instanceof Error && error.message === "assembly_scene_limit" ? "matchLimit" : "matchFailed" : "changed" });
+      return false;
+    } finally { if (this.controller === controller) { this.controller = null; this.patch({ busy: false, matching: false }); } }
   }
   toggle(id: string) {
     if (this.state.busy || !this.matchesSource()) return;
@@ -233,7 +272,7 @@ export class AssemblySession {
     return this.source!.clips.some(source => source.id === clip.id) ? range : { ...range, libraryClip: sliceTimelineClip(clip, shot.offset, shot.duration, clip.id, 0) as MediaClip };
   }
   async create(): Promise<boolean> {
-    if (this.state.busy || !this.state.shots.length || this.state.error === "limit") return false;
+    if (this.state.busy || !this.state.shots.length || this.state.error === "limit" || this.state.error === "noMatch" || this.state.error === "matchLimit" || this.state.error === "matchDuration" || this.state.error === "matchFailed") return false;
     if (!this.source || !this.matchesSource()) { this.patch({ error: "changed" }); return false; }
     const controller = new AbortController(); this.controller = controller; this.patch({ busy: true, error: null });
     try {

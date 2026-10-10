@@ -1531,20 +1531,28 @@ canvas{display:block;width:100%;height:100%;}
     reader.onerror = function () { cancelAudioTool(reqId); post({ type: "audioFailed", reqId: reqId, error: "read" }); };
     reader.readAsDataURL(entry.blob.slice(entry.offset, end));
   }
-  var visualJob = null;
+  var visualJob = null, visualIncoming = new Map();
+  function releaseVisualScan(job) {
+    if (job.url) { URL.revokeObjectURL(job.url); job.url = null; }
+    if (visualJob === job) visualJob = null;
+  }
   function cancelVisualScan(reqId) {
+    visualIncoming.delete(reqId);
     if (!visualJob || visualJob.reqId !== reqId) return;
-    visualJob.abort.abort(); URL.revokeObjectURL(visualJob.url); visualJob = null;
+    var job = visualJob; job.abort.abort(); releaseVisualScan(job);
   }
   function processVisualScan(m) {
-    var blob = blobs.get(m.clip.mediaId);
+    var supplied = visualIncoming.get(m.reqId); visualIncoming.delete(m.reqId);
+    var blob = supplied ? new Blob(supplied.parts, { type: supplied.mime }) : blobs.get(m.clip.mediaId);
     if (visualJob || !blob) { post({ type: "visualFailed", reqId: m.reqId, error: "video unavailable" }); return; }
     var job = { reqId: m.reqId, abort: new AbortController(), url: URL.createObjectURL(blob) }; visualJob = job;
     sampleVisualFrames(job.url, m.clip, m.windows, job.abort.signal, function (fraction) { post({ type: "visualProgress", reqId: m.reqId, fraction: fraction }); }).then(function (frames) {
+      releaseVisualScan(job);
       if (!job.abort.signal.aborted) post({ type: "visualReady", reqId: m.reqId, frames: frames });
     }).catch(function (error) {
+      releaseVisualScan(job);
       if (!job.abort.signal.aborted) post({ type: "visualFailed", reqId: m.reqId, error: String(error.message || error) });
-    }).finally(function () { URL.revokeObjectURL(job.url); if (visualJob === job) visualJob = null; });
+    }).finally(function () { releaseVisualScan(job); });
   }
   var shotJob = null;
   function cancelShotScan(reqId) {
@@ -1763,6 +1771,14 @@ canvas{display:block;width:100%;height:100%;}
       cutout(m);
     } else if (m.type === "captions") {
       transcribeClip(m);
+    } else if (m.type === "visualSourceBegin") {
+      if (visualJob || visualIncoming.size || typeof m.mime !== "string" || !/^(image|video)\//.test(m.mime)) { post({ type: "visualFailed", reqId: m.reqId, error: "visual media unavailable" }); return; }
+      visualIncoming.set(m.reqId, { parts: [], mime: m.mime });
+      post({ type: "visualSourceAck", reqId: m.reqId });
+    } else if (m.type === "visualSourceChunk") {
+      var source = visualIncoming.get(m.reqId);
+      if (!source || typeof m.b64 !== "string" || !m.b64.length || m.b64.length > 1398104 || !/^[A-Za-z0-9+/]+={0,2}$/.test(m.b64) || m.b64.length % 4) { cancelVisualScan(m.reqId); post({ type: "visualFailed", reqId: m.reqId, error: "visual media unavailable" }); return; }
+      source.parts.push(b64ToBytes(m.b64)); post({ type: "visualSourceAck", reqId: m.reqId });
     } else if (m.type === "visualFrames") {
       processVisualScan(m);
     } else if (m.type === "visualCancel") {

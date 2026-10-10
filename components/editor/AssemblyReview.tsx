@@ -10,17 +10,26 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
   onPreview: (index: number) => void; onCreate: () => void; onClose: () => void;
 }) {
   const { t } = useTranslation();
+  const [sceneConsent, setSceneConsent] = useState<string | null>(null);
+  const sceneScope = `${state.sourceId}:${state.focus ?? ""}:${state.shots.map(shot => shot.id).join(",")}`;
+  useEffect(() => setSceneConsent(null), [sceneScope]);
   if (!state.sourceId) return null;
   const disabled = state.busy || changed;
   const label = (id: string) => { const c = [...state.media, ...state.sounds].find(c => c.id === id); return c ? names[c.mediaId] || t(c.kind === "image" ? "editor.app.photo" : c.kind === "audio" ? "editor.video.sound" : "editor.video.video") : id; };
-  const errors = { selectMedia: "editor.video.emptyTimeline", limit: "editor.shots.hint", changed: "editor.agent.failed", failed: "common.somethingWentWrong" };
+  const errors = { selectMedia: "editor.video.emptyTimeline", limit: "editor.shots.hint", changed: "editor.agent.failed", failed: "common.somethingWentWrong", noMatch: "editor.assembly.noMatch", matchLimit: "editor.assembly.matchLimit", matchDuration: "editor.assembly.matchDuration", matchFailed: "common.somethingWentWrong" };
   const button = (text: string, action: () => void, blocked = disabled, identity = text) => <Pressable key={identity} accessibilityRole="button" accessibilityLabel={text} disabled={blocked} onPress={() => { if (!blocked) action(); }} className="rounded-lg border border-white/20 px-2 py-1" style={{ opacity: blocked ? 0.4 : 1 }}><Text className="text-white text-xs">{text}</Text></Pressable>;
   return <View className="rounded-xl border border-white/15 p-3" style={{ gap: 10 }}>
     <Text className="text-white text-sm font-medium">{t("easyTrade.reviewTitle")} · {t("editor.video.video")}</Text>
     <Text className="text-theme-neutrals-300 text-xs">{t("editor.export.duration", { value: Number.isFinite(assemblyDuration(state)) ? assemblyDuration(state).toFixed(2) : "—" })}</Text>
     {(changed || state.error) && <Text accessibilityLiveRegion="polite" className="text-theme-neutrals-300 text-xs">{t(changed ? "editor.agent.failed" : errors[state.error!])}</Text>}
+    <TextInput accessibilityLabel={t("editor.highlights.focus")} placeholder={t("editor.highlights.focus")} maxLength={240} editable={!disabled} value={state.focus ?? ""} onChangeText={value => session.focus(value)} className="rounded-lg border border-white/20 px-2 py-1 text-white" />
+    <Pressable accessibilityRole="checkbox" accessibilityLabel={t("editor.assembly.matchConsent")} accessibilityState={{ checked: sceneConsent === sceneScope, disabled }} disabled={disabled} onPress={() => setSceneConsent(sceneConsent === sceneScope ? null : sceneScope)} className="flex-row items-center" style={{ gap: 8 }}><Text className="text-white">{sceneConsent === sceneScope ? "✓" : "□"}</Text><Text className="flex-1 text-white text-xs">{t("editor.assembly.matchConsent")}</Text></Pressable>
+    <Text className="text-theme-neutrals-300 text-xs">{t("editor.highlights.visualPrivacy")}</Text>
+    {button(t("editor.assembly.matchScenes"), () => { void session.match(true); }, disabled || sceneConsent !== sceneScope || (state.focus?.trim().length ?? 0) < 2 || !state.shots.length)}
+    {state.matching && <Text accessibilityLiveRegion="polite" className="text-theme-neutrals-300 text-xs">{t("editor.highlights.ranking")} · {Math.round((state.matchProgress ?? 0) * 100)}%</Text>}
     {state.media.map(c => <Pressable key={c.id} accessibilityRole="checkbox" accessibilityLabel={label(c.id)} accessibilityState={{ checked: state.shots.some(s => s.id === c.id), disabled }} disabled={disabled} onPress={() => session.toggle(c.id)} className="flex-row items-center" style={{ gap: 8 }}><Text className="text-white">{state.shots.some(s => s.id === c.id) ? "✓" : "□"}</Text><Text numberOfLines={1} className="flex-1 text-white text-xs">{label(c.id)}</Text></Pressable>)}
     {state.shots.map((s, index) => <View key={s.id} className="border-t border-white/10 pt-2" style={{ gap: 6 }}>
+      {state.sceneMatches?.[s.id] && <Text className="text-theme-neutrals-300 text-xs">{state.sceneMatches[s.id]}</Text>}
       <Text numberOfLines={1} className="text-white text-xs">{index + 1}. {label(s.id)}</Text>
       <View className="flex-row flex-wrap" style={{ gap: 8 }}>
         {button(`${t("editor.menu.bringForward")} ${index + 1}`, () => session.move(index, -1), disabled || index === 0)}
@@ -41,7 +50,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(`${state.soundId === null ? "✓ " : ""}${t("editor.video.none")}`, () => session.sound(null))}{state.sounds.map(c => button(`${state.soundId === c.id ? "✓ " : ""}${label(c.id)}`, () => session.sound(c.id), disabled, c.id))}</View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
       {state.undo && button(t("common.undo"), () => session.undo())}
-      {button(t(state.busy ? "common.loading" : "nav.create"), onCreate, disabled || !state.shots.length || assemblyDuration(state) > 600 || state.error === "limit")}
+      {button(t(state.busy ? "common.loading" : "nav.create"), onCreate, disabled || !state.shots.length || assemblyDuration(state) > 600 || ["limit", "noMatch", "matchLimit", "matchDuration", "matchFailed"].includes(state.error ?? ""))}
       {button(t("common.cancel"), onClose, false)}
     </View>
   </View>;
