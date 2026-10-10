@@ -1612,7 +1612,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
           <LiveFeedReactionFlow
             streamId={liveReactionStreamId}
-            selfAddress={userAddress ? String(userAddress).toLowerCase() : null}
             self={selfLiveReaction}
           />
         </View>

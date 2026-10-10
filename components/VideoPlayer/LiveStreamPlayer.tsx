@@ -136,8 +136,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const navigation = useNavigation<any>();
 
   // Refs for cleanup closures — always read latest values, never stale
-  const socketEmitRef = useRef(socketEmitAuthed);
-  useEffect(() => { socketEmitRef.current = socketEmitAuthed; }, [socketEmitAuthed]);
   const streamIdRef = useRef<string | null>(null);
   const isSignedInRef = useRef(isSignedIn);
   useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
@@ -1013,7 +1011,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         console.log('[LiveStreamPlayer] blur cleanup: emitting LeaveStream', { streamId: sid });
         try {
           releasePresenceRef.current?.();
-        releasePresenceRef.current = null;
+          releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] blur LeaveStream emit failed', e);
         }
@@ -1040,7 +1038,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         console.log('[LiveStreamPlayer] app background: emitting LeaveStream', { streamId: sid });
         try {
           releasePresenceRef.current?.();
-        releasePresenceRef.current = null;
+          releasePresenceRef.current = null;
         } catch (e) {
           console.warn('[LiveStreamPlayer] background LeaveStream emit failed', e);
         }
@@ -1070,7 +1068,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         joinStreamSentKeyRef.current = null;
         try {
           releasePresenceRef.current?.();
-        releasePresenceRef.current = null;
+          releasePresenceRef.current = null;
         } catch {}
       } else {
         try {

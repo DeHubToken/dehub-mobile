@@ -18,7 +18,6 @@ export interface SelfReaction {
 
 export default function LiveFeedReactionFlow({
   streamId,
-  selfAddress,
   self,
 }: {
   /**
@@ -27,8 +26,6 @@ export default function LiveFeedReactionFlow({
    * to land; only the room's copy is lost.
    */
   streamId?: string | null;
-  /** The signed-in viewer, lower-cased, so their own echo can be dropped. */
-  selfAddress?: string | null;
   /**
    * The viewer's own reaction, played the instant they tap it — the same beat
    * a tipper gets their celebration on. The echo is what the room sees; it is
