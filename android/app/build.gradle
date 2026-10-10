@@ -117,7 +117,7 @@ android {
         versionCode 47
         // Synced to app.json (was 1.13.9). android/ is the source of truth in
         // this bare workflow — EAS does not prebuild from app.json (C2).
-        versionName "1.18.3"
+        versionName "1.18.4"
 
         buildConfigField "String", "REACT_NATIVE_RELEASE_LEVEL", "\"${findProperty('reactNativeReleaseLevel') ?: 'stable'}\""
     }
