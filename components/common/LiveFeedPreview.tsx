@@ -23,8 +23,16 @@ import Icon from "../ui/Icon";
 import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useFeedBleed, useMediaTools, type MediaTool } from "../Home/feedBleed";
+import { useStreamPresence } from '../../hooks/useStreamPresence';
+import { useLivePaused } from '../../hooks/useLivePaused';
 
 interface Props {
+  /** Only supplied for an on-air stream viewed by someone other than its host. */
+  streamId?: string;
+  streamStatus?: string;
+  isOwner?: boolean;
+  paused?: boolean;
+  onViewerCount?: (count: number) => void;
   /** HLS ladder for the stream. */
   url: string;
   /** Poster frame, shown behind the video (and alone before it starts). */
@@ -61,8 +69,11 @@ function usablePoster(thumbnail?: string): string | undefined {
  * not the card is the one playing. Keeping it in a child that only exists
  * while `active` is the difference between one player and one per live card.
  */
-function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
+function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCount }: Pick<Props, 'url' | 'onPress' | 'streamId' | 'streamStatus' | 'isOwner' | 'onViewerCount'>) {
   const [firstFrame, setFirstFrame] = useState(false);
+  const [playRequested, setPlayRequested] = useState(true);
+  const [waitingTooLong, setWaitingTooLong] = useState(false);
+  const broadcastPaused = useLivePaused(streamId, streamStatus);
   const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
   const [controlsVisible, setControlsVisible] = useState(true);
@@ -84,6 +95,18 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
   }, [player, playbackAllowed, callInProgress, url]);
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
+  useStreamPresence(isOwner ? undefined : streamId, focused && playbackAllowed && playRequested && isPlaying && firstFrame && status !== 'error', onViewerCount);
+  const loading = playRequested && !broadcastPaused && status !== 'error' && (!firstFrame || status === 'loading');
+  useEffect(() => {
+    setWaitingTooLong(false);
+    if (!loading) return;
+    const timer = setTimeout(() => setWaitingTooLong(true), 12_000);
+    return () => clearTimeout(timer);
+  }, [loading, url]);
+  const togglePlay = () => {
+    if (playRequested) { setPlayRequested(false); player.pause(); }
+    else if (visualActivity.isFeedPlaybackAllowed()) { setPlayRequested(true); player.play(); }
+  };
   // Cinematic feed: play and sound live in the card's tools menu, not over
   // the picture.
   const foldTools = !!useFeedBleed()?.setTools;
@@ -92,7 +115,7 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
       key: "play",
       icon: isPlaying ? "Pause" : "Play",
       label: t(isPlaying ? "audioPost.pause" : "audioPost.play"),
-      onPress: () => { if (player.playing) player.pause(); else if (visualActivity.isFeedPlaybackAllowed()) player.play(); },
+      onPress: togglePlay,
     },
     {
       key: "sound",
@@ -100,7 +123,7 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
       label: t(muted ? "common.unmute" : "common.mute"),
       onPress: () => { player.muted = !muted; setMuted(!muted); },
     },
-  ] : null, [foldTools, isPlaying, muted, player, t]);
+  ] : null, [foldTools, isPlaying, playRequested, muted, player, t]);
   useMediaTools(tools);
 
   useEffect(() => {
@@ -130,6 +153,7 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
       player.muted = muted;
       player.staysActiveInBackground = false;
       player.showNowPlayingNotification = false;
+      setPlayRequested(true);
       player.play();
     } catch {
       // The player is released with the view; a play() on a torn-down one
@@ -165,14 +189,20 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
       surfaceType="textureView"
       />}
       </Pressable>
-      {status !== 'error' && (!firstFrame || status === 'loading') && (
+      {loading && !waitingTooLong && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
+      )}
+      {(broadcastPaused || !playRequested || waitingTooLong || status === 'error') && (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}>
+          <Text style={styles.feedbackText}>{broadcastPaused || !playRequested
+            ? t('liveViewer.streamPaused')
+            : t('live.reconnecting')}</Text>
+        </View>
       )}
       {controlsVisible && !foldTools && <View style={styles.controls}>
         <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
           event.stopPropagation();
-          if (player.playing) player.pause();
-          else player.play();
+          togglePlay();
         }}>
           <Icon name={isPlaying ? "Pause" : "Play"} size={18} color="#FFFFFF" />
         </Pressable>
@@ -209,7 +239,8 @@ function useScreenFocused(): boolean {
   return focused;
 }
 
-function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress }: Props) {
+function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress, streamId, streamStatus, isOwner, paused, onViewerCount }: Props) {
+  const { t } = useTranslation();
   const poster = usablePoster(thumbnail);
   // A viewability tick can hand this slot to a card passing through a fling.
   // Wait before mounting LivePlayer: even a paused native player allocates its
@@ -244,12 +275,15 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress }: Pr
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {settled && <LivePlayer key={url} url={url} onPress={onPress} />}
+      {settled && <LivePlayer key={url} url={url} onPress={onPress} streamId={streamId} streamStatus={streamStatus} isOwner={isOwner} onViewerCount={onViewerCount} />}
+      {paused && <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}><Text style={styles.feedbackText}>{t('liveViewer.streamPaused')}</Text></View>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  feedback: { alignItems: 'center', justifyContent: 'center' },
+  feedbackText: { color: '#FFFFFF', backgroundColor: 'rgba(0,0,0,0.75)', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 10, fontSize: 14 },
   controls: {
     position: "absolute",
     left: 12,
