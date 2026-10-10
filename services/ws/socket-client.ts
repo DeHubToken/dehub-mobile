@@ -465,6 +465,9 @@ export class WebSocketClient {
   }
 
   private emitInternal(event: string, data?: any) {
+    if (event === LivestreamEvents.StreamReaction && data) {
+      data = { ...data, isOwnReaction: !!data.sourceSocketId && data.sourceSocketId === this.socket?.id };
+    }
     const set = this.listeners.get(event);
     if (!set) return;
     set.forEach((cb) => {

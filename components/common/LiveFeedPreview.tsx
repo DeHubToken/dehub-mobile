@@ -23,8 +23,11 @@ import Icon from "../ui/Icon";
 import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useFeedBleed, useMediaTools, type MediaTool } from "../Home/feedBleed";
+import { useStreamPresence } from '../../hooks/useStreamPresence';
 
 interface Props {
+  /** Only supplied for an on-air stream viewed by someone other than its host. */
+  streamId?: string;
   /** HLS ladder for the stream. */
   url: string;
   /** Poster frame, shown behind the video (and alone before it starts). */
@@ -61,7 +64,7 @@ function usablePoster(thumbnail?: string): string | undefined {
  * not the card is the one playing. Keeping it in a child that only exists
  * while `active` is the difference between one player and one per live card.
  */
-function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
+function LivePlayer({ url, onPress, streamId }: { url: string; onPress?: () => void; streamId?: string }) {
   const [firstFrame, setFirstFrame] = useState(false);
   const { t } = useTranslation();
   const [muted, setMuted] = useState(true);
@@ -84,6 +87,7 @@ function LivePlayer({ url, onPress }: { url: string; onPress?: () => void }) {
   }, [player, playbackAllowed, callInProgress, url]);
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
+  useStreamPresence(streamId, focused && playbackAllowed && isPlaying && firstFrame && status !== 'error');
   // Cinematic feed: play and sound live in the card's tools menu, not over
   // the picture.
   const foldTools = !!useFeedBleed()?.setTools;
@@ -209,7 +213,7 @@ function useScreenFocused(): boolean {
   return focused;
 }
 
-function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress }: Props) {
+function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress, streamId }: Props) {
   const poster = usablePoster(thumbnail);
   // A viewability tick can hand this slot to a card passing through a fling.
   // Wait before mounting LivePlayer: even a paused native player allocates its
@@ -244,7 +248,7 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress }: Pr
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {settled && <LivePlayer key={url} url={url} onPress={onPress} />}
+      {settled && <LivePlayer key={url} url={url} onPress={onPress} streamId={streamId} />}
     </View>
   );
 }
