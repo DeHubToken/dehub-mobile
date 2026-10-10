@@ -294,7 +294,7 @@ export default function TVScreen() {
         />
         {search.length > 0 && (
           <Pressable
-            onPress={() => setSearch("")}
+            onPress={() => setSearch.complete(search, "")}
             hitSlop={14}
             accessibilityRole="button"
             accessibilityLabel={t("sidebar.clearSearch")}

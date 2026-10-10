@@ -76,7 +76,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
       const provider = await signer(ChainId.BASE_MAINNET, t('dex.unlockWallet'));
       await runSwap(quote, provider, address);
       toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(side === 'buy' ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), 18)) : value), symbol: tokenLabel() }));
-      setAmount(''); setQuote(null); setRevision((n) => n + 1); onDone();
+      setAmount.complete(amount, ''); setQuote(null); setRevision((n) => n + 1); onDone();
     } catch (e) { setError(dexActionError(e, t('dex.prepareFailed'))); }
     finally { setBusy(false); }
   }
@@ -85,9 +85,9 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
   const locked = busy || !!disabled;
   return <View style={s.box}>
     <View style={s.row}>
-      <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityState={{ selected: side === 'buy' }} style={[s.instant, s.buy, side === 'buy' && s.buyActive]} onPress={() => { setSide(side === 'buy' ? null : 'buy'); setAmount(''); }}>
+      <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityState={{ selected: side === 'buy' }} style={[s.instant, s.buy, side === 'buy' && s.buyActive]} onPress={() => { setSide(side === 'buy' ? null : 'buy'); setAmount.complete(amount, ''); }}>
         <Text style={side === 'buy' ? s.darkText : s.buyText}>⚡ {t('dex.pool.instantBuy')}</Text></TouchableOpacity>
-      <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityState={{ selected: side === 'sell' }} style={[s.instant, s.sell, side === 'sell' && s.sellActive]} onPress={() => { setSide(side === 'sell' ? null : 'sell'); setAmount(''); }}>
+      <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityState={{ selected: side === 'sell' }} style={[s.instant, s.sell, side === 'sell' && s.sellActive]} onPress={() => { setSide(side === 'sell' ? null : 'sell'); setAmount.complete(amount, ''); }}>
         <Text style={side === 'sell' ? s.darkText : s.sellText}>⚡ {t('dex.pool.instantSell')}</Text></TouchableOpacity>
     </View>
     {!!side && <View>

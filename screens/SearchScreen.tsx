@@ -659,7 +659,7 @@ const SearchScreen: React.FC = () => {
 
   const clearSearch = useCallback(() => {
     showHeader();
-    setSearchQuery("");
+    setSearchQuery.complete(searchQuery, "");
     setAccounts([]);
     setContent([]);
     setAccountsPagination(null);
@@ -668,7 +668,7 @@ const SearchScreen: React.FC = () => {
     setHasSearched(false);
     lastQuery.current = "";
     inputRef.current?.focus();
-  }, [showHeader, setSearchQuery]);
+  }, [showHeader, setSearchQuery, searchQuery]);
 
   const handleReplaceSearchBox = useCallback((term: string) => {
     setSearchQuery(term);

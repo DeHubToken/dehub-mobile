@@ -891,12 +891,12 @@ const FollowListScreen: React.FC = () => {
 
   const handleTabChange = useCallback((tab: TabKey) => {
     setActiveTab(tab);
-    setSearchQuery("");
+    setSearchQuery.complete(searchQuery, "");
     setDebouncedSearch("");
     setShowSortPicker(false);
     followBackStreakRef.current = 0;
     setShowFollowBackAll(false);
-  }, [setSearchQuery]);
+  }, [setSearchQuery, searchQuery]);
 
   const handleSortChange = useCallback((option: SortOption) => {
     setSortOption(option);
@@ -1141,7 +1141,7 @@ const FollowListScreen: React.FC = () => {
               />
               {searchQuery.length > 0 && (
                 <TouchableOpacity
-                  onPress={() => setSearchQuery("")}
+                  onPress={() => setSearchQuery.complete(searchQuery, "")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
                   <Ionicons name="close-circle" size={18} color="#A1A1AA" />

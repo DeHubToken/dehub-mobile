@@ -262,7 +262,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   );
 
   const jumpTo = (key: SectionKey) => {
-    setQuery("");
+    setQuery.complete(query, "");
     setAdding(false);
     setActive(key);
     const index = sections.length ? rows.findIndex((r) => r.kind === "header" && r.section === key) : -1;
@@ -373,7 +373,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
               onSubmitEditing={() => results?.[0] && choose(results[0])}
             />
             {!!query && (
-              <Pressable onPress={() => setQuery("")} hitSlop={8} accessibilityLabel={t("common.close")}>
+              <Pressable onPress={() => setQuery.complete(query, "")} hitSlop={8} accessibilityLabel={t("common.close")}>
                 <Icon name="X" size={14} color="#a1a1aa" />
               </Pressable>
             )}

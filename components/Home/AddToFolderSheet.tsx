@@ -228,8 +228,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
       // Add to local state and immediately add item to it
       if (newFolder) {
-        setNewFolderName("");
-        setNewFolderDesc("");
+        setNewFolderName.complete(newFolderName, "");
+        setNewFolderDesc.complete(newFolderDesc, "");
         setNewFolderPublic(false);
         setShowCreateForm(false);
         

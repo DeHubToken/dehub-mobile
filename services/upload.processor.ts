@@ -1,3 +1,5 @@
+import { completeDraftReceipt } from "../libs/draft-receipt";
+import { consumePublishedDraft } from "../hooks/useDrafts";
 import { useCallback, useEffect, useRef } from "react";
 import { useSnapshot } from "valtio";
 import i18n from "i18next";
@@ -477,6 +479,7 @@ async function processJob(job: UploadJob): Promise<void> {
     }
   } // end of the mint phase
 
+  let pollPublished = true;
   if (job.payload.pollData) {
     try {
       await createPoll({
@@ -487,12 +490,16 @@ async function processJob(job: UploadJob): Promise<void> {
         isMultipleChoice: job.payload.pollData.isMultipleChoice,
       });
     } catch (e) {
+      pollPublished = false;
       console.warn("[upload.processor] poll creation failed:", e);
     }
   }
 
   uploadActions.updateProgress(job.id, 1);
   uploadActions.updateStage(job.id, "done");
+  const receipt = Object.fromEntries(Object.entries(job.draftReceipt ?? {}).filter(([key]) => pollPublished || !/:poll/.test(key)));
+  const consumed = completeDraftReceipt(receipt);
+  if (consumed && pollPublished && job.sourceDraftId) await consumePublishedDraft(job.sourceDraftId, job.walletAddress);
 
   // The bill for a post that ran past the free allowance.
   //

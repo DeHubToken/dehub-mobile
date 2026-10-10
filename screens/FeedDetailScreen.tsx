@@ -1183,9 +1183,9 @@ function FeedDetailContent() {
       setInputText.clear();
       mentions.reset();
     }
-    if (!editingComment) setReplyTo(null);
+    if (!editingComment) setReplyTo.complete(replyTo, null);
     setEditingComment(null);
-  }, [editingComment, tokenId, mentions, setInputText, setReplyTo]);
+  }, [editingComment, tokenId, mentions, setInputText, setReplyTo, replyTo]);
 
   const handleSend = useCallback(() => {
     const text = inputText.trim();

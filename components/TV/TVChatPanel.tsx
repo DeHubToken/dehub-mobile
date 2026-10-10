@@ -1,3 +1,4 @@
+import { useDraftState } from "../../hooks/useDraftState";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 /**
@@ -221,7 +222,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   const atBottomRef = useRef(true);
 
   const [text, setText] = useSurfaceDraft("components/TV/TVChatPanel.tsx:text", "", channelId);
-  const [replyTo, setReplyTo] = useState<TvChatMessage | null>(null);
+  const [replyTo, setReplyTo] = useDraftState<TvChatMessage | null>(`tv:${channelId}:reply`, null);
   const [sending, setSending] = useState(false);
   // Message whose full emoji picker is open.
   const [moreFor, setMoreFor] = useState<TvChatMessage | null>(null);
@@ -244,7 +245,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
       try {
         await sendMessage(body, replyTo?.id);
         setText.complete(text, "");
-        setReplyTo(null);
+        setReplyTo.complete(replyTo, null);
         atBottomRef.current = true;
         scrollToBottom();
       } catch {
@@ -253,7 +254,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         setSending(false);
       }
     });
-  }, [text, sending, requireAuth, sendMessage, replyTo, scrollToBottom, setText]);
+  }, [text, sending, requireAuth, sendMessage, replyTo, scrollToBottom, setText, setReplyTo]);
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {
@@ -291,7 +292,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         onOpenProfile={handleOpenProfile}
       />
     ),
-    [myAddress, deleteMessage, handleToggleReaction, handleOpenProfile]
+    [myAddress, deleteMessage, handleToggleReaction, handleOpenProfile, setReplyTo]
   );
 
   return (
@@ -349,7 +350,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
             </Text>
           </View>
           <Pressable
-            onPress={() => setReplyTo(null)}
+            onPress={() => setReplyTo.complete(replyTo, null)}
             hitSlop={8}
             accessibilityRole="button"
             accessibilityLabel={t("tv.dismissReply")}

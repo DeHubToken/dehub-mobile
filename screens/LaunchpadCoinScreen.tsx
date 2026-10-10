@@ -68,7 +68,7 @@ function TradePanel({ token }: { token: LaunchpadToken }) {
     setBusy(true);
     try {
       await mockLaunchpadTrade({ tokenId: token.id, side, amount: n, traderAddress: wallet });
-      setAmount("");
+      setAmount.complete(amount, "");
       toastSuccess(t(side === "buy" ? "launchpad.boughtMock" : "launchpad.soldMock", { symbol: token.symbol }));
       queryClient.invalidateQueries({ queryKey: launchpadKeys.token(token.id) });
       queryClient.invalidateQueries({ queryKey: launchpadKeys.trades(token.id) });

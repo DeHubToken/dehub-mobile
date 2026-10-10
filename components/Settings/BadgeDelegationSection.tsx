@@ -106,7 +106,7 @@ const BadgeDelegationSection: React.FC = () => {
     const to = recipient.trim();
     if (!to || grant.isPending) return;
     const chosen = tier && grantableTiers.includes(tier) ? tier : null;
-    grant.mutate({ to, tier: chosen }, { onSuccess: () => setRecipient('') });
+    grant.mutate({ to, tier: chosen }, { onSuccess: () => setRecipient.complete(recipient, '') });
   };
 
   return (

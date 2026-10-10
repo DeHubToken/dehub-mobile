@@ -1,4 +1,5 @@
-import { useDraftState } from '../hooks/useDraftState';
+import { readDraft } from "../libs/draft-cache";
+import { accountDraftKey, useDraftState } from '../hooks/useDraftState';
 import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
 import { normalizeCategoryName } from "../libs/strings.util";
 import { t } from "i18next";
@@ -816,20 +817,33 @@ export default function UploadScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setArticleBody, setArticleMode, setBodyText, setCategories, setMonetization, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, setShowTitle, setTitleText]);
 
+  const captureActiveDraft = useCallback(() => {
+    const account = user?.walletAddress || user?.address;
+    const receipt: Record<string, string> = {};
+    const values = { bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks };
+    for (const [field, value] of Object.entries(values)) {
+      const key = accountDraftKey(account, `${draftScope}:${field}`);
+      const expected = JSON.stringify({ value });
+      if (key && readDraft(key) === expected) receipt[key] = expected;
+    }
+    return receipt;
+  }, [draftScope, user?.walletAddress, user?.address, bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks]);
+
   const clearActiveDraft = useCallback(() => {
-    setBodyText.clear();
-    setTitleText.clear();
-    setShowTitle.clear();
-    setArticleMode.clear();
-    setArticleBody.clear();
-    setCategories.clear();
-    setMonetization.clear();
-    setPollEnabled.clear();
-    setPollQuestion.clear();
-    setPollOptions.clear();
-    setPollDurationHours.clear();
-    setPollIsMultiple.clear();
-  }, [setBodyText, setTitleText, setShowTitle, setArticleMode, setArticleBody, setCategories, setMonetization, setPollEnabled, setPollQuestion, setPollOptions, setPollDurationHours, setPollIsMultiple]);
+    setBodyText.complete(bodyText, bodyText);
+    setTitleText.complete(titleText, titleText);
+    setShowTitle.complete(showTitle, showTitle);
+    setArticleMode.complete(articleMode, articleMode);
+    setArticleBody.complete(articleBody, articleBody);
+    setCategories.complete(categories, categories);
+    setMonetization.complete(monetization, monetization);
+    setPollEnabled.complete(pollEnabled, pollEnabled);
+    setPollQuestion.complete(pollQuestion, pollQuestion);
+    setPollOptions.complete(pollOptions, pollOptions);
+    setPollDurationHours.complete(pollDurationHours, pollDurationHours);
+    setPollIsMultiple.complete(pollIsMultiple, pollIsMultiple);
+    setShopLinks.complete(shopLinks, shopLinks);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, categories, monetization, pollEnabled, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, shopLinks, setBodyText, setTitleText, setShowTitle, setArticleMode, setArticleBody, setCategories, setMonetization, setPollEnabled, setPollQuestion, setPollOptions, setPollDurationHours, setPollIsMultiple, setShopLinks]);
 
   /** Delete the restored draft once the composer has produced something from it. */
   const consumeRestoredDraft = useCallback(() => {
@@ -1088,13 +1102,13 @@ export default function UploadScreen() {
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
-      setPollQuestion("");
+      setPollQuestion.complete(pollQuestion, "");
       setPollOptions(["", ""]);
       setPollDurationHours(24);
       setPollIsMultiple(false);
     }
     setPollEnabled((prev) => !prev);
-  }, [pollEnabled, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion]);
+  }, [pollEnabled, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, pollQuestion]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -1287,9 +1301,8 @@ export default function UploadScreen() {
       });
     }
 
-    const ok = enqueueJob(payload);
+    const ok = enqueueJob({ ...payload, draftReceipt: captureActiveDraft(), sourceDraftId: restoredDraftIdRef.current ?? undefined });
     if (!ok) return false;
-    consumeRestoredDraft();
     // The guard is released here rather than the moment the job is queued: the
     // form is still filled in and the screen is still up for these 120ms, so a
     // tap landing in the gap would post the same thing a second time.
@@ -1298,7 +1311,7 @@ export default function UploadScreen() {
       releaseSubmit();
     }, 120);
     return true;
-  }, [getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
+  }, [captureActiveDraft, getPayload, enqueueJob, navigateHome, releaseSubmit, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota, nav]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -1315,6 +1328,8 @@ export default function UploadScreen() {
       ? splitTitleFromText(bodyText, TITLE_MAX)
       : null;
     const ok = enqueueQuoteJob({
+      draftReceipt: captureActiveDraft(),
+      sourceDraftId: restoredDraftIdRef.current ?? undefined,
       bodyText: borrowed
         ? borrowed.title
         : (pickedVideo ? titleText.trim() : bodyText.trim()),
@@ -1328,7 +1343,6 @@ export default function UploadScreen() {
       quotedTokenId: Number(quotedTokenId),
     });
     if (!ok) return false;
-    consumeRestoredDraft();
     // Held through the navigation for the same reason as submitPost above.
     setTimeout(() => {
       navigateHome();
@@ -1337,7 +1351,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1377,8 +1391,8 @@ export default function UploadScreen() {
           ? await scheduleSpace({ title: titleText.trim().slice(0, 100), description: bodyText.trim() || undefined, scheduledAt: scheduledDate.toISOString(), coverImageUrl })
           : await createSpace(titleText.trim().slice(0, 100), bodyText.trim() || undefined, coverImageUrl);
         if (!space) { toastError(t(scheduledDate ? "stages.scheduleFailed" : "stages.startFailed")); return; }
-        setTitleText("");
-        setBodyText("");
+        setTitleText.complete(titleText, "");
+        setBodyText.complete(bodyText, "");
         setScheduledDate(null);
         setIsStageMode(false);
         setLiveThumbnailUri(null);
@@ -3108,6 +3122,7 @@ export default function UploadScreen() {
 
             {!isQuoteMode && !articleMode && (
               <MonetizationPanel
+                draftScope={draftScope}
                 state={monetization}
                 onChange={handleMonetizationChange}
                 postChainId={effectivePostChainId}
@@ -3179,6 +3194,7 @@ export default function UploadScreen() {
       {isLiveMode && (
         <Animated.View style={liveSettingsAnimStyle}>
           <LiveSettingsPanel
+            draftScope={draftScope}
             state={liveSettings}
             onChange={handleLiveSettingsChange}
           />

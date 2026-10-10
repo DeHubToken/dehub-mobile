@@ -415,7 +415,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const runFullSearch = useCallback(() => {
     const query = menuQuery.trim();
     if (!query) return;
-    setMenuQuery("");
+    setMenuQuery.complete(menuQuery, "");
     navigate(ScreenNames.Explore, { q: query, ts: Date.now() }, true);
   }, [menuQuery, navigate, setMenuQuery]);
 
@@ -581,7 +581,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               />
               {menuQuery.length > 0 && (
                 <TouchableOpacity
-                  onPress={() => setMenuQuery("")}
+                  onPress={() => setMenuQuery.complete(menuQuery, "")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("sidebar.clearSearch")}

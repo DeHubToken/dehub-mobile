@@ -460,7 +460,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                 autoCorrect={false}
               />
               {search.length > 0 && (
-                <TouchableOpacity onPress={() => setSearch("")} hitSlop={8}>
+                <TouchableOpacity onPress={() => setSearch.complete(search, "")} hitSlop={8}>
                   <Icon name="X" size={15} color="rgba(255,255,255,0.4)" />
                 </TouchableOpacity>
               )}

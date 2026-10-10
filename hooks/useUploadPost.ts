@@ -51,6 +51,8 @@ export interface PickedAudio {
 }
 
 export type UploadPayload = {
+  draftReceipt?: Record<string, string>;
+  sourceDraftId?: string;
   bodyText: string;
   description: string;
   articleBody?: string;
@@ -338,6 +340,8 @@ export function useUploadPost() {
       }
 
       const job: UploadJob = {
+        draftReceipt: p.draftReceipt,
+        sourceDraftId: p.sourceDraftId,
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         status: "queued",
         progress: 0,
@@ -371,6 +375,8 @@ export function useUploadPost() {
 
   const enqueueQuoteJob = useCallback(
     (p: {
+      draftReceipt?: Record<string, string>;
+      sourceDraftId?: string;
       bodyText: string;
       description: string;
       categories: string[];
@@ -406,6 +412,8 @@ export function useUploadPost() {
       const quoteCategories = mergeHashtagCategories(quoteTitle, quoteDesc, p.categories);
 
       const job: UploadJob = {
+        draftReceipt: p.draftReceipt,
+        sourceDraftId: p.sourceDraftId,
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         status: "queued",
         progress: 0,

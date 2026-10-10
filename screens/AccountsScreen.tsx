@@ -216,7 +216,7 @@ export default function AccountsScreen() {
             />
             {search.length > 0 && (
               <Pressable
-                onPress={() => setSearch("")}
+                onPress={() => setSearch.complete(search, "")}
                 hitSlop={8}
                 accessibilityRole="button"
                 accessibilityLabel={t("accounts.clearSearch")}

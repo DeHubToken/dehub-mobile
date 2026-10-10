@@ -103,7 +103,7 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
           returnKeyType="search"
         />
         {search.length > 0 && (
-          <Pressable onPress={() => setSearch("")} hitSlop={8} accessibilityRole="button">
+          <Pressable onPress={() => setSearch.complete(search, "")} hitSlop={8} accessibilityRole="button">
             <Icon name="X" size={15} color="#808089" />
           </Pressable>
         )}

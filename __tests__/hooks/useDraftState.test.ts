@@ -53,3 +53,22 @@ it('successful submission preserves typing entered while it was pending', () => 
   expect(field.result.current[0]).toBe('next');
   expect(JSON.parse(readDraft(key!)).value).toBe('next');
 });
+
+it.each(['dm:peer', 'public:composer', 'comment:post:reply', 'post:new:article', 'assistant:conversation', 'editor:project:clip', 'community:form', 'work:job:proof', 'store:listing:title'])(
+  'restores %s independently after navigation and a fresh storage load', (scope) => {
+    let key = accountDraftKey('alice', scope);
+    const first = renderHook(() => useStoredDraftState(key, ''));
+    act(() => first.result.current[1]('  unfinished\n '));
+    key = accountDraftKey('bob', scope);
+    first.rerender({}); expect(first.result.current[0]).toBe('');
+    act(() => first.result.current[1]('another account'));
+    first.unmount(); __resetDraftCacheForTests();
+    const restored = renderHook(() => useStoredDraftState(accountDraftKey('alice', scope), ''));
+    expect(restored.result.current[0]).toBe('  unfinished\n ');
+    act(() => restored.result.current[1].initialize('late server default'));
+    expect(restored.result.current[0]).toBe('  unfinished\n ');
+    act(() => restored.result.current[1].complete('  unfinished\n ', ''));
+    expect(readDraft(accountDraftKey('alice', scope)!)).toBe('');
+    expect(JSON.parse(readDraft(accountDraftKey('bob', scope)!)).value).toBe('another account');
+  },
+);

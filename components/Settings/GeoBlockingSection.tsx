@@ -160,7 +160,7 @@ const GeoBlockingSection: React.FC = () => {
               />
               {search ? (
                 <TouchableOpacity
-                  onPress={() => setSearch('')}
+                  onPress={() => setSearch.complete(search, '')}
                   activeOpacity={0.7}
                   className="p-2 -mr-2"
                   accessibilityRole="button"

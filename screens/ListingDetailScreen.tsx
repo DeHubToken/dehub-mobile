@@ -221,8 +221,8 @@ export default function ListingDetailScreen() {
         notes: notes.trim() || undefined,
       });
 
-      setShipping("");
-      setNotes("");
+      setShipping.complete(shipping, "");
+      setNotes.complete(notes, "");
       void hasPurchased.refetch();
     } catch (err: any) {
       const msg = String(err?.message || err || "");
@@ -282,7 +282,7 @@ export default function ListingDetailScreen() {
       {
         onSuccess: () => {
           setRating(0);
-          setReviewText("");
+          setReviewText.complete(reviewText, "");
         },
       },
     );

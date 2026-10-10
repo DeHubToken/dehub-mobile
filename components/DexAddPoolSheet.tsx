@@ -132,7 +132,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
       writePaid(null);
       await queryClient.invalidateQueries({ queryKey: ['dex-pools'] });
       toastSuccess(t('dex.pools.created', { symbol: pool.symbol }));
-      onClose(); setAddress(''); setImage(null); setCheck(null);
+      onClose(); setAddress.complete(address, ''); setImage(null); setCheck(null);
       onCreated(pool);
     } catch (e) {
       setError(dexActionError(e, t('dex.pools.createFailed')));
@@ -185,7 +185,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
               {!!busy && <ActivityIndicator color="#061410" />}
               <Text style={s.darkText}>{busy ? busyLabel : !walletAddress ? t('dex.connectWallet') : paid ? t('dex.pools.finish') : !covers && check?.token ? t('dex.pools.notEnough') : t('dex.pools.payAndOpen', { amount: POOL_FEE_USD })}</Text>
             </TouchableOpacity>
-            {paid && !busy && <TouchableOpacity onPress={() => { writePaid(null); setAddress(''); onClose(); }}><Text style={[s.link, { textAlign: 'center', marginTop: 12 }]}>{t('dex.pools.discardPaid')}</Text></TouchableOpacity>}
+            {paid && !busy && <TouchableOpacity onPress={() => { writePaid(null); setAddress.complete(address, ''); onClose(); }}><Text style={[s.link, { textAlign: 'center', marginTop: 12 }]}>{t('dex.pools.discardPaid')}</Text></TouchableOpacity>}
           </View>
   </GlassModal>;
 }

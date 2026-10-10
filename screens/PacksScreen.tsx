@@ -135,7 +135,7 @@ export default function PacksScreen() {
     try {
       const pack = await createPack(wallet, kind, name.trim());
       await invalidate();
-      setName("");
+      setName.complete(name, "");
       openPack(pack.slug);
     } catch (err) {
       toastError(packErrorMessage(err, t, kind));

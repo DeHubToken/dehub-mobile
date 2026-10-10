@@ -276,7 +276,7 @@ export default function ConverterScreen() {
           description: details?.description || undefined,
           rotation: details?.rotation,
         });
-        setUrl('');
+        setUrl.complete(url, '');
         toastInfo(t('converter.toastQueued'));
         await refresh();
       } catch (err) {
@@ -285,7 +285,7 @@ export default function ConverterScreen() {
         setSubmitting(false);
       }
     },
-    [refresh, t, setUrl],
+    [refresh, t, setUrl, url],
   );
 
   /**
@@ -299,8 +299,8 @@ export default function ConverterScreen() {
   const openReview = useCallback(
     (rawUrl: string) => {
       setReviewing(rawUrl);
-      setReviewName('');
-      setReviewDescription('');
+      setReviewName.complete(reviewName, '');
+      setReviewDescription.complete(reviewDescription, '');
       setReviewRotation(0);
       setReviewSource(null);
       setReviewIsLive(false);
@@ -317,7 +317,7 @@ export default function ConverterScreen() {
         .catch(() => undefined)
         .finally(() => setReviewLoading(false));
     },
-    [setReviewDescription, setReviewName],
+    [setReviewDescription, setReviewName, reviewDescription, reviewName],
   );
 
   const handleSubmit = useCallback(() => {

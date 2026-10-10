@@ -1,3 +1,4 @@
+import { useDraftState } from "../hooks/useDraftState";
 import React, {
   useCallback,
   useEffect,
@@ -265,7 +266,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [contextIsMine, setContextIsMine] = useState(false);
 
   // Reply / edit
-  const [replyTo, setReplyTo] = useState<DmMessage | null>(null);
   const [editingMessage, setEditingMessage] = useState<DmMessage | null>(null);
 
   /*
@@ -407,6 +407,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     () => dmDraftKey(user?.walletAddress || user?.address, peer.address),
     [user?.walletAddress, user?.address, peer.address],
   );
+  const [replyTo, setReplyTo] = useDraftState<DmMessage | null>(draftKey ? `${draftKey}:reply` : null, null);
 
   const iBlockedThem = useMemo(() => !!(target as any)?.youBlocked, [target]);
 
@@ -1152,11 +1153,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
       return true;
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks, setReplyTo],
   );
 
   // The Builder lander hands its request over as `autoSendText`: sent once,
@@ -1193,11 +1194,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       if (!(await dmSendQueue.waitForDelivery(sentId))) return false;
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
       return true;
     },
-    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks],
+    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
   );
 
   const onSendMedia = useCallback(
@@ -1227,11 +1228,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       if (!(await dmSendQueue.waitForDelivery(sentId))) return false;
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
       return true;
     },
-    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks],
+    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
   );
 
   const handleVoiceComplete = useCallback(
@@ -1251,9 +1252,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         dmFee,
       });
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
     },
-    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom, planBlocks],
+    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom, planBlocks, setReplyTo],
   );
 
   const handleVoiceCancel = useCallback(() => {}, []);
@@ -1285,7 +1286,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const handleReply = useCallback(() => {
     if (contextMessage) setReplyTo(contextMessage);
     closeContextMenu();
-  }, [contextMessage, closeContextMenu]);
+  }, [contextMessage, closeContextMenu, setReplyTo]);
 
   const handleEdit = useCallback(() => {
     if (contextMessage) setEditingMessage(contextMessage);
@@ -1534,7 +1535,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     (msg: DmMessage) => {
       setReplyTo(msg);
     },
-    [],
+    [setReplyTo],
   );
 
   const renderMessage = useCallback(
@@ -1768,7 +1769,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 disabledMessage={accountBanned ? t("banned.line") : undefined}
                 sending={sending}
                 replyTo={replyTo}
-                onCancelReply={() => setReplyTo(null)}
+                onCancelReply={() => setReplyTo.complete(replyTo, null)}
                 editingMessage={editingMessage}
                 onCancelEdit={() => setEditingMessage(null)}
                 dmFee={dmFee}

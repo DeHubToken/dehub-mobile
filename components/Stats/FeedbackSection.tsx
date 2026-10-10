@@ -106,8 +106,8 @@ export default function FeedbackSection() {
       if (error) throw error;
 
       setSubmitted(true);
-      setBody("");
-      setTimeUsing("");
+      setBody.complete(body, "");
+      setTimeUsing.complete(timeUsing, "");
       toastSuccess(t("stats.feedback.toastSent", "Thanks — your feedback is with us"));
     } catch (err) {
       console.error("[Feedback] Submit error:", err);
@@ -115,7 +115,7 @@ export default function FeedbackSection() {
     } finally {
       setSubmitting(false);
     }
-  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress, setBody, setTimeUsing]);
+  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress, setBody, setTimeUsing, body]);
 
   return (
     <>

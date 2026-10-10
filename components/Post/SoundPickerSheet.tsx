@@ -347,7 +347,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
             autoCorrect={false}
           />
           {searchText.length > 0 && (
-            <TouchableOpacity onPress={() => setSearchText("")}>
+            <TouchableOpacity onPress={() => setSearchText.complete(searchText, "")}>
               <Ionicons name="close-circle" size={18} color="#6F7174" />
             </TouchableOpacity>
           )}

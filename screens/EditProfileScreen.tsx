@@ -87,22 +87,22 @@ const EditProfileScreen = () => {
   const [displayName, setDisplayName] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:displayName", user?.displayName || "");
   const [username, setUsername] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:username", user?.username || "");
   const [aboutMe, setAboutMe] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:aboutMe", user?.aboutMe || "");
-  const [twitterLink, setTwitterLink] = useState<string>(user?.twitterLink || "");
-  const [instagramLink, setInstagramLink] = useState<string>(user?.instagramLink || "");
-  const [tiktokLink, setTiktokLink] = useState<string>(user?.tiktokLink || "");
-  const [youtubeLink, setYoutubeLink] = useState<string>(user?.youtubeLink || "");
-  const [discordLink, setDiscordLink] = useState<string>(user?.discordLink || "");
-  const [telegramLink, setTelegramLink] = useState<string>(user?.telegramLink || "");
-  const [facebookLink, setFacebookLink] = useState<string>(user?.facebookLink || "");
+  const [twitterLink, setTwitterLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:twitterLink", user?.twitterLink || "");
+  const [instagramLink, setInstagramLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:instagramLink", user?.instagramLink || "");
+  const [tiktokLink, setTiktokLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:tiktokLink", user?.tiktokLink || "");
+  const [youtubeLink, setYoutubeLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:youtubeLink", user?.youtubeLink || "");
+  const [discordLink, setDiscordLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:discordLink", user?.discordLink || "");
+  const [telegramLink, setTelegramLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:telegramLink", user?.telegramLink || "");
+  const [facebookLink, setFacebookLink] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:facebookLink", user?.facebookLink || "");
   // Self-reported follower counts for the linked socials, feeding the profile's
   // total reach. They live in `customs`, which the API replaces wholesale, so
   // a save resends the whole blob around the counts.
-  const [socialFollowers, setSocialFollowers] = useState<SocialFollowerInputs>(() =>
+  const [socialFollowers, setSocialFollowers] = useSurfaceDraft<SocialFollowerInputs>("screens/EditProfileScreen.tsx:socialFollowers", () =>
     readSocialFollowerInputs((user as any)?.customs)
   );
   const setFollowerInput = useCallback((platform: SocialPlatform, value: string) => {
     setSocialFollowers((prev) => ({ ...prev, [platform]: sanitizeFollowerInput(value) }));
-  }, []);
+  }, [setSocialFollowers]);
 
   const [localAvatar, setLocalAvatar] = useState<string | null>(null);
   const [localCover, setLocalCover] = useState<string | null>(null);
@@ -368,7 +368,7 @@ const EditProfileScreen = () => {
       { key: "telegramLink", label: "Telegram", platform: "telegram", reach: "telegram", svg: TELEGRAM_SVG_XML, placeholder: t("settings.username"), value: telegramLink, setter: setTelegramLink },
       { key: "facebookLink", label: "Facebook", platform: "facebook", reach: "facebook", svg: FACEBOOK_SVG_XML, placeholder: t("settings.profileUrlOrUsername"), value: facebookLink, setter: setFacebookLink },
     ],
-    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink, t]
+    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink, t, setDiscordLink, setFacebookLink, setInstagramLink, setTelegramLink, setTiktokLink, setTwitterLink, setYoutubeLink]
   );
 
   // A changed username has to be positively cleared. The old gate only blocked

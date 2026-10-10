@@ -172,7 +172,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
       },
       {
         onSuccess: () => {
-          setName(""); setDaily(""); setTotal(""); setCtaUrl(""); setTiers([]);
+          setName.complete(name, ""); setDaily.complete(daily, ""); setTotal.complete(total, ""); setCtaUrl.complete(ctaUrl, ""); setTiers([]);
           setCreatorSupport(false);
           onClose();
         },

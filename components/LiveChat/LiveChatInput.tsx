@@ -252,7 +252,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() => { onCancelEdit(); setText(""); }}
+            onPress={() => { onCancelEdit(); setText.complete(text, ""); }}
             hitSlop={8}
           >
             <Icon name="X" size={18} color="#A6A9AC" />

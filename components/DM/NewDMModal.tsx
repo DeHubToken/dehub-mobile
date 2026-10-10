@@ -283,7 +283,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
           />
           {query ? (
             <TouchableOpacity
-              onPress={() => setQuery("")}
+              onPress={() => setQuery.complete(query, "")}
               accessibilityRole="button"
               accessibilityLabel={t("sidebar.clearSearch")}
               hitSlop={8}

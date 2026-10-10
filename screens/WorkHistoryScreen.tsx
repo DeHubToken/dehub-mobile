@@ -209,7 +209,7 @@ export default function WorkHistoryScreen() {
             label={t("work.clearFilters")}
             onPress={() => {
               setStatus("all");
-              setSearch("");
+              setSearch.complete(search, "");
             }}
           />
         ) : tab === "posted" ? (
@@ -257,7 +257,7 @@ export default function WorkHistoryScreen() {
             />
             {search.length > 0 && (
               <Pressable
-                onPress={() => setSearch("")}
+                onPress={() => setSearch.complete(search, "")}
                 hitSlop={14}
                 accessibilityRole="button"
                 accessibilityLabel={t("sidebar.clearSearch")}
