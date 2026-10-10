@@ -25,7 +25,7 @@ interface PollCardProps {
 
 const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   const { t } = useTranslation();
-  const { poll, loading } = usePoll(tokenId);
+  const { poll, loading, refetch } = usePoll(tokenId);
   const { vote, loading: voting } = useVoteOnPoll();
   const { removeVote, loading: removing } = useRemovePollVote();
   const { closePoll, loading: closing } = useClosePoll();
@@ -62,7 +62,17 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   // one scroll correction per card, mid-fling. A real poll grows the card once.
   if (loading || !poll) return null;
 
+  // A poll whose end time has passed is over even while the stored isActive
+  // flag still says true — only "Close" flips that flag. Treating it as open
+  // showed a vote option the server then rejected as expired.
+  const isEnded =
+    !poll.isActive ||
+    !!poll.isExpired ||
+    (!!poll.expiresAt && new Date(poll.expiresAt).getTime() <= Date.now());
+  const isOpen = !isEnded;
   const hasVoted = localVotedIndexes !== null || !!poll.userVote;
+  // Results show once you've voted, and to everyone once the poll is over.
+  const showResults = hasVoted || isEnded;
   const votedIndexes = localVotedIndexes ?? poll.userVote?.optionIndexes ?? [];
 
   const getCount = (index: number) => {
@@ -78,6 +88,9 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
     if (totalVotes === 0) return 0;
     return Math.round((getCount(index) / totalVotes) * 100);
   };
+
+  const topCount = Math.max(0, ...poll.options.map((o) => getCount(o.index)));
+  const isWinner = (index: number) => isEnded && topCount > 0 && getCount(index) === topCount;
 
   const applyOptimisticVote = (indexes: number[]) => {
     const counts: Record<number, number> = {};
@@ -95,7 +108,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   };
 
   const handleOptionClick = (idx: number) => {
-    if (hasVoted || !poll.isActive || voting) return;
+    if (hasVoted || isEnded || voting) return;
     if (poll.isMultipleChoice) {
       setSelectedIndexes((prev) =>
         prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
@@ -103,6 +116,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
     } else {
       applyOptimisticVote([idx]);
       vote(tokenId, [idx]).catch(() => {
+        refetch();
         setLocalVotedIndexes(null);
         setLocalVoteCounts(null);
         AsyncStorage.removeItem(`dehub-poll-vote-${tokenId}`).catch(() => {});
@@ -114,6 +128,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
     if (selectedIndexes.length === 0) return;
     applyOptimisticVote(selectedIndexes);
     vote(tokenId, selectedIndexes).catch(() => {
+      refetch();
       setLocalVotedIndexes(null);
       setLocalVoteCounts(null);
       AsyncStorage.removeItem(`dehub-poll-vote-${tokenId}`).catch(() => {});
@@ -129,7 +144,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   };
 
   const expiresLabel = poll.expiresAt
-    ? poll.isActive
+    ? isOpen
       ? t("dm.pollEnds", { time: formatRelativeTime(poll.expiresAt, t) })
       : t("dm.pollEnded", { time: formatRelativeTime(poll.expiresAt, t) })
     : null;
@@ -140,11 +155,11 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
       <View className="flex-row items-start justify-between mb-2">
         <Text className="text-white font-medium text-sm flex-1 mr-2">
           {poll.question}
-          {!poll.isActive && (
+          {isEnded && (
             <Text className="text-zinc-500 text-xs"> {t("dm.pollClosed")}</Text>
           )}
         </Text>
-        {isOwner && poll.isActive && (
+        {isOwner && isOpen && (
           <TouchableOpacity
             onPress={() => closePoll(tokenId)}
             disabled={closing}
@@ -162,7 +177,8 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
           const pct = getBarWidth(option.index);
           const isVoted = votedIndexes.includes(option.index);
           const isSelected = selectedIndexes.includes(option.index);
-          const canClick = !hasVoted && poll.isActive && !voting;
+          const won = isWinner(option.index);
+          const canClick = !hasVoted && isOpen && !voting;
 
           return (
             <TouchableOpacity
@@ -174,12 +190,12 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
             >
               {/* Background bar */}
               <View className="absolute inset-0 rounded-lg bg-white/10" />
-              {hasVoted && (
+              {showResults && (
                 <View
                   className="absolute inset-y-0 left-0 rounded-lg"
                   style={{
                     width: `${pct}%`,
-                    backgroundColor: isVoted
+                    backgroundColor: isVoted || won
                       ? "rgba(255,255,255,0.4)"
                       : "rgba(255,255,255,0.15)",
                   }}
@@ -188,7 +204,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
 
               <View className="relative z-10 flex-row items-center justify-between px-3">
                 <View className="flex-row items-center gap-2 flex-1 min-w-0">
-                  {poll.isMultipleChoice && !hasVoted && poll.isActive && (
+                  {poll.isMultipleChoice && !hasVoted && isOpen && (
                     <View
                       className={`w-4 h-4 rounded border items-center justify-center ${
                         isSelected
@@ -201,20 +217,21 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
                       )}
                     </View>
                   )}
-                  {!poll.isMultipleChoice && !hasVoted && poll.isActive && (
+                  {!poll.isMultipleChoice && !hasVoted && isOpen && (
                     <View className="w-4 h-4 rounded-full border border-white/30 items-center justify-center">
                       <View className="w-2 h-2 rounded-full bg-transparent" />
                     </View>
                   )}
                   <Text
-                    className={`text-sm flex-1 ${isVoted ? "text-white font-medium" : "text-zinc-300"}`}
+                    className={`text-sm flex-shrink ${isVoted || won ? "text-white font-medium" : "text-zinc-300"}`}
                     numberOfLines={2}
                   >
                     {option.text}
                   </Text>
+                  {won && <Icon name="Check" size={14} color="#F4F4F5" />}
                 </View>
-                {hasVoted && (
-                  <Text className="text-xs text-zinc-400 ml-2">{pct}%</Text>
+                {showResults && (
+                  <Text className={`text-xs ml-2 ${won ? "text-white font-medium" : "text-zinc-400"}`}>{pct}%</Text>
                 )}
               </View>
             </TouchableOpacity>
@@ -223,7 +240,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
       </View>
 
       {/* Multi-choice vote button */}
-      {poll.isMultipleChoice && !hasVoted && poll.isActive && selectedIndexes.length > 0 && (
+      {poll.isMultipleChoice && !hasVoted && isOpen && selectedIndexes.length > 0 && (
         <TouchableOpacity
           onPress={handleMultipleChoiceVote}
           disabled={voting}
@@ -246,7 +263,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
           {expiresLabel && (
             <Text className="text-zinc-400 text-[12px]">{expiresLabel}</Text>
           )}
-          {hasVoted && poll.isActive && (
+          {hasVoted && isOpen && (
             <TouchableOpacity
               onPress={handleRemoveVote}
               disabled={removing}
