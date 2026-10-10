@@ -221,6 +221,7 @@ jobs:
           test "$(xcrun --sdk iphoneos --show-sdk-version | cut -d. -f1)" = '27'
           SDK="$(xcrun --sdk iphoneos --show-sdk-path)"
           cp "$SDK/System/Library/Frameworks/ScreenCaptureKit.framework/Headers/SCStream.h" screen-capture-sdk-stream.h
+          find "$(xcode-select -p)/Library/Xcode/Templates" -iname '*Broadcast*' -print > screen-capture-sdk-broadcast-templates.txt
       - run: npm ci --legacy-peer-deps
       - name: Resolve the capture pod and embedded broadcast extensions
         working-directory: ios
@@ -258,6 +259,7 @@ jobs:
           path: |
             screen-capture-ios-build.log
             screen-capture-sdk-stream.h
+            screen-capture-sdk-broadcast-templates.txt
             ios/Podfile.lock
             ios/DeHub.xcodeproj/project.pbxproj
           if-no-files-found: ignore
