@@ -31,7 +31,14 @@ jest.mock('@react-native-community/slider', () => 'Slider');
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('../../theme/minimal', () => ({ MINIMAL_HAIRLINE: '#222', minimalRow: {} }));
-jest.mock('../../libs/storage', () => ({ storage: { set: jest.fn() } }));
+jest.mock('../../libs/storage', () => {
+  const values = new Map<string, string>();
+  return { storage: {
+    getString: jest.fn((key: string) => values.get(key)),
+    set: jest.fn((key: string, value: unknown) => values.set(key, String(value))),
+    delete: jest.fn((key: string) => values.delete(key)),
+  } };
+});
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
 const mockNavigation = { canGoBack: jest.fn(() => true), goBack: jest.fn(), navigate: jest.fn() };

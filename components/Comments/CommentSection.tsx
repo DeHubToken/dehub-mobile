@@ -224,6 +224,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
+  const [composerHeight, setComposerHeight] = useState(76);
   const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
 
@@ -1567,7 +1568,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [flushCommentViews]);
 
   // Calculate bottom padding for list to account for input
-  const listBottomPadding = 88 + inputLift;
+  const listBottomPadding = composerHeight + 12 + inputLift;
 
   return (
     <View style={{ flex: 1 }}>
@@ -1643,6 +1644,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       <DeHubRefreshMark refreshing={refreshing} />
 
       <View
+        onLayout={event => setComposerHeight(event.nativeEvent.layout.height)}
         style={{
           position: "absolute",
           left: 0,
