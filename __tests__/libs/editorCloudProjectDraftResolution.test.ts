@@ -22,7 +22,7 @@ const receipt = (value = request()): CloudDraftReceipt => ({ ownerWallet: owner,
 const envelope = () => ({ ownerWallet: owner, projectId, writerId, sequence: 1, requestId });
 const rpc = jest.fn<(...args: unknown[]) => Promise<unknown>>();
 const api = () => cloudProjectDraftApi({ rpc } as unknown as Pick<SupabaseClient, "rpc">);
-beforeEach(() => rpc.mockReset());
+beforeEach(() => { rpc.mockReset(); });
 
 it("resolves the exact stored request without registering, saving or publishing another draft", async () => {
   rpc.mockResolvedValue({ data: { ...envelope(), status: "committed", receipt: receipt() }, error: null });
