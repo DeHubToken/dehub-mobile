@@ -10,7 +10,7 @@
  */
 import React from "react";
 import { Pressable, ScrollView, Switch, Text, View } from "react-native";
-import Slider from "@react-native-community/slider";
+import { EditorRange as Range } from "./EditorRange";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import { FILTER_PRESETS, matchPreset } from "../../libs/editor/filterPresets";
@@ -59,33 +59,7 @@ export function Labeled({ label, children }: { label: string; children: React.Re
   );
 }
 
-export function Range(props: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  onLive: (v: number) => void;
-  onDone: () => void;
-}) {
-  return (
-    <Labeled label={props.label}>
-      <Slider
-        value={props.value}
-        minimumValue={props.min}
-        maximumValue={props.max}
-        step={props.step}
-        onValueChange={props.onLive}
-        onSlidingComplete={props.onDone}
-        minimumTrackTintColor="#ffffff"
-        maximumTrackTintColor="rgba(255,255,255,0.25)"
-        thumbTintColor="#ffffff"
-        accessibilityLabel={props.label}
-        style={{ height: 32 }}
-      />
-    </Labeled>
-  );
-}
+export { EditorRange as Range };
 
 const SWATCH_SLOP_Y = 7;
 
