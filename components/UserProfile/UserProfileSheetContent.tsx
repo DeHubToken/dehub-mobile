@@ -226,7 +226,12 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     
     return (
       <View>
-        <UserProfileHeader
+        <PinnedCommunities
+          walletAddress={profileData.address || ""}
+          isOwnProfile={!!isOwnProfile}
+          onNavigate={onClose}
+          renderHeader={(community) => <UserProfileHeader
+          featuredCommunity={community}
           avatarUrl={avatarUrl}
           coverUrl={coverUrl}
           displayName={profileData.displayName}
@@ -264,16 +269,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           hasPlans={hasPlans}
           plansLoading={plansLoading}
           onSubscribe={handleSubscribePress}
+        />}
         />
-        {!!profileData.address && (
-          <View className="px-3 mt-1">
-            <PinnedCommunities
-              walletAddress={profileData.address}
-              isOwnProfile={!!isOwnProfile}
-              onNavigate={onClose}
-            />
-          </View>
-        )}
         <View className="px-5 mt-2">
           {!isOwnProfile && youBlocked && (
             <View className="mt-3 bg-white/15 border border-white/20 rounded-xl px-4 py-3 flex-row items-center">
