@@ -18,7 +18,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
   const currentId = context.current()?.id || "";
-  const [mergeCopy, setMergeCopy] = useState<{wallet:string;localId:string;owner:string;snapshot:ProjectSnapshot;revision:number}|null>(null);
+  const [mergeCopy, setMergeCopy] = useState<{wallet:string;localId:string;owner:string|null;snapshot:ProjectSnapshot;revision:number}|null>(null);
   const availableMergeCopy = mergeCopy?.wallet === wallet && mergeCopy.localId === currentId ? mergeCopy : null;
   const [sharedLink, setSharedLink] = useState<{id:string;wallet:string;owner:string|null}|null>(null);
   const sharedOwner = sharedLink?.id === currentId && sharedLink.wallet === wallet ? sharedLink.owner : null;
@@ -157,7 +157,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       })) as ProjectSnapshot;
       const capturedKey = projectReviewSnapshotKey(snapshot), sourceOwner = await session.sharedOwner(snapshot.id); check();
       const result = await session.save(snapshot, copy); check();
-      if (result?.mergedSnapshot && sourceOwner) {
+      if (result?.mergedSnapshot) {
         const current = scope.current.context.current();
         if (current?.id === snapshot.id && projectReviewSnapshotKey(current) === capturedKey) {
           await scope.current.context.open(result.mergedSnapshot); check(); setSharedLink({id:result.mergedSnapshot.id,wallet,owner:sourceOwner}); setMergeCopy(null);
