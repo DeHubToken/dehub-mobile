@@ -23,22 +23,23 @@ export function useDubDiscovery(player: VideoPlayer | null, videoId: string | nu
   latest.current = { eligible, wallet, openSettings };
   useEffect(() => {
     if (!player || !eligible || !wallet) return;
+    let active = true;
     const replay = replayFor(`${wallet}:${videoId}:${source}:${target}`);
     const audible = () => player.playing && !player.muted && player.volume > 0;
-    const current = () => latest.current.eligible && latest.current.wallet === wallet && !getDubSettings().on && audible();
+    const current = () => active && latest.current.eligible && latest.current.wallet === wallet && !getDubSettings().on && audible();
     const sample = () => {
       if (!replay.sample(player.currentTime, player.duration, audible(), Date.now(), player.playbackRate)) return;
       void showTip(wallet, () => toastInfo(t('dub.menuDesc'), {
         duration: 8000,
         actionLabel: t('dub.dubbed'),
         onActionPress: () => {
-          if (latest.current.eligible && latest.current.wallet === wallet) latest.current.openSettings();
+          if (active && latest.current.eligible && latest.current.wallet === wallet) latest.current.openSettings();
         },
       }), current);
     };
     sample();
     const events = ['timeUpdate', 'playingChange', 'mutedChange', 'volumeChange', 'playToEnd'] as const;
     const subscriptions = events.map(event => player.addListener(event, sample));
-    return () => { subscriptions.forEach(subscription => subscription.remove()); replay.detach(); };
+    return () => { active = false; subscriptions.forEach(subscription => subscription.remove()); replay.detach(); };
   }, [player, videoId, source, target, eligible, wallet, t]);
 }

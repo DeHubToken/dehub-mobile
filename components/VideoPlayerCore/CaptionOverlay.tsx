@@ -119,8 +119,8 @@ const CaptionOverlay: React.FC<Props> = ({
     return () => { playSub.remove(); muteSub.remove(); volumeSub.remove(); };
   }, [player, masterVolume]);
 
-  // Only fetch once the viewer has shown intent — including asking for a
-  // dub, which is keyed on the transcript too.
+  // Listening prepares a dub without playing it. Opening captions also reads
+  // the transcript; automatic preparation never starts a missing transcript.
   const { transcript, status, inFlight, canRetry, start } = useTranscript(
     'video',
     ref,
