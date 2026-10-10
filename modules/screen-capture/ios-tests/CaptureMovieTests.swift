@@ -72,8 +72,13 @@ final class CaptureMovieTests: XCTestCase {
     let track = try XCTUnwrap(videoTracks.first)
     let reader = try AVAssetReader(asset: asset)
     let frames = AVAssetReaderTrackOutput(track: track, outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]); reader.add(frames)
-    XCTAssertTrue(reader.startReading()); var count = 0
-    while frames.copyNextSampleBuffer() != nil { count += 1 }
+    XCTAssertTrue(reader.startReading()); var count = 0; var previous: Double?
+    while let sample = frames.copyNextSampleBuffer() {
+      let pts = CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sample))
+      if let previous { XCTAssertLessThanOrEqual(pts - previous, 0.1) }
+      else { XCTAssertEqual(pts, 0, accuracy: 0.001) }
+      previous = pts; count += 1
+    }
     XCTAssertEqual(reader.status, .completed); XCTAssertGreaterThanOrEqual(count, 12)
   }
 

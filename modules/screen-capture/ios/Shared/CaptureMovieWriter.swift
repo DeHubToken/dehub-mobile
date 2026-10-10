@@ -111,8 +111,9 @@ final class CaptureMovieWriter {
       let pixelAdaptor, let pool = pixelAdaptor.pixelBufferPool else { return }
     do {
       let elapsed = max(0, ProcessInfo.processInfo.systemUptime - startedWall)
-      let pts = CMTime(value: Int64(elapsed * 30), timescale: 30)
-      if lastVideoPTS.isNumeric && CMTimeCompare(pts, lastVideoPTS) <= 0 { return }
+      let currentFrame = lastVideoPTS.isNumeric ? Int64(elapsed * 30) : 0
+      let nextFrame = lastVideoPTS.isNumeric ? lastVideoPTS.value + 1 : 0
+      if currentFrame < nextFrame { return }
       var buffer: CVPixelBuffer?
       guard CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pool, &buffer) == kCVReturnSuccess, let buffer else { throw CaptureLedgerError.unavailable }
       let fit = fittedCaptureRect(source: frame.extent.size, canvas: canvas)
@@ -123,8 +124,14 @@ final class CaptureMovieWriter {
       let bounds = CGRect(x: 0, y: 0, width: CGFloat(canvas.width), height: CGFloat(canvas.height))
       let black = CIImage(color: .black).cropped(to: bounds)
       context.render(positioned.composited(over: black), to: buffer, bounds: bounds, colorSpace: colorSpace)
-      guard pixelAdaptor.append(buffer, withPresentationTime: pts) else { throw writer?.error ?? CaptureLedgerError.unavailable }
-      lastVideoPTS = pts
+      // A busy encoder can miss a timer tick. Retain the clock with bounded repeated frames.
+      // Cap catch-up at one second so a long system pause cannot create an unbounded queue.
+      for index in max(nextFrame, currentFrame - 29)...currentFrame {
+        guard video.isReadyForMoreMediaData else { break }
+        let pts = CMTime(value: index, timescale: 30)
+        guard pixelAdaptor.append(buffer, withPresentationTime: pts) else { throw writer?.error ?? CaptureLedgerError.unavailable }
+        lastVideoPTS = pts
+      }
     } catch { fail(error) }
   }
 
