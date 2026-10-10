@@ -1626,7 +1626,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <LiveFeedPreview
           streamId={isCurrentlyLive ? liveReactionStreamId : undefined}
           streamStatus={status}
-          isOwner={isOwnerPost}
+          isOwner={!!isOwnerPost}
           paused={livePaused}
           onViewerCount={onLiveViewerCount}
           url={livePlayableUrl}
