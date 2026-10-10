@@ -1,4 +1,3 @@
-import BadgeArtwork from "./BadgeArtwork";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
@@ -8,10 +7,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { getNFT } from "../../services/nft.service";
-import Avatar from "./Avatar";
+import FeedCardHeader from "../Home/FeedCardHeader";
 import AudioPostPlayer from "../Home/AudioPostPlayer";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
@@ -202,25 +201,16 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         {/* Minimal: the rule's pl-3 already insets the text, so only vertical padding here. */}
         <View className={isMinimal ? "pt-2 pb-1" : "p-3"}>
           {!!quotedPost.articleBody && <Text className="text-white/60 text-xs font-semibold uppercase mb-1">{t("articles.label")}</Text>}
-          {/* Creator row */}
-          <View className="flex-row items-center gap-2 mb-1.5">
-            <Avatar uri={avatarUrl} size={18} name={displayName} />
-            <Text className="text-white font-semibold text-xs shrink" numberOfLines={1}>
-              {displayName}
-            </Text>
-            {!!badgeImage && (
-              <BadgeArtwork
-                source={badgeImage}
-                style={getBadgeOpticalStyle(badgeImage, 12, 0, 16)}
-                contentFit="contain"
-              />
-            )}
-            {username && (
-              <Text className="text-theme-neutrals-500 text-xs shrink" numberOfLines={1}>
-                @{username}
-              </Text>
-            )}
-          </View>
+          {/* Creator row: the same header a normal post uses (avatar, name,
+              badge, handle on its own line), minus the post controls. */}
+          <FeedCardHeader
+            avatarUrl={avatarUrl}
+            displayName={displayName}
+            username={username}
+            address={minterUser?.address || quotedPost.minter}
+            badgeImage={badgeImage}
+            onUserPress={handlePress}
+          />
 
           {/* Text excerpt */}
           {truncatedText.length > 0 && (
