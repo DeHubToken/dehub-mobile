@@ -612,9 +612,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       didBootRefetchRef.current = true;
       try { enrichAndStoreUser(user, { refetch: true }).catch(() => {}); } catch {}
     }
-    // Balances fetch: run once when provider becomes ready for a given (address, chainId)
-    // if (providerStatus !== "ready" || isSwitchingChain || !chainId ) return;
-    if (providerStatus !== "ready") return;
+    // Public balance reads do not need an unlocked signing provider.
     if (isSwitchingChain) return;
     if (!chainId) return; // ensure we only fetch for a known active chain
     const addr = user.walletAddress || user.address;

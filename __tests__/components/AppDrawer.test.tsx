@@ -71,7 +71,7 @@ const destinations = [
   ['nav.prompt', 'Prompt'], ['nav.notifications', 'Notifications'], ['nav.messages', 'DM', true],
   ['nav.communities', 'Communities'], ['nav.assistant', 'AIChat', true], ['nav.settings', 'AccountSettings'],
   ['nav.leaderboard', 'Leaderboard'], ['nav.stats', 'Stats'], ['nav.bookmarks', 'MyLibrary', false, { initialTab: 'saved' }],
-  ['nav.command', 'CommandCentre'], ['nav.wallet', 'Dpay', false, { initialTab: 'buy' }],
+  ['nav.command', 'CommandCentre'], ['nav.wallet', 'Dpay', false, { initialTab: 'wallet' }],
   ['nav.events', 'Events'], ['nav.stages', 'Stages'], ['nav.featureRequests', 'FeatureRequests'],
   ['nav.staking', 'Dpay', false, { initialTab: 'stake' }], ['nav.superpowers', 'SuperPowers'],
   ['nav.governance', 'Governance'], ['nav.dao', 'Dao'], ['screens.work', 'Work'],
@@ -115,7 +115,7 @@ it('routes the profile header, balance chip, and Post through App', () => {
   fireEvent.press(view.getByText('member'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Profile', params: undefined } } });
   fireEvent.press(view.getByLabelText('nav.wallet 500'));
-  expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Dpay', params: { initialTab: 'buy' } } } });
+  expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Dpay', params: { initialTab: 'wallet' } } } });
   fireEvent.press(view.getByLabelText('sidebar.post'));
   expect(mockDispatch).toHaveBeenLastCalledWith({ type: 'NAVIGATE', payload: { name: 'App', params: { screen: 'Upload', params: undefined } } });
 });

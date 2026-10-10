@@ -177,7 +177,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           icon="Coins"
           label={t('settings.tokenBalanceAmount', { amount: formatCompactNumber(dhbBalance) })}
           description={t('settings.dhbBalanceIncludesStaked')}
-          onPress={() => navigation.navigate(ScreenNames.Dpay)}
+          onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "wallet" })}
         />
         <Divider />
         <TouchableOpacity
