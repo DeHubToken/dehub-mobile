@@ -1006,6 +1006,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           detectShots,
           time: canvasTime,
         });
+        await command.ready();
         if (!task.isCurrent()) return false;
         if (report.applied > 0 && !command.commit(project, next)) throw new Error("design changed during request");
         if (report.selectedId && h.latest()?.clips.some(clip => clip.id === report.selectedId)) setSelectedId(report.selectedId);
