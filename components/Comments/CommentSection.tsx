@@ -66,7 +66,7 @@ import {
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
-import useKeyboard from "../../hooks/useKeyboard";
+import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
@@ -205,7 +205,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
   const inputRef = useRef<TextInput>(null);
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   // State - flat list of comments with replies inline
   const [flatComments, setFlatComments] = useState<FlatComment[]>([]);
@@ -348,8 +347,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const { status: coachStatus, flags: coachFlags, check: coachCheck, dismiss: coachDismiss, reset: coachReset } = useConversationCoach();
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
 
-  // Keyboard lift for input
-  const inputLift = !keyboardHandled && kbVisible ? kbHeight : 0;
+  // Keyboard lift for input: measured against the keyboard's top, so it lands
+  // on the keys whichever window the sheet is in (hooks/useComposerKeyboard).
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0, enabled: !keyboardHandled });
+  const inputLift = keyboardHandled ? 0 : composerKeyboard.lift;
 
   // Build flat list with replies inline after their parent using recursive depth tracking.
   // If highlightCommentId is a reply, its root ancestor chain is emitted first.
@@ -1645,7 +1646,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       <DeHubRefreshMark refreshing={refreshing} />
 
       <View
-        onLayout={event => setComposerHeight(event.nativeEvent.layout.height)}
+        ref={composerKeyboard.ref}
+        collapsable={false}
+        onLayout={event => {
+          setComposerHeight(event.nativeEvent.layout.height);
+          composerKeyboard.onLayout();
+        }}
         style={{
           position: "absolute",
           left: 0,

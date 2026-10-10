@@ -107,7 +107,7 @@ import { truncateAddress } from "../libs/strings.util";
 import { dmDraftKey } from "../libs/draft-cache";
 import { getAvatarUrl } from "../libs/misc";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast";
-import { useKeyboardLift } from "../hooks/useKeyboardLayout";
+import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
 import { createLogger } from "../libs/logger";
 import { useDmPin } from "../hooks/useDmPin";
 import { useCallActions } from "../context/CallContext";
@@ -177,16 +177,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  // With edge-to-edge enabled (Expo 54 / targetSdk 35) Android ignores
-  // adjustResize — the window no longer shrinks when the keyboard opens —
-  // so lift manually on both platforms (same as AIChatScreen/CommentsBottomSheet).
-  //
-  // Not the raw keyboard height: it is measured to the physical bottom of the
-  // screen (the home indicator sits over the keys), while this screen's own
-  // bottom edge already stops `insets.bottom` short of it, courtesy of the root
-  // SafeAreaView in App.tsx. Lifting by the full height floated the composer a
-  // home-indicator clear of the keyboard.
-  const { lift: inputLift } = useKeyboardLift();
+  // Edge-to-edge Android does not shrink the window for the keyboard, so the
+  // composer lifts itself: measured against the keyboard's top rather than
+  // worked out from its height and the insets, which left it under the keys
+  // on some phones.
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0 });
+  const inputLift = composerKeyboard.lift;
   const [inputBarHeight, setInputBarHeight] = useState(60);
   const listBottomPadding = inputBarHeight + inputLift;
 
@@ -1735,7 +1731,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             // above the home indicator, so adding it again left a dead strip
             // under the composer.
             style={{ marginBottom: inputLift }}
-            onLayout={(e) => setInputBarHeight(e.nativeEvent.layout.height)}
+            ref={composerKeyboard.ref}
+            collapsable={false}
+            onLayout={(e) => {
+              setInputBarHeight(e.nativeEvent.layout.height);
+              composerKeyboard.onLayout();
+            }}
           >
             {voiceRecorder.isRecording ? (
               <VoiceNoteRecordingOverlay recorder={voiceRecorder} />

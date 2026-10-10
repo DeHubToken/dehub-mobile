@@ -23,7 +23,7 @@ import LiveChatInput from "../components/LiveChat/LiveChatInput";
 import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
 import type { MessageLayout } from "../components/LiveChat/LiveChatContextMenu";
 import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
-import { useKeyboardLift } from "../hooks/useKeyboardLayout";
+import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
 import GifPicker from "../components/DM/GifPicker";
 import { useLiveChat } from "../hooks/useLiveChat";
 import { useUser } from "../context/AuthContext";
@@ -102,10 +102,9 @@ const LiveChatScreen: React.FC = () => {
   const account = user?.walletAddress || user?.address || "";
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
-  // Lift by the keyboard height minus the bottom inset the root SafeAreaView
-  // has already given up — the raw height runs to the physical bottom of the
-  // screen, so using it whole leaves a home-indicator gap under the composer.
-  const { lift: inputLift } = useKeyboardLift();
+  // Lift until the measured composer sits on the keys (hooks/useComposerKeyboard).
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0 });
+  const inputLift = composerKeyboard.lift;
   // The composer grows with a reply strip, an attachment preview or multiline
   // text, so the list pads by its measured height rather than a fixed guess
   // that let the newest messages slide under it.
@@ -893,7 +892,12 @@ const LiveChatScreen: React.FC = () => {
         <View
           className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
           style={{ marginBottom: inputLift }}
-          onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
+          ref={composerKeyboard.ref}
+          collapsable={false}
+          onLayout={(e) => {
+            setComposerHeight(e.nativeEvent.layout.height);
+            composerKeyboard.onLayout();
+          }}
         >
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">
