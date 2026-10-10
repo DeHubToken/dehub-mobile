@@ -14,7 +14,7 @@ export interface CloudProjectLink extends CloudProjectBinding {
   media: Record<string, CloudProjectMedia>;
   sharedOwner?: string;
   liveDraft?: CloudDraftOutboxState;
-  pending?: { requestId: string; document: CloudProjectDocument; expectedRevision: number; originalDocument?: CloudProjectDocument; mergedLocalIds?: string[] };
+  pending?: { requestId: string; document: CloudProjectDocument; expectedRevision: number; expectedDraftRevision?: number; originalDocument?: CloudProjectDocument; mergedLocalIds?: string[] };
 }
 export interface CloudProjectSaveResult extends CloudProjectSaved { mergedSnapshot?: ProjectSnapshot; mergedDocument?: CloudProjectDocument }
 export interface CloudProjectSessionDeps {
@@ -24,6 +24,7 @@ export interface CloudProjectSessionDeps {
   check(): void;
   api: {
     save(id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved>;
+    checkpointSave?(owner: string, id: string, document: CloudProjectDocument, revision: number, draftRevision: number, requestId: string): Promise<CloudProjectSaved>;
     load(id: string, revision?: number): Promise<CloudProjectVersion>;
     restore(id: string, revision: number, head: number, requestId: string): Promise<CloudProjectSaved>;
     drafts?: Pick<ReturnType<typeof cloudProjectDraftApi>, "load" | "open" | "save"> & Partial<Pick<ReturnType<typeof cloudProjectDraftApi>, "resolve">>;
@@ -94,10 +95,41 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     if (!deps.api.editing) throw new Error("Shared project editing is unavailable");
     return deps.api.editing;
   }
+  async function draftSavePending(link: CloudProjectLink, pending: NonNullable<CloudProjectLink["pending"]>) {
+    if (!deps.api.drafts || !deps.api.checkpointSave) throw new Error("Protected live project saving is unavailable");
+    const owner = link.sharedOwner || wallet;
+    const checkpoint = await deps.api.drafts.load(owner, link.projectId); check();
+    if (checkpoint.ownerWallet !== owner || checkpoint.projectId !== link.projectId || checkpoint.headRevision < pending.expectedRevision)
+      throw new Error("Shared save baseline changed during transfer");
+    const versions = new Map<number, CloudProjectDocument>();
+    async function exact(revision: number) {
+      const cached = versions.get(revision); if (cached) return cached;
+      if (link.sharedOwner && !deps.api.review) throw new Error("Shared project history is unavailable");
+      const version = link.sharedOwner ? await deps.api.review!.load(owner, link.projectId, revision) : await deps.api.load(link.projectId, revision); check();
+      if (version.projectId !== link.projectId || version.revision !== revision || version.document.snapshot.id !== link.projectId)
+        throw new Error("Shared save baseline changed during transfer");
+      versions.set(revision, version.document); return version.document;
+    }
+    let remote = checkpoint.document;
+    if (checkpoint.anchorRevision < checkpoint.headRevision) {
+      const result = mergeCloudProjectEdits(await exact(checkpoint.anchorRevision), remote, await exact(checkpoint.headRevision), owner); check();
+      if (!result.document) throw new CloudProjectConflict("Saved and live changes overlap. Your draft was kept; open a separate cloud copy or save a personal copy.");
+      remote = result.document;
+    }
+    const result = mergeCloudProjectEdits(await exact(pending.expectedRevision), pending.document, remote, owner); check();
+    if (!result.document) throw new CloudProjectConflict("Live changes overlap your local edits. Your draft was kept; open a separate cloud copy or save a personal copy.");
+    const changed = !sameCloudProjectEdit(result.document, pending.document);
+    return { ...pending, document: result.document, expectedRevision: checkpoint.headRevision, expectedDraftRevision: checkpoint.draftRevision,
+      ...(changed ? { originalDocument: pending.originalDocument || pending.document } : {}) };
+  }
   async function finishPending(localId: string, link: CloudProjectLink): Promise<CloudProjectSaveResult | null> {
     let pending = link.pending;
     if (!pending) return null;
-    const send = () => link.sharedOwner
+    const send = () => pending!.expectedDraftRevision !== undefined
+      ? deps.api.checkpointSave
+        ? deps.api.checkpointSave(link.sharedOwner || wallet, link.projectId, pending!.document, pending!.expectedRevision, pending!.expectedDraftRevision, pending!.requestId)
+        : Promise.reject(new Error("Protected live project saving is unavailable"))
+      : link.sharedOwner
       ? requireEditing().save(link.sharedOwner, link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId)
       : deps.api.save(link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId);
     check();
@@ -106,12 +138,17 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     catch (cause) {
       check();
       if (!(cause instanceof CloudProjectConflict) || pending.expectedRevision < 1 || (link.sharedOwner && !deps.api.review)) throw cause;
-      const sourceOwner = link.sharedOwner || wallet;
-      const latest = link.sharedOwner ? await requireEditing().load(link.sharedOwner, link.projectId) : await deps.api.load(link.projectId); check();
-      const base = link.sharedOwner ? await deps.api.review!.load(link.sharedOwner, link.projectId, pending.expectedRevision) : await deps.api.load(link.projectId, pending.expectedRevision); check();
-      const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, sourceOwner);
-      if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest cloud version or save a personal copy.");
-      pending = { requestId: deps.uuid(), expectedRevision: latest.revision, document: result.document, originalDocument: pending.originalDocument || pending.document };
+      if (deps.api.drafts && deps.api.checkpointSave) {
+        pending = await draftSavePending(link, { ...pending, requestId: deps.uuid() }); check();
+      } else {
+        if (pending.expectedDraftRevision !== undefined) throw cause;
+        const sourceOwner = link.sharedOwner || wallet;
+        const latest = link.sharedOwner ? await requireEditing().load(link.sharedOwner, link.projectId) : await deps.api.load(link.projectId); check();
+        const base = link.sharedOwner ? await deps.api.review!.load(link.sharedOwner, link.projectId, pending.expectedRevision) : await deps.api.load(link.projectId, pending.expectedRevision); check();
+        const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, sourceOwner);
+        if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest cloud version or save a personal copy.");
+        pending = { requestId: deps.uuid(), expectedRevision: latest.revision, document: result.document, originalDocument: pending.originalDocument || pending.document };
+      }
       link.pending = pending; await deps.writeLink(localId, link); check();
       // One rebase per explicit save. A second collision is left for the person to retry.
       saved = await send();
@@ -191,6 +228,9 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         }
         link.pending = { requestId: deps.uuid(), document, expectedRevision: recovered?.mergedDocument ? recovered.revision : link.revision,
           ...(recovered?.mergedDocument ? { originalDocument } : {}) };
+        if (link.pending.expectedRevision > 0 && deps.api.drafts && deps.api.checkpointSave) {
+          link.pending = await draftSavePending(link, link.pending); check();
+        }
         await deps.writeLink(captured.id, link); check();
         return (await finishPending(captured.id, link))!;
       });

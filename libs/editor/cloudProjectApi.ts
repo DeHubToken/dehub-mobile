@@ -48,6 +48,15 @@ export function cloudProjectApi(address: string) {
     save(id: string, document: CloudProjectDocument, expectedRevision: number, requestId: string) {
       return rpc<CloudProjectSaved>("editor_cloud_save", { p_id: id, p_document: parseCloudProjectDocument(document, wallet), p_expected_revision: expectedRevision, p_request_id: requestId });
     },
+    checkpointSave(owner: string, id: string, document: CloudProjectDocument, expectedRevision: number, expectedDraftRevision: number, requestId: string) {
+      if (!Number.isInteger(expectedRevision) || expectedRevision < 1 || expectedRevision >= 2147483646
+        || !Number.isInteger(expectedDraftRevision) || expectedDraftRevision < 0 || expectedDraftRevision >= 2147483646)
+        throw new Error("Invalid saved or live draft baseline");
+      const sourceOwner = projectReviewWallet(owner);
+      return rpc<CloudProjectSaved>("editor_cloud_checkpoint_save", { p_owner: sourceOwner, p_id: id,
+        p_document: parseCloudProjectDocument(document, sourceOwner), p_expected_revision: expectedRevision,
+        p_expected_draft_revision: expectedDraftRevision, p_request_id: requestId });
+    },
     restore(id: string, revision: number, expectedRevision: number, requestId: string) {
       return rpc<CloudProjectSaved>("editor_cloud_restore", { p_id: id, p_revision: revision, p_expected_revision: expectedRevision, p_request_id: requestId });
     },
