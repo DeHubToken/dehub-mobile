@@ -93,8 +93,8 @@ const StoreForm: React.FC<{
   const insets = useSafeAreaInsets();
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
-  const [name, setName] = useState(existing?.name ?? "");
-  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:0", existing?.description ?? "");
+  const [name, setName] = useSurfaceDraft("store:name", existing?.name ?? "", existing?.id ?? "new");
+  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:0", existing?.description ?? "", existing?.id ?? "new");
   const [avatarUrl, setAvatarUrl] = useState(existing?.avatar_url ?? "");
   const [bannerUrl, setBannerUrl] = useState(existing?.banner_url ?? "");
   const { width: windowWidth } = useWindowDimensions();
@@ -103,11 +103,11 @@ const StoreForm: React.FC<{
   // Re-seed when the sheet opens for a different store
   React.useEffect(() => {
     if (!visible) return;
-    setName(existing?.name ?? "");
+    setName.initialize(existing?.name ?? "");
     setDescription.initialize(existing?.description ?? "");
     setAvatarUrl(existing?.avatar_url ?? "");
     setBannerUrl(existing?.banner_url ?? "");
-  }, [visible, existing, setDescription]);
+  }, [visible, existing, setDescription, setName]);
 
   const upload = useCallback(async (which: "avatar" | "banner") => {
     const uri = await pickImage();
@@ -137,7 +137,7 @@ const StoreForm: React.FC<{
           avatar_url: avatarUrl || undefined,
           banner_url: bannerUrl || undefined,
         },
-        { onSuccess: onClose },
+        { onSuccess: () => { setName.complete(name, name); setDescription.complete(description, description); onClose(); } },
       );
     } else {
       createStore.mutate(
@@ -147,10 +147,10 @@ const StoreForm: React.FC<{
           avatar_url: avatarUrl || undefined,
           banner_url: bannerUrl || undefined,
         },
-        { onSuccess: onClose },
+        { onSuccess: () => { setName.complete(name, name); setDescription.complete(description, description); onClose(); } },
       );
     }
-  }, [name, description, avatarUrl, bannerUrl, existing, createStore, updateStore, onClose]);
+  }, [name, description, avatarUrl, bannerUrl, existing, createStore, updateStore, onClose, setDescription, setName]);
 
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
@@ -261,18 +261,18 @@ const ListingForm: React.FC<{
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const createListing = useCreateListing();
-  const [title, setTitle] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:title", "");
-  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:1", "");
-  const [price, setPrice] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:price", "");
+  const [title, setTitle] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:title", "", storeId);
+  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:1", "", storeId);
+  const [price, setPrice] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:price", "", storeId);
   const [category, setCategory] = useState("other");
   const [condition, setCondition] = useState("new");
   const [isDigital, setIsDigital] = useState(false);
-  const [shippingInfo, setShippingInfo] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:shippingInfo", "");
-  const [stockQty, setStockQty] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:stockQty", "");
+  const [shippingInfo, setShippingInfo] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:shippingInfo", "", storeId);
+  const [stockQty, setStockQty] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:stockQty", "", storeId);
   const [images, setImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [isPod, setIsPod] = useState(false);
-  const [podUrl, setPodUrl] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:podUrl", "");
+  const [podUrl, setPodUrl] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:podUrl", "", storeId);
   const [podProvider, setPodProvider] = useState<PodProvider>("other");
 
   const reset = useCallback(() => {

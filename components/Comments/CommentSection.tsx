@@ -1,4 +1,4 @@
-import { accountDraftKey } from '../../hooks/useDraftState';
+import { accountDraftKey, useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
@@ -221,11 +221,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const commentDraftScope = accountDraftKey(user?.walletAddress || user?.address, `comments:${tokenId}`) ?? '';
   const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
   const { isMinimal } = useAppTheme();
-  const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const [editingComment, setEditingComment] = useState<Comment | null>(null);
+  const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
   const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
-  const [editingComment, setEditingComment] = useState<Comment | null>(null);
+
   const [posting, setPosting] = useState(false);
   // Android may move the composer between touch-down and touch-up while the
   // keyboard closes. Remember when touch-down already submitted so the
@@ -720,7 +721,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const handleStartEdit = useCallback((comment: Comment) => {
     setEditingComment(comment);
     setReplyingTo(null);
-    setInputText(comment.content || "");
     inputRef.current?.focus();
   }, []);
 
@@ -731,9 +731,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // Prefill @mention of the author being replied to — but only into an empty
     // box. Aiming a half-written comment at someone must not overwrite it.
     const mentionName = comment.user?.username || comment.user?.displayName || "user";
-    setInputText((current) => (current.trim() ? current : `@${mentionName} `));
+    if (!editingComment) setInputText((current) => (current.length ? current : `@${mentionName} `));
     inputRef.current?.focus();
-  }, []);
+  }, [editingComment, setInputText]);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
@@ -742,12 +742,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // comment instead. Blanking the box did neither: it destroyed a written
     // comment on a tap meant only to change who it was aimed at.
     if (editingComment) {
-      setInputText(loadCommentDraft(commentDraftScope)?.text ?? "");
+      setInputText.clear();
       mentions.reset();
     }
     setReplyingTo(null);
     setEditingComment(null);
-  }, [editingComment, tokenId, mentions]);
+  }, [editingComment, tokenId, mentions, setInputText]);
 
 
   // Pick image → open cropper → set preview
@@ -814,7 +814,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // nicely alongside whatever the user has already typed.
   const handleEmojiSelected = useCallback((emoji: string) => {
     setInputText((prev) => prev + emoji);
-  }, []);
+  }, [setInputText]);
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
@@ -915,8 +915,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
 
       const savedMedia = mediaAttachment;
-      setMediaAttachment(null);
-      setReplyingTo(null);
 
       try {
         let newId: number | undefined;
@@ -953,6 +951,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         }
 
         // Reconcile temp ID with real ID
+        setMediaAttachment(current => current === savedMedia ? null : current);
+        setReplyingTo(current => current?.id === replyingTo?.id ? null : current);
         if (newId != null) {
           setFlatComments((prev) =>
             prev.map((c) => {
@@ -970,9 +970,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } catch (e) {
         console.error("[CommentSection] media post error", e);
         setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
-        // Hand the attachment back rather than making them pick it again.
-        setMediaAttachment(savedMedia);
-        setReplyingTo(replyingTo);
+        // Keep the attachment and reply available for retry.
         toastError(t("comments.sendMediaFailed"));
       } finally {
         setMediaPosting(false);
@@ -999,14 +997,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               c.id === editingComment.id ? { ...c, content: text } : c
             )
           );
-          setEditingComment(null);
-          // Back to the draft the edit borrowed the box from, if there was one.
-          setInputText(loadCommentDraft(commentDraftScope)?.text ?? "");
-          mentions.reset();
-          Keyboard.dismiss();
-
-          // Save edit to server
           await editComment({ commentId: editingComment.id, content: text });
+          if (setInputText.complete(inputText, text)) {
+            setEditingComment(current => current?.id === editingComment.id ? null : current);
+            mentions.reset();
+            Keyboard.dismiss();
+          }
         } else {
           // Optimistic update for new comment/reply
           const parentDepth = replyingTo ? ((replyingTo as FlatComment).depth ?? ((replyingTo as FlatComment).isReply ? 1 : 0)) : 0;
@@ -1072,7 +1068,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
           if (loadCommentDraft(commentDraftScope)?.text === inputText) clearCommentDraft(commentDraftScope);
           setReplyingTo(null);
-          setInputText(current => current === inputText ? "" : current);
+          setInputText.complete(inputText, "");
           mentions.reset();
           Keyboard.dismiss();
 
@@ -1122,7 +1118,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, commentDraftScope, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t]);
+  }, [inputText, posting, requireAuth, tokenId, commentDraftScope, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t, setInputText]);
 
   /**
    * What every Post control calls. On a Common Ground thread the first reply
@@ -1168,7 +1164,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     } finally {
       setAiRewriting(false);
     }
-  }, [inputText, aiRewriting, t]);
+  }, [inputText, aiRewriting, t, setInputText]);
 
   const handlePostTouchStart = useCallback(() => {
     if (Platform.OS !== "android") return;

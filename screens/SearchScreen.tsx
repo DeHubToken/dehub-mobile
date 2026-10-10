@@ -597,7 +597,7 @@ const SearchScreen: React.FC = () => {
       showHeader();
       executeSearch(term, activeTab, 1);
     },
-    [activeTab, executeSearch, showHeader],
+    [activeTab, executeSearch, showHeader, setSearchQuery],
   );
 
   const handleTabChange = useCallback(

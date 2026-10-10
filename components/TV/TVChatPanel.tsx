@@ -243,7 +243,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
       setSending(true);
       try {
         await sendMessage(body, replyTo?.id);
-        setText("");
+        setText.complete(text, "");
         setReplyTo(null);
         atBottomRef.current = true;
         scrollToBottom();

@@ -515,7 +515,7 @@ export default function UploadScreen() {
    * Empty is the toggle being off; there is no separate boolean, because a
    * board with no links in it and no board are the same post.
    */
-  const [shopLinks, setShopLinks] = useState<ShopLink[]>([]);
+  const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(draftScope + ":shopLinks", []);
   /**
    * The creator's own store listings picked for the board, by id.
    *
@@ -643,7 +643,7 @@ export default function UploadScreen() {
         return [community.slug, ...rest].slice(0, CATEGORIES_MAX);
       });
     },
-    [communitySlugs],
+    [communitySlugs, setCategories],
   );
 
   const handleClearCommunity = useCallback(() => {
@@ -848,7 +848,7 @@ export default function UploadScreen() {
       if (categories.length >= CATEGORIES_MAX) return;
       setCategories((prev) => [...prev, n]);
     },
-    [categories],
+    [categories, setCategories],
   );
 
   const removeCategory = useCallback((name: string) => {
@@ -904,7 +904,7 @@ export default function UploadScreen() {
         setIsEnhancing(false);
       }
     },
-    [bodyText, isEnhancing, DESCRIPTION_MAX],
+    [bodyText, isEnhancing, DESCRIPTION_MAX, setBodyText],
   );
 
   /** "Generate Content" — hands off to the assistant, as web does. */
@@ -3667,6 +3667,7 @@ export default function UploadScreen() {
       />
 
       <ShopSheet
+        draftScope={draftScope}
         visible={shopSheetVisible}
         onClose={() => setShopSheetVisible(false)}
         value={{ links: shopLinks, listingIds: shopListingIds }}

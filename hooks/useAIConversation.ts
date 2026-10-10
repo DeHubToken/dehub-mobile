@@ -392,7 +392,12 @@ export function useAIConversation(userId: string, surface = 'assistant') {
   // data URL -> cache file path, so a thread saved on every turn does not
   // rewrite the same image to disk each time (see slimForStorage).
   const dataUrlFilesRef = useRef(new Map<string, string>());
+  const selectionVersion = useRef(0);
+  const [restoring, setRestoring] = useState(!!conversationId);
+  const historyIndexLoaded = useRef(false);
   const updateConversationId = useCallback((id: string | null) => {
+    selectionVersion.current += 1;
+    setRestoring(false);
     conversationIdRef.current = id;
     if (id === null) draftSession.start();
     else draftSession.select(id);
@@ -441,6 +446,7 @@ export function useAIConversation(userId: string, surface = 'assistant') {
     } catch (err) {
       log.error('Failed to load conversations', err);
     } finally {
+      historyIndexLoaded.current = true;
       if (isMounted.current) setLoading(false);
     }
   }, [userId, signedIn]);
@@ -476,12 +482,17 @@ export function useAIConversation(userId: string, surface = 'assistant') {
   const loadConversation = useCallback(
     async (entry: ConversationEntry) => {
       if (!userId) return;
+      updateConversationId(entry.id);
+      const version = selectionVersion.current;
+      setRestoring(true);
+      try {
 
       // Post-based chats stored in legacy format
       if (entry.postId) {
         const legacyKey = `${POST_CHAT_PREFIX}${userId.toLowerCase()}_${entry.postId}`;
         try {
           const raw = await AsyncStorage.getItem(legacyKey);
+      if (!isMounted.current || version !== selectionVersion.current) return;
           if (raw) {
             const parsed = JSON.parse(raw);
             const msgs: AIChatMessage[] = Array.isArray(parsed)
@@ -492,7 +503,6 @@ export function useAIConversation(userId: string, surface = 'assistant') {
               : parsed.postContext;
             setMessages(msgs);
             setPostContext(ctx);
-            updateConversationId(entry.id);
             remoteIdRef.current = null;
             mirroredCountRef.current = msgs.length;
           }
@@ -506,9 +516,9 @@ export function useAIConversation(userId: string, surface = 'assistant') {
       // device.
       if (entry.remoteOnly && entry.remoteId) {
         const msgs = await fetchRemoteMessages(userId, entry.remoteId);
+      if (!isMounted.current || version !== selectionVersion.current) return;
         setMessages(msgs);
         setPostContext(undefined);
-        updateConversationId(entry.id);
         remoteIdRef.current = entry.remoteId;
         mirroredCountRef.current = msgs.length;
         return;
@@ -516,13 +526,14 @@ export function useAIConversation(userId: string, surface = 'assistant') {
 
       // Standard local conversation
       const data = await readConversation(userId, entry.id);
+      if (!isMounted.current || version !== selectionVersion.current) return;
       if (data) {
         setMessages(data.messages);
         setPostContext(data.postContext);
-        updateConversationId(entry.id);
         remoteIdRef.current = data.remoteId ?? entry.remoteId ?? null;
         mirroredCountRef.current = data.messages.length;
       }
+      } finally { if (isMounted.current && version === selectionVersion.current) setRestoring(false); }
     },
     [userId, updateConversationId],
   );
@@ -532,10 +543,13 @@ export function useAIConversation(userId: string, surface = 'assistant') {
     const id = restoreId.current;
     if (!id || conversationIdRef.current !== id) return;
     const entry = conversations.find(item => item.id === id);
-    if (!entry) return;
+    if (!entry) {
+      if (historyIndexLoaded.current) { restoreId.current = null; setRestoring(false); }
+      return;
+    }
     restoreId.current = null;
     void loadConversation(entry);
-  }, [conversations, loadConversation]);
+  }, [conversations, loading, loadConversation]);
 
   const saveMessage = useCallback(
     async (newMessages: AIChatMessage[]) => {
@@ -712,6 +726,7 @@ export function useAIConversation(userId: string, surface = 'assistant') {
     conversations,
     postContext,
     loading,
+    restoring,
     startNewConversation,
     appendLocalMessage,
     loadConversation,

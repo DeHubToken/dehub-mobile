@@ -228,6 +228,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     patchStoredMessage,
     messages,
     conversations,
+    restoring,
     startNewConversation,
     appendLocalMessage,
     loadConversation,
@@ -274,7 +275,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const activeTemplate = getTemplate(templateId);
   const editorDraft = studio ? creatorSettingsForEditorDraft(route.params?.editorDraft) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const [studioSettings, setStudioSettings] = useState<CreatorStudioSettings>(() => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
+  const [studioSettings, setStudioSettings] = useDraftState<CreatorStudioSettings>(`creator:${draftScope}:settings`, () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
     model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }));
   useEffect(() => {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
@@ -283,6 +284,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const mentions = useMentions(input, setInput);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
+  const pendingDraftCompletion = useRef<() => void>(() => {});
   const librarySaves = useRef(new Set<string>());
   const failedLibrarySaves = useRef(new Set<string>());
   const librarySaveQueue = useRef(Promise.resolve());
@@ -489,6 +491,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       );
     },
     [
+      input, setInput,
       selectedStyle,
       settings.chatModel,
       userContext,
@@ -521,6 +524,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         useFree?: boolean;
       },
     ) => {
+      const finishDraft = pendingDraftCompletion.current;
       setIsLoading(true);
       setIsGeneratingImage(true);
       scrollToEnd();
@@ -564,6 +568,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             ...history,
             { role: 'assistant', content: res.text || '', imageUrl: res.imageUrl },
           ]);
+          finishDraft();
           toastSuccess(t('assistant.imageGenerated'));
         } else {
           await saveMessage([
@@ -703,6 +708,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       creator?: CreatorStudioSettings | null,
     ) => {
       const videoModel = VIDEO_MODELS[model];
+      const finishDraft = pendingDraftCompletion.current;
       setIsLoading(true);
       scrollToEnd();
 
@@ -773,6 +779,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         // render it has already been charged for.
         AsyncStorage.setItem(PENDING_VIDEO_KEY, JSON.stringify(pending)).catch(() => {});
         startVideoPoll(pending);
+        finishDraft();
         scrollToEnd();
       } catch (err) {
         log.error('video generation failed:', err, { kind: 'video', model, errorCode: errorCodeOf(err) });
@@ -875,6 +882,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       extras?: { sourceImage?: string; lyrics?: string; txHash?: string },
     ) => {
       const toolModel = AI_TOOL_MODELS[toolId];
+      const finishDraft = pendingDraftCompletion.current;
       setIsLoading(true);
       scrollToEnd();
 
@@ -913,6 +921,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
               ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             },
           ]);
+          finishDraft();
           toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
           return;
         }
@@ -956,6 +965,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         };
         AsyncStorage.setItem(PENDING_TOOL_KEY, JSON.stringify(pending)).catch(() => {});
         startToolPoll(pending);
+        finishDraft();
         scrollToEnd();
       } catch (err) {
         log.error('tool run failed:', err, { kind: 'tool', tool: toolId, errorCode: errorCodeOf(err) });
@@ -1194,12 +1204,12 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
       await doSendChat(text, history);
     },
-    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings],
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput],
   );
 
   const handleSend = useCallback(async () => {
     const typed = input.trim();
-    if ((!typed && !attachedImage && !activeTemplate) || isLoading || submitLock.current) return;
+    if ((!typed && !attachedImage && !activeTemplate) || isLoading || restoring || submitLock.current) return;
     if (studio && (!isSignedIn || needsUsername)) {
       navigation.navigate(ScreenNames.SignIn);
       return;
@@ -1216,6 +1226,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
     submitLock.current = true;
+    pendingDraftCompletion.current = () => { setInput.complete(input, ""); };
     setIsLoading(true);
     try {
     mentions.reset();
@@ -1256,7 +1267,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       submitLock.current = false;
       setIsLoading(false);
     }
-  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation]);
+  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1545,7 +1556,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           break;
       }
     },
-    [handleAttach],
+    [handleAttach, setInput],
   );
 
   /** Arming a template also adopts the model it was tuned for, as on web. */
@@ -1560,7 +1571,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         updateSettings({ videoModel: tpl.model as VideoModelKey });
       }
     },
-    [updateSettings, studio, studioSettings],
+    [updateSettings, studio, studioSettings, setStudioSettings],
   );
 
   const handleNewChat = useCallback(() => {
@@ -1581,6 +1592,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     (entry: ConversationEntry) => {
       for (const key of failedLibrarySaves.current) librarySaves.current.delete(key);
       failedLibrarySaves.current.clear();
+      streamRef.current?.abort();
+      streamRef.current = null;
+      setStreamingContent(null);
+      setIsLoading(false);
       loadConversation(entry);
       },
     [loadConversation],

@@ -396,7 +396,6 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     const userMsg: AIChatMessage = { role: "user", content: text };
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
-    setInputText("");
     setIsLoading(true);
 
     setTimeout(() => {
@@ -423,6 +422,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
               imageUrl: imgRes.imageUrl,
             };
             setMessages((prev) => [...prev, imgMsg]);
+            setInputText.complete(inputText, "");
           } else {
             const fallbackMsg: AIChatMessage = {
               role: "assistant",
@@ -448,6 +448,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
 
         const aiMsg: AIChatMessage = { role: "assistant", content: res.response };
         setMessages((prev) => [...prev, aiMsg]);
+        setInputText.complete(inputText, "");
       }
 
       setTimeout(() => {
