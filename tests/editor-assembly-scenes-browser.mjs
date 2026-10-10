@@ -86,6 +86,24 @@ try {
     const movingWindows = [{ id: 0, start: 0, end: 4 }];
     const moving = await sample(videoBlob, clip, movingWindows);
     if (!window.editor.validVisualFrames(moving, movingWindows)) throw new Error('invalid real video frames');
+    // Processing must finish when a hidden/background surface never repaints.
+    const noPresentation = 'window.requestAnimationFrame=function(){return 0};window.cancelAnimationFrame=function(){};HTMLVideoElement.prototype.requestVideoFrameCallback=function(){return 0};HTMLVideoElement.prototype.cancelVideoFrameCallback=function(){};';
+    let restorePresentation;
+    if (platform === 'web') {
+      const original = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'srcdoc');
+      Object.defineProperty(HTMLIFrameElement.prototype, 'srcdoc', { ...original, set(value) { original.set.call(this, value.replace('<script>', '<script>' + noPresentation)); } });
+      restorePresentation = () => Object.defineProperty(HTMLIFrameElement.prototype, 'srcdoc', original);
+    } else {
+      const animation = window.requestAnimationFrame, cancelAnimation = window.cancelAnimationFrame;
+      const presentation = HTMLVideoElement.prototype.requestVideoFrameCallback, cancelPresentation = HTMLVideoElement.prototype.cancelVideoFrameCallback;
+      window.requestAnimationFrame = () => 0; window.cancelAnimationFrame = () => {};
+      HTMLVideoElement.prototype.requestVideoFrameCallback = () => 0; HTMLVideoElement.prototype.cancelVideoFrameCallback = () => {};
+      restorePresentation = () => { window.requestAnimationFrame = animation; window.cancelAnimationFrame = cancelAnimation; HTMLVideoElement.prototype.requestVideoFrameCallback = presentation; HTMLVideoElement.prototype.cancelVideoFrameCallback = cancelPresentation; };
+    }
+    let withoutPresentation;
+    try { withoutPresentation = await sample(videoBlob, clip, movingWindows); }
+    finally { restorePresentation(); }
+    if (!window.editor.validVisualFrames(withoutPresentation, movingWindows)) throw new Error('invalid unpresented video frames');
     let missingFailed = false;
     try { await sample(new Blob([new Uint8Array([1, 2, 3])], { type: 'image/png' }), photo, windows); } catch (error) { missingFailed = String(error).includes('image unavailable'); }
     let cancelled = false, malformedRejected = true;
@@ -107,9 +125,11 @@ try {
     const proof = document.createElement('div'); proof.style.cssText = 'position:fixed;inset:0;background:white;padding:20px;overflow:auto;z-index:999';
     for (const frame of [...still, ...moving]) { const image = new Image(); image.src = frame.dataUrl; image.style.cssText = 'width:180px;margin:8px'; proof.append(image); }
     document.body.append(proof);
-    return { still: await pixels(still), moving: await pixels(moving), missingFailed, cancelled, malformedRejected, recovery: true, remainingDecoders: document.querySelectorAll('iframe').length, videoTrim: clip.trimIn, videoSpeed: clip.speed, providerUsed: false, physicalDeviceVerified: false };
+    return { still: await pixels(still), moving: await pixels(moving), withoutPresentation: await pixels(withoutPresentation), missingFailed, cancelled, malformedRejected, recovery: true, remainingDecoders: document.querySelectorAll('iframe').length, videoTrim: clip.trimIn, videoSpeed: clip.speed, providerUsed: false, physicalDeviceVerified: false };
   }, { platform, videoBase64 });
   assert.equal(report.still.length, 6); assert.equal(report.moving.length, 6);
+  assert.equal(report.withoutPresentation.length, 6);
+  assert.deepEqual(report.withoutPresentation, report.moving);
   for (const frame of report.still) {
     assert.equal(frame.width, 320); assert.equal(frame.height, 160); assert(frame.bytes <= 40000);
     for (let channel = 0; channel < 3; channel++) assert(Math.abs(frame.rgb[channel] - [170, 51, 238][channel]) < 8, JSON.stringify(frame));
