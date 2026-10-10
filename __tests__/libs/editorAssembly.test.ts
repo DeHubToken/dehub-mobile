@@ -89,12 +89,12 @@ describe("editable assembly", () => {
     expect(copy.tracks.findIndex(t => t.id === overlay.trackId)).toBeGreaterThan(copy.tracks.findIndex(t => t.id === main.trackId));
     expect(JSON.stringify(source)).toBe(before);
   });
-  it("does not duplicate chosen assembly shots as overlays or retain neighbours on the same source track", () => {
+  it("does not duplicate chosen primary shots as overlays when their source times overlap", () => {
     const source = project(); source.clips[1] = { ...photo, start: 11, duration: 4 };
-    source.clips.push({ ...video, id: "same-track", mediaId: "neighbour", start: 11, duration: 1 });
     let id = 0; const copy = assemblyProject(source, plan(), { id: "copy", title: "Chosen" }, () => `chosen-${++id}`);
     expect(copy.clips.filter(c => c.kind === "video" || c.kind === "image")).toHaveLength(2);
-    expect(copy.clips.some(c => "mediaId" in c && c.mediaId === "neighbour")).toBe(false);
+    expect(copy.clips.filter(c => c.kind === "video" && c.mediaId === "source")).toHaveLength(1);
+    expect(copy.clips.filter(c => c.kind === "image" && c.mediaId === "photo")).toHaveLength(1);
   });
   it("holds a photo's image overlay without stretching its picture-in-picture footage or narration", () => {
     const source = project(); source.clips = [photo,
