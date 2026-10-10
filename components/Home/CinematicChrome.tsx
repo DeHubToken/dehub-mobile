@@ -118,6 +118,7 @@ export const CinematicIconButton = memo(function CinematicIconButton({
   label,
   active = false,
   bare = false,
+  alignEnd = false,
 }: {
   icon: IconName;
   onPress?: () => void;
@@ -126,6 +127,8 @@ export const CinematicIconButton = memo(function CinematicIconButton({
   active?: boolean;
   /** Just the icon, with a soft shadow and no backing (the first post). */
   bare?: boolean;
+  /** Align bare menu dots with the text edge below the media. */
+  alignEnd?: boolean;
 }) {
   return (
     <Pressable
@@ -135,10 +138,10 @@ export const CinematicIconButton = memo(function CinematicIconButton({
       accessibilityRole={onPress ? "button" : undefined}
       accessibilityLabel={label}
       accessibilityState={onPress ? { expanded: active } : undefined}
-      style={bare ? styles.bareButton : styles.button}
+      style={[bare ? styles.bareButton : styles.button, alignEnd && { marginRight: -(CINEMATIC_BARE_BUTTON - BARE_ICON) / 2 }]}
     >
       {({ pressed }) => bare ? (
-        <View style={[styles.bareIcon, { opacity: pressed ? 0.6 : 1 }]}>
+        <View style={[styles.bareIcon, { opacity: pressed ? 0.6 : 1 }, alignEnd && { left: BARE_ICON * (10 / 24) }]}>
           {/* The shadow: a dark, heavier copy of the glyph under it, which
               reads the same on every platform (Android draws no shadow for
               a view without a fill). iOS adds a soft one on top. */}
