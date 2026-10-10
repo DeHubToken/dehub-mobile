@@ -1,5 +1,6 @@
 import Foundation
 import CoreMedia
+import AVFoundation
 import ScreenCaptureKit
 
 @available(iOS 27.0, *)
@@ -13,6 +14,9 @@ final class ModernCaptureDriver: NSObject, CaptureDriver, SCContentSharingPicker
   private var stopped = false
   private var recording = false
   private var maximum: Task<Void, Never>?
+  private var previousAudioCategory: AVAudioSession.Category?
+  private var previousAudioMode: AVAudioSession.Mode?
+  private var previousAudioOptions: AVAudioSession.CategoryOptions?
 
   @MainActor
   init(ticket: CaptureTicket, ledger: CaptureLedger, changed: @escaping () -> Void) throws {
@@ -51,7 +55,15 @@ final class ModernCaptureDriver: NSObject, CaptureDriver, SCContentSharingPicker
         self.stream = capture
         try capture.addStreamOutput(self, type: .screen, sampleHandlerQueue: self.movie.queue)
         if self.ticket.systemAudio { try capture.addStreamOutput(self, type: .audio, sampleHandlerQueue: self.movie.queue) }
-        if self.ticket.microphone { try capture.addStreamOutput(self, type: .microphone, sampleHandlerQueue: self.movie.queue) }
+        if self.ticket.microphone && filter.isMicrophoneEnabled {
+          let audio = AVAudioSession.sharedInstance()
+          self.previousAudioCategory = audio.category
+          self.previousAudioMode = audio.mode
+          self.previousAudioOptions = audio.categoryOptions
+          try audio.setCategory(.playAndRecord, mode: .default, options: [.mixWithOthers, .defaultToSpeaker])
+          try audio.setActive(true)
+          try capture.addStreamOutput(self, type: .microphone, sampleHandlerQueue: self.movie.queue)
+        }
         _ = try self.ledger.beginBroadcast(self.ticket.sessionId, scopeKey: self.ticket.scopeKey, hostInstanceId: self.ticket.hostInstanceId)
         self.recording = true
         try await capture.startCapture()
@@ -98,6 +110,12 @@ final class ModernCaptureDriver: NSObject, CaptureDriver, SCContentSharingPicker
     if cancel { try? ledger.requestCancel(ticket.sessionId, scopeKey: ticket.scopeKey) }
     if let stream { try? await stream.stopCapture() }
     self.stream = nil
+    if let category = previousAudioCategory, let mode = previousAudioMode, let options = previousAudioOptions {
+      let audio = AVAudioSession.sharedInstance()
+      try? audio.setActive(false, options: .notifyOthersOnDeactivation)
+      try? audio.setCategory(category, mode: mode, options: options)
+      previousAudioCategory = nil; previousAudioMode = nil; previousAudioOptions = nil
+    }
     if recording { try? ledger.markFinishing(ticket.sessionId, scopeKey: ticket.scopeKey) }
     let result: Result<CaptureMovieMetadata, Error> = await withCheckedContinuation { done in
       movie.queue.async { self.movie.finish(cancel: cancel) { done.resume(returning: $0) } }
