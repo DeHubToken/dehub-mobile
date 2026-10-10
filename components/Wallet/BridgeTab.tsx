@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { appLocale } from "../../libs/date.util";
 import { formatBridgeAmount } from "../../libs/bridge-amount";
 import { DhbCoin } from "../common/DhbCoin";
@@ -85,7 +86,7 @@ const BridgeTab: React.FC = () => {
   const [bnbBal, setBnbBal] = useState<ethers.BigNumber | null>(null);
   const [loading, setLoading] = useState(true);
   const [direction, setDirection] = useState<Direction>("base-to-bnb");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/BridgeTab.tsx:amount", "");
   const [isBridging, setIsBridging] = useState(false);
   const [transfers, setTransfers] = useState<BridgeTransfer[]>([]);
   const [loadingTransfers, setLoadingTransfers] = useState(true);

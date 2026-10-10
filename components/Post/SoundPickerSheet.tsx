@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -55,7 +56,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { height: SCREEN_H } = useWindowDimensions();
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useSurfaceDraft("components/Post/SoundPickerSheet.tsx:searchText", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [results, setResults] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -73,11 +74,11 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   useEffect(() => {
     if (visible) {
       setHeightPct(MIN_PCT);
-      setSearchText("");
+      setSearchText.initialize("");
       setResults([]);
       setPage(1);
     }
-  }, [visible]);
+  }, [visible, setSearchText]);
 
   useEffect(() => {
     Animated.timing(heightAnim, {

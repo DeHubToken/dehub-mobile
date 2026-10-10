@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * ENS name — prove you hold a `.eth` name and be reachable at dehub.io/<name>
  * ===========================================================================
@@ -71,7 +72,7 @@ export function EnsHandleSection() {
   // `undefined` while the current link is still being read, so the panel does
   // not flash a claim box at somebody who already has a name.
   const [link, setLink] = useState<EnsLink | null | undefined>(undefined);
-  const [name, setName] = useState('');
+  const [name, setName] = useSurfaceDraft("components/Settings/EnsHandleSection.tsx:name", '');
   const [preview, setPreview] = useState<EnsPreview | null>(null);
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [challenge, setChallenge] = useState<EnsChallenge | null>(null);
@@ -102,7 +103,7 @@ export function EnsHandleSection() {
           ensService
             .suggest()
             .then((suggested) => {
-              if (!cancelled && suggested) setName(suggested);
+              if (!cancelled && suggested) setName.initialize(suggested);
             })
             .catch(() => {});
         }
@@ -113,7 +114,7 @@ export function EnsHandleSection() {
     return () => {
       cancelled = true;
     };
-  }, [user?.address]);
+  }, [user?.address, setName]);
 
   const sessionAddress = (user?.walletAddress || user?.address || '').toLowerCase();
   const holderIsThisSession =
@@ -141,7 +142,7 @@ export function EnsHandleSection() {
     } finally {
       if (alive.current) setChecking(false);
     }
-  }, [name]);
+  }, [name, setName]);
 
   const startChallenge = useCallback(async () => {
     if (!preview) return;

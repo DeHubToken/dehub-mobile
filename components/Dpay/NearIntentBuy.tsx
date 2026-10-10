@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { tokenLabel } from '../../libs/token-label';
 import { sendSolanaPurchase, connectPurchaseSolanaWallet } from '../../services/solana-purchase';
 import { usePaymentPicker } from '../../hooks/use-payment-picker';
@@ -60,7 +61,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
   const [amountText, setAmountText] = useState(String(initialDhbAmount));
   const deliveredRef = React.useRef<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useSurfaceDraft("components/Dpay/NearIntentBuy.tsx:search", '');
   const [agreed, setAgreed] = useState(false);
   const [connectingSolana, setConnectingSolana] = useState(false);
   const amount = Number(amountText);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -22,7 +23,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
   const signer = useDexSigner();
   const [side, setSide] = useState<'buy' | 'sell' | null>(null);
   const [pay, setPay] = useState<Pay>('USDC');
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useSurfaceDraft("components/DexInstantDhbTrade.tsx:amount", '');
   const [quote, setQuote] = useState<SwapCall | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');

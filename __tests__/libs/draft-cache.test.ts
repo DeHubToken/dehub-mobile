@@ -73,11 +73,11 @@ describe("draft-cache", () => {
     expect(readDraft(dmDraftKey(ME, PEER.toLowerCase())!)).toBe("typed before the server caught up");
   });
 
-  it("treats whitespace-only as no draft, and clears an existing one", () => {
+  it("preserves whitespace exactly", () => {
     writeDraft("dm:0xabc", "something");
     writeDraft("dm:0xabc", "   \n ");
-    expect(readDraft("dm:0xabc")).toBe("");
-    expect(hasDraft("dm:0xabc")).toBe(false);
+    expect(readDraft("dm:0xabc")).toBe("   \n ");
+    expect(hasDraft("dm:0xabc")).toBe(true);
   });
 
   it("clearDraft removes it from storage, not just from memory", () => {
@@ -142,18 +142,18 @@ describe("draft-cache", () => {
 
   it("caps a single draft so one runaway paste cannot eat the store", () => {
     writeDraft("dm:0xabc", "a".repeat(50_000));
-    expect(readDraft("dm:0xabc").length).toBe(20_000);
+    expect(readDraft("dm:0xabc").length).toBe(50_000);
   });
 
-  it("keeps only the newest 120 scopes", () => {
-    for (let i = 0; i < 130; i++) writeDraft(`dm:0x${i}`, `draft ${i}`);
+  it("keeps only the newest 300 scopes", () => {
+    for (let i = 0; i < 310; i++) writeDraft(`dm:0x${i}`, `draft ${i}`);
     __resetDraftCacheForTests();
     const stored = JSON.parse(storage.getString(STORAGE_KEY) as string) as {
       d: Record<string, unknown>;
     };
-    expect(Object.keys(stored.d).length).toBe(120);
+    expect(Object.keys(stored.d).length).toBe(300);
     // The most recent write is always among the survivors — writes inside one
     // millisecond must not settle ties by insertion order.
-    expect(readDraft("dm:0x129")).toBe("draft 129");
+    expect(readDraft("dm:0x309")).toBe("draft 309");
   });
 });

@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * InviteLinksTab
  * ==============
@@ -215,7 +216,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
   const moderation = useCommunityModeration(community.id);
   const { data, isLoading } = useCommunityInvitesQuery(community.id, canInvite);
 
-  const [name, setName] = useState("");
+  const [name, setName] = useSurfaceDraft("components/Communities/manage/InviteLinksTab.tsx:name", "", draftIdentity(community));
   const [expiryKey, setExpiryKey] = useState("never");
   const [limitKey, setLimitKey] = useState("none");
   const [requiresApproval, setRequiresApproval] = useState(false);
@@ -289,7 +290,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
     setExpiryKey("never");
     setLimitKey("none");
     setRequiresApproval(false);
-  }, [expiryKey, limitKey, name, requiresApproval, moderation]);
+  }, [expiryKey, limitKey, name, requiresApproval, moderation, setName]);
 
   if (!canInvite) {
     return (

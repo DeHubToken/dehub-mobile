@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { memo, useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -37,14 +38,14 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
 }) => {
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/Upload/CategoryDrawer.tsx:query", "");
 
   useEffect(() => {
     if (visible) {
-      setQuery("");
+      setQuery.initialize("");
       setTimeout(() => inputRef.current?.focus(), 300);
     }
-  }, [visible]);
+  }, [visible, setQuery]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -65,7 +66,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
       onAdd(n);
       setQuery("");
     },
-    [categories.length, max, onAdd]
+    [categories.length, max, onAdd, setQuery]
   );
 
   const handleSubmit = useCallback(() => {

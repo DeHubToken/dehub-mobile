@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Stream key — permanent credentials for OBS, a capture app or a console
  * ======================================================================
@@ -39,7 +40,7 @@ export function StreamKeySection() {
   // `undefined` while it loads, so the panel does not flash "not available" at
   // a creator who has perfectly good credentials.
   const [credentials, setCredentials] = useState<EncoderCredentials | undefined | null>(undefined);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useSurfaceDraft("components/Settings/StreamKeySection.tsx:title", '');
   const [revealed, setRevealed] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -50,13 +51,13 @@ export function StreamKeySection() {
       .then(next => {
         if (!alive.current) return;
         setCredentials(next);
-        setTitle(next.defaultTitle);
+        setTitle.initialize(next.defaultTitle);
       })
       .catch(() => alive.current && setCredentials(null));
     return () => {
       alive.current = false;
     };
-  }, []);
+  }, [setTitle]);
 
   const copy = useCallback(
     async (value: string, message: string) => {
@@ -115,7 +116,7 @@ export function StreamKeySection() {
     } finally {
       if (alive.current) setBusy(false);
     }
-  }, [credentials, title, t]);
+  }, [credentials, title, t, setTitle]);
 
   const loading = credentials === undefined;
   const unavailable = !loading && (!credentials?.server || !credentials?.streamKey);

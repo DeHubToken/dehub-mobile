@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Add custom emoji, inside the picker — the mobile twin of dehubweb's
  * components/app/emoji/AddCustomEmojiPanel.tsx.
@@ -51,12 +52,12 @@ export default function AddCustomEmojiPanel({ onDone, onLeave }: { onDone: () =>
   const { t } = useTranslation();
   const walletAddress = usePackWallet();
   const [mode, setMode] = useState<"single" | "pack">("single");
-  const [link, setLink] = useState("");
+  const [link, setLink] = useSurfaceDraft("components/common/AddCustomEmojiPanel.tsx:link", "");
   const [file, setFile] = useState<PickedEmojiImage | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [source, setSource] = useState<EmojiSource | null>(null);
-  const [name, setName] = useState("");
-  const [pack, setPack] = useState("");
+  const [name, setName] = useSurfaceDraft("components/common/AddCustomEmojiPanel.tsx:name", "");
+  const [pack, setPack] = useSurfaceDraft("components/common/AddCustomEmojiPanel.tsx:pack", "");
   const [busy, setBusy] = useState(false);
   const target = usePackTarget(walletAddress, "emoji");
 

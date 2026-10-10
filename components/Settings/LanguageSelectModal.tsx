@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, ScrollView, DevSettings } from "react-native";
 import * as Updates from "expo-updates";
@@ -19,7 +20,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
   visible,
   onClose,
 }) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Settings/LanguageSelectModal.tsx:search", "");
   const { i18n: i18nHook, t } = useTranslation();
   const currentLang = i18nHook.language;
   const currentLangInfo = SUPPORTED_LANGUAGES.find(

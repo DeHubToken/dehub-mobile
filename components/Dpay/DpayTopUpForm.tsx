@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import { Trans, useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo } from "react";
@@ -60,7 +61,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
     | string
     | undefined;
   const { t } = useTranslation();
-  const [amountUsd, setAmountUsd] = React.useState<string>(initialUsdAmount);
+  const [amountUsd, setAmountUsd] = useSurfaceDraft<string>("components/Dpay/DpayTopUpForm.tsx:amountUsd", initialUsdAmount);
   const [checkoutSecret, setCheckoutSecret] = React.useState<string | null>(null);
   const [currency, setCurrency] = React.useState<string>("usd");
   const [chain, setChain] = React.useState<string>(
@@ -176,7 +177,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
 
   const onChangeAmount = React.useCallback((txt: string) => {
     setAmountUsd(sanitizeAmountInput(txt, 2));
-  }, []);
+  }, [setAmountUsd]);
 
   const onChangeCurrency = React.useCallback((val: string) => {
     setCurrency(val);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GlossaryScreen
  * ==============
@@ -165,7 +166,7 @@ function GlossaryCard({ icon, title, description }: ResolvedEntry) {
 export default function GlossaryScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("screens/GlossaryScreen.tsx:query", "");
 
   const sections = useMemo(
     () =>

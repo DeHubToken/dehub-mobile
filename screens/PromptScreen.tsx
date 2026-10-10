@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * PromptScreen
  * ============
@@ -133,7 +134,7 @@ export default function PromptScreen() {
   const { t } = useTranslation();
 
   const [stage, setStage] = useState<Stage>("input");
-  const [text, setText] = useState("");
+  const [text, setText] = useSurfaceDraft("screens/PromptScreen.tsx:text", "");
   const [weights, setWeights] = useState<CategoryWeight[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   // True once a load has finished, found or not, so the tune step can tell

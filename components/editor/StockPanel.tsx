@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useRef, useState } from "react";
 import { Image, Linking, Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -8,7 +9,7 @@ import DeHubLoader from "../DeHubLoader";
 export default function StockPanel({ onAdd }: { onAdd: (media: MediaMeta) => void }) {
   const { t } = useTranslation();
   const [kind, setKind] = useState<StockKind>("video");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/editor/StockPanel.tsx:query", "");
   const [items, setItems] = useState<StockItem[]>([]);
   const [busy, setBusy] = useState(false);
   const [importing, setImporting] = useState<string | null>(null);

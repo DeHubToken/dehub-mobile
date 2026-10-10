@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * StoresScreen
  * ============
@@ -124,7 +125,7 @@ export default function StoresScreen() {
   const [sort, setSort] = useState<string>("newest");
   // Not debounced — web's BrowseTab passes `search` straight to the query and
   // relies on keepPreviousData to avoid a skeleton flash. Same here.
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/StoresScreen.tsx:search", "");
 
   const {
     data: listings = [],

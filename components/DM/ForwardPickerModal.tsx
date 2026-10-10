@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo, useState } from "react";
@@ -29,7 +30,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
   myAddress,
 }) => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/DM/ForwardPickerModal.tsx:search", "");
 
   const filtered = useMemo(() => {
     if (!search.trim()) return conversations;

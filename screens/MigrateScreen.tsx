@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * MigrateScreen
  * =============
@@ -114,7 +115,7 @@ export default function MigrateScreen() {
   const { isSignedIn } = useAuthState();
 
   const [stage, setStage] = useState<Stage>('loading');
-  const [profileUrl, setProfileUrl] = useState('');
+  const [profileUrl, setProfileUrl] = useSurfaceDraft("screens/MigrateScreen.tsx:profileUrl", '');
   const [ownershipConfirmed, setOwnershipConfirmed] = useState(false);
   const [videos, setVideos] = useState<MigrationVideo[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -127,8 +128,8 @@ export default function MigrateScreen() {
   const [overrides, setOverrides] = useState<Record<string, { name?: string; description?: string }>>({});
   /** Which row's editor sheet is open, or null. */
   const [editing, setEditing] = useState<string | null>(null);
-  const [draftName, setDraftName] = useState('');
-  const [draftDescription, setDraftDescription] = useState('');
+  const [draftName, setDraftName] = useSurfaceDraft("screens/MigrateScreen.tsx:draftName", '');
+  const [draftDescription, setDraftDescription] = useSurfaceDraft("screens/MigrateScreen.tsx:draftDescription", '');
 
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -172,7 +173,7 @@ export default function MigrateScreen() {
           getMigrationPricing().catch(() => null),
         ]);
         if (cancelled) return;
-        if (saved) setProfileUrl(saved);
+        if (saved) setProfileUrl.initialize(saved);
         if (prices) setPricing(prices);
 
         if (active && active.status === 'settled') {
@@ -190,7 +191,7 @@ export default function MigrateScreen() {
       }
     })();
     return () => { cancelled = true; };
-  }, [fetchVideos]);
+  }, [fetchVideos, setProfileUrl]);
 
   /* ---------- polling ---------- */
 
@@ -228,7 +229,7 @@ export default function MigrateScreen() {
     } catch {
       toastError(t('migrate.errClipboard'));
     }
-  }, [t]);
+  }, [t, setProfileUrl]);
 
   const handleList = useCallback(async () => {
     if (!profileUrl.trim()) { toastError(t('migrate.errNoUrl')); return; }
@@ -334,7 +335,7 @@ export default function MigrateScreen() {
     // Editing a row implies wanting it: nobody retitles a video they are
     // leaving behind.
     if (!v.alreadyImported) setSelected(prev => new Set(prev).add(v.youtubeVideoId));
-  }, [overrides]);
+  }, [overrides, setDraftDescription, setDraftName]);
 
   const saveEditor = useCallback(() => {
     if (!editing) return;

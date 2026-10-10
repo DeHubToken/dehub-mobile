@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * SellAccountPanel
  * ================
@@ -59,8 +60,8 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   const cancelListing = useCancelAccountListing();
   const resumeClaim = useResumeAccountClaim();
 
-  const [priceDhb, setPriceDhb] = useState("");
-  const [description, setDescription] = useState("");
+  const [priceDhb, setPriceDhb] = useSurfaceDraft("components/Accounts/SellAccountPanel.tsx:priceDhb", "");
+  const [description, setDescription] = useSurfaceDraft("components/Accounts/SellAccountPanel.tsx:description", "");
 
   const active = mine?.listings.find((l) => l.status === "active");
   const history = (mine?.listings || []).filter((l) => l.status !== "active");
@@ -70,10 +71,10 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
   // Seed the form from an existing listing so "list" doubles as "edit".
   useEffect(() => {
     if (!active) return;
-    setPriceDhb(String(active.priceDhb));
-    setDescription(active.description || "");
+    setPriceDhb.initialize(String(active.priceDhb));
+    setDescription.initialize(active.description || "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active?.id]);
+  }, [active?.id, setDescription, setPriceDhb]);
 
   if (!isAuthed) {
     return (

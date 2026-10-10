@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useState } from "react";
 import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -13,10 +14,10 @@ import { ProjectReviewPanel } from "./ProjectReviewPanel";
 export function CloudProjects({ visible, onClose, current, onOpen, preserve, onSeek, onReceive }: { visible: boolean; onClose(): void; current(): ProjectSnapshot | null; onOpen(snapshot: ProjectSnapshot): Promise<void> | void; preserve(): Promise<void>; onSeek?(seconds: number): void; onReceive?(snapshot: ProjectSnapshot, expectedKey: string): number | void }) {
   const { t } = useTranslation(), user = useUser();
   const address = user?.walletAddress || user?.address;
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/editor/CloudProjects.tsx:query", "");
   const cloud = useCloudProjects(address, nativeCloudProjectSession, { current, open: onOpen, preserve, seek: onSeek, receive: onReceive });
   useEffect(() => { if (visible && address) void cloud.refresh(); }, [visible, address]);
-  useEffect(() => { setQuery(""); }, [address]);
+  useEffect(() => { setQuery.initialize(""); }, [address, setQuery]);
   const matching = cloud.projects.filter(project => (project.title || t("creator.untitled")).toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   const matchingShared = cloud.sharedProjects.filter(project => (project.title || t("creator.untitled")).toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
   const date = (value: string) => new Date(value).toLocaleString(appLocale());

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Geo-blocking — mirrors web's `GeoBlockingSelector`
  * (dehubweb src/pages/app/SettingsPage.tsx), including the same country list
@@ -75,7 +76,7 @@ const GeoBlockingSection: React.FC = () => {
   const { t } = useTranslation();
   const { geoBlockedCountries } = useAppPrefs();
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useSurfaceDraft("components/Settings/GeoBlockingSection.tsx:search", '');
 
   const filtered = useMemo(
     () => COUNTRIES.filter((c) => c.name.toLowerCase().includes(search.toLowerCase())),

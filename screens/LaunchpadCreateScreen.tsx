@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * LaunchpadCreateScreen
@@ -85,13 +86,13 @@ export default function LaunchpadCreateScreen() {
   const wallet = user?.walletAddress || user?.address || null;
 
   const [step, setStep] = useState(1);
-  const [name, setName] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:name", "");
+  const [symbol, setSymbol] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:symbol", "");
+  const [description, setDescription] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:description", "");
   const [imageUrl, setImageUrl] = useState("");
-  const [website, setWebsite] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [telegram, setTelegram] = useState("");
+  const [website, setWebsite] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:website", "");
+  const [twitter, setTwitter] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:twitter", "");
+  const [telegram, setTelegram] = useSurfaceDraft("screens/LaunchpadCreateScreen.tsx:telegram", "");
   const [chainId, setChainId] = useState<8453 | 56>(8453);
   const [curveType, setCurveType] = useState<LaunchpadCurve>("standard");
   const [submitting, setSubmitting] = useState(false);

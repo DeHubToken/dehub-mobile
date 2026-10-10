@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Search across every settings tab.
  *
@@ -33,7 +34,7 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
   onSelect,
 }) => {
   const { t } = useTranslation();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSurfaceDraft("components/Settings/SettingsSearchBar.tsx:query", '');
 
   const results = useMemo(() => searchSettings(query, t), [query, t]);
   const open = query.trim().length > 0;

@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * BuyAccountSheet
  * ===============
@@ -53,7 +54,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
   const [quote, setQuote] = useState<AccountQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
   const [deliverToSelf, setDeliverToSelf] = useState(false);
-  const [receiveAddress, setReceiveAddress] = useState("");
+  const [receiveAddress, setReceiveAddress] = useSurfaceDraft("components/Accounts/BuyAccountSheet.tsx:receiveAddress", "", draftIdentity(listing));
   const [check, setCheck] = useState<ReceiveCheck | null>(null);
 
   const isOwn = !!myAddress && myAddress === listing?.seller.address.toLowerCase();
@@ -67,14 +68,14 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
     if (!canQuote) {
       setQuote(null);
       setQuoteError(null);
-      setReceiveAddress("");
+      setReceiveAddress.initialize("");
       setCheck(null);
       return;
     }
     let cancelled = false;
     setQuote(null);
     setQuoteError(null);
-    setReceiveAddress("");
+    setReceiveAddress.initialize("");
     setCheck(null);
     getQuote
       .mutateAsync(listingId!)
@@ -95,7 +96,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
     // getQuote is a fresh mutation object each render; keying on the listing is
     // what stops this re-firing forever.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canQuote, listingId]);
+  }, [canQuote, listingId, setReceiveAddress]);
 
   // Live validation of the delivery wallet, debounced so the server is not hit
   // on every keystroke of a pasted-then-corrected address.

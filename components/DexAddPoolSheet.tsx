@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { appLocale } from '../libs/date.util';
 import { tokenLabel } from '../libs/token-label';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -35,7 +36,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
   const signer = useDexSigner();
   const queryClient = useQueryClient();
   const [chain, setChain] = useState<PoolChain>('base');
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useSurfaceDraft("components/DexAddPoolSheet.tsx:address", '');
   const [check, setCheck] = useState<TokenCheck | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState('');
@@ -59,10 +60,10 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
     if (walletAddress) void AsyncStorage.getItem(paidKey(walletAddress)).then((raw) => {
       const saved = raw ? JSON.parse(raw) as PaidFee : null;
       if (!live || !saved || saved.wallet !== walletAddress.toLowerCase()) return;
-      setPaid(saved); setChain(saved.chain); setAddress(saved.tokenAddress);
+      setPaid(saved); setChain(saved.chain); setAddress.initialize(saved.tokenAddress);
     }).catch(() => {});
     return () => { live = false; };
-  }, [visible, walletAddress]);
+  }, [visible, walletAddress, setAddress]);
 
   // Look the token up as soon as the address is well formed.
   useEffect(() => {

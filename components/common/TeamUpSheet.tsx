@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useDeferredValue, useState } from 'react';
 import {
   ActivityIndicator,
@@ -99,15 +100,15 @@ export default function TeamUpSheet({
 }) {
   const { t } = useTranslation();
   const { requireAuth } = useAuthActions();
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useSurfaceDraft("components/common/TeamUpSheet.tsx:name", '');
+  const [description, setDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:description", '');
   const [isPrivate, setIsPrivate] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useSurfaceDraft("components/common/TeamUpSheet.tsx:search", '');
   // The private team whose request note is being written, if any.
   const [requesting, setRequesting] = useState<string | null>(null);
-  const [requestMessage, setRequestMessage] = useState('');
+  const [requestMessage, setRequestMessage] = useSurfaceDraft("components/common/TeamUpSheet.tsx:requestMessage", '');
   const [editing, setEditing] = useState(false);
-  const [editDescription, setEditDescription] = useState('');
+  const [editDescription, setEditDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:editDescription", '');
   const [editPrivate, setEditPrivate] = useState(false);
   const deferredSearch = useDeferredValue(search);
   const mine = useTeamUp(visible);

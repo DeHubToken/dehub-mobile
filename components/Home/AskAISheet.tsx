@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { isHoldGated } from "../../libs/content-gate";
 import React, {
@@ -213,7 +214,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   const userAddress = user?.walletAddress || user?.address || "anon";
   const cacheKey = String(postId);
   const [messages, setMessages] = useState<AIChatMessage[]>([]);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useSurfaceDraft("components/Home/AskAISheet.tsx:inputText", "", postId);
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const hasLoadedRef = useRef(false);
@@ -471,7 +472,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey]);
+  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey, setInputText]);
 
   const handleImagePress = useCallback(
     (url: string, allUrls: string[]) => {

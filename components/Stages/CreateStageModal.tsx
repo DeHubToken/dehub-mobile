@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Platform, ScrollView, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
@@ -39,8 +40,8 @@ const CreateStageModal: React.FC = () => {
   } = useStages();
 
   const [mode, setMode] = useState<Mode>("now");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useSurfaceDraft("components/Stages/CreateStageModal.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("components/Stages/CreateStageModal.tsx:description", "");
   const [error, setError] = useState("");
   const { t } = useTranslation();
 

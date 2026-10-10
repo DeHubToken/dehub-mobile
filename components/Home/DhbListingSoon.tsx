@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * What the ticker sheet shows for $DHB while the token is not trading:
  * "Token listing soon!" and a "Notify me" button that puts the person on the
@@ -31,7 +32,7 @@ export function DhbListingSoon() {
   const user = useUser();
   const [step, setStep] = useState<Step>("idle");
   const [joinedEmail, setJoinedEmail] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useSurfaceDraft("components/Home/DhbListingSoon.tsx:email", "");
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {

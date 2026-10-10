@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -65,8 +66,8 @@ const SavedPostsScreen: React.FC = () => {
   const [folderToEdit, setFolderToEdit] = useState<BookmarkFolder | null>(null);
 
   // Text inputs
-  const [folderName, setFolderName] = useState("");
-  const [folderDesc, setFolderDesc] = useState("");
+  const [folderName, setFolderName] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderName", "");
+  const [folderDesc, setFolderDesc] = useSurfaceDraft("screens/SavedPostsScreen.tsx:folderDesc", "");
   // Public means the folder is a playlist on the profile.
   const [folderPublic, setFolderPublic] = useState(false);
   const [submitting, setSubmitting] = useState(false);

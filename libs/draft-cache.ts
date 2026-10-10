@@ -27,9 +27,9 @@ const STORAGE_KEY = "dehub-drafts-v1";
 /** Older than this and the draft is forgotten — a month-old half-sentence is noise. */
 const MAX_AGE = 30 * 24 * 60 * 60 * 1000;
 /** Newest-first cap, well above how many threads anyone touches in a month. */
-const MAX_ENTRIES = 120;
-/** Per-draft ceiling, above any composer's own limit so it never truncates real input. */
-const MAX_CHARS = 20_000;
+const MAX_ENTRIES = 300;
+/** Combined character budget. Entries are evicted whole, never truncated. */
+const MAX_CHARS = 1_000_000;
 
 interface DraftEntry {
   /** The text itself. */
@@ -93,15 +93,16 @@ function load(): DraftStore {
 function persist(): void {
   if (!store) return;
   try {
-    const keys = Object.keys(store);
-    if (keys.length > MAX_ENTRIES) {
-      const snapshot = store;
-      const kept: DraftStore = {};
-      for (const key of keys.sort((a, b) => snapshot[b].u - snapshot[a].u).slice(0, MAX_ENTRIES)) {
-        kept[key] = snapshot[key];
-      }
-      store = kept;
+    const snapshot = store;
+    const kept: DraftStore = {};
+    let chars = 0;
+    for (const key of Object.keys(snapshot).sort((a, b) => snapshot[b].u - snapshot[a].u)) {
+      if (Object.keys(kept).length >= MAX_ENTRIES) break;
+      if (chars && chars + snapshot[key].t.length > MAX_CHARS) continue;
+      kept[key] = snapshot[key];
+      chars += snapshot[key].t.length;
     }
+    store = kept;
     if (Object.keys(store).length === 0) {
       storage.delete(STORAGE_KEY);
       return;
@@ -126,17 +127,17 @@ export function hasDraft(key: string): boolean {
 
 /**
  * Save (or, for empty text, delete) the draft for a scope.
- * Whitespace-only counts as empty — a stray newline is not a draft worth keeping.
+ * Only an empty string clears; whitespace and line endings are preserved exactly.
  */
 export function writeDraft(key: string, text: string): void {
   if (!key) return;
   const current = load();
-  if (!text.trim()) {
+  if (!text.length) {
     if (!(key in current)) return;
     delete current[key];
   } else {
     if (current[key]?.t === text) return;
-    current[key] = { t: text.slice(0, MAX_CHARS), u: stamp() };
+    current[key] = { t: text, u: stamp() };
   }
   emit();
   persist();
@@ -184,3 +185,7 @@ export function __resetDraftCacheForTests(): void {
   lastStamp = 0;
   listeners.clear();
 }
+
+/** MMKV writes are synchronous; retained for parity with browser lifecycle hooks. */
+export function flushDrafts(): void {}
+

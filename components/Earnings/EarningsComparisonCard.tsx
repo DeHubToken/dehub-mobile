@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolveViewCount } from "../../libs/numbers.util";
@@ -99,7 +100,7 @@ const EarningsComparisonCard: React.FC = () => {
   const [rpmText, setRpmText] = useState<Record<string, string>>(() =>
     Object.fromEntries(PLATFORMS.map((p) => [p.key, String(p.defaultRpm)])),
   );
-  const [estimatorViews, setEstimatorViews] = useState("");
+  const [estimatorViews, setEstimatorViews] = useSurfaceDraft("components/Earnings/EarningsComparisonCard.tsx:estimatorViews", "");
 
   useEffect(() => {
     let cancelled = false;

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkScreen
@@ -150,7 +151,7 @@ export default function WorkScreen() {
   const [sort, setSort] = useState<SortKey>("newest");
   // Not debounced — web's WorkPage passes `search` straight to the query and
   // relies on keepPreviousData to avoid a skeleton flash. Same here.
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/WorkScreen.tsx:search", "");
 
   const {
     data: jobs = [],
@@ -176,7 +177,7 @@ export default function WorkScreen() {
     setTab("all");
     setCurrency("all");
     setSearch("");
-  }, []);
+  }, [setSearch]);
 
   const openJob = useCallback(
     (job: WorkJob) => navigation.navigate(ScreenNames.WorkJobDetail, { jobId: job.id, job }),

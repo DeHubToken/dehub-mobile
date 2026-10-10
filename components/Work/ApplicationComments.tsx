@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, Pressable, TextInput, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -13,7 +14,7 @@ export default function ApplicationComments({ application, comments, canReply }:
 }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [body, setBody] = useState("");
+  const [body, setBody] = useSurfaceDraft("components/Work/ApplicationComments.tsx:body", "");
   const mutation = useCommentOnApplication();
   return (
     <View>

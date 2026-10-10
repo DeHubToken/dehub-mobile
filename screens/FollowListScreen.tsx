@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
   View,
@@ -333,7 +334,7 @@ const FollowListScreen: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabKey>(
     initialTab === "requests" && !(isOwner && isPrivateForTab) ? "followers" : initialTab as TabKey
   );
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useSurfaceDraft("screens/FollowListScreen.tsx:searchQuery", "");
   const [sortOption, setSortOption] = useState<SortOption>("recent");
   const [showSortPicker, setShowSortPicker] = useState(false);
 
@@ -895,7 +896,7 @@ const FollowListScreen: React.FC = () => {
     setShowSortPicker(false);
     followBackStreakRef.current = 0;
     setShowFollowBackAll(false);
-  }, []);
+  }, [setSearchQuery]);
 
   const handleSortChange = useCallback((option: SortOption) => {
     setSortOption(option);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkPostScreen
@@ -84,13 +85,13 @@ export default function WorkPostScreen() {
 
   const [step, setStep] = useState(1);
   const [jobType, setJobType] = useState<WorkJobType>("shill");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useSurfaceDraft("screens/WorkPostScreen.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("screens/WorkPostScreen.tsx:description", "");
   const [platform, setPlatform] = useState<WorkPlatform>("x");
-  const [targetUrl, setTargetUrl] = useState("");
+  const [targetUrl, setTargetUrl] = useSurfaceDraft("screens/WorkPostScreen.tsx:targetUrl", "");
   const [currency, setCurrency] = useState<WorkCurrency>("DHB");
-  const [pricePerUnit, setPricePerUnit] = useState("");
-  const [maxUnits, setMaxUnits] = useState("");
+  const [pricePerUnit, setPricePerUnit] = useSurfaceDraft("screens/WorkPostScreen.tsx:pricePerUnit", "");
+  const [maxUnits, setMaxUnits] = useSurfaceDraft("screens/WorkPostScreen.tsx:maxUnits", "");
   const [deadline, setDeadline] = useState("");
   const [showDatePicker, setShowDatePicker] = useState(false);
 

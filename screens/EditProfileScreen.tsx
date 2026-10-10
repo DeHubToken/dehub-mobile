@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -83,9 +84,9 @@ const EditProfileScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  const [displayName, setDisplayName] = useState<string>(user?.displayName || "");
-  const [username, setUsername] = useState<string>(user?.username || "");
-  const [aboutMe, setAboutMe] = useState<string>(user?.aboutMe || "");
+  const [displayName, setDisplayName] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:displayName", user?.displayName || "");
+  const [username, setUsername] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:username", user?.username || "");
+  const [aboutMe, setAboutMe] = useSurfaceDraft<string>("screens/EditProfileScreen.tsx:aboutMe", user?.aboutMe || "");
   const [twitterLink, setTwitterLink] = useState<string>(user?.twitterLink || "");
   const [instagramLink, setInstagramLink] = useState<string>(user?.instagramLink || "");
   const [tiktokLink, setTiktokLink] = useState<string>(user?.tiktokLink || "");

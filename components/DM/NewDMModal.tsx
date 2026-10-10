@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, {
@@ -100,7 +101,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
     setShowResults(false);
     setLoading(false);
     searchIdRef.current++;
-  }, []);
+  }, [setQuery]);
 
   const close = useCallback(() => {
     reset();
@@ -119,7 +120,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   );
 
   // Local state for user/address search
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useSurfaceDraft<string>("components/DM/NewDMModal.tsx:query", "");
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<User[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
@@ -219,7 +220,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
       setLoading(trimmed.length >= 2);
       setShowResults(trimmed.length >= 2);
     }
-  }, []);
+  }, [setQuery]);
 
   const startDMWith = useCallback(
     (u: User) => {

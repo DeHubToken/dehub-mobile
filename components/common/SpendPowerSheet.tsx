@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Spend one SuperPower, from the SuperPowers screen
  * =================================================
@@ -67,12 +68,12 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
   const { data: ladder } = useSuperpowerLadder();
   const book = useBookBoost();
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useSurfaceDraft("components/common/SpendPowerSheet.tsx:query", "");
   const [pickedPost, setPickedPost] = useState<number | null>(null);
   const [pickedComment, setPickedComment] = useState<string | null>(null);
   const [pickedStage, setPickedStage] = useState<string | null>(null);
   const [category, setCategory] = useState("");
-  const [targetAccount, setTargetAccount] = useState("");
+  const [targetAccount, setTargetAccount] = useSurfaceDraft("components/common/SpendPowerSheet.tsx:targetAccount", "");
   const [targetTiers, setTargetTiers] = useState<string[]>([]);
 
   const visible = !!power;
@@ -83,14 +84,14 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
   // different power is one tap from spending on the wrong thing.
   useEffect(() => {
     if (visible) return;
-    setQuery("");
+    setQuery.initialize("");
     setPickedPost(null);
     setPickedComment(null);
     setPickedStage(null);
     setCategory("");
-    setTargetAccount("");
+    setTargetAccount.initialize("");
     setTargetTiers([]);
-  }, [visible]);
+  }, [visible, setQuery, setTargetAccount]);
 
   const pastedId = postIdFromInput(query);
   const wantsPosts = visible && (home === "post" || home === "gift");

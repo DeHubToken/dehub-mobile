@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Stream Shop Overlay
  * ===================
@@ -147,8 +148,8 @@ export function CheckoutSheet({
 
   const [quote, setQuote] = useState<LiveQuote | null>(null);
   const [quoteError, setQuoteError] = useState<string | null>(null);
-  const [shipping, setShipping] = useState("");
-  const [notes, setNotes] = useState("");
+  const [shipping, setShipping] = useSurfaceDraft("components/LiveViewer/StreamShopOverlay.tsx:shipping", "", tokenId);
+  const [notes, setNotes] = useSurfaceDraft("components/LiveViewer/StreamShopOverlay.tsx:notes", "", tokenId);
   // A transfer that already left the wallet for the quote on screen. While
   // this is set, Buy re-confirms that payment instead of sending another.
   const [paidHash, setPaidHash] = useState<string | null>(null);
@@ -180,8 +181,8 @@ export function CheckoutSheet({
     let cancelled = false;
     setQuote(null);
     setQuoteError(null);
-    setShipping("");
-    setNotes("");
+    setShipping.initialize("");
+    setNotes.initialize("");
     // A new quote is a new purchase; any hash held for the old one is spent.
     setPaidHash(null);
     getQuote
@@ -196,7 +197,7 @@ export function CheckoutSheet({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, listing?.id]);
+  }, [visible, listing?.id, setNotes, setShipping]);
 
   if (!product || !listing) return null;
 

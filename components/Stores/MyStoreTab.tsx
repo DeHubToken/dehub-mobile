@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * MyStoreTab
  * ==========
@@ -93,7 +94,7 @@ const StoreForm: React.FC<{
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
   const [name, setName] = useState(existing?.name ?? "");
-  const [description, setDescription] = useState(existing?.description ?? "");
+  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:0", existing?.description ?? "");
   const [avatarUrl, setAvatarUrl] = useState(existing?.avatar_url ?? "");
   const [bannerUrl, setBannerUrl] = useState(existing?.banner_url ?? "");
   const { width: windowWidth } = useWindowDimensions();
@@ -103,10 +104,10 @@ const StoreForm: React.FC<{
   React.useEffect(() => {
     if (!visible) return;
     setName(existing?.name ?? "");
-    setDescription(existing?.description ?? "");
+    setDescription.initialize(existing?.description ?? "");
     setAvatarUrl(existing?.avatar_url ?? "");
     setBannerUrl(existing?.banner_url ?? "");
-  }, [visible, existing]);
+  }, [visible, existing, setDescription]);
 
   const upload = useCallback(async (which: "avatar" | "banner") => {
     const uri = await pickImage();
@@ -260,18 +261,18 @@ const ListingForm: React.FC<{
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const createListing = useCreateListing();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [title, setTitle] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:title", "");
+  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:1", "");
+  const [price, setPrice] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:price", "");
   const [category, setCategory] = useState("other");
   const [condition, setCondition] = useState("new");
   const [isDigital, setIsDigital] = useState(false);
-  const [shippingInfo, setShippingInfo] = useState("");
-  const [stockQty, setStockQty] = useState("");
+  const [shippingInfo, setShippingInfo] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:shippingInfo", "");
+  const [stockQty, setStockQty] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:stockQty", "");
   const [images, setImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [isPod, setIsPod] = useState(false);
-  const [podUrl, setPodUrl] = useState("");
+  const [podUrl, setPodUrl] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:podUrl", "");
   const [podProvider, setPodProvider] = useState<PodProvider>("other");
 
   const reset = useCallback(() => {
@@ -287,7 +288,7 @@ const ListingForm: React.FC<{
     setShippingInfo("");
     setStockQty("");
     setImages([]);
-  }, []);
+  }, [setDescription, setPodUrl, setPrice, setShippingInfo, setStockQty, setTitle]);
 
   const addImage = useCallback(async () => {
     if (images.length >= MAX_IMAGES) return;
