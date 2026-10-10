@@ -1,7 +1,8 @@
 import { useFeedPillRefreshing, setFeedPillMounted } from '../../libs/feed-pill-refresh';
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
-import Animated, { Easing, ReduceMotion, withTiming } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { menuEnter, menuExit } from './feedDrawerMotion';
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ElectricLogo from "../common/ElectricLogo";
@@ -14,24 +15,6 @@ import { getAvatarUrl } from "../../libs/misc";
 import { FEED_NAV_ITEMS } from "./FeedNavBar";
 import FeedPillPullEffect from './FeedPillPullEffect';
 import type { HomePullMotion } from '../../context/HomePullRefreshContext';
-
-// Match the web drawer's 200ms height reveal from behind the capsule.
-const menuEnter = (values: { targetHeight: number }) => {
-  "worklet";
-  const timing = { duration: 200, easing: Easing.out(Easing.quad), reduceMotion: ReduceMotion.System };
-  return {
-    initialValues: { height: 0, opacity: 0, transform: [{ translateY: -8 }] },
-    animations: { height: withTiming(values.targetHeight, timing), opacity: withTiming(1, timing), transform: [{ translateY: withTiming(0, timing) }] },
-  };
-};
-const menuExit = (values: { currentHeight: number }) => {
-  "worklet";
-  const timing = { duration: 200, easing: Easing.out(Easing.quad), reduceMotion: ReduceMotion.System };
-  return {
-    initialValues: { height: values.currentHeight, opacity: 1, transform: [{ translateY: 0 }] },
-    animations: { height: withTiming(0, timing), opacity: withTiming(0, timing), transform: [{ translateY: withTiming(-8, timing) }] },
-  };
-};
 
 // Use the same padded artwork and image box as the web capsule.
 const MARK = require("../../assets/web-icons/dehub-island-logo.png");
