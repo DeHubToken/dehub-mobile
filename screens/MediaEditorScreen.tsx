@@ -119,6 +119,7 @@ import {
 import { applyOps, askAgent, askSceneAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../libs/editor/templates";
+import type { VideoTemplateAspect } from "../libs/editor/videoTemplates";
 import { importStockAsset } from "../libs/editor/stock";
 import { EDITOR_FONTS, fontFamilyCss as fontCssOf } from "../libs/editor/fonts";
 import {
@@ -187,17 +188,20 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
   const { t } = useTranslation();
   const [projects, setProjects] = useState<ProjectSnapshot[] | null>(null);
   const [templateBusy, setTemplateBusy] = useState<string | null>(null);
+  const [templateAspect, setTemplateAspect] = useState<VideoTemplateAspect>("9:16");
   const [cloudOpen, setCloudOpen] = useState(false);
 
   // A template is the same list of operations the AI agent uses; photos are
   // fetched from the free stock library now, on the phone.
   const startFromTemplate = async (id: string) => {
     const tpl = TEMPLATES.find((x) => x.id === id);
-    const ops = templateOps(id, t);
-    if (!tpl || !ops) return;
+    if (!tpl || templateBusy) return;
+    const aspect = tpl.kind === "video" ? templateAspect : tpl.aspect;
+    const ops = templateOps(id, t, tpl.kind === "video" ? templateAspect : undefined);
+    if (!ops) return;
     setTemplateBusy(id);
     try {
-      const base = newProject(tpl.aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
+      const base = newProject(aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
       const { project } = await applyOps(base, ops, { importStock: importStockAsset });
       onCreate(project);
     } catch {
@@ -262,9 +266,17 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
                 );
               })}
             </View>
+            <Text className="text-white text-lg font-semibold mt-4">{t("editor.videoTemplates.heading")}</Text>
+            <AspectPanel value={templateAspect} onPick={setTemplateAspect} />
+            <TemplateTiles
+              templates={TEMPLATES.filter(x => x.kind === "video").map(x => ({ id: x.id, aspect: templateAspect, preview: x.preview, title: t(x.titleKey), detail: t("editor.videoTemplates.duration", { seconds: x.duration }) }))}
+              busyId={templateBusy}
+              onPick={(id) => { void startFromTemplate(id); }}
+            />
+            <Text className="text-theme-neutrals-400 text-xs">{t("editor.videoTemplates.hint")}</Text>
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.templates.heading")}</Text>
             <TemplateTiles
-              templates={TEMPLATES.map((x) => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey) }))}
+              templates={TEMPLATES.filter(x => x.kind !== "video").map(x => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey) }))}
               busyId={templateBusy}
               onPick={(id) => { void startFromTemplate(id); }}
             />
@@ -968,7 +980,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         media,
         brand,
         applyBrand: (p) => applyBrand(p, brand),
-        templateOps: (id) => templateOps(id, t),
+        templateOps: (id, aspect) => templateOps(id, t, aspect),
         removeBackground: cutoutMedia,
         removeVideoBackground: cutoutVideo,
         transcribe,
