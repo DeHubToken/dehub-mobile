@@ -1,4 +1,4 @@
-import React, { memo, useRef } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -63,18 +63,18 @@ export function StageGlassSquare({ icon, label, onPress, plain, size = STAGE_SQU
 export function useStageBack() {
   const navigation = useNavigation<any>();
   const lock = useRef(false);
-  return () => {
+  return useCallback(() => {
     if (lock.current) return;
     lock.current = true;
     setTimeout(() => { lock.current = false; }, 600);
     Keyboard.dismiss();
     if (navigation.canGoBack?.()) navigation.goBack();
-  };
+  }, [navigation]);
 }
 
 type ChromeProps = {
   onAi?: () => void;
-  onMore: () => void;
+  onMore?: () => void;
   /** Over the media (immersive) or as a plain row above a text post. */
   overMedia: boolean;
 };
@@ -92,7 +92,19 @@ export const PostStageChrome = memo(function PostStageChrome({ onAi, onMore, ove
       <StageGlassSquare icon="ArrowLeft" label={t("common.goBack")} onPress={back} plain={!overMedia} flip />
       <View style={{ flex: 1 }} pointerEvents="none" />
       {onAi ? <StageGlassSquare icon="Sparkles" label={t("postOptions.askAi")} onPress={onAi} plain={!overMedia} /> : null}
-      <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain={!overMedia} />
+      {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain={!overMedia} /> : null}
+    </View>
+  );
+});
+
+/** Video utilities belong to the details panel under the player. */
+export const PostStageActions = memo(function PostStageActions({ onAi, onMore, onBoost }: { onAi: () => void; onMore: () => void; onBoost?: () => void }) {
+  const { t } = useTranslation();
+  return (
+    <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
+      {onBoost ? <StageGlassSquare icon="Zap" label={t("postOptions.boostPost")} onPress={onBoost} plain size={32} /> : null}
+      <StageGlassSquare icon="Sparkles" label={t("postOptions.askAi")} onPress={onAi} plain size={32} />
+      <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} />
     </View>
   );
 });
