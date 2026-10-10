@@ -2,6 +2,8 @@ import { parseCloudDraftCheckpoint, type CloudDraftCheckpoint, type CloudDraftRe
 import { parseCloudProjectDocument, type CloudProjectDocument } from "./cloudProjectFormat";
 import { projectReviewWallet } from "./cloudProjectReview";
 import { withCloudProjectTransfer } from "./cloudProjectTransfer";
+import { CloudProjectConflict } from "./cloudProjectFormat";
+import { sameCloudProjectEdit } from "./cloudProjectMerge";
 
 export interface CloudDraftScope { wallet: string; owner: string; projectId: string; localId: string }
 export interface CloudDraftOutboxState extends CloudDraftScope {
@@ -134,12 +136,14 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
       // The server decides expiry. Even an expired pending request keeps its original writer and nonce.
       return finish(state, true, false);
     }),
-    stage: (value: CloudProjectDocument) => {
+    stage: (value: CloudProjectDocument, accepted?: CloudDraftCheckpoint) => {
       const captured = parseCloudProjectDocument(value, scope.owner);
       if (captured.snapshot.id !== scope.projectId) fail();
       return exclusive(async (): Promise<CloudDraftDelivery> => {
         const state = await read();
         if (!state?.writer) throw new Error("Register this project for live sharing before sending edits.");
+        if(accepted&&!state.pending&&(accepted.draftRevision!==state.writer.checkpoint.draftRevision||accepted.headRevision!==state.writer.checkpoint.headRevision
+          ||!sameCloudProjectEdit(accepted.document,state.writer.checkpoint.document)))throw new CloudProjectConflict("The live baseline changed before sending. Your local draft was kept.");
         if (state.pending) return finish(state, true, contentKey(captured) === contentKey(state.pending.document));
         if (contentKey(captured) === contentKey(state.writer.checkpoint.document)) return copy({ checkpoint: state.writer.checkpoint, receipt: null, recovered: false, capturedSent: true });
         if (Date.parse(state.writer.expiresAt) <= deps.now()) throw new Error("Live sharing expired. Your local edit was kept; join again.");

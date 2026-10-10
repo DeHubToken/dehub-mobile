@@ -6903,24 +6903,24 @@
       "hint": "处理剪辑长达10分钟。 降噪效果最好，背景噪音稳定。"
     },
     "pages": {
-    "add":  "添加页面",
-    "duplicate":  "复制页面",
-    "delete":  "删除页面",
-    "page":  "第 {{number}} 页",
-    "position":  "第 {{current}} 页，共 {{total}} 页",
-    "label":  "页面",
-    "allZip":  "全部 {{count}} 页（ZIP）",
-    "thisPage":  "仅此页面",
-    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
-},
+      "add": "添加页面",
+      "duplicate": "复制页面",
+      "delete": "删除页面",
+      "page": "第 {{number}} 页",
+      "position": "第 {{current}} 页，共 {{total}} 页",
+      "label": "页面",
+      "allZip": "全部 {{count}} 页（ZIP）",
+      "thisPage": "仅此页面",
+      "exporting": "正在渲染第 {{current}} 页，共 {{total}} 页…"
+    },
     "captions": {
-        "action":  "自动字幕",
-        "working":  "正在识别… {{percent}}%",
-        "downloading":  "正在准备语音模型… {{percent}}%",
-        "hint":  "将语音转换为带时间轴的字幕，可自由调整样式。在您的设备上运行：免费且私密。首次使用时会下载模型。",
-        "done":  "已添加 {{count}} 条字幕。",
-        "noSpeech":  "此片段中未检测到语音。",
-        "failed":  "无法为此片段生成字幕。"
+      "action": "自动字幕",
+      "working": "正在识别… {{percent}}%",
+      "downloading": "正在准备语音模型… {{percent}}%",
+      "hint": "将语音转换为带时间轴的字幕，可自由调整样式。在您的设备上运行：免费且私密。首次使用时会下载模型。",
+      "done": "已添加 {{count}} 条字幕。",
+      "noSpeech": "此片段中未检测到语音。",
+      "failed": "无法为此片段生成字幕。"
     },
     "app": {
       "newDesign": "新建设计",
@@ -7309,7 +7309,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "停止实时编辑",
+      "receiveEdits": "接收实时编辑",
+      "shareEdits": "实时共享编辑",
+      "waiting": "等待编辑完成",
+      "transferring": "正在传输编辑内容",
+      "sharing": "正在实时共享编辑",
+      "receiving": "正在接收实时编辑",
+      "paused": "实时编辑已暂停",
+      "retryRecovery": "重试恢复",
+      "personalCopy": "保存个人副本",
+      "privateHint": "加入不会上传你的编辑内容。实时共享会上传新的私有素材；保存会创建永久版本。"
     },
     "videoTemplates": {
       "heading": "视频模板",

@@ -6927,24 +6927,24 @@
       "hint": "Processar clipes de até 10 minutos. A redução de ruído funciona melhor com ruído de fundo constante."
     },
     "pages": {
-    "add":  "Adicionar página",
-    "duplicate":  "Duplicar página",
-    "delete":  "Excluir página",
-    "page":  "Página {{number}}",
-    "position":  "Página {{current}} de {{total}}",
-    "label":  "Páginas",
-    "allZip":  "Todas as {{count}} páginas (ZIP)",
-    "thisPage":  "Apenas esta página",
-    "exporting":  "Renderizando página {{current}} de {{total}}…"
-},
+      "add": "Adicionar página",
+      "duplicate": "Duplicar página",
+      "delete": "Excluir página",
+      "page": "Página {{number}}",
+      "position": "Página {{current}} de {{total}}",
+      "label": "Páginas",
+      "allZip": "Todas as {{count}} páginas (ZIP)",
+      "thisPage": "Apenas esta página",
+      "exporting": "Renderizando página {{current}} de {{total}}…"
+    },
     "captions": {
-        "action":  "Legendas automáticas",
-        "working":  "Ouvindo… {{percent}}%",
-        "downloading":  "Preparando o modelo de fala… {{percent}}%",
-        "hint":  "Transforma a fala em legendas sincronizadas que você pode personalizar. Roda no seu dispositivo: grátis e privado. No primeiro uso, o modelo é baixado.",
-        "done":  "{{count}} legendas adicionadas.",
-        "noSpeech":  "Nenhuma fala encontrada neste clipe.",
-        "failed":  "Não foi possível criar legendas para este clipe."
+      "action": "Legendas automáticas",
+      "working": "Ouvindo… {{percent}}%",
+      "downloading": "Preparando o modelo de fala… {{percent}}%",
+      "hint": "Transforma a fala em legendas sincronizadas que você pode personalizar. Roda no seu dispositivo: grátis e privado. No primeiro uso, o modelo é baixado.",
+      "done": "{{count}} legendas adicionadas.",
+      "noSpeech": "Nenhuma fala encontrada neste clipe.",
+      "failed": "Não foi possível criar legendas para este clipe."
     },
     "app": {
       "newDesign": "Novo design",
@@ -7336,7 +7336,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "Parar edição ao vivo",
+      "receiveEdits": "Receber alterações ao vivo",
+      "shareEdits": "Compartilhar alterações ao vivo",
+      "waiting": "Aguardando o fim da edição",
+      "transferring": "Transferindo alterações",
+      "sharing": "Compartilhando alterações ao vivo",
+      "receiving": "Recebendo alterações ao vivo",
+      "paused": "Edição ao vivo pausada",
+      "retryRecovery": "Tentar recuperação novamente",
+      "personalCopy": "Salvar uma cópia pessoal",
+      "privateHint": "Entrar não envia suas alterações. Compartilhar ao vivo envia novas fontes privadas; Salvar cria uma versão permanente."
     },
     "videoTemplates": {
       "heading": "Modelos de vídeo",

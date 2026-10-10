@@ -1,3 +1,4 @@
+import { cloudDraftHistoryEditor } from "../libs/editor/cloudDraftHistoryEditor";
 import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
 import { projectTask } from "../libs/editor/projectTask";
 import { useEditorProjectDraft } from "../libs/editor/useEditorProjectDraft";
@@ -1545,7 +1546,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
-      <LiveProjectSession projectId={project.id} />
+      <LiveProjectSession projectId={project.id} editor={cloudDraftHistoryEditor(h)} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
       )}
