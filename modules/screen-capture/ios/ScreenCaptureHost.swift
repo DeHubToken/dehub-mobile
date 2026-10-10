@@ -46,7 +46,7 @@ final class ScreenCaptureHost {
       guard let current = try ledger.ticket(id, scopeKey: scope), !current.cancelRequested,
         [.recording, .finishing, .completed].contains(current.state) else { throw CancellationError() }
     } catch {
-      await cancel(id)
+      await self.cancel(id)
       throw error
     }
   }
