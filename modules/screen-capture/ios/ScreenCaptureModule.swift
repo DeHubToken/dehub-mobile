@@ -1,6 +1,6 @@
 import ExpoModulesCore
 
-public final class ScreenCaptureModule: Module {
+public final class DeHubScreenCaptureModule: Module {
   private var host: ScreenCaptureHost?
 
   @MainActor
