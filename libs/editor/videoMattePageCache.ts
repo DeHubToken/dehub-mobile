@@ -7,6 +7,7 @@ export type VideoMatteFrame = NonNullable<ReturnType<typeof videoMatteFrame>>;
 export function createVideoMattePageCache<T extends VideoMatteDecodedImage>(images: Map<string, T>, load: (frame: VideoMatteFrame) => Promise<T>, release: (image: T) => void) {
   let desired = new Map<string, VideoMatteFrame>();
   const owned = new Set<string>();
+  let generation = 0;
   let running: Promise<void> | null = null, disposed = false, failure: { id: string; error: unknown } | null = null;
   function evict() {
     owned.forEach(function(id) { if (!desired.has(id)) { var image = images.get(id); if (image) release(image); images.delete(id); owned.delete(id); } });
@@ -16,15 +17,18 @@ export function createVideoMattePageCache<T extends VideoMatteDecodedImage>(imag
       evict();
       var next = Array.from(desired.values()).find(function(frame) { return !images.has(frame.mediaId); });
       if (!next) return;
+      var expectedGeneration = generation;
       let image: T | undefined;
       try {
         image = await load(next);
         if (image.naturalWidth !== next.atlasWidth || image.naturalHeight !== next.atlasHeight) throw new Error("Background page dimensions do not match");
       } catch (error) {
         if (image) release(image);
+        if (disposed) return;
+        if (generation !== expectedGeneration) continue;
         failure = { id: next.mediaId, error: error }; throw error;
       }
-      if (disposed || !desired.has(next.mediaId)) { release(image); continue; }
+      if (disposed || generation !== expectedGeneration || !desired.has(next.mediaId)) { release(image); continue; }
       images.set(next.mediaId, image); owned.add(next.mediaId);
     }
   }
@@ -46,7 +50,13 @@ export function createVideoMattePageCache<T extends VideoMatteDecodedImage>(imag
       failure = null;
       return ensure();
     },
-    dispose: function() { disposed = true; desired.clear(); evict(); },
+    refreshSources: function() {
+      if (disposed) return;
+      generation++; failure = null;
+      owned.forEach(function(id) { var image = images.get(id); if (image) release(image); images.delete(id); });
+      owned.clear();
+    },
+    dispose: function() { disposed = true; generation++; desired.clear(); evict(); },
   };
 }
 
@@ -62,7 +72,7 @@ export function videoMatteFramesForOps(ops: { clip: Clip; localTimeOverride?: nu
 
 export const VIDEO_MATTE_PAGE_CACHE_RUNTIME = String.raw`
 function createVideoMattePageCache(images, load, release) {
-  var desired = new Map(), owned = new Set(), running = null, disposed = false, failure = null;
+  var desired = new Map(), owned = new Set(), running = null, disposed = false, failure = null, generation = 0;
   function evict() {
     owned.forEach(function(id) { if (!desired.has(id)) { var image = images.get(id); if (image) release(image); images.delete(id); owned.delete(id); } });
   }
@@ -71,15 +81,18 @@ function createVideoMattePageCache(images, load, release) {
       evict();
       var next = Array.from(desired.values()).find(function(frame) { return !images.has(frame.mediaId); });
       if (!next) return;
+      var expectedGeneration = generation;
       var image;
       try {
         image = await load(next);
         if (image.naturalWidth !== next.atlasWidth || image.naturalHeight !== next.atlasHeight) throw new Error("Background page dimensions do not match");
       } catch (error) {
         if (image) release(image);
+        if (disposed) return;
+        if (generation !== expectedGeneration) continue;
         failure = { id: next.mediaId, error: error }; throw error;
       }
-      if (disposed || !desired.has(next.mediaId)) { release(image); continue; }
+      if (disposed || generation !== expectedGeneration || !desired.has(next.mediaId)) { release(image); continue; }
       images.set(next.mediaId, image); owned.add(next.mediaId);
     }
   }
@@ -101,7 +114,13 @@ function createVideoMattePageCache(images, load, release) {
       failure = null;
       return ensure();
     },
-    dispose: function() { disposed = true; desired.clear(); evict(); },
+    refreshSources: function() {
+      if (disposed) return;
+      generation++; failure = null;
+      owned.forEach(function(id) { var image = images.get(id); if (image) release(image); images.delete(id); });
+      owned.clear();
+    },
+    dispose: function() { disposed = true; generation++; desired.clear(); evict(); },
   };
 }
 `;

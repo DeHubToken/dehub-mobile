@@ -24,6 +24,10 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
     let done = false;
     let requested = false;
     let target = Math.max(0, time);
+    // Sample inside the timestamp: media-clock truncation at an exact frame
+    // boundary can otherwise select the previous frame. Keep the end clamp.
+    const sampleTime = time > 0 && options.forCanvasRead ? time + 0.000002 : time;
+    const seekTolerance = options.forCanvasRead ? 0.0000005 : 0.0005;
     let timer: ReturnType<typeof setTimeout> | undefined;
     let poll: ReturnType<typeof setInterval> | undefined;
     let recovery: ReturnType<typeof setTimeout> | undefined;
@@ -103,8 +107,8 @@ export function waitForVideoFrame(source: VideoFrameSource, time: number, option
       if (source.error) { failed(); return; }
       if (!requested && source.readyState >= 1) {
         requested = true;
-        target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : time, time));
-        if (Math.abs(source.currentTime - target) >= 0.0005) {
+        target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : sampleTime, sampleTime));
+        if (Math.abs(source.currentTime - target) >= seekTolerance) {
           needsPresentation = true;
           try { source.currentTime = target; } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
         }
@@ -143,6 +147,10 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
     let done = false;
     let requested = false;
     let target = Math.max(0, time);
+    // Sample inside the timestamp: media-clock truncation at an exact frame
+    // boundary can otherwise select the previous frame. Keep the end clamp.
+    const sampleTime = time > 0 && options.forCanvasRead ? time + 0.000002 : time;
+    const seekTolerance = options.forCanvasRead ? 0.0000005 : 0.0005;
     let timer;
     let poll;
     let recovery;
@@ -222,8 +230,8 @@ export const VIDEO_FRAME_RUNTIME = `function waitForVideoFrame(source, time, opt
       if (source.error) { failed(); return; }
       if (!requested && source.readyState >= 1) {
         requested = true;
-        target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : time, time));
-        if (Math.abs(source.currentTime - target) >= 0.0005) {
+        target = Math.max(0, Math.min(Number.isFinite(source.duration) ? Math.max(0, source.duration - 0.001) : sampleTime, sampleTime));
+        if (Math.abs(source.currentTime - target) >= seekTolerance) {
           needsPresentation = true;
           try { source.currentTime = target; } catch (error) { finish(error instanceof Error ? error : new Error(String(error))); return; }
         }
