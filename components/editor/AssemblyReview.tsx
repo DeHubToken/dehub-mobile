@@ -16,7 +16,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
   if (!state.sourceId) return null;
   const disabled = state.busy || changed;
   const label = (id: string) => { const c = [...state.media, ...state.sounds].find(c => c.id === id); return c ? names[c.mediaId] || t(c.kind === "image" ? "editor.app.photo" : c.kind === "audio" ? "editor.video.sound" : "editor.video.video") : id; };
-  const errors = { selectMedia: "editor.video.emptyTimeline", limit: "editor.shots.hint", changed: "editor.agent.failed", failed: "common.somethingWentWrong", noMatch: "editor.assembly.noMatch", matchLimit: "editor.assembly.matchLimit", matchDuration: "editor.assembly.matchDuration", matchFailed: "common.somethingWentWrong" };
+  const errors = { selectMedia: "editor.video.emptyTimeline", limit: "editor.shots.hint", changed: "editor.agent.failed", failed: "common.somethingWentWrong", noMatch: "editor.assembly.noMatch", matchLimit: "editor.assembly.matchLimit", matchDuration: "editor.assembly.matchDuration", matchFailed: "editor.assembly.matchFailed" };
   const button = (text: string, action: () => void, blocked = disabled, identity = text) => <Pressable key={identity} accessibilityRole="button" accessibilityLabel={text} disabled={blocked} onPress={() => { if (!blocked) action(); }} className="rounded-lg border border-white/20 px-2 py-1" style={{ opacity: blocked ? 0.4 : 1 }}><Text className="text-white text-xs">{text}</Text></Pressable>;
   return <View className="rounded-xl border border-white/15 p-3" style={{ gap: 10 }}>
     <Text className="text-white text-sm font-medium">{t("easyTrade.reviewTitle")} · {t("editor.video.video")}</Text>
@@ -27,6 +27,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
     <Text className="text-theme-neutrals-300 text-xs">{t("editor.highlights.visualPrivacy")}</Text>
     {button(t("editor.assembly.matchScenes"), () => { void session.match(true); }, disabled || sceneConsent !== sceneScope || (state.focus?.trim().length ?? 0) < 2 || !state.shots.length)}
     {state.matching && <Text accessibilityLiveRegion="polite" className="text-theme-neutrals-300 text-xs">{t("editor.highlights.ranking")} · {Math.round((state.matchProgress ?? 0) * 100)}%</Text>}
+    {["noMatch", "matchLimit", "matchDuration", "matchFailed"].includes(state.error ?? "") && button(t("editor.assembly.reviewManually"), () => { session.reviewManually(); })}
     {state.media.map(c => <Pressable key={c.id} accessibilityRole="checkbox" accessibilityLabel={label(c.id)} accessibilityState={{ checked: state.shots.some(s => s.id === c.id), disabled }} disabled={disabled} onPress={() => session.toggle(c.id)} className="flex-row items-center" style={{ gap: 8 }}><Text className="text-white">{state.shots.some(s => s.id === c.id) ? "✓" : "□"}</Text><Text numberOfLines={1} className="flex-1 text-white text-xs">{label(c.id)}</Text></Pressable>)}
     {state.shots.map((s, index) => <View key={s.id} className="border-t border-white/10 pt-2" style={{ gap: 6 }}>
       {state.sceneMatches?.[s.id] && <Text className="text-theme-neutrals-300 text-xs">{state.sceneMatches[s.id]}</Text>}
