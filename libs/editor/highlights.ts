@@ -62,7 +62,7 @@ export function highlightScenes(clip: MediaClip, sentences: HighlightSentence[])
   return scenes;
 }
 
-/** Suggested ranges must match actual sentence boundaries; fabricated times are discarded. */
+/** Validate grounded alternatives before ranking resolves overlaps within the duration budget. */
 export function validateHighlightRanges(clip: MediaClip, sentences: HighlightSentence[], ops: Operation[], requireFocus = false): HighlightRange[] {
   const ranges: HighlightRange[] = [];
   for (const op of ops.slice(0, 48)) {
@@ -73,7 +73,7 @@ export function validateHighlightRanges(clip: MediaClip, sentences: HighlightSen
     if (first < 0 || last < first || sentences[last].end - sentences[first].start > 60) continue;
     const start = Math.max(0, sentences[first].start - Math.min(0.12, first ? Math.max(0, sentences[first].start - sentences[first - 1].end) : 0.12));
     const end = Math.min(clip.duration, sentences[last].end + Math.min(0.18, last + 1 < sentences.length ? Math.max(0, sentences[last + 1].start - sentences[last].end) : 0.18));
-    if (end - start < 0.5 || start >= end || ranges.some(r => start < r.end - 0.001 && end > r.start + 0.001)) continue;
+    if (end - start < 0.5 || start >= end) continue;
     ranges.push({ start: round(start), end: round(end), text: sentences.slice(first, last + 1).map(s => s.text).join(" "), score: op.score });
   }
   return ranges;
@@ -96,7 +96,7 @@ export async function findHighlights(clip: MediaClip, words: CaptionWord[], opti
   }
   const selected: HighlightRange[] = [];
   let seconds = 0;
-  for (const range of candidates.sort((a, b) => b.score - a.score || a.start - b.start)) {
+  for (const range of candidates.sort((a, b) => b.score - a.score || a.start - b.start || a.end - b.end)) {
     if (selected.length >= 8 || seconds + range.end - range.start > target + 0.5 || selected.some(r => range.start < r.end && range.end > r.start)) continue;
     selected.push(range); seconds += range.end - range.start;
   }

@@ -20,7 +20,7 @@ describe("automatic speech highlights", () => {
     expect(highlightSentences(clip, [{ text: "Invalid", start: NaN, end: 3 }, { text: "Outside", start: 61, end: 62 }])).toEqual([]);
   });
 
-  it("ignores fabricated, partial-sentence, weak and overlapping suggestions", () => {
+  it("rejects fabricated, partial-sentence and weak suggestions while retaining grounded alternatives", () => {
     const suggestions = validateHighlightRanges(clip, highlightSentences(clip, words), [
       { op: "trim", id: "video", offset: 2, duration: 2, score: 0.9 },
       { op: "trim", id: "video", offset: 0, duration: 4, score: 0.8 },
@@ -29,7 +29,10 @@ describe("automatic speech highlights", () => {
       { op: "trim", id: "video", offset: 10, duration: 3, score: 0.4 },
       { op: "trim", id: "video", offset: 10, duration: 3, score: NaN },
     ]);
-    expect(suggestions).toEqual([{ start: 1.88, end: 4.18, text: "Always back up.", score: 0.9 }]);
+    expect(suggestions).toEqual([
+      { start: 1.88, end: 4.18, text: "Always back up.", score: 0.9 },
+      { start: 0, end: 4.18, text: "Welcome. Always back up.", score: 0.8 },
+    ]);
   });
 
   it("selects meaningful ranked moments and never substitutes equal cuts for an empty result", async () => {
@@ -97,4 +100,43 @@ it("requires explicit topic compliance and rejects weaker ranges instead of fill
   expect(await findHighlights(clip, words, { seconds: 30, focus: "Weather only" }, async () => ({ ops: [
     { op: "trim", id: "video", offset: 2, duration: 2, score: 0.9, focusMatch: false },
   ] }))).toEqual([]);
+});
+
+
+describe("highlight alternatives respect ranking before overlap selection", () => {
+  it.each([false, true])("chooses the stronger overlap regardless of response order, focused=%s", async focused => {
+    const options = { seconds: 15, ...(focused ? { focus: "Reliable backups" } : {}) };
+    const weaker = { op: "trim", id: "video", offset: 0, duration: 4, score: 0.8, focusMatch: true };
+    const stronger = { op: "trim", id: "video", offset: 2, duration: 2, score: 0.95, focusMatch: true };
+    const results = [];
+    for (const ops of [[weaker, stronger], [stronger, weaker]]) {
+      results.push(await findHighlights(clip, words, options, async () => ({ ops })));
+    }
+    expect(results[0]).toEqual([{ start: 1.88, end: 4.18, text: "Always back up.", score: 0.95 }]);
+    expect(results[1]).toEqual(results[0]);
+  });
+
+  it("keeps a useful fitting alternative when its stronger overlap exceeds the budget", async () => {
+    const source = { ...clip, speed: 1 };
+    const transcript = [
+      { text: "Context.", start: 0, end: 8 },
+      { text: "Back up and verify restores.", start: 8, end: 12 },
+      { text: "More detail.", start: 12, end: 16 },
+    ];
+    const tooLong = { op: "trim", id: "video", offset: 0, duration: 16, score: 0.99 };
+    const fitting = { op: "trim", id: "video", offset: 8, duration: 4, score: 0.9 };
+    for (const ops of [[tooLong, fitting], [fitting, tooLong]]) {
+      expect(await findHighlights(source, transcript, { seconds: 15 }, async () => ({ ops })))
+        .toEqual([{ start: 8, end: 12, text: "Back up and verify restores.", score: 0.9 }]);
+    }
+  });
+
+  it("breaks equal-score and equal-start ties by the shorter complete moment", async () => {
+    const shorter = { op: "trim", id: "video", offset: 0, duration: 0.5, score: 0.9 };
+    const longer = { op: "trim", id: "video", offset: 0, duration: 4, score: 0.9 };
+    for (const ops of [[longer, shorter], [shorter, longer]]) {
+      expect(await findHighlights(clip, words, { seconds: 15 }, async () => ({ ops })))
+        .toEqual([{ start: 0, end: 0.68, text: "Welcome.", score: 0.9 }]);
+    }
+  });
 });
