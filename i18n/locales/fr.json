@@ -7452,6 +7452,8 @@
     }
   },
   "creator": {
+    "toolMaboroshi": "Maboroshi",
+    "toolMaboroshiDesc": "Remplacez des personnages et des objets, vérifiez un brouillon, puis exportez avec votre bande-son originale.",
     "editInTimeline": "Modifier dans la timeline",
     "presetExtraGlassCausticsName": "Reflets de verre",
     "presetExtraGlassCausticsHint": "La lumière se réfracte dans le verre",
