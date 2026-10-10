@@ -64,9 +64,9 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
       if (!n) return;
       if (categories.length >= max) return;
       onAdd(n);
-      setQuery("");
+      setQuery.complete(query, "");
     },
-    [categories.length, max, onAdd, setQuery]
+    [categories.length, max, onAdd, setQuery, query]
   );
 
   const handleSubmit = useCallback(() => {
@@ -180,7 +180,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               autoCorrect={false}
             />
             {query.length > 0 && (
-              <TouchableOpacity onPress={() => setQuery("")} hitSlop={14}>
+              <TouchableOpacity onPress={() => setQuery.complete(query, "")} hitSlop={14}>
                 <Ionicons name="close-circle" size={16} color="#6F7174" />
               </TouchableOpacity>
             )}

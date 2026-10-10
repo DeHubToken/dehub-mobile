@@ -52,7 +52,7 @@ export default function BuilderScreen() {
         targetUser: { username: ASSISTANT_USERNAME, address: ASSISTANT_ADDRESS },
         ...(body ? { autoSendText: body } : {}),
       });
-      if (body) setPrompt("");
+      if (body) setPrompt.complete(prompt, "");
     });
   };
 

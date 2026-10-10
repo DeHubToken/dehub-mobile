@@ -315,7 +315,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       const caption = text.trim() || undefined;
       if (!(await onSendGif(gifUrl, caption))) return;
       setGifUrl(null);
-      setText(current => current === text ? "" : current);
+      setText.complete(text, "");
       return;
     }
 
@@ -324,7 +324,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       const caption = text.trim() || undefined;
       if (!(await onSendMedia(media, caption))) return;
       setMedia(null);
-      setText(current => current === text ? "" : current);
+      setText.complete(text, "");
       return;
     }
 
@@ -334,7 +334,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     if (!trimmed && !tipAmount) return;
     if (!(await onSendText(trimmed))) return;
     if (editingMessage) setEditText.complete(text, "");
-    else setOrdinaryText(current => current === text ? "" : current);
+    else setOrdinaryText.complete(text, "");
     emitTyping(false);
     } finally { sendInFlight.current = false; }
   }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);

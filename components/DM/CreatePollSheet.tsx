@@ -80,7 +80,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
         isMultipleChoice,
       });
       if (result?.tokenId != null) {
-        setQuestion("");
+        setQuestion.complete(question, "");
         setOptions(["", ""]);
         setDurationHours(24);
         setIsMultipleChoice(false);

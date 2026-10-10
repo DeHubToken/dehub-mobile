@@ -67,8 +67,8 @@ const CreateStageModal: React.FC = () => {
   const handleBack = () => closeModal();
 
   const reset = () => {
-    setTitle("");
-    setDescription("");
+    setTitle.complete(title, "");
+    setDescription.complete(description, "");
     setCoverUri(null);
     setScheduledLink(null);
     setMode("now");

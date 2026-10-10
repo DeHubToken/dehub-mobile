@@ -88,7 +88,7 @@ export default function AddCustomEmojiPanel({ onDone, onLeave }: { onDone: () =>
     if (!EMOJI_UPLOAD_TYPES.includes(emojiImageType(image))) return toastError(t("emojiPicker.errors.fileType"));
     if (image.fileSize != null && image.fileSize > MAX_EMOJI_UPLOAD_BYTES) return toastError(t("emojiPicker.errors.fileSize"));
     setFile(image);
-    setLink("");
+    setLink.complete(link, "");
     setSource(null);
     setPreview(image.uri);
     if (!name && image.fileName) setName(normaliseShortcode(image.fileName.replace(/\.\w+$/, "")));

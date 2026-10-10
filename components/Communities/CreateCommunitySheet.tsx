@@ -44,8 +44,8 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
     .replace(/^-|-$/g, "");
 
   const reset = () => {
-    setName("");
-    setDescription("");
+    setName.complete(name, "");
+    setDescription.complete(description, "");
     setIsPrivate(false);
     setAvatarUri(null);
   };

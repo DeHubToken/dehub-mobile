@@ -176,8 +176,8 @@ export default function WorkScreen() {
   const clearFilters = useCallback(() => {
     setTab("all");
     setCurrency("all");
-    setSearch("");
-  }, [setSearch]);
+    setSearch.complete(search, "");
+  }, [setSearch, search]);
 
   const openJob = useCallback(
     (job: WorkJob) => navigation.navigate(ScreenNames.WorkJobDetail, { jobId: job.id, job }),
@@ -257,7 +257,7 @@ export default function WorkScreen() {
         />
         {search.length > 0 && (
           <Pressable
-            onPress={() => setSearch("")}
+            onPress={() => setSearch.complete(search, "")}
             hitSlop={14}
             accessibilityRole="button"
             accessibilityLabel={t("sidebar.clearSearch")}

@@ -403,8 +403,8 @@ export default function TeamUpSheet({
                   { name, description, isPrivate },
                   {
                     onSuccess: () => {
-                      setName('');
-                      setDescription('');
+                      setName.complete(name, '');
+                      setDescription.complete(description, '');
                       setIsPrivate(false);
                       toastSuccess(t('teamUp.created'));
                     },

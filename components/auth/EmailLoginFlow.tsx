@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, TextInput } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -26,7 +27,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   const { t } = useTranslation();
   const [showInput, setShowInput] = useState(false);
   const [usePassword, setUsePassword] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useSurfaceDraft("components/auth/EmailLoginFlow.tsx:email", "");
   const [password, setPassword] = useState("");
   const inputRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);

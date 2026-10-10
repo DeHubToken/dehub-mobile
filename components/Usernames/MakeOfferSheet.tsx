@@ -71,8 +71,8 @@ const MakeOfferSheet: React.FC<Props> = ({ username, visible, onClose, isAuthed,
       { username, priceUsd, message: message.trim() || undefined },
       {
         onSuccess: () => {
-          setAmount("");
-          setMessage("");
+          setAmount.complete(amount, "");
+          setMessage.complete(message, "");
           onClose();
         },
       },

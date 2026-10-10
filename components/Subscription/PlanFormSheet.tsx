@@ -171,7 +171,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     const trimmed = benefitInput.trim();
     if (!trimmed) return;
     setBenefits(prev => [...prev, trimmed]);
-    setBenefitInput("");
+    setBenefitInput.complete(benefitInput, "");
   }, [benefitInput, setBenefitInput, setBenefits]);
 
   const removeBenefit = useCallback((idx: number) => {

@@ -168,7 +168,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
               <TouchableOpacity
                 key={k}
                 style={[s.tab, kind === k && s.tabActive]}
-                onPress={() => { setKind(k); setQuery(''); }}
+                onPress={() => { setKind(k); setQuery.complete(query, ''); }}
                 activeOpacity={0.75}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: kind === k }}

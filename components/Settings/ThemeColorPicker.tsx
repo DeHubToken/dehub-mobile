@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Theme Color — web's picker for the customisable canvas themes (Cosmic, Hazy,
  * Swarms, Lava Lamp), ported from dehubweb src/pages/app/SettingsPage.tsx
@@ -56,7 +57,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
   const value = themeHues[theme] ?? defaultValue;
   const special = value < 0;
   const sliderHue = special ? (defaultValue < 0 ? 260 : defaultValue) : value;
-  const [hexDraft, setHexDraft] = useState<string | null>(null);
+  const [hexDraft, setHexDraft] = useSurfaceDraft<string | null>("components/Settings/ThemeColorPicker.tsx:hexDraft", null, theme);
   const [brandLoading, setBrandLoading] = useState(false);
   const hexValue = hexDraft ?? (special ? '' : hueToHex(value));
 
@@ -90,7 +91,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
       if (colors.length > 0) {
         setBrandColors(colors);
         setThemeHue(theme, THEME_COLOR.BRAND);
-        setHexDraft(null);
+        setHexDraft.complete(hexDraft, null);
       } else if (!alreadyActive) {
         toastError(t('settings.themeColorBrandFailed', "Couldn't read colors from your profile picture"));
       }
@@ -136,7 +137,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
           <Pressable
             onPress={() => {
               setThemeHue(theme, null);
-              setHexDraft(null);
+              setHexDraft.complete(hexDraft, null);
             }}
             hitSlop={8}
             accessibilityRole="button"
@@ -152,7 +153,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
             key={p.mode}
             onPress={() => {
               setThemeHue(theme, p.mode);
-              setHexDraft(null);
+              setHexDraft.complete(hexDraft, null);
             }}
             accessibilityRole="button"
             accessibilityState={{ selected: value === p.mode }}
@@ -185,7 +186,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
           value={sliderHue}
           onValueChange={(v) => {
             setThemeHue(theme, Math.round(v));
-            setHexDraft(null);
+            setHexDraft.complete(hexDraft, null);
           }}
           minimumTrackTintColor={special ? '#ffffff' : hueToHex(sliderHue)}
           maximumTrackTintColor="rgba(255,255,255,0.2)"
@@ -205,7 +206,7 @@ const ThemeColorPicker: React.FC<{ theme: string }> = ({ theme }) => {
             const parsed = hexToHue(next);
             if (parsed !== null) setThemeHue(theme, parsed);
           }}
-          onBlur={() => setHexDraft(null)}
+          onBlur={() => setHexDraft.complete(hexDraft, null)}
           style={{
             width: 88,
             height: 36,

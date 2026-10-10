@@ -97,7 +97,7 @@ export function EmailSignInSection() {
       if (!alive.current) return;
       setAwaitingCode(false);
       setCode('');
-      setEmail('');
+      setEmail.complete(email, '');
       setStatus({
         status: true,
         linked: true,
@@ -119,7 +119,7 @@ export function EmailSignInSection() {
       await unlinkEmailLogin();
       if (!alive.current) return;
       setStatus({ status: true, linked: false, email: null, canLink: true, source: null });
-      setEmail('');
+      setEmail.complete(email, '');
       setCode('');
       setAwaitingCode(false);
       toastSuccess(

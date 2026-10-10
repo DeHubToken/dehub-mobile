@@ -109,7 +109,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
           />
           {search.length > 0 && (
             <TouchableOpacity
-              onPress={() => setSearch("")}
+              onPress={() => setSearch.complete(search, "")}
               className="p-2 -mr-2"
               accessibilityRole="button"
               accessibilityLabel={t("sidebar.clearSearch")}

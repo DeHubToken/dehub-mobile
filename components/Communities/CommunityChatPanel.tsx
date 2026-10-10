@@ -314,7 +314,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   // notifications, but nothing suggested anyone while typing, so a mention
   // only landed if you already knew the handle exactly.
   const mentions = useMentions(text, setText);
-  const [replyTo, setReplyTo] = useState<CommunityChatMessage | null>(null);
+  const [replyTo, setReplyTo] = useDraftState<CommunityChatMessage | null>(`community:${community.id}:reply`, null);
   const [sending, setSending] = useState(false);
   const [sheetFor, setSheetFor] = useState<CommunityChatMessage | null>(null);
   // Message whose full emoji picker is open. The action sheet closes first:
@@ -409,7 +409,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         await sendMessage(body, replyTo?.id);
         if (setText.complete(text, "")) {
           mentions.reset();
-          setReplyTo(null);
+          setReplyTo.complete(replyTo, null);
         }
         atBottomRef.current = true;
         scrollToBottom();
@@ -430,7 +430,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     replyTo,
     scrollToBottom,
     slowModeApplies,
-    slowSeconds, setText]);
+    slowSeconds, setText, setReplyTo]);
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {
@@ -629,7 +629,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             </Text>
           </View>
           <Pressable
-            onPress={() => setReplyTo(null)}
+            onPress={() => setReplyTo.complete(replyTo, null)}
             hitSlop={15}
             accessibilityRole="button"
             accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
@@ -808,7 +808,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                   <Pressable
                     style={styles.sheetRow}
                     onPress={() => {
-                      setReplyTo(null);
+                      setReplyTo.complete(replyTo, null);
                       setEditing(sheetFor);
                       setSheetFor(null);
                     }}

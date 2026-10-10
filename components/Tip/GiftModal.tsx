@@ -261,8 +261,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
         const tierName = (giftTiers as any).find(
           (t: any) => Number(amount) === t.min
         )?.name;
-        setAmount("");
-        setMessage("");
+        setAmount.complete(amount, "");
+        setMessage.complete(message, "");
         setPhase("idle");
         onOpenChange(false);
         toastSuccess(t("tip.sent") as string);

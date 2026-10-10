@@ -637,7 +637,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   style={FIELD_TEXT}
                 />
                 {searchQuery.length > 0 && (
-                  <TouchableOpacity onPress={() => setSearchQuery("")}>
+                  <TouchableOpacity onPress={() => setSearchQuery.complete(searchQuery, "")}>
                     <Icon name="X" size={12} color="#A6A9AC" />
                   </TouchableOpacity>
                 )}

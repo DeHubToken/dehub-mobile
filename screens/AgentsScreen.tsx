@@ -118,8 +118,8 @@ export default function AgentsScreen() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["ai-agents"] });
       setIsCreating(false);
-      setName("");
-      setDescription("");
+      setName.complete(name, "");
+      setDescription.complete(description, "");
       toastSuccess(t("agents.agentCreated"), { description: t("agents.saveApiKey") });
       const id = data?.agent?.id;
       const key = data?.agent?.api_key;

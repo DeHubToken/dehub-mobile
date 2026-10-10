@@ -181,8 +181,8 @@ export default function PackScreen() {
     const { added, skipped } = await addPackItems(wallet, pack.id, entries);
     await invalidate();
     toastSuccess(t("creatorPacks.itemsAdded", { count: added, skipped }));
-    setLink("");
-    setLabel("");
+    setLink.complete(link, "");
+    setLabel.complete(label, "");
   };
 
   const pickFiles = async () => {
@@ -250,7 +250,7 @@ export default function PackScreen() {
     if (!wallet || !editingName?.trim()) return;
     void run(async () => {
       await renamePack(wallet, pack.id, editingName.trim());
-      setEditingName(null);
+      setEditingName.complete(editingName, null);
       await invalidate();
     });
   };
@@ -289,7 +289,7 @@ export default function PackScreen() {
                   <Icon name="Check" size={16} color="#FFFFFF" />
                 </Pressable>
                 <Pressable
-                  onPress={() => setEditingName(null)}
+                  onPress={() => setEditingName.complete(editingName, null)}
                   accessibilityRole="button"
                   accessibilityLabel={t("common.cancel")}
                   style={styles.iconBtn}

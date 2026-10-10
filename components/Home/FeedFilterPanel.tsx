@@ -370,8 +370,8 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 
   const handleSelectCategory = useCallback((cat: string) => {
     onCategoryPress?.(cat);
-    setCategorySearch("");
-  }, [onCategoryPress, setCategorySearch]);
+    setCategorySearch.complete(categorySearch, "");
+  }, [onCategoryPress, setCategorySearch, categorySearch]);
 
   const content = (
     <>

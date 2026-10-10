@@ -23,7 +23,8 @@ export type DraftSetter<T> = ((next: Update<T>) => void) & {
 
 /** Persist only deliberately selected, non-secret state at an explicit logical identity. */
 export function useDraftState<T>(scope: string | null | undefined, initial: T | (() => T)): [T, DraftSetter<T>] {
-  return useStoredDraftState(useAccountDraftKey(scope), initial);
+  const accountKey = useAccountDraftKey(scope);
+  return useStoredDraftState(accountKey ?? (scope ? `guest|${scope}` : null), initial);
 }
 
 export function useStoredDraftState<T>(key: string | null, initial: T | (() => T)): [T, DraftSetter<T>] {

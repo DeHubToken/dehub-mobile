@@ -127,7 +127,7 @@ export default function FilmReviews({
     try {
       await remove.mutateAsync();
       setRating(0);
-      setBody("");
+      setBody.complete(body, "");
       toastSuccess(t("cinema.reviewRemoved"));
     } catch (e) {
       toastError(errorText(e, "cinema.reviewRemoveFailed"));

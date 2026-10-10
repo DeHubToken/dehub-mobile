@@ -277,18 +277,18 @@ const ListingForm: React.FC<{
 
   const reset = useCallback(() => {
     setIsPod(false);
-    setPodUrl("");
+    setPodUrl.complete(podUrl, "");
     setPodProvider("other");
-    setTitle("");
-    setDescription("");
-    setPrice("");
+    setTitle.complete(title, "");
+    setDescription.complete(description, "");
+    setPrice.complete(price, "");
     setCategory("other");
     setCondition("new");
     setIsDigital(false);
-    setShippingInfo("");
-    setStockQty("");
+    setShippingInfo.complete(shippingInfo, "");
+    setStockQty.complete(stockQty, "");
     setImages([]);
-  }, [setDescription, setPodUrl, setPrice, setShippingInfo, setStockQty, setTitle]);
+  }, [setDescription, setPodUrl, setPrice, setShippingInfo, setStockQty, setTitle, description, podUrl, price, shippingInfo, stockQty, title]);
 
   const addImage = useCallback(async () => {
     if (images.length >= MAX_IMAGES) return;

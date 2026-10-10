@@ -250,7 +250,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
     }
     submitComment.mutate(
       { featureRequestId: featureId, content },
-      { onSuccess: () => setDraft("") },
+      { onSuccess: () => setDraft.complete(draft, "") },
     );
   }, [draft, submitComment, isAuthed, navigation, featureId, setDraft]);
 
@@ -633,7 +633,7 @@ const SubmitSheet: React.FC<{
     description: string;
     category: FeatureCategory;
     attachments: FeatureAttachment[];
-  }) => void;
+  }) => Promise<unknown>;
   submitting: boolean;
   initialCategory?: FeatureCategory;
 }> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
@@ -684,27 +684,29 @@ const SubmitSheet: React.FC<{
   }, [attachments.length, t]);
 
   const reset = useCallback(() => {
-    setTitle("");
-    setDescription("");
-    setDevice("");
+    setTitle.complete(title, "");
+    setDescription.complete(description, "");
+    setDevice.complete(device, "");
     setCategory(initialCategory || "new_feature");
     setAttachments([]);
-  }, [initialCategory, setDescription, setDevice, setTitle]);
+  }, [initialCategory, setDescription, setDevice, setTitle, description, device, title]);
 
   const handleClose = useCallback(() => {
-    reset();
     onClose();
   }, [reset, onClose]);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (!valid || submitting) return;
     // Web appends the device line to the description rather than storing it in
     // its own column — keep the two boards' rows identical.
     const fullDescription = device.trim()
       ? `${description.trim()}\n\n📱 Device & OS: ${device.trim()}`
       : description.trim();
-    onSubmit({ title, description: fullDescription, category, attachments });
-    reset();
+    try {
+      await onSubmit({ title, description: fullDescription, category, attachments });
+      reset();
+      onClose();
+    } catch { /* Mutation reports the failure; retain the form. */ }
   }, [valid, submitting, device, description, title, category, attachments, onSubmit, reset]);
 
   return (
@@ -1094,7 +1096,7 @@ export default function FeatureRequestsScreen() {
             returnKeyType="search"
           />
           {search.length > 0 && (
-            <Pressable onPress={() => setSearch("")} hitSlop={8}>
+            <Pressable onPress={() => setSearch.complete(search, "")} hitSlop={8}>
               <Icon name="X" size={15} color="#808089" />
             </Pressable>
           )}
@@ -1276,9 +1278,7 @@ export default function FeatureRequestsScreen() {
         onClose={() => setSheetOpen(false)}
         submitting={submitMutation.isPending}
         initialCategory={category !== "all" ? category : undefined}
-        onSubmit={(v) => {
-          submitMutation.mutate(v, { onSuccess: () => setSheetOpen(false) });
-        }}
+        onSubmit={(v) => submitMutation.mutateAsync(v)}
       />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>

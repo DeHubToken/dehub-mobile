@@ -173,7 +173,7 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
               disabled={busy}
               onPress={() => {
                 setPreset(value);
-                setCustom("");
+                setCustom.complete(custom, "");
               }}
               activeOpacity={0.7}
               className={`flex-1 mx-1 py-2 rounded-xl border items-center ${

@@ -161,12 +161,12 @@ const SupportTicketSheet: React.FC<SupportTicketSheetProps> = ({
   }, [data]);
 
   const resetForm = useCallback(() => {
-    setSubject('');
-    setDescription('');
-    setStepsToReproduce('');
+    setSubject.complete(subject, '');
+    setDescription.complete(description, '');
+    setStepsToReproduce.complete(stepsToReproduce, '');
     setCategory('bug');
     setSeverity('normal');
-  }, [setDescription, setStepsToReproduce, setSubject]);
+  }, [setDescription, setStepsToReproduce, setSubject, description, stepsToReproduce, subject]);
 
   const file = useMutation({
     mutationFn: () =>

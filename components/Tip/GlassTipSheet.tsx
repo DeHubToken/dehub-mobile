@@ -322,7 +322,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     // open, so clearing here would blank the figure the moment the sheet
     // appeared and leave the approve button disabled with nothing to explain it.
     const pending = pendingConfirmation.current;
-    setAmount(pending ? String(pending.amount) : isLocked ? String(lockedAmount) : "");
+    setAmount.initialize(pending ? String(pending.amount) : isLocked ? String(lockedAmount) : "");
     setSelectedPreset(null);
     setPhase(pending ? 'pending' : 'idle');
     setTipError(pending ? t('staking.pendingSubmitted', { amount: pending.amount.toLocaleString() }) + '\n' + (pending.hash ?? '') : null);
@@ -416,7 +416,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           if (commentId != null) emitPostTipped(commentTipKey(commentId));
           else if (tokenId) emitPostTipped(tokenId);
           onSuccess?.(numericAmount);
-          setAmount("");
+          setAmount.complete(amount, "");
           setSelectedPreset(null);
         } catch (e) {
           setPhase("error");
@@ -553,7 +553,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             if (commentId != null) emitPostTipped(commentTipKey(commentId));
             else if (tokenId) emitPostTipped(tokenId);
             onSuccess?.(numericAmount, txHash || undefined);
-            setAmount("");
+            setAmount.complete(amount, "");
             setSelectedPreset(null);
           };
           pendingConfirmation.current = { hash: res.hash, amount: numericAmount, confirm: confirmTip };
@@ -595,7 +595,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     paymentChainId,
     payWith,
     canPayWithOther,
-    t, setAmount]);
+    t, setAmount, amount]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
   if (!visible && isFullyClosed) return null;

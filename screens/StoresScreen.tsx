@@ -178,7 +178,7 @@ export default function StoresScreen() {
             />
             {search.length > 0 && (
               <Pressable
-                onPress={() => setSearch("")}
+                onPress={() => setSearch.complete(search, "")}
                 hitSlop={8}
                 accessibilityRole="button"
                 accessibilityLabel={t("sidebar.clearSearch")}

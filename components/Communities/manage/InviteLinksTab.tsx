@@ -286,7 +286,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
       maxUses: limit.value,
       requiresApproval,
     });
-    setName("");
+    setName.complete(name, "");
     setExpiryKey("never");
     setLimitKey("none");
     setRequiresApproval(false);

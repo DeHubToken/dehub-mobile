@@ -199,7 +199,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
           />
           {!!search && (
             <TouchableOpacity
-              onPress={() => setSearch("")}
+              onPress={() => setSearch.complete(search, "")}
               hitSlop={15}
               accessibilityRole="button"
               accessibilityLabel={t("sidebar.clearSearch")}
