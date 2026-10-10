@@ -1023,7 +1023,8 @@
     "mintPostDesc": "Bu gönderiyi zincir üzerinde yayınla",
     "giftBoost": "Bir güçlendirme hediye et",
     "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca",
-    "askAi": "Yapay zekâya sor"
+    "askAi": "Yapay zekâya sor",
+    "aiOverview": "Yapay zekaya genel bakış"
   },
   "filters": {
     "sort": "Sırala",

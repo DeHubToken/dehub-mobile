@@ -6864,24 +6864,24 @@
       "hint": "处理时长最长可达10分钟。噪音消除在背景噪音稳定时效果最佳。"
     },
     "pages": {
-    "add":  "加一页",
-    "duplicate":  "复制许页",
-    "delete":  "删掉许页",
-    "page":  "第 {{number}} 页",
-    "position":  "第 {{current}} 页 / 共 {{total}} 页",
-    "label":  "页面",
-    "allZip":  "所有 {{count}} 页（ZIP）",
-    "thisPage":  "就许一页",
-    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
-},
+      "add": "加一页",
+      "duplicate": "复制许页",
+      "delete": "删掉许页",
+      "page": "第 {{number}} 页",
+      "position": "第 {{current}} 页 / 共 {{total}} 页",
+      "label": "页面",
+      "allZip": "所有 {{count}} 页（ZIP）",
+      "thisPage": "就许一页",
+      "exporting": "正在渲染第 {{current}} 页，共 {{total}} 页…"
+    },
     "captions": {
-        "action":  "自动字幕",
-        "working":  "正在听… {{percent}}%",
-        "downloading":  "正在准备语音模型… {{percent}}%",
-        "hint":  "把说话转成带时间的字幕，样式随你改。在你的设备上运行：免费又私密。第一次使用会下载模型。",
-        "done":  "已添加 {{count}} 条字幕。",
-        "noSpeech":  "这个片段里没有找到说话声。",
-        "failed":  "无法为这个片段生成字幕。"
+      "action": "自动字幕",
+      "working": "正在听… {{percent}}%",
+      "downloading": "正在准备语音模型… {{percent}}%",
+      "hint": "把说话转成带时间的字幕，样式随你改。在你的设备上运行：免费又私密。第一次使用会下载模型。",
+      "done": "已添加 {{count}} 条字幕。",
+      "noSpeech": "这个片段里没有找到说话声。",
+      "failed": "无法为这个片段生成字幕。"
     },
     "app": {
       "newDesign": "新建设计",
