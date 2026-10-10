@@ -39,3 +39,64 @@ describe("native shared timeline history adapter",()=>{
     act(()=>result.current.receive(next,projectReviewSnapshotKey(next)));expect(result.current.latest()?.id).toBe("other-project");expect(result.current.canUndo).toBe(false);expect(result.current.canRedo).toBe(false);
   });
 });
+
+
+describe("scoped gesture readiness in the native history hook", () => {
+  it("blocks receiving before the first frame without creating an Undo step", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); let lease!: NonNullable<ReturnType<typeof result.current.holdEdits>>;
+    act(() => {lease=result.current.holdEdits(projectReviewSnapshotKey(fixture()))!;}); expect(result.current.isEditing()).toBe(true);
+    expect(() => result.current.receive(fixture(), projectReviewSnapshotKey(fixture()))).toThrow("project changed"); expect(result.current.canUndo).toBe(false);
+    act(() => {result.current.settle(); lease.release();}); expect(result.current.isEditing()).toBe(false);
+    act(() => {expect(() => result.current.receive(fixture(), projectReviewSnapshotKey(fixture()))).not.toThrow();});
+  });
+  it("keeps ownership until all overlapping gesture holds are released", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); let first!: NonNullable<ReturnType<typeof result.current.holdEdits>>, second!: typeof first;
+    act(() => {first=result.current.holdEdits()!; second=result.current.holdEdits()!; first.release(); first.release();}); expect(second.isCurrent()).toBe(true);
+    expect(() => result.current.receive(fixture(), projectReviewSnapshotKey(fixture()))).toThrow("project changed");
+    act(() => second.release()); expect(result.current.isEditing()).toBe(false);
+  });
+  it("does not acquire ownership for a stale rendered baseline", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); const changed = fixture(); changed.title="New title"; act(() => result.current.commit(changed));
+    expect(result.current.holdEdits(projectReviewSnapshotKey(fixture()))).toBeNull(); expect(result.current.isEditing()).toBe(false);
+  });
+  it("keeps a real drag as one Undo step with received fields preserved", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); let lease!: NonNullable<ReturnType<typeof result.current.holdEdits>>;
+    const first=fixture(),second=fixture(); first.clips[0].start=1; second.clips[0].start=2;
+    act(() => {lease=result.current.holdEdits()!; result.current.live(first); result.current.live(second); result.current.settle(); lease.release();});
+    expect(result.current.canUndo).toBe(true); const before=result.current.latest()!,incoming=clone(before); incoming.clips[1].duration=4;
+    act(() => result.current.receive(incoming, projectReviewSnapshotKey(before))); act(() => result.current.undo());
+    expect(result.current.latest()?.clips[0].start).toBe(0); expect(result.current.latest()?.clips[1].duration).toBe(4); expect(result.current.canUndo).toBe(false);
+  });
+  it("settles a return-to-origin drag without losing Redo or leaving receiving blocked", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); const local=fixture(); local.title="Local title"; act(() => {result.current.commit(local); result.current.undo();});
+    let lease!: NonNullable<ReturnType<typeof result.current.holdEdits>>; const moved=fixture(); moved.clips[0].start=1;
+    act(() => {lease=result.current.holdEdits()!; result.current.live(moved); result.current.live(fixture()); result.current.settle(); lease.release();});
+    expect(result.current.canUndo).toBe(false); expect(result.current.canRedo).toBe(true); expect(result.current.isEditing()).toBe(false);
+    act(() => result.current.receive(fixture(), projectReviewSnapshotKey(fixture()))); act(() => result.current.redo()); expect(result.current.latest()?.title).toBe("Local title");
+  });
+  it("keeps a cancelled partial drag undoable after releasing its ownership", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); let lease!: NonNullable<ReturnType<typeof result.current.holdEdits>>; const moved=fixture(); moved.clips[0].start=1;
+    act(() => {lease=result.current.holdEdits()!; result.current.live(moved); result.current.settle(); lease.release();}); expect(result.current.isEditing()).toBe(false);
+    act(() => result.current.undo()); expect(result.current.latest()?.clips[0].start).toBe(0);
+  });
+  it("invalidates old same-project ownership without releasing a newer gesture after reset", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); let old!: NonNullable<ReturnType<typeof result.current.holdEdits>>, fresh!: typeof old;
+    act(() => {old=result.current.holdEdits()!; result.current.reset(fixture()); fresh=result.current.holdEdits()!; old.release();});
+    expect(old.isCurrent()).toBe(false); expect(fresh.isCurrent()).toBe(true); expect(result.current.isEditing()).toBe(true);
+    act(() => fresh.release()); expect(result.current.canUndo).toBe(false); expect(result.current.isEditing()).toBe(false);
+  });
+  it("ignores a stale frame from another project after reset", () => {
+    const {result} = renderHook(() => useProjectHistory(fixture())); const other=fixture(); other.id="other-project"; const oldFrame=fixture(); oldFrame.clips[0].start=9;
+    act(() => {result.current.reset(other); result.current.live(oldFrame);}); expect(result.current.latest()?.id).toBe("other-project"); expect(result.current.latest()?.clips[0].start).toBe(0); expect(result.current.isEditing()).toBe(false);
+  });
+});
+
+it("keeps the original drag Undo when measured source facts replace the current frame", () => {
+  const {result}=renderHook(() => useProjectHistory(fixture())); const moved=fixture(); moved.clips[0].start=2;
+  let lease!: NonNullable<ReturnType<typeof result.current.holdEdits>>;
+  act(() => {lease=result.current.holdEdits()!; result.current.live(moved);});
+  const measured=clone(result.current.latest()!); (measured.clips[0] as import("../../libs/editor/types").MediaClip).sourceDuration=30;
+  act(() => {result.current.replace(measured); result.current.settle(); lease.release();});
+  act(() => result.current.undo()); expect(result.current.latest()?.clips[0].start).toBe(0);
+  expect((result.current.latest()?.clips[0] as import("../../libs/editor/types").MediaClip).sourceDuration).toBe(30);
+});

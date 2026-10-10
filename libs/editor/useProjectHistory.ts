@@ -1,3 +1,4 @@
+import { projectEditGate } from "./projectEditGate";
 import { useRef, useState } from "react";
 import type { ProjectSnapshot } from "./types";
 import { rebaseProjectHistory } from "./projectHistory";
@@ -12,6 +13,8 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
   const current = useRef(project);
   current.current = project;
   const [, bump] = useState(0);
+  const gate = useRef<ReturnType<typeof projectEditGate> | null>(null);
+  if (!gate.current) gate.current = projectEditGate(() => bump(n => n + 1));
 
   const push = (before: ProjectSnapshot) => {
     past.current = [...past.current, before].slice(-HISTORY_LIMIT);
@@ -22,21 +25,34 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
     project,
     /** The project as of now, for work that finishes after an await. */
     latest: () => current.current,
+    isEditing: () => !!liveBase.current || gate.current!.isEditing(),
+    holdEdits: (expectedKey?: string) => {
+      if (!current.current || (expectedKey !== undefined && projectReviewSnapshotKey(current.current) !== expectedKey)) return null;
+      return gate.current!.hold();
+    },
     canUndo: past.current.length > 0,
     canRedo: future.current.length > 0,
-    reset: (p: ProjectSnapshot) => { past.current = []; future.current = []; liveBase.current = null; current.current = p; setProject(p); },
+    reset: (p: ProjectSnapshot) => { gate.current!.reset(false); past.current = []; future.current = []; liveBase.current = null; current.current = p; setProject(p); },
     fork: (original: ProjectSnapshot, next: ProjectSnapshot) => {
+      gate.current!.reset(false);
       past.current = [{ ...original, id: next.id, title: next.title }]; future.current = []; liveBase.current = null; current.current = next; setProject(next);
     },
     receive: (snapshot: ProjectSnapshot, expectedKey: string) => {
       const before = current.current;
-      if (!before || liveBase.current || projectReviewSnapshotKey(before) !== expectedKey) throw new Error("The current project changed during transfer");
+      if (!before || liveBase.current || gate.current!.isEditing() || projectReviewSnapshotKey(before) !== expectedKey) throw new Error("The current project changed during transfer");
       const next = rebaseProjectHistory({current:before,past:past.current,future:future.current},snapshot);
       past.current = next.past; future.current = next.future; current.current = next.current; setProject(next.current);
       return next.protectedPaths.length;
     },
     /** Not an undo step: facts the canvas measured, like a video's real length. */
-    replace: (p: ProjectSnapshot) => { if (liveBase.current) liveBase.current = p; current.current = p; setProject(p); },
+    replace: (p: ProjectSnapshot) => {
+      if (p.id !== current.current?.id) return;
+      if (liveBase.current && current.current) {
+        const rebased = rebaseProjectHistory({current:current.current,past:[liveBase.current],future:[]},p);
+        liveBase.current = rebased.past[0] ?? p;
+      }
+      current.current = p; setProject(p);
+    },
     commit: (next: ProjectSnapshot) => {
       const before = liveBase.current ?? current.current;
       liveBase.current = null;
@@ -44,11 +60,15 @@ export function useProjectHistory(initial: ProjectSnapshot | null) {
       current.current = next; setProject(next);
     },
     live: (next: ProjectSnapshot) => {
+      if (next.id !== current.current?.id) return;
       if (!liveBase.current) liveBase.current = current.current;
       current.current = next; setProject(next);
     },
     settle: () => {
-      if (liveBase.current) { push(liveBase.current); liveBase.current = null; bump((n) => n + 1); }
+      if (liveBase.current) {
+        if (current.current && projectReviewSnapshotKey(liveBase.current) !== projectReviewSnapshotKey(current.current)) push(liveBase.current);
+        liveBase.current = null; bump((n) => n + 1);
+      }
     },
     undo: () => {
       const prev = past.current[past.current.length - 1];
