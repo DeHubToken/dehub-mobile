@@ -56,8 +56,19 @@ const sameAddress = (a: string, b: string, chain: number) => chain === 101 ? a =
 export async function walletRpc(chainId: number, method: string, params: unknown[]): Promise<any> {
   const url = chainId === 101 ? getSolanaRpcUrl() : NETWORK_URLS[chainId];
   if (!url) throw new Error('Network unavailable');
+  const urls = [...new Set([url, ...(chainId === 1 ? [
+    'https://ethereum-rpc.publicnode.com', 'https://eth.drpc.org',
+  ] : [])])];
+  for (const candidate of urls) {
+    try { return await requestWalletRpc(candidate, method, params, chainId === 1 ? 4000 : 8000); }
+    catch { /* A configured endpoint can reject requests even while the chain is healthy. */ }
+  }
+  throw new Error('Balance unavailable');
+}
+
+async function requestWalletRpc(url: string, method: string, params: unknown[], timeout: number): Promise<any> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 8000);
+  const timer = setTimeout(() => controller.abort(), timeout);
   try {
     const response = await fetch(url, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
