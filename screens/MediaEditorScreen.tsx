@@ -1178,7 +1178,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (!current || current.id !== project.id) return;
       h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
     }} />;
-    if (tool === "record") return <RecordingPanel key={project.id} at={canvasTime} onStart={() => setPlaying(false)} onAdd={(media, start) => {
+    if (tool === "record") return <RecordingPanel key={project.id} scope={h.scopeVersion()} subscribe={h.subscribe} at={canvasTime} onStart={() => {
+      setPlaying(false);
+      const current = h.latest();
+      return current ? h.holdEdits(projectReviewSnapshotKey(current)) : null;
+    }} onAdd={(media, start) => {
       const current = h.latest();
       if (!current || current.id !== project.id) return;
       const trackId = newId(8), clipId = newId(10);
