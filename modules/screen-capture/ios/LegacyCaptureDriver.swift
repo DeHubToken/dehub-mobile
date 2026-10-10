@@ -25,7 +25,7 @@ final class LegacyCaptureDriver: NSObject, CaptureDriver, RPBroadcastActivityVie
     originalMicrophone = RPScreenRecorder.shared().isMicrophoneEnabled
     RPScreenRecorder.shared().isMicrophoneEnabled = ticket.microphone
     try await withTaskCancellationHandler(operation: {
-      try await withCheckedThrowingContinuation { done in
+      try await withCheckedThrowingContinuation { (done: CheckedContinuation<Void, Error>) in
         guard !stopped else { done.resume(throwing: CancellationError()); return }
         consent = done
         RPBroadcastActivityViewController.load(withPreferredExtension: Self.uploadBundleId) { activity, error in
