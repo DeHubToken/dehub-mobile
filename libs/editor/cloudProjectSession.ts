@@ -26,7 +26,7 @@ export interface CloudProjectSessionDeps {
     save(id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved>;
     load(id: string, revision?: number): Promise<CloudProjectVersion>;
     restore(id: string, revision: number, head: number, requestId: string): Promise<CloudProjectSaved>;
-    drafts?: ReturnType<typeof cloudProjectDraftApi>;
+    drafts?: Pick<ReturnType<typeof cloudProjectDraftApi>, "load" | "open" | "save"> & Partial<Pick<ReturnType<typeof cloudProjectDraftApi>, "resolve">>;
     editing?: { load(owner: string, id: string): Promise<CloudProjectVersion>; save(owner: string, id: string, document: CloudProjectDocument, revision: number, requestId: string): Promise<CloudProjectSaved> };
     review?: { load(owner: string, id: string, revision?: number): Promise<CloudProjectVersion> };
   };
@@ -79,6 +79,9 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       write: async state => { const link = await currentLink(); await deps.writeLink(localId, { ...link, liveDraft: state }); check(); },
       api: {
         open: (sourceOwner, projectId, clientId) => api.open(sourceOwner, projectId, clientId),
+        resolve: api.resolve ? async (sourceOwner, projectId, request) => {
+          await currentLink(); return api.resolve!(sourceOwner, projectId, request);
+        } : undefined,
         save: async (sourceOwner, projectId, request) => {
           const link = await currentLink();
           if (request.anchorRevision !== link.revision) throw new CloudProjectConflict("Receive the latest saved version before sending live edits. Your local draft was kept.");
@@ -146,6 +149,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
   return {
     async registerLiveDraft(localId: string) { return (await liveDraft(localId)).register(); },
     async recoverLiveDraft(localId: string) { return (await liveDraft(localId)).recover(); },
+    async resolveLiveDraft(localId: string) { return (await liveDraft(localId)).resolve(); },
     sendLiveDraft(localId: string, document: CloudProjectDocument) {
       // Capture before reading device storage, so later edits cannot alter the request.
       const captured = JSON.parse(JSON.stringify(document, (_key, value) => {

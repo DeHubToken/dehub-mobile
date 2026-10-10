@@ -14,7 +14,7 @@ export interface CloudDraftDelivery {
 }
 export interface CloudDraftOutboxDeps {
   scope: CloudDraftScope;
-  api: Pick<ReturnType<typeof cloudProjectDraftApi>, "open" | "save">;
+  api: Pick<ReturnType<typeof cloudProjectDraftApi>, "open" | "save"> & Partial<Pick<ReturnType<typeof cloudProjectDraftApi>, "resolve">>;
   read(): Promise<unknown>; write(state: CloudDraftOutboxState): Promise<void>;
   check(): void; uuid(): string; now(): number;
 }
@@ -77,10 +77,9 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
     const parsed = parseCloudDraftOutbox(state, scope); if (!parsed) fail();
     guard(); await deps.write(parsed); guard();
   }
-  async function finish(state: CloudDraftOutboxState, recovered: boolean, capturedSent: boolean): Promise<CloudDraftDelivery> {
+  async function acknowledge(state: CloudDraftOutboxState, raw: unknown, recovered: boolean, capturedSent: boolean): Promise<CloudDraftDelivery> {
     const pending = state.pending, writer = state.writer;
     if (!pending || !writer) fail();
-    guard(); const raw: unknown = await deps.api.save(scope.owner, scope.projectId, copy(pending)); guard();
     if (!object(raw) || raw.ownerWallet !== scope.owner || raw.projectId !== scope.projectId
       || raw.draftRevision !== pending.expectedRevision + 1 || raw.anchorRevision !== pending.anchorRevision
       || raw.sequence !== pending.sequence || raw.requestId !== pending.requestId || !date(raw.storedAt)) fail();
@@ -96,7 +95,27 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
     await persist(state);
     return copy({ checkpoint, receipt, recovered, capturedSent });
   }
+  async function finish(state: CloudDraftOutboxState, recovered: boolean, capturedSent: boolean) {
+    if (!state.pending) fail();
+    guard(); const raw: unknown = await deps.api.save(scope.owner, scope.projectId, copy(state.pending)); guard();
+    return acknowledge(state, raw, recovered, capturedSent);
+  }
   return {
+    resolve: () => exclusive(async () => {
+      const state = await read();
+      if (!state?.pending) return null;
+      if (!deps.api.resolve) throw new Error("Live edit outcome recovery is unavailable. Your local draft was kept.");
+      const pending = copy(state.pending);
+      guard(); const result: unknown = await deps.api.resolve(scope.owner, scope.projectId, pending); guard();
+      if (!object(result)) fail();
+      if (result.status === "committed") return { status: "committed" as const, delivery: await acknowledge(state, result.receipt, true, false) };
+      if (result.status === "unknown") return { status: "unknown" as const };
+      if (result.status !== "fenced") fail();
+      const checkpoint = parseCloudDraftCheckpoint(result.checkpoint, scope.owner, scope.projectId);
+      state.writer = null; state.pending = null; state.lastRequestId = pending.requestId;
+      await persist(state);
+      return copy({ status: "fenced" as const, checkpoint, document: pending.document });
+    }),
     inspect: async () => { guard(); return read(); },
     register: () => exclusive(async () => {
       let state = await read();
