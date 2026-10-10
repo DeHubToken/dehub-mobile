@@ -18,7 +18,6 @@ export interface SelfReaction {
 
 export default function LiveFeedReactionFlow({
   streamId,
-  selfAddress,
   self,
 }: {
   /**
@@ -27,8 +26,6 @@ export default function LiveFeedReactionFlow({
    * to land; only the room's copy is lost.
    */
   streamId?: string | null;
-  /** The signed-in viewer, lower-cased, so their own echo can be dropped. */
-  selfAddress?: string | null;
   /**
    * The viewer's own reaction, played the instant they tap it — the same beat
    * a tipper gets their celebration on. The echo is what the room sees; it is
@@ -41,16 +38,13 @@ export default function LiveFeedReactionFlow({
   // room to join — the epoch below is what makes the re-join happen.
   const { on, emit, coreConnected: connected, connectionEpoch } = useWebSocket();
   const { reactions, addReaction, clearReactions } = useReactions();
-  const meRef = useRef(selfAddress || null);
-  useEffect(() => { meRef.current = selfAddress || null; }, [selfAddress]);
   useEffect(() => {
     clearReactions();
     if (!streamId) return;
     const off = on(LivestreamEvents.StreamReaction, data => {
       if (data?.streamId !== streamId) return;
-      const from = String(data?.user?.address || '').toLowerCase();
       // Already played on tap — the same reaction coming back round.
-      if (from && meRef.current && from === meRef.current) return;
+      if (data?.isOwnReaction) return;
       addReaction(data.reactionType, undefined, data.weight);
     });
     if (connected) emit(LivestreamEvents.JoinRoom, { streamId });
