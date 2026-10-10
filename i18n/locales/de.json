@@ -1429,6 +1429,7 @@
     "trade": "Handel",
     "import": "Importieren",
     "noTokensToSend": "Keine Token mit Guthaben zum Senden",
+    "solanaSendUnavailable": "Das Senden auf Solana ist noch nicht verfügbar",
     "unableOpenGateway": "Zahlungsgateway konnte nicht geöffnet werden",
     "failedPurchaseSession": "Kaufsitzung konnte nicht gestartet werden",
     "searchTokens": "Token suchen...",

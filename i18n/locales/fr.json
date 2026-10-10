@@ -1429,6 +1429,7 @@
     "trade": "Commerce",
     "import": "Importer",
     "noTokensToSend": "Aucun token avec solde à envoyer",
+    "solanaSendUnavailable": "Les envois sur Solana ne sont pas encore disponibles",
     "unableOpenGateway": "Impossible d'ouvrir la passerelle de paiement",
     "failedPurchaseSession": "Échec du démarrage de la session d'achat",
     "searchTokens": "Rechercher des tokens...",
