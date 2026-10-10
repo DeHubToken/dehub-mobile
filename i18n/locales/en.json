@@ -7431,6 +7431,13 @@
         "turnHint": "Show the moment things changed.",
         "authorHint": "Your name"
       }
+    },
+    "sharedTimeline": {
+      "receive": "Receive changes",
+      "hint": "Apply the latest saved changes. Local edits and Undo are kept.",
+      "received": "Received version {{revision}}.",
+      "upToDate": "Already up to date.",
+      "protectedUndo": "Older local edits overlap shared changes. Undo will preserve the shared changes."
     }
   },
   "creator": {

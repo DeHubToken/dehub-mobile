@@ -7407,6 +7407,13 @@
         "turnHint": "Zeige den Moment der Veränderung.",
         "authorHint": "Dein Name"
       }
+    },
+    "sharedTimeline": {
+      "receive": "Änderungen empfangen",
+      "hint": "Übernimm die zuletzt gespeicherten Änderungen. Lokale Änderungen und Rückgängig bleiben erhalten.",
+      "received": "Version {{revision}} empfangen.",
+      "upToDate": "Bereits aktuell.",
+      "protectedUndo": "Ältere lokale Änderungen überschneiden sich mit geteilten Änderungen. Rückgängig bewahrt die geteilten Änderungen."
     }
   },
   "creator": {
