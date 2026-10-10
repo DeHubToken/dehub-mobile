@@ -1,3 +1,4 @@
+import FeedbackLink from '../components/FeedbackLink';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * ConverterScreen
@@ -491,6 +492,7 @@ export default function ConverterScreen() {
   const header = (
     <View className="gap-4 pb-4">
       <Text className="text-theme-neutrals-400 text-sm px-4">{t('converter.subtitle')}</Text>
+      <FeedbackLink source="converter" />
 
       <PageTabs
         value={intake}
