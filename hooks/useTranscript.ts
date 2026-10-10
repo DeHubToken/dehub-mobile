@@ -219,9 +219,9 @@ export function useTranscriptTranslation(
   // Ask once per language, and only for one nobody has cached.
   useEffect(() => {
     if (!wanted || !transcriptId) return;
-    if (query.isLoading) return;
+    if (query.isLoading || query.isError) return;
     const s = query.data?.status;
-    if (s === "ready" || s === "processing") return;
+    if (s === "ready" || s === "processing" || s === "failed") return;
     const token = `${transcriptId}:${language}`;
     if (requested === token) return;
     setRequested(token);
@@ -230,7 +230,7 @@ export function useTranscriptTranslation(
       .then(() => qc.invalidateQueries({ queryKey: key }))
       .catch((e) => logger.warn("translate invoke failed", e));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wanted, transcriptId, language, query.data?.status, query.isLoading, requested]);
+  }, [wanted, transcriptId, language, query.data?.status, query.isLoading, query.isError, requested]);
 
   return { translation: query.data ?? null, isLoading: query.isLoading };
 }
