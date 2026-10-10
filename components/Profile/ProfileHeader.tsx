@@ -54,6 +54,8 @@ import ProfileLinksPill from "./ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import type { Community } from "../../types/community";
+import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
 
 // Minimal header buttons: no glass slab, just a 1px outline, and a 44pt box so
 // losing the padded pill does not shrink the tap target.
@@ -64,7 +66,7 @@ const MINIMAL_OUTLINE_BUTTON = {
   backgroundColor: "transparent",
 } as const;
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | null }) => {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -320,7 +322,8 @@ const ProfileHeader = () => {
       </TouchableOpacity>
 
       {/* Content */}
-      <View className={cinematicPhone ? "px-4" : "px-5"}>
+      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+        <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View>

@@ -24,6 +24,8 @@ import ProfileLinksPill from "../Profile/ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useCinematicPhone } from "../../hooks/useCinematicPhone";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import type { Community } from "../../types/community";
+import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.20)",
@@ -34,6 +36,7 @@ const BTN_RADIUS = 12;
 const BTN_H = 36;
 
 export interface UserProfileHeaderProps {
+  featuredCommunity?: Community | null;
   avatarUrl?: string | null;
   coverUrl?: string | null;
   displayName: string;
@@ -83,6 +86,7 @@ export interface UserProfileHeaderProps {
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
+  featuredCommunity,
   avatarUrl,
   coverUrl,
   displayName,
@@ -280,7 +284,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
       </TouchableOpacity>
 
-      <View className={cinematicPhone ? "px-4" : "px-5"}>
+      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+        <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <Avatar
             uri={avatarUrl || undefined}

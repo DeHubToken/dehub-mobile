@@ -102,10 +102,11 @@ const ProfileTabs: React.FC = () => {
 
   const listHeader = (
     <View>
-      <ProfileHeader />
-      <View className="px-3">
-        <PinnedCommunities walletAddress={address || ""} isOwnProfile />
-      </View>
+      <PinnedCommunities
+        walletAddress={address || ""}
+        isOwnProfile
+        renderHeader={(community) => <ProfileHeader featuredCommunity={community} />}
+      />
       <ProfileTabBar
         items={tabItems}
         activeKey={activeKey}
