@@ -14,7 +14,7 @@ afterAll(() => { Object.defineProperty(Platform, 'OS', { configurable: true, val
 it('shares the production text card and retains the off-chain link on iOS', async () => {
   download.mockResolvedValue({ status: 200, headers: { 'Content-Type': 'image/png' } });
   await sharePostAsImage(6501, 'https://dehub.io/newpost/1051', 'A post', 'feed-simple');
-  expect(download).toHaveBeenCalledWith('https://dehub.io/_og/post/v1/6501.png', 'file:///cache/dehub-post-6501.png');
+  expect(download).toHaveBeenCalledWith('https://dehub.io/_og/post/v2/6501.png', 'file:///cache/dehub-post-6501.png');
   expect(share).toHaveBeenCalledWith({ url: 'file:///cache/dehub-post-6501.png', message: 'A post\nhttps://dehub.io/newpost/1051' });
 });
 
