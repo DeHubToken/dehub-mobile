@@ -6,12 +6,26 @@ jest.mock('../../libs/storage', () => ({ storage: {
   set: (key: string, value: string) => { mockDisk[key] = value; },
   delete: (key: string) => { delete mockDisk[key]; },
 } }));
-jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'alice' }) }));
+let mockDraftUser: { address: string } | null = { address: 'alice' };
+jest.mock('../../context/AuthContext', () => ({ useUser: () => mockDraftUser }));
 
-import { useStoredDraftState, accountDraftKey } from '../../hooks/useDraftState';
+import { useAccountDraftKey, useDraftState, useStoredDraftState, accountDraftKey } from '../../hooks/useDraftState';
 import { __resetDraftCacheForTests, readDraft } from '../../libs/draft-cache';
 
-beforeEach(() => { for (const key of Object.keys(mockDisk)) delete mockDisk[key]; __resetDraftCacheForTests(); });
+beforeEach(() => { mockDraftUser = { address: 'alice' }; for (const key of Object.keys(mockDisk)) delete mockDisk[key]; __resetDraftCacheForTests(); });
+it('restores guest fields after restart and keeps signed-in drafts separate', () => {
+  mockDraftUser = null;
+  const first = renderHook(() => useDraftState('comment:42:text', ''));
+  act(() => first.result.current[1]('  guest reply\n '));
+  first.unmount();
+  __resetDraftCacheForTests();
+  const next = renderHook(() => ({ field: useDraftState('comment:42:text', ''), key: useAccountDraftKey('comment:42:text') }));
+  expect(next.result.current.field[0]).toBe('  guest reply\n ');
+  expect(next.result.current.key).toBe('guest|comment:42:text');
+  mockDraftUser = { address: 'alice' };
+  next.rerender({});
+  expect(next.result.current.field[0]).toBe('');
+});
 it('restores exact text after a new app storage load', () => {
   const key = accountDraftKey('alice', 'room:one');
   const first = renderHook(() => useStoredDraftState(key, ''));
