@@ -5,6 +5,7 @@ import {
   getRefreshToken,
   setRefreshToken,
   setAuthToken,
+  rotateVerifiedProfileToken,
   setTokenExpiresAt,
   getTokenExpiresAt,
   getAuthToken,
@@ -234,6 +235,7 @@ export const tokenRefreshManager = {
           await setAuthToken(data.accessToken);
           await setRefreshToken(data.refreshToken);
           await setTokenExpiresAt(Date.now() + data.expiresIn * 1000);
+          await rotateVerifiedProfileToken(accessTokenAtStart, data.accessToken);
         } else {
           // The keys changed hands mid-flight. File the pair into the OLD
           // account's stored profile so switching back to it restores a chain

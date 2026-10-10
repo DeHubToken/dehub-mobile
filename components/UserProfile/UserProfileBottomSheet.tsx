@@ -195,7 +195,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         <TabBarHideProvider>
         <View
           className="flex-1 bg-theme-neutrals-900"
-          style={{ paddingTop: insets.top, paddingLeft: insets.left, paddingRight: insets.right }}
+          style={{ paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}
         >
           {/* Absolute header controls need a parent inside the safe area;
               top: 0 on the padded outer view still reaches the status bar. */}

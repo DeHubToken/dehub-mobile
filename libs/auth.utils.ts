@@ -383,6 +383,22 @@ const VERIFIED_PROFILE_KEY = 'auth_verified_profile_v1';
 export async function rememberVerifiedProfile(uid: string, address: string, token: string): Promise<void> {
   await SecureStore.setItemAsync(VERIFIED_PROFILE_KEY, JSON.stringify({ uid, address: address.toLowerCase(), token }));
 }
+/** Carry an existing verified identity across a successful same-session refresh. */
+export async function rotateVerifiedProfileToken(previousToken: string | null, token: string): Promise<void> {
+  if (!previousToken) return;
+  try {
+    const [raw, uid, user, currentToken] = await Promise.all([
+      SecureStore.getItemAsync(VERIFIED_PROFILE_KEY), getStoredSupabaseUserId(), getAuthUser(), getAuthToken(),
+    ]);
+    if (!raw || currentToken !== token) return;
+    const marker = JSON.parse(raw);
+    const address = user?.address || user?.walletAddress;
+    if (!uid || !address || marker.uid !== uid || marker.token !== previousToken || marker.address !== address.toLowerCase()) return;
+    await rememberVerifiedProfile(uid, address, token);
+  } catch {
+    // A missing cache marker must never fail token rotation; boot can reconcile.
+  }
+}
 export async function isVerifiedCachedProfile(user: any, token: string, uid: string): Promise<boolean> {
   try {
     const raw = await SecureStore.getItemAsync(VERIFIED_PROFILE_KEY);
