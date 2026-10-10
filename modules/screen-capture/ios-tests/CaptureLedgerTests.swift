@@ -92,4 +92,34 @@ final class CaptureLedgerTests: XCTestCase {
     try FileManager.default.removeItem(at: ledger.recordingURL("capture_123"))
     XCTAssertTrue(try ledger.completed(scopeKey: first).isEmpty)
   }
+
+  func testAHostRestartInvalidatesAnInProcessStreamButRetainsCompletedTakes() throws {
+    try complete(ticket("saved_1234"))
+    var stream = ticket(); stream.captureProvider = "stream"
+    try ledger.reserve(stream)
+    _ = try ledger.beginBroadcast(stream.sessionId, scopeKey: first, hostInstanceId: stream.hostInstanceId)
+    try Data([1, 2, 3]).write(to: ledger.recordingURL(stream.sessionId))
+    try ledger.invalidateDepartedPermissionRequests(hostInstanceId: "host_5678")
+    XCTAssertEqual(try ledger.ticket(stream.sessionId, scopeKey: first)?.state, .failed)
+    XCTAssertFalse(FileManager.default.fileExists(atPath: try ledger.recordingURL(stream.sessionId).path))
+    XCTAssertEqual(try ledger.completed(scopeKey: first).first?.sessionId, "saved_1234")
+  }
+
+  func testFinishingRequestsStayBoundToTheRunningTakeAndScope() throws {
+    try ledger.reserve(ticket())
+    XCTAssertThrowsError(try ledger.requestFinish("capture_123", scopeKey: first))
+    _ = try ledger.beginBroadcast("capture_123", scopeKey: first, hostInstanceId: "host_1234")
+    XCTAssertThrowsError(try ledger.requestFinish("capture_123", scopeKey: second))
+    XCTAssertNil(try ledger.ticket("capture_123", scopeKey: first)?.stopRequested)
+    try ledger.requestFinish("capture_123", scopeKey: first)
+    XCTAssertEqual(try ledger.ticket("capture_123", scopeKey: first)?.stopRequested, true)
+    XCTAssertNil(try ledger.pendingConsent())
+  }
+
+  func testRecreatingTheModuleDoesNotInvalidateItsOwnPermissionRequest() throws {
+    try ledger.reserve(ticket())
+    try ledger.invalidateDepartedPermissionRequests(hostInstanceId: "host_1234")
+    XCTAssertEqual(try ledger.pendingConsent()?.sessionId, "capture_123")
+    _ = try ledger.beginBroadcast("capture_123", scopeKey: first, hostInstanceId: "host_1234")
+  }
 }

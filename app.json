@@ -34,6 +34,7 @@
         "webcredentials:dehub.io"
       ],
       "infoPlist": {
+        "UIBackgroundModes": ["audio", "screen-capture"],
         "LSApplicationQueriesSchemes": [
           "metamask",
           "trust",
@@ -47,7 +48,10 @@
         "NSPhotoLibraryAddUsageDescription": "DeHub saves a photo or video to your library only when you choose Save or Download, such as saving a photo from a post.",
         "NSLocationWhenInUseUsageDescription": "Share an approximate location on the DeHub community globe only when you choose Place Me."
       },
-      "bitcode": false
+      "bitcode": false,
+      "entitlements": {
+        "com.apple.security.application-groups": ["group.io.dehub.mobile.screen-capture"]
+      }
     },
     "android": {
       "icon": "./assets/AppIcons/playstore.png",
@@ -333,7 +337,25 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "734211bf-5261-4dce-9e61-2bfc51c339b9"
+        "projectId": "734211bf-5261-4dce-9e61-2bfc51c339b9",
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "targetName": "DeHubCaptureSetup",
+                  "bundleIdentifier": "io.dehub.mobile.screen-capture-setup",
+                  "entitlements": { "com.apple.security.application-groups": ["group.io.dehub.mobile.screen-capture"] }
+                },
+                {
+                  "targetName": "DeHubCaptureUpload",
+                  "bundleIdentifier": "io.dehub.mobile.screen-capture-upload",
+                  "entitlements": { "com.apple.security.application-groups": ["group.io.dehub.mobile.screen-capture"] }
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "owner": "dehubapp"
