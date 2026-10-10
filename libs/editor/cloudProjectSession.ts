@@ -63,11 +63,12 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     try { saved = await send(); }
     catch (cause) {
       check();
-      if (!(cause instanceof CloudProjectConflict) || !link.sharedOwner || !deps.api.review) throw cause;
-      const latest = await requireEditing().load(link.sharedOwner, link.projectId); check();
-      const base = await deps.api.review.load(link.sharedOwner, link.projectId, pending.expectedRevision); check();
-      const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, link.sharedOwner);
-      if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest shared version or save a personal copy.");
+      if (!(cause instanceof CloudProjectConflict) || pending.expectedRevision < 1 || (link.sharedOwner && !deps.api.review)) throw cause;
+      const sourceOwner = link.sharedOwner || wallet;
+      const latest = link.sharedOwner ? await requireEditing().load(link.sharedOwner, link.projectId) : await deps.api.load(link.projectId); check();
+      const base = link.sharedOwner ? await deps.api.review!.load(link.sharedOwner, link.projectId, pending.expectedRevision) : await deps.api.load(link.projectId, pending.expectedRevision); check();
+      const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, sourceOwner);
+      if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest cloud version or save a personal copy.");
       pending = { requestId: deps.uuid(), expectedRevision: latest.revision, document: result.document, originalDocument: pending.originalDocument || pending.document };
       link.pending = pending; await deps.writeLink(localId, link); check();
       // One rebase per explicit save. A second collision is left for the person to retry.
@@ -75,14 +76,15 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     }
     check();
     notifyCloudProjectSaved({ wallet, owner: link.sharedOwner || wallet, projectId: link.projectId, revision: saved.revision });
-    if (link.sharedOwner && pending.originalDocument) {
+    if (pending.originalDocument) {
+      const sourceOwner = link.sharedOwner || wallet;
       let index = 0;
-      const copy = projectReviewCopy(pending.document, link.sharedOwner, pending.mergedLocalIds ? () => pending!.mergedLocalIds![index++] : deps.uuid);
+      const copy = projectReviewCopy(pending.document, sourceOwner, pending.mergedLocalIds ? () => pending!.mergedLocalIds![index++] : deps.uuid);
       if (!pending.mergedLocalIds) {
         pending.mergedLocalIds = [copy.snapshot.id, ...copy.media.map(media => media.id)];
         await deps.writeLink(localId, link); check();
       }
-      for (const media of copy.media) { await deps.hydrate(media, check, link.sharedOwner); check(); }
+      for (const media of copy.media) { await deps.hydrate(media, check, sourceOwner); check(); }
       await deps.saveLocal(copy.snapshot); check();
       await deps.writeLink(copy.snapshot.id, { wallet, projectId: link.projectId, sharedOwner: link.sharedOwner, revision: saved.revision,
         media: Object.fromEntries(copy.media.map((media, i) => [media.id, pending!.document.media[i]])) }); check();
@@ -128,9 +130,9 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         }
         let document = makeCloudProjectDocument(captured, link.projectId, link.sharedOwner || wallet, new Map(Object.entries(link.media)));
         const originalDocument = document;
-        if (pending && recovered?.mergedDocument && link.sharedOwner) {
-          const rebased = mergeCloudProjectEdits(pending.originalDocument || pending.document, document, recovered.mergedDocument, link.sharedOwner);
-          if (!rebased.document) throw new CloudProjectConflict("Newer local edits conflict with the shared version. Your draft was kept; open the latest shared version or save a personal copy.");
+        if (pending && recovered?.mergedDocument) {
+          const rebased = mergeCloudProjectEdits(pending.originalDocument || pending.document, document, recovered.mergedDocument, link.sharedOwner || wallet);
+          if (!rebased.document) throw new CloudProjectConflict("Newer local edits conflict with the cloud version. Your draft was kept; open the latest cloud version or save a personal copy.");
           document = rebased.document;
         }
         link.pending = { requestId: deps.uuid(), document, expectedRevision: recovered?.mergedDocument ? recovered.revision : link.revision,
