@@ -30,7 +30,7 @@ beforeEach(() => {
 afterEach(() => { cleanup(); jest.restoreAllMocks(); });
 
 it('joins when preview playback starts and leaves on pause, background and unmount', () => {
-  const hook = renderHook(({ watching }) => useStreamPresence('live', watching), { initialProps: { watching: false } });
+  const hook = renderHook(({ watching }: { watching: boolean }) => useStreamPresence('live', watching), { initialProps: { watching: false } });
   expect(mockEmit).not.toHaveBeenCalled();
   hook.rerender({ watching: true });
   expect(mockEmit).toHaveBeenLastCalledWith('stream.join', { streamId: 'live' });
