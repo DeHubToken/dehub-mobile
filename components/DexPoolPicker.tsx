@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 import React, { useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -30,7 +31,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
   const navigation = useNavigation<any>();
   const [open, setOpen] = useState(false);
   const [adding, setAdding] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSurfaceDraft("components/DexPoolPicker.tsx:query", '');
   const { data: pools = [], isLoading } = usePools();
 
   const filtered = useMemo(() => {
@@ -40,7 +41,7 @@ export default function DexPoolPicker({ current, rightContent }: { current: DexP
   }, [pools, query]);
   const showHouse = !query || `dhb dehub tokens ${tokenLabel()}`.toLowerCase().includes(query.trim().toLowerCase());
 
-  const close = () => { setOpen(false); setQuery(''); };
+  const close = () => { setOpen(false); };
   const goHouse = () => { close(); if (current) navigation.navigate(ScreenNames.Dex); };
   const goPool = (pool: DexPool) => { close(); navigation.navigate(ScreenNames.DexPool, { chain: pool.chain, address: pool.token_address }); };
 

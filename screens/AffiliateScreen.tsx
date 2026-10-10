@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 /**
  * AffiliateScreen
  * ===============
@@ -189,7 +190,7 @@ export default function AffiliateScreen() {
   const [visible, setVisible] = useState(AFFILIATES_PAGE_SIZE);
   const [imgVersion, setImgVersion] = useState("1");
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [landing, setLanding] = useState<AffiliateLandingCustomization>(DEFAULT_AFFILIATE_LANDING);
+  const [landing, setLanding] = useSurfaceDraft<AffiliateLandingCustomization>("screens/AffiliateScreen.tsx:landing", DEFAULT_AFFILIATE_LANDING);
   const [savingLanding, setSavingLanding] = useState(false);
 
   const statsRef = useRef(stats);
@@ -219,7 +220,7 @@ export default function AffiliateScreen() {
         setLoading(false);
       }
     },
-    [wallet, displayName, t],
+    [wallet, displayName, t, setLanding],
   );
 
   useEffect(() => {

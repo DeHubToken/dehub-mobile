@@ -1,3 +1,4 @@
+import { confirmChatDelivery, roomMessageMatches } from '../libs/chat-delivery';
 import { useCallback, useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { AppState, AppStateStatus } from "react-native";
@@ -65,8 +66,8 @@ export interface UseLiveChatReturn {
   onlineCount: number;
   loadingMore: boolean;
   hasMore: boolean;
-  sendMessage: (payload: SendMessagePayload) => void;
-  editMessage: (messageId: string, content: string) => void;
+  sendMessage: (payload: SendMessagePayload) => Promise<boolean>;
+  editMessage: (messageId: string, content: string) => Promise<boolean>;
   deleteMessage: (messageId: string) => void;
   addReaction: (messageId: string, emoji: string) => void;
   removeReaction: (messageId: string, emoji: string) => void;
@@ -395,15 +396,29 @@ export const useLiveChat = (
     return () => sub.remove();
   }, []);
 
-  const sendMessage = useCallback((payload: SendMessagePayload) => {
-    // The gateway posts to the room this socket joined and ignores the field;
-    // older builds read it. Same redundancy the web client sends.
-    socketRef.current?.emit(EVENTS.SEND, roomIdRef.current ? { ...payload, roomId: roomIdRef.current } : payload);
-  }, []);
+  const sendMessage = useCallback(async (payload: SendMessagePayload): Promise<boolean> => {
+    const socket = socketRef.current;
+    const account = user?.walletAddress || user?.address;
+    if (!socket?.connected || !account) return false;
+    return confirmChatDelivery({
+      listen: (event, handler) => { socket.on(event, handler); return () => { socket.off(event, handler); }; },
+      emit: () => { socket.emit(EVENTS.SEND, roomIdRef.current ? { ...payload, roomId: roomIdRef.current } : payload); },
+      messageEvent: EVENTS.NEW_MESSAGE, errorEvent: EVENTS.ERROR,
+      matches: message => roomMessageMatches(message, { account, content: payload.content ?? '', room: roomIdRef.current, attachment: payload.audioUrl || payload.gif?.url || payload.media?.[0]?.url }),
+    });
+  }, [user?.walletAddress, user?.address]);
 
-  const editMessage = useCallback((messageId: string, content: string) => {
-    socketRef.current?.emit(EVENTS.EDIT, { messageId, content });
-  }, []);
+  const editMessage = useCallback(async (messageId: string, content: string): Promise<boolean> => {
+    const socket = socketRef.current;
+    const account = user?.walletAddress || user?.address;
+    if (!socket?.connected || !account) return false;
+    return confirmChatDelivery({
+      listen: (event, handler) => { socket.on(event, handler); return () => { socket.off(event, handler); }; },
+      emit: () => { socket.emit(EVENTS.EDIT, { messageId, content }); },
+      messageEvent: EVENTS.MESSAGE_EDITED, errorEvent: EVENTS.ERROR,
+      matches: message => roomMessageMatches(message, { account, content, room: roomIdRef.current, messageId }),
+    });
+  }, [user?.walletAddress, user?.address]);
 
   const deleteMessageFn = useCallback((messageId: string) => {
     socketRef.current?.emit(EVENTS.DELETE, { messageId });

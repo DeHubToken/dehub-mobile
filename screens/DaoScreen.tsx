@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * DAO Screen
  * ==========
@@ -124,7 +125,7 @@ export default function DaoScreen() {
 
   const { data, isLoading, isError, refetch, isRefetching } = useDaoTreasury();
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("screens/DaoScreen.tsx:amount", "");
   const pay = useContributeToDao(sheetOpen && signedIn);
 
   const self = (user?.walletAddress || user?.address || "").toLowerCase() || null;
@@ -159,7 +160,7 @@ export default function DaoScreen() {
       toastSuccess(
         t("dao.sentDesc", { amount: parsed.toLocaleString(), chain: pay.chainName || "" }),
       );
-      setAmount("");
+      setAmount.complete(amount, "");
       setSheetOpen(false);
       // The transfer is out; only a revert is still worth saying, and it
       // arrives long after the sheet has gone.
@@ -171,7 +172,7 @@ export default function DaoScreen() {
     } finally {
       sendingRef.current = false;
     }
-  }, [valid, parsed, pay, t]);
+  }, [valid, parsed, pay, t, setAmount, amount]);
 
   const header = (
     <>

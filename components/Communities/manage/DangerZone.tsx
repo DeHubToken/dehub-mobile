@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * DangerZone
  * ==========
@@ -49,7 +50,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
   const moderation = useCommunityModeration(community.id);
   const { data: members, isLoading } = useCommunityMembersQuery(community.id);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Communities/manage/DangerZone.tsx:search", "", draftIdentity(community));
   const [limit, setLimit] = useState(PAGE_SIZE);
 
   useEffect(() => {

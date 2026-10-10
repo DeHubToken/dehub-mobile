@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -45,9 +46,9 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const { t } = useTranslation();
   const [step, setStep] = useState<ReviewStep>("initial");
   const [rating, setRating] = useState(0);
-  const [feedback, setFeedback] = useState("");
-  const [telegram, setTelegram] = useState("");
-  const [discord, setDiscord] = useState("");
+  const [feedback, setFeedback] = useSurfaceDraft("components/ReviewModal.tsx:feedback", "");
+  const [telegram, setTelegram] = useSurfaceDraft("components/ReviewModal.tsx:telegram", "");
+  const [discord, setDiscord] = useSurfaceDraft("components/ReviewModal.tsx:discord", "");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Animation values
@@ -103,9 +104,6 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const handleReset = () => {
     setStep("initial");
     setRating(0);
-    setFeedback("");
-    setTelegram("");
-    setDiscord("");
     setIsSubmitting(false);
     // Reset animation states
     contentOpacity.value = 1;
@@ -209,6 +207,9 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       }
 
       console.log("Feedback submitted successfully:", result);
+      setFeedback.complete(feedback, "");
+      setTelegram.complete(telegram, "");
+      setDiscord.complete(discord, "");
       toastSuccess(t("review.thankYou"));
       handleClose();
     } catch (error: any) {

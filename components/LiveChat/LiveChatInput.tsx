@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -50,7 +51,7 @@ const INPUT_TEXT = {
 } as const;
 
 interface LiveChatInputProps {
-  onSend: (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => void;
+  onSend: (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => Promise<boolean>;
   replyingTo: LiveChatMessageData | null;
   onCancelReply: () => void;
   editingMessage: LiveChatMessageData | null;
@@ -88,7 +89,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   attachmentBusy,
 }) => {
   const { t } = useTranslation();
-  const [text, setText] = useState("");
+  const [text, setText] = useDraftState(editingMessage ? `public:edit:${editingMessage._id}` : "public:composer", editingMessage?.content ?? "");
   const [attachOpen, setAttachOpen] = useState(false);
   const [emojiSheetOpen, setEmojiSheetOpen] = useState(false);
   const mentions = useMentions(text, setText);
@@ -107,13 +108,13 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
         const uploadRes = await uploadLiveChatVoice(result.uri, mimeType, fileName);
         if (uploadRes?.url) {
-          onSend(
+          const sent = await onSend(
             "",
             replyingTo?._id,
             uploadRes.url,
             uploadRes.duration || Math.round(result.durationMs / 1000)
           );
-          onCancelReply();
+          if (sent) onCancelReply();
         }
       } catch (e) {
         console.error("[LiveChatInput] failed to upload voice", e);
@@ -137,22 +138,26 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   useEffect(() => {
     if (editingMessage) {
-      setText(editingMessage.content || "");
+      setText.initialize(editingMessage.content || "");
       setTimeout(() => inputRef.current?.focus(), 100);
     }
-  }, [editingMessage]);
+  }, [editingMessage, setText]);
 
   const remaining = MAX_LENGTH - text.length;
   const showCounter = remaining <= WARN_THRESHOLD;
   const isOverLimit = remaining < 0;
 
-  const handleSend = useCallback(() => {
+  const sendInFlight = useRef(false);
+  const handleSend = useCallback(async () => {
     const trimmed = text.trim();
     // A picture on its own is a message; only a wholly empty composer is not.
-    if ((!trimmed && !attachmentUri) || isBanned || !canSend || cooldown || isOverLimit) return;
+    if (sendInFlight.current || (!trimmed && !attachmentUri) || isBanned || !canSend || cooldown || isOverLimit) return;
 
-    onSend(trimmed, replyingTo?._id);
-    setText("");
+    sendInFlight.current = true;
+    let sent = false;
+    try { sent = await onSend(trimmed, replyingTo?._id); } finally { sendInFlight.current = false; }
+    if (!sent) return;
+    if (!setText.complete(text, "")) return;
     // Clear the native buffer too: multiline TextInput can retain its last
     // measured content height for one render after the controlled value clears.
     inputRef.current?.clear();
@@ -166,7 +171,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         setCooldown(false);
       }, (slowModeSeconds || 5) * 1000);
     }
-  }, [text, attachmentUri, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit]);
+  }, [text, attachmentUri, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit, setText]);
 
   /**
    * Appended rather than inserted at the caret: the field is multiline with a
@@ -175,7 +180,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
    */
   const handlePickEmoji = useCallback((emoji: string) => {
     setText((prev) => prev + emoji);
-  }, []);
+  }, [setText]);
 
   const handlePickImage = useCallback(() => {
     setAttachOpen(false);
@@ -206,7 +211,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     } finally {
       setEnhancing(false);
     }
-  }, [text, enhancing]);
+  }, [text, enhancing, setText]);
 
   const handleChangeText = useCallback(
     (val: string) => {
@@ -247,7 +252,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() => { onCancelEdit(); setText(""); }}
+            onPress={() => { onCancelEdit(); setText.complete(text, ""); }}
             hitSlop={8}
           >
             <Icon name="X" size={18} color="#A6A9AC" />

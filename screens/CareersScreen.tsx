@@ -1,3 +1,4 @@
+import { useDraftState } from '../hooks/useDraftState';
 /**
  * CareersScreen
  * =============
@@ -127,7 +128,7 @@ export default function CareersScreen() {
   const keyboardOffset = useKeyboardOffset();
   const [formOpen, setFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState<BDMForm>(EMPTY_FORM);
+  const [form, setForm] = useDraftState<BDMForm>(`form:screens/CareersScreen.tsx:form:${'application'}`, EMPTY_FORM);
   const bdmResponsibilities = BDM_RESP_ICONS.map((icon, index) => ({
     icon,
     text: t(`careers.bdmResp${index + 1}`),
@@ -143,7 +144,7 @@ export default function CareersScreen() {
     t(`careers.ambassadorReq${index + 1}`),
   );
 
-  const set = useCallback((key: keyof BDMForm) => (t: string) => setForm((p) => ({ ...p, [key]: t })), []);
+  const set = useCallback((key: keyof BDMForm) => (t: string) => setForm((p) => ({ ...p, [key]: t })), [setForm]);
 
   const toggleForm = useCallback(() => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -171,14 +172,14 @@ export default function CareersScreen() {
       });
       if (error) throw error;
       toastSuccess(t("careers.applicationSuccess"));
-      setForm(EMPTY_FORM);
+      setForm.complete(form, EMPTY_FORM);
       setFormOpen(false);
     } catch {
       toastError(t("careers.applicationFailed"));
     } finally {
       setSubmitting(false);
     }
-  }, [form, t]);
+  }, [form, t, setForm]);
 
   return (
     <View style={styles.root}>

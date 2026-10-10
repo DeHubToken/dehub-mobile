@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "./BadgeArtwork";
 /**
  * Boost Sheet
@@ -72,7 +73,7 @@ export default function BoostSheet({
   const bookBoost = useBookBoost();
 
   const [chosen, setChosen] = useState<SuperPowerKey | null>(null);
-  const [targetAccount, setTargetAccount] = useState("");
+  const [targetAccount, setTargetAccount] = useSurfaceDraft("components/common/BoostSheet.tsx:targetAccount", "", tokenId);
   const [targetTiers, setTargetTiers] = useState<string[]>([]);
   const [buyOpen, setBuyOpen] = useState(false);
 
@@ -98,10 +99,10 @@ export default function BoostSheet({
   useEffect(() => {
     if (!visible) {
       setChosen(null);
-      setTargetAccount("");
+      setTargetAccount.initialize("");
       setTargetTiers([]);
     }
-  }, [visible]);
+  }, [visible, setTargetAccount]);
 
   const active = powers.find(p => p.key === chosen);
   const numericTokenId = Number(tokenId);

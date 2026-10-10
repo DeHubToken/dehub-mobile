@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 /**
@@ -111,9 +112,9 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
   const { height: screenHeight } = useWindowDimensions();
   const sheetHeight = screenHeight * 0.86;
   const { t } = useTranslation();
-  const [title, setTitle] = useState('');
-  const [lyrics, setLyrics] = useState('');
-  const [style, setStyle] = useState('');
+  const [title, setTitle] = useSurfaceDraft("components/Assistant/MusicConfirmSheet.tsx:title", '');
+  const [lyrics, setLyrics] = useSurfaceDraft("components/Assistant/MusicConfirmSheet.tsx:lyrics", '');
+  const [style, setStyle] = useSurfaceDraft("components/Assistant/MusicConfirmSheet.tsx:style", '');
   const [voiceGender, setVoiceGender] = useState<MusicParams['voiceGender']>('auto');
   const [isGeneratingLyrics, setIsGeneratingLyrics] = useState(false);
 
@@ -125,9 +126,9 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
     if (visible) {
       setIsFullyClosed(false);
       // Re-derive on every open: the sheet is reused for the next song.
-      setTitle(extractTitle(userPrompt));
-      setLyrics(extractLyrics(userPrompt));
-      setStyle(extractStyle(userPrompt));
+      setTitle.initialize(extractTitle(userPrompt));
+      setLyrics.initialize(extractLyrics(userPrompt));
+      setStyle.initialize(extractStyle(userPrompt));
       setVoiceGender(detectVoiceGender(userPrompt));
       translateY.value = withTiming(0, { duration: 250, easing: Easing.out(Easing.cubic) });
       backdropOpacity.value = withTiming(1, { duration: 200 });
@@ -140,7 +141,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
       backdropOpacity.value = withTiming(0, { duration: 180 });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, userPrompt]);
+  }, [visible, userPrompt, setLyrics, setStyle, setTitle]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
@@ -170,7 +171,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
     } finally {
       setIsGeneratingLyrics(false);
     }
-  }, [title, style, voiceGender, lyrics, userPrompt, t]);
+  }, [title, style, voiceGender, lyrics, userPrompt, t, setLyrics]);
 
   if (isFullyClosed && !visible) return null;
 

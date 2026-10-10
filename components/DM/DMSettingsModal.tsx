@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator } from 'react-native';
 import GlassModal from '../ui/GlassModal';
@@ -53,7 +54,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
   }, [user]);
   const [dmsEnabled, setDmsEnabled] = useState<boolean>(initial.dmsEnabled);
   const [allowNew, setAllowNew] = useState<boolean>(initial.allowNew);
-  const [fee, setFee] = useState<string>(String(initial.fee));
+  const [fee, setFee] = useSurfaceDraft<string>("components/DM/DMSettingsModal.tsx:fee", String(initial.fee));
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [feeSubmitting, setFeeSubmitting] = useState<boolean>(false);
   const [feeSaved, setFeeSaved] = useState<boolean>(false);
@@ -63,8 +64,8 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     if (!open) return;
     setDmsEnabled(initial.dmsEnabled);
     setAllowNew(initial.allowNew);
-    setFee(String(initial.fee));
-  }, [open]);
+    setFee.initialize(String(initial.fee));
+  }, [open, setFee]);
 
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
 
@@ -169,7 +170,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     // Only allow digits and optional dot
     const cleaned = t.replace(/[^0-9.]/g, '');
     setFee(cleaned);
-  }, []);
+  }, [setFee]);
 
   const onBlurFee = useCallback(() => {
     submit({ spinner: 'fee' }).catch(() => {});

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * WorkHistoryScreen
@@ -76,7 +77,7 @@ export default function WorkHistoryScreen() {
 
   const [tab, setTab] = useState<Tab>("posted");
   const [status, setStatus] = useState<StatusFilter>("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/WorkHistoryScreen.tsx:search", "");
 
   const postedQuery = useMyPostedJobs(tab === "posted");
   const workedQuery = useMyWorkSubmissions(tab === "worked");
@@ -208,7 +209,7 @@ export default function WorkHistoryScreen() {
             label={t("work.clearFilters")}
             onPress={() => {
               setStatus("all");
-              setSearch("");
+              setSearch.complete(search, "");
             }}
           />
         ) : tab === "posted" ? (
@@ -256,7 +257,7 @@ export default function WorkHistoryScreen() {
             />
             {search.length > 0 && (
               <Pressable
-                onPress={() => setSearch("")}
+                onPress={() => setSearch.complete(search, "")}
                 hitSlop={14}
                 accessibilityRole="button"
                 accessibilityLabel={t("sidebar.clearSearch")}

@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 /**
  * LiveSettingsPanel
  *
@@ -47,6 +48,7 @@ export const INITIAL_LIVE_SETTINGS: LiveSettingsState = {
 };
 
 type LiveSettingsPanelProps = {
+  draftScope?: string;
   state: LiveSettingsState;
   onChange: (next: LiveSettingsState) => void;
 };
@@ -85,6 +87,7 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({
 
 
 const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
+  draftScope = "post:new",
   state,
   onChange,
 }) => {
@@ -98,7 +101,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   // Draft tip value (not committed until confirm)
-  const [tipDraft, setTipDraft] = useState(state.minTip);
+  const [tipDraft, setTipDraft] = useSurfaceDraft("components/Upload/LiveSettingsPanel.tsx:tipDraft", state.minTip, draftScope);
 
 
   const handleChatToggle = useCallback(
@@ -175,9 +178,9 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
 
 
   const handleMinTipRowPress = useCallback(() => {
-    setTipDraft(state.minTip);
+    setTipDraft.initialize(state.minTip);
     setExpandedSection((prev) => (prev === "minTip" ? null : "minTip"));
-  }, [state.minTip]);
+  }, [state.minTip, setTipDraft]);
 
   const confirmTip = useCallback(() => {
     const num = Number(tipDraft);

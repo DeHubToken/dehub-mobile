@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Search across every settings tab.
  *
@@ -33,13 +34,13 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
   onSelect,
 }) => {
   const { t } = useTranslation();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSurfaceDraft("components/Settings/SettingsSearchBar.tsx:query", '');
 
   const results = useMemo(() => searchSettings(query, t), [query, t]);
   const open = query.trim().length > 0;
 
   const handleSelect = (hit: SettingsSearchHit) => {
-    setQuery('');
+    setQuery.complete(query, '');
     Keyboard.dismiss();
     onSelect(hit);
   };
@@ -63,7 +64,7 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
         />
         {open ? (
           <TouchableOpacity
-            onPress={() => setQuery('')}
+            onPress={() => setQuery.complete(query, '')}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Icon name="X" size={16} color="#8B8D90" />

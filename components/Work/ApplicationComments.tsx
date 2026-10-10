@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, Pressable, TextInput, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -13,7 +14,7 @@ export default function ApplicationComments({ application, comments, canReply }:
 }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [body, setBody] = useState("");
+  const [body, setBody] = useSurfaceDraft("components/Work/ApplicationComments.tsx:body", "", application.id);
   const mutation = useCommentOnApplication();
   return (
     <View>
@@ -48,7 +49,7 @@ export default function ApplicationComments({ application, comments, canReply }:
               onPress={() => {
                 if (!body.trim() || mutation.isPending) return;
                 mutation.mutate({ job_id: application.job_id, application_id: application.id, body }, {
-                  onSuccess: () => { setBody(""); setOpen(false); },
+                  onSuccess: () => { if (setBody.complete(body, "")) setOpen(false); },
                 });
               }}>
               <Text style={styles.postText}>{t("comments.postComment")}</Text>

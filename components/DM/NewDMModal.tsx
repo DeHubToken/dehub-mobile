@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, {
@@ -91,16 +92,17 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   const { t } = useTranslation();
   const user = useUser();
   const selfAddr = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
+  const [query, setQuery] = useSurfaceDraft<string>("components/DM/NewDMModal.tsx:query", "");
   // Reset all local state
   const searchRef = useRef<TextInput | null>(null);
   const searchIdRef = useRef<number>(0);
   const reset = useCallback(() => {
-    setQuery("");
+    setQuery.initialize("");
     setResults([]);
     setShowResults(false);
     setLoading(false);
     searchIdRef.current++;
-  }, []);
+  }, [setQuery]);
 
   const close = useCallback(() => {
     reset();
@@ -119,7 +121,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   );
 
   // Local state for user/address search
-  const [query, setQuery] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<User[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
@@ -219,7 +221,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
       setLoading(trimmed.length >= 2);
       setShowResults(trimmed.length >= 2);
     }
-  }, []);
+  }, [setQuery]);
 
   const startDMWith = useCallback(
     (u: User) => {
@@ -281,7 +283,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
           />
           {query ? (
             <TouchableOpacity
-              onPress={() => setQuery("")}
+              onPress={() => setQuery.complete(query, "")}
               accessibilityRole="button"
               accessibilityLabel={t("sidebar.clearSearch")}
               hitSlop={8}

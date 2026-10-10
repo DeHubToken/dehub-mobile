@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
  * LaunchpadCoinScreen
@@ -50,7 +51,7 @@ function TradePanel({ token }: { token: LaunchpadToken }) {
   const user = useUser() as { walletAddress?: string; address?: string } | null;
   const wallet = user?.walletAddress || user?.address || null;
   const [side, setSide] = useState<"buy" | "sell">("buy");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("screens/LaunchpadCoinScreen.tsx:amount", "");
   const [busy, setBusy] = useState(false);
   const closed = token.status !== "bonding";
 
@@ -67,7 +68,7 @@ function TradePanel({ token }: { token: LaunchpadToken }) {
     setBusy(true);
     try {
       await mockLaunchpadTrade({ tokenId: token.id, side, amount: n, traderAddress: wallet });
-      setAmount("");
+      setAmount.complete(amount, "");
       toastSuccess(t(side === "buy" ? "launchpad.boughtMock" : "launchpad.soldMock", { symbol: token.symbol }));
       queryClient.invalidateQueries({ queryKey: launchpadKeys.token(token.id) });
       queryClient.invalidateQueries({ queryKey: launchpadKeys.trades(token.id) });

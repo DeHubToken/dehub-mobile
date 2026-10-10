@@ -1,3 +1,5 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import PremiumScreen from '../../screens/PremiumScreen';
@@ -20,7 +22,8 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
 }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 24, bottom: 0, left: 0, right: 0 }) }));
-jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
+jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined), useNavigation: () => ({ navigate: mockNavigate }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/LiquidGlass', () => 'LiquidGlass');
@@ -40,7 +43,7 @@ jest.mock('../../hooks/useKeyboardLayout', () => ({ useKeyboardOffset: (...args:
 jest.mock('../../hooks/useWebCheckout', () => ({
   useWebCheckout: () => ({ canBuy: false, checking: false, opening: null, openCheckout: jest.fn() }),
 }));
-jest.mock('../../context/AuthContext', () => ({ useAuthActions: () => ({ requireAuth: mockRequireAuth }) }));
+jest.mock('../../context/AuthContext', () => ({ useUser: () => null, useAuthActions: () => ({ requireAuth: mockRequireAuth }) }));
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../config/links', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
@@ -103,3 +106,5 @@ describe('staking buttons for guests', () => {
     expect(mockKeyboardOffset.mock.calls[0]).toEqual([]);
   });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

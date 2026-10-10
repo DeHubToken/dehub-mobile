@@ -1,3 +1,4 @@
+import { useDraftState } from "../hooks/useDraftState";
 import React, {
   useCallback,
   useEffect,
@@ -265,7 +266,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [contextIsMine, setContextIsMine] = useState(false);
 
   // Reply / edit
-  const [replyTo, setReplyTo] = useState<DmMessage | null>(null);
   const [editingMessage, setEditingMessage] = useState<DmMessage | null>(null);
 
   /*
@@ -276,21 +276,22 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
    * goes unacknowledged puts the old words back on screen and says so, rather
    * than leaving a change that only exists on this phone.
    */
-  const pendingEditsRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(
+  const pendingEditsRef = useRef<Map<string, { timer: ReturnType<typeof setTimeout>; resolve: (sent: boolean) => void }>>(
     new Map(),
   );
 
-  const settlePendingEdit = useCallback((messageId: string) => {
-    const timer = pendingEditsRef.current.get(messageId);
-    if (timer === undefined) return;
-    clearTimeout(timer);
+  const settlePendingEdit = useCallback((messageId: string, sent = true) => {
+    const pending = pendingEditsRef.current.get(messageId);
+    if (!pending) return;
+    clearTimeout(pending.timer);
+    pending.resolve(sent);
     pendingEditsRef.current.delete(messageId);
   }, []);
 
   useEffect(() => {
     const pending = pendingEditsRef.current;
     return () => {
-      pending.forEach((timer) => clearTimeout(timer));
+      pending.forEach(({ timer, resolve }) => { clearTimeout(timer); resolve(false); });
       pending.clear();
     };
   }, []);
@@ -406,6 +407,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     () => dmDraftKey(user?.walletAddress || user?.address, peer.address),
     [user?.walletAddress, user?.address, peer.address],
   );
+  const [replyTo, setReplyTo] = useDraftState<DmMessage | null>(draftKey ? `${draftKey}:reply` : null, null);
 
   const iBlockedThem = useMemo(() => !!(target as any)?.youBlocked, [target]);
 
@@ -1074,28 +1076,29 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   /** Dispatch a standalone tip (msgType: 'tip') — only used when user sends
    *  a tip with NO content attached (no text, no gif, no media). */
-  const dispatchStandaloneTip = useCallback(() => {
-    if (tipAmount <= 0) return;
-    dmSendQueue.sendTip({
+  const dispatchStandaloneTip = useCallback(async () => {
+    if (tipAmount <= 0) return false;
+    const sentId = dmSendQueue.sendTip({
       conversationId: currentConvId || "temp",
       userId: userId || "me",
       address,
       tipAmount,
       dmFee,
     });
+    return dmSendQueue.waitForDelivery(sentId);
   }, [tipAmount, currentConvId, userId, address, dmFee]);
 
   const onSendText = useCallback(
-    (text: string) => {
+    async (text: string) => {
       const content = text.trim();
 
       // Allow tip-only sends (no text content) — dispatched as standalone tip
-      if (!content && tipAmount <= 0) return;
+      if (!content && tipAmount <= 0) return false;
       if (dmDisabled) {
         toastWarning(dmReason || "Can't send messages right now");
-        return;
+        return false;
       }
-      if (!editingMessage && planBlocks(content ? "text" : "tip", tipAmount)) return;
+      if (!editingMessage && planBlocks(content ? "text" : "tip", tipAmount)) return false;
 
       // Editing is still handled inline (not queued)
       if (editingMessage) {
@@ -1103,55 +1106,38 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         const previousContent = target.content || "";
         if (content === previousContent.trim()) {
           setEditingMessage(null);
-          return;
+          return true;
         }
-        (async () => {
-          try {
-            const cId = await ensureConversation();
-            const wire = await prepareOutgoing(peer.address, content);
-            ws.emitAuthed(DMSocketEvent.EditMessage, {
-              dmId: cId,
-              messageId: target._id,
-              content: wire.content,
-            });
-            dmActions.applyEdit({
-              dmId: cId,
-              messageId: target._id,
-              content,
-              isEdited: true,
-              editedAt: new Date().toISOString(),
-              author: "me",
-            });
-            setEditingMessage(null);
-
-            settlePendingEdit(target._id);
-            const revert = () => {
-              pendingEditsRef.current.delete(target._id);
-              dmActions.applyEdit({
-                dmId: cId,
-                messageId: target._id,
-                content: previousContent,
-                isEdited: !!target.isEdited,
-                editedAt: target.editedAt || new Date().toISOString(),
-                author: "me",
-              });
+        try {
+          const cId = await ensureConversation();
+          const wire = await prepareOutgoing(peer.address, content);
+          settlePendingEdit(target._id, false);
+          const confirmed = new Promise<boolean>(resolve => {
+            const timer = setTimeout(() => {
+              settlePendingEdit(target._id, false);
+              dmActions.applyEdit({ dmId: cId, messageId: target._id, content: previousContent,
+                isEdited: !!target.isEdited, editedAt: target.editedAt || new Date().toISOString(), author: "me" });
               toastError(t("dm.failedToEdit"));
-            };
-            pendingEditsRef.current.set(
-              target._id,
-              setTimeout(revert, EDIT_CONFIRM_TIMEOUT_MS),
-            );
-          } catch (e) {
-            toastError(e, t("dm.failedToEdit"));
-          }
-        })();
-        return;
+            }, EDIT_CONFIRM_TIMEOUT_MS);
+            pendingEditsRef.current.set(target._id, { timer, resolve });
+          });
+          dmActions.applyEdit({ dmId: cId, messageId: target._id, content, isEdited: true,
+            editedAt: new Date().toISOString(), author: "me" });
+          ws.emitAuthed(DMSocketEvent.EditMessage, { dmId: cId, messageId: target._id, content: wire.content });
+          const sent = await confirmed;
+          if (sent) setEditingMessage(current => current?._id === target._id ? null : current);
+          return sent;
+        } catch (e) {
+          settlePendingEdit(target._id, false);
+          toastError(e, t("dm.failedToEdit"));
+          return false;
+        }
       }
 
       if (content) {
         // Text message — attach tipAmount so the queue pays tip on-chain
         // and includes tipTxHash in the sendMessage event
-        dmSendQueue.sendText({
+        const sentId = dmSendQueue.sendText({
           conversationId: currentConvId || "temp",
           userId: userId || "me",
           address,
@@ -1160,16 +1146,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           dmFee,
           tipAmount: tipAmount > 0 ? tipAmount : undefined,
         });
+        if (!(await dmSendQueue.waitForDelivery(sentId))) return false;
       } else {
         // No content but tipAmount > 0 — standalone tip (msgType: 'tip')
-        dispatchStandaloneTip();
+        if (!(await dispatchStandaloneTip())) return false;
       }
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
+      return true;
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks, setReplyTo],
   );
 
   // The Builder lander hands its request over as `autoSendText`: sent once,
@@ -1186,14 +1174,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [onSendText, peer.address, navigation]);
 
   const onSendGif = useCallback(
-    (gifUrl: string, caption?: string) => {
+    async (gifUrl: string, caption?: string) => {
       if (!gifUrl || dmDisabled) {
         toastWarning(dmReason || "Can't send right now");
-        return;
+        return false;
       }
-      if (planBlocks("gif", tipAmount)) return;
+      if (planBlocks("gif", tipAmount)) return false;
 
-      dmSendQueue.sendGif({
+      const sentId = dmSendQueue.sendGif({
         conversationId: currentConvId || "temp",
         userId: userId || "me",
         address,
@@ -1203,23 +1191,25 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         dmFee,
         tipAmount: tipAmount > 0 ? tipAmount : undefined,
       });
+      if (!(await dmSendQueue.waitForDelivery(sentId))) return false;
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
+      return true;
     },
-    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks],
+    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
   );
 
   const onSendMedia = useCallback(
-    (attachment: ChatMediaAttachment, caption?: string) => {
+    async (attachment: ChatMediaAttachment, caption?: string) => {
       if (!attachment.uri || !user || dmDisabled) {
         toastWarning(dmReason || "Can't send right now");
-        return;
+        return false;
       }
-      if (planBlocks(attachment.type === "video" ? "video" : "image", tipAmount)) return;
+      if (planBlocks(attachment.type === "video" ? "video" : "image", tipAmount)) return false;
 
-      dmSendQueue.sendMedia({
+      const sentId = dmSendQueue.sendMedia({
         conversationId: currentConvId || "temp",
         userId: userId || "me",
         address,
@@ -1235,12 +1225,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         dmFee,
         tipAmount: tipAmount > 0 ? tipAmount : undefined,
       });
+      if (!(await dmSendQueue.waitForDelivery(sentId))) return false;
 
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
       setTipAmount(0);
+      return true;
     },
-    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks],
+    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
   );
 
   const handleVoiceComplete = useCallback(
@@ -1260,9 +1252,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         dmFee,
       });
       scrollToBottom();
-      setReplyTo(null);
+      setReplyTo.complete(replyTo, null);
     },
-    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom, planBlocks],
+    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom, planBlocks, setReplyTo],
   );
 
   const handleVoiceCancel = useCallback(() => {}, []);
@@ -1294,7 +1286,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const handleReply = useCallback(() => {
     if (contextMessage) setReplyTo(contextMessage);
     closeContextMenu();
-  }, [contextMessage, closeContextMenu]);
+  }, [contextMessage, closeContextMenu, setReplyTo]);
 
   const handleEdit = useCallback(() => {
     if (contextMessage) setEditingMessage(contextMessage);
@@ -1543,7 +1535,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     (msg: DmMessage) => {
       setReplyTo(msg);
     },
-    [],
+    [setReplyTo],
   );
 
   const renderMessage = useCallback(
@@ -1777,7 +1769,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 disabledMessage={accountBanned ? t("banned.line") : undefined}
                 sending={sending}
                 replyTo={replyTo}
-                onCancelReply={() => setReplyTo(null)}
+                onCancelReply={() => setReplyTo.complete(replyTo, null)}
                 editingMessage={editingMessage}
                 onCancelEdit={() => setEditingMessage(null)}
                 dmFee={dmFee}

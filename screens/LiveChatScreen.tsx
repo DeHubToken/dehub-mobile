@@ -1,3 +1,4 @@
+import { useDraftState } from "../hooks/useDraftState";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -160,7 +161,7 @@ const LiveChatScreen: React.FC = () => {
     }
   }, [messages, account]);
 
-  const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
+  const [replyingTo, setReplyingTo] = useDraftState<LiveChatMessageData | null>("public:reply", null);
   const [showReactionPicker, setShowReactionPicker] = useState<string | null>(null);
   const [showGifPicker, setShowGifPicker] = useState(false);
   /**
@@ -360,11 +361,11 @@ const LiveChatScreen: React.FC = () => {
   }, []);
 
   const handleSend = useCallback(
-    (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
+    async (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
       if (editingMessage) {
-        editMessage(editingMessage._id, content);
+        if (!(await editMessage(editingMessage._id, content))) return false;
         setEditingMessage(null);
-        return;
+        return true;
       }
       // A picture that has finished uploading takes the send: it carries the
       // text as its caption, so the two must not go out as two messages. One
@@ -377,13 +378,13 @@ const LiveChatScreen: React.FC = () => {
           media: [{ url: attachment.url, type: "image", mimeType: "image/jpeg" }],
         };
         if (replyTo) media.replyTo = replyTo;
-        sendMessage(media);
+        if (!(await sendMessage(media))) return false;
         attachmentToken.current += 1;
         setAttachment(null);
-        setReplyingTo(null);
+        setReplyingTo.complete(replyingTo, null);
         isAtBottomRef.current = true;
         setTimeout(() => scrollToBottom(true), 300);
-        return;
+        return true;
       }
       const payload: SendMessagePayload = { content };
       if (replyTo) payload.replyTo = replyTo;
@@ -392,15 +393,16 @@ const LiveChatScreen: React.FC = () => {
         payload.audioUrl = audioUrl;
         payload.audioDuration = audioDuration;
       }
-      sendMessage(payload);
+      if (!(await sendMessage(payload))) return false;
       isAtBottomRef.current = true;
       setTimeout(() => scrollToBottom(true), 300);
+      return true;
     },
-    [sendMessage, scrollToBottom, editingMessage, editMessage, attachment]
+    [sendMessage, scrollToBottom, editingMessage, editMessage, attachment, replyingTo, setReplyingTo]
   );
 
   const handleGifPicked = useCallback(
-    (url: string) => {
+    async (url: string) => {
       setShowGifPicker(false);
       const payload: SendMessagePayload = {
         messageType: "gif",
@@ -414,20 +416,20 @@ const LiveChatScreen: React.FC = () => {
         },
       };
       if (replyingTo?._id) payload.replyTo = replyingTo._id;
-      sendMessage(payload);
-      setReplyingTo(null);
+      if (!(await sendMessage(payload))) return;
+      setReplyingTo.complete(replyingTo, null);
       setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
     },
-    [sendMessage, replyingTo]
+    [sendMessage, replyingTo, setReplyingTo]
   );
 
   const handleReply = useCallback((msg: LiveChatMessageData) => {
     setReplyingTo(msg);
-  }, []);
+  }, [setReplyingTo]);
 
   const handleCancelReply = useCallback(() => {
-    setReplyingTo(null);
-  }, []);
+    setReplyingTo.complete(replyingTo, null);
+  }, [replyingTo, setReplyingTo]);
 
   const handleSelectReaction = useCallback(
     (messageId: string, emoji: string) => {
@@ -510,7 +512,7 @@ const LiveChatScreen: React.FC = () => {
 
   const handleContextReply = useCallback((msg: LiveChatMessageData) => {
     setReplyingTo(msg);
-  }, []);
+  }, [setReplyingTo]);
 
   const handleContextReact = useCallback(
     (messageId: string, emoji: string) => {

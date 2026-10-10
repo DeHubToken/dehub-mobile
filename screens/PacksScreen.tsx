@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * PacksScreen — dehub.io/packs
  *
@@ -114,7 +115,7 @@ export default function PacksScreen() {
   const { requireAuth } = useAuthActions();
   const { openPack } = usePacksNavigation();
   const [kind, setKind] = useState<PackKind>("emoji");
-  const [name, setName] = useState("");
+  const [name, setName] = useSurfaceDraft("screens/PacksScreen.tsx:name", "");
   const [busy, setBusy] = useState(false);
   const status = usePackStatus(wallet);
   const owned = useOwnedPacks(wallet);
@@ -134,7 +135,7 @@ export default function PacksScreen() {
     try {
       const pack = await createPack(wallet, kind, name.trim());
       await invalidate();
-      setName("");
+      setName.complete(name, "");
       openPack(pack.slug);
     } catch (err) {
       toastError(packErrorMessage(err, t, kind));

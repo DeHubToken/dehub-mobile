@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from '../common/SmartImage';
@@ -51,7 +52,7 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSurfaceDraft("components/DM/GifPicker.tsx:query", '');
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<GiphyGif[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -94,19 +95,19 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
       fetchGifs('');
     } else {
       requestSeq.current++;
-      setQuery('');
+      setQuery.initialize('');
       setItems([]);
       setError(null);
       setLoading(false);
       setTab('gif');
       resetGifPack(null);
     }
-  }, [visible, fetchGifs, resetGifPack]);
+  }, [visible, fetchGifs, resetGifPack, setQuery]);
 
   const onChangeText = useCallback((text: string) => {
     setQuery(text);
     debouncedSearch(text);
-  }, [debouncedSearch]);
+  }, [debouncedSearch, setQuery]);
 
   const renderItem = useCallback(({ item }: { item: GiphyGif }) => {
     const url = getGifUrl(item);

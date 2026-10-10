@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { appLocale } from "../../libs/date.util";
 import { formatBridgeAmount } from "../../libs/bridge-amount";
 import { DhbCoin } from "../common/DhbCoin";
@@ -85,7 +86,7 @@ const BridgeTab: React.FC = () => {
   const [bnbBal, setBnbBal] = useState<ethers.BigNumber | null>(null);
   const [loading, setLoading] = useState(true);
   const [direction, setDirection] = useState<Direction>("base-to-bnb");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useSurfaceDraft("components/Wallet/BridgeTab.tsx:amount", "");
   const [isBridging, setIsBridging] = useState(false);
   const [transfers, setTransfers] = useState<BridgeTransfer[]>([]);
   const [loadingTransfers, setLoadingTransfers] = useState(true);
@@ -193,7 +194,7 @@ const BridgeTab: React.FC = () => {
 
       toastSuccess(t("bridge.initiated", { tx: txHash.slice(0, 10) + "…" }));
       toastSuccess(t("bridge.sentArriveShortly", { amount, from: sourceChain, to: destChain }));
-      setAmount("");
+      setAmount.complete(amount, "");
       setTimeout(fetchBalances, 8000);
       setTimeout(fetchTransfers, 8000);
     } catch (err: any) {
@@ -265,7 +266,7 @@ const BridgeTab: React.FC = () => {
               setDirection((d) =>
                 d === "base-to-bnb" ? "bnb-to-base" : "base-to-bnb"
               );
-              setAmount("");
+              setAmount.complete(amount, "");
             }}
             className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
             hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}

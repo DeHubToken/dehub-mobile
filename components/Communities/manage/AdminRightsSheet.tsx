@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * AdminRightsSheet
  * ================
@@ -88,7 +89,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
   const [permissions, setPermissions] = useState<Record<AdminRight, boolean>>(() => ({
     ...DEFAULT_ADMIN_PERMISSIONS,
   }));
-  const [customTitle, setCustomTitle] = useState("");
+  const [customTitle, setCustomTitle] = useSurfaceDraft("components/Communities/manage/AdminRightsSheet.tsx:customTitle", "", draftIdentity([community, target]));
 
   const targetWallet = target?.wallet_address ?? null;
   const isExistingAdmin = target?.role === "admin";
@@ -107,9 +108,9 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
       seeded[right.key] = blob ? blob[right.key] === true : DEFAULT_ADMIN_PERMISSIONS[right.key];
     }
     setPermissions(seeded);
-    setCustomTitle(target?.custom_title ?? "");
+    setCustomTitle.initialize(target?.custom_title ?? "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, targetWallet]);
+  }, [visible, targetWallet, setCustomTitle]);
 
   /** Rights the caller cannot pass on. The owner holds everything. */
   const lockedRights = useMemo(() => {

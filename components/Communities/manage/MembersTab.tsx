@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * MembersTab
  * ==========
@@ -55,7 +56,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
   const bannedQuery = useBannedMembersQuery(community.id, canRestrict);
   const moderation = useCommunityModeration(community.id);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Communities/manage/MembersTab.tsx:search", "", draftIdentity(community));
   const [visibleCount, setVisibleCount] = useState(PAGE);
   const [pendingCount, setPendingCount] = useState(PAGE);
   const [bannedCount, setBannedCount] = useState(PAGE);
@@ -198,7 +199,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
           />
           {!!search && (
             <TouchableOpacity
-              onPress={() => setSearch("")}
+              onPress={() => setSearch.complete(search, "")}
               hitSlop={15}
               accessibilityRole="button"
               accessibilityLabel={t("sidebar.clearSearch")}

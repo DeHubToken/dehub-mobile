@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { tokenLabel } from '../../libs/token-label';
 import { sendSolanaPurchase, connectPurchaseSolanaWallet } from '../../services/solana-purchase';
 import { usePaymentPicker } from '../../hooks/use-payment-picker';
@@ -58,9 +59,9 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
   const wallet = (user?.walletAddress || user?.address || '') as string;
   const focused = useIsFocused();
   const [foreground, setForeground] = useState(AppState.currentState === 'active');
-  const [amountText, setAmountText] = useState(String(initialDhbAmount));
+  const [amountText, setAmountText] = useSurfaceDraft("components/Dpay/NearIntentBuy.tsx:amountText", String(initialDhbAmount));
   const deliveredRef = React.useRef<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useSurfaceDraft("components/Dpay/NearIntentBuy.tsx:search", '');
   const [agreed, setAgreed] = useState(false);
   const [connectingSolana, setConnectingSolana] = useState(false);
   const amount = Number(amountText);
@@ -178,7 +179,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
       <TextInput value={amountText} onChangeText={(v) => setAmountText(sanitizeAmountInput(v))} editable={busy !== 'create'} keyboardType="decimal-pad" accessibilityLabel={t('nearBuy.dhbAmount')} className={field} />
       <View className="flex-row flex-wrap gap-2 mb-3">{picker.currencies.map(symbol => <TouchableOpacity key={symbol} accessibilityRole="button" accessibilityState={{ selected: !picker.other && picker.currency === symbol }} disabled={!!busy} onPress={() => { picker.chooseCurrency(symbol); setAgreed(false); }} className={`rounded-xl px-3 py-2 ${!picker.other && picker.currency === symbol ? 'bg-white/20' : 'bg-theme-neutrals-900'}`}><Text className="text-white">{symbol}</Text></TouchableOpacity>)}</View>
       <Text className="text-theme-neutrals-400 text-xs mb-2">{t(picker.loading ? 'nearBuy.checkingBalances' : picker.hasFunds ? 'nearBuy.walletBalances' : 'nearBuy.noWalletFunds')}</Text>
-      <Action label={t('nearBuy.otherCurrencies')} onPress={() => { picker.showOther(); setSearch(''); }} />
+      <Action label={t('nearBuy.otherCurrencies')} onPress={() => { picker.showOther(); setSearch.complete(search, ''); }} />
       {picker.other && <TextInput value={search} onChangeText={setSearch} editable={busy !== 'create'} placeholder={t('nearBuy.search')} placeholderTextColor="#71717A" className={field} />}
       <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 200 }}>
         {rows.map(asset => <TouchableOpacity key={asset.assetId} accessibilityRole="button" accessibilityState={{ selected: asset.assetId === flow.assetId }} disabled={busy === 'create'} onPress={() => { picker.choose(asset); setAgreed(false); }} className={`rounded-lg px-3 py-2 mb-1 ${asset.assetId === flow.assetId ? 'bg-white/20' : 'bg-theme-neutrals-900'}`}><Text className="text-white text-sm">{asset.symbol} · {paymentChainName(asset.blockchain)}</Text><Text className="text-theme-neutrals-400 text-xs">{t(picker.balances[asset.assetId] == null ? 'nearBuy.balanceUnknown' : 'nearBuy.balanceAmount', { amount: picker.balances[asset.assetId], symbol: asset.symbol })}</Text>{picker.other && asset.contractAddress && <Text className="text-theme-neutrals-400 text-[10px]">{asset.contractAddress}</Text>}</TouchableOpacity>)}

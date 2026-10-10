@@ -1,3 +1,4 @@
+import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * AdministratorsTab
  * =================
@@ -39,7 +40,7 @@ export function AdministratorsTab({ community, membership }: Props) {
     [community, membership],
   );
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Communities/manage/AdministratorsTab.tsx:search", "", draftIdentity(community));
   const [adminLimit, setAdminLimit] = useState(PAGE_SIZE);
   const [editing, setEditing] = useState<CommunityMember | null>(null);
 

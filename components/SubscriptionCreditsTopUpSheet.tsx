@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -50,7 +51,7 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
   const { account, chainId, provider } = useWeb3Provider();
   const { switchChain } = useAuthActions();
   const [preset, setPreset] = useState<number | null>(10);
-  const [custom, setCustom] = useState("");
+  const [custom, setCustom] = useSurfaceDraft("components/SubscriptionCreditsTopUpSheet.tsx:custom", "");
   const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
   const [stage, setStage] = useState("");
   // State updates land after the tap that caused them, so a fast double tap
@@ -172,7 +173,7 @@ const SubscriptionCreditsTopUpSheet: React.FC<Props> = ({ visible, onClose, dhbP
               disabled={busy}
               onPress={() => {
                 setPreset(value);
-                setCustom("");
+                setCustom.complete(custom, "");
               }}
               activeOpacity={0.7}
               className={`flex-1 mx-1 py-2 rounded-xl border items-center ${

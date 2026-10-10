@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Support Ticket Sheet
  * ====================
@@ -139,9 +140,9 @@ const SupportTicketSheet: React.FC<SupportTicketSheetProps> = ({
 
   const [category, setCategory] = useState<SupportCategory>('bug');
   const [severity, setSeverity] = useState<SupportSeverity>('normal');
-  const [subject, setSubject] = useState('');
-  const [description, setDescription] = useState('');
-  const [stepsToReproduce, setStepsToReproduce] = useState('');
+  const [subject, setSubject] = useSurfaceDraft("components/Assistant/SupportTicketSheet.tsx:subject", '');
+  const [description, setDescription] = useSurfaceDraft("components/Assistant/SupportTicketSheet.tsx:description", '');
+  const [stepsToReproduce, setStepsToReproduce] = useSurfaceDraft("components/Assistant/SupportTicketSheet.tsx:stepsToReproduce", '');
 
   const { data, isLoading, isError, refetch } = useMySupportTickets(enabled && visible);
 
@@ -160,12 +161,12 @@ const SupportTicketSheet: React.FC<SupportTicketSheetProps> = ({
   }, [data]);
 
   const resetForm = useCallback(() => {
-    setSubject('');
-    setDescription('');
-    setStepsToReproduce('');
+    setSubject.complete(subject, '');
+    setDescription.complete(description, '');
+    setStepsToReproduce.complete(stepsToReproduce, '');
     setCategory('bug');
     setSeverity('normal');
-  }, []);
+  }, [setDescription, setStepsToReproduce, setSubject, description, stepsToReproduce, subject]);
 
   const file = useMutation({
     mutationFn: () =>

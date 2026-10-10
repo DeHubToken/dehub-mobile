@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 /**
  * The live viewer's bottom bar: say something, or do something.
  *
@@ -59,7 +60,8 @@ interface Props {
   isLive: boolean;
   isEnded: boolean;
   isScheduled: boolean;
-  onSendMessage: (content: string) => void;
+  draftScope: string | null;
+  onSendMessage: (content: string) => Promise<boolean>;
   onSendGif: (url: string) => void;
   /** Actions */
   onReact: (type: ReactionType) => void;
@@ -78,6 +80,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
   isLive,
   isEnded,
   isScheduled,
+  draftScope,
   onSendMessage,
   onSendGif,
   onReact,
@@ -89,7 +92,8 @@ const LiveViewerActionBar: React.FC<Props> = ({
   actionsDisabled,
 }) => {
   const { t } = useTranslation();
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useDraftState(draftScope, "");
+  const sending = useRef(false);
   const [reactionsOpen, setReactionsOpen] = useState(false);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const lastTapRef = useRef(0);
@@ -112,12 +116,13 @@ const LiveViewerActionBar: React.FC<Props> = ({
             ? "Sign in to chat"
             : "Say something...";
 
-  const handleSend = useCallback(() => {
+  const handleSend = useCallback(async () => {
     const content = message.trim();
-    if (!content || inputDisabled) return;
-    onSendMessage(content);
-    setMessage("");
-  }, [message, inputDisabled, onSendMessage]);
+    if (sending.current || !content || inputDisabled) return;
+    sending.current = true;
+    try { if (await onSendMessage(content)) setMessage.complete(message, ""); }
+    finally { sending.current = false; }
+  }, [message, inputDisabled, onSendMessage, setMessage]);
 
   const handleReact = useCallback(
     (type: ReactionType) => {

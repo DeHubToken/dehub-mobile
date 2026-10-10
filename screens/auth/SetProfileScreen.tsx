@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
@@ -62,8 +63,8 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   // top inset on both platforms.
   const keyboardOffset = useKeyboardOffset();
 
-  const [username, setUsername] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [username, setUsername] = useSurfaceDraft("screens/auth/SetProfileScreen.tsx:username", "");
+  const [displayName, setDisplayName] = useSurfaceDraft("screens/auth/SetProfileScreen.tsx:displayName", "");
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -255,7 +256,7 @@ const SearchScreen: React.FC = () => {
   }, [queryClient, userAddress]));
 
   // Search state
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useSurfaceDraft("screens/SearchScreen.tsx:searchQuery", "");
   const [activeTab, setActiveTab] = useState<TabKey>("all");
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -513,11 +514,11 @@ const SearchScreen: React.FC = () => {
   useEffect(() => {
     const q = typeof routeParams?.q === "string" ? routeParams.q.trim() : "";
     if (!q) return;
-    setSearchQuery(q);
+    setSearchQuery.initialize(q);
     setInputFocused(false);
     executeSearch(q, activeTab, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [routeParams]);
+  }, [routeParams, setSearchQuery]);
 
   // Arriving from the Live Stats "New members" heading. The rail only exists
   // in the idle branch, so an open search is put away first — without the
@@ -535,7 +536,7 @@ const SearchScreen: React.FC = () => {
     if (routeParams?.section !== "newMembers") return;
     if (hasSearched || searchQuery.trim()) {
       showHeader();
-      setSearchQuery("");
+      setSearchQuery.initialize("");
       setAccounts([]);
       setContent([]);
       setAccountsPagination(null);
@@ -560,7 +561,7 @@ const SearchScreen: React.FC = () => {
       }
     }, 150);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [routeParams]);
+  }, [routeParams, setSearchQuery]);
 
   /**
    * Tapping a trending topic filters the home feed by that category.
@@ -596,7 +597,7 @@ const SearchScreen: React.FC = () => {
       showHeader();
       executeSearch(term, activeTab, 1);
     },
-    [activeTab, executeSearch, showHeader],
+    [activeTab, executeSearch, showHeader, setSearchQuery],
   );
 
   const handleTabChange = useCallback(
@@ -658,7 +659,7 @@ const SearchScreen: React.FC = () => {
 
   const clearSearch = useCallback(() => {
     showHeader();
-    setSearchQuery("");
+    setSearchQuery.complete(searchQuery, "");
     setAccounts([]);
     setContent([]);
     setAccountsPagination(null);
@@ -667,12 +668,12 @@ const SearchScreen: React.FC = () => {
     setHasSearched(false);
     lastQuery.current = "";
     inputRef.current?.focus();
-  }, [showHeader]);
+  }, [showHeader, setSearchQuery, searchQuery]);
 
   const handleReplaceSearchBox = useCallback((term: string) => {
     setSearchQuery(term);
     inputRef.current?.focus();
-  }, []);
+  }, [setSearchQuery]);
 
   // Propagate follow state changes to account list
   const handleFollowChange = useCallback((address: string, newState: FollowState) => {

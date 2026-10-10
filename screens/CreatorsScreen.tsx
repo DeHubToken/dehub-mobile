@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CreatorsScreen
  * ==============
@@ -92,12 +93,12 @@ export default function CreatorsScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const keyboardOffset = useKeyboardOffset();
-  const [form, setForm] = useState<CreatorForm>(EMPTY_FORM);
+  const [form, setForm] = useSurfaceDraft<CreatorForm>("screens/CreatorsScreen.tsx:form", EMPTY_FORM);
   const [submitting, setSubmitting] = useState(false);
 
   const set = useCallback(
     (key: keyof CreatorForm) => (value: string) => setForm((prev) => ({ ...prev, [key]: value })),
-    [],
+    [setForm],
   );
 
   const submit = useCallback(async () => {
@@ -123,13 +124,13 @@ export default function CreatorsScreen() {
       });
       if (error) throw error;
       toastSuccess(t("creators.submitted"));
-      setForm(EMPTY_FORM);
+      setForm.complete(form, EMPTY_FORM);
     } catch {
       toastError(t("creators.failedSubmit"));
     } finally {
       setSubmitting(false);
     }
-  }, [form, t]);
+  }, [form, t, setForm]);
 
   return (
     <View style={styles.root}>

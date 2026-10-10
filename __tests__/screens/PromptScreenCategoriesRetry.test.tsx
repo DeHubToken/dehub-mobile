@@ -1,3 +1,6 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: 'draft-test' }) }));
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -28,11 +31,19 @@ jest.mock('@react-native-community/slider', () => 'Slider');
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('../../theme/minimal', () => ({ MINIMAL_HAIRLINE: '#222', minimalRow: {} }));
-jest.mock('../../libs/storage', () => ({ storage: { set: jest.fn() } }));
+jest.mock('../../libs/storage', () => {
+  const values = new Map<string, string>();
+  return { storage: {
+    getString: jest.fn((key: string) => values.get(key)),
+    set: jest.fn((key: string, value: unknown) => values.set(key, String(value))),
+    delete: jest.fn((key: string) => values.delete(key)),
+  } };
+});
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
 const mockNavigation = { canGoBack: jest.fn(() => true), goBack: jest.fn(), navigate: jest.fn() };
 jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined),
   useNavigation: () => mockNavigation,
   useFocusEffect: () => {},
 }));
@@ -124,3 +135,5 @@ it('does not add the header height to the keyboard offset', async () => {
   expect(tree.root.findByType('KeyboardAvoidingView' as any).props.keyboardVerticalOffset).toBe(24);
   act(() => tree.unmount());
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

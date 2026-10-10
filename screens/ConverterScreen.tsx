@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * ConverterScreen
  * ===============
@@ -100,7 +101,7 @@ export default function ConverterScreen() {
 
   /** Which intake is showing: a link from another platform, or a podcast feed. */
   const [intake, setIntake] = useState<'link' | 'podcast'>('link');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useSurfaceDraft("screens/ConverterScreen.tsx:url", '');
   const [ownershipConfirmed, setOwnershipConfirmed] = useState(false);
   /** What the creator picked, or null while they have not. Null means "follow
    * the link" — a SoundCloud paste should not need a tap to say audio, and a
@@ -109,8 +110,8 @@ export default function ConverterScreen() {
   /** The link waiting on the review sheet, or null when nothing is. */
   const [reviewing, setReviewing] = useState<string | null>(null);
   const [reviewLoading, setReviewLoading] = useState(false);
-  const [reviewName, setReviewName] = useState('');
-  const [reviewDescription, setReviewDescription] = useState('');
+  const [reviewName, setReviewName] = useSurfaceDraft("screens/ConverterScreen.tsx:reviewName", '');
+  const [reviewDescription, setReviewDescription] = useSurfaceDraft("screens/ConverterScreen.tsx:reviewDescription", '');
   const [reviewRotation, setReviewRotation] = useState<0 | 90 | 180 | 270>(0);
   const [reviewSource, setReviewSource] = useState<string | null>(null);
   const [reviewIsLive, setReviewIsLive] = useState(false);
@@ -254,7 +255,7 @@ export default function ConverterScreen() {
     } catch {
       toastError(t('converter.errorClipboard'));
     }
-  }, [t]);
+  }, [t, setUrl]);
 
   /** Sends one link. `ownershipConfirmed` is always true here: the primary
    * path gates on the checkbox, and "Try again" re-runs a link whose
@@ -275,7 +276,7 @@ export default function ConverterScreen() {
           description: details?.description || undefined,
           rotation: details?.rotation,
         });
-        setUrl('');
+        setUrl.complete(url, '');
         toastInfo(t('converter.toastQueued'));
         await refresh();
       } catch (err) {
@@ -284,7 +285,7 @@ export default function ConverterScreen() {
         setSubmitting(false);
       }
     },
-    [refresh, t],
+    [refresh, t, setUrl, url],
   );
 
   /**
@@ -298,8 +299,8 @@ export default function ConverterScreen() {
   const openReview = useCallback(
     (rawUrl: string) => {
       setReviewing(rawUrl);
-      setReviewName('');
-      setReviewDescription('');
+      setReviewName.complete(reviewName, '');
+      setReviewDescription.complete(reviewDescription, '');
       setReviewRotation(0);
       setReviewSource(null);
       setReviewIsLive(false);
@@ -316,7 +317,7 @@ export default function ConverterScreen() {
         .catch(() => undefined)
         .finally(() => setReviewLoading(false));
     },
-    [],
+    [setReviewDescription, setReviewName, reviewDescription, reviewName],
   );
 
   const handleSubmit = useCallback(() => {

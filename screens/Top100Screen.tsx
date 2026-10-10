@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * Top100Screen
  * ============
@@ -123,7 +124,7 @@ export default function Top100Screen() {
   const assets = useTopAssets();
 
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("screens/Top100Screen.tsx:search", "");
   const [sheetSymbol, setSheetSymbol] = useState<string | null>(null);
 
   const all = useMemo(() => mergeAssets(assets.data, coins.data), [assets.data, coins.data]);
@@ -173,7 +174,7 @@ export default function Top100Screen() {
         />
         {search.length > 0 && (
           <Pressable
-            onPress={() => setSearch("")}
+            onPress={() => setSearch.complete(search, "")}
             hitSlop={8}
             accessibilityRole="button"
             accessibilityLabel={t("sidebar.clearSearch")}

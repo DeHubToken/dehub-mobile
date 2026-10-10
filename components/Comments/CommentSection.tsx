@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
@@ -24,6 +25,7 @@ import type { CommentLayout } from "./CommentContextMenu";
 import CommentMediaPreview from "./CommentMediaPreview";
 import type { MediaAttachment } from "./CommentMediaPreview";
 import {
+  commentDraftKey,
   loadCommentDraft,
   saveCommentDraft,
   clearCommentDraft,
@@ -217,13 +219,16 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Input state. Whatever was left unsent last time comes back with it — the
   // text and the reply it was aimed at — read once so the two can't disagree.
-  const [restoredDraft] = useState(() => loadCommentDraft(tokenId));
+  const commentDraftScope = commentDraftKey(user?.walletAddress || user?.address, tokenId);
+  const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
   const { isMinimal } = useAppTheme();
-  const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
+  const [editingComment, setEditingComment] = useState<Comment | null>(null);
+  const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
+  const [composerHeight, setComposerHeight] = useState(76);
   const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(() => draftReplyTarget(restoredDraft));
-  const [editingComment, setEditingComment] = useState<Comment | null>(null);
+
   const [posting, setPosting] = useState(false);
   // Android may move the composer between touch-down and touch-up while the
   // keyboard closes. Remember when touch-down already submitted so the
@@ -261,13 +266,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // An edit borrows the same box. What is in it belongs to the comment being
     // edited, not to a new one, so it must not overwrite the draft underneath.
     if (editingComment) return;
-    saveCommentDraft(tokenId, {
+    saveCommentDraft(commentDraftScope, {
       text: inputText,
       parentId: replyingTo ? Number(replyingTo.id) : undefined,
       parentUsername: replyingTo?.user?.displayName || replyingTo?.user?.username,
       gifUrl: mediaAttachment?.type === "gif" ? mediaAttachment.url : undefined,
     });
-  }, [tokenId, inputText, replyingTo, mediaAttachment]);
+  }, [tokenId, commentDraftScope, inputText, replyingTo, mediaAttachment, editingComment]);
 
   // Something unsent in the box. The sheet reads this to refuse to close
   // mid-sentence; an unmount reports clean so a closed sheet can't latch it on.
@@ -718,7 +723,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const handleStartEdit = useCallback((comment: Comment) => {
     setEditingComment(comment);
     setReplyingTo(null);
-    setInputText(comment.content || "");
     inputRef.current?.focus();
   }, []);
 
@@ -729,9 +733,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // Prefill @mention of the author being replied to — but only into an empty
     // box. Aiming a half-written comment at someone must not overwrite it.
     const mentionName = comment.user?.username || comment.user?.displayName || "user";
-    setInputText((current) => (current.trim() ? current : `@${mentionName} `));
+    if (!editingComment) setInputText((current) => (current.length ? current : `@${mentionName} `));
     inputRef.current?.focus();
-  }, []);
+  }, [editingComment, setInputText]);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
@@ -740,12 +744,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // comment instead. Blanking the box did neither: it destroyed a written
     // comment on a tap meant only to change who it was aimed at.
     if (editingComment) {
-      setInputText(loadCommentDraft(tokenId)?.text ?? "");
+      setInputText.clear();
       mentions.reset();
     }
     setReplyingTo(null);
     setEditingComment(null);
-  }, [editingComment, tokenId, mentions]);
+  }, [editingComment, tokenId, mentions, setInputText]);
 
 
   // Pick image → open cropper → set preview
@@ -812,7 +816,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // nicely alongside whatever the user has already typed.
   const handleEmojiSelected = useCallback((emoji: string) => {
     setInputText((prev) => prev + emoji);
-  }, []);
+  }, [setInputText]);
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
@@ -913,8 +917,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
 
       const savedMedia = mediaAttachment;
-      setMediaAttachment(null);
-      setReplyingTo(null);
 
       try {
         let newId: number | undefined;
@@ -951,6 +953,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         }
 
         // Reconcile temp ID with real ID
+        setMediaAttachment(current => current === savedMedia ? null : current);
+        setReplyingTo(current => current?.id === replyingTo?.id ? null : current);
         if (newId != null) {
           setFlatComments((prev) =>
             prev.map((c) => {
@@ -968,9 +972,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } catch (e) {
         console.error("[CommentSection] media post error", e);
         setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
-        // Hand the attachment back rather than making them pick it again.
-        setMediaAttachment(savedMedia);
-        setReplyingTo(replyingTo);
+        // Keep the attachment and reply available for retry.
         toastError(t("comments.sendMediaFailed"));
       } finally {
         setMediaPosting(false);
@@ -997,14 +999,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               c.id === editingComment.id ? { ...c, content: text } : c
             )
           );
-          setEditingComment(null);
-          // Back to the draft the edit borrowed the box from, if there was one.
-          setInputText(loadCommentDraft(tokenId)?.text ?? "");
-          mentions.reset();
-          Keyboard.dismiss();
-
-          // Save edit to server
           await editComment({ commentId: editingComment.id, content: text });
+          if (setInputText.complete(inputText, text)) {
+            setEditingComment(current => current?.id === editingComment.id ? null : current);
+            mentions.reset();
+            Keyboard.dismiss();
+          }
         } else {
           // Optimistic update for new comment/reply
           const parentDepth = replyingTo ? ((replyingTo as FlatComment).depth ?? ((replyingTo as FlatComment).isReply ? 1 : 0)) : 0;
@@ -1061,18 +1061,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
-          clearCommentDraft(tokenId);
-          setReplyingTo(null);
-          setInputText("");
-          mentions.reset();
-          Keyboard.dismiss();
-
           // Post to server
           const res = await postComment({
             streamTokenId: tokenId,
             content: text,
             commentId: replyToId,
           });
+
+          if (loadCommentDraft(commentDraftScope)?.text === inputText) clearCommentDraft(commentDraftScope);
+          setReplyingTo(null);
+          setInputText.complete(inputText, "");
+          mentions.reset();
+          Keyboard.dismiss();
 
           // Reconcile temp ID with server ID
           const newId = res?.result?.id ?? res?.id;
@@ -1109,8 +1109,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           // Post was tapped, so a refusal used to destroy what was written —
           // the one moment losing it hurts most. The draft store follows the
           // state, so this lands on disk too.
-          setInputText(text);
-          setReplyingTo(replyingTo);
+          // Keep the exact text already in the composer, including whitespace.
         }
         
         // The server's own words when it has them: a refusal explains itself,
@@ -1121,7 +1120,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t]);
+  }, [inputText, posting, requireAuth, tokenId, commentDraftScope, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t, setInputText]);
 
   /**
    * What every Post control calls. On a Common Ground thread the first reply
@@ -1167,7 +1166,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     } finally {
       setAiRewriting(false);
     }
-  }, [inputText, aiRewriting, t]);
+  }, [inputText, aiRewriting, t, setInputText]);
 
   const handlePostTouchStart = useCallback(() => {
     if (Platform.OS !== "android") return;
@@ -1570,7 +1569,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [flushCommentViews]);
 
   // Calculate bottom padding for list to account for input
-  const listBottomPadding = 88 + inputLift;
+  const listBottomPadding = composerHeight + 12 + inputLift;
 
   return (
     <View style={{ flex: 1 }}>
@@ -1646,6 +1645,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       <DeHubRefreshMark refreshing={refreshing} />
 
       <View
+        onLayout={event => setComposerHeight(event.nativeEvent.layout.height)}
         style={{
           position: "absolute",
           left: 0,
@@ -1699,10 +1699,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
-        {/* The coach's cards above the field, and the AI button that offers a
-            tone check, a vibe rewrite and a spelling/grammar pass once there
-            is text. Advice only — Post stays live underneath. */}
-        {(coachStatus !== "idle" || (!editingComment && inputText.trim().length > 0)) &&
+        {/* Open advice stays above the composer; AI and Send share its action column. */}
+        {(coachStatus !== "idle" || aiMenu !== "closed") &&
           !commentsDisabled && !kidsOnlyThread && !accountBanned && (
           <View style={{ paddingHorizontal: COMPOSER.gutter, paddingTop: 8, gap: 6 }}>
             <CoachSuggestions
@@ -1747,18 +1745,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                       <Text style={{ fontSize: 12, color: "#A6A9AC" }}>{t("conversation.coach.fixSpelling")}</Text>
                     </Pressable>
                   )}
-                  <Pressable
-                    onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
-                    disabled={aiRewriting}
-                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("conversation.coach.aiMenu")}
-                    testID="comment-ai-menu"
-                    className="flex-row items-center"
-                    style={[aiChipStyle, isMinimal && aiChipMinimal]}
-                  >
-                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={13} color="#A6A9AC" />}
-                  </Pressable>
+
                 </View>
               </View>
             )}
@@ -1815,6 +1802,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             <View
               style={{
                 flex: 1,
+                minWidth: 0,
                 flexDirection: "row",
                 // `center`, not `flex-end`: a single line of 14px text is ~18 tall
                 // inside a 40 box, and flex-end pinned it to the bottom edge. Once
@@ -1826,7 +1814,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 borderColor: isMinimal ? MINIMAL_INPUT_LINE : "rgba(255,255,255,0.08)",
                 paddingHorizontal: 12,
                 paddingVertical: 8,
-                minHeight: COMPOSER.control,
+                minHeight: inputText.length > 0 && !editingComment ? 76 : COMPOSER.control,
               }}
             >
               <TextInput
@@ -1852,7 +1840,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   // Post control is a sibling, not an overlay, so the box is
                   // free to grow into the row.
                   maxHeight: 140,
-                  height: growingInput.height,
+                  height: Math.max(growingInput.height, inputText.length > 0 && !editingComment ? 58 : 0),
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.
@@ -1867,7 +1855,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 touch-down and clears the text before touch-up. Reusing the
                 Send Pressable as GIF would deliver that release to the picker. */}
             {inputText.trim() || editingComment ? (
-              <View key="text-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
+              <View key="text-actions" style={{ flexDirection: "row", alignItems: "flex-end", gap: COMPOSER.gap / 2 }}>
               <Pressable
                   onPress={handleEmojiPress}
                   onTouchStart={handleEmojiTouchStart}
@@ -1878,6 +1866,21 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 >
                 <Text style={{ fontSize: 18 }}>🙂</Text>
               </Pressable>
+              <View style={{ alignItems: "center", gap: 4 }}>
+                {!editingComment && inputText.trim().length > 0 && (
+                  <Pressable
+                    onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
+                    disabled={aiRewriting}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("conversation.coach.aiMenu")}
+                    testID="comment-ai-menu"
+                    className="flex-row items-center"
+                    style={[composerStyles.iconControl, { width: 32, height: 32 }]}
+                  >
+                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={15} color="#A6A9AC" />}
+                  </Pressable>
+                )}
               <Pressable
                 onPress={handlePostPress}
                 // Raw touch-start arrives before the keyboard/sheet responder
@@ -1897,6 +1900,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Icon name="Send" size={18} color={inputText.trim() ? "#010305" : "#6F7174"} />
                 )}
               </Pressable>
+              </View>
               </View>
             ) : (
               <View key="attachment-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
@@ -2036,7 +2040,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   );
 };
 
-export const CommentSection = memo(CommentSectionComponent);
+export const CommentSection = memo(function CommentSection(props: CommentSectionProps) {
+  const user = useUser();
+  const account = user?.walletAddress || user?.address || 'signed-out';
+  return <CommentSectionComponent key={`${account.toLowerCase()}:${props.tokenId}`} {...props} />;
+});
 export default CommentSection;
 
 const aiChipStyle = { gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" } as const;

@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
@@ -83,7 +84,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useSurfaceDraft("components/auth/LegacyAccountWarningModal.tsx:email", "");
   const [error, setError] = useState<string | null>(null);
 
   const uniqueAccountFor = useCallback(
@@ -103,7 +104,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
     setBusyProvider(null);
     setEmail("");
     setError(null);
-  }, []);
+  }, [setEmail]);
 
   const handleClose = useCallback(() => {
     if (busyProvider) return;

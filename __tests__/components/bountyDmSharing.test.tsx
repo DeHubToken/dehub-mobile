@@ -1,3 +1,5 @@
+import { storage as draftStorage } from '../../libs/storage';
+import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import ShareToDmSheet from '../../components/DM/ShareToDmSheet';
@@ -13,7 +15,8 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (style: unknown) => style, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style) : style, absoluteFillObject: {} },
   FlatList: mockFlatList,
 }));
-jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }) }));
+jest.mock('@react-navigation/native', () => ({
+  NavigationRouteContext: require('react').createContext(undefined), useNavigation: () => ({ navigate: mockNavigate }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/common/BadgeArtwork', () => 'BadgeArtwork');
 jest.mock('../../components/common/SmartImage', () => 'SmartImage');
@@ -46,3 +49,5 @@ it('preserves post sharing for existing tokenId callers', () => {
     conversationId: 'conversation', sharedText: 'https://dehub.io/app/post/42',
   });
 });
+
+beforeEach(() => { draftStorage.delete('dehub-drafts-v1'); __resetDraftCacheForTests(); });

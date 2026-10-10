@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,8 +24,8 @@ interface Props {
 
 export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser, onComplete, onSignOut }) => {
   const { t } = useTranslation();
-  const [username, setUsername] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [username, setUsername] = useSurfaceDraft("components/auth/UsernameRequiredModal.tsx:username", '');
+  const [displayName, setDisplayName] = useSurfaceDraft("components/auth/UsernameRequiredModal.tsx:displayName", '');
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   // Why a name is unavailable: too short, bad characters, taken, or the
@@ -44,7 +45,7 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
       setSubmitting(false);
       setError(null);
     }
-  }, [visible]);
+  }, [visible, setDisplayName, setUsername]);
 
   const runAvailability = useDebounceCallback(async (name: string) => {
     if (!name) { setAvailable(null); setAvailabilityMessage(null); return; }

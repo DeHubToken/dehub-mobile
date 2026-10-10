@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * AI chat for the editor: describe the change, the agent makes it. Same
  * wording and flow as the web's AI panel (dehubweb
@@ -29,7 +30,8 @@ interface Props {
   visible: boolean;
   entries: ChatEntry[];
   busy: boolean;
-  onSend: (text: string, useVisual: boolean) => void;
+  onSend: (text: string, useVisual: boolean) => Promise<boolean>;
+  projectId: string;
   visualScope: string;
   onUndo: () => void;
   onClose: () => void;
@@ -45,11 +47,11 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope, projectId }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useSurfaceDraft("components/editor/AgentSheet.tsx:draft", "", projectId);
   const [visualConsent, setVisualConsent] = useState<string | null>(null);
   const useVisual = visualConsent === visualScope;
   useEffect(() => { setVisualConsent(null); }, [visible, visualScope]);
@@ -60,11 +62,10 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
     return () => clearTimeout(id);
   }, [entries.length, busy]);
 
-  const send = (text: string) => {
+  const send = async (text: string) => {
     const v = text.trim();
     if (!v || busy) return;
-    setDraft("");
-    onSend(v, useVisual);
+    if (await onSend(v, useVisual)) setDraft.complete(text, "");
   };
 
   const suggestions = [

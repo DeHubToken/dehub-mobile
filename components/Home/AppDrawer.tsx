@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
 import {
@@ -279,7 +280,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const skin = appTheme.skin ?? null;
   const hud = themeName === "war";
   const square = !!skin?.square || appTheme.isMinimal;
-  const [menuQuery, setMenuQuery] = useState("");
+  const [menuQuery, setMenuQuery] = useSurfaceDraft("components/Home/AppDrawer.tsx:menuQuery", "");
   const [isSigningOut, setIsSigningOut] = useState(false);
   // Live size, so split-screen and unfolding resize the sheet and its
   // off-screen position instead of keeping the size from app start.
@@ -405,8 +406,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   // Never reopen the sheet mid-filter.
   useEffect(() => {
-    if (!visible) setMenuQuery("");
-  }, [visible]);
+    if (!visible) setMenuQuery.initialize("");
+  }, [visible, setMenuQuery]);
 
   // The escape hatch: run whatever was typed as a real search instead. `ts`
   // is a nonce — without it a repeat of the same term produces identical route
@@ -414,9 +415,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const runFullSearch = useCallback(() => {
     const query = menuQuery.trim();
     if (!query) return;
-    setMenuQuery("");
+    setMenuQuery.complete(menuQuery, "");
     navigate(ScreenNames.Explore, { q: query, ts: Date.now() }, true);
-  }, [menuQuery, navigate]);
+  }, [menuQuery, navigate, setMenuQuery]);
 
   const handleItemPress = useCallback(
     (item: DrawerItem) => {
@@ -580,7 +581,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               />
               {menuQuery.length > 0 && (
                 <TouchableOpacity
-                  onPress={() => setMenuQuery("")}
+                  onPress={() => setMenuQuery.complete(menuQuery, "")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("sidebar.clearSearch")}

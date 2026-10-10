@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * ReportModal - Glass modal for reporting content or users
  *
@@ -90,7 +91,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
-  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useSurfaceDraft("components/common/ReportModal.tsx:additionalInfo", "", JSON.stringify([type, tokenId, userId, commentId]));
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -142,9 +143,8 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
 
   const resetState = useCallback(() => {
     setSelectedReason(null);
-    setAdditionalInfo("");
     setSubmitted(false);
-  }, []);
+  }, [setAdditionalInfo]);
 
   const handleClose = useCallback(() => {
     onClose();
@@ -178,6 +178,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
           additionalInfo: additionalInfo.trim() || undefined,
         });
       }
+      setAdditionalInfo.complete(additionalInfo, "");
       setSubmitted(true);
     } catch (e: any) {
       console.error(`[ReportModal] ${type} report error`, e);
@@ -195,7 +196,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     } finally {
       setSubmitting(false);
     }
-  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t]);
+  }, [type, tokenId, userId, commentId, selectedReason, additionalInfo, t, setAdditionalInfo]);
 
   if (submitted) {
     return (

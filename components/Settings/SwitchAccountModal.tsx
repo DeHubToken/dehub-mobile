@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
@@ -77,7 +78,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
   const { signInWithWallet } = useAuthActions();
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [busyProvider, setBusyProvider] = useState<LegacyProvider | null>(null);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useSurfaceDraft("components/Settings/SwitchAccountModal.tsx:email", "");
   const [privateKey, setPrivateKey] = useState("");
   useSecureScreen(visible && showManualEntry, "switch-account-key");
   const [showPk, setShowPk] = useState(false);
@@ -97,7 +98,7 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
     setConfirm("");
     setError(null);
     setLiveAssessment(null);
-  }, []);
+  }, [setEmail]);
 
   const handleClose = useCallback(() => {
     if (busy || busyProvider) return;

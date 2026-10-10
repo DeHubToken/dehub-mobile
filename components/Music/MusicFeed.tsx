@@ -1,3 +1,4 @@
+import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * MusicFeed — the Audio tab
  * =========================
@@ -188,7 +189,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   const [tab, setTab] = useState<MusicSubTab>("all");
   const [genre, setGenre] = useState<RadioGenreId>("top");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useSurfaceDraft("components/Music/MusicFeed.tsx:search", "");
   const debouncedSearch = useDebouncedValue(search, 300);
   const { user } = useAuth();
   const address = user?.walletAddress || user?.address || undefined;
@@ -459,7 +460,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                 autoCorrect={false}
               />
               {search.length > 0 && (
-                <TouchableOpacity onPress={() => setSearch("")} hitSlop={8}>
+                <TouchableOpacity onPress={() => setSearch.complete(search, "")} hitSlop={8}>
                   <Icon name="X" size={15} color="rgba(255,255,255,0.4)" />
                 </TouchableOpacity>
               )}
@@ -495,7 +496,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         )}
       </View>
     ),
-    [headerInset, tab, search, genre, isSearchingRadio, t],
+    [headerInset, tab, search, genre, isSearchingRadio, t, setSearch],
   );
 
   const listEmpty = useMemo(() => {
