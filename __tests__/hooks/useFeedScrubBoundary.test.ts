@@ -25,7 +25,7 @@ jest.mock('react-native-gesture-handler', () => ({
 }));
 
 function setup() {
-  mockMeasure.mockReturnValue({ pageX: 10, pageY: 300, width: 200, height: 80 });
+  mockMeasure.mockReturnValue({ pageX: 10, pageY: 316, width: 200, height: 64 });
   const { result, rerender } = renderHook(() => useFeedScrubBoundary());
   const player = { start: jest.fn(), preview: jest.fn(), commit: jest.fn(), cancel: jest.fn() };
   const unregister = result.current.controller.register(player);
@@ -47,7 +47,7 @@ describe('feed scrub boundary', () => {
     const s = setup();
     expect(s.pan.blocksExternalGesture).toHaveBeenCalledWith(mockPagerRef);
     expect(s.pan.shouldCancelWhenOutside).toHaveBeenCalledWith(false);
-    expect(s.down(30, 400).activate).toHaveBeenCalledTimes(1);
+    expect(s.down(30, 404).activate).toHaveBeenCalledTimes(1);
     expect(s.result.current.claimed.value).toBe(true);
     s.pan.callbacks.onStart({ absoluteX: 30, absoluteY: 400 });
     expect(s.player.start).toHaveBeenCalledTimes(1);
@@ -64,7 +64,7 @@ describe('feed scrub boundary', () => {
   });
 
   it('lets the in-player strip own buttons while still guarding parent navigation', () => {
-    const s = setup(), manager = s.down(30, 330);
+    const s = setup(), manager = s.down(30, 316);
     expect(manager.fail).toHaveBeenCalledTimes(1);
     expect(manager.activate).not.toHaveBeenCalled();
     expect(s.result.current.claimed.value).toBe(true);
@@ -73,7 +73,7 @@ describe('feed scrub boundary', () => {
 
   it('leaves deliberate taps outside the enlarged target alone', () => {
     const s = setup();
-    for (const [x, y] of [[9, 390], [211, 390], [30, 405], [30, 299]]) {
+    for (const [x, y] of [[9, 390], [211, 390], [30, 405], [30, 315]]) {
       const manager = s.down(x, y);
       expect(manager.activate).not.toHaveBeenCalled();
       expect(manager.fail).toHaveBeenCalledTimes(1);
@@ -83,7 +83,7 @@ describe('feed scrub boundary', () => {
 
   it('measures the current scrolled position and stays stable through preview renders', () => {
     const s = setup(), gesture = s.result.current.gesture;
-    mockMeasure.mockReturnValue({ pageX: 10, pageY: 500, width: 200, height: 80 });
+    mockMeasure.mockReturnValue({ pageX: 10, pageY: 516, width: 200, height: 64 });
     expect(s.down(30, 400).fail).toHaveBeenCalledTimes(1);
     expect(s.down(30, 590).activate).toHaveBeenCalledTimes(1);
     s.rerender({});
