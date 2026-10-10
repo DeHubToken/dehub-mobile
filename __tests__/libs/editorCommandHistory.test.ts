@@ -2,16 +2,33 @@ import { act, cleanup, renderHook } from "@testing-library/react-native";
 import { useProjectHistory } from "../../libs/editor/useProjectHistory";
 import { projectReviewSnapshotKey } from "../../libs/editor/cloudProjectReview";
 import { applyOps } from "../../libs/editor/agent";
-import type { ProjectSnapshot, MediaClip } from "../../libs/editor/types";
+import { getTransform } from "../../libs/editor/project";
+import type { ProjectSnapshot, MediaClip, ClipTransform } from "../../libs/editor/types";
 jest.mock("react-native-css-interop", () => ({ createInteropElement: require("react").createElement }));
 afterEach(cleanup);
 const fixture = (): ProjectSnapshot => ({ id: "command-project", title: "Commands", updatedAt: 1,
   settings: { width: 1920, height: 1080, fps: 30, aspectPreset: "16:9", background: "#000000" },
   tracks: [{ id: "v", kind: "video", name: "Video", muted: false, hidden: false }],
-  clips: ["a", "b"].map((id, index) => ({ id, kind: "video" as const, trackId: "v", mediaId: "source", start: index * 5, trimIn: 0, duration: 5, sourceDuration: 20, opacity: 1, rotation: 0 })) });
-const patch = (snapshot: ProjectSnapshot, id: string, change: Partial<MediaClip>): ProjectSnapshot => ({ ...snapshot, clips: snapshot.clips.map(clip => clip.id === id ? { ...clip, ...change } as MediaClip : clip) });
+  clips: ["a", "b"].map((id, index) => ({ id, kind: "video" as const, trackId: "v", mediaId: "source", start: index * 5, trimIn: 0, duration: 5, sourceDuration: 20, transform: { x: 0.5, y: 0.5, scale: 1, opacity: 1, rotation: 0 } })) });
+const patch = (snapshot: ProjectSnapshot, id: string, change: Partial<MediaClip> | Partial<ClipTransform>): ProjectSnapshot => ({ ...snapshot, clips: snapshot.clips.map(clip => clip.id === id ? { ...clip, ...("opacity" in change || "rotation" in change ? { transform: { ...getTransform(clip), ...change as Partial<ClipTransform> } } : change) } as MediaClip : clip) });
 
 describe("native command ownership in the actual history hook", () => {
+  it("waits for a live gesture and keeps the final independent position with Undo", async () => {
+    const { result } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
+    act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.5 }))); });
+    act(() => result.current.live(patch(result.current.latest()!, "b", { rotation: 10 })));
+    let resumed = false;
+    const completion = command.ready().then(() => { resumed = true; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { rotation: 20 }))); });
+    await act(async () => { await Promise.resolve(); }); expect(resumed).toBe(false);
+    await act(async () => { result.current.settle(); await completion; command.release(); });
+    act(() => result.current.undo()); expect(getTransform(result.current.latest()!.clips[0])).toMatchObject({ opacity: 1, rotation: 0 }); expect(getTransform(result.current.latest()!.clips[1]).rotation).toBe(10);
+    act(() => result.current.undo()); expect(getTransform(result.current.latest()!.clips[1]).rotation).toBe(0);
+  });
+  it("releases a pending gesture wait when the editor unmounts", async () => {
+    const { result, unmount } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
+    act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; result.current.live(patch(result.current.latest()!, "b", { rotation: 10 })); });
+    const completion = command.ready().then(() => true, () => false); unmount(); expect(await completion).toBe(false); command.release();
+  });
   it("excludes receiving before the command has written any result", () => {
     const { result } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
     act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; });
@@ -23,16 +40,16 @@ describe("native command ownership in the actual history hook", () => {
     act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.5 }))); });
     act(() => result.current.commit(patch(result.current.latest()!, "b", { opacity: 0.7 })));
     act(() => { command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { rotation: 15 }))); command.release(); result.current.undo(); });
-    expect(result.current.latest()!.clips[0]).toMatchObject({ opacity: 1, rotation: 0 }); expect(result.current.latest()!.clips[1].opacity).toBe(0.7);
-    act(() => result.current.undo()); expect(result.current.latest()!.clips[1].opacity).toBe(1);
-    act(() => { result.current.redo(); result.current.redo(); }); expect(result.current.latest()!.clips[0]).toMatchObject({ opacity: 0.5, rotation: 15 });
+    expect(getTransform(result.current.latest()!.clips[0])).toMatchObject({ opacity: 1, rotation: 0 }); expect(getTransform(result.current.latest()!.clips[1]).opacity).toBe(0.7);
+    act(() => result.current.undo()); expect(getTransform(result.current.latest()!.clips[1]).opacity).toBe(1);
+    act(() => { result.current.redo(); result.current.redo(); }); expect(getTransform(result.current.latest()!.clips[0])).toMatchObject({ opacity: 0.5, rotation: 15 });
   });
   it("preserves a newer independent value on the same field", () => {
     const { result } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
     act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.5 }))); });
     act(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.7 })));
     act(() => { command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { rotation: 15 }))); command.release(); result.current.undo(); });
-    expect(result.current.latest()!.clips[0]).toMatchObject({ opacity: 0.7, rotation: 0 }); act(() => result.current.undo()); expect(result.current.latest()!.clips[0].opacity).toBe(1);
+    expect(getTransform(result.current.latest()!.clips[0])).toMatchObject({ opacity: 0.7, rotation: 0 }); act(() => result.current.undo()); expect(getTransform(result.current.latest()!.clips[0]).opacity).toBe(1);
   });
   it("merges an actual delayed command result onto compatible local edits", async () => {
     const base = fixture(), { result } = renderHook(() => useProjectHistory(base)); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
@@ -74,6 +91,6 @@ describe("native command ownership in the actual history hook", () => {
   it("cannot revive a pending command by undoing and redoing its captured work", () => {
     const { result } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
     act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.5 }))); result.current.undo(); result.current.redo(); });
-    expect(command.isCurrent()).toBe(false); expect(command.commit(fixture(), patch(fixture(), "a", { rotation: 30 }))).toBe(false); act(() => command.release()); expect(result.current.latest()!.clips[0].rotation).toBe(0);
+    expect(command.isCurrent()).toBe(false); expect(command.commit(fixture(), patch(fixture(), "a", { rotation: 30 }))).toBe(false); act(() => command.release()); expect(getTransform(result.current.latest()!.clips[0]).rotation).toBe(0);
   });
 });
