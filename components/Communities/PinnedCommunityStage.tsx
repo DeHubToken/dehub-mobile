@@ -33,7 +33,7 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
   const { width } = useWindowDimensions();
   return (
     <View style={styles.strip}>
-      <Image source={storageImageSource(community.banner_url, width)} style={StyleSheet.absoluteFillObject} contentFit="cover" contentPosition="center bottom" />
+      <Image source={storageImageSource(community.banner_url, width)} style={StyleSheet.absoluteFillObject} contentFit="cover" contentPosition={{ left: "50%", top: "60%" }} />
       <LinearGradient
         colors={["rgba(6,4,18,0.86)", "rgba(6,4,18,0.5)", "rgba(6,4,18,0.12)"]}
         locations={[0, 0.45, 1]}
