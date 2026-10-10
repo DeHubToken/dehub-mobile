@@ -88,6 +88,18 @@ describe("native command ownership in the actual history hook", () => {
     act(() => { const command = result.current.beginCommand(projectReviewSnapshotKey(result.current.latest()!))!; expect(command.commit(base, base)).toBe(true); command.release(); });
     expect(result.current.canRedo).toBe(true); expect(result.current.canUndo).toBe(false); act(() => result.current.redo()); expect(result.current.latest()!.clips[1].duration).toBe(3);
   });
+  it("retains Redo when an unchanged placement rewrites field order", () => {
+    const base = fixture(), { result } = renderHook(() => useProjectHistory(base));
+    act(() => { result.current.commit(patch(base, "b", { duration: 3 })); result.current.undo(); });
+    const unchanged = patch(base, "a", { opacity: 1 });
+    expect(Object.keys(unchanged.clips[0].transform!)).not.toEqual(Object.keys(base.clips[0].transform!));
+    act(() => {
+      const command = result.current.beginCommand(projectReviewSnapshotKey(result.current.latest()!))!;
+      command.capture(() => result.current.commit(unchanged)); command.release();
+    });
+    expect(result.current.canRedo).toBe(true); expect(result.current.canUndo).toBe(false);
+    act(() => result.current.redo()); expect(result.current.latest()!.clips[1].duration).toBe(3);
+  });
   it("cannot revive a pending command by undoing and redoing its captured work", () => {
     const { result } = renderHook(() => useProjectHistory(fixture())); let command!: NonNullable<ReturnType<typeof result.current.beginCommand>>;
     act(() => { command = result.current.beginCommand(projectReviewSnapshotKey(fixture()))!; command.capture(() => result.current.commit(patch(result.current.latest()!, "a", { opacity: 0.5 }))); result.current.undo(); result.current.redo(); });

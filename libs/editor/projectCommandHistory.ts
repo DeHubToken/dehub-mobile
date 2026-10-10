@@ -1,5 +1,4 @@
-import { mergeEntityValues } from "./entityMerge";
-import { projectReviewSnapshotKey } from "./cloudProjectReview";
+import { equal, mergeEntityValues } from "./entityMerge";
 import type { ProjectSnapshot } from "./types";
 
 export interface CommandHistoryAdapter<Entry> {
@@ -60,7 +59,7 @@ export function projectCommandHistory<Entry>(adapter: CommandHistoryAdapter<Entr
       depth--;
       if (adapter.isCurrent()) {
         const after = adapter.read();
-        if (projectReviewSnapshotKey(before.current) === projectReviewSnapshotKey(after.current)) {
+        if (equal(wrap(before.current), wrap(after.current))) {
           adapter.write({ past: before.past, future: before.future });
         } else {
           const index = marker === null ? before.past.length : before.past.indexOf(marker);
@@ -69,7 +68,7 @@ export function projectCommandHistory<Entry>(adapter: CommandHistoryAdapter<Entr
           const independent = before.past.slice(index + (marker === null ? 0 : 1)).map(entry => adapter.entry(withoutChanges(adapter.snapshot(entry))));
           changes.push({ before: before.current, after: after.current });
           const undo = withoutChanges(after.current);
-          const changed = projectReviewSnapshotKey(undo) !== projectReviewSnapshotKey(after.current);
+          const changed = !equal(wrap(undo), wrap(after.current));
           marker = changed ? adapter.entry(undo) : null;
           const past = [...prefix, ...independent, ...(marker === null ? [] : [marker])].slice(-(adapter.limit ?? 50));
           adapter.write({ past, future: changed ? [] : before.future });
