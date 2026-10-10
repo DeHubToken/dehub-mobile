@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Bu postni zanjirda chop eting",
     "giftBoost": "Boost sovg'a qilish",
     "giftBoostDesc": "O'zingiznikidan birini shu postga sarflang",
-    "askAi": "Sun'iy intellektdan so'rash"
+    "askAi": "Sun'iy intellektdan so'rash",
+    "aiOverview": "Sun'iy intellektga umumiy nuqtai nazar"
   },
   "filters": {
     "sort": "Saralash",
@@ -6889,24 +6890,24 @@
       "hint": "Kliplarni 10 daqiqagacha qayta ishlang. Shovqinni kamaytirish barqaror fon shovqini bilan eng yaxshi ishlaydi."
     },
     "pages": {
-    "add":  "Sahifa qo'shish",
-    "duplicate":  "Sahifadan nusxa olish",
-    "delete":  "Sahifani o'chirish",
-    "page":  "{{number}}-sahifa",
-    "position":  "{{current}}/{{total}} sahifa",
-    "label":  "Sahifalar",
-    "allZip":  "Barcha {{count}} sahifa (ZIP)",
-    "thisPage":  "Faqat shu sahifa",
-    "exporting":  "{{current}}/{{total}} sahifa tayyorlanmoqda…"
-},
+      "add": "Sahifa qo'shish",
+      "duplicate": "Sahifadan nusxa olish",
+      "delete": "Sahifani o'chirish",
+      "page": "{{number}}-sahifa",
+      "position": "{{current}}/{{total}} sahifa",
+      "label": "Sahifalar",
+      "allZip": "Barcha {{count}} sahifa (ZIP)",
+      "thisPage": "Faqat shu sahifa",
+      "exporting": "{{current}}/{{total}} sahifa tayyorlanmoqda…"
+    },
     "captions": {
-        "action":  "Avtomatik subtitrlar",
-        "working":  "Tinglanmoqda… {{percent}}%",
-        "downloading":  "Nutq modeli tayyorlanmoqda… {{percent}}%",
-        "hint":  "Nutqni vaqtga moslangan, uslubini o‘zgartirish mumkin bo‘lgan subtitrlarga aylantiradi. Qurilmangizda ishlaydi: bepul va maxfiy. Birinchi foydalanishda model yuklab olinadi.",
-        "done":  "{{count}} ta subtitr qo‘shildi.",
-        "noSpeech":  "Bu klipda nutq topilmadi.",
-        "failed":  "Bu klip uchun subtitr yaratib bo‘lmadi."
+      "action": "Avtomatik subtitrlar",
+      "working": "Tinglanmoqda… {{percent}}%",
+      "downloading": "Nutq modeli tayyorlanmoqda… {{percent}}%",
+      "hint": "Nutqni vaqtga moslangan, uslubini o‘zgartirish mumkin bo‘lgan subtitrlarga aylantiradi. Qurilmangizda ishlaydi: bepul va maxfiy. Birinchi foydalanishda model yuklab olinadi.",
+      "done": "{{count}} ta subtitr qo‘shildi.",
+      "noSpeech": "Bu klipda nutq topilmadi.",
+      "failed": "Bu klip uchun subtitr yaratib bo‘lmadi."
     },
     "app": {
       "newDesign": "Yangi dizayn",

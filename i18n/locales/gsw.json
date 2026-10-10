@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Dä Biitrag on-chain veröffentliche",
     "giftBoost": "Boost verschänke",
     "giftBoostDesc": "Gib eine vo dine Boosts für dä Biitrag us",
-    "askAi": "KI frooge"
+    "askAi": "KI frooge",
+    "aiOverview": "KI Übersicht"
   },
   "filters": {
     "sort": "Sortiere",
@@ -6863,24 +6864,24 @@
       "hint": "Verarbeite Clips bis zu 10 Minute. Ruusigreduzierung funktioniert am beschte bi konstanter Hintergrundruusig."
     },
     "pages": {
-    "add":  "Siite dezue tue",
-    "duplicate":  "Siite dupliziere",
-    "delete":  "Siite lösche",
-    "page":  "Siite {{number}}",
-    "position":  "Siite {{current}} vo {{total}}",
-    "label":  "Siite",
-    "allZip":  "Alli {{count}} Siite (ZIP)",
-    "thisPage":  "Nur die Siite",
-    "exporting":  "Siite {{current}} vo {{total}} wird grenderet…"
-},
+      "add": "Siite dezue tue",
+      "duplicate": "Siite dupliziere",
+      "delete": "Siite lösche",
+      "page": "Siite {{number}}",
+      "position": "Siite {{current}} vo {{total}}",
+      "label": "Siite",
+      "allZip": "Alli {{count}} Siite (ZIP)",
+      "thisPage": "Nur die Siite",
+      "exporting": "Siite {{current}} vo {{total}} wird grenderet…"
+    },
     "captions": {
-        "action":  "Automatischi Untertitel",
-        "working":  "Lost zue… {{percent}} %",
-        "downloading":  "Sprachmodell wird parat gmacht… {{percent}} %",
-        "hint":  "Macht us Sprooch zytlich abgstimmti Untertitel, wo du chasch gstalte. Lauft uf dim Grät: gratis und privat. S erschte Mal wird s Modell abeglade.",
-        "done":  "{{count}} Untertitel dezue tue.",
-        "noSpeech":  "I dem Clip isch kei Sprooch gfunde worde.",
-        "failed":  "Für dä Clip hät mer kei Untertitel chöne mache."
+      "action": "Automatischi Untertitel",
+      "working": "Lost zue… {{percent}} %",
+      "downloading": "Sprachmodell wird parat gmacht… {{percent}} %",
+      "hint": "Macht us Sprooch zytlich abgstimmti Untertitel, wo du chasch gstalte. Lauft uf dim Grät: gratis und privat. S erschte Mal wird s Modell abeglade.",
+      "done": "{{count}} Untertitel dezue tue.",
+      "noSpeech": "I dem Clip isch kei Sprooch gfunde worde.",
+      "failed": "Für dä Clip hät mer kei Untertitel chöne mache."
     },
     "app": {
       "newDesign": "Neus Design",

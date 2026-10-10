@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Publicējiet šo ierakstu ķēdē",
     "giftBoost": "Uzdāvināt pastiprinājumu",
     "giftBoostDesc": "Iztērējiet vienu no savējiem šim ierakstam",
-    "askAi": "Jautāt MI"
+    "askAi": "Jautāt MI",
+    "aiOverview": "MI pārskats"
   },
   "filters": {
     "sort": "Kārtot",
@@ -6834,24 +6835,24 @@
       "hint": "Apstrādājiet klipus līdz 10 minūtēm. Trokšņu samazināšana vislabāk darbojas ar vienmērīgu fona troksni."
     },
     "pages": {
-    "add":  "Pievienot lapu",
-    "duplicate":  "Dublēt lapu",
-    "delete":  "Dzēst lapu",
-    "page":  "{{number}}. lapa",
-    "position":  "{{current}}. lapa no {{total}}",
-    "label":  "Lapas",
-    "allZip":  "Visas {{count}} lapas (ZIP)",
-    "thisPage":  "Tikai šī lapa",
-    "exporting":  "Renderē {{current}}. lapu no {{total}}…"
-},
+      "add": "Pievienot lapu",
+      "duplicate": "Dublēt lapu",
+      "delete": "Dzēst lapu",
+      "page": "{{number}}. lapa",
+      "position": "{{current}}. lapa no {{total}}",
+      "label": "Lapas",
+      "allZip": "Visas {{count}} lapas (ZIP)",
+      "thisPage": "Tikai šī lapa",
+      "exporting": "Renderē {{current}}. lapu no {{total}}…"
+    },
     "captions": {
-        "action":  "Automātiskie subtitri",
-        "working":  "Klausās… {{percent}}%",
-        "downloading":  "Sagatavo runas modeli… {{percent}}%",
-        "hint":  "Pārvērš runu laikā sinhronizētos subtitros, kuru stilu vari mainīt. Darbojas tavā ierīcē: bez maksas un privāti. Pirmajā lietošanas reizē tiek lejupielādēts modelis.",
-        "done":  "Pievienoti {{count}} subtitri.",
-        "noSpeech":  "Šajā klipā netika atrasta runa.",
-        "failed":  "Neizdevās izveidot subtitrus šim klipam."
+      "action": "Automātiskie subtitri",
+      "working": "Klausās… {{percent}}%",
+      "downloading": "Sagatavo runas modeli… {{percent}}%",
+      "hint": "Pārvērš runu laikā sinhronizētos subtitros, kuru stilu vari mainīt. Darbojas tavā ierīcē: bez maksas un privāti. Pirmajā lietošanas reizē tiek lejupielādēts modelis.",
+      "done": "Pievienoti {{count}} subtitri.",
+      "noSpeech": "Šajā klipā netika atrasta runa.",
+      "failed": "Neizdevās izveidot subtitrus šim klipam."
     },
     "app": {
       "newDesign": "Jauns dizains",

@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Paskelbkite šį įrašą grandinėje",
     "giftBoost": "Padovanoti pastiprinimą",
     "giftBoostDesc": "Išleiskite vieną savo šiam įrašui",
-    "askAi": "Klausti DI"
+    "askAi": "Klausti DI",
+    "aiOverview": "DI apžvalga"
   },
   "filters": {
     "sort": "Rūšiuoti",
@@ -6834,24 +6835,24 @@
       "hint": "Apdorokite klipus iki 10 minučių. Triukšmo mažinimas geriausiai veikia esant pastoviam foniniam triukšmui."
     },
     "pages": {
-    "add":  "Pridėti puslapį",
-    "duplicate":  "Dubliuoti puslapį",
-    "delete":  "Ištrinti puslapį",
-    "page":  "Puslapis {{number}}",
-    "position":  "Puslapis {{current}} iš {{total}}",
-    "label":  "Puslapiai",
-    "allZip":  "Visi puslapiai ({{count}}) (ZIP)",
-    "thisPage":  "Tik šis puslapis",
-    "exporting":  "Generuojamas puslapis {{current}} iš {{total}}…"
-},
+      "add": "Pridėti puslapį",
+      "duplicate": "Dubliuoti puslapį",
+      "delete": "Ištrinti puslapį",
+      "page": "Puslapis {{number}}",
+      "position": "Puslapis {{current}} iš {{total}}",
+      "label": "Puslapiai",
+      "allZip": "Visi puslapiai ({{count}}) (ZIP)",
+      "thisPage": "Tik šis puslapis",
+      "exporting": "Generuojamas puslapis {{current}} iš {{total}}…"
+    },
     "captions": {
-        "action":  "Automatiniai subtitrai",
-        "working":  "Klausomasi… {{percent}} %",
-        "downloading":  "Ruošiamas kalbos modelis… {{percent}} %",
-        "hint":  "Paverčia kalbą laiku susietais subtitrais, kurių stilių galite keisti. Veikia jūsų įrenginyje: nemokamai ir privačiai. Pirmą kartą atsisiunčiamas modelis.",
-        "done":  "Pridėta subtitrų: {{count}}.",
-        "noSpeech":  "Šiame klipe kalbos nerasta.",
-        "failed":  "Nepavyko sukurti subtitrų šiam klipui."
+      "action": "Automatiniai subtitrai",
+      "working": "Klausomasi… {{percent}} %",
+      "downloading": "Ruošiamas kalbos modelis… {{percent}} %",
+      "hint": "Paverčia kalbą laiku susietais subtitrais, kurių stilių galite keisti. Veikia jūsų įrenginyje: nemokamai ir privačiai. Pirmą kartą atsisiunčiamas modelis.",
+      "done": "Pridėta subtitrų: {{count}}.",
+      "noSpeech": "Šiame klipe kalbos nerasta.",
+      "failed": "Nepavyko sukurti subtitrų šiam klipui."
     },
     "app": {
       "newDesign": "Naujas dizainas",

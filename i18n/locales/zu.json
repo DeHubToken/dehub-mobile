@@ -1022,7 +1022,8 @@
     "mintPostDesc": "Shicilela lokhu okuthunyelwe ku-chain",
     "giftBoost": "Nikeza i-boost njengesipho",
     "giftBoostDesc": "Sebenzisa eyodwa yakho kulokhu okuthunyelwe",
-    "askAi": "Buza i-AI"
+    "askAi": "Buza i-AI",
+    "aiOverview": "Isifinyezo se-AI"
   },
   "filters": {
     "sort": "Hlela",
@@ -6847,24 +6848,24 @@
       "hint": "Phrosesa iziqeshana ezifika emizuzwini engu-10. Ukunciphisa umsindo kusebenza kangcono kunomsindo wesizinda ozinzile."
     },
     "pages": {
-    "add":  "Engeza ikhasi",
-    "duplicate":  "Phinda ikhasi",
-    "delete":  "Susa ikhasi",
-    "page":  "Ikhasi {{number}}",
-    "position":  "Ikhasi {{current}} kwangu-{{total}}",
-    "label":  "Amakhasi",
-    "allZip":  "Wonke amakhasi angu-{{count}} (ZIP)",
-    "thisPage":  "Leli khasi kuphela",
-    "exporting":  "Kulungiswa ikhasi {{current}} kwangu-{{total}}…"
-},
+      "add": "Engeza ikhasi",
+      "duplicate": "Phinda ikhasi",
+      "delete": "Susa ikhasi",
+      "page": "Ikhasi {{number}}",
+      "position": "Ikhasi {{current}} kwangu-{{total}}",
+      "label": "Amakhasi",
+      "allZip": "Wonke amakhasi angu-{{count}} (ZIP)",
+      "thisPage": "Leli khasi kuphela",
+      "exporting": "Kulungiswa ikhasi {{current}} kwangu-{{total}}…"
+    },
     "captions": {
-        "action":  "Imibhalo engezansi ezenzakalelayo",
-        "working":  "Kuyalalelwa… {{percent}}%",
-        "downloading":  "Kulungiswa imodeli yenkulumo… {{percent}}%",
-        "hint":  "Iguqula inkulumo ibe yimibhalo engezansi enesikhathi ongashintsha isitayela sayo. Isebenza kudivayisi yakho: mahhala futhi iyimfihlo. Ukusetshenziswa kokuqala kulanda imodeli.",
-        "done":  "Kwengezwe imibhalo engezansi engu-{{count}}.",
-        "noSpeech":  "Ayikho inkulumo etholakele kule klip.",
-        "failed":  "Ayikwazanga ukwenza imibhalo engezansi yale klip."
+      "action": "Imibhalo engezansi ezenzakalelayo",
+      "working": "Kuyalalelwa… {{percent}}%",
+      "downloading": "Kulungiswa imodeli yenkulumo… {{percent}}%",
+      "hint": "Iguqula inkulumo ibe yimibhalo engezansi enesikhathi ongashintsha isitayela sayo. Isebenza kudivayisi yakho: mahhala futhi iyimfihlo. Ukusetshenziswa kokuqala kulanda imodeli.",
+      "done": "Kwengezwe imibhalo engezansi engu-{{count}}.",
+      "noSpeech": "Ayikho inkulumo etholakele kule klip.",
+      "failed": "Ayikwazanga ukwenza imibhalo engezansi yale klip."
     },
     "app": {
       "newDesign": "Umklamo omusha",

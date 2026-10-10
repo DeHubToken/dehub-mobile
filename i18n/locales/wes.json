@@ -1008,7 +1008,8 @@
     "postPinned": "E don pin for your profile",
     "postUnpinned": "E don unpin from your profile",
     "pinFailed": "We no fit pin or unpin this post",
-    "askAi": "Ask AI"
+    "askAi": "Ask AI",
+    "aiOverview": "AI overview"
   },
   "filters": {
     "sort": "Arenj",
@@ -6776,24 +6777,24 @@
       "hint": "Process clips reach 10 minutes. Noise reduction work best wit steady background noise."
     },
     "pages": {
-    "add":  "Add page",
-    "duplicate":  "Copy page",
-    "delete":  "Delete page",
-    "page":  "Page {{number}}",
-    "position":  "Page {{current}} for {{total}}",
-    "label":  "Page dem",
-    "allZip":  "All {{count}} page dem (ZIP)",
-    "thisPage":  "Na dis page only",
-    "exporting":  "Di make page {{current}} for {{total}}…"
-},
+      "add": "Add page",
+      "duplicate": "Copy page",
+      "delete": "Delete page",
+      "page": "Page {{number}}",
+      "position": "Page {{current}} for {{total}}",
+      "label": "Page dem",
+      "allZip": "All {{count}} page dem (ZIP)",
+      "thisPage": "Na dis page only",
+      "exporting": "Di make page {{current}} for {{total}}…"
+    },
     "captions": {
-        "action":  "Auto captions",
-        "working":  "Di listen… {{percent}}%",
-        "downloading":  "Di make speech model ready… {{percent}}%",
-        "hint":  "E di turn tok for timed captions weh you fit change dia style. E di run for yua device: free and private. Di first time, e go download di model.",
-        "done":  "Don add {{count}} captions.",
-        "noSpeech":  "No tok for dis clip.",
-        "failed":  "E no fit make captions for dis clip."
+      "action": "Auto captions",
+      "working": "Di listen… {{percent}}%",
+      "downloading": "Di make speech model ready… {{percent}}%",
+      "hint": "E di turn tok for timed captions weh you fit change dia style. E di run for yua device: free and private. Di first time, e go download di model.",
+      "done": "Don add {{count}} captions.",
+      "noSpeech": "No tok for dis clip.",
+      "failed": "E no fit make captions for dis clip."
     },
     "app": {
       "newDesign": "New design",

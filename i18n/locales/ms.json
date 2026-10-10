@@ -1282,7 +1282,8 @@
     "mintPostDesc": "Terbitkan siaran ini di rantaian",
     "giftBoost": "Hadiahkan boost",
     "giftBoostDesc": "Gunakan satu milik anda pada siaran ini",
-    "askAi": "Tanya AI"
+    "askAi": "Tanya AI",
+    "aiOverview": "Gambaran keseluruhan AI"
   },
   "filters": {
     "sort": "Isih",
@@ -7092,24 +7093,24 @@
       "hint": "Proses klip sehingga 10 minit. Pengurangan bunyi berfungsi paling baik dengan bunyi latar belakang yang mantap."
     },
     "pages": {
-    "add":  "Tambah halaman",
-    "duplicate":  "Pendua halaman",
-    "delete":  "Padam halaman",
-    "page":  "Halaman {{number}}",
-    "position":  "Halaman {{current}} daripada {{total}}",
-    "label":  "Halaman",
-    "allZip":  "Semua {{count}} halaman (ZIP)",
-    "thisPage":  "Halaman ini sahaja",
-    "exporting":  "Memaparkan halaman {{current}} daripada {{total}}…"
-},
+      "add": "Tambah halaman",
+      "duplicate": "Pendua halaman",
+      "delete": "Padam halaman",
+      "page": "Halaman {{number}}",
+      "position": "Halaman {{current}} daripada {{total}}",
+      "label": "Halaman",
+      "allZip": "Semua {{count}} halaman (ZIP)",
+      "thisPage": "Halaman ini sahaja",
+      "exporting": "Memaparkan halaman {{current}} daripada {{total}}…"
+    },
     "captions": {
-        "action":  "Kapsyen automatik",
-        "working":  "Mendengar… {{percent}}%",
-        "downloading":  "Menyediakan model pertuturan… {{percent}}%",
-        "hint":  "Menukar pertuturan kepada kapsyen bermasa yang boleh anda gayakan semula. Berjalan pada peranti anda: percuma dan peribadi. Penggunaan pertama akan memuat turun model.",
-        "done":  "{{count}} kapsyen ditambah.",
-        "noSpeech":  "Tiada pertuturan ditemui dalam klip ini.",
-        "failed":  "Tidak dapat mencipta kapsyen untuk klip ini."
+      "action": "Kapsyen automatik",
+      "working": "Mendengar… {{percent}}%",
+      "downloading": "Menyediakan model pertuturan… {{percent}}%",
+      "hint": "Menukar pertuturan kepada kapsyen bermasa yang boleh anda gayakan semula. Berjalan pada peranti anda: percuma dan peribadi. Penggunaan pertama akan memuat turun model.",
+      "done": "{{count}} kapsyen ditambah.",
+      "noSpeech": "Tiada pertuturan ditemui dalam klip ini.",
+      "failed": "Tidak dapat mencipta kapsyen untuk klip ini."
     },
     "app": {
       "newDesign": "Reka bentuk baharu",

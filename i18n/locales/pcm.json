@@ -1003,7 +1003,8 @@
     "postPinned": "E don pin for your profile",
     "postUnpinned": "E don unpin from your profile",
     "pinFailed": "We no fit pin or unpin this post",
-    "askAi": "Ask AI"
+    "askAi": "Ask AI",
+    "aiOverview": "AI overview"
   },
   "filters": {
     "sort": "Sort",
@@ -6710,24 +6711,24 @@
       "hint": "Process clips wey no pass 10 minutes. Noise reduction dey work better when background noise dey steady."
     },
     "pages": {
-    "add":  "Add page",
-    "duplicate":  "Copy page",
-    "delete":  "Delete page",
-    "page":  "Page {{number}}",
-    "position":  "Page {{current}} of {{total}}",
-    "label":  "Page Dem",
-    "allZip":  "All {{count}} page dem (ZIP)",
-    "thisPage":  "Na only dis page",
-    "exporting":  "E dey render page {{current}} of {{total}}…"
-},
+      "add": "Add page",
+      "duplicate": "Copy page",
+      "delete": "Delete page",
+      "page": "Page {{number}}",
+      "position": "Page {{current}} of {{total}}",
+      "label": "Page Dem",
+      "allZip": "All {{count}} page dem (ZIP)",
+      "thisPage": "Na only dis page",
+      "exporting": "E dey render page {{current}} of {{total}}…"
+    },
     "captions": {
-        "action":  "Auto captions",
-        "working":  "E dey listen… {{percent}}%",
-        "downloading":  "E dey ready di speech model… {{percent}}%",
-        "hint":  "E go turn talk to captions wey follow time, and you fit change how dem look. E dey run for your device: free and private. Di first time go download di model.",
-        "done":  "We don add {{count}} captions.",
-        "noSpeech":  "We no hear any talk for dis clip.",
-        "failed":  "We no fit make captions for dis clip."
+      "action": "Auto captions",
+      "working": "E dey listen… {{percent}}%",
+      "downloading": "E dey ready di speech model… {{percent}}%",
+      "hint": "E go turn talk to captions wey follow time, and you fit change how dem look. E dey run for your device: free and private. Di first time go download di model.",
+      "done": "We don add {{count}} captions.",
+      "noSpeech": "We no hear any talk for dis clip.",
+      "failed": "We no fit make captions for dis clip."
     },
     "app": {
       "newDesign": "New design",

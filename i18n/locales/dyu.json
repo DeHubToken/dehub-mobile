@@ -1017,7 +1017,8 @@
     "mintPostDesc": "Nin sɛbɛn bɔ kɛnɛ kan chain kan",
     "giftBoost": "Boost di ka kɛ nilifɛn ye",
     "giftBoostDesc": "I ta kelen musaka nin sɛbɛn kan",
-    "askAi": "AI ɲininka"
+    "askAi": "AI ɲininka",
+    "aiOverview": "A filɛ, a ye min fɔ"
   },
   "filters": {
     "sort": "A bɛn",
@@ -6783,24 +6784,24 @@
       "working": "Kan bɛ labɛn... {{percent}}%"
     },
     "pages": {
-    "add":  "Ɲɛ fara a kan",
-    "duplicate":  "Ɲɛ in dabila fila",
-    "delete":  "Ɲɛ in bɔ",
-    "page":  "Ɲɛ {{number}}",
-    "position":  "Ɲɛ {{current}} {{total}} la",
-    "label":  "Ɲɛw",
-    "allZip":  "Ɲɛ {{count}} bɛɛ (ZIP)",
-    "thisPage":  "Ɲɛ in dɔrɔn",
-    "exporting":  "Ɲɛ {{current}} {{total}} la bɛ labɛn…"
-},
+      "add": "Ɲɛ fara a kan",
+      "duplicate": "Ɲɛ in dabila fila",
+      "delete": "Ɲɛ in bɔ",
+      "page": "Ɲɛ {{number}}",
+      "position": "Ɲɛ {{current}} {{total}} la",
+      "label": "Ɲɛw",
+      "allZip": "Ɲɛ {{count}} bɛɛ (ZIP)",
+      "thisPage": "Ɲɛ in dɔrɔn",
+      "exporting": "Ɲɛ {{current}} {{total}} la bɛ labɛn…"
+    },
     "captions": {
-        "action":  "Sɛbɛnni yɛrɛma",
-        "working":  "Lamɛnni bɛ taa… {{percent}}%",
-        "downloading":  "Kuma modɛli bɛ labɛn… {{percent}}%",
-        "hint":  "A bɛ kuma yɛlɛma ka kɛ sɛbɛnni ye min bɛ bɛn waati ma, i bɛ se k'u cogoya yɛlɛma. A bɛ baara i ka minɛn kan: fu ani gundo la. Fɔlɔ baara la, modɛli bɛ jigi.",
-        "done":  "Sɛbɛnni {{count}} farala a kan.",
-        "noSpeech":  "Kuma si ma sɔrɔ nin klipu in kɔnɔ.",
-        "failed":  "Sɛbɛnni ma se ka dilan nin klipu in kama."
+      "action": "Sɛbɛnni yɛrɛma",
+      "working": "Lamɛnni bɛ taa… {{percent}}%",
+      "downloading": "Kuma modɛli bɛ labɛn… {{percent}}%",
+      "hint": "A bɛ kuma yɛlɛma ka kɛ sɛbɛnni ye min bɛ bɛn waati ma, i bɛ se k'u cogoya yɛlɛma. A bɛ baara i ka minɛn kan: fu ani gundo la. Fɔlɔ baara la, modɛli bɛ jigi.",
+      "done": "Sɛbɛnni {{count}} farala a kan.",
+      "noSpeech": "Kuma si ma sɔrɔ nin klipu in kɔnɔ.",
+      "failed": "Sɛbɛnni ma se ka dilan nin klipu in kama."
     },
     "app": {
       "newDesign": "Desɛn kura",

@@ -1021,7 +1021,8 @@
     "mintPostDesc": "把这个帖子发布到链上",
     "giftBoost": "赠送一次助推",
     "giftBoostDesc": "把你的一次助推花在这个帖子上",
-    "askAi": "问AI"
+    "askAi": "问AI",
+    "aiOverview": "AI 概览"
   },
   "filters": {
     "sort": "排序",
@@ -6864,24 +6865,24 @@
       "hint": "处理时长最长为10分钟的剪辑。噪音消除在背景噪音稳定时效果最佳。"
     },
     "pages": {
-    "add":  "添加页面",
-    "duplicate":  "复制页面",
-    "delete":  "删除页面",
-    "page":  "第 {{number}} 页",
-    "position":  "第 {{current}} 页，共 {{total}} 页",
-    "label":  "页面",
-    "allZip":  "全部 {{count}} 页（ZIP）",
-    "thisPage":  "仅此页",
-    "exporting":  "正在渲染第 {{current}} 页，共 {{total}} 页…"
-},
+      "add": "添加页面",
+      "duplicate": "复制页面",
+      "delete": "删除页面",
+      "page": "第 {{number}} 页",
+      "position": "第 {{current}} 页，共 {{total}} 页",
+      "label": "页面",
+      "allZip": "全部 {{count}} 页（ZIP）",
+      "thisPage": "仅此页",
+      "exporting": "正在渲染第 {{current}} 页，共 {{total}} 页…"
+    },
     "captions": {
-        "action":  "自动字幕",
-        "working":  "正在听… {{percent}}%",
-        "downloading":  "正在准备语音模型… {{percent}}%",
-        "hint":  "把语音转成带时间轴的字幕，样式可以改。在你的设备上运行：免费又私密。第一次用会下载模型。",
-        "done":  "已添加 {{count}} 条字幕。",
-        "noSpeech":  "这个片段里没找到语音。",
-        "failed":  "没法为这个片段生成字幕。"
+      "action": "自动字幕",
+      "working": "正在听… {{percent}}%",
+      "downloading": "正在准备语音模型… {{percent}}%",
+      "hint": "把语音转成带时间轴的字幕，样式可以改。在你的设备上运行：免费又私密。第一次用会下载模型。",
+      "done": "已添加 {{count}} 条字幕。",
+      "noSpeech": "这个片段里没找到语音。",
+      "failed": "没法为这个片段生成字幕。"
     },
     "app": {
       "newDesign": "新设计",

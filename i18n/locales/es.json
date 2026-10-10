@@ -1023,7 +1023,8 @@
     "mintPostDesc": "Publica esta publicación en la cadena",
     "giftBoost": "Regala un impulso",
     "giftBoostDesc": "Gasta uno de los tuyos en esta publicación",
-    "askAi": "Preguntar a la IA"
+    "askAi": "Preguntar a la IA",
+    "aiOverview": "Descripción general de la IA"
   },
   "filters": {
     "sort": "Ordenar",

@@ -1022,7 +1022,8 @@
     "mintPostDesc": "將呢個帖子發佈上鏈",
     "giftBoost": "送一次加成",
     "giftBoostDesc": "用你其中一次落呢個帖子",
-    "askAi": "問AI"
+    "askAi": "問AI",
+    "aiOverview": "人工智能概覽"
   },
   "filters": {
     "sort": "排序",
@@ -6826,24 +6827,24 @@
       "hint": "處理片段最多10分鐘。降噪效果最好係穩定嘅背景噪音。"
     },
     "pages": {
-    "add":  "加頁",
-    "duplicate":  "複製呢頁",
-    "delete":  "刪除呢頁",
-    "page":  "第 {{number}} 頁",
-    "position":  "第 {{current}} 頁，共 {{total}} 頁",
-    "label":  "頁面",
-    "allZip":  "全部 {{count}} 頁（ZIP）",
-    "thisPage":  "淨係呢頁",
-    "exporting":  "處理緊第 {{current}} 頁，共 {{total}} 頁…"
-},
+      "add": "加頁",
+      "duplicate": "複製呢頁",
+      "delete": "刪除呢頁",
+      "page": "第 {{number}} 頁",
+      "position": "第 {{current}} 頁，共 {{total}} 頁",
+      "label": "頁面",
+      "allZip": "全部 {{count}} 頁（ZIP）",
+      "thisPage": "淨係呢頁",
+      "exporting": "處理緊第 {{current}} 頁，共 {{total}} 頁…"
+    },
     "captions": {
-        "action":  "自動字幕",
-        "working":  "聽緊… {{percent}}%",
-        "downloading":  "準備緊語音模型… {{percent}}%",
-        "hint":  "將講嘢轉做有時間嘅字幕，樣式隨你改。喺你部機度運行：免費又私隱。第一次用會下載模型。",
-        "done":  "加咗 {{count}} 條字幕。",
-        "noSpeech":  "呢段片冇搵到講嘢聲。",
-        "failed":  "呢段片整唔到字幕。"
+      "action": "自動字幕",
+      "working": "聽緊… {{percent}}%",
+      "downloading": "準備緊語音模型… {{percent}}%",
+      "hint": "將講嘢轉做有時間嘅字幕，樣式隨你改。喺你部機度運行：免費又私隱。第一次用會下載模型。",
+      "done": "加咗 {{count}} 條字幕。",
+      "noSpeech": "呢段片冇搵到講嘢聲。",
+      "failed": "呢段片整唔到字幕。"
     },
     "app": {
       "newDesign": "新設計",
