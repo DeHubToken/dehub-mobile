@@ -29,7 +29,7 @@ import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
-import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home/FeedFilterPanel";
+import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
@@ -481,7 +481,9 @@ export default function HomeScreen() {
   // the same amount: two transforms on the UI thread, no layout per frame.
   const navPillTop = useSharedValue(0);
   const [pillTopInHeader, setPillTopInHeader] = useState(0);
+  const [navOverlap, setNavOverlap] = useState(38);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
+    setNavOverlap(e.nativeEvent.layout.height - NAV_PILL_TOP_INSET);
     setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1);
     // One point below the pill's top edge, so rounding between the measured
     // layout and the transform can never leave a hairline of feed showing
@@ -883,13 +885,28 @@ export default function HomeScreen() {
     );
   };
 
+  const filterPanel = (
+    <FeedFilterPanel
+      visible={!feedProfileVisible && filterPanelVisible}
+      filters={filters}
+      onFiltersChange={handleFiltersChange}
+      categories={categories}
+      selectedCategory={selectedCategory}
+      onCategoryPress={handleCategoryPress}
+      onResetFilters={handleResetFilters}
+      showFollowingSort
+      navOverlap={theme === 'system' ? navOverlap : undefined}
+      chipRadius={theme === 'system' ? 8 : undefined}
+    />
+  );
+
   return (
     <View className="flex-1">
-      {island && islandMenuOpen ? (
+      {(island && islandMenuOpen) || (theme === 'system' && filterPanelVisible) ? (
         // A tap anywhere outside the menu closes it, and does nothing else.
         <Pressable
           style={styles.menuScrim}
-          onPress={closeIslandMenu}
+          onPress={island ? closeIslandMenu : () => setFilterPanelVisible(false)}
           accessibilityRole="button"
           accessibilityLabel={t("common.close")}
         />
@@ -999,18 +1016,22 @@ export default function HomeScreen() {
         ) : null}
 
 
-        <FeedFilterPanel
-          visible={!feedProfileVisible && filterPanelVisible}
-          filters={filters}
-          onFiltersChange={handleFiltersChange}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryPress={handleCategoryPress}
-          onResetFilters={handleResetFilters}
-          showFollowingSort
-        />
+        {theme !== 'system' ? filterPanel : null}
       </Animated.View>
 
+      {/* A sibling keeps the drawer below the pill and its complete touch
+          area inside its parent without changing the measured feed inset. */}
+      {theme === 'system' ? (
+        <Animated.View
+          pointerEvents={filterPanelVisible ? 'box-none' : 'none'}
+          style={[styles.systemFilterOverlay, {
+            top: Math.max(0, pillTopInHeader - NAV_PILL_TOP_INSET - 1),
+            height: FEED_FILTER_MAX_HEIGHT + navOverlap + NAV_PILL_TOP_INSET,
+          }, headerAnimatedStyle]}
+        >
+          {filterPanel}
+        </Animated.View>
+      ) : null}
 
 
       {feedProfileVisible ? (
@@ -1085,6 +1106,12 @@ const styles = StyleSheet.create({
   },
   menuScrim: {
     ...StyleSheet.absoluteFillObject,
+    zIndex: 9,
+  },
+  systemFilterOverlay: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
     zIndex: 9,
   },
   profileSurface: {
