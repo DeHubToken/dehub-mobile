@@ -152,6 +152,7 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner }: { url: st
       player.muted = muted;
       player.staysActiveInBackground = false;
       player.showNowPlayingNotification = false;
+      setPlayRequested(true);
       player.play();
     } catch {
       // The player is released with the view; a play() on a torn-down one
@@ -194,7 +195,7 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner }: { url: st
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}>
           <Text style={styles.feedbackText}>{broadcastPaused || !playRequested
             ? t('liveViewer.streamPaused')
-            : t('liveViewer.waitingForVideo', { defaultValue: 'Waiting for live video' })}</Text>
+            : t('live.reconnecting')}</Text>
         </View>
       )}
       {controlsVisible && !foldTools && <View style={styles.controls}>
