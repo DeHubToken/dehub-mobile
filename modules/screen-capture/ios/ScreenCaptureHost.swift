@@ -9,6 +9,7 @@ final class ScreenCaptureHost {
   private var drivers: [String: CaptureDriver] = [:]
   private var monitors: [String: Task<Void, Never>] = [:]
   private var finishes: [String: Task<[String: Any], Error>] = [:]
+  private var preCancelled: [String] = []
 
   init(event: @escaping ([String: Any]) -> Void) throws {
     ledger = try CaptureLedger(); self.event = event
@@ -24,6 +25,7 @@ final class ScreenCaptureHost {
   }
 
   func start(id: String, scope: String, playheadMs: Double, microphone: Bool, systemAudio: Bool, title: String, save: String, cancel: String) async throws {
+    guard !preCancelled.contains(id) else { throw CancellationError() }
     guard owned[id] == nil, Self.capabilities()["available"] as? Bool == true else { throw CaptureLedgerError.unavailable }
     var ticket = CaptureTicket(sessionId: id, scopeKey: scope, playheadMs: playheadMs, hostInstanceId: captureHostInstanceId,
       microphone: microphone, systemAudio: systemAudio, state: .pending, cancelRequested: false)
@@ -98,6 +100,8 @@ final class ScreenCaptureHost {
   }
 
   func cancel(_ id: String) async {
+    if !preCancelled.contains(id) { preCancelled.append(id) }
+    if preCancelled.count > 64 { preCancelled.removeFirst() }
     guard let scope = owned[id] else { return }
     try? ledger.requestCancel(id, scopeKey: scope)
     finishes[id]?.cancel()
@@ -128,7 +132,8 @@ final class ScreenCaptureHost {
       while !Task.isCancelled, let self, let scope = self.owned[id] {
         if let ticket = try? self.ledger.ticket(id, scopeKey: scope) {
           if previous != ticket.state.rawValue { previous = ticket.state.rawValue; self.publish(id) }
-          if [.completed, .cancelled, .failed].contains(ticket.state) { return }
+          if ticket.state == .completed { return }
+          if [.cancelled, .failed].contains(ticket.state) { try? self.acknowledge(id); return }
         }
         do { try await Task.sleep(nanoseconds: 250_000_000) } catch { return }
       }

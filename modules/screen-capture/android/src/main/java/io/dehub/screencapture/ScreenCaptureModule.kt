@@ -32,6 +32,7 @@ class ScreenCaptureModule : Module() {
   private lateinit var consent: AppContextActivityResultLauncher<ProjectionConsent, ProjectionConsentResult>
   private var pickerOwner: String? = null
   private val owned = CopyOnWriteArraySet<String>()
+  private val preCancelled = CopyOnWriteArraySet<String>()
   private var applicationContext: Context? = null
   private val observer: (Map<String, Any?>) -> Unit = { state ->
     val id = state["sessionId"] as? String
@@ -55,12 +56,14 @@ class ScreenCaptureModule : Module() {
 
     AsyncFunction("start") Coroutine { id: String, scopeKey: String, playheadMs: Double, microphone: Boolean, systemAudio: Boolean, title: String, save: String, cancel: String ->
       withContext(Dispatchers.Main) {
+        check(!preCancelled.contains(id)) { "Screen recording was cancelled" }
         check(appContext.currentActivity != null && pickerOwner == null) { "Screen capture picker unavailable" }
         val audio = microphone || (systemAudio && Build.VERSION.SDK_INT >= 29)
         check(!audio || ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) { "Audio capture permission is required" }
         val session = CaptureSessions.begin(context, id, scopeKey, playheadMs, microphone, systemAudio, title, save, cancel)
         owned.add(id); pickerOwner = id
         try {
+          check(!preCancelled.contains(id)) { "Screen recording was cancelled" }
           val result = try { consent.launch(ProjectionConsent(id)) } finally { if (pickerOwner == id) pickerOwner = null }
           check(result.sessionId == id && !session.cancelled && !session.cleaned.isCompleted) { "Screen capture no longer belongs to this take" }
           check(result.resultCode == Activity.RESULT_OK && result.data != null) { "Screen capture permission was declined" }
@@ -86,6 +89,8 @@ class ScreenCaptureModule : Module() {
       mapOf("sessionId" to id, "scopeKey" to session.scopeKey, "playheadMs" to session.playheadMs, "uri" to result.uri, "width" to result.width, "height" to result.height, "durationMs" to result.durationMs)
     }
     AsyncFunction("cancel") Coroutine { id: String ->
+      preCancelled.add(id)
+      if (preCancelled.size > 64) preCancelled.firstOrNull()?.let { preCancelled.remove(it) }
       if (owned.contains(id)) {
         val session = CaptureSessions.cancel(context, id)
         session?.cleaned?.await()
