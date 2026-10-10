@@ -1,3 +1,4 @@
+import { useDraftState } from '../hooks/useDraftState';
 import { DIGITAL_PURCHASES_ENABLED, MATURE_CONTENT_ENABLED } from "../config/storefront";
 import { normalizeCategoryName } from "../libs/strings.util";
 import { t } from "i18next";
@@ -307,13 +308,14 @@ export default function UploadScreen() {
   // The main input is always the post description (500 chars), as on web.
   // The title is its own 140-char field: forced for video/audio, toggleable
   // for everything else via the "Title" switch in the extras section.
-  const [bodyText, setBodyText] = useState("");
+  const draftScope = `post:${incomingDraft?.id ?? (incomingQuotedTokenId ? `quote:${incomingQuotedTokenId}` : "new")}`;
+  const [bodyText, setBodyText] = useDraftState(draftScope + ":bodyText", "");
   const bodyMentions = useMentions(bodyText, setBodyText);
   const bodyAssets = useAssetPicker(bodyText, setBodyText);
-  const [titleText, setTitleText] = useState("");
-  const [showTitle, setShowTitle] = useState(false);
-  const [articleMode, setArticleMode] = useState(false);
-  const [articleBody, setArticleBody] = useState("");
+  const [titleText, setTitleText] = useDraftState(draftScope + ":titleText", "");
+  const [showTitle, setShowTitle] = useDraftState(draftScope + ":showTitle", false);
+  const [articleMode, setArticleMode] = useDraftState(draftScope + ":articleMode", false);
+  const [articleBody, setArticleBody] = useDraftState(draftScope + ":articleBody", "");
   const [articlePreview, setArticlePreview] = useState(false);
   const [articleSelection, setArticleSelection] = useState({ start: 0, end: 0 });
   const formatArticle = useCallback((before: string, after: string, placeholder: string, block = false) => {
@@ -322,7 +324,7 @@ export default function UploadScreen() {
     const prefix = block && start > 0 && articleBody[start - 1] !== "\n" ? "\n" : "";
     setArticleBody(`${articleBody.slice(0, start)}${prefix}${before}${selected}${after}${articleBody.slice(end)}`.slice(0, 20000));
     setArticleSelection({ start: start + prefix.length + before.length, end: start + prefix.length + before.length + selected.length });
-  }, [articleBody, articleSelection]);
+  }, [articleBody, articleSelection, setArticleBody]);
   const [articleImageUri, setArticleImageUri] = useState<string | null>(null);
   const [socialImageUri, setSocialImageUri] = useState<string | null>(null);
   const pickArticleImage = useCallback(async () => {
@@ -340,11 +342,11 @@ export default function UploadScreen() {
   useEffect(() => {
     AsyncStorage.getItem(SHOW_TITLE_PREF_KEY)
       .then((v) => {
-        if (v === "true") setShowTitle(true);
+        if (v === "true") setShowTitle.initialize(true);
       })
       .catch(() => {});
-  }, []);
-  const [categories, setCategories] = useState<string[]>([]);
+  }, [setShowTitle]);
+  const [categories, setCategories] = useDraftState<string[]>(draftScope + ":categories", []);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [communityOpen, setCommunityOpen] = useState(false);
@@ -386,7 +388,7 @@ export default function UploadScreen() {
     setIsAudioPreviewPlaying(false);
   }, []);
   const [isMuted, setIsMuted] = useState(true);
-  const [monetization, setMonetization] = useState<MonetizationState>({
+  const [monetization, setMonetization] = useDraftState<MonetizationState>(draftScope + ":monetization", {
     ppvEnabled: false,
     ppvData: { price: "" },
     bountyEnabled: false,
@@ -410,11 +412,11 @@ export default function UploadScreen() {
   const [showLiveSettings, setShowLiveSettings] = useState(false);
   const [liveThumbnailUri, setLiveThumbnailUri] = useState<string | null>(null);
 
-  const [pollEnabled, setPollEnabled] = useState(false);
-  const [pollQuestion, setPollQuestion] = useState("");
-  const [pollOptions, setPollOptions] = useState(["", ""]);
-  const [pollDurationHours, setPollDurationHours] = useState(24);
-  const [pollIsMultiple, setPollIsMultiple] = useState(false);
+  const [pollEnabled, setPollEnabled] = useDraftState(draftScope + ":pollEnabled", false);
+  const [pollQuestion, setPollQuestion] = useDraftState(draftScope + ":pollQuestion", "");
+  const [pollOptions, setPollOptions] = useDraftState(draftScope + ":pollOptions", ["", ""]);
+  const [pollDurationHours, setPollDurationHours] = useDraftState(draftScope + ":pollDurationHours", 24);
+  const [pollIsMultiple, setPollIsMultiple] = useDraftState(draftScope + ":pollIsMultiple", false);
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
@@ -612,12 +614,12 @@ export default function UploadScreen() {
   // on a switch the user already made.
   useEffect(() => {
     if (!isSolanaChain(effectivePostChainId)) return;
-    setMonetization((prev) =>
+    setMonetization.initialize((prev) =>
       prev.bountyEnabled
         ? { ...prev, bountyEnabled: false }
         : prev,
     );
-  }, [effectivePostChainId]);
+  }, [effectivePostChainId, setMonetization]);
 
   const communitySlugs = useMemo(
     () => new Set(userCommunities.map((c) => c.slug)),
@@ -646,7 +648,7 @@ export default function UploadScreen() {
 
   const handleClearCommunity = useCallback(() => {
     setCategories((prev) => prev.filter((c) => !communitySlugs.has(c)));
-  }, [communitySlugs]);
+  }, [communitySlugs, setCategories]);
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
@@ -728,8 +730,8 @@ export default function UploadScreen() {
   // (or a restored draft, whose effect runs after this one) never overwrites it.
   useEffect(() => {
     if (!incomingInitialText) return;
-    setBodyText((prev) => (prev ? prev : incomingInitialText));
-  }, [incomingInitialText]);
+    setBodyText.initialize((prev) => (prev ? prev : incomingInitialText));
+  }, [incomingInitialText, setBodyText]);
 
   // Pictures handed over by another surface, e.g. a design finished in the
   // editor. Same rule as the text above: they only fill an empty composer.
@@ -746,38 +748,38 @@ export default function UploadScreen() {
     if (!incomingDraft) return;
     restoredDraftIdRef.current = incomingDraft.id;
     if (incomingDraft.titleText != null) {
-      setTitleText(incomingDraft.titleText.slice(0, TITLE_MAX));
-      setBodyText(incomingDraft.bodyText);
-      if (incomingDraft.titleText.trim().length > 0) setShowTitle(true);
+      setTitleText.initialize(incomingDraft.titleText.slice(0, TITLE_MAX));
+      setBodyText.initialize(incomingDraft.bodyText);
+      if (incomingDraft.titleText.trim().length > 0) setShowTitle.initialize(true);
     } else if (incomingDraft.videoUri) {
       // Legacy draft from before the title/description split: bodyText held
       // the video title and description held the body.
-      setTitleText(incomingDraft.bodyText.slice(0, TITLE_MAX));
-      setBodyText(incomingDraft.description);
+      setTitleText.initialize(incomingDraft.bodyText.slice(0, TITLE_MAX));
+      setBodyText.initialize(incomingDraft.description);
     } else {
-      setBodyText(incomingDraft.bodyText || incomingDraft.description);
+      setBodyText.initialize(incomingDraft.bodyText || incomingDraft.description);
     }
     if (incomingDraft.articleBody) {
-      setArticleMode(true);
-      setArticleBody(incomingDraft.articleBody);
-      setShowTitle(true);
+      setArticleMode.initialize(true);
+      setArticleBody.initialize(incomingDraft.articleBody);
+      setShowTitle.initialize(true);
       const shareImageUri = incomingDraft.socialImageUri || incomingDraft.articleImageUri || null;
       setArticleImageUri(shareImageUri);
       setSocialImageUri(shareImageUri);
     }
-    setCategories(incomingDraft.categories);
+    setCategories.initialize(incomingDraft.categories);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
     // Web-created (and pre-monetization) drafts carry no monetization blob;
     // restoring undefined crashes the first monetization.ppvEnabled read.
-    setMonetization(incomingDraft.monetization ?? emptyMonetization());
+    setMonetization.initialize(incomingDraft.monetization ?? emptyMonetization());
     if (incomingDraft.poll) {
-      setPollEnabled(true);
-      setPollQuestion(incomingDraft.poll.question ?? "");
+      setPollEnabled.initialize(true);
+      setPollQuestion.initialize(incomingDraft.poll.question ?? "");
       const options = (incomingDraft.poll.options ?? []).map((o) => o.text ?? "");
-      setPollOptions(options.length >= 2 ? options : [...options, "", ""].slice(0, 2));
-      setPollDurationHours(incomingDraft.poll.duration ?? 24);
-      setPollIsMultiple(Boolean(incomingDraft.poll.isMultipleChoice));
+      setPollOptions.initialize(options.length >= 2 ? options : [...options, "", ""].slice(0, 2));
+      setPollDurationHours.initialize(incomingDraft.poll.duration ?? 24);
+      setPollIsMultiple.initialize(Boolean(incomingDraft.poll.isMultipleChoice));
     }
     if (incomingDraft.isMature) setIsMature(true);
     if (incomingDraft.isForKids) setIsForKids(true);
@@ -812,15 +814,31 @@ export default function UploadScreen() {
     // and remote. It is consumed when the composer actually produces
     // something from it — a queued post or a re-saved draft.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setArticleBody, setArticleMode, setBodyText, setCategories, setMonetization, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion, setShowTitle, setTitleText]);
+
+  const clearActiveDraft = useCallback(() => {
+    setBodyText.clear();
+    setTitleText.clear();
+    setShowTitle.clear();
+    setArticleMode.clear();
+    setArticleBody.clear();
+    setCategories.clear();
+    setMonetization.clear();
+    setPollEnabled.clear();
+    setPollQuestion.clear();
+    setPollOptions.clear();
+    setPollDurationHours.clear();
+    setPollIsMultiple.clear();
+  }, [setBodyText, setTitleText, setShowTitle, setArticleMode, setArticleBody, setCategories, setMonetization, setPollEnabled, setPollQuestion, setPollOptions, setPollDurationHours, setPollIsMultiple]);
 
   /** Delete the restored draft once the composer has produced something from it. */
   const consumeRestoredDraft = useCallback(() => {
+    clearActiveDraft();
     const id = restoredDraftIdRef.current;
     if (!id) return;
     restoredDraftIdRef.current = null;
     deleteDraft(id).catch(() => {});
-  }, [deleteDraft]);
+  }, [deleteDraft, clearActiveDraft]);
 
   const addCategory = useCallback(
     (name: string) => {
@@ -837,7 +855,7 @@ export default function UploadScreen() {
     setCategories((prev) =>
       prev.filter((c) => c.toLowerCase() !== name.toLowerCase()),
     );
-  }, []);
+  }, [setCategories]);
 
   const formHasContent = useMemo(
     () =>
@@ -911,7 +929,7 @@ export default function UploadScreen() {
       bodySelectionRef.current = { start: caret, end: caret };
       return next;
     });
-  }, [DESCRIPTION_MAX]);
+  }, [DESCRIPTION_MAX, setBodyText]);
 
   const handleBodyChange = useCallback((text: string) => {
     if (text.length > DESCRIPTION_MAX) return;
@@ -1076,7 +1094,7 @@ export default function UploadScreen() {
       setPollIsMultiple(false);
     }
     setPollEnabled((prev) => !prev);
-  }, [pollEnabled]);
+  }, [pollEnabled, setPollDurationHours, setPollEnabled, setPollIsMultiple, setPollOptions, setPollQuestion]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -1424,12 +1442,10 @@ export default function UploadScreen() {
     } finally {
       if (!queued) releaseSubmit();
     }
-  }, [
-    canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
+  }, [canPost, activeIsUploading, postingChainReady, isLiveMode, isQuoteMode, bodyText, pickedVideo,
     pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
     submitPost, submitQuotePost, releaseSubmit,
-    isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft,
-  ]);
+    isStageMode, titleText, scheduledDate, liveThumbnailUri, thumbnailUri, scheduleSpace, createSpace, openStages, nav, consumeRestoredDraft, setBodyText, setTitleText]);
 
   const buildDraftData = useCallback(() => ({
     bodyText,
@@ -1488,9 +1504,10 @@ export default function UploadScreen() {
 
   /** "Discard" from discard warning modal */
   const handleDiscard = useCallback(() => {
+    clearActiveDraft();
     setShowDiscardModal(false);
     nav.goBack();
-  }, [nav]);
+  }, [nav, clearActiveDraft]);
 
   const generateThumbnail = useCallback(async (uri: string) => {
     try {
@@ -1568,7 +1585,7 @@ export default function UploadScreen() {
       setTitleText(title);
       setBodyText(description);
     }
-  }, [bodyText, titleText]);
+  }, [bodyText, titleText, setBodyText, setTitleText]);
 
   /** Size-checks a video asset and adopts it as the post's media. */
   const adoptVideoAsset = useCallback(
@@ -2163,7 +2180,7 @@ export default function UploadScreen() {
     setShowTitle(value);
     AsyncStorage.setItem(SHOW_TITLE_PREF_KEY, String(value)).catch(() => {});
     if (value) setTimeout(() => titleRef.current?.focus(), 100);
-  }, []);
+  }, [setShowTitle]);
 
   const openCategoryDrawer = useCallback(() => {
     setCategoryOpen(true);
@@ -2171,7 +2188,7 @@ export default function UploadScreen() {
 
   const handleMonetizationChange = useCallback((next: MonetizationState) => {
     setMonetization(next);
-  }, []);
+  }, [setMonetization]);
 
   // 0 when the keyboard is down: this screen already ends above the home
   // indicator, so padding by insets.bottom again left a dead strip.

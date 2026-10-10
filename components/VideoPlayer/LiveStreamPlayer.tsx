@@ -1450,12 +1450,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [activities, liveChat.messages, isLiveEffective, isEndedEffective]);
 
   const handleSendMessage = useCallback(
-    (content: string) => {
-      if (!content.trim() || !chatRoomId || !isSignedIn) return;
+    async (content: string): Promise<boolean> => {
+      if (!content.trim() || !chatRoomId || !isSignedIn) return false;
       // No optimistic row: the gateway re-broadcasts the message to the room,
       // sender included, within the round trip, and a refused send comes back
       // on its error channel instead of vanishing.
-      liveChat.sendMessage({ content: content.trim(), messageType: "text" });
+      return liveChat.sendMessage({ content: content.trim(), messageType: "text" });
     },
     [chatRoomId, isSignedIn, liveChat]
   );
@@ -1642,6 +1642,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
                 {/* Say something, or do something: one row of it. */}
                 <LiveViewerActionBar
+                  draftScope={chatRoomId ? `stream:${chatRoomId}:composer` : null}
                   viewportHeight={viewportHeight}
                   canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
                   chatEnabled={liveChatEnabled}

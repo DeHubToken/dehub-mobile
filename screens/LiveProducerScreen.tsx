@@ -1,3 +1,4 @@
+import { confirmChatDelivery } from '../libs/chat-delivery';
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import {
   View,
@@ -719,8 +720,8 @@ const LiveProducerScreen: React.FC = () => {
   }, [streamId, streamEntity, stage, liveChatEnabled]);
 
   // Send chat message from floating chat
-  const handleSendChatMessage = useCallback((content: string) => {
-    if (!content || stage !== "live") return;
+  const handleSendChatMessage = useCallback(async (content: string): Promise<boolean> => {
+    if (!content || stage !== "live") return false;
     const tempId = `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     addChatActivity({
       status: StreamActivityType.MESSAGE,
@@ -729,11 +730,22 @@ const LiveProducerScreen: React.FC = () => {
       createdAt: Date.now(),
       optimistic: true,
     });
-    socketEmitAuthed(LivestreamEvents.SendMessage, {
-      streamId: streamId || (streamEntity as any)?._id,
-      content,
+    const target = streamId || (streamEntity as any)?._id;
+    return confirmChatDelivery({
+      listen: (event, handler) => socketOn(event, handler) || (() => {}),
+      emit: () => { socketEmitAuthed(LivestreamEvents.SendMessage, { streamId: target, content }); },
+      messageEvent: LivestreamEvents.SendMessage, errorEvent: LivestreamEvents.StreamError,
+      matches: payload => {
+        const message = payload?.message || payload;
+        const meta = message?.meta || payload?.meta || {};
+        const address = message?.user?.address || message?.account?.address || meta?.address;
+        const room = message?.streamId || payload?.streamId;
+        return (!room || String(room) === String(target)) &&
+          String(address || '').toLowerCase() === String(user?.address || user?.walletAddress || '').toLowerCase() &&
+          (meta.content || message?.content) === content;
+      },
     });
-  }, [stage, user, addChatActivity, socketEmitAuthed, streamId, streamEntity]);
+  }, [stage, user, addChatActivity, socketEmitAuthed, socketOn, streamId, streamEntity]);
 
   const openEndConfirm = useCallback(() => {
     setShowEndConfirm(true);
@@ -1418,6 +1430,7 @@ const LiveProducerScreen: React.FC = () => {
 
                 {/* Floating chat messages + input */}
                 <ProducerFloatingChat
+                  draftScope={`stream:${streamId || (streamEntity as any)?._id}:producer`}
                   activities={chatActivities}
                   isLive={stage === "live"}
                   chatEnabled={liveChatEnabled}

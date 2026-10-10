@@ -1,3 +1,4 @@
+import { accountDraftKey } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
@@ -217,7 +218,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Input state. Whatever was left unsent last time comes back with it — the
   // text and the reply it was aimed at — read once so the two can't disagree.
-  const [restoredDraft] = useState(() => loadCommentDraft(tokenId));
+  const commentDraftScope = accountDraftKey(user?.walletAddress || user?.address, `comments:${tokenId}`) ?? '';
+  const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
   const { isMinimal } = useAppTheme();
   const [inputText, setInputText] = useState(restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
@@ -261,13 +263,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // An edit borrows the same box. What is in it belongs to the comment being
     // edited, not to a new one, so it must not overwrite the draft underneath.
     if (editingComment) return;
-    saveCommentDraft(tokenId, {
+    saveCommentDraft(commentDraftScope, {
       text: inputText,
       parentId: replyingTo ? Number(replyingTo.id) : undefined,
       parentUsername: replyingTo?.user?.displayName || replyingTo?.user?.username,
       gifUrl: mediaAttachment?.type === "gif" ? mediaAttachment.url : undefined,
     });
-  }, [tokenId, inputText, replyingTo, mediaAttachment]);
+  }, [tokenId, commentDraftScope, inputText, replyingTo, mediaAttachment, editingComment]);
 
   // Something unsent in the box. The sheet reads this to refuse to close
   // mid-sentence; an unmount reports clean so a closed sheet can't latch it on.
@@ -740,7 +742,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // comment instead. Blanking the box did neither: it destroyed a written
     // comment on a tap meant only to change who it was aimed at.
     if (editingComment) {
-      setInputText(loadCommentDraft(tokenId)?.text ?? "");
+      setInputText(loadCommentDraft(commentDraftScope)?.text ?? "");
       mentions.reset();
     }
     setReplyingTo(null);
@@ -999,7 +1001,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           );
           setEditingComment(null);
           // Back to the draft the edit borrowed the box from, if there was one.
-          setInputText(loadCommentDraft(tokenId)?.text ?? "");
+          setInputText(loadCommentDraft(commentDraftScope)?.text ?? "");
           mentions.reset();
           Keyboard.dismiss();
 
@@ -1061,18 +1063,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
-          clearCommentDraft(tokenId);
-          setReplyingTo(null);
-          setInputText("");
-          mentions.reset();
-          Keyboard.dismiss();
-
           // Post to server
           const res = await postComment({
             streamTokenId: tokenId,
             content: text,
             commentId: replyToId,
           });
+
+          if (loadCommentDraft(commentDraftScope)?.text === inputText) clearCommentDraft(commentDraftScope);
+          setReplyingTo(null);
+          setInputText(current => current === inputText ? "" : current);
+          mentions.reset();
+          Keyboard.dismiss();
 
           // Reconcile temp ID with server ID
           const newId = res?.result?.id ?? res?.id;
@@ -1109,8 +1111,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           // Post was tapped, so a refusal used to destroy what was written —
           // the one moment losing it hurts most. The draft store follows the
           // state, so this lands on disk too.
-          setInputText(text);
-          setReplyingTo(replyingTo);
+          // Keep the exact text already in the composer, including whitespace.
         }
         
         // The server's own words when it has them: a refusal explains itself,
@@ -1121,7 +1122,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t]);
+  }, [inputText, posting, requireAuth, tokenId, commentDraftScope, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply, t]);
 
   /**
    * What every Post control calls. On a Common Ground thread the first reply
@@ -2036,7 +2037,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   );
 };
 
-export const CommentSection = memo(CommentSectionComponent);
+export const CommentSection = memo(function CommentSection(props: CommentSectionProps) {
+  const user = useUser();
+  const account = user?.walletAddress || user?.address || 'signed-out';
+  return <CommentSectionComponent key={`${account.toLowerCase()}:${props.tokenId}`} {...props} />;
+});
 export default CommentSection;
 
 const aiChipStyle = { gap: 6, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.06)" } as const;

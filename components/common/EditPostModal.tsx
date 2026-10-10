@@ -1,3 +1,4 @@
+import { useDraftState } from '../../hooks/useDraftState';
 /**
  * EditPostModal - Glass modal for editing post title, description & categories
  *
@@ -89,7 +90,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [isForKids, setIsForKids] = useState(initialForKids === true);
-  const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
+  const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + ":shopLinks", initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   /**
    * Common Ground mode lives in Supabase, not on the token, so it is read and
@@ -121,9 +122,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   // Null until the attached rows land, so an opening modal cannot momentarily
   // read as "the creator deselected everything" and detach a live rail.
   const listingIds = pickedIds ?? attachedIds;
-  const [title, setTitle] = useState(initialTitle);
-  const [description, setDescription] = useState(initialDescription);
-  const [articleBody, setArticleBody] = useState(initialArticleBody ?? "");
+  const [title, setTitle] = useDraftState(`post:edit:${tokenId}` + ":title", initialTitle);
+  const [description, setDescription] = useDraftState(`post:edit:${tokenId}` + ":description", initialDescription);
+  const [articleBody, setArticleBody] = useDraftState(`post:edit:${tokenId}` + ":articleBody", initialArticleBody ?? "");
   // Text cap scales with the badge tier; only read once the modal opens.
   const [tierTextMax, setTierTextMax] = useState(BASE_POST_TEXT_CHARS);
   useEffect(() => {
@@ -136,7 +137,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const titleMentions = useMentions(title, setTitle);
   const descMentions = useMentions(description, setDescription);
   const [selectedCategories, setSelectedCategories] =
-    useState<string[]>(initialCategories);
+    useDraftState<string[]>(`post:edit:${tokenId}` + ":selectedCategories", initialCategories);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -206,15 +207,15 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   // Sync when modal opens with latest props
   useEffect(() => {
     if (visible) {
-      setTitle(initialTitle);
-      setDescription(initialDescription);
-      setArticleBody(initialArticleBody ?? "");
-      setSelectedCategories(initialCategories);
+      setTitle.initialize(initialTitle);
+      setDescription.initialize(initialDescription);
+      setArticleBody.initialize(initialArticleBody ?? "");
+      setSelectedCategories.initialize(initialCategories);
       setCommentsDisabled(initialCommentsDisabled);
       setIsMature(initialContentRating === "mature");
       setIsForKids(initialForKids === true);
     }
-  }, [visible, initialTitle, initialDescription, initialArticleBody, initialCategories, initialCommentsDisabled, initialContentRating, initialForKids]);
+  }, [visible, initialTitle, initialDescription, initialArticleBody, initialCategories, initialCommentsDisabled, initialContentRating, initialForKids, setArticleBody, setDescription, setSelectedCategories, setTitle]);
 
   // Load categories when modal opens
   useEffect(() => {
@@ -247,12 +248,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         return [...prev, normalized];
       });
     },
-    []
+    [setSelectedCategories]
   );
 
   const removeCategory = useCallback((cat: string) => {
     setSelectedCategories((prev) => prev.filter((c) => c !== cat));
-  }, []);
+  }, [setSelectedCategories]);
 
   const handleSave = useCallback(async () => {
     if (tokenId == null) return;
@@ -333,6 +334,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 
       await editPost(tokenId, payload);
       toastSuccess(t("editPost.updated"));
+      setTitle.complete(title, title);
+      setDescription.complete(description, description);
+      setArticleBody.complete(articleBody, articleBody);
+      setSelectedCategories.complete(selectedCategories, selectedCategories);
+      setShopLinks.complete(shopLinks, shopLinks);
       onSuccess?.({
         name: payload.name,
         description: payload.description,
@@ -350,8 +356,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     } finally {
       setSaving(false);
     }
-  }, [
-    tokenId,
+  }, [tokenId,
     title,
     description,
     articleBody,
@@ -377,8 +382,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     initialContentRating,
     initialForKids,
     onSuccess,
-    onClose,
-  ]);
+    onClose, setArticleBody, setDescription, setSelectedCategories, setShopLinks, setTitle]);
 
   const hasChanges =
     title.trim() !== initialTitle ||

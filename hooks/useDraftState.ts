@@ -17,6 +17,8 @@ export type DraftSetter<T> = ((next: Update<T>) => void) & {
   initialize: (next: Update<T>) => void;
   /** Call after a successful save or explicit discard. */
   clear: () => void;
+  /** Finish a successful submission only if no newer typing replaced it. */
+  complete: (submitted: T, replacement: T) => boolean;
 };
 
 /** Persist only deliberately selected, non-secret state at an explicit logical identity. */
@@ -56,12 +58,21 @@ export function useStoredDraftState<T>(key: string | null, initial: T | (() => T
     if (liveKey.current === key) setState({ key, value });
   }, [key]) as DraftSetter<T>;
   setter.initialize = (next) => {
+    if (liveKey.current !== key) return;
     if (key && readDraft(key)) return;
     const value = typeof next === 'function' ? (next as (previous: T) => T)(current.current) : next;
     current.current = value;
     setState({ key, value });
   };
   setter.clear = () => { if (key) { clearDraft(key); flushDrafts(); } };
+  setter.complete = (submitted, replacement) => {
+    const raw = key ? readDraft(key) : '';
+    const expected = JSON.stringify({ value: submitted });
+    if (raw ? raw !== expected : liveKey.current !== key || JSON.stringify(current.current) !== JSON.stringify(submitted)) return false;
+    setter(replacement);
+    setter.clear();
+    return liveKey.current === key;
+  };
   useEffect(() => flushDrafts, []);
   return [value, setter];
 }
