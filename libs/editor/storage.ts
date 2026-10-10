@@ -128,6 +128,20 @@ export interface PickedPicture {
 export async function importPicture(picked: PickedPicture): Promise<MediaMeta> {
   await ensureDir(mediaDir());
   const id = newId(10);
+  const sourceType = (picked.mimeType ?? "").split(";")[0].toLowerCase();
+  const original = sourceType === "image/gif" ? "gif" : sourceType === "image/svg+xml" ? "svg" : null;
+  if (original) {
+    const info = await FileSystem.getInfoAsync(picked.uri);
+    const size = info.exists && "size" in info ? info.size : 0;
+    if (!info.exists || !size) throw new Error("empty picture");
+    if (size > MAX_MEDIA_BYTES) throw new MediaTooLargeError("too large");
+    const file = `${id}.${original}`;
+    await FileSystem.copyAsync({ from: picked.uri, to: `${mediaDir()}${file}` });
+    const meta: MediaMeta = { id, name: picked.fileName || file, kind: "image", provenance: picked.provenance,
+      mimeType: sourceType, width: picked.width, height: picked.height, size, file, createdAt: Date.now() };
+    await FileSystem.writeAsStringAsync(`${mediaDir()}${id}.json`, JSON.stringify(meta));
+    return meta;
+  }
   // PNG keeps transparency, which cut-outs and stickers rely on.
   const png = /png/i.test(picked.mimeType ?? "") || /\.png$/i.test(picked.fileName ?? picked.uri);
   const longest = Math.max(picked.width, picked.height);
