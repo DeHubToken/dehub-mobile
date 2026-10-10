@@ -32,20 +32,20 @@ import {
 const SLIDES: StorySlide[] = [
   {
     id: "1",
-    title: "Censorship resistant media for the",
-    subtitle: "next generation",
+    title: "The Social Media We",
+    subtitle: "All Deserve",
     description: "Instantly monetize, never get deplatformed, keep up to 99% of revenue and create free from censorship or platform manipulation.",
   },
   {
     id: "2",
-    title: "No bias or",
-    subtitle: "centralized authority",
+    title: "The App",
+    subtitle: "For Everyone",
     description: "No algorithms that favor one side of the argument. Everyone is amplified equally and fairly with open source code.",
   },
   {
     id: "3",
-    title: "You will own everything",
-    subtitle: "and be happy",
+    title: "You Will Own Everything,",
+    subtitle: "And Be Happy",
     description: "The ownership economy means your data, assets and audience are yours forever. Even the DeHub network is owned by its users, you.",
   },
 ];
@@ -204,7 +204,7 @@ const OnboardingScreen: React.FC = () => {
       ]}
       onAccessibilityAction={handleAccessibilityAction}
     >
-      {/* The same hovering artwork as the web welcome slides. */}
+      {/* Rive Background - Full screen, behind everything */}
       <OnboardingBackground activeIndex={activeIndex} totalSlides={SLIDES.length} />
 
       <SafeAreaView style={styles.safeArea} edges={["top"]}>
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   textContainer: {
-    minHeight: 260,
+    minHeight: 160,
     position: "relative",
   },
   bottomContainer: {
