@@ -1014,8 +1014,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleSharePress = useCallback(() => {
     if (tokenId == null) return;
-    sharePostAsImage(Number(tokenId), shareUrl, localTitle || undefined).catch(() => {});
-  }, [tokenId, shareUrl, localTitle]);
+    sharePostAsImage(Number(tokenId), shareUrl, localTitle || undefined, item.postType).catch(() => {});
+  }, [tokenId, shareUrl, localTitle, item.postType]);
 
   const handleTipPress = useCallback(() => {
     if (!minterAddress) return;
