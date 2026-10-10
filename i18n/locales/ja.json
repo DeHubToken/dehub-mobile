@@ -6903,24 +6903,24 @@
       "hint": "最大10分間のクリップを処理します。 ノイズリダクションは、安定したバックグラウンドノイズに最適です。"
     },
     "pages": {
-    "add":  "ページを追加",
-    "duplicate":  "ページを複製",
-    "delete":  "ページを削除",
-    "page":  "ページ {{number}}",
-    "position":  "ページ {{current}} / {{total}}",
-    "label":  "ページ",
-    "allZip":  "全{{count}}ページ（ZIP）",
-    "thisPage":  "このページのみ",
-    "exporting":  "ページ {{current}} / {{total}} をレンダリング中…"
-},
+      "add": "ページを追加",
+      "duplicate": "ページを複製",
+      "delete": "ページを削除",
+      "page": "ページ {{number}}",
+      "position": "ページ {{current}} / {{total}}",
+      "label": "ページ",
+      "allZip": "全{{count}}ページ（ZIP）",
+      "thisPage": "このページのみ",
+      "exporting": "ページ {{current}} / {{total}} をレンダリング中…"
+    },
     "captions": {
-        "action":  "自動字幕",
-        "working":  "聞き取り中… {{percent}}%",
-        "downloading":  "音声モデルを準備中… {{percent}}%",
-        "hint":  "音声をタイミング付きの字幕に変換し、スタイルを自由に変更できます。端末上で動作するため無料でプライベートです。初回利用時にモデルをダウンロードします。",
-        "done":  "{{count}}件の字幕を追加しました。",
-        "noSpeech":  "このクリップには音声が見つかりませんでした。",
-        "failed":  "このクリップの字幕を作成できませんでした。"
+      "action": "自動字幕",
+      "working": "聞き取り中… {{percent}}%",
+      "downloading": "音声モデルを準備中… {{percent}}%",
+      "hint": "音声をタイミング付きの字幕に変換し、スタイルを自由に変更できます。端末上で動作するため無料でプライベートです。初回利用時にモデルをダウンロードします。",
+      "done": "{{count}}件の字幕を追加しました。",
+      "noSpeech": "このクリップには音声が見つかりませんでした。",
+      "failed": "このクリップの字幕を作成できませんでした。"
     },
     "app": {
       "newDesign": "新しいデザイン",
@@ -7309,7 +7309,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "ライブ編集を停止",
+      "receiveEdits": "ライブ編集を受信",
+      "shareEdits": "編集をライブ共有",
+      "waiting": "編集の完了を待っています",
+      "transferring": "編集を転送中",
+      "sharing": "編集をライブ共有中",
+      "receiving": "ライブ編集を受信中",
+      "paused": "ライブ編集を一時停止",
+      "retryRecovery": "復旧を再試行",
+      "personalCopy": "個人用コピーを保存",
+      "privateHint": "参加するだけでは編集はアップロードされません。ライブ共有では新しい非公開素材がアップロードされ、保存では永続的なバージョンが作成されます。"
     },
     "videoTemplates": {
       "heading": "動画テンプレート",

@@ -2,12 +2,15 @@ import { useEffect } from "react";
 import { AppState, Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useUser } from "../../context/AuthContext";
+import { useCloudDraftController } from "../../libs/editor/useCloudDraftController";
+import type { CloudDraftEditor } from "../../libs/editor/cloudDraftController";
 import { useCloudProjectPresence } from "../../libs/editor/useCloudProjectPresence";
 import { nativeCloudProjectSession } from "../../libs/editor/cloudProjectDevice";
 import { ensureWalletSession } from "../../libs/wallet-session";
-export function LiveProjectSession({ projectId }: { projectId: string }) {
+export function LiveProjectSession({ projectId,editor }: { projectId: string;editor:CloudDraftEditor }) {
   const user = useUser(), { t } = useTranslation(), address = user?.walletAddress || user?.address;
   const live = useCloudProjectPresence(address, projectId, nativeCloudProjectSession, ensureWalletSession);
+  const edits=useCloudDraftController(address,projectId,nativeCloudProjectSession,editor,live);
   useEffect(() => { const subscription = AppState.addEventListener("change", state => { if (state !== "active") live.leave(); }); return () => subscription.remove(); }, [address, projectId]);
   const joined = live.status === "connected", waiting = live.status === "connecting";
   return <View className="border-b border-white/10 px-3 py-1" style={{ gap: 4 }}>
@@ -16,7 +19,16 @@ export function LiveProjectSession({ projectId }: { projectId: string }) {
       <Text accessibilityLiveRegion="polite" className="text-white/70 text-xs">{joined ? t("editor.live.connected", { count: live.participants.length, revision: live.revision }) : t(live.status === "disconnected" ? "editor.live.disconnected" : "editor.live.hint")}</Text>
       {joined && <Pressable accessibilityRole="button" onPress={live.refresh}><Text className="text-white text-xs underline">{t("common.refresh")}</Text></Pressable>}
     </View>
-    {joined && <Text className="text-white/50 text-[10px]" numberOfLines={2}>{live.participants.map(p => `${p.wallet.slice(0, 6)}…${p.wallet.slice(-4)}${p.connections > 1 ? ` (${p.connections})` : ""}`).join(", ")}{" · "}{t("editor.live.saveHint")}</Text>}
+    {joined && <Text className="text-white/50 text-[10px]" numberOfLines={2}>{live.participants.map(p => `${p.wallet.slice(0, 6)}…${p.wallet.slice(-4)}${p.connections > 1 ? ` (${p.connections})` : ""}`).join(", ")}{" · "}{t("editor.live.privateHint",{defaultValue:"Presence alone shares no edits. Share edits live uploads new sources privately."})}</Text>}
+    {joined && <View className="flex-row flex-wrap items-center" style={{gap:8}}>
+      {edits.mode ? <Pressable accessibilityRole="button" onPress={edits.stop}><Text className="text-white text-xs underline">{t("editor.live.stopEdits",{defaultValue:"Stop live edits"})}</Text></Pressable> : <>
+        <Pressable accessibilityRole="button" onPress={edits.startReceiving}><Text className="text-white text-xs underline">{t("editor.live.receiveEdits",{defaultValue:"Receive live edits"})}</Text></Pressable>
+        <Pressable accessibilityRole="button" onPress={edits.startSharing}><Text className="text-white text-xs underline">{t("editor.live.shareEdits",{defaultValue:"Share edits live"})}</Text></Pressable>
+      </>}
+      {edits.mode && <Text accessibilityLiveRegion="polite" className="text-white/70 text-xs">{edits.error?t("editor.live.paused",{defaultValue:"Live edits paused"}):edits.status==="waiting"?t("editor.live.waiting",{defaultValue:"Waiting for your edit to finish"}):edits.status==="syncing"?t("editor.live.transferring",{defaultValue:"Transferring live edits…"}):t(edits.mode==="sharing"?"editor.live.sharing":"editor.live.receiving",{defaultValue:edits.mode==="sharing"?"Sharing live edits":"Receiving live edits"})}</Text>}
+      {edits.error && <><Text accessibilityLiveRegion="assertive" className="text-red-300 text-xs">{edits.error}</Text><Pressable accessibilityRole="button" onPress={edits.retry}><Text className="text-white text-xs underline">{t("editor.live.retryRecovery",{defaultValue:"Retry recovery"})}</Text></Pressable><Pressable accessibilityRole="button" onPress={()=>{void edits.saveCopy().then(saved=>{if(saved)live.leave();});}}><Text className="text-white text-xs underline">{t("editor.live.personalCopy",{defaultValue:"Save a personal copy"})}</Text></Pressable></>}
+    </View>}
+    {edits.copyError && <Text accessibilityLiveRegion="assertive" className="text-red-300 text-xs">{edits.copyError}</Text>}
     {live.error && <Text accessibilityLiveRegion="assertive" className="text-red-300 text-xs">{t("editor.live.error")}</Text>}
   </View>;
 }

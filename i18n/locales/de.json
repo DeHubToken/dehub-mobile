@@ -6925,24 +6925,24 @@
       "hint": "Bearbeiten Sie Clips bis zu 10 Minuten. Die Rauschunterdrückung funktioniert am besten bei stetigen Hintergrundgeräuschen."
     },
     "pages": {
-    "add":  "Seite hinzufügen",
-    "duplicate":  "Seite duplizieren",
-    "delete":  "Seite löschen",
-    "page":  "Seite {{number}}",
-    "position":  "Seite {{current}} von {{total}}",
-    "label":  "Seiten",
-    "allZip":  "Alle {{count}} Seiten (ZIP)",
-    "thisPage":  "Nur diese Seite",
-    "exporting":  "Seite {{current}} von {{total}} wird gerendert…"
-},
+      "add": "Seite hinzufügen",
+      "duplicate": "Seite duplizieren",
+      "delete": "Seite löschen",
+      "page": "Seite {{number}}",
+      "position": "Seite {{current}} von {{total}}",
+      "label": "Seiten",
+      "allZip": "Alle {{count}} Seiten (ZIP)",
+      "thisPage": "Nur diese Seite",
+      "exporting": "Seite {{current}} von {{total}} wird gerendert…"
+    },
     "captions": {
-        "action":  "Automatische Untertitel",
-        "working":  "Hört zu… {{percent}} %",
-        "downloading":  "Sprachmodell wird vorbereitet… {{percent}} %",
-        "hint":  "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
-        "done":  "{{count}} Untertitel hinzugefügt.",
-        "noSpeech":  "In diesem Clip wurde keine Sprache erkannt.",
-        "failed":  "Für diesen Clip konnten keine Untertitel erstellt werden."
+      "action": "Automatische Untertitel",
+      "working": "Hört zu… {{percent}} %",
+      "downloading": "Sprachmodell wird vorbereitet… {{percent}} %",
+      "hint": "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
+      "done": "{{count}} Untertitel hinzugefügt.",
+      "noSpeech": "In diesem Clip wurde keine Sprache erkannt.",
+      "failed": "Für diesen Clip konnten keine Untertitel erstellt werden."
     },
     "app": {
       "newDesign": "Neues Design",
@@ -7334,7 +7334,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "Live-Bearbeitung stoppen",
+      "receiveEdits": "Live-Änderungen empfangen",
+      "shareEdits": "Änderungen live teilen",
+      "waiting": "Warten auf den Abschluss der Bearbeitung",
+      "transferring": "Änderungen werden übertragen",
+      "sharing": "Änderungen werden live geteilt",
+      "receiving": "Live-Änderungen werden empfangen",
+      "paused": "Live-Bearbeitung pausiert",
+      "retryRecovery": "Wiederherstellung erneut versuchen",
+      "personalCopy": "Persönliche Kopie speichern",
+      "privateHint": "Beim Beitreten werden keine Änderungen hochgeladen. Live-Teilen lädt neue private Quellen hoch; Speichern erstellt eine dauerhafte Version."
     },
     "videoTemplates": {
       "heading": "Videovorlagen",

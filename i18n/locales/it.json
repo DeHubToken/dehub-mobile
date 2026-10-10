@@ -6923,24 +6923,24 @@
       "hint": "Elabora clip fino a 10 minuti. La riduzione del rumore funziona meglio con un rumore di fondo costante."
     },
     "pages": {
-    "add":  "Aggiungi pagina",
-    "duplicate":  "Duplica pagina",
-    "delete":  "Elimina pagina",
-    "page":  "Pagina {{number}}",
-    "position":  "Pagina {{current}} di {{total}}",
-    "label":  "Pagine",
-    "allZip":  "Tutte le {{count}} pagine (ZIP)",
-    "thisPage":  "Solo questa pagina",
-    "exporting":  "Rendering pagina {{current}} di {{total}}…"
-},
+      "add": "Aggiungi pagina",
+      "duplicate": "Duplica pagina",
+      "delete": "Elimina pagina",
+      "page": "Pagina {{number}}",
+      "position": "Pagina {{current}} di {{total}}",
+      "label": "Pagine",
+      "allZip": "Tutte le {{count}} pagine (ZIP)",
+      "thisPage": "Solo questa pagina",
+      "exporting": "Rendering pagina {{current}} di {{total}}…"
+    },
     "captions": {
-        "action":  "Sottotitoli automatici",
-        "working":  "In ascolto… {{percent}}%",
-        "downloading":  "Preparazione del modello vocale… {{percent}}%",
-        "hint":  "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
-        "done":  "{{count}} sottotitoli aggiunti.",
-        "noSpeech":  "Nessun parlato trovato in questa clip.",
-        "failed":  "Impossibile creare i sottotitoli per questa clip."
+      "action": "Sottotitoli automatici",
+      "working": "In ascolto… {{percent}}%",
+      "downloading": "Preparazione del modello vocale… {{percent}}%",
+      "hint": "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
+      "done": "{{count}} sottotitoli aggiunti.",
+      "noSpeech": "Nessun parlato trovato in questa clip.",
+      "failed": "Impossibile creare i sottotitoli per questa clip."
     },
     "app": {
       "newDesign": "Nuovo progetto",
@@ -7329,7 +7329,18 @@
       "hint": "Share your presence with this project's editors.",
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation.",
+      "stopEdits": "Interrompi le modifiche in diretta",
+      "receiveEdits": "Ricevi modifiche in diretta",
+      "shareEdits": "Condividi modifiche in diretta",
+      "waiting": "In attesa della fine della modifica",
+      "transferring": "Trasferimento delle modifiche",
+      "sharing": "Condivisione delle modifiche in diretta",
+      "receiving": "Ricezione delle modifiche in diretta",
+      "paused": "Modifiche in diretta sospese",
+      "retryRecovery": "Riprova il recupero",
+      "personalCopy": "Salva una copia personale",
+      "privateHint": "Entrare non carica le modifiche. La condivisione in diretta carica nuove fonti private; Salva crea una versione permanente."
     }
   },
   "creator": {
