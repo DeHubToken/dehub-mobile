@@ -3,15 +3,22 @@ export type CandleInterval = typeof CANDLE_INTERVALS[number];
 export interface Candle { time: number; open: number; high: number; low: number; close: number; observedAt: number }
 export interface ExternalAsk { price: number; dhb: number }
 export interface SharedMarket<Position = unknown> {
+  marketScope?: string;
   version: 1; startedAt: number; observedAt: number; price: number | null; change24h: number | null;
-  /** The cheapest DHB in any pool, in dollars — not a blend, so it is a price someone could
-   *  actually pay. liquidityUsd is the quote side only: the money a seller could be paid out
-   *  of. lpDhb is the DHB inventory sitting in every pool, which is a token count, not money.
-   *  All absent on snapshots written before they landed, so readers treat them as optional. */
+  /** The scoped pool's spot price, quote-side liquidity and DHB inventory. */
   usdPrice?: number | null; liquidityUsd?: number | null; lpDhb?: number | null;
   /** Ask depth from the DHB pools outside this order book, already priced in dollars. */
   externalAsks?: ExternalAsk[];
   positions: Position[]; candles: Record<CandleInterval, Candle[]>;
+}
+export const isDehubPool = (position: { chain_id: number; poolFee: number; tickSpacing: number }) =>
+  position.chain_id === 8453 && position.poolFee === 0 && position.tickSpacing === 1;
+
+/** Do not display an older aggregate snapshot while the pool-scoped feed is unavailable. */
+export function parseDehubMarket<Position>(data: unknown): SharedMarket<Position> {
+  const market = parseSharedMarket<Position>(data);
+  if (market.marketScope !== 'base-dhb-usdc-0-1') throw new Error('DeHub pool snapshot is not available');
+  return market;
 }
 export function parseSharedMarket<Position>(data: unknown): SharedMarket<Position> {
   const value = data as SharedMarket<Position> | null;
