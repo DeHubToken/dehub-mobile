@@ -37,6 +37,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import DpayTopUpForm from "../Dpay/DpayTopUpForm";
 import NearIntentBuy from "../Dpay/NearIntentBuy";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { formatNumber } from "../../libs/numbers.util";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
@@ -449,7 +450,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               </View>
               <View className="flex-row justify-between mt-2">
                 <Text className="text-[11px] text-white/60">
-                  {t("tip.balanceAmount", { amount: balance }) as string} <DhbCoin />
+                  {t("tip.balanceAmount", { amount: formatNumber(balance) }) as string} <DhbCoin />
                 </Text>
                 <Text
                   className={`text-[11px] ${
