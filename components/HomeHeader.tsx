@@ -91,6 +91,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           label={isSignedIn ? "DeHub" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-logo-center.png")}
+          style={{ transform: [{ translateY: 1.5 }, { scale: 1.15 }] }}
           width={33} height={28} tint={colors.foreground} />
       </View>
 
