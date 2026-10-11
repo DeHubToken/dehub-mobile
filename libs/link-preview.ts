@@ -50,12 +50,17 @@ function compactPreview(url: string): LinkPreviewData {
 }
 
 export function getLinkPreviewImage(url: string, image: unknown): string | null {
+  const decodedImage = typeof image === 'string' ? image.replace(/&amp;/gi, '&') : null;
+  if (!decodedImage) return null;
   try {
     const host = new URL(url).hostname.toLowerCase();
-    // Suno shares use the source tile, including when album art is supplied.
-    if (host === 'suno.com' || host === 'www.suno.com') return null;
-  } catch { /* no provider-specific image treatment */ }
-  return typeof image === 'string' ? image.replace(/&amp;/gi, '&') : null;
+    const cover = new URL(decodedImage);
+    // Only C Drive's known near-empty cover needs the source-card fallback.
+    if ((host === 'suno.com' || host === 'www.suno.com') &&
+      cover.hostname === 'cdn2.suno.ai' &&
+      cover.pathname === '/image_large_8b26dd51-6297-4403-9f25-e7e2e7d45c64.jpeg') return null;
+  } catch { /* retain other preview images */ }
+  return decodedImage;
 }
 
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
