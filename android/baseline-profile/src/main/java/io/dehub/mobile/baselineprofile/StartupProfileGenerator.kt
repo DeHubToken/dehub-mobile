@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.Direction
 import androidx.test.uiautomator.StaleObjectException
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
@@ -29,10 +28,11 @@ class StartupProfileGenerator {
     @Test fun feedAndNavigation() = profile.collect(packageName = "io.dehub.mobile") {
         startActivityAndWait(Intent(Intent.ACTION_VIEW, Uri.parse("dehub://app")))
         assertTrue(device.wait(Until.hasObject(By.desc("Home")), 30_000))
-        device.findObject(By.scrollable(true))?.scroll(Direction.DOWN, 0.8f)
-        device.waitForIdle()
         clickNavigation(device, "Explore")
         clickNavigation(device, "Home")
+        val x = device.displayWidth / 2
+        assertTrue("Feed scroll gesture must be delivered", device.swipe(x, device.displayHeight * 3 / 4, x, device.displayHeight / 3, 20))
+        device.waitForIdle()
     }
 
     private fun clickNavigation(device: UiDevice, description: String) {
