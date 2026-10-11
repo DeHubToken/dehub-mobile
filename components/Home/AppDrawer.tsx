@@ -219,14 +219,14 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
       style={[
         styles.tile,
         { width },
-        skin?.card,
+        Platform.OS === "android" ? skin?.strip : skin?.card,
         active && styles.tileActive,
         active && skin?.stripActive,
         square && styles.square,
         disabled ? { opacity: 0.45 } : null,
       ]}
     >
-      {skin?.grain ? (
+      {Platform.OS !== "android" && skin?.grain ? (
         <RNImage
           source={GRAIN}
           resizeMode="repeat"
