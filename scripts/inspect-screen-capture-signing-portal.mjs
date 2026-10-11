@@ -14,6 +14,10 @@ const metadataQuery = `query RecordingSigningKeyMetadata($projectFullName: Strin
     id
     iosAppCredentials {
       appleAppIdentifier { bundleIdentifier }
+      iosAppBuildCredentialsList {
+        iosDistributionType
+        provisioningProfile { provisioningProfile }
+      }
       appStoreConnectApiKeyForSubmissions {
         id issuerIdentifier keyIdentifier
         appleTeam { appleTeamIdentifier }
@@ -31,6 +35,7 @@ const inventoryFailures = new Set([
   'managed_key_team_not_confirmed', 'managed_key_is_not_a_team_key',
   'managed_key_metadata_incomplete', 'managed_key_does_not_match_metadata',
   'managed_credentials_lookup_failed', 'wrong_local_project', 'signing_tools_missing',
+  'main_bundle_not_accessible_to_project_key', 'main_bundle_team_does_not_match',
 ]);
 
 function issue(code) {
@@ -45,12 +50,31 @@ function safeFailure(error, fallback) {
   return Number.isInteger(status) && status >= 400 && status <= 599 ? `${fallback}_http_${status}` : fallback;
 }
 
-export async function inspectSigningPortal({ graphql, apple, source = null }) {
+export function verifyManagedProfileOwnership(encoded) {
+  if (typeof encoded !== 'string' || !encoded || encoded.length > 500_000) return false;
+  const verify = `import base64,json,plistlib,subprocess,sys
+from datetime import datetime,timezone
+try:
+ signed=base64.b64decode(sys.stdin.read(),validate=True)
+ result=subprocess.run(['openssl','cms','-verify','-inform','DER','-noverify'],input=signed,capture_output=True,timeout=15)
+ if result.returncode: raise ValueError('invalid signature')
+ profile=plistlib.loads(result.stdout)
+ entitlements=profile.get('Entitlements',{})
+ expires=profile.get('ExpirationDate')
+ valid=(profile.get('TeamIdentifier')==['${TEAM}'] and entitlements.get('application-identifier')=='${TEAM}.${BUNDLES[0]}' and not entitlements.get('get-task-allow') and not profile.get('ProvisionedDevices') and not profile.get('ProvisionsAllDevices') and isinstance(expires,datetime) and expires.replace(tzinfo=timezone.utc)>datetime.now(timezone.utc))
+ print(json.dumps(valid))
+except Exception: print('false')`;
+  const result = spawnSync('python3', ['-c', verify], { input: encoded, encoding: 'utf8', timeout: 20_000, maxBuffer: 2000 });
+  return result.status === 0 && result.stdout.trim() === 'true';
+}
+
+export async function inspectSigningPortal({ graphql, apple, source = null, verifyManagedProfile = verifyManagedProfileOwnership }) {
   const report = {
     checkedAt: new Date().toISOString(), source, readOnly: true,
     credentialMutationRequested: false, buildDispatched: false,
     managedTeamKeyAvailable: false, portalBundleLookupSucceeded: false,
     recordingGroupLookupSucceeded: false, recordingGroupRegistered: null,
+    managedKeyTeamMetadata: null, managedProfileOwnershipVerified: false,
     releaseReady: false, profiles: [], findings: [],
   };
   try {
@@ -64,7 +88,16 @@ export async function inspectSigningPortal({ graphql, apple, source = null }) {
     if (keys.size !== 1) throw issue('managed_submission_key_missing_or_ambiguous');
     const metadata = [...keys.values()][0];
     if (!metadata.id || !metadata.keyIdentifier) throw issue('managed_key_metadata_incomplete');
-    if (metadata.appleTeam?.appleTeamIdentifier !== TEAM) throw issue('managed_key_team_not_confirmed');
+    const storedTeam = metadata.appleTeam?.appleTeamIdentifier;
+    report.managedKeyTeamMetadata = !storedTeam ? 'unassigned' : storedTeam === TEAM ? 'matches' : 'different';
+    if (storedTeam && storedTeam !== TEAM) throw issue('managed_key_team_not_confirmed');
+    if (!storedTeam) {
+      const profiles = records.flatMap(record => (record.iosAppBuildCredentialsList ?? [])
+        .filter(build => build.iosDistributionType === 'APP_STORE' && build.provisioningProfile)
+        .map(build => build.provisioningProfile.provisioningProfile));
+      if (profiles.length !== 1 || !verifyManagedProfile(profiles[0])) throw issue('managed_key_team_not_confirmed');
+      report.managedProfileOwnershipVerified = true;
+    }
     if (!metadata.issuerIdentifier) throw issue('managed_key_is_not_a_team_key');
     const key = (await graphql(keyQuery, { ascApiKeyId: metadata.id })).appStoreConnectApiKey?.byId;
     if (!key?.keyP8 || key.id !== metadata.id || key.keyIdentifier !== metadata.keyIdentifier || key.issuerIdentifier !== metadata.issuerIdentifier) {
@@ -75,6 +108,8 @@ export async function inspectSigningPortal({ graphql, apple, source = null }) {
     report.managedTeamKeyAvailable = true;
     for (const bundleIdentifier of BUNDLES) {
       const bundle = await apple.BundleId.findAsync(context, { identifier: bundleIdentifier });
+      if (bundleIdentifier === BUNDLES[0] && !bundle) throw issue('main_bundle_not_accessible_to_project_key');
+      if (bundle?.attributes?.seedId && bundle.attributes.seedId !== TEAM) throw issue('main_bundle_team_does_not_match');
       if (!bundle) {
         report.profiles.push({ bundleIdentifier, registered: false, recordingGroupCapabilityEnabled: false, activeAppStoreProfiles: 0 });
         continue;
