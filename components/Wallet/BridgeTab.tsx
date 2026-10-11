@@ -39,7 +39,7 @@ interface BridgeTransfer {
 }
 
 function timeAgo(unix: number): string {
-  return formatRelativeTime(unix * 1000, appLocale(), "short");
+  return formatRelativeTime(unix * 1000, appLocale() || "en", "short");
 }
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
