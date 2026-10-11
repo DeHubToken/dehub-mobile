@@ -6161,7 +6161,16 @@
     "upcomingStream": "Upcoming Stream",
     "startsIn": "Starts {{time}}",
     "notStartedYet": "The streamer hasn't started broadcasting yet",
-    "leftStream": "left the stream"
+    "leftStream": "left the stream",
+    "whosHere": "Who's here",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}",
+    "host": "Host",
+    "topTippers": "Top tippers",
+    "mostActive": "Most active",
+    "hereNow": "Here now",
+    "nobodyYet": "No one yet"
   },
   "search": {
     "endOfResults": "End of results",
