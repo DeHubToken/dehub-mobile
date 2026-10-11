@@ -10,6 +10,7 @@ import AppDrawer from '../../components/Home/AppDrawer';
 const mockDispatch = jest.fn();
 let mockSignedIn = true;
 let mockBalance = 500;
+let mockWallet = '0xmember';
 let mockDigitalPurchasesEnabled = true;
 let mockActiveScreen = 'DM';
 const mockOpenLink = jest.fn();
@@ -59,7 +60,7 @@ jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { 
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),
   useAuthActions: () => ({ signOut: jest.fn() }),
-  useUser: () => mockSignedIn ? { username: 'member', address: '0xmember', followers: 3, followings: 2, ownBadgeBalance: mockBalance } : null,
+  useUser: () => mockSignedIn ? { username: 'member', address: mockWallet, followers: 3, followings: 2, ownBadgeBalance: mockBalance } : null,
 }));
 jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '' }));
 jest.mock('../../libs', () => ({ toastError: jest.fn(), toastInfo: jest.fn() }));
@@ -81,7 +82,7 @@ const destinations = [
   ['nav.connectAi', 'Connect'],
 ] as const;
 
-beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockBalance = 500; mockDigitalPurchasesEnabled = true; mockActiveScreen = 'DM'; });
+beforeEach(() => { jest.clearAllMocks(); mockSignedIn = true; mockWallet = '0xmember'; mockBalance = 500; mockDigitalPurchasesEnabled = true; mockActiveScreen = 'DM'; });
 
 it.each([['nav.superpowers', 'SuperPowers'], ['nav.arcade', 'Arcade'], ['nav.governance', 'Governance']])(
   'keeps %s accessible with no token balance and iOS purchases disabled', (label, screen) => {
@@ -97,6 +98,7 @@ it.each([['nav.superpowers', 'SuperPowers'], ['nav.arcade', 'Arcade'], ['nav.gov
 );
 
 it.each(destinations)('%s immediately closes and targets its registered nested screen', (label, screen, tab = false, params = undefined) => {
+  if (screen === 'Agents') mockWallet = '0x9324840523a5d17dd12a2f11a9472e5a199c1937';
   const close = jest.fn();
   const view = render(<AppDrawer visible onClose={close} />);
   fireEvent.press(view.getByLabelText(label));
@@ -108,6 +110,13 @@ it.each(destinations)('%s immediately closes and targets its registered nested s
   } });
   const navigator = readFileSync(resolve(__dirname, '../../navigation', tab ? 'BottomTabNavigator.tsx' : 'AppNavigator.tsx'), 'utf8');
   expect(navigator).toContain(`name={ScreenNames.${screen}}`);
+});
+
+it('hides private agent management from other accounts, including menu search', () => {
+  const view = render(<AppDrawer visible onClose={jest.fn()} />);
+  expect(view.queryByLabelText('nav.agents')).toBeNull();
+  fireEvent.changeText(view.getByLabelText('sidebar.searchMenu'), 'nav.agents');
+  expect(view.queryByLabelText('nav.agents')).toBeNull();
 });
 
 it('routes the profile header, balance chip, and Post through App', () => {
