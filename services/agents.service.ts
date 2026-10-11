@@ -18,6 +18,7 @@ import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { getAuthToken } from "../libs/auth.utils";
 import { tokenRefreshManager } from "../libs/token-refresh";
+import { ensureWalletSession } from "../libs/wallet-session";
 
 /** Registration failures the screen words itself instead of showing the server's text. */
 export const AGENT_SIGN_IN_REQUIRED = "AGENT_SIGN_IN_REQUIRED";
@@ -85,6 +86,7 @@ export async function registerAgent(input: {
 }
 
 export async function deleteAgent(agentId: string, walletAddress: string): Promise<void> {
+  if (!await ensureWalletSession(walletAddress)) throw new Error(AGENT_SIGN_IN_REQUIRED);
   const { error } = await withWalletHeader(
     supabase.from("ai_agents").delete().eq("id", agentId),
     walletAddress,

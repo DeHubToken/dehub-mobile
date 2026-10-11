@@ -485,7 +485,7 @@ const CommunityDetailScreen: React.FC = () => {
       <ScreenHeader title={t("communities.title")} />
       {tab === "posts" ? (
         <View className="flex-1">
-          {community.is_private && !isMember ? <ScrollView>{HeaderBlock}<Text className="text-zinc-400 text-center p-6">{t('communities.joinToSeePosts')}</Text></ScrollView> : <CommunityFeedRoute
+          {community.is_private && !isMember ? <ScrollView showsVerticalScrollIndicator={false}>{HeaderBlock}<Text className="text-zinc-400 text-center p-6">{t('communities.joinToSeePosts')}</Text></ScrollView> : <CommunityFeedRoute
             communityId={community.id}
             wallet={walletAddress || null}
             canModerate={abilities.can('delete_messages')}
