@@ -6006,7 +6006,10 @@
     "topTippers": "ऊपरी उच्चारण के सदस्यता से",
     "mostActive": "जितना अधिक करोगे, उतना ही सक्रिय",
     "hereNow": "आउ अब",
-    "nobodyYet": "आज तलक होलइ नञ"
+    "nobodyYet": "आज तलक होलइ नञ",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

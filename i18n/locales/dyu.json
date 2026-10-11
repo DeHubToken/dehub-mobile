@@ -5970,7 +5970,8 @@
     "topTippers": "Fɛɛn minw be se ka kɛ",
     "mostActive": "Fanga min b'a la ka baara kɛ",
     "hereNow": "Yan sisan",
-    "nobodyYet": "Mɔgɔ si ma deli ka"
+    "nobodyYet": "Mɔgɔ si ma deli ka",
+    "watchingCount": "{{formatted}} watching"
   },
   "search": {
     "endOfResults": "Jaabiw laban",

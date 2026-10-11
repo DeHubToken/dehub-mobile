@@ -5996,7 +5996,8 @@
     "topTippers": "Top Tippers",
     "mostActive": "Iň hereketli",
     "hereNow": "Bu ýerde",
-    "nobodyYet": "Häzir hiç kim"
+    "nobodyYet": "Häzir hiç kim",
+    "watchingCount": "{{formatted}} watching"
   },
   "search": {
     "endOfResults": "Netijeleriň ahyry",
