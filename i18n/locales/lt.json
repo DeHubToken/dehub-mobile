@@ -7442,7 +7442,11 @@
     "referenceProductName": "Įdėkite savo produktą į klipą",
     "referenceProductHint": "Pakeiskite pagrindinį produktą ir išlaikykite originalų sceną",
     "referenceComposeName": "Sujungti referencinius vaizdus",
-    "referenceComposeHint": "Sujungkite veikėjus, objektus ir aplinką iš keliu vaizdų į vieną kompoziciją"
+    "referenceComposeHint": "Sujungkite veikėjus, objektus ir aplinką iš keliu vaizdų į vieną kompoziciją",
+    "audioTaskSfxLabel": "Garso efektai",
+    "audioTaskSfxPlaceholder": "Aprašykite garsą, pavyzdžiui, „sunkios durys trenkiamos akmens salėje\"",
+    "auto": "Automatinis",
+    "loop": "Ciklas"
   },
   "fractions": {
     "title": "Dalys",

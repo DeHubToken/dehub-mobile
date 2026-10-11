@@ -7420,7 +7420,11 @@
     "referenceProductName": "**Product**ka **clip**ka ku sheegay.",
     "referenceProductHint": "**Featured product**ka ku sheegay **scene**ka oo **original**ka awooday.",
     "referenceComposeName": "**Reference images**ka ku sheegay.",
-    "referenceComposeHint": "**Characters**, **objects** iyo **settings**ka oo **multiple images**ka awooday **composition**ka ku sheegay."
+    "referenceComposeHint": "**Characters**, **objects** iyo **settings**ka oo **multiple images**ka awooday **composition**ka ku sheegay.",
+    "audioTaskSfxLabel": "Saamaynta dhawaaqa",
+    "audioTaskSfxPlaceholder": "Qeex codka, tusaale ahaan \"albaabka culus ee dhagaxa lagu garaaco\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Saamiyo",

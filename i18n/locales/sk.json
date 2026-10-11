@@ -7608,7 +7608,11 @@
     "referenceProductName": "Umiestni svoj produkt v klipu",
     "referenceProductHint": "Nahraď hlavný produkt a zachovať pôvodnú scénu",
     "referenceComposeName": "Kombinovať odkazové obrázky",
-    "referenceComposeHint": "Zísť postavy, predmety a nastavenia z viacerých obrázkov do jednej kompozície"
+    "referenceComposeHint": "Zísť postavy, predmety a nastavenia z viacerých obrázkov do jednej kompozície",
+    "audioTaskSfxLabel": "Zvukový efekt",
+    "audioTaskSfxPlaceholder": "Popíšte zvuk, napríklad „zabuchnutie ťažkých dverí v kamennej hale“",
+    "auto": "Auto",
+    "loop": "Slučka"
   },
   "fractions": {
     "title": "Podiely",

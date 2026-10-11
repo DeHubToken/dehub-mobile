@@ -7443,7 +7443,11 @@
     "referenceProductName": "Col·loca el teu producte en un clip",
     "referenceProductHint": "Sustituïx el producte destacat i preserva la escena original.",
     "referenceComposeName": "Combina imatges de referència",
-    "referenceComposeHint": "Porta caràcters, objectes i escenaris de múltiples imatges a una sola composició."
+    "referenceComposeHint": "Porta caràcters, objectes i escenaris de múltiples imatges a una sola composició.",
+    "audioTaskSfxLabel": "Efecte de so",
+    "audioTaskSfxPlaceholder": "Descriu el so, per exemple, \"porta pesada que es tanca en una sala de pedra\"",
+    "auto": "Automàtic",
+    "loop": "Bucle"
   },
   "fractions": {
     "title": "Fraccions",

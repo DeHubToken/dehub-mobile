@@ -7387,7 +7387,11 @@
     "referenceProductName": "Mahsulot ro dar klip ta’kid konid",
     "referenceProductHint": "Mahsulot asli ro badal konid va manzarai asli saql konid",
     "referenceComposeName": "Resurslar referensi baravard konid",
-    "referenceComposeHint": "Karakterlar, ob’ektlar va manzaralar bar resurslar kamida kamida yek ta kompozitsiya ro ta’kid konid"
+    "referenceComposeHint": "Karakterlar, ob’ektlar va manzaralar bar resurslar kamida kamida yek ta kompozitsiya ro ta’kid konid",
+    "audioTaskSfxLabel": "Таъсири садо",
+    "audioTaskSfxPlaceholder": "Тасвир кардани садо, масалан \"Slamming heavy door in a stone hall\"",
+    "auto": "Худкор",
+    "loop": "Ҳалқа"
   },
   "fractions": {
     "title": "Ҳиссаҳо",

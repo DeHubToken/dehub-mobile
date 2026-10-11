@@ -7430,7 +7430,11 @@
     "referenceProductName": "在影片中放置吾產品。",
     "referenceProductHint": "替換特色產品，保留原本的場景。",
     "referenceComposeName": "合併參考圖片。",
-    "referenceComposeHint": "將多張圖片中的角色、物件和場景合併成一個構圖。"
+    "referenceComposeHint": "將多張圖片中的角色、物件和場景合併成一個構圖。",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "舉例：描述聲音，如「石頭大廳裡重重的門砰然關上」",
+    "auto": "自動",
+    "loop": "迴圈"
   },
   "fractions": {
     "title": "碎片",

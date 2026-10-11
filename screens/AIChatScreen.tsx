@@ -117,7 +117,7 @@ import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAsse
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, creatorAudioOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -887,7 +887,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       category: AiToolCategory,
       prompt: string,
       history: AIChatMessage[],
-      extras?: { sourceImage?: string; lyrics?: string; txHash?: string },
+      extras?: { sourceImage?: string; lyrics?: string; tags?: string; duration?: number; txHash?: string },
     ) => {
       const toolModel = AI_TOOL_MODELS[toolId];
       const finishDraft = pendingDraftCompletion.current;
@@ -901,6 +901,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             prompt,
             ...(category === 'tts' ? { text: prompt } : {}),
             ...(extras?.lyrics ? { lyrics: extras.lyrics } : {}),
+            ...(extras?.tags ? { tags: extras.tags } : {}),
+            ...(extras?.duration ? { duration: extras.duration } : {}),
             ...(extras?.sourceImage ? { image_url: extras.sourceImage } : {}),
             ...(extras?.txHash ? { txHash: extras.txHash } : {}),
           },
@@ -1410,6 +1412,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     doRunTool(selectedToolId, toolCategory, pendingPrompt, historyForGeneration(), {
       sourceImage: pendingSourceImage,
       lyrics: pendingToolLyrics,
+      ...creatorAudioOptions(pendingStudio, pendingPrompt, pendingToolLyrics),
       txHash,
     });
     setPendingSourceImage(undefined);
@@ -1420,6 +1423,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     pendingPrompt,
     pendingSourceImage,
     pendingToolLyrics,
+    pendingStudio,
     doRunTool,
     historyForGeneration,
   ]);
@@ -1799,7 +1803,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             <Text className="text-theme-neutrals-100">{t('common.cancel')}</Text>
           </TouchableOpacity>
         </View>}
-        {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
+        {studio && <CreatorStudioControls settings={studioSettings} draftScope={draftScope} onChange={setStudioSettings}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />}
@@ -1953,6 +1957,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         selectedModelId={selectedToolId}
         onSelectModel={setSelectedToolId}
         quoteKind="tool"
+        subtitle={pendingStudio?.mode === 'audio' && pendingStudio.model === 'ace-step' ? `${pendingStudio.durationSeconds}s` : undefined}
+        quoteExtras={pendingStudio?.mode === 'audio' && pendingStudio.model === 'ace-step' ? { durationSeconds: pendingStudio.durationSeconds } : undefined}
         confirmLabel={t('paywall.run')}
         onClose={() => setToolPaywallVisible(false)}
         onConfirm={handleToolConfirm}

@@ -7560,7 +7560,11 @@
     "referenceProductName": "Đặt sản phẩm của bạn vào một clip",
     "referenceProductHint": "Thay thế sản phẩm nổi bật và giữ nguyên cảnh ban đầu.",
     "referenceComposeName": "Kết hợp các hình ảnh tham chiếu",
-    "referenceComposeHint": "Gộp các nhân vật, đối tượng và cảnh từ nhiều hình ảnh thành một tác phẩm."
+    "referenceComposeHint": "Gộp các nhân vật, đối tượng và cảnh từ nhiều hình ảnh thành một tác phẩm.",
+    "audioTaskSfxLabel": "Ảnh",
+    "audioTaskSfxPlaceholder": "Mô tả âm thanh, ví dụ: \"đóng sầm cửa nặng trong hội trường bằng đá\"",
+    "auto": "Tự động",
+    "loop": "Vòng lặp"
   },
   "fractions": {
     "title": "Phần sở hữu",

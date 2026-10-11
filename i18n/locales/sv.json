@@ -7446,7 +7446,11 @@
     "referenceProductName": "Placera ditt produkt i en klippning",
     "referenceProductHint": "Ersätt den framträdande produkten och bevara den ursprungliga scenen",
     "referenceComposeName": "Kombinera referensbilder",
-    "referenceComposeHint": "Förena karaktärer, objekt och miljöer från flera bilder till en sammansättning"
+    "referenceComposeHint": "Förena karaktärer, objekt och miljöer från flera bilder till en sammansättning",
+    "audioTaskSfxLabel": "Ljudeffekt",
+    "audioTaskSfxPlaceholder": "Beskriv ljudet, till exempel ”kraftig dörrklämning i en stenhall”",
+    "auto": "Auto",
+    "loop": "Slinga"
   },
   "fractions": {
     "title": "Fraktioner",

@@ -7424,7 +7424,11 @@
     "referenceProductName": "Whakaritea tō hua ki te kapu",
     "referenceProductHint": "Whakakapi i te hua i whakaatuhia, kia tiakina te tirohanga taketake.",
     "referenceComposeName": "Whakakotahitia ngā whakaahua tohu",
-    "referenceComposeHint": "Kawea ngā pūāhua, ngā mea me ngā tautuhi mai i ngā whakaahua maha ki tētahi whakatūpato kotahi."
+    "referenceComposeHint": "Kawea ngā pūāhua, ngā mea me ngā tautuhi mai i ngā whakaahua maha ki tētahi whakatūpato kotahi.",
+    "audioTaskSfxLabel": "Pānga oro",
+    "audioTaskSfxPlaceholder": "Whakaahuahia te tangi, hei tauira, \"te tatau taumaha e pupuhi ana i roto i te whare kohatu\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Wāhanga",

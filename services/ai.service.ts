@@ -582,6 +582,8 @@ export interface AiToolRequest {
   text?: string;
   /** Lyrics for the music tools, kept separate from the style prompt. */
   lyrics?: string;
+  tags?: string;
+  duration?: number;
   /** Public URL of the source image for upscale / background removal. */
   image_url?: string;
   /** Public URL of the audio for Whisper. */

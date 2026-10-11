@@ -94,6 +94,7 @@ import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
 import type { GenerationDraft } from "../libs/editor/generationDraft";
 import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
+import SoundEffectsPanel from "../components/editor/SoundEffectsPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
@@ -343,7 +344,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background" | "stock" | "scenes" | "subtitles" | "record"
+  | "page" | "background" | "stock" | "scenes" | "subtitles" | "record" | "sfx"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -373,6 +374,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
+  const [soundEffectPrefill, setSoundEffectPrefill] = useState<{ scope: string; prompt: string } | undefined>();
   // Record mode (web editorUiStore recordMotion): placement edits with the
   // playhead inside a layer key it there. Kept across selections, like the web.
   const [recordMotion, setRecordMotion] = useState(false);
@@ -505,9 +507,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     open: draft => {
       setPlaying(false);
       setChatOpen(false);
-      nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
+      if (draft.kind === "sfx") { setSoundEffectPrefill({ scope: `${recoveryScope}|${latest.current?.id}`, prompt: draft.prompt }); setTool("sfx"); }
+      else nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
     },
-  }), [nav]);
+  }), [nav, recoveryScope]);
   const openGenerator = async (draft: GenerationDraft) => {
     if (generatorOpeningRef.current) return;
     generatorOpeningRef.current = true;
@@ -1087,6 +1090,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
+        { id: "sfx", icon: "Sparkles", label: t("creator.audioTaskSfxLabel") },
         { id: "stock", icon: "Search", label: t("common.search") },
         { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
@@ -1229,6 +1233,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       });
       setTimelineOpen(true); select(clipId);
     }} />;
+    if (tool === "sfx") return <SoundEffectsPanel key={project.id} at={canvasTime} scope={h.scopeVersion()}
+      draftScope={`${recoveryScope}|${project.id}`} wallet={user?.walletAddress || user?.address} prefill={soundEffectPrefill?.scope === `${recoveryScope}|${project.id}` ? soundEffectPrefill.prompt : undefined}
+      subscribe={h.subscribe} onStart={() => { setPlaying(false); const current = h.latest(); return current ? h.holdEdits(projectReviewSnapshotKey(current)) : null; }}
+      onAdd={(media, start) => {
+        const current = h.latest();
+        if (!current || current.id !== project.id || !media.duration) return;
+        const next = addClip(current, { ...media, kind: "audio", duration: media.duration }, start);
+        h.commit(next.project); setSoundEffectPrefill(undefined); setTimelineOpen(true); select(next.clipId);
+      }} />;
     if (tool === "stock") return <StockPanel at={canvasTime} scope={h.scopeVersion()} subscribe={h.subscribe} onStart={() => { setPlaying(false); return h.holdEdits(); }} onAdd={(media, start) => {
       const current = h.latest();
       if (!current) return;
