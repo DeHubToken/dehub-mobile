@@ -5971,7 +5971,16 @@
     "upcomingStream": "ສະຕີມທີ່ກຳລັງຈະມາເຖິງ",
     "startsIn": "ເລີ່ມຕົ້ນ {{time}}",
     "notStartedYet": "ຜູ້ຖ່າຍທອດຍັງບໍ່ເລີ່ມອອກອາກາດເທື່ອ",
-    "leftStream": "ອອກຈາກແມ່ນ້ໍາຂອງ"
+    "leftStream": "ອອກຈາກແມ່ນ້ໍາຂອງ",
+    "whosHere": "ຜູ້ ທີ່ ຢູ່ ທີ່ ນີ້",
+    "hereCount": "{{formatted}} ທີ່ນີ້",
+    "watchingCount": "{{formatted}} ເບິ່ງ",
+    "startedAgo": "ເລີ່ມຕົ້ນ {{time}}",
+    "host": "ເຈົ້າພາບ",
+    "topTippers": "Tippers ເທິງ",
+    "mostActive": "ເຄື່ອນໄຫວຫຼາຍທີ່ສຸດ",
+    "hereNow": "ຢູ່ ທີ່ ນີ້ ໃນ ປັດ ຈຸ ບັນ",
+    "nobodyYet": "ຍັງບໍ່ມີໃຜ"
   },
   "search": {
     "endOfResults": "ສິ້ນສຸດຜົນລັບ",

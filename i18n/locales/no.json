@@ -6008,7 +6008,16 @@
     "sentAmount": "sendt {{amount}}",
     "duration": "Varighet {{duration}}",
     "endedAgo": "Avsluttet {{time}}",
-    "startsIn": "Starter {{time}}"
+    "startsIn": "Starter {{time}}",
+    "whosHere": "Hvem er her",
+    "hereCount": "{{formatted}} her",
+    "watchingCount": "{{formatted}} ser på",
+    "startedAgo": "Startet {{time}}",
+    "host": "Vert",
+    "topTippers": "Topptipperne",
+    "mostActive": "Mest aktive",
+    "hereNow": "Her nå",
+    "nobodyYet": "Ingen ennå"
   },
   "search": {
     "endOfResults": "Slutt på resultatene",

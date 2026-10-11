@@ -6008,7 +6008,16 @@
     "upcomingStream": "Առաջիկա հոսք",
     "startsIn": "Սկսվում է {{time}}",
     "notStartedYet": "Հոսթինգը դեռ չի սկսել հեռարձակումը",
-    "leftStream": "լքել է հեռարձակումը"
+    "leftStream": "լքել է հեռարձակումը",
+    "whosHere": "Ով է այստեղ",
+    "hereCount": "{{formatted}} այստեղ",
+    "watchingCount": "{{formatted}} դիտում",
+    "startedAgo": "Սկսվել է {{time}}",
+    "host": "Տանտեր",
+    "topTippers": "Թոփ թիզերներ",
+    "mostActive": "Առավել ակտիվ",
+    "hereNow": "Ահա հիմա",
+    "nobodyYet": "Դեռ ոչ ոք"
   },
   "search": {
     "endOfResults": "Արդյունքների վերջ",

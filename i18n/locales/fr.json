@@ -6165,7 +6165,16 @@
     "upcomingStream": "Flux à venir",
     "startsIn": "Commence {{time}}",
     "notStartedYet": "Le streamer n'a pas encore commencé à diffuser",
-    "leftStream": "a quitté le flux"
+    "leftStream": "a quitté le flux",
+    "whosHere": "Qui est là",
+    "hereCount": "{{formatted}} ici",
+    "watchingCount": "{{formatted}} en train de regarder",
+    "startedAgo": "Démarré {{time}}",
+    "host": "Hôte",
+    "topTippers": "Benne basculante supérieure",
+    "mostActive": "Les plus actifs",
+    "hereNow": "Ici maintenant",
+    "nobodyYet": "Personne pour le moment"
   },
   "search": {
     "endOfResults": "Fin des résultats",

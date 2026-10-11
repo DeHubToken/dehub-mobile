@@ -5962,7 +5962,15 @@
     "notStartedYet": "O tɛ se ka kɛ halibi.",
     "sentAmount": "{{amount}} cira",
     "leftStream": "a to a ka to ka taga",
-    "openProfileOf": "{{name}} ka profil dayɛlɛ"
+    "openProfileOf": "{{name}} ka profil dayɛlɛ",
+    "whosHere": "Ayiwa, jɔn lo be yen?",
+    "hereCount": "{{formatted}} yan",
+    "startedAgo": "A daminɛ na {{time}}",
+    "host": "Mɔgɔ weele ka na",
+    "topTippers": "Fɛɛn minw be se ka kɛ",
+    "mostActive": "Fanga min b'a la ka baara kɛ",
+    "hereNow": "Yan sisan",
+    "nobodyYet": "Mɔgɔ si ma deli ka"
   },
   "search": {
     "endOfResults": "Jaabiw laban",

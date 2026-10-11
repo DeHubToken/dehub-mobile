@@ -6054,7 +6054,16 @@
     "upcomingStream": "Paparating na Stream",
     "startsIn": "Nagsisimula {{time}}",
     "notStartedYet": "Hindi pa nagsisimula ang broadcasting ng streamer",
-    "leftStream": "umalis sa sapa"
+    "leftStream": "umalis sa sapa",
+    "whosHere": "Sino ang nandito",
+    "hereCount": "{{formatted}} dito",
+    "watchingCount": "{{formatted}} nanonood",
+    "startedAgo": "Nagsimula {{time}}",
+    "host": "Host",
+    "topTippers": "Mga nangungunang tipper",
+    "mostActive": "Pinakaaktibo",
+    "hereNow": "Narito ngayon",
+    "nobodyYet": "Wala pang tao"
   },
   "search": {
     "endOfResults": "Katapusan ng mga resulta",

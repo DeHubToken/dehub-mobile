@@ -5990,7 +5990,16 @@
     "upcomingStream": "Siaran Mendatang",
     "startsIn": "Miwiti {{time}}",
     "notStartedYet": "Penyiar durung miwiti siaran",
-    "leftStream": "ninggalake streaming"
+    "leftStream": "ninggalake streaming",
+    "whosHere": "Sapa sing ana kene",
+    "hereCount": "{{formatted}} kene",
+    "watchingCount": "{{formatted}} nonton",
+    "startedAgo": "Miwiti {{time}}",
+    "host": "Host",
+    "topTippers": "Pemberi tip paling dhuwur",
+    "mostActive": "Paling aktif",
+    "hereNow": "Kene saiki",
+    "nobodyYet": "Durung ana sapa-sapa"
   },
   "search": {
     "endOfResults": "Pungkasan asil",

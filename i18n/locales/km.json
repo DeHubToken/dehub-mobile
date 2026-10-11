@@ -5989,7 +5989,16 @@
     "upcomingStream": "ការផ្សាយបន្តផ្ទាល់ដែលនឹងមកដល់",
     "startsIn": "ចាប់ផ្តើម {{time}}",
     "notStartedYet": "អ្នកផ្សាយបន្តផ្ទាល់មិនទាន់បានចាប់ផ្តើមផ្សាយនៅឡើយទេ។",
-    "leftStream": "ចាកចេញពីស្ទ្រីម"
+    "leftStream": "ចាកចេញពីស្ទ្រីម",
+    "whosHere": "តើ អ្នក ណា នៅ ទី នេះ?",
+    "hereCount": "{{formatted}} នៅទីនេះ",
+    "watchingCount": "{{formatted}} ការមើល",
+    "startedAgo": "បានចាប់ផ្តើម {{time}}",
+    "host": "ម៉ាស៊ីន",
+    "topTippers": "កំពូល tippers",
+    "mostActive": "សកម្មបំផុត",
+    "hereNow": "នៅទីនេះឥឡូវនេះ",
+    "nobodyYet": "គ្មាន នរណា ម្នាក់"
   },
   "search": {
     "endOfResults": "ចុងបញ្ចប់នៃលទ្ធផល",

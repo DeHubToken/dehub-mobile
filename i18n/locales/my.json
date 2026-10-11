@@ -5995,7 +5995,16 @@
     "upcomingStream": "လာမည့်စီးဆင်းမှု",
     "startsIn": "{{time}} စတင်သည်",
     "notStartedYet": "Streamer က ထုတ်လွှင့်မှု မစတင်ရသေးပါ",
-    "leftStream": "ရေစီးကြောင်းကို ချန်ထားခဲ့သည်"
+    "leftStream": "ရေစီးကြောင်းကို ချန်ထားခဲ့သည်",
+    "whosHere": "ဒီေနရာမွာ ဘယ္သူ႔ကို",
+    "hereCount": "{{formatted}} ဤနေရာတွင်",
+    "watchingCount": "{{formatted}} စောင့်ကြည့်ခြင်း",
+    "startedAgo": "စတင်ခဲ့သည် {{time}}",
+    "host": "အိမ်ရှင်",
+    "topTippers": "ထိပ်တန်း TIPPERS",
+    "mostActive": "တက်ကြွမှုအရှိဆုံး",
+    "hereNow": "ဤနေရာတွင် ယခု",
+    "nobodyYet": "အဘယ်သူမျှမသေး"
   },
   "search": {
     "endOfResults": "ရလဒ်များ အဆုံး",

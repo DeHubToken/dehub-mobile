@@ -5989,7 +5989,16 @@
     "notStartedYet": "Mai gudana bai fara watsa shirye-shirye ba tukuna",
     "leftStream": "bar da rafi",
     "streamEnded": "Ƙarshen Fitarwa",
-    "upcomingStream": "Fitarwa mai zuwa"
+    "upcomingStream": "Fitarwa mai zuwa",
+    "whosHere": "Wanene a nan",
+    "hereCount": "{{formatted}} nan",
+    "watchingCount": "{{formatted}} kallon",
+    "startedAgo": "An fara {{time}}",
+    "host": "Mai watsa shiri",
+    "topTippers": "Top tippers",
+    "mostActive": "Mafi yawan aiki",
+    "hereNow": "A nan yanzu",
+    "nobodyYet": "Babu wanda har yanzu"
   },
   "search": {
     "endOfResults": "Ƙarshen sakamako",

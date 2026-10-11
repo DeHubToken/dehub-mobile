@@ -5970,7 +5970,15 @@
     "openProfileOf": "प्रकटीकरण प्रकटीकरण {{name}}",
     "duration": "अवधिः {{duration}}",
     "endedAgo": "समाप्तम् {{time}}",
-    "startsIn": "आरम्भः {{time}}"
+    "startsIn": "आरम्भः {{time}}",
+    "whosHere": "कोऽयं तत्र",
+    "hereCount": "{{formatted}} यहां",
+    "startedAgo": "शुभारम्भः {{time}}",
+    "host": "आतिथ्यम्",
+    "topTippers": "शीर्षं टिपरम्",
+    "mostActive": "अधिक सक्रिय",
+    "hereNow": "इदानीम् अत्र",
+    "nobodyYet": "अद्यापि कोऽपि"
   },
   "search": {
     "endOfResults": "फलानाम् अन्तः",

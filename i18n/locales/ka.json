@@ -6018,7 +6018,16 @@
     "upcomingStream": "მომავალი ნაკადი",
     "startsIn": "იწყება {{time}}",
     "notStartedYet": "სტრიმინგს მაუწყებლობა ჯერ არ დაუწყია",
-    "leftStream": "დატოვა ნაკადი"
+    "leftStream": "დატოვა ნაკადი",
+    "whosHere": "ვინ არის აქ",
+    "hereCount": "{{formatted}} აქ",
+    "watchingCount": "{{formatted}} ყურება",
+    "startedAgo": "დაიწყო {{time}}",
+    "host": "მასპინძელი",
+    "topTippers": "საუკეთესო ხელსაწყოები",
+    "mostActive": "ყველაზე აქტიური",
+    "hereNow": "აქ ახლა",
+    "nobodyYet": "ჯერ არავინ"
   },
   "search": {
     "endOfResults": "შედეგების დასასრული",

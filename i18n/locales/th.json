@@ -6026,7 +6026,16 @@
     "startsIn": "เริ่มต้นที่ {{time}}",
     "notStartedYet": "สตรีมเมอร์ยังไม่เริ่มออกอากาศ",
     "leftStream": "ออกจากลำธาร",
-    "sentAmount": "ส่ง {{amount}}"
+    "sentAmount": "ส่ง {{amount}}",
+    "whosHere": "ใครอยู่ที่นี่",
+    "hereCount": "{{formatted}} ที่นี่",
+    "watchingCount": "{{formatted}} กำลังดูอยู่",
+    "startedAgo": "เริ่ม {{time}}",
+    "host": "เจ้าของที่พัก",
+    "topTippers": "ปลายรองเท้าด้านบน",
+    "mostActive": "ใช้งานมากที่สุด",
+    "hereNow": "ที่นี่ตอนนี้",
+    "nobodyYet": "ยังไม่มีใคร"
   },
   "search": {
     "endOfResults": "หมดผลการค้นหาแล้ว",

@@ -6010,7 +6010,16 @@
     "upcomingStream": "መጪ ዥረት",
     "startsIn": "ይጀምራል {{time}}",
     "notStartedYet": "ዥረት ገና ስርጭት አልጀመረም",
-    "leftStream": "ጅረቱን ትቶ"
+    "leftStream": "ጅረቱን ትቶ",
+    "whosHere": "እዚህ ማን አለ",
+    "hereCount": "{{formatted}} እዚህ",
+    "watchingCount": "{{formatted}} በመመልከት ላይ",
+    "startedAgo": "ተጀምሯል {{time}}",
+    "host": "አስተናጋጅ",
+    "topTippers": "ከፍተኛ tippers",
+    "mostActive": "በጣም ንቁ",
+    "hereNow": "እዚህ አሁን",
+    "nobodyYet": "እስካሁን ማንም የለም"
   },
   "search": {
     "endOfResults": "የውጤቶቹ መጨረሻ",
