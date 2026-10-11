@@ -1377,9 +1377,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       playable: stagePlayable,
       liked: liked || disliked,
       like: handleLikePress,
-      openOptions: postImage ? handleOpenOptions : undefined,
+      openOptions: handleOpenOptions,
     });
-  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress, postImage, handleOpenOptions]);
+  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress, handleOpenOptions]);
   useEffect(() => {
     if (!stage || !isLive || tokenId == null) return;
     patchPostStage(tokenId, { playing: !livePaused, toggle: () => setLivePaused((p) => !p) });
@@ -2058,10 +2058,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            {!postVideo && !postImage && <PostStageChrome overMedia onMore={handleOpenOptions} />}
+            {!postVideo && !postImage && <PostStageChrome overMedia />}
           </View>
         ) : (
-          <PostStageChrome overMedia={false} onMore={postVideo ? undefined : handleOpenOptions} />
+          <PostStageChrome overMedia={false} />
         )}
         <PostStageCreator
           avatarUrl={avatar}
@@ -2172,7 +2172,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </>
           )}
         </View>
-        {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
+        {postVideo && <PostStageActions onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
         <PostStageActionBar
           liked={liked}
           disliked={disliked}

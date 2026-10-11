@@ -96,12 +96,13 @@ export const PostStageChrome = memo(function PostStageChrome({ onMore, overMedia
 });
 
 /** Video utilities belong to the details panel under the player. */
-export const PostStageActions = memo(function PostStageActions({ onMore, onBoost }: { onMore: () => void; onBoost?: () => void }) {
+export const PostStageActions = memo(function PostStageActions({ onMore, onBoost }: { onMore?: () => void; onBoost?: () => void }) {
   const { t } = useTranslation();
+  if (!onMore && !onBoost) return null;
   return (
     <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
       {onBoost ? <StageGlassSquare icon="Rocket" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
-      <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} />
+      {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} /> : null}
     </View>
   );
 });
