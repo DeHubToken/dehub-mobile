@@ -3,6 +3,8 @@ import { Text, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 
 export const PROFILE_BAR_HEIGHT = 60;
+// Mobile web seats its 49.5pt tab row directly beneath the Back row.
+export const PINNED_PROFILE_TABS_HEIGHT = 53.5;
 export const PROFILE_COVER_HEIGHT = 140;
 
 export function useProfileCollapse(profileKey?: string | null) {

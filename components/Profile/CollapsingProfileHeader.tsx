@@ -5,7 +5,7 @@ import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useDerivedVal
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
-import { PROFILE_BAR_HEIGHT } from './useProfileCollapse';
+import { PROFILE_BAR_HEIGHT, PINNED_PROFILE_TABS_HEIGHT } from './useProfileCollapse';
 import { useAppTheme } from '../../context/ThemeContext';
 
 export interface CollapsingProfileHeaderProps {
@@ -45,11 +45,11 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
     opacity: collapsedVisible.value ? 1 : 0,
-    bottom: tabsPinned.value ? -56 : 4,
+    bottom: tabsPinned.value ? -PINNED_PROFILE_TABS_HEIGHT : 4,
   }));
   const guardVisibility = useAnimatedStyle(() => ({
     opacity: collapsedVisible.value ? 1 : 0,
-    bottom: tabsPinned.value ? -56 : -4,
+    bottom: tabsPinned.value ? -PINNED_PROFILE_TABS_HEIGHT : -4,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
 
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.24)', borderBottomColor: 'rgba(255,255,255,0.1)' },
   highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
   backInset: { position: 'absolute', top: 2, left: 2, right: 0, height: 56 },
-  content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 64, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 60, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
   handle: { color: '#A1A1AA', fontSize: 11, marginTop: 1 },

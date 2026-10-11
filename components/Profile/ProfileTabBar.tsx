@@ -7,6 +7,8 @@ import {
   View,
 } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
+import { LinearGradient } from "expo-linear-gradient";
+import { PINNED_PROFILE_TABS_HEIGHT } from "./useProfileCollapse";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import {
@@ -68,7 +70,7 @@ function ProfileTabBarInner<Key extends string>({
       {/* Minimal: an edge-to-edge file-tab strip. One baseline across the
           width; the active tab is outlined on three sides and dropped 1pt so
           its black fill breaks the line. flex-end seats tabs on the baseline. */}
-      <View style={[styles.container, isMinimal && styles.minimalContainer, pinned && { backgroundColor: 'transparent', borderWidth: 0 }]}>
+      <View style={[styles.container, isMinimal && styles.minimalContainer, pinned && styles.pinnedContainer]}>
         {items.map((item) => {
           const focused = item.key === activeKey;
           return (
@@ -85,8 +87,18 @@ function ProfileTabBarInner<Key extends string>({
                 focused && styles.tabActive,
                 isMinimal && minimalTab,
                 isMinimal && focused && minimalTabActive,
+                pinned && styles.pinnedTab,
+                pinned && focused && styles.pinnedTabActive,
               ]}
             >
+              {pinned && focused && !isMinimal && (
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']}
+                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+                  style={styles.pinnedIndicator}
+                />
+              )}
               <Icon
                 name={item.icon}
                 size={18}
@@ -147,6 +159,26 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     marginTop: 1,
     fontWeight: "500",
+  },
+  pinnedContainer: {
+    minHeight: PINNED_PROFILE_TABS_HEIGHT - 4,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+  },
+  pinnedTab: {
+    height: PINNED_PROFILE_TABS_HEIGHT - 4,
+    borderRadius: 12,
+  },
+  pinnedTabActive: {
+    borderColor: 'rgba(255,255,255,0.3)',
+    borderTopColor: 'rgba(255,255,255,0.45)',
+    borderBottomColor: 'rgba(255,255,255,0.1)',
+  },
+  pinnedIndicator: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 11,
   },
   minimalOuterWrap: {
     paddingHorizontal: 0,
