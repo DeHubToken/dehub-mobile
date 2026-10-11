@@ -147,7 +147,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   );
   const [containerWidth, setContainerWidth] = useState(0);
   const buttonCount = NAV_ITEMS.length + 1; // +1 for the leading filter/back slot
-  const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
+  // Glass pill, as on web: a 40pt leading slot and the tabs sharing the rest.
+  // Minimal's file-tab strip keeps equal cells.
+  const buttonWidth = containerWidth > 0
+    ? isMinimal ? containerWidth / buttonCount : (containerWidth - LEAD_SLOT_WIDTH) / NAV_ITEMS.length
+    : 60;
 
   // Read on the UI thread by the drag worklet, which cannot see React refs.
   const dragStart = useSharedValue(0);
@@ -218,6 +222,12 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   const indicatorStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: (progress.value + 1) * buttonWidth }],
     width: buttonWidth,
+  }));
+  // Web's glass indicator: 95% of the tab, centred, 35pt tall in the 36pt row,
+  // so its top rim sits just inside the pill instead of on its clipped edge.
+  const glassIndicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: LEAD_SLOT_WIDTH + (progress.value + INDICATOR_SIDE_GAP) * buttonWidth }],
+    width: buttonWidth * (1 - INDICATOR_SIDE_GAP * 2),
   }));
 
   return (
@@ -306,7 +316,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {/* FrostedPill owns the backdrop blur. The moving selection only
               adds its tint and rim, matching the web nav without a second
               blur sample that can leave a seam during tab transitions. */}
-          <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, indicatorStyle]}>
+          <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle]}>
             {skin ? (
               <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
             ) : (
@@ -322,7 +332,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 drawer's back arrow while that drawer is up. */}
             <Pressable
               onPress={backMode ? onBackPress : onFilterPress}
-              style={styles.navButton}
+              style={[styles.navButton, styles.leadSlot]}
               accessibilityRole="button"
               accessibilityLabel={backMode ? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
               accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
@@ -378,6 +388,13 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   );
 };
 
+/** The glass pill's leading filter/back slot: web's px-3 around a 16pt icon. */
+const LEAD_SLOT_WIDTH = 40;
+/** Web trims the glass indicator to 95% of its tab (2.5% each side). */
+const INDICATOR_SIDE_GAP = 0.025;
+/** Web's indicator is 35pt tall inside the 36pt tab row. */
+const INDICATOR_HEIGHT = 35;
+
 /** Gap between the top of FeedNavBar and the top edge of its pill. */
 export const NAV_PILL_TOP_INSET = 8;
 /** Corner radius of the default (system) pill; canvas themes use their skin's. */
@@ -413,11 +430,12 @@ const styles = StyleSheet.create({
   },
   glassIndicator: {
     position: "absolute",
-    top: 0,
+    top: 0.5,
     left: 0,
-    height: "100%",
+    height: INDICATOR_HEIGHT,
     borderRadius: 12,
   },
+  leadSlot: { flexGrow: 0, flexShrink: 0, flexBasis: LEAD_SLOT_WIDTH, width: LEAD_SLOT_WIDTH },
   navRow: {
     flexDirection: "row",
     alignItems: "center",
