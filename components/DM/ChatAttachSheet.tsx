@@ -34,7 +34,7 @@ const ChatAttachSheet: React.FC<ChatAttachSheetProps> = ({ visible, onClose, opt
   const { t } = useTranslation();
 
   return (
-    <GlassModal
+    <GlassModal surface="theme"
       visible={visible}
       onClose={onClose}
       presentation="bottom"

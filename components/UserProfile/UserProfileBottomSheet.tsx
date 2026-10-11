@@ -1,13 +1,10 @@
-import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
-import { useTranslation } from "react-i18next";
 import CollapsingProfileHeader from '../Profile/CollapsingProfileHeader';
 import { useProfileCollapse } from '../Profile/useProfileCollapse';
-import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
 import ProfileSurface from "./ProfileSurface";
 import UnfollowSheet from "./UnfollowSheet";
@@ -16,7 +13,8 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
-import { useAppTheme } from "../../context/ThemeContext";
+import SwipeBackBoundary from '../common/SwipeBackBoundary';
+import { FrostedBackground } from "../ui/FrostedBackdrop";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -38,20 +36,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   embedded = false,
 }) => {
-  const { t: _copy } = _useCopy();
-  const { t } = useTranslation();
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
-  const [menuTrigger, setMenuTrigger] = React.useState<(() => void) | null>(null);
-
-  const handleRegisterMenuTrigger = useCallback((trigger: () => void) => {
-    // Must wrap in arrow — passing a function directly to setState invokes it as a functional updater
-    setMenuTrigger(() => trigger);
-  }, []);
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const collapse = useProfileCollapse(visible ? usernameOrAddress : null);
-  const { theme } = useAppTheme();
 
   // Shared profile data and actions for both embedded and standalone pages.
   const {
@@ -136,17 +125,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       disableFollow={profileData?.disableActions}
       onFollow={handleFollow}
       onOpenUnfollow={() => setShowUnfollowSheet(true)}
-      menu={!isOwnProfile && menuTrigger ? (
-        <TouchableOpacity onPress={menuTrigger} activeOpacity={0.7}
-          className="w-9 h-9 items-center justify-center rounded-xl dark-surface bg-black/40"
-          accessibilityRole="button" accessibilityLabel={t('profileOptions.a11yLabel')}>
-          <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
-        </TouchableOpacity>
-      ) : undefined}
     />
   );
   if (embedded) {
     return (
+      <SwipeBackBoundary onBack={onClose} enabled={visible}>
       <View className="flex-1 bg-theme-neutrals-900">
         <UserProfileSheetContent
           collapse={collapse}
@@ -186,7 +169,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onBlock={handleBlock}
           onUnblock={handleUnblock}
           onRemoveFollower={handleRemoveFollower}
-          onRegisterMenuTrigger={handleRegisterMenuTrigger}
         />
         {profileBar}
         <UnfollowSheet
@@ -198,6 +180,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           isCancelRequest={isFollowRequestPending}
         />
       </View>
+      </SwipeBackBoundary>
     );
   }
 
@@ -206,7 +189,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       visible={visible}
       onClose={onClose}
     >
+      <FrostedBackground>
       <GestureHandlerRootView style={{ flex: 1 }}>
+        <SwipeBackBoundary onBack={onClose} enabled={visible}>
         {/* Its own nav state: a modal sits above the tabs, so the home bar is
             out of sight and this one hides with this profile's scroll. */}
         <TabBarHideProvider>
@@ -255,13 +240,13 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onBlock={handleBlock}
             onUnblock={handleUnblock}
             onRemoveFollower={handleRemoveFollower}
-            onRegisterMenuTrigger={handleRegisterMenuTrigger}
           />
           {profileBar}
           <StandaloneTabBar onBeforeNavigate={onClose} />
           </View>
         </View>
         </TabBarHideProvider>
+        </SwipeBackBoundary>
       </GestureHandlerRootView>
       <UnfollowSheet
         visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
@@ -271,6 +256,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         onUnfollow={handleUnfollow}
         isCancelRequest={isFollowRequestPending}
       />
+      </FrostedBackground>
     </ProfileSurface>
   );
 };

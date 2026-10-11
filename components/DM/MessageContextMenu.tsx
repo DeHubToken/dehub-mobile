@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useMemo } from "react";
 import {
@@ -16,7 +17,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
-import GlassIndicator from "../ui/GlassIndicator";
 import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
@@ -175,8 +175,8 @@ const FloatingMessage: React.FC<{
   }
 
   const bubbleBg = isMine
-    ? "rounded-xl rounded-br-sm"
-    : "bg-theme-neutrals-800 rounded-xl rounded-bl-sm";
+    ? "bg-white/[0.11] rounded-xl rounded-br-sm"
+    : "border border-white/[0.16] rounded-xl rounded-bl-sm";
 
   return (
     <View className="max-w-[75%]">
@@ -206,9 +206,7 @@ const FloatingMessage: React.FC<{
       {/* Message bubble */}
       <View
         className={`${bubbleBg} overflow-hidden`}
-        style={isMine ? { backgroundColor: "rgba(20,20,20,0.65)" } : undefined}
       >
-        {isMine && <GlassIndicator borderRadius={16} />}
         {message.isForwarded && (
           <View className="flex-row items-center gap-1 px-3 pt-1.5">
             <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
@@ -634,7 +632,8 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
+          <View className="rounded-xl overflow-hidden py-1">
+              <MessageSurface radius={12} />
             {actions.map((action) => (
               <ActionRow key={action.label} {...action} />
             ))}

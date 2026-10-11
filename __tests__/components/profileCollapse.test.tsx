@@ -3,6 +3,7 @@ import { act, create } from 'react-test-renderer';
 import CollapsingProfileHeader from '../../components/Profile/CollapsingProfileHeader';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', StyleSheet: { create: (x: unknown) => x, absoluteFill: {} } }));
 jest.mock('../../components/ScreenHeader', () => 'Back');
 jest.mock('../../components/ui/ChromeSurface', () => 'Glass');
@@ -12,6 +13,7 @@ let mockReaction: (() => void) | undefined;
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
   useAnimatedStyle: () => ({}), Extrapolation: { CLAMP: 'clamp' }, interpolate: () => 0,
+  useDerivedValue: (derive: () => boolean) => ({ get value() { return derive(); } }),
   runOnJS: (fn: unknown) => fn,
   useAnimatedReaction: (prepare: () => boolean, react: (next: boolean, previous: boolean | null) => void) => {
     mockReaction = () => react(prepare(), null);

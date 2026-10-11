@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -302,6 +303,7 @@ const SearchScreen: React.FC = () => {
 
   // The filter panel is an in-tree overlay, so Android back would otherwise
   // pop the whole screen. Close the panel first.
+  useSwipeBackAction(() => setFilterPanelVisible(false), filterPanelVisible);
   useEffect(() => {
     if (!filterPanelVisible) return;
     const subscription = BackHandler.addEventListener("hardwareBackPress", () => {

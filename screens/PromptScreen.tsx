@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 /**
  * PromptScreen
  * ============
@@ -150,6 +151,8 @@ export default function PromptScreen() {
     else navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home }, { pop: true });
     return true;
   }, [navigation, stage]);
+
+  useSwipeBackAction(handleBack);
 
   useFocusEffect(useCallback(() => {
     const subscription = BackHandler.addEventListener("hardwareBackPress", handleBack);

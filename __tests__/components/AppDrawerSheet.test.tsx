@@ -1,7 +1,11 @@
 import { storage as draftStorage } from '../../libs/storage';
 import { __resetDraftCacheForTests } from '../../libs/draft-cache';
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
+import { Platform } from 'react-native';
+import { getThemeSkin, glassTint } from '../../theme/skins';
+import { APP_THEMES, type AppThemeName } from '../../theme/colors';
+import FrostedPill from '../../components/ui/FrostedPill';
 import { interpolate } from 'react-native-reanimated';
 import AppDrawer from '../../components/Home/AppDrawer';
 
@@ -11,13 +15,20 @@ import AppDrawer from '../../components/Home/AppDrawer';
 const SHEET_HEIGHT = 844 * 0.85;
 
 const mockHandlers: Record<string, (e: Record<string, number>) => void> = {};
+let mockTheme: AppThemeName = 'system';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-// The system theme, without the native modules the real provider loads.
+// Exercise every theme without the native modules the real provider loads.
 jest.mock('../../context/ThemeContext', () => ({
-  useAppTheme: () => ({ isMinimal: false, isLight: false, colors: jest.requireActual('../../theme/colors').systemColors }),
+  useAppTheme: () => ({
+    theme: mockTheme,
+    skin: jest.requireActual('../../theme/skins').getThemeSkin(mockTheme),
+    isMinimal: mockTheme === 'minimal',
+    isLight: false,
+    colors: jest.requireActual('../../theme/colors').systemColors,
+  }),
 }));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView',
+  View: 'View', Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView', Image: 'Image',
   Platform: { OS: 'android' },
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
@@ -53,6 +64,8 @@ jest.mock('react-native-reanimated', () => ({
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
+jest.mock('../../components/ui/FrostedPill', () => 'FrostedPill');
+jest.mock('../../components/theme/HudBrackets', () => 'HudBrackets');
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: false }),
@@ -64,7 +77,30 @@ jest.mock('../../libs', () => ({ toastError: jest.fn(), toastInfo: jest.fn() }))
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
-beforeEach(() => { jest.clearAllMocks(); });
+beforeEach(() => { jest.clearAllMocks(); mockTheme = 'system'; Platform.OS = 'android'; });
+
+it.each(APP_THEMES)(
+  'opens %s with glass and no dark dismissal overlay or elevation shadow', (theme) => {
+    mockTheme = theme;
+    const close = jest.fn();
+    const view = render(<AppDrawer visible onClose={close} />);
+    const sheetStyle = Object.assign({}, ...view.getByTestId('app-menu-sheet').props.style.filter(Boolean));
+    expect(sheetStyle).toMatchObject({ backgroundColor: 'transparent', elevation: 0, overflow: 'hidden' });
+    expect(view.UNSAFE_getByType(FrostedPill).props.tint).toBe(glassTint(getThemeSkin(theme)?.page ?? '#0B0B0E', 0.18));
+    const dismiss = view.getByLabelText('common.close');
+    expect(Object.assign({}, ...dismiss.props.style)).toMatchObject({ backgroundColor: 'transparent' });
+    fireEvent.press(dismiss);
+    expect(close).toHaveBeenCalledTimes(1);
+  },
+);
+
+it('preserves the iOS menu surface', () => {
+  Platform.OS = 'ios';
+  const view = render(<AppDrawer visible onClose={jest.fn()} />);
+  expect(view.UNSAFE_queryByType(FrostedPill)).toBeNull();
+  expect(Object.assign({}, ...view.getByTestId('app-menu-sheet').props.style.filter(Boolean)))
+    .toMatchObject({ backgroundColor: '#0B0B0E', elevation: 12 });
+});
 
 it('parks the closed sheet below the screen, not beside it', () => {
   render(<AppDrawer visible={false} onClose={jest.fn()} />);

@@ -58,8 +58,6 @@ interface UserProfileSheetContentProps {
   onBlock?: () => void;
   onUnblock?: () => void;
   onRemoveFollower?: () => void;
-  /** Callback to register menu trigger handler */
-  onRegisterMenuTrigger?: (trigger: () => void) => void;
   /** Why the profile could not be loaded, when it could not. */
   error?: UserProfileLoadError | null;
   onRetry?: () => void;
@@ -102,7 +100,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onBlock,
   onUnblock,
   onRemoveFollower,
-  onRegisterMenuTrigger,
   error = null,
   onRetry,
   backToTopBottom,
@@ -142,13 +139,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const handleOpenMenu = useCallback(() => {
     setShowProfileMenu(true);
   }, []);
-
-  // Register menu trigger with parent
-  React.useEffect(() => {
-    if (!isOwnProfile && onRegisterMenuTrigger) {
-      onRegisterMenuTrigger(handleOpenMenu);
-    }
-  }, [isOwnProfile, onRegisterMenuTrigger, handleOpenMenu]);
 
   const pendingMenuAction = useRef<(() => void) | null>(null);
   const menuActionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -265,6 +255,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           onOpenImage={onOpenImage}
           onShare={onShare}
           onMessage={isOwnProfile || messagesDisabled ? undefined : onMessage}
+          onOpenOptions={isOwnProfile ? undefined : handleOpenMenu}
           onEditProfile={onEditProfile}
           stats={stats}
           onStatPress={onStatPress}
@@ -327,6 +318,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     onOpenImage,
     onShare,
     onMessage,
+    handleOpenMenu,
     onFollow,
     onOpenUnfollow,
     onStatPress,

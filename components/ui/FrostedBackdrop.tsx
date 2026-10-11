@@ -35,6 +35,12 @@ export function useFrostedSource(): Target | undefined {
   return override ?? targets?.target;
 }
 
+/** Standalone overlays must not keep sampling the covered page's feed. */
+export function FrostedBackground({ children }: { children: React.ReactNode }) {
+  const targets = useContext(Targets);
+  return <SourceOverride.Provider value={targets?.background ?? null}>{children}</SourceOverride.Provider>;
+}
+
 /** Register visible feed content for sibling navigation pills and the bottom bar. */
 export function FrostedContent({ children }: { children: React.ReactNode }) {
   const ref = useRef<View>(null);

@@ -6,6 +6,8 @@ import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
+import { useAppTheme } from '../../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 /**
  * The shared chrome for every call surface — incoming, voice and video.
@@ -28,8 +30,11 @@ const SMALL_CONTROL_SIZE = 60;
 
 export const CallScreen: React.FC<{
   onRequestClose: () => void;
+  onMinimize?: () => void;
   children: React.ReactNode;
-}> = ({ onRequestClose, children }) => (
+}> = ({ onRequestClose, onMinimize, children }) => {
+  const { colors: palette } = useAppTheme();
+  return (
   <Modal
     visible
     onRequestClose={onRequestClose}
@@ -38,17 +43,30 @@ export const CallScreen: React.FC<{
     transparent={false}
   >
     <StatusBar barStyle="light-content" />
-    <View style={styles.screen}>
-      <LinearGradient
-        colors={["#26282B", "#0C0E10", colors.background]}
-        locations={[0, 0.45, 1]}
-        style={StyleSheet.absoluteFill}
-        pointerEvents="none"
-      />
+    <View style={[styles.screen, { backgroundColor: palette.background }]}>
+      <CallBackground />
       {children}
+      {onMinimize ? <CallMinimizeButton onPress={onMinimize} /> : null}
     </View>
   </Modal>
-);
+  );
+};
+
+export function CallBackground() {
+  const { colors: palette, isMinimal } = useAppTheme();
+  return isMinimal ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: palette.background }]} /> : (
+    <LinearGradient colors={[palette.muted, palette.background, palette.background]} locations={[0, 0.55, 1]} style={StyleSheet.absoluteFill} pointerEvents="none" />
+  );
+}
+
+export function CallMinimizeButton({ onPress }: { onPress: () => void }) {
+  const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
+  return <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={t('calls.minimize')}
+    style={{ position: 'absolute', top: insets.top + 16, left: 16, width: 40, height: 40, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' }}>
+    <Icon name="ChevronDown" size={20} color={colors.mutedForeground} />
+  </Pressable>;
+}
 
 /** Caller/callee block: what kind of call, who it is, and where it has got to. */
 export const CallIdentity: React.FC<{
@@ -59,7 +77,7 @@ export const CallIdentity: React.FC<{
   avatarUri?: string | null;
   avatarSize?: number;
   compact?: boolean;
-}> = ({ kindLabel, kindIcon, name, status, avatarUri, avatarSize = 104, compact }) => (
+}> = ({ kindLabel, kindIcon, name, status, avatarUri, avatarSize = 112, compact }) => (
   <View style={styles.identity}>
     <View style={styles.kindRow}>
       <Icon name={kindIcon} size={13} color={colors.mutedForeground} />
@@ -104,17 +122,18 @@ export const CallControl: React.FC<{
         style={({ pressed }) => [
           styles.control,
           { width: size, height: size, borderRadius: radius.full },
-          solid ? styles.controlSolid : styles.controlGlass,
+          { overflow: 'hidden' },
           pressed && styles.controlPressed,
         ]}
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel ?? label}
         accessibilityState={{ selected: !!active }}
       >
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius.full }, solid ? styles.controlSolid : styles.controlGlass]} />
         <Icon
           name={icon}
           size={small ? 22 : 25}
-          color={solid ? colors.accentForeground : colors.foreground}
+          color={solid ? colors.background : colors.foreground}
         />
       </Pressable>
       <Text style={styles.controlLabel} numberOfLines={1}>
@@ -210,7 +229,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.14)",
   },
   controlSolid: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.foreground,
   },
   controlPressed: {
     opacity: 0.72,

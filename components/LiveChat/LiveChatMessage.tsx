@@ -171,7 +171,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     <Pressable
       ref={containerRef}
       onLongPress={handleLongPress}
-      className="flex-row px-3 py-1.5"
+      className="flex-row px-4 py-2"
       style={{ opacity: message.isDeleted ? 0.4 : 1 }}
     >
       <Animated.View
@@ -197,7 +197,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-baseline gap-1.5 mb-0.5 flex-wrap">
           <Text
-            className={`font-bold text-[14px] ${isMe ? "text-blue-400" : "text-white"}`}
+            className={`font-bold text-[14px] text-white`}
             numberOfLines={1}
           >
             {displayName}
