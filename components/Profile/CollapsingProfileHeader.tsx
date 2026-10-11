@@ -4,7 +4,6 @@ import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, type SharedVa
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
-import ChromeSurface from '../ui/ChromeSurface';
 import { PROFILE_BAR_HEIGHT } from './useProfileCollapse';
 import { useAppTheme } from '../../context/ThemeContext';
 
@@ -84,7 +83,7 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
             activeOpacity={0.7}
             style={[styles.follow, (disableFollow || followLoading) && { opacity: 0.5 }]}
           >
-            <ChromeSurface radius={12} tinted />
+            <LinearGradient colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0.025)', 'rgba(0,0,0,0.12)']} locations={[0, 0.45, 1]} style={[StyleSheet.absoluteFill, styles.followSurface]} />
             {followLoading ? <ActivityIndicator size="small" color="#fff" /> : <Text numberOfLines={1} style={styles.followLabel}>{followLabel}</Text>}
           </TouchableOpacity>
         )}
@@ -105,5 +104,6 @@ const styles = StyleSheet.create({
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
   handle: { color: '#A1A1AA', fontSize: 11, marginTop: 1 },
   follow: { minHeight: 36, minWidth: 76, maxWidth: '44%', paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
+  followSurface: { borderRadius: 12, backgroundColor: 'rgba(8,8,10,0.46)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.4)' },
   followLabel: { color: '#fff', fontSize: 12, fontWeight: '600' },
 });
