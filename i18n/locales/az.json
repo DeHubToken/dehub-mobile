@@ -6017,7 +6017,8 @@
     "mostActive": "Ən aktiv",
     "hereNow": "İndi burada",
     "nobodyYet": "Hələ heç kim yoxdur",
-    "hereCount": "{{formatted}} here"
+    "hereCount": "{{formatted}} here",
+    "rotate": "Ekranı fırlat"
   },
   "search": {
     "endOfResults": "Nəticələrin sonu",

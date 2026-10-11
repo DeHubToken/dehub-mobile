@@ -5971,7 +5971,8 @@
     "mostActive": "Fanga min b'a la ka baara kɛ",
     "hereNow": "Yan sisan",
     "nobodyYet": "Mɔgɔ si ma deli ka",
-    "watchingCount": "{{formatted}} watching"
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "Sɛnɛkɛyɔrɔ"
   },
   "search": {
     "endOfResults": "Jaabiw laban",

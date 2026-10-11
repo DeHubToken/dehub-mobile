@@ -6100,7 +6100,8 @@
     "topTippers": "인기 팁",
     "mostActive": "가장 활발한 체험",
     "hereNow": "지금 여기",
-    "nobodyYet": "아직 아무도 없음"
+    "nobodyYet": "아직 아무도 없음",
+    "rotate": "화면 회전"
   },
   "search": {
     "endOfResults": "결과 끝",

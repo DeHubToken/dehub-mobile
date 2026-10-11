@@ -5997,7 +5997,8 @@
     "mostActive": "Iň hereketli",
     "hereNow": "Bu ýerde",
     "nobodyYet": "Häzir hiç kim",
-    "watchingCount": "{{formatted}} watching"
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "Ekrany aýyrmak"
   },
   "search": {
     "endOfResults": "Netijeleriň ahyry",

@@ -5986,7 +5986,8 @@
     "nobodyYet": "تر اوسه څوک نه دي نیول شوي",
     "hereCount": "{{formatted}} here",
     "watchingCount": "{{formatted}} watching",
-    "startedAgo": "Started {{time}}"
+    "startedAgo": "Started {{time}}",
+    "rotate": "د سکرین شاټ بدل کړئ"
   },
   "search": {
     "endOfResults": "د پایلو پای",

@@ -5979,7 +5979,8 @@
     "mostActive": "अधिक सक्रिय",
     "hereNow": "इदानीम् अत्र",
     "nobodyYet": "अद्यापि कोऽपि",
-    "watchingCount": "{{formatted}} watching"
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "स्क्रीन घुमाएं"
   },
   "search": {
     "endOfResults": "फलानाम् अन्तः",

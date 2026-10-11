@@ -5965,7 +5965,8 @@
     "nobodyYet": "Ҳеҷ кас ҳанӯз",
     "hereCount": "{{formatted}} here",
     "watchingCount": "{{formatted}} watching",
-    "topTippers": "Top tippers"
+    "topTippers": "Top tippers",
+    "rotate": "Даврзанонии экран"
   },
   "search": {
     "endOfResults": "Охири натиҷаҳо",

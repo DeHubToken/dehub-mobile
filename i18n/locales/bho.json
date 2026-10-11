@@ -6011,7 +6011,8 @@
     "nobodyYet": "आज तक ना भइल",
     "hereCount": "{{formatted}} here",
     "watchingCount": "{{formatted}} watching",
-    "startedAgo": "Started {{time}}"
+    "startedAgo": "Started {{time}}",
+    "rotate": "स्क्रीन समायोजित करें"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",
