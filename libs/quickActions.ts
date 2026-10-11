@@ -30,16 +30,18 @@ export function moveQuickActions(event: Touch) {
 
 // The existing JSX bridge calls this before NativeWind changes component identity.
 // Pressability owns button holds and suppresses their release tap.
-let types: { pressables: Set<unknown>; text: Set<unknown>; input: Set<unknown>; view: Set<unknown> } | null = null;
+let types: { pressables: Set<unknown>; text: Set<unknown>; input: Set<unknown> } | null = null;
 export function withQuickActions(type: unknown, props: any) {
-  if (!props) return props;
+  if (!type || !props) return props;
   if (!types) {
     const RN = require('react-native');
     types = {
       pressables: new Set([RN.Pressable, RN.TouchableOpacity, RN.TouchableHighlight, RN.TouchableWithoutFeedback, RN.TouchableNativeFeedback]),
       text: new Set([RN.Text, RN.Animated?.Text]), input: new Set([RN.TextInput, RN.Animated?.TextInput]),
-      view: new Set([RN.View, RN.Animated?.View]),
     };
+  }
+  if (types.input.has(type) || (types.text.has(type) && props.selectable)) {
+    return { ...props, onTouchStart: (...args: unknown[]) => { blockQuickActions(); return props.onTouchStart?.(...args); } };
   }
   if (types.pressables.has(type) || (types.text.has(type) && props.onPress)) {
     const owned = (!!props.onLongPress && props.onLongPress !== openQuickActions) || props.disabled || props.accessibilityRole === 'adjustable';
@@ -49,9 +51,6 @@ export function withQuickActions(type: unknown, props: any) {
       onLongPress: props.onLongPress || (owned ? undefined : openQuickActions),
       delayLongPress: props.onLongPress ? props.delayLongPress : QUICK_ACTIONS_HOLD_MS,
     };
-  }
-  if (types.input.has(type) || (types.text.has(type) && props.selectable)) {
-    return { ...props, onTouchStart: (...args: unknown[]) => { blockQuickActions(); return props.onTouchStart?.(...args); } };
   }
   return props;
 }

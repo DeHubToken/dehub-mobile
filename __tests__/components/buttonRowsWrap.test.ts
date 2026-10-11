@@ -10,12 +10,11 @@ const showcase = read("components/Badge/showcaseUi.tsx");
 // Button rows sized for English run off the panel edge in longer locales
 // (de, fr, ru, uk). They wrap onto a second line instead, spaced by gap.
 describe("button rows wrap in longer languages", () => {
-  it("lets the Report a bug buttons wrap, spaced by gap rather than margins", () => {
-    expect(reportBug).toContain('<View className="flex-row flex-wrap justify-end gap-2">');
-    const row = reportBug.slice(reportBug.indexOf("flex-row flex-wrap justify-end gap-2"));
-    const buttons = row.match(/className="h-11 px-4[^"]*"/g) ?? [];
-    expect(buttons).toHaveLength(3);
-    for (const cls of buttons) expect(cls).not.toMatch(/\bmr-2\b/);
+  it("stacks the Report a bug actions with room for multiline labels", () => {
+    const actions = reportBug.slice(reportBug.indexOf('onPress={send}'));
+    expect(actions).toContain('px-4 py-3');
+    expect(actions).toContain('onPress={close}');
+    expect(actions).not.toMatch(/\b(?:h-11|flex-row|numberOfLines)\b/);
   });
 
   it("lets the ENS sign and copy buttons wrap, spaced by gap rather than margins", () => {
