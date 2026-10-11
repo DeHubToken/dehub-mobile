@@ -198,3 +198,24 @@ test('rejects arbitrary status strings and preserves sanitized group lookup diag
     assert.equal(JSON.stringify(report).includes(jwt), false);
   }
 });
+
+test('reads the bundle profile relationship without unsupported filters and counts only active App Store profiles', async () => {
+  const input = fixture();
+  const find = input.apple.BundleId.findAsync;
+  input.apple.BundleId.findAsync = async (...args) => {
+    const bundle = await find(...args);
+    bundle.getProfilesAsync = async (...parameters) => {
+      assert.deepEqual(parameters, []);
+      return [
+        { attributes: { profileType: 'IOS_APP_STORE', profileState: 'ACTIVE', profileContent: secret } },
+        { attributes: { profileType: 'IOS_APP_STORE', profileState: 'INVALID' } },
+        { attributes: { profileType: 'IOS_APP_DEVELOPMENT', profileState: 'ACTIVE' } },
+      ];
+    };
+    return bundle;
+  };
+  const report = await inspectSigningPortal(input);
+  assert.equal(report.portalBundleLookupSucceeded, true);
+  assert.deepEqual(report.profiles.map(profile => profile.activeAppStoreProfiles), [1, 1, 1]);
+  assert.equal(JSON.stringify(report).includes(secret), false);
+});
