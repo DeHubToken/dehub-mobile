@@ -1,7 +1,6 @@
 import CollapsingProfileHeader from './CollapsingProfileHeader';
 import { PROFILE_BAR_HEIGHT, useProfileCollapse } from './useProfileCollapse';
 import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
-import ChromeSurface from '../ui/ChromeSurface';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
@@ -46,7 +45,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   const collapse = useProfileCollapse(address);
   const profileScrollY = collapse.scrollY;
   const headerHeight = useSharedValue(0);
-  const tabsStuck = useSharedValue(false);
+  const tabsStuck = collapse.tabsPinned;
   const [stickyVisible, setStickyVisible] = useState(false);
   const stickyStyle = useAnimatedStyle(() => ({ opacity: tabsStuck.value ? 1 : 0 }));
   const [activeKey, setActiveKey] = useState("home");
@@ -171,8 +170,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   return <View className="flex-1 bg-theme-neutrals-900">
     {renderScene(activeKey)}
     <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 10, elevation: 10 }, stickyStyle]}>
-      <ChromeSurface radius={12} />
-      <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} />
+      <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned />
     </Animated.View>
     <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
       cover={user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl) } : getDefaultBanner(address || '')}
