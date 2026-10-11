@@ -1,5 +1,5 @@
 import CollapsingProfileHeader from './CollapsingProfileHeader';
-import { PROFILE_BAR_HEIGHT, useProfileCollapse } from './useProfileCollapse';
+import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './useProfileCollapse';
 import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
@@ -57,7 +57,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     'worklet';
     drive(y);
     profileScrollY.value = y;
-    const stuck = headerHeight.value > 0 && y >= headerHeight.value - PROFILE_BAR_HEIGHT;
+    const stuck = headerHeight.value > 0 && y >= headerHeight.value + PROFILE_TABS_TOP_GAP - PROFILE_BAR_HEIGHT;
     if (stuck !== tabsStuck.value) {
       tabsStuck.value = stuck;
       runOnJS(setStickyVisible)(stuck);
