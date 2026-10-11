@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { cloudDraftHistoryEditor } from "../libs/editor/cloudDraftHistoryEditor";
@@ -1854,7 +1855,7 @@ function TextPrompt(props: {
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
-        <View className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
+        <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
           <Text className="text-white text-base font-semibold">{props.title}</Text>
           <TextInput
             value={value}
@@ -1871,7 +1872,7 @@ function TextPrompt(props: {
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
             <Chip label={t("common.done")} active onPress={() => { if (props.onDone(value)) setValue.complete(value, value); }} />
           </View>
-        </View>
+        </ThemePanel>
       </KeyboardAvoidingView>
     </Modal>
   );

@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -172,23 +173,23 @@ export default function SignInTvScreen() {
         {phase === 'confirm' && !!target && (
           <View>
             <View className="rounded-xl overflow-hidden mb-4" style={GLASS_SHADOW}>
-              <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-5 items-center">
+              <ThemePanel className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-5 items-center">
                 <Icon name="Tv" size={32} color="#9ca3af" />
                 <Text className="text-white text-lg font-bold mt-3">{target.deviceName}</Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-1">
                   {t('tv.wantsToSignIn')}
                 </Text>
-              </View>
+              </ThemePanel>
             </View>
 
             {/* Stated plainly, on the step where the decision is made. The
                 failure mode for every device-code flow ever built is somebody
                 approving a code that arrived by message. */}
-            <View className="bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-xl px-4 py-3 mb-4">
+            <ThemePanel className="bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-xl px-4 py-3 mb-4">
               <Text className="text-theme-neutrals-300 text-xs leading-5">
                 {t('tv.pairWarning')}
               </Text>
-            </View>
+            </ThemePanel>
 
             <TouchableOpacity
               onPress={() => void answer(true)}

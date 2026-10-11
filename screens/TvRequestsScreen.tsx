@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   View,
@@ -202,7 +203,7 @@ const RequestCard = React.memo<{
 
   return (
     <View className="rounded-xl overflow-hidden mb-3" style={GLASS_SHADOW}>
-      <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-4">
+      <ThemePanel className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-4">
         <View className="flex-row items-center mb-3">
           <View className="w-10 h-10 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
             <Icon name="Tv" size={20} color="#9ca3af" />
@@ -259,7 +260,7 @@ const RequestCard = React.memo<{
             )}
           </TouchableOpacity>
         </View>
-      </View>
+      </ThemePanel>
     </View>
   );
 });

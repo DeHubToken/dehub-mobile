@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -313,9 +314,9 @@ const RepostQuoteListScreen: React.FC = () => {
     if (repostLoading) return null;
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
+        <ThemePanel className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="git-compare-outline" size={40} color="#A1A1AA" />
-        </View>
+        </ThemePanel>
         <Text className="text-gray-400 text-base text-center px-8">
           {t("screens.noRepostsYet")}
         </Text>
@@ -327,9 +328,9 @@ const RepostQuoteListScreen: React.FC = () => {
     if (quoteLoading) return null;
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
+        <ThemePanel className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="chatbubble-ellipses-outline" size={40} color="#A1A1AA" />
-        </View>
+        </ThemePanel>
         <Text className="text-gray-400 text-base text-center px-8">
           {t("screens.noQuotesYet")}
         </Text>
