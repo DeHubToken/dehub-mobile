@@ -56,7 +56,6 @@ import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/Post
 import { useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
-import { usePostStage } from "../libs/postStage";
 
 /** The post page's phone layout ("Stage") applies below web's sm breakpoint. */
 export const POST_STAGE_MAX_WIDTH = 640;
@@ -1291,7 +1290,6 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
-  const stageMedia = usePostStage(tokenId);
   const postVideo = !!item && (resolveContentType(item) === "video" || resolveContentType(item) === "short");
   const handlePostBack = useStageBack();
   const handleStageAnchor = useCallback((y: number) => {
@@ -1452,13 +1450,12 @@ function FeedDetailContent() {
               query={commentQuery}
               onQueryChange={setCommentQuery}
               onToggleSearch={toggleCommentSearch}
-              onMore={stageMedia.openOptions}
             />
           ) : renderCommentTabs()}
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, stageMedia.openOptions]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1588,8 +1585,7 @@ function FeedDetailContent() {
                 marginTop: 4,
                 marginHorizontal: 10,
                 borderRadius: skin?.square ? 0 : 12,
-                borderWidth: 1,
-                borderColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.12)",
+                borderWidth: 0,
                 overflow: "hidden",
                 backgroundColor: "transparent",
               }
@@ -1600,7 +1596,7 @@ function FeedDetailContent() {
               : { marginBottom: inputLift }}
         >
           {stage && (
-            <FrostedPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} />
+            <FrostedPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} bordered={false} />
           )}
           {/* Replying / Editing indicator */}
           {(replyTo || editingComment) && !recorder.isRecording && (
@@ -1690,7 +1686,7 @@ function FeedDetailContent() {
                 className={isMinimal ? "flex-1 flex-row border" : "flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"}
                 style={{
                   ...(isMinimal ? { borderColor: MINIMAL_INPUT_LINE } : null),
-                  ...(stage ? { backgroundColor: "rgba(255,255,255,0.04)" } : null),
+                  ...(stage ? { backgroundColor: "rgba(255,255,255,0.04)", borderWidth: 0 } : null),
                   // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
                   // 40 box. Once the text wraps, the box grows and this is moot.
                   alignItems: "center",

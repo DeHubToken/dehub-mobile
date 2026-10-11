@@ -7,10 +7,10 @@ import { androidFrostSupported, useFrostedSource } from "./FrostedBackdrop";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
 
 /** Shared pill material. Geometry and controls belong to the existing caller. */
-export default function FrostedPill({ tint, borderRadius }: { tint: string; borderRadius: number }) {
+export default function FrostedPill({ tint, borderRadius, bordered = true }: { tint: string; borderRadius: number; bordered?: boolean }) {
   const target = useFrostedSource();
   const surfaceActive = useFeedSurfaceActive();
-  if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} />;
+  if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} />;
   // Opacity on a covered page does not stop native blur target sampling.
   const blur = androidFrostSupported && !!target && surfaceActive;
   return (
@@ -30,8 +30,8 @@ export default function FrostedPill({ tint, borderRadius }: { tint: string; bord
         locations={[0, 0.45, 1]}
         style={StyleSheet.absoluteFill}
       />
-      <View style={[StyleSheet.absoluteFill, { borderRadius, borderWidth: StyleSheet.hairlineWidth * 2,
-        borderColor: "rgba(255,255,255,0.22)", borderTopColor: "rgba(255,255,255,0.4)" }]} />
+      {bordered && <View style={[StyleSheet.absoluteFill, { borderRadius, borderWidth: StyleSheet.hairlineWidth * 2,
+        borderColor: "rgba(255,255,255,0.22)", borderTopColor: "rgba(255,255,255,0.4)" }]} />}
     </View>
   );
 }
