@@ -26,7 +26,6 @@ import {
   ActivityIndicator,
   FlatList,
   Alert,
-  I18nManager,
   KeyboardAvoidingView,
 } from "react-native";
 import Constants from "expo-constants";
@@ -37,9 +36,9 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import { requestAccountErasure } from "../services/accountErasure.service";
-import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useAppTheme } from "../context/ThemeContext";
+import ScreenHeader from '../components/ScreenHeader';
 import { themePageIcon } from "../theme/pageIcons";
 import LiquidGlass from "../components/ui/LiquidGlass";
 import FullScreenLoader from "../components/FullScreenLoader";
@@ -78,7 +77,6 @@ import {
   SettingsAnchor,
   SettingsPanelContext,
   SettingsScrollView,
-  useSettingsBentoStyle,
 } from "../components/Settings/SettingsAnchor";
 import {
   revealSetting,
@@ -87,9 +85,6 @@ import {
 } from "../libs/settings-search";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
-
-/** Web's small header control: `h-10 rounded-xl bg-white/5 border border-white/10`. */
-const HEADER_CONTROL = "h-10 w-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex-row";
 
 /** Same tabs, same order, same icons as web's `tabs` array. */
 type TabKey =
@@ -118,7 +113,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
   const [revokingAddress, setRevokingAddress] = useState<string | null>(null);
   const { t } = useTranslation();
   const { theme, skin } = useAppTheme();
-  const bento = useSettingsBentoStyle();
   // Opened from the menu, a render-time canGoBack() is still false; this
   // follows the stack once the push is saved.
   const canPop = useCanGoBack();
@@ -221,49 +215,17 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
    * screen needs one, so it leads the row in the same control material.
    */
   const headerBento = (
-    <View className="px-2 pt-1">
-      <View style={[bento, { padding: 16 }]}>
-        <View className="flex-row items-center justify-between mb-4">
-          <View className="flex-row items-center flex-1 mr-3" style={{ gap: 12 }}>
-            {canPop ? (
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                activeOpacity={0.7}
-                accessibilityRole="button"
-                accessibilityLabel={t("common.goBack")}
-                className={HEADER_CONTROL}
-              >
-                <Ionicons
-                  name="arrow-back"
-                  size={18}
-                  color="#F4F4F5"
-                  style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
-                />
-              </TouchableOpacity>
-            ) : null}
-            <Image
-              source={themePageIcon(theme, 'settings')}
-              style={{ width: 40, height: 40 }}
-              contentFit="contain"
-            />
-            <View className="flex-1">
-              <Text numberOfLines={1} className="text-white text-xl font-bold">
-                {t("settings.title")}
-              </Text>
-              <Text numberOfLines={1} className="text-theme-neutrals-500 text-sm">
-                {t("settings.manageAccount")}
-              </Text>
-            </View>
-          </View>
-        </View>
+    <ScreenHeader title={t("settings.title")} subtitle={t("settings.manageAccount")}
+      icon="" canGoBack={canPop}
+      leftContent={<Image source={themePageIcon(theme, 'settings')} style={{ width: 32, height: 32, marginRight: 2 }} contentFit="contain" />}>
         <SettingsSearchBar onSelect={handleSearchSelect} />
         {/* Bleeds through the bento's padding so the icons that overflow
             scroll out under the bento edge rather than being cut 16px in. */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          style={{ marginHorizontal: -16 }}
-          contentContainerStyle={{ gap: 6, paddingHorizontal: 16 }}
+          style={{ marginHorizontal: -12 }}
+          contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}
         >
           {TABS.map((tab) => {
             const active = activeTab === tab.key;
@@ -294,8 +256,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
             );
           })}
         </ScrollView>
-      </View>
-    </View>
+    </ScreenHeader>
   );
 
   const profilePanel = (

@@ -42,6 +42,13 @@ it.each(['center', 'bottom'] as const)('uses theme material without changing %s 
   expect(close).toHaveBeenCalledTimes(1);
 });
 
+it('uses theme material by default and permits deliberate solid panels', () => {
+  const screen = render(<GlassModal visible onClose={jest.fn()}><View /></GlassModal>);
+  expect(screen.UNSAFE_getByType('MessageSurface' as any)).toBeTruthy();
+  screen.rerender(<GlassModal visible surface="solid" onClose={jest.fn()}><View /></GlassModal>);
+  expect(screen.UNSAFE_queryByType('MessageSurface' as any)).toBeNull();
+});
+
 it('keeps drawer gestures on the handle, outside scrollable inputs', () => {
   const screen = render(<GlassModal visible presentation="bottom" scrollable onClose={jest.fn()}><View /></GlassModal>);
   const scroll = screen.UNSAFE_getByType(ScrollView);

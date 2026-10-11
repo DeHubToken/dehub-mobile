@@ -1345,7 +1345,7 @@ function FeedDetailContent() {
 
   const renderHeader = useCallback(() => (
     <View>
-      {!immersive && !stage && <ScreenHeader title={t("screens.post")} />}
+      {!immersive && !stage && <ScreenHeader appearance="controls" title={t("screens.post")} />}
       {item && stage ? (
         <FeedCard
           item={item}

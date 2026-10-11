@@ -59,6 +59,7 @@ import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useAppTheme } from "../context/ThemeContext";
 import { themePageIcon } from "../theme/pageIcons";
+import NavPillSurface from '../components/ui/NavPillSurface';
 import {
   MINIMAL_TAB_TEXT,
   MINIMAL_TAB_TEXT_ACTIVE,
@@ -1051,7 +1052,8 @@ export default function FeatureRequestsScreen() {
       )}
 
       {/* Header bento — the whole page header on web at this width. */}
-      <View style={[styles.bento, skin?.card, isMinimal && styles.minimalBento]}>
+      <View style={[styles.bento, { backgroundColor: 'transparent', overflow: 'hidden' }]}>
+        <NavPillSurface borderRadius={16} />
         <View style={styles.bentoTop}>
           {iconFailed ? (
             <View style={styles.headerIconFallback}>
