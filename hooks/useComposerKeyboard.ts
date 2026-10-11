@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Keyboard, Platform, View, useWindowDimensions, type KeyboardEvent } from "react-native";
-import { keyboardComposerLift } from "../libs/keyboard-composer";
+import type React from "react";
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Dimensions, Keyboard, Platform, View, useWindowDimensions, type KeyboardEvent } from "react-native";
+import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { keyboardComposerLift, keyboardTopFromEvent } from "../libs/keyboard-composer";
 
 type ComposerKeyboardOptions = {
   /** Space left between the composer and the top of the keys. */
@@ -17,6 +19,12 @@ type ComposerKeyboardOptions = {
  * slide), so measure again a few times after the first one.
  */
 const SETTLE_MS = [120, 350, 700];
+
+/**
+ * Composers that lift themselves. KeyboardPanView leaves fields inside these
+ * alone: moving the screen as well would fight the composer's own lift.
+ */
+export const selfLiftingComposers = new Set<React.RefObject<View | null>>();
 
 /**
  * Measure the composer itself and lift it until its bottom sits on the
@@ -39,6 +47,14 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   const settings = useRef({ gap, restingOffset });
   settings.current = { gap, restingOffset };
   const { width, height } = useWindowDimensions();
+  useEffect(() => {
+    if (!enabled) return;
+    selfLiftingComposers.add(ref);
+    return () => { selfLiftingComposers.delete(ref); };
+  }, [enabled]);
+  const insets = useContext(SafeAreaInsetsContext);
+  const navBar = useRef(0);
+  navBar.current = insets?.bottom ?? 0;
   useLayoutEffect(() => {
     applied.current = state.visible ? state.lift : restingOffset;
   }, [state, restingOffset]);
@@ -75,7 +91,12 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   useEffect(() => {
     if (!enabled) return;
     const show = (event: KeyboardEvent) => {
-      keyboardTop.current = event.endCoordinates.screenY;
+      keyboardTop.current = keyboardTopFromEvent(
+        event.endCoordinates,
+        Platform.OS,
+        Dimensions.get("screen")?.height ?? 0,
+        navBar.current,
+      );
       // Only used when the composer cannot be measured.
       fallback.current = Math.max(event.endCoordinates.height ?? 0, 0);
       measure();

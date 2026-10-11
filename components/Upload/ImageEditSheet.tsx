@@ -30,6 +30,7 @@ import {
 } from "../../libs/imageFilters";
 import { bakeEdit, downscale, loadImage, paintEdit, type Annotation, type EditOps, type Point } from "./imageEditSkia";
 import { toastError } from "../../libs/toast";
+import KeyboardPanView from "../common/KeyboardPanView";
 
 export type ImageEditMode = "filter" | "draw";
 
@@ -245,6 +246,8 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
 
   return (
     <Modal visible animationType="slide" statusBarTranslucent onRequestClose={onClose}>
+      {/* Text dropped low on the photo would otherwise sit under the keys. */}
+      <KeyboardPanView>
       <View className="flex-1 bg-black" style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
         <View className="flex-row items-center justify-between px-4 py-3 border-b border-white/10">
           <Pressable
@@ -470,6 +473,7 @@ export default function ImageEditSheet({ mode, uri, mimeType, initialFilter, ini
           </View>
         )}
       </View>
+      </KeyboardPanView>
     </Modal>
   );
 }
