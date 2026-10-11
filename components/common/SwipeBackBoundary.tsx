@@ -13,6 +13,7 @@ export default function SwipeBackBoundary({ children, onBack, enabled = true, is
   const actions = useRef(new Map<symbol, BackAction>());
   const [hasAction, setHasAction] = useState(false);
   const locked = useRef(false);
+  const multiTouch = useRef(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const register = useCallback<RegisterBackAction>((action) => {
     const key = Symbol();
@@ -45,8 +46,10 @@ export default function SwipeBackBoundary({ children, onBack, enabled = true, is
     .failOffsetY([-14, 14])
     .maxPointers(1)
     .runOnJS(true)
+    .onBegin(() => { multiTouch.current = false; })
+    .onTouchesDown((event) => { if (event.numberOfTouches > 1) multiTouch.current = true; })
     .onEnd((event) => {
-      if (completesSwipeBack(event.translationX * direction, event.translationY, event.velocityX * direction)) back();
+      if (!multiTouch.current && completesSwipeBack(event.translationX * direction, event.translationY, event.velocityX * direction)) back();
     }), [enabled, hasAction, onBack, direction, back]);
   return <SwipeBackActions.Provider value={register}>
     <GestureDetector gesture={gesture}>
