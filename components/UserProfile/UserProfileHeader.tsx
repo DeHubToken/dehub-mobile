@@ -1,3 +1,4 @@
+import { useProfileIdentityLayout } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
@@ -37,6 +38,7 @@ const BTN_RADIUS = 12;
 const BTN_H = 36;
 
 export interface UserProfileHeaderProps {
+  onIdentityBottom?: (bottom: number) => void;
   featuredCommunity?: Community | null;
   avatarUrl?: string | null;
   coverUrl?: string | null;
@@ -88,6 +90,7 @@ export interface UserProfileHeaderProps {
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   featuredCommunity,
+  onIdentityBottom,
   avatarUrl,
   coverUrl,
   displayName,
@@ -177,6 +180,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const followingItem = stats?.find((s) => s.key === "following");
   const followersItem = stats?.find((s) => s.key === "followers");
 
+  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
+
   const renderFollowButton = () => {
     if (isOwnProfile) {
       return (
@@ -258,7 +263,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   };
 
   return (
-    <View>
+    <View ref={profileRef} collapsable={false} onLayout={measureIdentity}>
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => onOpenImage("cover")}
@@ -322,7 +327,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               links used to share this row and cut a long name to one line;
               they now live in the Links pill at the bottom of the header. */}
           <View className="flex-row items-center gap-1.5">
-            <Text className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
+            <Text ref={identityRef} onLayout={measureIdentity} className="text-white text-xl font-bold" numberOfLines={2} style={{ flexShrink: 1 }}>{displayName}</Text>
             {badge && badgeImage && (
               <Pressable ref={badgeRef} style={{ alignSelf: "flex-end", height: 28, justifyContent: "center" }} hitSlop={8} onPress={() => openBadgeShowcase(badge, badgeRef.current)}>
                 <BadgeArtwork source={badgeImage} style={[getBadgeOpticalStyle(badgeImage, 20), { marginLeft: 0 }]} contentFit="contain" />

@@ -1,3 +1,4 @@
+import { useProfileIdentityLayout } from './useProfileCollapse';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
@@ -66,7 +67,8 @@ const MINIMAL_OUTLINE_BUTTON = {
   backgroundColor: "transparent",
 } as const;
 
-const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | null }) => {
+const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommunity?: Community | null; onIdentityBottom?: (bottom: number) => void }) => {
+  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -276,7 +278,7 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
   }, [processAndUpload, t]);
 
   return (
-    <View className="w-full">
+    <View ref={profileRef} collapsable={false} onLayout={measureIdentity} className="w-full">
       {/* Cover */}
       <TouchableOpacity
         activeOpacity={0.9}
@@ -408,7 +410,7 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
             lines; social links moved to the Links pill at the bottom. */}
         <View className="mt-2">
           <View className="flex-row items-center gap-1.5">
-            <Text className="text-white font-bold" numberOfLines={2} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>
+            <Text ref={identityRef} onLayout={measureIdentity} className="text-white font-bold" numberOfLines={2} style={{ flexShrink: 1, fontSize: 24, lineHeight: 30 }}>
               {displayName}
             </Text>
             {badge && badgeImage && (

@@ -1,3 +1,4 @@
+import type { useProfileCollapse } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
@@ -23,6 +24,7 @@ import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
 interface UserProfileSheetContentProps {
+  collapse?: ReturnType<typeof useProfileCollapse>;
   loading: boolean;
   data: any;
   profileData: any;
@@ -66,6 +68,7 @@ interface UserProfileSheetContentProps {
 }
 
 const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
+  collapse,
   loading,
   data,
   profileData,
@@ -234,12 +237,13 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           onNavigate={onClose}
           renderHeader={(community) => <UserProfileHeader
           featuredCommunity={community}
+          onIdentityBottom={collapse?.onIdentityBottom}
           avatarUrl={avatarUrl}
           coverUrl={coverUrl}
           displayName={profileData.displayName}
           badge={profileData.badge}
           badgeImage={profileData.badgeImage}
-          address={profileData.address}
+        address={profileData.address}
           shortAddr={profileData.shortAddr}
           username={profileData.username}
           ensName={profileData.ensName}
@@ -306,6 +310,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       </View>
     );
   }, [
+    collapse?.onIdentityBottom,
     profileData,
     avatarUrl,
     coverUrl,
@@ -385,6 +390,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     <View className="flex-1">
       {!isFullScreen && ProfileHeader}
       <UserProfileBottomContentTabs
+        profileScrollY={collapse?.scrollY}
         address={profileData.address}
         onClose={onClose}
         scrollEnabled={isFullScreen}
