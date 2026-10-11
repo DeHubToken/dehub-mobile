@@ -164,3 +164,25 @@ it("starts recreated sections with their new timings instead of restoring a remo
   expect(session.state.shots[1].offset).toBe(1.5);
   expect(screen.getByLabelText("editor.shots.preview 2").props.value).toBe("1.5");
 });
+
+it("displays the new halves after splitting an edited duration and keeps incomplete typing visible", () => {
+  const source = { ...original, clips: [{ ...original.clips[0], duration: 12 }] };
+  function EditedSplitHarness() {
+    const [state, controller] = useAssembly({ current: () => source, create }); session = controller;
+    React.useEffect(() => { controller.start({ seconds: 6, selected: true, transition: null, music: false }, ["one"]); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ v: "Source video" }} onPreview={jest.fn()} onCreate={jest.fn()} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<EditedSplitHarness />);
+  fireEvent.changeText(screen.getByLabelText("filters.duration 1"), "2.");
+  expect(screen.getByLabelText("filters.duration 1").props.value).toBe("2.");
+  fireEvent.press(screen.getByLabelText("editor.shots.split 1"));
+  expect(screen.getByLabelText("filters.duration 1").props.value).toBe("1");
+  expect(screen.getByLabelText("filters.duration 2").props.value).toBe("1");
+  expect(screen.getByLabelText("editor.shots.preview 2").props.value).toBe("1");
+  fireEvent.changeText(screen.getByLabelText("editor.shots.preview 1"), "");
+  expect(screen.getByLabelText("editor.shots.preview 1").props.value).toBe("");
+  expect(screen.getByLabelText("nav.create").props.disabled).toBe(true);
+  fireEvent.press(screen.getByLabelText("common.undo"));
+  expect(screen.getByLabelText("editor.shots.preview 1").props.value).toBe("0");
+  expect(screen.getByLabelText("nav.create").props.disabled).toBe(false);
+});
