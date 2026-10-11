@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
-import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useDerivedValue, type SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
@@ -32,30 +32,32 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
   const { theme, colors } = useAppTheme();
   const solidTheme = theme === 'system' || theme === 'minimal';
   const [collapsed, setCollapsed] = useState(false);
+  // The material changes at two thresholds, not on every scroll frame.
+  const collapsedVisible = useDerivedValue(() => scrollY.value >= actionsBottom.value);
   useAnimatedReaction(
-    () => scrollY.value >= actionsBottom.value,
+    () => collapsedVisible.value,
     (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
   );
   const identity = useAnimatedStyle(() => ({
-    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
+    opacity: collapsedVisible.value ? 1 : 0,
   }));
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
-    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
+    opacity: collapsedVisible.value ? 1 : 0,
     bottom: tabsPinned.value ? -56 : 4,
   }));
   const guardVisibility = useAnimatedStyle(() => ({
-    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
+    opacity: collapsedVisible.value ? 1 : 0,
     bottom: tabsPinned.value ? -56 : -4,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
 
   return (
     <View pointerEvents="box-none" style={styles.bar}>
-      <Animated.View pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, guardVisibility]}>
+      <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, guardVisibility]}>
         {!solidTheme && cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
       </Animated.View>
-      <Animated.View pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
+      <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
         {cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
         <LinearGradient
           colors={['rgba(255,255,255,0.25)', 'rgba(255,255,255,0.04)', 'rgba(0,0,0,0.12)', 'rgba(255,255,255,0.08)']}
