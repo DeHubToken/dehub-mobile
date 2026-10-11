@@ -26,6 +26,7 @@ interface ProfileTabBarProps<Key extends string = string> {
   items: ProfileTabItem<Key>[];
   activeKey: Key;
   onChange: (key: Key) => void;
+  pinned?: boolean;
 }
 
 const TAB_HEIGHT = 52;
@@ -34,6 +35,7 @@ function ProfileTabBarInner<Key extends string>({
   items,
   activeKey,
   onChange,
+  pinned = false,
 }: ProfileTabBarProps<Key>) {
   const { isMinimal } = useAppTheme();
   const activeIndex = Math.max(0, items.findIndex((item) => item.key === activeKey));
@@ -58,7 +60,7 @@ function ProfileTabBarInner<Key extends string>({
   );
 
   return (
-    <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap]}>
+    <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap, pinned && { paddingTop: 0, paddingBottom: 4 }]}>
       {/* Plain flex row, no ScrollView: the web profile page gives every tab
           flex-1 so the whole set spreads evenly across the pill. A horizontal
           ScrollView here refused to stretch its content container to the full
@@ -66,7 +68,7 @@ function ProfileTabBarInner<Key extends string>({
       {/* Minimal: an edge-to-edge file-tab strip. One baseline across the
           width; the active tab is outlined on three sides and dropped 1pt so
           its black fill breaks the line. flex-end seats tabs on the baseline. */}
-      <View style={[styles.container, isMinimal && styles.minimalContainer]}>
+      <View style={[styles.container, isMinimal && styles.minimalContainer, pinned && { backgroundColor: 'transparent', borderWidth: 0 }]}>
         {items.map((item) => {
           const focused = item.key === activeKey;
           return (
