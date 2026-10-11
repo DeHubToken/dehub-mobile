@@ -6,6 +6,9 @@ export interface MaboroshiPaymentRequest {
 export interface MaboroshiQuote extends MaboroshiPaymentRequest {
   wallet: string; price_micros: number; payment_ref: string | null;
 }
+export const maboroshiStageLabel = (stage: MaboroshiPaymentRequest['stage']) => ({
+  prepare: 'Prepare clip', draft: 'Generate preview', hd: 'Generate 1080p',
+})[stage];
 export function isMaboroshiPaymentRequest(value: unknown): value is MaboroshiPaymentRequest {
   if (!value || typeof value !== 'object') return false;
   const row = value as MaboroshiPaymentRequest;

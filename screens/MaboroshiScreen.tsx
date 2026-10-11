@@ -13,7 +13,7 @@ import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
 import { ScreenNames } from '../navigation/ScreenNames';
 import type { AppStackParamList } from '../navigation/types';
 import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript } from '../libs/maboroshi';
-import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
+import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
 import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
 
@@ -29,6 +29,7 @@ export default function MaboroshiScreen() {
   activeWallet.current = wallet;
   const downloading = useRef(false);
   const [failed, setFailed] = useState(false);
+  const [saving, setSaving] = useState(false);
   const pendingPayment = useRef<string | null>(null);
   const { payForJob } = useJobPayment(false);
   const { account: payingAccount } = useWeb3Provider();
@@ -48,7 +49,7 @@ export default function MaboroshiScreen() {
       const quote = await getMaboroshiQuote(input, token, payer);
       if (activeWallet.current !== payer) throw new Error('The signed-in account changed.');
       let submitted = false;
-      Alert.alert(t('creator.toolMaboroshi'), `${quote.stage} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
+      Alert.alert(t('creator.toolMaboroshi'), `${maboroshiStageLabel(quote.stage)} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
         { text: t('common.cancel'), style: 'cancel', onPress: () => finish('Payment cancelled.') },
         { text: t('common.confirm'), onPress: () => {
           if (submitted) return;
@@ -73,6 +74,7 @@ export default function MaboroshiScreen() {
   const download = useCallback(async (url: string) => {
     if (!isMaboroshiDownload(url) || downloading.current || !FileSystem.cacheDirectory) return;
     downloading.current = true;
+    setSaving(true);
     const local = `${FileSystem.cacheDirectory}maboroshi-${Date.now()}.mp4`;
     try {
       const result = await FileSystem.downloadAsync(url, local);
@@ -83,12 +85,14 @@ export default function MaboroshiScreen() {
     } finally {
       await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {});
       downloading.current = false;
+      setSaving(false);
     }
   }, [t]);
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t('creator.toolMaboroshi')} />
+      {saving && <View accessibilityLiveRegion="polite" className="flex-row items-center gap-2 px-4 py-2"><ActivityIndicator /><Text className="text-theme-neutrals-100">{t('common.saving')}</Text></View>}
       {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('common.signIn')}</Text></Pressable>}
       {failed && <Pressable accessibilityRole="button" onPress={() => { setFailed(false); web.current?.reload(); }} className="m-4 p-4"><Text className="text-center text-theme-neutrals-100">{t('common.retry', 'Try again')}</Text></Pressable>}
       <WebView key={wallet || 'guest'} ref={web} source={{ uri: STUDIO }} style={{ flex: 1, backgroundColor: '#090a0b' }}
