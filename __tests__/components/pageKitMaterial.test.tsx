@@ -36,7 +36,7 @@ it.each(APP_THEMES)('%s header tabs fit the island without a second gutter and k
   const change = jest.fn();
   let tree!: ReactTestRenderer;
   const tabs = [{ id: 'browse', label: 'Browse' }, { id: 'sell', label: 'Sell' }];
-  act(() => { tree = create(<PageHeaderContext.Provider value><PageTabs value="browse" onChange={change} tabs={tabs} /></PageHeaderContext.Provider>); });
+  act(() => { tree = create(<PageHeaderContext.Provider value><PageTabs<string> value="browse" onChange={change} tabs={tabs} /></PageHeaderContext.Provider>); });
   const strip = tree.root.findByType('ScrollView' as any);
   expect(flatten(strip.props.style)).toMatchObject({ height: 34, flexGrow: 0 });
   expect(flatten(strip.props.contentContainerStyle)).toMatchObject({ paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0 });
@@ -44,7 +44,7 @@ it.each(APP_THEMES)('%s header tabs fit the island without a second gutter and k
   expect(chips[0].props.accessibilityState.selected).toBe(true);
   act(() => chips[1].props.onPress());
   expect(change).toHaveBeenCalledWith('sell');
-  act(() => tree.update(<PageTabs value="browse" onChange={change} tabs={tabs} />));
+  act(() => tree.update(<PageTabs<string> value="browse" onChange={change} tabs={tabs} />));
   expect(tree.root.findByType('ScrollView' as any).props.style).toBeUndefined();
   act(() => tree.unmount());
 });
