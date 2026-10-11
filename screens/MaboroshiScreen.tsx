@@ -39,9 +39,9 @@ export default function MaboroshiScreen() {
     if (!DIGITAL_PURCHASES_ENABLED || pendingPayment.current) return;
     pendingPayment.current = input.requestId;
     const payer = activeWallet.current;
-    const finish = (error?: string) => {
+    const finish = (error?: string, cancelled = false) => {
       if (pendingPayment.current === input.requestId) pendingPayment.current = null;
-      if (activeWallet.current === payer) web.current?.injectJavaScript(maboroshiPaymentResultScript(input.requestId, error));
+      if (activeWallet.current === payer) web.current?.injectJavaScript(maboroshiPaymentResultScript(input.requestId, error, cancelled));
     };
     try {
       const headers = await dehubAuthHeaders(payer);
@@ -50,7 +50,7 @@ export default function MaboroshiScreen() {
       if (activeWallet.current !== payer) throw new Error('The signed-in account changed.');
       let submitted = false;
       Alert.alert(t('creator.toolMaboroshi'), `${maboroshiStageLabel(quote.stage)} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
-        { text: t('common.cancel'), style: 'cancel', onPress: () => finish('Payment cancelled.') },
+        { text: t('common.cancel'), style: 'cancel', onPress: () => finish('Payment cancelled.', true) },
         { text: t('common.confirm'), onPress: () => {
           if (submitted) return;
           submitted = true;
