@@ -8,10 +8,11 @@ const base = require("nativewind/jsx-runtime");
 const { controlProps } = require("./controls");
 const { prepare } = require("./surface");
 const { readableTextProps } = require("./readability");
+const { withQuickActions } = require("../quickActions");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    const [t, p] = prepare(type, controlProps(readableTextProps(type, props)));
+    const [t, p] = prepare(type, controlProps(readableTextProps(type, withQuickActions(type, props))));
     return fn(t, p, ...rest);
   };
 }

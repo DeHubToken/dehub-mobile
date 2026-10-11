@@ -1,4 +1,22 @@
 {
+  "quickActions": {
+    "title": "Opciones de la página",
+    "hint": "Mantén pulsado donde no haya otra acción de pulsación larga para abrir estas opciones.",
+    "question": "¿Qué falla en esta página?",
+    "placeholder": "Describe el problema en un mensaje breve…",
+    "refresh": "Actualizar página",
+    "logout": "Cerrar sesión",
+    "publicNotice": "Tu informe y cualquier captura aparecerán en el tablón público de errores. Revisa la captura antes de enviar.",
+    "deviceNotice": "Se incluyen automáticamente la página, el dispositivo, el modelo si está disponible y los datos de la aplicación o el navegador.",
+    "capturing": "Capturando esta página…",
+    "screenshot": "Vista previa de la captura",
+    "removeScreenshot": "Quitar captura",
+    "noScreenshot": "La captura automática no está disponible. Puedes enviar tu informe igualmente.",
+    "attachScreenshot": "Adjuntar una captura",
+    "send": "Enviar informe de error",
+    "signIn": "Inicia sesión para enviar",
+    "failed": "Algo salió mal. Tu mensaje está guardado; inténtalo de nuevo."
+  },
   "articles": {
     "articleImage": "Imagen del artículo",
     "socialImage": "Imagen compartida en redes sociales",
