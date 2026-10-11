@@ -7,6 +7,7 @@ import { DEFAULT_SETTINGS } from "../../libs/editor/types";
 import { projectEditGate } from "../../libs/editor/projectEditGate";
 import type { CaptionTranslationPlan, CaptionTranslationUpdate } from "../../libs/editor/captionTranslation";
 
+jest.mock("react-native-css-interop/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
 jest.mock("../../services/translation.service", () => ({ translateText: jest.fn() }));
 jest.mock("../../i18n", () => ({ SUPPORTED_LANGUAGES: [{ code: "en", name: "English", nativeName: "English" }] }));
 jest.mock("react-i18next", () => ({ useTranslation: () => ({ i18n: { language: "en" }, t: (key: string, options?: { defaultValue?: string; count?: number }) => (options?.defaultValue ?? key).replace("{{count}}", String(options?.count ?? "")) }) }));
