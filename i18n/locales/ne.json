@@ -7464,7 +7464,11 @@
     "referenceProductName": "क्लिपमा तपाईको उत्पादन राख्नुहोस्",
     "referenceProductHint": "मूल दृश्यलाई संरक्षित गरी मुख्य उत्पादनलाई प्रतिस्थापन गर्नुहोस्",
     "referenceComposeName": "सन्दर्भ छविहरूलाई संयुक्त गर्नुहोस्",
-    "referenceComposeHint": "बहु छविहरूबाट चरित्र, वस्तु र सेटिङ्गहरू एक संरचनामा ल्याउनुहोस्"
+    "referenceComposeHint": "बहु छविहरूबाट चरित्र, वस्तु र सेटिङ्गहरू एक संरचनामा ल्याउनुहोस्",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "ध्वनि वर्णन गर्नुहोस्, उदाहरणका लागि \"ढुङ्गाको हलमा भारी ढोका ठोक्किनु\"",
+    "auto": "Auto",
+    "loop": "लूप"
   },
   "fractions": {
     "title": "हिस्सा",

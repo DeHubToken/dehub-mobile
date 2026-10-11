@@ -7607,7 +7607,11 @@
     "referenceProductName": "クリップに製品を配置",
     "referenceProductHint": "シーンを保持しながら特集製品を置き換え",
     "referenceComposeName": "参照画像を組み合わせ",
-    "referenceComposeHint": "複数の画像からキャラクター、オブジェクト、セッティングを1つの構成に統合"
+    "referenceComposeHint": "複数の画像からキャラクター、オブジェクト、セッティングを1つの構成に統合",
+    "audioTaskSfxLabel": "効果音",
+    "audioTaskSfxPlaceholder": "音について説明してください（例：「石室でドアが重く叩かれている」）",
+    "auto": "自動",
+    "loop": "ループ"
   },
   "fractions": {
     "title": "フラクション",

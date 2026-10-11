@@ -7432,7 +7432,11 @@
     "referenceProductName": "Aseta tuotteesi videoon",
     "referenceProductHint": "Korvaa esitelty tuote säilyttäen alkuperäisen taustan",
     "referenceComposeName": "Yhdistä viitekuvat",
-    "referenceComposeHint": "Tuo useista kuvista eri hahmot, esineet ja asetelmat yhteen koostumukseen"
+    "referenceComposeHint": "Tuo useista kuvista eri hahmot, esineet ja asetelmat yhteen koostumukseen",
+    "audioTaskSfxLabel": "Äänitehoste",
+    "audioTaskSfxPlaceholder": "Kuvaile ääntä, esimerkiksi \"raskas oven paiskaus kivihallissa\"",
+    "auto": "Auto",
+    "loop": "Silmukka"
   },
   "fractions": {
     "title": "Fraktiot",

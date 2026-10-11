@@ -7433,7 +7433,11 @@
     "referenceProductName": "Umístěte svůj produkt do klipu",
     "referenceProductHint": "Nahraďte vyobrazený produkt a zachovejte původní scénu",
     "referenceComposeName": "Kombinujte odkazové obrázky",
-    "referenceComposeHint": "Přiveďte postavy, předměty a prostředí z více obrázků do jedné kompozice"
+    "referenceComposeHint": "Přiveďte postavy, předměty a prostředí z více obrázků do jedné kompozice",
+    "audioTaskSfxLabel": "Zvukový efekt",
+    "audioTaskSfxPlaceholder": "Popište zvuk, například „těžké dveře zabouchnuté v kamenné hale“",
+    "auto": "Auto",
+    "loop": "Smyčka"
   },
   "fractions": {
     "title": "Frakce",

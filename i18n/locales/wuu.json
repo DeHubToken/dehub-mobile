@@ -7386,7 +7386,11 @@
     "referenceProductName": "将吾产品放进影片",
     "referenceProductHint": "替换特色产品并保留原始场景",
     "referenceComposeName": "合并参考图像",
-    "referenceComposeHint": "将多张图像中的角色、物件和场景合并成一个构图"
+    "referenceComposeHint": "将多张图像中的角色、物件和场景合并成一个构图",
+    "audioTaskSfxLabel": "Bob：[笑] 你先走。",
+    "audioTaskSfxPlaceholder": "描述一个声音并生成",
+    "auto": "自動",
+    "loop": "循環"
   },
   "fractions": {
     "title": "碎片",

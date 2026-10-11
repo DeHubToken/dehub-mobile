@@ -7418,7 +7418,11 @@
     "referenceProductName": "क्लिपमा तपाईको उत्पादन राख्नुहोस्",
     "referenceProductHint": "मूल दृश्य राखी मुख्य उत्पादन प्रतिस्थापन गर्नुहोस्",
     "referenceComposeName": "संदर्भ छवि संयुक्त गर्नुहोस्",
-    "referenceComposeHint": "बहु छविहरूबाट चरित्र, वस्तु र सेटिङहरू एक संरचना मा ल्याउनुहोस्"
+    "referenceComposeHint": "बहु छविहरूबाट चरित्र, वस्तु र सेटिङहरू एक संरचना मा ल्याउनुहोस्",
+    "audioTaskSfxLabel": "हल्के प्रभाव",
+    "audioTaskSfxPlaceholder": "ध्वनि को परिभाषित करें, उदाहरण के लिए, \"एक पत्थर के हॉल में एक भारी दरवाजा slamming\"",
+    "auto": "गाड खोलके बतावो",
+    "loop": "लूप"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

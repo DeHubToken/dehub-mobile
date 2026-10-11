@@ -7435,7 +7435,11 @@
     "referenceProductName": "Helyezze el a termékét egy klipben",
     "referenceProductHint": "Cserélje ki a kiemelt terméket, és őrizze meg az eredeti jelenetet.",
     "referenceComposeName": "Referencia képek kombinálása",
-    "referenceComposeHint": "Hozzon karaktereket, tárgyakat és beállításokat több képből egyetlen kompozícióba."
+    "referenceComposeHint": "Hozzon karaktereket, tárgyakat és beállításokat több képből egyetlen kompozícióba.",
+    "audioTaskSfxLabel": "Hangeffektus",
+    "audioTaskSfxPlaceholder": "Ismertesse a hangot, például \"nehéz ajtócsapódás egy kőcsarnokban\"",
+    "auto": "Automatikus",
+    "loop": "Hurok"
   },
   "fractions": {
     "title": "Frakciók",

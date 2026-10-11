@@ -7533,7 +7533,11 @@
     "referenceProductName": "Umieść swój produkt w klipie",
     "referenceProductHint": "Zastąp wyróżniony produkt i zachowaj oryginalną scenę",
     "referenceComposeName": "Połącz obrazki odniesienia",
-    "referenceComposeHint": "Przenieś postacie, przedmioty i ustawienia z wielu obrazków do jednej kompozycji"
+    "referenceComposeHint": "Przenieś postacie, przedmioty i ustawienia z wielu obrazków do jednej kompozycji",
+    "audioTaskSfxLabel": "Efekty dźwiękowe",
+    "audioTaskSfxPlaceholder": "Opisz dźwięk, na przykład „ciężkie trzaskanie drzwiami w kamiennej hali”",
+    "auto": "Auto",
+    "loop": "Pętla"
   },
   "fractions": {
     "title": "Frakcje",

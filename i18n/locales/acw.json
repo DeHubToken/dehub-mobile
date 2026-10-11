@@ -7406,7 +7406,11 @@
     "referenceProductName": "حط منتجك في كمبيلي",
     "referenceProductHint": "استبدل المنتج المميز وحافظ على المشهد الأصلي.",
     "referenceComposeName": "دمج الصور المرجعية",
-    "referenceComposeHint": "اجمع شخصيات، أشياء وإعدادات من صور متعددة في تركيبة وحدة."
+    "referenceComposeHint": "اجمع شخصيات، أشياء وإعدادات من صور متعددة في تركيبة وحدة.",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "صوت باب ثقيل يصدع في صالة حجارة صلبة، كمان مثل صوت عربة شاحنة تجرح بالأسفلت، أو صوت صاعقة تزلزل الأرض تحت قدميك، أو صوت قنبلة تدمّر جدران من حديد.",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "الأجزاء",

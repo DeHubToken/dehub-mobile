@@ -19,6 +19,17 @@ describe("generation drafts", () => {
     expect(generationChatRequest(text)).toBeNull();
   });
 
+  it.each([
+    ['Create a sound effect of a door slamming', 'a door slamming'],
+    ['Generate sfx for a spaceship', 'a spaceship'],
+    ['Génère un effet sonore de pluie', 'pluie'],
+    ['Crée un bruitage pour une porte', 'une porte'],
+  ])('prepares sound without visual framing: %s', (text, prompt) => {
+    expect(generationChatRequest(text)).toEqual({ op: 'generate', kind: 'sfx', prompt });
+    expect(generationDraft({ kind: 'sound-effect', prompt }, '9:16')).toEqual({ kind: 'sfx', prompt });
+    expect(generationChatRequest('Create a sound effect from my clips')).toBeNull();
+  });
+
   it("rejects unknown media rather than silently making an image", () => {
     for (const kind of ["audio", "music", "3d", "typo", null, undefined]) {
       expect(generationDraft({ kind, prompt: "hello" })).toBeNull();

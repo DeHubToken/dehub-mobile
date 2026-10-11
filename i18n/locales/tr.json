@@ -8007,7 +8007,11 @@
     "presetOpenViaductTrainName": "Viadukt tren",
     "presetOpenViaductTrainHint": "Aydınlatılmış pencerelerle statik geniş açılı ve uzun odak derinliği",
     "presetOpenTowerTiltName": "Kule eğimi",
-    "presetOpenTowerTiltHint": "Üzerindeki bulutlu şehre yavaş aşağı eğim"
+    "presetOpenTowerTiltHint": "Üzerindeki bulutlu şehre yavaş aşağı eğim",
+    "audioTaskSfxLabel": "Ses efekti",
+    "audioTaskSfxPlaceholder": "Sesi anlatın, örneğin “taş bir salonda ağır bir kapının çarpması”",
+    "auto": "Otomatik",
+    "loop": "Döngü"
   },
   "fractions": {
     "title": "Paylar",

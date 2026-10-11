@@ -8011,7 +8011,11 @@
     "presetOpenViaductTrainName": "قطار فوق الجسر",
     "presetOpenViaductTrainHint": "عرض ثابت واسع مع نوافذ مضاءة وعمق عدسة طويلة",
     "presetOpenTowerTiltName": "إمالة البرج",
-    "presetOpenTowerTiltHint": "إمالة بطيئة إلى الأسفل في مدينة غائمة"
+    "presetOpenTowerTiltHint": "إمالة بطيئة إلى الأسفل في مدينة غائمة",
+    "audioTaskSfxLabel": "مؤثر صوتي",
+    "audioTaskSfxPlaceholder": "صِف الصوت، مثلاً «باب ثقيل يُغلق بعنف في قاعة حجرية»",
+    "auto": "تلقائي",
+    "loop": "تكرار"
   },
   "fractions": {
     "title": "الأجزاء",

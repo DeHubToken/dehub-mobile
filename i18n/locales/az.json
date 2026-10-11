@@ -7431,7 +7431,11 @@
     "referenceProductName": "Məhsulunuzu klipə yerləşdirin",
     "referenceProductHint": "Əsas məhsulu əvəz edin və orijinal səhnəni qoruyun.",
     "referenceComposeName": "Referans şəkilləri birləşdirin",
-    "referenceComposeHint": "Bir neçə şəkildən karakterləri, obyektləri və sahələri bir kompozisiyaya gətirin."
+    "referenceComposeHint": "Bir neçə şəkildən karakterləri, obyektləri və sahələri bir kompozisiyaya gətirin.",
+    "audioTaskSfxLabel": "Səs effekti",
+    "audioTaskSfxPlaceholder": "Səsi təsvir edin, məsələn, \"ağır qapı daş zalda çırpılır\"",
+    "auto": "Avtomatik",
+    "loop": "Döngə"
   },
   "fractions": {
     "title": "Fraksiyalar",

@@ -7415,7 +7415,11 @@
     "referenceProductName": "તમારું પ્રોડક્ટ ક્લિપમાં રાખો",
     "referenceProductHint": "મુખ્ય પ્રોડક્ટ બદલો અને મૂળ સ્થળ સંરક્ષિત રાખો.",
     "referenceComposeName": "સંદર્ભ છબીઓ જોડો",
-    "referenceComposeHint": "એક સંરચનામાં બહુતકલાકીય છબીઓમાંથી પાત્રો, વસ્તુઓ અને સ્થળાંતર લાવો."
+    "referenceComposeHint": "એક સંરચનામાં બહુતકલાકીય છબીઓમાંથી પાત્રો, વસ્તુઓ અને સ્થળાંતર લાવો.",
+    "audioTaskSfxLabel": "ધ્વનિ અસર",
+    "audioTaskSfxPlaceholder": "ધ્વનિનું વર્ણન કરો, ઉદાહરણ તરીકે \"સ્ટોન હોલમાં હેવી ડોર સ્લેમિંગ\"",
+    "auto": "સ્વયં",
+    "loop": "લૂપ"
   },
   "fractions": {
     "title": "હિસ્સા",

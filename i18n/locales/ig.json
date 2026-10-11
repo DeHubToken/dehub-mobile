@@ -7402,7 +7402,11 @@
     "referenceProductName": "Place your product in a clip",
     "referenceProductHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ"
+    "referenceComposeHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ",
+    "audioTaskSfxLabel": "Sound mmetụta",
+    "audioTaskSfxPlaceholder": "Kọwaa ụda ahụ, dịka ọmụmaatụ \"ọnụ ụzọ dị arọ na-agbanye n 'ụlọ nzukọ nkume\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Òkè",
