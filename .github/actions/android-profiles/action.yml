@@ -21,18 +21,18 @@ runs:
         sudo chmod 0666 /dev/kvm
         ls -l /dev/kvm
         test -r /dev/kvm && test -w /dev/kvm
-    - name: Assemble the profiling app before starting the emulator
+    - name: Assemble the profiling app and instrumentation before starting the emulator
       shell: bash
-      run: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:assembleNonMinifiedRelease -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
+      run: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:assembleNonMinifiedRelease :baseline-profile:assembleNonMinifiedRelease -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2"
     - uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 35
+        api-level: 34
         target: aosp_atd
         arch: x86_64
         disable-linux-hw-accel: false
-        emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+        emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
         disable-animations: true
-        script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
+        script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2"
     - name: Require generated profiles
       shell: bash
       run: |
