@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -12,16 +12,17 @@ import Icon from "../ui/Icon";
 /** Paint only the details area; leave the overlapping avatar outside the clip. */
 export function PinnedCommunityWash({ community }: { community?: Community | null }) {
   const { isMinimal } = useAppTheme();
+  const [height, setHeight] = useState(0);
   if (!community?.banner_url) return null;
   return (
-    <View pointerEvents="none" style={styles.wash} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <MaskedView pointerEvents="none" style={styles.wash} onLayout={(event) => setHeight(event.nativeEvent.layout.height)} maskElement={<LinearGradient colors={['#000', '#000', 'transparent']} locations={[0, Math.max(0, 1 - 80 / Math.max(height, 80)), 1]} style={StyleSheet.absoluteFillObject} />} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       <Image
         source={storageImageSource(community.banner_url, 480)}
         contentFit="cover"
         blurRadius={40}
         style={[styles.washImage, { opacity: isMinimal ? 0.3 : 0.5 }]}
       />
-    </View>
+    </MaskedView>
   );
 }
 
