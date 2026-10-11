@@ -161,7 +161,7 @@ export const ARCADE_GAMES: ArcadeGame[] = [
       licence: 'MIT',
       licenceFile: 'LICENSE-GodsEyeView',
     },
-    url: `${WEBSITE_LINK}/gods-eye-game/index.html?v=BlKrG43g`,
+    url: `${WEBSITE_LINK}/gods-eye-game/index.html?v=yPIb7IAb`,
     bootTauMs: 8000,
     socialPresence: true,
   },
