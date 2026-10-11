@@ -159,4 +159,13 @@ describe('post page on phones', () => {
     expect(card).toContain('if (stage) {');
     expect(card).toContain('<FeedActionBar');
   });
+
+  it('keeps image controls below the photo and blurs the list beneath the composer', () => {
+    expect(card).toContain('!postVideo && !postImage && <PostStageChrome overMedia');
+    expect(card).toContain('(postVideo || postImage) && <PostStageActions');
+    expect(detail).toContain('<FrostedContent>');
+    expect(detail).toContain('<FrostedPill tint={stageGlassTint}');
+    expect(detail).not.toContain('backgroundColor: stagePage');
+    expect(detail).not.toContain('backgroundColor: Platform.OS === "android" ? stageSurface');
+  });
 });
