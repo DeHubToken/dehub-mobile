@@ -13,7 +13,9 @@
  */
 import React, { memo, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import Avatar from "../common/Avatar";
+import { DhbCoin } from "../common/DhbCoin";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { ChromeFill, EDGE, TEXT_SHADOW } from "../common/ViewerChrome";
@@ -29,6 +31,12 @@ interface Props {
   /** How many are watching. A pill, not a header chip — see the note below. */
   viewerCount?: number;
   title?: string;
+  /** DHB gifted to this stream, all told. */
+  giftTotal?: number;
+  /** The latest faces in the room, newest first, for the "who's here" pill. */
+  faces?: { uri?: string; name: string }[];
+  /** Opens the Who's here sheet. */
+  onOpenAudience?: () => void;
 }
 
 const two = (n: number) => (n < 10 ? "0" + n : String(n));
@@ -43,7 +51,7 @@ const formatElapsed = (ms: number) => {
 
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <View style={styles.pill}>
-    <ChromeFill radius={13} sheer />
+    <ChromeFill radius={10} glass />
     {children}
   </View>
 );
@@ -56,6 +64,9 @@ const LiveViewerPills: React.FC<Props> = ({
   startedAt,
   viewerCount,
   title,
+  giftTotal,
+  faces,
+  onOpenAudience,
 }) => {
   const { t } = useTranslation();
   /* Reused keys, not new ones: these five words are already translated
@@ -85,15 +96,49 @@ const LiveViewerPills: React.FC<Props> = ({
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      {/* No state pill and no audience pill. Whether a stream is live or
-          over is on the card you pressed to get here and on the profile
-          before that, and the count now sits under the creator's name
-          with the followers and the gifts — three facts about one stream,
-          in one place. */}
-      {elapsed ? (
+      {/* Live and how long, in one tag: red is the only hue on the frame. */}
+      {isLive && !isEnded ? (
         <Pill>
-          <Icon name="Clock" size={11} color="rgba(255,255,255,0.75)" strokeWidth={2} />
-          <Text style={styles.value}>{elapsed}</Text>
+          <View style={styles.liveTag}>
+            <Text style={styles.liveText}>{isPaused ? t("ads.statuses.paused") : t("live.statusLive")}</Text>
+          </View>
+          {elapsed ? <Text style={styles.value}>{elapsed}</Text> : null}
+        </Pill>
+      ) : null}
+
+      {/* Who's here: the newest faces and the head count. Tap for the sheet
+          with the host, top tippers, most active and everyone watching. */}
+      {onOpenAudience ? (
+        <Pressable
+          onPress={onOpenAudience}
+          accessibilityRole="button"
+          accessibilityLabel={t("liveViewer.whosHere")}
+          hitSlop={{ top: 8, bottom: 8 }}
+        >
+          <Pill>
+            {faces && faces.length ? (
+              <View style={styles.faces}>
+                {faces.slice(0, 3).map((f, i) => (
+                  <View key={i} style={[styles.face, i > 0 ? styles.faceOverlap : null]}>
+                    <Avatar uri={f.uri} size={18} name={f.name} />
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <Icon name="Users" size={12} color="rgba(255,255,255,0.85)" strokeWidth={2} />
+            )}
+            <Text style={styles.value}>
+              {t("liveViewer.hereCount", { formatted: formatCompactNumber(Math.max(0, viewerCount ?? 0)) })}
+            </Text>
+            <Icon name="ChevronRight" size={11} color="rgba(255,255,255,0.6)" strokeWidth={2.4} />
+          </Pill>
+        </Pressable>
+      ) : null}
+
+      {giftTotal != null ? (
+        <Pill>
+          <DhbCoin size={11} />
+          <Text style={styles.value}>{formatCompactNumber(Math.max(0, giftTotal))}</Text>
         </Pill>
       ) : null}
 
@@ -121,12 +166,36 @@ const styles = StyleSheet.create({
   pill: {
     flexDirection: "row",
     alignItems: "center",
-    height: 26,
+    height: 28,
     maxWidth: 220,
-    borderRadius: 13,
+    borderRadius: 10,
     paddingHorizontal: 10,
     gap: 5,
     overflow: "hidden",
+  },
+  liveTag: {
+    backgroundColor: "#EF4444",
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 1.5,
+  },
+  liveText: {
+    color: "#fff",
+    fontSize: 9.5,
+    fontWeight: "900",
+    letterSpacing: 0.6,
+  },
+  faces: {
+    flexDirection: "row",
+    marginLeft: -5,
+  },
+  face: {
+    borderRadius: 999,
+    borderWidth: 1.5,
+    borderColor: "rgba(0,0,0,0.55)",
+  },
+  faceOverlap: {
+    marginLeft: -6,
   },
   dot: {
     width: 6,
