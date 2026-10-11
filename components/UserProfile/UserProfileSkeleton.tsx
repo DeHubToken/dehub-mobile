@@ -21,7 +21,7 @@ const UserProfileSkeleton: React.FC = () => {
 
       <View className={cinematicPhone ? 'px-4' : 'px-5'}>
         {/* Avatar + follow button row */}
-        <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <View
             className="animate-pulse"
             style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#18181b', backgroundColor: '#18181b' }}
