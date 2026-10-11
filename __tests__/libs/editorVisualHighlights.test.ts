@@ -1,5 +1,5 @@
 const JPEG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMooorjPmD/9k=";
-import { findVisualHighlights, visualWindowPlan } from "../../libs/editor/visualHighlights";
+import { findVisualScenes, findVisualHighlights, visualWindowPlan } from "../../libs/editor/visualHighlights";
 import { validVisualBatch, validVisualJpeg, visualMoments, visualSampleTimes, type VisualFrame, type VisualWindow } from "../../libs/editor/visualHighlightContract";
 import { VISUAL_FRAME_RUNTIME } from "../../libs/editor/visualFrameRuntime";
 import type { MediaClip } from "../../libs/editor/types";
@@ -7,6 +7,18 @@ const clip = { id: "video", kind: "video", mediaId: "media", duration: 25, trimI
 const frames = (windows: VisualWindow[]): VisualFrame[] => windows.flatMap(window => visualSampleTimes(window).map(at => ({ windowId: window.id, at, dataUrl: JPEG })));
 
 describe("visual highlight evidence", () => {
+  it("keeps assembly candidates beyond the highlight budget using the same bounded scan", async () => {
+    const calls = { highlights: 0, scenes: 0 }, source = { ...clip, duration: 120, speed: 1 };
+    const analyse = (mode: keyof typeof calls) => async (batch: { windows: VisualWindow[] }) => {
+      calls[mode]++;
+      return batch.windows.slice(0, 8).map(window => ({ start: window.start, end: window.end, score: 0.9, text: "Relevant source scene" }));
+    };
+    const highlights = await findVisualHighlights(source, { optIn: true, seconds: 60 }, async (_, windows) => frames(windows), analyse("highlights"), new AbortController().signal);
+    const scenes = await findVisualScenes(source, { optIn: true, focus: "source scenes" }, async (_, windows) => frames(windows), analyse("scenes"), new AbortController().signal);
+    expect(highlights).toHaveLength(8); expect(scenes).toHaveLength(16); expect(calls).toEqual({ highlights: 2, scenes: 2 });
+    expect(scenes.reduce((sum, range) => sum + range.end - range.start, 0)).toBe(96);
+  });
+
   it("covers the entire trimmed playback in bounded groups with no transcript", async () => {
     let calls = 0; const ids: number[] = [];
     const result = await findVisualHighlights({ ...clip, duration: 600, speed: 1 }, { optIn: true, seconds: 30 }, async (_, windows) => frames(windows), async batch => {

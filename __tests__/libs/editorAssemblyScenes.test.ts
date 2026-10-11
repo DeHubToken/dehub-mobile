@@ -1,5 +1,5 @@
 import { assemblyFocus, findAssemblyScenes, type AssemblyScene } from "../../libs/editor/assemblyScenes";
-import { assemblyDuration, assemblyProject, assemblyRequest, AssemblySession, type AssemblyPlan } from "../../libs/editor/assembly";
+import { assemblyShotKey, assemblyDuration, assemblyProject, assemblyRequest, AssemblySession, type AssemblyPlan } from "../../libs/editor/assembly";
 import { visualSampleTimes, type VisualBatch } from "../../libs/editor/visualHighlightContract";
 import type { VisualSampler } from "../../libs/editor/visualHighlights";
 import type { AssemblyAsset } from "../../libs/editor/assemblyLibrary";
@@ -24,6 +24,73 @@ const assets: AssemblyAsset[] = [
 ];
 
 describe("content-aware assembly", () => {
+  it("replaces numeric draft scopes for new matches and explicit Undo", async () => {
+    const source = project(); source.clips = [source.clips[0]];
+    const session = new AssemblySession({ current: () => source, match: async () => [scene("video", 0, 3, 0.99), scene("video", 6, 3)], create: async () => true }, () => {});
+    session.start(request, []); const before = { ...session.state.shotScopes };
+    expect(await session.match(true)).toBe(true); const first = { ...session.state.shotScopes };
+    expect(first[assemblyShotKey(session.state.shots[0])]).not.toBe(before[assemblyShotKey(session.state.shots[0])]);
+    session.undo(); expect(session.state.shots).toEqual([{ id: "video", offset: 0, duration: 6 }]); expect(session.state.shotScopes).not.toEqual(first);
+    expect(await session.match(true)).toBe(true); expect(session.state.shotScopes).not.toEqual(first);
+  });
+
+  it("retains several disjoint sections from a source without making additional provider requests", async () => {
+    let sampled = 0, analysed = 0;
+    const result = await findAssemblyScenes([{ ...video, duration: 120, speed: 1, trimIn: 0, sourceDuration: 120 }], "forest animals", { optIn: true }, async (...args) => { sampled++; return frames(...args); }, async batch => {
+      analysed++;
+      return batch.windows.slice(0, 8).map(window => ({ start: window.start, end: window.end, score: 0.9, text: "Deer beside forest trees" }));
+    }, new AbortController().signal, () => {});
+    expect(result).toHaveLength(16); expect([sampled, analysed]).toEqual([2, 2]);
+    expect(result.every(value => value.id === "video" && value.duration === 6)).toBe(true);
+    expect(result.map(value => value.offset)).toEqual([0, 6, 12, 18, 24, 30, 36, 42, 60, 66, 72, 78, 84, 90, 96, 102]);
+  });
+
+  it("allocates multiple ranges from one source and previews and edits each independently", async () => {
+    const source = project(), before = JSON.stringify(source);
+    source.clips = [source.clips[0]]; const unchanged = JSON.stringify(source);
+    const session = new AssemblySession({ current: () => source, match: async () => [scene("video", 0, 3, 0.99), scene("video", 6, 3)], create: async () => true }, () => {});
+    session.start(request, []); const originalPlan = [...session.state.shots];
+    expect(await session.match(true)).toBe(true);
+    expect(session.state.shots).toEqual([{ id: "video", offset: 0, duration: 3 }, { id: "video", part: 1, offset: 6, duration: 3 }]);
+    expect(assemblyDuration(session.state)).toBe(6);
+    expect(session.preview(0)).toEqual({ id: "video", start: 4, end: 7 }); expect(session.preview(1)).toEqual({ id: "video", start: 10, end: 13 });
+    session.undo(); expect(session.state.shots).toEqual(originalPlan);
+    expect(await session.match(true)).toBe(true);
+    const second = assemblyShotKey(session.state.shots[1]); session.range(second, 7, 2);
+    expect(session.state.shots[0]).toEqual({ id: "video", offset: 0, duration: 3 });
+    expect(session.state.shots[1]).toEqual({ id: "video", part: 1, offset: 7, duration: 2 });
+    session.move(1, -1); expect(session.state.shots[0].part).toBe(1);
+    expect(session.review("remove clip 2")).toBe(true); expect(session.state.shots).toHaveLength(1); expect(session.state.shots[0].part).toBe(1);
+    session.undo(); expect(session.state.shots.map(assemblyShotKey)).toEqual([second, assemblyShotKey(originalPlan[0])]);
+    expect(JSON.stringify(source)).toBe(unchanged); expect(before).not.toBe(unchanged);
+  });
+
+  it("never extends a remaining match outside its evidence to fill an exact duration", async () => {
+    const source = project(); source.clips = [source.clips[0]];
+    const session = new AssemblySession({ current: () => source, match: async () => [scene("video", 0, 3, 0.99), scene("video", 6, 3)], create: async () => true }, () => {});
+    session.start(request, []); expect(await session.match(true)).toBe(true);
+    session.remove(0); expect(session.state.error).toBe("limit"); expect(session.state.shots).toEqual([{ id: "video", part: 1, offset: 6, duration: 3 }]);
+    expect(await session.create()).toBe(false);
+    session.undo(); expect(session.state.error).toBeNull(); expect(assemblyDuration(session.state)).toBe(6);
+    session.toggle("video"); expect(session.state.shots).toEqual([]);
+  });
+
+  it("uses all named-file sections in source order, with chronological sections per source", async () => {
+    const source = project();
+    const session = new AssemblySession({ current: () => source, library: () => assets, match: async () => [scene("photo", 0, 6, 0.99), scene("video", 6, 3, 0.98), scene("video", 0, 3, 0.8)], create: async () => true }, () => {});
+    session.start({ ...request, filePrompt: 'Combine "movie.mp4" then "photo.png" into a video' }, [], assets);
+    expect(await session.match(true)).toBe(true);
+    expect(session.state.shots).toEqual([{ id: "video", offset: 0, duration: 2 }, { id: "video", part: 1, offset: 6, duration: 2 }, { id: "photo", offset: 0, duration: 2 }]);
+    expect(session.state.shots.every(shot => session.state.sceneMatches?.[assemblyShotKey(shot)])).toBe(true);
+  });
+
+  it("rejects overlapping matches from one source without changing the draft", async () => {
+    const source = project();
+    const session = new AssemblySession({ current: () => source, match: async () => [scene("video", 0, 6), scene("video", 5, 6)], create: async () => true }, () => {});
+    session.start(request, []); const before = [...session.state.shots];
+    expect(await session.match(true)).toBe(false); expect(session.state.error).toBe("matchFailed"); expect(session.state.shots).toEqual(before);
+  });
+
   it("requires explicit manual review after a failed scan and creates the unchanged draft without another analysis request", async () => {
     const source = project(), before = JSON.stringify(source); let scans = 0, created: AssemblyPlan | undefined;
     const session = new AssemblySession({ current: () => source, match: async () => { scans++; throw new Error("provider unavailable"); }, create: async (_source, plan) => { created = plan; return true; } }, () => {});
@@ -102,7 +169,7 @@ describe("content-aware assembly", () => {
     expect(await session.match(true)).toBe(true);
     expect(session.state.shots).toEqual([{ id: "photo", offset: 0, duration: 3 }, { id: "video", offset: 6, duration: 3 }]);
     expect(assemblyDuration(session.state)).toBe(6);
-    expect(session.state.sceneMatches?.video).toBe("Deer beside forest trees");
+    expect(session.state.sceneMatches?.[assemblyShotKey({ id: "video", offset: 0, duration: 1 })]).toBe("Deer beside forest trees");
     session.undo(); expect(session.state.shots).toEqual(originalPlan); expect(session.state.sceneMatches).toEqual({});
     expect(await session.match(true)).toBe(true); expect(await session.create()).toBe(true);
     expect(created?.clips.find(clip => clip.kind === "video")).toMatchObject({ start: 3, duration: 3, trimIn: 14, speed: 2, transform: video.transform, audio: video.audio });
