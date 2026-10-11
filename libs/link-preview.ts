@@ -31,6 +31,22 @@ export interface LinkPreviewData {
 
 const previewCache = new Map<string, LinkPreviewData>();
 
+export function getLinkPreviewFavicon(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (!/^https?:$/.test(parsed.protocol)) return null;
+    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(parsed.hostname)}&sz=64`;
+  } catch {
+    return null;
+  }
+}
+
+function compactPreview(url: string): LinkPreviewData {
+  let domain = url;
+  try { domain = new URL(url).hostname.replace(/^www\./, ''); } catch { /* keep the supplied link */ }
+  return { url, title: domain, description: '', image: null, siteName: domain };
+}
+
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
@@ -43,26 +59,26 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
     const { data, error } = await supabase.functions.invoke('fetch-link-preview', {
       body: { url },
     });
-    if (error || !data) {
+    if (error || !data || data.error) {
       log.warn('fetchLinkPreview:failed', url, error);
-      return null;
+      return compactPreview(url);
     }
 
     const preview: LinkPreviewData = {
-      url: data.url,
-      title: data.title,
-      description: data.description,
+      url,
+      title: data.title || compactPreview(url).title,
+      description: data.description || '',
       // OG attributes can contain HTML-escaped query separators. Decode them
       // before the share-image endpoint receives the URL.
       image: typeof data.image === 'string' ? data.image.replace(/&amp;/gi, '&') : null,
-      siteName: data.siteName,
+      siteName: data.siteName || compactPreview(url).siteName,
     };
 
     previewCache.set(url, preview);
     return preview;
   } catch (e) {
     log.warn('fetchLinkPreview:error', url, e);
-    return null;
+    return compactPreview(url);
   }
 }
 
