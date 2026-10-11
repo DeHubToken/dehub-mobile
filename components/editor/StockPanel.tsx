@@ -1,5 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Linking, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
@@ -28,14 +28,20 @@ export default function StockPanel({ onAdd, at, scope, subscribe, onStart }: { o
   const [status, setStatus] = useState<string | null>(null);
   const session = useRef(createStockSearchSession());
   const mounted = useRef(true), currentScope = useRef(scope); currentScope.current = scope;
-  const importingTask = useRef<ReturnType<typeof projectTask>>(null);
+  const importingTask = useRef<{ task: NonNullable<ReturnType<typeof projectTask>>; controller: AbortController } | null>(null);
+  const cancelImport = useCallback(() => {
+    const owner = importingTask.current;
+    if (!owner) return;
+    importingTask.current = null; owner.controller.abort(); owner.task.release();
+    if (mounted.current) setImporting(null);
+  }, []);
   const invalidate = () => { session.current.cancel(); setItems([]); setPage(0); setHasMore(false); setBusy(false); setStatus(null); setPreview(null); };
   useEffect(() => {
     mounted.current = true;
-    const unsubscribe = subscribe(() => { if (importingTask.current && !importingTask.current.isCurrent()) { importingTask.current.release(); importingTask.current = null; if (mounted.current) setImporting(null); } });
-    return () => { mounted.current = false; session.current.cancel(); importingTask.current?.release(); importingTask.current = null; unsubscribe(); };
-  }, [subscribe]);
-  useEffect(() => { if (importingTask.current && !importingTask.current.isCurrent()) { importingTask.current.release(); importingTask.current = null; setImporting(null); } }, [scope]);
+    const unsubscribe = subscribe(() => { if (importingTask.current && !importingTask.current.task.isCurrent()) cancelImport(); });
+    return () => { mounted.current = false; session.current.cancel(); cancelImport(); unsubscribe(); };
+  }, [subscribe, cancelImport]);
+  useEffect(() => { if (importingTask.current && !importingTask.current.task.isCurrent()) cancelImport(); }, [scope, cancelImport]);
   const search = async (append = false) => {
     if (busy || importing || (append && !hasMore)) return;
     const ticket = session.current.begin();
@@ -56,16 +62,16 @@ export default function StockPanel({ onAdd, at, scope, subscribe, onStart }: { o
     const capturedScope = scope, start = at;
     const task = projectTask(onStart(), () => mounted.current && currentScope.current === capturedScope);
     if (!task) return;
-    importingTask.current = task;
+    const owner = { task, controller: new AbortController() }; importingTask.current = owner;
     setImporting(item.downloadUrl); setStatus(null);
     try {
-      const media = await importStockLibraryItem(item, kind);
+      const media = await importStockLibraryItem(item, kind, owner.controller.signal);
       if (!task.isCurrent()) return;
       if (media) onAdd(media, start);
       else setStatus(t("common.failedToLoad"));
     } finally {
       task.release();
-      if (importingTask.current === task) { importingTask.current = null; if (mounted.current) setImporting(null); }
+      if (importingTask.current === owner) { importingTask.current = null; if (mounted.current) setImporting(null); }
     }
   };
   return <View style={{ gap: 12 }}>
@@ -89,6 +95,9 @@ export default function StockPanel({ onAdd, at, scope, subscribe, onStart }: { o
       </Pressable>
     </View>
     {busy && <DeHubLoader size={28} />}
+    {importing && <Pressable accessibilityRole="button" onPress={cancelImport} className="self-start rounded-lg bg-white/10 px-4 py-2">
+      <Text className="text-white">{t('common.cancel')}</Text>
+    </Pressable>}
     {status && <Text className="text-theme-neutrals-400">{status}</Text>}
     {preview && <StockMediaPreview key={preview.downloadUrl} item={preview} onClose={() => setPreview(null)} />}
     {items.map(item => <View key={item.downloadUrl} className="rounded-xl border border-white/10 p-3" style={{ gap: 6 }}>
