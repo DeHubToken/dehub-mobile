@@ -1,4 +1,4 @@
-import { PROFILE_BAR_HEIGHT } from '../Profile/useProfileCollapse';
+import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, PINNED_PROFILE_TABS_HEIGHT } from '../Profile/useProfileCollapse';
 import type { SharedValue } from 'react-native-reanimated';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, {
@@ -87,8 +87,6 @@ interface UserProfileBottomContentTabsProps {
   /** Back-to-top button's distance from the bottom; the host knows what sits there. */
   backToTopBottom?: number;
 }
-
-const STICKY_BAR_HEIGHT = 68;
 
 /** Horizontal padding for post cards. Kept tight so content isn't crowded by
  *  large left/right gaps inside the profile sheet. */
@@ -351,7 +349,7 @@ const UserProfileBottomContentTabs: React.FC<
 
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
-        const shouldStick = y >= threshold - PROFILE_BAR_HEIGHT;
+        const shouldStick = y >= threshold + PROFILE_TABS_TOP_GAP - PROFILE_BAR_HEIGHT;
         if (profileTabsPinned) profileTabsPinned.value = shouldStick;
         if (shouldStick !== stickyVisibleShared.value) {
           stickyVisibleShared.value = shouldStick;
@@ -674,7 +672,7 @@ const UserProfileBottomContentTabs: React.FC<
             top: PROFILE_BAR_HEIGHT,
             left: 0,
             right: 0,
-            height: STICKY_BAR_HEIGHT,
+            height: PINNED_PROFILE_TABS_HEIGHT,
             zIndex: 40,
             elevation: 40,
           }, stickyStyle]}
