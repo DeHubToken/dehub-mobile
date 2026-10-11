@@ -26,6 +26,14 @@ jobs:
           cache: npm
       - run: npm ci --legacy-peer-deps
       - run: npx patch-package --error-on-fail
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Prepare recording extension targets before credential discovery
+        run: |
+          gem install xcodeproj --version 1.27.0 --no-document
+          ruby scripts/configure-screen-capture-targets.rb
+          ruby scripts/verify-screen-capture-signing-targets.rb
       - uses: expo/expo-github-action@v8
         with:
           eas-version: latest
