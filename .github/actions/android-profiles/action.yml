@@ -30,7 +30,9 @@ runs:
         target: aosp_atd
         arch: x86_64
         disable-linux-hw-accel: false
-        emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+        # The automatic software backend selects SwANGLE/Lavapipe and loses its
+        # graphics context during profiling on hosted runners.
+        emulator-options: -no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
         disable-animations: true
         script: eas env:exec ${{ inputs.environment }} "cd android && chmod +x gradlew && ./gradlew :app:generateReleaseBaselineProfile -Pdehub.generateProfiles=true -PreactNativeArchitectures=x86_64 --no-daemon"
     - name: Require generated profiles
