@@ -169,7 +169,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
 
   return <View className="flex-1 bg-theme-neutrals-900">
     {renderScene(activeKey)}
-    <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 10, elevation: 10 }, stickyStyle]}>
+    <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
       <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned />
     </Animated.View>
     <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
