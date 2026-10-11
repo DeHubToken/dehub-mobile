@@ -19,26 +19,30 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
   const { t } = useTranslation();
   const [project, setProject] = useState<ProjectSnapshot | null>(null);
   const [progress, setProgress] = useState<number | null>(null);
+  const [canCancel, setCanCancel] = useState(false);
   const renderer = useRef<EditorCanvasHandle>(null);
   const active = useRef<AbortController | null>(null);
+  const cancellable = useRef(false);
   const ready = useRef<{ id: string; resolve: (info: SourceInfo) => void; reject: (error: Error) => void } | null>(null);
   const transfer = useRef<ReturnType<typeof FileSystem.createDownloadResumable> | null>(null);
   const mounted = useRef(true);
-  const cancel = useCallback(() => {
-    active.current?.abort();
+  const cancel = useCallback((expected: AbortController | null = active.current) => {
+    if (!expected || active.current !== expected || !cancellable.current || expected.signal.aborted) return;
+    expected.abort();
     void transfer.current?.cancelAsync().catch(() => undefined);
     renderer.current?.cancelExport();
     ready.current?.reject(Object.assign(new Error("Download cancelled"), { name: "AbortError" }));
   }, []);
   useEffect(() => {
     mounted.current = true;
-    return () => { mounted.current = false; cancel(); };
+    return () => { mounted.current = false; cancel(); active.current?.abort(); };
   }, [cancel]);
 
   const download = useCallback(async (request: VideoDownloadRequest) => {
     if (active.current || !request.url) return;
     const controller = new AbortController();
     active.current = controller;
+    cancellable.current = true;
     const cached = (FileSystem.cacheDirectory || "") + "video-download-" + Date.now() + ".mp4";
     let mediaId: string | null = null;
     let releaseMedia: ((id: string) => void) | null = null;
@@ -46,17 +50,23 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
     let failureStage = "permission", lastProgress = 0;
     let exportInfo: SourceInfo = {};
     const check = () => { if (controller.signal.aborted) throw Object.assign(new Error("Download cancelled"), { name: "AbortError" }); };
+    const finish = () => {
+      if (active.current !== controller) return;
+      ready.current = null; transfer.current = null;
+      active.current = null; cancellable.current = false;
+      if (mounted.current) { setProject(null); setProgress(null); setCanCancel(false); }
+    };
     try {
-      setProgress(0);
+      setProgress(0); setCanCancel(true);
       const permission = await MediaLibrary.requestPermissionsAsync(true);
       check();
-      if (permission.status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
+      if (permission.status !== "granted") { finish(); toastError(t("editor.app.photosPermission")); return; }
       let source = request.url;
       let mime = "video/mp4";
       failureStage = "download";
       if (!source.startsWith("file://")) {
         const job = FileSystem.createDownloadResumable(source, cached, {}, (p) => {
-          if (mounted.current && !controller.signal.aborted) setProgress(p.totalBytesExpectedToWrite > 0 ? 0.15 * p.totalBytesWritten / p.totalBytesExpectedToWrite : 0);
+          if (mounted.current && active.current === controller && cancellable.current && !controller.signal.aborted) setProgress(p.totalBytesExpectedToWrite > 0 ? 0.15 * p.totalBytesWritten / p.totalBytesExpectedToWrite : 0);
         });
         transfer.current = job;
         const result = await job.downloadAsync();
@@ -91,26 +101,30 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
       const out = await renderer.current.exportVideo({
         width: snapshot.settings.width, height: snapshot.settings.height, bitrate: 8_000_000,
         title: snapshot.title, username: request.username || "", snapshot, replaceEnding: true,
-      }, (p) => { lastProgress = 0.15 + p * 0.85; if (mounted.current && !controller.signal.aborted) setProgress(lastProgress); });
+      }, (p) => { lastProgress = 0.15 + p * 0.85; if (mounted.current && active.current === controller && cancellable.current && !controller.signal.aborted) setProgress(lastProgress); });
       output = out.uri;
       check();
       failureStage = "save";
+      cancellable.current = false;
+      if (mounted.current) setCanCancel(false);
       await MediaLibrary.saveToLibraryAsync(out.uri);
+      check();
+      finish();
       toastSuccess(t("editor.app.savedToPhotos"));
     } catch (error) {
+      finish();
       if (!controller.signal.aborted && (error as Error).name !== "AbortError") {
         console.warn("[Video download] Failed", videoDownloadFailure(error, { stage: failureStage, progress: lastProgress, width: exportInfo.width, height: exportInfo.height }));
         toastError(t("editor.app.exportFailed"));
       }
     } finally {
-      ready.current = null; transfer.current = null;
+      finish();
       if (mediaId) releaseMedia?.(mediaId);
-      if (active.current === controller) active.current = null;
-      if (mounted.current) { setProject(null); setProgress(null); }
       await FileSystem.deleteAsync(cached, { idempotent: true }).catch(() => undefined);
       if (output) await FileSystem.deleteAsync(output, { idempotent: true }).catch(() => undefined);
     }
   }, [t]);
+  const cancellationTarget = active.current;
   return <Context.Provider value={download}>
     {children}
     {project && <View pointerEvents="none" style={styles.renderer}>
@@ -121,13 +135,13 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
           onMissingMedia={(ids) => { if (ready.current && ids.includes(ready.current.id)) ready.current.reject(new Error("Video source missing")); }} />
       </Suspense>
     </View>}
-    <Modal visible={progress !== null} transparent animationType="fade" onRequestClose={cancel}>
+    <Modal visible={progress !== null} transparent animationType="fade" onRequestClose={() => cancel(cancellationTarget)}>
       <View style={styles.overlay}><View style={styles.panel}>
         <ActivityIndicator color="#fff" />
         <Text style={styles.text}>{t("editor.video.rendering", { percent: Math.round((progress || 0) * 100) })}</Text>
-        <Pressable onPress={cancel} accessibilityRole="button" style={styles.button}>
+        {progress !== null && canCancel && <Pressable onPress={() => cancel(cancellationTarget)} accessibilityRole="button" style={styles.button}>
           <Text style={styles.text}>{t("common.cancel")}</Text>
-        </Pressable>
+        </Pressable>}
       </View></View>
     </Modal>
   </Context.Provider>;
