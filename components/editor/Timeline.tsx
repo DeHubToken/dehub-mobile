@@ -14,6 +14,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from "react-native";
 import { Image } from "expo-image";
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
+import { blockQuickActions } from '../../libs/quickActions';
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import type { Clip, ProjectSnapshot, Track } from "../../libs/editor/types";
@@ -108,7 +109,7 @@ export default function Timeline(props: Props) {
   const contentW = Math.max(duration * pps, 1);
 
   return (
-    <View className="bg-theme-neutrals-900 border-t border-white/10">
+    <View onTouchStart={blockQuickActions} className="bg-theme-neutrals-900 border-t border-white/10">
       <View className="flex-row items-center px-3 pt-2" style={{ gap: 10 }}>
         <Pressable
           onPress={props.onTogglePlay}
