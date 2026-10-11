@@ -1783,6 +1783,16 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
 
       <View ref={composerKeyboard.ref} collapsable={false} onLayout={composerKeyboard.onLayout}
         style={{ marginBottom: kbVisible ? kbLift : studio ? 0 : TAB_BAR_HEIGHT }}>
+        {editingMediaUrl && <View className="flex-row items-center justify-between gap-3 px-4 py-3">
+          <View className="flex-row items-center gap-2">
+            <ActivityIndicator size="small" color="#A1A1AA" />
+            <Text className="text-theme-neutrals-100">{t('creator.sending')}</Text>
+          </View>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.cancel')}
+            className="px-3 py-2" onPress={() => { editorImport.current?.abort(); setEditingMediaUrl(null); }}>
+            <Text className="text-theme-neutrals-100">{t('common.cancel')}</Text>
+          </TouchableOpacity>
+        </View>}
         {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
