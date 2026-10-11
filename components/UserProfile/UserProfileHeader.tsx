@@ -333,7 +333,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 >
                   {glassLayers}
                   <View style={s.glassBtnContent}>
-                    <Icon name="Plus" size={16} color="#fff" />
+                    <Icon name="EllipsisVertical" size={16} color="#fff" />
                   </View>
                 </TouchableOpacity>
               )}
