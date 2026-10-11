@@ -166,6 +166,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
       animationType="none"
       statusBarTranslucent
       onRequestClose={closeSheet}
+      navigationBarTranslucent
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
         <KeyboardAvoidingView
@@ -175,7 +176,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
           <Animated.View
             style={[
               StyleSheet.absoluteFill,
-              { backgroundColor: "rgba(0,0,0,0.5)" },
+              { backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.5)" },
               backdropStyle,
             ]}
           >
