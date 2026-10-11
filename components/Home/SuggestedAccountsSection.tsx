@@ -16,7 +16,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
-import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
+import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import { useTranslation } from "react-i18next";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
@@ -163,6 +163,7 @@ const SuggestedAccountsSection: React.FC = () => {
   // sideways drag here scrolls the carousel instead of switching feed tabs.
   // Must stay above the early return below so hook order is stable.
   const scrollGuard = useHorizontalScrollGuard();
+  const sectionGuard = useHorizontalSectionGuard(scrollGuard);
 
   const renderItem: ListRenderItem<SuggestedAccount> = useCallback(
     ({ item }) => (
@@ -201,12 +202,13 @@ const SuggestedAccountsSection: React.FC = () => {
     />
   );
 
-  return (
+  const section = (
     // Minimal: a feed row like the posts around it — no gap below, one
     // full-width hairline under it, and the header held at the 16pt text inset.
     // System (the cinematic feed): the same, with the posts' 12pt rhythm and
     // their hairline. The post above it drops its own, so there is one line.
     <View
+      collapsable={false}
       className={isMinimal || cinematic ? undefined : "mb-3"}
       style={isMinimal ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
@@ -243,6 +245,8 @@ const SuggestedAccountsSection: React.FC = () => {
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list}
     </View>
   );
+
+  return sectionGuard ? <GestureDetector gesture={sectionGuard}>{section}</GestureDetector> : section;
 };
 
 export default React.memo(SuggestedAccountsSection);
