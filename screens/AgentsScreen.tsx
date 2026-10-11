@@ -208,8 +208,8 @@ export default function AgentsScreen() {
         <View style={styles.centered}>
           <PageEmpty
             icon="assistant"
-            title="Agents are in private preview"
-            body="This feature is currently available to @maldoteth."
+            title={t('agents.tasks.privateTitle')}
+            body={t('agents.tasks.privateBody')}
             action={<KitButton label={t("screens.signIn")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
           />
         </View>
