@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useDerivedValue, type SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -55,10 +56,10 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
   return (
     <View pointerEvents="box-none" style={styles.bar}>
       <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, guardVisibility]}>
-        {!solidTheme && cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
+        {!solidTheme && cover && <Image source={cover} blurRadius={40} contentFit="cover" transition={0} cachePolicy="memory-disk" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
       </Animated.View>
       <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
-        {cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
+        {cover && <Image source={cover} blurRadius={40} contentFit="cover" transition={0} cachePolicy="memory-disk" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
         <LinearGradient
           colors={['rgba(255,255,255,0.25)', 'rgba(255,255,255,0.04)', 'rgba(0,0,0,0.12)', 'rgba(255,255,255,0.08)']}
           locations={[0, 0.42, 0.76, 1]}
