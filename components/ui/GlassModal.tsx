@@ -161,7 +161,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
       <SwipeBackBoundary onBack={dismissible ? onClose : undefined} enabled={visible && !yielded && dismissible}>
       <View style={styles.container}>
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
-        {backdropScope === "full" && isMinimal ? (
+        {Platform.OS === "android" ? (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => { if (dismissible) onClose(); }}
+            style={StyleSheet.absoluteFill}
+          />
+        ) : backdropScope === "full" && isMinimal ? (
           // Minimal has no glass: the full-screen blur becomes a flat, heavier
           // dim so the panel still separates from whatever is behind it.
           <TouchableOpacity

@@ -10,6 +10,7 @@ jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('reac
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
   View: 'View', Pressable: 'Pressable', Text: 'Text',
   StyleSheet: { create: (s: unknown) => s, flatten: (style: unknown) => style, hairlineWidth: 1 },
   Linking: { openURL: jest.fn(() => Promise.resolve()) },

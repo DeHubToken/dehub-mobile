@@ -1,4 +1,4 @@
-import type { ViewStyle } from 'react-native';
+import { Platform, type ViewStyle } from 'react-native';
 import type { AppThemeName } from './colors';
 
 /**
@@ -283,7 +283,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
     centreIcon: 'rgb(246,240,227)',
     barIcon: 'rgba(222,210,188,0.75)',
     barIconActive: 'rgb(246,240,227)',
-    grain: true,
+    grain: Platform.OS !== 'android',
     glow: null,
     brackets: null,
     mono: false,

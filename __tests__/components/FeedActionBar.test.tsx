@@ -4,6 +4,7 @@ import FeedActionBar from '../../components/Home/FeedActionBar';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
   View: 'View', Pressable: 'Pressable', Text: 'Text',
   StyleSheet: { flatten: (style: unknown) => style },
   Animated: {
