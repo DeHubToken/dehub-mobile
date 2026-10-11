@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
@@ -26,12 +27,17 @@ function BottomTabNavigator() {
     <Tab.Navigator
       tabBar={renderTabBar}
       screenLayout={withScreenBoundary}
-      screenOptions={{
+      screenOptions={({ navigation: tabNavigation }) => ({
         headerShown: false,
         tabBarShowLabel: false,
-        freezeOnBlur: true,
+        // Hide attached inactive views so transparent pages reveal only the canvas.
+        // Focus changes must repaint the Android scene before it can be frozen.
+        freezeOnBlur: Platform.OS !== "android",
+        sceneStyle: Platform.OS === "android"
+          ? { opacity: tabNavigation.isFocused() ? 1 : 0 }
+          : undefined,
         lazy: true,
-      }}
+      })}
     >
         {/* Home is the initial route, so it is imported statically — deferring
             it would only add a hop. Every other tab is attached with
