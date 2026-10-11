@@ -31,9 +31,6 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
     () => scrollY.value + PROFILE_BAR_HEIGHT >= identityBottom.value,
     (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
   );
-  const frost = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value, [32, 80], [0, 1], Extrapolation.CLAMP),
-  }));
   const identity = useAnimatedStyle(() => ({
     opacity: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [0, 1], Extrapolation.CLAMP),
     transform: [{ translateY: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [4, 0], Extrapolation.CLAMP) }],
@@ -42,10 +39,9 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
 
   return (
     <View pointerEvents="box-none" style={styles.bar}>
-      <Animated.View pointerEvents="none" style={[styles.frost, frost]}>
-        <ChromeSurface radius={15} />
-        {cover && <Image source={cover} blurRadius={24} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.28 }]} />}
-      </Animated.View>
+      <View pointerEvents="none" style={styles.surface}>
+        {cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
+      </View>
       <ScreenHeader overlay title="" canGoBack={canGoBack} onBackPress={onBackPress} />
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
         <Animated.View pointerEvents="none" accessibilityElementsHidden={!collapsed} importantForAccessibility={collapsed ? 'auto' : 'no-hide-descendants'} style={[styles.identity, identity]}>
@@ -74,7 +70,7 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
 
 const styles = StyleSheet.create({
   bar: { position: 'absolute', top: 0, left: 0, right: 0, height: PROFILE_BAR_HEIGHT, zIndex: 30, elevation: 30 },
-  frost: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden' },
+  surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' },
   content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 56, paddingRight: 12, flexDirection: 'row', alignItems: 'center', gap: 8 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
