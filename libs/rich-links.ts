@@ -119,7 +119,8 @@ export function extractShareUrls(text: string): string[] {
     if (!value || value.includes('@')) continue;
     const rich = parseRichLink(value);
     if (rich) { found.push(rich.url); continue; }
-    if (/^(?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?::\d+)?\/[^\s<>\u0080-\uFFFF]*$/.test(value)) {
+    const explicitRoot = /^https?:\/\/(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?::\d+)?(?:[?#][^\s<>\u0080-\uFFFF]*)?$/i.test(value);
+    if (explicitRoot || /^(?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?::\d+)?\/[^\s<>\u0080-\uFFFF]*$/.test(value)) {
       found.push(/^https?:\/\//i.test(value) ? value : 'https://' + value);
     }
   }
