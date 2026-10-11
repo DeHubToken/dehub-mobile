@@ -23,13 +23,13 @@ it('hides the previous page through the profile close animation without unmounti
   act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
   const coveredPage = () => tree.root.findAllByType('View' as any).find(view => view.props.pointerEvents !== undefined)!;
   act(() => profile.showUserProfile('member'));
-  expect(coveredPage().props.style.opacity).toBe(0);
+  expect(coveredPage().props.style.display).toBe('none');
   expect(coveredPage().props.pointerEvents).toBe('none');
   expect(coveredPage().props.importantForAccessibility).toBe('no-hide-descendants');
   act(() => profile.hideUserProfile());
-  expect(coveredPage().props.style.opacity).toBe(0);
+  expect(coveredPage().props.style.display).toBe('none');
   act(() => jest.advanceTimersByTime(300));
-  expect(coveredPage().props.style.opacity).toBe(1);
+  expect(coveredPage().props.style.display).toBe('flex');
   expect(coveredPage().props.pointerEvents).toBe('auto');
   expect(mounted).toHaveBeenCalledTimes(1);
   expect(unmounted).not.toHaveBeenCalled();
