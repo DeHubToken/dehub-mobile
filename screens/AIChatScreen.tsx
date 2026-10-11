@@ -310,6 +310,12 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const isScreenFocused = useIsScreenFocused();
   const isScreenFocusedRef = useRef(isScreenFocused);
   isScreenFocusedRef.current = isScreenFocused;
+  useEffect(() => {
+    if (!isScreenFocused) {
+      editorImport.current?.abort();
+      setEditingMediaUrl(null);
+    }
+  }, [isScreenFocused]);
   const canPollNow = useCallback(
     () => isScreenFocusedRef.current && AppState.currentState !== 'background',
     [],
@@ -1502,16 +1508,16 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   );
 
   const handleEditMedia = useCallback(async (url: string, kind: 'image' | 'video' | 'audio') => {
-    if (editorImport.current) return;
+    if (editorImport.current || !isScreenFocusedRef.current) return;
     const controller = new AbortController();
     editorImport.current = controller;
     setEditingMediaUrl(url);
     try {
       const media = await importGeneratedMedia({ url, kind }, controller.signal);
-      if (controller.signal.aborted) return;
+      if (controller.signal.aborted || !isScreenFocusedRef.current) return;
       const project = generatedProject(media);
       await saveProject(project);
-      if (!controller.signal.aborted) navigation.push(ScreenNames.MediaEditor, { projectId: project.id });
+      if (!controller.signal.aborted && isScreenFocusedRef.current) navigation.push(ScreenNames.MediaEditor, { projectId: project.id });
     } catch (error) {
       if (!controller.signal.aborted) toastError(error instanceof MediaTooLargeError ? t('editor.video.tooLarge') : t('common.somethingWentWrong'));
     } finally {
