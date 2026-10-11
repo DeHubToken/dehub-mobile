@@ -47,6 +47,8 @@ import {
 } from "../services/agents.service";
 
 const MUTED = "#A1A1AA";
+import { canManageAgents } from '../libs/agent-access';
+import { AgentTasksPanel } from './AgentTasksPanel';
 
 const maskApiKey = (key: string) =>
   key.substring(0, 10) + "•".repeat(20) + key.substring(key.length - 4);
@@ -95,6 +97,7 @@ export default function AgentsScreen() {
   const navigation = useNavigation<any>();
   const user = useUser();
   const walletAddress = (user?.walletAddress || user?.address || null) as string | null;
+  const allowed = canManageAgents(walletAddress);
   const queryClient = useQueryClient();
 
   const [isCreating, setIsCreating] = useState(false);
@@ -110,7 +113,7 @@ export default function AgentsScreen() {
   const { data: agents, isLoading, isError, refetch } = useQuery({
     queryKey: ["ai-agents", walletAddress],
     queryFn: () => fetchMyAgents(walletAddress as string),
-    enabled: !!walletAddress,
+    enabled: allowed,
   });
 
   const createAgent = useMutation({
@@ -198,15 +201,15 @@ export default function AgentsScreen() {
       { text: t("agents.delete"), style: "destructive", onPress: () => removeAgent.mutate(agent.id) },
     ]);
 
-  if (!walletAddress) {
+  if (!walletAddress || !allowed) {
     return (
       <View style={styles.root}>
         <ScreenHeader title={t("agents.title")} icon="assistant" />
         <View style={styles.centered}>
           <PageEmpty
             icon="assistant"
-            title={t("agents.connectToManage")}
-            body={t("agents.signInToCreate")}
+            title="Agents are in private preview"
+            body="This feature is currently available to @maldoteth."
             action={<KitButton label={t("screens.signIn")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
           />
         </View>
@@ -334,6 +337,7 @@ export default function AgentsScreen() {
           </Pressable>
         </View>
 
+        <AgentTasksPanel wallet={walletAddress} agents={agents ?? []} />
         {isCreating ? (
           <PageSection>
             <View style={styles.cardInner}>

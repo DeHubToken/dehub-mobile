@@ -30,6 +30,7 @@ import Avatar from "../common/Avatar";
 import { DhbCoin } from "../common/DhbCoin";
 import Icon, { type IconName } from "../ui/Icon";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
+import { canManageAgents } from '../../libs/agent-access';
 import { useTotalUnreadMessagesCount } from "../../store/dm.store";
 import { usePublicChatUnreadCount } from "../../hooks/usePublicChatUnread";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -392,7 +393,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   // which Array#sort preserves.
   const visibleItems = useMemo(() => {
     const allowed = NAV_ITEMS.filter(
-      (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden),
+      (item) => (isSignedIn || !item.requiresAuth) && (DIGITAL_PURCHASES_ENABLED || !item.storefrontHidden)
+        && (item.screen !== ScreenNames.Agents || canManageAgents(user?.walletAddress || user?.address)),
     );
     const query = menuQuery.trim().toLowerCase();
     if (!query) return allowed.filter((item) => !item.searchOnly);
@@ -401,7 +403,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
       .filter((entry) => entry.at !== -1)
       .sort((a, b) => (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1))
       .map((entry) => entry.item);
-  }, [isSignedIn, menuQuery, t]);
+  }, [isSignedIn, menuQuery, t, user?.walletAddress, user?.address]);
 
   const searching = menuQuery.trim().length > 0;
 
