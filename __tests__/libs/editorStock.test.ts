@@ -95,3 +95,17 @@ it("stops a cancelled stock transfer without importing its late result", async (
   expect(probeGeneratedMedia).not.toHaveBeenCalled(); expect(importClipFile).not.toHaveBeenCalled();
   expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(1);
 });
+it.each(['application/ogg; codecs=vorbis', 'application/octet-stream'])("imports Wikimedia Ogg audio returned as %s with actual duration and source credit", async reported => {
+  const audio = { ...clip, downloadUrl: 'https://media.example/highway.ogg', mimeType: 'application/ogg', duration: 194.638 };
+  download.mockResolvedValue({ status: 200, headers: { 'content-type': reported } });
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 194.638, width: 0, height: 0 });
+  jest.mocked(importClipFile).mockResolvedValue({ id: 'audio1', kind: 'audio' } as never);
+  expect(pickStock([audio], 'audio')).toBe(audio);
+  expect(await importStockLibraryItem(audio, 'audio')).toMatchObject({ kind: 'audio' });
+  expect(probeGeneratedMedia).toHaveBeenCalledWith(expect.stringMatching(/\.ogg$/), 'audio', undefined);
+  expect(importClipFile).toHaveBeenCalledWith(expect.objectContaining({ mimeType: 'audio/ogg', fileName: 'Ocean.ogg', duration: 194.638, provenance: expect.objectContaining({ attributionText: 'Ocean by Creator' }) }));
+});
+it("keeps generic Ogg out of photo imports", async () => {
+  expect(await importStockLibraryItem({ ...clip, mimeType: 'application/ogg' }, 'photo')).toBeNull();
+  expect(FileSystem.createDownloadResumable).not.toHaveBeenCalled();
+});
