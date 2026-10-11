@@ -156,10 +156,22 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     if (sendInFlight.current || (!trimmed && !attachmentUri) || isBanned || !canSend || cooldown || isOverLimit) return;
 
     sendInFlight.current = true;
+    // A new message leaves the box at once; waiting for the server's echo left
+    // the sent words in it for the whole round trip. An edit keeps its text
+    // until it is confirmed.
+    const typed = text;
+    if (!editingMessage) {
+      setText("");
+      inputRef.current?.clear();
+    }
     let sent = false;
-    try { sent = await onSend(trimmed, replyingTo?._id); } finally { sendInFlight.current = false; }
-    if (!sent) return;
-    if (!setText.complete(text, "")) return;
+    try { sent = await onSend(trimmed, replyingTo?._id); } catch { sent = false; } finally { sendInFlight.current = false; }
+    if (!sent) {
+      // Put the words back unless something new has been typed since.
+      if (!editingMessage) setText((current) => (current.trim() ? current : typed));
+      return;
+    }
+    if (editingMessage && !setText.complete(text, "")) return;
     // Clear the native buffer too: multiline TextInput can retain its last
     // measured content height for one render after the controlled value clears.
     inputRef.current?.clear();

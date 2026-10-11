@@ -122,8 +122,16 @@ const LiveViewerActionBar: React.FC<Props> = ({
     const content = message.trim();
     if (sending.current || !content || inputDisabled) return;
     sending.current = true;
-    try { if (await onSendMessage(content)) setMessage.complete(message, ""); }
-    finally { sending.current = false; }
+    // Empty the box as the line goes out; waiting for the server's echo left
+    // the sent words in it for the whole round trip. A failed send puts them
+    // back unless something new has been typed since.
+    const sent = message;
+    setMessage("");
+    try {
+      if (!(await onSendMessage(content))) setMessage((current) => (current.trim() ? current : sent));
+    } catch {
+      setMessage((current) => (current.trim() ? current : sent));
+    } finally { sending.current = false; }
   }, [message, inputDisabled, onSendMessage, setMessage]);
 
   const handleReact = useCallback(
