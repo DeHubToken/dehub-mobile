@@ -3316,6 +3316,19 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "existingPost": {
+      "add": "Bestaand bericht toevoegen",
+      "hint": "Behoud het oorspronkelijke bericht, de likes en weergaven.",
+      "placeholder": "DeHub-berichtlink of bericht-ID",
+      "adding": "Toevoegen…",
+      "added": "Bericht toegevoegd aan community",
+      "remove": "Uit community verwijderen",
+      "more": "Meer berichten laden",
+      "failed": "Berichten konden niet worden bijgewerkt. Probeer opnieuw.",
+      "invalidLink": "Plak een DeHub-berichtlink of bericht-ID.",
+      "unavailable": "Dit bericht is niet beschikbaar.",
+      "signIn": "Meld je opnieuw aan om communityberichten te beheren."
+    },
     "title": "Community's",
     "create": "Aanmaken",
     "searchPlaceholder": "Communities zoeken...",

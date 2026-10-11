@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
+import { useQueryClient } from '@tanstack/react-query';
+import { getNFT } from '../../services/nft.service';
+import { listCommunityPostShares, removeCommunityPost } from '../../services/community-posts.service';
+import { resolveCommunityPosts, uniqueCommunityPosts } from '../../libs/community-posts-core';
+import { toastError } from '../../libs/toast';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from "../Feed/InfiniteFeed";
 import FeedCard from "../Home/FeedCard";
 import { getFeedNFTs } from "../../services/feed.service";
@@ -9,6 +14,9 @@ import { useAuthState } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 
 interface Props {
+  communityId: string;
+  wallet: string | null;
+  canModerate: boolean;
   communitySlug: string;
   memberAddresses: Set<string>;
   isMember: boolean;
@@ -20,6 +28,9 @@ interface Props {
  * and filters to member-only posts, matching the web CommunityFeed.
  */
 const CommunityFeedRoute: React.FC<Props> = ({
+  communityId,
+  wallet,
+  canModerate,
   communitySlug,
   memberAddresses,
   isMember,
@@ -27,6 +38,7 @@ const CommunityFeedRoute: React.FC<Props> = ({
 }) => {
   const { isSignedIn } = useAuthState();
   const { t } = useTranslation();
+  const qc = useQueryClient();
   const [memberFilterReady, setMemberFilterReady] = useState(false);
 
   useEffect(() => {
@@ -35,19 +47,24 @@ const CommunityFeedRoute: React.FC<Props> = ({
 
   const fetchPage = useCallback(
     async (page: number, unit: number): Promise<GetNFTsResponse> => {
-      const res = await getFeedNFTs({
+      const [res,shares] = await Promise.all([getFeedNFTs({
         category: communitySlug,
         unit,
         page,
         sortMode: "new",
-      });
+      }),listCommunityPostShares(communityId,wallet,page,unit)]);
+      const originals = await resolveCommunityPosts(shares.map(row=>String(row.token_id)),async id=>(await getNFT(id,{allowAnonymous:!wallet})).result);
+      const byId=new Map(shares.map(row=>[String(row.token_id),row]));
       const filtered = (res.result || []).filter((item) => {
         const minter = (item.minter || (item as any).minterUser?.address || "").toLowerCase();
         return !minter || memberAddresses.has(minter);
       });
-      return { result: filtered as GetNFTsResult[] };
+      const result=uniqueCommunityPosts([...originals,...filtered],item=>String(item.tokenId??item.id)).map(item=>({
+        ...item,communitySharedBy:byId.get(String(item.tokenId??item.id))?.shared_by,
+      }));
+      return { result:result as GetNFTsResult[],hasMore:(res.result?.length??0)===unit || shares.length===unit };
     },
-    [communitySlug, memberAddresses],
+    [communityId,communitySlug, memberAddresses,wallet],
   );
 
   // Stable digest of the roster for the feed's cache key. Sorted so an
@@ -77,13 +94,23 @@ const CommunityFeedRoute: React.FC<Props> = ({
   // render of this component.
   const renderItem = useCallback(
     ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
+      <View>
+      {wallet && (item as any).communitySharedBy && (canModerate || (item as any).communitySharedBy===wallet.toLowerCase()) && (
+        <TouchableOpacity accessibilityRole="button" className="py-2" onPress={async()=> {
+          try {
+            await removeCommunityPost(communityId,wallet,String(item.tokenId??item.id));
+            await qc.invalidateQueries({queryKey:['infinite-feed','community-feed',communityId]});
+          } catch {toastError(t('communities.existingPost.failed'));}
+        }}><Text className="text-xs text-theme-neutrals-400 underline">{t('communities.existingPost.remove')}</Text></TouchableOpacity>
+      )}
       <FeedCard
         item={item as UnifiedFeedItem}
         isVisible={isVisible}
         isAutoplayActive={isAutoplayActive}
       />
+      </View>
     ),
-    [],
+    [communityId,wallet,canModerate,qc,t],
   );
 
   if (!memberFilterReady) {
@@ -101,7 +128,7 @@ const CommunityFeedRoute: React.FC<Props> = ({
         // memberAddresses is applied as a client-side filter inside fetchPage,
         // so it belongs in the key too — otherwise a membership change would
         // keep serving pages filtered against the old roster.
-        cacheKey={["community-feed", communitySlug, memberKey]}
+        cacheKey={["community-feed", communityId,communitySlug,memberKey,wallet]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}

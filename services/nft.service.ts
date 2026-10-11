@@ -197,6 +197,8 @@ export interface SingleNFTResponse { result: GetNFTsResult; [k: string]: any }
 export async function getNFT(
   tokenId: number | string, 
   options?: {
+    /** Public community shares can resolve an original while signed out. */
+    allowAnonymous?: boolean;
     commentId?: number | string;
     /** Best-tipped comment ids, most first, max 5 — see GetCommentsParams. */
     topTipped?: Array<number | string>;
@@ -212,7 +214,7 @@ export async function getNFT(
   }
   const url = `/nft_info/${tokenId}${query.length ? `?${query.join('&')}` : ''}`;
   try {
-    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const res = await apiClient.get<any>(url, { isAuthRequired: !options?.allowAnonymous });
     // Normalize: ensure res.result exists and is object
     if (res?.result && !Array.isArray(res.result)) return res as SingleNFTResponse;
     if (res && !res.result) return { result: res } as SingleNFTResponse;
