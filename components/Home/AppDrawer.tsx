@@ -114,6 +114,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
   { icon: "Mic", labelKey: "nav.stages", screen: ScreenNames.Stages },
   { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
+  { icon: "MessageSquare", labelKey: "stats.feedback.title", screen: ScreenNames.Feedback },
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true, storefrontHidden: true },
@@ -167,7 +168,7 @@ const ICON_KEYS: Record<string, string> = {
   "nav.notifications": "notifications", "nav.messages": "messages", "nav.communities": "communities",
   "nav.assistant": "assistant", "nav.settings": "settings", "nav.leaderboard": "trophy",
   "nav.stats": "stats", "nav.bookmarks": "bookmarks", "nav.command": "command", "nav.events": "events",
-  "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
+  "stats.feedback.title": "messages", "nav.stages": "stages", "nav.featureRequests": "features", "nav.staking": "staking",
   "nav.superpowers": "superpowers", "nav.governance": "governance", "nav.dao": "dao",
   "screens.work": "bounties", "nav.careers": "careers", "screens.stores": "stores",
   "nav.fractions": "fractions", "screens.usernames": "usernames", "screens.accounts": "accounts",

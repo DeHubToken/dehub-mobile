@@ -1,5 +1,5 @@
 import { AssemblySession, assemblyDuration, assemblyProject, type AssemblyPlan } from "../../libs/editor/assembly";
-import { assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, assemblyPreviewProject, type AssemblyAsset } from "../../libs/editor/assemblyLibrary";
+import { selectedAssemblyAssets, assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, assemblyPreviewProject, type AssemblyAsset } from "../../libs/editor/assemblyLibrary";
 import type { MediaClip, ProjectSnapshot } from "../../libs/editor/types";
 
 const project = (): ProjectSnapshot => ({ id: "source", title: "Original", clips: [], tracks: [],
@@ -15,6 +15,19 @@ const id = (asset: string) => `@assembly-library:${asset}`;
 const plan = (): AssemblyPlan => ({ shots: [{ id: id("video"), offset: 1, duration: 4 }, { id: id("photo-a"), offset: 0, duration: 6 }], transition: "fade", soundId: id("music") });
 
 describe("assembly from actual imported files", () => {
+  it("deduplicates imported source assets while preserving independent range previews and creation", async () => {
+    const source = project(), before = JSON.stringify(source); let stored: AssemblyPlan | undefined;
+    const session = new AssemblySession({ current: () => source, library: () => assets, match: async () => [
+      { id: id("video"), offset: 0, duration: 2, score: 0.99, text: "First matching section" },
+      { id: id("video"), offset: 4, duration: 2, score: 0.9, text: "Second matching section" },
+    ], create: async (_source, plan, _signal, catalog) => { stored = plan; expect(selectedAssemblyAssets(source, plan, catalog)).toEqual([assets[2]]); return true; } }, () => {});
+    session.start({ ...request, seconds: 4, music: false, focus: "matching scenes" }, [], assets); session.toggle(id("video"));
+    expect(await session.match(true)).toBe(true);
+    expect(session.preview(0)?.libraryClip).toMatchObject({ trimIn: 0, duration: 2, mediaId: "video" });
+    expect(session.preview(1)?.libraryClip).toMatchObject({ trimIn: 4, duration: 2, mediaId: "video" });
+    expect(await session.create()).toBe(true); expect(stored?.shots).toHaveLength(2); expect(JSON.stringify(source)).toBe(before);
+  });
+
   it("offers each usable imported file once without changing the original or duplicating used media", () => {
     const source = project();
     source.tracks.push({ id: "v", kind: "video", name: "Video", hidden: false, muted: false });

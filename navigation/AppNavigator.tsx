@@ -117,6 +117,10 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/LeaderboardScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Feedback}
+          getComponent={() => require("../screens/FeedbackScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Stats}
           getComponent={() => require("../screens/StatsScreen").default}
         />

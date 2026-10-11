@@ -1,4 +1,5 @@
 import { loadAffiliateStats } from '../../libs/affiliate';
+jest.mock('../../libs/wallet-session', () => ({ ensureWalletSession: jest.fn().mockResolvedValue({ token: 'signed-session' }) }));
 
 type Result = { data: unknown; error: unknown; count?: number | null };
 

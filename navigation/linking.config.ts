@@ -398,6 +398,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Dao]: DeepLinkPaths.DAO,
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
+          [ScreenNames.Feedback]: 'feedback',
 
           [ScreenNames.GovernanceProposal]: {
             path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
@@ -578,6 +579,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // &comment=<id>; the screen pins a request by requestId and opens its
     // thread at commentId, so the names are translated on the way in.
     const appSegs = segments[0] === 'app' ? segments.slice(1) : segments;
+    if (segments[0] === 'r' && segments[1]) {
+      // The attribution listener keeps the first touch for native signup.
+      // The web landing owns the inviter's customized destinations.
+      openOnWeb(`https://dehub.io/${pathOnly}${queryString ? `?${queryString}` : ''}`);
+      return homeState();
+    }
     if (appSegs.length === 1 && ['wallet', 'buy', 'stake'].includes(appSegs[0])) {
       return orOpenOnWeb(getStateFromPath(`/app/wallet?initialTab=${appSegs[0]}`, options));
     }
@@ -617,7 +624,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });

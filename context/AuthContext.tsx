@@ -303,6 +303,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
   const [needsUsername, setNeedsUsername] = useState(false);
+  const referralWallet = isSignedIn && !needsUsername ? user?.walletAddress || user?.address || null : null;
+  useEffect(() => {
+    let cancelled = false;
+    let stop: (() => void) | undefined;
+    void import('../libs/affiliate-attribution').then(({ watchAffiliateAttribution }) => {
+      if (!cancelled) stop = watchAffiliateAttribution(referralWallet);
+    }).catch(() => undefined);
+    return () => { cancelled = true; stop?.(); };
+  }, [referralWallet]);
   const [balancesLoading, setBalancesLoading] = useState(false);
   const [provisionalUser, setProvisionalUser] = useState<any | null>(null);
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility

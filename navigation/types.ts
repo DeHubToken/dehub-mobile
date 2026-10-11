@@ -203,6 +203,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.Communities]: undefined;
   [ScreenNames.Stats]: undefined;
+  [ScreenNames.Feedback]: { source?: 'converter' | 'migration' } | undefined;
   [ScreenNames.CommunityDetail]: { slug: string };
   [ScreenNames.CommunityInvite]: { code: string };
   [ScreenNames.Converter]: undefined;
