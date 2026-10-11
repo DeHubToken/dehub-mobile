@@ -6944,7 +6944,12 @@
       "hint": "Wandelt Sprache in zeitlich abgestimmte Untertitel um, die du gestalten kannst. Läuft auf deinem Gerät: kostenlos und privat. Beim ersten Mal wird das Modell heruntergeladen.",
       "done": "{{count}} Untertitel hinzugefügt.",
       "noSpeech": "In diesem Clip wurde keine Sprache erkannt.",
-      "failed": "Für diesen Clip konnten keine Untertitel erstellt werden."
+      "failed": "Für diesen Clip konnten keine Untertitel erstellt werden.",
+      "targetLanguage": "Untertitelsprache",
+      "translateCount": "{{count}} Untertitel übersetzen",
+      "translationDone": "{{count}} Untertitel übersetzt",
+      "translationFailed": "Die Übersetzung ist fehlgeschlagen. Deine Untertitel bleiben unverändert.",
+      "lockedTranslation": "Entsperre gesperrte Untertitel, um sie einzubeziehen."
     },
     "app": {
       "newDesign": "Neues Design",

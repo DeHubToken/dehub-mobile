@@ -6921,7 +6921,12 @@
       "hint": "将语音转换为带时间轴的字幕，可自由调整样式。在您的设备上运行：免费且私密。首次使用时会下载模型。",
       "done": "已添加 {{count}} 条字幕。",
       "noSpeech": "此片段中未检测到语音。",
-      "failed": "无法为此片段生成字幕。"
+      "failed": "无法为此片段生成字幕。",
+      "targetLanguage": "字幕语言",
+      "translateCount": "翻译 {{count}} 条字幕",
+      "translationDone": "已翻译 {{count}} 条字幕",
+      "translationFailed": "字幕翻译失败。字幕未更改。",
+      "lockedTranslation": "解锁已锁定的字幕以将其包含在内。"
     },
     "app": {
       "newDesign": "新建设计",
