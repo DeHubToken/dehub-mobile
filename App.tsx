@@ -12,6 +12,7 @@ import { initialSafeAreaMetrics } from "./libs/initialSafeAreaMetrics";
 import KeyboardPanView from "./components/common/KeyboardPanView";
 import QuickActionsHost from "./components/common/QuickActionsHost";
 import { blockQuickActions } from "./libs/quickActions";
+import { bugScreenLabel } from "./libs/pageBugReport";
 import { Toaster } from "sonner-native";
 import { createToastTheme } from "./theme/toastTheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -493,7 +494,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                     <MessagingProvider>
                       <CallProvider>
                         <VideoDownloadProvider>
-                        <QuickActionsHost getScreen={() => navigationRef.getCurrentRoute()?.name || 'App'}>
+                        <QuickActionsHost getScreen={() => bugScreenLabel(navigationRef.getCurrentRoute())}>
                         <KeyboardPanView>
                           <RootNavigator />
                         </KeyboardPanView>
