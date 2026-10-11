@@ -9,13 +9,15 @@ jest.mock('@react-navigation/native', () => ({
   useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]),
 }));
 
+const WebView = 'WebView' as any;
+
 it('keeps WebView backdrops outside blur capture while navigation samples the native feed', () => {
   const sources: Record<string, unknown> = {};
   const Probe = ({ name }: { name: string }) => { sources[name] = useFrostedSource(); return null; };
   let tree!: ReturnType<typeof create>;
   act(() => {
     tree = create(
-      <FrostedBackdropProvider backdrop={React.createElement("WebView" as any)}>
+      <FrostedBackdropProvider backdrop={<WebView />}>
         <FrostedContent><Probe name="background" /></FrostedContent>
         <Probe name="navigation" />
         <FrostedBackground><Probe name="profile" /></FrostedBackground>
@@ -30,7 +32,7 @@ it('keeps WebView backdrops outside blur capture while navigation samples the na
   expect(sources.profile).toBe(sources.background);
   expect(sources.profile).not.toBe(sources.navigation);
   act(() => tree.update(
-    <FrostedBackdropProvider backdrop={React.createElement("WebView" as any)}>
+    <FrostedBackdropProvider backdrop={<WebView />}>
       <Probe name="navigation" />
     </FrostedBackdropProvider>,
   ));
