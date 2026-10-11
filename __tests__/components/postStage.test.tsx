@@ -164,7 +164,7 @@ describe('post page on phones', () => {
 
   it('keeps image controls below the photo and blurs the list beneath the composer', () => {
     expect(card).toContain('!postVideo && !postImage && <PostStageChrome overMedia');
-    expect(card).toContain('openOptions: postImage ? handleOpenOptions : undefined');
+    expect(card).toContain('openOptions: handleOpenOptions');
     expect(detail).toContain('onMore={stageMedia.openOptions}');
     expect(detail).toContain('<FrostedContent>');
     expect(detail).toContain('<FrostedPill tint={stageGlassTint}');
