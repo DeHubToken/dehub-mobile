@@ -1,0 +1,52 @@
+name: Recording signing inventory
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/editor-ios-signing-inventory.yml'
+      - 'scripts/*screen-capture-signing-portal.mjs'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/editor-ios-signing-inventory.yml'
+      - 'scripts/*screen-capture-signing-portal.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Recording credential inventory guards
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/test-screen-capture-signing-portal.mjs
+
+  inventory:
+    name: Existing Apple signing inventory
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned public signing client
+        run: npm install --prefix "$RUNNER_TEMP/recording-signing-tools" --no-save --no-package-lock --ignore-scripts @expo/apple-utils@2.2.1
+      - name: Inspect existing team credentials and recording identifiers
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          RECORDING_SIGNING_TOOLS: ${{ runner.temp }}/recording-signing-tools
+        run: node scripts/inspect-screen-capture-signing-portal.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recording-signing-portal-inventory
+          path: ios-signing-portal-inventory.json
+          if-no-files-found: ignore
