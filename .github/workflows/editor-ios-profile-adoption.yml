@@ -1,0 +1,72 @@
+name: Recording profile adoption
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        default: inspect
+        options: [inspect, adopt]
+        required: true
+      main_profile:
+        type: string
+        required: true
+      setup_profile:
+        type: string
+        required: true
+      upload_profile:
+        type: string
+        required: true
+  pull_request:
+    paths:
+      - '.github/workflows/editor-ios-profile-adoption.yml'
+      - 'scripts/*screen-capture-profile*'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/editor-ios-profile-adoption.yml'
+      - 'scripts/*screen-capture-profile*'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Recording profile adoption guards
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/test-adopt-screen-capture-profiles.mjs
+
+  profiles:
+    name: Validate or adopt existing recording profiles
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency: recording-profile-adoption
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned public signing client
+        run: npm install --prefix "$RUNNER_TEMP/recording-signing-tools" --no-save --no-package-lock --ignore-scripts @expo/apple-utils@2.2.1
+      - name: Validate all target profiles before updating managed records
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          RECORDING_SIGNING_TOOLS: ${{ runner.temp }}/recording-signing-tools
+          RECORDING_PROFILE_MODE: ${{ inputs.mode }}
+          RECORDING_MAIN_PROFILE: ${{ inputs.main_profile }}
+          RECORDING_SETUP_PROFILE: ${{ inputs.setup_profile }}
+          RECORDING_UPLOAD_PROFILE: ${{ inputs.upload_profile }}
+        run: node scripts/adopt-screen-capture-profiles.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recording-profile-adoption
+          path: ios-profile-adoption.json
+          if-no-files-found: ignore
