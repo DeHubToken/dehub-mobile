@@ -20,7 +20,7 @@ it.each(['cosmic', 'island', 'war'] as const)('preserves the %s card material in
   const override = { paddingVertical: 12 };
   act(() => { tree = create(<PageSection style={override}>Content</PageSection>); });
   const frame = tree!.root.findByType('View' as any).props.style;
-  expect(frame[1]).toBe(skin.card);
+  expect(frame).toContain(skin.card);
   expect(Object.assign({}, ...frame)).toMatchObject({ ...skin.card, ...override });
   act(() => tree!.unmount());
 });
@@ -28,9 +28,10 @@ it.each(['cosmic', 'island', 'war'] as const)('preserves the %s card material in
 it.each(['system', 'immersive', 'minimal'] as const)('keeps %s sections flat between hairlines', (theme) => {
   mockTheme = { theme, skin: null, isMinimal: theme === 'minimal', colors: { card: '#18181B' } };
   let tree: ReturnType<typeof create>;
-  act(() => { tree = create(<PageSection>Content</PageSection>); });
+  act(() => { tree = create(<PageSection style={{ backgroundColor: '#333', borderRadius: 20 }}>Content</PageSection>); });
   const frame = Object.assign({}, ...tree!.root.findByType('View' as any).props.style);
-  expect(frame.borderBottomWidth).toBe(0.5);
-  expect(frame.backgroundColor).toBeUndefined();
+  expect(frame.borderBottomWidth).toBe(1);
+  expect(frame.backgroundColor).toBe('transparent');
+  expect(frame.borderRadius).toBe(0);
   act(() => tree!.unmount());
 });
