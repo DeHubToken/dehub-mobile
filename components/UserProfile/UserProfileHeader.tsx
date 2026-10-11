@@ -293,7 +293,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
       </TouchableOpacity>
 
-      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar
@@ -304,7 +304,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
-            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className={`flex-row items-center gap-2 self-start mt-14 ${cinematicPhone ? "-mr-1" : "-mr-2"}`}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
               {renderFollowButton()}
               {!!onMessage && (
                 <TouchableOpacity
