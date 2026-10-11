@@ -120,3 +120,9 @@ Thirty-nine additional card and picker surfaces use `ThemePanel`, preserving the
 | `screens/WorkPostScreen.tsx` | Title island and theme-aware page canvas/controls |
 | `screens/WorkScreen.tsx` | Title island and page-kit sections/actions |
 | `screens/YourVideosScreen.tsx` | Title island and theme-aware page canvas/controls |
+
+## Page navigation inside the title island
+
+ScreenHeader owns page tabs through its tabs slot. PageHeaderContext removes the second horizontal gutter and fixes the strip height while keeping selected state, callbacks, and horizontal scrolling. Accounts, Ads, Events, Fractions, Governance, Launchpad, MyLibrary, Notifications, Packs, SavedPosts, Stages, Stats, Stores, Usernames, Work, and WorkHistory use this structure. Work and signed-in WorkHistory also keep search and filters inside the island. Communities puts its existing search and sort controls inside the measured collapsible header; list padding and refresh offsets follow the measured height.
+
+Section controls remain in the body when web keeps them there, including Apps category filters, Pricing billing cadence, Affiliate tiers, wallet sections, and TV sections.

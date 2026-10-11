@@ -223,29 +223,20 @@ export default function WorkHistoryScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={t("work.myBounties")} subtitle={t("work.historySubtitle")} icon="bounties" />
-
-      {!isSignedIn ? (
-        <PageEmpty
-          icon="lock"
-          title={t("work.connectTitle")}
-          body={t("work.connectBody")}
-          action={<KitButton label={t("work.connectCta")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
-        />
-      ) : (
-        <>
-          <View style={styles.tabRow}>
-            <PageTabs
-              value={tab}
-              onChange={switchTab}
-              tabs={[
-                { id: "posted", label: t("work.tabPosted") },
-                { id: "worked", label: t("work.tabWorked") },
-              ]}
-            />
-          </View>
-
-          <View style={styles.searchWrap}>
+      <ScreenHeader title={t("work.myBounties")} subtitle={t("work.historySubtitle")} icon="bounties"
+        tabs={isSignedIn ? (
+          <PageTabs
+            value={tab}
+            onChange={switchTab}
+            tabs={[
+              { id: "posted", label: t("work.tabPosted") },
+              { id: "worked", label: t("work.tabWorked") },
+            ]}
+          />
+        ) : undefined}
+      >
+        {isSignedIn ? (<>
+        <View style={[styles.searchWrap, { marginHorizontal: 0 }]}>
             <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
@@ -271,7 +262,7 @@ export default function WorkHistoryScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.strip}
-            contentContainerStyle={styles.chipRow}
+            contentContainerStyle={[styles.chipRow, { paddingHorizontal: 0 }]}
           >
             {STATUS_OPTIONS[tab].map((s) => (
               <Pressable
@@ -285,7 +276,18 @@ export default function WorkHistoryScreen() {
               </Pressable>
             ))}
           </ScrollView>
+        </>) : null}
+      </ScreenHeader>
 
+      {!isSignedIn ? (
+        <PageEmpty
+          icon="lock"
+          title={t("work.connectTitle")}
+          body={t("work.connectBody")}
+          action={<KitButton label={t("work.connectCta")} onPress={() => navigation.navigate(ScreenNames.SignIn)} />}
+        />
+      ) : (
+        <>
           {active.isLoading ? (
             <View style={styles.center}>
               <DeHubLoader size={56} />

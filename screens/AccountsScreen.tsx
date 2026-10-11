@@ -186,18 +186,17 @@ export default function AccountsScreen() {
         title={t("screens.accounts")}
         subtitle={t("accounts.subtitle")}
         icon="accounts"
+        tabs={
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={[
+              { id: "browse", label: t("accounts.browse"), icon: "search" },
+              { id: "sell", label: t("accounts.sell"), icon: "accounts" },
+            ]}
+          />
+        }
       />
-
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={[
-            { id: "browse", label: t("accounts.browse"), icon: "search" },
-            { id: "sell", label: t("accounts.sell"), icon: "accounts" },
-          ]}
-        />
-      </View>
 
       {tab === "browse" ? (
         <>

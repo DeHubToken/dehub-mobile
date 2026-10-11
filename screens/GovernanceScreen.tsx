@@ -138,13 +138,14 @@ export default function GovernanceScreen() {
         title={t("governance.title")}
         subtitle={t("governance.subtitle")}
         icon="governance"
-      />
-
-      <PageTabs
-        value={tab}
-        onChange={setTab}
-        tabs={TABS.map((tb) => ({ id: tb.key, label: t(tb.labelKey) }))}
-        style={{ paddingBottom: 10 }}
+        tabs={
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={TABS.map((tb) => ({ id: tb.key, label: t(tb.labelKey) }))}
+            style={{ paddingBottom: 10 }}
+          />
+        }
       />
 
       {isLoading ? (

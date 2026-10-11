@@ -21,7 +21,8 @@ jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => {
   return { theme: mockTheme, skin: base && colour.tintSkin(base, accent), accent, isMinimal: mockTheme === 'minimal', colors: palette.getThemeColors(mockTheme) };
 } }));
 
-import { KitButton, PageSection } from '../../components/page/PageKit';
+import { KitButton, PageSection, PageTabs } from '../../components/page/PageKit';
+import { PageHeaderContext } from '../../components/page/PageHeaderContext';
 import LiquidGlass from '../../components/ui/LiquidGlass';
 import ThemePanel from '../../components/ui/ThemePanel';
 const flatten = (style: any): any => Array.isArray(style) ? Object.assign({}, ...style.map(flatten)) : style ?? {};
@@ -29,6 +30,24 @@ const skinFor = (theme: AppThemeName) => {
   const base = getThemeSkin(theme);
   return base && tintSkin(base, themeAccent(theme, {}, []));
 };
+
+it.each(APP_THEMES)('%s header tabs fit the island without a second gutter and keep selection working', theme => {
+  mockTheme = theme;
+  const change = jest.fn();
+  let tree!: ReactTestRenderer;
+  const tabs = [{ id: 'browse', label: 'Browse' }, { id: 'sell', label: 'Sell' }];
+  act(() => { tree = create(<PageHeaderContext.Provider value><PageTabs value="browse" onChange={change} tabs={tabs} /></PageHeaderContext.Provider>); });
+  const strip = tree.root.findByType('ScrollView' as any);
+  expect(flatten(strip.props.style)).toMatchObject({ height: 34, flexGrow: 0 });
+  expect(flatten(strip.props.contentContainerStyle)).toMatchObject({ paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0 });
+  const chips = tree.root.findAllByType('Pressable' as any);
+  expect(chips[0].props.accessibilityState.selected).toBe(true);
+  act(() => chips[1].props.onPress());
+  expect(change).toHaveBeenCalledWith('sell');
+  act(() => tree.update(<PageTabs value="browse" onChange={change} tabs={tabs} />));
+  expect(tree.root.findByType('ScrollView' as any).props.style).toBeUndefined();
+  act(() => tree.unmount());
+});
 
 it.each(APP_THEMES)('%s keeps page sections flat or in the theme material', theme => {
   mockTheme = theme;

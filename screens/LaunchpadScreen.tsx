@@ -149,14 +149,14 @@ export default function LaunchpadScreen() {
             </Pressable>
           ) : undefined
         }
+        tabs={
+          <PageTabs
+            value={filter}
+            onChange={setFilter}
+            tabs={FILTERS.map((f) => ({ id: f.id, label: t(f.labelKey) }))}
+          />
+        }
       />
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={filter}
-          onChange={setFilter}
-          tabs={FILTERS.map((f) => ({ id: f.id, label: t(f.labelKey) }))}
-        />
-      </View>
       <FlatList
         data={filtered}
         keyExtractor={(x: LaunchpadToken) => x.id}

@@ -105,20 +105,19 @@ const MyLibraryScreen: React.FC = () => {
             </Pressable>
           ) : undefined
         }
+        tabs={
+          <PageTabs
+            value={activeTab}
+            onChange={handleTabChange}
+            tabs={TABS.map((tab) => ({
+              id: tab.key,
+              label: t(tab.labelKey),
+              icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
+            }))}
+            style={{ paddingBottom: 10 }}
+          />
+        }
       />
-
-      <View>
-        <PageTabs
-          value={activeTab}
-          onChange={handleTabChange}
-          tabs={TABS.map((tab) => ({
-            id: tab.key,
-            label: t(tab.labelKey),
-            icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
-          }))}
-          style={{ paddingBottom: 10 }}
-        />
-      </View>
 
       <PostsInfiniteList
         key={activeTab === "watched" ? `watched-${historyKey}` : activeTab}
