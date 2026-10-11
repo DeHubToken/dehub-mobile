@@ -20,9 +20,10 @@ export async function readPaymentBalances(assets: PaymentAsset[], wallet: string
     if (!endpoints.length) throw new Error('Network unavailable');
     let lastError: unknown;
     for (const endpoint of endpoints) {
-      for (let attempt = 0; attempt < (Array.isArray(urls[chain]) ? 2 : 1); attempt += 1) {
+      // Match Wallet's bounded Ethereum reads: move on to a healthy endpoint promptly.
+      for (let attempt = 0; attempt < (chain !== 'eth' && Array.isArray(urls[chain]) ? 2 : 1); attempt += 1) {
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 8000);
+        const timer = setTimeout(() => controller.abort(), chain === 'eth' ? 4000 : 8000);
         try {
           const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }), signal: controller.signal });
           const body = await response.json();
