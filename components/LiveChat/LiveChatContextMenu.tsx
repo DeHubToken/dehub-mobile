@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
@@ -415,7 +416,8 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
           }}
         >
           <Pressable>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
+            <View className="rounded-xl overflow-hidden">
+              <MessageSurface radius={12} />
               {/* Reaction emoji row */}
               <View className="flex-row items-center justify-around px-3 py-2.5 border-b border-white/5">
                 {REACTION_EMOJIS.map((emoji) => {

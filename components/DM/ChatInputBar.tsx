@@ -114,14 +114,13 @@ const TYPING_IDLE_MS = 5000;
  */
 const CONTROL = 44;
 const LINE = 20;
-const FIELD_PAD = (CONTROL - LINE) / 2;
-const CONTROL_BOX = { width: CONTROL, height: CONTROL } as const;
-const INPUT_BOX = { paddingHorizontal: 4, paddingVertical: FIELD_PAD, maxHeight: 120 } as const;
+const CONTROL_BOX = { width: 32, height: CONTROL } as const;
+const INPUT_BOX = { minHeight: 52, paddingTop: 4, maxHeight: 128 } as const;
 const INPUT_TEXT = {
   margin: 0,
   padding: 0,
   minHeight: LINE,
-  maxHeight: 120 - FIELD_PAD * 2,
+  maxHeight: 124,
   includeFontPadding: false,
   textAlignVertical: "top",
 } as const;
@@ -161,6 +160,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [attachOpen, setAttachOpen] = useState(false);
+  const [composerFocused, setComposerFocused] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
   // Down for THIS message only - the send handler drops the tray whose
   // drafts the send just invalidated. Switching the feature off is a
@@ -488,7 +488,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   // press; that check must never gate the mount. Anything the user has already
   // started (text, an attachment, an edit) takes the space back.
   const showTray =
-    hasThread && awaitingReply && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage;
+    hasThread && awaitingReply && smartRepliesEnabled && !trayDismissed && !hasContent && !editingMessage && !composerFocused;
   const hasMediaOrGif = !!media || !!gifUrl;
   const placeholder = hasMediaOrGif ? t("dm.addCaption") : t("dm.messagePlaceholder");
 
@@ -561,29 +561,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 
   return (
     <>
-      <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-600">
-        {/* Up whenever the other side spoke last and the composer is empty,
-            keyboard or no keyboard — it sits above the input, so nothing
-            covers it. Whether
-            there is anything to draft is a question the tray ANSWERS, with the
-            orb still there to press, not one that decides whether it exists:
-            gating the mount on that check is what made the feature vanish for
-            the rest of every conversation. Stands down once there is typed
-            text, and on send. */}
-        {showTray && (
-          <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(120)}>
-            <SmartReplyTray
-              status={smartReplies.status}
-              suggestions={smartReplies.suggestions}
-              error={smartReplies.error}
-              onGenerate={() => smartReplies.generate()}
-              onPick={handlePickSuggestion}
-              onDismiss={handleDismissTray}
-              dismissLabel={t("messages.turnOffSmartReplies", "Turn off suggested replies")}
-            />
-          </Animated.View>
-        )}
-
+      <View className="border-t border-white/25">
         {/* Reply-to preview */}
         {replyTo && (
           <Animated.View
@@ -737,9 +715,23 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           </Animated.View>
         )}
 
-        {/* Composer row: attach, the field, send/mic. Everything else is in
-            the attach sheet — see ChatAttachSheet for why. */}
-        <View className="flex-row items-end px-2 pt-2 pb-2">
+          <View className="mx-3 mt-3" style={INPUT_BOX}>
+            <TextInput
+              ref={inputRef}
+              value={text}
+              onChangeText={handleTextChange}
+              onFocus={() => setComposerFocused(true)}
+              onBlur={() => setComposerFocused(false)}
+              placeholder={placeholder}
+              placeholderTextColor="#8B8D90"
+              multiline
+              maxLength={DM_TEXT_MAX_LENGTH}
+              className="text-white text-[15px] leading-5"
+              style={INPUT_TEXT}
+            />
+          </View>
+
+        <View className="flex-row items-center justify-between px-2 pb-2 pt-1">
           {/* Attach. While an AI rewrite is running every other control is
               locked, so the spinner the sparkles used to show lives here. */}
           <TouchableOpacity
@@ -760,33 +752,24 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             )}
           </TouchableOpacity>
 
-          <View className="flex-1 mx-1" style={INPUT_BOX}>
-            <TextInput
-              ref={inputRef}
-              value={text}
-              onChangeText={handleTextChange}
-              placeholder={placeholder}
-              placeholderTextColor="#8B8D90"
-              multiline
-              maxLength={DM_TEXT_MAX_LENGTH}
-              className="text-white text-[15px] leading-5"
-              style={INPUT_TEXT}
-            />
-          </View>
-
-          {/* Send when there is something to send (or a tip on its own),
-              otherwise the mic — the two never need the slot at once. */}
-          {showSendButton ? (
+          {canAddTip && onTipPress ? <TouchableOpacity onPress={onTipPress} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.addTip")}><Icon name="Gem" size={20} color="#A1A1AA" /></TouchableOpacity> : null}
+          <TouchableOpacity onPress={() => setGifPickerVisible(true)} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.chooseGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handlePickImage} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachImage")}><Icon name="Image" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handlePickFile} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachFile")}><Icon name="Paperclip" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={onStartVoice} disabled={enhancing || sending} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("comments.recordVoice")}><Icon name="Mic" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handleEnhance} disabled={enhancing || !text.trim()} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.enhanceWithAi")}><Icon name="Sparkles" size={20} color={text.trim() ? "#A1A1AA" : "#52525B"} /></TouchableOpacity>
+          {/* Send stays in its own slot, including fee and tip-only sends. */}
+          {(
             showCostOnSend ? (
               <TouchableOpacity
                 onPress={handleSend}
-                disabled={sending || enhancing || insufficientBalance || tipBelowFee}
+                disabled={!showSendButton || sending || enhancing || insufficientBalance || tipBelowFee}
                 activeOpacity={0.7}
                 hitSlop={2}
                 accessibilityRole="button"
                 accessibilityLabel={t("dm.sendMessage")}
-                accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
-                style={{ height: CONTROL }}
+                accessibilityState={{ disabled: !showSendButton || sending || enhancing || insufficientBalance || tipBelowFee }}
+                style={{ height: CONTROL, maxWidth: 80, flexShrink: 1 }}
                 className={`flex-row items-center justify-center rounded-xl px-3 ${
                   insufficientBalance || tipBelowFee
                     ? "bg-theme-neutrals-700"
@@ -798,7 +781,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 ) : (
                   <>
                     <Icon name="Send" size={14} color={insufficientBalance || tipBelowFee ? "#666" : "#fff"} />
-                    <Text className={`text-[11px] font-semibold ml-1 ${insufficientBalance || tipBelowFee ? "text-theme-neutrals-500" : "text-white"}`}>
+                    <Text className={`text-[11px] font-semibold ml-1 flex-shrink ${insufficientBalance || tipBelowFee ? "text-theme-neutrals-500" : "text-white"}`}>
                       {totalCost} <DhbCoin />
                     </Text>
                   </>
@@ -807,37 +790,45 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             ) : (
               <TouchableOpacity
                 onPress={handleSend}
-                disabled={sending || enhancing}
+                disabled={!showSendButton || sending || enhancing}
                 className="items-center justify-center"
                 style={CONTROL_BOX}
                 hitSlop={2}
                 accessibilityRole="button"
                 accessibilityLabel={t("dm.sendMessage")}
-                accessibilityState={{ disabled: sending || enhancing }}
+                accessibilityState={{ disabled: !showSendButton || sending || enhancing }}
               >
                 {sending ? (
                   <ActivityIndicator size="small" color="#F4F4F5" />
                 ) : (
-                  <Icon name="Send" size={22} color="#F4F4F5" />
+                  <Icon name="Send" size={20} color={showSendButton ? "#A1A1AA" : "#52525B"} />
                 )}
               </TouchableOpacity>
             )
-          ) : (
-            <TouchableOpacity
-              onPress={onStartVoice}
-              className="items-center justify-center"
-              style={CONTROL_BOX}
-              hitSlop={2}
-              activeOpacity={0.6}
-              disabled={enhancing}
-              accessibilityRole="button"
-              accessibilityLabel={t("comments.recordVoice")}
-              accessibilityState={{ disabled: enhancing }}
-            >
-              <Icon name="Mic" size={22} color={enhancing ? "#3F3F46" : "#A6A9AC"} />
-            </TouchableOpacity>
           )}
         </View>
+        {/* Up whenever the other side spoke last and the composer is empty,
+            beneath the tools row, and stands down while the keyboard owns
+            focus. Whether
+            there is anything to draft is a question the tray ANSWERS, with the
+            orb still there to press, not one that decides whether it exists:
+            gating the mount on that check is what made the feature vanish for
+            the rest of every conversation. Stands down once there is typed
+            text, and on send. */}
+        {showTray && (
+          <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(120)}>
+            <SmartReplyTray
+              status={smartReplies.status}
+              suggestions={smartReplies.suggestions}
+              error={smartReplies.error}
+              onGenerate={() => smartReplies.generate()}
+              onPick={handlePickSuggestion}
+              onDismiss={handleDismissTray}
+              dismissLabel={t("messages.turnOffSmartReplies", "Turn off suggested replies")}
+            />
+          </Animated.View>
+        )}
+
       </View>
 
       {/* GIF Picker modal */}

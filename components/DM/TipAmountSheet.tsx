@@ -1,3 +1,4 @@
+import MessageSurface from "./MessageSurface";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { DhbCoin } from "../common/DhbCoin";
@@ -188,7 +189,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <MessageSurface />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>

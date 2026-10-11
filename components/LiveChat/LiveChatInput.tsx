@@ -38,15 +38,14 @@ const WARN_THRESHOLD = 50;
  */
 const CONTROL = 38;
 const LINE = 20;
-const FIELD_PAD = (CONTROL - LINE) / 2;
 
 const CONTROL_BOX = { width: CONTROL, height: CONTROL } as const;
-const INPUT_BOX = { paddingHorizontal: 4, paddingVertical: FIELD_PAD, maxHeight: 100 } as const;
+const INPUT_BOX = { minHeight: 52, paddingTop: 4, maxHeight: 128 } as const;
 const INPUT_TEXT = {
   margin: 0,
   padding: 0,
   minHeight: LINE,
-  maxHeight: 100 - FIELD_PAD * 2,
+  maxHeight: 124,
   includeFontPadding: false,
   textAlignVertical: "top",
 } as const;
@@ -256,7 +255,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   }, [replyingTo, t]);
 
   return (
-    <View className="border-t border-white/5">
+    <View className="border-t border-white/25">
       {editingMessage && !recorder.isRecording && !uploadingVoice && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-amber-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
@@ -340,22 +339,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       ) : recorder.isRecording ? (
         <VoiceNoteRecordingOverlay recorder={recorder} />
       ) : (
-        <View className="flex-row items-end px-2 py-1.5 gap-0.5">
-          {!disabled && (
-            <TouchableOpacity
-              onPress={() => setAttachOpen(true)}
-              className="items-center justify-center"
-              hitSlop={4}
-              activeOpacity={0.6}
-              style={CONTROL_BOX}
-              accessibilityRole="button"
-              accessibilityLabel={t('liveChat.attach', 'Add a photo, GIF or emoji')}
-            >
-              <Icon name="Plus" size={22} color="#A6A9AC" />
-            </TouchableOpacity>
-          )}
-
-          <View className="flex-1" style={INPUT_BOX}>
+        <View>
+          <View className="mx-3 mt-3" style={INPUT_BOX}>
             <TextInput
               ref={inputRef}
               value={text}
@@ -371,6 +356,21 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             />
           </View>
 
+        <View className="flex-row items-center justify-between px-2 pb-2 pt-1">
+          {!disabled && (
+            <TouchableOpacity
+              onPress={() => setAttachOpen(true)}
+              className="items-center justify-center"
+              hitSlop={4}
+              activeOpacity={0.6}
+              style={CONTROL_BOX}
+              accessibilityRole="button"
+              accessibilityLabel={t('liveChat.attach', 'Add a photo, GIF or emoji')}
+            >
+              <Icon name="Plus" size={22} color="#A6A9AC" />
+            </TouchableOpacity>
+          )}
+
           {showCounter && (
             <View className="items-center justify-center px-1" style={{ height: CONTROL }}>
               <Text
@@ -383,6 +383,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </View>
           )}
 
+          <TouchableOpacity onPress={handlePickGif} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handlePickImage} disabled={disabled || attachmentBusy} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachPhoto")}><Icon name="Image" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handleStartRecording} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.recordVoice")}><Icon name="Mic" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity
             onPress={handleEnhance}
             className="items-center justify-center"
@@ -405,7 +408,6 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             )}
           </TouchableOpacity>
 
-          {text.trim() || editingMessage || attachmentUri ? (
             <TouchableOpacity
               onPress={handleSend}
               disabled={disabled || !canSubmit || cooldown || isOverLimit || enhancing}
@@ -428,24 +430,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
                 />
               )}
             </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={handleStartRecording}
-              disabled={disabled}
-              className="items-center justify-center"
-              hitSlop={4}
-              style={CONTROL_BOX}
-              accessibilityRole="button"
-              accessibilityLabel={t("liveChat.recordVoice")}
-              accessibilityState={{ disabled }}
-            >
-              <Icon
-                name="Mic"
-                size={22}
-                color={!disabled ? "#A6A9AC" : "#52525B"}
-              />
-            </TouchableOpacity>
-          )}
+
+        </View>
         </View>
       )}
 

@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import React, { memo, useCallback, useMemo } from "react";
 import {
   View,
@@ -169,7 +170,8 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden w-full" style={{ minWidth: 280, maxWidth: 340 }}>
+          <View className="rounded-xl overflow-hidden w-full" style={{ minWidth: 280, maxWidth: 340 }}>
+              <MessageSurface radius={12} />
             {/* Preview header */}
             <TouchableOpacity
               onPress={handleOpen}
