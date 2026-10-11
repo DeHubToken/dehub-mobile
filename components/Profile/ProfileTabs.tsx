@@ -48,6 +48,9 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   const tabsStuck = collapse.tabsPinned;
   const [stickyVisible, setStickyVisible] = useState(false);
   const stickyStyle = useAnimatedStyle(() => ({ opacity: tabsStuck.value ? 1 : 0 }));
+  // Keep the header's layout for scroll position, but stop drawing its masked
+  // artwork once the joined navigation fully covers it.
+  const expandedHeaderStyle = useAnimatedStyle(() => ({ opacity: tabsStuck.value ? 0 : 1 }));
   const [activeKey, setActiveKey] = useState("home");
   const { drive } = useTabBarScrollHide();
   const driveProfile = useCallback((y: number) => {
@@ -118,11 +121,11 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
 
   const listHeader = (
     <View>
-      <View onLayout={(event) => { headerHeight.value = event.nativeEvent.layout.height; }}><PinnedCommunities
+      <Animated.View style={expandedHeaderStyle} onLayout={(event) => { headerHeight.value = event.nativeEvent.layout.height; }}><PinnedCommunities
         walletAddress={address || ""}
         isOwnProfile
         renderHeader={(community) => <ProfileHeader featuredCommunity={community} onIdentityBottom={collapse.onIdentityBottom} onActionsBottom={collapse.onActionsBottom} />}
-      /></View>
+      /></Animated.View>
       <ProfileTabBar
         items={tabItems}
         activeKey={activeKey}
