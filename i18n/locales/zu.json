@@ -7454,7 +7454,11 @@
     "referenceProductName": "Beka umkhiqizo wakho ku-clip",
     "referenceProductHint": "Buyisela umkhiqizo okhonjisiwe futhi ugcine isigcawu sokuqala.",
     "referenceComposeName": "Hlanganisa izithombe zesethenjwa",
-    "referenceComposeHint": "Lethelela abalingiswa, izinto kanye nezilalelo evela ezithombeni eziningi zibe yisakhiwo esisodwa."
+    "referenceComposeHint": "Lethelela abalingiswa, izinto kanye nezilalelo evela ezithombeni eziningi zibe yisakhiwo esisodwa.",
+    "audioTaskSfxLabel": "Umphumela womsindo",
+    "audioTaskSfxPlaceholder": "Chaza umsindo, ngokwesibonelo \"umnyango osindayo ushibilika ehholo lamatshe\"",
+    "auto": "Okuzenzakalelayo",
+    "loop": "I-loop"
   },
   "fractions": {
     "title": "Izabelo",

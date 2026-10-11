@@ -7467,7 +7467,11 @@
     "referenceProductName": "अपन उत्पाद ला क्लिप म रखव",
     "referenceProductHint": "प्रमुख उत्पाद ला बदल के मूल दृश्य बरकरार रखव.",
     "referenceComposeName": "संदर्भ चित्र ला जोड़व",
-    "referenceComposeHint": "बहुतेक चित्र ले चरित्र, वस्तु अऊ सेटिंग ला एक संयोग म लावव."
+    "referenceComposeHint": "बहुतेक चित्र ले चरित्र, वस्तु अऊ सेटिंग ला एक संयोग म लावव.",
+    "audioTaskSfxLabel": "अवाज प्रभाव",
+    "audioTaskSfxPlaceholder": "ध्वनि के वर्णन करे, उदाहरण बर \"एक पत्थर के हॉल म भारी दरवाजा ल धक्का दे\"",
+    "auto": "अपने अपन",
+    "loop": "लूप"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

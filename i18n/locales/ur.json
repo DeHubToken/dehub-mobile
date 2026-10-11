@@ -7440,7 +7440,11 @@
     "referenceProductName": "اپنے پروڈکٹ کو کلپ میں رکھیں",
     "referenceProductHint": "نمایاں پروڈکٹ کو بدلیں اور اصل منظر کو محفوظ رکھیں۔",
     "referenceComposeName": "حوالہ تصاویر کو ملائیں",
-    "referenceComposeHint": "متعدد تصاویر سے کردار، اشیاء اور سیٹنگز کو ایک ترکیب میں لائیں۔"
+    "referenceComposeHint": "متعدد تصاویر سے کردار، اشیاء اور سیٹنگز کو ایک ترکیب میں لائیں۔",
+    "audioTaskSfxLabel": "صوتی اثر",
+    "audioTaskSfxPlaceholder": "آواز کی وضاحت کریں، مثال کے طور پر \"پتھر کے ہال میں ہیوی ڈور سلیمنگ\"",
+    "auto": "خودکار",
+    "loop": "لوپ"
   },
   "fractions": {
     "title": "حصے",

@@ -8050,7 +8050,11 @@
     "presetOpenViaductTrainName": "Tren de viaducto",
     "presetOpenViaductTrainHint": "Plano amplio estático con ventanas iluminadas y profundidad de lente largo",
     "presetOpenTowerTiltName": "Inclinación de la torre",
-    "presetOpenTowerTiltHint": "Inclinación lenta hacia abajo en una ciudad nublada"
+    "presetOpenTowerTiltHint": "Inclinación lenta hacia abajo en una ciudad nublada",
+    "audioTaskSfxLabel": "Efecto de sonido",
+    "audioTaskSfxPlaceholder": "Describe el sonido, por ejemplo «puerta pesada cerrándose de golpe en una sala de piedra»",
+    "auto": "Automático",
+    "loop": "Bucle"
   },
   "fractions": {
     "title": "Fracciones",

@@ -7442,7 +7442,11 @@
     "referenceProductName": "Vendosni produktin tuaj në një klip",
     "referenceProductHint": "Zëvendësoni produktin e përshkruar dhe ruajeni skenën origjinale.",
     "referenceComposeName": "Kombinoni imazhe referencë",
-    "referenceComposeHint": "Merrni karaktere, objekte dhe rregullime nga shumë imazhe në një kompozicion të vetëm."
+    "referenceComposeHint": "Merrni karaktere, objekte dhe rregullime nga shumë imazhe në një kompozicion të vetëm.",
+    "audioTaskSfxLabel": "Efekt zanor",
+    "audioTaskSfxPlaceholder": "Përshkruaj tingullin, për shembull \"përplasja e dyerve të rënda në një sallë guri\"",
+    "auto": "Auto",
+    "loop": "Cikël"
   },
   "fractions": {
     "title": "Pjesë",

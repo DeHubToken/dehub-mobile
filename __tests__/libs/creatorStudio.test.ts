@@ -1,6 +1,6 @@
 import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
-import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, creatorAudioOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
 import { getTemplate } from '../../libs/creatorTemplates';
 
 describe('native Creator jobs', () => {
@@ -8,7 +8,25 @@ describe('native Creator jobs', () => {
     const prepared = creatorSettingsForEditorDraft({ kind: 'voice', prompt: 'Hello. Keep this last sentence.' });
     expect(prepared).toMatchObject({ settings: { mode: 'audio', model: 'dia-tts' }, draft: { prompt: 'Hello. Keep this last sentence.' } });
     expect(creatorSettingsForEditorDraft({ kind: 'video', prompt: 'Sky', aspect: '9:16' })?.settings).toMatchObject({ mode: 'video', aspect: '9:16' });
-    expect(creatorSettingsForEditorDraft({ kind: 'music', prompt: 'ambient' })).toBeNull();
+    expect(creatorSettingsForEditorDraft({ kind: 'music', prompt: 'ambient' })).toMatchObject({ settings: { mode: 'audio', model: 'ace-step' }, draft: { kind: 'music', prompt: 'ambient' } });
+  });
+  it('keeps soundtrack descriptions out of lyrics while preserving explicitly supplied song lyrics', () => {
+    const prepared = creatorSettingsForEditorDraft({ kind: 'music', prompt: 'Quiet piano and warm bass' })!;
+    expect(creatorAudioOptions(prepared.settings, prepared.draft.prompt)).toEqual({ tags: 'Quiet piano and warm bass', lyrics: '[instrumental]', duration: 60 });
+    expect(creatorAudioOptions(prepared.settings, prepared.draft.prompt, '[verse] Hello')).toEqual({ tags: 'Quiet piano and warm bass', lyrics: '[verse] Hello', duration: 60 });
+    expect(creatorAudioOptions({ ...CREATOR_DEFAULTS.audio, model: 'dia-tts' }, 'Keep every word')).toEqual({});
+    expect(creatorAudioOptions(null, 'Style')).toEqual({});
+  });
+  it('uses the captured music length and lyrics after the editable settings change', () => {
+    const quoted = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.audio, durationSeconds: 21, musicLyrics: '[verse]\nHello' });
+    const edited = normalizeCreatorSettings({ ...quoted, durationSeconds: 100, musicLyrics: 'Different words' });
+    expect(creatorAudioOptions(quoted, 'Quiet piano')).toEqual({ tags: 'Quiet piano', lyrics: '[verse]\nHello', duration: 21 });
+    expect(creatorAudioOptions(edited, 'New prompt')).toEqual({ tags: 'New prompt', lyrics: 'Different words', duration: 100 });
+  });
+  it.each([[0, 10], [1000, 240], [21.6, 22], [NaN, 60]])('normalizes soundtrack duration %s to %s', (durationSeconds, expected) => {
+    const normalized = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.audio, durationSeconds });
+    expect(normalized.durationSeconds).toBe(expected);
+    expect(creatorAudioOptions(normalized, 'Instrumental')).toMatchObject({ duration: expected });
   });
   it('preserves a reference clip duration and forwards every named image', () => {
     const referenceAssets = [{ uri: 'character.png', label: 'Character', kind: 'image' as const }, { uri: 'outfit.png', label: 'Outfit', kind: 'image' as const }, { uri: 'clip.mp4', label: 'Clip', kind: 'video' as const, seconds: 8.25 }];

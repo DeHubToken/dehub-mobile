@@ -7523,7 +7523,11 @@
     "referenceProductName": "Apetraho ny vokatra ao amin'ny clip",
     "referenceProductHint": "Soloina ny vokatra nasongadina ary mitahiry ny sehatra tany am-boalohany.",
     "referenceComposeName": "Kombinaina ny sary reference",
-    "referenceComposeHint": "Atsangana ny character, zavatra ary toerana avy amin'ny sary maro ho iray."
+    "referenceComposeHint": "Atsangana ny character, zavatra ary toerana avy amin'ny sary maro ho iray.",
+    "audioTaskSfxLabel": "Safidy manokan'ny feo",
+    "audioTaskSfxPlaceholder": "Farito ny feo, ohatra \"varavarana mavesatra mitsambikina ao anaty efitrano vato\"",
+    "auto": "Auto",
+    "loop": "Manome fitoerana"
   },
   "fractions": {
     "title": "Amboaram-peon-kira",
