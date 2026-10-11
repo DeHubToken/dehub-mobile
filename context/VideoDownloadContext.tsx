@@ -26,9 +26,9 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
   const ready = useRef<{ id: string; resolve: (info: SourceInfo) => void; reject: (error: Error) => void } | null>(null);
   const transfer = useRef<ReturnType<typeof FileSystem.createDownloadResumable> | null>(null);
   const mounted = useRef(true);
-  const cancel = useCallback(() => {
-    if (!active.current || !cancellable.current || active.current.signal.aborted) return;
-    active.current?.abort();
+  const cancel = useCallback((expected: AbortController | null = active.current) => {
+    if (!expected || active.current !== expected || !cancellable.current || expected.signal.aborted) return;
+    expected.abort();
     void transfer.current?.cancelAsync().catch(() => undefined);
     renderer.current?.cancelExport();
     ready.current?.reject(Object.assign(new Error("Download cancelled"), { name: "AbortError" }));
@@ -124,6 +124,7 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
       if (output) await FileSystem.deleteAsync(output, { idempotent: true }).catch(() => undefined);
     }
   }, [t]);
+  const cancellationTarget = active.current;
   return <Context.Provider value={download}>
     {children}
     {project && <View pointerEvents="none" style={styles.renderer}>
@@ -134,11 +135,11 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
           onMissingMedia={(ids) => { if (ready.current && ids.includes(ready.current.id)) ready.current.reject(new Error("Video source missing")); }} />
       </Suspense>
     </View>}
-    <Modal visible={progress !== null} transparent animationType="fade" onRequestClose={cancel}>
+    <Modal visible={progress !== null} transparent animationType="fade" onRequestClose={() => cancel(cancellationTarget)}>
       <View style={styles.overlay}><View style={styles.panel}>
         <ActivityIndicator color="#fff" />
         <Text style={styles.text}>{t("editor.video.rendering", { percent: Math.round((progress || 0) * 100) })}</Text>
-        {progress !== null && canCancel && <Pressable onPress={cancel} accessibilityRole="button" style={styles.button}>
+        {progress !== null && canCancel && <Pressable onPress={() => cancel(cancellationTarget)} accessibilityRole="button" style={styles.button}>
           <Text style={styles.text}>{t("common.cancel")}</Text>
         </Pressable>}
       </View></View>
