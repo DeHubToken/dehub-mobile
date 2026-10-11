@@ -56,6 +56,7 @@ import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/Post
 import { useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
+import { usePostStage } from "../libs/postStage";
 
 /** The post page's phone layout ("Stage") applies below web's sm breakpoint. */
 export const POST_STAGE_MAX_WIDTH = 640;
@@ -1290,6 +1291,7 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
+  const stageMedia = usePostStage(tokenId);
   const postVideo = !!item && (resolveContentType(item) === "video" || resolveContentType(item) === "short");
   const handlePostBack = useStageBack();
   const handleStageAnchor = useCallback((y: number) => {
@@ -1450,12 +1452,13 @@ function FeedDetailContent() {
               query={commentQuery}
               onQueryChange={setCommentQuery}
               onToggleSearch={toggleCommentSearch}
+              onMore={stageMedia.openOptions}
             />
           ) : renderCommentTabs()}
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, stageMedia.openOptions]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying

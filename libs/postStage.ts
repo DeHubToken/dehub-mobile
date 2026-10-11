@@ -19,6 +19,7 @@ export type PostStageMedia = {
   toggle?: () => void;
   liked?: boolean;
   like?: () => void;
+  openOptions?: () => void;
 };
 
 const EMPTY: PostStageMedia = Object.freeze({}) as PostStageMedia;
