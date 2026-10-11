@@ -62,6 +62,7 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
   profileScrollY?: SharedValue<number>;
+  profileTabsPinned?: SharedValue<boolean>;
   address: string;
   onClose: () => void;
   scrollEnabled: boolean;
@@ -126,6 +127,7 @@ const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
 > = ({
   profileScrollY,
+  profileTabsPinned,
   address,
   onClose,
   scrollEnabled,
@@ -201,6 +203,7 @@ const UserProfileBottomContentTabs: React.FC<
   const isFullScreenShared = useSharedValue(isFullScreen);
   useEffect(() => {
     if (profileScrollY) profileScrollY.value = 0;
+    if (profileTabsPinned) profileTabsPinned.value = false;
     stickyVisibleShared.value = false;
     setStickyVisible(false);
   }, [activeTab, address, profileScrollY, stickyVisibleShared]);
@@ -347,6 +350,7 @@ const UserProfileBottomContentTabs: React.FC<
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
         const shouldStick = y >= threshold - PROFILE_BAR_HEIGHT;
+        if (profileTabsPinned) profileTabsPinned.value = shouldStick;
         if (shouldStick !== stickyVisibleShared.value) {
           stickyVisibleShared.value = shouldStick;
           runOnJS(setStickyVisible)(shouldStick);
@@ -372,7 +376,7 @@ const UserProfileBottomContentTabs: React.FC<
       if (profileScrollY) profileScrollY.value = 0;
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
-    [activeTab, stickyVisibleShared, profileScrollY],
+    [activeTab, stickyVisibleShared, profileScrollY, profileTabsPinned],
   );
 
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
@@ -675,7 +679,7 @@ const UserProfileBottomContentTabs: React.FC<
             backgroundColor: isMinimal ? "#000" : theme.colors.neutrals[900],
           }, stickyStyle]}
         >
-          {TabBar}
+          <ProfileTabBar items={tabItems} activeKey={activeTab} onChange={handleTabChange} pinned />
         </Animated.View>
       )}
 

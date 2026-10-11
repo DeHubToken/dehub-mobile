@@ -7,12 +7,13 @@ export const PROFILE_COVER_HEIGHT = 140;
 
 export function useProfileCollapse(profileKey?: string | null) {
   const scrollY = useSharedValue(0);
+  const tabsPinned = useSharedValue(false);
   const identityBottom = useSharedValue(220);
-  useEffect(() => { scrollY.value = 0; }, [profileKey, scrollY]);
+  useEffect(() => { scrollY.value = 0; tabsPinned.value = false; }, [profileKey, scrollY, tabsPinned]);
   const onIdentityBottom = useCallback((bottom: number) => {
     identityBottom.value = bottom;
   }, [identityBottom]);
-  return { scrollY, identityBottom, onIdentityBottom };
+  return { scrollY, tabsPinned, identityBottom, onIdentityBottom };
 }
 
 /** Measure the actual wrapped name, including font scaling, in profile coordinates. */

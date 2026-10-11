@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
-import Animated, { interpolate, Extrapolation, runOnJS, useAnimatedReaction, useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
 import ChromeSurface from '../ui/ChromeSurface';
-import { PROFILE_BAR_HEIGHT, PROFILE_COVER_HEIGHT } from './useProfileCollapse';
+import { PROFILE_BAR_HEIGHT } from './useProfileCollapse';
 import { useAppTheme } from '../../context/ThemeContext';
 
 export interface CollapsingProfileHeaderProps {
   scrollY: SharedValue<number>;
+  tabsPinned: SharedValue<boolean>;
   identityBottom: SharedValue<number>;
   name?: string;
   handle?: string;
@@ -26,22 +27,21 @@ export interface CollapsingProfileHeaderProps {
   onOpenUnfollow?: () => void;
 }
 
-export default function CollapsingProfileHeader({ scrollY, identityBottom, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
+export default function CollapsingProfileHeader({ tabsPinned, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
   const { t } = useTranslation();
   const { theme, colors } = useAppTheme();
   const solidTheme = theme === 'system' || theme === 'minimal' || theme === 'light';
   const [collapsed, setCollapsed] = useState(false);
   useAnimatedReaction(
-    () => scrollY.value + PROFILE_BAR_HEIGHT >= identityBottom.value,
+    () => tabsPinned.value,
     (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
   );
   const identity = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [0, 1], Extrapolation.CLAMP),
-    transform: [{ translateY: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [4, 0], Extrapolation.CLAMP) }],
+    opacity: tabsPinned.value ? 1 : 0,
   }));
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
-    opacity: scrollY.value + PROFILE_BAR_HEIGHT >= PROFILE_COVER_HEIGHT ? 1 : 0,
+    opacity: tabsPinned.value ? 1 : 0,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
 
@@ -60,7 +60,9 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
         />
         <View style={styles.highlight} />
       </Animated.View>
-      <ScreenHeader overlay title="" canGoBack={canGoBack} onBackPress={onBackPress} />
+      <View pointerEvents="box-none" style={styles.backInset}>
+        <ScreenHeader overlay title="" canGoBack={canGoBack} onBackPress={onBackPress} />
+      </View>
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
         <Animated.View pointerEvents="none" accessibilityElementsHidden={!collapsed} importantForAccessibility={collapsed ? 'auto' : 'no-hide-descendants'} style={[styles.identity, identity]}>
           <Text numberOfLines={1} style={styles.name}>{name}</Text>
@@ -91,7 +93,8 @@ const styles = StyleSheet.create({
   gapGuard: { position: 'absolute', top: 0, left: 0, right: 0, bottom: -4, overflow: 'hidden' },
   surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.24)', borderBottomColor: 'rgba(255,255,255,0.1)' },
   highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
-  content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 56, paddingRight: 12, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  backInset: { position: 'absolute', top: 2, left: 6, right: 0, height: 56 },
+  content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 64, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
   handle: { color: '#A1A1AA', fontSize: 11, marginTop: 1 },
