@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import React from 'react';
 import { Modal, TouchableOpacity, View, Text, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -35,8 +36,9 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
       >
         <View
           style={[{ top: insets.top + 56 }, Platform.OS === 'android' && skin && { ...skin.card, backgroundColor: skin.page }]}
-          className="absolute right-3 w-44 rounded-xl bg-theme-neutrals-800 overflow-hidden"
+          className="absolute right-3 w-44 rounded-xl overflow-hidden"
         >
+          <MessageSurface radius={12} />
           <TouchableOpacity
             className="flex-row items-center px-3 py-3 active:opacity-70"
             onPress={onNewDM}

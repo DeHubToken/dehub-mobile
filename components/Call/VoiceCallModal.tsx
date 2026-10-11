@@ -36,7 +36,7 @@ const VoiceCallModal: React.FC = () => {
     : <CallDuration fallback={t("calls.connected")} />;
 
   return (
-    <CallScreen onRequestClose={() => setMinimized(true)}>
+    <CallScreen onRequestClose={() => setMinimized(true)} onMinimize={() => setMinimized(true)}>
       <View style={[styles.body, { paddingTop: insets.top + 56 }]}>
         <CallIdentity
           kindIcon="Phone"

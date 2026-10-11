@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -142,9 +143,10 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
         <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 dark-surface bg-black/40" />
         <View
-          className="bg-[#0C0C0E] rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
+          className="overflow-hidden rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
           style={{ paddingBottom: insets.bottom + 12 }}
         >
+          <MessageSurface />
           <View className="flex-row items-center mb-2">
             <View className="flex-1 flex-row rounded-lg bg-theme-neutrals-800 p-0.5">
               {(kids ? (['gif'] as const) : (['gif', 'sticker'] as const)).map((k) => (

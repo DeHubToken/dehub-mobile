@@ -197,7 +197,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
   ), [allowNew, dmsEnabled, onToggleAllowNew, submitting]);
 
   return (
-    <GlassModal visible={open} onClose={close} presentation="center" blurIntensity={40}>
+    <GlassModal surface="theme" visible={open} onClose={close} presentation="center" blurIntensity={40}>
       <View className="rounded-shadow-xl">
         <View className="px-5 pt-5">
           <View className="flex-row items-center">
