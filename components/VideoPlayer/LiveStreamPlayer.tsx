@@ -12,7 +12,10 @@ import {
   Platform,
   AppState,
   StyleSheet,
+  BackHandler,
+  StatusBar,
 } from "react-native";
+import * as ScreenOrientation from "expo-screen-orientation";
 import VideoArea from "./VideoArea";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -60,6 +63,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import LiveWhosHereSheet from "../LiveViewer/LiveWhosHereSheet";
+import LiveRotateButton from "../LiveViewer/LiveRotateButton";
 import { useLiveAudience } from "../../hooks/useLiveAudience";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useLiveChat } from "../../hooks/useLiveChat";
@@ -1332,11 +1336,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, []);
 
   /**
-   * Swipe down over the lower half to clear the chrome, as the shorts viewer
-   * does; swipe up there, or tap anywhere, to bring it back. Nothing is drawn
-   * while it is cleared: no controls, no corner button, just the stream.
-   * Replaces the old chevron "immersive" mode, which swapped the chrome for a
-   * second set of player buttons.
+   * A live can't be paused, so the screen itself is the clear button: tap the
+   * open picture, or swipe down over the lower half as the shorts viewer does,
+   * and every button, the chat and the pills fade away. Only a small rotate
+   * button stays in the corner, to flip between portrait and landscape. A tap
+   * or a swipe up brings everything back (in portrait, where the chrome is
+   * laid out). Replaces the old chevron "immersive" mode.
    */
   const [chromeHidden, setChromeHidden] = useState(false);
   const chromeOpacity = useSharedValue(1);
@@ -1375,6 +1380,48 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         }),
     [hideStart],
   );
+  const hideTap = useMemo(
+    () =>
+      Gesture.Tap()
+        .maxDistance(10)
+        .onEnd((_e, success) => {
+          "worklet";
+          if (success) runOnJS(setChromeHidden)(true);
+        }),
+    [],
+  );
+  const hideGesture = useMemo(() => Gesture.Race(hidePan, hideTap), [hidePan, hideTap]);
+
+  // Rotate, only while cleared. The binary already ships expo-screen-orientation
+  // (the old immersive mode used it); a failed lock just leaves the layout as is.
+  const [landscape, setLandscape] = useState(false);
+  useEffect(() => {
+    const lock = landscape
+      ? ScreenOrientation.OrientationLock.LANDSCAPE
+      : ScreenOrientation.OrientationLock.PORTRAIT_UP;
+    ScreenOrientation.lockAsync(lock).catch(() => {});
+  }, [landscape]);
+  useEffect(
+    () => () => {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
+      StatusBar.setHidden(false);
+    },
+    [],
+  );
+  useEffect(() => {
+    StatusBar.setHidden(chromeHidden, "fade");
+    if (!chromeHidden) setLandscape(false);
+  }, [chromeHidden]);
+  // Hardware back brings the chrome back before it leaves the stream.
+  useEffect(() => {
+    if (!chromeHidden) return;
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+      setChromeHidden(false);
+      return true;
+    });
+    return () => sub.remove();
+  }, [chromeHidden]);
+
   const restoreGesture = useMemo(() => {
     const show = () => setChromeHidden(false);
     const swipeUp = Gesture.Pan()
@@ -1574,16 +1621,24 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           />
         )}
 
-        {/* Swipe down here to clear the chrome. Sits under the chrome and over
-            the picture, across the lower half, so a drag on the open video
-            starts it and the chat and buttons above keep their own touches. */}
+        {/* Clear the chrome: tap the open picture anywhere, or swipe down
+            over the lower half. These sit under the chrome and over the
+            picture, so the chat and buttons above keep their own touches. */}
         {!chromeHidden && (
-          <GestureDetector gesture={hidePan}>
-            <View
-              collapsable={false}
-              style={{ position: "absolute", left: 0, right: 0, bottom: 0, top: "45%" }}
-            />
-          </GestureDetector>
+          <>
+            <GestureDetector gesture={hideTap}>
+              <View
+                collapsable={false}
+                style={{ position: "absolute", left: 0, right: 0, top: 0, height: "45%" }}
+              />
+            </GestureDetector>
+            <GestureDetector gesture={hideGesture}>
+              <View
+                collapsable={false}
+                style={{ position: "absolute", left: 0, right: 0, bottom: 0, top: "45%" }}
+              />
+            </GestureDetector>
+          </>
         )}
 
         <Animated.View
@@ -1694,11 +1749,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           </View>
         </Animated.View>
 
-        {/* Cleared: only the stream. A tap, or a swipe up, brings it all back. */}
+        {/* Cleared: only the stream and the rotate button. A tap, or a swipe
+            up, brings it all back. */}
         {chromeHidden && (
-          <GestureDetector gesture={restoreGesture}>
-            <View collapsable={false} style={StyleSheet.absoluteFill} />
-          </GestureDetector>
+          <>
+            <GestureDetector gesture={restoreGesture}>
+              <View collapsable={false} style={StyleSheet.absoluteFill} testID="live-cleared" />
+            </GestureDetector>
+            <LiveRotateButton onPress={() => setLandscape((v) => !v)} />
+          </>
         )}
 
         {/* Floating Reaction Bubbles - right side */}
