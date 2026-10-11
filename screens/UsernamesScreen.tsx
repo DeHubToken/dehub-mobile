@@ -264,23 +264,22 @@ export default function UsernamesScreen() {
         title={t("screens.usernames")}
         subtitle={t("usernames.subtitle")}
         icon="usernames"
-      />
-
-      {/* "Mine" sits next to Browse rather than inside Sell, because owning a
+        tabs={
+          /* "Mine" sits next to Browse rather than inside Sell, because owning a
           handle and selling one stopped being the same thing the moment an
-          account could hold more than one. */}
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={[
-            { id: "browse", label: t("usernames.browse"), icon: "search" },
-            { id: "mine", label: t("usernames.tabMine"), icon: "usernames" },
-            { id: "sell", label: t("usernames.sell"), icon: "usernames" },
-            { id: "offers", label: t("usernames.tabOffers"), icon: "stores" },
-          ]}
-        />
-      </View>
+          account could hold more than one. */
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={[
+              { id: "browse", label: t("usernames.browse"), icon: "search" },
+              { id: "mine", label: t("usernames.tabMine"), icon: "usernames" },
+              { id: "sell", label: t("usernames.sell"), icon: "usernames" },
+              { id: "offers", label: t("usernames.tabOffers"), icon: "stores" },
+            ]}
+          />
+        }
+      />
 
       {tab === "browse" ? (
         <>

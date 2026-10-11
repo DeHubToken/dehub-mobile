@@ -20,6 +20,7 @@ import { Image } from "expo-image";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { themeIconUrl } from "../../theme/icons";
+import { PageHeaderContext } from './PageHeaderContext';
 
 type Rgb = [number, number, number];
 
@@ -83,12 +84,14 @@ export function PageTabs<T extends string>({
   style?: StyleProp<ViewStyle>;
 }) {
   const c = useKitColors();
+  const inHeader = React.useContext(PageHeaderContext);
   const height = size === "sm" ? 30 : 34;
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={[styles.tabsRow, style as object]}
+      style={inHeader ? { height, flexGrow: 0 } : undefined}
+      contentContainerStyle={[styles.tabsRow, style as object, inHeader ? { paddingHorizontal: 0, paddingVertical: 0, paddingTop: 0, paddingBottom: 0 } : undefined]}
       accessibilityRole="tablist"
     >
       {tabs.map((tab) => {

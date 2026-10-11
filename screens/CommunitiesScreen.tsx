@@ -154,7 +154,7 @@ const CommunitiesScreen: React.FC = () => {
     </TouchableOpacity>
   ) : undefined;
 
-  const ListHeader = (
+  const headerControls = (
     <View>
       <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 mb-3">
         <Icon name="Search" size={18} color="#A1A1AA" />
@@ -197,11 +197,10 @@ const CommunitiesScreen: React.FC = () => {
         initialNumToRender={8}
         maxToRenderPerBatch={6}
         windowSize={9}
-        // The search field is this list's header; without this the first tap
+        // Keep result taps usable while the header search has focus; the first tap
         // on a result only dismissed the keyboard.
         keyboardShouldPersistTaps="handled"
         removeClippedSubviews={false}
-        ListHeaderComponent={ListHeader}
         refreshControl={
           <DeHubRefreshControl
             refreshing={refreshing}
@@ -254,7 +253,9 @@ const CommunitiesScreen: React.FC = () => {
       {/* After the list, not before it: the header floats over the content and
           Android decides draw order by sibling order. */}
       <CollapsibleHeader {...headerProps}>
-        <ScreenHeader icon="communities" title={t("communities.title")} rightContent={createButton} />
+        <ScreenHeader icon="communities" title={t("communities.title")} rightContent={createButton}>
+          {headerControls}
+        </ScreenHeader>
       </CollapsibleHeader>
       <CreateCommunitySheet
         visible={createOpen}

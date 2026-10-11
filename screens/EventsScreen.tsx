@@ -177,16 +177,16 @@ export default function EventsScreen() {
 
   return (
     <View className="bg-theme-neutrals-900" style={styles.root}>
-      <ScreenHeader icon="events" title={t("nav.events")} subtitle={t("events.subtitle")} />
-
-      <View>
-        <PageTabs
-          value={filter}
-          onChange={setFilter}
-          tabs={FILTERS.map((f) => ({ id: f.key, label: t(f.labelKey) }))}
-          style={{ paddingBottom: 10 }}
-        />
-      </View>
+      <ScreenHeader icon="events" title={t("nav.events")} subtitle={t("events.subtitle")}
+        tabs={
+          <PageTabs
+            value={filter}
+            onChange={setFilter}
+            tabs={FILTERS.map((f) => ({ id: f.key, label: t(f.labelKey) }))}
+            style={{ paddingBottom: 10 }}
+          />
+        }
+      />
 
       {isLoading ? (
         <View style={styles.center}>

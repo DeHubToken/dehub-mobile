@@ -32,6 +32,19 @@ jest.mock('@react-navigation/native', () => ({ useNavigation: () => mockNavigati
 
 import ScreenHeader from '../../components/ScreenHeader';
 import { APP_THEMES } from '../../theme/colors';
+import { PageHeaderContext } from '../../components/page/PageHeaderContext';
+
+it.each(APP_THEMES)('groups page tabs and search inside the title island in %s', (theme) => {
+  jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
+  const TabProbe = () => <span data-in-header={React.useContext(PageHeaderContext)} />;
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader title="Accounts" tabs={<TabProbe />}><input /></ScreenHeader>); });
+  expect(tree.root.findByType('span').props['data-in-header']).toBe(true);
+  const island = tree.root.findByType('NavPillSurface' as any).parent!;
+  expect(island.findAllByType('span')).toHaveLength(1);
+  expect(island.findAllByType('input')).toHaveLength(1);
+  act(() => tree.unmount());
+});
 
 const backButtons = (tree: ReactTestRenderer) =>
   tree.root.findAll((node) => node.props.accessibilityLabel === 'common.goBack' && typeof node.type === 'string');

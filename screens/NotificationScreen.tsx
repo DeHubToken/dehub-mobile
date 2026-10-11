@@ -1728,14 +1728,14 @@ const NotificationScreen = () => {
             <Icon name="CheckCheck" size={18} color="#F4F4F5" />
           </TouchableOpacity>
         }
-      />
-      
-      {/* Category Filter Tabs */}
-      <TypeTabs 
-        selected={selectedFilter} 
-        onSelect={handleFilterChange} 
-        counts={tabCounts}
-        activityCounts={tabActivityCounts}
+        tabs={
+          <TypeTabs
+            selected={selectedFilter}
+            onSelect={handleFilterChange}
+            counts={tabCounts}
+            activityCounts={tabActivityCounts}
+          />
+        }
       />
       
       {showLoading ? (

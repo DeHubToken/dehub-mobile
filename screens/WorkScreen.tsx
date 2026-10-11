@@ -230,22 +230,20 @@ export default function WorkScreen() {
             </Pressable>
           </View>
         }
-      />
-
-      {/* Type tabs */}
-      <View style={styles.strip}>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={TABS.map((tabItem) => ({
-            id: tabItem.id,
-            label: t(`work.types.${tabItem.id}`),
-            icon: tabItem.icon,
-          }))}
-        />
-      </View>
-
-      <View style={styles.searchWrap}>
+        tabs={
+          /* Type tabs */
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={TABS.map((tabItem) => ({
+              id: tabItem.id,
+              label: t(`work.types.${tabItem.id}`),
+              icon: tabItem.icon,
+            }))}
+          />
+        }
+      >
+        <View style={[styles.searchWrap, { marginHorizontal: 0 }]}>
         <Icon name="Search" size={15} color="#808089" />
         <TextInput
           value={search}
@@ -272,7 +270,7 @@ export default function WorkScreen() {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.strip}
-        contentContainerStyle={styles.chipRow}
+        contentContainerStyle={[styles.chipRow, { paddingHorizontal: 0 }]}
       >
         {CURRENCIES.map((currencyKey) => (
           <Pressable
@@ -298,6 +296,7 @@ export default function WorkScreen() {
           </Pressable>
         ))}
       </ScrollView>
+      </ScreenHeader>
 
       {isLoading ? (
         <View style={styles.center}>

@@ -4,13 +4,15 @@ import { resolve } from "path";
 const read = (p: string) => readFileSync(resolve(__dirname, "../..", p), "utf8");
 const board = read("screens/WorkScreen.tsx");
 
-// The Work board's type tabs sit in a horizontal ScrollView, which RN gives
-// flexShrink 1 by default. With a long list (or the keyboard up) the strip was
-// squeezed and the tab labels were measured into a sliver and cut in half.
+// Header PageTabs owns its bounded height; the remaining filter strip must
+// also avoid shrinking when the keyboard or a long list consumes the body.
 describe("Work board layout", () => {
-  it("keeps both chip strips at their natural height", () => {
+  it("keeps header tabs and the filter strip at their natural height", () => {
     expect(board).toMatch(/strip: \{ flexGrow: 0, flexShrink: 0 \}/);
-    expect(board.match(/style=\{styles\.strip\}/g)).toHaveLength(2);
+    expect(board.match(/style=\{styles\.strip\}/g)).toHaveLength(1);
+    const header = board.slice(board.indexOf('<ScreenHeader'), board.indexOf('</ScreenHeader>'));
+    expect(header).toContain('<PageTabs');
+    expect(header).toContain('style={styles.strip}');
   });
 
   it("wraps the card's meta line so the deadline drops to a right-aligned second line", () => {

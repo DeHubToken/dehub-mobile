@@ -13,6 +13,7 @@ import NavPillSurface from './ui/NavPillSurface';
 import { themeIconUrl } from '../theme/icons';
 import { pageIdentityIcon } from '../theme/pageIdentity';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
+import { PageHeaderContext } from './page/PageHeaderContext';
 
 /**
  * Height of the title row in points. The dehub mark bar used to sit above it;
@@ -53,6 +54,8 @@ export interface ScreenHeaderProps {
   icon?: string;
   /** Web's title island, flat conversation chrome, or controls over media. */
   appearance?: 'island' | 'flat' | 'controls';
+  /** Page navigation stays inside the same island as its title. */
+  tabs?: React.ReactNode;
   /** Search belongs inside the list's title island. */
   children?: React.ReactNode;
 }
@@ -69,6 +72,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   plainBack = false,
   icon,
   appearance = 'island',
+  tabs,
   children,
 }) => {
   const { t } = useTranslation();
@@ -189,10 +193,10 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   }
 
   return (
-    <View className={appearance ? undefined : 'bg-theme-neutrals-900'} style={appearance === 'flat' ? styles.flatBar : [styles.bar, children ? styles.searchBar : undefined]}>
+    <View className={appearance ? undefined : 'bg-theme-neutrals-900'} style={appearance === 'flat' ? styles.flatBar : [styles.bar, tabs || children ? styles.searchBar : undefined]}>
       {/* The floating title island, the same capsule material as the home
           feed's: glass on iOS, solid on Android, a hairline frame on minimal. */}
-      <View style={appearance === 'flat' ? styles.flatRow : [styles.island, children ? styles.searchIsland : undefined]}>
+      <View style={appearance === 'flat' ? styles.flatRow : [styles.island, tabs || children ? styles.searchIsland : undefined]}>
         {appearance === 'flat' ? null : appearance === 'island' ? (
           <NavPillSurface borderRadius={ISLAND_RADIUS} />
         ) : isMinimal ? (
@@ -252,7 +256,10 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
             <View className="ml-2 flex-row items-center" style={{ gap: 6 }}>{rightContent}</View>
           ) : null}
         </View>
-        {children ? <View style={{ marginTop: 10 }}>{children}</View> : null}
+        <PageHeaderContext.Provider value>
+          {tabs ? <View style={{ marginTop: 10 }}>{tabs}</View> : null}
+          {children ? <View style={{ marginTop: 10 }}>{children}</View> : null}
+        </PageHeaderContext.Provider>
       </View>
     </View>
   );
