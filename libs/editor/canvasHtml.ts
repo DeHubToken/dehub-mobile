@@ -1,3 +1,4 @@
+import { ENCODER_QUEUE_RUNTIME } from "./encoderQueue";
 import { VIDEO_MATTE_PAGE_CACHE_RUNTIME } from "./videoMattePageCache";
 import { VIDEO_FRAME_RUNTIME } from "./videoFrame";
 /**
@@ -1002,15 +1003,22 @@ canvas{display:block;width:100%;height:100%;}
     return AudioEncoder.isConfigSupported({ codec: "mp4a.40.2", sampleRate: 48000, numberOfChannels: 2, bitrate: 160000 })
       .then(function (r) { return !!(r && r.supported); }, function () { return false; });
   }
+  var waitForEncoderCapacity = (__ENCODER_QUEUE_RUNTIME__);
+
   var MUXER_URL = "https://cdn.jsdelivr.net/npm/mp4-muxer@5.2.2/+esm";
 
   function encodeWithCodecs(snap, W, H, fps, bitrate, duration, mixed, vcfg, progress, ending) {
+    var job = videoJobId;
     return import(MUXER_URL).then(function (M) {
       var target = new M.ArrayBufferTarget();
       var opts = { target: target, video: { codec: "avc", width: W, height: H, frameRate: fps }, fastStart: "in-memory", firstTimestampBehavior: "offset" };
       if (mixed) opts.audio = { codec: "aac", numberOfChannels: 2, sampleRate: mixed.sampleRate };
       var muxer = new M.Muxer(opts);
       var failure = null;
+      function checkEncoding() {
+        if (failure) throw failure;
+        if (exportAborted || videoJobId !== job) throw new Error("aborted");
+      }
       var venc = new VideoEncoder({
         output: function (chunk, meta) { muxer.addVideoChunk(chunk, meta); },
         error: function (e) { failure = e; },
@@ -1040,12 +1048,10 @@ canvas{display:block;width:100%;height:100%;}
           drawOps(g, W, H, ops, t);
           if (localTime >= ending.contentDuration) drawBrandOutro(g, W, H, localTime - ending.contentDuration, ending.username, ending.logo, ending.artwork);
           var frame = new VideoFrame(cv, { timestamp: Math.round(localTime * 1e6), duration: Math.round(1e6 / fps) });
-          venc.encode(frame, { keyFrame: f % Math.max(1, Math.round(fps * 2)) === 0 });
-          frame.close();
+          try { venc.encode(frame, { keyFrame: f % Math.max(1, Math.round(fps * 2)) === 0 }); } finally { frame.close(); }
           f++;
           if (f % 3 === 0) progress(0.05 + (f / total) * (mixed ? 0.8 : 0.9));
-          if (venc.encodeQueueSize > 6) return new Promise(function (r) { setTimeout(r, 10); }).then(step);
-          return step();
+          return waitForEncoderCapacity(venc, 6, checkEncoding).then(step);
         });
       }
       return step().then(function () { return venc.flush(); }).then(function () {
@@ -1060,17 +1066,17 @@ canvas{display:block;width:100%;height:100%;}
         var L = mixed.getChannelData(0);
         var R = mixed.getChannelData(Math.min(1, mixed.numberOfChannels - 1));
         var CH = 1024;
-        for (var i = 0; i < mixed.length; i += CH) {
-          if (exportAborted) throw new Error("aborted");
-          if (failure) throw failure;
+        function encodeAudio(i) {
+          checkEncoding();
+          if (i >= mixed.length) return aenc.flush();
           var n = Math.min(CH, mixed.length - i);
           var data = new Float32Array(n * 2);
           for (var j = 0; j < n; j++) { data[j * 2] = L[i + j]; data[j * 2 + 1] = R[i + j]; }
           var ad = new AudioData({ format: "f32", sampleRate: mixed.sampleRate, numberOfFrames: n, numberOfChannels: 2, timestamp: Math.round((i / mixed.sampleRate) * 1e6), data: data });
-          aenc.encode(ad);
-          ad.close();
+          try { aenc.encode(ad); } finally { ad.close(); }
+          return waitForEncoderCapacity(aenc, 8, checkEncoding).then(function () { return encodeAudio(i + CH); });
         }
-        return aenc.flush().then(function () { aenc.close(); });
+        return encodeAudio(0).then(function () { aenc.close(); });
       }).then(function () {
         if (failure) throw failure;
         muxer.finalize();
@@ -1822,5 +1828,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+</body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
   .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME);
