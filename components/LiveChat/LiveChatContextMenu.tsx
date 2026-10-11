@@ -360,7 +360,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
 
   return (
     <>
-      <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
+      <Modal transparent animationType="none" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
         {/* Blurred backdrop */}
         <Pressable style={{ flex: 1 }} onPress={onClose}>
           <Animated.View
@@ -368,11 +368,11 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
             exiting={FadeOut.duration(150)}
             style={{ flex: 1 }}
           >
-            <BlurView
+            {Platform.OS !== "android" && (<BlurView
               intensity={Platform.OS === "ios" ? 40 : 30}
               tint="dark"
               style={{ flex: 1 }}
-            />
+            />)}
             <View
               style={{
                 position: "absolute",
@@ -380,7 +380,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: "rgba(0,0,0,0.45)",
+                backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.45)",
               }}
             />
           </Animated.View>
