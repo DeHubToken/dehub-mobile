@@ -1601,7 +1601,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 onToggleMute={toggleMute}
                 fallbackMinter={minterProp}
                 onOptionsPress={() => setShowOptionsMenu(true)}
-                onCollapse={enterImmersive}
               />
   
               {/* State, elapsed time and title, on one scrollable line. */}
