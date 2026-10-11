@@ -6,7 +6,7 @@ Ordinary pages use a title island in every mobile theme. Direct/public conversat
 
 The table below is source coverage, not a claim that every private or data-dependent state has been exercised on a device. Cloud regression tests cover header visibility, section/button/panel materials, disabled actions, artwork keys, search navigation, and modal dismissal. Device checks must additionally cover a flat theme, a canvas theme, keyboard-open messaging, and representative settings/picker flows after the Android publication.
 
-Thirty-nine additional card and picker surfaces use `ThemePanel`, preserving their dimensions, refs, and handlers. These include Ads, Chess, Cinema, Creator Flow, DePIN, Features, Saved Posts, Work, active sessions, follow/repost lists, editor text prompts, offline states, search results, TV pairing/requests, the upload queue, upload audio/poll panels, and post error states. Floating canvas-theme panels retain an opaque base so text behind the panel cannot interfere with its content. The exchange's intentional slate trading surface retains its web palette.
+Forty additional card and picker surfaces use `ThemePanel`, preserving their dimensions, refs, and handlers. These include Ads, Chess, Cinema, Creator Flow, DePIN, Features, Saved Posts, Work, DM preferences, active sessions, follow/repost lists, editor text prompts, offline states, search results, TV pairing/requests, the upload queue, upload audio/poll panels, and post error states. Floating canvas-theme panels retain an opaque base so text behind the panel cannot interfere with its content. The exchange's intentional slate trading surface retains its web palette.
 
 | Screen source | Appearance contract |
 | --- | --- |

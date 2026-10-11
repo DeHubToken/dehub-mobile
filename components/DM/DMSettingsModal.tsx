@@ -2,6 +2,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator } from 'react-native';
 import GlassModal from '../ui/GlassModal';
+import ThemePanel from '../ui/ThemePanel';
 import { Ionicons } from '@expo/vector-icons';
 import { useUser, useAuthActions } from '../../context/AuthContext';
 import { toastError, toastWarning } from '../../libs/toast';
@@ -212,7 +213,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
         </View>
 
         <View className="px-5 mt-4">
-          <View className="bg-theme-neutrals-800 rounded-xl p-3 border border-theme-neutrals-700">
+          <ThemePanel className="bg-theme-neutrals-800 rounded-xl p-3 border border-theme-neutrals-700">
             <Row
               title={t("dm.enableDms")}
               subtitle={t("dm.enableDmsSub")}
@@ -255,7 +256,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
                 <Text className="text-white/80 text-[12px]">{t("dm.allDisabled")}</Text>
               </View>
             ) : null}
-          </View>
+          </ThemePanel>
         </View>
 
         <View className="px-5 pb-5 pt-3 flex-row justify-end">
