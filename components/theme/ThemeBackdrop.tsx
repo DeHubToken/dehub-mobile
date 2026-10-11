@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
 import { Asset } from "expo-asset";
 import * as FileSystem from "expo-file-system/legacy";
@@ -77,7 +77,12 @@ const ThemeBackdrop: React.FC = () => {
           if (cancelled) return;
           const { themeHues: hues, brandColors: brand } = colorsRef.current;
           const named = `<script>window.__BACKDROP_THEME=${JSON.stringify(theme)};window.__BACKDROP_HUES=${JSON.stringify(hues)};window.__BACKDROP_BRAND=${JSON.stringify(brand)};</script>`;
-          setHtml(page.replace("<head>", `<head>${named}`));
+          // Winter accumulates an 80px white drift. Keep it out of native
+          // content and Android navigation, fading only the decorative canvas.
+          const nativeMask = Platform.OS === "android" && theme === "winter"
+            ? `<style>html[data-theme="winter"] canvas{-webkit-mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 80px));mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 80px));}</style>`
+            : "";
+          setHtml(page.replace("<head>", `<head>${named}${nativeMask}`));
         })
         .catch((e) => log.warn("Theme backdrop unavailable", e));
     }, 400);
