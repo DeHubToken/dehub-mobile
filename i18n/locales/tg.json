@@ -5962,7 +5962,10 @@
     "host": "Соҳиб",
     "mostActive": "Фаъолтарин",
     "hereNow": "Дар ин ҷо ҳоло",
-    "nobodyYet": "Ҳеҷ кас ҳанӯз"
+    "nobodyYet": "Ҳеҷ кас ҳанӯз",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "topTippers": "Top tippers"
   },
   "search": {
     "endOfResults": "Охири натиҷаҳо",

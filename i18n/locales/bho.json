@@ -6008,7 +6008,10 @@
     "topTippers": "ऊपरी टाइलें",
     "mostActive": "ज्यादा से ज्यादा एक्टिव रहे",
     "hereNow": "आऊ अब फर्केर आऊ",
-    "nobodyYet": "आज तक ना भइल"
+    "nobodyYet": "आज तक ना भइल",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

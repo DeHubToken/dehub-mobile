@@ -5978,7 +5978,8 @@
     "topTippers": "शीर्षं टिपरम्",
     "mostActive": "अधिक सक्रिय",
     "hereNow": "इदानीम् अत्र",
-    "nobodyYet": "अद्यापि कोऽपि"
+    "nobodyYet": "अद्यापि कोऽपि",
+    "watchingCount": "{{formatted}} watching"
   },
   "search": {
     "endOfResults": "फलानाम् अन्तः",

@@ -6016,7 +6016,8 @@
     "topTippers": "Ən populyar ipucları",
     "mostActive": "Ən aktiv",
     "hereNow": "İndi burada",
-    "nobodyYet": "Hələ heç kim yoxdur"
+    "nobodyYet": "Hələ heç kim yoxdur",
+    "hereCount": "{{formatted}} here"
   },
   "search": {
     "endOfResults": "Nəticələrin sonu",

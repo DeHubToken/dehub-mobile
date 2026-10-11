@@ -5999,7 +5999,9 @@
     "topTippers": "ऊपरी टाइपर",
     "mostActive": "सबसे अधिक सक्रिय",
     "hereNow": "अब इहां",
-    "nobodyYet": "आज तक कोनो"
+    "nobodyYet": "आज तक कोनो",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

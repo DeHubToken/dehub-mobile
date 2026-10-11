@@ -5983,7 +5983,10 @@
     "topTippers": "د ټیګونو ارشیف: لوړپوړي چارواکي",
     "mostActive": "تر ټولو ډیر فعال",
     "hereNow": "د اوس لپاره دلته",
-    "nobodyYet": "تر اوسه څوک نه دي نیول شوي"
+    "nobodyYet": "تر اوسه څوک نه دي نیول شوي",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}"
   },
   "search": {
     "endOfResults": "د پایلو پای",

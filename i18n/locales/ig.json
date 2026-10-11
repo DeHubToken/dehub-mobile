@@ -5996,7 +5996,8 @@
     "topTippers": "Ndị kacha tip",
     "mostActive": "Kasị arụsi ọrụ ike",
     "hereNow": "Ebe a ugbu a",
-    "nobodyYet": "Ọ dịghị onye ma"
+    "nobodyYet": "Ọ dịghị onye ma",
+    "hereCount": "{{formatted}} here"
   },
   "search": {
     "endOfResults": "Njedebe nsonaazụ",
