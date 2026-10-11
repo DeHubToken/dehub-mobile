@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -71,7 +72,7 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
   }, [job.id]);
 
   return (
-    <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700 mb-3">
+    <ThemePanel className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700 mb-3">
       <View className="flex-row items-center px-4 py-3.5">
         {job.thumbnailUri ? (
           <SmartImage
@@ -161,7 +162,7 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
           />
         </View>
       )}
-    </View>
+    </ThemePanel>
   );
 });
 
