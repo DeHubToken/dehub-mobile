@@ -29,9 +29,10 @@ export function useDubDiscovery(player: VideoPlayer | null, videoId: string | nu
     const current = () => active && latest.current.eligible && latest.current.wallet === wallet && !getDubSettings().on && audible();
     const sample = () => {
       if (!replay.sample(player.currentTime, player.duration, audible(), Date.now(), player.playbackRate)) return;
-      void showTip(wallet, () => toastInfo(t('dub.menuDesc'), {
+      void showTip(wallet, () => toastInfo(t('dub.dubbed'), {
+        description: t('dub.menuDesc'),
         duration: 8000,
-        actionLabel: t('dub.dubbed'),
+        actionLabel: t('nav.settings'),
         onActionPress: () => {
           if (active && latest.current.eligible && latest.current.wallet === wallet) latest.current.openSettings();
         },
