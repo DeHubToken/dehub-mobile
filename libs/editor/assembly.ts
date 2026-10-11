@@ -39,13 +39,13 @@ export function assemblyRequest(prompt: string): AssemblyRequest | null {
   if (!/^(?:(?:please|can you|could you|would you|peux-tu|peux tu|s'il te plait)\s+)*(?:make|create|generate|build|assemble|combine|join|creer|cree|assembler|assemble|combiner|combine)\b/.test(text)) return null;
   if (!/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text) && !/\b(?:video|montage|slideshow|film|reel|story|edit)\b/.test(text.split(/\b(?:from|using|with|a partir de|avec)\b/)[0])) return null;
   if (!/\b(?:clips?|videos?|photos?|images?|footage|media|medias?)\b/.test(text) || /\b(?:highlights?|best moments?|meilleurs? moments?|temps forts?)\b/.test(text)) return null;
-  if (!/\b(?:from|using|with my|with these|out of|a partir de|avec mes|avec ces|selected|selectionnes?)\b/.test(text) && !(files.named && /\b(?:with|avec)\b/.test(text)) && !/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text)) return null;
+  if (!/\b(?:from|using|with my|with these|out of|a partir de|avec mes|avec ces|selected|selectionne(?:e)?s?)\b/.test(text) && !(files.named && /\b(?:with|avec)\b/.test(text)) && !/\b(?:combine|join|assemble|assembler|combiner)\b/.test(text)) return null;
   const duration = text.match(/\b(\d+(?:\.\d+)?)\s*[- ]?\s*(?:seconds?|secs?|s|secondes?)\b/);
   const seconds = duration ? Number(duration[1]) : undefined;
   const focus = files.named ? undefined : assemblyFocus(prompt);
   const excluded = assemblyExclusions(text);
   return { ...(focus ? { focus } : {}), ...(files.named ? { filePrompt: prompt, musicExcluded: excluded.music } : {}),
-    ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionnes?)\b/.test(text),
+    ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionne(?:e)?s?)\b/.test(text),
     transition: excluded.transition ? null : /\b(?:fades?|dissolves?|transitions?|fondus?)\b/.test(text) ? "fade" : null,
     music: /\b(?:music|soundtrack|musique)\b/.test(text) && !excluded.music };
 }
