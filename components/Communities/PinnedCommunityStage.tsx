@@ -50,9 +50,9 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
         <View style={styles.body}>
           <Text numberOfLines={1} style={styles.name}>{community.name}</Text>
           <View style={styles.meta}>
-            <Icon name="Pin" size={12} color="#fff" />
+            {onManagePins && <Icon name="Pin" size={12} color="#fff" />}
             <Text numberOfLines={1} style={styles.members}>
-              {t("comments.pinnedBadge")} · {community.member_count.toLocaleString()} {t("communities.members")}
+              {onManagePins && `${t("comments.pinnedBadge")} · `}{community.member_count.toLocaleString()} {t("communities.members")}
             </Text>
           </View>
         </View>

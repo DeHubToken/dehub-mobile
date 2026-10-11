@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import Animated, { interpolate, Extrapolation, runOnJS, useAnimatedReaction, useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
+import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
 import ChromeSurface from '../ui/ChromeSurface';
 import { PROFILE_BAR_HEIGHT } from './useProfileCollapse';
@@ -31,9 +32,6 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
     () => scrollY.value + PROFILE_BAR_HEIGHT >= identityBottom.value,
     (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
   );
-  const frost = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value, [32, 80], [0, 1], Extrapolation.CLAMP),
-  }));
   const identity = useAnimatedStyle(() => ({
     opacity: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [0, 1], Extrapolation.CLAMP),
     transform: [{ translateY: interpolate(scrollY.value + PROFILE_BAR_HEIGHT, [identityBottom.value - 12, identityBottom.value], [4, 0], Extrapolation.CLAMP) }],
@@ -42,10 +40,16 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
 
   return (
     <View pointerEvents="box-none" style={styles.bar}>
-      <Animated.View pointerEvents="none" style={[styles.frost, frost]}>
-        <ChromeSurface radius={15} />
-        {cover && <Image source={cover} blurRadius={24} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.28 }]} />}
-      </Animated.View>
+      <View pointerEvents="none" style={styles.surface}>
+        {cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
+        <LinearGradient
+          colors={['rgba(255,255,255,0.25)', 'rgba(255,255,255,0.04)', 'rgba(0,0,0,0.12)', 'rgba(255,255,255,0.08)']}
+          locations={[0, 0.42, 0.76, 1]}
+          start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View style={styles.highlight} />
+      </View>
       <ScreenHeader overlay title="" canGoBack={canGoBack} onBackPress={onBackPress} />
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
         <Animated.View pointerEvents="none" accessibilityElementsHidden={!collapsed} importantForAccessibility={collapsed ? 'auto' : 'no-hide-descendants'} style={[styles.identity, identity]}>
@@ -74,7 +78,8 @@ export default function CollapsingProfileHeader({ scrollY, identityBottom, name,
 
 const styles = StyleSheet.create({
   bar: { position: 'absolute', top: 0, left: 0, right: 0, height: PROFILE_BAR_HEIGHT, zIndex: 30, elevation: 30 },
-  frost: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden' },
+  surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.24)', borderBottomColor: 'rgba(255,255,255,0.1)' },
+  highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
   content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 56, paddingRight: 12, flexDirection: 'row', alignItems: 'center', gap: 8 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
