@@ -70,4 +70,15 @@ describe("caption translation", () => {
     expect(() => applyCaptionTranslation(project, plan, [{ id: plan.cues[0].id, text: "new" }, { id: plan.cues[0].id, text: "other" }])).toThrow("incomplete");
     expect(applyCaptionTranslation(project, plan, plan.cues)).toBe(project);
   });
+  it("keeps the original footage and audio controls alongside translated captions", () => {
+    const base = fixture();
+    const video = { id: "footage", trackId: "video", kind: "video" as const, mediaId: "original", start: 0, duration: 12, trimIn: 3, speed: 1.5, audio: { volume: 0.7, fadeIn: 0.2, fadeOut: 0.4 } };
+    const project = { ...base, clips: [...base.clips, video] };
+    const plan = planCaptionTranslation(project);
+    const next = applyCaptionTranslation(project, plan, plan.cues.map(cue => ({ id: cue.id, text: `Translated ${cue.text}` })));
+    expect(next.clips.at(-1)).toBe(video);
+    expect(next.clips.at(-1)).toEqual(video);
+    expect(next.title).toBe(project.title);
+    expect(next.settings).toBe(project.settings);
+  });
 });

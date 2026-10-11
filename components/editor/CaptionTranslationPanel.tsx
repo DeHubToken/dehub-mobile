@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../../i18n";
 import { translateText } from "../../services/translation.service";
@@ -23,6 +22,7 @@ export default function CaptionTranslationPanel({ project, disabled, onBusyChang
   const [language, setLanguage] = useState(() => SUPPORTED_LANGUAGES.find(item => item.code === i18n.language?.split(/[-_]/)[0])?.code ?? "en");
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [languageOpen, setLanguageOpen] = useState(false);
   const active = useRef<{ controller: AbortController; lease: ProjectEditLease; sourceKey: string; projectId: string; applying: boolean } | null>(null);
   const mounted = useRef(true);
   const actions = useRef({ current, subscribe, onStart, onApply, onBusyChange });
@@ -74,11 +74,14 @@ export default function CaptionTranslationPanel({ project, disabled, onBusyChang
   };
   return <View className="border-t border-white/10 pt-3" style={{ gap: 8 }}>
     <Text className="text-white">{t("editor.captions.targetLanguage", { defaultValue: "Caption language" })}</Text>
-    <View className="rounded-xl border border-white/10 bg-black">
-      <Picker accessibilityLabel={t("editor.captions.targetLanguage", { defaultValue: "Caption language" })} selectedValue={language} enabled={!disabled && !progress} onValueChange={value => setLanguage(String(value))} style={{ color: "#ffffff" }} dropdownIconColor="#ffffff">
-        {SUPPORTED_LANGUAGES.map(item => <Picker.Item key={item.code} value={item.code} label={`${item.nativeName} · ${item.name}`} color="#ffffff" />)}
-      </Picker>
-    </View>
+    <Pressable accessibilityRole="button" accessibilityLabel={t("editor.captions.targetLanguage", { defaultValue: "Caption language" })} accessibilityState={{ expanded: languageOpen }} disabled={disabled || !!progress} onPress={() => setLanguageOpen(open => !open)} className="rounded-xl border border-white/10 bg-black px-4 py-3">
+      <Text className="text-white">{SUPPORTED_LANGUAGES.find(item => item.code === language)?.nativeName}</Text>
+    </Pressable>
+    {languageOpen && <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 220 }} className="rounded-xl border border-white/10 bg-black">
+      {SUPPORTED_LANGUAGES.map(item => <Pressable key={item.code} accessibilityRole="button" accessibilityState={{ selected: item.code === language }} disabled={disabled || !!progress} onPress={() => { setLanguage(item.code); setLanguageOpen(false); }} className="border-b border-white/10 px-4 py-3">
+        <Text className="text-white">{item.nativeName} · {item.name}</Text>
+      </Pressable>)}
+    </ScrollView>}
     <Pressable accessibilityRole="button" disabled={disabled || !count || !!progress} onPress={() => { void start(); }} className="rounded-xl border border-white/10 px-4 py-3" style={{ opacity: count && !disabled && !progress ? 1 : 0.4 }}>
       <Text className="text-white">{t("editor.captions.translateCount", { defaultValue: "Translate {{count}} captions", count })}</Text>
     </Pressable>
