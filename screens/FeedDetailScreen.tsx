@@ -54,8 +54,9 @@ import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
 import { useStageBack } from "../components/Home/PostStage";
-import IosGlassPill from "../components/ui/IosGlassPill";
-import { LinearGradient } from "expo-linear-gradient";
+import FrostedPill from "../components/ui/FrostedPill";
+import { FrostedContent } from "../components/ui/FrostedBackdrop";
+import { usePostStage } from "../libs/postStage";
 
 /** The post page's phone layout ("Stage") applies below web's sm breakpoint. */
 export const POST_STAGE_MAX_WIDTH = 640;
@@ -1290,6 +1291,7 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
+  const stageMedia = usePostStage(tokenId);
   const postVideo = !!item && (resolveContentType(item) === "video" || resolveContentType(item) === "short");
   const handlePostBack = useStageBack();
   const handleStageAnchor = useCallback((y: number) => {
@@ -1450,12 +1452,13 @@ function FeedDetailContent() {
               query={commentQuery}
               onQueryChange={setCommentQuery}
               onToggleSearch={toggleCommentSearch}
+              onMore={stageMedia.openOptions}
             />
           ) : renderCommentTabs()}
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, stageMedia.openOptions]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1472,12 +1475,7 @@ function FeedDetailContent() {
     }).start();
   }, [hideComposer, composerHeight, composerSlide]);
 
-  // Stage dock colours: the page itself, a surface a step above it, and the
-  // transparent end of the fade band.
-  const stagePage = isMinimal ? "#000000" : skin ? skin.page : "#010305";
-  const stageSurface = isMinimal ? "#000000" : skin ? (String(skin.strip.backgroundColor ?? skin.page)) : "#18181B";
-  const stageDockFade = stagePage + "00";
-  const stageGlassTint = isMinimal ? "rgba(0,0,0,0.55)" : "rgba(12,12,14,0.35)";
+  const stageGlassTint = isMinimal ? "rgba(0,0,0,0.2)" : "rgba(12,12,14,0.2)";
 
   const replyToName = replyTo?.user?.displayName || replyTo?.user?.username || t("dm.userFallback");
   const [replyingToBefore, replyingToAfter = ""] = t("governance.discussion.replyingTo", {
@@ -1486,6 +1484,7 @@ function FeedDetailContent() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <FrostedContent>
       <FlatList
         ref={listRef}
         showsVerticalScrollIndicator={false}
@@ -1549,6 +1548,7 @@ function FeedDetailContent() {
         onLayout={handleListLayout}
         onContentSizeChange={handleContentSize}
       />
+      </FrostedContent>
       {/* The tab row, pinned to the top once the one in the list scrolls
           under it. Solid in the page colour so comments never read through.
           Drawn before the immersive back button so that stays on top. */}
@@ -1576,31 +1576,10 @@ function FeedDetailContent() {
           style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
-        {stage && (
-          // Stage: the composer is a card docked over the bottom of the page
-          // (the bottom nav is not on this screen). A fade band above it and,
-          // on Android, the page colour solid under it, so comment text never
-          // reads through; iOS keeps the glass.
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 0 }]}>
-            <LinearGradient
-              colors={[stageDockFade, stagePage + "0A", stagePage + "1F", stagePage + "3D"]}
-              locations={[0, 0.35, 0.7, 1]}
-              style={{ position: "absolute", left: 0, right: 0, top: -48, height: 48 }}
-            />
-            {Platform.OS === "ios" ? (
-              <LinearGradient colors={[stagePage + "CC", stagePage]} style={StyleSheet.absoluteFill} />
-            ) : (
-              <View style={[StyleSheet.absoluteFill, { backgroundColor: stagePage }]} />
-            )}
-          </View>
-        )}
         <View
           className={stage ? undefined : "border-t border-theme-neutrals-800 bg-theme-neutrals-900"}
           testID={stage ? "post-stage-composer" : undefined}
-          // Always solid. A canvas theme turns page fills into a see-through
-          // veil over its backdrop, so the bar sets its page colour itself
-          // (opaque) and the comments never show through it.
-          // Minimal: a black bar under one full-width hairline.
+          // The phone dock samples the scrolling list through shared glass.
           style={stage
             ? {
                 position: "relative",
@@ -1612,9 +1591,7 @@ function FeedDetailContent() {
                 borderWidth: 1,
                 borderColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.12)",
                 overflow: "hidden",
-                // Android paints the fill on the card itself so an absolute
-                // background child cannot cover the field and its controls.
-                backgroundColor: Platform.OS === "android" ? stageSurface : undefined,
+                backgroundColor: "transparent",
               }
             : isMinimal
             ? { marginBottom: inputLift, backgroundColor: "#000", borderTopColor: MINIMAL_HAIRLINE }
@@ -1622,8 +1599,8 @@ function FeedDetailContent() {
               ? { marginBottom: inputLift, backgroundColor: skin.page }
               : { marginBottom: inputLift }}
         >
-          {stage && Platform.OS === "ios" && (
-            <IosGlassPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} />
+          {stage && (
+            <FrostedPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} />
           )}
           {/* Replying / Editing indicator */}
           {(replyTo || editingComment) && !recorder.isRecording && (
@@ -1713,6 +1690,7 @@ function FeedDetailContent() {
                 className={isMinimal ? "flex-1 flex-row border" : "flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"}
                 style={{
                   ...(isMinimal ? { borderColor: MINIMAL_INPUT_LINE } : null),
+                  ...(stage ? { backgroundColor: "rgba(255,255,255,0.04)" } : null),
                   // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
                   // 40 box. Once the text wraps, the box grows and this is moot.
                   alignItems: "center",

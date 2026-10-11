@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { fireEvent, render } from '@testing-library/react-native';
 import PostStageActionBar from '../../components/Home/PostStageActionBar';
 import RepostShareSheet, { shareTargetUrl } from '../../components/Home/RepostShareSheet';
+import CommentsStageHeader from '../../components/Comments/CommentsStageHeader';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
@@ -24,6 +25,7 @@ jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ skin: nul
 jest.mock('../../libs/haptics', () => ({ haptic: { tap: jest.fn(), press: jest.fn() } }));
 jest.mock('../../libs/reaction-tip', () => ({ maybeShowReactionTip: jest.fn(), markReactionTipSeen: jest.fn() }));
 jest.mock('../../hooks/useViewerTippedPost', () => ({ useViewerTippedPost: () => false }));
+jest.mock('../../components/Comments/CommentTabRow', () => ({ COMMENT_SORTS: ['recent', 'oldest', 'liked'] }));
 
 const readSource = (path: string) => readFileSync(resolve(__dirname, '../..', path), 'utf8');
 
@@ -158,5 +160,24 @@ describe('post page on phones', () => {
     expect(card).toContain('const stage = stageProp && (immersive || flat);');
     expect(card).toContain('if (stage) {');
     expect(card).toContain('<FeedActionBar');
+  });
+
+  it('keeps image controls below the photo and blurs the list beneath the composer', () => {
+    expect(card).toContain('!postVideo && !postImage && <PostStageChrome overMedia');
+    expect(card).toContain('openOptions: postImage ? handleOpenOptions : undefined');
+    expect(detail).toContain('onMore={stageMedia.openOptions}');
+    expect(detail).toContain('<FrostedContent>');
+    expect(detail).toContain('<FrostedPill tint={stageGlassTint}');
+    expect(detail).not.toContain('backgroundColor: stagePage');
+    expect(detail).not.toContain('backgroundColor: Platform.OS === "android" ? stageSurface');
+  });
+
+  it('places the options button after Recent and opens the existing menu', () => {
+    const onMore = jest.fn();
+    const view = render(<CommentsStageHeader count={3} sort="recent" onSortChange={jest.fn()} searchOpen={false} query="" onQueryChange={jest.fn()} onToggleSearch={jest.fn()} onMore={onMore} />);
+    const icons = view.UNSAFE_getAllByType('Icon' as any).map((node) => node.props.name);
+    expect(icons).toEqual(['Search', 'ArrowUpDown', 'Ellipsis']);
+    fireEvent.press(view.getByTestId('comments-stage-options'));
+    expect(onMore).toHaveBeenCalledTimes(1);
   });
 });

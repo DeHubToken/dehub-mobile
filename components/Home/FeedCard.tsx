@@ -467,6 +467,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return getImageUrl(item.imageUrl || item.thumbnailUrl || "", LOCKED_PREVIEW_WIDTH) || galleryImages[0];
   }, [item, rawImageUrls, galleryImages]);
   const hasImages = galleryImages.length > 0;
+  const postImage = contentType === "image" && hasImages;
   const hasMultipleImages = galleryImages.length > 1;
 
   // --- Video/Live thumbnail ---
@@ -1376,8 +1377,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       playable: stagePlayable,
       liked: liked || disliked,
       like: handleLikePress,
+      openOptions: postImage ? handleOpenOptions : undefined,
     });
-  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress]);
+  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress, postImage, handleOpenOptions]);
   useEffect(() => {
     if (!stage || !isLive || tokenId == null) return;
     patchPostStage(tokenId, { playing: !livePaused, toggle: () => setLivePaused((p) => !p) });
@@ -2056,7 +2058,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            {!postVideo && <PostStageChrome overMedia onMore={handleOpenOptions} />}
+            {!postVideo && !postImage && <PostStageChrome overMedia onMore={handleOpenOptions} />}
           </View>
         ) : (
           <PostStageChrome overMedia={false} onMore={postVideo ? undefined : handleOpenOptions} />
