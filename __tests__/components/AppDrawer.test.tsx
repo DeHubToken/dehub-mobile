@@ -56,6 +56,7 @@ jest.mock('react-native-reanimated', () => ({
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
+jest.mock('../../components/ui/FrostedPill', () => 'FrostedPill');
 jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockDigitalPurchasesEnabled; } }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),
