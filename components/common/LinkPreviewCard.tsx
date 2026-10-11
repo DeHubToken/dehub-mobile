@@ -128,7 +128,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       }
     >
       {showImage && (
-        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="contain" onError={() => setFailedImage(preview.image)} />
+        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
       )}
       <View style={[styles.body, isMinimal && styles.minimalBody]}>
         <View style={styles.sourceRow}>
