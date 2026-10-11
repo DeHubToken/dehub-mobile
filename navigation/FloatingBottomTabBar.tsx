@@ -119,6 +119,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" } },
   // Native screen, not the website — the drawer has routed here for a while.
   { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
+  { icon: "MessageSquare", labelKey: "stats.feedback.title", screen: ScreenNames.Feedback },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },

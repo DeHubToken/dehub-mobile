@@ -27,7 +27,7 @@ const ROUTE_SEGMENTS = [
   "accounts", "admin", "admin-manual", "affiliate", "agents", "apk", "app", "apps", "arcade", "assistant",
   "auth", "bounty", "bridge", "builder", "cinema", "communities", "connect", "converter",
   "creator", "creators",
-  "delete-account", "depin", "docs", "editor", "events", "explore", "features",
+  "delete-account", "depin", "docs", "editor", "events", "explore", "features", "feedback",
   "dao", "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
   "mcp", "mobile-preview", "music", "newpost", "packs", "posts", "premium", "pricing", "prompt", "r",
   "radio", "raffle", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
