@@ -38,6 +38,7 @@ const request = { url: "file://source.mp4", username: "creator" };
 let encoded: ReturnType<typeof deferred<{ uri: string }>>, saved: ReturnType<typeof deferred<void>>;
 beforeEach(() => {
   jest.clearAllMocks();
+  (toastSuccess as jest.Mock).mockReset(); (toastError as jest.Mock).mockReset();
   encoded = deferred<{ uri: string }>(); saved = deferred<void>();
   mockExport.mockReturnValue(encoded.promise);
   mockCancel.mockImplementation(() => encoded.reject(Object.assign(new Error("Cancelled"), { name: "AbortError" })));
@@ -102,4 +103,18 @@ it("does not notify after the provider unmounts during a non-cancellable gallery
   expect(toastSuccess).not.toHaveBeenCalled(); expect(toastError).not.toHaveBeenCalled();
   expect(mockCancel).not.toHaveBeenCalled();
   expect(releaseDownloadMedia).toHaveBeenCalledWith("source-media");
+});
+
+it("never lets a Cancel callback from a finished download cancel a later job", async () => {
+  const { screen, pending, oldCancel } = await begin();
+  await act(async () => { encoded.resolve({ uri: "file://output.mp4" }); saved.resolve(undefined); await pending; });
+  encoded = deferred<{ uri: string }>(); mockExport.mockReturnValue(encoded.promise);
+  let second!: Promise<void>;
+  act(() => { second = start(request); });
+  await waitFor(() => expect(mockExport).toHaveBeenCalledTimes(2));
+  oldCancel();
+  expect(mockCancel).not.toHaveBeenCalled();
+  const currentCancel = screen.UNSAFE_getByType("Pressable" as any).props.onPress;
+  await act(async () => { currentCancel(); await second; });
+  expect(mockCancel).toHaveBeenCalledTimes(1);
 });
