@@ -157,3 +157,44 @@ test('records a missing extension and redacts portal errors', async () => {
   assert.equal(JSON.stringify(report).includes(secret), false);
   assert.equal(JSON.stringify(report).includes(jwt), false);
 });
+
+test('reports the official SDK HTTP status and exact read stage without response details', async () => {
+  const input = fixture();
+  input.apple.BundleId.findAsync = async () => {
+    const error = new Error(secret + jwt);
+    error.data = { errors: [{ status: '403', code: secret, title: secret, detail: jwt }] };
+    throw error;
+  };
+  const report = await inspectSigningPortal(input);
+  assert.equal(report.managedTeamKeyAvailable, true);
+  assert.deepEqual(report.findings, ['signing_portal_lookup_failed_http_403']);
+  assert.deepEqual(report.failures, [{ stage: 'bundle_lookup', bundleIdentifier: BUNDLES[0], httpStatus: 403, finding: 'signing_portal_lookup_failed_http_403' }]);
+  assert.equal(JSON.stringify(report).includes(secret), false);
+  assert.equal(JSON.stringify(report).includes(jwt), false);
+});
+
+test('distinguishes capability and profile lookup failures from finding a bundle', async () => {
+  for (const [method, stage] of [['getBundleIdCapabilitiesAsync', 'bundle_capabilities_lookup'], ['getProfilesAsync', 'bundle_profiles_lookup']]) {
+    const input = fixture();
+    const find = input.apple.BundleId.findAsync;
+    input.apple.BundleId.findAsync = async (...args) => {
+      const bundle = await find(...args);
+      bundle[method] = async () => { throw { data: { errors: [{ status: '400', detail: secret }] } }; };
+      return bundle;
+    };
+    const report = await inspectSigningPortal(input);
+    assert.equal(report.failures[0].stage, stage);
+    assert.equal(report.failures[0].bundleIdentifier, BUNDLES[0]);
+    assert.equal(report.failures[0].httpStatus, 400);
+    assert.equal(JSON.stringify(report).includes(secret), false);
+  }
+});
+
+test('rejects arbitrary status strings and preserves sanitized group lookup diagnostics', async () => {
+  for (const status of [secret, '403' + jwt, '200', null]) {
+    const report = await inspectSigningPortal(fixture({ groupError: { data: { errors: [{ status, detail: jwt }] } } }));
+    assert.deepEqual(report.failures, [{ stage: 'recording_group_lookup', httpStatus: null, finding: 'recording_group_lookup_failed' }]);
+    assert.equal(JSON.stringify(report).includes(secret), false);
+    assert.equal(JSON.stringify(report).includes(jwt), false);
+  }
+});
