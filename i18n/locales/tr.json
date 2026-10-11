@@ -7031,7 +7031,12 @@
       "hint": "Konuşmayı stilini değiştirebileceğin zamanlı altyazılara dönüştürür. Cihazında çalışır: ücretsiz ve gizli. İlk kullanımda model indirilir.",
       "done": "{{count}} altyazı eklendi.",
       "noSpeech": "Bu klipte konuşma bulunamadı.",
-      "failed": "Bu klip için altyazı oluşturulamadı."
+      "failed": "Bu klip için altyazı oluşturulamadı.",
+      "targetLanguage": "Altyazı dili",
+      "translateCount": "{{count}} altyazıyı çevir",
+      "translationDone": "{{count}} altyazı çevrildi",
+      "translationFailed": "Altyazı çevirisi başarısız oldu. Altyazılarınız değiştirilmedi.",
+      "lockedTranslation": "Kilitli altyazıları dahil etmek için kilitlerini açın."
     },
     "app": {
       "newDesign": "Yeni tasarım",
