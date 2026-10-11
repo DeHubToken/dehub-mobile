@@ -51,6 +51,11 @@ jobs:
       - name: TypeScript check
         run: npx tsc --noEmit
 
+      # Thresholds are enforced by coverageThreshold in jest.config.js, so a
+      # coverage regression fails this step directly.
+      - name: Run tests with coverage
+        run: npm run test:ci
+
       - name: Badge asset resource names
         run: node scripts/check-badge-resource-names.mjs
 
@@ -93,11 +98,6 @@ jobs:
 
       - name: Release animation runtime regression checks
         run: node scripts/animation-runtime.test.cjs
-
-      # Thresholds are enforced by coverageThreshold in jest.config.js, so a
-      # coverage regression fails this step directly.
-      - name: Run tests with coverage
-        run: npm run test:ci
 
       - name: Upload coverage report
         if: always()
