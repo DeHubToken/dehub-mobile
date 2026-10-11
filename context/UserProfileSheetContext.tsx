@@ -115,7 +115,9 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
         <UserProfilePresentationContext.Provider value={presentationContextValue}>
           {/* Keep covered feeds paused through the profile's closing animation. */}
           <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal'}>
-            <View style={{ flex: 1, opacity: covered ? 0 : 1 }}
+            {/* Remove the covered native render tree: opacity alone still
+                prepares its image textures on every profile scroll frame. */}
+            <View style={{ flex: 1, display: covered ? 'none' : 'flex' }}
               pointerEvents={covered ? 'none' : 'auto'}
               accessibilityElementsHidden={covered}
               importantForAccessibility={covered ? 'no-hide-descendants' : 'auto'}>
