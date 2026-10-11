@@ -4,5 +4,11 @@ import { getSolanaRpcUrl } from '../config/solana.constants';
 import { readPaymentBalances } from '../libs/payment-options';
 import type { PaymentAsset } from '../libs/crypto-purchase';
 export async function loadPaymentBalances(assets: PaymentAsset[], wallet: string, solana?: string) {
-  return readPaymentBalances(assets, wallet, solana || (await getCachedSolanaAddress(wallet)) || undefined, { base: [NETWORK_URLS[8453], 'https://base-rpc.publicnode.com', 'https://base.drpc.org'], eth: NETWORK_URLS[1], bsc: NETWORK_URLS[56], robinhood: NETWORK_URLS[4663], sol: getSolanaRpcUrl() });
+  return readPaymentBalances(assets, wallet, solana || (await getCachedSolanaAddress(wallet)) || undefined, {
+    base: [NETWORK_URLS[8453], 'https://base-rpc.publicnode.com', 'https://base.drpc.org'],
+    eth: [NETWORK_URLS[1], 'https://ethereum-rpc.publicnode.com', 'https://eth.drpc.org'],
+    bsc: NETWORK_URLS[56],
+    robinhood: NETWORK_URLS[4663],
+    sol: getSolanaRpcUrl(),
+  });
 }
