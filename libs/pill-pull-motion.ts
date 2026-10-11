@@ -1,5 +1,7 @@
 export const PULL_REFRESH_THRESHOLD = 92;
-export const PULL_RETURN_MS = 1600;
+export const PULL_RETURN_MS = 650;
+export const PULL_CANCEL_MS = 450;
+export const PULL_GLOW_FADE_MS = 420;
 export const PULL_ECHO_CYCLE_MS = 1000 / .28;
 
 export function pullForDrag(drag: number) {

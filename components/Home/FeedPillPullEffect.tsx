@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { Easing, ReduceMotion, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Defs, Ellipse, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 import type { HomePullMotion } from '../../context/HomePullRefreshContext';
-import { pillPullVisual } from '../../libs/pill-pull-motion';
+import { PULL_GLOW_FADE_MS, pillPullVisual } from '../../libs/pill-pull-motion';
 
 // Feather the Android rim in small, low-opacity steps rather than four hard
 // bands. This also works on older APKs without adding a native blur module.
@@ -15,7 +15,11 @@ const ANDROID_GLOW = Array.from({ length: 20 }, (_, i) => {
 });
 
 export default function FeedPillPullEffect({ motion, refreshing, width }: { motion: HomePullMotion; refreshing: boolean; width: number }) {
-  const rimStyle = useAnimatedStyle(() => ({ opacity: pillPullVisual(motion.distance.value, motion.pulling.value, refreshing, motion.flow.value).rimOpacity }));
+  const refreshGlow = useSharedValue(0);
+  useEffect(() => {
+    refreshGlow.value = withTiming(refreshing ? .26 : 0, { duration: PULL_GLOW_FADE_MS, easing: Easing.out(Easing.cubic), reduceMotion: ReduceMotion.System });
+  }, [refreshing, refreshGlow]);
+  const rimStyle = useAnimatedStyle(() => ({ opacity: Math.max(pillPullVisual(motion.distance.value, motion.pulling.value, false, motion.flow.value).rimOpacity, refreshGlow.value) }));
   const clipStyle = useAnimatedStyle(() => ({ height: pillPullVisual(motion.distance.value, motion.pulling.value, refreshing, motion.flow.value).gapHeight }));
   const echoStyle = useAnimatedStyle(() => {
     const visual = pillPullVisual(motion.distance.value, motion.pulling.value, refreshing, motion.flow.value);
@@ -32,7 +36,7 @@ export default function FeedPillPullEffect({ motion, refreshing, width }: { moti
         </Svg>
       </Animated.View>
     </Animated.View>
-    <Animated.View style={[styles.rim, android && { top: -24, left: -48, width: width + 96, height: 116 }, rimStyle]}>
+    <Animated.View renderToHardwareTextureAndroid shouldRasterizeIOS style={[styles.rim, android && { top: -24, left: -48, width: width + 96, height: 116 }, rimStyle]}>
       <Svg width={width + (android ? 96 : 48)} height={android ? 116 : 92} viewBox={android ? `-48 -24 ${width + 96} 116` : `-24 -12 ${width + 48} 92`}>
         <Defs>
           <LinearGradient id="pull-rim" x1="0" y1="28" x2="0" y2="45" gradientUnits="userSpaceOnUse">
