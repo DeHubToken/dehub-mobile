@@ -287,9 +287,9 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
           )
         }
       >
-        {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
+        {/* Align the cover with the full-width details and pinned community. */}
         <View
-          className={isMinimal || cinematicPhone ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
           style={{ height: 140 }}
         >
           <SmartImage
