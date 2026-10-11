@@ -14,6 +14,8 @@ export function openQuickActions() {
   cancelQuickActions();
   if (enabled && !blocked) listeners.forEach(listener => listener());
 }
+/** A surface can deliberately hand its existing hold to the page menu. */
+export function requestQuickActions() { blocked = false; openQuickActions(); }
 export function subscribeQuickActions(listener: () => void) { listeners.add(listener); return () => { listeners.delete(listener); }; }
 export function beginQuickActions(event: Touch) {
   cancelQuickActions(); blocked = false;
