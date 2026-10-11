@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,7 +16,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <View className="flex-1 justify-center items-center px-6">
-        <View className="bg-theme-neutrals-800 rounded-2xl p-6 mb-6 relative">
+        <ThemePanel className="bg-theme-neutrals-800 rounded-2xl p-6 mb-6 relative">
           <Ionicons
             name="wifi-outline"
             size={64}
@@ -28,7 +29,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
               color="#09090B" 
             />
           </View>
-        </View>
+        </ThemePanel>
 
         <Text className="text-theme-neutrals-100 text-2xl font-bold text-center mb-3">
           {t('common.noInternetTitle')}
@@ -38,14 +39,14 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
           {t('common.noInternetBody')}
         </Text>
 
-        <View className="bg-theme-neutrals-800 rounded-lg p-4 mb-8 w-full max-w-sm">
+        <ThemePanel className="bg-theme-neutrals-800 rounded-lg p-4 mb-8 w-full max-w-sm">
           <View className="flex-row items-center justify-center">
             <View className="w-3 h-3 bg-white rounded-full mr-3" />
             <Text className="text-theme-neutrals-200 text-sm">
               {t('common.noInternetStatus')}
             </Text>
           </View>
-        </View>
+        </ThemePanel>
 
         <View className="w-full max-w-sm mb-4">
           <AccentButtonGradient>

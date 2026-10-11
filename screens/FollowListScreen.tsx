@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
@@ -292,9 +293,9 @@ const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) =
   const { t } = useTranslation();
   return (
     <View className="flex-1 items-center justify-center px-8">
-      <View className="bg-theme-neutrals-800/50 rounded-2xl p-6 mb-6">
+      <ThemePanel className="bg-theme-neutrals-800/50 rounded-2xl p-6 mb-6">
         <Ionicons name="lock-closed" size={48} color="#A1A1AA" />
-      </View>
+      </ThemePanel>
       <Text className="text-white text-xl font-bold text-center mb-2">
         {t("follow.privateTitle")}
       </Text>
@@ -1013,9 +1014,9 @@ const FollowListScreen: React.FC = () => {
         : t("follow.notFollowingAnyone");
     return (
       <View className="flex-1 items-center justify-center py-16">
-        <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
+        <ThemePanel className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
           <Ionicons name="people-outline" size={40} color="#A1A1AA" />
-        </View>
+        </ThemePanel>
         <Text className="text-gray-400 text-base text-center px-8">{message}</Text>
       </View>
     );
@@ -1109,9 +1110,9 @@ const FollowListScreen: React.FC = () => {
             }
             ListEmptyComponent={
               <View className="flex-1 items-center justify-center py-16">
-                <View className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
+                <ThemePanel className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
                   <Ionicons name="person-add-outline" size={40} color="#A1A1AA" />
-                </View>
+                </ThemePanel>
                 <Text className="text-gray-400 text-base text-center px-8">
                   {t("follow.noRequests")}
                 </Text>
@@ -1195,7 +1196,7 @@ const FollowListScreen: React.FC = () => {
           {/* Sort Picker Dropdown */}
           {showSortPicker && (
             <View className="px-4 pb-3">
-              <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
+              <ThemePanel className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
                 {SORT_OPTIONS.map((option, index) => (
                   <TouchableOpacity
                     key={option.key}
@@ -1222,7 +1223,7 @@ const FollowListScreen: React.FC = () => {
                     )}
                   </TouchableOpacity>
                 ))}
-              </View>
+              </ThemePanel>
             </View>
           )}
 

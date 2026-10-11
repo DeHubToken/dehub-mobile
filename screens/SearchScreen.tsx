@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
@@ -936,7 +937,7 @@ const SearchScreen: React.FC = () => {
           <Text className={`text-theme-neutrals-400 text-xs font-semibold mb-2 ${isMinimal ? "px-4" : "px-1"}`}>
             {t("search.recentSearches")}
           </Text>
-          <View className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
+          <ThemePanel className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
             {topHistorySubset(searchHistory, 5).map((item, index) => (
               <TouchableOpacity
                 key={`history-${index}`}
@@ -954,7 +955,7 @@ const SearchScreen: React.FC = () => {
                 </Text>
               </TouchableOpacity>
             ))}
-          </View>
+          </ThemePanel>
         </View>
       );
     }
@@ -964,7 +965,7 @@ const SearchScreen: React.FC = () => {
       return (
         // Minimal: same flat, full-width hairline rows as recent searches.
         <View className={isMinimal ? undefined : "px-4"} style={{ paddingTop: headerHeight + 12 }}>
-          <View className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
+          <ThemePanel className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
             {suggestions.map((item, index) => (
               <TouchableOpacity
                 key={`sugg-${index}`}
@@ -991,7 +992,7 @@ const SearchScreen: React.FC = () => {
                 </TouchableOpacity>
               </TouchableOpacity>
             ))}
-          </View>
+          </ThemePanel>
         </View>
       );
     }
