@@ -3126,6 +3126,19 @@
     "tokenAmount": "{{amount}} jeton"
   },
   "communities": {
+    "followerInvites": {
+      "title": "Takipçileri davet et",
+      "detail": "Her grupta en fazla 50 takipçi seçin. Ücretli veya kapalı özel mesajlar atlanır. Tekrar denemeden önce onaylanmamış gönderileri sohbette kontrol edin.",
+      "selectAll": "Bu sayfayı seç",
+      "clear": "Seçimi temizle",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "empty": "Bu sayfada takipçi yok.",
+      "send": "Davetleri gönder ({{count}})",
+      "sending": "Davetler gönderiliyor…",
+      "summary": "Gönderildi: {{sent}} · Atlandı: {{skipped}} · Sohbeti kontrol et: {{review}} · Başarısız: {{failed}}",
+      "error": "Davetler gönderilemedi. Bağlantınızı ve oturumunuzu kontrol edip tekrar deneyin."
+    },
     "existingPost": {
       "add": "Mevcut gönderiyi ekle",
       "hint": "Özgün gönderiyi, beğenileri ve görüntülemeleri koruyun.",
