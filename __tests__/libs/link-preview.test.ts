@@ -11,7 +11,26 @@ jest.mock('../../services/supabase', () => ({
   supabase: { functions: { invoke: jest.fn() } },
 }));
 
-import { extractUrlsFromText } from '../../libs/link-preview';
+import { extractUrlsFromText, getLinkPreviewImage } from '../../libs/link-preview';
+
+describe('shared link images', () => {
+  it('uses source cards for the existing Cochranizer Suno shares', () => {
+    for (const album of [
+      '0d0dab23-8785-4634-bbed-964cae4807a1',
+      'd8982ad1-96c2-495e-be0e-f422c32cb7a6',
+      '89ae6c87-c3f9-40ff-b626-f59704b6e0e9',
+    ]) {
+      expect(getLinkPreviewImage(`https://suno.com/album/${album}`, 'https://cdn2.suno.ai/cover.jpeg')).toBeNull();
+    }
+    expect(getLinkPreviewImage('https://www.suno.com/album/shared', 'https://cdn2.suno.ai/cover.jpeg')).toBeNull();
+  });
+
+  it('keeps ordinary preview artwork and decodes escaped image URLs', () => {
+    expect(getLinkPreviewImage('https://example.com/article', 'https://example.com/cover?a=1&amp;b=2')).toBe('https://example.com/cover?a=1&b=2');
+    expect(getLinkPreviewImage('https://suno.com.example.org/article', 'https://example.org/cover.jpg')).toBe('https://example.org/cover.jpg');
+    expect(getLinkPreviewImage('https://example.com/article', null)).toBeNull();
+  });
+});
 
 describe('extractUrlsFromText', () => {
   it('matches a scheme-less domain and normalizes it to https', () => {

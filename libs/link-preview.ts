@@ -49,6 +49,15 @@ function compactPreview(url: string): LinkPreviewData {
   return { url, title: domain, description: '', image: null, siteName: domain };
 }
 
+export function getLinkPreviewImage(url: string, image: unknown): string | null {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    // Suno shares use the source tile, including when album art is supplied.
+    if (host === 'suno.com' || host === 'www.suno.com') return null;
+  } catch { /* no provider-specific image treatment */ }
+  return typeof image === 'string' ? image.replace(/&amp;/gi, '&') : null;
+}
+
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
@@ -72,7 +81,7 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
       description: data.description || '',
       // OG attributes can contain HTML-escaped query separators. Decode them
       // before the share-image endpoint receives the URL.
-      image: typeof data.image === 'string' ? data.image.replace(/&amp;/gi, '&') : null,
+      image: getLinkPreviewImage(url, data.image),
       siteName: data.siteName || compactPreview(url).siteName,
     };
 
