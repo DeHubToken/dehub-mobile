@@ -26,7 +26,7 @@ function shortAddress(address: string): string {
   return address.length > 12 ? `${address.slice(0, 6)}…${address.slice(-4)}` : address;
 }
 
-export function ProfilesSection() {
+export function ProfilesSection({ onSelect }: { onSelect?: () => void } = {}) {
   const { t } = useTranslation();
   const user = useUser();
   const { switchToProfile, openAddProfile } = useAuthActions();
@@ -62,6 +62,7 @@ export function ProfilesSection() {
   const handleSwitch = useCallback(
     async (id: string) => {
       if (switchingId) return;
+      onSelect?.();
       setSwitchingId(id);
       try {
         await switchToProfile(id);
@@ -69,7 +70,7 @@ export function ProfilesSection() {
         setSwitchingId(null);
       }
     },
-    [switchingId, switchToProfile]
+    [switchingId, switchToProfile, onSelect]
   );
 
   if (profiles.length === 0 && !user) return null;
@@ -124,7 +125,7 @@ export function ProfilesSection() {
       })}
       <Divider />
       <TouchableOpacity
-        onPress={openAddProfile}
+        onPress={() => { onSelect?.(); openAddProfile(); }}
         disabled={!!switchingId}
         activeOpacity={0.7}
         className="px-4 py-3 flex-row items-center"

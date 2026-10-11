@@ -12,7 +12,7 @@ import { ProfilesSection } from '../Settings/ProfilesSection';
 
 export default function QuickActionsHost({ children, getScreen }: { children: React.ReactNode; getScreen: () => string }) {
   const { t } = useTranslation();
-  const { signOut } = useAuthActions();
+  const { signOut, requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
   const user = useUser();
   const account = user?.walletAddress || user?.address;
@@ -45,11 +45,11 @@ export default function QuickActionsHost({ children, getScreen }: { children: Re
     <GlassModal visible={view === 'menu' || view === 'profiles'} onClose={close} presentation="bottom" dismissible={!busy} scrollable>
       <View className="p-5">
         <Text className="text-theme-foreground text-lg font-bold mb-2">{t(view === 'profiles' ? 'settings.switchAccount' : 'quickActions.title')}</Text>
-        {view === 'profiles' ? <ProfilesSection /> : <>
+        {view === 'profiles' ? <ProfilesSection onSelect={close} /> : <>
           <Text className="text-theme-neutrals-400 text-sm mb-3">{t('quickActions.hint')}</Text>
           <TouchableOpacity accessibilityRole="button" disabled={busy} className="py-4" onPress={() => setView('report')}><Text className="text-theme-foreground">{t('settings.reportBug')}</Text></TouchableOpacity>
           <TouchableOpacity accessibilityRole="button" disabled={busy} className="py-4" onPress={() => action(async () => { feedEvents.requestRefresh(); await queryClient.refetchQueries({ type: 'active' }, { throwOnError: true }); })}><Text className="text-theme-foreground">{t('quickActions.refresh')}</Text></TouchableOpacity>
-          <TouchableOpacity accessibilityRole="button" disabled={busy} className="py-4" onPress={() => setView('profiles')}><Text className="text-theme-foreground">{t('settings.switchAccount')}</Text></TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" disabled={busy} className="py-4" onPress={() => { if (isSignedIn) setView('profiles'); else { close(); requireAuth(() => {}); } }}><Text className="text-theme-foreground">{t('settings.switchAccount')}</Text></TouchableOpacity>
           <TouchableOpacity accessibilityRole="button" disabled={busy || !isSignedIn} className="py-4" onPress={() => action(signOut)}><Text className="text-theme-foreground" style={{ opacity: isSignedIn ? 1 : 0.4 }}>{t('quickActions.logout')}</Text></TouchableOpacity>
         </>}
         {failed && <Text accessibilityRole="alert" className="text-red-400 text-sm">{t('quickActions.failed')}</Text>}
