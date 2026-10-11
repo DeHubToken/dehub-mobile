@@ -14,6 +14,18 @@ const freshShotScope = () => `${Date.now()}:${++assemblyScopeCounter}`;
 const freshShotScopes = (shots: AssemblyShot[]) => Object.fromEntries(shots.map(shot => [assemblyShotKey(shot), freshShotScope()]));
 export interface AssemblyPlan { shots: AssemblyShot[]; transition: TransitionKind | null; soundId: string | null }
 const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
+const exclusionItem = "(?:music|soundtrack|musique|audio|transitions?|fades?|dissolves?|fondus?)";
+const exclusionPrefix = "(?:without|no|sans)\\s+";
+const exclusionList = `${exclusionItem}(?:(?:\\s*,\\s*(?:(?:and|or|nor|et|ou|ni)\\s+)?|\\s+(?:and|or|nor|et|ou|ni)\\s+)(?:${exclusionPrefix})?${exclusionItem})*`;
+const onlyExclusions = new RegExp(`^${exclusionPrefix}${exclusionList}$`);
+function assemblyExclusions(text: string): { music: boolean; transition: boolean } {
+  let music = false, transition = false;
+  for (const match of text.matchAll(new RegExp(`\\b${exclusionPrefix}(${exclusionList})\\b`, "g"))) {
+    music ||= /\b(?:music|soundtrack|musique|audio)\b/.test(match[1]);
+    transition ||= /\b(?:transitions?|fades?|dissolves?|fondus?)\b/.test(match[1]);
+  }
+  return { music, transition };
+}
 const finite = (n: number) => Number.isFinite(n);
 const round = (n: number) => Math.round(n * 1e6) / 1e6;
 const invalid = (): never => { throw new Error("assembly_invalid"); };
@@ -31,10 +43,11 @@ export function assemblyRequest(prompt: string): AssemblyRequest | null {
   const duration = text.match(/\b(\d+(?:\.\d+)?)\s*[- ]?\s*(?:seconds?|secs?|s|secondes?)\b/);
   const seconds = duration ? Number(duration[1]) : undefined;
   const focus = files.named ? undefined : assemblyFocus(prompt);
-  return { ...(focus ? { focus } : {}), ...(files.named ? { filePrompt: prompt, musicExcluded: /\b(?:without|no|sans)\s+(?:music|soundtrack|musique|audio)\b/.test(text) } : {}),
+  const excluded = assemblyExclusions(text);
+  return { ...(focus ? { focus } : {}), ...(files.named ? { filePrompt: prompt, musicExcluded: excluded.music } : {}),
     ...(seconds !== undefined ? { seconds } : {}), selected: /\b(?:selected|selectionnes?)\b/.test(text),
-    transition: /\b(?:without|no|sans)\s+(?:transitions?|fades?|fondus?)\b/.test(text) ? null : /\b(?:fades?|dissolves?|transitions?|fondus?)\b/.test(text) ? "fade" : null,
-    music: /\b(?:music|soundtrack|musique)\b/.test(text) && !/\b(?:without|no|sans)\s+(?:music|soundtrack|musique)\b/.test(text) };
+    transition: excluded.transition ? null : /\b(?:fades?|dissolves?|transitions?|fondus?)\b/.test(text) ? "fade" : null,
+    music: /\b(?:music|soundtrack|musique)\b/.test(text) && !excluded.music };
 }
 
 export function assemblyMedia(project: ProjectSnapshot): MediaClip[] {
@@ -308,6 +321,11 @@ export class AssemblySession {
   review(prompt: string): boolean {
     const text = prompt.trim().toLowerCase().replace(/[.!?]+$/, "");
     if (this.state.busy || !this.matchesSource()) return false;
+    if (onlyExclusions.test(text)) {
+      const excluded = assemblyExclusions(text);
+      this.edit({ ...(excluded.music ? { soundId: null } : {}), ...(excluded.transition ? { transition: null } : {}) });
+      return true;
+    }
     if (/^(?:reverse(?: the)? order|reverse|inverse l'ordre)$/.test(text)) { this.edit({ shots: [...this.state.shots].reverse() }); return true; }
     const remove = /^(?:remove|drop|delete|retire)(?: (?:shot|clip|plan))? (\d+)$/.exec(text);
     if (remove) { const index = Number(remove[1]) - 1; if (!this.state.shots[index]) return false; this.remove(index); return true; }
