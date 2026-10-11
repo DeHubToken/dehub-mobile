@@ -6001,7 +6001,17 @@
     "upcomingStream": "البث القادم",
     "startsIn": "يبدأ {{time}}",
     "notStartedYet": "لم يبدأ صانع المحتوى البث بعد",
-    "leftStream": "غادر البث"
+    "leftStream": "غادر البث",
+    "whosHere": "مين هنا",
+    "hereCount": "{{formatted}} هنا",
+    "watchingCount": "{{formatted}} يتفرج",
+    "startedAgo": "بدأ {{time}}",
+    "host": "المضيف",
+    "topTippers": "أعلى المتبرعين",
+    "mostActive": "الأكثر نشاطًا",
+    "hereNow": "هنا الآن",
+    "nobodyYet": "ما في أحد بعد",
+    "rotate": "دوّر الشاشة"
   },
   "search": {
     "endOfResults": "نهاية النتائج",

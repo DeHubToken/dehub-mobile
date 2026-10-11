@@ -6004,7 +6004,17 @@
     "startsIn": "{{time}} सुरू होते",
     "notStartedYet": "टेलिग्रामने अद्याप लॉन्च केले नाही",
     "leftStream": "प्रवाह सोडला",
-    "duration": "वीर्यपिचकारी {{duration}}"
+    "duration": "वीर्यपिचकारी {{duration}}",
+    "whosHere": "कोण आहे इथे?",
+    "hereCount": "{{formatted}} येथे",
+    "watchingCount": "{{formatted}} पहात आहे",
+    "startedAgo": "{{time}} सुरू केले",
+    "host": "यजमान",
+    "topTippers": "टॉप टिप्स",
+    "mostActive": "सर्वाधिक सक्रिय",
+    "hereNow": "आता येथे",
+    "nobodyYet": "अद्याप कोणीही नाही",
+    "rotate": "स्क्रीन फिरवा"
   },
   "search": {
     "endOfResults": "निकालांचा शेवट",

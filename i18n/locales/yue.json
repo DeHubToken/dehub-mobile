@@ -6001,7 +6001,17 @@
     "upcomingStream": "嚟緊嘅串流",
     "startsIn": "開始 {{time}}",
     "notStartedYet": "個流媒體仲未開始播",
-    "leftStream": "離開咗條流"
+    "leftStream": "離開咗條流",
+    "whosHere": "邊個喺度",
+    "hereCount": "{{formatted}} 呢度",
+    "watchingCount": "{{formatted}} 睇緊",
+    "startedAgo": "開始咗 {{time}}",
+    "host": "主持人",
+    "topTippers": "頂級小費者",
+    "mostActive": "最活躍",
+    "hereNow": "而家喺度",
+    "nobodyYet": "仲未有人",
+    "rotate": "旋轉螢幕"
   },
   "search": {
     "endOfResults": "結果到底喇",

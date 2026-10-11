@@ -6008,7 +6008,17 @@
     "upcomingStream": "Gaidāmā straume",
     "startsIn": "Sākas {{time}}",
     "notStartedYet": "Straumētājs vēl nav sācis apraidi",
-    "leftStream": "atstāja straumi"
+    "leftStream": "atstāja straumi",
+    "whosHere": "Kurš ir klāt",
+    "hereCount": "{{formatted}} šeit",
+    "watchingCount": "{{formatted}} skatās",
+    "startedAgo": "Sākts {{time}}",
+    "host": "Saimnieks",
+    "topTippers": "Populārākās dzeramnaudas",
+    "mostActive": "Aktīvākie",
+    "hereNow": "Šeit tagad",
+    "nobodyYet": "Vēl neviens",
+    "rotate": "Pagriezt ekrānu"
   },
   "search": {
     "endOfResults": "Rezultātu beigas",

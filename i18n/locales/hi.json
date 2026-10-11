@@ -6095,7 +6095,17 @@
     "upcomingStream": "आगामी स्ट्रीम",
     "startsIn": "{{time}} को शुरू होगा",
     "notStartedYet": "स्ट्रीमर ने अभी तक प्रसारण शुरू नहीं किया है",
-    "leftStream": "स्ट्रीम छोड़ दिया"
+    "leftStream": "स्ट्रीम छोड़ दिया",
+    "whosHere": "यहाँ कौन है",
+    "hereCount": "{{formatted}} यहाँ",
+    "watchingCount": "{{formatted}} देख रहा है",
+    "startedAgo": "शुरू किया {{time}}",
+    "host": "होस्ट",
+    "topTippers": "शीर्ष टिप देने वाले",
+    "mostActive": "सबसे सक्रिय",
+    "hereNow": "अब यहाँ",
+    "nobodyYet": "अभी तक कोई नहीं",
+    "rotate": "स्क्रीन घुमाएँ"
   },
   "search": {
     "endOfResults": "परिणामों का अंत",

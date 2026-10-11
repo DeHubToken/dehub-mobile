@@ -5953,7 +5953,17 @@
     "streamHasEnded": "Stream don finish",
     "notStartedYet": "Di streamer no don start broadcast yet",
     "openProfileOf": "Open {{name}} yi profile",
-    "leftStream": "don komot for di stream"
+    "leftStream": "don komot for di stream",
+    "whosHere": "Who's here",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}",
+    "host": "Host",
+    "topTippers": "Top tippers",
+    "mostActive": "Most active",
+    "hereNow": "Here now",
+    "nobodyYet": "No one yet",
+    "rotate": "Turn di screen"
   },
   "search": {
     "endOfResults": "Results don finish",

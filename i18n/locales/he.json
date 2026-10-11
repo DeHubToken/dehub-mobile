@@ -6003,7 +6003,17 @@
     "upcomingStream": "הזרמה קרובה",
     "startsIn": "מתחיל ב -{{time}}",
     "notStartedYet": "הסטרימר עדיין לא התחיל לשדר",
-    "leftStream": "עזב את הנחל"
+    "leftStream": "עזב את הנחל",
+    "whosHere": "מי כאן?",
+    "hereCount": "{{formatted}} כאן",
+    "watchingCount": "{{formatted}} צפייה",
+    "startedAgo": "התחיל ב-{{time}}",
+    "host": "מארח/ת",
+    "topTippers": "טיפים מעולים",
+    "mostActive": "הפעיל ביותר",
+    "hereNow": "כאן עכשיו",
+    "nobodyYet": "עדיין אין אף אחד",
+    "rotate": "סובב את המסך"
   },
   "search": {
     "endOfResults": "סוף התוצאות",

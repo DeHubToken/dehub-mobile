@@ -6037,7 +6037,17 @@
     "upcomingStream": "Chunnt bald",
     "startsIn": "Startet {{time}}",
     "notStartedYet": "De Streamer hät no nöd agfange z'sende",
-    "leftStream": "hät de Stream verloh"
+    "leftStream": "hät de Stream verloh",
+    "whosHere": "Wer isch da",
+    "hereCount": "{{formatted}} da",
+    "watchingCount": "{{formatted}} luegt",
+    "startedAgo": "Gstartet {{time}}",
+    "host": "Gastgeber",
+    "topTippers": "Top Tipper",
+    "mostActive": "Meischti aktiv",
+    "hereNow": "Jetzt da",
+    "nobodyYet": "No einisch no kei",
+    "rotate": "Bildschirm dräie"
   },
   "search": {
     "endOfResults": "Ändi vo de Ergebnis",

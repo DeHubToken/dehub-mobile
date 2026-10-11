@@ -6036,7 +6036,17 @@
     "leftStream": "جریان را ترک کرد",
     "sentAmount": "{{amount}} ارسال شد",
     "duration": "مدت زمان {{duration}}",
-    "endedAgo": "پایان یافته {{time}}"
+    "endedAgo": "پایان یافته {{time}}",
+    "whosHere": "کی اینجاست؟",
+    "hereCount": "{{formatted}} اینجا",
+    "watchingCount": "{{formatted}} در حال تماشا",
+    "startedAgo": "شروع شد {{time}}",
+    "host": "میزبان",
+    "topTippers": "برترین انعام دهندگان",
+    "mostActive": "فعال‌ترین",
+    "hereNow": "الان اینجام.",
+    "nobodyYet": "هنوز کسی نیست",
+    "rotate": "چرخش صفحه"
   },
   "search": {
     "endOfResults": "پایان نتایج",

@@ -5987,7 +5987,17 @@
     "upcomingStream": "ايندڙ وهڪرو",
     "startsIn": "شروع ٿئي ٿو {{time}}",
     "notStartedYet": "اسٽريمر اڃا تائين نشر ڪرڻ شروع نه ڪيو آهي",
-    "leftStream": "وهڪرو ڇڏي ڏنو"
+    "leftStream": "وهڪرو ڇڏي ڏنو",
+    "whosHere": "ڪير آيو آهي",
+    "hereCount": "{{formatted}} ھتي ھتي",
+    "watchingCount": "{{formatted}} نگراني",
+    "startedAgo": "شروع ڪيو ويو {{time}}",
+    "host": "ميزبان",
+    "topTippers": "مٿيون ٽائپر",
+    "mostActive": "سڀ کان وڌيڪ سرگرم",
+    "hereNow": "ھتي ھاڻي",
+    "nobodyYet": "اڃان تائين ڪوبه",
+    "rotate": "اسڪرين گھمايو"
   },
   "search": {
     "endOfResults": "نتيجن جو پڇاڙي",

@@ -6003,7 +6003,17 @@
     "upcomingStream": "வரவிருக்கும் ஸ்ட்ரீம்",
     "startsIn": "தொடங்குகிறது {{time}}",
     "notStartedYet": "ஸ்ட்ரீமர் இன்னும் ஒளிபரப்பைத் தொடங்கவில்லை",
-    "leftStream": "ஸ்ட்ரீமை விட்டு வெளியேறினார்"
+    "leftStream": "ஸ்ட்ரீமை விட்டு வெளியேறினார்",
+    "whosHere": "இங்கே யார் இருக்கிறார்கள்",
+    "hereCount": "{{formatted}} இங்கே",
+    "watchingCount": "{{formatted}} பார்ப்பது",
+    "startedAgo": "தொடங்கப்பட்டது {{time}}",
+    "host": "புரவலன்",
+    "topTippers": "சிறந்த டிப்பர்கள்",
+    "mostActive": "மிகவும் செயலில்",
+    "hereNow": "இப்போது இங்கே",
+    "nobodyYet": "இதுவரை யாரும் இல்லை",
+    "rotate": "திரையை சுழற்று"
   },
   "search": {
     "endOfResults": "முடிவுகளின் இறுதி",

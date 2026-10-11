@@ -6008,7 +6008,17 @@
     "upcomingStream": "Fluxul următor",
     "startsIn": "Începe la{{time}}",
     "notStartedYet": "Streamerul nu a început încă să emită",
-    "leftStream": "a părăsit stream-ul"
+    "leftStream": "a părăsit stream-ul",
+    "whosHere": "Cine este aici",
+    "hereCount": "{{formatted}} aici",
+    "watchingCount": "{{formatted}} vizionarea",
+    "startedAgo": "Început la{{time}}",
+    "host": "Gazdă",
+    "topTippers": "Basculante superioare",
+    "mostActive": "Cele mai active",
+    "hereNow": "Aici acum",
+    "nobodyYet": "Nimeni încă",
+    "rotate": "Rotiți ecranul"
   },
   "search": {
     "endOfResults": "Sfârșitul rezultatelor",

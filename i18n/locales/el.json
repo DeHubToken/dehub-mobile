@@ -6027,7 +6027,17 @@
     "upcomingStream": "Επερχόμενη ροή",
     "startsIn": "Ξεκινά {{time}}",
     "notStartedYet": "Η μετάδοση μέσω streamer δεν έχει ξεκινήσει ακόμα",
-    "leftStream": "αποχώρησε από το ρεύμα"
+    "leftStream": "αποχώρησε από το ρεύμα",
+    "whosHere": "Ποιος είναι εδώ",
+    "hereCount": "{{formatted}} εδώ",
+    "watchingCount": "{{formatted}} παρακολουθώ",
+    "startedAgo": "Ξεκίνησε στις {{time}}",
+    "host": "Οικοδεσπότης",
+    "topTippers": "Κορυφαία φιλοδωρήματα",
+    "mostActive": "Πιο ενεργός/ή",
+    "hereNow": "Εδώ τώρα",
+    "nobodyYet": "Κανείς ακόμα",
+    "rotate": "Περιστροφή οθόνης"
   },
   "search": {
     "endOfResults": "Τέλος αποτελεσμάτων",

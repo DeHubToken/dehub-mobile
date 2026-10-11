@@ -5981,7 +5981,17 @@
     "upcomingStream": "Келе жаткан агым",
     "startsIn": "Башталууда {{time}}",
     "notStartedYet": "Агым өткөргүч азырынча эфирге чыга элек",
-    "leftStream": "агымдан чыкты"
+    "leftStream": "агымдан чыкты",
+    "whosHere": "Ким бул жерде",
+    "hereCount": "{{formatted}} Бул жерде",
+    "watchingCount": "{{formatted}} карап чыгуу",
+    "startedAgo": "Башталды {{time}}",
+    "host": "Хост",
+    "topTippers": "Эң жогорку быйылчылар",
+    "mostActive": "Эң активдүү",
+    "hereNow": "Бул жерде",
+    "nobodyYet": "Азырынча эч ким",
+    "rotate": "Экранды буруу"
   },
   "search": {
     "endOfResults": "Натыйжалардын аягы",

@@ -6008,7 +6008,17 @@
     "upcomingStream": "Gələcək axın",
     "startsIn": "Başlayır {{time}}",
     "notStartedYet": "Yayımçı hələ yayıma başlamayıb",
-    "leftStream": "axını tərk etdi"
+    "leftStream": "axını tərk etdi",
+    "whosHere": "Kimlər buradadır",
+    "watchingCount": "{{formatted}} izləmə",
+    "startedAgo": "Başladı {{time}}",
+    "host": "Ev sahibi",
+    "topTippers": "Ən populyar ipucları",
+    "mostActive": "Ən aktiv",
+    "hereNow": "İndi burada",
+    "nobodyYet": "Hələ heç kim yoxdur",
+    "hereCount": "{{formatted}} here",
+    "rotate": "Ekranı fırlat"
   },
   "search": {
     "endOfResults": "Nəticələrin sonu",

@@ -5985,7 +5985,17 @@
     "upcomingStream": "ಮುಂಬರುವ ಸ್ಟ್ರೀಮ್",
     "startsIn": "{{time}} ಪ್ರಾರಂಭವಾಗುತ್ತದೆ",
     "notStartedYet": "ಸ್ಟ್ರೀಮರ್ ಇನ್ನೂ ಪ್ರಸಾರವನ್ನು ಪ್ರಾರಂಭಿಸಿಲ್ಲ",
-    "leftStream": "ಸ್ಟ್ರೀಮ್‌ನಿಂದ ಹೊರಟುಹೋದರು"
+    "leftStream": "ಸ್ಟ್ರೀಮ್‌ನಿಂದ ಹೊರಟುಹೋದರು",
+    "whosHere": "ಯಾರು ಇಲ್ಲಿದ್ದಾರೆ",
+    "hereCount": "{{formatted}} ಇಲ್ಲಿ",
+    "watchingCount": "{{formatted}} ವೀಕ್ಷಣೆ",
+    "startedAgo": "ಪ್ರಾರಂಭಿಸಲಾಗಿದೆ {{time}}",
+    "host": "ಅತಿಥೇಯ",
+    "topTippers": "ಟಾಪ್ ಟಿಪ್ಪರ್‌ಗಳು",
+    "mostActive": "ಅತ್ಯಂತ ಸಕ್ರಿಯ",
+    "hereNow": "ಇಲ್ಲಿ ಈಗ",
+    "nobodyYet": "ಇನ್ನೂ ಯಾರೂ ಇಲ್ಲ",
+    "rotate": "ಪರದೆಯನ್ನು ತಿರುಗಿಸಿ"
   },
   "search": {
     "endOfResults": "ಫಲಿತಾಂಶಗಳ ಅಂತ್ಯ",

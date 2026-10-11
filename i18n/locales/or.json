@@ -5986,7 +5986,17 @@
     "upcomingStream": "ଆଗାମୀ ପ୍ରବାହ",
     "startsIn": "{{time}} ଆରମ୍ଭ କରନ୍ତୁ",
     "notStartedYet": "ଷ୍ଟ୍ରିମର୍ ଏପର୍ଯ୍ୟନ୍ତ ପ୍ରସାରଣ ଆରମ୍ଭ କରିନାହିଁ",
-    "leftStream": "ପ୍ରବାହକୁ ଛାଡିଦିଅନ୍ତୁ"
+    "leftStream": "ପ୍ରବାହକୁ ଛାଡିଦିଅନ୍ତୁ",
+    "whosHere": "କିଏ ଏଠି",
+    "hereCount": "{{formatted}} ଏଠାରେ",
+    "watchingCount": "{{formatted}} ଦେଖନ୍ତୁ",
+    "startedAgo": "{{time}} ଆରମ୍ଭ ହୋଇଛି",
+    "host": "ହୋଷ୍ଟ",
+    "topTippers": "ଶୀର୍ଷ ଟିପ୍ପର",
+    "mostActive": "ସର୍ବାଧିକ ସକ୍ରିୟ",
+    "hereNow": "ଏଠାରେ ବର୍ତ୍ତମାନ",
+    "nobodyYet": "ଏଯାଏଁ କେହି",
+    "rotate": "ପରଦା ଘୁରାଅ"
   },
   "search": {
     "endOfResults": "ଫଳାଫଳର ଶେଷ",

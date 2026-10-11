@@ -6051,7 +6051,17 @@
     "upcomingStream": "Luồng sắp tới",
     "startsIn": "Bắt đầu {{time}}",
     "notStartedYet": "Người phát trực tuyến chưa bắt đầu phát sóng",
-    "leftStream": "đã rời khỏi luồng"
+    "leftStream": "đã rời khỏi luồng",
+    "whosHere": "Ai ở đây",
+    "hereCount": "Có {{formatted}} ở đây",
+    "watchingCount": "Đang xem {{formatted}}",
+    "startedAgo": "Đã bắt đầu {{time}}",
+    "host": "Chủ nhà",
+    "topTippers": "Tippers hàng đầu",
+    "mostActive": "Hoạt động tích cực nhất",
+    "hereNow": "Ở đây ngay bây giờ",
+    "nobodyYet": "Chưa có ai",
+    "rotate": "Xoay màn hình"
   },
   "search": {
     "endOfResults": "Hết kết quả",

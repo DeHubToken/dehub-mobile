@@ -6099,7 +6099,17 @@
     "upcomingStream": "Bevorstehender Stream",
     "startsIn": "Beginnt am {{time}}",
     "notStartedYet": "Der Streamer hat noch nicht mit der Übertragung begonnen",
-    "leftStream": "hat den Stream verlassen"
+    "leftStream": "hat den Stream verlassen",
+    "whosHere": "Wer ist hier",
+    "hereCount": "{{formatted}} hier",
+    "watchingCount": "{{formatted}} beobachten",
+    "startedAgo": "Gestartet {{time}}",
+    "host": "Gastgeber",
+    "topTippers": "Top-Kipper",
+    "mostActive": "Am aktivsten",
+    "hereNow": "Jetzt hier",
+    "nobodyYet": "Noch niemand",
+    "rotate": "Bildschirm drehen"
   },
   "search": {
     "endOfResults": "Ende der Ergebnisse",

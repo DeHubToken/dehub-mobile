@@ -5985,7 +5985,17 @@
     "upcomingStream": "ඉදිරියට නියමිත ප් ‍ රවාහය",
     "startsIn": "ආරම්භ වේ {{time}}",
     "notStartedYet": "ගුවන්විදුලිය තවමත් විකාශය ආරම්භ කර නැත",
-    "leftStream": "ප් ‍ රවාහය ඉතිරි කරන්න"
+    "leftStream": "ප් ‍ රවාහය ඉතිරි කරන්න",
+    "whosHere": "කවුද මෙතන ඉන්නේ",
+    "hereCount": "{{formatted}} මෙතන",
+    "watchingCount": "{{formatted}} බලාගෙනයි",
+    "startedAgo": "ආරම්භ කරන ලදි{{time}}",
+    "host": "ධාරකය",
+    "topTippers": "ඉහළම සන්තෝසම්",
+    "mostActive": "වඩාත් ක් ‍ රියාකාරීයි",
+    "hereNow": "මෙන්න දැන්",
+    "nobodyYet": "තවම කිසිවෙකු නැත",
+    "rotate": "තිරය භ් ‍ රමණය කරන්න"
   },
   "search": {
     "endOfResults": "ප්‍රතිඵල අවසන්",

@@ -6021,7 +6021,17 @@
     "upcomingStream": "Ukusakaza Okuzayo",
     "startsIn": "Kuqala {{time}}",
     "notStartedYet": "I-streamer ayikaqali ukusakaza okwamanje",
-    "leftStream": "ushiye umfudlana"
+    "leftStream": "ushiye umfudlana",
+    "whosHere": "Ubani olapha",
+    "hereCount": "{{formatted}} lapha",
+    "watchingCount": "{{formatted}} ukubuka",
+    "startedAgo": "Iqalile {{time}}",
+    "host": "Umbungazi",
+    "topTippers": "Abacebisi abahamba phambili",
+    "mostActive": "Okusebenzayo kakhulu",
+    "hereNow": "Lapha manje",
+    "nobodyYet": "Akekho okwamanje",
+    "rotate": "Jikelezisa isikrini"
   },
   "search": {
     "endOfResults": "Ukuphela kwemiphumela",

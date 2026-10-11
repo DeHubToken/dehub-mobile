@@ -6008,7 +6008,17 @@
     "upcomingStream": "Маючыя адбыцца патокі",
     "startsIn": "Пачатак {{time}}",
     "notStartedYet": "Стрымінгер яшчэ не пачаў вяшчанне",
-    "leftStream": "сышоў з патоку"
+    "leftStream": "сышоў з патоку",
+    "whosHere": "Хто тут",
+    "hereCount": "{{formatted}} тут",
+    "watchingCount": "{{formatted}} назіранне",
+    "startedAgo": "Пачатак {{time}}",
+    "host": "Вэб-хостынг",
+    "topTippers": "Верхнія падказкі",
+    "mostActive": "Найбольш актыўны",
+    "hereNow": "Тут і цяпер",
+    "nobodyYet": "Ніхто пакуль",
+    "rotate": "Павярнуць экран"
   },
   "search": {
     "endOfResults": "Канец вынікаў",

@@ -5988,7 +5988,17 @@
     "upcomingStream": "Gelejekki akym",
     "startsIn": "Başla {{time}}",
     "notStartedYet": "Häzirki ýaly, maşynly tüýşükler görlüp çykmady.",
-    "leftStream": "garawul diňi we Garawul diňi"
+    "leftStream": "garawul diňi we Garawul diňi",
+    "whosHere": "Ol ýerde kim bar?",
+    "hereCount": "{{formatted}} bu ýerde",
+    "startedAgo": "Başlangyş {{time}}",
+    "host": "Öý eýesi",
+    "topTippers": "Top Tippers",
+    "mostActive": "Iň hereketli",
+    "hereNow": "Bu ýerde",
+    "nobodyYet": "Häzir hiç kim",
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "Ekrany aýyrmak"
   },
   "search": {
     "endOfResults": "Netijeleriň ahyry",

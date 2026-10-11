@@ -6194,7 +6194,17 @@
     "upcomingStream": "Yaklaşan Akış",
     "startsIn": "Başlangıç {{time}}",
     "notStartedYet": "Yayıncı henüz yayına başlamadı",
-    "leftStream": "dereden ayrıldı"
+    "leftStream": "dereden ayrıldı",
+    "whosHere": "Kimler var",
+    "hereCount": "{{formatted}} burada",
+    "watchingCount": "{{formatted}} izliyor",
+    "startedAgo": "{{time}} başlatıldı",
+    "host": "Ev Sahibi",
+    "topTippers": "En çok bahşiş veren",
+    "mostActive": "En aktif",
+    "hereNow": "Şimdi burada",
+    "nobodyYet": "Henüz hiç kimse",
+    "rotate": "Ekranı döndür"
   },
   "search": {
     "endOfResults": "Sonuçların sonu",

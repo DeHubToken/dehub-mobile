@@ -5956,7 +5956,17 @@
     "upcomingStream": "Ҷараёни Оянда",
     "startsIn": "Оғоз {{time}}",
     "leftStream": "чапи ҷараён",
-    "notStartedYet": "Стример ҳанӯз пахшро оғоз накардааст"
+    "notStartedYet": "Стример ҳанӯз пахшро оғоз накардааст",
+    "whosHere": "Кӣ дар ин ҷо аст",
+    "startedAgo": "Оғоз шуд {{time}}",
+    "host": "Соҳиб",
+    "mostActive": "Фаъолтарин",
+    "hereNow": "Дар ин ҷо ҳоло",
+    "nobodyYet": "Ҳеҷ кас ҳанӯз",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "topTippers": "Top tippers",
+    "rotate": "Даврзанонии экран"
   },
   "search": {
     "endOfResults": "Охири натиҷаҳо",

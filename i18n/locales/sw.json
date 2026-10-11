@@ -6009,7 +6009,17 @@
     "upcomingStream": "Mtiririko Ujao",
     "startsIn": "Inaanza {{time}}",
     "notStartedYet": "Mtiririko bado haujaanza utangazaji",
-    "leftStream": "iliondoka kwenye mkondo"
+    "leftStream": "iliondoka kwenye mkondo",
+    "whosHere": "Nani yuko hapa",
+    "hereCount": "{{formatted}} hapa",
+    "watchingCount": "{{formatted}} kuangalia",
+    "startedAgo": "Ilianza {{time}}",
+    "host": "Mwenyeji",
+    "topTippers": "Watoaji bakshishi maarufu",
+    "mostActive": "Amilifu zaidi",
+    "hereNow": "Hapa sasa",
+    "nobodyYet": "Hakuna mtu bado",
+    "rotate": "Zungusha skrini"
   },
   "search": {
     "endOfResults": "Mwisho wa matokeo",
