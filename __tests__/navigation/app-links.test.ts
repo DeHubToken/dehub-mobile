@@ -59,6 +59,11 @@ beforeEach(() => {
 });
 
 describe('a link that starts the app', () => {
+  it.each(['/feedback', '/app/feedback'])('opens %s with the tool context and Home underneath', (path) => {
+    const state = resolve(`${path}?source=converter`);
+    expect(appStack(state)).toEqual(['Root', 'Feedback']);
+    expect(target(state).params).toEqual({ source: 'converter' });
+  });
   it('puts Home under the page it opens', () => {
     const state = resolve('/app/post/123');
     expect(appStack(state)).toEqual(['Root', 'PostResolver']);

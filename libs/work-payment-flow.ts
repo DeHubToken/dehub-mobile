@@ -30,6 +30,11 @@ function rejectedBeforeBroadcast(error: unknown) {
 export async function runWorkPayment(submissionId: string, chain: number, deps: WorkPaymentDependencies, recoveryHash?: string) {
   const intent = await deps.rpc('work_claim_payment', { p_submission: submissionId, p_chain: chain }) as WorkPaymentIntent;
   const key = `work-payment:${intent.id}`;
+  // Another device may have completed this intent before the UI refreshed.
+  if (intent.state === 'confirmed') {
+    try { await deps.storage.remove(key); } catch { /* server confirmation is authoritative */ }
+    return 'confirmed' as const;
+  }
   let hash = intent.tx_hash || recoveryHash;
   if (!hash) {
     try { hash = await deps.storage.get(key) || undefined; } catch { /* the server reservation still prevents another transfer */ }
@@ -41,7 +46,10 @@ export async function runWorkPayment(submissionId: string, chain: number, deps: 
     let sent: Awaited<ReturnType<WorkPaymentDependencies['send']>>;
     try { sent = await deps.send(intent); }
     catch (error) {
-      if (rejectedBeforeBroadcast(error)) await deps.rpc('work_cancel_signature', { p_intent: intent.id });
+      if (rejectedBeforeBroadcast(error)) {
+        try { await deps.rpc('work_cancel_signature', { p_intent: intent.id }); }
+        catch { /* retain the reservation and the original preparation/signing error */ }
+      }
       throw error;
     }
     hash = sent.hash;
@@ -60,10 +68,10 @@ export async function runWorkPayment(submissionId: string, chain: number, deps: 
   if (!proof) return 'pending' as const;
   const state = await deps.rpc('work_finalize_payment', { p_intent: intent.id, p_payload: proof.payload, p_signature: proof.signature });
   if (state === 'failed') {
-    await deps.storage.remove(key);
+    try { await deps.storage.remove(key); } catch { /* the verified failure remains authoritative */ }
     throw new Error('The transfer reverted. No payout was recorded; you can retry payment.');
   }
   if (state !== 'confirmed') throw new Error('Payment is awaiting verified confirmation');
-  await deps.storage.remove(key);
+  try { await deps.storage.remove(key); } catch { /* server confirmation is authoritative */ }
   return 'confirmed' as const;
 }

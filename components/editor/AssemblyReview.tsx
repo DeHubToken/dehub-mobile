@@ -2,7 +2,7 @@ import { useDraftState } from "../../hooks/useDraftState";
 import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { assemblyDuration, type AssemblyState, type AssemblySession } from "../../libs/editor/assembly";
+import { assemblyDuration, assemblyShotKey, type AssemblyState, type AssemblySession } from "../../libs/editor/assembly";
 import { shotTime } from "../../libs/editor/shots";
 
 export default function AssemblyReview({ state, session, changed, names, onPreview, onCreate, onClose }: {
@@ -11,7 +11,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
 }) {
   const { t } = useTranslation();
   const [sceneConsent, setSceneConsent] = useState<string | null>(null);
-  const sceneScope = `${state.sourceId}:${state.focus ?? ""}:${state.shots.map(shot => shot.id).join(",")}`;
+  const sceneScope = `${state.sourceId}:${state.focus ?? ""}:${state.shots.map(assemblyShotKey).join(",")}`;
   useEffect(() => setSceneConsent(null), [sceneScope]);
   if (!state.sourceId) return null;
   const disabled = state.busy || changed;
@@ -29,19 +29,20 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
     {state.matching && <Text accessibilityLiveRegion="polite" className="text-theme-neutrals-300 text-xs">{t("editor.highlights.ranking")} · {Math.round((state.matchProgress ?? 0) * 100)}%</Text>}
     {["noMatch", "matchLimit", "matchDuration", "matchFailed"].includes(state.error ?? "") && button(t("editor.assembly.reviewManually"), () => { session.reviewManually(); })}
     {state.media.map(c => <Pressable key={c.id} accessibilityRole="checkbox" accessibilityLabel={label(c.id)} accessibilityState={{ checked: state.shots.some(s => s.id === c.id), disabled }} disabled={disabled} onPress={() => session.toggle(c.id)} className="flex-row items-center" style={{ gap: 8 }}><Text className="text-white">{state.shots.some(s => s.id === c.id) ? "✓" : "□"}</Text><Text numberOfLines={1} className="flex-1 text-white text-xs">{label(c.id)}</Text></Pressable>)}
-    {state.shots.map((s, index) => <View key={s.id} className="border-t border-white/10 pt-2" style={{ gap: 6 }}>
-      {state.sceneMatches?.[s.id] && <Text className="text-theme-neutrals-300 text-xs">{state.sceneMatches[s.id]}</Text>}
+    {state.shots.map((s, index) => <View key={assemblyShotKey(s)} className="border-t border-white/10 pt-2" style={{ gap: 6 }}>
+      {state.sceneMatches?.[assemblyShotKey(s)] && <Text className="text-theme-neutrals-300 text-xs">{state.sceneMatches[assemblyShotKey(s)]}</Text>}
       <Text numberOfLines={1} className="text-white text-xs">{index + 1}. {label(s.id)}</Text>
       <View className="flex-row flex-wrap" style={{ gap: 8 }}>
         {button(`${t("editor.menu.bringForward")} ${index + 1}`, () => session.move(index, -1), disabled || index === 0)}
         {button(`${t("editor.menu.sendBackward")} ${index + 1}`, () => session.move(index, 1), disabled || index + 1 === state.shots.length)}
-        {button(`${t("common.delete")} ${index + 1}`, () => session.toggle(s.id))}
+        {button(`${t("editor.shots.split")} ${index + 1}`, () => session.split(index), disabled || !Number.isFinite(s.duration) || s.duration < 0.1 || state.shots.length >= 100)}
+        {button(`${t("common.delete")} ${index + 1}`, () => session.remove(index))}
       </View>
       <View className="flex-row items-center flex-wrap" style={{ gap: 8 }}>
         <Text className="text-theme-neutrals-300 text-xs">{t("editor.shots.preview")}</Text>
-        <NumericValue draftScope={`assembly:${state.sourceId}:${s.id}:offset`} value={s.offset} label={`${t("editor.shots.preview")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, value, s.duration)} />
+        <NumericValue draftScope={`assembly:${state.sourceId}:${assemblyShotKey(s)}:${state.shotScopes?.[assemblyShotKey(s)] ?? ""}:offset`} value={s.offset} label={`${t("editor.shots.preview")} ${index + 1}`} disabled={disabled} commit={value => session.range(assemblyShotKey(s), value, s.duration)} />
         <Text className="text-theme-neutrals-300 text-xs">{t("filters.duration")}</Text>
-        <NumericValue draftScope={`assembly:${state.sourceId}:${s.id}:duration`} value={s.duration} label={`${t("filters.duration")} ${index + 1}`} disabled={disabled} commit={value => session.range(s.id, s.offset, value)} />
+        <NumericValue draftScope={`assembly:${state.sourceId}:${assemblyShotKey(s)}:${state.shotScopes?.[assemblyShotKey(s)] ?? ""}:duration`} value={s.duration} label={`${t("filters.duration")} ${index + 1}`} disabled={disabled} commit={value => session.range(assemblyShotKey(s), s.offset, value)} />
       </View>
       {button(`${t("editor.shots.preview")} ${previewRange(s.offset, s.duration)}`, () => onPreview(index), disabled || state.error === "limit")}
     </View>)}
@@ -58,7 +59,7 @@ export default function AssemblyReview({ state, session, changed, names, onPrevi
 }
 
 function NumericValue({ draftScope, value, label, disabled, commit }: { draftScope: string; value: number; label: string; disabled: boolean; commit: (value: number) => void }) {
-  const [text, setText] = useDraftState(draftScope, String(value));
+  const [text, setText] = useDraftState(draftScope, Number.isFinite(value) ? String(value) : "");
   useEffect(() => { if (Number.isFinite(value) && (!text.trim() || Number(text.replace(",", ".")) !== value)) setText.initialize(String(value)); }, [value, setText]);
   useEffect(() => { const next = /^\d+(?:[.,]\d*)?$/.test(text) ? Number(text.replace(",", ".")) : NaN; if (!Object.is(next, value)) commit(next); }, [draftScope]);
   return <TextInput accessibilityLabel={label} editable={!disabled} keyboardType="decimal-pad" value={text} onChangeText={next => { setText(next); commit(/^\d+(?:[.,]\d*)?$/.test(next) ? Number(next.replace(",", ".")) : NaN); }} className="rounded-lg border border-white/20 px-2 py-1 text-white" style={{ minWidth: 60 }} />;

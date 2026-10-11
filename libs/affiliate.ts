@@ -160,6 +160,7 @@ export async function resolveInviteCode(
 
 /** A single account you referred — the "who", not just the count. */
 export type AffiliateReferralEntry = {
+  subId?: string | null;
   /** referred wallet address */
   address: string;
   /** when they were attributed to you */
@@ -213,7 +214,7 @@ export async function loadAffiliateStats(
   // All four queries only depend on the address — run them in parallel.
   // The referral queries select the rows with an exact count, so a single
   // round-trip yields both the "who" list and the counter total.
-  const [codeRes, refRes, l2RefRes, earnRes, viewRes, ctaRes] = await Promise.all([
+  const [codeRes, refRes, l2RefRes, earnRes, viewRes, ctaRes, subRes] = await Promise.all([
     getOrCreateAffiliateCode(addr, shareName),
     // @ts-ignore - affiliate_referrals not in generated Database types
     supabase
@@ -246,6 +247,12 @@ export async function loadAffiliateStats(
       supabase.rpc("get_affiliate_cta_stats" as never),
       addr,
     ) as unknown as Promise<{ data: Array<{ destination: string; clicks: number; unique_visitors: number }> | null }>,
+    (async () => {
+      if (!await ensureWalletSession(addr)) return { data: null };
+      return withWalletHeader(supabase.rpc('get_affiliate_sub_referrals' as never), addr) as unknown as Promise<{
+        data: Array<{ referred_address: string; sub_id: string }> | null;
+      }>;
+    })(),
   ]);
 
   // A failed query resolves with `error` set instead of rejecting. When the
@@ -256,7 +263,8 @@ export async function loadAffiliateStats(
     throw new Error("affiliate stats unavailable");
   }
 
-  const l1List = mapReferralRows(refRes.data);
+  const subByAddress = new Map((subRes.data ?? []).map(row => [row.referred_address.toLowerCase(), row.sub_id]));
+  const l1List = mapReferralRows(refRes.data).map(row => ({ ...row, subId: subByAddress.get(row.address) ?? null }));
   const l2List = mapReferralRows(l2RefRes.data);
 
   const rows = earnRes.data ?? [];
@@ -338,3 +346,4 @@ export async function shareInvite(ownerAddress: string, shareName?: string | nul
   await shareProfile(link, buildInviteMessage(code, link));
   return true;
 }
+import { ensureWalletSession } from './wallet-session';

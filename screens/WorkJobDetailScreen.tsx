@@ -583,10 +583,13 @@ export default function WorkJobDetailScreen() {
                       {s.payout_state === 'broadcast' && <Text style={styles.awaitingText}>{t('work.integrity.paymentPending')}</Text>}
                       {canManage && job.status==='disputed' && awaitingPayment && s.payout_state==='unpaid' && <Pressable onPress={()=>promptReject(s)}><Text style={styles.rejectText}>{t('work.detail.reject')}</Text></Pressable>}
                       {canManage && s.payout_state === 'signing' && (
+                        <Text style={styles.awaitingText}>{t('work.integrity.releaseConfirm')}</Text>
+                      )}
+                      {canManage && s.payout_state === 'signing' && (
                         <TextInput accessibilityLabel={t('work.integrity.recoverTx')} placeholder={t('work.integrity.hashPlaceholder')} autoCapitalize="none"
                           value={recoveryHashes[s.id] || ''} onChangeText={value => setRecoveryHashes(prev => ({...prev,[s.id]:value.trim()}))} style={styles.input} />
                       )}
-                      {canManage && s.payout_state === 'signing' && <Pressable disabled={approveMutation.isPending || payMutation.isPending || releaseMutation.isPending}
+                      {canManage && s.payout_state === 'signing' && <Pressable style={styles.approveBtn} disabled={approveMutation.isPending || payMutation.isPending || releaseMutation.isPending || !!recoveryHashes[s.id]}
                         onPress={()=>Alert.alert(t('work.integrity.releaseSignature'),t('work.integrity.releaseConfirm'),[{text:t('common.cancel')},{text:t('work.integrity.releaseSignature'),onPress:()=>releaseMutation.mutate(s.id)}])}>
                         <Text style={styles.dim}>{t('work.integrity.releaseSignature')}</Text>
                       </Pressable>}
@@ -684,7 +687,7 @@ export default function WorkJobDetailScreen() {
                       {canManage && (isPoster || !!job.fund_tx_hash) && awaitingPayment && (
                         <View style={styles.subActions}>
                           <Pressable
-                            disabled={payMutation.isPending || budgetSpent}
+                            disabled={approveMutation.isPending || payMutation.isPending || releaseMutation.isPending || budgetSpent}
                             onPress={() =>
                               payMutation.mutate({
                                 submission_id: s.id,

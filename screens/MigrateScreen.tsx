@@ -1,3 +1,4 @@
+import FeedbackLink from '../components/FeedbackLink';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * MigrateScreen
@@ -646,6 +647,7 @@ export default function MigrateScreen() {
   const header = (
     <View className="gap-3 pb-1">
       <Text className="text-theme-neutrals-400 text-sm">{t('migrate.subtitle')}</Text>
+      <FeedbackLink source="migration" />
 
       <Pressable onPress={() => navigation.navigate(ScreenNames.Converter)} hitSlop={6} className="self-start">
         <Text className="text-theme-neutrals-300 text-xs underline">{t('migrate.justOne')}</Text>

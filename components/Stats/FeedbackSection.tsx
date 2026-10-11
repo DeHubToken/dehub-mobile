@@ -52,8 +52,11 @@ function CheckBox({ checked }: { checked: boolean }) {
   );
 }
 
-export default function FeedbackSection() {
+export default function FeedbackSection({ source }: { source?: 'converter' | 'migration' } = {}) {
   const { t } = useTranslation();
+  const contextTitle = source === 'converter' ? t('converter.title') : source === 'migration' ? t('migrate.title') : '';
+  const prefix = contextTitle ? `[${contextTitle}]\n` : '';
+  const bodyLimit = MAX_LENGTH - prefix.length;
   const user = useUser();
   const { isSignedIn } = useAuthState();
   const walletAddress = user?.walletAddress || user?.address || null;
@@ -83,7 +86,7 @@ export default function FeedbackSection() {
 
   const trimmed = body.trim();
   const canSubmit =
-    isSignedIn && !!walletAddress && trimmed.length >= MIN_LENGTH && trimmed.length <= MAX_LENGTH && !submitting;
+    isSignedIn && !!walletAddress && trimmed.length >= MIN_LENGTH && trimmed.length <= bodyLimit && !submitting;
 
   const handleSubmit = useCallback(async () => {
     if (!canSubmit || !walletAddress) return;
@@ -96,7 +99,7 @@ export default function FeedbackSection() {
         supabase.from("user_testimonials").insert({
           wallet_address: walletAddress.toLowerCase(),
           username: user?.username ?? null,
-          body: trimmed,
+          body: prefix + trimmed,
           time_using: timeUsing.trim() || null,
           allow_promo: allowPromo,
           allow_name: allowPromo && allowName,
@@ -115,7 +118,7 @@ export default function FeedbackSection() {
     } finally {
       setSubmitting(false);
     }
-  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress, setBody, setTimeUsing, body]);
+  }, [allowName, allowPromo, canSubmit, t, timeUsing, trimmed, user?.username, walletAddress, setBody, setTimeUsing, body, prefix]);
 
   return (
     <>
@@ -141,9 +144,10 @@ export default function FeedbackSection() {
           </View>
         ) : (
           <>
+            {contextTitle ? <Text style={styles.intro}>{contextTitle}</Text> : null}
             <TextInput
               value={body}
-              onChangeText={(value) => setBody(value.slice(0, MAX_LENGTH))}
+              onChangeText={(value) => setBody(value.slice(0, bodyLimit))}
               multiline
               numberOfLines={4}
               placeholder={t("stats.feedback.placeholder", "In your own words…")}
@@ -204,7 +208,7 @@ export default function FeedbackSection() {
               <Text style={styles.counter}>
                 {!isSignedIn
                   ? t("stats.feedback.signedOut", "Sign in to leave feedback")
-                  : `${trimmed.length}/${MAX_LENGTH}`}
+                  : `${trimmed.length}/${bodyLimit}`}
               </Text>
             </View>
           </>

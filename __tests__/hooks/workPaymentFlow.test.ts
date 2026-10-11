@@ -65,6 +65,41 @@ describe('bounty payment recovery', () => {
     await expect(runWorkPayment('submission',8453,ambiguous.deps)).rejects.toThrow('connection lost');
     expect(ambiguous.rpc.mock.calls.some(call => call[0] === 'work_cancel_signature')).toBe(false);
   });
+  it('keeps the original failure when reservation cleanup is offline, then blocks another send', async () => {
+    const { deps, rpc } = setup();
+    const preparationError = Object.assign(new Error('Balance lookup failed'), { code: 'WORK_NOT_SENT' });
+    deps.send = vi.fn(async () => { throw preparationError; });
+    rpc.mockImplementation(async name => {
+      if (name === 'work_claim_payment') return intent;
+      throw new Error('Cleanup is offline');
+    });
+    await expect(runWorkPayment('submission', 8453, deps)).rejects.toBe(preparationError);
+    rpc.mockImplementation(async () => ({ ...intent, created: false }));
+    await expect(runWorkPayment('submission', 8453, deps)).rejects.toThrow('reserved');
+    expect(deps.send).toHaveBeenCalledTimes(1);
+    expect(deps.receipt).not.toHaveBeenCalled();
+  });
+  it('accepts an already confirmed reservation without submitting or recording it again', async () => {
+    const { deps, rpc } = setup();
+    rpc.mockResolvedValue({ ...intent, state: 'confirmed', tx_hash: hash, created: false });
+    deps.storage.remove = vi.fn(async () => { throw new Error('Storage unavailable'); });
+    await expect(runWorkPayment('submission', 8453, deps)).resolves.toBe('confirmed');
+    expect(deps.send).not.toHaveBeenCalled();
+    expect(deps.receipt).not.toHaveBeenCalled();
+    expect(rpc).toHaveBeenCalledTimes(1);
+  });
+  it('does not report a verified payment as failed when local cleanup fails', async () => {
+    const { deps } = setup();
+    deps.storage.remove = vi.fn(async () => { throw new Error('Storage unavailable'); });
+    await expect(runWorkPayment('submission', 8453, deps)).resolves.toBe('confirmed');
+    expect(deps.send).toHaveBeenCalledTimes(1);
+  });
+  it('retains the verified revert error when local cleanup fails', async () => {
+    const { deps, rpc } = setup();
+    rpc.mockImplementation(async name => name === 'work_claim_payment' ? intent : name === 'work_finalize_payment' ? 'failed' : null);
+    deps.storage.remove = vi.fn(async () => { throw new Error('Storage unavailable'); });
+    await expect(runWorkPayment('submission', 8453, deps)).rejects.toThrow('reverted');
+  });
   it('does not sign when reservation authorization fails', async () => {
     const { deps, rpc } = setup();
     rpc.mockRejectedValue(new Error('Invalid wallet session'));

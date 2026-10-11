@@ -116,3 +116,51 @@ it("exposes manual review after analysis fails and requires that choice before c
   expect(create).toHaveBeenCalledWith(original, expect.objectContaining({ shots: [{ id: "one", offset: 0, duration: 4 }, { id: "two", offset: 0, duration: 4 }] }), expect.any(AbortSignal), expect.any(Array));
   expect(JSON.stringify(original)).toBe(before);
 });
+
+it("splits and edits repeated-source sections independently through actual native review controls", async () => {
+  const source = { ...original, clips: [{ ...original.clips[0], duration: 12 }] }, before = JSON.stringify(source), preview = jest.fn();
+  function SectionsHarness() {
+    const [state, controller] = useAssembly({ current: () => source, create }); session = controller;
+    React.useEffect(() => { controller.start({ seconds: 6, selected: true, transition: null, music: false }, ["one"]); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ v: "Source video" }} onPreview={index => preview(controller.preview(index))} onCreate={() => { void controller.create(); }} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<SectionsHarness />);
+  fireEvent.press(screen.getByLabelText("editor.shots.split 1"));
+  expect(screen.getByText("1. Source video")).toBeTruthy(); expect(screen.getByText("2. Source video")).toBeTruthy();
+  fireEvent.changeText(screen.getByLabelText("filters.duration 2"), "2");
+  fireEvent.changeText(screen.getByLabelText("editor.shots.preview 2"), "7");
+  expect(session.state.shots).toEqual([{ id: "one", offset: 0, duration: 3 }, { id: "one", part: 1, offset: 7, duration: 2 }]);
+  fireEvent.press(screen.getAllByLabelText(/^editor.shots.preview /).filter(node => node.props.accessibilityRole === "button")[1]);
+  expect(preview).toHaveBeenCalledWith({ id: "one", start: 12, end: 14 });
+  fireEvent.press(screen.getByLabelText("editor.menu.bringForward 2"));
+  expect(screen.getByLabelText("editor.shots.preview 1").props.value).toBe("7");
+  expect(screen.getByLabelText("editor.shots.preview 2").props.value).toBe("0");
+  fireEvent.press(screen.getByLabelText("common.delete 2"));
+  expect(session.state.shots).toEqual([{ id: "one", part: 1, offset: 7, duration: 2 }]);
+  expect(screen.getByLabelText("Source video").props.accessibilityState.checked).toBe(true);
+  await act(async () => fireEvent.press(screen.getByLabelText("nav.create")));
+  expect(create).toHaveBeenCalledWith(source, expect.objectContaining({ shots: [{ id: "one", part: 1, offset: 7, duration: 2 }] }), expect.any(AbortSignal), []);
+  expect(JSON.stringify(source)).toBe(before);
+});
+
+it("starts recreated sections with their new timings instead of restoring a removed section's numeric draft", () => {
+  const source = { ...original, clips: [{ ...original.clips[0], duration: 12 }] };
+  function RecreatedHarness() {
+    const [state, controller] = useAssembly({ current: () => source, create }); session = controller;
+    React.useEffect(() => { controller.start({ seconds: 6, selected: true, transition: null, music: false }, ["one"]); }, [controller]);
+    return <AssemblyReview state={state} session={controller} changed={false} names={{ v: "Source video" }} onPreview={jest.fn()} onCreate={jest.fn()} onClose={() => controller.reset()} />;
+  }
+  const screen = render(<RecreatedHarness />);
+  fireEvent.press(screen.getByLabelText("editor.shots.split 1"));
+  fireEvent.changeText(screen.getByLabelText("filters.duration 2"), "2");
+  fireEvent.changeText(screen.getByLabelText("editor.shots.preview 2"), "7");
+  fireEvent.press(screen.getByLabelText("common.delete 2"));
+  fireEvent.press(screen.getByLabelText("editor.shots.split 1"));
+  expect(session.state.shots).toEqual([{ id: "one", offset: 0, duration: 1.5 }, { id: "one", part: 1, offset: 1.5, duration: 1.5 }]);
+  expect(screen.getByLabelText("filters.duration 2").props.value).toBe("1.5");
+  expect(screen.getByLabelText("editor.shots.preview 2").props.value).toBe("1.5");
+  fireEvent.changeText(screen.getByLabelText("editor.shots.preview 2"), "4");
+  fireEvent.press(screen.getByLabelText("common.undo"));
+  expect(session.state.shots[1].offset).toBe(1.5);
+  expect(screen.getByLabelText("editor.shots.preview 2").props.value).toBe("1.5");
+});
