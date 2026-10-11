@@ -1,0 +1,62 @@
+name: Recording signing preflight
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/editor-ios-signing-preflight.yml'
+      - '.github/workflows/ios-release-build.yml'
+      - 'scripts/*screen-capture*'
+      - 'ios/DeHub.xcodeproj/project.pbxproj'
+      - 'ios/DeHub/DeHub.entitlements'
+      - 'modules/screen-capture/ios/Capture.entitlements'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/editor-ios-signing-preflight.yml'
+      - '.github/workflows/ios-release-build.yml'
+      - 'scripts/*screen-capture*'
+      - 'ios/DeHub.xcodeproj/project.pbxproj'
+      - 'ios/DeHub/DeHub.entitlements'
+      - 'modules/screen-capture/ios/Capture.entitlements'
+
+permissions:
+  contents: read
+
+jobs:
+  targets:
+    name: Recording signing targets
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Verify target discovery and repeatable configuration
+        run: |
+          gem install xcodeproj --version 1.27.0 --no-document
+          ruby scripts/configure-screen-capture-targets.rb
+          ruby scripts/verify-screen-capture-signing-targets.rb
+          cp ios/DeHub.xcodeproj/project.pbxproj "$RUNNER_TEMP/recording-targets.pbxproj"
+          ruby scripts/configure-screen-capture-targets.rb
+          cmp "$RUNNER_TEMP/recording-targets.pbxproj" ios/DeHub.xcodeproj/project.pbxproj
+          python3 scripts/test-screen-capture-profiles.py
+
+  profiles:
+    name: Managed recording profiles
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect existing App Store profiles without starting a build
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: python3 scripts/verify-screen-capture-profiles.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recording-signing-preflight
+          path: ios-signing-preflight.json
+          if-no-files-found: ignore
