@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { View, TouchableOpacity, Text, ActivityIndicator, AccessibilityInfo } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,6 +21,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
   onSeekForward,
   hideSeekButtons = false,
 }) => {
+  const { t: _copy } = _useCopy();
   const handleTogglePlay = useCallback(() => {
     onTogglePlay();
     AccessibilityInfo.announceForAccessibility(
@@ -50,7 +52,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             onPress={handleSeekBack}
             className="bg-zinc-900/60 rounded-2xl p-3.5 mx-4 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel={`Rewind ${PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS} seconds`}
+            accessibilityLabel={_copy("copy.ba85bf0351d5", { defaultValue: "Rewind {{value1}} seconds", value1: PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS })}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -66,7 +68,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
           onPress={handleTogglePlay}
           className="bg-zinc-900/60 rounded-2xl p-5 mx-2 items-center justify-center"
           activeOpacity={0.7}
-          accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
+          accessibilityLabel={isPlaying ? _copy("copy.858e4ba7a29f", { defaultValue: "Pause" }) : _copy("copy.436e61016e26", { defaultValue: "Play" })}
           accessibilityRole="button"
           accessibilityState={{ selected: isPlaying }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -90,7 +92,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             onPress={handleSeekForward}
             className="bg-zinc-900/60 rounded-2xl p-3.5 mx-4 items-center justify-center"
             activeOpacity={0.7}
-            accessibilityLabel={`Skip forward ${PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS} seconds`}
+            accessibilityLabel={_copy("copy.e4ee35029d20", { defaultValue: "Skip forward {{value1}} seconds", value1: PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS })}
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >

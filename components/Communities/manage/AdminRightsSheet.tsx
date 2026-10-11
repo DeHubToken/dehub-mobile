@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../../i18n/copy';
 import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * AdminRightsSheet
@@ -37,35 +38,35 @@ const MAX_TITLE_LENGTH = 16;
 /** English fallbacks for the bare label/hint keys the permissions lib exposes. */
 const RIGHT_COPY: Record<AdminRight, { label: string; hint: string }> = {
   change_info: {
-    label: "Change community info",
+    get label() { return _translateCopy("copy.e1cf4fb834a7", { defaultValue: "Change community info" }); },
     hint: "Edit the name, description, avatar and banner",
   },
   delete_messages: {
-    label: "Delete messages",
+    get label() { return _translateCopy("copy.708b60941566", { defaultValue: "Delete messages" }); },
     hint: "Remove any message from the community chat",
   },
   restrict_members: {
-    label: "Ban users",
+    get label() { return _translateCopy("copy.6e0921c6c48a", { defaultValue: "Ban users" }); },
     hint: "Mute, remove and ban members",
   },
   invite_users: {
-    label: "Invite users via link",
+    get label() { return _translateCopy("copy.32bb1a843217", { defaultValue: "Invite users via link" }); },
     hint: "Create and revoke invite links",
   },
   pin_messages: {
-    label: "Pin messages",
+    get label() { return _translateCopy("copy.d25966790478", { defaultValue: "Pin messages" }); },
     hint: "Pin a message to the top of the chat",
   },
   manage_events: {
-    label: "Manage events",
+    get label() { return _translateCopy("copy.9d0aa070ff87", { defaultValue: "Manage events" }); },
     hint: "Create and edit community events",
   },
   add_admins: {
-    label: "Add new admins",
+    get label() { return _translateCopy("copy.58287b1ebe9e", { defaultValue: "Add new admins" }); },
     hint: "Promote members and edit the rights of admins they added",
   },
   remain_anonymous: {
-    label: "Remain anonymous",
+    get label() { return _translateCopy("copy.f31a396d38f6", { defaultValue: "Remain anonymous" }); },
     hint: "Hide this admin from the member list",
   },
 };

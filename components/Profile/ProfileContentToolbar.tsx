@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import Icon from "../ui/Icon";
@@ -71,6 +72,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   onFiltersToggle,
   activeFilterCount,
 }) => {
+  const { t: _copy } = _useCopy();
   // Translated through `t(key, fallback)` rather than new locale entries: the
   // fallback ships the English immediately, and a key added to the catalogue
   // later starts being used without touching this file.
@@ -119,7 +121,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           <Pressable
             onPress={closeSearch}
             hitSlop={8}
-            accessibilityLabel={search ? "Clear search" : "Close search"}
+            accessibilityLabel={search ? _copy("copy.3b7ea51793e9", { defaultValue: "Clear search" }) : _copy("copy.55656b5e434f", { defaultValue: "Close search" })}
           >
             <Icon name="X" size={14} color="#ffffff" />
           </Pressable>

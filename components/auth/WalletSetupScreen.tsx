@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -184,6 +185,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
     onConfirm,
     onBack,
   }) => {
+  const { t: _copy } = _useCopy();
     const { t } = useTranslation();
     const short = address ? `${address.slice(0, 6)}…${address.slice(-4)}` : t("walletSetup.thisWallet");
     const hasOtherWayIn = !!otherCopies && (otherCopies.recovery || otherCopies.passkeys > 0);
@@ -313,7 +315,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
           label={t("walletSetup.typeResetLabel", { word: "RESET" })}
           value={confirmText}
           onChangeText={onChangeConfirmText}
-          placeholder="RESET"
+          placeholder={_copy("copy.7ef2fad58d1f", { defaultValue: "RESET" })}
           autoCapitalize="characters"
           autoCorrect={false}
           autoComplete="off"

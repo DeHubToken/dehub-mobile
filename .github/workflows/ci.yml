@@ -48,12 +48,21 @@ jobs:
       # other language: fallbackLng swallows it, so nothing throws and nobody
       # notices. orphan-baseline.json is the backlog being worked through — a
       # key outside it is a feature that shipped English-only, and fails here.
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      # Thresholds are enforced by coverageThreshold in jest.config.js, so a
+      # coverage regression fails this step directly.
+      - name: Run tests with coverage
+        run: npm run test:ci
+
       - name: Badge asset resource names
         run: node scripts/check-badge-resource-names.mjs
 
       - name: i18n coverage
         run: |
           node scripts/build-locale-packs.mjs --metadata-only
+          node scripts/check-priority-locales.mjs
           npm run i18n:coverage
 
       # The check above can only see a key that reaches no locale. It cannot
@@ -83,19 +92,12 @@ jobs:
       - name: Icon registry check
         run: npm run icons:check
 
-      - name: TypeScript check
-        run: npx tsc --noEmit
 
       - name: Wallet picker patch regression checks
         run: node --test scripts/wallet-picker.test.cjs
 
       - name: Release animation runtime regression checks
         run: node scripts/animation-runtime.test.cjs
-
-      # Thresholds are enforced by coverageThreshold in jest.config.js, so a
-      # coverage regression fails this step directly.
-      - name: Run tests with coverage
-        run: npm run test:ci
 
       - name: Upload coverage report
         if: always()

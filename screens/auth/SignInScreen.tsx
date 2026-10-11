@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, {
   useState,
   useCallback,
@@ -79,6 +80,7 @@ interface SignInScreenProps {
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
+  const { t: _copy } = _useCopy();
   // The keyboard offset is the chrome above the KeyboardAvoidingView, which
   // here is the status-bar inset alone. A literal 64 over-lifted the form by
   // up to 44pt on SE/8-class iPhones and iPads.
@@ -915,11 +917,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Explore without signing in */}
           <AuthButton
             variant="ghost"
-            label={isFirstTimeUser ? "Explore without signing in" : "Continue exploring"}
+            label={isFirstTimeUser ? _copy("copy.d099aa79934a", { defaultValue: "Explore without signing in" }) : _copy("copy.ba12ecefbd57", { defaultValue: "Continue exploring" })}
             onPress={handleSkipOrClose}
             disabled={isLoading || needsUsername}
             accessibilityLabel={
-              isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"
+              isFirstTimeUser ? _copy("copy.488017ad5c75", { defaultValue: "Explore DeHub without signing in" }) : _copy("copy.61d2a857dd18", { defaultValue: "Continue exploring DeHub" })
             }
             style={{ marginTop: 24, marginBottom: 32 }}
           />

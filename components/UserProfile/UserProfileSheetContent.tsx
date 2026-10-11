@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -103,6 +104,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onRetry,
   backToTopBottom,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showLendBadge, setShowLendBadge] = useState(false);
@@ -519,9 +521,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
                   <Text className="text-white text-[15px] font-medium">
                     {t("profileOptions.removeFollower")}
                   </Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                    Remove {profileData?.displayName || "this user"} from your followers
-                  </Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{_copy("copy.5948954e3b49", { defaultValue: "Remove " })}{profileData?.displayName || _copy("copy.0913f7bb109b", { defaultValue: "this user" })}{_copy("copy.3ff441f1f484", { defaultValue: " from your followers" })}</Text>
                 </View>
               </TouchableOpacity>
 
@@ -544,8 +544,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             <View className="flex-1">
               <Text style={{ color: "#F4F4F5" }} className="text-[15px] font-medium">
                 {youBlocked
-                  ? `Unblock ${profileData?.displayName || "user"}`
-                  : `Block ${profileData?.displayName || "user"}`}
+                  ? _copy("copy.46785e0aacc9", { defaultValue: "Unblock {{value1}}", value1: profileData?.displayName || _copy("copy.04f8996da763", { defaultValue: "user" }) })
+                  : _copy("copy.8d3f3e35915d", { defaultValue: "Block {{value1}}", value1: profileData?.displayName || _copy("copy.04f8996da763", { defaultValue: "user" }) })}
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 {youBlocked
@@ -566,8 +566,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Ionicons name="flag-outline" size={18} color="#D4D4D8" />
             </View>
             <View className="flex-1">
-              <Text style={{ color: "#D4D4D8" }} className="text-[15px] font-medium">
-                Report {profileData?.displayName || "user"}
+              <Text style={{ color: "#D4D4D8" }} className="text-[15px] font-medium">{_copy("copy.83e2982ce44d", { defaultValue: "Report " })}{profileData?.displayName || _copy("copy.04f8996da763", { defaultValue: "user" })}
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 {t("profileOptions.reportHint")}

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo, useRef } from "react";
 import {
@@ -35,6 +36,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   onClose,
   onCompleted,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { patchUser } = useAuthActions();
@@ -290,7 +292,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
       ) : (
         <View>
           <Text className="text-white text-xl font-semibold text-center mb-4">
-            {isExpired ? t("dpay.paymentExpired") : "Waiting for confirmation…"}
+            {isExpired ? t("dpay.paymentExpired") : _copy("copy.a6fb491f31df", { defaultValue: "Waiting for confirmation…" })}
           </Text>
 
           <View className="border-t border-theme-neutrals-700/60 mt-2">
@@ -345,8 +347,8 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           </View>
           <Text className="text-gray-400 text-[11px] text-center mt-2 px-4">
             {isExpired
-              ? "No payment was completed. Start a new checkout when you are ready."
-              : "You can leave this screen. Your tokens will arrive in your wallet once your payment is confirmed."}
+              ? _copy("copy.02eeddf22117", { defaultValue: "No payment was completed. Start a new checkout when you are ready." })
+              : _copy("copy.20dca9f9caf8", { defaultValue: "You can leave this screen. Your tokens will arrive in your wallet once your payment is confirmed." })}
           </Text>
 
           <View className="mt-5">

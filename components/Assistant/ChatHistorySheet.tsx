@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { useTranslation } from 'react-i18next';
@@ -101,6 +102,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
   walletAddress,
   onMediaPress,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
@@ -263,8 +265,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
                   onPress={() => setActiveTab('media')}
                   activeOpacity={0.7}
                 >
-                  <Text style={[s.tabText, activeTab === 'media' && s.tabTextActive]}>
-                    Media{media.length > 0 ? ` (${media.length})` : ''}
+                  <Text style={[s.tabText, activeTab === 'media' && s.tabTextActive]}>{_copy("copy.d357175cfe89", { defaultValue: "Media" })}{media.length > 0 ? ` (${media.length})` : ''}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -276,7 +277,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
               <View style={s.empty}>
                 <Icon name="Image" size={36} color="#3A3C3F" />
                 <Text style={s.emptyText}>
-                  {mediaLoading ? 'Loading media…' : 'Nothing generated yet'}
+                  {mediaLoading ? _copy("copy.07a23e03ef54", { defaultValue: "Loading media…" }) : _copy("copy.76f613ec06cb", { defaultValue: "Nothing generated yet" })}
                 </Text>
               </View>
             ) : (

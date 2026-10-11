@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useMemo } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,6 +21,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
   onFilterPress,
   isFilterOpen = false,
 }) => {
+  const { t: _copy } = _useCopy();
   // Reorder categories so selected category appears first (after All/Live)
   const orderedCategories = React.useMemo(() => {
     if (selectedCategory === "All" || !categories.includes(selectedCategory)) {
@@ -41,7 +43,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
         {/* Filter icon pill - shows close icon when filter is open */}
         <TouchableOpacity
           accessibilityRole="button"
-          accessibilityLabel={isFilterOpen ? "Close filter options" : "Open filter options"}
+          accessibilityLabel={isFilterOpen ? _copy("copy.d52f605d3916", { defaultValue: "Close filter options" }) : _copy("copy.0a727b3967ce", { defaultValue: "Open filter options" })}
           onPress={onFilterPress}
           className={`w-8 h-8 items-center justify-center rounded-lg mr-2 ${
             isFilterOpen ? "bg-theme-neutrals-100" : "bg-theme-neutrals-800"

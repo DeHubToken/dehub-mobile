@@ -243,7 +243,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 activeOpacity={0.9}
                 accessibilityLabel={t('player.rotate')}
               >
-                <Ionicons name={'refresh'} size={22} color="#fff" />
+                <Ionicons name={"refresh"} size={22} color="#fff" />
               </TouchableOpacity>
             </View>
           </View>

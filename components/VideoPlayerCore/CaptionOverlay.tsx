@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { MediaControlIcon } from "../common/MediaControlGlyph";
 /**
  * Subtitles for the mobile video player.
@@ -92,6 +93,7 @@ const CaptionOverlay: React.FC<Props> = ({
   onControls,
   onDubAvailableChange,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t, i18n } = useTranslation();
   // Before the `!ref` early return below, so the hook order never changes.
   const insets = useSafeAreaInsets();
@@ -344,7 +346,7 @@ const CaptionOverlay: React.FC<Props> = ({
         onPress={() => setPickerOpen(true)}
         hitSlop={8}
         accessibilityRole="button"
-        accessibilityLabel={enabled ? 'Subtitles on' : 'Subtitles off'}
+        accessibilityLabel={enabled ? _copy("copy.ea577b10b85f", { defaultValue: "Subtitles on" }) : _copy("copy.6a5216300cb9", { defaultValue: "Subtitles off" })}
         style={[
           styles.ccButton,
           { opacity: controlsVisible ? 0.9 : 0 },

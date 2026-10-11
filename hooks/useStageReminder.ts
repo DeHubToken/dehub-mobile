@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Stage reminders (mobile)
  * ========================
@@ -33,6 +34,7 @@ export const stageReminderKeys = {
 };
 
 export function useStageReminder(spaceId: string | undefined) {
+  const { t: _copy } = _useCopy();
   const { user } = useAuth();
   const walletAddress = user?.walletAddress || user?.address || "";
   const queryClient = useQueryClient();
@@ -79,12 +81,12 @@ export function useStageReminder(spaceId: string | undefined) {
     },
     onSuccess: (nowSet) => {
       void queryClient.invalidateQueries({ queryKey: stageReminderKeys.all });
-      if (nowSet === true) toastSuccess("Reminder set — you'll be told when it starts");
-      if (nowSet === false) toastSuccess("Reminder removed");
+      if (nowSet === true) toastSuccess(_copy("copy.f0199bd77184", { defaultValue: "Reminder set — you'll be told when it starts" }));
+      if (nowSet === false) toastSuccess(_copy("copy.b2afd441461d", { defaultValue: "Reminder removed" }));
     },
     onError: (err) => {
       log.error("Failed to toggle stage reminder:", err);
-      toastError("Could not update the reminder");
+      toastError(_copy("copy.e7a148aa735e", { defaultValue: "Could not update the reminder" }));
     },
   });
 

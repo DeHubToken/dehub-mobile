@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * AI Style Options
  * =================
@@ -8,35 +9,35 @@
  */
 
 export const AI_STYLE_OPTIONS = [
-  { id: 'old-english', label: 'Old English', emoji: '🏰' },
-  { id: 'cockney', label: 'Cockney', emoji: '🎩' },
-  { id: 'celtic', label: 'Celtic', emoji: '☘️' },
-  { id: 'scouse', label: 'Scouse', emoji: '⚽' },
-  { id: 'wild-west', label: 'Wild West', emoji: '🤠' },
-  { id: 'asian-uncle', label: 'Asian Uncle', emoji: '👴' },
-  { id: 'russian-mafia', label: 'Russian Mafia', emoji: '🎰' },
-  { id: 'pirate', label: 'Pirate', emoji: '🏴‍☠️' },
-  { id: 'alien', label: 'Alien', emoji: '👽' },
-  { id: 'e-girl', label: 'E-Girl', emoji: '💖' },
-  { id: 'chad', label: 'Chad', emoji: '💪' },
-  { id: 'hopeless-romantic', label: 'Hopeless Romantic', emoji: '💕' },
-  { id: 'daddy', label: 'Daddy', emoji: '👨' },
-  { id: 'mommy', label: 'Mommy', emoji: '👩' },
-  { id: 'big-brother', label: 'Big Brother', emoji: '🧑' },
-  { id: 'lil-bro', label: 'Lil Bro', emoji: '👦' },
-  { id: 'big-sister', label: 'Big Sister', emoji: '👧' },
-  { id: 'little-sister', label: 'Little Sister', emoji: '👶' },
+  { id: 'old-english', get label() { return _translateCopy("copy.a77a65e67991", { defaultValue: "Old English" }); }, emoji: '🏰' },
+  { id: 'cockney', get label() { return _translateCopy("copy.1855cc1a13c2", { defaultValue: "Cockney" }); }, emoji: '🎩' },
+  { id: 'celtic', get label() { return _translateCopy("copy.f65a88ae0a98", { defaultValue: "Celtic" }); }, emoji: '☘️' },
+  { id: 'scouse', get label() { return _translateCopy("copy.46c403a10f6b", { defaultValue: "Scouse" }); }, emoji: '⚽' },
+  { id: 'wild-west', get label() { return _translateCopy("copy.530cac08f6b4", { defaultValue: "Wild West" }); }, emoji: '🤠' },
+  { id: 'asian-uncle', get label() { return _translateCopy("copy.637fc3577a47", { defaultValue: "Asian Uncle" }); }, emoji: '👴' },
+  { id: 'russian-mafia', get label() { return _translateCopy("copy.b5b2b23163a8", { defaultValue: "Russian Mafia" }); }, emoji: '🎰' },
+  { id: 'pirate', get label() { return _translateCopy("copy.2aecfe15c341", { defaultValue: "Pirate" }); }, emoji: '🏴‍☠️' },
+  { id: 'alien', get label() { return _translateCopy("copy.72e4646b0bfe", { defaultValue: "Alien" }); }, emoji: '👽' },
+  { id: 'e-girl', get label() { return _translateCopy("copy.d577cb7ddd24", { defaultValue: "E-Girl" }); }, emoji: '💖' },
+  { id: 'chad', get label() { return _translateCopy("copy.4256e512fcfb", { defaultValue: "Chad" }); }, emoji: '💪' },
+  { id: 'hopeless-romantic', get label() { return _translateCopy("copy.8917519e3498", { defaultValue: "Hopeless Romantic" }); }, emoji: '💕' },
+  { id: 'daddy', get label() { return _translateCopy("copy.e585737a1d8e", { defaultValue: "Daddy" }); }, emoji: '👨' },
+  { id: 'mommy', get label() { return _translateCopy("copy.f0ecd978e585", { defaultValue: "Mommy" }); }, emoji: '👩' },
+  { id: 'big-brother', get label() { return _translateCopy("copy.2adfe76a55e2", { defaultValue: "Big Brother" }); }, emoji: '🧑' },
+  { id: 'lil-bro', get label() { return _translateCopy("copy.f461766bfa0f", { defaultValue: "Lil Bro" }); }, emoji: '👦' },
+  { id: 'big-sister', get label() { return _translateCopy("copy.e1cc447756e6", { defaultValue: "Big Sister" }); }, emoji: '👧' },
+  { id: 'little-sister', get label() { return _translateCopy("copy.d0411788be5e", { defaultValue: "Little Sister" }); }, emoji: '👶' },
   // Political & Ideological personalities
-  { id: 'conservative', label: 'Conservative', emoji: '🐘' },
-  { id: 'liberal', label: 'Liberal', emoji: '🗽' },
-  { id: 'antifa', label: 'ANTIFA', emoji: '✊' },
-  { id: 'capitalist', label: 'Capitalist', emoji: '💰' },
-  { id: 'socialist', label: 'Socialist', emoji: '🌹' },
-  { id: 'neocon', label: 'Neocon', emoji: '🦅' },
-  { id: 'feminist', label: 'Feminist', emoji: '♀️' },
-  { id: 'progressive', label: 'Progressive', emoji: '🌈' },
-  { id: 'nationalist', label: 'Nationalist', emoji: '🏳️' },
-  { id: 'communist', label: 'Communist', emoji: '🚩' },
+  { id: 'conservative', get label() { return _translateCopy("copy.75e1783e4e51", { defaultValue: "Conservative" }); }, emoji: '🐘' },
+  { id: 'liberal', get label() { return _translateCopy("copy.16840520f59c", { defaultValue: "Liberal" }); }, emoji: '🗽' },
+  { id: 'antifa', get label() { return _translateCopy("copy.12a5fb358f94", { defaultValue: "ANTIFA" }); }, emoji: '✊' },
+  { id: 'capitalist', get label() { return _translateCopy("copy.2047fba23d86", { defaultValue: "Capitalist" }); }, emoji: '💰' },
+  { id: 'socialist', get label() { return _translateCopy("copy.aa86f8f06a80", { defaultValue: "Socialist" }); }, emoji: '🌹' },
+  { id: 'neocon', get label() { return _translateCopy("copy.9e480ba758b3", { defaultValue: "Neocon" }); }, emoji: '🦅' },
+  { id: 'feminist', get label() { return _translateCopy("copy.bae8448539c2", { defaultValue: "Feminist" }); }, emoji: '♀️' },
+  { id: 'progressive', get label() { return _translateCopy("copy.c21bea0c6d59", { defaultValue: "Progressive" }); }, emoji: '🌈' },
+  { id: 'nationalist', get label() { return _translateCopy("copy.71470134ff19", { defaultValue: "Nationalist" }); }, emoji: '🏳️' },
+  { id: 'communist', get label() { return _translateCopy("copy.cca21847e6f7", { defaultValue: "Communist" }); }, emoji: '🚩' },
 ] as const;
 
 /**
@@ -46,7 +47,7 @@ export const AI_STYLE_OPTIONS = [
  * `general-ai-chat` only skips the persona block when it recognises the id.
  */
 export const AI_ASSISTANT_STYLE_OPTIONS = [
-  { id: 'normal', label: 'Normal', emoji: '🤖' },
+  { id: 'normal', get label() { return _translateCopy("copy.a7248eeb45eb", { defaultValue: "Normal" }); }, emoji: '🤖' },
   ...AI_STYLE_OPTIONS,
 ] as const;
 

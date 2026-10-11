@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from "react";
 import {
@@ -43,6 +44,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   onClose,
   userAddress,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [step, setStep] = useState<ReviewStep>("initial");
   const [rating, setRating] = useState(0);
@@ -395,7 +397,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <TextInput
               value={telegram}
               onChangeText={setTelegram}
-              placeholder="@username"
+              placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })}
               placeholderTextColor={theme.colors.neutrals[500]}
               autoCapitalize="none"
               className="bg-theme-neutrals-800 rounded-xl p-4 text-white text-sm"
@@ -409,7 +411,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <TextInput
               value={discord}
               onChangeText={setDiscord}
-              placeholder="username#0000"
+              placeholder={_copy("copy.f05c0acaa8fa", { defaultValue: "username#0000" })}
               placeholderTextColor={theme.colors.neutrals[500]}
               autoCapitalize="none"
               className="bg-theme-neutrals-800 rounded-xl p-4 text-white text-sm"

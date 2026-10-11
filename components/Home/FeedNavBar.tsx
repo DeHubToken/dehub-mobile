@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState, useRef, useMemo, useEffect } from "react";
 import { View, Pressable, StyleSheet, Platform, Image } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -138,6 +139,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backMode = false,
   onBackPress,
 }) => {
+  const { t: _copy } = _useCopy();
   const { isMinimal, skin } = useAppTheme();
   const tint = useMemo(
     () => (skin ? { on: skin.tabIconActive, off: skin.tabIcon } : undefined),
@@ -239,7 +241,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               onPress={backMode ? onBackPress : onFilterPress}
               style={styles.minimalButton}
               accessibilityRole="button"
-              accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+              accessibilityLabel={backMode ? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
               accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {
@@ -322,7 +324,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               onPress={backMode ? onBackPress : onFilterPress}
               style={styles.navButton}
               accessibilityRole="button"
-              accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+              accessibilityLabel={backMode ? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
               accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {

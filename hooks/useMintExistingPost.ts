@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useState } from "react";
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
@@ -15,6 +16,7 @@ import { toastError, toastSuccess } from "../libs/toast";
  * same user operation as the mint, exactly as it does in the upload queue.
  */
 export function useMintExistingPost() {
+  const { t: _copy } = _useCopy();
   const [isMinting, setIsMinting] = useState(false);
 
   const mint = useCallback(
@@ -75,7 +77,7 @@ export function useMintExistingPost() {
         );
         await tx?.wait?.(1);
 
-        toastSuccess("Post minted");
+        toastSuccess(_copy("copy.4ae79158e4cd", { defaultValue: "Post minted" }));
         return true;
       } catch (e: any) {
         console.error("[useMintExistingPost] failed", e);
@@ -85,7 +87,7 @@ export function useMintExistingPost() {
         setIsMinting(false);
       }
     },
-    [isMinting],
+    [isMinting, _copy],
   );
 
   return { mint, isMinting };

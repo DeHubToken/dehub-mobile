@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Username offer data layer
  * =========================
@@ -77,6 +78,7 @@ export function useOffersForUsername(username: string | null | undefined) {
 }
 
 export function useCreateUsernameOffer() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameOffersService.create,
@@ -84,11 +86,12 @@ export function useCreateUsernameOffer() {
       invalidateMarket(qc);
       toastSuccess(`Offer sent for @${offer.username}`);
     },
-    onError: (err) => toastError(err, 'Could not make that offer'),
+    onError: (err) => toastError(err, _copy("copy.40a8c684df9d", { defaultValue: "Could not make that offer" })),
   });
 }
 
 export function useAcceptUsernameOffer() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: ({ offerId, replacementUsername }: { offerId: string; replacementUsername: string }) =>
@@ -100,32 +103,34 @@ export function useAcceptUsernameOffer() {
       // the handle, and will until the buyer actually pays for it.
       toastSuccess(`Offer accepted — @${offer.username} is held for them until they pay`);
     },
-    onError: (err) => toastError(err, 'Could not accept that offer'),
+    onError: (err) => toastError(err, _copy("copy.655546c00fb5", { defaultValue: "Could not accept that offer" })),
   });
 }
 
 export function useDeclineUsernameOffer() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameOffersService.decline,
     onSuccess: (offer) => {
       applyOffer(qc, offer);
       invalidateMarket(qc);
-      toastSuccess('Offer declined');
+      toastSuccess(_copy("copy.fc8a85dc0a41", { defaultValue: "Offer declined" }));
     },
-    onError: (err) => toastError(err, 'Could not decline that offer'),
+    onError: (err) => toastError(err, _copy("copy.5b81acd210d8", { defaultValue: "Could not decline that offer" })),
   });
 }
 
 export function useWithdrawUsernameOffer() {
+  const { t: _copy } = _useCopy();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: usernameOffersService.withdraw,
     onSuccess: (offer) => {
       applyOffer(qc, offer);
       invalidateMarket(qc);
-      toastSuccess('Offer withdrawn');
+      toastSuccess(_copy("copy.5e092b95c558", { defaultValue: "Offer withdrawn" }));
     },
-    onError: (err) => toastError(err, 'Could not withdraw that offer'),
+    onError: (err) => toastError(err, _copy("copy.93355a336fb2", { defaultValue: "Could not withdraw that offer" })),
   });
 }

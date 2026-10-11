@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
  * The paywall in front of every paid generation.
@@ -108,6 +109,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   onConfirm,
   onConfirmFree,
 }) => {
+  const { t: _copy } = _useCopy();
   const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
   const sheetHeight = screenHeight * 0.82;
@@ -367,7 +369,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             <View style={s.card}>
               <View style={s.line}>
                 <Text style={s.lineLabel}>
-                  {quantity > 1 ? `Cost (${quantity} × $${unitCostUsd.toFixed(2)})` : 'Cost'}
+                  {quantity > 1 ? _copy("copy.6ff9754d0ec3", { defaultValue: "Cost ({{value1}} × ${{value2}})", value1: quantity, value2: unitCostUsd.toFixed(2) }) : _copy("copy.204a5eb2cd28", { defaultValue: "Cost" })}
                 </Text>
                 <Text style={s.lineValue}>${costUsd.toFixed(2)}</Text>
               </View>
@@ -432,8 +434,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
             {needsTokens && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
-                <Text style={s.warnText}>
-                  This costs {formatDhb(priceDhb)} <DhbCoin label={t('tip.tokensUnit')} /> and you hold {formatDhb(walletDhb)}.
+                <Text style={s.warnText}>{_copy("copy.27c7325ba6f7", { defaultValue: "This costs " })}{formatDhb(priceDhb)} <DhbCoin label={t('tip.tokensUnit')} />{_copy("copy.3d717322f7c9", { defaultValue: " and you hold " })}{formatDhb(walletDhb)}.
                 </Text>
               </View>
             )}

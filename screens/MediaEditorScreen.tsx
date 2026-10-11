@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { cloudDraftHistoryEditor } from "../libs/editor/cloudDraftHistoryEditor";
 import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
 import { projectTask } from "../libs/editor/projectTask";
@@ -353,6 +354,7 @@ interface ToolButton {
 
 
 function Workspace({ initial, projectId, pickVideo, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; onClose: () => void }) {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const { t } = useTranslation();
   const nav = useNavigation<Nav>();
@@ -1082,7 +1084,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
         { id: "stock", icon: "Search", label: t("common.search") },
-        { id: "subtitles", icon: "Type", label: "SRT / VTT" },
+        { id: "subtitles", icon: "Type", label: _copy("copy.00c90f4b707a", { defaultValue: "SRT / VTT" }) },
         { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
@@ -1170,7 +1172,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       { id: "fit", icon: "Expand", label: t("editor.app.fit") },
       ...common,
     ];
-  }, [selected, t, showTimeline, project, captionProgress]);
+  }, [selected, t, showTimeline, project, captionProgress, _copy]);
 
   const panelProps = {
     live: (p: Patch) => patchSelected(p, "live"),

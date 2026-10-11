@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Stream Shop Overlay
@@ -437,6 +438,7 @@ interface Props {
 }
 
 export default function StreamShopOverlay({ tokenId }: Props) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { sellable, pinned } = useStreamProducts(tokenId);
   const [dismissedId, setDismissedId] = useState<string | null>(null);
@@ -492,8 +494,7 @@ export default function StreamShopOverlay({ tokenId }: Props) {
             className="flex-row items-center rounded-xl dark-surface bg-black/70 border border-white/15 px-3 py-2"
           >
             <ShoppingBag size={14} color="#ffffff" />
-            <Text className="text-white text-xs font-semibold ml-1.5">
-              Shop · {sellable.length}
+            <Text className="text-white text-xs font-semibold ml-1.5">{_copy("copy.a0dd21b20df0", { defaultValue: "Shop · " })}{sellable.length}
             </Text>
           </TouchableOpacity>
         </View>

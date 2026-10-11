@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Viewer-submitted fixes to auto-caption lines, and the helper that applies
  * the accepted ones over a transcript before it is read or displayed.
@@ -97,6 +98,7 @@ export function applyCorrections<T extends TranscriptSegment>(
 }
 
 export function useCorrectionActions(transcriptId: string | null) {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
 
   const invalidate = useCallback(() => {
@@ -108,7 +110,7 @@ export function useCorrectionActions(transcriptId: string | null) {
       submitTranscriptCorrection({ transcriptId: transcriptId!, ...input }),
     onSuccess: () => {
       invalidate();
-      toastSuccess("Thanks — one more viewer agreeing puts it live");
+      toastSuccess(_copy("copy.b3d0998cd00a", { defaultValue: "Thanks — one more viewer agreeing puts it live" }));
     },
     onError: (error: Error) => toastError(error.message || "Could not save that correction"),
   });
@@ -124,7 +126,7 @@ export function useCorrectionActions(transcriptId: string | null) {
     mutationFn: (correctionId: string) => removeTranscriptCorrection(correctionId),
     onSuccess: () => {
       invalidate();
-      toastSuccess("Removed");
+      toastSuccess(_copy("copy.4118fb4fed0e", { defaultValue: "Removed" }));
     },
     onError: (error: Error) => toastError(error.message || "Could not remove that"),
   });

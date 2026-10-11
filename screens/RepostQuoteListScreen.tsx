@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -53,6 +54,7 @@ interface RepostUserRowProps {
 
 const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
   ({ item, onPress }) => {
+  const { t: _copy } = _useCopy();
     const displayName =
       item.displayName || item.username || truncate(item.address, 12, "..");
     const hasUsername = !!item.username;
@@ -80,8 +82,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
           )}
           {item.followers !== undefined && (
             <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-              {formatCompactNumber(item.followers)} followers
-            </Text>
+              {formatCompactNumber(item.followers)}{_copy("copy.916a8b871759", { defaultValue: " followers" })}</Text>
           )}
         </View>
         <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />

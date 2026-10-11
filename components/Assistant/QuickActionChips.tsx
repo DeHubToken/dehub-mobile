@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, { memo } from 'react';
 import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -26,14 +27,14 @@ interface Chip {
 }
 
 const CHIPS: Chip[] = [
-  { label: "📰 What's new?", action: { kind: 'prompt', text: "What's new on DeHub?" } },
+  { get label() { return _translateCopy("copy.f4b92103156d", { defaultValue: "📰 What's new?" }); }, action: { kind: 'prompt', text: "What's new on DeHub?" } },
   { label: '✨', labelKey: 'creator.presets', action: { kind: 'templates' } },
-  { label: '🎨 Make DeHub Poster', action: { kind: 'poster' } },
-  { label: '🖼️ Generate image', action: { kind: 'prompt', text: 'Generate an image of ' } },
-  { label: '✏️ Edit image', action: { kind: 'edit-image' } },
-  { label: '🎥 Generate video', action: { kind: 'prompt', text: 'Generate a video of ' } },
-  { label: '🎵 Create a song', action: { kind: 'song' } },
-  { label: '🧱 Build something', action: { kind: 'builder' } },
+  { get label() { return _translateCopy("copy.9d5c64ebd6a0", { defaultValue: "🎨 Make DeHub Poster" }); }, action: { kind: 'poster' } },
+  { get label() { return _translateCopy("copy.768e8893617f", { defaultValue: "🖼️ Generate image" }); }, action: { kind: 'prompt', text: 'Generate an image of ' } },
+  { get label() { return _translateCopy("copy.816013054aa7", { defaultValue: "✏️ Edit image" }); }, action: { kind: 'edit-image' } },
+  { get label() { return _translateCopy("copy.f1bed1726a8b", { defaultValue: "🎥 Generate video" }); }, action: { kind: 'prompt', text: 'Generate a video of ' } },
+  { get label() { return _translateCopy("copy.68845e302faf", { defaultValue: "🎵 Create a song" }); }, action: { kind: 'song' } },
+  { get label() { return _translateCopy("copy.c72a1f046be5", { defaultValue: "🧱 Build something" }); }, action: { kind: 'builder' } },
 ];
 
 interface QuickActionChipsProps {

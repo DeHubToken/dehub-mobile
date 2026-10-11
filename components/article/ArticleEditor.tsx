@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { useTranslation as _useCopy } from 'react-i18next';
 import React from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -30,14 +32,14 @@ interface ArticleEditorProps {
 
 type Tool = { key: string; icon?: IconName; glyph?: string; before: string; after: string; placeholder: string; block: boolean };
 const TOOLS: Tool[] = [
-  { key: 'heading', glyph: 'H1', before: '# ', after: '', placeholder: 'Heading', block: true },
-  { key: 'subheading', glyph: 'H2', before: '## ', after: '', placeholder: 'Subheading', block: true },
-  { key: 'bold', icon: 'Bold', before: '**', after: '**', placeholder: 'bold text', block: false },
-  { key: 'italic', icon: 'Italic', before: '*', after: '*', placeholder: 'italic text', block: false },
-  { key: 'quote', icon: 'Quote', before: '> ', after: '', placeholder: 'Quote', block: true },
-  { key: 'bullets', glyph: '•', before: '- ', after: '', placeholder: 'List item', block: true },
-  { key: 'numbers', glyph: '1.', before: '1. ', after: '', placeholder: 'List item', block: true },
-  { key: 'link', icon: 'Link', before: '[', after: '](https://)', placeholder: 'link text', block: false },
+  { key: 'heading', glyph: 'H1', before: '# ', after: '', get placeholder() { return _translateCopy("copy.b34f17f02ecf", { defaultValue: "Heading" }); }, block: true },
+  { key: 'subheading', glyph: 'H2', before: '## ', after: '', get placeholder() { return _translateCopy("copy.f593a11d4a56", { defaultValue: "Subheading" }); }, block: true },
+  { key: 'bold', icon: 'Bold', before: '**', after: '**', get placeholder() { return _translateCopy("copy.fae745ccad9a", { defaultValue: "bold text" }); }, block: false },
+  { key: 'italic', icon: 'Italic', before: '*', after: '*', get placeholder() { return _translateCopy("copy.5ca0a3629fd9", { defaultValue: "italic text" }); }, block: false },
+  { key: 'quote', icon: 'Quote', before: '> ', after: '', get placeholder() { return _translateCopy("copy.eb4cdebd82bf", { defaultValue: "Quote" }); }, block: true },
+  { key: 'bullets', glyph: '•', before: '- ', after: '', get placeholder() { return _translateCopy("copy.201333ac71bc", { defaultValue: "List item" }); }, block: true },
+  { key: 'numbers', glyph: '1.', before: '1. ', after: '', get placeholder() { return _translateCopy("copy.201333ac71bc", { defaultValue: "List item" }); }, block: true },
+  { key: 'link', icon: 'Link', before: '[', after: '](https://)', get placeholder() { return _translateCopy("copy.9ccec3cf40d4", { defaultValue: "link text" }); }, block: false },
 ];
 
 /**
@@ -46,6 +48,7 @@ const TOOLS: Tool[] = [
  * share preview come after the article, prefilled from its first paragraph.
  */
 export default function ArticleEditor(p: ArticleEditorProps) {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { look } = p;
   const words = articleWordCount(p.body);
@@ -156,7 +159,7 @@ export default function ArticleEditor(p: ArticleEditorProps) {
           <View style={{ padding: 12, gap: 3 }}>
             <Text style={{ color: look.ink, fontWeight: '600', fontSize: 14 }} numberOfLines={1}>{p.title.trim() || t('articles.titlePlaceholder')}</Text>
             <Text style={{ color: look.ink3, fontSize: 12 }} numberOfLines={2}>{p.summary.trim() || t('articles.summaryPlaceholder')}</Text>
-            <Text style={{ color: look.ink3, fontSize: 11 }}>dehub.io · {t('articles.minRead', { count: minutes })}</Text>
+            <Text style={{ color: look.ink3, fontSize: 11 }}>{_copy("copy.bf640b85d499", { defaultValue: "dehub.io · " })}{t('articles.minRead', { count: minutes })}</Text>
           </View>
         </View>
       </View>

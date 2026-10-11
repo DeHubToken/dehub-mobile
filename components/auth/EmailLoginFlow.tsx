@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, TextInput } from "react-native";
@@ -24,6 +25,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   disabled,
   onExpand,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [showInput, setShowInput] = useState(false);
   const [usePassword, setUsePassword] = useState(false);
@@ -82,7 +84,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         onFocus={handleFocus}
         value={email}
         onChangeText={setEmail}
-        placeholder="user@example.com"
+        placeholder={_copy("copy.b4c9a289323b", { defaultValue: "user@example.com" })}
         accessibilityLabel={t("loginModal.emailPlaceholder")}
         editable={!loading && !disabled}
         keyboardType="email-address"

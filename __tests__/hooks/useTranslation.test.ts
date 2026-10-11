@@ -12,7 +12,7 @@ jest.mock('../../services/translation.service', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (k: string) => k, i18n: { language: mockLanguage } }),
+  useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/\{\{(\w+)\}\}/g, (token, name) => String(options?.[name] ?? token)), i18n: { language: mockLanguage } }),
 }));
 let mockLanguage = 'tr';
 

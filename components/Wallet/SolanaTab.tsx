@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 // Solana wallet surface.
 //
 // Posting, tipping and PPV on Solana all spend SOL from a wallet derived from
@@ -42,6 +43,7 @@ function formatSol(value: number | null): string {
 }
 
 const SolanaTab: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Minimal: section cards dissolve into hairline rows; buttons keep their fill.
   const { isMinimal } = useAppTheme();
@@ -200,7 +202,7 @@ const SolanaTab: React.FC = () => {
             accessibilityLabel={t("postInfo.viewOnExplorer", { explorer: "Solscan" })}
           >
             <Ionicons name="open-outline" size={16} color="rgba(255,255,255,0.7)" />
-            <Text className="text-white/70 text-sm font-semibold">Solscan</Text>
+            <Text className="text-white/70 text-sm font-semibold">{_copy("copy.94a6a84d8cbc", { defaultValue: "Solscan" })}</Text>
           </TouchableOpacity>
         </View>
       </View>

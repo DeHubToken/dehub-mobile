@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Governance discussion data layer
  * ================================
@@ -118,6 +119,7 @@ function invalidateProposal(queryClient: ReturnType<typeof useQueryClient>, prop
 }
 
 export function useSubmitProposalComment() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
   const user = useUser() as any;
@@ -159,12 +161,13 @@ export function useSubmitProposalComment() {
     },
     onError: (error) => {
       log.error("Post comment failed:", error);
-      toastError(error, "Failed to post comment");
+      toastError(error, _copy("copy.791ab06be905", { defaultValue: "Failed to post comment" }));
     },
   });
 }
 
 export function useDeleteProposalComment() {
+  const { t: _copy } = _useCopy();
   const queryClient = useQueryClient();
   const wallet = useWallet();
 
@@ -180,11 +183,11 @@ export function useDeleteProposalComment() {
     },
     onSuccess: (_data, variables) => {
       invalidateProposal(queryClient, variables.proposalId);
-      toastSuccess("Comment deleted");
+      toastSuccess(_copy("copy.7199a134a339", { defaultValue: "Comment deleted" }));
     },
     onError: (error) => {
       log.error("Delete comment failed:", error);
-      toastError(error, "Failed to delete comment");
+      toastError(error, _copy("copy.c65a5314ca9e", { defaultValue: "Failed to delete comment" }));
     },
   });
 }

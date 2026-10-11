@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * 3D Model Generation Configuration
  * =================================
@@ -104,7 +105,7 @@ export const MODEL3D_MODELS: Record<string, Model3dModel> = {
   'tripo-2.5': {
     id: 'tripo-2.5',
     name: 'Tripo 2.5',
-    description: 'Best all-round mesh, text or image',
+    get description() { return _translateCopy("copy.fff1c1ce5e17", { defaultValue: "Best all-round mesh, text or image" }); },
     supports: ['text-to-3d', 'image-to-3d'],
     tier: 'premium',
     emoji: '🗿',
@@ -129,7 +130,7 @@ export const MODEL3D_MODELS: Record<string, Model3dModel> = {
   'hunyuan3d-v2': {
     id: 'hunyuan3d-v2',
     name: 'Hunyuan3D 2.0',
-    description: 'Tencent, sharp geometry from one image',
+    get description() { return _translateCopy("copy.5f39eb0d1c20", { defaultValue: "Tencent, sharp geometry from one image" }); },
     supports: ['image-to-3d'],
     tier: 'standard',
     emoji: '🌏',
@@ -149,7 +150,7 @@ export const MODEL3D_MODELS: Record<string, Model3dModel> = {
   trellis: {
     id: 'trellis',
     name: 'TRELLIS',
-    description: 'Fast image-to-mesh, good for iteration',
+    get description() { return _translateCopy("copy.96e0787938ec", { defaultValue: "Fast image-to-mesh, good for iteration" }); },
     supports: ['image-to-3d'],
     tier: 'fast',
     emoji: '⚡',
@@ -170,7 +171,7 @@ export const MODEL3D_MODELS: Record<string, Model3dModel> = {
   'rodin-hyper3d': {
     id: 'rodin-hyper3d',
     name: 'Rodin (Hyper3D)',
-    description: 'Studio-grade PBR, exports FBX/OBJ/USDZ',
+    get description() { return _translateCopy("copy.1e8777bc4d46", { defaultValue: "Studio-grade PBR, exports FBX/OBJ/USDZ" }); },
     supports: ['text-to-3d', 'image-to-3d'],
     tier: 'premium',
     emoji: '💎',
@@ -201,8 +202,8 @@ export type TextureQuality = (typeof TEXTURE_QUALITIES)[number];
 
 /** Poly budgets, phrased by what they are for rather than by a raw number. */
 export const FACE_LIMIT_PRESETS: { value: number; label: string; detail: string }[] = [
-  { value: 10_000, label: 'Game-ready', detail: 'Light enough for realtime' },
-  { value: 30_000, label: 'Balanced', detail: 'Default — detail without bulk' },
-  { value: 100_000, label: 'High detail', detail: 'Close-up renders' },
-  { value: 300_000, label: 'Maximum', detail: 'Largest file, slowest to load' },
+  { value: 10_000, get label() { return _translateCopy("copy.99a4c3f7f9da", { defaultValue: "Game-ready" }); }, detail: 'Light enough for realtime' },
+  { value: 30_000, get label() { return _translateCopy("copy.5386ea5db81c", { defaultValue: "Balanced" }); }, detail: 'Default — detail without bulk' },
+  { value: 100_000, get label() { return _translateCopy("copy.b6a3909630c4", { defaultValue: "High detail" }); }, detail: 'Close-up renders' },
+  { value: 300_000, get label() { return _translateCopy("copy.66c9ab177708", { defaultValue: "Maximum" }); }, detail: 'Largest file, slowest to load' },
 ];

@@ -93,16 +93,16 @@ function hideDuplicateReplyMentions(items: NotificationItem[]): NotificationItem
 // `label` is an i18n key: the screen is wired to i18next, and hardcoded tab
 // names left 109 locales reading English here.
 const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
-  { key: 'all', icon: 'Bell', label: 'notifications.all' },
-  { key: 'likes', icon: 'ThumbsUp', label: 'notifications.reactions' },
-  { key: 'follows', icon: 'UserPlus', label: 'notifications.follows' },
-  { key: 'comments', icon: 'MessageSquareText', label: 'notifications.comments' },
-  { key: 'reposts', icon: 'Repeat2', label: 'notifications.reposts' },
-  { key: 'communities', icon: 'UsersRound', label: 'nav.communities' },
-  { key: 'subscriptions', icon: 'Users', label: 'notifications.subs' },
-  { key: 'tips', icon: 'Gem', label: 'notifications.tips' },
-  { key: 'payments', icon: 'CreditCard', label: 'notifications.payments' },
-  { key: 'livestreams', icon: 'Zap', label: 'notifications.live' },
+  { key: 'all', icon: 'Bell', label: "notifications.all" },
+  { key: 'likes', icon: 'ThumbsUp', label: "notifications.reactions" },
+  { key: 'follows', icon: 'UserPlus', label: "notifications.follows" },
+  { key: 'comments', icon: 'MessageSquareText', label: "notifications.comments" },
+  { key: 'reposts', icon: 'Repeat2', label: "notifications.reposts" },
+  { key: 'communities', icon: 'UsersRound', label: "nav.communities" },
+  { key: 'subscriptions', icon: 'Users', label: "notifications.subs" },
+  { key: 'tips', icon: 'Gem', label: "notifications.tips" },
+  { key: 'payments', icon: 'CreditCard', label: "notifications.payments" },
+  { key: 'livestreams', icon: 'Zap', label: "notifications.live" },
 ];
 
 const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {

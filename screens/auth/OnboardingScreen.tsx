@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useRef } from "react";
 import {
   View,
@@ -32,21 +34,21 @@ import {
 const SLIDES: StorySlide[] = [
   {
     id: "1",
-    title: "The Social Media We",
-    subtitle: "All Deserve",
-    description: "Instantly monetize, never get deplatformed, keep up to 99% of revenue and create free from censorship or platform manipulation.",
+    get title() { return _translateCopy("copy.e17602050e02", { defaultValue: "The Social Media We" }); },
+    get subtitle() { return _translateCopy("copy.e7d407e4fdfa", { defaultValue: "All Deserve" }); },
+    get description() { return _translateCopy("copy.00d9b35a823e", { defaultValue: "Instantly monetize, never get deplatformed, keep up to 99% of revenue and create free from censorship or platform manipulation." }); },
   },
   {
     id: "2",
-    title: "The App",
-    subtitle: "For Everyone",
-    description: "No algorithms that favor one side of the argument. Everyone is amplified equally and fairly with open source code.",
+    get title() { return _translateCopy("copy.f2646a4f3723", { defaultValue: "The App" }); },
+    get subtitle() { return _translateCopy("copy.c0bc2a34abff", { defaultValue: "For Everyone" }); },
+    get description() { return _translateCopy("copy.91dbe5bafcdc", { defaultValue: "No algorithms that favor one side of the argument. Everyone is amplified equally and fairly with open source code." }); },
   },
   {
     id: "3",
-    title: "You Will Own Everything,",
-    subtitle: "And Be Happy",
-    description: "The ownership economy means your data, assets and audience are yours forever. Even the DeHub network is owned by its users, you.",
+    get title() { return _translateCopy("copy.91e1d9085ab8", { defaultValue: "You Will Own Everything," }); },
+    get subtitle() { return _translateCopy("copy.994cd605b028", { defaultValue: "And Be Happy" }); },
+    get description() { return _translateCopy("copy.6c6b4f33bb99", { defaultValue: "The ownership economy means your data, assets and audience are yours forever. Even the DeHub network is owned by its users, you." }); },
   },
 ];
 
@@ -57,6 +59,7 @@ const SWIPE_MAX_DISTANCE = 150; // Max swipe distance for 100% progress
 type OnboardingNavigationProp = StackNavigationProp<AuthStackParamList, typeof ScreenNames.Onboarding>;
 
 const OnboardingScreen: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<OnboardingNavigationProp>();
   // Live width, not a module-level snapshot: on iPad the tap zones were
   // computed from the launch orientation and wrong after a rotation.
@@ -199,8 +202,8 @@ const OnboardingScreen: React.FC = () => {
     <View
       style={styles.container}
       accessibilityActions={[
-        { name: "increment", label: "Next slide" },
-        { name: "decrement", label: "Previous slide" },
+        { name: "increment", label: _copy("copy.cdc93d1c8fe9", { defaultValue: "Next slide" }) },
+        { name: "decrement", label: _copy("copy.bfb549220c60", { defaultValue: "Previous slide" }) },
       ]}
       onAccessibilityAction={handleAccessibilityAction}
     >

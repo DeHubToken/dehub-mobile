@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
@@ -82,6 +83,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   onReplyPress,
   highlighted = false,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useI18n();
   const sender = message.sender;
   // Both sides can be empty — a signed-out reader has no address, and a
@@ -213,7 +215,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           )}
           {isMod && (
             <View className="bg-white/10 rounded px-1.5 py-0.5">
-              <Text className="text-theme-neutrals-200 text-[10px] font-bold">MOD</Text>
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold">{_copy("copy.a4d1abed0b2b", { defaultValue: "MOD" })}</Text>
             </View>
           )}
           {!!badgeImg && (
@@ -238,7 +240,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
                 message.replyTo?.sender?.displayName ||
                 message.replyTo?.sender?.username ||
                 message.replyToSenderAddress?.slice(0, 8) ||
-                "user"}…
+                _copy("copy.04f8996da763", { defaultValue: "user" })}…
             </Text>
             <Text className="text-white/50 text-xs" numberOfLines={1}>
               {replyQuoteText(message, t)}

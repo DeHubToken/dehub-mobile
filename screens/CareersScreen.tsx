@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../hooks/useDraftState';
 /**
  * CareersScreen
@@ -120,6 +121,7 @@ const Field = ({
 );
 
 export default function CareersScreen() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
@@ -243,10 +245,10 @@ export default function CareersScreen() {
             <View style={styles.form}>
               <Text style={styles.formTitle}>{t("careers.yourApplication")}</Text>
               <Field label={t("careers.fullName")} required value={form.name} onChangeText={set("name")} placeholder={t("careers.namePlaceholder")} />
-              <Field label={t("careers.email")} required value={form.email} onChangeText={set("email")} placeholder="you@example.com" keyboardType="email-address" />
-              <Field label={t("careers.telegram")} value={form.telegram} onChangeText={set("telegram")} placeholder="@username" />
-              <Field label={t("careers.xTwitter")} value={form.twitter} onChangeText={set("twitter")} placeholder="@username" />
-              <Field label={t("careers.instagram")} value={form.instagram} onChangeText={set("instagram")} placeholder="@username" />
+              <Field label={t("careers.email")} required value={form.email} onChangeText={set("email")} placeholder={_copy("copy.53e6cdc30765", { defaultValue: "you@example.com" })} keyboardType="email-address" />
+              <Field label={t("careers.telegram")} value={form.telegram} onChangeText={set("telegram")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
+              <Field label={t("careers.xTwitter")} value={form.twitter} onChangeText={set("twitter")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
+              <Field label={t("careers.instagram")} value={form.instagram} onChangeText={set("instagram")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
               <Field label={t("careers.linkedin")} value={form.linkedin} onChangeText={set("linkedin")} placeholder="linkedin.com/in/you" />
               <Field label={t("careers.otherSocials")} value={form.other_socials} onChangeText={set("other_socials")} placeholder={t("careers.otherSocialsPlaceholder")} />
               <Field label={t("careers.pastExperience")} value={form.past_experience} onChangeText={set("past_experience")} placeholder={t("careers.pastExperiencePlaceholder")} multiline />

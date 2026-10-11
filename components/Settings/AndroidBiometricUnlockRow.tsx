@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { useUser } from '../../context/AuthContext';
@@ -34,6 +35,7 @@ const EMPTY_CAPABILITY: BiometricCapability = {
  * fingerprint/face/device-lock gate protects signing on this installation.
  */
 const AndroidBiometricUnlockRow: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const address = (user?.walletAddress || user?.address || '').toLowerCase();
   const [state, setState] = useState<State | null>(null);
@@ -55,7 +57,7 @@ const AndroidBiometricUnlockRow: React.FC = () => {
     if (busy || !address) return;
     const capability = state?.capability ?? EMPTY_CAPABILITY;
     if (!capability.usable) {
-      toastInfo('Set up a fingerprint, face unlock, or screen lock in your phone settings first.');
+      toastInfo(_copy("copy.7c058e0ece4e", { defaultValue: "Set up a fingerprint, face unlock, or screen lock in your phone settings first." }));
       return;
     }
 
@@ -64,7 +66,7 @@ const AndroidBiometricUnlockRow: React.FC = () => {
       if (state?.hasDeviceKey) {
         await requireDeviceOwner('Verify DeHub wallet unlock');
         rememberSuccessfulWalletUnlock();
-        toastSuccess('Biometric wallet unlock verified');
+        toastSuccess(_copy("copy.cf10c8a1758c", { defaultValue: "Biometric wallet unlock verified" }));
       } else {
         const unlocked = await requestWalletUnlock('Set up biometric wallet unlock on this phone');
         if (!unlocked) return;
@@ -74,19 +76,19 @@ const AndroidBiometricUnlockRow: React.FC = () => {
             'The wallet key is not available on this phone yet. Restore this wallet with an existing password, recovery phrase, or private key before enabling device unlock.',
           );
         }
-        toastSuccess('Biometric wallet unlock is ready on this phone');
+        toastSuccess(_copy("copy.e6d650d57b03", { defaultValue: "Biometric wallet unlock is ready on this phone" }));
       }
       await refresh();
     } catch (error) {
       if (error instanceof BiometricRejectedError) {
-        toastInfo('Verification cancelled');
+        toastInfo(_copy("copy.6100e1990a48", { defaultValue: "Verification cancelled" }));
       } else {
-        toastError(error, 'Could not set up biometric wallet unlock');
+        toastError(error, _copy("copy.62707c181b12", { defaultValue: "Could not set up biometric wallet unlock" }));
       }
     } finally {
       setBusy(false);
     }
-  }, [address, busy, refresh, state]);
+  }, [address, busy, refresh, state, _copy]);
 
   const capability = state?.capability ?? EMPTY_CAPABILITY;
   const platformName = Platform.OS === 'android' ? 'Android' : 'Phone';
@@ -108,7 +110,7 @@ const AndroidBiometricUnlockRow: React.FC = () => {
   return (
     <SettingsLinkRow
       icon="Fingerprint"
-      label={`${platformName} biometric unlock`}
+      label={_copy("copy.f5057642d43e", { defaultValue: "{{value1}} biometric unlock", value1: platformName })}
       description={description}
       value={value}
       disabled={busy || !address}

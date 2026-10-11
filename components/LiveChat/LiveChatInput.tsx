@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -88,6 +89,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   onRemoveAttachment,
   attachmentBusy,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [text, setText] = useDraftState(editingMessage ? `public:edit:${editingMessage._id}` : "public:composer", editingMessage?.content ?? "");
   const [attachOpen, setAttachOpen] = useState(false);
@@ -263,8 +265,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       {replyingTo && !editingMessage && !recorder.isRecording && !uploadingVoice && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
-            <Text className="text-blue-400 text-[11px] font-medium">
-              Replying to {replyingTo.sender?.displayName || replyingTo.sender?.username || "user"}
+            <Text className="text-blue-400 text-[11px] font-medium">{_copy("copy.3d393bf19a86", { defaultValue: "Replying to " })}{replyingTo.sender?.displayName || replyingTo.sender?.username || _copy("copy.04f8996da763", { defaultValue: "user" })}
             </Text>
             <Text className="text-white/40 text-xs" numberOfLines={1}>
               {replyPreview}
@@ -293,8 +294,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           <View className="flex-row items-center gap-1 px-3 pt-1.5">
             <Icon name="Sparkles" size={11} color="#A6A9AC" />
             <Text className="text-white/50 text-[11px]">
-              {ASSISTANT_USERNAME} will reply in chat
-            </Text>
+              {ASSISTANT_USERNAME}{_copy("copy.77af58cd3096", { defaultValue: " will reply in chat" })}</Text>
           </View>
         )}
 

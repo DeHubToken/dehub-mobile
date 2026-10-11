@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -67,6 +68,7 @@ type SocialField = {
 };
 
 const EditProfileScreen = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // The KeyboardAvoidingView's frame is measured from its parent, so the
   // ScreenHeader above it is already counted. Only the status-bar inset is
@@ -369,7 +371,7 @@ const EditProfileScreen = () => {
 
   const socialFields: SocialField[] = useMemo(
     () => [
-      { key: "twitterLink", label: "X (Twitter)", platform: "x", reach: "twitter", svg: TWITTER_SVG_XML, placeholder: t("settings.username"), value: twitterLink, setter: setTwitterLink },
+      { key: "twitterLink", label: _copy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }), platform: "x", reach: "twitter", svg: TWITTER_SVG_XML, placeholder: t("settings.username"), value: twitterLink, setter: setTwitterLink },
       { key: "instagramLink", label: "Instagram", platform: "instagram", reach: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: t("settings.username"), value: instagramLink, setter: setInstagramLink },
       { key: "tiktokLink", label: "TikTok", platform: "tiktok", reach: "tiktok", svg: TIKTOK_SVG_XML, placeholder: t("settings.username"), value: tiktokLink, setter: setTiktokLink },
       { key: "youtubeLink", label: "YouTube", platform: "youtube", reach: "youtube", svg: YOUTUBE_SVG_XML, placeholder: t("settings.channelUrlOrHandle"), value: youtubeLink, setter: setYoutubeLink },
@@ -377,7 +379,7 @@ const EditProfileScreen = () => {
       { key: "telegramLink", label: "Telegram", platform: "telegram", reach: "telegram", svg: TELEGRAM_SVG_XML, placeholder: t("settings.username"), value: telegramLink, setter: setTelegramLink },
       { key: "facebookLink", label: "Facebook", platform: "facebook", reach: "facebook", svg: FACEBOOK_SVG_XML, placeholder: t("settings.profileUrlOrUsername"), value: facebookLink, setter: setFacebookLink },
     ],
-    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink, t, setDiscordLink, setFacebookLink, setInstagramLink, setTelegramLink, setTiktokLink, setTwitterLink, setYoutubeLink]
+    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink, t, setDiscordLink, setFacebookLink, setInstagramLink, setTelegramLink, setTiktokLink, setTwitterLink, setYoutubeLink, _copy]
   );
 
   // A changed username has to be positively cleared. The old gate only blocked
@@ -486,7 +488,7 @@ const EditProfileScreen = () => {
               <TextInput
                 className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700"
                 placeholderTextColor="#6b7280"
-                placeholder="@username"
+                placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })}
                 value={username}
                 // Was `setUsername` raw: this field accepted uppercase, spaces,
                 // punctuation and any length, none of which the web signup form

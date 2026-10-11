@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { getAccount, followUser, unfollowUser, removeFollower } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
@@ -99,6 +100,7 @@ export const useUserProfileData = (
   visible: boolean,
   usernameOrAddress?: string | null
 ) => {
+  const { t: _copy } = _useCopy();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<RemoteUser | null>(null);
   const [error, setError] = useState<UserProfileLoadError | null>(null);
@@ -324,13 +326,13 @@ export const useUserProfileData = (
     const socialStats = [
       {
         key: "followers",
-        label: "Followers",
+        label: _copy("copy.a145ab342a4a", { defaultValue: "Followers" }),
         // account_info returns followers/followings as arrays of addresses
         value: resolveCount(data.followers, (data as any).follower_count),
       },
       {
         key: "following",
-        label: "Following",
+        label: _copy("copy.344b4271ca01", { defaultValue: "Following" }),
         value: resolveCount(data.followings, (data as any).following_count),
       },
     ];
@@ -341,16 +343,16 @@ export const useUserProfileData = (
       ...socialStats,
       {
         key: "tipsReceived",
-        label: "Tips earned",
+        label: _copy("copy.4819e014c7f9", { defaultValue: "Tips earned" }),
         value: (data as any).receivedTips || 0,
       },
       {
         key: "tipsGiven",
-        label: "Tips given",
+        label: _copy("copy.8b5e86df9155", { defaultValue: "Tips given" }),
         value: (data as any).sentTips || 0,
       },
     ];
-  }, [data, authUser]);
+  }, [data, authUser, _copy]);
 
   const handleFollow = useCallback(() => {
     if (isFollowing || isFollowRequestPending || !profileData) return;
@@ -496,7 +498,7 @@ export const useUserProfileData = (
         await removeFollower(target);
       } catch (e) {
         console.error("[useUserProfileData] removeFollower error", e);
-        toastError("Failed to remove follower");
+        toastError(_copy("copy.19e72055ad95", { defaultValue: "Failed to remove follower" }));
         // Revert
         setFollowsYou(true);
         setData((prev) => {
@@ -505,7 +507,7 @@ export const useUserProfileData = (
         });
       }
     });
-  }, [requireAuth, profileData, data, followsYou]);
+  }, [requireAuth, profileData, data, followsYou, _copy]);
 
   const handleOpenImage = useCallback(
     (type: "avatar" | "cover") => {
@@ -539,7 +541,7 @@ export const useUserProfileData = (
 
         if (!addr) return;
         if (addr === selfAddr) {
-          toastInfo("You can't message yourself");
+          toastInfo(_copy("copy.ffdfbd87e6a0", { defaultValue: "You can't message yourself" }));
           return;
         }
 
@@ -586,7 +588,7 @@ export const useUserProfileData = (
       authUser,
       conversations,
       navigation,
-    ]
+    , _copy]
   );
 
   const isOwnProfile = useMemo(() => {
@@ -611,12 +613,12 @@ export const useUserProfileData = (
         profileCache.delete(target);
       } catch (e) {
         console.error("[useUserProfileData] block error", e);
-        toastError("Failed to block user");
+        toastError(_copy("copy.d2b91e7b896f", { defaultValue: "Failed to block user" }));
       } finally {
         setBlockLoading(false);
       }
     });
-  }, [requireAuth, blockLoading, data?.address]);
+  }, [requireAuth, blockLoading, data?.address, _copy]);
 
   const handleUnblock = useCallback(() => {
     if (blockLoading || !data?.address) return;
@@ -636,12 +638,12 @@ export const useUserProfileData = (
         profileCache.delete(target);
       } catch (e) {
         console.error("[useUserProfileData] unblock error", e);
-        toastError("Failed to unblock user");
+        toastError(_copy("copy.91509428edaa", { defaultValue: "Failed to unblock user" }));
       } finally {
         setBlockLoading(false);
       }
     });
-  }, [requireAuth, blockLoading, data?.address, blockedYou]);
+  }, [requireAuth, blockLoading, data?.address, blockedYou, _copy]);
 
   return {
     loading,

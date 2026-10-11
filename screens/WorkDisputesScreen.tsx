@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../hooks/useDraftState';
 import { tokenLabel } from '../libs/token-label';
 /**
@@ -57,6 +58,7 @@ const Field: React.FC<{ label: string; children: React.ReactNode }> = ({ label, 
 );
 
 export default function WorkDisputesScreen() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const keyboardOffset = useKeyboardOffset();
@@ -80,7 +82,7 @@ export default function WorkDisputesScreen() {
           title={t("work.adminsOnly")}
           action={
             <Text style={styles.emptyText}>
-              {t("work.adminsOnlyBody")} <Text style={styles.code}>WORK_ADMIN_ARBITERS</Text>
+              {t("work.adminsOnlyBody")} <Text style={styles.code}>{_copy("copy.bf4151fc970f", { defaultValue: "WORK_ADMIN_ARBITERS" })}</Text>
             </Text>
           }
         />
