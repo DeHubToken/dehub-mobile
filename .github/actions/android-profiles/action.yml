@@ -43,3 +43,14 @@ runs:
         name: android-startup-profiles
         path: android/app/src/release/generated/baselineProfiles/
         retention-days: 30
+    - name: Preserve failed profile generation reports
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: android-profile-failure-reports
+        path: |
+          android/baseline-profile/build/reports/androidTests/
+          android/baseline-profile/build/outputs/androidTest-results/
+          android/app/build/outputs/connected_android_test_additional_output/
+        if-no-files-found: warn
+        retention-days: 7
