@@ -1,29 +1,24 @@
 import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, View } from "react-native";
 import { BlurTargetView } from "expo-blur";
 import { useFocusEffect } from "@react-navigation/native";
 
 type Target = React.RefObject<View | null>;
-const Targets = createContext<{ target: Target; background: Target; register: (target: Target) => () => void } | null>(null);
-const SourceOverride = createContext<Target | null>(null);
+const Targets = createContext<{ target: Target | undefined; register: (target: Target) => () => void } | null>(null);
+const SourceOverride = createContext<Target | null | undefined>(undefined);
 export const androidFrostSupported = Platform.OS === "android" && Number(Platform.Version) >= 31;
 
-/** A source that contains only the theme backdrop, never the glass sampling it. */
+/** Keep the WebView backdrop out of native blur capture; only native feeds are sampled. */
 export function FrostedBackdropProvider({ backdrop, children }: { backdrop: React.ReactNode; children: React.ReactNode }) {
-  const background = useRef<View>(null);
-  const [target, setTarget] = useState<Target>(background);
+  const [target, setTarget] = useState<Target | undefined>(undefined);
   const register = useCallback((next: Target) => {
     setTarget(next);
-    return () => setTarget(current => current === next ? background : current);
+    return () => setTarget(current => current === next ? undefined : current);
   }, []);
-  const value = useMemo(() => ({ target, background, register }), [target, register]);
+  const value = useMemo(() => ({ target, register }), [target, register]);
   return (
     <Targets.Provider value={value}>
-      {androidFrostSupported ? (
-        <BlurTargetView ref={background} style={StyleSheet.absoluteFill} pointerEvents="none">
-          {backdrop}
-        </BlurTargetView>
-      ) : backdrop}
+      {backdrop}
       {children}
     </Targets.Provider>
   );
@@ -32,13 +27,12 @@ export function FrostedBackdropProvider({ backdrop, children }: { backdrop: Reac
 export function useFrostedSource(): Target | undefined {
   const targets = useContext(Targets);
   const override = useContext(SourceOverride);
-  return override ?? targets?.target;
+  return override === undefined ? targets?.target : override ?? undefined;
 }
 
 /** Standalone overlays must not keep sampling the covered page's feed. */
 export function FrostedBackground({ children }: { children: React.ReactNode }) {
-  const targets = useContext(Targets);
-  return <SourceOverride.Provider value={targets?.background ?? null}>{children}</SourceOverride.Provider>;
+  return <SourceOverride.Provider value={null}>{children}</SourceOverride.Provider>;
 }
 
 /** Register visible feed content for sibling navigation pills and the bottom bar. */
@@ -52,9 +46,9 @@ export function FrostedContent({ children }: { children: React.ReactNode }) {
   if (!androidFrostSupported) return <>{children}</>;
   return (
     <BlurTargetView ref={ref} style={{ flex: 1 }}>
-      {/* Glass inside this source samples the separate theme backdrop, so a
-          video control cannot recursively draw its own containing feed. */}
-      <SourceOverride.Provider value={targets?.background ?? null}>
+      {/* Nested glass uses its static material instead of recursively capturing
+          the feed or replaying the WebView backdrop into a blur RenderNode. */}
+      <SourceOverride.Provider value={null}>
         {children}
       </SourceOverride.Provider>
     </BlurTargetView>
