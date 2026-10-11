@@ -288,7 +288,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
       <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
         <PinnedCommunityWash community={featuredCommunity} />
-        <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
@@ -297,7 +297,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
-            <View className="flex-row items-center gap-2 mb-1">
+            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
               {renderFollowButton()}
               {!!onMessage && (
                 <TouchableOpacity
