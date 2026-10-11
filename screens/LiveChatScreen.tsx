@@ -13,10 +13,12 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   AppState,
+  Platform,
 } from "react-native";
 import { DeHubLoader } from "../components/DeHubLoader";
 import Icon from "../components/ui/Icon";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import FrostedPill from "../components/ui/FrostedPill";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
@@ -814,7 +816,7 @@ const LiveChatScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-background">
       <ScreenHeader
-        appearance="flat"
+        appearance={Platform.OS === "android" ? undefined : "flat"}
         title={t("publicChat.title")}
         subtitle={subtitle}
         rightContent={RightHeader}
@@ -896,8 +898,8 @@ const LiveChatScreen: React.FC = () => {
         )}
 
         <View
-          className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-          style={{ marginBottom: inputLift }}
+          className={Platform.OS === "android" ? "absolute left-0 right-0 bottom-0" : "absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"}
+          style={{ marginBottom: inputLift, ...(Platform.OS === "android" ? { marginHorizontal: 8, borderRadius: 16, overflow: "hidden" as const } : {}) }}
           ref={composerKeyboard.ref}
           collapsable={false}
           onLayout={(e) => {
@@ -905,6 +907,7 @@ const LiveChatScreen: React.FC = () => {
             composerKeyboard.onLayout();
           }}
         >
+          {Platform.OS === "android" && <FrostedPill borderRadius={16} />}
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">
               <Text className="text-white/60 text-xs italic">{typingText}</Text>
