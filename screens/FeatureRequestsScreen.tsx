@@ -36,6 +36,7 @@ import {
   TextInput,
   ActivityIndicator,
   Alert,
+  Platform,
   Share,
   useWindowDimensions,
 } from "react-native";
@@ -1212,7 +1213,7 @@ export default function FeatureRequestsScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : isError && tab === "requests" ? (
-        <View style={[styles.emptyBento, isMinimal && minimalFlat]}>
+        <View style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
           <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
             <Text style={styles.glassBtnText}>{t("common.retry")}</Text>
@@ -1260,7 +1261,7 @@ export default function FeatureRequestsScreen() {
             ) : null
           }
           ListEmptyComponent={
-            <View style={[styles.emptyBento, isMinimal && minimalFlat]}>
+            <View style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
               <Icon name="Lightbulb" size={44} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{emptyCopy.title}</Text>
               {!!emptyCopy.body && <Text style={styles.emptyBody}>{emptyCopy.body}</Text>}
