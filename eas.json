@@ -7,17 +7,26 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+      "ios": {
+        "image": "macos-tahoe-26.6-xcode-27.0"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+      "ios": {
+        "image": "macos-tahoe-26.6-xcode-27.0"
+      }
     },
     "store-testing": {
       "distribution": "store",
       "channel": "preview",
       "autoIncrement": true,
       "environment": "preview",
+      "ios": {
+        "image": "macos-tahoe-26.6-xcode-27.0"
+      },
       "env": {
         "EXPO_PUBLIC_LOCALE_PACK_ORIGIN": "https://staging.dehub.io"
       },
@@ -27,7 +36,10 @@
     },
     "production": {
       "autoIncrement": true,
-      "channel": "production"
+      "channel": "production",
+      "ios": {
+        "image": "macos-tahoe-26.6-xcode-27.0"
+      }
     },
     "production-apk": {
       "extends": "production",
