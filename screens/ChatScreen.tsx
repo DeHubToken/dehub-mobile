@@ -1,3 +1,4 @@
+import MessageSearch from "../components/DM/MessageSearch";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from "../hooks/useDraftState";
 import React, {
@@ -300,6 +301,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   // Menu / block
   const [menuVisible, setMenuVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [confirmMode, setConfirmMode] = useState<"block" | "unblock">("block");
   const [blockLoading, setBlockLoading] = useState(false);
@@ -1466,7 +1468,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   const onSearchChat = useCallback(() => {
     closeMenu();
-    toastInfo(t("dm.searchComingSoon"));
+    setSearchVisible(true);
   }, [closeMenu]);
 
   const onConfirmBlock = useCallback(async () => {
@@ -1513,7 +1515,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           if (id) showUserProfile(id, { source: "chat-header" });
         }}
       >
-        <Avatar uri={peerAvatarUri} size={32} name={peer.displayName || peer.username} />
+        <Avatar uri={peerAvatarUri} size={40} name={peer.displayName || peer.username} />
       </TouchableOpacity>
     ),
     [peerAvatarUri, peer.username, peer.address, showUserProfile, peer.displayName],
@@ -1624,12 +1626,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   return (
     <View style={{ flex: 1 }} className="bg-theme-neutrals-900">
       <ScreenHeader
+        appearance="flat"
         title={title}
         leftContent={LeftHeader}
         rightContent={RightHeader}
-        subtitle={remoteTyping ? _copy("copy.30f5934e6249", { defaultValue: "typing…" }) : undefined}
+        subtitle={remoteTyping ? _copy("copy.30f5934e6249", { defaultValue: "typing…" }) : peer.username ? `@${peer.username}` : undefined}
         titleAccessory={<OnlineDot address={peer.address} />}
       />
+
+      {searchVisible ? <MessageSearch messages={messageList} onSelect={highlightAndScroll} onClose={() => setSearchVisible(false)} /> : null}
 
       <ChatMenu
           visible={menuVisible}
@@ -1638,6 +1643,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           onBlockUser={onBlockUser}
           onUnblockUser={onUnblockUser}
           onClearChat={currentConvId ? onClearChat : undefined}
+          onSearchChat={onSearchChat}
           onToggleFreeAccess={myDmStatus?.perMessageFee && myDmStatus.perMessageFee > 0 ? onToggleFreeAccess : undefined}
           peerHasFreeAccess={
             !!(myDmStatus?.freeAccessUsers?.some(
@@ -1728,7 +1734,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
           {/* Input or disabled banner — absolutely positioned, lifts with keyboard */}
           <View
-            className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
+            className="absolute left-0 right-0 bottom-0"
             // No insets.bottom pad at rest either: this container already ends
             // above the home indicator, so adding it again left a dead strip
             // under the composer.

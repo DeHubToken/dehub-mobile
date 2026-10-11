@@ -71,6 +71,7 @@ export interface UserProfileHeaderProps {
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
   onMessage?: () => void;
+  onOpenOptions?: () => void;
   onEditProfile?: () => void;
   stats?: { key: string; label: string; value: number }[];
   onStatPress?: (key: string) => void;
@@ -119,6 +120,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onOpenImage,
   onShare,
   onMessage,
+  onOpenOptions,
   onEditProfile,
   stats,
   onStatPress,
@@ -293,7 +295,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
       </TouchableOpacity>
 
-      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar
@@ -303,10 +305,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
             onPress={() => onOpenImage("avatar")}
           />
-          {!isBlocked && (
-            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className={`flex-row items-center gap-2 self-start mt-14 ${cinematicPhone ? "-mr-1" : "-mr-2"}`}>
-              {renderFollowButton()}
-              {!!onMessage && (
+          {(!isBlocked || !!onOpenOptions) && (
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+              {!isBlocked && renderFollowButton()}
+              {!isBlocked && !!onMessage && (
                 <TouchableOpacity
                   onPress={onMessage}
                   activeOpacity={0.7}
@@ -317,6 +319,21 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   {glassLayers}
                   <View style={s.glassBtnContent}>
                     <Icon name="MessageSquare" size={16} color="#fff" />
+                  </View>
+                </TouchableOpacity>
+              )}
+              {!!onOpenOptions && (
+                <TouchableOpacity
+                  onPress={onOpenOptions}
+                  activeOpacity={0.7}
+                  testID="profile-options"
+                  accessibilityRole="button"
+                  accessibilityLabel={t("profileOptions.a11yLabel")}
+                  style={[btn, s.iconBtn, isMinimal && s.minimalIconBtn]}
+                >
+                  {glassLayers}
+                  <View style={s.glassBtnContent}>
+                    <Icon name="Plus" size={16} color="#fff" />
                   </View>
                 </TouchableOpacity>
               )}

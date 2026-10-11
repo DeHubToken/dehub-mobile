@@ -120,14 +120,14 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
   return (
     <Animated.View
       style={containerStyle}
-      className="flex-row items-center px-4 py-3 bg-theme-neutrals-800"
+      className="flex-row items-center px-4 py-3 border-t border-white/25"
     >
       <Animated.View
         style={pulseStyle}
-        className="w-2.5 h-2.5 rounded-full bg-white mr-2"
+        className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2"
       />
       <Text
-        className="text-white text-sm mr-3"
+        className="text-red-400 text-sm mr-3"
         style={{ fontVariant: ["tabular-nums"] }}
       >
         {fmtTime(elapsedMs)}

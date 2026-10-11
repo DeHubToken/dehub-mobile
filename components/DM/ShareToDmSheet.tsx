@@ -114,7 +114,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   );
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom">
+    <GlassModal surface="theme" visible={visible} onClose={onClose} presentation="bottom">
       <View className="pb-6">
         <View className="flex-row items-center justify-between px-4 pt-1 pb-3">
           <Text className="text-lg font-semibold text-white">{t("dm.sendToDm")}</Text>

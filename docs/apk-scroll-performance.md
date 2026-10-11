@@ -5,6 +5,22 @@ frame cadence while flinging, paging, and changing direction. A 60 Hz display
 has a 16.7 ms frame budget; 120 Hz has 8.3 ms. These are targets, not measured
 results for the current APK.
 
+## System header parity
+
+The System home feed is the reference for mobile web's header transition.
+`HomeScreen` paints `colors.background` from the top of the header to
+`pillTopInHeader`, behind the logo. Only the nav pill is glass. The logo,
+backing, pill and feed cutoff follow the same `headerTranslateY` with the
+380 ms curve in `useCollapsibleHeader`; they must not fade independently or
+travel different distances.
+
+On mobile web, `useSystemFeedHeaderMotion` shares the measured header offset
+between `MobileHeader` and the home nav. The logo retains its black backing
+while the existing swallow clip follows the glass pill. Verify slow downward
+scrolls, reversal while the header is moving, return to the top, and an open
+filter panel. Apply this contract only to System; other themes retain their
+own header treatments.
+
 ## Reference implementations
 
 - [React Native list configuration](https://reactnative.dev/docs/optimizing-flatlist-configuration): keep row work small and balance render batches against input responsiveness.

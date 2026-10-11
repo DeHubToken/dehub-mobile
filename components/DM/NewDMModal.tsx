@@ -238,7 +238,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   );
 
   return (
-    <GlassModal
+    <GlassModal surface="theme"
       visible={open}
       onClose={close}
       presentation="center"

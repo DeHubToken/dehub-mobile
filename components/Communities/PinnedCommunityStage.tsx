@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -12,15 +12,18 @@ import Icon from "../ui/Icon";
 /** Paint only the details area; leave the overlapping avatar outside the clip. */
 export function PinnedCommunityWash({ community }: { community?: Community | null }) {
   const { isMinimal } = useAppTheme();
+  const [height, setHeight] = useState(0);
   if (!community?.banner_url) return null;
   return (
-    <View pointerEvents="none" style={styles.wash} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View renderToHardwareTextureAndroid pointerEvents="none" style={styles.wash} onLayout={(event) => setHeight(event.nativeEvent.layout.height)} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <MaskedView style={StyleSheet.absoluteFillObject} maskElement={<LinearGradient colors={['#000', '#000', 'transparent']} locations={[0, Math.max(0, 1 - 80 / Math.max(height, 80)), 1]} style={StyleSheet.absoluteFillObject} />}>
       <Image
         source={storageImageSource(community.banner_url, 480)}
         contentFit="cover"
         blurRadius={40}
         style={[styles.washImage, { opacity: isMinimal ? 0.3 : 0.5 }]}
       />
+    </MaskedView>
     </View>
   );
 }
@@ -65,7 +68,7 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
 export function PinnedCommunityDissolve({ community }: { community: Community }) {
   const { width } = useWindowDimensions();
   return (
-    <View pointerEvents="none" style={styles.dissolve} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View renderToHardwareTextureAndroid pointerEvents="none" style={styles.dissolve} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       <MaskedView style={StyleSheet.absoluteFillObject} maskElement={<LinearGradient colors={['transparent', '#000']} locations={[0, 0.9]} style={StyleSheet.absoluteFillObject} />}>
         <Image source={storageImageSource(community.banner_url, 480)} blurRadius={24} style={[StyleSheet.absoluteFillObject, { opacity: 0.62 }]} contentFit="cover" contentPosition={{ left: '50%', top: '60%' }} />
       </MaskedView>

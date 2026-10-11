@@ -199,7 +199,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         onLongPress={handleLongPress}
         delayLongPress={400}
         activeOpacity={0.7}
-        className="flex-row items-center px-4 py-3 gap-3"
+        className="flex-row items-center px-4 py-4 gap-3"
       >
         <TouchableOpacity
           onPress={handleAvatarPress}
@@ -212,7 +212,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 ? avatarUrl
                 : undefined
             }
-            size={52}
+            size={48}
             name={displayName}
           />
         </TouchableOpacity>
@@ -221,7 +221,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           <View className="flex-row items-center gap-1.5">
             <View className="flex-1 min-w-0 flex-row items-center gap-1.5">
               <Text
-                className="text-[15px] font-semibold text-white"
+                className="text-[14px] font-bold text-white"
                 style={{ flexShrink: 1 }}
                 numberOfLines={1}
               >
@@ -234,7 +234,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               <NewMemberChip address={other?.address} />
               {username && (
                 <Text
-                  className="text-white text-[12px]"
+                  className="text-theme-neutrals-500 text-[14px]"
                   style={{ flexShrink: 1, maxWidth: "45%" }}
                   numberOfLines={1}
                 >
@@ -242,9 +242,10 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 </Text>
               )}
             </View>
+            <Text className="text-[14px] text-theme-neutrals-500">{timeStr}</Text>
             {unreadCount > 0 && (
-              <View className="bg-theme-accent rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
-                <Text className="text-[10px] text-theme-accent-foreground font-bold">
+              <View className="bg-white rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
+                <Text className="text-[10px] text-black font-bold">
                   {unreadCount > 99 ? "99+" : unreadCount}
                 </Text>
               </View>
@@ -257,13 +258,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Gem" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={colors.foreground} />
             ))}
             {draft ? (
-              <Text className="text-[13px] flex-1 text-white" numberOfLines={1}>
+              <Text className="text-[14px] flex-1 text-white" numberOfLines={1}>
                 <Text className="text-white font-medium">{t("dm.draftLabel")} </Text>
                 {draft}
               </Text>
             ) : (
               <Text
-                className={`text-[13px] flex-1 text-white ${
+                className={`text-[14px] flex-1 text-white ${
                   unreadCount > 0
                     ? "font-bold"
                     : "font-normal"
@@ -273,11 +274,6 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 {previewText}
               </Text>
             )}
-            <Text
-              className="text-[11px] text-white"
-            >
-              {timeStr}
-            </Text>
           </View>
         </View>
       </TouchableOpacity>

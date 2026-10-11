@@ -277,7 +277,7 @@ const LiveChatInfoScreen: React.FC = () => {
   if (loading) {
     return (
       <View className="flex-1 bg-theme-background">
-        <ScreenHeader title={t("screens.chatInfo")} />
+        <ScreenHeader appearance="island" title={t("screens.chatInfo")} />
         <View className="flex-1 items-center justify-center">
           <DeHubLoader size={56} />
         </View>
@@ -287,7 +287,7 @@ const LiveChatInfoScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-background">
-      <ScreenHeader title={t("screens.chatInfo")} />
+      <ScreenHeader appearance="island" title={t("screens.chatInfo")} />
 
       <ScrollView
         className="flex-1"

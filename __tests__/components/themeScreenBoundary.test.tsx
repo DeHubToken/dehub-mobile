@@ -8,6 +8,7 @@ jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme }) }));
 jest.mock('../../components/ErrorBoundary', () => ({ __esModule: true, default: ({ children }: any) => children }));
 jest.mock('../../libs/crashRecovery', () => ({ restartApp: jest.fn() }));
+jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
 
 it.each([

@@ -9,7 +9,7 @@ import Icon from "../ui/Icon";
 import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { useCall } from "../../context/CallContext";
-import { CallIdentity, CallControl, CallControlPanel } from "./CallChrome";
+import { CallIdentity, CallControl, CallControlPanel, CallBackground, CallMinimizeButton } from "./CallChrome";
 import { usePeerIdentity } from "./usePeerIdentity";
 
 const VideoCallModal: React.FC = () => {
@@ -66,12 +66,7 @@ const VideoCallModal: React.FC = () => {
           // Nobody on the far side yet, so this is the ringing screen: show who
           // is being called rather than an anonymous camera glyph.
           <View style={[styles.waiting, { paddingTop: insets.top + 56 }]}>
-            <LinearGradient
-              colors={["#26282B", "#0C0E10", colors.background]}
-              locations={[0, 0.45, 1]}
-              style={StyleSheet.absoluteFill}
-              pointerEvents="none"
-            />
+            <CallBackground />
             <CallIdentity
               kindIcon="Video"
               kindLabel={t("calls.videoCall")}
@@ -157,6 +152,7 @@ const VideoCallModal: React.FC = () => {
             />
           </CallControlPanel>
         </View>
+        <CallMinimizeButton onPress={() => setMinimized(true)} />
       </View>
     </Modal>
   );
