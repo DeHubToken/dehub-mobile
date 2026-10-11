@@ -5,6 +5,38 @@ import { importClipFile, importPicture, MAX_MEDIA_BYTES, MediaTooLargeError } fr
 
 export interface GeneratedMediaSource { url: string; kind: GeneratedMediaKind; name?: string }
 
+async function downloadGeneratedMedia(url: string, temporary: string, signal?: AbortSignal) {
+  let stopped: Error | undefined;
+  let cancellation: Promise<void> | undefined;
+  const stop = (error: Error) => {
+    if (stopped) return;
+    stopped = error;
+    cancellation = task.cancelAsync().catch(() => {});
+  };
+  const task = FileSystem.createDownloadResumable(url, temporary, {}, progress => {
+    if (progress.totalBytesWritten > MAX_MEDIA_BYTES || progress.totalBytesExpectedToWrite > MAX_MEDIA_BYTES) {
+      stop(new MediaTooLargeError('too large'));
+    }
+  });
+  const abort = () => stop(Object.assign(new Error('Import cancelled'), { name: 'AbortError' }));
+  signal?.addEventListener('abort', abort, { once: true });
+  try {
+    throwIfImportAborted(signal);
+    const result = await task.downloadAsync();
+    if (stopped) throw stopped;
+    throwIfImportAborted(signal);
+    if (!result) throw Object.assign(new Error('Import cancelled'), { name: 'AbortError' });
+    return result;
+  } catch (error) {
+    if (stopped) throw stopped;
+    throwIfImportAborted(signal);
+    throw error;
+  } finally {
+    signal?.removeEventListener('abort', abort);
+    await cancellation;
+  }
+}
+
 /** Copy a finished result through the same storage routines as picked media. */
 export async function importGeneratedMedia(source: GeneratedMediaSource, signal?: AbortSignal) {
   assertGeneratedMediaUrl(source.url);
@@ -23,7 +55,7 @@ export async function importGeneratedMedia(source: GeneratedMediaSource, signal?
       if (data[2].length * 0.75 > MAX_MEDIA_BYTES + 2) throw new MediaTooLargeError("too large");
       await FileSystem.writeAsStringAsync(temporary, data[2], { encoding: FileSystem.EncodingType.Base64 });
     } else {
-      const result = await FileSystem.downloadAsync(source.url, temporary);
+      const result = await downloadGeneratedMedia(source.url, temporary, signal);
       if (result.status < 200 || result.status >= 300) throw new Error("Could not download generated media");
       contentType = Object.entries(result.headers ?? {}).find(([key]) => key.toLowerCase() === "content-type")?.[1];
     }
