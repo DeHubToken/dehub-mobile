@@ -1,0 +1,62 @@
+import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
+import { NavigationContext } from '@react-navigation/native';
+import { act, create, type ReactTestRenderer } from 'react-test-renderer';
+import AndroidTabScene from '../../components/navigation/AndroidTabScene';
+
+jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text',
+  Platform: { OS: 'android', select: (options: Record<string, unknown>) => options.android },
+  StyleSheet: { create: (styles: unknown) => styles },
+  I18nManager: { isRTL: false },
+}));
+
+it('updates visibility from focus events without remounting the saved tab', () => {
+  let focused = true;
+  let mounts = 0;
+  const listeners = new Map<string, Set<() => void>>();
+  const navigation = {
+    isFocused: () => focused,
+    addListener: (event: string, listener: () => void) => {
+      const set = listeners.get(event) ?? new Set<() => void>();
+      listeners.set(event, set);
+      set.add(listener);
+      return () => set.delete(listener);
+    },
+  };
+  let updateValue: React.Dispatch<React.SetStateAction<string>>;
+  function SavedTab() {
+    const [value, setValue] = useState('initial');
+    updateValue = setValue;
+    useEffect(() => { mounts += 1; }, []);
+    return <Text>{value}</Text>;
+  }
+  let tree: ReactTestRenderer;
+  act(() => {
+    tree = create(
+      <NavigationContext.Provider value={navigation as never}>
+        <AndroidTabScene><SavedTab /></AndroidTabScene>
+      </NavigationContext.Provider>,
+    );
+  });
+  const scene = () => tree!.root.findByProps({ testID: 'android-tab-scene' });
+  act(() => updateValue!('saved scroll/filter state'));
+  expect(scene().props.pointerEvents).toBe('auto');
+  act(() => {
+    focused = false;
+    listeners.get('blur')?.forEach(listener => listener());
+  });
+  expect(scene().props.style).toContainEqual({ opacity: 0 });
+  expect(scene().props.pointerEvents).toBe('none');
+  expect(scene().props.importantForAccessibility).toBe('no-hide-descendants');
+  act(() => {
+    focused = true;
+    listeners.get('focus')?.forEach(listener => listener());
+  });
+  expect(scene().props.style).not.toContainEqual({ opacity: 0 });
+  expect(scene().props.pointerEvents).toBe('auto');
+  expect(tree!.root.findByType(Text).props.children).toBe('saved scroll/filter state');
+  expect(mounts).toBe(1);
+  act(() => tree!.unmount());
+});
