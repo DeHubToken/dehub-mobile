@@ -7,15 +7,18 @@ import * as FileSystem from "expo-file-system/legacy";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 import { exportSubtitles, parseSubtitles, subtitleClips, subtitleLayers, SUBTITLE_FORMATS, type SubtitleFormat } from "../../libs/editor/subtitles";
+import CaptionTranslationPanel, { type CaptionTranslationActions } from "./CaptionTranslationPanel";
 
-export default function SubtitleFilesPanel({ project, onAdd }: { project: ProjectSnapshot; onAdd: (layers: ReturnType<typeof subtitleLayers>) => void }) {
+export default function SubtitleFilesPanel({ project, onAdd, ...translation }: CaptionTranslationActions & { project: ProjectSnapshot; onAdd: (layers: ReturnType<typeof subtitleLayers>) => void }) {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [busy, setBusy] = useState(false);
+  const [translating, setTranslating] = useState(false);
+  const working = busy || translating;
   const [status, setStatus] = useState<string | null>(null);
   const captions = subtitleClips(project.clips, project.tracks);
   const importFile = async () => {
-    if (busy) return;
+    if (working) return;
     setBusy(true); setStatus(null);
     try {
       const picked = await DocumentPicker.getDocumentAsync({ type: ["text/*", "application/x-subrip"], copyToCacheDirectory: true });
@@ -31,7 +34,7 @@ export default function SubtitleFilesPanel({ project, onAdd }: { project: Projec
     finally { setBusy(false); }
   };
   const download = async (format: SubtitleFormat) => {
-    if (busy || !captions.length) return;
+    if (working || !captions.length) return;
     setBusy(true); setStatus(null);
     const dir = FileSystem.cacheDirectory;
     const path = dir ? `${dir}subtitles-${newId()}.${format}` : null;
@@ -51,14 +54,15 @@ export default function SubtitleFilesPanel({ project, onAdd }: { project: Projec
     finally { if (path) await FileSystem.deleteAsync(path, { idempotent: true }).catch(() => {}); setBusy(false); }
   };
   return <View style={{ gap: 12 }}>
-    <Pressable accessibilityRole="button" disabled={busy} onPress={() => { void importFile(); }} className="rounded-xl bg-white px-4 py-3">
+    <Pressable accessibilityRole="button" disabled={working} onPress={() => { void importFile(); }} className="rounded-xl bg-white px-4 py-3">
       <Text className="text-black">{t(busy ? "common.loading" : "common.select")}{_copy("copy.450683b66da4", { defaultValue: " SRT / VTT" })}</Text>
     </Pressable>
     <View className="flex-row" style={{ gap: 8 }}>
-      {SUBTITLE_FORMATS.map(format => <Pressable key={format} accessibilityRole="button" disabled={busy || !captions.length} onPress={() => { void download(format); }} className="flex-1 rounded-xl border border-white/10 px-4 py-3" style={{ opacity: captions.length ? 1 : 0.4 }}>
+      {SUBTITLE_FORMATS.map(format => <Pressable key={format} accessibilityRole="button" disabled={working || !captions.length} onPress={() => { void download(format); }} className="flex-1 rounded-xl border border-white/10 px-4 py-3" style={{ opacity: captions.length ? 1 : 0.4 }}>
         <Text className="text-white">{t("common.save")} {format.toUpperCase()}</Text>
       </Pressable>)}
     </View>
+    <CaptionTranslationPanel {...translation} project={project} disabled={busy} onBusyChange={setTranslating} />
     {status && <Text className="text-theme-neutrals-400">{status}</Text>}
   </View>;
 }

@@ -6995,7 +6995,12 @@
       "hint": "Turns speech into timed captions you can restyle. Runs on your device: free and private. The first use downloads the model.",
       "done": "Added {{count}} captions.",
       "noSpeech": "No speech found in this clip.",
-      "failed": "Couldn't create captions for this clip."
+      "failed": "Couldn't create captions for this clip.",
+      "targetLanguage": "Caption language",
+      "translateCount": "Translate {{count}} captions",
+      "translationDone": "Translated {{count}} captions",
+      "translationFailed": "Caption translation failed. Your captions are unchanged.",
+      "lockedTranslation": "Unlock locked captions to include them."
     },
     "app": {
       "newDesign": "New design",
