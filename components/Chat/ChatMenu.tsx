@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import React from 'react';
 import { Modal, Pressable, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -66,8 +67,9 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
         <Pressable
           onPress={(e) => e.stopPropagation()}
           style={{ top: insets.top + 56 }}
-          className="absolute right-3 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
+          className="absolute right-3 w-52 rounded-xl overflow-hidden"
         >
+          <MessageSurface radius={12} />
           <ScrollView bounces={false}>
             {onSearchChat && (
               <>

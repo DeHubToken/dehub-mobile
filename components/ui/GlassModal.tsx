@@ -42,6 +42,8 @@ export interface GlassModalProps {
    * sheet (see useYieldToWalletUnlock). Off only for the unlock sheet itself.
    */
   yieldToWalletUnlock?: boolean;
+  /** Messaging drawers use the same active-theme material as web. */
+  surface?: 'theme';
 }
 
 /**
@@ -71,11 +73,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
   dismissible = true,
   scrollable = false,
   yieldToWalletUnlock = true,
+  surface,
 }) => {
   const insets = useSafeAreaInsets();
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
   const { isMinimal } = useAppTheme();
   const isBottom = presentation === "bottom";
+  const MessageSurface = surface ? require("../DM/MessageSurface").default : null;
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
@@ -241,6 +245,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   },
                 ]}
               >
+                {MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
                   <ScrollView
                     ref={scrollRef}
