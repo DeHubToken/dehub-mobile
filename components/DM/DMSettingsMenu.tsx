@@ -28,7 +28,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
   const { skin } = useAppTheme();
   if (!visible) return null;
   return (
-    <Modal visible transparent animationType="fade" onRequestClose={onClose}>
+    <Modal visible transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent navigationBarTranslucent>
       <TouchableOpacity
         activeOpacity={1}
         onPress={onClose}
