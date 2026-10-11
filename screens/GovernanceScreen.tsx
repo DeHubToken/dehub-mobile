@@ -33,7 +33,7 @@ const TABS: { key: GovernanceTab; labelKey: string }[] = [
 ];
 
 function timeAgo(iso: string): string {
-  return formatRelativeTime(iso, appLocale(), "short");
+  return formatRelativeTime(iso, appLocale() || "en", "short");
 }
 
 const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void }> = ({ proposal, onPress }) => {
