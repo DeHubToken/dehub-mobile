@@ -199,6 +199,8 @@ const UserProfileBottomContentTabs: React.FC<
   const headerHeightShared = useSharedValue(0);
   const stickyVisibleShared = useSharedValue(false);
   const stickyStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 1 : 0 }));
+  // Preserve header geometry while removing its offscreen masks from drawing.
+  const expandedHeaderStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 0 : 1 }));
   const showBackToTopShared = useSharedValue(false);
   const isFullScreenShared = useSharedValue(isFullScreen);
   useEffect(() => {
@@ -478,12 +480,12 @@ const UserProfileBottomContentTabs: React.FC<
     if (!profileHeader) return undefined;
     return (
       <View>
-        <View onLayout={handleHeaderLayout}>{profileHeader}</View>
+        <Animated.View style={expandedHeaderStyle} onLayout={handleHeaderLayout}>{profileHeader}</Animated.View>
         {TabBar}
         {ContentToolbar}
       </View>
     );
-  }, [profileHeader, handleHeaderLayout, TabBar, ContentToolbar]);
+  }, [profileHeader, handleHeaderLayout, TabBar, ContentToolbar, expandedHeaderStyle]);
 
   if (!address) return null;
 
