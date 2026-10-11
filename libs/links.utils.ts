@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+import { withDeHubLanguage } from './localized-url';
 import { Linking } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { supportedNetworks } from "../config/web3.constants";
@@ -48,7 +50,7 @@ export async function openExternalLink(rawUrl?: string) {
     if (url === '#' || url.length < 2) return;
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
     // Encode any spaces that slipped through
-    url = url.replace(/\s/g, '%20');
+    url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     if (/^https?:\/\//i.test(url)) {
       await Linking.openURL(url);
       return;
@@ -66,7 +68,7 @@ export async function openInApp(rawUrl?: string) {
   try {
     let url = rawUrl.trim();
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
-    url = url.replace(/\s/g, '%20');
+    url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     try {
       await WebBrowser.openBrowserAsync(url, {
         enableBarCollapsing: true,

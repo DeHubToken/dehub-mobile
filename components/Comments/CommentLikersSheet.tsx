@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 /**
@@ -96,6 +97,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
   onClose,
   commentId,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { showUserProfile } = useUserProfileSheet();
@@ -212,9 +214,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">
               <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
-              <Text style={{ color: "#F9FBFF", fontSize: 15, fontWeight: "600", marginTop: 8 }}>
-                Comment likes
-                {totalCount > 0 && <Text style={{ color: "#8B8D90", fontWeight: "400" }}> · {totalCount}</Text>}
+              <Text style={{ color: "#F9FBFF", fontSize: 15, fontWeight: "600", marginTop: 8 }}>{_copy("copy.1aa9573705bf", { defaultValue: "Comment likes" })}{totalCount > 0 && <Text style={{ color: "#8B8D90", fontWeight: "400" }}> · {totalCount}</Text>}
               </Text>
             </Animated.View>
           </GestureDetector>
@@ -242,7 +242,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
                 <View style={glassStyles.anonymousRow}>
                   <Icon name="EyeOff" size={16} color="#A1A1AA" />
                   <Text style={{ color: "#D4D4D8", fontSize: 13, marginLeft: 8 }}>
-                    {anonymousCount} {anonymousCount === 1 ? "like" : "likes"} from anonymous badge {anonymousCount === 1 ? "holder" : "holders"}
+                    {anonymousCount} {anonymousCount === 1 ? _copy("copy.cab2644828bc", { defaultValue: "like" }) : _copy("copy.b0aa8a6c35b4", { defaultValue: "likes" })}{_copy("copy.57383cdc46dd", { defaultValue: " from anonymous badge " })}{anonymousCount === 1 ? _copy("copy.6e45386daeb0", { defaultValue: "holder" }) : _copy("copy.b550c1397de2", { defaultValue: "holders" })}
                   </Text>
                 </View>
               ) : null}

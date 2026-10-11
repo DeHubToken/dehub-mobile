@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * ListingDetailScreen
@@ -85,7 +86,7 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
         disabled={!onPick}
         hitSlop={onPick ? 11 : 4}
         accessibilityRole={onPick ? "button" : undefined}
-        accessibilityLabel={onPick ? `Rate ${n} of 5` : undefined}
+        accessibilityLabel={onPick ? _translateCopy("copy.084d8c213a85", { defaultValue: "Rate {{value1}} of 5", value1: n }) : undefined}
       >
         <Icon
           name="Star"

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 /**
  * The live viewer's bottom bar: say something, or do something.
@@ -91,6 +92,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
   isLiked,
   actionsDisabled,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [message, setMessage] = useDraftState(draftScope, "");
   const sending = useRef(false);
@@ -238,7 +240,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
             delayLongPress={400}
             hitSlop={CHROME_HIT_SLOP}
             accessibilityRole="button"
-            accessibilityLabel={isLiked ? "Unlike" : "Like"}
+            accessibilityLabel={isLiked ? _copy("copy.eaa881c359cf", { defaultValue: "Unlike" }) : _copy("copy.64f915cb8bfc", { defaultValue: "Like" })}
             style={styles.circle}
           >
             <ChromeFill glass />

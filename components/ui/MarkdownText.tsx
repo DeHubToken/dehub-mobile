@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Markdown renderer.
  * ==================
@@ -42,6 +43,7 @@ function trimUrl(url: string): { url: string; trailing: string } {
 }
 
 const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF', accent }) => {
+  const { t: _copy } = _useCopy();
   const openUrl = useCallback((url: string) => {
     Linking.openURL(url).catch(() => {
       // A malformed link from a model is not worth an error toast.
@@ -50,8 +52,8 @@ const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F
 
   const copyEmail = useCallback(async (email: string) => {
     await Clipboard.setStringAsync(email);
-    toastSuccess('Email copied');
-  }, []);
+    toastSuccess(_copy("copy.28411e5e86b6", { defaultValue: "Email copied" }));
+  }, [_copy]);
 
   const baseSize = (style?.fontSize as number) ?? 14;
   const baseStyle: TextStyle = { color, fontSize: baseSize, lineHeight: baseSize * 1.45, ...style };

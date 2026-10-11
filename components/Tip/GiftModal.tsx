@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, {
@@ -104,6 +105,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
   stream,
   onSent,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const user = useUser();
   const { patchUser, requireAuth, refreshUser } = useAuthActions();
@@ -584,7 +586,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               onPress={() => setBuyMethod(method)}
               className={`flex-1 h-11 rounded-xl border items-center justify-center ${buyMethod === method ? "bg-white/20 border-white/40" : "bg-white/5 border-white/10"}`}
             >
-              <Text className="text-white font-semibold">{method === "card" ? "Card" : "Crypto"}</Text>
+              <Text className="text-white font-semibold">{method === "card" ? _copy("copy.be3702e3f1af", { defaultValue: "Card" }) : _copy("copy.df12b8f89b61", { defaultValue: "Crypto" })}</Text>
             </TouchableOpacity>
           ))}
         </View>

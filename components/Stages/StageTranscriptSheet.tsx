@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -33,21 +34,21 @@ interface Props {
 }
 
 const LANGUAGES = [
-  { label: "Original Language", value: "original" },
-  { label: "English", value: "en" },
-  { label: "Español (Spanish)", value: "es" },
-  { label: "Français (French)", value: "fr" },
-  { label: "Deutsch (German)", value: "de" },
-  { label: "Português (Portuguese)", value: "pt" },
-  { label: "Italiano (Italian)", value: "it" },
-  { label: "日本語 (Japanese)", value: "ja" },
-  { label: "한국어 (Korean)", value: "ko" },
-  { label: "中文 (Chinese)", value: "zh" },
-  { label: "العربية (Arabic)", value: "ar" },
-  { label: "हिन्दी (Hindi)", value: "hi" },
-  { label: "Русский (Russian)", value: "ru" },
-  { label: "Türkçe (Turkish)", value: "tr" },
-  { label: "Bahasa Indonesia", value: "id" },
+  { get label() { return _translateCopy("copy.ab9ea682af4e", { defaultValue: "Original Language" }); }, value: "original" },
+  { get label() { return _translateCopy("copy.ba118bf7fc9c", { defaultValue: "English" }); }, value: "en" },
+  { get label() { return _translateCopy("copy.b785e11e822c", { defaultValue: "Español (Spanish)" }); }, value: "es" },
+  { get label() { return _translateCopy("copy.51d624360ae7", { defaultValue: "Français (French)" }); }, value: "fr" },
+  { get label() { return _translateCopy("copy.cd0a5a7df7be", { defaultValue: "Deutsch (German)" }); }, value: "de" },
+  { get label() { return _translateCopy("copy.b74330ed801a", { defaultValue: "Português (Portuguese)" }); }, value: "pt" },
+  { get label() { return _translateCopy("copy.0090dc269d25", { defaultValue: "Italiano (Italian)" }); }, value: "it" },
+  { get label() { return _translateCopy("copy.6da707c478f8", { defaultValue: "日本語 (Japanese)" }); }, value: "ja" },
+  { get label() { return _translateCopy("copy.30f959f34501", { defaultValue: "한국어 (Korean)" }); }, value: "ko" },
+  { get label() { return _translateCopy("copy.4df4ce91fa85", { defaultValue: "中文 (Chinese)" }); }, value: "zh" },
+  { get label() { return _translateCopy("copy.10d878fbdf00", { defaultValue: "العربية (Arabic)" }); }, value: "ar" },
+  { get label() { return _translateCopy("copy.fab2abfce453", { defaultValue: "हिन्दी (Hindi)" }); }, value: "hi" },
+  { get label() { return _translateCopy("copy.ea81bf0fd464", { defaultValue: "Русский (Russian)" }); }, value: "ru" },
+  { get label() { return _translateCopy("copy.d7ba05ad20ad", { defaultValue: "Türkçe (Turkish)" }); }, value: "tr" },
+  { get label() { return _translateCopy("copy.11b8712670ff", { defaultValue: "Bahasa Indonesia" }); }, value: "id" },
 ];
 
 const SPEAKER_COLORS = [

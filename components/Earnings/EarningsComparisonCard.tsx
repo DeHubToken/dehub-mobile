@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -54,7 +56,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     key: "twitch",
-    label: "Twitch",
+    get label() { return _translateCopy("copy.a731a58c4cf3", { defaultValue: "Twitch" }); },
     defaultRpm: 3.0,
     range: "$2.00 – $4.00",
     noteKey: "earningsVs.noteTwitch",
@@ -68,7 +70,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     key: "reels",
-    label: "Instagram Reels",
+    get label() { return _translateCopy("copy.b19565a545ba", { defaultValue: "Instagram Reels" }); },
     defaultRpm: 0.02,
     range: "$0.01 – $0.05",
     noteKey: "earningsVs.noteReels",
@@ -87,6 +89,7 @@ function compact(n: number): string {
 }
 
 const EarningsComparisonCard: React.FC = () => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   // Minimal: the card and the per-platform rows dissolve into hairline rows;
   // the stat tiles and RPM / views inputs keep their fill.
@@ -214,7 +217,7 @@ const EarningsComparisonCard: React.FC = () => {
                     </Text>
                   </View>
                   <View style={styles.rpmBox}>
-                    <Text style={styles.rpmLabel}>RPM $</Text>
+                    <Text style={styles.rpmLabel}>{_copy("copy.6bdf24e0e55f", { defaultValue: "RPM $" })}</Text>
                     <TextInput
                       value={rpmText[r.key]}
                       onChangeText={(text) =>

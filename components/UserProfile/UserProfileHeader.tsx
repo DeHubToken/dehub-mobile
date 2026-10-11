@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, StyleSheet, useWindowDimensions } from "react-native";
@@ -125,6 +126,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   plansLoading = false,
   onSubscribe,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useI18n();
   const { isMinimal, skin } = useAppTheme();
   const cinematicPhone = useCinematicPhone();
@@ -248,7 +250,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         <View style={s.glassBtnContent}>
           <Icon name="UserPlus" size={14} color="#fff" />
           <Text style={s.glassBtnLabel}>
-            {followsYou && !isFollowing ? "Follow Back" : "Follow"}
+            {followsYou && !isFollowing ? _copy("copy.fd3fdb5a65ea", { defaultValue: "Follow Back" }) : _copy("copy.641d1ef657bd", { defaultValue: "Follow" })}
           </Text>
         </View>
       </TouchableOpacity>

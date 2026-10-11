@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
 import React, { useState, useCallback } from "react";
@@ -39,6 +40,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   onCreated,
   tokenId: postTokenId = 0,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { createPoll, loading } = useCreatePoll();
@@ -181,7 +183,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                   <TextInput
                     value={opt}
                     onChangeText={(t) => updateOption(idx, t)}
-                    placeholder={`Option ${idx + 1}`}
+                    placeholder={_copy("copy.c553678c42d5", { defaultValue: "Option {{value1}}", value1: idx + 1 })}
                     placeholderTextColor="#8B8D90"
                     maxLength={60}
                     className="flex-1 text-white text-sm"

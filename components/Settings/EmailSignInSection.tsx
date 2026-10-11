@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Sign-in email — attach an address a wallet account can log in with instead
@@ -38,6 +39,7 @@ function maskLocal(email: string): string {
 }
 
 export function EmailSignInSection() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const user = useUser();
 
@@ -238,7 +240,7 @@ export function EmailSignInSection() {
                 <TextInput
                   value={email}
                   onChangeText={setEmail}
-                  placeholder="you@example.com"
+                  placeholder={_copy("copy.53e6cdc30765", { defaultValue: "you@example.com" })}
                   placeholderTextColor="#52525b"
                   keyboardType="email-address"
                   textContentType="emailAddress"

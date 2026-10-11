@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, {
   useCallback,
   useEffect,
@@ -105,16 +106,16 @@ type ContentTab =
   | "playlists";
 
 const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
-  { key: "home", label: "All", icon: "House" },
-  { key: "posts", label: "Posts", icon: "MessageSquare" },
-  { key: "images", label: "Images", icon: "Image" },
-  { key: "videos", label: "Videos", icon: "Film" },
-  { key: "subscribers", label: "Subs", icon: "Star" },
-  { key: "songs", label: "Audio", icon: "Play" },
-  { key: "live", label: "Live", icon: "Radio" },
-  { key: "fractions", label: "Fractions", icon: "ChartPie" },
-  { key: "pinned", label: "Pinned", icon: "Pin" },
-  { key: "playlists", label: "Playlists", icon: "ListVideo" },
+  { key: "home", get label() { return _translateCopy("copy.a52ace420f21", { defaultValue: "All" }); }, icon: "House" },
+  { key: "posts", get label() { return _translateCopy("copy.a80811cf6889", { defaultValue: "Posts" }); }, icon: "MessageSquare" },
+  { key: "images", get label() { return _translateCopy("copy.be7e2f201293", { defaultValue: "Images" }); }, icon: "Image" },
+  { key: "videos", get label() { return _translateCopy("copy.c9a9639463c2", { defaultValue: "Videos" }); }, icon: "Film" },
+  { key: "subscribers", get label() { return _translateCopy("copy.17371507e9f7", { defaultValue: "Subs" }); }, icon: "Star" },
+  { key: "songs", get label() { return _translateCopy("copy.bc1b88907d3b", { defaultValue: "Audio" }); }, icon: "Play" },
+  { key: "live", get label() { return _translateCopy("copy.b64ac05f17e6", { defaultValue: "Live" }); }, icon: "Radio" },
+  { key: "fractions", get label() { return _translateCopy("copy.487aaa977933", { defaultValue: "Fractions" }); }, icon: "ChartPie" },
+  { key: "pinned", get label() { return _translateCopy("copy.f20c87946555", { defaultValue: "Pinned" }); }, icon: "Pin" },
+  { key: "playlists", get label() { return _translateCopy("copy.dcd0a4d2c65a", { defaultValue: "Playlists" }); }, icon: "ListVideo" },
 ];
 
 const UserProfileBottomContentTabs: React.FC<

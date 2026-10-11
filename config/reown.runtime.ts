@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import "@walletconnect/react-native-compat";
 // Reown AppKit (WalletConnect) setup for the "Connect Wallet" sign-in option —
 // lets a user authenticate with an EXTERNAL wallet app (MetaMask, Trust
@@ -40,7 +41,7 @@ if (!projectId) {
 
 export const metadata = {
   name: "Dehub.io",
-  description: "Dehub.io Mobile",
+  get description() { return _translateCopy("copy.273655f6d663", { defaultValue: "Dehub.io Mobile" }); },
   url: "https://dehub.io",
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
   redirect: {

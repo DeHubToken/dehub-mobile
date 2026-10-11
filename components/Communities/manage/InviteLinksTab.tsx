@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../../i18n/copy';
 import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
 /**
  * InviteLinksTab
@@ -38,14 +39,14 @@ const PAGE_SIZE = 30;
 const HOUR_MS = 60 * 60 * 1000;
 
 const EXPIRY_OPTIONS: { key: string; labelKey: string; label: string; ms: number | null }[] = [
-  { key: "never", labelKey: "expiryNever", label: "Never", ms: null },
-  { key: "hour", labelKey: "expiryHour", label: "1 hour", ms: HOUR_MS },
-  { key: "day", labelKey: "expiryDay", label: "1 day", ms: 24 * HOUR_MS },
-  { key: "week", labelKey: "expiryWeek", label: "1 week", ms: 7 * 24 * HOUR_MS },
+  { key: "never", labelKey: "expiryNever", get label() { return _translateCopy("copy.6300ef800bb8", { defaultValue: "Never" }); }, ms: null },
+  { key: "hour", labelKey: "expiryHour", get label() { return _translateCopy("copy.f8b8883f0c9d", { defaultValue: "1 hour" }); }, ms: HOUR_MS },
+  { key: "day", labelKey: "expiryDay", get label() { return _translateCopy("copy.fa665d95d29e", { defaultValue: "1 day" }); }, ms: 24 * HOUR_MS },
+  { key: "week", labelKey: "expiryWeek", get label() { return _translateCopy("copy.c8cc522340b9", { defaultValue: "1 week" }); }, ms: 7 * 24 * HOUR_MS },
 ];
 
 const LIMIT_OPTIONS: { key: string; labelKey: string; label: string; value: number | null }[] = [
-  { key: "none", labelKey: "limitNone", label: "No limit", value: null },
+  { key: "none", labelKey: "limitNone", get label() { return _translateCopy("copy.f7fcff0d8fea", { defaultValue: "No limit" }); }, value: null },
   { key: "1", labelKey: "limitOne", label: "1", value: 1 },
   { key: "10", labelKey: "limitTen", label: "10", value: 10 },
   { key: "50", labelKey: "limitFifty", label: "50", value: 50 },

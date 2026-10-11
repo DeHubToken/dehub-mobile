@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
@@ -76,6 +77,7 @@ function Choice({ label, active, onPress }: { label: string; active: boolean; on
 }
 
 export default function LaunchpadCreateScreen() {
+  const { t: _copy } = _useCopy();
   useGateToHome(DIGITAL_PURCHASES_ENABLED);
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -188,7 +190,7 @@ export default function LaunchpadCreateScreen() {
                 maxLength={8}
                 autoCapitalize="characters"
                 autoCorrect={false}
-                placeholder="PEPE"
+                placeholder={_copy("copy.e63ffac3f5e5", { defaultValue: "PEPE" })}
                 placeholderTextColor="rgba(255,255,255,0.4)"
                 style={[styles.input, FIELD_TEXT]}
               />

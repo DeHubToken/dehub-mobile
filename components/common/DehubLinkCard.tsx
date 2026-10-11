@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * DeHub Link Card
  * ===============
@@ -702,6 +703,7 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
   inBubble = false,
   onLongPress,
 }) => {
+  const { t: _copy } = _useCopy();
   const { width: windowWidth } = useWindowDimensions();
   const openLink = useOpenDehubLink();
   const open = useCallback(() => openLink(link), [openLink, link]);
@@ -709,7 +711,7 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
   const fallback = (
     <RowCard
       eyebrow="DeHub"
-      title={`View ${dehubLinkLabel(link.kind)}`}
+      title={_copy("copy.9f68c44b21cf", { defaultValue: "View {{value1}}", value1: dehubLinkLabel(link.kind) })}
       subtitle={`dehub.io${link.path}`}
       fallbackIcon="Link"
       onPress={open}

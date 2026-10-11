@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useCallback, useMemo } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useUser, useProvider } from "../context/AuthContext";
@@ -114,6 +115,7 @@ const getActiveNetworkLabel = (chainId: number | null | undefined): string => {
 
 
 export function useUploadPost() {
+  const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const { authMethod } = useProvider();
   // Gating a post on subscribers means gating it on the creator’s own plans.
@@ -335,7 +337,7 @@ export function useUploadPost() {
       const isSolanaPost = postingOnSolana && !!p.solanaAddress;
 
       if (postingOnSolana && !p.solanaAddress) {
-        toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
+        toastError(_copy("copy.ceae840b1f84", { defaultValue: "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it." }));
         return false;
       }
 
@@ -370,7 +372,7 @@ export function useUploadPost() {
 
       return true;
     },
-    [buildStreamInfo, user?.walletAddress, user?.address, activeChainId, myPlanIds],
+    [buildStreamInfo, user?.walletAddress, user?.address, activeChainId, myPlanIds, _copy],
   );
 
   const enqueueQuoteJob = useCallback(

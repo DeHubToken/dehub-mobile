@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, {
   memo,
@@ -79,6 +80,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   paymentChainId,
   onSuccess,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const yielded = useYieldToWalletUnlock(visible);
   const insets = useSafeAreaInsets();
@@ -400,9 +402,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                   balance here is the cached one, and the real check happens
                   on-chain and offers a top-up when it comes back short. */}
               {insufficient && phase === "idle" && (
-                <Text style={styles.hintText}>
-                  Low on {tokenSymbol}? We'll top you up before unlocking.
-                </Text>
+                <Text style={styles.hintText}>{_copy("copy.fefe0a37bf94", { defaultValue: "Low on " })}{tokenSymbol}{_copy("copy.1ee7202b84ad", { defaultValue: "? We'll top you up before unlocking." })}</Text>
               )}
               {isSelf && (
                 <Text style={styles.errorText}>{t("ppv.cantPaySelf")}</Text>
@@ -412,7 +412,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               {phase === "approving" && (
                 <View style={styles.statusRow}>
                   <ActivityIndicator size="small" color="#A6A9AC" />
-                  <Text style={styles.statusText}>Approving {tokenSymbol}…</Text>
+                  <Text style={styles.statusText}>{_copy("copy.39f4e6134a22", { defaultValue: "Approving " })}{tokenSymbol}…</Text>
                 </View>
               )}
               {phase === "sending" && (
@@ -443,8 +443,8 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                   ) : (
                     <Text style={styles.payBtnText}>
                       {phase === "error"
-                        ? "Retry"
-                        : `Pay ${formatCompactNumber(numericAmount)} ${tokenSymbol}`}
+                        ? _copy("copy.942087cc2d41", { defaultValue: "Retry" })
+                        : _copy("copy.f082eb679e6b", { defaultValue: "Pay {{value1}} {{value2}}", value1: formatCompactNumber(numericAmount), value2: tokenSymbol })}
                     </Text>
                   )}
                 </TouchableOpacity>

@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React from "react";
 import { View, Text } from "react-native";
 import Avatar from "../common/Avatar";
@@ -12,6 +13,7 @@ interface MutualFollowersProps {
 const MAX_DISPLAY = 3;
 
 const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
+  const { t: _copy } = _useCopy();
   if (!mutuals.length) return null;
 
   const displayed = mutuals.slice(0, MAX_DISPLAY);
@@ -45,7 +47,7 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
         ))}
       </View>
       {/* Shown without the words: the faces and names already say it. */}
-      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1} accessibilityLabel={`Followed by ${text}`}>
+      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1} accessibilityLabel={_copy("copy.fef6a1a97127", { defaultValue: "Followed by {{value1}}", value1: text })}>
         {text}
       </Text>
     </View>

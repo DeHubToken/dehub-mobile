@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CreatorsScreen
@@ -90,6 +91,7 @@ const Field = ({
 );
 
 export default function CreatorsScreen() {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const keyboardOffset = useKeyboardOffset();
@@ -142,11 +144,11 @@ export default function CreatorsScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <View style={styles.card}>
-            <Field label={t("creators.xUsername")} value={form.x_username} onChangeText={set("x_username")} placeholder="@username" />
-            <Field label={t("creators.youtubeUsername")} value={form.youtube_username} onChangeText={set("youtube_username")} placeholder="@channel" />
-            <Field label={t("creators.twitchUsername")} value={form.twitch_username} onChangeText={set("twitch_username")} placeholder="@username" />
-            <Field label={t("creators.instagramUsername")} value={form.instagram_username} onChangeText={set("instagram_username")} placeholder="@username" />
-            <Field label={t("creators.tiktokUsername")} value={form.tiktok_username} onChangeText={set("tiktok_username")} placeholder="@username" />
+            <Field label={t("creators.xUsername")} value={form.x_username} onChangeText={set("x_username")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
+            <Field label={t("creators.youtubeUsername")} value={form.youtube_username} onChangeText={set("youtube_username")} placeholder={_copy("copy.1a00975a0ac1", { defaultValue: "@channel" })} />
+            <Field label={t("creators.twitchUsername")} value={form.twitch_username} onChangeText={set("twitch_username")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
+            <Field label={t("creators.instagramUsername")} value={form.instagram_username} onChangeText={set("instagram_username")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
+            <Field label={t("creators.tiktokUsername")} value={form.tiktok_username} onChangeText={set("tiktok_username")} placeholder={_copy("copy.93100fc44c0a", { defaultValue: "@username" })} />
             <Field label={t("creators.otherSocials")} value={form.other_socials} onChangeText={set("other_socials")} multiline />
             <Field
               label={t("creators.totalFollowerReach")}

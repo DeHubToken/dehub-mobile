@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -11,6 +12,7 @@ export default function BuyDhbSheet({ visible, onClose, onDelivered, initialMeth
   onDelivered?: () => void;
   initialMethod?: "card" | "crypto";
 }) {
+  const { t: _copy } = _useCopy();
   const [method, setMethod] = useState<"card" | "crypto">(initialMethod);
   const { t } = useTranslation();
   const delivered = () => { onDelivered?.(); onClose(); };
@@ -23,7 +25,7 @@ export default function BuyDhbSheet({ visible, onClose, onDelivered, initialMeth
           {(["card", "crypto"] as const).map(option => (
             <TouchableOpacity key={option} onPress={() => setMethod(option)}
               className={`flex-1 h-11 rounded-xl border items-center justify-center ${method === option ? "bg-white/20 border-white/40" : "bg-white/5 border-white/10"}`}>
-              <Text className="text-white font-semibold">{option === "card" ? "Card" : "Crypto"}</Text>
+              <Text className="text-white font-semibold">{option === "card" ? _copy("copy.be3702e3f1af", { defaultValue: "Card" }) : _copy("copy.df12b8f89b61", { defaultValue: "Crypto" })}</Text>
             </TouchableOpacity>
           ))}
         </View>

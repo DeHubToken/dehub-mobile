@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Player for generated audio (music, TTS).
  * ========================================
@@ -65,6 +66,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   editing,
   editDisabled,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const soundRef = useRef<AudioPlayer | null>(null);
   const listenerRef = useRef<{ remove: () => void } | null>(null);
@@ -158,7 +160,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
           onPress={toggle}
           activeOpacity={0.8}
           accessibilityRole="button"
-          accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
+          accessibilityLabel={isPlaying ? _copy("copy.858e4ba7a29f", { defaultValue: "Pause" }) : _copy("copy.436e61016e26", { defaultValue: "Play" })}
         >
           {isLoading ? (
             <ActivityIndicator size="small" color="#09090B" />

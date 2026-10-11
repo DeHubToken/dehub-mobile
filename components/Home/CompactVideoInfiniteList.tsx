@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import Animated from "react-native-reanimated";
 import React, {
   useCallback,
@@ -77,6 +78,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   isLocked,
   onBeforeNavigate,
 }) => {
+  const { t: _copy } = _useCopy();
   const [items, setItems] = useState<VideoItem[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -241,11 +243,11 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
         !loading ? (
           <ProfileEmptyState
             kind={variant === "live" ? "live" : "videos"}
-            title={variant === "live" ? "No live streams yet" : "No videos yet"}
+            title={variant === "live" ? _copy("copy.25d36bfae913", { defaultValue: "No live streams yet" }) : _copy("copy.7b1fd32345ce", { defaultValue: "No videos yet" })}
             subtitle={
               variant === "live"
-                ? "Live content will appear here"
-                : "Video posts will appear here"
+                ? _copy("copy.b713cad3fece", { defaultValue: "Live content will appear here" })
+                : _copy("copy.e4cea00e921f", { defaultValue: "Video posts will appear here" })
             }
           />
         ) : cinematic ? (

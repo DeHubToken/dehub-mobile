@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import { Trans, useTranslation } from "react-i18next";
@@ -52,6 +53,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   initialUsdAmount = "10",
   onDelivered,
 }) => {
+  const { t: _copy } = _useCopy();
   // Minimal: the form's card dissolves (fields and buttons keep their fill)
   // and the confirm sheet's grey dividers become the white hairline.
   const { isMinimal } = useAppTheme();
@@ -436,7 +438,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
             {typeof tokenPrice === "number"
               ? `${tokenPrice.toFixed(7)} ${currency.toUpperCase()}`
               : loadingPrice
-              ? "Loading..."
+              ? _copy("copy.47d2a515ef2f", { defaultValue: "Loading..." })
               : priceUsd
               ? `${priceUsd.toFixed?.(7) ?? priceUsd} ${currency.toUpperCase()}`
               : "—"}
@@ -445,8 +447,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       </View>
 
       <View className="mb-3">
-        <Text className="text-gray-400 text-[11px] mb-1">
-          Amount [{currency.toUpperCase()}]
+        <Text className="text-gray-400 text-[11px] mb-1">{_copy("copy.f4d5e6f2c7ac", { defaultValue: "Amount [" })}{currency.toUpperCase()}]
         </Text>
         <View className="h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center">
           <Ionicons name="cash-outline" size={16} color="#A1A1AA" />
@@ -491,8 +492,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
 
       <View className="flex-row items-center mb-4">
         <Ionicons name="receipt-outline" size={14} color="#A1A1AA" />
-        <Text className="text-gray-300 text-[11px] ml-2">
-          You’ll receive approximately{" "}
+        <Text className="text-gray-300 text-[11px] ml-2">{_copy("copy.bffcf3708842", { defaultValue: "You’ll receive approximately" })}{" "}
           <Text className="text-white font-semibold">
             {approxReceive} <DhbCoin />
           </Text>
@@ -597,7 +597,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                 </View>
                 <View className="flex-1 ml-2">
                   <PrimaryButton
-                    title={loadingCheckout ? "Processing..." : "Confirm & Pay"}
+                    title={loadingCheckout ? _copy("copy.f40a853e58a1", { defaultValue: "Processing..." }) : _copy("copy.f47bd0deae98", { defaultValue: "Confirm & Pay" })}
                     onPress={onConfirmCheckout}
                     disabled={loadingCheckout}
                   />

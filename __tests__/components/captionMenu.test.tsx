@@ -15,7 +15,7 @@ jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable', Modal: 'Modal', ScrollView: 'ScrollView', ActivityIndicator: 'ActivityIndicator',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
 }));
-jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key, i18n: { language: mockAppLang } }) }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/\{\{(\w+)\}\}/g, (token, name) => String(options?.[name] ?? token)), i18n: { language: mockAppLang } }) }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ bottom: 0 }) }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Icon' }));
 jest.mock('../../components/common/MediaControlGlyph', () => ({ MediaControlIcon: 'Icon' }));

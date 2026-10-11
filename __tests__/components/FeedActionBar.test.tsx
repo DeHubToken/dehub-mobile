@@ -15,7 +15,7 @@ jest.mock('react-native', () => ({
     sequence: jest.fn(() => ({ start: jest.fn() })),
   },
 }));
-jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/\{\{(\w+)\}\}/g, (token, name) => String(options?.[name] ?? token)) }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/Home/ReactionPicker', () => 'ReactionPicker');
 jest.mock('../../components/Home/ReactionEmoji', () => ({ ReactionEmoji: 'ReactionEmoji' }));

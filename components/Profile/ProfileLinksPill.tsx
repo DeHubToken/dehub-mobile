@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, { useMemo, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { SvgXml } from "react-native-svg";
@@ -16,7 +17,7 @@ import {
 } from "../../config/socialIcons";
 
 const PLATFORMS = [
-  { key: "twitter", label: "X (Twitter)", host: "x.com", svg: TWITTER_SVG_XML },
+  { key: "twitter", get label() { return _translateCopy("copy.89c9b65356e3", { defaultValue: "X (Twitter)" }); }, host: "x.com", svg: TWITTER_SVG_XML },
   { key: "instagram", label: "Instagram", host: "instagram.com", svg: INSTAGRAM_SVG_XML },
   { key: "tiktok", label: "TikTok", host: "tiktok.com", svg: TIKTOK_SVG_XML },
   { key: "youtube", label: "YouTube", host: "youtube.com", svg: YOUTUBE_SVG_XML },

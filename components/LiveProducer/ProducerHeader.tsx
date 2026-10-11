@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -74,6 +75,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   onRequestClose,
   onRequestEndConfirmation,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [, forceUpdate] = useState(0);
 
@@ -231,8 +233,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
                     : "text-white/40 text-[10px]"
                 }
               >
-                {bitrateKbps} kbps
-              </Text>
+                {bitrateKbps}{_copy("copy.0d59864b14b3", { defaultValue: " kbps" })}</Text>
             </View>
           ) : null}
         </View>

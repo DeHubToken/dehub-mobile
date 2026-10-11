@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Community administration data layer
  * ===================================
@@ -145,6 +146,7 @@ export interface ModerationActions {
 }
 
 export function useCommunityModeration(communityId: string | undefined): ModerationActions {
+  const { t: _copy } = _useCopy();
   const wallet = useWalletAddress();
   const queryClient = useQueryClient();
   const [busy, setBusy] = useState<string | null>(null);
@@ -171,7 +173,7 @@ export function useCommunityModeration(communityId: string | undefined): Moderat
       success?: string,
     ): Promise<boolean> => {
       if (!wallet || !communityId) {
-        toastError("Connect your wallet first");
+        toastError(_copy("copy.d4eb6104ebd9", { defaultValue: "Connect your wallet first" }));
         return false;
       }
       setBusy(target ?? "__community__");
@@ -187,7 +189,7 @@ export function useCommunityModeration(communityId: string | undefined): Moderat
         setBusy(null);
       }
     },
-    [wallet, communityId, invalidate],
+    [wallet, communityId, invalidate, _copy],
   );
 
   const who = (name?: string) => name || "Member";

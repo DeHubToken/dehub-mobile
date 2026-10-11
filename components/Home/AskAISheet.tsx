@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { isHoldGated } from "../../libs/content-gate";
@@ -200,6 +201,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   postId,
   postContext,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
@@ -585,7 +587,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
                   <Image source={AI_AVATAR} style={styles.typingAvatar} />
                   <View style={styles.typingBubble}>
                     <ActivityIndicator size="small" color="#A6A9AC" />
-                    <Text style={styles.typingText}>{isGeneratingImage ? "Creating..." : "Thinking..."}</Text>
+                    <Text style={styles.typingText}>{isGeneratingImage ? _copy("copy.def70944c9bb", { defaultValue: "Creating..." }) : _copy("copy.b4739a4f0865", { defaultValue: "Thinking..." })}</Text>
                   </View>
                 </View>
               )}

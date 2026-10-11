@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * TV Chat data layer
  * ==================
@@ -49,6 +50,7 @@ const QUERY_KEY = "tv-chat-messages";
 const PAGE_LIMIT = 200;
 
 export function useTvChat(channelId: string | undefined, enabled = true) {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const queryClient = useQueryClient();
   const walletAddress = (user?.walletAddress || user?.address || "") || null;
@@ -151,11 +153,11 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       );
       if (error) {
         log.error("send failed", error);
-        toastError(error, "Failed to send message");
+        toastError(error, _copy("copy.66b8e077d85f", { defaultValue: "Failed to send message" }));
         throw error;
       }
     },
-    [channelId, walletAddress, user]
+    [channelId, walletAddress, user, _copy]
   );
 
   const addReaction = useCallback(
@@ -220,11 +222,11 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       );
       if (error) {
         log.error("delete failed", error);
-        toastError(error, "Failed to delete message");
+        toastError(error, _copy("copy.5ce4aeba4357", { defaultValue: "Failed to delete message" }));
         void queryClient.invalidateQueries({ queryKey: [QUERY_KEY, channelId] });
       }
     },
-    [walletAddress, channelId, queryClient]
+    [walletAddress, channelId, queryClient, _copy]
   );
 
   return { messages, isLoading, sendMessage, deleteMessage, addReaction, removeReaction };

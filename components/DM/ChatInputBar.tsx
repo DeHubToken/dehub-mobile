@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
 import React, {
@@ -149,6 +150,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   peerName,
   draftKey,
 }) => {
+  const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
   const [ordinaryText, setOrdinaryText] = useDraft(draftKey);
@@ -639,8 +641,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             className="flex-row items-center mx-3 mt-2 px-3 py-1.5 bg-amber-500/10 rounded-lg self-start"
           >
             <Icon name="Gem" size={12} color="#D4D4D8" />
-            <Text className="text-[11px] text-amber-400 font-medium ml-1">
-              Tip: {tipAmount} <DhbCoin />
+            <Text className="text-[11px] text-amber-400 font-medium ml-1">{_copy("copy.b74733d38668", { defaultValue: "Tip: " })}{tipAmount} <DhbCoin />
             </Text>
             <TouchableOpacity
               onPress={onClearTip}

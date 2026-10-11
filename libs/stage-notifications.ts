@@ -12,6 +12,7 @@
  */
 
 import type { StageDeepLink } from "./deeplink.events";
+import i18n from "../i18n";
 
 /**
  * Turn a notification's `reference_id` into something the stage opener can use.
@@ -29,12 +30,10 @@ export function stageDeepLinkFor(referenceId?: string | null): StageDeepLink {
 
 /** "@alice's stage "Town Hall" is live — tap to listen in" */
 export function stageLiveSentence(actorName: string, title?: string | null): string {
-  return title
-    ? `${actorName}'s stage "${title}" is live — tap to listen in`
-    : `${actorName} is live on a stage`;
+  return String(i18n.t(title ? 'notifications.custom.stageLiveNamed' : 'notifications.custom.stageLive', { name: actorName, title }));
 }
 
 /** ""Town Hall" is starting soon" */
 export function stageReminderSentence(title?: string | null): string {
-  return title ? `"${title}" is starting soon` : "A stage you set a reminder for is starting soon";
+  return String(i18n.t(title ? 'notifications.custom.stageReminderNamed' : 'notifications.custom.stageReminder', { title }));
 }

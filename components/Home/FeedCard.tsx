@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../../context/VideoDownloadContext";
 import { watchedLabel } from "../../i18n/watched-label";
 import { SessionExpiredError } from "../../libs/api.client";
@@ -300,6 +301,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   stage: stageProp = false,
   onStageAnchor,
 }) => {
+  const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const { t, i18n } = useCopy();
   const user = useUser();
@@ -1687,8 +1689,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             paddingVertical: 2,
           }}
         >
-          <Text className="text-white text-[10px] font-bold text-center">
-            Watch2Earn: {formatCompactNumber(bountyAmount)} {bountyTokenSymbol}
+          <Text className="text-white text-[10px] font-bold text-center">{_copy("copy.90e98b380307", { defaultValue: "Watch2Earn: " })}{formatCompactNumber(bountyAmount)} {bountyTokenSymbol}
           </Text>
         </View>
       )}
@@ -1703,9 +1704,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             paddingVertical: 2,
           }}
         >
-          <Text className="text-white text-[10px] font-bold text-center">
-            PPV: {payPerViewAmount} {payPerViewTokenSymbol}
-            {isOwnerPost && ppvSalesCount != null ? `  ·  ${ppvSalesCount} sold` : ""}
+          <Text className="text-white text-[10px] font-bold text-center">{_copy("copy.2f51108189d2", { defaultValue: "PPV: " })}{payPerViewAmount} {payPerViewTokenSymbol}
+            {isOwnerPost && ppvSalesCount != null ? _copy("copy.2e15e7cebe72", { defaultValue: "  ·  {{value1}} sold", value1: ppvSalesCount }) : ""}
           </Text>
         </View>
       )}
@@ -1720,8 +1720,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             paddingVertical: 2,
           }}
         >
-          <Text className="text-white text-[10px] font-bold text-center">
-            Lock: {lockContentAmount} {lockContentTokenSymbol}
+          <Text className="text-white text-[10px] font-bold text-center">{_copy("copy.f35fec044f76", { defaultValue: "Lock: " })}{lockContentAmount} {lockContentTokenSymbol}
           </Text>
         </View>
       )}
@@ -2767,8 +2766,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {isLive && peakAudience > 0 && (
           <>
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>
-              Peak: {formatCompactNumber(peakAudience)}
+            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>{_copy("copy.e22a9a53a007", { defaultValue: "Peak: " })}{formatCompactNumber(peakAudience)}
             </Text>
           </>
         )}

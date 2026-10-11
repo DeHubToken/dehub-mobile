@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Stores data layer
  * =================
@@ -164,6 +165,7 @@ export function useMyStores() {
 }
 
 export function useCreateStore() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -194,16 +196,17 @@ export function useCreateStore() {
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["my-stores"] });
-      toastSuccess("Store created!");
+      toastSuccess(_copy("copy.b48875b564b2", { defaultValue: "Store created!" }));
     },
     onError: (e: any) => {
       log.error("Create store failed:", e);
-      toastError(e, "Failed to create store");
+      toastError(e, _copy("copy.dd4cbcccd151", { defaultValue: "Failed to create store" }));
     },
   });
 }
 
 export function useUpdateStore() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -228,11 +231,11 @@ export function useUpdateStore() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["my-stores"] });
       qc.invalidateQueries({ queryKey: ["store"] });
-      toastSuccess("Store updated!");
+      toastSuccess(_copy("copy.494f351679ab", { defaultValue: "Store updated!" }));
     },
     onError: (e: any) => {
       log.error("Update store failed:", e);
-      toastError(e, "Failed to update store");
+      toastError(e, _copy("copy.716ad8641567", { defaultValue: "Failed to update store" }));
     },
   });
 }
@@ -259,6 +262,7 @@ export function useMyListings() {
 }
 
 export function useCreateListing() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -293,11 +297,11 @@ export function useCreateListing() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["my-store-listings"] });
       qc.invalidateQueries({ queryKey: ["store-listings-browse"] });
-      toastSuccess("Listing created!");
+      toastSuccess(_copy("copy.c2e1e173fbc9", { defaultValue: "Listing created!" }));
     },
     onError: (e: any) => {
       log.error("Create listing failed:", e);
-      toastError(e, "Failed to create listing");
+      toastError(e, _copy("copy.c5bf66554c8f", { defaultValue: "Failed to create listing" }));
     },
   });
 }
@@ -446,6 +450,7 @@ export function useMyOrders(type: "buyer" | "seller") {
 }
 
 export function useCreateOrder() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -473,11 +478,11 @@ export function useCreateOrder() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["store-orders"] });
       qc.invalidateQueries({ queryKey: ["store-listings-browse"] });
-      toastSuccess("Order placed successfully!");
+      toastSuccess(_copy("copy.655743463642", { defaultValue: "Order placed successfully!" }));
     },
     onError: (e: any) => {
       log.error("Create order failed:", e);
-      toastError(e, "Failed to record order");
+      toastError(e, _copy("copy.27bc6d558ce4", { defaultValue: "Failed to record order" }));
     },
   });
 }
@@ -524,6 +529,7 @@ export function useHasPurchased(listingId: string | undefined) {
 }
 
 export function useCreateReview() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -548,11 +554,11 @@ export function useCreateReview() {
     },
     onSuccess: (_d, vars) => {
       qc.invalidateQueries({ queryKey: ["store-reviews", vars.listing_id] });
-      toastSuccess("Review submitted!");
+      toastSuccess(_copy("copy.b0dd0a526e86", { defaultValue: "Review submitted!" }));
     },
     onError: (e: any) => {
       log.error("Create review failed:", e);
-      toastError(e, "Failed to submit review");
+      toastError(e, _copy("copy.31696badc2ca", { defaultValue: "Failed to submit review" }));
     },
   });
 }

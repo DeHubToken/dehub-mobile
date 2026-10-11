@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import env from "./env";
 import BaseIcon from "../assets/chains/base-icon.png";
 import EthIcon from "../assets/chains/ethereum-icon.png";
@@ -143,7 +144,7 @@ const devTokens = [
   },
   {
     value: "busd",
-    label: "BUSD",
+    get label() { return _translateCopy("copy.bd4ef74463ac", { defaultValue: "BUSD" }); },
     symbol: "BUSD",
     customAbbreviation: "busd",
     chainId: 97,
@@ -423,11 +424,11 @@ export const SB_ADDRESS: { [chainId: number]: string } = {
 };
 
 export const durations = [
-  { title: "1 month", value: 1, tier: 1 },
-  { title: "3 months", value: 3, tier: 2 },
-  { title: "6 months", value: 6, tier: 3 },
-  { title: "1 year", value: 12, tier: 4 },
-  { title: "lifetime", value: 999, tier: 5 },
+  { get title() { return _translateCopy("copy.cd8c117e6dd5", { defaultValue: "1 month" }); }, value: 1, tier: 1 },
+  { get title() { return _translateCopy("copy.bfd45132a8c6", { defaultValue: "3 months" }); }, value: 3, tier: 2 },
+  { get title() { return _translateCopy("copy.8ed94b4cf82d", { defaultValue: "6 months" }); }, value: 6, tier: 3 },
+  { get title() { return _translateCopy("copy.91647badc37b", { defaultValue: "1 year" }); }, value: 12, tier: 4 },
+  { get title() { return _translateCopy("copy.6f6a6d94fb43", { defaultValue: "lifetime" }); }, value: 999, tier: 5 },
 ];
 
 export const ActivityActionType = {

@@ -1,3 +1,4 @@
+import { applyDateLocale } from './date-locale';
 import manifest from './locale-manifest.json';
 /**
  * i18n Configuration — Mobile (Expo/React Native)
@@ -241,8 +242,12 @@ i18n.use({
   },
 });
 export async function loadLanguage(lang: string): Promise<boolean> {
-  const results = await Promise.all([...requestedGroups].map(group => loadPack(lang, group)));
-  return results.every(Boolean);
+  const groups = ['ar', 'es', 'fr', 'nl', 'tr'].includes(lang)
+    ? [...new Set(Object.values(manifest.groups))]
+    : [...requestedGroups];
+  const results = await Promise.all(groups.map(group => loadPack(lang, group)));
+  // Optional feature packs must not prevent an offline reader using cached core copy.
+  return results[groups.indexOf('core')] ?? false;
 }
 /**
  * Detect the best language from device locale, falling back to stored preference.
@@ -266,6 +271,9 @@ i18n.use(initReactI18next).init({
   compatibilityJSON: 'v4',
 });
 
+applyDateLocale(i18n.language || 'en');
+i18n.on('languageChanged', applyDateLocale);
+
 // English needs one pass too: governance.proposalCount and postInfo.owner ship
 // only an _other, so t(key, { count: 1 }) resolved to nothing.
 fillMissingPluralForms(i18n, 'en');
@@ -275,10 +283,10 @@ fillMissingPluralForms(i18n, 'en');
   try {
     const saved = await AsyncStorage.getItem(STORAGE_KEY);
     const target = saved || detectLanguage();
-    let active = 'en';
+    let active = i18n.language || 'en';
     if (target && target !== 'en') {
       const ok = await loadLanguage(target);
-      if (ok) {
+      if (ok && i18n.language === 'en') {
         await i18n.changeLanguage(target);
         active = target;
       }

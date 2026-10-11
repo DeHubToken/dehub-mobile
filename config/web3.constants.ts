@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { ChainId, isDevMode } from "./constants";
 import env from "./env";
 
@@ -105,7 +106,7 @@ const testNetworks = [
     rpcUrl: NETWORK_URLS[ChainId.BSC_TESTNET],
     explorerUrl: "https://testnet.bscscan.com/",
     value: "BNB Testnet",
-    label: "BNB Testnet",
+    get label() { return _translateCopy("copy.8d771bfa99a9", { defaultValue: "BNB Testnet" }); },
     customAbbreviation: "bsc_test",
   },
 ];
@@ -135,7 +136,7 @@ const mainNetworks = [
     rpcUrl: NETWORK_URLS[ChainId.BSC_MAINNET],
     explorerUrl: "https://bscscan.com/",
     value: "BNB Chain",
-    label: "BNB Chain",
+    get label() { return _translateCopy("copy.5dc85dbc155e", { defaultValue: "BNB Chain" }); },
     customAbbreviation: "bnb_chain",
     iconUrl: "",
   },
@@ -166,7 +167,7 @@ const mainNetworks = [
           rpcUrl: NETWORK_URLS[ChainId.ROBINHOOD_MAINNET],
           explorerUrl: "https://robinhoodchain.blockscout.com/",
           value: "Robinhood Chain",
-          label: "Robinhood Chain",
+          get label() { return _translateCopy("copy.e5b3ca7e464e", { defaultValue: "Robinhood Chain" }); },
           customAbbreviation: "robinhood",
           iconUrl: "",
         },
