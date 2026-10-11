@@ -18,6 +18,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import CommunityFeedRoute from "../components/Communities/CommunityFeedRoute";
+import InviteFollowers from '../components/Communities/InviteFollowers';
+import AddExistingPost from '../components/Communities/AddExistingPost';
 import Icon from "../components/ui/Icon";
 import { theme } from "../theme";
 import { useUser, useAuthActions } from "../context/AuthContext";
@@ -81,6 +83,7 @@ const CommunityDetailScreen: React.FC = () => {
   const [actionLoading, setActionLoading] = useState(false);
   const [tab, setTab] = useState<Tab>("posts");
   const [manageOpen, setManageOpen] = useState(false);
+  const [followersOpen, setFollowersOpen] = useState(false);
   const [loadError, setLoadError] = useState(false);
   // Which slug the community on screen was loaded for, so a failed read can
   // keep that page up without leaving it behind when the route has moved on.
@@ -442,6 +445,7 @@ const CommunityDetailScreen: React.FC = () => {
             <Icon name="Share2" size={16} color="#fff" />
             <Text style={styles.secondaryBtnText}>{t("communities.share")}</Text>
           </TouchableOpacity>
+          {isMember && abilities.can('add_members') && <TouchableOpacity style={styles.secondaryBtn} onPress={()=>setFollowersOpen(true)}><Icon name="Users" size={16} color="#fff"/><Text style={styles.secondaryBtnText}>{t('communities.followerInvites.title')}</Text></TouchableOpacity>}
           {abilities.canManage && (
             <TouchableOpacity style={styles.secondaryBtn} onPress={() => setManageOpen(true)}>
               <Icon name="Settings" size={16} color="#fff" />
@@ -461,6 +465,9 @@ const CommunityDetailScreen: React.FC = () => {
       </View>
 
       {TabBar}
+      {tab==='posts' && walletAddress && abilities.can('send_messages') && abilities.can('embed_links') && (
+        <View className="px-4"><AddExistingPost communityId={community.id} wallet={walletAddress} /></View>
+      )}
     </View>
   );
 
@@ -481,12 +488,15 @@ const CommunityDetailScreen: React.FC = () => {
       <ScreenHeader title={t("communities.title")} />
       {tab === "posts" ? (
         <View className="flex-1">
-          <CommunityFeedRoute
+          {community.is_private && !isMember ? <ScrollView showsVerticalScrollIndicator={false}>{HeaderBlock}<Text className="text-zinc-400 text-center p-6">{t('communities.joinToSeePosts')}</Text></ScrollView> : <CommunityFeedRoute
+            communityId={community.id}
+            wallet={walletAddress || null}
+            canModerate={abilities.can('delete_messages')}
             communitySlug={community.slug}
             memberAddresses={memberAddresses}
             isMember={isMember}
             listHeader={HeaderBlock}
-          />
+          />}
         </View>
       ) : tab === "chat" ? (
         <View className="flex-1">
@@ -642,6 +652,7 @@ const CommunityDetailScreen: React.FC = () => {
         />
       )}
       <DeHubRefreshMark refreshing={refreshing} />
+      {isMember && abilities.can('add_members') && <InviteFollowers open={followersOpen} onClose={()=>setFollowersOpen(false)} communityId={community.id} slug={community.slug} wallet={walletAddress}/>}
     </View>
   );
 };

@@ -3165,6 +3165,32 @@
     "tokenAmount": "{{amount}} jeton"
   },
   "communities": {
+    "followerInvites": {
+      "title": "Takipçileri davet et",
+      "detail": "Her grupta en fazla 50 takipçi seçin. Ücretli veya kapalı özel mesajlar atlanır. Tekrar denemeden önce onaylanmamış gönderileri sohbette kontrol edin.",
+      "selectAll": "Bu sayfayı seç",
+      "clear": "Seçimi temizle",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "empty": "Bu sayfada takipçi yok.",
+      "send": "Davetleri gönder ({{count}})",
+      "sending": "Davetler gönderiliyor…",
+      "summary": "Gönderildi: {{sent}} · Atlandı: {{skipped}} · Sohbeti kontrol et: {{review}} · Başarısız: {{failed}}",
+      "error": "Davetler gönderilemedi. Bağlantınızı ve oturumunuzu kontrol edip tekrar deneyin."
+    },
+    "existingPost": {
+      "add": "Mevcut gönderiyi ekle",
+      "hint": "Özgün gönderiyi, beğenileri ve görüntülemeleri koruyun.",
+      "placeholder": "DeHub gönderi bağlantısı veya kimliği",
+      "adding": "Ekleniyor…",
+      "added": "Gönderi topluluğa eklendi",
+      "remove": "Topluluktan kaldır",
+      "more": "Daha fazla gönderi yükle",
+      "failed": "Gönderiler güncellenemedi. Tekrar deneyin.",
+      "invalidLink": "Bir DeHub gönderi bağlantısı veya kimliği yapıştırın.",
+      "unavailable": "Bu gönderi kullanılamıyor.",
+      "signIn": "Topluluk gönderilerini yönetmek için tekrar giriş yapın."
+    },
     "title": "Topluluklar",
     "create": "Oluştur",
     "searchPlaceholder": "Topluluk ara...",

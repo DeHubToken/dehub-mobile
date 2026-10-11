@@ -3165,6 +3165,32 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "followerInvites": {
+      "title": "Invitar seguidores",
+      "detail": "Elige hasta 50 seguidores por lote. Se omiten los mensajes privados cerrados o de pago. Revisa el chat para comprobar los envíos sin confirmar antes de reintentarlo.",
+      "selectAll": "Seleccionar esta página",
+      "clear": "Borrar selección",
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "empty": "No hay seguidores en esta página.",
+      "send": "Enviar invitaciones ({{count}})",
+      "sending": "Enviando invitaciones…",
+      "summary": "Enviadas: {{sent}} · Omitidas: {{skipped}} · Revisar chat: {{review}} · Fallidas: {{failed}}",
+      "error": "No se pudieron enviar las invitaciones. Comprueba la conexión y la sesión e inténtalo de nuevo."
+    },
+    "existingPost": {
+      "add": "Añadir publicación existente",
+      "hint": "Conserva la publicación original, sus Me gusta y sus vistas.",
+      "placeholder": "Enlace o ID de una publicación de DeHub",
+      "adding": "Añadiendo…",
+      "added": "Publicación añadida a la comunidad",
+      "remove": "Quitar de la comunidad",
+      "more": "Cargar más publicaciones",
+      "failed": "No se pudieron actualizar las publicaciones. Inténtalo de nuevo.",
+      "invalidLink": "Pega un enlace o ID de una publicación de DeHub.",
+      "unavailable": "Esta publicación no está disponible.",
+      "signIn": "Inicia sesión de nuevo para gestionar las publicaciones."
+    },
     "title": "Comunidades",
     "create": "Crear",
     "searchPlaceholder": "Buscar comunidades...",
