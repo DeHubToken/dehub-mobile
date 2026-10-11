@@ -1,5 +1,6 @@
 import { APP_THEMES } from '../../theme/colors';
-import { themeIconUrl, THEME_ICON_REVISION } from '../../theme/icons';
+import { themeIconUrl, THEME_ICON_REVISION, THEME_ICON_KEYS } from '../../theme/icons';
+import { PAGE_IDENTITY_ICONS, pageIdentityIcon } from '../../theme/pageIdentity';
 
 it('uses the transparent power artwork in the same active theme pack', () => {
   expect(themeIconUrl('hazy', 'boost')).toContain(`/theme-icons/hazy/boost.png?v=${THEME_ICON_REVISION}`);
@@ -19,4 +20,15 @@ it('uses each custom pack instead of System artwork or generic glyphs', () => {
     expect(themeIconUrl(theme, 'usernames')).toContain(`/theme-icons/${theme}/usernames.webp`);
   }
   expect(themeIconUrl('unknown-theme', 'usernames')).toBeUndefined();
+});
+
+it('uses published artwork for every routed page and rejects missing artwork', () => {
+  for (const [route, key] of Object.entries(PAGE_IDENTITY_ICONS)) {
+    expect(THEME_ICON_KEYS).toContain(key);
+    expect(pageIdentityIcon(route)).toBe(key);
+    for (const theme of APP_THEMES) expect(themeIconUrl(theme, key!)).toBeDefined();
+  }
+  expect(themeIconUrl('hazy', 'creator')).toContain('/hazy/wand.webp');
+  expect(themeIconUrl('hazy', 'unpublished-key')).toBeUndefined();
+  expect(pageIdentityIcon('unknown-page')).toBeUndefined();
 });
