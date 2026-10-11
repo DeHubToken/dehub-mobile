@@ -119,7 +119,7 @@ export function Chip({ label, active, onPress, icon, disabled }: { label: string
       accessibilityRole="button"
       accessibilityState={{ selected: !!active, disabled: !!disabled }}
       className={`flex-row items-center rounded-xl px-3 py-2 border ${active ? "bg-white border-white" : "bg-white/10 border-white/20"}`}
-      style={{ gap: 6, opacity: disabled ? 0.4 : 1 }}
+      style={{ gap: 6, minHeight: 44, minWidth: 44, opacity: disabled ? 0.4 : 1 }}
     >
       {icon && <Icon name={icon} size={16} color={active ? "#000" : "#fff"} />}
       <Text className={active ? "text-black text-sm font-semibold" : "text-white text-sm"}>{label}</Text>
