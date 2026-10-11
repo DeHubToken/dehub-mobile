@@ -43,12 +43,13 @@ import { useDMContext } from "../context/DMContext";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
 import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
+import { themeIconUrl } from '../theme/icons';
 
 const SEPARATOR = { height: 1, backgroundColor: "rgba(255,255,255,0.07)" } as const;
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
-  const { skin } = useAppTheme();
+  const { skin, theme } = useAppTheme();
   const navigation = useNavigation<any>();
   const user = useUser();
   const publicUnread = usePublicChatUnreadCount();
@@ -465,8 +466,8 @@ const DirectMessagesInner: React.FC = () => {
               <LoadErrorState message={t("messages.failedToLoad")} onRetry={refreshContacts} />
             ) : contactsLoading ? null : (
               <View className="items-center mt-16 px-8">
-                <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
-                  <Icon name="MessageCircle" size={32} color="#A1A1AA" />
+                <View className="w-16 h-16 items-center justify-center mb-4">
+                  <Image source={{ uri: themeIconUrl(theme, 'messages') }} style={{ width: 64, height: 64 }} contentFit="contain" cachePolicy="disk" />
                 </View>
                 <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
                   {t("dm.noConversationsYet")}

@@ -45,8 +45,8 @@ interface TipAmountSheetProps {
 
 const PRESETS = [500, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 1_000_000] as const;
 
-const SELECTED_BG = "rgba(255,255,255,0.2)";
-const SELECTED_BORDER = "rgba(255,255,255,0.4)";
+const SELECTED_BG = "rgba(245,158,11,0.3)";
+const SELECTED_BORDER = "rgba(245,158,11,0.5)";
 
 const SHEET_HEIGHT = 420;
 
@@ -225,6 +225,8 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                       key={amount}
                       activeOpacity={0.7}
                       onPress={() => handlePreset(amount)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: isSelected }}
                       style={[
                         styles.presetChip,
                         isSelected && styles.presetChipActive,
@@ -409,7 +411,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   presetTextActive: {
-    color: "#FFFFFF",
+    color: "#FBBF24",
   },
   coinIcon: {
     width: 16,
@@ -472,15 +474,18 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: "#F4F4F5",
+    backgroundColor: "rgba(234,179,8,0.25)",
+    borderWidth: 1,
+    borderColor: "rgba(234,179,8,0.4)",
     alignItems: "center",
     justifyContent: "center",
   },
   confirmBtnDisabled: {
     backgroundColor: "rgba(255,255,255,0.08)",
+    opacity: 0.4,
   },
   confirmBtnText: {
-    color: "#09090B",
+    color: "#FCD34D",
     fontSize: 14,
     fontWeight: "700",
   },
