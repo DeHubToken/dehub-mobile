@@ -160,7 +160,9 @@ export class AssemblySession {
   constructor(private runtime: AssemblyRuntime, private changed: (state: AssemblyState) => void) {}
   private patch(value: Partial<AssemblyState>) {
     if (value.shots && !value.shotScopes) value = { ...value, shotScopes: Object.fromEntries(value.shots.map(shot => {
-      const key = assemblyShotKey(shot); return [key, this.state.shotScopes?.[key] ?? freshShotScope()];
+      const key = assemblyShotKey(shot), previous = this.state.shots.find(value => assemblyShotKey(value) === key);
+      const sameRange = previous && Object.is(previous.offset, shot.offset) && Object.is(previous.duration, shot.duration);
+      return [key, sameRange ? this.state.shotScopes?.[key] ?? freshShotScope() : freshShotScope()];
     })) };
     this.state = { ...this.state, ...value }; this.changed(this.state);
   }
@@ -298,7 +300,7 @@ export class AssemblySession {
     if (this.state.busy || !this.matchesSource()) return;
     const shot = this.state.shots.find(value => assemblyShotKey(value) === key) ?? this.state.shots.find(value => value.id === key && value.part === undefined);
     if (!shot) return;
-    this.edit({ shots: this.state.shots.map(value => value === shot ? { ...value, offset, duration } : value) }, true);
+    this.edit({ shots: this.state.shots.map(value => value === shot ? { ...value, offset, duration } : value) }, true, this.state.shotScopes);
   }
   transition(value: TransitionKind | null) { if (value === null || transitions.includes(value)) this.edit({ transition: value }); }
   sound(id: string | null) { if (id === null || this.state.sounds.some(c => c.id === id)) this.edit({ soundId: id }); }
