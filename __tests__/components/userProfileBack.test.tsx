@@ -14,6 +14,7 @@ jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/UserProfile/UserProfileSheetContent', () => 'ProfileContent');
 jest.mock('../../components/UserProfile/ProfileSurface', () => 'ProfileSurface');
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
+jest.mock('../../components/ui/FrostedBackdrop', () => ({ FrostedBackground: 'FrostedBackground' }));
 jest.mock('../../components/UserProfile/UnfollowSheet', () => 'UnfollowSheet');
 jest.mock('../../context/TabBarHideContext', () => ({ TabBarHideProvider: 'TabBarHideProvider' }));
 jest.mock('../../navigation/StandaloneTabBar', () => 'StandaloneTabBar');
