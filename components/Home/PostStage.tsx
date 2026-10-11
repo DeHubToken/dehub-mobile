@@ -119,6 +119,7 @@ type CreatorProps = {
   following: boolean;
   pending: boolean;
   onFollow: () => void;
+  onMore?: () => void;
 };
 
 /** The creator under the media: avatar, name and badge, handle · followers, Follow. */
@@ -133,6 +134,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   following,
   pending,
   onFollow,
+  onMore,
 }: CreatorProps) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
@@ -183,6 +185,7 @@ export const PostStageCreator = memo(function PostStageCreator({
           </Text>
         </Pressable>
       ) : null}
+      {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={34} /> : null}
     </View>
   );
 });

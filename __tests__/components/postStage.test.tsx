@@ -166,19 +166,19 @@ describe('post page on phones', () => {
   it('keeps image controls below the photo and blurs the list beneath the composer', () => {
     expect(card).toContain('!postVideo && !postImage && <PostStageChrome overMedia');
     expect(card).toContain('openOptions: handleOpenOptions');
-    expect(detail).toContain('onMore={stageMedia.openOptions}');
+    expect(card).toContain('onMore={handleOpenOptions}');
+    expect(detail).not.toContain('onMore={stageMedia.openOptions}');
     expect(detail).toContain('<FrostedContent>');
-    expect(detail).toContain('<FrostedPill tint={stageGlassTint}');
+    expect(detail).toContain('<FrostedPill tint={stageGlassTint} borderRadius={skin?.square ? 0 : 12} bordered={false}');
     expect(detail).not.toContain('backgroundColor: stagePage');
     expect(detail).not.toContain('backgroundColor: Platform.OS === "android" ? stageSurface');
   });
 
-  it('places the options button after Recent and opens the existing menu', () => {
-    const onMore = jest.fn();
-    const view = render(<CommentsStageHeader count={3} sort="recent" onSortChange={jest.fn()} searchOpen={false} query="" onQueryChange={jest.fn()} onToggleSearch={jest.fn()} onMore={onMore} />);
+  it('leaves search and sort in the comments header, with options beside Follow', () => {
+    const view = render(<CommentsStageHeader count={3} sort="recent" onSortChange={jest.fn()} searchOpen={false} query="" onQueryChange={jest.fn()} onToggleSearch={jest.fn()} />);
     const icons = view.UNSAFE_getAllByType('Icon' as any).map((node) => node.props.name);
-    expect(icons).toEqual(['Search', 'ArrowUpDown', 'Ellipsis']);
-    fireEvent.press(view.getByTestId('comments-stage-options'));
-    expect(onMore).toHaveBeenCalledTimes(1);
+    expect(icons).toEqual(['Search', 'ArrowUpDown']);
+    const creator = readSource('components/Home/PostStage.tsx').split('export const PostStageCreator')[1];
+    expect(creator.indexOf('icon="Ellipsis"')).toBeGreaterThan(creator.indexOf('onPress={onFollow}'));
   });
 });

@@ -7,6 +7,7 @@ type Props = {
   /** Colour washed over the blur. Keep it thin (alpha ~0.2) so posts show through. */
   tint: string;
   borderRadius: number;
+  bordered?: boolean;
 };
 
 /**
@@ -16,7 +17,7 @@ type Props = {
  * heavy tint read as a smoked slab rather than glass. FrostedPill supplies
  * the separately targeted Android material.
  */
-export default function IosGlassPill({ tint, borderRadius }: Props) {
+export default function IosGlassPill({ tint, borderRadius, bordered = true }: Props) {
   return (
     <View style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]} pointerEvents="none">
       <BlurView intensity={70} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
@@ -26,7 +27,7 @@ export default function IosGlassPill({ tint, borderRadius }: Props) {
         locations={[0, 0.45, 1]}
         style={StyleSheet.absoluteFill}
       />
-      <View
+      {bordered && <View
         style={[
           StyleSheet.absoluteFill,
           {
@@ -36,7 +37,7 @@ export default function IosGlassPill({ tint, borderRadius }: Props) {
             borderTopColor: "rgba(255,255,255,0.45)",
           },
         ]}
-      />
+      />}
     </View>
   );
 }
