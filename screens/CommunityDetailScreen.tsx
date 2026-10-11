@@ -18,6 +18,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import CommunityFeedRoute from "../components/Communities/CommunityFeedRoute";
+import AddExistingPost from '../components/Communities/AddExistingPost';
 import Icon from "../components/ui/Icon";
 import { theme } from "../theme";
 import { useUser, useAuthActions } from "../context/AuthContext";
@@ -461,6 +462,9 @@ const CommunityDetailScreen: React.FC = () => {
       </View>
 
       {TabBar}
+      {tab==='posts' && walletAddress && abilities.can('send_messages') && abilities.can('embed_links') && (
+        <View className="px-4"><AddExistingPost communityId={community.id} wallet={walletAddress} /></View>
+      )}
     </View>
   );
 
@@ -481,12 +485,15 @@ const CommunityDetailScreen: React.FC = () => {
       <ScreenHeader title={t("communities.title")} />
       {tab === "posts" ? (
         <View className="flex-1">
-          <CommunityFeedRoute
+          {community.is_private && !isMember ? <ScrollView showsVerticalScrollIndicator={false}>{HeaderBlock}<Text className="text-zinc-400 text-center p-6">{t('communities.joinToSeePosts')}</Text></ScrollView> : <CommunityFeedRoute
+            communityId={community.id}
+            wallet={walletAddress || null}
+            canModerate={abilities.can('delete_messages')}
             communitySlug={community.slug}
             memberAddresses={memberAddresses}
             isMember={isMember}
             listHeader={HeaderBlock}
-          />
+          />}
         </View>
       ) : tab === "chat" ? (
         <View className="flex-1">

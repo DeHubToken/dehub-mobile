@@ -3133,6 +3133,19 @@
     "tokenAmount": "{{amount}} jetons"
   },
   "communities": {
+    "existingPost": {
+      "add": "Ajouter une publication existante",
+      "hint": "Conservez la publication d’origine, ses mentions J’aime et ses vues.",
+      "placeholder": "Lien ou identifiant d’une publication DeHub",
+      "adding": "Ajout…",
+      "added": "Publication ajoutée à la communauté",
+      "remove": "Retirer de la communauté",
+      "more": "Afficher plus de publications",
+      "failed": "Impossible de mettre à jour les publications. Réessayez.",
+      "invalidLink": "Collez le lien ou l’identifiant d’une publication DeHub.",
+      "unavailable": "Cette publication est indisponible.",
+      "signIn": "Reconnectez-vous pour gérer les publications."
+    },
     "title": "Communautés",
     "create": "Créer",
     "searchPlaceholder": "Rechercher des communautés...",
