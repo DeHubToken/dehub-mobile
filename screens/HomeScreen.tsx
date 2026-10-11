@@ -992,6 +992,7 @@ export default function HomeScreen() {
           />
         ) : (
           <HomeHeader
+            pullDistance={pullDistance}
             onLogoPress={handleLogoPress}
             onMenuPress={openDrawer}
           />

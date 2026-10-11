@@ -1,5 +1,7 @@
 import React, { useCallback, memo } from "react";
-import { View, TouchableOpacity, Text, I18nManager } from "react-native";
+import { View, TouchableOpacity, Text, I18nManager, useWindowDimensions } from "react-native";
+import type { SharedValue } from "react-native-reanimated";
+import { CINEMATIC_PHONE_MAX_WIDTH } from "../hooks/useCinematicPhone";
 import { Ionicons } from "@expo/vector-icons";
 import ElectricLogo from "./common/ElectricLogo";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
@@ -13,6 +15,7 @@ import { getAvatarUrl } from "../libs/misc";
 import { useAppTheme } from "../context/ThemeContext";
 
 interface HomeHeaderProps {
+  pullDistance?: SharedValue<number>;
   onLogoPress?: () => void;
   onMenuPress?: () => void;
   /** Pushed pages (Profile) pass this to get a back arrow before the avatar. */
@@ -21,8 +24,10 @@ interface HomeHeaderProps {
   logoHint?: string;
 }
 
-const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBackPress, logoHint }) => {
+const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBackPress, logoHint, pullDistance }) => {
   const refreshing = useFeedPillRefreshing();
+  const { width, height } = useWindowDimensions();
+  const phone = Math.min(width, height) <= CINEMATIC_PHONE_MAX_WIDTH;
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -87,11 +92,11 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         className="absolute inset-0 items-center justify-center"
         pointerEvents="box-none"
       >
-        <ElectricLogo refreshing={refreshing} onPress={isSignedIn ? onLogoPress : onMenuPress}
+        <ElectricLogo refreshing={refreshing} pullDistance={pullDistance} onPress={isSignedIn ? onLogoPress : onMenuPress}
           label={isSignedIn ? "DeHub" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-logo-center.png")}
-          style={{ transform: [{ translateY: 1.5 }, { scale: 1.15 }] }}
+          style={{ transform: [{ translateY: phone ? 2.5 : 1.5 }, { scale: 1.15 }] }}
           width={33} height={28} tint={colors.foreground} />
       </View>
 
