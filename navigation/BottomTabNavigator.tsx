@@ -6,12 +6,18 @@ import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
 import HomeScreen from "../screens/HomeScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, type ScreenLayoutArgs } from "@react-navigation/native";
+import AndroidTabScene from "../components/navigation/AndroidTabScene";
 import { useAuthState } from "../context/AuthContext";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import { homeTabEvents } from "../libs/eventBus";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
+
+function withTabScreenBoundary(args: ScreenLayoutArgs<any, any, any, any>) {
+  const scene = withScreenBoundary(args);
+  return Platform.OS === 'android' ? <AndroidTabScene>{scene}</AndroidTabScene> : scene;
+}
 
 function BottomTabNavigator() {
   const navigation = useNavigation<AppStackNavigationProp<typeof ScreenNames.Root>>();
@@ -26,18 +32,14 @@ function BottomTabNavigator() {
   return (
     <Tab.Navigator
       tabBar={renderTabBar}
-      screenLayout={withScreenBoundary}
-      screenOptions={({ navigation: tabNavigation }) => ({
+      screenLayout={withTabScreenBoundary}
+      screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        // Hide attached inactive views so transparent pages reveal only the canvas.
-        // Focus changes must repaint the Android scene before it can be frozen.
+        // AndroidTabScene must receive focus events before hiding the old page.
         freezeOnBlur: Platform.OS !== "android",
-        sceneStyle: Platform.OS === "android"
-          ? { opacity: tabNavigation.isFocused() ? 1 : 0 }
-          : undefined,
         lazy: true,
-      })}
+      }}
     >
         {/* Home is the initial route, so it is imported statically — deferring
             it would only add a hop. Every other tab is attached with
