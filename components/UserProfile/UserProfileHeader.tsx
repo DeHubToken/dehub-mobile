@@ -265,9 +265,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         accessibilityRole="button"
         accessibilityLabel={t("profile.viewCoverImage")}
       >
-        {/* Minimal: media runs edge to edge, so the cover drops its inset. */}
+        {/* Align the cover with the full-width details and pinned community. */}
         <View
-          className={isMinimal || cinematicPhone ? "overflow-hidden" : "mx-4 rounded-xl overflow-hidden"}
+          className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
           style={{ height: 140 }}
         >
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
@@ -280,7 +280,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 : { uri: storageImage(coverUrl as string, windowWidth) }
             }
             recyclingKey={coverUrl}
-            style={[{ width: "100%", height: "100%" }, isMinimal || cinematicPhone ? null : { borderRadius: 12 }]}
+            style={{ width: "100%", height: "100%" }}
             contentFit="cover"
           />
         </View>
