@@ -30,7 +30,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { ButtonLoader } from "../DeHubLoader";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalRow } from "../../theme/minimal";
-import { PinnedCommunityStrip } from "./PinnedCommunityStage";
+import { PinnedCommunityDissolve, PinnedCommunityStrip } from "./PinnedCommunityStage";
 
 const MAX_PINS = 3;
 
@@ -101,6 +101,8 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
 
   return (
     <>
+      <View>
+      {featured && <PinnedCommunityDissolve community={featured} />}
       {renderHeader?.(featured)}
       {featured && (
         <PinnedCommunityStrip
@@ -109,6 +111,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
           onManagePins={isOwnProfile ? () => setPickerOpen(true) : undefined}
         />
       )}
+      </View>
     <View style={[styles.wrap, isMinimal && styles.minimalWrap, renderHeader && styles.inset, featured && remaining.length === 0 && styles.emptyWrap]}>
       {remaining.map((community) => (
         <TouchableOpacity
