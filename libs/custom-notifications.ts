@@ -75,7 +75,7 @@ export type CustomNotificationItem = NotificationItem & {
 };
 
 const shortAddress = (address: string): string =>
-  address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "Someone";
+  address ? `${address.slice(0, 6)}…${address.slice(-4)}` : String(i18n.t('digest.someone'));
 
 /**
  * Address → profile, resolved once per session.
@@ -183,32 +183,23 @@ const COMMUNITY_TYPES = new Set(["community_join", "community_mention", "communi
  */
 const composeReferenceContent = (row: CustomNotificationRow, actor: string): string | null => {
   const title = row.reference_title?.trim();
-  const quoted = title ? `“${title}”` : null;
+  const sentence = (named: string, unnamed: string): string =>
+    String(i18n.t(title ? `notifications.custom.${named}` : `notifications.custom.${unnamed}`, { name: actor, title }));
   switch (row.type) {
     case "feature_request_like":
-      return quoted
-        ? `${actor} liked your feature request ${quoted}`
-        : `${actor} liked your feature request`;
+      return sentence('featureLikeNamed', 'featureLike');
     case "feature_request_comment":
-      return quoted
-        ? `${actor} commented on your feature request ${quoted}`
-        : `${actor} commented on your feature request`;
+      return sentence('featureCommentNamed', 'featureComment');
     case "feature_request_reply":
-      return quoted ? `${actor} replied to you on ${quoted}` : `${actor} replied to your comment`;
+      return sentence('featureReplyNamed', 'featureReply');
     case "feature_request_mention":
-      return quoted
-        ? `${actor} mentioned you on ${quoted}`
-        : `${actor} mentioned you on a feature request`;
+      return sentence('featureMentionNamed', 'featureMention');
     case "governance_vote":
-      return quoted ? `${actor} voted on your proposal ${quoted}` : `${actor} voted on your proposal`;
+      return sentence('governanceVoteNamed', 'governanceVote');
     case "governance_comment":
-      return quoted
-        ? `${actor} commented on your proposal ${quoted}`
-        : `${actor} commented on your proposal`;
+      return sentence('governanceCommentNamed', 'governanceComment');
     case "governance_reply":
-      return quoted
-        ? `${actor} replied to you on proposal ${quoted}`
-        : `${actor} replied to your comment on a proposal`;
+      return sentence('governanceReplyNamed', 'governanceReply');
     case "stage_live":
       return stageLiveSentence(actor, title);
     case "stage_reminder":
@@ -218,7 +209,7 @@ const composeReferenceContent = (row: CustomNotificationRow, actor: string): str
     case "miniapp":
       return `${actor}: ${row.content}`;
     case "store_order":
-      return quoted ? `${actor} purchased your listing ${quoted}` : `${actor} purchased your listing`;
+      return sentence('storeOrderNamed', 'storeOrder');
     default:
       return null;
   }
@@ -230,12 +221,17 @@ const composeContent = (row: CustomNotificationRow, resolvedUsername?: string | 
   if (COMMUNITY_TYPES.has(row.type)) return composeCommunityContent(row, actor);
   const composed = composeReferenceContent(row, actor);
   if (composed) return composed;
-  const predicate = row.content?.trim() || "sent you a notification";
+  const bounty = row.type === 'work_application' ? 'bountyApplied'
+    : row.type === 'work_submission' ? 'bountySubmitted'
+    : row.type === 'work_application_reply' ? 'bountyReply' : null;
+  if (bounty) {
+    const title = row.reference_title?.trim();
+    return String(i18n.t(`notifications.custom.${bounty}${title ? 'Named' : ''}`, { name: actor, title }));
+  }
+  const predicate = row.content?.trim();
+  if (!predicate) return String(i18n.t('notifications.custom.sentNotification', { name: actor }));
   const sentence = `${actor} ${predicate}`;
-  const isBounty = ["work_application", "work_submission", "work_application_reply"].includes(row.type);
-  return isBounty && row.reference_title
-    ? `${sentence} “${row.reference_title}”`
-    : sentence;
+  return sentence;
 };
 
 const toNotificationItem = (row: CustomNotificationRow): CustomNotificationItem => {
