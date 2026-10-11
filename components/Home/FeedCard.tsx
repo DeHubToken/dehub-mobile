@@ -467,6 +467,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return getImageUrl(item.imageUrl || item.thumbnailUrl || "", LOCKED_PREVIEW_WIDTH) || galleryImages[0];
   }, [item, rawImageUrls, galleryImages]);
   const hasImages = galleryImages.length > 0;
+  const postImage = contentType === "image" && hasImages;
   const hasMultipleImages = galleryImages.length > 1;
 
   // --- Video/Live thumbnail ---
@@ -2056,7 +2057,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            {!postVideo && <PostStageChrome overMedia onMore={handleOpenOptions} />}
+            {!postVideo && !postImage && <PostStageChrome overMedia onMore={handleOpenOptions} />}
           </View>
         ) : (
           <PostStageChrome overMedia={false} onMore={postVideo ? undefined : handleOpenOptions} />
@@ -2170,7 +2171,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </>
           )}
         </View>
-        {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
+        {(postVideo || postImage) && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
         <PostStageActionBar
           liked={liked}
           disliked={disliked}
