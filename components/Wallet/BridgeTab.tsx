@@ -1,6 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { appLocale } from "../../libs/date.util";
+import { formatRelativeTime } from "../../i18n/date-locale";
 import { formatBridgeAmount } from "../../libs/bridge-amount";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback } from "react";
@@ -38,11 +39,7 @@ interface BridgeTransfer {
 }
 
 function timeAgo(unix: number): string {
-  const diff = Math.floor(Date.now() / 1000) - unix;
-  if (diff < 60) return `${diff}s ago`;
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-  return `${Math.floor(diff / 86400)}d ago`;
+  return formatRelativeTime(unix * 1000, appLocale(), "short");
 }
 
 const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
