@@ -191,3 +191,35 @@ describe("editable assembly", () => {
     await expect(persistAssembly(source, next, { current: () => source, save: async () => { throw new Error("disk"); }, commit: () => { commits++; } })).rejects.toThrow("disk"); expect(commits).toBe(0);
   });
 });
+
+it("refreshes changed structural ranges while preserving typed numeric drafts and reordered sections", () => {
+  const source = project(), session = new AssemblySession({ current: () => source, create: async () => true }, () => {});
+  session.start({ seconds: 6, selected: true, transition: null, music: false }, ["one"]);
+  const key = assemblyShotKey(session.state.shots[0]), originalScope = session.state.shotScopes![key];
+  session.range(key, 0, 2);
+  expect(session.state.shotScopes![key]).toBe(originalScope);
+  session.split(0);
+  expect(session.state.shots.map(shot => shot.duration)).toEqual([1, 1]);
+  expect(session.state.shotScopes![key]).not.toBe(originalScope);
+  const splitScopes = { ...session.state.shotScopes };
+  session.move(1, -1);
+  expect(session.state.shotScopes).toEqual(splitScopes);
+  const movedKey = assemblyShotKey(session.state.shots[0]);
+  session.range(movedKey, Number.NaN, 1);
+  expect(session.state.shotScopes![movedKey]).toBe(splitScopes[movedKey]);
+  expect(session.state.error).toBe("limit");
+  session.undo();
+  expect(session.state.shots[0].offset).toBe(1);
+  expect(session.state.shotScopes![movedKey]).not.toBe(splitScopes[movedKey]);
+});
+
+it("refreshes surviving numeric fields when source selection reallocates the duration", () => {
+  const source = project(), session = new AssemblySession({ current: () => source, create: async () => true }, () => {});
+  session.start({ seconds: 8, selected: false, transition: null, music: false }, [], [{ id: "extra", kind: "image", name: "Extra" }]);
+  const photoKey = assemblyShotKey(session.state.shots.find(shot => shot.id === "two")!);
+  const initialScope = session.state.shotScopes![photoKey];
+  expect(session.state.shots.find(shot => shot.id === "two")!.duration).toBe(4);
+  session.remove(0);
+  expect(session.state.shots).toEqual([{ id: "two", offset: 0, duration: 8 }]);
+  expect(session.state.shotScopes![photoKey]).not.toBe(initialScope);
+});
