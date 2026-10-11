@@ -5,11 +5,16 @@ import { useTranslation } from "react-i18next";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system/legacy";
 import { newId } from "../../libs/editor/project";
-import type { ProjectSnapshot } from "../../libs/editor/types";
+import type { ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import { exportSubtitles, parseSubtitles, subtitleClips, subtitleLayers, SUBTITLE_FORMATS, type SubtitleFormat } from "../../libs/editor/subtitles";
 import CaptionTranslationPanel, { type CaptionTranslationActions } from "./CaptionTranslationPanel";
+import CaptionTextEditorPanel from "./CaptionTextEditorPanel";
+import type { CaptionTextPlan } from "../../libs/editor/captionText";
 
-export default function SubtitleFilesPanel({ project, onAdd, ...translation }: CaptionTranslationActions & { project: ProjectSnapshot; onAdd: (layers: ReturnType<typeof subtitleLayers>) => void }) {
+export default function SubtitleFilesPanel({ project, onAdd, onTextApply, onCaptionSeek, ...translation }: CaptionTranslationActions & {
+  project: ProjectSnapshot; onAdd: (layers: ReturnType<typeof subtitleLayers>) => void;
+  onTextApply: (plan: CaptionTextPlan) => boolean; onCaptionSeek: (clip: TextClip) => void;
+}) {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [busy, setBusy] = useState(false);
@@ -63,6 +68,7 @@ export default function SubtitleFilesPanel({ project, onAdd, ...translation }: C
       </Pressable>)}
     </View>
     <CaptionTranslationPanel {...translation} project={project} disabled={busy} onBusyChange={setTranslating} />
+    <CaptionTextEditorPanel project={project} disabled={working} onApply={onTextApply} onSeek={onCaptionSeek} />
     {status && <Text className="text-theme-neutrals-400">{status}</Text>}
   </View>;
 }
