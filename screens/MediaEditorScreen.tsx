@@ -97,6 +97,7 @@ import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
+import { applyCaptionText } from "../libs/editor/captionText";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
 import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
@@ -1187,6 +1188,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const current = h.latest();
       if (!current || current.id !== project.id) return;
       h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+    }} onTextApply={plan => {
+      const current = h.latest();
+      if (!current || current.id !== project.id || h.isEditing()) return false;
+      const next = applyCaptionText(current, plan);
+      if (next !== current) h.commit(next);
+      return true;
+    }} onCaptionSeek={clip => {
+      if (h.latest()?.id !== project.id) return;
+      setPlaying(false); setTime(clip.start); setSelectedId(clip.id);
     }} current={h.latest} subscribe={h.subscribe} onStart={() => {
       if (h.isEditing()) return null;
       setPlaying(false);
