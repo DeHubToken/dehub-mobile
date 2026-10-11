@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * AdsScreen
@@ -184,7 +185,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior="padding">
-          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
+          <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHead}>
               <Text style={styles.sheetTitle}>{t("ads.newCampaign")}</Text>
               <Pressable
@@ -302,7 +303,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 <Text style={styles.primaryBtnText}>{t("ads.submitForReview")}</Text>
               )}
             </Pressable>
-          </View>
+          </ThemePanel>
         </KeyboardAvoidingView>
       </View>
     </Modal>

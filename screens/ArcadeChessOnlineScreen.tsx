@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 /**
  * ArcadeChessOnlineScreen
  * =======================
@@ -322,9 +323,9 @@ const ChessLadder = ({ wallet }: { wallet: string | null }) => {
       {isLoading ? (
         [0, 1, 2].map((i) => <View key={i} style={styles.ladderSkeleton} />)
       ) : rows.length === 0 ? (
-        <View style={styles.ladderEmpty}>
+        <ThemePanel style={styles.ladderEmpty}>
           <Text style={styles.ladderEmptyText}>{t("arcade.kingsGambitBoardEmpty")}</Text>
-        </View>
+        </ThemePanel>
       ) : (
         rows.map((row, index) => (
           <LadderRow key={row.wallet} row={row} rank={index + 1} mine={Boolean(wallet) && row.wallet === wallet} />
@@ -800,10 +801,10 @@ const ArcadeChessOnlineScreen = () => {
         </Pressable>
 
         {!wallet ? (
-          <View style={styles.card}>
+          <ThemePanel style={styles.card}>
             <Text style={styles.signInTitle}>{t("arcade.chessOnline.signInTitle")}</Text>
             <Text style={styles.signInBody}>{t("arcade.chessOnline.signInBody")}</Text>
-          </View>
+          </ThemePanel>
         ) : (
           <>
             {myLiveMatch ? (
@@ -819,7 +820,7 @@ const ArcadeChessOnlineScreen = () => {
               </Pressable>
             ) : null}
 
-            <View style={styles.card}>
+            <ThemePanel style={styles.card}>
               <Text style={styles.sectionTitle}>{t("arcade.chessOnline.openChallengeTitle")}</Text>
               <View style={styles.chips}>
                 {CLOCK_CHOICES.map((ms) => (
@@ -854,7 +855,7 @@ const ArcadeChessOnlineScreen = () => {
                 )}
                 <Text style={styles.primaryLabel}>{t("arcade.chessOnline.openTheChallenge")}</Text>
               </Pressable>
-            </View>
+            </ThemePanel>
 
             <Text style={[styles.sectionTitle, styles.listTitle]}>{t("arcade.chessOnline.openChallenges")}</Text>
             {lobbyLoading ? (

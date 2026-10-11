@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { tokenLabel } from '../libs/token-label';
 /**
@@ -833,7 +834,7 @@ export default function WorkJobDetailScreen() {
         {/* The edge-to-edge Android dialog window ignores adjustResize, so the
             centred card sat under the keyboard the autofocus raised. */}
         <KeyboardAvoidingView behavior="padding" style={styles.modalBackdrop}>
-          <View style={styles.modalCard}>
+          <ThemePanel solid style={styles.modalCard}>
             <Text style={styles.modalTitle}>{t("work.detail.rejectionReason")}</Text>
             <TextInput
               value={rejectReason}
@@ -867,7 +868,7 @@ export default function WorkJobDetailScreen() {
                 <Text style={styles.rejectConfirmText}>{t("work.detail.reject")}</Text>
               </Pressable>
             </View>
-          </View>
+          </ThemePanel>
         </KeyboardAvoidingView>
       </Modal>
       <DeHubRefreshMark refreshing={isRefetching} />
