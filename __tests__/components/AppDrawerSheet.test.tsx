@@ -4,7 +4,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { Platform } from 'react-native';
 import { getThemeSkin, glassTint } from '../../theme/skins';
-import type { AppThemeName } from '../../theme/colors';
+import { APP_THEMES, type AppThemeName } from '../../theme/colors';
 import FrostedPill from '../../components/ui/FrostedPill';
 import { interpolate } from 'react-native-reanimated';
 import AppDrawer from '../../components/Home/AppDrawer';
@@ -17,7 +17,7 @@ const SHEET_HEIGHT = 844 * 0.85;
 const mockHandlers: Record<string, (e: Record<string, number>) => void> = {};
 let mockTheme: AppThemeName = 'system';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-// The system theme, without the native modules the real provider loads.
+// Exercise every theme without the native modules the real provider loads.
 jest.mock('../../context/ThemeContext', () => ({
   useAppTheme: () => ({
     theme: mockTheme,
@@ -79,7 +79,7 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 
 beforeEach(() => { jest.clearAllMocks(); mockTheme = 'system'; Platform.OS = 'android'; });
 
-it.each<AppThemeName>(['system', 'minimal', 'cosmic', 'hazy', 'swarms', 'lavalamp', 'winter', 'island', 'horror', 'hacker', 'war', 'osaka', 'jungle'])(
+it.each(APP_THEMES)(
   'opens %s with glass and no dark dismissal overlay or elevation shadow', (theme) => {
     mockTheme = theme;
     const close = jest.fn();
