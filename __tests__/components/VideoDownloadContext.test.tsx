@@ -10,7 +10,7 @@ import type { VideoDownloadRequest } from "../../libs/editor/downloadProject";
 jest.mock("react-native-css-interop/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
 jest.mock("react-native", () => ({
   View: "View", Text: "Text", Modal: "Modal", Pressable: "Pressable", ActivityIndicator: "ActivityIndicator",
-  StyleSheet: { create: (styles: unknown) => styles },
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
 }));
 jest.mock("react-i18next", () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock("expo-file-system/legacy", () => ({ cacheDirectory: "file://cache/", deleteAsync: jest.fn().mockResolvedValue(undefined), createDownloadResumable: jest.fn() }));
@@ -51,8 +51,11 @@ afterEach(() => { jest.restoreAllMocks(); });
 async function begin() {
   const screen = render(<VideoDownloadProvider><Handle /></VideoDownloadProvider>);
   let pending!: Promise<void>;
-  act(() => { pending = start(request); });
-  await waitFor(() => expect(mockExport).toHaveBeenCalledTimes(1));
+  await act(async () => { pending = start(request); });
+  await waitFor(() => {
+    expect(jest.mocked(console.warn).mock.calls).toEqual([]);
+    expect(mockExport).toHaveBeenCalledTimes(1);
+  });
   return { screen, pending, oldCancel: screen.UNSAFE_getByType("Pressable" as any).props.onPress as () => void };
 }
 
@@ -110,7 +113,7 @@ it("never lets a Cancel callback from a finished download cancel a later job", a
   await act(async () => { encoded.resolve({ uri: "file://output.mp4" }); saved.resolve(undefined); await pending; });
   encoded = deferred<{ uri: string }>(); mockExport.mockReturnValue(encoded.promise);
   let second!: Promise<void>;
-  act(() => { second = start(request); });
+  await act(async () => { second = start(request); });
   await waitFor(() => expect(mockExport).toHaveBeenCalledTimes(2));
   oldCancel();
   expect(mockCancel).not.toHaveBeenCalled();
