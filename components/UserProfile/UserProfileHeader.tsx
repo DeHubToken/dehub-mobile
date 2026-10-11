@@ -1,4 +1,4 @@
-import { useProfileIdentityLayout } from '../Profile/useProfileCollapse';
+import { PROFILE_COVER_HEIGHT, useProfileIdentityLayout } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
@@ -273,7 +273,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         {/* Align the cover with the full-width details and pinned community. */}
         <View
           className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
-          style={{ height: 140 }}
+          style={{ height: PROFILE_COVER_HEIGHT }}
         >
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
               decodes it at banner size where ImageBackground decoded every pixel.

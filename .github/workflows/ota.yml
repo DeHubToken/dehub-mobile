@@ -50,6 +50,11 @@ on:
         description: Run the preflight and stop without publishing.
         type: boolean
         default: false
+      platform:
+        description: Mobile platform to publish; use android while Apple publication is held.
+        type: choice
+        options: [both, android, ios]
+        default: both
       source_ref:
         description: Exact commit SHA for an isolated native-runtime preview; leave blank for the dispatched ref.
         required: false
@@ -291,11 +296,17 @@ jobs:
           # preview. Publishing to production alone meant every installed test
           # build sat there never seeing an update.
           UPDATE_BRANCHES: ${{ needs.decide.outputs.branches }}
+          UPDATE_PLATFORM: ${{ github.event.inputs.platform || 'both' }}
         run: |
           # Read the subject out of git rather than interpolating it into the
           # command, so a commit message cannot become shell.
           MESSAGE="$(git log -1 --pretty=%s)"
           # Unquoted on purpose: this is a space-separated list, not one branch.
+          case "$UPDATE_PLATFORM" in
+            both) PLATFORMS="android ios" ;;
+            android|ios) PLATFORMS="$UPDATE_PLATFORM" ;;
+            *) echo "::error::Invalid update platform"; exit 1 ;;
+          esac
           for BRANCH in $UPDATE_BRANCHES; do
             # Each EAS branch takes the environment of the same name, so a
             # preview bundle is built with preview config rather than
@@ -310,7 +321,7 @@ jobs:
             # publish also bundles for web and dies on the first native-only
             # import it meets (react-native-agora). The web product is a
             # separate repo and never receives these updates.
-            for PLATFORM in android ios; do
+            for PLATFORM in $PLATFORMS; do
               echo "Publishing to $BRANCH ($PLATFORM) with $ENVIRONMENT config"
               eas update --branch "$BRANCH" --platform "$PLATFORM" --environment "$ENVIRONMENT" --message "$MESSAGE" --non-interactive
             done
@@ -320,6 +331,7 @@ jobs:
         if: >-
           github.ref_name == 'main' && github.event.inputs.source_ref == '' &&
           env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
+          (github.event.inputs.platform == '' || github.event.inputs.platform == 'both') &&
           contains(format(' {0} ', needs.decide.outputs.branches), ' preview ')
         run: |
           # The scheduled run compares main against this tag to decide whether

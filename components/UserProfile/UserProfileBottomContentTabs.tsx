@@ -23,6 +23,7 @@ import {
 import Animated, {
   runOnJS,
   useAnimatedScrollHandler,
+  useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
@@ -195,6 +196,7 @@ const UserProfileBottomContentTabs: React.FC<
   // from the UI thread wouldn't be visible to JS reliably.
   const headerHeightShared = useSharedValue(0);
   const stickyVisibleShared = useSharedValue(false);
+  const stickyStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 1 : 0 }));
   const showBackToTopShared = useSharedValue(false);
   const isFullScreenShared = useSharedValue(isFullScreen);
   useEffect(() => {
@@ -656,9 +658,12 @@ const UserProfileBottomContentTabs: React.FC<
       {!isFullScreen && TabBar}
       {renderTabContent()}
 
-      {isFullScreen && stickyVisible && (
-        <View
-          style={{
+      {isFullScreen && (
+        <Animated.View
+          pointerEvents={stickyVisible ? 'auto' : 'none'}
+          accessibilityElementsHidden={!stickyVisible}
+          importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'}
+          style={[{
             position: "absolute",
             top: PROFILE_BAR_HEIGHT,
             left: 0,
@@ -668,10 +673,10 @@ const UserProfileBottomContentTabs: React.FC<
             elevation: 10,
             // Minimal: the pinned tab strip sits on the same pure black.
             backgroundColor: isMinimal ? "#000" : theme.colors.neutrals[900],
-          }}
+          }, stickyStyle]}
         >
           {TabBar}
-        </View>
+        </Animated.View>
       )}
 
       {isFullScreen && showBackToTop && (

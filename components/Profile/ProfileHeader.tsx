@@ -1,4 +1,4 @@
-import { useProfileIdentityLayout } from './useProfileCollapse';
+import { PROFILE_COVER_HEIGHT, useProfileIdentityLayout } from './useProfileCollapse';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
@@ -292,7 +292,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
         {/* Align the cover with the full-width details and pinned community. */}
         <View
           className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
-          style={{ height: 140 }}
+            style={{ height: PROFILE_COVER_HEIGHT }}
         >
           <SmartImage
             source={
