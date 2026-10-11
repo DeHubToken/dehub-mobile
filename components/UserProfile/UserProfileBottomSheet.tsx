@@ -1,13 +1,10 @@
-import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useEffect, useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
-import { useTranslation } from "react-i18next";
 import CollapsingProfileHeader from '../Profile/CollapsingProfileHeader';
 import { useProfileCollapse } from '../Profile/useProfileCollapse';
-import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
 import ProfileSurface from "./ProfileSurface";
 import UnfollowSheet from "./UnfollowSheet";
@@ -16,7 +13,6 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
-import { useAppTheme } from "../../context/ThemeContext";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -38,20 +34,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   embedded = false,
 }) => {
-  const { t: _copy } = _useCopy();
-  const { t } = useTranslation();
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
-  const [menuTrigger, setMenuTrigger] = React.useState<(() => void) | null>(null);
-
-  const handleRegisterMenuTrigger = useCallback((trigger: () => void) => {
-    // Must wrap in arrow — passing a function directly to setState invokes it as a functional updater
-    setMenuTrigger(() => trigger);
-  }, []);
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const collapse = useProfileCollapse(visible ? usernameOrAddress : null);
-  const { theme } = useAppTheme();
 
   // Shared profile data and actions for both embedded and standalone pages.
   const {
@@ -136,13 +123,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       disableFollow={profileData?.disableActions}
       onFollow={handleFollow}
       onOpenUnfollow={() => setShowUnfollowSheet(true)}
-      menu={!isOwnProfile && menuTrigger ? (
-        <TouchableOpacity onPress={menuTrigger} activeOpacity={0.7}
-          className="w-9 h-9 items-center justify-center rounded-xl dark-surface bg-black/40"
-          accessibilityRole="button" accessibilityLabel={t('profileOptions.a11yLabel')}>
-          <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
-        </TouchableOpacity>
-      ) : undefined}
     />
   );
   if (embedded) {
@@ -186,7 +166,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onBlock={handleBlock}
           onUnblock={handleUnblock}
           onRemoveFollower={handleRemoveFollower}
-          onRegisterMenuTrigger={handleRegisterMenuTrigger}
         />
         {profileBar}
         <UnfollowSheet
@@ -255,7 +234,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onBlock={handleBlock}
             onUnblock={handleUnblock}
             onRemoveFollower={handleRemoveFollower}
-            onRegisterMenuTrigger={handleRegisterMenuTrigger}
           />
           {profileBar}
           <StandaloneTabBar onBeforeNavigate={onClose} />

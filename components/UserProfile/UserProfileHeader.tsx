@@ -71,6 +71,7 @@ export interface UserProfileHeaderProps {
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
   onMessage?: () => void;
+  onOpenOptions?: () => void;
   onEditProfile?: () => void;
   stats?: { key: string; label: string; value: number }[];
   onStatPress?: (key: string) => void;
@@ -119,6 +120,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onOpenImage,
   onShare,
   onMessage,
+  onOpenOptions,
   onEditProfile,
   stats,
   onStatPress,
@@ -303,10 +305,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
             onPress={() => onOpenImage("avatar")}
           />
-          {!isBlocked && (
+          {(!isBlocked || !!onOpenOptions) && (
             <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
-              {renderFollowButton()}
-              {!!onMessage && (
+              {!isBlocked && renderFollowButton()}
+              {!isBlocked && !!onMessage && (
                 <TouchableOpacity
                   onPress={onMessage}
                   activeOpacity={0.7}
@@ -317,6 +319,21 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   {glassLayers}
                   <View style={s.glassBtnContent}>
                     <Icon name="MessageSquare" size={16} color="#fff" />
+                  </View>
+                </TouchableOpacity>
+              )}
+              {!!onOpenOptions && (
+                <TouchableOpacity
+                  onPress={onOpenOptions}
+                  activeOpacity={0.7}
+                  testID="profile-options"
+                  accessibilityRole="button"
+                  accessibilityLabel={t("profileOptions.a11yLabel")}
+                  style={[btn, s.iconBtn, isMinimal && s.minimalIconBtn]}
+                >
+                  {glassLayers}
+                  <View style={s.glassBtnContent}>
+                    <Icon name="Plus" size={16} color="#fff" />
                   </View>
                 </TouchableOpacity>
               )}
