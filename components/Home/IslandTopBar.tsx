@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center", transform: [{ translateY: 2.5 }, { scale: 1.15 }] },
+  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { position: "absolute", top: ISLAND_CAPSULE_GAP, left: 0, right: 0, alignItems: "center", zIndex: 1, overflow: "hidden" },
   menu: {
