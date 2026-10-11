@@ -161,6 +161,7 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry; profile?: AccountS
         <Text style={styles.rowSub} numberOfLines={1}>
           {username ? `@${username}` : truncateAddress(entry.address)}
           {joined ? t("affiliate.joinedOn", { date: joined }) : ""}
+          {entry.subId ? ` · sub=${entry.subId}` : ''}
         </Text>
       </View>
       <Icon name="ChevronRight" size={16} color="#52525B" />
