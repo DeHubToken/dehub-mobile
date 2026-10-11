@@ -4,12 +4,17 @@ import { importPicture, importClipFile } from "../../libs/editor/storage";
 import * as FileSystem from "expo-file-system/legacy";
 
 jest.mock("../../libs/editor/generatedMediaProbe", () => ({ probeGeneratedMedia: jest.fn(), throwIfImportAborted: (signal?: AbortSignal) => { if (signal?.aborted) throw Object.assign(new Error("cancelled"), { name: "AbortError" }); } }));
-jest.mock("../../libs/editor/storage", () => ({ importPicture: jest.fn(), importClipFile: jest.fn(), MAX_MEDIA_BYTES: 400 * 1024 * 1024, MediaTooLargeError: class extends Error {} }));
-jest.mock("expo-file-system/legacy", () => ({ cacheDirectory: "cache/", EncodingType: { Base64: "base64" }, downloadAsync: jest.fn(), getInfoAsync: jest.fn(), writeAsStringAsync: jest.fn(), moveAsync: jest.fn(async () => {}), deleteAsync: jest.fn(async () => {}) }));
+jest.mock("../../libs/editor/storage", () => ({ importPicture: jest.fn(), importClipFile: jest.fn(), MAX_MEDIA_BYTES: 500 * 1024 * 1024, MediaTooLargeError: class extends Error {} }));
+jest.mock("expo-file-system/legacy", () => ({ cacheDirectory: "cache/", EncodingType: { Base64: "base64" }, createDownloadResumable: jest.fn(), getInfoAsync: jest.fn(), writeAsStringAsync: jest.fn(), moveAsync: jest.fn(async () => {}), deleteAsync: jest.fn(async () => {}) }));
+
+const download = jest.fn();
+const cancel = jest.fn();
 
 beforeEach(() => {
   jest.clearAllMocks();
-  jest.mocked(FileSystem.downloadAsync).mockResolvedValue({ status: 200, headers: { "Content-Type": "audio/wav" } } as never);
+  cancel.mockResolvedValue(undefined);
+  jest.mocked(FileSystem.createDownloadResumable).mockReturnValue({ downloadAsync: download, cancelAsync: cancel } as never);
+  download.mockResolvedValue({ status: 200, headers: { "Content-Type": "audio/wav" } } as never);
   jest.mocked(FileSystem.getInfoAsync).mockResolvedValue({ exists: true, size: 100 } as never);
   jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 12.5, width: 1920, height: 1080 });
   jest.mocked(importClipFile).mockResolvedValue({ id: "audio-1", kind: "audio", duration: 12.5 } as never);
@@ -25,31 +30,31 @@ it("retains WAV response type and complete duration despite the provider's MP3 U
 });
 it("preserves a PNG image through picture storage rather than treating it as video", async () => {
   await importGeneratedMedia({ url: "data:image/png;base64,aGVsbG8=", kind: "image", name: "Transparent image" });
-  expect(FileSystem.downloadAsync).not.toHaveBeenCalled();
+  expect(FileSystem.createDownloadResumable).not.toHaveBeenCalled();
   expect(importPicture).toHaveBeenCalledWith(expect.objectContaining({ mimeType: "image/png", width: 1920, height: 1080, fileName: "transparent-image.png" }));
   expect(importClipFile).not.toHaveBeenCalled();
 });
 it.each([403, 500])("rejects an HTTP %s result and removes its temporary file", async status => {
-  jest.mocked(FileSystem.downloadAsync).mockResolvedValue({ status } as never);
+  download.mockResolvedValue({ status } as never);
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow();
   expect(importClipFile).not.toHaveBeenCalled(); expect(probeGeneratedMedia).not.toHaveBeenCalled();
   expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(1);
 });
 it("rejects HTML, empty files and oversized media before decoder/storage work", async () => {
-  jest.mocked(FileSystem.downloadAsync).mockResolvedValue({ status: 200, headers: { "content-type": "text/html" } } as never);
+  download.mockResolvedValue({ status: 200, headers: { "content-type": "text/html" } } as never);
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow();
   jest.mocked(FileSystem.getInfoAsync).mockResolvedValue({ exists: true, size: 0 } as never);
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow("Empty");
-  jest.mocked(FileSystem.getInfoAsync).mockResolvedValue({ exists: true, size: 401 * 1024 * 1024 } as never);
+  jest.mocked(FileSystem.getInfoAsync).mockResolvedValue({ exists: true, size: 501 * 1024 * 1024 } as never);
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow("too large");
   expect(probeGeneratedMedia).not.toHaveBeenCalled(); expect(importClipFile).not.toHaveBeenCalled();
 });
 it("stops a late result after leaving the screen and cleans up failed metadata", async () => {
   const controller = new AbortController();
-  jest.mocked(FileSystem.downloadAsync).mockImplementation(async () => { controller.abort(); return { status: 200 } as never; });
+  download.mockImplementation(async () => { controller.abort(); return { status: 200 } as never; });
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" }, controller.signal)).rejects.toMatchObject({ name: "AbortError" });
   expect(importClipFile).not.toHaveBeenCalled(); expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(1);
-  jest.mocked(FileSystem.downloadAsync).mockResolvedValue({ status: 200, headers: { "content-type": "video/mp4" } } as never);
+  download.mockResolvedValue({ status: 200, headers: { "content-type": "video/mp4" } } as never);
   jest.mocked(probeGeneratedMedia).mockRejectedValue(new Error("Unsupported codec"));
   await expect(importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" })).rejects.toThrow("Unsupported codec");
   expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(2); expect(importClipFile).not.toHaveBeenCalled();
@@ -58,5 +63,32 @@ it("rejects browser-only or invalid URLs without downloading anything", async ()
   for (const url of ["javascript:bad", "blob:provider", "file:///unrelated", "data:image/png,unencoded"]) {
     await expect(importGeneratedMedia({ url, kind: "image" })).rejects.toThrow();
   }
-  expect(FileSystem.downloadAsync).not.toHaveBeenCalled(); expect(importPicture).not.toHaveBeenCalled();
+  expect(FileSystem.createDownloadResumable).not.toHaveBeenCalled(); expect(importPicture).not.toHaveBeenCalled();
+});
+
+it("cancels an unfinished transfer immediately and removes the partial file", async () => {
+  let finish!: (result: undefined) => void;
+  download.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+  cancel.mockImplementation(async () => { finish(undefined); });
+  const controller = new AbortController();
+  const pending = importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" }, controller.signal);
+  controller.abort();
+  expect(cancel).toHaveBeenCalledTimes(1);
+  await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+  expect(FileSystem.getInfoAsync).not.toHaveBeenCalled(); expect(probeGeneratedMedia).not.toHaveBeenCalled();
+  expect(importClipFile).not.toHaveBeenCalled(); expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(1);
+});
+it.each(["expected", "written"])("cancels a transfer when its %s bytes cross the file limit", async reason => {
+  let finish!: (result: undefined) => void;
+  download.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+  cancel.mockImplementation(async () => { finish(undefined); });
+  const pending = importGeneratedMedia({ url: "https://media.example/video.mp4", kind: "video" });
+  const progress = jest.mocked(FileSystem.createDownloadResumable).mock.calls[0][3]!;
+  const oversized = 501 * 1024 * 1024;
+  progress({ totalBytesWritten: reason === "written" ? oversized : 1,
+    totalBytesExpectedToWrite: reason === "expected" ? oversized : -1 });
+  expect(cancel).toHaveBeenCalledTimes(1);
+  await expect(pending).rejects.toThrow("too large");
+  expect(FileSystem.getInfoAsync).not.toHaveBeenCalled(); expect(probeGeneratedMedia).not.toHaveBeenCalled();
+  expect(importClipFile).not.toHaveBeenCalled(); expect(FileSystem.deleteAsync).toHaveBeenCalledTimes(1);
 });
