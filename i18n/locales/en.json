@@ -3129,6 +3129,19 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "existingPost": {
+      "add": "Add existing post",
+      "hint": "Keep the original post, likes and views.",
+      "placeholder": "DeHub post link or post ID",
+      "adding": "Adding…",
+      "added": "Post added to community",
+      "remove": "Remove from community",
+      "more": "Load more posts",
+      "failed": "Could not update community posts. Try again.",
+      "invalidLink": "Paste a DeHub post link or post ID.",
+      "unavailable": "This post is unavailable.",
+      "signIn": "Sign in again to manage community posts."
+    },
     "title": "Communities",
     "create": "Create",
     "searchPlaceholder": "Search communities...",
