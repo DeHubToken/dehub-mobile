@@ -1,5 +1,6 @@
 import { videoMatteCommand } from "./videoMatte";
 import { generationChatRequest, generationDraft, type GenerationDraft } from "./generationDraft";
+import { editorGenerationKinds } from "./generationCapabilities";
 /**
  * Editor AI agent, mobile half.
  *
@@ -147,7 +148,7 @@ export async function askSceneAgent(messages: AgentMessage[], scene: unknown, si
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",
     headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ messages, scene }),
+    body: JSON.stringify({ messages, scene, generationKinds: editorGenerationKinds() }),
     signal,
   });
   const data = await res.json().catch(() => null);
