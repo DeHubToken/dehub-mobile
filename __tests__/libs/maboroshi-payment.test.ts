@@ -9,7 +9,7 @@ const response = (data: unknown, ok = true) => ({ ok, json: async () => data }) 
 
 describe('Maboroshi normal generation payment handoff', () => {
   it('uses the common payer for an unfunded prepaid balance and submits its verified transfer reference', async () => {
-    const fetcher = jest.fn().mockResolvedValueOnce(response(quote)).mockResolvedValueOnce(response({ state: 'queued' }));
+    const fetcher = jest.fn().mockResolvedValueOnce(response(quote)).mockResolvedValueOnce(response({ state: 'queued', payment_ref: hash }));
     const pay = jest.fn().mockResolvedValue(hash);
     const retire = jest.fn();
     await completeMaboroshiPayment(quote, 'session', () => wallet, pay, retire, fetcher);
@@ -50,5 +50,11 @@ describe('Maboroshi normal generation payment handoff', () => {
   it('rejects arbitrary paths and stages from an embedded page', () => {
     expect(isMaboroshiPaymentRequest(input)).toBe(true);
     for (const changed of [{ id: '../credits' }, { stage: 'refund' }, { requestId: '' }]) expect(isMaboroshiPaymentRequest({ ...input, ...changed })).toBe(false);
+  });
+  it('does not retire an unused transfer when another client already paid this stage', async () => {
+    const retire = jest.fn();
+    await completeMaboroshiPayment(quote, 'session', () => wallet, async () => hash, retire,
+      jest.fn().mockResolvedValueOnce(response(quote)).mockResolvedValueOnce(response({ state: 'queued', payment_ref: 'credits' })));
+    expect(retire).not.toHaveBeenCalled();
   });
 });
