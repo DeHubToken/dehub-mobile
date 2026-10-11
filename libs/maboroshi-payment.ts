@@ -40,9 +40,11 @@ export async function completeMaboroshiPayment(quote: MaboroshiQuote, token: str
   sameAccount();
   const payment = latest.payment_ref || await pay(latest.price_micros / 1000);
   sameAccount();
-  await request(`/jobs/${quote.id}/${quote.stage}`, token, {
+  const started = await request(`/jobs/${quote.id}/${quote.stage}`, token, {
     method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: `price_micros=${latest.price_micros}&tx_hash=${encodeURIComponent(payment)}`,
   }, fetcher);
-  if (payment !== 'credits') retire(payment);
+  // Another confirmed client may have started this stage first. Its snapshot
+  // must not retire this client's different, still-unused transfer receipt.
+  if (payment !== 'credits' && started.payment_ref === payment) retire(payment);
 }
