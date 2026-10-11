@@ -13,6 +13,7 @@ import {
 
 interface Props {
   settings: CreatorStudioSettings;
+  draftScope?: string;
   onChange: (settings: CreatorStudioSettings) => void;
   onMode: (mode: CreatorMode) => void;
   onPresets: () => void;
@@ -23,12 +24,13 @@ interface Props {
 
 const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
+export default function CreatorStudioControls({ settings, draftScope = 'creator', onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
   useEffect(() => { setModelSearch.initialize(''); }, [picker, settings.mode, setModelSearch]);
-  const [durationDraft, setDurationDraft] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:durationDraft", String(settings.durationSeconds), `${settings.mode}:${settings.model}`);
+  const [durationDraft, setDurationDraft] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:durationDraft", String(settings.durationSeconds), `${draftScope}:${settings.mode}:${settings.model}`);
+  const musicControls = settings.mode === 'audio' && settings.model === 'ace-step';
   const editingDuration = useRef(false);
   useEffect(() => {
     if (!editingDuration.current) setDurationDraft.initialize(String(settings.durationSeconds));
@@ -88,7 +90,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
         </View>
         {chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
         {(settings.mode === 'image' || (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
-        {settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
+        {((settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput) || musicControls) && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-1.5">
             <TextInput
               value={durationDraft}
@@ -107,7 +109,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
               selectTextOnFocus
               editable={!disabled}
               accessibilityLabel={t('filters.duration')}
-              className="w-5 py-1.5 text-center text-base font-semibold text-theme-neutrals-100"
+              className="w-9 py-1.5 text-center text-base font-semibold text-theme-neutrals-100"
             />
             <Text className="text-xs text-theme-neutrals-400">s</Text>
           </View>
@@ -116,6 +118,15 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
       </View>
+      {musicControls && <TextInput
+        value={settings.musicLyrics ?? ''}
+        onChangeText={musicLyrics => onChange({ ...settings, musicLyrics })}
+        multiline editable={!disabled}
+        accessibilityLabel={t('musicSheet.lyrics')}
+        placeholder={t('musicSheet.lyricsPlaceholder')}
+        placeholderTextColor="#71717A"
+        className="min-h-16 rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-3 py-2 text-sm text-theme-neutrals-100"
+      />}
       <View className="flex-row flex-wrap gap-2">
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
         {settings.mode === 'video' && onWorkflow && <>
