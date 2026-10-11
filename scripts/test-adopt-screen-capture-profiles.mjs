@@ -4,6 +4,7 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { adoptProfiles, validateProfileIds, verifyProfile } from './adopt-screen-capture-profiles.mjs';
 import { BUNDLES, PROJECT, TEAM } from './inspect-screen-capture-signing-portal.mjs';
 
@@ -18,7 +19,7 @@ function setup() {
   const report = { credentialMutationRequested: false, allProfilesValidated: false, managedProfilesVerified: false, profiles: [], buildDispatched: false, newKeyCreated: false, newCertificateCreated: false };
   const portal = ids.map((id, index) => ({ id, attributes: { profileState: 'ACTIVE', profileType: 'IOS_APP_STORE', profileContent: `new-${index}` }, getBundleIdAsync: async () => ({ attributes: { identifier: BUNDLES[index], seedId: TEAM } }), getCertificatesAsync: async () => [{ id: cert.developerPortalIdentifier }] }));
   const apple = { Token: { sign: async () => 'existing-key-token' }, Profile: { infoAsync: async (_context, options) => portal[ids.indexOf(options.id)] } };
-  const verify = encoded => ({ valid: Boolean(encoded), certificateSha256: 'existing-certificate-hash', profileSha256: `hash-${encoded}` });
+  const verify = encoded => ({ valid: Boolean(encoded), certificateSha256: 'existing-certificate-hash', profileSha256: createHash('sha256').update(encoded ?? '').digest('hex') });
   const graphql = async (query, variables) => {
     calls.push({ query, variables });
     if (query.startsWith('query RecordingProfileAdoption(')) return { app: { byFullName: app } };
@@ -41,7 +42,11 @@ function setup() {
       if (variables.id) main.iosAppBuildCredentialsList[0].provisioningProfile = profile;
       return { appleProvisioningProfile: { [variables.id ? 'updateAppleProvisioningProfile' : 'createAppleProvisioningProfile']: { id } } };
     }
-    if (query.includes('RecordingBuildProfileSet(')) return { iosAppBuildCredentials: { setProvisioningProfile: { id: variables.id } } };
+    if (query.includes('RecordingBuildProfileSet(')) {
+      const build = app.iosAppCredentials.flatMap(record => record.iosAppBuildCredentialsList).find(record => record.id === variables.id);
+      build.provisioningProfile = profiles.get(variables.profileId);
+      return { iosAppBuildCredentials: { setProvisioningProfile: { id: variables.id } } };
+    }
     if (query.includes('RecordingBuildCredentialsCreate(')) {
       const credential = app.iosAppCredentials.find(item => item.id === variables.credentialsId);
       const build = { id: `build-${credential.id}`, iosDistributionType: 'APP_STORE', distributionCertificate: cert, provisioningProfile: profiles.get(variables.input.provisioningProfileId) };
