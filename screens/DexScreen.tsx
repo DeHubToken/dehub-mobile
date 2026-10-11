@@ -397,7 +397,7 @@ const s = StyleSheet.create({
   muted: { color: '#919ca9', fontSize: 11 },
   white: { color: '#e9edf2', fontSize: 12, fontVariant: ['tabular-nums'] }, darkText: { color: '#061410', fontSize: 12, fontWeight: '700' },
   link: { color: '#b6c4d4', fontSize: 11, textDecorationLine: 'underline' }, stats: { flexDirection: 'row', gap: 32, paddingVertical: 20 },
-  price: { fontSize: 24, fontWeight: '500', color: '#e9edf2', marginTop: 5, fontVariant: ['tabular-nums'] }, statValue: { fontSize: 17, marginTop: 8 },
+  price: { fontSize: 24, fontWeight: '500', color: '#e9edf2', marginTop: 5, fontVariant: ['tabular-nums'] }, statValue: { fontSize: 17, marginTop: 8, color: '#e9edf2' },
   tabs: { flexDirection: 'row', marginBottom: 12 }, tab: { flex: 1, alignItems: 'center', padding: 12, borderBottomWidth: 2, borderColor: 'transparent' }, tabActive: { borderColor: '#e9edf2' },
   panel: { backgroundColor: '#11151b', borderWidth: 1, borderColor: '#252b34', borderRadius: 8, overflow: 'hidden' },
   toolbar: { flexWrap: 'wrap', gap: 8, padding: 12, borderBottomWidth: 1, borderColor: '#252b34', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
