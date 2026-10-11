@@ -2,6 +2,7 @@ import type React from "react";
 import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Dimensions, Keyboard, Platform, View, useWindowDimensions, type KeyboardEvent } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { initialSafeAreaMetrics } from "../libs/initialSafeAreaMetrics";
 import { keyboardComposerLift, keyboardTopFromEvent } from "../libs/keyboard-composer";
 
 type ComposerKeyboardOptions = {
@@ -18,7 +19,7 @@ type ComposerKeyboardOptions = {
  * (a late resize, the nav bar changing height, the keys finishing their
  * slide), so measure again a few times after the first one.
  */
-const SETTLE_MS = [120, 350, 700];
+const SETTLE_MS = [120, 350, 700, 1000];
 
 /**
  * Composers that lift themselves. KeyboardPanView leaves fields inside these
@@ -54,7 +55,9 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   }, [enabled]);
   const insets = useContext(SafeAreaInsetsContext);
   const navBar = useRef(0);
-  navBar.current = insets?.bottom ?? 0;
+  // The provider's inset can read 0 on some screens while the real nav bar is
+  // there; the launch-time inset is the nav bar's own height, so never use less.
+  navBar.current = Math.max(insets?.bottom ?? 0, initialSafeAreaMetrics.insets.bottom ?? 0);
   useLayoutEffect(() => {
     applied.current = state.visible ? state.lift : restingOffset;
   }, [state, restingOffset]);
@@ -77,6 +80,7 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         return;
       }
       const next = keyboardComposerLift(y + measuredHeight, appliedLift, top, settings.current.gap);
+      if (Platform.OS === "android") console.info("[kb] measure", JSON.stringify({ y, h: measuredHeight, applied: appliedLift, top, next }));
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },
       );
@@ -97,6 +101,11 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         Dimensions.get("screen")?.height ?? 0,
         navBar.current,
       );
+      if (Platform.OS === "android") {
+        // One line per keyboard open, read over adb (logcat ReactNativeJS) when a
+        // phone still shows a box under the keys.
+        console.info("[kb]", JSON.stringify({ e: event.endCoordinates, screen: Dimensions.get("screen"), window: Dimensions.get("window"), nav: navBar.current, top: keyboardTop.current }));
+      }
       // Only used when the composer cannot be measured.
       fallback.current = Math.max(event.endCoordinates.height ?? 0, 0);
       measure();
