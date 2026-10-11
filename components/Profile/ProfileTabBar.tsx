@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 import { LinearGradient } from "expo-linear-gradient";
-import { PINNED_PROFILE_TABS_HEIGHT } from "./useProfileCollapse";
+import { PINNED_PROFILE_TABS_HEIGHT, PROFILE_TABS_TOP_GAP } from "./useProfileCollapse";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import {
@@ -31,7 +31,7 @@ interface ProfileTabBarProps<Key extends string = string> {
   pinned?: boolean;
 }
 
-const TAB_HEIGHT = 52;
+const TAB_HEIGHT = PINNED_PROFILE_TABS_HEIGHT - 4;
 
 function ProfileTabBarInner<Key extends string>({
   items,
@@ -87,7 +87,6 @@ function ProfileTabBarInner<Key extends string>({
                 focused && styles.tabActive,
                 isMinimal && minimalTab,
                 isMinimal && focused && minimalTabActive,
-                pinned && styles.pinnedTab,
                 pinned && focused && styles.pinnedTabActive,
               ]}
             >
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     // Keep the profile bento, tab bar, and content controls on the same
     // 16pt vertical rhythm. These are visible gaps, not internal pill inset.
-    paddingTop: 16,
+    paddingTop: PROFILE_TABS_TOP_GAP,
     paddingBottom: 16,
   },
   container: {
@@ -137,15 +136,15 @@ const styles = StyleSheet.create({
     minHeight: TAB_HEIGHT,
     borderRadius: 12,
     backgroundColor: "#18181B",
-    paddingHorizontal: 4,
-    paddingVertical: 2,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
   tab: {
     flex: 1,
-    height: TAB_HEIGHT - 4,
+    height: TAB_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: 12,
   },
   tabActive: {
     backgroundColor: "rgba(255,255,255,0.12)",
@@ -161,15 +160,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   pinnedContainer: {
-    minHeight: PINNED_PROFILE_TABS_HEIGHT - 4,
-    paddingHorizontal: 0,
-    paddingVertical: 0,
     backgroundColor: 'transparent',
     borderWidth: 0,
-  },
-  pinnedTab: {
-    height: PINNED_PROFILE_TABS_HEIGHT - 4,
-    borderRadius: 12,
   },
   pinnedTabActive: {
     borderColor: 'rgba(255,255,255,0.3)',
