@@ -39,7 +39,6 @@ function setup() {
       const id = variables.id ?? `profile-${profiles.size}`;
       const profile = { id, developerPortalIdentifier: variables.input.developerPortalIdentifier, provisioningProfile: variables.input.appleProvisioningProfile };
       profiles.set(id, profile);
-      if (variables.id) main.iosAppBuildCredentialsList[0].provisioningProfile = profile;
       return { appleProvisioningProfile: { [variables.id ? 'updateAppleProvisioningProfile' : 'createAppleProvisioningProfile']: { id } } };
     }
     if (query.includes('RecordingBuildProfileSet(')) {
