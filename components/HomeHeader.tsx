@@ -62,7 +62,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
             />
           </TouchableOpacity>
         ) : null}
-        <TouchableOpacity
+        {isSignedIn && <TouchableOpacity
           onPress={onMenuPress}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           activeOpacity={0.7}
@@ -72,12 +72,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={t("common.openMenu")}
           className="w-8 h-8 items-center justify-center"
         >
-          {isSignedIn ? (
-            <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
-          ) : (
-            <Icon name="Menu" size={31} color={colors.foreground} />
-          )}
-        </TouchableOpacity>
+          <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+        </TouchableOpacity>}
       </View>
 
       {/* dehub mark — centred on the bar itself rather than between the two
@@ -85,15 +81,17 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           (it is signed-in only). box-none lets taps through the full-width
           overlay to the profile and bell underneath it.
 
-          The logo is a control, not decoration — it scrolls the active feed to
-          the top and refreshes it. Unlabelled it announced as "image button". */}
+          The logo opens the drawer for guests. Signed in, it scrolls the
+          active feed to the top and refreshes it. */}
       <View
         className="absolute inset-0 items-center justify-center"
         pointerEvents="box-none"
       >
-        <ElectricLogo refreshing={refreshing} onPress={onLogoPress} label="DeHub"
-          hint={logoHint ?? t("common.scrollsFeedToTop")}
+        <ElectricLogo refreshing={refreshing} onPress={isSignedIn ? onLogoPress : onMenuPress}
+          label={isSignedIn ? "DeHub" : t("common.openMenu")}
+          hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-logo-center.png")}
+          style={{ transform: [{ translateY: 1.5 }, { scale: 1.15 }] }}
           width={33} height={28} tint={colors.foreground} />
       </View>
 
