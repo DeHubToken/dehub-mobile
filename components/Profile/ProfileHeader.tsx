@@ -325,7 +325,7 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
       <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
         <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
-        <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <View>
             <Avatar
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
@@ -354,7 +354,7 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
           </View>
 
           {isMinimal ? (
-            <View className="flex-row items-center gap-2 mb-1">
+            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
                 accessibilityLabel={t("settings.editProfile")}
@@ -376,7 +376,7 @@ const ProfileHeader = ({ featuredCommunity }: { featuredCommunity?: Community | 
               </TouchableOpacity>
             </View>
           ) : (
-          <View className="flex-row items-center gap-2 mb-1">
+          <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}

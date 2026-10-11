@@ -21,7 +21,7 @@ const UserProfileSkeleton: React.FC = () => {
 
       <View className={cinematicPhone ? 'px-4' : 'px-5'}>
         {/* Avatar + follow button row */}
-        <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <View
             className="animate-pulse"
             style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#18181b', backgroundColor: '#18181b' }}
@@ -29,11 +29,11 @@ const UserProfileSkeleton: React.FC = () => {
           {/* Minimal's header button is a 44pt hairline outline, not a slab. */}
           {isMinimal ? (
             <View
-              className="w-24 mb-1 animate-pulse"
+              className={`w-24 self-start mt-12 animate-pulse ${cinematicPhone ? '-mr-3' : '-mr-4'}`}
               style={{ height: 44, borderWidth: 1, borderColor: MINIMAL_HAIRLINE }}
             />
           ) : (
-            <View className="h-9 w-24 bg-theme-neutrals-800 rounded-xl mb-1 animate-pulse" />
+            <View className={`h-9 w-24 bg-theme-neutrals-800 rounded-xl self-start mt-12 animate-pulse ${cinematicPhone ? '-mr-3' : '-mr-4'}`} />
           )}
         </View>
 
