@@ -30,6 +30,7 @@ import ReactionOverlay from "../components/LiveProducer/ReactionOverlay";
 import LiveEventBanner from "../components/LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../components/LiveViewer/LiveEventBanner";
 import ProducerHeader from "../components/LiveProducer/ProducerHeader";
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import ProducerFloatingChat from "../components/LiveProducer/ProducerFloatingChat";
 import ProducerBottomBar from "../components/LiveProducer/ProducerBottomBar";
 import ProducerShopButton from "../components/LiveProducer/ProducerShopButton";
@@ -699,6 +700,8 @@ const LiveProducerScreen: React.FC = () => {
     discardDeadLaunchRef.current();
     navigation.goBack();
   }, [navigation, stage, end, streamId, socketEmitAuthed]);
+
+  useSwipeBackAction(requestClose);
 
   // Toggle chat enabled while live (PATCH /live/:streamId/settings)
   const [settingsUpdating, setSettingsUpdating] = useState(false);

@@ -1,4 +1,5 @@
 import { useTranslation as _useCopy } from 'react-i18next';
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { cloudDraftHistoryEditor } from "../libs/editor/cloudDraftHistoryEditor";
 import { EditorControlGestureContext } from "../components/editor/EditorControlGesture";
 import { projectTask } from "../libs/editor/projectTask";
@@ -1539,6 +1540,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     await flush();
     onClose();
   }, [flush, onClose]);
+
+  useSwipeBackAction(() => { void close(); });
 
   // Hardware back leaves the design for the list, not the editor altogether.
   useEffect(() => {

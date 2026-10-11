@@ -7,6 +7,7 @@ import ErrorBoundary from "../ErrorBoundary";
 import { restartApp } from "../../libs/crashRecovery";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAppTheme } from "../../context/ThemeContext";
+import SwipeBackBoundary from './SwipeBackBoundary';
 
 /**
  * What a screen shows when it throws, instead of taking the navigator with it.
@@ -114,8 +115,15 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
  * boundary. Module-level so its identity never changes between renders — a
  * fresh function per render would remount every screen.
  */
-export function withScreenBoundary({ route, children }: ScreenLayoutArgs<any, any, any, any>) {
-  return <ScreenErrorBoundary name={String(route.name)}>{children}</ScreenErrorBoundary>;
+export function withScreenBoundary({ route, navigation, children }: ScreenLayoutArgs<any, any, any, any>) {
+  // These screens register their own guarded close (save/discard/end broadcast).
+  const guarded = [ScreenNames.MediaEditor, ScreenNames.Upload, ScreenNames.UploadTab, ScreenNames.LiveProducer].includes(route.name);
+  const state = navigation.getState();
+  const canPop = state.type === 'stack' && state.index > 0;
+  return <SwipeBackBoundary
+    isFocused={() => navigation.isFocused()}
+    onBack={!guarded && canPop ? () => navigation.goBack() : undefined}
+  ><ScreenErrorBoundary name={String(route.name)}>{children}</ScreenErrorBoundary></SwipeBackBoundary>;
 }
 
 // Plain JS shared with the JSX runtime (libs/jsx/surface.js).

@@ -10,6 +10,7 @@ import { MINIMAL_HAIRLINE } from '../theme/minimal';
 import { useCanGoBack } from '../hooks/useCanGoBack';
 import ChromeSurface from './ui/ChromeSurface';
 import { themeIconUrl } from '../theme/icons';
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 
 /**
  * Height of the title row in points. The dehub mark bar used to sit above it;
@@ -111,6 +112,8 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
       }
     }
   }, [navigation, onBackPress, showBack]);
+
+  useSwipeBackAction(handleBack, !!showBack);
 
   useEffect(() => {
     return () => {
