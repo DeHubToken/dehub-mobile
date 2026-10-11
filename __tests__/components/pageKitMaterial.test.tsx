@@ -7,11 +7,12 @@ import { themeAccent, tintSkin } from '../../theme/themeColor';
 let mockTheme: AppThemeName = 'system';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
   View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: any) => Array.isArray(style) ? Object.assign({}, ...style) : style, absoluteFill: {}, hairlineWidth: 1 },
 }));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
-jest.mock('../../components/ui/ThemeSurface', () => 'ThemeSurface');
+jest.mock('../../components/ui/ThemeSurface', () => ({ __esModule: true, default: 'ThemeSurface' }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => {
   const palette = jest.requireActual('../../theme/colors');
   const base = jest.requireActual('../../theme/skins').getThemeSkin(mockTheme);

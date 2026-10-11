@@ -11,6 +11,7 @@ jest.mock('react-native', () => ({
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ skin: null, isMinimal: false }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/GlassIndicator', () => ({ __esModule: true, default: 'GlassIndicator', GLASS_SHADOW: {} }));
 jest.mock('../../libs', () => ({ apiClient: { get: jest.fn(), post: jest.fn() }, toastError: jest.fn(), toastSuccess: jest.fn() }));
