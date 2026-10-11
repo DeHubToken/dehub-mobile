@@ -1077,7 +1077,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     setTool((cur) => (cur === id ? null : (id as Tool)));
   };
 
-  const tools: ToolButton[] = useMemo(() => {
+  const selectionTools: ToolButton[] = useMemo(() => {
     if (!selected) {
       return [
         { id: "ai", icon: "Sparkles", label: t("editor.rail.agent") },
@@ -1086,7 +1086,6 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
         { id: "stock", icon: "Search", label: t("common.search") },
-        { id: "subtitles", icon: "Type", label: _copy("copy.00c90f4b707a", { defaultValue: "SRT / VTT" }) },
         { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
         { id: "draw", icon: "PenLine", label: t("editor.draw.heading") },
@@ -1175,6 +1174,11 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       ...common,
     ];
   }, [selected, t, showTimeline, project, captionProgress, _copy]);
+
+  const tools: ToolButton[] = [
+    { id: "subtitles", icon: "Type", label: t("editor.captions.textPanel", { defaultValue: "Edit captions" }) },
+    ...selectionTools,
+  ];
 
   const panelProps = {
     live: (p: Patch) => patchSelected(p, "live"),
