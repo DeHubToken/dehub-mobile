@@ -14,15 +14,17 @@ export default function InviteFollowers({open,onClose,communityId,slug,wallet}:{
  const [page,setPage]=useState(1),[selected,setSelected]=useState<string[]>([]),[results,setResults]=useState<Record<string,InviteOutcome>>({});
  const [busy,setBusy]=useState(false),[failed,setFailed]=useState(false);
  const active=useRef(false),running=useRef(false);
- useEffect(()=>{active.current=open;return()=>{active.current=false;};},[open,wallet,communityId]);
+ const generation=useRef(0);
+ useEffect(()=>{active.current=open;generation.current++;return()=>{active.current=false;generation.current++;};},[open,wallet,communityId]);
  useEffect(()=>{setSelected([]);setResults({});setFailed(false);},[page,wallet,communityId,open]);
  const followers=useQuery({queryKey:['community-invite-followers',wallet,page],enabled:open,queryFn:()=>getFollowList({address:wallet,type:'followers',page,limit:50,sortBy:'createdAt',sortOrder:'asc'})});
  const rows=(followers.data?.result?.items??[]).map(row=>row.user).filter(row=>row.address&&row.address.toLowerCase()!==wallet.toLowerCase());
  const url=ShareLinks.community(slug);
  const send=async()=>{
   if(running.current||!selected.length)return;running.current=true;setBusy(true);setFailed(false);
-  try{const outcome=await inviteCommunityFollowers(communityId,wallet,url,selected,()=>active.current,ws);setResults(outcome);setSelected(selected.filter(address=>outcome[address.toLowerCase()]==='failed'));}
-  catch{setFailed(true);}finally{running.current=false;setBusy(false);}
+  const batch=generation.current;
+  try{const outcome=await inviteCommunityFollowers(communityId,wallet,url,selected,()=>active.current&&generation.current===batch,ws);if(generation.current===batch){setResults(outcome);setSelected(selected.filter(address=>outcome[address.toLowerCase()]==='failed'));}}
+  catch{if(generation.current===batch)setFailed(true);}finally{running.current=false;setBusy(false);}
  };
  const button=(label:string,press:()=>void,disabled=false)=><TouchableOpacity accessibilityRole="button" disabled={disabled} onPress={press} style={{opacity:disabled?0.4:1,padding:10,borderRadius:10,backgroundColor:'rgba(255,255,255,0.08)'}}><Text style={{color:'white'}}>{label}</Text></TouchableOpacity>;
  return <GlassModal visible={open} onClose={onClose} presentation="bottom"><View style={{padding:16,gap:12}}>
