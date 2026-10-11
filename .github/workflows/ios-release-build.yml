@@ -15,6 +15,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      EXPO_APPLE_TEAM_ID: J8BTYL3PDK
+      EXPO_APPLE_TEAM_TYPE: COMPANY_OR_ORGANIZATION
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
