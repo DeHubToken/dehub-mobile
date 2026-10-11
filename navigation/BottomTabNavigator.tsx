@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
