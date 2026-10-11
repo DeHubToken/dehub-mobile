@@ -19,7 +19,7 @@ import { Image } from 'expo-image';
 import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
 import { parseDehubLink } from '../../libs/dehub-links';
-import { fetchLinkPreview, extractUrlsFromText, type LinkPreviewData } from '../../libs/link-preview';
+import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, type LinkPreviewData } from '../../libs/link-preview';
 import { useAppTheme } from '../../context/ThemeContext';
 import { minimalFlat } from '../../theme/minimal';
 import { useNavigation } from '@react-navigation/native';
@@ -63,6 +63,9 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const url = useMemo(() => firstExternalUrl(text), [text]);
   const [preview, setPreview] = useState<LinkPreviewData | null>(null);
   const [loading, setLoading] = useState(!!url);
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const [loadedFavicon, setLoadedFavicon] = useState<string | null>(null);
+  const [failedFavicon, setFailedFavicon] = useState<string | null>(null);
   const { isMinimal } = useAppTheme();
   // A link to a registered mini app's own site opens the app, the way a
   // shared link does on Farcaster, instead of leaving for the browser.
@@ -105,11 +108,18 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   if (!preview) return null;
   if (preview.rich) return <RichLinkCard preview={{ ...preview, rich: preview.rich }} style={style} />;
 
+  const showImage = !!preview.image && preview.image !== failedImage;
+  const favicon = getLinkPreviewFavicon(preview.url);
+  const sourceTile = !showImage && !!favicon && loadedFavicon === favicon && failedFavicon !== favicon;
+  const domain = domainOf(preview.url);
+  const hasTitle = !!preview.title && preview.title !== domain;
+
   // Minimal: no card. The image spans the text column and the site, title and
   // description sit under it flush with the post text, so nothing is boxed.
   return (
     <TouchableOpacity
       activeOpacity={0.85}
+      accessibilityRole={app ? 'button' : 'link'}
       style={[styles.card, isMinimal && minimalFlat, style]}
       onPress={() =>
         app
@@ -117,27 +127,42 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
           : openInApp(preview.url)
       }
     >
-      {!!preview.image && (
-        <Image source={{ uri: preview.image }} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" />
+      {showImage && (
+        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
       )}
       <View style={[styles.body, isMinimal && styles.minimalBody]}>
-        <View style={styles.eyebrowRow}>
-          <Icon name={app ? 'LayoutGrid' : 'ExternalLink'} size={11} color="#808089" />
-          <Text style={styles.eyebrow} numberOfLines={1}>
-            {app ? `${app.name} · ${t('miniApps.card.open')}` : preview.siteName || domainOf(preview.url)}
-          </Text>
+        <View style={styles.sourceRow}>
+          {!showImage && favicon && failedFavicon !== favicon && (
+            <View style={sourceTile ? styles.sourceTile : styles.faviconProbe} pointerEvents="none" accessible={false}>
+              <Image
+                source={{ uri: favicon }}
+                recyclingKey={favicon}
+                style={styles.favicon}
+                contentFit="contain"
+                onLoad={() => setLoadedFavicon(favicon)}
+                onError={() => setFailedFavicon(favicon)}
+                accessible={false}
+              />
+            </View>
+          )}
+          <View style={styles.copy}>
+            <View style={styles.eyebrowRow}>
+              <Icon name={app ? 'LayoutGrid' : 'ExternalLink'} size={11} color="#808089" />
+              <Text style={[styles.eyebrow, !hasTitle && styles.title]} numberOfLines={1}>
+                {app ? `${app.name} · ${t('miniApps.card.open')}` : showImage ? preview.siteName || domain : domain}
+              </Text>
+            </View>
+            {hasTitle && <Text style={styles.title} numberOfLines={preview.prediction ? undefined : showImage ? 1 : 2}>
+              {preview.title}
+            </Text>}
+            {!!preview.description && (
+              <Text style={styles.description} numberOfLines={2}>
+                {preview.description}
+              </Text>
+            )}
+            <PredictionDetails preview={preview} />
+          </View>
         </View>
-        {!!preview.title && (
-          <Text style={styles.title} numberOfLines={preview.prediction ? undefined : 1}>
-            {preview.title}
-          </Text>
-        )}
-        {!!preview.description && (
-          <Text style={styles.description} numberOfLines={2}>
-            {preview.description}
-          </Text>
-        )}
-        <PredictionDetails preview={preview} />
       </View>
     </TouchableOpacity>
   );
@@ -154,8 +179,13 @@ const styles = StyleSheet.create({
   },
   image: { width: '100%', aspectRatio: 1.91, backgroundColor: 'rgba(255,255,255,0.05)' },
   body: { paddingHorizontal: 12, paddingBottom: 12, paddingTop: 14 },
+  sourceRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  sourceTile: { width: 56, height: 56, flexShrink: 0, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' },
+  faviconProbe: { position: 'absolute', width: 32, height: 32, opacity: 0 },
+  favicon: { width: 32, height: 32 },
+  copy: { flex: 1, minWidth: 0 },
   eyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 2 },
-  eyebrow: { color: '#808089', fontSize: 10, fontWeight: '600' },
+  eyebrow: { color: '#808089', fontSize: 10, fontWeight: '600', flexShrink: 1 },
   title: { color: '#fff', fontSize: 13, fontWeight: '600' },
   description: { color: '#a1a1aa', fontSize: 12, marginTop: 2, lineHeight: 16 },
   skeleton: {
