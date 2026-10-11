@@ -451,18 +451,17 @@ export default function AdsScreen() {
             </Pressable>
           ) : undefined
         }
+        tabs={
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={(["overview", "campaigns", "billing"] as const).map((tabKey) => ({
+              id: tabKey,
+              label: t(`ads.tabs.${tabKey}`),
+            }))}
+          />
+        }
       />
-
-      <View>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={(["overview", "campaigns", "billing"] as const).map((tabKey) => ({
-            id: tabKey,
-            label: t(`ads.tabs.${tabKey}`),
-          }))}
-        />
-      </View>
 
       <ScrollView
         contentContainerStyle={{ paddingTop: 6, paddingBottom: insets.bottom + 28 }}

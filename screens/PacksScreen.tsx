@@ -146,14 +146,15 @@ export default function PacksScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
-      <ScreenHeader title={t("creatorPacks.title")} />
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={kind}
-          onChange={setKind}
-          tabs={PACK_KINDS.map((k) => ({ id: k, label: t(KIND_TAB[k]) }))}
-        />
-      </View>
+      <ScreenHeader title={t("creatorPacks.title")}
+        tabs={
+          <PageTabs
+            value={kind}
+            onChange={setKind}
+            tabs={PACK_KINDS.map((k) => ({ id: k, label: t(KIND_TAB[k]) }))}
+          />
+        }
+      />
       <ScrollView
         contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 24 }}
         keyboardShouldPersistTaps="handled"

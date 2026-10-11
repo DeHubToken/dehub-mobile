@@ -131,7 +131,16 @@ export default function StatsScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.root} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
-      <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} icon="stats" />
+      <ScreenHeader title={t("nav.stats")} subtitle={t("stats.subtitle")} icon="stats"
+        tabs={
+          <PageTabs
+            value={range}
+            onChange={setRange}
+            tabs={RANGE_OPTIONS.map((item) => ({ id: item.key, label: t(item.labelKey) }))}
+            style={{ paddingBottom: 10 }}
+          />
+        }
+      />
       {query.isLoading ? (
         <View style={styles.center}><ActivityIndicator color="#F4F4F5" /></View>
       ) : query.isError || !query.data ? (
@@ -146,12 +155,7 @@ export default function StatsScreen() {
           keyboardShouldPersistTaps="handled"
           refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
-          <PageTabs
-            value={range}
-            onChange={setRange}
-            tabs={RANGE_OPTIONS.map((item) => ({ id: item.key, label: t(item.labelKey) }))}
-            style={{ paddingBottom: 10 }}
-          />
+
 
           <PageSection>
             <Metric label={t("communities.membersLabel")} value={query.data.totals.total} hint={t("stats.livePlatformTotal")} />

@@ -552,22 +552,21 @@ export default function StagesScreen() {
             <Icon name="Plus" size={18} color="#FFFFFF" />
           </TouchableOpacity>
         }
+        tabs={
+          /* Scrolls horizontally (PageTabs does): four chips with translated
+          labels do not fit across a phone in every language. */
+          <PageTabs
+            value={activeTab}
+            onChange={chooseTab}
+            tabs={tabs.map((tab) => ({
+              id: tab.key,
+              label: t(tab.labelKey),
+              icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
+            }))}
+            style={{ paddingBottom: 10 }}
+          />
+        }
       />
-
-      {/* Scrolls horizontally (PageTabs does): four chips with translated
-          labels do not fit across a phone in every language. */}
-      <View>
-        <PageTabs
-          value={activeTab}
-          onChange={chooseTab}
-          tabs={tabs.map((tab) => ({
-            id: tab.key,
-            label: t(tab.labelKey),
-            icon: <Icon name={tab.icon} size={14} color={activeTab === tab.key ? activeInk : "#A1A1AA"} />,
-          }))}
-          style={{ paddingBottom: 10 }}
-        />
-      </View>
 
       {showFirstLoad ? (
         <View style={styles.center}>

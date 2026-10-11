@@ -407,19 +407,19 @@ const SavedPostsScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader icon="bookmarks" title={t("screens.savedPosts")} canGoBack />
-
-      <View>
-        <PageTabs
-          value={activeTab}
-          onChange={setActiveTab}
-          tabs={[
-            { id: "all", label: t("savedPosts.allSaved") },
-            { id: "folders", label: t("savedPosts.collections") },
-          ]}
-          style={{ paddingBottom: 10 }}
-        />
-      </View>
+      <ScreenHeader icon="bookmarks" title={t("screens.savedPosts")} canGoBack
+        tabs={
+          <PageTabs
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={[
+              { id: "all", label: t("savedPosts.allSaved") },
+              { id: "folders", label: t("savedPosts.collections") },
+            ]}
+            style={{ paddingBottom: 10 }}
+          />
+        }
+      />
 
       {activeTab === "all" ? (
         <PostsInfiniteList variant="saved" bottomPadding={80} />

@@ -151,18 +151,17 @@ export default function StoresScreen() {
         title={t("screens.stores")}
         subtitle={t("stores.subtitle")}
         icon="stores"
+        tabs={
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={[
+              { id: "browse", label: t("stores.browse"), icon: "stores" },
+              { id: "my-store", label: t("stores.myStore"), icon: "profile" },
+            ]}
+          />
+        }
       />
-
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={[
-            { id: "browse", label: t("stores.browse"), icon: "stores" },
-            { id: "my-store", label: t("stores.myStore"), icon: "profile" },
-          ]}
-        />
-      </View>
 
       {tab === "browse" ? (
         <>

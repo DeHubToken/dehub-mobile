@@ -79,23 +79,22 @@ export default function FractionsScreen() {
             </View>
           </Pressable>
         }
+        tabs={
+          /* Anything with a clock on it gets a count on the tab. */
+          <PageTabs
+            value={tab}
+            onChange={setTab}
+            tabs={TABS.map(({ key, icon, labelKey }) => ({
+              id: key,
+              icon,
+              label:
+                key === "portfolio" && needsAction > 0
+                  ? t("fractions.tabPortfolioCount", { count: needsAction })
+                  : t(labelKey),
+            }))}
+          />
+        }
       />
-
-      {/* Anything with a clock on it gets a count on the tab. */}
-      <View style={styles.tabsWrap}>
-        <PageTabs
-          value={tab}
-          onChange={setTab}
-          tabs={TABS.map(({ key, icon, labelKey }) => ({
-            id: key,
-            icon,
-            label:
-              key === "portfolio" && needsAction > 0
-                ? t("fractions.tabPortfolioCount", { count: needsAction })
-                : t(labelKey),
-          }))}
-        />
-      </View>
 
       <View style={styles.body}>
         {tab === "browse" ? (

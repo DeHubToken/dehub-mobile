@@ -76,7 +76,8 @@ jest.mock('../../components/Feed/DeHubRefreshControl', () => ({
   DeHubRefreshMark: () => null,
 }));
 jest.mock('../../components/ui/LoadErrorState', () => () => null);
-jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
+jest.mock('../../components/ScreenHeader', () => ({ tabs, children, ...props }: any) =>
+  require('react').createElement('ScreenHeader', props, tabs, children));
 jest.mock('../../components/page/PageKit', () => ({
   // Tabs as plain pressable labels, so the test can still tap "Collections".
   PageTabs: ({ tabs, onChange }: { tabs: { id: string; label: string }[]; onChange: (id: string) => void }) => {
