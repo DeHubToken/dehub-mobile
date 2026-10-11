@@ -17,6 +17,8 @@ import { BlurView } from "expo-blur";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SwipeBackBoundary from '../common/SwipeBackBoundary';
 
 export interface GlassModalProps {
   visible: boolean;
@@ -151,6 +153,8 @@ const GlassModal: React.FC<GlassModalProps> = ({
       {/* The insets are spent on the foreground, never on this container, so
           the dim (and the blur) reach the status bar and the gesture bar
           instead of stopping short of both. */}
+      <GestureHandlerRootView style={styles.container}>
+      <SwipeBackBoundary onBack={dismissible ? onClose : undefined} enabled={visible && !yielded && dismissible}>
       <View style={styles.container}>
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" && isMinimal ? (
@@ -265,6 +269,8 @@ const GlassModal: React.FC<GlassModalProps> = ({
           </KeyboardAvoidingView>
         </View>
       </View>
+      </SwipeBackBoundary>
+      </GestureHandlerRootView>
     </Modal>
   );
 };
