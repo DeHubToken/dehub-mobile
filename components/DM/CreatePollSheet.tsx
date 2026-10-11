@@ -12,6 +12,7 @@ import {
   Pressable,
   KeyboardAvoidingView,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut, SlideInUp, SlideOutDown } from "react-native-reanimated";
@@ -100,11 +101,12 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
       animationType="none"
       statusBarTranslucent
       onRequestClose={onClose}
+      navigationBarTranslucent
     >
       <Pressable style={{ flex: 1 }} onPress={onClose}>
         <Animated.View
           entering={FadeIn.duration(200)}
-          style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
+          style={{ flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.5)" }}
         />
       </Pressable>
 

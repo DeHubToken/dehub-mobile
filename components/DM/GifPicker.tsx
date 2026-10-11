@@ -1,7 +1,7 @@
 import MessageSurface from "../DM/MessageSurface";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View, Platform } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -138,10 +138,10 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const onPressClose = useCallback(() => onClose(), [onClose]);
 
   return (
-    <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent>
+    <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent statusBarTranslucent navigationBarTranslucent>
       {/* Edge-to-edge Android doesn't resize for the keyboard — lift the sheet. */}
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
-        <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 dark-surface bg-black/40" />
+        <TouchableOpacity activeOpacity={1} onPress={onClose} className={Platform.OS === "android" ? "flex-1" : "flex-1 dark-surface bg-black/40"} />
         <View
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
           style={{ paddingBottom: insets.bottom + 12 }}
