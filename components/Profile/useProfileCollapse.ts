@@ -9,22 +9,28 @@ export function useProfileCollapse(profileKey?: string | null) {
   const scrollY = useSharedValue(0);
   const tabsPinned = useSharedValue(false);
   const identityBottom = useSharedValue(220);
+  const actionsBottom = useSharedValue(Number.POSITIVE_INFINITY);
   useEffect(() => { scrollY.value = 0; tabsPinned.value = false; }, [profileKey, scrollY, tabsPinned]);
   const onIdentityBottom = useCallback((bottom: number) => {
     identityBottom.value = bottom;
   }, [identityBottom]);
-  return { scrollY, tabsPinned, identityBottom, onIdentityBottom };
+  const onActionsBottom = useCallback((bottom: number) => { actionsBottom.value = bottom; }, [actionsBottom]);
+  return { scrollY, tabsPinned, identityBottom, actionsBottom, onIdentityBottom, onActionsBottom };
 }
 
 /** Measure the actual wrapped name, including font scaling, in profile coordinates. */
-export function useProfileIdentityLayout(onIdentityBottom?: (bottom: number) => void) {
+export function useProfileIdentityLayout(onIdentityBottom?: (bottom: number) => void, onActionsBottom?: (bottom: number) => void) {
   const profileRef = useRef<View>(null);
   const identityRef = useRef<Text>(null);
+  const actionsRef = useRef<View>(null);
   const measureIdentity = useCallback(() => {
-    if (!profileRef.current || !onIdentityBottom) return;
+    if (!profileRef.current) return;
     identityRef.current?.measureLayout(profileRef.current, (_x, y, _width, height) => {
-      onIdentityBottom(y + height);
+      onIdentityBottom?.(y + height);
     }, () => {});
-  }, [onIdentityBottom]);
-  return { profileRef, identityRef, measureIdentity };
+    actionsRef.current?.measureLayout(profileRef.current, (_x, y, _width, height) => {
+      onActionsBottom?.(y + height);
+    }, () => {});
+  }, [onIdentityBottom, onActionsBottom]);
+  return { profileRef, identityRef, actionsRef, measureIdentity };
 }

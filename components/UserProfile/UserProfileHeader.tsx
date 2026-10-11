@@ -39,6 +39,7 @@ const BTN_H = 36;
 
 export interface UserProfileHeaderProps {
   onIdentityBottom?: (bottom: number) => void;
+  onActionsBottom?: (bottom: number) => void;
   featuredCommunity?: Community | null;
   avatarUrl?: string | null;
   coverUrl?: string | null;
@@ -91,6 +92,7 @@ export interface UserProfileHeaderProps {
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   featuredCommunity,
   onIdentityBottom,
+  onActionsBottom,
   avatarUrl,
   coverUrl,
   displayName,
@@ -180,7 +182,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const followingItem = stats?.find((s) => s.key === "following");
   const followersItem = stats?.find((s) => s.key === "followers");
 
-  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
+  const { profileRef, identityRef, actionsRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom, onActionsBottom);
 
   const renderFollowButton = () => {
     if (isOwnProfile) {
@@ -302,7 +304,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
-            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
               {renderFollowButton()}
               {!!onMessage && (
                 <TouchableOpacity
