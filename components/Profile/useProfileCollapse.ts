@@ -3,26 +3,37 @@ import { Text, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 
 export const PROFILE_BAR_HEIGHT = 60;
+export const PROFILE_TABS_TOP_GAP = 16;
+// Mobile web seats its 49.5pt tab row directly beneath the Back row.
+export const PINNED_PROFILE_TABS_HEIGHT = 53.5;
+export const PROFILE_COVER_HEIGHT = 140;
 
 export function useProfileCollapse(profileKey?: string | null) {
   const scrollY = useSharedValue(0);
+  const tabsPinned = useSharedValue(false);
   const identityBottom = useSharedValue(220);
-  useEffect(() => { scrollY.value = 0; }, [profileKey, scrollY]);
+  const actionsBottom = useSharedValue(Number.POSITIVE_INFINITY);
+  useEffect(() => { scrollY.value = 0; tabsPinned.value = false; }, [profileKey, scrollY, tabsPinned]);
   const onIdentityBottom = useCallback((bottom: number) => {
     identityBottom.value = bottom;
   }, [identityBottom]);
-  return { scrollY, identityBottom, onIdentityBottom };
+  const onActionsBottom = useCallback((bottom: number) => { actionsBottom.value = bottom; }, [actionsBottom]);
+  return { scrollY, tabsPinned, identityBottom, actionsBottom, onIdentityBottom, onActionsBottom };
 }
 
 /** Measure the actual wrapped name, including font scaling, in profile coordinates. */
-export function useProfileIdentityLayout(onIdentityBottom?: (bottom: number) => void) {
+export function useProfileIdentityLayout(onIdentityBottom?: (bottom: number) => void, onActionsBottom?: (bottom: number) => void) {
   const profileRef = useRef<View>(null);
   const identityRef = useRef<Text>(null);
+  const actionsRef = useRef<View>(null);
   const measureIdentity = useCallback(() => {
-    if (!profileRef.current || !onIdentityBottom) return;
+    if (!profileRef.current) return;
     identityRef.current?.measureLayout(profileRef.current, (_x, y, _width, height) => {
-      onIdentityBottom(y + height);
+      onIdentityBottom?.(y + height);
     }, () => {});
-  }, [onIdentityBottom]);
-  return { profileRef, identityRef, measureIdentity };
+    actionsRef.current?.measureLayout(profileRef.current, (_x, y, _width, height) => {
+      onActionsBottom?.(y + height);
+    }, () => {});
+  }, [onIdentityBottom, onActionsBottom]);
+  return { profileRef, identityRef, actionsRef, measureIdentity };
 }

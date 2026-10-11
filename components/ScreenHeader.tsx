@@ -9,7 +9,9 @@ import { useAppTheme } from '../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../theme/minimal';
 import { useCanGoBack } from '../hooks/useCanGoBack';
 import ChromeSurface from './ui/ChromeSurface';
+import NavPillSurface from './ui/NavPillSurface';
 import { themeIconUrl } from '../theme/icons';
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 
 /**
  * Height of the title row in points. The dehub mark bar used to sit above it;
@@ -44,8 +46,14 @@ export interface ScreenHeaderProps {
    *  top bar and no title, just a round back button floating over the media,
    *  the same one the web post page shows. */
   overlay?: boolean;
+  /** Show only the back arrow over a profile banner. */
+  plainBack?: boolean;
   /** Page identity artwork key (theme/icons.ts), drawn in the theme's own style. */
   icon?: string;
+  /** Messaging uses web's title island for lists and flat chrome in a thread. */
+  appearance?: 'island' | 'flat';
+  /** Search belongs inside the list's title island. */
+  children?: React.ReactNode;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = ({
@@ -57,7 +65,10 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   titleAccessory,
   onBackPress,
   overlay = false,
+  plainBack = false,
   icon,
+  appearance,
+  children,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -109,13 +120,15 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     }
   }, [navigation, onBackPress, showBack]);
 
+  useSwipeBackAction(handleBack, !!showBack);
+
   useEffect(() => {
     return () => {
       if (backTimerRef.current) clearTimeout(backTimerRef.current);
     };
   }, []);
 
-  if (overlay || theme === 'system' || theme === 'immersive') {
+  if (overlay || (!appearance && (theme === 'system' || theme === 'immersive'))) {
     if (!showBack && !rightContent) return null;
     return (
       <View
@@ -138,9 +151,9 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
           zIndex: 20,
           width: 36,
           height: 36,
-          borderRadius: 18,
-          backgroundColor: 'rgba(0,0,0,0.45)',
-          borderWidth: 1,
+          borderRadius: plainBack ? 0 : 18,
+          backgroundColor: plainBack ? 'transparent' : 'rgba(0,0,0,0.45)',
+          borderWidth: plainBack ? 0 : 1,
           borderColor: 'rgba(255,255,255,0.18)',
         }}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -168,65 +181,70 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   }
 
   return (
-    <View className="bg-theme-neutrals-900" style={styles.bar}>
+    <View className={appearance ? undefined : 'bg-theme-neutrals-900'} style={appearance === 'flat' ? styles.flatBar : [styles.bar, children ? styles.searchBar : undefined]}>
       {/* The floating title island, the same capsule material as the home
           feed's: glass on iOS, solid on Android, a hairline frame on minimal. */}
-      <View style={styles.island}>
-        {isMinimal ? (
+      <View style={appearance === 'flat' ? styles.flatRow : [styles.island, children ? styles.searchIsland : undefined]}>
+        {appearance === 'flat' ? null : appearance === 'island' ? (
+          <NavPillSurface borderRadius={ISLAND_RADIUS} />
+        ) : isMinimal ? (
           <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.minimalFrame]} />
         ) : (
           <ChromeSurface radius={ISLAND_RADIUS} />
         )}
-        <View className="flex-row items-center flex-1" style={{ minWidth: 0 }}>
-          {showBack && (
-            <TouchableOpacity
-              onPress={handleBack}
-              className="active:opacity-70"
-              style={styles.square}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel={t("common.goBack")}
-            >
-              {/* Icons are not mirrored by the layout; back points right in RTL. */}
-              <Ionicons
-                name="arrow-back"
-                size={19}
-                color={colors.neutrals[100]}
-                style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
-              />
-            </TouchableOpacity>
-          )}
-          {iconUrl ? (
-            <Image source={{ uri: iconUrl }} style={styles.icon} contentFit="contain" cachePolicy="disk" />
-          ) : null}
-          {leftContent ? (
-            <View className="mr-2">{leftContent}</View>
-          ) : null}
-          <View className="flex-shrink">
-            <View className="flex-row items-center">
-              <Text
-                numberOfLines={1}
-                className="text-theme-neutrals-100 flex-shrink"
-                style={styles.title}
+        <View style={styles.headingRow}>
+          <View className="flex-row items-center flex-1" style={{ minWidth: 0 }}>
+            {showBack && (
+              <TouchableOpacity
+                onPress={handleBack}
+                className="active:opacity-70"
+                style={appearance === 'flat' ? styles.flatBack : styles.square}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel={t("common.goBack")}
               >
-                {title}
-              </Text>
-              {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
-            </View>
-            {subtitle ? (
-              <Text
-                numberOfLines={1}
-                className="text-theme-neutrals-400"
-                style={styles.subtitle}
-              >
-                {subtitle}
-              </Text>
+                {/* Icons are not mirrored by the layout; back points right in RTL. */}
+                <Ionicons
+                  name="arrow-back"
+                  size={19}
+                  color={colors.neutrals[100]}
+                  style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}
+                />
+              </TouchableOpacity>
+            )}
+            {iconUrl ? (
+              <Image source={{ uri: iconUrl }} style={styles.icon} contentFit="contain" cachePolicy="disk" />
             ) : null}
+            {leftContent ? (
+              <View className="mr-2">{leftContent}</View>
+            ) : null}
+            <View className="flex-shrink">
+              <View className="flex-row items-center">
+                <Text
+                  numberOfLines={1}
+                  className="text-theme-neutrals-100 flex-shrink"
+                  style={styles.title}
+                >
+                  {title}
+                </Text>
+                {titleAccessory ? <View className="ml-2">{titleAccessory}</View> : null}
+              </View>
+              {subtitle ? (
+                <Text
+                  numberOfLines={1}
+                  className="text-theme-neutrals-400"
+                  style={styles.subtitle}
+                >
+                  {subtitle}
+                </Text>
+              ) : null}
+            </View>
           </View>
+          {rightContent ? (
+            <View className="ml-2 flex-row items-center" style={{ gap: 6 }}>{rightContent}</View>
+          ) : null}
         </View>
-        {rightContent ? (
-          <View className="ml-3 flex-row items-center" style={{ gap: 6 }}>{rightContent}</View>
-        ) : null}
+        {children ? <View style={{ marginTop: 10 }}>{children}</View> : null}
       </View>
     </View>
   );
@@ -250,6 +268,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 8,
   },
+  headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 36, width: '100%' },
+  searchBar: { height: undefined, paddingTop: 8, paddingBottom: 8 },
+  searchIsland: { height: undefined, flexDirection: 'column', alignItems: 'stretch', paddingHorizontal: 12, paddingVertical: 10 },
+  flatBar: { height: SCREEN_HEADER_HEIGHT, paddingHorizontal: 16, justifyContent: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,0.07)' },
+  flatRow: { flexDirection: 'row', alignItems: 'center' },
+  flatBack: { width: 32, height: 36, marginRight: 12, alignItems: 'center', justifyContent: 'center' },
   minimalFrame: {
     borderRadius: ISLAND_RADIUS,
     borderWidth: 1,
@@ -265,7 +289,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.08)',
   },
-  icon: { width: 30, height: 30, marginRight: 8 },
+  icon: { width: 32, height: 32, marginRight: 10 },
   title: { fontSize: 17, fontWeight: '700', letterSpacing: 0.1 },
   subtitle: { fontSize: 11.5, marginTop: 1 },
 });

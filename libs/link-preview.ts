@@ -49,6 +49,20 @@ function compactPreview(url: string): LinkPreviewData {
   return { url, title: domain, description: '', image: null, siteName: domain };
 }
 
+export function getLinkPreviewImage(url: string, image: unknown): string | null {
+  const decodedImage = typeof image === 'string' ? image.replace(/&amp;/gi, '&') : null;
+  if (!decodedImage) return null;
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    const cover = new URL(decodedImage);
+    // Only C Drive's known near-empty cover needs the source-card fallback.
+    if ((host === 'suno.com' || host === 'www.suno.com') &&
+      cover.hostname === 'cdn2.suno.ai' &&
+      cover.pathname === '/image_large_8b26dd51-6297-4403-9f25-e7e2e7d45c64.jpeg') return null;
+  } catch { /* retain other preview images */ }
+  return decodedImage;
+}
+
 export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
@@ -72,7 +86,7 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
       description: data.description || '',
       // OG attributes can contain HTML-escaped query separators. Decode them
       // before the share-image endpoint receives the URL.
-      image: typeof data.image === 'string' ? data.image.replace(/&amp;/gi, '&') : null,
+      image: getLinkPreviewImage(url, data.image),
       siteName: data.siteName || compactPreview(url).siteName,
     };
 

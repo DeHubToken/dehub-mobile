@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useRef, useState, useMemo, useEffect } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { FeedPlaybackActiveContext } from '../libs/visualActivity';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
@@ -42,10 +42,9 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     // Set all state together to prevent flicker
     setIdentifier(id);
     setOptions(opts || null);
-    // System opens above the whole feed with its own floating back control.
-    // Other themes retain the embedded presentation when Home is focused.
+    // Android uses the profile's own back control in every theme.
     setPresentation(
-      resolveProfilePresentation(feedProfileHostActiveRef.current, opts?.source, theme),
+      resolveProfilePresentation(feedProfileHostActiveRef.current, opts?.source, theme, Platform.OS),
     );
     setVisible(true);
   }, [theme]);
@@ -106,13 +105,22 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     return () => setProfileDeepLinkHandler(null);
   }, [showUserProfile]);
 
+  // Keep the previous page mounted for Back, but only the root theme scene
+  // should show through the profile's clear page wrappers during its lifetime.
+  const covered = Platform.OS === 'android' && identifier !== null && presentation === 'modal';
+
   return (
     <UserProfileSheetContext.Provider value={contextValue}>
       <View style={{ flex: 1 }}>
         <UserProfilePresentationContext.Provider value={presentationContextValue}>
           {/* Keep covered feeds paused through the profile's closing animation. */}
           <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal'}>
+            <View style={{ flex: 1, opacity: covered ? 0 : 1 }}
+              pointerEvents={covered ? 'none' : 'auto'}
+              accessibilityElementsHidden={covered}
+              importantForAccessibility={covered ? 'no-hide-descendants' : 'auto'}>
             {children}
+            </View>
           </FeedPlaybackActiveContext.Provider>
         </UserProfilePresentationContext.Provider>
         <UserProfileBottomSheet

@@ -51,7 +51,7 @@ import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
 import { useAuth } from "../context/AuthContext";
 import { getAuthToken } from "../libs/auth.utils";
-import { toastError, toastSuccess } from "../libs";
+import { parsePresenceRequest } from "../libs/map-presence";
 import env from "../config/env";
 
 const MAP_PRESENCE_ENDPOINT = `${env.SUPABASE_URL}/functions/v1/map-presence`;
@@ -112,18 +112,27 @@ const PRESENCE_BRIDGE = `
 (function () {
   if (window.__dehubPresenceBridge) return;
   window.__dehubPresenceBridge = true;
-  window.addEventListener('gev:presence-place-requested', function () {
+  window.addEventListener('gev:presence-request', function (event) {
+    var request = event.detail;
+    if (!request || request.source !== 'gods-eye-view') return;
+    if (request.type === 'presence-remove-requested' || request.latitude !== undefined) {
+      window.ReactNativeWebView.postMessage(JSON.stringify(request));
+      return;
+    }
+    var fail = function () {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ source: 'gods-eye-view', type: 'presence-location-error', requestId: request.requestId }));
+    };
     if (!navigator.geolocation) {
-      window.ReactNativeWebView.postMessage(JSON.stringify({ source: 'gods-eye-view', type: 'presence-location-error' }));
+      fail();
       return;
     }
     navigator.geolocation.getCurrentPosition(function (position) {
       window.ReactNativeWebView.postMessage(JSON.stringify({
-        source: 'gods-eye-view', type: 'presence-location',
+        source: 'gods-eye-view', type: 'presence-place-requested', requestId: request.requestId,
         latitude: position.coords.latitude, longitude: position.coords.longitude
       }));
     }, function () {
-      window.ReactNativeWebView.postMessage(JSON.stringify({ source: 'gods-eye-view', type: 'presence-location-error' }));
+      fail();
     }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 });
   });
 })();
@@ -207,6 +216,13 @@ const ArcadeGameScreen = () => {
   }, [game, slug, route.params]);
   const webRef = useRef<WebView>(null);
   const { user } = useAuth();
+  const presenceBusy = useRef(false);
+  const presenceLifetime = useRef(new AbortController());
+  useEffect(() => {
+    const lifetime = new AbortController();
+    presenceLifetime.current = lifetime;
+    return () => lifetime.abort();
+  }, [user?.walletAddress, slug]);
 
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -310,7 +326,7 @@ const ArcadeGameScreen = () => {
       try {
         const d = JSON.parse(e.nativeEvent.data) as {
           source?: string; type?: string; text?: string; latitude?: number; longitude?: number;
-          key?: string; body?: Record<string, unknown>;
+          key?: string; body?: Record<string, unknown>; requestId?: string;
         };
         if (slug === 'trenchstar' && d.source === 'trenchstar-connected' && d.type === 'request') {
           // Only the trusted game document can invoke this account-bound relay.
@@ -333,22 +349,45 @@ const ArcadeGameScreen = () => {
           return;
         }
         if (game?.socialPresence && d.source === 'gods-eye-view') {
-          if (d.type === 'presence-location-error') toastError(t('arcade.locationNotGranted'));
-          if (d.type === 'presence-location') {
+          const origin = new URL(e.nativeEvent.url);
+          if (origin.origin !== new URL(WEBSITE_LINK).origin || !['/gods-eye-game/', '/gods-eye-game/index.html'].includes(origin.pathname)) return;
+          const target = webRef.current;
+          const lifetime = presenceLifetime.current;
+          const reply = (result: { error?: string; removed?: boolean }) => {
+            if (lifetime.signal.aborted || target !== webRef.current) return;
+            target?.injectJavaScript(`window.postMessage(${JSON.stringify({source:'social-presence-host',type:'presence-result',requestId:d.requestId,...result})}, '*'); true;`);
+          };
+          if (d.type === 'presence-location-error') { reply({ error: t('arcade.locationNotGranted') }); return; }
+          const request = parsePresenceRequest(d);
+          if (!request || presenceBusy.current) return;
+          if (request.type === 'presence-place-requested' && request.latitude === undefined) return;
+          presenceBusy.current = true;
+          const requestAbort = new AbortController();
+          const cancelRequest = () => requestAbort.abort();
+          const timer = setTimeout(cancelRequest, 15000);
+          lifetime.signal.addEventListener('abort', cancelRequest, { once: true });
+          try {
             const token = await getAuthToken();
             const wallet = user?.walletAddress?.toLowerCase();
-            if (!token || !wallet) { toastError(t('arcade.signInToPlaceOnGlobe')); return; }
+            if (!token || !wallet) { reply({ error: t('arcade.signInToPlaceOnGlobe') }); return; }
+            if (lifetime.signal.aborted) return;
+            const removing = request.type === 'presence-remove-requested';
             const response = await fetch(MAP_PRESENCE_ENDPOINT, {
-              method: 'POST',
+              method: removing ? 'DELETE' : 'POST',
+              signal: requestAbort.signal,
               headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
-              body: JSON.stringify({
-                latitude: d.latitude, longitude: d.longitude, precisionKm: 25,
+              body: removing ? undefined : JSON.stringify({
+                latitude: request.latitude, longitude: request.longitude, precisionKm: 25,
                 username: user?.username, avatarUrl: user?.avatarImageUrl || user?.avatarUrl,
               }),
             });
-            if (!response.ok) { toastError(t('arcade.couldNotPlaceOnGlobe')); return; }
-            webRef.current?.injectJavaScript(`window.postMessage({source:'social-presence-host',type:'refresh'}, '*'); true;`);
-            toastSuccess(t('arcade.onTheGlobe'));
+            if (!response.ok) throw new Error('Map update failed');
+            reply({ removed: removing });
+          } catch { reply({ error: t('arcade.couldNotPlaceOnGlobe') }); }
+          finally {
+            clearTimeout(timer);
+            lifetime.signal.removeEventListener('abort', cancelRequest);
+            presenceBusy.current = false;
           }
           return;
         }
@@ -359,7 +398,7 @@ const ArcadeGameScreen = () => {
         // Not our JSON. A page is free to post whatever it likes at itself.
       }
     },
-    [game?.readySource, game?.socialPresence, user, slug],
+    [game?.readySource, game?.socialPresence, user, slug, t],
   );
 
   /**
@@ -470,13 +509,16 @@ const ArcadeGameScreen = () => {
 
       {game.socialPresence ? (
         <Pressable
-          onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
+          onPress={() => Alert.alert(t('arcade.openPrivacySettings'), t('arcade.privacyWarning'), [
+            { text: t('common.cancel'), style: 'cancel' },
+            { text: t('arcade.openPrivacySettings'), onPress: () => navigation.navigate(ScreenNames.PrivacySettings) },
+          ])}
           accessibilityRole="button"
           accessibilityLabel={t("arcade.openPrivacySettings")}
           style={styles.privacyWarning}
         >
           <Icon name="TriangleAlert" size={16} color="#FCD34D" />
-          <Text style={styles.privacyWarningText}>{t("arcade.privacyWarning")}</Text>
+          <Text style={styles.privacyWarningText}>{t("arcade.openPrivacySettings")}</Text>
         </Pressable>
       ) : null}
 

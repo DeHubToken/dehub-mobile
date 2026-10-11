@@ -12,9 +12,10 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/ChromeSurface', () => () => null);
+jest.mock('../../components/ui/NavPillSurface', () => 'NavPillSurface');
 jest.mock('../../theme/icons', () => ({ themeIconUrl: () => undefined }));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
-jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false, theme: 'system' }) }));
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: jest.fn(() => ({ isMinimal: false, theme: 'system' })) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
 const mockListeners: Record<string, Array<() => void>> = {};
@@ -30,6 +31,7 @@ const mockNavigation = {
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => mockNavigation }));
 
 import ScreenHeader from '../../components/ScreenHeader';
+import { APP_THEMES } from '../../theme/colors';
 
 const backButtons = (tree: ReactTestRenderer) =>
   tree.root.findAll((node) => node.props.accessibilityLabel === 'common.goBack' && typeof node.type === 'string');
@@ -37,6 +39,7 @@ const backButtons = (tree: ReactTestRenderer) =>
 const emit = (event: string) => act(() => (mockListeners[event] ?? []).forEach((cb) => cb()));
 
 beforeEach(() => {
+  jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ isMinimal: false, theme: 'system' });
   Object.keys(mockListeners).forEach((k) => delete mockListeners[k]);
   mockNavigation.canGoBack.mockReset();
   mockNavigation.getState.mockReset();
@@ -116,5 +119,38 @@ it('never renders the old title bar on ordinary System pages', () => {
   act(() => { tree = create(<ScreenHeader title="Careers" />); });
   expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
   expect(backButtons(tree)).toHaveLength(1);
+  act(() => tree.unmount());
+});
+
+it.each(APP_THEMES)('keeps a conversation identity and its actions visible in %s', (theme) => {
+  jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
+  const onBack = jest.fn();
+  const onCall = jest.fn();
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader appearance="flat" title="Alice" subtitle="@alice" onBackPress={onBack}
+    leftContent={<span />} rightContent={<button onClick={onCall}>Call</button>} />); });
+  const text = tree.root.findAllByType('Text' as any).map(node => node.props.children);
+  expect(text).toContain('Alice');
+  expect(text).toContain('@alice');
+  expect(tree.root.findAllByType('span')).toHaveLength(1);
+  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(0);
+  act(() => backButtons(tree)[0].props.onPress());
+  act(() => tree.root.findByType('button').props.onClick());
+  expect(onBack).toHaveBeenCalledTimes(1);
+  expect(onCall).toHaveBeenCalledTimes(1);
+  act(() => tree.unmount());
+});
+
+it.each(APP_THEMES)('keeps the inbox title, search, and new-message action together in %s', (theme) => {
+  jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
+  const onNew = jest.fn();
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader appearance="island" canGoBack={false} title="Messages"
+    rightContent={<button onClick={onNew}>New</button>}><input /></ScreenHeader>); });
+  expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toContain('Messages');
+  expect(tree.root.findAllByType('input')).toHaveLength(1);
+  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(1);
+  act(() => tree.root.findByType('button').props.onClick());
+  expect(onNew).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
 });

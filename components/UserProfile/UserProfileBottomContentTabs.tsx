@@ -1,4 +1,4 @@
-import { PROFILE_BAR_HEIGHT } from '../Profile/useProfileCollapse';
+import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, PINNED_PROFILE_TABS_HEIGHT } from '../Profile/useProfileCollapse';
 import type { SharedValue } from 'react-native-reanimated';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, {
@@ -23,6 +23,7 @@ import {
 import Animated, {
   runOnJS,
   useAnimatedScrollHandler,
+  useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
@@ -61,6 +62,7 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
   profileScrollY?: SharedValue<number>;
+  profileTabsPinned?: SharedValue<boolean>;
   address: string;
   onClose: () => void;
   scrollEnabled: boolean;
@@ -85,8 +87,6 @@ interface UserProfileBottomContentTabsProps {
   /** Back-to-top button's distance from the bottom; the host knows what sits there. */
   backToTopBottom?: number;
 }
-
-const STICKY_BAR_HEIGHT = 68;
 
 /** Horizontal padding for post cards. Kept tight so content isn't crowded by
  *  large left/right gaps inside the profile sheet. */
@@ -125,6 +125,7 @@ const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
 > = ({
   profileScrollY,
+  profileTabsPinned,
   address,
   onClose,
   scrollEnabled,
@@ -195,10 +196,14 @@ const UserProfileBottomContentTabs: React.FC<
   // from the UI thread wouldn't be visible to JS reliably.
   const headerHeightShared = useSharedValue(0);
   const stickyVisibleShared = useSharedValue(false);
+  const stickyStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 1 : 0 }));
+  // Preserve header geometry while removing its offscreen masks from drawing.
+  const expandedHeaderStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 0 : 1 }));
   const showBackToTopShared = useSharedValue(false);
   const isFullScreenShared = useSharedValue(isFullScreen);
   useEffect(() => {
     if (profileScrollY) profileScrollY.value = 0;
+    if (profileTabsPinned) profileTabsPinned.value = false;
     stickyVisibleShared.value = false;
     setStickyVisible(false);
   }, [activeTab, address, profileScrollY, stickyVisibleShared]);
@@ -344,7 +349,8 @@ const UserProfileBottomContentTabs: React.FC<
 
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
-        const shouldStick = y >= threshold - PROFILE_BAR_HEIGHT;
+        const shouldStick = y >= threshold + PROFILE_TABS_TOP_GAP - PROFILE_BAR_HEIGHT;
+        if (profileTabsPinned) profileTabsPinned.value = shouldStick;
         if (shouldStick !== stickyVisibleShared.value) {
           stickyVisibleShared.value = shouldStick;
           runOnJS(setStickyVisible)(shouldStick);
@@ -370,7 +376,7 @@ const UserProfileBottomContentTabs: React.FC<
       if (profileScrollY) profileScrollY.value = 0;
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
-    [activeTab, stickyVisibleShared, profileScrollY],
+    [activeTab, stickyVisibleShared, profileScrollY, profileTabsPinned],
   );
 
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
@@ -472,12 +478,12 @@ const UserProfileBottomContentTabs: React.FC<
     if (!profileHeader) return undefined;
     return (
       <View>
-        <View onLayout={handleHeaderLayout}>{profileHeader}</View>
+        <Animated.View style={expandedHeaderStyle} onLayout={handleHeaderLayout}>{profileHeader}</Animated.View>
         {TabBar}
         {ContentToolbar}
       </View>
     );
-  }, [profileHeader, handleHeaderLayout, TabBar, ContentToolbar]);
+  }, [profileHeader, handleHeaderLayout, TabBar, ContentToolbar, expandedHeaderStyle]);
 
   if (!address) return null;
 
@@ -656,22 +662,23 @@ const UserProfileBottomContentTabs: React.FC<
       {!isFullScreen && TabBar}
       {renderTabContent()}
 
-      {isFullScreen && stickyVisible && (
-        <View
-          style={{
+      {isFullScreen && (
+        <Animated.View
+          pointerEvents={stickyVisible ? 'auto' : 'none'}
+          accessibilityElementsHidden={!stickyVisible}
+          importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'}
+          style={[{
             position: "absolute",
             top: PROFILE_BAR_HEIGHT,
             left: 0,
             right: 0,
-            height: STICKY_BAR_HEIGHT,
-            zIndex: 10,
-            elevation: 10,
-            // Minimal: the pinned tab strip sits on the same pure black.
-            backgroundColor: isMinimal ? "#000" : theme.colors.neutrals[900],
-          }}
+            height: PINNED_PROFILE_TABS_HEIGHT,
+            zIndex: 40,
+            elevation: 40,
+          }, stickyStyle]}
         >
-          {TabBar}
-        </View>
+          <ProfileTabBar items={tabItems} activeKey={activeTab} onChange={handleTabChange} pinned />
+        </Animated.View>
       )}
 
       {isFullScreen && showBackToTop && (

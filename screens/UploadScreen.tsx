@@ -100,6 +100,7 @@ import type { FilterSettings } from "../libs/imageFilters";
 import { optionalSkia } from "../libs/skia";
 import ImageCropPicker from "react-native-image-crop-picker";
 import EmojiSheet from "../components/Upload/EmojiSheet";
+import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
@@ -1022,6 +1023,8 @@ export default function UploadScreen() {
   // What the Post button reflects: a live upload blocking the screen, or a
   // regular post on its way to the queue.
   const postInFlight = activeIsUploading || isSubmitting;
+
+  useSwipeBackAction(handleClose, !postInFlight);
 
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {

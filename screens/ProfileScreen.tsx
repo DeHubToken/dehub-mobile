@@ -51,7 +51,7 @@ const ProfileScreen: React.FC = () => {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
         <ProfileSignInPrompt />
-        <ScreenHeader overlay title="" canGoBack={canPop} onBackPress={goBack} />
+        <ScreenHeader overlay plainBack title="" canGoBack={canPop} onBackPress={goBack} />
         <StandaloneTabBar />
       </View>
     );
@@ -59,8 +59,8 @@ const ProfileScreen: React.FC = () => {
 
   // Profile sits above the tabs on the root stack, so it brings its own copy
   // of the bottom nav, hiding on scroll the same way. No dehub mark bar on top:
-  // that bar is Home's only. A pushed profile gets the round back button
-  // floating over its cover, as post pages do.
+  // that bar is Home's only. A pushed profile gets a plain back arrow
+  // floating over its cover.
   return (
     <TabBarHideProvider>
     <View className="flex-1 bg-theme-neutrals-900">

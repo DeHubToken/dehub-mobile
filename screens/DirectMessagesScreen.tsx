@@ -16,7 +16,6 @@ import { Image } from "expo-image";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import LoadErrorState from "../components/ui/LoadErrorState";
-import GlassIndicator, { GLASS_SHADOW } from "../components/ui/GlassIndicator";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import NewDMModal from "../components/DM/NewDMModal";
@@ -43,16 +42,14 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
-import { MINIMAL_HAIRLINE } from "../theme/minimal";
 import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
+import { themeIconUrl } from '../theme/icons';
 
-// Minimal: the list's separators run the full width in the shared hairline,
-// rather than an inset zinc rule.
-const MINIMAL_SEPARATOR = { height: 1, backgroundColor: MINIMAL_HAIRLINE } as const;
+const SEPARATOR = { height: 1, backgroundColor: "rgba(255,255,255,0.07)" } as const;
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
-  const { isMinimal, skin } = useAppTheme();
+  const { skin, theme } = useAppTheme();
   const navigation = useNavigation<any>();
   const user = useUser();
   const publicUnread = usePublicChatUnreadCount();
@@ -363,16 +360,16 @@ const DirectMessagesInner: React.FC = () => {
       <TouchableOpacity
         onPress={handleOpenLiveChat}
         activeOpacity={0.7}
-        className="flex-row items-center px-4 py-3 gap-3"
+        className="flex-row items-center px-4 py-4 gap-3"
       >
-        {/* Logo styled like Avatar size={52} */}
+        {/* Logo styled like Avatar size={48} */}
         <View
-          style={{ width: 52, height: 52, borderRadius: Math.round(52 * 0.16) }}
+          style={{ width: 48, height: 48, borderRadius: Math.round(48 * 0.16) }}
           className="dark-surface bg-black items-center justify-center overflow-hidden"
         >
           <Image
             source={require("../assets/web-icons/dehub-logo-compact.png")}
-            style={{ width: 30, height: 30 }}
+            style={{ width: 32, height: 32 }}
             contentFit="contain"
           />
         </View>
@@ -385,7 +382,7 @@ const DirectMessagesInner: React.FC = () => {
             </Text>
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
-            <Text className="text-theme-neutrals-400 text-[13px] flex-1" numberOfLines={1}>
+            <Text className="text-theme-neutrals-400 text-[14px] flex-1" numberOfLines={1}>
               {t("publicChat.subtitle")}
             </Text>
           </View>
@@ -398,26 +395,13 @@ const DirectMessagesInner: React.FC = () => {
           </View>
         )}
       </TouchableOpacity>
-      {isMinimal ? (
-        <View style={MINIMAL_SEPARATOR} />
-      ) : (
-        <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
-      )}
+      <View style={SEPARATOR} />
       </>
     ),
-    [handleOpenLiveChat, isMinimal, publicUnread, t],
+    [handleOpenLiveChat, publicUnread, t],
   );
 
-  const itemSeparator = useCallback(
-    () =>
-      isMinimal ? (
-        <View style={MINIMAL_SEPARATOR} />
-      ) : (
-        <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
-      ),
-    [isMinimal],
-  );
-
+  const itemSeparator = useCallback(() => <View style={SEPARATOR} />, []);
 
   return (
     <KeyboardAvoidingView
@@ -427,50 +411,37 @@ const DirectMessagesInner: React.FC = () => {
     >
       <View className="flex-1 bg-theme-neutrals-900">
         <ScreenHeader
+          appearance="island"
           icon="messages"
           title={t("messages.title")}
           canGoBack={false}
           rightContent={
-            <TouchableOpacity
-              onPress={openSettings}
-              className="items-center justify-center bg-theme-neutrals-800 active:opacity-70"
-              style={{ width: 36, height: 36, borderRadius: 10 }}
-              accessibilityRole="button"
-              accessibilityLabel={t("settings.title")}
-            >
-              <Icon name="Settings" size={18} color={skin?.centreIcon ?? "#E5E7EB"} />
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity onPress={refreshContacts} disabled={!!contactsLoading}
+                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center", opacity: contactsLoading ? 0.5 : 1 }}
+                accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
+                <Icon name="RefreshCw" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={openNewDM}
+                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center" }}
+                accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
+                <Icon name="Plus" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={openSettings}
+                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center" }}
+                accessibilityRole="button" accessibilityLabel={t("settings.title")}>
+                <Icon name="Settings" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
+              </TouchableOpacity>
+            </>
           }
-        />
-
-        {/* Search bar with + button */}
-        <View className="px-4 mb-2">
-          <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl h-11" style={skin && [skin.card, { borderRadius: skin.square ? 0 : 12 }]}>
-            <View className="pl-3 pr-2">
-              <Icon name="Search" size={16} color="#A1A1AA" />
-            </View>
-            <TextInput
-              value={query}
-              onChangeText={setQuery}
-              placeholder={t("messages.searchConversations")}
-              placeholderTextColor="#8B8D90"
-              className="flex-1 text-white text-sm"
-              returnKeyType="search"
-              style={FIELD_TEXT}
-            />
-            <TouchableOpacity
-              onPress={openNewDM}
-              className="w-9 h-9 rounded-xl items-center justify-center mr-1.5"
-              style={GLASS_SHADOW}
-              hitSlop={8}
-              accessibilityRole="button"
-              accessibilityLabel={t("dm.newDm")}
-            >
-              <GlassIndicator borderRadius={10} />
-              <Icon name="Plus" size={16} color={skin?.centreIcon ?? "#FFFFFF"} />
-            </TouchableOpacity>
+        >
+          <View className="flex-row items-center" style={{ height: 36, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.06)" }}>
+            <View className="pl-3 pr-2"><Icon name="Search" size={16} color="#71717A" /></View>
+            <TextInput value={query} onChangeText={setQuery}
+              placeholder={t("messages.searchConversations")} placeholderTextColor="#71717A"
+              className="flex-1 text-white text-sm" returnKeyType="search" style={FIELD_TEXT} />
           </View>
-        </View>
+        </ScreenHeader>
 
         <FlatList
           data={filtered}
@@ -495,8 +466,8 @@ const DirectMessagesInner: React.FC = () => {
               <LoadErrorState message={t("messages.failedToLoad")} onRetry={refreshContacts} />
             ) : contactsLoading ? null : (
               <View className="items-center mt-16 px-8">
-                <View className="w-16 h-16 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
-                  <Icon name="MessageCircle" size={32} color="#A1A1AA" />
+                <View className="w-16 h-16 items-center justify-center mb-4">
+                  <Image source={{ uri: themeIconUrl(theme, 'messages') }} style={{ width: 64, height: 64 }} contentFit="contain" cachePolicy="disk" />
                 </View>
                 <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
                   {t("dm.noConversationsYet")}

@@ -1,4 +1,4 @@
-import { useProfileIdentityLayout } from './useProfileCollapse';
+import { PROFILE_COVER_HEIGHT, useProfileIdentityLayout } from './useProfileCollapse';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
@@ -67,8 +67,8 @@ const MINIMAL_OUTLINE_BUTTON = {
   backgroundColor: "transparent",
 } as const;
 
-const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommunity?: Community | null; onIdentityBottom?: (bottom: number) => void }) => {
-  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
+const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }: { featuredCommunity?: Community | null; onIdentityBottom?: (bottom: number) => void; onActionsBottom?: (bottom: number) => void }) => {
+  const { profileRef, identityRef, actionsRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom, onActionsBottom);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -292,7 +292,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
         {/* Align the cover with the full-width details and pinned community. */}
         <View
           className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
-          style={{ height: 140 }}
+            style={{ height: PROFILE_COVER_HEIGHT }}
         >
           <SmartImage
             source={
@@ -324,7 +324,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
       </TouchableOpacity>
 
       {/* Content */}
-      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
@@ -356,7 +356,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
           </View>
 
           {isMinimal ? (
-            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
                 accessibilityLabel={t("settings.editProfile")}
@@ -378,7 +378,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
               </TouchableOpacity>
             </View>
           ) : (
-          <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
+          <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
