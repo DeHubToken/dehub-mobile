@@ -23,6 +23,8 @@ jest.mock('react-native', () => {
       ),
   };
 });
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/\{\{(\w+)\}\}/g, (token, name) => String(options?.[name] ?? token)) }) }));
+
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../libs', () => ({ getAvatarUrl: jest.fn(() => '') }));
 jest.mock('../../libs/assistant', () => ({ isAssistantAddress: jest.fn(() => false) }));
