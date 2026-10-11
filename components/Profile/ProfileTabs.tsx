@@ -1,7 +1,11 @@
+import CollapsingProfileHeader from './CollapsingProfileHeader';
+import { PROFILE_BAR_HEIGHT, useProfileCollapse } from './useProfileCollapse';
+import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
+import ChromeSurface from '../ui/ChromeSurface';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
-import { useAnimatedScrollHandler } from "react-native-reanimated";
+import { runOnJS, useSharedValue, useAnimatedScrollHandler } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
 import ProfileHeader from "./ProfileHeader";
@@ -30,7 +34,7 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
 
-const ProfileTabs: React.FC = () => {
+const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPress: () => void }) => {
   const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const { t } = useTranslation();
@@ -39,21 +43,25 @@ const ProfileTabs: React.FC = () => {
     [user],
   );
   const counts = useProfileContentCounts(address);
+  const collapse = useProfileCollapse(address);
+  const profileScrollY = collapse.scrollY;
+  const headerHeight = useSharedValue(0);
+  const tabsStuck = useSharedValue(false);
+  const [stickyVisible, setStickyVisible] = useState(false);
   const [activeKey, setActiveKey] = useState("home");
-  // Bottom nav hides on scroll down and returns on scroll up, as on home.
-  // On the UI thread for every list that is a Reanimated component, as the
-  // other-user profile sheet already does: the plain JS handler crossed to JS
-  // on every scroll event and wrote three shared values back from there, on
-  // the same thread that is busy mounting the cards scrolling into view.
-  // `onScroll` stays for the tabs that can still render a plain ScrollView
-  // or FlatList, which cannot take a worklet handler.
-  const { drive, onScroll } = useTabBarScrollHide();
-  const workletScroll = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      drive(event.contentOffset.y);
-    },
-  });
-
+  const { drive } = useTabBarScrollHide();
+  const driveProfile = useCallback((y: number) => {
+    'worklet';
+    drive(y);
+    profileScrollY.value = y;
+    const stuck = headerHeight.value > 0 && y >= headerHeight.value - PROFILE_BAR_HEIGHT;
+    if (stuck !== tabsStuck.value) {
+      tabsStuck.value = stuck;
+      runOnJS(setStickyVisible)(stuck);
+    }
+  }, [drive, profileScrollY, headerHeight, tabsStuck]);
+  const workletScroll = useAnimatedScrollHandler({ onScroll: (event) => driveProfile(event.contentOffset.y) });
+  const onScroll = useCallback((event: import('react-native').NativeSyntheticEvent<import('react-native').NativeScrollEvent>) => driveProfile(event.nativeEvent.contentOffset.y), [driveProfile]);
   // Sort, search and filter over this creator's own posts — all server-side,
   // and shared with the other-user profile sheet so the two never drift.
   const { toolbar, panel, contentQuery, homePostType } =
@@ -100,15 +108,21 @@ const ProfileTabs: React.FC = () => {
     [counts, routes],
   );
 
-  const handleTabChange = useCallback((key: string) => setActiveKey(key), []);
+  const handleTabChange = useCallback((key: string) => {
+    if (key === activeKey) return;
+    collapse.scrollY.value = 0;
+    tabsStuck.value = false;
+    setStickyVisible(false);
+    setActiveKey(key);
+  }, [activeKey, collapse.scrollY, tabsStuck]);
 
   const listHeader = (
     <View>
-      <PinnedCommunities
+      <View onLayout={(event) => { headerHeight.value = event.nativeEvent.layout.height; }}><PinnedCommunities
         walletAddress={address || ""}
         isOwnProfile
-        renderHeader={(community) => <ProfileHeader featuredCommunity={community} />}
-      />
+        renderHeader={(community) => <ProfileHeader featuredCommunity={community} onIdentityBottom={collapse.onIdentityBottom} />}
+      /></View>
       <ProfileTabBar
         items={tabItems}
         activeKey={activeKey}
@@ -153,7 +167,16 @@ const ProfileTabs: React.FC = () => {
     }
   };
 
-  return <View className="flex-1 bg-theme-neutrals-900">{renderScene(activeKey)}</View>;
+  return <View className="flex-1 bg-theme-neutrals-900">
+    {renderScene(activeKey)}
+    {stickyVisible && <View style={{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 10, elevation: 10 }}>
+      <ChromeSurface radius={12} />
+      <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} />
+    </View>}
+    <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
+      cover={user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl) } : getDefaultBanner(address || '')}
+      canGoBack={canGoBack} onBackPress={onBackPress} />
+  </View>;
 };
 
 export default ProfileTabs;

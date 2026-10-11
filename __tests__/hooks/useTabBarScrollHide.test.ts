@@ -72,7 +72,9 @@ describe("profile pages carry the home nav", () => {
     // plain one where a plain ScrollView or FlatList can render.
     expect(tabs.match(/listHeader=\{listHeader\} onScroll=\{(onScroll|workletScroll)\}/g)).toHaveLength(10);
     expect(tabs.match(/onScroll=\{workletScroll\}/g)).toHaveLength(8);
-    expect(tabs).toContain("drive(event.contentOffset.y)");
+    expect(tabs).toContain("driveProfile(event.contentOffset.y)");
+    expect(tabs).toContain("drive(y)");
+    expect(tabs).toContain("profileScrollY.value = y");
   });
 
   it("other people's profiles drive the bar, and the modal brings its own", () => {
