@@ -355,7 +355,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
   const previewAnimated = !!preview?.anim && (!tone || !preview.skins);
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="70%" blurIntensity={40}>
+    <GlassModal surface="theme" visible={visible} onClose={onClose} presentation="bottom" maxHeight="70%" blurIntensity={40}>
       <View style={[styles.wrap, { height: sheetHeight }]}>
         {/* Search + skin tone */}
         <View style={styles.topBar}>

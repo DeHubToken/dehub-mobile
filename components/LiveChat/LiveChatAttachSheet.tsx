@@ -86,7 +86,7 @@ const LiveChatAttachSheet: React.FC<LiveChatAttachSheetProps> = ({
   const { t } = useTranslation();
 
   return (
-    <GlassModal
+    <GlassModal surface="theme"
       visible={visible}
       onClose={onClose}
       presentation="bottom"

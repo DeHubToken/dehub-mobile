@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
@@ -113,9 +114,10 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
         <Animated.View
           entering={SlideInUp.duration(300)}
           exiting={SlideOutDown.duration(200)}
-          className="bg-[#0C0C0E] rounded-t-[20px] border-t border-white/10 max-h-[80%]"
+          className="overflow-hidden rounded-t-[20px] border-t border-white/10 max-h-[80%]"
           style={{ paddingBottom: insets.bottom + 16 }}
         >
+          <MessageSurface />
           {/* Header */}
           <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
             <TouchableOpacity

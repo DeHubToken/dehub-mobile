@@ -1,3 +1,4 @@
+import { useAppTheme } from "../../context/ThemeContext";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useEffect } from "react";
 import {
@@ -22,7 +23,6 @@ import type { SmartReplyStatus } from "../../hooks/useSmartReplies";
 
 /** The composer's own background. The socket is filled with it, which is how
  *  the hole in the middle of the rail is punched — there is no CSS mask here. */
-const TRAY_BG = "#010305";
 const CARD_BG = "rgba(255,255,255,0.045)";
 const CARD_BG_PRESSED = "rgba(255,255,255,0.10)";
 const CARD_BG_EMPTY = "rgba(255,255,255,0.03)";
@@ -105,6 +105,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   dismissLabel,
 }) => {
   const { t: _copy } = _useCopy();
+  const { colors, skin } = useAppTheme();
   // 'idle' is unresolved, not empty: the call is on its way, so it reads as
   // loading rather than as a tray with nothing in it.
   const busy = status === "loading" || status === "idle";
@@ -141,7 +142,7 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
         borderRadius: SOCKET / 2,
         borderWidth: 1,
         borderColor: rimColor,
-        backgroundColor: TRAY_BG,
+        backgroundColor: skin?.page ?? colors.background,
         alignItems: "center",
         justifyContent: "center",
       }}

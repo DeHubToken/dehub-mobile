@@ -1,3 +1,4 @@
+import MessageSurface from "../DM/MessageSurface";
 import React from "react";
 import { CallDuration } from "./CallDuration";
 import { View, Text, StyleSheet } from "react-native";
@@ -14,7 +15,7 @@ const CallMiniPlayer: React.FC = () => {
   if (!isMinimized || (!isCallActive && !isConnecting)) return null;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { overflow: "hidden" }]}><MessageSurface radius={22} />
       <TouchableOpacity
         style={styles.info}
         onPress={() => setMinimized(false)}

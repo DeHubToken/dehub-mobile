@@ -14,13 +14,13 @@ export const NAV_PILL_SHADOW = Platform.select({
 });
 
 /** The navigation material shared by the bottom bar and home header pill. */
-export default function NavPillSurface() {
+export default function NavPillSurface({ borderRadius = NAV_PILL_RADIUS }: { borderRadius?: number } = {}) {
   const { colors, isLight, isMinimal, skin } = useAppTheme();
   const glass = !isLight && !isMinimal;
   const iosThemed = glass && Platform.OS === "ios" && !!skin;
   // Every painted layer must share the rim's shape. The capsule leaves its
   // controls unclipped, so a square fill otherwise shows behind rounded corners.
-  const radius = Number(skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS);
+  const radius = skin?.square || isMinimal ? 0 : borderRadius;
   return (
     <>
       {iosThemed ? (
@@ -46,6 +46,7 @@ export default function NavPillSurface() {
         isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },
         isMinimal && { borderColor: MINIMAL_HAIRLINE },
         skin && skin.barBorder,
+        { borderRadius: radius },
       ]} />
       {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
     </>
