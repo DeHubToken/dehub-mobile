@@ -7,6 +7,7 @@ import type { EditorCanvasHandle } from "../components/editor/EditorCanvas";
 import { downloadProject, type VideoDownloadRequest } from "../libs/editor/downloadProject";
 import type { ProjectSnapshot } from "../libs/editor/types";
 import { toastError, toastSuccess } from "../libs/toast";
+import { videoDownloadFailure } from "../libs/editor/videoDownloadFailure";
 
 const DownloadCanvas = lazy(() => import("../components/editor/EditorCanvas"));
 const Context = createContext<(request: VideoDownloadRequest) => Promise<void>>(async () => { throw new Error("Video download renderer unavailable"); });
@@ -42,6 +43,8 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
     let mediaId: string | null = null;
     let releaseMedia: ((id: string) => void) | null = null;
     let output: string | null = null;
+    let failureStage = "permission", lastProgress = 0;
+    let exportInfo: SourceInfo = {};
     const check = () => { if (controller.signal.aborted) throw Object.assign(new Error("Download cancelled"), { name: "AbortError" }); };
     try {
       setProgress(0);
@@ -50,6 +53,7 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
       if (permission.status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       let source = request.url;
       let mime = "video/mp4";
+      failureStage = "download";
       if (!source.startsWith("file://")) {
         const job = FileSystem.createDownloadResumable(source, cached, {}, (p) => {
           if (mounted.current && !controller.signal.aborted) setProgress(p.totalBytesExpectedToWrite > 0 ? 0.15 * p.totalBytesWritten / p.totalBytesExpectedToWrite : 0);
@@ -66,6 +70,7 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
       check();
       const meta = registerDownloadMedia(source, request.title || "video", mime);
       mediaId = meta.id;
+      failureStage = "metadata";
       const info = await new Promise<SourceInfo>((resolve, reject) => {
         const timer = setTimeout(() => finish(new Error("Video metadata did not load")), 300000);
         const abort = () => finish(Object.assign(new Error("Download cancelled"), { name: "AbortError" }));
@@ -80,18 +85,23 @@ export function VideoDownloadProvider({ children }: { children: React.ReactNode 
         if (controller.signal.aborted) abort();
       });
       check();
+      exportInfo = info; failureStage = "export";
       const snapshot = downloadProject(meta.id, info, request.title);
       if (!renderer.current) throw new Error("Video renderer unavailable");
       const out = await renderer.current.exportVideo({
         width: snapshot.settings.width, height: snapshot.settings.height, bitrate: 8_000_000,
         title: snapshot.title, username: request.username || "", snapshot, replaceEnding: true,
-      }, (p) => { if (mounted.current && !controller.signal.aborted) setProgress(0.15 + p * 0.85); });
+      }, (p) => { lastProgress = 0.15 + p * 0.85; if (mounted.current && !controller.signal.aborted) setProgress(lastProgress); });
       output = out.uri;
       check();
+      failureStage = "save";
       await MediaLibrary.saveToLibraryAsync(out.uri);
       toastSuccess(t("editor.app.savedToPhotos"));
     } catch (error) {
-      if (!controller.signal.aborted && (error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
+      if (!controller.signal.aborted && (error as Error).name !== "AbortError") {
+        console.warn("[Video download] Failed", videoDownloadFailure(error, { stage: failureStage, progress: lastProgress, width: exportInfo.width, height: exportInfo.height }));
+        toastError(t("editor.app.exportFailed"));
+      }
     } finally {
       ready.current = null; transfer.current = null;
       if (mediaId) releaseMedia?.(mediaId);
