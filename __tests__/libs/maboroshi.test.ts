@@ -1,4 +1,4 @@
-import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript } from '../../libs/maboroshi';
+import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript } from '../../libs/maboroshi';
 
 describe('Maboroshi session and downloads', () => {
   it('only delivers credentials to the exact hosted studio', () => {
@@ -8,6 +8,8 @@ describe('Maboroshi session and downloads', () => {
     }
     expect(maboroshiSessionScript('</script>', 'wallet', false)).not.toContain('</script>');
     expect(maboroshiSessionScript('token', 'wallet', false)).toContain('"allowPayments":false');
+    expect(maboroshiSessionScript('token', 'wallet', false)).toContain('"paymentBridge":1');
+    expect(maboroshiPaymentResultScript('request', '</script>')).not.toContain('</script>');
   });
   it('restricts native file downloads to signed Maboroshi video paths', () => {
     const url = `https://live.dehub.io/maboroshi/media/${'a'.repeat(32)}/hd/final-preview.mp4?expires=123456&signature=${'b'.repeat(64)}`;
