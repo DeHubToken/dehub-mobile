@@ -31,7 +31,7 @@ export default function SoundEffectsPanel({ at, scope, draftScope, wallet, prefi
     mounted.current = true;
     const unsubscribe = subscribe(() => { if (owner.current && !owner.current.task.isCurrent()) cancel(); });
     return () => { mounted.current = false; unsubscribe(); cancel(); };
-  }, [subscribe]);
+  }, [draftScope]);
   useEffect(() => () => cancel(), [scope, draftScope, wallet]);
   let valid = !!wallet;
   const duration = auto ? 0 : seconds.trim() ? Number(seconds.replace(',', '.')) : NaN;
