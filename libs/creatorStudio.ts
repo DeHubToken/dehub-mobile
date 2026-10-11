@@ -65,11 +65,17 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
 export function creatorSettingsForEditorDraft(value: unknown): { settings: CreatorStudioSettings; draft: GenerationDraft } | null {
   const draft = generationDraft(value);
   if (!draft) return null;
-  const mode: CreatorMode = draft.kind === 'voice' ? 'audio' : draft.kind;
+  const mode: CreatorMode = draft.kind === 'voice' || draft.kind === 'music' ? 'audio' : draft.kind;
   return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
     ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),
     ...(draft.aspect ? { aspect: draft.aspect } : {}),
   }) };
+}
+
+/** Music descriptions control the style; they are not words to sing. */
+export function creatorAudioOptions(settings: CreatorStudioSettings | null, prompt: string, lyrics?: string): { tags?: string; lyrics?: string } {
+  if (settings?.mode !== 'audio' || settings.model !== 'ace-step') return {};
+  return { tags: prompt, lyrics: lyrics?.trim() || '[instrumental]' };
 }
 
 export function creatorVideoOptions(settings: CreatorStudioSettings) {
