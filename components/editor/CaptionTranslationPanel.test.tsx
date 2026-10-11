@@ -8,8 +8,9 @@ import { projectEditGate } from "../../libs/editor/projectEditGate";
 import type { CaptionTranslationPlan, CaptionTranslationUpdate } from "../../libs/editor/captionTranslation";
 
 jest.mock("react-native-css-interop/jsx-runtime", () => jest.requireActual("react/jsx-runtime"));
+jest.mock("react-native", () => ({ View: "View", Text: "Text", Pressable: "Pressable", ScrollView: "ScrollView", Platform: { OS: "ios" }, StyleSheet: { flatten: (style: unknown) => style } }));
 jest.mock("../../services/translation.service", () => ({ translateText: jest.fn() }));
-jest.mock("../../i18n", () => ({ SUPPORTED_LANGUAGES: [{ code: "en", name: "English", nativeName: "English" }] }));
+jest.mock("../../i18n", () => ({ SUPPORTED_LANGUAGES: [{ code: "en", name: "English", nativeName: "English" }, { code: "fr", name: "French", nativeName: "Français" }] }));
 jest.mock("react-i18next", () => ({ useTranslation: () => ({ i18n: { language: "en" }, t: (key: string, options?: { defaultValue?: string; count?: number }) => (options?.defaultValue ?? key).replace("{{count}}", String(options?.count ?? "")) }) }));
 
 beforeEach(() => { jest.mocked(translateText).mockReset(); });
@@ -24,10 +25,12 @@ function setup() {
 it("uses private translation options and submits one complete result", async () => {
   jest.mocked(translateText).mockResolvedValueOnce({ translatedText: "Bonjour", sourceLang: "en", sameLanguage: false }).mockResolvedValueOnce({ translatedText: "Monde", sourceLang: "en", sameLanguage: false });
   const view = setup();
+  fireEvent.press(view.getByLabelText("Caption language"));
+  fireEvent.press(view.getByText("Français · French"));
   fireEvent.press(view.getByText("Translate 2 captions"));
   await waitFor(() => expect(view.onApply).toHaveBeenCalledTimes(1));
-  expect(translateText).toHaveBeenNthCalledWith(1, "Hello", "en", "auto", { isPublic: false });
-  expect(translateText).toHaveBeenNthCalledWith(2, "World", "en", "auto", { isPublic: false });
+  expect(translateText).toHaveBeenNthCalledWith(1, "Hello", "fr", "auto", { isPublic: false });
+  expect(translateText).toHaveBeenNthCalledWith(2, "World", "fr", "auto", { isPublic: false });
   expect(view.onApply.mock.calls[0][1]).toEqual([{ id: view.project.clips[0].id, text: "Bonjour" }, { id: view.project.clips[1].id, text: "Monde" }]);
   expect(view.gate.isEditing()).toBe(false);
   view.unmount();
