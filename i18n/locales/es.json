@@ -7031,7 +7031,12 @@
       "hint": "Convierte la voz en subtítulos sincronizados que puedes personalizar. Funciona en tu dispositivo: gratis y privado. El primer uso descarga el modelo.",
       "done": "Se añadieron {{count}} subtítulos.",
       "noSpeech": "No se detectó voz en este clip.",
-      "failed": "No se pudieron crear subtítulos para este clip."
+      "failed": "No se pudieron crear subtítulos para este clip.",
+      "targetLanguage": "Idioma de los subtítulos",
+      "translateCount": "Traducir {{count}} subtítulos",
+      "translationDone": "{{count}} subtítulos traducidos",
+      "translationFailed": "La traducción ha fallado. Tus subtítulos no han cambiado.",
+      "lockedTranslation": "Desbloquea los subtítulos bloqueados para incluirlos."
     },
     "app": {
       "newDesign": "Nuevo diseño",

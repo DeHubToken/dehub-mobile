@@ -7006,7 +7006,12 @@
       "hint": "Transforme la parole en sous-titres synchronisés que vous pouvez styliser. Fonctionne sur votre appareil : gratuit et privé. La première utilisation télécharge le modèle.",
       "done": "{{count}} sous-titres ajoutés.",
       "noSpeech": "Aucune parole détectée dans ce clip.",
-      "failed": "Impossible de créer des sous-titres pour ce clip."
+      "failed": "Impossible de créer des sous-titres pour ce clip.",
+      "targetLanguage": "Langue des sous-titres",
+      "translateCount": "Traduire {{count}} sous-titres",
+      "translationDone": "{{count}} sous-titres traduits",
+      "translationFailed": "La traduction a échoué. Vos sous-titres restent inchangés.",
+      "lockedTranslation": "Déverrouillez les sous-titres verrouillés pour les inclure."
     },
     "app": {
       "newDesign": "Nouveau design",

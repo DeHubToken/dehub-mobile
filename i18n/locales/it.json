@@ -6941,7 +6941,12 @@
       "hint": "Trasforma il parlato in sottotitoli sincronizzati che puoi personalizzare. Funziona sul tuo dispositivo: gratis e privato. Al primo utilizzo scarica il modello.",
       "done": "{{count}} sottotitoli aggiunti.",
       "noSpeech": "Nessun parlato trovato in questa clip.",
-      "failed": "Impossibile creare i sottotitoli per questa clip."
+      "failed": "Impossibile creare i sottotitoli per questa clip.",
+      "targetLanguage": "Lingua dei sottotitoli",
+      "translateCount": "Traduci {{count}} sottotitoli",
+      "translationDone": "{{count}} sottotitoli tradotti",
+      "translationFailed": "La traduzione non è riuscita. I sottotitoli non sono stati modificati.",
+      "lockedTranslation": "Sblocca i sottotitoli bloccati per includerli."
     },
     "app": {
       "newDesign": "Nuovo progetto",

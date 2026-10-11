@@ -6936,7 +6936,12 @@
       "hint": "음성을 스타일을 바꿀 수 있는 타이밍 자막으로 변환합니다. 기기에서 실행되어 무료이며 비공개입니다. 처음 사용할 때 모델을 다운로드합니다.",
       "done": "자막 {{count}}개를 추가했습니다.",
       "noSpeech": "이 클립에서 음성을 찾지 못했습니다.",
-      "failed": "이 클립의 자막을 만들 수 없습니다."
+      "failed": "이 클립의 자막을 만들 수 없습니다.",
+      "targetLanguage": "자막 언어",
+      "translateCount": "자막 {{count}}개 번역",
+      "translationDone": "자막 {{count}}개 번역 완료",
+      "translationFailed": "자막 번역에 실패했습니다. 자막은 변경되지 않았습니다.",
+      "lockedTranslation": "잠긴 자막을 포함하려면 잠금을 해제하세요."
     },
     "app": {
       "newDesign": "새 디자인",

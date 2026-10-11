@@ -96,6 +96,7 @@ import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
+import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
 import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
@@ -1186,6 +1187,17 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const current = h.latest();
       if (!current || current.id !== project.id) return;
       h.commit({ ...current, tracks: [...current.tracks, result.track], clips: [...current.clips, ...result.clips] });
+    }} current={h.latest} subscribe={h.subscribe} onStart={() => {
+      if (h.isEditing()) return null;
+      setPlaying(false);
+      const current = h.latest();
+      return current?.id === project.id ? h.holdEdits(projectReviewSnapshotKey(current)) : null;
+    }} onApply={(plan, updates) => {
+      const current = h.latest();
+      if (!current || current.id !== project.id) return false;
+      const next = applyCaptionTranslation(current, plan, updates);
+      if (next !== current) h.commit(next);
+      return true;
     }} />;
     if (tool === "record") return <RecordingPanel key={project.id} scope={h.scopeVersion()} recordingScope={`${recoveryScope}|${project.id}`} subscribe={h.subscribe} at={canvasTime} onStart={() => {
       setPlaying(false);
