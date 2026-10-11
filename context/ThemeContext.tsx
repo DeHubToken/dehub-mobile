@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo } from 'react';
+import { Platform } from 'react-native';
 import * as SystemUI from 'expo-system-ui';
 import { colorScheme, vars } from 'nativewind';
 import { getAppPrefs, setAppPref, useAppPrefs } from '../hooks/useAppPrefs';
@@ -9,6 +10,7 @@ import {
   type ThemeColors,
 } from '../theme/colors';
 import { getThemeSkin, type ThemeSkin } from '../theme/skins';
+import { canvasPageBackground } from '../theme/pageBackground';
 import { themeAccent, tintSkin, type Rgb } from '../theme/themeColor';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -90,17 +92,6 @@ function hexTriplet(hex: string): string {
 }
 
 /**
- * What a page fill becomes under a canvas theme: its page colour, part
- * see-through, so the live backdrop shows behind every screen as it does on
- * web. A panel inside a page stacks a second veil and lands near web's glass
- * bento (~0.82).
- */
-const PAGE_VEIL_ALPHA = 0.6;
-export function pageVeil(hex: string): string {
-  return `rgba(${hexTriplet(hex).split(' ').join(',')},${PAGE_VEIL_ALPHA})`;
-}
-
-/**
  * A canvas theme's variables: its page colour on the background tokens, and
  * War's square corners. Same keys as SYSTEM_ROOT_VARS, for the reason above.
  */
@@ -164,9 +155,10 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Inline StyleSheet radii and near-black page fills (see libs/jsx/shape.js).
   // Set during render so the children rendered below this already see it.
   if (theme === 'minimal') setThemePass(true, '#000');
-  // Pages are veiled over the backdrop; modals, sheets and pinned bars take
-  // the solid page colour so nothing shows through them (libs/jsx/surface.js).
-  else if (skin) setThemePass(skin.square, pageVeil(skin.page), true, skin.page);
+  // Android page wrappers stay clear, so nested headers and lists cannot
+  // stack dark rectangles over the scene. Cards keep their own materials;
+  // modal surfaces retain their solid fill (libs/jsx/surface.js).
+  else if (skin) setThemePass(skin.square, canvasPageBackground(skin.page, Platform.OS), true, skin.page);
   else setThemePass(false, null);
 
   useEffect(() => {
