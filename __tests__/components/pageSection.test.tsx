@@ -6,6 +6,7 @@ import { getThemeSkin } from '../../theme/skins';
 let mockTheme: any;
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
   View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView',
   StyleSheet: { create: (styles: any) => styles, hairlineWidth: 0.5 },
 }));

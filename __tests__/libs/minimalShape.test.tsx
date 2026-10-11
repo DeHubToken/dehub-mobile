@@ -10,6 +10,7 @@ import { canvasPageBackground } from '../../theme/pageBackground';
 // device. What is under test is the pass in front of it.
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
+  Platform: { OS: 'android' },
   View: 'View',
   Modal: 'Modal',
   StyleSheet: { flatten: (style: unknown) => style },
