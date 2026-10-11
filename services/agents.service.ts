@@ -46,6 +46,7 @@ export const MCP_BASE = `${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/de
 export const agentConnectorUrl = (apiKey: string) => `${MCP_BASE}/k/${apiKey}`;
 
 export async function fetchMyAgents(walletAddress: string): Promise<AIAgent[]> {
+  if (!await ensureWalletSession(walletAddress)) throw new Error(AGENT_SIGN_IN_REQUIRED);
   const { data, error } = await withWalletHeader(
     (supabase as any).rpc("get_my_agents"),
     walletAddress,
@@ -92,4 +93,26 @@ export async function deleteAgent(agentId: string, walletAddress: string): Promi
     walletAddress,
   );
   if (error) throw error;
+}
+
+export interface AgentTask {
+  id: string; agent_id: string; prompt: string; status: string;
+  plan: { summary: string; interval_minutes: number | null };
+  completed_actions: number; next_run_at: string; needs_review: boolean; message: string | null;
+}
+export interface AgentTaskAction {
+  id: string; tool: string; target: string; status: string; created_at: string;
+  result: { error?: string; hint?: string; content?: string; message?: string; post?: { url?: string } } | null;
+}
+export async function agentTaskRequest<T>(wallet: string, body: Record<string, unknown>): Promise<T> {
+  await tokenRefreshManager.ensureFreshToken();
+  const token = await getAuthToken();
+  if (!token) throw new Error(AGENT_SIGN_IN_REQUIRED);
+  const response = await fetch(`${MCP_BASE}/tasks`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
+    body: JSON.stringify(body),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || 'The task could not be saved.');
+  return data;
 }

@@ -57,6 +57,18 @@ describe('live preview loading feedback', () => {
     expect(view.queryByTestId('live-loader')).toBeNull();
   });
 
+  it('opens the post on any tap and offers no pause or sound controls', () => {
+    const onPress = jest.fn();
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active onPress={onPress} />);
+    act(() => jest.advanceTimersByTime(400));
+    expect(view.queryByLabelText('audioPost.pause')).toBeNull();
+    expect(view.queryByLabelText('common.unmute')).toBeNull();
+    mockPlayer.pause.mockClear();
+    fireEvent.press(view.getByLabelText('stages.liveNow'), { stopPropagation: () => {} });
+    expect(onPress).toHaveBeenCalledTimes(1);
+    expect(mockPlayer.pause).not.toHaveBeenCalled();
+  });
+
   it('allocates no player or loader for an inactive card', () => {
     const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" active={false} />);
     expect(view.queryByTestId('live-video')).toBeNull();
