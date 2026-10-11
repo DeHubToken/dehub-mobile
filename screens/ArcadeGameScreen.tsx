@@ -350,7 +350,7 @@ const ArcadeGameScreen = () => {
         }
         if (game?.socialPresence && d.source === 'gods-eye-view') {
           const origin = new URL(e.nativeEvent.url);
-          if (origin.origin !== new URL(WEBSITE_LINK).origin || origin.pathname !== '/gods-eye-game/index.html') return;
+          if (origin.origin !== new URL(WEBSITE_LINK).origin || !['/gods-eye-game/', '/gods-eye-game/index.html'].includes(origin.pathname)) return;
           const target = webRef.current;
           const lifetime = presenceLifetime.current;
           const reply = (result: { error?: string; removed?: boolean }) => {
@@ -501,13 +501,16 @@ const ArcadeGameScreen = () => {
 
       {game.socialPresence ? (
         <Pressable
-          onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
+          onPress={() => Alert.alert(t('arcade.openPrivacySettings'), t('arcade.privacyWarning'), [
+            { text: t('common.cancel'), style: 'cancel' },
+            { text: t('arcade.openPrivacySettings'), onPress: () => navigation.navigate(ScreenNames.PrivacySettings) },
+          ])}
           accessibilityRole="button"
           accessibilityLabel={t("arcade.openPrivacySettings")}
           style={styles.privacyWarning}
         >
           <Icon name="TriangleAlert" size={16} color="#FCD34D" />
-          <Text style={styles.privacyWarningText}>{t("arcade.privacyWarning")}</Text>
+          <Text style={styles.privacyWarningText}>{t("arcade.openPrivacySettings")}</Text>
         </Pressable>
       ) : null}
 
