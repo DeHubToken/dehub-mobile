@@ -26,7 +26,6 @@ interface Props {
   query: string;
   onQueryChange: (query: string) => void;
   onToggleSearch: () => void;
-  onMore?: () => void;
 }
 
 /**
@@ -34,7 +33,7 @@ interface Props {
  * cycles Recent, Oldest and Liked) and search. Quotes and reposts have no tab
  * here; they open from the repost sheet.
  */
-function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, query, onQueryChange, onToggleSearch, onMore }: Props) {
+function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, query, onQueryChange, onToggleSearch }: Props) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
   const radius = skin?.square ? 0 : 8;
@@ -66,18 +65,6 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
           <Icon name="ArrowUpDown" size={14} color="#D4D4D8" />
           <Text style={styles.chipText}>{t(SORT_LABEL[sort])}</Text>
         </Pressable>
-        {onMore && (
-          <Pressable
-            onPress={onMore}
-            hitSlop={6}
-            accessibilityRole="button"
-            accessibilityLabel={t("player.moreOptions")}
-            style={[styles.chip, { borderRadius: radius }]}
-            testID="comments-stage-options"
-          >
-            <Icon name="Ellipsis" size={16} color="#D4D4D8" />
-          </Pressable>
-        )}
       </View>
       {searchOpen && (
         <View style={styles.searchWrap}>

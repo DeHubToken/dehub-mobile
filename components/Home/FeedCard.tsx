@@ -2074,6 +2074,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           following={isFollowingCreator}
           pending={isFollowReqPending}
           onFollow={handleStageFollow}
+          onMore={handleOpenOptions}
         />
         {matureGate.isGated ? (
           <MatureContentGate onReveal={matureGate.reveal} />

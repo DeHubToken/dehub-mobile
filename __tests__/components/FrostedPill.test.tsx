@@ -31,6 +31,17 @@ it('samples the supplied target using the Android 12+ path', () => {
   expect(tree.root.findAllByType('View' as any)[0].props.style[1]).toMatchObject({ borderRadius: 12, overflow: 'hidden' });
 });
 
+it('can remove the reply-dock rim while retaining blur and the default pill rim', () => {
+  mockSupported = true;
+  mockTarget = { current: {} };
+  const hasRim = () => tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.borderWidth > 0);
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} bordered={false} />); });
+  expect(hasRim()).toBe(false);
+  expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
+  act(() => { tree.update(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  expect(hasRim()).toBe(true);
+});
+
 it('detaches covered-page blur sampling and restores it when Back reveals the page', () => {
   mockSupported = true;
   mockTarget = { current: {} };
