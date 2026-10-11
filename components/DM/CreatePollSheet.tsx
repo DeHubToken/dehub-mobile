@@ -248,12 +248,11 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                 <TouchableOpacity
                   key={d.hours}
                   onPress={() => setDurationHours(d.hours)}
-                  className={`px-3 py-1.5 rounded-lg ${
-                    durationHours === d.hours
-                      ? "bg-white"
-                      : "bg-white/[0.06]"
-                  }`}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: durationHours === d.hours }}
+                  className="px-3 py-1.5 rounded-lg overflow-hidden"
                 >
+                  <View pointerEvents="none" className={`absolute inset-0 rounded-lg ${durationHours === d.hours ? 'bg-white' : 'bg-white/[0.06]'}`} />
                   <Text
                     className={`text-xs font-medium ${
                       durationHours === d.hours
