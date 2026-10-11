@@ -5,7 +5,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import ScreenHeader from "../ScreenHeader";
+import CollapsingProfileHeader from '../Profile/CollapsingProfileHeader';
+import { useProfileCollapse } from '../Profile/useProfileCollapse';
 import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
 import ProfileSurface from "./ProfileSurface";
@@ -49,6 +50,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const collapse = useProfileCollapse(visible ? usernameOrAddress : null);
   const { theme } = useAppTheme();
 
   // Shared profile data and actions for both embedded and standalone pages.
@@ -119,22 +121,35 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     );
   }, [navigation, profileData, data, onClose]);
 
+  const profileBar = (
+    <CollapsingProfileHeader
+      {...collapse}
+      name={profileData?.displayName}
+      handle={profileData?.username}
+      cover={coverUrl && coverUrl !== 'default-banner' ? { uri: coverUrl } : defaultBanner}
+      canGoBack
+      onBackPress={onClose}
+      showFollow={!!profileData && !loading && !isOwnProfile && !isBlocked}
+      isFollowing={isFollowing}
+      isPending={isFollowRequestPending}
+      followLoading={followLoading}
+      disableFollow={profileData?.disableActions}
+      onFollow={handleFollow}
+      onOpenUnfollow={() => setShowUnfollowSheet(true)}
+      menu={!isOwnProfile && menuTrigger ? (
+        <TouchableOpacity onPress={menuTrigger} activeOpacity={0.7}
+          className="w-9 h-9 items-center justify-center rounded-xl dark-surface bg-black/40"
+          accessibilityRole="button" accessibilityLabel={t('profileOptions.a11yLabel')}>
+          <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
+        </TouchableOpacity>
+      ) : undefined}
+    />
+  );
   if (embedded) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        {!isOwnProfile && menuTrigger ? (
-          <TouchableOpacity
-            onPress={menuTrigger}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="absolute right-3 top-3 z-20 w-10 h-10 items-center justify-center rounded-xl dark-surface bg-black/40"
-            accessibilityRole="button"
-            accessibilityLabel={t("profileOptions.a11yLabel")}
-          >
-            <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
-          </TouchableOpacity>
-        ) : null}
         <UserProfileSheetContent
+          collapse={collapse}
           loading={loading}
           data={data}
           error={error}
@@ -173,7 +188,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onRemoveFollower={handleRemoveFollower}
           onRegisterMenuTrigger={handleRegisterMenuTrigger}
         />
-        <ScreenHeader overlay title="" canGoBack onBackPress={onClose} />
+        {profileBar}
         <UnfollowSheet
           visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
           username={profileData?.username || usernameOrAddress || ""}
@@ -202,28 +217,8 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           {/* Absolute header controls need a parent inside the safe area;
               top: 0 on the padded outer view still reaches the status bar. */}
           <View style={{ flex: 1 }}>
-          <ScreenHeader
-            title={profileData?.displayName || _copy("copy.d696a35bdd18", { defaultValue: "Profile" })}
-            subtitle={profileData?.username ? `@${profileData.username}` : undefined}
-            canGoBack
-            overlay={theme === "system" || theme === "immersive"}
-            onBackPress={onClose}
-            rightContent={
-              !isOwnProfile && menuTrigger ? (
-                <TouchableOpacity
-                  onPress={menuTrigger}
-                  activeOpacity={0.7}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                  className="w-10 h-10 items-center justify-center"
-                  accessibilityRole="button"
-                  accessibilityLabel={t("profileOptions.a11yLabel")}
-                >
-                  <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
-                </TouchableOpacity>
-              ) : undefined
-            }
-          />
           <UserProfileSheetContent
+            collapse={collapse}
             loading={loading}
             data={data}
             error={error}
@@ -262,6 +257,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onRemoveFollower={handleRemoveFollower}
             onRegisterMenuTrigger={handleRegisterMenuTrigger}
           />
+          {profileBar}
           <StandaloneTabBar onBeforeNavigate={onClose} />
           </View>
         </View>

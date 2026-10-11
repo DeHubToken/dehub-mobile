@@ -65,9 +65,9 @@ const ProfileScreen: React.FC = () => {
     <TabBarHideProvider>
     <View className="flex-1 bg-theme-neutrals-900">
       <View className="flex-1">
-        <ProfileTabs />
+        <ProfileTabs canGoBack={canPop} onBackPress={goBack} />
       </View>
-      <ScreenHeader overlay title="" canGoBack={canPop} onBackPress={goBack} />
+
       <StandaloneTabBar />
     </View>
     </TabBarHideProvider>
