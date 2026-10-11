@@ -1,0 +1,130 @@
+import React, { useContext, useEffect, useRef } from "react";
+import { Animated, Dimensions, Keyboard, Platform, StyleSheet, TextInput, type KeyboardEvent, type View } from "react-native";
+import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { keyboardTopFromEvent } from "../../libs/keyboard-composer";
+import { selfLiftingComposers } from "../../hooks/useComposerKeyboard";
+
+/** Resolves true when `input` is drawn inside `ancestor`. */
+function isInside(input: any, ancestor: any): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (!ancestor) return resolve(false);
+    try {
+      input.measureLayout(ancestor, () => resolve(true), () => resolve(false));
+    } catch {
+      resolve(false);
+    }
+  });
+}
+
+/** Space kept between the focused field and the keys. */
+const CLEARANCE = 12;
+/* Re-check while the keyboard is up: Android sends no event when the window
+   settles late, when focus moves to another field, or when a field grows. */
+const SETTLE_MS = [120, 350, 700];
+const POLL_MS = 500;
+
+/**
+ * Last line of defence for "the keyboard hides what I'm typing".
+ *
+ * Composers that know they sit at the bottom lift themselves
+ * (hooks/useComposerKeyboard). Every other field in the app (forms, settings,
+ * search boxes low on a page, anything added later) relied on the window
+ * shrinking for the keyboard, which edge-to-edge Android no longer does. While
+ * the keyboard is up this measures the focused field and, only if the keys
+ * cover it, slides the whole screen up until it clears them, the way Android's
+ * adjustPan did. A field that is already visible moves nothing.
+ *
+ * Fields inside a native Modal live in another window this view cannot move;
+ * `measureLayout` against this view fails for them and they are left alone.
+ */
+export default function KeyboardPanView({ children }: { children: React.ReactNode }) {
+  const ref = useRef<View>(null);
+  const pan = useRef(new Animated.Value(0)).current;
+  const applied = useRef(0);
+  const keyboardTop = useRef<number | null>(null);
+  const insets = useContext(SafeAreaInsetsContext);
+  const navBar = useRef(0);
+  navBar.current = insets?.bottom ?? 0;
+
+  useEffect(() => {
+    let timers: ReturnType<typeof setTimeout>[] = [];
+    let poll: ReturnType<typeof setInterval> | null = null;
+    let request = 0;
+
+    const moveTo = (value: number) => {
+      if (Math.abs(value - applied.current) < 1) return;
+      applied.current = value;
+      // Instant: an animated pan would be half-way through when the next
+      // check measures, and it would chase its own tail.
+      pan.setValue(-value);
+    };
+
+    const check = () => {
+      const top = keyboardTop.current;
+      const root = ref.current as any;
+      const input = TextInput.State.currentlyFocusedInput() as any;
+      if (top == null || !root || !input?.measureInWindow) return;
+      const id = ++request;
+      void (async () => {
+        // Only fields drawn inside this view: a Modal's field fails here.
+        if (!(await isInside(input, root))) return;
+        // Composers that lift themselves are already handled.
+        for (const composer of selfLiftingComposers) {
+          if (await isInside(input, composer.current)) {
+            if (id === request) moveTo(0);
+            return;
+          }
+        }
+        const panned = applied.current;
+        input.measureInWindow((_x: number, y: number, _w: number, h: number) => {
+          if (id !== request || keyboardTop.current !== top || !h) return;
+          // How far the keys would cover the field with no pan applied.
+          const overlap = y + h + panned - top;
+          moveTo(overlap > 0 ? overlap + CLEARANCE : 0);
+        });
+      })();
+    };
+
+    const clear = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      if (poll) clearInterval(poll);
+      poll = null;
+    };
+
+    const show = (event: KeyboardEvent) => {
+      keyboardTop.current = keyboardTopFromEvent(
+        event.endCoordinates,
+        Platform.OS,
+        Dimensions.get("screen")?.height ?? 0,
+        navBar.current,
+      );
+      clear();
+      check();
+      timers = SETTLE_MS.map((ms) => setTimeout(check, ms));
+      poll = setInterval(check, POLL_MS);
+    };
+    const hide = () => {
+      keyboardTop.current = null;
+      request++;
+      clear();
+      moveTo(0);
+    };
+
+    const shown = Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow", show);
+    const hidden = Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide", hide);
+    return () => {
+      clear();
+      shown.remove();
+      hidden.remove();
+    };
+  }, [pan]);
+
+  return (
+    <Animated.View ref={ref as any} collapsable={false} style={[styles.fill, { transform: [{ translateY: pan }] }]}>
+      {children}
+    </Animated.View>
+  );
+}
+
+const styles = StyleSheet.create({ fill: { flex: 1 } });
