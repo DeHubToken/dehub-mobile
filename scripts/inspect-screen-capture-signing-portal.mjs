@@ -141,7 +141,7 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
       const capabilities = await bundle.getBundleIdCapabilitiesAsync();
       const enabled = capabilities.some(capability => capability.isType(apple.CapabilityType.APP_GROUP) && capability.attributes.enabled !== false);
       stage = 'bundle_profiles_lookup';
-      const profiles = await bundle.getProfilesAsync({ query: { filter: { profileType: apple.ProfileType.IOS_APP_STORE } } });
+      const profiles = await bundle.getProfilesAsync();
       report.profiles.push({
         bundleIdentifier, registered: true, recordingGroupCapabilityEnabled: enabled,
         activeAppStoreProfiles: profiles.filter(profile => profile.attributes.profileType === apple.ProfileType.IOS_APP_STORE && profile.attributes.profileState === 'ACTIVE').length,
