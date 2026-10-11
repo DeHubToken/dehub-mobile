@@ -49,6 +49,34 @@ describe("editable assembly", () => {
     expect(assemblyRequest("Peux-tu créer une vidéo de 10 secondes à partir de mes clips avec musique")).toMatchObject({ seconds: 10, music: true });
     for (const text of ["Create a photo using my images", "Create captions from my video", "Generate a video of a forest", "Split this video into ten clips", "Create highlights from my video"]) expect(assemblyRequest(text)).toBeNull();
   });
+  it("honours coordinated exclusions in either order, comma lists and named-file requests", () => {
+    for (const suffix of ["without music or transitions", "without transitions and music", "no fades, music or transitions", "no music and no transitions", "without music, fades, and transitions"]) {
+      expect(assemblyRequest(`Create a 6 second video from editor-multiple-scenes-source.mp4 ${suffix}`)).toMatchObject({ seconds: 6, transition: null, music: false, musicExcluded: true });
+    }
+    expect(assemblyRequest("Combiner les photos sélectionnées sans musique ni fondus")).toMatchObject({ selected: true, transition: null, music: false });
+  });
+  it("ends exclusion lists before positive instructions and ignores words inside filenames", () => {
+    expect(assemblyRequest("Create a video from my clips without music with fades")).toMatchObject({ transition: "fade", music: false });
+    expect(assemblyRequest("Create a video from my clips without transitions with music")).toMatchObject({ transition: null, music: true });
+    expect(assemblyRequest('Create a video from "No Music.mp4" with transitions and music')).toMatchObject({ transition: "fade", music: true, musicExcluded: false });
+  });
+  it("removes draft music and transitions together in one undoable review change", () => {
+    const source = project(), before = JSON.stringify(source);
+    const session = new AssemblySession({ current: () => source, create: async () => true }, () => {});
+    session.start(request, []);
+    const shots = session.state.shots;
+    expect(session.state).toMatchObject({ transition: "fade", soundId: "sound" });
+    expect(session.review("without music or transitions")).toBe(true);
+    expect(session.state).toMatchObject({ transition: null, soundId: null, shots });
+    session.undo(); expect(session.state).toMatchObject({ transition: "fade", soundId: "sound", shots });
+    expect(JSON.stringify(source)).toBe(before);
+  });
+  it("does not partially execute a coordinated review with unrecognised instructions", () => {
+    const source = project(), session = new AssemblySession({ current: () => source, create: async () => true }, () => {});
+    session.start(request, []);
+    expect(session.review("without music or transitions and delete the original project")).toBe(false);
+    expect(session.state).toMatchObject({ transition: "fade", soundId: "sound" });
+  });
   it("allocates exactly the budget, limits short shots, and respects explicit selection without fallback", () => {
     const source = project(); source.clips[1] = { ...photo, kind: "video", duration: 2 };
     const allocated = assemblyPlan(source, request, []);
