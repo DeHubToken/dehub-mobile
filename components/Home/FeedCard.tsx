@@ -1377,8 +1377,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       playable: stagePlayable,
       liked: liked || disliked,
       like: handleLikePress,
+      openOptions: postImage ? handleOpenOptions : undefined,
     });
-  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress]);
+  }, [stage, tokenId, isVideo, isLive, thumbnail, galleryImages, avatar, isTranslated, translatedTexts.title, localTitle, displayName, timeAgo, stagePlayable, liked, disliked, handleLikePress, postImage, handleOpenOptions]);
   useEffect(() => {
     if (!stage || !isLive || tokenId == null) return;
     patchPostStage(tokenId, { playing: !livePaused, toggle: () => setLivePaused((p) => !p) });
@@ -2171,7 +2172,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             </>
           )}
         </View>
-        {(postVideo || postImage) && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
+        {postVideo && <PostStageActions onMore={handleOpenOptions} onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
         <PostStageActionBar
           liked={liked}
           disliked={disliked}
