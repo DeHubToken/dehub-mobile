@@ -63,7 +63,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import { runOnJS, useSharedValue } from "react-native-reanimated";
+import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -475,6 +475,22 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     ? Math.max(0, itemHeight - viewportHeight) + (Platform.OS === "ios" ? keyboardHeight : 0)
     : 0;
   const splitHeight = Math.max(0, itemHeight - keyboardOffset) / 2;
+  // The comments sheet's slide offset, shared so the player shrinks and grows
+  // in the same frames the sheet moves — opening, closing and following a
+  // drag — instead of snapping to half height before the sheet has arrived
+  // and back to full only after it has gone.
+  const commentsSlide = useSharedValue(itemHeight);
+  const playerStyle = useAnimatedStyle(() => {
+    const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
+    return { height: Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown) };
+  }, [itemHeight, splitHeight, keyboardOffset]);
+  // A parked offset is only "gone" relative to the size it was parked at; if
+  // the item grows while comments are shut, push it clear so it can't read as
+  // a sliver of open sheet. The sheet re-seats it at its own height on open.
+  useEffect(() => {
+    if (!showComments) commentsSlide.value = Number.MAX_SAFE_INTEGER;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemHeight]);
 
   useEffect(() => {
     if (!isActive) return;
@@ -1310,8 +1326,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   return (
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
       <GestureDetector gesture={screenGesture}>
-        <View
-          style={[StyleSheet.absoluteFill, showComments && { bottom: undefined, height: splitHeight, backgroundColor: "#000" }]}
+        <Reanimated.View
+          style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, playerStyle]}
         >
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
@@ -1344,7 +1360,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
             setIsPausedByUser(false);
             playIfActive();
           }}><Text style={{ color: '#fff' }}>{t('common.retry')}</Text></Pressable>}
-        </View>
+        </Reanimated.View>
       </GestureDetector>
 
       {tapAnimReaction && (
@@ -1686,6 +1702,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
           visible={showComments}
           inlineHeight={splitHeight}
           bottomOffset={keyboardOffset}
+          slideOffset={commentsSlide}
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
@@ -2318,6 +2335,7 @@ const ShortsViewerScreen = () => {
 export default ShortsViewerScreen;
 
 const styles = StyleSheet.create({
+  playerFrame: { position: "absolute", top: 0, left: 0, right: 0 },
   container: {
     flex: 1,
     backgroundColor: "#000",
