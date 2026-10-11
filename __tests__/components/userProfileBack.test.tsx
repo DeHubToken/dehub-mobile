@@ -8,7 +8,8 @@ jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'Gest
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0 }) }));
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({}) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
-jest.mock('../../components/ScreenHeader', () => 'ScreenHeader');
+jest.mock('../../components/Profile/CollapsingProfileHeader', () => 'ScreenHeader');
+jest.mock('../../components/Profile/useProfileCollapse', () => ({ useProfileCollapse: () => ({ scrollY: { value: 0 }, identityBottom: { value: 220 }, onIdentityBottom: jest.fn() }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/UserProfile/UserProfileSheetContent', () => 'ProfileContent');
 jest.mock('../../components/UserProfile/ProfileSurface', () => 'ProfileSurface');

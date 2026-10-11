@@ -1,3 +1,5 @@
+import { PROFILE_BAR_HEIGHT } from '../Profile/useProfileCollapse';
+import type { SharedValue } from 'react-native-reanimated';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, {
   useCallback,
@@ -58,6 +60,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
+  profileScrollY?: SharedValue<number>;
   address: string;
   onClose: () => void;
   scrollEnabled: boolean;
@@ -121,6 +124,7 @@ const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
 > = ({
+  profileScrollY,
   address,
   onClose,
   scrollEnabled,
@@ -193,6 +197,11 @@ const UserProfileBottomContentTabs: React.FC<
   const stickyVisibleShared = useSharedValue(false);
   const showBackToTopShared = useSharedValue(false);
   const isFullScreenShared = useSharedValue(isFullScreen);
+  useEffect(() => {
+    if (profileScrollY) profileScrollY.value = 0;
+    stickyVisibleShared.value = false;
+    setStickyVisible(false);
+  }, [activeTab, address, profileScrollY, stickyVisibleShared]);
   useEffect(() => {
     isFullScreenShared.value = isFullScreen;
   }, [isFullScreen, isFullScreenShared]);
@@ -329,12 +338,13 @@ const UserProfileBottomContentTabs: React.FC<
       if (!isFullScreenShared.value) return;
 
       const y = event.contentOffset.y;
+      if (profileScrollY) profileScrollY.value = y;
       // Bottom nav hides on scroll down and returns on scroll up, as on home.
       driveTabBar(y);
 
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
-        const shouldStick = y >= threshold;
+        const shouldStick = y >= threshold - PROFILE_BAR_HEIGHT;
         if (shouldStick !== stickyVisibleShared.value) {
           stickyVisibleShared.value = shouldStick;
           runOnJS(setStickyVisible)(shouldStick);
@@ -357,9 +367,10 @@ const UserProfileBottomContentTabs: React.FC<
       stickyVisibleShared.value = false;
       setStickyVisible(false);
       setActiveTab(tab);
+      if (profileScrollY) profileScrollY.value = 0;
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
-    [activeTab, stickyVisibleShared],
+    [activeTab, stickyVisibleShared, profileScrollY],
   );
 
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
@@ -474,8 +485,10 @@ const UserProfileBottomContentTabs: React.FC<
   if (!canViewContent) {
     return (
       <View style={isFullScreen ? { flex: 1 } : { height: listHeight }}>
-        {isFullScreen && profileHeader}
-        {PrivateAccountMessage}
+        <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
+          {isFullScreen && profileHeader}
+          {PrivateAccountMessage}
+        </Animated.ScrollView>
       </View>
     );
   }
@@ -647,7 +660,7 @@ const UserProfileBottomContentTabs: React.FC<
         <View
           style={{
             position: "absolute",
-            top: 0,
+            top: PROFILE_BAR_HEIGHT,
             left: 0,
             right: 0,
             height: STICKY_BAR_HEIGHT,
