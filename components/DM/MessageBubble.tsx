@@ -30,7 +30,6 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import { toastError } from "../../libs/toast";
 import { formatAttachmentSize, getAttachmentLabel } from "../../libs/attachments";
-import GlassIndicator from "../ui/GlassIndicator";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
@@ -556,8 +555,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 
 
   const bubbleBg = isMine
-    ? "rounded-xl rounded-br-sm"
-    : "bg-theme-neutrals-800 rounded-xl rounded-bl-sm";
+    ? "bg-white/[0.11] rounded-xl rounded-br-sm"
+    : "border border-white/[0.16] rounded-xl rounded-bl-sm";
 
   const isMediaOnly = mediaItems.length > 0 && !hasText && !isVoice;
   // Media-only paid msgs need a background for PaymentBadge; plain media-only don't
@@ -687,9 +686,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           {/* Bubble */}
           <View
             className={`max-w-[75%] ${activeBubbleBg} overflow-hidden`}
-            style={isMine ? { backgroundColor: "rgba(20,20,20,0.65)" } : undefined}
           >
-            {isMine && <GlassIndicator borderRadius={16} />}
             {/* Forwarded tag */}
             {message.isForwarded && (
               <View className="flex-row items-center gap-1 px-3 pt-1.5">

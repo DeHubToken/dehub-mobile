@@ -13,6 +13,8 @@ jest.mock('../../components/Profile/useProfileCollapse', () => ({ useProfileColl
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/UserProfile/UserProfileSheetContent', () => 'ProfileContent');
 jest.mock('../../components/UserProfile/ProfileSurface', () => 'ProfileSurface');
+jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
+jest.mock('../../components/ui/FrostedBackdrop', () => ({ FrostedBackground: 'FrostedBackground' }));
 jest.mock('../../components/UserProfile/UnfollowSheet', () => 'UnfollowSheet');
 jest.mock('../../context/TabBarHideContext', () => ({ TabBarHideProvider: 'TabBarHideProvider' }));
 jest.mock('../../navigation/StandaloneTabBar', () => 'StandaloneTabBar');
@@ -31,6 +33,9 @@ it.each([
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<UserProfileBottomSheet embedded visible usernameOrAddress="creator" onClose={close} />); });
   const header = tree.root.findByType('ScreenHeader' as any);
+  const swipe = tree.root.findByType('SwipeBackBoundary' as any);
+  expect(swipe.props.onBack).toBe(close);
+  expect(swipe.props.enabled).toBe(true);
   expect(header.props.canGoBack).toBe(true);
   act(() => header.props.onBackPress());
   expect(close).toHaveBeenCalledTimes(1);

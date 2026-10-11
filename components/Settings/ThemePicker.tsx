@@ -8,8 +8,9 @@
  * never read from the active theme, so every sample shows its own theme and
  * not the current one. Keep the palette in step with web's THEME_SWATCHES.
  */
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  Platform,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -18,6 +19,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { Image } from 'expo-image';
+import { Asset } from 'expo-asset';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '../../context/ThemeContext';
 import { APP_THEMES, type AppThemeName } from '../../theme/colors';
@@ -103,6 +105,20 @@ const ThemeSample: React.FC<{
   onPress: () => void;
 }> = ({ value, label, active, ring, onPress }) => {
   const s = SWATCHES[value];
+  const [previewUri, setPreviewUri] = useState<string>();
+  useEffect(() => {
+    if (Platform.OS !== 'android' || !s.image) return;
+    let cancelled = false;
+    // Resolve the update's hashed asset file rather than an older APK drawable.
+    // Theme previews can change in an OTA while the installed binary stays put.
+    const asset = Asset.fromModule(s.image);
+    void asset.downloadAsync().then(() => {
+      if (!cancelled) setPreviewUri(asset.localUri ?? asset.uri);
+    }).catch(() => {
+      // Keep the bundled preview available if the update asset cannot load.
+    });
+    return () => { cancelled = true; };
+  }, [s.image]);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -135,7 +151,7 @@ const ThemeSample: React.FC<{
       >
         {s.image ? (
           <Image
-            source={s.image}
+            source={previewUri ? { uri: previewUri } : s.image}
             contentFit="cover"
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           />

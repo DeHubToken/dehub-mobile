@@ -1,3 +1,4 @@
+import MessageSearch from "../components/DM/MessageSearch";
 import { useDraftState } from "../hooks/useDraftState";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -177,6 +178,7 @@ const LiveChatScreen: React.FC = () => {
   const [contextMenuLayout, setContextMenuLayout] = useState<MessageLayout | null>(null);
   const [editingMessage, setEditingMessage] = useState<LiveChatMessageData | null>(null);
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
+  const [searchVisible, setSearchVisible] = useState(false);
   const [confirmModal, setConfirmModal] = useState<{
     visible: boolean;
     title: string;
@@ -752,12 +754,13 @@ const LiveChatScreen: React.FC = () => {
           <View className="w-2 h-2 rounded-full bg-white" />
           <Text className="text-white/50 text-xs">{onlineCount}</Text>
         </View>
+        <TouchableOpacity onPress={() => setSearchVisible(value => !value)} accessibilityRole="button" accessibilityLabel={t("publicChat.searchMessages")} style={{ width: 32, height: 36, alignItems: "center", justifyContent: "center" }}><Icon name="Search" size={20} color="#A1A1AA" /></TouchableOpacity>
         <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
           <Icon name="Info" size={22} color="rgba(255,255,255,0.5)" />
         </TouchableOpacity>
       </View>
     ),
-    [onlineCount, handleInfoPress]
+    [onlineCount, handleInfoPress, t]
   );
 
   // Header subtitle
@@ -811,10 +814,13 @@ const LiveChatScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-background">
       <ScreenHeader
+        appearance="flat"
         title={t("publicChat.title")}
         subtitle={subtitle}
         rightContent={RightHeader}
       />
+
+      {searchVisible ? <MessageSearch messages={messages} onSelect={highlightAndScroll} onClose={() => setSearchVisible(false)} /> : null}
 
       {room?.pinnedMessages && room.pinnedMessages.length > 0 && (
         <PinnedMessagesBar

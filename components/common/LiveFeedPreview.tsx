@@ -10,7 +10,7 @@
  * this app runs ExoPlayer out of memory.
  */
 
-import React, { memo, useContext, useEffect, useMemo, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { useFeedPlaybackAllowed, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useEvent } from "expo";
@@ -22,7 +22,6 @@ import SmartImage from "./SmartImage";
 import Icon from "../ui/Icon";
 import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedLivePlayer";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
-import { useFeedBleed, useMediaTools, type MediaTool } from "../Home/feedBleed";
 import { useStreamPresence } from '../../hooks/useStreamPresence';
 import { useLivePaused } from '../../hooks/useLivePaused';
 
@@ -71,12 +70,9 @@ function usablePoster(thumbnail?: string): string | undefined {
  */
 function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCount }: Pick<Props, 'url' | 'onPress' | 'streamId' | 'streamStatus' | 'isOwner' | 'onViewerCount'>) {
   const [firstFrame, setFirstFrame] = useState(false);
-  const [playRequested, setPlayRequested] = useState(true);
   const [waitingTooLong, setWaitingTooLong] = useState(false);
   const broadcastPaused = useLivePaused(streamId, streamStatus);
   const { t } = useTranslation();
-  const [muted, setMuted] = useState(true);
-  const [controlsVisible, setControlsVisible] = useState(true);
   // Shared with the live viewer: opening the post takes this same player
   // over, so the stream carries on instead of reconnecting from a spinner.
   const player = useSharedLivePlayer(url)!;
@@ -95,42 +91,17 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
   }, [player, playbackAllowed, callInProgress, url]);
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { isPlaying } = useEvent(player, "playingChange", { isPlaying: player.playing });
-  useStreamPresence(isOwner ? undefined : streamId, focused && playbackAllowed && playRequested && isPlaying && firstFrame && status !== 'error', onViewerCount);
-  const loading = playRequested && !broadcastPaused && status !== 'error' && (!firstFrame || status === 'loading');
+  useStreamPresence(isOwner ? undefined : streamId, focused && playbackAllowed && isPlaying && firstFrame && status !== 'error', onViewerCount);
+  const loading = !broadcastPaused && status !== 'error' && (!firstFrame || status === 'loading');
   useEffect(() => {
     setWaitingTooLong(false);
     if (!loading) return;
     const timer = setTimeout(() => setWaitingTooLong(true), 12_000);
     return () => clearTimeout(timer);
   }, [loading, url]);
-  const togglePlay = () => {
-    if (playRequested) { setPlayRequested(false); player.pause(); }
-    else if (visualActivity.isFeedPlaybackAllowed()) { setPlayRequested(true); player.play(); }
-  };
-  // Cinematic feed: play and sound live in the card's tools menu, not over
-  // the picture.
-  const foldTools = !!useFeedBleed()?.setTools;
-  const tools = useMemo<MediaTool[] | null>(() => foldTools ? [
-    {
-      key: "play",
-      icon: isPlaying ? "Pause" : "Play",
-      label: t(isPlaying ? "audioPost.pause" : "audioPost.play"),
-      onPress: togglePlay,
-    },
-    {
-      key: "sound",
-      icon: muted ? "VolumeX" : "Volume2",
-      label: t(muted ? "common.unmute" : "common.mute"),
-      onPress: () => { player.muted = !muted; setMuted(!muted); },
-    },
-  ] : null, [foldTools, isPlaying, playRequested, muted, player, t]);
-  useMediaTools(tools);
-
-  useEffect(() => {
-    if (!controlsVisible) return;
-    const timer = setTimeout(() => setControlsVisible(false), 3000);
-    return () => clearTimeout(timer);
-  }, [controlsVisible, isPlaying, muted]);
+  // No play, pause or sound controls here, over the picture or in the card's
+  // tools menu: the card is a silent preview and a tap opens the live page,
+  // which has the full controls.
 
   useEffect(() => {
     if (!playbackAllowed) return;
@@ -150,29 +121,22 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
     try {
       // Back on the feed: the viewer may have left the player unmuted,
       // backgroundable or paused. The card is always a silent preview.
-      player.muted = muted;
+      player.muted = true;
       player.staysActiveInBackground = false;
       player.showNowPlayingNotification = false;
-      setPlayRequested(true);
       player.play();
     } catch {
       // The player is released with the view; a play() on a torn-down one
       // throws rather than returning, and there is nothing to recover.
     }
-    // `muted` is applied by the button itself; re-running on it would replay.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player, focused, url, playbackAllowed]);
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      {/* A tap opens the live viewer, like a tap anywhere else on the card.
-          Swallowing it here to toggle the overlay meant the picture never
-          opened the stream. The controls still show for their first few
-          seconds and stay tappable on their own. */}
+      {/* Any tap opens the live page, like a tap anywhere else on the card. */}
       <Pressable accessibilityRole="button" accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
         event.stopPropagation();
-        if (onPress) onPress();
-        else setControlsVisible(value => !value);
+        onPress?.();
       }}>
       {/* Unmounted while another screen is on top: a VideoView that mounts
           takes the player's picture, and the viewer is showing this player.
@@ -192,29 +156,13 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
       {loading && !waitingTooLong && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
       )}
-      {(broadcastPaused || !playRequested || waitingTooLong || status === 'error') && (
+      {(broadcastPaused || waitingTooLong || status === 'error') && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}>
-          <Text style={styles.feedbackText}>{broadcastPaused || !playRequested
+          <Text style={styles.feedbackText}>{broadcastPaused
             ? t('liveViewer.streamPaused')
             : t('live.reconnecting')}</Text>
         </View>
       )}
-      {controlsVisible && !foldTools && <View style={styles.controls}>
-        <Pressable accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} style={styles.control} onPress={(event) => {
-          event.stopPropagation();
-          togglePlay();
-        }}>
-          <Icon name={isPlaying ? "Pause" : "Play"} size={18} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }} />
-        <Pressable accessibilityRole="button" accessibilityLabel={t(muted ? "common.unmute" : "common.mute")} style={styles.control} onPress={(event) => {
-          event.stopPropagation();
-          player.muted = !muted;
-          setMuted(!muted);
-        }}>
-          <Icon name={muted ? "VolumeX" : "Volume2"} size={18} color="#FFFFFF" />
-        </Pressable>
-      </View>}
     </View>
   );
 }
@@ -284,23 +232,6 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress, stre
 const styles = StyleSheet.create({
   feedback: { alignItems: 'center', justifyContent: 'center' },
   feedbackText: { color: '#FFFFFF', backgroundColor: 'rgba(0,0,0,0.75)', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 10, fontSize: 14 },
-  controls: {
-    position: "absolute",
-    left: 12,
-    right: 12,
-    bottom: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  control: {
-    width: 36,
-    height: 36,
-    borderRadius: 12,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   placeholder: {
     backgroundColor: "#18181B",
     alignItems: "center",

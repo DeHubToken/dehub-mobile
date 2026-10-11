@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
   runOnJS,
   Easing,
+  type SharedValue,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -45,6 +46,10 @@ interface CommentBottomSheetProps {
   /** Render within a shorts split view instead of covering the player. */
   inlineHeight?: number;
   bottomOffset?: number;
+  /** The sheet's slide offset (0 = fully open, the sheet height = gone). Pass
+   *  one in to move something else in lockstep with the sheet, e.g. the shorts
+   *  player resizing as the split opens, closes and follows a drag. */
+  slideOffset?: SharedValue<number>;
   visible: boolean;
   onClose: () => void;
   tokenId: number | string;
@@ -69,6 +74,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   postCreator,
   inlineHeight,
   bottomOffset = 0,
+  slideOffset,
 }) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
@@ -76,7 +82,8 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const inline = inlineHeight !== undefined;
   const { height: screenHeight } = useWindowDimensions();
   const SHEET_HEIGHT = inlineHeight ?? screenHeight * SHEET_FRACTION;
-  const translateY = useSharedValue(SHEET_HEIGHT);
+  const ownTranslateY = useSharedValue(SHEET_HEIGHT);
+  const translateY = slideOffset ?? ownTranslateY;
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
@@ -99,6 +106,9 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   useEffect(() => {
     if (visible) {
       setIsFullyClosed(false);
+      // A shared offset can start parked further down than this sheet is tall;
+      // begin the slide from the sheet's own bottom edge, not off past it.
+      if (translateY.value > SHEET_HEIGHT) translateY.value = SHEET_HEIGHT;
       translateY.value = withTiming(0, {
         duration: 300,
         easing: Easing.out(Easing.cubic),

@@ -17,6 +17,8 @@ import { BlurView } from "expo-blur";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SwipeBackBoundary from '../common/SwipeBackBoundary';
 
 export interface GlassModalProps {
   visible: boolean;
@@ -40,6 +42,8 @@ export interface GlassModalProps {
    * sheet (see useYieldToWalletUnlock). Off only for the unlock sheet itself.
    */
   yieldToWalletUnlock?: boolean;
+  /** Messaging drawers use the same active-theme material as web. */
+  surface?: 'theme';
 }
 
 /**
@@ -69,11 +73,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
   dismissible = true,
   scrollable = false,
   yieldToWalletUnlock = true,
+  surface,
 }) => {
   const insets = useSafeAreaInsets();
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
   const { isMinimal } = useAppTheme();
   const isBottom = presentation === "bottom";
+  const MessageSurface = surface ? require("../DM/MessageSurface").default : null;
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
@@ -151,6 +157,8 @@ const GlassModal: React.FC<GlassModalProps> = ({
       {/* The insets are spent on the foreground, never on this container, so
           the dim (and the blur) reach the status bar and the gesture bar
           instead of stopping short of both. */}
+      <GestureHandlerRootView style={styles.container}>
+      <SwipeBackBoundary onBack={dismissible ? onClose : undefined} enabled={visible && !yielded && dismissible}>
       <View style={styles.container}>
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" && isMinimal ? (
@@ -237,6 +245,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   },
                 ]}
               >
+                {MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
                   <ScrollView
                     ref={scrollRef}
@@ -265,6 +274,8 @@ const GlassModal: React.FC<GlassModalProps> = ({
           </KeyboardAvoidingView>
         </View>
       </View>
+      </SwipeBackBoundary>
+      </GestureHandlerRootView>
     </Modal>
   );
 };

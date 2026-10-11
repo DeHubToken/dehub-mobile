@@ -1,4 +1,4 @@
-import { useProfileIdentityLayout } from '../Profile/useProfileCollapse';
+import { PROFILE_COVER_HEIGHT, useProfileIdentityLayout } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { useCallback, useMemo, useRef } from "react";
@@ -39,6 +39,7 @@ const BTN_H = 36;
 
 export interface UserProfileHeaderProps {
   onIdentityBottom?: (bottom: number) => void;
+  onActionsBottom?: (bottom: number) => void;
   featuredCommunity?: Community | null;
   avatarUrl?: string | null;
   coverUrl?: string | null;
@@ -70,6 +71,7 @@ export interface UserProfileHeaderProps {
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
   onMessage?: () => void;
+  onOpenOptions?: () => void;
   onEditProfile?: () => void;
   stats?: { key: string; label: string; value: number }[];
   onStatPress?: (key: string) => void;
@@ -91,6 +93,7 @@ export interface UserProfileHeaderProps {
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   featuredCommunity,
   onIdentityBottom,
+  onActionsBottom,
   avatarUrl,
   coverUrl,
   displayName,
@@ -117,6 +120,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onOpenImage,
   onShare,
   onMessage,
+  onOpenOptions,
   onEditProfile,
   stats,
   onStatPress,
@@ -180,7 +184,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const followingItem = stats?.find((s) => s.key === "following");
   const followersItem = stats?.find((s) => s.key === "followers");
 
-  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
+  const { profileRef, identityRef, actionsRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom, onActionsBottom);
 
   const renderFollowButton = () => {
     if (isOwnProfile) {
@@ -273,7 +277,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         {/* Align the cover with the full-width details and pinned community. */}
         <View
           className={isMinimal || cinematicPhone ? "overflow-hidden" : "rounded-t-xl overflow-hidden"}
-          style={{ height: 140 }}
+          style={{ height: PROFILE_COVER_HEIGHT }}
         >
           {/* coverUrl is the unsized original (the viewer opens it too); expo-image
               decodes it at banner size where ImageBackground decoded every pixel.
@@ -291,7 +295,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
       </TouchableOpacity>
 
-      <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
+      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar
@@ -301,10 +305,10 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
             onPress={() => onOpenImage("avatar")}
           />
-          {!isBlocked && (
-            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
-              {renderFollowButton()}
-              {!!onMessage && (
+          {(!isBlocked || !!onOpenOptions) && (
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>
+              {!isBlocked && renderFollowButton()}
+              {!isBlocked && !!onMessage && (
                 <TouchableOpacity
                   onPress={onMessage}
                   activeOpacity={0.7}
@@ -315,6 +319,21 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                   {glassLayers}
                   <View style={s.glassBtnContent}>
                     <Icon name="MessageSquare" size={16} color="#fff" />
+                  </View>
+                </TouchableOpacity>
+              )}
+              {!!onOpenOptions && (
+                <TouchableOpacity
+                  onPress={onOpenOptions}
+                  activeOpacity={0.7}
+                  testID="profile-options"
+                  accessibilityRole="button"
+                  accessibilityLabel={t("profileOptions.a11yLabel")}
+                  style={[btn, s.iconBtn, isMinimal && s.minimalIconBtn]}
+                >
+                  {glassLayers}
+                  <View style={s.glassBtnContent}>
+                    <Icon name="Plus" size={16} color="#fff" />
                   </View>
                 </TouchableOpacity>
               )}

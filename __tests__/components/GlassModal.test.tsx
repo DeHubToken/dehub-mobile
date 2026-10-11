@@ -25,10 +25,22 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 44, bottom: 34 }) }));
 jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
+jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'GestureHandlerRootView' }));
+jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
+jest.mock('../../components/DM/MessageSurface', () => ({ __esModule: true, default: 'MessageSurface' }));
 
 const drag = (dy: number, dx = 0, vy = 0) => ({ dy, dx, vy });
 const handlers = (index = 0) => (PanResponder.create as jest.Mock).mock.calls[index][0];
 beforeEach(() => jest.clearAllMocks());
+
+it.each(['center', 'bottom'] as const)('uses theme material without changing %s dismissal or content', (presentation) => {
+  const close = jest.fn();
+  const screen = render(<GlassModal surface="theme" visible presentation={presentation} onClose={close}><View testID="sheet-content" /></GlassModal>);
+  expect(screen.UNSAFE_getByType('MessageSurface' as any)).toBeTruthy();
+  expect(screen.getByTestId('sheet-content')).toBeTruthy();
+  fireEvent(screen.UNSAFE_getByType('Modal' as any), 'requestClose');
+  expect(close).toHaveBeenCalledTimes(1);
+});
 
 it('keeps drawer gestures on the handle, outside scrollable inputs', () => {
   const screen = render(<GlassModal visible presentation="bottom" scrollable onClose={jest.fn()}><View /></GlassModal>);
