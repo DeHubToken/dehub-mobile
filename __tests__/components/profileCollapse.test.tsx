@@ -12,6 +12,7 @@ let mockReaction: (() => void) | undefined;
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' },
   useAnimatedStyle: () => ({}), Extrapolation: { CLAMP: 'clamp' }, interpolate: () => 0,
+  useDerivedValue: (derive: () => boolean) => ({ get value() { return derive(); } }),
   runOnJS: (fn: unknown) => fn,
   useAnimatedReaction: (prepare: () => boolean, react: (next: boolean, previous: boolean | null) => void) => {
     mockReaction = () => react(prepare(), null);
