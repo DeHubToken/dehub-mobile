@@ -11,10 +11,12 @@ import {
   useWindowDimensions,
   BackHandler,
   Keyboard,
+  Platform,
   Image as RNImage,
 } from "react-native";
-import { GRAIN, type ThemeSkin } from "../../theme/skins";
+import { GRAIN, glassTint, type ThemeSkin } from "../../theme/skins";
 import HudBrackets from "../theme/HudBrackets";
+import FrostedPill from "../ui/FrostedPill";
 import { Image } from "expo-image";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -280,6 +282,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const appTheme = useAppTheme();
   const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? "minimal" : "system");
   const skin = appTheme.skin ?? null;
+  const androidGlass = Platform.OS === "android";
   const hud = themeName === "war";
   const square = !!skin?.square || appTheme.isMinimal;
   const [menuQuery, setMenuQuery] = useSurfaceDraft("components/Home/AppDrawer.tsx:menuQuery", "");
@@ -499,26 +502,34 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           activeOpacity={1}
           onPress={onClose}
           accessibilityLabel={t("common.close")}
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.55)" }]}
+          style={[StyleSheet.absoluteFill, { backgroundColor: androidGlass ? "transparent" : "rgba(0,0,0,0.55)" }]}
         />
       </Animated.View>
 
       <Animated.View
+        testID="app-menu-sheet"
         style={[
           styles.sheet,
-          { height: SHEET_HEIGHT, backgroundColor: skin?.page ?? "#0B0B0E", borderColor: hairline },
+          {
+            height: SHEET_HEIGHT,
+            backgroundColor: androidGlass ? "transparent" : skin?.page ?? "#0B0B0E",
+            borderColor: hairline,
+            elevation: androidGlass ? 0 : 12,
+          },
           square && styles.square,
           sheetStyle,
         ]}
       >
+        {androidGlass && (
+          <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} />
+        )}
         {/* Jungle's plank grain and War's HUD corners, as on the feed chrome. */}
-        {skin?.grain ? (
+        {!androidGlass && skin?.grain ? (
           <RNImage source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />
         ) : null}
         {skin?.brackets ? <HudBrackets color={skin.brackets} length={18} /> : null}
-        {/* Opaque on purpose: expo-blur paints a flat tint on Android rather
-            than blurring, and the one method that does blur re-snapshots the
-            root view every frame and crashes when the feed mutates mid-draw. */}
+        {/* Android samples the shared blur target beneath this sheet. The
+            sheet clips the glass to its top corners without an outer shadow. */}
         <GestureDetector gesture={panGesture}>
           <View>
             <View style={styles.handleZone}>
@@ -668,7 +679,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     overflow: "hidden",
     zIndex: 999,
-    elevation: 12,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     borderWidth: 1,

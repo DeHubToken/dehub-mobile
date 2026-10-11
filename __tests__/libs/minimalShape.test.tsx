@@ -2,6 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { setSquaring, setThemePass, squareStyle, squareProps, routeProps, isVeiled, isPageFill, SQUARE } from '../../libs/jsx/shape';
+import { APP_THEMES } from '../../theme/colors';
+import { getThemeSkin } from '../../theme/skins';
+import { canvasPageBackground } from '../../theme/pageBackground';
 
 // Same stub the other render tests use: the real styling runtime needs a
 // device. What is under test is the pass in front of it.
@@ -157,6 +160,30 @@ describe('canvas theme pages and floating surfaces', () => {
     expect(isVeiled()).toBe(true);
     setThemePass(true, '#000');
     expect(isVeiled()).toBe(false);
+  });
+});
+
+describe('Android canvas page backgrounds', () => {
+  afterEach(() => setThemePass(false, null));
+
+  it.each(APP_THEMES.filter(theme => getThemeSkin(theme)))('%s does not stack dark page or header fills over its scene', (theme) => {
+    const skin = getThemeSkin(theme)!;
+    setThemePass(skin.square, canvasPageBackground(skin.page, 'android'), true, skin.page);
+    const { Modal } = require('react-native');
+    const view = render(
+      <View testID="page" className="flex-1 bg-theme-neutrals-900">
+        <View testID="header" className="bg-theme-background">
+          <View testID="nested" style={{ backgroundColor: '#010305' }} />
+        </View>
+        <View testID="card" style={skin.card} />
+        <Modal><View testID="dialog" className="bg-theme-neutrals-900" /></Modal>
+      </View>,
+    );
+    const background = (id: string) => Object.assign({}, ...[view.getByTestId(id).props.style].flat(5)).backgroundColor;
+    for (const id of ['page', 'header', 'nested']) expect(background(id)).toBe('transparent');
+    expect(background('card')).toBe(skin.card.backgroundColor);
+    expect(background('dialog')).toBe(skin.page);
+    expect(canvasPageBackground(skin.page, 'ios')).toMatch(/^rgba\(.+,0\.6\)$/);
   });
 });
 
