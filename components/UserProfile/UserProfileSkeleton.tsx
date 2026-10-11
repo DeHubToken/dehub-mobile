@@ -11,9 +11,9 @@ const UserProfileSkeleton: React.FC = () => {
   return (
     <View>
       {/* Cover image */}
-      {/* Minimal mirrors the real header: edge-to-edge cover. */}
+      {/* Match the full-width cover while the profile loads. */}
       <View
-        className={isMinimal || cinematicPhone ? 'overflow-hidden' : 'mx-4 rounded-xl overflow-hidden'}
+        className={isMinimal || cinematicPhone ? 'overflow-hidden' : 'rounded-t-xl overflow-hidden'}
         style={{ height: 140 }}
       >
         <View className="w-full h-full bg-theme-neutrals-800 animate-pulse" />
