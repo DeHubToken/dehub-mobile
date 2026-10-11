@@ -5985,7 +5985,8 @@
     "hereNow": "Одоо",
     "nobodyYet": "Одоогоор хэн ч байхгүй",
     "hereCount": "{{formatted}} here",
-    "watchingCount": "{{formatted}} watching"
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "Дэлгэцийг эргүүлэх"
   },
   "search": {
     "endOfResults": "Үр дүнгийн төгсгөл",

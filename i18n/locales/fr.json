@@ -6207,7 +6207,8 @@
     "topTippers": "Benne basculante supérieure",
     "mostActive": "Les plus actifs",
     "hereNow": "Ici maintenant",
-    "nobodyYet": "Personne pour le moment"
+    "nobodyYet": "Personne pour le moment",
+    "rotate": "Faire pivoter l'écran"
   },
   "search": {
     "endOfResults": "Fin des résultats",

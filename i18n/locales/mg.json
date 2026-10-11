@@ -6022,7 +6022,8 @@
     "mostActive": "Mavitrika indrindra",
     "hereNow": "Eto",
     "nobodyYet": "Tsy nisy na dia iray aza.",
-    "startedAgo": "Started {{time}}"
+    "startedAgo": "Started {{time}}",
+    "rotate": "Efijery"
   },
   "search": {
     "endOfResults": "Faran'ny valiny",

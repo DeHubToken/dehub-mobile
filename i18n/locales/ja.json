@@ -6088,7 +6088,8 @@
     "topTippers": "トップチッパー",
     "mostActive": "最もアクティブ",
     "hereNow": "今すぐこちら",
-    "nobodyYet": "まだ誰もいません"
+    "nobodyYet": "まだ誰もいません",
+    "rotate": "画面を回転"
   },
   "search": {
     "endOfResults": "結果はここまで",

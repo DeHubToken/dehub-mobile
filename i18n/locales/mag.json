@@ -6009,7 +6009,8 @@
     "nobodyYet": "आज तलक होलइ नञ",
     "hereCount": "{{formatted}} here",
     "watchingCount": "{{formatted}} watching",
-    "startedAgo": "Started {{time}}"
+    "startedAgo": "Started {{time}}",
+    "rotate": "स्क्रीन को हल करें (rotate screen)"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

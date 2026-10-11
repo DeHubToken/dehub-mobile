@@ -6001,7 +6001,8 @@
     "hereNow": "अब इहां",
     "nobodyYet": "आज तक कोनो",
     "hereCount": "{{formatted}} here",
-    "watchingCount": "{{formatted}} watching"
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "स्क्रीन घुमाव"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",
