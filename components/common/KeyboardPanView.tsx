@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { Animated, Dimensions, Keyboard, Platform, StyleSheet, TextInput, type KeyboardEvent, type View } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { initialSafeAreaMetrics } from "../../libs/initialSafeAreaMetrics";
 import { keyboardTopFromEvent } from "../../libs/keyboard-composer";
 import { selfLiftingComposers } from "../../hooks/useComposerKeyboard";
 
@@ -44,7 +45,9 @@ export default function KeyboardPanView({ children }: { children: React.ReactNod
   const keyboardTop = useRef<number | null>(null);
   const insets = useContext(SafeAreaInsetsContext);
   const navBar = useRef(0);
-  navBar.current = insets?.bottom ?? 0;
+  // The provider's inset can read 0 on some screens while the real nav bar is
+  // there; the launch-time inset is the nav bar's own height, so never use less.
+  navBar.current = Math.max(insets?.bottom ?? 0, initialSafeAreaMetrics.insets.bottom ?? 0);
 
   useEffect(() => {
     let timers: ReturnType<typeof setTimeout>[] = [];
