@@ -47,6 +47,9 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   const rgb = `rgb(${color[0]},${color[1]},${color[2]})`;
   return (
     <Animated.View
+      // Cache the static SVG; the pull only changes opacity and translation.
+      renderToHardwareTextureAndroid
+      shouldRasterizeIOS
       pointerEvents="none"
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
