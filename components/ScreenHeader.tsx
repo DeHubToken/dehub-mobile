@@ -44,6 +44,8 @@ export interface ScreenHeaderProps {
    *  top bar and no title, just a round back button floating over the media,
    *  the same one the web post page shows. */
   overlay?: boolean;
+  /** Show only the back arrow over a profile banner. */
+  plainBack?: boolean;
   /** Page identity artwork key (theme/icons.ts), drawn in the theme's own style. */
   icon?: string;
 }
@@ -57,6 +59,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   titleAccessory,
   onBackPress,
   overlay = false,
+  plainBack = false,
   icon,
 }) => {
   const { t } = useTranslation();
@@ -138,9 +141,9 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
           zIndex: 20,
           width: 36,
           height: 36,
-          borderRadius: 18,
-          backgroundColor: 'rgba(0,0,0,0.45)',
-          borderWidth: 1,
+          borderRadius: plainBack ? 0 : 18,
+          backgroundColor: plainBack ? 'transparent' : 'rgba(0,0,0,0.45)',
+          borderWidth: plainBack ? 0 : 1,
           borderColor: 'rgba(255,255,255,0.18)',
         }}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
