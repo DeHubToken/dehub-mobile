@@ -68,7 +68,7 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
         <View style={styles.highlight} />
       </Animated.View>
       <View pointerEvents="box-none" style={styles.backInset}>
-        <ScreenHeader overlay title="" canGoBack={canGoBack} onBackPress={onBackPress} />
+        <ScreenHeader overlay plainBack title="" canGoBack={canGoBack} onBackPress={onBackPress} />
       </View>
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
         <Animated.View pointerEvents="none" accessibilityElementsHidden={!collapsed} importantForAccessibility={collapsed ? 'auto' : 'no-hide-descendants'} style={[styles.identity, identity]}>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   gapGuard: { position: 'absolute', top: 0, left: 0, right: 0, bottom: -4, overflow: 'hidden' },
   surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.24)', borderBottomColor: 'rgba(255,255,255,0.1)' },
   highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
-  backInset: { position: 'absolute', top: 2, left: 6, right: 0, height: 56 },
+  backInset: { position: 'absolute', top: 2, left: 2, right: 0, height: 56 },
   content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 64, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
