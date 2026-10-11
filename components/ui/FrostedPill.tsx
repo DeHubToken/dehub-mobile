@@ -4,12 +4,15 @@ import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import IosGlassPill from "./IosGlassPill";
 import { androidFrostSupported, useFrostedSource } from "./FrostedBackdrop";
+import { useFeedSurfaceActive } from "../../libs/visualActivity";
 
 /** Shared pill material. Geometry and controls belong to the existing caller. */
 export default function FrostedPill({ tint, borderRadius }: { tint: string; borderRadius: number }) {
   const target = useFrostedSource();
+  const surfaceActive = useFeedSurfaceActive();
   if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} />;
-  const blur = androidFrostSupported && !!target;
+  // Opacity on a covered page does not stop native blur target sampling.
+  const blur = androidFrostSupported && !!target && surfaceActive;
   return (
     <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
       {blur ? (
