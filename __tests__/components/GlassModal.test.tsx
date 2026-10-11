@@ -25,6 +25,8 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 44, bottom: 34 }) }));
 jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
+jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'GestureHandlerRootView' }));
+jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 
 const drag = (dy: number, dx = 0, vy = 0) => ({ dy, dx, vy });
 const handlers = (index = 0) => (PanResponder.create as jest.Mock).mock.calls[index][0];

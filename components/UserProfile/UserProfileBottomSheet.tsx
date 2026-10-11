@@ -13,6 +13,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
+import SwipeBackBoundary from '../common/SwipeBackBoundary';
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -127,6 +128,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   );
   if (embedded) {
     return (
+      <SwipeBackBoundary onBack={onClose} enabled={visible}>
       <View className="flex-1 bg-theme-neutrals-900">
         <UserProfileSheetContent
           collapse={collapse}
@@ -177,6 +179,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           isCancelRequest={isFollowRequestPending}
         />
       </View>
+      </SwipeBackBoundary>
     );
   }
 
@@ -186,6 +189,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       onClose={onClose}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
+        <SwipeBackBoundary onBack={onClose} enabled={visible}>
         {/* Its own nav state: a modal sits above the tabs, so the home bar is
             out of sight and this one hides with this profile's scroll. */}
         <TabBarHideProvider>
@@ -240,6 +244,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           </View>
         </View>
         </TabBarHideProvider>
+        </SwipeBackBoundary>
       </GestureHandlerRootView>
       <UnfollowSheet
         visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
