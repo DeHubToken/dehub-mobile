@@ -68,7 +68,7 @@ function ProfileTabBarInner<Key extends string>({
       {/* Minimal: an edge-to-edge file-tab strip. One baseline across the
           width; the active tab is outlined on three sides and dropped 1pt so
           its black fill breaks the line. flex-end seats tabs on the baseline. */}
-      <View style={[styles.container, isMinimal && styles.minimalContainer]}>
+      <View style={[styles.container, isMinimal && styles.minimalContainer, pinned && { backgroundColor: 'transparent', borderWidth: 0 }]}>
         {items.map((item) => {
           const focused = item.key === activeKey;
           return (

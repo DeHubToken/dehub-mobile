@@ -673,10 +673,8 @@ const UserProfileBottomContentTabs: React.FC<
             left: 0,
             right: 0,
             height: STICKY_BAR_HEIGHT,
-            zIndex: 10,
-            elevation: 10,
-            // Minimal: the pinned tab strip sits on the same pure black.
-            backgroundColor: isMinimal ? "#000" : theme.colors.neutrals[900],
+            zIndex: 40,
+            elevation: 40,
           }, stickyStyle]}
         >
           <ProfileTabBar items={tabItems} activeKey={activeTab} onChange={handleTabChange} pinned />

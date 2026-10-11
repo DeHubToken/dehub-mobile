@@ -28,10 +28,10 @@ export interface CollapsingProfileHeaderProps {
   onOpenUnfollow?: () => void;
 }
 
-export default function CollapsingProfileHeader({ scrollY, actionsBottom, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
+export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPinned, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
   const { t } = useTranslation();
   const { theme, colors } = useAppTheme();
-  const solidTheme = theme === 'system' || theme === 'minimal' || theme === 'light';
+  const solidTheme = theme === 'system' || theme === 'minimal';
   const [collapsed, setCollapsed] = useState(false);
   useAnimatedReaction(
     () => scrollY.value >= actionsBottom.value,
@@ -43,12 +43,17 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, name, 
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
     opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
+    bottom: tabsPinned.value ? -56 : 4,
+  }));
+  const guardVisibility = useAnimatedStyle(() => ({
+    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
+    bottom: tabsPinned.value ? -56 : -4,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
 
   return (
     <View pointerEvents="box-none" style={styles.bar}>
-      <Animated.View pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, surfaceVisibility]}>
+      <Animated.View pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, guardVisibility]}>
         {!solidTheme && cover && <Image source={cover} blurRadius={40} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
       </Animated.View>
       <Animated.View pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
