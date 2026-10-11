@@ -10,8 +10,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
-
+} from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
