@@ -5984,7 +5984,16 @@
     "upcomingStream": "آنے والی اسٹریمنگ",
     "startsIn": "شروع {{time}}",
     "notStartedYet": "اسٹریمر نے ابھی تک براڈکاسٹ شروع نہیں کی ہے۔",
-    "leftStream": "ندی کو چھوڑ دیا"
+    "leftStream": "ندی کو چھوڑ دیا",
+    "whosHere": "کون یہاں ہے",
+    "hereCount": "{{formatted}} یہاں",
+    "watchingCount": "{{formatted}} دیکھ رہا ہے",
+    "startedAgo": "شروع ہوا {{time}}",
+    "host": "میزبان",
+    "topTippers": "ٹاپ ٹِپرز",
+    "mostActive": "سب سے زیادہ فعال",
+    "hereNow": "اب یہاں",
+    "nobodyYet": "ابھی تک کوئی نہیں"
   },
   "search": {
     "endOfResults": "نتائج ختم",

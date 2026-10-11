@@ -6161,7 +6161,16 @@
     "upcomingStream": "Próxima transmisión",
     "startsIn": "Empieza en {{time}}",
     "notStartedYet": "El streamer aún no ha comenzado a transmitir",
-    "leftStream": "dejó la corriente"
+    "leftStream": "dejó la corriente",
+    "whosHere": "Quién está aquí",
+    "hereCount": "{{formatted}} aquí",
+    "watchingCount": "{{formatted}} viendo",
+    "startedAgo": "Iniciado {{time}}",
+    "host": "Anfitrión",
+    "topTippers": "Top tippers",
+    "mostActive": "Más activo",
+    "hereNow": "Aquí YA",
+    "nobodyYet": "Nadie todavía"
   },
   "search": {
     "endOfResults": "Fin de los resultados",

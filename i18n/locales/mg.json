@@ -6013,7 +6013,15 @@
     "startsIn": "Manomboka {{time}}",
     "notStartedYet": "Tsy mbola nanomboka ny fandefasana ilay tosaka",
     "leftStream": "namela ilay tosaka",
-    "duration": "MBA {{duration}}"
+    "duration": "MBA {{duration}}",
+    "whosHere": "An'iza ny",
+    "hereCount": "{{formatted}} eto",
+    "watchingCount": "{{formatted}} tony",
+    "host": "MPAMPIANTRANO",
+    "topTippers": "Top tippers",
+    "mostActive": "Mavitrika indrindra",
+    "hereNow": "Eto",
+    "nobodyYet": "Tsy nisy na dia iray aza."
   },
   "search": {
     "endOfResults": "Faran'ny valiny",

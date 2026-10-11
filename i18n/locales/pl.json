@@ -6040,7 +6040,16 @@
     "upcomingStream": "Nadchodząca transmisja",
     "startsIn": "Rozpoczyna się {{time}}",
     "notStartedYet": "Streamer nie rozpoczął jeszcze transmisji",
-    "leftStream": "opuścił strumień"
+    "leftStream": "opuścił strumień",
+    "whosHere": "Kto tu jest",
+    "hereCount": "{{formatted}} tutaj",
+    "watchingCount": "{{formatted}} ogląda",
+    "startedAgo": "Rozpoczęto {{time}}",
+    "host": "Gospodarz",
+    "topTippers": "Najlepsze napiwki",
+    "mostActive": "Najbardziej aktywny",
+    "hereNow": "Tutaj teraz",
+    "nobodyYet": "Jeszcze nikt"
   },
   "search": {
     "endOfResults": "Koniec wyników",

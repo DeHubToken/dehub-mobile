@@ -6021,7 +6021,16 @@
     "upcomingStream": "Hamuq Stream",
     "startsIn": "Qallarin {{time}}",
     "notStartedYet": "Chay streamer manaraqmi difusión nisqa qallarinchu",
-    "leftStream": "mayumanta lluqsirqa"
+    "leftStream": "mayumanta lluqsirqa",
+    "whosHere": "Pitaq kaypi kachkan",
+    "hereCount": "{{formatted}} kaypi",
+    "watchingCount": "{{formatted}} qhawaspa",
+    "startedAgo": "Qallarirqa {{time}}",
+    "host": "Qurpachaq",
+    "topTippers": "Pata puntakuna",
+    "mostActive": "Aswan activo",
+    "hereNow": "Kaypi kunan",
+    "nobodyYet": "Manaraqmi pipas"
   },
   "search": {
     "endOfResults": "Tarisqakuna tukuy",

@@ -6015,7 +6015,16 @@
     "upcomingStream": "आगामी प्रवाह",
     "startsIn": "सुरु हुन्छ {{time}}",
     "notStartedYet": "स्ट्रिमरले अझै प्रसारण सुरु गरेको छैन",
-    "leftStream": "स्ट्रिम छोड्नुभयो"
+    "leftStream": "स्ट्रिम छोड्नुभयो",
+    "whosHere": "यहाँ को हुनुहुन्छ?",
+    "hereCount": "{{formatted}} यहाँ",
+    "watchingCount": "{{formatted}} हेर्दै",
+    "startedAgo": "{{time}} सुरु भयो",
+    "host": "होस्ट",
+    "topTippers": "शीर्ष टिपरहरू",
+    "mostActive": "सबैभन्दा सक्रिय",
+    "hereNow": "अब यहाँ",
+    "nobodyYet": "अहिलेसम्म कोही पनि छैन"
   },
   "search": {
     "endOfResults": "नतिजाको अन्त्य",

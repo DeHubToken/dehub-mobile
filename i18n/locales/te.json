@@ -6004,7 +6004,16 @@
     "upcomingStream": "రాబోయే స్ట్రీమ్",
     "startsIn": "{{time}} ప్రారంభమవుతుంది",
     "notStartedYet": "స్ట్రీమర్ ఇంకా ప్రసారం ప్రారంభించలేదు",
-    "leftStream": "స్ట్రీమ్ నుండి బయలుదేరారు"
+    "leftStream": "స్ట్రీమ్ నుండి బయలుదేరారు",
+    "whosHere": "ఇక్కడ ఎవరు ఉన్నారు",
+    "hereCount": "{{formatted}} ఇక్కడ",
+    "watchingCount": "{{formatted}} చూడటం",
+    "startedAgo": "{{time}} ప్రారంభించబడింది",
+    "host": "హోస్ట్",
+    "topTippers": "టాప్ టిప్పర్లు",
+    "mostActive": "అత్యంత యాక్టివ్",
+    "hereNow": "ఇక్కడ ఇప్పుడే",
+    "nobodyYet": "ఇంకా ఎవరూ లేరు"
   },
   "search": {
     "endOfResults": "ఫలితాల ముగింపు",

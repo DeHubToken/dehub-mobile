@@ -6008,7 +6008,16 @@
     "upcomingStream": "Predstojeći stream",
     "startsIn": "Počinje {{time}}",
     "notStartedYet": "Streamer još nije počeo s emitiranjem",
-    "leftStream": "napustio/la je stream"
+    "leftStream": "napustio/la je stream",
+    "whosHere": "Tko je sve ovdje",
+    "hereCount": "{{formatted}} ovdje",
+    "watchingCount": "{{formatted}} gleda",
+    "startedAgo": "Započeto {{time}}",
+    "host": "Domaćin",
+    "topTippers": "Davanje najveće napojnice",
+    "mostActive": "Najaktivniji",
+    "hereNow": "Ovdje",
+    "nobodyYet": "Još nitko"
   },
   "search": {
     "endOfResults": "Kraj rezultata",

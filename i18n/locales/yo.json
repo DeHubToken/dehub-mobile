@@ -5990,7 +5990,16 @@
     "upcomingStream": "Sisanwọle ti n bọ",
     "startsIn": "Bẹrẹ {{time}}",
     "notStartedYet": "Olùgbéejáde náà kò tí ì bẹ̀rẹ̀ sí í ṣe àtẹ̀jíṣẹ́.",
-    "leftStream": "fi ṣiṣan silẹ"
+    "leftStream": "fi ṣiṣan silẹ",
+    "whosHere": "Ta ni ó wà níhìn-ín",
+    "hereCount": "{{formatted}} nibi",
+    "watchingCount": "{{formatted}} wíwo",
+    "startedAgo": "Bẹ̀rẹ̀ {{time}}",
+    "host": "Olùbánisọ̀rọ̀",
+    "topTippers": "Top tippers",
+    "mostActive": "Julọ ti nṣiṣe lọwọ",
+    "hereNow": "Níhìn-ín nísinsìnyí",
+    "nobodyYet": "Kò sí ẹnìkan tó tíì"
   },
   "search": {
     "endOfResults": "Òpin àwọn èsì",

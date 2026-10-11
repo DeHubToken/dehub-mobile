@@ -6008,7 +6008,16 @@
     "upcomingStream": "Eelseisev voog",
     "startsIn": "Algab {{time}}",
     "notStartedYet": "Voogedastaja pole veel edastamist alustanud",
-    "leftStream": "lahkus voost"
+    "leftStream": "lahkus voost",
+    "whosHere": "Kes on siin",
+    "hereCount": "{{formatted}} siin",
+    "watchingCount": "{{formatted}} vaatamine",
+    "startedAgo": "Alustatud {{time}}",
+    "host": "Majutaja",
+    "topTippers": "Parimad jootraha andjad",
+    "mostActive": "Kõige aktiivsem",
+    "hereNow": "Siin ja praegu",
+    "nobodyYet": "Mitte keegi veel"
   },
   "search": {
     "endOfResults": "Tulemuste lõpp",

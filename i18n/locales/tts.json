@@ -6007,7 +6007,16 @@
     "upcomingStream": "สตรีมที่กำลังจะมาถึง",
     "startsIn": "เริ่ม {{time}}",
     "notStartedYet": "สตรีมเมอร์ยังไม่ได้เริ่มถ่ายทอดสด",
-    "leftStream": "ออกจากสตรีมแล้ว"
+    "leftStream": "ออกจากสตรีมแล้ว",
+    "whosHere": "ไผอยู่นี่",
+    "hereCount": "{{formatted}} นี่",
+    "watchingCount": "{{formatted}} กำลังเบิ่ง",
+    "startedAgo": "เริ่มแล้ว {{time}}",
+    "host": "โฮสต์",
+    "topTippers": "ผู้ให้ทิปสูงสุด",
+    "mostActive": "ผู้ที่เคลื่อนไหวมากที่สุด",
+    "hereNow": "อยู่ตอนนี้",
+    "nobodyYet": "ยังบ่มีไผ"
   },
   "search": {
     "endOfResults": "หมดผลกาน໊ก้นหาแล้ว",

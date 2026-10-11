@@ -6008,7 +6008,16 @@
     "upcomingStream": "Tuleva suoratoisto",
     "startsIn": "Alkaa {{time}}",
     "notStartedYet": "Suoratoistaja ei ole vielä aloittanut lähetystä",
-    "leftStream": "lähti virrasta"
+    "leftStream": "lähti virrasta",
+    "whosHere": "Kuka on täällä",
+    "hereCount": "{{formatted}} täältä",
+    "watchingCount": "{{formatted}} katselu",
+    "startedAgo": "Alkoi {{time}}",
+    "host": "Majoittaja",
+    "topTippers": "Parhaat tippaajat",
+    "mostActive": "Aktiivisin",
+    "hereNow": "Tässä nyt",
+    "nobodyYet": "Ei vielä ketään"
   },
   "search": {
     "endOfResults": "Tulosten loppu",

@@ -6000,7 +6000,13 @@
     "duration": "हल्क होगन {{duration}}",
     "endedAgo": "हल्क होगन {{time}}",
     "startsIn": "केडीई {{time}} समीक्षा",
-    "openProfileOf": "{{name}} के प्रोफाइल खोलऽ"
+    "openProfileOf": "{{name}} के प्रोफाइल खोलऽ",
+    "whosHere": "आउ, आउ हुआँ कउन हइ?",
+    "host": "मेहमान हई",
+    "topTippers": "ऊपरी उच्चारण के सदस्यता से",
+    "mostActive": "जितना अधिक करोगे, उतना ही सक्रिय",
+    "hereNow": "आउ अब",
+    "nobodyYet": "आज तलक होलइ नञ"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

@@ -5976,7 +5976,16 @@
     "upcomingStream": "Weşana Pêşerojê",
     "startsIn": "Dest pê dike {{time}}",
     "notStartedYet": "Streamer hîn dest bi weşanê nekiriye",
-    "leftStream": "ji çem derket"
+    "leftStream": "ji çem derket",
+    "whosHere": "Kî li vir e?",
+    "hereCount": "{{formatted}} li vir",
+    "watchingCount": "{{formatted}} temaşekirin",
+    "startedAgo": "Destpêk {{time}}",
+    "host": "Mazûban",
+    "topTippers": "Serişteyên herî baş",
+    "mostActive": "Herî çalak",
+    "hereNow": "Niha li vir",
+    "nobodyYet": "Hîn kes tune"
   },
   "search": {
     "endOfResults": "Dawiya encaman",

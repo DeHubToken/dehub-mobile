@@ -6012,7 +6012,16 @@
     "upcomingStream": "Kommende stream",
     "startsIn": "Starter {{time}}",
     "notStartedYet": "Streameren er ikke begyndt at sende endnu",
-    "leftStream": "forlod strømmen"
+    "leftStream": "forlod strømmen",
+    "whosHere": "Hvem er her",
+    "hereCount": "{{formatted}} her",
+    "watchingCount": "{{formatted}} ser",
+    "startedAgo": "Startede {{time}}",
+    "host": "Vært",
+    "topTippers": "Toptippere",
+    "mostActive": "Mest aktive",
+    "hereNow": "Her nu",
+    "nobodyYet": "Ingen endnu"
   },
   "search": {
     "endOfResults": "Slut på resultater",

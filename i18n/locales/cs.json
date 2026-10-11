@@ -6011,7 +6011,16 @@
     "upcomingStream": "Nadcházející stream",
     "startsIn": "Začíná {{time}}",
     "notStartedYet": "Streamer ještě nezačal vysílat",
-    "leftStream": "opustil stream"
+    "leftStream": "opustil stream",
+    "whosHere": "Kdo je tady",
+    "hereCount": "{{formatted}} zde",
+    "watchingCount": "Sledování: {{formatted}}",
+    "startedAgo": "Zahájeno {{time}}",
+    "host": "Hostitel",
+    "topTippers": "Špičkové sklápěče",
+    "mostActive": "Nejaktivnější",
+    "hereNow": "Tady a teď",
+    "nobodyYet": "Zatím nikdo"
   },
   "search": {
     "endOfResults": "Konec výsledků",

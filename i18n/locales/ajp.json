@@ -6000,7 +6000,16 @@
     "upcomingStream": "البث القادم",
     "startsIn": "يبدأ {{time}}",
     "notStartedYet": "لم يبدأ المُنشئ البث بعد",
-    "leftStream": "غادر البث"
+    "leftStream": "غادر البث",
+    "whosHere": "مين هون",
+    "hereCount": "{{formatted}} هون",
+    "watchingCount": "{{formatted}} عم يتفرج",
+    "startedAgo": "بلّش {{time}}",
+    "host": "المضيف",
+    "topTippers": "أعلى المتبرعين",
+    "mostActive": "الأكثر نشاط",
+    "hereNow": "هلق هون",
+    "nobodyYet": "ما في حدا بعد"
   },
   "search": {
     "endOfResults": "نهاية النتائج",

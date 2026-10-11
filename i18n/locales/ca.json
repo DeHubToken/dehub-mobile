@@ -6008,7 +6008,16 @@
     "upcomingStream": "Proper flux",
     "startsIn": "Comença a les {{time}}",
     "notStartedYet": "El streamer encara no ha començat a emetre",
-    "leftStream": "ha deixat el torrent"
+    "leftStream": "ha deixat el torrent",
+    "whosHere": "Qui hi ha aquí",
+    "hereCount": "{{formatted}} aquí",
+    "watchingCount": "{{formatted}} veient",
+    "startedAgo": "S'ha iniciat {{time}}",
+    "host": "Amfitrió",
+    "topTippers": "Top tippers",
+    "mostActive": "Més actius",
+    "hereNow": "Aquí i ara",
+    "nobodyYet": "Encara no hi ha ningú"
   },
   "search": {
     "endOfResults": "Fi dels resultats",

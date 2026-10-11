@@ -5968,7 +5968,15 @@
     "startsIn": "ተጀሚሩ {{time}}",
     "notStartedYet": "እቲ ስርሒት ገና ኣይተጀመረን ።",
     "leftStream": "ካብ ዥረት ወጺእካ",
-    "sentAmount": "{{amount}} እተላእከ"
+    "sentAmount": "{{amount}} እተላእከ",
+    "whosHere": "መን ኣሎ ኣብዚ",
+    "hereCount": "{{formatted}} ኣብዚ",
+    "watchingCount": "{{formatted}} ምርኣይ",
+    "startedAgo": "ተጀሚሩ {{time}}",
+    "host": "ኣስተናጋጅ",
+    "mostActive": "ዝያዳ ንጡፋት",
+    "hereNow": "ኣብዚ ሕጂ እዋን",
+    "nobodyYet": "ክሳብ ሕጂ ሓደ እኳ ኣይረኸበን ።"
   },
   "search": {
     "endOfResults": "መወዳእታ ውጽኢታት",

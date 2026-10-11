@@ -5976,7 +5976,16 @@
     "upcomingStream": "Предстојећи стрим",
     "startsIn": "Почиње {{time}}",
     "notStartedYet": "Стример још није почео са емитовањем",
-    "leftStream": "напустио/ла ток"
+    "leftStream": "напустио/ла ток",
+    "whosHere": "Ко је све овде",
+    "hereCount": "{{formatted}} овде",
+    "watchingCount": "{{formatted}} гледа",
+    "startedAgo": "Започето {{time}}",
+    "host": "Домаћин",
+    "topTippers": "Највиши кипери",
+    "mostActive": "Најактивнији",
+    "hereNow": "Ево сада",
+    "nobodyYet": "Још нико"
   },
   "search": {
     "endOfResults": "Крај резултата",

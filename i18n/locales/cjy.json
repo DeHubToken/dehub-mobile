@@ -5993,7 +5993,16 @@
     "upcomingStream": "即将开始的直播",
     "startsIn": "开始于 {{time}}",
     "notStartedYet": "主播尚未开始直播",
-    "leftStream": "离开了直播"
+    "leftStream": "离开了直播",
+    "whosHere": "谁在这里",
+    "hereCount": "{{formatted}} 在这里",
+    "watchingCount": "{{formatted}} 正在观看",
+    "startedAgo": "已开始 {{time}}",
+    "host": "主持人",
+    "topTippers": "最高打赏者",
+    "mostActive": "最活跃",
+    "hereNow": "现在在这里",
+    "nobodyYet": "还没有人"
   },
   "search": {
     "endOfResults": "结果到底了",

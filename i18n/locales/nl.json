@@ -6302,7 +6302,16 @@
     "upcomingStream": "Aankomende stream",
     "startsIn": "Begint op {{time}}",
     "notStartedYet": "De streamer is nog niet begonnen met uitzenden",
-    "leftStream": "heeft de stream verlaten"
+    "leftStream": "heeft de stream verlaten",
+    "whosHere": "Wie is hier",
+    "hereCount": "{{formatted}} hier",
+    "watchingCount": "{{formatted}} kijken",
+    "startedAgo": "Gestart {{time}}",
+    "host": "Host",
+    "topTippers": "Topkippers",
+    "mostActive": "Meest actief",
+    "hereNow": "Nu hier",
+    "nobodyYet": "Nog niemand"
   },
   "search": {
     "endOfResults": "Einde van de resultaten",

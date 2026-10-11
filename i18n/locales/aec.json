@@ -6003,7 +6003,16 @@
     "upcomingStream": "البث الجاي",
     "startsIn": "يبدأ {{time}}",
     "notStartedYet": "صاحب البث لسه مبدأش يبث",
-    "leftStream": "غَادَرَ البَثّ"
+    "leftStream": "غَادَرَ البَثّ",
+    "whosHere": "مين هنا",
+    "hereCount": "{{formatted}} هنا",
+    "watchingCount": "{{formatted}} بيتفرج",
+    "startedAgo": "بدأ {{time}}",
+    "host": "المضيف",
+    "topTippers": "أعلى المتبرعين",
+    "mostActive": "الأكثر نشاطًا",
+    "hereNow": "هنا الآن",
+    "nobodyYet": "مافيش حد لسه"
   },
   "search": {
     "endOfResults": "نهاية النتائج",
