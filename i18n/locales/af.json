@@ -7558,7 +7558,11 @@
     "referenceProductName": "Plaas jou produk in 'n klip",
     "referenceProductHint": "Vervang die uitgeligte produk en behou die oorspronklike toneel.",
     "referenceComposeName": "Kombineer verwysingsbeelde",
-    "referenceComposeHint": "Bring karakters, voorwerpe en instellings van verskeie beelde in een komposisie."
+    "referenceComposeHint": "Bring karakters, voorwerpe en instellings van verskeie beelde in een komposisie.",
+    "audioTaskSfxLabel": "Klank effek",
+    "audioTaskSfxPlaceholder": "Beskryf die geluid, byvoorbeeld \"swaar deur slaan in 'n klipsaal\"",
+    "auto": "Outo",
+    "loop": "Lus"
   },
   "fractions": {
     "title": "Fraksies",

@@ -64,7 +64,7 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
 
 export function creatorSettingsForEditorDraft(value: unknown): { settings: CreatorStudioSettings; draft: GenerationDraft } | null {
   const draft = generationDraft(value);
-  if (!draft) return null;
+  if (!draft || draft.kind === 'sfx') return null;
   const mode: CreatorMode = draft.kind === 'voice' ? 'audio' : draft.kind;
   return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
     ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),

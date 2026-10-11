@@ -7368,7 +7368,11 @@
     "referenceProductName": "Стави свој производ у клип",
     "referenceProductHint": "Замени истакнути производ и чувај оригиналну сцену.",
     "referenceComposeName": "Комбинуј референцне слике",
-    "referenceComposeHint": "Унеси ликове, објекте и поднесе из више слика у једну композицију."
+    "referenceComposeHint": "Унеси ликове, објекте и поднесе из више слика у једну композицију.",
+    "audioTaskSfxLabel": "Звучни ефекат",
+    "audioTaskSfxPlaceholder": "Опишите звук, на пример „лупање тешким вратима у каменој хали“",
+    "auto": "Аутоматски",
+    "loop": "Петља"
   },
   "fractions": {
     "title": "Удели",

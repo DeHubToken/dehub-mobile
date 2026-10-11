@@ -7460,7 +7460,11 @@
     "referenceProductName": "วางผลิตภัณฑ์ของคุณในคลิป",
     "referenceProductHint": "แทนที่ผลิตภัณฑ์ที่แสดงและคงฉากเดิมไว้",
     "referenceComposeName": "รวมภาพอ้างอิง",
-    "referenceComposeHint": "นำตัวละคร วัตถุ และฉากจากหลายภาพมารวมเป็นหนึ่งองค์ประกอบเดียว"
+    "referenceComposeHint": "นำตัวละคร วัตถุ และฉากจากหลายภาพมารวมเป็นหนึ่งองค์ประกอบเดียว",
+    "audioTaskSfxLabel": "เอฟเฟกต์เสียง",
+    "audioTaskSfxPlaceholder": "อธิบายเสียงเช่น \"ประตูหนักกระแทกในห้องโถงหิน\"",
+    "auto": "อัตโนมัติ",
+    "loop": "ลูป"
   },
   "fractions": {
     "title": "เศษส่วน",

@@ -7433,7 +7433,11 @@
     "referenceProductName": "Postavi svoj proizvod u klip",
     "referenceProductHint": "Zamijeni istaknuti proizvod i očuvaj originalnu scenu",
     "referenceComposeName": "Kombiniraj referentne slike",
-    "referenceComposeHint": "Uspostavi likove, predmete i postavke iz više slika u jednu kompoziciju"
+    "referenceComposeHint": "Uspostavi likove, predmete i postavke iz više slika u jednu kompoziciju",
+    "audioTaskSfxLabel": "Zvučni efekt",
+    "audioTaskSfxPlaceholder": "Opišite zvuk, na primjer \"teško lupanje vratima u kamenoj dvorani\"",
+    "auto": "Automatski",
+    "loop": "Petlja"
   },
   "fractions": {
     "title": "Frakcije",

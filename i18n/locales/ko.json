@@ -7543,7 +7543,11 @@
     "referenceProductName": "클립에 제품을 배치하세요",
     "referenceProductHint": "원본 장면을 유지하면서 주요 제품만 대체하세요",
     "referenceComposeName": "참조 이미지를 결합하세요",
-    "referenceComposeHint": "여러 이미지에서 캐릭터, 객체 및 설정들을 하나의 구성으로 통합하세요"
+    "referenceComposeHint": "여러 이미지에서 캐릭터, 객체 및 설정들을 하나의 구성으로 통합하세요",
+    "audioTaskSfxLabel": "효과음",
+    "audioTaskSfxPlaceholder": "소리를 설명하십시오 (예: \"무거운 문이 돌 홀에서 부딪히는 소리\").",
+    "auto": "자동",
+    "loop": "루프"
   },
   "fractions": {
     "title": "프랙션",

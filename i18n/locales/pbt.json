@@ -7395,7 +7395,11 @@
     "referenceProductName": "خپل محصول په کلیپ کې ځای وکړئ",
     "referenceProductHint": "د ځای پر ځای شوي محصول راوړئ او اصلي صحنه پاتې کړئ",
     "referenceComposeName": "مرجع عکسونه یوځای کړئ",
-    "referenceComposeHint": "څلور عکسونو څخه د شخصونو، شیانو او ځایونو راوړل او یو ځای کېدل"
+    "referenceComposeHint": "څلور عکسونو څخه د شخصونو، شیانو او ځایونو راوړل او یو ځای کېدل",
+    "audioTaskSfxLabel": "د غږ اغیز",
+    "audioTaskSfxPlaceholder": "د غږ تشریح کړئ، د بیلګې په توګه \"د ډبرو په تالار کې د درنو دروازو مینځل\"",
+    "auto": "د موټرونو",
+    "loop": "د لوپ په اړه"
   },
   "fractions": {
     "title": "ونډې",

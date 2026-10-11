@@ -7432,7 +7432,11 @@
     "referenceProductName": "Iekļau savu produktu klipā",
     "referenceProductHint": "Mainī izceļoto produktu un saglabāj oriģinālo apstākļu",
     "referenceComposeName": "Apvieno referenču attēlus",
-    "referenceComposeHint": "Apvieno tēlus, objektus un apstākļus no vairākiem attēliem vienā kompozīcijā"
+    "referenceComposeHint": "Apvieno tēlus, objektus un apstākļus no vairākiem attēliem vienā kompozīcijā",
+    "audioTaskSfxLabel": "Skaņas efekts",
+    "audioTaskSfxPlaceholder": "Aprakstiet skaņu, piemēram, \"smaga durvju aizciršana akmens zālē\"",
+    "auto": "Automātiski",
+    "loop": "Cilpa"
   },
   "fractions": {
     "title": "Frakcijas",

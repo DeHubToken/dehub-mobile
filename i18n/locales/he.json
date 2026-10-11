@@ -7420,7 +7420,11 @@
     "referenceProductName": "השתל את המוצר בקליפ",
     "referenceProductHint": "החלף את המוצר המוצג תוך שמירה על הסצנה המקורית",
     "referenceComposeName": "איחד תמונות התייחסות",
-    "referenceComposeHint": "הביא דמויות, פריטים ואתרים ממספר תמונות לתוך תצוגה אחת"
+    "referenceComposeHint": "הביא דמויות, פריטים ואתרים ממספר תמונות לתוך תצוגה אחת",
+    "audioTaskSfxLabel": "אפקט קול II",
+    "audioTaskSfxPlaceholder": "תאר את הצליל, למשל \"דלת כבדה נטרקת באולם אבן\"",
+    "auto": "אוטומטי",
+    "loop": "לופ"
   },
   "fractions": {
     "title": "חלקים",

@@ -8212,7 +8212,11 @@
       "none": "Geen textuur"
     },
     "studioTitle": "Creator Studio",
-    "studioWelcome": "Kies een medium en model, voeg een prompt toe of selecteer een voorinstelling, en maak vervolgens. Bekijk de prijs voordat u genereert. Uw resultaten staan hier."
+    "studioWelcome": "Kies een medium en model, voeg een prompt toe of selecteer een voorinstelling, en maak vervolgens. Bekijk de prijs voordat u genereert. Uw resultaten staan hier.",
+    "audioTaskSfxLabel": "Geluidseffect",
+    "audioTaskSfxPlaceholder": "Beschrijf het geluid, bijvoorbeeld \"zware deur dichtslaan in een stenen hal\"",
+    "auto": "Automatisch",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Fracties",

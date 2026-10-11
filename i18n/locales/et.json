@@ -7432,7 +7432,11 @@
     "referenceProductName": "Paiguta oma toode klippi sisse",
     "referenceProductHint": "Asenda esindatud toodet säilitades algse vaate",
     "referenceComposeName": "Ühendage viitepildisid",
-    "referenceComposeHint": "Tuuge karakterid, objektid ja vaated mitmest pildist ühte koostisse"
+    "referenceComposeHint": "Tuuge karakterid, objektid ja vaated mitmest pildist ühte koostisse",
+    "audioTaskSfxLabel": "Heliefekt",
+    "audioTaskSfxPlaceholder": "Kirjeldage heli, näiteks \"kivisaalis lööb raske uks kinni\"",
+    "auto": "Automaatne",
+    "loop": "Silmus"
   },
   "fractions": {
     "title": "Fraktsioonid",

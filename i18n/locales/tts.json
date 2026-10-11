@@ -7425,7 +7425,11 @@
     "referenceProductName": "Place your product ในคลิป",
     "referenceProductHint": "แทนที่ผลิตภัณฑ์หลักและรักษาสถานการณ์เดิม",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "นำตัวละคร, วัตถุ และสถานการณ์จากภาพหลายภาพมารวมเป็นภาพเดียว"
+    "referenceComposeHint": "นำตัวละคร, วัตถุ และสถานการณ์จากภาพหลายภาพมารวมเป็นภาพเดียว",
+    "audioTaskSfxLabel": "Bob: [หัวเราะ] ไปก่อนหน้าเธอ",
+    "audioTaskSfxPlaceholder": "อธิบายเสียงและได้เสียงนั้น",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "ส่วนแบ่ง",

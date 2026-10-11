@@ -7456,7 +7456,11 @@
     "referenceProductName": "在剪辑中放置你的产品",
     "referenceProductHint": "替换特色产品并保留原始场景",
     "referenceComposeName": "合并参考图片",
-    "referenceComposeHint": "将来自多张图片的角色、物体和设置合并到一个组合中"
+    "referenceComposeHint": "将来自多张图片的角色、物体和设置合并到一个组合中",
+    "audioTaskSfxLabel": "声音效果",
+    "audioTaskSfxPlaceholder": "描述这个声音，例如“在石头大厅里重重的门砰然关闭”",
+    "auto": "自动",
+    "loop": "循环"
   },
   "fractions": {
     "title": "碎片",

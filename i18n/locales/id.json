@@ -7510,7 +7510,11 @@
     "referenceProductName": "Tempatkan produk Anda dalam klip",
     "referenceProductHint": "Gantikan produk utama sambil mempertahankan latar asli.",
     "referenceComposeName": "Gabungkan gambar referensi",
-    "referenceComposeHint": "Bawa karakter, objek, dan pengaturan dari beberapa gambar ke dalam satu komposisi."
+    "referenceComposeHint": "Bawa karakter, objek, dan pengaturan dari beberapa gambar ke dalam satu komposisi.",
+    "audioTaskSfxLabel": "Efek suara",
+    "audioTaskSfxPlaceholder": "Jelaskan suaranya, misalnya “pintu berat dibanting di aula batu”",
+    "auto": "Otomatis",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Fraksi",

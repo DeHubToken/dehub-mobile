@@ -7451,7 +7451,11 @@
     "referenceProductName": "حط المنتوج ديالك فالكليب",
     "referenceProductHint": "عوض المنتوج المبرز وحافظ على المشهد الأصلي.",
     "referenceComposeName": "جمع الصور المرجعية",
-    "referenceComposeHint": "جلب الشخصيات، الأشياء والإعدادات من صور متعددة فتركيب واحد."
+    "referenceComposeHint": "جلب الشخصيات، الأشياء والإعدادات من صور متعددة فتركيب واحد.",
+    "audioTaskSfxLabel": "المؤثرات الصوتية",
+    "audioTaskSfxPlaceholder": "صف الصوت، على سبيل المثال \"باب ثقيل يغلق في قاعة حجرية\"",
+    "auto": "تلقائي",
+    "loop": "حلقة"
   },
   "fractions": {
     "title": "الأجزاء",

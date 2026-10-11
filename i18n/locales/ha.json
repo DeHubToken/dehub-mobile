@@ -7408,7 +7408,11 @@
     "referenceProductName": "Sanya samfurinka a cikin ɗan bidiyo",
     "referenceProductHint": "Maye gurbin samfurin da aka nuna kuma a kiyaye asalin yanayi.",
     "referenceComposeName": "Haɗa hotunan tunani",
-    "referenceComposeHint": "Kawo halaye, abubuwa da yanayi daga hotuna da yawa zuwa haɗin guda ɗaya."
+    "referenceComposeHint": "Kawo halaye, abubuwa da yanayi daga hotuna da yawa zuwa haɗin guda ɗaya.",
+    "audioTaskSfxLabel": "Sauti sakamako",
+    "audioTaskSfxPlaceholder": "Bayyana sauti, alal misali \"kofa mai nauyi slamming a cikin zauren dutse\"",
+    "auto": "Auto",
+    "loop": "Madauki"
   },
   "fractions": {
     "title": "Rabe-rabe",

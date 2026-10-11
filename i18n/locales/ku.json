@@ -7254,7 +7254,11 @@
     "referenceProductName": "بەرهەمەکەت لە کلیپێک دانە",
     "referenceProductHint": "بەرهەمە دیاریکراوەکە گۆڕە و سینەی سەرەتایی پاراستە.",
     "referenceComposeName": "وێنەی ئاماژەیی کۆبکە",
-    "referenceComposeHint": "کردار، تیشک و ڕێکخستن لە چەند وێنەیەک بێنە بۆ یەک کۆمپۆزیشن."
+    "referenceComposeHint": "کردار، تیشک و ڕێکخستن لە چەند وێنەیەک بێنە بۆ یەک کۆمپۆزیشن.",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "Describe the sound, for example \"heavy door slamming in a stone hall\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Kêmasî",

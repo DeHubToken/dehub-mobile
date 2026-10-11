@@ -7410,7 +7410,11 @@
     "referenceProductName": "Gbe ọja rẹ sinu ipin kan",
     "referenceProductHint": "Rọpo ọja ti a ṣe akiyesi ati jẹ adehun ọna ati ọna atilẹba.",
     "referenceComposeName": "Dapo aworan itọka",
-    "referenceComposeHint": "Mu awọn ohun elo, awọn ohun elo ati awọn ọna lati aworan pupọ sinu iṣelọpọ kan."
+    "referenceComposeHint": "Mu awọn ohun elo, awọn ohun elo ati awọn ọna lati aworan pupọ sinu iṣelọpọ kan.",
+    "audioTaskSfxLabel": "Ipa ohun",
+    "audioTaskSfxPlaceholder": "Ṣe apejuwe ohun naa, fun apẹẹrẹ \"ẹnu-ọna ti o wuwo ti n lu ni ile okuta kan\"",
+    "auto": "Ọkọ̀ ayọ́kẹ́lẹ́",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Ìpín",

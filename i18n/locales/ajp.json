@@ -7401,7 +7401,11 @@
     "referenceProductName": "حط منتجك بكليب",
     "referenceProductHint": "استبدل المنتج المعروض وحافظ على المشهد الأصلي.",
     "referenceComposeName": "دمج الصور المرجعية",
-    "referenceComposeHint": "اجمع شخصيات، أشياء وإعدادات من صور متعددة بتكوين واحد."
+    "referenceComposeHint": "اجمع شخصيات، أشياء وإعدادات من صور متعددة بتكوين واحد.",
+    "audioTaskSfxLabel": "صوت مؤثر",
+    "audioTaskSfxPlaceholder": "وصف الصوت، مثل \"باب ثقيل يغلق في صالة حجرية\"",
+    "auto": "تحديد تلقائي",
+    "loop": "دورة"
   },
   "fractions": {
     "title": "الأجزاء",

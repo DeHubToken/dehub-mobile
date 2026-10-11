@@ -7385,7 +7385,11 @@
     "referenceProductName": "ምርትዎን በክሊፕ ይተክት።",
     "referenceProductHint": "የተለዋዋጭ ምርት ይተክት እና የተወሰነ ተወላጅ ይተክት።",
     "referenceComposeName": "ምርጫ ምስል ይተክት።",
-    "referenceComposeHint": "ተለዋዋጭ ስም፣ ንግድ እና ተቀማጭ አብ ብዙ ምስል ይተክት።"
+    "referenceComposeHint": "ተለዋዋጭ ስም፣ ንግድ እና ተቀማጭ አብ ብዙ ምስል ይተክት።",
+    "audioTaskSfxLabel": "ድምጺ ዘለዎ ጽልዋ",
+    "audioTaskSfxPlaceholder": "ንኣብነት ፡ \"ኣብ ኣዳራሽ እምኒ ከቢድ ኣፍ ደገ ምጥፋእ\" ዚብል ድምጺ ግለጽ ።",
+    "auto": "ኣውቶሞቢል",
+    "loop": "ሉፕ"
   },
   "fractions": {
     "title": "ክፍልታት",

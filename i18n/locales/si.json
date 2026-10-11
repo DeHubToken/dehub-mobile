@@ -7428,7 +7428,11 @@
     "referenceProductHint": "විශේෂිත නිෂ්පාදිතය ප් ‍ රතිස්ථාපනය කර මුල් දර්ශනය ආරක්ෂා කරන්න.",
     "referenceComposeName": "ආධාරක රූප එකතු කරන්න",
     "referenceComposeHint": "බහුවිධ රූපවල අක්ෂර, වස්තූන් සහ සැකසුම් එක් සංයුතියකට ගෙන එන්න.",
-    "referenceInsert": "විමසුමට {{tag}} ඇතුළත් කරන්න"
+    "referenceInsert": "විමසුමට {{tag}} ඇතුළත් කරන්න",
+    "audioTaskSfxLabel": "ශබ්ද ආචරණය",
+    "audioTaskSfxPlaceholder": "නිදසුනක් වශයෙන්, \"ගඩොල් ශාලාවක බර දොරට තට්ටු කිරීම\" වැනි ශබ්දයක් විස්තර කරන්න.",
+    "auto": "ස්වයං",
+    "loop": "ලූප්"
   },
   "fractions": {
     "title": "කොටස්",

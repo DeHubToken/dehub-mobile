@@ -7550,7 +7550,11 @@
     "referenceProductName": "Posiziona il tuo prodotto in un clip",
     "referenceProductHint": "Sostituisci il prodotto principale e preserva la scena originale",
     "referenceComposeName": "Combina immagini di riferimento",
-    "referenceComposeHint": "Porta personaggi, oggetti e ambientazioni da multiple immagini in una singola composizione"
+    "referenceComposeHint": "Porta personaggi, oggetti e ambientazioni da multiple immagini in una singola composizione",
+    "audioTaskSfxLabel": "Effetto sonoro",
+    "audioTaskSfxPlaceholder": "Descrivi il suono, ad esempio \"pesante porta che sbatte in una sala di pietra\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Frazioni",

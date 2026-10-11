@@ -7379,7 +7379,11 @@
     "referenceProductName": "Product jɔ clip la sɛbɛn",
     "referenceProductHint": "Featured product gara sɛbɛn ani original scene gara sɛbɛn",
     "referenceComposeName": "Reference fɛn jɔ kɔnɔ sɛbɛn",
-    "referenceComposeHint": "Characters, objects ani settings jɔ fɛn naani la kɔnɔ sɛbɛn composition kelen la"
+    "referenceComposeHint": "Characters, objects ani settings jɔ fɛn naani la kɔnɔ sɛbɛn composition kelen la",
+    "audioTaskSfxLabel": "Fanga min be mankan na",
+    "audioTaskSfxPlaceholder": "A ɲɛfɔ mankan min be bɔ, i n'a fɔ \"ka daa sɔgɔ ni kabakuru ye\"",
+    "auto": "Motɛri ka batow",
+    "loop": "O ye n' ka miiriya ye."
   },
   "fractions": {
     "title": "Tilaw",
