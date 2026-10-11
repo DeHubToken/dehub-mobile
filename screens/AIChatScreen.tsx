@@ -117,7 +117,7 @@ import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAsse
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, creatorAudioOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -881,7 +881,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       category: AiToolCategory,
       prompt: string,
       history: AIChatMessage[],
-      extras?: { sourceImage?: string; lyrics?: string; txHash?: string },
+      extras?: { sourceImage?: string; lyrics?: string; tags?: string; txHash?: string },
     ) => {
       const toolModel = AI_TOOL_MODELS[toolId];
       const finishDraft = pendingDraftCompletion.current;
@@ -895,6 +895,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             prompt,
             ...(category === 'tts' ? { text: prompt } : {}),
             ...(extras?.lyrics ? { lyrics: extras.lyrics } : {}),
+            ...(extras?.tags ? { tags: extras.tags } : {}),
             ...(extras?.sourceImage ? { image_url: extras.sourceImage } : {}),
             ...(extras?.txHash ? { txHash: extras.txHash } : {}),
           },
@@ -1404,6 +1405,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     doRunTool(selectedToolId, toolCategory, pendingPrompt, historyForGeneration(), {
       sourceImage: pendingSourceImage,
       lyrics: pendingToolLyrics,
+      ...creatorAudioOptions(pendingStudio, pendingPrompt, pendingToolLyrics),
       txHash,
     });
     setPendingSourceImage(undefined);
@@ -1414,6 +1416,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     pendingPrompt,
     pendingSourceImage,
     pendingToolLyrics,
+    pendingStudio,
     doRunTool,
     historyForGeneration,
   ]);
