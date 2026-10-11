@@ -121,7 +121,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
       <View onLayout={(event) => { headerHeight.value = event.nativeEvent.layout.height; }}><PinnedCommunities
         walletAddress={address || ""}
         isOwnProfile
-        renderHeader={(community) => <ProfileHeader featuredCommunity={community} onIdentityBottom={collapse.onIdentityBottom} />}
+        renderHeader={(community) => <ProfileHeader featuredCommunity={community} onIdentityBottom={collapse.onIdentityBottom} onActionsBottom={collapse.onActionsBottom} />}
       /></View>
       <ProfileTabBar
         items={tabItems}

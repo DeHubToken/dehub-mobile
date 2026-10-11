@@ -238,6 +238,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           renderHeader={(community) => <UserProfileHeader
           featuredCommunity={community}
           onIdentityBottom={collapse?.onIdentityBottom}
+          onActionsBottom={collapse?.onActionsBottom}
           avatarUrl={avatarUrl}
           coverUrl={coverUrl}
           displayName={profileData.displayName}
@@ -311,6 +312,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     );
   }, [
     collapse?.onIdentityBottom,
+    collapse?.onActionsBottom,
     profileData,
     avatarUrl,
     coverUrl,

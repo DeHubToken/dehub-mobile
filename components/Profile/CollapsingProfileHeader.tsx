@@ -12,6 +12,7 @@ export interface CollapsingProfileHeaderProps {
   scrollY: SharedValue<number>;
   tabsPinned: SharedValue<boolean>;
   identityBottom: SharedValue<number>;
+  actionsBottom: SharedValue<number>;
   name?: string;
   handle?: string;
   cover?: ImageSourcePropType;
@@ -27,21 +28,21 @@ export interface CollapsingProfileHeaderProps {
   onOpenUnfollow?: () => void;
 }
 
-export default function CollapsingProfileHeader({ tabsPinned, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
+export default function CollapsingProfileHeader({ scrollY, actionsBottom, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
   const { t } = useTranslation();
   const { theme, colors } = useAppTheme();
   const solidTheme = theme === 'system' || theme === 'minimal' || theme === 'light';
   const [collapsed, setCollapsed] = useState(false);
   useAnimatedReaction(
-    () => tabsPinned.value,
+    () => scrollY.value >= actionsBottom.value,
     (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
   );
   const identity = useAnimatedStyle(() => ({
-    opacity: tabsPinned.value ? 1 : 0,
+    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
   }));
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
-    opacity: tabsPinned.value ? 1 : 0,
+    opacity: scrollY.value >= actionsBottom.value ? 1 : 0,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
 

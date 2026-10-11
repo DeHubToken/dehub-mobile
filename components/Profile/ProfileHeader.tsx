@@ -67,8 +67,8 @@ const MINIMAL_OUTLINE_BUTTON = {
   backgroundColor: "transparent",
 } as const;
 
-const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommunity?: Community | null; onIdentityBottom?: (bottom: number) => void }) => {
-  const { profileRef, identityRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom);
+const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }: { featuredCommunity?: Community | null; onIdentityBottom?: (bottom: number) => void; onActionsBottom?: (bottom: number) => void }) => {
+  const { profileRef, identityRef, actionsRef, measureIdentity } = useProfileIdentityLayout(onIdentityBottom, onActionsBottom);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -356,7 +356,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
           </View>
 
           {isMinimal ? (
-            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
+            <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
                 accessibilityLabel={t("settings.editProfile")}
@@ -378,7 +378,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom }: { featuredCommun
               </TouchableOpacity>
             </View>
           ) : (
-          <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
+          <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
             <LiquidGlass className="rounded-xl" intensity={40} noBlur>
               <TouchableOpacity
                 onPress={() => navigation.navigate(ScreenNames.EditProfile)}
