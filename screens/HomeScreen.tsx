@@ -23,7 +23,7 @@ import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid
 import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import CinematicMusic from "../components/Music/CinematicMusic";
 import CinematicLive from "../components/Home/CinematicLive";
-import { useCinematicPhone } from "../hooks/useCinematicPhone";
+import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
@@ -156,7 +156,7 @@ export default function HomeScreen() {
   const imageFeedToken = useRef(0);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-  const { width: pageWidth } = useWindowDimensions();
+  const { width: pageWidth, height: pageHeight } = useWindowDimensions();
   const isFocused = useIsFocused();
   const { skin, theme, colors } = useAppTheme();
   const { t } = useTranslation();
@@ -261,7 +261,9 @@ export default function HomeScreen() {
   } = useCollapsibleHeader();
   // Every theme pulls the feed down itself (not the native spinner), so the
   // pill can glow with the pull as the immersive capsule does.
-  const homePull = useHomePullRefresh(cinematicPhone && isFocused && !islandMenuOpen && !filterPanelVisible && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
+  // Any phone, any theme: useCinematicPhone is Immersive-only.
+  const phone = Math.min(pageWidth, pageHeight) <= CINEMATIC_PHONE_MAX_WIDTH;
+  const homePull = useHomePullRefresh(phone && isFocused && !islandMenuOpen && !filterPanelVisible && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
   const pullDistance = homePull.motion.distance;
 
   // Sync header translateY to the bottom tab bar context
