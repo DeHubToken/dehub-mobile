@@ -3129,6 +3129,19 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "followerInvites": {
+      "title": "Invite followers",
+      "detail": "Choose up to 50 followers per batch. Paid or closed DMs are skipped. Check the chat for unconfirmed sends before trying again.",
+      "selectAll": "Select this page",
+      "clear": "Clear",
+      "previous": "Previous",
+      "next": "Next",
+      "empty": "No followers on this page.",
+      "send": "Send invitations ({{count}})",
+      "sending": "Sending invitations…",
+      "summary": "Sent: {{sent}} · Skipped: {{skipped}} · Check chat: {{review}} · Failed: {{failed}}",
+      "error": "Could not send invitations. Check your connection and sign-in, then try again."
+    },
     "existingPost": {
       "add": "Add existing post",
       "hint": "Keep the original post, likes and views.",
