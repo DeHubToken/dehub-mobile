@@ -11,7 +11,7 @@ it('loads a committed language source when the CDN has not published its version
   const fetchSource = jest.fn(async (url: string) => url.includes('raw.githubusercontent.com')
     ? { ok: true, json: async () => ({ common: { sourceProbe: 'Bonjour' } }) }
     : { ok: false });
-  global.fetch = fetchSource;
+  global.fetch = fetchSource as unknown as typeof fetch;
   const { default: i18n, loadLanguage } = require('../../i18n');
   expect(await loadLanguage('fr')).toBe(true);
   expect(i18n.getResource('fr', 'translation', 'common.sourceProbe')).toBe('Bonjour');
