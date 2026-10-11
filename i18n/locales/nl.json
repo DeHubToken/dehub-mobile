@@ -3316,6 +3316,19 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "followerInvites": {
+      "title": "Volgers uitnodigen",
+      "detail": "Kies maximaal 50 volgers per keer. Betaalde of gesloten privéberichten worden overgeslagen. Controleer onbevestigde verzendingen in de chat voordat je het opnieuw probeert.",
+      "selectAll": "Deze pagina selecteren",
+      "clear": "Selectie wissen",
+      "previous": "Vorige",
+      "next": "Volgende",
+      "empty": "Geen volgers op deze pagina.",
+      "send": "Uitnodigingen versturen ({{count}})",
+      "sending": "Uitnodigingen versturen…",
+      "summary": "Verstuurd: {{sent}} · Overgeslagen: {{skipped}} · Chat controleren: {{review}} · Mislukt: {{failed}}",
+      "error": "Uitnodigingen konden niet worden verstuurd. Controleer je verbinding en aanmelding en probeer het opnieuw."
+    },
     "existingPost": {
       "add": "Bestaand bericht toevoegen",
       "hint": "Behoud het oorspronkelijke bericht, de likes en weergaven.",
