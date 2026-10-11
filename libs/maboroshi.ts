@@ -20,7 +20,7 @@ export function maboroshiSessionScript(token: string, wallet: string, allowPayme
   return `if(location.origin==='https://live.dehub.io'&&location.pathname==='/maboroshi/'){document.dispatchEvent(new CustomEvent('maboroshi:native-session',{detail:${data}}));}true;`;
 }
 
-export function maboroshiPaymentResultScript(requestId: string, error?: string): string {
-  const data = JSON.stringify({ requestId, error }).replace(/</g, '\\u003c');
+export function maboroshiPaymentResultScript(requestId: string, error?: string, cancelled = false): string {
+  const data = JSON.stringify({ requestId, error, cancelled }).replace(/</g, '\\u003c');
   return `if(location.origin==='https://live.dehub.io'&&location.pathname==='/maboroshi/'){document.dispatchEvent(new CustomEvent('maboroshi:native-payment-result',{detail:${data}}));}true;`;
 }

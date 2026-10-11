@@ -10,6 +10,8 @@ describe('Maboroshi session and downloads', () => {
     expect(maboroshiSessionScript('token', 'wallet', false)).toContain('"allowPayments":false');
     expect(maboroshiSessionScript('token', 'wallet', false)).toContain('"paymentBridge":1');
     expect(maboroshiPaymentResultScript('request', '</script>')).not.toContain('</script>');
+    expect(maboroshiPaymentResultScript('request', 'Payment cancelled.', true)).toContain('"cancelled":true');
+    expect(maboroshiPaymentResultScript('request', 'Payment could not be confirmed.')).toContain('"cancelled":false');
   });
   it('restricts native file downloads to signed Maboroshi video paths', () => {
     const url = `https://live.dehub.io/maboroshi/media/${'a'.repeat(32)}/hd/final-preview.mp4?expires=123456&signature=${'b'.repeat(64)}`;
