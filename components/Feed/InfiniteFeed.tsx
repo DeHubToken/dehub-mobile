@@ -331,7 +331,8 @@ const InfiniteFeedBase: React.FC<
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
-      (lastPage.result?.length ?? 0) < pageSize ? undefined : (lastPageParam as number) + 1,
+      (typeof lastPage.hasMore === 'boolean' ? !lastPage.hasMore : (lastPage.result?.length ?? 0) < pageSize)
+        ? undefined : (lastPageParam as number) + 1,
   });
 
   // Locally-deleted posts keep coming back from cached pages until a refetch;
