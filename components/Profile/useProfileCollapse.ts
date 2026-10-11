@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 
 export const PROFILE_BAR_HEIGHT = 60;
+export const PROFILE_COVER_HEIGHT = 140;
 
 export function useProfileCollapse(profileKey?: string | null) {
   const scrollY = useSharedValue(0);

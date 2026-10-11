@@ -5,7 +5,7 @@ import ChromeSurface from '../ui/ChromeSurface';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
-import { runOnJS, useSharedValue, useAnimatedScrollHandler } from "react-native-reanimated";
+import Animated, { runOnJS, useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
 import ProfileHeader from "./ProfileHeader";
@@ -48,6 +48,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   const headerHeight = useSharedValue(0);
   const tabsStuck = useSharedValue(false);
   const [stickyVisible, setStickyVisible] = useState(false);
+  const stickyStyle = useAnimatedStyle(() => ({ opacity: tabsStuck.value ? 1 : 0 }));
   const [activeKey, setActiveKey] = useState("home");
   const { drive } = useTabBarScrollHide();
   const driveProfile = useCallback((y: number) => {
@@ -169,10 +170,10 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
 
   return <View className="flex-1 bg-theme-neutrals-900">
     {renderScene(activeKey)}
-    {stickyVisible && <View style={{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 10, elevation: 10 }}>
+    <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 10, elevation: 10 }, stickyStyle]}>
       <ChromeSurface radius={12} />
       <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} />
-    </View>}
+    </Animated.View>
     <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
       cover={user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl) } : getDefaultBanner(address || '')}
       canGoBack={canGoBack} onBackPress={onBackPress} />
