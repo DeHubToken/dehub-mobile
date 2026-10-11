@@ -61,10 +61,10 @@ function UnreadBadge({ count }: { count: number }) {
  * The system theme's home top bar: one centred capsule floating over the feed
  * with nothing painted around it (HomeScreen slides it away on a scroll down
  * and back on a scroll up). Laid out as a crest, three columns with the mark
- * dead centre: [avatar, or a burger when signed out] [mark] [bell]. It hugs
+ * dead centre: [avatar] [mark] [bell]. It hugs
  * its contents, with both side columns as wide as the wider one. The mark
  * opens and closes the feed menu under it (IslandFeedMenu); the avatar opens
- * the drawer; signed out, the burger and the bell ask you to log in.
+ * the drawer; signed out, the mark and the bell ask you to log in.
  */
 export const IslandCapsule = memo(function IslandCapsule({
   activeIndex,
@@ -90,7 +90,7 @@ export const IslandCapsule = memo(function IslandCapsule({
   const { width: screenWidth } = useWindowDimensions();
   const unread = user?.notificationCount || 0;
   const { requireAuth } = useAuthActions();
-  // Signed out, the burger and the bell both ask you to log in first.
+  // Signed out, the centre mark and the bell ask you to log in first.
   const onLeftPress = useCallback(
     () => (isSignedIn ? onAvatarPress?.() : requireAuth(() => {})),
     [isSignedIn, onAvatarPress, requireAuth],
@@ -110,30 +110,26 @@ export const IslandCapsule = memo(function IslandCapsule({
         <NavPillSurface />
         <View style={[styles.left, { width: side || undefined }]}>
           <View style={styles.sideInner}>
-            <Pressable
+            {isSignedIn && <Pressable
               onPress={onLeftPress}
               hitSlop={HIT}
               accessibilityRole="button"
               accessibilityLabel={t("common.openMenu")}
               style={styles.avatarButton}
             >
-              {isSignedIn ? (
-                <View style={styles.avatar}>
-                  <Avatar
-                    uri={getAvatarUrl(user?.avatarImageUrl)}
-                    size={AVATAR_SIZE}
-                    name={user?.displayName || user?.username}
-                  />
-                </View>
-              ) : (
-                <Icon name="Menu" size={24} color="#FFFFFF" />
-              )}
-            </Pressable>
+              <View style={styles.avatar}>
+                <Avatar
+                  uri={getAvatarUrl(user?.avatarImageUrl)}
+                  size={AVATAR_SIZE}
+                  name={user?.displayName || user?.username}
+                />
+              </View>
+            </Pressable>}
           </View>
         </View>
-        <ElectricLogo refreshing={refreshing} onPress={onToggleMenu} source={MARK} width={31.5}
-          height={MARK_HEIGHT} tint="#FFFFFF" label={`${BRAND_NAME}, ${label}`}
-          expanded={menuOpen} style={styles.mark}
+        <ElectricLogo refreshing={refreshing} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={31.5}
+          height={MARK_HEIGHT} tint="#FFFFFF" label={isSignedIn ? `${BRAND_NAME}, ${label}` : t("screens.signIn")}
+          expanded={isSignedIn ? menuOpen : undefined} style={styles.mark}
           hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />
         <View style={[styles.right, { width: side || undefined }]}>
           <View style={styles.sideInner}>
