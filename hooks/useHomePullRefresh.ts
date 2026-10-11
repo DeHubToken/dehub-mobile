@@ -5,7 +5,7 @@ import {
   useSharedValue, withRepeat, withTiming, type SharedValue,
 } from 'react-native-reanimated';
 import { useFeedPillRefreshing } from '../libs/feed-pill-refresh';
-import { PULL_ECHO_CYCLE_MS, PULL_REFRESH_THRESHOLD, PULL_RETURN_MS, pullForDrag, pullSpringProgress } from '../libs/pill-pull-motion';
+import { PULL_CANCEL_MS, PULL_ECHO_CYCLE_MS, PULL_REFRESH_THRESHOLD, PULL_RETURN_MS, pullForDrag, pullSpringProgress } from '../libs/pill-pull-motion';
 
 export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<number>, tab: number) {
   const distance = useSharedValue(0);
@@ -64,7 +64,7 @@ export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<n
     .onEnd((_event, success) => {
       const shouldRefresh = success && distance.value >= PULL_REFRESH_THRESHOLD && !busy.value;
       pulling.value = false; returning.value = true;
-      distance.value = withTiming(0, { duration: shouldRefresh ? PULL_RETURN_MS : 1000, easing: pullSpringProgress, reduceMotion: ReduceMotion.System }, finished => {
+      distance.value = withTiming(0, { duration: shouldRefresh ? PULL_RETURN_MS : PULL_CANCEL_MS, easing: pullSpringProgress, reduceMotion: ReduceMotion.System }, finished => {
         if (finished) { returning.value = false; cancelAnimation(flow); flow.value = 0; }
       });
       if (shouldRefresh) runOnJS(refresh)();
@@ -72,7 +72,7 @@ export function useHomePullRefresh(enabled: boolean, scrollOffset: SharedValue<n
     .onFinalize(() => {
       if (!pulling.value) return;
       pulling.value = false; returning.value = true;
-      distance.value = withTiming(0, { duration: 1000, easing: pullSpringProgress, reduceMotion: ReduceMotion.System }, finished => {
+      distance.value = withTiming(0, { duration: PULL_CANCEL_MS, easing: pullSpringProgress, reduceMotion: ReduceMotion.System }, finished => {
         if (finished) { returning.value = false; cancelAnimation(flow); flow.value = 0; }
       });
     }), [enabled, busy, returning, scrollOffset, x, y, distance, pulling, flow, refresh]);
