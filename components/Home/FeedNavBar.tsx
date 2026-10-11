@@ -19,6 +19,7 @@ import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
 import FrostedPill from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
+import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 
 interface NavItem {
   icon: IconName;
@@ -139,6 +140,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   backMode = false,
   onBackPress,
 }) => {
+  useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
   const { isMinimal, skin } = useAppTheme();
   const tint = useMemo(
