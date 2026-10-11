@@ -288,7 +288,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
       <View className={cinematicPhone ? "px-4" : "px-5"} style={featuredCommunity ? { paddingBottom: 16 } : undefined}>
         <PinnedCommunityWash community={featuredCommunity} />
-        <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
+        <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar
             uri={avatarUrl || undefined}
             name={displayName}
