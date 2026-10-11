@@ -1,4 +1,4 @@
-import { findVisualHighlights, visualWindowPlan, type VisualAnalyser, type VisualSampler } from "./visualHighlights";
+import { findVisualScenes, visualWindowPlan, type VisualAnalyser, type VisualSampler } from "./visualHighlights";
 import type { MediaClip } from "./types";
 
 export interface AssemblyScene { id: string; offset: number; duration: number; score: number; text: string }
@@ -27,12 +27,12 @@ export async function findAssemblyScenes(clips: MediaClip[], focus: string, opti
     check();
     // A still needs one sampled window, regardless of its chosen screen time.
     const sampled = sampledClips[index];
-    const moments = await findVisualHighlights(sampled, { optIn: true, seconds: 60, focus: focus.trim() }, sample, analyse, signal,
+    const moments = await findVisualScenes(sampled, { optIn: true, focus: focus.trim() }, sample, analyse, signal,
       fraction => progress((index + fraction) / clips.length));
     check();
-    const best = [...moments].sort((a, b) => b.score - a.score || (b.end - b.start) - (a.end - a.start) || a.start - b.start)[0];
-    if (best) scenes.push({ id: clip.id, offset: clip.kind === "image" ? 0 : best.start, duration: clip.kind === "image" ? clip.duration : best.end - best.start, score: best.score, text: best.text });
+    const matches = clip.kind === "image" ? [...moments].sort((a, b) => b.score - a.score).slice(0, 1) : moments;
+    for (const moment of matches) scenes.push({ id: clip.id, offset: clip.kind === "image" ? 0 : moment.start, duration: clip.kind === "image" ? clip.duration : moment.end - moment.start, score: moment.score, text: moment.text });
     progress((index + 1) / clips.length);
   }
-  return scenes.sort((a, b) => b.score - a.score);
+  return scenes.sort((a, b) => b.score - a.score).slice(0, 100);
 }

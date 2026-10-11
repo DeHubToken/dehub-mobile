@@ -6,7 +6,12 @@ import { assemblyCatalog, assemblyCatalogMatches, assemblyLibrarySource, selecte
 import type { Clip, MediaClip, ProjectSnapshot, Track, TransitionKind } from "./types";
 
 export interface AssemblyRequest { seconds?: number; selected: boolean; transition: TransitionKind | null; music: boolean; filePrompt?: string; musicExcluded?: boolean; focus?: string }
-export interface AssemblyShot { id: string; offset: number; duration: number }
+export interface AssemblyShot { id: string; part?: number; offset: number; duration: number }
+export const assemblyShotKey = (shot: AssemblyShot): string => JSON.stringify([shot.id, shot.part ?? 0]);
+const validShotPart = (shot: AssemblyShot) => shot.part === undefined || Number.isSafeInteger(shot.part) && shot.part > 0;
+let assemblyScopeCounter = 0;
+const freshShotScope = () => `${Date.now()}:${++assemblyScopeCounter}`;
+const freshShotScopes = (shots: AssemblyShot[]) => Object.fromEntries(shots.map(shot => [assemblyShotKey(shot), freshShotScope()]));
 export interface AssemblyPlan { shots: AssemblyShot[]; transition: TransitionKind | null; soundId: string | null }
 const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
 const finite = (n: number) => Number.isFinite(n);
@@ -69,7 +74,7 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
   const sources = assemblyLibrarySource(original, library);
   const media = assemblyMedia(sources), sounds = assemblySounds(sources), duration = assemblyDuration(plan);
   if (!identity.id || identity.id === original.id || !plan.shots.length || plan.shots.length > 100 || !finite(duration) || duration > 600
-    || new Set(plan.shots.map(s => s.id)).size !== plan.shots.length || (plan.transition !== null && !transitions.includes(plan.transition))
+    || new Set(plan.shots.map(assemblyShotKey)).size !== plan.shots.length || plan.shots.some(shot => !validShotPart(shot)) || (plan.transition !== null && !transitions.includes(plan.transition))
     || (plan.soundId !== null && !sounds.some(c => c.id === plan.soundId))) invalid();
   for (const shot of plan.shots) {
     const source = media.find(c => c.id === shot.id);
@@ -130,8 +135,8 @@ export function assemblyProject(original: ProjectSnapshot, plan: AssemblyPlan, i
   return { ...original, ...identity, settings, clips, tracks, updatedAt: Date.now() };
 }
 
-export interface AssemblyState extends AssemblyPlan { sourceId: string | null; media: MediaClip[]; sounds: MediaClip[]; busy: boolean; error: "selectMedia" | "limit" | "changed" | "failed" | "noMatch" | "matchLimit" | "matchDuration" | "matchFailed" | null; undo: AssemblyPlan | null; focus?: string; matching?: boolean; matchProgress?: number; sceneMatches?: Record<string, string> }
-export const emptyAssembly = (): AssemblyState => ({ sourceId: null, media: [], sounds: [], shots: [], transition: null, soundId: null, busy: false, error: null, undo: null, focus: "", matching: false, matchProgress: 0, sceneMatches: {} });
+export interface AssemblyState extends AssemblyPlan { sourceId: string | null; media: MediaClip[]; sounds: MediaClip[]; busy: boolean; error: "selectMedia" | "limit" | "changed" | "failed" | "noMatch" | "matchLimit" | "matchDuration" | "matchFailed" | null; undo: AssemblyPlan | null; focus?: string; matching?: boolean; matchProgress?: number; sceneMatches?: Record<string, string>; shotScopes?: Record<string, string> }
+export const emptyAssembly = (): AssemblyState => ({ sourceId: null, media: [], sounds: [], shots: [], transition: null, soundId: null, busy: false, error: null, undo: null, focus: "", matching: false, matchProgress: 0, sceneMatches: {}, shotScopes: {} });
 export interface AssemblyRuntime { current: () => ProjectSnapshot | null; library?: () => AssemblyAsset[] | Promise<AssemblyAsset[]>; match?: AssemblySceneMatcher; create: (original: ProjectSnapshot, plan: AssemblyPlan, signal: AbortSignal, library: AssemblyAsset[]) => Promise<boolean> }
 export async function persistAssembly(original: ProjectSnapshot, next: ProjectSnapshot, runtime: {
   current: () => ProjectSnapshot | null; save: (project: ProjectSnapshot) => Promise<void>; commit: (original: ProjectSnapshot, next: ProjectSnapshot) => void | Promise<void>;
@@ -148,12 +153,20 @@ export class AssemblySession {
   private catalog: AssemblyAsset[] = [];
   private request: AssemblyRequest | null = null;
   private editedRanges = false;
+  private sceneLimits = new Map<string, { offset: number; duration: number }>();
+  private undoSceneLimits: Map<string, { offset: number; duration: number }> | null = null;
+  private undoEditedRanges = false;
   private controller: AbortController | null = null;
   constructor(private runtime: AssemblyRuntime, private changed: (state: AssemblyState) => void) {}
-  private patch(value: Partial<AssemblyState>) { this.state = { ...this.state, ...value }; this.changed(this.state); }
+  private patch(value: Partial<AssemblyState>) {
+    if (value.shots && !value.shotScopes) value = { ...value, shotScopes: Object.fromEntries(value.shots.map(shot => {
+      const key = assemblyShotKey(shot); return [key, this.state.shotScopes?.[key] ?? freshShotScope()];
+    })) };
+    this.state = { ...this.state, ...value }; this.changed(this.state);
+  }
   matchesSource(current = this.runtime.current()) { return !!this.source && !!current && sameHighlightSource(this.source, current); }
   dispose() { this.controller?.abort(); this.controller = null; }
-  reset() { this.dispose(); this.source = null; this.catalog = []; this.request = null; this.editedRanges = false; this.state = emptyAssembly(); this.changed(this.state); }
+  reset() { this.dispose(); this.source = null; this.catalog = []; this.request = null; this.editedRanges = false; this.sceneLimits.clear(); this.undoSceneLimits = null; this.undoEditedRanges = false; this.state = emptyAssembly(); this.changed(this.state); }
   start(request: AssemblyRequest, selected: string[], library: readonly AssemblyAsset[] = []) {
     if (this.state.busy) return;
     this.reset(); const source = this.runtime.current(); if (!source) { this.patch({ error: "selectMedia" }); return; }
@@ -174,18 +187,19 @@ export class AssemblySession {
     try { this.patch(assemblyPlan(source, request, selected)); }
     catch { this.patch({ error: this.state.media.length ? "limit" : "selectMedia" }); }
   }
-  private edit(value: Partial<AssemblyPlan>) {
+  private edit(value: Partial<AssemblyPlan>, editedRanges = this.editedRanges, shotScopes?: Record<string, string>) {
     if (this.state.busy) return;
     if (!this.matchesSource()) { this.patch({ error: "changed" }); return; }
     const plan = { ...this.state, ...value };
-    const target = !this.editedRanges && this.catalog.length ? this.request?.seconds : undefined;
+    this.undoSceneLimits = new Map(this.sceneLimits); this.undoEditedRanges = this.editedRanges; this.editedRanges = editedRanges;
+    const target = !this.editedRanges && (this.catalog.length || this.sceneLimits.size) ? this.request?.seconds : undefined;
     const valid = finite(assemblyDuration(plan)) && assemblyDuration(plan) <= 600
       && (target === undefined || !plan.shots.length || Math.abs(assemblyDuration(plan) - target) <= 1e-6)
-      && plan.shots.length <= 100 && plan.shots.every(s => {
+      && plan.shots.length <= 100 && new Set(plan.shots.map(assemblyShotKey)).size === plan.shots.length && plan.shots.every(s => {
       const clip = this.state.media.find(c => c.id === s.id);
-      return clip && finite(s.offset) && finite(s.duration) && s.offset >= 0 && s.duration >= 0.05 && s.offset + s.duration <= availableDuration(clip) + 1e-6;
+      return clip && validShotPart(s) && finite(s.offset) && finite(s.duration) && s.offset >= 0 && s.duration >= 0.05 && s.offset + s.duration <= availableDuration(clip) + 1e-6;
     });
-    this.patch({ ...value, sceneMatches: {}, error: valid ? null : "limit", undo: { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId } });
+    this.patch({ ...value, ...(shotScopes ? { shotScopes } : {}), sceneMatches: {}, error: valid ? null : "limit", undo: { shots: this.state.shots, transition: this.state.transition, soundId: this.state.soundId } });
   }
   focus(value: string) { if (!this.state.busy && this.matchesSource()) this.patch({ focus: value.slice(0, 240), sceneMatches: {} }); }
   async match(optIn: true): Promise<boolean> {
@@ -203,21 +217,30 @@ export class AssemblySession {
         else if (this.controller === controller && !controller.signal.aborted) { this.patch({ error: "changed" }); controller.abort(); }
       });
       if (!current()) { if (this.controller === controller && !controller.signal.aborted) this.patch({ error: "changed" }); return false; }
-      if (!Array.isArray(scenes) || scenes.length > media.length || new Set(scenes.map(scene => scene.id)).size !== scenes.length
-        || scenes.some(scene => { const clip = media.find(value => value.id === scene.id); return !clip || !finite(scene.offset) || !finite(scene.duration) || !finite(scene.score) || scene.score < 0.75 || scene.score > 1 || scene.offset < 0 || scene.duration < 0.05 || scene.offset + scene.duration > availableDuration(clip) + 1e-6 || typeof scene.text !== "string" || scene.text.length < 4 || scene.text.length > 240; })) throw new Error("assembly_scene_invalid");
+      if (!Array.isArray(scenes) || scenes.length > 100
+        || scenes.some((scene, index) => { const clip = media.find(value => value.id === scene.id); return !clip || !finite(scene.offset) || !finite(scene.duration) || !finite(scene.score) || scene.score < 0.75 || scene.score > 1 || scene.offset < 0 || scene.duration < 0.05 || scene.offset + scene.duration > availableDuration(clip) + 1e-6 || typeof scene.text !== "string" || scene.text.length < 4 || scene.text.length > 240
+          || scenes.slice(0, index).some(prior => prior.id === scene.id && scene.offset < prior.offset + prior.duration && scene.offset + scene.duration > prior.offset); })) throw new Error("assembly_scene_invalid");
       if (!scenes.length) { this.patch({ error: "noMatch" }); return false; }
       if (this.catalog.length && this.runtime.library && !assemblyCatalogMatches(source, previous, this.catalog, await this.runtime.library())) {
         if (current()) this.patch({ error: "changed" }); return false;
       }
       if (!current()) return false;
-      const ranked = [...scenes].sort((a, b) => b.score - a.score || previous.shots.findIndex(shot => shot.id === a.id) - previous.shots.findIndex(shot => shot.id === b.id));
-      const ordered = request.filePrompt ? previous.shots.map(shot => ranked.find(scene => scene.id === shot.id)).filter((scene): scene is NonNullable<typeof scene> => !!scene) : ranked;
-      const clips = ordered.map(scene => sliceTimelineClip(media.find(clip => clip.id === scene.id)!, scene.offset, scene.duration, scene.id, 0));
+      const ranked = [...scenes].sort((a, b) => b.score - a.score || previous.shots.findIndex(shot => shot.id === a.id) - previous.shots.findIndex(shot => shot.id === b.id) || a.offset - b.offset);
+      const sourceOrder = [...new Set(previous.shots.map(shot => shot.id))];
+      const ordered = request.filePrompt ? sourceOrder.flatMap(id => ranked.filter(scene => scene.id === id).sort((a, b) => a.offset - b.offset)) : ranked;
+      const clips = ordered.map((scene, index) => sliceTimelineClip(media.find(clip => clip.id === scene.id)!, scene.offset, scene.duration, String(index), index));
       let plan: AssemblyPlan;
-      try { plan = assemblyPlan({ ...assemblyLibrarySource(source, this.catalog), clips }, { ...request, selected: true }, ordered.map(scene => scene.id)); }
+      try { plan = assemblyPlan({ ...assemblyLibrarySource(source, this.catalog), clips }, { ...request, selected: true }, clips.map(clip => clip.id)); }
       catch { this.patch({ error: "matchDuration" }); return false; }
-      plan = { shots: ordered.map(scene => ({ ...plan.shots.find(shot => shot.id === scene.id)!, offset: scene.offset })), transition: previous.transition, soundId: previous.soundId };
-      this.patch({ ...plan, undo: previous, sceneMatches: Object.fromEntries(ordered.map(scene => [scene.id, scene.text])), error: null });
+      const occurrences = new Map<string, number>();
+      plan = { shots: ordered.map((scene, index) => {
+        const part = occurrences.get(scene.id) ?? 0; occurrences.set(scene.id, part + 1);
+        return { id: scene.id, ...(part ? { part } : {}), offset: scene.offset, duration: plan.shots[index].duration };
+      }), transition: previous.transition, soundId: previous.soundId };
+      this.undoSceneLimits = new Map(this.sceneLimits); this.undoEditedRanges = this.editedRanges;
+      this.sceneLimits = new Map(plan.shots.map((shot, index) => [assemblyShotKey(shot), { offset: ordered[index].offset, duration: ordered[index].duration }]));
+      this.editedRanges = false;
+      this.patch({ ...plan, undo: previous, shotScopes: freshShotScopes(plan.shots), sceneMatches: Object.fromEntries(plan.shots.map((shot, index) => [assemblyShotKey(shot), ordered[index].text])), error: null });
       return true;
     } catch (error) {
       if (this.controller === controller && !controller.signal.aborted) this.patch({ error: this.matchesSource() ? error instanceof Error && error.message === "assembly_scene_limit" ? "matchLimit" : "matchFailed" : "changed" });
@@ -226,34 +249,56 @@ export class AssemblySession {
   }
   reviewManually(): boolean {
     if (this.state.busy || !this.matchesSource() || !["noMatch", "matchLimit", "matchDuration", "matchFailed"].includes(this.state.error ?? "")) return false;
-    const undo = this.state.undo;
+    const undo = this.state.undo, undoLimits = this.undoSceneLimits, undoEditedRanges = this.undoEditedRanges;
     this.edit({});
+    this.undoSceneLimits = undoLimits; this.undoEditedRanges = undoEditedRanges;
     this.patch({ focus: "", matchProgress: 0, undo });
     return this.state.error === null;
+  }
+  private selectShots(shots: AssemblyShot[]) {
+    if (!this.editedRanges && this.request && shots.length && (this.catalog.length || this.sceneLimits.size)) {
+      try {
+        const clips = shots.map((shot, index) => {
+          const source = this.state.media.find(clip => clip.id === shot.id)!;
+          const limit = this.sceneLimits.get(assemblyShotKey(shot));
+          const capacity = limit && limit.offset === shot.offset ? limit.duration : availableDuration(source) - shot.offset;
+          return sliceTimelineClip(source, shot.offset, capacity, String(index), index);
+        });
+        const allocated = assemblyPlan({ ...assemblyLibrarySource(this.source!, this.catalog), clips },
+          { ...this.request, seconds: this.request.seconds ?? assemblyDuration({ shots, transition: null, soundId: null }), selected: true }, clips.map(clip => clip.id));
+        shots = shots.map((shot, index) => ({ ...shot, duration: allocated.shots[index].duration }));
+      } catch { this.edit({ shots }); this.patch({ error: "limit" }); return; }
+    }
+    this.edit({ shots });
   }
   toggle(id: string) {
     if (this.state.busy || !this.matchesSource()) return;
     const clip = this.state.media.find(c => c.id === id); if (!clip) return;
-    let shots = this.state.shots.some(s => s.id === id) ? this.state.shots.filter(s => s.id !== id) : [...this.state.shots, { id, offset: 0, duration: Math.min(5, clip.duration) }];
-    if (!this.editedRanges && this.request && shots.length && this.catalog.length) {
-      try {
-        const allocated = assemblyPlan(assemblyLibrarySource(this.source!, this.catalog), { ...this.request, selected: true }, shots.map(shot => shot.id));
-        const lengths = new Map(allocated.shots.map(shot => [shot.id, shot.duration]));
-        shots = shots.map(shot => ({ ...shot, duration: lengths.get(shot.id)! }));
-      } catch { this.edit({ shots }); this.patch({ error: "limit" }); return; }
-    }
-    this.edit({ shots });
+    this.selectShots(this.state.shots.some(s => s.id === id) ? this.state.shots.filter(s => s.id !== id) : [...this.state.shots, { id, offset: 0, duration: Math.min(5, clip.duration) }]);
+  }
+  remove(index: number) {
+    if (this.state.busy || !this.matchesSource() || !Number.isInteger(index) || index < 0 || index >= this.state.shots.length) return;
+    this.selectShots(this.state.shots.filter((_, i) => i !== index));
+  }
+  split(index: number) {
+    const shot = this.state.shots[index];
+    if (this.state.busy || !this.matchesSource() || !Number.isInteger(index) || !shot || !finite(shot.duration) || shot.duration < 0.1 || this.state.shots.length >= 100) return;
+    const part = Math.max(0, ...this.state.shots.filter(value => value.id === shot.id).map(value => value.part ?? 0)) + 1;
+    if (!Number.isSafeInteger(part)) return;
+    const first = { ...shot, duration: round(shot.duration / 2) }, second = { ...shot, part, offset: round(shot.offset + first.duration), duration: round(shot.duration - first.duration) };
+    this.edit({ shots: [...this.state.shots.slice(0, index), first, second, ...this.state.shots.slice(index + 1)] });
+    this.sceneLimits.set(assemblyShotKey(first), { offset: first.offset, duration: first.duration });
+    this.sceneLimits.set(assemblyShotKey(second), { offset: second.offset, duration: second.duration });
   }
   move(index: number, delta: -1 | 1) {
     if (!Number.isInteger(index) || index < 0 || index >= this.state.shots.length || index + delta < 0 || index + delta >= this.state.shots.length) return;
     const shots = [...this.state.shots]; [shots[index], shots[index + delta]] = [shots[index + delta], shots[index]]; this.edit({ shots });
   }
-  range(id: string, offset: number, duration: number) {
+  range(key: string, offset: number, duration: number) {
     if (this.state.busy || !this.matchesSource()) return;
-    const clip = this.state.media.find(c => c.id === id);
-    if (!clip) return;
-    this.editedRanges = true;
-    this.edit({ shots: this.state.shots.map(s => s.id === id ? { id, offset, duration } : s) });
+    const shot = this.state.shots.find(value => assemblyShotKey(value) === key) ?? this.state.shots.find(value => value.id === key && value.part === undefined);
+    if (!shot) return;
+    this.edit({ shots: this.state.shots.map(value => value === shot ? { ...value, offset, duration } : value) }, true);
   }
   transition(value: TransitionKind | null) { if (value === null || transitions.includes(value)) this.edit({ transition: value }); }
   sound(id: string | null) { if (id === null || this.state.sounds.some(c => c.id === id)) this.edit({ soundId: id }); }
@@ -263,7 +308,7 @@ export class AssemblySession {
     if (this.state.busy || !this.matchesSource()) return false;
     if (/^(?:reverse(?: the)? order|reverse|inverse l'ordre)$/.test(text)) { this.edit({ shots: [...this.state.shots].reverse() }); return true; }
     const remove = /^(?:remove|drop|delete|retire)(?: (?:shot|clip|plan))? (\d+)$/.exec(text);
-    if (remove) { const shot = this.state.shots[Number(remove[1]) - 1]; if (!shot) return false; this.toggle(shot.id); return true; }
+    if (remove) { const index = Number(remove[1]) - 1; if (!this.state.shots[index]) return false; this.remove(index); return true; }
     if (/^(?:no music|without music|remove music|sans musique)$/.test(text)) { this.sound(null); return true; }
     if (/^(?:no transitions?|without transitions?|hard cuts?|sans transitions?)$/.test(text)) { this.transition(null); return true; }
     if (/^(?:use|add|with) (?:fades?|cross-dissolves?|transitions?)$/.test(text)) { this.transition("fade"); return true; }
@@ -271,7 +316,13 @@ export class AssemblySession {
     if (sound) { const clip = this.state.sounds[Number(sound[1]) - 1]; if (!clip) return false; this.sound(clip.id); return true; }
     return false;
   }
-  undo() { if (!this.state.busy && this.matchesSource() && this.state.undo) { this.edit(this.state.undo); this.patch({ undo: null }); } }
+  undo() {
+    if (!this.state.busy && this.matchesSource() && this.state.undo) {
+      const plan = this.state.undo;
+      this.sceneLimits = new Map(this.undoSceneLimits ?? []); this.editedRanges = this.undoEditedRanges;
+      this.edit(plan, this.editedRanges, freshShotScopes(plan.shots)); this.undoSceneLimits = null; this.patch({ undo: null });
+    }
+  }
   preview(index: number): { id: string; start: number; end: number; libraryClip?: MediaClip } | null {
     const shot = this.state.shots[index], clip = shot && this.state.media.find(c => c.id === shot.id);
     if (this.state.busy || this.state.error === "limit" || !this.matchesSource() || !clip) return null;
