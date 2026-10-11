@@ -25,7 +25,7 @@ it("imports a real video with its duration and source credit", async () => {
 });
 it("imports sound as audio and deletes the temporary download on failure", async () => {
   const audio = { ...clip, mimeType: "audio/ogg", duration: 4 };
-  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 4 });
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 4, width: 0, height: 0 });
   jest.mocked(importClipFile).mockResolvedValue({ id: "audio1", kind: "audio" } as never);
   await importStockItem(audio, "audio");
   expect(importClipFile).toHaveBeenCalledWith(expect.objectContaining({ kind: "audio", duration: 4 }));
@@ -60,7 +60,7 @@ it("rejects a provider file whose media type does not match its stock category",
 });
 
 it("imports the entire downloaded soundtrack when the provider omits or understates duration", async () => {
-  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 28.5 });
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 28.5, width: 0, height: 0 });
   const audio = { ...clip, downloadUrl: "https://media.example/song.mp3", mimeType: "audio/mpeg", duration: undefined };
   await importStockItem(audio, "audio");
   expect(importClipFile).toHaveBeenCalledWith(expect.objectContaining({ duration: 28.5, kind: "audio", provenance: expect.objectContaining({ attributionText: "Ocean by Creator" }) }));
@@ -69,7 +69,7 @@ it("imports the entire downloaded soundtrack when the provider omits or understa
 });
 it("uses the actual downloaded codec before probing and storing the soundtrack", async () => {
   download.mockResolvedValue({ status: 200, headers: { "Content-Type": "audio/x-wav" } });
-  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 28.5 });
+  jest.mocked(probeGeneratedMedia).mockResolvedValue({ duration: 28.5, width: 0, height: 0 });
   await importStockItem({ ...clip, downloadUrl: "https://media.example/song.mp3", mimeType: "audio/mpeg" }, "audio");
   expect(FileSystem.moveAsync).toHaveBeenCalledWith({ from: expect.stringMatching(/\.mp3$/), to: expect.stringMatching(/\.wav$/) });
   expect(probeGeneratedMedia).toHaveBeenCalledWith(expect.stringMatching(/\.wav$/), "audio", undefined);
