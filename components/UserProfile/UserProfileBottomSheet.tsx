@@ -14,6 +14,7 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
+import { FrostedBackground } from "../ui/FrostedBackdrop";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -188,6 +189,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       visible={visible}
       onClose={onClose}
     >
+      <FrostedBackground>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SwipeBackBoundary onBack={onClose} enabled={visible}>
         {/* Its own nav state: a modal sits above the tabs, so the home bar is
@@ -254,6 +256,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         onUnfollow={handleUnfollow}
         isCancelRequest={isFollowRequestPending}
       />
+      </FrostedBackground>
     </ProfileSurface>
   );
 };
