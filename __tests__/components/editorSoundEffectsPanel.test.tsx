@@ -63,4 +63,11 @@ describe('sound creation in a saved editor project', () => {
     expect(jest.mocked(importSoundEffect).mock.calls[0][2]?.aborted).toBe(true);
     await act(async () => { result.resolve(media); }); expect(onAdd).not.toHaveBeenCalled();
   });
+  it('keeps the pending sound when editing ownership rerenders the same project with a new subscribe callback', async () => {
+    const { props, onAdd } = fixture(), result = deferred(); jest.mocked(importSoundEffect).mockReturnValue(result.promise);
+    const view = render(<SoundEffectsPanel {...props} />); fireEvent.press(view.getByLabelText('paywall.generate'));
+    view.rerender(<SoundEffectsPanel {...props} subscribe={() => () => {}} />);
+    expect(jest.mocked(importSoundEffect).mock.calls[0][2]?.aborted).toBe(false);
+    await act(async () => { result.resolve(media); }); expect(onAdd).toHaveBeenCalledWith(media, 7.5);
+  });
 });
