@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CreatorFlowScreen — /creator/flow
@@ -257,7 +258,7 @@ export default function CreatorFlowScreen() {
       {/* Options sheet */}
       <Modal visible={!!menuFor} transparent animationType="slide" onRequestClose={() => setMenuFor(null)}>
         <Pressable style={styles.backdrop} onPress={() => setMenuFor(null)} accessibilityLabel={t("creatorFlow.close")} />
-        <View style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
+        <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
           <Text style={styles.sheetTitle} numberOfLines={1}>
             {menuFor?.name}
           </Text>
@@ -276,13 +277,13 @@ export default function CreatorFlowScreen() {
               <Text style={styles.sheetRowText}>{item.label}</Text>
             </Pressable>
           ))}
-        </View>
+        </ThemePanel>
       </Modal>
 
       {/* Rename */}
       <Modal visible={!!renaming} transparent animationType="fade" onRequestClose={() => setRenaming(null)}>
         <View style={styles.dialogWrap}>
-          <View style={styles.dialog}>
+          <ThemePanel solid style={styles.dialog}>
             <Text style={styles.sheetTitle}>{t("creatorFlow.rename")}</Text>
             <TextInput
               value={newName}
@@ -304,7 +305,7 @@ export default function CreatorFlowScreen() {
                 <Text style={styles.primaryText}>{t("creatorFlow.save")}</Text>
               </Pressable>
             </View>
-          </View>
+          </ThemePanel>
         </View>
       </Modal>
 

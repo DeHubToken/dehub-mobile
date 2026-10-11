@@ -29,6 +29,7 @@ jest.mock('react-native', () => {
 });
 jest.mock('@react-native-community/slider', () => 'Slider');
 jest.mock('../../components/ui/Icon', () => 'Icon');
+jest.mock('../../components/ScreenHeader', () => () => null);
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('../../theme/minimal', () => ({ MINIMAL_HAIRLINE: '#222', minimalRow: {} }));
 jest.mock('../../libs/storage', () => {

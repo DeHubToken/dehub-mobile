@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -1345,7 +1346,7 @@ function FeedDetailContent() {
 
   const renderHeader = useCallback(() => (
     <View>
-      {!immersive && !stage && <ScreenHeader title={t("screens.post")} />}
+      {!immersive && !stage && <ScreenHeader appearance="controls" title={t("screens.post")} />}
       {item && stage ? (
         <FeedCard
           item={item}
@@ -1401,9 +1402,9 @@ function FeedDetailContent() {
       ) : privateError ? (
         <View className="items-center justify-center px-6 py-16">
           {/* Minimal: the icon alone, without the slab behind it. */}
-          <View className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
+          <ThemePanel className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
             <Ionicons name="lock-closed" size={40} color="#666" />
-          </View>
+          </ThemePanel>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("feed.privateContent")}
           </Text>
@@ -1413,13 +1414,13 @@ function FeedDetailContent() {
         </View>
       ) : loadError ? (
         <View className="items-center justify-center px-6 py-16">
-          <View className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
+          <ThemePanel className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
             <Ionicons
               name={loadError === "notFound" ? "document-text-outline" : "cloud-offline-outline"}
               size={40}
               color="#666"
             />
-          </View>
+          </ThemePanel>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t(loadError === "notFound" ? "common.postNotFound" : "common.failedToLoad")}
           </Text>

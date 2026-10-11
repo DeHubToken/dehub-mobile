@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 /**
  * DePinScreen
  * ===========
@@ -128,7 +129,7 @@ function NodePanel({ me }: { me?: DepinMeResponse }) {
 
   if (!isSignedIn) {
     return (
-      <View style={styles.panel}>
+      <ThemePanel style={styles.panel}>
         <Text style={styles.panelTitle}>{t("depin.becomeANode")}</Text>
         <Text style={styles.panelBody}>{t("depin.appSignInBlurb")}</Text>
         <Pressable
@@ -138,7 +139,7 @@ function NodePanel({ me }: { me?: DepinMeResponse }) {
         >
           <Text style={styles.primaryBtnText}>{t("depin.signIn")}</Text>
         </Pressable>
-      </View>
+      </ThemePanel>
     );
   }
 
@@ -150,7 +151,7 @@ function NodePanel({ me }: { me?: DepinMeResponse }) {
     status === "online" ? t("depin.online") : status === "offline" ? t("depin.statusOffline") : t("depin.statusUnregistered");
 
   return (
-    <View style={styles.panel}>
+    <ThemePanel style={styles.panel}>
       <View style={styles.panelHeader}>
         <Text style={styles.panelTitle}>{t("depin.yourNode")}</Text>
         <View style={styles.statusPill}>
@@ -185,7 +186,7 @@ function NodePanel({ me }: { me?: DepinMeResponse }) {
           </Pressable>
         </>
       )}
-    </View>
+    </ThemePanel>
   );
 }
 
@@ -273,7 +274,7 @@ export default function DePinScreen() {
 
         {/* Three jobs */}
         <SectionHeading title={t("depin.threeJobsTitle")} body={t("depin.threeJobsBody")} />
-        <View style={styles.transcodeCard}>
+        <ThemePanel style={styles.transcodeCard}>
           <Image
             source={TRANSCODE_IMAGE}
             style={StyleSheet.absoluteFill}
@@ -286,7 +287,7 @@ export default function DePinScreen() {
             <Text style={styles.cardTitle}>{t("depin.transcode")}</Text>
             <Text style={styles.cardBodyLight}>{t("depin.transcodeBody")}</Text>
           </View>
-        </View>
+        </ThemePanel>
         {JOBS.map((job) => (
           <View key={job.key} style={styles.card}>
             <Icon name={job.icon} size={26} color="#FFFFFF" />

@@ -48,6 +48,8 @@ function useKitColors() {
     activeInk: themed && BRIGHT_INK_THEMES.has(app.theme) ? "#FFFFFF" : "#0B0B0C",
     card: app.colors?.card ?? "#18181B",
     cardMaterial: app.skin?.card,
+    primaryMaterial: app.skin?.centre,
+    primaryInk: app.skin?.centreIcon ?? '#0B0B0C',
   };
 }
 
@@ -146,10 +148,10 @@ export function PageSection({
 }) {
   const c = useKitColors();
   const frame: ViewStyle = c.flat
-    ? { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: c.hairline, paddingVertical: flush ? 0 : 18, paddingHorizontal: flush ? 0 : 16 }
+    ? { backgroundColor: 'transparent', borderRadius: 0, marginHorizontal: 0, marginBottom: 0, borderWidth: 0, borderBottomWidth: 1, borderBottomColor: c.hairline, paddingVertical: flush ? 0 : 18, paddingHorizontal: flush ? 0 : 16 }
     : { backgroundColor: c.card, borderRadius: 12, marginHorizontal: 8, marginBottom: 10, padding: flush ? 0 : 16, overflow: "hidden" };
   return (
-    <View style={[frame, !c.flat && c.cardMaterial, style as object]}>
+    <View style={c.flat ? [style as object, frame] : [frame, style as object, c.cardMaterial]}>
       {title || eyebrow || action ? (
         <View style={[styles.sectionHead, flush && { paddingHorizontal: 16, paddingTop: 16 }]}>
           <View style={{ flexShrink: 1 }}>
@@ -207,18 +209,21 @@ export function KitButton({
       onPress={onPress}
       disabled={disabled}
       accessibilityRole="button"
+      accessibilityState={{ disabled: !!disabled }}
       style={({ pressed }) => [{ opacity: disabled ? 0.45 : pressed ? 0.85 : 1 }, style as object]}
     >
       <View
         style={[
           styles.button,
           primary
-            ? { backgroundColor: c.activeBg }
+            ? c.primaryMaterial ?? { backgroundColor: '#FFFFFF' }
             : { backgroundColor: c.chipBg, borderWidth: 1, borderColor: c.hairline },
+          !c.flat && c.primaryMaterial,
+          { borderRadius: c.isMinimal || c.cardMaterial?.borderRadius === 0 ? 0 : 10 },
         ]}
       >
         {icon ?? null}
-        <Text style={[styles.buttonLabel, { color: primary ? c.activeInk : "#FFFFFF" }]}>{label}</Text>
+        <Text style={[styles.buttonLabel, { color: c.primaryMaterial ? c.primaryInk : primary ? '#0B0B0C' : '#FFFFFF' }]}>{label}</Text>
       </View>
     </Pressable>
   );

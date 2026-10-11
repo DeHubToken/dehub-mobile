@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useState } from "react";
@@ -349,7 +350,7 @@ const SavedPostsScreen: React.FC = () => {
           }}
         >
           <View style={styles.modalBackdrop}>
-            <View style={styles.modalCard}>
+            <ThemePanel solid style={styles.modalCard}>
               <Text style={styles.modalTitle}>{t("savedPosts.editCollection")}</Text>
               <TextInput
                 placeholder={t("savedPosts.namePlaceholder")}
@@ -397,7 +398,7 @@ const SavedPostsScreen: React.FC = () => {
                   )}
                 </TouchableOpacity>
               </View>
-            </View>
+            </ThemePanel>
           </View>
         </Modal>
       </View>
@@ -537,7 +538,7 @@ const SavedPostsScreen: React.FC = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.modalBackdrop}
         >
-          <View style={styles.modalCard}>
+          <ThemePanel solid style={styles.modalCard}>
             <Text style={styles.modalTitle}>{t("savedPosts.createCollection")}</Text>
             <TextInput
               placeholder={t("savedPosts.collectionNamePlaceholder")}
@@ -586,7 +587,7 @@ const SavedPostsScreen: React.FC = () => {
                 )}
               </TouchableOpacity>
             </View>
-          </View>
+          </ThemePanel>
         </KeyboardAvoidingView>
       </Modal>
 
@@ -604,7 +605,7 @@ const SavedPostsScreen: React.FC = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.modalBackdrop}
         >
-          <View style={styles.modalCard}>
+          <ThemePanel solid style={styles.modalCard}>
             <Text style={styles.modalTitle}>{t("savedPosts.editCollection")}</Text>
             <TextInput
               placeholder={t("savedPosts.namePlaceholder")}
@@ -652,7 +653,7 @@ const SavedPostsScreen: React.FC = () => {
                 )}
               </TouchableOpacity>
             </View>
-          </View>
+          </ThemePanel>
         </KeyboardAvoidingView>
       </Modal>
     </View>

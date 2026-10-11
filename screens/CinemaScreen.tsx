@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * CinemaScreen
@@ -95,7 +96,7 @@ function CountryPicker({
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel={t("cinema.close")} />
-      <View style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
+      <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
         <Text style={styles.sheetTitle}>{t("cinema.country")}</Text>
         <FlatList
           data={CINEMA_LOCALES}
@@ -116,7 +117,7 @@ function CountryPicker({
             );
           }}
         />
-      </View>
+      </ThemePanel>
     </Modal>
   );
 }

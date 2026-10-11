@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../ui/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import type { AppStackNavigationProp } from '../../navigation/types';
 import { useTranslation } from 'react-i18next';
 
-const AI_SPARKLE_ICON = require('../../assets/web-icons/ai-sparkle-icon.png');
+import { ThemeIcon } from '../page/PageKit';
+import NavPillSurface from '../ui/NavPillSurface';
 
 interface AssistantHeaderProps {
   onNewChat: () => void;
@@ -34,20 +35,17 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   const { t } = useTranslation();
   const navigation = useNavigation<AppStackNavigationProp<ScreenNames.Creator>>();
   return (
-    <View className="bg-theme-neutrals-900">
-    <View className="px-4 py-3 bg-theme-neutrals-900">
+    <View className="px-2 pt-2">
+    <View style={{ paddingHorizontal: 12, paddingVertical: 10, borderRadius: 15 }}>
+    <NavPillSurface borderRadius={15} />
     <View className="flex-row items-center justify-between mb-2">
       <TouchableOpacity
         onPress={onNewChat}
         className="flex-row items-center"
         activeOpacity={0.7}
       >
-        <Image
-          source={AI_SPARKLE_ICON}
-          style={{ width: 26, height: 26 }}
-          resizeMode="contain"
-        />
-        <Text className="text-theme-neutrals-100 text-2xl font-medium ml-2.5 tracking-wide">
+        <ThemeIcon icon="assistant" size={32} />
+        <Text className="text-theme-neutrals-100 text-[17px] font-bold ml-2.5">
           {t('assistant.title')}
         </Text>
       </TouchableOpacity>

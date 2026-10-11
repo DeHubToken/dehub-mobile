@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
@@ -59,6 +60,7 @@ import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useAppTheme } from "../context/ThemeContext";
 import { themePageIcon } from "../theme/pageIcons";
+import NavPillSurface from '../components/ui/NavPillSurface';
 import {
   MINIMAL_TAB_TEXT,
   MINIMAL_TAB_TEXT_ACTIVE,
@@ -807,7 +809,7 @@ const SubmitSheet: React.FC<{
           {attachments.length > 0 && (
             <View style={styles.pickGrid}>
               {attachments.map(({ uri }, i) => (
-                <View key={`${uri}-${i}`} style={styles.pickTile}>
+                <ThemePanel key={`${uri}-${i}`} style={styles.pickTile}>
                   <Image
                     source={{ uri }}
                     style={StyleSheet.absoluteFill}
@@ -822,7 +824,7 @@ const SubmitSheet: React.FC<{
                   >
                     <Icon name="X" size={12} color="#FFFFFF" />
                   </Pressable>
-                </View>
+                </ThemePanel>
               ))}
             </View>
           )}
@@ -1051,7 +1053,8 @@ export default function FeatureRequestsScreen() {
       )}
 
       {/* Header bento — the whole page header on web at this width. */}
-      <View style={[styles.bento, skin?.card, isMinimal && styles.minimalBento]}>
+      <View style={[styles.bento, { backgroundColor: 'transparent', overflow: 'hidden' }]}>
+        <NavPillSurface borderRadius={16} />
         <View style={styles.bentoTop}>
           {iconFailed ? (
             <View style={styles.headerIconFallback}>
@@ -1213,12 +1216,12 @@ export default function FeatureRequestsScreen() {
           <DeHubLoader size={56} />
         </View>
       ) : isError && tab === "requests" ? (
-        <View style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
+        <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
           <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
             <Text style={styles.glassBtnText}>{t("common.retry")}</Text>
           </Pressable>
-        </View>
+        </ThemePanel>
       ) : (
         <FlatList
           data={items}
@@ -1261,7 +1264,7 @@ export default function FeatureRequestsScreen() {
             ) : null
           }
           ListEmptyComponent={
-            <View style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
+            <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
               <Icon name="Lightbulb" size={44} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{emptyCopy.title}</Text>
               {!!emptyCopy.body && <Text style={styles.emptyBody}>{emptyCopy.body}</Text>}
@@ -1271,7 +1274,7 @@ export default function FeatureRequestsScreen() {
                   <Text style={styles.glassBtnText}>{t("features.submitFeatureRequest")}</Text>
                 </Pressable>
               )}
-            </View>
+            </ThemePanel>
           }
         />
       )}

@@ -11,6 +11,7 @@ import { useCanGoBack } from '../hooks/useCanGoBack';
 import ChromeSurface from './ui/ChromeSurface';
 import NavPillSurface from './ui/NavPillSurface';
 import { themeIconUrl } from '../theme/icons';
+import { pageIdentityIcon } from '../theme/pageIdentity';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 
 /**
@@ -50,8 +51,8 @@ export interface ScreenHeaderProps {
   plainBack?: boolean;
   /** Page identity artwork key (theme/icons.ts), drawn in the theme's own style. */
   icon?: string;
-  /** Messaging uses web's title island for lists and flat chrome in a thread. */
-  appearance?: 'island' | 'flat';
+  /** Web's title island, flat conversation chrome, or controls over media. */
+  appearance?: 'island' | 'flat' | 'controls';
   /** Search belongs inside the list's title island. */
   children?: React.ReactNode;
 }
@@ -67,13 +68,20 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   overlay = false,
   plainBack = false,
   icon,
-  appearance,
+  appearance = 'island',
   children,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { isMinimal, theme } = useAppTheme();
-  const iconUrl = icon ? themeIconUrl(theme, icon) : undefined;
+  const state = navigation.getState?.();
+  let activeRoute = state?.routes?.[state.index ?? 0];
+  while (activeRoute?.state?.routes) {
+    const nested = activeRoute.state;
+    activeRoute = nested.routes[nested.index ?? 0] as typeof activeRoute;
+  }
+  const identity = icon ?? (appearance === 'island' ? pageIdentityIcon(activeRoute?.name) : undefined);
+  const iconUrl = identity ? themeIconUrl(theme, identity) : undefined;
   // Not a one-off canGoBack() during render: a screen the menu opens renders
   // before its stack has saved the push, and one that never re-renders
   // (Careers) kept no arrow. The hook also reads the render-time stack and
@@ -128,7 +136,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
     };
   }, []);
 
-  if (overlay || (!appearance && (theme === 'system' || theme === 'immersive'))) {
+  if (overlay || appearance === 'controls') {
     if (!showBack && !rightContent) return null;
     return (
       <View
@@ -257,19 +265,20 @@ const styles = StyleSheet.create({
   bar: {
     height: SCREEN_HEADER_TITLE_HEIGHT,
     paddingHorizontal: 8,
-    justifyContent: 'center',
+    paddingTop: 8,
+    justifyContent: 'flex-start',
     ...(Platform.OS === 'android' ? { elevation: 0 } : {}),
   },
   island: {
-    height: 52,
+    height: 56,
     borderRadius: ISLAND_RADIUS,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
   },
   headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 36, width: '100%' },
-  searchBar: { height: undefined, paddingTop: 8, paddingBottom: 8 },
+  searchBar: { height: undefined, paddingTop: 8 },
   searchIsland: { height: undefined, flexDirection: 'column', alignItems: 'stretch', paddingHorizontal: 12, paddingVertical: 10 },
   flatBar: { height: SCREEN_HEADER_HEIGHT, paddingHorizontal: 16, justifyContent: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,0.07)' },
   flatRow: { flexDirection: 'row', alignItems: 'center' },

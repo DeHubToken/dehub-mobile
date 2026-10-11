@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -90,7 +91,7 @@ const SessionCard = React.memo<{
       className="rounded-xl overflow-hidden mb-3"
       style={GLASS_SHADOW}
     >
-      <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-3.5">
+      <ThemePanel className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-3.5">
         <View className="flex-row items-center">
           <View className="w-10 h-10 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
             <Icon name={getPlatformIcon(session.platform)} size={20} color="#9ca3af" />
@@ -144,7 +145,7 @@ const SessionCard = React.memo<{
             </>
           )}
         </View>
-      </View>
+      </ThemePanel>
     </View>
   );
 });
@@ -270,7 +271,7 @@ export default function ActiveSessionsScreen() {
         className="mt-2 rounded-xl overflow-hidden"
         style={[GLASS_SHADOW, { opacity: revokingAll ? 0.5 : 1 }]}
       >
-        <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-3.5 flex-row items-center justify-center">
+        <ThemePanel className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-3.5 flex-row items-center justify-center">
           <GlassIndicator borderRadius={16} />
           {revokingAll ? (
             <ActivityIndicator size="small" color="#F4F4F5" />
@@ -282,7 +283,7 @@ export default function ActiveSessionsScreen() {
               </Text>
             </>
           )}
-        </View>
+        </ThemePanel>
       </TouchableOpacity>
     );
   }, [otherCount, handleRevokeAll, revokingAll]);

@@ -1,3 +1,4 @@
+import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { readDraft } from "../libs/draft-cache";
 import { accountDraftKey, useDraftState } from '../hooks/useDraftState';
@@ -2756,7 +2757,7 @@ export default function UploadScreen() {
             )}
 
             {isAudioRecording && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
+              <ThemePanel className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center">
                   <View className="w-2.5 h-2.5 rounded-full bg-white mr-2" />
                   <Text
@@ -2817,11 +2818,11 @@ export default function UploadScreen() {
                     style={{ width: `${Math.min(100, (audioRecordingElapsed / MAX_AUDIO_DURATION_MS) * 100)}%` }}
                   />
                 </View>
-              </View>
+              </ThemePanel>
             )}
 
             {!isLiveMode && mediaMode === "audio" && pickedAudio && !isAudioRecording && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
+              <ThemePanel className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center">
                   <TouchableOpacity
                     onPress={handleToggleAudioPreview}
@@ -2854,7 +2855,7 @@ export default function UploadScreen() {
                     <Icon name="X" size={16} color="#fff" />
                   </TouchableOpacity>
                 </View>
-              </View>
+              </ThemePanel>
             )}
 
             {isQuoteMode && quotedPost && (
@@ -2876,7 +2877,7 @@ export default function UploadScreen() {
             )}
 
             {pollEnabled && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
+              <ThemePanel className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4" style={isMinimal ? minimalFlat : undefined}>
                 <View className="flex-row items-center justify-between mb-3">
                   <Text className="text-white font-semibold text-sm">{t("publicChat.poll")}</Text>
                   <TouchableOpacity onPress={handleTogglePoll} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
@@ -2960,7 +2961,7 @@ export default function UploadScreen() {
                     </TouchableOpacity>
                   ))}
                 </View>
-              </View>
+              </ThemePanel>
             )}
 
           </View>
