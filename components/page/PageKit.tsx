@@ -151,7 +151,7 @@ export function PageSection({
     ? { backgroundColor: 'transparent', borderRadius: 0, marginHorizontal: 0, marginBottom: 0, borderWidth: 0, borderBottomWidth: 1, borderBottomColor: c.hairline, paddingVertical: flush ? 0 : 18, paddingHorizontal: flush ? 0 : 16 }
     : { backgroundColor: c.card, borderRadius: 12, marginHorizontal: 8, marginBottom: 10, padding: flush ? 0 : 16, overflow: "hidden" };
   return (
-    <View style={c.flat ? [style as object, frame] : [frame, c.cardMaterial, style as object]}>
+    <View style={c.flat ? [style as object, frame] : [frame, style as object, c.cardMaterial]}>
       {title || eyebrow || action ? (
         <View style={[styles.sectionHead, flush && { paddingHorizontal: 16, paddingTop: 16 }]}>
           <View style={{ flexShrink: 1 }}>

@@ -82,6 +82,7 @@ export const SettingsScrollView: React.FC<ScrollViewProps> = ({
   ...rest
 }) => {
   const bento = useSettingsBentoStyle();
+  const { skin } = useAppTheme();
   const panel = useContext(SettingsPanelContext);
   // React detaches the outgoing panel's ref (calling this with null) before it
   // attaches the incoming one, so the switch lands in the right order. An
@@ -99,7 +100,7 @@ export const SettingsScrollView: React.FC<ScrollViewProps> = ({
       contentContainerStyle={[
         contentContainerStyle,
         bento,
-        { marginHorizontal: 8, marginTop: 8, marginBottom: 32, padding: 16, paddingBottom: 24 },
+        { marginHorizontal: skin ? 8 : 0, marginTop: 8, marginBottom: 32, padding: 16, paddingBottom: 24 },
       ]}
     >
       <InSettingsBento.Provider value>

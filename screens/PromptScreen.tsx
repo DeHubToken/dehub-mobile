@@ -1,3 +1,4 @@
+import ScreenHeader from '../components/ScreenHeader';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 /**
@@ -237,18 +238,7 @@ export default function PromptScreen() {
     // BootGate, so adding the device inset again counted the notch twice and
     // left a dead band above the header — the same trap AppDrawer hit.
     <View className="bg-theme-background" style={styles.root}>
-      <View style={styles.header}>
-        <Pressable
-          onPress={handleBack}
-          accessibilityRole="button"
-          accessibilityLabel={t("profile.back", "Back")}
-          hitSlop={10}
-          style={styles.backBtn}
-        >
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <Text style={styles.headerTitle}>{t("nav.prompt", "Prompt")}</Text>
-      </View>
+      <ScreenHeader title={t("nav.prompt", "Prompt")} icon="wand" onBackPress={handleBack} />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}

@@ -113,11 +113,11 @@ it('shows only floating controls in System and keeps the profile menu usable', (
   act(() => tree.unmount());
 });
 
-it('never renders the old title bar on ordinary System pages', () => {
+it('keeps the page title on ordinary System pages', () => {
   mockNavigation.canGoBack.mockReturnValue(true);
   let tree!: ReactTestRenderer;
   act(() => { tree = create(<ScreenHeader title="Careers" />); });
-  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toContain('Careers');
   expect(backButtons(tree)).toHaveLength(1);
   act(() => tree.unmount());
 });
@@ -152,5 +152,23 @@ it.each(APP_THEMES)('keeps the inbox title, search, and new-message action toget
   expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(1);
   act(() => tree.root.findByType('button').props.onClick());
   expect(onNew).toHaveBeenCalledTimes(1);
+  act(() => tree.unmount());
+});
+
+it.each(APP_THEMES)('uses a title island by default for ordinary pages in %s', (theme) => {
+  jest.requireMock('../../context/ThemeContext').useAppTheme.mockReturnValue({ theme, isMinimal: theme === 'minimal' });
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader title="Leaderboard" canGoBack={false} />); });
+  expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toContain('Leaderboard');
+  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(1);
+  act(() => tree.unmount());
+});
+
+it('keeps explicit media controls free of title and island chrome', () => {
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<ScreenHeader appearance="controls" title="Post" onBackPress={() => {}} />); });
+  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('NavPillSurface' as any)).toHaveLength(0);
+  expect(backButtons(tree)).toHaveLength(1);
   act(() => tree.unmount());
 });
