@@ -247,9 +247,12 @@ export async function loadAffiliateStats(
       supabase.rpc("get_affiliate_cta_stats" as never),
       addr,
     ) as unknown as Promise<{ data: Array<{ destination: string; clicks: number; unique_visitors: number }> | null }>,
-    withWalletHeader(
-      supabase.rpc('get_affiliate_sub_referrals' as never), addr,
-    ) as unknown as Promise<{ data: Array<{ referred_address: string; sub_id: string }> | null; error?: unknown }>,
+    (async () => {
+      if (!await ensureWalletSession(addr)) return { data: null };
+      return withWalletHeader(supabase.rpc('get_affiliate_sub_referrals' as never), addr) as unknown as Promise<{
+        data: Array<{ referred_address: string; sub_id: string }> | null;
+      }>;
+    })(),
   ]);
 
   // A failed query resolves with `error` set instead of rejecting. When the
@@ -343,3 +346,4 @@ export async function shareInvite(ownerAddress: string, shareName?: string | nul
   await shareProfile(link, buildInviteMessage(code, link));
   return true;
 }
+import { ensureWalletSession } from './wallet-session';

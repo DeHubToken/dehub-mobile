@@ -3,6 +3,7 @@ import * as Linking from 'expo-linking';
 import { normalizeSubReferral, referralFromUrl, type ReferralTouch } from './affiliate-subref';
 import { supabase } from '../services/supabase';
 import { withWalletHeader } from './supabase-wallet-client';
+import { ensureWalletSession } from './wallet-session';
 
 const KEY = 'dehub-affiliate-first-touch';
 const TTL = 90 * 86400_000;
@@ -36,6 +37,7 @@ export async function attributePendingReferral(wallet: string): Promise<void> {
   if (!touch) return;
   const key = `${wallet.toLowerCase()}:${touch.code}:${touch.subId ?? ''}`;
   if (attributed.has(key)) return;
+  if (!await ensureWalletSession(wallet)) throw new Error('Sign in to attribute a referral');
   const { error } = await withWalletHeader(
     supabase.rpc('attribute_affiliate_referral' as never, { p_code: touch.code, p_sub_id: touch.subId } as never), wallet,
   );
