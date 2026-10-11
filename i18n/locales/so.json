@@ -5989,7 +5989,17 @@
     "upcomingStream": "Stream soo socda",
     "startsIn": "Bilowga {{time}}",
     "notStartedYet": "Duqa Muqdisho weli ma uusan bilaabin isgaarsiinta.",
-    "leftStream": "ka tagay durdurkii"
+    "leftStream": "ka tagay durdurkii",
+    "hereCount": "{{formatted}} haha",
+    "watchingCount": "{{formatted}} daawashada",
+    "startedAgo": "Waxaa la bilaabay {{time}}",
+    "host": "Martigeliyaha",
+    "topTippers": "Tifaftirayaasha ugu sarreeya",
+    "mostActive": "Inta ugu firfircoon",
+    "hereNow": "Halkan hadda",
+    "nobodyYet": "Ilaa iyo hadda ma jirto cid",
+    "whosHere": "Who's here",
+    "rotate": "Rotate shaashadda"
   },
   "search": {
     "endOfResults": "Dhammaadka natiijooyinka",

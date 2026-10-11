@@ -5999,7 +5999,17 @@
     "upcomingStream": "اڳتي ايندڙ اسٽريم",
     "startsIn": "شروع ٿئي ٿو {{time}}",
     "notStartedYet": "اسٽريمر اڃا نشريات شروع ناهي ڪئي",
-    "leftStream": "سٹریم چھڈ دتی"
+    "leftStream": "سٹریم چھڈ دتی",
+    "whosHere": "کیرے ایہہ",
+    "hereCount": "{{formatted}} ایتھ",
+    "watchingCount": "{{formatted}} ویکھ رئے",
+    "startedAgo": "شروع تھی {{time}}",
+    "host": "میزبان",
+    "topTippers": "سب توں وڈے ٹِپر",
+    "mostActive": "سب توں سرگرم",
+    "hereNow": "ہن ایتھ",
+    "nobodyYet": "ہن تک کوئی نئیں",
+    "rotate": "سکرین گھُماؤ"
   },
   "search": {
     "endOfResults": "نتیجیاں دا آخر",

@@ -5988,7 +5988,17 @@
     "upcomingStream": "Ọbịbịa Stream",
     "startsIn": "Na-amalite {{time}}",
     "notStartedYet": "The streamer amaliteghị agbasa ozi n 'ikuku ma",
-    "leftStream": "ahapụ iyi ahụ"
+    "leftStream": "ahapụ iyi ahụ",
+    "whosHere": "Ònye bụ ebe a",
+    "watchingCount": "{{formatted}} na-ekiri",
+    "startedAgo": "Amalitere {{time}}",
+    "host": "Injinịa",
+    "topTippers": "Ndị kacha tip",
+    "mostActive": "Kasị arụsi ọrụ ike",
+    "hereNow": "Ebe a ugbu a",
+    "nobodyYet": "Ọ dịghị onye ma",
+    "hereCount": "{{formatted}} here",
+    "rotate": "Bugharịa inyogo"
   },
   "search": {
     "endOfResults": "Njedebe nsonaazụ",

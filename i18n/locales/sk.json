@@ -6116,7 +6116,17 @@
     "upcomingStream": "Nadchádzajúci stream",
     "startsIn": "Začína {{time}}",
     "notStartedYet": "Streamer ešte nezačal vysielať",
-    "leftStream": "opustil stream"
+    "leftStream": "opustil stream",
+    "whosHere": "Kto je tu",
+    "hereCount": "{{formatted}} tu",
+    "watchingCount": "{{formatted}} sledovanie",
+    "startedAgo": "Začiatok {{time}}",
+    "host": "Hostiteľ",
+    "topTippers": "Najlepšie sklápače",
+    "mostActive": "Najaktívnejšie",
+    "hereNow": "Tu a teraz",
+    "nobodyYet": "Zatiaľ nikto",
+    "rotate": "Otočiť obrazovku"
   },
   "search": {
     "endOfResults": "Koniec výsledkov",

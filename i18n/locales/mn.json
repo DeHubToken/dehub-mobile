@@ -5976,7 +5976,17 @@
     "startsIn": "Эхлэх {{time}}",
     "notStartedYet": "Урсгал хараахан цацаж эхлээгүй байна",
     "leftStream": "урсгалыг үлдээсэн",
-    "sentAmount": "{{amount}}-ийг илгээсэн"
+    "sentAmount": "{{amount}}-ийг илгээсэн",
+    "whosHere": "Энд хэн байна",
+    "startedAgo": "{{time}} эхэлсэн",
+    "host": "Хост",
+    "topTippers": "Дээд зэргийн таамаглал",
+    "mostActive": "Ихэнх идэвхтэй",
+    "hereNow": "Одоо",
+    "nobodyYet": "Одоогоор хэн ч байхгүй",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "rotate": "Дэлгэцийг эргүүлэх"
   },
   "search": {
     "endOfResults": "Үр дүнгийн төгсгөл",

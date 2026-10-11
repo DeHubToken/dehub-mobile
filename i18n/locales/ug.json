@@ -5990,7 +5990,17 @@
     "upcomingStream": "كەلگۈسى ئېقىم",
     "startsIn": "باشلايدۇ {{time}}",
     "notStartedYet": "ئېقىتىش پروگراممىسى تېخى تارقىتىشنى باشلىمىدى",
-    "leftStream": "ئېقىمىنى قالدۇرۇش پروگراممىسى"
+    "leftStream": "ئېقىمىنى قالدۇرۇش پروگراممىسى",
+    "whosHere": "بۇ يەردە كىم بار",
+    "hereCount": "{{formatted}} بۇ يەردە",
+    "watchingCount": "{{formatted}} watch",
+    "startedAgo": "باشلاندى {{time}}",
+    "host": "خوجايىن",
+    "topTippers": "Top Tippers",
+    "mostActive": "ئەڭ ئاكتىپ",
+    "hereNow": "بۇ يەردە",
+    "nobodyYet": "تېخى ھېچكىم",
+    "rotate": "ئېكراننى ئايلاندۇرۇش پروگراممىسى"
   },
   "search": {
     "endOfResults": "نەتىجىلەرنىڭ ئاخىرى",

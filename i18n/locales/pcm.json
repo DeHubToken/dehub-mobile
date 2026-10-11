@@ -5897,7 +5897,17 @@
     "streamHasEnded": "Stream don end",
     "openProfileOf": "Open {{name}} profile",
     "notStartedYet": "Di streamer never start to broadcast",
-    "leftStream": "don comot from di stream"
+    "leftStream": "don comot from di stream",
+    "whosHere": "Who's here",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}",
+    "host": "Host",
+    "topTippers": "Top tippers",
+    "mostActive": "Most active",
+    "hereNow": "Here now",
+    "nobodyYet": "No one yet",
+    "rotate": "Turn di screen"
   },
   "search": {
     "endOfResults": "Results don finish",

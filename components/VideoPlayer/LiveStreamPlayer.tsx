@@ -11,11 +11,11 @@ import {
   Text,
   Platform,
   AppState,
+  StyleSheet,
   BackHandler,
   StatusBar,
 } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { createLiveViewerOrientation } from "../../libs/live-viewer-orientation";
 import VideoArea from "./VideoArea";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -47,7 +47,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../../libs/viewers.util";
 import { likeLiveStream } from "../../services/live.service";
-import { shareProfile } from "../../libs/misc";
+import { getAvatarUrl, shareProfile } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import LiveViewerChat from "../LiveViewer/LiveViewerChat";
@@ -62,7 +62,10 @@ import LiveWebRtcView from "../LiveViewer/LiveWebRtcView";
 import { DeHubLoader } from "../DeHubLoader";
 import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
-import LiveViewerPlayerControls from "../LiveViewer/LiveViewerPlayerControls";
+import LiveWhosHereSheet from "../LiveViewer/LiveWhosHereSheet";
+import LiveRotateButton from "../LiveViewer/LiveRotateButton";
+import { useLiveAudience } from "../../hooks/useLiveAudience";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useLiveChat } from "../../hooks/useLiveChat";
 import { useLivePostReactions } from "../../hooks/useLivePostReactions";
 import { useTranslation as useCopy } from "react-i18next";
@@ -71,7 +74,12 @@ import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
 import { TipSpeaker } from "../Live/TipSpeaker";
 import ViewerScrubBar from "../common/ViewerScrubBar";
-import { useSharedValue } from "react-native-reanimated";
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+
+/** Swipe-to-clear distances, the shorts viewer's numbers. */
+const LIVE_DRAG_CLAIM = 16;
+const LIVE_DRAG_RELEASE = 6;
+const LIVE_HIDE_SWIPE = 40;
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -1298,12 +1306,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     muted: isMuted,
   });
 
-  // Immersive: chrome off, status bar off, and the phone turned sideways
-  // when the picture is wider than it is tall. The player draws the stream
-  // `contain`, so a landscape broadcast on a portrait screen is a band across
-  // the middle with the chat over it — which is what "it isn't fullscreen"
-  // reports were describing. Portrait streams already fill the screen and
-  // only lose the chrome.
   /**
    * The timeline the scrub line draws, in 0..1 of the source.
    *
@@ -1333,51 +1335,122 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     seekRef.current?.(ratio);
   }, []);
 
-  const [immersive, setImmersive] = useState(false);
-  const immersiveRef = useRef(false);
-  const videoSizeRef = useRef<{ width: number; height: number } | null>(null);
-  const updateOrientation = useMemo(() => createLiveViewerOrientation({
-    portrait: () => ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP),
-    landscape: () => ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
-      .catch(() => ScreenOrientation.unlockAsync()),
-    unlocked: () => ScreenOrientation.unlockAsync(),
-  }), []);
-  const handleVideoSize = useCallback((size: { width: number; height: number }) => {
-    videoSizeRef.current = size;
-    // Went immersive before the size was known: turn now.
-    if (immersiveRef.current) updateOrientation(true, size);
-  }, [updateOrientation]);
-  const enterImmersive = useCallback(() => {
-    immersiveRef.current = true;
-    setImmersive(true);
-    StatusBar.setHidden(true);
-    updateOrientation(true, videoSizeRef.current);
-  }, [updateOrientation]);
-  const exitImmersive = useCallback(() => {
-    immersiveRef.current = false;
-    setImmersive(false);
-    StatusBar.setHidden(false);
-    updateOrientation(false);
-  }, [updateOrientation]);
-  useFocusEffect(useCallback(() => () => exitImmersive(), [exitImmersive]));
-  // Hardware back steps out of immersive before it leaves the stream. Handled
-  // here rather than via `beforeRemove` because the player pauses and mutes
-  // itself on that event whether or not the removal is then prevented.
+  /**
+   * A live can't be paused, so the screen itself is the clear button: tap the
+   * open picture, or swipe down over the lower half as the shorts viewer does,
+   * and every button, the chat and the pills fade away. Only a small rotate
+   * button stays in the corner, to flip between portrait and landscape. A tap
+   * or a swipe up brings everything back (in portrait, where the chrome is
+   * laid out). Replaces the old chevron "immersive" mode.
+   */
+  const [chromeHidden, setChromeHidden] = useState(false);
+  const chromeOpacity = useSharedValue(1);
   useEffect(() => {
+    chromeOpacity.value = withTiming(chromeHidden ? 0 : 1, { duration: 220 });
+  }, [chromeHidden, chromeOpacity]);
+  const chromeStyle = useAnimatedStyle(() => ({ opacity: chromeOpacity.value }));
+  const hideStart = useSharedValue({ x: 0, y: 0 });
+  const hidePan = useMemo(
+    () =>
+      Gesture.Pan()
+        .manualActivation(true)
+        .onTouchesDown((e) => {
+          "worklet";
+          if (e.numberOfTouches !== 1) return;
+          hideStart.value = { x: e.allTouches[0]?.x ?? 0, y: e.allTouches[0]?.y ?? 0 };
+        })
+        .onTouchesMove((e, state) => {
+          "worklet";
+          const touch = e.allTouches[0];
+          if (!touch || e.numberOfTouches !== 1) return;
+          const dy = touch.y - hideStart.value.y;
+          const dx = Math.abs(touch.x - hideStart.value.x);
+          // Anything but a downward drag stays with the chat list and buttons.
+          if (dy < -LIVE_DRAG_RELEASE || dx > Math.abs(dy) + LIVE_DRAG_RELEASE) {
+            state.fail();
+            return;
+          }
+          if (dy > LIVE_DRAG_CLAIM && dy > dx) state.activate();
+        })
+        .onEnd((e, success) => {
+          "worklet";
+          if (success && e.translationY > LIVE_HIDE_SWIPE && e.translationY > Math.abs(e.translationX)) {
+            runOnJS(setChromeHidden)(true);
+          }
+        }),
+    [hideStart],
+  );
+  const hideTap = useMemo(
+    () =>
+      Gesture.Tap()
+        .maxDistance(10)
+        .onEnd((_e, success) => {
+          "worklet";
+          if (success) runOnJS(setChromeHidden)(true);
+        }),
+    [],
+  );
+  const hideGesture = useMemo(() => Gesture.Race(hidePan, hideTap), [hidePan, hideTap]);
+
+  // Rotate, only while cleared. The binary already ships expo-screen-orientation
+  // (the old immersive mode used it); a failed lock just leaves the layout as is.
+  const [landscape, setLandscape] = useState(false);
+  useEffect(() => {
+    const lock = landscape
+      ? ScreenOrientation.OrientationLock.LANDSCAPE
+      : ScreenOrientation.OrientationLock.PORTRAIT_UP;
+    ScreenOrientation.lockAsync(lock).catch(() => {});
+  }, [landscape]);
+  useEffect(
+    () => () => {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
+      StatusBar.setHidden(false);
+    },
+    [],
+  );
+  useEffect(() => {
+    StatusBar.setHidden(chromeHidden, "fade");
+    if (!chromeHidden) setLandscape(false);
+  }, [chromeHidden]);
+  // Hardware back brings the chrome back before it leaves the stream.
+  useEffect(() => {
+    if (!chromeHidden) return;
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      if (!immersiveRef.current) return false;
-      exitImmersive();
+      setChromeHidden(false);
       return true;
     });
     return () => sub.remove();
-  }, [exitImmersive]);
-  // Leaving the screen while immersive hands the status bar back; the player
-  // already restores portrait on unmount.
-  useEffect(
-    () => () => {
-      if (immersiveRef.current) StatusBar.setHidden(false);
-    },
-    []
+  }, [chromeHidden]);
+
+  const restoreGesture = useMemo(() => {
+    const show = () => setChromeHidden(false);
+    const swipeUp = Gesture.Pan()
+      .activeOffsetY(-LIVE_DRAG_CLAIM)
+      .failOffsetX([-30, 30])
+      .onEnd((e) => {
+        "worklet";
+        if (e.translationY < -LIVE_HIDE_SWIPE) runOnJS(show)();
+      });
+    const tap = Gesture.Tap().onEnd(() => {
+      "worklet";
+      runOnJS(show)();
+    });
+    return Gesture.Race(swipeUp, tap);
+  }, []);
+
+  // Who's here: host, top tippers, most active, and everyone watching.
+  const [audienceOpen, setAudienceOpen] = useState(false);
+  const { data: audience, isLoading: audienceLoading } = useLiveAudience(streamId, {
+    open: audienceOpen,
+    enabled: !chromeHidden || audienceOpen,
+  });
+  const audienceFaces = useMemo(
+    () =>
+      (audience?.here ?? []).slice(0, 3).map((a) => ({
+        uri: getAvatarUrl(a.avatarImageUrl) || undefined,
+        name: a.displayName || a.username || a.address || "?",
+      })),
+    [audience?.here],
   );
 
   // Gift modal state
@@ -1527,7 +1600,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             fullscreen
             hideTopControls
             muted={isMuted}
-            onVideoSize={handleVideoSize}
           />
         ) : (
           <View className="flex-1 dark-surface bg-black" />
@@ -1549,23 +1621,30 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           />
         )}
 
-        {/* Immersive: just the picture, with sound and a way back in the corner. */}
-        {immersive && (
-          <View
-            pointerEvents="box-none"
-            style={{ position: "absolute", top: EDGE, right: EDGE }}
-          >
-            <LiveViewerPlayerControls
-              isMuted={isMuted}
-              immersive
-              onToggleMute={toggleMute}
-              onToggleImmersive={exitImmersive}
-            />
-          </View>
+        {/* Clear the chrome: tap the open picture anywhere, or swipe down
+            over the lower half. These sit under the chrome and over the
+            picture, so the chat and buttons above keep their own touches. */}
+        {!chromeHidden && (
+          <>
+            <GestureDetector gesture={hideTap}>
+              <View
+                collapsable={false}
+                style={{ position: "absolute", left: 0, right: 0, top: 0, height: "45%" }}
+              />
+            </GestureDetector>
+            <GestureDetector gesture={hideGesture}>
+              <View
+                collapsable={false}
+                style={{ position: "absolute", left: 0, right: 0, bottom: 0, top: "45%" }}
+              />
+            </GestureDetector>
+          </>
         )}
 
-        {!immersive && (
-        <>
+        <Animated.View
+          style={[StyleSheet.absoluteFill, chromeStyle]}
+          pointerEvents={chromeHidden ? "none" : "box-none"}
+        >
           {/* Top gradient for readability */}
           <LinearGradient
             colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0)"]}
@@ -1594,9 +1673,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 onFollow={handleFollow}
                 onUnfollow={handleUnfollow}
                 viewerAddress={(user?.walletAddress || user?.address) as string}
-                viewerCount={liveViewers}
-                likeCount={postReactions.likeCount}
-                giftCount={resolvedTotalTips}
+                startedAt={startedAtDate}
+                isLive={isLiveEffective && !isEndedEffective}
                 isMuted={isMuted}
                 onToggleMute={toggleMute}
                 fallbackMinter={minterProp}
@@ -1611,6 +1689,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 isScheduled={isScheduledEffective}
                 startedAt={startedAtDate}
                 title={resolvedTitle || undefined}
+                viewerCount={Math.max(liveViewers ?? 0, audience?.watching ?? 0)}
+                giftTotal={resolvedTotalTips}
+                faces={audienceFaces}
+                onOpenAudience={() => setAudienceOpen(true)}
               />
 
               {/* Middle area - transparent, shows video */}
@@ -1665,7 +1747,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               </View>
             </View>
           </View>
-        </>
+        </Animated.View>
+
+        {/* Cleared: only the stream and the rotate button. A tap, or a swipe
+            up, brings it all back. */}
+        {chromeHidden && (
+          <>
+            <GestureDetector gesture={restoreGesture}>
+              <View collapsable={false} style={StyleSheet.absoluteFill} testID="live-cleared" />
+            </GestureDetector>
+            <LiveRotateButton onPress={() => setLandscape((v) => !v)} />
+          </>
         )}
 
         {/* Floating Reaction Bubbles - right side */}
@@ -1690,6 +1782,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           ended stream) delete it. Mounted here rather than inside the header
           for the usual reason: the header is memoised chrome, and the sheet
           owns modals of its own. */}
+      <LiveWhosHereSheet
+        visible={audienceOpen}
+        onClose={() => setAudienceOpen(false)}
+        audience={audience}
+        loading={audienceLoading}
+      />
+
       {showOptionsMenu && (
         <PostOptionsMenu
           visible={showOptionsMenu}

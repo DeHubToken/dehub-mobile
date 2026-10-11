@@ -6020,7 +6020,17 @@
     "notStartedYet": "د سټریمر لا تر اوسه خپرونه نه ده پیل کړې",
     "leftStream": "خارج از استریم",
     "streamHasEnded": "اسٹریمنگ ختم ہو گئی",
-    "openProfileOf": "{{name}} کا پروفائل کھولیں"
+    "openProfileOf": "{{name}} کا پروفائل کھولیں",
+    "whosHere": "के हाँइ",
+    "hereCount": "{{formatted}} हाँइ",
+    "watchingCount": "{{formatted}} देखै छै",
+    "startedAgo": "शुरू कएल {{time}}",
+    "host": "होस्ट",
+    "topTippers": "सबसँ बेसी टिप देनिहार",
+    "mostActive": "सबसे सक्रिय",
+    "hereNow": "एहिआँ अब",
+    "nobodyYet": "अभी तक कोनो नहि",
+    "rotate": "स्क्रीन घुमा"
   },
   "search": {
     "endOfResults": "کۆتایی ئەنجامەکان",

@@ -6087,7 +6087,17 @@
     "upcomingStream": "Streaming Mendatang",
     "startsIn": "Mulai {{time}}",
     "notStartedYet": "Streamer belum mulai mengudara",
-    "leftStream": "meninggalkan aliran"
+    "leftStream": "meninggalkan aliran",
+    "whosHere": "Siapa yang ada di sini",
+    "hereCount": "{{formatted}} di sini",
+    "watchingCount": "{{formatted}} menonton",
+    "startedAgo": "Mulai {{time}}",
+    "host": "Tuan Rumah",
+    "topTippers": "Top tippers",
+    "mostActive": "Paling aktif",
+    "hereNow": "Di sini sekarang",
+    "nobodyYet": "Belum ada",
+    "rotate": "Putar layar"
   },
   "search": {
     "endOfResults": "Akhir hasil",

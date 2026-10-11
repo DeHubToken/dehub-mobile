@@ -6041,7 +6041,17 @@
     "upcomingStream": "Opkomende stroom",
     "startsIn": "Begin {{time}}",
     "notStartedYet": "Die stroom het nog nie begin uitsaai nie",
-    "leftStream": "het die stroom verlaat"
+    "leftStream": "het die stroom verlaat",
+    "whosHere": "Wie is hier",
+    "hereCount": "{{formatted}} hier",
+    "watchingCount": "{{formatted}} om te kyk",
+    "startedAgo": "Begin {{time}}",
+    "host": "Gasheer",
+    "topTippers": "Top-tippers",
+    "mostActive": "Mees aktiewe",
+    "hereNow": "Hier nou",
+    "nobodyYet": "Niemand nog nie",
+    "rotate": "Roteer skerm"
   },
   "search": {
     "endOfResults": "Einde van resultate",

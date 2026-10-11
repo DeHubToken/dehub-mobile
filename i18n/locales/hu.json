@@ -6012,7 +6012,17 @@
     "upcomingStream": "Közelgő adatfolyam",
     "startsIn": "Kezdés:{{time}}",
     "notStartedYet": "A streamer még nem kezdte meg a sugárzást",
-    "leftStream": "elhagyta a patakot"
+    "leftStream": "elhagyta a patakot",
+    "whosHere": "Ki van itt?",
+    "hereCount": "{{formatted}} itt",
+    "watchingCount": "{{formatted}} nézés",
+    "startedAgo": "Kezdés {{time}}",
+    "host": "Házigazda",
+    "topTippers": "Legjobb borravalók",
+    "mostActive": "Legaktívabb",
+    "hereNow": "Itt és most",
+    "nobodyYet": "Még senki",
+    "rotate": "Képernyő elforgatása"
   },
   "search": {
     "endOfResults": "A találatok vége",

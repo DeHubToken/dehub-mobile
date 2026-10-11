@@ -6002,7 +6002,17 @@
     "upcomingStream": "Dhangala'aa Dhufu",
     "startsIn": "{{time}} irraa eegala.",
     "notStartedYet": "Stremer hanga ammaatti tamsaasa hin jalqabne",
-    "leftStream": "sulula sana dhiisee deeme"
+    "leftStream": "sulula sana dhiisee deeme",
+    "whosHere": "Eenyuutu as jira",
+    "hereCount": "{{formatted}} asitti",
+    "watchingCount": "{{formatted}} ilaalaa jira",
+    "startedAgo": "{{time}} irraa eegale.",
+    "host": "Keessummeessaa",
+    "topTippers": "Tippers gubbaa",
+    "mostActive": "Irra caalaa sochii kan qaban",
+    "hereNow": "Kunoo amma",
+    "nobodyYet": "Ammatti namni tokkollee hin jiru",
+    "rotate": "Iskiriinii naannessi"
   },
   "search": {
     "endOfResults": "Dhuma bu'aawwanii",

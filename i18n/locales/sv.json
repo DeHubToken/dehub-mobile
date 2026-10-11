@@ -6012,7 +6012,17 @@
     "upcomingStream": "Kommande ström",
     "startsIn": "Startar {{time}}",
     "notStartedYet": "Streamern har inte börjat sända ännu",
-    "leftStream": "lämnade strömmen"
+    "leftStream": "lämnade strömmen",
+    "whosHere": "Vem är här",
+    "hereCount": "{{formatted}} här",
+    "watchingCount": "{{formatted}} tittar",
+    "startedAgo": "Startade {{time}}",
+    "host": "Värd",
+    "topTippers": "Topptippvagnar",
+    "mostActive": "Mest aktiv",
+    "hereNow": "Här nu",
+    "nobodyYet": "Ingen ännu",
+    "rotate": "Rotera skärm"
   },
   "search": {
     "endOfResults": "Slut på resultaten",

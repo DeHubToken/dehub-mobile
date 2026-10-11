@@ -5999,7 +5999,17 @@
     "upcomingStream": "આગામી સ્ટ્રીમ",
     "startsIn": "શરૂ થાય છે {{time}}",
     "notStartedYet": "સ્ટ્રીમરે હજી સુધી પ્રસારણ શરૂ કર્યું નથી",
-    "leftStream": "સ્ટ્રીમ છોડી દીધી"
+    "leftStream": "સ્ટ્રીમ છોડી દીધી",
+    "whosHere": "અહીં કોણ છે",
+    "hereCount": "{{formatted}} અહીં",
+    "watchingCount": "{{formatted}} જોઈ રહ્યા છે",
+    "startedAgo": "{{time}} શરૂ કર્યું",
+    "host": "યજમાન",
+    "topTippers": "ટોચના ટીપર્સ",
+    "mostActive": "સૌથી વધુ સક્રિય",
+    "hereNow": "અહીં હવે",
+    "nobodyYet": "હજી સુધી કોઈ નથી",
+    "rotate": "સ્ક્રીનને ફેરવો"
   },
   "search": {
     "endOfResults": "પરિણામોનો અંત",

@@ -6017,7 +6017,17 @@
     "upcomingStream": "Алдағы ағын",
     "startsIn": "Бастау {{time}}",
     "notStartedYet": "Ағын таратқыш әлі таратуды бастаған жоқ",
-    "leftStream": "ағыннан шықты"
+    "leftStream": "ағыннан шықты",
+    "whosHere": "Кім осында",
+    "hereCount": "{{formatted}} Мұнда",
+    "watchingCount": "{{formatted}} қарау",
+    "startedAgo": "Басталды {{time}}",
+    "host": "Хост",
+    "topTippers": "ТОП ТИППЕРЛЕР",
+    "mostActive": "Ең белсенді",
+    "hereNow": "Мұнда қазір",
+    "nobodyYet": "Әлі ешкім",
+    "rotate": "Экранды бұру"
   },
   "search": {
     "endOfResults": "Нәтижелердің соңы",

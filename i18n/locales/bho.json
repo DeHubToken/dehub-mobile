@@ -6002,7 +6002,17 @@
     "openProfileOf": "देखने के बिंदु {{name}}",
     "duration": "देखने के बिंदु {{duration}}",
     "endedAgo": "देखने के बिंदु {{time}}",
-    "startsIn": "देखने के बिंदु {{time}}"
+    "startsIn": "देखने के बिंदु {{time}}",
+    "whosHere": "कौन कौन रहे मौजूद -",
+    "host": "मेहमान बनावे जा रहल",
+    "topTippers": "ऊपरी टाइलें",
+    "mostActive": "ज्यादा से ज्यादा एक्टिव रहे",
+    "hereNow": "आऊ अब फर्केर आऊ",
+    "nobodyYet": "आज तक ना भइल",
+    "hereCount": "{{formatted}} here",
+    "watchingCount": "{{formatted}} watching",
+    "startedAgo": "Started {{time}}",
+    "rotate": "स्क्रीन समायोजित करें"
   },
   "search": {
     "endOfResults": "नतीजा के अंत",

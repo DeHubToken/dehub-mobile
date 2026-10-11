@@ -6091,7 +6091,17 @@
     "upcomingStream": "예정된 스트리밍",
     "startsIn": "{{time}} 에 시작",
     "notStartedYet": "스트리머가 아직 방송을 시작하지 않았습니다",
-    "leftStream": "스트림을 떠났습니다"
+    "leftStream": "스트림을 떠났습니다",
+    "whosHere": "일행이 있나요?",
+    "hereCount": "{{formatted}} 여기",
+    "watchingCount": "{{formatted}} 시청",
+    "startedAgo": "시작일: {{time}}",
+    "host": "호스트",
+    "topTippers": "인기 팁",
+    "mostActive": "가장 활발한 체험",
+    "hereNow": "지금 여기",
+    "nobodyYet": "아직 아무도 없음",
+    "rotate": "화면 회전"
   },
   "search": {
     "endOfResults": "결과 끝",

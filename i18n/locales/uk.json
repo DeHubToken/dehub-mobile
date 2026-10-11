@@ -6397,7 +6397,17 @@
     "upcomingStream": "Майбутній потік",
     "startsIn": "Починається {{time}}",
     "notStartedYet": "Стример ще не розпочав трансляцію",
-    "leftStream": "залишив (-ла) потік"
+    "leftStream": "залишив (-ла) потік",
+    "whosHere": "Хто тут",
+    "hereCount": "{{formatted}} тут",
+    "watchingCount": "{{formatted}} перегляд",
+    "startedAgo": "Запущено {{time}}",
+    "host": "Господар",
+    "topTippers": "Найкращі чайові",
+    "mostActive": "Найактивніші",
+    "hereNow": "Тут і зараз",
+    "nobodyYet": "Ще ніхто",
+    "rotate": "Повернути екран"
   },
   "search": {
     "endOfResults": "Кінець результатів",

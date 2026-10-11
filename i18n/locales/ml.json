@@ -6000,7 +6000,17 @@
     "upcomingStream": "വരാനിരിക്കുന്ന സ്ട്രീം",
     "startsIn": "ആരംഭിക്കുന്നു {{time}}",
     "notStartedYet": "സ്ട്രീമർ ഇതുവരെ പ്രക്ഷേപണം ആരംഭിച്ചിട്ടില്ല",
-    "leftStream": "സ്ട്രീം വിട്ടു"
+    "leftStream": "സ്ട്രീം വിട്ടു",
+    "whosHere": "ആരാണ് ഇവിടെ",
+    "hereCount": "{{formatted}} ഇവിടെ",
+    "watchingCount": "{{formatted}} വീക്ഷിക്കൽ",
+    "startedAgo": "ആരംഭിച്ചത് {{time}}",
+    "host": "ഹോസ്റ്റ്",
+    "topTippers": "ടോപ്പ് ടിപ്പറുകൾ",
+    "mostActive": "ഏറ്റവും സജീവമായ",
+    "hereNow": "ഇവിടെ ഇപ്പോൾ",
+    "nobodyYet": "ഇതുവരെ ആരും ഇല്ല",
+    "rotate": "സ്ക്രീൻ തിരിക്കുക"
   },
   "search": {
     "endOfResults": "ഫലങ്ങളുടെ അവസാനം",

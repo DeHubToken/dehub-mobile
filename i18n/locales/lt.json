@@ -6008,7 +6008,17 @@
     "upcomingStream": "Būsimas srautas",
     "startsIn": "Prasideda {{time}}",
     "notStartedYet": "Transliuotojas dar nepradėjo transliuoti",
-    "leftStream": "paliko upelį"
+    "leftStream": "paliko upelį",
+    "whosHere": "Kas atvyko",
+    "hereCount": "{{formatted}} čia",
+    "watchingCount": "{{formatted}} žiūri",
+    "startedAgo": "Pradėta {{time}}",
+    "host": "Šeimininkas",
+    "topTippers": "Geriausi savivarčiai",
+    "mostActive": "Aktyviausi",
+    "hereNow": "Čia dabar",
+    "nobodyYet": "Dar niekas",
+    "rotate": "Pasukti ekraną"
   },
   "search": {
     "endOfResults": "Rezultatų pabaiga",

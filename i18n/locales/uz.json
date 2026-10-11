@@ -6026,7 +6026,17 @@
     "leftStream": "oqimni tark etdi",
     "joined": "Добавлено:",
     "duration": "Davomiyligi {{duration}}",
-    "endedAgo": "{{time}}-yilda tugadi"
+    "endedAgo": "{{time}}-yilda tugadi",
+    "whosHere": "Bu yerda kim bor?",
+    "hereCount": "{{formatted}} bu yerda",
+    "watchingCount": "{{formatted}} tomosha qilmoqda",
+    "startedAgo": "Boshlandi {{time}}",
+    "host": "Xost",
+    "topTippers": "Eng yaxshi samosvallar",
+    "mostActive": "Eng faol",
+    "hereNow": "Hozir shu yerda",
+    "nobodyYet": "Hali hech kim",
+    "rotate": "Ekranni aylantirish"
   },
   "search": {
     "endOfResults": "Natijalar tugadi",

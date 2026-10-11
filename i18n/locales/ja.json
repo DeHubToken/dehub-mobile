@@ -6079,7 +6079,17 @@
     "startsIn": "{{time}}開始",
     "notStartedYet": "ストリーマーはまだブロードキャストを開始していません",
     "leftStream": "ストリームから退出しました",
-    "sentAmount": "送信済み {{amount}}"
+    "sentAmount": "送信済み {{amount}}",
+    "whosHere": "誰がここにいますか",
+    "hereCount": "{{formatted}}こちら",
+    "watchingCount": "{{formatted}}の視聴",
+    "startedAgo": "{{time}}開始",
+    "host": "ホスト",
+    "topTippers": "トップチッパー",
+    "mostActive": "最もアクティブ",
+    "hereNow": "今すぐこちら",
+    "nobodyYet": "まだ誰もいません",
+    "rotate": "画面を回転"
   },
   "search": {
     "endOfResults": "結果はここまで",

@@ -6124,7 +6124,17 @@
     "upcomingStream": "আসন্ন স্ট্রিম",
     "startsIn": "{{time}} শুরু হয়",
     "notStartedYet": "স্ট্রিমার এখনও সম্প্রচার শুরু করেনি",
-    "leftStream": "স্ট্রিমটি ছেড়ে গেছে"
+    "leftStream": "স্ট্রিমটি ছেড়ে গেছে",
+    "whosHere": "কোনে আইসে",
+    "hereCount": "{{formatted}} আইসে",
+    "watchingCount": "{{formatted}} দেহে",
+    "startedAgo": "শুরু হইল {{time}}",
+    "host": "হোস্ট",
+    "topTippers": "সর্বোচ্চ টিপ দিয়া",
+    "mostActive": "সবচে সক্রিয়",
+    "hereNow": "এখন আইসে",
+    "nobodyYet": "এখনো কেউ না",
+    "rotate": "স্ক্রিন ঘুরাই"
   },
   "search": {
     "endOfResults": "ফলাফলের শেষ",

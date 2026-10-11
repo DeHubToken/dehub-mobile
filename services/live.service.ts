@@ -189,3 +189,35 @@ export async function getStreamerProgress(address: string): Promise<StreamerProg
 export function selectStreamerBadge(badgeId: StreamerCardId): Promise<{ selectedBadgeId: StreamerCardId }> {
   return apiClient.patch<{ selectedBadgeId: StreamerCardId }>("/live/creator/badge", { badgeId });
 }
+
+/** One face in the live room's "Who's here" sheet. */
+export interface LiveAudienceAccount {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  badgeBalance?: number;
+  hideBadgeAndBalance?: boolean;
+}
+
+/** GET /live/:streamId/audience — host, who is watching, top tippers, most active chatters. */
+export interface LiveAudience {
+  host: (LiveAudienceAccount & { startedAt?: string | null }) | null;
+  watching: number;
+  here: (LiveAudienceAccount & { joinedAt: string })[];
+  topTippers: (LiveAudienceAccount & { total: number; count: number })[];
+  mostActive: (LiveAudienceAccount & { messages: number })[];
+}
+
+export async function getStreamAudience(streamId: string): Promise<LiveAudience> {
+  if (!streamId) throw new Error('streamId required');
+  const res: any = await apiClient.get<any>(`/live/${encodeURIComponent(streamId)}/audience`, { isAuthRequired: false });
+  const body = res?.result ?? res?.data ?? res;
+  return {
+    host: body?.host ?? null,
+    watching: Number(body?.watching) || 0,
+    here: Array.isArray(body?.here) ? body.here : [],
+    topTippers: Array.isArray(body?.topTippers) ? body.topTippers : [],
+    mostActive: Array.isArray(body?.mostActive) ? body.mostActive : [],
+  };
+}

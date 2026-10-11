@@ -6265,7 +6265,17 @@
     "upcomingStream": "Strim Akan Datang",
     "startsIn": "Bermula {{time}}",
     "notStartedYet": "Penstrim belum mula bersiaran lagi",
-    "leftStream": "meninggalkan strim"
+    "leftStream": "meninggalkan strim",
+    "whosHere": "Siapa di sini",
+    "hereCount": "{{formatted}} di sini",
+    "watchingCount": "{{formatted}} menonton",
+    "startedAgo": "Bermula {{time}}",
+    "host": "Hos",
+    "topTippers": "Penyepit teratas",
+    "mostActive": "Paling aktif",
+    "hereNow": "Di sini sekarang",
+    "nobodyYet": "Belum ada sesiapa",
+    "rotate": "Putar skrin"
   },
   "search": {
     "endOfResults": "Penghujung hasil",

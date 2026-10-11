@@ -6093,7 +6093,17 @@
     "upcomingStream": "Предстоящий поток",
     "startsIn": "Начинается {{time}}",
     "notStartedYet": "Стример еще не начал трансляцию",
-    "leftStream": "слева от ручья"
+    "leftStream": "слева от ручья",
+    "whosHere": "Кто здесь",
+    "hereCount": "{{formatted}} здесь",
+    "watchingCount": "{{formatted}} смотрит",
+    "startedAgo": "Начало {{time}}",
+    "host": "Хозяин",
+    "topTippers": "Лучшие самосвалы",
+    "mostActive": "Самые активные",
+    "hereNow": "Здесь и сейчас",
+    "nobodyYet": "Пока никто",
+    "rotate": "Повернуть экран"
   },
   "search": {
     "endOfResults": "Конец результатов",

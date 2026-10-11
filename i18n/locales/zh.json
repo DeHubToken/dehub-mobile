@@ -6080,7 +6080,17 @@
     "upcomingStream": "即将到来的流",
     "startsIn": "开始时间： {{time}}",
     "notStartedYet": "主播尚未开始播放",
-    "leftStream": "离开了小溪"
+    "leftStream": "离开了小溪",
+    "whosHere": "谁在这里",
+    "hereCount": "{{formatted}}这里",
+    "watchingCount": "{{formatted}}观看",
+    "startedAgo": "已开始{{time}}",
+    "host": "房东",
+    "topTippers": "顶级小费者",
+    "mostActive": "最活跃",
+    "hereNow": "现在就在这里",
+    "nobodyYet": "还没有人",
+    "rotate": "旋转屏幕"
   },
   "search": {
     "endOfResults": "结果到底了",

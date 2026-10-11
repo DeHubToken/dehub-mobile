@@ -5989,7 +5989,17 @@
     "upcomingStream": "Te awa e whai ake nei",
     "startsIn": "Tīmata {{time}}",
     "notStartedYet": "Kaore ano kia tiimata te tuku",
-    "leftStream": "mahue i te awa"
+    "leftStream": "mahue i te awa",
+    "whosHere": "Ko wai kei konei",
+    "hereCount": "{{formatted}} i konei",
+    "watchingCount": "{{formatted}} matakitaki",
+    "startedAgo": "Tīmata {{time}}",
+    "host": "Kaihautū",
+    "topTippers": "Top tippers",
+    "mostActive": "Ko te nuinga o te mahi",
+    "hereNow": "I konei inaianei",
+    "nobodyYet": "Kaore ano tetahi",
+    "rotate": "Mata hurihuri"
   },
   "search": {
     "endOfResults": "Mutunga o ngā hua",

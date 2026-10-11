@@ -6107,7 +6107,17 @@
     "startsIn": "শুরু {{time}}",
     "leftStream": "স্ট্রিম ছাড়ি দিয়ি",
     "sentAmount": "{{amount}} কে পাঠিয়েছেন",
-    "notStartedYet": "স্ট্রিমার এখনও সম্প্রচার শুরু করেনি"
+    "notStartedYet": "স্ট্রিমার এখনও সম্প্রচার শুরু করেনি",
+    "whosHere": "কোনে আইসে",
+    "hereCount": "{{formatted}} আইসে",
+    "watchingCount": "{{formatted}} দেখতাছে",
+    "startedAgo": "শুরু হইল {{time}}",
+    "host": "হোস্ট",
+    "topTippers": "সর্বোচ্চ টিপ দিয়া লোক",
+    "mostActive": "সবচে সক্রিয়",
+    "hereNow": "এখন আইসে",
+    "nobodyYet": "এখনো কেউ না",
+    "rotate": "স্ক্রিন ঘুরান"
   },
   "search": {
     "endOfResults": "ফলাফলর শেষ",
