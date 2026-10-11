@@ -8,6 +8,7 @@ import Svg, { Defs, LinearGradient, Path, RadialGradient, Rect, Stop } from 'rea
 import { useAppTheme } from '../../context/ThemeContext';
 import { useFeedPillRefreshing } from '../../libs/feed-pill-refresh';
 import { pillGlowColor, pillGlowStrength } from '../../libs/pill-glow';
+import { PULL_GLOW_FADE_MS } from '../../libs/pill-pull-motion';
 
 const HALO_HEIGHT = 34;
 // Room above the rim for its bloom to spread over the pill's bottom edge.
@@ -40,7 +41,10 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   const breath = useSharedValue(0);
   useEffect(() => {
     cancelAnimation(breath);
-    if (!refreshing) { breath.value = 0; return; }
+    if (!refreshing) {
+      breath.value = withTiming(0, { duration: PULL_GLOW_FADE_MS, easing: Easing.out(Easing.cubic), reduceMotion: ReduceMotion.System });
+      return;
+    }
     if (reduced) { breath.value = .32; return; }
     breath.value = .3;
     breath.value = withRepeat(withTiming(.45, { duration: 1800, easing: Easing.inOut(Easing.sin), reduceMotion: ReduceMotion.Never }), -1, true);
