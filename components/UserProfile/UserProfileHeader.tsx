@@ -297,7 +297,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             onPress={() => onOpenImage("avatar")}
           />
           {!isBlocked && (
-            <View className="flex-row items-center gap-2 mb-1">
+            <View className={`flex-row items-center gap-2 self-start mt-12 ${cinematicPhone ? "-mr-3" : "-mr-4"}`}>
               {renderFollowButton()}
               {!!onMessage && (
                 <TouchableOpacity
