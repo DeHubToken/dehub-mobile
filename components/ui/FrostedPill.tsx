@@ -14,7 +14,8 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
   // Opacity on a covered page does not stop native blur target sampling.
   const blur = androidFrostSupported && !!target && surfaceActive;
   return (
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
+    // Keep the stationary material as its own native view when tab controls move.
+    <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
       {blur ? (
         <BlurView
           blurTarget={target}
