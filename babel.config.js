@@ -29,6 +29,7 @@ module.exports = function (api) {
         { runtime: "automatic", importSource: "dehub-jsx" },
       ],
       "module:react-native-dotenv",
+      ...(process.env.NODE_ENV === "test" ? ["./babel/transform-test-download-imports"] : []),
       ...(isRelease ? ["./babel/remove-console"] : []),
       // Reanimated 4: plugin moved to react-native-worklets
       "react-native-worklets/plugin",
