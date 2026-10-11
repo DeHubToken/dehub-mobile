@@ -398,6 +398,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Dao]: DeepLinkPaths.DAO,
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
+          [ScreenNames.Feedback]: 'feedback',
 
           [ScreenNames.GovernanceProposal]: {
             path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
@@ -617,7 +618,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });

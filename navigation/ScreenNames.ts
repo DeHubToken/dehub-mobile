@@ -102,6 +102,7 @@ export enum ScreenNames {
   Affiliate = 'Affiliate',
   // Comments expand inline in the card (as on web) — there is no detail route.
   FeatureRequests = 'FeatureRequests',
+  Feedback = 'Feedback',
   Usernames = 'Usernames',
   Fractions = 'Fractions',
   Accounts = 'Accounts',
