@@ -44,10 +44,26 @@ function issue(code) {
   return error;
 }
 
+function safeHttpStatus(error) {
+  const candidates = [error?.status, error?.response?.status,
+    ...(Array.isArray(error?.data?.errors) ? error.data.errors.map(item => item?.status) : [])];
+  for (const candidate of candidates) {
+    const status = typeof candidate === 'string' && /^[45]\d{2}$/.test(candidate) ? Number(candidate) : candidate;
+    if (Number.isInteger(status) && status >= 400 && status <= 599) return status;
+  }
+  return null;
+}
+
 function safeFailure(error, fallback) {
-  if (inventoryFailures.has(error.inventoryCode)) return error.inventoryCode;
-  const status = error.status ?? error.response?.status;
-  return Number.isInteger(status) && status >= 400 && status <= 599 ? `${fallback}_http_${status}` : fallback;
+  if (inventoryFailures.has(error?.inventoryCode)) return error.inventoryCode;
+  const status = safeHttpStatus(error);
+  return status === null ? fallback : `${fallback}_http_${status}`;
+}
+
+function recordFailure(report, error, fallback, stage, bundleIdentifier) {
+  const finding = safeFailure(error, fallback);
+  report.findings.push(finding);
+  report.failures.push({ stage, ...(bundleIdentifier ? { bundleIdentifier } : {}), httpStatus: safeHttpStatus(error), finding });
 }
 
 export function verifyManagedProfileOwnership(encoded) {
@@ -75,8 +91,10 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
     managedTeamKeyAvailable: false, portalBundleLookupSucceeded: false,
     recordingGroupLookupSucceeded: false, recordingGroupRegistered: null,
     managedKeyTeamMetadata: null, managedProfileOwnershipVerified: false,
-    releaseReady: false, profiles: [], findings: [],
+    releaseReady: false, profiles: [], findings: [], failures: [],
   };
+  let stage = 'managed_metadata_lookup';
+  let currentBundle;
   try {
     const app = (await graphql(metadataQuery, { projectFullName: '@dehubapp/dehubmobile' })).app?.byFullName;
     if (app?.id !== PROJECT) throw issue('wrong_expo_project');
@@ -92,6 +110,7 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
     report.managedKeyTeamMetadata = !storedTeam ? 'unassigned' : storedTeam === TEAM ? 'matches' : 'different';
     if (storedTeam && storedTeam !== TEAM) throw issue('managed_key_team_not_confirmed');
     if (!storedTeam) {
+      stage = 'managed_profile_ownership';
       const profiles = records.flatMap(record => (record.iosAppBuildCredentialsList ?? [])
         .filter(build => build.iosDistributionType === 'APP_STORE' && build.provisioningProfile)
         .map(build => build.provisioningProfile.provisioningProfile));
@@ -99,14 +118,18 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
       report.managedProfileOwnershipVerified = true;
     }
     if (!metadata.issuerIdentifier) throw issue('managed_key_is_not_a_team_key');
+    stage = 'managed_key_lookup';
     const key = (await graphql(keyQuery, { ascApiKeyId: metadata.id })).appStoreConnectApiKey?.byId;
     if (!key?.keyP8 || key.id !== metadata.id || key.keyIdentifier !== metadata.keyIdentifier || key.issuerIdentifier !== metadata.issuerIdentifier) {
       throw issue('managed_key_does_not_match_metadata');
     }
+    stage = 'signing_token';
     const token = await apple.Token.sign({ key: key.keyP8, issuerId: key.issuerIdentifier, keyId: key.keyIdentifier, duration: 300 });
     const context = { token, teamId: TEAM };
     report.managedTeamKeyAvailable = true;
     for (const bundleIdentifier of BUNDLES) {
+      currentBundle = bundleIdentifier;
+      stage = 'bundle_lookup';
       const bundle = await apple.BundleId.findAsync(context, { identifier: bundleIdentifier });
       if (bundleIdentifier === BUNDLES[0] && !bundle) throw issue('main_bundle_not_accessible_to_project_key');
       if (bundle?.attributes?.seedId && bundle.attributes.seedId !== TEAM) throw issue('main_bundle_team_does_not_match');
@@ -114,8 +137,10 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
         report.profiles.push({ bundleIdentifier, registered: false, recordingGroupCapabilityEnabled: false, activeAppStoreProfiles: 0 });
         continue;
       }
+      stage = 'bundle_capabilities_lookup';
       const capabilities = await bundle.getBundleIdCapabilitiesAsync();
       const enabled = capabilities.some(capability => capability.isType(apple.CapabilityType.APP_GROUP) && capability.attributes.enabled !== false);
+      stage = 'bundle_profiles_lookup';
       const profiles = await bundle.getProfilesAsync({ query: { filter: { profileType: apple.ProfileType.IOS_APP_STORE } } });
       report.profiles.push({
         bundleIdentifier, registered: true, recordingGroupCapabilityEnabled: enabled,
@@ -123,15 +148,17 @@ export async function inspectSigningPortal({ graphql, apple, source = null, veri
       });
     }
     report.portalBundleLookupSucceeded = true;
+    currentBundle = undefined;
+    stage = 'recording_group_lookup';
     try {
       const groups = await apple.AppGroup.getAsync(context, { query: { filter: { identifier: GROUP } } });
       report.recordingGroupRegistered = groups.some(group => group.attributes.identifier === GROUP);
       report.recordingGroupLookupSucceeded = true;
     } catch (error) {
-      report.findings.push(safeFailure(error, 'recording_group_lookup_failed'));
+      recordFailure(report, error, 'recording_group_lookup_failed', stage);
     }
   } catch (error) {
-    report.findings.push(safeFailure(error, 'signing_portal_lookup_failed'));
+    recordFailure(report, error, 'signing_portal_lookup_failed', stage, currentBundle);
   }
   return report;
 }
