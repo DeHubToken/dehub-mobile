@@ -4,6 +4,8 @@ import SoundEffectsPanel from '../../components/editor/SoundEffectsPanel';
 import { importSoundEffect } from '../../libs/editor/importSoundEffect';
 import type { MediaMeta } from '../../libs/editor/storage';
 
+jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', TextInput: 'TextInput', Pressable: 'Pressable', StyleSheet: { flatten: (style: unknown) => style } }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../libs/editor/importSoundEffect', () => ({ importSoundEffect: jest.fn() }));
 jest.mock('../../hooks/useSurfaceDraft', () => ({ useSurfaceDraft: (_key: string, initial: string) => {
