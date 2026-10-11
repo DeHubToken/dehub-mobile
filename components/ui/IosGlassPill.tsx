@@ -19,7 +19,8 @@ type Props = {
  */
 export default function IosGlassPill({ tint, borderRadius, bordered = true }: Props) {
   return (
-    <View style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]} pointerEvents="none">
+    // Keep the stationary material as its own native view when tab controls move.
+    <View collapsable={false} style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]} pointerEvents="none">
       <BlurView intensity={70} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
       <View style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} />
       <LinearGradient
