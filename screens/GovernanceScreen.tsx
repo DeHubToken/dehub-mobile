@@ -8,6 +8,8 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { appLocale } from "../libs/date.util";
+import { formatRelativeTime } from "../i18n/date-locale";
 import { View, Text, StyleSheet, Pressable, FlatList } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -31,16 +33,7 @@ const TABS: { key: GovernanceTab; labelKey: string }[] = [
 ];
 
 function timeAgo(iso: string): string {
-  const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
-  if (s < 60) return "just now";
-  const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
-  const d = Math.floor(h / 24);
-  if (d < 30) return `${d}d ago`;
-  const mo = Math.floor(d / 30);
-  return `${mo}mo ago`;
+  return formatRelativeTime(iso, appLocale(), "short");
 }
 
 const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void }> = ({ proposal, onPress }) => {
