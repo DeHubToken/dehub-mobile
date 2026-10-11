@@ -1,4 +1,5 @@
 import { Pressable, TextInput, Text } from 'react-native';
+jest.mock('react-native', () => ({ Pressable: 'Pressable', TextInput: 'TextInput', Text: 'Text' }));
 import { beginQuickActions, blockQuickActions, cancelQuickActions, moveQuickActions, openQuickActions, setQuickActionsEnabled, subscribeQuickActions, withQuickActions } from '../../libs/quickActions';
 
 const touch = (x = 20, count = 1) => ({ nativeEvent: { pageX: x, pageY: 20, touches: Array(count).fill({}) } });
@@ -27,7 +28,7 @@ it('gives ordinary buttons their own hold without changing a normal press', () =
 it('blocks scrolling, second fingers, text editing and native text selection', () => {
   beginQuickActions(touch()); moveQuickActions(touch(40)); jest.advanceTimersByTime(700);
   beginQuickActions(touch(20, 2)); jest.advanceTimersByTime(700);
-  for (const [type, value] of [[TextInput, {}], [Text, { selectable: true }]] as const) {
+  for (const [type, value] of [[TextInput, {}], [Text, { selectable: true }], [Text, { selectable: true, onPress: jest.fn() }]] as const) {
     beginQuickActions(touch()); withQuickActions(type, value).onTouchStart(); jest.advanceTimersByTime(700);
   }
   expect(open).not.toHaveBeenCalled();

@@ -56,10 +56,10 @@ export default function ReportBugModal({ visible, onClose, context }: Props) {
         <TouchableOpacity accessibilityRole="button" onPress={() => setAttachment(null)} className="py-3"><Text className="text-theme-neutrals-400 text-sm">{t('quickActions.removeScreenshot')}</Text></TouchableOpacity>
       </View> : <TouchableOpacity accessibilityRole="button" onPress={pick} className="py-3"><Text className="text-theme-foreground text-sm">{t('quickActions.attachScreenshot')}</Text></TouchableOpacity>}
       {failed && <Text accessibilityRole="alert" className="text-red-400 text-sm mb-3">{t('quickActions.failed')}</Text>}
-      <TouchableOpacity accessibilityRole="button" disabled={!message.trim() || submit.isPending} onPress={send} className="bg-theme-accent rounded-xl py-3 items-center" style={{ opacity: message.trim() && !submit.isPending ? 1 : 0.4 }}>
+      <TouchableOpacity accessibilityRole="button" disabled={!message.trim() || submit.isPending} onPress={send} className="bg-theme-accent rounded-xl px-4 py-3 items-center" style={{ opacity: message.trim() && !submit.isPending ? 1 : 0.4 }}>
         {submit.isPending ? <ActivityIndicator /> : <Text className="text-theme-accent-foreground font-semibold">{t(isSignedIn ? 'quickActions.send' : 'quickActions.signIn')}</Text>}
       </TouchableOpacity>
-      <TouchableOpacity accessibilityRole="button" disabled={submit.isPending} onPress={close} className="py-3"><Text className="text-theme-neutrals-400 text-center">{t('common.close')}</Text></TouchableOpacity>
+      <TouchableOpacity accessibilityRole="button" disabled={submit.isPending} onPress={close} className="px-4 py-3"><Text className="text-theme-neutrals-400 text-center">{t('common.close')}</Text></TouchableOpacity>
     </View>
   </GlassModal>;
 }
