@@ -38,6 +38,12 @@ describe('share link recognition', () => {
     expect(extractShareUrls('dehub.io/work https://dehub.io/work')).toEqual(['https://dehub.io/work']);
     expect(extractShareUrls('https://notgithub.com/org/repo')[0]).toBe('https://notgithub.com/org/repo');
   });
+  it('previews explicit root links without requiring a trailing slash', () => {
+    expect(extractShareUrls('See https://example.com and (http://example.org?ref=post), https://example.net#about.')).toEqual([
+      'https://example.com', 'http://example.org?ref=post', 'https://example.net#about',
+    ]);
+    expect(extractShareUrls('person@example.com data.pdf javascript:example.com')).toEqual([]);
+  });
   it('rejects non-public or executable image sources', () => {
     for (const url of ['javascript:alert(1)', 'data:image/svg+xml,test', 'https://127.0.0.1/x', 'https://localhost/x', 'https://user@host.com/x', 'http://host.com/x']) expect(publicMediaUrl(url)).toBeNull();
     expect(publicMediaUrl('https://cdn.example.org/art.png')).toBe('https://cdn.example.org/art.png');

@@ -35,7 +35,9 @@ export function getLinkPreviewFavicon(url: string): string | null {
   try {
     const parsed = new URL(url);
     if (!/^https?:$/.test(parsed.protocol)) return null;
-    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(parsed.hostname)}&sz=64`;
+    // A missing icon must fail to load, not decode Google's default globe.
+    const domain = `${parsed.protocol}//${parsed.hostname}`;
+    return `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${encodeURIComponent(domain)}&size=64&drop_404_icon=true`;
   } catch {
     return null;
   }
