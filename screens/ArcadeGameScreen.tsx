@@ -362,6 +362,10 @@ const ArcadeGameScreen = () => {
           if (!request || presenceBusy.current) return;
           if (request.type === 'presence-place-requested' && request.latitude === undefined) return;
           presenceBusy.current = true;
+          const requestAbort = new AbortController();
+          const cancelRequest = () => requestAbort.abort();
+          const timer = setTimeout(cancelRequest, 15000);
+          lifetime.signal.addEventListener('abort', cancelRequest, { once: true });
           try {
             const token = await getAuthToken();
             const wallet = user?.walletAddress?.toLowerCase();
@@ -370,7 +374,7 @@ const ArcadeGameScreen = () => {
             const removing = request.type === 'presence-remove-requested';
             const response = await fetch(MAP_PRESENCE_ENDPOINT, {
               method: removing ? 'DELETE' : 'POST',
-              signal: AbortSignal.any([lifetime.signal, AbortSignal.timeout(15000)]),
+              signal: requestAbort.signal,
               headers: { 'Content-Type': 'application/json', 'x-dehub-token': token, 'x-wallet-address': wallet },
               body: removing ? undefined : JSON.stringify({
                 latitude: request.latitude, longitude: request.longitude, precisionKm: 25,
@@ -380,7 +384,11 @@ const ArcadeGameScreen = () => {
             if (!response.ok) throw new Error('Map update failed');
             reply({ removed: removing });
           } catch { reply({ error: t('arcade.couldNotPlaceOnGlobe') }); }
-          finally { presenceBusy.current = false; }
+          finally {
+            clearTimeout(timer);
+            lifetime.signal.removeEventListener('abort', cancelRequest);
+            presenceBusy.current = false;
+          }
           return;
         }
         if (d.source !== game?.readySource) return;
