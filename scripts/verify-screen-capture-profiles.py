@@ -5,6 +5,7 @@ import base64
 import json
 import os
 import plistlib
+import re
 import subprocess
 
 TEAM = 'J8BTYL3PDK'
@@ -58,8 +59,10 @@ def main():
         if not app or app['id'] != config['extra']['eas']['projectId']:
             raise RuntimeError('Managed profile lookup returned a different project')
         credentials = app['iosAppCredentials']
-    except (RuntimeError, subprocess.TimeoutExpired):
-        report = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'source': os.environ.get('GITHUB_SHA'), 'readOnly': True, 'buildDispatched': False, 'profiles': [], 'lookupSucceeded': False}
+    except (RuntimeError, subprocess.TimeoutExpired) as error:
+        status = re.search(r'HTTP (\d{3})', str(error))
+        failure = 'http_' + status[1] if status else 'lookup_timeout' if isinstance(error, subprocess.TimeoutExpired) else 'lookup_failed'
+        report = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'source': os.environ.get('GITHUB_SHA'), 'readOnly': True, 'buildDispatched': False, 'profiles': [], 'lookupSucceeded': False, 'lookupFailure': failure}
         Path('ios-signing-preflight.json').write_text(json.dumps(report, indent=2) + '\n')
         raise SystemExit('Managed profile lookup failed. No profile readiness or signing change is claimed.') from None
     results = []
