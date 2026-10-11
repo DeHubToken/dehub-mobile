@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, TouchableOpacity, View, Text } from 'react-native';
+import { Modal, TouchableOpacity, View, Text, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useAppTheme } from '../../context/ThemeContext';
 
 export type DMSettingsMenuProps = {
   visible: boolean;
@@ -23,17 +24,18 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { skin } = useAppTheme();
   if (!visible) return null;
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity
         activeOpacity={1}
         onPress={onClose}
-        className="flex-1 dark-surface bg-black/40"
+        className={Platform.OS === 'android' ? 'flex-1' : 'flex-1 dark-surface bg-black/40'}
       >
         <View
-          style={{ top: insets.top + 56 }}
-          className="absolute right-3 w-44 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
+          style={[{ top: insets.top + 56 }, Platform.OS === 'android' && skin && { ...skin.card, backgroundColor: skin.page }]}
+          className="absolute right-3 w-44 rounded-xl bg-theme-neutrals-800 overflow-hidden"
         >
           <TouchableOpacity
             className="flex-row items-center px-3 py-3 active:opacity-70"
