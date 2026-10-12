@@ -524,6 +524,7 @@ class DmSendQueue {
     if (tipTxHash) payload.tipTxHash = tipTxHash;
 
     const sent = await confirmDmSend<DmMessage>({
+      senderAddress: job.address,
       // `disconnected` is the core socket's event; `disconnect` routes to /dm.
       on: (event, handler) => event === "disconnected" ? () => {} : this.ws!.on(event, handler),
       emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
@@ -547,6 +548,7 @@ class DmSendQueue {
     if (tipTxHash) payload.tipTxHash = tipTxHash;
 
     const sent = await confirmDmSend<DmMessage>({
+      senderAddress: job.address,
       on: (event, handler) => event === "disconnected" ? () => {} : this.ws!.on(event, handler),
       emit: () => this.ws!.emitAuthed(DMSocketEvent.SendMessage, payload),
     }, payload);
