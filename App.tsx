@@ -10,6 +10,9 @@ import {
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { initialSafeAreaMetrics } from "./libs/initialSafeAreaMetrics";
 import KeyboardPanView from "./components/common/KeyboardPanView";
+import QuickActionsHost from "./components/common/QuickActionsHost";
+import { blockQuickActions } from "./libs/quickActions";
+import { bugScreenLabel } from "./libs/pageBugReport";
 import { Toaster } from "sonner-native";
 import { createToastTheme } from "./theme/toastTheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -347,6 +350,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   // Handle navigation state change with error protection
   const handleStateChange = useCallback(
     (state: NavigationState | undefined) => {
+      blockQuickActions();
       try {
         onStateChange(state);
         markNavigationSettled(navigationRef.getCurrentRoute());
@@ -490,6 +494,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                     <MessagingProvider>
                       <CallProvider>
                         <VideoDownloadProvider>
+                        <QuickActionsHost getScreen={() => bugScreenLabel(navigationRef.getCurrentRoute())}>
                         <KeyboardPanView>
                           <RootNavigator />
                         </KeyboardPanView>
@@ -503,6 +508,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         <StageRecordingMiniPlayer />
                         <RadioMiniPlayer />
                         <AudioPostMiniPlayer />
+                        </QuickActionsHost>
                         </VideoDownloadProvider>
                       </CallProvider>
                     </MessagingProvider>

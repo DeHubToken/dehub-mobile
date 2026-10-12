@@ -1,4 +1,22 @@
 {
+  "quickActions": {
+    "title": "Sayfa seçenekleri",
+    "hint": "Bu seçenekleri açmak için başka bir uzun basma işlemi olmayan bir yere basılı tutun.",
+    "question": "Bu sayfada ne sorun var?",
+    "placeholder": "Sorunu kısa bir mesajla açıklayın…",
+    "refresh": "Sayfayı yenile",
+    "logout": "Çıkış yap",
+    "publicNotice": "Bildiriminiz ve varsa ekran görüntüsü herkese açık hata panosunda görünecek. Göndermeden önce görüntüyü kontrol edin.",
+    "deviceNotice": "Sayfa, cihaz, varsa model ve uygulama veya tarayıcı bilgileri otomatik olarak eklenir.",
+    "capturing": "Bu sayfa yakalanıyor…",
+    "screenshot": "Ekran görüntüsü önizlemesi",
+    "removeScreenshot": "Ekran görüntüsünü kaldır",
+    "noScreenshot": "Otomatik ekran görüntüsü alınamıyor. Bildiriminizi yine de gönderebilirsiniz.",
+    "attachScreenshot": "Ekran görüntüsü ekle",
+    "send": "Hata bildirimi gönder",
+    "signIn": "Göndermek için giriş yap",
+    "failed": "Bir sorun oluştu. Mesajınız kaydedildi; lütfen tekrar deneyin."
+  },
   "articles": {
     "articleImage": "Makale resmi",
     "socialImage": "Sosyal paylaşım resmi",

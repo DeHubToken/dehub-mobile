@@ -1,4 +1,22 @@
 {
+  "quickActions": {
+    "title": "Page options",
+    "hint": "Hold anywhere without an existing hold action to open these options.",
+    "question": "What is wrong with this page?",
+    "placeholder": "Describe the problem in a short message…",
+    "refresh": "Refresh page",
+    "logout": "Log out",
+    "publicNotice": "Your report and any screenshot will appear on the public bugs board. Check the screenshot before sending.",
+    "deviceNotice": "Page, device, model when available, and app or browser details are included automatically.",
+    "capturing": "Capturing this page…",
+    "screenshot": "Screenshot preview",
+    "removeScreenshot": "Remove screenshot",
+    "noScreenshot": "Automatic screenshot unavailable. You can still send your report.",
+    "attachScreenshot": "Attach a screenshot",
+    "send": "Send bug report",
+    "signIn": "Sign in to send",
+    "failed": "Something went wrong. Your message is saved; please try again."
+  },
   "articles": {
     "articleImage": "Article image",
     "socialImage": "Social share image",
