@@ -14,6 +14,7 @@ import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../..
 import { FULLSCREEN_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Slider from '@react-native-community/slider';
+import { getIsLooping, useMediaLooping } from '../../libs/video-preferences';
 
 export type FullScreenVideoPlayerProps = {
   visible: boolean;
@@ -40,12 +41,15 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   const player: VideoPlayer = usePersistentVideoPlayer(null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
-    p.loop = true;
+    p.loop = getIsLooping();
     p.muted = false;
     p.timeUpdateEventInterval = 0.5; // ensure frequent progress updates
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     // do not auto-play here; wait for sourceLoad
   });
+
+  const isLooping = useMediaLooping();
+  useEffect(() => { player.loop = isLooping; }, [player, isLooping]);
 
   const { recovery, phase } = usePlaybackRecovery(player, sourceUrl, {
     component: 'FullScreenVideoPlayer',
