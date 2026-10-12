@@ -11,7 +11,6 @@ const ALLOWED = [
   "components/DM/MessageContextMenu.tsx",
   "components/LiveChat/LiveChatContextMenu.tsx",
   "components/ui/ChromeSurface.tsx",
-  "components/ui/GlassIndicator.tsx",
   "components/ui/GlassModal.tsx",
   "components/ui/IosGlassPill.tsx",
   "components/ui/FrostedPill.tsx",
