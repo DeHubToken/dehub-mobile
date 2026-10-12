@@ -53,23 +53,7 @@ import {
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
-const CENTER_W = 52;
 const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
-
-/**
- * The container is 72% of the screen minus outerWrap's 16px horizontal
- * padding; tab widths come off the same base so the last tab (Search) is not
- * pushed past the visible edge.
- *
- * A function of the live window width, deliberately, rather than a module
- * constant off `Dimensions.get("window")`. Read once at module scope it froze
- * at whatever the window measured when the bundle was first evaluated — so
- * rotating the phone, unfolding a foldable or entering split-screen left the
- * pill laid out for the old width, with items past the edge and unread badges
- * sitting off their icons.
- */
-const tabWidthFor = (screenW: number) =>
-  (Math.min((screenW - 16) * 0.72, 340) - CENTER_W - NAV_EDGE_PAD * 2) / 4;
 
 interface TabDef {
   name: string;
@@ -273,7 +257,7 @@ const NavButton = memo<{
         onPress={handlePress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.centerButton, animatedStyle]}
+        style={[styles.centerButton, { width: tabW }, animatedStyle]}
       >
         <View
           pointerEvents="none"
@@ -309,11 +293,12 @@ const NavButton = memo<{
     >
       {/* Minimal shows the active tab by colour alone — no glow. */}
       <View
-        style={
+        style={[
+          styles.iconWrap,
           isActive && !isLight && !isMinimal
             ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
-            : undefined
-        }
+            : undefined,
+        ]}
       >
         <Icon
           name={icon}
@@ -327,14 +312,14 @@ const NavButton = memo<{
           }
           strokeWidth={isActive ? 2 : 1.75}
         />
-      </View>
       {badgeCount > 0 && (
-        <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
+        <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
           <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
             {badgeCount > 99 ? "99+" : badgeCount}
           </Text>
         </View>
       )}
+      </View>
     </NativeAnimatedPressable>
   );
 });
@@ -390,6 +375,7 @@ const ScrollNavButton = memo<{
         onPressOut={handlePressOut}
         style={[styles.scrollNavItem, { width: tabW }, animatedStyle]}
       >
+        <View style={styles.iconWrap}>
         <Icon
           name={icon}
           size={20}
@@ -397,12 +383,13 @@ const ScrollNavButton = memo<{
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
-          <View style={[styles.badge, { right: tabW / 2 - 18, backgroundColor: colors.accent }]} pointerEvents="none">
+          <View style={[styles.badge, { backgroundColor: colors.accent }]} pointerEvents="none">
             <Text style={[styles.badgeText, { color: colors.accentForeground }]} numberOfLines={1}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
           </View>
         )}
+        </View>
       </NativeAnimatedPressable>
     );
   },
@@ -412,7 +399,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const { t } = useTranslation();
   const { colors, isLight, isMinimal, skin } = useAppTheme();
   const insets = useSafeAreaInsets();
-  // Live, not a module constant — see tabWidthFor.
+  // Recalculate equal slots when the window or attached stage chip changes.
   const { width: screenW } = useWindowDimensions();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
@@ -420,7 +407,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const { currentSpace, isConnected, isModalOpen } = useStages();
   const hasStageChip = !!currentSpace && isConnected && !isModalOpen && !isKidsMode;
   const pillWidth = Math.min((screenW - 16) * 0.72, 340, screenW - 16 - (hasStageChip ? 44 : 0));
-  const tabW = tabWidthFor(screenW);
+  const tabW = (pillWidth - NAV_EDGE_PAD * 2) / TABS.length;
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
@@ -717,14 +704,13 @@ const styles = StyleSheet.create({
     height: TAB_BAR_PILL_HEIGHT,
     paddingHorizontal: NAV_EDGE_PAD,
   },
-  // width comes in per-render from tabWidthFor — see the note on it.
+  // Every destination, including Create, uses the same slot width.
   tabButton: {
     alignItems: "center",
     justifyContent: "center",
     height: TAB_BAR_PILL_HEIGHT,
   },
   centerButton: {
-    width: TAB_BAR_PILL_HEIGHT,
     height: TAB_BAR_PILL_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
@@ -771,13 +757,19 @@ const styles = StyleSheet.create({
     justifyContent: "center" as const,
     height: TAB_BAR_PILL_HEIGHT,
   },
+  iconWrap: {
+    position: "relative",
+    width: 20,
+    height: 20,
+  },
   badge: {
     position: "absolute",
-    top: 8,
-    minWidth: 18,
-    height: 18,
+    top: -6,
+    right: -10,
+    minWidth: 16,
+    height: 16,
     paddingHorizontal: 3,
-    borderRadius: 9,
+    borderRadius: 8,
     // White-on-black, like every other count badge in the app — see HomeHeader.
     backgroundColor: "#FAFAFA",
     alignItems: "center",
