@@ -13,11 +13,12 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 
 it('keeps profile identity, Back and follow actions available beside the rail', () => {
   const onBackPress = jest.fn(), onFollow = jest.fn(), onOpenUnfollow = jest.fn();
-  const props = { name: 'Creator', avatarUrl: 'https://example.com/avatar.webp', showFollow: true, onBackPress, onFollow, onOpenUnfollow };
+  const props = { name: 'Creator', handle: 'creator', avatarUrl: 'https://example.com/avatar.webp', showFollow: true, onBackPress, onFollow, onOpenUnfollow };
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<ProfilePinnedBar {...props}><React.Fragment /></ProfilePinnedBar>); });
   expect(tree.root.findByType('NavGlass' as any)).toBeTruthy();
   expect(tree.root.findByType('Avatar' as any).props.uri).toBe(props.avatarUrl);
+  expect(tree.root.findAllByType('Text' as any).some(node => node.props.children === '@creator')).toBe(true);
   act(() => tree.root.findByProps({ accessibilityLabel: 'common.goBack' }).props.onPress());
   act(() => tree.root.findByProps({ accessibilityLabel: 'follow.follow' }).props.onPress());
   expect(onBackPress).toHaveBeenCalledTimes(1);
@@ -29,5 +30,8 @@ it('keeps profile identity, Back and follow actions available beside the rail', 
   expect(tree.root.findByProps({ accessibilityLabel: 'follow.requested' }).props.disabled).toBe(true);
   act(() => { tree.update(<ProfilePinnedBar {...props} showFollow={false}><React.Fragment /></ProfilePinnedBar>); });
   expect(tree.root.findAllByType('Button' as any)).toHaveLength(1);
+  act(() => { tree.update(<ProfilePinnedBar {...props} showFollow={false} showIdentity={false}><React.Fragment /></ProfilePinnedBar>); });
+  expect(tree.root.findAllByType('Avatar' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('Text' as any)).toHaveLength(0);
   act(() => tree.unmount());
 });

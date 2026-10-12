@@ -15,7 +15,9 @@ import ReportModal from "../common/ReportModal";
 import LendBadgeSheet from "./LendBadgeSheet";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
-import { shareProfile } from "../../libs/misc";
+import { shareProfile, getBadgeHoverOpticalStyle } from "../../libs/misc";
+import BadgeArtwork from "../common/BadgeArtwork";
+import StreamerBadge from "../Live/StreamerBadge";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
@@ -385,6 +387,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       {!isFullScreen && ProfileHeader}
       <UserProfileBottomContentTabs
         pinnedIdentity={{
+          showIdentity: !isOwnProfile,
+          badges: <>
+            {profileData.badge && profileData.badgeImage && !data?.hideBadgeAndBalance && <BadgeArtwork source={profileData.badgeImage} style={getBadgeHoverOpticalStyle(profileData.badgeImage, 14)} />}
+            <StreamerBadge address={profileData.address} fontSize={14} />
+          </>,
           name: profileData.displayName,
           handle: profileData.username,
           avatarUrl,
