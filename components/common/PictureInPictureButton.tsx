@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { isPictureInPictureSupported, VideoView } from 'expo-video';
-import { MaterialIcons } from '@expo/vector-icons';
+import { PictureInPicture2 } from '../ui/cut-icons';
 import { toastInfo } from '../../libs';
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +24,7 @@ export default function PictureInPictureButton({ videoRef }: {
         });
       }}
     >
-      <MaterialIcons name="picture-in-picture-alt" size={20} color="#fff" />
+      <PictureInPicture2 size={20} color="#fff" />
     </Pressable>
   );
 }
