@@ -41,7 +41,9 @@ jobs:
         working-directory: web-source
         run: pnpm install --no-frozen-lockfile --ignore-scripts
       - name: Bundle the native backdrop from the exact web source
-        run: node scripts/theme-backdrop/build.js web-source
+        run: |
+          cp assets/theme-backdrop/index.html "$RUNNER_TEMP/committed-backdrop.html"
+          node scripts/theme-backdrop/build.js web-source
       - uses: actions/upload-artifact@v4
         with:
           name: theme-backdrop
@@ -49,3 +51,5 @@ jobs:
             assets/theme-backdrop/index.html
             scripts/theme-backdrop/source.json
           retention-days: 14
+      - name: Require the committed backdrop to match its pinned source
+        run: cmp "$RUNNER_TEMP/committed-backdrop.html" assets/theme-backdrop/index.html
