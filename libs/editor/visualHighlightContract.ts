@@ -1,6 +1,7 @@
 export interface VisualWindow { id: number; start: number; end: number }
-export interface VisualFrame { windowId: number; at: number; dataUrl: string }
-export interface VisualBatch { optIn: true; duration: number; seconds: number; focus: string; windows: VisualWindow[]; frames: VisualFrame[] }
+export interface VisualContactSheet { startIndex: number; endIndex: number; dataUrl: string }
+export interface VisualFrame { windowId: number; at: number; dataUrl: string; contactSheet?: VisualContactSheet }
+export interface VisualBatch { optIn: true; duration: number; seconds: number; focus: string; windows: VisualWindow[]; frames: VisualFrame[]; contactSheets?: VisualContactSheet[] }
 export interface VisualMoment { start: number; end: number; text: string; score: number }
 export const VISUAL_BATCH_WINDOWS = 10;
 export const VISUAL_FRAMES_PER_WINDOW = 6;
@@ -16,8 +17,8 @@ export function validVisualWindows(value: unknown, duration: number): value is V
 }
 
 /** Read dimensions from bounded JPEG bytes without a browser or native dependency. */
-export function validVisualJpeg(value: unknown): value is string {
-  if (typeof value !== "string" || value.length > 40_000 || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(value)) return false;
+export function validVisualJpeg(value: unknown, maxEdge = 320, maxLength = 40_000): value is string {
+  if (typeof value !== "string" || value.length > maxLength || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(value)) return false;
   const encoded = value.slice(23), alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
   if (encoded.length % 4) return false;
   const bytes: number[] = []; let buffer = 0, bits = 0;
@@ -32,7 +33,7 @@ export function validVisualJpeg(value: unknown): value is string {
     if (length < 2 || offset + length > bytes.length) return false;
     if ([192, 193, 194].includes(marker)) {
       const height = (bytes[offset + 3] << 8) | bytes[offset + 4], width = (bytes[offset + 5] << 8) | bytes[offset + 6];
-      return length >= 8 && width > 0 && height > 0 && width <= 320 && height <= 320;
+      return length >= 8 && width > 0 && height > 0 && width <= maxEdge && height <= maxEdge;
     }
     offset += length;
   }
@@ -44,18 +45,27 @@ export function visualSampleTimes(window: VisualWindow): number[] {
 }
 
 /** Every supplied picture must belong to exactly one real sample position. */
-export function validVisualFrames(value: unknown, windows: VisualWindow[]): value is VisualFrame[] {
+export function validVisualFrames(value: unknown, windows: VisualWindow[], metadataOnly = false): value is VisualFrame[] {
   if (!Array.isArray(value) || value.length !== windows.length * VISUAL_FRAMES_PER_WINDOW) return false;
   return windows.every((window, index) => visualSampleTimes(window).every((time, i) => {
     const frame = value[index * VISUAL_FRAMES_PER_WINDOW + i];
-    return record(frame) && frame.windowId === window.id && finite(frame.at) && Math.abs(frame.at - time) <= 0.001 && validVisualJpeg(frame.dataUrl);
+    return record(frame) && frame.windowId === window.id && finite(frame.at) && Math.abs(frame.at - time) <= 0.001 && (metadataOnly ? frame.dataUrl === "" : validVisualJpeg(frame.dataUrl));
   }));
+}
+
+/** At most three chronological sheets retain every sample and its position. */
+export function validVisualContactSheets(value: unknown, frameCount: number): value is VisualContactSheet[] {
+  return Array.isArray(value) && value.length === Math.ceil(frameCount / 20) && value.length > 0 && value.length <= 3
+    && value.every((sheet, index) => record(sheet) && sheet.startIndex === index * 20
+      && sheet.endIndex === Math.min(frameCount, (index + 1) * 20) && validVisualJpeg(sheet.dataUrl, 1600, 800_000));
 }
 
 export function validVisualBatch(value: unknown): value is VisualBatch {
   return record(value) && value.optIn === true && finite(value.duration) && [15, 30, 60].includes(Number(value.seconds))
     && typeof value.seconds === "number" && typeof value.focus === "string" && value.focus.length <= 240
-    && validVisualWindows(value.windows, value.duration) && validVisualFrames(value.frames, value.windows);
+    && validVisualWindows(value.windows, value.duration)
+    && validVisualFrames(value.frames, value.windows, value.contactSheets !== undefined)
+    && (value.contactSheets === undefined || validVisualContactSheets(value.contactSheets, value.frames.length));
 }
 
 /** Descriptions are evidence for review, never instructions for applying edits. */
