@@ -752,7 +752,9 @@ canvas{display:block;width:100%;height:100%;}
 
   function timelineEnd(clips, settings) {
     var end = clips.reduce(function (m, c) { return Math.max(m, c.start + c.duration); }, 0);
-    return settings && settings.pages && settings.pages.length ? Math.max(end, settings.pages[settings.pages.length - 1] + 5) : end;
+    if (!settings || !settings.pages || !settings.pages.length) return end;
+    var last = settings.pages[settings.pages.length - 1];
+    return settings.pageTiming === "content" && end > last ? end : Math.max(end, last + 5);
   }
   function speedOf(c) { return c.speed && c.speed > 0 ? c.speed : 1; }
   function trackOf(snap, id) {

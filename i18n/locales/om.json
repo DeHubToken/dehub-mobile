@@ -7471,7 +7471,11 @@
     "referenceProductName": "Meeshaa kee klipii keessatti galchi",
     "referenceProductHint": "Meeshaa mul’atu bakka buusi fi duubbee duraa eegi.",
     "referenceComposeName": "Suuraawwan waamicha walitti maki",
-    "referenceComposeHint": "Gochawwan, wantoota fi bakka suuraawwan hedduu irraa gara walitti makaa tokkootti fidu."
+    "referenceComposeHint": "Gochawwan, wantoota fi bakka suuraawwan hedduu irraa gara walitti makaa tokkootti fidu.",
+    "audioTaskSfxLabel": "Bu&#39;aa sagalee",
+    "audioTaskSfxPlaceholder": "Sagalee ibsi, fakkeenyaaf &quot;balballi ulfaataa galma dhagaa keessatti dha&#39;uu&quot;.",
+    "auto": "Auto",
+    "loop": "Furgaasuu"
   },
   "fractions": {
     "title": "Qooda",

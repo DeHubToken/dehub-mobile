@@ -7492,7 +7492,11 @@
     "referenceProductName": "একটা ক্লিপে তোমার প্রডাক্ট প্লেস করো",
     "referenceProductHint": "মূল দৃশ্য রেখে ফিচার্ড প্রডাক্ট বদলাও",
     "referenceComposeName": "রেফারেন্স ছবি কম্বাইন করো",
-    "referenceComposeHint": "একাধিক ছবির চরিত্র, অবজেক্ট ও সেটিংস একটা কম্পোজিশনে নিয়ে আসো"
+    "referenceComposeHint": "একাধিক ছবির চরিত্র, অবজেক্ট ও সেটিংস একটা কম্পোজিশনে নিয়ে আসো",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "Describe the sound, for example \"heavy door slamming in a stone hall\"",
+    "auto": "অটো",
+    "loop": "লুপ"
   },
   "fractions": {
     "title": "ফ্র্যাকশন",

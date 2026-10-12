@@ -67,4 +67,27 @@ it("discards a late import when the editor scope changes", async () => {
   const view = render(<StockPanel {...props} />); await search(view); await act(async () => { fireEvent.press(view.getByText("common.select")); });
   view.rerender(<StockPanel {...props} scope={2} />); await act(async () => { pending.resolve({ id: "foreign", kind: "video" } as never); });
   expect(added).not.toHaveBeenCalled(); expect(release).toHaveBeenCalledTimes(1);
+  expect(jest.mocked(importStockLibraryItem).mock.calls[0][2]?.aborted).toBe(true);
+});
+
+it("offers Cancel during a stock import and ignores the late result", async () => {
+  const pending = deferred<Awaited<ReturnType<typeof importStockLibraryItem>>>();
+  jest.mocked(importStockLibraryItem).mockReturnValue(pending.promise);
+  const view = render(<StockPanel {...props} />); await search(view);
+  await act(async () => { fireEvent.press(view.getByText("common.select")); });
+  const signal = jest.mocked(importStockLibraryItem).mock.calls[0][2]!;
+  fireEvent.press(view.getByText("common.cancel")); expect(signal.aborted).toBe(true);
+  expect(view.queryByText("common.cancel")).toBeNull();
+  await act(async () => { pending.resolve({ id: "cancelled", kind: "video" } as never); });
+  expect(added).not.toHaveBeenCalled(); expect(release).toHaveBeenCalledTimes(1);
+});
+it("stops stock downloads when the panel closes", async () => {
+  const pending = deferred<Awaited<ReturnType<typeof importStockLibraryItem>>>();
+  jest.mocked(importStockLibraryItem).mockReturnValue(pending.promise);
+  const view = render(<StockPanel {...props} />); await search(view);
+  await act(async () => { fireEvent.press(view.getByText("common.select")); });
+  const signal = jest.mocked(importStockLibraryItem).mock.calls[0][2]!;view.unmount();
+  expect(signal.aborted).toBe(true);
+  await act(async () => { pending.resolve({ id: "closed", kind: "video" } as never); });
+  expect(added).not.toHaveBeenCalled(); expect(release).toHaveBeenCalledTimes(1);
 });

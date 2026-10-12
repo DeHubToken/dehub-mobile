@@ -7468,7 +7468,11 @@
     "referenceProductName": "محصول خود را در یک کلیپ قرار دهید",
     "referenceProductHint": "محصول برجسته شده را جایگزین کنید و صحنه اصلی را حفظ کنید",
     "referenceComposeName": "تصاویر مرجع را ترکیب کنید",
-    "referenceComposeHint": "شخصیت‌ها، اشیاء و محیط‌های مختلف از چند تصویر را در یک ترکیب قرار دهید"
+    "referenceComposeHint": "شخصیت‌ها، اشیاء و محیط‌های مختلف از چند تصویر را در یک ترکیب قرار دهید",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "صدا را توصیف کنید، مثلاً «صدای محکم بسته شدن دری در یک تالار سنگی»",
+    "auto": "خودکار",
+    "loop": "حلقه"
   },
   "fractions": {
     "title": "کسری‌ها",

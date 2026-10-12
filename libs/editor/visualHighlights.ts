@@ -1,6 +1,6 @@
 import type { MediaClip } from "./types";
 import type { HighlightRange } from "./highlights";
-import { validVisualBatch, validVisualWindows, VISUAL_BATCH_WINDOWS, type VisualBatch, type VisualFrame, type VisualWindow } from "./visualHighlightContract";
+import { validVisualBatch, validVisualWindows, visualSampleCells, VISUAL_BATCH_WINDOWS, type VisualBatch, type VisualFrame, type VisualWindow } from "./visualHighlightContract";
 export type VisualSampler = (clip: MediaClip, windows: VisualWindow[], signal: AbortSignal, progress: (fraction: number) => void) => Promise<VisualFrame[]>;
 export type VisualAnalyser = (batch: VisualBatch, signal: AbortSignal) => Promise<HighlightRange[]>;
 const check = (signal: AbortSignal) => { if (signal.aborted) throw new Error("cancelled"); };
@@ -13,7 +13,7 @@ export function visualWindowPlan(clip: MediaClip): VisualWindow[] {
 }
 
 /** Explicit visual mode never transcribes speech or sends source files and names. */
-async function scanVisualWindows(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
+async function scanVisualWindows(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string; purpose?: "matching" }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
   check(signal);
   if (options.optIn !== true || ![15, 30, 60].includes(options.seconds)) throw new Error("highlight_limit");
   const windows = visualWindowPlan(clip), candidates: HighlightRange[] = [];
@@ -24,15 +24,16 @@ async function scanVisualWindows(clip: MediaClip, options: { optIn: true; second
     if (!validVisualWindows(group, clip.duration)) throw new Error("highlight_limit");
     const frames = await sample(clip, group, signal, fraction => progress?.((page + Math.max(0, Math.min(1, fraction)) * 0.5) / count));
     check(signal);
-    const batch: VisualBatch = { optIn: true, duration: clip.duration, seconds: options.seconds, focus: options.focus?.trim().slice(0, 240) ?? "", windows: group, frames };
+    const batch: VisualBatch = { optIn: true, duration: clip.duration, seconds: options.seconds, focus: options.focus?.trim().slice(0, 240) ?? "", ...(options.purpose ? { purpose: options.purpose } : {}), windows: group, frames };
     if (!validVisualBatch(batch)) throw new Error("visual_frames_invalid");
     const result = await analyse(batch, signal);
     check(signal);
-    // Verify server results again against the local windows and budget.
+    const boundaries = options.purpose === "matching" ? visualSampleCells(group) : group;
+    // Verify server results again against the local sample positions and budget.
     if (!Array.isArray(result) || result.length > 8) throw new Error("visual_answer_invalid");
     candidates.push(...result.filter(range => range && Number.isFinite(range.score) && range.score >= 0.75 && range.score <= 1
       && typeof range.text === "string" && range.text.length >= 4 && range.text.length <= 240
-      && group.some(w => w.start === range.start) && group.some(w => w.end === range.end)
+      && boundaries.some(w => w.start === range.start) && boundaries.some(w => w.end === range.end)
       && range.end > range.start && range.end - range.start <= options.seconds + 0.001));
     progress?.((page + 1) / count);
   }
@@ -48,11 +49,11 @@ function selectVisualRanges(candidates: HighlightRange[], limit: number, seconds
   return selected.sort((a, b) => a.start - b.start);
 }
 
-export async function findVisualHighlights(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
+export async function findVisualHighlights(clip: MediaClip, options: { optIn: true; seconds: number; focus?: string; purpose?: "matching" }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
   return selectVisualRanges(await scanVisualWindows(clip, options, sample, analyse, signal, progress), 8, options.seconds);
 }
 
 /** Retain all disjoint matches from the same scan for an editable assembly. */
 export async function findVisualScenes(clip: MediaClip, options: { optIn: true; focus: string }, sample: VisualSampler, analyse: VisualAnalyser, signal: AbortSignal, progress?: (fraction: number) => void): Promise<HighlightRange[]> {
-  return selectVisualRanges(await scanVisualWindows(clip, { ...options, seconds: 60 }, sample, analyse, signal, progress), 100, clip.duration);
+  return selectVisualRanges(await scanVisualWindows(clip, { ...options, seconds: 60, purpose: "matching" }, sample, analyse, signal, progress), 100, clip.duration);
 }

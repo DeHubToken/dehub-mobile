@@ -20,9 +20,9 @@ export default function ExportSheet(props: {
   busy: boolean;
   onCancel: () => void;
   pageCount: number;
-  onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope) => void;
-  onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
-  onExportGif: (scope: ExportScope) => void;
+  onExport: (format: "png" | "jpeg", target: "photos" | "post" | "share", scope: PageExportScope) => void;
+  onExportVideo: (quality: "720" | "1080", target: "photos" | "post" | "share", scope: ExportScope) => void;
+  onExportGif: (scope: ExportScope, target: "download" | "share") => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -39,9 +39,9 @@ export default function ExportSheet(props: {
   const separate = (isVideo || isGif) && scope !== "timeline";
   const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
-  const go = (target: "photos" | "post") => {
+  const go = (target: "photos" | "post" | "share") => {
     if (props.busy || gifTooLong || (separate && !ranges.length)) return;
-    if (isGif) props.onExportGif(scope);
+    if (isGif) props.onExportGif(scope, target === "share" ? "share" : "download");
     else if (isVideo) props.onExportVideo(quality, target, scope);
     else props.onExport(format === "jpeg" ? "jpeg" : "png", target, pageScope);
   };
@@ -100,6 +100,15 @@ export default function ExportSheet(props: {
           <Icon name="Download" size={18} color="#000" />
           <Text className="text-black font-semibold">{t(isGif || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
         </Pressable>
+        {!pageArchive && <Pressable
+          disabled={props.busy}
+          onPress={() => go("share")}
+          accessibilityRole="button"
+          className="items-center justify-center rounded-xl bg-white/10 border border-white/20 py-3"
+          style={{ opacity: props.busy ? 0.5 : 1 }}
+        >
+          <Text className="text-white font-semibold">{t("postOptions.share", { defaultValue: "Share" })}</Text>
+        </Pressable>}
         {!isGif && !separate && !pageArchive && <Pressable
           disabled={props.busy}
           onPress={() => go("post")}

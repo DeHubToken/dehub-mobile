@@ -24,3 +24,15 @@ describe("scene editing", () => {
     expect(timelineDuration(DEFAULT_SETTINGS, [{ ...clip, duration: 2 }])).toBe(2);
   });
 });
+
+it("keeps a short final screen exact while giving an empty appended screen room", () => {
+  const short = { ...clip, duration: 10 };
+  const screens = { ...settings, pages: [0, 3, 7], pageTiming: "content" as const };
+  expect(timelineDuration(screens, [short])).toBe(10);
+  const empty = appendPage(screens, [short], 7.6, false, () => "new");
+  expect(empty.start).toBe(10);
+  expect(timelineDuration(empty.settings, empty.clips)).toBe(15);
+  const copy = appendPage(screens, [short], 7.6, true, () => "copy");
+  expect(copy.clips[1]).toMatchObject({ start: 10, duration: 3 });
+  expect(timelineDuration(copy.settings, copy.clips)).toBe(13);
+});

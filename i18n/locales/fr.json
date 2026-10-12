@@ -8136,7 +8136,11 @@
     "referenceComposeName": "Combiner des images de référence",
     "referenceComposeHint": "Faire apparaître des personnages, objets et décors issus de plusieurs images dans une seule composition.",
     "presetAdHeadlineName": "Headline Ad",
-    "presetAnimeStillName": "Anime Still"
+    "presetAnimeStillName": "Anime Still",
+    "audioTaskSfxLabel": "Effet sonore",
+    "audioTaskSfxPlaceholder": "Décrivez le son, par exemple « porte lourde claquant dans un hall de pierre »",
+    "auto": "Auto",
+    "loop": "Boucle"
   },
   "fractions": {
     "title": "Fractions",

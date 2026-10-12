@@ -7433,7 +7433,11 @@
     "referenceProductName": "ضع منتجك في مقطع",
     "referenceProductHint": "استبدل المنتج المميز وحافظ على المشهد الأصلي.",
     "referenceComposeName": "دمج الصور المرجعية",
-    "referenceComposeHint": "اجمع الشخصيات، الأشياء والإعدادات من صور متعددة في تركيبة واحدة."
+    "referenceComposeHint": "اجمع الشخصيات، الأشياء والإعدادات من صور متعددة في تركيبة واحدة.",
+    "audioTaskSfxLabel": "المؤثرات الصوتية",
+    "audioTaskSfxPlaceholder": "صف الصوت، على سبيل المثال \"باب ثقيل يغلق في قاعة حجرية\"",
+    "auto": "تلقائي",
+    "loop": "حلقة"
   },
   "fractions": {
     "title": "الأجزاء",

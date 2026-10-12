@@ -1,6 +1,6 @@
 const JPEG = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMooorjPmD/9k=";
 import { findVisualScenes, findVisualHighlights, visualWindowPlan } from "../../libs/editor/visualHighlights";
-import { validVisualBatch, validVisualJpeg, visualMoments, visualSampleTimes, type VisualFrame, type VisualWindow } from "../../libs/editor/visualHighlightContract";
+import { validVisualBatch, validVisualJpeg, visualMoments, visualMatchingMoments, visualSampleCells, visualSampleTimes, type VisualFrame, type VisualWindow } from "../../libs/editor/visualHighlightContract";
 import { VISUAL_FRAME_RUNTIME } from "../../libs/editor/visualFrameRuntime";
 import type { MediaClip } from "../../libs/editor/types";
 const clip = { id: "video", kind: "video", mediaId: "media", duration: 25, trimIn: 10, speed: 2 } as MediaClip;
@@ -60,13 +60,43 @@ describe("visual highlight evidence", () => {
     const decoded: number[] = [], drawn: number[] = []; let paused = false;
     const video = { duration: 100, videoWidth: 1920, videoHeight: 1080, currentTime: 0, muted: false, playsInline: false, preload: "", src: "", load() {}, pause() { paused = true; }, removeAttribute() {} };
     const surface = { width: 0, height: 0, getContext: () => ({ drawImage: () => drawn.push(video.currentTime) }), toDataURL: () => JPEG };
-    const doc = { createElement: (name: string) => name === "video" ? video : surface };
+    const sheet = { ...surface, getContext: () => ({ drawImage: () => {}, fillRect: () => {}, fillText: () => {} }) };
+    let surfaces = 0;
+    const doc = { createElement: (name: string) => name === "video" ? video : ++surfaces === 1 ? surface : sheet };
     const wait = async (source: typeof video, time: number) => { source.currentTime = time; decoded.push(time); };
     const sample = new Function("document", "waitForVideoFrame", VISUAL_FRAME_RUNTIME + ";return sampleVisualFrames;")(doc, wait) as (src: string, clip: MediaClip, windows: VisualWindow[], signal: AbortSignal) => Promise<VisualFrame[]>;
     const window = visualWindowPlan({ ...clip, duration: 6 });
     const result = await sample("blob:local-video", { ...clip, duration: 6 }, window, new AbortController().signal);
     expect(decoded).toEqual([11, 13, 15, 17, 19, 21]); expect(drawn).toEqual(decoded);
     expect(result.map(frame => frame.at)).toEqual([0.5, 1.5, 2.5, 3.5, 4.5, 5.5]);
+    expect(result[0].contactSheet).toEqual({ startIndex: 0, endIndex: 6, dataUrl: JPEG });
+    expect(sheet.width).toBe(0); expect(sheet.height).toBe(0);
     expect(paused).toBe(true); expect(surface.width).toBe(0); expect(surface.height).toBe(0);
   });
+});
+
+it("matches a two-second static subject inside a mixed six-second source without a larger scan", async () => {
+  const source = { ...clip, duration: 6, speed: 1 }, windows = visualWindowPlan(source);
+  let sampled = 0, analysed = 0;
+  const result = await findVisualScenes(source, { optIn: true, focus: "red scenes" }, async (_, group) => {
+    sampled++; expect(group).toHaveLength(1); return frames(group);
+  }, async batch => {
+    analysed++; expect(batch.purpose).toBe("matching"); expect(batch.frames).toHaveLength(6);
+    return [
+      { start: 0, end: 2, score: 0.96, text: "The red scene" },
+      { start: 2.123, end: 3, score: 0.99, text: "Invented sample boundary" },
+    ];
+  }, new AbortController().signal);
+  expect(result).toEqual([{ start: 0, end: 2, score: 0.96, text: "The red scene" }]);
+  expect(sampled).toBe(1); expect(analysed).toBe(1);
+  expect(visualMatchingMoments([{ startSample: 0, endSample: 1, score: 0.96, description: "The red scene", focusMatch: true }], windows, 60)).toEqual(result);
+});
+
+it("rejects invented, overlapping, weak and unfocused sample selections", () => {
+  const windows = visualWindowPlan({ ...clip, duration: 6, speed: 1 });
+  const match = { startSample: 0, endSample: 1, score: 0.96, description: "The red scene", focusMatch: true };
+  const result = visualMatchingMoments([match, { ...match, startSample: 1, endSample: 2 }, { ...match, startSample: -1 }, { ...match, endSample: 6 }, { ...match, startSample: 3, endSample: 2 }, { ...match, startSample: 4, endSample: 5, score: 0.7 }, { ...match, startSample: 4, endSample: 5, focusMatch: false }], windows, 60);
+  expect(result).toEqual([{ start: 0, end: 2, score: 0.96, text: "The red scene" }]);
+  expect(visualMatchingMoments([match], windows, 1)).toEqual([]);
+  expect(visualSampleCells([{ id: 10, start: 60, end: 65.4 }]).map(cell => [cell.id, cell.start, cell.end])).toEqual([[0, 60, 60.9], [1, 60.9, 61.8], [2, 61.8, 62.7], [3, 62.7, 63.6], [4, 63.6, 64.5], [5, 64.5, 65.4]]);
 });

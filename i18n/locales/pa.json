@@ -7439,7 +7439,11 @@
     "referenceProductName": "ਆਪਣੇ ਉਤਪਾਦ ਨੂੰ ਕਲਿੱਪ ਵਿੱਚ ਰੱਖੋ",
     "referenceProductHint": "ਵਿਸ਼ੇਸ਼ ਉਤਪਾਦ ਬਦਲੋ ਅਤੇ ਮੂਲ ਦ੍ਰਿਸ਼ ਬਰਕਰਾਰ ਰੱਖੋ।",
     "referenceComposeName": "ਹਵਾਲਾ ਚਿੱਤਰ ਮਿਲਾਓ",
-    "referenceComposeHint": "ਕਈ ਚਿੱਤਰਾਂ ਤੋਂ ਪਾਤਰ, ਵਸਤੂਆਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੱਕ ਸੰਯੋਜਨ ਵਿੱਚ ਲਿਆਓ"
+    "referenceComposeHint": "ਕਈ ਚਿੱਤਰਾਂ ਤੋਂ ਪਾਤਰ, ਵਸਤੂਆਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਨੂੰ ਇੱਕ ਸੰਯੋਜਨ ਵਿੱਚ ਲਿਆਓ",
+    "audioTaskSfxLabel": "ਧੁਨੀ ਪ੍ਰਭਾਵ",
+    "audioTaskSfxPlaceholder": "ਆਵਾਜ਼ ਦਾ ਵਰਣਨ ਕਰੋ, ਉਦਾਹਰਣ ਵਜੋਂ \"ਪੱਥਰ ਦੇ ਹਾਲ ਵਿੱਚ ਭਾਰੀ ਦਰਵਾਜ਼ੇ ਦੀ ਸਲੈਮਿੰਗ\"",
+    "auto": "ਆਟੋ",
+    "loop": "ਲੂਪ"
   },
   "fractions": {
     "title": "ਹਿੱਸੇ",

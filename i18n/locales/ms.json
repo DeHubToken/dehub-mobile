@@ -7700,7 +7700,11 @@
     "referenceProductName": "Letakkan produk anda dalam klip",
     "referenceProductHint": "Gantikan produk yang dipaparkan dan kekalkan adegan asal.",
     "referenceComposeName": "Gabungkan imej rujukan",
-    "referenceComposeHint": "Bawa watak, objek dan latar daripada pelbagai imej ke dalam satu komposisi."
+    "referenceComposeHint": "Bawa watak, objek dan latar daripada pelbagai imej ke dalam satu komposisi.",
+    "audioTaskSfxLabel": "Jarak gelombang:",
+    "audioTaskSfxPlaceholder": "Terangkan bunyi itu, contohnya \"pintu berat menghempas di dewan batu\"",
+    "auto": "Auto",
+    "loop": "Gelung"
   },
   "fractions": {
     "title": "Pecahan",

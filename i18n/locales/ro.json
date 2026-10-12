@@ -7457,7 +7457,11 @@
     "referenceProductName": "Plasează-ți produsul într-un clip",
     "referenceProductHint": "Înlocuiește produsul prezentat și păstrează scena originală.",
     "referenceComposeName": "Combină imagini de referință",
-    "referenceComposeHint": "Adu personaje, obiecte și setări din mai multe imagini într-o singură compoziție."
+    "referenceComposeHint": "Adu personaje, obiecte și setări din mai multe imagini într-o singură compoziție.",
+    "audioTaskSfxLabel": "Modifică peniţa",
+    "audioTaskSfxPlaceholder": "Descrieți sunetul, de exemplu \"ușa grea trântindu-se într-o sală de piatră\"",
+    "auto": "Auto",
+    "loop": "Buclă"
   },
   "fractions": {
     "title": "Fracții",

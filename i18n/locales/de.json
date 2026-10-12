@@ -7654,7 +7654,11 @@
     "referenceProductName": "Platziere dein Produkt in einem Clip",
     "referenceProductHint": "Ersetze das hervorgehobene Produkt und behalte die ursprüngliche Szene bei",
     "referenceComposeName": "Kombiniere Referenzbilder",
-    "referenceComposeHint": "Bringe Charaktere, Objekte und Settings aus mehreren Bildern in eine Komposition zusammen"
+    "referenceComposeHint": "Bringe Charaktere, Objekte und Settings aus mehreren Bildern in eine Komposition zusammen",
+    "audioTaskSfxLabel": "Soundeffekt",
+    "audioTaskSfxPlaceholder": "Beschreibe das Geräusch, zum Beispiel „schwere Tür in einer Steinhalle zuschlägt“",
+    "auto": "Auto",
+    "loop": "Schleife"
   },
   "fractions": {
     "title": "Anteile",
