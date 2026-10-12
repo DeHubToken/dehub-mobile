@@ -16,7 +16,7 @@ export default function PictureInPictureButton({ videoRef }: {
       accessibilityRole="button"
       accessibilityLabel={t('player.pictureInPicture')}
       hitSlop={8}
-      style={{ width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderRadius: 12, backgroundColor: 'rgba(0,0,0,0.5)' }}
+      style={{ width: 32, height: 32, alignItems: 'center', justifyContent: 'center' }}
       onPress={(event) => {
         event.stopPropagation();
         videoRef.current?.startPictureInPicture().catch(() => {
