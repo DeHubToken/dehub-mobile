@@ -127,10 +127,10 @@ const pipSupported = () => {
   }
 };
 
-/** Match the web feed: full column width, capped at 75% of the screen.
+/** Match the web feed: full column width, capped at 70% of the screen.
  *  Cover fitting crops equally from the top and bottom of taller clips. */
 const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number) =>
-  Math.max(mediaAspect, boxWidth / (win.height * 0.75));
+  Math.max(mediaAspect, boxWidth / (win.height * 0.7));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
