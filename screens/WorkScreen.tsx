@@ -68,7 +68,7 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
       <View style={styles.cardTop}>
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
-            <Icon name="Briefcase" size={11} color="#D4D4D8" />
+            <Icon name="Hammer" size={11} color="#D4D4D8" />
             <Text style={styles.badgeText}>
               {t(`work.types.${job.job_type}`, { defaultValue: WORK_TYPE_LABEL[job.job_type] })}
             </Text>

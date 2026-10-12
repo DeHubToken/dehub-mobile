@@ -128,7 +128,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
   { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
-  { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
+  { icon: "Hammer", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   // Search-only on the web sidebar; here it sits beside Careers, which links
