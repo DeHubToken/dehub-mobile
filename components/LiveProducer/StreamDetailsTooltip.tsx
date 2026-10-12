@@ -6,7 +6,7 @@ import GlassModal from '../ui/GlassModal';
 import { LiveStreamEntity } from '../../services/live.service';
 import { truncate } from '../../libs/strings.util';
 import { X } from "../ui/cut-icons";
-import Copy from 'lucide-react-native/dist/esm/icons/copy';
+import { Copy } from "../ui/cut-icons";
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 
