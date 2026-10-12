@@ -70,7 +70,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         <Pressable
           onPress={onUserPress}
           hitSlop={IDENTITY_HIT_SLOP}
-          style={{ flexDirection: "row", alignItems: "center", maxWidth: "100%", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}
+          style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT, maxWidth: "100%" }}
         >
           <Text
             className="font-semibold"
