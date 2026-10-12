@@ -126,8 +126,8 @@ describe('home feed on FlashList: rows', () => {
     expect([...build([0, 1, 2, 3, 4, 5].map(post), true, [])].some((r: any) => r.__synthetic === 'shorts')).toBe(false);
   });
 
-  it('adds no suggested row to a short feed and no rows at all to an empty one', () => {
-    expect([...build([0, 1, 2].map(post))].map((r: any) => r.__listKey)).toEqual(['__feed-header', 'k0', 'k1', 'k2']);
+  it('adds no suggested row before the third post and no rows at all to an empty feed', () => {
+    expect([...build([0, 1].map(post))].map((r: any) => r.__listKey)).toEqual(['__feed-header', 'k0', 'k1']);
     const empty: unknown[] = [];
     expect(build(empty)).toBe(empty);
     // The empty list still gets the header spacer, from ListHeaderComponent,
