@@ -208,8 +208,8 @@ const MAX_POOLED_CELLS = 10;
 
 // Index after which to insert the suggested-accounts carousel (after the 5th post).
 const SUGGEST_AFTER_INDEX = 4;
-// Home "all" tab only: the most-viewed shorts rail after the 2nd post, near the top like web.
-const SHORTS_AFTER_INDEX = 1;
+// Home "all" tab only: the most-viewed shorts rail always follows the first post, like web.
+const SHORTS_AFTER_INDEX = 0;
 
 // The header and the suggested-accounts carousel are rows of their own, so a
 // recycled post cell is never asked to grow a carousel it did not have.
