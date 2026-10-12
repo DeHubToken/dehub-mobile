@@ -9,7 +9,6 @@ jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({}) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/Profile/CollapsingProfileHeader', () => 'ScreenHeader');
-jest.mock('../../components/Profile/ProfileScrollViewport', () => 'ProfileScrollViewport');
 jest.mock('../../components/Profile/useProfileCollapse', () => ({ useProfileCollapse: () => ({ scrollY: { value: 0 }, identityBottom: { value: 220 }, onIdentityBottom: jest.fn() }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/UserProfile/UserProfileSheetContent', () => 'ProfileContent');

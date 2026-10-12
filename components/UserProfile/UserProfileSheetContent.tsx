@@ -385,6 +385,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       {!isFullScreen && ProfileHeader}
       <UserProfileBottomContentTabs
         profileScrollY={collapse?.scrollY}
+        profileActionsBottom={collapse?.actionsBottom}
         profileTabsPinned={collapse?.tabsPinned}
         address={profileData.address}
         onClose={onClose}
