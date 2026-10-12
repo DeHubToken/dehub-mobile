@@ -14,6 +14,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  */
 import React, { useCallback, useState } from "react";
 import {
+  Platform,
   ActivityIndicator,
   FlatList,
   Modal,
@@ -256,7 +257,7 @@ export default function CreatorFlowScreen() {
       )}
 
       {/* Options sheet */}
-      <Modal visible={!!menuFor} transparent animationType="slide" onRequestClose={() => setMenuFor(null)}>
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"} visible={!!menuFor} transparent animationType="slide" onRequestClose={() => setMenuFor(null)}>
         <Pressable style={styles.backdrop} onPress={() => setMenuFor(null)} accessibilityLabel={t("creatorFlow.close")} />
         <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
           <Text style={styles.sheetTitle} numberOfLines={1}>
@@ -281,7 +282,7 @@ export default function CreatorFlowScreen() {
       </Modal>
 
       {/* Rename */}
-      <Modal visible={!!renaming} transparent animationType="fade" onRequestClose={() => setRenaming(null)}>
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"} visible={!!renaming} transparent animationType="fade" onRequestClose={() => setRenaming(null)}>
         <View style={styles.dialogWrap}>
           <ThemePanel solid style={styles.dialog}>
             <Text style={styles.sheetTitle}>{t("creatorFlow.rename")}</Text>
@@ -375,7 +376,7 @@ const styles = StyleSheet.create({
   badgeText: { color: "#E4E4E7", fontSize: 11, fontWeight: "600" },
   menuBtn: { padding: 4 },
   busy: { ...StyleSheet.absoluteFillObject, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.3)" },
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)" },
+  backdrop: { flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)" },
   sheet: {
     backgroundColor: "#0B0C0E",
     borderTopLeftRadius: 20,
@@ -387,7 +388,7 @@ const styles = StyleSheet.create({
   sheetTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "600", paddingHorizontal: 20, marginBottom: 8 },
   sheetRow: { flexDirection: "row", alignItems: "center", gap: 14, paddingHorizontal: 20, paddingVertical: 14 },
   sheetRowText: { color: "#FFFFFF", fontSize: 15 },
-  dialogWrap: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "center", padding: 24 },
+  dialogWrap: { flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)", justifyContent: "center", padding: 24 },
   dialog: {
     borderRadius: 18,
     backgroundColor: "#0B0C0E",

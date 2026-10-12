@@ -282,7 +282,7 @@ const SavedPostsScreen: React.FC = () => {
         />
 
         {/* Options Modal for currently selected folder inside detail view */}
-        <Modal
+        <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
           visible={showMenuModal}
           transparent
           animationType="fade"
@@ -340,7 +340,7 @@ const SavedPostsScreen: React.FC = () => {
         </Modal>
 
         {/* Edit Folder Details Modal */}
-        <Modal
+        <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
           visible={showEditModal}
           transparent
           animationType="slide"
@@ -473,7 +473,7 @@ const SavedPostsScreen: React.FC = () => {
       )}
 
       {/* Options Menu Modal for Folder Card */}
-      <Modal
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
         visible={showMenuModal}
         transparent
         animationType="fade"
@@ -525,7 +525,7 @@ const SavedPostsScreen: React.FC = () => {
       </Modal>
 
       {/* Create Folder Modal */}
-      <Modal
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
         visible={showCreateModal}
         transparent
         animationType="slide"
@@ -592,7 +592,7 @@ const SavedPostsScreen: React.FC = () => {
       </Modal>
 
       {/* Edit Folder Modal */}
-      <Modal
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
         visible={showEditModal}
         transparent
         animationType="slide"
@@ -758,7 +758,7 @@ const styles = StyleSheet.create({
   },
   modalBackdrop: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
