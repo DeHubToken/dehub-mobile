@@ -289,7 +289,26 @@ const CutMoreVertical = ({ size = 24, color = "currentColor", strokeWidth = 2, f
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="rotate(90 16 16)"><Path d="M4 14H5.8Q8 14 8 16.2V18H6.2Q4 18 4 15.8Z" fill={color} fillRule="evenodd" /><Path d="M14 14H15.8Q18 14 18 16.2V18H16.2Q14 18 14 15.8Z" fill={color} fillRule="evenodd" /><Path d="M24 14H25.8Q28 14 28 16.2V18H26.2Q24 18 24 15.8Z" fill={color} fillRule="evenodd" /></G></Svg>
 );
 
+const CutPictureinpicture = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12 26H10Q4 26 4 20V6H21Q28 6 28 13" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M17 17H23Q28 17 28 22V27H21Q17 27 17 23Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+);
+const CutFastforward = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 6L14.8 14.9Q16.3 16 14.8 17.1L3 26Z M5.4 10.8V21.2L12.3 16Z M17 6L28.8 14.9Q30.3 16 28.8 17.1L17 26Z M19.4 10.8V21.2L26.3 16Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutRewind = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="translate(32 0) scale(-1 1)"><Path d="M3 6L14.8 14.9Q16.3 16 14.8 17.1L3 26Z M5.4 10.8V21.2L12.3 16Z M17 6L28.8 14.9Q30.3 16 28.8 17.1L17 26Z M19.4 10.8V21.2L26.3 16Z" fill={color} fillRule="evenodd"/></G></Svg>
+);
+const CutExitfullscreen = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="rotate(180 7.5 7.5)"><Path d="M5.2000 10.6080L5.2000 5.2000L12.0000 5.2000L12.0000 4.1920Q12.0000 2.8000 10.6080 2.8000L2.8000 2.8000L2.8000 12.0000L3.8080 12.0000Q5.2000 12.0000 5.2000 10.6080Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 24.5 7.5)"><Path d="M21.3920 5.2000L26.8000 5.2000L26.8000 12.0000L27.8080 12.0000Q29.2000 12.0000 29.2000 10.6080L29.2000 2.8000L20.0000 2.8000L20.0000 3.8080Q20.0000 5.2000 21.3920 5.2000Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 24.5 24.5)"><Path d="M26.8000 21.3920L26.8000 26.8000L20.0000 26.8000L20.0000 27.8080Q20.0000 29.2000 21.3920 29.2000L29.2000 29.2000L29.2000 20.0000L28.1920 20.0000Q26.8000 20.0000 26.8000 21.3920Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 7.5 24.5)"><Path d="M10.6080 26.8000L5.2000 26.8000L5.2000 20.0000L4.1920 20.0000Q2.8000 20.0000 2.8000 21.3920L2.8000 29.2000L12.0000 29.2000L12.0000 28.1920Q12.0000 26.8000 10.6080 26.8000Z" fill={color} fillRule="evenodd"/></G></Svg>
+);
+
 export const cutIcons = {
+  PictureInPicture2: CutPictureinpicture,
+  PictureInPicture: CutPictureinpicture,
+  FastForward: CutFastforward,
+  Rewind: CutRewind,
+  Minimize: CutExitfullscreen,
+
   Home: CutHome,
   House: CutHome,
   Search: CutSearch,
