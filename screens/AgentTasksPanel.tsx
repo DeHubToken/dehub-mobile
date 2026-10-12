@@ -35,13 +35,14 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
       <View style={styles.row}>{active.map(agent => <Pressable key={agent.id} accessibilityRole="button" accessibilityState={{ selected: agentId === agent.id }} disabled={create.isPending}
         onPress={() => { setChosen(agent.id); setRequestId(randomUUID()); }} style={[styles.chip, agent.id === agentId && styles.selected]}><Text style={styles.text}>@{agent.name}</Text></Pressable>)}</View>
       <TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
-        onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); }} placeholder={t('agents.tasks.examples')}
+        onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); create.reset(); }} placeholder={t('agents.tasks.examples')}
         placeholderTextColor="#888" style={styles.input} />
       <KitButton label={create.isPending ? t('agents.tasks.preparing') : t('agents.tasks.run')} disabled={!prompt.trim() || create.isPending} onPress={() => create.mutate()} />
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
     {create.error && <Text accessibilityRole="alert" style={styles.error}>{create.error.message}</Text>}
     {control.error && <Text accessibilityRole="alert" style={styles.error}>{control.error.message}</Text>}
+    {create.isSuccess && <Text accessibilityRole="alert" style={styles.text}>{t('agents.tasks.queued')}</Text>}
     <View style={styles.row}><Text style={styles.title}>{t('agents.tasks.list')}</Text><KitButton variant="quiet" label={t('agents.tasks.refresh')} disabled={tasks.isFetching} onPress={refresh} /></View>
     {tasks.error && <Text accessibilityRole="alert" style={styles.error}>{tasks.error.message}</Text>}
     {tasks.isLoading && <Text style={styles.muted}>{t('agents.tasks.loading')}</Text>}
