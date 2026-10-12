@@ -7,6 +7,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { agentTaskRequest, type AIAgent, type AgentTask, type AgentTaskAction } from '../services/agents.service';
 import { openInApp } from '../libs/links.utils';
 import { useTranslation } from 'react-i18next';
+import LiquidGlass from '../components/ui/LiquidGlass';
 
 const actionNames: Record<string, string> = { dehub_follow: 'agents.tasks.follow', dehub_vote: 'agents.tasks.reaction', dehub_post_create: 'agents.tasks.post', dehub_comment: 'agents.tasks.comment', dehub_update_profile: 'agents.tasks.profile' };
 
@@ -34,9 +35,9 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
     {active.length ? <>
       <View style={styles.row}>{active.map(agent => <Pressable key={agent.id} accessibilityRole="button" accessibilityState={{ selected: agentId === agent.id }} disabled={create.isPending}
         onPress={() => { setChosen(agent.id); setRequestId(randomUUID()); }} style={[styles.chip, agent.id === agentId && styles.selected]}><Text style={styles.text}>@{agent.name}</Text></Pressable>)}</View>
-      <TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
+      <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
         onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); create.reset(); }} placeholder={t('agents.tasks.examples')}
-        placeholderTextColor="#888" style={styles.input} />
+        placeholderTextColor="#A1A1AA" style={styles.input} /></LiquidGlass>
       <KitButton label={create.isPending ? t('agents.tasks.preparing') : t('agents.tasks.run')} disabled={!prompt.trim() || create.isPending} onPress={() => create.mutate()} />
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
@@ -77,6 +78,6 @@ const styles = StyleSheet.create({
   muted: { color: '#A1A1AA', fontSize: 12, lineHeight: 18 }, error: { color: '#fca5a5', fontSize: 13 },
   row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8 },
   chip: { padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#333' }, selected: { borderColor: '#fff' },
-  input: { minHeight: 130, color: '#fff', borderColor: '#333', borderWidth: 1, borderRadius: 10, padding: 12, textAlignVertical: 'top' },
+  input: { minHeight: 130, color: '#fff', backgroundColor: 'transparent', padding: 12, textAlignVertical: 'top' },
   card: { gap: 8, borderColor: '#333', borderWidth: 1, borderRadius: 10, padding: 12 },
 });

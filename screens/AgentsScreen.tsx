@@ -49,6 +49,8 @@ import {
 const MUTED = "#A1A1AA";
 import { canManageAgents } from '../libs/agent-access';
 import { AgentTasksPanel } from './AgentTasksPanel';
+import { AgentProfilePanel } from './AgentProfilePanel';
+import LiquidGlass from '../components/ui/LiquidGlass';
 
 const maskApiKey = (key: string) =>
   key.substring(0, 10) + "•".repeat(20) + key.substring(key.length - 4);
@@ -240,6 +242,7 @@ export default function AgentsScreen() {
             </View>
           </View>
 
+          <AgentProfilePanel wallet={walletAddress} agentId={agent.id} />
           {apiKey ? (
             <SecretBlock
               label={t("agents.apiKey")}
@@ -344,7 +347,7 @@ export default function AgentsScreen() {
               <Text style={styles.formTitle}>{t("agents.newAgent")}</Text>
               <Text style={styles.agentDesc}>{t("agents.createDescription")}</Text>
               <Text style={styles.fieldLabel}>{t("agents.agentName")}</Text>
-              <TextInput
+              <LiquidGlass style={{ borderRadius: 12 }}><TextInput
                 value={name}
                 onChangeText={setName}
                 placeholder={t("agents.agentNamePlaceholder")}
@@ -352,16 +355,16 @@ export default function AgentsScreen() {
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}
-              />
+              /></LiquidGlass>
               <Text style={styles.fieldLabel}>{t("agents.agentDescription")}</Text>
-              <TextInput
+              <LiquidGlass style={{ borderRadius: 12 }}><TextInput
                 value={description}
                 onChangeText={setDescription}
                 placeholder={t("agents.agentDescriptionPlaceholder")}
                 placeholderTextColor="#8B8D90"
                 multiline
                 style={[styles.input, styles.inputMultiline]}
-              />
+              /></LiquidGlass>
               <View style={styles.formActions}>
                 <Pressable
                   onPress={() => createAgent.mutate()}
@@ -456,9 +459,7 @@ const styles = StyleSheet.create({
   formTitle: { color: "#fff", fontSize: 16, fontWeight: "600" },
   fieldLabel: { color: MUTED, fontSize: 12, marginTop: 4 },
   input: {
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "transparent",
     borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 10,
