@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StackActions, useNavigation } from "@react-navigation/native";
 import CollapsingProfileHeader from '../Profile/CollapsingProfileHeader';
+import ProfileScrollViewport from '../Profile/ProfileScrollViewport';
 import { useProfileCollapse } from '../Profile/useProfileCollapse';
 import UserProfileSheetContent from "./UserProfileSheetContent";
 import ProfileSurface from "./ProfileSurface";
@@ -131,6 +132,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     return (
       <SwipeBackBoundary onBack={onClose} enabled={visible}>
       <View className="flex-1 bg-theme-neutrals-900">
+        <ProfileScrollViewport {...collapse}>
         <UserProfileSheetContent
           collapse={collapse}
           loading={loading}
@@ -170,6 +172,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onUnblock={handleUnblock}
           onRemoveFollower={handleRemoveFollower}
         />
+        </ProfileScrollViewport>
         {profileBar}
         <UnfollowSheet
           visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
@@ -202,6 +205,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           {/* Absolute header controls need a parent inside the safe area;
               top: 0 on the padded outer view still reaches the status bar. */}
           <View style={{ flex: 1 }}>
+          <ProfileScrollViewport {...collapse}>
           <UserProfileSheetContent
             collapse={collapse}
             loading={loading}
@@ -241,6 +245,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             onUnblock={handleUnblock}
             onRemoveFollower={handleRemoveFollower}
           />
+          </ProfileScrollViewport>
           {profileBar}
           <StandaloneTabBar onBeforeNavigate={onClose} />
           </View>

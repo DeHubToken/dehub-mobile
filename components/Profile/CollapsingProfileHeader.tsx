@@ -55,9 +55,9 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
 
   return (
     <View pointerEvents="box-none" style={styles.bar}>
-      <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.gapGuard, { backgroundColor: solidTheme ? colors.neutrals[900] : '#18181b' }, guardVisibility]}>
-        {!solidTheme && cover && <Image source={cover} blurRadius={40} contentFit="cover" transition={0} cachePolicy="memory-disk" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
-      </Animated.View>
+      {solidTheme && (
+        <Animated.View pointerEvents="none" style={[styles.gapGuard, { backgroundColor: colors.neutrals[900] }, guardVisibility]} />
+      )}
       <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
         {cover && <Image source={cover} blurRadius={40} contentFit="cover" transition={0} cachePolicy="memory-disk" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
         <LinearGradient

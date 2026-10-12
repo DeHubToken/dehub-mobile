@@ -1,4 +1,5 @@
 import CollapsingProfileHeader from './CollapsingProfileHeader';
+import ProfileScrollViewport from './ProfileScrollViewport';
 import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './useProfileCollapse';
 import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -171,7 +172,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   };
 
   return <View className="flex-1 bg-theme-neutrals-900">
-    {renderScene(activeKey)}
+    <ProfileScrollViewport {...collapse}>{renderScene(activeKey)}</ProfileScrollViewport>
     <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
       <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned />
     </Animated.View>
