@@ -220,7 +220,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
     if (!ops) return;
     setTemplateBusy(id);
     try {
-      const base = newProject(aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
+      const base = newProject(aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey, { defaultValue: tpl.titleDefault ?? tpl.titleKey }));
       const { project } = await applyOps(base, ops, { importStock: importStockAsset });
       onCreate(project);
     } catch {
@@ -294,14 +294,14 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.videoTemplates.heading")}</Text>
             <AspectPanel value={templateAspect} onPick={setTemplateAspect} />
             <TemplateTiles
-              templates={TEMPLATES.filter(x => x.kind === "video").map(x => ({ id: x.id, aspect: templateAspect, preview: x.preview, title: t(x.titleKey), detail: t("editor.videoTemplates.duration", { seconds: x.duration }) }))}
+              templates={TEMPLATES.filter(x => x.kind === "video").map(x => ({ id: x.id, aspect: templateAspect, preview: x.preview, title: t(x.titleKey, { defaultValue: x.titleDefault ?? x.titleKey }), detail: t("editor.videoTemplates.duration", { seconds: x.duration }) }))}
               busyId={templateBusy}
               onPick={(id) => { void startFromTemplate(id); }}
             />
             <Text className="text-theme-neutrals-400 text-xs">{t("editor.videoTemplates.hint")}</Text>
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.templates.heading")}</Text>
             <TemplateTiles
-              templates={TEMPLATES.filter(x => x.kind !== "video").map(x => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey) }))}
+              templates={TEMPLATES.filter(x => x.kind !== "video").map(x => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey, { defaultValue: x.titleDefault ?? x.titleKey }) }))}
               busyId={templateBusy}
               onPick={(id) => { void startFromTemplate(id); }}
             />

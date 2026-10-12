@@ -5,11 +5,12 @@ import { VIDEO_TEMPLATES, VIDEO_TEMPLATE_FORMATS, videoTemplateCommand } from ".
 import type { TextClip } from "../../libs/editor/types";
 import en from "../../i18n/locales/en.json";
 
-const timings: Record<string, number[][]> = {"question": [[0, 3], [3, 7], [7, 10]], "beforeAfter": [[0, 2], [2, 6], [6, 10], [10, 12]], "tips": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 14]], "tutorial": [[0, 3], [3, 6], [6, 9], [9, 12], [12, 15]], "countdown": [[0, 2], [2, 4], [4, 6], [6, 8], [8, 10], [10, 13], [13, 15]], "mythFact": [[0, 3], [3, 8], [8, 12]], "product": [[0, 3], [3, 8], [8, 12]], "announcement": [[0, 3], [3, 7], [7, 10]], "story": [[0, 5], [5, 10], [10, 15]], "quote": [[0, 7], [7, 10]]};
-const t = ((key: string) => {
+const timings: Record<string, number[][]> = {"question": [[0, 3], [3, 7], [7, 10]], "beforeAfter": [[0, 2], [2, 6], [6, 10], [10, 12]], "tips": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 14]], "tutorial": [[0, 3], [3, 6], [6, 9], [9, 12], [12, 15]], "countdown": [[0, 2], [2, 4], [4, 6], [6, 8], [8, 10], [10, 13], [13, 15]], "mythFact": [[0, 3], [3, 8], [8, 12]], "product": [[0, 3], [3, 8], [8, 12]], "announcement": [[0, 3], [3, 7], [7, 10]], "story": [[0, 5], [5, 10], [10, 15]], "quote": [[0, 7], [7, 10]], "event": [[0, 3], [3, 7], [7, 10]], "podcast": [[0, 3], [3, 8], [8, 11]], "review": [[0, 2], [2, 6], [6, 10], [10, 12]], "comparison": [[0, 2], [2, 6], [6, 10], [10, 13]], "checklist": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 13]], "lesson": [[0, 3], [3, 7], [7, 11], [11, 14]], "interview": [[0, 3], [3, 7], [7, 12], [12, 15]], "recap": [[0, 3], [3, 7], [7, 11], [11, 14]], "milestone": [[0, 3], [3, 7], [7, 10], [10, 13]], "offer": [[0, 3], [3, 7], [7, 10], [10, 12]]};
+const t = ((key: string, options?: { defaultValue?: string }) => {
   const value = key.split(".").reduce<unknown>((node, part) => node && typeof node === "object" ? (node as Record<string, unknown>)[part] : undefined, en);
-  if (typeof value !== "string") throw new Error(`Missing template words: ${key}`);
-  return value;
+  const translated = typeof value === "string" ? value : options?.defaultValue;
+  if (typeof translated !== "string" || !translated) throw new Error(`Missing template words: ${key}`);
+  return translated;
 }) as unknown as import("i18next").TFunction;
 
 describe("timed video starters", () => {
@@ -45,6 +46,16 @@ describe("timed video starters", () => {
     expect(videoTemplateCommand("Apply the before and after starter", { page: { aspect: "4:5" } })).toEqual({ op: "use_template", template: "video-beforeAfter", aspect: "4:5" });
     expect(videoTemplateCommand("Create a product reveal video", { page: { aspect: "custom" } })?.aspect).toBe("9:16");
     expect(videoTemplateCommand("Use a question hook template in 16:10")).toBeNull();
+    expect(videoTemplateCommand("Use a event invitation template in 16:9")).toEqual({ op: "use_template", template: "video-event", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a podcast teaser template in 16:9")).toEqual({ op: "use_template", template: "video-podcast", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a product review template in 16:9")).toEqual({ op: "use_template", template: "video-review", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a two options template in 16:9")).toEqual({ op: "use_template", template: "video-comparison", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a quick checklist template in 16:9")).toEqual({ op: "use_template", template: "video-checklist", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a one useful lesson template in 16:9")).toEqual({ op: "use_template", template: "video-lesson", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a interview highlight template in 16:9")).toEqual({ op: "use_template", template: "video-interview", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a event recap template in 16:9")).toEqual({ op: "use_template", template: "video-recap", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a milestone template in 16:9")).toEqual({ op: "use_template", template: "video-milestone", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a limited offer template in 16:9")).toEqual({ op: "use_template", template: "video-offer", aspect: "16:9" });
     expect(videoTemplateCommand("Add a question to my existing video")).toBeNull();
     expect(videoTemplateCommand("Create a video of ocean waves")).toBeNull();
   });
