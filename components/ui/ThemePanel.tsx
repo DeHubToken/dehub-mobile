@@ -14,7 +14,17 @@ const ThemePanel = React.forwardRef<View, ViewProps & { solid?: boolean }>(({ ch
     borderColor: skin.card.borderColor,
     borderTopColor: skin.card.borderTopColor,
   } : isMinimal ? { backgroundColor: '#000', borderColor: MINIMAL_HAIRLINE } : undefined;
-  return <View ref={ref} {...props} style={[style, material, solid && skin ? { backgroundColor: skin.page, overflow: 'hidden' } : undefined]}>
+  return <View ref={ref} {...props} style={[style, material, solid && skin ? {
+    backgroundColor: skin.page,
+    overflow: 'hidden',
+    // Theme surfaces use their inset border as the edge. Avoid native drop
+    // shadows that can be clipped by the rounded panel boundary and read as a
+    // straight seam against the canvas.
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 0,
+  } : undefined]}>
     {Surface ? <Surface radius={typeof geometry?.borderRadius === 'number' ? geometry.borderRadius : 0} /> : null}
     {children}
   </View>;
