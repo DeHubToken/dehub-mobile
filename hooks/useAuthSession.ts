@@ -4,7 +4,7 @@ import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
 import { getAccount, getNotifications } from "../services/user.service";
-import { upsertLocalAccount, getLocalAccount } from "../libs/wallets.local";
+import { upsertLocalAccount, getLocalAccount, forgetDeviceVerification } from "../libs/wallets.local";
 
 import type { User } from "../context/AuthContext";
 import { createAuthAdapter } from "../services/auth/authAdapter";
@@ -233,6 +233,7 @@ export function useAuthSession({
 
   const signOut = useCallback(
     async (forgetProfile: boolean = true) => {
+    forgetDeviceVerification();
     setIsLoading(true);
     // Belongs to the identity signing out — the next one must not inherit it.
     clearWalletDrift();
