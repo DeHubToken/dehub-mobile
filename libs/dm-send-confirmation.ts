@@ -17,7 +17,7 @@ export interface DmSendEcho {
   conversation?: unknown;
   dmId?: string;
   conversationId?: string;
-  sender?: { address?: string };
+  sender?: string | { address?: string };
   author?: string;
   content?: string;
   msgType?: string;
@@ -54,8 +54,9 @@ export function confirmDmSend<T extends DmSendEcho>(
         if (message.author && message.author !== 'me') return;
         // Socket echoes can omit the display-only author field. Confirm those
         // by the authenticated sender instead of timing out a saved message.
+        const senderAddress = typeof message.sender === 'string' ? message.sender : message.sender?.address;
         if (!message.author && (!transport.senderAddress ||
-            message.sender?.address?.toLowerCase() !== transport.senderAddress.toLowerCase())) return;
+            senderAddress?.toLowerCase() !== transport.senderAddress.toLowerCase())) return;
         if ((message.msgType || 'msg') !== payload.type) return;
         // Compare the wire content, including encrypted envelopes, before decryption.
         if ((message.content || '') !== (payload.content || '')) return;
