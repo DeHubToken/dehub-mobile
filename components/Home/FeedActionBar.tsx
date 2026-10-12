@@ -290,7 +290,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         active={reposted}
         activeColor={ICON_ACTIVE}
         activeStrokeWidth={2.6}
-        iconSize={reposted ? 20 : 18}
+        iconSize={reposted ? 26 : 24}
         count={shareCount ?? repostCount}
         countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
         formatCount
@@ -300,6 +300,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPressIn={onCommentPressIn}
         accessibilityLabel={t("postInfo.comments")}
         iconName="MessageSquare"
+          iconSize={28}
         count={commentCount}
         formatCount
       />
@@ -334,6 +335,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           }}
           onLongPress={reactionsEnabled ? () => setTrayOpen(true) : undefined}
           iconName="ThumbsUp"
+          iconSize={27}
           glyph={thumbGlyph}
           glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
           glyphPlaying={isVisible}
@@ -352,6 +354,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPress={onSave}
         accessibilityLabel={t("feedCard.saveToLibrary")}
         iconName="Bookmark"
+          iconSize={29}
         active={saved}
         activeColor="#D4D4D8"
         activeFill="#D4D4D8"

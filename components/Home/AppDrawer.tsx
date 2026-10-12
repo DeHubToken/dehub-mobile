@@ -154,7 +154,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
   // Search-only on web too. Hidden on iOS: both pages exist to sell a plan.
   { icon: "Crown", labelKey: "nav.premium", screen: ScreenNames.Premium, storefrontHidden: true, searchOnly: true },
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },

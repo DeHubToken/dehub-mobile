@@ -10,12 +10,12 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import ChevronDown from "lucide-react-native/dist/esm/icons/chevron-down";
-import Eye from "lucide-react-native/dist/esm/icons/eye";
+import { Eye } from "../ui/cut-icons";
 import { Mic } from "../ui/cut-icons";
-import MicOff from "lucide-react-native/dist/esm/icons/mic-off";
+import { MicOff } from "../ui/cut-icons";
 import SignalLow from "lucide-react-native/dist/esm/icons/signal-low";
-import Video from "lucide-react-native/dist/esm/icons/video";
-import VideoOff from "lucide-react-native/dist/esm/icons/video-off";
+import { Video } from "../ui/cut-icons";
+import { VideoOff } from "../ui/cut-icons";
 import Zap from "lucide-react-native/dist/esm/icons/zap";
 
 type Stage =

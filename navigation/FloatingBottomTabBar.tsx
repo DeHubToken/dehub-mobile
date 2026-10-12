@@ -108,7 +108,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter },
