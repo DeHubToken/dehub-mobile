@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Modal, View, TouchableOpacity, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from "../ui/Icon";
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
 import PictureInPictureButton from "./PictureInPictureButton";
 import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../../libs/audioSession";
@@ -178,7 +178,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
             accessibilityLabel={t('player.closeVideo')}
             activeOpacity={0.8}
           >
-            <Ionicons name="close" size={22} color="#fff" />
+            <Icon name="X" size={22} color="#fff" />
           </TouchableOpacity>
         </View>
 
@@ -235,7 +235,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 activeOpacity={0.9}
                 accessibilityLabel={isPlaying ? t('audioPost.pause') : t('audioPost.play')}
               >
-                <Ionicons name={isPlaying ? 'pause' : 'play'} size={24} color="#fff" />
+                <Icon name={isPlaying ? 'Pause' : 'Play'} size={24} color="#fff" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleRotate}
@@ -243,7 +243,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 activeOpacity={0.9}
                 accessibilityLabel={t('player.rotate')}
               >
-                <Ionicons name={"refresh"} size={22} color="#fff" />
+                <Icon name="RefreshCw" size={22} color="#fff" />
               </TouchableOpacity>
             </View>
           </View>
