@@ -33,7 +33,7 @@ import { configureForBackgroundPlayback, releaseBackgroundPlayback } from "../..
 import { feedVolumeResponder } from "../../libs/feed-volume-responder";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
-import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
+import { VideoScrubZone, VideoScrubButton, VIDEO_CONTROL_STRIP_HEIGHT } from "./VideoScrubZone";
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { flushVideoPlayIntent } from "../../libs/video-start";
 import { usePlaybackRecovery } from "../../hooks/usePlaybackRecovery";
@@ -112,10 +112,11 @@ const mediaBoxWidth = (
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  if (!postPage) return fullWidth;
-  const maxHeight = postPageMaxHeightFor(win.height, fullWidth);
-  return Math.min(fullWidth, Math.round(maxHeight * mediaAspect));
+  return fullWidth;
 };
+
+const mediaBoxHeight = (win: { width: number; height: number }, width: number, aspect: number, postPage: boolean, strip: boolean) =>
+  Math.min(width / aspect + (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0), postPage ? postPageMaxHeightFor(win.height, width) : win.height * 0.75);
 
 /** Whether this device can pop a video out. Not every platform build of
  *  expo-video carries the check, so a missing one reads as "no". */
@@ -126,11 +127,6 @@ const pipSupported = () => {
     return false;
   }
 };
-
-/** Match the web feed: full column width, capped at 75% of the screen.
- *  Cover fitting crops equally from the top and bottom of taller clips. */
-const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number) =>
-  Math.max(mediaAspect, boxWidth / (win.height * 0.75));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -532,9 +528,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
-  const cropFeedVideo = !postPage;
-  const cropMedia = !postPage && (cropFeedVideo || !!bleed);
+  const cropMedia = false;
   const bareControls = true;
+  const splitControls = !hideControls && !isContentGated;
+  const stripOpacity = useRef(new Animated.Value(1)).current;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -543,9 +540,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // the controls seeds the scrubber from the ref so it starts at the real
   // position rather than at whatever it held when it was last hidden.
   useEffect(() => {
-    showControlsRef.current = showControls;
-    if (showControls) setCurrentTime(currentTimeRef.current);
-  }, [showControls]);
+    showControlsRef.current = splitControls || showControls;
+    if (splitControls || showControls) setCurrentTime(currentTimeRef.current);
+  }, [showControls, splitControls]);
 
   const controlsOpacity = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -1069,7 +1066,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Tell a card with chrome along the bottom when the player bar is up, so
   // that chrome lifts above it only then.
   const setBarUp = bleed?.setBarUp;
-  const barUp = !hideControls && showControls;
+  const barUp = !hideControls && (splitControls || showControls);
   useEffect(() => {
     setBarUp?.(barUp);
   }, [setBarUp, barUp]);
@@ -1193,9 +1190,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          aspectRatio: cropFeedVideo
-            ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
-            : mediaAspect,
+          height: mediaBoxHeight(windowSize, bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage), mediaAspect, postPage, splitControls),
           // Feed videos fill the column; the post page keeps the full frame centred.
           width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
           maxWidth: "100%",
@@ -1215,7 +1210,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         // showing the previous card's thumbnail.
         <SmartImage
           source={{ uri: thumbnail }}
-          style={styles.thumbnail}
+          style={[styles.thumbnail, splitControls && styles.stripPicture]}
           contentFit={cropMedia ? "cover" : "contain"}
           recyclingKey={thumbnail}
           transition={0}
@@ -1243,7 +1238,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           // normal view hierarchy, so it respects z-order and clipping.
           surfaceType="textureView"
           onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
-          style={[styles.thumbnail, { opacity: firstFrameRendered && (hideControls
+          style={[styles.thumbnail, splitControls && styles.stripPicture, { opacity: firstFrameRendered && (hideControls
             ? (hasStartedAutoplay && videoReady)
             : (isPlaying || hasStartedAutoplay)
           ) ? 1 : 0 }]}
@@ -1342,120 +1337,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
-          {!isStarting && (!isPlaying || showControls) && (
-            <Animated.View style={[styles.centreButton, { opacity: isPlaying ? controlsOpacity : 1 }]}>
+          {!splitControls && !isStarting && (!isPlaying || showControls) && (
+            <Animated.View style={[styles.centreButton, splitControls && { marginTop: -28 - VIDEO_CONTROL_STRIP_HEIGHT / 2 }, { opacity: isPlaying ? controlsOpacity : 1 }]}>
               <Pressable onPress={() => handleVideoPress()} style={styles.centreTransport}
                 accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}>
                 <BareIcon name={isPlaying ? "Pause" : "Play"} size={32} />
               </Pressable>
             </Animated.View>
           )}
-          {(
-            <Animated.View style={[styles.controlsContainer, { opacity: controlsOpacity }]} pointerEvents={showControls ? "box-none" : "none"}>
-            {bareControls ? (
-              <View pointerEvents="box-none" style={[styles.bareRow, { top: bareTop }]}>
-                {/* Tap to mute, drag up or down to set the volume. */}
-                <View>
-                  <View
-                    style={styles.bareButton}
-                    {...volumePanResponder.panHandlers}
-                    accessibilityRole="button"
-                    accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
-                    accessibilityActions={dubAvailable ? [{ name: "longpress", label: t("dub.audio") }] : undefined}
-                    onAccessibilityAction={(event) => { if (dubAvailable && event.nativeEvent.actionName === "longpress") setDubVolumeOpen(true); }}
-                  >
-                    <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
-                  </View>
-                  {volumeAdjusting && (
-                    <View style={[styles.volumeTrack, styles.bareVolumeTrack]} pointerEvents="none">
-                      <View style={styles.glassOverlay} />
-                      <View style={styles.volumeTrackInner}>
-                        <View
-                          style={[
-                            styles.volumeFill,
-                            { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
-                          ]}
-                        />
-                      </View>
-                    </View>
-                  )}
-                </View>
-
-              </View>
-            ) : <View style={[styles.topControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingTop: bleed.topInset }]}>
-              <Pressable onPress={handleToggleSpeed} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }} accessibilityRole="button" accessibilityLabel={t("player.playbackSpeed")} style={styles.bareSpeed}>
-                <MediaControlText style={styles.bareSpeedText}>{playbackRate}x</MediaControlText>
-              </Pressable>
-              
-              <Pressable
-                onPress={handleToggleLoop}
-                style={styles.bareButton}
-                accessibilityRole="button"
-                accessibilityLabel={t("player.toggleLoop")}
-                accessibilityState={{ selected: isLooping }}
-              >
-                <BareIcon name="Repeat" active={isLooping} />
-              </Pressable>
-
-              <View>
-                <View style={styles.bareButton} {...volumePanResponder.panHandlers}
-                  accessibilityRole="button" accessibilityLabel={t(isMuted ? "common.unmute" : "common.mute")}
-                  accessibilityActions={dubAvailable ? [{ name: "longpress", label: t("dub.audio") }] : undefined}
-                  onAccessibilityAction={(event) => { if (dubAvailable && event.nativeEvent.actionName === "longpress") setDubVolumeOpen(true); }}>
-                  <BareIcon name={isMuted ? "VolumeX" : "Volume2"} />
-                </View>
-                {volumeAdjusting && (
-                  <View style={styles.volumeTrack} pointerEvents="none">
-                    <View style={styles.glassOverlay} />
-                    <View style={styles.volumeTrackInner}>
-                      <View
-                        style={[
-                          styles.volumeFill,
-                          { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` },
-                        ]}
-                      />
-                    </View>
-                  </View>
-                )}
-              </View>
-              
-              <PictureInPictureButton videoRef={videoViewRef} />
-              <Pressable onPress={handleFullscreen} style={styles.bareButton}>
-                <BareIcon name="Maximize" />
-              </Pressable>
-            </View>}
-
-            {!bareControls && (
-            <View style={[styles.bottomControls, edgeToEdge && { paddingHorizontal: MINIMAL_EDGE }, bleed && { paddingBottom: 8 }]}>
-              <View style={styles.progressRow}>
-                <View>
-                  <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(currentTime)}</MediaControlText>
-                </View>
-                <GestureDetector gesture={seekGesture}>
-                  <View
-                    style={styles.progressTrack}
-                    onLayout={onSeekTrackLayout}
-                    {...seekTouchGuard}
-                    accessibilityRole="adjustable"
-                    accessibilityLabel={t("player.progress")}
-                  >
-                    <View style={styles.progressTrackInner}>
-                      <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
-                      <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -6 }]} />
-                    </View>
-                  </View>
-                </GestureDetector>
-
-              </View>
-            </View>
-            )}
-          </Animated.View>
-          )}
           {bareControls && (
             <VideoScrubZone
               enabled={videoDuration > 0}
-              opacity={controlsOpacity}
-              showControls={showControls}
+              opacity={stripOpacity}
+              showControls
+              plainStrip
               label={t("player.progress")}
               progress={progressPercent}
               onStart={handleScrubStart}
@@ -1463,9 +1358,22 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               onCommit={handleSeekCommit}
               onCancel={handleScrubCancel}
             >
-                <View pointerEvents="box-none" style={[styles.bareBottomRow, (edgeToEdge || mediaAspect >= 1) && { paddingHorizontal: MINIMAL_EDGE - 8 }]}>
-                  <View pointerEvents="none">
-                    <MediaControlText style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlText>
+                <View pointerEvents="box-none" style={styles.bareBottomRow}>
+                  <View style={styles.stripTransport}>
+                    <VideoScrubButton style={styles.bareButton} onPress={() => handleVideoPress()}
+                      accessibilityRole="button" accessibilityLabel={t(isPlaying ? 'audioPost.pause' : 'audioPost.play')}>
+                      <BareIcon name={isPlaying ? 'Pause' : 'Play'} plain />
+                    </VideoScrubButton>
+                    <View style={styles.bareButton} {...volumePanResponder.panHandlers}
+                      accessibilityRole="button" accessibilityLabel={t(isMuted ? 'common.unmute' : 'common.mute')}
+                      accessibilityActions={dubAvailable ? [{ name: 'longpress', label: t('dub.audio') }] : undefined}
+                      onAccessibilityAction={event => { if (dubAvailable && event.nativeEvent.actionName === 'longpress') setDubVolumeOpen(true); }}>
+                      <BareIcon name={isMuted ? 'VolumeX' : 'Volume2'} plain />
+                      {volumeAdjusting && <View style={[styles.volumeTrack, { top: -108 }]} pointerEvents="none">
+                        <View style={styles.volumeTrackInner}><View style={[styles.volumeFill, { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` }]} /></View>
+                      </View>}
+                    </View>
+                    {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
                 {captionControls && (
@@ -1480,7 +1388,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     {captionControls.loading ? (
                       <Spinner size={16} />
                     ) : (
-                      <BareIcon name="Captions" />
+                      <BareIcon name="Captions" plain active={captionControls.enabled} />
                     )}
                   </VideoScrubButton>
                 )}
@@ -1491,7 +1399,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
                 >
-                  <MediaControlText style={styles.bareSpeedText}>{playbackRate.toFixed(2)}x</MediaControlText>
+                  <Text style={styles.bareSpeedText}>{playbackRate}x</Text>
                 </VideoScrubButton>
                 <VideoScrubButton
                   onPress={handleToggleLoop}
@@ -1501,7 +1409,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityState={{ selected: isLooping }}
                   style={styles.bareButton}
                 >
-                  <BareIcon name="Repeat" active={isLooping} />
+                  <BareIcon name="Repeat" active={isLooping} plain />
                 </VideoScrubButton>
                 {pipSupported() && (
                   <VideoScrubButton
@@ -1513,7 +1421,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     accessibilityLabel={t("player.pictureInPicture")}
                     style={styles.bareButton}
                   >
-                    <BareIcon name="PictureInPicture2" />
+                    <BareIcon name="PictureInPicture2" plain />
                   </VideoScrubButton>
                 )}
                   <VideoScrubButton
@@ -1523,7 +1431,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     accessibilityLabel={t("common.fullscreen")}
                     style={styles.bareButton}
                   >
-                    <BareIcon name="Maximize" />
+                    <BareIcon name="Maximize" plain />
                   </VideoScrubButton>
                 </View>
             </VideoScrubZone>
@@ -1537,8 +1445,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <CaptionOverlay
           tokenId={tokenId}
           positionMs={captionPosMs}
-          controlsVisible={showControls}
-          bottomOffset={(showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
+          controlsVisible={splitControls || showControls}
+          bottomOffset={(splitControls ? VIDEO_CONTROL_STRIP_HEIGHT + 16 : showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
           hideButton={bareControls}
@@ -1701,13 +1609,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#27272a",
     borderRadius: 8,
     overflow: "hidden",
-    marginTop: 8,
+    marginTop: 0,
   },
   thumbnail: {
     ...StyleSheet.absoluteFillObject,
     width: "100%",
     height: "100%",
   },
+  stripPicture: { bottom: VIDEO_CONTROL_STRIP_HEIGHT, height: undefined },
+  stripTransport: { flexDirection: 'row', alignItems: 'center', gap: 2 },
   noThumb: {
     backgroundColor: "#27272a",
     alignItems: "center",
@@ -1836,7 +1746,7 @@ const styles = StyleSheet.create({
   bareBottomRow: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 2,
+    paddingHorizontal: 8,
     marginBottom: 0,
   },
   bareVolumeTrack: { left: 0 },
@@ -2047,17 +1957,15 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
-    const cropFeedVideo = !postPage;
-    const cropMedia = !postPage && (cropFeedVideo || !!bleed);
+    const cropMedia = false;
+    const splitControls = !hideControls;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
         style={[
           styles.container,
           {
-            aspectRatio: cropFeedVideo
-              ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
-              : mediaAspect,
+            height: mediaBoxHeight(windowSize, bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage), mediaAspect, postPage, splitControls),
             width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
             alignSelf: isMinimal || postPage ? "center" : "flex-start",
@@ -2069,7 +1977,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         {thumbnail ? (
           <SmartImage
             source={{ uri: thumbnail }}
-            style={styles.thumbnail}
+            style={[styles.thumbnail, splitControls && styles.stripPicture]}
             contentFit={cropMedia ? "cover" : "contain"}
             recyclingKey={thumbnail}
             transition={0}

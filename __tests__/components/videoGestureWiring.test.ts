@@ -18,7 +18,7 @@ describe('video gesture wiring', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
     const interaction = player.indexOf('{!hideControls && !isContentGated && !isProcessing && !isFailed && (');
     const videoPressClose = player.indexOf('/>', player.indexOf('<Pressable {...mediaTap}', interaction));
-    const controls = player.indexOf('<Animated.View style={[styles.controlsContainer', interaction);
+    const controls = player.indexOf('<VideoScrubZone', interaction);
 
     expect(interaction).toBeGreaterThan(-1);
     expect(videoPressClose).toBeGreaterThan(interaction);
@@ -31,10 +31,10 @@ describe('video gesture wiring', () => {
     // A PanResponder here loses to the Home pager's gesture-handler pan: the
     // page turned sideways instead of the video seeking.
     expect(player).toContain('useScrubGesture({');
-    expect(player).toContain('<GestureDetector gesture={seekGesture}>');
+    expect(player).toContain('<VideoScrubZone');
     expect(player).not.toContain('seekPanResponder');
-    expect(player).toMatch(/progressTrack:\s*\{[\s\S]*?height: Platform\.OS === "android" \? 48 : 32,/);
     const zone = readSource('components', 'Home', 'VideoScrubZone.tsx');
+    expect(zone).toContain('useScrubGesture({');
     expect(zone).toContain('tapEnabled: false');
     expect(zone).toMatch(/zone:\s*\{[^}]*height: SCRUB_HIT_HEIGHT/);
   });

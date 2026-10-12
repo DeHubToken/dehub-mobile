@@ -92,7 +92,7 @@ describe('post media presentation', () => {
     expect(card).toContain('[styles.cinematicBottom, mediaBarUp && styles.cinematicBottomLifted]');
     expect(card).toContain('cinematicBottom: { bottom: CINEMATIC_EDGE, right: 6, alignItems: "flex-end" },');
     expect(card).toContain('bare={chipAtBottom}');
-    expect(player).toContain('const barUp = !hideControls && showControls;');
+    expect(player).toContain('const barUp = !hideControls && (splitControls || showControls);');
     expect(player).toContain('setBarUp?.(barUp);');
     // No backing behind the bare icons, and a 32pt tap area.
     expect(chrome).toContain('bare ? styles.bareButton : styles.button');
@@ -135,7 +135,7 @@ describe('post media presentation', () => {
 
     expect(containedImage).toContain('postPageMaxHeightFor(screenHeight, availableWidth),\n          ),');
     expect(containedImage).toContain('contentFit={bleed ? "cover" : "contain"}');
-    expect(video).toContain('Math.max(mediaAspect, boxWidth / (win.height * 0.75))');
+    expect(video).toContain('postPageMaxHeightFor(win.height, width) : win.height * 0.75');
     expect(video).toContain('width: bleed ? windowSize.width : mediaBoxWidth(');
   });
 

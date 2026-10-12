@@ -6,6 +6,7 @@ import { useScrubGesture } from '../../hooks/useScrubGesture';
 import { FeedScrubContext, SCRUB_HIT_HEIGHT } from '../../hooks/useFeedScrubBoundary';
 
 const ScrubbedTouch = createContext<React.MutableRefObject<boolean> | null>(null);
+export const VIDEO_CONTROL_STRIP_HEIGHT = 47;
 
 /** Preserve the 32pt button slot and glyph centre, leaving its bottom 6pt to seek. */
 export function VideoScrubButton({ style, children, onPress, onLongPress, hitSlop, ...props }: Omit<PressableProps, 'style'> & { style: StyleProp<ViewStyle> }) {
@@ -37,9 +38,10 @@ type Props = {
   onCancel: () => void;
   line?: React.ReactNode;
   children: React.ReactNode;
+  plainStrip?: boolean;
 };
 
-export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children }: Props) {
+export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false }: Props) {
   const boundary = useContext(FeedScrubContext);
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
@@ -87,6 +89,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           onTouchEnd={event => event.stopPropagation()}
           onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
+          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={styles.stripSurface} />}
           <Pressable
             testID="video-scrub-tap"
             style={StyleSheet.absoluteFill}
@@ -100,10 +103,10 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
               onCommit(Math.max(0, Math.min(1, event.nativeEvent.locationX / width.current)));
             }}
           />
-          <Animated.View pointerEvents="none" style={[styles.line, { opacity }]}>
+          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, { opacity }]}>
             {line ?? <View style={[styles.played, { width: `${progress}%` }]} />}
           </Animated.View>
-          <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, { opacity }]}>
+          <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, plainStrip && { bottom: 9 }, { opacity }]}>
             {children}
           </Animated.View>
         </View>
@@ -114,6 +117,8 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
 
 const styles = StyleSheet.create({
   zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: SCRUB_HIT_HEIGHT },
+  stripSurface: { position: 'absolute', bottom: 0, left: 0, right: 0, height: VIDEO_CONTROL_STRIP_HEIGHT, backgroundColor: '#000' },
+  plainLine: { borderWidth: 0, backgroundColor: '#444' },
   row: { position: 'absolute', bottom: 14, left: 0, right: 0 },
   line: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.65)', overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.3)' },
   played: { height: '100%', backgroundColor: '#FFFFFF' },
