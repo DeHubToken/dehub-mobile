@@ -15,34 +15,12 @@ describe('services/dpay.service', () => {
   beforeEach(() => jest.clearAllMocks());
 
   describe('dpayCreateOrder', () => {
-    it('returns result on success', async () => {
-      mockPost.mockResolvedValueOnce({ result: { orderId: '123' } });
-      const res = await dpayCreateOrder({ amount: 100, currency: 'DHB' });
-      expect(res.result.orderId).toBe('123');
-      expect(mockPost).toHaveBeenCalledWith('/dpay/checkout', expect.anything(), { isAuthRequired: true });
-    });
-
-    it('normalizes 400 error', async () => {
-      mockPost.mockRejectedValueOnce(new Error('400 Bad Request'));
-      await expect(dpayCreateOrder({})).rejects.toThrow('Invalid data provided');
-    });
-
-    it('normalizes 401 error', async () => {
-      mockPost.mockRejectedValueOnce(new Error('401 Authentication needed'));
-      await expect(dpayCreateOrder({})).rejects.toThrow('Unauthorized');
-    });
-
-    it('normalizes 500 error', async () => {
-      mockPost.mockRejectedValueOnce(new Error('500 Server error'));
-      await expect(dpayCreateOrder({})).rejects.toThrow('Server error');
-    });
-
-    it('passes through unknown errors', async () => {
-      mockPost.mockRejectedValueOnce(new Error('Unknown problem'));
-      await expect(dpayCreateOrder({})).rejects.toThrow('Unknown problem');
+    it.each([false, true])('blocks embedded=%s before creating a payment', async (embedded) => {
+      await expect(dpayCreateOrder({ amount: 100, currency: 'USD', embedded }))
+        .rejects.toThrow('Stripe has blocked this payment');
+      expect(mockPost).not.toHaveBeenCalled();
     });
   });
-
   describe('getDpayTnx', () => {
     it('passes filter as query params', async () => {
       mockGet.mockResolvedValueOnce({ result: [] });
