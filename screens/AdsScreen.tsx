@@ -19,6 +19,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  */
 import React, { useCallback, useMemo, useState } from "react";
 import {
+  Platform,
   View,
   Text,
   StyleSheet,
@@ -182,7 +183,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
   }, [valid, create, name, objective, daily, total, tiers, ctaUrl, creatorSupport, onClose, setCtaUrl, setDaily, setName, setTotal]);
 
   return (
-    <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
+    <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"} visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior="padding">
           <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
@@ -703,7 +704,7 @@ const styles = StyleSheet.create({
   },
   payAmount: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700" },
 
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
+  backdrop: { flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
     backgroundColor: "#0C0C0E", borderTopLeftRadius: 20, borderTopRightRadius: 20,
     borderTopWidth: 1, borderColor: "rgba(255,255,255,0.10)",
