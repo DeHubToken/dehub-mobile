@@ -20,28 +20,8 @@ function objectToGetParams(obj?: Record<string, any>): string {
   return `?${query}`;
 }
 
-export async function dpayCreateOrder(data: any) {
-  const url = `/dpay/checkout`;
-  try {
-    const res = await apiClient.post<{ result: any }>(
-      url,
-      data,
-      { isAuthRequired: true }
-    );
-    return res;
-  } catch (error: any) {
-    console.error("[DpayService] createOrder error:", error);
-    // Normalize common errors
-    const msg = String(error?.message || "Create order failed");
-    if (msg.includes("400") || /Invalid/i.test(msg)) {
-      throw new Error("Invalid data provided for creating order.");
-    } else if (msg.includes("401") || /Authentication/i.test(msg)) {
-      throw new Error("Unauthorized. Please log in to continue.");
-    } else if (msg.includes("500") || /Server error/i.test(msg)) {
-      throw new Error("Server error while creating order. Try again later.");
-    }
-    throw new Error(msg);
-  }
+export async function dpayCreateOrder(_data: any): Promise<never> {
+  throw new Error('Stripe has blocked this payment');
 }
 
 export async function getDpayTnx(filter: any) {
