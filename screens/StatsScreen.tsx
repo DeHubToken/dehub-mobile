@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import FeedbackSection from "../components/Stats/FeedbackSection";
+import FinanceSection from "../components/Stats/FinanceSection";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -196,6 +197,7 @@ export default function StatsScreen() {
             <Text style={styles.source}>{t("stats.source")}</Text>
           </PageSection>
 
+          <FinanceSection days={option.days} />
           <FeedbackSection />
         </ScrollView>
       )}
