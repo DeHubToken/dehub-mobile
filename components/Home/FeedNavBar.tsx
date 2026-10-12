@@ -32,7 +32,7 @@ interface NavItem {
 // it matches web's FEED_TABS, so the same tab sits in the same place on both.
 const NAV_ITEMS: NavItem[] = [
   { icon: "House", postType: "all", tooltip: "Home" },
-  { icon: "Film", postType: "short", tooltip: "Shorts" },
+  { icon: "Shorts", postType: "short", tooltip: "Shorts" },
   { icon: "Image", postType: "feed-images", tooltip: "Images" },
   { icon: "Video", postType: "video", tooltip: "Videos" },
   { icon: "Mic", postType: "feed-audio", tooltip: "Music" },
