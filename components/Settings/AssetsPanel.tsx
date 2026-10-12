@@ -239,7 +239,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
             />
             <Divider />
             <SettingsLinkRow
-              icon="Repeat"
+              icon="SwitchAccounts"
               label={t('settings.switchAccount')}
               description={t('settings.switchAccountDesc')}
               onPress={() => setSwitchAccountVisible(true)}

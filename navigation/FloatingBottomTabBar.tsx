@@ -98,7 +98,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // other's tab.
   { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "wallet" } },
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" } },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" } },
