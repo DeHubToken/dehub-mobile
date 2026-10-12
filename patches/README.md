@@ -1,3 +1,9 @@
 Patches in this folder are applied by patch-package during postinstall.
 
+`@shopify+flash-list+2.3.2.patch` preserves the native row-positioning container
+with `collapsable={false}`. Flattening that container can discard the profile
+header offset on Android, leaving the first post underneath the header. Both
+the source and distributed JavaScript entry are patched. Track upstream
+https://github.com/Shopify/flash-list/issues/2399 before removing this patch.
+
 If a patch fails to parse, temporarily disable it by renaming the file extension (e.g., add `.disabled`) and re-run install. Then recreate the patch against the current dependency version if needed.
