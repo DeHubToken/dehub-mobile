@@ -19,10 +19,10 @@ export function withReinvestedOperations<T extends { days: FinanceAccountingDay[
     days: stats.days.map(day => {
       const month = months.get(day.date.slice(0, 7))!;
       const remaining = Math.max(0, month.retained - month.recorded);
-      if (!remaining) return day;
+      if (remaining < 0.005) return day;
       return {
         ...day,
-        costs: { ...day.costs, operations_reinvestment: remaining / month.days },
+        costs: { ...day.costs, operations_reinvestment: (day.costs.operations_reinvestment ?? 0) + remaining / month.days },
       };
     }),
   };
