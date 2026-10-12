@@ -61,16 +61,17 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         />
       </Pressable>
 
-      {/* One pressable for the whole identity block (name, badge, handle)
-          instead of three nested ones: same tap targets, the same hit slop,
-          three native views fewer per card. It fills the space left by the
-          avatar and controls, so names truncate only at the available edge. */}
-      <Pressable
-        onPress={onUserPress}
-        hitSlop={IDENTITY_HIT_SLOP}
-        style={{ flex: 1, minWidth: 0, marginRight: 8 }}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}>
+      {/* Only the name row and the @handle open the profile, each sized to
+          its text. The column around them is a plain View, so a tap in the
+          blank space beside the name falls through to the card and opens
+          the post. The column still fills the space left by the avatar and
+          controls, so names truncate only at the available edge. */}
+      <View style={{ flex: 1, minWidth: 0, marginRight: 8, alignItems: "flex-start" }}>
+        <Pressable
+          onPress={onUserPress}
+          hitSlop={IDENTITY_HIT_SLOP}
+          style={{ flexDirection: "row", alignItems: "center", maxWidth: "100%", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT }}
+        >
           <Text
             className="font-semibold"
             style={{ flexShrink: 1, minWidth: 0, color: "#F9FBFF", fontSize: DISPLAY_NAME_FONT_SIZE, lineHeight: DISPLAY_NAME_LINE_HEIGHT, includeFontPadding: false }}
@@ -118,17 +119,19 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
               <NewMemberChip address={address} />
             </View>
           )}
-        </View>
+        </Pressable>
         {username ? (
-          <Text
-            style={{ alignSelf: "flex-start", maxWidth: "100%", color: "#A6A9AC", fontSize: 14, lineHeight: 16, includeFontPadding: false }}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          >
-            @{username}
-          </Text>
+          <Pressable onPress={onUserPress} hitSlop={IDENTITY_HIT_SLOP} style={{ maxWidth: "100%" }}>
+            <Text
+              style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 16, includeFontPadding: false }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              @{username}
+            </Text>
+          </Pressable>
         ) : null}
-      </Pressable>
+      </View>
 
       <View
         style={{
