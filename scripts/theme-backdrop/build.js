@@ -93,8 +93,18 @@ if (js.includes("</script")) {
 }
 
 const template = fs.readFileSync(path.join(here, "page.html"), "utf8");
+const sourcePath = path.join(here, "source.json");
+const source = fs.existsSync(sourcePath) ? JSON.parse(fs.readFileSync(sourcePath, "utf8")) : null;
+if (source) {
+  const { execFileSync } = require("child_process");
+  const revision = execFileSync("git", ["rev-parse", "HEAD"], { cwd: web, encoding: "utf8" }).trim();
+  if (source.repository !== "DeHubToken/dehubweb" || revision !== source.revision) {
+    throw new Error("Backdrop source differs from scripts/theme-backdrop/source.json");
+  }
+}
 fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, template.replace("/*BUNDLE*/", () => js));
+const provenance = source ? `<meta name="dehub-backdrop-source" content="${source.revision}">` : "";
+fs.writeFileSync(out, template.replace("<head>", `<head>${provenance}`).replace("/*BUNDLE*/", () => js));
 console.log(`Wrote ${path.relative(process.cwd(), out)} (${Math.round(fs.statSync(out).size / 1024)} KB)`);
 })().catch((err) => {
   console.error(err);

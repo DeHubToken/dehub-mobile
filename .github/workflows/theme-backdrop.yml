@@ -1,0 +1,55 @@
+name: Bundle shared theme backdrop
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/theme-backdrop/**'
+      - 'assets/theme-backdrop/index.html'
+      - '.github/workflows/theme-backdrop.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the pinned web source
+        id: source
+        run: |
+          REVISION="$(jq -er '.revision' scripts/theme-backdrop/source.json)"
+          test "$(jq -r '.repository' scripts/theme-backdrop/source.json)" = DeHubToken/dehubweb
+          [[ "$REVISION" =~ ^[0-9a-f]{40}$ ]]
+          echo "revision=$REVISION" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: DeHubToken/dehubweb
+          ref: ${{ steps.source.outputs.revision }}
+          path: web-source
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '9'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: web-source/pnpm-lock.yaml
+      - name: Install the web renderer dependencies
+        working-directory: web-source
+        run: pnpm install --no-frozen-lockfile --ignore-scripts
+      - name: Bundle the native backdrop from the exact web source
+        run: |
+          cp assets/theme-backdrop/index.html "$RUNNER_TEMP/committed-backdrop.html"
+          node scripts/theme-backdrop/build.js web-source
+      - uses: actions/upload-artifact@v4
+        with:
+          name: theme-backdrop
+          path: |
+            assets/theme-backdrop/index.html
+            scripts/theme-backdrop/source.json
+          retention-days: 14
+      - name: Require the committed backdrop to match its pinned source
+        run: cmp "$RUNNER_TEMP/committed-backdrop.html" assets/theme-backdrop/index.html
