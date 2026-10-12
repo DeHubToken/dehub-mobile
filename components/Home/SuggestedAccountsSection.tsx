@@ -210,7 +210,7 @@ const SuggestedAccountsSection: React.FC = () => {
     <View
       collapsable={false}
       className={isMinimal || cinematic ? undefined : "mb-3"}
-      style={isMinimal ? {
+      style={[{ borderTopWidth: 0 }, isMinimal ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 14,
         paddingBottom: 14,
@@ -222,7 +222,7 @@ const SuggestedAccountsSection: React.FC = () => {
         paddingBottom: 12,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: CINEMATIC_HAIRLINE,
-      } : undefined}
+      } : undefined]}
     >
       {/* Header row */}
       <View
