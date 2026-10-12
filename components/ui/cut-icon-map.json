@@ -115,5 +115,13 @@
   "ChartPie": "Fractions",
   "Gift": "Gifts",
   "MapPin": "Location",
-  "History": "History"
+  "History": "History",
+  "Handshake": "Affiliate",
+  "MoreVertical": "More vertical",
+  "EllipsisVertical": "More vertical",
+  "PictureInPicture2": "Picture in picture",
+  "PictureInPicture": "Picture in picture",
+  "FastForward": "Fast forward",
+  "Rewind": "Rewind",
+  "Minimize": "Exit fullscreen"
 }

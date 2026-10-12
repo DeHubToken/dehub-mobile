@@ -3,7 +3,7 @@ import { isPictureInPictureSupported } from 'expo-video';
 import { toastInfo } from '../../libs';
 
 jest.mock('expo-video', () => ({ isPictureInPictureSupported: jest.fn(() => true) }));
-jest.mock('@expo/vector-icons', () => ({ MaterialIcons: 'Icon' }));
+jest.mock('../../components/ui/cut-icons', () => ({ PictureInPicture2: 'Icon' }));
 jest.mock('../../libs', () => ({ toastInfo: jest.fn() }));
 jest.mock('react-native', () => ({ Pressable: 'Pressable' }));
 // Called as a plain function below, so hooks have no React context to read.

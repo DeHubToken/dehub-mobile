@@ -9,8 +9,8 @@ const CutHome = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...
 const CutSearch = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M23 13.5A9.5 9.5 0 1 1 4 13.5A9.5 9.5 0 1 1 23 13.5Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M20.6358 22.3328L27.1515 28.8485L27.8642 28.1358Q28.8485 27.1515 27.8642 26.1672L21.3485 19.6515L20.6358 20.3642Q19.6515 21.3485 20.6358 22.3328Z" fill={color} fillRule="evenodd" /></Svg>
 );
-const CutMessages = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
-  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 6H21Q27 6 27 12V26L20 21H11Q5 21 5 15Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M11.2470 12.0750L22.0000 12.0750L22.0000 11.1720Q22.0000 9.9250 20.7530 9.9250L10.0000 9.9250L10.0000 10.8280Q10.0000 12.0750 11.2470 12.0750Z" fill={color} fillRule="evenodd" /><Path d="M11.2470 17.0750L18.5000 17.0750L18.5000 16.1720Q18.5000 14.9250 17.2530 14.9250L10.0000 14.9250L10.0000 15.8280Q10.0000 17.0750 11.2470 17.0750Z" fill={color} fillRule="evenodd" /></Svg>
+const CutMessages = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 6H21Q27 6 27 12V26L20 21H11Q5 21 5 15Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M11.4570 11.5250H21.3000V10.8320Q21.3000 9.8750 20.3430 9.8750H10.5000V10.5680Q10.5000 11.5250 11.4570 11.5250Z" fill={color} fillRule="evenodd"/><Path d="M11.4570 14.6250H18.2000V13.9320Q18.2000 12.9750 17.2430 12.9750H10.5000V13.6680Q10.5000 14.6250 11.4570 14.6250Z" fill={color} fillRule="evenodd"/><Path d="M11.4570 17.7250H21.3000V17.0320Q21.3000 16.0750 20.3430 16.0750H10.5000V16.7680Q10.5000 17.7250 11.4570 17.7250Z" fill={color} fillRule="evenodd"/></Svg>
 );
 const CutAlerts = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12.9 7.7V2.6Q12.9 .5 15 .5H19.1V7.7Z" fill={color} fillRule="evenodd" /><Path d="M2.5 26.3L7.2 12.3Q8.2 5.1 15 5.1H17Q23.8 5.1 24.8 12.3L29.5 26.3H20.2V25.2Q20.2 23.8 23.8 23.8H25.2L22.3 12.6Q21.6 7.7 17 7.7H15Q10.4 7.7 9.7 12.6L6.8 23.8H8.2Q11.8 23.8 11.8 25.2V26.3Z" fill={color} fillRule="evenodd" /><Path d="M14.1 29.3V24.2Q14.1 22.8 15.5 22.8H17.9V27.9Q17.9 29.3 16.5 29.3Z" fill={color} fillRule="evenodd" /></Svg>
@@ -285,6 +285,29 @@ const CutLocation = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
 const CutHistory = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 12A12 12 0 1 1 5 22" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M2.8000 6.3920L2.8000 13.2000L11.0000 13.2000L11.0000 12.1920Q11.0000 10.8000 9.6080 10.8000L5.2000 10.8000L5.2000 5.0000L4.1920 5.0000Q2.8000 5.0000 2.8000 6.3920Z" fill={color} fillRule="evenodd" /><Path d="M14.9000 10.2760L14.9000 17.6798L21.5081 20.9839L21.9213 20.1574Q22.4919 19.0161 21.3506 18.4455L17.1000 16.3202L17.1000 9.0000L16.1760 9.0000Q14.9000 9.0000 14.9000 10.2760Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutMoreVertical = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="rotate(90 16 16)"><Path d="M4 14H5.8Q8 14 8 16.2V18H6.2Q4 18 4 15.8Z" fill={color} fillRule="evenodd"/><Path d="M14 14H15.8Q18 14 18 16.2V18H16.2Q14 18 14 15.8Z" fill={color} fillRule="evenodd"/><Path d="M24 14H25.8Q28 14 28 16.2V18H26.2Q24 18 24 15.8Z" fill={color} fillRule="evenodd"/></G></Svg>
+);
+const CutPictureInPicture = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12 26H10Q4 26 4 20V6H21Q28 6 28 13" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M17 17H23Q28 17 28 22V27H21Q17 27 17 23Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+);
+const CutFastForward = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 6L14.8 14.9Q16.3 16 14.8 17.1L3 26Z M5.4 10.8V21.2L12.3 16Z M17 6L28.8 14.9Q30.3 16 28.8 17.1L17 26Z M19.4 10.8V21.2L26.3 16Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutRewind = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="translate(32 0) scale(-1 1)"><Path d="M3 6L14.8 14.9Q16.3 16 14.8 17.1L3 26Z M5.4 10.8V21.2L12.3 16Z M17 6L28.8 14.9Q30.3 16 28.8 17.1L17 26Z M19.4 10.8V21.2L26.3 16Z" fill={color} fillRule="evenodd"/></G></Svg>
+);
+const CutExitFullscreen = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="rotate(180 7.5 7.5)"><Path d="M5.2000 10.6080L5.2000 5.2000L12.0000 5.2000L12.0000 4.1920Q12.0000 2.8000 10.6080 2.8000L2.8000 2.8000L2.8000 12.0000L3.8080 12.0000Q5.2000 12.0000 5.2000 10.6080Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 24.5 7.5)"><Path d="M21.3920 5.2000L26.8000 5.2000L26.8000 12.0000L27.8080 12.0000Q29.2000 12.0000 29.2000 10.6080L29.2000 2.8000L20.0000 2.8000L20.0000 3.8080Q20.0000 5.2000 21.3920 5.2000Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 24.5 24.5)"><Path d="M26.8000 21.3920L26.8000 26.8000L20.0000 26.8000L20.0000 27.8080Q20.0000 29.2000 21.3920 29.2000L29.2000 29.2000L29.2000 20.0000L28.1920 20.0000Q26.8000 20.0000 26.8000 21.3920Z" fill={color} fillRule="evenodd"/></G><G transform="rotate(180 7.5 24.5)"><Path d="M10.6080 26.8000L5.2000 26.8000L5.2000 20.0000L4.1920 20.0000Q2.8000 20.0000 2.8000 21.3920L2.8000 29.2000L12.0000 29.2000L12.0000 28.1920Q12.0000 26.8000 10.6080 26.8000Z" fill={color} fillRule="evenodd"/></G></Svg>
+);
+const CutHandshake = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => {
+  const maskId = React.useId().replace(/:/g, "");
+  return <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="translate(1.3 1.3) scale(1.225)"><Defs><Mask id={maskId} maskUnits="userSpaceOnUse" x="-2" y="-2" width="30" height="30"><Rect x="-2" y="-2" width="30" height="30" fill="white"/><Path transform="translate(14 14) rotate(43.73)" d="M-1 -2H1.05V-.9H.95Q0 -.9 0 .05V1H-1Z" fill="black"/><Path transform="translate(11 16.7) rotate(42.97)" d="M-1 -2H1.05V-.9H.95Q0 -.9 0 .05V1H-1Z" fill="black"/></Mask></Defs><G mask={`url(#${maskId})`}><Path d="M3 5H8.6Q10 5 11 6 M21 5L18.7 5.4Q17.8 5.5 17 5L16.5 4.7Q13.6 3 10.8 5.4L7.9 8.3Q6.6 9.6 7.9 10.9Q9.1 12.1 10.4 10.9L12 9.3Q13.4 8 15 9.5L19 13.5Q20.4 15 19 16.3Q17.7 17.6 16.3 16.2L14 14 M16.3 16.2Q18.1 18 16.6 19.4Q15.1 20.8 13.5 19.2L11 16.7 M13.5 19.2Q15 20.7 13.4 22Q12.1 23 10.8 21.7C7.8 19.4 3 18.2 3 14" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 0.9} strokeLinejoin="round"/><Path d="M1.15 3H2.15Q3.9 3 3.9 4.75V14.9H1.15ZM20.1 3H21.1Q22.85 3 22.85 4.75V14.9H20.1Z" fill={color}/></G></G></Svg>;
+};
+const CutHammer = ({ size = 24, color = "currentColor", ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 3H5L6.2 4.8H8L9.4 3H18C24.63 3 30 8.37 30 15H28.5C27.67 15 27 14.33 27 13.5C26.25 9.25 22.55 6 18 6H5V10H17C18.66 10 20 11.34 20 13V13.3H9.4L8 11.8H6.2L5 13.3H3L2 12.3V4Z" fill={color} fillRule="evenodd" /><Path d="M12 17.3C12 16.58 12.58 16 13.3 16H14.6V27.4H16C16.77 27.4 17.4 26.77 17.4 26V16H20V26C20 28.21 18.21 30 16 30H12Z" fill={color} fillRule="evenodd" /></Svg>
+);
+
 const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => {
   const clipId = React.useId().replace(/:/g, "");
   return (
@@ -297,9 +320,18 @@ const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...prop
     </Svg>
   );
 };
-export { CutShorts as Shorts };
+export { CutShorts as Shorts, CutHammer as Hammer, CutHandshake as Handshake };
 
 export const cutIcons = {
+  MoreVertical: CutMoreVertical,
+  EllipsisVertical: CutMoreVertical,
+  PictureInPicture2: CutPictureInPicture,
+  PictureInPicture: CutPictureInPicture,
+  FastForward: CutFastForward,
+  Rewind: CutRewind,
+  Minimize: CutExitFullscreen,
+  Handshake: CutHandshake,
+  Hammer: CutHammer,
   Shorts: CutShorts,
   Home: CutHome,
   House: CutHome,
@@ -440,3 +472,5 @@ export function getCutIcon(name: string): React.ComponentType<CutProps> | undefi
   return Object.prototype.hasOwnProperty.call(cutIcons, name) ? cutIcons[name as CutIconName] : undefined;
 }
 export { CutHome as Home, CutHome as House, CutSearch as Search, CutMessages as MessageSquare, CutMessages as MessageCircle, CutMessages as MessageSquareText, CutAlerts as Bell, CutProfile as User, CutProfile as UserRound, CutSave as Bookmark, CutLike as ThumbsUp, CutRepost as Repeat, CutRepost as Repeat2, CutShare as Share, CutFeedShare as Share2, CutSend as Send, CutAdd as Plus, CutClose as X, CutBack as ArrowLeft, CutNext as ChevronRight, CutPlay as Play, CutPause as Pause, CutMic as Mic, CutSettings as Settings, CutSettings as Settings2, CutSettings as SlidersHorizontal, CutDownload as Download, CutMenu as Menu, CutDiamond as Gem, CutBlog as Blog, CutCommunities as Users, CutCommunities as UsersRound, CutArcade as Gamepad2, CutAssistant as Sparkles, CutCommand as LayoutDashboard, CutEvents as Calendar, CutEvents as CalendarDays, CutLeaderboard as Trophy, CutFeaturerequests as Lightbulb, CutApps as Blocks, CutApps as LayoutGrid, CutImages as Image, CutImages as Images, CutVideo as Video, CutMusic as Music, CutMusic as Music2, CutLive as Radio, CutCamera as Camera, CutUpload as Upload, CutAttach as Paperclip, CutEdit as Pencil, CutEdit as PenLine, CutEdit as SquarePen, CutWallet as Wallet, CutCoins as Coins, CutStore as Store, CutSecurity as ShieldCheck, CutDislike as ThumbsDown, CutReply as Reply, CutQuote as Quote, CutCopy as Copy, CutLink as Link, CutLink as Link2, CutRefresh as RefreshCw, CutFilter as Filter, CutFilter as Funnel, CutSort as ListFilter, CutMore as MoreHorizontal, CutMore as Ellipsis, CutDelete as Trash, CutDelete as Trash2, CutCheck as Check, CutOpenexternally as ExternalLink, CutVolume as Volume2, CutMute as VolumeX, CutMicoff as MicOff, CutVideooff as VideoOff, CutCaptions as Captions, CutFullscreen as Fullscreen, CutFullscreen as Maximize, CutPrevious as SkipBack, CutNexttrack as SkipForward, CutCrop as Crop, CutTrim as Scissors, CutUndo as Undo, CutUndo as Undo2, CutRedo as Redo, CutRedo as Redo2, CutPrivacy as Lock, CutPrivacy as LockKeyhole, CutVisibility as Eye, CutHidden as EyeOff, CutAddaccount as UserPlus, CutSwitchaccounts as SwitchAccounts, CutSignout as LogOut, CutLanguage as Languages, CutAppearance as Moon, CutHelp as HelpCircle, CutHelp as CircleHelp, CutInformation as Info, CutReport as Flag, CutBlocked as Ban, CutDocs as BookOpen, CutGuide as Map, CutStats as BarChart3, CutStats as ChartColumn, CutStats as ChartBarBig, CutAdvertising as Megaphone, CutBounties as Briefcase, CutGovernance as Vote, CutDAO as Landmark, CutStaking as Vault, CutFractions as PieChart, CutFractions as ChartPie, CutGifts as Gift, CutLocation as MapPin, CutHistory as History };
+
+export { CutMoreVertical as MoreVertical, CutMoreVertical as EllipsisVertical, CutPictureInPicture as PictureInPicture2, CutPictureInPicture as PictureInPicture, CutFastForward as FastForward, CutRewind as Rewind, CutExitFullscreen as Minimize };
