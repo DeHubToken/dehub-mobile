@@ -64,7 +64,9 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
   const onViewerOpen = useCallback(() => { preserveViewerReturn.current = true; }, []);
   useEffect(() => {
     if (onScreen && !previousActive.current) {
-      const fromViewer = preserveViewerReturn.current || lastAwayRoute.current === ScreenNames.ShortsViewer;
+      const fromViewer = lastAwayRoute.current
+        ? lastAwayRoute.current === ScreenNames.ShortsViewer
+        : preserveViewerReturn.current;
       preserveViewerReturn.current = false;
       lastAwayRoute.current = undefined;
       if (!fromViewer) refresh();
