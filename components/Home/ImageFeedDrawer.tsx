@@ -57,7 +57,7 @@ const VisibleImageCard = memo(function VisibleImageCard({
   const { isVisible } = useRowVisibility(store, rowKey);
   return <FeedCard item={item} isVisible={isVisible} enablePreview immersive={fullscreen} />;
 });
-import { colors } from "../../theme/colors";
+import { useAppTheme } from "../../context/ThemeContext";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 
@@ -162,6 +162,10 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   onClose,
 }, ref) => {
   const { t } = useTranslation();
+  const { colors, skin, isMinimal } = useAppTheme();
+  const sheetBackground = skin
+    ? fullscreen ? skin.page : "transparent"
+    : isMinimal ? "#000" : colors.neutrals[900];
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
   // Which card is in view lives in a store, not React state: as `useState` it
@@ -420,14 +424,14 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
     return (
       <View style={styles.footer}>
         <Icon name="Image" size={44} color={colors.neutrals[700]} />
-        <Text style={styles.footerText}>{t("feed.allCaughtUp")}</Text>
+        <Text style={[styles.footerText, { color: colors.neutrals[500] }]}>{t("feed.allCaughtUp")}</Text>
       </View>
     );
-  }, [noMore, t]);
+  }, [noMore, t, colors]);
 
   return (
     <View style={styles.clip} pointerEvents="box-none">
-      <Animated.View style={[styles.sheet, fullscreen && { borderTopLeftRadius: 0, borderTopRightRadius: 0 }, sheetStyle]}>
+      <Animated.View testID="image-feed-surface" style={[styles.sheet, { backgroundColor: sheetBackground }, fullscreen && { borderTopLeftRadius: 0, borderTopRightRadius: 0 }, sheetStyle]}>
         <GestureDetector gesture={contentPan}>
           <View style={styles.fill}>
             {contentReady ? (
@@ -469,10 +473,10 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
 
         <GestureDetector gesture={grabPan}>
           <Animated.View
-            style={[styles.grabRow, fullscreen && { top: controlsTopInset, backgroundColor: "transparent", borderTopLeftRadius: 0, borderTopRightRadius: 0 }, grabStyle]}
+            style={[styles.grabRow, { backgroundColor: sheetBackground }, fullscreen && { top: controlsTopInset, backgroundColor: "transparent", borderTopLeftRadius: 0, borderTopRightRadius: 0 }, grabStyle]}
             pointerEvents={handleActive ? "auto" : "none"}
           >
-            <View style={styles.grabBar} />
+            <View style={[styles.grabBar, { backgroundColor: colors.neutrals[600] }]} />
             {showCloseButton && (
               <Pressable
                 onPress={close}
@@ -513,7 +517,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: "100%",
-    backgroundColor: colors.neutrals[900],
     borderTopLeftRadius: SHEET_RADIUS,
     borderTopRightRadius: SHEET_RADIUS,
     overflow: "hidden",
@@ -527,7 +530,6 @@ const styles = StyleSheet.create({
     height: GRAB_ROW_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.neutrals[900],
     borderTopLeftRadius: SHEET_RADIUS,
     borderTopRightRadius: SHEET_RADIUS,
   },
@@ -535,7 +537,6 @@ const styles = StyleSheet.create({
     width: 38,
     height: 4,
     borderRadius: 2,
-    backgroundColor: colors.neutrals[600],
   },
   closeBtn: {
     position: "absolute",
@@ -552,7 +553,6 @@ const styles = StyleSheet.create({
     paddingVertical: 48,
   },
   footerText: {
-    color: colors.neutrals[500],
     fontSize: 14,
     marginTop: 12,
     fontWeight: "500",
