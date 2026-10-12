@@ -11,7 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 import ChevronDown from "lucide-react-native/dist/esm/icons/chevron-down";
 import Eye from "lucide-react-native/dist/esm/icons/eye";
-import Mic from "lucide-react-native/dist/esm/icons/mic";
+import { Mic } from "../ui/cut-icons";
 import MicOff from "lucide-react-native/dist/esm/icons/mic-off";
 import SignalLow from "lucide-react-native/dist/esm/icons/signal-low";
 import Video from "lucide-react-native/dist/esm/icons/video";

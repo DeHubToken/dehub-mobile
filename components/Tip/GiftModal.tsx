@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
-import Gem from "lucide-react-native/dist/esm/icons/gem";
+import { Gem } from "../ui/cut-icons";
 import { GIFT_TIERS } from "../../config/gift-tiers";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
