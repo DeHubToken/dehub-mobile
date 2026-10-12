@@ -28,7 +28,7 @@ import {
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import ShoppingBag from "lucide-react-native/dist/esm/icons/shopping-bag";
-import X from "lucide-react-native/dist/esm/icons/x";
+import { X } from "../ui/cut-icons";
 import Package from "lucide-react-native/dist/esm/icons/package";
 import Radio from "lucide-react-native/dist/esm/icons/radio";
 import Trash2 from "lucide-react-native/dist/esm/icons/trash-2";

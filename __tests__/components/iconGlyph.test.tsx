@@ -14,7 +14,7 @@ jest.mock("react-native", () => ({
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
   findNodeHandle: jest.fn(),
 }));
-jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path" }));
+jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path", G: "G" }));
 jest.mock("react-native-reanimated", () => ({
   __esModule: true,
   default: { View: "View" },
@@ -76,9 +76,23 @@ describe("Icon glyphs on Android", () => {
     }
   });
 
-  it("fills the liked thumb as one merged path", () => {
+  it("fills the Cut thumb without losing its separate cuff", () => {
     const tree = render(<Icon name="ThumbsUp" size={20} fill="#fff" />).toJSON() as any;
     expect(tree.type).toBe("Svg");
-    expect(tree.children).toHaveLength(1);
+    expect(tree.props.viewBox).toBe("0 0 32 32");
+    expect(tree.children).toHaveLength(2);
+    expect(tree.children[0].props.fill).toBe("#fff");
+  });
+
+  it("uses approved Cut artwork even when the old Android font is ready", () => {
+    const approved = require("../../components/ui/cut-icon-paths.json");
+    for (const [name, shape] of [["Bell", "Alerts"], ["MessageSquare", "Messages"], ["Share2", "FeedShare"]]) {
+      const tree = render(<Icon name={name} />).toJSON() as any;
+      expect(tree.type).toBe("Svg");
+      expect(tree.props.viewBox).toBe("0 0 32 32");
+      const expected = [...approved[shape].matchAll(/ d="([^"]+)"/g)].map((m: any) => m[1]);
+      const paths = (nodes: any[]): string[] => nodes.flatMap(n => n.type === "Path" ? [n.props.d] : paths(n.children || []));
+      expect(paths(tree.children)).toEqual(expected);
+    }
   });
 });

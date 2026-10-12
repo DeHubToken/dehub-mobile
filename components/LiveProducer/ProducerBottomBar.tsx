@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Radio from "lucide-react-native/dist/esm/icons/radio";
 import Video from "lucide-react-native/dist/esm/icons/video";
 import VideoOff from "lucide-react-native/dist/esm/icons/video-off";
-import Mic from "lucide-react-native/dist/esm/icons/mic";
+import { Mic } from "../ui/cut-icons";
 import MicOff from "lucide-react-native/dist/esm/icons/mic-off";
 import RefreshCw from "lucide-react-native/dist/esm/icons/refresh-cw";
 import Server from "lucide-react-native/dist/esm/icons/server";
