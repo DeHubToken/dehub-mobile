@@ -10,7 +10,7 @@ export function MediaControlIcon({ name, size = 18, active = false, plain = fals
   if (plain) {
     const color = active ? '#b8d5ff' : '#FFFFFF';
     if (name === 'Captions') return <Text style={{ color, fontSize: 13, fontWeight: '600' }}>CC</Text>;
-    const Glyph = iconRegistry[name as keyof typeof iconRegistry];
+    const Glyph = iconRegistry[(name === 'Repeat' ? 'Repeat2' : name) as keyof typeof iconRegistry];
     return Glyph ? <Glyph size={size} color={color} strokeWidth={1.8} /> : <Icon name={name} size={size} color={color} strokeWidth={1.8} />;
   }
   const foreground = active ? "#000000" : "#FFFFFF";
