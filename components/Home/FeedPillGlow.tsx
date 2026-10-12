@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import Animated, {
   cancelAnimation, Easing, ReduceMotion, useAnimatedStyle, useReducedMotion,
   useSharedValue, withRepeat, withTiming, type SharedValue,
 } from 'react-native-reanimated';
-import Svg, { Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { useAppTheme } from '../../context/ThemeContext';
 import { useFeedPillRefreshing } from '../../libs/feed-pill-refresh';
 import { pillGlowColor, pillGlowStrength } from '../../libs/pill-glow';
@@ -23,6 +24,25 @@ const BLOOM = Array.from({ length: 19 }, (_, i) => {
 });
 // The blur also softens the rim's ends: the bloom ramps in over 16pt.
 const BLOOM_RAMP = 16;
+
+// No react-native-svg gradients here: on Android they drew the rim's left end
+// fully lit (a straight cut) while the right end faded. Horizontal fades use
+// native linear gradients; the halo is stacked solid half-ellipses.
+
+/** Web's halo alpha by distance from its centre: radial-gradient stops
+ *  .34 at 0, .12 at .45, .03 at .7, 0 at 1. */
+function haloAlpha(r: number) {
+  if (r <= .45) return .34 + (.12 - .34) * (r / .45);
+  if (r <= .7) return .12 + (.03 - .12) * ((r - .45) / .25);
+  return .03 * Math.max(0, 1 - r) / .3;
+}
+// Outer to inner. Each layer adds just enough over the ones beneath it for the
+// stack to reach haloAlpha at its own radius.
+const HALO_LAYERS = Array.from({ length: 24 }, (_, i) => {
+  const r = 1 - i / 24;
+  const below = haloAlpha(Math.min(1, r + 1 / 24));
+  return { r, o: (haloAlpha(r) - below) / (1 - below) };
+}).filter(layer => layer.o > 0);
 
 /** Soft light under the feed tab pill while the feed is pulled or refreshing.
  *  Brightens with the pull, then breathes until the new posts land. The
@@ -57,7 +77,8 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   }));
   const pill = width - inset * 2;
   if (pill <= 0) return null;
-  const rgb = `rgb(${color[0]},${color[1]},${color[2]})`;
+  const [r, g, b] = color;
+  const rgba = (a: number) => `rgba(${r},${g},${b},${a})`;
   const centre = width / 2;
   // The bloom spans the rim plus the blur's reach at each end.
   const bloomX = inset + 14 - BLOOM_RAMP / 2;
@@ -66,7 +87,7 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   const haloRx = pill * .92 * .6;
   return (
     <Animated.View
-      // Cache the static SVG; the pull only changes opacity and translation.
+      // Cache the static layer; the pull only changes opacity and translation.
       renderToHardwareTextureAndroid
       shouldRasterizeIOS
       pointerEvents="none"
@@ -76,48 +97,33 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
       // Full width, so nothing the glow draws can meet the edge of its layer.
       style={[styles.glow, { width }, style]}
     >
-      <Svg width={width} height={HEIGHT} viewBox={`0 ${-TOP} ${width} ${HEIGHT}`}>
-        <Defs>
-          {/* Web: radial-gradient(60% 100% at 50% 0%) over 92% of the pill.
-              The half ellipse ends where the gradient reaches 0, so it has
-              no edge; its flat top sits on the rim. */}
-          <RadialGradient id="pill-glow-halo" cx="50%" cy="0%" rx="50%" ry="100%">
-            <Stop offset="0" stopColor={rgb} stopOpacity={.34} />
-            <Stop offset=".45" stopColor={rgb} stopOpacity={.12} />
-            <Stop offset=".7" stopColor={rgb} stopOpacity={.03} />
-            <Stop offset="1" stopColor={rgb} stopOpacity={0} />
-          </RadialGradient>
-          <LinearGradient id="pill-glow-rim" x1="0" y1="0" x2="1" y2="0">
-            <Stop offset="0" stopColor={rgb} stopOpacity={0} />
-            <Stop offset=".22" stopColor={rgb} />
-            <Stop offset=".78" stopColor={rgb} />
-            <Stop offset="1" stopColor={rgb} stopOpacity={0} />
-          </LinearGradient>
-          <LinearGradient id="pill-glow-bloom" x1="0" y1="0" x2="1" y2="0">
-            <Stop offset="0" stopColor={rgb} stopOpacity={0} />
-            <Stop offset={ramp / 2} stopColor={rgb} stopOpacity={.5} />
-            <Stop offset={ramp} stopColor={rgb} />
-            <Stop offset={1 - ramp} stopColor={rgb} />
-            <Stop offset={1 - ramp / 2} stopColor={rgb} stopOpacity={.5} />
-            <Stop offset="1" stopColor={rgb} stopOpacity={0} />
-          </LinearGradient>
-        </Defs>
-        {/* Each gradient shape starts at x = 0 inside a translated group. On
-            Android a bounding-box gradient on a shape offset from the origin
-            showed its left end part-lit (a straight cut) while the right end
-            faded; with no offset there is nothing to misplace. */}
-        <G transform={`translate(${centre - haloRx} 0)`}>
-          <Path d={`M 0 0 A ${haloRx} ${HALO_HEIGHT} 0 0 0 ${haloRx * 2} 0 Z`} fill="url(#pill-glow-halo)" />
-        </G>
-        <G transform={`translate(${bloomX} 0)`}>
-          {BLOOM.map(band => (
-            <Rect key={band.y} x={0} y={band.y} width={bloomWidth} height={1} fill="url(#pill-glow-bloom)" fillOpacity={band.o} />
-          ))}
-        </G>
-        <G transform={`translate(${inset + 14} 0)`}>
-          <Rect x={0} y={-1.5} width={pill - 28} height={1.5} rx={.75} fill="url(#pill-glow-rim)" />
-        </G>
+      {/* Web: radial-gradient(60% 100% at 50% 0%) over 92% of the pill, its
+          flat top on the rim. */}
+      <Svg width={width} height={HEIGHT} viewBox={`0 ${-TOP} ${width} ${HEIGHT}`} style={StyleSheet.absoluteFill}>
+        {HALO_LAYERS.map(layer => {
+          const rx = haloRx * layer.r, ry = HALO_HEIGHT * layer.r;
+          return <Path key={layer.r} d={`M ${centre - rx} 0 A ${rx} ${ry} 0 0 0 ${centre + rx} 0 Z`} fill={rgba(1)} fillOpacity={layer.o} />;
+        })}
       </Svg>
+      {BLOOM.map(band => (
+        <LinearGradient
+          key={band.y}
+          colors={[rgba(0), rgba(.5), rgba(1), rgba(1), rgba(.5), rgba(0)]}
+          locations={[0, ramp / 2, ramp, 1 - ramp, 1 - ramp / 2, 1]}
+          start={{ x: 0, y: .5 }}
+          end={{ x: 1, y: .5 }}
+          style={[styles.strip, { left: bloomX, width: bloomWidth, top: TOP + band.y, height: 1, opacity: band.o }]}
+        />
+      ))}
+      <View style={[styles.strip, styles.rim, { left: inset + 14, width: pill - 28, top: TOP - 1.5 }]}>
+        <LinearGradient
+          colors={[rgba(0), rgba(1), rgba(1), rgba(0)]}
+          locations={[0, .22, .78, 1]}
+          start={{ x: 0, y: .5 }}
+          end={{ x: 1, y: .5 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
     </Animated.View>
   );
 }
@@ -125,4 +131,6 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
 const styles = StyleSheet.create({
   // Above the header (zIndex 10), whose clip would cut the halo off.
   glow: { position: 'absolute', top: 0, left: 0, height: HEIGHT, zIndex: 11 },
+  strip: { position: 'absolute' },
+  rim: { height: 1.5, borderRadius: .75, overflow: 'hidden' },
 });
