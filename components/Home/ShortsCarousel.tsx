@@ -11,7 +11,7 @@ import { GestureDetector } from "react-native-gesture-handler";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useAuthState } from '../../context/AuthContext';
+import { useUser } from '../../context/AuthContext';
 import { useShortsRotation, type ShortsHistoryStore } from '../../hooks/useShortsRotation';
 import { shortsBatchCount, shortsId, SHORTS_BATCH_SIZE } from '../../libs/shortsRotation';
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
@@ -36,7 +36,7 @@ const historyStore: ShortsHistoryStore = {
 
 export function useHomeShortsCarousel(enabled: boolean, postCount: number, active: boolean) {
   const shortsEnabled = useAppPrefs().shorts;
-  const { user } = useAuthState();
+  const user = useUser();
   const viewer = user?.walletAddress || user?.id || 'guest';
   const isFocused = useIsFocused();
   const navigation = useNavigation<any>();
