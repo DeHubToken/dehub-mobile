@@ -117,9 +117,9 @@ describe('home feed on FlashList: rows', () => {
 
   // The shorts rail is a row of its own too, so a recycled post cell never
   // grows a carousel it did not have. Home 'all' tab only.
-  it('puts the shorts rail after the second post when the tab asks for it', () => {
+  it('puts the shorts rail after the first post when the tab asks for it', () => {
     expect([...build([0, 1, 2, 3, 4, 5].map(post), true)].map((r: any) => r.__listKey)).toEqual([
-      '__feed-header', 'k0', 'k1', '__shorts-carousel', 'k2', 'k3', 'k4', '__suggested-accounts', 'k5',
+      '__feed-header', 'k0', '__shorts-carousel', 'k1', 'k2', 'k3', 'k4', '__suggested-accounts', 'k5',
     ]);
     expect([...build([0, 1, 2].map(post))].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
     expect([...build([0, 1, 2].map(post), true, [])].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
