@@ -1,3 +1,4 @@
+import { FEED_ICON_SIZE } from './feed-icon-size';
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -186,11 +187,11 @@ function PostStageActionBarComponent({
               reaction={thumbGlyph}
               animate={thumbGlyph === myReaction}
               playing={isVisible}
-              size={22}
-              textStyle={{ fontSize: 18, lineHeight: 24, width: 20, textAlign: "center" }}
+              size={29}
+              textStyle={{ fontSize: 25, lineHeight: 31, width: 27, textAlign: "center" }}
             />
           ) : (
-            <Icon name="ThumbsUp" size={27} color={ICON} fill={liked ? ICON : undefined} />
+            <Icon name="ThumbsUp" size={FEED_ICON_SIZE.like} color={ICON} fill={liked ? ICON : undefined} />
           )}
         </Tile>
       </View>
@@ -202,7 +203,7 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onComment}
         >
-          <Icon name="MessageSquare" size={28} color={ICON} />
+          <Icon name="MessageSquare" size={FEED_ICON_SIZE.comment} color={ICON} />
         </Tile>
       </View>
       <View style={styles.cell}>
@@ -215,16 +216,16 @@ function PostStageActionBarComponent({
           onPress={onRepost}
         >
           {/* Same share glyph and sizing as the feed's share button. */}
-          <Icon name="Share2" size={reposted ? 26 : 24} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
+          <Icon name="Share2" size={FEED_ICON_SIZE.share} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
         </Tile>
       </View>
       {onTip ? (
         <View style={styles.cell}>
           <Tile label={t("comments.tip")} a11y={t("comments.tip")} radius={radius} mono={mono} onPress={onTip}>
             {viewerTipped || tipBurst > 0 ? (
-              <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON} />
+              <TipGemIcon tipped burstKey={tipBurst} size={FEED_ICON_SIZE.tip} color={ICON} />
             ) : (
-              <Icon name="Gem" size={20} color={ICON} />
+              <Icon name="Gem" size={FEED_ICON_SIZE.tip} color={ICON} />
             )}
           </Tile>
         </View>
@@ -238,7 +239,7 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onSave}
         >
-          <Icon name="Bookmark" size={29} color={ICON} fill={saved ? ICON : undefined} />
+          <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={ICON} fill={saved ? ICON : undefined} />
         </Tile>
       </View>
     </View>
