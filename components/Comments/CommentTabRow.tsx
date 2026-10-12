@@ -84,7 +84,7 @@ function CommentTabRowComponent({
           accessibilityRole="button"
           accessibilityLabel={t(COMMENT_SORT_A11Y[sort])}
         >
-          <Icon name="ArrowUpDown" size={16} color={idle} />
+          <Icon name="ListFilter" size={16} color={idle} />
           <Text style={[tabStyles.sortText, { color: idle }]}>{t(COMMENT_SORT_LABEL[sort])}</Text>
         </Pressable>
       </View>

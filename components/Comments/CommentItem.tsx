@@ -1,3 +1,4 @@
+import { COMMENT_ICON_SIZE } from '../Home/feed-icon-size';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, Pressable, Share, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
@@ -814,13 +815,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     <ReactionEmoji
                       reaction={thumbGlyph}
                       animate={thumbAnimated}
-                      size={16}
-                      textStyle={{ fontSize: 13, lineHeight: 17, width: 14, textAlign: "center" }}
+                      size={20}
+                      textStyle={{ fontSize: 17, lineHeight: 21, width: 18, textAlign: "center" }}
                     />
                   ) : (
                     <Icon
                       name="ThumbsUp"
-                      size={14}
+                      size={COMMENT_ICON_SIZE.like}
                       color={liked ? ICON_ACTIVE : ICON_MUTED}
                       fill={liked ? ICON_ACTIVE : undefined}
                       strokeWidth={1.8}
@@ -841,7 +842,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 accessibilityLabel={t("communities.reply")}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Icon name="MessageSquare" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+                <Icon name="MessageSquare" size={COMMENT_ICON_SIZE.comment} color={ICON_MUTED} strokeWidth={1.8} />
                 {(comment.replyIds?.length ?? 0) > 0 && (
                   <Text style={{ fontSize: 12, color: "#8B8D90" }}>
                     {comment.replyIds!.length}
@@ -862,7 +863,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 accessibilityLabel={t("comments.tip")}
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <TipGemIcon tipped={!!viewerTipped || tipBurst > 0} burstKey={tipBurst} size={14} color={ICON_MUTED} />
+                <TipGemIcon tipped={!!viewerTipped || tipBurst > 0} burstKey={tipBurst} size={COMMENT_ICON_SIZE.tip} color={ICON_MUTED} />
                 {(tipTotal ?? 0) > 0 && (
                   <Text style={{ fontSize: 12, color: "#8B8D90" }}>
                     {formatTipTotal(tipTotal!)}
@@ -877,7 +878,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               accessibilityRole="button"
               accessibilityLabel={t("postOptions.share")}
             >
-              <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+              <Icon name="Share2" size={COMMENT_ICON_SIZE.share} color={ICON_MUTED} strokeWidth={1.8} />
             </Pressable>
 
             {/* Views on the comment itself, recorded by the host list when
