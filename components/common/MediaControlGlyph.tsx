@@ -3,9 +3,16 @@ import React from "react";
 import { View, Text, StyleSheet, type StyleProp, type TextStyle } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 import { renderCutIconOutline } from "../ui/cut-icons";
+import { iconRegistry } from '../ui/iconRegistry';
 
 // Active controls invert the white glyph and dark outline, with no button frame.
-export function MediaControlIcon({ name, size = 18, active = false }: { name: IconName; size?: number; active?: boolean }) {
+export function MediaControlIcon({ name, size = 18, active = false, plain = false }: { name: IconName; size?: number; active?: boolean; plain?: boolean }) {
+  if (plain) {
+    const color = active ? '#b8d5ff' : '#FFFFFF';
+    if (name === 'Captions') return <Text style={{ color, fontSize: 13, fontWeight: '600' }}>CC</Text>;
+    const Glyph = iconRegistry[name as keyof typeof iconRegistry];
+    return Glyph ? <Glyph size={size} color={color} strokeWidth={1.8} /> : <Icon name={name} size={size} color={color} strokeWidth={1.8} />;
+  }
   const foreground = active ? "#000000" : "#FFFFFF";
   const outlineColor = active ? "#FFFFFF" : "rgba(0,0,0,0.8)";
   const caption = (outline: boolean) => <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={outline ? outlineColor : foreground} strokeLinecap="round" strokeLinejoin="round">
