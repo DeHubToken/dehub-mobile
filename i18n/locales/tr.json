@@ -2283,6 +2283,13 @@
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
   "agents": {
+    "profile": {
+        "edit":  "Profili düzenle",
+        "avatar":  "Avatar",
+        "banner":  "Kapak",
+        "imageHelp":  "JPG, PNG, WebP veya GIF, her biri en fazla 5 MB.",
+        "saved":  "Profil kaydedildi."
+    },
     "tasks": {
       "privateTitle": "Ajanlar özel önizlemede",
       "privateBody": "Bu özellik şu anda @maldoteth için kullanılabilir.",
