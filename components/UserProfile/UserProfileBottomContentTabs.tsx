@@ -48,6 +48,7 @@ import PostsRoute from "../Profile/PostsRoute";
 import FeedRoute from "../Profile/FeedRoute";
 import ProfileTabBar, { type ProfileTabItem } from "../Profile/ProfileTabBar";
 import ProfileScrollViewport from "../Profile/ProfileScrollViewport";
+import ProfilePinnedBar, { type ProfilePinnedIdentity } from "../Profile/ProfilePinnedBar";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
 import ProfileContentToolbar from "../Profile/ProfileContentToolbar";
 import ProfileFilterDrawer from "../Profile/ProfileFilterDrawer";
@@ -62,6 +63,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
+  pinnedIdentity?: ProfilePinnedIdentity;
   profileScrollY?: SharedValue<number>;
   profileActionsBottom?: SharedValue<number>;
   profileTabsPinned?: SharedValue<boolean>;
@@ -126,6 +128,7 @@ const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
 > = ({
+  pinnedIdentity,
   profileScrollY,
   profileActionsBottom,
   profileTabsPinned,
@@ -352,7 +355,7 @@ const UserProfileBottomContentTabs: React.FC<
 
       const threshold = headerHeightShared.value;
       if (threshold > 0) {
-        const shouldStick = y >= threshold + PROFILE_TABS_TOP_GAP - PROFILE_BAR_HEIGHT;
+        const shouldStick = y >= threshold + PROFILE_TABS_TOP_GAP - 4;
         if (profileTabsPinned) profileTabsPinned.value = shouldStick;
         if (shouldStick !== stickyVisibleShared.value) {
           stickyVisibleShared.value = shouldStick;
@@ -683,15 +686,17 @@ const UserProfileBottomContentTabs: React.FC<
           importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'}
           style={[{
             position: "absolute",
-            top: PROFILE_BAR_HEIGHT,
+            top: 0,
             left: 0,
             right: 0,
-            height: PINNED_PROFILE_TABS_HEIGHT,
+            height: PROFILE_BAR_HEIGHT,
             zIndex: 40,
             elevation: 40,
           }, stickyStyle]}
         >
-          <ProfileTabBar items={tabItems} activeKey={activeTab} onChange={handleTabChange} pinned />
+          <ProfilePinnedBar {...pinnedIdentity} onBackPress={onClose}>
+            <ProfileTabBar items={tabItems} activeKey={activeTab} onChange={handleTabChange} pinned embedded />
+          </ProfilePinnedBar>
         </Animated.View>
       )}
 
