@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import ScreenHeader from '../ScreenHeader';
 import { PROFILE_BAR_HEIGHT, PINNED_PROFILE_TABS_HEIGHT } from './useProfileCollapse';
 import { useAppTheme } from '../../context/ThemeContext';
+import NavPillSurface from '../ui/NavPillSurface';
 
 export interface CollapsingProfileHeaderProps {
   scrollY: SharedValue<number>;
@@ -33,11 +34,17 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
   const { theme, colors } = useAppTheme();
   const solidTheme = theme === 'system' || theme === 'minimal';
   const [collapsed, setCollapsed] = useState(false);
+  const [pinned, setPinned] = useState(false);
   // The material changes at two thresholds, not on every scroll frame.
-  const collapsedVisible = useDerivedValue(() => scrollY.value >= actionsBottom.value);
+  const collapsedVisible = useDerivedValue(() => scrollY.value >= actionsBottom.value && !tabsPinned.value);
   useAnimatedReaction(
-    () => collapsedVisible.value,
-    (next, previous) => { if (next !== previous) runOnJS(setCollapsed)(next); },
+    () => tabsPinned.value ? 2 : collapsedVisible.value ? 1 : 0,
+    (next, previous) => {
+      if (next !== previous) {
+        runOnJS(setCollapsed)(next === 1);
+        runOnJS(setPinned)(next === 2);
+      }
+    },
   );
   const identity = useAnimatedStyle(() => ({
     opacity: collapsedVisible.value ? 1 : 0,
@@ -45,28 +52,22 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
   // Switch the opaque material on the UI thread, without a translucent frame.
   const surfaceVisibility = useAnimatedStyle(() => ({
     opacity: collapsedVisible.value ? 1 : 0,
-    bottom: tabsPinned.value ? -PINNED_PROFILE_TABS_HEIGHT : 4,
+    bottom: 4,
   }));
   const guardVisibility = useAnimatedStyle(() => ({
     opacity: collapsedVisible.value ? 1 : 0,
-    bottom: tabsPinned.value ? -PINNED_PROFILE_TABS_HEIGHT : -4,
+    bottom: -4,
   }));
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
+  const barVisibility = useAnimatedStyle(() => ({ opacity: tabsPinned.value ? 0 : 1 }));
 
   return (
-    <View pointerEvents="box-none" style={styles.bar}>
+    <Animated.View pointerEvents={pinned ? 'none' : 'box-none'} accessibilityElementsHidden={pinned} importantForAccessibility={pinned ? 'no-hide-descendants' : 'auto'} style={[styles.bar, barVisibility]}>
       {solidTheme && (
         <Animated.View pointerEvents="none" style={[styles.gapGuard, { backgroundColor: colors.neutrals[900] }, guardVisibility]} />
       )}
       <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
-        {cover && <Image source={cover} blurRadius={40} contentFit="cover" transition={0} cachePolicy="memory-disk" style={[StyleSheet.absoluteFill, { opacity: 0.6, transform: [{ scale: 1.5 }] }]} />}
-        <LinearGradient
-          colors={['rgba(255,255,255,0.25)', 'rgba(255,255,255,0.04)', 'rgba(0,0,0,0.12)', 'rgba(255,255,255,0.08)']}
-          locations={[0, 0.42, 0.76, 1]}
-          start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFill}
-        />
-        <View style={styles.highlight} />
+        <NavPillSurface />
       </Animated.View>
       <View pointerEvents="box-none" style={styles.backInset}>
         <ScreenHeader overlay plainBack title="" canGoBack={canGoBack} onBackPress={onBackPress} />
@@ -92,14 +93,14 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
         )}
         {menu}
       </View>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   bar: { position: 'absolute', top: 0, left: 0, right: 0, height: PROFILE_BAR_HEIGHT, zIndex: 30, elevation: 30 },
   gapGuard: { position: 'absolute', top: 0, left: 0, right: 0, bottom: -4, overflow: 'hidden' },
-  surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 15, overflow: 'hidden', backgroundColor: '#18181b', borderWidth: 1, borderColor: 'rgba(255,255,255,0.24)', borderBottomColor: 'rgba(255,255,255,0.1)' },
+  surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 16, overflow: 'hidden' },
   highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
   backInset: { position: 'absolute', top: 2, left: 2, right: 0, height: 56 },
   content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 60, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
