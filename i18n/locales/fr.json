@@ -2283,6 +2283,13 @@
     "minDhbPurchase": "L'achat minimum de tokens est de 0,50 $"
   },
   "agents": {
+    "profile": {
+        "edit":  "Modifier le profil",
+        "avatar":  "Avatar",
+        "banner":  "Bannière",
+        "imageHelp":  "JPG, PNG, WebP ou GIF, jusqu’à 5 Mo par image.",
+        "saved":  "Profil enregistré."
+    },
     "tasks": {
       "privateTitle": "Les agents sont en aperçu privé",
       "privateBody": "Cette fonctionnalité est actuellement réservée à @maldoteth.",
