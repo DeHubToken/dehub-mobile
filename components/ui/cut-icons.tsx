@@ -198,6 +198,9 @@ const CutPrevious = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
 const CutNexttrack = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 5L21 16L5 27Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M24.8000 6.3920L24.8000 27.0000L25.8080 27.0000Q27.2000 27.0000 27.2000 25.6080L27.2000 5.0000L26.1920 5.0000Q24.8000 5.0000 24.8000 6.3920Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutPictureinpicture = ({ size = 24, color = "currentColor", ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M4 6H21Q28 6 28 13V26H11Q4 26 4 19Z M6.4 8.4V19Q6.4 23.6 11 23.6H25.6V13Q25.6 8.4 21 8.4Z" fill={color} fillRule="evenodd" /><Path d="M16 15H20Q23 15 23 18V21H19Q16 21 16 18Z" fill={color} /></Svg>
+);
 const CutCrop = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M7.8000 4.3920L7.8000 24.2000L29.0000 24.2000L29.0000 23.1920Q29.0000 21.8000 27.6080 21.8000L10.2000 21.8000L10.2000 3.0000L9.1920 3.0000Q7.8000 3.0000 7.8000 4.3920Z" fill={color} fillRule="evenodd" /><Path d="M4.3920 10.2000L21.8000 10.2000L21.8000 29.0000L22.8080 29.0000Q24.2000 29.0000 24.2000 27.6080L24.2000 7.8000L3.0000 7.8000L3.0000 8.8080Q3.0000 10.2000 4.3920 10.2000Z" fill={color} fillRule="evenodd" /></Svg>
 );
@@ -384,6 +387,8 @@ export const cutIcons = {
   SkipBack: CutPrevious,
   SkipForward: CutNexttrack,
   Crop: CutCrop,
+  PictureInPicture: CutPictureinpicture,
+  PictureInPicture2: CutPictureinpicture,
   Scissors: CutTrim,
   Undo: CutUndo,
   Undo2: CutUndo,
@@ -420,6 +425,7 @@ export const cutIcons = {
   History: CutHistory,
 };
 export type CutIconName = keyof typeof cutIcons;
+export { CutPictureinpicture as PictureInPicture, CutPictureinpicture as PictureInPicture2 };
 /** Expand filled artwork as well as strokes for a crisp half-pixel media outline. */
 export function renderCutIconOutline(name: string, size: number, color: string) {
   if (!Object.prototype.hasOwnProperty.call(cutIcons, name)) return null;
