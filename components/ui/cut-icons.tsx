@@ -285,6 +285,10 @@ const CutLocation = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
 const CutHistory = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 12A12 12 0 1 1 5 22" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M2.8000 6.3920L2.8000 13.2000L11.0000 13.2000L11.0000 12.1920Q11.0000 10.8000 9.6080 10.8000L5.2000 10.8000L5.2000 5.0000L4.1920 5.0000Q2.8000 5.0000 2.8000 6.3920Z" fill={color} fillRule="evenodd" /><Path d="M14.9000 10.2760L14.9000 17.6798L21.5081 20.9839L21.9213 20.1574Q22.4919 19.0161 21.3506 18.4455L17.1000 16.3202L17.1000 9.0000L16.1760 9.0000Q14.9000 9.0000 14.9000 10.2760Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutHandshake = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => {
+  const maskId = React.useId().replace(/:/g, "");
+  return <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="translate(1.3 1.3) scale(1.225)"><Defs><Mask id={maskId} maskUnits="userSpaceOnUse" x="-2" y="-2" width="30" height="30"><Rect x="-2" y="-2" width="30" height="30" fill="white"/><Path transform="translate(14 14) rotate(43.73)" d="M-1 -2H1.05V-.9H.95Q0 -.9 0 .05V1H-1Z" fill="black"/><Path transform="translate(11 16.7) rotate(42.97)" d="M-1 -2H1.05V-.9H.95Q0 -.9 0 .05V1H-1Z" fill="black"/></Mask></Defs><G mask={`url(#${maskId})`}><Path d="M3 5H8.6Q10 5 11 6 M21 5L18.7 5.4Q17.8 5.5 17 5L16.5 4.7Q13.6 3 10.8 5.4L7.9 8.3Q6.6 9.6 7.9 10.9Q9.1 12.1 10.4 10.9L12 9.3Q13.4 8 15 9.5L19 13.5Q20.4 15 19 16.3Q17.7 17.6 16.3 16.2L14 14 M16.3 16.2Q18.1 18 16.6 19.4Q15.1 20.8 13.5 19.2L11 16.7 M13.5 19.2Q15 20.7 13.4 22Q12.1 23 10.8 21.7C7.8 19.4 3 18.2 3 14" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 0.9} strokeLinejoin="round"/><Path d="M1.15 3H2.15Q3.9 3 3.9 4.75V14.9H1.15ZM20.1 3H21.1Q22.85 3 22.85 4.75V14.9H20.1Z" fill={color}/></G></G></Svg>;
+};
 const CutHammer = ({ size = 24, color = "currentColor", ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 3H5L6.2 4.8H8L9.4 3H18C24.63 3 30 8.37 30 15H28.5C27.67 15 27 14.33 27 13.5C26.25 9.25 22.55 6 18 6H5V10H17C18.66 10 20 11.34 20 13V13.3H9.4L8 11.8H6.2L5 13.3H3L2 12.3V4Z" fill={color} fillRule="evenodd" /><Path d="M12 17.3C12 16.58 12.58 16 13.3 16H14.6V27.4H16C16.77 27.4 17.4 26.77 17.4 26V16H20V26C20 28.21 18.21 30 16 30H12Z" fill={color} fillRule="evenodd" /></Svg>
 );
@@ -301,9 +305,10 @@ const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...prop
     </Svg>
   );
 };
-export { CutShorts as Shorts, CutHammer as Hammer };
+export { CutShorts as Shorts, CutHammer as Hammer, CutHandshake as Handshake };
 
 export const cutIcons = {
+  Handshake: CutHandshake,
   Hammer: CutHammer,
   Shorts: CutShorts,
   Home: CutHome,
