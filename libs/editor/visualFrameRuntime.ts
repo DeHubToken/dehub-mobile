@@ -7,7 +7,10 @@ async function sampleVisualFrames(src, clip, windows, signal, progress) {
   var image = clip.kind === 'image' ? new Image() : null;
   video.muted = true; video.playsInline = true; video.preload = 'auto';
   var context = surface.getContext('2d'); if (!context) throw new Error('canvas unavailable');
-  var frames = [];
+  var frames = [], sheet = document.createElement('canvas');
+  sheet.width = 1600; sheet.height = 1376;
+  var sheetContext = sheet.getContext('2d'); if (!sheetContext) throw new Error('canvas unavailable');
+  var sheetStart = 0;
   try {
     if (image) {
       await new Promise(function(resolve, reject) {
@@ -36,12 +39,24 @@ async function sampleVisualFrames(src, clip, windows, signal, progress) {
         var dataUrl = surface.toDataURL('image/jpeg', 0.65);
         if (dataUrl.length > 40000) dataUrl = surface.toDataURL('image/jpeg', 0.4);
         if (dataUrl.length > 40000 || dataUrl.indexOf('data:image/jpeg;base64,') !== 0) throw new Error('visual_frames_invalid');
+        var slot = frames.length % 20, cellX = (slot % 5) * 320, cellY = Math.floor(slot / 5) * 344;
+        if (!slot) { sheetStart = frames.length; sheetContext.fillStyle = '#000000'; sheetContext.fillRect(0, 0, sheet.width, sheet.height); }
+        sheetContext.fillStyle = '#ffffff'; sheetContext.font = '20px sans-serif';
+        sheetContext.fillText('Window ' + window.id + ' · ' + at.toFixed(3) + 's', cellX + 8, cellY + 20);
+        sheetContext.drawImage(surface, cellX + (320 - surface.width) / 2, cellY + 24 + (320 - surface.height) / 2);
         frames.push({ windowId: window.id, at: at, dataUrl: dataUrl });
+        if (frames.length % 20 === 0 || frames.length === windows.length * 6) {
+          if (signal.aborted) throw new Error('cancelled');
+          var sheetUrl = sheet.toDataURL('image/jpeg', 0.65);
+          if (sheetUrl.length > 800000) sheetUrl = sheet.toDataURL('image/jpeg', 0.4);
+          if (sheetUrl.length > 800000 || sheetUrl.indexOf('data:image/jpeg;base64,') !== 0) throw new Error('visual_frames_invalid');
+          frames[sheetStart].contactSheet = { startIndex: sheetStart, endIndex: frames.length, dataUrl: sheetUrl };
+        }
         if (progress) progress((index * 6 + i + 1) / (windows.length * 6));
       }
     }
     if (signal.aborted) throw new Error('cancelled');
     return frames;
-  } finally { if (image) { image.onload = image.onerror = null; image.removeAttribute('src'); } video.pause(); video.removeAttribute('src'); video.load(); surface.width = surface.height = 0; }
+  } finally { if (image) { image.onload = image.onerror = null; image.removeAttribute('src'); } video.pause(); video.removeAttribute('src'); video.load(); surface.width = surface.height = sheet.width = sheet.height = 0; }
 }
 `;

@@ -7420,7 +7420,11 @@
     "referenceProductName": "کلپ میں اپنا پروڈکٹ رکھو",
     "referenceProductHint": "اصل صحنه کو برقرار رکھتے ہوئے فِچرڈ پروڈکٹ کو بدل دو",
     "referenceComposeName": "رِفَرنس تصاویر کو ملاو",
-    "referenceComposeHint": "چند تصاویر سے کاراکٹرز، اُبجیکٹس اور سِٹنگز کو ایک کمپوزیشن میں لاؤ"
+    "referenceComposeHint": "چند تصاویر سے کاراکٹرز، اُبجیکٹس اور سِٹنگز کو ایک کمپوزیشن میں لاؤ",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "Describe the sound, for example \"heavy door slamming in a stone hall\"",
+    "auto": "اپٹو",
+    "loop": "لوپ"
   },
   "fractions": {
     "title": "حصے",

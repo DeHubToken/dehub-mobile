@@ -7453,7 +7453,11 @@
     "referenceProductName": "Producto-ta clip-pi yaykuchiy",
     "referenceProductHint": "Destacado producto-ta ama hina kaychu-ta qichuspa original escena-ta ama hina kaychu-ta qichiy",
     "referenceComposeName": "Referencia imagen-kuna juntay",
-    "referenceComposeHint": "Personaje, objeto-kuna, escena-kuna pichqa imagen-manta huk composición-pi apay"
+    "referenceComposeHint": "Personaje, objeto-kuna, escena-kuna pichqa imagen-manta huk composición-pi apay",
+    "audioTaskSfxLabel": "Efecto de sonido nisqa",
+    "audioTaskSfxPlaceholder": "T&#39;uqyaymanta willay, ahinataq &quot;rumi wasipi llasa punku llallinakuy&quot;.",
+    "auto": "Auto",
+    "loop": "Kutipayay"
   },
   "fractions": {
     "title": "Rakikuna",

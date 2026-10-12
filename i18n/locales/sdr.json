@@ -7507,7 +7507,11 @@
     "referenceProductName": "محصول خود را در یک کلیپ قرار دهید",
     "referenceProductHint": "محصول برجسته را جایگزین کنید و صحنه اصلی را حفظ کنید",
     "referenceComposeName": "تصاویر مرجع را ترکیب کنید",
-    "referenceComposeHint": "شخصیت‌ها، اشیاء و محیط‌های موجود در چند تصویر را در یک ترکیب قرار دهید"
+    "referenceComposeHint": "شخصیت‌ها، اشیاء و محیط‌های موجود در چند تصویر را در یک ترکیب قرار دهید",
+    "audioTaskSfxLabel": "ध्वनि प्रभाव",
+    "audioTaskSfxPlaceholder": "صدا را توصیف کن، برای مثال: \"در سنگی سنگین که با صدای سنگین بسته می‌شود\"",
+    "auto": "اتوماتیک",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

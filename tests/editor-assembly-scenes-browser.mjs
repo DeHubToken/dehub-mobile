@@ -86,6 +86,23 @@ try {
     const movingWindows = [{ id: 0, start: 0, end: 4 }];
     const moving = await sample(videoBlob, clip, movingWindows);
     if (!window.editor.validVisualFrames(moving, movingWindows)) throw new Error('invalid real video frames');
+    const completeWindows = Array.from({ length: 10 }, (_, id) => ({ id, start: id * 0.8, end: (id + 1) * 0.8 }));
+    const completeFrames = await sample(videoBlob, { ...clip, trimIn: 0, speed: 1, duration: 8 }, completeWindows);
+    if (!window.editor.validVisualFrames(completeFrames, completeWindows)) throw new Error('invalid full contact-sheet samples');
+    const sheets = completeFrames.flatMap(frame => frame.contactSheet ? [frame.contactSheet] : []);
+    if (completeFrames.length !== 60 || sheets.length !== 3) throw new Error('contact-sheet coverage');
+    const contactPixels = [];
+    for (const sheet of sheets) {
+      const image = await new Promise((resolve, reject) => { const img = new Image(); img.onload = () => resolve(img); img.onerror = reject; img.src = sheet.dataUrl; });
+      if (image.width !== 1600 || image.height !== 1376 || sheet.dataUrl.length > 800000) throw new Error('contact-sheet dimensions');
+      const surface = document.createElement('canvas'); surface.width = image.width; surface.height = image.height;
+      const context = surface.getContext('2d'); context.drawImage(image, 0, 0);
+      for (let index = sheet.startIndex; index < sheet.endIndex; index++) {
+        const slot = index - sheet.startIndex, x = (slot % 5) * 320 + 160, y = Math.floor(slot / 5) * 344 + 184;
+        contactPixels.push({ at: completeFrames[index].at, rgb: Array.from(context.getImageData(x, y, 1, 1).data).slice(0, 3) });
+      }
+      surface.width = surface.height = 0;
+    }
     // Processing must finish when a hidden/background surface never repaints.
     const noPresentation = 'window.requestAnimationFrame=function(){return 0};window.cancelAnimationFrame=function(){};HTMLVideoElement.prototype.requestVideoFrameCallback=function(){return 0};HTMLVideoElement.prototype.cancelVideoFrameCallback=function(){};';
     let restorePresentation;
@@ -125,7 +142,7 @@ try {
     const proof = document.createElement('div'); proof.style.cssText = 'position:fixed;inset:0;background:white;padding:20px;overflow:auto;z-index:999';
     for (const frame of [...still, ...moving]) { const image = new Image(); image.src = frame.dataUrl; image.style.cssText = 'width:180px;margin:8px'; proof.append(image); }
     document.body.append(proof);
-    return { still: await pixels(still), moving: await pixels(moving), withoutPresentation: await pixels(withoutPresentation), missingFailed, cancelled, malformedRejected, recovery: true, remainingDecoders: document.querySelectorAll('iframe').length, videoTrim: clip.trimIn, videoSpeed: clip.speed, providerUsed: false, physicalDeviceVerified: false };
+    return { contactPixels, contactSheetCount: sheets.length, still: await pixels(still), moving: await pixels(moving), withoutPresentation: await pixels(withoutPresentation), missingFailed, cancelled, malformedRejected, recovery: true, remainingDecoders: document.querySelectorAll('iframe').length, videoTrim: clip.trimIn, videoSpeed: clip.speed, providerUsed: false, physicalDeviceVerified: false };
   }, { platform, videoBase64 });
   assert.equal(report.still.length, 6); assert.equal(report.moving.length, 6);
   assert.equal(report.withoutPresentation.length, 6);
@@ -139,6 +156,11 @@ try {
     const sourceTime = 1 + frame.at * 1.25;
     const expected = sourceTime < 2 ? [255, 0, 0] : sourceTime < 4 ? [0, 255, 0] : sourceTime < 6 ? [0, 0, 255] : [255, 255, 0];
     for (let channel = 0; channel < 3; channel++) assert(Math.abs(frame.rgb[channel] - expected[channel]) < 8, JSON.stringify({ ...frame, sourceTime, expected }));
+  }
+  assert.equal(report.contactSheetCount, 3); assert.equal(report.contactPixels.length, 60);
+  for (const frame of report.contactPixels) {
+    const expected = frame.at < 2 ? [255,0,0] : frame.at < 4 ? [0,255,0] : frame.at < 6 ? [0,0,255] : [255,255,0];
+    for (let channel = 0; channel < 3; channel++) assert(Math.abs(frame.rgb[channel] - expected[channel]) < 12, JSON.stringify({ frame, expected }));
   }
   assert(report.missingFailed); assert(report.cancelled); assert(report.malformedRejected); assert(report.recovery);
   assert.equal(report.remainingDecoders, 0); assert.deepEqual(errors, []);

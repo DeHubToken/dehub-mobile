@@ -7178,7 +7178,11 @@
     "referenceProductName": "ایک کلپ میں اپنی پروڈکٹ کو رکھیں",
     "referenceProductHint": "اصل صحنه کو برقرار رکھتے ہوئے فیچرڈ پروڈکٹ کو بدل دیں۔",
     "referenceComposeName": "حوالہ تصاویر کو جوڑیں",
-    "referenceComposeHint": "چند تصاویر سے کرداروں، اشیاء اور سٹینگز کو ایک کمپوزیشن میں لائیں۔"
+    "referenceComposeHint": "چند تصاویر سے کرداروں، اشیاء اور سٹینگز کو ایک کمپوزیشن میں لائیں۔",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "آواز کو بیان کریں، مثال کے طور پر \"پتھر کے ہال میں بھاری دروازہ بند ہونا\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "फ़्रैक्शन",

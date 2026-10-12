@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,7 +7,9 @@ import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
 import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { openLibraryAssetInEditor } from '../libs/editor/openLibraryAssetInEditor';
+import { toastError } from '../libs';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ScreenHeader from '../components/ScreenHeader';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
@@ -186,6 +188,27 @@ export default function CreatorScreen() {
 
 const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, width }: { item: CreatorAsset; posterUrl?: string; width: number }) {
   const { t } = useTranslation();
+  const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+  const user = useUser();
+  const wallet = user?.walletAddress || user?.address;
+  const focused = useIsFocused();
+  const scope = useRef({ wallet, focused }); scope.current = { wallet, focused };
+  const pending = useRef<AbortController | null>(null);
+  const [importing, setImporting] = useState(false);
+  useEffect(() => () => { pending.current?.abort(); pending.current = null; }, [wallet, focused]);
+  const edit = async () => {
+    if (pending.current) { pending.current.abort(); return; }
+    if (!wallet || !focused || !item.url || item.kind === 'model3d') return;
+    const controller = new AbortController(); pending.current = controller; setImporting(true);
+    try {
+      await openLibraryAssetInEditor(item, { signal: controller.signal,
+        isCurrent: () => scope.current.wallet === wallet && scope.current.focused,
+        onOpen: id => nav.push(ScreenNames.MediaEditor, { projectId: id }),
+      });
+    } catch (error) {
+      if (!controller.signal.aborted) toastError(t('creator.editorImportFailed'));
+    } finally { if (pending.current === controller) { pending.current = null; setImporting(false); } }
+  };
   return (
           <Pressable
             accessibilityRole="button"
@@ -198,6 +221,9 @@ const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, w
             <View className="p-3">
               <Text className="text-[13px] text-theme-neutrals-100" numberOfLines={2}>{item.prompt || item.modelName}</Text>
               <Text className="mt-1 text-[11.5px] text-theme-neutrals-400">{item.kind} · {item.modelName}</Text>
+              {item.url && item.kind !== 'model3d' && <Pressable accessibilityRole="button" onPress={event => { event.stopPropagation(); void edit(); }} className="mt-3 items-center justify-center rounded-lg border border-white/20 bg-white/10 px-3 py-2" style={{ minHeight: 44 }}>
+                <Text className="text-theme-neutrals-100 text-xs font-semibold">{importing ? t('common.cancel') : t('creator.editor')}</Text>
+              </Pressable>}
               {item.transcript && <Text selectable className="mt-2 text-[12px] text-theme-neutrals-100" numberOfLines={4}>{item.transcript}</Text>}
             </View>
           </Pressable>

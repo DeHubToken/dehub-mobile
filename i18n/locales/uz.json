@@ -7497,7 +7497,11 @@
     "referenceProductName": "Mahsulingizni klipga qo'ying",
     "referenceProductHint": "Tanlangan mahsulotni almashtiring va asl sahnani saqlang.",
     "referenceComposeName": "Malumot rasmlarini birlashtirish",
-    "referenceComposeHint": "Bir nechta tasvirlardan belgilar, obyektlar va muhitni bitta kompozitsiyaga olib keling."
+    "referenceComposeHint": "Bir nechta tasvirlardan belgilar, obyektlar va muhitni bitta kompozitsiyaga olib keling.",
+    "audioTaskSfxLabel": "Ovoz effekti",
+    "audioTaskSfxPlaceholder": "Ovozni tasvirlab bering, masalan, &quot;tosh zalda og&#39;ir eshikning qarsillashi&quot;",
+    "auto": "Avtomatik",
+    "loop": "Davr"
   },
   "fractions": {
     "title": "Ulushlar",

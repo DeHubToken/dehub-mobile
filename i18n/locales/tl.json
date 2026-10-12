@@ -7623,7 +7623,11 @@
     "referenceProductName": "Ilagay ang iyong produkto sa isang clip",
     "referenceProductHint": "Palitan ang tampok na produkto at panatilihin ang orihinal na eksena.",
     "referenceComposeName": "Pagsamahin ang mga reference na larawan",
-    "referenceComposeHint": "Dalhin ang mga karakter, bagay at setting mula sa maraming larawan sa isang komposisyon."
+    "referenceComposeHint": "Dalhin ang mga karakter, bagay at setting mula sa maraming larawan sa isang komposisyon.",
+    "audioTaskSfxLabel": "sound effecta",
+    "audioTaskSfxPlaceholder": "Ilarawan ang tunog, halimbawa \"mabigat na pinto slamming sa isang bulwagan ng bato\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Mga bahagi",

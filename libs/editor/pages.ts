@@ -17,17 +17,38 @@ export function timelineEnd(clips: Clip[]): number {
   return clips.reduce((m, c) => Math.max(m, c.start + c.duration), 0);
 }
 
+/** Recognize saved starters made before screen boundaries were stored. */
+export function presetPageStarts(clips: Clip[]): number[] | undefined {
+  const numbers = clips.filter(c => c.kind === "text" && /^\d{2}$/.test(c.text) && c.x === 0.5 && (c.y === 0.32 || c.y === 0.34)).sort((a, b) => a.start - b.start);
+  if (numbers.length < 2 || numbers[0].start !== 0) return undefined;
+  const matches = numbers.every((number, index) => {
+    const words = clips.filter(c => c.kind === "text" && c.start === number.start && c.duration === number.duration && c.maxWidth === 0.78);
+    return words.length === 3 && words.every(c => c.kind === "text" && c.x === 0.5) &&
+      (index === numbers.length - 1 || Math.abs(number.start + number.duration - numbers[index + 1].start) < 0.001);
+  });
+  return matches ? numbers.map(c => c.start) : undefined;
+}
+
+export function pagePreviewTime(page: Page): number {
+  return page.start + Math.min(0.6, (page.end - page.start) / 2);
+}
+
 export function timelineDuration(settings: ProjectSettings, clips: Clip[]): number {
   const end = timelineEnd(clips);
-  return settings.pages?.length ? Math.max(end, settings.pages[settings.pages.length - 1] + PAGE_MIN) : end;
+  const starts = settings.pages?.length ? settings.pages : presetPageStarts(clips);
+  if (!starts?.length) return end;
+  const last = starts[starts.length - 1];
+  const exact = settings.pageTiming === "content" || !!presetPageStarts(clips);
+  return exact && end > last ? end : Math.max(end, last + PAGE_MIN);
 }
 
 export function getPages(settings: ProjectSettings, clips: Clip[]): Page[] {
-  const starts = settings.pages && settings.pages.length ? settings.pages : [0];
+  const starts = settings.pages?.length ? settings.pages : presetPageStarts(clips) ?? [0];
   const end = timelineEnd(clips);
+  const exact = settings.pageTiming === "content" || !!presetPageStarts(clips);
   return starts.map((start, index) => {
     const next = starts[index + 1];
-    return { index, start, end: next ?? Math.max(end, start + PAGE_MIN) };
+    return { index, start, end: next ?? (exact && end > start ? end : Math.max(end, start + PAGE_MIN)) };
   });
 }
 
