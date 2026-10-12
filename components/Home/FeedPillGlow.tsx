@@ -4,7 +4,7 @@ import Animated, {
   cancelAnimation, Easing, ReduceMotion, useAnimatedStyle, useReducedMotion,
   useSharedValue, withRepeat, withTiming, type SharedValue,
 } from 'react-native-reanimated';
-import Svg, { Defs, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { useAppTheme } from '../../context/ThemeContext';
 import { useFeedPillRefreshing } from '../../libs/feed-pill-refresh';
 import { pillGlowColor, pillGlowStrength } from '../../libs/pill-glow';
@@ -102,11 +102,21 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
             <Stop offset="1" stopColor={rgb} stopOpacity={0} />
           </LinearGradient>
         </Defs>
-        <Path d={`M ${centre - haloRx} 0 A ${haloRx} ${HALO_HEIGHT} 0 0 0 ${centre + haloRx} 0 Z`} fill="url(#pill-glow-halo)" />
-        {BLOOM.map(band => (
-          <Rect key={band.y} x={bloomX} y={band.y} width={bloomWidth} height={1} fill="url(#pill-glow-bloom)" fillOpacity={band.o} />
-        ))}
-        <Rect x={inset + 14} y={-1.5} width={pill - 28} height={1.5} rx={.75} fill="url(#pill-glow-rim)" />
+        {/* Each gradient shape starts at x = 0 inside a translated group. On
+            Android a bounding-box gradient on a shape offset from the origin
+            showed its left end part-lit (a straight cut) while the right end
+            faded; with no offset there is nothing to misplace. */}
+        <G transform={`translate(${centre - haloRx} 0)`}>
+          <Path d={`M 0 0 A ${haloRx} ${HALO_HEIGHT} 0 0 0 ${haloRx * 2} 0 Z`} fill="url(#pill-glow-halo)" />
+        </G>
+        <G transform={`translate(${bloomX} 0)`}>
+          {BLOOM.map(band => (
+            <Rect key={band.y} x={0} y={band.y} width={bloomWidth} height={1} fill="url(#pill-glow-bloom)" fillOpacity={band.o} />
+          ))}
+        </G>
+        <G transform={`translate(${inset + 14} 0)`}>
+          <Rect x={0} y={-1.5} width={pill - 28} height={1.5} rx={.75} fill="url(#pill-glow-rim)" />
+        </G>
       </Svg>
     </Animated.View>
   );
