@@ -755,9 +755,12 @@ const LiveChatScreen: React.FC = () => {
   const RightHeader = useMemo(
     () => (
       <View className="flex-row items-center gap-3">
-        <View className="flex-row items-center gap-1.5">
-          <View className="w-2 h-2 rounded-full bg-white" />
-          <Text className="text-white/50 text-xs">{onlineCount}</Text>
+        <View accessible accessibilityLabel={t("publicChat.online", { count: onlineCount })} className="flex-row items-center gap-1.5">
+          <View style={{ width: 8, height: 8, alignItems: "center", justifyContent: "center" }}>
+            <View style={{ position: "absolute", width: 16, height: 16, borderRadius: 8, backgroundColor: "rgba(52,211,153,0.15)" }} />
+            <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: "#34d399", shadowColor: "#34d399", shadowOpacity: 0.9, shadowRadius: 4, shadowOffset: { width: 0, height: 0 }, elevation: 3 }} />
+          </View>
+          <Text className="text-white/50 text-xs" style={{ fontVariant: ["tabular-nums"] }}>{onlineCount.toLocaleString()}</Text>
         </View>
         <TouchableOpacity onPress={() => setSearchVisible(value => !value)} accessibilityRole="button" accessibilityLabel={t("publicChat.searchMessages")} style={{ width: 32, height: 36, alignItems: "center", justifyContent: "center" }}><Icon name="Search" size={20} color="#A1A1AA" /></TouchableOpacity>
         <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
