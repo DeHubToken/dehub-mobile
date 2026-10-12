@@ -4,7 +4,7 @@ import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
 import { getAccount, getNotifications } from "../services/user.service";
-import { upsertLocalAccount, getLocalAccount } from "../libs/wallets.local";
+import { upsertLocalAccount, getLocalAccount, forgetDeviceVerification } from "../libs/wallets.local";
 
 import type { User } from "../context/AuthContext";
 import { createAuthAdapter } from "../services/auth/authAdapter";
@@ -233,6 +233,7 @@ export function useAuthSession({
 
   const signOut = useCallback(
     async (forgetProfile: boolean = true) => {
+    forgetDeviceVerification();
     setIsLoading(true);
     // Belongs to the identity signing out — the next one must not inherit it.
     clearWalletDrift();
@@ -534,22 +535,6 @@ export function useAuthSession({
             setAuthMethodState(methodNow);
           } catch {}
         } catch {}
-        // Only fetch private key for local wallets; web3auth never exposes one.
-        // Local override wallets already provide key via overridePrivateKey param.
-        let privateKey: string | undefined;
-        if (hasOverride && !overridePrivateKey) {
-          try {
-            const adapter = createAuthAdapter();
-            log.debug("getPrivateKey:begin");
-            privateKey = await adapter.getPrivateKey?.();
-            log.debug("getPrivateKey:done", {
-              hasKey: !!privateKey,
-              length: privateKey?.length || 0,
-            });
-          } catch (e) {
-            log.warn("getPrivateKey:error", e);
-          }
-        }
         let walletUser: any;
         let token: any;
         let needsUsername: boolean = false;
@@ -561,13 +546,7 @@ export function useAuthSession({
           const res = await AuthService.signInWithWallet(
             walletAddress,
             chainId,
-            hasOverride && overridePrivateKey
-              ? { privateKey: overridePrivateKey, web3AuthMeta }
-              : privateKey
-              ? { privateKey, web3AuthMeta }
-              : web3AuthMeta
-              ? { web3AuthMeta }
-              : undefined
+            web3AuthMeta ? { web3AuthMeta } : undefined
           );
           walletUser = (res as any).user;
           token = (res as any).token;

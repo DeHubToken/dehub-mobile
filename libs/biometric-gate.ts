@@ -43,6 +43,8 @@ export interface BiometricCapability {
   isEnrolled: boolean;
   /** True when the only factor available is the device PIN/pattern, not a biometric. */
   passcodeOnly: boolean;
+  /** A failed probe is unknown, never evidence that the device has no lock. */
+  unavailable?: boolean;
 }
 
 export async function getBiometricCapability(): Promise<BiometricCapability> {
@@ -63,8 +65,8 @@ export async function getBiometricCapability(): Promise<BiometricCapability> {
       passcodeOnly: level === LocalAuthentication.SecurityLevel.SECRET && !isEnrolled,
     };
   } catch (e) {
-    log.warn("capability:error", e);
-    return { usable: false, hasHardware: false, isEnrolled: false, passcodeOnly: false };
+    log.warn("capability:error", { errorName: e instanceof Error ? e.name : "unknown" });
+    return { usable: false, hasHardware: false, isEnrolled: false, passcodeOnly: false, unavailable: true };
   }
 }
 
@@ -107,6 +109,9 @@ export type VerificationOutcome = "verified" | "unenforceable";
  */
 export async function requireDeviceOwner(purpose: string): Promise<VerificationOutcome> {
   const capability = await getBiometricCapability();
+  if (capability.unavailable) {
+    throw new BiometricUnavailableError("Couldn't check device verification. Try again without reinstalling the app or clearing its data.");
+  }
   if (!capability.usable) {
     log.warn("authenticate:unenforceable — device has no lock to check against", capability);
     return "unenforceable";
