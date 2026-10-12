@@ -76,7 +76,7 @@ const ThemeBackdrop: React.FC = () => {
         .then((page) => {
           if (cancelled) return;
           const { themeHues: hues, brandColors: brand } = colorsRef.current;
-          const named = `<script>window.__BACKDROP_THEME=${JSON.stringify(theme)};window.__BACKDROP_HUES=${JSON.stringify(hues)};window.__BACKDROP_BRAND=${JSON.stringify(brand)};</script>`;
+          const named = `<script>window.__BACKDROP_THEME=${JSON.stringify(theme)};window.__BACKDROP_ANDROID=${Platform.OS === "android"};window.__BACKDROP_HUES=${JSON.stringify(hues)};window.__BACKDROP_BRAND=${JSON.stringify(brand)};</script>`;
           // Winter accumulates an 80px white drift. Keep it out of native
           // content and Android navigation, fading only the decorative canvas.
           const nativeMask = Platform.OS === "android" && theme === "winter"
