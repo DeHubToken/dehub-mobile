@@ -13,7 +13,7 @@ const CutMessages = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 6H21Q27 6 27 12V26L20 21H11Q5 21 5 15Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M11.2470 12.0750L22.0000 12.0750L22.0000 11.1720Q22.0000 9.9250 20.7530 9.9250L10.0000 9.9250L10.0000 10.8280Q10.0000 12.0750 11.2470 12.0750Z" fill={color} fillRule="evenodd" /><Path d="M11.2470 17.0750L18.5000 17.0750L18.5000 16.1720Q18.5000 14.9250 17.2530 14.9250L10.0000 14.9250L10.0000 15.8280Q10.0000 17.0750 11.2470 17.0750Z" fill={color} fillRule="evenodd" /></Svg>
 );
 const CutAlerts = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
-  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12.9 5.7V2.6Q12.9 .5 15 .5H19.1V5.7Z" fill={color} fillRule="evenodd" /><Path d="M5.6 26.3L8.2 12.3Q9.2 5.1 15 5.1H17Q22.8 5.1 23.8 12.3L26.4 26.3H20.2V25.2Q20.2 23.8 21.6 23.8H23.0L21.4 12.6Q20.7 7.7 17 7.7H15Q11.3 7.7 10.6 12.6L9.0 23.8H10.4Q11.8 23.8 11.8 25.2V26.3Z" fill={color} fillRule="evenodd" /><Path d="M14.1 29.3V24.2Q14.1 22.8 15.5 22.8H17.9V27.9Q17.9 29.3 16.5 29.3Z" fill={color} fillRule="evenodd" /></Svg>
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12.9 7.7V2.6Q12.9 .5 15 .5H19.1V7.7Z" fill={color} fillRule="evenodd" /><Path d="M2.5 26.3L7.2 12.3Q8.2 5.1 15 5.1H17Q23.8 5.1 24.8 12.3L29.5 26.3H20.2V25.2Q20.2 23.8 23.8 23.8H25.2L22.3 12.6Q21.6 7.7 17 7.7H15Q10.4 7.7 9.7 12.6L6.8 23.8H8.2Q11.8 23.8 11.8 25.2V26.3Z" fill={color} fillRule="evenodd" /><Path d="M14.1 29.3V24.2Q14.1 22.8 15.5 22.8H17.9V27.9Q17.9 29.3 16.5 29.3Z" fill={color} fillRule="evenodd" /></Svg>
 );
 const CutProfile = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M11 5H15.5Q21 5 21 10Q21 15 15.5 15H11Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M5 28V19H18.5Q27 19 27 27V28H26Q24.6 28 24.6 26.6Q24.4 21.4 18.5 21.4H7.4V26.6Q7.4 28 6 28Z" fill={color} fillRule="evenodd" /></Svg>
@@ -405,6 +405,22 @@ export const cutIcons = {
   History: CutHistory,
 };
 export type CutIconName = keyof typeof cutIcons;
+/** Expand filled artwork as well as strokes for a crisp half-pixel media outline. */
+export function renderCutIconOutline(name: string, size: number, color: string) {
+  if (!Object.prototype.hasOwnProperty.call(cutIcons, name)) return null;
+  const artwork = cutIcons[name as CutIconName]({ size, color, strokeWidth: 3 });
+  const expand = (children: React.ReactNode): React.ReactNode => React.Children.map(children, child => {
+    if (!React.isValidElement<{ fill?: string; children?: React.ReactNode }>(child)) return child;
+    if (child.type === Path && child.props.fill && child.props.fill !== "none") {
+      return React.cloneElement(child as React.ReactElement<React.ComponentProps<typeof Path>>, {
+        stroke: color, strokeWidth: 32 / size, strokeLinejoin: "round",
+      });
+    }
+    if (child.type === G) return React.cloneElement(child, {}, expand(child.props.children));
+    return child;
+  });
+  return React.cloneElement(artwork, {}, expand(artwork.props.children));
+}
 export function getCutIcon(name: string): React.ComponentType<CutProps> | undefined {
   return Object.prototype.hasOwnProperty.call(cutIcons, name) ? cutIcons[name as CutIconName] : undefined;
 }

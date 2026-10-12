@@ -2,6 +2,7 @@ import Svg, { Rect, Path } from 'react-native-svg';
 import React from "react";
 import { View, Text, StyleSheet, type StyleProp, type TextStyle } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
+import { renderCutIconOutline } from "../ui/cut-icons";
 
 // Active controls invert the white glyph and dark outline, with no button frame.
 export function MediaControlIcon({ name, size = 18, active = false }: { name: IconName; size?: number; active?: boolean }) {
@@ -12,7 +13,7 @@ export function MediaControlIcon({ name, size = 18, active = false }: { name: Ic
     <Path d="M10 9H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2M17 9h-2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2" strokeWidth={outline ? 2.5 : 1.25} />
   </Svg>;
   return <View style={{ width: size, height: size }}>
-    <View style={StyleSheet.absoluteFill}>{name === "Captions" ? caption(true) : <Icon name={name} size={size} color={outlineColor} strokeWidth={3} />}</View>
+    <View style={StyleSheet.absoluteFill}>{name === "Captions" ? caption(true) : renderCutIconOutline(name, size, outlineColor) ?? <Icon name={name} size={size} color={outlineColor} strokeWidth={3} />}</View>
     {name === "Captions" ? caption(false) : <Icon name={name} size={size} color={foreground} strokeWidth={1.75} />}
   </View>;
 }
