@@ -5169,8 +5169,8 @@
       "sourceUnavailable": "Niet beschikbaar"
     },
     "taxSplit": {
-      "title": "Waar de tokenbelasting naartoe ging",
-      "intro": "De oorspronkelijke DeHub-token hield tot 2023 12% van elke transactie in. In BNB kocht 4% DeHub terug om te verbranden, ging 2% naar DeHub-operaties en 2% naar houders en stakers, dus de verbranding was altijd twee keer zo groot als elk van de andere twee. Hier zie je waar die BNB naartoe ging, gewaardeerd tegen de BNB-prijs op de dag van elke betaling.",
+      "title": "Waar de inkomsten naartoe gingen",
+      "intro": "Historische inkomsten financierden de bedrijfsvoering, tokeninkopen en beloningen voor houders en stakers. Bedragen staan in dollars tegen de waarde op elke betaaldatum. Open elk onderdeel voor de oorspronkelijke valuta en alle transacties.",
       "team": "DeHub-operaties",
       "teamDetail": "{{gross}} kwam binnen; {{passed}} daarvan ging door naar houders",
       "burned": "Teruggekocht en verbrand",
@@ -5179,7 +5179,7 @@
       "sharedDetail": "{{claims}} claims door {{wallets}} wallets",
       "open": "Bekijk elke regel van {{part}}",
       "see": "Bekijk elke regel",
-      "footnote": "Alleen het deel voor DeHub-operaties telt hierboven als inkomsten. De overige 4% zit in geen van de drie: 2% ging als liquiditeit naar de handelspool en telkens 1% ging als tokens naar houders en naar operaties. Houders claimden ook {{early}} rechtstreeks van de token in de eerste twee weken, voordat het beloningscontract bestond."
+      "footnote": "Alleen ingehouden bedrijfsinkomsten tellen hierboven als inkomsten. Inkopen en gedeelde beloningen worden apart vastgelegd. Elk bedrag en de oorspronkelijke valuta staan in het grootboek."
     }
   },
   "solana": {

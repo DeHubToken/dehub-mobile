@@ -5032,8 +5032,8 @@
       "sourceUnavailable": "Indisponible"
     },
     "taxSplit": {
-      "title": "Où est allée la taxe du token",
-      "intro": "Le token DeHub d’origine prélevait 12 % de chaque transaction jusqu’en 2023. En BNB, 4 % rachetaient du DeHub pour le brûler, 2 % allaient aux opérations de DeHub et 2 % aux détenteurs et stakers : la part brûlée a donc toujours été le double de chacune des deux autres. Voici où est allé ce BNB, valorisé au prix du BNB le jour de chaque paiement.",
+      "title": "Destination des revenus",
+      "intro": "Les revenus historiques ont financé les opérations, les rachats de tokens et les récompenses des détenteurs et stakers. Les montants sont affichés en dollars à la valeur du jour du paiement. Ouvrez chaque partie pour consulter les devises originales et chaque transaction.",
       "team": "Opérations de DeHub",
       "teamDetail": "{{gross}} reçus ; {{passed}} reversés aux détenteurs",
       "burned": "Racheté et brûlé",
@@ -5042,7 +5042,7 @@
       "sharedDetail": "{{claims}} réclamations par {{wallets}} portefeuilles",
       "open": "Voir chaque ligne « {{part}} »",
       "see": "Voir chaque ligne",
-      "footnote": "Seule la part des opérations de DeHub compte comme revenu ci-dessus. Les 4 % restants ne figurent dans aucune des trois : 2 % ont été ajoutés au pool d’échange comme liquidité, et 1 % est allé aux détenteurs et 1 % aux opérations, en tokens. Les détenteurs ont aussi réclamé {{early}} directement depuis le token pendant ses deux premières semaines, avant que le contrat de récompenses n’existe."
+      "footnote": "Seuls les fonds conservés pour les opérations sont comptés comme revenus ci-dessus. Les rachats et les récompenses partagées sont enregistrés séparément. Tous les montants et devises originales figurent dans le registre."
     }
   },
   "solana": {
