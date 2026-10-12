@@ -1,7 +1,8 @@
 import CollapsingProfileHeader from './CollapsingProfileHeader';
 import ProfileScrollViewport from './ProfileScrollViewport';
 import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './useProfileCollapse';
-import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
+import { getAvatarUrl, getCoverUrl, getDefaultBanner } from '../../libs/misc';
+import ProfilePinnedBar from './ProfilePinnedBar';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
 import { View } from "react-native";
@@ -58,7 +59,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     'worklet';
     drive(y);
     profileScrollY.value = y;
-    const stuck = headerHeight.value > 0 && y >= headerHeight.value + PROFILE_TABS_TOP_GAP - PROFILE_BAR_HEIGHT;
+    const stuck = headerHeight.value > 0 && y >= headerHeight.value + PROFILE_TABS_TOP_GAP - 4;
     if (stuck !== tabsStuck.value) {
       tabsStuck.value = stuck;
       runOnJS(setStickyVisible)(stuck);
@@ -173,8 +174,10 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
 
   return <View className="flex-1 bg-theme-neutrals-900">
     <ProfileScrollViewport {...collapse}>{renderScene(activeKey)}</ProfileScrollViewport>
-    <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: PROFILE_BAR_HEIGHT, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
-      <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned />
+    <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
+      <ProfilePinnedBar name={user?.displayName} handle={user?.username} avatarUrl={getAvatarUrl(user?.avatarImageUrl, 32)} canGoBack={canGoBack} onBackPress={onBackPress}>
+        <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned embedded />
+      </ProfilePinnedBar>
     </Animated.View>
     <CollapsingProfileHeader {...collapse} name={user?.displayName} handle={user?.username}
       cover={user?.coverImageUrl ? { uri: getCoverUrl(user.coverImageUrl) } : getDefaultBanner(address || '')}

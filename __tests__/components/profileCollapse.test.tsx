@@ -7,6 +7,7 @@ jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', StyleSheet: { create: (x: unknown) => x, absoluteFill: {} } }));
 jest.mock('../../components/ScreenHeader', () => 'Back');
 jest.mock('../../components/ui/ChromeSurface', () => 'Glass');
+jest.mock('../../components/ui/NavPillSurface', () => 'NavGlass');
 let mockTheme = 'system';
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: mockTheme, colors: { neutrals: { 900: '#000' } } }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
@@ -44,14 +45,18 @@ it('keeps Back available, reveals Follow after collapse, and restores the expand
   expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
   act(() => { scrollY.value = 0; mockReaction?.(); tree.update(<CollapsingProfileHeader {...props} />); });
   expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
+  act(() => { props.tabsPinned.value = true; mockReaction?.(); });
+  expect(tree.toJSON()).toMatchObject({ props: { pointerEvents: 'none', accessibilityElementsHidden: true } });
+  act(() => { props.tabsPinned.value = false; mockReaction?.(); });
   act(() => tree.unmount());
 });
 
-it.each(['hazy', 'cosmic', 'swarms', 'lavalamp', 'winter', 'war', 'osaka', 'jungle', 'island', 'hacker', 'horror'])('keeps cover material inside the rounded bar on %s', (theme) => {
+it.each(['hazy', 'cosmic', 'swarms', 'lavalamp', 'winter', 'war', 'osaka', 'jungle', 'island', 'hacker', 'horror'])('uses the shared navigation material without cover artwork on %s', (theme) => {
   mockTheme = theme;
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<CollapsingProfileHeader scrollY={{ value: 200 } as any} identityBottom={{ value: 230 } as any} actionsBottom={{ value: 190 } as any} tabsPinned={{ value: false } as any} cover={{ uri: 'https://dehub.io/cover.jpg' }} />); });
-  expect(tree.root.findAllByType('Image' as any)).toHaveLength(1);
+  expect(tree.root.findAllByType('Image' as any)).toHaveLength(0);
+  expect(tree.root.findAllByType('NavGlass' as any)).toHaveLength(1);
   act(() => tree.unmount());
   mockTheme = 'system';
 });
