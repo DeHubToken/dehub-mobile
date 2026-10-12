@@ -5028,8 +5028,8 @@
       "sourceUnavailable": "No disponible"
     },
     "taxSplit": {
-      "title": "A dónde fue el impuesto del token",
-      "intro": "El token original de DeHub cobraba un 12 % de cada operación hasta 2023. En BNB, un 4 % recompraba DeHub y lo quemaba, un 2 % iba a las operaciones de DeHub y un 2 % a holders y stakers, así que la quema siempre fue el doble que cualquiera de las otras dos. Aquí se ve a dónde fue ese BNB, valorado al precio del BNB el día de cada pago.",
+      "title": "Destino de los ingresos",
+      "intro": "Los ingresos históricos financiaron operaciones, recompras de tokens y recompensas para titulares y participantes de staking. Los importes se muestran en dólares al valor de cada fecha de pago. Abre cada parte para ver las monedas originales y todas las transacciones.",
       "team": "Operaciones de DeHub",
       "teamDetail": "Entraron {{gross}}; {{passed}} se pasaron a los holders",
       "burned": "Recomprado y quemado",
@@ -5038,7 +5038,7 @@
       "sharedDetail": "{{claims}} reclamaciones de {{wallets}} carteras",
       "open": "Ver cada línea de {{part}}",
       "see": "Ver cada línea",
-      "footnote": "Solo la parte de operaciones de DeHub cuenta como ingreso arriba. El otro 4 % no está en ninguna de las tres: un 2 % se añadió al pool de trading como liquidez, y un 1 % fue a los holders y otro 1 % a operaciones, en tokens. Los holders también reclamaron {{early}} directamente del token en sus dos primeras semanas, antes de que existiera el contrato de recompensas."
+      "footnote": "Solo los fondos operativos retenidos cuentan como ingresos arriba. Las recompras y las recompensas compartidas se registran por separado. Todos los importes y monedas originales se pueden consultar en el registro."
     }
   },
   "solana": {

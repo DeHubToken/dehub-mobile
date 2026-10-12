@@ -5028,8 +5028,8 @@
       "sourceUnavailable": "Kullanılamıyor"
     },
     "taxSplit": {
-      "title": "Token vergisi nereye gitti",
-      "intro": "Orijinal DeHub tokenı 2023’e kadar her işlemden %12 aldı. BNB olarak %4 DeHub’ı geri alıp yaktı, %2 DeHub operasyonlarına ve %2 sahiplere ve stake edenlere gitti; yani yakım her zaman diğer ikisinin her birinin iki katıydı. Bu BNB’nin nereye gittiğini, her ödemenin yapıldığı günkü BNB fiyatıyla burada görebilirsiniz.",
+      "title": "Gelir nereye gitti",
+      "intro": "Geçmiş gelirler operasyonları, token geri alımlarını ve token sahipleri ile staking katılımcılarının ödüllerini finanse etti. Tutarlar her ödeme tarihindeki değerle dolar olarak gösterilir. Orijinal para birimlerini ve tüm işlemleri görmek için her bölümü açın.",
       "team": "DeHub operasyonları",
       "teamDetail": "{{gross}} geldi; bunun {{passed}} kadarı sahiplere aktarıldı",
       "burned": "Geri alınıp yakıldı",
@@ -5038,7 +5038,7 @@
       "sharedDetail": "{{wallets}} cüzdandan {{claims}} talep",
       "open": "{{part}} için her satırı gör",
       "see": "Her satırı gör",
-      "footnote": "Yukarıda yalnızca DeHub operasyonları payı gelir olarak sayılır. Kalan %4 bu üçünün hiçbirinde yok: %2 likidite olarak işlem havuzuna eklendi, %1 sahiplere ve %1 operasyonlara token olarak gitti. Sahipler ayrıca ödül sözleşmesi var olmadan önce, tokenın ilk iki haftasında doğrudan tokendan {{early}} talep etti."
+      "footnote": "Yukarıda yalnızca elde tutulan işletme fonları gelir sayılır. Geri alımlar ve paylaşılan ödüller ayrı kaydedilir. Her tutar ve orijinal para birimi defterde incelenebilir."
     }
   },
   "solana": {
