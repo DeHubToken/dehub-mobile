@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, G, Defs, Mask, Rect, type SvgProps } from "react-native-svg";
+import Svg, { Path, G, Defs, Mask, Rect, ClipPath, type SvgProps } from "react-native-svg";
 type CutProps = Omit<SvgProps, "color"> & { size?: number; color?: string };
 
 // Shared 32-unit Cut artwork. Preserve explicit path fills and per-instance mask IDs.
@@ -285,7 +285,22 @@ const CutLocation = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
 const CutHistory = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 12A12 12 0 1 1 5 22" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M2.8000 6.3920L2.8000 13.2000L11.0000 13.2000L11.0000 12.1920Q11.0000 10.8000 9.6080 10.8000L5.2000 10.8000L5.2000 5.0000L4.1920 5.0000Q2.8000 5.0000 2.8000 6.3920Z" fill={color} fillRule="evenodd" /><Path d="M14.9000 10.2760L14.9000 17.6798L21.5081 20.9839L21.9213 20.1574Q22.4919 19.0161 21.3506 18.4455L17.1000 16.3202L17.1000 9.0000L16.1760 9.0000Q14.9000 9.0000 14.9000 10.2760Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => {
+  const clipId = React.useId().replace(/:/g, "");
+  return (
+    <Svg width={size} height={size} viewBox="0 0 32 32" {...props}>
+      <Defs><ClipPath id={clipId}><Path d="M5 3H21Q27 3 27 9V29H11Q5 29 5 23Z" /></ClipPath></Defs>
+      <G clipPath={`url(#${clipId})`}>
+        <Path d="M10 3V29 M22 3V29 M10 16H22 M5 8H10 M22 8H27 M5 16H10 M22 16H27 M5 24H10 M22 24H27" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.05} strokeLinecap="butt" strokeLinejoin="miter" />
+      </G>
+      <Path d="M5 3H21Q27 3 27 9V29H11Q5 29 5 23Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" />
+    </Svg>
+  );
+};
+export { CutShorts as Shorts };
+
 export const cutIcons = {
+  Shorts: CutShorts,
   Home: CutHome,
   House: CutHome,
   Search: CutSearch,
