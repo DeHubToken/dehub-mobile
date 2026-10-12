@@ -405,6 +405,22 @@ export const cutIcons = {
   History: CutHistory,
 };
 export type CutIconName = keyof typeof cutIcons;
+/** Expand filled artwork as well as strokes for a crisp half-pixel media outline. */
+export function renderCutIconOutline(name: string, size: number, color: string) {
+  if (!Object.prototype.hasOwnProperty.call(cutIcons, name)) return null;
+  const artwork = cutIcons[name as CutIconName]({ size, color, strokeWidth: 3 });
+  const expand = (children: React.ReactNode): React.ReactNode => React.Children.map(children, child => {
+    if (!React.isValidElement<{ fill?: string; children?: React.ReactNode }>(child)) return child;
+    if (child.type === Path && child.props.fill && child.props.fill !== "none") {
+      return React.cloneElement(child as React.ReactElement<React.ComponentProps<typeof Path>>, {
+        stroke: color, strokeWidth: 32 / size, strokeLinejoin: "round",
+      });
+    }
+    if (child.type === G) return React.cloneElement(child, {}, expand(child.props.children));
+    return child;
+  });
+  return React.cloneElement(artwork, {}, expand(artwork.props.children));
+}
 export function getCutIcon(name: string): React.ComponentType<CutProps> | undefined {
   return Object.prototype.hasOwnProperty.call(cutIcons, name) ? cutIcons[name as CutIconName] : undefined;
 }
