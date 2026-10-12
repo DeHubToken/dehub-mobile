@@ -1,6 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React from "react";
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
 import { FIELD_TEXT } from "../../theme/inputs";
@@ -91,7 +91,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
   };
 
   return (
-    <View className="px-3 pb-2">
+    <View className="px-2 pb-2">
       {isSearchOpen ? (
         // Minimal: the open search is a field on the page, not a box — no
         // fill, just a hairline under it.
@@ -127,12 +127,7 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           </Pressable>
         </View>
       ) : (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{ marginHorizontal: -12 }}
-          contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}
-        >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
         <Pressable
           onPress={() => setIsSearchOpen(true)}
           hitSlop={6}
@@ -151,8 +146,8 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
           accessibilityLabel={t("filters.filters", "Filters")}
           className={
             filtersOpen || activeFilterCount > 0
-              ? "flex-row items-center rounded-xl border border-white/30 bg-white/15 px-3 h-10"
-              : "flex-row items-center rounded-xl border border-white/10 bg-white/5 px-3 h-10"
+              ? "flex-row items-center justify-center rounded-xl border border-white/30 bg-white/15 px-2 h-10 min-w-10"
+              : "flex-row items-center justify-center rounded-xl border border-white/10 bg-white/5 px-2 h-10 min-w-10"
           }
           style={[
             { gap: 6 },
@@ -177,18 +172,18 @@ const ProfileContentToolbar: React.FC<ProfileContentToolbarProps> = ({
               onPress={() => onSortChange(key)}
               className={
                 isActive
-                  ? "h-10 px-3 rounded-xl items-center justify-center bg-white/20 border border-white/30"
-                  : "h-10 px-3 rounded-xl items-center justify-center bg-white/5 border border-white/10"
+                  ? "flex-1 min-w-0 h-10 px-1 rounded-xl items-center justify-center bg-white/20 border border-white/30"
+                  : "flex-1 min-w-0 h-10 px-1 rounded-xl items-center justify-center bg-white/5 border border-white/10"
               }
               style={isMinimal ? [MINIMAL_CHIP, isActive && MINIMAL_CHIP_ACTIVE] : undefined}
             >
-              <Text className="text-white text-xs font-medium">
+              <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} className="text-white text-xs font-medium">
                 {t(labelKey, fallback)}
               </Text>
             </Pressable>
           );
         })}
-        </ScrollView>
+        </View>
       )}
     </View>
   );
