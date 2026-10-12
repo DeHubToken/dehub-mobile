@@ -68,7 +68,7 @@ const TopControls: React.FC<TopControlsProps> = ({
           accessibilityRole="button"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Icon name="ChevronRight" size={22} color="#fff" style={{ transform: [{ rotate: '90deg' }] }} />
+          <View style={{ transform: [{ rotate: '90deg' }] }}><Icon name="ChevronRight" size={22} color="#fff" /></View>
         </TouchableOpacity>
         
         {/* Title (optional) */}

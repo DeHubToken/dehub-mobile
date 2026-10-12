@@ -77,12 +77,11 @@ const CenterControls: React.FC<CenterControlsProps> = ({
           {isBuffering ? (
             <ActivityIndicator size="large" color="#fff" />
           ) : (
-            <Icon
+            <View style={isPlaying ? undefined : { marginLeft: 4 }}><Icon
               name={isPlaying ? 'Pause' : 'Play'}
               size={38}
               color="#fff"
-              style={isPlaying ? undefined : { marginLeft: 4 }}
-            />
+            /></View>
           )}
         </TouchableOpacity>
 
