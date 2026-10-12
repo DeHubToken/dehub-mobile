@@ -5027,6 +5027,9 @@
       "reinvestment": "Marketing et salaires des développeurs",
       "reinvestmentGroup": "Réinvestissement",
       "reinvestmentNote": "DeHub indique que les fonds d’exploitation historiques conservés ont été entièrement réinvestis. Le marketing et les salaires des développeurs sont regroupés et répartis sur chaque mois, après déduction des coûts déjà comptabilisés ce mois-là.",
+      "estimatedOperations": "Coûts d’exploitation estimés",
+      "estimatedOperationsNote": "Les coûts d’exploitation suivent une tendance mensuelle estimée, culminant à 100 000 $ en novembre 2021 puis diminuant. Les dépenses enregistrées y sont incluses sans double comptage. Il s’agit d’une estimation, pas d’un relevé de factures.",
+      "grossBnbSharingNote": "Les revenus incluent les BNB distribués aux détenteurs et aux stakers. Ces paiements ont été versés aux participants et non conservés par DeHub.",
       "profitShared": "Bénéfice net partagé",
       "profitSharedHint": "{{usd}} versés aux détenteurs et aux stakers · {{from}}–{{to}}",
       "sourceUnavailable": "Indisponible"
