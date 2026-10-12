@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useDerivedValue, type SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +32,7 @@ export interface CollapsingProfileHeaderProps {
 export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPinned, name, handle, cover, canGoBack = true, onBackPress, menu, showFollow, isFollowing, isPending, followLoading, disableFollow, onFollow, onOpenUnfollow }: CollapsingProfileHeaderProps) {
   const { t } = useTranslation();
   const { theme, colors } = useAppTheme();
+  const { width } = useWindowDimensions();
   const solidTheme = theme === 'system' || theme === 'minimal';
   const [collapsed, setCollapsed] = useState(false);
   const [pinned, setPinned] = useState(false);
@@ -74,8 +75,10 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
       </View>
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
         <Animated.View pointerEvents="none" accessibilityElementsHidden={!collapsed} importantForAccessibility={collapsed ? 'auto' : 'no-hide-descendants'} style={[styles.identity, identity]}>
-          <Text numberOfLines={1} style={styles.name}>{name}</Text>
-          {!!handle && <Text numberOfLines={1} style={styles.handle}>{handle.startsWith('@') ? handle : `@${handle}`}</Text>}
+          {width >= 600 && <>
+            <Text numberOfLines={1} style={styles.name}>{name}</Text>
+            {!!handle && <Text numberOfLines={1} style={styles.handle}>{handle.startsWith('@') ? handle : `@${handle}`}</Text>}
+          </>}
         </Animated.View>
         {collapsed && showFollow && (
           <TouchableOpacity

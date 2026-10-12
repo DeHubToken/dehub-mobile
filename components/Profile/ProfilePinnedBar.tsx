@@ -40,13 +40,13 @@ export default function ProfilePinnedBar({ showIdentity = true, badges, name, ha
         </TouchableOpacity>}
         {showIdentity && <View style={styles.identity}>
           <Avatar name={name} uri={avatarUrl} size={32} />
-          <View style={{ maxWidth: width >= 600 ? 96 : 76 }}>
+          {width >= 600 && <View style={{ maxWidth: 96 }}>
             <View style={styles.nameRow}>
               <Text numberOfLines={1} style={[styles.name, { color: foreground }]}>{name}</Text>
               {badges}
             </View>
             {!!handle && <Text numberOfLines={1} style={[styles.handle, { color: skin?.barIcon ?? colors.mutedForeground }]}>{handle.startsWith('@') ? handle : `@${handle}`}</Text>}
-          </View>
+          </View>}
         </View>}
         {children}
         {showFollow && <TouchableOpacity

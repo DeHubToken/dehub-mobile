@@ -497,7 +497,7 @@ const UserProfileBottomContentTabs: React.FC<
   // can place them above the joined Back plate, as on the own-profile screen.
   const renderScrollViewport = (content: React.ReactNode) =>
     isFullScreen && profileScrollY && profileActionsBottom ? (
-      <ProfileScrollViewport scrollY={profileScrollY} actionsBottom={profileActionsBottom}>
+      <ProfileScrollViewport scrollY={profileScrollY} actionsBottom={profileActionsBottom} tabsPinned={profileTabsPinned}>
         {content}
       </ProfileScrollViewport>
     ) : content;
