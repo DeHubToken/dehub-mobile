@@ -51,6 +51,7 @@ import { canManageAgents } from '../libs/agent-access';
 import { AgentTasksPanel } from './AgentTasksPanel';
 import { AgentProfilePanel } from './AgentProfilePanel';
 import LiquidGlass from '../components/ui/LiquidGlass';
+import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 
 const maskApiKey = (key: string) =>
   key.substring(0, 10) + "•".repeat(20) + key.substring(key.length - 4);
@@ -97,6 +98,7 @@ function SecretBlock({
 export default function AgentsScreen() {
   const { t, i18n } = useTranslation();
   const navigation = useNavigation<any>();
+  const { showUserProfile } = useUserProfileSheet();
   const user = useUser();
   const walletAddress = (user?.walletAddress || user?.address || null) as string | null;
   const allowed = canManageAgents(walletAddress);
@@ -225,7 +227,7 @@ export default function AgentsScreen() {
     return (
       <PageSection key={agent.id}>
         <View style={styles.cardInner}>
-          <View style={styles.agentHead}>
+          <Pressable style={styles.agentHead} accessibilityRole="button" accessibilityLabel={`${agent.name} - ${t('nav.profile')}`} onPress={() => showUserProfile(agent.name)}>
             <View style={styles.avatar}>
               <Icon name="Bot" size={20} color="#fff" />
             </View>
@@ -240,9 +242,9 @@ export default function AgentsScreen() {
                 {agent.is_active ? t("agents.active") : t("agents.inactive")}
               </Text>
             </View>
-          </View>
+          </Pressable>
 
-          <AgentProfilePanel wallet={walletAddress} agentId={agent.id} />
+          <AgentProfilePanel wallet={walletAddress} agentId={agent.id} agentName={agent.name} />
           {apiKey ? (
             <SecretBlock
               label={t("agents.apiKey")}
