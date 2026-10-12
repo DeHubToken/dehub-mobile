@@ -60,13 +60,17 @@ describe("visual highlight evidence", () => {
     const decoded: number[] = [], drawn: number[] = []; let paused = false;
     const video = { duration: 100, videoWidth: 1920, videoHeight: 1080, currentTime: 0, muted: false, playsInline: false, preload: "", src: "", load() {}, pause() { paused = true; }, removeAttribute() {} };
     const surface = { width: 0, height: 0, getContext: () => ({ drawImage: () => drawn.push(video.currentTime) }), toDataURL: () => JPEG };
-    const doc = { createElement: (name: string) => name === "video" ? video : surface };
+    const sheet = { ...surface, getContext: () => ({ drawImage: () => {}, fillRect: () => {}, fillText: () => {} }) };
+    let surfaces = 0;
+    const doc = { createElement: (name: string) => name === "video" ? video : ++surfaces === 1 ? surface : sheet };
     const wait = async (source: typeof video, time: number) => { source.currentTime = time; decoded.push(time); };
     const sample = new Function("document", "waitForVideoFrame", VISUAL_FRAME_RUNTIME + ";return sampleVisualFrames;")(doc, wait) as (src: string, clip: MediaClip, windows: VisualWindow[], signal: AbortSignal) => Promise<VisualFrame[]>;
     const window = visualWindowPlan({ ...clip, duration: 6 });
     const result = await sample("blob:local-video", { ...clip, duration: 6 }, window, new AbortController().signal);
     expect(decoded).toEqual([11, 13, 15, 17, 19, 21]); expect(drawn).toEqual(decoded);
     expect(result.map(frame => frame.at)).toEqual([0.5, 1.5, 2.5, 3.5, 4.5, 5.5]);
+    expect(result[0].contactSheet).toEqual({ startIndex: 0, endIndex: 6, dataUrl: JPEG });
+    expect(sheet.width).toBe(0); expect(sheet.height).toBe(0);
     expect(paused).toBe(true); expect(surface.width).toBe(0); expect(surface.height).toBe(0);
   });
 });
