@@ -31,7 +31,7 @@ const TopControls: React.FC<TopControlsProps> = ({
   onToggleSpeed,
   isMuted,
   fullscreen,
-  isLooping = true,
+  isLooping = false,
   playbackRate = 1,
   title,
   showTitle = false,

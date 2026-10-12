@@ -2,7 +2,7 @@ import { PersistentVideoView } from '../common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import { applyVideoVolume } from '../../libs/dub-mix';
 import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
-import { useMediaVolume } from '../../libs/video-preferences';
+import { useMediaVolume, getIsLooping, setIsLooping as persistLooping, useMediaLooping } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useFeedSurfaceActive, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
@@ -452,7 +452,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(canPlay ? videoUrl : null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
-    p.loop = true;
+    p.loop = getIsLooping();
     p.muted = getCachedMuted();
     applyVideoVolume(p, getVolume());
     p.timeUpdateEventInterval = 0.5;
@@ -1005,7 +1005,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer, dubAvailable],
   );
 
-  const [isLooping, setIsLooping] = useState(true);
+  const isLooping = useMediaLooping();
+  useEffect(() => {
+    if (ownsVideo) player.loop = isLooping;
+  }, [player, ownsVideo, isLooping]);
   const [playbackRate, setPlaybackRate] = useState(() => getPlaybackRateFor(creator));
   useLayoutEffect(() => {
     if (!ownsVideo) return;
@@ -1016,7 +1019,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setIsPlaying(playing);
     setIsMuted(player.muted);
     setPlaybackRate(player.playbackRate);
-    setIsLooping(player.loop);
     currentTimeRef.current = player.currentTime;
     setCurrentTime(player.currentTime);
     setVideoDuration(player.duration);
@@ -1035,7 +1037,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!playerRef.current || !ownsPlayerRef.current()) return;
     const nextLoop = !playerRef.current.loop;
     playerRef.current.loop = nextLoop;
-    setIsLooping(nextLoop);
+    persistLooping(nextLoop);
     startHideTimer();
   }, [startHideTimer]);
 

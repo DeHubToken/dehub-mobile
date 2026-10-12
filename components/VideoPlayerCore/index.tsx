@@ -56,7 +56,7 @@ import SeekOverlay from './SeekOverlay';
 import CaptionOverlay from './CaptionOverlay';
 import DubVolumeSheet from './DubVolumeSheet';
 import { applyVideoVolume } from '../../libs/dub-mix';
-import { getVolume, setVolume, useMediaVolume } from '../../libs/video-preferences';
+import { getVolume, setVolume, useMediaVolume, getIsLooping, setIsLooping as persistLooping, useMediaLooping } from '../../libs/video-preferences';
 import {
   PLAYER_CONSTANTS,
   SeekDirection,
@@ -119,7 +119,7 @@ interface VideoPlayerCoreProps {
 const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   sourceUrl,
   autoplay = true,
-  loop = true,
+  loop,
   initialMuted = false,
   muted,
   liveMode = false,
@@ -165,7 +165,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [fullscreen, setFullscreen] = useState(false);
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
-  const [isLooping, setIsLooping] = useState(loop);
+  const savedLooping = useMediaLooping();
+  const isLooping = !liveMode && (loop ?? savedLooping);
   const [playbackRate, setPlaybackRate] = useState(() => (liveMode ? 1 : getPlaybackRateFor(creator)));
   const [isInPiP, setIsInPiP] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
@@ -246,7 +247,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // source, which allocates nothing worth mentioning.
   const sharedLivePlayer = useSharedLivePlayer(liveMode ? sourceUrl : null);
   const ownPlayer: VideoPlayer = usePersistentVideoPlayer(sharedLivePlayer ? null : sourceUrl ?? null, (p) => {
-    p.loop = !liveMode && loop;
+    p.loop = !liveMode && (loop ?? getIsLooping());
     if (!liveMode) applyVideoVolume(p, getVolume());
     p.muted = muted ?? getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
@@ -261,6 +262,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
   });
   const player = sharedLivePlayer ?? ownPlayer;
+  useEffect(() => { player.loop = isLooping; }, [player, isLooping]);
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, sourceUrl, {
     component: 'VideoPlayerCore', postId: tokenId,
     allowed: () => (navigation.isFocused() || isPictureInPicturePlayer(player)) && !visualActivity.isCallBusy() && canStartVideo(player),
@@ -483,7 +485,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const toggleLoop = useCallback(() => {
     const nextLoop = !isLooping;
     player.loop = nextLoop;
-    setIsLooping(nextLoop);
+    persistLooping(nextLoop);
   }, [isLooping, player]);
 
   const toggleSpeed = useCallback(() => {

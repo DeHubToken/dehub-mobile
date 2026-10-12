@@ -49,6 +49,7 @@ import { PLAYER_CONSTANTS } from "../components/VideoPlayerCore/utils";
 import { isBrainrotSwipe } from "../libs/brainrotFeed";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { getIsLooping, useMediaLooping } from '../libs/video-preferences';
 
 const DISMISS_THRESHOLD = 150;
 const CONTROLS_TIMEOUT = PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY;
@@ -123,7 +124,7 @@ const FullscreenVideoScreen = () => {
   const { width: screenW, height: screenH } = Dimensions.get("window");
 
   const { player, session, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl || null, (p) => {
-    p.loop = true;
+    p.loop = getIsLooping();
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
     if (startTime > 0) p.currentTime = startTime;
@@ -138,6 +139,11 @@ const FullscreenVideoScreen = () => {
     p.showNowPlayingNotification = true;
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
   });
+
+  const isLooping = useMediaLooping();
+  useEffect(() => {
+    if (ownsVideo) player.loop = isLooping;
+  }, [player, ownsVideo, isLooping]);
 
   useLayoutEffect(() => {
     if (!ownsVideo) return;
