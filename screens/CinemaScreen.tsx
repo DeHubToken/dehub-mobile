@@ -16,6 +16,7 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  */
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  Platform,
   ActivityIndicator,
   FlatList,
   KeyboardAvoidingView,
@@ -94,7 +95,7 @@ function CountryPicker({
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"} visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel={t("cinema.close")} />
       <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
         <Text style={styles.sheetTitle}>{t("cinema.country")}</Text>
@@ -415,7 +416,7 @@ const styles = StyleSheet.create({
   },
   countryText: { flex: 1, color: "#FFFFFF", fontSize: 14 },
   flag: { fontSize: 18 },
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)" },
+  backdrop: { flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)" },
   sheet: {
     maxHeight: "70%",
     backgroundColor: "#0B0C0E",

@@ -825,7 +825,7 @@ export default function WorkJobDetailScreen() {
 
       {/* Rejection reason — web uses window.prompt(), which RN has no
           cross-platform equivalent for. */}
-      <Modal
+      <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"}
         visible={!!rejectTarget}
         transparent
         animationType="fade"
@@ -1077,7 +1077,7 @@ const styles = StyleSheet.create({
 
   modalBackdrop: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)",
     justifyContent: "center",
     paddingHorizontal: 22,
   },
