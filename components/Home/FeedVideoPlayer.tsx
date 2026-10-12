@@ -26,7 +26,6 @@ import {
   Easing,
   Platform,
   I18nManager,
-  type LayoutChangeEvent,
 } from "react-native";
 import { VideoView, VideoPlayer, isPictureInPictureSupported } from "expo-video";
 import PictureInPictureButton from "../common/PictureInPictureButton";
@@ -128,18 +127,16 @@ const pipSupported = () => {
   }
 };
 
-/** The card supplies the space left after its header, caption and actions.
+/** Match the web feed: full column width, capped at 75% of the screen.
  *  Cover fitting crops equally from the top and bottom of taller clips. */
-const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number, feedMaxHeight?: number) =>
-  Math.max(mediaAspect, boxWidth / Math.min(win.height * 0.7, feedMaxHeight ?? win.height * 0.7));
+const feedBoxAspect = (win: { width: number; height: number }, boxWidth: number, mediaAspect: number) =>
+  Math.max(mediaAspect, boxWidth / (win.height * 0.75));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
   /** Post page: the clip fills the width or most of the screen height, at its
    *  real shape even when thinner than 9:16, and sits centred. */
   postPage?: boolean;
-  feedMaxHeight?: number;
-  onFeedMediaLayout?: (event: LayoutChangeEvent) => void;
   /** Post-page Back uses the same glyph and tap area as Volume. */
   onBack?: () => void;
   videoUrl: string | undefined;
@@ -254,8 +251,6 @@ const LOVE_BLOOM = [
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
   postPage = false,
-  feedMaxHeight,
-  onFeedMediaLayout,
   onBack,
   videoUrl,
   transcodingStatus,
@@ -1195,12 +1190,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   return (
     <View
-      onLayout={onFeedMediaLayout}
       style={[
         styles.container,
         {
           aspectRatio: cropFeedVideo
-            ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect, feedMaxHeight)
+            ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
             : mediaAspect,
           // Feed videos fill the column; the post page keeps the full frame centred.
           width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
@@ -2044,8 +2038,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "feedMaxHeight" | "onFeedMediaLayout">> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedMaxHeight, onFeedMediaLayout }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack">> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack }) => {
     const { t } = useTranslation();
     const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
     const { isMinimal: minimalTheme } = useAppTheme();
@@ -2058,12 +2052,11 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
-        onLayout={onFeedMediaLayout}
         style={[
           styles.container,
           {
             aspectRatio: cropFeedVideo
-              ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect, feedMaxHeight)
+              ? feedBoxAspect(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect), mediaAspect)
               : mediaAspect,
             width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
             maxWidth: "100%",
@@ -2183,8 +2176,6 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       hideControls={props.hideControls}
       postPage={props.postPage}
       onBack={props.onBack}
-      feedMaxHeight={props.feedMaxHeight}
-      onFeedMediaLayout={props.onFeedMediaLayout}
       onPress={onPosterPress}
     />
   );

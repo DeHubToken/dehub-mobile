@@ -309,7 +309,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const { isSignedIn } = useAuthState();
   // Live window width, so split-screen and unfolding resize the card instead
   // of keeping the width the app started with.
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
   const IMAGE_WIDTH = imageWidthFor(SCREEN_WIDTH);
   const SINGLE_IMAGE_WIDTH = singleImageWidthFor(SCREEN_WIDTH);
 
@@ -395,18 +395,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isAudioPost = contentType === "audio";
   const isVideo = contentType === "video" || contentType === "short";
   const isShort = contentType === "short";
-  const [measuredFeedVideoHeight, setMeasuredFeedVideoHeight] = useKeyedState<number | null>(postKey, null);
-  const videoLayoutRef = useRef({ key: postKey, card: 0, media: 0 });
-  if (videoLayoutRef.current.key !== postKey) videoLayoutRef.current = { key: postKey, card: 0, media: 0 };
-  const updateFeedVideoLayout = useCallback((part: "card" | "media", height: number) => {
-    const layout = videoLayoutRef.current;
-    layout[part] = height;
-    if (!layout.card || !layout.media) return;
-    // Reserve the measured header, caption, metadata, actions and card padding.
-    const next = Math.max(96, Math.round(SCREEN_HEIGHT * 0.7 - (layout.card - layout.media)));
-    setMeasuredFeedVideoHeight(current => current !== null && Math.abs(current - next) <= 1 ? current : next);
-  }, [SCREEN_HEIGHT, setMeasuredFeedVideoHeight]);
-  const feedVideoMaxHeight = measuredFeedVideoHeight ?? Math.max(96, Math.round(SCREEN_HEIGHT * 0.7 - 180));
 
   const userAddress = user?.address || user?.walletAddress || "";
   // What one reaction from this viewer counts for — their badge multiplier.
@@ -1577,8 +1565,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <FeedVideoPlayer
       thumbnail={thumbnail}
       postPage={fullContent}
-      feedMaxHeight={!fullContent ? feedVideoMaxHeight : undefined}
-      onFeedMediaLayout={!fullContent ? event => updateFeedVideoLayout("media", event.nativeEvent.layout.height) : undefined}
       onBack={postVideo ? onBack : undefined}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
@@ -2328,10 +2314,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // No bento: the post steps out over the list's side padding so its
         // media spans the screen, and posts are split by a hairline across
         // the whole width with 12pt of room either side of it.
-        onLayout={event => {
-          handleMinimalLayout(event);
-          if (isVideo && !fullContent) updateFeedVideoLayout("card", event.nativeEvent.layout.height);
-        }}
+        onLayout={handleMinimalLayout}
         // Media starts under the capsule; a leading text card clears it.
         style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: textTopInset } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
       >
@@ -2553,10 +2536,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // at all. The card steps out over the list's side padding to span the
       // screen, posts are split by one full-width hairline, and media bleeds
       // past the text inset to both edges.
-      onLayout={event => {
-        if (isMinimal && !immersive && !flat) handleMinimalLayout(event);
-        if (isVideo && !fullContent) updateFeedVideoLayout("card", event.nativeEvent.layout.height);
-      }}
+      onLayout={isMinimal && !immersive && !flat ? handleMinimalLayout : undefined}
       style={immersive ? {
         paddingHorizontal: IMMERSIVE_INSET,
         paddingBottom: 12,
