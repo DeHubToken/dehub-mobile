@@ -79,6 +79,7 @@ import { useScrubGesture } from "../hooks/useScrubGesture";
 import { useDataSaver } from "../hooks/useDataSaver";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
 import { getVolume, setVolume as persistVolume } from "../libs/video-preferences";
+import { getCachedMuted, setMutedState, useMediaMuted } from "../libs/videoMutedState";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
@@ -1787,7 +1788,7 @@ const ShortsViewerScreen = () => {
 
   // Viewer-level playback chrome — mute and speed persist across shorts, as on
   // web, rather than resetting with every slide.
-  const [isMuted, setIsMuted] = useState(false);
+  const isMuted = useMediaMuted();
   // The phone's volume keys move everything at once. Holding the speaker and
   // dragging sets this short's own level, and it is remembered the same way
   // the playback rate is. Same gesture as the feed player.
@@ -1800,7 +1801,7 @@ const ShortsViewerScreen = () => {
     volumeRef.current = level;
     setVolume(level);
     persistVolume(level);
-    setIsMuted(level === 0);
+    setMutedState(level === 0);
   }, []);
 
   const volumePanResponder = useMemo(
@@ -1812,7 +1813,7 @@ const ShortsViewerScreen = () => {
             return isMuted ? 0 : volumeRef.current;
           },
           onVolume: applyVolume,
-          onTap: () => setIsMuted((m) => !m),
+          onTap: () => setMutedState(!getCachedMuted()),
           onEnd: () => setVolumeAdjusting(false),
         }),
       ),
