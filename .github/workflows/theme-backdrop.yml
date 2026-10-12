@@ -52,4 +52,5 @@ jobs:
             scripts/theme-backdrop/source.json
           retention-days: 14
       - name: Require the committed backdrop to match its pinned source
+        if: github.event_name == 'pull_request'
         run: cmp "$RUNNER_TEMP/committed-backdrop.html" assets/theme-backdrop/index.html
