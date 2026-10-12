@@ -5023,6 +5023,9 @@
       "reinvestment": "Pazarlama ve geliştirici maaşları",
       "reinvestmentGroup": "Yeniden yatırım",
       "reinvestmentNote": "DeHub, geçmişte elde tutulan işletme gelirlerinin tamamının yeniden yatırıldığını bildiriyor. Pazarlama ve geliştirici maaşları birlikte gösterilir ve o ay zaten kaydedilmiş maliyetler çıkarıldıktan sonra ayın günlerine dağıtılır.",
+      "estimatedOperations": "Tahmini işletme giderleri",
+      "estimatedOperationsNote": "İşletme giderleri, Kasım 2021'de aylık 100.000 $ zirveye ulaşıp sonrasında düşen tahmini bir eğriyi izler. Kaydedilmiş faturalar buna dahildir ve iki kez sayılmaz. Bu bir tahmindir, fatura dökümü değildir.",
+      "grossBnbSharingNote": "Gelire token sahipleri ve staking katılımcılarıyla paylaşılan BNB de dahildir. Bu ödemeler katılımcılara dağıtılmıştır; DeHub tarafından tutulmamıştır.",
       "profitShared": "Paylaşılan net kâr",
       "profitSharedHint": "Sahiplere ve staking katılımcılarına ödenen {{usd}} · {{from}}–{{to}}",
       "sourceUnavailable": "Kullanılamıyor"
