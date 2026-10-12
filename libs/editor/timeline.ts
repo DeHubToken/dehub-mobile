@@ -1,3 +1,4 @@
+import { hasTimelineMotion } from "./projectMotion";
 /**
  * Timeline editing: putting videos and sounds in order, trimming, splitting,
  * moving, speed and transitions. Pure functions on a ProjectSnapshot, like
@@ -17,9 +18,9 @@ export const MIN_TRANSITION_DURATION = 0.1;
 export const TRANSITION_KINDS: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
 export const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
 
-/** A project is a video once it has a video or a sound in it. */
+/** Recorded media and animated designs both need the video timeline. */
 export function isVideoProject(p: ProjectSnapshot): boolean {
-  return p.clips.some((c) => c.kind === "video" || c.kind === "audio");
+  return hasTimelineMotion(p.clips);
 }
 
 export function projectDuration(p: ProjectSnapshot): number {
