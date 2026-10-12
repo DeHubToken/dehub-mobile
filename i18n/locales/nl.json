@@ -1,4 +1,22 @@
 {
+  "quickActions": {
+    "title": "Paginaopties",
+    "hint": "Houd ingedrukt op een plek zonder bestaande langdrukactie om deze opties te openen.",
+    "question": "Wat is er mis met deze pagina?",
+    "placeholder": "Beschrijf het probleem in een kort bericht…",
+    "refresh": "Pagina vernieuwen",
+    "logout": "Uitloggen",
+    "publicNotice": "Je melding en eventuele schermafbeelding verschijnen op het openbare bugoverzicht. Controleer de afbeelding voordat je verzendt.",
+    "deviceNotice": "Pagina, apparaat, model indien beschikbaar en app- of browsergegevens worden automatisch toegevoegd.",
+    "capturing": "Deze pagina vastleggen…",
+    "screenshot": "Voorbeeld van schermafbeelding",
+    "removeScreenshot": "Schermafbeelding verwijderen",
+    "noScreenshot": "Automatische schermafbeelding niet beschikbaar. Je kunt je melding nog steeds verzenden.",
+    "attachScreenshot": "Schermafbeelding bijvoegen",
+    "send": "Bugmelding verzenden",
+    "signIn": "Log in om te verzenden",
+    "failed": "Er ging iets mis. Je bericht is opgeslagen; probeer het opnieuw."
+  },
   "articles": {
     "articleImage": "Artikelafbeelding",
     "socialImage": "Afbeelding voor sociaal delen",
