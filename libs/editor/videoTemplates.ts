@@ -1,3 +1,4 @@
+import starterWords from "./videoStarterCopy.json";
 import type { TFunction } from "i18next";
 import type { AgentOp } from "./agent";
 import type { EditorTemplate } from "./templates";
@@ -21,6 +22,8 @@ interface Starter {
   aliases: string[];
   beats: Beat[];
 }
+
+const WORDS: { names: Record<string, string>; copy: Record<string, string> } = starterWords;
 
 const STARTERS: Starter[] = [
   { id: "question", aliases: ["question hook", "question"], beats: [
@@ -81,7 +84,65 @@ const STARTERS: Starter[] = [
     { seconds: 7, headline: "yourQuote", body: "authorHint" },
     { seconds: 3, headline: "passItOn", body: "nextHint" },
   ] },
-];
+  { id: "event", aliases: ["event invitation", "event promo"], beats: [
+    { seconds: 3, headline: "invited", body: "eventHint" },
+    { seconds: 4, headline: "eventName", body: "eventDetails" },
+    { seconds: 3, headline: "saveDate", body: "nextHint" },
+  ] },
+  { id: "podcast", aliases: ["podcast teaser", "podcast episode"], beats: [
+    { seconds: 3, headline: "newEpisode", body: "hookHint" },
+    { seconds: 5, headline: "episodeTitle", body: "episodeHint" },
+    { seconds: 3, headline: "listenIn", body: "nextHint" },
+  ] },
+  { id: "review", aliases: ["product review", "review"], beats: [
+    { seconds: 2, headline: "worthIt", body: "productHint" },
+    { seconds: 4, headline: "theGood", body: "reviewHint" },
+    { seconds: 4, headline: "theVerdict", body: "answerHint" },
+    { seconds: 2, headline: "tryIt", body: "nextHint" },
+  ] },
+  { id: "comparison", aliases: ["two options", "comparison", "side by side"], beats: [
+    { seconds: 2, headline: "twoOptions", body: "hookHint" },
+    { seconds: 4, headline: "optionOne", body: "optionHint" },
+    { seconds: 4, headline: "optionTwo", body: "optionHint" },
+    { seconds: 3, headline: "pickYours", body: "nextHint" },
+  ] },
+  { id: "checklist", aliases: ["quick checklist", "checklist"], beats: [
+    { seconds: 2, headline: "beforeStart", body: "saveHint" },
+    { seconds: 3, headline: "checkOne", body: "checkHint" },
+    { seconds: 3, headline: "checkTwo", body: "checkHint" },
+    { seconds: 3, headline: "checkThree", body: "checkHint" },
+    { seconds: 2, headline: "allSet", body: "nextHint" },
+  ] },
+  { id: "lesson", aliases: ["one useful lesson", "mini lesson", "lesson"], beats: [
+    { seconds: 3, headline: "oneLesson", body: "hookHint" },
+    { seconds: 4, headline: "keyIdea", body: "lessonHint" },
+    { seconds: 4, headline: "seeIt", body: "exampleHint" },
+    { seconds: 3, headline: "yourTurn", body: "nextHint" },
+  ] },
+  { id: "interview", aliases: ["interview highlight", "interview"], beats: [
+    { seconds: 3, headline: "meetGuest", body: "guestHint" },
+    { seconds: 4, headline: "oneQuestion", body: "questionHint" },
+    { seconds: 5, headline: "guestAnswer", body: "answerHint" },
+    { seconds: 3, headline: "takeaway", body: "nextHint" },
+  ] },
+  { id: "recap", aliases: ["event recap", "recap", "week recap"], beats: [
+    { seconds: 3, headline: "whatHappened", body: "recapHint" },
+    { seconds: 4, headline: "firstMoment", body: "pickHint" },
+    { seconds: 4, headline: "bestMoment", body: "pickHint" },
+    { seconds: 3, headline: "nextTime", body: "nextHint" },
+  ] },
+  { id: "milestone", aliases: ["milestone", "celebration"], beats: [
+    { seconds: 3, headline: "weDidIt", body: "hookHint" },
+    { seconds: 4, headline: "milestone", body: "milestoneHint" },
+    { seconds: 3, headline: "thankYou", body: "thankHint" },
+    { seconds: 3, headline: "nextChapter", body: "nextHint" },
+  ] },
+  { id: "offer", aliases: ["limited offer", "sale offer", "offer"], beats: [
+    { seconds: 3, headline: "offerTitle", body: "hookHint" },
+    { seconds: 4, headline: "offerDetails", body: "offerHint" },
+    { seconds: 3, headline: "endsSoon", body: "offerDeadline" },
+    { seconds: 2, headline: "getIt", body: "nextHint" },
+  ] },];
 
 function starterOps(starter: Starter, t: TFunction, aspect: VideoTemplateAspect): AgentOp[] {
   const ops: AgentOp[] = [{ op: "set_canvas", aspect, background: "#000000" }];
@@ -98,8 +159,8 @@ function starterOps(starter: Starter, t: TFunction, aspect: VideoTemplateAspect)
   let start = 0;
   starter.beats.forEach((beat, index) => {
     layer({ ...base, text: beat.number ?? String(index + 1).padStart(2, "0"), y: 0.32, fontSize: 36, fontWeight: 500, letterSpacing: 4, maxHeight: 0.06, color: "#b6b6b6" }, start, beat.seconds);
-    layer({ ...base, text: t(`editor.videoTemplates.copy.${beat.headline}`), y: 0.47, fontSize: wide ? 136 : 100, fontWeight: 700, maxHeight: 0.24 }, start, beat.seconds, "rise");
-    layer({ ...base, text: t(`editor.videoTemplates.copy.${beat.body}`), y: 0.65, fontSize: wide ? 46 : 36, fontWeight: 400, maxHeight: 0.13, color: "#b6b6b6" }, start, beat.seconds);
+    layer({ ...base, text: t(`editor.videoTemplates.copy.${beat.headline}`, { defaultValue: WORDS.copy[beat.headline] ?? "" }), y: 0.47, fontSize: wide ? 136 : 100, fontWeight: 700, maxHeight: 0.24 }, start, beat.seconds, "rise");
+    layer({ ...base, text: t(`editor.videoTemplates.copy.${beat.body}`, { defaultValue: WORDS.copy[beat.body] ?? "" }), y: 0.65, fontSize: wide ? 46 : 36, fontWeight: 400, maxHeight: 0.13, color: "#b6b6b6" }, start, beat.seconds);
     start += beat.seconds;
   });
   return ops;
@@ -112,6 +173,7 @@ export const VIDEO_TEMPLATES: EditorTemplate[] = STARTERS.map((starter) => ({
   duration: starter.beats.reduce((end, beat) => end + beat.seconds, 0),
   preview: { bg: "#000000", fg: "#ffffff", font: "Inter" },
   titleKey: `editor.videoTemplates.names.${starter.id}`,
+  titleDefault: WORDS.names[starter.id],
   ops: (t, aspect) => starterOps(starter, t, videoTemplateAspect(aspect) ?? "9:16"),
 }));
 

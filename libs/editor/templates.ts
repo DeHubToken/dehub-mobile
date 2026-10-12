@@ -18,6 +18,7 @@ export interface EditorTemplate {
   /** Preview tile colours and font; the real thing is built from ops. */
   preview: { bg: string; fg: string; font: string };
   titleKey: string;
+  titleDefault?: string;
   ops: (t: TFunction, aspect?: VideoTemplateAspect) => AgentOp[];
 }
 
