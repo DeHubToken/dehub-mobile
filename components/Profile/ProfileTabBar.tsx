@@ -2,12 +2,13 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { I18nManager, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
+import MaskedView from "@react-native-masked-view/masked-view";
 import NavPillSurface from "../ui/NavPillSurface";
 import { PINNED_PROFILE_TABS_HEIGHT, PROFILE_TABS_TOP_GAP } from "./useProfileCollapse";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalTab, minimalTabActive, minimalTabStrip } from "../../theme/minimal";
+import { resolveEdgeFadeMask } from "../../libs/edgeFadeMask";
 
 export interface ProfileTabItem<Key extends string = string> {
   key: Key;
@@ -37,7 +38,10 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
   const maxOffset = Math.max(0, contentWidth - railWidth);
   const startHidden = compact && offset > 1;
   const endHidden = compact && maxOffset - offset > 1;
-  const edgeColor = String(skin?.barFill.backgroundColor ?? colors.background);
+  const mask = resolveEdgeFadeMask({
+    start: I18nManager.isRTL ? endHidden : startHidden,
+    end: I18nManager.isRTL ? startHidden : endHidden,
+  }, railWidth);
 
   useEffect(() => {
     if (!compact || !railWidth) return;
@@ -75,26 +79,32 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
     <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap, pinned && styles.pinnedOuterWrap, embedded && styles.embeddedOuterWrap]}>
       <View style={[styles.container, isMinimal && styles.minimalContainer, embedded && styles.embeddedContainer]}>
         {!embedded && <NavPillSurface borderRadius={12} />}
-        {compact ? <ScrollView
-          ref={scrollRef}
-          horizontal
-          bounces={false}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.row}
-          onLayout={event => setRailWidth(event.nativeEvent.layout.width)}
-          onScroll={event => setOffset(Math.max(0, Math.min(maxOffset, Math.abs(event.nativeEvent.contentOffset.x))))}
-          scrollEventThrottle={32}
+        {compact ? <MaskedView
+          style={styles.railMask}
+          androidRenderingMode="software"
+          maskElement={
+            <LinearGradient
+              colors={(mask?.colors ?? ['#000', '#000']) as [string, string, ...string[]]}
+              locations={(mask?.locations ?? [0, 1]) as [number, number, ...number[]]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={StyleSheet.absoluteFill}
+            />
+          }
         >
-          {tabButtons}
-        </ScrollView> : <View style={[styles.row, styles.expandedRow]}>{tabButtons}</View>}
-        {(I18nManager.isRTL ? endHidden : startHidden) && <View pointerEvents="none" style={[styles.edge, styles.startEdge]}>
-          <BlurView intensity={8} tint="default" style={[styles.edgeBlur, { left: 0 }]} />
-          <LinearGradient colors={[edgeColor, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
-        </View>}
-        {(I18nManager.isRTL ? startHidden : endHidden) && <View pointerEvents="none" style={[styles.edge, styles.endEdge]}>
-          <BlurView intensity={8} tint="default" style={[styles.edgeBlur, { right: 0 }]} />
-          <LinearGradient colors={['transparent', edgeColor]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
-        </View>}
+          <ScrollView
+            ref={scrollRef}
+            horizontal
+            bounces={false}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.row}
+            onLayout={event => setRailWidth(event.nativeEvent.layout.width)}
+            onScroll={event => setOffset(Math.max(0, Math.min(maxOffset, Math.abs(event.nativeEvent.contentOffset.x))))}
+            scrollEventThrottle={32}
+          >
+            {tabButtons}
+          </ScrollView>
+        </MaskedView> : <View style={[styles.row, styles.expandedRow]}>{tabButtons}</View>}
       </View>
     </View>
   );
@@ -106,6 +116,7 @@ const styles = StyleSheet.create({
   embeddedOuterWrap: { flex: 1, width: undefined, minWidth: 0, paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0 },
   container: { width: "100%", minHeight: TAB_HEIGHT, borderRadius: 12, overflow: 'hidden' },
   embeddedContainer: { backgroundColor: 'transparent' },
+  railMask: { width: '100%', height: TAB_HEIGHT },
   row: { flexDirection: 'row', alignItems: 'center' },
   expandedRow: { width: '100%' },
   tab: { width: TAB_WIDTH, height: TAB_HEIGHT, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
@@ -113,10 +124,6 @@ const styles = StyleSheet.create({
   tabActive: { backgroundColor: 'rgba(255,255,255,0.12)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)' },
   indicator: { ...StyleSheet.absoluteFillObject, borderRadius: 11 },
   count: { textAlign: 'center', fontSize: 10, lineHeight: 12, marginTop: 1, fontWeight: '500' },
-  edge: { position: 'absolute', top: 0, bottom: 0, width: 24 },
-  startEdge: { left: 0 },
-  endEdge: { right: 0 },
-  edgeBlur: { position: 'absolute', top: 0, bottom: 0, width: 6, opacity: 0.4 },
   minimalOuterWrap: { paddingHorizontal: 0 },
   minimalContainer: { ...minimalTabStrip, paddingVertical: 0, alignItems: 'flex-end' },
 });
