@@ -28,6 +28,7 @@ import Reanimated, {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
+import AssistantNavIcon from '../components/ui/AssistantNavIcon';
 import type { IconName } from "../components/ui/Icon";
 import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
@@ -225,6 +226,11 @@ const NavButton = memo<{
   const { t: _copy } = _useCopy();
   const { colors, isLight, isMinimal, skin } = useAppTheme();
   const scale = useRef(new NativeAnimated.Value(1)).current;
+  const iconColor = isMinimal
+    ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
+    : skin
+      ? isActive ? skin.barIconActive : skin.barIcon
+      : isActive ? colors.foreground : isLight ? 'rgba(26, 26, 26, 0.66)' : 'rgba(255, 255, 255, 0.72)';
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
 
@@ -300,18 +306,12 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        <Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <Icon
           name={icon}
           size={20}
-          color={
-            isMinimal
-              ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
-              : skin
-                ? isActive ? skin.barIconActive : skin.barIcon
-                : isActive ? colors.foreground : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"
-          }
+          color={iconColor}
           strokeWidth={isActive ? 2 : 1.75}
-        />
+        />}
       {badgeCount > 0 && (
         <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
           <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
