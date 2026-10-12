@@ -25,7 +25,7 @@ jest.mock('react-native-reanimated', () => ({
 it('keeps Back available, reveals Follow after collapse, and restores the expanded state', () => {
   const scrollY = { value: 0 } as any;
   const onFollow = jest.fn(), onOpenUnfollow = jest.fn(), onBackPress = jest.fn();
-  const props = { scrollY, identityBottom: { value: 230 } as any, actionsBottom: { value: 190 } as any, tabsPinned: { value: false } as any, name: 'Creator', showFollow: true, onFollow, onOpenUnfollow, onBackPress };
+  const props = { scrollY, identityBottom: { value: 230 } as any, actionsBottom: { value: 190 } as any, tabsPinned: { value: false } as any, name: 'Creator', handle: '@creator', showFollow: true, onFollow, onOpenUnfollow, onBackPress };
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<CollapsingProfileHeader {...props} />); });
   expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
@@ -34,6 +34,7 @@ it('keeps Back available, reveals Follow after collapse, and restores the expand
   act(() => { scrollY.value = 180; mockReaction?.(); });
   expect(tree.root.findAllByType('Button' as any)).toHaveLength(0);
   act(() => { scrollY.value = 200; mockReaction?.(); });
+  expect(tree.root.findAllByType('Text' as any).map(node => node.props.children)).toEqual(expect.arrayContaining(['Creator', '@creator']));
   act(() => tree.root.findByType('Button' as any).props.onPress());
   expect(onFollow).toHaveBeenCalledTimes(1);
   act(() => { tree.update(<CollapsingProfileHeader {...props} isFollowing />); });
