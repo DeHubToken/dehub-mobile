@@ -1,3 +1,4 @@
+import { FEED_ICON_SIZE } from './feed-icon-size';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -277,12 +278,13 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           onPress={onTip}
           accessibilityLabel={t("comments.tip")}
           iconName="Gem"
-          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={20} color={ICON_ACTIVE} /> : undefined}
+          iconSize={FEED_ICON_SIZE.tip}
+          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={FEED_ICON_SIZE.tip} color={ICON_ACTIVE} /> : undefined}
           count={tipCount}
           formatCount
         />
       ) : null}
-      {/* Share — carries reposts + link copies; bolder + larger once reposted. */}
+      {/* Share — carries reposts + link copies; bolder once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
         accessibilityLabel={t("feedCard.shareAndRepost")}
@@ -290,7 +292,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         active={reposted}
         activeColor={ICON_ACTIVE}
         activeStrokeWidth={2.6}
-        iconSize={reposted ? 26 : 24}
+        iconSize={FEED_ICON_SIZE.share}
         count={shareCount ?? repostCount}
         countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
         formatCount
@@ -300,7 +302,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPressIn={onCommentPressIn}
         accessibilityLabel={t("postInfo.comments")}
         iconName="MessageSquare"
-          iconSize={28}
+          iconSize={FEED_ICON_SIZE.comment}
         count={commentCount}
         formatCount
       />
@@ -335,7 +337,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           }}
           onLongPress={reactionsEnabled ? () => setTrayOpen(true) : undefined}
           iconName="ThumbsUp"
-          iconSize={27}
+          iconSize={FEED_ICON_SIZE.like}
           glyph={thumbGlyph}
           glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
           glyphPlaying={isVisible}
@@ -354,7 +356,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPress={onSave}
         accessibilityLabel={t("feedCard.saveToLibrary")}
         iconName="Bookmark"
-          iconSize={29}
+          iconSize={FEED_ICON_SIZE.bookmark}
         active={saved}
         activeColor="#D4D4D8"
         activeFill="#D4D4D8"
@@ -364,6 +366,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPress={onInfo}
         accessibilityLabel={t("feedCard.postDetails")}
         iconName="Info"
+        iconSize={FEED_ICON_SIZE.info}
         inactiveColor={ICON_MUTED}
       />
     </View>
