@@ -47,6 +47,7 @@ import ProfileFeedTypeRoute from "../Profile/ProfileFeedTypeRoute";
 import PostsRoute from "../Profile/PostsRoute";
 import FeedRoute from "../Profile/FeedRoute";
 import ProfileTabBar, { type ProfileTabItem } from "../Profile/ProfileTabBar";
+import ProfileScrollViewport from "../Profile/ProfileScrollViewport";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
 import ProfileContentToolbar from "../Profile/ProfileContentToolbar";
 import ProfileFilterDrawer from "../Profile/ProfileFilterDrawer";
@@ -62,6 +63,7 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 
 interface UserProfileBottomContentTabsProps {
   profileScrollY?: SharedValue<number>;
+  profileActionsBottom?: SharedValue<number>;
   profileTabsPinned?: SharedValue<boolean>;
   address: string;
   onClose: () => void;
@@ -125,6 +127,7 @@ const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
 > = ({
   profileScrollY,
+  profileActionsBottom,
   profileTabsPinned,
   address,
   onClose,
@@ -487,14 +490,25 @@ const UserProfileBottomContentTabs: React.FC<
 
   if (!address) return null;
 
+  // Keep the pinned tabs outside the native clipping layer so their elevation
+  // can place them above the joined Back plate, as on the own-profile screen.
+  const renderScrollViewport = (content: React.ReactNode) =>
+    isFullScreen && profileScrollY && profileActionsBottom ? (
+      <ProfileScrollViewport scrollY={profileScrollY} actionsBottom={profileActionsBottom}>
+        {content}
+      </ProfileScrollViewport>
+    ) : content;
+
   // Private account: show header + message, no feed
   if (!canViewContent) {
     return (
       <View style={isFullScreen ? { flex: 1 } : { height: listHeight }}>
-        <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
-          {isFullScreen && profileHeader}
-          {PrivateAccountMessage}
-        </Animated.ScrollView>
+        {renderScrollViewport(
+          <Animated.ScrollView onScroll={scrollHandler} scrollEventThrottle={16} showsVerticalScrollIndicator={false}>
+            {isFullScreen && profileHeader}
+            {PrivateAccountMessage}
+          </Animated.ScrollView>,
+        )}
       </View>
     );
   }
@@ -660,7 +674,7 @@ const UserProfileBottomContentTabs: React.FC<
       style={isFullScreen ? { flex: 1 } : { height: listHeight, marginTop: 16 }}
     >
       {!isFullScreen && TabBar}
-      {renderTabContent()}
+      {renderScrollViewport(renderTabContent())}
 
       {isFullScreen && (
         <Animated.View
