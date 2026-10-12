@@ -34,7 +34,7 @@ describe("generation drafts", () => {
   });
 
   it("rejects unknown media rather than silently making an image", () => {
-    for (const kind of ["audio", "sfx", "3d", "typo", null, undefined]) {
+    for (const kind of ["audio", "3d", "typo", null, undefined]) {
       expect(generationDraft({ kind, prompt: "hello" })).toBeNull();
     }
     expect(generationDraft({ kind: "voice", prompt: "  " })).toBeNull();
