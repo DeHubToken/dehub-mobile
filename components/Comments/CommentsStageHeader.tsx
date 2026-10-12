@@ -62,7 +62,7 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
           accessibilityLabel={t(SORT_A11Y[sort])}
           style={[styles.chip, { borderRadius: radius }]}
         >
-          <Icon name="ArrowUpDown" size={14} color="#D4D4D8" />
+          <Icon name="ListFilter" size={14} color="#D4D4D8" />
           <Text style={styles.chipText}>{t(SORT_LABEL[sort])}</Text>
         </Pressable>
       </View>
