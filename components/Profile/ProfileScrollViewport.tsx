@@ -1,14 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle, useDerivedValue, type SharedValue } from 'react-native-reanimated';
+import { PROFILE_BAR_HEIGHT } from './useProfileCollapse';
 
-/** Reveal the theme above the compact bar without moving the scrolling content. */
-export default function ProfileScrollViewport({ scrollY, actionsBottom, children }: {
+/** Keep scrolled content below the floating bar without moving the list. */
+export default function ProfileScrollViewport({ scrollY, actionsBottom, tabsPinned, children }: {
   scrollY: SharedValue<number>;
   actionsBottom: SharedValue<number>;
+  tabsPinned?: SharedValue<boolean>;
   children: React.ReactNode;
 }) {
-  const inset = useDerivedValue(() => scrollY.value >= actionsBottom.value ? 4 : 0);
+  // Clip the stationary viewport on the UI thread. The old 4pt top cut left
+  // the bar's side gutters exposed to posts during a fling.
+  const inset = useDerivedValue(() => tabsPinned?.value || scrollY.value >= actionsBottom.value ? PROFILE_BAR_HEIGHT - 4 : 0);
   const viewport = useAnimatedStyle(() => ({ marginTop: inset.value, marginBottom: -inset.value }));
   const content = useAnimatedStyle(() => ({ marginTop: -inset.value, marginBottom: inset.value }));
   return (

@@ -3,7 +3,8 @@ import { act, create } from 'react-test-renderer';
 import ProfilePinnedBar from '../../components/Profile/ProfilePinnedBar';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-jest.mock('react-native', () => ({ View: 'View', Text: 'Text', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', useWindowDimensions: () => ({ width: 390 }), StyleSheet: { create: (styles: unknown) => styles } }));
+let mockWidth = 390;
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', useWindowDimensions: () => ({ width: mockWidth }), StyleSheet: { create: (styles: unknown) => styles } }));
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/NavPillSurface', () => 'NavGlass');
@@ -18,7 +19,11 @@ it('keeps profile identity, Back and follow actions available beside the rail', 
   act(() => { tree = create(<ProfilePinnedBar {...props}><React.Fragment /></ProfilePinnedBar>); });
   expect(tree.root.findByType('NavGlass' as any)).toBeTruthy();
   expect(tree.root.findByType('Avatar' as any).props.uri).toBe(props.avatarUrl);
+  expect(tree.root.findAllByType('Text' as any).some(node => node.props.children === '@creator' || node.props.children === 'Creator')).toBe(false);
+  mockWidth = 768;
+  act(() => { tree.update(<ProfilePinnedBar {...props}><React.Fragment /></ProfilePinnedBar>); });
   expect(tree.root.findAllByType('Text' as any).some(node => node.props.children === '@creator')).toBe(true);
+  mockWidth = 390;
   act(() => tree.root.findByProps({ accessibilityLabel: 'common.goBack' }).props.onPress());
   act(() => tree.root.findByProps({ accessibilityLabel: 'follow.follow' }).props.onPress());
   expect(onBackPress).toHaveBeenCalledTimes(1);

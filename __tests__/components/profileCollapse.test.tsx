@@ -4,7 +4,7 @@ import CollapsingProfileHeader from '../../components/Profile/CollapsingProfileH
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('expo-image', () => ({ Image: 'Image' }));
-jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', StyleSheet: { create: (x: unknown) => x, absoluteFill: {} } }));
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Image: 'Image', TouchableOpacity: 'Button', ActivityIndicator: 'Spinner', useWindowDimensions: () => ({ width: 390 }), StyleSheet: { create: (x: unknown) => x, absoluteFill: {} } }));
 jest.mock('../../components/ScreenHeader', () => 'Back');
 jest.mock('../../components/ui/ChromeSurface', () => 'Glass');
 jest.mock('../../components/ui/NavPillSurface', () => 'NavGlass');
