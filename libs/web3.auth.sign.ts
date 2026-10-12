@@ -1,5 +1,5 @@
 import { getSigningProvider } from "./provider.registry";
-import { getAuthUser, setAuthUser } from "./auth.utils";
+import { fetchWalletChallenge, type WalletProofPurpose } from './wallet-challenge';
 import { prepareWalletRelay, waitForWalletSignature } from './wallet-relay';
 import { utils } from 'ethers';
 
@@ -7,68 +7,18 @@ export interface StoredSignatureMeta {
   address: string;
   signature: string;
   timestamp: number; // epoch seconds
+  challengeId?: string;
 }
 
-// Maximum signature age in seconds (30 days) - signatures older than this are considered invalid
-// This prevents indefinitely valid signatures which could be a security risk
-const SIGNATURE_MAX_AGE_SECONDS = 30 * 24 * 60 * 60; // 30 days
-
-function generateSignMessage(
-  address: string,
-  timestamp: number,
-  isMobile = true
-): string {
-  const displayedDate = new Date(timestamp * 1000); // epoch seconds -> Date
-  const validityText = isMobile ? "until you log out" : "24 hours";
-  return `Welcome to DeHub!\n\nClick to sign in for authentication.\nSignatures are valid for ${validityText}.\nYour wallet address is ${address.toLowerCase()}.\nIt is ${displayedDate.toUTCString()}.`;
-}
-
-function isSignatureValid(
-  meta: StoredSignatureMeta | undefined,
-  address: string,
-  maxAgeSeconds: number = SIGNATURE_MAX_AGE_SECONDS
-): boolean {
-  if (!meta) return false;
-
-  // Check address match
-  if (meta.address.toLowerCase() !== address.toLowerCase()) {
-    return false;
-  }
-
-  // Check timestamp - signature should not be older than maxAgeSeconds
-  const currentTime = Math.floor(Date.now() / 1000);
-  const signatureAge = currentTime - meta.timestamp;
-
-  if (signatureAge > maxAgeSeconds) {
-    return false; // Signature is too old
-  }
-
-  // Also reject signatures with future timestamps (clock skew protection)
-  if (meta.timestamp > currentTime + 300) { // Allow 5 minutes of clock skew
-    return false;
-  }
-
-  return true;
-}
-
-// Retrieve signature info; if missing/expired prompts new personal sign via the
-// active local signing provider.
 export async function getOrCreateAuthSignature(
   address: string,
   provider?: any,
-  chainId: number = 8453
+  chainId: number = 8453,
+  purpose: WalletProofPurpose = 'login-mobile',
 ): Promise<StoredSignatureMeta> {
-  // We can stash it inside stored user (if matches) or request a fresh one.
-  let existingUser = await getAuthUser<any>();
-  const existingSig: StoredSignatureMeta | undefined =
-    existingUser?.authSignature;
-
-  if (isSignatureValid(existingSig, address)) {
-    return existingSig!;
-  }
-
-  const timestamp = Math.floor(Date.now() / 1000);
-  const message = generateSignMessage(address, timestamp, true);
+  // Never reuse persisted signatures: each login and recovery operation has
+  // its own server-issued nonce. Wallet key storage is unchanged.
+  const { timestamp, message, challengeId } = await fetchWalletChallenge(address, chainId, purpose);
   const encodedMessage = utils.hexlify(utils.toUtf8Bytes(message));
   // Prefer an injected EIP-1193 provider if available
   const injected = provider || getSigningProvider();
@@ -103,15 +53,7 @@ export async function getOrCreateAuthSignature(
     throw new Error("Invalid signature produced");
   }
 
-  const meta: StoredSignatureMeta = { address, signature, timestamp };
-
-  // Persist by merging into user object if exists
-  if (existingUser) {
-    existingUser = { ...existingUser, authSignature: meta };
-    await setAuthUser(existingUser);
-  }
-
-  return meta;
+  return { address, signature, timestamp, challengeId };
 }
 
 export function buildAuthRequestPayload(
@@ -123,5 +65,6 @@ export function buildAuthRequestPayload(
     sig: meta.signature,
     timestamp: meta.timestamp,
     isMobile: true,
+    ...(meta.challengeId ? { challengeId: meta.challengeId } : {}),
   };
 }

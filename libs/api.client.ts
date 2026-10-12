@@ -171,7 +171,7 @@ export const apiClient = {
      */
     const withTimeout = async (init: RequestInit, allowFallback = true): Promise<Response> => {
       const isSessionRequest = retrySession && !isAuthRequired && method === 'POST' &&
-        (endpoint === '/mobile/auth' || endpoint === '/web/auth/supabase');
+        (endpoint === '/mobile/auth' || endpoint === '/web/auth/supabase' || endpoint === '/auth/wallet-challenge');
       if (isSessionRequest) sessionLog.trace?.('session-request-start', { endpoint, route: url.startsWith(API_RELAY_BASE_URL) ? 'relay' : 'direct' });
       const controller = new AbortController();
       let timedOut = false;

@@ -6,6 +6,7 @@ import {
 } from "../libs/web3.auth.sign";
 import { User } from "../context/AuthContext";
 import { createLogger } from '../libs/logger';
+import { submitWalletProof } from '../libs/wallet-challenge';
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -82,12 +83,16 @@ export const AuthService = {
         } catch {}
       }
       stage = 'session';
-      const response = await apiClient.post<AuthResponse>(
-        "/mobile/auth",
-        body,
-        { isAuthRequired: false, retrySession: true }
+      const response = await submitWalletProof(sigMeta,
+        () => getOrCreateAuthSignature(address, undefined, chainId),
+        proof => apiClient.post<AuthResponse>(
+          "/mobile/auth",
+          { ...body, ...buildAuthRequestPayload(address, proof) },
+          { isAuthRequired: false, retrySession: true },
+        ),
       );
-      const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
+      // Only session tokens are reusable. Do not persist a spent wallet proof.
+      const augmentedUser = { ...response.user } as any;
       // isNewAccount ALONE, exactly as dehubweb decides it (AuthProvider's
       // applyAuthenticatedSession / setRequiresUsername). This used to also
       // require `!response.user.username`, which silently skipped the whole
@@ -217,14 +222,15 @@ export const AuthService = {
       );
     }
 
-    const sigMeta = await getOrCreateAuthSignature(address, undefined, chainId);
-    const authPayload = buildAuthRequestPayload(address, sigMeta);
+    const sign = () => getOrCreateAuthSignature(address, undefined, chainId, 'rotate-wallet');
+    const sigMeta = await sign();
 
     try {
-      await apiClient.post(
+      await submitWalletProof(sigMeta, sign, proof => apiClient.post(
         "/auth/rotate-wallet",
-        { chainId, ...authPayload, supabaseAccessToken },
+        { chainId, ...buildAuthRequestPayload(address, proof), supabaseAccessToken },
         { isAuthRequired: false },
+      ),
       );
     } catch (error: any) {
       if (error?.code === "WALLET_LINK_AMBIGUOUS") {

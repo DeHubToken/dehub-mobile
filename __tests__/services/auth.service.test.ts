@@ -60,6 +60,19 @@ describe('services/auth.service', () => {
     expect(await SecureStore.getItemAsync('auth_token')).toBe('access-token');
   });
 
+  it('gets a fresh signature when a lost login response left the first proof consumed', async () => {
+    mockGetOrCreateAuthSignature
+      .mockResolvedValueOnce({ sig: '0xfirst', timestamp: 1 })
+      .mockResolvedValueOnce({ sig: '0xfresh', timestamp: 2 });
+    mockApiPost
+      .mockRejectedValueOnce({ code: 'WALLET_CHALLENGE_UNAVAILABLE' })
+      .mockResolvedValueOnce({ user: { address: NEW_ADDRESS }, token: 'session', refreshToken: 'refresh', expiresIn: 900 });
+    const result = await AuthService.signInWithWallet(NEW_ADDRESS, 8453);
+    expect(mockApiPost.mock.calls.map(call => call[1].sig)).toEqual(['0xfirst', '0xfresh']);
+    expect(result.token).toBe('session');
+    expect(result.user).not.toHaveProperty('authSignature');
+  });
+
   describe('checkUsernameAvailability', () => {
     it('rejects empty username', async () => {
       const result = await AuthService.checkUsernameAvailability('');
@@ -210,7 +223,7 @@ describe('services/auth.service', () => {
       expect(body.chainId).toBe(8453);
       // The signature proves control of the DESTINATION. Without it a Supabase
       // session alone could push the account onto somebody else's wallet.
-      expect(mockGetOrCreateAuthSignature).toHaveBeenCalledWith(NEW_ADDRESS, undefined, 8453);
+      expect(mockGetOrCreateAuthSignature).toHaveBeenCalledWith(NEW_ADDRESS, undefined, 8453, 'rotate-wallet');
       // No DeHub token yet: the account has not moved when this is sent.
       expect(opts).toEqual({ isAuthRequired: false });
     });
