@@ -121,6 +121,10 @@ Forty additional card and picker surfaces use `ThemePanel`, preserving their dim
 | `screens/WorkScreen.tsx` | Title island and page-kit sections/actions |
 | `screens/YourVideosScreen.tsx` | Title island and theme-aware page canvas/controls |
 
+## Image feed surfaces
+
+Embedded image feeds expose the active canvas behind their glass cards and grab strip. The cached collage stays mounted but hidden and inaccessible while the image drawer is open, preserving its scroll position without showing duplicate tiles. Routed fullscreen image feeds retain an opaque base from the current theme to cover the previous screen. Drawer, handle, and footer colours are resolved from the active theme on each render, including after a theme switch.
+
 ## Page navigation inside the title island
 
 ScreenHeader owns page tabs through its tabs slot. PageHeaderContext removes the second horizontal gutter and fixes the strip height while keeping selected state, callbacks, and horizontal scrolling. Accounts, Ads, Events, Fractions, Governance, Launchpad, MyLibrary, Notifications, Packs, SavedPosts, Stages, Stats, Stores, Usernames, Work, and WorkHistory use this structure. Work and signed-in WorkHistory also keep search and filters inside the island. Communities puts its existing search and sort controls inside the measured collapsible header; list padding and refresh offsets follow the measured height.

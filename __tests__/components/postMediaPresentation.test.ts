@@ -5,6 +5,19 @@ const root = join(__dirname, '..', '..');
 const readSource = (...path: string[]) => readFileSync(join(root, ...path), 'utf8');
 
 describe('post media presentation', () => {
+  it('keeps image drawer backing out of static theme styles and hides the covered grid', () => {
+    const drawer = readSource('components', 'Home', 'ImageFeedDrawer.tsx');
+    const home = readSource('screens', 'HomeScreen.tsx');
+    const staticStyles = drawer.slice(drawer.indexOf('const styles = StyleSheet.create'));
+
+    expect(drawer).toContain('useAppTheme()');
+    expect(drawer).toContain('testID="image-feed-surface"');
+    expect(drawer).toContain('fullscreen ? skin.page : "transparent"');
+    expect(staticStyles).not.toMatch(/(?:backgroundColor|color):\s*colors\./);
+    expect(home).toContain('opacity: imageFeed ? 0 : 1');
+    expect(home).toContain('importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}');
+  });
+
   it('prioritizes the primary image on the post detail screen', () => {
     const detail = readSource('screens', 'FeedDetailScreen.tsx');
     const feedCard = readSource('components', 'Home', 'FeedCard.tsx');

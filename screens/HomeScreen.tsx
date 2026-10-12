@@ -925,7 +925,12 @@ export default function HomeScreen() {
       ) : null}
       <FrostedContent>
       <GestureDetector gesture={homeGestures}>
-        <Animated.View style={[styles.pagerViewport, viewportShape, feedClipStyle]}>
+        <Animated.View
+          pointerEvents={imageFeed ? "none" : "auto"}
+          accessibilityElementsHidden={!!imageFeed}
+          importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}
+          style={[styles.pagerViewport, viewportShape, feedClipStyle, { opacity: imageFeed ? 0 : 1 }]}
+        >
           <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
             <Animated.View
