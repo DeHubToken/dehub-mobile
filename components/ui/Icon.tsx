@@ -23,14 +23,14 @@ import Animated, {
 import { colors } from "../../theme/colors";
 import GlassIndicator, { GLASS_SHADOW } from "./GlassIndicator";
 // Not lucide's `icons` barrel: that bundles and evaluates every icon at boot.
-import { iconRegistry, type IconName } from "./iconRegistry";
-import { cutIcons } from "./cut-icons";
+import { iconRegistry, type IconName as RegistryIconName } from "./iconRegistry";
+import { getCutIcon, type CutIconName } from "./cut-icons";
 import { iconPaths } from "./iconPaths";
 import { iconGlyphs } from "./iconGlyphs";
 import { ICON_FONT_FAMILY, isIconFontReady } from "../../libs/iconFont";
 import Svg, { Path } from "react-native-svg";
 
-export type { IconName };
+export type IconName = RegistryIconName | CutIconName;
 
 export interface IconProps {
   name: IconName;
@@ -62,10 +62,10 @@ const FILL_SAFE_MERGED = new Set<string>(["ThumbsUp", "ThumbsDown"]);
  * rasterised in software into its own bitmap; iOS draws paths on the GPU.
  */
 function glyphFor(name: IconName, strokeWidth: number, fill?: string, gradient?: string[]) {
-  if (cutIcons[name]) return undefined;
+  if (getCutIcon(name)) return undefined;
   if (Platform.OS !== "android" || strokeWidth !== 2) return undefined;
   if ((fill && fill !== "none") || (gradient && gradient.length >= 2)) return undefined;
-  return isIconFontReady() ? iconGlyphs[name] : undefined;
+  return isIconFontReady() ? iconGlyphs[name as RegistryIconName] : undefined;
 }
 
 /** One style per size and colour, so a glyph's props stay referentially stable. */
@@ -140,8 +140,8 @@ const IconWithChrome: React.FC<IconProps & { glyph?: string }> = ({
   accessibilityLabel,
   glyph,
 }) => {
-  const LucideIcon = cutIcons[name] ?? iconRegistry[name];
-  const CutIcon = cutIcons[name];
+  const LucideIcon = getCutIcon(name) ?? iconRegistry[name as RegistryIconName];
+  const CutIcon = getCutIcon(name);
   const iconRef = useRef<View>(null);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number; w: number } | null>(null);
@@ -175,7 +175,7 @@ const IconWithChrome: React.FC<IconProps & { glyph?: string }> = ({
   // One merged path is three native views at most, instead of one per shape.
   // A fill spreads over the merged outline the same as over one shape, so
   // filled icons use it only when they are one shape.
-  const merged = CutIcon || (gradient && gradient.length >= 2) ? undefined : iconPaths[name];
+  const merged = CutIcon || (gradient && gradient.length >= 2) ? undefined : iconPaths[name as RegistryIconName];
   const single =
     merged && (!fill || fill === "none" || merged[1] === 1 || FILL_SAFE_MERGED.has(name)) ? merged[0] : null;
 

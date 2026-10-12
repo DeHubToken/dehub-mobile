@@ -108,7 +108,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
   { icon: "Palette", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
-  { icon: "ChartNoAxesCombined", labelKey: "nav.stats", screen: ScreenNames.Stats },
+  { icon: "ChartColumn", labelKey: "nav.stats", screen: ScreenNames.Stats },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" }, requiresAuth: true },
   { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true, storefrontHidden: true },
   // Passes initialTab explicitly so returning here from the Staking entry
@@ -126,7 +126,7 @@ const NAV_ITEMS: DrawerItem[] = [
   // Emoji, sticker and GIF packs — creating one is a badge perk, so it sits with
   // the other things staking buys. Browsing and adding packs is open to all.
   { icon: "Smile", labelKey: "creatorPacks.title", screen: ScreenNames.Packs },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao, storefrontHidden: true },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work, storefrontHidden: true },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true, storefrontHidden: true },
@@ -154,7 +154,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "ArrowLeftRight", labelKey: "nav.bridge", screen: ScreenNames.Bridge, searchOnly: true, storefrontHidden: true },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
   // Search-only on web too. Hidden on iOS: both pages exist to sell a plan.
   { icon: "Crown", labelKey: "nav.premium", screen: ScreenNames.Premium, storefrontHidden: true, searchOnly: true },
   { icon: "Tag", labelKey: "nav.pricing", screen: ScreenNames.Pricing, storefrontHidden: true, searchOnly: true },

@@ -98,7 +98,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // other's tab.
   { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "wallet" } },
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" } },
-  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Vote", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Landmark", labelKey: "nav.dao", screen: ScreenNames.Dao },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" } },
@@ -108,7 +108,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "Plug", labelKey: "nav.connectAi", screen: ScreenNames.Connect },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Blog", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Star", labelKey: "nav.creators", screen: ScreenNames.Creators },
   { icon: "ArrowDownToLine", labelKey: "nav.converter", screen: ScreenNames.Converter },

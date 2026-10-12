@@ -14,7 +14,7 @@ jest.mock("react-native", () => ({
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
   findNodeHandle: jest.fn(),
 }));
-jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path", G: "G" }));
+jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path", G: "G", Defs: "Defs", Mask: "Mask", Rect: "Rect" }));
 jest.mock("react-native-reanimated", () => ({
   __esModule: true,
   default: { View: "View" },
@@ -53,9 +53,9 @@ describe("Icon glyphs on Android", () => {
   });
 
   it("draws a plain icon as one glyph that fills its box", () => {
-    const tree = render(<Icon name="Eye" size={20} color="#fff" />).toJSON() as any;
+    const tree = render(<Icon name="Activity" size={20} color="#fff" />).toJSON() as any;
     expect(tree.type).toBe("Text");
-    expect(tree.children).toEqual([iconGlyphs.Eye]);
+    expect(tree.children).toEqual([iconGlyphs.Activity]);
     expect(tree.props.style).toMatchObject({ fontFamily: "LucideIcons", width: 20, height: 20, color: "#fff" });
     // 20dp is 56.25px here; the font size lands just under 56px so Android's
     // round-up to whole pixels gives the box's own height.
@@ -64,8 +64,8 @@ describe("Icon glyphs on Android", () => {
   });
 
   it("keeps a pressable icon's button and draws the glyph inside it", () => {
-    const { texts, types } = walk(render(<Icon name="Info" size={20} onPress={jest.fn()} accessibilityLabel="Details" />).toJSON());
-    expect(texts).toEqual([iconGlyphs.Info]);
+    const { texts, types } = walk(render(<Icon name="Anchor" size={20} onPress={jest.fn()} accessibilityLabel="Details" />).toJSON());
+    expect(texts).toEqual([iconGlyphs.Anchor]);
     expect(types).not.toContain("Svg");
   });
 
@@ -86,13 +86,24 @@ describe("Icon glyphs on Android", () => {
 
   it("uses approved Cut artwork even when the old Android font is ready", () => {
     const approved = require("../../components/ui/cut-icon-paths.json");
-    for (const [name, shape] of [["Bell", "Alerts"], ["MessageSquare", "Messages"], ["Share2", "FeedShare"]]) {
+    for (const [name, shape] of [["Bell", "Alerts"], ["MessageSquare", "Messages"], ["Share2", "FeedShare"], ["Blog", "Blog"], ["Coins", "Coins"], ["Copy", "Copy"], ["Quote", "Quote"], ["Flag", "Report"]]) {
       const tree = render(<Icon name={name} />).toJSON() as any;
       expect(tree.type).toBe("Svg");
       expect(tree.props.viewBox).toBe("0 0 32 32");
       const expected = [...approved[shape].matchAll(/ d="([^"]+)"/g)].map((m: any) => m[1]);
       const paths = (nodes: any[]): string[] => nodes.flatMap(n => n.type === "Path" ? [n.props.d] : paths(n.children || []));
       expect(paths(tree.children)).toEqual(expected);
+    }
+  });
+
+  it("renders every Cut mapping, including custom names outside the Lucide registry", () => {
+    const { cutIcons } = require("../../components/ui/cut-icons");
+    for (const name of Object.keys(cutIcons)) {
+      const view = render(<Icon name={name} size={24} color="#fff" />);
+      const tree = view.toJSON() as any;
+      expect(tree.type).toBe("Svg");
+      expect(tree.props.viewBox).toBe("0 0 32 32");
+      view.unmount();
     }
   });
 });
