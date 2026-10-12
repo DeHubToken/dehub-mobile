@@ -16,6 +16,8 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   useWindowDimensions,
+  Image,
+  StyleSheet,
   type LayoutChangeEvent,
 } from "react-native";
 import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
@@ -27,8 +29,11 @@ import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
-import ChromeSurface from "../ui/ChromeSurface";
-import { ISLAND_CAPSULE_WIDTH, ISLAND_CAPSULE_GAP } from "./IslandTopBar";
+import NavPillSurface from "../ui/NavPillSurface";
+import FrostedPill from "../ui/FrostedPill";
+import HudBrackets from "../theme/HudBrackets";
+import { GRAIN, glassTint } from "../../theme/skins";
+import { ISLAND_CAPSULE_WIDTH, ISLAND_CAPSULE_GAP, ISLAND_BAR_HEIGHT } from "./IslandTopBar";
 import { useTranslation } from "react-i18next";
 import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
 import { useAuthState } from "../../context/AuthContext";
@@ -69,6 +74,24 @@ import { getNFT } from "../../services/nft.service";
 import { useBoostQueue } from "../../hooks/useSuperpowers";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+
+/** Match the feed nav's finish, including each skin's tint and texture. */
+function NewPostsMaterial({ radius, islandChrome, brackets = false }: { radius: number; islandChrome: boolean; brackets?: boolean }) {
+  const { isMinimal, skin } = useAppTheme();
+  if (islandChrome) return <NavPillSurface borderRadius={radius} />;
+  if (isMinimal) return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000", borderColor: MINIMAL_TAB_LINE, borderWidth: 1, borderRadius: 0 }]} />;
+  return (
+    <>
+      <FrostedPill
+        tint={skin ? glassTint(String(skin.strip.backgroundColor), 0.22) : "rgba(20, 20, 24, 0.18)"}
+        borderRadius={radius}
+      />
+      {skin ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, skin.strip, { backgroundColor: "transparent", borderRadius: radius }]} /> : null}
+      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
+      {skin?.brackets && brackets ? <HudBrackets color={skin.brackets} /> : null}
+    </>
+  );
+}
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -1303,10 +1326,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <Animated.View
           pointerEvents="box-none"
           style={[
-            { position: "absolute", top: islandChrome ? chromeInset - ISLAND_CAPSULE_GAP - 44 : chromeInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 },
+            { position: "absolute", top: islandChrome ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP - 4 : chromeInset - 3, left: 0, right: 0, alignItems: "center", zIndex: 20 },
             newPostsPillStyle,
           ]}
         >
+          <View pointerEvents="none" style={{ width: 36, height: 14, marginBottom: -2, borderRadius: skin?.square || isMinimal ? 0 : 4, overflow: "hidden" }}>
+            <NewPostsMaterial radius={skin?.square || isMinimal ? 0 : 4} islandChrome={islandChrome} />
+          </View>
           <Pressable
             onPress={() => {
               setNewPostsHovered(false);
@@ -1316,18 +1342,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             onHoverOut={() => setNewPostsHovered(false)}
             accessibilityRole="button"
             accessibilityLabel={_copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount })}
-            className={islandChrome ? "flex-row items-center justify-center gap-1.5 px-2 py-2" : "flex-row items-center gap-1.5 rounded-full border border-white/20 dark-surface bg-black/85 px-4 py-2"}
-            style={islandChrome ? { width: ISLAND_CAPSULE_WIDTH, paddingTop: 52, borderRadius: 15, overflow: "hidden" } : undefined}
+            className="flex-row items-center justify-center gap-1.5 px-2 py-2"
+            style={{ minWidth: ISLAND_CAPSULE_WIDTH - 12, minHeight: 36, borderRadius: skin?.square || isMinimal ? 0 : 15, overflow: "hidden" }}
           >
             {({ pressed }) => (
               <>
-                {islandChrome ? <ChromeSurface radius={15} /> : null}
-                <Icon name="ArrowUp" size={14} color="#E5E7EB" />
+                <NewPostsMaterial radius={skin?.square || isMinimal ? 0 : 15} islandChrome={islandChrome} brackets />
+                <Icon name="ArrowUp" size={14} color={skin?.tabIconActive ?? "#E5E7EB"} />
                 <Text
-                  className="text-xs font-semibold text-white"
+                  className="text-xs font-semibold"
                   style={{
                     flexShrink: 1,
-                    color: !islandChrome || pressed || newPostsHovered ? "#FFFFFF" : "rgba(255,255,255,0.7)",
+                    color: pressed || newPostsHovered ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.7)",
                   }}
                 >
                   {t("feed.newPosts", { count: newPostCount })}
