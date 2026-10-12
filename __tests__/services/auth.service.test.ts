@@ -41,6 +41,25 @@ describe('services/auth.service', () => {
     jest.clearAllMocks();
   });
 
+  it('authenticates with a signature without transmitting a legacy private-key option', async () => {
+    const privateKey = '11'.repeat(32);
+    mockApiPost.mockResolvedValueOnce({
+      user: { address: NEW_ADDRESS }, token: 'access-token',
+      refreshToken: 'refresh-token', expiresIn: 900,
+    });
+
+    const result = await AuthService.signInWithWallet(NEW_ADDRESS, 8453, {
+      privateKey, storePrivateKey: true,
+    });
+
+    expect(result.token).toBe('access-token');
+    expect(mockApiPost).toHaveBeenCalledWith('/mobile/auth', {
+      chainId: 8453, address: NEW_ADDRESS, sig: '0xsig', timestamp: 1,
+    }, { isAuthRequired: false, retrySession: true });
+    expect(JSON.stringify(mockApiPost.mock.calls)).not.toContain(privateKey);
+    expect(await SecureStore.getItemAsync('auth_token')).toBe('access-token');
+  });
+
   describe('checkUsernameAvailability', () => {
     it('rejects empty username', async () => {
       const result = await AuthService.checkUsernameAvailability('');

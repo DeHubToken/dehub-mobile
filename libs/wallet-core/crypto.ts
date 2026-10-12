@@ -45,6 +45,7 @@ import { gcm } from "@noble/ciphers/aes";
 import { Buffer } from "buffer";
 import * as ExpoCrypto from "expo-crypto";
 import { nativeArgon2id } from "./native-argon2";
+import { validateArgon2Parameters, validatePbkdf2Iterations } from './kdf-limits';
 
 // PBKDF2 legacy default (OWASP 2023 baseline for SHA-256).
 const PBKDF2_ITERATIONS_DEFAULT = 600_000;
@@ -135,6 +136,7 @@ async function deriveKeyPbkdf2(
   salt: Uint8Array,
   iterations: number,
 ): Promise<Uint8Array> {
+  validatePbkdf2Iterations(iterations);
   return await pbkdf2Async(sha256, utf8(password), salt, { c: iterations, dkLen: 32 });
 }
 
@@ -143,6 +145,7 @@ async function deriveKeyArgon2id(
   salt: Uint8Array,
   header: Argon2Header,
 ): Promise<Uint8Array> {
+  validateArgon2Parameters(header);
   // Native fast path (reference C implementation): ~hundreds of ms instead
   // of tens of seconds. Only active once its output has been byte-verified
   // against @noble this session — see native-argon2.ts; null means "use the

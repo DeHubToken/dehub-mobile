@@ -66,10 +66,8 @@ export const AuthService = {
       );
       const authPayload = buildAuthRequestPayload(address, sigMeta);
       const body: Record<string, any> = { chainId, ...authPayload };
-      if (opts?.privateKey && typeof opts.privateKey === "string") {
-        body.privateKey = opts.privateKey;
-        body.storePrivateKey = true;
-      }
+      // Wallet ownership is proven by the signature. Legacy callers may still
+      // pass a local key in opts, but it must never enter an HTTP request.
       if (opts?.web3AuthMeta && typeof opts.web3AuthMeta === "object") {
         body.web3AuthMeta = opts.web3AuthMeta;
         // Prove ownership of the Supabase identity named in web3AuthMeta.
@@ -83,9 +81,6 @@ export const AuthService = {
           if (supabaseToken) body.supabaseAccessToken = supabaseToken;
         } catch {}
       }
-      // if (typeof opts?.storePrivateKey === "boolean") {
-      //   body.storePrivateKey = opts.storePrivateKey;
-      // }
       stage = 'session';
       const response = await apiClient.post<AuthResponse>(
         "/mobile/auth",

@@ -29,6 +29,7 @@ import { BackupMismatchError, loadBackupSource, phraseForBackup } from "../../li
 import { markBackedUp } from "../../libs/wallet-core/backup-status";
 import { createLogger } from "../../libs/logger";
 import { getRecoveryPhraseForAddress } from "../../libs/wallets.local";
+import { readPrivateKeyForExport } from "../../libs/wallet-core/export-key";
 
 const log = createLogger("BackupWalletModal");
 
@@ -247,7 +248,11 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
       }
       const ready = live.status === "ready" && live.provider;
       if (!ready) throw new Error("Wallet provider is not ready");
-      const pk = await (live.provider as any)?.request?.({ method: "private_key" });
+      const pk = await readPrivateKeyForExport(
+        () => (live.provider as any)?.request?.({ method: "private_key" }),
+        t("walletBackup.showWords"),
+        () => session === sessionRef.current,
+      );
       if (session !== sessionRef.current) return;
       if (!pk || typeof pk !== "string")
         throw new Error("Could not retrieve private key");
@@ -260,7 +265,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
         .catch(() => {});
     } catch (e: any) {
       if (session !== sessionRef.current) return;
-      log.error("fetch-private-key:failed", e);
+      log.error("fetch-private-key:failed", { errorName: e instanceof Error ? e.name : "unknown" });
       setError(e?.message || t("settings.exportPkFailed"));
       toastError(e?.message || t("settings.exportPkFailed"));
     } finally {
