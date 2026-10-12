@@ -187,8 +187,8 @@ function PostStageActionBarComponent({
               reaction={thumbGlyph}
               animate={thumbGlyph === myReaction}
               playing={isVisible}
-              size={29}
-              textStyle={{ fontSize: 25, lineHeight: 31, width: 27, textAlign: "center" }}
+              size={25.52}
+              textStyle={{ fontSize: 22, lineHeight: 27.28, width: 23.76, textAlign: "center" }}
             />
           ) : (
             <Icon name="ThumbsUp" size={FEED_ICON_SIZE.like} color={ICON} fill={liked ? ICON : undefined} />
