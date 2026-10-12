@@ -285,6 +285,10 @@ const CutLocation = ({ size = 24, color = "currentColor", strokeWidth = 2, fill,
 const CutHistory = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 12A12 12 0 1 1 5 22" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M2.8000 6.3920L2.8000 13.2000L11.0000 13.2000L11.0000 12.1920Q11.0000 10.8000 9.6080 10.8000L5.2000 10.8000L5.2000 5.0000L4.1920 5.0000Q2.8000 5.0000 2.8000 6.3920Z" fill={color} fillRule="evenodd" /><Path d="M14.9000 10.2760L14.9000 17.6798L21.5081 20.9839L21.9213 20.1574Q22.4919 19.0161 21.3506 18.4455L17.1000 16.3202L17.1000 9.0000L16.1760 9.0000Q14.9000 9.0000 14.9000 10.2760Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutHammer = ({ size = 24, color = "currentColor", ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 3H5L6.2 4.8H8L9.4 3H18C24.63 3 30 8.37 30 15H28.5C27.67 15 27 14.33 27 13.5C26.25 9.25 22.55 6 18 6H5V10H17C18.66 10 20 11.34 20 13V13.3H9.4L8 11.8H6.2L5 13.3H3L2 12.3V4Z" fill={color} fillRule="evenodd" /><Path d="M12 17.3C12 16.58 12.58 16 13.3 16H14.6V27.4H16C16.77 27.4 17.4 26.77 17.4 26V16H20V26C20 28.21 18.21 30 16 30H12Z" fill={color} fillRule="evenodd" /></Svg>
+);
+
 const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => {
   const clipId = React.useId().replace(/:/g, "");
   return (
@@ -297,9 +301,10 @@ const CutShorts = ({ size = 24, color = "currentColor", strokeWidth = 2, ...prop
     </Svg>
   );
 };
-export { CutShorts as Shorts };
+export { CutShorts as Shorts, CutHammer as Hammer };
 
 export const cutIcons = {
+  Hammer: CutHammer,
   Shorts: CutShorts,
   Home: CutHome,
   House: CutHome,
