@@ -538,9 +538,8 @@ export function useAuthSession({
         let walletUser: any;
         let token: any;
         let needsUsername: boolean = false;
-        // Before the signature is spent: this reuses the cached auth signature
-        // rather than raising a second prompt, and it must precede the login
-        // that would unset the link it needs.
+        // Recover the account link before login can replace it. Recovery
+        // and login each use their own fresh, operation-bound proof.
         await moveDriftedAccountToThisWallet(walletAddress, chainId);
         try {
           const res = await AuthService.signInWithWallet(
