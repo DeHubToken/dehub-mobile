@@ -188,8 +188,8 @@ const AnimatedActionButton: React.FC<{
             reaction={glyph}
             animate={glyphAnimated}
             playing={glyphPlaying}
-            size={iconSize + 2}
-            textStyle={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}
+            size={iconSize + 1.76}
+            textStyle={{ fontSize: iconSize - 1.76, lineHeight: iconSize + 3.52, width: iconSize, textAlign: "center" }}
           />
         </View>
       ) : (
