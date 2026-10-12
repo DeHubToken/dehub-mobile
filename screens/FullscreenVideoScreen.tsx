@@ -432,7 +432,7 @@ const FullscreenVideoScreen = () => {
             </Pressable>}
             <Pressable onPress={handleToggleRotation} style={styles.plainButton}
               accessibilityRole="button" accessibilityLabel={t('player.rotateOrientation')}>
-              <MediaControlIcon name={isLandscape ? 'Minimize2' : 'RotateCcw'} plain />
+              <MediaControlIcon name={isLandscape ? 'Minimize' : 'Maximize'} plain />
             </Pressable>
           </View>
         </View>
