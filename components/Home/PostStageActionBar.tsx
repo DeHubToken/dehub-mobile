@@ -190,7 +190,7 @@ function PostStageActionBarComponent({
               textStyle={{ fontSize: 18, lineHeight: 24, width: 20, textAlign: "center" }}
             />
           ) : (
-            <Icon name="ThumbsUp" size={20} color={ICON} fill={liked ? ICON : undefined} />
+            <Icon name="ThumbsUp" size={27} color={ICON} fill={liked ? ICON : undefined} />
           )}
         </Tile>
       </View>
@@ -202,7 +202,7 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onComment}
         >
-          <Icon name="MessageSquare" size={20} color={ICON} />
+          <Icon name="MessageSquare" size={28} color={ICON} />
         </Tile>
       </View>
       <View style={styles.cell}>
@@ -215,7 +215,7 @@ function PostStageActionBarComponent({
           onPress={onRepost}
         >
           {/* Same share glyph and sizing as the feed's share button. */}
-          <Icon name="Share2" size={reposted ? 20 : 18} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
+          <Icon name="Share2" size={reposted ? 26 : 24} color={ICON} strokeWidth={reposted ? 2.6 : 2} />
         </Tile>
       </View>
       {onTip ? (
@@ -238,7 +238,7 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onSave}
         >
-          <Icon name="Bookmark" size={20} color={ICON} fill={saved ? ICON : undefined} />
+          <Icon name="Bookmark" size={29} color={ICON} fill={saved ? ICON : undefined} />
         </Tile>
       </View>
     </View>

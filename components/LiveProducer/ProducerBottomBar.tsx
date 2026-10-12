@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import Radio from "lucide-react-native/dist/esm/icons/radio";
-import Video from "lucide-react-native/dist/esm/icons/video";
-import VideoOff from "lucide-react-native/dist/esm/icons/video-off";
+import { Radio } from "../ui/cut-icons";
+import { Video } from "../ui/cut-icons";
+import { VideoOff } from "../ui/cut-icons";
 import { Mic } from "../ui/cut-icons";
-import MicOff from "lucide-react-native/dist/esm/icons/mic-off";
-import RefreshCw from "lucide-react-native/dist/esm/icons/refresh-cw";
+import { MicOff } from "../ui/cut-icons";
+import { RefreshCw } from "../ui/cut-icons";
 import Server from "lucide-react-native/dist/esm/icons/server";
 import Palette from "lucide-react-native/dist/esm/icons/palette";
 
