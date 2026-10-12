@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, Pressable, StyleSheet } from 'react-native';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { KitButton } from '../components/page/PageKit';
@@ -8,6 +8,7 @@ import { agentTaskRequest } from '../services/agents.service';
 import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from '../libs/assets.util';
 import { runWithPermissions } from '../libs/permissions.util';
 import { getAvatarUrl, getCoverUrl } from '../libs/misc';
+import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 
 type Profile = { display_name?: string; bio?: string; avatar?: string; banner?: string };
 const picture = (value?: string) => value && !value.startsWith('default-') ? value : undefined;
@@ -74,8 +75,9 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
   </View>;
 }
 
-export function AgentProfilePanel({ wallet, agentId }: { wallet: string; agentId: string }) {
+export function AgentProfilePanel({ wallet, agentId, agentName }: { wallet: string; agentId: string; agentName: string }) {
   const { t } = useTranslation();
+  const { showUserProfile } = useUserProfileSheet();
   const [open, setOpen] = useState(false);
   const profile = useQuery({ queryKey: ['agent-profile', wallet, agentId], staleTime: 60000,
     queryFn: () => agentTaskRequest<{ profile: Profile }>(wallet, { operation: 'profile', agent_id: agentId }) });
@@ -83,10 +85,15 @@ export function AgentProfilePanel({ wallet, agentId }: { wallet: string; agentId
   const avatar = picture(getAvatarUrl(data?.avatar));
   const banner = picture(getCoverUrl(data?.banner));
   return <View style={styles.panel}>
-    {!open && banner && <Image source={{ uri: banner }} accessibilityLabel={t('agents.profile.banner')} style={styles.banner} />}
-    {!open && avatar && <Image source={{ uri: avatar }} accessibilityLabel={t('agents.profile.avatar')} style={styles.avatar} />}
-    {data?.display_name && <Text style={styles.text}>{data.display_name}</Text>}
-    <KitButton variant="quiet" label={t('agents.profile.edit')} onPress={() => setOpen(value => !value)} />
+    {!open && (banner || avatar || data?.display_name) && <Pressable style={styles.panel} accessibilityRole="button" accessibilityLabel={`${agentName} - ${t('nav.profile')}`} onPress={() => showUserProfile(agentName)}>
+      {banner && <Image source={{ uri: banner }} accessibilityLabel={t('agents.profile.banner')} style={styles.banner} />}
+      {avatar && <Image source={{ uri: avatar }} accessibilityLabel={t('agents.profile.avatar')} style={styles.avatar} />}
+      {data?.display_name && <Text style={styles.text}>{data.display_name}</Text>}
+    </Pressable>}
+    <View style={styles.row}>
+      <KitButton variant="quiet" label={t('nav.profile')} onPress={() => showUserProfile(agentName)} />
+      <KitButton variant="quiet" label={t('agents.profile.edit')} onPress={() => setOpen(value => !value)} />
+    </View>
     {open && profile.isLoading && <Text style={styles.muted}>{t('common.loading')}</Text>}
     {open && profile.error && <><Text accessibilityRole="alert" style={styles.error}>{profile.error.message}</Text><KitButton label={t('common.retry')} onPress={() => profile.refetch()} /></>}
     {open && data && <ProfileForm wallet={wallet} agentId={agentId} profile={data} onClose={() => setOpen(false)} />}
