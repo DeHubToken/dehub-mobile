@@ -1,3 +1,5 @@
+import { MediaControlIcon } from '../components/common/MediaControlGlyph';
+import { VIDEO_CONTROL_STRIP_HEIGHT } from '../components/Home/VideoScrubZone';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
@@ -391,100 +393,50 @@ const FullscreenVideoScreen = () => {
         </Animated.View>
       </GestureDetector>
 
-      {showControls && (
-        <View
-          style={[
-            styles.controlsOverlay,
-            // Flat, no inset: this screen sits inside the root SafeAreaView, which
-            // already pays both edges, so adding them again floated the controls
-            // a full band in from each edge.
-            { paddingTop: 12, paddingBottom: 12 },
-          ]}
-          pointerEvents="box-none"
-        >
-          <View style={styles.topBar} pointerEvents="box-none">
-            <Pressable
-              onPress={closeScreen}
-              style={styles.glassButton}
-              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              accessibilityRole="button"
-              accessibilityLabel={t("player.closeVideo")}
-            >
-              <View style={styles.glassOverlay} />
-              <Icon name="X" size={20} color="#fff" />
+      {showControls && <View style={styles.topClose} pointerEvents="box-none">
+        <Pressable onPress={closeScreen} style={styles.plainButton} hitSlop={8}
+          accessibilityRole="button" accessibilityLabel={t('player.closeVideo')}>
+          <MediaControlIcon name="X" />
+        </Pressable>
+      </View>}
+      <View style={styles.splitStrip}>
+        <GestureDetector gesture={scrubGesture}>
+          <Animated.View style={styles.bottomSeek}>
+            <Pressable style={styles.progressTrackPress}
+              onPress={event => handleSeek(event.nativeEvent.locationX)}
+              onLayout={event => { progressTrackWidthRef.current = event.nativeEvent.layout.width; }}
+              accessibilityRole="adjustable" accessibilityLabel={t('player.videoProgress', { percent: Math.round(progressPercent) })}
+              accessibilityHint={t('player.tapToSeek')}>
+              <View style={styles.bottomLine}><View style={[styles.progressFill, { width: `${progressPercent}%` }]} /></View>
             </Pressable>
-
-            <View style={{ flex: 1 }} />
-
-            <View style={styles.topButtonGroup}>
-              <PictureInPictureButton videoRef={videoViewRef} />
-              {videoUrl && <Pressable style={styles.glassButton} accessibilityRole="button"
-                accessibilityLabel={t("postOptions.download")}
-                onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || "video", username: creatorUsername }); }}>
-                <View style={styles.glassOverlay} /><Icon name="Download" size={20} color="#fff" />
-              </Pressable>}
-              <Pressable
-                onPress={handleToggleMute}
-                style={styles.glassButton}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                accessibilityRole="button"
-                accessibilityLabel={isMuted ? t("common.unmute") : t("common.mute")}
-              >
-                <View style={styles.glassOverlay} />
-                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
-              </Pressable>
-              <Pressable
-                onPress={handleToggleRotation}
-                style={styles.glassButton}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                accessibilityRole="button"
-                accessibilityLabel={t("player.rotateOrientation")}
-              >
-                <View style={styles.glassOverlay} />
-                <Icon name={isLandscape ? "Minimize2" : "RotateCcw"} size={20} color="#fff" />
-              </Pressable>
-            </View>
-          </View>
-
-          <View style={styles.centerControls} pointerEvents="box-none">
-            <Pressable
-              onPress={handleTogglePlay}
-              style={styles.glassPlayButton}
-              accessibilityRole="button"
-              accessibilityLabel={isPlaying ? _copy("copy.858e4ba7a29f", { defaultValue: "Pause" }) : _copy("copy.436e61016e26", { defaultValue: "Play" })}
-            >
-              <View style={styles.glassOverlay} />
-              <Icon name={isPlaying ? "Pause" : "Play"} size={32} color="#fff" />
+          </Animated.View>
+        </GestureDetector>
+        <View style={styles.splitRow}>
+          <View style={styles.splitGroup}>
+            <Pressable onPress={handleTogglePlay} style={styles.plainButton}
+              accessibilityRole="button" accessibilityLabel={t(isPlaying ? 'audioPost.pause' : 'audioPost.play')}>
+              <MediaControlIcon name={isPlaying ? 'Pause' : 'Play'} plain />
             </Pressable>
+            <Pressable onPress={handleToggleMute} style={styles.plainButton}
+              accessibilityRole="button" accessibilityLabel={t(isMuted ? 'common.unmute' : 'common.mute')}>
+              <MediaControlIcon name={isMuted ? 'VolumeX' : 'Volume2'} plain />
+            </Pressable>
+            <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
           </View>
-
-          <View style={styles.bottomBar} pointerEvents="box-none">
-            {videoDuration > 0 && (
-              <View style={styles.progressRow}>
-                <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
-                <GestureDetector gesture={scrubGesture}>
-                <Animated.View style={styles.progressTrack}>
-                <Pressable
-                  style={styles.progressTrackPress}
-                  onPress={(e) => handleSeek(e.nativeEvent.locationX)}
-                  onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
-                  accessibilityRole="adjustable"
-                  accessibilityLabel={t("player.videoProgress", { percent: Math.round(progressPercent) })}
-                  accessibilityHint={t("player.tapToSeek")}
-                >
-                  <View style={styles.progressTrackInner}>
-                    <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
-                    <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -8 }]} />
-                  </View>
-                </Pressable>
-                </Animated.View>
-                </GestureDetector>
-                <Text style={styles.timeText}>{formatTime(videoDuration)}</Text>
-              </View>
-            )}
+          <View style={styles.splitGroup}>
+            <PictureInPictureButton videoRef={videoViewRef} plain />
+            {videoUrl && <Pressable style={styles.plainButton} accessibilityRole="button"
+              accessibilityLabel={t('postOptions.download')}
+              onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || 'video', username: creatorUsername }); }}>
+              <MediaControlIcon name="Download" plain />
+            </Pressable>}
+            <Pressable onPress={handleToggleRotation} style={styles.plainButton}
+              accessibilityRole="button" accessibilityLabel={t('player.rotateOrientation')}>
+              <MediaControlIcon name={isLandscape ? 'Minimize2' : 'RotateCcw'} plain />
+            </Pressable>
           </View>
         </View>
-      )}
+      </View>
 
       {isBuffering && (
         <View style={styles.bufferingOverlay} pointerEvents="none">
@@ -502,10 +454,18 @@ const styles = StyleSheet.create({
   },
   videoWrap: {
     flex: 1,
+    marginBottom: VIDEO_CONTROL_STRIP_HEIGHT,
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
   },
+  splitStrip: { position: 'absolute', left: 0, right: 0, bottom: 0, height: VIDEO_CONTROL_STRIP_HEIGHT, backgroundColor: '#000' },
+  splitRow: { height: 44, paddingHorizontal: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  splitGroup: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  plainButton: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center' },
+  topClose: { position: 'absolute', left: 12, top: 12 },
+  bottomSeek: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 24 },
+  bottomLine: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, backgroundColor: '#444' },
   controlsOverlay: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "space-between",
