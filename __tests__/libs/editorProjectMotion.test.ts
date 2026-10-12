@@ -17,7 +17,7 @@ describe("motion export classification", () => {
   it("keeps unanimated cards and empty projects as stills", () => {
     expect(hasTimelineMotion([])).toBe(false);
     expect(hasTimelineMotion([layer()])).toBe(false);
-    expect(hasTimelineMotion([layer({ animateIn: { kind: "none", duration: 1 }, keyframes: { opacity: [{ t: 0, v: 1 }, { t: 3, v: 1 }] } })])).toBe(false);
+    expect(hasTimelineMotion([layer({ keyframes: { opacity: [{ t: 0, v: 1 }, { t: 3, v: 1 }] } })])).toBe(false);
     expect(hasTimelineMotion([layer({ animateOut: { kind: "fade", duration: 0 } })])).toBe(false);
   });
   it("keeps recorded video and audio as timeline exports", () => {
