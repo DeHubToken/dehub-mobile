@@ -1,7 +1,7 @@
 import CollapsingProfileHeader from './CollapsingProfileHeader';
 import ProfileScrollViewport from './ProfileScrollViewport';
 import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './useProfileCollapse';
-import { getAvatarUrl, getCoverUrl, getDefaultBanner } from '../../libs/misc';
+import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import ProfilePinnedBar from './ProfilePinnedBar';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from "react";
@@ -175,7 +175,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   return <View className="flex-1 bg-theme-neutrals-900">
     <ProfileScrollViewport {...collapse}>{renderScene(activeKey)}</ProfileScrollViewport>
     <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
-      <ProfilePinnedBar name={user?.displayName} handle={user?.username} avatarUrl={getAvatarUrl(user?.avatarImageUrl, 32)} canGoBack={canGoBack} onBackPress={onBackPress}>
+      <ProfilePinnedBar showIdentity={false} canGoBack={canGoBack} onBackPress={onBackPress}>
         <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned embedded />
       </ProfilePinnedBar>
     </Animated.View>
