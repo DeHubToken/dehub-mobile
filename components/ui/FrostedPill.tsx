@@ -16,6 +16,9 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
   return (
     // Keep the stationary material as its own native view when tab controls move.
     <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
+      {/* BlurTargetView can deliver a frame after its source changes on a tab
+          switch. Keep the same fallback painted beneath it during that gap. */}
+      <View style={[StyleSheet.absoluteFill, { backgroundColor: "#18181B" }]} />
       {blur ? (
         <BlurView
           blurTarget={target}
@@ -24,7 +27,7 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
           tint="dark"
           style={StyleSheet.absoluteFill}
         />
-      ) : <View style={[StyleSheet.absoluteFill, { backgroundColor: "#18181B" }]} />}
+      ) : null}
       <View style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} />
       <LinearGradient
         colors={["rgba(255,255,255,0.18)", "rgba(255,255,255,0.025)", "rgba(255,255,255,0)"]}
