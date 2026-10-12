@@ -7,6 +7,7 @@ jest.mock('react-native', () => ({ View: 'View', Text: 'Text', TouchableOpacity:
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/NavPillSurface', () => 'NavGlass');
+jest.mock('react-native-reanimated', () => ({ useSharedValue: () => ({ value: 0 }) }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ colors: { foreground: '#fff' } }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
