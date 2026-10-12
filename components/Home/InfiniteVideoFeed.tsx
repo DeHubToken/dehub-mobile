@@ -64,6 +64,7 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import ShortsCarousel, { useHomeShortsCarousel } from "./ShortsCarousel";
+import { shortsBatchIndex } from '../../libs/shortsRotation';
 import { useInfiniteQuery, useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getNFT } from "../../services/nft.service";
 import { useBoostQueue } from "../../hooks/useSuperpowers";
@@ -167,7 +168,7 @@ const SETTLE_AFTER_DRAG_MS = 120;
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
-type FeedRow = UnifiedFeedItem & { __listKey: string; __boosted?: boolean; __synthetic?: "header" | "suggested" | "shorts" };
+type FeedRow = UnifiedFeedItem & { __listKey: string; __boosted?: boolean; __shortsIndex?: number; __synthetic?: "header" | "suggested" | "shorts" };
 
 // Reanimated's wrapper, created once. It attaches the header worklet through
 // FlashList's getScrollableNode and gives FlashList a no-op onScroll; FlashList
@@ -183,16 +184,14 @@ const AnimatedFlashList = Animated.createAnimatedComponent(
 // cells first, so the header and suggested-accounts rows (the oldest) go last.
 const MAX_POOLED_CELLS = 10;
 
-// Index after which to insert the suggested-accounts carousel (after the 5th post).
-const SUGGEST_AFTER_INDEX = 4;
-// Home "all" tab only: the most-viewed shorts rail after the 2nd post, near the top like web.
-const SHORTS_AFTER_INDEX = 1;
+// Index after which to insert the suggested-accounts carousel (after the 3rd post).
+const SUGGEST_AFTER_INDEX = 2;
+
 
 // The header and the suggested-accounts carousel are rows of their own, so a
 // recycled post cell is never asked to grow a carousel it did not have.
 const HEADER_ROW = { __listKey: "__feed-header", __synthetic: "header" } as FeedRow;
 const SUGGESTED_ROW = { __listKey: "__suggested-accounts", __synthetic: "suggested" } as FeedRow;
-const SHORTS_ROW = { __listKey: "__shorts-carousel", __synthetic: "shorts" } as FeedRow;
 
 const DEFAULT_CONTENT_STYLE = { paddingHorizontal: 8, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
 const FLUSH_CONTENT_STYLE = { ...DEFAULT_CONTENT_STYLE, paddingTop: 0 };
@@ -790,7 +789,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, queuedBoostPosts]);
 
-  const shortsItems = useHomeShortsCarousel(showShortsCarousel && feedItems.length > SHORTS_AFTER_INDEX);
+  const shortsRotation = useHomeShortsCarousel(showShortsCarousel, feedItems.length, active);
+  const shortsBatches = shortsRotation.batches;
 
   // Runs once the list has laid out a change: on every content size change,
   // and a frame after a new boost.
@@ -856,18 +856,22 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // append renders only the new cells.
   //
   // The header is row 0 and the suggested-accounts carousel a row after the
-  // fifth post. An empty feed has neither; ListHeaderComponent carries the
+  // third post. An empty feed has neither; ListHeaderComponent carries the
   // header then, above the empty state.
   const listData = useMemo<FeedRow[]>(() => {
     if (feedItems.length === 0) return feedItems;
     const rows: FeedRow[] = [HEADER_ROW];
     feedItems.forEach((row, i) => {
       rows.push(row);
-      if (showShortsCarousel && shortsItems.length > 0 && i === SHORTS_AFTER_INDEX) rows.push(SHORTS_ROW);
+      const shortsIndex = shortsBatchIndex(i + 1);
+      if (showShortsCarousel && shortsIndex >= 0 && shortsBatches[shortsIndex]?.length) rows.push({
+        __listKey: `__shorts-${shortsRotation.generation}-${shortsIndex}`,
+        __synthetic: 'shorts', __shortsIndex: shortsIndex,
+      } as FeedRow);
       if (i === SUGGEST_AFTER_INDEX) rows.push(SUGGESTED_ROW);
     });
     return rows;
-  }, [feedItems, showShortsCarousel, shortsItems]);
+  }, [feedItems, showShortsCarousel, shortsBatches, shortsRotation.generation]);
 
   // Ticks are skipped while hidden, and FlashList only reports rows whose
   // index changed viewability, so a new page, a prepended boost or a filter
@@ -971,6 +975,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const onRefresh = useCallback(async () => {
     // Call external refresh callback (e.g., to refresh shuffle seed)
     onRefreshProp?.();
+    shortsRotation.refresh();
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
     try {
@@ -986,7 +991,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp, queryClient, queryKey]);
+  }, [refetch, onRefreshProp, queryClient, queryKey, shortsRotation.refresh]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", (event) => {
@@ -1161,25 +1166,34 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // hairline there (under itself), so the post drops its own.
   const beforeSuggestedKey = feedItems[SUGGEST_AFTER_INDEX]?.__listKey;
   // The shorts rail separates the posts itself once it has content to show.
-  const beforeShortsKey = shortsItems.length > 0 ? feedItems[SHORTS_AFTER_INDEX]?.__listKey : undefined;
+  const beforeShortsKeys = useMemo(() => new Set(feedItems.flatMap((item, index) => {
+    const batch = shortsBatchIndex(index + 1);
+    return batch >= 0 && shortsBatches[batch]?.length ? [item.__listKey] : [];
+  })), [feedItems, shortsBatches]);
   const renderItem = useCallback<ListRenderItem<FeedRow>>(
     ({ item }) => {
       if (item.__synthetic === "header") return headerBlock;
       if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;
-      if (item.__synthetic === "shorts") return <ShortsCarousel items={shortsItems} />;
+      if (item.__synthetic === "shorts") return <ShortsCarousel
+        key={item.__listKey}
+        items={shortsBatches[item.__shortsIndex ?? 0] ?? []}
+        onViewerOpen={shortsRotation.onViewerOpen}
+        initialOffset={shortsRotation.offsets.current.get(item.__listKey) ?? 0}
+        onOffset={offset => shortsRotation.offsets.current.set(item.__listKey, offset)}
+      />;
       return (
         <VisibleFeedCard
           item={item}
           store={visibilityStore}
           onCategorySelect={onCategorySelect}
           topChromeInset={item.__listKey === firstRowKey ? firstCardInset : undefined}
-          hideDivider={item.__listKey === beforeSuggestedKey || item.__listKey === beforeShortsKey}
+          hideDivider={item.__listKey === beforeSuggestedKey || beforeShortsKeys.has(item.__listKey)}
         />
       );
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKey, shortsItems],
+    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKeys, shortsBatches, shortsRotation.onViewerOpen, shortsRotation.offsets],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer
