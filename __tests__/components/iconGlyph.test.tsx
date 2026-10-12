@@ -14,7 +14,7 @@ jest.mock("react-native", () => ({
   Dimensions: { get: () => ({ width: 390, height: 844 }) },
   findNodeHandle: jest.fn(),
 }));
-jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path", G: "G", Defs: "Defs", Mask: "Mask", Rect: "Rect" }));
+jest.mock("react-native-svg", () => ({ __esModule: true, default: "Svg", Path: "Path", G: "G", Defs: "Defs", Mask: "Mask", Rect: "Rect", ClipPath: "ClipPath" }));
 jest.mock("react-native-reanimated", () => ({
   __esModule: true,
   default: { View: "View" },
