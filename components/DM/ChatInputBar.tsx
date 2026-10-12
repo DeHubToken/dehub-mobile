@@ -334,9 +334,17 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     const trimmed = text.trim();
     // Allow sending if there's text OR if a tip is attached (tip-only send)
     if (!trimmed && !tipAmount) return;
-    if (!(await onSendText(trimmed))) return;
+    if (!editingMessage) {
+      setOrdinaryText('');
+      inputRef.current?.clear();
+    }
+    let sent = false;
+    try { sent = await onSendText(trimmed); } catch { sent = false; }
+    if (!sent) {
+      if (!editingMessage) setOrdinaryText(current => current.trim() ? current : text);
+      return;
+    }
     if (editingMessage) setEditText.complete(text, "");
-    else setOrdinaryText.complete(text, "");
     emitTyping(false);
     } finally { sendInFlight.current = false; }
   }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount, setText, editingMessage, setEditText, setOrdinaryText]);

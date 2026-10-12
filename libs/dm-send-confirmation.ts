@@ -1,5 +1,6 @@
 /** The /dm server confirms persistence with a sender-only sendMessage echo. */
 export interface DmSendTransport {
+  senderAddress?: string;
   on(event: string, handler: (data: any) => void): () => void;
   emit(payload: DmSendPayload): void;
 }
@@ -15,6 +16,8 @@ export interface DmSendEcho {
   _id: string;
   conversation?: unknown;
   dmId?: string;
+  conversationId?: string;
+  sender?: { address?: string };
   author?: string;
   content?: string;
   msgType?: string;
@@ -46,8 +49,13 @@ export function confirmDmSend<T extends DmSendEcho>(
       unsubscribers.push(transport.on('sendMessage', (message: T) => {
         const conversation = message?.conversation;
         const dmId = typeof conversation === 'string'
-          ? conversation : (conversation as { _id?: string })?._id || message?.dmId;
-        if (dmId !== payload.dmId || message?.author !== 'me' || !message?._id) return;
+          ? conversation : (conversation as { _id?: string })?._id || message?.dmId || message?.conversationId;
+        if (dmId !== payload.dmId || !message?._id) return;
+        if (message.author && message.author !== 'me') return;
+        // Socket echoes can omit the display-only author field. Confirm those
+        // by the authenticated sender instead of timing out a saved message.
+        if (!message.author && (!transport.senderAddress ||
+            message.sender?.address?.toLowerCase() !== transport.senderAddress.toLowerCase())) return;
         if ((message.msgType || 'msg') !== payload.type) return;
         // Compare the wire content, including encrypted envelopes, before decryption.
         if ((message.content || '') !== (payload.content || '')) return;

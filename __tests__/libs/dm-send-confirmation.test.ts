@@ -2,6 +2,7 @@
 import { confirmDmSend, type DmSendPayload, type DmSendTransport } from '../../libs/dm-send-confirmation';
 
 class ChatTransport implements DmSendTransport {
+  senderAddress = '0xAlice';
   handlers = new Map<string, Set<(data: any) => void>>();
   emitted: DmSendPayload[] = [];
   on(event: string, handler: (data: any) => void) {
@@ -20,6 +21,16 @@ beforeEach(() => jest.useFakeTimers());
 afterEach(() => jest.useRealTimers());
 
 describe('persisted DM confirmation', () => {
+  it('confirms a saved sender echo without the display-only author field', async () => {
+    const transport = new ChatTransport();
+    const pending = confirmDmSend(transport, payload);
+    transport.receive('sendMessage', { ...echo, author: undefined, sender: { address: '0xBob' } });
+    const saved = { ...echo, author: undefined, conversation: undefined,
+      conversationId: payload.dmId, sender: { address: '0xALICE' } };
+    transport.receive('sendMessage', saved);
+    await expect(pending).resolves.toEqual(saved);
+    expect(transport.listenerCount).toBe(0);
+  });
   it('stays pending beyond the old two-second refresh until the saved echo arrives', async () => {
     const transport = new ChatTransport();
     let saved = false;
