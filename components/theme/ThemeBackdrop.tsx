@@ -82,7 +82,12 @@ const ThemeBackdrop: React.FC = () => {
           const nativeMask = Platform.OS === "android" && theme === "winter"
             ? `<style>html[data-theme="winter"] canvas{-webkit-mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 80px));mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 80px));}</style>`
             : "";
-          setHtml(page.replace("<head>", `<head>${named}${nativeMask}`));
+          // Lava's white blobs otherwise wash out white page text. Reduce
+          // only the artwork luminance; native bento surfaces stay untouched.
+          const nativeContrast = Platform.OS === "android" && theme === "lavalamp"
+            ? `<style>html[data-theme="lavalamp"] canvas{filter:brightness(.45);}</style>`
+            : "";
+          setHtml(page.replace("<head>", `<head>${named}${nativeMask}${nativeContrast}`));
         })
         .catch((e) => log.warn("Theme backdrop unavailable", e));
     }, 400);
