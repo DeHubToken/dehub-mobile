@@ -384,6 +384,18 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     <View className="flex-1">
       {!isFullScreen && ProfileHeader}
       <UserProfileBottomContentTabs
+        pinnedIdentity={{
+          name: profileData.displayName,
+          handle: profileData.username,
+          avatarUrl,
+          showFollow: !isOwnProfile && !isBlocked,
+          isFollowing,
+          isPending: isFollowRequestPending,
+          followLoading,
+          disableFollow: profileData.disableActions,
+          onFollow,
+          onOpenUnfollow,
+        }}
         profileScrollY={collapse?.scrollY}
         profileActionsBottom={collapse?.actionsBottom}
         profileTabsPinned={collapse?.tabsPinned}
