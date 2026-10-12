@@ -29,17 +29,18 @@ const TAB_WIDTH = 56;
 
 function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pinned = false, embedded = false }: ProfileTabBarProps<Key>) {
   const { isMinimal, colors, skin } = useAppTheme();
+  const compact = pinned || embedded;
   const scrollRef = useRef<ScrollView>(null);
   const [railWidth, setRailWidth] = useState(0);
   const [offset, setOffset] = useState(0);
   const contentWidth = items.length * TAB_WIDTH;
   const maxOffset = Math.max(0, contentWidth - railWidth);
-  const startHidden = offset > 1;
-  const endHidden = maxOffset - offset > 1;
+  const startHidden = compact && offset > 1;
+  const endHidden = compact && maxOffset - offset > 1;
   const edgeColor = String(skin?.barFill.backgroundColor ?? colors.background);
 
   useEffect(() => {
-    if (!railWidth) return;
+    if (!compact || !railWidth) return;
     const index = Math.max(0, items.findIndex(item => item.key === activeKey));
     const left = index * TAB_WIDTH;
     const right = left + TAB_WIDTH;
@@ -48,13 +49,33 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
     // Re-seat the selection when the row changes width or tab, without
     // pulling it back while the user browses the rail.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeKey, railWidth, items]);
+  }, [activeKey, railWidth, items, compact]);
+
+  const tabButtons = items.map(item => {
+    const focused = item.key === activeKey;
+    const iconColor = skin ? focused ? skin.barIconActive : skin.barIcon : colors.foreground;
+    return (
+      <TouchableOpacity
+        key={item.key}
+        accessibilityRole="tab"
+        accessibilityLabel={item.label}
+        accessibilityState={{ selected: focused }}
+        onPress={() => onChange(item.key)}
+        activeOpacity={0.72}
+        style={[styles.tab, !compact && styles.expandedTab, focused && styles.tabActive, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
+      >
+        {focused && !isMinimal && <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.indicator} />}
+        <Icon name={item.icon} size={18} color={iconColor} strokeWidth={2} />
+        <Text numberOfLines={1} style={[styles.count, { color: iconColor }]}>{typeof item.count === "number" ? formatCompactNumber(item.count) : ""}</Text>
+      </TouchableOpacity>
+    );
+  });
 
   return (
     <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap, pinned && styles.pinnedOuterWrap, embedded && styles.embeddedOuterWrap]}>
       <View style={[styles.container, isMinimal && styles.minimalContainer, embedded && styles.embeddedContainer]}>
         {!embedded && <NavPillSurface borderRadius={12} />}
-        <ScrollView
+        {compact ? <ScrollView
           ref={scrollRef}
           horizontal
           bounces={false}
@@ -64,26 +85,8 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
           onScroll={event => setOffset(Math.max(0, Math.min(maxOffset, Math.abs(event.nativeEvent.contentOffset.x))))}
           scrollEventThrottle={32}
         >
-          {items.map(item => {
-            const focused = item.key === activeKey;
-            const iconColor = skin ? focused ? skin.barIconActive : skin.barIcon : colors.foreground;
-            return (
-              <TouchableOpacity
-                key={item.key}
-                accessibilityRole="tab"
-                accessibilityLabel={item.label}
-                accessibilityState={{ selected: focused }}
-                onPress={() => onChange(item.key)}
-                activeOpacity={0.72}
-                style={[styles.tab, focused && styles.tabActive, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
-              >
-                {focused && !isMinimal && <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.indicator} />}
-                <Icon name={item.icon} size={18} color={iconColor} strokeWidth={2} />
-                <Text numberOfLines={1} style={[styles.count, { color: iconColor }]}>{typeof item.count === "number" ? formatCompactNumber(item.count) : ""}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+          {tabButtons}
+        </ScrollView> : <View style={[styles.row, styles.expandedRow]}>{tabButtons}</View>}
         {(I18nManager.isRTL ? endHidden : startHidden) && <View pointerEvents="none" style={[styles.edge, styles.startEdge]}>
           <BlurView intensity={8} tint="default" style={[styles.edgeBlur, { left: 0 }]} />
           <LinearGradient colors={[edgeColor, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} />
@@ -104,7 +107,9 @@ const styles = StyleSheet.create({
   container: { width: "100%", minHeight: TAB_HEIGHT, borderRadius: 12, overflow: 'hidden' },
   embeddedContainer: { backgroundColor: 'transparent' },
   row: { flexDirection: 'row', alignItems: 'center' },
+  expandedRow: { width: '100%' },
   tab: { width: TAB_WIDTH, height: TAB_HEIGHT, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
+  expandedTab: { flex: 1, width: undefined },
   tabActive: { backgroundColor: 'rgba(255,255,255,0.12)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)' },
   indicator: { ...StyleSheet.absoluteFillObject, borderRadius: 11 },
   count: { textAlign: 'center', fontSize: 10, lineHeight: 12, marginTop: 1, fontWeight: '500' },
