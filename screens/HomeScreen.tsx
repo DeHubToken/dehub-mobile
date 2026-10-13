@@ -27,7 +27,7 @@ import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
-import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
+import FeedNavBar, { NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
@@ -492,29 +492,14 @@ export default function HomeScreen() {
   const [navOverlap, setNavOverlap] = useState(38);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
     setNavOverlap(e.nativeEvent.layout.height - NAV_PILL_TOP_INSET);
-    setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1);
-    // One point below the pill's top edge, so rounding between the measured
-    // layout and the transform can never leave a hairline of feed showing
-    // above the pill; the pill's rim covers that point.
-    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 1;
+    setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4);
+    // Match web's full-width cutoff just inside the upper rim. Both layers
+    // follow the header on the UI thread, even while JavaScript is busy.
+    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4;
     // Minimal's tab bar sits flush; the pill themes keep 2pt under the pill.
     navPillBottom.value = e.nativeEvent.layout.y + e.nativeEvent.layout.height - (theme === 'minimal' ? 0 : 2);
   }, [navPillTop, navPillBottom, theme]);
   const clipOn = glassNav && !island;
-  // The cut follows the pill's silhouette, as on web: the viewport is inset to
-  // the pill's sides and rounded with the theme's own pill radius, so nothing
-  // peeks out beside or above the pill's rounded corners. Its content is
-  // pushed back out by the same inset, so the feed keeps its full width — the
-  // lists already pad their cards 8pt in from each edge.
-  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : NAV_PILL_RADIUS;
-  const viewportShape = clipOn
-    ? {
-        marginHorizontal: NAV_PILL_SIDE_INSET,
-        borderTopLeftRadius: pillRadius,
-        borderTopRightRadius: pillRadius,
-      }
-    : null;
-  const unclipShape = clipOn ? { marginHorizontal: -NAV_PILL_SIDE_INSET } : null;
   const feedClipStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: clipOn ? Math.max(0, navPillTop.value + headerTranslateY.value) : 0 }],
   }));
@@ -929,9 +914,9 @@ export default function HomeScreen() {
           pointerEvents={imageFeed ? "none" : "auto"}
           accessibilityElementsHidden={!!imageFeed}
           importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}
-          style={[styles.pagerViewport, viewportShape, feedClipStyle, { opacity: imageFeed ? 0 : 1 }]}
+          style={[styles.pagerViewport, feedClipStyle, { opacity: imageFeed ? 0 : 1 }]}
         >
-          <Animated.View style={[styles.feedUnclip, unclipShape, feedUnclipStyle]}>
+          <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
             <Animated.View
               style={[styles.pagerRow, { width: pageWidth * TAB_ORDER.length }, pagerStyle]}
