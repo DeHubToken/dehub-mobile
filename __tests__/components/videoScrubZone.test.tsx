@@ -42,7 +42,7 @@ function setup(showControls = true) {
 describe('video scrub zone', () => {
   it('enlarges only the invisible target while keeping the rail and button row anchored', () => {
     const s = setup();
-    expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64 });
+    expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64, backgroundColor: 'transparent' });
     expect(mockScrubOptions.immediateBottom).toBe(64);
     const layers = s.UNSAFE_getAllByType(Animated.View).map(layer => StyleSheet.flatten(layer.props.style));
     expect(layers).toEqual(expect.arrayContaining([

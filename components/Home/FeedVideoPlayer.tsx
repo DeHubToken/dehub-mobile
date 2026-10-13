@@ -1378,20 +1378,17 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
-                {captionControls && (
+                {tokenId != null && (
                   <VideoScrubButton
-                    onPress={() => { captionControls.openLanguages(); startHideTimer(); }}
+                    onPress={() => { captionControls?.openLanguages(); startHideTimer(); }}
+                    disabled={!captionControls}
                     hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("subtitles.title")}
-                    accessibilityState={{ selected: captionControls.enabled }}
+                    accessibilityState={{ selected: captionControls?.enabled ?? false, busy: captionControls?.loading ?? false }}
                     style={styles.bareButton}
                   >
-                    {captionControls.loading ? (
-                      <Spinner size={16} />
-                    ) : (
-                      <BareIcon name="Captions" plain active={captionControls.enabled} />
-                    )}
+                    <BareIcon name="Captions" plain active={captionControls?.enabled ?? false} />
                   </VideoScrubButton>
                 )}
                 <VideoScrubButton
@@ -1730,8 +1727,12 @@ const styles = StyleSheet.create({
   },
   bareSpeedText: {
     color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "700",
+    fontFamily: "Exo_700Bold",
+    fontSize: 18,
+    lineHeight: 18,
+    fontWeight: "normal",
+    includeFontPadding: false,
+    textAlign: "center",
     fontVariant: ["tabular-nums"],
   },
   bareTime: {
