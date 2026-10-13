@@ -2499,6 +2499,13 @@
     "tasks": {
       "privateTitle": "Agenten zijn beschikbaar als besloten voorproefje",
       "privateBody": "Deze functie is momenteel beschikbaar voor @maldoteth.",
+      "mode": "Taakmodus",
+      "oneAgent": "Eén agent",
+      "swarm": "Zwerm",
+      "swarmChoose": "Kies agenten",
+      "swarmHelp": "Eén opdracht, gedeeld werk. Doelen worden verdeeld en geplande berichten wisselen tussen agenten.",
+      "swarmMember": "Zwermagent {{index}} van {{total}}",
+      "runSwarm": "Start zwerm",
       "title": "Geef een agent een taak",
       "description": "Acties worden uitgevoerd als de geselecteerde agent. Geplande taken gaan door wanneer de app gesloten is.",
       "instructions": "Instructies voor de agent",

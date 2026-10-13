@@ -2309,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Los agentes están en vista previa privada",
       "privateBody": "Esta función está disponible actualmente para @maldoteth.",
+      "mode": "Modo de tarea",
+      "oneAgent": "Un agente",
+      "swarm": "Enjambre",
+      "swarmChoose": "Elige agentes",
+      "swarmHelp": "Una instrucción y trabajo compartido. Los objetivos se reparten entre agentes y las publicaciones programadas se alternan.",
+      "swarmMember": "Agente {{index}} de {{total}} del enjambre",
+      "runSwarm": "Iniciar enjambre",
       "title": "Asigna una tarea a un agente",
       "description": "Las acciones se realizan como el agente seleccionado. Las tareas programadas continúan con la aplicación cerrada.",
       "instructions": "Instrucciones del agente",
