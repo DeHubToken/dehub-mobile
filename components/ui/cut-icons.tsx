@@ -73,7 +73,7 @@ const CutBlog = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M16.5 5H10Q5 5 5 10V27H22Q27 27 27 22V15.5" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M21 3H24Q29 3 29 8V11H26Q21 11 21 6Z" fill={color} fillRule="evenodd" /><Path d="M11.3920 16.2000L21.0000 16.2000L21.0000 15.1920Q21.0000 13.8000 19.6080 13.8000L10.0000 13.8000L10.0000 14.8080Q10.0000 16.2000 11.3920 16.2000Z" fill={color} fillRule="evenodd" /><Path d="M11.3920 21.2000L17.0000 21.2000L17.0000 20.1920Q17.0000 18.8000 15.6080 18.8000L10.0000 18.8000L10.0000 19.8080Q10.0000 21.2000 11.3920 21.2000Z" fill={color} fillRule="evenodd" /></Svg>
 );
 const CutCommunities = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
-  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 5H9Q13 5 13 9Q13 13 9 13H5Z M20 7H23Q27 7 27 11Q27 15 23 15H20Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M4.2000 26.6080L4.2000 19.2000L10.0000 19.2000L10.0000 18.1920Q10.0000 16.8000 8.6080 16.8000L1.8000 16.8000L1.8000 28.0000L2.8080 28.0000Q4.2000 28.0000 4.2000 26.6080Z" fill={color} fillRule="evenodd" /><Path d="M10 18Q18 18 18 26V28 M22 20Q29 20 29 27V28" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /></Svg>
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 13V9Q5 5 9 5Q13 5 13 9V13Z M20 15V11Q20 7 23.5 7Q27 7 27 11V15Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M4.2000 26.6080L4.2000 19.2000L10.0000 19.2000L10.0000 18.1920Q10.0000 16.8000 8.6080 16.8000L1.8000 16.8000L1.8000 28.0000L2.8080 28.0000Q4.2000 28.0000 4.2000 26.6080Z" fill={color} fillRule="evenodd"/><Path d="M10 18Q18 18 18 26V28 M22 20Q29 20 29 27V28" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
 );
 const CutArcade = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M9 8H23Q26 8 26.8 12L29 26H26Q24 26 22.7 24.4L20 21H12L9.3 24.4Q8 26 6 26H3L5.2 12Q6 8 9 8Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="miter"/><Path d="M8 14H13.8V15.1Q13.8 16.2 12.7 16.2H8Z M9.8 12H12V17Q12 18.2 10.8 18.2H9.8Z" fill={color}/><Path d="M21.4 11.8H22.5Q23.6 11.8 23.6 12.9V14H22.5Q21.4 14 21.4 12.9Z M19.3 15.5H20.4Q21.5 15.5 21.5 16.6V17.7H20.4Q19.3 17.7 19.3 16.6Z M23.4 15.5H24.5Q25.6 15.5 25.6 16.6V17.7H24.5Q23.4 17.7 23.4 16.6Z" fill={color}/></Svg>
@@ -328,7 +328,51 @@ const CutSettingsCog = ({ size = 24, color = "currentColor", strokeWidth = 2, ..
 const CutCreator = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 6H16Q28 6 28 16Q28 22 22 22H20Q17 22 17 25Q17 28 13 28Q5 28 5 19Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M9.4 9.4H11Q12.6 9.4 12.6 11V12.6H11Q9.4 12.6 9.4 11Z" fill={color} fillRule="evenodd"/><Path d="M17.4 9.4H19Q20.6 9.4 20.6 11V12.6H19Q17.4 12.6 17.4 11Z" fill={color} fillRule="evenodd"/><Path d="M21.4 15.4H23Q24.6 15.4 24.6 17V18.6H23Q21.4 18.6 21.4 17Z" fill={color} fillRule="evenodd"/><Path d="M8.4 17.4H10Q11.6 17.4 11.6 19V20.6H10Q8.4 20.6 8.4 19Z" fill={color} fillRule="evenodd"/></Svg>
 );
+const CutNewmembers = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M16 3L19.4 10.3Q19.8 11.2 20.8 11.3L28.8 12.3L23 18Q22.3 18.7 22.5 19.7L24 28L16.9 24Q16 23.5 15.1 24L8 28L9.5 19.7Q9.7 18.7 9 18L3.2 12.3L11.2 11.3Q12.2 11.2 12.6 10.3Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+);
+const CutGrowing = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M9 4H13Q18 4 18 9Q18 14 13 14H9Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M3 28V19H13Q22 19 22 27V28H21Q19.6 28 19.6 26.6Q19.4 21.4 13 21.4H5.4V26.6Q5.4 28 4 28Z" fill={color} fillRule="evenodd"/><Path d="M24.2760 11.1000L31.0000 11.1000L31.0000 10.1760Q31.0000 8.9000 29.7240 8.9000L23.0000 8.9000L23.0000 9.8240Q23.0000 11.1000 24.2760 11.1000Z" fill={color} fillRule="evenodd"/><Path d="M25.9000 7.2760L25.9000 14.0000L26.8240 14.0000Q28.1000 14.0000 28.1000 12.7240L28.1000 6.0000L27.1760 6.0000Q25.9000 6.0000 25.9000 7.2760Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutChat = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12 4H22Q28 4 28 10V19L23 16H20 M4 10H14Q20 10 20 16V28L14 24H10Q4 24 4 18Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M8 14H14Q16 14 16 16H10Q8 16 8 14Z M8 19H12Q14 19 14 21H10Q8 21 8 19Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutPrompt = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 22L21 6Q23 4 25 6L27 8L9 26Q7 28 5 26Z M18 9L23 14" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M6 3H8V6H11V8H8V11H6V8H3V6H6Z M24 21H26V24H29V26H26V29H24V26H21V24H24Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutSuperPowers = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M18 3L5 18H14L12 29L27 13H18Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+);
+const CutUsernames = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M22 12V20Q28 20 28 14Q28 4 18 4H14Q4 4 4 14V19Q4 28 14 28H21 M22 12Q22 9 17 9H15Q10 9 10 15V17Q10 22 15 22Q22 22 22 16Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+);
+const CutLiveTV = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M4 10H21Q28 10 28 17V27H11Q4 27 4 20Z M10 3L16 9L22 3" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M12 15L21 19L12 23Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutConverter = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3.8000 22.3920L3.8000 28.2000L20.0000 28.2000L28.2000 28.2000L28.2000 21.0000L27.1920 21.0000Q25.8000 21.0000 25.8000 22.3920L25.8000 25.8000L20.0000 25.8000L6.2000 25.8000L6.2000 21.0000L5.1920 21.0000Q3.8000 21.0000 3.8000 22.3920Z" fill={color} fillRule="evenodd"/><Path d="M14.8000 5.3920L14.8000 21.0000L15.8080 21.0000Q17.2000 21.0000 17.2000 19.6080L17.2000 4.0000L16.1920 4.0000Q14.8000 4.0000 14.8000 5.3920Z" fill={color} fillRule="evenodd"/><Path d="M10.1358 16.8328L16.0000 22.6971L22.8485 15.8485L22.1358 15.1358Q21.1515 14.1515 20.1672 15.1358L16.0000 19.3029L10.8485 14.1515L10.1358 14.8642Q9.1515 15.8485 10.1358 16.8328Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutMigrate = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M4 13V5H11L14 9H22Q28 9 28 15V27H10Q4 27 4 21V20" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M2 15H13V12L20 18L13 24V21H5Q2 21 2 18Z" fill={color} fillRule="evenodd"/></Svg>
+);
+const CutGlossary = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M7 5H20Q25 5 25 10V24H13Q7 24 7 18V9Q7 5 3 5Q1 5 1 9V11H7 M13 24V26Q13 29 17 29H25Q29 29 29 25V24Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M12 10H18Q20 10 20 12H14Q12 12 12 10Z M12 16H18Q20 16 20 18H14Q12 18 12 16Z" fill={color} fillRule="evenodd"/></Svg>
+);
+
 export const cutIcons = {
+  Film: CutShorts,
+  Star: CutNewmembers,
+  SquareUserRound: CutGrowing,
+  MessagesSquare: CutChat,
+  Wand: CutPrompt,
+  Wand2: CutPrompt,
+  Zap: CutSuperPowers,
+  AtSign: CutUsernames,
+  Tv: CutLiveTV,
+  ArrowDownToLine: CutConverter,
+  FolderInput: CutMigrate,
+  Scroll: CutGlossary,
+
   Creator: CutCreator,
   SettingsCog: CutSettingsCog,
   MoreVertical: CutMoreVertical,
@@ -486,3 +530,15 @@ export { CutMoreVertical as MoreVertical, CutMoreVertical as EllipsisVertical, C
 export { CutSettingsCog as SettingsCog };
 
 export { CutCreator as Creator };
+export { CutShorts as Film };
+export { CutNewmembers as Star };
+export { CutGrowing as SquareUserRound };
+export { CutChat as MessagesSquare };
+export { CutPrompt as Wand };
+export { CutPrompt as Wand2 };
+export { CutSuperPowers as Zap };
+export { CutUsernames as AtSign };
+export { CutLiveTV as Tv };
+export { CutConverter as ArrowDownToLine };
+export { CutMigrate as FolderInput };
+export { CutGlossary as Scroll };
