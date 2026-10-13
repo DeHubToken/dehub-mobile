@@ -306,12 +306,12 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <View style={routeName === ScreenNames.DM ? { transform: [{ scaleX: 1.15 }] } : undefined}><Icon
           name={icon}
           size={routeName === ScreenNames.Home ? 22 : 20}
           color={iconColor}
           strokeWidth={isActive ? 2 : 1.75}
-        />}
+        /></View>}
       {badgeCount > 0 && (
         <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
           <Text style={[styles.badgeText, { color: routeName === ScreenNames.DM ? "#ffffff" : colors.accentForeground }]} numberOfLines={1}>
