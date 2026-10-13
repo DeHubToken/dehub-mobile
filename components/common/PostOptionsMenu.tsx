@@ -17,7 +17,7 @@ import {
   Platform,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Ionicons } from "@expo/vector-icons";
+import Icon, { type IconName } from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
@@ -163,16 +163,17 @@ export interface PostOptionsMenuProps {
 }
 
 interface OptionRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
   label: string;
   sublabel?: string;
   color?: string;
+  filled?: boolean;
   loading?: boolean;
   onPress: () => void;
 }
 
 const OptionRow: React.FC<OptionRowProps> = memo(
-  ({ icon, label, sublabel, color = "#E5E7EB", loading, onPress }) => (
+  ({ icon, label, sublabel, color = "#E5E7EB", filled, loading, onPress }) => (
     <TouchableOpacity
       onPress={onPress}
       disabled={loading}
@@ -183,7 +184,7 @@ const OptionRow: React.FC<OptionRowProps> = memo(
         {loading ? (
           <ActivityIndicator size="small" color={color} />
         ) : (
-          <Ionicons name={icon} size={20} color={color} />
+          <Icon name={icon} size={20} color={color} fill={filled ? color : undefined} />
         )}
       </View>
       <View className="flex-1">
@@ -495,11 +496,11 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     ? t("postOptions.unfollow", { name: creatorDisplayName })
     : t("postOptions.follow", { name: creatorDisplayName });
 
-  const followIcon: keyof typeof Ionicons.glyphMap = isFollowRequestPending
-    ? "close-circle-outline"
+  const followIcon: IconName = isFollowRequestPending
+    ? "X"
     : isFollowing
-    ? "person-remove-outline"
-    : "person-add-outline";
+    ? "UserMinus"
+    : "UserPlus";
 
   return (
     <>
@@ -524,12 +525,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               that also shows these on its action bar still passes them: the
               menu is where people look for an action by name. */}
           {!!onDownloadVideo && (
-            <OptionRow icon="download-outline" label={t("postOptions.download")}
+            <OptionRow icon="Download" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />
           )}
           {!!onToggleSave && (
             <OptionRow
-              icon={isSaved ? "bookmark" : "bookmark-outline"}
+              icon="Bookmark"
+              filled={isSaved}
               label={
                 isSaved
                   ? t("postOptions.removeBookmark", "Remove bookmark")
@@ -543,7 +545,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               id to send. It lands on their profile's Pinned tab. */}
           {isOwner && numericTokenId != null && !Number.isNaN(numericTokenId) && (
             <OptionRow
-              icon={isPinned ? "pin" : "pin-outline"}
+              icon="Pin"
+              filled={isPinned}
               label={
                 isPinned
                   ? t("postOptions.unpinPost", "Unpin from your profile")
@@ -559,7 +562,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
           {!!onAskAi && (
             <OptionRow
-              icon="sparkles-outline"
+              icon="Sparkles"
               label={t("postOptions.aiOverview", "AI overview")}
               onPress={() => { onClose(); onAskAi(); }}
             />
@@ -567,7 +570,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
           {!!onInfoPress && (
             <OptionRow
-              icon="information-circle-outline"
+              icon="Info"
               label={t("postInfo.title", "Post info")}
               onPress={() => { onClose(); onInfoPress(); }}
             />
@@ -575,7 +578,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
           {/* Share */}
           <OptionRow
-            icon="share-outline"
+            icon="Share2"
             label={t("postOptions.share")}
             sublabel={t("postOptions.shareDesc")}
             onPress={handleShare}
@@ -584,7 +587,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Send to DM */}
           {!!onSendToDm && (
             <OptionRow
-              icon="send-outline"
+              icon="Send"
               label={t("postOptions.sendToDm")}
               sublabel={t("postOptions.sendToDmDesc")}
               onPress={() => { onClose(); setTimeout(() => onSendToDm(), 300); }}
@@ -594,7 +597,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Translate text */}
           {!!onTranslatePress && (
             <OptionRow
-              icon="globe-outline"
+              icon="Languages"
               label={t("postOptions.translatePost")}
               sublabel={t("postOptions.translateDesc")}
               onPress={() => { onTranslatePress(); onClose(); }}
@@ -604,7 +607,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Translate image (image posts only) */}
           {!!onTranslateImagePress && (
             <OptionRow
-              icon="image-outline"
+              icon="Image"
               label={t("postOptions.translateImage")}
               sublabel={t("postOptions.translateImageDesc")}
               onPress={() => { onClose(); setTimeout(() => onTranslateImagePress(), 300); }}
@@ -614,7 +617,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Dub — speak the video in the viewer's language */}
           {canDub && (
             <OptionRow
-              icon={dubOn ? "mic" : "mic-outline"}
+              icon="Mic"
               label={t("dub.menuLabel")}
               sublabel={dubOn ? t("dub.menuOn") : t("dub.menuDesc")}
               color={dubOn ? "#FFFFFF" : undefined}
@@ -637,7 +640,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             <>
               {!hideEdit && (
                 <OptionRow
-                  icon="create-outline"
+                  icon="Pencil"
                   label={t("postOptions.editPost")}
                   sublabel={t("postOptions.editPostDesc")}
                   onPress={handleOpenEdit}
@@ -649,7 +652,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   people who have not staked yet. */}
               {!!onBoostPress && tokenId != null && (
                 <OptionRow
-                  icon="rocket-outline"
+                  icon="Rocket"
                   label={t("feedCard.boostPost")}
                   sublabel={t("postOptions.boostPostDesc")}
                   onPress={() => { onClose(); setTimeout(() => onBoostPress(), 300); }}
@@ -659,7 +662,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   the backend keeps them at for life. */}
               {postStatus === "signed" && tokenId != null && (
                 <OptionRow
-                  icon="diamond-outline"
+                  icon="Gem"
                   label={t("upload.mintPost")}
                   sublabel={t("postOptions.mintPostDesc")}
                   loading={isMinting}
@@ -671,7 +674,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                 />
               )}
               <OptionRow
-                icon={isHidden ? "eye-outline" : "eye-off-outline"}
+                icon={isHidden ? "Eye" : "EyeOff"}
                 label={isHidden ? t("postOptions.showPost") : t("postOptions.hidePost")}
                 sublabel={
                   isHidden
@@ -692,7 +695,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             <>
               {!!onGiftBoostPress && tokenId != null && (
                 <OptionRow
-                  icon="gift-outline"
+                  icon="Gift"
                   label={t("postOptions.giftBoost")}
                   sublabel={t("postOptions.giftBoostDesc")}
                   onPress={() => { onClose(); setTimeout(() => onGiftBoostPress(), 300); }}
@@ -700,7 +703,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               )}
               {!hideReportContent && (
                 <OptionRow
-                  icon="flag-outline"
+                  icon="Flag"
                   label={t("postOptions.reportVideo")}
                   sublabel={t("postOptions.reportVideoDesc")}
                   color="#D4D4D8"
@@ -708,7 +711,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                 />
               )}
               <OptionRow
-                icon="person-remove-outline"
+                icon="UserMinus"
                 label={t("postOptions.reportUser")}
                 sublabel={t("postOptions.reportUserDesc", { name: creatorDisplayName })}
                 color="#D4D4D8"
@@ -724,7 +727,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   muting someone you have blocked would change nothing. */}
               {!isBlockedProp && (
                 <OptionRow
-                  icon="volume-mute-outline"
+                  icon="VolumeX"
                   label={t("postOptions.muteUser", { name: creatorDisplayName })}
                   sublabel={t("postOptions.muteDesc")}
                   onPress={handleMute}
@@ -732,7 +735,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               )}
 
               <OptionRow
-                icon={isBlockedProp ? "lock-open-outline" : "ban-outline"}
+                icon={isBlockedProp ? "LockOpen" : "Ban"}
                 label={isBlockedProp ? t("postOptions.unblockUser", { name: creatorDisplayName }) : t("postOptions.blockUser", { name: creatorDisplayName })}
                 sublabel={isBlockedProp ? t("postOptions.unblockDesc") : t("postOptions.blockDesc")}
                 color="#F4F4F5"
@@ -744,7 +747,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Delete — owner only */}
           {isOwner && (
             <OptionRow
-              icon="trash-outline"
+              icon="Trash2"
               label={t("postOptions.deletePost")}
               sublabel={t("postOptions.deletePostDesc")}
               color="#F4F4F5"

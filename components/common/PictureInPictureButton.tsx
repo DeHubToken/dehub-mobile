@@ -1,8 +1,6 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { isPictureInPictureSupported, VideoView } from 'expo-video';
-import { PictureInPicture2 } from '../ui/cut-icons';
-import { MediaControlIcon } from './MediaControlGlyph';
 import { toastInfo } from '../../libs';
 import { useTranslation } from 'react-i18next';
 
@@ -26,7 +24,6 @@ export default function PictureInPictureButton({ videoRef, plain = false }: {
         });
       }}
     >
-      {plain ? <MediaControlIcon name="PictureInPicture2" plain /> : <PictureInPicture2 size={20} color="#fff" />}
     </Pressable>
   );
 }

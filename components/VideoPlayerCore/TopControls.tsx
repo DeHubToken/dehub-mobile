@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useRef } from 'react';
 import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import Icon from "../ui/Icon";
 
 interface TopControlsProps {
   onClose: () => void;
@@ -68,7 +68,7 @@ const TopControls: React.FC<TopControlsProps> = ({
           accessibilityRole="button"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons name="chevron-down" size={22} color="#fff" />
+          <View style={{ transform: [{ rotate: '90deg' }] }}><Icon name="ChevronRight" size={22} color="#fff" /></View>
         </TouchableOpacity>
         
         {/* Title (optional) */}
@@ -108,7 +108,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             accessibilityState={{ selected: isLooping }}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialIcons name={isLooping ? 'loop' : 'trending-flat'} size={20} color={isLooping ? "#fff" : "#A1A1AA"} />
+            <Icon name="Repeat" size={20} color={isLooping ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 
@@ -121,7 +121,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialIcons name="picture-in-picture-alt" size={18} color="#fff" />
+            <Icon name="PictureInPicture2" size={18} color="#fff" />
           </TouchableOpacity>
         )}
 
@@ -141,8 +141,8 @@ const TopControls: React.FC<TopControlsProps> = ({
           accessibilityState={{ selected: isMuted }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons
-            name={isMuted ? 'volume-mute' : 'volume-high'}
+          <Icon
+            name={isMuted ? 'VolumeX' : 'Volume2'}
             size={20}
             color="#fff"
           />
@@ -157,7 +157,7 @@ const TopControls: React.FC<TopControlsProps> = ({
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialCommunityIcons name="screen-rotation" size={20} color="#fff" />
+            <Icon name="RefreshCw" size={20} color="#fff" />
           </TouchableOpacity>
         )}
 
@@ -170,8 +170,8 @@ const TopControls: React.FC<TopControlsProps> = ({
           accessibilityState={{ expanded: fullscreen }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons
-            name={fullscreen ? 'contract' : 'expand'}
+          <Icon
+            name={fullscreen ? 'Minimize' : 'Maximize'}
             size={20}
             color="#fff"
           />
