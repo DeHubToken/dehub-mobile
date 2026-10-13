@@ -1,4 +1,4 @@
-import { FEED_ICON_SIZE } from './feed-icon-size';
+import { FEED_ICON_SIZE, FEED_BOOKMARK_STYLE } from './feed-icon-size';
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -239,7 +239,9 @@ function PostStageActionBarComponent({
           mono={mono}
           onPress={onSave}
         >
-          <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={ICON} fill={saved ? ICON : undefined} />
+          <View style={FEED_BOOKMARK_STYLE}>
+            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={ICON} fill={saved ? ICON : undefined} />
+          </View>
         </Tile>
       </View>
     </View>
