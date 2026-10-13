@@ -2309,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Ajanlar özel önizlemede",
       "privateBody": "Bu özellik şu anda @maldoteth için kullanılabilir.",
+      "mode": "Görev modu",
+      "oneAgent": "Tek ajan",
+      "swarm": "Sürü",
+      "swarmChoose": "Ajanları seç",
+      "swarmHelp": "Tek komut, paylaşılan iş. Hedefler ajanlar arasında bölünür; zamanlanmış gönderiler sırayla paylaşılır.",
+      "swarmMember": "Sürü ajanı {{index}} / {{total}}",
+      "runSwarm": "Sürüyü başlat",
       "title": "Bir ajana görev verin",
       "description": "İşlemler seçilen ajan adına yapılır. Zamanlanmış görevler uygulama kapalıyken de devam eder.",
       "instructions": "Ajan talimatları",
