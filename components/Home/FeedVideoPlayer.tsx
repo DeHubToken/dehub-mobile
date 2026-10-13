@@ -533,8 +533,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const windowSize = useWindowDimensions();
   // The frame takes the clip's own shape, so the whole picture fills it.
   const cropMedia = false;
-  const bareControls = true;
-  const splitControls = !hideControls && !isContentGated;
+  // Feed preview: the clip plays muted as it is, with only an unmute button
+  // in the corner. A tap anywhere opens it in the Shorts viewer, which has the
+  // full controls; the post page keeps its own player.
+  const feedPreview = !postPage && !!onOpenViewer && !isContentGated;
+  const bareControls = !feedPreview;
+  const splitControls = !hideControls && !isContentGated && !feedPreview;
   const stripOpacity = useRef(new Animated.Value(1)).current;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1365,7 +1369,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
           <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
-          {!splitControls && !isStarting && (!isPlaying || showControls) && (
+          {feedPreview && (
+            <Pressable onPress={handleToggleMute} hitSlop={8}
+              style={[styles.previewMute, { top: bareTop }]}
+              accessibilityRole="button" accessibilityLabel={t(isMuted ? 'common.unmute' : 'common.mute')}>
+              <BareIcon name={isMuted ? 'VolumeX' : 'Volume2'} plain />
+            </Pressable>
+          )}
+          {!feedPreview && !splitControls && !isStarting && (!isPlaying || showControls) && (
             <Animated.View style={[styles.centreButton, splitControls && { marginTop: -28 - VIDEO_CONTROL_STRIP_HEIGHT / 2 }, { opacity: isPlaying ? controlsOpacity : 1 }]}>
               <Pressable onPress={() => handleVideoPress()} style={styles.centreTransport}
                 accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")}>
@@ -1738,6 +1749,15 @@ const styles = StyleSheet.create({
     left: 8,
     zIndex: 10,
   },
+  previewMute: {
+    position: "absolute",
+    right: 6,
+    width: 40,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 30,
+  },
   bareButton: {
     width: 32,
     height: 32,
@@ -1977,8 +1997,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack">> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack"> & { feedPreview?: boolean }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedPreview = false }) => {
     const { t } = useTranslation();
     const mediaAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const { isMinimal: minimalTheme } = useAppTheme();
@@ -1987,7 +2007,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
     const cropMedia = false;
-    const splitControls = !hideControls;
+    const splitControls = !hideControls && !feedPreview;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -2118,6 +2138,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       postPage={props.postPage}
       onBack={props.onBack}
       onPress={onPosterPress}
+      feedPreview={!props.postPage && !!props.onOpenViewer && !isContentGated}
     />
   );
 };
