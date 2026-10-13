@@ -1917,7 +1917,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   accessibilityLabel={t("comments.addImage")}
                   style={composerStyles.iconControl}
                 >
-                  <Icon name="ImagePlus" size={20} color="#8B8D90" />
+                  <Icon name="Image" size={20} color="#8B8D90" />
                 </Pressable>
                 <Pressable
                   onPress={handleOpenGifPicker}
