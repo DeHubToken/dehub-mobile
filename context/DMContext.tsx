@@ -7,7 +7,9 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useUser, useAuthState } from "./AuthContext";
+import { useUser, useAuthState, useAuthActions } from "./AuthContext";
+import { queryClient } from '../config/queryClient';
+import { patchTipBadges, publishTipBadges, type TipBadgeAccount } from '../libs/tip-badges';
 import { useWebSocketApi } from "./WebSocketContext";
 import { DMSocketEvent } from "../services/enums/dm-socket-events.enum";
 import {
@@ -63,6 +65,14 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   const { isSignedIn } = useAuthState();
   const user = useUser();
   const ws = useWebSocketApi();
+  const { patchUser } = useAuthActions();
+
+  useEffect(() => ws.on(DMSocketEvent.BadgeBalanceUpdated, (account: TipBadgeAccount) => {
+    if (account.address?.toLowerCase() !== user?.address?.toLowerCase()) return;
+    queryClient.setQueriesData({}, (data: unknown) => patchTipBadges(data, [account]));
+    publishTipBadges([account]);
+    void patchUser({ badgeBalance: account.badgeBalance, stakedDHB: account.badgeBalance, badgeLock: account.badgeLock } as any);
+  }), [ws, user?.address, patchUser]);
 
   const address = useMemo(
     () => ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase(),
