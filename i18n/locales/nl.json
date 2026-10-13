@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Jouw scène. Een andere jij.",
+    "intro": "180 personagestijlen, van zachte knuffel tot vloeibaar chroom.",
+    "inspiration": "Visuele inspiratie. Upload je eigen bijpassende personagereferentie.",
+    "browse": "Ontdek alle 180 stijlen",
+    "choose": "Probeer {{name}}",
+    "previous": "Vorige stijlen",
+    "next": "Volgende stijlen",
+    "plushie": "Knuffeltransformatie",
+    "anime": "Animeheld",
+    "chrome": "Vloeibaar chroom",
+    "crochet": "Gehaakte vriend",
+    "crystal": "Kristallen bewaker",
+    "clay": "Kleipersonage"
+  },
   "quickActions": {
     "title": "Paginaopties",
     "hint": "Houd ingedrukt op een plek zonder bestaande langdrukactie om deze opties te openen.",

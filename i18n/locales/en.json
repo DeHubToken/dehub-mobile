@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Your scene. A different you.",
+    "intro": "180 character looks, from soft plush to liquid chrome.",
+    "inspiration": "Look inspiration. Upload your own matching character reference.",
+    "browse": "Explore all 180 looks",
+    "choose": "Try {{name}}",
+    "previous": "Previous looks",
+    "next": "Next looks",
+    "plushie": "Plushie takeover",
+    "anime": "Anime hero",
+    "chrome": "Liquid chrome",
+    "crochet": "Crochet companion",
+    "crystal": "Crystal guardian",
+    "clay": "Clay character"
+  },
   "quickActions": {
     "title": "Page options",
     "hint": "Hold anywhere without an existing hold action to open these options.",

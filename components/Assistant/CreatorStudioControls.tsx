@@ -18,12 +18,13 @@ interface Props {
   onPresets: () => void;
   onAttach?: () => void;
   onWorkflow?: (workflow: 'swap' | 'motion') => void;
+  onMaboroshi?: () => void;
   disabled: boolean;
 }
 
 const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, disabled }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
@@ -41,13 +42,21 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     setDurationDraft(String(next.durationSeconds));
     onChange(next);
   };
-  const models = creatorModels(settings.mode);
+  const models = [
+    ...(settings.mode === 'video' && onMaboroshi ? [{ id: 'maboroshi', name: t('creator.toolMaboroshi'), description: t('creator.toolMaboroshiDesc') }] : []),
+    ...creatorModels(settings.mode),
+  ];
   const selected = models.find((model) => model.id === settings.model);
   const options: { id: string; name: string; description?: string }[] = picker === 'model' ? models
     : picker === 'aspect' ? creatorAspects(settings).map((id) => ({ id, name: id }))
     : picker === 'resolution' ? (CREATOR_VIDEO_RULES[settings.model]?.resolutions ?? ['720p']).map((id) => ({ id, name: id }))
     : ['none', 'standard', ...(MODEL3D_MODELS[settings.model]?.hdMultiplier ? ['HD'] : [])].map((id) => ({ id, name: t(`creator.studioTexture.${id}`) }));
   const choose = (id: string) => {
+    if (disabled) return;
+    if (picker === 'model' && id === 'maboroshi') { setPicker(null); onMaboroshi?.(); return; }
+    if (picker === 'model' && onWorkflow && (id === 'kling-o3-edit' || id === 'kling-3-motion')) {
+      setPicker(null); onWorkflow(id === 'kling-o3-edit' ? 'swap' : 'motion'); return;
+    }
     const next = { ...settings };
     if (picker === 'model') next.model = id;
     if (picker === 'aspect') next.aspect = id;
@@ -118,10 +127,6 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
       </View>
       <View className="flex-row flex-wrap gap-2">
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
-        {settings.mode === 'video' && onWorkflow && <>
-          {chip(t('creator.characterSwap'), () => onWorkflow('swap'), settings.model === 'kling-o3-edit')}
-          {chip(t('creator.copyMotion'), () => onWorkflow('motion'), settings.model === 'kling-3-motion')}
-        </>}
       </View>
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
         <View className="flex-1 justify-end bg-black/70">

@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Votre scène. Un autre vous.",
+    "intro": "180 looks de personnages, de la peluche au chrome liquide.",
+    "inspiration": "Inspiration visuelle. Importez votre propre référence de personnage assortie.",
+    "browse": "Explorer les 180 looks",
+    "choose": "Essayer {{name}}",
+    "previous": "Looks précédents",
+    "next": "Looks suivants",
+    "plushie": "Métamorphose en peluche",
+    "anime": "Héros d’animation",
+    "chrome": "Chrome liquide",
+    "crochet": "Compagnon au crochet",
+    "crystal": "Gardien de cristal",
+    "clay": "Personnage en argile"
+  },
   "quickActions": {
     "title": "Options de la page",
     "hint": "Maintenez le doigt sur une zone sans autre action d’appui long pour ouvrir ces options.",

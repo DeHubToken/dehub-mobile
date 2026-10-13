@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Deine Szene. Ein anderes Ich.",
+    "intro": "180 Charakterlooks, von weichem Plüsch bis zu flüssigem Chrom.",
+    "inspiration": "Visuelle Inspiration. Lade deine eigene passende Charakterreferenz hoch.",
+    "browse": "Alle 180 Looks entdecken",
+    "choose": "{{name}} ausprobieren",
+    "previous": "Vorherige Looks",
+    "next": "Nächste Looks",
+    "plushie": "Plüschverwandlung",
+    "anime": "Animeheld",
+    "chrome": "Flüssiges Chrom",
+    "crochet": "Häkelfreund",
+    "crystal": "Kristallwächter",
+    "clay": "Tonfigur"
+  },
   "articles": {
     "articleImage": "Artikelbild",
     "socialImage": "Social-Media-Bild teilen",
