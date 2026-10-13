@@ -69,7 +69,7 @@ import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useMediaAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -519,7 +519,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
+  // Once the clip itself reports a size it wins over the thumbnail, which can
+  // be a custom cover of another shape.
+  const [videoSize, setVideoSize] = useState<{ tokenId: unknown; ratio: number } | null>(null);
+  const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
+  const thumbAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
+  const mediaAspect = videoAspect ? clampAspect(videoAspect, postPage ? THIN_MIN_RATIO : undefined) : thumbAspect;
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
@@ -528,7 +533,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
-  const cropMedia = false;
+  // Feed videos fill the box's width. The box takes the clip's shape, so the
+  // only trim is top and bottom when a tall clip hits the height cap. A clip
+  // wider than the box (past the shape clamp) is shown whole, so its sides
+  // are never cut. The post page always shows the whole picture.
+  const cropMedia = !postPage && !(videoAspect && videoAspect > mediaAspect + 0.01);
   const bareControls = true;
   const splitControls = !hideControls && !isContentGated;
   const stripOpacity = useRef(new Animated.Value(1)).current;
@@ -666,6 +675,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } catch {}
     flushVideoPlayIntent(pendingPlayRef, readyEvent || p.status === "readyToPlay", startPlayback);
   }, [startPlayback, recovery]);
+
+  // The clip's real size, for the box shape. An HLS ladder may list no tracks
+  // at load and only report a size once a rendition is selected, so both
+  // events feed it, plus whatever a handed-over player already knows.
+  useEffect(() => {
+    if (!player) return;
+    const take = (size?: { width: number; height: number } | null) => {
+      if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
+      const ratio = size.width / size.height;
+      setVideoSize((prev) => (prev && Object.is(prev.tokenId, tokenId) && Math.abs(prev.ratio - ratio) < 0.001 ? prev : { tokenId, ratio }));
+    };
+    try { take((player as any).videoTrack?.size); } catch {}
+    const subs: Array<{ remove: () => void }> = [];
+    try { subs.push(player.addListener("videoTrackChange", ({ videoTrack }: any) => take(videoTrack?.size))); } catch {}
+    try { subs.push(player.addListener("sourceLoad", ({ availableVideoTracks }: any) => take(availableVideoTracks?.[0]?.size))); } catch {}
+    return () => subs.forEach((sub) => { try { sub.remove(); } catch {} });
+  }, [player, tokenId]);
 
   useEffect(() => {
     if (!player) return;
@@ -1960,7 +1986,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
-    const cropMedia = false;
+    // Same fill as the live player: the feed box is the thumbnail's shape.
+    const cropMedia = !postPage;
     const splitControls = !hideControls;
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
