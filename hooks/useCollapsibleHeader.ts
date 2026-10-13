@@ -66,7 +66,8 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
   const onHeaderLayout = useCallback((e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
-    if (h > 0) {
+    // Repeated identical layout events must not invalidate every list cell.
+    if (h > 0 && h !== heightRef.current) {
       heightRef.current = h;
       headerHeightSV.value = h;
       setHeaderHeight(h);
@@ -88,8 +89,6 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
     const delta = scrollY - wPrevY.value;
     wPrevY.value = scrollY;
-    if (Math.abs(delta) > JUMP_GUARD) return;
-
     if (scrollY <= TOP_THRESHOLD) {
       if (visibleSV.value !== 1) {
         animateTo(0);
@@ -98,6 +97,8 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
       wAccum.value = 0;
       return;
     }
+    // A jump back to the top must restore the header before this guard.
+    if (Math.abs(delta) > JUMP_GUARD) { wAccum.value = 0; return; }
 
     if ((delta > 0 && wAccum.value < 0) || (delta < 0 && wAccum.value > 0)) {
       wAccum.value = 0;
@@ -144,8 +145,6 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
 
       const delta = scrollY - jsPrevY.current;
       jsPrevY.current = scrollY;
-      if (Math.abs(delta) > JUMP_GUARD) return;
-
       if (scrollY <= TOP_THRESHOLD) {
         if (!jsVisible.current) {
           jsVisible.current = true;
@@ -155,6 +154,7 @@ export const useCollapsibleHeader = ({ collapseHeight }: { collapseHeight?: numb
         jsAccum.current = 0;
         return;
       }
+      if (Math.abs(delta) > JUMP_GUARD) { jsAccum.current = 0; return; }
 
       if ((delta > 0 && jsAccum.current < 0) || (delta < 0 && jsAccum.current > 0)) {
         jsAccum.current = 0;
