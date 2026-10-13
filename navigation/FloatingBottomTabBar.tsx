@@ -308,7 +308,7 @@ const NavButton = memo<{
       >
         {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <Icon
           name={icon}
-          size={routeName === ScreenNames.Home ? 22 : 20}
+          size={routeName === ScreenNames.DM ? 24 : routeName === ScreenNames.Home ? 22 : 20}
           color={iconColor}
           strokeWidth={isActive ? 2 : 1.75}
         />}
