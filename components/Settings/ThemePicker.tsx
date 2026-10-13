@@ -23,6 +23,8 @@ import { Asset } from 'expo-asset';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '../../context/ThemeContext';
 import { APP_THEMES, type AppThemeName } from '../../theme/colors';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { KeepDarkScope } = require('../../libs/jsx/tone') as { KeepDarkScope: React.FC<{ children: React.ReactNode }> };
 
 type Swatch = {
   page: string;
@@ -47,6 +49,7 @@ const GLASS = {
 
 const SWATCHES: Record<AppThemeName, Swatch> = {
   system: { page: '#000000', bento: '#18181b', border: 'rgba(255,255,255,0.06)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff' },
+  'system-light': { page: '#ffffff', bento: 'transparent', border: 'rgba(11,11,13,0.09)', line: '#0b0b0d', faint: 'rgba(11,11,13,0.18)', accent: '#0b0b0d', flat: true },
   immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true },
   minimal: { page: '#000000', bento: 'transparent', border: 'rgba(255,255,255,0.1)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', square: true, flat: true },
   cosmic: { page: '#040407', image: require('../../assets/theme-previews/cosmic.webp'), ...GLASS },
@@ -141,6 +144,9 @@ const ThemeSample: React.FC<{
           borderColor: active ? ring : 'transparent',
         }}
       >
+      {/* Each sample shows its own theme's colours, so System Light's colour
+          flip (libs/jsx/tone.js) stays out of it. */}
+      <KeepDarkScope>
       <View
         style={{
           flex: 1,
@@ -197,6 +203,7 @@ const ThemeSample: React.FC<{
           </View>
         </View>
       </View>
+      </KeepDarkScope>
       </View>
       <Text
         numberOfLines={1}
@@ -210,7 +217,7 @@ const ThemeSample: React.FC<{
 
 const ThemePicker: React.FC = () => {
   const { t } = useTranslation();
-  const { theme, setTheme } = useAppTheme();
+  const { theme, themeChoice, setTheme } = useAppTheme();
   const ring = RING[theme] ?? '#ffffff';
   const scroller = useRef<ScrollView>(null);
   const opened = useRef(false);
@@ -222,10 +229,10 @@ const ThemePicker: React.FC = () => {
       if (opened.current) return;
       opened.current = true;
       const width = e.nativeEvent.layout.width;
-      const x = BENTO_PAD + APP_THEMES.indexOf(theme) * (CARD_W + GAP) - (width - CARD_W) / 2;
+      const x = BENTO_PAD + APP_THEMES.indexOf(themeChoice) * (CARD_W + GAP) - (width - CARD_W) / 2;
       if (x > 0) scroller.current?.scrollTo({ x, animated: false });
     },
-    [theme],
+    [themeChoice],
   );
 
   return (
@@ -243,8 +250,8 @@ const ThemePicker: React.FC = () => {
         <ThemeSample
           key={value}
           value={value}
-          label={t(`settings.${value}`)}
-          active={theme === value}
+          label={t(value === 'system-light' ? 'settings.systemLight' : `settings.${value}`)}
+          active={themeChoice === value}
           ring={ring}
           onPress={() => setTheme(value)}
         />

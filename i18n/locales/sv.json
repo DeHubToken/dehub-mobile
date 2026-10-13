@@ -365,6 +365,7 @@
     "light": "Ljust",
     "dark": "Mörkt",
     "system": "System",
+    "systemLight": "System Ljust",
     "immersive": "Immersive",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",

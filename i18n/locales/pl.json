@@ -365,6 +365,7 @@
     "light": "Jasny",
     "dark": "Ciemny",
     "system": "Systemowy",
+    "systemLight": "Systemowy Jasny",
     "immersive": "Immersive",
     "minimal": "Minimalistyczny",
     "cosmic": "Cosmic Pixels",

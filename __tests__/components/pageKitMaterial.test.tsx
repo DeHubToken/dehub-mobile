@@ -18,7 +18,7 @@ jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => {
   const base = jest.requireActual('../../theme/skins').getThemeSkin(mockTheme);
   const colour = jest.requireActual('../../theme/themeColor');
   const accent = colour.themeAccent(mockTheme, {}, []);
-  return { theme: mockTheme, skin: base && colour.tintSkin(base, accent), accent, isMinimal: mockTheme === 'minimal', colors: palette.getThemeColors(mockTheme) };
+  return { theme: mockTheme === 'system-light' ? 'system' : mockTheme, themeChoice: mockTheme, isLight: mockTheme === 'system-light', skin: base && colour.tintSkin(base, accent), accent, isMinimal: mockTheme === 'minimal', colors: palette.getThemeColors(mockTheme === 'system-light' ? 'system' : mockTheme) };
 } }));
 
 import { KitButton, PageSection, PageTabs } from '../../components/page/PageKit';

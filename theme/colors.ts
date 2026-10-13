@@ -6,6 +6,7 @@
  */
 export const APP_THEMES = [
   'system',
+  'system-light',
   'immersive',
   'minimal',
   'cosmic',
@@ -81,6 +82,46 @@ export const minimalColors: ThemeColors = {
   background: '#000000',
   neutrals: { ...systemColors.neutrals, 900: '#000000' },
 };
+
+/**
+ * System Light: System's layout in daylight. White page, ink text, posts edge
+ * to edge with ink hairlines (web styles/system-light.css). The app runs it as
+ * `system` (ThemeContext `theme`), with `themeChoice` and `isLight` telling the
+ * two apart, so every System layout branch still applies.
+ */
+export const SYSTEM_LIGHT = 'system-light' as const;
+export const systemLightColors: ThemeColors = {
+  background: '#FFFFFF',
+  foreground: '#0B0B0D',
+  card: '#F4F4F6',
+  cardForeground: '#0B0B0D',
+  border: 'rgba(11,11,13,0.09)',
+  accent: '#0B0B0D',
+  accentSecondary: '#71717A',
+  accentForeground: '#FFFFFF',
+  muted: '#F4F4F5',
+  mutedForeground: 'rgba(11,11,13,0.62)',
+  destructive: '#0B0B0D',
+  destructiveForeground: '#FFFFFF',
+  success: '#0B0B0D',
+  neutrals: {
+    50: '#0B0B0D',
+    100: '#18181B',
+    200: '#27272A',
+    300: '#3F3F46',
+    400: '#71717A',
+    500: '#8B8D90',
+    600: '#A1A1AA',
+    700: '#E4E4E7',
+    800: '#F4F4F5',
+    900: '#FFFFFF',
+  },
+};
+
+/** The theme the app runs a saved choice as: System Light is System in light colours. */
+export function effectiveTheme(choice: AppThemeName): AppThemeName {
+  return choice === SYSTEM_LIGHT ? 'system' : choice;
+}
 
 /** The hairline web draws between minimal feed items (index.css). */
 export const MINIMAL_HAIRLINE = 'rgba(255,255,255,0.08)';
@@ -160,6 +201,7 @@ export const horrorColors = canvasColors('#0B0C0D', {
 
 const palettes: Record<AppThemeName, ThemeColors> = {
   system: systemColors,
+  'system-light': systemLightColors,
   immersive: systemColors,
   minimal: minimalColors,
   cosmic: cosmicColors,
@@ -176,6 +218,7 @@ const palettes: Record<AppThemeName, ThemeColors> = {
 };
 
 let activeTheme: AppThemeName = 'system';
+let activeChoice: AppThemeName = 'system';
 
 export function isAppThemeName(value: unknown): value is AppThemeName {
   return typeof value === 'string' && (APP_THEMES as readonly string[]).includes(value);
@@ -185,8 +228,15 @@ export function getThemeColors(name: AppThemeName): ThemeColors {
   return palettes[name];
 }
 
-export function setActiveTheme(name: AppThemeName): void {
+/** `name` is the theme the app runs; `choice` the saved pick (System Light runs as System). */
+export function setActiveTheme(name: AppThemeName, choice: AppThemeName = name): void {
   activeTheme = name;
+  activeChoice = choice;
+}
+
+/** Whether the saved pick is System Light, for leaf components outside React context. */
+export function isLightTone(): boolean {
+  return activeChoice === SYSTEM_LIGHT;
 }
 
 /** The theme ThemeContext last rendered, for leaf components outside React context. */

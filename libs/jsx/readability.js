@@ -4,6 +4,8 @@ const WHITE = Object.freeze({ color: "#FFFFFF" });
 const cache = new WeakMap();
 const COOL_NEUTRALS = new Set(["#919ca9", "#6b7280", "#9ca3af", "#94a3b8", "#64748b", "#cbd5e1"]);
 let native;
+// System Light turns greys around (./tone.js); muted grey reads fine on white.
+const { isLightToneOn } = require("./tone");
 
 function isMutedNeutral(color) {
   if (typeof color !== "string") return false;
@@ -46,7 +48,7 @@ function readableStyle(style) {
 const MUTED_CLASS = /(^|\s)text-(?:(?:zinc|gray|neutral|slate)-[3456]00|theme-neutrals-[3456]00|muted-foreground|white\/(?:30|40|50|60|70))(?:\/(?:\d+|\[[^\]]+\]))?(?=\s|$)/g;
 
 function readableTextProps(type, props) {
-  if (!type || !props) return props;
+  if (!type || !props || isLightToneOn()) return props;
   // Lazy import: the JSX runtime is initialized before react-native.
   if (!native) native = require("react-native");
   if (type !== native.Text && type !== native.TextInput) return props;

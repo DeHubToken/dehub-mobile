@@ -9,7 +9,8 @@ import { useAppTheme } from "../../context/ThemeContext";
 /** Lives beside the nav's scroll viewport, so scrolling never hides the room. */
 export default function StageMiniPlayer() {
   const { currentSpace, isConnected, isModalOpen, openModal } = useStages();
-  const { colors, isLight, isMinimal } = useAppTheme();
+  // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
+  const { colors, isMinimal } = useAppTheme();
   const { t } = useTranslation();
   const reducedMotion = useReducedMotion();
   const pulse = useSharedValue(0);
@@ -34,8 +35,8 @@ export default function StageMiniPlayer() {
       accessibilityLabel={`${t("nav.stages")}: ${currentSpace.title}`}
       testID="stage-nav-chip"
       style={[styles.chip, {
-        backgroundColor: isMinimal ? "#000" : isLight ? colors.background : "#18181B",
-        borderColor: isLight ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.10)",
+        backgroundColor: isMinimal ? "#000" : "#18181B",
+        borderColor: "rgba(255,255,255,0.10)",
       }]}
     >
       <Animated.View style={pulseStyle} pointerEvents="none">

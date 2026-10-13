@@ -365,6 +365,7 @@
     "light": "Terang",
     "dark": "Gelap",
     "system": "Sistem",
+    "systemLight": "Sistem Terang",
     "immersive": "Immersive",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",

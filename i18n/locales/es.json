@@ -383,6 +383,7 @@
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
+    "systemLight": "Sistema Claro",
     "immersive": "Inmersivo",
     "minimal": "Minimalista",
     "cosmic": "Cosmic Pixels",

@@ -315,7 +315,7 @@ const REVEAL_FAILSAFE_MS = 5000;
 const BOOT_STALL_MS = 15000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
-  const { colors, isLight, theme } = useAppTheme();
+  const { colors, pageColors, isLight, theme } = useAppTheme();
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   // Read when the preloader lifts, to tell signed-in launches from the rest.
   const isSignedInRef = useRef(isSignedIn);
@@ -474,10 +474,10 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                   // every opaque full-screen layer above it is drawn again on every frame.
                   // An overdraw capture on a Galaxy S24+ showed the feed painted 4+ times.
                   background: "transparent",
-                  card: colors.card,
-                  border: colors.border,
-                  text: colors.foreground,
-                  primary: colors.accent,
+                  card: pageColors.card,
+                  border: pageColors.border,
+                  text: pageColors.foreground,
+                  primary: pageColors.accent,
                 },
               }}
               onReady={() => {
