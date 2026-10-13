@@ -1,4 +1,4 @@
-import { FEED_ICON_SIZE } from './feed-icon-size';
+import { FEED_ICON_SIZE, FEED_BOOKMARK_STYLE } from './feed-icon-size';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -357,6 +357,11 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         accessibilityLabel={t("feedCard.saveToLibrary")}
         iconName="Bookmark"
           iconSize={FEED_ICON_SIZE.bookmark}
+        iconNode={
+          <View style={FEED_BOOKMARK_STYLE}>
+            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={saved ? "#D4D4D8" : ICON_MUTED} fill={saved ? "#D4D4D8" : undefined} />
+          </View>
+        }
         active={saved}
         activeColor="#D4D4D8"
         activeFill="#D4D4D8"
