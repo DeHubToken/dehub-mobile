@@ -119,7 +119,7 @@ const NavButton = memo<{
       <View style={{ opacity: pressed ? 0.6 : 1 }}>
         <Icon
           name={icon}
-          size={16}
+          size={icon === 'House' ? 18 : 16}
           color={tint ? (active ? tint.on : tint.off) : active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
           strokeWidth={active ? 2 : 1.8}
         />
