@@ -55,8 +55,18 @@ export async function fetchMyAgents(walletAddress: string): Promise<AIAgent[]> {
   return (data ?? []) as AIAgent[];
 }
 
+export async function fetchAgentAllowance(): Promise<{ limit: number; badge: string | null }> {
+  await tokenRefreshManager.ensureFreshToken();
+  const token = await getAuthToken();
+  if (!token) throw new Error(AGENT_SIGN_IN_REQUIRED);
+  const response = await fetch(`${MCP_BASE}/limits`, { headers: { "x-dehub-token": token } });
+  if (!response.ok) throw new Error("Agent allowance is unavailable.");
+  return response.json();
+}
+
 export async function registerAgent(input: {
   name: string;
+  displayName: string;
   description: string;
   walletAddress: string;
 }): Promise<{ agent?: { id: string; api_key?: string } }> {
@@ -73,6 +83,7 @@ export async function registerAgent(input: {
     headers: { "Content-Type": "application/json", "x-dehub-token": token },
     body: JSON.stringify({
       name: input.name,
+      display_name: input.displayName,
       description: input.description,
       owner_wallet_address: input.walletAddress,
     }),

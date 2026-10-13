@@ -41,6 +41,7 @@ import {
   MCP_BASE,
   agentConnectorUrl,
   deleteAgent,
+  fetchAgentAllowance,
   fetchMyAgents,
   registerAgent,
   type AIAgent,
@@ -106,6 +107,7 @@ export default function AgentsScreen() {
 
   const [isCreating, setIsCreating] = useState(false);
   const [name, setName] = useSurfaceDraft("screens/AgentsScreen.tsx:name", "");
+  const [displayName, setDisplayName] = useSurfaceDraft("screens/AgentsScreen.tsx:displayName", "");
   const [description, setDescription] = useSurfaceDraft("screens/AgentsScreen.tsx:description", "");
   const [visibleKeys, setVisibleKeys] = useState<Set<string>>(new Set());
   const [openConnections, setOpenConnections] = useState<Set<string>>(new Set());
@@ -120,13 +122,19 @@ export default function AgentsScreen() {
     queryFn: () => fetchMyAgents(walletAddress as string),
     enabled: allowed,
   });
+  const { data: agentAllowance } = useQuery({
+    queryKey: ["agent-allowance", walletAddress], queryFn: fetchAgentAllowance, enabled: allowed,
+  });
+  const atCapacity = agentAllowance && (agents?.length ?? 0) >= agentAllowance.limit;
 
   const createAgent = useMutation({
-    mutationFn: () => registerAgent({ name: name.trim(), description: description.trim(), walletAddress: walletAddress as string }),
+    mutationFn: () => registerAgent({ name: name.trim(), displayName: displayName.trim(), description: description.trim(), walletAddress: walletAddress as string }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["ai-agents"] });
+      queryClient.invalidateQueries({ queryKey: ["agent-allowance"] });
       setIsCreating(false);
       setName.complete(name, "");
+      setDisplayName.complete(displayName, "");
       setDescription.complete(description, "");
       toastSuccess(t("agents.agentCreated"), { description: t("agents.saveApiKey") });
       const id = data?.agent?.id;
@@ -361,12 +369,13 @@ export default function AgentsScreen() {
         </View>
 
         <AgentTasksPanel wallet={walletAddress} agents={agents ?? []} />
+        {agentAllowance && <Text style={styles.agentDesc}>{t("agents.capacity", { used: agents?.length ?? 0, limit: agentAllowance.limit, badge: agentAllowance.badge ?? t("agents.noBadge") })}</Text>}
         {isCreating ? (
           <PageSection>
             <View style={styles.cardInner}>
               <Text style={styles.formTitle}>{t("agents.newAgent")}</Text>
               <Text style={styles.agentDesc}>{t("agents.createDescription")}</Text>
-              <Text style={styles.fieldLabel}>{t("agents.agentName")}</Text>
+              <Text style={styles.fieldLabel}>{t("agents.agentUsername")}</Text>
               <LiquidGlass style={{ borderRadius: 12 }}><TextInput
                 value={name}
                 onChangeText={setName}
@@ -374,6 +383,15 @@ export default function AgentsScreen() {
                 placeholderTextColor="#8B8D90"
                 autoCapitalize="none"
                 autoCorrect={false}
+                style={styles.input}
+              /></LiquidGlass>
+              <Text style={styles.fieldLabel}>{t("agents.agentDisplayName")}</Text>
+              <LiquidGlass style={{ borderRadius: 12 }}><TextInput
+                value={displayName}
+                onChangeText={setDisplayName}
+                placeholder={t("agents.agentDisplayNamePlaceholder")}
+                placeholderTextColor="#8B8D90"
+                maxLength={100}
                 style={styles.input}
               /></LiquidGlass>
               <Text style={styles.fieldLabel}>{t("agents.agentDescription")}</Text>
@@ -388,8 +406,8 @@ export default function AgentsScreen() {
               <View style={styles.formActions}>
                 <Pressable
                   onPress={() => createAgent.mutate()}
-                  disabled={!name.trim() || createAgent.isPending}
-                  style={[styles.primaryBtn, (!name.trim() || createAgent.isPending) && styles.disabled]}
+                  disabled={!name.trim() || createAgent.isPending || !!atCapacity}
+                  style={[styles.primaryBtn, (!name.trim() || createAgent.isPending || atCapacity) && styles.disabled]}
                   accessibilityRole="button"
                 >
                   <Text style={styles.primaryBtnText}>
@@ -406,6 +424,7 @@ export default function AgentsScreen() {
           <KitButton
             variant="quiet"
             onPress={() => setIsCreating(true)}
+            disabled={!!atCapacity}
             style={styles.createBtn}
             icon={<Icon name="Plus" size={16} color="#fff" />}
             label={t("agents.createNew")}
