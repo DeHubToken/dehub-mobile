@@ -1,4 +1,32 @@
 {
+  "viralTemplates": {
+    "eyebrow":  "{{count}} efectos de vídeo",
+    "title":  "Tu próximo momento viral.",
+    "intro":  "Mira un ejemplo. Elige un efecto o personaje. Añade tu foto y hazlo tuyo.",
+    "browse":  "Ver las {{count}} plantillas",
+    "featured":  "Volver a destacados",
+    "use":  "Usar este efecto",
+    "useNamed":  "Usar {{name}}",
+    "preview":  "Ver ejemplo de {{name}}",
+    "previewUnavailable":  "Vista previa no disponible",
+    "search":  "Buscar efectos, personajes y bailes",
+    "all":  "Todo",
+    "effects":  "Efectos",
+    "characters":  "Personajes",
+    "dance":  "Baile",
+    "sports":  "Deportes",
+    "products":  "Productos",
+    "seasonal":  "Temporada",
+    "results":  "{{count}} plantillas",
+    "empty":  "No hay plantillas. Prueba otra búsqueda o categoría.",
+    "more":  "Mostrar más",
+    "source":  "Vídeos de ejemplo de",
+    "ready":  "{{name}} seleccionado. Añade una foto para crear un vídeo de 5 segundos. El encuadre sigue tu foto.",
+    "chooseFirst":  "Elige un efecto antes de generar.",
+    "back":  "Volver a plantillas",
+    "close":  "Cerrar plantillas"
+},
+
   "maboroshiShowcase": {
     "title": "Tu escena. Otro tú.",
     "intro": "180 estilos de personajes, desde peluche hasta cromo líquido.",

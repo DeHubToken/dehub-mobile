@@ -1,4 +1,32 @@
 {
+  "viralTemplates": {
+    "eyebrow":  "{{count}} video effects",
+    "title":  "Find your next viral moment.",
+    "intro":  "Watch an example. Pick an effect or character. Add your photo and make it yours.",
+    "browse":  "Browse all {{count}} templates",
+    "featured":  "Back to featured",
+    "use":  "Use this effect",
+    "useNamed":  "Use {{name}}",
+    "preview":  "Play {{name}} preview",
+    "previewUnavailable":  "Preview unavailable",
+    "search":  "Search effects, characters and dances",
+    "all":  "All",
+    "effects":  "Effects",
+    "characters":  "Characters",
+    "dance":  "Dance",
+    "sports":  "Sports",
+    "products":  "Products",
+    "seasonal":  "Seasonal",
+    "results":  "{{count}} templates",
+    "empty":  "No matching templates. Try another search or category.",
+    "more":  "Show more",
+    "source":  "Example videos from",
+    "ready":  "{{name}} selected. Add one photo to create a 5-second video. Framing follows your photo.",
+    "chooseFirst":  "Choose an effect before generating.",
+    "back":  "Back to templates",
+    "close":  "Close templates"
+},
+
   "maboroshiShowcase": {
     "title": "Your scene. A different you.",
     "intro": "180 character looks, from soft plush to liquid chrome.",
