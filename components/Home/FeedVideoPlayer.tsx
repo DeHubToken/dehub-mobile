@@ -1730,8 +1730,8 @@ const styles = StyleSheet.create({
   },
   bareSpeedText: {
     color: "#FFFFFF",
-    fontSize: 12,
-    fontWeight: "600",
+    fontSize: 14,
+    fontWeight: "700",
     fontVariant: ["tabular-nums"],
   },
   bareTime: {
