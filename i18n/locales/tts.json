@@ -365,6 +365,7 @@
     "light": "สว่าง",
     "dark": "มืด",
     "system": "ระบบ",
+    "systemLight": "ระบบ สว่าง",
     "immersive": "Immersive",
     "minimal": "มินิมอล",
     "cosmic": "Cosmic Pixels",

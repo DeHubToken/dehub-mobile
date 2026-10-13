@@ -47,13 +47,20 @@ it('iOS canvas navigation uses themed chrome without stacking System glass or gr
   expect(tree.root.findAllByType('Image' as any)).toHaveLength(0);
 });
 
-it.each(['isLight', 'isMinimal'])('iOS keeps %s solid', (mode) => {
+it('iOS keeps minimal solid', () => {
   (Platform as any).OS = 'ios';
-  mockTheme[mode] = true;
+  mockTheme.isMinimal = true;
   act(() => { tree = create(<NavPillSurface />); });
   expect(tree.root.findAllByType('FrostedPill' as any)).toHaveLength(0);
-  expect(flatten(tree.root.findAllByType('View' as any)[0].props.style).backgroundColor).toBe(mode === 'isLight' ? '#f9f8f4' : '#000');
+  expect(flatten(tree.root.findAllByType('View' as any)[0].props.style).backgroundColor).toBe('#000');
   expect(flatten(tree.root.findAllByType('View' as any)[0].props.style).borderRadius).toBe(NAV_PILL_RADIUS);
+});
+
+it('System Light keeps the glass pill (its colours flip as it renders)', () => {
+  (Platform as any).OS = 'ios';
+  mockTheme.isLight = true;
+  act(() => { tree = create(<NavPillSurface />); });
+  expect(tree.root.findAllByType('FrostedPill' as any)).toHaveLength(1);
 });
 
 it('preserves a theme’s fill, rim, grain and brackets', () => {

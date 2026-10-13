@@ -26,7 +26,7 @@ const ICON_ALIASES: Record<string, ThemeIconKey> = { creator: 'wand' };
 
 /** Every supported theme owns a complete custom artwork family. */
 export function themeIconUrl(theme: string, key: string): string | undefined {
-  if (theme === 'immersive') theme = 'system';
+  if (theme === 'immersive' || theme === 'system-light') theme = 'system';
   if (!RASTER_THEMES.has(theme)) return undefined;
   key = ICON_ALIASES[key] ?? key;
   if (!PUBLISHED_KEYS.has(key)) return undefined;

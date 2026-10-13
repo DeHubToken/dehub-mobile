@@ -28,7 +28,11 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   disabled = false,
   accessibilityLabel,
 }) => {
-  const { colors } = useAppTheme();
+  // Animated styles never pass through the JSX colour pass (libs/jsx/tone.js),
+  // so System Light's colours are picked here.
+  const { colors, pageColors, isLight } = useAppTheme();
+  const offTrack = isLight ? '#E4E4E7' : colors.neutrals[800];
+  const offThumb = isLight ? '#FFFFFF' : colors.accentSecondary;
   const progress = useSharedValue(value ? 1 : 0);
 
   useEffect(() => {
@@ -39,18 +43,18 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [colors.neutrals[800], colors.accent],
+      [offTrack, pageColors.accent],
     ),
-  }), [colors.accent, colors.neutrals]);
+  }), [offTrack, pageColors.accent]);
 
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: progress.value * TRAVEL }],
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      [colors.accentSecondary, colors.accentForeground],
+      [offThumb, pageColors.accentForeground],
     ),
-  }), [colors.accentForeground, colors.accentSecondary]);
+  }), [offThumb, pageColors.accentForeground]);
 
   const handlePress = () => {
     if (!disabled) onValueChange(!value);

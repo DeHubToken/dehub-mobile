@@ -15,8 +15,9 @@ export const NAV_PILL_SHADOW = Platform.select({
 
 /** The navigation material shared by the bottom bar and home header pill. */
 export default function NavPillSurface({ borderRadius }: { borderRadius?: number } = {}) {
-  const { colors, isLight, isMinimal, skin } = useAppTheme();
-  const glass = !isLight && !isMinimal;
+  // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
+  const { isMinimal, skin } = useAppTheme();
+  const glass = !isMinimal;
   const iosThemed = glass && Platform.OS === "ios" && !!skin;
   // Every painted layer must share the rim's shape. The capsule leaves its
   // controls unclipped, so a square fill otherwise shows behind rounded corners.
@@ -34,7 +35,6 @@ export default function NavPillSurface({ borderRadius }: { borderRadius?: number
         <View pointerEvents="none" style={[
           StyleSheet.absoluteFill,
           styles.fill,
-          isLight && { backgroundColor: colors.background },
           isMinimal && { backgroundColor: "#000" },
           skin && skin.barFill,
           { borderRadius: radius },
@@ -43,7 +43,6 @@ export default function NavPillSurface({ borderRadius }: { borderRadius?: number
       {skin?.grain && !iosThemed ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
       <View pointerEvents="none" style={[
         styles.border,
-        isLight && { borderColor: "rgba(0, 0, 0, 0.12)" },
         isMinimal && { borderColor: MINIMAL_HAIRLINE },
         skin && skin.barBorder,
         { borderRadius: radius },
