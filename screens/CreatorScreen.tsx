@@ -82,7 +82,6 @@ export default function CreatorScreen() {
     { key: '3d', icon: 'fractions', label: t('creator.door3d'), note: t('creator.door3dNote'), open: () => openStudio('3d') },
   ];
   const tools = [
-    { key: 'maboroshi', icon: 'videos', label: t('creator.toolMaboroshi'), note: t('creator.toolMaboroshiDesc'), open: () => nav.navigate(ScreenNames.Maboroshi) },
     { key: 'agents', icon: 'assistant', label: t('creator.navAgents'), note: t('creator.doorAgentsNote'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', icon: 'tv', label: t('creator.editor'), note: t('creator.editorNote'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', icon: 'command', label: t('creator.flow'), note: t('creator.flowNote'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
@@ -140,10 +139,6 @@ export default function CreatorScreen() {
       <Text className="px-4 pb-3 text-[22px] font-black text-theme-neutrals-100">{t('creator.pickMedium')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{mediums.map(tile)}</View>
 
-      <View className="mt-4 flex-row flex-wrap gap-2 px-4">
-        {(['swap', 'motion'] as const).map(workflow => <Pressable key={workflow} onPress={() => openStudio('video', workflow)} accessibilityRole="button" className="rounded-xl border border-white/15 bg-theme-neutrals-800 px-4 py-3"><Text className="font-semibold text-theme-neutrals-100">{t(workflow === 'swap' ? 'creator.characterSwap' : 'creator.copyMotion')}</Text></Pressable>)}
-        <Pressable onPress={() => nav.navigate(ScreenNames.Maboroshi)} accessibilityRole="button" accessibilityHint={t('creator.toolMaboroshiDesc')} className="rounded-xl border border-white/15 bg-theme-neutrals-800 px-4 py-3"><Text className="font-semibold text-theme-neutrals-100">{t('creator.toolMaboroshi')}</Text></Pressable>
-      </View>
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
 
