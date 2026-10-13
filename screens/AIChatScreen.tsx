@@ -288,10 +288,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
   const appliedEffectRoute = useRef<string | undefined>(undefined);
   const pickEffect = useCallback((effect: ViralEffect) => {
-    setTemplateId(null); setInput(effect.name);
+    setTemplateId(null);
     setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model: VIRAL_EFFECT_MODEL,
       effect: effect.name, durationSeconds: 5, resolution: '720p', referenceAssets: previous.referenceAssets?.filter(asset => asset.kind === 'image').slice(0, 1) }));
-  }, [setInput, setStudioSettings]);
+  }, [setStudioSettings]);
   useEffect(() => {
     const effect = viralEffect(route.params?.effect);
     if (studio && effect && appliedEffectRoute.current !== effect.id) {
