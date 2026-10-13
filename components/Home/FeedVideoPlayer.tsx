@@ -91,13 +91,9 @@ import {
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 const playbackLog = createLogger("FeedVideoPlayer");
 
-/**
- * Post page cap: the clip is the page, so it grows to most of the screen, and
- * at least as tall as a full-width 9:16 clip so a vertical video spans the
- * whole width.
- */
-const postPageMaxHeightFor = (screenHeight: number, boxWidth: number) =>
-  Math.round(Math.max(screenHeight * 0.8, (boxWidth * 16) / 9));
+/** Inline videos and their transport strip occupy at most half the screen. */
+const postPageMaxHeightFor = (screenHeight: number, _boxWidth: number) =>
+  screenHeight * 0.5;
 
 /**
  * Width of the media box. Takes the live window size (useWindowDimensions) so
@@ -109,14 +105,15 @@ const mediaBoxWidth = (
   isMinimal: boolean,
   mediaAspect: number,
   postPage = false,
+  strip = false,
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  return fullWidth;
+  return Math.min(fullWidth, Math.max(1, win.height * 0.5 - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
 };
 
 const mediaBoxHeight = (win: { width: number; height: number }, width: number, aspect: number, postPage: boolean, strip: boolean) =>
-  Math.min(width / aspect + (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0), postPage ? postPageMaxHeightFor(win.height, width) : win.height * 0.75);
+  Math.min(width / aspect + (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0), postPageMaxHeightFor(win.height, width));
 
 /** Whether this device can pop a video out. Not every platform build of
  *  expo-video carries the check, so a missing one reads as "no". */
@@ -130,8 +127,7 @@ const pipSupported = () => {
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
-  /** Post page: the clip fills the width or most of the screen height, at its
-   *  real shape even when thinner than 9:16, and sits centred. */
+  /** Post page uses the available width while keeping the inline height cap. */
   postPage?: boolean;
   /** Post-page Back uses the same glyph and tap area as Volume. */
   onBack?: () => void;
@@ -166,6 +162,7 @@ interface FeedVideoPlayerProps {
   isAutoplayActive?: boolean;
   isSignedIn: boolean;
   onPress: () => void;
+  onOpenViewer?: () => void;
   /** Double tap casts Like; triple tap upgrades it to Love. */
   onTapReaction?: (reaction: "like" | "love") => void;
   onPPVPress?: () => void;
@@ -269,6 +266,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   isAutoplayActive = true,
   isSignedIn,
   onPress,
+  onOpenViewer,
   onTapReaction,
   onPPVPress,
   onLockPress,
@@ -311,7 +309,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const autoStartRef = useRef(false);
   const { recordPause, cancelPause } = useAutoplayPausePrompt(tokenId);
   const shouldStartMuted = useCallback(
-    () => getCachedMuted() || (autoStartRef.current && getAppPrefs().autoplayMuted),
+    () => autoStartRef.current || getCachedMuted(),
     [],
   );
   const [isBuffering, setIsBuffering] = useState(false);
@@ -519,7 +517,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
+  const mediaAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
@@ -871,6 +869,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [postPage, tokenId, isPlaying, stageToggle]);
 
   const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
+    if (onOpenViewer && !isContentGated) {
+      stopPlayback();
+      onOpenViewer();
+      return;
+    }
     if (!onTapReaction) {
       handleVideoPress();
       return;
@@ -918,7 +921,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     resetSurfaceTapSequence();
     showTapReactionAnimation("love", locationX, locationY);
     onTapReaction("love");
-  }, [handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
+  }, [onOpenViewer, isContentGated, stopPlayback, handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
 
   const mediaTap = useTapOnlyPress(handleMediaSurfacePress);
 
@@ -1192,11 +1195,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          height: mediaBoxHeight(windowSize, bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage), mediaAspect, postPage, splitControls),
-          // Feed videos fill the column; the post page keeps the full frame centred.
-          width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+          height: mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
+          // Shrink the frame with the picture instead of adding side bars.
+          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
           maxWidth: "100%",
-          alignSelf: isMinimal || postPage ? "center" : "flex-start",
+          alignSelf: "flex-start",
         },
         (isMinimal || postPage) && MINIMAL_MEDIA,
         (postPage || bleed) && POST_PAGE_MEDIA,
@@ -1954,7 +1957,7 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
 const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack">> = memo(
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack }) => {
     const { t } = useTranslation();
-    const mediaAspect = useMediaAspect(thumbnail, tokenId, postPage ? THIN_MIN_RATIO : undefined);
+    const mediaAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const { isMinimal: minimalTheme } = useAppTheme();
     const bleed = useFeedBleed();
     const isMinimal = minimalTheme || !!bleed;
@@ -1968,10 +1971,10 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         style={[
           styles.container,
           {
-            height: mediaBoxHeight(windowSize, bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage), mediaAspect, postPage, splitControls),
-            width: bleed ? windowSize.width : mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage),
+            height: mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
+            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
             maxWidth: "100%",
-            alignSelf: isMinimal || postPage ? "center" : "flex-start",
+            alignSelf: "flex-start",
           },
           (isMinimal || postPage) && MINIMAL_MEDIA,
           (postPage || bleed) && POST_PAGE_MEDIA,
@@ -2055,12 +2058,16 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   }, [isVisible, setWanted]);
 
   const onPosterPress = useCallback(() => {
+    if (props.onOpenViewer && !isContentGated) {
+      props.onOpenViewer();
+      return;
+    }
     if (!videoUrl) {
       onPress();
       return;
     }
     setWanted(true);
-  }, [videoUrl, onPress, setWanted]);
+  }, [props.onOpenViewer, isContentGated, videoUrl, onPress, setWanted]);
 
   const markWanted = useCallback(() => setWanted(true), [setWanted]);
 

@@ -29,8 +29,7 @@ interface ContainedFeedImageProps {
  * than a full-width 9:16 frame, so a tall photo spans the whole width instead
  * of stopping short of both edges.
  */
-const postPageMaxHeightFor = (screenHeight: number, boxWidth: number) =>
-  Math.round(Math.max(screenHeight * 0.8, (boxWidth * 16) / 9));
+const postPageMaxHeightFor = (screenHeight: number) => screenHeight * 0.5;
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
 const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
@@ -58,23 +57,12 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
   const dimensions = useMemo(
-    () => bleed
-      // Cinematic feed: always the full width, as tall as the photo up to
-      // the post page cap (the same cap as its videos), and a photo taller
-      // than that is cropped to the box rather than letterboxed.
-      ? {
-          width: availableWidth,
-          height: Math.min(
-            availableWidth / (aspectRatio > 0 ? aspectRatio : 1),
-            postPageMaxHeightFor(screenHeight, availableWidth),
-          ),
-        }
-      : fitFeedImageWithin(
+    () => fitFeedImageWithin(
           availableWidth,
           aspectRatio,
-          postPage ? postPageMaxHeightFor(screenHeight, availableWidth) : undefined,
+          postPageMaxHeightFor(screenHeight),
         ),
-    [availableWidth, aspectRatio, postPage, screenHeight, bleed],
+    [availableWidth, aspectRatio, screenHeight],
   );
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
@@ -93,7 +81,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         height: dimensions.height,
         // Minimal runs the column edge to edge, so a portrait image that stops
         // short of the width sits centred rather than hugging one side.
-        alignItems: (edgeToEdge || postPage) && !compact ? "center" : "flex-start",
+        alignItems: "flex-start",
       }}
     >
       {/* Android does not consistently clip expo-image's native surface when
@@ -112,7 +100,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         {drawBitmap && <SmartImage
           key={`${uri}:${attempt}`}
           source={source}
-          contentFit={bleed ? "cover" : "contain"}
+          contentFit="contain"
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
