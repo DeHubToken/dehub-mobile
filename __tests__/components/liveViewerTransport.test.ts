@@ -58,8 +58,10 @@ describe('live viewer transport handover', () => {
   it('does not repeat a live HLS timeline as a recorded file', () => {
     const area = readSource('components', 'VideoPlayer', 'VideoArea.tsx');
     const core = readSource('components', 'VideoPlayerCore', 'index.tsx');
-    expect(area).toContain('loop={!isLive}');
-    expect(core).toContain('p.loop = !liveMode && loop');
+    expect(area).toContain('liveMode={!!isLive}');
+    expect(area).not.toContain('loop={!isLive}');
+    expect(core).toContain('const isLooping = !liveMode && (loop ?? savedLooping);');
+    expect(core).toContain('p.loop = !liveMode && (loop ?? getIsLooping());');
   });
 
   it('starts live playback after setup rather than during native player creation', () => {

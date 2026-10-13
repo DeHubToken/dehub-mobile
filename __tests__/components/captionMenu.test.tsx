@@ -9,6 +9,7 @@ import { useCachedDubAudio } from '../../hooks/useCachedDubAudio';
 let mockDubOn = false;
 let mockAppLang = 'en';
 let mockSourceLang = '';
+let mockCaptionLoading = false;
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
@@ -22,7 +23,7 @@ jest.mock('../../components/common/MediaControlGlyph', () => ({ MediaControlIcon
 jest.mock('../../components/VideoPlayerCore/CaptionFixSheet', () => () => null);
 jest.mock('../../libs', () => ({ toastInfo: jest.fn() }));
 jest.mock('../../hooks/useTranscript', () => ({
-  useTranscript: jest.fn(() => ({ transcript: mockSourceLang ? { id: 'transcript', source_lang: mockSourceLang, segments: [] } : null, status: 'ready', inFlight: false, canRetry: false })),
+  useTranscript: jest.fn(() => ({ transcript: mockSourceLang ? { id: 'transcript', source_lang: mockSourceLang, segments: [] } : null, status: 'ready', inFlight: mockCaptionLoading, canRetry: false })),
   useTranscriptTranslation: () => ({ translation: { status: 'ready', segments: [{ start: 0, end: 2, text: 'Hola' }] } }),
 }));
 jest.mock('../../hooks/useTranscriptCorrections', () => ({
@@ -41,10 +42,24 @@ jest.mock('../../libs/subtitlePrefs', () => ({
 
 describe('subtitle settings menu', () => {
   beforeEach(() => {
-    mockDubOn = false; mockAppLang = 'en'; mockSourceLang = '';
+    mockDubOn = false; mockAppLang = 'en'; mockSourceLang = ''; mockCaptionLoading = false;
     (useVoiceDub as jest.Mock).mockClear();
     (useTranscript as jest.Mock).mockClear();
   });
+  it('keeps the same CC glyph mounted through loading and scroll visibility changes', () => {
+    const view = render(<CaptionOverlay tokenId={123} positionMs={0} />);
+    const button = view.getByLabelText('Subtitles off');
+    mockCaptionLoading = true;
+    view.rerender(<CaptionOverlay tokenId={123} positionMs={500} controlsVisible={false} />);
+    expect(view.getByLabelText('Subtitles off')).toBe(button);
+    expect(button.props.accessibilityState.busy).toBe(true);
+    expect(view.UNSAFE_queryByType('ActivityIndicator' as any)).toBeNull();
+    mockCaptionLoading = false;
+    view.rerender(<CaptionOverlay tokenId={123} positionMs={1000} />);
+    expect(view.getByLabelText('Subtitles off')).toBe(button);
+    expect(button.props.accessibilityState.busy).toBe(false);
+  });
+
   it('opens on release and stays open while captions are switched', () => {
     const view = render(<CaptionOverlay tokenId={123} positionMs={0} />);
     const menu = () => view.UNSAFE_getByType('Modal' as any);

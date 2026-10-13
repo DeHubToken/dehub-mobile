@@ -273,7 +273,10 @@ function main() {
   }
 
   const registered = readRegisteredNames();
-  const missing = [...used.keys()].filter((n) => !registered.has(n)).sort();
+  // Icon resolves Cut artwork before the Lucide fallback registry.
+  const cutSource = fs.readFileSync(path.join(ROOT, "components", "ui", "cut-icons.tsx"), "utf8");
+  const cutNames = new Set([...cutSource.matchAll(/^ {2}(\w+): Cut\w+,\r?$/gm)].map((match) => match[1]));
+  const missing = [...used.keys()].filter((n) => !registered.has(n) && !cutNames.has(n)).sort();
   const unused = [...registered].filter((n) => !used.has(n)).sort();
 
   if (unused.length) {

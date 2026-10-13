@@ -5031,6 +5031,9 @@
       "reinvestment": "Marketing & developer wages",
       "reinvestmentGroup": "Reinvestment",
       "reinvestmentNote": "DeHub reports that retained historical operating funds were fully reinvested. Marketing and developer wages are shown together, averaged across each month, after subtracting costs already recorded that month.",
+      "estimatedOperations": "Estimated operations",
+      "estimatedOperationsNote": "Operating costs follow a modeled monthly trend, peaking at $100,000 in November 2021 and declining thereafter. Recorded bills are included, without double counting. This is an estimate, not an invoice ledger.",
+      "grossBnbSharingNote": "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub.",
       "profitShared": "Net profit shared",
       "profitSharedHint": "{{usd}} paid to holders and stakers · {{from}}–{{to}}",
       "sourceUnavailable": "Unavailable"

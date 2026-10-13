@@ -78,7 +78,7 @@ import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useScrubGesture } from "../hooks/useScrubGesture";
 import { useDataSaver } from "../hooks/useDataSaver";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
-import { getVolume, setVolume as persistVolume } from "../libs/video-preferences";
+import { getVolume, setVolume as persistVolume, getIsLooping, useMediaLooping } from "../libs/video-preferences";
 import { getCachedMuted, setMutedState, useMediaMuted } from "../libs/videoMutedState";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
@@ -350,7 +350,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const player = usePersistentVideoPlayer(null, (p) => {
     p.staysActiveInBackground = activeItem && playbackAllowed;
     p.showNowPlayingNotification = activeItem && playbackAllowed;
-    p.loop = true;
+    p.loop = getIsLooping();
     p.muted = isMuted;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
@@ -366,6 +366,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item), [item]);
+  const isLooping = useMediaLooping();
+  useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
   const videoUrl = photoMedia?.soundtrackUrl || getVideoUrl(tokenId) || undefined;
   const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
   const minterAddress = item.minter || item.minterUser?.address || "";

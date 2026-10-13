@@ -1403,7 +1403,7 @@ function FeedDetailContent() {
         <View className="items-center justify-center px-6 py-16">
           {/* Minimal: the icon alone, without the slab behind it. */}
           <ThemePanel className={isMinimal ? "mb-5" : "bg-theme-neutrals-800/50 rounded-2xl p-5 mb-5"}>
-            <Ionicons name="lock-closed" size={40} color="#666" />
+            <Icon name="Lock" size={40} color="#666" />
           </ThemePanel>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("feed.privateContent")}
@@ -1622,7 +1622,7 @@ function FeedDetailContent() {
                 accessibilityRole="button"
                 accessibilityLabel={editingComment ? t("comments.cancelEdit") : t("comments.cancelReply")}
               >
-                <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
+                <Icon name="X" size={18} color={theme.colors.mutedForeground} />
               </TouchableOpacity>
             </View>
           )}
@@ -1757,8 +1757,8 @@ function FeedDetailContent() {
                   {posting ? (
                     <ActivityIndicator size="small" color="#010305" />
                   ) : (
-                    <Ionicons
-                      name="send"
+                    <Icon
+                      name="Send"
                       size={18}
                       color={inputText.trim() ? "#010305" : theme.colors.mutedForeground}
                     />
@@ -1774,7 +1774,7 @@ function FeedDetailContent() {
                     accessibilityLabel={t("comments.addImage")}
                     style={composerStyles.iconControl}
                   >
-                    <Ionicons name="image-outline" size={20} color={theme.colors.mutedForeground} />
+                    <Icon name="Image" size={20} color={theme.colors.mutedForeground} />
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={handleOpenGifPicker}
@@ -1809,7 +1809,7 @@ function FeedDetailContent() {
                     accessibilityLabel={t("comments.recordVoice")}
                     style={composerStyles.iconControl}
                   >
-                    <Ionicons name="mic-outline" size={20} color={theme.colors.mutedForeground} />
+                    <Icon name="Mic" size={20} color={theme.colors.mutedForeground} />
                   </TouchableOpacity>
                 </View>
               )}

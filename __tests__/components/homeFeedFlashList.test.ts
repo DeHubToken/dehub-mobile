@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { runInNewContext } from 'vm';
 import ts from 'typescript';
+import { shortsBatchIndex } from '../../libs/shortsRotation';
 
 // The feed module cannot be imported here: @shopify/flash-list throws at import
 // time without the new architecture, which Jest never has. The pieces below
@@ -36,7 +37,7 @@ function moduleScope() {
   const FlashList = { name: 'FlashList' };
   const scope = run(
     slice(feed, 'type FeedRow =', '// One row. Subscribes') +
-      '\n({ feedRowKey, feedRowType, HEADER_ROW, SUGGESTED_ROW, SUGGEST_AFTER_INDEX, SHORTS_ROW, SHORTS_AFTER_INDEX, AnimatedFlashList,' +
+      '\n({ feedRowKey, feedRowType, HEADER_ROW, SUGGESTED_ROW, SUGGEST_AFTER_INDEX, AnimatedFlashList,' +
       ' NO_ROWS, rowsForList, heldOffset, firstPostIndex })',
     {
       Animated,
@@ -77,10 +78,10 @@ describe('home feed on FlashList: module scope', () => {
   });
 
   it('reuses a cell only for a row of the same shape', () => {
-    const { feedRowType, HEADER_ROW, SUGGESTED_ROW, SHORTS_ROW } = moduleScope();
+    const { feedRowType, HEADER_ROW, SUGGESTED_ROW } = moduleScope();
     expect(feedRowType(HEADER_ROW)).toBe('header');
     expect(feedRowType(SUGGESTED_ROW)).toBe('suggested');
-    expect(feedRowType(SHORTS_ROW)).toBe('shorts');
+    expect(feedRowType({ __synthetic: 'shorts', __listKey: '__shorts-0-0' })).toBe('shorts');
     expect(feedRowType({ postType: 'video', __listKey: 'k' })).toBe('video');
     expect(feedRowType({ postType: 'short', __listKey: 'k' })).toBe('video');
     expect(feedRowType({ postType: 'live', __listKey: 'k' })).toBe('live');
@@ -93,18 +94,18 @@ describe('home feed on FlashList: module scope', () => {
 });
 
 describe('home feed on FlashList: rows', () => {
-  const { HEADER_ROW, SUGGESTED_ROW, SUGGEST_AFTER_INDEX, SHORTS_ROW, SHORTS_AFTER_INDEX } = moduleScope();
-  const build = (feedItems: unknown[], showShortsCarousel = false, shortsItems: unknown[] = [{}]) =>
+  const { HEADER_ROW, SUGGESTED_ROW, SUGGEST_AFTER_INDEX } = moduleScope();
+  const build = (feedItems: unknown[], showShortsCarousel = false, shortsBatches: unknown[][] = [[{}]]) =>
     run(slice(feed, '  const listData = useMemo<FeedRow[]>(', '  // Ticks are skipped while hidden') + '\nlistData', {
       useMemo: (fn: () => unknown) => fn(),
       feedItems,
       HEADER_ROW,
       SUGGESTED_ROW,
       SUGGEST_AFTER_INDEX,
-      SHORTS_ROW,
-      SHORTS_AFTER_INDEX,
       showShortsCarousel,
-      shortsItems,
+      shortsBatches,
+      shortsRotation: { generation: 0 },
+      shortsBatchIndex,
     });
   const post = (n: number) => ({ tokenId: n, __listKey: `k${n}` });
 
@@ -117,16 +118,16 @@ describe('home feed on FlashList: rows', () => {
 
   // The shorts rail is a row of its own too, so a recycled post cell never
   // grows a carousel it did not have. Home 'all' tab only.
-  it('puts the shorts rail after the first post when the tab asks for it', () => {
-    expect([...build([0, 1, 2, 3, 4, 5].map(post), true)].map((r: any) => r.__listKey)).toEqual([
-      '__feed-header', 'k0', '__shorts-carousel', 'k1', 'k2', 'k3', 'k4', '__suggested-accounts', 'k5',
+  it('keeps the opening shorts rail and adds the scheduled sixth-post row', () => {
+    expect([...build([0, 1, 2, 3, 4, 5].map(post), true, [[{}], [{}]])].map((r: any) => r.__listKey)).toEqual([
+      '__feed-header', 'k0', '__shorts-0-0', 'k1', 'k2', 'k3', 'k4', '__suggested-accounts', 'k5', '__shorts-0-1',
     ]);
-    expect([...build([0, 1, 2].map(post))].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
-    expect([...build([0, 1, 2].map(post), true, [])].some((r: any) => r.__listKey === '__shorts-carousel')).toBe(false);
+    expect([...build([0, 1, 2].map(post))].some((r: any) => r.__synthetic === 'shorts')).toBe(false);
+    expect([...build([0, 1, 2, 3, 4, 5].map(post), true, [])].some((r: any) => r.__synthetic === 'shorts')).toBe(false);
   });
 
-  it('adds no suggested row to a short feed and no rows at all to an empty one', () => {
-    expect([...build([0, 1, 2].map(post))].map((r: any) => r.__listKey)).toEqual(['__feed-header', 'k0', 'k1', 'k2']);
+  it('adds no suggested row before the fifth post and no rows at all to an empty feed', () => {
+    expect([...build([0, 1].map(post))].map((r: any) => r.__listKey)).toEqual(['__feed-header', 'k0', 'k1']);
     const empty: unknown[] = [];
     expect(build(empty)).toBe(empty);
     // The empty list still gets the header spacer, from ListHeaderComponent,
@@ -139,7 +140,8 @@ describe('home feed on FlashList: rows', () => {
     const renderItem = slice(feed, '  const renderItem = useCallback<ListRenderItem<FeedRow>>(', '  // One fixed-height slot');
     expect(renderItem).toContain('if (item.__synthetic === "header") return headerBlock;');
     expect(renderItem).toContain('if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;');
-    expect(renderItem).toContain('if (item.__synthetic === "shorts") return <ShortsCarousel items={shortsItems} />;');
+    expect(renderItem).toContain('if (item.__synthetic === "shorts") return <ShortsCarousel');
+    expect(renderItem).toContain('items={shortsBatches[item.__shortsIndex ?? 0] ?? []}');
     expect(renderItem).not.toMatch(/\bindex\b/);
   });
 });

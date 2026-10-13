@@ -4,7 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Svg, { Polyline } from "react-native-svg";
 import { PageSection } from "../page/PageKit";
-import { withReinvestedOperations, type FinanceAccountingDay } from "../../libs/finance-reinvestment";
+interface FinanceAccountingDay {
+  date: string;
+  revenue: Record<string, number>;
+  costs: Record<string, number>;
+}
 
 interface Source {
   id: string;
@@ -42,7 +46,7 @@ export default function FinanceSection({ days }: { days: number | null }) {
   });
   const view = useMemo(() => {
     if (!query.data) return null;
-    const all = withReinvestedOperations(query.data).days;
+    const all = query.data.days;
     const rows = days == null ? all : all.slice(-days);
     const totals = { revenue: new Map<string, number>(), costs: new Map<string, number>() };
     for (const row of rows) {
@@ -66,7 +70,7 @@ export default function FinanceSection({ days }: { days: number | null }) {
   const height = 140;
   const maximum = Math.max(1, ...view.chart.flatMap(row => [row.revenue, row.costs]));
   const points = (kind: "revenue" | "costs") => view.chart.map((row, index) => `${index / Math.max(1, view.chart.length - 1) * chartWidth},${height - 8 - row[kind] / maximum * (height - 16)}`).join(" ");
-  const sources: Source[] = query.data.sources.map(source => source.id === "operations_reinvestment" ? { ...source, label: t("stats.money.reinvestment") } : source);
+  const sources: Source[] = query.data.sources.map(source => source.id === "operations_reinvestment" ? { ...source, label: t("stats.money.estimatedOperations", { defaultValue: "Estimated operations" }) } : source);
   const revenue = [...view.revenue.values()].reduce((a, b) => a + b, 0);
   const costs = [...view.costs.values()].reduce((a, b) => a + b, 0);
   return (
@@ -86,10 +90,11 @@ export default function FinanceSection({ days }: { days: number | null }) {
           <Polyline points={points("costs")} fill="none" stroke="#71717A" strokeWidth={2} strokeDasharray="4 4" />
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
-        <Text style={styles.hint}>{t("stats.money.reinvestmentNote")}</Text>
+        <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub." })}</Text>
+        <Text style={styles.hint}>{t("stats.money.estimatedOperationsNote", { defaultValue: "Operating costs follow a modeled monthly trend, peaking at $100,000 in November 2021 and declining thereafter. Recorded bills are included, without double counting. This is an estimate, not an invoice ledger." })}</Text>
       </PageSection>
       {(["revenue", "cost"] as const).map(kind => <PageSection key={kind} title={t(kind === "revenue" ? "stats.money.inTitle" : "stats.money.outTitle")}>
-        {sources.filter(source => source.kind === kind).map(source => <Pressable key={source.id} accessibilityRole={kind === "revenue" ? "link" : undefined} onPress={kind === "revenue" ? () => openLedger(source.id) : undefined} style={styles.row}>
+        {sources.filter(source => source.kind === kind).map(source => <Pressable key={source.id} accessibilityRole={kind === "revenue" ? "link" : undefined} onPress={kind === "revenue" ? () => openLedger(source.id, source.id === "bsc_holder_share") : undefined} style={styles.row}>
           <View style={styles.source}><Text style={styles.sourceLabel}>{source.label}</Text><Text style={styles.hint}>{source.group === "infrastructure" ? t("stats.money.group.infrastructure") : source.group === "tax" ? t("stats.money.group.tax") : ""}</Text></View>
           <Text style={styles.value}>{source.status === "ok" ? usd((kind === "revenue" ? view.revenue : view.costs).get(source.id) ?? 0) : t("stats.money.sourceUnavailable")}</Text>
         </Pressable>)}
