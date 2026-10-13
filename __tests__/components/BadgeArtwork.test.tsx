@@ -26,6 +26,21 @@ beforeEach(() => {
 });
 
 describe('holder badge interaction', () => {
+  it('does not rerender existing idle badges when another feed page is appended', () => {
+    const style = { width: 16, height: 16 };
+    const feed = (count: number) => <>{Array.from({ length: count }, (_, index) => (
+      <BadgeArtwork key={index} source={1} style={style} />
+    ))}</>;
+    const { rerender, getAllByTestId, queryAllByTestId } = render(feed(20));
+    expect(tierForBadgeImage).toHaveBeenCalledTimes(20);
+
+    rerender(feed(40));
+
+    expect(tierForBadgeImage).toHaveBeenCalledTimes(40);
+    expect(getAllByTestId('holder-badge-poster')).toHaveLength(40);
+    expect(queryAllByTestId('holder-badge-motion')).toHaveLength(0);
+  });
+
   it('preserves visible cap height and baseline when motion replaces a padded still', () => {
     const { getByTestId } = render(<BadgeArtwork source={1} style={[{ width: 18, height: 18, padding: 1 }]} />);
     const still = getByTestId('holder-badge-poster').props.style;

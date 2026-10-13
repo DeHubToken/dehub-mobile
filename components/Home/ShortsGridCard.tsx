@@ -5,7 +5,9 @@ import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
-import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls } from "../../libs/misc";
+import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls, getBadgeUrlFor, getBadgeHoverOpticalStyle } from "../../libs/misc";
+import Avatar from "../common/Avatar";
+import BadgeArtwork from "../common/BadgeArtwork";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { cdnImage } from "../../libs/cdnImage";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -172,6 +174,8 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const previewSettled = useSettledAutoplay(isVisible, previewUrl, 400);
 
   const username = item.minterUser?.username || item.minterUsername || "";
+  const displayName = item.minterUser?.displayName || item.minterDisplayName || username;
+  const badgeImage = item.minterUser?.hideBadgeAndBalance ? null : getBadgeUrlFor(item.minterUser || item);
   // Signed-out viewers are already folded into totalViews by the API.
   const views = resolveViewCount(item);
   const likes = (item as any).totalVotes?.for || item.likes || 0;
@@ -217,8 +221,19 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
       {/* Bottom gradient + info overlay */}
       <View style={styles.overlay} pointerEvents="none" />
 
+      {width != null && (
+        <View style={styles.topInfo} pointerEvents="none">
+          <Avatar uri={avatarUri} size={20} name={displayName} />
+          <Text style={[styles.username, { flexShrink: 1 }]} numberOfLines={1}>{displayName}</Text>
+          {badgeImage ? (
+            <BadgeArtwork source={badgeImage} style={getBadgeHoverOpticalStyle(badgeImage, 10, 0, 11)} contentFit="contain" />
+          ) : null}
+        </View>
+      )}
+
       <View style={styles.bottomInfo} pointerEvents="none">
         <View style={styles.metadataRow}>
+          {width == null && (
           <Image
             // getAvatarUrl hands back the "default-avatar" sentinel, which expo-image
             // cannot load, so the creator showed as an empty dot.
@@ -226,8 +241,9 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
             style={[styles.avatar, isMinimal && styles.minimalAvatar]}
             contentFit="cover"
           />
+          )}
           <View style={styles.creatorInfo}>
-            <Text style={styles.username}>@{username}</Text>
+            {width == null && <Text style={styles.username}>@{username}</Text>}
             <View style={styles.statsRow}>
               <View style={styles.stat}>
                 <Icon name="Eye" size={9} strokeWidth={1.6} color="#EDEDED" />
@@ -284,6 +300,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingBottom: 6,
     paddingTop: 20,
+  },
+  topInfo: {
+    position: "absolute",
+    top: 8,
+    left: 8,
+    right: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 4,
+    borderRadius: 5,
+    backgroundColor: "rgba(0,0,0,0.45)",
+    padding: 3,
   },
   metadataRow: {
     flexDirection: "row",

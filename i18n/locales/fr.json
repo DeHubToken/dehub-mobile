@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Votre scène. Un autre vous.",
+    "intro": "180 looks de personnages, de la peluche au chrome liquide.",
+    "inspiration": "Inspiration visuelle. Importez votre propre référence de personnage assortie.",
+    "browse": "Explorer les 180 looks",
+    "choose": "Essayer {{name}}",
+    "previous": "Looks précédents",
+    "next": "Looks suivants",
+    "plushie": "Métamorphose en peluche",
+    "anime": "Héros d’animation",
+    "chrome": "Chrome liquide",
+    "crochet": "Compagnon au crochet",
+    "crystal": "Gardien de cristal",
+    "clay": "Personnage en argile"
+  },
   "quickActions": {
     "title": "Options de la page",
     "hint": "Maintenez le doigt sur une zone sans autre action d’appui long pour ouvrir ces options.",
@@ -2294,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Les agents sont en aperçu privé",
       "privateBody": "Cette fonctionnalité est actuellement réservée à @maldoteth.",
+      "mode": "Mode de tâche",
+      "oneAgent": "Un agent",
+      "swarm": "Essaim",
+      "swarmChoose": "Choisir les agents",
+      "swarmHelp": "Une consigne, un travail partagé. Les cibles sont réparties entre les agents et les publications planifiées alternent.",
+      "swarmMember": "Agent {{index}} sur {{total}} dans cet essaim",
+      "runSwarm": "Lancer cet essaim",
       "title": "Confier une tâche à un agent",
       "description": "Les actions sont effectuées par l’agent sélectionné. Les tâches planifiées continuent lorsque l’application est fermée.",
       "instructions": "Instructions de l’agent",

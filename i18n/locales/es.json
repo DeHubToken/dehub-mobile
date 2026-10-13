@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Tu escena. Otro tú.",
+    "intro": "180 estilos de personajes, desde peluche hasta cromo líquido.",
+    "inspiration": "Inspiración visual. Sube tu propia referencia de personaje con ese estilo.",
+    "browse": "Explorar los 180 estilos",
+    "choose": "Probar {{name}}",
+    "previous": "Estilos anteriores",
+    "next": "Estilos siguientes",
+    "plushie": "Transformación de peluche",
+    "anime": "Héroe de anime",
+    "chrome": "Cromo líquido",
+    "crochet": "Compañero de ganchillo",
+    "crystal": "Guardián de cristal",
+    "clay": "Personaje de arcilla"
+  },
   "quickActions": {
     "title": "Opciones de la página",
     "hint": "Mantén pulsado donde no haya otra acción de pulsación larga para abrir estas opciones.",
@@ -2294,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Los agentes están en vista previa privada",
       "privateBody": "Esta función está disponible actualmente para @maldoteth.",
+      "mode": "Modo de tarea",
+      "oneAgent": "Un agente",
+      "swarm": "Enjambre",
+      "swarmChoose": "Elige agentes",
+      "swarmHelp": "Una instrucción y trabajo compartido. Los objetivos se reparten entre agentes y las publicaciones programadas se alternan.",
+      "swarmMember": "Agente {{index}} de {{total}} del enjambre",
+      "runSwarm": "Iniciar enjambre",
       "title": "Asigna una tarea a un agente",
       "description": "Las acciones se realizan como el agente seleccionado. Las tareas programadas continúan con la aplicación cerrada.",
       "instructions": "Instrucciones del agente",

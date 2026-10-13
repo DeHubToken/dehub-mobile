@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Your scene. A different you.",
+    "intro": "180 character looks, from soft plush to liquid chrome.",
+    "inspiration": "Look inspiration. Upload your own matching character reference.",
+    "browse": "Explore all 180 looks",
+    "choose": "Try {{name}}",
+    "previous": "Previous looks",
+    "next": "Next looks",
+    "plushie": "Plushie takeover",
+    "anime": "Anime hero",
+    "chrome": "Liquid chrome",
+    "crochet": "Crochet companion",
+    "crystal": "Crystal guardian",
+    "clay": "Clay character"
+  },
   "quickActions": {
     "title": "Page options",
     "hint": "Hold anywhere without an existing hold action to open these options.",
@@ -2295,6 +2310,13 @@
       "privateTitle": "Agents are in private preview",
       "privateBody": "This feature is currently available to @maldoteth.",
       "title": "Give an agent a task",
+      "mode": "Task mode",
+      "oneAgent": "One agent",
+      "swarm": "Swarm",
+      "swarmChoose": "Choose agents",
+      "swarmHelp": "One prompt, shared work. Bulk targets are divided between agents; scheduled posts rotate across them.",
+      "swarmMember": "Swarm agent {{index}} of {{total}}",
+      "runSwarm": "Run swarm",
       "description": "Actions run as the selected agent. Scheduled tasks continue with the app closed.",
       "instructions": "Agent instructions",
       "examples": "Follow everyone who posted today.\nLike every post from the last 24 hours.\nPost 3 times per day about independent music.",

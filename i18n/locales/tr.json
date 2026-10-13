@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Senin sahnen. Farklı bir sen.",
+    "intro": "Yumuşak pelüşten sıvı kroma 180 karakter görünümü.",
+    "inspiration": "Görsel ilham. Görünüme uygun kendi karakter referansını yükle.",
+    "browse": "180 görünümün tümünü keşfet",
+    "choose": "{{name}} dene",
+    "previous": "Önceki görünümler",
+    "next": "Sonraki görünümler",
+    "plushie": "Pelüş dönüşümü",
+    "anime": "Anime kahramanı",
+    "chrome": "Sıvı krom",
+    "crochet": "Örgü arkadaş",
+    "crystal": "Kristal muhafız",
+    "clay": "Kil karakter"
+  },
   "quickActions": {
     "title": "Sayfa seçenekleri",
     "hint": "Bu seçenekleri açmak için başka bir uzun basma işlemi olmayan bir yere basılı tutun.",
@@ -2294,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Ajanlar özel önizlemede",
       "privateBody": "Bu özellik şu anda @maldoteth için kullanılabilir.",
+      "mode": "Görev modu",
+      "oneAgent": "Tek ajan",
+      "swarm": "Sürü",
+      "swarmChoose": "Ajanları seç",
+      "swarmHelp": "Tek komut, paylaşılan iş. Hedefler ajanlar arasında bölünür; zamanlanmış gönderiler sırayla paylaşılır.",
+      "swarmMember": "Sürü ajanı {{index}} / {{total}}",
+      "runSwarm": "Sürüyü başlat",
       "title": "Bir ajana görev verin",
       "description": "İşlemler seçilen ajan adına yapılır. Zamanlanmış görevler uygulama kapalıyken de devam eder.",
       "instructions": "Ajan talimatları",
