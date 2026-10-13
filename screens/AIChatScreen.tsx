@@ -203,7 +203,16 @@ const DEFAULT_SETTINGS: AssistantSettings = {
 const posterRenderer = (cfg: PosterConfig): 'template' | 'scene' =>
   cfg.style === 'dehub-template' || cfg.style === 'auto' ? 'template' : 'scene';
 
-function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
+export interface EmbeddedCreatorProps {
+  embedded?: boolean;
+  editorDraft?: import('../libs/editor/generationDraft').GenerationDraft | null;
+  onGenerated?: (source: import('../libs/editor/importGeneratedMedia').GeneratedMediaSource) => void;
+}
+
+function AIChatScreenInner({ studio = false, embedded = false, editorDraft: suppliedDraft, onGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
+  const editorRequests = useRef(new Set<string>());
+  const deliveredEditorResults = useRef(new Set<string>());
+  const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -275,7 +284,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
   const [assetPickerVisible, setAssetPickerVisible] = useState(false);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
-  const editorDraft = studio ? creatorSettingsForEditorDraft(route.params?.editorDraft) : null;
+  const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? route.params?.editorDraft) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
   const [studioSettings, setStudioSettings] = useDraftState<CreatorStudioSettings>(`creator:${draftScope}:settings`, () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
     model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }));
@@ -283,6 +292,16 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
   const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
+  useEffect(() => {
+    if (appliedEditorDraft.current === suppliedDraft) return;
+    const prepared = creatorSettingsForEditorDraft(suppliedDraft);
+    if (!prepared) return;
+    if (studioSettings.mode !== prepared.settings.mode) { setStudioSettings(prepared.settings); return; }
+    setStudioSettings(prepared.settings);
+    setInput(prepared.draft.prompt);
+    setTemplateId(null);
+    appliedEditorDraft.current = suppliedDraft;
+  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings]);
   const mentions = useMentions(input, setInput);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
@@ -1252,6 +1271,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       ...(creator ? { creatorSettings: creator } : {}),
     };
     const history = [...messages, userMessage];
+    if (embedded && creator && userMessage.id) editorRequests.current.add(userMessage.id);
     const hadAttachment = !!attachedImage;
     // The data URL, not the file URI: generate-image hands this straight to the
     // provider as an image reference.
@@ -1702,6 +1722,10 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
       const id = `native-${request.id}-${kind}`;
       const saveKey = `${walletAddress}:${id}`;
+      if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
+        deliveredEditorResults.current.add(id);
+        onGenerated({ url, kind, name: request.content });
+      }
       if (librarySaves.current.has(saveKey)) continue;
       librarySaves.current.add(saveKey);
       const creator = request.creatorSettings;
@@ -1722,11 +1746,11 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
         }
       });
     }
-  }, [messages, walletAddress, isScreenFocused, queryClient]);
+  }, [messages, walletAddress, isScreenFocused, queryClient, onGenerated]);
 
   return (
     <View style={studio ? { flex: 1 } : s.root} className={studio ? 'bg-theme-neutrals-900' : undefined}>
-      {studio ? <ScreenHeader title={t('creator.studioTitle')} icon="creator" rightContent={
+      {embedded ? null : studio ? <ScreenHeader title={t('creator.studioTitle')} icon="creator" rightContent={
         <View className="flex-row items-center gap-2">
           <SubscriptionCreditsPill />
           <TouchableOpacity onPress={handleHistoryOpen} accessibilityRole="button" accessibilityLabel={t('assistant.chatHistory')} className="p-2">
@@ -2059,9 +2083,9 @@ function AIChatScreenForAccount() {
   );
 }
 
-export function CreatorStudioScreen() {
+export function CreatorStudioScreen(props: EmbeddedCreatorProps) {
   const user = useUser();
-  return <AIChatScreenInner key={user?.walletAddress || user?.address || 'guest'} studio />;
+  return <AIChatScreenInner key={user?.walletAddress || user?.address || 'guest'} studio {...props} />;
 }
 
 export default function AIChatScreen() {
