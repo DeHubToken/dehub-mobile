@@ -10,12 +10,15 @@ import { runWithPermissions } from '../libs/permissions.util';
 import { getAvatarUrl, getCoverUrl } from '../libs/misc';
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 
-type Profile = { display_name?: string; bio?: string; avatar?: string; banner?: string };
+type Profile = { username?: string; display_name?: string; bio?: string; avatar?: string; banner?: string };
 const picture = (value?: string) => value && !value.startsWith('default-') ? value : undefined;
 
 function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; agentId: string; profile: Profile; onClose: () => void }) {
   const { t } = useTranslation();
   const client = useQueryClient();
+  const [username, setUsername] = useState(profile.username || '');
+  const normalizedUsername = username.trim().replace(/^@/, '').toLowerCase();
+  const usernameChanged = normalizedUsername !== (profile.username || '');
   const [name, setName] = useState(profile.display_name || '');
   const [bio, setBio] = useState(profile.bio || '');
   const [avatar, setAvatar] = useState<string>();
@@ -25,6 +28,7 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
   const save = useMutation({ mutationFn: async () => {
     const form = new FormData();
     form.append('operation', 'update_profile'); form.append('agent_id', agentId);
+    if (usernameChanged) form.append('username', normalizedUsername);
     if (name.trim() !== (profile.display_name || '')) form.append('display_name', name.trim());
     if (bio !== (profile.bio || '')) form.append('bio', bio);
     if (avatar) form.append('avatar', createRNImageFile(avatar, 'avatar') as any);
@@ -32,8 +36,11 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
     return agentTaskRequest(wallet, form);
   }, onSuccess: async () => {
     setAvatar(undefined); setBanner(undefined);
-    await client.invalidateQueries({ queryKey: ['agent-profile', wallet, agentId] });
-    client.invalidateQueries({ queryKey: ['ai-agents', wallet] });
+    await Promise.all([
+      client.invalidateQueries({ queryKey: ['agent-profile', wallet, agentId] }),
+      client.invalidateQueries({ queryKey: ['ai-agents', wallet] }),
+    ]);
+    onClose();
   } });
   const pick = async (field: 'avatar' | 'banner') => {
     setPicking(true); setPickError(undefined); save.reset();
@@ -48,7 +55,7 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
     } catch (error) { setPickError(error instanceof Error ? error.message : t('agents.profile.imageHelp')); }
     finally { setPicking(false); }
   };
-  const dirty = name.trim() !== (profile.display_name || '') || bio !== (profile.bio || '') || !!avatar || !!banner;
+  const dirty = usernameChanged || name.trim() !== (profile.display_name || '') || bio !== (profile.bio || '') || !!avatar || !!banner;
   const disabled = picking || save.isPending;
   const avatarUri = avatar || picture(getAvatarUrl(profile.avatar));
   const bannerUri = banner || picture(getCoverUrl(profile.banner));
@@ -60,6 +67,9 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
       <KitButton variant="quiet" label={t('agents.profile.banner')} disabled={disabled} onPress={() => pick('banner')} />
     </View>
     <Text style={styles.muted}>{t('agents.profile.imageHelp')}</Text>
+    <Text style={styles.text}>{t('settings.username')}</Text>
+    <LiquidGlass style={styles.glass}><TextInput accessibilityLabel={t('settings.username')} value={username} editable={!disabled} maxLength={30}
+      autoCapitalize="none" autoCorrect={false} onChangeText={value => { setUsername(value); save.reset(); }} style={styles.input} /></LiquidGlass>
     <Text style={styles.text}>{t('settings.displayName')}</Text>
     <LiquidGlass style={styles.glass}><TextInput accessibilityLabel={t('settings.displayName')} value={name} editable={!disabled} maxLength={100}
       onChangeText={value => { setName(value); save.reset(); }} style={styles.input} /></LiquidGlass>
@@ -67,7 +77,7 @@ function ProfileForm({ wallet, agentId, profile, onClose }: { wallet: string; ag
     <LiquidGlass style={styles.glass}><TextInput accessibilityLabel={t('settings.bio')} value={bio} editable={!disabled} multiline maxLength={2000}
       onChangeText={value => { setBio(value); save.reset(); }} style={[styles.input, styles.bio]} /></LiquidGlass>
     <View style={styles.row}>
-      <KitButton label={save.isPending ? t('common.saving') : t('common.save')} disabled={!dirty || disabled || (name !== (profile.display_name || '') && !name.trim())} onPress={() => save.mutate()} />
+      <KitButton label={save.isPending ? t('common.saving') : t('common.save')} disabled={!dirty || disabled || (usernameChanged && !/^[a-z0-9_-]{1,30}$/.test(normalizedUsername)) || (name !== (profile.display_name || '') && !name.trim())} onPress={() => save.mutate()} />
       <KitButton variant="quiet" label={t('common.cancel')} disabled={disabled} onPress={onClose} />
     </View>
     {(save.error || pickError) && <Text accessibilityRole="alert" style={styles.error}>{save.error?.message || pickError}</Text>}
@@ -82,16 +92,17 @@ export function AgentProfilePanel({ wallet, agentId, agentName }: { wallet: stri
   const profile = useQuery({ queryKey: ['agent-profile', wallet, agentId], staleTime: 60000,
     queryFn: () => agentTaskRequest<{ profile: Profile }>(wallet, { operation: 'profile', agent_id: agentId }) });
   const data = profile.data?.profile;
+  const profileUsername = data?.username || agentName;
   const avatar = picture(getAvatarUrl(data?.avatar));
   const banner = picture(getCoverUrl(data?.banner));
   return <View style={styles.panel}>
-    {!open && (banner || avatar || data?.display_name) && <Pressable style={styles.panel} accessibilityRole="button" accessibilityLabel={`${agentName} - ${t('nav.profile')}`} onPress={() => showUserProfile(agentName)}>
+    {!open && (banner || avatar || data?.display_name) && <Pressable style={styles.panel} accessibilityRole="button" accessibilityLabel={`${profileUsername} - ${t('nav.profile')}`} onPress={() => showUserProfile(profileUsername)}>
       {banner && <Image source={{ uri: banner }} accessibilityLabel={t('agents.profile.banner')} style={styles.banner} />}
       {avatar && <Image source={{ uri: avatar }} accessibilityLabel={t('agents.profile.avatar')} style={styles.avatar} />}
       {data?.display_name && <Text style={styles.text}>{data.display_name}</Text>}
     </Pressable>}
     <View style={styles.row}>
-      <KitButton variant="quiet" label={t('nav.profile')} onPress={() => showUserProfile(agentName)} />
+      <KitButton variant="quiet" label={t('nav.profile')} onPress={() => showUserProfile(profileUsername)} />
       <KitButton variant="quiet" label={t('agents.profile.edit')} onPress={() => setOpen(value => !value)} />
     </View>
     {open && profile.isLoading && <Text style={styles.muted}>{t('common.loading')}</Text>}
