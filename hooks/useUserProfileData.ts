@@ -25,6 +25,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { maxStacked } from "../libs/validators.util";
 import { resolveCount } from "../libs/numbers.util";
 import { WEBSITE_LINK } from "../config";
+import { patchTipBadges, subscribeTipBadges } from '../libs/tip-badges';
 
 export interface RemoteUser {
   username?: string;
@@ -120,6 +121,16 @@ export const useUserProfileData = (
   const { requireAuth, patchUser } = useAuthActions();
   const { conversations } = useDM();
   const navigation = useNavigation<any>();
+
+  useEffect(() => subscribeTipBadges(accounts => {
+    for (const [key, entry] of profileCache) {
+      const updated = patchTipBadges(entry.data, accounts);
+      if (updated !== entry.data) profileCache.set(key, { data: updated, ts: Date.now() });
+    }
+    setData(previous => patchTipBadges(previous, accounts));
+    const own = accounts.find(account => account.address.toLowerCase() === authUser?.address?.toLowerCase());
+    if (own) void patchUser({ badgeBalance: own.badgeBalance, stakedDHB: own.badgeBalance, badgeLock: own.badgeLock } as any);
+  }), [authUser?.address, patchUser]);
 
   useEffect(() => {
     isMountedRef.current = true;

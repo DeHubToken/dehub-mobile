@@ -94,6 +94,7 @@ export async function writeContractAA(
     if (gasLimitBN) overrides.gasLimit = gasLimitBN;
     const resp = await contract[functionName](...args, overrides);
     const hash: string | undefined = resp?.hash;
+    let badgeRefresh: Promise<void> | undefined;
     const wait = async (confirmations = 1) => {
       if (!hash) return resp.wait?.(confirmations);
       const { NETWORK_URLS } = await import('../config/web3.constants');
@@ -104,7 +105,14 @@ export async function writeContractAA(
         if (receipt && confirmations > 1 && await rpc.getBlockNumber() < receipt.blockNumber + confirmations - 1) return null;
         return receipt;
       });
-      return waitForSubmittedReceipt(hash, () => resp.wait?.(confirmations), readers);
+      const receipt = await waitForSubmittedReceipt(hash, () => resp.wait?.(confirmations), readers);
+      if (functionName === 'sendTip' && receipt?.status === 1) {
+        badgeRefresh ??= import('../services/staking.service')
+          .then(({ refreshTipBadges }) => refreshTipBadges(chainId, receipt.transactionHash || hash))
+          .catch(error => { console.warn('[Tip] Badge refresh unavailable', error); });
+        await badgeRefresh;
+      }
+      return receipt;
     };
     return { hash, wait };
   } catch (eoaErr: any) {
