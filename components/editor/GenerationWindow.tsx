@@ -7,10 +7,11 @@ import { importGeneratedMedia, type GeneratedMediaSource } from '../../libs/edit
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import { toastError } from '../../libs/toast';
 
-export default function GenerationWindow({ state, onState, draft }: {
+export default function GenerationWindow({ state, onState, draft, onAdd }: {
   state: 'closed' | 'open' | 'minimized';
   onState: (state: 'closed' | 'open' | 'minimized') => void;
   draft: GenerationDraft | null;
+  onAdd: (media: Awaited<ReturnType<typeof importGeneratedMedia>>) => void;
 }) {
   const { t } = useTranslation();
   const { width, height } = useWindowDimensions();
@@ -18,18 +19,31 @@ export default function GenerationWindow({ state, onState, draft }: {
   const [mounted, setMounted] = useState(false);
   const controller = useRef(new AbortController());
   const queue = useRef(Promise.resolve());
+  const imports = useRef(new Map<string, Promise<Awaited<ReturnType<typeof importGeneratedMedia>>>>());
   useEffect(() => {
     controller.current = new AbortController();
     return () => controller.current.abort();
   }, []);
   useEffect(() => { if (state !== 'closed') setMounted(true); }, [state]);
+  const getImported = useCallback((source: GeneratedMediaSource) => {
+    const existing = imports.current.get(source.url);
+    if (existing) return existing;
+    const result = queue.current.then(() => importGeneratedMedia(source, controller.current.signal));
+    imports.current.set(source.url, result);
+    queue.current = result.then(() => {}, () => { imports.current.delete(source.url); });
+    return result;
+  }, []);
   const importResult = useCallback((source: GeneratedMediaSource) => {
-    queue.current = queue.current.then(async () => {
+    void getImported(source).catch(() => { if (!controller.current.signal.aborted) toastError(t('common.somethingWentWrong')); });
+  }, [getImported, t]);
+  const useResult = useCallback(async (url: string, kind: 'image' | 'video' | 'audio') => {
+    try {
+      const media = await getImported({ url, kind });
       if (controller.current.signal.aborted) return;
-      try { await importGeneratedMedia(source, controller.current.signal); }
-      catch { if (!controller.current.signal.aborted) toastError(t('common.somethingWentWrong')); }
-    });
-  }, [t]);
+      onAdd(media);
+      onState('minimized');
+    } catch { if (!controller.current.signal.aborted) toastError(t('common.somethingWentWrong')); }
+  }, [getImported, onAdd, onState, t]);
   const title = t('upload.generateContent', { defaultValue: 'Generate content' });
   return <>
     {state === 'minimized' && <Pressable accessibilityRole="button" accessibilityLabel={title}
@@ -46,7 +60,7 @@ export default function GenerationWindow({ state, onState, draft }: {
           <Pressable onPress={() => onState('minimized')} accessibilityRole="button" accessibilityLabel={t('calls.minimize')} className="p-2"><Text className="text-theme-neutrals-100">−</Text></Pressable>
           <Pressable onPress={() => onState('closed')} accessibilityRole="button" accessibilityLabel={t('common.close')} className="p-2"><Text className="text-theme-neutrals-100">×</Text></Pressable>
         </View>
-        <CreatorStudioScreen embedded editorDraft={draft} onGenerated={importResult} />
+        <CreatorStudioScreen embedded editorDraft={draft} onGenerated={importResult} onUseGenerated={useResult} />
       </View>
     </KeyboardAvoidingView>}
   </>;

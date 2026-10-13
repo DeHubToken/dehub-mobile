@@ -1809,7 +1809,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); }}
       />
 
-      <GenerationWindow key={user?.walletAddress || user?.address || 'guest'} state={generatorWindow} onState={setGeneratorWindow} draft={generatorDraft} />
+      <GenerationWindow key={user?.walletAddress || user?.address || 'guest'} state={generatorWindow} onState={setGeneratorWindow} draft={generatorDraft}
+        onAdd={media => {
+          const current = h.latest();
+          if (!current) return;
+          const next = media.kind === 'image' ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
+          h.commit(next.project);
+          if (media.kind !== 'image') setTimelineOpen(true);
+          select(next.clipId);
+        }} />
 
       <ExportSheet
         visible={exportOpen}
