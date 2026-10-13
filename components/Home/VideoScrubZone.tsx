@@ -116,10 +116,10 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
 }
 
 const styles = StyleSheet.create({
-  zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: SCRUB_HIT_HEIGHT },
+  zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: SCRUB_HIT_HEIGHT, backgroundColor: 'transparent' },
   stripSurface: { position: 'absolute', bottom: 0, left: 0, right: 0, height: VIDEO_CONTROL_STRIP_HEIGHT, backgroundColor: '#000' },
   plainLine: { borderWidth: 0, backgroundColor: '#444' },
-  row: { position: 'absolute', bottom: 14, left: 0, right: 0 },
+  row: { position: 'absolute', bottom: 14, left: 0, right: 0, backgroundColor: 'transparent' },
   line: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.65)', overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.3)' },
   played: { height: '100%', backgroundColor: '#FFFFFF' },
   button: { position: 'absolute', top: 0, left: 0, right: 0, height: 26, paddingTop: 6, alignItems: 'center', justifyContent: 'center' },
