@@ -18,6 +18,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
+import AssistantNavIcon from "../ui/AssistantNavIcon";
 import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
@@ -163,7 +164,7 @@ export interface PostOptionsMenuProps {
 }
 
 interface OptionRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: keyof typeof Ionicons.glyphMap | "assistant-slim";
   label: string;
   sublabel?: string;
   color?: string;
@@ -183,7 +184,7 @@ const OptionRow: React.FC<OptionRowProps> = memo(
         {loading ? (
           <ActivityIndicator size="small" color={color} />
         ) : (
-          <Ionicons name={icon} size={20} color={color} />
+          icon === "assistant-slim" ? <AssistantNavIcon size={20} color={color} /> : <Ionicons name={icon} size={20} color={color} />
         )}
       </View>
       <View className="flex-1">
@@ -559,7 +560,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
           {!!onAskAi && (
             <OptionRow
-              icon="sparkles-outline"
+              icon="assistant-slim"
               label={t("postOptions.aiOverview", "AI overview")}
               onPress={() => { onClose(); onAskAi(); }}
             />
