@@ -8,7 +8,7 @@ const source = readFileSync(resolve(__dirname, '../../screens/ShortsViewerScreen
 function viewer(overrides: Record<string, unknown> = {}) {
   const handlers: Record<string, Function> = {};
   const pan: Record<string, Function> = {};
-  for (const method of ['enabled', 'manualActivation', 'blocksExternalGesture']) pan[method] = () => pan;
+  for (const method of ['enabled', 'manualActivation', 'blocksExternalGesture']) pan[method] = jest.fn(() => pan);
   for (const method of ['onTouchesDown', 'onTouchesMove', 'onEnd']) {
     pan[method] = (callback: Function) => { handlers[method] = callback; return pan; };
   }
@@ -17,7 +17,7 @@ function viewer(overrides: Record<string, unknown> = {}) {
     Gesture: { Pan: () => pan }, runOnJS: (callback: Function) => callback,
     isActive: true, showComments: false, screenshotMode: false,
     overlaysHidden: true, autoHidden: false, itemHeight: 800, SCREEN_HEIGHT: 800,
-    RESTORE_ZONE_TOP: 0.55, RESTORE_ZONE_BOTTOM: 0.85,
+    RESTORE_ZONE_TOP: 0.61, RESTORE_ZONE_BOTTOM: 0.85,
     DRAG_CLAIM_MIN: 16, DRAG_RELEASE_MIN: 6, HIDE_SWIPE_MIN: 40,
     restorePanStart: { value: { x: 0, y: 0 } }, pagerGesture: {},
     setOverlaysHidden: jest.fn(), setAutoHidden: jest.fn(), resetTapSequence: jest.fn(),
@@ -33,15 +33,20 @@ function viewer(overrides: Record<string, unknown> = {}) {
   const code = ts.transpileModule(callbacks + '\n({ handleScreenTap })', {
     compilerOptions: { target: ts.ScriptTarget.ES2020 },
   }).outputText;
-  return { ...context, ...runInNewContext(code, context), handlers };
+  return { ...context, ...runInNewContext(code, context), handlers, pan };
 }
 
 describe('shorts panel gestures', () => {
+  it('does not intercept navigation when controls were hidden by the timer', () => {
+    const v = viewer({ overlaysHidden: false, autoHidden: true });
+    expect(v.pan.enabled).toHaveBeenCalledWith(false);
+  });
+
   it('claims an upward lower-area swipe before the pager and restores on release', () => {
     const v = viewer();
     const state = { activate: jest.fn(), fail: jest.fn() };
-    v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y: 700 }] }, state);
-    v.handlers.onTouchesMove({ numberOfTouches: 1, allTouches: [{ x: 150, y: 680 }] }, state);
+    v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y: 600 }] }, state);
+    v.handlers.onTouchesMove({ numberOfTouches: 1, allTouches: [{ x: 150, y: 580 }] }, state);
     expect(state.activate).toHaveBeenCalledTimes(1);
     v.handlers.onEnd({ translationY: -60, translationX: 0 }, true);
     expect(v.setOverlaysHidden).toHaveBeenCalledWith(false);
@@ -55,11 +60,19 @@ describe('shorts panel gestures', () => {
     expect(v.setOverlaysHidden).not.toHaveBeenCalled();
   });
 
+  it.each([300, 460, 700, 790])('immediately releases navigation outside the smaller restore band: %s', (y) => {
+    const v = viewer();
+    const state = { activate: jest.fn(), fail: jest.fn() };
+    v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y }] }, state);
+    expect(state.fail).toHaveBeenCalledTimes(1);
+    expect(state.activate).not.toHaveBeenCalled();
+  });
+
   it('releases downward swipes to the pager', () => {
     const v = viewer();
     const state = { activate: jest.fn(), fail: jest.fn() };
-    v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y: 700 }] }, state);
-    v.handlers.onTouchesMove({ numberOfTouches: 1, allTouches: [{ x: 150, y: 720 }] }, state);
+    v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y: 600 }] }, state);
+    v.handlers.onTouchesMove({ numberOfTouches: 1, allTouches: [{ x: 150, y: 620 }] }, state);
     expect(state.fail).toHaveBeenCalledTimes(1);
     expect(state.activate).not.toHaveBeenCalled();
   });
