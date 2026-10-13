@@ -195,11 +195,69 @@ const ToneFill = React.forwardRef(function ToneFill(props, ref) {
   return jsxAny(type, ref ? { ...chosen, ref } : chosen);
 });
 
+// Picture types. Read lazily: the JSX runtime loads before any of them.
+let mediaTypes;
+function isMediaType(type) {
+  if (!mediaTypes) {
+    mediaTypes = new Set();
+    const add = (load) => {
+      try {
+        const t = load();
+        if (t) mediaTypes.add(t);
+      } catch (_) {
+        // Not in this build or test.
+      }
+    };
+    add(() => require("react-native").Image);
+    add(() => require("react-native").ImageBackground);
+    add(() => require("expo-image").Image);
+    add(() => require("expo-video").VideoView);
+  }
+  return mediaTypes.has(type);
+}
+
+function flat(style) {
+  if (Array.isArray(style)) return Object.assign({}, ...style.map(flat));
+  return style && typeof style === "object" ? style : {};
+}
+
+function fills(style) {
+  const f = flat(style);
+  if (f.position === "absolute") return f.top === 0 && f.bottom === 0 && (f.left === 0 || f.right === 0 || f.width === "100%");
+  return f.width === "100%" && f.height === "100%";
+}
+
+/**
+ * A frame whose picture fills it edge to edge: everything else in it is drawn
+ * over the picture (a short's name and counts, a video's play button), so it
+ * keeps its white-on-picture colours.
+ */
+function isMediaFrame(type, props) {
+  if (isMediaType(type)) return type !== require("react-native").Image && props.children != null;
+  const children = props.children;
+  if (!Array.isArray(children)) return false;
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (!child || typeof child !== "object" || !child.props) continue;
+    const t = child.type === ToneFill ? child.props.__toneType : child.type;
+    if (isMediaType(t) && fills(child.props.style)) return true;
+  }
+  return false;
+}
+
 /** The type and props an element is created with while System Light is on. */
 function tone(type, props) {
   if (!on || !props || typeof props !== "object" || type === ToneFill) return [type, props];
   if (typeof props.className === "string" && DARK_SURFACE.test(props.className)) {
     return [type, { ...props, children: jsxAny(KeepDark.Provider, { value: true, children: props.children }) }];
+  }
+  if (isMediaFrame(type, props)) {
+    props = { ...props, children: jsxAny(KeepDark.Provider, { value: true, children: props.children }) };
+    // Class colours too (`text-white` over the picture), as `dark-surface`
+    // does. Not on a style function: NativeWind would drop that style.
+    if (typeof props.style !== "function") {
+      props.className = typeof props.className === "string" ? `${props.className} dark-surface` : "dark-surface";
+    }
   }
   const toned = toneProps(props);
   if (toned === props) return [type, props];
