@@ -369,7 +369,6 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       <VideoPlayerCore
         sourceUrl={normalizedUrl}
         autoplay
-        loop={!isLive}
         liveMode={!!isLive}
         suppressLoadingFeedback={suppressLoadingFeedback}
         hideTopControls={hideTopControls}
