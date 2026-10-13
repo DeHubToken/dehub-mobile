@@ -129,14 +129,16 @@ describe('post media presentation', () => {
     expect(list).toContain('if (!answersTabPress || !isFocused || !active) return;');
   });
 
-  it('fills the width with cinematic media and caps feed videos at 75% of the screen', () => {
+  it('fits video frames to their picture within half the screen', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
     expect(containedImage).toContain('postPageMaxHeightFor(screenHeight, availableWidth),\n          ),');
     expect(containedImage).toContain('contentFit={bleed ? "cover" : "contain"}');
-    expect(video).toContain('postPageMaxHeightFor(win.height, width) : win.height * 0.75');
-    expect(video).toContain('width: bleed ? windowSize.width : mediaBoxWidth(');
+    expect(video).toContain('screenHeight * 0.5');
+    expect(video).toContain('win.height * 0.5 - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
+    expect(video).toContain('width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls)');
+    expect(video).toContain('alignSelf: "flex-start"');
   });
 
   it('keeps post action controls evenly inset from every bento edge', () => {

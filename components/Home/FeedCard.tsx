@@ -1590,6 +1590,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isAutoplayActive={isAutoplayActive}
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
+      onOpenViewer={() => {
+        if (isActuallyGated || tokenId == null) return;
+        onBeforeNavigate?.();
+        hideUserProfile();
+        navigation.navigate(ScreenNames.ShortsViewer, {
+          initialIndex: 0,
+          initialItems: [item],
+          feedParams: { brainrot: true, fromId: String(tokenId) },
+        });
+      }}
       onTapReaction={handleVideoTapReaction}
       onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
       onLockPress={handleCardPress}
