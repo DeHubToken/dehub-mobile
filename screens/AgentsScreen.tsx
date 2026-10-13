@@ -132,6 +132,7 @@ export default function AgentsScreen() {
       const id = data?.agent?.id;
       const key = data?.agent?.api_key;
       if (id) setVisibleKeys((prev) => new Set([...prev, id]));
+      if (id) setOpenConnections((prev) => new Set([...prev, id]));
       if (id && key) setCreatedKeys((prev) => ({ ...prev, [id]: key }));
     },
     onError: (error: Error) => {
