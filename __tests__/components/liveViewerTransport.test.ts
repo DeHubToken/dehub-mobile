@@ -60,7 +60,8 @@ describe('live viewer transport handover', () => {
     const core = readSource('components', 'VideoPlayerCore', 'index.tsx');
     expect(area).toContain('liveMode={!!isLive}');
     expect(area).not.toContain('loop={!isLive}');
-    expect(core).toContain('p.loop = !liveMode && loop');
+    expect(core).toContain('const isLooping = !liveMode && (loop ?? savedLooping);');
+    expect(core).toContain('p.loop = !liveMode && (loop ?? getIsLooping());');
   });
 
   it('starts live playback after setup rather than during native player creation', () => {
