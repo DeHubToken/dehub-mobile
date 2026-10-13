@@ -207,9 +207,10 @@ export interface EmbeddedCreatorProps {
   embedded?: boolean;
   editorDraft?: import('../libs/editor/generationDraft').GenerationDraft | null;
   onGenerated?: (source: import('../libs/editor/importGeneratedMedia').GeneratedMediaSource) => void;
+  onUseGenerated?: (url: string, kind: 'image' | 'video' | 'audio') => Promise<void>;
 }
 
-function AIChatScreenInner({ studio = false, embedded = false, editorDraft: suppliedDraft, onGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
+function AIChatScreenInner({ studio = false, embedded = false, editorDraft: suppliedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
   const editorRequests = useRef(new Set<string>());
   const deliveredEditorResults = useRef(new Set<string>());
   const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);
@@ -1528,6 +1529,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   );
 
   const handleEditMedia = useCallback(async (url: string, kind: 'image' | 'video' | 'audio') => {
+    if (onUseGenerated) { await onUseGenerated(url, kind); return; }
     if (editorImport.current || !isScreenFocusedRef.current) return;
     const controller = new AbortController();
     editorImport.current = controller;
@@ -1544,7 +1546,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       if (!controller.signal.aborted) setEditingMediaUrl(null);
       if (editorImport.current === controller) editorImport.current = null;
     }
-  }, [navigation, t]);
+  }, [navigation, t, onUseGenerated]);
 
   /* ── Composer helpers ────────────────────────────────────────────────── */
 
