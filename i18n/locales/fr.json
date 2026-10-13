@@ -2309,6 +2309,13 @@
     "tasks": {
       "privateTitle": "Les agents sont en aperçu privé",
       "privateBody": "Cette fonctionnalité est actuellement réservée à @maldoteth.",
+      "mode": "Mode de tâche",
+      "oneAgent": "Un agent",
+      "swarm": "Essaim",
+      "swarmChoose": "Choisir les agents",
+      "swarmHelp": "Une consigne, un travail partagé. Les cibles sont réparties entre les agents et les publications planifiées alternent.",
+      "swarmMember": "Agent {{index}} sur {{total}} dans cet essaim",
+      "runSwarm": "Lancer cet essaim",
       "title": "Confier une tâche à un agent",
       "description": "Les actions sont effectuées par l’agent sélectionné. Les tâches planifiées continuent lorsque l’application est fermée.",
       "instructions": "Instructions de l’agent",
