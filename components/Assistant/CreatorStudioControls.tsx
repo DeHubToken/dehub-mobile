@@ -96,8 +96,8 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
           ))}
         </View>
         {chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
-        {(settings.mode === 'image' || (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
-        {settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
+        {(settings.mode === 'image' || (settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
+        {settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-1.5">
             <TextInput
               value={durationDraft}

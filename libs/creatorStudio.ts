@@ -4,12 +4,14 @@ import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { CREATOR_VIDEO_RULES } from '../config/creator-video-rules';
 import { applyTemplate, type CreatorTemplate } from './creatorTemplates';
 import { generationDraft, type GenerationDraft } from './editor/generationDraft';
+import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL } from '../config/viral-effects';
 
 export type CreatorMode = 'image' | 'video' | 'audio' | '3d';
 export interface CreatorReferenceAsset {
   uri: string; label: string; kind: 'image' | 'video'; seconds?: number; posterUrl?: string;
 }
 export interface CreatorStudioSettings {
+  effect?: string;
   referenceAssets?: CreatorReferenceAsset[];
   mode: CreatorMode;
   model: string;
@@ -77,6 +79,7 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
   const images = normalized.referenceAssets?.filter(a => a.kind === 'image').map(a => a.uri) ?? [];
   const clips = normalized.referenceAssets?.filter(a => a.kind === 'video').map(a => a.uri) ?? [];
   return { duration: `${normalized.durationSeconds}s`, aspectRatio: normalized.aspect, resolution: normalized.resolution,
+    ...(normalized.model === 'pixverse-effects' ? { effect: normalized.effect } : {}),
     ...(images.length > 1 || VIDEO_MODELS[normalized.model]?.referenceMode === 'edit' ? { referenceImageUrls: images } : {}),
     ...(clips.length ? { videoUrls: clips } : {}) };
 }
@@ -97,6 +100,7 @@ export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boo
   if (settings.mode === 'image' && images.length > 1 && !CREATOR_FAL_IMAGE_MODELS[settings.model]?.editUsesPlural) return 'creator.referenceMultiModel';
   if (settings.mode === 'video') {
     const model = VIDEO_MODELS[settings.model];
+    if (settings.model === VIRAL_EFFECT_MODEL && !VIRAL_EFFECTS.some(effect => effect.name === settings.effect)) return 'viralTemplates.chooseFirst';
     if (model?.requiresVideoInput && (!clip || !hasImage)) return 'creator.referenceNeedsClip';
     if (clip && !model?.requiresVideoInput) return 'creator.referenceVideoModel';
     if (images.length > (model?.maxReferenceImages ?? 1)) return 'creator.referenceTooMany';

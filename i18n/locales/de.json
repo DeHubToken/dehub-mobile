@@ -1,4 +1,32 @@
 {
+  "viralTemplates": {
+    "eyebrow":  "{{count}} Videoeffekte",
+    "title":  "Dein nächster viraler Moment.",
+    "intro":  "Schau dir ein Beispiel an. Wähle einen Effekt oder Charakter. Füge dein Foto hinzu.",
+    "browse":  "Alle {{count}} Vorlagen ansehen",
+    "featured":  "Zurück zur Auswahl",
+    "use":  "Effekt verwenden",
+    "useNamed":  "{{name}} verwenden",
+    "preview":  "Vorschau für {{name}} abspielen",
+    "previewUnavailable":  "Vorschau nicht verfügbar",
+    "search":  "Effekte, Charaktere und Tänze suchen",
+    "all":  "Alle",
+    "effects":  "Effekte",
+    "characters":  "Charaktere",
+    "dance":  "Tanz",
+    "sports":  "Sport",
+    "products":  "Produkte",
+    "seasonal":  "Saisonal",
+    "results":  "{{count}} Vorlagen",
+    "empty":  "Keine passenden Vorlagen. Versuche eine andere Suche oder Kategorie.",
+    "more":  "Mehr anzeigen",
+    "source":  "Beispielvideos von",
+    "ready":  "{{name}} ausgewählt. Füge ein Foto für ein 5-Sekunden-Video hinzu. Der Bildausschnitt folgt deinem Foto.",
+    "chooseFirst":  "Wähle vor dem Erstellen einen Effekt.",
+    "back":  "Zurück zu Vorlagen",
+    "close":  "Vorlagen schließen"
+},
+
   "maboroshiShowcase": {
     "title": "Deine Szene. Ein anderes Ich.",
     "intro": "180 Charakterlooks, von weichem Plüsch bis zu flüssigem Chrom.",
