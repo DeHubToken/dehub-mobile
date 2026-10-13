@@ -5172,6 +5172,9 @@
       "reinvestment": "Marketing en ontwikkelaarssalarissen",
       "reinvestmentGroup": "Herinvestering",
       "reinvestmentNote": "Volgens DeHub zijn de ingehouden historische bedrijfsinkomsten volledig herbelegd. Marketing en ontwikkelaarssalarissen worden samen getoond en over elke maand verdeeld, na aftrek van de kosten die in die maand al zijn geboekt.",
+      "estimatedOperations": "Geschatte bedrijfskosten",
+      "estimatedOperationsNote": "De bedrijfskosten volgen een geschatte maandelijkse trend, met een piek van $ 100.000 in november 2021 en daarna een daling. Geregistreerde rekeningen zijn inbegrepen en worden niet dubbel geteld. Dit is een schatting, geen facturenoverzicht.",
+      "grossBnbSharingNote": "De omzet omvat BNB die aan houders en stakers is uitgekeerd. DeHub heeft deze betalingen niet zelf behouden.",
       "profitShared": "Gedeelde nettowinst",
       "profitSharedHint": "{{usd}} betaald aan houders en stakers · {{from}}–{{to}}",
       "sourceUnavailable": "Niet beschikbaar"

@@ -5031,6 +5031,9 @@
       "reinvestment": "Marketing y salarios de desarrolladores",
       "reinvestmentGroup": "Reinversión",
       "reinvestmentNote": "DeHub declara que los fondos operativos históricos retenidos se reinvirtieron íntegramente. El marketing y los salarios de desarrolladores se muestran juntos, repartidos en cada mes, tras descontar los costes ya registrados ese mes.",
+      "estimatedOperations": "Operaciones estimadas",
+      "estimatedOperationsNote": "Los costes operativos siguen una tendencia mensual estimada, con un máximo de 100.000 $ en noviembre de 2021 y un descenso posterior. Los gastos registrados ya están incluidos, sin duplicarlos. Es una estimación, no un registro de facturas.",
+      "grossBnbSharingNote": "Los ingresos incluyen BNB repartidos entre titulares y participantes de staking. Esos pagos se distribuyeron y DeHub no los retuvo.",
       "profitShared": "Beneficio neto compartido",
       "profitSharedHint": "{{usd}} pagados a titulares y participantes de staking · {{from}}–{{to}}",
       "sourceUnavailable": "No disponible"
