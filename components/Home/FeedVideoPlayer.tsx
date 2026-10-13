@@ -69,7 +69,7 @@ import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useMediaAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -517,7 +517,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Real shape of the clip, so a portrait video is shown portrait instead of
   // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
   // extracted from the video itself; 16:9 until that resolves.
-  const mediaAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+  // Once the clip itself reports a size it wins over the thumbnail, which can
+  // be a custom cover of another shape.
+  const [videoSize, setVideoSize] = useState<{ tokenId: unknown; ratio: number } | null>(null);
+  const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
+  const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+  const mediaAspect = videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect;
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
@@ -526,6 +531,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // Media that reaches the screen edges keeps its controls off them.
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
+  // The frame takes the clip's own shape, so the whole picture fills it.
   const cropMedia = false;
   const bareControls = true;
   const splitControls = !hideControls && !isContentGated;
@@ -664,6 +670,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } catch {}
     flushVideoPlayIntent(pendingPlayRef, readyEvent || p.status === "readyToPlay", startPlayback);
   }, [startPlayback, recovery]);
+
+  // The clip's real size, for the box shape. An HLS ladder may list no tracks
+  // at load and only report a size once a rendition is selected, so both
+  // events feed it, plus whatever a handed-over player already knows.
+  useEffect(() => {
+    if (!player) return;
+    const take = (size?: { width: number; height: number } | null) => {
+      if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
+      const ratio = size.width / size.height;
+      setVideoSize((prev) => (prev && Object.is(prev.tokenId, tokenId) && Math.abs(prev.ratio - ratio) < 0.001 ? prev : { tokenId, ratio }));
+    };
+    try { take((player as any).videoTrack?.size); } catch {}
+    const subs: Array<{ remove: () => void }> = [];
+    try { subs.push(player.addListener("videoTrackChange", ({ videoTrack }: any) => take(videoTrack?.size))); } catch {}
+    try { subs.push(player.addListener("sourceLoad", ({ availableVideoTracks }: any) => take(availableVideoTracks?.[0]?.size))); } catch {}
+    return () => subs.forEach((sub) => { try { sub.remove(); } catch {} });
+  }, [player, tokenId]);
 
   useEffect(() => {
     if (!player) return;
