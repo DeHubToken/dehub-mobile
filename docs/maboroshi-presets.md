@@ -6,8 +6,8 @@ reference templates. Switching to a different model clears a clip-workflow
 template so it cannot accidentally become the next generation's prompt.
 
 Maboroshi uses the shared hosted interface at https://live.dehub.io/maboroshi/,
-also embedded by https://dehub.io/creator/maboroshi. Its 108 original look
-directions, 12 categories, search, reference guidance and selection behavior are
+also embedded by https://dehub.io/creator/maboroshi. Its 180 original look
+directions, 20 categories, search, reference guidance and selection behavior are
 maintained in dehubweb's services/maboroshi/static. Do not copy a second catalog
 into the app. The creator provides a reference showing the selected look.
 These directions are curated ideas rather than a measured popularity ranking.
