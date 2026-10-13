@@ -48,6 +48,8 @@ import AssistantStyleSheet from '../components/Assistant/AssistantStyleSheet';
 import TemplatesSheet from '../components/Assistant/TemplatesSheet';
 import Icon from '../components/ui/Icon';
 import { applyTemplate, getTemplate, type CreatorTemplate } from '../libs/creatorTemplates';
+import ViralTemplateShowcase from '../components/Assistant/ViralTemplateShowcase';
+import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL, viralEffect, type ViralEffect } from '../config/viral-effects';
 import MusicConfirmSheet, { type MusicParams } from '../components/Assistant/MusicConfirmSheet';
 import PosterConfigSheet, { type PosterConfig } from '../components/Assistant/PosterConfigSheet';
 import { ImageGenerationSkeleton } from '../components/Assistant/GenerationSkeleton';
@@ -283,6 +285,26 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
   const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
+  const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
+  const appliedEffectRoute = useRef<string | undefined>(undefined);
+  const pickEffect = useCallback((effect: ViralEffect) => {
+    setTemplateId(null); setInput(effect.name);
+    setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model: VIRAL_EFFECT_MODEL,
+      effect: effect.name, durationSeconds: 5, resolution: '720p', referenceAssets: previous.referenceAssets?.filter(asset => asset.kind === 'image').slice(0, 1) }));
+  }, [setInput, setStudioSettings]);
+  useEffect(() => {
+    const effect = viralEffect(route.params?.effect);
+    if (studio && effect && appliedEffectRoute.current !== effect.id) {
+      appliedEffectRoute.current = effect.id;
+      pickEffect(effect);
+    }
+  }, [studio, route.params?.effect, pickEffect]);
+  useEffect(() => {
+    if (!effectMode) return;
+    const effect = VIRAL_EFFECTS.find(item => item.name === studioSettings.effect) ?? viralEffect('earth-zoom')!;
+    if (studioSettings.effect !== effect.name) pickEffect(effect);
+    else if (input !== effect.name) setInput(effect.name);
+  }, [effectMode, studioSettings.effect, pickEffect, input, setInput]);
   const mentions = useMentions(input, setInput);
   const [pendingStudio, setPendingStudio] = useState<CreatorStudioSettings | null>(null);
   const submitLock = useRef(false);
@@ -1808,6 +1830,8 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />}
+        {studio && <ViralTemplateShowcase compact onPick={pickEffect} />}
+        {effectMode && <Text className="px-4 py-2 text-sm text-theme-neutrals-400">{t('viralTemplates.ready', { name: studioSettings.effect })}</Text>}
         {studio && studioSettings.mode !== 'audio' && <CreatorReferenceAssets assets={studioSettings.referenceAssets ?? []}
           mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
           onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
@@ -1845,6 +1869,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
           </View>
         )}
         <AssistantInputBar
+          readOnly={effectMode}
           value={input}
           onChangeText={mentions.handleChangeText}
           onSelectionChange={mentions.handleSelectionChange}
