@@ -7,8 +7,10 @@ import { renderCutIconOutline } from "../ui/cut-icons";
 // Active controls invert the white glyph and dark outline, with no button frame.
 export function MediaControlIcon({ name, size = 18, active = false, plain = false }: { name: IconName; size?: number; active?: boolean; plain?: boolean }) {
   if (plain) {
-    const color = active ? '#b8d5ff' : '#FFFFFF';
-    return <Icon name={name} size={size} color={color} strokeWidth={1.75} />;
+    return <View style={{ width: size, height: size }}>
+      <Icon name={name} size={size} color="#FFFFFF" strokeWidth={1.75} />
+      {active && <View testID="video-active-dot" pointerEvents="none" style={{ position: 'absolute', bottom: -5, left: (size - 3) / 2, width: 3, height: 3, borderRadius: 1.5, backgroundColor: '#FFFFFF' }} />}
+    </View>;
   }
   const foreground = active ? "#000000" : "#FFFFFF";
   const outlineColor = active ? "#FFFFFF" : "rgba(0,0,0,0.8)";
