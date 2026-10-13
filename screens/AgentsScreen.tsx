@@ -108,6 +108,7 @@ export default function AgentsScreen() {
   const [name, setName] = useSurfaceDraft("screens/AgentsScreen.tsx:name", "");
   const [description, setDescription] = useSurfaceDraft("screens/AgentsScreen.tsx:description", "");
   const [visibleKeys, setVisibleKeys] = useState<Set<string>>(new Set());
+  const [openConnections, setOpenConnections] = useState<Set<string>>(new Set());
   const [revealing, setRevealing] = useState(false);
   // Keys registration just handed back. The list only carries a key for a
   // signed request, so a new agent's key would otherwise vanish on refetch
@@ -245,6 +246,21 @@ export default function AgentsScreen() {
           </Pressable>
 
           <AgentProfilePanel wallet={walletAddress} agentId={agent.id} agentName={agent.name} />
+          <Pressable
+            accessibilityRole="button"
+            accessibilityState={{ expanded: openConnections.has(agent.id) }}
+            onPress={() => setOpenConnections(previous => {
+              const next = new Set(previous);
+              if (next.has(agent.id)) next.delete(agent.id);
+              else next.add(agent.id);
+              return next;
+            })}
+            style={styles.connectionToggle}
+          >
+            <Icon name="Link2" size={16} color="#fff" />
+            <Text style={styles.connectionToggleText}>{t("agents.apiDocs")} · {t("agents.apiKey")}</Text>
+          </Pressable>
+          {openConnections.has(agent.id) && <>
           {apiKey ? (
             <SecretBlock
               label={t("agents.apiKey")}
@@ -306,6 +322,7 @@ export default function AgentsScreen() {
               }
             />
           ) : null}
+          </>}
 
           <View style={styles.meta}>
             <Text style={styles.metaText}>
@@ -417,7 +434,7 @@ export default function AgentsScreen() {
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#010305" },
   content: { paddingTop: 4, paddingBottom: 48, gap: 12 },
-  intro: { color: MUTED, fontSize: 13, lineHeight: 19, paddingHorizontal: 16 },
+  intro: { color: "#E4E4E7", fontSize: 14, lineHeight: 21, paddingHorizontal: 16 },
   links: { flexDirection: "row", flexWrap: "wrap", gap: 16, paddingHorizontal: 16 },
   link: { flexDirection: "row", alignItems: "center", gap: 6 },
   linkText: { color: "#fff", fontSize: 13, textDecorationLine: "underline" },
@@ -436,7 +453,9 @@ const styles = StyleSheet.create({
   },
   agentText: { flex: 1, minWidth: 0, gap: 2 },
   agentName: { color: "#fff", fontSize: 15, fontWeight: "600" },
-  agentDesc: { color: MUTED, fontSize: 13, lineHeight: 18 },
+  agentDesc: { color: "#D4D4D8", fontSize: 14, lineHeight: 21 },
+  connectionToggle: { flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 1, borderColor: "rgba(255,255,255,0.2)", backgroundColor: "rgba(0,0,0,0.25)", borderRadius: 12, padding: 13 },
+  connectionToggleText: { color: "#fff", fontSize: 14, fontWeight: "600" },
   badge: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 3, backgroundColor: "rgba(255,255,255,0.08)" },
   badgeActive: { backgroundColor: "#fff" },
   badgeText: { color: MUTED, fontSize: 11, fontWeight: "600" },
@@ -445,13 +464,13 @@ const styles = StyleSheet.create({
   block: { backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 10, padding: 12, gap: 4 },
   blockHead: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   blockLabelRow: { flexDirection: "row", alignItems: "center", gap: 6, flexShrink: 1 },
-  blockLabel: { color: "rgba(255,255,255,0.45)", fontSize: 11 },
+  blockLabel: { color: "rgba(255,255,255,0.82)", fontSize: 12 },
   blockActions: { flexDirection: "row", gap: 4 },
   iconBtn: { padding: 4 },
   revealBtn: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 6, paddingVertical: 2 },
   revealText: { color: MUTED, fontSize: 12, fontWeight: "600" },
   mono: { color: "rgba(255,255,255,0.85)", fontSize: 12, fontFamily: "monospace" },
-  help: { color: "rgba(255,255,255,0.45)", fontSize: 11, lineHeight: 16, marginTop: 4 },
+  help: { color: "rgba(255,255,255,0.75)", fontSize: 12, lineHeight: 18, marginTop: 4 },
 
   meta: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   metaText: { color: "rgba(255,255,255,0.45)", fontSize: 11 },
