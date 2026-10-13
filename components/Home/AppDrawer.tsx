@@ -104,9 +104,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
-  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
+  { icon: "SettingsCog", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Film", labelKey: "creator.editor", screen: ScreenNames.MediaEditor },
-  { icon: "Palette", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
+  { icon: "Creator", labelKey: "commandCentre.creator", screen: ScreenNames.Creator },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "ChartColumn", labelKey: "nav.stats", screen: ScreenNames.Stats },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, params: { initialTab: "saved" }, requiresAuth: true },
@@ -164,7 +164,7 @@ const NAV_ITEMS: DrawerItem[] = [
 // closest one: a flat glyph beside the glossy set reads as a broken tile, so
 // the glyph is only the fallback for art that fails to download.
 // Theme artwork belongs to phone menus. The web desktop sidebar keeps its
-// original Film and Wand2 glyphs for Editor and Creator.
+// custom vectors for Editor and Creator.
 const ICON_KEYS: Record<string, string> = {
   "creator.editor": "videos", "commandCentre.creator": "paint",
   "nav.home": "home", "nav.profile": "profile", "nav.explore": "search", "nav.prompt": "wand",
