@@ -1,15 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { galleryIndex, rememberGalleryIndex } from '../../libs/media-presentation';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { useTranslation } from 'react-i18next';
 
 /** Horizontal photo navigation competes with, rather than moves, the vertical feed. */
-export function ShortsPhotoPager({ images, width, pagerGesture }: {
-  images: string[]; width: number; pagerGesture: ReturnType<typeof Gesture.Native>;
+export function ShortsPhotoPager({ images, width, pagerGesture, galleryKey = '' }: {
+  images: string[]; width: number; pagerGesture: ReturnType<typeof Gesture.Native>; galleryKey?: string;
 }) {
   const { t } = useTranslation();
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => Math.min(galleryIndex(galleryKey), images.length - 1));
+  useEffect(() => { if (galleryKey) rememberGalleryIndex(galleryKey, index); }, [galleryKey, index]);
   const pan = useMemo(() => Gesture.Pan()
     .enabled(images.length > 1)
     .activeOffsetX([-15, 15])

@@ -365,10 +365,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const { showUserProfile } = useUserProfileSheet();
 
   const tokenId = item.tokenId ?? item.id;
-  const photoMedia = useMemo(() => shortsPhotoMedia(item), [item]);
+  const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   const isLooping = useMediaLooping();
   useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
-  const videoUrl = photoMedia?.soundtrackUrl || getVideoUrl(tokenId) || undefined;
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
   const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
@@ -613,6 +613,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   }, [player, recovery]);
 
   const playIfActive = useCallback(() => {
+    if (!videoUrl) return false;
     if ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player)) {
       stopPlayback();
       return false;
@@ -624,7 +625,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     } catch {
       return false;
     }
-  }, [player, stopPlayback, recovery]);
+  }, [player, stopPlayback, recovery, videoUrl]);
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
     if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
@@ -1356,7 +1357,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
             onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
           />
         ) : null}
-        {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
+        {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} galleryKey={String(tokenId)} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
         {playbackPhase === 'failed' && isActive && <Pressable accessibilityRole="button"
           accessibilityLabel={t('common.retry')} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
           onPress={() => {
@@ -1465,7 +1466,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         </View>
       )}
 
-      {isActive && isPausedByUser && !showComments && !screenshotMode && (
+      {!!videoUrl && isActive && isPausedByUser && !showComments && !screenshotMode && (
         <View style={styles.pauseOverlay} pointerEvents="none">
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
@@ -1476,8 +1477,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
           strip on the floor of the screen and the buttons are the reason
           anyone is pointing there. */}
       <Animated.View
-        style={[styles.scrubTrack, { opacity: chromeOpacity }]}
-        pointerEvents={chromeVisible && isActive ? "auto" : "none"}
+        style={[styles.scrubTrack, { opacity: videoUrl ? chromeOpacity : 0 }]}
+        pointerEvents={videoUrl && chromeVisible && isActive ? "auto" : "none"}
       >
         <GestureDetector gesture={scrubGesture}>
           <View

@@ -8,7 +8,7 @@ type PhotoPost = {
   plansDetails?: unknown[];
 };
 
-export function shortsPhotoMedia(post: PhotoPost) {
+export function shortsPhotoMedia(post: PhotoPost, allowSilent = false) {
   if (post.postType !== 'feed-images') return undefined;
   const parsed = parseSoundtrack(post.description);
   const sound = { soundtrackUrl: parsed?.url, soundtrackTitle: parsed?.title, soundtrackCreator: parsed?.creator };
@@ -16,7 +16,7 @@ export function shortsPhotoMedia(post: PhotoPost) {
   const imageUrls = buildFeedImageUrls((post.imageUrls?.length ? post.imageUrls : [post.imageUrl])
     .filter((url): url is string => typeof url === 'string' && !!url.trim() &&
       (/^https?:/i.test(url) || !/^[a-z][a-z\d+.-]*:/i.test(url))));
-  if (!sound.soundtrackUrl || !imageUrls.length) return undefined;
+  if ((!allowSilent && !sound.soundtrackUrl) || !imageUrls.length) return undefined;
   return { ...sound, imageUrls, videoUrl: '', thumbnail: imageUrls[0],
     transcodingStatus: undefined,
     description: (post.description || '').replace(/\[soundtrack:[^\]]*\]/g, '').trim(),

@@ -32,6 +32,7 @@ import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
 import AudioPostPlayer from "./ProtectedAudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
+import { rememberGalleryIndex } from "../../libs/media-presentation";
 import StatusBadge from "./StatusBadge";
 import { CommentBottomSheet } from "../Comments";
 import { warmCommentThread } from "../Comments/CommentSection";
@@ -816,6 +817,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
+    if (!isActuallyGated && !matureGate.isGated && tokenId != null) {
+      rememberGalleryIndex(String(tokenId), index);
+      onBeforeNavigate?.();
+      hideUserProfile();
+      navigation.navigate(ScreenNames.ShortsViewer, {
+        initialIndex: 0,
+        initialItems: [{ ...item, postType: 'feed-images', imageUrls: galleryImages }],
+        feedParams: { brainrot: true, fromId: String(tokenId) },
+      });
+      return;
+    }
     if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     // Dismiss the profile sheet first, otherwise the viewer opens behind it.
     onBeforeNavigate?.();
@@ -826,7 +838,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       initialIndex: index,
       soundtrack: !isActuallyGated && !matureGate.isGated ? soundtrack : undefined,
     });
-  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate, isActuallyGated, matureGate.isGated, soundtrack]);
+  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate, isActuallyGated, matureGate.isGated, soundtrack, tokenId, item]);
 
   const handleTranslateImage = useCallback(() => {
     const imageUrl = galleryImages[0];
