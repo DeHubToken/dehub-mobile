@@ -208,7 +208,7 @@ const HIDE_SWIPE_MIN = 40;
 const DRAG_CLAIM_MIN = 16;
 /** Travel in any other direction that hands the drag straight back to the pager. */
 const DRAG_RELEASE_MIN = 6;
-const RESTORE_ZONE_TOP = 0.55;
+const RESTORE_ZONE_TOP = 0.61; // 30% -> 24% of the frame (20% smaller).
 const RESTORE_ZONE_BOTTOM = 0.85;
 
 /**
@@ -528,6 +528,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const chromeOpacity = useRef(new Animated.Value(1)).current;
   /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
   const panStart = useSharedValue({ x: 0, y: 0 });
+  const overlayHeight = useSharedValue(0);
   const restorePanStart = useSharedValue({ x: 0, y: 0 });
 
   // Keep the playback clock out of layout and Fabric commits while paging.
@@ -1039,17 +1040,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     () =>
       Gesture.Pan()
         .manualActivation(true)
-        .onTouchesDown((e) => {
+        .onTouchesDown((e, state) => {
           "worklet";
-          // First finger only: a second one landing mid-drag would otherwise
-          // re-seat the origin and reset the travel measured so far.
-          if (e.numberOfTouches !== 1) return;
+          const touch = e.allTouches[0];
+          if (!touch || e.numberOfTouches !== 1 || touch.y < overlayHeight.value * 0.2) {
+            state.fail();
+            return;
+          }
           panStart.value = { x: e.allTouches[0]?.x ?? 0, y: e.allTouches[0]?.y ?? 0 };
         })
         .onTouchesMove((e, state) => {
           "worklet";
           const t = e.allTouches[0];
-          if (!t || e.numberOfTouches !== 1) return;
+          if (!t || e.numberOfTouches !== 1) { state.fail(); return; }
           const dy = t.y - panStart.value.y;
           const dx = Math.abs(t.x - panStart.value.x);
           // Anything that is not a downward drag belongs to the pager — hand
@@ -1081,18 +1084,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         // reaches native. Same reasoning as useHorizontalScrollGuard in
         // context/PagerGestureContext.tsx.
         .blocksExternalGesture(pagerGesture),
-    [panStart, pagerGesture],
+    [panStart, pagerGesture, overlayHeight],
   );
 
   // Arbitrate before the native pager claims the upward flick. This remains
   // on the video while the caption is hidden, so there is always a way back.
   const restorePan = useMemo(() => Gesture.Pan()
-    .enabled(isActive && !showComments && !screenshotMode && (overlaysHidden || autoHidden))
+    .enabled(isActive && !showComments && !screenshotMode && overlaysHidden)
     .manualActivation(true)
     .onTouchesDown((e, state) => {
       "worklet";
       const touch = e.allTouches[0];
-      if (e.numberOfTouches !== 1 || !touch || touch.y <= itemHeight * RESTORE_ZONE_TOP) {
+      if (e.numberOfTouches !== 1 || !touch || touch.y <= itemHeight * RESTORE_ZONE_TOP || touch.y >= itemHeight * RESTORE_ZONE_BOTTOM) {
         state.fail();
         return;
       }
@@ -1137,8 +1140,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     // A restore tap changes only the panel. Outside this band, hidden chrome
     // must not swallow video playback or multi-tap reactions.
     if (overlaysHidden &&
-      pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
-      pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
+      pageY > itemHeight * RESTORE_ZONE_TOP &&
+      pageY < itemHeight * RESTORE_ZONE_BOTTOM
     ) {
       setOverlaysHidden(false);
       setAutoHidden(false);
@@ -1197,7 +1200,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
     resetTapSequence();
     showTapReactionAnimation("love", pageX, pageY);
     commitTapReaction("love");
-  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation]);
+  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation, itemHeight]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((locationX: number) => {
@@ -1248,7 +1251,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
       .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onEnd((event, success) => {
-        if (success) handleScreenTap(event.absoluteX, event.absoluteY);
+        if (success) handleScreenTap(event.x, event.y);
       });
     const hold = Gesture.LongPress()
       .minDuration(400)
@@ -1530,7 +1533,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
             The trade is explicit: these pixels can start the swipe or fall
             through to the video, not both. Web makes the same one. */}
         <GestureDetector gesture={hidePan}>
-          <View style={styles.bottomStack}>
+          <View onLayout={(e) => { overlayHeight.value = e.nativeEvent.layout.height; }} style={styles.bottomStack}>
             <View style={styles.captionBlock}>
               <Pressable onPress={handleUserPress} style={styles.creatorRow}>
                 {/* The shared Avatar, not a bare expo-image: it guards the
@@ -2122,7 +2125,15 @@ const ShortsViewerScreen = () => {
     );
   }, [initialLoading, containerHeight, t]);
 
+  const footerReturnTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelFooterReturn = useCallback(() => {
+    if (footerReturnTimer.current) clearTimeout(footerReturnTimer.current);
+    footerReturnTimer.current = null;
+  }, []);
+  useEffect(() => cancelFooterReturn, [cancelFooterReturn]);
+
   const handleScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    cancelFooterReturn();
     settlePaging(e.nativeEvent.contentOffset.y);
     if (!noMoreShorts || !listRef.current || items.length === 0) return;
     // Only snap back if user scrolled past the last real item (into footer)
@@ -2131,13 +2142,14 @@ const ShortsViewerScreen = () => {
     if (offsetY < lastItemEnd) return;
 
     const lastIndex = items.length - 1;
-    setTimeout(() => {
+    footerReturnTimer.current = setTimeout(() => {
+      footerReturnTimer.current = null;
       listRef.current?.scrollToOffset({
         offset: lastIndex * containerHeight,
         animated: true,
       });
     }, 1500);
-  }, [noMoreShorts, items.length, containerHeight, t, settlePaging]);
+  }, [noMoreShorts, items.length, containerHeight, t, settlePaging, cancelFooterReturn]);
 
   const activeVideoRef = useRef<VideoView>(null);
 
@@ -2194,7 +2206,7 @@ const ShortsViewerScreen = () => {
           onEndReached={loadMore}
           onEndReachedThreshold={0.5}
           onMomentumScrollEnd={handleScrollEnd}
-          onScrollBeginDrag={beginPaging}
+          onScrollBeginDrag={() => { cancelFooterReturn(); beginPaging(); }}
           onMomentumScrollBegin={beginPaging}
           onScrollEndDrag={(e) => endPagingDrag(e.nativeEvent.contentOffset.y)}
           ListFooterComponent={renderFooter}
