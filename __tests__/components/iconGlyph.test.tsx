@@ -86,7 +86,7 @@ describe("Icon glyphs on Android", () => {
 
   it("uses approved Cut artwork even when the old Android font is ready", () => {
     const approved = require("../../components/ui/cut-icon-paths.json");
-    for (const [name, shape] of [["Bell", "Alerts"], ["MessageSquare", "Messages"], ["Share2", "FeedShare"], ["Blog", "Blog"], ["Coins", "Coins"], ["Copy", "Copy"], ["Quote", "Quote"], ["Flag", "Report"]]) {
+    for (const [name, shape] of [["Bell", "Alerts"], ["MessageSquare", "Messages"], ["Share2", "FeedShare"], ["Blog", "Blog"], ["Coins", "Coins"], ["Copy", "Copy"], ["Quote", "Quote"], ["Flag", "Report"], ["Users", "Communities"], ["Film", "Editor"], ["Creator", "Creator"], ["SquareUserRound", "Growing"], ["Star", "New members"], ["MessagesSquare", "Chat"], ["Wand", "Prompt"], ["Zap", "SuperPowers"], ["AtSign", "Usernames"], ["Tv", "Live TV"], ["ArrowDownToLine", "Converter"], ["FolderInput", "Migrate"], ["Scroll", "Glossary"], ["Bot", "Agents"], ["Plug", "Connect"]]) {
       const tree = render(<Icon name={name} />).toJSON() as any;
       expect(tree.type).toBe("Svg");
       expect(tree.props.viewBox).toBe("0 0 32 32");
