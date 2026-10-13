@@ -7439,7 +7439,11 @@
     "referenceProductName": "Plasser produktet ditt i en klipp",
     "referenceProductHint": "Ersett det fremhevede produktet og bevar det originale scenet",
     "referenceComposeName": "Kombiner referansebilder",
-    "referenceComposeHint": "Få karakterer, gjenstander og settinger fra flere bilder inn i en sammensetning"
+    "referenceComposeHint": "Få karakterer, gjenstander og settinger fra flere bilder inn i en sammensetning",
+    "audioTaskSfxLabel": "Lyd effekt",
+    "audioTaskSfxPlaceholder": "Beskriv lyden, for eksempel \"tung dør som slår til i en steinhall\"",
+    "auto": "Bil",
+    "loop": "Løkke"
   },
   "fractions": {
     "title": "Andeler",

@@ -1,3 +1,4 @@
+import { visualBatchForTransport } from "./visualBatchTransport";
 import env from "../../config/env";
 import type { HighlightRange } from "./highlights";
 import { validVisualBatch, type VisualBatch } from "./visualHighlightContract";
@@ -7,10 +8,10 @@ export async function analyseVisualHighlights(batch: VisualBatch, signal: AbortS
   if (!validVisualBatch(batch)) throw new Error("visual_frames_invalid");
   const key = env.SUPABASE_PUBLISHABLE_KEY;
   const response = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-visual-highlights`, {
-    method: "POST", headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` }, body: JSON.stringify(batch), signal,
+    method: "POST", headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` }, body: JSON.stringify(visualBatchForTransport(batch)), signal,
   });
   const data = await response.json().catch(() => null);
   if (signal.aborted) throw new Error("cancelled");
-  if (!response.ok || data?.contract !== 1 || !Array.isArray(data?.moments)) throw new Error(response.status === 429 ? "rate_limited" : "unavailable");
+  if (!response.ok || (data?.contract !== 1 && (batch.purpose !== "matching" || data?.contract !== 2)) || !Array.isArray(data?.moments)) throw new Error(response.status === 429 ? "rate_limited" : "unavailable");
   return data.moments;
 }

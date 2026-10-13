@@ -7433,7 +7433,11 @@
     "referenceProductName": "तुमचे उत्पादन क्लिपमध्ये ठेवा",
     "referenceProductHint": "मूळ दृश्य ठेवत मुख्य उत्पादन बदला",
     "referenceComposeName": "संदर्भ चित्रे संयुक्त करा",
-    "referenceComposeHint": "अनेक चित्रांमधील पात्रे, वस्तू आणि सेटिंग्स एकत्रित करून एक संरचना तयार करा"
+    "referenceComposeHint": "अनेक चित्रांमधील पात्रे, वस्तू आणि सेटिंग्स एकत्रित करून एक संरचना तयार करा",
+    "audioTaskSfxLabel": "ध्वनी प्रभाव",
+    "audioTaskSfxPlaceholder": "ध्वनीचे वर्णन करा, उदाहरणार्थ, \"दगड हॉलमध्ये भारी दरवाजा स्लॅमिंग\"",
+    "auto": "ऑटो",
+    "loop": "लूप"
   },
   "fractions": {
     "title": "हिस्से",

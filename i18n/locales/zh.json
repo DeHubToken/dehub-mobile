@@ -7620,7 +7620,11 @@
     "referenceProductName": "将你的产品放入剪辑中",
     "referenceProductHint": "替换特色产品并保留原始场景。",
     "referenceComposeName": "合并参考图片",
-    "referenceComposeHint": "将多个图片中的角色、物体和场景合成到一个画面中。"
+    "referenceComposeHint": "将多个图片中的角色、物体和场景合成到一个画面中。",
+    "audioTaskSfxLabel": "音效",
+    "audioTaskSfxPlaceholder": "描述这个声音，例如「厚重的门在石厅里砰然关上」",
+    "auto": "自动",
+    "loop": "循环"
   },
   "fractions": {
     "title": "碎片",

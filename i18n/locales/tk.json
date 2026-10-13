@@ -7418,7 +7418,11 @@
     "referenceProductName": "Ürünüzü video klipte yerleþtirýn",
     "referenceProductHint": "Sahneni ýä sceneýi saqlayýan halda öne çýkkan ürünü yerleþtirýn.",
     "referenceComposeName": "Referens resimlerini birleþtirýn",
-    "referenceComposeHint": "Bir neçe resimden karakterler, obýektler ýä sahne ýoklamalarýný bir kompozitsiyaga birleþtirýn."
+    "referenceComposeHint": "Bir neçe resimden karakterler, obýektler ýä sahne ýoklamalarýný bir kompozitsiyaga birleþtirýn.",
+    "audioTaskSfxLabel": "Ses Etkisi",
+    "audioTaskSfxPlaceholder": "Sesiň manysyny düşündiriň, meselem, \"daş zalynda agyr gapy\"",
+    "auto": "Maşyn",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Paýlar",

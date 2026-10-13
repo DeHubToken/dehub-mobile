@@ -7444,7 +7444,11 @@
     "referenceProductName": "Kuweka mtu wako katika video",
     "referenceProductHint": "Kuondoa mtu wa kwanza katika video na kuwafikisha mfumo wa asili",
     "referenceComposeName": "Kuungana picha za kurejelea",
-    "referenceComposeHint": "Kuweka watumishi, vitu na mazingira kutoka picha nyingi katika mfumo moja"
+    "referenceComposeHint": "Kuweka watumishi, vitu na mazingira kutoka picha nyingi katika mfumo moja",
+    "audioTaskSfxLabel": "Athari ya sauti",
+    "audioTaskSfxPlaceholder": "Eleza sauti, kwa mfano \"mlango mzito ukibandiwa kwenye ukumbi wa mawe\"",
+    "auto": "Kiotomatiki",
+    "loop": "Kitanzi"
   },
   "fractions": {
     "title": "Hisa",

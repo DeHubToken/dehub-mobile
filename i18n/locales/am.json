@@ -7438,7 +7438,11 @@
     "referenceProductName": "ምርትዎን በክሊፕ ውስጥ ያቀርቡ",
     "referenceProductHint": "የተቀረበውን ምርት ይቀይሩ እና የመጀመሪያውን ማዕከል ይጠብቁ።",
     "referenceComposeName": "የማመሳሰል ምስሎችን ያዋህዱ",
-    "referenceComposeHint": "ባለሞያዎች፣ ነገሮች እና ቅንብሮችን ከተለያዩ ምስሎች ወደ አንድ አቀማመጥ ይውሰዱ።"
+    "referenceComposeHint": "ባለሞያዎች፣ ነገሮች እና ቅንብሮችን ከተለያዩ ምስሎች ወደ አንድ አቀማመጥ ይውሰዱ።",
+    "audioTaskSfxLabel": "የድምፅ ውጤት",
+    "audioTaskSfxPlaceholder": "ለምሳሌ \"የድንጋይ አዳራሽ ውስጥ ከባድ በር ማንሸራተት\" ድምፁን ያብራሩ",
+    "auto": "ራስ",
+    "loop": "ሉፕ"
   },
   "fractions": {
     "title": "ክፍልፋዮች",

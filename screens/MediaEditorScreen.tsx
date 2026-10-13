@@ -1,3 +1,4 @@
+import { shareEditorFile } from "../libs/editor/shareEditorFile";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
@@ -93,10 +94,12 @@ import type { AssemblyAsset } from "../libs/editor/assemblyLibrary";
 import { generationDraftOpener } from "../libs/editor/openGenerationDraft";
 import type { GenerationDraft } from "../libs/editor/generationDraft";
 import Timeline from "../components/editor/Timeline";
+import ScreenNavigator from "../components/editor/ScreenNavigator";
 import StockPanel from "../components/editor/StockPanel";
+import SoundEffectsPanel from "../components/editor/SoundEffectsPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
-import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
+import { appendPage, getPages, pageAt, pagePreviewTime, removePage } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
 import { applyCaptionText } from "../libs/editor/captionText";
@@ -132,7 +135,8 @@ import {
 import { applyOps, askAgent, askSceneAgent, describeScene, type AgentMessage } from "../libs/editor/agent";
 import { applyBrand, EMPTY_BRAND, hasBrand, loadBrand, saveBrand, type BrandKit } from "../libs/editor/brand";
 import { TEMPLATES, templateOps } from "../libs/editor/templates";
-import type { VideoTemplateAspect } from "../libs/editor/videoTemplates";
+import { compactVideoTemplateTracks } from "../libs/editor/videoTemplateTracks";
+import { videoTemplatePageStarts, type VideoTemplateAspect } from "../libs/editor/videoTemplates";
 import { importStockAsset } from "../libs/editor/stock";
 import { EDITOR_FONTS, fontFamilyCss as fontCssOf } from "../libs/editor/fonts";
 import {
@@ -220,9 +224,9 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
     if (!ops) return;
     setTemplateBusy(id);
     try {
-      const base = newProject(aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey));
+      const base = newProject(aspect as Exclude<AspectPreset, "custom">, t(tpl.titleKey, { defaultValue: tpl.titleDefault ?? tpl.titleKey }));
       const { project } = await applyOps(base, ops, { importStock: importStockAsset });
-      onCreate(project);
+      onCreate({ ...project, ...(tpl.kind === "video" ? compactVideoTemplateTracks(project, t("editor.layers.text")) : {}), settings: { ...project.settings, pages: videoTemplatePageStarts(id), pageTiming: tpl.kind === "video" ? "content" : undefined } });
     } catch {
       toastError(t("common.somethingWentWrong"));
     } finally {
@@ -294,14 +298,14 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.videoTemplates.heading")}</Text>
             <AspectPanel value={templateAspect} onPick={setTemplateAspect} />
             <TemplateTiles
-              templates={TEMPLATES.filter(x => x.kind === "video").map(x => ({ id: x.id, aspect: templateAspect, preview: x.preview, title: t(x.titleKey), detail: t("editor.videoTemplates.duration", { seconds: x.duration }) }))}
+              templates={TEMPLATES.filter(x => x.kind === "video").map(x => ({ id: x.id, aspect: templateAspect, preview: x.preview, title: t(x.titleKey, { defaultValue: x.titleDefault ?? x.titleKey }), detail: `${videoTemplatePageStarts(x.id)?.length ?? 1} ${t("editor.pages.label").toLocaleLowerCase()} · ${t("editor.videoTemplates.duration", { seconds: x.duration })}` }))}
               busyId={templateBusy}
               onPick={(id) => { void startFromTemplate(id); }}
             />
             <Text className="text-theme-neutrals-400 text-xs">{t("editor.videoTemplates.hint")}</Text>
             <Text className="text-white text-lg font-semibold mt-4">{t("editor.templates.heading")}</Text>
             <TemplateTiles
-              templates={TEMPLATES.filter(x => x.kind !== "video").map(x => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey) }))}
+              templates={TEMPLATES.filter(x => x.kind !== "video").map(x => ({ id: x.id, aspect: x.aspect, preview: x.preview, title: t(x.titleKey, { defaultValue: x.titleDefault ?? x.titleKey }) }))}
               busyId={templateBusy}
               onPick={(id) => { void startFromTemplate(id); }}
             />
@@ -343,7 +347,7 @@ function Home({ onOpen, onCreate, onNewVideo }: { onOpen: (id: string) => void; 
 // ── editing ──
 
 type Tool =
-  | "page" | "background" | "stock" | "scenes" | "subtitles" | "record"
+  | "page" | "background" | "stock" | "scenes" | "subtitles" | "record" | "sfx"
   | "filters" | "adjust" | "crop" | "corners" | "fit"
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
@@ -373,6 +377,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const canvasRef = useRef<EditorCanvasHandle>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
+  const [soundEffectPrefill, setSoundEffectPrefill] = useState<{ scope: string; prompt: string } | undefined>();
   // Record mode (web editorUiStore recordMotion): placement edits with the
   // playhead inside a layer key it there. Kept across selections, like the web.
   const [recordMotion, setRecordMotion] = useState(false);
@@ -437,7 +442,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   useEffect(() => () => videoMatteController.current?.abort(), []);
   useEffect(() => { videoMatteController.current?.abort(); }, [project?.id]);
   // Timeline: the playhead, playback and the strip under the page.
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(() => project?.settings.pages?.length ? 0.6 : 0);
   const [playing, setPlaying] = useState(false);
   const highlightPreviewEnd = useRef<number | null>(null);
   useEffect(() => { highlightPreviewEnd.current = null; }, [project?.id]);
@@ -447,7 +452,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       setPlaying(false); setTime(end);
     }
   }, [time]);
-  const [timelineOpen, setTimelineOpen] = useState<boolean | null>(null);
+  const [timelineOpen, setTimelineOpen] = useState<boolean | null>(() => project?.settings.pages?.length && project.clips.every(c => c.kind === "text" || c.kind === "shape") ? false : null);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [mediaLoading, setMediaLoading] = useState(0);
   const [rendering, setRendering] = useState<number | null>(null);
@@ -505,9 +510,10 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     open: draft => {
       setPlaying(false);
       setChatOpen(false);
-      nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
+      if (draft.kind === "sfx") { setSoundEffectPrefill({ scope: `${recoveryScope}|${latest.current?.id}`, prompt: draft.prompt }); setTool("sfx"); }
+      else nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
     },
-  }), [nav]);
+  }), [nav, recoveryScope]);
   const openGenerator = async (draft: GenerationDraft) => {
     if (generatorOpeningRef.current) return;
     generatorOpeningRef.current = true;
@@ -1012,6 +1018,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           brand,
           applyBrand: (p) => applyBrand(p, brand),
           templateOps: (id, aspect) => templateOps(id, t, aspect),
+          textTrackName: t("editor.layers.text"),
           removeBackground: cutoutMedia,
           removeVideoBackground: cutoutVideo,
           transcribe,
@@ -1087,6 +1094,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
+        { id: "sfx", icon: "Sparkles", label: t("creator.audioTaskSfxLabel") },
         { id: "stock", icon: "Search", label: t("common.search") },
         { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
@@ -1229,6 +1237,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       });
       setTimelineOpen(true); select(clipId);
     }} />;
+    if (tool === "sfx") return <SoundEffectsPanel key={project.id} at={canvasTime} scope={h.scopeVersion()}
+      draftScope={`${recoveryScope}|${project.id}`} wallet={user?.walletAddress || user?.address} prefill={soundEffectPrefill?.scope === `${recoveryScope}|${project.id}` ? soundEffectPrefill.prompt : undefined}
+      subscribe={h.subscribe} onStart={() => { setPlaying(false); const current = h.latest(); return current ? h.holdEdits(projectReviewSnapshotKey(current)) : null; }}
+      onAdd={(media, start) => {
+        const current = h.latest();
+        if (!current || current.id !== project.id || !media.duration) return;
+        const next = addClip(current, { ...media, kind: "audio", duration: media.duration }, start);
+        h.commit(next.project); setSoundEffectPrefill(undefined); setTimelineOpen(true); select(next.clipId);
+      }} />;
     if (tool === "stock") return <StockPanel at={canvasTime} scope={h.scopeVersion()} subscribe={h.subscribe} onStart={() => { setPlaying(false); return h.holdEdits(); }} onAdd={(media, start) => {
       const current = h.latest();
       if (!current) return;
@@ -1238,8 +1255,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }} />;
     if (tool === "scenes") {
       const pages = getPages(project.settings, project.clips);
-      return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index}
-        onPick={start => { setPlaying(false); setTime(start); setSelectedId(null); }}
+      return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index} clips={project.clips} onEditText={id => drafts.openText(id)}
+        onPick={start => { setPlaying(false); setTime(pagePreviewTime(pages.find(p => p.start === start)!)); setSelectedId(null); }}
         onAdd={duplicate => {
           const page = appendPage(project.settings, project.clips, canvasTime, duplicate, () => newId(10));
           h.commit({ ...project, settings: page.settings, clips: page.clips });
@@ -1393,7 +1410,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     return [...set];
   }, [project]);
 
-  const exportClipDownloads = async (format: "mp4" | "gif", quality: "720" | "1080", scope: ExportScope) => {
+  const exportClipDownloads = async (format: "mp4" | "gif", quality: "720" | "1080", scope: ExportScope, target: "download" | "share" = "download") => {
     if (!project || !canvasRef.current || rendering !== null) return;
     const ranges = clipExportRanges(project, scope === "selection" ? (selectedId ? [selectedId] : []) : undefined);
     if (!ranges.length) { toastError(t("editor.export.empty")); return; }
@@ -1426,11 +1443,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       checkAbort();
       if (files.length === 1) {
         const file = files[0];
-        await saveEditorDownload(file.uri, ranges[0].name, file.ext, file.ext === "gif" ? "image/gif" : `video/${file.ext}`, ctl.signal);
+        if (target === "share") await shareEditorFile(file.uri, file.ext === "gif" ? "image/gif" : "video/mp4", ctl.signal);
+        else await saveEditorDownload(file.uri, ranges[0].name, file.ext, file.ext === "gif" ? "image/gif" : `video/${file.ext}`, ctl.signal);
       } else {
         archive = await zipDownloadFiles(files, project.title, ctl.signal);
         setRendering(1);
-        await saveEditorDownload(archive, exportBaseName(project.title, "video", "-clips"), "zip", "application/zip", ctl.signal);
+        if (target === "share") await shareEditorFile(archive, "application/zip", ctl.signal);
+        else await saveEditorDownload(archive, exportBaseName(project.title, "video", "-clips"), "zip", "application/zip", ctl.signal);
       }
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError((error as Error).message.includes("512 MiB") ? t("editor.export.archiveTooLarge") : t("editor.app.exportFailed"));
@@ -1442,8 +1461,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
-  const exportGif = async (scope: ExportScope = "timeline") => {
-    if (scope !== "timeline") { await exportClipDownloads("gif", "1080", scope); return; }
+  const exportGif = async (scope: ExportScope = "timeline", target: "download" | "share" = "download") => {
+    if (scope !== "timeline") { await exportClipDownloads("gif", "1080", scope, target); return; }
     if (!project || !canvasRef.current || rendering !== null) return;
     if (duration <= 0) { toastError(t("editor.export.empty")); return; }
     if (duration > GIF_CONTENT_LIMIT) { toastError(t("editor.export.gifTooLong")); return; }
@@ -1452,13 +1471,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     try {
       const plan = gifPlan(project.settings.width, project.settings.height, 1, duration + BRAND_OUTRO_DURATION, project.settings.fps);
       const out = await canvasRef.current.exportVideo({ width: plan.width, height: plan.height, bitrate: 0, title: project.title, username: outroUsername(user?.username), format: "gif" }, setRendering);
-      uri = out.uri; await saveGif(uri, project.title);
+      uri = out.uri; if (target === "share") await shareEditorFile(uri, "image/gif"); else await saveGif(uri, project.title);
     } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
     finally { if (uri) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); setRendering(null); }
   };
 
-  const exportVideo = async (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope = "timeline") => {
-    if (scope !== "timeline") { await exportClipDownloads("mp4", quality, scope); return; }
+  const exportVideo = async (quality: "720" | "1080", target: "photos" | "post" | "share", scope: ExportScope = "timeline") => {
+    if (scope !== "timeline") { await exportClipDownloads("mp4", quality, scope, target === "share" ? "share" : "download"); return; }
     if (!project || !canvasRef.current) return;
     if (!project.clips.length || duration <= 0) { toastError(t("editor.export.empty")); return; }
     if (target === "photos") {
@@ -1479,6 +1498,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (target === "photos") {
         await MediaLibrary.saveToLibraryAsync(out.uri);
         toastSuccess(t("editor.app.savedToPhotos"));
+      } else if (target === "share") {
+        await shareEditorFile(out.uri, "video/mp4");
       } else {
         await flush();
         nav.navigate(ScreenNames.Upload, {
@@ -1497,7 +1518,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } finally { setRendering(null); }
   };
 
-  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current") => {
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post" | "share", scope: PageExportScope = "current") => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
     if (scope === "all" && getPages(project.settings, project.clips).length > 1 && target === "photos") {
@@ -1524,6 +1545,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (target === "photos") {
         await MediaLibrary.saveToLibraryAsync(uri);
         toastSuccess(t("editor.app.savedToPhotos"));
+      } else if (target === "share") {
+        await shareEditorFile(uri, format === "png" ? "image/png" : "image/jpeg");
       } else {
         await flush();
         nav.navigate(ScreenNames.Upload, {
@@ -1602,13 +1625,18 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         persisted.current = true; h.reset(p); setCloudOpen(false);
       }} />
 
+      <ScreenNavigator pages={getPages(project.settings, project.clips)} clips={project.clips} time={canvasTime}
+        onPick={page => { setPlaying(false); setTime(pagePreviewTime(page)); setSelectedId(null); }}
+        onEdit={() => { setPlaying(false); setTool("scenes"); }}
+        onTimeline={() => { setPlaying(false); setTool(null); setTimelineOpen(true); }}
+        onPreview={() => { setSelectedId(null); setTool(null); setTime(0); setPlaying(true); }} />
       {/* Page */}
       <View className="flex-1 px-3 pb-3">
         <EditorCanvas
           ref={canvasRef}
           project={project}
           time={canvasTime}
-          playing={showTimeline && playing}
+          playing={(showTimeline || getPages(project.settings, project.clips).length > 1) && playing}
           onTime={setTime}
           onEnded={(end) => { setPlaying(false); setTime(end); }}
           onMediaReady={onMediaReady}
@@ -1816,7 +1844,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         pageCount={getPages(project.settings, project.clips).length}
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
-        onExportGif={scope => { void exportGif(scope); }}
+        onExportGif={(scope, target) => { void exportGif(scope, target); }}
       />
     </View>
   );

@@ -7420,7 +7420,11 @@
     "referenceProductName": "Tempel produk sampeyan ing klip",
     "referenceProductHint": "Ganti produk utama lan njaga adegan asli.",
     "referenceComposeName": "Gabung gambar referensi",
-    "referenceComposeHint": "Bawa karakter, obyek lan setelan saka sawetara gambar menyang siji komposisi."
+    "referenceComposeHint": "Bawa karakter, obyek lan setelan saka sawetara gambar menyang siji komposisi.",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "Jelaskan bunyi, misal \"pintu berat berderum di ruang batu\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Bagean",

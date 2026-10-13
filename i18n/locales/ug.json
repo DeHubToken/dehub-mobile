@@ -7422,7 +7422,11 @@
     "referenceProductName": "Mahsulotni video ichiga joylashtirish",
     "referenceProductHint": "Sahnani va fonni saqlab qolgan holda mahsulotni almashtirish",
     "referenceComposeName": "Eslatma rasimlarini birlashtirish",
-    "referenceComposeHint": "Bir nechta rasimdan xarakterlar, narsalar va joylarni birga birlashtirish"
+    "referenceComposeHint": "Bir nechta rasimdan xarakterlar, narsalar va joylarni birga birlashtirish",
+    "audioTaskSfxLabel": "ئاۋاز ئۈنۈمى",
+    "audioTaskSfxPlaceholder": "ئاۋازنى تەسۋىرلەپ بېرىڭ، مەسىلەن: «تاشلىق زالدىكى ئېغىر ئىشىكنى چېكىش»",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "ئۈلۈشلەر",

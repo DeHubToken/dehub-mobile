@@ -7424,7 +7424,11 @@
     "referenceProductName": "ضع منتجك في مقطع",
     "referenceProductHint": "استبدل المنتج المميز وحافظ على المشهد الأصلي.",
     "referenceComposeName": "اجمع الصور المرجعية",
-    "referenceComposeHint": "اجمع الشخصيات، الأشياء والإعدادات من عدة صور في تركيبة واحدة."
+    "referenceComposeHint": "اجمع الشخصيات، الأشياء والإعدادات من عدة صور في تركيبة واحدة.",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "صوت باب ثقيل يصدع في صالة صخرية، كصوت صاعقة تكسّر الحجارة.",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "الأجزاء",

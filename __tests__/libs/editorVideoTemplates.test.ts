@@ -1,3 +1,4 @@
+import { getPages, timelineDuration } from "../../libs/editor/pages";
 import { applyOps, askAgent, describeScene } from "../../libs/editor/agent";
 import { templateOps } from "../../libs/editor/templates";
 import { newProject } from "../../libs/editor/project";
@@ -5,11 +6,12 @@ import { VIDEO_TEMPLATES, VIDEO_TEMPLATE_FORMATS, videoTemplateCommand } from ".
 import type { TextClip } from "../../libs/editor/types";
 import en from "../../i18n/locales/en.json";
 
-const timings: Record<string, number[][]> = {"question": [[0, 3], [3, 7], [7, 10]], "beforeAfter": [[0, 2], [2, 6], [6, 10], [10, 12]], "tips": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 14]], "tutorial": [[0, 3], [3, 6], [6, 9], [9, 12], [12, 15]], "countdown": [[0, 2], [2, 4], [4, 6], [6, 8], [8, 10], [10, 13], [13, 15]], "mythFact": [[0, 3], [3, 8], [8, 12]], "product": [[0, 3], [3, 8], [8, 12]], "announcement": [[0, 3], [3, 7], [7, 10]], "story": [[0, 5], [5, 10], [10, 15]], "quote": [[0, 7], [7, 10]]};
-const t = ((key: string) => {
+const timings: Record<string, number[][]> = {"question": [[0, 3], [3, 7], [7, 10]], "beforeAfter": [[0, 2], [2, 6], [6, 10], [10, 12]], "tips": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 14]], "tutorial": [[0, 3], [3, 6], [6, 9], [9, 12], [12, 15]], "countdown": [[0, 2], [2, 4], [4, 6], [6, 8], [8, 10], [10, 13], [13, 15]], "mythFact": [[0, 3], [3, 8], [8, 12]], "product": [[0, 3], [3, 8], [8, 12]], "announcement": [[0, 3], [3, 7], [7, 10]], "story": [[0, 5], [5, 10], [10, 15]], "quote": [[0, 7], [7, 10]], "event": [[0, 3], [3, 7], [7, 10]], "podcast": [[0, 3], [3, 8], [8, 11]], "review": [[0, 2], [2, 6], [6, 10], [10, 12]], "comparison": [[0, 2], [2, 6], [6, 10], [10, 13]], "checklist": [[0, 2], [2, 5], [5, 8], [8, 11], [11, 13]], "lesson": [[0, 3], [3, 7], [7, 11], [11, 14]], "interview": [[0, 3], [3, 7], [7, 12], [12, 15]], "recap": [[0, 3], [3, 7], [7, 11], [11, 14]], "milestone": [[0, 3], [3, 7], [7, 10], [10, 13]], "offer": [[0, 3], [3, 7], [7, 10], [10, 12]]};
+const t = ((key: string, options?: { defaultValue?: string }) => {
   const value = key.split(".").reduce<unknown>((node, part) => node && typeof node === "object" ? (node as Record<string, unknown>)[part] : undefined, en);
-  if (typeof value !== "string") throw new Error(`Missing template words: ${key}`);
-  return value;
+  const translated = typeof value === "string" ? value : options?.defaultValue;
+  if (typeof translated !== "string" || !translated) throw new Error(`Missing template words: ${key}`);
+  return translated;
 }) as unknown as import("i18next").TFunction;
 
 describe("timed video starters", () => {
@@ -19,19 +21,25 @@ describe("timed video starters", () => {
       base.settings.pages = [0, 5];
       const before = JSON.stringify(base);
       const { project, report } = await applyOps(base, [{ op: "use_template", template: template.id, aspect }], { templateOps: (id, format) => templateOps(id, t, format) });
-      expect(report).toMatchObject({ applied: 1, failed: 0, cursorTime: 0 });
+      expect(report).toMatchObject({ applied: 1, failed: 0, cursorTime: 0.6 });
       const beats = timings[template.id.replace("video-", "")];
       const end = beats[beats.length - 1][1];
       expect(project.settings.aspectPreset).toBe(aspect);
-      expect(project.settings.pages).toBeUndefined();
+      expect(project.settings.pages).toEqual(beats.map(([start]) => start));
+      expect(getPages(project.settings, project.clips).map(page => [page.start, page.end])).toEqual(beats);
+      expect(timelineDuration(project.settings, project.clips)).toBe(end);
       expect(Math.max(...project.clips.map(clip => clip.start + clip.duration))).toBe(end);
       const words = project.clips.filter((clip): clip is TextClip => clip.kind === "text");
       expect(words).toHaveLength(beats.length * 3);
+      expect(project.tracks).toHaveLength(3);
+      expect(new Set(words.map(clip => clip.trackId)).size).toBe(3);
+      for (const track of project.tracks) expect(words.filter(clip => clip.trackId === track.id)).toHaveLength(beats.length);
       expect(words.every(clip => clip.maxWidth === 0.78 && typeof clip.maxHeight === "number" && clip.animateIn && clip.animateOut)).toBe(true);
       expect(words.every(clip => clip.text && !clip.text.startsWith("editor."))).toBe(true);
       beats.forEach(([start, finish]) => {
         const active = words.filter(clip => clip.start <= start + 0.6 && clip.start + clip.duration > start + 0.6);
         expect(active).toHaveLength(3);
+        expect(active.map(clip => clip.y).sort()).toEqual([0.34, 0.5, 0.66]);
         expect(active.every(clip => clip.start === start && clip.duration === finish - start)).toBe(true);
       });
       expect(words.filter(clip => clip.start + clip.duration > end)).toHaveLength(0);
@@ -45,6 +53,16 @@ describe("timed video starters", () => {
     expect(videoTemplateCommand("Apply the before and after starter", { page: { aspect: "4:5" } })).toEqual({ op: "use_template", template: "video-beforeAfter", aspect: "4:5" });
     expect(videoTemplateCommand("Create a product reveal video", { page: { aspect: "custom" } })?.aspect).toBe("9:16");
     expect(videoTemplateCommand("Use a question hook template in 16:10")).toBeNull();
+    expect(videoTemplateCommand("Use a event invitation template in 16:9")).toEqual({ op: "use_template", template: "video-event", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a podcast teaser template in 16:9")).toEqual({ op: "use_template", template: "video-podcast", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a product review template in 16:9")).toEqual({ op: "use_template", template: "video-review", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a two options template in 16:9")).toEqual({ op: "use_template", template: "video-comparison", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a quick checklist template in 16:9")).toEqual({ op: "use_template", template: "video-checklist", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a one useful lesson template in 16:9")).toEqual({ op: "use_template", template: "video-lesson", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a interview highlight template in 16:9")).toEqual({ op: "use_template", template: "video-interview", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a event recap template in 16:9")).toEqual({ op: "use_template", template: "video-recap", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a milestone template in 16:9")).toEqual({ op: "use_template", template: "video-milestone", aspect: "16:9" });
+    expect(videoTemplateCommand("Use a limited offer template in 16:9")).toEqual({ op: "use_template", template: "video-offer", aspect: "16:9" });
     expect(videoTemplateCommand("Add a question to my existing video")).toBeNull();
     expect(videoTemplateCommand("Create a video of ocean waves")).toBeNull();
   });

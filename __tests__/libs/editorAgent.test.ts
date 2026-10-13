@@ -7,6 +7,16 @@ import type { MediaClip, ShapeClip, TextClip } from "../../libs/editor/types";
 const t = ((k: string) => k) as unknown as import("i18next").TFunction;
 
 describe("editor agent on the phone (same ops as the web)", () => {
+  it('prepares a soundtrack offline without changing the source project', async () => {
+    const base = newProject('9:16', 'Original video');
+    const fetch = jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
+    try {
+      const request = await askAgent([{ role: 'user', content: 'Compose music of quiet piano and warm bass' }], describeScene(base, null, null));
+      const result = await applyOps(base, request.ops);
+      expect(result.report).toMatchObject({ applied: 0, failed: 0, unsupported: [], generate: { kind: 'music', prompt: 'quiet piano and warm bass' } });
+      expect(result.project).toBe(base); expect(fetch).not.toHaveBeenCalled();
+    } finally { fetch.mockRestore(); }
+  });
   it("prepares a voice draft offline without changing the source snapshot", async () => {
     const base = newProject("9:16", "Original video");
     const fetch = jest.spyOn(globalThis, "fetch").mockRejectedValue(new Error("offline"));
@@ -16,7 +26,7 @@ describe("editor agent on the phone (same ops as the web)", () => {
       expect(report).toMatchObject({ applied: 0, failed: 0, unsupported: [], generate: { kind: "voice", prompt: "Hello, DeHub." } });
       expect(fetch).not.toHaveBeenCalled();
       expect(project).toBe(base);
-      expect(await applyOps(base, [{ op: "generate", kind: "music", prompt: "ambient" }])).toMatchObject({ report: { applied: 0, failed: 1 } });
+      expect(await applyOps(base, [{ op: "generate", kind: "unsupported", prompt: "ambient" }])).toMatchObject({ report: { applied: 0, failed: 1 } });
       const second = await applyOps(base, [{ op: "generate", kind: "video", prompt: "Waves" }]);
       expect(second.report.generate).toEqual({ kind: "video", prompt: "Waves", aspect: "9:16" });
       expect(report.generate?.prompt).toBe("Hello, DeHub.");

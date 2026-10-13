@@ -8125,7 +8125,11 @@
     "referenceProductName": "Place your product in a clip",
     "referenceProductHint": "Replace the featured product and preserve the original scene.",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "Bring characters, objects and settings from multiple images into one composition."
+    "referenceComposeHint": "Bring characters, objects and settings from multiple images into one composition.",
+    "audioTaskSfxLabel": "Sound effect",
+    "audioTaskSfxPlaceholder": "Describe the sound, for example \"heavy door slamming in a stone hall\"",
+    "auto": "Auto",
+    "loop": "Loop"
   },
   "fractions": {
     "title": "Fractions",

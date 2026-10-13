@@ -1,5 +1,6 @@
 import { videoMatteCommand } from "./videoMatte";
 import { generationChatRequest, generationDraft, type GenerationDraft } from "./generationDraft";
+import { editorGenerationKinds } from "./generationCapabilities";
 /**
  * Editor AI agent, mobile half.
  *
@@ -54,7 +55,8 @@ import type { BrandKit } from "./brand";
 import { newId } from "./project";
 import { captionLayers, type CaptionWord, type CaptionStyle } from "./captionLayout";
 import { preciseCommand } from "./preciseCommands";
-import { videoTemplateAspect, videoTemplateCommand, type VideoTemplateAspect } from "./videoTemplates";
+import { compactVideoTemplateTracks } from "./videoTemplateTracks";
+import { videoTemplateAspect, videoTemplateCommand, videoTemplatePageStarts, type VideoTemplateAspect } from "./videoTemplates";
 import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
 import { addClip } from "./timeline";
 import type { StockKind } from "./stock";
@@ -147,7 +149,7 @@ export async function askSceneAgent(messages: AgentMessage[], scene: unknown, si
   const res = await fetch(`${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/editor-agent`, {
     method: "POST",
     headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ messages, scene }),
+    body: JSON.stringify({ messages, scene, generationKinds: editorGenerationKinds() }),
     signal,
   });
   const data = await res.json().catch(() => null);
@@ -268,6 +270,7 @@ function nearestAspect(ratio: number): Exclude<AspectPreset, "custom"> {
 }
 
 export interface ApplyContext {
+  textTrackName?: string;
   detectShots?: (clip: MediaClip) => Promise<ShotAnalysis>;
   detectBeats?: (clip: MediaClip) => Promise<BeatAnalysis>;
   processAudio?: (clip: MediaClip, mode: import("./audioTools").AudioToolMode) => Promise<string | null>;
@@ -551,11 +554,12 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         const tops = ctx.templateOps?.(String(op.template), videoTemplateAspect(op.aspect));
         if (!tops) return false;
         // A template replaces the design; its words come from the phone's language.
-        p = { ...p, clips: [], settings: { ...p.settings, pages: undefined } };
+        p = { ...p, clips: [], settings: { ...p.settings, pages: undefined, pageTiming: undefined } };
         cursor = 0;
         const inner = await applyOps(p, tops, { ...ctx, time: 0, templateOps: undefined });
-        p = inner.project;
-        report.cursorTime = 0;
+        const lanes = videoTemplatePageStarts(String(op.template)) ? compactVideoTemplateTracks(inner.project, ctx.textTrackName ?? "Text") : { clips: inner.project.clips, tracks: inner.project.tracks };
+        p = { ...inner.project, ...lanes, settings: { ...inner.project.settings, pages: videoTemplatePageStarts(String(op.template)), pageTiming: videoTemplatePageStarts(String(op.template)) ? "content" : undefined } };
+        report.cursorTime = videoTemplatePageStarts(String(op.template)) ? 0.6 : 0;
         return inner.report.applied > 0;
       }
       case "remove_background": {

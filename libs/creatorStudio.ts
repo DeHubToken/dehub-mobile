@@ -15,6 +15,7 @@ export interface CreatorStudioSettings {
   model: string;
   aspect: string;
   durationSeconds: number;
+  musicLyrics?: string;
   resolution: string;
   textureQuality: 'none' | 'standard' | 'HD';
 }
@@ -24,7 +25,7 @@ export const CREATOR_MODE_KEYS: Record<CreatorMode, string> = {
 export const CREATOR_DEFAULTS: Record<CreatorMode, CreatorStudioSettings> = {
   image: { mode: 'image', model: 'gemini-3.1-flash-image', aspect: '1:1', durationSeconds: 5, resolution: '720p', textureQuality: 'none' },
   video: { mode: 'video', model: 'kling-2.5-turbo', aspect: '16:9', durationSeconds: 5, resolution: '720p', textureQuality: 'none' },
-  audio: { mode: 'audio', model: 'ace-step', aspect: '1:1', durationSeconds: 5, resolution: '720p', textureQuality: 'none' },
+  audio: { mode: 'audio', model: 'ace-step', aspect: '1:1', durationSeconds: 60, resolution: '720p', textureQuality: 'none' },
   '3d': { mode: '3d', model: 'tripo-2.5', aspect: '1:1', durationSeconds: 5, resolution: '720p', textureQuality: 'none' },
 };
 export const creatorModels = (mode: CreatorMode) => Object.values(
@@ -47,6 +48,10 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
   const models = creatorModels(settings.mode);
   const model = models.some((entry) => entry.id === settings.model) ? settings.model : CREATOR_DEFAULTS[settings.mode].model;
   const next = { ...settings, model };
+  if (next.mode === 'audio' && model === 'ace-step') {
+    next.durationSeconds = Number.isFinite(next.durationSeconds)
+      ? Math.max(10, Math.min(240, Math.round(next.durationSeconds))) : 60;
+  }
   if (next.mode === 'video') {
     const clip = next.referenceAssets?.find(asset => asset.kind === 'video');
     const durations = creatorDurations(model);
@@ -64,12 +69,19 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
 
 export function creatorSettingsForEditorDraft(value: unknown): { settings: CreatorStudioSettings; draft: GenerationDraft } | null {
   const draft = generationDraft(value);
-  if (!draft) return null;
-  const mode: CreatorMode = draft.kind === 'voice' ? 'audio' : draft.kind;
+  if (!draft || draft.kind === 'sfx') return null;
+  const mode: CreatorMode = draft.kind === 'voice' || draft.kind === 'music' ? 'audio' : draft.kind;
   return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
     ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),
     ...(draft.aspect ? { aspect: draft.aspect } : {}),
   }) };
+}
+
+/** Music descriptions control the style; they are not words to sing. */
+export function creatorAudioOptions(settings: CreatorStudioSettings | null, prompt: string, lyrics?: string): { tags?: string; lyrics?: string; duration?: number } {
+  if (settings?.mode !== 'audio' || settings.model !== 'ace-step') return {};
+  return { tags: prompt, lyrics: lyrics?.trim() || settings.musicLyrics?.trim() || '[instrumental]',
+    duration: normalizeCreatorSettings(settings).durationSeconds };
 }
 
 export function creatorVideoOptions(settings: CreatorStudioSettings) {
