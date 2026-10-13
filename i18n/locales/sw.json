@@ -365,6 +365,7 @@
     "light": "Mwanga",
     "dark": "Giza",
     "system": "Mfumo",
+    "systemLight": "Mfumo Mwanga",
     "immersive": "Immersive",
     "minimal": "Rahisi",
     "cosmic": "Cosmic Pixels",

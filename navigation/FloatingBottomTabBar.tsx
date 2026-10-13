@@ -224,13 +224,14 @@ const NavButton = memo<{
   badgeCount?: number;
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
   const { t: _copy } = _useCopy();
-  const { colors, isLight, isMinimal, skin } = useAppTheme();
+  // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
+  const { colors, isMinimal, skin } = useAppTheme();
   const scale = useRef(new NativeAnimated.Value(1)).current;
   const iconColor = isMinimal
     ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
     : skin
       ? isActive ? skin.barIconActive : skin.barIcon
-      : isActive ? colors.foreground : isLight ? 'rgba(26, 26, 26, 0.66)' : 'rgba(255, 255, 255, 0.72)';
+      : isActive ? colors.foreground : 'rgba(255, 255, 255, 0.72)';
 
   const handlePress = useCallback(() => onPress(routeName), [onPress, routeName]);
 
@@ -255,7 +256,7 @@ const NavButton = memo<{
   }, [animProgress, index, scale]);
 
   if (isCenter) {
-    const glyphColor = isLight ? colors.foreground : isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
+    const glyphColor = isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
     return (
       <NativeAnimatedPressable
         accessibilityRole="button"
@@ -271,7 +272,6 @@ const NavButton = memo<{
             styles.centerIconWrap,
             isMinimal && { backgroundColor: 'transparent', borderColor: MINIMAL_TAB_LINE },
             skin && skin.centre,
-            isLight && { backgroundColor: '#f3f3f3', borderColor: 'rgba(0,0,0,0.20)' },
           ]}
         >
           {/* Native strokes stay visible without an elevated blur surface or deferred SVG mount. */}
@@ -301,7 +301,7 @@ const NavButton = memo<{
       <View
         style={[
           styles.iconWrap,
-          isActive && !isLight && !isMinimal
+          isActive && !isMinimal
             ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
             : undefined,
         ]}
@@ -334,7 +334,8 @@ const ScrollNavButton = memo<{
 }>(
   ({ icon, label, item, onPress, tabW, badgeCount = 0 }) => {
   const { t: _copy } = _useCopy();
-    const { colors, isLight, isMinimal, skin } = useAppTheme();
+    // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
+  const { colors, isMinimal, skin } = useAppTheme();
     const scale = useRef(new NativeAnimated.Value(1)).current;
     useEffect(() => () => scale.stopAnimation(), [scale]);
 
@@ -379,7 +380,7 @@ const ScrollNavButton = memo<{
         <Icon
           name={icon}
           size={20}
-          color={isMinimal ? MINIMAL_TAB_TEXT : skin ? skin.barIcon : isLight ? "rgba(26, 26, 26, 0.66)" : "rgba(255, 255, 255, 0.72)"}
+          color={isMinimal ? MINIMAL_TAB_TEXT : skin ? skin.barIcon : "rgba(255, 255, 255, 0.72)"}
           strokeWidth={1.75}
         />
         {badgeCount > 0 && (
@@ -397,7 +398,8 @@ const ScrollNavButton = memo<{
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
-  const { colors, isLight, isMinimal, skin } = useAppTheme();
+  // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
+  const { colors, isMinimal, skin } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Recalculate equal slots when the window or attached stage chip changes.
   const { width: screenW } = useWindowDimensions();

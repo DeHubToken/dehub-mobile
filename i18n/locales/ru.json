@@ -365,6 +365,7 @@
     "light": "Светлая",
     "dark": "Тёмная",
     "system": "Системная",
+    "systemLight": "Системная Светлая",
     "immersive": "Immersive",
     "minimal": "Минимальная",
     "cosmic": "Космические пиксели",

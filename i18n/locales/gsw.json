@@ -365,6 +365,7 @@
     "light": "Hell",
     "dark": "Dunkel",
     "system": "System",
+    "systemLight": "System Hell",
     "immersive": "Immersive",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",

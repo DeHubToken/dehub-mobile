@@ -365,6 +365,7 @@
     "light": "Chiaro",
     "dark": "Scuro",
     "system": "Sistema",
+    "systemLight": "Sistema Chiaro",
     "immersive": "Immersive",
     "minimal": "Minimale",
     "cosmic": "Cosmic Pixels",

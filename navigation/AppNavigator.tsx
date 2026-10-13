@@ -75,7 +75,7 @@ function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, isLight, skin } = useAppTheme();
 
   return (
     <>
@@ -86,10 +86,10 @@ function AppNavigatorContent() {
           headerShown: false,
           // An options object, not a JSX style prop, so the app-wide
           // near-black pass (minimal's #000, a canvas theme's page colour)
-          // never sees it; branch here. A canvas theme's live backdrop
+          // never sees it, and neither does System Light's colour pass; branch here. A canvas theme's live backdrop
           // (ThemeBackdrop at the root) shows through every screen, as on web;
           // each page's own fill is the veil over it.
-          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? 'transparent' : '#010305' },
+          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? 'transparent' : isLight ? '#FFFFFF' : '#010305' },
           // A screen you have navigated away from keeps rendering otherwise —
           // this stack holds sixty-odd of them, so Home -> Profile -> Community
           // -> Post left four live at once, all re-rendering together on every

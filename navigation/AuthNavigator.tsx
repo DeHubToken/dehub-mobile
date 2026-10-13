@@ -3,6 +3,7 @@ import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigat
 import { ScreenNames } from "./ScreenNames";
 import type { AuthStackParamList } from "./types";
 import { useAuthState } from "../context/AuthContext";
+import { useAppTheme } from "../context/ThemeContext";
 import { createLogger } from "../libs/logger";
 
 const log = createLogger("AuthNavigator");
@@ -55,12 +56,14 @@ export default function AuthNavigator() {
     log.info("AuthNavigator initial route", { route: initialRouteRef.current });
   }
 
+  // An options object, which System Light's colour pass never sees.
+  const { isLight } = useAppTheme();
   return (
     <Stack.Navigator
       initialRouteName={initialRouteRef.current}
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#000' },
+        cardStyle: { backgroundColor: isLight ? '#FFFFFF' : '#000' },
         gestureEnabled: false, // Disable back gesture for auth flow
         cardStyleInterpolator: slideFromRight,
       }}
