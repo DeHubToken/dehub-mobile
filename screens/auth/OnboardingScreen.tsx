@@ -267,6 +267,8 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
+    // Keep welcome text and controls above the background's effects layer.
+    zIndex: 1,
   },
   progressContainer: {
     flexDirection: "row",

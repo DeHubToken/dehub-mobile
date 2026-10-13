@@ -1799,7 +1799,12 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             <Text className="text-theme-neutrals-100">{t('common.cancel')}</Text>
           </TouchableOpacity>
         </View>}
-        {studio && <CreatorStudioControls settings={studioSettings} onChange={setStudioSettings}
+        {studio && <CreatorStudioControls settings={studioSettings} onChange={next => {
+          const selectedTemplate = getTemplate(templateId);
+          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
+          setStudioSettings(next);
+        }}
+          onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />}

@@ -1,3 +1,8 @@
+export function maboroshiStudioUrl(preset?: string): string {
+  const base = 'https://live.dehub.io/maboroshi/';
+  return preset && /^[a-z0-9-]{1,80}$/.test(preset) ? `${base}?preset=${encodeURIComponent(preset)}` : base;
+}
+
 export function isMaboroshiStudio(value: string): boolean {
   try {
     const url = new URL(value);

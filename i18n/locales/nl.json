@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Jouw scène. Een andere jij.",
+    "intro": "180 personagestijlen, van zachte knuffel tot vloeibaar chroom.",
+    "inspiration": "Visuele inspiratie. Upload je eigen bijpassende personagereferentie.",
+    "browse": "Ontdek alle 180 stijlen",
+    "choose": "Probeer {{name}}",
+    "previous": "Vorige stijlen",
+    "next": "Volgende stijlen",
+    "plushie": "Knuffeltransformatie",
+    "anime": "Animeheld",
+    "chrome": "Vloeibaar chroom",
+    "crochet": "Gehaakte vriend",
+    "crystal": "Kristallen bewaker",
+    "clay": "Kleipersonage"
+  },
   "quickActions": {
     "title": "Paginaopties",
     "hint": "Houd ingedrukt op een plek zonder bestaande langdrukactie om deze opties te openen.",
@@ -2484,6 +2499,13 @@
     "tasks": {
       "privateTitle": "Agenten zijn beschikbaar als besloten voorproefje",
       "privateBody": "Deze functie is momenteel beschikbaar voor @maldoteth.",
+      "mode": "Taakmodus",
+      "oneAgent": "Eén agent",
+      "swarm": "Zwerm",
+      "swarmChoose": "Kies agenten",
+      "swarmHelp": "Eén opdracht, gedeeld werk. Doelen worden verdeeld en geplande berichten wisselen tussen agenten.",
+      "swarmMember": "Zwermagent {{index}} van {{total}}",
+      "runSwarm": "Start zwerm",
       "title": "Geef een agent een taak",
       "description": "Acties worden uitgevoerd als de geselecteerde agent. Geplande taken gaan door wanneer de app gesloten is.",
       "instructions": "Instructies voor de agent",
