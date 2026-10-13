@@ -1,7 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { View, TouchableOpacity, Text, ActivityIndicator, AccessibilityInfo } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from "../ui/Icon";
 import { PLAYER_CONSTANTS } from './utils';
 
 interface CenterControlsProps {
@@ -56,7 +56,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="play-back" size={28} color="#fff" />
+            <Icon name="Rewind" size={28} color="#fff" />
             <Text className="text-white text-xs font-medium mt-0.5">
               {PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS}s
             </Text>
@@ -77,12 +77,11 @@ const CenterControls: React.FC<CenterControlsProps> = ({
           {isBuffering ? (
             <ActivityIndicator size="large" color="#fff" />
           ) : (
-            <Ionicons
-              name={isPlaying ? 'pause' : 'play'}
+            <View style={isPlaying ? undefined : { marginLeft: 4 }}><Icon
+              name={isPlaying ? 'Pause' : 'Play'}
               size={38}
               color="#fff"
-              style={isPlaying ? undefined : { marginLeft: 4 }}
-            />
+            /></View>
           )}
         </TouchableOpacity>
 
@@ -96,7 +95,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="play-forward" size={28} color="#fff" />
+            <Icon name="FastForward" size={28} color="#fff" />
             <Text className="text-white text-xs font-medium mt-0.5">
               {PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS}s
             </Text>

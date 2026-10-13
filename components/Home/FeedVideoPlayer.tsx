@@ -2,7 +2,7 @@ import { PersistentVideoView } from '../common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../../libs/pictureInPicture';
 import { applyVideoVolume } from '../../libs/dub-mix';
 import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
-import { useMediaVolume } from '../../libs/video-preferences';
+import { useMediaVolume, getIsLooping, setIsLooping as persistLooping, useMediaLooping } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useFeedSurfaceActive, useCallInProgress, visualActivity } from "../../libs/visualActivity";
 import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
@@ -443,7 +443,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(canPlay ? videoUrl : null, (p) => {
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
-    p.loop = true;
+    p.loop = getIsLooping();
     p.muted = getCachedMuted();
     applyVideoVolume(p, getVolume());
     p.timeUpdateEventInterval = 0.5;
@@ -997,7 +997,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer, dubAvailable],
   );
 
-  const [isLooping, setIsLooping] = useState(true);
+  const isLooping = useMediaLooping();
+  useEffect(() => {
+    if (ownsVideo) player.loop = isLooping;
+  }, [player, ownsVideo, isLooping]);
   const [playbackRate, setPlaybackRate] = useState(() => getPlaybackRateFor(creator));
   useLayoutEffect(() => {
     if (!ownsVideo) return;
@@ -1008,7 +1011,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setIsPlaying(playing);
     setIsMuted(player.muted);
     setPlaybackRate(player.playbackRate);
-    setIsLooping(player.loop);
     currentTimeRef.current = player.currentTime;
     setCurrentTime(player.currentTime);
     setVideoDuration(player.duration);
@@ -1027,7 +1029,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!playerRef.current || !ownsPlayerRef.current()) return;
     const nextLoop = !playerRef.current.loop;
     playerRef.current.loop = nextLoop;
-    setIsLooping(nextLoop);
+    persistLooping(nextLoop);
     startHideTimer();
   }, [startHideTimer]);
 
@@ -1376,20 +1378,17 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                     {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
-                {captionControls && (
+                {tokenId != null && (
                   <VideoScrubButton
-                    onPress={() => { captionControls.openLanguages(); startHideTimer(); }}
+                    onPress={() => { captionControls?.openLanguages(); startHideTimer(); }}
+                    disabled={!captionControls}
                     hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("subtitles.title")}
-                    accessibilityState={{ selected: captionControls.enabled }}
+                    accessibilityState={{ selected: captionControls?.enabled ?? false, busy: captionControls?.loading ?? false }}
                     style={styles.bareButton}
                   >
-                    {captionControls.loading ? (
-                      <Spinner size={16} />
-                    ) : (
-                      <BareIcon name="Captions" plain active={captionControls.enabled} />
-                    )}
+                    <BareIcon name="Captions" plain active={captionControls?.enabled ?? false} />
                   </VideoScrubButton>
                 )}
                 <VideoScrubButton
@@ -1728,8 +1727,12 @@ const styles = StyleSheet.create({
   },
   bareSpeedText: {
     color: "#FFFFFF",
-    fontSize: 12,
-    fontWeight: "600",
+    fontFamily: "Exo_700Bold",
+    fontSize: 18,
+    lineHeight: 18,
+    fontWeight: "normal",
+    includeFontPadding: false,
+    textAlign: "center",
     fontVariant: ["tabular-nums"],
   },
   bareTime: {

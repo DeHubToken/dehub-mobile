@@ -43,6 +43,8 @@ const DEFAULTS: VideoPreferences = {
 
 let cached: VideoPreferences = { ...DEFAULTS, ratesByCreator: {} };
 const volumeListeners = new Set<() => void>();
+const loopListeners = new Set<() => void>();
+let pendingLoopChoice: boolean | undefined;
 let warmed = false;
 let warming: Promise<void> | null = null;
 
@@ -75,7 +77,15 @@ export function warmVideoPreferences(): Promise<void> {
   if (warming) return warming;
   warming = AsyncStorage.getItem(STORAGE_KEY)
     .then((raw) => {
-      if (raw) { cached = sanitise(JSON.parse(raw)); volumeListeners.forEach(fn => fn()); }
+      if (raw) {
+        cached = sanitise(JSON.parse(raw));
+        if (pendingLoopChoice !== undefined) {
+          cached.isLooping = pendingLoopChoice;
+          AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(cached)).catch(() => {});
+        }
+        volumeListeners.forEach(fn => fn());
+        loopListeners.forEach(fn => fn());
+      }
     })
     .catch(() => {
       // A blob that will not parse is not worth a crash on app open; the
@@ -83,6 +93,7 @@ export function warmVideoPreferences(): Promise<void> {
     })
     .finally(() => {
       warmed = true;
+      pendingLoopChoice = undefined;
       warming = null;
     });
   return warming;
@@ -90,8 +101,10 @@ export function warmVideoPreferences(): Promise<void> {
 
 function save(next: VideoPreferences) {
   const changed = cached.volume !== next.volume;
+  const loopChanged = cached.isLooping !== next.isLooping;
   cached = next;
   if (changed) volumeListeners.forEach(fn => fn());
+  if (loopChanged) loopListeners.forEach(fn => fn());
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {});
 }
 
@@ -126,8 +139,18 @@ export function clearCreatorPlaybackRates() {
   save({ ...cached, ratesByCreator: {} });
 }
 
-// Loop is carried through untouched: the players own it on mobile (the loop
-// prop), and it is kept in the blob only so it stays the shape web writes.
+export function getIsLooping(): boolean {
+  return cached.isLooping === true;
+}
+
+/** Remember replay across videos and app restarts. */
+export function setIsLooping(looping: boolean) {
+  if (!warmed) pendingLoopChoice = looping;
+  save({ ...cached, isLooping: looping });
+}
+
+const subscribeLoop = (fn: () => void) => { loopListeners.add(fn); return () => loopListeners.delete(fn); };
+export const useMediaLooping = () => useSyncExternalStore(subscribeLoop, getIsLooping, () => false);
 
 /** The level a video starts at, 0 → 1. Shared with web through the blob. */
 export function getVolume(): number {

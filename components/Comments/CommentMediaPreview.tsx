@@ -9,7 +9,7 @@
 import React, { memo, useCallback } from "react";
 import { View, TouchableOpacity, ActivityIndicator } from "react-native";
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { useTranslation } from "react-i18next";
 
@@ -46,7 +46,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           className="mr-2"
         >
-          <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
+          <Icon name="Trash2" size={20} color="#F4F4F5" />
         </TouchableOpacity>
 
         <View className="flex-1">
@@ -66,7 +66,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="ml-2 w-9 h-9 rounded-xl bg-white items-center justify-center"
         >
-          <Ionicons name="send" size={16} color="#000" />
+          <Icon name="Send" size={16} color="#000" />
         </TouchableOpacity>
       </View>
     );
@@ -92,7 +92,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="absolute -top-1 -right-1 w-6 h-6 rounded-lg dark-surface bg-black/60 items-center justify-center"
         >
-          <Ionicons name="close" size={14} color="#FFFFFF" />
+          <Icon name="X" size={14} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
 
@@ -110,7 +110,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
         {sending ? (
           <ActivityIndicator size="small" color="#000" />
         ) : (
-          <Ionicons name="send" size={16} color="#000" />
+          <Icon name="Send" size={16} color="#000" />
         )}
       </TouchableOpacity>
     </View>

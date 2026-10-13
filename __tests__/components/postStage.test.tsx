@@ -177,7 +177,7 @@ describe('post page on phones', () => {
   it('leaves search and sort in the comments header, with options beside Follow', () => {
     const view = render(<CommentsStageHeader count={3} sort="recent" onSortChange={jest.fn()} searchOpen={false} query="" onQueryChange={jest.fn()} onToggleSearch={jest.fn()} />);
     const icons = view.UNSAFE_getAllByType('Icon' as any).map((node) => node.props.name);
-    expect(icons).toEqual(['Search', 'ArrowUpDown']);
+    expect(icons).toEqual(['Search', 'ListFilter']);
     const creator = readSource('components/Home/PostStage.tsx').split('export const PostStageCreator')[1];
     expect(creator.indexOf('icon="Ellipsis"')).toBeGreaterThan(creator.indexOf('onPress={onFollow}'));
   });

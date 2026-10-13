@@ -13,7 +13,7 @@ import { View, Text, ScrollView, Pressable, StyleSheet, ActivityIndicator } from
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Ionicons } from "@expo/vector-icons";
+import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import EditPostModal from "../components/common/EditPostModal";
@@ -61,14 +61,14 @@ const Section: React.FC<{ title?: string; right?: React.ReactNode; children: Rea
   </View>
 );
 
-const Stat: React.FC<{ icon: keyof typeof Ionicons.glyphMap; value: React.ReactNode; label: string; wide?: boolean }> = ({
+const Stat: React.FC<{ icon: IconName; value: React.ReactNode; label: string; wide?: boolean }> = ({
   icon,
   value,
   label,
   wide,
 }) => (
   <View style={[styles.stat, wide && styles.statWide]}>
-    <Ionicons name={icon} size={20} color="#FFFFFF" />
+    <Icon name={icon} size={20} color="#FFFFFF" />
     <View style={{ flexShrink: 1 }}>
       <Text style={styles.statValue} numberOfLines={1}>{value}</Text>
       <Text style={styles.statLabel} numberOfLines={1}>{label}</Text>
@@ -247,7 +247,7 @@ export default function PostInfoScreen() {
           </View>
           {isUnminted ? (
             <View style={[styles.divider, styles.placeholder]}>
-              <Ionicons name="cube-outline" size={28} color="rgba(255,255,255,0.4)" />
+              <Icon name="Package" size={28} color="rgba(255,255,255,0.4)" />
               <Text style={[styles.muted, styles.centerText]}>{t("postInfo.mintToGenerate")}</Text>
               <Text style={[styles.faint, styles.centerText]}>{t("postInfo.mintDetailsLater")}</Text>
               {isOwner && (
@@ -272,11 +272,11 @@ export default function PostInfoScreen() {
                   <View style={styles.rowCenter}>
                     <Text style={styles.hash} selectable>{post.mintTxHash}</Text>
                     <Pressable onPress={() => copy(post.mintTxHash)} hitSlop={8} accessibilityLabel={t("postInfo.transactionHash")}>
-                      <Ionicons name="copy-outline" size={18} color="rgba(255,255,255,0.6)" />
+                      <Icon name="Copy" size={18} color="rgba(255,255,255,0.6)" />
                     </Pressable>
                     {!!txUrl && (
                       <Pressable onPress={() => openInApp(txUrl)} hitSlop={8}>
-                        <Ionicons name="open-outline" size={18} color="rgba(255,255,255,0.6)" />
+                        <Icon name="ExternalLink" size={18} color="rgba(255,255,255,0.6)" />
                       </Pressable>
                     )}
                   </View>
@@ -292,7 +292,7 @@ export default function PostInfoScreen() {
         {isLive && (
           <Section title={t("postInfo.streamInfo")}>
             <View style={styles.rowCenter}>
-              <Ionicons name="radio-outline" size={20} color={post.isLive ? "#F87171" : "#71717A"} />
+              <Icon name="Radio" size={20} color={post.isLive ? "#F87171" : "#71717A"} />
               <View>
                 <Text style={styles.value}>{post.isLive ? t("postInfo.currentlyLive") : t("postInfo.streamOffline")}</Text>
                 <Text style={styles.muted}>{t("postInfo.totalViews", { count: post.totalViews ?? post.views ?? 0 })}</Text>
@@ -309,7 +309,7 @@ export default function PostInfoScreen() {
               <Text style={styles.mono} numberOfLines={1}>{shortAddress(minter)}</Text>
             </View>
             <Pressable onPress={() => copy(minter)} hitSlop={8}>
-              <Ionicons name="copy-outline" size={18} color="rgba(255,255,255,0.6)" />
+              <Icon name="Copy" size={18} color="rgba(255,255,255,0.6)" />
             </Pressable>
           </Pressable>
         </Section>
@@ -317,7 +317,7 @@ export default function PostInfoScreen() {
         {isOwner && (
           <Section>
             <Pressable style={styles.rowCenter} onPress={() => setEditing(true)}>
-              <Ionicons name="pencil-outline" size={18} color="#FFFFFF" />
+              <Icon name="Pencil" size={18} color="#FFFFFF" />
               <Text style={styles.value}>{t("postOptions.editPost")}</Text>
             </Pressable>
           </Section>
@@ -329,12 +329,12 @@ export default function PostInfoScreen() {
               const active = !!post.isHidden === hidden;
               return (
                 <Pressable key={String(hidden)} onPress={() => setHidden(hidden)} style={[styles.option, active && styles.optionActive]}>
-                  <Ionicons name={hidden ? "eye-off-outline" : "globe-outline"} size={18} color="#FFFFFF" />
+                  <Icon name={hidden ? "EyeOff" : "Globe"} size={18} color="#FFFFFF" />
                   <View style={{ flex: 1 }}>
                     <Text style={styles.value}>{hidden ? t("postInfo.unlisted") : t("postInfo.public")}</Text>
                     <Text style={styles.muted}>{hidden ? t("postInfo.unlistedDesc") : t("postInfo.publicDesc")}</Text>
                   </View>
-                  {active && <Ionicons name="checkmark" size={18} color="#FFFFFF" />}
+                  {active && <Icon name="Check" size={18} color="#FFFFFF" />}
                 </Pressable>
               );
             })}
@@ -371,7 +371,7 @@ export default function PostInfoScreen() {
                       {t("fractions.availableCount", { count: l.quantity - l.filled_quantity })} · {shortAddress(l.seller_address)}
                     </Text>
                   </View>
-                  <Ionicons name="chevron-forward" size={18} color="rgba(255,255,255,0.5)" />
+                  <Icon name="ChevronRight" size={18} color="rgba(255,255,255,0.5)" />
                 </Pressable>
               ))
             )}
@@ -393,25 +393,25 @@ export default function PostInfoScreen() {
             <View style={styles.bar}><View style={[styles.barFill, { width: `${likeRatio}%` }]} /></View>
           </View>
           <View style={styles.grid}>
-            <Stat icon="thumbs-up-outline" value={likes.toLocaleString()} label={t("postInfo.likes")} />
-            <Stat icon="thumbs-down-outline" value={dislikes.toLocaleString()} label={t("postInfo.dislikes")} />
-            <Stat icon="eye-outline" value={views.toLocaleString()} label={t("postInfo.views")} />
-            <Stat icon="chatbubble-outline" value={Number(comments).toLocaleString()} label={t("postInfo.comments")} />
-            <Stat icon="cash-outline" value={postTips.toLocaleString()} label={t("postInfo.tipsOnPost")} wide />
-            <Stat icon="wallet-outline" value={creatorTips.toLocaleString()} label={t("postInfo.totalTipsCreator")} wide />
+            <Stat icon="ThumbsUp" value={likes.toLocaleString()} label={t("postInfo.likes")} />
+            <Stat icon="ThumbsDown" value={dislikes.toLocaleString()} label={t("postInfo.dislikes")} />
+            <Stat icon="Eye" value={views.toLocaleString()} label={t("postInfo.views")} />
+            <Stat icon="MessageSquare" value={Number(comments).toLocaleString()} label={t("postInfo.comments")} />
+            <Stat icon="Coins" value={postTips.toLocaleString()} label={t("postInfo.tipsOnPost")} wide />
+            <Stat icon="Wallet" value={creatorTips.toLocaleString()} label={t("postInfo.totalTipsCreator")} wide />
           </View>
         </Section>
 
         {isPPV && (
           <Section title={t("postInfo.payPerView")}>
             <View style={styles.grid}>
-              <Stat icon="ticket-outline" value={String(ppvSales ?? 0)} label={t("postInfo.ppvSales")} />
+              <Stat icon="Ticket" value={String(ppvSales ?? 0)} label={t("postInfo.ppvSales")} />
               {ppvPrice != null && (
-                <Stat icon="lock-closed-outline" value={<>{ppvPrice} {ppvUnit}</>} label={t("postInfo.price")} />
+                <Stat icon="Lock" value={<>{ppvPrice} {ppvUnit}</>} label={t("postInfo.price")} />
               )}
               {ppvPrice != null && (
                 <Stat
-                  icon="cash-outline"
+                  icon="Coins"
                   value={<>{((ppvSales ?? 0) * Number(ppvPrice)).toLocaleString()} {ppvUnit}</>}
                   label={t("postInfo.totalRevenue")}
                   wide

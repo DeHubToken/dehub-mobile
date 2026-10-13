@@ -347,17 +347,14 @@ const CaptionOverlay: React.FC<Props> = ({
         hitSlop={8}
         accessibilityRole="button"
         accessibilityLabel={enabled ? _copy("copy.ea577b10b85f", { defaultValue: "Subtitles on" }) : _copy("copy.6a5216300cb9", { defaultValue: "Subtitles off" })}
+        accessibilityState={{ selected: enabled, busy: inFlight }}
         style={[
           styles.ccButton,
           { opacity: controlsVisible ? 0.9 : 0 },
         ]}
         pointerEvents={controlsVisible ? 'auto' : 'none'}
       >
-        {inFlight ? (
-          <ActivityIndicator size="small" color="#FFFFFF" />
-        ) : (
-<MediaControlIcon name="Captions" />
-        )}
+        <MediaControlIcon name="Captions" />
       </Pressable>}
 
       <Modal

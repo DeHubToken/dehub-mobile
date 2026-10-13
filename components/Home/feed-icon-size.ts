@@ -5,3 +5,5 @@ export const FEED_ICON_SIZE = {
 
 // Widen the bookmark silhouette without making it taller beside post info.
 export const FEED_BOOKMARK_STYLE = { transform: [{ scaleX: 1.12 }] };
+// Compact comment controls use the same optical proportions as the post bar.
+export const COMMENT_ICON_SIZE = { like: 18, comment: 18.67, share: 16, tip: 18 } as const;
