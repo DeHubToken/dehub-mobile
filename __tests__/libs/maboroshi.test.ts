@@ -1,6 +1,12 @@
-import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript } from '../../libs/maboroshi';
+import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript, maboroshiStudioUrl } from '../../libs/maboroshi';
 
 describe('Maboroshi session and downloads', () => {
+  it('passes a preset without widening the trusted studio origin', () => {
+    expect(maboroshiStudioUrl('plushie-takeover')).toBe('https://live.dehub.io/maboroshi/?preset=plushie-takeover');
+    expect(isMaboroshiStudio(maboroshiStudioUrl('plushie-takeover'))).toBe(true);
+    expect(maboroshiStudioUrl('https://evil.test/')).toBe('https://live.dehub.io/maboroshi/');
+    expect(maboroshiStudioUrl('')).toBe('https://live.dehub.io/maboroshi/');
+  });
   it('only delivers credentials to the exact hosted studio', () => {
     expect(isMaboroshiStudio('https://live.dehub.io/maboroshi/')).toBe(true);
     for (const url of ['https://live.dehub.io.evil.test/maboroshi/', 'https://evil.test/', 'https://live.dehub.io/maboroshi/setup', 'http://live.dehub.io/maboroshi/', 'https://user:pass@live.dehub.io/maboroshi/']) {

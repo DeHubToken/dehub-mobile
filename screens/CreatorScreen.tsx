@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
 import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
+import MaboroshiShowcase from '../components/Assistant/MaboroshiShowcase';
 import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -136,6 +137,7 @@ export default function CreatorScreen() {
         </Pressable>
       </View>
 
+      <MaboroshiShowcase onOpen={preset => nav.navigate(ScreenNames.Maboroshi, { preset })} />
       <Text className="px-4 pb-3 text-[22px] font-black text-theme-neutrals-100">{t('creator.pickMedium')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{mediums.map(tile)}</View>
 

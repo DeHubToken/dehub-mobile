@@ -1,4 +1,19 @@
 {
+  "maboroshiShowcase": {
+    "title": "Tu escena. Otro tú.",
+    "intro": "180 estilos de personajes, desde peluche hasta cromo líquido.",
+    "inspiration": "Inspiración visual. Sube tu propia referencia de personaje con ese estilo.",
+    "browse": "Explorar los 180 estilos",
+    "choose": "Probar {{name}}",
+    "previous": "Estilos anteriores",
+    "next": "Estilos siguientes",
+    "plushie": "Transformación de peluche",
+    "anime": "Héroe de anime",
+    "chrome": "Cromo líquido",
+    "crochet": "Compañero de ganchillo",
+    "crystal": "Guardián de cristal",
+    "clay": "Personaje de arcilla"
+  },
   "quickActions": {
     "title": "Opciones de la página",
     "hint": "Mantén pulsado donde no haya otra acción de pulsación larga para abrir estas opciones.",

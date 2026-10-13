@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Pressable, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { WebView } from 'react-native-webview';
 import * as FileSystem from 'expo-file-system/legacy';
@@ -12,14 +12,14 @@ import { saveEditorDownload } from '../libs/editor/saveEditorDownload';
 import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
 import { ScreenNames } from '../navigation/ScreenNames';
 import type { AppStackParamList } from '../navigation/types';
-import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript } from '../libs/maboroshi';
+import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript, maboroshiStudioUrl } from '../libs/maboroshi';
 import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
 import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
 
-const STUDIO = 'https://live.dehub.io/maboroshi/';
-
 export default function MaboroshiScreen() {
+  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Maboroshi>>();
+  const STUDIO = maboroshiStudioUrl(route.params?.preset);
   const { t } = useTranslation();
   const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const user = useUser();
