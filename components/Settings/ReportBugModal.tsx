@@ -46,15 +46,15 @@ export default function ReportBugModal({ visible, onClose, context }: Props) {
   };
   return <GlassModal visible={visible} onClose={close} presentation="bottom" scrollable dismissible={!submit.isPending}>
     <View className="p-5">
-      <Text className="text-theme-foreground font-bold text-lg mb-2">{t('quickActions.question')}</Text>
+      <Text className="text-white font-bold text-lg mb-2">{t('quickActions.question')}</Text>
       <Text className="text-theme-neutrals-400 text-sm mb-4">{t('quickActions.publicNotice')}</Text>
-      <TextInput accessibilityLabel={t('quickActions.question')} value={message} onChangeText={setMessage} maxLength={1500} multiline textAlignVertical="top" placeholder={t('quickActions.placeholder')} placeholderTextColor="#888" className="bg-theme-neutrals-800 text-theme-foreground border border-theme-neutrals-700 rounded-xl p-3 min-h-28" />
+      <TextInput accessibilityLabel={t('quickActions.question')} value={message} onChangeText={setMessage} maxLength={1500} multiline textAlignVertical="top" placeholder={t('quickActions.placeholder')} placeholderTextColor="#888" className="bg-theme-neutrals-800 text-white border border-theme-neutrals-700 rounded-xl p-3 min-h-28" />
       <Text className="text-theme-neutrals-400 text-xs mt-3">{details.screen}</Text>
       <Text className="text-theme-neutrals-400 text-xs my-3">{t('quickActions.deviceNotice')}</Text>
       {attachment ? <View>
         <Image accessibilityLabel={t('quickActions.screenshot')} source={{ uri: attachment.uri }} style={{ height: 140, width: '100%', borderRadius: 12 }} resizeMode="contain" />
         <TouchableOpacity accessibilityRole="button" onPress={() => setAttachment(null)} className="py-3"><Text className="text-theme-neutrals-400 text-sm">{t('quickActions.removeScreenshot')}</Text></TouchableOpacity>
-      </View> : <TouchableOpacity accessibilityRole="button" onPress={pick} className="py-3"><Text className="text-theme-foreground text-sm">{t('quickActions.attachScreenshot')}</Text></TouchableOpacity>}
+      </View> : <TouchableOpacity accessibilityRole="button" onPress={pick} className="py-3"><Text className="text-white text-sm">{t('quickActions.attachScreenshot')}</Text></TouchableOpacity>}
       {failed && <Text accessibilityRole="alert" className="text-red-400 text-sm mb-3">{t('quickActions.failed')}</Text>}
       <TouchableOpacity accessibilityRole="button" disabled={!message.trim() || submit.isPending} onPress={send} className="bg-theme-accent rounded-xl px-4 py-3 items-center" style={{ opacity: message.trim() && !submit.isPending ? 1 : 0.4 }}>
         {submit.isPending ? <ActivityIndicator /> : <Text className="text-theme-accent-foreground font-semibold">{t(isSignedIn ? 'quickActions.send' : 'quickActions.signIn')}</Text>}

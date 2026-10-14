@@ -157,6 +157,7 @@ import {
   TAP_REACTION_RESOLUTION_MS,
 } from "../libs/tap-gesture";
 import { MEDIA_TAP_SLOP_PX } from "../libs/media-gesture";
+import { blockQuickActions } from "../libs/quickActions";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 import { useTranslation as useCopy } from "react-i18next";
@@ -1204,6 +1205,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((locationX: number) => {
+    // The viewer owns this hold (speed or screenshot), so the page menu stands down.
+    blockQuickActions();
     resetTapSequence();
     longPressActiveRef.current = true;
     const isRightSide = locationX > SCREEN_WIDTH * 0.6;
