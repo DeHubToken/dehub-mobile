@@ -21,6 +21,7 @@ interface FinanceStats {
   ok: true;
   days: FinanceAccountingDay[];
   sources: Source[];
+  provenance?: { expenseAllocation?: string };
   taxSplit?: { period: { from: string; to: string }; shared: { usd: number } };
 }
 
@@ -42,6 +43,8 @@ export default function FinanceSection({ days }: { days: number | null }) {
       return body;
     },
     staleTime: 4 * 60_000,
+    refetchInterval: 5 * 60_000,
+    refetchOnWindowFocus: true,
     retry: 1,
   });
   const view = useMemo(() => {
@@ -91,14 +94,15 @@ export default function FinanceSection({ days }: { days: number | null }) {
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
         <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub." })}</Text>
-        <Text style={styles.hint}>{t("stats.money.estimatedOperationsNote", { defaultValue: "Operating costs follow a modeled monthly trend, peaking at $100,000 in November 2021 and declining thereafter. Recorded bills are included, without double counting. This is an estimate, not an invoice ledger." })}</Text>
+        {query.data.provenance?.expenseAllocation && <Text style={styles.hint}>{query.data.provenance.expenseAllocation}</Text>}
       </PageSection>
       {(["revenue", "cost"] as const).map(kind => <PageSection key={kind} title={t(kind === "revenue" ? "stats.money.inTitle" : "stats.money.outTitle")}>
-        {sources.filter(source => source.kind === kind).map(source => <Pressable key={source.id} accessibilityRole={kind === "revenue" ? "link" : undefined} onPress={kind === "revenue" ? () => openLedger(source.id, source.id === "bsc_holder_share") : undefined} style={styles.row}>
+        {sources.filter(source => source.kind === kind && (source.id !== "operations_reinvestment" || view.costs.has(source.id))).map(source => <Pressable key={source.id} accessibilityRole={kind === "revenue" ? "link" : undefined} onPress={kind === "revenue" ? () => openLedger(source.id, source.id === "bsc_holder_share") : undefined} style={styles.row}>
           <View style={styles.source}><Text style={styles.sourceLabel}>{source.label}</Text><Text style={styles.hint}>{source.group === "infrastructure" ? t("stats.money.group.infrastructure") : source.group === "tax" ? t("stats.money.group.tax") : ""}</Text></View>
           <Text style={styles.value}>{source.status === "ok" ? usd((kind === "revenue" ? view.revenue : view.costs).get(source.id) ?? 0) : t("stats.money.sourceUnavailable")}</Text>
         </Pressable>)}
       </PageSection>)}
+      {sources.some(source => source.status === "unavailable") && <Text style={styles.hint}>{t("stats.money.unavailable", { sources: sources.filter(source => source.status === "unavailable").map(source => source.label).join(", ") })}</Text>}
     </>
   );
 }
