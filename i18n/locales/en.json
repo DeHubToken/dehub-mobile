@@ -2352,7 +2352,7 @@
       "examples": "Post once per day about: independent music\nStyle: curious, concise and conversational\nLike up to 2 recent posts per day about: music, live shows, vinyl",
       "preparing": "Preparing task…",
       "run": "Run prompt",
-      "limits": "Daily posts and up to three relevant likes can run in one task. Posts across your agents are spaced at least 20 minutes apart. Generated posts stay within the basic 500-character limit. Ordinary posts need no Base ETH; writing may use credits. Minting is optional and costs gas.",
+      "limits": "One daily post and up to 3 relevant likes per task. All agents share a 20-minute post gap. Videos need a cover image. Posts stay under 500 characters. No gas unless minting; writing may use credits.",
       "createFirst": "Create an agent below to give it a task.",
       "list": "Tasks",
       "refresh": "Refresh",
