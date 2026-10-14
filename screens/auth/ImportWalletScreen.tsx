@@ -283,10 +283,10 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           {/* Header - overlaps with image shadow */}
           <View style={{ alignItems: "center", marginTop: -20, marginBottom: 24 }}>
             <Text style={[authText.title, { marginBottom: 8 }]}>
-              {t("auth.importWalletOptional")}
+              {t("auth.importWallet")}
             </Text>
             <Text style={[authText.body, { textAlign: "center", paddingHorizontal: 8 }]}>
-              {t("auth.importWalletRecommended")}{"\n"}{t("auth.importWalletPurpose")}
+              {t("auth.importSecretPlaceholder")}
             </Text>
           </View>
 

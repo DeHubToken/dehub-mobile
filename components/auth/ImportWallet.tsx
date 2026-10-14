@@ -36,8 +36,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
       <View className={className}>
         <AuthDivider label={t("loginModal.or")} />
 
-        {/* Same slot on web (LoginModalBody): two more ways in, both of which
-            still need one of the sign-ins above first. */}
+        {/* Account migration and direct key/seed import are separate flows. */}
         {/* Same 12pt rhythm as the sign-in stack above (SocialLoginIcons). */}
         <View style={{ gap: 12 }}>
           <AuthButton
@@ -49,7 +48,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
 
           <AuthButton
             icon="key"
-            label={t("wallet.import")}
+            label={t("auth.importWallet")}
             onPress={handlePress}
             disabled={isDisabled}
           />
