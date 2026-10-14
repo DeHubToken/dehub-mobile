@@ -238,7 +238,10 @@ i18n.use({
       requestedGroups.add(group);
       const lang = typeof options.lng === 'string' ? options.lng : i18n.language || 'en';
       const inlineEnglish = typeof options.defaultValue === 'string' && options.defaultValue.length > 0;
-      if (lang !== 'en' || !inlineEnglish) void loadPack(lang, group);
+      // Native already ships English. Reuse that resource before reaching for
+      // a remote pack, including labels that have no inline fallback.
+      const bundledEnglish = i18n.getResource('en', 'translation', keys[0] || '') !== undefined;
+      if (lang !== 'en' || (!inlineEnglish && !bundledEnglish)) void loadPack(lang, group);
     }
     return value;
   },
