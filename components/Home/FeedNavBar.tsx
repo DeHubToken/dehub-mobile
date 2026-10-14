@@ -1,6 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState, useRef, useMemo, useEffect } from "react";
-import { View, Pressable, StyleSheet, Platform, Image } from "react-native";
+import { View, Pressable, StyleSheet, Platform, Image, type LayoutChangeEvent } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
   useSharedValue,
@@ -148,6 +148,14 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     [skin],
   );
   const [containerWidth, setContainerWidth] = useState(0);
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    // A detached/collapsed screen can report an empty row. Retain the last
+    // visible geometry instead of flashing the fallback selection on return.
+    if (height > 0 && Number.isFinite(width) && width > (isMinimal ? 0 : LEAD_SLOT_WIDTH)) {
+      setContainerWidth(width);
+    }
+  }, [isMinimal]);
   const buttonCount = NAV_ITEMS.length + 1; // +1 for the leading filter/back slot
   // Glass pill, as on web: a 40pt leading slot and the tabs sharing the rest.
   // Minimal's file-tab strip keeps equal cells.
@@ -241,13 +249,13 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
         // no glass, no pill. Same slide as the glass indicator.
         <View
           style={styles.minimalBar}
-          onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+          onLayout={handleLayout}
         >
           <View style={styles.minimalBaseline} pointerEvents="none" />
-          <Reanimated.View
+          {containerWidth > 0 && <Reanimated.View
             style={[styles.minimalTab, indicatorStyle]}
             pointerEvents="none"
-          />
+          />}
           <View style={styles.navRow}>
             <Pressable
               onPress={backMode ? onBackPress : onFilterPress}
@@ -288,7 +296,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       <View style={styles.outerWrap}>
         <View
           style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : null]}
-          onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+          onLayout={handleLayout}
         >
           {skin ? (
             // Keep the theme's existing outline and texture over shared frost.
@@ -319,7 +327,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           {/* FrostedPill owns the backdrop blur. The moving selection only
               adds its tint and rim, matching the web nav without a second
               blur sample that can leave a seam during tab transitions. */}
-          <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle]}>
+          {containerWidth > 0 && <Reanimated.View style={[styles.glassIndicator, skin ? { borderRadius: skin.stripActive.borderRadius } : null, glassIndicatorStyle]}>
             {skin ? (
               <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
             ) : (
@@ -327,7 +335,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 <GlassIndicator borderRadius={12} />
               </View>
             )}
-          </Reanimated.View>
+          </Reanimated.View>}
           {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
 
           <View style={styles.navRow}>
