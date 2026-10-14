@@ -1,11 +1,9 @@
 {
   "viralTemplates": {
-    "eyebrow":  "{{count}} video efekti",
     "title":  "Sıradaki viral anını bul.",
     "intro":  "Bir örnek izle. Efekt veya karakter seç. Fotoğrafını ekle ve kendine uyarla.",
     "browse":  "{{count}} şablonun tümünü gör",
     "featured":  "Öne çıkanlara dön",
-    "use":  "Bu efekti kullan",
     "useNamed":  "{{name}} kullan",
     "preview":  "{{name}} önizlemesini oynat",
     "previewUnavailable":  "Önizleme kullanılamıyor",
@@ -24,7 +22,11 @@
     "ready":  "{{name}} seçildi. 5 saniyelik video için bir fotoğraf ekle. Kadraj fotoğrafını izler.",
     "chooseFirst":  "Oluşturmadan önce bir efekt seç.",
     "back":  "Şablonlara dön",
-    "close":  "Şablonları kapat"
+    "close":  "Şablonları kapat",
+    "eyebrow":  "{{count}} video şablonu",
+    "use":  "Bu şablonu kullan",
+    "motion":  "Bu hareketi kopyala",
+    "motionReady":  "{{name}} seçildi. Klipteki hareketleri yapmak için fotoğrafını ekle."
 },
 
   "maboroshiShowcase": {

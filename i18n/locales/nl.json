@@ -1,11 +1,9 @@
 {
   "viralTemplates": {
-    "eyebrow":  "{{count}} video-effecten",
     "title":  "Jouw volgende virale moment.",
     "intro":  "Bekijk een voorbeeld. Kies een effect of personage. Voeg je foto toe en maak het van jou.",
     "browse":  "Bekijk alle {{count}} sjablonen",
     "featured":  "Terug naar uitgelicht",
-    "use":  "Gebruik dit effect",
     "useNamed":  "Gebruik {{name}}",
     "preview":  "Bekijk voorbeeld van {{name}}",
     "previewUnavailable":  "Voorbeeld niet beschikbaar",
@@ -24,7 +22,11 @@
     "ready":  "{{name}} geselecteerd. Voeg één foto toe voor een video van 5 seconden. De uitsnede volgt je foto.",
     "chooseFirst":  "Kies een effect voordat je genereert.",
     "back":  "Terug naar sjablonen",
-    "close":  "Sjablonen sluiten"
+    "close":  "Sjablonen sluiten",
+    "eyebrow":  "{{count}} videosjablonen",
+    "use":  "Dit sjabloon gebruiken",
+    "motion":  "Deze beweging overnemen",
+    "motionReady":  "{{name}} geselecteerd. Voeg je foto toe om de bewegingen uit deze clip over te nemen."
 },
 
   "maboroshiShowcase": {

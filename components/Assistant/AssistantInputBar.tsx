@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
+  ScrollView,
   useWindowDimensions,
   type NativeSyntheticEvent,
   type TextInputSelectionChangeEventData,
@@ -17,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 interface AssistantInputBarProps {
   readOnly?: boolean;
+  controls?: React.ReactNode;
   value: string;
   onChangeText: (text: string) => void;
   onSelectionChange?: (e: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => void;
@@ -45,6 +47,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   sendLabel,
   allowEmpty = false,
   readOnly = false,
+  controls,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -90,6 +93,8 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           editable={!readOnly && !disabled && !loading}
         />
         <View style={s.actions}>
+          {controls && <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}
+            style={{ flex: 1 }} contentContainerStyle={{ alignItems: 'center', gap: 6 }}>{controls}</ScrollView>}
           {onAttach && (
             <TouchableOpacity
               onPress={onAttach}
@@ -187,6 +192,7 @@ const s = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
+    alignItems: 'flex-end',
     justifyContent: 'flex-end',
     gap: 12,
   },

@@ -49,7 +49,8 @@ import TemplatesSheet from '../components/Assistant/TemplatesSheet';
 import Icon from '../components/ui/Icon';
 import { applyTemplate, getTemplate, type CreatorTemplate } from '../libs/creatorTemplates';
 import ViralTemplateShowcase from '../components/Assistant/ViralTemplateShowcase';
-import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL, viralEffect, type ViralEffect } from '../config/viral-effects';
+import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL, viralEffect } from '../config/viral-effects';
+import { MOTION_TEMPLATE_PROMPT, viralTemplate, type ViralTemplate } from '../config/viral-templates';
 import MusicConfirmSheet, { type MusicParams } from '../components/Assistant/MusicConfirmSheet';
 import PosterConfigSheet, { type PosterConfig } from '../components/Assistant/PosterConfigSheet';
 import { ImageGenerationSkeleton } from '../components/Assistant/GenerationSkeleton';
@@ -307,18 +308,34 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings]);
   const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
   const appliedEffectRoute = useRef<string | undefined>(undefined);
-  const pickEffect = useCallback((effect: ViralEffect) => {
+  const pendingMotionPrompt = useRef(false);
+  const pickEffect = useCallback((effect: ViralTemplate) => {
     setTemplateId(null);
+    if (effect.motionSeconds && effect.preview) {
+      pendingMotionPrompt.current = true;
+      setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model: 'kling-3-motion', effect: undefined,
+        durationSeconds: Math.ceil(effect.motionSeconds!), resolution: '1080p', referenceAssets: [
+          ...(previous.referenceAssets?.filter(asset => asset.kind === 'image').slice(0, 1) ?? []),
+          { kind: 'video', uri: effect.preview!, label: effect.name, seconds: effect.motionSeconds, posterUrl: effect.poster },
+        ] }));
+      return;
+    }
     setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model: VIRAL_EFFECT_MODEL,
       effect: effect.name, durationSeconds: 5, resolution: '720p', referenceAssets: previous.referenceAssets?.filter(asset => asset.kind === 'image').slice(0, 1) }));
   }, [setStudioSettings]);
   useEffect(() => {
-    const effect = viralEffect(route.params?.effect);
+    const effect = viralTemplate(route.params?.effect);
     if (studio && effect && appliedEffectRoute.current !== effect.id) {
       appliedEffectRoute.current = effect.id;
       pickEffect(effect);
     }
   }, [studio, route.params?.effect, pickEffect]);
+  useEffect(() => {
+    if (pendingMotionPrompt.current && studioSettings.mode === 'video' && studioSettings.model === 'kling-3-motion') {
+      pendingMotionPrompt.current = false;
+      setInput(MOTION_TEMPLATE_PROMPT);
+    }
+  }, [studioSettings, setInput]);
   useEffect(() => {
     if (!effectMode) return;
     const effect = VIRAL_EFFECTS.find(item => item.name === studioSettings.effect) ?? viralEffect('earth-zoom')!;
@@ -1260,10 +1277,6 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const handleSend = useCallback(async () => {
     const typed = input.trim();
     if ((!typed && !attachedImage && !activeTemplate) || isLoading || restoring || submitLock.current) return;
-    if (studio && (!isSignedIn || needsUsername)) {
-      navigation.navigate(ScreenNames.SignIn);
-      return;
-    }
     // An empty send under a template runs its example subject, like web's tile.
     const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
@@ -1274,6 +1287,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       const resolved = prepareCreatorPrompt(text, activeTemplate);
       const limit = creatorPromptLimit(creator);
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
+    }
+    if (studio && (!isSignedIn || needsUsername)) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
     }
     submitLock.current = true;
     pendingDraftCompletion.current = () => { setInput.complete(input, ""); };
@@ -1847,17 +1864,6 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             <Text className="text-theme-neutrals-100">{t('common.cancel')}</Text>
           </TouchableOpacity>
         </View>}
-        {studio && <CreatorStudioControls settings={studioSettings} onChange={next => {
-          const selectedTemplate = getTemplate(templateId);
-          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
-          setStudioSettings(next);
-        }}
-          onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
-          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
-          onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
-          onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />}
-        {studio && <ViralTemplateShowcase compact onPick={pickEffect} />}
-        {effectMode && <Text className="px-4 py-2 text-sm text-theme-neutrals-400">{t('viralTemplates.ready', { name: studioSettings.effect })}</Text>}
         {studio && studioSettings.mode !== 'audio' && <CreatorReferenceAssets assets={studioSettings.referenceAssets ?? []}
           mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
           onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
@@ -1895,6 +1901,18 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           </View>
         )}
         <AssistantInputBar
+          controls={studio ? <>
+        <CreatorStudioControls settings={studioSettings} onChange={next => {
+          const selectedTemplate = getTemplate(templateId);
+          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
+          setStudioSettings(next);
+        }}
+          onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
+          onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
+          onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
+          onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />
+        <ViralTemplateShowcase compact onPick={pickEffect} />
+          </> : undefined}
           readOnly={effectMode}
           value={input}
           onChangeText={mentions.handleChangeText}
