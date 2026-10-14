@@ -1,35 +1,16 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
-/**
- * Feedback — the permanent testimonial hub (mobile twin)
- * ======================================================
- * Mirror of web's src/components/app/stats/FeedbackSection.tsx. Same table,
- * same two consent booleans, same public view for the approved wall — a quote
- * left on the phone and one left on the desktop are the same row.
- *
- * Two consent boxes, not one: `allow_promo` licenses the words, `allow_name`
- * licenses attaching the person to them. Being happy to be quoted anonymously
- * is a normal position that one checkbox cannot express. Both default off, and
- * neither is required to submit.
- *
- * The wall reads `public_testimonials`, a view that carries no wallet address
- * and nulls the username unless that person consented to being named — so an
- * anonymous quote never ships an identity over the wire, whatever the client
- * chooses to render.
- *
- * StatsScreen is otherwise hardcoded English. New strings here go through
- * `t()` regardless: adding one more untranslated line to an unwired screen is
- * how those screens stay unwired.
- */
+/** Feedback submissions and the paginated, consent-approved public wall. */
 
-import React, { useCallback, useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useUser, useAuthState } from "../../context/AuthContext";
 import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { PageSection } from "../page/PageKit";
+import { KitButton, PageSection } from "../page/PageKit";
 
 const MIN_LENGTH = 10;
 const MAX_LENGTH = 1200;
@@ -67,22 +48,23 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
   const [allowName, setAllowName] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [approved, setApproved] = useState<ApprovedTestimonial[]>([]);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const { data } = await supabase
+  const feedback = useInfiniteQuery({
+    queryKey: ['public-testimonials'],
+    initialPageParam: 0,
+    queryFn: async ({ pageParam }) => {
+      const { data, error } = await supabase
         .from("public_testimonials")
         .select("id, body, time_using, username, created_at")
         .order("created_at", { ascending: false })
-        .limit(12);
-      if (!cancelled && data) setApproved(data as ApprovedTestimonial[]);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+        .order("id", { ascending: false })
+        .range(pageParam, pageParam + 23);
+      if (error) throw error;
+      return (data ?? []) as ApprovedTestimonial[];
+    },
+    getNextPageParam: (lastPage, pages) => lastPage.length === 24 ? pages.length * 24 : undefined,
+    staleTime: 60_000,
+  });
+  const approved = feedback.data?.pages.flat() ?? [];
 
   const trimmed = body.trim();
   const canSubmit =
@@ -192,19 +174,11 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
             ) : null}
 
             <View style={styles.submitRow}>
-              <Pressable
+              <KitButton
                 disabled={!canSubmit}
                 onPress={handleSubmit}
-                style={[styles.submit, !canSubmit && styles.submitDisabled]}
-              >
-                {submitting ? (
-                  <ActivityIndicator color="#09090B" size="small" />
-                ) : (
-                  <Text style={[styles.submitText, !canSubmit && styles.submitTextDisabled]}>
-                    {t("stats.feedback.submit", "Send feedback")}
-                  </Text>
-                )}
-              </Pressable>
+                label={t(submitting ? 'stats.feedback.sending' : 'stats.feedback.submit')}
+              />
               <Text style={styles.counter}>
                 {!isSignedIn
                   ? t("stats.feedback.signedOut", "Sign in to leave feedback")
@@ -215,12 +189,16 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
         )}
       </PageSection>
 
-      {approved.length > 0 ? (
         <PageSection
           title={t("stats.feedback.wallTitle", "What people say")}
           action={<Text style={styles.cardHint}>{t("stats.feedback.wallNote", "published with permission")}</Text>}
           style={styles.card}
         >
+          <Text style={styles.intro} accessibilityLiveRegion="polite">
+            {feedback.isPending ? t('common.loading') : null}
+            {!feedback.isPending && !feedback.isError && approved.length === 0 ? t('search.noResults') : null}
+            {feedback.isError ? t('common.failedToLoad') : null}
+          </Text>
           {approved.map((item) => (
             <View key={item.id} style={styles.quote}>
               <Text style={styles.quoteBody}>“{item.body}”</Text>
@@ -230,8 +208,12 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
               </Text>
             </View>
           ))}
+          {(feedback.isError || feedback.hasNextPage) ? (
+            <KitButton variant="quiet" disabled={feedback.isFetching}
+              label={t(feedback.isFetching ? 'common.loading' : feedback.isError ? 'common.retry' : 'search.loadMore')}
+              onPress={() => { void (feedback.isError ? (approved.length ? feedback.fetchNextPage() : feedback.refetch()) : feedback.fetchNextPage()); }} />
+          ) : null}
         </PageSection>
-      ) : null}
     </>
   );
 }

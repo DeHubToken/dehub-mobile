@@ -16,7 +16,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
-import FeedbackSection from "../components/Stats/FeedbackSection";
 import FinanceSection from "../components/Stats/FinanceSection";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
@@ -198,7 +197,6 @@ export default function StatsScreen() {
           </PageSection>
 
           <FinanceSection days={option.days} />
-          <FeedbackSection />
         </ScrollView>
       )}
       <DeHubRefreshMark refreshing={query.isFetching} />
