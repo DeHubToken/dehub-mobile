@@ -1612,6 +1612,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         navigation.navigate(ScreenNames.ShortsViewer, {
           initialIndex: 0,
           initialItems: [item],
+          initialThumbnail: thumbnail,
           feedParams: { brainrot: true, fromId: String(tokenId) },
         });
       }}

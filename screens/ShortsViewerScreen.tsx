@@ -103,6 +103,8 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
   getShortsThumbnailUrl,
+  resolveThumbnail,
+  DEFAULT_BANNER_SENTINEL,
   getAvatarUrl,
   formatCompactNumber,
   toastError,
@@ -321,6 +323,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
 interface ShortItemProps {
   item: UnifiedFeedItem;
+  thumbnailOverride?: string;
   isActive: boolean;
   isNearby: boolean;
   activeVideoRef: React.RefObject<VideoView | null>;
@@ -345,7 +348,7 @@ interface ShortItemProps {
   onCommentsVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
   const { t: _copy } = _useCopy();
   const playbackAllowed = useFeedPlaybackAllowed();
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
@@ -373,7 +376,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   const isLooping = useMediaLooping();
   useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
-  const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
+  const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
+  const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
   // `getAvatarUrl` answers the literal string "default-avatar" — not a URI —
@@ -1761,6 +1765,7 @@ const ShortsViewerScreen = () => {
   const {
     initialIndex = 0,
     initialItems = [],
+    initialThumbnail,
     feedParams = {},
   } = (route?.params as any) || {};
 
@@ -2166,6 +2171,7 @@ const ShortsViewerScreen = () => {
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
       <ShortItem
         item={item}
+        thumbnailOverride={index === initialIndex ? initialThumbnail : undefined}
         isActive={index === activeIndex}
         isNearby={Math.abs(index - activeIndex) <= 1}
         activeVideoRef={activeVideoRef}
@@ -2179,7 +2185,7 @@ const ShortsViewerScreen = () => {
         onCommentsVisibilityChange={setCommentsVisible}
       />
     ),
-    [activeIndex, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible],
+    [activeIndex, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(
