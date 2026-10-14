@@ -119,6 +119,8 @@ import ScreenHeader from '../components/ScreenHeader';
 import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAssets';
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
+import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
+import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../libs/motionLibrary';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
@@ -296,6 +298,25 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
   const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
+  const appliedClipRoute = useRef<string | undefined>(undefined);
+  const pickMotionClip = useCallback((clip: MotionClip, workflow: 'swap' | 'motion') => {
+    const model = motionModel(clip, workflow);
+    setTemplateId(model === 'kling-3-motion' ? 'reference-copy-motion' : 'reference-character-swap');
+    setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model, effect: undefined,
+      aspect: motionAspect(clip), durationSeconds: Math.ceil(clip.seconds),
+      referenceAssets: [...(previous.referenceAssets?.filter(asset => asset.kind === 'image') ?? []),
+        { uri: clip.url, label: clip.name, kind: 'video', seconds: clip.seconds, posterUrl: clip.poster }] }));
+  }, [setStudioSettings]);
+  useEffect(() => {
+    const clipId = route.params?.clip;
+    if (!studio || !clipId || appliedClipRoute.current === clipId) return;
+    let cancelled = false;
+    findMotionClip(clipId).then(clip => {
+      if (cancelled) return;
+      if (clip) { appliedClipRoute.current = clipId; pickMotionClip(clip, route.params?.workflow === 'motion' ? 'motion' : 'swap'); }
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [studio, route.params?.clip, route.params?.workflow, pickMotionClip]);
   useEffect(() => {
     if (appliedEditorDraft.current === suppliedDraft) return;
     const prepared = creatorSettingsForEditorDraft(suppliedDraft);
@@ -1911,6 +1932,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />
+        <MotionLibraryShowcase compact onPick={pickMotionClip} onMaboroshi={clip => navigation.navigate(ScreenNames.Maboroshi, { clip: clip.id })} />
         <ViralTemplateShowcase compact onPick={pickEffect} />
           </> : undefined}
           readOnly={effectMode}

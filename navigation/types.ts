@@ -36,8 +36,8 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
-  [ScreenNames.Maboroshi]: { preset?: string } | undefined;
-  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; effect?: string; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
+  [ScreenNames.Maboroshi]: { preset?: string; clip?: string } | undefined;
+  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; clip?: string; effect?: string; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
    *  without the public lookup; a shared link carries only `id`. */
