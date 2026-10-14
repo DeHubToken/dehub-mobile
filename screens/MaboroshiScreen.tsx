@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Pressable, Text, View } from 'react-native';
 import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -12,7 +12,9 @@ import { saveEditorDownload } from '../libs/editor/saveEditorDownload';
 import { DIGITAL_PURCHASES_ENABLED } from '../config/storefront';
 import { ScreenNames } from '../navigation/ScreenNames';
 import type { AppStackParamList } from '../navigation/types';
-import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript, maboroshiStudioUrl } from '../libs/maboroshi';
+import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript, maboroshiStudioUrl, maboroshiClipScript } from '../libs/maboroshi';
+import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
+import { findMotionClip, type MotionClip } from '../libs/motionLibrary';
 import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
 import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
@@ -30,6 +32,13 @@ export default function MaboroshiScreen() {
   const downloading = useRef(false);
   const [failed, setFailed] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [selectedClip, setSelectedClip] = useState<MotionClip | null>(null);
+  useEffect(() => {
+    if (!route.params?.clip) return;
+    let cancelled = false;
+    void findMotionClip(route.params.clip).then(clip => { if (!cancelled && clip) setSelectedClip(clip); }).catch(() => setFailed(true));
+    return () => { cancelled = true; };
+  }, [route.params?.clip]);
   const pendingPayment = useRef<string | null>(null);
   const { payForJob } = useJobPayment(false);
   const { account: payingAccount } = useWeb3Provider();
@@ -68,8 +77,10 @@ export default function MaboroshiScreen() {
       const headers = wallet ? await dehubAuthHeaders(wallet) : {};
       if (activeWallet.current !== wallet) return;
       web.current?.injectJavaScript(maboroshiSessionScript(headers['x-dehub-token'] || '', wallet, DIGITAL_PURCHASES_ENABLED));
+      if (selectedClip) web.current?.injectJavaScript(maboroshiClipScript(selectedClip));
     } catch { setFailed(true); }
-  }, [wallet]);
+  }, [wallet, selectedClip]);
+  useEffect(() => { void session(); }, [session]);
 
   const download = useCallback(async (url: string) => {
     if (!isMaboroshiDownload(url) || downloading.current || !FileSystem.cacheDirectory) return;
@@ -92,6 +103,7 @@ export default function MaboroshiScreen() {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t('creator.toolMaboroshi')} />
+      <MotionLibraryShowcase compact onPick={clip => setSelectedClip(clip)} />
       {saving && <View accessibilityLiveRegion="polite" className="flex-row items-center gap-2 px-4 py-2"><ActivityIndicator /><Text className="text-theme-neutrals-100">{t('common.saving')}</Text></View>}
       {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('common.signIn')}</Text></Pressable>}
       {failed && <Pressable accessibilityRole="button" onPress={() => { setFailed(false); web.current?.reload(); }} className="m-4 p-4"><Text className="text-center text-theme-neutrals-100">{t('common.retry', 'Try again')}</Text></Pressable>}

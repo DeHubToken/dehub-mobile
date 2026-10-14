@@ -61,7 +61,6 @@ export default function ViralTemplateShowcase({ onPick, compact = false }: { onP
           {preview.preview && <Preview key={preview.id} effect={preview} width={width - 32} />}
           <Text className="mt-4 text-sm text-white/60">{t(preview.motionSeconds ? 'viralTemplates.motionReady' : 'viralTemplates.ready', { name: preview.name })}</Text>
           {useButton(preview)}
-          <Text className="mt-4 text-xs text-white/45">{t('viralTemplates.source')} {preview.sourceName ?? 'PixVerse'}</Text>
         </ScrollView> : <>
           <TextInput value={query} onChangeText={setQuery} placeholder={t('viralTemplates.search')} accessibilityLabel={t('viralTemplates.search')}
             placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl border border-white/20 px-4 text-white" />

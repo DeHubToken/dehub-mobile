@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
 import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
 import ViralTemplateShowcase from '../components/Assistant/ViralTemplateShowcase';
+import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
 import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -137,6 +138,7 @@ export default function CreatorScreen() {
         </Pressable>
       </View>
 
+      <MotionLibraryShowcase onPick={(clip, workflow) => nav.navigate(ScreenNames.CreatorStudio, { mode: 'video', workflow, clip: clip.id })} onMaboroshi={clip => nav.navigate(ScreenNames.Maboroshi, { clip: clip.id })} />
       <ViralTemplateShowcase onPick={effect => nav.navigate(ScreenNames.CreatorStudio, { mode: 'video', effect: effect.id })} />
       <Text className="px-4 pb-3 text-[22px] font-black text-theme-neutrals-100">{t('creator.pickMedium')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{mediums.map(tile)}</View>
