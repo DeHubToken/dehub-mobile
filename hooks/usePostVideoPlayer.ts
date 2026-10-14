@@ -23,10 +23,11 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
     return () => { session.listeners.delete(notify); release(); };
   }, [key, session, token]);
   const ownsPlayer = useCallback(() => ownsPostMedia(session, token), [session, token]);
+  const active = ownsPlayer();
   useEffect(() => {
     if (deferSource || !ownsPlayer() || session.loadedSource === (url || null)) return;
     session.loadedSource = url || null;
     void replaceVideoSource(session.value!, url || null).catch(() => { session.loadedSource = null; });
-  }, [deferSource, url, session, ownsPlayer]);
-  return { player: session.value, session, ownsPlayer, active: ownsPlayer() };
+  }, [deferSource, url, session, ownsPlayer, active]);
+  return { player: session.value, session, ownsPlayer, active };
 }

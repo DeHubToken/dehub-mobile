@@ -951,7 +951,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     resetSurfaceTapSequence();
     showTapReactionAnimation("love", locationX, locationY);
     onTapReaction("love");
-  }, [onOpenViewer, isContentGated, stopPlayback, handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
+  }, [onOpenViewer, videoUrl, isContentGated, stopPlayback, handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
 
   const mediaTap = useTapOnlyPress(handleMediaSurfacePress);
 
