@@ -1,3 +1,5 @@
+import type { MotionClip } from './motionLibrary';
+
 export function maboroshiStudioUrl(preset?: string): string {
   const base = 'https://live.dehub.io/maboroshi/';
   return preset && /^[a-z0-9-]{1,80}$/.test(preset) ? `${base}?preset=${encodeURIComponent(preset)}` : base;
@@ -28,4 +30,8 @@ export function maboroshiSessionScript(token: string, wallet: string, allowPayme
 export function maboroshiPaymentResultScript(requestId: string, error?: string, cancelled = false): string {
   const data = JSON.stringify({ requestId, error, cancelled }).replace(/</g, '\\u003c');
   return `if(location.origin==='https://live.dehub.io'&&location.pathname==='/maboroshi/'){document.dispatchEvent(new CustomEvent('maboroshi:native-payment-result',{detail:${data}}));}true;`;
+}
+export function maboroshiClipScript(clip: MotionClip): string {
+  const data = JSON.stringify(clip).replace(/</g, '\\u003c');
+  return `if(location.origin==='https://live.dehub.io'&&location.pathname==='/maboroshi/'){document.dispatchEvent(new CustomEvent('maboroshi:native-clip',{detail:${data}}));}true;`;
 }
