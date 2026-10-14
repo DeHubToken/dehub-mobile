@@ -39,6 +39,7 @@ describe('holder badge interaction', () => {
     expect(tierForBadgeImage).toHaveBeenCalledTimes(40);
     expect(getAllByTestId('holder-badge-poster')).toHaveLength(40);
     expect(queryAllByTestId('holder-badge-motion')).toHaveLength(0);
+    expect(openBadgeShowcase).not.toHaveBeenCalled();
   });
 
   it('preserves visible cap height and baseline when motion replaces a padded still', () => {
