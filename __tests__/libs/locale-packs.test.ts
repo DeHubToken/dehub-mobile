@@ -5,6 +5,30 @@ const originalFetch = global.fetch;
 beforeEach(() => { jest.resetModules(); });
 afterEach(() => { global.fetch = originalFetch; });
 
+it('uses inline English instead of fetching optional copy and editor dictionaries', async () => {
+  const storage = require('@react-native-async-storage/async-storage').default;
+  await storage.clear();
+  const fetchPack = jest.fn();
+  global.fetch = fetchPack;
+  const { default: i18n } = require('../../i18n');
+  expect(i18n.t('copy.performanceProbe', { defaultValue: 'Hello {{name}}', name: 'Sam' })).toBe('Hello Sam');
+  expect(i18n.t('editor.rail.agent', 'Agent')).toBe('Agent');
+  await Promise.resolve();
+  expect(fetchPack).not.toHaveBeenCalled();
+});
+
+it('loads a requested translation even when its inline English fallback avoids a download', async () => {
+  const storage = require('@react-native-async-storage/async-storage').default;
+  await storage.clear();
+  const fetchPack = jest.fn(async () => ({ ok: true, json: async () => ({ copy: { performanceProbe: 'Hallo {{name}}' } }) }));
+  global.fetch = fetchPack as unknown as typeof fetch;
+  const { default: i18n } = require('../../i18n');
+  i18n.t('copy.performanceProbe', { lng: 'de', defaultValue: 'Hello {{name}}', name: 'Sam' });
+  await new Promise(resolve => setTimeout(resolve, 0));
+  expect(i18n.getResource('de', 'translation', 'copy.performanceProbe')).toBe('Hallo {{name}}');
+  expect(fetchPack).toHaveBeenCalledTimes(1);
+});
+
 it('loads a committed language source when the CDN has not published its version yet', async () => {
   const storage = require('@react-native-async-storage/async-storage').default;
   await storage.clear();
