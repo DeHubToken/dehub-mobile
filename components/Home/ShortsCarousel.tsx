@@ -13,7 +13,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/AuthContext';
 import { useShortsRotation, type ShortsHistoryStore } from '../../hooks/useShortsRotation';
-import { shortsBatchCount, shortsId, SHORTS_BATCH_SIZE } from '../../libs/shortsRotation';
+import { shortsBatchCount } from '../../libs/shortsRotation';
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { isShortsPhoto } from "../../libs/shortsPhotos";
@@ -102,10 +102,10 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
     historyStore, queryEnabled && (!!videos.data || videos.isError) && (!!photos.data || photos.isError),
     (!videos.hasNextPage || videos.isError) && (!photos.hasNextPage || photos.isError));
   useEffect(() => {
-    if (!queryEnabled || !count || new Set(candidates.map(shortsId)).size >= count * SHORTS_BATCH_SIZE) return;
+    if (!queryEnabled || !count || rotation.batches.length >= count) return;
     if (videos.hasNextPage && !videos.isFetching && !videos.isError) void videos.fetchNextPage();
     if (photos.hasNextPage && !photos.isFetching && !photos.isError) void photos.fetchNextPage();
-  }, [queryEnabled, count, candidates, videos.hasNextPage, videos.isFetching, videos.isError,
+  }, [queryEnabled, count, rotation.batches.length, videos.hasNextPage, videos.isFetching, videos.isError,
     videos.fetchNextPage, photos.hasNextPage, photos.isFetching, photos.isError, photos.fetchNextPage]);
   return { ...rotation, batches: enabled && shortsEnabled ? rotation.batches : [], refresh, onViewerOpen, offsets };
 }
