@@ -1,5 +1,5 @@
 
-import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest } from '../../libs/maboroshi-payment';
+import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel } from '../../libs/maboroshi-payment';
 
 const wallet = `0x${'1'.repeat(40)}`;
 const hash = `0x${'2'.repeat(64)}`;
@@ -8,6 +8,15 @@ const quote = { ...input, wallet, price_micros: 1_000_000, payment_ref: null };
 const response = (data: unknown, ok = true) => ({ ok, json: async () => data }) as Response;
 
 describe('Maboroshi normal generation payment handoff', () => {
+  it('identifies the single Kling render and rejects a separate HD purchase', async () => {
+    expect(maboroshiStageLabel('draft', 'kling')).toContain('Generate Kling video');
+    const draft = { ...input, stage: 'draft' as const };
+    const result = await getMaboroshiQuote(draft, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...draft, renderer: 'kling', price_micros: 3150000 })));
+    expect(result.renderer).toBe('kling');
+    expect(result.price_micros).toBe(3150000);
+    const hd = { ...input, stage: 'hd' as const };
+    await expect(getMaboroshiQuote(hd, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...hd, renderer: 'kling' })))).rejects.toThrow('account');
+  });
   it('uses the common payer for an unfunded prepaid balance and submits its verified transfer reference', async () => {
     const fetcher = jest.fn().mockResolvedValueOnce(response(quote)).mockResolvedValueOnce(response({ state: 'queued', payment_ref: hash }));
     const pay = jest.fn().mockResolvedValue(hash);
