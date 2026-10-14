@@ -1,6 +1,22 @@
-import { flushVideoPlayIntent, requestVideoPlayback } from '../../libs/video-start';
+import { flushVideoPlayIntent, requestVideoPlayback, rewindFinishedVideo } from '../../libs/video-start';
 
 describe('video startup', () => {
+  it('rewinds an ended feed player before the viewer resumes it', () => {
+    const player = { playing: false, duration: 23.78, currentTime: 23.78 };
+    rewindFinishedVideo(player);
+    expect(player.currentTime).toBe(0);
+  });
+
+  it.each([
+    { playing: true, duration: 24, currentTime: 24 },
+    { playing: false, duration: 24, currentTime: 12 },
+    { playing: false, duration: 0, currentTime: 0 },
+    { playing: false, duration: Infinity, currentTime: 100 },
+  ])('preserves a running or unfinished playhead: %o', (player) => {
+    const position = player.currentTime;
+    rewindFinishedVideo(player);
+    expect(player.currentTime).toBe(position);
+  });
   it('replays a loading request when the native item becomes ready, then consumes it', () => {
     const pending = { current: true };
     const play = jest.fn();
