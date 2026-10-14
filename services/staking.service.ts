@@ -1,4 +1,20 @@
 import { apiClient } from "../libs/api.client";
+import { queryClient } from '../config/queryClient';
+import { patchTipBadges, publishTipBadges, type TipBadgeAccount } from '../libs/tip-badges';
+
+/** Runs only after a successful receipt; errors cannot fail the payment. */
+export async function refreshTipBadges(chainId: number, txHash: string): Promise<void> {
+  if (chainId !== 56 && chainId !== 8453) return;
+  try {
+    const response: any = await apiClient.post(`/badge/tip/${chainId}/${txHash}`, {}, { isAuthRequired: false });
+    const accounts: TipBadgeAccount[] = response?.result;
+    if (!Array.isArray(accounts)) return;
+    queryClient.setQueriesData({}, (data: unknown) => patchTipBadges(data, accounts));
+    publishTipBadges(accounts);
+  } catch (error) {
+    console.warn('[Tip] Badge reconciliation failed', error);
+  }
+}
 
 export interface StakingRefreshResult {
   address: string;
