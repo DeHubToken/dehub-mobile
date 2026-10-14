@@ -114,7 +114,7 @@ export interface AgentTask {
 }
 export interface AgentTaskAction {
   id: string; tool: string; target: string; status: string; created_at: string;
-  result: { error?: string; hint?: string; content?: string; message?: string; post?: { url?: string } } | null;
+  result: { error?: string; hint?: string; content?: string; message?: string; post?: { token_id?: string | number; url?: string } } | null;
 }
 export async function agentTaskRequest<T>(wallet: string, body: Record<string, unknown> | FormData): Promise<T> {
   await tokenRefreshManager.ensureFreshToken();
