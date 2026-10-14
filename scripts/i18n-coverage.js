@@ -48,13 +48,23 @@ const flatten = (obj, prefix = '', out = {}) => {
   return out;
 };
 
-const en = flatten(JSON.parse(fs.readFileSync(path.join(LOCALES, 'en.json'), 'utf8')));
+// Feature bundles register the same translation namespace without editing shared locale files.
+// Read the literal resource data so these keys receive the same coverage checks.
+const motionSource = fs.readFileSync(path.join(REPO, 'i18n', 'motionLibraryCopy.ts'), 'utf8');
+const motionLiteral = motionSource.match(/^export const MOTION_LIBRARY_COPY = ([\s\S]+) as const;\s*$/);
+if (!motionLiteral) throw new Error('Motion library resource must contain a JSON literal.');
+const motionCopy = JSON.parse(motionLiteral[1]);
+const localeKeys = code => ({
+  ...flatten(JSON.parse(fs.readFileSync(path.join(LOCALES, `${code}.json`), 'utf8'))),
+  ...flatten({ motionLibrary: motionCopy[code] || {} }),
+});
+const en = localeKeys('en');
 const enKeys = Object.keys(en);
 const codes = fs.readdirSync(LOCALES).filter((f) => f.endsWith('.json') && f !== 'en.json').map((f) => f.slice(0, -5));
 
 const missingIn = new Map();
 const rows = codes.map((code) => {
-  const locale = flatten(JSON.parse(fs.readFileSync(path.join(LOCALES, `${code}.json`), 'utf8')));
+  const locale = localeKeys(code);
   const missing = enKeys.filter((k) => typeof locale[k] !== 'string' || !locale[k].trim());
   const copies = enKeys.filter((k) => typeof locale[k] === 'string' && locale[k] === en[k] && String(en[k]).length > 3);
   for (const key of missing) missingIn.set(key, (missingIn.get(key) ?? 0) + 1);
