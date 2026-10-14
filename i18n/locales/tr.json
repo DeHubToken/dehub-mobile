@@ -1,4 +1,32 @@
 {
+  "viralTemplates": {
+    "eyebrow":  "{{count}} video efekti",
+    "title":  "Sıradaki viral anını bul.",
+    "intro":  "Bir örnek izle. Efekt veya karakter seç. Fotoğrafını ekle ve kendine uyarla.",
+    "browse":  "{{count}} şablonun tümünü gör",
+    "featured":  "Öne çıkanlara dön",
+    "use":  "Bu efekti kullan",
+    "useNamed":  "{{name}} kullan",
+    "preview":  "{{name}} önizlemesini oynat",
+    "previewUnavailable":  "Önizleme kullanılamıyor",
+    "search":  "Efekt, karakter ve dans ara",
+    "all":  "Tümü",
+    "effects":  "Efektler",
+    "characters":  "Karakterler",
+    "dance":  "Dans",
+    "sports":  "Spor",
+    "products":  "Ürünler",
+    "seasonal":  "Mevsimlik",
+    "results":  "{{count}} şablon",
+    "empty":  "Eşleşen şablon yok. Başka arama veya kategori dene.",
+    "more":  "Daha fazla göster",
+    "source":  "Örnek videoların kaynağı",
+    "ready":  "{{name}} seçildi. 5 saniyelik video için bir fotoğraf ekle. Kadraj fotoğrafını izler.",
+    "chooseFirst":  "Oluşturmadan önce bir efekt seç.",
+    "back":  "Şablonlara dön",
+    "close":  "Şablonları kapat"
+},
+
   "maboroshiShowcase": {
     "title": "Senin sahnen. Farklı bir sen.",
     "intro": "Yumuşak pelüşten sıvı kroma 180 karakter görünümü.",
