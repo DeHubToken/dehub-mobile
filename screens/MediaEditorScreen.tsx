@@ -85,6 +85,7 @@ import {
 } from "../components/editor/EditorPanels";
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
+import GenerationWindow from "../components/editor/GenerationWindow";
 import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
 import { createAssemblyEdit } from "../libs/editor/applyAssembly";
 import { useAssembly } from "../libs/editor/useAssembly";
@@ -389,6 +390,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
   // AI chat and brand kit.
   const [chatOpen, setChatOpen] = useState(false);
+  const [generatorWindow, setGeneratorWindow] = useState<'closed' | 'open' | 'minimized'>('closed');
+  const [generatorDraft, setGeneratorDraft] = useState<GenerationDraft | null>(null);
   const [chat, setChat] = useState<ChatEntry[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
   const [openingGenerator, setOpeningGenerator] = useState(false);
@@ -505,7 +508,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     open: draft => {
       setPlaying(false);
       setChatOpen(false);
-      nav.push(ScreenNames.CreatorStudio, { editorDraft: draft });
+      setGeneratorDraft(draft);
+      setGeneratorWindow('open');
     },
   }), [nav]);
   const openGenerator = async (draft: GenerationDraft) => {
@@ -1799,10 +1803,21 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         projectId={project.id}
         visualScope={highlightVisualScope(project, selectedId ? [selectedId] : [])}
         onOpenGenerator={draft => { void openGenerator(draft); }}
+        onGenerateContent={() => { setPlaying(false); setChatOpen(false); setGeneratorWindow('open'); }}
         onUndo={h.undo}
         onClose={() => { if (assembly.state.busy || assemblyPreparation.current) closeAssembly(); setChatOpen(false); }}
         onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); }}
       />
+
+      <GenerationWindow key={user?.walletAddress || user?.address || 'guest'} state={generatorWindow} onState={setGeneratorWindow} draft={generatorDraft}
+        onAdd={media => {
+          const current = h.latest();
+          if (!current) return;
+          const next = media.kind === 'image' ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
+          h.commit(next.project);
+          if (media.kind !== 'image') setTimelineOpen(true);
+          select(next.clipId);
+        }} />
 
       <ExportSheet
         visible={exportOpen}
