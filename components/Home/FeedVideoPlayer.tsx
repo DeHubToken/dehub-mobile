@@ -70,6 +70,7 @@ import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -524,7 +525,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [videoSize, setVideoSize] = useState<{ tokenId: unknown; ratio: number } | null>(null);
   const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
   const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
-  const mediaAspect = videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect;
+  const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage);
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
@@ -2002,10 +2003,11 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack"> & { feedPreview?: boolean }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedPreview = false }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible"> & { feedPreview?: boolean }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedPreview = false, isVisible }) => {
     const { t } = useTranslation();
-    const mediaAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+    const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+    const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, measuredAspect, isVisible, !postPage);
     const { isMinimal: minimalTheme } = useAppTheme();
     const bleed = useFeedBleed();
     const isMinimal = minimalTheme || !!bleed;
@@ -2137,6 +2139,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   ) : (
     <FeedVideoPoster
       tokenId={props.tokenId}
+      isVisible={props.isVisible}
       thumbnail={props.thumbnail}
       duration={props.duration}
       hideControls={props.hideControls}
