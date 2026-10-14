@@ -190,9 +190,10 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 
   // Strip soundtrack tag from description before display
   const cleanDescription = useMemo(() => stripSoundtrackTag(description), [description]);
+  const displayTitle = title?.trim() && cleanDescription.trim().startsWith(title.trim()) ? "" : title;
 
   // Parse links in title & description
-  const titleSegments = useMemo(() => parseTextToSegments(title || ""), [title]);
+  const titleSegments = useMemo(() => parseTextToSegments(displayTitle || ""), [displayTitle]);
   const descSegments = useMemo(() => parseTextToSegments(cleanDescription), [cleanDescription]);
 
   const renderSegments = useCallback(
@@ -260,7 +261,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   );
 
   // Build the caption text
-  const hasTitle = !!title?.trim();
+  const hasTitle = !!displayTitle?.trim();
   const hasDescription = !!cleanDescription?.trim();
   const hasCategories = showCategories && categories && categories.length > 0;
   // War sets captions as readouts: monospace, tracked out (web war-theme.css).
