@@ -23,7 +23,7 @@ import {
   type StoredWallet,
 } from "./wallet-core/store";
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
-import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
+import { generateMnemonic12, deriveFromSecret, isRawPrivateKey } from "./wallet-core/derive";
 import { replaceStoredWallet } from './wallet-core/replacement';
 import { assertWalletAddress } from "./wallet-core/assert-wallet-address";
 import { findLocalWalletKeyAddress, recoverLocalWalletKey } from './wallet-core/local-key-recovery';
@@ -313,6 +313,24 @@ export async function finishWalletUnlock(
  * using this device's stored wrap key (biometric/passcode-gated), derives
  * the keypair, and persists it locally the same way finishWalletUnlock does.
  */
+export async function finishPasskeyUnlock(
+  supabaseUserId: string,
+  address: string,
+): Promise<{ address: string; privateKey: string }> {
+  const { unlockWithSavedPasskey } = await import('./wallet-core/passkey-unlock');
+  const secret = await unlockWithSavedPasskey(supabaseUserId);
+  const derived = deriveFromSecret(secret);
+  await assertWalletAddress(derived.ethAddress, address);
+  const current = await fetchWalletReliably(supabaseUserId);
+  if (current.failed || current.wallet?.ethAddress.toLowerCase() !== address.toLowerCase()) {
+    throw new Error('Your wallet changed or could not be checked. Close this screen and try again.');
+  }
+  await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey,
+    ...(!isRawPrivateKey(secret) ? { recoveryPhrase: secret } : {}) });
+  await finishWalletUnlock(supabaseUserId, derived.ethAddress, derived.ethPrivateKey);
+  return { address: derived.ethAddress, privateKey: derived.ethPrivateKey };
+}
+
 export async function finishBiometricUnlock(
   supabaseUserId: string,
   address: string,
