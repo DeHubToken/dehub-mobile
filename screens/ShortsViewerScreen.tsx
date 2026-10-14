@@ -1,7 +1,8 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
-import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
+import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
+import { postMediaIsTransferring } from '../libs/post-media-session';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
@@ -78,7 +79,7 @@ import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useScrubGesture } from "../hooks/useScrubGesture";
 import { useDataSaver } from "../hooks/useDataSaver";
 import { feedVolumeResponder } from "../libs/feed-volume-responder";
-import { getVolume, setVolume as persistVolume, getIsLooping, useMediaLooping } from "../libs/video-preferences";
+import { getVolume, setVolume as persistVolume, getIsLooping, useMediaLooping, getPlaybackRateFor } from "../libs/video-preferences";
 import { getCachedMuted, setMutedState, useMediaMuted } from "../libs/videoMutedState";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
@@ -348,13 +349,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const { t: _copy } = _useCopy();
   const playbackAllowed = useFeedPlaybackAllowed();
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
-  const player = usePersistentVideoPlayer(null, (p) => {
+  const tokenId = item.tokenId ?? item.id;
+  const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
+  const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     p.staysActiveInBackground = activeItem && playbackAllowed;
     p.showNowPlayingNotification = activeItem && playbackAllowed;
     p.loop = getIsLooping();
     p.muted = isMuted;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
-  });
+  }, true);
+  const ownsPlayerRef = useRef(ownsPlayer);
+  ownsPlayerRef.current = ownsPlayer;
   const isActive = (activeItem && playbackAllowed) || pipPlayer === player;
   // Live window size, not a module-level snapshot: on iPad the pager cells
   // and tap zones were sized for the launch orientation.
@@ -365,11 +371,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
 
-  const tokenId = item.tokenId ?? item.id;
-  const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   const isLooping = useMediaLooping();
   useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
   const thumbnail = photoMedia?.thumbnail || getShortsThumbnailUrl(tokenId);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
@@ -601,10 +604,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
     component: 'ShortsViewer', postId: tokenId,
-    allowed: () => (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
+    allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
   });
   const stopPlayback = useCallback(() => {
-    if (isPictureInPicturePlayer(player)) return;
+    if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
     recovery.stop();
     try {
       player.staysActiveInBackground = false;
@@ -612,9 +615,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
       player.pause();
     } catch {}
     setIsPlaying(false);
-  }, [player, recovery]);
+  }, [player, recovery, videoSession]);
 
   const playIfActive = useCallback(() => {
+    if (!ownsPlayerRef.current()) return false;
     if (!videoUrl) return false;
     if ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player)) {
       stopPlayback();
@@ -631,10 +635,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
     if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
-  }, () => recovery.fail('source-rejected'));
+  }, () => recovery.fail('source-rejected'), videoSession);
 
   useEffect(() => {
-    if (!player) return;
+    if (!player || !ownsPlayerRef.current()) return;
     player.staysActiveInBackground = isActive || isPictureInPicturePlayer(player);
     player.showNowPlayingNotification = isActive || isPictureInPicturePlayer(player);
     if (isActive) {
@@ -737,6 +741,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
 
   useEffect(() => {
     const sub = player.addListener("playingChange", ({ isPlaying: playing }) => {
+      if (!ownsPlayerRef.current()) return;
       // iOS may finish an earlier native play request after the pager's pause.
       // Immediately reject that stale start instead of trusting event order.
       if (playing && ((!isActiveRef.current && !isPictureInPicturePlayer(player)) || !canStartVideo(player))) {
@@ -756,7 +761,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   useEffect(() => {
     if (!player) return;
     const onBlur = () => {
-      if (isPictureInPicturePlayer(player)) return;
+      if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
       recovery.stop();
       try { player.pause(); } catch {}
     };
@@ -1040,6 +1045,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
   const hidePan = useMemo(
     () =>
       Gesture.Pan()
+        .enabled(isActive && !showComments && !overlaysHidden && !autoHidden)
         .manualActivation(true)
         .onTouchesDown((e, state) => {
           "worklet";
@@ -1085,7 +1091,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         // reaches native. Same reasoning as useHorizontalScrollGuard in
         // context/PagerGestureContext.tsx.
         .blocksExternalGesture(pagerGesture),
-    [panStart, pagerGesture, overlayHeight],
+    [panStart, pagerGesture, overlayHeight, isActive, showComments, overlaysHidden, autoHidden],
   );
 
   // Arbitrate before the native pager claims the upward flick. This remains
@@ -1125,7 +1131,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         runOnJS(resetTapSequence)();
       }
     })
-    .blocksExternalGesture(pagerGesture),
+    .simultaneousWithExternalGesture(pagerGesture),
   [isActive, showComments, screenshotMode, overlaysHidden, autoHidden, itemHeight,
     restorePanStart, pagerGesture, resetTapSequence]);
 
@@ -1350,7 +1356,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive: activeItem, isNe
         )}
         {/* Only the current short owns a native view: preloaded neighbours must
             not overwrite the activity's automatic PiP configuration. */}
-        {player && isActive && !photoMedia ? (
+        {player && isActive && ownsVideo && !photoMedia ? (
           <PersistentVideoView
             ref={activeVideoRef}
             allowsPictureInPicture
@@ -1828,7 +1834,7 @@ const ShortsViewerScreen = () => {
       ),
     [applyVolume, isMuted],
   );
-  const [playbackRate, setPlaybackRate] = useState<number>(1);
+  const [playbackRate, setPlaybackRate] = useState<number>(() => getPlaybackRateFor(initialItems[initialIndex]?.minter || initialItems[initialIndex]?.minterUser?.address));
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   // Clearing a short's chrome — by holding the middle of it, or by the
   // swipe-down — is reported up so the top bar goes with it.
@@ -2061,7 +2067,7 @@ const ShortsViewerScreen = () => {
     setActiveIndex((i) => Math.max(0, i - 1));
   }, [activeTokenId, navigation]);
 
-  const { begin: beginPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
+  const { begin: beginPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate, observe: observePaging } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     if (viewableItems.length > 0 && viewableItems[0].index != null) {
       pagerCandidate(viewableItems[0].index);
@@ -2212,12 +2218,14 @@ const ShortsViewerScreen = () => {
           onScrollBeginDrag={() => { cancelFooterReturn(); beginPaging(); }}
           onMomentumScrollBegin={beginPaging}
           onScrollEndDrag={(e) => endPagingDrag(e.nativeEvent.contentOffset.y)}
+          onScroll={(e) => observePaging(e.nativeEvent.contentOffset.y)}
+          scrollEventThrottle={32}
           ListFooterComponent={renderFooter}
           ListEmptyComponent={renderEmpty}
           removeClippedSubviews={false}
           windowSize={3}
-          maxToRenderPerBatch={1}
-          initialNumToRender={2}
+          maxToRenderPerBatch={2}
+          initialNumToRender={3}
           getItemLayout={getItemLayout}
         />
       </GestureDetector>}

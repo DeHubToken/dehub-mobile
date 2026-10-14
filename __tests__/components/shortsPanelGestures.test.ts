@@ -8,7 +8,7 @@ const source = readFileSync(resolve(__dirname, '../../screens/ShortsViewerScreen
 function viewer(overrides: Record<string, unknown> = {}) {
   const handlers: Record<string, Function> = {};
   const pan: Record<string, Function> = {};
-  for (const method of ['enabled', 'manualActivation', 'blocksExternalGesture']) pan[method] = jest.fn(() => pan);
+  for (const method of ['enabled', 'manualActivation', 'blocksExternalGesture', 'simultaneousWithExternalGesture']) pan[method] = jest.fn(() => pan);
   for (const method of ['onTouchesDown', 'onTouchesMove', 'onEnd']) {
     pan[method] = (callback: Function) => { handlers[method] = callback; return pan; };
   }
@@ -42,8 +42,10 @@ describe('shorts panel gestures', () => {
     expect(v.pan.enabled).toHaveBeenCalledWith(false);
   });
 
-  it('claims an upward lower-area swipe before the pager and restores on release', () => {
+  it('restores on an upward swipe without blocking the pager', () => {
     const v = viewer();
+    expect(v.pan.simultaneousWithExternalGesture).toHaveBeenCalledWith(v.pagerGesture);
+    expect(v.pan.blocksExternalGesture).not.toHaveBeenCalled();
     const state = { activate: jest.fn(), fail: jest.fn() };
     v.handlers.onTouchesDown({ numberOfTouches: 1, allTouches: [{ x: 150, y: 600 }] }, state);
     v.handlers.onTouchesMove({ numberOfTouches: 1, allTouches: [{ x: 150, y: 580 }] }, state);

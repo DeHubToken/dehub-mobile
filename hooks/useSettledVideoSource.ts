@@ -9,8 +9,9 @@ export function useSettledVideoSource(
   active: boolean,
   onReady: () => void,
   onError?: () => void,
+  sharedSource?: { loadedSource?: string | null },
 ) {
-  const loaded = useRef<string | null>(null);
+  const loaded = useRef<string | null>(sharedSource?.loadedSource ?? null);
   const latest = useRef({ source, active, onReady, onError });
   latest.current = { source, active, onReady, onError };
   const mounted = useRef(false);
@@ -22,12 +23,14 @@ export function useSettledVideoSource(
     if (loaded.current === source) return;
     const load = () => {
       loaded.current = source;
+      if (sharedSource) sharedSource.loadedSource = source;
       replaceVideoSource(player, source).then(() => {
         if (mounted.current && source && latest.current.source === source && latest.current.active) {
           latest.current.onReady();
         }
       }).catch(() => {
         if (loaded.current === source) loaded.current = null;
+        if (sharedSource?.loadedSource === source) sharedSource.loadedSource = null;
         if (mounted.current && latest.current.source === source && latest.current.active) latest.current.onError?.();
       });
     };
