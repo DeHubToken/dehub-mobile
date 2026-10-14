@@ -57,7 +57,7 @@ export function mp4QuarterTurn(buffer: ArrayBuffer): boolean | null {
 
 const rotations = new Map<string, Promise<boolean | null>>();
 
-/** Android's track size omits the MP4 display matrix. Probe only conflicting
+/** Native track sizes omit the MP4 display matrix. Probe only conflicting
  * poster/track orientations, once per source, with two bounded byte ranges. */
 export function videoQuarterTurn(url: string): Promise<boolean | null> {
   const cached = rotations.get(url);

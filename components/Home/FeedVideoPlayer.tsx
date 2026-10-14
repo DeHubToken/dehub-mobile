@@ -694,7 +694,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     const take = (size?: { width: number; height: number } | null) => {
       if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
       const ratio = size.width / size.height;
-      if (Platform.OS === 'android' && videoUrl && posterAspect && (ratio < 1) !== (posterAspect < 1)) {
+      if (Platform.OS !== 'web' && videoUrl && posterAspect && (ratio < 1) !== (posterAspect < 1)) {
         // Hold the measured poster shape until the display matrix resolves;
         // the encoded landscape size must not widen a rotated portrait clip.
         commit(posterAspect);
