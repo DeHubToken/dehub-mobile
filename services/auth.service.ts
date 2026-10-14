@@ -6,6 +6,7 @@ import {
 } from "../libs/web3.auth.sign";
 import { User } from "../context/AuthContext";
 import { createLogger } from '../libs/logger';
+import { submitWalletProof } from '../libs/wallet-challenge';
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -66,10 +67,8 @@ export const AuthService = {
       );
       const authPayload = buildAuthRequestPayload(address, sigMeta);
       const body: Record<string, any> = { chainId, ...authPayload };
-      if (opts?.privateKey && typeof opts.privateKey === "string") {
-        body.privateKey = opts.privateKey;
-        body.storePrivateKey = true;
-      }
+      // Wallet ownership is proven by the signature. Legacy callers may still
+      // pass a local key in opts, but it must never enter an HTTP request.
       if (opts?.web3AuthMeta && typeof opts.web3AuthMeta === "object") {
         body.web3AuthMeta = opts.web3AuthMeta;
         // Prove ownership of the Supabase identity named in web3AuthMeta.
@@ -83,16 +82,17 @@ export const AuthService = {
           if (supabaseToken) body.supabaseAccessToken = supabaseToken;
         } catch {}
       }
-      // if (typeof opts?.storePrivateKey === "boolean") {
-      //   body.storePrivateKey = opts.storePrivateKey;
-      // }
       stage = 'session';
-      const response = await apiClient.post<AuthResponse>(
-        "/mobile/auth",
-        body,
-        { isAuthRequired: false, retrySession: true }
+      const response = await submitWalletProof(sigMeta,
+        () => getOrCreateAuthSignature(address, undefined, chainId),
+        proof => apiClient.post<AuthResponse>(
+          "/mobile/auth",
+          { ...body, ...buildAuthRequestPayload(address, proof) },
+          { isAuthRequired: false, retrySession: true },
+        ),
       );
-      const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
+      // Only session tokens are reusable. Do not persist a spent wallet proof.
+      const augmentedUser = { ...response.user } as any;
       // isNewAccount ALONE, exactly as dehubweb decides it (AuthProvider's
       // applyAuthenticatedSession / setRequiresUsername). This used to also
       // require `!response.user.username`, which silently skipped the whole
@@ -222,14 +222,15 @@ export const AuthService = {
       );
     }
 
-    const sigMeta = await getOrCreateAuthSignature(address, undefined, chainId);
-    const authPayload = buildAuthRequestPayload(address, sigMeta);
+    const sign = () => getOrCreateAuthSignature(address, undefined, chainId, 'rotate-wallet');
+    const sigMeta = await sign();
 
     try {
-      await apiClient.post(
+      await submitWalletProof(sigMeta, sign, proof => apiClient.post(
         "/auth/rotate-wallet",
-        { chainId, ...authPayload, supabaseAccessToken },
+        { chainId, ...buildAuthRequestPayload(address, proof), supabaseAccessToken },
         { isAuthRequired: false },
+      ),
       );
     } catch (error: any) {
       if (error?.code === "WALLET_LINK_AMBIGUOUS") {
