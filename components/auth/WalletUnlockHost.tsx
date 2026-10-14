@@ -39,6 +39,7 @@ import {
   resolveEvmWalletForIdentity,
   finishWalletUnlock,
   finishBiometricUnlock,
+  finishPasskeyUnlock,
   releaseWalletKeyForSignIn,
   switchActiveWalletForIdentity,
   createAndSaveEvmWalletForIdentity,
@@ -275,7 +276,20 @@ const WalletUnlockHost: React.FC = () => {
 
   const handleBiometricUnlock = useCallback(async () => {
     const current = pendingRef.current;
-    if (!current || current.request.mode !== "biometric-unlock") return;
+    if (!current) return;
+    if (current.request.mode === 'web-passkey-sync') {
+      const recovered = await finishPasskeyUnlock(current.request.supabaseUserId, current.request.address);
+      if (await getPendingWalletReplacement(current.request.supabaseUserId, recovered.address)) {
+        await finishWalletReplacement(recovered.address, recovered.privateKey, signInWithWallet);
+        settle(false);
+        return;
+      }
+      await adoptKeyForSession(current.request.supabaseUserId, recovered.address, recovered.privateKey, current.sessionAddress);
+      rememberSuccessfulWalletUnlock();
+      settle(true);
+      return;
+    }
+    if (current.request.mode !== "biometric-unlock") return;
     const { supabaseUserId, address, payload } = current.request;
     const { address: derivedAddress, privateKey } = await finishBiometricUnlock(
       supabaseUserId,
