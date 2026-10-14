@@ -289,7 +289,7 @@ const CutMoreVertical = ({ size = 24, color = "currentColor", strokeWidth = 2, .
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><G transform="rotate(90 16 16)"><Path d="M4 14H5.8Q8 14 8 16.2V18H6.2Q4 18 4 15.8Z" fill={color} fillRule="evenodd"/><Path d="M14 14H15.8Q18 14 18 16.2V18H16.2Q14 18 14 15.8Z" fill={color} fillRule="evenodd"/><Path d="M24 14H25.8Q28 14 28 16.2V18H26.2Q24 18 24 15.8Z" fill={color} fillRule="evenodd"/></G></Svg>
 );
 const CutPictureInPicture = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
-  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12 26H10Q4 26 4 20V6H21Q28 6 28 13" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M17 17H23Q28 17 28 22V27H21Q17 27 17 23Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/></Svg>
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M12 26.7H10Q2.8 26.7 2.8 19.5V4.3H21Q29.2 4.3 29.2 12.5H26.8Q26.8 6.7 21 6.7H5.2V19.5Q5.2 24.3 10 24.3H12Z" fill={color}/><Path d="M15.8 15.3H23Q29.2 15.3 29.2 21.5V27.7H21Q15.8 27.7 15.8 22.5Z M18.2 17.7V22.5Q18.2 25.3 21 25.3H26.8V21.5Q26.8 17.7 23 17.7Z" fill={color} fillRule="evenodd"/></Svg>
 );
 const CutFastForward = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M3 6L14.8 14.9Q16.3 16 14.8 17.1L3 26Z M5.4 10.8V21.2L12.3 16Z M17 6L28.8 14.9Q30.3 16 28.8 17.1L17 26Z M19.4 10.8V21.2L26.3 16Z" fill={color} fillRule="evenodd"/></Svg>

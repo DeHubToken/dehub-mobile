@@ -1782,6 +1782,8 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     includeFontPadding: false,
     textAlign: "center",
+    textAlignVertical: "center",
+    transform: [{ translateY: 1 }],
     fontVariant: ["tabular-nums"],
   },
   bareTime: {
