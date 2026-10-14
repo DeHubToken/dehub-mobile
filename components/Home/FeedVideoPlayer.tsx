@@ -69,8 +69,9 @@ import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useMediaAspect, getMeasuredMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
+import { videoQuarterTurn } from '../../libs/video-display-aspect';
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -525,6 +526,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [videoSize, setVideoSize] = useState<{ tokenId: unknown; ratio: number } | null>(null);
   const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
   const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+  const posterAspect = getMeasuredMediaAspect(thumbnail);
   const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage);
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
@@ -683,18 +685,30 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // events feed it, plus whatever a handed-over player already knows.
   useEffect(() => {
     if (!player) return;
+    let cancelled = false;
+    const commit = (ratio: number) => {
+      if (cancelled || !ownsPlayerRef.current()) return;
+      rememberVideoAspect(tokenId, ratio);
+      setVideoSize((prev) => (prev && Object.is(prev.tokenId, tokenId) && Math.abs(prev.ratio - ratio) < 0.001 ? prev : { tokenId, ratio }));
+    };
     const take = (size?: { width: number; height: number } | null) => {
       if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
       const ratio = size.width / size.height;
-      rememberVideoAspect(tokenId, ratio);
-      setVideoSize((prev) => (prev && Object.is(prev.tokenId, tokenId) && Math.abs(prev.ratio - ratio) < 0.001 ? prev : { tokenId, ratio }));
+      if (Platform.OS === 'android' && videoUrl && posterAspect && (ratio < 1) !== (posterAspect < 1)) {
+        // Hold the measured poster shape until the display matrix resolves;
+        // the encoded landscape size must not widen a rotated portrait clip.
+        commit(posterAspect);
+        void videoQuarterTurn(videoUrl).then(rotated => commit(rotated === null ? posterAspect : rotated ? 1 / ratio : ratio));
+      } else {
+        commit(ratio);
+      }
     };
     try { take((player as any).videoTrack?.size); } catch {}
     const subs: Array<{ remove: () => void }> = [];
     try { subs.push(player.addListener("videoTrackChange", ({ videoTrack }: any) => take(videoTrack?.size))); } catch {}
     try { subs.push(player.addListener("sourceLoad", ({ availableVideoTracks }: any) => take(availableVideoTracks?.[0]?.size))); } catch {}
-    return () => subs.forEach((sub) => { try { sub.remove(); } catch {} });
-  }, [player, tokenId]);
+    return () => { cancelled = true; subs.forEach((sub) => { try { sub.remove(); } catch {} }); };
+  }, [player, tokenId, posterAspect, videoUrl]);
 
   useEffect(() => {
     if (!player) return;

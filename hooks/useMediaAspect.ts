@@ -23,6 +23,8 @@ const videoAspects = createMediaAspectCache(
   () => storage.getString('video-aspects-v1'), value => storage.set('video-aspects-v1', value),
 );
 
+export const getMeasuredMediaAspect = (uri: string) => cache.get(uri) ?? null;
+
 export function rememberVideoAspect(key: unknown, ratio: number): void {
   if (key == null || !Number.isFinite(ratio) || ratio <= 0) return;
   videoAspects.set(String(key), ratio);
