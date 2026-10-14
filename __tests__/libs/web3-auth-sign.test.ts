@@ -1,12 +1,31 @@
 import { getOrCreateAuthSignature } from '../../libs/web3.auth.sign';
 import { utils, Wallet } from 'ethers';
+import { fetchWalletChallenge } from '../../libs/wallet-challenge';
 jest.unmock('../../libs/web3.auth.sign');
 jest.mock('../../libs/auth.utils', () => ({ getAuthUser: jest.fn().mockResolvedValue(null), setAuthUser: jest.fn() }));
 jest.mock('../../libs/provider.registry', () => ({ getSigningProvider: jest.fn() }));
+jest.mock('../../libs/wallet-challenge', () => ({
+  fetchWalletChallenge: jest.fn(async (address: string, chainId: number, purpose: string) => ({
+    address: address.toLowerCase(), chainId, purpose,
+    challengeId: 'a'.repeat(64), timestamp: 1_800_000_000,
+    message: 'Address: ' + address.toLowerCase() + '\nPurpose: ' + purpose,
+  })),
+}));
 
 describe('external wallet signing recovery', () => {
   afterEach(() => jest.useRealTimers());
   const address = '0x1111111111111111111111111111111111111111';
+  it('requests a new server challenge for every signing operation, including rotation', async () => {
+    const getChallenge = fetchWalletChallenge as jest.Mock;
+    getChallenge.mockClear();
+    const request = jest.fn().mockResolvedValue('0xvalidsignature');
+    await getOrCreateAuthSignature(address, { request });
+    await getOrCreateAuthSignature(address, { request }, 8453, 'rotate-wallet');
+    expect(getChallenge.mock.calls).toEqual([
+      [address, 8453, 'login-mobile'], [address, 8453, 'rotate-wallet'],
+    ]);
+    expect(request).toHaveBeenCalledTimes(2);
+  });
   it('does not ask again after cancellation or a broken connection', async () => {
     for (const error of [{ code: 4001, message: 'User rejected' }, new TypeError('Network request failed')]) {
       const request = jest.fn().mockRejectedValue(error);
@@ -38,7 +57,7 @@ describe('external wallet signing recovery', () => {
       return wallet.signMessage(utils.arrayify(params[0]));
     });
     const result = await getOrCreateAuthSignature(wallet.address, { request });
-    expect(text).toContain(`Your wallet address is ${wallet.address.toLowerCase()}.`);
+    expect(text).toContain(`Address: ${wallet.address.toLowerCase()}`);
     expect(utils.verifyMessage(text, result.signature)).toBe(wallet.address);
   });
   it('releases a wallet that never answers and ignores a late signature', async () => {
