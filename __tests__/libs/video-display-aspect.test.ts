@@ -51,7 +51,7 @@ describe('MP4 display orientation', () => {
   it('returns unknown for missing or truncated metadata', () => {
     expect(mp4QuarterTurn(new ArrayBuffer(4))).toBeNull();
     const file = atom('moov', track(true));
-    expect(mp4QuarterTurn(file.buffer.slice(0, 20))).toBeNull();
+    expect(mp4QuarterTurn(file.buffer.slice(0, 20) as ArrayBuffer)).toBeNull();
   });
 
   it('deduplicates a bounded header request for the same clip', async () => {
