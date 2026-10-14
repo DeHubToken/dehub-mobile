@@ -8,6 +8,7 @@ type Props = {
   tint: string;
   borderRadius: number;
   bordered?: boolean;
+  blurEnabled?: boolean;
 };
 
 /**
@@ -17,11 +18,11 @@ type Props = {
  * heavy tint read as a smoked slab rather than glass. FrostedPill supplies
  * the separately targeted Android material.
  */
-export default function IosGlassPill({ tint, borderRadius, bordered = true }: Props) {
+export default function IosGlassPill({ tint, borderRadius, bordered = true, blurEnabled = true }: Props) {
   return (
     // Keep the stationary material as its own native view when tab controls move.
     <View collapsable={false} style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]} pointerEvents="none">
-      <BlurView intensity={70} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+      {blurEnabled ? <BlurView intensity={70} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} /> : <View style={[StyleSheet.absoluteFill, { backgroundColor: "#18181B" }]} />}
       <View style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} />
       <LinearGradient
         colors={["rgba(255,255,255,0.22)", "rgba(255,255,255,0.04)", "rgba(255,255,255,0)"]}

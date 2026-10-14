@@ -28,7 +28,7 @@ afterEach(() => { act(() => tree?.unmount()); });
 it('Android uses shared frost with the same tint and geometry', () => {
   act(() => { tree = create(<NavPillSurface />); });
   const views = tree.root.findAllByType('View' as any).map(view => flatten(view.props.style));
-  expect(tree.root.findByType('FrostedPill' as any).props).toMatchObject({ tint: '#18181B:0.22', borderRadius: NAV_PILL_RADIUS, bordered: false });
+  expect(tree.root.findByType('FrostedPill' as any).props).toMatchObject({ tint: '#18181B:0.22', borderRadius: NAV_PILL_RADIUS, bordered: false, blurEnabled: false });
   expect(views[0]).toMatchObject({ borderRadius: 16, borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.10)' });
 });
 
@@ -42,7 +42,7 @@ it('iOS canvas navigation uses themed chrome without stacking System glass or gr
   (Platform as any).OS = 'ios';
   mockTheme.skin = { barBorder: { borderRadius: 11 }, grain: true };
   act(() => { tree = create(<NavPillSurface />); });
-  expect(tree.root.findByType('ChromeSurface' as any).props.radius).toBe(11);
+  expect(tree.root.findByType('ChromeSurface' as any).props).toMatchObject({ radius: 11, blurEnabled: false });
   expect(tree.root.findAllByType('FrostedPill' as any)).toHaveLength(0);
   expect(tree.root.findAllByType('Image' as any)).toHaveLength(0);
 });
