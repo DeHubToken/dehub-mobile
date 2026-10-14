@@ -25,6 +25,7 @@ const LAST_CRASH_KEY = "crash-recovery-last-v1";
 /** More than this many restarts inside the window and the fault is not one a restart fixes. */
 export const MAX_RESTARTS_IN_WINDOW = 3;
 export const RESTART_WINDOW_MS = 5 * 60_000;
+export const RESTART_TIMEOUT_MS = 5_000;
 
 export interface CrashMarker {
   reason: string;
@@ -129,8 +130,19 @@ export async function restartApp(
     // test runner does not have, and nothing else in the app needs it loaded
     // before a fault actually happens.
     const Updates = require("expo-updates") as { reloadAsync: () => Promise<void> };
-    await Updates.reloadAsync();
-    return true;
+    // Native reload can stay pending. Bound the wait so fatal handlers can
+    // surface the fault and screen recovery controls become usable again.
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    try {
+      return await Promise.race([
+        Updates.reloadAsync().then(() => true),
+        new Promise<boolean>((resolve) => {
+          timeout = setTimeout(() => resolve(false), RESTART_TIMEOUT_MS);
+        }),
+      ]);
+    } finally {
+      if (timeout !== undefined) clearTimeout(timeout);
+    }
   } catch {
     return false;
   }

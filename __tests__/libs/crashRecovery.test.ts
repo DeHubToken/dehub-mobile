@@ -15,6 +15,7 @@ describe("crash recovery", () => {
 
   afterEach(() => {
     (global as any).__DEV__ = true;
+    jest.useRealTimers();
   });
 
   it("throws the persisted query cache away", () => {
@@ -71,5 +72,20 @@ describe("crash recovery", () => {
   it("reports false rather than throwing when the runtime cannot reload", async () => {
     reloadAsync.mockRejectedValue(new Error("no native module"));
     expect(await recovery.restartApp("fatal")).toBe(false);
+  });
+
+  it("returns control when native reload never settles", async () => {
+    jest.useFakeTimers();
+    reloadAsync.mockImplementation(() => new Promise(() => {}));
+    const result = recovery.restartApp("fatal", "render failed");
+    jest.advanceTimersByTime(recovery.RESTART_TIMEOUT_MS);
+    expect(await result).toBe(false);
+    expect(jest.getTimerCount()).toBe(0);
+  });
+
+  it("clears the deadline when native reload succeeds", async () => {
+    jest.useFakeTimers();
+    expect(await recovery.restartApp("user", "", { userInitiated: true })).toBe(true);
+    expect(jest.getTimerCount()).toBe(0);
   });
 });

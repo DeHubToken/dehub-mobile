@@ -129,15 +129,17 @@ describe('post media presentation', () => {
     expect(list).toContain('if (!answersTabPress || !isFocused || !active) return;');
   });
 
-  it('fits video frames to their picture within half the screen', () => {
+  it('fits photo and video frames to their picture within 55% of the screen', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
     expect(containedImage).toContain('postPageMaxHeightFor(screenHeight),');
     expect(containedImage).toContain('contentFit="contain"');
     expect(containedImage).toContain('alignItems: "flex-start"');
-    expect(video).toContain('screenHeight * 0.5');
-    expect(video).toContain('win.height * 0.5 - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
+    expect(containedImage).toContain('screenHeight * 0.55');
+    expect(video).toContain('const INLINE_MAX_SCREEN = 0.55;');
+    expect(video).toContain('screenHeight * INLINE_MAX_SCREEN');
+    expect(video).toContain('win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
     expect(video).toContain('width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls)');
     expect(video).toContain('alignSelf: "flex-start"');
   });

@@ -33,7 +33,7 @@ export interface CreatorFalVideoModel {
   requiresVideoInput?: boolean;
   referenceMode?: 'edit' | 'motion';
   maxPromptLength?: number;
-  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion';
+  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion' | 'pixverseeffects';
   falTextModel: string;
   falImageModel: string;
   falEndFrameModel?: string;
@@ -52,6 +52,15 @@ function video(spec: VideoSpec): CreatorFalVideoModel {
 }
 
 export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
+  'pixverse-effects': {
+    ...video({
+      id: 'pixverse-effects', name: 'PixVerse Effects', vendor: 'PixVerse', emoji: '🎬', tier: 'standard',
+      get description() { return _translateCopy('viralTemplates.intro', { defaultValue: 'Watch an example. Pick an effect or character. Add your photo and make it yours.' }); },
+      family: 'pixverseeffects', falTextModel: 'fal-ai/pixverse/v5.5/effects', falImageModel: 'fal-ai/pixverse/v5.5/effects',
+      minDuration: 5, maxDuration: 5, defaultDuration: 5, allowedDurations: [5], perSecondCostUsd: 0.04,
+      resolutions: ['720p'], aspectRatios: ['16:9', '9:16', '1:1'],
+    }), supports: ['image-to-video'],
+  },
   'kling-3-turbo-pro': video({
     id: 'kling-3-turbo-pro', name: 'Kling 3 Turbo Pro', vendor: 'Kling', emoji: '⚡', tier: 'fast',
     get description() { return _translateCopy("copy.aa2c45a2661e", { defaultValue: "Faster Kling motion with synchronized sound" }); },
