@@ -17,6 +17,13 @@ import { useEffect, useRef, useState } from "react";
 import { Image } from "expo-image";
 
 const cache = new Map<string, number>();
+const videoAspects = new Map<unknown, number>();
+
+export function rememberVideoAspect(key: unknown, ratio: number): void {
+  if (key == null || !Number.isFinite(ratio) || ratio <= 0) return;
+  videoAspects.set(key, ratio);
+  if (videoAspects.size > 500) videoAspects.delete(videoAspects.keys().next().value);
+}
 
 /** Enough pixels to read a ratio to a fraction of a percent, few enough to decode for free. */
 const MEASURE_MAX_PX = 512;
@@ -96,5 +103,6 @@ export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: num
     };
   }, [uri]);
 
-  return ratio ? clampAspect(ratio, minRatio) : DEFAULT_ASPECT;
+  const videoRatio = videoAspects.get(key);
+  return clampAspect(videoRatio ?? ratio ?? DEFAULT_ASPECT, minRatio);
 }

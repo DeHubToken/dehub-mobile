@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 /** Keep player creation out of a pager's drag and momentum frames. */
 export function useSettledPagerIndex(commit: (index: number) => void, height: number, count: number) {
   const moving = useRef(false);
+  const latestOffset = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const config = useRef({ commit, height, count });
   config.current = { commit, height, count };
@@ -22,15 +23,25 @@ export function useSettledPagerIndex(commit: (index: number) => void, height: nu
     }
   }, [cancel]);
 
+  const observe = useCallback((offset: number) => {
+    latestOffset.current = offset;
+    if (!moving.current) return;
+    cancel();
+    // Some Android releases omit momentum-end after an interrupted snap.
+    // Commit only after the native list has stopped producing scroll events.
+    timer.current = setTimeout(() => settle(latestOffset.current), 160);
+  }, [cancel, settle]);
+
   const begin = useCallback(() => {
     cancel();
     moving.current = true;
   }, [cancel]);
   const endDrag = useCallback((offset: number) => {
     cancel();
+    latestOffset.current = offset;
     // Android also allows a release with no momentum-end event. A momentum
     // start cancels this fallback and leaves the landing to settle().
-    timer.current = setTimeout(() => settle(offset), 160);
+    timer.current = setTimeout(() => settle(latestOffset.current), 160);
   }, [cancel, settle]);
   const candidate = useCallback((index: number) => {
     if (!moving.current && index >= 0 && index < config.current.count) {
@@ -38,5 +49,5 @@ export function useSettledPagerIndex(commit: (index: number) => void, height: nu
     }
   }, []);
 
-  return { begin, endDrag, settle, candidate };
+  return { begin, endDrag, settle, candidate, observe };
 }

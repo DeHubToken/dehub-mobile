@@ -13,6 +13,7 @@
  */
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const ICON_COLOR = "#fff";
 /** Web's `text-white/70` on every count under an action row. */
@@ -58,7 +59,7 @@ export const CHROME_FILL_GLASS = "rgba(0,0,0,0.40)";
  * read as one set instead of three slabs and one glass square.
  */
 // Keep in step with PictureInPictureButton, which stays free of this file.
-export const CHROME_FILL_TOP = "rgba(0,0,0,0.5)";
+export const CHROME_FILL_TOP = "rgba(40,40,42,0.64)";
 /** The hairline around that glass, as `border-white/15` on the web. */
 export const CHROME_HAIRLINE = "rgba(255,255,255,0.15)";
 /**
@@ -124,6 +125,16 @@ export const ChromeFill: React.FC<{
         },
       ]}
     />
+    {top && <LinearGradient
+      pointerEvents="none"
+      colors={["rgba(255,255,255,0.10)", "rgba(255,255,255,0.02)"]}
+      style={StyleSheet.absoluteFill}
+    />}
+    {top && <View pointerEvents="none" style={[StyleSheet.absoluteFill, {
+      borderRadius: radius ?? CHROME_RADIUS,
+      borderWidth: 1,
+      borderColor: "rgba(255,255,255,0.32)",
+    }]} />}
   </View>
 );
 

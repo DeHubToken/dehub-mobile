@@ -69,7 +69,7 @@ import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useCellState } from "../../hooks/useCellState";
 import { toastInfo } from "../../libs/toast";
@@ -685,6 +685,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     const take = (size?: { width: number; height: number } | null) => {
       if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
       const ratio = size.width / size.height;
+      rememberVideoAspect(tokenId, ratio);
       setVideoSize((prev) => (prev && Object.is(prev.tokenId, tokenId) && Math.abs(prev.ratio - ratio) < 0.001 ? prev : { tokenId, ratio }));
     };
     try { take((player as any).videoTrack?.size); } catch {}
@@ -899,7 +900,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const handleMediaSurfacePress = useCallback((event: GestureResponderEvent) => {
     if (onOpenViewer && !isContentGated) {
-      stopPlayback();
+      preparePostMediaNavigation(videoUrl);
       onOpenViewer();
       return;
     }
