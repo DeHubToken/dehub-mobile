@@ -10,36 +10,40 @@ jest.mock('react-native-reanimated', () => ({
   useAnimatedRef: () => require('react').useRef(null),
   measure: (...args: unknown[]) => mockMeasure(...args),
 }));
-jest.mock('react-native-gesture-handler', () => ({
-  Gesture: { Pan: () => {
+jest.mock('react-native-gesture-handler', () => {
+  const createGesture = () => {
     const callbacks: Record<string, (...args: any[]) => void> = {};
     const gesture: Record<string, any> = { callbacks };
-    for (const method of ['manualActivation', 'maxPointers', 'shouldCancelWhenOutside', 'blocksExternalGesture']) {
+    for (const method of ['manualActivation', 'maxPointers', 'maxDistance', 'shouldCancelWhenOutside', 'blocksExternalGesture']) {
       gesture[method] = jest.fn(() => gesture);
     }
-    for (const method of ['onTouchesDown', 'onStart', 'onUpdate', 'onEnd']) {
+    for (const method of ['onTouchesDown', 'onTouchesMove', 'onStart', 'onUpdate', 'onEnd']) {
       gesture[method] = (callback: (...args: any[]) => void) => { callbacks[method] = callback; return gesture; };
     }
     return gesture;
-  } },
-}));
+  };
+  return { Gesture: { Pan: createGesture, Tap: createGesture, Race: (pan: any, tap: any) => ({ pan, tap }) } };
+});
 
 function setup() {
   mockMeasure.mockReturnValue({ pageX: 10, pageY: 316, width: 200, height: 64 });
   const { result, rerender } = renderHook(() => useFeedScrubBoundary());
   const player = { start: jest.fn(), preview: jest.fn(), commit: jest.fn(), cancel: jest.fn() };
   const unregister = result.current.controller.register(player);
-  const pan = result.current.gesture as unknown as {
+  const { pan, tap } = result.current.gesture as unknown as { pan: {
     callbacks: Record<string, (...args: any[]) => void>;
     blocksExternalGesture: jest.Mock;
     shouldCancelWhenOutside: jest.Mock;
-  };
+  }; tap: { callbacks: Record<string, (...args: any[]) => void> } };
   const down = (x: number, y: number) => {
     const manager = { activate: jest.fn(), fail: jest.fn() };
     pan.callbacks.onTouchesDown({ numberOfTouches: 1, allTouches: [{ absoluteX: x, absoluteY: y }] }, manager);
     return manager;
   };
-  return { result, rerender, player, unregister, pan, down };
+  const move = (x: number, y: number, manager: ReturnType<typeof down>) => {
+    pan.callbacks.onTouchesMove({ numberOfTouches: 1, allTouches: [{ absoluteX: x, absoluteY: y }] }, manager);
+  };
+  return { result, rerender, player, unregister, pan, tap, down, move };
 }
 
 describe('feed scrub boundary', () => {
@@ -47,7 +51,10 @@ describe('feed scrub boundary', () => {
     const s = setup();
     expect(s.pan.blocksExternalGesture).toHaveBeenCalledWith(mockPagerRef);
     expect(s.pan.shouldCancelWhenOutside).toHaveBeenCalledWith(false);
-    expect(s.down(30, 404).activate).toHaveBeenCalledTimes(1);
+    const manager = s.down(30, 404);
+    expect(manager.activate).not.toHaveBeenCalled();
+    s.move(50, 406, manager);
+    expect(manager.activate).toHaveBeenCalledTimes(1);
     expect(s.result.current.claimed.value).toBe(true);
     s.pan.callbacks.onStart({ absoluteX: 30, absoluteY: 400 });
     expect(s.player.start).toHaveBeenCalledTimes(1);
@@ -85,7 +92,9 @@ describe('feed scrub boundary', () => {
     const s = setup(), gesture = s.result.current.gesture;
     mockMeasure.mockReturnValue({ pageX: 10, pageY: 516, width: 200, height: 64 });
     expect(s.down(30, 400).fail).toHaveBeenCalledTimes(1);
-    expect(s.down(30, 590).activate).toHaveBeenCalledTimes(1);
+    const manager = s.down(30, 590);
+    s.move(50, 592, manager);
+    expect(manager.activate).toHaveBeenCalledTimes(1);
     s.rerender({});
     expect(s.result.current.gesture).toBe(gesture);
   });
@@ -101,5 +110,24 @@ describe('feed scrub boundary', () => {
     s.unregister();
     expect(s.result.current.claimed.value).toBe(false);
     expect(s.down(30, 390).fail).toHaveBeenCalledTimes(1);
+  });
+
+  it('yields a vertical feed swipe below the player without seeking', () => {
+    const s = setup(), manager = s.down(30, 390);
+    s.move(31, 360, manager);
+    expect(manager.fail).toHaveBeenCalledTimes(1);
+    expect(manager.activate).not.toHaveBeenCalled();
+    s.tap.callbacks.onEnd({ absoluteX: 31 }, false);
+    expect(s.player.start).not.toHaveBeenCalled();
+    expect(s.player.commit).not.toHaveBeenCalled();
+  });
+
+  it('still seeks on a stationary tap below the player', () => {
+    const s = setup(), manager = { fail: jest.fn() };
+    s.tap.callbacks.onTouchesDown({ numberOfTouches: 1, allTouches: [{ absoluteX: 110, absoluteY: 390 }] }, manager);
+    expect(manager.fail).not.toHaveBeenCalled();
+    s.tap.callbacks.onEnd({ absoluteX: 110 }, true);
+    expect(s.player.start).toHaveBeenCalledTimes(1);
+    expect(s.player.commit).toHaveBeenCalledWith(0.5);
   });
 });

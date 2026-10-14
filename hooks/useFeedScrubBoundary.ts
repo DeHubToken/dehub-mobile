@@ -20,6 +20,7 @@ export function useFeedScrubBoundary() {
   const enabled = useSharedValue(false);
   const claimed = useSharedValue(false);
   const bounds = useSharedValue({ left: 0, width: 1 });
+  const origin = useSharedValue({ x: 0, y: 0, decided: false });
   const callbacks = useRef<ScrubCallbacks | null>(null);
   const pager = usePagerGestureRef();
   const register = useCallback((value: ScrubCallbacks) => {
@@ -56,7 +57,18 @@ export function useFeedScrubBoundary() {
         // Inside the player, the existing strip owns its buttons and scrub pan.
         if (point.absoluteY < bottom) { manager.fail(); return; }
         bounds.value = { left: box.pageX, width: Math.max(1, box.width) };
-        manager.activate();
+        origin.value = { x: point.absoluteX, y: point.absoluteY, decided: false };
+      })
+      .onTouchesMove((event, manager) => {
+        if (origin.value.decided) return;
+        const point = event.allTouches[0];
+        if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+        const dx = Math.abs(point.absoluteX - origin.value.x);
+        const dy = Math.abs(point.absoluteY - origin.value.y);
+        if (Math.max(dx, dy) <= 6) return;
+        origin.value = { ...origin.value, decided: true };
+        if (dx > dy) manager.activate();
+        else manager.fail();
       })
       .onStart(event => {
         runOnJS(start)(Math.max(0, Math.min(1, (event.absoluteX - bounds.value.left) / bounds.value.width)));
@@ -69,9 +81,31 @@ export function useFeedScrubBoundary() {
         else runOnJS(cancel)();
         // Keep claimed through any delayed press callback; clear on next down.
       });
-    if (pager) pan.blocksExternalGesture(pager);
-    return pan;
-  }, [bounds, claimed, enabled, pager, trackRef, start, preview, commit, cancel]);
+    const tap = Gesture.Tap().maxDistance(6)
+      .onTouchesDown((event, manager) => {
+        const point = event.allTouches[0];
+        const box = enabled.value ? measure(trackRef) : null;
+        if (!box || !point || event.numberOfTouches !== 1
+          || point.absoluteX < box.pageX || point.absoluteX > box.pageX + box.width
+          || point.absoluteY < box.pageY + box.height
+          || point.absoluteY > box.pageY + box.height + SCRUB_BELOW_SLOP) {
+          manager.fail(); return;
+        }
+        bounds.value = { left: box.pageX, width: Math.max(1, box.width) };
+      })
+      .onEnd((event, success) => {
+        if (!success) return;
+        claimed.value = true;
+        const ratio = Math.max(0, Math.min(1, (event.absoluteX - bounds.value.left) / bounds.value.width));
+        runOnJS(start)(ratio);
+        runOnJS(commit)(ratio);
+      });
+    if (pager) {
+      pan.blocksExternalGesture(pager);
+      tap.blocksExternalGesture(pager);
+    }
+    return Gesture.Race(pan, tap);
+  }, [bounds, origin, claimed, enabled, pager, trackRef, start, preview, commit, cancel]);
   const controller = useMemo(() => ({ trackRef, register, claimed }), [trackRef, register, claimed]);
   return { gesture, controller, claimed };
 }
