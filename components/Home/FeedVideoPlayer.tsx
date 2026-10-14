@@ -2023,7 +2023,9 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
   ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedPreview = false, isVisible }) => {
     const { t } = useTranslation();
     const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
-    const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, measuredAspect, isVisible, !postPage);
+    const posterAspect = getMeasuredMediaAspect(thumbnail);
+    const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, measuredAspect, isVisible, !postPage,
+      posterAspect == null ? undefined : measuredAspect);
     const { isMinimal: minimalTheme } = useAppTheme();
     const bleed = useFeedBleed();
     const isMinimal = minimalTheme || !!bleed;
