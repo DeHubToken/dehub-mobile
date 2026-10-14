@@ -106,6 +106,7 @@ import { useTranslation as useCopy } from "react-i18next";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { useKeyedState } from "../../hooks/useItemState";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
+import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -1283,7 +1284,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const overlayTitle = (isTranslated ? translatedTexts.title : localTitle) || "";
   // Video and live carry the author and buttons over the picture; a photo
   // gets a plain header row above it instead, and nothing over it.
-  const firstVideoAspect = useMediaAspect(cinematicMedia && topChromeInset > 0 && isVideo ? thumbnail : null, tokenId);
+  const measuredFirstVideoAspect = useMediaAspect(cinematicMedia && topChromeInset > 0 && isVideo ? thumbnail : null, tokenId);
+  const firstVideoAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, measuredFirstVideoAspect, isVisible, cinematicMedia && topChromeInset > 0 && isVideo && !immersive);
   const firstVideoHeaderAbove = cinematicMedia && topChromeInset > 0 && isVideo && firstVideoAspect >= 1;
   const chipOverMedia = cinematicMedia && contentType !== "image" && !firstVideoHeaderAbove;
   // Match the landing video: only the first photo puts its identity below media.

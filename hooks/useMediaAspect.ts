@@ -15,14 +15,17 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Image } from "expo-image";
+import { storage } from '../libs/storage';
+import { createMediaAspectCache } from '../libs/media-aspect-cache';
 
 const cache = new Map<string, number>();
-const videoAspects = new Map<unknown, number>();
+const videoAspects = createMediaAspectCache(
+  () => storage.getString('video-aspects-v1'), value => storage.set('video-aspects-v1', value),
+);
 
 export function rememberVideoAspect(key: unknown, ratio: number): void {
   if (key == null || !Number.isFinite(ratio) || ratio <= 0) return;
-  videoAspects.set(key, ratio);
-  if (videoAspects.size > 500) videoAspects.delete(videoAspects.keys().next().value);
+  videoAspects.set(String(key), ratio);
 }
 
 /** Enough pixels to read a ratio to a fraction of a percent, few enough to decode for free. */
@@ -103,6 +106,6 @@ export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: num
     };
   }, [uri]);
 
-  const videoRatio = videoAspects.get(key);
+  const videoRatio = key == null ? undefined : videoAspects.get(String(key));
   return clampAspect(videoRatio ?? ratio ?? DEFAULT_ASPECT, minRatio);
 }
