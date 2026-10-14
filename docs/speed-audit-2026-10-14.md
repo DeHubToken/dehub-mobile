@@ -25,3 +25,7 @@ not open the showcase. Keep optional renderers behind user intent on both client
 This change adds audit evidence and a regression assertion only; it does not
 change the installed native runtime and needs no OTA release. Native device
 performance was not measured by the web Chromium run.
+
+The companion web change also removes idle composer/post-page imports, replacing
+them with Create-control intent loading. Native screen navigation does not run
+the web AppLayout idle import effect; keep composition tied to opening Create.
