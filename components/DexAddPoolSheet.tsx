@@ -199,7 +199,7 @@ const s = StyleSheet.create({
   label: { marginTop: 16, marginBottom: 8 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   chip: { paddingVertical: 8, paddingHorizontal: 10, borderRadius: 6, borderWidth: 1, borderColor: '#252b34' },
-  chipActive: { backgroundColor: '#29313b', borderColor: '#3a4450' },
+  chipActive: { backgroundColor: '#2c2f33', borderColor: '#3d4045' },
   input: { color: '#f4f6f8', borderColor: '#343e4b', borderWidth: 1, borderRadius: 6, backgroundColor: '#0b0e13', padding: 12, fontSize: 13 },
   inline: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12 },
   review: { backgroundColor: '#132028', borderColor: '#3c5661', borderWidth: 1, padding: 12, marginTop: 12, borderRadius: 6, gap: 6 },

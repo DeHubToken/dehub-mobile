@@ -232,6 +232,19 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     surface: skin.centre,
     foreground: skin.centreIcon,
     ownedSurfaces: [skin.card, skin.strip, skin.stripActive, skin.barFill, skin.barBorder],
+  } : isLight ? {
+    // Written dark like everything else and turned around by the tone pass:
+    // a faint ink wash with a hairline rim, where System's glass would come
+    // out as a heavy mid-grey slab on white.
+    surface: {
+      backgroundColor: 'rgba(255,255,255,0.06)',
+      borderWidth: 1,
+      borderColor: 'rgba(255,255,255,0.14)',
+      borderTopColor: 'rgba(255,255,255,0.14)',
+      borderRadius: 12,
+    },
+    foreground: '#FFFFFF',
+    ownedSurfaces: [],
   } : {
     surface: {
       backgroundColor: theme === 'minimal' ? '#000' : 'rgba(255,255,255,0.12)',
@@ -242,7 +255,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     },
     foreground: '#FFFFFF',
     ownedSurfaces: [],
-  }, [skin, theme]);
+  }, [skin, theme, isLight]);
   setControlMaterial(controlMaterial);
 
   setActiveTheme(theme, themeChoice);

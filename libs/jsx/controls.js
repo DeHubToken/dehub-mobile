@@ -71,7 +71,28 @@ function paintLabel(child) {
     const children = paintChildren(props.children);
     if (children !== props.children) next.children = children;
   }
-  return Object.keys(next).length ? React.cloneElement(child, next) : child;
+  return Object.keys(next).length ? relabel(child, next) : child;
+}
+
+/**
+ * The label with its new colours. Under System Light those colours are still
+ * the dark theme's, and a clone skips the JSX runtime's tone pass, which left
+ * a white label on the pale control. So the label goes through the pass again,
+ * from its own props, and still reads its real place in the tree (a control
+ * over a picture keeps its white label).
+ */
+function relabel(child, next) {
+  const { isLightToneOn, tone, ToneFill } = require('./tone');
+  if (!isLightToneOn()) return React.cloneElement(child, next);
+  let type = child.type;
+  let props = child.props;
+  if (type === ToneFill) {
+    const { __toneType, __toned, ...own } = props;
+    type = __toneType;
+    props = own;
+  }
+  const [t, p] = tone(type, { ...props, ...next });
+  return React.createElement(t, child.key != null ? { ...p, key: child.key } : p);
 }
 
 /**
