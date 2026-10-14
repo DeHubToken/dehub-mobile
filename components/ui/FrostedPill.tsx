@@ -7,12 +7,12 @@ import { androidFrostSupported, useFrostedSource } from "./FrostedBackdrop";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
 
 /** Shared pill material. Geometry and controls belong to the existing caller. */
-export default function FrostedPill({ tint, borderRadius, bordered = true, blurEnabled = true }: { tint: string; borderRadius: number; bordered?: boolean; blurEnabled?: boolean }) {
+export default function FrostedPill({ tint, borderRadius, bordered = true }: { tint: string; borderRadius: number; bordered?: boolean }) {
   const target = useFrostedSource();
   const surfaceActive = useFeedSurfaceActive();
-  if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} blurEnabled={blurEnabled} />;
+  if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} />;
   // Opacity on a covered page does not stop native blur target sampling.
-  const blur = blurEnabled && androidFrostSupported && !!target && surfaceActive;
+  const blur = androidFrostSupported && !!target && surfaceActive;
   return (
     // Keep the stationary material as its own native view when tab controls move.
     <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
