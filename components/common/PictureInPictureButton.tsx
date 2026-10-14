@@ -5,6 +5,7 @@ import { PictureInPicture2 } from '../ui/cut-icons';
 import { MediaControlIcon } from './MediaControlGlyph';
 import { toastInfo } from '../../libs';
 import { useTranslation } from 'react-i18next';
+import { ChromeFill } from './ViewerChrome';
 
 export default function PictureInPictureButton({ videoRef, plain = false, size = 36 }: {
   videoRef: React.RefObject<VideoView | null>;
@@ -20,7 +21,7 @@ export default function PictureInPictureButton({ videoRef, plain = false, size =
       accessibilityRole="button"
       accessibilityLabel={t('player.pictureInPicture')}
       hitSlop={8}
-      style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', borderRadius: plain ? 0 : 12, backgroundColor: plain ? 'transparent' : 'rgba(0,0,0,0.5)' }}
+      style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', borderRadius: plain ? 0 : 12 }}
       onPress={(event) => {
         event.stopPropagation();
         videoRef.current?.startPictureInPicture().catch(() => {
@@ -28,6 +29,7 @@ export default function PictureInPictureButton({ videoRef, plain = false, size =
         });
       }}
     >
+      {!plain && <ChromeFill top />}
       {plain ? <MediaControlIcon name="PictureInPicture2" plain /> : <PictureInPicture2 size={20} color="#fff" />}
     </Pressable>
   );

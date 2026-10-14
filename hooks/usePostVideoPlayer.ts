@@ -1,8 +1,9 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 import { claimPostMedia, ownsPostMedia, postMediaSession } from '../libs/post-media-session';
+import { replaceVideoSource } from '../libs/video-source';
 
-export function usePostVideoPlayer(url: string | null | undefined, setup: (player: VideoPlayer) => void) {
+export function usePostVideoPlayer(url: string | null | undefined, setup: (player: VideoPlayer) => void, deferSource = false) {
   const token = useRef({}).current;
   const privateKey = useRef(`empty:${Math.random()}`).current;
   const key = url ? `video:${url}` : privateKey;
@@ -10,7 +11,8 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
     try { player.timeUpdateEventInterval = 0; player.pause(); player.release(); } catch {}
   }), [key]);
   if (!session.value) {
-    session.value = createVideoPlayer(url || null);
+    session.loadedSource = deferSource ? null : url || null;
+    session.value = createVideoPlayer(session.loadedSource);
     setup(session.value);
   }
   const [, refresh] = useState(0);
@@ -21,5 +23,11 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
     return () => { session.listeners.delete(notify); release(); };
   }, [key, session, token]);
   const ownsPlayer = useCallback(() => ownsPostMedia(session, token), [session, token]);
-  return { player: session.value, session, ownsPlayer, active: ownsPlayer() };
+  const active = ownsPlayer();
+  useEffect(() => {
+    if (deferSource || !ownsPlayer() || session.loadedSource === (url || null)) return;
+    session.loadedSource = url || null;
+    void replaceVideoSource(session.value!, url || null).catch(() => { session.loadedSource = null; });
+  }, [deferSource, url, session, ownsPlayer, active]);
+  return { player: session.value, session, ownsPlayer, active };
 }

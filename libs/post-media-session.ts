@@ -9,6 +9,7 @@ export interface PostMediaSession<T> {
   timer?: ReturnType<typeof setTimeout>;
   transferUntil: number;
   userPaused: boolean;
+  loadedSource?: string | null;
   listeners: Set<() => void>;
 }
 
