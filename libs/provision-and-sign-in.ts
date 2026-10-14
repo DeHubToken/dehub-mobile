@@ -21,6 +21,8 @@ import { stageIncomingIdentity } from "./profiles";
 import { fetchWalletReliably } from "./wallet-core/store";
 import { checkLegacyAccount } from "./wallet-core/legacy-detect";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
+import { getPendingWalletReplacement, completeWalletReplacement } from './wallet-core/replacement';
+import { AuthService } from '../services';
 import type { SupabaseSessionExchangeResult } from "../hooks/useAuthSession";
 import type { WalletSetupRequest } from "../components/auth/WalletSetupScreen";
 import type { LegacyAccountMatch } from "./wallet-core/legacy-detect";
@@ -47,7 +49,8 @@ export type ProvisionDeps = {
   completeLocalSignIn: (
     address: string,
     privateKey: string,
-    web3AuthMeta?: Record<string, any>
+    web3AuthMeta?: Record<string, any>,
+    opts?: { beforeSignIn?: (address: string, chainId: number) => Promise<void> },
   ) => Promise<void>;
   getSupabaseAuthMeta: () => Promise<Record<string, any> | undefined>;
   provisionSolanaAddressForWallet: (
@@ -200,8 +203,18 @@ async function provisionAndSignInInner(
     await markSupabaseIdentitySignedIn(supabaseUserId);
     return { kind: "signed-in" };
   }
-  if (outcome !== "not-linked") {
-    return { kind: "error", message: "Could not finish signing in to your profile. Please try again." };
+  // A saved replacement can deliberately disagree with the profile until its
+  // rotation finishes. Resume only that durable, identity-owned reset; other
+  // failed exchanges must never escalate into a signature login.
+  let pendingReplacement = false;
+  if (outcome !== 'not-linked') {
+    const lookup = await fetchWalletReliably(supabaseUserId);
+    if (!lookup.failed && lookup.wallet) {
+      pendingReplacement = !!await getPendingWalletReplacement(supabaseUserId, lookup.wallet.ethAddress);
+    }
+    if (!pendingReplacement) {
+      return { kind: "error", message: "Could not finish signing in to your profile. Please try again." };
+    }
   }
 
   // The server has confirmed no profile is linked, and the exchange already sent
@@ -246,7 +259,10 @@ async function provisionAndSignInInner(
       } catch {
         // Best-effort, as in the wallet-setup sign-in: never blocks the sign-up.
       }
-      await deps.completeLocalSignIn(resolution.address, privateKey, await deps.getSupabaseAuthMeta());
+      const replacement = pendingReplacement || !!await getPendingWalletReplacement(supabaseUserId, resolution.address);
+      await deps.completeLocalSignIn(resolution.address, privateKey, await deps.getSupabaseAuthMeta(),
+        replacement ? { beforeSignIn: (address, chainId) => AuthService.rotateWalletForReplacement(address, chainId) } : undefined);
+      if (replacement) await completeWalletReplacement(resolution.address);
       await markSupabaseIdentitySignedIn(supabaseUserId);
       return { kind: "signed-in" };
     }
