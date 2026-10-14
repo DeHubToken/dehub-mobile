@@ -30,6 +30,7 @@ export default function NavPillSurface({ borderRadius }: { borderRadius?: number
         <FrostedPill
           tint={glassTint(String(skin?.barFill.backgroundColor ?? styles.fill.backgroundColor), 0.22)}
           borderRadius={radius}
+          bordered={false}
         />
       ) : (
         <View pointerEvents="none" style={[
