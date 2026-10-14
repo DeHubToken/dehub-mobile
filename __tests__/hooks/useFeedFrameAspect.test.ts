@@ -3,7 +3,7 @@ import { useFeedFrameAspect } from '../../hooks/useFeedFrameAspect';
 
 describe('feed frame stability', () => {
   it('prepares offscreen but keeps the visible poster, player and recycled return the same size', () => {
-    const view = renderHook(({ ratio, visible }) => useFeedFrameAspect('stable-native-video', ratio, visible), {
+    const view = renderHook<number, { ratio: number; visible: boolean }>(({ ratio, visible }) => useFeedFrameAspect('stable-native-video', ratio, visible), {
       initialProps: { ratio: 16 / 9, visible: false },
     });
     view.rerender({ ratio: 9 / 16, visible: false });
@@ -17,7 +17,7 @@ describe('feed frame stability', () => {
   });
 
   it('reserves a cold image without growing on load, and resets for another post', () => {
-    const view = renderHook(({ key, ratio, enabled }) => useFeedFrameAspect(key, ratio, true, enabled), {
+    const view = renderHook<number, { key: string; ratio: number; enabled: boolean }>(({ key, ratio, enabled }) => useFeedFrameAspect(key, ratio, true, enabled), {
       initialProps: { key: 'native-image-a', ratio: 4 / 3, enabled: true },
     });
     view.rerender({ key: 'native-image-a', ratio: 0.5, enabled: true });
