@@ -91,9 +91,11 @@ import {
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 const playbackLog = createLogger("FeedVideoPlayer");
 
-/** Inline videos and their transport strip occupy at most half the screen. */
+/** Inline videos and their transport strip occupy at most 55% of the screen,
+ *  a bit taller than X's long-form videos; feeds align them left. */
+const INLINE_MAX_SCREEN = 0.55;
 const postPageMaxHeightFor = (screenHeight: number, _boxWidth: number) =>
-  screenHeight * 0.5;
+  screenHeight * INLINE_MAX_SCREEN;
 
 /**
  * Width of the media box. Takes the live window size (useWindowDimensions) so
@@ -109,7 +111,7 @@ const mediaBoxWidth = (
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  return Math.min(fullWidth, Math.max(1, win.height * 0.5 - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
+  return Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
 };
 
 const mediaBoxHeight = (win: { width: number; height: number }, width: number, aspect: number, postPage: boolean, strip: boolean) =>
