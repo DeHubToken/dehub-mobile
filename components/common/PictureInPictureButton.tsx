@@ -5,10 +5,13 @@ import { PictureInPicture2 } from '../ui/cut-icons';
 import { MediaControlIcon } from './MediaControlGlyph';
 import { toastInfo } from '../../libs';
 import { useTranslation } from 'react-i18next';
+import { CHROME_FILL_TOP } from './ViewerChrome';
 
-export default function PictureInPictureButton({ videoRef, plain = false }: {
+export default function PictureInPictureButton({ videoRef, plain = false, size = 36 }: {
   videoRef: React.RefObject<VideoView | null>;
   plain?: boolean;
+  /** Square edge; the shorts top row passes its own button size. */
+  size?: number;
 }) {
   const { t } = useTranslation();
   if (!isPictureInPictureSupported()) return null;
@@ -18,7 +21,7 @@ export default function PictureInPictureButton({ videoRef, plain = false }: {
       accessibilityRole="button"
       accessibilityLabel={t('player.pictureInPicture')}
       hitSlop={8}
-      style={{ width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderRadius: plain ? 0 : 12, backgroundColor: plain ? 'transparent' : 'rgba(0,0,0,0.5)' }}
+      style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', borderRadius: plain ? 0 : 12, backgroundColor: plain ? 'transparent' : CHROME_FILL_TOP }}
       onPress={(event) => {
         event.stopPropagation();
         videoRef.current?.startPictureInPicture().catch(() => {

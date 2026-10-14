@@ -52,6 +52,12 @@ export const CHROME_FILL_SHEER = "rgba(0,0,0,0.20)";
  * and hairline the web viewer gives them.
  */
 export const CHROME_FILL_GLASS = "rgba(0,0,0,0.40)";
+/**
+ * The shorts top row: black at half strength, the fill the picture-in-picture
+ * button has always worn. Back, speed, mute and options share it so the four
+ * read as one set instead of three slabs and one glass square.
+ */
+export const CHROME_FILL_TOP = "rgba(0,0,0,0.5)";
 /** The hairline around that glass, as `border-white/15` on the web. */
 export const CHROME_HAIRLINE = "rgba(255,255,255,0.15)";
 /**
@@ -93,7 +99,8 @@ export const ChromeFill: React.FC<{
   radius?: number;
   sheer?: boolean;
   glass?: boolean;
-}> = ({ radius, sheer, glass }) => (
+  top?: boolean;
+}> = ({ radius, sheer, glass, top }) => (
   <View
     pointerEvents="none"
     style={[
@@ -106,7 +113,9 @@ export const ChromeFill: React.FC<{
       style={[
         StyleSheet.absoluteFill,
         {
-          backgroundColor: glass
+          backgroundColor: top
+            ? CHROME_FILL_TOP
+            : glass
             ? CHROME_FILL_GLASS
             : sheer
               ? CHROME_FILL_SHEER
