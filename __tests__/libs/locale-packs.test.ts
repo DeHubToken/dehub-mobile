@@ -15,6 +15,7 @@ it('uses inline English instead of fetching optional copy and editor dictionarie
   // A loaded English override still wins over the supplied fallback.
   i18n.addResourceBundle('en', 'translation', { editor: { rail: { agent: 'AI' } } }, true, true);
   expect(i18n.t('editor.rail.agent', 'Agent')).toBe('AI');
+  expect(i18n.t('editor.rail.agent')).toBe('AI');
   await Promise.resolve();
   expect(fetchPack).not.toHaveBeenCalled();
 });
