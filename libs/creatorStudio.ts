@@ -8,7 +8,7 @@ import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL } from '../config/viral-effects';
 
 export type CreatorMode = 'image' | 'video' | 'audio' | '3d';
 export interface CreatorReferenceAsset {
-  uri: string; label: string; kind: 'image' | 'video'; seconds?: number; posterUrl?: string;
+  uri: string; label: string; kind: 'image' | 'video'; seconds?: number; posterUrl?: string; sourceClipId?: string;
 }
 export interface CreatorStudioSettings {
   effect?: string;

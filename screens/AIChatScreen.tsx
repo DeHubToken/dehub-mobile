@@ -119,6 +119,9 @@ import ScreenHeader from '../components/ScreenHeader';
 import CreatorReferenceAssets from '../components/Assistant/CreatorReferenceAssets';
 import { remapAssetMentions } from '../libs/creatorAssetMentions';
 import CreatorStudioControls from '../components/Assistant/CreatorStudioControls';
+import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
+import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../libs/motionLibrary';
+import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import GenerationExample from '../components/Assistant/GenerationExample';
@@ -179,6 +182,16 @@ let turnSeq = 0;
 const newTurnId = (): string => `t-${Date.now()}-${(turnSeq += 1)}`;
 
 async function hostCreatorImage(uri: string, asset?: CreatorReferenceAsset): Promise<string> {
+  if (uri.startsWith('https://') && asset?.sourceClipId) {
+    if (!CreatorFileSystem.cacheDirectory) throw new Error('No cache directory available.');
+    const local = `${CreatorFileSystem.cacheDirectory}creator-source-${Date.now()}-${asset.sourceClipId}.mp4`;
+    try {
+      const result = await CreatorFileSystem.downloadAsync(`https://dehub.io/api/creator-motion-source?id=${encodeURIComponent(asset.sourceClipId)}`, local);
+      const info = await CreatorFileSystem.getInfoAsync(local);
+      if (result.status !== 200 || !info.exists || info.size > 100 * 1024 * 1024) throw new Error('This source clip is unavailable or exceeds 100 MB.');
+      return await uploadLocalFileToBucket({ bucket: 'ai-media-uploads', path: `creator-sources/${Date.now()}-${asset.sourceClipId}.mp4`, uri: local });
+    } finally { await CreatorFileSystem.deleteAsync(local, { idempotent: true }).catch(() => {}); }
+  }
   if (uri.startsWith('https://')) return uri;
   const extension = fileExtension({ uri, fileName: asset?.label }, asset?.kind === 'video' ? 'mp4' : 'jpg');
   return uploadLocalFileToBucket({ bucket: 'ai-media-uploads',
@@ -296,6 +309,25 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
   const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
+  const appliedClipRoute = useRef<string | undefined>(undefined);
+  const pickMotionClip = useCallback((clip: MotionClip, workflow: 'swap' | 'motion') => {
+    const model = motionModel(clip, workflow);
+    setTemplateId(model === 'kling-3-motion' ? 'reference-copy-motion' : 'reference-character-swap');
+    setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model, effect: undefined,
+      aspect: motionAspect(clip), durationSeconds: Math.ceil(clip.seconds),
+      referenceAssets: [...(previous.referenceAssets?.filter(asset => asset.kind === 'image') ?? []),
+        { uri: clip.url, label: clip.name, kind: 'video', seconds: clip.seconds, posterUrl: clip.poster, sourceClipId: clip.id }] }));
+  }, [setStudioSettings]);
+  useEffect(() => {
+    const clipId = route.params?.clip;
+    if (!studio || !clipId || appliedClipRoute.current === clipId) return;
+    let cancelled = false;
+    findMotionClip(clipId).then(clip => {
+      if (cancelled) return;
+      if (clip) { appliedClipRoute.current = clipId; pickMotionClip(clip, route.params?.workflow === 'motion' ? 'motion' : 'swap'); }
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [studio, route.params?.clip, route.params?.workflow, pickMotionClip]);
   useEffect(() => {
     if (appliedEditorDraft.current === suppliedDraft) return;
     const prepared = creatorSettingsForEditorDraft(suppliedDraft);
@@ -1298,7 +1330,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     try {
     mentions.reset();
     if (creator?.referenceAssets?.length) {
-      const referenceAssets = await Promise.all(creator.referenceAssets.map(async asset => ({ ...asset, uri: await hostCreatorImage(asset.uri, asset) })));
+      const referenceAssets = await Promise.all(creator.referenceAssets.map(async asset => ({ ...asset, uri: await hostCreatorImage(asset.uri, asset), sourceClipId: undefined })));
       creator = { ...creator, referenceAssets };
       setStudioSettings(creator);
     }
@@ -1911,6 +1943,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />
+        <MotionLibraryShowcase compact onPick={pickMotionClip} onMaboroshi={clip => navigation.navigate(ScreenNames.Maboroshi, { clip: clip.id })} />
         <ViralTemplateShowcase compact onPick={pickEffect} />
           </> : undefined}
           readOnly={effectMode}
