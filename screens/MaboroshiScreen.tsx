@@ -58,7 +58,7 @@ export default function MaboroshiScreen() {
       const quote = await getMaboroshiQuote(input, token, payer);
       if (activeWallet.current !== payer) throw new Error('The signed-in account changed.');
       let submitted = false;
-      Alert.alert(t('creator.toolMaboroshi'), `${maboroshiStageLabel(quote.stage)} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
+      Alert.alert(t('creator.toolMaboroshi'), `${maboroshiStageLabel(quote.stage, quote.renderer)} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
         { text: t('common.cancel'), style: 'cancel', onPress: () => finish('Payment cancelled.', true) },
         { text: t('common.confirm'), onPress: () => {
           if (submitted) return;
