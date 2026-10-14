@@ -12,7 +12,9 @@ it('uses inline English instead of fetching optional copy and editor dictionarie
   global.fetch = fetchPack;
   const { default: i18n } = require('../../i18n');
   expect(i18n.t('copy.performanceProbe', { defaultValue: 'Hello {{name}}', name: 'Sam' })).toBe('Hello Sam');
-  expect(i18n.t('editor.rail.agent', 'Agent')).toBe('Agent');
+  // A loaded English override still wins over the supplied fallback.
+  i18n.addResourceBundle('en', 'translation', { editor: { rail: { agent: 'AI' } } }, true, true);
+  expect(i18n.t('editor.rail.agent', 'Agent')).toBe('AI');
   await Promise.resolve();
   expect(fetchPack).not.toHaveBeenCalled();
 });
