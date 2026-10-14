@@ -31,6 +31,7 @@ export enum DMSocketEvent {
 
   // Payments
   TipUpdate = "tipUpdate",
+  BadgeBalanceUpdated = "badgeBalanceUpdated",
   DmFeePayment = "dmFeePayment",
   TipSend = "tipSend",
   FeeConfirmed = "feeConfirmed",
