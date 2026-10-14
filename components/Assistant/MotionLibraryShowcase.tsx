@@ -5,6 +5,7 @@ import Slider from '@react-native-community/slider';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import '../../i18n/registerMotionLibrary';
 import SmartImage from '../common/SmartImage';
 import { loadFeaturedMotionClips, loadMotionCatalog, searchMotionClips, type MotionClip } from '../../libs/motionLibrary';
 
