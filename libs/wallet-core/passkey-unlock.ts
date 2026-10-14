@@ -17,7 +17,8 @@ export async function unlockWithSavedPasskey(userId: string): Promise<string> {
   if (!Passkey.isSupported()) throw new Error('Use dehub.io on a device with your saved passkey to recover this wallet.');
   const response = await Passkey.get({
     rpId: 'dehub.io',
-    challenge: Buffer.from(ExpoCrypto.getRandomBytes(32)).toString('base64url'),
+    challenge: Buffer.from(ExpoCrypto.getRandomBytes(32)).toString('base64')
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''),
     userVerification: 'required',
     timeout: 60000,
     allowCredentials: wraps.map(w => ({ type: 'public-key', id: w.credential_id })),
