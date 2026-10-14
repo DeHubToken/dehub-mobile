@@ -3,6 +3,14 @@ import { resolveEvmWalletForIdentity, releaseWalletKeyForSignIn } from '../../li
 import { fetchWalletReliably } from '../../libs/wallet-core/store';
 import { getAuthToken, getStoredSupabaseUserId } from '../../libs/auth.utils';
 import { stageIncomingIdentity } from '../../libs/profiles';
+import { getPendingWalletReplacement, completeWalletReplacement } from '../../libs/wallet-core/replacement';
+import { AuthService } from '../../services';
+
+jest.mock('../../libs/wallet-core/replacement', () => ({
+  getPendingWalletReplacement: jest.fn().mockResolvedValue(null),
+  completeWalletReplacement: jest.fn().mockResolvedValue(undefined),
+}));
+jest.mock('../../services', () => ({ AuthService: { rotateWalletForReplacement: jest.fn().mockResolvedValue(undefined) } }));
 
 jest.mock('../../config/constants', () => ({ ChainId: { BASE_MAINNET: 8453 } }));
 jest.mock('../../libs/logger', () => ({ createLogger: () => ({ info: jest.fn(), warn: jest.fn(), error: jest.fn() }) }));
@@ -25,6 +33,8 @@ const locked = { status: 'needs-web-passkey-sync' as const, address };
 let deps: ProvisionDeps;
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.mocked(getPendingWalletReplacement).mockResolvedValue(null);
+  jest.mocked(fetchWalletReliably).mockResolvedValue({ wallet: null, failed: false });
   jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue(locked);
   deps = {
     getSupabaseAccessToken: jest.fn().mockResolvedValue('token'),
@@ -70,7 +80,7 @@ it('finishes an unfinished sign-up with the wallet already on this device', asyn
   jest.mocked(releaseWalletKeyForSignIn).mockResolvedValue('0xkey');
   jest.mocked(deps.getSupabaseAuthMeta).mockResolvedValue({ verifier: 'supabase' });
   await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
-  expect(deps.completeLocalSignIn).toHaveBeenCalledWith(address, '0xkey', { verifier: 'supabase' });
+  expect(deps.completeLocalSignIn).toHaveBeenCalledWith(address, '0xkey', { verifier: 'supabase' }, undefined);
 });
 it('asks again when the device key is not released', async () => {
   jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
@@ -98,4 +108,41 @@ it('preserves the incoming Supabase session when replacing another cached accoun
   await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
   expect(stageIncomingIdentity).toHaveBeenCalledWith('uid');
   expect(deps.signInWithSupabaseSession).toHaveBeenCalled();
+});
+
+it('resumes a locked replacement after profile login refuses the new wallet', async () => {
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('failed');
+  jest.mocked(fetchWalletReliably).mockResolvedValue({ wallet: { ethAddress: address, payload: null }, failed: false });
+  jest.mocked(getPendingWalletReplacement).mockResolvedValue({ oldAddress: '0xold' });
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-unlock', address, payload: { v: 1 } } as any);
+  await expect(provisionAndSignIn('uid', deps)).resolves.toMatchObject({
+    kind: 'wallet-setup', request: { mode: 'unlock', address },
+  });
+  expect(releaseWalletKeyForSignIn).not.toHaveBeenCalled();
+});
+
+it('rotates a resumed replacement before authenticating and completing its archive', async () => {
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('failed');
+  jest.mocked(fetchWalletReliably).mockResolvedValue({ wallet: { ethAddress: address, payload: null }, failed: false });
+  jest.mocked(getPendingWalletReplacement).mockResolvedValue({ oldAddress: '0xold' });
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
+  jest.mocked(releaseWalletKeyForSignIn).mockResolvedValue('key');
+  jest.mocked(deps.completeLocalSignIn).mockImplementation(async (_address, _key, _meta, opts) => {
+    expect(completeWalletReplacement).not.toHaveBeenCalled();
+    await opts?.beforeSignIn?.('0xsafe', 8453);
+  });
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+  expect(AuthService.rotateWalletForReplacement).toHaveBeenCalledWith('0xsafe', 8453);
+  expect(completeWalletReplacement).toHaveBeenCalledWith(address);
+});
+
+it('keeps the replacement pending when profile rotation fails', async () => {
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('failed');
+  jest.mocked(fetchWalletReliably).mockResolvedValue({ wallet: { ethAddress: address, payload: null }, failed: false });
+  jest.mocked(getPendingWalletReplacement).mockResolvedValue({ oldAddress: '0xold' });
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'ready', address });
+  jest.mocked(releaseWalletKeyForSignIn).mockResolvedValue('key');
+  jest.mocked(deps.completeLocalSignIn).mockRejectedValue(new Error('rotation failed'));
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'error', message: 'rotation failed' });
+  expect(completeWalletReplacement).not.toHaveBeenCalled();
 });
