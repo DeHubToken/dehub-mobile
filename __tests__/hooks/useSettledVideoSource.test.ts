@@ -5,6 +5,15 @@ describe('settled video preloading', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
+  it('adopts an already buffered feed source without replacing it', async () => {
+    const player = { replaceAsync: jest.fn(), currentTime: 42 };
+    const session = { loadedSource: 'clip' };
+    renderHook(() => useSettledVideoSource(player, 'clip', true, jest.fn(), undefined, session));
+    await act(async () => {});
+    expect(player.replaceAsync).not.toHaveBeenCalled();
+    expect(player.currentTime).toBe(42);
+  });
+
   it('reports a rejected active source so recovery can reload the unchanged URL', async () => {
     const player = { replaceAsync: jest.fn().mockRejectedValue(new Error('offline')) };
     const error = jest.fn();

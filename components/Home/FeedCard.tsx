@@ -1604,6 +1604,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       onPress={handleCardPress}
       onOpenViewer={() => {
         if (isActuallyGated || tokenId == null) return;
+        preparePostMediaNavigation(getVideoUrl(tokenId));
         onBeforeNavigate?.();
         hideUserProfile();
         navigation.navigate(ScreenNames.ShortsViewer, {
