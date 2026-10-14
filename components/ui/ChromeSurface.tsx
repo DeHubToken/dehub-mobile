@@ -40,7 +40,7 @@ function withAlpha(rgb: Rgb, alpha: number): string {
 }
 
 /** Shared frost for navigation pills and controls floating over media. */
-export default function ChromeSurface({ radius, tinted = false }: { radius: number; tinted?: boolean }) {
+export default function ChromeSurface({ radius, tinted = false, blurEnabled = true }: { radius: number; tinted?: boolean; blurEnabled?: boolean }) {
   const accent = useChromeAccent();
   const { skin, isMinimal } = useAppTheme();
   if (isMinimal) {
@@ -51,11 +51,11 @@ export default function ChromeSurface({ radius, tinted = false }: { radius: numb
     const material = tinted ? skin.centre : skin.card;
     return (
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: corner, overflow: "hidden" }]}>
-        {Platform.OS === "ios" ? <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} /> : null}
+        {blurEnabled ? (Platform.OS === "ios" ? <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} /> : null) : <View style={[StyleSheet.absoluteFill, { backgroundColor: "#18181B" }]} />}
         <View style={[StyleSheet.absoluteFill, material, { borderRadius: corner }]} />
         {skin.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} /> : null}
       </View>
     );
   }
-  return <FrostedPill tint={tinted ? withAlpha(accent, TINT_ALPHA) : IOS_DARK_TINT} borderRadius={radius} />;
+  return <FrostedPill tint={tinted ? withAlpha(accent, TINT_ALPHA) : IOS_DARK_TINT} borderRadius={radius} blurEnabled={blurEnabled} />;
 }
