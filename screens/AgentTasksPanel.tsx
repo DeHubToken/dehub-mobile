@@ -16,16 +16,20 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const client = useQueryClient();
   const [prompt, setPrompt] = useSurfaceDraft('agent-task-prompt', '');
   const [chosen, setChosen] = useState('');
+  const [swarm, setSwarm] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
   const [requestId, setRequestId] = useState(randomUUID);
   const [historyId, setHistoryId] = useState<string | null>(null);
   const [showPast, setShowPast] = useState(false);
   const active = agents.filter(agent => agent.is_active);
   const agentId = active.some(agent => agent.id === chosen) ? chosen : active[0]?.id;
+  const swarmIds = active.filter(agent => selected.includes(agent.id)).map(agent => agent.id);
   const tasks = useQuery({ queryKey: ['agent-tasks', wallet], queryFn: () => agentTaskRequest<{ tasks: AgentTask[] }>(wallet, { operation: 'list' }) });
   const history = useQuery({ queryKey: ['agent-task-history', wallet, historyId], enabled: !!historyId,
     queryFn: () => agentTaskRequest<{ actions: AgentTaskAction[] }>(wallet, { operation: 'history', task_id: historyId }) });
   const refresh = () => { client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); client.invalidateQueries({ queryKey: ['agent-task-history', wallet] }); };
-  const create = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: 'create', agent_id: agentId,
+  const create = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: swarm ? 'create_swarm' : 'create',
+    ...(swarm ? { agent_ids: swarmIds } : { agent_id: agentId }),
     prompt, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
     onSuccess: () => { setPrompt.complete(prompt, ''); setRequestId(randomUUID()); refresh(); },
   });
@@ -35,6 +39,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const pastTasks = taskList.filter(task => ['completed', 'failed', 'cancelled'].includes(task.status));
   const renderTask = (task: AgentTask) => <View key={task.id} style={styles.card}>
       <Text style={styles.title}>{task.plan.summary}</Text>
+      {task.swarm_id && <Text style={styles.muted}>{t('agents.tasks.swarmMember', { index: (task.swarm_index ?? 0) + 1, total: task.swarm_size })}</Text>}
       <Text style={styles.muted}>{t('agents.tasks.meta', { agent: agents.find(agent => agent.id === task.agent_id)?.name || 'agent', status: task.status, total: task.completed_actions })}</Text>
       {task.message && <Text style={styles.text}>{task.message}</Text>}
       {task.status === 'queued' && <Text style={styles.muted}>{t('agents.tasks.next', { time: new Date(task.next_run_at).toLocaleString() })}</Text>}
@@ -61,12 +66,19 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
     <Text style={styles.title}>{t('agents.tasks.title')}</Text>
     <Text style={styles.muted}>{t('agents.tasks.description')}</Text>
     {active.length ? <>
-      <View style={styles.row}>{active.map(agent => <Pressable key={agent.id} accessibilityRole="button" accessibilityState={{ selected: agentId === agent.id }} disabled={create.isPending}
-        onPress={() => { setChosen(agent.id); setRequestId(randomUUID()); }} style={[styles.chip, agent.id === agentId && styles.selected]}><Text style={styles.text}>@{agent.name}</Text></Pressable>)}</View>
+      {active.length > 1 && <View style={styles.row}>
+        <KitButton variant={swarm ? 'quiet' : 'primary'} label={t('agents.tasks.oneAgent')} onPress={() => { setSwarm(false); setRequestId(randomUUID()); create.reset(); }} />
+        <KitButton variant={swarm ? 'primary' : 'quiet'} label={t('agents.tasks.swarm')} onPress={() => { setSwarm(true); setSelected(active.map(agent => agent.id)); setRequestId(randomUUID()); create.reset(); }} />
+      </View>}
+      {swarm && <Text style={styles.text}>{t('agents.tasks.swarmChoose')}</Text>}
+      <View style={styles.row}>{active.map(agent => <Pressable key={agent.id} accessibilityRole="button" accessibilityState={{ selected: swarm ? selected.includes(agent.id) : agentId === agent.id }} disabled={create.isPending}
+        onPress={() => { if (swarm) setSelected(ids => ids.includes(agent.id) ? ids.filter(id => id !== agent.id) : [...ids, agent.id]); else setChosen(agent.id); setRequestId(randomUUID()); create.reset(); }}
+        style={[styles.chip, (swarm ? selected.includes(agent.id) : agent.id === agentId) && styles.selected]}><Text style={styles.text}>@{agent.name}</Text></Pressable>)}</View>
+      {swarm && <Text style={styles.muted}>{t('agents.tasks.swarmHelp')}</Text>}
       <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
         onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); create.reset(); }} placeholder={t('agents.tasks.examples')}
         placeholderTextColor="#A1A1AA" style={styles.input} /></LiquidGlass>
-      <KitButton label={create.isPending ? t('agents.tasks.preparing') : t('agents.tasks.run')} disabled={!prompt.trim() || create.isPending} onPress={() => create.mutate()} />
+      <KitButton label={create.isPending ? t('agents.tasks.preparing') : swarm ? t('agents.tasks.runSwarm') : t('agents.tasks.run')} disabled={!prompt.trim() || create.isPending || (swarm && swarmIds.length < 2)} onPress={() => create.mutate()} />
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
     {create.error && <Text accessibilityRole="alert" style={styles.error}>{create.error.message}</Text>}

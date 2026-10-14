@@ -16,6 +16,7 @@ import Icon from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
 
 interface AssistantInputBarProps {
+  readOnly?: boolean;
   value: string;
   onChangeText: (text: string) => void;
   onSelectionChange?: (e: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => void;
@@ -43,6 +44,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   placeholder,
   sendLabel,
   allowEmpty = false,
+  readOnly = false,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -85,7 +87,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           onSelectionChange={onSelectionChange}
           onContentSizeChange={(e) => setHeight(e.nativeEvent.contentSize.height)}
           multiline
-          editable={!disabled && !loading}
+          editable={!readOnly && !disabled && !loading}
         />
         <View style={s.actions}>
           {onAttach && (

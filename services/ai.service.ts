@@ -336,6 +336,7 @@ export interface AIImageResponse {
 export type AIVideoModel = string;
 
 export interface AIVideoRequest {
+  effect?: string;
   referenceImageUrls?: string[];
   videoUrls?: string[];
   prompt: string;
