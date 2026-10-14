@@ -2067,7 +2067,7 @@ const ShortsViewerScreen = () => {
     setActiveIndex((i) => Math.max(0, i - 1));
   }, [activeTokenId, navigation]);
 
-  const { begin: beginPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate, observe: observePaging } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
+  const { begin: beginPaging, momentum: momentumPaging, endDrag: endPagingDrag, settle: settlePaging, candidate: pagerCandidate, observe: observePaging } = useSettledPagerIndex(setActiveIndex, containerHeight, items.length);
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     if (viewableItems.length > 0 && viewableItems[0].index != null) {
       pagerCandidate(viewableItems[0].index);
@@ -2216,7 +2216,7 @@ const ShortsViewerScreen = () => {
           onEndReachedThreshold={0.5}
           onMomentumScrollEnd={handleScrollEnd}
           onScrollBeginDrag={() => { cancelFooterReturn(); beginPaging(); }}
-          onMomentumScrollBegin={beginPaging}
+          onMomentumScrollBegin={momentumPaging}
           onScrollEndDrag={(e) => endPagingDrag(e.nativeEvent.contentOffset.y)}
           onScroll={(e) => observePaging(e.nativeEvent.contentOffset.y)}
           scrollEventThrottle={32}
