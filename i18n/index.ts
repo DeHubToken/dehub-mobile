@@ -232,11 +232,16 @@ const requestedGroups = new Set<string>(['core']);
 const groupForKey = (key: string) => (manifest.groups as Record<string, string>)[key.split('.')[0]];
 i18n.use({
   type: 'postProcessor', name: 'featurePacks',
-  process(value: string, keys: string[]) {
+  process(value: string, keys: string[], options: { defaultValue?: unknown; lng?: unknown }) {
     const group = groupForKey(keys[0] || '');
     if (group) {
       requestedGroups.add(group);
-      void loadPack(i18n.language || 'en', group);
+      const lang = typeof options.lng === 'string' ? options.lng : i18n.language || 'en';
+      const inlineEnglish = typeof options.defaultValue === 'string' && options.defaultValue.length > 0;
+      // Native already ships English. Reuse that resource before reaching for
+      // a remote pack, including labels that have no inline fallback.
+      const bundledEnglish = i18n.getResource('en', 'translation', keys[0] || '') !== undefined;
+      if (lang !== 'en' || (!inlineEnglish && !bundledEnglish)) void loadPack(lang, group);
     }
     return value;
   },
