@@ -226,10 +226,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       >
         <View style={styles.sheet}>
           <Text style={authText.modalTitle}>{t("auth.importWallet")}</Text>
-          <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>{_copy("copy.1655cc1b5278", { defaultValue: "Social logins are recommended. This tool is for importing existing accounts from" })}{" "}
-            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>{_copy("copy.ca7842e53ac8", { defaultValue: "dehub.io" })}</Text>
-            .
-          </Text>
+          <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>{t("auth.importSecretPlaceholder")}</Text>
 
           <AuthField
             label={t("walletSetup.recoveryPhraseLabel")}
