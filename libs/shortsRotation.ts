@@ -11,9 +11,29 @@ export type ShortsCandidate = {
   id?: string | number;
   postType?: string;
   videoDuration?: number;
+  minter?: string;
+  creatorId?: string;
+  minterUsername?: string;
 };
 
 export const shortsId = (item: ShortsCandidate): string => String(item.tokenId ?? item.id ?? '');
+
+export function shortsCreatorKey(item: ShortsCandidate): string {
+  const address = item.minter?.trim() || item.creatorId?.trim();
+  if (address) return `creator:${address.toLowerCase()}`;
+  const username = item.minterUsername?.trim();
+  return username ? `username:${username.toLowerCase()}` : `post:${shortsId(item)}`;
+}
+
+export function uniqueShortsCreators<T extends ShortsCandidate>(items: readonly T[]): T[] {
+  const seen = new Set<string>();
+  return items.filter(item => {
+    const key = shortsCreatorKey(item);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
 
 export function shortsBatchCount(posts: number): number {
   if (posts < SHORTS_LEAD_POST) return 0;
@@ -86,8 +106,21 @@ export function extendShortsDraw<T extends ShortsCandidate>(
       next.push(recycled);
       continue;
     }
-    if (ordered.length < SHORTS_BATCH_SIZE && !allowPartial) break;
-    next.push(ordered.splice(0, SHORTS_BATCH_SIZE));
+    const creators = new Set<string>();
+    const row: string[] = [];
+    for (const id of ordered) {
+      const creator = shortsCreatorKey(unique.get(id)!);
+      if (creators.has(creator)) continue;
+      creators.add(creator);
+      row.push(id);
+      if (row.length === SHORTS_BATCH_SIZE) break;
+    }
+    if (row.length < SHORTS_BATCH_SIZE && !allowPartial) break;
+    const selected = new Set(row);
+    for (let i = ordered.length - 1; i >= 0; i--) {
+      if (selected.has(ordered[i])) ordered.splice(i, 1);
+    }
+    next.push(row);
   }
   return next;
 }
