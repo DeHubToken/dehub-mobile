@@ -296,6 +296,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 <FrostedPill
                   tint={glassTint(String(skin.strip.backgroundColor), 0.22)}
                   borderRadius={Number(skin.strip.borderRadius ?? 0)}
+                  bordered={false}
                 />
               <View
                 style={[
