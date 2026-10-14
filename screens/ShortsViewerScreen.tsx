@@ -1282,6 +1282,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // frame never carries over to the next one.
   useEffect(() => {
     if (isActive) return;
+    setFirstFrameRendered(false);
     resetTapSequence();
     tapAnimProgress.stopAnimation();
     setTapAnimReaction(null);
@@ -1366,7 +1367,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             allowsPictureInPicture
             startsPictureInPictureAutomatically={isPlaying}
             player={player}
-            style={StyleSheet.absoluteFill}
+            style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"
             nativeControls={false}
             pointerEvents="none"
