@@ -24,13 +24,15 @@ export default function NavPillSurface({ borderRadius }: { borderRadius?: number
   const radius = skin?.square ? 0 : Number(borderRadius ?? skin?.barBorder.borderRadius ?? NAV_PILL_RADIUS);
   return (
     <>
+      {/* Stable paint keeps feed and tab movement from flashing through a sampled blur. */}
       {iosThemed ? (
-        <ChromeSurface radius={radius} />
+        <ChromeSurface radius={radius} blurEnabled={false} />
       ) : glass ? (
         <FrostedPill
           tint={glassTint(String(skin?.barFill.backgroundColor ?? styles.fill.backgroundColor), 0.22)}
           borderRadius={radius}
           bordered={false}
+          blurEnabled={false}
         />
       ) : (
         <View pointerEvents="none" style={[
