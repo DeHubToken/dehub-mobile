@@ -63,14 +63,15 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const img = firstImage(listing);
+  const [failedImage, setFailedImage] = useState<string | null>(null);
   const soldOut = listing.stock_quantity === 0;
 
   // Minimal: the tile's box goes; the thumbnail and text are the card.
   return (
     <Pressable style={[styles.card, { width }, isMinimal && minimalFlat]} onPress={onPress}>
       <View style={[styles.thumbWrap, { height: width }]}>
-        {img ? (
-          <Image source={storageImageSource(img, width)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
+        {img && img !== failedImage ? (
+          <Image source={storageImageSource(img, width)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} onError={() => setFailedImage(img)} />
         ) : (
           <View style={styles.thumbFallback}>
             <Icon name="Package" size={26} color="#3F3F46" />
