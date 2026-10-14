@@ -1,0 +1,361 @@
+name: Manual mobile update
+
+# Publishes the JS bundle to EAS Update, so a JS-only fix reaches installed
+# apps without a 200 MB APK and a manual release.
+#
+# Explicit releases only. The separately disabled scheduled OTA workflow stays disabled.
+# This route uses the same environment, runtime and bundle preflight guards.
+#
+# READ THIS BEFORE CHANGING THE PUBLISH STEP.
+#
+# On 2026-09-05 this workflow bricked every device that applied its output. The
+# app reads all of its configuration through `@env` (react-native-dotenv), whose
+# babel plugin inlines values AT BUNDLE TIME out of process.env. An EAS *build*
+# is handed those automatically from the project's EAS environment variables; a
+# bare `eas update` on a CI runner is handed nothing, so every value bundled as
+# undefined, `SUPABASE_PUBLISHABLE_KEY || ""` became an empty string, and
+# `createClient(url, "")` threw at module load. The app died before it rendered
+# — no error boundary, no in-app recovery, nothing the user could do but
+# uninstall. Recovery took a roll-back-to-embedded directive.
+#
+# That is why `--environment` below is load-bearing, and why the preflight
+# refuses to publish a bundle that does not contain the config. Neither is
+# optional or tidy-up; they are the whole reason this file can be trusted.
+#
+# Two further limits worth keeping in mind:
+#
+#   - An update only reaches binaries built at the SAME runtimeVersion. Bump it
+#     and every installed app stops receiving updates until a new build ships.
+#     That is the safety contract, not a bug — it is what stops a bundle
+#     reaching a binary without the native module it calls.
+#   - Native changes cannot ride an update. Anything under android/ or ios/, a
+#     new native dependency, a manifest attribute — all of it needs a build. The
+#     summary step below flags when a published commit touched those paths.
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: >-
+          EAS update branch(es) to publish to, space separated.
+          Defaults to every channel that has builds in circulation.
+        default: production preview
+        required: false
+      check_only:
+        description: Run the preflight and stop without publishing.
+        type: boolean
+        default: false
+      platform:
+        description: Mobile platform to publish; use android while Apple publication is held.
+        type: choice
+        options: [both, android, ios]
+        default: both
+      source_ref:
+        description: Exact commit SHA for an isolated native-runtime preview; leave blank for the dispatched ref.
+        required: false
+        default: ''
+
+jobs:
+  decide:
+    name: Pick the commit to publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      publish: ${{ steps.pick.outputs.publish }}
+      sha: ${{ steps.pick.outputs.sha }}
+      branches: ${{ steps.pick.outputs.branches }}
+      last: ${{ steps.pick.outputs.last }}
+      runtime: ${{ steps.runtime.outputs.runtime }}
+      queue: ${{ steps.runtime.outputs.queue }}
+    steps:
+      - name: Pick
+        id: pick
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          INPUT_BRANCH: ${{ github.event.inputs.branch }}
+          INPUT_SOURCE_REF: ${{ github.event.inputs.source_ref }}
+          EVENT: ${{ github.event_name }}
+          DISPATCH_SHA: ${{ github.sha }}
+        run: |
+          LAST="$(gh api "repos/$REPO/git/ref/tags/ota-published-preview" --jq .object.sha 2>/dev/null || true)"
+          echo "last=$LAST" >> "$GITHUB_OUTPUT"
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            # A manual dispatch is the release: publish exactly what was asked.
+            if [ -n "$INPUT_SOURCE_REF" ]; then
+              if [[ ! "$INPUT_SOURCE_REF" =~ ^[0-9a-f]{40}$ ]] || [ "$INPUT_BRANCH" != "preview" ]; then
+                echo "::error::An isolated source must be an exact commit SHA published only to preview."
+                exit 1
+              fi
+              DISPATCH_SHA="$(gh api "repos/$REPO/commits/$INPUT_SOURCE_REF" --jq .sha)"
+            fi
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$DISPATCH_SHA" >> "$GITHUB_OUTPUT"
+            echo "branches=${INPUT_BRANCH:-production preview}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "branches=preview" >> "$GITHUB_OUTPUT"
+          skip() {
+            echo "$1"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "### OTA skipped - $1" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          }
+
+          # Scheduled runs publish the newest main commit whose CI passed on a
+          # PUSH. That keeps the gates the old workflow_run trigger enforced:
+          # CI green, a push rather than a pull_request run (so no fork or
+          # unmerged PR code), and on main. Pushes only ever come from this repo.
+          #
+          # Walk main newest-first and check each commit's own runs. Do not ask
+          # the run list for "the latest green run": filtered run listings are
+          # served from a search index, and on 2026-09-29 it answered with a
+          # 2026-09-09 run while newer green ones existed, so preview was
+          # republished with a three-week-old bundle.
+          COMMITS="$(gh api "repos/$REPO/commits?sha=main&per_page=50" --jq '.[].sha')"
+          SHA=""
+          for CANDIDATE in $COMMITS; do
+            # Reached what is already out: nothing newer has passed CI yet.
+            if [ "$CANDIDATE" = "$LAST" ]; then
+              skip "no green commit on main newer than \`${LAST:0:7}\`"
+            fi
+            GREEN="$(CANDIDATE="$CANDIDATE" gh api "repos/$REPO/actions/runs?head_sha=$CANDIDATE&event=push" --jq '
+              [.workflow_runs[] | select(.head_sha == $ENV.CANDIDATE and .event == "push"
+                and .head_branch == "main" and .path == ".github/workflows/ci.yml"
+                and .conclusion == "success")] | length' || echo 0)"
+            if [ "$GREEN" != "0" ]; then SHA="$CANDIDATE"; break; fi
+          done
+          [ -n "$SHA" ] || skip "no green CI push run in the last 50 commits on main"
+
+          # Never publish anything older than what preview already has. The
+          # walk stops at the tag, but the tag can sit outside that window or
+          # off main (a dispatch from another branch), so ask git directly:
+          # the pick must strictly descend from the last publish.
+          if [ -n "$LAST" ]; then
+            RELATION="$(gh api "repos/$REPO/compare/$LAST...$SHA" --jq .status 2>/dev/null || echo unknown)"
+            if [ "$RELATION" != "ahead" ]; then
+              echo "::warning::Refusing ${SHA:0:7}: it is $RELATION relative to the last publish ${LAST:0:7}."
+              skip "\`${SHA:0:7}\` is $RELATION relative to the last publish \`${LAST:0:7}\`"
+            fi
+          fi
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve the native update runtime
+        id: runtime
+        if: steps.pick.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SELECTED_SHA: ${{ steps.pick.outputs.sha }}
+          INPUT_SOURCE_REF: ${{ github.event.inputs.source_ref }}
+        run: |
+          runtime_for() {
+            gh api "repos/$REPO/contents/app.json?ref=$1" --jq .content \
+              | base64 --decode | jq -er '.expo.runtimeVersion | select(type == "string")'
+          }
+          RUNTIME="$(runtime_for "$SELECTED_SHA")"
+          MAIN_RUNTIME="$(runtime_for main)"
+          if [[ ! "$RUNTIME" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$ ]]; then
+            echo "::error::The selected commit must declare a fixed, valid update runtime."
+            exit 1
+          fi
+          if [ -n "$INPUT_SOURCE_REF" ] && [ "$RUNTIME" = "$MAIN_RUNTIME" ]; then
+            echo "::error::An isolated source must use a different native runtime from main."
+            exit 1
+          fi
+          echo "runtime=$RUNTIME" >> "$GITHUB_OUTPUT"
+          QUEUE=ota-publish
+          if [ "$RUNTIME" != "$MAIN_RUNTIME" ]; then QUEUE="ota-publish-$RUNTIME"; fi
+          echo "queue=$QUEUE" >> "$GITHUB_OUTPUT"
+          echo "Selected commit $SELECTED_SHA with update runtime $RUNTIME."
+
+  publish:
+    name: Publish JS bundle
+    needs: decide
+    # GitHub replaces an older pending job in the same group even when
+    # cancel-in-progress is false. Separate native runtimes must not replace
+    # each other's repairs; updates for the same runtime remain serialized.
+    concurrency:
+      group: ${{ needs.decide.outputs.queue }}
+      cancel-in-progress: false
+    # A dispatch always runs (check_only included). A scheduled run only runs
+    # when decide found a green, unpublished commit on main - see its gates.
+    if: needs.decide.outputs.publish == 'true'
+    permissions:
+      # write only to move the ota-published-preview tag after a publish.
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # Read through env so the steps below can test for it — the secrets
+      # context is not available in an `if:` directly.
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      # Metro's source-map export exceeds Node's default heap on this bundle.
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - name: Say why nothing was published
+        if: env.EXPO_TOKEN == ''
+        run: |
+          {
+            echo "### OTA skipped"
+            echo
+            echo "No \`EXPO_TOKEN\` secret is set, so there is nothing to publish with."
+            echo "Create a token at <https://expo.dev/settings/access-tokens> on the"
+            echo "\`dehubapp\` account and add it under **Settings → Secrets and variables"
+            echo "→ Actions**. Nothing else needs to change."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@v4
+        if: env.EXPO_TOKEN != ''
+        with:
+          # The green main commit decide picked, or the dispatched ref.
+          ref: ${{ needs.decide.outputs.sha }}
+          # Full history so the native-change check can diff against the last
+          # published commit, which may be several merges back.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        if: env.EXPO_TOKEN != ''
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        if: env.EXPO_TOKEN != ''
+        run: npm ci --legacy-peer-deps
+
+      - uses: expo/expo-github-action@v8
+        if: env.EXPO_TOKEN != ''
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Preflight - prove the config lands in a real bundle
+        if: env.EXPO_TOKEN != ''
+        run: |
+          # The outage this guards against was invisible to every check we had:
+          # the publish succeeded, the update server answered 200, and the
+          # bundle it served killed the app on launch. A publish is not verified
+          # by anything the publish itself reports. The only honest test is to
+          # build a bundle the same way the publish will and look inside it.
+          #
+          # production is the strictest environment and a superset of preview,
+          # so one export covers both branches.
+          #
+          # env:list and env:exec take the environment POSITIONALLY on this CLI
+          # and reject --environment / --non-interactive, unlike almost every
+          # other eas subcommand. Print the version and the signatures next to
+          # the calls so the next flag rename is one log read, not one release.
+          eas --version
+          echo "--- eas env:exec ---"; eas env:exec --help || true
+
+          echo "Variables the production environment resolves (values hidden):"
+          eas env:list production | sed -E 's/=.*/= <set>/'
+
+          eas env:exec production \
+            "npx expo export --platform android --output-dir /tmp/otacheck"
+
+          # A correctly configured bundle contains the Supabase host. One built
+          # without env does not, and that is exactly the difference between a
+          # working app and one that throws "supabaseKey is required" before it
+          # renders. Grep for the value's shape; never print the value.
+          if grep -rqs "supabase.co" /tmp/otacheck; then
+            echo "Preflight OK - bundled config is present."
+          else
+            echo "::error::Bundle contains no Supabase host, so the app config did not resolve. Refusing to publish."
+            exit 1
+          fi
+
+      - name: Preflight only, nothing published
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only == 'true'
+        run: |
+          {
+            echo "### Preflight only"
+            echo
+            echo "Config resolves and lands in a bundle. Nothing was published."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish the JS bundle
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true'
+        env:
+          # An app only receives updates published to the channel it was built
+          # on, and eas.json hands out two: `production` builds listen on
+          # production, while `preview` — and `test-apk`, which extends it, the
+          # profile behind the APK people are actually given — listen on
+          # preview. Publishing to production alone meant every installed test
+          # build sat there never seeing an update.
+          UPDATE_BRANCHES: ${{ needs.decide.outputs.branches }}
+          UPDATE_PLATFORM: ${{ github.event.inputs.platform || 'both' }}
+        run: |
+          # Read the subject out of git rather than interpolating it into the
+          # command, so a commit message cannot become shell.
+          MESSAGE="$(git log -1 --pretty=%s)"
+          # Unquoted on purpose: this is a space-separated list, not one branch.
+          case "$UPDATE_PLATFORM" in
+            both) PLATFORMS="android ios" ;;
+            android|ios) PLATFORMS="$UPDATE_PLATFORM" ;;
+            *) echo "::error::Invalid update platform"; exit 1 ;;
+          esac
+          for BRANCH in $UPDATE_BRANCHES; do
+            # Each EAS branch takes the environment of the same name, so a
+            # preview bundle is built with preview config rather than
+            # production's. Without --environment the runner holds no app config
+            # at all and the bundle is a crash on launch — see the header.
+            case "$BRANCH" in
+              production) ENVIRONMENT=production ;;
+              *)          ENVIRONMENT=preview ;;
+            esac
+            # Only the two platforms that ship. app.json still carries a web
+            # block from the Expo template and `--platform all` honours it, so a
+            # publish also bundles for web and dies on the first native-only
+            # import it meets (react-native-agora). The web product is a
+            # separate repo and never receives these updates.
+            for PLATFORM in $PLATFORMS; do
+              echo "Publishing to $BRANCH ($PLATFORM) with $ENVIRONMENT config"
+              eas update --branch "$BRANCH" --platform "$PLATFORM" --environment "$ENVIRONMENT" --message "$MESSAGE" --non-interactive
+            done
+          done
+
+      - name: Record the published commit
+        if: >-
+          github.ref_name == 'main' && github.event.inputs.source_ref == '' &&
+          env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true' &&
+          (github.event.inputs.platform == '' || github.event.inputs.platform == 'both') &&
+          contains(format(' {0} ', needs.decide.outputs.branches), ' preview ')
+        run: |
+          # The scheduled run compares main against this tag to decide whether
+          # there is anything new. A failure here only costs a repeat publish.
+          git push --force origin "HEAD:refs/tags/ota-published-preview" \
+            || echo "::warning::Could not move ota-published-preview; the next scheduled run may republish."
+
+      - name: Flag native changes an update cannot carry
+        if: env.EXPO_TOKEN != '' && github.event.inputs.check_only != 'true'
+        env:
+          LAST: ${{ needs.decide.outputs.last }}
+          BRANCHES: ${{ needs.decide.outputs.branches }}
+        run: |
+          # Everything since the previous publish, not only the last merge.
+          BASE="HEAD~1"
+          if [ -n "$LAST" ] && git cat-file -e "$LAST^{commit}" 2>/dev/null; then BASE="$LAST"; fi
+          NATIVE="$(git diff --name-only "$BASE"..HEAD -- android ios app.json package.json || true)"
+          {
+            echo "### OTA published"
+            echo
+            echo "Branch: \`$BRANCHES\`"
+            echo "Commit: \`$(git log -1 --pretty='%h %s')\`"
+            if [ -n "$NATIVE" ]; then
+              echo
+              echo "**Commits in this update touched native config.** An update carries JS only,"
+              echo "so the following need a build before they reach anyone:"
+              echo
+              echo '```'
+              echo "$NATIVE"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
