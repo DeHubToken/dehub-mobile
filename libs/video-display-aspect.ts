@@ -46,7 +46,7 @@ export function mp4QuarterTurn(buffer: ArrayBuffer): boolean | null {
   // An unoptimized MP4 keeps moov after mdat. The suffix starts inside mdat,
   // so find a complete moov and validate its child track structure.
   for (let at = 0; at + 8 <= bytes.length; at++) {
-    if (typeAt(at + 4) !== 'moov') continue;
+    if (bytes[at + 4] !== 109 || bytes[at + 5] !== 111 || bytes[at + 6] !== 111 || bytes[at + 7] !== 118) continue;
     const size = view.getUint32(at);
     if (size < 8 || at + size > bytes.length) continue;
     const result = inspect({ type: 'moov', body: at + 8, end: at + size });
