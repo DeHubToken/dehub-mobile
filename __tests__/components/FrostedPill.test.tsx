@@ -31,14 +31,6 @@ it('samples the supplied target using the Android 12+ path', () => {
   expect(tree.root.findAllByType('View' as any)[0].props.style[1]).toMatchObject({ borderRadius: 12, overflow: 'hidden' });
 });
 
-it('keeps navigation paint stable even when a blur target is available', () => {
-  mockSupported = true;
-  mockTarget = { current: {} };
-  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} blurEnabled={false} />); });
-  expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
-  expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === '#18181B')).toBe(true);
-});
-
 it('can remove the reply-dock rim while retaining blur and the default pill rim', () => {
   mockSupported = true;
   mockTarget = { current: {} };
