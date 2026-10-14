@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import ImportWallet from '../../components/auth/ImportWallet';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
-jest.mock('react-native', () => ({ View: 'View' }));
+jest.mock('react-native', () => ({ View: 'View', StyleSheet: { flatten: (style: unknown) => style || {} } }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/auth/AuthControls', () => ({ AuthButton: 'AuthButton', AuthDivider: 'AuthDivider' }));
 jest.mock('../../components/auth/ImportWalletModal', () => 'WalletImportForm');
