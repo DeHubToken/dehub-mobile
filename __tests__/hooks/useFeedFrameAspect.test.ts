@@ -1,7 +1,31 @@
-import { renderHook } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 import { useFeedFrameAspect } from '../../hooks/useFeedFrameAspect';
+import { setFeedScrolling, __resetScrollActivityForTests } from '../../libs/scrollActivity';
+
+afterEach(__resetScrollActivityForTests);
 
 describe('feed frame stability', () => {
+  it('holds a partially entering row before it reaches playback viewability', () => {
+    const view = renderHook<number, { ratio: number }>(({ ratio }) => useFeedFrameAspect('entering-native-video', ratio, false), {
+      initialProps: { ratio: 16 / 9 },
+    });
+    view.rerender({ ratio: 0.75 });
+    act(() => setFeedScrolling(true));
+    view.rerender({ ratio: 0.5 });
+    expect(view.result.current).toBe(0.75);
+    act(() => setFeedScrolling(false));
+    view.rerender({ ratio: 1 });
+    expect(view.result.current).toBe(0.75);
+  });
+
+  it('holds a new recycled row mounted during a fling', () => {
+    act(() => setFeedScrolling(true));
+    const view = renderHook<number, { ratio: number }>(({ ratio }) => useFeedFrameAspect('fling-mounted-video', ratio, false), {
+      initialProps: { ratio: 16 / 9 },
+    });
+    view.rerender({ ratio: 0.5 });
+    expect(view.result.current).toBe(16 / 9);
+  });
   it('prepares offscreen but keeps the visible poster, player and recycled return the same size', () => {
     const view = renderHook<number, { ratio: number; visible: boolean }>(({ ratio, visible }) => useFeedFrameAspect('stable-native-video', ratio, visible), {
       initialProps: { ratio: 16 / 9, visible: false },
