@@ -4,9 +4,9 @@ export interface MaboroshiPaymentRequest {
   type: 'maboroshi:pay'; requestId: string; id: string; stage: 'prepare' | 'draft' | 'hd';
 }
 export interface MaboroshiQuote extends MaboroshiPaymentRequest {
-  wallet: string; price_micros: number; payment_ref: string | null;
+  wallet: string; price_micros: number; payment_ref: string | null; renderer?: 'kling' | 'seedance';
 }
-export const maboroshiStageLabel = (stage: MaboroshiPaymentRequest['stage']) => ({
+export const maboroshiStageLabel = (stage: MaboroshiPaymentRequest['stage'], renderer?: MaboroshiQuote['renderer']) => renderer === 'kling' ? 'Generate Kling video · original soundtrack' : ({
   prepare: 'Prepare clip', draft: 'Generate preview', hd: 'Generate 1080p',
 })[stage];
 export function isMaboroshiPaymentRequest(value: unknown): value is MaboroshiPaymentRequest {
@@ -28,6 +28,8 @@ export async function getMaboroshiQuote(input: MaboroshiPaymentRequest, token: s
   if (!isMaboroshiPaymentRequest(input) || !token || !/^0x[a-f0-9]{40}$/i.test(wallet)) throw new Error('Sign in to review this payment.');
   const quote = await request(`/jobs/${input.id}/checkout/${input.stage}`, token, {}, fetcher);
   if (quote.id !== input.id || quote.stage !== input.stage || quote.wallet !== wallet.toLowerCase()
+      || (quote.renderer !== undefined && !['kling', 'seedance'].includes(quote.renderer))
+      || (quote.renderer === 'kling' && input.stage !== 'draft')
       || !Number.isSafeInteger(quote.price_micros) || quote.price_micros <= 0 || quote.price_micros > 100_000_000
       || (quote.payment_ref !== null && quote.payment_ref !== 'credits' && !/^0x[a-f0-9]{64}$/.test(quote.payment_ref))) throw new Error('The project payment does not match this account.');
   return { ...input, ...quote };
