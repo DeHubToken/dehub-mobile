@@ -5,6 +5,7 @@ import { decryptStringWithKeyMaterial } from '../libs/wallet-core/crypto';
 import { unlockWithSavedPasskey } from '../libs/wallet-core/passkey-unlock';
 
 jest.mock('react-native-passkey', () => ({ Passkey: { isSupported: jest.fn(() => true), get: jest.fn() } }));
+jest.mock('buffer', () => jest.requireActual('buffer/'));
 jest.mock('expo-crypto', () => ({ getRandomBytes: () => new Uint8Array(32).fill(3) }));
 jest.mock('../services/supabase', () => ({ supabase: { auth: { getSession: jest.fn() }, from: jest.fn() } }));
 jest.mock('../libs/wallet-core/crypto', () => ({ decryptStringWithKeyMaterial: jest.fn() }));
@@ -53,5 +54,19 @@ it('rejects a different credential before decryption', async () => {
 it('leaves the wallet untouched when the user cancels', async () => {
   (Passkey.get as jest.Mock).mockRejectedValue(new Error('UserCancelled'));
   await expect(unlockWithSavedPasskey('user')).rejects.toThrow('UserCancelled');
+  expect(decryptStringWithKeyMaterial).not.toHaveBeenCalled();
+});
+
+it('uses each saved credential salt when several passkeys exist', async () => {
+  query.mockResolvedValue({ data: [wrap, { ...wrap, credential_id: 'AwQ', prf_salt: 'BQY=' }], error: null });
+  await unlockWithSavedPasskey('user');
+  expect(Passkey.get).toHaveBeenCalledWith(expect.objectContaining({ extensions: { prf: { evalByCredential: {
+    AQI: { first: new Uint8Array([1, 2, 3, 4]) }, AwQ: { first: new Uint8Array([5, 6]) },
+  } } } }));
+});
+
+it('requires PRF output rather than treating passkey authentication as wallet access', async () => {
+  (Passkey.get as jest.Mock).mockResolvedValue({ id: 'AQI' });
+  await expect(unlockWithSavedPasskey('user')).rejects.toThrow('could not unlock');
   expect(decryptStringWithKeyMaterial).not.toHaveBeenCalled();
 });
