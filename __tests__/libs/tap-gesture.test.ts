@@ -44,6 +44,7 @@ describe('shorts player wiring', () => {
   });
 
   it('lets stationary taps coexist with the vertical pager recognizer', () => {
-    expect(source.match(/\.simultaneousWithExternalGesture\(pagerGesture\)/g)).toHaveLength(2);
+    const gestures = source.slice(source.indexOf('  const screenGesture ='), source.indexOf('  const screenGesture =') + 1300);
+    expect(gestures.match(/\.simultaneousWithExternalGesture\(pagerGesture\)/g)).toHaveLength(2);
   });
 });
