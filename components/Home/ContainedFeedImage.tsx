@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, Text, View, useWindowDimensions, type Lay
 import { useTranslation } from 'react-i18next';
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
 import { useImageAspect } from "../../hooks/useImageAspect";
+import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
@@ -48,7 +49,8 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
-  const { ratio: aspectRatio, onLoad } = useImageAspect(uri);
+  const { ratio: measuredAspect, onLoad } = useImageAspect(uri);
+  const aspectRatio = useFeedFrameAspect(`image:${uri}`, measuredAspect, active, !postPage);
   const { isMinimal } = useAppTheme();
   // Minimal and the cinematic system feed both run the image edge to edge.
   const bleed = !!useFeedBleed();
