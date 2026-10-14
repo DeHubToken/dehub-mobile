@@ -37,6 +37,7 @@ interface Props {
   onClose: () => void;
   onClear: () => void;
   onOpenGenerator: (draft: GenerationDraft) => void;
+  onGenerateContent?: () => void;
   assembly?: React.ComponentProps<typeof AssemblyReview>;
   highlights?: HighlightChatState;
   highlightSourceChanged?: boolean;
@@ -47,7 +48,7 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope, projectId }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, onGenerateContent, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope, projectId }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
@@ -95,6 +96,10 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             )}
           </View>
 
+          {onGenerateContent && <Pressable onPress={onGenerateContent} accessibilityRole="button"
+            className="mb-3 self-start rounded-lg border border-white/15 px-3 py-2">
+            <Text className="text-xs font-semibold text-white">{t('upload.generateContent', { defaultValue: 'Generate content' })}</Text>
+          </Pressable>}
           <ScrollView ref={scroll} style={{ maxHeight: 360, flexShrink: 1 }} contentContainerStyle={{ gap: 8, paddingBottom: 8 }} keyboardShouldPersistTaps="handled">
             {entries.length === 0 && (
               <>

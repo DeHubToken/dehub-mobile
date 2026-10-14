@@ -2,6 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useState } from 'react';
 import {
   View,
+  Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
@@ -108,7 +109,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           )}
           <TouchableOpacity
             onPress={handleSubmit}
-            style={s.actionBtn}
+            style={[s.actionBtn, sendLabel ? { width: 'auto', minHeight: 40, paddingHorizontal: 12, flexDirection: 'row', gap: 8, backgroundColor: 'rgba(255,255,255,0.1)' } : undefined]}
             hitSlop={ACTION_SLOP}
             disabled={!canSend}
             accessibilityRole="button"
@@ -124,6 +125,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
                 color={canSend ? '#F9FBFF' : '#3F3F46'}
               />
             )}
+            {sendLabel && <Text style={{ color: canSend ? '#F9FBFF' : '#8B8D90', fontSize: 13, fontWeight: '700' }}>{sendLabel}</Text>}
           </TouchableOpacity>
         </View>
       </View>
