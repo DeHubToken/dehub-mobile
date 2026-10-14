@@ -127,12 +127,14 @@ describe("getBiometricCapability", () => {
     );
   });
 
-  it("degrades to unusable rather than throwing when the platform errors", async () => {
+  it("keeps a failed capability probe distinct from a device with no lock", async () => {
     mocked.hasHardwareAsync.mockRejectedValue(new Error("module missing"));
     mocked.isEnrolledAsync.mockRejectedValue(new Error("module missing"));
     mocked.getEnrolledLevelAsync.mockRejectedValue(new Error("module missing"));
     await expect(getBiometricCapability()).resolves.toEqual(
-      expect.objectContaining({ usable: false }),
+      expect.objectContaining({ usable: false, unavailable: true }),
     );
+    await expect(requireDeviceOwner("Export wallet")).rejects.toBeInstanceOf(BiometricUnavailableError);
+    expect(mocked.authenticateAsync).not.toHaveBeenCalled();
   });
 });
