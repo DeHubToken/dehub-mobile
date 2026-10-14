@@ -5,6 +5,22 @@ import { setFeedScrolling, __resetScrollActivityForTests } from '../../libs/scro
 afterEach(__resetScrollActivityForTests);
 
 describe('feed frame stability', () => {
+  it('corrects a visible video fallback after dimensions arrive and the fling settles', () => {
+    const view = renderHook<number, { measured: number | null }>(({ measured }) =>
+      useFeedFrameAspect('resolved-native-portrait', measured ?? 16 / 9, true, true, measured), {
+      initialProps: { measured: null },
+    });
+    expect(view.result.current).toBe(16 / 9);
+    act(() => setFeedScrolling(true));
+    view.rerender({ measured: 9 / 16 });
+    expect(view.result.current).toBe(16 / 9);
+    act(() => setFeedScrolling(false));
+    expect(view.result.current).toBe(9 / 16);
+    view.unmount();
+    const recycled = renderHook(() => useFeedFrameAspect('resolved-native-portrait', 16 / 9, true));
+    expect(recycled.result.current).toBe(9 / 16);
+  });
+
   it('holds a partially entering row before it reaches playback viewability', () => {
     const view = renderHook<number, { ratio: number }>(({ ratio }) => useFeedFrameAspect('entering-native-video', ratio, false), {
       initialProps: { ratio: 16 / 9 },

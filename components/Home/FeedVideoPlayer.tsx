@@ -527,7 +527,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
   const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
   const posterAspect = getMeasuredMediaAspect(thumbnail);
-  const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage);
+  const measuredAspect = videoAspect ?? posterAspect;
+  const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage,
+    measuredAspect == null ? undefined : clampAspect(measuredAspect, THIN_MIN_RATIO));
   const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
@@ -1495,7 +1497,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
       {/* Subtitles with a language picker. Outside the controls block so the
           captions stay on screen when the chrome hides. */}
-      {!hideControls && tokenId != null && !isContentGated && (
+      {!feedPreview && !hideControls && tokenId != null && !isContentGated && (
         <CaptionOverlay
           tokenId={tokenId}
           positionMs={captionPosMs}
