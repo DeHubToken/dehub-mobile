@@ -57,6 +57,7 @@ export const CHROME_FILL_GLASS = "rgba(0,0,0,0.40)";
  * button has always worn. Back, speed, mute and options share it so the four
  * read as one set instead of three slabs and one glass square.
  */
+// Keep in step with PictureInPictureButton, which stays free of this file.
 export const CHROME_FILL_TOP = "rgba(0,0,0,0.5)";
 /** The hairline around that glass, as `border-white/15` on the web. */
 export const CHROME_HAIRLINE = "rgba(255,255,255,0.15)";
