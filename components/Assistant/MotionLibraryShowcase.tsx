@@ -63,10 +63,10 @@ export default function MotionLibraryShowcase({ onPick, onMaboroshi, compact = f
   const results = searchMotionClips(clips, query, category);
   const categories = ['All', ...new Set(clips.map(clip => clip.category))];
   const choose = (clip: MotionClip, workflow: 'swap' | 'motion') => { setLibrary(false); setPreview(null); onPick(clip, workflow); };
-  const actions = (clip: MotionClip) => <View className="mt-3 gap-2"><View className="flex-row gap-2">
+  const actions = (clip: MotionClip, modal = false) => <View className="mt-3 gap-2"><View className="flex-row gap-2">
     <Pressable accessibilityRole="button" onPress={() => choose(clip, 'swap')} className="min-h-11 flex-1 justify-center rounded-xl bg-white px-3 py-2"><Text className="text-center text-sm font-semibold text-black">{t('motionLibrary.recast')}</Text></Pressable>
-    <Pressable accessibilityRole="button" onPress={() => choose(clip, 'motion')} className="min-h-11 flex-1 justify-center rounded-xl border border-white/20 px-3 py-2"><Text className="text-center text-sm font-semibold text-white">{t('motionLibrary.copyMotion')}</Text></Pressable>
-    </View>{onMaboroshi && <Pressable accessibilityRole="button" onPress={() => { setLibrary(false); setPreview(null); onMaboroshi(clip); }} className="min-h-11 justify-center rounded-xl border border-white/20 px-3 py-2"><Text className="text-center text-sm font-semibold text-white">{t('creator.toolMaboroshi')}</Text></Pressable>}
+    <Pressable accessibilityRole="button" onPress={() => choose(clip, 'motion')} className={`min-h-11 flex-1 justify-center rounded-xl border px-3 py-2 ${modal ? 'border-white/20' : 'border-theme-neutrals-600'}`}><Text className={`text-center text-sm font-semibold ${modal ? 'text-white' : 'text-theme-neutrals-100'}`}>{t('motionLibrary.copyMotion')}</Text></Pressable>
+    </View>{onMaboroshi && <Pressable accessibilityRole="button" onPress={() => { setLibrary(false); setPreview(null); onMaboroshi(clip); }} className={`min-h-11 justify-center rounded-xl border px-3 py-2 ${modal ? 'border-white/20' : 'border-theme-neutrals-600'}`}><Text className={`text-center text-sm font-semibold ${modal ? 'text-white' : 'text-theme-neutrals-100'}`}>{t('creator.toolMaboroshi')}</Text></Pressable>}
   </View>;
   const card = (clip: MotionClip, size: number, modal = false) => <View style={{ width: size }}>
     <Pressable accessibilityRole="button" accessibilityLabel={t('motionLibrary.preview', { name: clip.name })} onPress={() => setPreview(clip)}>
@@ -74,7 +74,7 @@ export default function MotionLibraryShowcase({ onPick, onMaboroshi, compact = f
       <View style={{ position: 'absolute', left: 12, bottom: 12, padding: 12, borderRadius: 24, backgroundColor: '#000b' }}><Ionicons name="play" color="white" size={16} /></View>
     </Pressable>
     <Text className={`mt-3 text-base font-semibold ${modal ? 'text-white' : 'text-theme-neutrals-100'}`} numberOfLines={1}>{clip.name}</Text>
-    <Text className={`mt-1 text-xs ${modal ? 'text-white/60' : 'text-theme-neutrals-400'}`}>{t(`motionLibrary.category${clip.category}`)} · {Math.ceil(clip.seconds)}s</Text>{actions(clip)}
+    <Text className={`mt-1 text-xs ${modal ? 'text-white/60' : 'text-theme-neutrals-400'}`}>{t(`motionLibrary.category${clip.category}`)} · {Math.ceil(clip.seconds)}s</Text>{actions(clip, modal)}
   </View>;
   return <View className="py-6">
     {!compact && <View className="px-4"><Text className="text-[30px] font-black leading-[33px] text-theme-neutrals-100">{t('motionLibrary.title')}</Text><Text className="mt-3 text-sm text-theme-neutrals-400">{t('motionLibrary.intro')}</Text></View>}
@@ -87,7 +87,7 @@ export default function MotionLibraryShowcase({ onPick, onMaboroshi, compact = f
     <Modal visible={library || !!preview} animationType="slide" onRequestClose={() => { setLibrary(false); setPreview(null); }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#111214' }}>
         <View className="flex-row items-center justify-between px-4 py-2"><Text className="flex-1 text-xl font-bold text-white" numberOfLines={2}>{preview?.name ?? t('motionLibrary.title')}</Text><Pressable accessibilityRole="button" accessibilityLabel={t('common.close')} onPress={() => { setLibrary(false); setPreview(null); }} className="h-12 w-12 items-center justify-center"><Ionicons name="close" color="white" size={24} /></Pressable></View>
-        {preview ? <ScrollView contentContainerStyle={{ padding: 16 }}><Player key={preview.id} clip={preview} width={width - 32} />{actions(preview)}<Pressable accessibilityRole="button" onPress={() => { setPreview(null); setLibrary(true); }} className="min-h-11 justify-center"><Text className="text-white underline">{t('motionLibrary.back')}</Text></Pressable></ScrollView> : <>
+        {preview ? <ScrollView contentContainerStyle={{ padding: 16 }}><Player key={preview.id} clip={preview} width={width - 32} />{actions(preview, true)}<Pressable accessibilityRole="button" onPress={() => { setPreview(null); setLibrary(true); }} className="min-h-11 justify-center"><Text className="text-white underline">{t('motionLibrary.back')}</Text></Pressable></ScrollView> : <>
           <TextInput value={query} onChangeText={setQuery} placeholder={t('motionLibrary.search')} accessibilityLabel={t('motionLibrary.search')} placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl border border-white/20 px-4 text-white" />
           <View><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, padding: 16 }}>{categories.map(item => <Pressable key={item} accessibilityRole="button" accessibilityState={{ selected: category === item }} onPress={() => setCategory(item)} className={`min-h-11 justify-center rounded-full px-4 ${item === category ? 'bg-white' : 'border border-white/20'}`}><Text style={{ color: category === item ? '#09090b' : '#d4d4d8' }}>{t(`motionLibrary.category${item}`)}</Text></Pressable>)}</ScrollView></View>
           <Text className="px-4 pb-3 text-sm text-white/60">{t('motionLibrary.results', { count: results.length })}</Text>

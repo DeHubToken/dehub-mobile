@@ -28,7 +28,7 @@ export function loadMotionCatalog(): Promise<MotionCatalog> {
 export function motionModel(clip: MotionClip, workflow: 'swap' | 'motion' = 'swap') {
   return workflow === 'motion' || clip.seconds > 15 ? 'kling-3-motion' : 'kling-o3-edit';
 }
-export function motionAspect(clip: MotionClip) { return clip.width > clip.height ? '16:9' : '9:16'; }
+export function motionAspect(clip: MotionClip) { return clip.width / clip.height > 1.3 ? '16:9' : clip.height / clip.width > 1.3 ? '9:16' : '1:1'; }
 export function searchMotionClips(clips: MotionClip[], query: string, category = 'All') {
   const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return clips.filter(clip => (category === 'All' || clip.category === category)
