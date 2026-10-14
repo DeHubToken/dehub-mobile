@@ -5,38 +5,38 @@ import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { useTranslation } from 'react-i18next';
 import SmartImage from '../common/SmartImage';
-import { VIRAL_EFFECTS, VIRAL_FEATURED_IDS, type ViralEffect } from '../../config/viral-effects';
+import { VIRAL_TEMPLATES, TEMPLATE_FEATURED_IDS, type ViralTemplate } from '../../config/viral-templates';
 
 const categories = ['all', 'effects', 'characters', 'dance', 'sports', 'products', 'seasonal'];
-function Preview({ effect, width }: { effect: ViralEffect; width: number }) {
+function Preview({ effect, width }: { effect: ViralTemplate; width: number }) {
   const player = useVideoPlayer(effect.preview!, instance => { instance.muted = true; instance.play(); });
   return <VideoView player={player} nativeControls contentFit="contain" style={{ width, height: Math.min(width * 4 / 3, 500) }} />;
 }
 
-export default function ViralTemplateShowcase({ onPick, compact = false }: { onPick: (effect: ViralEffect) => void; compact?: boolean }) {
+export default function ViralTemplateShowcase({ onPick, compact = false }: { onPick: (effect: ViralTemplate) => void; compact?: boolean }) {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const [library, setLibrary] = useState(false);
-  const [preview, setPreview] = useState<ViralEffect | null>(null);
+  const [preview, setPreview] = useState<ViralTemplate | null>(null);
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
-  const results = useMemo(() => VIRAL_EFFECTS.filter(effect => (category === 'all' || category === effect.category)
+  const results = useMemo(() => VIRAL_TEMPLATES.filter(effect => (category === 'all' || category === effect.category)
     && `${effect.name} ${t(`viralTemplates.${effect.category}`)}`.toLowerCase().includes(query.trim().toLowerCase())), [category, query, t]);
-  const featured = VIRAL_FEATURED_IDS.flatMap(id => VIRAL_EFFECTS.filter(effect => effect.id === id && effect.preview));
+  const featured = TEMPLATE_FEATURED_IDS.flatMap(id => VIRAL_TEMPLATES.filter(effect => effect.id === id && effect.preview));
   const cardWidth = Math.min(width * .65, 250);
-  const choose = (effect: ViralEffect) => { setPreview(null); setLibrary(false); onPick(effect); };
-  const useButton = (effect: ViralEffect) => <Pressable accessibilityRole="button" accessibilityLabel={t('viralTemplates.useNamed', { name: effect.name })}
+  const choose = (effect: ViralTemplate) => { setPreview(null); setLibrary(false); onPick(effect); };
+  const useButton = (effect: ViralTemplate) => <Pressable accessibilityRole="button" accessibilityLabel={t('viralTemplates.useNamed', { name: effect.name })}
     onPress={() => choose(effect)} className="mt-2 min-h-11 flex-row items-center justify-between rounded-lg border border-white/20 px-3 py-3">
     <Text className="text-sm font-semibold text-white">{t('viralTemplates.use')}</Text><Ionicons name="arrow-forward" color="white" size={16} />
   </Pressable>;
   return <View className={compact ? 'px-4 py-2' : 'pb-8 pt-3'}>
     {!compact && <View className="px-4">
-      <Text className="text-sm text-theme-neutrals-400">{t('viralTemplates.eyebrow', { count: VIRAL_EFFECTS.length })}</Text>
+      <Text className="text-sm text-theme-neutrals-400">{t('viralTemplates.eyebrow', { count: VIRAL_TEMPLATES.length })}</Text>
       <Text className="mt-2 text-[30px] font-black leading-[33px] text-theme-neutrals-100">{t('viralTemplates.title')}</Text>
       <Text className="mt-3 text-sm text-theme-neutrals-400">{t('viralTemplates.intro')}</Text>
     </View>}
     <Pressable accessibilityRole="button" onPress={() => { setLibrary(true); setPreview(null); }} className={compact ? 'min-h-11 justify-center' : 'min-h-11 justify-center px-4 my-3'}>
-      <Text className="text-sm font-semibold text-theme-neutrals-100 underline">{t('viralTemplates.browse', { count: VIRAL_EFFECTS.length })}</Text>
+      <Text className="text-sm font-semibold text-theme-neutrals-100 underline">{t('viralTemplates.browse', { count: VIRAL_TEMPLATES.length })}</Text>
     </Pressable>
     {!compact && <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={cardWidth + 14} decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 16, gap: 14 }}>
       {featured.map(effect => <View key={effect.id} style={{ width: cardWidth }}>
@@ -59,9 +59,9 @@ export default function ViralTemplateShowcase({ onPick, compact = false }: { onP
         </View>
         {preview ? <ScrollView contentContainerStyle={{ padding: 16 }}>
           {preview.preview && <Preview key={preview.id} effect={preview} width={width - 32} />}
-          <Text className="mt-4 text-sm text-white/60">{t('viralTemplates.ready', { name: preview.name })}</Text>
+          <Text className="mt-4 text-sm text-white/60">{t(preview.motionSeconds ? 'viralTemplates.motionReady' : 'viralTemplates.ready', { name: preview.name })}</Text>
           {useButton(preview)}
-          <Text className="mt-4 text-xs text-white/45">{t('viralTemplates.source')} PixVerse</Text>
+          <Text className="mt-4 text-xs text-white/45">{t('viralTemplates.source')} {preview.sourceName ?? 'PixVerse'}</Text>
         </ScrollView> : <>
           <TextInput value={query} onChangeText={setQuery} placeholder={t('viralTemplates.search')} accessibilityLabel={t('viralTemplates.search')}
             placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl border border-white/20 px-4 text-white" />

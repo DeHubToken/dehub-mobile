@@ -77,8 +77,8 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     </Pressable>
   );
   return (
-    <View className="gap-2 px-4 pb-2">
-      <View className="flex-row flex-wrap items-center gap-1">
+    <View>
+      <View className="flex-row items-center gap-1">
         {onAttach && (
           <Pressable onPress={onAttach} disabled={disabled} accessibilityRole="button"
             accessibilityState={{ disabled }} accessibilityLabel={t('dm.attachImage')}
@@ -124,8 +124,6 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
         {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t('creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
-      </View>
-      <View className="flex-row flex-wrap gap-2">
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
       </View>
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
