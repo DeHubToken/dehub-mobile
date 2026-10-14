@@ -11,6 +11,11 @@ import LiquidGlass from '../components/ui/LiquidGlass';
 
 const actionNames: Record<string, string> = { dehub_follow: 'agents.tasks.follow', dehub_vote: 'agents.tasks.reaction', dehub_post_create: 'agents.tasks.post', dehub_comment: 'agents.tasks.comment', dehub_update_profile: 'agents.tasks.profile' };
 
+function postActionUrl(post?: { token_id?: string | number; url?: string }) {
+  const id = String(post?.token_id ?? '');
+  return /^\d+$/.test(id) ? `https://dehub.io/app/post/${id}` : post?.url;
+}
+
 export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AIAgent[] }) {
   const { t } = useTranslation();
   const client = useQueryClient();
@@ -56,7 +61,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
           {action.result?.content && <Text style={styles.text}>{action.result.content}</Text>}
           {action.result?.error && <Text style={styles.error}>{action.result.error}</Text>}
           {action.result?.hint && <Text style={styles.muted}>{action.result.hint}</Text>}
-          {action.result?.post?.url && <KitButton variant="quiet" label={t('agents.tasks.viewPost')} onPress={() => openInApp(action.result!.post!.url!)} />}
+          {postActionUrl(action.result?.post) && <KitButton variant="quiet" label={t('agents.tasks.viewPost')} onPress={() => openInApp(postActionUrl(action.result?.post)!)} />}
         </View>)}
         {history.data?.actions.length === 0 && <Text style={styles.muted}>{t('agents.tasks.emptyActivity')}</Text>}
         {(history.data?.actions.length ?? 0) >= 100 && <Text style={styles.muted}>{t('agents.tasks.latestActivity')}</Text>}
