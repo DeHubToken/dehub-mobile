@@ -1,11 +1,9 @@
 {
   "viralTemplates": {
-    "eyebrow":  "{{count}} effets vidéo",
     "title":  "Votre prochain moment viral.",
     "intro":  "Regardez un exemple. Choisissez un effet ou un personnage. Ajoutez votre photo.",
     "browse":  "Voir les {{count}} modèles",
     "featured":  "Retour à la sélection",
-    "use":  "Utiliser cet effet",
     "useNamed":  "Utiliser {{name}}",
     "preview":  "Voir l’aperçu de {{name}}",
     "previewUnavailable":  "Aperçu indisponible",
@@ -24,7 +22,11 @@
     "ready":  "{{name}} sélectionné. Ajoutez une photo pour créer une vidéo de 5 secondes. Le cadrage suit votre photo.",
     "chooseFirst":  "Choisissez un effet avant de générer.",
     "back":  "Retour aux modèles",
-    "close":  "Fermer les modèles"
+    "close":  "Fermer les modèles",
+    "eyebrow":  "{{count}} modèles vidéo",
+    "use":  "Utiliser ce modèle",
+    "motion":  "Reprendre ce mouvement",
+    "motionReady":  "{{name}} sélectionné. Ajoutez votre photo pour reproduire les mouvements de cette vidéo."
 },
 
   "maboroshiShowcase": {

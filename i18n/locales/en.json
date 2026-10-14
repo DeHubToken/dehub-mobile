@@ -1,11 +1,9 @@
 {
   "viralTemplates": {
-    "eyebrow":  "{{count}} video effects",
     "title":  "Find your next viral moment.",
     "intro":  "Watch an example. Pick an effect or character. Add your photo and make it yours.",
     "browse":  "Browse all {{count}} templates",
     "featured":  "Back to featured",
-    "use":  "Use this effect",
     "useNamed":  "Use {{name}}",
     "preview":  "Play {{name}} preview",
     "previewUnavailable":  "Preview unavailable",
@@ -24,7 +22,11 @@
     "ready":  "{{name}} selected. Add one photo to create a 5-second video. Framing follows your photo.",
     "chooseFirst":  "Choose an effect before generating.",
     "back":  "Back to templates",
-    "close":  "Close templates"
+    "close":  "Close templates",
+    "eyebrow":  "{{count}} video templates",
+    "use":  "Use this template",
+    "motion":  "Copy this motion",
+    "motionReady":  "{{name}} selected. Add your photo to perform the movement in this clip."
 },
 
   "maboroshiShowcase": {
