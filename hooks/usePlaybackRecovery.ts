@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { VideoPlayer } from 'expo-video';
 import { createPlaybackRecovery, playbackSourceIdentity, type PlaybackPhase } from '../libs/playback-recovery';
 import { replaceVideoSource } from '../libs/video-source';
+import { rewindFinishedVideo } from '../libs/video-start';
 
 export function usePlaybackRecovery(player: VideoPlayer, source: string | null | undefined, options: {
   component: string;
@@ -20,7 +21,10 @@ export function usePlaybackRecovery(player: VideoPlayer, source: string | null |
         if (!allowed()) return;
         if (position > 0 && Number.isFinite(player.duration) && position < player.duration) player.currentTime = position;
       }
-      if (allowed()) player.play();
+      if (allowed()) {
+        rewindFinishedVideo(player);
+        player.play();
+      }
     },
     pause: () => { try { player.pause(); } catch {} },
     changed: setPhase,

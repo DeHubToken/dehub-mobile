@@ -19,9 +19,12 @@ import { storage } from '../libs/storage';
 import { createMediaAspectCache } from '../libs/media-aspect-cache';
 
 const cache = new Map<string, number>();
+// Old entries used encoded dimensions and can have a rotated clip backwards.
 const videoAspects = createMediaAspectCache(
-  () => storage.getString('video-aspects-v1'), value => storage.set('video-aspects-v1', value),
+  () => storage.getString('video-aspects-display-v2'), value => storage.set('video-aspects-display-v2', value),
 );
+
+export const getMeasuredMediaAspect = (uri: string) => cache.get(uri) ?? null;
 
 export function rememberVideoAspect(key: unknown, ratio: number): void {
   if (key == null || !Number.isFinite(ratio) || ratio <= 0) return;
