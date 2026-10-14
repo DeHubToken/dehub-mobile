@@ -35,6 +35,7 @@ import {
 import {
   finishWalletUnlock,
   finishBiometricUnlock,
+  finishPasskeyUnlock,
   createAndSaveEvmWalletForIdentity,
   provisionSolanaAddressForWallet,
   switchActiveWalletForIdentity,
@@ -279,6 +280,11 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   );
 
   const handleWalletBiometricUnlock = useCallback(async () => {
+    if (walletSetupRequest?.mode === 'web-passkey-sync') {
+      const recovered = await finishPasskeyUnlock(walletSetupRequest.supabaseUserId, walletSetupRequest.address);
+      await finishWalletSetupSignIn(recovered.address, recovered.privateKey);
+      return;
+    }
     if (!walletSetupRequest || walletSetupRequest.mode !== "biometric-unlock") return;
     const { address, privateKey } = await finishBiometricUnlock(
       walletSetupRequest.supabaseUserId,
