@@ -1052,24 +1052,24 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             resetStage === "hidden" &&
             request?.mode === "web-passkey-sync" && (
             <View>
-              {/* This row has an address and NO payload at all. The obvious
-                  reading is a web WebAuthn wallet whose seed columns were
-                  deliberately omitted — but it is equally an interrupted
-                  sign-up on this phone that never wrote a seed, and phrasing it
-                  as a certainty sent people who had never opened dehub.io to
-                  dehub.io. Say both, and let the probe below settle it. */}
-              <Text style={[authText.body, { marginBottom: 16 }]}>
-                <Trans
-                  i18nKey="walletSetup.noUsableBackup"
-                  components={{ em: <Text style={authText.emphasis} /> }}
-                />
-              </Text>
+              <AuthButton
+                variant="primary"
+                icon="finger-print-outline"
+                label={t('walletSetup.unlockWithBiometrics')}
+                onPress={handleBiometricUnlockPress}
+                loading={busy}
+                disabled={busy}
+                style={{ marginBottom: 12 }}
+              />
+              <AuthErrorNotice message={biometricError} style={{ marginBottom: 12 }} />
+              {biometricError && (
               <Text style={[authText.body, { marginBottom: 20 }]}>
                 <Trans
                   i18nKey="walletSetup.addPasswordOnWeb"
                   components={{ em: <Text style={authText.emphasis} /> }}
                 />
               </Text>
+              )}
               <Text style={[authText.caption, { marginBottom: 16 }]}>
                 {t("walletSetup.walletAddress", {
                   address: `${request.address.slice(0, 6)}…${request.address.slice(-4)}`,
