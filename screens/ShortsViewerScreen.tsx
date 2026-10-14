@@ -2225,7 +2225,7 @@ const ShortsViewerScreen = () => {
       {/* Fixed header overlay – back left, playback chrome right (as on web).
           box-none so only the buttons themselves take touches; the rest of the
           strip stays with the video underneath. Every button is the same 40pt
-          square in the same `bg-zinc-900/60` glass web gives them; the speed
+          square in the black/50 fill of the picture-in-picture button; the speed
           pill only differs in width, and keeps the height so the group reads as
           one row.
 
@@ -2248,21 +2248,21 @@ const ShortsViewerScreen = () => {
 
         <View style={[styles.topBar, { paddingTop: mediaInsets.top + EDGE }]} pointerEvents="box-none">
           <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
-            <ChromeFill />
-            {/* Web's `w-6 h-6` on the back chevron — larger than the three
-                playback controls opposite it, as there. */}
-            <Icon name="ChevronLeft" size={24} color="#fff" />
+            <ChromeFill top />
+            {/* The cut Back arrow at the 20pt every other glyph on this row
+                uses, starting with picture-in-picture. */}
+            <Icon name="ArrowLeft" size={20} color="#fff" />
           </Pressable>
 
           <View style={styles.topRight}>
-            {items[activeIndex]?.postType !== "feed-images" && <PictureInPictureButton videoRef={activeVideoRef} />}
+            {items[activeIndex]?.postType !== "feed-images" && <PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} />}
             <Pressable
               onPress={handleCycleSpeed}
               hitSlop={CHROME_HIT_SLOP}
               style={[styles.topButton, styles.speedButton]}
               accessibilityLabel={t("player.playbackSpeed")}
             >
-              <ChromeFill />
+              <ChromeFill top />
               <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
             </Pressable>
 
@@ -2273,12 +2273,12 @@ const ShortsViewerScreen = () => {
                 accessibilityLabel={isMuted ? _copy("copy.ce4ee4efc5e3", { defaultValue: "Unmute" }) : _copy("copy.8dd6857baf02", { defaultValue: "Mute" })}
                 {...volumePanResponder.panHandlers}
               >
-                <ChromeFill />
+                <ChromeFill top />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
               </View>
               {volumeAdjusting && (
                 <View style={styles.volumeTrack} pointerEvents="none">
-                  <ChromeFill />
+                  <ChromeFill top />
                   <View style={styles.volumeTrackInner}>
                     <View
                       style={[
@@ -2297,7 +2297,7 @@ const ShortsViewerScreen = () => {
               hitSlop={CHROME_HIT_SLOP}
               accessibilityLabel={t("player.moreOptions")}
             >
-              <ChromeFill />
+              <ChromeFill top />
               <Icon name="Ellipsis" size={20} color="#fff" />
             </Pressable>
           </View>
