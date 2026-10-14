@@ -494,7 +494,7 @@ const s = StyleSheet.create({
   tabs: { flexDirection: 'row', marginBottom: 12 }, tab: { flex: 1, alignItems: 'center', padding: 12, borderBottomWidth: 2, borderColor: 'transparent' }, tabActive: { borderColor: '#e9edf2' },
   panel: { backgroundColor: '#11151b', borderWidth: 1, borderColor: '#252b34', borderRadius: 8, overflow: 'hidden' },
   toolbar: { flexWrap: 'wrap', gap: 8, padding: 12, borderBottomWidth: 1, borderColor: '#252b34', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  inline: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 }, smallTab: { paddingVertical: 7, paddingHorizontal: 8, borderRadius: 4 }, selected: { backgroundColor: '#29313b' }, heading: { color: '#e9edf2', fontWeight: '600' },
+  inline: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 }, smallTab: { paddingVertical: 7, paddingHorizontal: 8, borderRadius: 4 }, selected: { backgroundColor: '#2c2f33' }, heading: { color: '#e9edf2', fontWeight: '600' },
   note: { color: '#919ca9', fontSize: 10, lineHeight: 16, paddingTop: 12 }, empty: { color: '#919ca9', padding: 30, textAlign: 'center', fontSize: 12 },
   transactions: { borderTopWidth: 1, borderColor: '#252b34' }, transactionHead: { flexDirection: 'row', justifyContent: 'space-between', padding: 10, borderBottomWidth: 1, borderColor: '#252b34' }, transaction: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, borderBottomWidth: 1, borderColor: '#1e242c' }, transactionType: { fontSize: 11, fontWeight: '600', marginBottom: 3 },
   bookHead: { flexDirection: 'row', padding: 12 }, cell: { flex: 1, color: '#c5ced8', fontSize: 12, fontVariant: ['tabular-nums'] }, right: { textAlign: 'right' },

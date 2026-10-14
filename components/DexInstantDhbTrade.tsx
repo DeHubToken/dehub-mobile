@@ -120,7 +120,7 @@ const s = StyleSheet.create({
   darkText: { color: '#061410', fontSize: 13, fontWeight: '700' },
   label: { marginTop: 14, marginBottom: 8 },
   chip: { paddingVertical: 7, paddingHorizontal: 10, borderRadius: 4, borderWidth: 1, borderColor: '#252b34' },
-  chipActive: { backgroundColor: '#29313b' },
+  chipActive: { backgroundColor: '#2c2f33' },
   inputWrap: { borderColor: '#343e4b', borderWidth: 1, borderRadius: 6, backgroundColor: '#0b0e13', flexDirection: 'row', alignItems: 'center' },
   input: { color: '#f4f6f8', flex: 1, padding: 12, fontSize: 16 },
   unit: { color: '#919ca9', paddingRight: 12, fontSize: 11 },

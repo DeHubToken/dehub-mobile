@@ -280,7 +280,8 @@ export function TemplateTiles(props: {
           disabled={!!props.busyId}
           accessibilityRole="button"
           accessibilityLabel={tpl.detail ? `${tpl.title} · ${tpl.detail}` : tpl.title}
-          className="rounded-2xl items-center justify-center p-3"
+          // A preview of the template's own colours, not app chrome.
+          className="dark-surface rounded-2xl items-center justify-center p-3"
           style={{ width: "47%", aspectRatio: 1.4, backgroundColor: tpl.preview.bg, opacity: props.busyId && props.busyId !== tpl.id ? 0.5 : 1 }}
         >
           <Text style={{ color: tpl.preview.fg }} className="text-base font-black text-center uppercase" numberOfLines={2}>{tpl.title}</Text>
