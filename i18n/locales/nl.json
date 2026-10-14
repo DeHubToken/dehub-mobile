@@ -1,4 +1,32 @@
 {
+  "viralTemplates": {
+    "eyebrow":  "{{count}} video-effecten",
+    "title":  "Jouw volgende virale moment.",
+    "intro":  "Bekijk een voorbeeld. Kies een effect of personage. Voeg je foto toe en maak het van jou.",
+    "browse":  "Bekijk alle {{count}} sjablonen",
+    "featured":  "Terug naar uitgelicht",
+    "use":  "Gebruik dit effect",
+    "useNamed":  "Gebruik {{name}}",
+    "preview":  "Bekijk voorbeeld van {{name}}",
+    "previewUnavailable":  "Voorbeeld niet beschikbaar",
+    "search":  "Zoek effecten, personages en dansen",
+    "all":  "Alles",
+    "effects":  "Effecten",
+    "characters":  "Personages",
+    "dance":  "Dans",
+    "sports":  "Sport",
+    "products":  "Producten",
+    "seasonal":  "Seizoen",
+    "results":  "{{count}} sjablonen",
+    "empty":  "Geen sjablonen gevonden. Probeer een andere zoekterm of categorie.",
+    "more":  "Meer tonen",
+    "source":  "Voorbeeldvideo’s van",
+    "ready":  "{{name}} geselecteerd. Voeg één foto toe voor een video van 5 seconden. De uitsnede volgt je foto.",
+    "chooseFirst":  "Kies een effect voordat je genereert.",
+    "back":  "Terug naar sjablonen",
+    "close":  "Sjablonen sluiten"
+},
+
   "maboroshiShowcase": {
     "title": "Jouw scène. Een andere jij.",
     "intro": "180 personagestijlen, van zachte knuffel tot vloeibaar chroom.",

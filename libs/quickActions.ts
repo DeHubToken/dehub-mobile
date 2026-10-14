@@ -30,7 +30,17 @@ export function moveQuickActions(event: Touch) {
 
 // The existing JSX bridge calls this before NativeWind changes component identity.
 // Pressability owns button holds and suppresses their release tap.
-let types: { pressables: Set<unknown>; text: Set<unknown>; input: Set<unknown> } | null = null;
+// Scrollers are listed because Android's ScrollView takes the touch natively at
+// the slop and JS never sees the move or the release, so without this the hold
+// timer runs out mid-swipe and opens the menu on a plain scroll.
+let types: { pressables: Set<unknown>; text: Set<unknown>; input: Set<unknown>; scrollers: Set<unknown> } | null = null;
+function blockOnScroll(props: any) {
+  return {
+    ...props,
+    onScrollBeginDrag: (...args: unknown[]) => { blockQuickActions(); return props.onScrollBeginDrag?.(...args); },
+    onMomentumScrollBegin: (...args: unknown[]) => { blockQuickActions(); return props.onMomentumScrollBegin?.(...args); },
+  };
+}
 export function withQuickActions(type: unknown, props: any) {
   if (!type || !props) return props;
   if (!types) {
@@ -38,8 +48,14 @@ export function withQuickActions(type: unknown, props: any) {
     types = {
       pressables: new Set([RN.Pressable, RN.TouchableOpacity, RN.TouchableHighlight, RN.TouchableWithoutFeedback, RN.TouchableNativeFeedback]),
       text: new Set([RN.Text, RN.Animated?.Text]), input: new Set([RN.TextInput, RN.Animated?.TextInput]),
+      scrollers: new Set([RN.ScrollView, RN.FlatList, RN.SectionList, RN.VirtualizedList, RN.Animated?.ScrollView, RN.Animated?.FlatList, RN.Animated?.SectionList].filter(Boolean)),
     };
+    try {
+      const GH = require('react-native-gesture-handler');
+      [GH.ScrollView, GH.FlatList].forEach(scroller => scroller && types!.scrollers.add(scroller));
+    } catch {}
   }
+  if (types.scrollers.has(type)) return blockOnScroll(props);
   if (types.input.has(type) || (types.text.has(type) && props.selectable)) {
     return { ...props, onTouchStart: (...args: unknown[]) => { blockQuickActions(); return props.onTouchStart?.(...args); } };
   }

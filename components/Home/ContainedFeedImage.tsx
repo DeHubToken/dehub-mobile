@@ -24,12 +24,11 @@ interface ContainedFeedImageProps {
 }
 
 /**
- * Tallest a photo gets on the post page. Same rule as the post page video
- * (FeedVideoPlayer, postPageMaxHeightFor): most of the screen, and never less
- * than a full-width 9:16 frame, so a tall photo spans the whole width instead
- * of stopping short of both edges.
+ * Tallest a photo gets: 55% of the screen, the same cap as videos
+ * (FeedVideoPlayer, INLINE_MAX_SCREEN) and phone web feeds. A taller photo
+ * keeps its shape and hugs the left.
  */
-const postPageMaxHeightFor = (screenHeight: number) => screenHeight * 0.5;
+const postPageMaxHeightFor = (screenHeight: number) => screenHeight * 0.55;
 
 /** Natural-ratio feed image with the same 600-unit height cap as the web app. */
 const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
