@@ -26,7 +26,6 @@ jest.mock('../../theme/skins', () => ({ GRAIN: 0, glassTint: () => '' }));
 let mockMinimal = false;
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: mockMinimal }) }));
 import FeedNavBar, { FEED_NAV_ITEMS } from '../../components/Home/FeedNavBar';
-import { beginQuickActions, cancelQuickActions, subscribeQuickActions } from '../../libs/quickActions';
 const touch = (x = 20, y = 20) => ({ nativeEvent: { pageX: x, pageY: y, touches: [{}] } });
 
 it.each([false, true])('retains the last measured indicator across a collapsed route (minimal=%s)', minimal => {
@@ -47,11 +46,9 @@ it.each([false, true])('retains the last measured indicator across a collapsed r
   act(() => tree.unmount());
 });
 
-it.each([false, true])('reserves the active tab hold and gives other tabs the page menu without changing taps (minimal=%s)', (minimal) => {
+it.each([false, true])('preserves the active tab hold without adding page-menu holds to other tabs (minimal=%s)', (minimal) => {
   mockMinimal = minimal;
   const open = jest.fn(), change = jest.fn();
-  const quickActions = jest.fn();
-  const unsubscribe = subscribeQuickActions(quickActions);
   for (let index = 0; index < FEED_NAV_ITEMS.length; index++) {
     let tree!: ReactTestRenderer;
     act(() => { tree = create(<FeedNavBar activeIndex={index} progress={{ value: index } as any} isFilterOpen={false} hasActiveFilters={false} onPostTypeChange={change} onFilterPress={jest.fn()} onActiveTabLongPress={open} />); });
@@ -60,23 +57,15 @@ it.each([false, true])('reserves the active tab hold and gives other tabs the pa
       act(() => tab.props.onPress());
       expect(change).toHaveBeenLastCalledWith(FEED_NAV_ITEMS[i].postType);
       if (i !== index) {
-        quickActions.mockClear();
-        beginQuickActions(touch());
-        act(() => { tab.props.onPressIn(touch()); tab.props.onLongPress(); });
-        expect(quickActions).toHaveBeenCalledTimes(1);
+        expect(tab.props.onLongPress).toBeUndefined();
       }
     });
     const tab = tabs[index];
-    quickActions.mockClear();
-    beginQuickActions(touch());
     act(() => tab.props.onPressIn(touch()));
     act(() => tab.props.onLongPress());
     expect(open).toHaveBeenCalledTimes(index + 1);
-    expect(quickActions).not.toHaveBeenCalled();
     act(() => tree.unmount());
   }
-  unsubscribe();
-  cancelQuickActions();
 });
 
 it.each(['horizontal', 'vertical', 'cancel', 'release'])('does not open after %s movement/cancellation', (mode) => {
