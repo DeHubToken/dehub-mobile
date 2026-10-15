@@ -66,6 +66,7 @@ export default function RootNavigator() {
         Navigation between stacks is handled imperatively by screens.
       */}
       <Stack.Screen name={ScreenNames.App} getComponent={() => require('./AppNavigator').default} />
+      <Stack.Screen name={ScreenNames.Maintenance} getComponent={() => require('../screens/MaintenanceScreen').default} />
       {/* Lazy: a returning signed-in user never reaches this stack, but a
           static import still had Hermes evaluate all four auth screens — and
           the wallet SDKs they pull in — before the first frame. */}
