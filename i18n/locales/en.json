@@ -1,14 +1,15 @@
 {
-  "maintenance": {"brand": "DeHub",
-    "mode":  "Maintenance mode",
-    "description":  "DeHub is temporarily offline for maintenance. Thanks for bearing with us.",
-    "retry":  "Try again",
-    "checkFailed":  "We couldn\u0027t check availability. Please try again.",
-    "checking":  "Checking...",
-    "ownership":  "Open source. User owned.",
-    "title":  "We\u0027ll be right back.",
-    "intermission":  "A short intermission",
-    "community":  "Community first. Always."
+  "maintenance": {
+    "brand": "DeHub",
+    "mode": "Maintenance mode",
+    "description": "We're carrying out maintenance. Please check back shortly.",
+    "retry": "Try again",
+    "checkFailed": "We couldn't check availability. Please try again.",
+    "checking": "Checking...",
+    "ownership": "Open source. User owned.",
+    "title": "A little work.\nA better DeHub.",
+    "intermission": "Temporarily offline",
+    "community": "Community first. Always."
 },
   "viralTemplates": {
     "title":  "Find your next viral moment.",
