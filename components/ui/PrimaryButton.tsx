@@ -9,21 +9,23 @@ type PrimaryButtonProps = {
   disabled?: boolean;
   className?: string;
   style?: ViewStyle;
+  neutral?: boolean;
 };
 
 /** Shared primary action using the active theme's existing chrome. */
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, disabled, className, style }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, disabled, className, style, neutral = false }) => {
   const { skin } = useAppTheme();
   return (
     <TouchableOpacity
       onPress={onPress}
+      accessibilityRole="button"
       disabled={disabled}
       activeOpacity={0.85}
       className={`overflow-hidden rounded-xl ${disabled ? "opacity-60" : ""} ${className || ""}`}
       style={style}
     >
-      <AccentButtonGradient style={styles.fill}>
-        <Text style={[styles.label, skin && { color: skin.centreIcon }]}>{title}</Text>
+      <AccentButtonGradient style={styles.fill} neutral={neutral}>
+        <Text style={[styles.label, skin && !neutral && { color: skin.centreIcon }]}>{title}</Text>
       </AccentButtonGradient>
     </TouchableOpacity>
   );
