@@ -1,7 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -16,7 +16,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";
-import { getAvatarUrl, toastSuccess } from "../../libs";
+import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
+import { useWebSocketApi } from "../../context/WebSocketContext";
+import { getDmUserStatus } from "../../services/dm/dm.api";
+import { dmSendQueue } from "../../services/dm/dm.send";
 import { getBadgeUrlFor } from "../../libs/misc";
 import { useDmContacts } from "../../store/dm.store";
 import { getOtherParticipant } from "../../services/dm/dm.types";
@@ -41,6 +44,13 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const user = useUser();
+  const ws = useWebSocketApi();
+  const sendingRef = useRef(false);
+  const [sendingId, setSendingId] = useState<string | null>(null);
+  const [sentIds, setSentIds] = useState<Set<string>>(() => new Set());
+  useEffect(() => {
+    if (visible) setSentIds(new Set());
+  }, [visible, tokenId, url]);
   const conversations = useDmContacts();
   const [search, setSearch] = useSurfaceDraft("components/DM/ShareToDmSheet.tsx:search", "");
 
@@ -60,19 +70,48 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   }, [conversations, search, myUserId, myAddress]);
 
   const handleSelect = useCallback(
-    (conv: DmConversation) => {
+    async (conv: DmConversation) => {
+      if (sendingRef.current || sentIds.has(conv._id)) return;
+      sendingRef.current = true;
+      setSendingId(conv._id);
       const postUrl = url ?? `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
       const prefill = postTitle
         ? `${postTitle}\n${postUrl}`
         : postUrl;
-      onClose();
-      navigation.navigate(ScreenNames.Chat as never, {
-        conversationId: conv._id,
-        sharedText: prefill,
-      } as never);
-      toastSuccess(t("dm.openingConversation"));
+      try {
+        const other = getOtherParticipant(conv, myUserId, myAddress);
+        if (!other?.address || !myUserId || !myAddress) throw new Error(t("common.somethingWentWrong"));
+        const rawStatus = await getDmUserStatus(other.address);
+        const status = (rawStatus as any)?.data ?? (rawStatus as any)?.result ?? rawStatus;
+        const hasFreeAccess = status.freeAccessUsers?.some(
+          (address: string) => address.toLowerCase() === myAddress.toLowerCase(),
+        );
+        if (Number(status.perMessageFee) > 0 && !hasFreeAccess) {
+          onClose();
+          navigation.navigate(ScreenNames.Chat as never, {
+            conversationId: conv._id,
+            sharedText: prefill,
+          } as never);
+          return;
+        }
+        dmSendQueue.init(ws);
+        const tempId = dmSendQueue.sendText({
+          conversationId: conv._id,
+          userId: myUserId,
+          address: myAddress,
+          content: prefill,
+        });
+        if (!(await dmSendQueue.waitForDelivery(tempId))) throw new Error(t("dm.failedToSend"));
+        setSentIds((previous) => new Set(previous).add(conv._id));
+        toastSuccess(t("toasts.message_sent"));
+      } catch (error) {
+        toastError(error instanceof Error ? error.message : t("common.somethingWentWrong"));
+      } finally {
+        sendingRef.current = false;
+        setSendingId(null);
+      }
     },
-    [navigation, tokenId, url, postTitle, onClose, t],
+    [navigation, tokenId, url, postTitle, onClose, t, sentIds, myUserId, myAddress, ws],
   );
 
   const renderItem = useCallback(
@@ -84,6 +123,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
       return (
         <TouchableOpacity
           onPress={() => handleSelect(item)}
+          disabled={sendingId !== null || sentIds.has(item._id)}
           activeOpacity={0.7}
           className="flex-row items-center px-4 py-3 gap-3"
         >
@@ -106,11 +146,15 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
               <BadgeArtwork source={badgeImg} style={getBadgeHoverOpticalStyle(badgeImg, 15, 0, 21)} contentFit="contain" />
             ) : null}
           </View>
-          <Ionicons name="send-outline" size={18} color="#D4D4D8" />
+          {sendingId === item._id ? (
+            <ActivityIndicator size="small" color="#D4D4D8" />
+          ) : (
+            <Ionicons name={sentIds.has(item._id) ? "checkmark" : "send-outline"} size={18} color="#D4D4D8" />
+          )}
         </TouchableOpacity>
       );
     },
-    [myUserId, myAddress, handleSelect, t],
+    [myUserId, myAddress, handleSelect, t, sendingId, sentIds],
   );
 
   return (
