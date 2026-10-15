@@ -36,7 +36,7 @@ export default function FinanceSection({ days }: { days: number | null }) {
   const query = useQuery<FinanceStats>({
     queryKey: ["public-finance-stats"],
     queryFn: async () => {
-      const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
+      const response = await fetch(endpoint, { headers: { Accept: "application/json" }, cache: "no-store" });
       if (!response.ok) throw new Error(`Finance stats request failed (${response.status})`);
       const body = await response.json();
       if (body?.ok !== true || !Array.isArray(body.days) || !Array.isArray(body.sources)) throw new Error("Unrecognised finance response");
