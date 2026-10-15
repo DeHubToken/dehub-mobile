@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type ViewStyle } from "react-native";
 import { TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
-import { requestQuickActions } from '../../libs/quickActions';
 
 /** Keep image navigation pending until a second tap can claim the gesture. */
 function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPressIntent }: {
@@ -55,7 +54,7 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPres
       }}
       onTouchMove={checkTravel}
       onTouchCancel={() => { moved.current = true; reset(); }}
-      onLongPress={() => { if (!moved.current) { moved.current = true; reset(); requestQuickActions(); } }}
+      onLongPress={() => { moved.current = true; reset(); }}
       onPress={(event) => {
         event.stopPropagation();
         checkTravel(event);

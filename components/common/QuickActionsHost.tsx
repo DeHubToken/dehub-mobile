@@ -3,7 +3,7 @@ import { AppState, View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuthActions, useAuthState, useUser } from '../../context/AuthContext';
-import { beginQuickActions, blockQuickActions, cancelQuickActions, moveQuickActions, setQuickActionsEnabled, subscribeQuickActions } from '../../libs/quickActions';
+import { blockQuickActions, cancelQuickActions, setQuickActionsEnabled, subscribeQuickActions } from '../../libs/quickActions';
 import { feedEvents } from '../../libs/eventBus';
 import { pageBugContext, type PageBugContext } from '../../libs/pageBugReport';
 import GlassModal from '../ui/GlassModal';
@@ -40,7 +40,7 @@ export default function QuickActionsHost({ children, getScreen }: { children: Re
     setBusy(true); setFailed(false);
     try { await run(); setView(null); } catch { setFailed(true); } finally { setBusy(false); }
   };
-  return <View style={{ flex: 1 }} onStartShouldSetResponderCapture={beginQuickActions} onTouchMove={moveQuickActions} onTouchEnd={cancelQuickActions} onTouchCancel={cancelQuickActions}>
+  return <View style={{ flex: 1 }}>
     {children}
     <GlassModal visible={view === 'menu' || view === 'profiles'} onClose={close} presentation="bottom" dismissible={!busy} scrollable>
       <View className="p-5">
