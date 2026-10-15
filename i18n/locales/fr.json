@@ -1,14 +1,15 @@
 {
-  "maintenance": {"brand": "DeHub",
-    "mode":  "Mode maintenance",
-    "description":  "DeHub est temporairement indisponible pour maintenance. Merci de votre patience.",
-    "retry":  "Réessayer",
-    "checkFailed":  "Impossible de vérifier la disponibilité. Veuillez réessayer.",
-    "checking":  "Vérification...",
-    "ownership":  "Code ouvert. Propriété des utilisateurs.",
-    "title":  "Nous revenons très vite.",
-    "intermission":  "Une courte pause",
-    "community":  "La communauté d\u0027abord. Toujours."
+  "maintenance": {
+    "brand": "DeHub",
+    "mode": "Mode maintenance",
+    "description": "Nous effectuons une maintenance. Revenez dans quelques instants.",
+    "retry": "Réessayer",
+    "checkFailed": "Impossible de vérifier la disponibilité. Veuillez réessayer.",
+    "checking": "Vérification...",
+    "ownership": "Code ouvert. Propriété des utilisateurs.",
+    "title": "Un peu de travail.\nUn meilleur DeHub.",
+    "intermission": "Temporairement indisponible",
+    "community": "La communauté d'abord. Toujours."
 },
   "viralTemplates": {
     "title":  "Votre prochain moment viral.",
