@@ -28,6 +28,24 @@ jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal
 import FeedNavBar, { FEED_NAV_ITEMS } from '../../components/Home/FeedNavBar';
 const touch = (x = 20, y = 20) => ({ nativeEvent: { pageX: x, pageY: y, touches: [{}] } });
 
+it.each([false, true])('retains the last measured indicator across a collapsed route (minimal=%s)', minimal => {
+  mockMinimal = minimal;
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<FeedNavBar activeIndex={0} progress={{ value: 0 } as any} isFilterOpen={false} hasActiveFilters={false} onPostTypeChange={jest.fn()} onFilterPress={jest.fn()} onActiveTabLongPress={jest.fn()} />); });
+  const indicator = () => tree.root.findAllByType('AnimatedView' as any);
+  const layout = (width: number, height = 36) => act(() => tree.root.find(n => typeof n.props.onLayout === 'function').props.onLayout({ nativeEvent: { layout: { width, height, x: 0, y: 0 } } }));
+  expect(indicator()).toHaveLength(0);
+  layout(400);
+  const visible = indicator()[0].props.style;
+  layout(0);
+  expect(indicator()[0].props.style).toEqual(visible);
+  layout(400, 0);
+  expect(indicator()[0].props.style).toEqual(visible);
+  layout(500);
+  expect(indicator()[0].props.style).not.toEqual(visible);
+  act(() => tree.unmount());
+});
+
 it.each([false, true])('preserves the active tab hold without adding page-menu holds to other tabs (minimal=%s)', (minimal) => {
   mockMinimal = minimal;
   const open = jest.fn(), change = jest.fn();
