@@ -1,14 +1,15 @@
 {
-  "maintenance": {"brand": "DeHub",
-    "mode":  "Bakım modu",
-    "description":  "DeHub bakım nedeniyle geçici olarak çevrimdışı. Sabrınız için teşekkürler.",
-    "retry":  "Tekrar dene",
-    "checkFailed":  "Kullanılabilirlik kontrol edilemedi. Lütfen tekrar deneyin.",
-    "checking":  "Kontrol ediliyor...",
-    "ownership":  "Açık kaynak. Kullanıcılara ait.",
-    "title":  "Birazdan döneceğiz.",
-    "intermission":  "Kısa bir ara",
-    "community":  "Önce topluluk. Her zaman."
+  "maintenance": {
+    "brand": "DeHub",
+    "mode": "Bakım modu",
+    "description": "Bakım yapıyoruz. Lütfen kısa bir süre sonra tekrar kontrol edin.",
+    "retry": "Tekrar dene",
+    "checkFailed": "Kullanılabilirlik kontrol edilemedi. Lütfen tekrar deneyin.",
+    "checking": "Kontrol ediliyor...",
+    "ownership": "Açık kaynak. Kullanıcılara ait.",
+    "title": "Biraz çalışma.\nDaha iyi bir DeHub.",
+    "intermission": "Geçici olarak çevrimdışı",
+    "community": "Önce topluluk. Her zaman."
 },
   "viralTemplates": {
     "title":  "Sıradaki viral anını bul.",
