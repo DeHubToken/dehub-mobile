@@ -1,5 +1,6 @@
 export enum ScreenNames {
   App = 'App',
+  Maintenance = 'Maintenance',
   Auth = 'Auth',
   Root = 'Root',
   Home = 'Home',

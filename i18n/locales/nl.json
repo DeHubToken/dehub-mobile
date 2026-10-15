@@ -1,4 +1,15 @@
 {
+  "maintenance": {"brand": "DeHub",
+    "mode":  "Onderhoudsmodus",
+    "description":  "DeHub is tijdelijk offline voor onderhoud. Bedankt voor je geduld.",
+    "retry":  "Opnieuw proberen",
+    "checkFailed":  "We konden de beschikbaarheid niet controleren. Probeer het opnieuw.",
+    "checking":  "Controleren...",
+    "ownership":  "Open source. Eigendom van gebruikers.",
+    "title":  "We zijn zo terug.",
+    "intermission":  "Een korte pauze",
+    "community":  "De community eerst. Altijd."
+},
   "viralTemplates": {
     "title":  "Jouw volgende virale moment.",
     "intro":  "Bekijk een voorbeeld. Kies een effect of personage. Voeg je foto toe en maak het van jou.",

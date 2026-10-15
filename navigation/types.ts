@@ -13,6 +13,7 @@ import { ScreenNames } from './ScreenNames';
 import type { GenerationDraft } from '../libs/editor/generationDraft';
 
 export type RootStackParamList = {
+  [ScreenNames.Maintenance]: undefined;
   [ScreenNames.App]: NavigatorScreenParams<AppStackParamList> | undefined;
   [ScreenNames.Auth]: NavigatorScreenParams<AuthStackParamList> | undefined;
 };
