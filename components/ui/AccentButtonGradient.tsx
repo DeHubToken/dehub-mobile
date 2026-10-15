@@ -15,12 +15,14 @@ const AccentButtonGradient: React.FC<{
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   borderRadius?: number;
-}> = ({ children, style, borderRadius = 12 }) => {
+  /** Fixed brand surfaces such as maintenance use System's monochrome material. */
+  neutral?: boolean;
+}> = ({ children, style, borderRadius = 12, neutral = false }) => {
   const { skin, isMinimal } = useAppTheme();
-  if (isMinimal) {
+  if (isMinimal && !neutral) {
     return <View style={[style, { backgroundColor: "#000", borderRadius: 0, borderWidth: 1, borderColor: MINIMAL_HAIRLINE }]}>{children}</View>;
   }
-  if (skin) {
+  if (skin && !neutral) {
     return <View style={[{ borderRadius, overflow: "hidden" }, style, skin.centre]}>{children}</View>;
   }
   return (

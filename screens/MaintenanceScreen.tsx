@@ -26,7 +26,7 @@ export function MaintenanceScreen({ checking = false, failed = false, onRetry }:
           <Text style={styles.eyebrow}>{t('maintenance.intermission')}</Text>
           <Text accessibilityRole="header" style={styles.title}>{t('maintenance.title')}</Text>
           <Text style={styles.description}>{t('maintenance.description')}</Text>
-          <PrimaryButton title={t(checking ? 'maintenance.checking' : 'maintenance.retry')} disabled={checking} onPress={onRetry} style={styles.button} />
+          <PrimaryButton neutral title={t(checking ? 'maintenance.checking' : 'maintenance.retry')} disabled={checking} onPress={onRetry} style={styles.button} />
           <Text style={styles.community}>{t('maintenance.community')}</Text>
           <Text accessibilityLiveRegion="polite" style={styles.feedback}>{failed ? t('maintenance.checkFailed') : ''}</Text>
         </View>
