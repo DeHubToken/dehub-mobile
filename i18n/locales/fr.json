@@ -1,4 +1,15 @@
 {
+  "maintenance": {"brand": "DeHub",
+    "mode":  "Mode maintenance",
+    "description":  "DeHub est temporairement indisponible pour maintenance. Merci de votre patience.",
+    "retry":  "Réessayer",
+    "checkFailed":  "Impossible de vérifier la disponibilité. Veuillez réessayer.",
+    "checking":  "Vérification...",
+    "ownership":  "Code ouvert. Propriété des utilisateurs.",
+    "title":  "Nous revenons très vite.",
+    "intermission":  "Une courte pause",
+    "community":  "La communauté d\u0027abord. Toujours."
+},
   "viralTemplates": {
     "title":  "Votre prochain moment viral.",
     "intro":  "Regardez un exemple. Choisissez un effet ou un personnage. Ajoutez votre photo.",

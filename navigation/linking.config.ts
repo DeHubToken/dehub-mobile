@@ -348,6 +348,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     initialRouteName: ScreenNames.App,
     
     screens: {
+      [ScreenNames.Maintenance]: 'maintenance',
       [ScreenNames.App]: {
         // Home under whatever a link opens. A link that starts the app builds
         // the whole stack from the URL, and without this the page it opens is

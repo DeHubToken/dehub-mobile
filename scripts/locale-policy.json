@@ -1,5 +1,6 @@
 {
   "core": [
+    "maintenance",
     "errors",
     "nav",
     "feed",

@@ -74,6 +74,7 @@ import { flushNavigationTiming, markLaunchPhase, markNavigationSettled, reportLa
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
+import MaintenanceGate from './components/MaintenanceGate';
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
 
 import UploadRuntimeHost from "./components/Upload/UploadRuntimeHost";
@@ -217,6 +218,7 @@ export default function App() {
         >
         <ThemedRootView>
           <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
+            <MaintenanceGate>
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
@@ -268,6 +270,7 @@ export default function App() {
                 <NoInternetScreen onRetry={checkConnection} />
               </View>
             )}
+            </MaintenanceGate>
           </SafeAreaProvider>
         </ThemedRootView>
         </PersistQueryClientProvider>
