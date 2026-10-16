@@ -1,3 +1,4 @@
+import { graphicFontCss } from "./graphicFonts";
 import { chartValueLabel } from "./chartValueFormat";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
 export function drawChartReference(ctx: DataVisualContext, chart: ChartData, x0: number, y0: number, x1: number, y1: number, minimum: number, maximum: number, font: number, percent = false): void {
@@ -11,7 +12,7 @@ export function drawChartReference(ctx: DataVisualContext, chart: ChartData, x0:
     if (horizontal) { ctx.moveTo(position, y0 + (y1 - y0) * from); ctx.lineTo(position, y0 + (y1 - y0) * to); }
     else { ctx.moveTo(x0 + (x1 - x0) * from, position); ctx.lineTo(x0 + (x1 - x0) * to, position); }
   }
-  ctx.stroke(); ctx.font = "600 " + font + "px Inter, sans-serif"; ctx.textBaseline = "middle";
+  ctx.stroke(); ctx.font = "600 " + font + "px " + graphicFontCss(chart.fontFamily); ctx.textBaseline = "middle";
   const number = percent ? chartValueLabel(reference.value, { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale }) : chartValueLabel(reference.value, chart.valueFormat);
   let text = [reference.label?.trim(), number].filter(Boolean).join(": "), available = Math.max(1, (x1 - x0) * 0.65);
   while (text.length > 1 && ctx.measureText(text).width > available) text = text.slice(0, -2) + "…";

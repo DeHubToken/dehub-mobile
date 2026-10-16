@@ -15,6 +15,7 @@ export const TABLE_RENDERING_RUNTIME = String.raw`function tableTextLines(text, 
 }
 
 function drawEditableTable(ctx, width, height, table) {
+  const family = graphicFontCss(table.fontFamily);
   const rows = table.rows.filter(Array.isArray).slice(0, 20), columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
   if (!rows.length) return;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, table.fontScale || 1));
@@ -26,7 +27,7 @@ function drawEditableTable(ctx, width, height, table) {
       rows.forEach((row, index) => {
         if ((table.merges ?? []).some(merge => merge.columnSpan > 1 && index >= merge.row && index < merge.row + merge.rowSpan && column >= merge.column && column < merge.column + merge.columnSpan)) return;
         const style = table.cellStyles?.[index + ":" + column], header = table.header && index === 0 || table.headerColumn && column === 0;
-        ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px Inter, sans-serif";
+        ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px " + family;
         const raw = String(row[column] ?? "");
         const text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
         for (const line of text.split(/\r?\n/)) measured = Math.max(measured, ctx.measureText(line).width + padding * 2);
@@ -45,7 +46,7 @@ function drawEditableTable(ctx, width, height, table) {
       if (merge && (merge.rowSpan > 1 || merge.column !== c)) continue;
       const cellWidth = xs[Math.min(columns, c + (merge?.columnSpan ?? 1))] - xs[c], padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45);
       const style = table.cellStyles?.[r + ":" + c], header = table.header && r === 0 || table.headerColumn && c === 0;
-      ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px Inter, sans-serif";
+      ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px " + family;
       const raw = String(row[c] ?? ""), text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
       const lines = tableTextLines(text, Math.max(1, cellWidth - padding * 2), value => ctx.measureText(value).width, !!table.wrap);
       needed = Math.max(needed, Math.min(8, lines.length) * font * (style?.fontScale ?? 1) * 1.2 + padding * 2);
@@ -69,7 +70,7 @@ function drawEditableTable(ctx, width, height, table) {
       ctx.fillRect(x, y, cellWidth, cellHeight); ctx.strokeStyle = table.borderColour;
       if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
       const fontStyle = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : header ? "700 " : "500 ");
-      ctx.font = fontStyle + size + "px Inter, sans-serif";
+      ctx.font = fontStyle + size + "px " + family;
       ctx.fillStyle = cellStyle?.colour ?? (header ? table.headerTextColour : table.textColour);
       ctx.textAlign = alignment === "centre" ? "center" : alignment;
       const raw = String(row[c] ?? "");
@@ -78,7 +79,7 @@ function drawEditableTable(ctx, width, height, table) {
       if (table.fitText) {
         const minimumSize = Math.max(1, size * 0.35);
         for (let attempt = 0; attempt < 8 && size > minimumSize && (fullLines.length > (table.wrap ? 8 : 1) || (fullLines.length - 1) * lineHeight + size > cellHeight - padding * 2 || fullLines.some(line => measure(line) > maxWidth)); attempt++) {
-          size = Math.max(minimumSize, size * 0.85); lineHeight = size * 1.2; ctx.font = fontStyle + size + "px Inter, sans-serif";
+          size = Math.max(minimumSize, size * 0.85); lineHeight = size * 1.2; ctx.font = fontStyle + size + "px " + family;
           fullLines = tableTextLines(text, maxWidth, measure, !!table.wrap);
         }
       }

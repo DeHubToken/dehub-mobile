@@ -1,3 +1,4 @@
+import { graphicFontCss, validGraphicFont } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
 import { traceChartLine, type ChartLineStyle } from "./chartLineStyle";
 import { drawChartLegend, type ChartLegendPosition } from "./chartLegend";
@@ -10,6 +11,7 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  fontFamily?: string;
   fontScale?: number;
   referenceLine?: { value: number; label?: string; colour: string };
   valueFormat?: ChartValueFormat;
@@ -46,6 +48,7 @@ export interface ChartData {
   showValues: boolean;
 }
 export interface TableData {
+  fontFamily?: string;
   merges?: TableMerge[];
   cellStyles?: TableCellStyles;
   rows: string[][];
@@ -82,9 +85,10 @@ export interface DataVisualContext {
 
 /** Data is bounded before rendering so imported projects cannot create an unbounded draw loop. */
 export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData): void {
+  const family = graphicFontCss(chart?.fontFamily);
   const left = -width / 2, top = -height / 2;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
-  ctx.font = "500 " + font + "px Inter, sans-serif";
+  ctx.font = "500 " + font + "px " + family;
   ctx.textBaseline = "middle";
   function label(text: string, x: number, y: number, max: number) {
     let value = String(text).slice(0, 200);
@@ -109,7 +113,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       return chart.pieValueMode === "both" ? actual + " (" + share + ")" : chart.pieValueMode === "percent" ? share : chart.pieValueMode === "value" ? actual : chart.valueFormat ? actual : Number((row.value / sum * 100).toFixed(1)) + "%";
     });
     const entries = (chart.showLabels || chart.showValues) && chart.showLegend !== false ? positive.map((row, index) => ({ colour: colour(row.colourIndex), label: [chart.showLabels ? row.label : "", chart.showValues ? portions[index] : ""].filter(Boolean).join("  ") })) : [];
-    const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour);
+    const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour, family);
     const radius = Math.max(1, Math.min(plot.width * 0.45, plot.height * 0.45));
     const cx = plot.left + plot.width / 2, cy = plot.top + plot.height / 2;
     let start = -Math.PI / 2 + (chart.pieRotation ?? 0) * Math.PI / 180;
@@ -127,9 +131,9 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       const labels = [total, caption].filter(Boolean), hole = radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57));
       if (labels.length) {
         let size = Math.max(1, Math.min(font * 1.8, hole * (labels.length > 1 ? 0.45 : 0.7)));
-        while (size > 1) { ctx.font = "700 " + size + "px Inter, sans-serif"; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
+        while (size > 1) { ctx.font = "700 " + size + "px " + family; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
         ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px Inter, sans-serif"; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
+        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px " + family; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
       }
     }
     return;
@@ -245,6 +249,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
+    if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
     if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
@@ -272,6 +277,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
     if (table.fitText !== undefined && typeof table.fitText !== "boolean") return false;
+    if (!validGraphicFont(table.fontFamily)) return false;
     if (table.fitRows !== undefined && typeof table.fitRows !== "boolean") return false;
     if (table.fitColumns !== undefined && typeof table.fitColumns !== "boolean") return false;
     if (table.headerColumn !== undefined && typeof table.headerColumn !== "boolean") return false;

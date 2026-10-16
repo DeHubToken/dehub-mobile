@@ -1,3 +1,4 @@
+import { clipFontFamilies } from "../libs/editor/graphicFonts";
 import { documentImageProfile, documentImageScale, type DocumentImageProfile } from "../libs/editor/documentImageProfile";
 import { applyRehearsedPageDurations } from "../libs/editor/presentationRehearsal";
 import { imageJpegQuality } from "../libs/editor/imageExportOptions";
@@ -1476,7 +1477,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // Web fonts the page needs, picked the way the web picks them.
   const fontCss = useMemo(() => {
     const set = new Set<string>();
-    project?.clips.forEach((c) => { if (c.kind === "text") { const href = fontStylesheet(c.fontFamily); if (href) set.add(href); } });
+    clipFontFamilies(project?.clips ?? []).forEach(family => { const href = fontStylesheet(family); if (href) set.add(href); });
     return [...set];
   }, [project]);
 

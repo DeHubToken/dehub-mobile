@@ -1,3 +1,4 @@
+import { graphicFontCss } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
 import { percentStackedSeries } from "./percentStackedSeries";
 import { traceChartLine } from "./chartLineStyle";
@@ -8,6 +9,7 @@ import type { ChartData, DataVisualContext } from "./dataVisuals";
 /** Grouped and stacked charts use the same numeric scale for every series. */
 export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): boolean {
   if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut") return false;
+  const family = graphicFontCss(chart.fontFamily);
   const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   if (!rows.length) return false;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1));
@@ -21,10 +23,10 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const reference = chart.kind === "radar" ? 0 : chart.referenceLine?.value ?? 0;
   const minimum = percentStack ? negative.some(value => value < 0) || reference < 0 ? -100 : 0 : Math.min(0, reference, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || reference > 0 || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, reference, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value: number) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale, prefix: chart.valueFormat?.prefix, suffix: chart.valueFormat?.suffix } : chart.valueFormat);
-  const legend = drawChartLegend(ctx, width, height, chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
+  const legend = drawChartLegend(ctx, width, height, chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour, family);
   const xTitle = chart.kind === "radar" ? "" : (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = chart.kind === "radar" ? "" : (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
   const left = legend.left, top = legend.top + (yTitle ? font * 1.6 : 0), frameWidth = legend.width, frameHeight = Math.max(1, legend.height - (yTitle ? font * 1.6 : 0) - (xTitle ? font * 1.6 : 0)), centreX = left + frameWidth / 2;
-  ctx.font = "500 " + font + "px Inter, sans-serif"; ctx.textBaseline = "middle";
+  ctx.font = "500 " + font + "px " + family; ctx.textBaseline = "middle";
   function label(text: string, x: number, y: number, max: number) {
     if (max < font) return;
     let value = String(text).slice(0, 200);

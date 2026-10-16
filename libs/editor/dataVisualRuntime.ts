@@ -1,8 +1,9 @@
 /** Chart and table drawing shared with the web compositor. */
 export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width, height, chart, table) {
+  const family = graphicFontCss(chart?.fontFamily);
   const left = -width / 2, top = -height / 2;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
-  ctx.font = "500 " + font + "px Inter, sans-serif";
+  ctx.font = "500 " + font + "px " + family;
   ctx.textBaseline = "middle";
   function label(text, x, y, max) {
     let value = String(text).slice(0, 200);
@@ -27,7 +28,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       return chart.pieValueMode === "both" ? actual + " (" + share + ")" : chart.pieValueMode === "percent" ? share : chart.pieValueMode === "value" ? actual : chart.valueFormat ? actual : Number((row.value / sum * 100).toFixed(1)) + "%";
     });
     const entries = (chart.showLabels || chart.showValues) && chart.showLegend !== false ? positive.map((row, index) => ({ colour: colour(row.colourIndex), label: [chart.showLabels ? row.label : "", chart.showValues ? portions[index] : ""].filter(Boolean).join("  ") })) : [];
-    const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour);
+    const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour, family);
     const radius = Math.max(1, Math.min(plot.width * 0.45, plot.height * 0.45));
     const cx = plot.left + plot.width / 2, cy = plot.top + plot.height / 2;
     let start = -Math.PI / 2 + (chart.pieRotation ?? 0) * Math.PI / 180;
@@ -45,9 +46,9 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       const labels = [total, caption].filter(Boolean), hole = radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57));
       if (labels.length) {
         let size = Math.max(1, Math.min(font * 1.8, hole * (labels.length > 1 ? 0.45 : 0.7)));
-        while (size > 1) { ctx.font = "700 " + size + "px Inter, sans-serif"; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
+        while (size > 1) { ctx.font = "700 " + size + "px " + family; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
         ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px Inter, sans-serif"; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
+        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px " + family; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
       }
     }
     return;

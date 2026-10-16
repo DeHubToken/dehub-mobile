@@ -40,7 +40,7 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     fillText(text: string, x: number, y: number) {
       const size = Number(context.font.match(/([\d.]+)px/)?.[1] ?? 16), weight = context.font.match(/(?:^|\s)([1-9]00)(?:\s|$)/)?.[1] ?? "500", italic = /(?:^|\s)italic(?:\s|$)/.test(context.font);
       const anchor = context.textAlign === "center" ? "middle" : context.textAlign === "right" ? "end" : "start", baseline = context.textBaseline === "middle" ? "central" : context.textBaseline === "top" ? "hanging" : context.textBaseline === "bottom" ? "text-after-edge" : "alphabetic";
-      parts.push(`<text x="${n(x)}" y="${n(y)}" font-family="Inter, sans-serif" font-size="${n(size)}" font-weight="${weight}"${italic ? ' font-style="italic"' : ""} text-anchor="${anchor}" dominant-baseline="${baseline}" ${paint(context.fillStyle, "fill")}>${xml(text)}</text>`);
+      parts.push(`<text x="${n(x)}" y="${n(y)}" font-family="${xml(/px\s+(.+)$/.exec(context.font)?.[1] || "Inter, sans-serif")}" font-size="${n(size)}" font-weight="${weight}"${italic ? ' font-style="italic"' : ""} text-anchor="${anchor}" dominant-baseline="${baseline}" ${paint(context.fillStyle, "fill")}>${xml(text)}</text>`);
     },
   };
   drawDataVisual(context, width, height, "chart" in value ? value.chart : undefined, "table" in value ? value.table : undefined);

@@ -1,3 +1,4 @@
+import { GRAPHIC_FONT_RUNTIME } from "./graphicFontsRuntime";
 import { CHART_REFERENCE_RUNTIME } from "./chartReferenceRuntime";
 import { DATA_VISUAL_SVG_RUNTIME } from "./dataVisualSvgRuntime";
 import { PERCENT_STACKED_SERIES_RUNTIME } from "./percentStackedSeriesRuntime";
@@ -825,8 +826,8 @@ canvas{display:block;width:100%;height:100%;}
   // ── fonts: stylesheets chosen app-side (libs/editor/fonts.ts), as the web picks them ──
   var fontLinks = new Map();
   var activeFontCss = [];
-  function addFontCss(hrefs) {
-    activeFontCss = (hrefs || []).slice();
+  function addFontCss(hrefs, active) {
+    if (active !== false) activeFontCss = (hrefs || []).slice();
     (hrefs || []).forEach(function (href) {
       if (fontLinks.has(href)) return;
       var link = document.createElement("link");
@@ -843,25 +844,24 @@ canvas{display:block;width:100%;height:100%;}
     });
   }
   var requestedFaces = new Set();
+  function designFontFaces(snapshot) {
+    var faces = [];
+    snapshot.clips.forEach(function(c) {
+      if (c.kind === "text" && !c.hidden) faces.push({ face: (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily, sample: c.text.slice(0, 1000) || "Design" });
+      else if (c.kind === "shape" && !c.hidden && (c.chart || c.table)) { var graphic = c.chart || c.table, family = graphicFontCss(graphic.fontFamily), sample = JSON.stringify(graphic).slice(0, 1000); [400, 500, 600, 700].forEach(function(weight) { faces.push({ face: weight + " 48px " + family, sample: sample }); }); }
+    });
+    return faces;
+  }
   function ensureFonts(snapshot) {
     if (!document.fonts || !document.fonts.load) return;
-    snapshot.clips.forEach(function (c) {
-      if (c.kind !== "text") return;
-      var face = (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily;
-      if (requestedFaces.has(face)) return;
-      requestedFaces.add(face);
-      // Redraw once the face arrives; text measured with a fallback font is the wrong size.
-      document.fonts.load(face).then(schedule, function () {});
-    });
+    designFontFaces(snapshot).forEach(function(item) { if (requestedFaces.has(item.face)) return; requestedFaces.add(item.face); document.fonts.load(item.face, item.sample).then(schedule, function() {}); });
   }
-  function waitForDesignFonts(snapshot) {
+  function waitForDesignFonts(snapshot, extraCss) {
     var timer;
-    var ready = Promise.all(activeFontCss.map(function(href) { return fontLinks.get(href); }).filter(Boolean)).then(function() {
+    if (extraCss) addFontCss(extraCss, false);
+    var ready = Promise.all((extraCss || activeFontCss).map(function(href) { return fontLinks.get(href); }).filter(Boolean)).then(function() {
       if (!document.fonts || !document.fonts.load) return;
-      return Promise.all(snapshot.clips.filter(function(c) { return c.kind === "text" && !c.hidden; }).map(function(c) {
-        var face = (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily;
-        return document.fonts.load(face, c.text.slice(0, 1000) || "Design");
-      }));
+      return Promise.all(designFontFaces(snapshot).map(function(item) { return document.fonts.load(item.face, item.sample); }));
     });
     return Promise.race([ready, new Promise(function(resolve, reject) { timer = setTimeout(function() { reject(new Error("A design font could not be loaded")); }, 8000); })]).finally(function() { clearTimeout(timer); });
   }
@@ -1419,7 +1419,7 @@ canvas{display:block;width:100%;height:100%;}
     var fontTimer;
     var check = function () { if (exportAborted || videoJobId !== m.reqId) throw new Error("Export cancelled"); };
     try {
-      await waitForDesignFonts(snap);
+      await waitForDesignFonts(snap, m.fontCss);
       clearTimeout(fontTimer); check();
       var W = snap.settings.width, H = snap.settings.height;
       var t = Math.max(0, Math.min(at, timelineEnd(snap.clips, snap.settings) - 1 / Math.max(1, snap.settings.fps)));
@@ -1943,13 +1943,14 @@ canvas{display:block;width:100%;height:100%;}
       img.onerror = function () { if (imageLoads.get(m.id) !== img) return; imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
     } else if (m.type === "dataVisualSvg") {
-      try {
-        if (!m.value || JSON.stringify(m.value).length > 250000) throw new Error("Invalid graphic data");
+      (async function(message) { try {
+        if (!message.value || JSON.stringify(message.value).length > 250000) throw new Error("Invalid graphic data");
+        await waitForDesignFonts({ clips: [Object.assign({ kind: "shape" }, message.value)] }, message.fontCss);
         var metricCanvas = document.createElement("canvas"), metricContext = metricCanvas.getContext("2d");
         if (!metricContext) throw new Error("Text measurement is unavailable");
-        var svg = drawDataVisualSvg(m.value, Number(m.width), Number(m.height), function(text, font) { metricContext.font = font; return metricContext.measureText(text).width; });
-        post({ type: "dataVisualSvg", reqId: m.reqId, svg: svg });
-      } catch (error) { post({ type: "dataVisualSvg", reqId: m.reqId, error: error && error.message || "Could not render vector graphic" }); }
+        var svg = drawDataVisualSvg(message.value, Number(message.width), Number(message.height), function(text, font) { metricContext.font = font; return metricContext.measureText(text).width; });
+        post({ type: "dataVisualSvg", reqId: message.reqId, svg: svg });
+      } catch (error) { post({ type: "dataVisualSvg", reqId: message.reqId, error: error && error.message || "Could not render vector graphic" }); } })(m);
     } else if (m.type === "paletteImage") {
       (function(message) {
         if (typeof message.source !== "string" || message.source.length > 1024 * 1024 || !/^data:image\/(jpeg|png);base64,/.test(message.source)) { post({ type: "paletteImage", reqId: message.reqId, error: "Invalid page preview" }); return; }
@@ -2059,4 +2060,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", PERCENT_STACKED_SERIES_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", PERCENT_STACKED_SERIES_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + GRAPHIC_FONT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
