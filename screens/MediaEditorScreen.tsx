@@ -1,3 +1,4 @@
+import { duplicateDesignPageSelection } from "../libs/editor/designClone";
 import { registerDesignPagePreview } from "../libs/editor/designPagePreviews";
 import { DEFAULT_PEN, type PenSettings } from "../libs/editor/freehand";
 import { renameDesignLayer } from "../libs/editor/designLayerNames";
@@ -152,7 +153,6 @@ import {
   addText,
   layerList,
   arrangeClip,
-  duplicateClip,
   getClip,
   newProject,
   removeClip,
@@ -1114,8 +1114,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
-      const r = !getClip(project, selectedId)?.groupId && (kind === "video" || kind === "audio") ? duplicateInTime(project, selectedId) : duplicateClip(project, selectedId);
-      if (r) { h.commit(r.project); select(r.clipId); }
+      try {
+        if (!getClip(project, selectedId)?.groupId && (kind === "video" || kind === "audio")) {
+          const result = duplicateInTime(project, selectedId); if (result) { h.commit(result.project); select(result.clipId); }
+        } else {
+          const latest = h.latest(); if (!latest || latest.id !== project.id) return;
+          const result = duplicateDesignPageSelection(latest, [selectedId], canvasTime, () => newId(10));
+          if (result) { setPlaying(false); h.commit(result.project); select(result.ids[0] ?? null); }
+        }
+      } catch (error) { Alert.alert(t("editor.menu.duplicate"), error instanceof Error ? error.message : String(error)); }
       return;
     }
     if (id === "delete" && selectedId) {
