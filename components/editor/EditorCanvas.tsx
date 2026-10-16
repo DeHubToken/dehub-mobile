@@ -1,3 +1,4 @@
+import DesignRulers from "./DesignRulers";
 import type { DesignPdfLink } from "../../libs/editor/designLinks";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 /**
@@ -189,7 +190,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const W = project.settings.width;
   const H = project.settings.height;
   // Largest page of the project's shape that fits the space we were given.
-  const k = area.w && area.h ? Math.min(area.w / W, area.h / H) : 0;
+  const k = area.w && area.h ? Math.min(Math.max(1, area.w - (layoutGuides.rulers ? 36 : 0)) / W, Math.max(1, area.h - (layoutGuides.rulers ? 36 : 0)) / H) : 0;
   const viewW = W * k;
   const viewH = H * k;
 
@@ -1066,6 +1067,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
+            {layoutGuides.rulers && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} />}
             {layoutGuides.visible && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
             {layoutGuides.visible && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
             {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
