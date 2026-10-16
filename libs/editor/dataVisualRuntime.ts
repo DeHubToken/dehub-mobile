@@ -16,8 +16,9 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (drawMultiSeriesChart(ctx, width, height, chart)) return;
   const colours = Array.isArray(chart.colours) && chart.colours.length ? chart.colours.slice(0, 50) : ["#38bdf8"];
   const colour = (index) => colours[index % colours.length];
-  const max = Math.max(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0);
-  const min = Math.min(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0);
+  const reference = chart.kind === "radar" || chart.kind === "pie" || chart.kind === "donut" ? 0 : chart.referenceLine?.value ?? 0;
+  const max = Math.max(0, reference, ...rows.map(row => row.value), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0);
+  const min = Math.min(0, reference, ...rows.map(row => row.value), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0);
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
@@ -131,4 +132,5 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
+  drawChartReference(ctx, chart, x0, y0, x1, y1, min, max, font);
 }`;

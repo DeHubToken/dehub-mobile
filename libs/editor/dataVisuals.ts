@@ -1,3 +1,4 @@
+import { drawChartReference } from "./chartReference";
 import { traceChartLine, type ChartLineStyle } from "./chartLineStyle";
 import { drawChartLegend, type ChartLegendPosition } from "./chartLegend";
 import { chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
@@ -9,6 +10,7 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  referenceLine?: { value: number; label?: string; colour: string };
   valueFormat?: ChartValueFormat;
   pieRotation?: number;
   pieGap?: number;
@@ -95,8 +97,9 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (drawMultiSeriesChart(ctx, width, height, chart)) return;
   const colours = Array.isArray(chart.colours) && chart.colours.length ? chart.colours.slice(0, 50) : ["#38bdf8"];
   const colour = (index: number) => colours[index % colours.length];
-  const max = Math.max(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0);
-  const min = Math.min(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0);
+  const reference = chart.kind === "radar" || chart.kind === "pie" || chart.kind === "donut" ? 0 : chart.referenceLine?.value ?? 0;
+  const max = Math.max(0, reference, ...rows.map(row => row.value), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0);
+  const min = Math.min(0, reference, ...rows.map(row => row.value), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0);
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
@@ -210,6 +213,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
+  drawChartReference(ctx, chart, x0, y0, x1, y1, min, max, font);
 }
 
 export function parseChartData(text: string): ChartData["rows"] {
@@ -238,6 +242,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
     if (chart.kind === "scatter" && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
+    if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
+    if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
     if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
