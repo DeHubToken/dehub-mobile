@@ -1,3 +1,5 @@
+import SpacingGuides from "./SpacingGuides";
+import { smartSpacingSnap, type SpacingGuide } from "../../libs/editor/smartSpacing";
 import { beginDesignColourSample, cancelDesignColourPick, finishDesignColourSample, getDesignColourPick, useDesignColourPick } from "../../libs/editor/designColourPicker";
 import { designPrintDpi } from "../../libs/editor/documentDimensions";
 import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
@@ -175,6 +177,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   useEffect(() => { if (props.cropping) { viewportDrag.current = null; setNavigating(false); } }, [props.cropping]);
 
   const [layers, setLayers] = useState<LayerBox[]>([]);
+  const [spacingGuides, setSpacingGuides] = useState<SpacingGuide[]>([]);
   const [guides, setGuides] = useState<{ v: number | null; h: number | null }>({ v: null, h: null });
   const layoutGuides = getDesignGuides(project.settings.guides);
   // Stroke being drawn, in page pixels (preview only; committed on release).
@@ -838,6 +841,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tr = getTransform(resolveClipAt(base, now));
     let dx = d.dx / scaleK;
     let dy = d.dy / scaleK;
+    let spacing: SpacingGuide[] = [];
     let v: number | null = null;
     let h: number | null = null;
     if (d.box && (d.dx || d.dy)) {
@@ -848,8 +852,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (persistent.margin) { const margin = persistent.margin * Math.min(PW, PH); xs.push(margin, PW - margin); ys.push(margin, PH - margin); }
       }
       const moving = new Set(groupedSelection(d.before.clips, [d.clipId], now));
-      for (const other of live.current.layers) {
-        if (moving.has(other.id)) continue;
+      const backgrounds = new Set(d.before.clips.filter(clip => clip.isPageBackground).map(clip => clip.id));
+      const otherBoxes = live.current.layers.filter(other => !moving.has(other.id) && !backgrounds.has(other.id));
+      for (const other of otherBoxes) {
         const radians = other.rotation * Math.PI / 180, cos = Math.abs(Math.cos(radians)), sin = Math.abs(Math.sin(radians));
         const hw = (other.w * cos + other.h * sin) / 2, hh = (other.w * sin + other.h * cos) / 2;
         xs.push(other.cx - hw, other.cx, other.cx + hw); ys.push(other.cy - hh, other.cy, other.cy + hh);
@@ -866,6 +871,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       };
       const sx = snap(d.box.cx + dx, hw, xs), sy = snap(d.box.cy + dy, hh, ys);
       if (sx) { dx += sx.shift; v = sx.line; } if (sy) { dy += sy.shift; h = sy.line; }
+      if (persistent.spacing) { const result = smartSpacingSnap({ ...d.box, cx: d.box.cx + dx, cy: d.box.cy + dy }, otherBoxes, threshold, { horizontal: !sx, vertical: !sy }); dx += result.dx; dy += result.dy; spacing = result.guides; }
     }
     let rotation = normaliseDeg(tr.rotation + d.rotation);
     const nearest = Math.round(rotation / 45) * 45;
@@ -882,6 +888,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       if (d.scale !== 1) place.scale = Math.max(0.05, Math.min(20, tr.scale * d.scale));
       patch = placementPatchAt(base, place, now, { record });
     }
+    setSpacingGuides(spacing);
     setGuides((g) => (g.v === v && g.h === h ? g : { v, h }));
     const memberIds = groupedSelection(d.before.clips, [d.clipId], now);
     let next = updateClip(d.before, d.clipId, patch);
@@ -911,7 +918,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     d.active -= 1;
     if (d.active > 0) return;
     drag.current = null;
-    setGuides({ v: null, h: null });
+    setGuides({ v: null, h: null }); setSpacingGuides([]);
     try { if (!d.lease || d.lease.isCurrent()) d.finish(); } finally { d.lease?.release(); }
   };
 
@@ -1140,6 +1147,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
             {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1 / viewport.zoom, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
             {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 / viewport.zoom, width: 1 / viewport.zoom }]} />}
             {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 / viewport.zoom, height: 1 / viewport.zoom }]} />}
+            <SpacingGuides guides={spacingGuides} scale={k} zoom={viewport.zoom} />
             {sel && (
               <View
                 pointerEvents="none"

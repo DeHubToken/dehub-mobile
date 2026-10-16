@@ -17,6 +17,7 @@ export default function GuidesPanel({ project, current, commit }: { project: Pro
     <Text className="text-xs text-white/60">{t("editor.guides.hint", { defaultValue: "Drag from a ruler to add a guide. Choose Edit guides to move guides, or drag them off the page to remove them. Guides and margins are not included in downloads." })}</Text>
     <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}>
       <Switch accessibilityLabel={t("editor.guides.visible", { defaultValue: "Show guides" })} value={guides.visible} onValueChange={visible => apply({ visible })} /><Text className="text-xs text-white/70">{t("editor.guides.visible", { defaultValue: "Show guides" })}</Text>
+      <Switch accessibilityLabel={t("editor.guides.smartSpacing", { defaultValue: "Snap equal spacing" })} value={guides.spacing} onValueChange={spacing => apply({ spacing })} /><Text className="text-xs text-white/70">{t("editor.guides.smartSpacing", { defaultValue: "Snap equal spacing" })}</Text>
       <Switch accessibilityLabel={t("editor.guides.rulers", { defaultValue: "Show rulers" })} value={guides.rulers} onValueChange={rulers => apply({ rulers })} /><Text className="text-xs text-white/70">{t("editor.guides.rulers", { defaultValue: "Show rulers" })}</Text>
       <Switch accessibilityLabel={t("editor.guides.snap", { defaultValue: "Snap to guides" })} value={guides.snap} onValueChange={snap => apply({ snap })} /><Text className="text-xs text-white/70">{t("editor.guides.snap", { defaultValue: "Snap to guides" })}</Text>
     </View>
