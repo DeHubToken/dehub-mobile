@@ -1,9 +1,10 @@
+import { chartXValue } from "./chartDateAxis";
 import { treemapDataError } from "./treemapChart";
 import { cleanDataNumber, type DataNumberFormat } from "./dataRangeActions";
 import { formatDelimitedData, parseDelimitedData } from "./delimitedData";
 export interface DataImportOptions {
   mode: "chart" | "table" | "bulk"; header: boolean; multiple: boolean; labelColumn: string; columns: string;
-  hierarchy?: boolean; numericX?: boolean; start: number; count: number; numberFormat: "plain" | DataNumberFormat; skipEmpty: boolean; blanksAsZero: boolean;
+  hierarchy?: boolean; numericX?: boolean; dateX?: boolean; start: number; count: number; numberFormat: "plain" | DataNumberFormat; skipEmpty: boolean; blanksAsZero: boolean;
 }
 export interface MappedDataImport { source: string; multiple: boolean; header: boolean; rows: string[][]; count: number; columns: number }
 export function importColumnName(index: number): string {
@@ -75,7 +76,9 @@ export function mapDataImport(rows: readonly (readonly string[])[], options: Dat
       if (parts.some(part => !part || part.includes("/"))) throw new Error(`Data row ${options.start + index} needs filled category cells without /`);
       label = parts.join(" / ");
     }
-    if (options.numericX) {
+    if (options.dateX) {
+      if (!Number.isFinite(chartXValue(label, "date"))) throw new Error(`Data row ${options.start + index} needs an ISO date or UTC timestamp in the X column`);
+    } else if (options.numericX) {
       const x = numberCell(label);
       if (!Number.isFinite(x)) throw new Error(`Data row ${options.start + index} needs a numeric X coordinate within one trillion`);
       label = String(x);
