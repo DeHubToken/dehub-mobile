@@ -2,7 +2,7 @@ import { groupedSelection } from "./designGroups";
 import { resolveClipAt } from "./keyframes";
 import type { DesignLayoutBox } from "./designLayout";
 import type { Clip, ClipTransform, ProjectSnapshot } from "./types";
-export type SelectionTransform = { kind: "scale"; factor: number } | { kind: "rotate"; degrees: number } | { kind: "flip"; axis: "horizontal" | "vertical" };
+export type SelectionTransform = { kind: "scale"; factor: number } | { kind: "rotate"; degrees: number } | { kind: "flip"; axis: "horizontal" | "vertical" } | { kind: "opacity"; value: number };
 export interface SelectionTransformPlan { id: string; placement: Partial<ClipTransform>; extra: Record<string, unknown> }
 function scaledAppearance(clip: Clip, factor: number): Record<string, unknown> {
   const extra: Record<string, unknown> = {};
@@ -29,6 +29,10 @@ export function planSelectionTransform(project: ProjectSnapshot, ids: readonly s
   const layers = project.clips.filter(clip => chosen.has(clip.id) && clip.kind !== "audio" && !clip.hidden && !clip.isPageBackground && !hidden.has(clip.trackId) && time >= clip.start && time < clip.start + clip.duration);
   if (!layers.length) return [];
   if (layers.some(clip => clip.locked)) throw new Error("Unlock the selected layers before transforming them");
+  if (operation.kind === "opacity") {
+    if (!Number.isFinite(operation.value) || operation.value < 0 || operation.value > 1) throw new Error("Use an opacity between 0 and 100 percent");
+    return layers.map(clip => ({ id: clip.id, placement: { opacity: operation.value }, extra: {} }));
+  }
   const boxes = layers.map(clip => measured.find(box => box.id === clip.id));
   if (boxes.some(box => !box || ![box.cx, box.cy, box.w, box.h, box.rotation].every(Number.isFinite))) throw new Error("Wait for the selected layers to appear on the canvas");
   const bounds = boxes.map(box => { const b = box!, angle = b.rotation * Math.PI / 180, hw = (Math.abs(Math.cos(angle)) * b.w + Math.abs(Math.sin(angle)) * b.h) / 2, hh = (Math.abs(Math.sin(angle)) * b.w + Math.abs(Math.cos(angle)) * b.h) / 2; return { left: b.cx - hw, right: b.cx + hw, top: b.cy - hh, bottom: b.cy + hh }; });
