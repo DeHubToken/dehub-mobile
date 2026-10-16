@@ -1,3 +1,4 @@
+import { drawChartReference } from "./chartReference";
 import { percentStackedSeries } from "./percentStackedSeries";
 import { traceChartLine } from "./chartLineStyle";
 import { drawChartLegend } from "./chartLegend";
@@ -17,7 +18,8 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   if (percentStack) values = percentStackedSeries(values);
   const positive = rows.map((_, index) => values.reduce((sum, set) => sum + Math.max(0, set[index]), 0));
   const negative = rows.map((_, index) => values.reduce((sum, set) => sum + Math.min(0, set[index]), 0));
-  const minimum = percentStack ? negative.some(value => value < 0) ? -100 : 0 : Math.min(0, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
+  const reference = chart.kind === "radar" ? 0 : chart.referenceLine?.value ?? 0;
+  const minimum = percentStack ? negative.some(value => value < 0) || reference < 0 ? -100 : 0 : Math.min(0, reference, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || reference > 0 || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, reference, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value: number) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale, prefix: chart.valueFormat?.prefix, suffix: chart.valueFormat?.suffix } : chart.valueFormat);
   const legend = drawChartLegend(ctx, width, height, chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
   const xTitle = chart.kind === "radar" ? "" : (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = chart.kind === "radar" ? "" : (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
@@ -71,6 +73,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       ctx.fillStyle = pointColour; ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 220) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill();
       if (chart.showValues) { ctx.textAlign = "center"; label(labelValue(value), x, y - font * 0.8, Math.max(font * 3, plotWidth / rows.length)); }
     }));
+    drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font);
     return true;
   }
   const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * 2.5) : font;
@@ -111,5 +114,6 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     });
   });
   if (chart.showLabels) rows.forEach((row, index) => { ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; label(row.label, x0 - font / 2, y0 + (index + 0.5) / rows.length * plotHeight, labelSpace - font); } else { ctx.textAlign = "center"; label(row.label, x0 + (index + 0.5) / rows.length * plotWidth, y1 + font * 1.2, plotWidth / rows.length * 0.95); } });
+  drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font, percentStack);
   return true;
 }
