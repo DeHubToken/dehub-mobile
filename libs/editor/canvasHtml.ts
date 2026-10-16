@@ -1,3 +1,4 @@
+import { PALETTE_QUANTIZATION_RUNTIME } from "./paletteQuantizationRuntime";
 import { CHART_VALUE_FORMAT_RUNTIME } from "./chartValueFormatRuntime";
 import { FREEHAND_RUNTIME } from "./freehandRuntime";
 import { TABLE_RENDERING_RUNTIME } from "./tableRenderingRuntime";
@@ -86,6 +87,7 @@ canvas{display:block;width:100%;height:100%;}
   __VIDEO_MATTE_RUNTIME__
   __MULTI_SERIES_CHARTS_RUNTIME__
   __TABLE_RENDERING_RUNTIME__
+  __PALETTE_QUANTIZATION_RUNTIME__
   __DATA_VISUAL_RUNTIME__
   __GRADIENT_FILL_RUNTIME__
   __QR_GRAPHIC_RUNTIME__
@@ -1935,6 +1937,22 @@ canvas{display:block;width:100%;height:100%;}
       };
       img.onerror = function () { if (imageLoads.get(m.id) !== img) return; imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
+    } else if (m.type === "paletteImage") {
+      (function(message) {
+        if (typeof message.source !== "string" || message.source.length > 1024 * 1024 || !/^data:image\/(jpeg|png);base64,/.test(message.source)) { post({ type: "paletteImage", reqId: message.reqId, error: "Invalid page preview" }); return; }
+        var image = new Image(), finished = false;
+        var cleanup = function() { clearTimeout(timer); image.onload = null; image.onerror = null; image.src = ""; };
+        var fail = function() { if (finished) return; finished = true; cleanup(); post({ type: "paletteImage", reqId: message.reqId, error: "Could not read page colours" }); };
+        var timer = setTimeout(fail, 12000);
+        image.onload = function() { if (finished) return; try {
+          var preview = document.createElement("canvas"), ratio = Math.min(1, 128 / Math.max(image.naturalWidth, image.naturalHeight));
+          preview.width = Math.max(1, Math.round(image.naturalWidth * ratio)); preview.height = Math.max(1, Math.round(image.naturalHeight * ratio));
+          var context = preview.getContext("2d"); context.drawImage(image, 0, 0, preview.width, preview.height);
+          var colours = extractDominantColours(context.getImageData(0, 0, preview.width, preview.height).data);
+          finished = true; cleanup(); post({ type: "paletteImage", reqId: message.reqId, colours: colours });
+        } catch (error) { fail(); } };
+        image.onerror = fail; image.src = message.source;
+      })(m);
     } else if (m.type === "sampleColour") {
       try {
         if (!state || !state.snapshot || state.snapshot.id !== m.projectId || !Number.isFinite(m.x) || !Number.isFinite(m.y)) throw new Error("The design changed before sampling");
@@ -2028,4 +2046,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", CHART_VALUE_FORMAT_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", CHART_VALUE_FORMAT_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
