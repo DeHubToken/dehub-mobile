@@ -1,3 +1,4 @@
+import { exportPresentationNotes } from "../libs/editor/exportPresentationNotes";
 import { designPageSections } from "../libs/editor/pageDetails";
 import { exportPresentation } from "../libs/editor/exportPresentation";
 import { cancelDesignColourPick } from "../libs/editor/designColourPicker";
@@ -1525,6 +1526,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
+  const downloadNotes = async (scope: PageExportScope) => {
+    const latest = h.latest(); if (!project || !latest || latest.id !== project.id || busy || rendering !== null) return;
+    setPlaying(false); setBusy(true);
+    try { await exportPresentationNotes(latest, canvasTime, scope); setExportOpen(false); }
+    catch (error) { toastError(error instanceof Error ? error.message : t("editor.app.exportFailed")); }
+    finally { setBusy(false); }
+  };
   const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false, bookmarks = true) => {
     const current = h.latest();
     const canvas = canvasRef.current;
@@ -1946,6 +1954,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
           onExportPdf={(scope, marks, bookmarks) => { void downloadDocument("pdf", scope, marks, bookmarks); }}
+          onExportNotes={scope => { void downloadNotes(scope); }}
           onExportPresentation={scope => { void downloadDocument("pptx", scope); }}
       />
     </View>
