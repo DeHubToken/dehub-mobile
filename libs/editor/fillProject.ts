@@ -32,7 +32,7 @@ export function putSolidBackground(project: ProjectSnapshot, time: number, colou
 
 export function removePageBackground(project: ProjectSnapshot, time: number): ProjectSnapshot {
   const page = pageAt(getPages(project.settings, project.clips), time);
-  const removed = project.clips.filter(clip => clip.kind === "shape" && clip.isPageBackground && !clip.locked &&
+  const removed = project.clips.filter(clip => clip.isPageBackground && !clip.locked &&
     Math.abs(clip.start - page.start) < 0.001 && Math.abs(clip.duration - (page.end - page.start)) < 0.001);
   if (!removed.length) return project;
   const ids = new Set(removed.map(clip => clip.id)), tracks = new Set(removed.map(clip => clip.trackId));
@@ -42,9 +42,11 @@ export function removePageBackground(project: ProjectSnapshot, time: number): Pr
 
 function putPageBackground(project: ProjectSnapshot, time: number, fill: string, gradient: GradientFill | null, makeId: () => string) {
   const page = pageAt(getPages(project.settings, project.clips), time);
-  const existing = project.clips.find(c => c.kind === "shape" && c.isPageBackground && Math.abs(c.start - page.start) < 0.001 && Math.abs(c.duration - (page.end - page.start)) < 0.001);
-  if (existing?.locked) return null;
+  const backgrounds = project.clips.filter(c => c.isPageBackground && Math.abs(c.start - page.start) < 0.001 && Math.abs(c.duration - (page.end - page.start)) < 0.001);
+  if (backgrounds.some(clip => clip.locked)) return null;
+  const existing = backgrounds.length === 1 && backgrounds[0].kind === "shape" ? backgrounds[0] : undefined;
   if (existing) return { project: { ...project, clips: project.clips.map(c => c.id === existing.id ? { ...c, fill, gradient } as ShapeClip : c) }, id: existing.id };
+  project = removePageBackground(project, time);
   const track: Track = { id: makeId(), kind: "video", name: "Page background", muted: false, hidden: false };
   const clip: ShapeClip = { id: makeId(), trackId: track.id, kind: "shape", shape: "rect", start: page.start, duration: page.end - page.start,
     trimIn: 0, w: 1, h: 1, fill, stroke: null, gradient, isPageBackground: true };

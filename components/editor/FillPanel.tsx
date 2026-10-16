@@ -1,4 +1,5 @@
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import PhotoBackgroundControls from "./PhotoBackgroundControls";
 import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -38,6 +39,7 @@ export default function FillPanel({ project, selectedId, current, commit, select
   };
   const button = (text: string, onPress: () => void, disabled = false) => <Pressable key={text} accessibilityRole="button" disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{text}</Text></Pressable>;
   return <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 240 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+    <PhotoBackgroundControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
     <Text className="text-xs text-white/60">{t("editor.fills.hint", { defaultValue: "Apply a gradient to selected text or shapes, or add it behind this page." })}</Text>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { setFirst(preset.colours[0]); setLast(preset.colours[preset.colours.length - 1]); apply(gradientFromColours(preset.colours, type, Number(angle) || 0), !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}>
       <View className="flex-row overflow-hidden rounded">{preset.colours.map(colour => <View key={colour} style={{ width: 25, height: 24, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.fills.preset.${preset.id}`, { defaultValue: preset.label })}</Text>
