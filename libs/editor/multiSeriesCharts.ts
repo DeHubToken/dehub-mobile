@@ -37,7 +37,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     return true;
   }
   const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * 2.5) : font;
-  const x0 = left + (horizontal ? labelSpace : font * 3), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (horizontal ? font : labelSpace);
+  const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues !== false ? 3 : 1)), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (horizontal ? chart.showAxisValues !== false ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const xFor = (value: number) => x0 + (value - minimum) / span * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
   const zeroX = xFor(0), zeroY = yFor(0);
@@ -45,7 +45,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   for (let tick = 0; tick <= 4; tick++) {
     const value = minimum + span * tick / 4, x = xFor(value), y = yFor(value);
     if (chart.showGrid !== false) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke(); }
-    if (!horizontal) { ctx.fillStyle = chart.textColour; ctx.textAlign = "right"; label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), x0 - font / 2, y, font * 2.5); }
+    if (chart.showAxisValues !== false) { ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right"; label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / 4 * 0.95 : font * 2.5); }
   }
   ctx.strokeStyle = chart.textColour; ctx.beginPath(); if (horizontal) { ctx.moveTo(zeroX, y0); ctx.lineTo(zeroX, y1); } else { ctx.moveTo(x0, zeroY); ctx.lineTo(x1, zeroY); } ctx.stroke();
   const up = rows.map(() => 0), down = rows.map(() => 0);
