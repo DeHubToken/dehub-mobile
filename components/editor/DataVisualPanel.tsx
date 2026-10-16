@@ -1,3 +1,4 @@
+import { convertDataVisualSource } from "../../libs/editor/dataVisualConversion";
 import ChartStyleFileControls from "./ChartStyleFileControls";
 import { chartStyleAppearance } from "../../libs/editor/chartStyleFile";
 import DataVisualVectorDownload from "./DataVisualVectorDownload";
@@ -108,6 +109,16 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     try { const next = editTableStructure(data, { ...tableFormat, header: showLabels }, axis, index, action); setTableFormat(next.format); setData(next.source); setFocusedCell(axis === "row" ? `A${next.selected + 1}` : `${String.fromCharCode(65 + next.selected)}1`); setError(""); }
     catch (reason) { setError(reason instanceof Error ? reason.message : "Could not change this table"); }
   };
+  const convertDraft = () => {
+    importRequest.current++;
+    try {
+      const next = convertDataVisualSource(data, mode, multiple, showLabels, chartAppearance.xAxisTitle);
+      choose(next.mode); setData(next.source); setMultiple(next.multiple);
+      if (next.mode === "table") setShowLabels(next.header);
+      else if (next.xAxisTitle) setChartAppearance(previous => ({ ...previous, xAxisTitle: next.xAxisTitle }));
+      setError(""); setDataView("cells");
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not convert this data"); }
+  };
   const previewValue = useMemo(() => {
     try {
       const value = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, ...parseChartSource(data, multiple), ...chartAppearance, stacked, stackPercent, showLegend, colours: [accent, ...chartPalette.slice(1)], textColour: foreground, showLabels, showValues } } : { table: { ...tableFormat, rows: parseTableData(data), textColour: foreground, headerColour: accent, header: showLabels } };
@@ -148,6 +159,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {mode === "chart" && <ChartTransposeControl source={data} multiple={multiple} disabled={kind === "scatter" || kind === "pie" || kind === "donut"} onChange={source => { importRequest.current++; setData(source); setMultiple(true); setError(""); }} />}
     {mode === "chart" && <ChartDataOrderControls source={data} multiple={multiple} onChange={(source, order) => { importRequest.current++; setData(source); if (!multiple && kind !== "radar") { const colours = reorderChartCategoryColours([accent, ...chartPalette.slice(1)], order); setChartPalette(colours); setAccent(colours[0]); } setError(""); }} />}
     <DataExportControls source={data} mode={mode} multiple={multiple} title={project.title} />
+    <Pressable accessibilityRole="button" onPress={convertDraft} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t(mode === "chart" ? "editor.dataVisual.convertToTable" : "editor.dataVisual.convertToChart", { defaultValue: mode === "chart" ? "Use this data as a table" : "Use this data as a chart" })}</Text></Pressable>
     </> : <>
     <View className="flex-row items-center" style={{ gap: 8 }}>
       <Text className="text-xs text-white/60">{t("editor.dataVisual.textColour", { defaultValue: "Text" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.textColour", { defaultValue: "Text" })} value={foreground} onChangeText={setForeground} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
