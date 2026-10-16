@@ -1,3 +1,4 @@
+import TableStyleGallery from "./TableStyleGallery";
 import { editTableStructure, type TableAxis, type TableStructureAction } from "../../libs/editor/tableStructure";
 import ChartCategoryColours from "./ChartCategoryColours";
 import DataExportControls from "./DataExportControls";
@@ -125,6 +126,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} multiSeries={multiple} onCellFocus={mode === "table" ? setFocusedCell : undefined} onStructure={mode === "table" ? changeTableStructure : undefined} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
     {mode === "chart" && <ChartFormattingPanel kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
     <View className="flex-row flex-wrap" style={{ gap: 8 }}><ColourPickerButton projectId={project.id} onPick={setAccent} label={t("editor.colourPicker.accent", { defaultValue: "Pick accent from canvas" })} /><ColourPickerButton projectId={project.id} onPick={setForeground} label={t("editor.colourPicker.ink", { defaultValue: "Pick text colour from canvas" })} /></View>
+    {mode === "table" && <TableStyleGallery value={{ ...tableFormat, textColour: foreground, headerColour: accent }} onChange={value => { setTableFormat(value); setForeground(value.textColour); setAccent(value.headerColour); }} />}
     {mode === "table" && <TableFormattingPanel focusedCell={focusedCell} value={{ ...tableFormat, header: showLabels }} source={data} onChange={setTableFormat} onSource={setData} />}
     <View className="flex-row items-center" style={{ gap: 8 }}>
       <Text className="text-xs text-white/60">{t("editor.dataVisual.textColour", { defaultValue: "Text" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.textColour", { defaultValue: "Text" })} value={foreground} onChangeText={setForeground} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
