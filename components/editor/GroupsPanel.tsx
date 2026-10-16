@@ -1,4 +1,5 @@
 import DesignLayoutPanel from "./DesignLayoutPanel";
+import DesignClipboardControls from "./DesignClipboardControls";
 import type { DesignLayoutBox } from "../../libs/editor/designLayout";
 import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -10,12 +11,15 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 export default function GroupsPanel({ project, selectedId, current, commit, select, time, boxes, recording }: {
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; current: () => ProjectSnapshot | null;
-  commit: (next: ProjectSnapshot) => void; select: (id: string) => void; time: number;
+  commit: (next: ProjectSnapshot) => void; select: (id: string | null) => void; time: number;
 }) {
   const { t } = useTranslation();
   const [picked, setPicked] = useState<string[]>(selectedId ? groupedSelection(project.clips, [selectedId], time) : []);
-  useEffect(() => { setPicked(selectedId ? groupedSelection(project.clips, [selectedId], time) : []); }, [project.id, selectedId]);
-  const visible = project.clips.filter(c => c.kind !== "audio" && !c.hidden && time >= c.start && time < c.start + c.duration && !project.tracks.find(track => track.id === c.trackId)?.hidden);
+  useEffect(() => {
+    const active = new Set(project.clips.filter(clip => !clip.isPageBackground && time >= clip.start && time < clip.start + clip.duration).map(clip => clip.id));
+    setPicked(previous => (selectedId ? previous.includes(selectedId) ? previous : groupedSelection(project.clips, [selectedId], time) : []).filter(id => active.has(id)));
+  }, [project.id, selectedId, time]);
+  const visible = project.clips.filter(c => c.kind !== "audio" && !c.isPageBackground && !c.hidden && time >= c.start && time < c.start + c.duration && !project.tracks.find(track => track.id === c.trackId)?.hidden);
   const locked = project.clips.some(c => picked.includes(c.id) && c.locked);
   const apply = (ungroup: boolean) => {
     const latest = current();
@@ -34,6 +38,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
       </Pressable>)}
     </ScrollView>
     <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
+    <DesignClipboardControls project={project} ids={picked} time={time} current={current} commit={commit} select={select} onPasted={setPicked} />
     <View className="flex-row" style={{ gap: 8 }}>
       <Pressable accessibilityRole="button" disabled={picked.length < 2 || locked} onPress={() => apply(false)} className="min-h-[40px] justify-center rounded-lg bg-white px-4" style={{ opacity: picked.length < 2 || locked ? 0.35 : 1 }}><Text className="text-xs font-semibold text-black">{t("editor.groups.group", { defaultValue: "Group" })}</Text></Pressable>
       <Pressable accessibilityRole="button" disabled={locked || !project.clips.some(c => picked.includes(c.id) && c.groupId)} onPress={() => apply(true)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-4"><Text className="text-xs text-white">{t("editor.groups.ungroup", { defaultValue: "Ungroup" })}</Text></Pressable>

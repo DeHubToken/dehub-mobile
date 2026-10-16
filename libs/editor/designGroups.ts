@@ -8,7 +8,8 @@ export function groupedSelection(clips: Clip[], ids: readonly string[], time?: n
 }
 
 export function groupDesignLayers(project: ProjectSnapshot, ids: readonly string[], makeId: () => string): ProjectSnapshot {
-  const selected = new Set(groupedSelection(project.clips, ids));
+  const backgrounds = new Set(project.clips.filter(clip => clip.isPageBackground).map(clip => clip.id));
+  const selected = new Set(groupedSelection(project.clips, ids).filter(id => !backgrounds.has(id)));
   const layers = project.clips.filter(c => selected.has(c.id) && c.kind !== "audio");
   if (layers.length < 2 || layers.some(c => c.locked)) return project;
   const groupId = makeId();

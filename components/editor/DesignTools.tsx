@@ -1,4 +1,5 @@
 import VectorSymbolsPanel from "./VectorSymbolsPanel";
+import DesignClipboardControls from "./DesignClipboardControls";
 import ConnectorsPanel from "./ConnectorsPanel";
 import PageAnimationPanel from "./PageAnimationPanel";
 import BulkCreatePanel from "./BulkCreatePanel";
@@ -27,7 +28,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
-  seek: (id: string, time: number) => void; time: number; select: (id: string) => void;
+  seek: (id: string, time: number) => void; time: number; select: (id: string | null) => void;
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
@@ -48,6 +49,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
       {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
+      <DesignClipboardControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
       {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => { setWidth(String(project.settings.width)); setHeight(String(project.settings.height)); setPanel(panel === "resize" ? null : "resize"); }, false, panel === "resize")}
       {action(t("editor.designTools.colours", { defaultValue: "Document colours" }), () => setPanel(panel === "colours" ? null : "colours"), false, panel === "colours")}
       {action(t("editor.designTools.copyStyle", { defaultValue: "Copy style" }), () => {
