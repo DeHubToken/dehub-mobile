@@ -62,6 +62,10 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       if (chart.showLabels) { ctx.textAlign = "center"; label(chartValueLabel(Number((minX + spanX * tick / 4).toPrecision(3)), undefined), x, y1 + font * 1.2, plotWidth / 4 * 0.95); }
     }
     ctx.strokeStyle = chart.textColour; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
+    if (chart.scatterLines) series.forEach((_, set) => {
+      ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350) * (chart.lineWidth ?? 1);
+      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: xFor(xs[index]), y: yFor(value) })), chart.lineStyle); ctx.stroke();
+    });
     series.forEach((_, set) => values[set].forEach((value, index) => {
       const x = xFor(xs[index]), y = yFor(value), pointColour = chart.series?.length ? colour(set) : colour(index);
       ctx.fillStyle = pointColour; ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 220) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill();

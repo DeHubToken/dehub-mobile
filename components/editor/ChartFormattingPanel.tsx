@@ -7,7 +7,7 @@ import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { CHART_CURRENCIES, CHART_NUMBER_LOCALES, CHART_LOCALE_LABELS, chartValueLabel, type ChartValueFormat } from "../../libs/editor/chartValueFormat";
 import type { ChartData } from "../../libs/editor/dataVisuals";
-export type ChartAppearance = Pick<ChartData, "xAxisTitle" | "yAxisTitle" | "valueFormat" | "donutHole" | "donutLabel" | "donutTotal" | "lineWidth" | "lineStyle" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition" | "scaleMin" | "scaleMax">;
+export type ChartAppearance = Pick<ChartData, "xAxisTitle" | "yAxisTitle" | "valueFormat" | "donutHole" | "donutLabel" | "donutTotal" | "lineWidth" | "scatterLines" | "lineStyle" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition" | "scaleMin" | "scaleMax">;
 export default function ChartFormattingPanel({ kind, value, onChange, multiple = false, percentStack = false }: { kind: ChartData["kind"]; multiple?: boolean; percentStack?: boolean; value: ChartAppearance; onChange: (value: ChartAppearance) => void }) {
   const { t } = useTranslation(), format = percentStack ? { style: "percent" as const, currency: "USD" as const, decimals: value.valueFormat?.decimals ?? 0, compact: false, locale: value.valueFormat?.locale, prefix: value.valueFormat?.prefix, suffix: value.valueFormat?.suffix } : value.valueFormat;
   const change = (patch: Partial<ChartValueFormat>) => onChange({ ...value, valueFormat: { style: "number", currency: "USD", decimals: 0, compact: false, ...format, ...patch } });
