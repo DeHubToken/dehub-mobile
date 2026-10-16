@@ -1,3 +1,5 @@
+import { clipFontFamilies, graphicFontCss } from "../../libs/editor/graphicFonts";
+import { fontStylesheet } from "../../libs/editor/fonts";
 import { registerDataVisualSvgRenderer } from "../../libs/editor/dataVisualSvgRenderer";
 import { registerPaletteImageDecoder } from "../../libs/editor/paletteImageDecoder";
 import { nextDesignLayer } from "../../libs/editor/layerNavigation";
@@ -250,7 +252,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       const cancel = () => { const request = dataVisualSvgRequests.current.get(reqId); if (!request) return; dataVisualSvgRequests.current.delete(reqId); request.cleanup(); reject(new Error("Vector export cancelled")); };
       const timer = setTimeout(cancel, 15000), cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
       dataVisualSvgRequests.current.set(reqId, { resolve, reject, cleanup }); signal.addEventListener("abort", cancel, { once: true });
-      if (signal.aborted) cancel(); else post({ type: "dataVisualSvg", reqId, value, width, height });
+      if (signal.aborted) cancel(); else post({ type: "dataVisualSvg", reqId, value, width, height, fontCss: [fontStylesheet(graphicFontCss("chart" in value ? value.chart.fontFamily : value.table.fontFamily))].filter(Boolean) });
     }));
     return () => { unregister(); for (const request of dataVisualSvgRequests.current.values()) { request.cleanup(); request.reject(new Error("The design canvas closed")); } dataVisualSvgRequests.current.clear(); };
   }, [project.id, post, webKey]);
@@ -757,7 +759,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           }
         }, 30000);
         exports.current.set(reqId, { resolve, reject, onLinks, cleanup: () => clearTimeout(timer) });
-        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks, settled, maxEdge, snapshot });
+        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks, settled, maxEdge, snapshot, fontCss: snapshot ? clipFontFamilies(snapshot.clips).flatMap(family => { const href = fontStylesheet(family); return href ? [href] : []; }) : undefined });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {

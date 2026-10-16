@@ -1,0 +1,1 @@
+export const GRAPHIC_FONT_RUNTIME = "function graphicFontCss(value) {\n  const name = typeof value === \"string\" ? value.slice(0, 100).replace(/[^a-z0-9 ._-]/gi, \"\") : \"\";\n  return '\"' + (name || \"Inter\") + '\", sans-serif';\n}\n";
