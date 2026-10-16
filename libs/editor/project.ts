@@ -1,3 +1,5 @@
+import { insertFreehandStroke } from "./freehandProject";
+import type { PenSettings } from "./freehand";
 import { videoMatteMediaIds } from "./videoMatte";
 import { groupedSelection, remapDesignGroups } from "./designGroups";
 /**
@@ -196,30 +198,8 @@ export function addShape(
  * Turn a finished finger stroke (page pixels) into a freehand path layer,
  * the same shape the web's Draw tool makes.
  */
-export function addStroke(
-  p: ProjectSnapshot,
-  pts: [number, number][],
-  pen: { color: string; width: number },
-): { project: ProjectSnapshot; clipId: string } | null {
-  if (!pts.length) return null;
-  const W = p.settings.width;
-  const H = p.settings.height;
-  const xs = pts.map((q) => q[0]);
-  const ys = pts.map((q) => q[1]);
-  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
-  // A straight or tiny stroke still needs a real box so its points stay finite.
-  const w = Math.max(maxX - minX, 4);
-  const h = Math.max(maxY - minY, 4);
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  return addShape(p, "path", {
-    fill: null,
-    stroke: { color: pen.color, width: pen.width },
-    w: w / W,
-    h: h / H,
-    points: pts.map(([x, y]) => [(x - cx) / w, (y - cy) / h] as [number, number]),
-    transform: { x: cx / W, y: cy / H, scale: 1, rotation: 0 },
-  });
+export function addStroke(p: ProjectSnapshot, pts: [number, number][], pen: PenSettings, time = 0): { project: ProjectSnapshot; clipId: string } | null {
+  return insertFreehandStroke(p, time, pts, pen, () => newId(10));
 }
 
 export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {

@@ -1,3 +1,5 @@
+import PenControls from "./PenControls";
+import { DEFAULT_PEN, penShapeStyle, type PenSettings } from "../../libs/editor/freehand";
 /**
  * Panels for the tools the web editor gained after the first mobile release:
  * shapes, freehand drawing, blend modes with lock/hide, and a Layers list.
@@ -50,7 +52,7 @@ export function ShapesPanel({ onAdd }: { onAdd: (shape: ShapeKind) => void }) {
 
 export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<ShapeClip>) {
   const { t } = useTranslation();
-  const open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
+  const open = clip.shape === "line" || clip.shape === "arrow" || (clip.shape === "path" && !clip.closedPath);
   const s = clip.stroke;
   return (
     <View>
@@ -72,6 +74,7 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
         </>
       )}
       {s && <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />}
+      {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value)); }} />}
       {clip.shape === "rect" && (
         <Range label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })} value={clip.radius ?? 0} min={0} max={540} step={1} onLive={(v) => live({ radius: v })} onDone={settle} />
       )}
@@ -182,11 +185,11 @@ export function LayersPanel(props: {
 }
 
 export function DrawPanel(props: {
-  pen: { color: string; width: number } | null;
-  onChange: (pen: { color: string; width: number } | null) => void;
+  pen: PenSettings | null; lastPen?: PenSettings;
+  onChange: (pen: PenSettings | null) => void;
 }) {
   const { t } = useTranslation();
-  const pen = props.pen ?? { color: "#ffffff", width: 12 };
+  const pen = props.pen ?? props.lastPen ?? DEFAULT_PEN;
   return (
     <View>
       <View className="flex-row mb-2">
@@ -197,8 +200,7 @@ export function DrawPanel(props: {
           onPress={() => props.onChange(props.pen ? null : pen)}
         />
       </View>
-      <Swatches label={t("editor.draw.colour")} value={pen.color} onPick={(c) => props.onChange({ ...pen, color: c })} />
-      <Range label={t("editor.draw.width", { value: pen.width })} value={pen.width} min={2} max={60} step={1} onLive={(v) => props.onChange({ ...pen, width: v })} onDone={() => {}} />
+      <PenControls value={pen} onChange={props.onChange} />
       <Text className="text-theme-neutrals-400 text-xs">{t("editor.app.drawHint")}</Text>
     </View>
   );

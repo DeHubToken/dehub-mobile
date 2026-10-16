@@ -94,6 +94,12 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     }
     if (clip.kind === "shape" && clip.symbol !== undefined && (typeof clip.symbol !== "string" || !VECTOR_SYMBOLS.some(symbol => symbol.id === clip.symbol) || clip.shape !== "rect" || clip.connector !== undefined || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined || clip.photoFrame)) fail();
     if (clip.kind === "shape" && (!validConnector(clip.connector) || (clip.connector !== undefined && (clip.shape !== "line" || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined)))) fail();
+    if (clip.kind === "shape") {
+      if (clip.pathSmoothing !== undefined && (typeof clip.pathSmoothing !== "number" || !Number.isFinite(clip.pathSmoothing) || clip.pathSmoothing < 0 || clip.pathSmoothing > 1)) fail();
+      if (clip.closedPath !== undefined && typeof clip.closedPath !== "boolean") fail();
+      if (clip.strokeCap !== undefined && !["round", "butt", "square"].includes(String(clip.strokeCap))) fail();
+      if (clip.strokeJoin !== undefined && !["round", "bevel", "miter"].includes(String(clip.strokeJoin))) fail();
+    }
     if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
     if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
