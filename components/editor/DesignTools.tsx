@@ -109,7 +109,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel === "notes" && <PageNotesPanel project={project} time={time} current={current} commit={commit} />}
     {panel === "guides" && <GuidesPanel project={project} current={current} commit={commit} />}
     {panel === "compositions" && <TextCompositionsPanel project={project} current={current} commit={commit} time={time} select={select} />}
-    {panel === "grid" && <PhotoGridPanel project={project} current={current} commit={commit} time={time} select={select} />}
+    {panel === "grid" && <PhotoGridPanel project={project} current={current} commit={commit} time={time} select={select} selectedId={selectedId} />}
     {panel === "qr" && <QrPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "groups" && <GroupsPanel boxes={boxes} recording={recording} project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
