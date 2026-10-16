@@ -47,6 +47,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
+  layoutBoxes: () => LayerBox[];
   removeVideoBackground: (clip: MediaClip, fps: number, onProgress?: (p: VideoMatteProgress) => void, signal?: AbortSignal, storePage?: VideoMattePageSink) => Promise<VideoMatteResult>;
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void, signal?: AbortSignal) => Promise<CaptionWord[]>;
   sampleVisual: (clip: MediaClip, windows: VisualWindow[], signal: AbortSignal, progress: (fraction: number) => void) => Promise<VisualFrame[]>;
@@ -560,6 +561,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    layoutBoxes: () => live.current.layers.map(box => ({ ...box })),
     cancelExport: () => {
       post({ type: "exportAbort" });
       const error = new Error("export cancelled"); error.name = "AbortError";

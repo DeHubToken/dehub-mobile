@@ -9,12 +9,14 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 import DesignTextSearch from "./DesignTextSearch";
 import DataVisualPanel from "./DataVisualPanel";
 import FillPanel from "./FillPanel";
+import type { DesignLayoutBox } from "../../libs/editor/designLayout";
 import GroupsPanel from "./GroupsPanel";
 import QrPanel from "./QrPanel";
 import PhotoGridPanel from "./PhotoGridPanel";
 import GuidesPanel from "./GuidesPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits }: {
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording }: {
+  boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
   seek: (id: string, time: number) => void; time: number; select: (id: string) => void;
@@ -48,8 +50,9 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
       {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides"].includes(panel ?? ""))}
-      {action(t("editor.groups.title", { defaultValue: "Groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
+      {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
+    {panel && <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel("data"))}
       {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel("fill"))}
@@ -61,7 +64,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel === "guides" && <GuidesPanel project={project} current={current} commit={commit} />}
     {panel === "grid" && <PhotoGridPanel project={project} current={current} commit={commit} time={time} select={select} />}
     {panel === "qr" && <QrPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
-    {panel === "groups" && <GroupsPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
+    {panel === "groups" && <GroupsPanel boxes={boxes} recording={recording} project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}
@@ -90,5 +93,6 @@ export default function DesignTools({ project, selectedId, current, commit, seek
         </Pressable>)}
       </ScrollView>
     </View>}
+    </ScrollView>}
   </View></DesignDraftContext.Provider>;
 }

@@ -1,3 +1,5 @@
+import DesignLayoutPanel from "./DesignLayoutPanel";
+import type { DesignLayoutBox } from "../../libs/editor/designLayout";
 import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -5,7 +7,8 @@ import { groupedSelection, groupDesignLayers, ungroupDesignLayers } from "../../
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
-export default function GroupsPanel({ project, selectedId, current, commit, select, time }: {
+export default function GroupsPanel({ project, selectedId, current, commit, select, time, boxes, recording }: {
+  boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; current: () => ProjectSnapshot | null;
   commit: (next: ProjectSnapshot) => void; select: (id: string) => void; time: number;
 }) {
@@ -22,7 +25,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
   };
   return <View className="px-3" style={{ gap: 10 }}>
     <Text className="text-xs text-white/60">{t("editor.groups.hint", { defaultValue: "Select layers to move, resize, rotate, and duplicate together." })}</Text>
-    <ScrollView style={{ maxHeight: 150 }} contentContainerStyle={{ gap: 6 }}>
+    <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 150 }} contentContainerStyle={{ gap: 6 }}>
       {visible.map(clip => <Pressable key={clip.id} accessibilityRole="checkbox" accessibilityState={{ checked: picked.includes(clip.id), disabled: !!clip.locked }} disabled={clip.locked} onPress={() => {
         const members = groupedSelection(project.clips, [clip.id], time);
         setPicked(ids => ids.includes(clip.id) ? ids.filter(id => !members.includes(id)) : [...new Set([...ids, ...members])]);
@@ -30,6 +33,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
         <Text numberOfLines={1} className="text-xs text-white">{picked.includes(clip.id) ? "✓  " : "○  "}{clip.kind === "text" ? clip.text : project.tracks.find(track => track.id === clip.trackId)?.name ?? clip.kind}{clip.groupId ? ` · ${t("editor.groups.group", { defaultValue: "Group" })}` : ""}</Text>
       </Pressable>)}
     </ScrollView>
+    <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
     <View className="flex-row" style={{ gap: 8 }}>
       <Pressable accessibilityRole="button" disabled={picked.length < 2 || locked} onPress={() => apply(false)} className="min-h-[40px] justify-center rounded-lg bg-white px-4" style={{ opacity: picked.length < 2 || locked ? 0.35 : 1 }}><Text className="text-xs font-semibold text-black">{t("editor.groups.group", { defaultValue: "Group" })}</Text></Pressable>
       <Pressable accessibilityRole="button" disabled={locked || !project.clips.some(c => picked.includes(c.id) && c.groupId)} onPress={() => apply(true)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-4"><Text className="text-xs text-white">{t("editor.groups.ungroup", { defaultValue: "Ungroup" })}</Text></Pressable>
