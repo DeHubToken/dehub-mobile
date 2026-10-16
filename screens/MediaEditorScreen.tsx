@@ -1,3 +1,4 @@
+import { imageJpegQuality } from "../libs/editor/imageExportOptions";
 import { exportPresentationNotes } from "../libs/editor/exportPresentationNotes";
 import { designPageSections } from "../libs/editor/pageDetails";
 import { exportPresentation } from "../libs/editor/exportPresentation";
@@ -1609,7 +1610,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } finally { setRendering(null); }
   };
 
-  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false, filenamePattern = "") => {
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false, filenamePattern = "", jpegQuality = 0.92) => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
     let frames: ReturnType<typeof pageExportFrames>;
@@ -1620,7 +1621,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
         await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent, undefined, true), ctl.signal,
-          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope, filenamePattern);
+          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope, filenamePattern, imageJpegQuality(jpegQuality));
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
       return;
@@ -1632,7 +1633,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
       const frame = frames[0];
-      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent, undefined, getPages(project.settings, project.clips).length > 1);
+      const dataUrl = await canvasRef.current!.exportImage(format, imageJpegQuality(jpegQuality), frame.time, transparent, undefined, getPages(project.settings, project.clips).length > 1);
       const uri = await writeExport(dataUrl, format, frame.filename.slice(0, -4));
       setExportOpen(false);
       if (target === "photos") {

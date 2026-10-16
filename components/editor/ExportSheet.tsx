@@ -1,3 +1,4 @@
+import JpegQualityControl from "./JpegQualityControl";
 import SectionExportPicker from "./SectionExportPicker";
 import type { DesignPageSection } from "../../libs/editor/pageDetails";
 import { pageFilenamePatternError } from "../../libs/editor/pageFilenamePattern";
@@ -24,7 +25,7 @@ export default function ExportSheet(props: {
   onCancel: () => void;
   pageCount: number;
   sections?: readonly DesignPageSection[];
-  onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean, filenamePattern?: string) => void;
+  onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean, filenamePattern?: string, jpegQuality?: number) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
   onExportPdf?: (scope: PageExportScope, cropMarks?: boolean, bookmarks?: boolean) => void;
@@ -38,6 +39,7 @@ export default function ExportSheet(props: {
   const [pageScope, setPageScope] = useState<"all" | "current" | "custom" | "section">("all");
   const [sectionName, setSectionName] = useState("");
   const [pageSelection, setPageSelection] = useState("1");
+  const [jpegQuality, setJpegQuality] = useState(0.92);
   const [filenamePattern, setFilenamePattern] = useState("");
   const [transparent, setTransparent] = useState(false);
   const [cropMarks, setCropMarks] = useState(false);
@@ -69,7 +71,7 @@ export default function ExportSheet(props: {
     else if (isPdf) props.onExportPdf?.(effectivePageScope, cropMarks, bookmarks);
     else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
-    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, effectivePageScope, format === "png" && transparent, filenamePattern);
+    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, effectivePageScope, format === "png" && transparent, filenamePattern, jpegQuality);
   };
   return (
     <Modal visible={props.visible} transparent animationType="slide" onRequestClose={props.onCancel}>
@@ -92,6 +94,7 @@ export default function ExportSheet(props: {
         </View>
         {isPdf && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={cropMarks} onValueChange={setCropMarks} accessibilityLabel={t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })}</Text></View>{cropMarks && <Text className="text-xs text-white/45">{t("editor.export.cropMarkHint", { defaultValue: "Adds cutting marks outside the artwork. The saved print resolution sets the finished page size." })}</Text>}</View>}
         {isPdf && props.pageCount > 1 && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={bookmarks} onValueChange={setBookmarks} accessibilityLabel={t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })}</Text></View>}
+        {format === "jpeg" && <JpegQualityControl value={jpegQuality} onChange={setJpegQuality} />}
         {(format === "png" || format === "jpeg") && <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })}</Text><TextInput value={filenamePattern} onChangeText={setFilenamePattern} maxLength={160} autoCorrect={false} autoCapitalize="none" placeholder="{title}-{page:2}-{name}" placeholderTextColor="#888" accessibilityLabel={t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" /><View className="flex-row flex-wrap" style={{ gap: 8 }}>{[["", "Default"], ["{title}-{page:2}", "Title and number"], ["{page:2}-{name}", "Page names"]].map(([pattern, label]) => <Chip key={label} label={t(`editor.export.filenamePreset.${label}`, { defaultValue: label })} active={filenamePattern === pattern} onPress={() => setFilenamePattern(pattern)} />)}</View><Text className="text-[10px] text-white/45">{t("editor.export.filenameHint", { defaultValue: "Leave blank for default names. Use {title}, {name}, {section}, {page}, or {page:3}. Add a prefix as plain text. Duplicate names receive a page-number suffix." })}</Text>{!!filenameError && <Text accessibilityRole="alert" className="text-xs text-red-300">{filenameError}</Text>}</View>}
         {!isVideo && !isGif && pageScope === "section" && <SectionExportPicker sections={sections} value={chosenSection?.name ?? ""} onChange={setSectionName} />}
         {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
