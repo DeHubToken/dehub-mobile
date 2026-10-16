@@ -1,3 +1,4 @@
+import FreehandPointControls from "./FreehandPointControls";
 import ShapeStrokeEdges from "./ShapeStrokeEdges";
 import BrandPresetLibrary from "./BrandPresetLibrary";
 import PenControls from "./PenControls";
@@ -81,6 +82,7 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
       )}
       <ShapeStrokeEdges value={clip} onChange={commit} />
       {s && <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />}
+      {clip.shape === "path" && clip.points && <FreehandPointControls key={clip.id} points={clip.points} closed={!!clip.closedPath} disabled={!!clip.locked} onChange={points => { if (!clip.locked) commit({ points }); }} />}
       {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value, clip.stroke?.opacity, clip.stroke?.dashOffset)); }} />}
       {clip.shape === "rect" && (
         <Range label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })} value={clip.radius ?? 0} min={0} max={540} step={1} onLive={(v) => live({ radius: v })} onDone={settle} />
