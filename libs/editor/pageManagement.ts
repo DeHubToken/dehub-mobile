@@ -81,3 +81,14 @@ export function manageDesignPages(project: ProjectSnapshot, selected: readonly n
   const updated = getPages(next.settings, next.clips), page = updated[picked[0]];
   return { project: next, selected: picked, time: page.start + Math.min(0.6, (page.end - page.start) / 2), count: indexes.length };
 }
+
+export function moveDesignPagesBefore(project: ProjectSnapshot, selected: readonly number[], target: number, makeId: () => string) {
+  const pages = getPages(project.settings, project.clips), indexes = [...new Set(selected)].sort((a, b) => a - b);
+  if (!indexes.length || indexes.some(index => !Number.isInteger(index) || !pages[index]) || !Number.isInteger(target) || target < 0 || target > pages.length) throw new Error("Choose existing pages and a valid destination");
+  const chosen = new Set(indexes);
+  if (chosen.has(target)) throw new Error("Choose a destination outside the selected pages");
+  const remaining = pages.map(page => page.index).filter(index => !chosen.has(index)), at = target === pages.length ? remaining.length : remaining.indexOf(target);
+  const order = [...remaining.slice(0, at), ...indexes, ...remaining.slice(at)], next = reorderDesignPages(project, order, makeId);
+  const picked = indexes.map(index => order.indexOf(index)), updated = getPages(next.settings, next.clips), page = updated[picked[0]];
+  return { project: next, selected: picked, time: page.start + Math.min(0.6, (page.end - page.start) / 2), count: indexes.length };
+}
