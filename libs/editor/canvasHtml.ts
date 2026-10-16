@@ -1,3 +1,4 @@
+import { PHOTO_TONE_RUNTIME } from "./photoToneRuntime";
 import { DESIGN_LINKS_RUNTIME } from "./designLinksRuntime";
 import { TEXT_REVEAL_RUNTIME } from "./textRevealRuntime";
 import { ENCODER_QUEUE_RUNTIME } from "./encoderQueue";
@@ -490,12 +491,18 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   // ── colour grading: warmth, tint, vignette (web render.ts grade) ──
+  __PHOTO_TONE_RUNTIME__
   var scratch = null;
-  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette); }
+  var stillGradeCache = new WeakMap();
+  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette || needsPhotoTone(e)); }
   function grade(el, sx, sy, sw, sh, w, h, e) {
     var k = Math.min(1, 1600 / Math.max(w, h));
     var cw = Math.max(1, Math.round(w * k));
     var ch = Math.max(1, Math.round(h * k));
+    var still = el instanceof HTMLImageElement ? el : null;
+    var cacheKey = still ? [still.currentSrc || still.src, sx, sy, sw, sh, cw, ch, JSON.stringify(e)].join("|") : "";
+    var cached = still ? stillGradeCache.get(still) : null;
+    if (cached && cached.key === cacheKey) return cached;
     if (!scratch) scratch = document.createElement("canvas");
     if (scratch.width !== cw) scratch.width = cw;
     if (scratch.height !== ch) scratch.height = ch;
@@ -506,6 +513,10 @@ canvas{display:block;width:100%;height:100%;}
     if (SUPPORTS_FILTER) g.filter = "none";
     g.globalCompositeOperation = "copy";
     g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
+    if (needsPhotoTone(e)) {
+      var image = g.getImageData(0, 0, cw, ch);
+      applyPhotoTone(image.data, e, true); g.putImageData(image, 0, 0);
+    }
     function fillBlend(colour, alpha, mode) {
       g.globalCompositeOperation = mode;
       g.globalAlpha = alpha;
@@ -531,6 +542,11 @@ canvas{display:block;width:100%;height:100%;}
     g.globalAlpha = 1;
     g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
     g.globalCompositeOperation = "source-over";
+    if (still) {
+      var copy = document.createElement("canvas"); copy.width = cw; copy.height = ch;
+      var context = copy.getContext("2d");
+      if (context) { context.drawImage(scratch, 0, 0); var result = { key: cacheKey, el: copy, w: cw, h: ch }; stillGradeCache.set(still, result); return result; }
+    }
     return { el: scratch, w: cw, h: ch };
   }
 
@@ -1964,4 +1980,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);

@@ -137,6 +137,10 @@ export interface ClipCrop {
 
 
 export interface ClipEffects {
+  highlights?: number;
+  shadows?: number;
+  fade?: number;
+  duotone?: import("./photoTone").PhotoTone["duotone"];
   /** 0..2, 1 = neutral */
   brightness?: number;
   /** 0..2, 1 = neutral */
