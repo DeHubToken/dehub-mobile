@@ -1,3 +1,4 @@
+import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
@@ -15,6 +16,7 @@ export interface ChartData {
   showValues: boolean;
 }
 export interface TableData {
+  merges?: TableMerge[];
   rows: string[][];
   header: boolean;
   headerColour: string;
@@ -192,6 +194,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (table.stripeColour !== undefined && table.stripeColour !== null && !colour(table.stripeColour)) return false;
     if (table.align !== undefined && !["left", "centre", "right"].includes(String(table.align))) return false;
     if (table.borderWidth !== undefined && (typeof table.borderWidth !== "number" || !Number.isFinite(table.borderWidth) || table.borderWidth < 0 || table.borderWidth > 8)) return false;
+    if (!validTableMerges(table.merges, table.rows.length, Math.max(0, ...table.rows.map((row: unknown) => Array.isArray(row) ? row.length : 0)))) return false;
     for (const key of ["columnWidths", "rowHeights"] as const) { const weights = table[key]; if (weights !== undefined && (!Array.isArray(weights) || weights.length > (key === "columnWidths" ? 12 : 20) || weights.some(value => typeof value !== "number" || !Number.isFinite(value) || value < 0.1 || value > 10))) return false; }
     if (table.padding !== undefined && (typeof table.padding !== "number" || !Number.isFinite(table.padding) || table.padding < 0 || table.padding > 80)) return false;
     if (table.fontScale !== undefined && (typeof table.fontScale !== "number" || !Number.isFinite(table.fontScale) || table.fontScale < 0.5 || table.fontScale > 3)) return false;
