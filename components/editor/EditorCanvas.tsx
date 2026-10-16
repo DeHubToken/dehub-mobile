@@ -1,3 +1,4 @@
+import { designPrintDpi } from "../../libs/editor/documentDimensions";
 import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
 import { FIT_VIEWPORT, focusDesignSelection, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
 import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
@@ -1124,7 +1125,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
-            {(layoutGuides.rulers || editingGuides) && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} />}
+            {(layoutGuides.rulers || editingGuides) && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} rulerUnit={layoutGuides.unit} dpi={designPrintDpi(project.settings)} />}
             {layoutGuides.visible && !editingGuides && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
             {layoutGuides.visible && !editingGuides && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
             {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1 / viewport.zoom, borderStyle: "dashed", borderColor: "#67e8f9" }} />}

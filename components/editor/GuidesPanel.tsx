@@ -1,3 +1,4 @@
+import { designPrintDpi } from "../../libs/editor/documentDimensions";
 import GuideGridControls from "./GuideGridControls";
 import React, { useState } from "react";
 import { Pressable, ScrollView, Switch, Text, View } from "react-native";
@@ -31,6 +32,7 @@ export default function GuidesPanel({ project, current, commit }: { project: Pro
       <Text className="text-xs text-white/60">{t("editor.guides.margin", { defaultValue: "Margin" })}</Text><TextInput keyboardType="number-pad" value={String(Math.round(guides.margin * 100))} onChangeText={value => apply({ margin: Number(value) / 100, visible: true })} accessibilityLabel={t("editor.guides.margin", { defaultValue: "Margin" })} className="min-h-[40px] w-16 rounded-lg border border-white/20 px-2 text-xs text-white" />
     </View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["vertical", "horizontal"] as const).flatMap(direction => guides[direction].map(n => button(`${direction === "vertical" ? "X" : "Y"} ${Number((n * 100).toFixed(1))}% ×`, () => apply({ [direction]: guides[direction].filter(value => value !== n) }))))}</View>
+    <Text className="text-xs text-white/65">{t("editor.guides.rulerUnits", { defaultValue: "Ruler units" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["px", "in", "cm", "mm"] as const).map(unit => <Pressable key={unit} accessibilityRole="button" accessibilityState={{ selected: guides.unit === unit }} onPress={() => apply({ unit, rulers: true })} className={`min-h-[40px] justify-center rounded-lg border px-3 ${guides.unit === unit ? "border-cyan-300 bg-cyan-300/10" : "border-white/20"}`}><Text className="text-xs text-white">{unit}</Text></Pressable>)}</View><Text className="text-xs text-white/40">{t("editor.guides.resolution", { defaultValue: "Based on {{dpi}} pixels per inch", dpi: designPrintDpi(project.settings) })}</Text>
     <GuideGridControls project={project} current={current} commit={commit} />
   </ScrollView>;
 }
