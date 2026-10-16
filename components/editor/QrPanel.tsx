@@ -1,3 +1,4 @@
+import QrVectorDownload from "./QrVectorDownload";
 import { useQrPreview } from "../../libs/editor/useQrPreview";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useEffect, useState } from "react";
@@ -32,6 +33,7 @@ export default function QrPanel({ project, selectedId, current, commit, select, 
   };
   return <View className="px-3" style={{ gap: 10 }}>
     <View className="items-center justify-center" style={{ minHeight: 160 }}>{preview.value ? <Svg width={160} height={160} viewBox={`0 0 ${preview.value.cells.length + quietZone * 2} ${preview.value.cells.length + quietZone * 2}`} accessible accessibilityLabel={t("editor.qr.preview", { defaultValue: "QR code preview" })}><Rect width="100%" height="100%" fill={preview.value.background} /><Path d={qrPreviewPath(preview.value)} fill={preview.value.foreground} /></Svg> : <Text accessibilityLiveRegion="polite" className="text-center text-xs text-white/50">{t(preview.pending ? "editor.qr.preparing" : "editor.qr.invalidPreview", { defaultValue: preview.pending ? "Preparing preview…" : "Use shorter text and two different hex colours, or choose a more compact correction level." })}</Text>}</View>
+    <QrVectorDownload key={`${project.id}:${selectedId ?? "new"}`} value={preview.value} title={project.title} />
     <Text className="text-xs text-white/60">{t("editor.qr.hint", { defaultValue: "Create a QR code for a link or text. Keep strong contrast between the foreground and background." })}</Text>
     <TextInput multiline value={content} onChangeText={setContent} maxLength={1500} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.qr.content", { defaultValue: "Link or text" })} className="min-h-[70px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />
     <Text className="text-xs text-white/65">{t("editor.qr.correction", { defaultValue: "Error correction" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{QR_ERROR_CORRECTION.map(level => <Pressable key={level} accessibilityRole="button" accessibilityState={{ selected: correction === level }} onPress={() => setCorrection(level)} className={`min-h-[40px] justify-center rounded-lg border px-3 ${correction === level ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t(`editor.qr.level.${level}`, { defaultValue: ({ L: "Compact (L)", M: "Balanced (M)", Q: "Robust (Q)", H: "Maximum correction (H)" })[level] })}</Text></Pressable>)}</View>
