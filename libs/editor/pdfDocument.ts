@@ -3,16 +3,30 @@ import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "./
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
 export interface PdfPage { cropMarks?: boolean; dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
+export interface PdfDocumentOptions { title?: string; pageTitles?: readonly string[]; pageLabels?: readonly string[]; bookmarks?: boolean }
 const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255);
+function pdfUnicode(value: string, limit = 500): string {
+  let result = "<FEFF";
+  let count = 0;
+  for (const character of typeof value === "string" ? value : "") {
+    if (count++ >= limit) break;
+    if (character.length === 1 && character.charCodeAt(0) >= 0xd800 && character.charCodeAt(0) <= 0xdfff) { result += "FFFD"; continue; }
+    for (let index = 0; index < character.length; index++) result += character.charCodeAt(index).toString(16).padStart(4, "0");
+  }
+  return result + ">";
+}
 
 /** Stream a standards-based PDF with one JPEG XObject per page and byte-accurate xref offsets. */
 export async function writePdfDocument(count: number, pageAt: (index: number) => Promise<PdfPage>,
-  write: (value: Uint8Array) => void | Promise<void>, signal?: AbortSignal, pageIndexes?: readonly number[]): Promise<void> {
+  write: (value: Uint8Array) => void | Promise<void>, signal?: AbortSignal, pageIndexes?: readonly number[], options: PdfDocumentOptions = {}): Promise<void> {
   if (!Number.isInteger(count) || count < 1 || count > 500) throw new Error("PDF supports between 1 and 500 pages");
   let position = 0;
   const destinations = new Map((pageIndexes ?? Array.from({ length: count }, (_, index) => index)).map((page, index) => [page, 3 + index * 3]));
   const offsets = [0];
   let nextObject = 3 + count * 3;
+  const outlineRoot = options.bookmarks && count > 1 ? nextObject++ : null;
+  const outlineItems = outlineRoot ? Array.from({ length: count }, () => nextObject++) : [];
+  const info = typeof options.title === "string" && options.title.trim() ? nextObject++ : null;
   const check = () => { if (signal?.aborted) { const e = new Error("PDF export cancelled"); e.name = "AbortError"; throw e; } };
   const emit = async (value: Uint8Array) => {
     check();
@@ -25,7 +39,8 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     await text(`${id} 0 obj\n${value}\nendobj\n`);
   };
   await text("%PDF-1.4\n%\xe2\xe3\xcf\xd3\n");
-  await object(1, "<< /Type /Catalog /Pages 2 0 R >>");
+  const labels = options.pageLabels?.length === count ? ` /PageLabels << /Nums [${options.pageLabels.map((label, index) => `${index} << /P ${pdfUnicode(label, 200)} >>`).join(" ")}] >>` : "";
+  await object(1, `<< /Type /Catalog /Pages 2 0 R${outlineRoot ? ` /Outlines ${outlineRoot} 0 R /PageMode /UseOutlines` : ""}${labels}${info ? " /ViewerPreferences << /DisplayDocTitle true >>" : ""} >>`);
   await object(2, `<< /Type /Pages /Count ${count} /Kids [${Array.from({ length: count }, (_, i) => `${3 + i * 3} 0 R`).join(" ")}] >>`);
   for (let index = 0; index < count; index++) {
     check();
@@ -65,8 +80,17 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     await object(id + 2, `<< /Length ${bytes(content).length} >>\nstream\n${content}endstream`);
     for (const link of links) await object(link.id, `<< /Type /Annot /Subtype /Link /Rect [${link.rect}] /Border [0 0 0] /A << ${link.action} >> >>`);
   }
+  if (outlineRoot) {
+    await object(outlineRoot, `<< /Type /Outlines /First ${outlineItems[0]} 0 R /Last ${outlineItems[outlineItems.length - 1]} 0 R /Count ${count} >>`);
+    for (let index = 0; index < count; index++) {
+      const candidate = options.pageTitles?.[index];
+      const title = typeof candidate === "string" && candidate.trim() ? candidate.trim() : `Page ${(pageIndexes?.[index] ?? index) + 1}`;
+      await object(outlineItems[index], `<< /Title ${pdfUnicode(title, 200)} /Parent ${outlineRoot} 0 R /Dest [${3 + index * 3} 0 R /Fit]${index > 0 ? ` /Prev ${outlineItems[index - 1]} 0 R` : ""}${index + 1 < count ? ` /Next ${outlineItems[index + 1]} 0 R` : ""} >>`);
+    }
+  }
+  if (info) await object(info, `<< /Title ${pdfUnicode(options.title!.trim())} >>`);
   const xref = position, size = nextObject;
   await text(`xref\n0 ${size}\n0000000000 65535 f \n`);
   for (let id = 1; id < size; id++) await text(`${String(offsets[id]).padStart(10, "0")} 00000 n \n`);
-  await text(`trailer\n<< /Size ${size} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
+  await text(`trailer\n<< /Size ${size} /Root 1 0 R${info ? ` /Info ${info} 0 R` : ""} >>\nstartxref\n${xref}\n%%EOF\n`);
 }

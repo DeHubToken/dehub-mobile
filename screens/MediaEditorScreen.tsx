@@ -1524,7 +1524,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
-  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false) => {
+  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false, bookmarks = true) => {
     const current = h.latest();
     const canvas = canvasRef.current;
     if (!current || !canvas || rendering !== null || h.isEditing()) return;
@@ -1535,7 +1535,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     try {
       const capture = async (time: number) => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true, format === "pptx" ? 2048 : undefined); return { dataUrl, links }; };
       if (format === "pptx") await exportPresentation(current, canvasTime, scope, capture, ctl.signal, setRendering);
-      else await exportPdf(current, canvasTime, scope, capture, ctl.signal, setRendering, cropMarks);
+      else await exportPdf(current, canvasTime, scope, capture, ctl.signal, setRendering, cropMarks, bookmarks);
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
     } finally {
@@ -1942,7 +1942,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
-          onExportPdf={(scope, marks) => { void downloadDocument("pdf", scope, marks); }}
+          onExportPdf={(scope, marks, bookmarks) => { void downloadDocument("pdf", scope, marks, bookmarks); }}
           onExportPresentation={scope => { void downloadDocument("pptx", scope); }}
       />
     </View>
