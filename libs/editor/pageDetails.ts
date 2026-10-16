@@ -33,3 +33,21 @@ export function presentationPages(project: Pick<ProjectSnapshot, "settings" | "c
   const all = getPages(project.settings, project.clips), visible = all.filter(page => project.settings.pageDetails?.[page.index]?.presentationHidden !== true);
   return { all, pages: visible.length ? visible : all.slice(0, 1), allHidden: visible.length === 0 };
 }
+
+export function nameDesignPagesFromHeadings(project: ProjectSnapshot, indexes: readonly number[], overwrite = false) {
+  const pages = getPages(project.settings, project.clips), chosen = new Set(indexes), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
+  const details = pages.map(page => pageDetails(project, page.index));
+  let count = 0, missing = 0;
+  const headings = project.clips.filter((clip): clip is import("./types").TextClip => clip.kind === "text" && !clip.hidden && !hidden.has(clip.trackId) && !clip.pageNumber && clip.text.trim() !== "" && Number.isFinite(clip.fontSize) && clip.fontSize > 0)
+    .sort((a, b) => b.fontSize - a.fontSize || a.y - b.y);
+  for (const page of pages) {
+    if (!chosen.has(page.index) || !overwrite && details[page.index].title.trim()) continue;
+    const heading = headings.find(clip => clip.start < page.end && clip.start + clip.duration > page.start);
+    if (!heading) { missing++; continue; }
+    const line = heading.text.replace(/\r\n?/g, "\n").split("\n").find(line => line.trim()) ?? "";
+    const title = (heading.uppercase ? line.toLocaleUpperCase() : line).replace(/\s+/g, " ").trim().slice(0, 200).replace(/[\ud800-\udbff]$/, "");
+    if (!title) { missing++; continue; }
+    if (title !== details[page.index].title) { details[page.index] = { ...details[page.index], title }; count++; }
+  }
+  return { project: count ? { ...project, settings: { ...project.settings, pageDetails: details } } : project, count, missing };
+}
