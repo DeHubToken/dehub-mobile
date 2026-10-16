@@ -20,12 +20,12 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       const x = xs[c], y = ys[r], cellWidth = xs[c + (merge?.columnSpan ?? 1)] - x, cellHeight = ys[r + (merge?.rowSpan ?? 1)] - y;
       const padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45, cellHeight * 0.4);
       const size = Math.max(1, Math.min(font, cellHeight - padding * 2)), lineHeight = size * 1.2, maxWidth = Math.max(1, cellWidth - padding * 2);
-      const cellStyle = table.cellStyles?.[r + ":" + c], alignment = cellStyle?.align ?? table.align ?? "left";
-      ctx.fillStyle = cellStyle?.fill ?? (table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour);
+      const cellStyle = table.cellStyles?.[r + ":" + c], alignment = cellStyle?.align ?? table.align ?? "left", header = !!(table.header && r === 0 || table.headerColumn && c === 0), stripeIndex = table.stripeAxis === "column" ? c : r, stripeHeader = table.stripeAxis === "column" ? table.headerColumn : table.header;
+      ctx.fillStyle = cellStyle?.fill ?? (header ? table.headerColour : table.stripeColour && stripeIndex % 2 === (stripeHeader ? 0 : 1) ? table.stripeColour : table.cellColour);
       ctx.fillRect(x, y, cellWidth, cellHeight); ctx.strokeStyle = table.borderColour;
       if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
-      ctx.font = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : table.header && r === 0 ? "700 " : "500 ") + size + "px Inter, sans-serif";
-      ctx.fillStyle = cellStyle?.colour ?? (table.header && r === 0 ? table.headerTextColour : table.textColour);
+      ctx.font = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : header ? "700 " : "500 ") + size + "px Inter, sans-serif";
+      ctx.fillStyle = cellStyle?.colour ?? (header ? table.headerTextColour : table.textColour);
       ctx.textAlign = alignment === "centre" ? "center" : alignment;
       const maxLines = table.wrap ? Math.max(1, Math.min(8, Math.floor((cellHeight - padding * 2) / lineHeight))) : 1;
       const text = String(row[c] || "").slice(0, 200), lines: string[] = [];

@@ -31,6 +31,8 @@ export interface TableData {
   cellStyles?: TableCellStyles;
   rows: string[][];
   header: boolean;
+  headerColumn?: boolean;
+  stripeAxis?: "row" | "column";
   headerColour: string;
   headerTextColour: string;
   cellColour: string;
@@ -210,6 +212,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (!object(table) || !Array.isArray(table.rows) || !table.rows.length || table.rows.length > 20 ||
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
+    if (table.headerColumn !== undefined && typeof table.headerColumn !== "boolean") return false;
+    if (table.stripeAxis !== undefined && !["row", "column"].includes(String(table.stripeAxis))) return false;
     if (table.stripeColour !== undefined && table.stripeColour !== null && !colour(table.stripeColour)) return false;
     if (table.align !== undefined && !["left", "centre", "right"].includes(String(table.align))) return false;
     if (table.borderWidth !== undefined && (typeof table.borderWidth !== "number" || !Number.isFinite(table.borderWidth) || table.borderWidth < 0 || table.borderWidth > 8)) return false;
