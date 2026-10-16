@@ -1,3 +1,4 @@
+import { drawPictogramSymbol } from "./pictogramSymbol";
 import { chartValueLabel } from "./chartValueFormat";
 import { drawChartLegend } from "./chartLegend";
 import { graphicFontCss } from "./graphicFonts";
@@ -40,6 +41,7 @@ export function drawPictogramChart(ctx: DataVisualContext, width: number, height
     ctx.fillStyle = colour(index);
     for (let next = 0; next < amount; next++, icon++) {
       const x = x0 + (icon % columns + 0.5) * cell, y = y0 + (Math.floor(icon / columns) + 0.5) * cell;
+      if (chart.pictogramShape === "symbol") { drawPictogramSymbol(ctx, chart.pictogramSymbol ?? "person", x, y, size, colour(index)); continue; }
       if (chart.pictogramShape === "square") ctx.fillRect(x - half, y - half, size, size);
       else if (chart.pictogramShape === "person") {
         ctx.beginPath(); ctx.arc(x, y - size * 0.33, size * 0.15, 0, Math.PI * 2); ctx.fill();

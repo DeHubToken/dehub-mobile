@@ -14,7 +14,7 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     const colour = typeof value === "string" && /^#[a-f\d]{6}(?:[a-f\d]{2})?$/i.test(value) ? value : "none";
     return `${kind}="${colour.length === 9 ? colour.slice(0, 7) : colour}"` + (colour.length === 9 ? ` ${kind}-opacity="${n(parseInt(colour.slice(7), 16) / 255)}"` : "");
   };
-  const stroke = () => paint(context.strokeStyle, "stroke") + ` stroke-width="${n(context.lineWidth)}" stroke-linecap="butt" stroke-linejoin="miter"`;
+  const stroke = () => paint(context.strokeStyle, "stroke") + ` stroke-width="${n(context.lineWidth)}" stroke-linecap="${context.lineCap === "round" ? "round" : context.lineCap === "square" ? "square" : "butt"}" stroke-linejoin="${context.lineJoin === "round" ? "round" : context.lineJoin === "bevel" ? "bevel" : "miter"}"`;
   const context: DataVisualContext = {
     fillStyle: "#000000", strokeStyle: "#000000", font: "500 16px Inter, sans-serif", textAlign: "left", textBaseline: "middle", lineWidth: 1,
     beginPath() { path.length = 0; current = null; first = null; },
