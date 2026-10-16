@@ -1,9 +1,10 @@
+import { usePresentationAutoAdvance } from "../../libs/editor/usePresentationAutoAdvance";
 import PresentationMarkup, { PresentationMarkupTools } from "./PresentationMarkup";
 import { usePresentationMarkup } from "../../libs/editor/usePresentationMarkup";
 import PresentationPagePicker from "./PresentationPagePicker";
 import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "../../libs/editor/designLinks";
 import React, { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Image, Keyboard, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, AppState, Image, Keyboard, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { getPages, pageAt } from "../../libs/editor/pages";
@@ -17,6 +18,9 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   const pages = getPages(project.settings, project.clips);
   const [index, setIndex] = useState(() => pageAt(pages, time).index);
   const [pagePicker, setPagePicker] = useState(false);
+  const [cycle, setCycle] = useState(0);
+  const [pageTiming, setPageTiming] = useState(false), [loop, setLoop] = useState(false), [foreground, setForeground] = useState(AppState.currentState === "active");
+  useEffect(() => { const subscription = AppState.addEventListener("change", value => setForeground(value === "active")); return () => subscription.remove(); }, []);
   const [notes, setNotes] = useState(false), [black, setBlack] = useState(false), [auto, setAuto] = useState(false), [seconds, setSeconds] = useState(5);
   const [uri, setUri] = useState<string | null>(null), [loading, setLoading] = useState(true), [error, setError] = useState(""), [attempt, setAttempt] = useState(0);
   const page = pages[Math.min(index, pages.length - 1)], details = project.settings.pageDetails?.[page.index];
@@ -43,12 +47,9 @@ export default function PresentationView({ project, time, renderPage, onClose, o
     }).catch(value => { if (active) { setError(value instanceof Error ? value.message : "Could not load this page"); setLoading(false); setAuto(false); } });
     return () => { active = false; };
   }, [page.index, page.start, page.end, attempt]);
-  useEffect(() => {
-    if (!auto || black || loading || !uri || error) return;
-    if (page.index >= pages.length - 1) { setAuto(false); return; }
-    const timer = setTimeout(() => setIndex(page.index + 1), seconds * 1000);
-    return () => clearTimeout(timer);
-  }, [auto, black, loading, uri, error, seconds, page.index, pages.length]);
+  const clock = usePresentationAutoAdvance({ identity: `${page.index}:${cycle}`, enabled: auto, paused: black || notes || pagePicker || !foreground || loading || !uri || !!error,
+    duration: pageTiming ? page.end - page.start : seconds,
+    onAdvance: () => { if (page.index < pages.length - 1) setIndex(page.index + 1); else if (loop) { setIndex(0); setCycle(value => value + 1); } else setAuto(false); } });
   const button = (label: string, onPress: () => void, disabled = false, active = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active, disabled }} disabled={disabled} onPress={onPress} className={`min-h-[44px] items-center justify-center rounded-lg border px-3 ${active ? "border-white bg-white/15" : "border-white/20"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/80">{label}</Text></Pressable>;
   return <Modal visible animationType="fade" presentationStyle="fullScreen" supportedOrientations={["portrait", "landscape"]} onRequestClose={onClose}>
     <SafeAreaView edges={["top", "bottom", "left", "right"]} style={{ flex: 1, backgroundColor: "#000000" }}>
@@ -62,10 +63,11 @@ export default function PresentationView({ project, time, renderPage, onClose, o
       </View>
       {pagePicker && <PresentationPagePicker count={pages.length} current={page.index} details={project.settings.pageDetails} onPick={index => { Keyboard.dismiss(); setAuto(false); setIndex(index); setPagePicker(false); }} />}
       {notes && <ScrollView style={{ maxHeight: 180 }} contentContainerStyle={{ padding: 14, gap: 8 }}><Text className="text-xs text-white/45">{t("editor.present.notes", { defaultValue: "Presenter notes" })}</Text><Text className="text-sm text-white/80">{details?.notes || t("editor.present.noNotes", { defaultValue: "No notes for this page" })}</Text></ScrollView>}
+      {auto && <View className="flex-row items-center border-t border-white/10 px-4 py-2" style={{ gap: 12 }}><View accessibilityRole="progressbar" accessibilityLabel={t("editor.present.pageProgress", { defaultValue: "Page progress" })} accessibilityValue={{ min: 0, max: 100, now: Math.round(clock.progress * 100) }} style={{ height: 3, flex: 1, borderRadius: 2, backgroundColor: "#ffffff26", overflow: "hidden" }}><View style={{ width: `${clock.progress * 100}%`, height: 3, backgroundColor: "#67e8f9" }} /></View><Text className="text-right text-xs text-white/55" style={{ minWidth: 36, fontVariant: ["tabular-nums"] }}>{Math.ceil(clock.remaining)}s</Text></View>}
       <PresentationMarkupTools markup={markup} onStart={() => setAuto(false)} />
       <View className="border-t border-white/10 px-3 py-2" style={{ gap: 8 }}>
         <View className="flex-row items-center justify-center" style={{ gap: 12 }}>{button(t("editor.present.previous", { defaultValue: "Previous" }), () => setIndex(page.index - 1), loading || page.index === 0)}<Text className="text-xs text-white/50">{page.index + 1} / {pages.length}</Text>{button(t("editor.present.next", { defaultValue: "Next" }), () => setIndex(page.index + 1), loading || page.index === pages.length - 1)}</View>
-        <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{button(t(auto ? "editor.present.stopAuto" : "editor.present.startAuto", { defaultValue: auto ? "Stop auto advance" : "Auto advance" }), () => { if (!auto && page.index === pages.length - 1) setIndex(0); setAuto(value => !value); }, loading, auto)}{[3, 5, 10, 15, 30, 60].map(value => button(`${value}s`, () => setSeconds(value), false, seconds === value))}</ScrollView>
+        <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{button(t(auto ? "editor.present.stopAuto" : "editor.present.startAuto", { defaultValue: auto ? "Stop auto advance" : "Auto advance" }), () => { if (!auto && page.index === pages.length - 1) setIndex(0); setAuto(value => !value); }, loading, auto)}{button(t("editor.present.usePageTiming", { defaultValue: "Use page durations" }), () => setPageTiming(value => !value), false, pageTiming)}{button(t("editor.present.loop", { defaultValue: "Loop presentation" }), () => setLoop(value => !value), false, loop)}{!pageTiming && [3, 5, 10, 15, 30, 60].map(value => button(`${value}s`, () => setSeconds(value), false, seconds === value))}</ScrollView>
         <View className="flex-row justify-center" style={{ gap: 8 }}>{button(t("editor.present.browsePages", { defaultValue: "Pages" }), () => { Keyboard.dismiss(); setNotes(false); setAuto(false); setPagePicker(value => !value); }, false, pagePicker)}{button(t("editor.present.blackout", { defaultValue: "Blackout" }), () => setBlack(value => !value), false, black)}{button(t("editor.present.notes", { defaultValue: "Presenter notes" }), () => { Keyboard.dismiss(); setPagePicker(false); setNotes(value => !value); }, false, notes)}</View>
       </View>
     </SafeAreaView>
