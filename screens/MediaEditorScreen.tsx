@@ -1,3 +1,4 @@
+import { registerDesignPagePreview } from "../libs/editor/designPagePreviews";
 import { DEFAULT_PEN, type PenSettings } from "../libs/editor/freehand";
 import { renameDesignLayer } from "../libs/editor/designLayerNames";
 import { normaliseBrandStyles } from "../libs/editor/brandStyles";
@@ -21,7 +22,7 @@ import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
  * design shows the frame at STILL_TIME; once the timeline is open (it opens
  * by itself when a video or sound is added) the page shows the playhead.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   BackHandler,
@@ -380,6 +381,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const h = useProjectHistory(recovered ?? initial, snapshot => writeEditorRecovery(recoveryScope, { ...snapshot, updatedAt: Date.now() }));
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
+  useLayoutEffect(() => {
+    if (!project) return;
+    return registerDesignPagePreview(project.id, async (snapshot, at, maxEdge) => {
+      const canvas = canvasRef.current; if (!canvas) throw new Error("The design canvas is not ready");
+      return canvas.exportImage("jpeg", 0.75, at, false, undefined, true, maxEdge, snapshot);
+    });
+  }, [project?.id]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
   // Record mode (web editorUiStore recordMotion): placement edits with the
