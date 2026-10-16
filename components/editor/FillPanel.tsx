@@ -8,6 +8,7 @@ import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 import PhotoBackgroundControls from "./PhotoBackgroundControls";
 import GradientEditor from "./GradientEditor";
+import BackgroundScopeControls from "./BackgroundScopeControls";
 
 export default function FillPanel({ project, selectedId, current, commit, select, time }: {
   project: ProjectSnapshot; selectedId: string | null; current: () => ProjectSnapshot | null;
@@ -38,6 +39,7 @@ export default function FillPanel({ project, selectedId, current, commit, select
   const button = (label: string, onPress: () => void, disabled = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/80">{label}</Text></Pressable>;
   return <View className="px-3" style={{ gap: 10 }}>
     <PhotoBackgroundControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
+    <BackgroundScopeControls project={project} time={time} current={current} commit={commit} select={select} />
     <Text className="text-xs text-white/55">{t("editor.fills.hint", { defaultValue: "Apply a gradient to selected text or shapes, or add it behind this page." })}</Text>
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { const next = { ...fill, stops: gradientFromColours(preset.colours).stops }; setFill(next); apply(next, !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}><View className="flex-row overflow-hidden rounded">{preset.colours.map(colour => <View key={colour} style={{ width: 25, height: 24, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.fills.preset.${preset.id}`, { defaultValue: preset.label })}</Text></Pressable>)}</ScrollView>
     <GradientEditor value={fill} onChange={setFill} />
