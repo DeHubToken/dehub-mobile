@@ -1,3 +1,4 @@
+import { fitDesignClipboardSource } from "./designClipboardFit";
 import { groupedSelection, remapDesignGroups } from "./designGroups";
 import { getPages, pageAt } from "./pages";
 import { sliceTimelineClip } from "./timelineAgent";
@@ -5,6 +6,7 @@ import type { Clip, ProjectSnapshot, Track } from "./types";
 
 export interface DesignClipboard {
   projectId: string;
+  canvas?: { width: number; height: number; background: string };
   layers: { clip: Clip; track: Track; offset: number; fillPage: boolean }[];
 }
 let clipboard: DesignClipboard | null = null;
@@ -29,7 +31,7 @@ export function captureDesignSelection(project: ProjectSnapshot, ids: readonly s
     const from = Math.max(clip.start, page.start), to = Math.min(clip.start + clip.duration, page.end);
     return [{ clip: sliceTimelineClip(clip, from - clip.start, to - from, clip.id, 0), track, offset: from - page.start, fillPage: clip.start <= page.start + 1e-6 && clip.start + clip.duration >= page.end - 1e-6 && (clip.kind === "text" || clip.kind === "shape" || clip.kind === "image") }];
   }).sort((a, b) => project.tracks.indexOf(a.track) - project.tracks.indexOf(b.track));
-  const json = JSON.stringify({ projectId: project.id, layers });
+  const json = JSON.stringify({ projectId: project.id, canvas: { width: project.settings.width, height: project.settings.height, background: project.settings.background }, layers });
   if (json.length > 2 * 1024 * 1024) throw new Error("This selection is too large to copy. Choose fewer layers");
   return JSON.parse(json) as DesignClipboard;
 }
@@ -42,9 +44,10 @@ export function copyDesignSelection(project: ProjectSnapshot, ids: readonly stri
   return source.layers.length;
 }
 
-export function pasteDesignSelection(project: ProjectSnapshot, time: number, source: DesignClipboard | null, makeId: () => string): { project: ProjectSnapshot; ids: string[]; skipped: number } | null {
+export function pasteDesignSelection(project: ProjectSnapshot, time: number, source: DesignClipboard | null, makeId: () => string, options: { preserveProportions?: boolean } = {}): { project: ProjectSnapshot; ids: string[]; skipped: number } | null {
   if (!source?.layers.length) return null;
   if (source.projectId !== project.id && source.layers.some(layer => layer.clip.kind === "image" || layer.clip.kind === "video")) throw new Error("Paste photos and videos within their original design. Text and shapes can be pasted into another design");
+  if (options.preserveProportions !== false) source = fitDesignClipboardSource(source, project.settings);
   const page = pageAt(getPages(project.settings, project.clips), time), duration = page.end - page.start;
   const tracks: Track[] = [], copies: Clip[] = [], trackIds = new Map<string, string>();
   let skipped = 0;
