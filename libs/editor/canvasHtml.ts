@@ -1380,7 +1380,7 @@ canvas{display:block;width:100%;height:100%;}
 
   async function exportImage(m) {
     if (!state || exporting) { post({ type: "exportFailed", reqId: m.reqId, error: "busy" }); return; }
-    var snap = state.snapshot;
+    var snap = m.snapshot || state.snapshot;
     var at = m.time === undefined ? currentTime() : Number(m.time);
     if (!Number.isFinite(at) || at < 0) { post({ type: "exportFailed", reqId: m.reqId, error: "Invalid frame time" }); return; }
     stopPlaying(); exporting = true; exportAborted = false; videoJobId = m.reqId;
@@ -1401,8 +1401,10 @@ canvas{display:block;width:100%;height:100%;}
       prepareVideoSources(ops);
       await Promise.all([prepareMatteOps(ops, t, false)].concat(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })));
       check();
-      var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+      var previewScale = m.maxEdge === undefined ? 1 : Math.min(1, Math.max(256, Math.min(2048, Number(m.maxEdge) || 2048)) / Math.max(W, H));
+      var cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(W * previewScale)); cv.height = Math.max(1, Math.round(H * previewScale));
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
+      g.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0);
       if (!(m.format === "png" && m.transparent)) { g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H); }
       drawOps(g, W, H, ops, t); check();
       var links = m.links ? ops.flatMap(function(op) {

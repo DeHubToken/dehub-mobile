@@ -22,7 +22,8 @@ import DesignLinkPanel from "./DesignLinkPanel";
 import PageNotesPanel from "./PageNotesPanel";
 import GuidesPanel from "./GuidesPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording }: {
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent }: {
+  onPresent?: () => void;
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
@@ -46,6 +47,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   const action = (label: string, onPress: () => void, disabled = false, active = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ disabled, selected: active }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg px-3 ${active ? "bg-white/15" : "bg-white/5"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{label}</Text></Pressable>;
   return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
+      {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
       {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => { setWidth(String(project.settings.width)); setHeight(String(project.settings.height)); setPanel(panel === "resize" ? null : "resize"); }, false, panel === "resize")}
       {action(t("editor.designTools.colours", { defaultValue: "Document colours" }), () => setPanel(panel === "colours" ? null : "colours"), false, panel === "colours")}
       {action(t("editor.designTools.copyStyle", { defaultValue: "Copy style" }), () => {
