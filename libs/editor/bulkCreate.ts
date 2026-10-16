@@ -77,7 +77,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
     });
     copies.push(...remapDesignGroups(copied, makeId));
     const title = bulkReplaceTokens(original.title, data.headers, row);
-    details.push({ title: (title !== original.title ? title : `${title || "Page"} · ${index + 1}`).slice(0, 200), notes: bulkReplaceTokens(original.notes, data.headers, row).slice(0, 10000) });
+    details.push({ ...original, title: (title !== original.title ? title : `${title || "Page"} · ${index + 1}`).slice(0, 200), notes: bulkReplaceTokens(original.notes, data.headers, row).slice(0, 10000) });
   }
   const next = { ...project, settings: { ...project.settings, pages: starts, pageEnd: start + count * duration, pageDetails: details }, clips: refreshPageNumberClips([...project.clips, ...copies], starts) };
   let bytes = 0;
