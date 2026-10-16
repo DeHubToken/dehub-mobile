@@ -1,3 +1,4 @@
+import { FREEHAND_RUNTIME } from "./freehandRuntime";
 import { TABLE_RENDERING_RUNTIME } from "./tableRenderingRuntime";
 import { MULTI_SERIES_CHARTS_RUNTIME } from "./multiSeriesChartsRuntime";
 import { VECTOR_SYMBOLS_RUNTIME } from "./vectorSymbolsRuntime";
@@ -88,6 +89,7 @@ canvas{display:block;width:100%;height:100%;}
   __GRADIENT_FILL_RUNTIME__
   __QR_GRAPHIC_RUNTIME__
   __SHAPE_GEOMETRY_RUNTIME__
+  __FREEHAND_RUNTIME__
   __VECTOR_SYMBOLS_RUNTIME__
   __CONNECTORS_RUNTIME__
   var canvas = document.getElementById("c");
@@ -616,7 +618,7 @@ canvas{display:block;width:100%;height:100%;}
     if (clip.qr) { drawQrGraphic(c, box.w, box.h, clip.qr); return; }
     if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table); return; }
     var k = H / 1080;
-    var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
+    var open = clip.shape === "line" || clip.shape === "arrow" || (clip.shape === "path" && !clip.closedPath);
     if (clip.connector) {
       var connectorStroke = clip.stroke || { color: clip.fill || "#ffffff", width: 8 };
       if (connectorStroke.width <= 0) return;
@@ -626,6 +628,7 @@ canvas{display:block;width:100%;height:100%;}
       applyShadow(c, clip, H); drawConnector(c, box.w, box.h, clip.connector); clearShadow(c); return;
     }
     if (clip.symbol) vectorSymbolPath(c, box.w, box.h, clip.symbol);
+    else if (clip.shape === "path") freehandPath(c, box.w, box.h, clip.points || [], clip.pathSmoothing == null ? 1 : clip.pathSmoothing, !!clip.closedPath);
     else shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
     applyShadow(c, clip, H);
     var gradient = createGradientFill(c, box.w, box.h, clip.gradient);
@@ -635,8 +638,8 @@ canvas{display:block;width:100%;height:100%;}
       c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
       c.lineWidth = stroke.width * k;
       c.strokeStyle = (open || clip.symbol) && gradient ? gradient : stroke.color;
-      c.lineJoin = "round";
-      c.lineCap = "round";
+      c.lineJoin = clip.strokeJoin || "round";
+      c.lineCap = clip.shape === "path" && clip.points && clip.points.length === 1 ? "round" : clip.strokeCap || "round";
       c.stroke();
     }
     clearShadow(c);
@@ -1999,4 +2002,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);

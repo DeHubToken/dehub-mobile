@@ -1,3 +1,4 @@
+import { DEFAULT_PEN, type PenSettings } from "../libs/editor/freehand";
 import { renameDesignLayer } from "../libs/editor/designLayerNames";
 import { normaliseBrandStyles } from "../libs/editor/brandStyles";
 import type { DesignPdfLink } from "../libs/editor/designLinks";
@@ -396,7 +397,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const audioController = useRef<AbortController | null>(null);
   useEffect(() => () => audioController.current?.abort(), []);
   // Freehand pen; while set, one finger draws on the page.
-  const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
+  const [pen, setPen] = useState<PenSettings | null>(null);
+  const [lastPen, setLastPen] = useState<PenSettings>({ ...DEFAULT_PEN });
   // AI chat and brand kit.
   const [chatOpen, setChatOpen] = useState(false);
   const [generatorWindow, setGeneratorWindow] = useState<'closed' | 'open' | 'minimized'>('closed');
@@ -1322,7 +1324,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         />
       );
     }
-    if (tool === "draw") return <DrawPanel pen={pen} onChange={setPen} />;
+    if (tool === "draw") return <DrawPanel pen={pen} lastPen={lastPen} onChange={value => { setPlaying(false); setPen(value); if (value) setLastPen({ ...value, dash: value.dash ? [...value.dash] : undefined }); }} />;
     if (tool === "brand") {
       const designColors = project.clips.flatMap((c) => (c.kind === "text" ? [c.color] : c.kind === "shape" && c.fill ? [c.fill] : []));
       return (
@@ -1712,8 +1714,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onEditCrop={id => { setSelectedId(id); setTool("crop"); setPen(null); setPlaying(false); }}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
           pen={pen}
-          onStroke={(pts) => {
-            const r = addStroke(project, pts, pen ?? { color: "#ffffff", width: 12 });
+          onStroke={(pts, at, brush) => {
+            const r = addStroke(project, pts, brush ?? pen ?? DEFAULT_PEN, at ?? canvasTime);
             if (r) h.commit(r.project);
           }}
         />

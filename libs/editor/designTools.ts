@@ -7,7 +7,7 @@ export interface DesignStyle {
   blend: Clip["blend"];
   shadow: ClipShadow | null;
   text?: Partial<TextClip>;
-  shape?: Pick<ShapeClip, "fill" | "stroke" | "radius">;
+  shape?: Pick<ShapeClip, "fill" | "stroke" | "radius" | "pathSmoothing" | "strokeCap" | "strokeJoin">;
   effects?: ClipEffects;
   radius?: number;
   chartStyle?: Omit<import("./dataVisuals").ChartData, "rows" | "kind" | "series">;
@@ -33,7 +33,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
       background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
   } else if (clip.kind === "shape") {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
-    style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0 };
+    style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0, pathSmoothing: clip.pathSmoothing, strokeCap: clip.strokeCap, strokeJoin: clip.strokeJoin };
     if (clip.chart) { const { rows: _rows, kind: _kind, series: _series, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
     if (clip.table) { const { rows: _rows, ...format } = clip.table; style.tableStyle = { ...format }; }
     if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background, quietZone: clip.qr.quietZone };

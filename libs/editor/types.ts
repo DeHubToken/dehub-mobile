@@ -304,6 +304,10 @@ export interface ShapeClip extends BaseClip {
    * and rotates with the layer like any other shape.
    */
   points?: [number, number][];
+  pathSmoothing?: number;
+  closedPath?: boolean;
+  strokeCap?: "round" | "butt" | "square";
+  strokeJoin?: "round" | "bevel" | "miter";
   /** Width and height as fractions of the page width and height. */
   w: number;
   h: number;

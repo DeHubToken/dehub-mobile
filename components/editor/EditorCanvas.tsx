@@ -1,3 +1,4 @@
+import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
 import { FIT_VIEWPORT, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
 import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
 import DesignRulers from "./DesignRulers";
@@ -20,7 +21,7 @@ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo
 import { StyleSheet, Pressable, Text, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Svg, { Polygon, Polyline } from "react-native-svg";
+import Svg, { Path, Polygon, Polyline } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
@@ -94,9 +95,9 @@ interface Props {
   onEditCrop?: (id: string) => void;
   onMissingMedia?: (ids: string[]) => void;
   /** Freehand pen; while set, one finger draws instead of moving layers. */
-  pen?: { color: string; width: number } | null;
+  pen?: PenSettings | null;
   /** A finished stroke, in page pixels. */
-  onStroke?: (points: [number, number][]) => void;
+  onStroke?: (points: [number, number][], time?: number, pen?: PenSettings) => void;
   /** Playing the timeline; the page runs the clock and reports it in onTime. */
   playing?: boolean;
   onTime?: (time: number) => void;
@@ -214,6 +215,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const drag = useRef<Drag | null>(null);
   const strokeLease = useRef<ProjectEditLease | null>(null);
   const strokeOwner = useRef<string | null>(null);
+  const strokeAt = useRef(0), strokePen = useRef<PenSettings | null>(null);
   useEffect(() => () => {
     const previous = drag.current; drag.current = null;
     try { if (previous && (!previous.lease || previous.lease.isCurrent())) previous.finish(); } finally { previous?.lease?.release(); }
@@ -941,7 +943,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (p.pen) {
           const lease = p.onGestureStart?.() ?? null;
           if (p.onGestureStart && !lease) return;
-          strokeLease.current = lease; strokeOwner.current = p.project.id;
+          strokeLease.current = lease; strokeOwner.current = p.project.id; strokeAt.current = p.time; strokePen.current = { ...p.pen, dash: p.pen.dash ? [...p.pen.dash] : undefined };
           const kk = live.current.k || 1;
           strokeRef.current = [[(e.x - e.translationX - live.current.origin.x) / kk, (e.y - e.translationY - live.current.origin.y) / kk], [(e.x - live.current.origin.x) / kk, (e.y - live.current.origin.y) / kk]];
           setStroke(strokeRef.current);
@@ -988,7 +990,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           setStroke(null);
           const lease = strokeLease.current; strokeLease.current = null;
           try {
-            if ((!lease || lease.isCurrent()) && strokeOwner.current === live.current.props.project.id) live.current.props.onStroke?.(pts);
+            if ((!lease || lease.isCurrent()) && strokeOwner.current === live.current.props.project.id) live.current.props.onStroke?.(pts, strokeAt.current, strokePen.current ?? undefined);
           } finally { lease?.release(); }
           return;
         }
@@ -1086,13 +1088,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
             </View>
             {stroke && props.pen && (
               <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={viewW} height={viewH}>
-                <Polyline
-                  points={stroke.map(([x, y]) => `${x * k},${y * k}`).join(" ")}
+                <Path
+                  d={freehandSvg(stroke, k, k, props.pen.smoothing ?? 1, !!props.pen.closed)}
+                  opacity={props.pen.opacity ?? 1}
+                  strokeDasharray={props.pen.dash?.map(value => value * H / 1080 * k)}
                   fill="none"
                   stroke={props.pen.color}
-                  strokeWidth={Math.max(1, (props.pen.width / 1080) * H * k)}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeWidth={Math.max(0.1, (props.pen.width / 1080) * H * k)}
+                  strokeLinecap={stroke.length === 1 ? "round" : props.pen.cap ?? "round"}
+                  strokeLinejoin={props.pen.join ?? "round"}
                 />
               </Svg>
             )}
