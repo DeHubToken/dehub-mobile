@@ -18,7 +18,7 @@ export default function DesignLayoutPanel({ project, ids, current, commit, boxes
   const apply = (action: LayoutAction) => {
     const latest = current(); if (!latest || latest.id !== project.id) return;
     const chosen = new Set(groupedSelection(latest.clips, ids, time));
-    const selected = latest.clips.filter(c => chosen.has(c.id) && c.kind !== "audio" && !c.hidden && time >= c.start && time < c.start + c.duration && !latest.tracks.find(track => track.id === c.trackId)?.hidden);
+    const selected = latest.clips.filter(c => chosen.has(c.id) && c.kind !== "audio" && !c.isPageBackground && !c.hidden && time >= c.start && time < c.start + c.duration && !latest.tracks.find(track => track.id === c.trackId)?.hidden);
     if (selected.some(c => c.locked)) return;
     const measured = boxes().flatMap(box => {
       const clip = selected.find(c => c.id === box.id);

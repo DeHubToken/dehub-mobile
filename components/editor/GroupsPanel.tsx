@@ -1,3 +1,6 @@
+import SimilarSelectionControls from "./SimilarSelectionControls";
+import { selectablePageLayers } from "../../libs/editor/similarSelection";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import DesignLayoutPanel from "./DesignLayoutPanel";
 import DesignClipboardControls from "./DesignClipboardControls";
 import type { DesignLayoutBox } from "../../libs/editor/designLayout";
@@ -20,6 +23,9 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
     setPicked(previous => (selectedId ? previous.includes(selectedId) ? previous : groupedSelection(project.clips, [selectedId], time) : []).filter(id => active.has(id)));
   }, [project.id, selectedId, time]);
   const visible = project.clips.filter(c => c.kind !== "audio" && !c.isPageBackground && !c.hidden && time >= c.start && time < c.start + c.duration && !project.tracks.find(track => track.id === c.trackId)?.hidden);
+  const [query, setQuery] = useState(""), [offset, setOffset] = useState(0);
+  const needle = query.trim().toLowerCase(), matches = visible.filter(clip => `${clip.label ?? ""} ${clip.kind === "text" ? clip.text : ""} ${project.tracks.find(track => track.id === clip.trackId)?.name ?? ""} ${clip.kind}`.toLowerCase().includes(needle));
+  const first = Math.min(offset, Math.max(0, Math.floor((matches.length - 1) / 24) * 24));
   const locked = project.clips.some(c => picked.includes(c.id) && c.locked);
   const apply = (ungroup: boolean) => {
     const latest = current();
@@ -29,14 +35,19 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
   };
   return <View className="px-3" style={{ gap: 10 }}>
     <Text className="text-xs text-white/60">{t("editor.groups.hint", { defaultValue: "Select layers to move, resize, rotate, and duplicate together." })}</Text>
+    <SimilarSelectionControls project={project} ids={picked} time={time} current={current} onChange={setPicked} />
+    <TextInput value={query} onChangeText={value => { setQuery(value); setOffset(0); }} accessibilityLabel={t("editor.groups.findLayers", { defaultValue: "Find layers to select" })} placeholder={t("editor.groups.findLayers", { defaultValue: "Find layers to select" })} placeholderTextColor="#777" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" />
+    <Pressable accessibilityRole="button" disabled={!matches.length} onPress={() => { const allowed = new Set(selectablePageLayers(project, time).map(clip => clip.id)); setPicked(groupedSelection(project.clips, matches.filter(clip => allowed.has(clip.id)).map(clip => clip.id), time).filter(id => allowed.has(id))); }} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t("editor.groups.selectMatches", { defaultValue: "Select matching layers" })}</Text></Pressable>
     <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 150 }} contentContainerStyle={{ gap: 6 }}>
-      {visible.map(clip => <Pressable key={clip.id} accessibilityRole="checkbox" accessibilityState={{ checked: picked.includes(clip.id), disabled: !!clip.locked }} disabled={clip.locked} onPress={() => {
+      {matches.slice(first, first + 24).map(clip => <Pressable key={clip.id} accessibilityRole="checkbox" accessibilityState={{ checked: picked.includes(clip.id), disabled: !!clip.locked }} disabled={clip.locked} onPress={() => {
         const members = groupedSelection(project.clips, [clip.id], time);
         setPicked(ids => ids.includes(clip.id) ? ids.filter(id => !members.includes(id)) : [...new Set([...ids, ...members])]);
       }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${picked.includes(clip.id) ? "border-white bg-white/15" : "border-white/15"}`} style={{ opacity: clip.locked ? 0.4 : 1 }}>
         <Text numberOfLines={1} className="text-xs text-white">{picked.includes(clip.id) ? "✓  " : "○  "}{clip.label || (clip.kind === "text" ? clip.text : project.tracks.find(track => track.id === clip.trackId)?.name ?? clip.kind)}{clip.groupId ? ` · ${t("editor.groups.group", { defaultValue: "Group" })}` : ""}</Text>
       </Pressable>)}
     </ScrollView>
+    {matches.length > 24 && <View className="flex-row items-center" style={{ gap: 8 }}><Pressable accessibilityRole="button" disabled={first === 0} onPress={() => setOffset(first - 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first === 0 ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.previous", { defaultValue: "Previous" })}</Text></Pressable><Text className="text-xs text-white/45">{first + 1}–{Math.min(first + 24, matches.length)} / {matches.length}</Text><Pressable accessibilityRole="button" disabled={first + 24 >= matches.length} onPress={() => setOffset(first + 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first + 24 >= matches.length ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.next", { defaultValue: "Next" })}</Text></Pressable></View>}
+    {!matches.length && <Text className="text-xs text-white/45">{t("editor.groups.noMatches", { defaultValue: "No matching layers on this page" })}</Text>}
     <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
     <DesignClipboardControls project={project} ids={picked} time={time} current={current} commit={commit} select={select} onPasted={setPicked} />
     <View className="flex-row" style={{ gap: 8 }}>
