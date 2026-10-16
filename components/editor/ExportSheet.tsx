@@ -23,25 +23,28 @@ export default function ExportSheet(props: {
   onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
+  onExportPdf?: (scope: PageExportScope) => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif">("png");
+  const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
   const [pageScope, setPageScope] = useState<PageExportScope>("all");
   const [scope, setScope] = useState<ExportScope>("timeline");
   const isVideo = !!props.video && format === "mp4";
   const isGif = format === "gif";
+  const isPdf = format === "pdf";
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
   useEffect(() => { if (props.visible) { setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
-  const pageArchive = !isVideo && !isGif && props.pageCount > 1 && pageScope === "all";
+  const pageArchive = !isVideo && !isGif && !isPdf && props.pageCount > 1 && pageScope === "all";
   const separate = (isVideo || isGif) && scope !== "timeline";
   const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
   const go = (target: "photos" | "post") => {
     if (props.busy || gifTooLong || (separate && !ranges.length)) return;
-    if (isGif) props.onExportGif(scope);
+    if (isPdf) props.onExportPdf?.(pageScope);
+    else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
     else props.onExport(format === "jpeg" ? "jpeg" : "png", target, pageScope);
   };
@@ -54,10 +57,11 @@ export default function ExportSheet(props: {
         <Text className="text-white text-lg font-semibold">{t("editor.app.export")}</Text>
         <View>
           <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.format")}</Text>
-          <View className="flex-row" style={{ gap: 8 }}>
+          <View className="flex-row flex-wrap" style={{ gap: 8 }}>
             {props.video && <Chip label={t("editor.video.mp4")} active={format === "mp4"} onPress={() => setFormat("mp4")} />}
             <Chip label={t("editor.export.png")} active={format === "png"} onPress={() => setFormat("png")} />
             <Chip label={t("editor.export.jpg")} active={format === "jpeg"} onPress={() => setFormat("jpeg")} />
+            {props.onExportPdf && <Chip label={t("editor.export.pdf", { defaultValue: "PDF document" })} active={isPdf} onPress={() => setFormat("pdf")} />}
             <Chip label={t("emojiPicker.tabGif")} active={isGif} onPress={() => setFormat("gif")} />
           </View>
         </View>
@@ -71,7 +75,7 @@ export default function ExportSheet(props: {
         </View>}
         {!isVideo && !isGif && props.pageCount > 1 && <View style={{ gap: 8 }}>
           <Text className="text-theme-neutrals-300 text-xs">{t("editor.pages.label")}</Text>
-          <Chip label={t("editor.pages.allZip", { count: props.pageCount })} active={pageScope === "all"} onPress={() => setPageScope("all")} />
+          <Chip label={isPdf ? t("editor.pages.allPdf", { defaultValue: "All {{count}} pages in one PDF", count: props.pageCount }) : t("editor.pages.allZip", { count: props.pageCount })} active={pageScope === "all"} onPress={() => setPageScope("all")} />
           <Chip label={t("editor.pages.thisPage")} active={pageScope === "current"} onPress={() => setPageScope("current")} />
         </View>}
         {isVideo && (
@@ -98,9 +102,9 @@ export default function ExportSheet(props: {
           style={{ gap: 8, opacity: props.busy ? 0.5 : 1 }}
         >
           <Icon name="Download" size={18} color="#000" />
-          <Text className="text-black font-semibold">{t(isGif || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
+          <Text className="text-black font-semibold">{t(isGif || isPdf || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
         </Pressable>
-        {!isGif && !separate && !pageArchive && <Pressable
+        {!isGif && !isPdf && !separate && !pageArchive && <Pressable
           disabled={props.busy}
           onPress={() => go("post")}
           accessibilityRole="button"

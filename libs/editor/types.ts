@@ -259,6 +259,9 @@ export type ShapeKind = (typeof SHAPE_KINDS)[number];
 export interface ShapeClip extends BaseClip {
   kind: "shape";
   shape: ShapeKindAll;
+  /** Data-backed graphics remain editable after insertion and across devices. */
+  chart?: import("./dataVisuals").ChartData;
+  table?: import("./dataVisuals").TableData;
   /**
    * Freehand stroke for shape "path": points in the layer's own box, each
    * coordinate -0.5..0.5 of its width/height, so the drawing scales, stretches
@@ -294,6 +297,8 @@ export interface ProjectSettings {
    * are its scenes.
    */
   pages?: number[];
+  /** Explicit end of the last page, including blank time and short still pages. */
+  pageEnd?: number;
 }
 
 export interface ProjectSnapshot {
