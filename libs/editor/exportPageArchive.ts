@@ -9,9 +9,9 @@ import { zipDownloadFiles } from "./zipDownloadFiles";
 /** Capture one page at a time and stream the archive, cleaning every temporary file. */
 export async function exportPageArchive(snapshot: ProjectSnapshot, time: number, format: "png" | "jpeg",
   capture: (format: "png" | "jpeg", quality: number, time: number) => Promise<string>,
-  signal?: AbortSignal, onProgress?: (fraction: number, current: number, total: number) => void, scope: PageExportScope = "all"): Promise<void> {
+  signal?: AbortSignal, onProgress?: (fraction: number, current: number, total: number) => void, scope: PageExportScope = "all", filenamePattern = ""): Promise<void> {
   const check = () => { if (signal?.aborted) { const error = new Error("Export cancelled"); error.name = "AbortError"; throw error; } };
-  const frames = pageExportFrames(snapshot, time, scope, format === "jpeg" ? "jpg" : "png");
+  const frames = pageExportFrames(snapshot, time, scope, format === "jpeg" ? "jpg" : "png", filenamePattern);
   const files: { name: string; uri: string }[] = [];
   let archive: string | undefined;
   try {

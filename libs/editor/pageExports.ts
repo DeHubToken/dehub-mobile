@@ -1,3 +1,4 @@
+import { namedPageExports } from "./pageFilenamePattern";
 import { exportFilename } from "./exportName";
 import { getPages, pageAt } from "./pages";
 import type { ProjectSnapshot } from "./types";
@@ -20,12 +21,13 @@ export function parsePageSelection(value: string, count: number): number[] {
 }
 
 /** Multi-page stills capture page starts; single-page stills retain the playhead. */
-export function pageExportFrames(snapshot: ProjectSnapshot, time: number, scope: PageExportScope, format: "png" | "jpg"): PageExportFrame[] {
+export function pageExportFrames(snapshot: ProjectSnapshot, time: number, scope: PageExportScope, format: "png" | "jpg", filenamePattern = ""): PageExportFrame[] {
   const pages = getPages(snapshot.settings, snapshot.clips);
   const multi = pages.length > 1;
   if (Array.isArray(scope) && (!scope.length || scope.some(index => !Number.isInteger(index) || !pages[index]))) throw new Error("Choose at least one existing page");
   const selected = Array.isArray(scope) ? [...new Set(scope)].sort((a, b) => a - b).map(index => pages[index]) : scope === "all" && multi ? pages : [pageAt(pages, time)];
-  return selected.map(page => ({ index: page.index, time: multi ? page.start : time,
+  const frames = selected.map(page => ({ index: page.index, time: multi ? page.start : time,
     filename: exportFilename(snapshot.title, format, (scope === "all" && multi) || Array.isArray(scope) ? `-${String(page.index + 1).padStart(2, "0")}` : "", "design"),
   }));
+  return namedPageExports(frames, filenamePattern, snapshot.title, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.title), format);
 }
