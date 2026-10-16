@@ -5,7 +5,7 @@ import Svg, { Path } from "react-native-svg";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
-import { VECTOR_SYMBOLS, putVectorSymbol, vectorSymbolSvg } from "../../libs/editor/vectorSymbols";
+import { VECTOR_SYMBOLS, putVectorSymbol, searchVectorSymbols, vectorSymbolSvg } from "../../libs/editor/vectorSymbols";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
@@ -21,7 +21,7 @@ export default function VectorSymbolsPanel({ project, time, selectedId, current,
   const [symbol, setSymbol] = useState("check-circle"), [query, setQuery] = useState(""), [category, setCategory] = useState("all"), [page, setPage] = useState(0);
   const [colour, setColour] = useState("#ffffff"), [weight, setWeight] = useState(8);
   useEffect(() => { if (existing) { setSymbol(existing.symbol!); setColour(existing.stroke?.color ?? "#ffffff"); setWeight(existing.stroke?.width ?? 8); } }, [existing?.id, existing?.symbol, existing?.stroke]);
-  const matches = useMemo(() => { const needle = query.trim().toLowerCase(); return VECTOR_SYMBOLS.filter(item => (category === "all" || item.category === category) && (!needle || `${item.label} ${item.id} ${item.tags}`.toLowerCase().includes(needle))); }, [query, category]);
+  const matches = useMemo(() => searchVectorSymbols(query, category), [query, category]);
   const index = Math.min(page, Math.max(0, Math.ceil(matches.length / 24) - 1)), chosen = VECTOR_SYMBOLS.find(item => item.id === symbol), validColour = /^#[\da-f]{6}$/i.test(colour);
   const chip = (label: string, onPress: () => void, active = false, disabled = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active, disabled }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white/15" : "border-white/20"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
   return <View className="px-3" style={{ gap: 10 }}>
