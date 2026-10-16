@@ -1575,13 +1575,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false) => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
-    if (scope === "all" && getPages(project.settings, project.clips).length > 1 && target === "photos") {
+    const frames = pageExportFrames(project, canvasTime, scope, format === "jpeg" ? "jpg" : "png");
+    if (frames.length > 1 && target === "photos") {
       const ctl = new AbortController(); downloadController.current = ctl;
       const canvas = canvasRef.current;
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
         await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent), ctl.signal,
-          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); });
+          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope);
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
       return;
@@ -1592,7 +1593,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const { status } = await MediaLibrary.requestPermissionsAsync();
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
-      const frame = pageExportFrames(project, canvasTime, "current", format === "jpeg" ? "jpg" : "png")[0];
+      const frame = frames[0];
       const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent);
       const uri = await writeExport(dataUrl, format, project.title);
       setExportOpen(false);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Pressable, ScrollView, Switch, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, Switch, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -7,7 +7,7 @@ import { Chip } from "./EditorPanels";
 import { BRAND_OUTRO_DURATION } from "../../libs/editor/brandOutro";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../../libs/editor/gif";
 import type { ExportScope } from "../../libs/editor/exportRanges";
-import type { PageExportScope } from "../../libs/editor/pageExports";
+import { parsePageSelection, type PageExportScope } from "../../libs/editor/pageExports";
 
 export default function ExportSheet(props: {
   visible: boolean;
@@ -29,7 +29,8 @@ export default function ExportSheet(props: {
   const insets = useSafeAreaInsets();
   const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
-  const [pageScope, setPageScope] = useState<PageExportScope>("all");
+  const [pageScope, setPageScope] = useState<"all" | "current" | "custom">("all");
+  const [pageSelection, setPageSelection] = useState("1");
   const [transparent, setTransparent] = useState(false);
   const [scope, setScope] = useState<ExportScope>("timeline");
   const isVideo = !!props.video && format === "mp4";
@@ -38,16 +39,20 @@ export default function ExportSheet(props: {
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
   useEffect(() => { if (props.visible) { setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
-  const pageArchive = !isVideo && !isGif && !isPdf && props.pageCount > 1 && pageScope === "all";
+  let selectedPages: number[] = [], pageError = "";
+  if (pageScope === "custom") { try { selectedPages = parsePageSelection(pageSelection, props.pageCount); } catch (error) { pageError = error instanceof Error ? error.message : "Choose pages"; } }
+  const effectivePageScope: PageExportScope = pageScope === "custom" ? selectedPages : pageScope;
+  const invalidPages = !isVideo && !isGif && pageScope === "custom" && !!pageError;
+  const pageArchive = !isVideo && !isGif && !isPdf && props.pageCount > 1 && (pageScope === "all" || (pageScope === "custom" && selectedPages.length > 1));
   const separate = (isVideo || isGif) && scope !== "timeline";
   const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
   const go = (target: "photos" | "post") => {
-    if (props.busy || gifTooLong || (separate && !ranges.length)) return;
-    if (isPdf) props.onExportPdf?.(pageScope);
+    if (props.busy || gifTooLong || invalidPages || (separate && !ranges.length)) return;
+    if (isPdf) props.onExportPdf?.(effectivePageScope);
     else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
-    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, pageScope, format === "png" && transparent);
+    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, effectivePageScope, format === "png" && transparent);
   };
   return (
     <Modal visible={props.visible} transparent animationType="slide" onRequestClose={props.onCancel}>
@@ -79,6 +84,9 @@ export default function ExportSheet(props: {
           <Text className="text-theme-neutrals-300 text-xs">{t("editor.pages.label")}</Text>
           <Chip label={isPdf ? t("editor.pages.allPdf", { defaultValue: "All {{count}} pages in one PDF", count: props.pageCount }) : t("editor.pages.allZip", { count: props.pageCount })} active={pageScope === "all"} onPress={() => setPageScope("all")} />
           <Chip label={t("editor.pages.thisPage")} active={pageScope === "current"} onPress={() => setPageScope("current")} />
+          <Chip label={t("editor.pages.choosePages", { defaultValue: "Choose pages" })} active={pageScope === "custom"} onPress={() => setPageScope("custom")} />
+          {pageScope === "custom" && <View style={{ gap: 6 }}><TextInput value={pageSelection} onChangeText={setPageSelection} accessibilityLabel={t("editor.pages.pageNumbers", { defaultValue: "Page numbers" })} placeholder="1,3-5" placeholderTextColor="#888" autoCapitalize="none" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />{!!pageError && <Text className="text-xs text-red-300">{pageError}</Text>}</View>}
+
         </View>}
         {isVideo && (
           <View>
@@ -97,7 +105,7 @@ export default function ExportSheet(props: {
         {isVideo && <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.exportHint")}</Text>}
         {isGif && <Text className="text-theme-neutrals-400 text-xs">{t(gifTooLong ? "editor.export.gifTooLong" : "editor.export.gifHint")}</Text>}
         <Pressable
-          disabled={props.busy || gifTooLong || (separate && !ranges.length)}
+          disabled={props.busy || gifTooLong || invalidPages || (separate && !ranges.length)}
           onPress={() => go("photos")}
           accessibilityRole="button"
           className="flex-row items-center justify-center rounded-xl bg-white py-3"
@@ -107,7 +115,7 @@ export default function ExportSheet(props: {
           <Text className="text-black font-semibold">{t(isGif || isPdf || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
         </Pressable>
         {!isGif && !isPdf && !separate && !pageArchive && <Pressable
-          disabled={props.busy}
+          disabled={props.busy || invalidPages}
           onPress={() => go("post")}
           accessibilityRole="button"
           className="flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 py-3"
