@@ -15,6 +15,8 @@ import { useEditorProjectDraft } from "../libs/editor/useEditorProjectDraft";
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
+import { useTextDraftHistory } from "../libs/editor/useTextDraftHistory";
+import { changeSelectedTextCase, type TextCase } from "../libs/editor/textCase";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -1972,6 +1974,15 @@ function TextPrompt(props: {
 }) {
   const { t } = useTranslation();
   const [value, setValue] = useDraftState(props.draftScope, props.initial);
+  const history = useTextDraftHistory(`${props.draftScope}:${props.visible}`, value, setValue);
+  const inputRef = useRef<TextInput>(null);
+  const selection = useRef({ start: 0, end: 0 });
+  useEffect(() => { selection.current = { start: 0, end: 0 }; }, [props.draftScope, props.visible]);
+  const applyCase = (mode: TextCase) => {
+    const next = changeSelectedTextCase(value, selection.current, mode);
+    history.change(next.value); selection.current = next.selection;
+    requestAnimationFrame(() => { inputRef.current?.focus(); inputRef.current?.setNativeProps({ selection: next.selection }); });
+  };
   useEffect(() => { if (props.visible) setValue.initialize(props.initial); }, [props.visible, props.initial, setValue]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
@@ -1979,16 +1990,28 @@ function TextPrompt(props: {
         <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
           <Text className="text-white text-base font-semibold">{props.title}</Text>
           <TextInput
+            ref={inputRef}
             value={value}
-            onChangeText={setValue}
+            onChangeText={history.change}
+            onSelectionChange={event => { selection.current = event.nativeEvent.selection; }}
             autoFocus
             multiline={props.multiline}
             placeholder={props.placeholder}
             placeholderTextColor="#6b7280"
             selectTextOnFocus
+            returnKeyType={props.multiline ? "default" : "done"}
+            onSubmitEditing={props.multiline ? undefined : () => { if (props.onDone(value)) setValue.complete(value, value); }}
             className="rounded-xl bg-black/40 text-white px-3 py-3"
             style={{ minHeight: props.multiline ? 96 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
           />
+          {props.multiline && <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["upper", "lower", "title"] as const).map(mode => <Pressable key={mode} accessibilityRole="button" onPress={() => applyCase(mode)} className="rounded-lg border border-white/20 px-3 py-2"><Text className="text-white text-xs">{t(`editor.text.case.${mode}`, { defaultValue: ({ upper: "UPPERCASE", lower: "lowercase", title: "Title Case" })[mode] })}</Text></Pressable>)}</View>}
+          <View className="flex-row items-center justify-between" style={{ gap: 8 }}>
+            <View className="flex-row" style={{ gap: 8 }}>
+              <Pressable accessibilityRole="button" accessibilityLabel={t("editor.undo", { defaultValue: "Undo text change" })} disabled={!history.canUndo} onPress={history.undo} className="rounded-lg border border-white/20 px-3 py-2" style={{ opacity: history.canUndo ? 1 : 0.35 }}><Text className="text-white text-xs">{t("common.undo", { defaultValue: "Undo" })}</Text></Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={t("editor.redo", { defaultValue: "Redo text change" })} disabled={!history.canRedo} onPress={history.redo} className="rounded-lg border border-white/20 px-3 py-2" style={{ opacity: history.canRedo ? 1 : 0.35 }}><Text className="text-white text-xs">{t("common.redo", { defaultValue: "Redo" })}</Text></Pressable>
+            </View>
+            <Text className="text-theme-neutrals-300 text-xs">{t("editor.text.characterCount", { defaultValue: "{{count}} characters", count: Array.from(value).length })}</Text>
+          </View>
           <View className="flex-row justify-end" style={{ gap: 8 }}>
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
             <Chip label={t("common.done")} active onPress={() => { if (props.onDone(value)) setValue.complete(value, value); }} />
