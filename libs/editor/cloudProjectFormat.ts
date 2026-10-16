@@ -110,6 +110,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.isPageBackground !== undefined && (typeof clip.isPageBackground !== "boolean" || (clip.kind !== "shape" && clip.kind !== "image"))) fail();
     if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
     if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
+    if (clip.kind === "text" && object(clip.background) && clip.background.perLine !== undefined && typeof clip.background.perLine !== "boolean") fail();
     if (clip.pageNumber !== undefined && (clip.kind !== "text" || !validPageNumberFormat(clip.pageNumber))) fail();
     if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
     if (clip.kind === "text" && clip.echo !== undefined && (!Array.isArray(clip.echo) || clip.echo.length > 3 || clip.echo.some(layer =>

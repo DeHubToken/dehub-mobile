@@ -440,6 +440,7 @@ export function LabelPanel({ clip, live, commit, settle }: PanelProps<TextClip>)
       <Toggle label={t("editor.app.label")} value={!!b} onChange={(on) => commit({ background: on ? (b ?? DEFAULT_LABEL) : null })} />
       {b && (
         <>
+          <Toggle label={t("editor.text.backgroundPerLine", { defaultValue: "Fit background to each line" })} value={!!b.perLine} onChange={perLine => commit({ background: { ...b, perLine } })} />
           <Swatches label={t("editor.layer.colour")} value={b.color} onPick={(c) => commit({ background: { ...b, color: c } })} />
           <Range label={t("editor.layer.shadowOpacity", { value: Math.round(b.opacity * 100) })} value={b.opacity} min={0} max={1} step={0.01} onLive={(v) => live({ background: { ...b, opacity: v } })} onDone={settle} />
           <Range label={t("editor.app.padding", { value: Math.round(b.padding) })} value={b.padding} min={0} max={120} step={1} onLive={(v) => live({ background: { ...b, padding: v } })} onDone={settle} />
