@@ -42,7 +42,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [chartPalette, setChartPalette] = useState<string[]>([...DEFAULT_CHART.colours]);
   const [chartAppearance, setChartAppearance] = useState<ChartAppearance>({});
   const [tableFormat, setTableFormat] = useState<Omit<TableData, "rows">>({ ...DEFAULT_TABLE });
-  const [multiple, setMultiple] = useState(false), [stacked, setStacked] = useState(false), [showLegend, setShowLegend] = useState(true);
+  const [multiple, setMultiple] = useState(false), [stacked, setStacked] = useState(false), [stackPercent, setStackPercent] = useState(false), [showLegend, setShowLegend] = useState(true);
   const [showLabels, setShowLabels] = useState(true);
   const [showValues, setShowValues] = useState(true);
   const [error, setError] = useState("");
@@ -67,7 +67,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
       setChartAppearance({ valueFormat: next.valueFormat, donutHole: next.donutHole, lineWidth: next.lineWidth, lineStyle: next.lineStyle, pointSize: next.pointSize, areaOpacity: next.areaOpacity, barGap: next.barGap, showGrid: next.showGrid, showAxisValues: next.showAxisValues, legendPosition: next.legendPosition, scaleMin: next.scaleMin, scaleMax: next.scaleMax });
-      setChartPalette([...next.colours]); setKind(next.kind); setData(chartDataSource(next)); setMultiple(!!next.series?.length); setStacked(!!next.stacked); setShowLegend(next.showLegend !== false); setForeground(next.textColour);
+      setChartPalette([...next.colours]); setKind(next.kind); setData(chartDataSource(next)); setMultiple(!!next.series?.length); setStacked(!!next.stacked); setStackPercent(!!next.stackPercent); setShowLegend(next.showLegend !== false); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
     } else {
       const next = table ?? DEFAULT_TABLE;
@@ -99,7 +99,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     try {
       const latest = current();
       if (!latest || latest.id !== project.id) return;
-      const value: { chart: ChartData } | { table: TableData } = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, ...parseChartSource(data, multiple), ...chartAppearance, stacked, showLegend,
+      const value: { chart: ChartData } | { table: TableData } = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, ...parseChartSource(data, multiple), ...chartAppearance, stacked, stackPercent, showLegend,
         colours: [accent, ...chartPalette.slice(1)], textColour: foreground, showLabels, showValues } }
         : { table: { ...tableFormat, rows: parseTableData(data), textColour: foreground, headerColour: accent, header: showLabels } };
       if (!validDataVisuals(value)) throw new Error("Use valid colours and table formatting");
@@ -128,9 +128,10 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
     <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
     {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} multiSeries={multiple} onCellFocus={mode === "table" ? setFocusedCell : undefined} onStructure={mode === "table" ? changeTableStructure : undefined} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
+    {mode === "chart" && multiple && stacked && (kind === "bar" || kind === "column") && <View style={{ gap: 6 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={stackPercent} onValueChange={setStackPercent} accessibilityLabel={t("editor.charts.percentStack", { defaultValue: "100% stacked" })} /><Text className="text-xs text-white/75">{t("editor.charts.percentStack", { defaultValue: "100% stacked" })}</Text></View>{stackPercent && <Text className="text-[10px] text-white/45">{t("editor.charts.percentStackHint", { defaultValue: "Each category shows percentage shares. Positive and negative values each total 100% on their side of zero. Source values stay in the data grid and CSV downloads." })}</Text>}</View>}
     {mode === "chart" && multiple && <ChartSeriesControls source={data} onChange={(source, order) => { importRequest.current++; const colours = chartSeriesEditColours([accent, ...chartPalette.slice(1)], order, DEFAULT_CHART.colours); setData(source); setChartPalette(colours); setAccent(colours[0]); setError(""); }} />}
     {mode === "chart" && <ChartDataOrderControls source={data} multiple={multiple} onChange={(source, order) => { importRequest.current++; setData(source); if (!multiple && kind !== "radar") { const colours = reorderChartCategoryColours([accent, ...chartPalette.slice(1)], order); setChartPalette(colours); setAccent(colours[0]); } setError(""); }} />}
-    {mode === "chart" && <ChartFormattingPanel multiple={multiple} kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
+    {mode === "chart" && <ChartFormattingPanel percentStack={multiple && stacked && stackPercent && (kind === "bar" || kind === "column")} multiple={multiple} kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
     <View className="flex-row flex-wrap" style={{ gap: 8 }}><ColourPickerButton projectId={project.id} onPick={setAccent} label={t("editor.colourPicker.accent", { defaultValue: "Pick accent from canvas" })} /><ColourPickerButton projectId={project.id} onPick={setForeground} label={t("editor.colourPicker.ink", { defaultValue: "Pick text colour from canvas" })} /></View>
     {mode === "table" && <TableStyleGallery value={{ ...tableFormat, textColour: foreground, headerColour: accent }} onChange={value => { setTableFormat(value); setForeground(value.textColour); setAccent(value.headerColour); }} />}
     {mode === "table" && <TableFormattingPanel focusedCell={focusedCell} value={{ ...tableFormat, header: showLabels }} source={data} onChange={value => { setTableFormat(value); setShowLabels(value.header); }} onSource={setData} />}
