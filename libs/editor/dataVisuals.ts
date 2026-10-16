@@ -17,6 +17,9 @@ export interface TableData {
   cellColour: string;
   textColour: string;
   borderColour: string;
+  stripeColour?: string | null;
+  align?: "left" | "centre" | "right";
+  borderWidth?: number;
 }
 interface DataVisualContext {
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
@@ -42,17 +45,19 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     const rows = table.rows.filter(Array.isArray).slice(0, 20);
     const columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
     const cellWidth = width / columns, cellHeight = height / Math.max(1, rows.length);
-    ctx.lineWidth = Math.max(1, width / 700);
+    ctx.lineWidth = Math.max(1, width / 700) * (table.borderWidth ?? 1);
     rows.forEach((row, r) => {
       for (let c = 0; c < columns; c++) {
         const x = left + c * cellWidth, y = top + r * cellHeight;
-        ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.cellColour;
+        ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour;
         ctx.fillRect(x, y, cellWidth, cellHeight);
         ctx.strokeStyle = table.borderColour;
-        ctx.strokeRect(x, y, cellWidth, cellHeight);
+        if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
         ctx.fillStyle = table.header && r === 0 ? table.headerTextColour : table.textColour;
-        ctx.textAlign = "left";
-        label(row[c] || "", x + font * 0.5, y + cellHeight / 2, Math.max(1, cellWidth - font));
+        ctx.textAlign = table.align === "centre" ? "center" : table.align ?? "left";
+        ctx.font = (table.header && r === 0 ? "700 " : "500 ") + font + "px Inter, sans-serif";
+        const anchor = table.align === "centre" ? x + cellWidth / 2 : table.align === "right" ? x + cellWidth - font * 0.5 : x + font * 0.5;
+        label(row[c] || "", anchor, y + cellHeight / 2, Math.max(1, cellWidth - font));
       }
     });
     return;
@@ -189,6 +194,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (!object(table) || !Array.isArray(table.rows) || !table.rows.length || table.rows.length > 20 ||
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
+    if (table.stripeColour !== undefined && table.stripeColour !== null && !colour(table.stripeColour)) return false;
+    if (table.align !== undefined && !["left", "centre", "right"].includes(String(table.align))) return false;
+    if (table.borderWidth !== undefined && (typeof table.borderWidth !== "number" || !Number.isFinite(table.borderWidth) || table.borderWidth < 0 || table.borderWidth > 8)) return false;
   }
   return true;
 }

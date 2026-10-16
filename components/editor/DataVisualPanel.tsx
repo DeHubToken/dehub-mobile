@@ -1,3 +1,4 @@
+import { DESIGN_PALETTES } from "../../libs/editor/designTools";
 import DataCells from "./DataCells";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system/legacy";
@@ -7,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_CHART, DEFAULT_TABLE, putDataVisual } from "../../libs/editor/dataVisualProject";
-import { CHART_KINDS, parseChartData, parseTableData, type ChartKind, type ChartData, type TableData } from "../../libs/editor/dataVisuals";
+import { CHART_KINDS, validDataVisuals, parseChartData, parseTableData, type ChartKind, type ChartData, type TableData } from "../../libs/editor/dataVisuals";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
@@ -25,6 +26,8 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [dataView, setDataView] = useState<"cells" | "source">("cells");
   const [foreground, setForeground] = useState("#ffffff");
   const [accent, setAccent] = useState("#38bdf8");
+  const [chartPalette, setChartPalette] = useState<string[]>([...DEFAULT_CHART.colours]);
+  const [tableFormat, setTableFormat] = useState<Omit<TableData, "rows">>({ ...DEFAULT_TABLE });
   const [showLabels, setShowLabels] = useState(true);
   const [showValues, setShowValues] = useState(true);
   const [error, setError] = useState("");
@@ -48,11 +51,11 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
-      setKind(next.kind); setData(formatDelimitedData(next.rows.map(row => [row.label, row.value]))); setForeground(next.textColour);
+      setChartPalette([...next.colours]); setKind(next.kind); setData(formatDelimitedData(next.rows.map(row => [row.label, row.value]))); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
     } else {
       const next = table ?? DEFAULT_TABLE;
-      setData(formatDelimitedData(next.rows, "\t")); setForeground(next.textColour); setAccent(next.headerColour); setShowLabels(next.header);
+      setTableFormat({ ...next }); setData(formatDelimitedData(next.rows, "\t")); setForeground(next.textColour); setAccent(next.headerColour); setShowLabels(next.header);
     }
   };
   useEffect(() => { choose(table ? "table" : "chart"); }, [selected?.id, chart, table]);
@@ -62,8 +65,9 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
       const latest = current();
       if (!latest || latest.id !== project.id) return;
       const value: { chart: ChartData } | { table: TableData } = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, rows: parseChartData(data),
-        colours: [accent, ...(chart ?? DEFAULT_CHART).colours.slice(1)], textColour: foreground, showLabels, showValues } }
-        : { table: { ...(table ?? DEFAULT_TABLE), rows: parseTableData(data), textColour: foreground, headerColour: accent, header: showLabels } };
+        colours: [accent, ...chartPalette.slice(1)], textColour: foreground, showLabels, showValues } }
+        : { table: { ...tableFormat, rows: parseTableData(data), textColour: foreground, headerColour: accent, header: showLabels } };
+      if (!validDataVisuals(value)) throw new Error("Use valid colours and table formatting");
       if (("chart" in value && !value.chart.rows.length) || ("table" in value && !value.table.rows.length)) throw new Error("Enter at least one row");
       const result = putDataVisual(latest, time, value, () => newId(10), selectedId);
       if (result) { commit(result.project); select(result.id); }
@@ -73,6 +77,14 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   return <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
     <View className="flex-row" style={{ gap: 8 }}>{chip(t("editor.dataVisual.chart", { defaultValue: "Chart" }), mode === "chart", () => choose("chart"))}{chip(t("editor.dataVisual.table", { defaultValue: "Table" }), mode === "table", () => choose("table"))}</View>
     {mode === "chart" && <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{CHART_KINDS.map(value => chip(t(`editor.dataVisual.${value}`, { defaultValue: value.charAt(0).toUpperCase() + value.slice(1) }), kind === value, () => setKind(value)))}</ScrollView>}
+    {mode === "chart" && <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{DESIGN_PALETTES.map(palette => <Pressable key={palette.id} accessibilityRole="button" onPress={() => { setChartPalette([...palette.colours]); setAccent(palette.colours[0]); }} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ gap: 4 }}><View className="flex-row overflow-hidden rounded">{palette.colours.map(colour => <View key={colour} style={{ width: 14, height: 12, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.designTools.palette.${palette.id}`, { defaultValue: palette.label })}</Text></Pressable>)}</ScrollView>}
+    {mode === "table" && <View style={{ gap: 8 }}>
+      <View className="flex-row" style={{ gap: 8 }}>{(["cellColour", "headerTextColour", "borderColour"] as const).map(key => <View key={key} className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t(`editor.dataVisual.tableStyle.${key}`, { defaultValue: ({ cellColour: "Cells", headerTextColour: "Header text", borderColour: "Grid" })[key] })}</Text><TextInput value={tableFormat[key]} onChangeText={text => setTableFormat(value => ({ ...value, [key]: text }))} accessibilityLabel={t(`editor.dataVisual.tableStyle.${key}`, { defaultValue: key })} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-2 text-xs text-white" /></View>)}</View>
+      <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={!!tableFormat.stripeColour} onValueChange={on => setTableFormat(value => ({ ...value, stripeColour: on ? "#262626" : null }))} accessibilityLabel={t("editor.dataVisual.tableStyle.stripes", { defaultValue: "Alternating rows" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.tableStyle.stripes", { defaultValue: "Alternating rows" })}</Text>{tableFormat.stripeColour && <TextInput value={tableFormat.stripeColour} onChangeText={text => setTableFormat(value => ({ ...value, stripeColour: text }))} accessibilityLabel={t("editor.dataVisual.tableStyle.stripeColour", { defaultValue: "Alternating row colour" })} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />}</View>
+      <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["left", "centre", "right"] as const).map(align => chip(t(`editor.dataVisual.tableStyle.${align}`, { defaultValue: align === "left" ? "Left" : align === "centre" ? "Centre" : "Right" }), (tableFormat.align ?? "left") === align, () => setTableFormat(value => ({ ...value, align }))))}</View>
+      <Text className="text-xs text-white/60">{t("editor.dataVisual.tableStyle.borderWidth", { defaultValue: "Grid width" })}</Text>
+      <View className="flex-row flex-wrap" style={{ gap: 8 }}>{[0, 0.5, 1, 2, 4, 8].map(width => chip(String(width), (tableFormat.borderWidth ?? 1) === width, () => setTableFormat(value => ({ ...value, borderWidth: width }))))}</View>
+    </View>}
     <Text className="text-xs text-white/60">{t(mode === "chart" ? "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
     <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
     <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
