@@ -56,7 +56,7 @@ export interface EditorCanvasHandle {
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
-  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean, onLinks?: (links: DesignPdfLink[]) => void) => Promise<string>;
+  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean, onLinks?: (links: DesignPdfLink[]) => void, settled?: boolean) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
   /**
@@ -669,7 +669,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
-    exportImage: (format, quality = 0.92, time, transparent = false, onLinks) =>
+    exportImage: (format, quality = 0.92, time, transparent = false, onLinks, settled = false) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const timer = setTimeout(() => {
@@ -680,7 +680,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           }
         }, 30000);
         exports.current.set(reqId, { resolve, reject, onLinks, cleanup: () => clearTimeout(timer) });
-        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks });
+        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks, settled });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {
