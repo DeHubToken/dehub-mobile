@@ -56,6 +56,7 @@ export interface TableData {
   borderWidth?: number;
   fitText?: boolean;
   fitColumns?: boolean;
+  fitRows?: boolean;
   columnWidths?: number[];
   rowHeights?: number[];
   padding?: number;
@@ -256,6 +257,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
     if (table.fitText !== undefined && typeof table.fitText !== "boolean") return false;
+    if (table.fitRows !== undefined && typeof table.fitRows !== "boolean") return false;
     if (table.fitColumns !== undefined && typeof table.fitColumns !== "boolean") return false;
     if (table.headerColumn !== undefined && typeof table.headerColumn !== "boolean") return false;
     if (table.stripeAxis !== undefined && !["row", "column"].includes(String(table.stripeAxis))) return false;
