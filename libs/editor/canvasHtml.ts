@@ -646,7 +646,7 @@ canvas{display:block;width:100%;height:100%;}
       c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
       c.lineDashOffset = strokeDashOffset(stroke.dashOffset) * H / 1080;
       c.lineWidth = stroke.width * k;
-      c.strokeStyle = (open || clip.symbol) && gradient ? gradient : stroke.color;
+      c.strokeStyle = (open || clip.symbol && !clip.fill) && gradient ? gradient : stroke.color;
       c.lineJoin = clip.strokeJoin || "round";
       c.lineCap = clip.shape === "path" && clip.points && clip.points.length === 1 ? "round" : clip.strokeCap || "round";
       var strokeAlpha = c.globalAlpha; c.globalAlpha *= paintOpacity(stroke.opacity); c.stroke(); c.globalAlpha = strokeAlpha;
