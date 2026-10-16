@@ -1991,8 +1991,9 @@ function TextPrompt(props: {
   useEffect(() => { if (props.visible) setValue.initialize(props.initial); }, [props.visible, props.initial, setValue]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
-      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
-        <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
+      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6 py-4">
+        <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ flexShrink: 1, maxHeight: "100%" }}>
+          <ScrollView keyboardShouldPersistTaps="handled" style={{ flexShrink: 1 }} contentContainerStyle={{ gap: 12 }}>
           <Text className="text-white text-base font-semibold">{props.title}</Text>
           <TextInput
             ref={inputRef}
@@ -2001,13 +2002,14 @@ function TextPrompt(props: {
             onSelectionChange={event => { selection.current = event.nativeEvent.selection; }}
             autoFocus
             multiline={props.multiline}
+            scrollEnabled={!!props.multiline}
             placeholder={props.placeholder}
             placeholderTextColor="#6b7280"
             selectTextOnFocus
             returnKeyType={props.multiline ? "default" : "done"}
             onSubmitEditing={props.multiline ? undefined : () => { if (props.onDone(value)) setValue.complete(value, value); }}
             className="rounded-xl bg-black/40 text-white px-3 py-3"
-            style={{ minHeight: props.multiline ? 96 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
+            style={{ minHeight: props.multiline ? 96 : undefined, maxHeight: props.multiline ? 240 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
           />
           {props.multiline && <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["upper", "lower", "title"] as const).map(mode => <Pressable key={mode} accessibilityRole="button" onPress={() => applyCase(mode)} className="rounded-lg border border-white/20 px-3 py-2"><Text className="text-white text-xs">{t(`editor.text.case.${mode}`, { defaultValue: ({ upper: "UPPERCASE", lower: "lowercase", title: "Title Case" })[mode] })}</Text></Pressable>)}</View>}
           <View className="flex-row items-center justify-between" style={{ gap: 8 }}>
@@ -2021,6 +2023,7 @@ function TextPrompt(props: {
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
             <Chip label={t("common.done")} active onPress={() => { if (props.onDone(value)) setValue.complete(value, value); }} />
           </View>
+          </ScrollView>
         </ThemePanel>
       </KeyboardAvoidingView>
     </Modal>
