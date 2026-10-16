@@ -20,6 +20,7 @@ import Svg, { Polygon, Polyline } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
+import { groupedSelection } from "../../libs/editor/designGroups";
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
@@ -52,7 +53,7 @@ export interface EditorCanvasHandle {
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
-  exportImage: (format: "png" | "jpeg", quality?: number, time?: number) => Promise<string>;
+  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
   /**
@@ -662,7 +663,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
-    exportImage: (format, quality = 0.92, time) =>
+    exportImage: (format, quality = 0.92, time, transparent = false) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const timer = setTimeout(() => {
@@ -673,7 +674,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           }
         }, 30000);
         exports.current.set(reqId, { resolve, reject, cleanup: () => clearTimeout(timer) });
-        post({ type: "export", reqId, format, quality, time });
+        post({ type: "export", reqId, format, quality, time, transparent });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {
@@ -755,13 +756,22 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const beginDrag = (clipId: string) => {
     if (drag.current) { drag.current.active += 1; return true; }
+    const current = live.current.props;
+    const memberIds = groupedSelection(current.project.clips, [clipId], current.time);
+    if (current.project.clips.some(c => memberIds.includes(c.id) && c.locked)) return false;
+    const boxes = live.current.layers.filter(layer => memberIds.includes(layer.id));
+    const groupBox = boxes.length > 1 ? (() => {
+      const left = Math.min(...boxes.map(box => box.cx - box.w / 2)), right = Math.max(...boxes.map(box => box.cx + box.w / 2));
+      const top = Math.min(...boxes.map(box => box.cy - box.h / 2)), bottom = Math.max(...boxes.map(box => box.cy + box.h / 2));
+      return { ...boxes[0], cx: (left + right) / 2, cy: (top + bottom) / 2, w: right - left, h: bottom - top, rotation: 0 };
+    })() : boxOf(clipId);
     const callback = live.current.props.onGestureStart, lease = callback?.() ?? null;
     if (callback && !lease) return false;
     drag.current = {
       lease, finish: live.current.props.onGestureEnd,
       before: live.current.props.project,
       clipId,
-      box: boxOf(clipId),
+      box: groupBox,
       dx: 0,
       dy: 0,
       scale: 1,
@@ -808,7 +818,26 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       patch = placementPatchAt(base, place, now, { record });
     }
     setGuides((g) => (g.v === v && g.h === h ? g : { v, h }));
-    live.current.props.onLiveChange(updateClip(d.before, d.clipId, patch));
+    const memberIds = groupedSelection(d.before.clips, [d.clipId], now);
+    let next = updateClip(d.before, d.clipId, patch);
+    if (memberIds.length > 1) {
+      const pivotX = d.box?.cx ?? tr.x * PW, pivotY = d.box?.cy ?? tr.y * PH;
+      const radians = (rotation - tr.rotation) * Math.PI / 180, cos = Math.cos(radians), sin = Math.sin(radians);
+      const shiftX = d.dx || d.dy ? dx : 0, shiftY = d.dx || d.dy ? dy : 0;
+      next = d.before;
+      for (const member of d.before.clips.filter(c => memberIds.includes(c.id) && c.kind !== "audio")) {
+        const mt = getTransform(resolveClipAt(member, now));
+        const x = (mt.x * PW - pivotX) * d.scale, y = (mt.y * PH - pivotY) * d.scale;
+        const position: Record<string, number> = {};
+        if (d.dx || d.dy || d.scale !== 1 || d.rotation) { position.x = (pivotX + x * cos - y * sin + shiftX) / PW; position.y = (pivotY + x * sin + y * cos + shiftY) / PH; }
+        if (d.rotation) position.rotation = normaliseDeg(mt.rotation + rotation - tr.rotation);
+        if (member.kind !== "text" && d.scale !== 1) position.scale = Math.max(0.05, Math.min(20, mt.scale * d.scale));
+        const change = { ...placementPatchAt(member, position, now, { record }),
+          ...(member.kind === "text" && d.scale !== 1 ? { fontSize: Math.max(6, Math.min(1000, member.fontSize * d.scale)) } : {}) };
+        next = updateClip(next, member.id, change);
+      }
+    }
+    live.current.props.onLiveChange(next);
   };
 
   const endDrag = () => {
@@ -935,7 +964,17 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sel = selectedId && !selected?.locked && !props.pen ? layers.find((l) => l.id === selectedId) : null;
+  const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
+  const memberBoxes = layers.filter(layer => selectedMembers.includes(layer.id));
+  const sel = selectedId && !selected?.locked && !props.pen ? (memberBoxes.length > 1 ? (() => {
+    const extents = memberBoxes.map(box => {
+      const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
+      return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };
+    });
+    const left = Math.min(...extents.map(e => e.box.cx - e.hw)), right = Math.max(...extents.map(e => e.box.cx + e.hw));
+    const top = Math.min(...extents.map(e => e.box.cy - e.hh)), bottom = Math.max(...extents.map(e => e.box.cy + e.hh));
+    return { ...memberBoxes[0], cx: (left + right) / 2, cy: (top + bottom) / 2, w: right - left, h: bottom - top, rotation: 0 };
+  })() : layers.find(l => l.id === selectedId)) : null;
   const showPath = path && pathClip && path.id === pathClip.id && !props.pen ? path : null;
 
   return (

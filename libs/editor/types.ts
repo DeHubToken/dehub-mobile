@@ -33,6 +33,8 @@ export interface Transition {
 
 interface BaseClip {
   id: string;
+  /** Persistent selection group; members retain independent content and styling. */
+  groupId?: string;
   trackId: string;
   start: number; // timeline seconds where clip starts
   duration: number; // length on timeline (s)

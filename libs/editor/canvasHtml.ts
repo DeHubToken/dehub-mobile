@@ -1259,7 +1259,7 @@ canvas{display:block;width:100%;height:100%;}
       check();
       var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
-      g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H);
+      if (!(m.format === "png" && m.transparent)) { g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H); }
       drawOps(g, W, H, ops, t); check();
       post({ type: "exported", reqId: m.reqId, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
     } catch (error) { post({ type: "exportFailed", reqId: m.reqId, error: String(error.message || error) }); }

@@ -1,4 +1,5 @@
 import { videoMatteMediaIds } from "./videoMatte";
+import { groupedSelection, remapDesignGroups } from "./designGroups";
 /**
  * Editing operations on a ProjectSnapshot.
  *
@@ -283,18 +284,34 @@ export function placementPatchAt(clip: Clip, patch: Partial<ClipTransform>, t: n
 }
 
 export function removeClip(p: ProjectSnapshot, id: string): ProjectSnapshot {
-  return { ...p, clips: p.clips.filter((c) => c.id !== id) };
+  const ids = new Set(groupedSelection(p.clips, [id]));
+  if (p.clips.some(c => ids.has(c.id) && c.groupId && c.locked)) return p;
+  return { ...p, clips: p.clips.filter((c) => !ids.has(c.id)) };
 }
 
 export function duplicateClip(p: ProjectSnapshot, id: string): { project: ProjectSnapshot; clipId: string } | null {
   const src = getClip(p, id);
   if (!src) return null;
+  const memberIds = groupedSelection(p.clips, [id]);
+  if (memberIds.length > 1) {
+    const tracks = [...p.tracks], copies: Clip[] = [];
+    for (const member of p.clips.filter(c => memberIds.includes(c.id))) {
+      const kind: TrackKind = member.kind === "text" ? "text" : member.kind === "audio" ? "audio" : "video";
+      const track: Track = { id: newId(8), kind, name: trackName({ ...p, tracks }, kind), muted: false, hidden: false };
+      tracks.push(track);
+      const tr = getTransform(member);
+      copies.push({ ...member, id: newId(10), trackId: track.id, ...placementPatch(member, { x: tr.x + 0.04, y: tr.y + 0.04 }) } as Clip);
+    }
+    const cloned = remapDesignGroups(copies, () => newId(10));
+    const sourceIndex = p.clips.filter(c => memberIds.includes(c.id)).findIndex(c => c.id === id);
+    return { project: { ...p, tracks, clips: [...p.clips, ...cloned] }, clipId: cloned[Math.max(0, sourceIndex)].id };
+  }
   const kind: TrackKind = src.kind === "text" ? "text" : src.kind === "audio" ? "audio" : "video";
   const { tracks, trackId } = topTrack(p, kind);
   const tr = getTransform(src);
   // Nudged down and right so the copy is visibly a second layer.
   const nudge = { x: Math.min(1, tr.x + 0.04), y: Math.min(1, tr.y + 0.04) };
-  const copy = { ...src, id: newId(10), trackId, ...placementPatch(src, nudge) } as Clip;
+  const copy = { ...src, id: newId(10), trackId, groupId: undefined, ...placementPatch(src, nudge) } as Clip;
   return { project: { ...p, tracks, clips: [...p.clips, copy] }, clipId: copy.id };
 }
 

@@ -162,7 +162,7 @@ export const DESIGN_PALETTES = [
 export function applyDesignPalette(project: ProjectSnapshot, colours: readonly string[]): ProjectSnapshot {
   if (!colours.length || colours.some(c => !/^#[0-9a-f]{6}$/i.test(c))) return project;
   const originals = designColours(project);
-  const mapping = new Map(originals.map((colour, index) => [colour, colours[index % colours.length]]));
+  const mapping = new Map<string, string>(originals.map((colour, index) => [colour, colours[index % colours.length]]));
   const recolour = (value: string) => mapping.get(colourKey(value)) ?? value;
   return { ...project, settings: { ...project.settings, background: recolour(project.settings.background) }, clips: project.clips.map(clip => {
     if (clip.locked) return clip;

@@ -3,6 +3,7 @@
  */
 import type { Clip, ProjectSettings } from "./types";
 import { sliceTimelineClip } from "./timelineAgent";
+import { remapDesignGroups } from "./designGroups";
 
 /** Shortest a page can be; a new blank page gets this much room. */
 export const PAGE_MIN = 5;
@@ -45,7 +46,7 @@ export function appendPage(settings: ProjectSettings, clips: Clip[], time: numbe
     const from = Math.max(c.start, current.start), to = Math.min(c.start + c.duration, current.end);
     return to - from >= 0.05 ? [sliceTimelineClip(c, from - c.start, to - from, makeId(), start + from - current.start)] : [];
   }) : [];
-  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: [...clips, ...copies], start };
+  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: [...clips, ...remapDesignGroups(copies, makeId)], start };
 }
 
 export function removePage(settings: ProjectSettings, clips: Clip[], index: number, makeId: () => string) {
