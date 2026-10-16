@@ -1,5 +1,6 @@
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, Switch, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_CHART, DEFAULT_TABLE, putDataVisual } from "../../libs/editor/dataVisualProject";
 import { parseChartData, parseTableData, type ChartKind, type ChartData, type TableData } from "../../libs/editor/dataVisuals";
@@ -48,9 +49,9 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     } catch (e) { setError(e instanceof Error ? e.message : "Invalid data"); }
   };
   const chip = (label: string, active: boolean, onPress: () => void) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active }} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white" : "border-white/20"}`}><Text className={`text-xs ${active ? "text-black" : "text-white"}`}>{label}</Text></Pressable>;
-  return <ScrollView style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+  return <ScrollView keyboardShouldPersistTaps="handled" style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
     <View className="flex-row" style={{ gap: 8 }}>{chip(t("editor.dataVisual.chart", { defaultValue: "Chart" }), mode === "chart", () => choose("chart"))}{chip(t("editor.dataVisual.table", { defaultValue: "Table" }), mode === "table", () => choose("table"))}</View>
-    {mode === "chart" && <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{(["column", "bar", "line", "pie", "donut"] as const).map(value => chip(t(`editor.dataVisual.${value}`, { defaultValue: value.charAt(0).toUpperCase() + value.slice(1) }), kind === value, () => setKind(value)))}</ScrollView>}
+    {mode === "chart" && <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{(["column", "bar", "line", "pie", "donut"] as const).map(value => chip(t(`editor.dataVisual.${value}`, { defaultValue: value.charAt(0).toUpperCase() + value.slice(1) }), kind === value, () => setKind(value)))}</ScrollView>}
     <Text className="text-xs text-white/60">{t(mode === "chart" ? "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
     <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />
     <View className="flex-row items-center" style={{ gap: 8 }}>

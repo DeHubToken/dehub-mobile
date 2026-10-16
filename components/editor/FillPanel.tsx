@@ -1,5 +1,6 @@
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { GRADIENT_PRESETS, gradientFromColours, type GradientFill } from "../../libs/editor/gradientFill";
 import { fillDesignLayers, putGradientBackground } from "../../libs/editor/fillProject";
@@ -21,7 +22,7 @@ export default function FillPanel({ project, selectedId, current, commit, select
     setType(gradient.type); setAngle(String(gradient.angle)); setFirst(gradient.stops[0].colour); setLast(gradient.stops[gradient.stops.length - 1].colour);
   }, [selected?.id, gradient]);
   const valid = /^#[0-9a-f]{6}$/i.test(first) && /^#[0-9a-f]{6}$/i.test(last) && Number.isFinite(Number(angle)) && Number(angle) >= 0 && Number(angle) <= 360;
-  const canFill = !!selected && !selected.locked && (selected.kind === "text" || (selected.kind === "shape" && !selected.chart && !selected.table));
+  const canFill = !!selected && !selected.locked && (selected.kind === "text" || (selected.kind === "shape" && !selected.chart && !selected.table && !selected.qr));
   const apply = (value: GradientFill | null, background = false) => {
     const latest = current();
     if (!latest || latest.id !== project.id) return;
@@ -30,9 +31,9 @@ export default function FillPanel({ project, selectedId, current, commit, select
     if (next && next !== latest) { commit(next); if (result) select(result.id); }
   };
   const button = (text: string, onPress: () => void, disabled = false) => <Pressable key={text} accessibilityRole="button" disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{text}</Text></Pressable>;
-  return <ScrollView style={{ maxHeight: 240 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+  return <ScrollView keyboardShouldPersistTaps="handled" style={{ maxHeight: 240 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
     <Text className="text-xs text-white/60">{t("editor.fills.hint", { defaultValue: "Apply a gradient to selected text or shapes, or add it behind this page." })}</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { setFirst(preset.colours[0]); setLast(preset.colours[preset.colours.length - 1]); apply(gradientFromColours(preset.colours, type, Number(angle) || 0), !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}>
+    <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { setFirst(preset.colours[0]); setLast(preset.colours[preset.colours.length - 1]); apply(gradientFromColours(preset.colours, type, Number(angle) || 0), !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}>
       <View className="flex-row overflow-hidden rounded">{preset.colours.map(colour => <View key={colour} style={{ width: 25, height: 24, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.fills.preset.${preset.id}`, { defaultValue: preset.label })}</Text>
     </Pressable>)}</ScrollView>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.fills.linear", { defaultValue: "Linear" }), () => setType("linear"))}{button(t("editor.fills.radial", { defaultValue: "Radial" }), () => setType("radial"))}<Text className="self-center text-xs text-white/50">{type === "linear" ? t("editor.fills.linear", { defaultValue: "Linear" }) : t("editor.fills.radial", { defaultValue: "Radial" })}</Text></View>

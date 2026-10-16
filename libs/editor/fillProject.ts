@@ -5,7 +5,7 @@ import { getPages, pageAt } from "./pages";
 export function fillDesignLayers(project: ProjectSnapshot, ids: readonly string[], gradient: GradientFill | null): ProjectSnapshot {
   const selected = new Set(ids);
   const clips = project.clips.map(clip => selected.has(clip.id) && !clip.locked &&
-    (clip.kind === "text" || (clip.kind === "shape" && !clip.chart && !clip.table)) ? { ...clip, gradient } : clip);
+    (clip.kind === "text" || (clip.kind === "shape" && !clip.chart && !clip.table && !clip.qr)) ? { ...clip, gradient } : clip);
   return clips.some((clip, index) => clip !== project.clips[index]) ? { ...project, clips } : project;
 }
 
