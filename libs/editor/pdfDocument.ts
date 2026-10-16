@@ -1,5 +1,5 @@
 import { designPrintDpi } from "./documentDimensions";
-import { normaliseDesignLink, type DesignPdfLink } from "./designLinks";
+import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "./designLinks";
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
 export interface PdfPage { dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
@@ -7,9 +7,10 @@ const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255
 
 /** Stream a standards-based PDF with one JPEG XObject per page and byte-accurate xref offsets. */
 export async function writePdfDocument(count: number, pageAt: (index: number) => Promise<PdfPage>,
-  write: (value: Uint8Array) => void | Promise<void>, signal?: AbortSignal): Promise<void> {
+  write: (value: Uint8Array) => void | Promise<void>, signal?: AbortSignal, pageIndexes?: readonly number[]): Promise<void> {
   if (!Number.isInteger(count) || count < 1 || count > 500) throw new Error("PDF supports between 1 and 500 pages");
   let position = 0;
+  const destinations = new Map((pageIndexes ?? Array.from({ length: count }, (_, index) => index)).map((page, index) => [page, 3 + index * 3]));
   const offsets = [0];
   let nextObject = 3 + count * 3;
   const check = () => { if (signal?.aborted) { const e = new Error("PDF export cancelled"); e.name = "AbortError"; throw e; } };
@@ -40,10 +41,12 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     const links = (page.links ?? []).slice(0, 500).flatMap(link => {
       const url = normaliseDesignLink(link.url);
       if (!url || ![link.x, link.y, link.width, link.height].every(Number.isFinite) || link.width <= 0 || link.height <= 0) return [];
+      const target = designPageLinkIndex(url), destination = target === null ? undefined : destinations.get(target);
+      if (target !== null && destination === undefined) return [];
       const left = Math.max(0, Math.min(1, link.x)), right = Math.max(0, Math.min(1, link.x + link.width));
       const top = Math.max(0, Math.min(1, link.y)), bottom = Math.max(0, Math.min(1, link.y + link.height));
       if (right <= left || bottom <= top) return [];
-      return [{ id: nextObject++, url: url.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)"), rect: [left * width, (1 - bottom) * height, right * width, (1 - top) * height].map(n => Number(n.toFixed(3))).join(" ") }];
+      return [{ id: nextObject++, action: destination === undefined ? `/S /URI /URI (${url.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)")})` : `/S /GoTo /D [${destination} 0 R /Fit]`, rect: [left * width, (1 - bottom) * height, right * width, (1 - top) * height].map(n => Number(n.toFixed(3))).join(" ") }];
     });
     const annotations = links.length ? ` /Annots [${links.map(link => `${link.id} 0 R`).join(" ")}]` : "";
     await object(id, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /XObject << /Im0 ${id + 1} 0 R >> >> /Contents ${id + 2} 0 R${annotations} >>`);
@@ -53,7 +56,7 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     await text("\nendstream\nendobj\n");
     const content = `q\n${width} 0 0 ${height} 0 0 cm\n/Im0 Do\nQ\n`;
     await object(id + 2, `<< /Length ${bytes(content).length} >>\nstream\n${content}endstream`);
-    for (const link of links) await object(link.id, `<< /Type /Annot /Subtype /Link /Rect [${link.rect}] /Border [0 0 0] /A << /S /URI /URI (${link.url}) >> >>`);
+    for (const link of links) await object(link.id, `<< /Type /Annot /Subtype /Link /Rect [${link.rect}] /Border [0 0 0] /A << ${link.action} >> >>`);
   }
   const xref = position, size = nextObject;
   await text(`xref\n0 ${size}\n0000000000 65535 f \n`);

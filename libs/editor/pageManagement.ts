@@ -1,3 +1,4 @@
+import { remapDesignPageLinks } from "./designLinks";
 import { refreshPageNumberClips } from "./pageNumbering";
 import { appendPage, getPages } from "./pages";
 import { pageDetails } from "./pageDetails";
@@ -46,7 +47,7 @@ function reorderDesignPages(project: ProjectSnapshot, order: number[], makeId: (
     }
   }
   if (clips.length > 10000) throw new Error("This page order would exceed the design’s layer limit");
-  return { ...project, clips: refreshPageNumberClips(clips, starts), settings };
+  return { ...project, clips: refreshPageNumberClips(remapDesignPageLinks(clips, order), starts), settings };
 }
 
 export function manageDesignPages(project: ProjectSnapshot, selected: readonly number[], action: PageManagementAction, makeId: () => string) {

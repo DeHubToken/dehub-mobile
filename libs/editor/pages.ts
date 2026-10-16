@@ -1,3 +1,4 @@
+import { remapDesignPageLinks } from "./designLinks";
 import { refreshPageNumberClips } from "./pageNumbering";
 /**
  * Pages are slices of the timeline. See ProjectSettings.pages.
@@ -67,7 +68,7 @@ export function removePage(settings: ProjectSettings, clips: Clip[], index: numb
     return parts;
   });
   const starts = pages.filter(p => p.index !== index).map(p => p.start >= page.end ? p.start - length : p.start);
-  return { clips: refreshPageNumberClips(kept, starts), settings: { ...settings, pages: starts.length > 1 ? starts : undefined, ...(settings.pageDetails ? { pageDetails: pages.filter(p => p.index !== index).map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: pages[pages.length - 1].end - length }, start: Math.min(page.start, Math.max(0, pages[pages.length - 1].end - length - 0.01)) };
+  return { clips: refreshPageNumberClips(remapDesignPageLinks(kept, pages.filter(p => p.index !== index).map(p => p.index)), starts), settings: { ...settings, pages: starts.length > 1 ? starts : undefined, ...(settings.pageDetails ? { pageDetails: pages.filter(p => p.index !== index).map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: pages[pages.length - 1].end - length }, start: Math.min(page.start, Math.max(0, pages[pages.length - 1].end - length - 0.01)) };
 }
 
 /** Rebuild page slices in the requested order, preserving source trims and clip-local motion. */
@@ -100,7 +101,7 @@ export function reorderPage(settings: ProjectSettings, clips: Clip[], from: numb
       rebuilt.push(sliceTimelineClip(clip, left - clip.start, right - left, id, start + left - page.start));
     }
   }
-  return { clips: refreshPageNumberClips(rebuilt, starts), settings: { ...settings, pages: starts, ...(settings.pageDetails ? { pageDetails: order.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: cursor }, start: destination.get(from)! };
+  return { clips: refreshPageNumberClips(remapDesignPageLinks(rebuilt, order.map(p => p.index)), starts), settings: { ...settings, pages: starts, ...(settings.pageDetails ? { pageDetails: order.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: cursor }, start: destination.get(from)! };
 }
 
 /** Resize one page; later pages shift together while video/audio keep their playback rate. */

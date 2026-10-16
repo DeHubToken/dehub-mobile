@@ -2,6 +2,7 @@ export const DESIGN_LINKS_RUNTIME = String.raw`
 function normaliseDesignLink(value) {
   const text = value.trim();
   if (!text || text.length > 2048 || /[\u0000-\u0020\u007f]/.test(text)) return null;
+  if (text.startsWith("#")) return /^#page=([1-9]\d{0,2})$/.test(text) && Number(text.slice(6)) <= 500 ? text : null;
   try {
     const url = new URL(/^[a-z][a-z\d+.-]*:/i.test(text) ? text : "https://" + text);
     if (!["https:", "http:", "mailto:", "tel:"].includes(url.protocol)) return null;
