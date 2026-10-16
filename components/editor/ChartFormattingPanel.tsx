@@ -6,7 +6,7 @@ import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { chartValueLabel, type ChartValueFormat } from "../../libs/editor/chartValueFormat";
 import type { ChartData } from "../../libs/editor/dataVisuals";
-export type ChartAppearance = Pick<ChartData, "valueFormat" | "donutHole" | "lineWidth" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition" | "scaleMin" | "scaleMax">;
+export type ChartAppearance = Pick<ChartData, "valueFormat" | "donutHole" | "lineWidth" | "lineStyle" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition" | "scaleMin" | "scaleMax">;
 export default function ChartFormattingPanel({ kind, value, onChange, multiple = false }: { kind: ChartData["kind"]; multiple?: boolean; value: ChartAppearance; onChange: (value: ChartAppearance) => void }) {
   const { t } = useTranslation(), format = value.valueFormat;
   const change = (patch: Partial<ChartValueFormat>) => onChange({ ...value, valueFormat: { style: "number", currency: "USD", decimals: 0, compact: false, ...format, ...patch } });

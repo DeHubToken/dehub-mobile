@@ -1,3 +1,4 @@
+import { traceChartLine, type ChartLineStyle } from "./chartLineStyle";
 import { drawChartLegend, type ChartLegendPosition } from "./chartLegend";
 import { chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
 import { validTableCellStyles, type TableCellStyles } from "./tableCellStyles";
@@ -12,6 +13,7 @@ export interface ChartData {
   donutHole?: number;
   legendPosition?: ChartLegendPosition;
   lineWidth?: number;
+  lineStyle?: ChartLineStyle;
   pointSize?: number;
   areaOpacity?: number;
   barGap?: number;
@@ -53,6 +55,7 @@ export interface TableData {
 }
 export interface DataVisualContext {
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
+  bezierCurveTo?(x1: number, y1: number, x2: number, y2: number, x: number, y: number): void;
   beginPath(): void; closePath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
   arc(x: number, y: number, radius: number, start: number, end: number, anticlockwise?: boolean): void;
   fill(): void; stroke(): void; fillRect(x: number, y: number, width: number, height: number): void;
@@ -148,15 +151,12 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (chart.kind === "area") {
     ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.beginPath();
     ctx.moveTo(x0 + 0.5 / rows.length * plotWidth, zeroY);
-    rows.forEach((row, index) => ctx.lineTo(x0 + (index + 0.5) / rows.length * plotWidth, y1 - (row.value - min) / span * plotHeight));
+    traceChartLine(ctx, rows.map((row, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: y1 - (row.value - min) / span * plotHeight })), chart.lineStyle, true);
     ctx.lineTo(x0 + (rows.length - 0.5) / rows.length * plotWidth, zeroY); ctx.closePath(); ctx.fill();
   }
   if (chart.kind === "line" || chart.kind === "area") {
     ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath();
-    rows.forEach((row, index) => {
-      const x = x0 + (index + 0.5) / rows.length * plotWidth, y = y1 - (row.value - min) / span * plotHeight;
-      if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    });
+    traceChartLine(ctx, rows.map((row, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: y1 - (row.value - min) / span * plotHeight })), chart.lineStyle);
     ctx.stroke();
   }
   rows.forEach((row, index) => {
@@ -210,6 +210,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
+    if (chart.lineStyle !== undefined && !["straight", "step", "smooth"].includes(String(chart.lineStyle))) return false;
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
     for (const key of ["scaleMin", "scaleMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
     if (typeof chart.scaleMin === "number" && typeof chart.scaleMax === "number" && chart.scaleMin >= chart.scaleMax) return false;

@@ -47,7 +47,7 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
   series.forEach((_, set) => {
     const colourValue = colour(set); ctx.fillStyle = colourValue; ctx.strokeStyle = colourValue; ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1);
     if (chart.kind === "line" || chart.kind === "area") {
-      ctx.beginPath(); values[set].forEach((value, index) => { const x = x0 + (index + 0.5) / rows.length * plotWidth, y = yFor(value); if (index) ctx.lineTo(x, y); else ctx.moveTo(x, y); }); ctx.stroke();
+      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: yFor(value) })), chart.lineStyle); ctx.stroke();
       if (chart.kind === "area") { ctx.lineTo(x0 + (rows.length - 0.5) / rows.length * plotWidth, zeroY); ctx.lineTo(x0 + 0.5 / rows.length * plotWidth, zeroY); ctx.closePath(); ctx.fillStyle = colourValue + Math.round((chart.areaOpacity ?? 0.149) * 255).toString(16).padStart(2, "0"); ctx.fill(); }
     }
     values[set].forEach((value, index) => {
