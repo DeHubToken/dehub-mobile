@@ -21,7 +21,7 @@ export function designPageOverview(project: ProjectSnapshot) {
       locked = locked || !!clip.locked;
       if (clip.kind === "text" && !clip.hidden && !hidden.has(clip.trackId) && clip.fontSize > size && clip.text.trim()) { headline = clip.text.slice(0, 200); size = clip.fontSize; }
     }
-    return { ...page, title: pageDetails(project, page.index).title, headline, locked };
+    return { ...page, title: pageDetails(project, page.index).title, presentationHidden: !!pageDetails(project, page.index).presentationHidden, headline, locked };
   });
 }
 
