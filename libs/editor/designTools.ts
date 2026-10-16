@@ -9,7 +9,7 @@ export interface DesignStyle {
   blend: Clip["blend"];
   shadow: ClipShadow | null;
   text?: Partial<TextClip>;
-  shape?: Pick<ShapeClip, "fill" | "stroke" | "radius" | "pathSmoothing" | "strokeCap" | "strokeJoin">;
+  shape?: Pick<ShapeClip, "fill" | "fillOpacity" | "stroke" | "radius" | "pathSmoothing" | "strokeCap" | "strokeJoin">;
   effects?: ClipEffects;
   radius?: number;
   chartStyle?: Omit<import("./dataVisuals").ChartData, "rows" | "kind" | "series">;
@@ -29,13 +29,13 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
   if (clip.kind === "text") {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     const { fontFamily, fontSize, fontWeight, color, align, italic, uppercase, underline, letterSpacing, lineHeight } = clip;
-    style.text = { fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
+    style.text = { fillOpacity: clip.fillOpacity ?? 1, fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
       echo: clip.echo?.map(layer => ({ ...layer })), curve: clip.curve ?? 0, hollow: !!clip.hollow, strikethrough: !!clip.strikethrough, list: clip.list ?? "none",
       underline: !!underline, letterSpacing: letterSpacing ?? 0, lineHeight: lineHeight ?? 1.2,
       background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
   } else if (clip.kind === "shape") {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
-    style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0, pathSmoothing: clip.pathSmoothing, strokeCap: clip.strokeCap, strokeJoin: clip.strokeJoin };
+    style.shape = { fillOpacity: clip.fillOpacity ?? 1, fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0, pathSmoothing: clip.pathSmoothing, strokeCap: clip.strokeCap, strokeJoin: clip.strokeJoin };
     if (clip.chart) { const { rows: _rows, kind: _kind, series: _series, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
     if (clip.table) { const { rows: _rows, merges: _merges, cellStyles: _cellStyles, ...format } = clip.table; style.tableStyle = { ...format }; }
     if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background, quietZone: clip.qr.quietZone };

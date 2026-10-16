@@ -65,6 +65,7 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
           {clip.fill && <Swatches label={t("editor.shape.fill")} value={clip.fill} onPick={(c) => commit({ fill: c })} />}
         </>
       )}
+      {!clip.chart && !clip.table && !clip.qr && !clip.connector && (clip.fill || clip.gradient) && <Range label={t("editor.paint.fillOpacity", { defaultValue: "Fill opacity: {{value}}%", value: Math.round((clip.fillOpacity ?? 1) * 100) })} value={clip.fillOpacity ?? 1} min={0} max={1} step={0.01} onLive={value => live({ fillOpacity: value })} onDone={settle} />}
       <Toggle
         label={t("editor.shape.outlineOn")}
         value={!!s}
@@ -72,12 +73,13 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
       />
       {s && (
         <>
+          <Range label={t("editor.paint.strokeOpacity", { defaultValue: "Outline opacity: {{value}}%", value: Math.round((s.opacity ?? 1) * 100) })} value={s.opacity ?? 1} min={0} max={1} step={0.01} onLive={opacity => live({ stroke: { ...s, opacity } })} onDone={settle} />
           <Swatches label={t("editor.shape.outline")} value={s.color} onPick={(c) => commit({ stroke: { ...s, color: c } })} />
           <Range label={t("editor.shape.outlineWidth", { value: Math.round(s.width) })} value={s.width} min={1} max={60} step={1} onLive={(v) => live({ stroke: { ...s, width: v } })} onDone={settle} />
         </>
       )}
       {s && <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />}
-      {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value)); }} />}
+      {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value, clip.stroke?.opacity)); }} />}
       {clip.shape === "rect" && (
         <Range label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })} value={clip.radius ?? 0} min={0} max={540} step={1} onLive={(v) => live({ radius: v })} onDone={settle} />
       )}
