@@ -1,3 +1,6 @@
+import { captureChartStyle, type PortableChartStyle } from "./chartStyleFile";
+import { captureTableStyle, type PortableTableStyle } from "./tableStyleFile";
+import { validDataVisuals } from "./dataVisuals";
 import { mapTableCellColours } from "./tableCellStyles";
 import { findLiteralTextIndex, replaceLiteralText } from "./designTextMatching";
 import type { Clip, ClipEffects, ClipShadow, ProjectSnapshot, ShapeClip, TextClip } from "./types";
@@ -12,8 +15,8 @@ export interface DesignStyle {
   shape?: Pick<ShapeClip, "fill" | "fillOpacity" | "stroke" | "radius" | "pathSmoothing" | "strokeCap" | "strokeJoin">;
   effects?: ClipEffects;
   radius?: number;
-  chartStyle?: Omit<import("./dataVisuals").ChartData, "rows" | "kind" | "series">;
-  tableStyle?: Omit<import("./dataVisuals").TableData, "rows">;
+  chartStyle?: PortableChartStyle;
+  tableStyle?: PortableTableStyle;
   gradient?: import("./gradientFill").GradientFill | null;
   frame?: import("./types").MediaClip["frame"];
   qrStyle?: Pick<import("./qrGraphic").QrGraphic, "foreground" | "background" | "quietZone">;
@@ -36,8 +39,8 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
   } else if (clip.kind === "shape") {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     style.shape = { fillOpacity: clip.fillOpacity ?? 1, fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0, pathSmoothing: clip.pathSmoothing, strokeCap: clip.strokeCap, strokeJoin: clip.strokeJoin };
-    if (clip.chart) { const { rows: _rows, kind: _kind, series: _series, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
-    if (clip.table) { const { rows: _rows, merges: _merges, cellStyles: _cellStyles, ...format } = clip.table; style.tableStyle = { ...format }; }
+    if (clip.chart) { try { style.chartStyle = captureChartStyle(clip.chart); } catch { return null; } }
+    if (clip.table) { try { style.tableStyle = captureTableStyle(clip.table); } catch { return null; } }
     if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background, quietZone: clip.qr.quietZone };
   } else {
     style.frame = clip.frame ?? "rect";
@@ -53,11 +56,22 @@ export function pasteDesignStyle(clip: Clip, style: DesignStyle): Clip {
   const common = { ...clip, blend: style.blend, shadow: style.shadow ? { ...style.shadow } : null,
     transform: { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform, opacity: style.opacity } };
   if (clip.kind === "text" && style.text) return { ...common, ...style.text, gradient: style.gradient } as TextClip;
-  if (clip.kind === "shape" && style.shape) return { ...common, ...style.shape,
-    gradient: style.gradient,
-    ...(clip.chart && style.chartStyle ? { chart: { ...clip.chart, ...style.chartStyle, colours: [...style.chartStyle.colours] } } : {}),
-    ...(clip.qr && style.qrStyle ? { qr: { ...clip.qr, ...style.qrStyle } } : {}),
-    ...(clip.table && style.tableStyle ? { table: { ...clip.table, ...style.tableStyle } } : {}) } as ShapeClip;
+  if (clip.kind === "shape" && style.shape) {
+    let chart = clip.chart, table = clip.table;
+    if (chart && style.chartStyle) {
+      try {
+        const appearance = captureChartStyle({ ...chart, ...style.chartStyle });
+        let next = { ...chart, ...appearance, colours: [...appearance.colours] };
+        if (!validDataVisuals({ chart: next }) && next.kind === "pictogram") next = { ...next, pictogramCount: chart.pictogramCount, pictogramMode: chart.pictogramMode };
+        if (validDataVisuals({ chart: next })) chart = next;
+      } catch { /* Preserve graphic data when a stored style is incompatible. */ }
+    }
+    if (table && style.tableStyle) {
+      try { const next = { ...table, ...captureTableStyle({ ...table, ...style.tableStyle }) }; if (validDataVisuals({ table: next })) table = next; }
+      catch { /* Preserve cell structure when a stored style is incompatible. */ }
+    }
+    return { ...common, ...style.shape, gradient: style.gradient, ...(chart ? { chart } : {}), ...(table ? { table } : {}), ...(clip.qr && style.qrStyle ? { qr: { ...clip.qr, ...style.qrStyle } } : {}) } as ShapeClip;
+  }
   if ((clip.kind === "image" || clip.kind === "video") && style.effects) {
     return { ...common, effects: { ...style.effects }, radius: style.radius, frame: style.frame, border: style.border } as Clip;
   }
