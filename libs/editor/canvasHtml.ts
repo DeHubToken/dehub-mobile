@@ -387,9 +387,9 @@ canvas{display:block;width:100%;height:100%;}
     c.shadowOffsetY = s.offsetY * k;
   }
   function clearShadow(c) { c.shadowColor = "transparent"; c.shadowBlur = 0; c.shadowOffsetX = 0; c.shadowOffsetY = 0; }
-  function roundRectPath(c, x, y, w, h, r) {
+  function roundRectPath(c, x, y, w, h, r, append) {
     var rr = Math.max(0, Math.min(r, w / 2, h / 2));
-    c.beginPath();
+    if (!append) c.beginPath();
     c.moveTo(x + rr, y);
     c.arcTo(x + w, y, x + w, y + h, rr);
     c.arcTo(x + w, y + h, x, y + h, rr);
@@ -664,7 +664,11 @@ canvas{display:block;width:100%;height:100%;}
       c.globalAlpha = a * text.background.opacity;
       c.fillStyle = text.background.color;
       applyShadow(c, text, H);
-      roundRectPath(c, -box.w / 2, -box.h / 2, box.w, box.h, radius);
+      if (text.background.perLine && !l.curve) {
+        var padding = Math.max(0, text.background.padding / 1080 * H * l.scale);
+        c.beginPath();
+        l.lines.forEach(function(line, index) { if (line.trim()) roundRectPath(c, leftFor(index) - padding, startY + index * l.lh - l.size / 2 - padding, l.widths[index] + padding * 2, l.size + padding * 2, radius * l.scale, true); });
+      } else roundRectPath(c, -box.w / 2, -box.h / 2, box.w, box.h, radius);
       c.fill();
       clearShadow(c);
       c.globalAlpha = a;
