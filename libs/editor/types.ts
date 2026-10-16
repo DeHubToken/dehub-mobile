@@ -251,6 +251,7 @@ export interface TextStroke {
 }
 
 export interface TextClip extends BaseClip {
+  listStyle?: import("./textList").TextListStyle;
   fillOpacity?: number;
   pageNumber?: import("./pageNumbering").PageNumberFormat;
   kind: "text";

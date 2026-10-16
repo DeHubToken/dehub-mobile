@@ -1,3 +1,4 @@
+import { formatTextList, type TextListStyle } from "./textList";
 import { curvedTextLayout } from "./curvedText";
 export interface MeasuredTextStyle {
   text: string;
@@ -5,6 +6,7 @@ export interface MeasuredTextStyle {
   curve?: number;
   echo?: Array<{ x: number; y: number }>;
   list?: "none" | "bullet" | "number";
+  listStyle?: TextListStyle;
   fontSize: number;
   lineHeight?: number;
   letterSpacing?: number;
@@ -23,9 +25,7 @@ export function measuredTextLayout(
   measure: (line: string, size: number, spacing: number) => number,
 ) {
   const source = text.uppercase ? text.text.toUpperCase() : text.text;
-  let item = 0;
-  const raw = text.list === "bullet" || text.list === "number" ? source.replace(/\r\n?/g, "\n").split("\n")
-    .map(line => line.trim() ? (text.list === "bullet" ? "• " : String(++item) + ". ") + line : line).join("\n") : source;
+  const raw = formatTextList(source, text.list, text.listStyle);
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth! > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight! > 0;
