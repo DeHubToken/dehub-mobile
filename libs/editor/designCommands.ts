@@ -17,7 +17,7 @@ export const DESIGN_COMMANDS: DesignCommand[] = [
   { id: "search", category: "edit", detail: "Find text, replace words, and change fonts", keywords: "find replace search text spelling font" },
   { id: "layout", category: "edit", detail: "Align layers, distribute spacing, and tidy layouts", keywords: "align position spacing grid centre center distribute shadow glow filter photos media strength" },
   { id: "animate", category: "edit", detail: "Apply entrance and exit animations to pages or layers", keywords: "animation motion transition fade pop spin" },
-  { id: "link", category: "edit", detail: "Link selected artwork to a website or another page", keywords: "hyperlink url email phone navigation interactive" },
+  { id: "link", category: "edit", detail: "Link selected artwork to a website or another page", keywords: "hyperlink url email subject message phone sms copy destination navigation interactive" },
   { id: "resize", category: "document", detail: "Change dimensions, units, or print resolution", keywords: "size dimension pixels inches centimetres print dpi paper rotate proportional fit fill anchor scale" },
   { id: "pages", category: "document", detail: "Find, reorder, duplicate, or delete pages", keywords: "manage batch sort move page duplicate hide show skip presentation" },
   { id: "document", category: "document", detail: "Add page numbers or repeat headers, footers, and logos", keywords: "number footer header repeat logo document" },
