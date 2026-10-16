@@ -28,7 +28,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     const { fontFamily, fontSize, fontWeight, color, align, italic, uppercase, underline, letterSpacing, lineHeight } = clip;
     style.text = { fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
-      hollow: !!clip.hollow, strikethrough: !!clip.strikethrough, list: clip.list ?? "none",
+      curve: clip.curve ?? 0, hollow: !!clip.hollow, strikethrough: !!clip.strikethrough, list: clip.list ?? "none",
       underline: !!underline, letterSpacing: letterSpacing ?? 0, lineHeight: lineHeight ?? 1.2,
       background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
   } else if (clip.kind === "shape") {

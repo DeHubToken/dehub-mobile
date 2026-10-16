@@ -1,3 +1,4 @@
+import { TEXT_REVEAL_RUNTIME } from "./textRevealRuntime";
 import { ENCODER_QUEUE_RUNTIME } from "./encoderQueue";
 import { VIDEO_MATTE_PAGE_CACHE_RUNTIME } from "./videoMattePageCache";
 import { VIDEO_FRAME_RUNTIME } from "./videoFrame";
@@ -128,6 +129,7 @@ canvas{display:block;width:100%;height:100%;}
   })();
 
   // ── animationPresets.ts ──
+  __TEXT_REVEAL_RUNTIME__
   var IDENTITY = { alpha: 1, scale: 1, dx: 0, dy: 0, blurPx: 0 };
   function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
   function assign(a, b) { var o = {}; var k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
@@ -144,6 +146,7 @@ canvas{display:block;width:100%;height:100%;}
       case "zoom-out": return assign(IDENTITY, { alpha: t, scale: 1 + inv * 0.4 });
       case "pop": return assign(IDENTITY, { alpha: t, scale: 0.4 + t * (1.05 - 0.4) - (t > 0.85 ? (t - 0.85) * 0.33 : 0) });
       case "rise": return assign(IDENTITY, { alpha: t, dy: inv * 0.06, scale: 0.95 + t * 0.05 });
+      case "typewriter": return assign(IDENTITY, { textProgress: direction === "in" ? p : 1 - p });
       case "spin": return assign(IDENTITY, { alpha: t, rotation: -180 * inv });
       case "bounce": return assign(IDENTITY, { alpha: t, dy: -Math.abs(Math.sin(t * Math.PI * 2.5)) * inv * 0.13 });
       case "wipe-left": return assign(IDENTITY, { reveals: [{ axis: "x", from: "end", progress: t }] });
@@ -156,6 +159,7 @@ canvas{display:block;width:100%;height:100%;}
   }
   function merge(a, b) {
     var result = { alpha: a.alpha * b.alpha, scale: a.scale * b.scale, dx: a.dx + b.dx, dy: a.dy + b.dy, blurPx: Math.max(a.blurPx, b.blurPx) };
+    if (a.textProgress != null || b.textProgress != null) result.textProgress = Math.min(a.textProgress == null ? 1 : a.textProgress, b.textProgress == null ? 1 : b.textProgress);
     if (a.rotation != null || b.rotation != null) result.rotation = (a.rotation || 0) + (b.rotation || 0);
     if (a.reveals || b.reveals) result.reveals = (a.reveals || []).concat(b.reveals || []);
     return result;
@@ -316,10 +320,10 @@ canvas{display:block;width:100%;height:100%;}
     var tr = getTransform(clip);
     if (clip.kind === "text") {
       var l = layoutText(c, clip, W, H);
-      var w = l.maxW + l.pad * 2;
-      var h = l.lines.length * l.lh + l.pad * 2;
+      var w = (l.curve ? l.curve.width : l.maxW) + l.pad * 2;
+      var h = (l.curve ? l.curve.height : l.lines.length * l.lh) + l.pad * 2;
       var ax = clip.x * W;
-      var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + l.maxW / 2 : ax - l.maxW / 2;
+      var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + (l.curve ? l.curve.width : l.maxW) / 2 : ax - (l.curve ? l.curve.width : l.maxW) / 2;
       return { cx: cx, cy: clip.y * H, w: w, h: h, rotation: tr.rotation };
     }
     if (clip.kind === "shape") {
@@ -397,7 +401,7 @@ canvas{display:block;width:100%;height:100%;}
     if (tr.rotation) c.rotate((tr.rotation * Math.PI) / 180);
     if (tr.flipH || tr.flipV) c.scale(tr.flipH ? -1 : 1, tr.flipV ? -1 : 1);
     if (anim.rotation) c.rotate(anim.rotation * Math.PI / 180);
-    for (const reveal of anim.reveals ?? []) {
+    for (const reveal of anim.reveals || []) {
       const progress = Math.max(0, Math.min(1, reveal.progress));
       const width = reveal.axis === "x" ? box.w * progress : box.w;
       const height = reveal.axis === "y" ? box.h * progress : box.h;
@@ -412,7 +416,7 @@ canvas{display:block;width:100%;height:100%;}
     var filter = cssFilterFor(clip, anim.blurPx);
     if (SUPPORTS_FILTER) c.filter = filter;
     if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
-    if (clip.kind === "text") drawText(c, clip, box, W, H);
+    if (clip.kind === "text") drawText(c, clip, box, W, H, anim.textProgress);
     else if (clip.kind === "shape") drawShape(c, clip, box, H);
     else drawMedia(c, clip, box, H, sourceTime == null ? clip.trimIn + (t - clip.start) * speedOf(clip) : sourceTime);
     c.restore();
@@ -603,7 +607,7 @@ canvas{display:block;width:100%;height:100%;}
     clearShadow(c);
   }
 
-  function drawText(c, text, box, W, H) {
+  function drawText(c, text, box, W, H, progress) {
     var l = layoutText(c, text, W, H);
     c.font = fontFor(text, l.size);
     setLetterSpacing(c, l.spacing);
@@ -611,6 +615,10 @@ canvas{display:block;width:100%;height:100%;}
     c.textAlign = text.align === "centre" ? "center" : text.align;
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
     var startY = -((l.lines.length - 1) * l.lh) / 2;
+    var lines = progress == null ? l.lines : textRevealLines(l.lines, progress);
+    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax : ax - l.widths[i]; };
+    var drawX = function(i) { return progress == null ? ax : leftFor(i); };
+    if (progress != null) c.textAlign = "left";
     if (text.background && text.background.opacity > 0) {
       var radius = Math.max(0, (text.background.radius / 1080) * H);
       var a = c.globalAlpha;
@@ -624,29 +632,56 @@ canvas{display:block;width:100%;height:100%;}
     } else {
       applyShadow(c, text, H);
     }
+    if (l.curve) {
+      c.textAlign = "center";
+      setLetterSpacing(c, 0);
+      const glyphs = l.curve.glyphs;
+      const visible = progress == null ? glyphs.length : Math.floor(glyphs.length * Math.max(0, Math.min(1, progress)) + 1e-7);
+      const outline = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
+      c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
+      if (outline) {
+        c.strokeStyle = outline.color;
+        c.lineWidth = outline.width / 1080 * H * l.scale;
+        c.lineJoin = "round";
+        c.setLineDash((Array.isArray(outline.dash) ? outline.dash : []).filter(n => Number.isFinite(n) && n >= 0).slice(0, 8).map(n => n * H / 1080));
+      }
+      glyphs.slice(0, visible).forEach(glyph => {
+        c.save();
+        c.translate(glyph.x, glyph.y);
+        c.rotate(glyph.rotation);
+        if (outline && outline.width > 0) c.strokeText(glyph.text, 0, 0);
+        if (!text.hollow) c.fillText(glyph.text, 0, 0);
+        clearShadow(c);
+        if (text.strikethrough) c.fillRect(-glyph.width / 2, 0, glyph.width, Math.max(1, l.size * 0.055));
+        if (text.underline) c.fillRect(-glyph.width / 2, l.size * 0.45, glyph.width, Math.max(1, l.size * 0.06));
+        c.restore();
+      });
+      clearShadow(c);
+      return;
+    }
     var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
     if (textStroke && textStroke.width > 0) {
       c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
       c.lineWidth = (textStroke.width / 1080) * H * l.scale;
       c.strokeStyle = textStroke.color;
       c.lineJoin = "round";
-      l.lines.forEach(function (ln, i) { c.strokeText(ln, ax, startY + i * l.lh); });
+      lines.forEach(function (ln, i) { c.strokeText(ln, drawX(i), startY + i * l.lh); });
       clearShadow(c);
     }
     c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
-    if (!text.hollow) l.lines.forEach(function (ln, i) { c.fillText(ln, ax, startY + i * l.lh); });
+    if (!text.hollow) lines.forEach(function (ln, i) { c.fillText(ln, drawX(i), startY + i * l.lh); });
     clearShadow(c);
     if (text.strikethrough) {
       l.lines.forEach(function(line, i) {
-        var width = l.widths[i], left = text.align === "centre" ? ax - width / 2 : text.align === "left" ? ax : ax - width;
+        var width = progress == null ? l.widths[i] : c.measureText(lines[i]).width, left = leftFor(i);
         c.fillRect(left, startY + i * l.lh, width, Math.max(1, l.size * 0.055));
       });
     }
     if (text.underline) {
       var thick = Math.max(1, l.size * 0.06);
       l.lines.forEach(function (_, i) {
-        var w = l.widths[i];
-        var left = text.align === "centre" ? ax - w / 2 : text.align === "left" ? ax : ax - w;
+        var w = progress == null ? l.widths[i] : c.measureText(lines[i]).width;
+        var left = leftFor(i);
         c.fillRect(left, startY + i * l.lh + l.size * 0.45, w, thick);
       });
     }
@@ -1906,4 +1941,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME);
