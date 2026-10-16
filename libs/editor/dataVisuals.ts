@@ -18,6 +18,8 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  bubbleYSeries?: number;
+  bubbleSizeSeries?: number;
   progressThickness?: number;
   progressRounded?: boolean;
   title?: string;
@@ -288,12 +290,14 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.kind === "funnel" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
     if ((chart.kind === "scatter" || chart.kind === "bubble") && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
-    if (chart.kind === "bubble" && Array.isArray(chart.series) && chart.series.length > 1 && ((chart.series as { values: number[] }[])[1].values.some(value => value < 0) || !(chart.series as { values: number[] }[])[1].values.some(value => value > 0))) return false;
+    if (chart.kind === "bubble" && Array.isArray(chart.series)) { const size = (chart.series as { values: number[] }[])[Number(chart.bubbleSizeSeries ?? 1)]; if (size && (size.values.some(value => value < 0) || !size.values.some(value => value > 0))) return false; }
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
     if (chart.kind === "pictogram" && chart.pictogramMode !== "progress" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
     if (chart.kind === "race" && (!Array.isArray(chart.series) || chart.series.length < 2 || (chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value < 0)) || !(chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value > 0)))) return false;
     if (isProgressChart(String(chart.kind)) && (chart.rows[0].value < 0 || chart.rows[0].value > 100)) return false;
+    for (const [key, minimum] of [["bubbleYSeries", 0], ["bubbleSizeSeries", -1]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "number" || !Number.isInteger(chart[key]) || chart[key] < minimum || chart[key] > 5)) return false;
+    if (chart.kind === "bubble" && Array.isArray(chart.series) && [chart.bubbleYSeries, chart.bubbleSizeSeries].some(index => typeof index === "number" && index >= (chart.series as unknown[]).length)) return false;
     if (chart.progressThickness !== undefined && (typeof chart.progressThickness !== "number" || !Number.isFinite(chart.progressThickness) || chart.progressThickness < 0.04 || chart.progressThickness > 0.5)) return false;
     if (chart.progressRounded !== undefined && typeof chart.progressRounded !== "boolean") return false;
     if (chart.raceTop !== undefined && (typeof chart.raceTop !== "number" || !Number.isInteger(chart.raceTop) || chart.raceTop < 1 || chart.raceTop > 20)) return false;

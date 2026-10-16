@@ -10,7 +10,8 @@ import type { ChartData, DataVisualContext } from "./dataVisuals";
 export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): boolean {
   if ((!chart.series?.length && chart.kind !== "scatter" && chart.kind !== "bubble") || chart.kind === "pie" || chart.kind === "donut" || chart.kind === "funnel") return false;
   const family = graphicFontCss(chart.fontFamily);
-  const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, chart.kind === "bubble" ? 1 : 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
+  const rows = chart.rows.slice(0, 50), availableSeries = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
+  const series = chart.kind === "bubble" ? [availableSeries[chart.bubbleYSeries ?? 0] ?? availableSeries[0]] : availableSeries;
   if (!rows.length) return false;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1));
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index: number) => colours[index % colours.length];
@@ -54,7 +55,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     if (xs.some(value => !Number.isFinite(value))) return true;
     const rawMinX = Math.min(...xs), rawMaxX = Math.max(...xs), padding = (rawMaxX - rawMinX || Math.max(1, Math.abs(rawMinX) * 0.1)) * 0.05;
     const minX = Math.min(rawMinX - padding, chart.scaleXMin ?? rawMinX), maxX = Math.max(rawMaxX + padding, chart.scaleXMax ?? rawMaxX), spanX = maxX - minX || 1;
-    const bubble = chart.kind === "bubble", sizes = rows.map((_, index) => Math.max(0, chart.series?.[1]?.values[index] ?? 1)), maxSize = Math.max(1e-12, ...sizes);
+    const bubble = chart.kind === "bubble", sizes = rows.map((_, index) => Math.max(0, chart.series?.[chart.bubbleSizeSeries ?? 1]?.values[index] ?? 1)), maxSize = Math.max(1e-12, ...sizes);
     const bubbleRadius = bubble ? Math.max(1, Math.min(frameWidth, frameHeight) * Math.min(0.22, 0.07 * Math.max(0.25, chart.pointSize ?? 1))) : 0;
     const showGrid = chart.showGrid ?? (bubble || !!chart.series?.length), showScale = chart.showAxisValues ?? (bubble || !!chart.series?.length);
     const x0 = left + font * (showScale ? 3 : 1) + bubbleRadius, x1 = left + frameWidth - font - bubbleRadius, y0 = top + font * 1.5 + bubbleRadius, y1 = top + frameHeight - (chart.showLabels ? font * 2.5 : font) - bubbleRadius;
