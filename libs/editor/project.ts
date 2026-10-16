@@ -300,7 +300,7 @@ export function duplicateClip(p: ProjectSnapshot, id: string): { project: Projec
       const track: Track = { id: newId(8), kind, name: trackName({ ...p, tracks }, kind), muted: false, hidden: false };
       tracks.push(track);
       const tr = getTransform(member);
-      copies.push({ ...member, id: newId(10), trackId: track.id, ...placementPatch(member, { x: tr.x + 0.04, y: tr.y + 0.04 }) } as Clip);
+      copies.push({ ...member, id: newId(10), trackId: track.id, isPageBackground: undefined, ...placementPatch(member, { x: tr.x + 0.04, y: tr.y + 0.04 }) } as Clip);
     }
     const cloned = remapDesignGroups(copies, () => newId(10));
     const sourceIndex = p.clips.filter(c => memberIds.includes(c.id)).findIndex(c => c.id === id);
@@ -311,7 +311,7 @@ export function duplicateClip(p: ProjectSnapshot, id: string): { project: Projec
   const tr = getTransform(src);
   // Nudged down and right so the copy is visibly a second layer.
   const nudge = { x: Math.min(1, tr.x + 0.04), y: Math.min(1, tr.y + 0.04) };
-  const copy = { ...src, id: newId(10), trackId, groupId: undefined, ...placementPatch(src, nudge) } as Clip;
+  const copy = { ...src, id: newId(10), trackId, groupId: undefined, isPageBackground: undefined, ...placementPatch(src, nudge) } as Clip;
   return { project: { ...p, tracks, clips: [...p.clips, copy] }, clipId: copy.id };
 }
 
