@@ -1,4 +1,20 @@
-export const TABLE_RENDERING_RUNTIME = String.raw`function drawEditableTable(ctx, width, height, table) {
+export const TABLE_RENDERING_RUNTIME = String.raw`function tableTextLines(text, width, measure, wrap) {
+  if (!wrap) return [text.replace(/\s+/g, " ")];
+  const lines = [];
+  let line = "";
+  for (const char of Array.from(text.replace(/\r\n?/g, "\n").slice(0, 200))) {
+    if (char === "\n") { lines.push(line); line = ""; continue; }
+    if (line && measure(line + char) > width) {
+      const space = line.lastIndexOf(" ");
+      if (space > 0) { lines.push(line.slice(0, space)); line = line.slice(space + 1) + char; }
+      else { lines.push(line); line = char; }
+      while (Array.from(line).length > 1 && measure(line) > width) { const letters = Array.from(line); let split = 1; while (split < letters.length && measure(letters.slice(0, split + 1).join("")) <= width) split++; lines.push(letters.slice(0, split).join("")); line = letters.slice(split).join(""); }
+    } else line += char;
+  }
+  lines.push(line); return lines;
+}
+
+function drawEditableTable(ctx, width, height, table) {
   const rows = table.rows.filter(Array.isArray).slice(0, 20), columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
   if (!rows.length) return;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, table.fontScale || 1));
@@ -30,30 +46,28 @@ export const TABLE_RENDERING_RUNTIME = String.raw`function drawEditableTable(ctx
       if (merge && (merge.row !== r || merge.column !== c)) continue;
       const x = xs[c], y = ys[r], cellWidth = xs[c + (merge?.columnSpan ?? 1)] - x, cellHeight = ys[r + (merge?.rowSpan ?? 1)] - y;
       const padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45, cellHeight * 0.4);
-      const size = Math.max(1, Math.min(font, cellHeight - padding * 2)), lineHeight = size * 1.2, maxWidth = Math.max(1, cellWidth - padding * 2);
+      let size = Math.max(1, Math.min(font, cellHeight - padding * 2)), lineHeight = size * 1.2;
+      const maxWidth = Math.max(1, cellWidth - padding * 2);
       const cellStyle = table.cellStyles?.[r + ":" + c], alignment = cellStyle?.align ?? table.align ?? "left", header = !!(table.header && r === 0 || table.headerColumn && c === 0), stripeIndex = table.stripeAxis === "column" ? c : r, stripeHeader = table.stripeAxis === "column" ? table.headerColumn : table.header;
       ctx.fillStyle = cellStyle?.fill ?? (header ? table.headerColour : table.stripeColour && stripeIndex % 2 === (stripeHeader ? 0 : 1) ? table.stripeColour : table.cellColour);
       ctx.fillRect(x, y, cellWidth, cellHeight); ctx.strokeStyle = table.borderColour;
       if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
-      ctx.font = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : header ? "700 " : "500 ") + size + "px Inter, sans-serif";
+      const fontStyle = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : header ? "700 " : "500 ");
+      ctx.font = fontStyle + size + "px Inter, sans-serif";
       ctx.fillStyle = cellStyle?.colour ?? (header ? table.headerTextColour : table.textColour);
       ctx.textAlign = alignment === "centre" ? "center" : alignment;
-      const maxLines = table.wrap ? Math.max(1, Math.min(8, Math.floor((cellHeight - padding * 2) / lineHeight))) : 1;
-      const text = String(row[c] || "").slice(0, 200), lines = [];
-      let line = "", clipped = false;
-      if (table.wrap) {
-        const letters = Array.from(text);
-        for (let index = 0; index < letters.length; index++) {
-          const char = letters[index];
-          if (char === "\n" || (line && ctx.measureText(line + char).width > maxWidth)) {
-            if (lines.length + 1 >= maxLines) { line += "…"; clipped = true; break; }
-            const space = char === "\n" ? -1 : line.lastIndexOf(" ");
-            if (space > 0) { lines.push(line.slice(0, space)); line = line.slice(space + 1) + char; }
-            else { lines.push(line); line = char === "\n" ? "" : char; }
-          } else line += char;
+      const text = String(row[c] ?? "").slice(0, 200), measure = (value) => ctx.measureText(value).width;
+      let fullLines = tableTextLines(text, maxWidth, measure, !!table.wrap);
+      if (table.fitText) {
+        const minimumSize = Math.max(1, size * 0.35);
+        for (let attempt = 0; attempt < 8 && size > minimumSize && (fullLines.length > (table.wrap ? 8 : 1) || (fullLines.length - 1) * lineHeight + size > cellHeight - padding * 2 || fullLines.some(line => measure(line) > maxWidth)); attempt++) {
+          size = Math.max(minimumSize, size * 0.85); lineHeight = size * 1.2; ctx.font = fontStyle + size + "px Inter, sans-serif";
+          fullLines = tableTextLines(text, maxWidth, measure, !!table.wrap);
         }
-      } else line = text.replace(/\s+/g, " ");
-      lines.push(line);
+      }
+      const maxLines = table.wrap ? Math.max(1, Math.min(8, Math.floor((cellHeight - padding * 2) / lineHeight))) : 1;
+      const lines = fullLines.slice(0, maxLines), clipped = fullLines.length > maxLines;
+      if (clipped) lines[lines.length - 1] += "…";
       const anchor = alignment === "centre" ? x + cellWidth / 2 : alignment === "right" ? x + cellWidth - padding : x + padding;
       const block = (lines.length - 1) * lineHeight + size;
       const firstY = table.verticalAlign === "top" ? y + padding + size / 2 : table.verticalAlign === "bottom" ? y + cellHeight - padding - block + size / 2 : y + cellHeight / 2 - (lines.length - 1) * lineHeight / 2;
