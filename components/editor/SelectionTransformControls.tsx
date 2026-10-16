@@ -1,0 +1,20 @@
+import React, { useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import { planSelectionTransform, type SelectionTransform } from "../../libs/editor/selectionTransforms";
+import { placementPatchAt, updateClip } from "../../libs/editor/project";
+import type { DesignLayoutBox } from "../../libs/editor/designLayout";
+import type { ProjectSnapshot } from "../../libs/editor/types";
+
+export default function SelectionTransformControls({ project, ids, current, commit, boxes, time, recording }: { project: ProjectSnapshot; ids: string[]; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void; boxes: () => DesignLayoutBox[]; time: number; recording?: boolean }) {
+  const { t } = useTranslation(), [error, setError] = useState(""), [percent, setPercent] = useState("100"), [angle, setAngle] = useState("0");
+  const apply = (operation: SelectionTransform) => {
+    try { const before = current(); if (!before || before.id !== project.id) return; const plans = planSelectionTransform(before, ids, time, boxes(), operation); let next = before;
+      for (const plan of plans) { const clip = before.clips.find(clip => clip.id === plan.id); if (clip) next = updateClip(next, clip.id, { ...placementPatchAt(clip, plan.placement, time, { record: recording }), ...plan.extra }); }
+      if (next !== before) commit(next); setError("");
+    } catch (value) { setError(value instanceof Error ? value.message : String(value)); }
+  };
+  const button = (label: string, onPress: () => void, disabled = !ids.length) => <Pressable key={label} accessibilityRole="button" disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
+  return <View className="border-t border-white/10 pt-3" style={{ gap: 10 }}><View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.groups.smaller", { defaultValue: "Smaller" }), () => apply({ kind: "scale", factor: 0.9 }))}{button(t("editor.groups.larger", { defaultValue: "Larger" }), () => apply({ kind: "scale", factor: 1.1 }))}{[-15, 15].map(degrees => button(t("editor.groups.rotateBy", { defaultValue: "Rotate {{degrees}}°", degrees: degrees > 0 ? `+${degrees}` : degrees }), () => apply({ kind: "rotate", degrees })))}{(["horizontal", "vertical"] as const).map(axis => button(t(`editor.groups.flip.${axis}`, { defaultValue: axis === "horizontal" ? "Flip horizontally" : "Flip vertically" }), () => apply({ kind: "flip", axis })))}</View><View className="flex-row flex-wrap items-center" style={{ gap: 8 }}><TextInput value={percent} onChangeText={setPercent} keyboardType="decimal-pad" accessibilityLabel={t("editor.groups.scalePercent", { defaultValue: "Scale selection by percentage" })} className="min-h-[40px] w-20 rounded-lg border border-white/20 px-2 text-xs text-white" /><Text className="text-xs text-white/45">%</Text>{button(t("editor.groups.applyScale", { defaultValue: "Scale selection" }), () => apply({ kind: "scale", factor: Number(percent.replace(",", ".")) / 100 }), !ids.length || !Number(percent.replace(",", ".")))}<TextInput value={angle} onChangeText={setAngle} keyboardType="numbers-and-punctuation" accessibilityLabel={t("editor.groups.rotationDegrees", { defaultValue: "Rotate selection by degrees" })} className="min-h-[40px] w-20 rounded-lg border border-white/20 px-2 text-xs text-white" /><Text className="text-xs text-white/45">°</Text>{button(t("editor.groups.applyRotation", { defaultValue: "Rotate selection" }), () => apply({ kind: "rotate", degrees: Number(angle.replace(",", ".")) }), !ids.length || !Number(angle.replace(",", ".")))}</View>{!!error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}</View>;
+}
