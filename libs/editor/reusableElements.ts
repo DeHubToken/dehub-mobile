@@ -70,6 +70,18 @@ export function createReusableElementStore(read: (key: string) => string | null 
       const item = { id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`, name: trimmed, source: validateSource(input), updatedAt: Date.now() };
       return { item, persisted: save(key, [item, ...elements]) };
     },
+    rename: (key: string, id: string, name: string) => {
+      const elements = get(key), trimmed = name.trim().slice(0, 60);
+      if (!elements.some(element => element.id === id)) throw new Error("This element is no longer available");
+      if (!trimmed) throw new Error("Give this element a name");
+      if (elements.some(element => element.id !== id && element.name.toLocaleLowerCase() === trimmed.toLocaleLowerCase())) throw new Error("An element already uses this name. Choose another name");
+      return save(key, elements.map(element => element.id === id ? { ...element, name: trimmed, updatedAt: Date.now() } : element));
+    },
+    replace: (key: string, id: string, input: DesignClipboard) => {
+      const elements = get(key); if (!elements.some(element => element.id === id)) throw new Error("This element is no longer available");
+      const source = validateSource(input);
+      return save(key, elements.map(element => element.id === id ? { ...element, source, updatedAt: Date.now() } : element));
+    },
     remove: (key: string, id: string) => save(key, get(key).filter(element => element.id !== id)),
     subscribe: (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; },
     reload: (key: string) => { const previous = cache.get(key); cache.delete(key); if (JSON.stringify(previous) !== JSON.stringify(get(key))) notify(); },
