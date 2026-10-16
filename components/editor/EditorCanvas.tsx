@@ -1,3 +1,4 @@
+import { FIT_VIEWPORT, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
 import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
 import DesignRulers from "./DesignRulers";
 import type { DesignPdfLink } from "../../libs/editor/designLinks";
@@ -16,7 +17,7 @@ import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
  * and it is drawn here, over the page, with a diamond at each key.
  */
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Pressable, Text, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Svg, { Polygon, Polyline } from "react-native-svg";
@@ -159,6 +160,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [ready, setReady] = useState(false);
   const [webKey, setWebKey] = useState(0);
   const [area, setArea] = useState({ w: 0, h: 0 });
+  const [viewport, setViewport] = useState<DesignViewport>(FIT_VIEWPORT);
+  const [navigating, setNavigating] = useState(false);
+  const viewportDrag = useRef<{ before: DesignViewport; dx: number; dy: number; factor: number; anchor: { x: number; y: number }; active: Set<"pan" | "pinch"> } | null>(null);
+  useEffect(() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); setNavigating(false); }, [project.id, project.settings.width, project.settings.height]);
+  useEffect(() => { if (props.cropping) { viewportDrag.current = null; setNavigating(false); } }, [props.cropping]);
+
   const [layers, setLayers] = useState<LayerBox[]>([]);
   const [guides, setGuides] = useState<{ v: number | null; h: number | null }>({ v: null, h: null });
   const layoutGuides = getDesignGuides(project.settings.guides);
@@ -194,13 +201,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const W = project.settings.width;
   const H = project.settings.height;
   // Largest page of the project's shape that fits the space we were given.
-  const k = area.w && area.h ? Math.min(Math.max(1, area.w - (layoutGuides.rulers ? 36 : 0)) / W, Math.max(1, area.h - (layoutGuides.rulers ? 36 : 0)) / H) : 0;
+  const k = area.w && area.h ? Math.min(Math.max(1, area.w - (layoutGuides.rulers ? 36 : 0)) / W, Math.max(1, area.h - 48 - (layoutGuides.rulers ? 36 : 0)) / H) : 0;
   const viewW = W * k;
   const viewH = H * k;
+  const viewportSize = { w: area.w, h: Math.max(1, area.h - 48) };
+  const origin = { x: (viewportSize.w - viewW * viewport.zoom) / 2 + viewport.x, y: (viewportSize.h - viewH * viewport.zoom) / 2 + viewport.y };
+
 
   // Everything the gesture callbacks read, kept current without rebuilding them.
-  const live = useRef({ props, layers, k });
-  live.current = { props, layers, k };
+  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, origin, viewportSize });
+  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, origin, viewportSize };
   const drag = useRef<Drag | null>(null);
   const strokeLease = useRef<ProjectEditLease | null>(null);
   const strokeOwner = useRef<string | null>(null);
@@ -751,8 +761,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const hitTest = (x: number, y: number): LayerBox | null => {
     const { layers: ls, k: scale } = live.current;
     if (!scale) return null;
-    const px = x / scale;
-    const py = y / scale;
+    const px = (x - live.current.origin.x) / scale;
+    const py = (y - live.current.origin.y) / scale;
     const slop = HIT_SLOP_PT / scale;
     const project = live.current.props.project;
     for (let i = ls.length - 1; i >= 0; i--) {
@@ -903,24 +913,43 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       endDrag();
     };
 
+    const joinViewport = (kind: "pan" | "pinch", point?: { x: number; y: number }) => {
+      const current = live.current;
+      if (!viewportDrag.current) viewportDrag.current = { before: current.viewport, dx: 0, dy: 0, factor: 1, anchor: { x: current.viewport.x, y: current.viewport.y }, active: new Set() };
+      const gesture = viewportDrag.current;
+      gesture.active.add(kind);
+      if (kind === "pinch" && point) gesture.anchor = { x: point.x - current.viewportSize.w / 2, y: point.y - current.viewportSize.h / 2 };
+    };
+    const applyViewport = () => {
+      const gesture = viewportDrag.current; if (!gesture) return;
+      const next = zoomDesignViewport(gesture.before, gesture.before.zoom * gesture.factor, gesture.anchor);
+      setViewport({ ...next, x: next.x + gesture.dx, y: next.y + gesture.dy });
+    };
+    const leaveViewport = (kind: "pan" | "pinch") => {
+      const gesture = viewportDrag.current; if (!gesture?.active.has(kind)) return false;
+      gesture.active.delete(kind); if (!gesture.active.size) viewportDrag.current = null;
+      return true;
+    };
+
     const pan = Gesture.Pan()
       .runOnJS(true)
       .maxPointers(2)
       .onStart((e) => {
         const { props: p } = live.current;
+        if (live.current.navigating) { joinViewport("pan"); return; }
         if (p.pen) {
           const lease = p.onGestureStart?.() ?? null;
           if (p.onGestureStart && !lease) return;
           strokeLease.current = lease; strokeOwner.current = p.project.id;
           const kk = live.current.k || 1;
-          strokeRef.current = [[(e.x - e.translationX) / kk, (e.y - e.translationY) / kk], [e.x / kk, e.y / kk]];
+          strokeRef.current = [[(e.x - e.translationX - live.current.origin.x) / kk, (e.y - e.translationY - live.current.origin.y) / kk], [(e.x - live.current.origin.x) / kk, (e.y - live.current.origin.y) / kk]];
           setStroke(strokeRef.current);
           return;
         }
         const x = e.x - e.translationX;
         const y = e.y - e.translationY;
         const current = getClip(p.project, p.selectedId)?.locked ? null : boxOf(p.selectedId);
-        let target = current && pointInBox(current, x / live.current.k, y / live.current.k, HIT_SLOP_PT / live.current.k)
+        let target = current && pointInBox(current, (x - live.current.origin.x) / live.current.k, (y - live.current.origin.y) / live.current.k, HIT_SLOP_PT / live.current.k)
           ? current
           : hitTest(x, y);
         // Two fingers anywhere still move the selected layer.
@@ -931,10 +960,11 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         join("pan", target.id);
       })
       .onUpdate((e) => {
+        if (viewportDrag.current?.active.has("pan")) { viewportDrag.current.dx = e.translationX; viewportDrag.current.dy = e.translationY; applyViewport(); return; }
         if (strokeRef.current) {
           if ((strokeLease.current && !strokeLease.current.isCurrent()) || strokeOwner.current !== live.current.props.project.id) return;
           const kk = live.current.k || 1;
-          const pt: [number, number] = [e.x / kk, e.y / kk];
+          const pt: [number, number] = [(e.x - live.current.origin.x) / kk, (e.y - live.current.origin.y) / kk];
           const last = strokeRef.current[strokeRef.current.length - 1];
           // Skip samples closer than 2 page px: smoother curve, smaller layer.
           if (Math.hypot(pt[0] - last[0], pt[1] - last[1]) >= 2) {
@@ -949,6 +979,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         applyDrag();
       })
       .onFinalize(() => {
+        if (leaveViewport("pan")) return;
         if (strokeRef.current) {
           const pts = strokeRef.current;
           strokeRef.current = null;
@@ -964,17 +995,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const pinch = Gesture.Pinch()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
+      .onStart((event) => { if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
       .onUpdate((e) => {
+        if (viewportDrag.current?.active.has("pinch")) { viewportDrag.current.factor = e.scale; applyViewport(); return; }
         if (!drag.current) return;
         drag.current.scale = e.scale;
         applyDrag();
       })
-      .onFinalize(() => leave("pinch"));
+      .onFinalize(() => { if (!leaveViewport("pinch")) leave("pinch"); });
 
     const rotate = Gesture.Rotation()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen) join("rotate", live.current.props.selectedId); })
+      .onStart(() => { if (!live.current.props.pen && !live.current.navigating) join("rotate", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.rotation = (e.rotation * 180) / Math.PI;
@@ -985,7 +1017,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tap = Gesture.Tap()
       .runOnJS(true)
       .onEnd((e) => {
-        if (live.current.props.pen) return;
+        if (live.current.props.pen || live.current.navigating) return;
         const hit = hitTest(e.x, e.y);
         if (!live.current.props.cropping || hit?.id !== live.current.props.selectedId) live.current.props.onSelect(hit ? hit.id : null);
       });
@@ -994,6 +1026,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .runOnJS(true)
       .numberOfTaps(2)
       .onEnd((e) => {
+        if (live.current.navigating) { viewportDrag.current = null; setViewport(FIT_VIEWPORT); return; }
         const hit = hitTest(e.x, e.y);
         if (!hit) return;
         const clip = getClip(live.current.props.project, hit.id);
@@ -1008,7 +1041,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
   const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
-  const sel = selectedId && !selected?.locked && !props.pen ? (memberBoxes.length > 1 ? (() => {
+  const sel = selectedId && !selected?.locked && !props.pen && !navigating ? (memberBoxes.length > 1 ? (() => {
     const extents = memberBoxes.map(box => {
       const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
       return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };
@@ -1026,7 +1059,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     >
       {k > 0 && (
         <GestureDetector gesture={gesture}>
-          <View style={{ width: viewW, height: viewH }} collapsable={false}>
+          <View style={{ position: "absolute", left: 0, top: 0, width: viewportSize.w, height: viewportSize.h }} collapsable={false}>
+          <View style={{ position: "absolute", left: (viewportSize.w - viewW) / 2 + viewport.x, top: (viewportSize.h - viewH) / 2 + viewport.y, width: viewW, height: viewH, transform: [{ scale: viewport.zoom }] }} collapsable={false}>
             <View pointerEvents="none" style={StyleSheet.absoluteFill}>
               <WebView
                 key={webKey}
@@ -1080,12 +1114,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
-            {layoutGuides.rulers && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} />}
-            {layoutGuides.visible && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
-            {layoutGuides.visible && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
-            {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
-            {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 }]} />}
-            {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 }]} />}
+            {layoutGuides.rulers && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} />}
+            {layoutGuides.visible && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1 / viewport.zoom, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
+            {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 / viewport.zoom, width: 1 / viewport.zoom }]} />}
+            {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 / viewport.zoom, height: 1 / viewport.zoom }]} />}
             {sel && (
               <View
                 pointerEvents="none"
@@ -1095,20 +1129,20 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                     left: (sel.cx - sel.w / 2) * k,
                     top: (sel.cy - sel.h / 2) * k,
                     width: sel.w * k,
+                    borderWidth: 1.5 / viewport.zoom,
                     height: sel.h * k,
                     transform: [{ rotate: `${sel.rotation}deg` }],
                   },
                 ]}
               >
-                {props.cropping ? [1 / 3, 2 / 3].map(n => <View key={n} pointerEvents="none" style={StyleSheet.absoluteFill}><View style={{ position: "absolute", left: `${n * 100}%`, top: 0, bottom: 0, width: 1, backgroundColor: "#ffffff88" }} /><View style={{ position: "absolute", top: `${n * 100}%`, left: 0, right: 0, height: 1, backgroundColor: "#ffffff88" }} /></View>) : <>
-                <View style={[styles.corner, styles.tl]} />
-                <View style={[styles.corner, styles.tr]} />
-                <View style={[styles.corner, styles.bl]} />
-                <View style={[styles.corner, styles.br]} />
+                {props.cropping ? [1 / 3, 2 / 3].map(n => <View key={n} pointerEvents="none" style={StyleSheet.absoluteFill}><View style={{ position: "absolute", left: `${n * 100}%`, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#ffffff88" }} /><View style={{ position: "absolute", top: `${n * 100}%`, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#ffffff88" }} /></View>) : <>
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, left: -CORNER / (2 * viewport.zoom), top: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, right: -CORNER / (2 * viewport.zoom), top: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, left: -CORNER / (2 * viewport.zoom), bottom: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, right: -CORNER / (2 * viewport.zoom), bottom: -CORNER / (2 * viewport.zoom) }]} />
                 </>}
               </View>
             )}
-            {props.cropping && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
             {props.recording && (
               <>
                 <View pointerEvents="none" style={styles.recFrame} />
@@ -1119,8 +1153,17 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
               </>
             )}
           </View>
+          </View>
         </GestureDetector>
       )}
+            {props.cropping && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
+      <View className="absolute bottom-0 left-0 right-0 flex-row items-center justify-end border-t border-white/10 bg-black/90 px-2" style={{ height: 44, gap: 6 }}>
+        <Pressable accessibilityRole="button" accessibilityState={{ selected: navigating }} onPress={() => { endDrag(); viewportDrag.current = null; setNavigating(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${navigating ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t("editor.viewport.pan", { defaultValue: "Pan canvas" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomOut", { defaultValue: "Zoom canvas out" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom / 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">−</Text></Pressable>
+        <Text className="min-w-[36px] text-center text-xs text-white/60">{Math.round(k * viewport.zoom * 100)}%</Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomIn", { defaultValue: "Zoom canvas in" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom * 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">+</Text></Pressable>
+        <Pressable accessibilityRole="button" onPress={() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.viewport.fit", { defaultValue: "Fit" })}</Text></Pressable>
+      </View>
     </View>
   );
 });
@@ -1130,7 +1173,7 @@ export default EditorCanvas;
 const CORNER = 10;
 
 const styles = StyleSheet.create({
-  area: { flex: 1, alignItems: "center", justifyContent: "center" },
+  area: { flex: 1, alignItems: "center", justifyContent: "center", overflow: "hidden" },
   web: { flex: 1, backgroundColor: "transparent" },
   selection: { position: "absolute", borderWidth: 1.5, borderColor: "#ffffff" },
   corner: {
