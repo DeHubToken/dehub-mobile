@@ -1,4 +1,3 @@
-import { resizeComposition } from "./resizeComposition";
 import { parseCloudProjectDocument } from "./cloudProjectFormat";
 import { captureDesignSelection, pasteDesignSelection, type DesignClipboard } from "./designClipboard";
 import { getPages, pageAt } from "./pages";
@@ -35,14 +34,7 @@ export function captureReusableElement(project: ProjectSnapshot, ids: readonly s
 export function insertReusableElement(project: ProjectSnapshot, source: DesignClipboard, time: number, makeId: () => string, options: { preserveProportions?: boolean } = {}) {
   const safe = validateSource(source), page = pageAt(getPages(project.settings, project.clips), time), duration = page.end - page.start;
   if (safe.layers.some(layer => !layer.fillPage && layer.offset + layer.clip.duration > duration + 1e-6)) throw new Error("Extend this page so all of the saved element's timing fits");
-  if (options.preserveProportions && safe.canvas) {
-    const tracks = [...new Map(safe.layers.map(layer => [layer.track.id, layer.track])).values()];
-    const before: ProjectSnapshot = { id: "saved-elements", title: "Saved artwork", updatedAt: 0, settings: { ...DEFAULT_SETTINGS, width: safe.canvas.width, height: safe.canvas.height, background: safe.canvas.background }, tracks, clips: safe.layers.map(layer => layer.clip) };
-    const resized = resizeComposition(before, { ...before, settings: { ...before.settings, width: project.settings.width, height: project.settings.height, aspectPreset: project.settings.aspectPreset } }, "fit", { x: 0.5, y: 0.5 });
-    const clips = new Map(resized.clips.map(clip => [clip.id, clip]));
-    safe.layers = safe.layers.map(layer => ({ ...layer, clip: clips.get(layer.clip.id)! }));
-  }
-  const result = pasteDesignSelection(project, time, safe, makeId);
+  const result = pasteDesignSelection(project, time, safe, makeId, { preserveProportions: options.preserveProportions ?? false });
   if (!result || result.skipped) throw new Error("This saved element does not fit the current page");
   if (JSON.stringify(result.project).length > 2 * 1024 * 1024) {
     let bytes = 0; for (const char of JSON.stringify(result.project)) { const value = char.codePointAt(0)!; bytes += value < 128 ? 1 : value < 2048 ? 2 : value < 65536 ? 3 : 4; }
