@@ -30,7 +30,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
         const members = groupedSelection(project.clips, [clip.id], time);
         setPicked(ids => ids.includes(clip.id) ? ids.filter(id => !members.includes(id)) : [...new Set([...ids, ...members])]);
       }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${picked.includes(clip.id) ? "border-white bg-white/15" : "border-white/15"}`} style={{ opacity: clip.locked ? 0.4 : 1 }}>
-        <Text numberOfLines={1} className="text-xs text-white">{picked.includes(clip.id) ? "✓  " : "○  "}{clip.kind === "text" ? clip.text : project.tracks.find(track => track.id === clip.trackId)?.name ?? clip.kind}{clip.groupId ? ` · ${t("editor.groups.group", { defaultValue: "Group" })}` : ""}</Text>
+        <Text numberOfLines={1} className="text-xs text-white">{picked.includes(clip.id) ? "✓  " : "○  "}{clip.label || (clip.kind === "text" ? clip.text : project.tracks.find(track => track.id === clip.trackId)?.name ?? clip.kind)}{clip.groupId ? ` · ${t("editor.groups.group", { defaultValue: "Group" })}` : ""}</Text>
       </Pressable>)}
     </ScrollView>
     <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />

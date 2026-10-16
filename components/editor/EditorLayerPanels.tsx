@@ -127,11 +127,16 @@ export function LayersPanel(props: {
   onSelect: (id: string) => void;
   onToggle: (id: string, field: "hidden" | "locked") => void;
   onArrange: (id: string, dir: Arrange) => void;
+  onRename?: (id: string, value: string) => void;
 }) {
   const { t } = useTranslation();
+  const [query, setQuery] = useState("");
+  const [kind, setKind] = useState("all");
+  const [draft, setDraft] = useState<{ id: string; value: string } | null>(null);
+  const saveName = () => { if (draft) props.onRename?.(draft.id, draft.value); setDraft(null); };
   if (!props.layers.length) return <Text className="text-theme-neutrals-400 text-sm">{t("editor.layers.empty")}</Text>;
   const label = (c: Clip) =>
-    c.kind === "text" ? c.text.split("\n")[0] || t("editor.layers.text")
+    c.label ? c.label : c.kind === "text" ? c.text.split("\n")[0] || t("editor.layers.text")
     : c.kind === "shape" && c.photoFrame ? t("editor.grids.frame", { defaultValue: "Photo frame" })
     : c.kind === "shape" && c.qr ? t("editor.qr.title", { defaultValue: "QR code" })
     : c.kind === "shape" && c.chart ? t("editor.dataVisual.chart", { defaultValue: "Chart" })
@@ -140,7 +145,9 @@ export function LayersPanel(props: {
     : t("editor.layers.media");
   return (
     <View style={{ gap: 6 }}>
-      {props.layers.map((c) => {
+      <TextInput accessibilityLabel={t("editor.layers.search", { defaultValue: "Search layers" })} value={query} onChangeText={setQuery} placeholder={t("editor.layers.search", { defaultValue: "Search layers" })} placeholderTextColor="#888" autoCapitalize="none" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
+      <ChipRow>{(["all", "text", "media", "shape"] as const).map(value => <Chip key={value} label={t(`editor.layers.kind.${value}`, { defaultValue: ({ all: "All", text: "Text", media: "Media", shape: "Shapes" })[value] })} active={kind === value} onPress={() => setKind(value)} />)}</ChipRow>
+      {props.layers.filter(c => (kind === "all" || (kind === "media" ? c.kind === "image" || c.kind === "video" : c.kind === kind)) && label(c).toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())).map((c) => {
         const on = c.id === props.selectedId;
         return (
           <Pressable
@@ -152,7 +159,8 @@ export function LayersPanel(props: {
             style={{ gap: 8, opacity: c.hidden ? 0.5 : 1 }}
           >
             <Icon name={layerIcon(c)} size={16} color="#fff" />
-            <Text className="flex-1 text-white text-sm" numberOfLines={1}>{label(c)}</Text>
+            {draft?.id === c.id ? <TextInput autoFocus value={draft.value} maxLength={80} onChangeText={value => setDraft(previous => previous ? { ...previous, value } : null)} onSubmitEditing={saveName} onBlur={saveName} accessibilityLabel={t("editor.layers.name", { defaultValue: "Layer name" })} className="min-h-[40px] flex-1 rounded border border-white/30 px-2 text-white" /> : <Text className="flex-1 text-white text-sm" numberOfLines={1}>{label(c)}</Text>}
+            {props.onRename && !draft && <Pressable accessibilityRole="button" onPress={() => setDraft({ id: c.id, value: c.label ?? label(c) })} className="min-h-[32px] justify-center"><Text className="text-[10px] text-white/50">{t("editor.layers.rename", { defaultValue: "Rename" })}</Text></Pressable>}
             <Pressable hitSlop={8} accessibilityLabel={t("editor.menu.bringForward")} onPress={() => props.onArrange(c.id, "forward")}>
               <Icon name="ChevronUp" size={18} color="#fff" />
             </Pressable>

@@ -1,3 +1,4 @@
+import { renameDesignLayer } from "../libs/editor/designLayerNames";
 import { normaliseBrandStyles } from "../libs/editor/brandStyles";
 import type { DesignPdfLink } from "../libs/editor/designLinks";
 import ThemePanel from '../components/ui/ThemePanel';
@@ -1352,6 +1353,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (tool === "layers") {
       return (
         <LayersPanel
+          onRename={(id, value) => { const latest = h.latest(); if (latest?.id === project.id) { const next = renameDesignLayer(latest, id, value); if (next !== latest) h.commit(next); } }}
           layers={layerList(project)}
           selectedId={selectedId}
           onSelect={(id) => { setSelectedId(id); }}
