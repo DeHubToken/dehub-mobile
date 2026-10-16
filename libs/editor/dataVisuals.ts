@@ -1,3 +1,4 @@
+import { drawProgressChart, isProgressChart } from "./progressCharts";
 import { drawChartRace } from "./chartRace";
 import { drawPictogramChart } from "./pictogramChart";
 import { drawTreemapChart, treemapDataError } from "./treemapChart";
@@ -13,9 +14,11 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  progressThickness?: number;
+  progressRounded?: boolean;
   title?: string;
   caption?: string;
   description?: string;
@@ -127,6 +130,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
+  if (isProgressChart(chart.kind)) { drawProgressChart(ctx, width, height, chart); return; }
   if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
   if (chart.kind === "treemap") { drawTreemapChart(ctx, width, height, chart); return; }
@@ -286,6 +290,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
     if (chart.kind === "pictogram" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
     if (chart.kind === "race" && (!Array.isArray(chart.series) || chart.series.length < 2 || (chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value < 0)) || !(chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value > 0)))) return false;
+    if (isProgressChart(String(chart.kind)) && (chart.rows[0].value < 0 || chart.rows[0].value > 100)) return false;
+    if (chart.progressThickness !== undefined && (typeof chart.progressThickness !== "number" || !Number.isFinite(chart.progressThickness) || chart.progressThickness < 0.04 || chart.progressThickness > 0.5)) return false;
+    if (chart.progressRounded !== undefined && typeof chart.progressRounded !== "boolean") return false;
     if (chart.raceTop !== undefined && (typeof chart.raceTop !== "number" || !Number.isInteger(chart.raceTop) || chart.raceTop < 1 || chart.raceTop > 20)) return false;
     if (chart.racePoster !== undefined && (typeof chart.racePoster !== "number" || !Number.isFinite(chart.racePoster) || chart.racePoster < 0 || chart.racePoster > 1)) return false;
     if (chart.raceAnimate !== undefined && typeof chart.raceAnimate !== "boolean") return false;
