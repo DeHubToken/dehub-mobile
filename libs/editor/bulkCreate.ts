@@ -56,6 +56,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
   if (!fields.some(clip => bulkConnected(clip, data.headers, connections))) throw new Error("Connect a text or QR layer, or add a matching {{column}} placeholder");
   if (pages.length + count > 500 || project.clips.length + source.length * count > 10000) throw new Error("This batch exceeds the design’s page or layer limit. Choose fewer rows");
   const start = pages[pages.length - 1].end, copies: Clip[] = [], starts = pages.map(page => page.start);
+  if (start + count * duration > 86400) throw new Error("This batch exceeds the design’s 24-hour timeline limit. Choose fewer rows");
   const details = pages.map(page => pageDetails(project, page.index)), original = pageDetails(project, template.index);
   for (let index = first - 1; index < last; index++) {
     const at = start + (index - first + 1) * duration, row = data.rows[index];
