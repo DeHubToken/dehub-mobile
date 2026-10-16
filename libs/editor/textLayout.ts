@@ -1,8 +1,10 @@
+import { balancedTextParagraph } from "./balancedTextWrap";
 import { resolvedTextDirection, type TextDirection } from "./textDirection";
 import { wrapTextParagraph } from "./textParagraphWrap";
 import { formatTextList, type TextListStyle } from "./textList";
 import { curvedTextLayout } from "./curvedText";
 export interface MeasuredTextStyle {
+  balance?: boolean;
   direction?: TextDirection;
   text: string;
   uppercase?: boolean;
@@ -48,7 +50,7 @@ export function measuredTextLayout(
     const width = (line: string) => measure(line, size, spacing);
     raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
       if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
-      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
+      const wrapped = text.balance && (!text.list || text.list === "none") ? balancedTextParagraph(paragraph, available, width) : wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
       lines.push(...wrapped.lines); offsets.push(...wrapped.offsets.map(offset => rtl && text.align === "right" ? -offset : offset));
     });
     const widths = lines.map(width);

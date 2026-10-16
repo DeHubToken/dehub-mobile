@@ -15,7 +15,7 @@ export const DESIGN_COMMANDS: DesignCommand[] = [
   { id: "fill", category: "edit", detail: "Edit solid fills, gradients, and page backgrounds", keywords: "gradient colour color background wallpaper photo svg export transfer gradient style files" },
   { id: "colours", category: "edit", detail: "Replace colours throughout this document", keywords: "color palette replace theme swatch brand" },
   { id: "search", category: "edit", detail: "Find text, replace words, and change fonts", keywords: "find replace search text spelling font" },
-  { id: "layout", category: "edit", detail: "Align layers, distribute spacing, and tidy layouts", keywords: "text direction rtl ltr arabic hebrew bidirectional paragraph align position spacing grid centre center distribute shadow glow filter photos media strength" },
+  { id: "layout", category: "edit", detail: "Align layers, distribute spacing, and tidy layouts", keywords: "balanced headings even lines typography word wrap text direction rtl ltr arabic hebrew bidirectional paragraph align position spacing grid centre center distribute shadow glow filter photos media strength" },
   { id: "animate", category: "edit", detail: "Apply entrance and exit animations to pages or layers", keywords: "animation motion transition fade pop spin" },
   { id: "link", category: "edit", detail: "Link selected artwork to a website or another page", keywords: "hyperlink url email subject message phone sms copy destination navigation interactive" },
   { id: "resize", category: "document", detail: "Change dimensions, units, or print resolution", keywords: "size dimension pixels inches centimetres print dpi paper rotate proportional fit fill anchor scale" },
