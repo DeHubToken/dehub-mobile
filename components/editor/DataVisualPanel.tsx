@@ -1,3 +1,5 @@
+import GraphicDraftHistoryControls from "./GraphicDraftHistoryControls";
+import { useGraphicDraftHistory } from "../../libs/editor/useGraphicDraftHistory";
 import PasteDataImportControls from "./PasteDataImportControls";
 import DataImportMappingControls from "./DataImportMappingControls";
 import type { MappedDataImport } from "../../libs/editor/dataImportMapping";
@@ -82,7 +84,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [error, setError] = useState("");
   const [pendingImport, setPendingImport] = useState<{ id: number; scope: string; source: string; name: string } | null>(null);
   const importScope = `${project.id}:${selectedId ?? "new"}:${mode}`;
-  const importRequest = useRef(0);
+  const importRequest = useRef(0), historyGeneration = useRef(0);
   const editData = useCallback((value: string) => { importRequest.current++; setPendingImport(null); setData(value); setError(""); }, []);
   useEffect(() => { setFocusedCell(""); setPendingImport(null); importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
   const importFile = async () => {
@@ -103,6 +105,13 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     } catch (error) { if (request === importRequest.current) setError(error instanceof Error ? error.message : "Could not read this file"); }
     finally { if (importedUri && FileSystem.cacheDirectory && importedUri.startsWith(FileSystem.cacheDirectory) && importedUri !== FileSystem.cacheDirectory) await FileSystem.deleteAsync(importedUri, { idempotent: true }).catch(() => {}); }
   };
+  const draftHistoryValue = { mode, kind, data, foreground, accent, chartPalette, chartAppearance, tableFormat, multiple, stacked, stackPercent, showLegend, showLabels, showValues };
+  const draftHistory = useGraphicDraftHistory(`${project.id}:${selectedId ?? "new"}:${historyGeneration.current}`, draftHistoryValue, value => {
+    importRequest.current++; setPendingImport(null); setFocusedCell(""); setError("");
+    setMode(value.mode); setKind(value.kind); setData(value.data); setForeground(value.foreground); setAccent(value.accent);
+    setChartPalette(value.chartPalette); setChartAppearance(value.chartAppearance); setTableFormat(value.tableFormat);
+    setMultiple(value.multiple); setStacked(value.stacked); setStackPercent(value.stackPercent); setShowLegend(value.showLegend); setShowLabels(value.showLabels); setShowValues(value.showValues);
+  });
   const choose = (value: "chart" | "table") => {
     importRequest.current++; setPendingImport(null); setMode(value); setError("");
     if (value === "chart") {
@@ -115,7 +124,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
       setTableFormat({ ...next }); setData(formatDelimitedData(next.rows, "\t")); setForeground(next.textColour); setAccent(next.headerColour); setShowLabels(next.header);
     }
   };
-  useEffect(() => { choose(table ? "table" : "chart"); }, [project.id, selected?.id, chart, table]);
+  useEffect(() => { historyGeneration.current++; choose(table ? "table" : "chart"); }, [project.id, selected?.id, chart, table]);
   const useChartSample = (value: ChartData, colours: boolean) => {
     importRequest.current++; setPendingImport(null); setMode("chart"); setKind(value.kind); setData(chartDataSource(value)); setMultiple(!!value.series?.length);
     setChartAppearance(chartDraftAppearance(value)); setStacked(!!value.stacked); setStackPercent(!!value.stackPercent); setShowLegend(value.showLegend !== false); setShowLabels(value.showLabels); setShowValues(value.showValues);
@@ -201,6 +210,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ flexShrink: 1 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12, paddingBottom: 12 }}>
     <View className="flex-row" style={{ gap: 8 }}>{chip(t("editor.dataVisual.chart", { defaultValue: "Chart" }), mode === "chart", () => choose("chart"))}{chip(t("editor.dataVisual.table", { defaultValue: "Table" }), mode === "table", () => choose("table"))}</View>
     {mode === "chart" && <ChartTypePicker value={kind} onChange={setKind} />}
+    <GraphicDraftHistoryControls {...draftHistory} />
     <DataVisualDraftPreview key={project.id} projectId={project.id} value={draftPreviewValue} width={project.settings.width * (selected?.kind === "shape" && (chart || table) ? selected.w : 0.8)} height={project.settings.height * (selected?.kind === "shape" && (chart || table) ? selected.h : 0.65)} background={project.settings.background} />
     {section === "data" ? <>
     {mode === "table" && <TableSampleGallery onUse={useTableSample} />}
