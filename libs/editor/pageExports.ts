@@ -29,5 +29,5 @@ export function pageExportFrames(snapshot: ProjectSnapshot, time: number, scope:
   const frames = selected.map(page => ({ index: page.index, time: multi ? page.start : time,
     filename: exportFilename(snapshot.title, format, (scope === "all" && multi) || Array.isArray(scope) ? `-${String(page.index + 1).padStart(2, "0")}` : "", "design"),
   }));
-  return namedPageExports(frames, filenamePattern, snapshot.title, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.title), format);
+  return namedPageExports(frames, filenamePattern, snapshot.title, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.title), format, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.section));
 }
