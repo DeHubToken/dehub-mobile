@@ -11,6 +11,7 @@ function chartValueLabel(value, format) {
     if (chartNumberFormatters.size >= 128) chartNumberFormatters.clear();
     chartNumberFormatters.set(key, formatter);
   }
-  return formatter.format(value) + (format.style === "percent" ? "%" : "");
+  const prefix = typeof format.prefix === "string" ? format.prefix.replace(/[\u0000-\u001f\u007f]/g, "").slice(0, 24) : "", suffix = typeof format.suffix === "string" ? format.suffix.replace(/[\u0000-\u001f\u007f]/g, "").slice(0, 24) : "";
+  return prefix + formatter.format(value) + (format.style === "percent" ? "%" : "") + suffix;
 }
 `;
