@@ -48,6 +48,7 @@ export function resizeComposition(before: ProjectSnapshot, resized: ProjectSnaps
       next.x = x(clip.x); next.y = y(clip.y); next.fontSize = safe(clip.fontSize * ky, 6, 1000, "font size");
       if (clip.maxWidth !== undefined) next.maxWidth = safe(clip.maxWidth * kx, 0.0001, 1, "text width");
       if (clip.maxHeight !== undefined) next.maxHeight = safe(clip.maxHeight * ky, 0.0001, 1, "text height");
+      if (clip.paragraphSpacing !== undefined) next.paragraphSpacing = safe(clip.paragraphSpacing * ky, 0, 300, "paragraph spacing");
       if (clip.letterSpacing !== undefined) next.letterSpacing = clip.letterSpacing * ky;
       if (clip.stroke) next.stroke = scaleStrokePaint(clip.stroke, ky);
       if (clip.background) next.background = { ...clip.background, padding: clip.background.padding * ky, radius: clip.background.radius * ky };

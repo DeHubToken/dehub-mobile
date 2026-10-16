@@ -14,6 +14,7 @@ export interface MeasuredTextStyle {
   listStyle?: TextListStyle;
   fontSize: number;
   lineHeight?: number;
+  paragraphSpacing?: number;
   letterSpacing?: number;
   x: number;
   y: number;
@@ -46,22 +47,27 @@ export function measuredTextLayout(
     const echoPad = Math.max(0, ...(text.echo ?? []).slice(0, 3).map(layer => Math.max(Math.abs(layer.x), Math.abs(layer.y)) / 1080 * H * scale));
     const pad = Math.max(0, padding, echoPad, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
     const available = Math.max(0.1, widthLimit - pad * 2);
-    const lines: string[] = [], offsets: number[] = [];
+    const lines: string[] = [], offsets: number[] = [], paragraphStarts: number[] = [];
     const width = (line: string) => measure(line, size, spacing);
     raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
+      paragraphStarts.push(lines.length);
       if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
       const wrapped = text.balance && (!text.list || text.list === "none") ? balancedTextParagraph(paragraph, available, width) : wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
       lines.push(...wrapped.lines); offsets.push(...wrapped.offsets.map(offset => rtl && text.align === "right" ? -offset : offset));
     });
     const widths = lines.map(width);
     const lh = size * (text.lineHeight ?? 1.2);
+    const paragraphGap = Math.max(0, Math.min(300, text.paragraphSpacing ?? 0)) / 1080 * H * scale, starts = new Set(paragraphStarts.slice(1));
+    let extraGap = 0;
+    const lineY = lines.map((_, index) => { if (starts.has(index)) extraGap += paragraphGap; return index * lh + extraGap; });
+    const height = lines.length * lh + extraGap;
     const maxW = Math.max(0.1, ...widths.map((value, index) => value + Math.abs(offsets[index])));
-    const curve = curvedTextLayout(lines, size, lh, text.curve ?? 0, width);
-    return { size, scale, spacing, lh, lines, offsets, widths, maxW, pad, curve };
+    const curve = curvedTextLayout(lines, size, lh, text.curve ?? 0, width, lineY);
+    return { size, scale, spacing, lh, height, lineY, lines, offsets, widths, maxW, pad, curve };
   }
 
   const fits = (value: ReturnType<typeof layout>) => (value.curve?.width ?? value.maxW) + value.pad * 2 <= widthLimit + 0.01
-    && (value.curve?.height ?? value.lines.length * value.lh) + value.pad * 2 <= heightLimit + 0.01;
+    && (value.curve?.height ?? value.height) + value.pad * 2 <= heightLimit + 0.01;
   let result = layout(requested);
   if (!fitting || fits(result)) return result;
   let low = 0.01, high = requested;

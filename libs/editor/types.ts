@@ -285,6 +285,8 @@ export interface TextClip extends BaseClip {
   letterSpacing?: number;
   /** Line height as a multiple of font size. Default 1.2. */
   lineHeight?: number;
+  /** Extra space after explicit paragraph breaks, relative to 1080p. */
+  paragraphSpacing?: number;
   /** Optional wrapping box as fractions of the page. Absent keeps manual line breaks. */
   maxWidth?: number;
   /** Fit wrapped text inside this height, keeping the requested font as an upper bound. */

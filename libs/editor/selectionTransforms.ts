@@ -22,6 +22,10 @@ function scaledAppearance(clip: Clip, factor: number): Record<string, unknown> {
     extra.fontSize = clip.fontSize * factor;
     if (clip.maxWidth !== undefined) extra.maxWidth = clip.maxWidth * factor;
     if (clip.maxHeight !== undefined) extra.maxHeight = clip.maxHeight * factor;
+    if (clip.paragraphSpacing !== undefined) {
+      if (clip.paragraphSpacing * factor > 300) throw new Error("This size would exceed the supported paragraph spacing range");
+      extra.paragraphSpacing = clip.paragraphSpacing * factor;
+    }
     if (clip.letterSpacing !== undefined) extra.letterSpacing = clip.letterSpacing * factor;
     if (clip.stroke) extra.stroke = scaleStrokePaint(clip.stroke, factor);
     if (clip.background) extra.background = { ...clip.background, padding: clip.background.padding * factor, radius: clip.background.radius * factor };
