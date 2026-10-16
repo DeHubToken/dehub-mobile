@@ -845,16 +845,17 @@ canvas{display:block;width:100%;height:100%;}
   }
   var requestedFaces = new Set();
   function designFontFaces(snapshot) {
-    var faces = [];
+    var faces = new Map();
+    function add(face, sample) { var previous = faces.get(face); faces.set(face, { face: face, sample: ((previous ? previous.sample : "") + " " + sample).slice(0, 1000) }); }
     snapshot.clips.forEach(function(c) {
-      if (c.kind === "text" && !c.hidden) faces.push({ face: (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily, sample: c.text.slice(0, 1000) || "Design" });
-      else if (c.kind === "shape" && !c.hidden && (c.chart || c.table)) { var graphic = c.chart || c.table, family = graphicFontCss(graphic.fontFamily), sample = JSON.stringify(graphic).slice(0, 1000); [400, 500, 600, 700].forEach(function(weight) { faces.push({ face: weight + " 48px " + family, sample: sample }); }); }
+      if (c.kind === "text" && !c.hidden) add((c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily, c.text.slice(0, 1000) || "Design");
+      else if (c.kind === "shape" && !c.hidden && (c.chart || c.table)) { var graphic = c.table || c.chart, family = graphicFontCss(graphic.fontFamily), sample = graphicFontSample(graphic); [400, 500, 600, 700].forEach(function(weight) { add(weight + " 48px " + family, sample); }); }
     });
-    return faces;
+    return Array.from(faces.values());
   }
   function ensureFonts(snapshot) {
     if (!document.fonts || !document.fonts.load) return;
-    designFontFaces(snapshot).forEach(function(item) { if (requestedFaces.has(item.face)) return; requestedFaces.add(item.face); document.fonts.load(item.face, item.sample).then(schedule, function() {}); });
+    designFontFaces(snapshot).forEach(function(item) { var key = item.face + ":" + item.sample; if (requestedFaces.has(key)) return; if (requestedFaces.size >= 512) requestedFaces.clear(); requestedFaces.add(key); document.fonts.load(item.face, item.sample).then(schedule, function() {}); });
   }
   function waitForDesignFonts(snapshot, extraCss) {
     var timer;
