@@ -36,3 +36,8 @@ export function reorderTableCellStyleRows(value: TableCellStyles | undefined, or
   if (!value) return undefined;
   return Object.fromEntries(Object.entries(value).flatMap(([key, style]) => { const [row, column] = key.split(":").map(Number), position = order.indexOf(row); return position < 0 ? [] : [[`${position}:${column}`, { ...style }]]; }));
 }
+
+export function mapTableCellColours(value: TableCellStyles | undefined, replace: (colour: string) => string): TableCellStyles | undefined {
+  if (!value) return undefined;
+  return Object.fromEntries(Object.entries(value).map(([key, style]) => [key, { ...style, ...(style.fill ? { fill: replace(style.fill) } : {}), ...(style.colour ? { colour: replace(style.colour) } : {}) }]));
+}
