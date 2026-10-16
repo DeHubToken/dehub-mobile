@@ -8,7 +8,7 @@ import { VECTOR_SYMBOLS, putVectorSymbol, vectorSymbolSvg } from "../../libs/edi
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
-const CATEGORY_NAMES: Record<string, string> = { all: "All", essentials: "Essentials", communication: "Communication", media: "Media and games", people: "People", objects: "Objects", nature: "Nature" };
+const CATEGORY_NAMES: Record<string, string> = { all: "All", essentials: "Essentials", communication: "Communication", media: "Media and games", people: "People", objects: "Objects", nature: "Nature", commerce: "Commerce", learning: "Learning", travel: "Travel", technology: "Technology", food: "Food and drink" };
 
 export default function VectorSymbolsPanel({ project, time, selectedId, current, commit, select }: {
   project: ProjectSnapshot; time: number; selectedId: string | null; current: () => ProjectSnapshot | null;
