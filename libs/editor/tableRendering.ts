@@ -76,7 +76,8 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       if (clipped) lines[lines.length - 1] += "…";
       const anchor = alignment === "centre" ? x + cellWidth / 2 : alignment === "right" ? x + cellWidth - padding : x + padding;
       const block = (lines.length - 1) * lineHeight + size;
-      const firstY = table.verticalAlign === "top" ? y + padding + size / 2 : table.verticalAlign === "bottom" ? y + cellHeight - padding - block + size / 2 : y + cellHeight / 2 - (lines.length - 1) * lineHeight / 2;
+      const vertical = cellStyle?.verticalAlign ?? table.verticalAlign;
+      const firstY = vertical === "top" ? y + padding + size / 2 : vertical === "bottom" ? y + cellHeight - padding - block + size / 2 : y + cellHeight / 2 - (lines.length - 1) * lineHeight / 2;
       lines.forEach((value, index) => {
         let label = value;
         while (label.length > 1 && ctx.measureText(label).width > maxWidth) label = label.slice(0, -2) + "…";
