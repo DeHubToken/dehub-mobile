@@ -27,7 +27,7 @@ export default function QrPanel({ project, selectedId, current, commit, select, 
   const [copyMessage, setCopyMessage] = useState(""), copyGeneration = useRef(0);
   useEffect(() => { copyGeneration.current++; setCopyMessage(""); return () => { copyGeneration.current++; }; }, [content, selected?.id]);
   const copyContent = async () => { const request = ++copyGeneration.current; try { await Clipboard.setStringAsync(content); if (request === copyGeneration.current) { setCopyMessage(t("editor.qr.contentCopied", { defaultValue: "QR content copied" })); setError(""); } } catch { if (request === copyGeneration.current) { setCopyMessage(""); setError(t("editor.qr.copyFailed", { defaultValue: "Could not copy QR content" })); } } };
-  const reset = () => { setContent(qr?.content ?? "https://dehub.io"); setForeground(qr?.foreground ?? "#000000"); setBackground(qr?.background ?? "#ffffff"); setCorrection(qr?.errorCorrection ?? "M"); setQuietZone(qr?.quietZone ?? 4); setError(""); setDraftEpoch(value => value + 1); };
+  const reset = () => { setContent(qr?.content ?? "https://dehub.io"); setForeground(qr?.foreground ?? "#000000"); setBackground(qr?.background ?? "#ffffff"); setCorrection(qr?.errorCorrection ?? "M"); setQuietZone(qr?.quietZone ?? 4); setError(""); setCopyMessage(""); setDraftEpoch(value => value + 1); };
   useEffect(() => { if (qr) { setContent(qr.content); setForeground(qr.foreground); setBackground(qr.background); setCorrection(qr.errorCorrection ?? "M"); setQuietZone(qr.quietZone ?? 4); } }, [selected?.id, qr]);
   const apply = () => {
     try {

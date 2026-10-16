@@ -5,7 +5,7 @@ function normaliseDesignLink(value) {
   if (text.startsWith("#")) return /^#page=([1-9]\d{0,2})$/.test(text) && Number(text.slice(6)) <= 500 ? text : null;
   try {
     const url = new URL(/^[a-z][a-z\d+.-]*:/i.test(text) ? text : "https://" + text);
-    if (!["https:", "http:", "mailto:", "tel:"].includes(url.protocol)) return null;
+    if (!["https:", "http:", "mailto:", "tel:", "sms:"].includes(url.protocol)) return null;
     if ((url.protocol === "https:" || url.protocol === "http:") && !url.hostname) return null;
     return encodeURI(url.href).replace(/%25([\da-f]{2})/gi, "%$1");
   } catch { return null; }
