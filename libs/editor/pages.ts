@@ -46,7 +46,7 @@ export function appendPage(settings: ProjectSettings, clips: Clip[], time: numbe
     const from = Math.max(c.start, current.start), to = Math.min(c.start + c.duration, current.end);
     return to - from >= 0.05 ? [sliceTimelineClip(c, from - c.start, to - from, makeId(), start + from - current.start)] : [];
   }) : [];
-  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: [...clips, ...remapDesignGroups(copies, makeId)], start };
+  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], ...(settings.pageDetails ? { pageDetails: [...pages.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })), duplicate ? { title: "", notes: "", ...settings.pageDetails[current.index] } : { title: "", notes: "" }] } : {}), pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: [...clips, ...remapDesignGroups(copies, makeId)], start };
 }
 
 export function removePage(settings: ProjectSettings, clips: Clip[], index: number, makeId: () => string) {
@@ -66,7 +66,7 @@ export function removePage(settings: ProjectSettings, clips: Clip[], index: numb
     return parts;
   });
   const starts = pages.filter(p => p.index !== index).map(p => p.start >= page.end ? p.start - length : p.start);
-  return { clips: kept, settings: { ...settings, pages: starts.length > 1 ? starts : undefined, pageEnd: pages[pages.length - 1].end - length }, start: Math.min(page.start, Math.max(0, pages[pages.length - 1].end - length - 0.01)) };
+  return { clips: kept, settings: { ...settings, pages: starts.length > 1 ? starts : undefined, ...(settings.pageDetails ? { pageDetails: pages.filter(p => p.index !== index).map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: pages[pages.length - 1].end - length }, start: Math.min(page.start, Math.max(0, pages[pages.length - 1].end - length - 0.01)) };
 }
 
 /** Rebuild page slices in the requested order, preserving source trims and clip-local motion. */
@@ -99,7 +99,7 @@ export function reorderPage(settings: ProjectSettings, clips: Clip[], from: numb
       rebuilt.push(sliceTimelineClip(clip, left - clip.start, right - left, id, start + left - page.start));
     }
   }
-  return { clips: rebuilt, settings: { ...settings, pages: starts, pageEnd: cursor }, start: destination.get(from)! };
+  return { clips: rebuilt, settings: { ...settings, pages: starts, ...(settings.pageDetails ? { pageDetails: order.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })) } : {}), pageEnd: cursor }, start: destination.get(from)! };
 }
 
 /** Resize one page; later pages shift together while video/audio keep their playback rate. */

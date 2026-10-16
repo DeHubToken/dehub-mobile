@@ -1273,7 +1273,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }} />;
     if (tool === "scenes") {
       const pages = getPages(project.settings, project.clips);
-      return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index}
+      return <ScenesPanel details={project.settings.pageDetails} pages={pages} current={pageAt(pages, canvasTime).index}
         onDuration={(index, duration) => {
           const current = h.latest();
           if (!current || current.id !== project.id) return;
