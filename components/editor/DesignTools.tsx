@@ -1,3 +1,4 @@
+import PageAnimationPanel from "./PageAnimationPanel";
 import BulkCreatePanel from "./BulkCreatePanel";
 import { DesignDraftContext } from "./DesignDraftInput";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
@@ -27,7 +28,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -55,6 +56,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
       {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk"].includes(panel ?? ""))}
       {action(t("editor.links.title", { defaultValue: "Link" }), () => setPanel(panel === "link" ? null : "link"), !selected || selected.kind === "audio", panel === "link")}
+      {action(t("editor.pageAnimation.title", { defaultValue: "Animate page" }), () => setPanel(panel === "animate" ? null : "animate"), false, panel === "animate")}
       {action(t("editor.notes.title", { defaultValue: "Page notes" }), () => setPanel(panel === "notes" ? null : "notes"), false, panel === "notes")}
       {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
@@ -69,6 +71,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
     {["data", "fill", "qr", "grid", "guides", "compositions", "bulk"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "animate" && <PageAnimationPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
     {panel === "bulk" && <BulkCreatePanel key={project.id} project={project} time={time} current={current} commit={commit} seek={seek} />}
     {panel === "link" && <DesignLinkPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} />}
     {panel === "notes" && <PageNotesPanel project={project} time={time} current={current} commit={commit} />}
