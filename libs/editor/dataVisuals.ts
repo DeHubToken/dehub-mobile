@@ -25,6 +25,7 @@ export interface ChartData {
   rows: { label: string; value: number }[];
   series?: { label: string; values: number[] }[];
   stacked?: boolean;
+  stackPercent?: boolean;
   showLegend?: boolean;
   colours: string[];
   textColour: string;
@@ -216,6 +217,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (typeof chart.scaleMin === "number" && typeof chart.scaleMax === "number" && chart.scaleMin >= chart.scaleMax) return false;
     if (chart.showAxisValues !== undefined && typeof chart.showAxisValues !== "boolean") return false;
     if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
+    if (chart.stackPercent !== undefined && typeof chart.stackPercent !== "boolean") return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
     if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
   }
