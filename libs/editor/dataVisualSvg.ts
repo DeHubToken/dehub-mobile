@@ -44,7 +44,7 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     },
   };
   drawDataVisual(context, width, height, "chart" in value ? value.chart : undefined, "table" in value ? value.table : undefined);
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${n(width)}" height="${n(height)}" viewBox="0 0 ${n(width)} ${n(height)}" role="img" aria-labelledby="graphic-title"><title id="graphic-title">${"chart" in value ? "Chart" : "Table"}</title><g transform="translate(${n(width / 2)} ${n(height / 2)})">${parts.join("")}</g></svg>\n`;
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${n(width)}" height="${n(height)}" viewBox="0 0 ${n(width)} ${n(height)}" xml:space="preserve" role="img" aria-labelledby="graphic-title"><title id="graphic-title">${"chart" in value ? "Chart" : "Table"}</title><g transform="translate(${n(width / 2)} ${n(height / 2)})">${parts.join("")}</g></svg>\n`;
   if (svg.length > 2 * 1024 * 1024) throw new Error("Choose a smaller data graphic for vector export");
   return svg;
 }
