@@ -8,7 +8,7 @@ export const TABLE_COLOUR_SCALES = [
   { id: "diverging", label: "Red to blue", low: "#b91c1c", middle: "#f8fafc", high: "#1d4ed8" },
 ] as const;
 function mix(a: string, b: string, amount: number): string { const x = parseInt(a.slice(1), 16), y = parseInt(b.slice(1), 16); return "#" + [16, 8, 0].map(shift => Math.round((x >> shift & 255) * (1 - amount) + (y >> shift & 255) * amount).toString(16).padStart(2, "0")).join(""); }
-function readableInk(fill: string): string { const rgb = [1, 3, 5].map(index => parseInt(fill.slice(index, index + 2), 16) / 255).map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4), luminance = rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722; return (luminance + 0.05) / 0.05 >= 1.05 / (luminance + 0.05) ? "#000000" : "#ffffff"; }
+export function readableTableInk(fill: string): string { const rgb = [1, 3, 5].map(index => parseInt(fill.slice(index, index + 2), 16) / 255).map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4), luminance = rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722; return (luminance + 0.05) / 0.05 >= 1.05 / (luminance + 0.05) ? "#000000" : "#ffffff"; }
 export function applyTableColourScale(source: string, range: string, styles: TableCellStyles | undefined, paletteId: string, centred: boolean, autoInk: boolean, merges: readonly TableMerge[] = []): { styles: TableCellStyles; count: number } {
   const rows = parseTableData(source), columns = Math.max(0, ...rows.map(row => row.length)), selected = tableCellRange(range, rows.length, columns), palette = TABLE_COLOUR_SCALES.find(palette => palette.id === paletteId);
   if (!palette) throw new Error("Choose an available colour scale");
@@ -23,7 +23,7 @@ export function applyTableColourScale(source: string, range: string, styles: Tab
   for (const cell of cells) {
     const amount = centred ? (cell.value / bound + 1) / 2 : max === min ? 0.5 : (cell.value - min) / (max - min);
     const fill = centred ? amount < 0.5 ? mix(palette.low, palette.middle, amount * 2) : mix(palette.middle, palette.high, (amount - 0.5) * 2) : mix(palette.low, palette.high, amount);
-    next[cell.key] = { ...next[cell.key], fill, ...(autoInk ? { colour: readableInk(fill) } : {}) };
+    next[cell.key] = { ...next[cell.key], fill, ...(autoInk ? { colour: readableTableInk(fill) } : {}) };
   }
   return { styles: next, count: cells.length };
 }
