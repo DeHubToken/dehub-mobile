@@ -9,6 +9,11 @@ export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   valueFormat?: ChartValueFormat;
   donutHole?: number;
+  lineWidth?: number;
+  pointSize?: number;
+  areaOpacity?: number;
+  barGap?: number;
+  showGrid?: boolean;
   kind: ChartKind;
   rows: { label: string; value: number }[];
   series?: { label: string; values: number[] }[];
@@ -100,14 +105,14 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       return { x: Math.cos(angle) * radius * value, y: Math.sin(angle) * radius * value };
     };
     ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 900);
-    for (let ring = 1; ring <= 4; ring++) {
+    for (let ring = 1; chart.showGrid !== false && ring <= 4; ring++) {
       ctx.beginPath();
       rows.forEach((row, index) => { const p = point(index, ring / 4); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.stroke();
       if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(chartValueLabel(Number((min + span * ring / 4).toFixed(2)), chart.valueFormat), font * 0.3, -radius * ring / 4, radius); }
     }
     rows.forEach((row, index) => {
-      const p = point(index, 1); ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p.x, p.y); ctx.stroke();
+      const p = point(index, 1); if (chart.showGrid !== false) { ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p.x, p.y); ctx.stroke(); }
       if (chart.showLabels || chart.showValues) {
         const q = point(index, 1.18); ctx.textAlign = Math.abs(q.x) < font ? "center" : q.x < 0 ? "right" : "left";
         ctx.fillStyle = chart.textColour;
@@ -116,7 +121,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     });
     ctx.beginPath();
     rows.forEach((row, index) => { const p = point(index, (row.value - min) / ceiling); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
-    ctx.closePath(); ctx.fillStyle = colour(0) + "44"; ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300); ctx.stroke();
+    ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.stroke();
     return;
   }
   const horizontal = chart.kind === "bar";
@@ -126,16 +131,21 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const zeroX = x0 + (0 - min) / span * plotWidth;
   const zeroY = y1 - (0 - min) / span * plotHeight;
+  if (chart.showGrid) for (let tick = 0; tick <= 4; tick++) {
+    const x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
+    ctx.strokeStyle = chart.textColour + "33"; ctx.lineWidth = Math.max(1, width / 900);
+    ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke();
+  }
   ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 700);
   ctx.beginPath(); ctx.moveTo(horizontal ? zeroX : x0, y0); ctx.lineTo(horizontal ? zeroX : x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
   if (chart.kind === "area") {
-    ctx.fillStyle = colour(0) + "44"; ctx.beginPath();
+    ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.beginPath();
     ctx.moveTo(x0 + 0.5 / rows.length * plotWidth, zeroY);
     rows.forEach((row, index) => ctx.lineTo(x0 + (index + 0.5) / rows.length * plotWidth, y1 - (row.value - min) / span * plotHeight));
     ctx.lineTo(x0 + (rows.length - 0.5) / rows.length * plotWidth, zeroY); ctx.closePath(); ctx.fill();
   }
   if (chart.kind === "line" || chart.kind === "area") {
-    ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250); ctx.beginPath();
+    ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath();
     rows.forEach((row, index) => {
       const x = x0 + (index + 0.5) / rows.length * plotWidth, y = y1 - (row.value - min) / span * plotHeight;
       if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
@@ -146,16 +156,16 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     ctx.fillStyle = colour(index);
     if (horizontal) {
       const slot = plotHeight / rows.length, y = y0 + slot * (index + 0.5), x = x0 + (row.value - min) / span * plotWidth;
-      ctx.fillRect(Math.min(zeroX, x), y - slot * 0.33, Math.abs(x - zeroX), slot * 0.66);
+      ctx.fillRect(Math.min(zeroX, x), y - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.abs(x - zeroX), slot * (1 - (chart.barGap ?? 0.34)));
       ctx.fillStyle = chart.textColour; ctx.textAlign = "right";
       if (chart.showLabels) label(row.label, x0 - font * 0.5, y, labelSpace - font);
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x1, y - slot * 0.35, plotWidth);
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
-      if (chart.kind === "column") ctx.fillRect(x - slot * 0.33, Math.min(zeroY, y), slot * 0.66, Math.abs(y - zeroY));
+      if (chart.kind === "column") ctx.fillRect(x - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.min(zeroY, y), slot * (1 - (chart.barGap ?? 0.34)), Math.abs(y - zeroY));
       else {
-        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
-        ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180), 0, Math.PI * 2); ctx.fill(); }
+        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
+        ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill(); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
       if (chart.showLabels) label(row.label, x, y1 + font * 1.2, slot * 0.95);
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
@@ -190,6 +200,10 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;
+    for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
+      const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
+    }
+    if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
     if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
   }
