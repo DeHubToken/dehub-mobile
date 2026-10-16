@@ -77,9 +77,11 @@ var VECTOR_SYMBOLS = [
   { id: "snowflake", label: "Snowflake", category: "nature", tags: "snow winter cold ice weather", parts: [0, 1, 2].flatMap(index => { const angle = index * Math.PI / 3, x = Math.cos(angle), y = Math.sin(angle); return [poly([[12 - x * 10, 12 - y * 10], [12 + x * 10, 12 + y * 10]]), ...[-1, 1].flatMap(side => { const ax = 12 + x * 7 * side, ay = 12 + y * 7 * side; return [poly([[ax - y * 3 - x * 2 * side, ay + x * 3 - y * 2 * side], [ax, ay], [ax + y * 3 - x * 2 * side, ay - x * 3 - y * 2 * side]])]; })]; }) },
 ];
 
+const vectorSymbolById = new Map(VECTOR_SYMBOLS.map(symbol => [symbol.id, symbol]));
+
 function vectorSymbolPath(ctx, width, height, id) {
   ctx.beginPath();
-  const symbol = VECTOR_SYMBOLS.find(item => item.id === id);
+  const symbol = vectorSymbolById.get(id);
   if (!symbol) return;
   const x = (value) => (value / 24 - 0.5) * width, y = (value) => (value / 24 - 0.5) * height;
   for (const part of symbol.parts) {

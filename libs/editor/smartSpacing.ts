@@ -17,7 +17,6 @@ export function smartSpacingSnap(moving: SpacingBox, otherBoxes: readonly Spacin
   const bounds = spacingBounds(moving), others = otherBoxes.filter(box => [box.cx, box.cy, box.w, box.h, box.rotation].every(Number.isFinite) && box.w > 0 && box.h > 0).map(spacingBounds);
   const guides: SpacingGuide[] = []; let dx = 0, dy = 0;
   for (const axis of ["horizontal", "vertical"] as const) {
-    if (!axes[axis]) continue;
     const horizontal = axis === "horizontal", from = horizontal ? bounds.left : bounds.top, to = horizontal ? bounds.right : bounds.bottom;
     const crossFrom = horizontal ? bounds.top : bounds.left, crossTo = horizontal ? bounds.bottom : bounds.right;
     let before: typeof bounds | undefined, after: typeof bounds | undefined;
@@ -32,6 +31,7 @@ export function smartSpacingSnap(moving: SpacingBox, otherBoxes: readonly Spacin
     const end = horizontal ? before.right : before.bottom, start = horizontal ? after.left : after.top;
     const gap = (start - end - (to - from)) / 2, shift = end + gap - from;
     if (gap < 0 || Math.abs(shift) > threshold) continue;
+    if (!axes[axis] && Math.abs(shift) > 1e-6) continue;
     if (horizontal) dx = shift; else dy = shift;
     const at = horizontal ? moving.cy : moving.cx;
     guides.push({ axis, from: end, to: from + shift, at, gap }, { axis, from: to + shift, to: start, at, gap });

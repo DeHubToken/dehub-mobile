@@ -83,6 +83,14 @@ export const VECTOR_SYMBOLS: VectorSymbol[] = [
   { id: "snowflake", label: "Snowflake", category: "nature", tags: "snow winter cold ice weather", parts: [0, 1, 2].flatMap(index => { const angle = index * Math.PI / 3, x = Math.cos(angle), y = Math.sin(angle); return [poly([[12 - x * 10, 12 - y * 10], [12 + x * 10, 12 + y * 10]]), ...[-1, 1].flatMap(side => { const ax = 12 + x * 7 * side, ay = 12 + y * 7 * side; return [poly([[ax - y * 3 - x * 2 * side, ay + x * 3 - y * 2 * side], [ax, ay], [ax + y * 3 - x * 2 * side, ay - x * 3 - y * 2 * side]])]; })]; }) },
 ];
 
+const vectorSymbolById = new Map(VECTOR_SYMBOLS.map(symbol => [symbol.id, symbol]));
+
+export function searchVectorSymbols(query: string, category = "all"): VectorSymbol[] {
+  const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  return VECTOR_SYMBOLS.filter(symbol => (category === "all" || symbol.category === category) && words.every(word => `${symbol.label} ${symbol.id} ${symbol.tags}`.toLowerCase().includes(word)))
+    .sort((a, b) => { const needle = words.join(" "); return Number(!a.label.toLowerCase().startsWith(needle)) - Number(!b.label.toLowerCase().startsWith(needle)); });
+}
+
 interface SymbolContext {
   beginPath(): void; closePath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
   ellipse(x: number, y: number, rx: number, ry: number, rotation: number, start: number, end: number): void;
@@ -90,7 +98,7 @@ interface SymbolContext {
 
 export function vectorSymbolPath(ctx: SymbolContext, width: number, height: number, id: string): void {
   ctx.beginPath();
-  const symbol = VECTOR_SYMBOLS.find(item => item.id === id);
+  const symbol = vectorSymbolById.get(id);
   if (!symbol) return;
   const x = (value: number) => (value / 24 - 0.5) * width, y = (value: number) => (value / 24 - 0.5) * height;
   for (const part of symbol.parts) {
@@ -106,18 +114,18 @@ export function vectorSymbolPath(ctx: SymbolContext, width: number, height: numb
 }
 
 export function vectorSymbolSvg(id: string): string {
-  return (VECTOR_SYMBOLS.find(symbol => symbol.id === id)?.parts ?? []).map(part => {
+  return (vectorSymbolById.get(id)?.parts ?? []).map(part => {
     if (part.ellipse) { const [x, y, rx, ry] = part.ellipse; return `M ${x + rx} ${y} A ${rx} ${ry} 0 1 0 ${x - rx} ${y} A ${rx} ${ry} 0 1 0 ${x + rx} ${y} Z`; }
     return (part.points ?? []).map((point, index) => `${index ? "L" : "M"} ${point.join(" ")}`).join(" ") + (part.closed ? " Z" : "");
   }).join(" ");
 }
 
 export function putVectorSymbol(project: ProjectSnapshot, time: number, symbol: string, colour: string, weight: number, makeId: () => string, selectedId?: string | null) {
-  const preset = VECTOR_SYMBOLS.find(item => item.id === symbol);
+  const preset = vectorSymbolById.get(symbol);
   if (!preset || !/^#[\da-f]{6}$/i.test(colour) || !Number.isFinite(weight) || weight < 1 || weight > 40) return null;
   const existing = project.clips.find(clip => clip.id === selectedId && clip.kind === "shape" && clip.symbol);
   if (existing?.locked) return null;
-  if (existing?.kind === "shape") return { project: { ...project, clips: project.clips.map(clip => clip.id === existing.id ? { ...existing, symbol, label: existing.label === VECTOR_SYMBOLS.find(item => item.id === existing.symbol)?.label ? preset.label : existing.label, stroke: { ...existing.stroke, color: colour, width: weight } } as ShapeClip : clip) }, id: existing.id };
+  if (existing?.kind === "shape") return { project: { ...project, clips: project.clips.map(clip => clip.id === existing.id ? { ...existing, symbol, label: existing.label === vectorSymbolById.get(existing.symbol ?? "")?.label ? preset.label : existing.label, stroke: { ...existing.stroke, color: colour, width: weight } } as ShapeClip : clip) }, id: existing.id };
   const page = pageAt(getPages(project.settings, project.clips), time), size = Math.min(project.settings.width, project.settings.height) * 0.22;
   const track: Track = { id: makeId(), kind: "video", name: preset.label, muted: false, hidden: false };
   const clip: ShapeClip = { id: makeId(), trackId: track.id, kind: "shape", shape: "rect", label: preset.label, symbol, start: page.start, duration: page.end - page.start, trimIn: 0, w: size / project.settings.width, h: size / project.settings.height, fill: null, stroke: { color: colour, width: weight } };
