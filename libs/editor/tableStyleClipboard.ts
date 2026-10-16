@@ -31,7 +31,7 @@ export function commonTableCellStyle(value: TableCellStyles | undefined, range: 
     let mixed = false;
     for (let row = picked.row; row < picked.row + picked.rowSpan; row++) for (let column = picked.column; column < picked.column + picked.columnSpan; column++) {
       const current = value?.[`${row}:${column}`] ?? {};
-      for (const key of ["fill", "colour", "bold", "italic", "align"] as const) if (current[key] !== first[key]) { delete style[key]; mixed = true; }
+      for (const key of ["fill", "colour", "bold", "italic", "align", "fontScale"] as const) if (current[key] !== first[key]) { delete style[key]; mixed = true; }
       if (JSON.stringify(current.numberFormat) !== JSON.stringify(first.numberFormat)) { delete style.numberFormat; mixed = true; }
     }
     return { style, mixed };

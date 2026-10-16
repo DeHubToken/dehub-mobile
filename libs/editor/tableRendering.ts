@@ -15,7 +15,7 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       rows.forEach((row, index) => {
         if ((table.merges ?? []).some(merge => merge.columnSpan > 1 && index >= merge.row && index < merge.row + merge.rowSpan && column >= merge.column && column < merge.column + merge.columnSpan)) return;
         const style = table.cellStyles?.[index + ":" + column], header = table.header && index === 0 || table.headerColumn && column === 0;
-        ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + font + "px Inter, sans-serif";
+        ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px Inter, sans-serif";
         const raw = String(row[column] ?? "");
         const text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
         for (const line of text.split(/\r?\n/)) measured = Math.max(measured, ctx.measureText(line).width + padding * 2);
@@ -34,10 +34,10 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       if (merge && (merge.rowSpan > 1 || merge.column !== c)) continue;
       const cellWidth = xs[Math.min(columns, c + (merge?.columnSpan ?? 1))] - xs[c], padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45);
       const style = table.cellStyles?.[r + ":" + c], header = table.header && r === 0 || table.headerColumn && c === 0;
-      ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + font + "px Inter, sans-serif";
+      ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + (font * (style?.fontScale ?? 1)) + "px Inter, sans-serif";
       const raw = String(row[c] ?? ""), text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
       const lines = tableTextLines(text, Math.max(1, cellWidth - padding * 2), value => ctx.measureText(value).width, !!table.wrap);
-      needed = Math.max(needed, Math.min(8, lines.length) * font * 1.2 + padding * 2);
+      needed = Math.max(needed, Math.min(8, lines.length) * font * (style?.fontScale ?? 1) * 1.2 + padding * 2);
     }
     rowWeights[r] = Math.max(1, Math.min(10, needed / (font * 1.2)));
   });
@@ -51,7 +51,7 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       if (merge && (merge.row !== r || merge.column !== c)) continue;
       const x = xs[c], y = ys[r], cellWidth = xs[c + (merge?.columnSpan ?? 1)] - x, cellHeight = ys[r + (merge?.rowSpan ?? 1)] - y;
       const padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45, cellHeight * 0.4);
-      let size = Math.max(1, Math.min(font, cellHeight - padding * 2)), lineHeight = size * 1.2;
+      let size = Math.max(1, Math.min(font * (table.cellStyles?.[r + ":" + c]?.fontScale ?? 1), cellHeight - padding * 2)), lineHeight = size * 1.2;
       const maxWidth = Math.max(1, cellWidth - padding * 2);
       const cellStyle = table.cellStyles?.[r + ":" + c], alignment = cellStyle?.align ?? table.align ?? "left", header = !!(table.header && r === 0 || table.headerColumn && c === 0), stripeIndex = table.stripeAxis === "column" ? c : r, stripeHeader = table.stripeAxis === "column" ? table.headerColumn : table.header;
       ctx.fillStyle = cellStyle?.fill ?? (header ? table.headerColour : table.stripeColour && stripeIndex % 2 === (stripeHeader ? 0 : 1) ? table.stripeColour : table.cellColour);

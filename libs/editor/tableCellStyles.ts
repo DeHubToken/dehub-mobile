@@ -1,6 +1,6 @@
 import { validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
 import type { TableMerge } from "./tableMerges";
-export interface TableCellStyle { numberFormat?: ChartValueFormat; fill?: string; colour?: string; bold?: boolean; italic?: boolean; align?: "left" | "centre" | "right" }
+export interface TableCellStyle { fontScale?: number; numberFormat?: ChartValueFormat; fill?: string; colour?: string; bold?: boolean; italic?: boolean; align?: "left" | "centre" | "right" }
 export type TableCellStyles = Record<string, TableCellStyle>;
 export function validTableCellStyles(value: unknown): value is TableCellStyles | undefined {
   if (value === undefined) return true;
@@ -8,7 +8,7 @@ export function validTableCellStyles(value: unknown): value is TableCellStyles |
   return Object.entries(value).every(([key, item]) => {
     if (!/^(?:[0-9]|1[0-9]):(?:[0-9]|1[01])$/.test(key) || !item || typeof item !== "object" || Array.isArray(item)) return false;
     const style = item as TableCellStyle;
-    return Object.keys(style).every(key => ["fill", "colour", "bold", "italic", "align", "numberFormat"].includes(key)) && validChartValueFormat(style.numberFormat) && [style.fill, style.colour].every(value => value === undefined || typeof value === "string" && /^#[a-f\d]{6}$/i.test(value)) && [style.bold, style.italic].every(value => value === undefined || typeof value === "boolean") && (style.align === undefined || ["left", "centre", "right"].includes(style.align));
+    return Object.keys(style).every(key => ["fill", "colour", "bold", "italic", "align", "fontScale", "numberFormat"].includes(key)) && (style.fontScale === undefined || typeof style.fontScale === "number" && Number.isFinite(style.fontScale) && style.fontScale >= 0.5 && style.fontScale <= 3) && validChartValueFormat(style.numberFormat) && [style.fill, style.colour].every(value => value === undefined || typeof value === "string" && /^#[a-f\d]{6}$/i.test(value)) && [style.bold, style.italic].every(value => value === undefined || typeof value === "boolean") && (style.align === undefined || ["left", "centre", "right"].includes(style.align));
   });
 }
 export function tableCellRange(value: string, rows: number, columns: number): TableMerge {
