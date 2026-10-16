@@ -1,3 +1,4 @@
+import { chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
 import { validTableCellStyles, type TableCellStyles } from "./tableCellStyles";
 import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
@@ -6,6 +7,8 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  valueFormat?: ChartValueFormat;
+  donutHole?: number;
   kind: ChartKind;
   rows: { label: string; value: number }[];
   series?: { label: string; values: number[] }[];
@@ -76,14 +79,14 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       const end = start + row.value / sum * Math.PI * 2;
       ctx.fillStyle = colour(index); ctx.beginPath();
       if (chart.kind === "donut") {
-        ctx.arc(cx, 0, radius, start, end); ctx.arc(cx, 0, radius * 0.57, end, start, true);
+        ctx.arc(cx, 0, radius, start, end); ctx.arc(cx, 0, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
       } else { ctx.moveTo(cx, 0); ctx.arc(cx, 0, radius, start, end); }
       ctx.closePath(); ctx.fill();
       if (chart.showLabels && index < Math.floor(height / (font * 1.7))) {
         const x = left + width - legend + font, y = top + font * (1.3 + index * 1.7);
         ctx.fillStyle = colour(index); ctx.fillRect(x, y - font * 0.35, font * 0.7, font * 0.7);
         ctx.fillStyle = chart.textColour; ctx.textAlign = "left";
-        label(row.label + (chart.showValues ? "  " + Number((row.value / sum * 100).toFixed(1)) + "%" : ""), x + font, y, legend - font * 2);
+        label(row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : ""), x + font, y, legend - font * 2);
       }
       start = end;
     });
@@ -101,14 +104,14 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       ctx.beginPath();
       rows.forEach((row, index) => { const p = point(index, ring / 4); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.stroke();
-      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(String(Number((min + span * ring / 4).toFixed(2))), font * 0.3, -radius * ring / 4, radius); }
+      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(chartValueLabel(Number((min + span * ring / 4).toFixed(2)), chart.valueFormat), font * 0.3, -radius * ring / 4, radius); }
     }
     rows.forEach((row, index) => {
       const p = point(index, 1); ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p.x, p.y); ctx.stroke();
       if (chart.showLabels || chart.showValues) {
         const q = point(index, 1.18); ctx.textAlign = Math.abs(q.x) < font ? "center" : q.x < 0 ? "right" : "left";
         ctx.fillStyle = chart.textColour;
-        label((chart.showLabels ? row.label : "") + (chart.showValues ? (chart.showLabels ? " " : "") + row.value : ""), q.x, q.y, Math.max(font, (width - radius * 2) / 2));
+        label((chart.showLabels ? row.label : "") + (chart.showValues ? (chart.showLabels ? " " : "") + chartValueLabel(row.value, chart.valueFormat) : ""), q.x, q.y, Math.max(font, (width - radius * 2) / 2));
       }
     });
     ctx.beginPath();
@@ -146,7 +149,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       ctx.fillRect(Math.min(zeroX, x), y - slot * 0.33, Math.abs(x - zeroX), slot * 0.66);
       ctx.fillStyle = chart.textColour; ctx.textAlign = "right";
       if (chart.showLabels) label(row.label, x0 - font * 0.5, y, labelSpace - font);
-      if (chart.showValues) label(String(row.value), x1, y - slot * 0.35, plotWidth);
+      if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x1, y - slot * 0.35, plotWidth);
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
       if (chart.kind === "column") ctx.fillRect(x - slot * 0.33, Math.min(zeroY, y), slot * 0.66, Math.abs(y - zeroY));
@@ -155,7 +158,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
         ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180), 0, Math.PI * 2); ctx.fill(); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
       if (chart.showLabels) label(row.label, x, y1 + font * 1.2, slot * 0.95);
-      if (chart.showValues) label(String(row.value), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
+      if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
 }
@@ -185,6 +188,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       typeof chart.showLabels !== "boolean" || typeof chart.showValues !== "boolean" ||
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
+    if (!validChartValueFormat(chart.valueFormat)) return false;
+    if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
     if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
   }

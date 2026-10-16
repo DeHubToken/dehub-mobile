@@ -1,3 +1,4 @@
+import ChartFormattingPanel, { type ChartAppearance } from "./ChartFormattingPanel";
 import { chartDataSource, parseChartSource } from "../../libs/editor/chartSeries";
 import TableFormattingPanel from "./TableFormattingPanel";
 import { DESIGN_PALETTES } from "../../libs/editor/designTools";
@@ -29,6 +30,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [foreground, setForeground] = useState("#ffffff");
   const [accent, setAccent] = useState("#38bdf8");
   const [chartPalette, setChartPalette] = useState<string[]>([...DEFAULT_CHART.colours]);
+  const [chartAppearance, setChartAppearance] = useState<ChartAppearance>({});
   const [tableFormat, setTableFormat] = useState<Omit<TableData, "rows">>({ ...DEFAULT_TABLE });
   const [multiple, setMultiple] = useState(false), [stacked, setStacked] = useState(false), [showLegend, setShowLegend] = useState(true);
   const [showLabels, setShowLabels] = useState(true);
@@ -54,6 +56,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
+      setChartAppearance({ valueFormat: next.valueFormat, donutHole: next.donutHole });
       setChartPalette([...next.colours]); setKind(next.kind); setData(chartDataSource(next)); setMultiple(!!next.series?.length); setStacked(!!next.stacked); setShowLegend(next.showLegend !== false); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
     } else {
@@ -81,7 +84,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     try {
       const latest = current();
       if (!latest || latest.id !== project.id) return;
-      const value: { chart: ChartData } | { table: TableData } = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, ...parseChartSource(data, multiple), stacked, showLegend,
+      const value: { chart: ChartData } | { table: TableData } = mode === "chart" ? { chart: { ...(chart ?? DEFAULT_CHART), kind, ...parseChartSource(data, multiple), ...chartAppearance, stacked, showLegend,
         colours: [accent, ...chartPalette.slice(1)], textColour: foreground, showLabels, showValues } }
         : { table: { ...tableFormat, rows: parseTableData(data), textColour: foreground, headerColour: accent, header: showLabels } };
       if (!validDataVisuals(value)) throw new Error("Use valid colours and table formatting");
@@ -108,6 +111,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
     <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
     {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} multiSeries={multiple} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
+    {mode === "chart" && <ChartFormattingPanel kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
     {mode === "table" && <TableFormattingPanel value={{ ...tableFormat, header: showLabels }} source={data} onChange={setTableFormat} onSource={setData} />}
     <View className="flex-row items-center" style={{ gap: 8 }}>
       <Text className="text-xs text-white/60">{t("editor.dataVisual.textColour", { defaultValue: "Text" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.textColour", { defaultValue: "Text" })} value={foreground} onChangeText={setForeground} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />

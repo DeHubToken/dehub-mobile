@@ -1,0 +1,17 @@
+import React from "react";
+import { Pressable, Switch, Text, View } from "react-native";
+import Slider from "@react-native-community/slider";
+import { useTranslation } from "react-i18next";
+import { chartValueLabel, type ChartValueFormat } from "../../libs/editor/chartValueFormat";
+import type { ChartData } from "../../libs/editor/dataVisuals";
+export type ChartAppearance = Pick<ChartData, "valueFormat" | "donutHole">;
+export default function ChartFormattingPanel({ kind, value, onChange }: { kind: ChartData["kind"]; value: ChartAppearance; onChange: (value: ChartAppearance) => void }) {
+  const { t } = useTranslation(), format = value.valueFormat;
+  const change = (patch: Partial<ChartValueFormat>) => onChange({ ...value, valueFormat: { style: "number", currency: "USD", decimals: 0, compact: false, ...format, ...patch } });
+  const chip = (label: string, active: boolean, onPress: () => void) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active }} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-cyan-300 bg-cyan-300/10" : "border-white/20"}`}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 10 }}><Text className="text-xs text-white/65">{t("editor.charts.valueFormat", { defaultValue: "Value format" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["auto", "number", "percent", "currency"] as const).map(style => chip(t(`editor.charts.format.${style}`, { defaultValue: ({ auto: "Automatic", number: "Number", percent: "Percentage", currency: "Currency" })[style] }), (format?.style ?? "auto") === style, () => style === "auto" ? onChange({ ...value, valueFormat: undefined }) : change({ style })))}</View>
+    {format && <><Text className="text-xs text-white/65">{t("editor.charts.decimals", { defaultValue: "Decimal places" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{[0, 1, 2, 3, 4].map(decimals => chip(String(decimals), decimals === format.decimals, () => change({ decimals })))}</View>{format.style === "currency" && <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["USD", "EUR", "GBP", "JPY"] as const).map(currency => chip(currency, currency === format.currency, () => change({ currency })))}</View>}<View className="flex-row items-center" style={{ gap: 8 }}><Switch value={format.compact} onValueChange={compact => change({ compact })} accessibilityLabel={t("editor.charts.compact", { defaultValue: "Compact numbers" })} /><Text className="text-xs text-white/65">{t("editor.charts.compact", { defaultValue: "Compact numbers" })}</Text><Text className="text-xs text-cyan-100">{chartValueLabel(1234.5, format)}</Text></View></>}
+    {format?.style === "percent" && <Text className="text-xs text-white/45">{t("editor.charts.percentHint", { defaultValue: "Enter percentage points: a value of 25 displays as 25%." })}</Text>}
+    {kind === "donut" && <View><Text className="text-xs text-white/65">{t("editor.charts.donutHole", { defaultValue: "Donut hole" })}: {Math.round((value.donutHole ?? 0.57) * 100)}%</Text><Slider minimumValue={20} maximumValue={85} step={1} value={Math.round((value.donutHole ?? 0.57) * 100)} onValueChange={size => onChange({ ...value, donutHole: size / 100 })} accessibilityLabel={t("editor.charts.donutHole", { defaultValue: "Donut hole" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>}
+  </View>;
+}
