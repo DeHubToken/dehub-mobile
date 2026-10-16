@@ -1,9 +1,13 @@
 import { parseDelimitedData } from "./delimitedData";
+import { drawMultiSeriesChart } from "./multiSeriesCharts";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   kind: ChartKind;
   rows: { label: string; value: number }[];
+  series?: { label: string; values: number[] }[];
+  stacked?: boolean;
+  showLegend?: boolean;
   colours: string[];
   textColour: string;
   showLabels: boolean;
@@ -21,7 +25,7 @@ export interface TableData {
   align?: "left" | "centre" | "right";
   borderWidth?: number;
 }
-interface DataVisualContext {
+export interface DataVisualContext {
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
   beginPath(): void; closePath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
   arc(x: number, y: number, radius: number, start: number, end: number, anticlockwise?: boolean): void;
@@ -65,6 +69,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (!chart || !Array.isArray(chart.rows)) return;
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
+  if (drawMultiSeriesChart(ctx, width, height, chart)) return;
   const colours = Array.isArray(chart.colours) && chart.colours.length ? chart.colours.slice(0, 50) : ["#38bdf8"];
   const colour = (index: number) => colours[index % colours.length];
   const max = Math.max(0, ...rows.map(row => row.value));
@@ -188,6 +193,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       !chart.colours.length || chart.colours.length > 50 || !chart.colours.every(colour) || !colour(chart.textColour) ||
       typeof chart.showLabels !== "boolean" || typeof chart.showValues !== "boolean" ||
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
+    if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
+    if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
+    if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
   }
   if (value.table !== undefined) {
     const table = value.table;
