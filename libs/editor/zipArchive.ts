@@ -18,6 +18,10 @@ function utf8(text: string): Uint8Array {
   }
   return new Uint8Array(bytes);
 }
+export function zipTextEntry(name: string, text: string): ZipEntry {
+  const bytes = utf8(text);
+  return { name, size: bytes.length, read: async (offset, length) => bytes.subarray(offset, offset + length) };
+}
 export async function writeZipArchive(entries: ZipEntry[], write: (bytes: Uint8Array) => void | Promise<void>, signal?: AbortSignal): Promise<void> {
   if (!entries.length || entries.length > 65535 || new Set(entries.map(e => e.name)).size !== entries.length) throw new Error("Invalid ZIP entries");
   const names = entries.map(e => utf8(e.name));

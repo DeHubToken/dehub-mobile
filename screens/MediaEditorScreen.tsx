@@ -1,3 +1,4 @@
+import { exportPresentation } from "../libs/editor/exportPresentation";
 import { cancelDesignColourPick } from "../libs/editor/designColourPicker";
 import { duplicateDesignPageSelection } from "../libs/editor/designClone";
 import { registerDesignPagePreview } from "../libs/editor/designPagePreviews";
@@ -1523,7 +1524,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
-  const downloadPdf = async (scope: PageExportScope, cropMarks = false) => {
+  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false) => {
     const current = h.latest();
     const canvas = canvasRef.current;
     if (!current || !canvas || rendering !== null || h.isEditing()) return;
@@ -1532,7 +1533,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const ctl = new AbortController(); downloadController.current = ctl;
     setPlaying(false); setExportOpen(false); setRendering(0);
     try {
-      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true); return { dataUrl, links }; }, ctl.signal, setRendering, cropMarks);
+      const capture = async (time: number) => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true, format === "pptx" ? 2048 : undefined); return { dataUrl, links }; };
+      if (format === "pptx") await exportPresentation(current, canvasTime, scope, capture, ctl.signal, setRendering);
+      else await exportPdf(current, canvasTime, scope, capture, ctl.signal, setRendering, cropMarks);
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
     } finally {
@@ -1939,7 +1942,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
-          onExportPdf={scope => { void downloadPdf(scope); }}
+          onExportPdf={(scope, marks) => { void downloadDocument("pdf", scope, marks); }}
+          onExportPresentation={scope => { void downloadDocument("pptx", scope); }}
       />
     </View>
   );
