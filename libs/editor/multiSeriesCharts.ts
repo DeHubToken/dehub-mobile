@@ -10,7 +10,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut") return false;
   const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   if (!rows.length) return false;
-  const font = Math.max(8, Math.min(24, height / 18, width / 28));
+  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1));
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index: number) => colours[index % colours.length];
   let values = series.map(item => rows.map((_, index) => Number.isFinite(item.values[index]) ? item.values[index] : 0));
   const stacked = !!chart.stacked && (chart.kind === "column" || chart.kind === "bar");

@@ -10,6 +10,7 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  fontScale?: number;
   referenceLine?: { value: number; label?: string; colour: string };
   valueFormat?: ChartValueFormat;
   pieRotation?: number;
@@ -82,7 +83,7 @@ export interface DataVisualContext {
 /** Data is bounded before rendering so imported projects cannot create an unbounded draw loop. */
 export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData): void {
   const left = -width / 2, top = -height / 2;
-  const font = Math.max(8, Math.min(24, height / 18, width / 28));
+  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
   ctx.font = "500 " + font + "px Inter, sans-serif";
   ctx.textBaseline = "middle";
   function label(text: string, x: number, y: number, max: number) {
@@ -250,7 +251,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.donutTotal !== undefined && typeof chart.donutTotal !== "boolean") return false;
     if (chart.pieValueMode !== undefined && !["auto", "percent", "value", "both"].includes(String(chart.pieValueMode))) return false;
     if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;
-    for (const [key, minimum, maximum] of [["pieRotation", 0, 360], ["pieGap", 0, 20], ["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
+    for (const [key, minimum, maximum] of [["fontScale", 0.5, 3], ["pieRotation", 0, 360], ["pieGap", 0, 20], ["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;

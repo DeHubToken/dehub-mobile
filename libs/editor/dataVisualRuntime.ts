@@ -1,7 +1,7 @@
 /** Chart and table drawing shared with the web compositor. */
 export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width, height, chart, table) {
   const left = -width / 2, top = -height / 2;
-  const font = Math.max(8, Math.min(24, height / 18, width / 28));
+  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
   ctx.font = "500 " + font + "px Inter, sans-serif";
   ctx.textBaseline = "middle";
   function label(text, x, y, max) {
