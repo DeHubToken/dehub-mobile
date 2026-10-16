@@ -1,3 +1,4 @@
+import { MEDIA_FRAMES, type MediaFrame } from "./mediaFrames";
 import { validConnector } from "./connectors";
 import { validPhotoTone } from "./photoTone";
 import { validBrandStyles } from "./brandStyles";
@@ -76,6 +77,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
       || !["video", "audio", "image", "text", "shape"].includes(String(clip.kind)) || !positive(clip.duration, 86400)) fail();
     for (const key of ["start", "trimIn"]) if (typeof clip[key] !== "number" || !Number.isFinite(clip[key]) || (clip[key] as number) < 0 || (clip[key] as number) > 86400) fail();
     if (["video", "audio", "image"].includes(String(clip.kind))) {
+      if (clip.frame !== undefined && !MEDIA_FRAMES.includes(clip.frame as MediaFrame)) fail();
       const source = media.get(String(clip.mediaId));
       if (!source || !compatible(String(clip.kind), source.kind)) fail();
       if (clip.kind === "video" && clip.videoMatte) {

@@ -221,7 +221,7 @@ export interface MediaClip extends BaseClip {
   /** Corner radius in px relative to 1080p. */
   radius?: number;
   /** Clip the media into an editable frame while preserving its original source. */
-  frame?: "rect" | "ellipse" | "triangle" | "star" | "heart" | "hexagon";
+  frame?: import("./mediaFrames").MediaFrame;
   border?: TextStroke | null;
 }
 
