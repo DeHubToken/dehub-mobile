@@ -2,7 +2,7 @@ import { treemapDataError } from "./treemapChart";
 import { cleanDataNumber, type DataNumberFormat } from "./dataRangeActions";
 import { formatDelimitedData, parseDelimitedData } from "./delimitedData";
 export interface DataImportOptions {
-  mode: "chart" | "table"; header: boolean; multiple: boolean; labelColumn: string; columns: string;
+  mode: "chart" | "table" | "bulk"; header: boolean; multiple: boolean; labelColumn: string; columns: string;
   hierarchy?: boolean; numericX?: boolean; start: number; count: number; numberFormat: "plain" | DataNumberFormat; skipEmpty: boolean; blanksAsZero: boolean;
 }
 export interface MappedDataImport { source: string; multiple: boolean; header: boolean; rows: string[][]; count: number; columns: number }
@@ -48,7 +48,15 @@ export function mapDataImport(rows: readonly (readonly string[])[], options: Dat
   if (!Number.isInteger(options.start) || options.start < 1 || !Number.isInteger(options.count) || options.count < 1 || options.count > maximum) throw new Error(`Choose a starting data row and one to ${maximum} rows`);
   const body = rows.slice(options.header ? 1 : 0).filter(row => !options.skipEmpty || row.some(cell => cell.trim())), selected = body.slice(options.start - 1, options.start - 1 + options.count);
   if (!selected.length) throw new Error("The selected data-row range is empty");
-  const picked = importColumns(options.columns, columns, options.mode === "table" ? 12 : 6), headings = rows[0] ?? [];
+  const picked = importColumns(options.columns, columns, options.mode === "bulk" ? 20 : options.mode === "table" ? 12 : 6), headings = rows[0] ?? [];
+  if (options.mode === "bulk") {
+    if (!options.header) throw new Error("Bulk data needs a heading row");
+    const names = picked.map(column => (headings[column] ?? "").trim());
+    if (names.some(name => !name || name.length > 100) || new Set(names).size !== names.length) throw new Error("Choose unique, nonempty headings of up to 100 characters");
+    const result = [names, ...selected.map(row => picked.map(column => row[column] ?? ""))];
+    if (result.slice(1).some(row => row.some(cell => cell.length > 10000))) throw new Error("Imported bulk cells need at most 10,000 characters");
+    return { source: formatDelimitedData(result, "\t"), multiple: false, header: true, rows: result, count: selected.length, columns: picked.length };
+  }
   if (options.mode === "table") {
     const result = [...(options.header ? [picked.map(column => headings[column] ?? "")] : []), ...selected.map(row => picked.map(column => row[column] ?? ""))];
     if (result.some(row => row.some(cell => cell.length > 200))) throw new Error("Imported table cells need at most 200 characters");

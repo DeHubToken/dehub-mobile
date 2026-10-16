@@ -1,3 +1,6 @@
+import BulkPagePreview from "./BulkPagePreview";
+import DataImportMappingControls from "./DataImportMappingControls";
+import PasteDataImportControls from "./PasteDataImportControls";
 import BulkDataExportControls from "./BulkDataExportControls";
 import BulkPhotoNames from "./BulkPhotoNames";
 import { getMedia } from "../../libs/editor/storage";
@@ -36,8 +39,9 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; generation.current++; }; }, []);
   useEffect(() => { generation.current++; }, [source, first, last, connections, imageConnections, linkConnections, pageFields, rowFilter, time, project.id]);
   const [message, setMessage] = useState(""), [error, setError] = useState("");
+  const [pendingImport, setPendingImport] = useState<{ id: number; projectId: string; source: string; name: string } | null>(null);
   const request = useRef(0);
-  useEffect(() => () => { request.current++; }, []);
+  useEffect(() => { request.current++; setPendingImport(null); return () => { request.current++; }; }, [project.id]);
   const parsed = useMemo(() => { try { return { data: parseBulkData(source), error: "" }; } catch (value) { return { data: null, error: value instanceof Error ? value.message : "Invalid spreadsheet data" }; } }, [source]);
   const imageFields = useMemo(() => bulkImageFields(project, time), [project, time]);
   const photoNames = useMemo(() => bulkPhotoNames(project), [project]);
@@ -48,7 +52,8 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const end = Number(last || data?.rows.length || 0), page = Math.min(fieldPage, Math.max(0, Math.ceil(fields.length / 8) - 1));
   const selectedRows = useMemo(() => { try { return data ? bulkSelectedRows(data, Number(first), end, rowFilter) : []; } catch { return []; } }, [data, first, end, rowFilter]);
   const previewIncluded = selectedRows.includes(Math.min(rowIndex, (data?.rows.length ?? 1) - 1));
-  const changeSource = (value: string) => { setSource(value); setMessage(""); setError(""); setRowIndex(0); setLast(""); setRowFilter({}); };
+  const pagePreviewOptions = useMemo(() => data ? { data, row: previewIndex, time, connections, pageFields, linkConnections, imageConnections } : null, [data, rowIndex, time, connections, pageFields, linkConnections, imageConnections]);
+  const changeSource = (value: string) => { request.current++; setPendingImport(null); setFirst("1"); setSource(value); setMessage(""); setError(""); setRowIndex(0); setLast(""); setRowFilter({}); };
   const importFile = async () => {
     const token = ++request.current;
     let importedUri: string | undefined;
@@ -57,13 +62,13 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       if (result.canceled) return;
       const file = result.assets[0]; importedUri = file?.uri;
       if (token !== request.current || current()?.id !== project.id) return;
-      if (!file) throw new Error("Choose a CSV or TSV file");
+      if (!file || !/\.(csv|tsv|txt)$/i.test(file.name)) throw new Error("Choose a CSV or TSV file");
       if ((file.size ?? 0) > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
       const info = await FileSystem.getInfoAsync(file.uri);
       if (info.exists && info.size > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
       const text = await FileSystem.readAsStringAsync(file.uri);
       if (text.length > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
-      if (token === request.current && current()?.id === project.id) changeSource(text);
+      if (token === request.current && current()?.id === project.id) { setPendingImport({ id: token, projectId: project.id, source: text, name: file.name }); setError(""); }
     } catch (value) { if (token === request.current) setError(value instanceof Error ? value.message : "Could not read this file"); }
     finally { if (importedUri && FileSystem.cacheDirectory && importedUri.startsWith(FileSystem.cacheDirectory) && importedUri !== FileSystem.cacheDirectory) await FileSystem.deleteAsync(importedUri, { idempotent: true }).catch(() => {}); }
   };
@@ -89,6 +94,8 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
     <Text className="text-xs text-white/60">{t("editor.bulk.hint", { defaultValue: "Use the current page as a template. Connect text and QR layers to spreadsheet columns, or put column names in double braces inside your text. Each selected row creates a new page; the original stays in place." })}</Text>
     {button(t("editor.bulk.import", { defaultValue: "Import CSV or TSV" }), () => { void importFile(); })}
     <Text className="text-xs text-white/45">{t("editor.bulk.limits", { defaultValue: "Up to 50 rows and 20 columns" })}</Text>
+    <PasteDataImportControls bulk key={project.id} onPrepare={value => { const id = ++request.current; setPendingImport({ id, projectId: project.id, source: value, name: t("editor.dataImport.pastedName", { defaultValue: "pasted spreadsheet" }) }); setError(""); }} />
+    {pendingImport && pendingImport.projectId === project.id && <DataImportMappingControls key={pendingImport.id} source={pendingImport.source} name={pendingImport.name} mode="bulk" defaultMultiple={false} defaultHeader onUse={result => { if (pendingImport.projectId === project.id) changeSource(result.source); }} onCancel={() => setPendingImport(null)} />}
     <TextInput multiline value={source} onChangeText={value => { request.current++; changeSource(value); }} maxLength={500000} accessibilityLabel={t("editor.bulk.data", { defaultValue: "Spreadsheet data with column headers" })} autoCorrect={false} autoCapitalize="none" textAlignVertical="top" className="min-h-[100px] rounded-lg border border-white/20 p-2 text-xs text-white" />
     {data && <>
       <Text className="text-xs text-white/60">{data.rows.length} {t("editor.bulk.rows", { defaultValue: "data rows" })}</Text>
@@ -105,6 +112,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       <View style={{ gap: 6 }}><Text accessibilityLiveRegion="polite" className={previewIncluded ? "text-xs text-emerald-200" : "text-xs text-amber-200"}>{t(previewIncluded ? "editor.bulk.previewIncluded" : "editor.bulk.previewExcluded", { defaultValue: previewIncluded ? "This preview row is included in the batch." : "This preview row is outside the chosen range or filter." })}</Text>{!previewIncluded && selectedRows.length > 0 && button(t("editor.bulk.firstMatchingRecord", { defaultValue: "Preview first matching record" }), () => setRowIndex(selectedRows[0]))}</View>
       <Text className="text-xs text-white/60">{t("editor.bulk.preview", { defaultValue: "Preview data row" })} {previewIndex + 1}: {(previewRow?.[0] || "—").slice(0, 60)}</Text>
       <View className="flex-row" style={{ gap: 8 }}>{button(t("editor.bulk.previousRow", { defaultValue: "Previous row" }), () => setRowIndex(previewIndex - 1), previewIndex === 0)}{button(t("editor.bulk.nextRow", { defaultValue: "Next row" }), () => setRowIndex(previewIndex + 1), previewIndex + 1 >= data.rows.length)}</View>
+      {pagePreviewOptions && <BulkPagePreview key={project.id} project={project} options={pagePreviewOptions} />}
       {button(t("editor.bulk.generate", { defaultValue: "Generate {{count}} pages", count: bulkSelectedCount(data, Number(first), end, rowFilter) }), generate, generating || !bulkSelectedCount(data, Number(first), end, rowFilter) || (!connected.length && !bulkPageFieldsConnected(data.headers, pageFields) && !linkFields.some(clip => data.headers.includes(linkConnections[clip.id])) && !imageFields.some(clip => data.headers.includes(imageConnections[clip.id]))) || !Number.isInteger(Number(first)) || Number(first) < 1 || !Number.isInteger(end) || end < Number(first) || end > data.rows.length)}
     </>}
     {(parsed.error || error) && <Text accessibilityRole="alert" className="text-xs text-red-300">{error || parsed.error}</Text>}
