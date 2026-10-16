@@ -334,7 +334,7 @@ export interface ProjectSettings {
   background: string; // hex
   aspectPreset: AspectPreset;
   /** Nonprinting layout guides, stored as fractions so resizing preserves their positions. */
-  guides?: { vertical: number[]; horizontal: number[]; margin?: number; visible?: boolean; snap?: boolean; rulers?: boolean };
+  guides?: { vertical: number[]; horizontal: number[]; margin?: number; visible?: boolean; snap?: boolean; rulers?: boolean; unit?: "px" | "in" | "cm" | "mm" };
   /**
    * Start times (seconds) of each page, ascending, first is 0. Absent means a
    * single page. A page runs until the next page starts; the last one until
