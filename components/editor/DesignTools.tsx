@@ -59,7 +59,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   const action = (label: string, onPress: () => void, disabled = false, active = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ disabled, selected: active }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg px-3 ${active ? "bg-white/15" : "bg-white/5"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{label}</Text></Pressable>;
   return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
-      <DesignToolSearch onChoose={id => { Keyboard.dismiss(); setPanel(id === "layout" ? "groups" : id); }} />
+      <DesignToolSearch onChoose={id => { Keyboard.dismiss(); if (id === "pages") onPageChange?.(time); setPanel(id === "layout" ? "groups" : id); }} />
       {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
       {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document"].includes(panel ?? ""))}
       {contextual && action(t(`editor.selectionAction.${contextual.id}`, { defaultValue: contextual.label }), editSelected, !!selected?.locked || (!contextual.panel && !onEditContent))}
