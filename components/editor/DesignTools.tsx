@@ -1,3 +1,4 @@
+import ColourPickerButton from "./ColourPickerButton";
 import RepeatGridPanel from "./RepeatGridPanel";
 import DesignToolSearch from "./DesignToolSearch";
 import DocumentElementsPanel from "./DocumentElementsPanel";
@@ -123,7 +124,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {colour && <View className="flex-row items-center" style={{ gap: 8 }}>
         <Text className="text-xs text-white/60">{colour} →</Text>
         <TextInput accessibilityLabel={t("editor.designTools.replacement", { defaultValue: "Replacement colour" })} value={replacement} onChangeText={setReplacement} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-3 text-white" />
-        {action(t("editor.designTools.changeAll", { defaultValue: "Change all" }), () => { apply(p => replaceDesignColour(p, colour, replacement)); setColour(replacement); }, !/^#[0-9a-f]{6}$/i.test(replacement) || colour === replacement)}
+        <ColourPickerButton projectId={project.id} onPick={setReplacement} />{action(t("editor.designTools.changeAll", { defaultValue: "Change all" }), () => { apply(p => replaceDesignColour(p, colour, replacement)); setColour(replacement); }, !/^#[0-9a-f]{6}$/i.test(replacement) || colour === replacement)}
       </View>}
       <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
         {DESIGN_PALETTES.map(palette => <Pressable key={palette.id} accessibilityRole="button" onPress={() => apply(p => applyDesignPalette(p, palette.colours))} className="rounded-lg border border-white/15 px-3 py-2" style={{ gap: 6 }}>
