@@ -1,3 +1,4 @@
+import DataGraphicCaptionControls from "./DataGraphicCaptionControls";
 import TableSampleGallery from "./TableSampleGallery";
 import ChartSampleGallery from "./ChartSampleGallery";
 import { chartDraftAppearance } from "../../libs/editor/chartDraft";
@@ -93,7 +94,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     importRequest.current++; setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
-      setChartAppearance({ referenceLine: next.referenceLine, xAxisTitle: next.xAxisTitle, yAxisTitle: next.yAxisTitle, valueFormat: next.valueFormat, pieRotation: next.pieRotation, pieGap: next.pieGap, pieValueMode: next.pieValueMode, donutHole: next.donutHole, donutLabel: next.donutLabel, donutTotal: next.donutTotal, lineWidth: next.lineWidth, scatterLines: next.scatterLines, lineStyle: next.lineStyle, raceTop: next.raceTop, racePoster: next.racePoster, raceAnimate: next.raceAnimate, pictogramCount: next.pictogramCount, pictogramColumns: next.pictogramColumns, pictogramShape: next.pictogramShape, histogramBins: next.histogramBins, fontFamily: next.fontFamily, fontScale: next.fontScale, pointSize: next.pointSize, areaOpacity: next.areaOpacity, barGap: next.barGap, showGrid: next.showGrid, showAxisValues: next.showAxisValues, legendPosition: next.legendPosition, scaleXMin: next.scaleXMin, scaleXMax: next.scaleXMax, scaleMin: next.scaleMin, scaleMax: next.scaleMax });
+      setChartAppearance(chartDraftAppearance(next));
       setChartPalette([...next.colours]); setKind(next.kind); setData(chartDataSource(next)); setMultiple(!!next.series?.length); setStacked(!!next.stacked); setStackPercent(!!next.stackPercent); setShowLegend(next.showLegend !== false); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
     } else {
@@ -216,6 +217,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
       <View className="flex-row flex-wrap" style={{ gap: 8 }}>{[0, 0.5, 1, 2, 4, 8].map(width => chip(String(width), (tableFormat.borderWidth ?? 1) === width, () => setTableFormat(value => ({ ...value, borderWidth: width }))))}</View>
     </View>}
     {mode === "chart" && multiple && stacked && (kind === "bar" || kind === "column") && <View style={{ gap: 6 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={stackPercent} onValueChange={setStackPercent} accessibilityLabel={t("editor.charts.percentStack", { defaultValue: "100% stacked" })} /><Text className="text-xs text-white/75">{t("editor.charts.percentStack", { defaultValue: "100% stacked" })}</Text></View>{stackPercent && <Text className="text-[10px] text-white/45">{t("editor.charts.percentStackHint", { defaultValue: "Each category shows percentage shares. Positive and negative values each total 100% on their side of zero. Source values stay in the data grid and CSV downloads." })}</Text>}</View>}
+    <DataGraphicCaptionControls value={mode === "chart" ? chartAppearance : tableFormat} onChange={metadata => mode === "chart" ? setChartAppearance(previous => ({ ...previous, ...metadata })) : setTableFormat(previous => ({ ...previous, ...metadata }))} />
     <DataGraphicFontControls value={mode === "chart" ? chartAppearance.fontFamily : tableFormat.fontFamily} onChange={fontFamily => mode === "chart" ? setChartAppearance(previous => ({ ...previous, fontFamily })) : setTableFormat(previous => ({ ...previous, fontFamily }))} />
     {mode === "chart" && <ChartBrandPalettes value={[accent, ...chartPalette.slice(1)]} onChange={colours => { setChartPalette(colours); setAccent(colours[0]); }} />}
     {mode === "chart" && <ChartStyleFileControls key={`${project.id}:${selected?.id ?? "new"}`} value={previewValue && "chart" in previewValue ? previewValue.chart ?? null : null} title={project.title} onApply={(style, numbers) => { setChartAppearance(previous => ({ ...previous, ...chartStyleAppearance(style), ...(numbers ? { valueFormat: style.valueFormat } : {}) })); setChartPalette([...style.colours]); setAccent(style.colours[0]); setForeground(style.textColour); setShowLabels(style.showLabels); setShowValues(style.showValues); setShowLegend(style.showLegend !== false); }} />}
