@@ -54,3 +54,11 @@ export function designPdfLink(href: string | undefined, box: { cx: number; cy: n
   if (right <= left || bottom <= top) return null;
   return { url, x: left / W, y: top / H, width: (right - left) / W, height: (bottom - top) / H };
 }
+
+/** Copy-local destinations follow copied pages while unrelated links keep their targets. */
+export function retargetCopiedPageLinks(clips: Clip[], destinations: ReadonlyMap<number, number>): Clip[] {
+  return clips.map(clip => {
+    const target = clip.href ? designPageLinkIndex(clip.href) : null, destination = target === null ? undefined : destinations.get(target);
+    return destination === undefined ? clip : { ...clip, href: `#page=${destination + 1}` };
+  });
+}
