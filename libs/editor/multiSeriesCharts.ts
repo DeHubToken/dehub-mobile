@@ -1,3 +1,4 @@
+import { chartValueLabel } from "./chartValueFormat";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
 
 /** Grouped and stacked charts use the same numeric scale for every series. */
@@ -34,7 +35,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     series.forEach((_, set) => {
       ctx.beginPath(); values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.fillStyle = colour(set) + "26"; ctx.fill(); ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350); ctx.stroke();
-      if (chart.showValues) values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); ctx.fillStyle = colour(set); ctx.textAlign = "center"; label(String(value), p.x, p.y - font * (0.8 + set * 0.7), Math.max(font * 2, width / rows.length)); });
+      if (chart.showValues) values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); ctx.fillStyle = colour(set); ctx.textAlign = "center"; label(chartValueLabel(value, chart.valueFormat), p.x, p.y - font * (0.8 + set * 0.7), Math.max(font * 2, width / rows.length)); });
     });
     return true;
   }
@@ -47,7 +48,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   for (let tick = 0; tick <= 4; tick++) {
     const value = minimum + span * tick / 4, x = xFor(value), y = yFor(value);
     ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke();
-    if (!horizontal) { ctx.fillStyle = chart.textColour; ctx.textAlign = "right"; label(String(Number(value.toPrecision(3))), x0 - font / 2, y, font * 2.5); }
+    if (!horizontal) { ctx.fillStyle = chart.textColour; ctx.textAlign = "right"; label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), x0 - font / 2, y, font * 2.5); }
   }
   ctx.strokeStyle = chart.textColour; ctx.beginPath(); if (horizontal) { ctx.moveTo(zeroX, y0); ctx.lineTo(zeroX, y1); } else { ctx.moveTo(x0, zeroY); ctx.lineTo(x1, zeroY); } ctx.stroke();
   const up = rows.map(() => 0), down = rows.map(() => 0);
@@ -65,13 +66,13 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
         const slot = plotHeight / rows.length, band = slot * 0.76, thickness = stacked ? band : band / series.length;
         const y = y0 + slot * (index + 0.5) - band / 2 + (stacked ? 0 : set * thickness), from = xFor(base), to = xFor(base + value);
         ctx.fillRect(Math.min(from, to), y, Math.abs(to - from), Math.max(0.1, thickness * 0.92));
-        if (chart.showValues) { ctx.textAlign = "center"; ctx.fillStyle = chart.textColour; label(String(value), (from + to) / 2, y + thickness / 2, Math.max(1, Math.abs(to - from) - 4)); }
+        if (chart.showValues) { ctx.textAlign = "center"; ctx.fillStyle = chart.textColour; label(chartValueLabel(value, chart.valueFormat), (from + to) / 2, y + thickness / 2, Math.max(1, Math.abs(to - from) - 4)); }
       } else {
         const slot = plotWidth / rows.length, grouped = chart.kind === "column" || chart.kind === "lollipop", band = slot * 0.76, thickness = stacked || !grouped ? band : band / series.length;
         const x = x0 + slot * (index + 0.5) + (grouped && !stacked ? -band / 2 + (set + 0.5) * thickness : 0), from = yFor(base), to = yFor(base + value);
         if (chart.kind === "column") ctx.fillRect(x - thickness * 0.46, Math.min(from, to), Math.max(0.1, thickness * 0.92), Math.abs(to - from));
         else { if (chart.kind === "lollipop") { ctx.strokeStyle = colourValue; ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, to); ctx.stroke(); } ctx.beginPath(); ctx.arc(x, to, Math.max(2, width / 220), 0, Math.PI * 2); ctx.fill(); }
-        if (chart.showValues) { ctx.textAlign = "center"; ctx.fillStyle = chart.textColour; label(String(value), x, stacked ? (from + to) / 2 : Math.max(top + font / 2, to - font * 0.7), Math.max(1, thickness)); }
+        if (chart.showValues) { ctx.textAlign = "center"; ctx.fillStyle = chart.textColour; label(chartValueLabel(value, chart.valueFormat), x, stacked ? (from + to) / 2 : Math.max(top + font / 2, to - font * 0.7), Math.max(1, thickness)); }
       }
     });
   });

@@ -1,3 +1,4 @@
+import { CHART_VALUE_FORMAT_RUNTIME } from "./chartValueFormatRuntime";
 import { FREEHAND_RUNTIME } from "./freehandRuntime";
 import { TABLE_RENDERING_RUNTIME } from "./tableRenderingRuntime";
 import { MULTI_SERIES_CHARTS_RUNTIME } from "./multiSeriesChartsRuntime";
