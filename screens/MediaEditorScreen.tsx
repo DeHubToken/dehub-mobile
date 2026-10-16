@@ -1505,7 +1505,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
-  const downloadPdf = async (scope: PageExportScope) => {
+  const downloadPdf = async (scope: PageExportScope, cropMarks = false) => {
     const current = h.latest();
     const canvas = canvasRef.current;
     if (!current || !canvas || rendering !== null || h.isEditing()) return;
@@ -1514,7 +1514,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const ctl = new AbortController(); downloadController.current = ctl;
     setPlaying(false); setExportOpen(false); setRendering(0);
     try {
-      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true); return { dataUrl, links }; }, ctl.signal, setRendering);
+      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true); return { dataUrl, links }; }, ctl.signal, setRendering, cropMarks);
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
     } finally {
