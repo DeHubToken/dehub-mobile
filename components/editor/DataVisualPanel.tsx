@@ -1,3 +1,4 @@
+import TableFindReplaceControls from "./TableFindReplaceControls";
 import TableStyleFileControls from "./TableStyleFileControls";
 import { convertDataVisualSource } from "../../libs/editor/dataVisualConversion";
 import ChartStyleFileControls from "./ChartStyleFileControls";
@@ -159,6 +160,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {mode === "chart" && multiple && <ChartSeriesControls source={data} onChange={(source, order) => { importRequest.current++; const colours = chartSeriesEditColours([accent, ...chartPalette.slice(1)], order, DEFAULT_CHART.colours); setData(source); setChartPalette(colours); setAccent(colours[0]); setError(""); }} />}
     {mode === "chart" && <ChartTransposeControl source={data} multiple={multiple} disabled={kind === "scatter" || kind === "pie" || kind === "donut"} onChange={source => { importRequest.current++; setData(source); setMultiple(true); setError(""); }} />}
     {mode === "chart" && <ChartDataOrderControls scatter={kind === "scatter"} source={data} multiple={multiple} onChange={(source, order) => { importRequest.current++; setData(source); if (!multiple && kind !== "radar") { const colours = reorderChartCategoryColours([accent, ...chartPalette.slice(1)], order); setChartPalette(colours); setAccent(colours[0]); } setError(""); }} />}
+    {mode === "table" && <TableFindReplaceControls source={data} onChange={editData} />}
     <DataExportControls source={data} mode={mode} multiple={multiple} title={project.title} />
     <Pressable accessibilityRole="button" onPress={convertDraft} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t(mode === "chart" ? "editor.dataVisual.convertToTable" : "editor.dataVisual.convertToChart", { defaultValue: mode === "chart" ? "Use this data as a table" : "Use this data as a chart" })}</Text></Pressable>
     </> : <>
