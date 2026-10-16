@@ -1,3 +1,4 @@
+import { histogramChartData } from "./histogramChart";
 import { drawFunnelChart } from "./funnelChart";
 import { graphicFontCss, validGraphicFont } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
@@ -9,9 +10,10 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter", "funnel"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter", "funnel", "histogram"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  histogramBins?: number;
   fontFamily?: string;
   fontScale?: number;
   referenceLine?: { value: number; label?: string; colour: string };
@@ -98,6 +100,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   }
   if (table && Array.isArray(table.rows)) { drawEditableTable(ctx, width, height, table); return; }
   if (!chart || !Array.isArray(chart.rows)) return;
+  if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
   if (chart.kind === "funnel") { drawFunnelChart(ctx, width, height, chart, font); return; }
@@ -252,6 +255,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
+    if (chart.histogramBins !== undefined && (typeof chart.histogramBins !== "number" || !Number.isInteger(chart.histogramBins) || chart.histogramBins < 1 || chart.histogramBins > 20)) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
