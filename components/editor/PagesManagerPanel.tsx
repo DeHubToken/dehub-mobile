@@ -1,0 +1,35 @@
+import React, { useMemo, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import { designPageOverview, manageDesignPages, type PageManagementAction } from "../../libs/editor/pageManagement";
+import { pageAt } from "../../libs/editor/pages";
+import { newId } from "../../libs/editor/project";
+import type { ProjectSnapshot } from "../../libs/editor/types";
+
+export default function PagesManagerPanel({ project, time, current, commit, select, onPick }: {
+  project: ProjectSnapshot; time: number; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
+  select: (id: string | null) => void; onPick?: (time: number) => void;
+}) {
+  const { t } = useTranslation();
+  const pages = useMemo(() => designPageOverview(project), [project]), active = pageAt(pages, time);
+  const [picked, setPicked] = useState<number[]>([active.index]), [query, setQuery] = useState(""), [offset, setOffset] = useState(Math.floor(active.index / 12) * 12);
+  const [message, setMessage] = useState(""), [error, setError] = useState("");
+  const selected = picked.filter(index => !!pages[index]), needle = query.trim().toLowerCase();
+  const filtered = needle ? pages.filter(page => `${page.index + 1} ${page.title} ${page.headline}`.toLowerCase().includes(needle)) : pages;
+  const first = Math.min(offset, Math.max(0, Math.floor((filtered.length - 1) / 12) * 12));
+  const apply = (action: PageManagementAction) => {
+    try { const latest = current(); if (!latest || latest.id !== project.id) return; const result = manageDesignPages(latest, selected, action, () => newId(10)); if (result.project !== latest) { commit(result.project); select(null); onPick?.(result.time); } setPicked(result.selected); setQuery(""); setOffset(Math.floor(result.selected[0] / 12) * 12); setError(""); setMessage(t(`editor.pageManager.result.${action}`, { defaultValue: ({ duplicate: "Duplicated {{count}} pages", delete: "Deleted {{count}} pages", first: "Moved {{count}} pages", last: "Moved {{count}} pages" })[action], count: result.count })); }
+    catch (value) { setError(value instanceof Error ? value.message : "Could not change these pages"); }
+  };
+  const button = (label: string, onPress: () => void, disabled = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
+  return <View className="px-3" style={{ gap: 10 }}>
+    <TextInput value={query} onChangeText={value => { setQuery(value); setOffset(0); }} accessibilityLabel={t("editor.pageManager.search", { defaultValue: "Find pages by name, number, or headline" })} placeholder={t("editor.pageManager.search", { defaultValue: "Find pages by name, number, or headline" })} placeholderTextColor="#888888" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-sm text-white" />
+    <Text className="text-xs text-white/60">{t("editor.pageManager.selected", { defaultValue: "{{count}} pages selected", count: selected.length })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.pageManager.selectMatches", { defaultValue: "Select matching pages" }), () => setPicked(filtered.map(page => page.index)))}{button(t("editor.pageManager.clear", { defaultValue: "Clear selection" }), () => setPicked([]))}</View>
+    <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{(["duplicate", "delete", "first", "last"] as const).map(action => button(t(`editor.pageManager.action.${action}`, { defaultValue: ({ duplicate: "Duplicate selected", delete: "Delete selected", first: "Move to start", last: "Move to end" })[action] }), () => apply(action), !selected.length || (action !== "duplicate" && selected.length >= pages.length)))}</ScrollView>
+    {filtered.slice(first, first + 12).map(page => <View key={page.index} className={`flex-row items-center rounded-lg border p-2 ${active.index === page.index ? "border-sky-400/70 bg-sky-400/5" : "border-white/15"}`} style={{ gap: 8 }}><Pressable accessibilityRole="checkbox" accessibilityState={{ checked: selected.includes(page.index) }} onPress={() => setPicked(previous => previous.includes(page.index) ? previous.filter(index => index !== page.index) : [...new Set([...previous, page.index])])} className="min-h-[44px] flex-1 flex-row items-center" style={{ gap: 10 }}><Text className="text-base text-white">{selected.includes(page.index) ? "☑" : "☐"}</Text><View className="flex-1" style={{ gap: 4 }}><Text numberOfLines={1} className="text-xs text-white/85">{page.index + 1}. {page.title || page.headline || t("editor.pages.page", { number: page.index + 1 })}</Text><Text numberOfLines={2} className="text-[10px] text-white/45">{Number((page.end - page.start).toFixed(2))}s{page.locked ? ` · ${t("editor.pageManager.locked", { defaultValue: "Contains locked layers" })}` : ""}{page.title && page.headline ? ` · ${page.headline}` : ""}</Text></View></Pressable><Pressable accessibilityRole="button" disabled={!onPick} accessibilityLabel={t("editor.pageManager.openPage", { defaultValue: "Open page {{number}}", number: page.index + 1 })} onPress={() => { select(null); onPick?.(page.start + Math.min(0.6, (page.end - page.start) / 2)); }} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t("editor.pageManager.open", { defaultValue: "Open" })}</Text></Pressable></View>)}
+    {!filtered.length && <Text className="text-xs text-white/50">{t("editor.pages.noResults", { defaultValue: "No matching pages" })}</Text>}
+    {filtered.length > 12 && <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}>{button(t("editor.pages.previousSet", { defaultValue: "Previous pages" }), () => setOffset(first - 12), first === 0)}<Text className="text-xs text-white/45">{first + 1}–{Math.min(filtered.length, first + 12)} / {filtered.length}</Text>{button(t("editor.pages.nextSet", { defaultValue: "Next pages" }), () => setOffset(first + 12), first + 12 >= filtered.length)}</View>}
+    {message && <Text accessibilityLiveRegion="polite" className="text-xs text-white/60">{message}</Text>}{error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
+  </View>;
+}

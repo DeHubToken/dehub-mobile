@@ -1,3 +1,4 @@
+import PagesManagerPanel from "./PagesManagerPanel";
 import ResizeDesignPanel from "./ResizeDesignPanel";
 import { DESIGN_PANEL_NAMES, designSelectionAction } from "../../libs/editor/designPanels";
 import VectorSymbolsPanel from "./VectorSymbolsPanel";
@@ -25,8 +26,8 @@ import DesignLinkPanel from "./DesignLinkPanel";
 import PageNotesPanel from "./PageNotesPanel";
 import GuidesPanel from "./GuidesPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent, onEditContent }: {
-  onPresent?: () => void; onEditContent?: (id: string) => void;
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent, onEditContent, onPageChange }: {
+  onPageChange?: (time: number) => void; onPresent?: () => void; onEditContent?: (id: string) => void;
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
@@ -34,7 +35,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | null>(null);
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
@@ -72,6 +73,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
       {action(t("editor.links.title", { defaultValue: "Link" }), () => setPanel(panel === "link" ? null : "link"), !selected || selected.kind === "audio", panel === "link")}
       {action(t("editor.pageAnimation.title", { defaultValue: "Animate page" }), () => setPanel(panel === "animate" ? null : "animate"), false, panel === "animate")}
+      {action(t("editor.pageManager.title", { defaultValue: "Manage pages" }), () => { onPageChange?.(time); setPanel(panel === "pages" ? null : "pages"); }, false, panel === "pages")}
       {action(t("editor.notes.title", { defaultValue: "Page notes" }), () => setPanel(panel === "notes" ? null : "notes"), false, panel === "notes")}
       {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
@@ -89,6 +91,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
     {["data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "pages" && <PagesManagerPanel key={project.id} project={project} time={time} current={current} commit={commit} select={select} onPick={onPageChange} />}
     {panel === "symbols" && <VectorSymbolsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
     {panel === "connectors" && <ConnectorsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
     {panel === "animate" && <PageAnimationPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
