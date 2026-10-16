@@ -11,7 +11,7 @@ import { Chip } from "./EditorPanels";
 import { BRAND_OUTRO_DURATION } from "../../libs/editor/brandOutro";
 import { GIF_CONTENT_LIMIT, gifPlan } from "../../libs/editor/gif";
 import type { ExportScope } from "../../libs/editor/exportRanges";
-import { parsePageSelection, type PageExportScope } from "../../libs/editor/pageExports";
+import { parsePageExportOrder, type PageExportScope } from "../../libs/editor/pageExports";
 
 export default function ExportSheet(props: {
   visible: boolean;
@@ -55,7 +55,7 @@ export default function ExportSheet(props: {
   useEffect(() => { if (props.visible) { setFilenamePattern(""); setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
   let selectedPages: number[] = [], pageError = "";
-  if (pageScope === "custom") { try { selectedPages = parsePageSelection(pageSelection, props.pageCount); } catch (error) { pageError = error instanceof Error ? error.message : "Choose pages"; } }
+  if (pageScope === "custom") { try { selectedPages = parsePageExportOrder(pageSelection, props.pageCount); } catch (error) { pageError = error instanceof Error ? error.message : "Choose pages"; } }
   const sections = props.sections ?? [], chosenSection = sections.find(section => section.name === sectionName) ?? sections[0];
   const effectivePageScope: PageExportScope = pageScope === "section" ? chosenSection?.indexes ?? [] : pageScope === "custom" ? selectedPages : pageScope;
   const filenameError = format === "png" || format === "jpeg" ? pageFilenamePatternError(filenamePattern) : "";
@@ -96,6 +96,7 @@ export default function ExportSheet(props: {
         {isPdf && props.pageCount > 1 && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={bookmarks} onValueChange={setBookmarks} accessibilityLabel={t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })}</Text></View>}
         {format === "jpeg" && <JpegQualityControl value={jpegQuality} onChange={setJpegQuality} />}
         {(format === "png" || format === "jpeg") && <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })}</Text><TextInput value={filenamePattern} onChangeText={setFilenamePattern} maxLength={160} autoCorrect={false} autoCapitalize="none" placeholder="{title}-{page:2}-{name}" placeholderTextColor="#888" accessibilityLabel={t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" /><View className="flex-row flex-wrap" style={{ gap: 8 }}>{[["", "Default"], ["{title}-{page:2}", "Title and number"], ["{page:2}-{name}", "Page names"]].map(([pattern, label]) => <Chip key={label} label={t(`editor.export.filenamePreset.${label}`, { defaultValue: label })} active={filenamePattern === pattern} onPress={() => setFilenamePattern(pattern)} />)}</View><Text className="text-[10px] text-white/45">{t("editor.export.filenameHint", { defaultValue: "Leave blank for default names. Use {title}, {name}, {section}, {page}, or {page:3}. Add a prefix as plain text. Duplicate names receive a page-number suffix." })}</Text>{!!filenameError && <Text accessibilityRole="alert" className="text-xs text-red-300">{filenameError}</Text>}</View>}
+        {!isVideo && !isGif && pageScope === "custom" && <Text className="text-[10px] text-white/45">{t("editor.export.pageOrderHint", { defaultValue: "Pages follow the order entered. Use 3,1-2 to start with page 3, or 5-1 to reverse a range. Repeated page numbers appear once." })}</Text>}
         {!isVideo && !isGif && pageScope === "section" && <SectionExportPicker sections={sections} value={chosenSection?.name ?? ""} onChange={setSectionName} />}
         {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
         {isPptx && <Text className="text-xs text-white/55">{t("editor.export.pptxHint", { defaultValue: "Each page becomes one slide image, with presenter notes and links. Edit individual text and elements in the original design." })}</Text>}

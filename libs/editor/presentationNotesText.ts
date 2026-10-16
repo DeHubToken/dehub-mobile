@@ -4,7 +4,7 @@ import type { PageExportScope } from "./pageExports";
 import type { ProjectSnapshot } from "./types";
 export function presentationNotesText(project: ProjectSnapshot, time: number, scope: PageExportScope): string {
   const pages = getPages(project.settings, project.clips);
-  const indexes = Array.isArray(scope) ? [...new Set(scope)].sort((a, b) => a - b) : scope === "all" ? pages.map(page => page.index) : [pageAt(pages, time).index];
+  const indexes = Array.isArray(scope) ? [...new Set(scope)] : scope === "all" ? pages.map(page => page.index) : [pageAt(pages, time).index];
   if (!indexes.length || indexes.some(index => !Number.isInteger(index) || !pages[index])) throw new Error("Choose existing pages for the notes file");
   const line = (value: string) => value.replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim();
   const parts = [line(project.title) || "Presentation notes", ""]; let previous = "";
