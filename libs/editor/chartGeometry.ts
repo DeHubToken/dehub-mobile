@@ -2,7 +2,7 @@ import type { ChartData } from "./dataVisuals";
 export type ChartGeometry = Pick<ChartData, "lineWidth" | "scatterLines" | "lineStyle" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues">;
 export const CHART_GEOMETRY_CONTROLS = [
   { key: "lineWidth", label: "Line weight", min: 0.25, max: 5, step: 0.25, kinds: ["line", "area", "lollipop", "radar", "scatter", "bubble"] },
-  { key: "pointSize", label: "Point size", min: 0, max: 4, step: 0.25, kinds: ["line", "area", "lollipop", "scatter", "bubble"] },
+  { key: "pointSize", label: "Point size", min: 0, max: 4, step: 0.25, kinds: ["line", "area", "lollipop", "dot", "scatter", "bubble"] },
   { key: "areaOpacity", label: "Area opacity", min: 0, max: 1, step: 0.05, kinds: ["area", "radar", "bubble"] },
   { key: "barGap", label: "Bar spacing", min: 0, max: 0.9, step: 0.05, kinds: ["column", "bar", "histogram"] },
 ] as const;

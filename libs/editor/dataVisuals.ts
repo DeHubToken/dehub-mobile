@@ -11,7 +11,7 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   histogramBins?: number;
