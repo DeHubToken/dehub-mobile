@@ -27,6 +27,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (isProgressChart(chart.kind)) { drawProgressChart(ctx, width, height, chart); return; }
   if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
+  if (chart.kind === "packed-circles") { drawPackedCirclesChart(ctx, width, height, chart); return; }
   if (chart.kind === "treemap") { drawTreemapChart(ctx, width, height, chart); return; }
   if (chart.kind === "funnel") { drawFunnelChart(ctx, width, height, chart, font); return; }
   if (drawMultiSeriesChart(ctx, width, height, chart)) return;
