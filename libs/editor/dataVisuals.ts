@@ -1,3 +1,4 @@
+import { validPictogramSymbol } from "./pictogramSymbol";
 import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { drawPackedCirclesChart } from "./packedCirclesChart";
 import { drawProgressChart, isProgressChart } from "./progressCharts";
@@ -32,10 +33,11 @@ export interface ChartData {
   raceTop?: number;
   racePoster?: number;
   raceAnimate?: boolean;
+  pictogramSymbol?: string;
   pictogramMode?: "shares" | "progress";
   pictogramCount?: number;
   pictogramColumns?: number;
-  pictogramShape?: "circle" | "square" | "diamond" | "star" | "person";
+  pictogramShape?: "circle" | "square" | "diamond" | "star" | "person" | "symbol";
   histogramBins?: number;
   fontFamily?: string;
   fontScale?: number;
@@ -103,6 +105,7 @@ export interface TableData {
   wrap?: boolean;
 }
 export interface DataVisualContext {
+  lineCap?: string; lineJoin?: string;
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
   bezierCurveTo?(x1: number, y1: number, x2: number, y2: number, x: number, y: number): void;
   beginPath(): void; closePath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
@@ -307,11 +310,12 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.raceTop !== undefined && (typeof chart.raceTop !== "number" || !Number.isInteger(chart.raceTop) || chart.raceTop < 1 || chart.raceTop > 20)) return false;
     if (chart.racePoster !== undefined && (typeof chart.racePoster !== "number" || !Number.isFinite(chart.racePoster) || chart.racePoster < 0 || chart.racePoster > 1)) return false;
     if (chart.raceAnimate !== undefined && typeof chart.raceAnimate !== "boolean") return false;
+    if (!validPictogramSymbol(chart.pictogramSymbol)) return false;
     if (chart.pictogramMode !== undefined && !["shares", "progress"].includes(String(chart.pictogramMode))) return false;
     if (chart.kind === "pictogram" && chart.pictogramMode === "progress" && (!Number.isInteger(chart.rows[0].value) || chart.rows[0].value < 0 || chart.rows[0].value > Number(chart.pictogramCount ?? 100))) return false;
     if (chart.pictogramCount !== undefined && (typeof chart.pictogramCount !== "number" || !Number.isInteger(chart.pictogramCount) || chart.pictogramCount < 10 || chart.pictogramCount > 100)) return false;
     if (chart.pictogramColumns !== undefined && (typeof chart.pictogramColumns !== "number" || !Number.isInteger(chart.pictogramColumns) || chart.pictogramColumns < 2 || chart.pictogramColumns > 20)) return false;
-    if (chart.pictogramShape !== undefined && !["circle", "square", "diamond", "star", "person"].includes(String(chart.pictogramShape))) return false;
+    if (chart.pictogramShape !== undefined && !["circle", "square", "diamond", "star", "person", "symbol"].includes(String(chart.pictogramShape))) return false;
     if (chart.histogramBins !== undefined && (typeof chart.histogramBins !== "number" || !Number.isInteger(chart.histogramBins) || chart.histogramBins < 1 || chart.histogramBins > 20)) return false;
     for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
