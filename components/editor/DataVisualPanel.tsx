@@ -71,6 +71,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
+      setChartPalette([...next.colours]);
       setChartAppearance({ xAxisTitle: next.xAxisTitle, yAxisTitle: next.yAxisTitle, valueFormat: next.valueFormat, donutHole: next.donutHole, donutLabel: next.donutLabel, donutTotal: next.donutTotal, lineWidth: next.lineWidth, lineStyle: next.lineStyle, pointSize: next.pointSize, areaOpacity: next.areaOpacity, barGap: next.barGap, showGrid: next.showGrid, showAxisValues: next.showAxisValues, legendPosition: next.legendPosition, scaleMin: next.scaleMin, scaleMax: next.scaleMax });
       setChartPalette([...next.colours]); setKind(next.kind); setData(chartDataSource(next)); setMultiple(!!next.series?.length); setStacked(!!next.stacked); setStackPercent(!!next.stackPercent); setShowLegend(next.showLegend !== false); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
@@ -166,6 +167,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     </>}
     </ScrollView>
     <View className="border-t border-white/10 pt-2" style={{ gap: 6, marginHorizontal: 12 }}>
+    <Pressable accessibilityRole="button" onPress={() => choose(mode)} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.dataVisual.resetDraft", { defaultValue: "Reset draft" })}</Text></Pressable>
     <Pressable accessibilityRole="button" disabled={!!selected?.locked && !!(chart || table)} onPress={apply} className="min-h-[40px] items-center justify-center rounded-lg bg-white px-3"><Text className="text-xs font-semibold text-black">{t(chart || table ? "editor.dataVisual.update" : "editor.dataVisual.insert", { defaultValue: chart || table ? "Update graphic" : "Insert graphic" })}</Text></Pressable>
     {error !== "" && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
     </View>
