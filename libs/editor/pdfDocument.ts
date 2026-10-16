@@ -1,7 +1,7 @@
 import { designPrintDpi } from "./documentDimensions";
 import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "./designLinks";
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
-export interface PdfPage { dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
+export interface PdfPage { cropMarks?: boolean; dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
 const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255);
 
@@ -38,6 +38,7 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     const dpi = page.dpi ?? designPrintDpi({ width: designWidth, height: designHeight });
     if (!Number.isInteger(dpi) || dpi < 72 || dpi > 600) throw new Error("Invalid PDF print resolution");
     const width = Number((designWidth * 72 / dpi).toFixed(3)), height = Number((designHeight * 72 / dpi).toFixed(3));
+    const margin = page.cropMarks ? 18 : 0;
     const links = (page.links ?? []).slice(0, 500).flatMap(link => {
       const url = normaliseDesignLink(link.url);
       if (!url || ![link.x, link.y, link.width, link.height].every(Number.isFinite) || link.width <= 0 || link.height <= 0) return [];
@@ -46,15 +47,21 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
       const left = Math.max(0, Math.min(1, link.x)), right = Math.max(0, Math.min(1, link.x + link.width));
       const top = Math.max(0, Math.min(1, link.y)), bottom = Math.max(0, Math.min(1, link.y + link.height));
       if (right <= left || bottom <= top) return [];
-      return [{ id: nextObject++, action: destination === undefined ? `/S /URI /URI (${url.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)")})` : `/S /GoTo /D [${destination} 0 R /Fit]`, rect: [left * width, (1 - bottom) * height, right * width, (1 - top) * height].map(n => Number(n.toFixed(3))).join(" ") }];
+      return [{ id: nextObject++, action: destination === undefined ? `/S /URI /URI (${url.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)")})` : `/S /GoTo /D [${destination} 0 R /Fit]`, rect: [left * width + margin, (1 - bottom) * height + margin, right * width + margin, (1 - top) * height + margin].map(n => Number(n.toFixed(3))).join(" ") }];
     });
     const annotations = links.length ? ` /Annots [${links.map(link => `${link.id} 0 R`).join(" ")}]` : "";
-    await object(id, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /XObject << /Im0 ${id + 1} 0 R >> >> /Contents ${id + 2} 0 R${annotations} >>`);
+    await object(id, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width + margin * 2} ${height + margin * 2}] /TrimBox [${margin} ${margin} ${width + margin} ${height + margin}] /Resources << /XObject << /Im0 ${id + 1} 0 R >> >> /Contents ${id + 2} 0 R${annotations} >>`);
     offsets[id + 1] = position;
     await text(`${id + 1} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${page.width} /Height ${page.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${page.jpeg.length} >>\nstream\n`);
     await emit(page.jpeg);
     await text("\nendstream\nendobj\n");
-    const content = `q\n${width} 0 0 ${height} 0 0 cm\n/Im0 Do\nQ\n`;
+    let content = `q\n${width} 0 0 ${height} ${margin} ${margin} cm\n/Im0 Do\nQ\n`;
+    if (margin) {
+      content += "q\n0 0 0 RG\n0.25 w\n";
+      for (const y of [margin, height + margin]) for (const [a, b] of [[3, margin - 3], [width + margin + 3, width + margin * 2 - 3]]) content += `${a} ${y} m ${b} ${y} l S\n`;
+      for (const x of [margin, width + margin]) for (const [a, b] of [[3, margin - 3], [height + margin + 3, height + margin * 2 - 3]]) content += `${x} ${a} m ${x} ${b} l S\n`;
+      content += "Q\n";
+    }
     await object(id + 2, `<< /Length ${bytes(content).length} >>\nstream\n${content}endstream`);
     for (const link of links) await object(link.id, `<< /Type /Annot /Subtype /Link /Rect [${link.rect}] /Border [0 0 0] /A << ${link.action} >> >>`);
   }

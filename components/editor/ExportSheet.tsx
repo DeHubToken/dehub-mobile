@@ -23,7 +23,7 @@ export default function ExportSheet(props: {
   onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
-  onExportPdf?: (scope: PageExportScope) => void;
+  onExportPdf?: (scope: PageExportScope, cropMarks?: boolean) => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -32,6 +32,7 @@ export default function ExportSheet(props: {
   const [pageScope, setPageScope] = useState<"all" | "current" | "custom">("all");
   const [pageSelection, setPageSelection] = useState("1");
   const [transparent, setTransparent] = useState(false);
+  const [cropMarks, setCropMarks] = useState(false);
   const [scope, setScope] = useState<ExportScope>("timeline");
   const isVideo = !!props.video && format === "mp4";
   const isGif = format === "gif";
@@ -49,7 +50,7 @@ export default function ExportSheet(props: {
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
   const go = (target: "photos" | "post") => {
     if (props.busy || gifTooLong || invalidPages || (separate && !ranges.length)) return;
-    if (isPdf) props.onExportPdf?.(effectivePageScope);
+    if (isPdf) props.onExportPdf?.(effectivePageScope, cropMarks);
     else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
     else props.onExport(format === "jpeg" ? "jpeg" : "png", target, effectivePageScope, format === "png" && transparent);
@@ -71,6 +72,7 @@ export default function ExportSheet(props: {
             <Chip label={t("emojiPicker.tabGif")} active={isGif} onPress={() => setFormat("gif")} />
           </View>
         </View>
+        {isPdf && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={cropMarks} onValueChange={setCropMarks} accessibilityLabel={t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })}</Text></View>{cropMarks && <Text className="text-xs text-white/45">{t("editor.export.cropMarkHint", { defaultValue: "Adds cutting marks outside the artwork. The saved print resolution sets the finished page size." })}</Text>}</View>}
         {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
         {(isVideo || isGif) && props.ranges.all.length > 0 && <View>
           <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.scope")}</Text>
