@@ -2,7 +2,7 @@ export interface CurvedGlyph { text: string; x: number; y: number; rotation: num
 
 /** Bend each visual line around an arc, then centre its complete rotated glyph bounds. */
 export function curvedTextLayout(lines: string[], size: number, lineHeight: number, amount: number,
-  measure: (value: string) => number) {
+  measure: (value: string) => number, lineY?: readonly number[]) {
   const curve = Math.max(-100, Math.min(100, Number.isFinite(amount) ? amount : 0));
   if (Math.abs(curve) < 0.01) return null;
   const Segmenter = (Intl as unknown as { Segmenter?: new (locale?: string, options?: { granularity: string }) => { segment(value: string): Iterable<{ segment: string }> } }).Segmenter;
@@ -19,7 +19,7 @@ export function curvedTextLayout(lines: string[], size: number, lineHeight: numb
       const after = measure(prefix), advance = Math.max(0, after - before);
       const angle = ((before + after) / 2 - total / 2) / radius;
       const rotation = sign * angle;
-      const x = radius * Math.sin(angle), y = sign * radius * (1 - Math.cos(angle)) + lineIndex * lineHeight;
+      const x = radius * Math.sin(angle), y = sign * radius * (1 - Math.cos(angle)) + (lineY?.[lineIndex] ?? lineIndex * lineHeight);
       const width = Math.max(advance, measure(part));
       const halfWidth = Math.abs(Math.cos(rotation)) * width / 2 + Math.abs(Math.sin(rotation)) * size * 0.65;
       const halfHeight = Math.abs(Math.sin(rotation)) * width / 2 + Math.abs(Math.cos(rotation)) * size * 0.65;

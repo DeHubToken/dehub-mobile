@@ -356,7 +356,7 @@ canvas{display:block;width:100%;height:100%;}
     if (clip.kind === "text") {
       var l = layoutText(c, clip, W, H);
       var w = (l.curve ? l.curve.width : l.maxW) + l.pad * 2;
-      var h = (l.curve ? l.curve.height : l.lines.length * l.lh) + l.pad * 2;
+      var h = (l.curve ? l.curve.height : l.height) + l.pad * 2;
       var ax = clip.x * W;
       var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + (l.curve ? l.curve.width : l.maxW) / 2 : ax - (l.curve ? l.curve.width : l.maxW) / 2;
       return { cx: cx, cy: clip.y * H, w: w, h: h, rotation: tr.rotation };
@@ -682,7 +682,7 @@ canvas{display:block;width:100%;height:100%;}
     c.textBaseline = "middle";
     c.textAlign = text.align === "centre" ? "center" : text.align;
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
-    var startY = -((l.lines.length - 1) * l.lh) / 2;
+    var startY = -(l.height - l.lh) / 2;
     var lines = progress == null ? l.lines : textRevealLines(l.lines, progress);
     var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax + (l.offsets?.[i] ?? 0) : ax + (l.offsets?.[i] ?? 0) - l.widths[i]; };
     var drawX = function(i) { return progress == null ? ax + (l.offsets?.[i] ?? 0) : rtl ? leftFor(i) + l.widths[i] : leftFor(i); };
@@ -696,7 +696,7 @@ canvas{display:block;width:100%;height:100%;}
       if (text.background.perLine && !l.curve) {
         var padding = Math.max(0, text.background.padding / 1080 * H * l.scale);
         c.beginPath();
-        l.lines.forEach(function(line, index) { if (line.trim()) roundRectPath(c, leftFor(index) - padding, startY + index * l.lh - l.size / 2 - padding, l.widths[index] + padding * 2, l.size + padding * 2, radius * l.scale, true); });
+        l.lines.forEach(function(line, index) { if (line.trim()) roundRectPath(c, leftFor(index) - padding, startY + l.lineY[index] - l.size / 2 - padding, l.widths[index] + padding * 2, l.size + padding * 2, radius * l.scale, true); });
       } else roundRectPath(c, -box.w / 2, -box.h / 2, box.w, box.h, radius);
       c.fill();
       clearShadow(c);
@@ -744,7 +744,7 @@ canvas{display:block;width:100%;height:100%;}
       clearShadow(c);
       return;
     }
-    lines.forEach((line, index) => drawEcho(line, drawX(index), startY + index * l.lh));
+    lines.forEach((line, index) => drawEcho(line, drawX(index), startY + l.lineY[index]));
     var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
     if (textStroke && textStroke.width > 0) {
       c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
@@ -753,18 +753,18 @@ canvas{display:block;width:100%;height:100%;}
       c.strokeStyle = textStroke.color;
       c.lineJoin = "round";
       c.globalAlpha = textAlpha * paintOpacity(textStroke.opacity);
-      lines.forEach(function (ln, i) { c.strokeText(ln, drawX(i), startY + i * l.lh); });
+      lines.forEach(function (ln, i) { c.strokeText(ln, drawX(i), startY + l.lineY[i]); });
       c.globalAlpha = textAlpha;
       clearShadow(c);
     }
     c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
     c.globalAlpha = textAlpha * fillAlpha;
-    if (!text.hollow) lines.forEach(function (ln, i) { c.fillText(ln, drawX(i), startY + i * l.lh); });
+    if (!text.hollow) lines.forEach(function (ln, i) { c.fillText(ln, drawX(i), startY + l.lineY[i]); });
     clearShadow(c);
     if (text.strikethrough) {
       l.lines.forEach(function(line, i) {
         var width = progress == null ? l.widths[i] : c.measureText(lines[i]).width, left = rtl && progress != null ? leftFor(i) + l.widths[i] - width : leftFor(i);
-        c.fillRect(left, startY + i * l.lh, width, Math.max(1, l.size * 0.055));
+        c.fillRect(left, startY + l.lineY[i], width, Math.max(1, l.size * 0.055));
       });
     }
     if (text.underline) {
@@ -772,7 +772,7 @@ canvas{display:block;width:100%;height:100%;}
       l.lines.forEach(function (_, i) {
         var w = progress == null ? l.widths[i] : c.measureText(lines[i]).width;
         var left = rtl && progress != null ? leftFor(i) + l.widths[i] - w : leftFor(i);
-        c.fillRect(left, startY + i * l.lh + l.size * 0.45, w, thick);
+        c.fillRect(left, startY + l.lineY[i] + l.size * 0.45, w, thick);
       });
     }
     c.globalAlpha = textAlpha;
