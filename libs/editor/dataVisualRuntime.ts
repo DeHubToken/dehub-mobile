@@ -21,17 +21,21 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
-    const entries = chart.showLabels && chart.showLegend !== false ? positive.map(row => ({ colour: colour(row.colourIndex), label: row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : "") })) : [];
+    const portions = positive.map(row => {
+      const share = chartValueLabel(row.value / sum * 100, { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 1, compact: false, locale: chart.valueFormat?.locale }), actual = chartValueLabel(row.value, chart.valueFormat);
+      return chart.pieValueMode === "both" ? actual + " (" + share + ")" : chart.pieValueMode === "percent" ? share : chart.pieValueMode === "value" ? actual : chart.valueFormat ? actual : Number((row.value / sum * 100).toFixed(1)) + "%";
+    });
+    const entries = (chart.showLabels || chart.showValues) && chart.showLegend !== false ? positive.map((row, index) => ({ colour: colour(row.colourIndex), label: [chart.showLabels ? row.label : "", chart.showValues ? portions[index] : ""].filter(Boolean).join("  ") })) : [];
     const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour);
     const radius = Math.max(1, Math.min(plot.width * 0.45, plot.height * 0.45));
     const cx = plot.left + plot.width / 2, cy = plot.top + plot.height / 2;
-    let start = -Math.PI / 2;
+    let start = -Math.PI / 2 + (chart.pieRotation ?? 0) * Math.PI / 180;
     positive.forEach((row, index) => {
-      const end = start + row.value / sum * Math.PI * 2;
+      const end = start + row.value / sum * Math.PI * 2, gap = Math.min((chart.pieGap ?? 0) * Math.PI / 180, (end - start) * 0.8), from = start + gap / 2, to = end - gap / 2;
       ctx.fillStyle = colour(row.colourIndex); ctx.beginPath();
       if (chart.kind === "donut") {
-        ctx.arc(cx, cy, radius, start, end); ctx.arc(cx, cy, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
-      } else { ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, end); }
+        ctx.arc(cx, cy, radius, from, to); ctx.arc(cx, cy, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), to, from, true);
+      } else { ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, from, to); }
       ctx.closePath(); ctx.fill();
       start = end;
     });

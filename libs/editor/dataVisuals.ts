@@ -10,6 +10,9 @@ export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", 
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   valueFormat?: ChartValueFormat;
+  pieRotation?: number;
+  pieGap?: number;
+  pieValueMode?: "auto" | "percent" | "value" | "both";
   donutHole?: number;
   xAxisTitle?: string;
   yAxisTitle?: string;
@@ -97,17 +100,21 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
-    const entries = chart.showLabels && chart.showLegend !== false ? positive.map(row => ({ colour: colour(row.colourIndex), label: row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : "") })) : [];
+    const portions = positive.map(row => {
+      const share = chartValueLabel(row.value / sum * 100, { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 1, compact: false, locale: chart.valueFormat?.locale }), actual = chartValueLabel(row.value, chart.valueFormat);
+      return chart.pieValueMode === "both" ? actual + " (" + share + ")" : chart.pieValueMode === "percent" ? share : chart.pieValueMode === "value" ? actual : chart.valueFormat ? actual : Number((row.value / sum * 100).toFixed(1)) + "%";
+    });
+    const entries = (chart.showLabels || chart.showValues) && chart.showLegend !== false ? positive.map((row, index) => ({ colour: colour(row.colourIndex), label: [chart.showLabels ? row.label : "", chart.showValues ? portions[index] : ""].filter(Boolean).join("  ") })) : [];
     const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour);
     const radius = Math.max(1, Math.min(plot.width * 0.45, plot.height * 0.45));
     const cx = plot.left + plot.width / 2, cy = plot.top + plot.height / 2;
-    let start = -Math.PI / 2;
+    let start = -Math.PI / 2 + (chart.pieRotation ?? 0) * Math.PI / 180;
     positive.forEach((row, index) => {
-      const end = start + row.value / sum * Math.PI * 2;
+      const end = start + row.value / sum * Math.PI * 2, gap = Math.min((chart.pieGap ?? 0) * Math.PI / 180, (end - start) * 0.8), from = start + gap / 2, to = end - gap / 2;
       ctx.fillStyle = colour(row.colourIndex); ctx.beginPath();
       if (chart.kind === "donut") {
-        ctx.arc(cx, cy, radius, start, end); ctx.arc(cx, cy, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
-      } else { ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, end); }
+        ctx.arc(cx, cy, radius, from, to); ctx.arc(cx, cy, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), to, from, true);
+      } else { ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, from, to); }
       ctx.closePath(); ctx.fill();
       start = end;
     });
@@ -235,8 +242,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
     if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
     if (chart.donutTotal !== undefined && typeof chart.donutTotal !== "boolean") return false;
+    if (chart.pieValueMode !== undefined && !["auto", "percent", "value", "both"].includes(String(chart.pieValueMode))) return false;
     if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;
-    for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
+    for (const [key, minimum, maximum] of [["pieRotation", 0, 360], ["pieGap", 0, 20], ["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;
