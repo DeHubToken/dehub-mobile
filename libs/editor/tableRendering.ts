@@ -4,10 +4,24 @@ import type { DataVisualContext, TableData } from "./dataVisuals";
 export function drawEditableTable(ctx: DataVisualContext, width: number, height: number, table: TableData): void {
   const rows = table.rows.filter(Array.isArray).slice(0, 20), columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
   if (!rows.length) return;
+  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, table.fontScale || 1));
   const columnWeights = Array.from({ length: columns }, (_, index) => Math.max(0.1, Math.min(10, table.columnWidths?.[index] || 1)));
+  if (table.fitColumns) {
+    const padding = table.padding === undefined ? font / 2 : table.padding / 1080 * height;
+    for (let column = 0; column < columns; column++) {
+      let measured = font * 3;
+      rows.forEach((row, index) => {
+        if ((table.merges ?? []).some(merge => merge.columnSpan > 1 && index >= merge.row && index < merge.row + merge.rowSpan && column >= merge.column && column < merge.column + merge.columnSpan)) return;
+        const style = table.cellStyles?.[index + ":" + column], header = table.header && index === 0 || table.headerColumn && column === 0;
+        ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + font + "px Inter, sans-serif";
+        const text = String(row[column] ?? "").slice(0, 200);
+        for (const line of text.split(/\r?\n/)) measured = Math.max(measured, ctx.measureText(line).width + padding * 2);
+      });
+      columnWeights[column] = Math.max(1, Math.min(8, measured / (font * 3)));
+    }
+  }
   const rowWeights = rows.map((_, index) => Math.max(0.1, Math.min(10, table.rowHeights?.[index] || 1)));
   const columnTotal = columnWeights.reduce((sum, value) => sum + value, 0), rowTotal = rowWeights.reduce((sum, value) => sum + value, 0);
-  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, table.fontScale || 1));
   const xs = [-width / 2], ys = [-height / 2];
   for (const weight of columnWeights) xs.push(xs[xs.length - 1] + width * weight / columnTotal);
   for (const weight of rowWeights) ys.push(ys[ys.length - 1] + height * weight / rowTotal);
