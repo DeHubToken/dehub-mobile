@@ -1,3 +1,4 @@
+import BulkLinkConnectionsControls from "./BulkLinkConnectionsControls";
 import BulkRowFilterControls from "./BulkRowFilterControls";
 import { bulkSelectedCount, type BulkRowFilter } from "../../libs/editor/bulkRowFilter";
 import BulkPageFieldsControls from "./BulkPageFieldsControls";
@@ -7,7 +8,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system/legacy";
 import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
-import { bulkPageFieldsConnected, type BulkPageFields, bulkConnected, bulkFieldText, bulkTemplateFields, bulkTextValue, createBulkPages, parseBulkData, type BulkConnections } from "../../libs/editor/bulkCreate";
+import { bulkLinkFields, bulkPageFieldsConnected, type BulkPageFields, bulkConnected, bulkFieldText, bulkTemplateFields, bulkTextValue, createBulkPages, parseBulkData, type BulkConnections } from "../../libs/editor/bulkCreate";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
@@ -19,6 +20,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const [source, setSource] = useState("Name,Role\nAlex,Designer\nSam,Producer");
   const [rowFilter, setRowFilter] = useState<BulkRowFilter>({});
   const [pageFields, setPageFields] = useState<BulkPageFields>({});
+  const [linkConnections, setLinkConnections] = useState<BulkConnections>({});
   const [connections, setConnections] = useState<BulkConnections>({});
   const [first, setFirst] = useState("1"), [last, setLast] = useState("");
   const [rowIndex, setRowIndex] = useState(0), [fieldPage, setFieldPage] = useState(0);
@@ -26,6 +28,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const request = useRef(0);
   useEffect(() => () => { request.current++; }, []);
   const parsed = useMemo(() => { try { return { data: parseBulkData(source), error: "" }; } catch (value) { return { data: null, error: value instanceof Error ? value.message : "Invalid spreadsheet data" }; } }, [source]);
+  const linkFields = useMemo(() => bulkLinkFields(project, time), [project, time]);
   const fields = useMemo(() => bulkTemplateFields(project, time), [project, time]);
   const data = parsed.data, connected = data ? fields.filter(clip => bulkConnected(clip, data.headers, connections)) : [];
   const previewIndex = Math.min(rowIndex, (data?.rows.length ?? 1) - 1), previewRow = data?.rows[previewIndex];
@@ -49,7 +52,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
     try {
       const latest = current();
       if (!data || !latest || latest.id !== project.id) return;
-      const result = createBulkPages(latest, time, data, connections, Number(first), end, () => newId(10), pageFields, rowFilter);
+      const result = createBulkPages(latest, time, data, connections, Number(first), end, () => newId(10), pageFields, rowFilter, linkConnections);
       commit(result.project);
       const firstClip = result.project.clips.find(clip => clip.kind !== "audio" && clip.start >= result.start);
       if (firstClip) seek(firstClip.id, result.start);
@@ -66,13 +69,14 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       <Text className="text-xs text-white/60">{data.rows.length} {t("editor.bulk.rows", { defaultValue: "data rows" })}</Text>
       <View className="flex-row" style={{ gap: 10 }}><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.first", { defaultValue: "From row" })}</Text><TextInput value={first} onChangeText={setFirst} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.first", { defaultValue: "From row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.last", { defaultValue: "To row" })}</Text><TextInput value={last || String(data.rows.length)} onChangeText={setLast} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.last", { defaultValue: "To row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View></View>
       <BulkRowFilterControls headers={data.headers} value={rowFilter} onChange={value => { setRowFilter(value); setMessage(""); }} />
+      <BulkLinkConnectionsControls fields={linkFields} headers={data.headers} row={previewRow} value={linkConnections} onChange={value => { setLinkConnections(value); setMessage(""); }} />
       <BulkPageFieldsControls headers={data.headers} row={previewRow} value={pageFields} onChange={value => { setPageFields(value); setMessage(""); }} />
       {!fields.length && <Text className="text-xs text-white/60">{t("editor.bulk.noText", { defaultValue: "Add an unlocked text or QR layer to this page to connect your data." })}</Text>}
       {fields.slice(page * 8, page * 8 + 8).map(clip => <View key={clip.id} className="rounded-lg border border-white/10 p-2" style={{ gap: 8 }}><Text numberOfLines={2} className="text-xs text-white/80">{clip.label || (clip.kind === "shape" ? "QR: " + bulkFieldText(clip) : bulkFieldText(clip)) || t("editor.bulk.emptyText", { defaultValue: "Empty text layer" })}</Text><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{button(t("editor.bulk.placeholders", { defaultValue: "Use placeholders in text" }), () => setConnections(value => ({ ...value, [clip.id]: "" })), false, !connections[clip.id])}{data.headers.map(header => button(header, () => { setConnections(value => ({ ...value, [clip.id]: header })); setMessage(""); }, false, connections[clip.id] === header))}</ScrollView>{previewRow && <Text className="text-xs text-white/50">{bulkTextValue(clip, data.headers, previewRow, connections).slice(0, 500)}</Text>}</View>)}
       {fields.length > 8 && <View className="flex-row flex-wrap items-center" style={{ gap: 6 }}>{button(t("editor.bulk.previousLayers", { defaultValue: "Previous layers" }), () => setFieldPage(page - 1), page === 0)}<Text className="text-xs text-white/60">{page + 1} / {Math.ceil(fields.length / 8)}</Text>{button(t("editor.bulk.nextLayers", { defaultValue: "Next layers" }), () => setFieldPage(page + 1), (page + 1) * 8 >= fields.length)}</View>}
       <Text className="text-xs text-white/60">{t("editor.bulk.preview", { defaultValue: "Preview data row" })} {previewIndex + 1}: {(previewRow?.[0] || "—").slice(0, 60)}</Text>
       <View className="flex-row" style={{ gap: 8 }}>{button(t("editor.bulk.previousRow", { defaultValue: "Previous row" }), () => setRowIndex(previewIndex - 1), previewIndex === 0)}{button(t("editor.bulk.nextRow", { defaultValue: "Next row" }), () => setRowIndex(previewIndex + 1), previewIndex + 1 >= data.rows.length)}</View>
-      {button(t("editor.bulk.generate", { defaultValue: "Generate {{count}} pages", count: bulkSelectedCount(data, Number(first), end, rowFilter) }), generate, !bulkSelectedCount(data, Number(first), end, rowFilter) || (!connected.length && !bulkPageFieldsConnected(data.headers, pageFields)) || !Number.isInteger(Number(first)) || Number(first) < 1 || !Number.isInteger(end) || end < Number(first) || end > data.rows.length)}
+      {button(t("editor.bulk.generate", { defaultValue: "Generate {{count}} pages", count: bulkSelectedCount(data, Number(first), end, rowFilter) }), generate, !bulkSelectedCount(data, Number(first), end, rowFilter) || (!connected.length && !bulkPageFieldsConnected(data.headers, pageFields) && !linkFields.some(clip => data.headers.includes(linkConnections[clip.id]))) || !Number.isInteger(Number(first)) || Number(first) < 1 || !Number.isInteger(end) || end < Number(first) || end > data.rows.length)}
     </>}
     {(parsed.error || error) && <Text accessibilityRole="alert" className="text-xs text-red-300">{error || parsed.error}</Text>}
     {message && <Text accessibilityLiveRegion="polite" className="text-xs text-emerald-300">{message}</Text>}

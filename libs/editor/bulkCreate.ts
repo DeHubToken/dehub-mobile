@@ -1,4 +1,4 @@
-import { designPageLinkIndex } from "./designLinks";
+import { normaliseDesignLink, designPageLinkIndex } from "./designLinks";
 import { bulkSelectedRows, type BulkRowFilter } from "./bulkRowFilter";
 import { refreshPageNumberClips } from "./pageNumbering";
 import { parseDelimitedData } from "./delimitedData";
@@ -32,6 +32,12 @@ export function bulkTemplateFields(project: ProjectSnapshot, time: number): Bulk
   return project.clips.filter((clip): clip is BulkField => (clip.kind === "text" || (clip.kind === "shape" && !!clip.qr)) && !clip.locked && clip.start < page.end && clip.start + clip.duration > page.start);
 }
 
+export function bulkLinkFields(project: ProjectSnapshot, time: number): Clip[] {
+  const page = pageAt(getPages(project.settings, project.clips), time);
+  return project.clips.filter(clip => clip.kind !== "audio" && !clip.locked && clip.start < page.end && clip.start + clip.duration > page.start);
+}
+export function bulkLinksConnected(project: ProjectSnapshot, time: number, headers: string[], connections: BulkConnections): boolean { return bulkLinkFields(project, time).some(clip => headers.includes(connections[clip.id])); }
+
 export function bulkFieldText(clip: BulkField): string { return clip.kind === "text" ? clip.text : clip.qr.content; }
 
 export function bulkReplaceTokens(text: string, headers: string[], row: string[]): string {
@@ -52,7 +58,7 @@ export function bulkConnected(clip: BulkField, headers: string[], connections: B
 }
 
 /** Append one independent copy of the current page for every selected data row. */
-export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}, rowFilter: BulkRowFilter = {}): { project: ProjectSnapshot; start: number; count: number } {
+export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}, rowFilter: BulkRowFilter = {}, linkConnections: BulkConnections = {}): { project: ProjectSnapshot; start: number; count: number } {
   if (!Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last > data.rows.length || last < first || last - first >= 50) throw new Error("Choose a valid range of up to 50 data rows");
   const rows = bulkSelectedRows(data, first, last, rowFilter);
   if (!rows.length) throw new Error("No rows match this filter in the selected range");
@@ -61,7 +67,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
   if (!Number.isFinite(duration) || duration < 0.05) throw new Error("Give the template page a duration before generating pages");
   const source = project.clips.filter(clip => clip.start < template.end && clip.start + clip.duration > template.start);
   const fields = bulkTemplateFields(project, time);
-  if (!fields.some(clip => bulkConnected(clip, data.headers, connections)) && !bulkPageFieldsConnected(data.headers, pageFields)) throw new Error("Connect text, a QR code, or a page field to a column, or add a matching {{column}} placeholder");
+  if (!fields.some(clip => bulkConnected(clip, data.headers, connections)) && !bulkPageFieldsConnected(data.headers, pageFields) && !bulkLinksConnected(project, time, data.headers, linkConnections)) throw new Error("Connect text, a QR code, a page field, or a layer link to a column, or add a matching {{column}} placeholder");
   if (pages.length + count > 500 || project.clips.length + source.length * count > 10000) throw new Error("This batch exceeds the design’s page or layer limit. Choose fewer rows");
   const start = pages[pages.length - 1].end, copies: Clip[] = [], starts = pages.map(page => page.start);
   if (start + count * duration > 86400) throw new Error("This batch exceeds the design’s 24-hour timeline limit. Choose fewer rows");
@@ -72,7 +78,13 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
     const copied = source.flatMap<Clip>(clip => {
       const from = Math.max(clip.start, template.start), to = Math.min(clip.start + clip.duration, template.end);
       if (to - from < 0.05) return [];
-      const copy = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), at + from - template.start);
+      let copy = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), at + from - template.start);
+      const linkColumn = data.headers.indexOf(linkConnections[clip.id]);
+      if (!clip.locked && clip.kind !== "audio" && linkColumn >= 0) {
+        const text = (row[linkColumn] ?? "").trim(), href = text ? normaliseDesignLink(text) : undefined;
+        if (href === null) throw new Error(`Row ${index + 1}: use a valid web, email, phone, or page link in ${data.headers[linkColumn]}`);
+        copy = { ...copy, href };
+      }
       if (copy.kind === "shape" && clip.kind === "shape" && clip.qr && !clip.locked) {
         const field = { ...clip, qr: clip.qr };
         if (bulkConnected(field, data.headers, connections)) {
