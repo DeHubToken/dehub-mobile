@@ -1,3 +1,4 @@
+import { bulkTokenHeader, formatBulkToken } from "./bulkTokenFormatting";
 import { applyBulkPhoto, bulkImageFields, planBulkPhotos } from "./bulkPhotos";
 import type { ReplacementMedia } from "./replaceMedia";
 import { normaliseDesignLink, designPageLinkIndex } from "./designLinks";
@@ -44,8 +45,7 @@ export function bulkFieldText(clip: BulkField): string { return clip.kind === "t
 
 export function bulkReplaceTokens(text: string, headers: string[], row: string[]): string {
   return text.replace(TOKEN, (token, name: string) => {
-    const index = headers.indexOf(name.trim());
-    return index >= 0 ? row[index] ?? "" : token;
+    return formatBulkToken(name, headers, row) ?? token;
   });
 }
 
@@ -55,8 +55,13 @@ export function bulkTextValue(clip: BulkField, headers: string[], row: string[],
   return bulkReplaceTokens(bulkFieldText(clip), headers, row);
 }
 
+export function bulkTextPreviewValue(clip: BulkField, headers: string[], row: string[], connections: BulkConnections): string {
+  try { return bulkTextValue(clip, headers, row, connections); }
+  catch (reason) { return reason instanceof Error ? reason.message : "Could not format this data record"; }
+}
+
 export function bulkConnected(clip: BulkField, headers: string[], connections: BulkConnections): boolean {
-  return headers.includes(connections[clip.id]) || Array.from(bulkFieldText(clip).matchAll(TOKEN)).some(match => headers.includes(match[1].trim()));
+  return headers.includes(connections[clip.id]) || Array.from(bulkFieldText(clip).matchAll(TOKEN)).some(match => bulkTokenHeader(match[1], headers) !== undefined);
 }
 
 /** Append one independent copy of the current page for every selected data row. */
