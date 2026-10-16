@@ -1,3 +1,4 @@
+import { designPageLinkIndex } from "./designLinks";
 import { bulkSelectedRows, type BulkRowFilter } from "./bulkRowFilter";
 import { refreshPageNumberClips } from "./pageNumbering";
 import { parseDelimitedData } from "./delimitedData";
@@ -81,7 +82,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
       }
       return [copy.kind === "text" && clip.kind === "text" && !clip.locked ? { ...copy, text: bulkTextValue(clip, data.headers, row, connections) } : copy];
     });
-    copies.push(...remapDesignGroups(copied, makeId));
+    copies.push(...remapDesignGroups(copied.map(clip => clip.href && designPageLinkIndex(clip.href) === template.index ? { ...clip, href: `#page=${pages.length + offset + 1}` } : clip), makeId));
     const field = (column: string | undefined, template: string) => { const position = column ? data.headers.indexOf(column) : -1; return position >= 0 ? row[position] ?? "" : bulkReplaceTokens(template, data.headers, row); };
     const title = field(pageFields.titleColumn, original.title).trim();
     const section = field(pageFields.sectionColumn, original.section ?? "").replace(/\s+/g, " ").trim().slice(0, 80);
