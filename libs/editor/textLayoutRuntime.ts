@@ -1,5 +1,33 @@
 /** Caption layout shared by the native preview and every export frame. */
-export const TEXT_LAYOUT_RUNTIME = String.raw`function textListDigits(value, style) {
+export const TEXT_LAYOUT_RUNTIME = String.raw`function paragraphGraphemes(value) {
+  const Segmenter = Intl.Segmenter;
+  return Segmenter ? Array.from(new Segmenter(undefined, { granularity: "grapheme" }).segment(value), part => part.segment) : Array.from(value);
+}
+
+/** Keep a list marker with its first word and indent continuation lines beneath the text. */
+function wrapTextParagraph(paragraph, available, measure, hanging) {
+  const prefix = hanging ? paragraph.match(/^(?:[•◦▪–✓]|(?:[0-9]+|[a-zA-Z]+)\.)\s+/)?.[0] ?? "" : "";
+  const body = (prefix ? paragraph.slice(prefix.length) : paragraph).trim(), indent = Math.min(measure(prefix), available * 0.5);
+  const lines = [], offsets = [];
+  let line = prefix, offset = 0, first = true;
+  const push = () => { lines.push(line.trimEnd()); offsets.push(offset); first = false; line = ""; offset = indent; };
+  for (const word of body.split(/\s+/).filter(Boolean)) {
+    const hasBody = first ? line !== prefix : !!line;
+    const candidate = line + (hasBody ? " " : "") + word;
+    if (measure(candidate) + offset <= available) { line = candidate; continue; }
+    if (hasBody) push();
+    const currentHasBody = first ? line !== prefix : !!line;
+    const next = line + (currentHasBody ? " " : "") + word;
+    if (measure(next) + offset <= available) { line = next; continue; }
+    for (const part of paragraphGraphemes(word)) {
+      if (line && (!first || line !== prefix) && measure(line + part) + offset > available) push();
+      line += part;
+    }
+  }
+  lines.push(line.trimEnd()); offsets.push(offset);
+  return { lines, offsets };
+}
+function textListDigits(value, style) {
   value = Math.max(1, Math.min(20000, Math.floor(value)));
   let output = "";
   if (style.startsWith("alpha")) { for (let n = value; n > 0; n = Math.floor((n - 1) / 26)) output = String.fromCharCode(65 + (n - 1) % 26) + output; }
@@ -70,30 +98,21 @@ function measuredTextLayout(text, W, H, measure) {
     const echoPad = Math.max(0, ...(text.echo || []).slice(0, 3).map(layer => Math.max(Math.abs(layer.x), Math.abs(layer.y)) / 1080 * H * scale));
     const pad = Math.max(0, padding, echoPad, (text.stroke ? text.stroke.width : 0) / 1080 * H * scale / 2);
     const available = Math.max(0.1, widthLimit - pad * 2);
-    const lines = [];
+    const lines = [], offsets = [];
     const width = (line) => measure(line, size, spacing);
-    raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
-      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); return; }
-      let line = "";
-      paragraph.trim().split(/\s+/).forEach(word => {
-        const candidate = line ? line + " " + word : word;
-        if (width(candidate) <= available) { line = candidate; return; }
-        if (line) { lines.push(line); line = ""; }
-        if (width(word) <= available) { line = word; return; }
-        const Segmenter = Intl.Segmenter;
-        const parts = Segmenter ? Array.from(new Segmenter(undefined, { granularity: "grapheme" }).segment(word), part => part.segment) : Array.from(word);
-        parts.forEach(part => {
-          if (line && width(line + part) > available) { lines.push(line); line = ""; }
-          line += part;
-        });
-      });
-      lines.push(line);
+    raw.replace(/
+?/g, "
+").split("
+").forEach(paragraph => {
+      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
+      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && text.align === "left" && Math.abs(text.curve ?? 0) < 0.01);
+      lines.push(...wrapped.lines); offsets.push(...wrapped.offsets);
     });
     const widths = lines.map(width);
     const lh = size * (text.lineHeight == null ? 1.2 : text.lineHeight);
-    const maxW = Math.max(0.1, ...widths);
+    const maxW = Math.max(0.1, ...widths.map((value, index) => value + offsets[index]));
     const curve = curvedTextLayout(lines, size, lh, text.curve || 0, width);
-    return { size, scale, spacing, lh, lines, widths, maxW, pad, curve };
+    return { size, scale, spacing, lh, lines, offsets, widths, maxW, pad, curve };
   }
 
   const fits = (value) => (value.curve ? value.curve.width : value.maxW) + value.pad * 2 <= widthLimit + 0.01

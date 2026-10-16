@@ -661,8 +661,8 @@ canvas{display:block;width:100%;height:100%;}
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
     var startY = -((l.lines.length - 1) * l.lh) / 2;
     var lines = progress == null ? l.lines : textRevealLines(l.lines, progress);
-    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax : ax - l.widths[i]; };
-    var drawX = function(i) { return progress == null ? ax : leftFor(i); };
+    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax + (l.offsets?.[i] ?? 0) : ax - l.widths[i]; };
+    var drawX = function(i) { return progress == null ? ax + (l.offsets?.[i] ?? 0) : leftFor(i); };
     if (progress != null) c.textAlign = "left";
     if (text.background && text.background.opacity > 0) {
       var radius = Math.max(0, (text.background.radius / 1080) * H);
