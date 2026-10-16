@@ -113,7 +113,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel === "groups" && <GroupsPanel boxes={boxes} recording={recording} project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
-    {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}
+    {panel === "search" && <DesignTextSearch project={project} time={time} selectedId={selectedId} apply={apply} seek={seek} />}
     {panel === "resize" && <ResizeDesignPanel key={project.id} project={project} current={current} commit={commit} />}
     {panel === "colours" && <View className="px-3" style={{ gap: 10 }}>
       <Text className="text-xs text-white/60">{t("editor.designTools.colourHint", { defaultValue: "Choose a colour to replace across this design. Locked layers are preserved." })}</Text>
