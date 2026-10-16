@@ -42,7 +42,7 @@ export default function FillPanel({ project, selectedId, current, commit, select
     <BackgroundScopeControls project={project} time={time} current={current} commit={commit} select={select} />
     <Text className="text-xs text-white/55">{t("editor.fills.hint", { defaultValue: "Apply a gradient to selected text or shapes, or add it behind this page." })}</Text>
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { const next = { ...fill, stops: gradientFromColours(preset.colours).stops }; setFill(next); apply(next, !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}><View className="flex-row overflow-hidden rounded">{preset.colours.map(colour => <View key={colour} style={{ width: 25, height: 24, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.fills.preset.${preset.id}`, { defaultValue: preset.label })}</Text></Pressable>)}</ScrollView>
-    <GradientEditor value={fill} onChange={setFill} />
+    <GradientEditor value={fill} onChange={setFill} projectId={project.id} />
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
       {button(t("editor.fills.apply", { defaultValue: "Apply fill" }), () => apply(fill), !valid || !canFill)}
       {button(t("editor.fills.background", { defaultValue: "Use as page background" }), () => apply(fill, true), !valid)}

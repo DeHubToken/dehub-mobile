@@ -1,3 +1,4 @@
+import { beginDesignColourSample, cancelDesignColourPick, finishDesignColourSample, getDesignColourPick, useDesignColourPick } from "../../libs/editor/designColourPicker";
 import { designPrintDpi } from "../../libs/editor/documentDimensions";
 import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
 import { FIT_VIEWPORT, focusDesignSelection, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
@@ -161,6 +162,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const { project, time, fontCss, selectedId } = props;
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
+  const colourPick = useDesignColourPick(), sampling = colourPick?.projectId === project.id;
+  const colourTimers = useRef(new Map<number, ReturnType<typeof setTimeout>>());
+  useEffect(() => () => { for (const timer of colourTimers.current.values()) clearTimeout(timer); colourTimers.current.clear(); if (getDesignColourPick()?.projectId === project.id) cancelDesignColourPick(); }, [project.id]);
   const [webKey, setWebKey] = useState(0);
   const [area, setArea] = useState({ w: 0, h: 0 });
   const [viewport, setViewport] = useState<DesignViewport>(FIT_VIEWPORT);
@@ -213,8 +217,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
 
   // Everything the gesture callbacks read, kept current without rebuilding them.
-  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, origin, viewportSize });
-  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, origin, viewportSize };
+  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, sampling, origin, viewportSize });
+  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, sampling, origin, viewportSize };
   const drag = useRef<Drag | null>(null);
   const strokeLease = useRef<ProjectEditLease | null>(null);
   const strokeOwner = useRef<string | null>(null);
@@ -415,6 +419,11 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (req && req.reqId === msg.reqId && Array.isArray(msg.pts)) {
           setPath({ id: req.id, pts: msg.pts, keys: Array.isArray(msg.keys) ? msg.keys : [] });
         }
+        break;
+      }
+      case "colourSampled": {
+        const token = Number(msg.token), timer = colourTimers.current.get(token);
+        if (timer !== undefined) { clearTimeout(timer); colourTimers.current.delete(token); finishDesignColourSample(token, typeof msg.colour === "string" ? msg.colour : null, typeof msg.error === "string" ? msg.error : ""); }
         break;
       }
       case "exported":
@@ -942,7 +951,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .maxPointers(2)
       .onStart((e) => {
         const { props: p } = live.current;
-        if (live.current.editingGuides) return;
+        if (live.current.editingGuides || live.current.sampling) return;
         if (live.current.navigating) { joinViewport("pan"); return; }
         if (p.pen) {
           const lease = p.onGestureStart?.() ?? null;
@@ -1003,7 +1012,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const pinch = Gesture.Pinch()
       .runOnJS(true)
-      .onStart((event) => { if (live.current.editingGuides) return; if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
+      .onStart((event) => { if (live.current.editingGuides || live.current.sampling) return; if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (viewportDrag.current?.active.has("pinch")) { viewportDrag.current.factor = e.scale; applyViewport(); return; }
         if (!drag.current) return;
@@ -1014,7 +1023,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const rotate = Gesture.Rotation()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen && !live.current.navigating && !live.current.editingGuides) join("rotate", live.current.props.selectedId); })
+      .onStart(() => { if (!live.current.props.pen && !live.current.navigating && !live.current.editingGuides && !live.current.sampling) join("rotate", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.rotation = (e.rotation * 180) / Math.PI;
@@ -1025,7 +1034,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tap = Gesture.Tap()
       .runOnJS(true)
       .onEnd((e) => {
-        if (live.current.props.pen || live.current.navigating || live.current.editingGuides) return;
+        if (live.current.props.pen || live.current.navigating || live.current.editingGuides || live.current.sampling) return;
         const hit = hitTest(e.x, e.y);
         if (!live.current.props.cropping || hit?.id !== live.current.props.selectedId) live.current.props.onSelect(hit ? hit.id : null);
       });
@@ -1034,7 +1043,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .runOnJS(true)
       .numberOfTaps(2)
       .onEnd((e) => {
-        if (live.current.editingGuides) return;
+        if (live.current.editingGuides || live.current.sampling) return;
         if (live.current.navigating) { viewportDrag.current = null; setViewport(FIT_VIEWPORT); return; }
         const hit = hitTest(e.x, e.y);
         if (!hit) return;
@@ -1050,7 +1059,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
   const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
-  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating && !editingGuides ? (memberBoxes.length > 1 ? (() => {
+  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating && !editingGuides && !sampling ? (memberBoxes.length > 1 ? (() => {
     const extents = memberBoxes.map(box => {
       const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
       return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };
@@ -1167,7 +1176,14 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           </View>
         </GestureDetector>
       )}
-      {k > 0 && <GuideEditorOverlay project={project} active={editingGuides} rulers={layoutGuides.rulers || editingGuides} disabled={!editingGuides && (!!props.pen || !!props.cropping || navigating || !!props.playing)} page={{ ...origin, w: viewW * viewport.zoom, h: viewH * viewport.zoom }} viewport={viewportSize} onActivate={() => { endDrag(); if (props.playing) props.onEnded?.(time); setEditingGuides(true); }} onBegin={props.onGestureStart} onCommit={next => { props.onLiveChange(next); props.onGestureEnd(); }} />}
+      {k > 0 && <GuideEditorOverlay project={project} active={editingGuides} rulers={layoutGuides.rulers || editingGuides} disabled={sampling || (!editingGuides && (!!props.pen || !!props.cropping || navigating || !!props.playing))} page={{ ...origin, w: viewW * viewport.zoom, h: viewH * viewport.zoom }} viewport={viewportSize} onActivate={() => { endDrag(); if (props.playing) props.onEnded?.(time); setEditingGuides(true); }} onBegin={props.onGestureStart} onCommit={next => { props.onLiveChange(next); props.onGestureEnd(); }} />}
+      {sampling && k > 0 && <View pointerEvents="box-none" style={{ position: "absolute", left: 0, top: 0, width: viewportSize.w, height: viewportSize.h }}><Pressable accessibilityRole="button" accessibilityLabel={t("editor.colourPicker.canvasHint", { defaultValue: "Tap a colour on the page" })} style={{ position: "absolute", left: origin.x, top: origin.y, width: viewW * viewport.zoom, height: viewH * viewport.zoom }} onPress={event => {
+        const token = beginDesignColourSample(project.id); if (token === null) return;
+        if (!ready) { finishDesignColourSample(token, null, "The canvas is not ready"); return; }
+        if (props.playing) props.onEnded?.(time);
+        const timer = setTimeout(() => { colourTimers.current.delete(token); finishDesignColourSample(token, null, "Colour sampling timed out. Try again"); }, 10000); colourTimers.current.set(token, timer);
+        post({ type: "sampleColour", token, projectId: project.id, x: event.nativeEvent.locationX / (viewW * viewport.zoom), y: event.nativeEvent.locationY / (viewH * viewport.zoom) });
+      }} /><View className="absolute left-2 right-2 top-2 flex-row items-center rounded-lg bg-black/90 px-3 py-2" style={{ gap: 10 }}><Text accessibilityLiveRegion="polite" className="flex-1 text-xs text-cyan-100">{colourPick.error || t(colourPick.pending ? "editor.colourPicker.pending" : "editor.colourPicker.canvasHint", { defaultValue: colourPick.pending ? "Sampling colour…" : "Tap a colour on the page" })}</Text><Pressable accessibilityRole="button" onPress={() => cancelDesignColourPick(colourPick.token)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("common.cancel", { defaultValue: "Cancel" })}</Text></Pressable></View></View>}
             {props.cropping && !editingGuides && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/90" style={{ height: 44 }} contentContainerStyle={{ alignItems: "center", justifyContent: "flex-end", flexGrow: 1, paddingHorizontal: 8, gap: 6 }}>
         <Pressable accessibilityRole="button" accessibilityState={{ selected: editingGuides }} onPress={() => { endDrag(); viewportDrag.current = null; setNavigating(false); if (props.playing) props.onEnded?.(time); setEditingGuides(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${editingGuides ? "border-cyan-300 bg-cyan-300/15" : "border-white/20"}`}><Text className="text-xs text-white">{t(editingGuides ? "editor.guides.done" : "editor.guides.edit", { defaultValue: editingGuides ? "Done guides" : "Edit guides" })}</Text></Pressable>

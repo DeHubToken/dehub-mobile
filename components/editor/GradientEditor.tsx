@@ -1,3 +1,4 @@
+import ColourPickerButton from "./ColourPickerButton";
 import React, { useId, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import Svg, { Defs, LinearGradient, Pattern, RadialGradient, Rect, Stop } from "react-native-svg";
@@ -6,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import { addGradientStop, validGradientFill, type GradientFill } from "../../libs/editor/gradientFill";
 
-export default function GradientEditor({ value, onChange }: { value: GradientFill; onChange: (value: GradientFill) => void }) {
+export default function GradientEditor({ value, onChange, projectId }: { projectId?: string; value: GradientFill; onChange: (value: GradientFill) => void }) {
   const { t } = useTranslation();
   const [index, setIndex] = useState(0), id = useId().replace(/:/g, "");
   const active = Math.min(index, value.stops.length - 1), stop = value.stops[active], valid = validGradientFill(value);
@@ -20,6 +21,7 @@ export default function GradientEditor({ value, onChange }: { value: GradientFil
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["linear", "radial"] as const).map(type => button(t(`editor.fills.${type}`, { defaultValue: type === "linear" ? "Linear" : "Radial" }), () => onChange({ ...value, type }), value.type === type))}{button(t("editor.gradients.reverse", { defaultValue: "Reverse" }), () => onChange({ ...value, stops: value.stops.map(stop => ({ ...stop, offset: 1 - stop.offset })) }))}{button(t("editor.gradients.even", { defaultValue: "Evenly space stops" }), () => onChange({ ...value, stops: value.stops.slice().sort((a, b) => a.offset - b.offset).map((stop, i) => ({ ...stop, offset: i / (value.stops.length - 1) })) }))}</View>
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{value.stops.map((item, i) => <Pressable key={i} accessibilityRole="button" accessibilityLabel={t("editor.gradients.stop", { defaultValue: "Stop {{number}} at {{position}}%", number: i + 1, position: Math.round(item.offset * 100) })} accessibilityState={{ selected: active === i }} onPress={() => setIndex(i)} style={{ width: 40, height: 40, borderRadius: 8, borderWidth: 2, borderColor: active === i ? "#ffffff" : "#777777", backgroundColor: /^#[\da-f]{6}$/i.test(item.colour) ? item.colour : "#ffffff", alignItems: "center", justifyContent: "flex-end", padding: 3 }}><Text className="rounded bg-black/60 px-1 text-[10px] text-white">{i + 1}</Text></Pressable>)}</ScrollView>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.gradients.add", { defaultValue: "Add stop" }), () => { onChange(addGradientStop(value)); setIndex(value.stops.length); }, false, !valid || value.stops.length >= 8)}{button(t("editor.gradients.remove", { defaultValue: "Remove stop" }), () => { onChange({ ...value, stops: value.stops.filter((_, i) => i !== active) }); setIndex(Math.max(0, active - 1)); }, false, value.stops.length <= 2)}</View>
+    {projectId && <ColourPickerButton projectId={projectId} onPick={colour => patchStop({ colour })} />}
     <Text className="text-xs text-white/65">{t("editor.gradients.colour", { defaultValue: "Stop colour" })}</Text><TextInput value={stop.colour} onChangeText={colour => patchStop({ colour })} maxLength={7} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.gradients.colour", { defaultValue: "Stop colour" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
     {range(t("editor.gradients.position", { defaultValue: "Position" }), stop.offset * 100, 0, 100, offset => patchStop({ offset: offset / 100 }))}
     {range(t("editor.gradients.opacity", { defaultValue: "Opacity" }), (stop.opacity ?? 1) * 100, 0, 100, opacity => patchStop({ opacity: opacity / 100 }))}

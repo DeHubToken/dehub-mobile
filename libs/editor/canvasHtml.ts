@@ -1922,6 +1922,14 @@ canvas{display:block;width:100%;height:100%;}
       };
       img.onerror = function () { if (imageLoads.get(m.id) !== img) return; imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
+    } else if (m.type === "sampleColour") {
+      try {
+        if (!state || !state.snapshot || state.snapshot.id !== m.projectId || !Number.isFinite(m.x) || !Number.isFinite(m.y)) throw new Error("The design changed before sampling");
+        var sampleX = Math.max(0, Math.min(canvas.width - 1, Math.floor(m.x * canvas.width))), sampleY = Math.max(0, Math.min(canvas.height - 1, Math.floor(m.y * canvas.height)));
+        var pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
+        var colour = "#" + Array.from(pixel.slice(0, 3)).map(function(value) { return value.toString(16).padStart(2, "0"); }).join("");
+        post({ type: "colourSampled", token: m.token, colour: colour });
+      } catch (error) { post({ type: "colourSampled", token: m.token, error: error.message || "Could not sample this colour" }); }
     } else if (m.type === "stats") {
       // Picture statistics for Auto enhance, from a 64x64 sample (web autoEnhance.ts).
       var src = images.get(m.mediaId);
