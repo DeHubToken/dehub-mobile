@@ -11,6 +11,8 @@ export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   valueFormat?: ChartValueFormat;
   donutHole?: number;
+  xAxisTitle?: string;
+  yAxisTitle?: string;
   donutLabel?: string;
   donutTotal?: boolean;
   legendPosition?: ChartLegendPosition;
@@ -142,10 +144,14 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.stroke();
     return;
   }
+  const xTitle = (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
+  ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
+  if (xTitle) label(xTitle, 0, height / 2 - font * 0.6, width - font * 2);
+  if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, top + font * 0.6, width - font * 2); }
   const horizontal = chart.kind === "bar";
   const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * 2.5) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
-  const y0 = top + font * 1.5, y1 = height / 2 - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
+  const y0 = top + font * (yTitle ? 3 : 1.5), y1 = height / 2 - (xTitle ? font * 1.6 : 0) - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const zeroX = x0 + (0 - min) / span * plotWidth;
   const zeroY = y1 - (0 - min) / span * plotHeight;
@@ -220,6 +226,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.kind === "scatter" && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
+    for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
     if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
     if (chart.donutTotal !== undefined && typeof chart.donutTotal !== "boolean") return false;
     if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;

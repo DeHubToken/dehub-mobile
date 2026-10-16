@@ -74,10 +74,14 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
     ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.stroke();
     return;
   }
+  const xTitle = (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
+  ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
+  if (xTitle) label(xTitle, 0, height / 2 - font * 0.6, width - font * 2);
+  if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, top + font * 0.6, width - font * 2); }
   const horizontal = chart.kind === "bar";
   const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * 2.5) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
-  const y0 = top + font * 1.5, y1 = height / 2 - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
+  const y0 = top + font * (yTitle ? 3 : 1.5), y1 = height / 2 - (xTitle ? font * 1.6 : 0) - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const zeroX = x0 + (0 - min) / span * plotWidth;
   const zeroY = y1 - (0 - min) / span * plotHeight;
