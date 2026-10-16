@@ -1,5 +1,5 @@
 import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
-import { FIT_VIEWPORT, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
+import { FIT_VIEWPORT, focusDesignSelection, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
 import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
 import GuideEditorOverlay from "./GuideEditorOverlay";
 import DesignRulers from "./DesignRulers";
@@ -1174,6 +1174,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomOut", { defaultValue: "Zoom canvas out" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom / 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">−</Text></Pressable>
         <Text className="min-w-[36px] text-center text-xs text-white/60">{Math.round(k * viewport.zoom * 100)}%</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomIn", { defaultValue: "Zoom canvas in" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom * 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">+</Text></Pressable>
+        <Pressable accessibilityRole="button" disabled={!selectedId || !memberBoxes.length} onPress={() => { const next = focusDesignSelection(memberBoxes, project.settings, k, { width: viewportSize.w, height: viewportSize.h }); if (next) { endDrag(); viewportDrag.current = null; if (props.playing) props.onEnded?.(time); setEditingGuides(false); setViewport(next); } }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: selectedId && memberBoxes.length ? 1 : 0.35 }}><Text className="text-xs text-white">{t("editor.viewport.selection", { defaultValue: "Selection" })}</Text></Pressable>
         <Pressable accessibilityRole="button" onPress={() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.viewport.fit", { defaultValue: "Fit" })}</Text></Pressable>
       </ScrollView>
     </View>
