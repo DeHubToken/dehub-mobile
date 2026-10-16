@@ -7,6 +7,7 @@ export function dataVisualSvgDocument(value: SvgDataVisual, width: number, heigh
 export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: number, measure: (text: string, font: string) => number): string {
   if (![width, height].every(value => Number.isFinite(value) && value >= 32 && value <= 8192)) throw new Error("Use graphic dimensions from 32 to 8,192 pixels");
   const parts: string[] = [], path: string[] = [];
+  let lineDash: number[] = [];
   let current: [number, number] | null = null, first: [number, number] | null = null;
   const n = (value: number) => String(Number(Number.isFinite(value) ? value.toFixed(4) : 0));
   const xml = (value: string) => value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -14,9 +15,10 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     const colour = typeof value === "string" && /^#[a-f\d]{6}(?:[a-f\d]{2})?$/i.test(value) ? value : "none";
     return `${kind}="${colour.length === 9 ? colour.slice(0, 7) : colour}"` + (colour.length === 9 ? ` ${kind}-opacity="${n(parseInt(colour.slice(7), 16) / 255)}"` : "");
   };
-  const stroke = () => paint(context.strokeStyle, "stroke") + ` stroke-width="${n(context.lineWidth)}" stroke-linecap="${context.lineCap === "round" ? "round" : context.lineCap === "square" ? "square" : "butt"}" stroke-linejoin="${context.lineJoin === "round" ? "round" : context.lineJoin === "bevel" ? "bevel" : "miter"}"`;
+  const stroke = () => (lineDash.length ? `stroke-dasharray="${lineDash.map(n).join(" ")}" ` : "") + paint(context.strokeStyle, "stroke") + ` stroke-width="${n(context.lineWidth)}" stroke-linecap="${context.lineCap === "round" ? "round" : context.lineCap === "square" ? "square" : "butt"}" stroke-linejoin="${context.lineJoin === "round" ? "round" : context.lineJoin === "bevel" ? "bevel" : "miter"}"`;
   const context: DataVisualContext = {
     fillStyle: "#000000", strokeStyle: "#000000", font: "500 16px Inter, sans-serif", textAlign: "left", textBaseline: "middle", lineWidth: 1,
+    setLineDash(segments: number[]) { lineDash = segments.slice(0, 6).map(value => Math.max(0, Number.isFinite(value) ? value : 0)); },
     beginPath() { path.length = 0; current = null; first = null; },
     closePath() { path.push("Z"); current = first; },
     moveTo(x: number, y: number) { path.push(`M${n(x)} ${n(y)}`); current = [x, y]; first = [x, y]; },
