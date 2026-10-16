@@ -36,10 +36,13 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const changeSource = (value: string) => { setSource(value); setMessage(""); setError(""); setRowIndex(0); setLast(""); setRowFilter({}); };
   const importFile = async () => {
     const token = ++request.current;
+    let importedUri: string | undefined;
     try {
       const result = await DocumentPicker.getDocumentAsync({ type: ["text/csv", "text/tab-separated-values", "text/plain", "application/vnd.ms-excel"], copyToCacheDirectory: true });
-      if (result.canceled || token !== request.current) return;
-      const file = result.assets[0];
+      if (result.canceled) return;
+      const file = result.assets[0]; importedUri = file?.uri;
+      if (token !== request.current || current()?.id !== project.id) return;
+      if (!file) throw new Error("Choose a CSV or TSV file");
       if ((file.size ?? 0) > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
       const info = await FileSystem.getInfoAsync(file.uri);
       if (info.exists && info.size > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
@@ -47,6 +50,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       if (text.length > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
       if (token === request.current && current()?.id === project.id) changeSource(text);
     } catch (value) { if (token === request.current) setError(value instanceof Error ? value.message : "Could not read this file"); }
+    finally { if (importedUri && FileSystem.cacheDirectory && importedUri.startsWith(FileSystem.cacheDirectory) && importedUri !== FileSystem.cacheDirectory) await FileSystem.deleteAsync(importedUri, { idempotent: true }).catch(() => {}); }
   };
   const generate = () => {
     try {
