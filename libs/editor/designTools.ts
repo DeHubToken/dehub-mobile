@@ -14,6 +14,7 @@ export interface DesignStyle {
   tableStyle?: Omit<import("./dataVisuals").TableData, "rows">;
   gradient?: import("./gradientFill").GradientFill | null;
   frame?: import("./types").MediaClip["frame"];
+  qrStyle?: Pick<import("./qrGraphic").QrGraphic, "foreground" | "background">;
 }
 
 export function copyDesignStyle(clip: Clip): DesignStyle | null {
@@ -33,6 +34,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
     style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0 };
     if (clip.chart) { const { rows: _rows, kind: _kind, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
     if (clip.table) { const { rows: _rows, ...format } = clip.table; style.tableStyle = { ...format }; }
+    if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background };
   } else {
     style.frame = clip.frame ?? "rect";
     style.effects = { ...clip.effects };
@@ -49,6 +51,7 @@ export function pasteDesignStyle(clip: Clip, style: DesignStyle): Clip {
   if (clip.kind === "shape" && style.shape) return { ...common, ...style.shape,
     gradient: style.gradient,
     ...(clip.chart && style.chartStyle ? { chart: { ...clip.chart, ...style.chartStyle, colours: [...style.chartStyle.colours] } } : {}),
+    ...(clip.qr && style.qrStyle ? { qr: { ...clip.qr, ...style.qrStyle } } : {}),
     ...(clip.table && style.tableStyle ? { table: { ...clip.table, ...style.tableStyle } } : {}) } as ShapeClip;
   if ((clip.kind === "image" || clip.kind === "video") && style.effects) {
     return { ...common, effects: { ...style.effects }, radius: style.radius, frame: style.frame } as Clip;
@@ -76,6 +79,7 @@ export function designColours(project: ProjectSnapshot): string[] {
     if (clip.kind === "shape") {
       add(clip.fill); add(clip.stroke?.color);
       if (clip.chart) { clip.chart.colours.forEach(add); add(clip.chart.textColour); }
+      if (clip.qr) { add(clip.qr.foreground); add(clip.qr.background); }
       if (clip.table) { add(clip.table.headerColour); add(clip.table.headerTextColour); add(clip.table.cellColour); add(clip.table.textColour); add(clip.table.borderColour); }
     }
     add(clip.shadow?.color);
@@ -99,6 +103,7 @@ export function replaceDesignColour(project: ProjectSnapshot, from: string, to: 
       }
       if (next.kind === "shape" && next.fill) next.fill = replace(next.fill);
       if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(replace), textColour: replace(next.chart.textColour) };
+      if (next.kind === "shape" && next.qr) next.qr = { ...next.qr, foreground: replace(next.qr.foreground), background: replace(next.qr.background) };
       if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: replace(next.table.headerColour), headerTextColour: replace(next.table.headerTextColour), cellColour: replace(next.table.cellColour), textColour: replace(next.table.textColour), borderColour: replace(next.table.borderColour) };
       if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: replace(next.stroke.color) };
       return next;
@@ -175,6 +180,7 @@ export function applyDesignPalette(project: ProjectSnapshot, colours: readonly s
     }
     if (next.kind === "shape" && next.fill) next.fill = recolour(next.fill);
     if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(recolour), textColour: recolour(next.chart.textColour) };
+    if (next.kind === "shape" && next.qr) next.qr = { ...next.qr, foreground: recolour(next.qr.foreground), background: recolour(next.qr.background) };
     if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: recolour(next.table.headerColour), headerTextColour: recolour(next.table.headerTextColour), cellColour: recolour(next.table.cellColour), textColour: recolour(next.table.textColour), borderColour: recolour(next.table.borderColour) };
     if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: recolour(next.stroke.color) };
     return next;

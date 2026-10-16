@@ -1630,7 +1630,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
-      <DesignTools key={project.id} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
+      <DesignTools key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
       <LiveProjectSession projectId={project.id} editor={cloudDraftHistoryEditor(h)} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>

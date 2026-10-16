@@ -47,6 +47,7 @@ import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
 import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
 import { DATA_VISUAL_RUNTIME } from "./dataVisualRuntime";
 import { GRADIENT_FILL_RUNTIME } from "./gradientFillRuntime";
+import { QR_GRAPHIC_RUNTIME } from "./qrGraphicRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -75,6 +76,7 @@ canvas{display:block;width:100%;height:100%;}
   __VIDEO_MATTE_RUNTIME__
   __DATA_VISUAL_RUNTIME__
   __GRADIENT_FILL_RUNTIME__
+  __QR_GRAPHIC_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -546,6 +548,7 @@ canvas{display:block;width:100%;height:100%;}
     c.closePath();
   }
   function drawShape(c, clip, box, H) {
+    if (clip.qr) { drawQrGraphic(c, box.w, box.h, clip.qr); return; }
     if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table); return; }
     var k = H / 1080;
     var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
@@ -666,14 +669,20 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   // ── fonts: stylesheets chosen app-side (libs/editor/fonts.ts), as the web picks them ──
-  var fontLinks = new Set();
+  var fontLinks = new Map();
   function addFontCss(hrefs) {
     (hrefs || []).forEach(function (href) {
       if (fontLinks.has(href)) return;
-      fontLinks.add(href);
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = href;
+      var promise = new Promise(function(resolve, reject) {
+        var timer = setTimeout(function() { link.onload = null; link.onerror = null; reject(new Error("A design font could not be loaded")); }, 8000);
+        link.onload = function() { clearTimeout(timer); requestedFaces.clear(); if (state) ensureFonts(state.snapshot); schedule(); resolve(); };
+        link.onerror = function() { clearTimeout(timer); reject(new Error("A design font could not be loaded")); };
+      });
+      promise.catch(function() {});
+      fontLinks.set(href, promise);
       document.head.appendChild(link);
     });
   }
@@ -688,6 +697,17 @@ canvas{display:block;width:100%;height:100%;}
       // Redraw once the face arrives; text measured with a fallback font is the wrong size.
       document.fonts.load(face).then(schedule, function () {});
     });
+  }
+  function waitForDesignFonts(snapshot) {
+    var timer;
+    var ready = Promise.all(Array.from(fontLinks.values())).then(function() {
+      if (!document.fonts || !document.fonts.load) return;
+      return Promise.all(snapshot.clips.filter(function(c) { return c.kind === "text" && !c.hidden; }).map(function(c) {
+        var face = (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily;
+        return document.fonts.load(face, c.text.slice(0, 1000) || "Design");
+      }));
+    });
+    return Promise.race([ready, new Promise(function(resolve, reject) { timer = setTimeout(function() { reject(new Error("A design font could not be loaded")); }, 8000); })]).finally(function() { clearTimeout(timer); });
   }
 
   // ── video and audio (web Compositor.tsx and exporter.ts) ──
@@ -1243,8 +1263,7 @@ canvas{display:block;width:100%;height:100%;}
     var fontTimer;
     var check = function () { if (exportAborted || videoJobId !== m.reqId) throw new Error("Export cancelled"); };
     try {
-      var ready = document.fonts && document.fonts.ready ? document.fonts.ready.catch(function () {}) : Promise.resolve();
-      await Promise.race([ready, new Promise(function (resolve) { fontTimer = setTimeout(resolve, 3000); })]);
+      await waitForDesignFonts(snap);
       clearTimeout(fontTimer); check();
       var W = snap.settings.width, H = snap.settings.height;
       var t = Math.max(0, Math.min(at, timelineEnd(snap.clips, snap.settings) - 1 / Math.max(1, snap.settings.fps)));
@@ -1325,8 +1344,8 @@ canvas{display:block;width:100%;height:100%;}
       if (r !== lastP) { lastP = r; post({ type: "videoProgress", reqId: m.reqId, progress: p }); }
     };
     progress(0);
-    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    Promise.all([logoReady, Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])])
+    var ready = waitForDesignFonts(snap);
+    Promise.all([logoReady, ready])
       .then(function () { return m.format === "gif" ? null : mixAudio(snap, duration, range); })
       .then(function (mixed) {
         if (exportAborted) throw new Error("aborted");
@@ -1841,4 +1860,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME);

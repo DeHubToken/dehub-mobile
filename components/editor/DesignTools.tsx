@@ -1,5 +1,8 @@
+import { DesignDraftContext } from "./DesignDraftInput";
+import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { applyDesignPalette, applyDesignStyle, copyDesignStyle, designColours, DESIGN_PALETTES, DESIGN_SIZES, replaceDesignColour, resizeDesign, type DesignStyle } from "../../libs/editor/designTools";
 import type { ProjectSnapshot } from "../../libs/editor/types";
@@ -7,15 +10,16 @@ import DesignTextSearch from "./DesignTextSearch";
 import DataVisualPanel from "./DataVisualPanel";
 import FillPanel from "./FillPanel";
 import GroupsPanel from "./GroupsPanel";
+import QrPanel from "./QrPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select }: {
-  project: ProjectSnapshot; selectedId: string | null;
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits }: {
+  project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
   seek: (id: string, time: number) => void; time: number; select: (id: string) => void;
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -29,8 +33,8 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     if (next !== latest) commit(next);
   };
   const action = (label: string, onPress: () => void, disabled = false, active = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ disabled, selected: active }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg px-3 ${active ? "bg-white/15" : "bg-white/5"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{label}</Text></Pressable>;
-  return <View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
+  return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
+    <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
       {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => { setWidth(String(project.settings.width)); setHeight(String(project.settings.height)); setPanel(panel === "resize" ? null : "resize"); }, false, panel === "resize")}
       {action(t("editor.designTools.colours", { defaultValue: "Document colours" }), () => setPanel(panel === "colours" ? null : "colours"), false, panel === "colours")}
       {action(t("editor.designTools.copyStyle", { defaultValue: "Copy style" }), () => {
@@ -41,15 +45,21 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       }, !selected || selected.kind === "audio")}
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
-      {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel(panel === "data" ? null : "data"), false, panel === "data")}
-      {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel(panel === "fill" ? null : "fill"), false, panel === "fill")}
+      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr"].includes(panel ?? ""))}
       {action(t("editor.groups.title", { defaultValue: "Groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
+    {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
+      {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel("data"))}
+      {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel("fill"))}
+      {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
+    </View>}
+    {["data", "fill", "qr"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "qr" && <QrPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "groups" && <GroupsPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}
-    {panel === "resize" && <View style={{ gap: 8 }}><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}>
+    {panel === "resize" && <View style={{ gap: 8 }}><ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}>
       {DESIGN_SIZES.map(size => <Pressable key={size.id} accessibilityRole="button" onPress={() => { apply(p => resizeDesign(p, size.width, size.height)); setPanel(null); }} className="rounded-xl border border-white/15 p-3">
         <Text className="text-xs font-semibold text-white">{t(`editor.designTools.size.${size.id}`, { defaultValue: size.label })}</Text><Text className="text-xs text-white/50">{size.width} × {size.height}</Text>
       </Pressable>)}
@@ -60,7 +70,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     </View></View>}
     {panel === "colours" && <View className="px-3" style={{ gap: 10 }}>
       <Text className="text-xs text-white/60">{t("editor.designTools.colourHint", { defaultValue: "Choose a colour to replace across this design. Locked layers are preserved." })}</Text>
-      <ScrollView horizontal contentContainerStyle={{ gap: 10 }}>
+      <ScrollView keyboardShouldPersistTaps="handled" horizontal contentContainerStyle={{ gap: 10 }}>
         {designColours(project).map(value => <Pressable key={value} accessibilityRole="button" accessibilityLabel={value} accessibilityState={{ selected: colour === value }} onPress={() => { setColour(value); setReplacement(value); }} style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: value, borderWidth: 2, borderColor: colour === value ? "#38bdf8" : "#888" }} />)}
       </ScrollView>
       {colour && <View className="flex-row items-center" style={{ gap: 8 }}>
@@ -68,11 +78,11 @@ export default function DesignTools({ project, selectedId, current, commit, seek
         <TextInput accessibilityLabel={t("editor.designTools.replacement", { defaultValue: "Replacement colour" })} value={replacement} onChangeText={setReplacement} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-3 text-white" />
         {action(t("editor.designTools.changeAll", { defaultValue: "Change all" }), () => { apply(p => replaceDesignColour(p, colour, replacement)); setColour(replacement); }, !/^#[0-9a-f]{6}$/i.test(replacement) || colour === replacement)}
       </View>}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
+      <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
         {DESIGN_PALETTES.map(palette => <Pressable key={palette.id} accessibilityRole="button" onPress={() => apply(p => applyDesignPalette(p, palette.colours))} className="rounded-lg border border-white/15 px-3 py-2" style={{ gap: 6 }}>
           <View className="flex-row overflow-hidden rounded">{palette.colours.map(value => <View key={value} style={{ width: 20, height: 18, backgroundColor: value }} />)}</View><Text className="text-xs text-white">{t(`editor.designTools.palette.${palette.id}`, { defaultValue: palette.label })}</Text>
         </Pressable>)}
       </ScrollView>
     </View>}
-  </View>;
+  </View></DesignDraftContext.Provider>;
 }

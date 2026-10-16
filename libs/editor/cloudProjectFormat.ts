@@ -2,6 +2,7 @@ import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
 import { validDataVisuals } from "./dataVisuals";
 import { validGradientFill } from "./gradientFill";
+import { validQrGraphic } from "./qrGraphic";
 
 export class CloudProjectConflict extends Error {}
 
@@ -84,6 +85,8 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     }
     if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
+    if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
+    if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

@@ -8,8 +8,8 @@
  * undo step) and `commit` for a finished change. `settle` closes a run of live
  * changes into a single undo step.
  */
-import React from "react";
-import { Pressable, ScrollView, Switch, Text, View } from "react-native";
+import React, { useMemo, useState } from "react";
+import { Pressable, ScrollView, Switch, Text, TextInput, View } from "react-native";
 import { EditorRange as Range } from "./EditorRange";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
@@ -342,10 +342,18 @@ export function ShadowPanel({ clip, live, commit, settle }: PanelProps<LayerClip
 // ── text layers ──
 
 export function FontPanel({ clip, commit }: PanelProps<TextClip>) {
+  const { t } = useTranslation();
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const filtered = useMemo(() => EDITOR_FONTS.filter(font => (category === "all" || font.category === category) &&
+    font.family.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [query, category]);
   const current = primaryFamily(clip.fontFamily).toLowerCase();
   return (
-    <ChipRow>
-      {EDITOR_FONTS.map((f) => (
+    <View style={{ gap: 10 }}>
+    <TextInput value={query} onChangeText={setQuery} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholder={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholderTextColor="#888" className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
+    <ChipRow>{(["all", "sans-serif", "serif", "display", "handwriting", "monospace"] as const).map(value => <Chip key={value} label={t(`editor.fonts.category.${value}`, { defaultValue: ({ all: "All", "sans-serif": "Sans serif", serif: "Serif", display: "Display", handwriting: "Handwriting", monospace: "Monospace" })[value] })} active={category === value} onPress={() => setCategory(value)} />)}</ChipRow>
+    <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+      {filtered.slice(0, 40).map((f) => (
         <Chip
           key={f.family}
           label={f.family}
@@ -356,7 +364,9 @@ export function FontPanel({ clip, commit }: PanelProps<TextClip>) {
           }}
         />
       ))}
-    </ChipRow>
+    </View>
+    <Text className="text-xs text-white/50">{t("editor.fonts.count", { defaultValue: "{{count}} fonts found. Search to narrow the list.", count: filtered.length })}</Text>
+    </View>
   );
 }
 

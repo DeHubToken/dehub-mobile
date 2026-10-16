@@ -269,6 +269,7 @@ export interface ShapeClip extends BaseClip {
   /** Data-backed graphics remain editable after insertion and across devices. */
   chart?: import("./dataVisuals").ChartData;
   table?: import("./dataVisuals").TableData;
+  qr?: import("./qrGraphic").QrGraphic;
   /**
    * Freehand stroke for shape "path": points in the layer's own box, each
    * coordinate -0.5..0.5 of its width/height, so the drawing scales, stretches
