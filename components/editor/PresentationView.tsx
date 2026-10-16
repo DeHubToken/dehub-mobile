@@ -1,3 +1,5 @@
+import PresentationRehearsal from "./PresentationRehearsal";
+import type { RehearsedPageTiming } from "../../libs/editor/usePresentationRehearsal";
 import PresentationNotes from "./PresentationNotes";
 import PresentationStopwatch from "./PresentationStopwatch";
 import { presentationPages } from "../../libs/editor/pageDetails";
@@ -13,7 +15,8 @@ import { useTranslation } from "react-i18next";
 import { pageAt } from "../../libs/editor/pages";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
-export default function PresentationView({ project, time, renderPage, onClose, onPage }: {
+export default function PresentationView({ project, time, renderPage, onClose, onPage, onApplyTimings }: {
+  onApplyTimings: (entries: RehearsedPageTiming[]) => void;
   onPage: (time: number) => void;
   project: ProjectSnapshot; time: number; renderPage: (time: number) => Promise<{ dataUrl: string; links: DesignPdfLink[] }>; onClose: () => void;
 }) {
@@ -61,6 +64,7 @@ export default function PresentationView({ project, time, renderPage, onClose, o
     <SafeAreaView edges={["top", "bottom", "left", "right"]} style={{ flex: 1, backgroundColor: "#000000" }}>
       <View className="flex-row flex-wrap items-center px-3 py-2" style={{ gap: 10 }}><Text accessibilityLiveRegion="polite" numberOfLines={1} className="flex-1 text-sm text-white">{details?.title || t("editor.pages.page", { number: page.index + 1 })}</Text>{button(t(controlsVisible ? "editor.present.hideControls" : "editor.present.showControls", { defaultValue: controlsVisible ? "Hide controls" : "Show controls" }), toggleControls)}{button(t("editor.present.close", { defaultValue: "Close presentation" }), onClose)}</View>
       <View accessibilityElementsHidden={!controlsVisible || notes} importantForAccessibility={controlsVisible && !notes ? "auto" : "no-hide-descendants"} style={{ display: controlsVisible && !notes ? "flex" : "none" }}><PresentationStopwatch foreground={foreground} /></View>
+      <View accessibilityElementsHidden={!controlsVisible || notes} importantForAccessibility={controlsVisible && !notes ? "auto" : "no-hide-descendants"} style={{ display: controlsVisible && !notes ? "flex" : "none" }}><PresentationRehearsal pageIndex={page.index} active={foreground && !pagePicker && !loading && !!uri && !error} onStart={() => setAuto(false)} onApply={onApplyTimings} /></View>
       {allHidden && <Text accessibilityLiveRegion="polite" className="px-4 py-2 text-center text-xs text-amber-200">{t("editor.present.allHidden", { defaultValue: "All pages are hidden. Showing the first page for this presentation." })}</Text>}
       <View onLayout={event => setArea({ w: event.nativeEvent.layout.width, h: event.nativeEvent.layout.height })} style={{ flex: 1, minHeight: 0, alignItems: "center", justifyContent: "center" }}>
         {uri && <Image source={{ uri }} resizeMode="contain" accessibilityLabel={details?.title || t("editor.pages.page", { number: page.index + 1 })} style={{ width: "100%", height: "100%" }} />}
