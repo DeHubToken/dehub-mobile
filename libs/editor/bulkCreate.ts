@@ -1,3 +1,5 @@
+import { applyBulkPhoto, bulkImageFields, planBulkPhotos } from "./bulkPhotos";
+import type { ReplacementMedia } from "./replaceMedia";
 import { normaliseDesignLink, designPageLinkIndex } from "./designLinks";
 import { bulkSelectedRows, type BulkRowFilter } from "./bulkRowFilter";
 import { refreshPageNumberClips } from "./pageNumbering";
@@ -58,7 +60,7 @@ export function bulkConnected(clip: BulkField, headers: string[], connections: B
 }
 
 /** Append one independent copy of the current page for every selected data row. */
-export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}, rowFilter: BulkRowFilter = {}, linkConnections: BulkConnections = {}): { project: ProjectSnapshot; start: number; count: number } {
+export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}, rowFilter: BulkRowFilter = {}, linkConnections: BulkConnections = {}, imageConnections: BulkConnections = {}, mediaSources: readonly ReplacementMedia[] = []): { project: ProjectSnapshot; start: number; count: number } {
   if (!Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last > data.rows.length || last < first || last - first >= 50) throw new Error("Choose a valid range of up to 50 data rows");
   const rows = bulkSelectedRows(data, first, last, rowFilter);
   if (!rows.length) throw new Error("No rows match this filter in the selected range");
@@ -67,8 +69,9 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
   if (!Number.isFinite(duration) || duration < 0.05) throw new Error("Give the template page a duration before generating pages");
   const source = project.clips.filter(clip => clip.start < template.end && clip.start + clip.duration > template.start);
   const fields = bulkTemplateFields(project, time);
-  if (!fields.some(clip => bulkConnected(clip, data.headers, connections)) && !bulkPageFieldsConnected(data.headers, pageFields) && !bulkLinksConnected(project, time, data.headers, linkConnections)) throw new Error("Connect text, a QR code, a page field, or a layer link to a column, or add a matching {{column}} placeholder");
+  if (!fields.some(clip => bulkConnected(clip, data.headers, connections)) && !bulkPageFieldsConnected(data.headers, pageFields) && !bulkLinksConnected(project, time, data.headers, linkConnections) && !bulkImageFields(project, time).some(clip => data.headers.includes(imageConnections[clip.id]))) throw new Error("Connect text, a QR code, a page field, a layer link, or a photo to a column, or add a matching {{column}} placeholder");
   if (pages.length + count > 500 || project.clips.length + source.length * count > 10000) throw new Error("This batch exceeds the design’s page or layer limit. Choose fewer rows");
+  const photoPlan = planBulkPhotos(project, time, data, first, last, rowFilter, imageConnections), media = new Map(mediaSources.map(source => [source.id, source]));
   const start = pages[pages.length - 1].end, copies: Clip[] = [], starts = pages.map(page => page.start);
   if (start + count * duration > 86400) throw new Error("This batch exceeds the design’s 24-hour timeline limit. Choose fewer rows");
   const details = pages.map(page => pageDetails(project, page.index)), original = pageDetails(project, template.index);
@@ -79,6 +82,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
       const from = Math.max(clip.start, template.start), to = Math.min(clip.start + clip.duration, template.end);
       if (to - from < 0.05) return [];
       let copy = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), at + from - template.start);
+      copy = applyBulkPhoto(project, copy, clip.id, index, photoPlan, media);
       const linkColumn = data.headers.indexOf(linkConnections[clip.id]);
       if (!clip.locked && clip.kind !== "audio" && linkColumn >= 0) {
         const text = (row[linkColumn] ?? "").trim(), href = text ? normaliseDesignLink(text) : undefined;
