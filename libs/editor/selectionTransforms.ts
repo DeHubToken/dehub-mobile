@@ -3,7 +3,7 @@ import { groupedSelection } from "./designGroups";
 import { resolveClipAt } from "./keyframes";
 import type { DesignLayoutBox } from "./designLayout";
 import type { Clip, ClipTransform, ProjectSnapshot } from "./types";
-export type SelectionTransform = { kind: "size"; axis: "width" | "height"; value: number } | { kind: "position"; axis: "x" | "y"; value: number } | { kind: "scale"; factor: number } | { kind: "rotate"; degrees: number } | { kind: "flip"; axis: "horizontal" | "vertical" } | { kind: "opacity"; value: number };
+export type SelectionTransform = { kind: "orientation"; degrees: number } | { kind: "unflip" } | { kind: "size"; axis: "width" | "height"; value: number } | { kind: "position"; axis: "x" | "y"; value: number } | { kind: "scale"; factor: number } | { kind: "rotate"; degrees: number } | { kind: "flip"; axis: "horizontal" | "vertical" } | { kind: "opacity"; value: number };
 export interface SelectionTransformPlan { id: string; placement: Partial<ClipTransform>; extra: Record<string, unknown> }
 export function measureSelectionBounds(project: ProjectSnapshot, ids: readonly string[], time: number, measured: readonly DesignLayoutBox[]) {
   const chosen = new Set(groupedSelection(project.clips, ids, time)), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
@@ -43,6 +43,11 @@ export function planSelectionTransform(project: ProjectSnapshot, ids: readonly s
     if (!Number.isFinite(operation.value) || operation.value < 0 || operation.value > 1) throw new Error("Use an opacity between 0 and 100 percent");
     return layers.map(clip => ({ id: clip.id, placement: { opacity: operation.value }, extra: {} }));
   }
+  if (operation.kind === "orientation") {
+    if (!Number.isFinite(operation.degrees) || operation.degrees < -360 || operation.degrees > 360) throw new Error("Use an angle between -360 and 360 degrees");
+    return layers.map(clip => ({ id: clip.id, placement: { rotation: operation.degrees }, extra: {} }));
+  }
+  if (operation.kind === "unflip") return layers.map(clip => ({ id: clip.id, placement: { flipH: false, flipV: false }, extra: {} }));
   const boxes = layers.map(clip => measured.find(box => box.id === clip.id));
   if (boxes.some(box => !box || ![box.cx, box.cy, box.w, box.h, box.rotation].every(Number.isFinite))) throw new Error("Wait for the selected layers to appear on the canvas");
   const bounds = boxes.map(box => { const b = box!, angle = b.rotation * Math.PI / 180, hw = (Math.abs(Math.cos(angle)) * b.w + Math.abs(Math.sin(angle)) * b.h) / 2, hh = (Math.abs(Math.sin(angle)) * b.w + Math.abs(Math.cos(angle)) * b.h) / 2; return { left: b.cx - hw, right: b.cx + hw, top: b.cy - hh, bottom: b.cy + hh }; });
