@@ -1,3 +1,5 @@
+import BulkDataExportControls from "./BulkDataExportControls";
+import BulkPhotoNames from "./BulkPhotoNames";
 import { getMedia } from "../../libs/editor/storage";
 import { projectReviewSnapshotKey } from "../../libs/editor/cloudProjectReview";
 import BulkPhotoConnectionsControls from "./BulkPhotoConnectionsControls";
@@ -91,9 +93,10 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
     {data && <>
       <Text className="text-xs text-white/60">{data.rows.length} {t("editor.bulk.rows", { defaultValue: "data rows" })}</Text>
       <View className="flex-row" style={{ gap: 10 }}><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.first", { defaultValue: "From row" })}</Text><TextInput value={first} onChangeText={setFirst} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.first", { defaultValue: "From row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.last", { defaultValue: "To row" })}</Text><TextInput value={last || String(data.rows.length)} onChangeText={setLast} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.last", { defaultValue: "To row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View></View>
+      <BulkDataExportControls key={project.id} source={source} first={Number(first)} last={end} filter={rowFilter} title={project.title} count={selectedRows.length} />
       <BulkRowFilterControls headers={data.headers} value={rowFilter} onChange={value => { setRowFilter(value); setMessage(""); }} />
       <BulkPhotoConnectionsControls fields={imageFields} headers={data.headers} row={previewRow} value={imageConnections} onChange={value => { setImageConnections(value); setMessage(""); }} />
-      {photoNames.length > 0 && <Text numberOfLines={3} className="text-xs text-white/45">{t("editor.bulk.photoNames", { defaultValue: "Available source photo names ({{count}})", count: photoNames.length })}: {photoNames.slice(0, 40).join(" · ")}</Text>}
+      <BulkPhotoNames names={photoNames} />
       <BulkLinkConnectionsControls fields={linkFields} headers={data.headers} row={previewRow} value={linkConnections} onChange={value => { setLinkConnections(value); setMessage(""); }} />
       <BulkPageFieldsControls headers={data.headers} row={previewRow} value={pageFields} onChange={value => { setPageFields(value); setMessage(""); }} />
       {!fields.length && <Text className="text-xs text-white/60">{t("editor.bulk.noText", { defaultValue: "Add an unlocked text or QR layer to this page to connect your data." })}</Text>}
