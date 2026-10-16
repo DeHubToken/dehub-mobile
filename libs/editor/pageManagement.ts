@@ -1,4 +1,4 @@
-import { remapDesignPageLinks } from "./designLinks";
+import { retargetCopiedPageLinks, remapDesignPageLinks } from "./designLinks";
 import { refreshPageNumberClips } from "./pageNumbering";
 import { appendPage, getPages } from "./pages";
 import { pageDetails } from "./pageDetails";
@@ -65,6 +65,9 @@ export function manageDesignPages(project: ProjectSnapshot, selected: readonly n
       const page = appendPage(next.settings, next.clips, pages[index].start + Math.min(0.01, (pages[index].end - pages[index].start) / 2), true, makeId);
       next = { ...next, settings: page.settings, clips: page.clips }; picked.push(pages.length + picked.length);
     }
+    const originalIds = new Set(project.clips.map(clip => clip.id)), destinations = new Map(indexes.map((index, offset) => [index, pages.length + offset]));
+    const copiedLinks = new Map(retargetCopiedPageLinks(next.clips.filter(clip => !originalIds.has(clip.id)), destinations).map(clip => [clip.id, clip]));
+    next = { ...next, clips: next.clips.map(clip => copiedLinks.get(clip.id) ?? clip) };
     next = { ...next, settings: { ...next.settings, pageDetails: [...pages.map(page => pageDetails(project, page.index)), ...indexes.map(index => pageDetails(project, index))] } };
     if (next.clips.length > 10000 || getPages(next.settings, next.clips).slice(-1)[0].end > 86400) throw new Error("This batch exceeds the document’s layer or timeline limit");
     if (serializedSize(next) > 6 * 1024 * 1024) throw new Error("This batch is too large to save. Duplicate fewer pages");
