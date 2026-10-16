@@ -11,6 +11,8 @@ export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   valueFormat?: ChartValueFormat;
   donutHole?: number;
+  donutLabel?: string;
+  donutTotal?: boolean;
   legendPosition?: ChartLegendPosition;
   lineWidth?: number;
   lineStyle?: ChartLineStyle;
@@ -101,6 +103,16 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       ctx.closePath(); ctx.fill();
       start = end;
     });
+    if (chart.kind === "donut") {
+      const caption = typeof chart.donutLabel === "string" ? chart.donutLabel.replace(/\s+/g, " ").trim().slice(0, 80) : "", total = chart.donutTotal ? chartValueLabel(sum, chart.valueFormat) : "";
+      const labels = [total, caption].filter(Boolean), hole = radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57));
+      if (labels.length) {
+        let size = Math.max(1, Math.min(font * 1.8, hole * (labels.length > 1 ? 0.45 : 0.7)));
+        while (size > 1) { ctx.font = "700 " + size + "px Inter, sans-serif"; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
+        ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px Inter, sans-serif"; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
+      }
+    }
     return;
   }
   if (chart.kind === "radar") {
@@ -208,6 +220,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.kind === "scatter" && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
+    if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
+    if (chart.donutTotal !== undefined && typeof chart.donutTotal !== "boolean") return false;
     if (chart.donutHole !== undefined && (typeof chart.donutHole !== "number" || !Number.isFinite(chart.donutHole) || chart.donutHole < 0.2 || chart.donutHole > 0.85)) return false;
     for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
