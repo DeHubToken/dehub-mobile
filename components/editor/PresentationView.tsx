@@ -1,6 +1,7 @@
+import PresentationPagePicker from "./PresentationPagePicker";
 import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "../../libs/editor/designLinks";
 import React, { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Image, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, Keyboard, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { getPages, pageAt } from "../../libs/editor/pages";
@@ -13,6 +14,7 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   const { t } = useTranslation();
   const pages = getPages(project.settings, project.clips);
   const [index, setIndex] = useState(() => pageAt(pages, time).index);
+  const [pagePicker, setPagePicker] = useState(false);
   const [notes, setNotes] = useState(false), [black, setBlack] = useState(false), [auto, setAuto] = useState(false), [seconds, setSeconds] = useState(5);
   const [uri, setUri] = useState<string | null>(null), [loading, setLoading] = useState(true), [error, setError] = useState(""), [attempt, setAttempt] = useState(0);
   const page = pages[Math.min(index, pages.length - 1)], details = project.settings.pageDetails?.[page.index];
@@ -55,11 +57,12 @@ export default function PresentationView({ project, time, renderPage, onClose, o
         {error !== "" && <View className="items-center px-4" style={{ gap: 12 }}><Text accessibilityRole="alert" className="text-center text-sm text-red-300">{error}</Text>{button(t("editor.present.retry", { defaultValue: "Retry page" }), () => setAttempt(value => value + 1))}</View>}
         {black && <View accessibilityLabel={t("editor.present.blackout", { defaultValue: "Blackout" })} style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#000000" }} />}
       </View>
+      {pagePicker && <PresentationPagePicker count={pages.length} current={page.index} details={project.settings.pageDetails} onPick={index => { Keyboard.dismiss(); setAuto(false); setIndex(index); setPagePicker(false); }} />}
       {notes && <ScrollView style={{ maxHeight: 180 }} contentContainerStyle={{ padding: 14, gap: 8 }}><Text className="text-xs text-white/45">{t("editor.present.notes", { defaultValue: "Presenter notes" })}</Text><Text className="text-sm text-white/80">{details?.notes || t("editor.present.noNotes", { defaultValue: "No notes for this page" })}</Text></ScrollView>}
       <View className="border-t border-white/10 px-3 py-2" style={{ gap: 8 }}>
         <View className="flex-row items-center justify-center" style={{ gap: 12 }}>{button(t("editor.present.previous", { defaultValue: "Previous" }), () => setIndex(page.index - 1), loading || page.index === 0)}<Text className="text-xs text-white/50">{page.index + 1} / {pages.length}</Text>{button(t("editor.present.next", { defaultValue: "Next" }), () => setIndex(page.index + 1), loading || page.index === pages.length - 1)}</View>
         <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{button(t(auto ? "editor.present.stopAuto" : "editor.present.startAuto", { defaultValue: auto ? "Stop auto advance" : "Auto advance" }), () => { if (!auto && page.index === pages.length - 1) setIndex(0); setAuto(value => !value); }, loading, auto)}{[3, 5, 10, 15, 30, 60].map(value => button(`${value}s`, () => setSeconds(value), false, seconds === value))}</ScrollView>
-        <View className="flex-row justify-center" style={{ gap: 8 }}>{button(t("editor.present.blackout", { defaultValue: "Blackout" }), () => setBlack(value => !value), false, black)}{button(t("editor.present.notes", { defaultValue: "Presenter notes" }), () => setNotes(value => !value), false, notes)}</View>
+        <View className="flex-row justify-center" style={{ gap: 8 }}>{button(t("editor.present.browsePages", { defaultValue: "Pages" }), () => { Keyboard.dismiss(); setNotes(false); setAuto(false); setPagePicker(value => !value); }, false, pagePicker)}{button(t("editor.present.blackout", { defaultValue: "Blackout" }), () => setBlack(value => !value), false, black)}{button(t("editor.present.notes", { defaultValue: "Presenter notes" }), () => { Keyboard.dismiss(); setPagePicker(false); setNotes(value => !value); }, false, notes)}</View>
       </View>
     </SafeAreaView>
   </Modal>;
