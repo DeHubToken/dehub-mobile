@@ -1,0 +1,12 @@
+import React from "react";
+import { Pressable, Switch, Text, View } from "react-native";
+import Slider from "@react-native-community/slider";
+import { useTranslation } from "react-i18next";
+import type { ChartData } from "../../libs/editor/dataVisuals";
+import { CHART_GEOMETRY_CONTROLS, defaultChartGeometry, chartGeometryLabel, type ChartGeometry } from "../../libs/editor/chartGeometry";
+
+export default function ChartGeometryControls({ value, kind, multiple, onChange }: { value: ChartGeometry; kind: ChartData["kind"]; multiple: boolean; onChange: (value: ChartGeometry) => void }) {
+  const { t } = useTranslation();
+  if (kind === "pie" || kind === "donut") return null;
+  return <View className="border-t border-white/10 pt-3" style={{ gap: 12 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={value.showGrid ?? (multiple || kind === "radar")} onValueChange={showGrid => onChange({ ...value, showGrid })} accessibilityLabel={t("editor.charts.showGrid", { defaultValue: "Show grid lines" })} /><Text className="text-xs text-white/65">{t("editor.charts.showGrid", { defaultValue: "Show grid lines" })}</Text></View>{CHART_GEOMETRY_CONTROLS.filter(control => (control.kinds as readonly string[]).includes(kind)).map(control => { const amount = value[control.key] ?? defaultChartGeometry(control.key, multiple); return <View key={control.key} style={{ gap: 6 }}><View className="flex-row justify-between"><Text className="text-xs text-white/65">{t(`editor.charts.geometry.${control.key}`, { defaultValue: control.label })}</Text><Text className="text-xs text-white/65">{chartGeometryLabel(control.key, amount)}</Text></View><Slider minimumValue={control.min} maximumValue={control.max} step={control.step} value={amount} onValueChange={amount => onChange({ ...value, [control.key]: amount })} accessibilityLabel={t(`editor.charts.geometry.${control.key}`, { defaultValue: control.label })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>; })}<Pressable accessibilityRole="button" className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" onPress={() => onChange({ ...value, lineWidth: undefined, pointSize: undefined, areaOpacity: undefined, barGap: undefined, showGrid: undefined })}><Text className="text-xs text-white/65">{t("editor.charts.resetGeometry", { defaultValue: "Reset chart geometry" })}</Text></Pressable></View>;
+}
