@@ -20,12 +20,13 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       const x = xs[c], y = ys[r], cellWidth = xs[c + (merge?.columnSpan ?? 1)] - x, cellHeight = ys[r + (merge?.rowSpan ?? 1)] - y;
       const padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45, cellHeight * 0.4);
       const size = Math.max(1, Math.min(font, cellHeight - padding * 2)), lineHeight = size * 1.2, maxWidth = Math.max(1, cellWidth - padding * 2);
-      ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour;
+      const cellStyle = table.cellStyles?.[r + ":" + c], alignment = cellStyle?.align ?? table.align ?? "left";
+      ctx.fillStyle = cellStyle?.fill ?? (table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour);
       ctx.fillRect(x, y, cellWidth, cellHeight); ctx.strokeStyle = table.borderColour;
       if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
-      ctx.font = (table.header && r === 0 ? "700 " : "500 ") + size + "px Inter, sans-serif";
-      ctx.fillStyle = table.header && r === 0 ? table.headerTextColour : table.textColour;
-      ctx.textAlign = table.align === "centre" ? "center" : table.align ?? "left";
+      ctx.font = (cellStyle?.italic ? "italic " : "") + (cellStyle?.bold === true ? "700 " : cellStyle?.bold === false ? "400 " : table.header && r === 0 ? "700 " : "500 ") + size + "px Inter, sans-serif";
+      ctx.fillStyle = cellStyle?.colour ?? (table.header && r === 0 ? table.headerTextColour : table.textColour);
+      ctx.textAlign = alignment === "centre" ? "center" : alignment;
       const maxLines = table.wrap ? Math.max(1, Math.min(8, Math.floor((cellHeight - padding * 2) / lineHeight))) : 1;
       const text = String(row[c] || "").slice(0, 200), lines: string[] = [];
       let line = "", clipped = false;
@@ -42,7 +43,7 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
         }
       } else line = text.replace(/\s+/g, " ");
       lines.push(line);
-      const anchor = table.align === "centre" ? x + cellWidth / 2 : table.align === "right" ? x + cellWidth - padding : x + padding;
+      const anchor = alignment === "centre" ? x + cellWidth / 2 : alignment === "right" ? x + cellWidth - padding : x + padding;
       const block = (lines.length - 1) * lineHeight + size;
       const firstY = table.verticalAlign === "top" ? y + padding + size / 2 : table.verticalAlign === "bottom" ? y + cellHeight - padding - block + size / 2 : y + cellHeight / 2 - (lines.length - 1) * lineHeight / 2;
       lines.forEach((value, index) => {

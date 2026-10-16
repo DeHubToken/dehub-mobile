@@ -7,7 +7,7 @@ export function transposeTableSource(source: string): string {
   return formatDelimitedData(Array.from({ length: columns }, (_, column) => rows.map(row => row[column] ?? "")), "\t");
 }
 
-export function sortTableSource(source: string, column: number, header: boolean, descending: boolean): string {
+export function sortTableSource(source: string, column: number, header: boolean, descending: boolean, onOrder?: (order: number[]) => void): string {
   const rows = parseTableData(source), columns = Math.max(0, ...rows.map(row => row.length));
   if (!Number.isInteger(column) || column < 0 || column >= columns) throw new Error("Choose a column to sort");
   const data = header ? rows.slice(1) : [...rows];
@@ -16,5 +16,7 @@ export function sortTableSource(source: string, column: number, header: boolean,
     const numeric = left.trim() !== "" && right.trim() !== "" && Number.isFinite(Number(left)) && Number.isFinite(Number(right));
     return (numeric ? Number(left) - Number(right) : left.localeCompare(right, "en", { numeric: true, sensitivity: "base" })) * (descending ? -1 : 1);
   });
-  return formatDelimitedData(header ? [rows[0], ...data] : data, "\t");
+  const sorted = header ? [rows[0], ...data] : data;
+  onOrder?.(sorted.map(row => rows.indexOf(row)));
+  return formatDelimitedData(sorted, "\t");
 }
