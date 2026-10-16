@@ -26,3 +26,23 @@ export function changeDesignGuides(project: ProjectSnapshot, patch: Partial<Desi
   const guides = getDesignGuides({ ...getDesignGuides(project.settings.guides), ...patch });
   return { ...project, settings: { ...project.settings, guides } };
 }
+
+export interface GuideGridOptions { columns: number; rows: number; margin: number; gutter: number; replace: boolean }
+export function designGuideGridPositions(width: number, height: number, options: GuideGridOptions): { vertical: number[]; horizontal: number[] } {
+  if (!Number.isInteger(options.columns) || !Number.isInteger(options.rows) || options.columns < 1 || options.columns > 12 || options.rows < 1 || options.rows > 12 || !Number.isFinite(options.margin) || !Number.isFinite(options.gutter) || options.margin < 0 || options.gutter < 0 || width <= 0 || height <= 0) throw new Error("Choose 1–12 columns and rows, with positive margins and gutters");
+  const positions = (dimension: number, count: number) => {
+    const usable = dimension - options.margin * 2 - options.gutter * (count - 1);
+    if (usable < count) throw new Error("Margins and gutters leave no room for this grid. Reduce their size or use fewer cells");
+    const size = usable / count, result: number[] = [];
+    for (let index = 0; index < count; index++) { const from = options.margin + index * (size + options.gutter); result.push(from / dimension, (from + size) / dimension); }
+    return [...new Set(result.map(value => Math.round(value * 1e6) / 1e6))].sort((a, b) => a - b);
+  };
+  return { vertical: positions(width, options.columns), horizontal: positions(height, options.rows) };
+}
+export function applyDesignGuideGrid(project: ProjectSnapshot, options: GuideGridOptions): ProjectSnapshot {
+  const grid = designGuideGridPositions(project.settings.width, project.settings.height, options), before = getDesignGuides(project.settings.guides);
+  const merge = (axis: GuideAxis) => [...new Set([...(options.replace ? [] : before[axis]), ...grid[axis]])].sort((a, b) => a - b);
+  const vertical = merge("vertical"), horizontal = merge("horizontal");
+  if (vertical.length > 50 || horizontal.length > 50) throw new Error("This grid would exceed 50 guides on one axis. Replace existing guides or clear some first");
+  return changeDesignGuides(project, { vertical, horizontal, visible: true, rulers: true, ...(options.replace ? { margin: 0 } : {}) });
+}

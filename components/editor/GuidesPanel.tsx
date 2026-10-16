@@ -1,3 +1,4 @@
+import GuideGridControls from "./GuideGridControls";
 import React, { useState } from "react";
 import { Pressable, ScrollView, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -30,5 +31,6 @@ export default function GuidesPanel({ project, current, commit }: { project: Pro
       <Text className="text-xs text-white/60">{t("editor.guides.margin", { defaultValue: "Margin" })}</Text><TextInput keyboardType="number-pad" value={String(Math.round(guides.margin * 100))} onChangeText={value => apply({ margin: Number(value) / 100, visible: true })} accessibilityLabel={t("editor.guides.margin", { defaultValue: "Margin" })} className="min-h-[40px] w-16 rounded-lg border border-white/20 px-2 text-xs text-white" />
     </View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["vertical", "horizontal"] as const).flatMap(direction => guides[direction].map(n => button(`${direction === "vertical" ? "X" : "Y"} ${Number((n * 100).toFixed(1))}% ×`, () => apply({ [direction]: guides[direction].filter(value => value !== n) }))))}</View>
+    <GuideGridControls project={project} current={current} commit={commit} />
   </ScrollView>;
 }
