@@ -1,3 +1,4 @@
+import ResizeDesignPanel from "./ResizeDesignPanel";
 import { DESIGN_PANEL_NAMES, designSelectionAction } from "../../libs/editor/designPanels";
 import VectorSymbolsPanel from "./VectorSymbolsPanel";
 import DesignClipboardControls from "./DesignClipboardControls";
@@ -10,7 +11,7 @@ import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useState } from "react";
 import { Keyboard, Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { applyDesignPalette, applyDesignStyle, copyDesignStyle, designColours, DESIGN_PALETTES, DESIGN_SIZES, replaceDesignColour, resizeDesign, type DesignStyle } from "../../libs/editor/designTools";
+import { applyDesignPalette, applyDesignStyle, copyDesignStyle, designColours, DESIGN_PALETTES, replaceDesignColour, type DesignStyle } from "../../libs/editor/designTools";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 import DesignTextSearch from "./DesignTextSearch";
 import DataVisualPanel from "./DataVisualPanel";
@@ -34,8 +35,6 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
   const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | null>(null);
-  const [width, setWidth] = useState(String(project.settings.width));
-  const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
@@ -61,7 +60,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? ""))}
       {contextual && action(t(`editor.selectionAction.${contextual.id}`, { defaultValue: contextual.label }), editSelected, !!selected?.locked || (!contextual.panel && !onEditContent))}
       <DesignClipboardControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
-      {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => { setWidth(String(project.settings.width)); setHeight(String(project.settings.height)); setPanel(panel === "resize" ? null : "resize"); }, false, panel === "resize")}
+      {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => setPanel(panel === "resize" ? null : "resize"), false, panel === "resize")}
       {action(t("editor.designTools.colours", { defaultValue: "Document colours" }), () => setPanel(panel === "colours" ? null : "colours"), false, panel === "colours")}
       {action(t("editor.designTools.copyStyle", { defaultValue: "Copy style" }), () => {
         const latest = current();
@@ -104,15 +103,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}
-    {panel === "resize" && <View style={{ gap: 8 }}><ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}>
-      {DESIGN_SIZES.map(size => <Pressable key={size.id} accessibilityRole="button" onPress={() => { apply(p => resizeDesign(p, size.width, size.height)); setPanel(null); }} className="rounded-xl border border-white/15 p-3">
-        <Text className="text-xs font-semibold text-white">{t(`editor.designTools.size.${size.id}`, { defaultValue: size.label })}</Text><Text className="text-xs text-white/50">{size.width} × {size.height}</Text>
-      </Pressable>)}
-    </ScrollView><View className="flex-row items-center px-3" style={{ gap: 8 }}>
-      <TextInput keyboardType="number-pad" value={width} onChangeText={setWidth} accessibilityLabel={t("editor.designTools.width", { defaultValue: "Width in pixels" })} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-3 text-white" />
-      <Text className="text-white/50">×</Text><TextInput keyboardType="number-pad" value={height} onChangeText={setHeight} accessibilityLabel={t("editor.designTools.height", { defaultValue: "Height in pixels" })} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-3 text-white" />
-      {action(t("editor.designTools.applySize", { defaultValue: "Apply size" }), () => apply(p => resizeDesign(p, Number(width), Number(height))), !Number.isFinite(Number(width)) || !Number.isFinite(Number(height)) || Number(width) < 64 || Number(height) < 64 || Number(width) > 8192 || Number(height) > 8192)}
-    </View></View>}
+    {panel === "resize" && <ResizeDesignPanel key={project.id} project={project} current={current} commit={commit} />}
     {panel === "colours" && <View className="px-3" style={{ gap: 10 }}>
       <Text className="text-xs text-white/60">{t("editor.designTools.colourHint", { defaultValue: "Choose a colour to replace across this design. Locked layers are preserved." })}</Text>
       <ScrollView keyboardShouldPersistTaps="handled" horizontal contentContainerStyle={{ gap: 10 }}>

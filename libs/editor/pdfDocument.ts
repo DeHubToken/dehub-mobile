@@ -1,6 +1,7 @@
+import { designPrintDpi } from "./documentDimensions";
 import { normaliseDesignLink, type DesignPdfLink } from "./designLinks";
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
-export interface PdfPage { jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
+export interface PdfPage { dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
 const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255);
 
@@ -31,10 +32,10 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     if (!Number.isInteger(page.width) || !Number.isInteger(page.height) || page.width < 1 || page.height < 1 ||
       page.width > 32768 || page.height > 32768 || page.jpeg.length < 4 || page.jpeg[0] !== 255 || page.jpeg[1] !== 216) throw new Error("Invalid PDF page image");
     const id = 3 + index * 3;
-    // A4's print preset is 300 dpi; screen designs use 96 dpi.
     const designWidth = page.designWidth ?? page.width, designHeight = page.designHeight ?? page.height;
     if (!Number.isFinite(designWidth) || !Number.isFinite(designHeight) || designWidth <= 0 || designHeight <= 0) throw new Error("Invalid PDF page size");
-    const dpi = (designWidth === 2480 && designHeight === 3508) || (designHeight === 2480 && designWidth === 3508) ? 300 : 96;
+    const dpi = page.dpi ?? designPrintDpi({ width: designWidth, height: designHeight });
+    if (!Number.isInteger(dpi) || dpi < 72 || dpi > 600) throw new Error("Invalid PDF print resolution");
     const width = Number((designWidth * 72 / dpi).toFixed(3)), height = Number((designHeight * 72 / dpi).toFixed(3));
     const links = (page.links ?? []).slice(0, 500).flatMap(link => {
       const url = normaliseDesignLink(link.url);
