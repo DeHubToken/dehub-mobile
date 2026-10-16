@@ -167,7 +167,13 @@ export type ClipAnimationKind =
   | "zoom-out"
   | "pop"
   | "rise"
-  | "blur";
+  | "blur"
+  | "spin"
+  | "bounce"
+  | "wipe-left"
+  | "wipe-right"
+  | "wipe-up"
+  | "wipe-down";
 
 export interface ClipAnimation {
   kind: ClipAnimationKind;
