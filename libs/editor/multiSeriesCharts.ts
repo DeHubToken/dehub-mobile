@@ -6,8 +6,8 @@ import type { ChartData, DataVisualContext } from "./dataVisuals";
 
 /** Grouped and stacked charts use the same numeric scale for every series. */
 export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): boolean {
-  if (!chart.series?.length || chart.kind === "pie" || chart.kind === "donut") return false;
-  const rows = chart.rows.slice(0, 50), series = chart.series.slice(0, 6);
+  if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut") return false;
+  const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   if (!rows.length) return false;
   const font = Math.max(8, Math.min(24, height / 18, width / 28));
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index: number) => colours[index % colours.length];
@@ -19,7 +19,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const negative = rows.map((_, index) => values.reduce((sum, set) => sum + Math.min(0, set[index]), 0));
   const minimum = percentStack ? negative.some(value => value < 0) ? -100 : 0 : Math.min(0, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value: number) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false } : chart.valueFormat);
-  const legend = drawChartLegend(ctx, width, height, chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
+  const legend = drawChartLegend(ctx, width, height, chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
   const left = legend.left, top = legend.top, frameWidth = legend.width, frameHeight = legend.height, centreX = left + frameWidth / 2;
   ctx.font = "500 " + font + "px Inter, sans-serif"; ctx.textBaseline = "middle";
   function label(text: string, x: number, y: number, max: number) {
@@ -39,6 +39,30 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       ctx.closePath(); ctx.fillStyle = colour(set) + Math.round((chart.areaOpacity ?? 0.149) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350) * (chart.lineWidth ?? 1); ctx.stroke();
       if (chart.showValues) values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); ctx.fillStyle = colour(set); ctx.textAlign = "center"; label(labelValue(value), p.x, p.y - font * (0.8 + set * 0.7), Math.max(font * 2, width / rows.length)); });
     });
+    return true;
+  }
+  if (chart.kind === "scatter") {
+    const xs = rows.map(row => Number(row.label));
+    if (xs.some(value => !Number.isFinite(value))) return true;
+    const rawMinX = Math.min(...xs), rawMaxX = Math.max(...xs), padding = (rawMaxX - rawMinX || Math.max(1, Math.abs(rawMinX) * 0.1)) * 0.05;
+    const minX = rawMinX - padding, maxX = rawMaxX + padding, spanX = maxX - minX || 1;
+    const showGrid = chart.showGrid ?? !!chart.series?.length, showScale = chart.showAxisValues ?? !!chart.series?.length;
+    const x0 = left + font * (showScale ? 3 : 1), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (chart.showLabels ? font * 2.5 : font);
+    const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0), xFor = (value: number) => x0 + (value - minX) / spanX * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
+    ctx.lineWidth = Math.max(1, width / 900);
+    for (let tick = 0; tick <= 4; tick++) {
+      const x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
+      if (showGrid) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
+      ctx.fillStyle = chart.textColour;
+      if (showScale) { ctx.textAlign = "right"; label(labelValue(Number((minimum + span * tick / 4).toPrecision(3))), x0 - font / 2, y, font * 2.5); }
+      if (chart.showLabels) { ctx.textAlign = "center"; label(chartValueLabel(Number((minX + spanX * tick / 4).toPrecision(3)), undefined), x, y1 + font * 1.2, plotWidth / 4 * 0.95); }
+    }
+    ctx.strokeStyle = chart.textColour; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
+    series.forEach((_, set) => values[set].forEach((value, index) => {
+      const x = xFor(xs[index]), y = yFor(value), pointColour = chart.series?.length ? colour(set) : colour(index);
+      ctx.fillStyle = pointColour; ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 220) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill();
+      if (chart.showValues) { ctx.textAlign = "center"; label(labelValue(value), x, y - font * 0.8, Math.max(font * 3, plotWidth / rows.length)); }
+    }));
     return true;
   }
   const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * 2.5) : font;
