@@ -24,6 +24,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
+  if (isProgressChart(chart.kind)) { drawProgressChart(ctx, width, height, chart); return; }
   if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
   if (chart.kind === "treemap") { drawTreemapChart(ctx, width, height, chart); return; }

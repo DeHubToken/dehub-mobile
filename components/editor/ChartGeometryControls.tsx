@@ -1,3 +1,4 @@
+import { isProgressChart } from "../../libs/editor/progressCharts";
 import React from "react";
 import { Pressable, Switch, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
@@ -7,6 +8,7 @@ import { CHART_GEOMETRY_CONTROLS, defaultChartGeometry, chartGeometryLabel, type
 
 export default function ChartGeometryControls({ value, kind, multiple, onChange }: { value: ChartGeometry; kind: ChartData["kind"]; multiple: boolean; onChange: (value: ChartGeometry) => void }) {
   const { t } = useTranslation();
+  if (isProgressChart(kind)) return null;
   if (kind === "pictogram") return <View style={{ gap: 6 }}><Text className="text-xs text-white/65">{t("editor.charts.symbolGap", { defaultValue: "Symbol spacing" })}: {Math.round(Math.max(0.08, Math.min(0.8, value.barGap ?? 0.22)) * 100)}%</Text><Slider minimumValue={8} maximumValue={80} step={1} value={Math.round(Math.max(0.08, Math.min(0.8, value.barGap ?? 0.22)) * 100)} onValueChange={percent => onChange({ ...value, barGap: percent / 100 })} accessibilityLabel={t("editor.charts.symbolGap", { defaultValue: "Symbol spacing" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>;
   if (kind === "treemap") return <View style={{ gap: 6 }}><Text className="text-xs text-white/65">{t("editor.charts.tileGap", { defaultValue: "Tile spacing" })}: {Math.round((value.barGap ?? 0.12) * 100)}%</Text><Slider minimumValue={0} maximumValue={90} step={1} value={Math.round((value.barGap ?? 0.12) * 100)} onValueChange={percent => onChange({ ...value, barGap: percent / 100 })} accessibilityLabel={t("editor.charts.tileGap", { defaultValue: "Tile spacing" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>;
   if (kind === "funnel") return <View style={{ gap: 6 }}><Text className="text-xs text-white/65">{t("editor.charts.funnelGap", { defaultValue: "Stage spacing" })}: {Math.round((value.barGap ?? 0.08) * 100)}%</Text><Slider minimumValue={0} maximumValue={90} step={1} value={Math.round((value.barGap ?? 0.08) * 100)} onValueChange={percent => onChange({ ...value, barGap: percent / 100 })} accessibilityLabel={t("editor.charts.funnelGap", { defaultValue: "Stage spacing" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>;
