@@ -1,5 +1,6 @@
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
+import { validDataVisuals } from "./dataVisuals";
 
 export class CloudProjectConflict extends Error {}
 
@@ -80,6 +81,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
         }
       }
     }
+    if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

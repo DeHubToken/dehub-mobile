@@ -45,6 +45,7 @@ import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
 import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
+import { DATA_VISUAL_RUNTIME } from "./dataVisualRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -71,6 +72,7 @@ canvas{display:block;width:100%;height:100%;}
   __SHOT_RUNTIME__
   __VISUAL_FRAME_RUNTIME__
   __VIDEO_MATTE_RUNTIME__
+  __DATA_VISUAL_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -538,6 +540,7 @@ canvas{display:block;width:100%;height:100%;}
     c.closePath();
   }
   function drawShape(c, clip, box, H) {
+    if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table); return; }
     var k = H / 1080;
     var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
     shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
@@ -752,6 +755,8 @@ canvas{display:block;width:100%;height:100%;}
 
   function timelineEnd(clips, settings) {
     var end = clips.reduce(function (m, c) { return Math.max(m, c.start + c.duration); }, 0);
+    var lastStart = settings && settings.pages && settings.pages.length ? settings.pages[settings.pages.length - 1] : 0;
+    if (settings && Number.isFinite(settings.pageEnd) && settings.pageEnd > lastStart) return Math.max(end, settings.pageEnd);
     return settings && settings.pages && settings.pages.length ? Math.max(end, settings.pages[settings.pages.length - 1] + 5) : end;
   }
   function speedOf(c) { return c.speed && c.speed > 0 ? c.speed : 1; }
@@ -1829,4 +1834,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME);

@@ -42,6 +42,7 @@ import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import ExportSheet from "../components/editor/ExportSheet";
 import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
 import { exportPageArchive } from "../libs/editor/exportPageArchive";
+import { exportPdf } from "../libs/editor/exportPdf";
 import { pageExportFrames, type PageExportScope } from "../libs/editor/pageExports";
 import { saveGif } from "../libs/editor/saveGif";
 import { exportBaseName, exportFilename } from "../libs/editor/exportName";
@@ -97,7 +98,8 @@ import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
-import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
+import DesignTools from "../components/editor/DesignTools";
+import { appendPage, getPages, pageAt, removePage, reorderPage, setPageDuration } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
 import { applyCaptionText } from "../libs/editor/captionText";
@@ -1243,6 +1245,22 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (tool === "scenes") {
       const pages = getPages(project.settings, project.clips);
       return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index}
+        onDuration={(index, duration) => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const page = setPageDuration(current.settings, current.clips, index, duration, () => newId(10));
+          if (!page) return;
+          h.commit({ ...current, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }}
+        onMove={(from, to) => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const page = reorderPage(current.settings, current.clips, from, to, () => newId(10));
+          if (!page) return;
+          h.commit({ ...current, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }}
         onPick={start => { setPlaying(false); setTime(start); setSelectedId(null); }}
         onAdd={duplicate => {
           const page = appendPage(project.settings, project.clips, canvasTime, duplicate, () => newId(10));
@@ -1446,6 +1464,25 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
   };
 
+  const downloadPdf = async (scope: PageExportScope) => {
+    const current = h.latest();
+    const canvas = canvasRef.current;
+    if (!current || !canvas || rendering !== null || h.isEditing()) return;
+    const lease = h.holdEdits(projectReviewSnapshotKey(current));
+    if (!lease) return;
+    const ctl = new AbortController(); downloadController.current = ctl;
+    setPlaying(false); setExportOpen(false); setRendering(0);
+    try {
+      await exportPdf(current, canvasTime, scope, time => canvas.exportImage("jpeg", 0.95, time), ctl.signal, setRendering);
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
+    } finally {
+      lease.release();
+      if (downloadController.current === ctl) downloadController.current = null;
+      setRendering(null);
+    }
+  };
+
   const exportGif = async (scope: ExportScope = "timeline") => {
     if (scope !== "timeline") { await exportClipDownloads("gif", "1080", scope); return; }
     if (!project || !canvasRef.current || rendering !== null) return;
@@ -1593,6 +1630,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
+      <DesignTools key={project.id} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
       <LiveProjectSession projectId={project.id} editor={cloudDraftHistoryEditor(h)} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
@@ -1832,6 +1870,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
+          onExportPdf={scope => { void downloadPdf(scope); }}
       />
     </View>
   );

@@ -1,0 +1,173 @@
+import type { Clip, ClipEffects, ClipShadow, ProjectSnapshot, ShapeClip, TextClip } from "./types";
+
+/** Formatting clipboard deliberately excludes content, timing, placement and media identity. */
+export interface DesignStyle {
+  kind: Clip["kind"];
+  opacity: number;
+  blend: Clip["blend"];
+  shadow: ClipShadow | null;
+  text?: Partial<TextClip>;
+  shape?: Pick<ShapeClip, "fill" | "stroke" | "radius">;
+  effects?: ClipEffects;
+  radius?: number;
+  chartStyle?: Omit<import("./dataVisuals").ChartData, "rows" | "kind">;
+  tableStyle?: Omit<import("./dataVisuals").TableData, "rows">;
+}
+
+export function copyDesignStyle(clip: Clip): DesignStyle | null {
+  if (clip.kind === "audio") return null;
+  const style: DesignStyle = {
+    kind: clip.kind, opacity: clip.transform?.opacity ?? 1,
+    blend: clip.blend ?? "normal", shadow: clip.shadow ? { ...clip.shadow } : null,
+  };
+  if (clip.kind === "text") {
+    const { fontFamily, fontSize, fontWeight, color, align, italic, uppercase, underline, letterSpacing, lineHeight } = clip;
+    style.text = { fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
+      underline: !!underline, letterSpacing: letterSpacing ?? 0, lineHeight: lineHeight ?? 1.2,
+      background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
+  } else if (clip.kind === "shape") {
+    style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0 };
+    if (clip.chart) { const { rows: _rows, kind: _kind, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
+    if (clip.table) { const { rows: _rows, ...format } = clip.table; style.tableStyle = { ...format }; }
+  } else {
+    style.effects = { ...clip.effects };
+    style.radius = clip.radius ?? 0;
+  }
+  return style;
+}
+
+export function pasteDesignStyle(clip: Clip, style: DesignStyle): Clip {
+  if (clip.locked || clip.kind === "audio") return clip;
+  const common = { ...clip, blend: style.blend, shadow: style.shadow ? { ...style.shadow } : null,
+    transform: { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform, opacity: style.opacity } };
+  if (clip.kind === "text" && style.text) return { ...common, ...style.text } as TextClip;
+  if (clip.kind === "shape" && style.shape) return { ...common, ...style.shape,
+    ...(clip.chart && style.chartStyle ? { chart: { ...clip.chart, ...style.chartStyle, colours: [...style.chartStyle.colours] } } : {}),
+    ...(clip.table && style.tableStyle ? { table: { ...clip.table, ...style.tableStyle } } : {}) } as ShapeClip;
+  if ((clip.kind === "image" || clip.kind === "video") && style.effects) {
+    return { ...common, effects: { ...style.effects }, radius: style.radius } as Clip;
+  }
+  return common as Clip;
+}
+
+export function applyDesignStyle(project: ProjectSnapshot, ids: readonly string[], style: DesignStyle): ProjectSnapshot {
+  const selected = new Set(ids);
+  return { ...project, clips: project.clips.map(clip => selected.has(clip.id) ? pasteDesignStyle(clip, style) : clip) };
+}
+
+function colourKey(value: string): string {
+  const hex = value.trim().toLowerCase();
+  return /^#[0-9a-f]{3}$/.test(hex) ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+}
+
+export function designColours(project: ProjectSnapshot): string[] {
+  const colours = new Set<string>();
+  const add = (value: string | null | undefined) => { if (value && /^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(value)) colours.add(colourKey(value)); };
+  add(project.settings.background);
+  for (const clip of project.clips) {
+    if (clip.kind === "text") { add(clip.color); add(clip.background?.color); add(clip.stroke?.color); }
+    if (clip.kind === "shape") {
+      add(clip.fill); add(clip.stroke?.color);
+      if (clip.chart) { clip.chart.colours.forEach(add); add(clip.chart.textColour); }
+      if (clip.table) { add(clip.table.headerColour); add(clip.table.headerTextColour); add(clip.table.cellColour); add(clip.table.textColour); add(clip.table.borderColour); }
+    }
+    add(clip.shadow?.color);
+  }
+  return [...colours];
+}
+
+/** Replace literal design colours without recolouring photographs or changing locked layers. */
+export function replaceDesignColour(project: ProjectSnapshot, from: string, to: string): ProjectSnapshot {
+  if (!/^#[0-9a-f]{6}$/i.test(to) || colourKey(from) === colourKey(to)) return project;
+  const replace = (value: string) => colourKey(value) === colourKey(from) ? to : value;
+  return { ...project, settings: { ...project.settings, background: replace(project.settings.background) },
+    clips: project.clips.map(clip => {
+      if (clip.locked) return clip;
+      const next = { ...clip };
+      if (next.shadow) next.shadow = { ...next.shadow, color: replace(next.shadow.color) };
+      if (next.kind === "text") {
+        next.color = replace(next.color);
+        if (next.background) next.background = { ...next.background, color: replace(next.background.color) };
+      }
+      if (next.kind === "shape" && next.fill) next.fill = replace(next.fill);
+      if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(replace), textColour: replace(next.chart.textColour) };
+      if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: replace(next.table.headerColour), headerTextColour: replace(next.table.headerTextColour), cellColour: replace(next.table.cellColour), textColour: replace(next.table.textColour), borderColour: replace(next.table.borderColour) };
+      if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: replace(next.stroke.color) };
+      return next;
+    }) };
+}
+
+export const DESIGN_SIZES = [
+  { id: "square", label: "Square post", width: 1080, height: 1080 },
+  { id: "portrait", label: "Portrait post", width: 1080, height: 1350 },
+  { id: "story", label: "Story / Reel", width: 1080, height: 1920 },
+  { id: "presentation", label: "Presentation", width: 1920, height: 1080 },
+  { id: "thumbnail", label: "Video thumbnail", width: 1280, height: 720 },
+  { id: "banner", label: "Profile banner", width: 1500, height: 500 },
+  { id: "a4", label: "A4 document", width: 2480, height: 3508 },
+  { id: "poster", label: "Poster", width: 2400, height: 3600 },
+] as const;
+
+/** All existing text/shape measurements are relative to the page, so resizing preserves composition. */
+export function resizeDesign(project: ProjectSnapshot, width: number, height: number): ProjectSnapshot {
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width < 64 || height < 64 || width > 8192 || height > 8192) return project;
+  const ratio = width / height;
+  const aspectPreset = ratio === 1 ? "1:1" : Math.abs(ratio - 16 / 9) < 0.001 ? "16:9"
+    : Math.abs(ratio - 9 / 16) < 0.001 ? "9:16" : Math.abs(ratio - 4 / 5) < 0.001 ? "4:5" : "custom";
+  return { ...project, settings: { ...project.settings, width: Math.round(width), height: Math.round(height), aspectPreset } };
+}
+
+export function findDesignText(project: ProjectSnapshot, query: string, matchCase = false): TextClip[] {
+  if (!query) return [];
+  const needle = matchCase ? query : query.toLocaleLowerCase();
+  return project.clips.filter((clip): clip is TextClip => clip.kind === "text" &&
+    (matchCase ? clip.text : clip.text.toLocaleLowerCase()).includes(needle));
+}
+
+/** Literal find/replace: replacement strings such as $& are content, never regex syntax. */
+export function replaceDesignText(project: ProjectSnapshot, query: string, replacement: string, matchCase = false, ids?: readonly string[]): ProjectSnapshot {
+  if (!query) return project;
+  const selected = ids ? new Set(ids) : null;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(escaped, matchCase ? "gu" : "giu");
+  let changed = false;
+  const clips = project.clips.map(clip => {
+    if (clip.kind !== "text" || clip.locked || (selected && !selected.has(clip.id))) return clip;
+    const text = clip.text.replace(pattern, () => replacement);
+    if (text === clip.text) return clip;
+    changed = true;
+    return { ...clip, text };
+  });
+  return changed ? { ...project, clips } : project;
+}
+
+export const DESIGN_PALETTES = [
+  { id: "ink", label: "Ink", colours: ["#faf9f6", "#202020", "#67645e", "#c9c3b8", "#9e775a"] },
+  { id: "ocean", label: "Ocean", colours: ["#ecfeff", "#083344", "#0891b2", "#67e8f9", "#155e75"] },
+  { id: "citrus", label: "Citrus", colours: ["#fffbea", "#302d17", "#f59e0b", "#facc15", "#65a30d"] },
+  { id: "rose", label: "Rose", colours: ["#fff1f2", "#4c0519", "#e11d48", "#fda4af", "#9f1239"] },
+  { id: "forest", label: "Forest", colours: ["#f0fdf4", "#052e16", "#16a34a", "#86efac", "#166534"] },
+  { id: "midnight", label: "Midnight", colours: ["#0f172a", "#f8fafc", "#38bdf8", "#818cf8", "#cbd5e1"] },
+] as const;
+
+/** Simultaneous mapping prevents one replacement colour being replaced again. */
+export function applyDesignPalette(project: ProjectSnapshot, colours: readonly string[]): ProjectSnapshot {
+  if (!colours.length || colours.some(c => !/^#[0-9a-f]{6}$/i.test(c))) return project;
+  const originals = designColours(project);
+  const mapping = new Map(originals.map((colour, index) => [colour, colours[index % colours.length]]));
+  const recolour = (value: string) => mapping.get(colourKey(value)) ?? value;
+  return { ...project, settings: { ...project.settings, background: recolour(project.settings.background) }, clips: project.clips.map(clip => {
+    if (clip.locked) return clip;
+    const next = { ...clip };
+    if (next.shadow) next.shadow = { ...next.shadow, color: recolour(next.shadow.color) };
+    if (next.kind === "text") {
+      next.color = recolour(next.color);
+      if (next.background) next.background = { ...next.background, color: recolour(next.background.color) };
+    }
+    if (next.kind === "shape" && next.fill) next.fill = recolour(next.fill);
+    if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(recolour), textColour: recolour(next.chart.textColour) };
+    if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: recolour(next.table.headerColour), headerTextColour: recolour(next.table.headerTextColour), cellColour: recolour(next.table.cellColour), textColour: recolour(next.table.textColour), borderColour: recolour(next.table.borderColour) };
+    if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: recolour(next.stroke.color) };
+    return next;
+  }) };
+}

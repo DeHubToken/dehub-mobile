@@ -19,6 +19,8 @@ export function timelineEnd(clips: Clip[]): number {
 
 export function timelineDuration(settings: ProjectSettings, clips: Clip[]): number {
   const end = timelineEnd(clips);
+  const lastStart = settings.pages?.[settings.pages.length - 1] ?? 0;
+  if (Number.isFinite(settings.pageEnd) && settings.pageEnd! > lastStart) return Math.max(end, settings.pageEnd!);
   return settings.pages?.length ? Math.max(end, settings.pages[settings.pages.length - 1] + PAGE_MIN) : end;
 }
 
@@ -27,7 +29,7 @@ export function getPages(settings: ProjectSettings, clips: Clip[]): Page[] {
   const end = timelineEnd(clips);
   return starts.map((start, index) => {
     const next = starts[index + 1];
-    return { index, start, end: next ?? Math.max(end, start + PAGE_MIN) };
+    return { index, start, end: next ?? (Number.isFinite(settings.pageEnd) && settings.pageEnd! > start ? Math.max(end, settings.pageEnd!) : Math.max(end, start + PAGE_MIN)) };
   });
 }
 
@@ -43,7 +45,7 @@ export function appendPage(settings: ProjectSettings, clips: Clip[], time: numbe
     const from = Math.max(c.start, current.start), to = Math.min(c.start + c.duration, current.end);
     return to - from >= 0.05 ? [sliceTimelineClip(c, from - c.start, to - from, makeId(), start + from - current.start)] : [];
   }) : [];
-  return { settings: { ...settings, pages: [...pages.map(p => p.start), start] }, clips: [...clips, ...copies], start };
+  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: [...clips, ...copies], start };
 }
 
 export function removePage(settings: ProjectSettings, clips: Clip[], index: number, makeId: () => string) {
@@ -63,5 +65,67 @@ export function removePage(settings: ProjectSettings, clips: Clip[], index: numb
     return parts;
   });
   const starts = pages.filter(p => p.index !== index).map(p => p.start >= page.end ? p.start - length : p.start);
-  return { clips: kept, settings: { ...settings, pages: starts.length > 1 ? starts : undefined }, start: Math.min(page.start, timelineDuration({ ...settings, pages: starts }, kept)) };
+  return { clips: kept, settings: { ...settings, pages: starts.length > 1 ? starts : undefined, pageEnd: pages[pages.length - 1].end - length }, start: Math.min(page.start, Math.max(0, pages[pages.length - 1].end - length - 0.01)) };
+}
+
+/** Rebuild page slices in the requested order, preserving source trims and clip-local motion. */
+export function reorderPage(settings: ProjectSettings, clips: Clip[], from: number, to: number, makeId: () => string) {
+  const pages = getPages(settings, clips);
+  if (!Number.isInteger(from) || !Number.isInteger(to) || from === to || !pages[from] || !pages[to]) return null;
+  const order = [...pages];
+  const [moving] = order.splice(from, 1);
+  order.splice(to, 0, moving);
+  const starts: number[] = [];
+  let cursor = 0;
+  const destination = new Map<number, number>();
+  for (const page of order) {
+    starts.push(cursor);
+    destination.set(page.index, cursor);
+    cursor += page.end - page.start;
+  }
+  // A locked layer must not be split or moved by an indirect page operation.
+  if (clips.some(c => c.locked && pages.some(p => c.start < p.end && c.start + c.duration > p.start &&
+    (destination.get(p.index) !== p.start || c.start < p.start || c.start + c.duration > p.end)))) return null;
+  const used = new Set<string>();
+  const rebuilt: Clip[] = [];
+  for (const page of order) {
+    const start = destination.get(page.index)!;
+    for (const clip of clips) {
+      const left = Math.max(clip.start, page.start), right = Math.min(clip.start + clip.duration, page.end);
+      if (right - left < 0.05) continue;
+      const id = used.has(clip.id) ? makeId() : clip.id;
+      used.add(clip.id);
+      rebuilt.push(sliceTimelineClip(clip, left - clip.start, right - left, id, start + left - page.start));
+    }
+  }
+  return { clips: rebuilt, settings: { ...settings, pages: starts, pageEnd: cursor }, start: destination.get(from)! };
+}
+
+/** Resize one page; later pages shift together while video/audio keep their playback rate. */
+export function setPageDuration(settings: ProjectSettings, clips: Clip[], index: number, duration: number, makeId: () => string) {
+  const pages = getPages(settings, clips), page = pages[index];
+  if (!page || !Number.isFinite(duration) || duration < 0.1 || duration > 3600) return null;
+  const delta = duration - (page.end - page.start);
+  if (Math.abs(delta) < 0.001 || clips.some(c => c.locked && c.start + c.duration > page.start)) return null;
+  const output: Clip[] = [];
+  for (const clip of clips) {
+    const end = clip.start + clip.duration;
+    if (end <= page.start) { output.push(clip); continue; }
+    if (clip.start >= page.end) { output.push({ ...clip, start: clip.start + delta } as Clip); continue; }
+    const left = Math.max(clip.start, page.start), right = Math.min(end, page.end);
+    const before = page.start - clip.start;
+    if (before >= 0.05) output.push(sliceTimelineClip(clip, 0, before, clip.id));
+    const offset = left - page.start;
+    const still = clip.kind === "text" || clip.kind === "shape" || clip.kind === "image";
+    const reachesEnd = Math.abs(right - page.end) < 0.001;
+    const length = Math.min(duration - offset, right - left + (still && reachesEnd ? delta : 0));
+    if (length >= 0.05) {
+      const part = sliceTimelineClip(clip, left - clip.start, Math.min(length, right - left), before >= 0.05 ? makeId() : clip.id, left);
+      // A still layer can hold for longer; source media is never silently slowed or repeated.
+      output.push({ ...part, duration: length, transitionOut: undefined } as Clip);
+    }
+    const after = end - page.end;
+    if (after >= 0.05) output.push(sliceTimelineClip(clip, page.end - clip.start, after, makeId(), page.end + delta));
+  }
+  return { clips: output, settings: { ...settings, pages: pages.map(p => p.index > index ? p.start + delta : p.start), pageEnd: pages[pages.length - 1].end + delta }, start: page.start };
 }

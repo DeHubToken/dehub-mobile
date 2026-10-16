@@ -84,6 +84,8 @@ export function setBackground(p: ProjectSnapshot, background: string): ProjectSn
 /** End of the last clip, so a layer added to a web timeline spans all of it. */
 export function timelineEnd(p: ProjectSnapshot): number {
   const end = p.clips.reduce((end, c) => Math.max(end, c.start + c.duration), 0);
+  const lastStart = p.settings.pages?.[p.settings.pages.length - 1] ?? 0;
+  if (Number.isFinite(p.settings.pageEnd) && p.settings.pageEnd! > lastStart) return Math.max(end, p.settings.pageEnd!);
   return p.settings.pages?.length ? Math.max(end, p.settings.pages[p.settings.pages.length - 1] + 5) : end;
 }
 
