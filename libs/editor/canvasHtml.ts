@@ -634,6 +634,16 @@ canvas{display:block;width:100%;height:100%;}
     } else {
       applyShadow(c, text, H);
     }
+    const drawEcho = (value, x, y) => {
+      const alpha = c.globalAlpha, fill = c.fillStyle;
+      for (const layer of (text.echo || []).slice(0, 3)) {
+        if (!/^#[\da-f]{6}$/i.test(layer.colour) || ![layer.x, layer.y, layer.opacity].every(Number.isFinite)) continue;
+        c.globalAlpha = alpha * Math.max(0, Math.min(1, layer.opacity));
+        c.fillStyle = layer.colour;
+        c.fillText(value, x + Math.max(-100, Math.min(100, layer.x)) / 1080 * H * l.scale, y + Math.max(-100, Math.min(100, layer.y)) / 1080 * H * l.scale);
+      }
+      c.globalAlpha = alpha; c.fillStyle = fill;
+    };
     if (l.curve) {
       c.textAlign = "center";
       setLetterSpacing(c, 0);
@@ -651,6 +661,7 @@ canvas{display:block;width:100%;height:100%;}
         c.save();
         c.translate(glyph.x, glyph.y);
         c.rotate(glyph.rotation);
+        drawEcho(glyph.text, 0, 0);
         if (outline && outline.width > 0) c.strokeText(glyph.text, 0, 0);
         if (!text.hollow) c.fillText(glyph.text, 0, 0);
         clearShadow(c);
@@ -661,6 +672,7 @@ canvas{display:block;width:100%;height:100%;}
       clearShadow(c);
       return;
     }
+    lines.forEach((line, index) => drawEcho(line, drawX(index), startY + index * l.lh));
     var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
     if (textStroke && textStroke.width > 0) {
       c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));

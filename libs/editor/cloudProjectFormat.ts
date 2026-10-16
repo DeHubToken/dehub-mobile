@@ -92,6 +92,10 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
     if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
     if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
+    if (clip.kind === "text" && clip.echo !== undefined && (!Array.isArray(clip.echo) || clip.echo.length > 3 || clip.echo.some(layer =>
+      !object(layer) || typeof layer.colour !== "string" || !/^#[\da-f]{6}$/i.test(layer.colour) ||
+      typeof layer.x !== "number" || Math.abs(layer.x) > 100 || typeof layer.y !== "number" || Math.abs(layer.y) > 100 ||
+      typeof layer.opacity !== "number" || layer.opacity < 0 || layer.opacity > 1))) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

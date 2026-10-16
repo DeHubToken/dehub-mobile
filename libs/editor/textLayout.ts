@@ -3,6 +3,7 @@ export interface MeasuredTextStyle {
   text: string;
   uppercase?: boolean;
   curve?: number;
+  echo?: Array<{ x: number; y: number }>;
   list?: "none" | "bullet" | "number";
   fontSize: number;
   lineHeight?: number;
@@ -37,7 +38,8 @@ export function measuredTextLayout(
     const scale = size / requested;
     const spacing = (text.letterSpacing ?? 0) / 1080 * H * scale;
     const padding = text.background ? text.background.padding / 1080 * H * scale : size * 0.2;
-    const pad = Math.max(0, padding, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
+    const echoPad = Math.max(0, ...(text.echo ?? []).slice(0, 3).map(layer => Math.max(Math.abs(layer.x), Math.abs(layer.y)) / 1080 * H * scale));
+    const pad = Math.max(0, padding, echoPad, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
     const available = Math.max(0.1, widthLimit - pad * 2);
     const lines: string[] = [];
     const width = (line: string) => measure(line, size, spacing);
