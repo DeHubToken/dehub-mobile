@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 import { saveEditorDownload } from "../../libs/editor/saveEditorDownload";
-export default function SvgArtworkDownload({ getSvg, disabled = false, title, label, hint, suffix = "" }: { getSvg: () => string; disabled?: boolean; title: string; label: string; hint: string; suffix?: string }) {
+export default function SvgArtworkDownload({ getSvg, disabled = false, title, label, hint, suffix = "" }: { getSvg: (signal: AbortSignal) => string | Promise<string>; disabled?: boolean; title: string; label: string; hint: string; suffix?: string }) {
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), working = useRef(false), controller = useRef<AbortController | null>(null), mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; controller.current?.abort(); }; }, []);
   const download = async () => {
@@ -10,7 +10,7 @@ export default function SvgArtworkDownload({ getSvg, disabled = false, title, la
     const abort = new AbortController(); controller.current = abort; let uri: string | undefined;
     try {
       if (!FileSystem.cacheDirectory) throw new Error("Temporary file storage is unavailable");
-      const svg = getSvg(); uri = FileSystem.cacheDirectory + `vector-artwork-${Date.now()}-${Math.random().toString(36).slice(2)}.svg`;
+      const svg = await getSvg(abort.signal); if (abort.signal.aborted) return; uri = FileSystem.cacheDirectory + `vector-artwork-${Date.now()}-${Math.random().toString(36).slice(2)}.svg`;
       await FileSystem.writeAsStringAsync(uri, svg, { encoding: FileSystem.EncodingType.UTF8 });
       await saveEditorDownload(uri, (title || "Vector artwork") + suffix, "svg", "image/svg+xml", abort.signal);
       if (mounted.current) setError("");

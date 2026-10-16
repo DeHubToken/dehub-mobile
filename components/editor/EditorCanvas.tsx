@@ -1,3 +1,4 @@
+import { registerDataVisualSvgRenderer } from "../../libs/editor/dataVisualSvgRenderer";
 import { registerPaletteImageDecoder } from "../../libs/editor/paletteImageDecoder";
 import { nextDesignLayer } from "../../libs/editor/layerNavigation";
 import OverlapLayerPicker from "./OverlapLayerPicker";
@@ -170,6 +171,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
   const colourPick = useDesignColourPick(), sampling = colourPick?.projectId === project.id;
+  const dataVisualSvgRequests = useRef(new Map<string, { resolve: (svg: string) => void; reject: (error: Error) => void; cleanup: () => void }>());
   const paletteRequests = useRef(new Map<string, { resolve: (colours: string[]) => void; reject: (error: Error) => void; cleanup: () => void }>());
   const colourTimers = useRef(new Map<number, ReturnType<typeof setTimeout>>());
   useEffect(() => () => { for (const timer of colourTimers.current.values()) clearTimeout(timer); colourTimers.current.clear(); if (getDesignColourPick()?.projectId === project.id) cancelDesignColourPick(); }, [project.id]);
@@ -241,6 +243,17 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const post = useCallback((msg: unknown) => {
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
+  useEffect(() => {
+    const unregister = registerDataVisualSvgRenderer(project.id, (value, width, height, signal) => new Promise<string>((resolve, reject) => {
+      if (dataVisualSvgRequests.current.size >= 10) { reject(new Error("The design canvas is busy")); return; }
+      const reqId = `graphic-svg-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => { const request = dataVisualSvgRequests.current.get(reqId); if (!request) return; dataVisualSvgRequests.current.delete(reqId); request.cleanup(); reject(new Error("Vector export cancelled")); };
+      const timer = setTimeout(cancel, 15000), cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
+      dataVisualSvgRequests.current.set(reqId, { resolve, reject, cleanup }); signal.addEventListener("abort", cancel, { once: true });
+      if (signal.aborted) cancel(); else post({ type: "dataVisualSvg", reqId, value, width, height });
+    }));
+    return () => { unregister(); for (const request of dataVisualSvgRequests.current.values()) { request.cleanup(); request.reject(new Error("The design canvas closed")); } dataVisualSvgRequests.current.clear(); };
+  }, [project.id, post, webKey]);
   useEffect(() => {
     const unregister = registerPaletteImageDecoder(project.id, (source, signal) => new Promise<string[]>((resolve, reject) => {
       const reqId = `palette-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -438,6 +451,14 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (req && req.reqId === msg.reqId && Array.isArray(msg.pts)) {
           setPath({ id: req.id, pts: msg.pts, keys: Array.isArray(msg.keys) ? msg.keys : [] });
         }
+        break;
+      }
+      case "dataVisualSvg": {
+        const request = dataVisualSvgRequests.current.get(msg.reqId); if (!request) break;
+        dataVisualSvgRequests.current.delete(msg.reqId); request.cleanup();
+        if (typeof msg.error === "string") request.reject(new Error(msg.error));
+        else if (typeof msg.svg === "string" && msg.svg.startsWith("<?xml") && msg.svg.length <= 2 * 1024 * 1024) request.resolve(msg.svg);
+        else request.reject(new Error("Could not render vector graphic"));
         break;
       }
       case "paletteImage": {

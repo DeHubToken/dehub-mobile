@@ -1,3 +1,4 @@
+import DataVisualVectorDownload from "./DataVisualVectorDownload";
 import DataVisualDraftPreview from "./DataVisualDraftPreview";
 import ChartTransposeControl from "./ChartTransposeControl";
 import ChartStyleGallery from "./ChartStyleGallery";
@@ -171,6 +172,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
       {mode === "chart" && <><Switch accessibilityLabel={t("editor.dataVisual.values", { defaultValue: "Show values" })} value={showValues} onValueChange={setShowValues} /><Text className="text-xs text-white/70">{t("editor.dataVisual.values", { defaultValue: "Show values" })}</Text></>}
     </View>
     </>}
+    <DataVisualVectorDownload key={`${project.id}:${selected?.id ?? "new"}`} projectId={project.id} value={previewValue} width={project.settings.width * (selected?.kind === "shape" && (chart || table) ? selected.w : 0.8)} height={project.settings.height * (selected?.kind === "shape" && (chart || table) ? selected.h : 0.65)} title={project.title} />
     </ScrollView>
     <View className="border-t border-white/10 pt-2" style={{ gap: 6, marginHorizontal: 12 }}>
     <View className="flex-row" style={{ gap: 8 }}><Pressable accessibilityRole="button" onPress={() => choose(mode)} className="min-h-[40px] flex-1 items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.dataVisual.resetDraft", { defaultValue: "Reset draft" })}</Text></Pressable>
