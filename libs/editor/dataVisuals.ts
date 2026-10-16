@@ -16,6 +16,7 @@ export interface ChartData {
   areaOpacity?: number;
   barGap?: number;
   showGrid?: boolean;
+  showAxisValues?: boolean;
   kind: ChartKind;
   rows: { label: string; value: number }[];
   series?: { label: string; values: number[] }[];
@@ -125,8 +126,8 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   }
   const horizontal = chart.kind === "bar";
   const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * 2.5) : font;
-  const x0 = left + (horizontal ? labelSpace : font * 2), x1 = width / 2 - font;
-  const y0 = top + font * 1.5, y1 = height / 2 - (horizontal ? font : labelSpace);
+  const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
+  const y0 = top + font * 1.5, y1 = height / 2 - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const zeroX = x0 + (0 - min) / span * plotWidth;
   const zeroY = y1 - (0 - min) / span * plotHeight;
@@ -134,6 +135,11 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     const x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
     ctx.strokeStyle = chart.textColour + "33"; ctx.lineWidth = Math.max(1, width / 900);
     ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke();
+  }
+  if (chart.showAxisValues) for (let tick = 0; tick <= 4; tick++) {
+    const value = min + span * tick / 4, x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
+    ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right";
+    label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / 4 * 0.95 : font * 3.5);
   }
   ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 700);
   ctx.beginPath(); ctx.moveTo(horizontal ? zeroX : x0, y0); ctx.lineTo(horizontal ? zeroX : x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
@@ -203,6 +209,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
+    if (chart.showAxisValues !== undefined && typeof chart.showAxisValues !== "boolean") return false;
     if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
     if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
