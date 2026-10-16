@@ -1,3 +1,4 @@
+import TableStyleFileControls from "./TableStyleFileControls";
 import { convertDataVisualSource } from "../../libs/editor/dataVisualConversion";
 import ChartStyleFileControls from "./ChartStyleFileControls";
 import { chartStyleAppearance } from "../../libs/editor/chartStyleFile";
@@ -180,6 +181,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {mode === "chart" && <ChartStyleGallery value={chartAppearance} onApply={(preset, colours) => { setChartAppearance(previous => ({ ...previous, ...preset.geometry })); if (colours) { setChartPalette([...preset.colours]); setAccent(preset.colours[0]); } }} />}
     {mode === "chart" && <ChartFormattingPanel percentStack={multiple && stacked && stackPercent && (kind === "bar" || kind === "column")} multiple={multiple} kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
     <View className="flex-row flex-wrap" style={{ gap: 8 }}><ColourPickerButton projectId={project.id} onPick={setAccent} label={t("editor.colourPicker.accent", { defaultValue: "Pick accent from canvas" })} /><ColourPickerButton projectId={project.id} onPick={setForeground} label={t("editor.colourPicker.ink", { defaultValue: "Pick text colour from canvas" })} /></View>
+    {mode === "table" && <TableStyleFileControls key={`${project.id}:${selected?.id ?? "new"}`} value={previewValue && "table" in previewValue ? previewValue.table ?? null : null} title={project.title} onApply={(style, headers) => { setTableFormat(previous => ({ ...previous, ...style, header: headers ? style.header : previous.header, headerColumn: headers ? style.headerColumn : previous.headerColumn })); setForeground(style.textColour); setAccent(style.headerColour); if (headers) setShowLabels(style.header); }} />}
     {mode === "table" && <TableStyleGallery value={{ ...tableFormat, textColour: foreground, headerColour: accent }} onChange={value => { setTableFormat(value); setForeground(value.textColour); setAccent(value.headerColour); }} />}
     {mode === "table" && <TableFormattingPanel focusedCell={focusedCell} value={{ ...tableFormat, header: showLabels }} source={data} onChange={value => { setTableFormat(value); setShowLabels(value.header); }} onSource={editData} />}
     <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}>
