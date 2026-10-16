@@ -1,10 +1,10 @@
 /** Bounded CSV/TSV parser with quoted cells, embedded line breaks, and escaped quotes. */
-export function parseDelimitedData(source: string, maxRows: number, maxColumns: number): string[][] {
+export function parseDelimitedData(source: string, maxRows: number, maxColumns: number, separator?: "," | "\t" | ";"): string[][] {
   if (source.length > 500000) throw new Error("Pasted data is too large");
   const text = source.replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
   // A tab outside quoted cells identifies spreadsheet TSV; quoted tabs in CSV stay literal.
-  let quoted = false, delimiter = ",";
-  for (let i = 0; i < text.length; i++) {
+  let quoted = false, delimiter = separator ?? ",";
+  for (let i = 0; !separator && i < text.length; i++) {
     if (text[i] === '"') { if (quoted && text[i + 1] === '"') i++; else quoted = !quoted; }
     else if (!quoted && text[i] === "\t") { delimiter = "\t"; break; }
   }

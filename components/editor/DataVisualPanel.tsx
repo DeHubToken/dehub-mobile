@@ -1,3 +1,6 @@
+import PasteDataImportControls from "./PasteDataImportControls";
+import DataImportMappingControls from "./DataImportMappingControls";
+import type { MappedDataImport } from "../../libs/editor/dataImportMapping";
 import TableRowCleanupControls from "./TableRowCleanupControls";
 import DataRangeControls from "./DataRangeControls";
 import ExpandedDataEditor from "./ExpandedDataEditor";
@@ -77,9 +80,11 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [showLabels, setShowLabels] = useState(true);
   const [showValues, setShowValues] = useState(true);
   const [error, setError] = useState("");
+  const [pendingImport, setPendingImport] = useState<{ id: number; scope: string; source: string; name: string } | null>(null);
+  const importScope = `${project.id}:${selectedId ?? "new"}:${mode}`;
   const importRequest = useRef(0);
-  const editData = useCallback((value: string) => { importRequest.current++; setData(value); setError(""); }, []);
-  useEffect(() => { setFocusedCell(""); importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
+  const editData = useCallback((value: string) => { importRequest.current++; setPendingImport(null); setData(value); setError(""); }, []);
+  useEffect(() => { setFocusedCell(""); setPendingImport(null); importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
   const importFile = async () => {
     const request = ++importRequest.current;
     let importedUri: string | undefined;
@@ -94,12 +99,12 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
       if (!info.exists || info.isDirectory || info.size > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
       const text = await FileSystem.readAsStringAsync(file.uri);
       if (request !== importRequest.current || current()?.id !== project.id) return;
-      setData(text.replace(/^\uFEFF/, "")); setError("");
+      setPendingImport({ id: request, scope: importScope, source: text.replace(/^\uFEFF/, ""), name: file.name }); setError("");
     } catch (error) { if (request === importRequest.current) setError(error instanceof Error ? error.message : "Could not read this file"); }
     finally { if (importedUri && FileSystem.cacheDirectory && importedUri.startsWith(FileSystem.cacheDirectory) && importedUri !== FileSystem.cacheDirectory) await FileSystem.deleteAsync(importedUri, { idempotent: true }).catch(() => {}); }
   };
   const choose = (value: "chart" | "table") => {
-    importRequest.current++; setMode(value); setError("");
+    importRequest.current++; setPendingImport(null); setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
       setChartAppearance(chartDraftAppearance(next));
@@ -112,16 +117,23 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   };
   useEffect(() => { choose(table ? "table" : "chart"); }, [project.id, selected?.id, chart, table]);
   const useChartSample = (value: ChartData, colours: boolean) => {
-    importRequest.current++; setMode("chart"); setKind(value.kind); setData(chartDataSource(value)); setMultiple(!!value.series?.length);
+    importRequest.current++; setPendingImport(null); setMode("chart"); setKind(value.kind); setData(chartDataSource(value)); setMultiple(!!value.series?.length);
     setChartAppearance(chartDraftAppearance(value)); setStacked(!!value.stacked); setStackPercent(!!value.stackPercent); setShowLegend(value.showLegend !== false); setShowLabels(value.showLabels); setShowValues(value.showValues);
     if (colours) { setChartPalette([...value.colours]); setAccent(value.colours[0]); setForeground(value.textColour); }
     setDataView("cells"); setError("");
   };
   const useTableSample = (value: TableData, colours: boolean) => {
-    importRequest.current++; setMode("table"); setData(formatDelimitedData(value.rows, "\t")); setShowLabels(value.header);
+    importRequest.current++; setPendingImport(null); setMode("table"); setData(formatDelimitedData(value.rows, "\t")); setShowLabels(value.header);
     const next = colours ? value : { ...value, headerColour: accent, textColour: foreground, headerTextColour: tableFormat.headerTextColour, cellColour: tableFormat.cellColour, borderColour: tableFormat.borderColour, stripeColour: tableFormat.stripeColour, cellStyles: value.cellStyles ? Object.fromEntries(Object.entries(value.cellStyles).map(([key, style]) => { const { fill, colour, ...format } = style; return [key, format]; })) : undefined };
     setTableFormat(next); if (colours) { setForeground(value.textColour); setAccent(value.headerColour); }
     setFocusedCell(""); setDataView("cells"); setError("");
+  };
+  const useImportedData = (result: MappedDataImport) => {
+    if (!pendingImport || pendingImport.scope !== importScope) return;
+    editData(result.source); setMultiple(result.multiple); setDataView("cells"); setFocusedCell("");
+    if (mode === "table") { setTableFormat(previous => ({ ...previous, header: result.header, merges: undefined, cellStyles: undefined, columnWidths: undefined, rowHeights: undefined })); setShowLabels(result.header); }
+    else setChartAppearance(previous => ({ ...previous, bubbleYSeries: undefined, bubbleSizeSeries: undefined }));
+    setPendingImport(null);
   };
   const changeMultiple = (value: boolean) => {
     importRequest.current++;
@@ -196,6 +208,8 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {mode === "chart" && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={multiple} onValueChange={changeMultiple} accessibilityLabel={t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })}</Text></View>{multiple && <>{!isProgressChart(kind) && kind !== "race" && kind !== "funnel" && kind !== "treemap" && kind !== "packed-circles" && kind !== "bubble" && kind !== "histogram" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={showLegend} onValueChange={setShowLegend} accessibilityLabel={t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })}</Text></View>}{(kind === "bar" || kind === "column") && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={stacked} onValueChange={setStacked} accessibilityLabel={t("editor.dataVisual.stacked", { defaultValue: "Stack series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.stacked", { defaultValue: "Stack series" })}</Text></View>}{(kind === "pie" || kind === "donut" || kind === "funnel" || kind === "treemap" || kind === "packed-circles" || kind === "pictogram" || kind === "histogram") && <Text className="text-xs text-white/45">{t("editor.dataVisual.singleSeriesViewHint", { defaultValue: "This chart displays the first data series; other series remain in the source." })}</Text>}</>}</View>}
     <Text className="text-xs text-white/60">{t(mode === "chart" ? multiple ? "editor.dataVisual.seriesHint" : "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? multiple ? "First row: Label, followed by series names. Then one label and a number for each series per row. Up to 50 data rows and six series. Turning multiple series off keeps the first series." : "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
     <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
+    <PasteDataImportControls key={importScope} onPrepare={source => { const id = ++importRequest.current; setPendingImport({ id, scope: importScope, source, name: t("editor.dataImport.pastedName", { defaultValue: "pasted spreadsheet" }) }); setError(""); }} />
+    {pendingImport && pendingImport.scope === importScope && <DataImportMappingControls key={pendingImport.id} source={pendingImport.source} name={pendingImport.name} mode={mode} defaultMultiple={multiple} defaultHeader={showLabels} hierarchy={mode === "chart" && (kind === "treemap" || kind === "packed-circles")} numericX={mode === "chart" && (kind === "scatter" || kind === "bubble")} onUse={useImportedData} onCancel={() => setPendingImport(null)} />}
     <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
     <DataRangeControls key={`${project.id}:${selected?.id ?? "new"}:${mode}`} source={data} onChange={editData} chart={mode === "chart"} multiple={multiple} />
     <ExpandedDataEditor identity={`${project.id}:${selected?.id ?? "new"}:${mode}`} value={data} onChange={editData} chart={mode === "chart"} multiple={multiple} onCellFocus={mode === "table" ? setFocusedCell : undefined} onStructure={mode === "table" ? changeTableStructure : undefined} />
