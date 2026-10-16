@@ -49,7 +49,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     const xs = rows.map(row => Number(row.label));
     if (xs.some(value => !Number.isFinite(value))) return true;
     const rawMinX = Math.min(...xs), rawMaxX = Math.max(...xs), padding = (rawMaxX - rawMinX || Math.max(1, Math.abs(rawMinX) * 0.1)) * 0.05;
-    const minX = rawMinX - padding, maxX = rawMaxX + padding, spanX = maxX - minX || 1;
+    const minX = Math.min(rawMinX - padding, chart.scaleXMin ?? rawMinX), maxX = Math.max(rawMaxX + padding, chart.scaleXMax ?? rawMaxX), spanX = maxX - minX || 1;
     const showGrid = chart.showGrid ?? !!chart.series?.length, showScale = chart.showAxisValues ?? !!chart.series?.length;
     const x0 = left + font * (showScale ? 3 : 1), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (chart.showLabels ? font * 2.5 : font);
     const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0), xFor = (value: number) => x0 + (value - minX) / spanX * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
