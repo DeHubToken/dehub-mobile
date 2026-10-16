@@ -18,6 +18,7 @@ import { EDITOR_FONTS, fontFamilyCss, nearestWeight, primaryFamily } from "../..
 import { getTransform, placementPatch, placementPatchAt, type Arrange, type ClipPatch } from "../../libs/editor/project";
 import { resolveClipAt } from "../../libs/editor/keyframes";
 import { textFitEnabled, textFitPatch, textWrapEnabled, textWrapPatch } from "../../libs/editor/textFit";
+import { TEXT_EFFECTS, TEXT_EFFECT_NAMES, textEffectPatch } from "../../libs/editor/textEffects";
 import type {
   AspectPreset,
   ClipShadow,
@@ -397,12 +398,16 @@ export function TextStylePanel({ clip, live, commit, settle, onFitCaptions, capt
         <Chip icon="Bold" label={t("editor.layer.bold")} active={bold} onPress={() => commit({ fontWeight: nearestWeight(clip.fontFamily, bold ? 400 : 700) })} />
         <Chip icon="Italic" label={t("editor.layer.italic")} active={!!clip.italic} onPress={() => commit({ italic: !clip.italic })} />
         <Chip icon="Underline" label={t("editor.layer.underline")} active={!!clip.underline} onPress={() => commit({ underline: !clip.underline })} />
+          <Chip label={t("editor.text.strikethrough", { defaultValue: "Strikethrough" })} active={!!clip.strikethrough} onPress={() => commit({ strikethrough: !clip.strikethrough })} />
         <Chip icon="CaseUpper" label={t("editor.layer.uppercase")} active={!!clip.uppercase} onPress={() => commit({ uppercase: !clip.uppercase })} />
         <Chip icon="AlignLeft" label={t("editor.layer.alignLeft")} active={clip.align === "left"} onPress={() => commit({ align: "left" })} />
         <Chip icon="AlignCenter" label={t("editor.layer.alignCentre")} active={clip.align === "centre"} onPress={() => commit({ align: "centre" })} />
         <Chip icon="AlignRight" label={t("editor.layer.alignRight")} active={clip.align === "right"} onPress={() => commit({ align: "right" })} />
       </ChipRow>
-      <View className="mt-2">
+        <ChipRow>{(["none", "bullet", "number"] as const).map(list => <Chip key={list} label={t(`editor.text.listKind.${list}`, { defaultValue: list === "none" ? "Plain text" : list === "bullet" ? "Bullet list" : "Numbered list" })} active={(clip.list ?? "none") === list} onPress={() => commit({ list })} />)}</ChipRow>
+        <Text className="mt-2 text-xs text-white/60">{t("editor.text.effects", { defaultValue: "Text effects" })}</Text>
+        <ChipRow>{TEXT_EFFECTS.map(effect => <Chip key={effect} label={t(`editor.text.effect.${effect}`, { defaultValue: TEXT_EFFECT_NAMES[effect] })} onPress={() => commit(textEffectPatch(clip, effect))} />)}</ChipRow>
+        <View className="mt-2">
         <Range label={t("editor.app.fontSize", { value: Math.round(clip.fontSize) })} value={clip.fontSize} min={12} max={400} step={1} onLive={(v) => live({ fontSize: v })} onDone={settle} />
         <Range label={t("editor.layer.letterSpacing", { value: Math.round(clip.letterSpacing ?? 0) })} value={clip.letterSpacing ?? 0} min={-10} max={80} step={1} onLive={(v) => live({ letterSpacing: v })} onDone={settle} />
         <Range label={t("editor.layer.lineSpacing", { value: (clip.lineHeight ?? 1.2).toFixed(1) })} value={clip.lineHeight ?? 1.2} min={0.7} max={3} step={0.05} onLive={(v) => live({ lineHeight: v })} onDone={settle} />

@@ -1,6 +1,9 @@
 /** Caption layout shared by the native preview and every export frame. */
 export const TEXT_LAYOUT_RUNTIME = String.raw`function measuredTextLayout(text, W, H, measure) {
-  const raw = text.uppercase ? text.text.toUpperCase() : text.text;
+  const source = text.uppercase ? text.text.toUpperCase() : text.text;
+  let item = 0;
+  const raw = text.list === "bullet" || text.list === "number" ? source.replace(/\r\n?/g, "\n").split("\n")
+    .map(line => line.trim() ? (text.list === "bullet" ? "• " : String(++item) + ". ") + line : line).join("\n") : source;
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight > 0;
