@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import { applyTableCellStyle, type TableCellStyle, type TableCellStyles } from "../../libs/editor/tableCellStyles";
 
-export default function TableCellControls({ value, rows, columns, onChange }: { value?: TableCellStyles; rows: number; columns: number; onChange: (value: TableCellStyles | undefined) => void }) {
+export default function TableCellControls({ value, rows, columns, onChange, focusedCell }: { value?: TableCellStyles; focusedCell?: string; rows: number; columns: number; onChange: (value: TableCellStyles | undefined) => void }) {
   const { t } = useTranslation(), [range, setRange] = useState("A1"), [fill, setFill] = useState("#22d3ee"), [colour, setColour] = useState("#111111"), [error, setError] = useState("");
+  useEffect(() => { setRange(focusedCell || "A1"); setError(""); }, [focusedCell]);
   const apply = (patch: TableCellStyle | null) => { try { onChange(applyTableCellStyle(value, range, rows, columns, patch)); setError(""); } catch (value) { setError(value instanceof Error ? value.message : String(value)); } };
   const button = (label: string, onPress: () => void, disabled = false) => <Pressable key={label} accessibilityRole="button" disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
   return <View className="border-t border-white/10 pt-3" style={{ gap: 10 }}><View className="flex-row flex-wrap items-center" style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.tables.cellAppearance", { defaultValue: "Cell appearance" })}</Text><TextInput value={range} onChangeText={value => { setRange(value); setError(""); }} placeholder="A1:C2" placeholderTextColor="#888" maxLength={15} autoCapitalize="characters" autoCorrect={false} accessibilityLabel={t("editor.tables.cellRange", { defaultValue: "Cell range, for example A1:C2" })} className="min-h-[40px] w-28 rounded-lg border border-white/20 px-3 text-xs text-white" /></View>
