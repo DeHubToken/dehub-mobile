@@ -13,7 +13,8 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
   const minimum = percentStack ? negative.some(value => value < 0) ? -100 : 0 : Math.min(0, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false } : chart.valueFormat);
   const legend = drawChartLegend(ctx, width, height, chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
-  const left = legend.left, top = legend.top, frameWidth = legend.width, frameHeight = legend.height, centreX = left + frameWidth / 2;
+  const xTitle = chart.kind === "radar" ? "" : (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = chart.kind === "radar" ? "" : (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
+  const left = legend.left, top = legend.top + (yTitle ? font * 1.6 : 0), frameWidth = legend.width, frameHeight = Math.max(1, legend.height - (yTitle ? font * 1.6 : 0) - (xTitle ? font * 1.6 : 0)), centreX = left + frameWidth / 2;
   ctx.font = "500 " + font + "px Inter, sans-serif"; ctx.textBaseline = "middle";
   function label(text, x, y, max) {
     if (max < font) return;
@@ -21,6 +22,9 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
     ctx.fillText(value, x, y);
   }
+  ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
+  if (xTitle) label(xTitle, centreX, legend.top + legend.height - font * 0.6, frameWidth - font * 2);
+  if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, legend.top + font * 0.6, frameWidth - font * 2); }
   if (chart.kind === "radar") {
     const radius = Math.max(1, Math.min(frameWidth, frameHeight) * (chart.showLabels ? 0.32 : 0.43)), cy = top + frameHeight / 2;
     const point = (index, value) => { const angle = index / rows.length * Math.PI * 2 - Math.PI / 2; return { x: centreX + Math.cos(angle) * radius * value, y: cy + Math.sin(angle) * radius * value }; };
