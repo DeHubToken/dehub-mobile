@@ -48,7 +48,7 @@ export function pasteDesignSelection(project: ProjectSnapshot, time: number, sou
     let trackId = trackIds.get(layer.track.id);
     if (!trackId) { trackId = makeId(); trackIds.set(layer.track.id, trackId); tracks.push({ ...layer.track, id: trackId, hidden: false, role: undefined }); }
     const part = sliceTimelineClip(layer.clip, 0, Math.min(length, layer.clip.duration), makeId(), page.start + layer.offset);
-    copies.push({ ...part, duration: length, trackId, locked: false, hidden: false, isPageBackground: undefined } as Clip);
+    copies.push({ ...part, duration: length, trackId, locked: false, hidden: false, isPageBackground: undefined, ...(part.kind === "text" ? { pageNumber: undefined } : {}) } as Clip);
   }
   if (!copies.length) throw new Error("The copied layers start after this page ends. Extend the page duration before pasting");
   if (project.tracks.length + tracks.length > 200 || project.clips.length + copies.length > 10000) throw new Error("Pasting would exceed the design’s layer limit");

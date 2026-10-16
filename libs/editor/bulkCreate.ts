@@ -1,3 +1,4 @@
+import { refreshPageNumberClips } from "./pageNumbering";
 import { parseDelimitedData } from "./delimitedData";
 import { getPages, pageAt } from "./pages";
 import { pageDetails } from "./pageDetails";
@@ -78,7 +79,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
     const title = bulkReplaceTokens(original.title, data.headers, row);
     details.push({ title: (title !== original.title ? title : `${title || "Page"} · ${index + 1}`).slice(0, 200), notes: bulkReplaceTokens(original.notes, data.headers, row).slice(0, 10000) });
   }
-  const next = { ...project, settings: { ...project.settings, pages: starts, pageEnd: start + count * duration, pageDetails: details }, clips: [...project.clips, ...copies] };
+  const next = { ...project, settings: { ...project.settings, pages: starts, pageEnd: start + count * duration, pageDetails: details }, clips: refreshPageNumberClips([...project.clips, ...copies], starts) };
   let bytes = 0;
   for (const char of JSON.stringify(next)) { const point = char.codePointAt(0)!; bytes += point < 128 ? 1 : point < 2048 ? 2 : point < 65536 ? 3 : 4; }
   if (bytes > 6 * 1024 * 1024) throw new Error("This batch is too large to save. Choose fewer rows");
