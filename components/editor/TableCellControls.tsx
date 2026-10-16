@@ -1,3 +1,5 @@
+import TableColourScaleControls from "./TableColourScaleControls";
+import type { TableMerge } from "../../libs/editor/tableMerges";
 import { commonTableCellStyle, copyTableCellStyles, expandTableStyleRange, pasteTableCellStyles, type TableStyleClipboard } from "../../libs/editor/tableStyleClipboard";
 import React, { useEffect, useMemo, useState } from "react";
 import { Pressable, Text, View } from "react-native";
@@ -5,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import { applyTableCellStyle, type TableCellStyle, type TableCellStyles } from "../../libs/editor/tableCellStyles";
 
-export default function TableCellControls({ value, rows, columns, onChange, focusedCell }: { value?: TableCellStyles; focusedCell?: string; rows: number; columns: number; onChange: (value: TableCellStyles | undefined) => void }) {
+export default function TableCellControls({ value, rows, columns, onChange, focusedCell, source, merges }: { source?: string; merges?: TableMerge[]; value?: TableCellStyles; focusedCell?: string; rows: number; columns: number; onChange: (value: TableCellStyles | undefined) => void }) {
   const { t } = useTranslation(), [range, setRange] = useState("A1"), [fill, setFill] = useState("#22d3ee"), [colour, setColour] = useState("#111111"), [error, setError] = useState("");
   useEffect(() => { setRange(focusedCell || "A1"); setError(""); }, [focusedCell]);
   const [clipboard, setClipboard] = useState<TableStyleClipboard | null>(null), [status, setStatus] = useState("");
@@ -21,6 +23,7 @@ export default function TableCellControls({ value, rows, columns, onChange, focu
     {!!status && <Text accessibilityLiveRegion="polite" className="text-xs text-cyan-200">{status}</Text>}{common.mixed && <Text className="text-xs text-white/45">{t("editor.tables.mixedStyles", { defaultValue: "Selected cells have mixed custom styles." })}</Text>}
     <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}><TextInput value={fill} onChangeText={setFill} autoCapitalize="none" autoCorrect={false} maxLength={7} accessibilityLabel={t("editor.tables.cellFill", { defaultValue: "Cell fill colour" })} className="min-h-[40px] w-28 rounded-lg border border-white/20 px-3 text-xs text-white" />{button(t("editor.tables.applyCellFill", { defaultValue: "Apply fill" }), () => apply({ fill }))}<TextInput value={colour} onChangeText={setColour} autoCapitalize="none" autoCorrect={false} maxLength={7} accessibilityLabel={t("editor.tables.cellInk", { defaultValue: "Cell text colour" })} className="min-h-[40px] w-28 rounded-lg border border-white/20 px-3 text-xs text-white" />{button(t("editor.tables.applyCellInk", { defaultValue: "Apply text colour" }), () => apply({ colour }))}</View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.tables.cellBold", { defaultValue: "Bold" }), () => apply({ bold: common.style.bold !== true }), false, common.style.bold === true)}{button(t("editor.tables.cellItalic", { defaultValue: "Italic" }), () => apply({ italic: common.style.italic !== true }), false, common.style.italic === true)}{button(t("editor.tables.cellRegular", { defaultValue: "Regular" }), () => apply({ bold: false, italic: false }))}{(["left", "centre", "right"] as const).map(align => button(t(`editor.tables.cellAlign.${align}`, { defaultValue: align === "centre" ? "Centre text" : align === "left" ? "Left text" : "Right text" }), () => apply({ align })))}{button(t("editor.tables.clearCellStyle", { defaultValue: "Reset selected cells" }), () => apply(null))}{button(t("editor.tables.clearAllCellStyles", { defaultValue: "Reset all cells" }), () => { onChange(undefined); setError(""); }, !value || !Object.keys(value).length)}</View>
+    {source !== undefined && <TableColourScaleControls source={source} range={range} value={value} merges={merges} onChange={onChange} />}
     <Text className="text-xs text-white/45">{t("editor.tables.cellStyleHint", { defaultValue: "Enter a cell or range to override the table theme. Reset cells to restore the table’s default appearance." })}</Text>{!!error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
   </View>;
 }
