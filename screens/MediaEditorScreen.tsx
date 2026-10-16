@@ -1,3 +1,4 @@
+import { documentImageProfile, documentImageScale, type DocumentImageProfile } from "../libs/editor/documentImageProfile";
 import { applyRehearsedPageDurations } from "../libs/editor/presentationRehearsal";
 import { imageJpegQuality } from "../libs/editor/imageExportOptions";
 import { exportPresentationNotes } from "../libs/editor/exportPresentationNotes";
@@ -1535,7 +1536,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     catch (error) { toastError(error instanceof Error ? error.message : t("editor.app.exportFailed")); }
     finally { setBusy(false); }
   };
-  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false, bookmarks = true) => {
+  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false, bookmarks = true, imageProfile: DocumentImageProfile = "standard") => {
     const current = h.latest();
     const canvas = canvasRef.current;
     if (!current || !canvas || rendering !== null || h.isEditing()) return;
@@ -1544,7 +1545,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const ctl = new AbortController(); downloadController.current = ctl;
     setPlaying(false); setExportOpen(false); setRendering(0);
     try {
-      const capture = async (time: number) => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true, format === "pptx" ? 2048 : undefined); return { dataUrl, links }; };
+      const capture = async (time: number) => { let links: DesignPdfLink[] = []; const profile = documentImageProfile(imageProfile), scale = documentImageScale(current.settings.width, current.settings.height, 1, imageProfile); const dataUrl = await canvas.exportImage("jpeg", profile.quality, time, false, value => { links = value; }, true, profile.maxEdge); return { dataUrl, links, width: Math.max(1, Math.round(current.settings.width * scale)), height: Math.max(1, Math.round(current.settings.height * scale)) }; };
       if (format === "pptx") await exportPresentation(current, canvasTime, scope, capture, ctl.signal, setRendering);
       else await exportPdf(current, canvasTime, scope, capture, ctl.signal, setRendering, cropMarks, bookmarks);
     } catch (error) {
@@ -1955,9 +1956,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
-          onExportPdf={(scope, marks, bookmarks) => { void downloadDocument("pdf", scope, marks, bookmarks); }}
+          onExportPdf={(scope, marks, bookmarks, quality) => { void downloadDocument("pdf", scope, marks, bookmarks, quality); }}
           onExportNotes={scope => { void downloadNotes(scope); }}
-          onExportPresentation={scope => { void downloadDocument("pptx", scope); }}
+          onExportPresentation={(scope, quality) => { void downloadDocument("pptx", scope, false, true, quality); }}
       />
     </View>
   );
