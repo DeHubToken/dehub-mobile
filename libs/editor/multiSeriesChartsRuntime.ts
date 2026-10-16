@@ -1,5 +1,5 @@
 export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesChart(ctx, width, height, chart) {
-  if ((!chart.series?.length && chart.kind !== "scatter" && chart.kind !== "bubble") || chart.kind === "pie" || chart.kind === "donut" || chart.kind === "funnel") return false;
+  if ((!chart.series?.length && chart.kind !== "scatter" && chart.kind !== "bubble" && !(chart.kind === "area" && chart.areaMode && chart.areaMode !== "overlay")) || chart.kind === "pie" || chart.kind === "donut" || chart.kind === "funnel") return false;
   const family = graphicFontCss(chart.fontFamily);
   const rows = chart.rows.slice(0, 50), availableSeries = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   const series = chart.kind === "bubble" ? [availableSeries[chart.bubbleYSeries ?? 0] ?? availableSeries[0]] : availableSeries;
@@ -7,13 +7,15 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1));
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index) => colours[index % colours.length];
   let values = series.map(item => rows.map((_, index) => Number.isFinite(item.values[index]) ? item.values[index] : 0));
-  const stacked = !!chart.stacked && (chart.kind === "column" || chart.kind === "bar");
-  const percentStack = stacked && !!chart.stackPercent;
+  const areaMode = chart.kind === "area" ? chart.areaMode ?? "overlay" : "overlay", areaStack = areaMode !== "overlay", stream = areaMode === "stream";
+  const stacked = !!chart.stacked && (chart.kind === "column" || chart.kind === "bar") || areaStack;
+  const percentStack = areaMode === "percent" || stacked && !areaStack && !!chart.stackPercent;
   if (percentStack) values = percentStackedSeries(values);
   const positive = rows.map((_, index) => values.reduce((sum, set) => sum + Math.max(0, set[index]), 0));
   const negative = rows.map((_, index) => values.reduce((sum, set) => sum + Math.min(0, set[index]), 0));
-  const reference = chart.kind === "radar" ? 0 : chart.referenceLine?.value ?? 0;
-  const minimum = percentStack ? negative.some(value => value < 0) || reference < 0 ? -100 : 0 : Math.min(0, reference, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || reference > 0 || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, reference, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
+  const scaleBottom = stream ? positive.map(value => -value / 2) : stacked ? negative : values.flat(), scaleTop = stream ? positive.map(value => value / 2) : stacked ? positive : values.flat();
+  const reference = chart.kind === "radar" || stream ? 0 : chart.referenceLine?.value ?? 0;
+  const minimum = percentStack ? negative.some(value => value < 0) || reference < 0 ? -100 : 0 : Math.min(0, reference, ...scaleBottom, Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || reference > 0 || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, reference, ...scaleTop, Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale, prefix: chart.valueFormat?.prefix, suffix: chart.valueFormat?.suffix } : chart.valueFormat);
   const legend = drawChartLegend(ctx, width, height, chart.kind !== "bubble" && chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index), ...(["line", "area", "dot", "lollipop", "scatter", "radar"].includes(chart.kind) ? { marker: chart.kind !== "radar" && (chart.pointSize ?? 1) > 0 ? chartSeriesPattern(chart, index).marker : undefined, linePattern: chart.kind !== "dot" && (chart.kind !== "scatter" || chart.scatterLines) ? chartSeriesPattern(chart, index).linePattern : undefined } : {}) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour, family);
   const xTitle = chart.kind === "radar" ? "" : (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = chart.kind === "radar" ? "" : (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
@@ -90,6 +92,16 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
     if (chart.showAxisValues !== false) { ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right"; label(labelValue(Number(value.toPrecision(3))), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / 4 * 0.95 : font * 2.5); }
   }
   ctx.strokeStyle = chart.textColour; ctx.beginPath(); if (horizontal) { ctx.moveTo(zeroX, y0); ctx.lineTo(zeroX, y1); } else { ctx.moveTo(x0, zeroY); ctx.lineTo(x1, zeroY); } ctx.stroke();
+  if (areaStack) {
+    const bands = stackedAreaBands(values, stream);
+    series.forEach((_, set) => {
+      const band = bands[set], upper = band.upper.map((value, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: yFor(value) })), lower = band.lower.map((value, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: yFor(value) }));
+      ctx.fillStyle = colour(set) + Math.round((chart.areaOpacity ?? 0.8) * 255).toString(16).padStart(2, "0"); ctx.beginPath();
+      traceStackedAreaBoundary(ctx, upper, chart.lineStyle); traceStackedAreaBoundary(ctx, [...lower].reverse(), chart.lineStyle, true); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.beginPath(); traceStackedAreaBoundary(ctx, upper, chart.lineStyle); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern);
+      upper.forEach((point, index) => { ctx.fillStyle = colour(set); drawChartMarker(ctx, point.x, point.y, Math.max(2, width / 220) * (chart.pointSize ?? 1), chartSeriesPattern(chart, set).marker); if (chart.showValues && values[set][index] > 0) { ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(labelValue(values[set][index]), point.x, yFor((band.upper[index] + band.lower[index]) / 2), plotWidth / rows.length * 0.95); } });
+    });
+  } else {
   const up = rows.map(() => 0), down = rows.map(() => 0);
   series.forEach((_, set) => {
     const colourValue = colour(set); ctx.fillStyle = colourValue; ctx.strokeStyle = colourValue; ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1);
@@ -115,8 +127,9 @@ export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesCh
       }
     });
   });
+  }
   if (chart.showLabels) rows.forEach((row, index) => { ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; const y = y0 + (index + 0.5) / rows.length * plotHeight; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font / 2, y, labelSpace - font, Math.min(font, plotHeight / rows.length * 0.4), 2, true); else label(row.label, x0 - font / 2, y, labelSpace - font); } else { ctx.textAlign = "center"; const x = x0 + (index + 0.5) / rows.length * plotWidth; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, plotWidth / rows.length * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, plotWidth / rows.length * 0.95); } });
-  drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font, percentStack);
+  if (!stream) drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font, percentStack);
   return true;
 }
 `;
