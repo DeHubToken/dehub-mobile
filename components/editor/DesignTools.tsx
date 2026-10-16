@@ -6,6 +6,7 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 import DesignTextSearch from "./DesignTextSearch";
 import DataVisualPanel from "./DataVisualPanel";
 import FillPanel from "./FillPanel";
+import GroupsPanel from "./GroupsPanel";
 
 export default function DesignTools({ project, selectedId, current, commit, seek, time, select }: {
   project: ProjectSnapshot; selectedId: string | null;
@@ -14,7 +15,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -42,7 +43,9 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel(panel === "data" ? null : "data"), false, panel === "data")}
       {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel(panel === "fill" ? null : "fill"), false, panel === "fill")}
+      {action(t("editor.groups.title", { defaultValue: "Groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
+    {panel === "groups" && <GroupsPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}

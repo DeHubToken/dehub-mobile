@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -20,7 +20,7 @@ export default function ExportSheet(props: {
   busy: boolean;
   onCancel: () => void;
   pageCount: number;
-  onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope) => void;
+  onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
   onExportPdf?: (scope: PageExportScope) => void;
@@ -30,6 +30,7 @@ export default function ExportSheet(props: {
   const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
   const [pageScope, setPageScope] = useState<PageExportScope>("all");
+  const [transparent, setTransparent] = useState(false);
   const [scope, setScope] = useState<ExportScope>("timeline");
   const isVideo = !!props.video && format === "mp4";
   const isGif = format === "gif";
@@ -46,7 +47,7 @@ export default function ExportSheet(props: {
     if (isPdf) props.onExportPdf?.(pageScope);
     else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
-    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, pageScope);
+    else props.onExport(format === "jpeg" ? "jpeg" : "png", target, pageScope, format === "png" && transparent);
   };
   return (
     <Modal visible={props.visible} transparent animationType="slide" onRequestClose={props.onCancel}>
@@ -65,6 +66,7 @@ export default function ExportSheet(props: {
             <Chip label={t("emojiPicker.tabGif")} active={isGif} onPress={() => setFormat("gif")} />
           </View>
         </View>
+        {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
         {(isVideo || isGif) && props.ranges.all.length > 0 && <View>
           <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.scope")}</Text>
           <View style={{ gap: 8 }}>

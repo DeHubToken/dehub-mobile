@@ -1072,12 +1072,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
-      const r = kind === "video" || kind === "audio" ? duplicateInTime(project, selectedId) : duplicateClip(project, selectedId);
+      const r = !getClip(project, selectedId)?.groupId && (kind === "video" || kind === "audio") ? duplicateInTime(project, selectedId) : duplicateClip(project, selectedId);
       if (r) { h.commit(r.project); select(r.clipId); }
       return;
     }
     if (id === "delete" && selectedId) {
-      h.commit(getClip(project, selectedId)?.kind === "video" ? deleteAndClose(project, selectedId) : removeClip(project, selectedId));
+      h.commit(!getClip(project, selectedId)?.groupId && getClip(project, selectedId)?.kind === "video" ? deleteAndClose(project, selectedId) : removeClip(project, selectedId));
       select(null);
       return;
     }
@@ -1538,7 +1538,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } finally { setRendering(null); }
   };
 
-  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current") => {
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false) => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
     if (scope === "all" && getPages(project.settings, project.clips).length > 1 && target === "photos") {
@@ -1546,7 +1546,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const canvas = canvasRef.current;
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
-        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at), ctl.signal,
+        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent), ctl.signal,
           (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); });
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
@@ -1559,7 +1559,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
       const frame = pageExportFrames(project, canvasTime, "current", format === "jpeg" ? "jpg" : "png")[0];
-      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time);
+      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent);
       const uri = await writeExport(dataUrl, format, project.title);
       setExportOpen(false);
       if (target === "photos") {
