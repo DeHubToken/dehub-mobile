@@ -167,8 +167,9 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     </>}
     </ScrollView>
     <View className="border-t border-white/10 pt-2" style={{ gap: 6, marginHorizontal: 12 }}>
-    <Pressable accessibilityRole="button" onPress={() => choose(mode)} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.dataVisual.resetDraft", { defaultValue: "Reset draft" })}</Text></Pressable>
-    <Pressable accessibilityRole="button" disabled={!!selected?.locked && !!(chart || table)} onPress={apply} className="min-h-[40px] items-center justify-center rounded-lg bg-white px-3"><Text className="text-xs font-semibold text-black">{t(chart || table ? "editor.dataVisual.update" : "editor.dataVisual.insert", { defaultValue: chart || table ? "Update graphic" : "Insert graphic" })}</Text></Pressable>
+    <View className="flex-row" style={{ gap: 8 }}><Pressable accessibilityRole="button" onPress={() => choose(mode)} className="min-h-[40px] flex-1 items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.dataVisual.resetDraft", { defaultValue: "Reset draft" })}</Text></Pressable>
+    <Pressable accessibilityRole="button" disabled={!!selected?.locked && !!(chart || table)} onPress={apply} className="min-h-[40px] flex-1 items-center justify-center rounded-lg bg-white px-3"><Text className="text-xs font-semibold text-black">{t(chart || table ? "editor.dataVisual.update" : "editor.dataVisual.insert", { defaultValue: chart || table ? "Update graphic" : "Insert graphic" })}</Text></Pressable>
+    </View>
     {error !== "" && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
     </View>
   </View>;
