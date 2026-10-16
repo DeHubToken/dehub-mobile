@@ -1,3 +1,4 @@
+import { findLiteralTextIndex, replaceLiteralText } from "./designTextMatching";
 import type { Clip, ClipEffects, ClipShadow, ProjectSnapshot, ShapeClip, TextClip } from "./types";
 
 /** Formatting clipboard deliberately excludes content, timing, placement and media identity. */
@@ -136,26 +137,21 @@ export function resizeDesign(project: ProjectSnapshot, width: number, height: nu
   return { ...project, settings: { ...project.settings, width: Math.round(width), height: Math.round(height), aspectPreset } };
 }
 
-export function findDesignText(project: ProjectSnapshot, query: string, matchCase = false): TextClip[] {
+export function findDesignText(project: ProjectSnapshot, query: string, matchCase = false, wholeWords = false): TextClip[] {
   if (!query) return [];
-  const needle = matchCase ? query : query.toLocaleLowerCase();
-  return project.clips.filter((clip): clip is TextClip => clip.kind === "text" &&
-    (matchCase ? clip.text : clip.text.toLocaleLowerCase()).includes(needle));
+  return project.clips.filter((clip): clip is TextClip => clip.kind === "text" && findLiteralTextIndex(clip.text, query, matchCase, wholeWords) >= 0);
 }
 
-/** Literal find/replace: replacement strings such as $& are content, never regex syntax. */
-export function replaceDesignText(project: ProjectSnapshot, query: string, replacement: string, matchCase = false, ids?: readonly string[]): ProjectSnapshot {
+/** Replacement text is literal, including characters such as $ and backslashes. */
+export function replaceDesignText(project: ProjectSnapshot, query: string, replacement: string, matchCase = false, ids?: readonly string[], wholeWords = false): ProjectSnapshot {
   if (!query) return project;
   const selected = ids ? new Set(ids) : null;
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = new RegExp(escaped, matchCase ? "gu" : "giu");
   let changed = false;
   const clips = project.clips.map(clip => {
     if (clip.kind !== "text" || clip.locked || (selected && !selected.has(clip.id))) return clip;
-    const text = clip.text.replace(pattern, () => replacement);
+    const text = replaceLiteralText(clip.text, query, replacement, matchCase, wholeWords);
     if (text === clip.text) return clip;
-    changed = true;
-    return { ...clip, text };
+    changed = true; return { ...clip, text, pageNumber: undefined };
   });
   return changed ? { ...project, clips } : project;
 }
