@@ -24,9 +24,24 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
     }
   }
   const rowWeights = rows.map((_, index) => Math.max(0.1, Math.min(10, table.rowHeights?.[index] || 1)));
-  const columnTotal = columnWeights.reduce((sum, value) => sum + value, 0), rowTotal = rowWeights.reduce((sum, value) => sum + value, 0);
+  const columnTotal = columnWeights.reduce((sum, value) => sum + value, 0);
   const xs = [-width / 2], ys = [-height / 2];
   for (const weight of columnWeights) xs.push(xs[xs.length - 1] + width * weight / columnTotal);
+  if (table.fitRows) rows.forEach((row, r) => {
+    let needed = font * 1.2;
+    for (let c = 0; c < columns; c++) {
+      const merge = (table.merges ?? []).find(merge => r >= merge.row && r < merge.row + merge.rowSpan && c >= merge.column && c < merge.column + merge.columnSpan);
+      if (merge && (merge.rowSpan > 1 || merge.column !== c)) continue;
+      const cellWidth = xs[Math.min(columns, c + (merge?.columnSpan ?? 1))] - xs[c], padding = Math.min(table.padding === undefined ? font / 2 : table.padding / 1080 * height, cellWidth * 0.45);
+      const style = table.cellStyles?.[r + ":" + c], header = table.header && r === 0 || table.headerColumn && c === 0;
+      ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + font + "px Inter, sans-serif";
+      const raw = String(row[c] ?? ""), text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
+      const lines = tableTextLines(text, Math.max(1, cellWidth - padding * 2), value => ctx.measureText(value).width, !!table.wrap);
+      needed = Math.max(needed, Math.min(8, lines.length) * font * 1.2 + padding * 2);
+    }
+    rowWeights[r] = Math.max(1, Math.min(10, needed / (font * 1.2)));
+  });
+  const rowTotal = rowWeights.reduce((sum, value) => sum + value, 0);
   for (const weight of rowWeights) ys.push(ys[ys.length - 1] + height * weight / rowTotal);
   const merges = (table.merges ?? []).slice(0, 120).filter(merge => [merge.row, merge.column, merge.rowSpan, merge.columnSpan].every(Number.isInteger) && merge.row >= 0 && merge.column >= 0 && merge.rowSpan >= 1 && merge.columnSpan >= 1 && merge.row + merge.rowSpan <= rows.length && merge.column + merge.columnSpan <= columns);
   ctx.textBaseline = "middle"; ctx.lineWidth = Math.max(1, width / 700) * (table.borderWidth ?? 1);
