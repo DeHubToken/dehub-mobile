@@ -221,10 +221,13 @@ export function CropPanel({ clip, live, settle }: PanelProps<MediaClip>) {
   );
 }
 
-export function CornersPanel({ clip, live, settle }: PanelProps<MediaClip>) {
+export function CornersPanel({ clip, live, settle, commit }: PanelProps<MediaClip>) {
   const { t } = useTranslation();
-  return (
-    <Range
+    return (
+      <View>
+      <Text className="mb-2 text-xs text-white/60">{t("editor.frames.title", { defaultValue: "Photo frame" })}</Text>
+      <ChipRow>{(["rect", "ellipse", "triangle", "star", "heart", "hexagon"] as const).map(frame => <Chip key={frame} label={t(`editor.frames.${frame}`, { defaultValue: ({ rect: "Rectangle", ellipse: "Oval", triangle: "Triangle", star: "Star", heart: "Heart", hexagon: "Hexagon" })[frame] })} active={(clip.frame ?? "rect") === frame} onPress={() => { if (!clip.locked) commit({ frame }); }} />)}</ChipRow>
+      <Range
       label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })}
       value={clip.radius ?? 0}
       min={0}
@@ -233,6 +236,7 @@ export function CornersPanel({ clip, live, settle }: PanelProps<MediaClip>) {
       onLive={(v) => live({ radius: v })}
       onDone={settle}
     />
+      </View>
   );
 }
 

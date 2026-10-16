@@ -46,6 +46,7 @@ import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
 import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
 import { DATA_VISUAL_RUNTIME } from "./dataVisualRuntime";
+import { GRADIENT_FILL_RUNTIME } from "./gradientFillRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -73,6 +74,7 @@ canvas{display:block;width:100%;height:100%;}
   __VISUAL_FRAME_RUNTIME__
   __VIDEO_MATTE_RUNTIME__
   __DATA_VISUAL_RUNTIME__
+  __GRADIENT_FILL_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -427,17 +429,21 @@ canvas{display:block;width:100%;height:100%;}
     }
     var x = -box.w / 2, y = -box.h / 2;
     var r = ((clip.radius || 0) / 1080) * H;
-    if (r > 0) {
+    function framePath() {
+      if (clip.frame && clip.frame !== "rect") shapePath(c, clip.frame, box.w, box.h, 0);
+      else roundRectPath(c, x, y, box.w, box.h, r);
+    }
+    if (r > 0 || (clip.frame && clip.frame !== "rect")) {
       if (clip.shadow && clip.shadow.opacity > 0) {
         c.save();
         applyShadow(c, clip, H);
         c.fillStyle = "#000";
-        roundRectPath(c, x, y, box.w, box.h, r);
+        framePath();
         c.fill();
         c.restore();
       }
       c.save();
-      roundRectPath(c, x, y, box.w, box.h, r);
+      framePath();
       c.clip();
       c.drawImage(el, sx, sy, sw, sh, x, y, box.w, box.h);
       c.restore();
@@ -545,11 +551,12 @@ canvas{display:block;width:100%;height:100%;}
     var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
     shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
     applyShadow(c, clip, H);
-    if (!open && clip.fill) { c.fillStyle = clip.fill; c.fill(); clearShadow(c); }
+    var gradient = createGradientFill(c, box.w, box.h, clip.gradient);
+    if (!open && (clip.fill || gradient)) { c.fillStyle = gradient || clip.fill; c.fill(); clearShadow(c); }
     var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
     if (stroke && stroke.width > 0) {
       c.lineWidth = stroke.width * k;
-      c.strokeStyle = stroke.color;
+      c.strokeStyle = open && gradient ? gradient : stroke.color;
       c.lineJoin = "round";
       c.lineCap = "round";
       c.stroke();
@@ -585,7 +592,7 @@ canvas{display:block;width:100%;height:100%;}
       l.lines.forEach(function (ln, i) { c.strokeText(ln, ax, startY + i * l.lh); });
       clearShadow(c);
     }
-    c.fillStyle = text.color;
+    c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
     l.lines.forEach(function (ln, i) { c.fillText(ln, ax, startY + i * l.lh); });
     clearShadow(c);
     if (text.underline) {
@@ -1834,4 +1841,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME);
