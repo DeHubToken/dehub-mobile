@@ -1,3 +1,4 @@
+import { designPageSections } from "../libs/editor/pageDetails";
 import { exportPresentation } from "../libs/editor/exportPresentation";
 import { cancelDesignColourPick } from "../libs/editor/designColourPicker";
 import { duplicateDesignPageSelection } from "../libs/editor/designClone";
@@ -1939,6 +1940,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         video={isVideoProject(project) ? { duration: duration + BRAND_OUTRO_DURATION, fps: project.settings.fps } : null}
         busy={busy || rendering !== null}
         onCancel={() => setExportOpen(false)}
+        sections={designPageSections(project)}
         pageCount={getPages(project.settings, project.clips).length}
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}

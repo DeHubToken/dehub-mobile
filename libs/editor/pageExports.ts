@@ -1,3 +1,4 @@
+import { designPageSectionIndexes } from "./pageDetails";
 import { namedPageExports } from "./pageFilenamePattern";
 import { exportFilename } from "./exportName";
 import { getPages, pageAt } from "./pages";
@@ -30,4 +31,10 @@ export function pageExportFrames(snapshot: ProjectSnapshot, time: number, scope:
     filename: exportFilename(snapshot.title, format, (scope === "all" && multi) || Array.isArray(scope) ? `-${String(page.index + 1).padStart(2, "0")}` : "", "design"),
   }));
   return namedPageExports(frames, filenamePattern, snapshot.title, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.title), format, pages.map(page => snapshot.settings.pageDetails?.[page.index]?.section));
+}
+
+export function resolvePageExportScope(snapshot: ProjectSnapshot, mode: "all" | "current" | "custom" | "section", range: string, section: string): PageExportScope {
+  if (mode === "custom") return parsePageSelection(range, getPages(snapshot.settings, snapshot.clips).length);
+  if (mode === "section") { const indexes = designPageSectionIndexes(snapshot, section); if (!indexes.length) throw new Error("Choose an existing section to download"); return indexes; }
+  return mode;
 }

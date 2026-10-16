@@ -1,3 +1,5 @@
+import SectionExportPicker from "./SectionExportPicker";
+import type { DesignPageSection } from "../../libs/editor/pageDetails";
 import { pageFilenamePatternError } from "../../libs/editor/pageFilenamePattern";
 import React, { useEffect, useState } from "react";
 import { Modal, Pressable, ScrollView, Switch, Text, TextInput, View } from "react-native";
@@ -21,6 +23,7 @@ export default function ExportSheet(props: {
   busy: boolean;
   onCancel: () => void;
   pageCount: number;
+  sections?: readonly DesignPageSection[];
   onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean, filenamePattern?: string) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
@@ -31,7 +34,8 @@ export default function ExportSheet(props: {
   const insets = useSafeAreaInsets();
   const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf" | "pptx">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
-  const [pageScope, setPageScope] = useState<"all" | "current" | "custom">("all");
+  const [pageScope, setPageScope] = useState<"all" | "current" | "custom" | "section">("all");
+  const [sectionName, setSectionName] = useState("");
   const [pageSelection, setPageSelection] = useState("1");
   const [filenamePattern, setFilenamePattern] = useState("");
   const [transparent, setTransparent] = useState(false);
@@ -48,10 +52,11 @@ export default function ExportSheet(props: {
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
   let selectedPages: number[] = [], pageError = "";
   if (pageScope === "custom") { try { selectedPages = parsePageSelection(pageSelection, props.pageCount); } catch (error) { pageError = error instanceof Error ? error.message : "Choose pages"; } }
-  const effectivePageScope: PageExportScope = pageScope === "custom" ? selectedPages : pageScope;
+  const sections = props.sections ?? [], chosenSection = sections.find(section => section.name === sectionName) ?? sections[0];
+  const effectivePageScope: PageExportScope = pageScope === "section" ? chosenSection?.indexes ?? [] : pageScope === "custom" ? selectedPages : pageScope;
   const filenameError = format === "png" || format === "jpeg" ? pageFilenamePatternError(filenamePattern) : "";
-  const invalidPages = !!filenameError || !isVideo && !isGif && pageScope === "custom" && !!pageError;
-  const pageArchive = !isVideo && !isGif && !isPdf && !isPptx && props.pageCount > 1 && (pageScope === "all" || (pageScope === "custom" && selectedPages.length > 1));
+  const invalidPages = !!filenameError || (!isVideo && !isGif && pageScope === "section" && !chosenSection?.indexes.length) || !isVideo && !isGif && pageScope === "custom" && !!pageError;
+  const pageArchive = !isVideo && !isGif && !isPdf && !isPptx && props.pageCount > 1 && (pageScope === "all" || ((pageScope === "custom" && selectedPages.length > 1) || (pageScope === "section" && (chosenSection?.indexes.length ?? 0) > 1)));
   const separate = (isVideo || isGif) && scope !== "timeline";
   const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
@@ -84,6 +89,7 @@ export default function ExportSheet(props: {
         {isPdf && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={cropMarks} onValueChange={setCropMarks} accessibilityLabel={t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })}</Text></View>{cropMarks && <Text className="text-xs text-white/45">{t("editor.export.cropMarkHint", { defaultValue: "Adds cutting marks outside the artwork. The saved print resolution sets the finished page size." })}</Text>}</View>}
         {isPdf && props.pageCount > 1 && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={bookmarks} onValueChange={setBookmarks} accessibilityLabel={t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })}</Text></View>}
         {(format === "png" || format === "jpeg") && <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })}</Text><TextInput value={filenamePattern} onChangeText={setFilenamePattern} maxLength={160} autoCorrect={false} autoCapitalize="none" placeholder="{title}-{page:2}-{name}" placeholderTextColor="#888" accessibilityLabel={t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" /><View className="flex-row flex-wrap" style={{ gap: 8 }}>{[["", "Default"], ["{title}-{page:2}", "Title and number"], ["{page:2}-{name}", "Page names"]].map(([pattern, label]) => <Chip key={label} label={t(`editor.export.filenamePreset.${label}`, { defaultValue: label })} active={filenamePattern === pattern} onPress={() => setFilenamePattern(pattern)} />)}</View><Text className="text-[10px] text-white/45">{t("editor.export.filenameHint", { defaultValue: "Leave blank for default names. Use {title}, {name}, {section}, {page}, or {page:3}. Add a prefix as plain text. Duplicate names receive a page-number suffix." })}</Text>{!!filenameError && <Text accessibilityRole="alert" className="text-xs text-red-300">{filenameError}</Text>}</View>}
+        {!isVideo && !isGif && pageScope === "section" && <SectionExportPicker sections={sections} value={chosenSection?.name ?? ""} onChange={setSectionName} />}
         {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
         {isPptx && <Text className="text-xs text-white/55">{t("editor.export.pptxHint", { defaultValue: "Each page becomes one slide image, with presenter notes and links. Edit individual text and elements in the original design." })}</Text>}
         {(isVideo || isGif) && props.ranges.all.length > 0 && <View>
@@ -98,6 +104,7 @@ export default function ExportSheet(props: {
           <Text className="text-theme-neutrals-300 text-xs">{t("editor.pages.label")}</Text>
           <Chip label={isPptx ? t("editor.pages.allPptx", { defaultValue: "All {{count}} pages in one presentation", count: props.pageCount }) : isPdf ? t("editor.pages.allPdf", { defaultValue: "All {{count}} pages in one PDF", count: props.pageCount }) : t("editor.pages.allZip", { count: props.pageCount })} active={pageScope === "all"} onPress={() => setPageScope("all")} />
           <Chip label={t("editor.pages.thisPage")} active={pageScope === "current"} onPress={() => setPageScope("current")} />
+          {!!sections.length && <Chip label={t("editor.export.section", { defaultValue: "Named section" })} active={pageScope === "section"} onPress={() => setPageScope("section")} />}
           <Chip label={t("editor.pages.choosePages", { defaultValue: "Choose pages" })} active={pageScope === "custom"} onPress={() => setPageScope("custom")} />
           {pageScope === "custom" && <View style={{ gap: 6 }}><TextInput value={pageSelection} onChangeText={setPageSelection} accessibilityLabel={t("editor.pages.pageNumbers", { defaultValue: "Page numbers" })} placeholder="1,3-5" placeholderTextColor="#888" autoCapitalize="none" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />{!!pageError && <Text className="text-xs text-red-300">{pageError}</Text>}</View>}
 
