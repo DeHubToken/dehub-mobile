@@ -1,3 +1,4 @@
+import GradientStyleFileControls from "./GradientStyleFileControls";
 import GradientVectorDownload from "./GradientVectorDownload";
 import React, { useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -51,6 +52,6 @@ export default function FillPanel({ project, selectedId, current, commit, select
       {button(t("editor.fills.solidBackground", { defaultValue: "Use first colour as page background" }), () => applySolid(true), !solidValid)}
       {button(t("editor.fills.resetBackground", { defaultValue: "Reset page background" }), () => { const latest = current(); if (latest?.id !== project.id) return; const next = removePageBackground(latest, time); if (next !== latest) commit(next); })}
       {button(t("editor.fills.solid", { defaultValue: "Restore solid fill" }), () => apply(null), !canFill)}
-    </View><GradientVectorDownload value={fill} width={project.settings.width} height={project.settings.height} title={project.title} />{error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
+    </View><GradientStyleFileControls key={project.id} value={fill} title={project.title} onApply={setFill} /><GradientVectorDownload value={fill} width={project.settings.width} height={project.settings.height} title={project.title} />{error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}
   </View>;
 }
