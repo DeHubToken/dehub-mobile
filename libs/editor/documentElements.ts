@@ -1,3 +1,4 @@
+import { retargetCopiedPageLinks } from "./designLinks";
 import { resolveClipAt } from "./keyframes";
 import { getPages, pageAt } from "./pages";
 import { pageNumberText, validPageNumberFormat, type PageNumberFormat } from "./pageNumbering";
@@ -28,13 +29,16 @@ export function removePageNumbers(project: ProjectSnapshot): ProjectSnapshot {
 }
 
 /** Copy still artwork to matching positions on every other page in one undo step. */
-export function repeatPageElements(project: ProjectSnapshot, ids: readonly string[], time: number, makeId: () => string): { project: ProjectSnapshot; count: number } {
+export function repeatPageElements(project: ProjectSnapshot, ids: readonly string[], time: number, makeId: () => string, targetIndexes?: readonly number[]): { project: ProjectSnapshot; count: number } {
   const pages = getPages(project.settings, project.clips), sourcePage = pageAt(pages, time);
+  if (targetIndexes && (!targetIndexes.length || targetIndexes.some(index => !Number.isInteger(index) || !pages[index]))) throw new Error("Choose existing destination pages");
+  const targets = pages.filter(page => page.index !== sourcePage.index && (!targetIndexes || targetIndexes.includes(page.index)));
+  if (!targets.length) throw new Error("Choose at least one destination outside the current page");
   const picked = new Set(groupedSelection(project.clips, ids, time)), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
   const source = project.clips.filter(clip => picked.has(clip.id) && (clip.kind === "text" || clip.kind === "shape" || clip.kind === "image") && !clip.locked && !clip.hidden && !clip.isPageBackground && !hidden.has(clip.trackId) && clip.start < sourcePage.end && clip.start + clip.duration > sourcePage.start);
   if (!source.length) throw new Error("Select a text layer, logo, shape, or photo on this page");
   if (pages.length < 2) throw new Error("Add another page before repeating elements");
-  if (source.length > 100 || project.clips.length + source.length * (pages.length - 1) > 10000) throw new Error("Choose fewer elements or pages to stay within the design's layer limit");
+  if (source.length > 100 || project.clips.length + source.length * targets.length > 10000) throw new Error("Choose fewer elements or pages to stay within the design's layer limit");
   const trackIds = new Map<string, string>(), tracks: Track[] = [];
   for (const clip of source) if (!trackIds.has(clip.trackId)) {
     const track = project.tracks.find(track => track.id === clip.trackId); if (!track) continue;
@@ -43,7 +47,7 @@ export function repeatPageElements(project: ProjectSnapshot, ids: readonly strin
   if (project.tracks.length + tracks.length > 200) throw new Error("Repeating these elements would exceed the design's layer limit");
   const copies: Clip[] = [];
   let bytes = JSON.stringify(project).length;
-  for (const page of pages) if (page.index !== sourcePage.index) {
+  for (const page of targets) {
     const parts = source.flatMap<Clip>(clip => {
       const trackId = trackIds.get(clip.trackId); if (!trackId) return [];
       const from = Math.max(sourcePage.start, clip.start), to = Math.min(sourcePage.end, clip.start + clip.duration);
@@ -52,7 +56,7 @@ export function repeatPageElements(project: ProjectSnapshot, ids: readonly strin
       bytes += JSON.stringify(copy).length; if (bytes > 2 * 1024 * 1024) throw new Error("This repeated artwork would make the design too large. Select fewer elements");
       return [copy];
     });
-    copies.push(...remapDesignGroups(parts, makeId));
+    copies.push(...remapDesignGroups(retargetCopiedPageLinks(parts, new Map([[sourcePage.index, page.index]])), makeId));
   }
-  return { project: { ...project, tracks: [...project.tracks, ...tracks], clips: [...project.clips, ...copies] }, count: pages.length - 1 };
+  return { project: { ...project, tracks: [...project.tracks, ...tracks], clips: [...project.clips, ...copies] }, count: targets.length };
 }

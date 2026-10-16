@@ -1,0 +1,11 @@
+import React from "react";
+import { Pressable, Text, View } from "react-native";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import { useTranslation } from "react-i18next";
+import { REPEAT_PAGE_SCOPE_OPTIONS, type RepeatPageScope } from "../../libs/editor/repeatPageScope";
+import type { DesignPageSection } from "../../libs/editor/pageDetails";
+import SectionExportPicker from "./SectionExportPicker";
+export default function RepeatPageScopeControls({ value, sections, onChange }: { value: RepeatPageScope; sections: readonly DesignPageSection[]; onChange: (value: RepeatPageScope) => void }) {
+  const { t } = useTranslation();
+  return <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.document.repeatPages", { defaultValue: "Repeat artwork on" })}</Text><View className="flex-row flex-wrap" style={{ gap: 6 }}>{REPEAT_PAGE_SCOPE_OPTIONS.map(option => <Pressable key={option.id} accessibilityRole="button" accessibilityState={{ selected: value.mode === option.id, disabled: option.id === "section" && !sections.length }} disabled={option.id === "section" && !sections.length} onPress={() => onChange({ ...value, mode: option.id })} style={{ opacity: option.id === "section" && !sections.length ? 0.35 : 1 }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${value.mode === option.id ? "border-cyan-300 bg-cyan-300/10" : "border-white/20"}`}><Text className="text-xs text-white/75">{t(`editor.document.repeatScope.${option.id}`, { defaultValue: option.label })}</Text></Pressable>)}</View>{value.mode === "custom" && <TextInput value={value.range} onChangeText={range => onChange({ ...value, range })} maxLength={4000} autoCorrect={false} placeholder="2,4-6" placeholderTextColor="#888" keyboardType="numbers-and-punctuation" accessibilityLabel={t("editor.document.repeatRange", { defaultValue: "Destination page numbers" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" />}{value.mode === "section" && <SectionExportPicker sections={sections} value={value.section || sections[0]?.name || ""} onChange={section => onChange({ ...value, section })} />}<Text className="text-[10px] text-white/45">{t("editor.document.repeatScopeHint", { defaultValue: "Uses document page numbers. The current page is always excluded." })}</Text></View>;
+}
