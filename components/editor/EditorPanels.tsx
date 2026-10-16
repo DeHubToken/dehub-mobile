@@ -1,3 +1,4 @@
+import TextListControls from "./TextListControls";
 import StrokePattern from "./StrokePatternControls";
 export { StrokePattern };
 import { useEditorLibrary } from "../../libs/editor/useEditorLibrary";
@@ -405,6 +406,7 @@ export function TextStylePanel({ clip, live, commit, settle, onFitCaptions, capt
         <Chip icon="AlignRight" label={t("editor.layer.alignRight")} active={clip.align === "right"} onPress={() => commit({ align: "right" })} />
       </ChipRow>
         <ChipRow>{(["none", "bullet", "number"] as const).map(list => <Chip key={list} label={t(`editor.text.listKind.${list}`, { defaultValue: list === "none" ? "Plain text" : list === "bullet" ? "Bullet list" : "Numbered list" })} active={(clip.list ?? "none") === list} onPress={() => commit({ list })} />)}</ChipRow>
+        <TextListControls value={clip} onChange={listStyle => commit({ listStyle })} />
         <Text className="mt-2 text-xs text-white/60">{t("editor.text.effects", { defaultValue: "Text effects" })}</Text>
         <ChipRow>{TEXT_EFFECTS.map(effect => <Chip key={effect} label={t(`editor.text.effect.${effect}`, { defaultValue: TEXT_EFFECT_NAMES[effect] })} onPress={() => commit(textEffectPatch(clip, effect))} />)}</ChipRow>
         <View className="mt-2">

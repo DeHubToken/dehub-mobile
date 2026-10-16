@@ -1,5 +1,25 @@
 /** Caption layout shared by the native preview and every export frame. */
-export const TEXT_LAYOUT_RUNTIME = String.raw`/** Bend each visual line around an arc, then centre its complete rotated glyph bounds. */
+export const TEXT_LAYOUT_RUNTIME = String.raw`function textListDigits(value, style) {
+  value = Math.max(1, Math.min(20000, Math.floor(value)));
+  let output = "";
+  if (style.startsWith("alpha")) { for (let n = value; n > 0; n = Math.floor((n - 1) / 26)) output = String.fromCharCode(65 + (n - 1) % 26) + output; }
+  else if (style.startsWith("roman") && value < 4000) {
+    let rest = value;
+    const amounts = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1], symbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+    amounts.forEach((amount, index) => { while (rest >= amount) { output += symbols[index]; rest -= amount; } });
+  } else output = String(value);
+  return style.endsWith("lower") ? output.toLowerCase() : output;
+}
+function formatTextList(source, kind, options) {
+  if (kind !== "bullet" && kind !== "number") return source;
+  const start = options && Number.isInteger(options.start) ? Math.max(1, Math.min(9999, options.start)) : 1;
+  const style = options?.numbering ?? "decimal", bullet = options?.bullet ?? "disc";
+  const marker = bullet === "circle" ? "◦" : bullet === "square" ? "▪" : bullet === "dash" ? "–" : bullet === "check" ? "✓" : "•";
+  let item = start;
+  return source.replace(/\r\n?/g, "\n").split("\n").map(line => line.trim() ? (kind === "bullet" ? marker : textListDigits(item++, style) + ".") + " " + line : line).join("\n");
+}
+
+/** Bend each visual line around an arc, then centre its complete rotated glyph bounds. */
 function curvedTextLayout(lines, size, lineHeight, amount, measure) {
   const curve = Math.max(-100, Math.min(100, Number.isFinite(amount) ? amount : 0));
   if (Math.abs(curve) < 0.01) return null;
@@ -34,9 +54,7 @@ function curvedTextLayout(lines, size, lineHeight, amount, measure) {
 
 function measuredTextLayout(text, W, H, measure) {
   const source = text.uppercase ? text.text.toUpperCase() : text.text;
-  let item = 0;
-  const raw = text.list === "bullet" || text.list === "number" ? source.replace(/\r\n?/g, "\n").split("\n")
-    .map(line => line.trim() ? (text.list === "bullet" ? "• " : String(++item) + ". ") + line : line).join("\n") : source;
+  const raw = formatTextList(source, text.list, text.listStyle);
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight > 0;
