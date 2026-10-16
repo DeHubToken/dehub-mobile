@@ -17,7 +17,7 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
   };
   const stroke = () => (lineDash.length ? `stroke-dasharray="${lineDash.map(n).join(" ")}" ` : "") + paint(context.strokeStyle, "stroke") + ` stroke-width="${n(context.lineWidth)}" stroke-linecap="${context.lineCap === "round" ? "round" : context.lineCap === "square" ? "square" : "butt"}" stroke-linejoin="${context.lineJoin === "round" ? "round" : context.lineJoin === "bevel" ? "bevel" : "miter"}"`;
   const context: DataVisualContext = {
-    fillStyle: "#000000", strokeStyle: "#000000", font: "500 16px Inter, sans-serif", textAlign: "left", textBaseline: "middle", lineWidth: 1,
+    direction: "ltr", fillStyle: "#000000", strokeStyle: "#000000", font: "500 16px Inter, sans-serif", textAlign: "left", textBaseline: "middle", lineWidth: 1,
     setLineDash(segments: number[]) { lineDash = segments.slice(0, 6).map(value => Math.max(0, Number.isFinite(value) ? value : 0)); },
     beginPath() { path.length = 0; current = null; first = null; },
     closePath() { path.push("Z"); current = first; },
@@ -41,8 +41,8 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     measureText(text: string) { const measured = measure(text, context.font); return { width: Number.isFinite(measured) ? Math.max(0, measured) : 0 }; },
     fillText(text: string, x: number, y: number) {
       const size = Number(context.font.match(/([\d.]+)px/)?.[1] ?? 16), weight = context.font.match(/(?:^|\s)([1-9]00)(?:\s|$)/)?.[1] ?? "500", italic = /(?:^|\s)italic(?:\s|$)/.test(context.font);
-      const anchor = context.textAlign === "center" ? "middle" : context.textAlign === "right" ? "end" : "start", baseline = context.textBaseline === "middle" ? "central" : context.textBaseline === "top" ? "hanging" : context.textBaseline === "bottom" ? "text-after-edge" : "alphabetic";
-      parts.push(`<text x="${n(x)}" y="${n(y)}" font-family="${xml(/px\s+(.+)$/.exec(context.font)?.[1] || "Inter, sans-serif")}" font-size="${n(size)}" font-weight="${weight}"${italic ? ' font-style="italic"' : ""} text-anchor="${anchor}" dominant-baseline="${baseline}" ${paint(context.fillStyle, "fill")}>${xml(text)}</text>`);
+      const rtl = context.direction === "rtl", anchor = context.textAlign === "center" ? "middle" : context.textAlign === "right" ? rtl ? "start" : "end" : rtl ? "end" : "start", baseline = context.textBaseline === "middle" ? "central" : context.textBaseline === "top" ? "hanging" : context.textBaseline === "bottom" ? "text-after-edge" : "alphabetic";
+      parts.push(`<text x="${n(x)}" y="${n(y)}" font-family="${xml(/px\s+(.+)$/.exec(context.font)?.[1] || "Inter, sans-serif")}" font-size="${n(size)}" font-weight="${weight}"${italic ? ' font-style="italic"' : ""} direction="${rtl ? "rtl" : "ltr"}" unicode-bidi="plaintext" text-anchor="${anchor}" dominant-baseline="${baseline}" ${paint(context.fillStyle, "fill")}>${xml(text)}</text>`);
     },
   };
   drawDataVisual(context, width, height, "chart" in value ? value.chart : undefined, "table" in value ? value.table : undefined);

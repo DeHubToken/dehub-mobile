@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { graphicFontCss } from "./graphicFonts";
 import { chartValueLabel } from "./chartValueFormat";
 import { tableTextLines } from "./tableTextLayout";
@@ -83,7 +84,7 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       lines.forEach((value, index) => {
         let label = value;
         while (label.length > 1 && ctx.measureText(label).width > maxWidth) label = label.slice(0, -2) + "…";
-        if (!clipped || index < maxLines) ctx.fillText(label, anchor, firstY + index * lineHeight);
+        if (!clipped || index < maxLines) drawGraphicText(ctx,label, anchor, firstY + index * lineHeight);
       });
     }
   });

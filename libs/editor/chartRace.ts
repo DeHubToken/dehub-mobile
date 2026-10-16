@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { chartValueLabel } from "./chartValueFormat";
 import { graphicFontCss } from "./graphicFonts";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
@@ -23,7 +24,7 @@ export function drawChartRace(ctx: DataVisualContext, width: number, height: num
     ctx.font = "500 " + size + "px " + family;
     let value = text.slice(0, 200);
     while (value.length > 1 && ctx.measureText(value).width > available) value = value.slice(0, -2) + "…";
-    if (ctx.measureText(value).width <= available) ctx.fillText(value, x, y);
+    if (ctx.measureText(value).width <= available) drawGraphicText(ctx,value, x, y);
   };
   ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
   label(blend <= 0 ? frames[first].label : blend >= 1 ? frames[next].label : frames[first].label + " → " + frames[next].label, 0, top + font, width - font * 2, font);

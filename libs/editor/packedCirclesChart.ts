@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { chartValueLabel } from "./chartValueFormat";
 import { graphicFontCss } from "./graphicFonts";
 import { treemapDataError } from "./treemapChart";
@@ -71,7 +72,7 @@ export function drawPackedCirclesChart(ctx: DataVisualContext, width: number, he
     ctx.font = "500 " + size + "px " + family; ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
     let value = text.slice(0, 200);
     while (value.length > 1 && ctx.measureText(value).width > available) value = value.slice(0, -2) + "…";
-    if (ctx.measureText(value).width <= available) ctx.fillText(value, x, y);
+    if (ctx.measureText(value).width <= available) drawGraphicText(ctx,value, x, y);
   };
   const draw = (node: PackedNode, x: number, y: number): void => {
     const cx = x + node.x * scale, cy = y + node.y * scale, radius = node.r * scale;

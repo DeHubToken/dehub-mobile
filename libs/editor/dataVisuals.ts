@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { drawChartMarker, strokeChartPattern, type ChartPointShape, type ChartLinePattern } from "./chartMarks";
 import { validPictogramSymbol } from "./pictogramSymbol";
 import { drawChartCategoryLabel } from "./chartCategoryLabel";
@@ -109,6 +110,7 @@ export interface TableData {
   wrap?: boolean;
 }
 export interface DataVisualContext {
+  direction?: string;
   lineCap?: string; lineJoin?: string;
   setLineDash?(segments: number[]): void;
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
@@ -130,7 +132,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   function label(text: string, x: number, y: number, max: number) {
     let value = String(text).slice(0, 200);
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
-    ctx.fillText(value, x, y);
+    drawGraphicText(ctx,value, x, y);
   }
   if (graphic && (graphic.title?.trim() || graphic.caption?.trim())) {
     const outerHeight = height, band = Math.min(height * 0.22, font * 1.8);
@@ -187,7 +189,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
         let size = Math.max(1, Math.min(font * 1.8, hole * (labels.length > 1 ? 0.45 : 0.7)));
         while (size > 1) { ctx.font = "700 " + size + "px " + family; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
         ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px " + family; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
+        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px " + family; drawGraphicText(ctx,value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
       }
     }
     return;

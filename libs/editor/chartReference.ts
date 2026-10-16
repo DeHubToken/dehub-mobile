@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { graphicFontCss } from "./graphicFonts";
 import { chartValueLabel } from "./chartValueFormat";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
@@ -18,5 +19,5 @@ export function drawChartReference(ctx: DataVisualContext, chart: ChartData, x0:
   while (text.length > 1 && ctx.measureText(text).width > available) text = text.slice(0, -2) + "…";
   const measured = ctx.measureText(text).width;
   ctx.textAlign = horizontal ? "center" : "right";
-  ctx.fillText(text, horizontal ? Math.max(x0 + measured / 2, Math.min(x1 - measured / 2, position)) : x1, horizontal ? y0 + font * 0.7 : Math.max(y0 + font / 2, Math.min(y1 - font / 2, position - font * 0.7)));
+  drawGraphicText(ctx,text, horizontal ? Math.max(x0 + measured / 2, Math.min(x1 - measured / 2, position)) : x1, horizontal ? y0 + font * 0.7 : Math.max(y0 + font / 2, Math.min(y1 - font / 2, position - font * 0.7)));
 }
