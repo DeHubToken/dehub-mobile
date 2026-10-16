@@ -1438,7 +1438,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (tool === "filters") return <FiltersPanel clip={selected} {...panelProps} />;
     if (tool === "adjust") return <AdjustPanel clip={selected} {...panelProps} onAutoEnhance={selected.kind === "image" ? () => { void autoEnhance(); } : undefined} />;
-    if (tool === "crop") return <CropPanel clip={selected} {...panelProps} />;
+    if (tool === "crop") return <CropPanel clip={selected} page={project.settings} {...panelProps} />;
     if (tool === "corners") return <CornersPanel clip={selected} {...panelProps} />;
     if (tool === "fit") return <FitPanel clip={selected} {...panelProps} />;
     return null;
@@ -1700,6 +1700,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onGestureEnd={h.settle}
           recording={recording}
           onEditText={id => { drafts.openText(id); }}
+          cropping={tool === "crop"}
+          onEditCrop={id => { setSelectedId(id); setTool("crop"); setPen(null); setPlaying(false); }}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
           pen={pen}
           onStroke={(pts) => {

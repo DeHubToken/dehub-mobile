@@ -1,3 +1,4 @@
+import CropPresets from "./CropPresets";
 import { DUOTONE_PRESETS } from "../../libs/editor/photoTone";
 import DuotoneColours from "./DuotoneColours";
 /**
@@ -207,7 +208,7 @@ export function AdjustPanel({ clip, live, commit, settle, onAutoEnhance }: Panel
   );
 }
 
-export function CropPanel({ clip, live, settle }: PanelProps<MediaClip>) {
+export function CropPanel({ clip, live, commit, settle, page }: PanelProps<MediaClip> & { page?: { width: number; height: number } }) {
   const { t } = useTranslation();
   const crop = { left: 0, top: 0, right: 0, bottom: 0, ...(clip.crop ?? {}) };
   const edges = [
@@ -218,6 +219,7 @@ export function CropPanel({ clip, live, settle }: PanelProps<MediaClip>) {
   ] as const;
   return (
     <View>
+      {page && <CropPresets key={clip.id} clip={clip} page={page} commit={commit} />}
       {edges.map(([edge, key]) => (
         <Range
           key={edge}
