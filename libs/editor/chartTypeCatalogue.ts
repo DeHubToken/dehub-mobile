@@ -16,6 +16,7 @@ export const CHART_TYPE_DETAILS: Record<ChartKind, { label: string; group: Chart
   bubble: { label: "Bubble", group: "relationship", hint: "Plot X, Y and a separate size value", path: "M4 3V29H37M12 25A3 3 0 1 0 12 19A3 3 0 1 0 12 25M23 18A6 6 0 1 0 23 6A6 6 0 1 0 23 18M33 25A4 4 0 1 0 33 17A4 4 0 1 0 33 25" },
   funnel: { label: "Funnel", group: "composition", hint: "Compare stages in their data-row order", path: "M3 4H37L32 11H8ZM9 14H31L27 21H13ZM14 24H26L23 30H17Z" },
   histogram: { label: "Histogram", group: "distribution", hint: "Group raw observations into frequency bins", path: "M4 28V20H12V28ZM12 28V10H20V28ZM20 28V4H28V28ZM28 28V15H36V28Z" },
+  race: { label: "Bar chart race", group: "trend", hint: "Animate changing category rankings across frames", path: "M4 5H25V10H4ZM4 15H34V20H4ZM4 25H19V30H4ZM29 3L36 7L29 11ZM23 23L30 27L23 31Z" },
   pictogram: { label: "Pictogram", group: "composition", hint: "Represent shares with a grid of repeated symbols", path: "M5 4H10V9H5ZM17 4H22V9H17ZM29 4H34V9H29ZM5 15H10V20H5ZM17 15H22V20H17ZM29 15H34V20H29ZM5 26H10V31H5ZM17 26H22V31H17ZM29 26H34V31H29Z" },
   treemap: { label: "Treemap", group: "hierarchy", hint: "Compare nested groups as proportional tiles", path: "M3 3H37V30H3ZM3 9H37M19 9V30M3 20H19M29 9V30M19 23H29" },
 };
