@@ -1,3 +1,4 @@
+import { drawChartLegend, type ChartLegendPosition } from "./chartLegend";
 import { chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
 import { validTableCellStyles, type TableCellStyles } from "./tableCellStyles";
 import { validTableMerges, type TableMerge } from "./tableMerges";
@@ -9,6 +10,7 @@ export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   valueFormat?: ChartValueFormat;
   donutHole?: number;
+  legendPosition?: ChartLegendPosition;
   lineWidth?: number;
   pointSize?: number;
   areaOpacity?: number;
@@ -76,23 +78,18 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
-    const legend = chart.showLabels ? Math.min(width * 0.42, 220) : 0;
-    const radius = Math.max(1, Math.min((width - legend) * 0.45, height * 0.45));
-    const cx = left + (width - legend) / 2;
+    const entries = chart.showLabels && chart.showLegend !== false ? positive.map(row => ({ colour: colour(row.colourIndex), label: row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : "") })) : [];
+    const plot = drawChartLegend(ctx, width, height, entries, chart.legendPosition ?? "right", font, chart.textColour);
+    const radius = Math.max(1, Math.min(plot.width * 0.45, plot.height * 0.45));
+    const cx = plot.left + plot.width / 2, cy = plot.top + plot.height / 2;
     let start = -Math.PI / 2;
     positive.forEach((row, index) => {
       const end = start + row.value / sum * Math.PI * 2;
       ctx.fillStyle = colour(row.colourIndex); ctx.beginPath();
       if (chart.kind === "donut") {
-        ctx.arc(cx, 0, radius, start, end); ctx.arc(cx, 0, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
-      } else { ctx.moveTo(cx, 0); ctx.arc(cx, 0, radius, start, end); }
+        ctx.arc(cx, cy, radius, start, end); ctx.arc(cx, cy, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
+      } else { ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, end); }
       ctx.closePath(); ctx.fill();
-      if (chart.showLabels && index < Math.floor(height / (font * 1.7))) {
-        const x = left + width - legend + font, y = top + font * (1.3 + index * 1.7);
-        ctx.fillStyle = colour(row.colourIndex); ctx.fillRect(x, y - font * 0.35, font * 0.7, font * 0.7);
-        ctx.fillStyle = chart.textColour; ctx.textAlign = "left";
-        label(row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : ""), x + font, y, legend - font * 2);
-      }
       start = end;
     });
     return;
@@ -203,6 +200,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
+    if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
     if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;
     if (chart.showLegend !== undefined && typeof chart.showLegend !== "boolean") return false;
