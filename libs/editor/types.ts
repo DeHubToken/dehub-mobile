@@ -289,6 +289,7 @@ export interface ShapeClip extends BaseClip {
   kind: "shape";
   gradient?: import("./gradientFill").GradientFill | null;
   shape: ShapeKindAll;
+  symbol?: string;
   connector?: import("./connectors").ConnectorStyle;
   isPageBackground?: boolean;
   /** An empty photo-grid cell, replaced in place when a picture is chosen. */

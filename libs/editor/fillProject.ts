@@ -20,7 +20,7 @@ export function solidDesignLayers(project: ProjectSnapshot, ids: readonly string
     if (!chosen.has(clip.id) || clip.locked) return clip;
     if (clip.kind === "text") return { ...clip, color: colour, gradient: null, ...(clip.hollow && clip.stroke ? { stroke: { ...clip.stroke, color: colour } } : {}) };
     if (clip.kind === "shape" && !clip.chart && !clip.table && !clip.qr) return { ...clip, fill: colour, gradient: null,
-      ...((clip.shape === "line" || clip.shape === "arrow") && clip.stroke ? { stroke: { ...clip.stroke, color: colour } } : {}) };
+      ...((clip.symbol || clip.connector || clip.shape === "line" || clip.shape === "arrow") && clip.stroke ? { stroke: { ...clip.stroke, color: colour } } : {}) };
     return clip;
   });
   return clips.some((clip, index) => clip !== project.clips[index]) ? { ...project, clips } : project;

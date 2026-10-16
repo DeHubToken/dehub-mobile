@@ -1,3 +1,4 @@
+import { VECTOR_SYMBOLS } from "./vectorSymbols";
 import { MEDIA_FRAMES, type MediaFrame } from "./mediaFrames";
 import { validConnector } from "./connectors";
 import { validPhotoTone } from "./photoTone";
@@ -90,6 +91,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
         }
       }
     }
+    if (clip.kind === "shape" && clip.symbol !== undefined && (typeof clip.symbol !== "string" || !VECTOR_SYMBOLS.some(symbol => symbol.id === clip.symbol) || clip.shape !== "rect" || clip.connector !== undefined || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined || clip.photoFrame)) fail();
     if (clip.kind === "shape" && (!validConnector(clip.connector) || (clip.connector !== undefined && (clip.shape !== "line" || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined)))) fail();
     if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();

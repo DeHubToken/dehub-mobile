@@ -1,3 +1,4 @@
+import { VECTOR_SYMBOLS_RUNTIME } from "./vectorSymbolsRuntime";
 import { CONNECTORS_RUNTIME } from "./connectorsRuntime";
 import { PHOTO_TONE_RUNTIME } from "./photoToneRuntime";
 import { DESIGN_LINKS_RUNTIME } from "./designLinksRuntime";
@@ -83,6 +84,7 @@ canvas{display:block;width:100%;height:100%;}
   __GRADIENT_FILL_RUNTIME__
   __QR_GRAPHIC_RUNTIME__
   __SHAPE_GEOMETRY_RUNTIME__
+  __VECTOR_SYMBOLS_RUNTIME__
   __CONNECTORS_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
@@ -619,15 +621,16 @@ canvas{display:block;width:100%;height:100%;}
       c.setLineDash((connectorStroke.dash || []).filter(Number.isFinite).slice(0, 8).map(function(value) { return Math.max(0, value) * k; }));
       applyShadow(c, clip, H); drawConnector(c, box.w, box.h, clip.connector); clearShadow(c); return;
     }
-    shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
+    if (clip.symbol) vectorSymbolPath(c, box.w, box.h, clip.symbol);
+    else shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
     applyShadow(c, clip, H);
     var gradient = createGradientFill(c, box.w, box.h, clip.gradient);
-    if (!open && (clip.fill || gradient)) { c.fillStyle = gradient || clip.fill; c.fill(); clearShadow(c); }
+    if (!open && (clip.fill || (!clip.symbol && gradient))) { c.fillStyle = gradient || clip.fill; c.fill(); clearShadow(c); }
     var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
     if (stroke && stroke.width > 0) {
       c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
       c.lineWidth = stroke.width * k;
-      c.strokeStyle = open && gradient ? gradient : stroke.color;
+      c.strokeStyle = (open || clip.symbol) && gradient ? gradient : stroke.color;
       c.lineJoin = "round";
       c.lineCap = "round";
       c.stroke();
@@ -1990,4 +1993,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
