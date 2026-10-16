@@ -16,9 +16,11 @@ export type TextCompositionId = typeof TEXT_COMPOSITIONS[number]["id"];
 
 /** Editable font pairings insert as ordinary grouped text and vector layers. */
 export function putTextComposition(project: ProjectSnapshot, time: number, id: TextCompositionId,
-  content: { title: string; subtitle: string; eyebrow: string; colour: string; accent: string }, makeId: () => string) {
+  content: { title: string; subtitle: string; eyebrow: string; colour: string; accent: string; headingFont?: string | null; bodyFont?: string | null }, makeId: () => string) {
   const preset = TEXT_COMPOSITIONS.find(value => value.id === id);
   if (!preset || !content.title.trim() || ![content.colour, content.accent].every(value => /^#[\da-f]{6}$/i.test(value))) return null;
+  const headingFont = content.headingFont?.split(",")[0].trim().replace(/^['"]|['"]$/g, "") || preset.heading, bodyFont = content.bodyFont?.split(",")[0].trim().replace(/^['"]|['"]$/g, "") || preset.body;
+  if ([headingFont, bodyFont].some(font => font.length > 500 || /[\u0000-\u001f\u007f]/.test(font))) return null;
   const page = pageAt(getPages(project.settings, project.clips), time), groupId = makeId();
   const tracks: Track[] = [], clips: Clip[] = [];
   const text = (value: string, font: string, size: number, weight: number, y: number, height: number, uppercase = false, x = preset.align === "left" ? 0.14 : 0.5, colour = content.colour) => {
@@ -40,20 +42,20 @@ export function putTextComposition(project: ProjectSnapshot, time: number, id: T
   if (preset.layout === "lowerthird") {
     accentShape("Lower-third backdrop", 0.5, 0.78, 0.8, 0.28, "#0f172a");
     accentShape("Lower-third accent", 0.105, 0.78, 0.01, 0.28, content.accent);
-    text(content.eyebrow, preset.body, 22, 600, 0.69, 0.05, true);
-    text(content.title, preset.heading, 68, preset.weight, 0.77, 0.1);
-    text(content.subtitle, preset.body, 30, 400, 0.86, 0.07);
+    text(content.eyebrow, bodyFont, 22, 600, 0.69, 0.05, true);
+    text(content.title, headingFont, 68, preset.weight, 0.77, 0.1);
+    text(content.subtitle, bodyFont, 30, 400, 0.86, 0.07);
   } else if (preset.layout === "quote") {
-    text("“", preset.heading, 200, 700, 0.24, 0.18, false, 0.12, content.accent);
-    text(content.eyebrow, preset.body, 24, 500, 0.23, 0.06, true, 0.26);
-    text(content.title, preset.heading, 86, preset.weight, 0.49, 0.36);
+    text("“", headingFont, 200, 700, 0.24, 0.18, false, 0.12, content.accent);
+    text(content.eyebrow, bodyFont, 24, 500, 0.23, 0.06, true, 0.26);
+    text(content.title, headingFont, 86, preset.weight, 0.49, 0.36);
     accentShape("Quotation accent", 0.19, 0.74, 0.1, 0.004, content.accent);
-    text(content.subtitle, preset.body, 32, 500, 0.81, 0.1);
+    text(content.subtitle, bodyFont, 32, 500, 0.81, 0.1);
   } else {
     accentShape("Typography accent", preset.align === "left" ? 0.19 : 0.5, 0.35, 0.1, 0.004, content.accent);
-    text(content.eyebrow, preset.body, 27, 500, 0.28, 0.08, true);
-    text(content.title, preset.heading, id === "poster" ? 184 : id === "handwritten" ? 170 : 140, preset.weight, 0.5, 0.28);
-    text(content.subtitle, preset.body, 38, 400, 0.72, 0.12);
+    text(content.eyebrow, bodyFont, 27, 500, 0.28, 0.08, true);
+    text(content.title, headingFont, id === "poster" ? 184 : id === "handwritten" ? 170 : 140, preset.weight, 0.5, 0.28);
+    text(content.subtitle, bodyFont, 38, 400, 0.72, 0.12);
   }
   if (project.tracks.length + tracks.length > 200 || project.clips.length + clips.length > 10000 || JSON.stringify(project).length + JSON.stringify(clips).length > 6 * 1024 * 1024) return null;
   const selectedId = clips.find(clip => clip.kind === "text" && clip.text === content.title.trim().slice(0, 2000))?.id ?? clips[0].id;
