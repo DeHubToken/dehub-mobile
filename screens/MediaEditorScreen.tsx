@@ -355,7 +355,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
-  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
   icon: IconName;
   label: string;
 }
@@ -1081,6 +1081,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "photo") { void addPhoto(); return; }
     if (id === "replacePhoto" && selectedId) { void addPhoto(selectedId); return; }
     if (id === "replaceVideo" && selectedId) { void addVideos(selectedId); return; }
+    if (id === "replaceMedia" && selectedId) {
+      Alert.alert(t("editor.media.replace", { defaultValue: "Replace selected layer" }), undefined, [
+        { text: t("editor.media.photo", { defaultValue: "Photo" }), onPress: () => { void addPhoto(selectedId); } },
+        { text: t("editor.media.video", { defaultValue: "Video" }), onPress: () => { void addVideos(selectedId); } },
+        { text: t("common.cancel", { defaultValue: "Cancel" }), style: "cancel" },
+      ]);
+      return;
+    }
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
@@ -1142,7 +1150,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
-        { id: "replaceVideo", icon: "Film", label: t("editor.media.replaceVideo", { defaultValue: "Replace video" }) },
+        { id: "replaceMedia", icon: "Image", label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) },
         { id: "removeBg", icon: "Scissors", label: t(selected.videoMatte ? "editor.videoMatte.restore" : "editor.bgRemove.action") },
         { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
         { id: "highlights", icon: "Sparkles", label: t("editor.highlights.title") },
@@ -1176,6 +1184,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     ];
     if (selected.kind === "shape") {
       return [
+        ...(selected.photoFrame ? [{ id: "replaceMedia" as const, icon: "Image" as IconName, label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) }] : []),
         { id: "shapeStyle", icon: "Palette", label: t("editor.shape.style") },
         ...common,
       ];
@@ -1192,7 +1201,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       ];
     }
     return [
-      { id: "replacePhoto", icon: "Image", label: t("editor.media.replacePhoto", { defaultValue: "Replace photo" }) },
+      { id: "replaceMedia", icon: "Image", label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) },
       { id: "removeBg", icon: "Scissors", label: t("editor.bgRemove.action") },
       { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
       { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },

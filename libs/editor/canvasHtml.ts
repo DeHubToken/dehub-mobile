@@ -557,6 +557,12 @@ canvas{display:block;width:100%;height:100%;}
     c.closePath();
   }
   function drawShape(c, clip, box, H) {
+    if (clip.photoFrame) {
+      drawShape(c, Object.assign({}, clip, { photoFrame: false }), box, H);
+      var size = Math.min(box.w, box.h) * 0.35;
+      c.fillStyle = "#94a3b8"; c.beginPath(); c.moveTo(-size, size * 0.65); c.lineTo(-size * 0.2, -size * 0.45); c.lineTo(size * 0.25, size * 0.2); c.lineTo(size * 0.55, -size * 0.2); c.lineTo(size, size * 0.65); c.closePath(); c.fill();
+      c.beginPath(); c.arc(size * 0.55, -size * 0.65, size * 0.18, 0, Math.PI * 2); c.fill(); return;
+    }
     if (clip.qr) { drawQrGraphic(c, box.w, box.h, clip.qr); return; }
     if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table); return; }
     var k = H / 1080;

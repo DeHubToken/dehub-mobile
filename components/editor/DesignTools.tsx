@@ -11,6 +11,7 @@ import DataVisualPanel from "./DataVisualPanel";
 import FillPanel from "./FillPanel";
 import GroupsPanel from "./GroupsPanel";
 import QrPanel from "./QrPanel";
+import PhotoGridPanel from "./PhotoGridPanel";
 
 export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits }: {
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
@@ -19,7 +20,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -45,15 +46,17 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       }, !selected || selected.kind === "audio")}
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
-      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr"].includes(panel ?? ""))}
+      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid"].includes(panel ?? ""))}
       {action(t("editor.groups.title", { defaultValue: "Groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel("data"))}
       {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel("fill"))}
+      {action(t("editor.grids.title", { defaultValue: "Photo grids" }), () => setPanel("grid"))}
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
-    {["data", "fill", "qr"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {["data", "fill", "qr", "grid"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "grid" && <PhotoGridPanel project={project} current={current} commit={commit} time={time} select={select} />}
     {panel === "qr" && <QrPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "groups" && <GroupsPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}

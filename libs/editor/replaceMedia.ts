@@ -5,6 +5,20 @@ export interface ReplacementMedia { id: string; kind: "image" | "video" | "audio
 /** Replace the source while retaining the layer's visible aspect, placement, frame and styling. */
 export function replaceDesignMedia(project: ProjectSnapshot, id: string, source: ReplacementMedia, previous?: { width?: number; height?: number } | null): ProjectSnapshot {
   const clip = project.clips.find(c => c.id === id);
+  if (clip?.kind === "shape" && clip.photoFrame && !clip.locked && source.kind !== "audio") {
+    const { width: W, height: H } = project.settings;
+    const aspect = clip.w * W / (clip.h * H), natural = source.width && source.height ? source.width / source.height : aspect;
+    const inset = Math.min(0.49, natural > aspect ? (1 - aspect / natural) / 2 : (1 - natural / aspect) / 2);
+    const crop = natural > aspect ? { left: inset, right: inset, top: 0, bottom: 0 } : { left: 0, right: 0, top: inset, bottom: inset };
+    const tr = { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform };
+    const fitScale = clip.w * W / Math.min(W, H * aspect);
+    const next: MediaClip = { id: clip.id, groupId: clip.groupId, trackId: clip.trackId, start: clip.start, duration: source.duration && source.kind === "video" ? Math.min(clip.duration, source.duration) : clip.duration,
+      trimIn: 0, kind: source.kind, mediaId: source.id, sourceDuration: source.duration, crop, fit: "contain", frame: "rect", radius: clip.radius,
+      transform: { ...tr, scale: tr.scale * fitScale }, border: clip.stroke,
+      shadow: clip.shadow, blend: clip.blend, hidden: clip.hidden, locked: clip.locked, animateIn: clip.animateIn, animateOut: clip.animateOut,
+      transitionOut: clip.transitionOut, keyframes: clip.keyframes ? { ...clip.keyframes, ...(clip.keyframes.scale ? { scale: clip.keyframes.scale.map(key => ({ ...key, v: key.v * fitScale })) } : {}) } : undefined };
+    return { ...project, clips: project.clips.map(c => c.id === id ? next : c) };
+  }
   if (!clip || clip.locked || (clip.kind !== "image" && clip.kind !== "video" && clip.kind !== "audio") || clip.mediaId === source.id) return project;
   if (clip.kind === "audio" ? source.kind === "image" : source.kind === "audio") return project;
   let crop: ClipCrop | null = null;

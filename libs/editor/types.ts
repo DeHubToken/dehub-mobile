@@ -272,6 +272,8 @@ export interface ShapeClip extends BaseClip {
   gradient?: import("./gradientFill").GradientFill | null;
   shape: ShapeKindAll;
   isPageBackground?: boolean;
+  /** An empty photo-grid cell, replaced in place when a picture is chosen. */
+  photoFrame?: boolean;
   /** Data-backed graphics remain editable after insertion and across devices. */
   chart?: import("./dataVisuals").ChartData;
   table?: import("./dataVisuals").TableData;
