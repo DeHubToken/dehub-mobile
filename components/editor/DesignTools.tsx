@@ -12,6 +12,7 @@ import FillPanel from "./FillPanel";
 import type { DesignLayoutBox } from "../../libs/editor/designLayout";
 import GroupsPanel from "./GroupsPanel";
 import QrPanel from "./QrPanel";
+import TextCompositionsPanel from "./TextCompositionsPanel";
 import PhotoGridPanel from "./PhotoGridPanel";
 import DesignLinkPanel from "./DesignLinkPanel";
 import PageNotesPanel from "./PageNotesPanel";
@@ -25,7 +26,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -51,7 +52,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       }, !selected || selected.kind === "audio")}
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
-      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides"].includes(panel ?? ""))}
+      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions"].includes(panel ?? ""))}
       {action(t("editor.links.title", { defaultValue: "Link" }), () => setPanel(panel === "link" ? null : "link"), !selected || selected.kind === "audio", panel === "link")}
       {action(t("editor.notes.title", { defaultValue: "Page notes" }), () => setPanel(panel === "notes" ? null : "notes"), false, panel === "notes")}
       {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
@@ -61,13 +62,15 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel("data"))}
       {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel("fill"))}
       {action(t("editor.guides.title", { defaultValue: "Guides and margins" }), () => setPanel("guides"))}
+      {action(t("editor.compositions.title", { defaultValue: "Text combinations" }), () => setPanel("compositions"))}
       {action(t("editor.grids.title", { defaultValue: "Photo grids" }), () => setPanel("grid"))}
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
-    {["data", "fill", "qr", "grid", "guides"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {["data", "fill", "qr", "grid", "guides", "compositions"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
     {panel === "link" && <DesignLinkPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} />}
     {panel === "notes" && <PageNotesPanel project={project} time={time} current={current} commit={commit} />}
     {panel === "guides" && <GuidesPanel project={project} current={current} commit={commit} />}
+    {panel === "compositions" && <TextCompositionsPanel project={project} current={current} commit={commit} time={time} select={select} />}
     {panel === "grid" && <PhotoGridPanel project={project} current={current} commit={commit} time={time} select={select} />}
     {panel === "qr" && <QrPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "groups" && <GroupsPanel boxes={boxes} recording={recording} project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
