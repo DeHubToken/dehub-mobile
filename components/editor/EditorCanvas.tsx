@@ -1,3 +1,4 @@
+import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
 import DesignRulers from "./DesignRulers";
 import type { DesignPdfLink } from "../../libs/editor/designLinks";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
@@ -88,6 +89,8 @@ interface Props {
   /** Called once when a started gesture finishes, including a return to its origin. */
   onGestureEnd: () => void;
   onEditText: (id: string) => void;
+  cropping?: boolean;
+  onEditCrop?: (id: string) => void;
   onMissingMedia?: (ids: string[]) => void;
   /** Freehand pen; while set, one finger draws instead of moving layers. */
   pen?: { color: string; width: number } | null;
@@ -136,6 +139,7 @@ function normaliseDeg(d: number): number {
 }
 
 interface Drag {
+  cropping: boolean;
   lease: ProjectEditLease | null;
   finish: () => void;
   before: ProjectSnapshot;
@@ -764,7 +768,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const beginDrag = (clipId: string) => {
     if (drag.current) { drag.current.active += 1; return true; }
     const current = live.current.props;
-    const memberIds = groupedSelection(current.project.clips, [clipId], current.time);
+    const memberIds = current.cropping ? [clipId] : groupedSelection(current.project.clips, [clipId], current.time);
     if (current.project.clips.some(c => memberIds.includes(c.id) && c.locked)) return false;
     const boxes = live.current.layers.filter(layer => memberIds.includes(layer.id));
     const groupBox = boxes.length > 1 ? (() => {
@@ -775,6 +779,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const callback = live.current.props.onGestureStart, lease = callback?.() ?? null;
     if (callback && !lease) return false;
     drag.current = {
+      cropping: !!current.cropping,
       lease, finish: live.current.props.onGestureEnd,
       before: live.current.props.project,
       clipId,
@@ -794,6 +799,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (!d || !scaleK || (d.lease && !d.lease.isCurrent()) || d.before.id !== live.current.props.project.id) return;
     const base = getClip(d.before, d.clipId);
     if (!base) return;
+    if (d.cropping && d.box && (base.kind === "image" || base.kind === "video")) {
+      const zoomed = zoomMediaCrop(base, d.scale), media = { ...base, ...zoomed } as MediaClip;
+      const patch = panMediaCrop(media, d.box, d.dx / scaleK, d.dy / scaleK) ?? zoomed;
+      if (patch) live.current.props.onLiveChange(updateClip(d.before, base.id, patch));
+      return;
+    }
     const { width: PW, height: PH } = d.before.settings;
     // Keyed layers start from where they are at the playhead, and write a key there.
     // Record mode does the same for layers that are not keyed yet.
@@ -915,6 +926,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         // Two fingers anywhere still move the selected layer.
         if (!target && e.numberOfPointers > 1 && current) target = current;
         if (!target) return;
+        if (p.cropping && target.id !== p.selectedId) { p.onSelect(target.id); return; }
         if (target.id !== p.selectedId) p.onSelect(target.id);
         join("pan", target.id);
       })
@@ -975,7 +987,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .onEnd((e) => {
         if (live.current.props.pen) return;
         const hit = hitTest(e.x, e.y);
-        live.current.props.onSelect(hit ? hit.id : null);
+        if (!live.current.props.cropping || hit?.id !== live.current.props.selectedId) live.current.props.onSelect(hit ? hit.id : null);
       });
 
     const doubleTap = Gesture.Tap()
@@ -987,6 +999,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         const clip = getClip(live.current.props.project, hit.id);
         live.current.props.onSelect(hit.id);
         if (clip?.kind === "text") live.current.props.onEditText(hit.id);
+        else if (clip?.kind === "image" || clip?.kind === "video") live.current.props.onEditCrop?.(hit.id);
       });
 
     return Gesture.Race(Gesture.Simultaneous(pan, pinch, rotate), Gesture.Exclusive(doubleTap, tap));
@@ -994,7 +1007,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
-  const memberBoxes = layers.filter(layer => selectedMembers.includes(layer.id));
+  const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
   const sel = selectedId && !selected?.locked && !props.pen ? (memberBoxes.length > 1 ? (() => {
     const extents = memberBoxes.map(box => {
       const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
@@ -1087,12 +1100,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                   },
                 ]}
               >
+                {props.cropping ? [1 / 3, 2 / 3].map(n => <View key={n} pointerEvents="none" style={StyleSheet.absoluteFill}><View style={{ position: "absolute", left: `${n * 100}%`, top: 0, bottom: 0, width: 1, backgroundColor: "#ffffff88" }} /><View style={{ position: "absolute", top: `${n * 100}%`, left: 0, right: 0, height: 1, backgroundColor: "#ffffff88" }} /></View>) : <>
                 <View style={[styles.corner, styles.tl]} />
                 <View style={[styles.corner, styles.tr]} />
                 <View style={[styles.corner, styles.bl]} />
                 <View style={[styles.corner, styles.br]} />
+                </>}
               </View>
             )}
+            {props.cropping && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
             {props.recording && (
               <>
                 <View pointerEvents="none" style={styles.recFrame} />
