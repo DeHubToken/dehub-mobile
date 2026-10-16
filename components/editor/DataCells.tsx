@@ -1,0 +1,35 @@
+import React, { useMemo, useState } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import { formatDelimitedData, parseDelimitedData } from "../../libs/editor/delimitedData";
+
+export default function DataCells({ value, onChange, chart }: { value: string; onChange: (value: string) => void; chart: boolean }) {
+  const { t } = useTranslation();
+  const [offset, setOffset] = useState(0);
+  const parsed = useMemo(() => { try { return { rows: parseDelimitedData(value, chart ? 50 : 20, chart ? 2 : 12), error: "" }; } catch (error) { return { rows: [], error: error instanceof Error ? error.message : "Invalid data" }; } }, [value, chart]);
+  const rows = parsed.rows.length ? parsed.rows : [["", ""]];
+  const columns = chart ? 2 : Math.max(1, ...rows.map(row => row.length));
+  const start = Math.min(offset, Math.floor((rows.length - 1) / 5) * 5);
+  const update = (next: string[][]) => onChange(formatDelimitedData(next, "\t"));
+  const button = (label: string, action: () => void, disabled = false) => <Pressable key={label} accessibilityRole="button" disabled={disabled} accessibilityState={{ disabled }} onPress={action} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{label}</Text></Pressable>;
+  if (parsed.error) return <Text className="text-xs text-amber-200">{parsed.error} {t("editor.dataVisual.fixSource", { defaultValue: "Use Source data to correct this input." })}</Text>;
+  return <View style={{ gap: 8 }}>
+    <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator>
+      <View className="overflow-hidden rounded-lg border border-white/20">
+        <View className="flex-row bg-white/5"><Text style={{ width: 28 }} className="py-2 text-center text-xs text-white/40">#</Text>{Array.from({ length: columns }, (_, c) => <Text key={c} style={{ width: 120 }} className="border-l border-white/10 px-2 py-2 text-xs text-white/60">{chart ? t(c === 0 ? "editor.dataVisual.label" : "editor.dataVisual.value", { defaultValue: c === 0 ? "Label" : "Value" }) : String.fromCharCode(65 + c)}</Text>)}</View>
+        {rows.slice(start, start + 5).map((row, r) => <View key={start + r} className="flex-row border-t border-white/10"><Text style={{ width: 28 }} className="self-center text-center text-xs text-white/40">{start + r + 1}</Text>{Array.from({ length: columns }, (_, c) => <TextInput key={c} style={{ width: 120 }} value={row[c] ?? ""} accessibilityLabel={t("editor.dataVisual.cell", { defaultValue: "Row {{row}}, column {{column}}", row: start + r + 1, column: c + 1 })} onChangeText={text => update(rows.map((cells, index) => index === start + r ? Array.from({ length: columns }, (_, col) => col === c ? text : cells[col] ?? "") : cells))} maxLength={200} autoCorrect={false} className="min-h-[40px] border-l border-white/10 px-2 text-xs text-white" />)}<Pressable accessibilityRole="button" accessibilityLabel={t("editor.dataVisual.removeRow", { defaultValue: "Remove row {{row}}", row: start + r + 1 })} onPress={() => update(rows.filter((_, index) => index !== start + r))} className="min-h-[40px] min-w-[40px] items-center justify-center"><Text className="text-base text-white/50">×</Text></Pressable></View>)}
+      </View>
+    </ScrollView>
+    <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+      {button(t("editor.dataVisual.addRow", { defaultValue: "Add row" }), () => { update([...rows, Array(columns).fill("")]); setOffset(Math.floor(rows.length / 5) * 5); }, rows.length >= (chart ? 50 : 20))}
+      {!chart && button(t("editor.dataVisual.addColumn", { defaultValue: "Add column" }), () => update(rows.map(row => [...Array.from({ length: columns }, (_, i) => row[i] ?? ""), ""])), columns >= 12)}
+      {!chart && button(t("editor.dataVisual.removeColumn", { defaultValue: "Remove last column" }), () => update(rows.map(row => row.slice(0, columns - 1))), columns <= 1)}
+    </View>
+    <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}>
+      {button(t("editor.dataVisual.previousRows", { defaultValue: "Previous rows" }), () => setOffset(Math.max(0, start - 5)), start === 0)}
+      <Text className="text-xs text-white/50">{start + 1}–{Math.min(rows.length, start + 5)} / {rows.length}</Text>
+      {button(t("editor.dataVisual.nextRows", { defaultValue: "Next rows" }), () => setOffset(start + 5), start + 5 >= rows.length)}
+    </View>
+  </View>;
+}
