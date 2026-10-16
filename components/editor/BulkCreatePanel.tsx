@@ -4,7 +4,7 @@ import BulkPhotoConnectionsControls from "./BulkPhotoConnectionsControls";
 import { bulkImageFields, bulkPhotoNames, planBulkPhotos } from "../../libs/editor/bulkPhotos";
 import BulkLinkConnectionsControls from "./BulkLinkConnectionsControls";
 import BulkRowFilterControls from "./BulkRowFilterControls";
-import { bulkSelectedCount, type BulkRowFilter } from "../../libs/editor/bulkRowFilter";
+import { bulkSelectedRows, bulkSelectedCount, type BulkRowFilter } from "../../libs/editor/bulkRowFilter";
 import BulkPageFieldsControls from "./BulkPageFieldsControls";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -44,6 +44,8 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const data = parsed.data, connected = data ? fields.filter(clip => bulkConnected(clip, data.headers, connections)) : [];
   const previewIndex = Math.min(rowIndex, (data?.rows.length ?? 1) - 1), previewRow = data?.rows[previewIndex];
   const end = Number(last || data?.rows.length || 0), page = Math.min(fieldPage, Math.max(0, Math.ceil(fields.length / 8) - 1));
+  const selectedRows = useMemo(() => { try { return data ? bulkSelectedRows(data, Number(first), end, rowFilter) : []; } catch { return []; } }, [data, first, end, rowFilter]);
+  const previewIncluded = selectedRows.includes(Math.min(rowIndex, (data?.rows.length ?? 1) - 1));
   const changeSource = (value: string) => { setSource(value); setMessage(""); setError(""); setRowIndex(0); setLast(""); setRowFilter({}); };
   const importFile = async () => {
     const token = ++request.current;
@@ -97,6 +99,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       {!fields.length && <Text className="text-xs text-white/60">{t("editor.bulk.noText", { defaultValue: "Add an unlocked text or QR layer to this page to connect your data." })}</Text>}
       {fields.slice(page * 8, page * 8 + 8).map(clip => <View key={clip.id} className="rounded-lg border border-white/10 p-2" style={{ gap: 8 }}><Text numberOfLines={2} className="text-xs text-white/80">{clip.label || (clip.kind === "shape" ? "QR: " + bulkFieldText(clip) : bulkFieldText(clip)) || t("editor.bulk.emptyText", { defaultValue: "Empty text layer" })}</Text><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{button(t("editor.bulk.placeholders", { defaultValue: "Use placeholders in text" }), () => setConnections(value => ({ ...value, [clip.id]: "" })), false, !connections[clip.id])}{data.headers.map(header => button(header, () => { setConnections(value => ({ ...value, [clip.id]: header })); setMessage(""); }, false, connections[clip.id] === header))}</ScrollView>{previewRow && <Text className="text-xs text-white/50">{bulkTextValue(clip, data.headers, previewRow, connections).slice(0, 500)}</Text>}</View>)}
       {fields.length > 8 && <View className="flex-row flex-wrap items-center" style={{ gap: 6 }}>{button(t("editor.bulk.previousLayers", { defaultValue: "Previous layers" }), () => setFieldPage(page - 1), page === 0)}<Text className="text-xs text-white/60">{page + 1} / {Math.ceil(fields.length / 8)}</Text>{button(t("editor.bulk.nextLayers", { defaultValue: "Next layers" }), () => setFieldPage(page + 1), (page + 1) * 8 >= fields.length)}</View>}
+      <View style={{ gap: 6 }}><Text accessibilityLiveRegion="polite" className={previewIncluded ? "text-xs text-emerald-200" : "text-xs text-amber-200"}>{t(previewIncluded ? "editor.bulk.previewIncluded" : "editor.bulk.previewExcluded", { defaultValue: previewIncluded ? "This preview row is included in the batch." : "This preview row is outside the chosen range or filter." })}</Text>{!previewIncluded && selectedRows.length > 0 && button(t("editor.bulk.firstMatchingRecord", { defaultValue: "Preview first matching record" }), () => setRowIndex(selectedRows[0]))}</View>
       <Text className="text-xs text-white/60">{t("editor.bulk.preview", { defaultValue: "Preview data row" })} {previewIndex + 1}: {(previewRow?.[0] || "—").slice(0, 60)}</Text>
       <View className="flex-row" style={{ gap: 8 }}>{button(t("editor.bulk.previousRow", { defaultValue: "Previous row" }), () => setRowIndex(previewIndex - 1), previewIndex === 0)}{button(t("editor.bulk.nextRow", { defaultValue: "Next row" }), () => setRowIndex(previewIndex + 1), previewIndex + 1 >= data.rows.length)}</View>
       {button(t("editor.bulk.generate", { defaultValue: "Generate {{count}} pages", count: bulkSelectedCount(data, Number(first), end, rowFilter) }), generate, generating || !bulkSelectedCount(data, Number(first), end, rowFilter) || (!connected.length && !bulkPageFieldsConnected(data.headers, pageFields) && !linkFields.some(clip => data.headers.includes(linkConnections[clip.id])) && !imageFields.some(clip => data.headers.includes(imageConnections[clip.id]))) || !Number.isInteger(Number(first)) || Number(first) < 1 || !Number.isInteger(end) || end < Number(first) || end > data.rows.length)}
