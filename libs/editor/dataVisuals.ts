@@ -1,4 +1,6 @@
-export type ChartKind = "column" | "bar" | "line" | "pie" | "donut";
+import { parseDelimitedData } from "./delimitedData";
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar"] as const;
+export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   kind: ChartKind;
   rows: { label: string; value: number }[];
@@ -86,6 +88,33 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     });
     return;
   }
+  if (chart.kind === "radar") {
+    const radius = Math.max(1, Math.min(width, height) * (chart.showLabels ? 0.32 : 0.44));
+    const ceiling = span;
+    const point = (index: number, value: number) => {
+      const angle = index / rows.length * Math.PI * 2 - Math.PI / 2;
+      return { x: Math.cos(angle) * radius * value, y: Math.sin(angle) * radius * value };
+    };
+    ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 900);
+    for (let ring = 1; ring <= 4; ring++) {
+      ctx.beginPath();
+      rows.forEach((row, index) => { const p = point(index, ring / 4); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
+      ctx.closePath(); ctx.stroke();
+      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(String(Number((min + span * ring / 4).toFixed(2))), font * 0.3, -radius * ring / 4, radius); }
+    }
+    rows.forEach((row, index) => {
+      const p = point(index, 1); ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p.x, p.y); ctx.stroke();
+      if (chart.showLabels || chart.showValues) {
+        const q = point(index, 1.18); ctx.textAlign = Math.abs(q.x) < font ? "center" : q.x < 0 ? "right" : "left";
+        ctx.fillStyle = chart.textColour;
+        label((chart.showLabels ? row.label : "") + (chart.showValues ? (chart.showLabels ? " " : "") + row.value : ""), q.x, q.y, Math.max(font, (width - radius * 2) / 2));
+      }
+    });
+    ctx.beginPath();
+    rows.forEach((row, index) => { const p = point(index, (row.value - min) / ceiling); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
+    ctx.closePath(); ctx.fillStyle = colour(0) + "44"; ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300); ctx.stroke();
+    return;
+  }
   const horizontal = chart.kind === "bar";
   const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * 2.5) : font;
   const x0 = left + (horizontal ? labelSpace : font * 2), x1 = width / 2 - font;
@@ -95,7 +124,13 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   const zeroY = y1 - (0 - min) / span * plotHeight;
   ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 700);
   ctx.beginPath(); ctx.moveTo(horizontal ? zeroX : x0, y0); ctx.lineTo(horizontal ? zeroX : x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
-  if (chart.kind === "line") {
+  if (chart.kind === "area") {
+    ctx.fillStyle = colour(0) + "44"; ctx.beginPath();
+    ctx.moveTo(x0 + 0.5 / rows.length * plotWidth, zeroY);
+    rows.forEach((row, index) => ctx.lineTo(x0 + (index + 0.5) / rows.length * plotWidth, y1 - (row.value - min) / span * plotHeight));
+    ctx.lineTo(x0 + (rows.length - 0.5) / rows.length * plotWidth, zeroY); ctx.closePath(); ctx.fill();
+  }
+  if (chart.kind === "line" || chart.kind === "area") {
     ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250); ctx.beginPath();
     rows.forEach((row, index) => {
       const x = x0 + (index + 0.5) / rows.length * plotWidth, y = y1 - (row.value - min) / span * plotHeight;
@@ -114,7 +149,9 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
       if (chart.kind === "column") ctx.fillRect(x - slot * 0.33, Math.min(zeroY, y), slot * 0.66, Math.abs(y - zeroY));
-      else { ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180), 0, Math.PI * 2); ctx.fill(); }
+      else {
+        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
+        ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180), 0, Math.PI * 2); ctx.fill(); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
       if (chart.showLabels) label(row.label, x, y1 + font * 1.2, slot * 0.95);
       if (chart.showValues) label(String(row.value), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
@@ -123,17 +160,17 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
 }
 
 export function parseChartData(text: string): ChartData["rows"] {
-  return text.split(/\r?\n/).filter(line => line.trim()).slice(0, 50).map(line => {
-    const split = Math.max(line.lastIndexOf("\t"), line.lastIndexOf(","));
-    if (split < 1) throw new Error("Use one label,value pair per line");
-    const label = line.slice(0, split).trim().slice(0, 200), value = Number(line.slice(split + 1).trim());
-    if (!label || !Number.isFinite(value)) throw new Error("Each chart row needs a label and a number");
+  return parseDelimitedData(text, 50, 12).map(row => {
+    if (row.length < 2) throw new Error("Use one label,value pair per line");
+    const label = row.slice(0, -1).join(",").slice(0, 200), raw = row[row.length - 1];
+    const value = Number(raw);
+    if (!label || !raw || !Number.isFinite(value) || Math.abs(value) > 1e12) throw new Error("Each chart row needs a label and a number");
     return { label, value };
   });
 }
 
 export function parseTableData(text: string): string[][] {
-  return text.split(/\r?\n/).filter(line => line.trim()).slice(0, 20).map(line => line.split(line.includes("\t") ? "\t" : ",").slice(0, 12).map(cell => cell.trim().slice(0, 200)));
+  return parseDelimitedData(text, 20, 12).map(row => row.map(cell => cell.slice(0, 200)));
 }
 
 export function validDataVisuals(value: { chart?: unknown; table?: unknown }): boolean {
@@ -141,7 +178,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
   const colour = (part: unknown) => typeof part === "string" && /^#[0-9a-f]{6}$/i.test(part);
   if (value.chart !== undefined) {
     const chart = value.chart;
-    if (value.table !== undefined || !object(chart) || !["column", "bar", "line", "pie", "donut"].includes(String(chart.kind)) ||
+    if (value.table !== undefined || !object(chart) || !CHART_KINDS.includes(chart.kind as ChartKind) ||
       !Array.isArray(chart.rows) || !chart.rows.length || chart.rows.length > 50 || !Array.isArray(chart.colours) ||
       !chart.colours.length || chart.colours.length > 50 || !chart.colours.every(colour) || !colour(chart.textColour) ||
       typeof chart.showLabels !== "boolean" || typeof chart.showValues !== "boolean" ||

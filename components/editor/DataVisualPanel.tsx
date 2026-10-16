@@ -1,9 +1,13 @@
+import DataCells from "./DataCells";
+import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system/legacy";
+import { formatDelimitedData } from "../../libs/editor/delimitedData";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { DEFAULT_CHART, DEFAULT_TABLE, putDataVisual } from "../../libs/editor/dataVisualProject";
-import { parseChartData, parseTableData, type ChartKind, type ChartData, type TableData } from "../../libs/editor/dataVisuals";
+import { CHART_KINDS, parseChartData, parseTableData, type ChartKind, type ChartData, type TableData } from "../../libs/editor/dataVisuals";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
@@ -18,20 +22,37 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [mode, setMode] = useState<"chart" | "table">("chart");
   const [kind, setKind] = useState<ChartKind>("column");
   const [data, setData] = useState("");
+  const [dataView, setDataView] = useState<"cells" | "source">("cells");
   const [foreground, setForeground] = useState("#ffffff");
   const [accent, setAccent] = useState("#38bdf8");
   const [showLabels, setShowLabels] = useState(true);
   const [showValues, setShowValues] = useState(true);
   const [error, setError] = useState("");
+  const importRequest = useRef(0);
+  useEffect(() => { importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
+  const importFile = async () => {
+    const request = ++importRequest.current;
+    try {
+      const result = await DocumentPicker.getDocumentAsync({ type: ["text/csv", "text/tab-separated-values", "text/plain", "application/octet-stream"], copyToCacheDirectory: true, multiple: false });
+      if (result.canceled || request !== importRequest.current || current()?.id !== project.id) return;
+      const file = result.assets[0];
+      if (!/\.(csv|tsv|txt)$/i.test(file.name)) throw new Error("Choose a CSV or TSV file");
+      const info = await FileSystem.getInfoAsync(file.uri);
+      if (!info.exists || info.isDirectory || info.size > 500000) throw new Error("Choose a CSV or TSV file smaller than 500 KB");
+      const text = await FileSystem.readAsStringAsync(file.uri);
+      if (request !== importRequest.current || current()?.id !== project.id) return;
+      setData(text.replace(/^\uFEFF/, "")); setError("");
+    } catch (error) { if (request === importRequest.current) setError(error instanceof Error ? error.message : "Could not read this file"); }
+  };
   const choose = (value: "chart" | "table") => {
     setMode(value); setError("");
     if (value === "chart") {
       const next = chart ?? DEFAULT_CHART;
-      setKind(next.kind); setData(next.rows.map(row => `${row.label},${row.value}`).join("\n")); setForeground(next.textColour);
+      setKind(next.kind); setData(formatDelimitedData(next.rows.map(row => [row.label, row.value]))); setForeground(next.textColour);
       setAccent(next.colours[0] ?? "#38bdf8"); setShowLabels(next.showLabels); setShowValues(next.showValues);
     } else {
       const next = table ?? DEFAULT_TABLE;
-      setData(next.rows.map(row => row.join("\t")).join("\n")); setForeground(next.textColour); setAccent(next.headerColour); setShowLabels(next.header);
+      setData(formatDelimitedData(next.rows, "\t")); setForeground(next.textColour); setAccent(next.headerColour); setShowLabels(next.header);
     }
   };
   useEffect(() => { choose(table ? "table" : "chart"); }, [selected?.id, chart, table]);
@@ -49,11 +70,13 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     } catch (e) { setError(e instanceof Error ? e.message : "Invalid data"); }
   };
   const chip = (label: string, active: boolean, onPress: () => void) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active }} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white" : "border-white/20"}`}><Text className={`text-xs ${active ? "text-black" : "text-white"}`}>{label}</Text></Pressable>;
-  return <ScrollView keyboardShouldPersistTaps="handled" style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+  return <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
     <View className="flex-row" style={{ gap: 8 }}>{chip(t("editor.dataVisual.chart", { defaultValue: "Chart" }), mode === "chart", () => choose("chart"))}{chip(t("editor.dataVisual.table", { defaultValue: "Table" }), mode === "table", () => choose("table"))}</View>
-    {mode === "chart" && <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{(["column", "bar", "line", "pie", "donut"] as const).map(value => chip(t(`editor.dataVisual.${value}`, { defaultValue: value.charAt(0).toUpperCase() + value.slice(1) }), kind === value, () => setKind(value)))}</ScrollView>}
+    {mode === "chart" && <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{CHART_KINDS.map(value => chip(t(`editor.dataVisual.${value}`, { defaultValue: value.charAt(0).toUpperCase() + value.slice(1) }), kind === value, () => setKind(value)))}</ScrollView>}
     <Text className="text-xs text-white/60">{t(mode === "chart" ? "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
-    <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />
+    <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
+    <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
+    {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
     <View className="flex-row items-center" style={{ gap: 8 }}>
       <Text className="text-xs text-white/60">{t("editor.dataVisual.textColour", { defaultValue: "Text" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.textColour", { defaultValue: "Text" })} value={foreground} onChangeText={setForeground} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
       <Text className="text-xs text-white/60">{t("editor.dataVisual.accent", { defaultValue: "Accent" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.accent", { defaultValue: "Accent" })} value={accent} onChangeText={setAccent} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
