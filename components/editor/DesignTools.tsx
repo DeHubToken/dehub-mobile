@@ -100,7 +100,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {["data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document", "repeat"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
     {panel === "repeat" && <RepeatGridPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} boxes={boxes} />}
     {panel === "document" && <DocumentElementsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
-    {panel === "pages" && <PagesManagerPanel key={project.id} project={project} time={time} current={current} commit={commit} select={select} onPick={onPageChange} />}
+    {panel === "pages" && <PagesManagerPanel key={project.id} selectedId={selectedId} project={project} time={time} current={current} commit={commit} select={select} onPick={onPageChange} />}
     {panel === "symbols" && <VectorSymbolsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
     {panel === "connectors" && <ConnectorsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
     {panel === "animate" && <PageAnimationPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}

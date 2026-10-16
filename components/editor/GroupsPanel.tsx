@@ -1,3 +1,4 @@
+import PageLayerTransferControls from "./PageLayerTransferControls";
 import SimilarSelectionControls from "./SimilarSelectionControls";
 import { selectablePageLayers } from "../../libs/editor/similarSelection";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
@@ -49,6 +50,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
     {matches.length > 24 && <View className="flex-row items-center" style={{ gap: 8 }}><Pressable accessibilityRole="button" disabled={first === 0} onPress={() => setOffset(first - 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first === 0 ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.previous", { defaultValue: "Previous" })}</Text></Pressable><Text className="text-xs text-white/45">{first + 1}–{Math.min(first + 24, matches.length)} / {matches.length}</Text><Pressable accessibilityRole="button" disabled={first + 24 >= matches.length} onPress={() => setOffset(first + 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first + 24 >= matches.length ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.next", { defaultValue: "Next" })}</Text></Pressable></View>}
     {!matches.length && <Text className="text-xs text-white/45">{t("editor.groups.noMatches", { defaultValue: "No matching layers on this page" })}</Text>}
     <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
+    <PageLayerTransferControls project={project} ids={picked} time={time} current={current} commit={commit} onMoved={() => { setPicked([]); select(null); }} />
     <DesignClipboardControls project={project} ids={picked} time={time} current={current} commit={commit} select={select} onPasted={setPicked} />
     <View className="flex-row" style={{ gap: 8 }}>
       <Pressable accessibilityRole="button" disabled={picked.length < 2 || locked} onPress={() => apply(false)} className="min-h-[40px] justify-center rounded-lg bg-white px-4" style={{ opacity: picked.length < 2 || locked ? 0.35 : 1 }}><Text className="text-xs font-semibold text-black">{t("editor.groups.group", { defaultValue: "Group" })}</Text></Pressable>

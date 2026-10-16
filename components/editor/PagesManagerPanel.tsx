@@ -1,3 +1,4 @@
+import PageLayerTransferControls from "./PageLayerTransferControls";
 import PageRangeSelection from "./PageRangeSelection";
 import PageNamingControls from "./PageNamingControls";
 import { setPagesPresentationHidden } from "../../libs/editor/pageDetails";
@@ -11,8 +12,8 @@ import { pageAt } from "../../libs/editor/pages";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
-export default function PagesManagerPanel({ project, time, current, commit, select, onPick }: {
-  project: ProjectSnapshot; time: number; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
+export default function PagesManagerPanel({ project, time, current, commit, select, onPick, selectedId }: {
+  project: ProjectSnapshot; selectedId?: string | null; time: number; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
   select: (id: string | null) => void; onPick?: (time: number) => void;
 }) {
   const { t } = useTranslation();
@@ -36,6 +37,7 @@ export default function PagesManagerPanel({ project, time, current, commit, sele
     <Text className="text-xs text-white/60">{t("editor.pageManager.selected", { defaultValue: "{{count}} pages selected", count: selected.length })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.pageManager.selectMatches", { defaultValue: "Select matching pages" }), () => setPicked(filtered.map(page => page.index)))}{button(t("editor.pageManager.clear", { defaultValue: "Clear selection" }), () => setPicked([]))}</View>
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{(["duplicate", "delete", "first", "last"] as const).map(action => button(t(`editor.pageManager.action.${action}`, { defaultValue: ({ duplicate: "Duplicate selected", delete: "Delete selected", first: "Move to start", last: "Move to end" })[action] }), () => apply(action), !selected.length || (action !== "duplicate" && selected.length >= pages.length)))}</ScrollView>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{button(t("editor.pages.hidePresentation", { defaultValue: "Hide in presentation" }), () => visibility(true), !selected.length)}{button(t("editor.pages.showPresentation", { defaultValue: "Show in presentation" }), () => visibility(false), !selected.length)}</View><Text className="text-xs text-white/45">{t("editor.pages.visibilityHint", { defaultValue: "Hidden pages stay editable and remain available for downloads." })}</Text>
+    <PageLayerTransferControls project={project} ids={selectedId ? [selectedId] : []} time={time} current={current} commit={commit} onMoved={() => select(null)} />
     <PageRangeSelection count={pages.length} selected={selected} onChange={setPicked} />
     <PageNamingControls projectId={project.id} selected={selected} current={current} commit={commit} />
     <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.pageManager.destination", { defaultValue: "Move before page" })}</Text><TextInput value={destination} onChangeText={setDestination} keyboardType="number-pad" maxLength={3} accessibilityLabel={t("editor.pageManager.destination", { defaultValue: "Move before page" })} className="min-h-[40px] w-24 rounded-lg border border-white/20 px-3 text-xs text-white" />{button(t("editor.pageManager.moveHere", { defaultValue: "Move selection" }), () => apply("before"), !selected.length || !Number.isInteger(Number(destination)) || Number(destination) < 1 || Number(destination) > pages.length + 1 || selected.includes(Number(destination) - 1))}<Text className="text-xs text-white/45">{t("editor.pageManager.endDestination", { defaultValue: "Use {{number}} to move to the end.", number: pages.length + 1 })}</Text></View>
