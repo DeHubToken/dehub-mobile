@@ -1,15 +1,10 @@
+import { translateDesignClip } from "./designClone";
 import { groupedSelection, remapDesignGroups } from "./designGroups";
 import { getPages, pageAt } from "./pages";
 import { sliceTimelineClip } from "./timelineAgent";
 import type { DesignLayoutBox } from "./designLayout";
 import type { Clip, ProjectSnapshot, Track } from "./types";
 export interface RepeatGridOptions { columns: number; rows: number; gapX: number; gapY: number; allowOverflow: boolean }
-function translateClip(clip: Clip, dx: number, dy: number): Clip {
-  const keys = clip.keyframes ? { ...clip.keyframes, ...(clip.keyframes.x ? { x: clip.keyframes.x.map(key => ({ ...key, v: key.v + dx })) } : {}), ...(clip.keyframes.y ? { y: clip.keyframes.y.map(key => ({ ...key, v: key.v + dy })) } : {}) } : undefined;
-  if (clip.kind === "text") return { ...clip, x: clip.x + dx, y: clip.y + dy, keyframes: keys, pageNumber: undefined };
-  const transform = { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform };
-  return { ...clip, transform: { ...transform, x: transform.x + dx, y: transform.y + dy }, keyframes: keys };
-}
 export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[], time: number, measured: readonly DesignLayoutBox[], options: RepeatGridOptions, makeId: () => string) {
   if (![options.columns, options.rows].every(Number.isInteger) || options.columns < 1 || options.rows < 1 || options.columns * options.rows < 2 || options.columns * options.rows > 100 || ![options.gapX, options.gapY].every(value => Number.isFinite(value) && value >= 0 && value <= 10000)) throw new Error("Choose 2–100 total grid cells and gaps between 0 and 10,000 pixels");
   const chosen = new Set(groupedSelection(project.clips, ids, time)), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
@@ -33,7 +28,7 @@ export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[
     const copies = source.map(clip => {
       const from = Math.max(page.start, clip.start), to = Math.min(page.end, clip.start + clip.duration), trackId = trackIds.get(clip.trackId);
       if (!trackId) throw new Error("A selected layer no longer has a track");
-      const part = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), from), copy = translateClip({ ...part, trackId }, column * stepX / project.settings.width, row * stepY / project.settings.height);
+      const part = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), from), copy = translateDesignClip({ ...part, trackId }, column * stepX / project.settings.width, row * stepY / project.settings.height);
       budget += JSON.stringify(copy).length; if (budget > 2 * 1024 * 1024) throw new Error("This grid would make the design too large. Choose fewer cells or simpler artwork");
       return copy;
     });
