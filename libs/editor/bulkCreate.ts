@@ -68,7 +68,7 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
       if (copy.kind === "shape" && clip.kind === "shape" && clip.qr && !clip.locked) {
         const field = { ...clip, qr: clip.qr };
         if (bulkConnected(field, data.headers, connections)) {
-          try { return [{ ...copy, qr: createQrGraphic(bulkTextValue(field, data.headers, row, connections), clip.qr.foreground, clip.qr.background) }]; }
+          try { return [{ ...copy, qr: createQrGraphic(bulkTextValue(field, data.headers, row, connections), clip.qr.foreground, clip.qr.background, clip.qr) }]; }
           catch { throw new Error(`Row ${index + 1}: QR content must contain 1–1,500 characters and fit in a QR code`); }
         }
       }

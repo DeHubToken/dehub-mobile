@@ -14,7 +14,7 @@ export interface DesignStyle {
   tableStyle?: Omit<import("./dataVisuals").TableData, "rows">;
   gradient?: import("./gradientFill").GradientFill | null;
   frame?: import("./types").MediaClip["frame"];
-  qrStyle?: Pick<import("./qrGraphic").QrGraphic, "foreground" | "background">;
+  qrStyle?: Pick<import("./qrGraphic").QrGraphic, "foreground" | "background" | "quietZone">;
   border?: import("./types").TextStroke | null;
 }
 
@@ -36,7 +36,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
     style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0 };
     if (clip.chart) { const { rows: _rows, kind: _kind, series: _series, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
     if (clip.table) { const { rows: _rows, ...format } = clip.table; style.tableStyle = { ...format }; }
-    if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background };
+    if (clip.qr) style.qrStyle = { foreground: clip.qr.foreground, background: clip.qr.background, quietZone: clip.qr.quietZone };
   } else {
     style.frame = clip.frame ?? "rect";
     style.border = clip.border ? { ...clip.border, dash: clip.border.dash ? [...clip.border.dash] : undefined } : null;
