@@ -4,9 +4,10 @@ import { getPages, pageAt } from "./pages";
 import { sliceTimelineClip } from "./timelineAgent";
 import type { DesignLayoutBox } from "./designLayout";
 import type { Clip, ProjectSnapshot, Track } from "./types";
-export interface RepeatGridOptions { columns: number; rows: number; gapX: number; gapY: number; allowOverflow: boolean }
+export interface RepeatGridOptions { columns: number; rows: number; gapX: number; gapY: number; allowOverflow: boolean; stagger?: "none" | "rows" | "columns" }
 export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[], time: number, measured: readonly DesignLayoutBox[], options: RepeatGridOptions, makeId: () => string) {
   if (![options.columns, options.rows].every(Number.isInteger) || options.columns < 1 || options.rows < 1 || options.columns * options.rows < 2 || options.columns * options.rows > 100 || ![options.gapX, options.gapY].every(value => Number.isFinite(value) && value >= 0 && value <= 10000)) throw new Error("Choose 2–100 total grid cells and gaps between 0 and 10,000 pixels");
+  if (options.stagger !== undefined && !["none", "rows", "columns"].includes(options.stagger)) throw new Error("Choose a regular grid or stagger alternate rows or columns");
   const chosen = new Set(groupedSelection(project.clips, ids, time)), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
   const source = project.clips.filter(clip => chosen.has(clip.id) && !clip.hidden && !clip.isPageBackground && !hidden.has(clip.trackId) && time >= clip.start && time < clip.start + clip.duration);
   if (!source.length || source.some(clip => clip.locked || clip.kind === "video" || clip.kind === "audio")) throw new Error("Select unlocked text, shapes, photos, or groups on this page");
@@ -16,7 +17,8 @@ export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[
   const extents = boxes.map(box => { const b = box!, angle = b.rotation * Math.PI / 180, hw = (Math.abs(Math.cos(angle)) * b.w + Math.abs(Math.sin(angle)) * b.h) / 2, hh = (Math.abs(Math.sin(angle)) * b.w + Math.abs(Math.cos(angle)) * b.h) / 2; return { left: b.cx - hw, right: b.cx + hw, top: b.cy - hh, bottom: b.cy + hh }; });
   const left = Math.min(...extents.map(box => box.left)), right = Math.max(...extents.map(box => box.right)), top = Math.min(...extents.map(box => box.top)), bottom = Math.max(...extents.map(box => box.bottom));
   const stepX = right - left + options.gapX, stepY = bottom - top + options.gapY;
-  if (!options.allowOverflow && (left < -0.01 || top < -0.01 || right + stepX * (options.columns - 1) > project.settings.width + 0.01 || bottom + stepY * (options.rows - 1) > project.settings.height + 0.01)) throw new Error("This grid extends beyond the page. Resize or move the selection, use fewer cells, or allow artwork outside the page");
+  const offsetX = options.stagger === "rows" && options.rows > 1 ? stepX / 2 : 0, offsetY = options.stagger === "columns" && options.columns > 1 ? stepY / 2 : 0;
+  if (!options.allowOverflow && (left < -0.01 || top < -0.01 || right + stepX * (options.columns - 1) + offsetX > project.settings.width + 0.01 || bottom + stepY * (options.rows - 1) + offsetY > project.settings.height + 0.01)) throw new Error("This grid extends beyond the page. Resize or move the selection, use fewer cells, or allow artwork outside the page");
   const count = options.rows * options.columns - 1;
   if (project.clips.length + source.length * count > 10000) throw new Error("This grid would exceed the design's layer limit");
   const page = pageAt(getPages(project.settings, project.clips), time), trackIds = new Map<string, string>(), tracks: Track[] = [];
@@ -28,7 +30,7 @@ export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[
     const copies = source.map(clip => {
       const from = Math.max(page.start, clip.start), to = Math.min(page.end, clip.start + clip.duration), trackId = trackIds.get(clip.trackId);
       if (!trackId) throw new Error("A selected layer no longer has a track");
-      const part = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), from), copy = translateDesignClip({ ...part, trackId }, column * stepX / project.settings.width, row * stepY / project.settings.height);
+      const part = sliceTimelineClip(clip, from - clip.start, to - from, makeId(), from), copy = translateDesignClip({ ...part, trackId }, (column * stepX + (row % 2 ? offsetX : 0)) / project.settings.width, (row * stepY + (column % 2 ? offsetY : 0)) / project.settings.height);
       budget += JSON.stringify(copy).length; if (budget > 2 * 1024 * 1024) throw new Error("This grid would make the design too large. Choose fewer cells or simpler artwork");
       return copy;
     });
