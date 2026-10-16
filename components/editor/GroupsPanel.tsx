@@ -1,3 +1,4 @@
+import ReusableElementsPanel from "./ReusableElementsPanel";
 import LayerNamingControls from "./LayerNamingControls";
 import PageLayerTransferControls from "./PageLayerTransferControls";
 import SimilarSelectionControls from "./SimilarSelectionControls";
@@ -25,6 +26,7 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
     setPicked(previous => (selectedId ? previous.includes(selectedId) ? previous : groupedSelection(project.clips, [selectedId], time) : []).filter(id => active.has(id)));
   }, [project.id, selectedId, time]);
   const visible = project.clips.filter(c => c.kind !== "audio" && !c.isPageBackground && !c.hidden && time >= c.start && time < c.start + c.duration && !project.tracks.find(track => track.id === c.trackId)?.hidden);
+  const [showSavedElements, setShowSavedElements] = useState(false);
   const [query, setQuery] = useState(""), [offset, setOffset] = useState(0);
   const needle = query.trim().toLowerCase(), matches = visible.filter(clip => `${clip.label ?? ""} ${clip.kind === "text" ? clip.text : ""} ${project.tracks.find(track => track.id === clip.trackId)?.name ?? ""} ${clip.kind}`.toLowerCase().includes(needle));
   const first = Math.min(offset, Math.max(0, Math.floor((matches.length - 1) / 24) * 24));
@@ -50,6 +52,8 @@ export default function GroupsPanel({ project, selectedId, current, commit, sele
     </ScrollView>
     {matches.length > 24 && <View className="flex-row items-center" style={{ gap: 8 }}><Pressable accessibilityRole="button" disabled={first === 0} onPress={() => setOffset(first - 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first === 0 ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.previous", { defaultValue: "Previous" })}</Text></Pressable><Text className="text-xs text-white/45">{first + 1}–{Math.min(first + 24, matches.length)} / {matches.length}</Text><Pressable accessibilityRole="button" disabled={first + 24 >= matches.length} onPress={() => setOffset(first + 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first + 24 >= matches.length ? 0.35 : 1 }}><Text className="text-xs text-white/75">{t("common.next", { defaultValue: "Next" })}</Text></Pressable></View>}
     {!matches.length && <Text className="text-xs text-white/45">{t("editor.groups.noMatches", { defaultValue: "No matching layers on this page" })}</Text>}
+    <Pressable accessibilityRole="button" accessibilityState={{ expanded: showSavedElements }} onPress={() => setShowSavedElements(!showSavedElements)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t("editor.elements.selectionLibrary", { defaultValue: "Save or reuse selected elements" })}</Text></Pressable>
+    {showSavedElements && <ReusableElementsPanel project={project} ids={picked} time={time} current={current} commit={commit} select={select} onInserted={setPicked} />}
     <LayerNamingControls project={project} ids={picked} time={time} current={current} commit={commit} />
     <DesignLayoutPanel project={project} ids={picked} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
     <PageLayerTransferControls project={project} ids={picked} time={time} current={current} commit={commit} onMoved={() => { setPicked([]); select(null); }} />

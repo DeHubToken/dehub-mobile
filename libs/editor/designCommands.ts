@@ -2,6 +2,7 @@ import { DESIGN_PANEL_NAMES, type DesignPanelId } from "./designPanels";
 export type DesignToolPanelId = Exclude<DesignPanelId, "groups" | "insert">;
 export interface DesignCommand { id: DesignToolPanelId; category: "create" | "edit" | "document"; detail: string; keywords: string }
 export const DESIGN_COMMANDS: DesignCommand[] = [
+  { id: "elements", category: "create", detail: "Save and reuse custom text and vector groups across designs", keywords: "saved elements library reusable badge sticker template favourite favorite custom group" },
   { id: "repeat", category: "create", detail: "Repeat selected artwork with precise rows, columns, and gaps", keywords: "duplicate repeat sticker pattern grid sheet badge card" },
   { id: "symbols", category: "create", detail: "Search editable vector symbols and pictograms", keywords: "icons arrows pictograms illustrations vector saved recent favourites favorites" },
   { id: "connectors", category: "create", detail: "Create straight, curved, and elbow connectors", keywords: "line arrow diagram flowchart bend stroke" },

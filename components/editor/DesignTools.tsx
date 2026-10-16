@@ -1,3 +1,4 @@
+import ReusableElementsPanel from "./ReusableElementsPanel";
 import PagePaletteControls from "./PagePaletteControls";
 import ColourPickerButton from "./ColourPickerButton";
 import RepeatGridPanel from "./RepeatGridPanel";
@@ -40,7 +41,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | "elements" | null>(null);
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
@@ -86,6 +87,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel && <ScrollView stickyHeaderIndices={[0]} nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
     <View className="flex-row items-center justify-between border-b border-white/10 px-3 py-2" style={{ backgroundColor: "#0a0a0a", gap: 10 }}><Text className="flex-1 text-xs font-semibold text-white/75">{panelTitle}</Text><Pressable accessibilityRole="button" onPress={() => { Keyboard.dismiss(); setPanel(null); }} className="min-h-[40px] justify-center rounded-lg px-3"><Text className="text-xs text-white/50">{t("editor.designTools.closePanel", { defaultValue: "Close panel" })}</Text></Pressable></View>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
+      {action(t("editor.elements.title", { defaultValue: "Saved elements" }), () => setPanel("elements"))}
       {action(t("editor.repeat.title", { defaultValue: "Repeat selection in a grid" }), () => setPanel("repeat"))}
       {action(t("editor.document.title", { defaultValue: "Page numbers and repeated elements" }), () => setPanel("document"))}
       {action(t("editor.symbols.title", { defaultValue: "Vector symbols" }), () => setPanel("symbols"))}
@@ -98,7 +100,8 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.grids.title", { defaultValue: "Photo grids" }), () => setPanel("grid"))}
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
-    {["data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document", "repeat"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {["elements", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document", "repeat"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "elements" && <ReusableElementsPanel key={project.id} project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />}
     {panel === "repeat" && <RepeatGridPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} boxes={boxes} />}
     {panel === "document" && <DocumentElementsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
     {panel === "pages" && <PagesManagerPanel key={project.id} selectedId={selectedId} project={project} time={time} current={current} commit={commit} select={select} onPick={onPageChange} />}
