@@ -48,6 +48,7 @@ import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
 import { DATA_VISUAL_RUNTIME } from "./dataVisualRuntime";
 import { GRADIENT_FILL_RUNTIME } from "./gradientFillRuntime";
 import { QR_GRAPHIC_RUNTIME } from "./qrGraphicRuntime";
+import { SHAPE_GEOMETRY_RUNTIME } from "./shapeGeometryRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -77,6 +78,7 @@ canvas{display:block;width:100%;height:100%;}
   __DATA_VISUAL_RUNTIME__
   __GRADIENT_FILL_RUNTIME__
   __QR_GRAPHIC_RUNTIME__
+  __SHAPE_GEOMETRY_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -454,6 +456,11 @@ canvas{display:block;width:100%;height:100%;}
       c.drawImage(el, sx, sy, sw, sh, x, y, box.w, box.h);
       clearShadow(c);
     }
+    if (clip.border && clip.border.width > 0) {
+      c.save(); framePath(); c.lineWidth = clip.border.width * H / 1080; c.strokeStyle = clip.border.color;
+      c.setLineDash((Array.isArray(clip.border.dash) ? clip.border.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.stroke(); c.restore();
+    }
   }
 
   // ── colour grading: warmth, tint, vignette (web render.ts grade) ──
@@ -505,6 +512,8 @@ canvas{display:block;width:100%;height:100%;}
   function shapePath(c, shape, w, h, radius, points) {
     var hw = w / 2, hh = h / 2, i, a, x, y;
     c.beginPath();
+    var polygon = shapePolygon(shape, w, h);
+    if (polygon) { polygon.forEach(function(point, index) { if (index === 0) c.moveTo(point[0], point[1]); else c.lineTo(point[0], point[1]); }); c.closePath(); return; }
     switch (shape) {
       case "path": {
         // Midpoint quadratic smoothing through the stroke's samples.
@@ -558,6 +567,7 @@ canvas{display:block;width:100%;height:100%;}
     if (!open && (clip.fill || gradient)) { c.fillStyle = gradient || clip.fill; c.fill(); clearShadow(c); }
     var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
     if (stroke && stroke.width > 0) {
+      c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
       c.lineWidth = stroke.width * k;
       c.strokeStyle = open && gradient ? gradient : stroke.color;
       c.lineJoin = "round";
@@ -589,6 +599,7 @@ canvas{display:block;width:100%;height:100%;}
       applyShadow(c, text, H);
     }
     if (text.stroke && text.stroke.width > 0) {
+      c.setLineDash((Array.isArray(text.stroke.dash) ? text.stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
       c.lineWidth = (text.stroke.width / 1080) * H * l.scale;
       c.strokeStyle = text.stroke.color;
       c.lineJoin = "round";
@@ -670,7 +681,9 @@ canvas{display:block;width:100%;height:100%;}
 
   // ── fonts: stylesheets chosen app-side (libs/editor/fonts.ts), as the web picks them ──
   var fontLinks = new Map();
+  var activeFontCss = [];
   function addFontCss(hrefs) {
+    activeFontCss = (hrefs || []).slice();
     (hrefs || []).forEach(function (href) {
       if (fontLinks.has(href)) return;
       var link = document.createElement("link");
@@ -700,7 +713,7 @@ canvas{display:block;width:100%;height:100%;}
   }
   function waitForDesignFonts(snapshot) {
     var timer;
-    var ready = Promise.all(Array.from(fontLinks.values())).then(function() {
+    var ready = Promise.all(activeFontCss.map(function(href) { return fontLinks.get(href); }).filter(Boolean)).then(function() {
       if (!document.fonts || !document.fonts.load) return;
       return Promise.all(snapshot.clips.filter(function(c) { return c.kind === "text" && !c.hidden; }).map(function(c) {
         var face = (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily;
@@ -1860,4 +1873,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME);

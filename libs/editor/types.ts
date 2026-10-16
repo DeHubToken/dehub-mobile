@@ -207,6 +207,7 @@ export interface MediaClip extends BaseClip {
   radius?: number;
   /** Clip the media into an editable frame while preserving its original source. */
   frame?: "rect" | "ellipse" | "triangle" | "star" | "heart" | "hexagon";
+  border?: TextStroke | null;
 }
 
 export interface TextBackground {
@@ -222,6 +223,8 @@ export interface TextBackground {
 
 export interface TextStroke {
   color: string;
+  /** Dash lengths in pixels relative to 1080p. Absent is a solid line. */
+  dash?: number[];
   /** Stroke width in px relative to 1080p. */
   width: number;
 }
@@ -255,7 +258,7 @@ export interface TextClip extends BaseClip {
   maxHeight?: number;
 }
 
-export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow"] as const;
+export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow", "diamond", "pentagon", "octagon", "parallelogram", "trapezoid", "chevron", "cross", "speech-bubble"] as const;
 /** "path" is a freehand drawing; it is not offered in the shapes grid. */
 export type ShapeKindAll = (typeof SHAPE_KINDS)[number] | "path";
 export type ShapeKind = (typeof SHAPE_KINDS)[number];
