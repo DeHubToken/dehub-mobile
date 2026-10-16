@@ -37,7 +37,10 @@ function vectorPath(clip: ShapeClip, w: number, h: number, k: number): string {
   const r = Math.max(0, Math.min((clip.radius ?? 0) * k, a, b));
   return r ? `M${n(-a + r)} ${n(-b)} H${n(a - r)} A${n(r)} ${n(r)} 0 0 1 ${n(a)} ${n(-b + r)} V${n(b - r)} A${n(r)} ${n(r)} 0 0 1 ${n(a - r)} ${n(b)} H${n(-a + r)} A${n(r)} ${n(r)} 0 0 1 ${n(-a)} ${n(b - r)} V${n(-b + r)} A${n(r)} ${n(r)} 0 0 1 ${n(-a + r)} ${n(-b)} Z` : `M${n(-a)} ${n(-b)} H${n(a)} V${n(b)} H${n(-a)} Z`;
 }
-export function vectorArtworkSvgDocument(project: ProjectSnapshot, ids: readonly string[], time: number): string {
+export interface VectorArtworkSvgOptions { scope?: "selection" | "page"; background?: boolean; padding?: number }
+export function vectorArtworkSvgDocument(project: ProjectSnapshot, ids: readonly string[], time: number, options: VectorArtworkSvgOptions = {}): string {
+  const padding = options.padding ?? 0;
+  if (options.scope !== undefined && !["selection", "page"].includes(options.scope) || !Number.isFinite(padding) || padding < 0 || padding > 128 || options.background !== undefined && typeof options.background !== "boolean") throw new Error("Choose valid vector export dimensions, padding and background options");
   const vectors = selectedDesignVectors(project, ids, time).filter(clip => !clip.photoFrame);
   if (!vectors.length || vectors.length > 100) throw new Error("Select one to 100 ordinary vector layers to download");
   const W = project.settings.width, H = project.settings.height, k = H / 1080;
@@ -79,9 +82,10 @@ export function vectorArtworkSvgDocument(project: ProjectSnapshot, ids: readonly
     const angle = tr.rotation * Math.PI / 180, head = clip.shape === "arrow" ? Math.min(w * 0.3, Math.max(h * 1.5, 12)) * 0.6 : 0, capPadding = clip.connector ? Math.min(w / 5, Math.max(strokeWidth * 3.5, w / 35)) : 0, verticalExtent = !clip.connector && !clip.symbol && clip.shape === "line" ? 0 : clip.shape === "arrow" ? head : h / 2, padding = Math.max(2, strokeWidth * 4, capPadding) + (clip.shadow ? (clip.shadow.blur * 3 + Math.abs(clip.shadow.offsetX) + Math.abs(clip.shadow.offsetY)) * k : 0), halfW = Math.abs(Math.cos(angle)) * w / 2 + Math.abs(Math.sin(angle)) * verticalExtent + padding, halfH = Math.abs(Math.sin(angle)) * w / 2 + Math.abs(Math.cos(angle)) * verticalExtent + padding;
     bounds.push({ left: tr.x * W - halfW, right: tr.x * W + halfW, top: tr.y * H - halfH, bottom: tr.y * H + halfH });
   });
-  const left = Math.min(...bounds.map(box => box.left)), top = Math.min(...bounds.map(box => box.top)), width = Math.max(...bounds.map(box => box.right)) - left, height = Math.max(...bounds.map(box => box.bottom)) - top;
+  const left = options.scope === "page" ? 0 : Math.min(...bounds.map(box => box.left)) - padding, top = options.scope === "page" ? 0 : Math.min(...bounds.map(box => box.top)) - padding, width = options.scope === "page" ? W : Math.max(...bounds.map(box => box.right)) - left + padding, height = options.scope === "page" ? H : Math.max(...bounds.map(box => box.bottom)) - top + padding;
+  const background = options.background ? `<rect x="${n(left)}" y="${n(top)}" width="${n(width)}" height="${n(height)}" fill="${colour(project.settings.background)}"/>` : "";
   const scale = Math.min(1, 8192 / Math.max(width, height));
-  const document = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${n(width * scale)}" height="${n(height * scale)}" viewBox="${n(left)} ${n(top)} ${n(width)} ${n(height)}" role="img" aria-labelledby="vector-title"><title id="vector-title">${xml(project.title || "Vector artwork")}</title><defs>${definitions.join("")}</defs><g style="isolation:isolate">${layers.join("")}</g></svg>\n`;
+  const document = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${n(width * scale)}" height="${n(height * scale)}" viewBox="${n(left)} ${n(top)} ${n(width)} ${n(height)}" role="img" aria-labelledby="vector-title"><title id="vector-title">${xml(project.title || "Vector artwork")}</title><defs>${definitions.join("")}</defs><g style="isolation:isolate">${background}${layers.join("")}</g></svg>\n`;
   if (document.length > 2 * 1024 * 1024) throw new Error("Choose fewer vector layers to keep the SVG within two megabytes");
   return document;
 }
