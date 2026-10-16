@@ -1,3 +1,4 @@
+import { normaliseBrandStyles } from "../libs/editor/brandStyles";
 import type { DesignPdfLink } from "../libs/editor/designLinks";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
@@ -1323,6 +1324,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       return (
         <BrandPanel
           kit={brand}
+          onSaveStyles={() => { const latest = h.latest(); if (latest?.id === project.id) { h.commit({ ...latest, settings: { ...latest.settings, brandStyles: normaliseBrandStyles(brand) } }); toastSuccess(t("editor.brand.stylesSaved", { defaultValue: "Brand styles saved with this design" })); } }}
+          onLoadStyles={project.settings.brandStyles ? () => updateBrand({ ...brand, ...normaliseBrandStyles(project.settings.brandStyles!) }) : undefined}
+
           designColors={[project.settings.background, ...designColors]}
           palette={SWATCHES}
           fonts={EDITOR_FONTS.map((f) => ({ family: f.family, css: fontCssOf(f) }))}

@@ -1,3 +1,4 @@
+import { validBrandStyles } from "./brandStyles";
 import { normaliseDesignLink } from "./designLinks";
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
@@ -54,6 +55,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
   if (typeof s.id !== "string" || !UUID.test(s.id) || typeof s.title !== "string" || s.title.length > 200 || !object(s.settings)
     || !positive(s.settings.width, 16384) || !positive(s.settings.height, 16384) || !positive(s.settings.fps, 16384)
     || !Array.isArray(s.tracks) || s.tracks.length > 200 || !Array.isArray(s.clips) || s.clips.length > 10000 || value.media.length > 2000) fail();
+  if (!validBrandStyles(s.settings.brandStyles)) fail();
   const tracks = new Set<string>(), media = new Map<string, CloudProjectMedia>(), clips = new Set<string>();
   for (const track of s.tracks) {
     if (!object(track) || typeof track.id !== "string" || !track.id || tracks.has(track.id) || !["video", "audio", "text"].includes(String(track.kind))) fail();
