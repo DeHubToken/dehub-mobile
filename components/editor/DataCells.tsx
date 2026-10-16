@@ -1,3 +1,4 @@
+import DataPastePanel from "./DataPastePanel";
 import React, { useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -6,7 +7,7 @@ import { formatDelimitedData, parseDelimitedData } from "../../libs/editor/delim
 
 export default function DataCells({ value, onChange, chart, multiSeries = false }: { value: string; onChange: (value: string) => void; chart: boolean; multiSeries?: boolean }) {
   const { t } = useTranslation();
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(0), [address, setAddress] = useState("A1");
   const parsed = useMemo(() => { try { return { rows: parseDelimitedData(value, chart ? multiSeries ? 51 : 50 : 20, chart ? multiSeries ? 7 : 2 : 12), error: "" }; } catch (error) { return { rows: [], error: error instanceof Error ? error.message : "Invalid data" }; } }, [value, chart, multiSeries]);
   const rows = parsed.rows.length ? parsed.rows : [["", ""]];
   const columns = chart && !multiSeries ? 2 : Math.max(chart ? 2 : 1, ...rows.map(row => row.length));
@@ -18,7 +19,7 @@ export default function DataCells({ value, onChange, chart, multiSeries = false 
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator>
       <View className="overflow-hidden rounded-lg border border-white/20">
         <View className="flex-row bg-white/5"><Text style={{ width: 28 }} className="py-2 text-center text-xs text-white/40">#</Text>{Array.from({ length: columns }, (_, c) => <Text key={c} style={{ width: 120 }} className="border-l border-white/10 px-2 py-2 text-xs text-white/60">{chart && !multiSeries ? t(c === 0 ? "editor.dataVisual.label" : "editor.dataVisual.value", { defaultValue: c === 0 ? "Label" : "Value" }) : String.fromCharCode(65 + c)}</Text>)}</View>
-        {rows.slice(start, start + 5).map((row, r) => <View key={start + r} className="flex-row border-t border-white/10"><Text style={{ width: 28 }} className="self-center text-center text-xs text-white/40">{start + r + 1}</Text>{Array.from({ length: columns }, (_, c) => <TextInput key={c} style={{ width: 120 }} value={row[c] ?? ""} accessibilityLabel={t("editor.dataVisual.cell", { defaultValue: "Row {{row}}, column {{column}}", row: start + r + 1, column: c + 1 })} onChangeText={text => update(rows.map((cells, index) => index === start + r ? Array.from({ length: columns }, (_, col) => col === c ? text : cells[col] ?? "") : cells))} maxLength={200} autoCorrect={false} className="min-h-[40px] border-l border-white/10 px-2 text-xs text-white" />)}<Pressable accessibilityRole="button" accessibilityLabel={t("editor.dataVisual.removeRow", { defaultValue: "Remove row {{row}}", row: start + r + 1 })} onPress={() => update(rows.filter((_, index) => index !== start + r))} className="min-h-[40px] min-w-[40px] items-center justify-center"><Text className="text-base text-white/50">×</Text></Pressable></View>)}
+        {rows.slice(start, start + 5).map((row, r) => <View key={start + r} className="flex-row border-t border-white/10"><Text style={{ width: 28 }} className="self-center text-center text-xs text-white/40">{start + r + 1}</Text>{Array.from({ length: columns }, (_, c) => <TextInput key={c} style={{ width: 120 }} value={row[c] ?? ""} onFocus={() => setAddress(`${String.fromCharCode(65 + c)}${start + r + 1}`)} accessibilityLabel={t("editor.dataVisual.cell", { defaultValue: "Row {{row}}, column {{column}}", row: start + r + 1, column: c + 1 })} onChangeText={text => update(rows.map((cells, index) => index === start + r ? Array.from({ length: columns }, (_, col) => col === c ? text : cells[col] ?? "") : cells))} maxLength={200} autoCorrect={false} className="min-h-[40px] border-l border-white/10 px-2 text-xs text-white" />)}<Pressable accessibilityRole="button" accessibilityLabel={t("editor.dataVisual.removeRow", { defaultValue: "Remove row {{row}}", row: start + r + 1 })} onPress={() => update(rows.filter((_, index) => index !== start + r))} className="min-h-[40px] min-w-[40px] items-center justify-center"><Text className="text-base text-white/50">×</Text></Pressable></View>)}
       </View>
     </ScrollView>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
@@ -31,5 +32,6 @@ export default function DataCells({ value, onChange, chart, multiSeries = false 
       <Text className="text-xs text-white/50">{start + 1}–{Math.min(rows.length, start + 5)} / {rows.length}</Text>
       {button(t("editor.dataVisual.nextRows", { defaultValue: "Next rows" }), () => setOffset(start + 5), start + 5 >= rows.length)}
     </View>
+    <DataPastePanel source={value} onChange={onChange} address={address} onAddress={setAddress} maxRows={chart ? multiSeries ? 51 : 50 : 20} maxColumns={chart ? multiSeries ? 7 : 2 : 12} />
   </View>;
 }
