@@ -1,3 +1,4 @@
+import { CHART_RACE_RUNTIME } from "./chartRaceRuntime";
 import { PICTOGRAM_CHART_RUNTIME } from "./pictogramChartRuntime";
 import { TREEMAP_CHART_RUNTIME } from "./treemapChartRuntime";
 import { HISTOGRAM_CHART_RUNTIME } from "./histogramChartRuntime";
@@ -443,7 +444,7 @@ canvas{display:block;width:100%;height:100%;}
     if (SUPPORTS_FILTER) c.filter = filter;
     if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
     if (clip.kind === "text") drawText(c, clip, box, W, H, anim.textProgress);
-    else if (clip.kind === "shape") drawShape(c, clip, box, H);
+    else if (clip.kind === "shape") drawShape(c, clip, box, H, t);
     else drawMedia(c, clip, box, H, sourceTime == null ? clip.trimIn + (t - clip.start) * speedOf(clip) : sourceTime);
     c.restore();
   }
@@ -624,15 +625,15 @@ canvas{display:block;width:100%;height:100%;}
   }
   function strokeDashOffset(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(-1000000, Math.min(1000000, value)) : 0; }
   function paintOpacity(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 1; }
-  function drawShape(c, clip, box, H) {
+  function drawShape(c, clip, box, H, time) {
     if (clip.photoFrame) {
-      drawShape(c, Object.assign({}, clip, { photoFrame: false }), box, H);
+      drawShape(c, Object.assign({}, clip, { photoFrame: false }), box, H, time);
       var size = Math.min(box.w, box.h) * 0.35;
       c.fillStyle = "#94a3b8"; c.beginPath(); c.moveTo(-size, size * 0.65); c.lineTo(-size * 0.2, -size * 0.45); c.lineTo(size * 0.25, size * 0.2); c.lineTo(size * 0.55, -size * 0.2); c.lineTo(size, size * 0.65); c.closePath(); c.fill();
       c.beginPath(); c.arc(size * 0.55, -size * 0.65, size * 0.18, 0, Math.PI * 2); c.fill(); return;
     }
     if (clip.qr) { drawQrGraphic(c, box.w, box.h, clip.qr); return; }
-    if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table); return; }
+    if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table, time == null ? undefined : (time - clip.start) / Math.max(0.001, clip.duration)); return; }
     var k = H / 1080;
     var open = clip.shape === "line" || clip.shape === "arrow" || (clip.shape === "path" && !clip.closedPath);
     if (clip.connector) {
@@ -2065,4 +2066,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", PERCENT_STACKED_SERIES_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + GRAPHIC_FONT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + FUNNEL_CHART_RUNTIME + "\n" + HISTOGRAM_CHART_RUNTIME + "\n" + TREEMAP_CHART_RUNTIME + "\n" + PICTOGRAM_CHART_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", PERCENT_STACKED_SERIES_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + GRAPHIC_FONT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + FUNNEL_CHART_RUNTIME + "\n" + HISTOGRAM_CHART_RUNTIME + "\n" + TREEMAP_CHART_RUNTIME + "\n" + PICTOGRAM_CHART_RUNTIME + "\n" + CHART_RACE_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);

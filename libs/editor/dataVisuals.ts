@@ -1,3 +1,4 @@
+import { drawChartRace } from "./chartRace";
 import { drawPictogramChart } from "./pictogramChart";
 import { drawTreemapChart, treemapDataError } from "./treemapChart";
 import { histogramChartData } from "./histogramChart";
@@ -12,9 +13,12 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  raceTop?: number;
+  racePoster?: number;
+  raceAnimate?: boolean;
   pictogramCount?: number;
   pictogramColumns?: number;
   pictogramShape?: "circle" | "square" | "diamond" | "star" | "person";
@@ -92,7 +96,7 @@ export interface DataVisualContext {
 }
 
 /** Data is bounded before rendering so imported projects cannot create an unbounded draw loop. */
-export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData): void {
+export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData, progress?: number): void {
   const family = graphicFontCss(chart?.fontFamily);
   const left = -width / 2, top = -height / 2;
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
@@ -108,6 +112,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
+  if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
   if (chart.kind === "treemap") { drawTreemapChart(ctx, width, height, chart); return; }
   if (chart.kind === "funnel") { drawFunnelChart(ctx, width, height, chart, font); return; }
@@ -265,6 +270,10 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
     if (chart.kind === "pictogram" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
+    if (chart.kind === "race" && (!Array.isArray(chart.series) || chart.series.length < 2 || (chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value < 0)) || !(chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value > 0)))) return false;
+    if (chart.raceTop !== undefined && (typeof chart.raceTop !== "number" || !Number.isInteger(chart.raceTop) || chart.raceTop < 1 || chart.raceTop > 20)) return false;
+    if (chart.racePoster !== undefined && (typeof chart.racePoster !== "number" || !Number.isFinite(chart.racePoster) || chart.racePoster < 0 || chart.racePoster > 1)) return false;
+    if (chart.raceAnimate !== undefined && typeof chart.raceAnimate !== "boolean") return false;
     if (chart.pictogramCount !== undefined && (typeof chart.pictogramCount !== "number" || !Number.isInteger(chart.pictogramCount) || chart.pictogramCount < 10 || chart.pictogramCount > 100)) return false;
     if (chart.pictogramColumns !== undefined && (typeof chart.pictogramColumns !== "number" || !Number.isInteger(chart.pictogramColumns) || chart.pictogramColumns < 2 || chart.pictogramColumns > 20)) return false;
     if (chart.pictogramShape !== undefined && !["circle", "square", "diamond", "star", "person"].includes(String(chart.pictogramShape))) return false;
