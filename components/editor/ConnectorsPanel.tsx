@@ -1,3 +1,4 @@
+import DiagramTemplatesPanel from "./DiagramTemplatesPanel";
 import React, { useEffect, useId, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import Svg, { Circle, Defs, Marker, Path } from "react-native-svg";
@@ -38,5 +39,6 @@ export default function ConnectorsPanel({ project, time, selectedId, current, co
     {style.route !== "straight" && <><Text className="text-xs text-white/60">{t("editor.connectors.bend", { defaultValue: "Bend position" })}: {Math.round(style.bend * 100)}%</Text><Slider minimumValue={10} maximumValue={90} step={1} value={Math.round(style.bend * 100)} onValueChange={value => setStyle(before => ({ ...before, bend: value / 100 }))} accessibilityLabel={t("editor.connectors.bend", { defaultValue: "Bend position" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></>}
     <Pressable accessibilityRole="button" disabled={!!existing?.locked || !validColour} onPress={() => { const latest = current(); if (!latest || latest.id !== project.id) return; const result = putConnector(latest, time, style, colour, width, dash === "solid" ? [] : dash === "dashed" ? [width * 3, width * 2] : [1, width * 2], () => newId(10), existing?.id); if (result) { commit(result.project); select(result.id); } }} className="min-h-[40px] items-center justify-center rounded-lg bg-white px-3" style={{ opacity: existing?.locked || !validColour ? 0.35 : 1 }}><Text className="text-xs font-medium text-black">{t(existing ? "editor.connectors.update" : "editor.connectors.insert", { defaultValue: existing ? "Update connector" : "Insert connector" })}</Text></Pressable>
     <Text className="text-xs text-white/45">{t("editor.connectors.hint", { defaultValue: "Resize, stretch, rotate, or flip the connector on the canvas. Choose it again to edit its route and endpoints." })}</Text>
+    <DiagramTemplatesPanel project={project} current={current} commit={commit} time={time} select={select} />
   </View>;
 }
