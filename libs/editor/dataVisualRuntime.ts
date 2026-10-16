@@ -1,8 +1,7 @@
 /** Chart and table drawing shared with the web compositor. */
 export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width, height, chart, table, progress) {
-  const family = graphicFontCss(chart?.fontFamily);
-  const left = -width / 2, top = -height / 2;
-  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
+  const graphic = table ?? chart, family = graphicFontCss(graphic?.fontFamily);
+  let font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic?.fontScale || 1));
   ctx.font = "500 " + font + "px " + family;
   ctx.textBaseline = "middle";
   function label(text, x, y, max) {
@@ -10,6 +9,16 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
     ctx.fillText(value, x, y);
   }
+  if (graphic && (graphic.title?.trim() || graphic.caption?.trim())) {
+    const outerHeight = height, band = Math.min(height * 0.22, font * 1.8);
+    ctx.fillStyle = graphic.textColour; ctx.textAlign = "center";
+    if (graphic.title?.trim()) { ctx.font = "700 " + Math.min(font * 1.1, band * 0.7) + "px " + family; label(graphic.title.trim(), 0, -outerHeight / 2 + band / 2, Math.max(1, width - font * 2)); }
+    if (graphic.caption?.trim()) { ctx.font = "400 " + Math.min(font * 0.75, band * 0.6) + "px " + family; label(graphic.caption.trim(), 0, outerHeight / 2 - band / 2, Math.max(1, width - font * 2)); }
+    height = Math.max(1, height - band * 2);
+    font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic.fontScale || 1));
+    ctx.font = "500 " + font + "px " + family;
+  }
+  const left = -width / 2, top = -height / 2;
   if (table && Array.isArray(table.rows)) { drawEditableTable(ctx, width, height, table); return; }
   if (!chart || !Array.isArray(chart.rows)) return;
   if (chart.kind === "histogram") chart = histogramChartData(chart);

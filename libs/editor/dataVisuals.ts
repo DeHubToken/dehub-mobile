@@ -16,6 +16,9 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  title?: string;
+  caption?: string;
+  description?: string;
   raceTop?: number;
   racePoster?: number;
   raceAnimate?: boolean;
@@ -60,6 +63,9 @@ export interface ChartData {
   showValues: boolean;
 }
 export interface TableData {
+  title?: string;
+  caption?: string;
+  description?: string;
   fontFamily?: string;
   merges?: TableMerge[];
   cellStyles?: TableCellStyles;
@@ -97,9 +103,8 @@ export interface DataVisualContext {
 
 /** Data is bounded before rendering so imported projects cannot create an unbounded draw loop. */
 export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData, progress?: number): void {
-  const family = graphicFontCss(chart?.fontFamily);
-  const left = -width / 2, top = -height / 2;
-  const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart?.fontScale || 1));
+  const graphic = table ?? chart, family = graphicFontCss(graphic?.fontFamily);
+  let font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic?.fontScale || 1));
   ctx.font = "500 " + font + "px " + family;
   ctx.textBaseline = "middle";
   function label(text: string, x: number, y: number, max: number) {
@@ -107,6 +112,16 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
     ctx.fillText(value, x, y);
   }
+  if (graphic && (graphic.title?.trim() || graphic.caption?.trim())) {
+    const outerHeight = height, band = Math.min(height * 0.22, font * 1.8);
+    ctx.fillStyle = graphic.textColour; ctx.textAlign = "center";
+    if (graphic.title?.trim()) { ctx.font = "700 " + Math.min(font * 1.1, band * 0.7) + "px " + family; label(graphic.title.trim(), 0, -outerHeight / 2 + band / 2, Math.max(1, width - font * 2)); }
+    if (graphic.caption?.trim()) { ctx.font = "400 " + Math.min(font * 0.75, band * 0.6) + "px " + family; label(graphic.caption.trim(), 0, outerHeight / 2 - band / 2, Math.max(1, width - font * 2)); }
+    height = Math.max(1, height - band * 2);
+    font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic.fontScale || 1));
+    ctx.font = "500 " + font + "px " + family;
+  }
+  const left = -width / 2, top = -height / 2;
   if (table && Array.isArray(table.rows)) { drawEditableTable(ctx, width, height, table); return; }
   if (!chart || !Array.isArray(chart.rows)) return;
   if (chart.kind === "histogram") chart = histogramChartData(chart);
@@ -278,6 +293,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.pictogramColumns !== undefined && (typeof chart.pictogramColumns !== "number" || !Number.isInteger(chart.pictogramColumns) || chart.pictogramColumns < 2 || chart.pictogramColumns > 20)) return false;
     if (chart.pictogramShape !== undefined && !["circle", "square", "diamond", "star", "person"].includes(String(chart.pictogramShape))) return false;
     if (chart.histogramBins !== undefined && (typeof chart.histogramBins !== "number" || !Number.isInteger(chart.histogramBins) || chart.histogramBins < 1 || chart.histogramBins > 20)) return false;
+    for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
@@ -305,6 +321,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (!object(table) || !Array.isArray(table.rows) || !table.rows.length || table.rows.length > 20 ||
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
+    for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (table[key] !== undefined && (typeof table[key] !== "string" || table[key].length > limit || /[\u0000-\u001f\u007f]/.test(table[key]))) return false;
     if (table.fitText !== undefined && typeof table.fitText !== "boolean") return false;
     if (!validGraphicFont(table.fontFamily)) return false;
     if (table.fitRows !== undefined && typeof table.fitRows !== "boolean") return false;
