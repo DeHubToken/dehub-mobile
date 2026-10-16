@@ -1,3 +1,4 @@
+import TableSampleGallery from "./TableSampleGallery";
 import ChartSampleGallery from "./ChartSampleGallery";
 import { chartDraftAppearance } from "../../libs/editor/chartDraft";
 import ChartTypePicker from "./ChartTypePicker";
@@ -107,6 +108,12 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     if (colours) { setChartPalette([...value.colours]); setAccent(value.colours[0]); setForeground(value.textColour); }
     setDataView("cells"); setError("");
   };
+  const useTableSample = (value: TableData, colours: boolean) => {
+    importRequest.current++; setMode("table"); setData(formatDelimitedData(value.rows, "\t")); setShowLabels(value.header);
+    const next = colours ? value : { ...value, headerColour: accent, textColour: foreground, headerTextColour: tableFormat.headerTextColour, cellColour: tableFormat.cellColour, borderColour: tableFormat.borderColour, stripeColour: tableFormat.stripeColour, cellStyles: value.cellStyles ? Object.fromEntries(Object.entries(value.cellStyles).map(([key, style]) => { const { fill, colour, ...format } = style; return [key, format]; })) : undefined };
+    setTableFormat(next); if (colours) { setForeground(value.textColour); setAccent(value.headerColour); }
+    setFocusedCell(""); setDataView("cells"); setError("");
+  };
   const changeMultiple = (value: boolean) => {
     importRequest.current++;
     try { const parsed = parseChartSource(data, multiple); setData(chartDataSource({ ...DEFAULT_CHART, ...parsed }, value)); } catch { /* Keep pasted source available for correction in its new format. */ }
@@ -173,6 +180,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     {mode === "chart" && <ChartTypePicker value={kind} onChange={setKind} />}
     <DataVisualDraftPreview key={project.id} projectId={project.id} value={draftPreviewValue} width={project.settings.width * (selected?.kind === "shape" && (chart || table) ? selected.w : 0.8)} height={project.settings.height * (selected?.kind === "shape" && (chart || table) ? selected.h : 0.65)} background={project.settings.background} />
     {section === "data" ? <>
+    {mode === "table" && <TableSampleGallery onUse={useTableSample} />}
     {mode === "chart" && <ChartSampleGallery onUse={useChartSample} />}
     {mode === "chart" && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={multiple} onValueChange={changeMultiple} accessibilityLabel={t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })}</Text></View>{multiple && <>{kind !== "race" && kind !== "funnel" && kind !== "treemap" && kind !== "bubble" && kind !== "histogram" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={showLegend} onValueChange={setShowLegend} accessibilityLabel={t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })}</Text></View>}{(kind === "bar" || kind === "column") && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={stacked} onValueChange={setStacked} accessibilityLabel={t("editor.dataVisual.stacked", { defaultValue: "Stack series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.stacked", { defaultValue: "Stack series" })}</Text></View>}{(kind === "pie" || kind === "donut" || kind === "funnel" || kind === "treemap" || kind === "pictogram" || kind === "histogram") && <Text className="text-xs text-white/45">{t("editor.dataVisual.singleSeriesViewHint", { defaultValue: "Pie, donut, funnel, treemap, pictogram and histogram charts display the first data series." })}</Text>}</>}</View>}
     <Text className="text-xs text-white/60">{t(mode === "chart" ? multiple ? "editor.dataVisual.seriesHint" : "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? multiple ? "First row: Label, followed by series names. Then one label and a number for each series per row. Up to 50 data rows and six series. Turning multiple series off keeps the first series." : "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
