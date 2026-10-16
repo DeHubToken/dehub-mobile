@@ -12,7 +12,7 @@ export async function saveEditorDownload(uri: string, title: string, ext: string
   if (!permission.granted) return;
   const info = await FileSystem.getInfoAsync(uri);
   const limit = ext === "gif" ? 100 * 1024 * 1024 : ZIP_DOWNLOAD_LIMIT;
-  if (!info.exists || info.isDirectory || !info.size || info.size > limit || !/^(gif|mp4|webm|zip|pdf|pptx|csv|json|txt|svg)$/.test(ext)) throw new Error("Download file unavailable");
+  if (!info.exists || info.isDirectory || !info.size || info.size > limit || !/^(gif|mp4|webm|zip|pdf|pptx|csv|json|txt|svg|vcf)$/.test(ext)) throw new Error("Download file unavailable");
   const name = exportFilename(title, ext);
   const destination = await FileSystem.StorageAccessFramework.createFileAsync(permission.directoryUri, name, mime);
   try {
