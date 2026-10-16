@@ -75,21 +75,21 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   const min = Math.min(0, ...rows.map(row => row.value));
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
-    const positive = rows.filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
+    const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
     const legend = chart.showLabels ? Math.min(width * 0.42, 220) : 0;
     const radius = Math.max(1, Math.min((width - legend) * 0.45, height * 0.45));
     const cx = left + (width - legend) / 2;
     let start = -Math.PI / 2;
     positive.forEach((row, index) => {
       const end = start + row.value / sum * Math.PI * 2;
-      ctx.fillStyle = colour(index); ctx.beginPath();
+      ctx.fillStyle = colour(row.colourIndex); ctx.beginPath();
       if (chart.kind === "donut") {
         ctx.arc(cx, 0, radius, start, end); ctx.arc(cx, 0, radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57)), end, start, true);
       } else { ctx.moveTo(cx, 0); ctx.arc(cx, 0, radius, start, end); }
       ctx.closePath(); ctx.fill();
       if (chart.showLabels && index < Math.floor(height / (font * 1.7))) {
         const x = left + width - legend + font, y = top + font * (1.3 + index * 1.7);
-        ctx.fillStyle = colour(index); ctx.fillRect(x, y - font * 0.35, font * 0.7, font * 0.7);
+        ctx.fillStyle = colour(row.colourIndex); ctx.fillRect(x, y - font * 0.35, font * 0.7, font * 0.7);
         ctx.fillStyle = chart.textColour; ctx.textAlign = "left";
         label(row.label + (chart.showValues ? "  " + (chart.valueFormat ? chartValueLabel(row.value, chart.valueFormat) : Number((row.value / sum * 100).toFixed(1)) + "%") : ""), x + font, y, legend - font * 2);
       }
