@@ -1,3 +1,4 @@
+import { registerPaletteImageDecoder } from "../../libs/editor/paletteImageDecoder";
 import { nextDesignLayer } from "../../libs/editor/layerNavigation";
 import OverlapLayerPicker from "./OverlapLayerPicker";
 import SpacingGuides from "./SpacingGuides";
@@ -169,6 +170,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
   const colourPick = useDesignColourPick(), sampling = colourPick?.projectId === project.id;
+  const paletteRequests = useRef(new Map<string, { resolve: (colours: string[]) => void; reject: (error: Error) => void; cleanup: () => void }>());
   const colourTimers = useRef(new Map<number, ReturnType<typeof setTimeout>>());
   useEffect(() => () => { for (const timer of colourTimers.current.values()) clearTimeout(timer); colourTimers.current.clear(); if (getDesignColourPick()?.projectId === project.id) cancelDesignColourPick(); }, [project.id]);
   const [webKey, setWebKey] = useState(0);
@@ -239,6 +241,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const post = useCallback((msg: unknown) => {
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
+  useEffect(() => {
+    const unregister = registerPaletteImageDecoder(project.id, (source, signal) => new Promise<string[]>((resolve, reject) => {
+      const reqId = `palette-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => { const request = paletteRequests.current.get(reqId); if (!request) return; paletteRequests.current.delete(reqId); request.cleanup(); reject(new Error("Palette extraction cancelled")); };
+      const timer = setTimeout(cancel, 15000), cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
+      paletteRequests.current.set(reqId, { resolve, reject, cleanup }); signal.addEventListener("abort", cancel, { once: true });
+      if (signal.aborted) cancel(); else post({ type: "paletteImage", reqId, source });
+    }));
+    return () => { unregister(); for (const request of paletteRequests.current.values()) { request.cleanup(); request.reject(new Error("The design canvas closed")); } paletteRequests.current.clear(); };
+  }, [project.id, post, webKey]);
   useEffect(() => () => {
     for (const [reqId, request] of videoMatteReqs.current) { request.cleanup(); request.reject(new Error("canvas closed")); post({ type: "videoMatteCancel", reqId }); }
     videoMatteReqs.current.clear();
@@ -426,6 +438,14 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         if (req && req.reqId === msg.reqId && Array.isArray(msg.pts)) {
           setPath({ id: req.id, pts: msg.pts, keys: Array.isArray(msg.keys) ? msg.keys : [] });
         }
+        break;
+      }
+      case "paletteImage": {
+        const request = paletteRequests.current.get(msg.reqId); if (!request) break;
+        paletteRequests.current.delete(msg.reqId); request.cleanup();
+        if (typeof msg.error === "string") request.reject(new Error(msg.error));
+        else if (Array.isArray(msg.colours) && msg.colours.length > 0 && msg.colours.length <= 8 && msg.colours.every((colour: unknown) => typeof colour === "string" && /^#[a-f0-9]{6}$/i.test(colour))) request.resolve(msg.colours);
+        else request.reject(new Error("Could not extract page colours"));
         break;
       }
       case "colourSampled": {

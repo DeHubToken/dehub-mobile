@@ -1,3 +1,4 @@
+import PagePaletteControls from "./PagePaletteControls";
 import ColourPickerButton from "./ColourPickerButton";
 import RepeatGridPanel from "./RepeatGridPanel";
 import DesignToolSearch from "./DesignToolSearch";
@@ -117,6 +118,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel === "search" && <DesignTextSearch project={project} time={time} selectedId={selectedId} apply={apply} seek={seek} />}
     {panel === "resize" && <ResizeDesignPanel key={project.id} project={project} current={current} commit={commit} />}
     {panel === "colours" && <View className="px-3" style={{ gap: 10 }}>
+      <PagePaletteControls canPick={!!colour} key={project.id} project={project} time={time} current={current} commit={commit} onPick={setReplacement} />
       <Text className="text-xs text-white/60">{t("editor.designTools.colourHint", { defaultValue: "Choose a colour to replace across this design. Locked layers are preserved." })}</Text>
       <ScrollView keyboardShouldPersistTaps="handled" horizontal contentContainerStyle={{ gap: 10 }}>
         {designColours(project).map(value => <Pressable key={value} accessibilityRole="button" accessibilityLabel={value} accessibilityState={{ selected: colour === value }} onPress={() => { setColour(value); setReplacement(value); }} style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: value, borderWidth: 2, borderColor: colour === value ? "#38bdf8" : "#888" }} />)}
