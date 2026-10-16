@@ -32,6 +32,7 @@ function readableColour(colors: string[], background: string, index: number) {
 export function applyBrandStyles(project: ProjectSnapshot, input: BrandStyles): ProjectSnapshot {
   const brand = normaliseBrandStyles(input);
   if (!brand.colors.length && !brand.headingFont && !brand.bodyFont) return project;
+  const requestedGraphicFamily = (brand.bodyFont || brand.headingFont)?.split(",")[0].trim().replace(/^['"]|['"]$/g, ""), graphicFamily = requestedGraphicFamily ? GOOGLE_FONTS.find(font => font.family.toLowerCase() === requestedGraphicFamily.toLowerCase())?.family : undefined;
   let textIndex = 0, shapeIndex = 0;
   const clips = project.clips.map((clip): Clip => {
     if (clip.locked || clip.kind === "audio") return clip;
@@ -46,6 +47,7 @@ export function applyBrandStyles(project: ProjectSnapshot, input: BrandStyles): 
       return { ...clip, fontFamily, fontWeight, color, gradient: null, echo: clip.echo?.map((layer, index) => ({ ...layer, colour: brand.colors[index % brand.colors.length] })),
         ...(clip.hollow && clip.stroke ? { stroke: { ...clip.stroke, color } } : {}) };
     }
+    if (clip.kind === "shape" && graphicFamily && (clip.table || clip.chart)) clip = { ...clip, ...(clip.table ? { table: { ...clip.table, fontFamily: graphicFamily } } : {}), ...(clip.chart ? { chart: { ...clip.chart, fontFamily: graphicFamily } } : {}) };
     if (!brand.colors.length) return clip;
     const color = brand.colors[shapeIndex++ % brand.colors.length];
     if (clip.kind !== "shape") return clip.border ? { ...clip, border: { ...clip.border, color } } : clip;
