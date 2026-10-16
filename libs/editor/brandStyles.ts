@@ -43,7 +43,7 @@ export function applyBrandStyles(project: ProjectSnapshot, input: BrandStyles): 
       if (!brand.colors.length) return { ...clip, fontFamily, fontWeight };
       const background = clip.background && clip.background.opacity >= 0.7 ? clip.background.color : project.settings.background;
       const color = readableColour(brand.colors, background, textIndex++);
-      return { ...clip, fontFamily, fontWeight, color, gradient: null,
+      return { ...clip, fontFamily, fontWeight, color, gradient: null, echo: clip.echo?.map((layer, index) => ({ ...layer, colour: brand.colors[index % brand.colors.length] })),
         ...(clip.hollow && clip.stroke ? { stroke: { ...clip.stroke, color } } : {}) };
     }
     if (!brand.colors.length) return clip;

@@ -28,7 +28,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
     style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     const { fontFamily, fontSize, fontWeight, color, align, italic, uppercase, underline, letterSpacing, lineHeight } = clip;
     style.text = { fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
-      curve: clip.curve ?? 0, hollow: !!clip.hollow, strikethrough: !!clip.strikethrough, list: clip.list ?? "none",
+      echo: clip.echo?.map(layer => ({ ...layer })), curve: clip.curve ?? 0, hollow: !!clip.hollow, strikethrough: !!clip.strikethrough, list: clip.list ?? "none",
       underline: !!underline, letterSpacing: letterSpacing ?? 0, lineHeight: lineHeight ?? 1.2,
       background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
   } else if (clip.kind === "shape") {
@@ -79,7 +79,7 @@ export function designColours(project: ProjectSnapshot): string[] {
   for (const clip of project.clips) {
     if ((clip.kind === "text" || clip.kind === "shape") && clip.gradient) clip.gradient.stops.forEach(stop => add(stop.colour));
     if (clip.kind === "image" || clip.kind === "video") add(clip.border?.color);
-    if (clip.kind === "text") { add(clip.color); add(clip.background?.color); add(clip.stroke?.color); }
+    if (clip.kind === "text") { add(clip.color); clip.echo?.forEach(layer => add(layer.colour)); add(clip.background?.color); add(clip.stroke?.color); }
     if (clip.kind === "shape") {
       add(clip.fill); add(clip.stroke?.color);
       if (clip.chart) { clip.chart.colours.forEach(add); add(clip.chart.textColour); }
@@ -103,7 +103,7 @@ export function replaceDesignColour(project: ProjectSnapshot, from: string, to: 
       if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: replace(stop.colour) })) };
       if (next.shadow) next.shadow = { ...next.shadow, color: replace(next.shadow.color) };
       if (next.kind === "text") {
-        next.color = replace(next.color);
+        next.color = replace(next.color); if (next.echo) next.echo = next.echo.map(layer => ({ ...layer, colour: replace(layer.colour) }));
         if (next.background) next.background = { ...next.background, color: replace(next.background.color) };
       }
       if (next.kind === "shape" && next.fill) next.fill = replace(next.fill);
@@ -181,7 +181,7 @@ export function applyDesignPalette(project: ProjectSnapshot, colours: readonly s
     if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: recolour(stop.colour) })) };
     if (next.shadow) next.shadow = { ...next.shadow, color: recolour(next.shadow.color) };
     if (next.kind === "text") {
-      next.color = recolour(next.color);
+      next.color = recolour(next.color); if (next.echo) next.echo = next.echo.map(layer => ({ ...layer, colour: recolour(layer.colour) }));
       if (next.background) next.background = { ...next.background, color: recolour(next.background.color) };
     }
     if (next.kind === "shape" && next.fill) next.fill = recolour(next.fill);

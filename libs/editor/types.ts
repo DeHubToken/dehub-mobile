@@ -263,6 +263,7 @@ export interface TextClip extends BaseClip {
   /** Text arc amount, from -100 to 100. Zero preserves straight text. */
   curve?: number;
   hollow?: boolean;
+  echo?: Array<{ colour: string; x: number; y: number; opacity: number }>;
   list?: "none" | "bullet" | "number";
   /** Extra space between letters, in px relative to 1080p. */
   letterSpacing?: number;
