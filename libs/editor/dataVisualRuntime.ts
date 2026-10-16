@@ -13,17 +13,19 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
     const rows = table.rows.filter(Array.isArray).slice(0, 20);
     const columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
     const cellWidth = width / columns, cellHeight = height / Math.max(1, rows.length);
-    ctx.lineWidth = Math.max(1, width / 700);
+    ctx.lineWidth = Math.max(1, width / 700) * (table.borderWidth == null ? 1 : table.borderWidth);
     rows.forEach((row, r) => {
       for (let c = 0; c < columns; c++) {
         const x = left + c * cellWidth, y = top + r * cellHeight;
-        ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.cellColour;
+        ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour;
         ctx.fillRect(x, y, cellWidth, cellHeight);
         ctx.strokeStyle = table.borderColour;
-        ctx.strokeRect(x, y, cellWidth, cellHeight);
+        if ((table.borderWidth == null ? 1 : table.borderWidth) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
         ctx.fillStyle = table.header && r === 0 ? table.headerTextColour : table.textColour;
-        ctx.textAlign = "left";
-        label(row[c] || "", x + font * 0.5, y + cellHeight / 2, Math.max(1, cellWidth - font));
+        ctx.textAlign = table.align === "centre" ? "center" : (table.align || "left");
+        ctx.font = (table.header && r === 0 ? "700 " : "500 ") + font + "px Inter, sans-serif";
+        const anchor = table.align === "centre" ? x + cellWidth / 2 : table.align === "right" ? x + cellWidth - font * 0.5 : x + font * 0.5;
+        label(row[c] || "", anchor, y + cellHeight / 2, Math.max(1, cellWidth - font));
       }
     });
     return;
