@@ -1,6 +1,7 @@
 import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
 import { FIT_VIEWPORT, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
 import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
+import GuideEditorOverlay from "./GuideEditorOverlay";
 import DesignRulers from "./DesignRulers";
 import type { DesignPdfLink } from "../../libs/editor/designLinks";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
@@ -18,7 +19,7 @@ import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
  * and it is drawn here, over the page, with a diamond at each key.
  */
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { StyleSheet, Pressable, Text, View } from "react-native";
+import { StyleSheet, Pressable, ScrollView, Text, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Svg, { Path, Polygon, Polyline } from "react-native-svg";
@@ -163,8 +164,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [area, setArea] = useState({ w: 0, h: 0 });
   const [viewport, setViewport] = useState<DesignViewport>(FIT_VIEWPORT);
   const [navigating, setNavigating] = useState(false);
+  const [editingGuides, setEditingGuides] = useState(false);
   const viewportDrag = useRef<{ before: DesignViewport; dx: number; dy: number; factor: number; anchor: { x: number; y: number }; active: Set<"pan" | "pinch"> } | null>(null);
-  useEffect(() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); setNavigating(false); }, [project.id, project.settings.width, project.settings.height]);
+  useEffect(() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); setNavigating(false); setEditingGuides(false); }, [project.id, project.settings.width, project.settings.height]);
   useEffect(() => { if (props.cropping) { viewportDrag.current = null; setNavigating(false); } }, [props.cropping]);
 
   const [layers, setLayers] = useState<LayerBox[]>([]);
@@ -202,7 +204,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const W = project.settings.width;
   const H = project.settings.height;
   // Largest page of the project's shape that fits the space we were given.
-  const k = area.w && area.h ? Math.min(Math.max(1, area.w - (layoutGuides.rulers ? 36 : 0)) / W, Math.max(1, area.h - 48 - (layoutGuides.rulers ? 36 : 0)) / H) : 0;
+  const k = area.w && area.h ? Math.min(Math.max(1, area.w - 36) / W, Math.max(1, area.h - 48 - 36) / H) : 0;
   const viewW = W * k;
   const viewH = H * k;
   const viewportSize = { w: area.w, h: Math.max(1, area.h - 48) };
@@ -210,8 +212,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
 
   // Everything the gesture callbacks read, kept current without rebuilding them.
-  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, origin, viewportSize });
-  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, origin, viewportSize };
+  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, origin, viewportSize });
+  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, origin, viewportSize };
   const drag = useRef<Drag | null>(null);
   const strokeLease = useRef<ProjectEditLease | null>(null);
   const strokeOwner = useRef<string | null>(null);
@@ -939,6 +941,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .maxPointers(2)
       .onStart((e) => {
         const { props: p } = live.current;
+        if (live.current.editingGuides) return;
         if (live.current.navigating) { joinViewport("pan"); return; }
         if (p.pen) {
           const lease = p.onGestureStart?.() ?? null;
@@ -999,7 +1002,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const pinch = Gesture.Pinch()
       .runOnJS(true)
-      .onStart((event) => { if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
+      .onStart((event) => { if (live.current.editingGuides) return; if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (viewportDrag.current?.active.has("pinch")) { viewportDrag.current.factor = e.scale; applyViewport(); return; }
         if (!drag.current) return;
@@ -1010,7 +1013,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const rotate = Gesture.Rotation()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen && !live.current.navigating) join("rotate", live.current.props.selectedId); })
+      .onStart(() => { if (!live.current.props.pen && !live.current.navigating && !live.current.editingGuides) join("rotate", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.rotation = (e.rotation * 180) / Math.PI;
@@ -1021,7 +1024,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tap = Gesture.Tap()
       .runOnJS(true)
       .onEnd((e) => {
-        if (live.current.props.pen || live.current.navigating) return;
+        if (live.current.props.pen || live.current.navigating || live.current.editingGuides) return;
         const hit = hitTest(e.x, e.y);
         if (!live.current.props.cropping || hit?.id !== live.current.props.selectedId) live.current.props.onSelect(hit ? hit.id : null);
       });
@@ -1030,6 +1033,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       .runOnJS(true)
       .numberOfTaps(2)
       .onEnd((e) => {
+        if (live.current.editingGuides) return;
         if (live.current.navigating) { viewportDrag.current = null; setViewport(FIT_VIEWPORT); return; }
         const hit = hitTest(e.x, e.y);
         if (!hit) return;
@@ -1045,7 +1049,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
   const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
-  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating ? (memberBoxes.length > 1 ? (() => {
+  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating && !editingGuides ? (memberBoxes.length > 1 ? (() => {
     const extents = memberBoxes.map(box => {
       const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
       return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };
@@ -1054,7 +1058,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const top = Math.min(...extents.map(e => e.box.cy - e.hh)), bottom = Math.max(...extents.map(e => e.box.cy + e.hh));
     return { ...memberBoxes[0], cx: (left + right) / 2, cy: (top + bottom) / 2, w: right - left, h: bottom - top, rotation: 0 };
   })() : layers.find(l => l.id === selectedId)) : null;
-  const showPath = path && pathClip && path.id === pathClip.id && !props.pen ? path : null;
+  const showPath = path && pathClip && path.id === pathClip.id && !props.pen && !editingGuides ? path : null;
 
   return (
     <View
@@ -1120,9 +1124,9 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
-            {layoutGuides.rulers && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} />}
-            {layoutGuides.visible && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
-            {layoutGuides.visible && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {(layoutGuides.rulers || editingGuides) && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} />}
+            {layoutGuides.visible && !editingGuides && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && !editingGuides && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
             {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1 / viewport.zoom, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
             {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 / viewport.zoom, width: 1 / viewport.zoom }]} />}
             {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 / viewport.zoom, height: 1 / viewport.zoom }]} />}
@@ -1162,14 +1166,16 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           </View>
         </GestureDetector>
       )}
-            {props.cropping && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
-      <View className="absolute bottom-0 left-0 right-0 flex-row items-center justify-end border-t border-white/10 bg-black/90 px-2" style={{ height: 44, gap: 6 }}>
-        <Pressable accessibilityRole="button" accessibilityState={{ selected: navigating }} onPress={() => { endDrag(); viewportDrag.current = null; setNavigating(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${navigating ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t("editor.viewport.pan", { defaultValue: "Pan canvas" })}</Text></Pressable>
+      {k > 0 && <GuideEditorOverlay project={project} active={editingGuides} rulers={layoutGuides.rulers || editingGuides} disabled={!editingGuides && (!!props.pen || !!props.cropping || navigating || !!props.playing)} page={{ ...origin, w: viewW * viewport.zoom, h: viewH * viewport.zoom }} viewport={viewportSize} onActivate={() => { endDrag(); if (props.playing) props.onEnded?.(time); setEditingGuides(true); }} onBegin={props.onGestureStart} onCommit={next => { props.onLiveChange(next); props.onGestureEnd(); }} />}
+            {props.cropping && !editingGuides && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/90" style={{ height: 44 }} contentContainerStyle={{ alignItems: "center", justifyContent: "flex-end", flexGrow: 1, paddingHorizontal: 8, gap: 6 }}>
+        <Pressable accessibilityRole="button" accessibilityState={{ selected: editingGuides }} onPress={() => { endDrag(); viewportDrag.current = null; setNavigating(false); if (props.playing) props.onEnded?.(time); setEditingGuides(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${editingGuides ? "border-cyan-300 bg-cyan-300/15" : "border-white/20"}`}><Text className="text-xs text-white">{t(editingGuides ? "editor.guides.done" : "editor.guides.edit", { defaultValue: editingGuides ? "Done guides" : "Edit guides" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" accessibilityState={{ selected: navigating }} onPress={() => { endDrag(); viewportDrag.current = null; setEditingGuides(false); setNavigating(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${navigating ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t("editor.viewport.pan", { defaultValue: "Pan canvas" })}</Text></Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomOut", { defaultValue: "Zoom canvas out" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom / 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">−</Text></Pressable>
         <Text className="min-w-[36px] text-center text-xs text-white/60">{Math.round(k * viewport.zoom * 100)}%</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomIn", { defaultValue: "Zoom canvas in" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom * 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">+</Text></Pressable>
         <Pressable accessibilityRole="button" onPress={() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.viewport.fit", { defaultValue: "Fit" })}</Text></Pressable>
-      </View>
+      </ScrollView>
     </View>
   );
 });
