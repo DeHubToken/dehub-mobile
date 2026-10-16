@@ -17,11 +17,11 @@ export function reportDesignClipboard(feedback: DesignClipboardFeedback): void {
 export function subscribeDesignClipboard(listener: () => void): () => void { listeners.add(listener); return () => { listeners.delete(listener); }; }
 
 /** Capture a page-relative selection; content and styles are copied together. */
-export function copyDesignSelection(project: ProjectSnapshot, ids: readonly string[], time: number): number {
+export function captureDesignSelection(project: ProjectSnapshot, ids: readonly string[], time: number): DesignClipboard | null {
   const chosen = new Set(groupedSelection(project.clips, ids, time)), page = pageAt(getPages(project.settings, project.clips), time);
   const hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
   const picked = project.clips.filter(clip => chosen.has(clip.id) && clip.kind !== "audio" && !clip.locked && !clip.hidden && !clip.isPageBackground && !hidden.has(clip.trackId) && clip.start < page.end && clip.start + clip.duration > page.start);
-  if (!picked.length) return 0;
+  if (!picked.length) return null;
   if (picked.length > 100) throw new Error("Copy up to 100 layers at a time");
   const layers = picked.flatMap(clip => {
     const track = project.tracks.find(track => track.id === clip.trackId);
@@ -31,9 +31,15 @@ export function copyDesignSelection(project: ProjectSnapshot, ids: readonly stri
   }).sort((a, b) => project.tracks.indexOf(a.track) - project.tracks.indexOf(b.track));
   const json = JSON.stringify({ projectId: project.id, layers });
   if (json.length > 2 * 1024 * 1024) throw new Error("This selection is too large to copy. Choose fewer layers");
-  clipboard = JSON.parse(json) as DesignClipboard;
-  reportDesignClipboard({ kind: "copied", count: layers.length });
-  return layers.length;
+  return JSON.parse(json) as DesignClipboard;
+}
+
+export function copyDesignSelection(project: ProjectSnapshot, ids: readonly string[], time: number): number {
+  const source = captureDesignSelection(project, ids, time);
+  if (!source) return 0;
+  clipboard = source;
+  reportDesignClipboard({ kind: "copied", count: source.layers.length });
+  return source.layers.length;
 }
 
 export function pasteDesignSelection(project: ProjectSnapshot, time: number, source: DesignClipboard | null, makeId: () => string): { project: ProjectSnapshot; ids: string[]; skipped: number } | null {
@@ -58,7 +64,11 @@ export function pasteDesignSelection(project: ProjectSnapshot, time: number, sou
 
 export function cutDesignSelection(project: ProjectSnapshot, ids: readonly string[], time: number, makeId: () => string): ProjectSnapshot {
   if (!copyDesignSelection(project, ids, time)) return project;
-  const selected = new Set(clipboard!.layers.map(layer => layer.clip.id)), pages = getPages(project.settings, project.clips), page = pageAt(pages, time);
+  return removeDesignSelectionFromPage(project, clipboard!.layers.map(layer => layer.clip.id), time, makeId);
+}
+
+export function removeDesignSelectionFromPage(project: ProjectSnapshot, ids: readonly string[], time: number, makeId: () => string): ProjectSnapshot {
+  const selected = new Set(ids), pages = getPages(project.settings, project.clips), page = pageAt(pages, time);
   const clips = project.clips.flatMap<Clip>(clip => {
     if (!selected.has(clip.id)) return [clip];
     const parts: Clip[] = [], before = page.start - clip.start, after = clip.start + clip.duration - page.end;
