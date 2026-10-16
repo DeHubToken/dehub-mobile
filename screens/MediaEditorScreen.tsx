@@ -1,3 +1,4 @@
+import type { DesignPdfLink } from "../libs/editor/designLinks";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
@@ -1502,7 +1503,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const ctl = new AbortController(); downloadController.current = ctl;
     setPlaying(false); setExportOpen(false); setRendering(0);
     try {
-      await exportPdf(current, canvasTime, scope, time => canvas.exportImage("jpeg", 0.95, time), ctl.signal, setRendering);
+      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }); return { dataUrl, links }; }, ctl.signal, setRendering);
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
     } finally {

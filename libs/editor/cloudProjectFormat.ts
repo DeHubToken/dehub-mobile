@@ -1,3 +1,4 @@
+import { normaliseDesignLink } from "./designLinks";
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
 import { validDataVisuals } from "./dataVisuals";
@@ -87,6 +88,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
     if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
     if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
+    if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

@@ -1,3 +1,4 @@
+import type { DesignPdfLink } from "../../libs/editor/designLinks";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 /**
  * The editor page: a WebView that draws the design (see libs/editor/canvasHtml)
@@ -55,7 +56,7 @@ export interface EditorCanvasHandle {
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
-  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean) => Promise<string>;
+  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean, onLinks?: (links: DesignPdfLink[]) => void) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
   /**
@@ -160,7 +161,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [stroke, setStroke] = useState<[number, number][] | null>(null);
   const strokeRef = useRef<[number, number][] | null>(null);
   const sentMedia = useRef(new Set<string>());
-  const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void; cleanup: () => void }>());
+  const exports = useRef(new Map<string, { resolve: (v: string) => void; onLinks?: (links: DesignPdfLink[]) => void; reject: (e: Error) => void; cleanup: () => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
@@ -398,6 +399,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       }
       case "exported":
         exports.current.get(msg.reqId)?.cleanup();
+        exports.current.get(msg.reqId)?.onLinks?.(Array.isArray(msg.links) ? msg.links : []);
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
         break;
@@ -667,7 +669,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
-    exportImage: (format, quality = 0.92, time, transparent = false) =>
+    exportImage: (format, quality = 0.92, time, transparent = false, onLinks) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const timer = setTimeout(() => {
@@ -677,8 +679,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
             reject(new Error("export timed out"));
           }
         }, 30000);
-        exports.current.set(reqId, { resolve, reject, cleanup: () => clearTimeout(timer) });
-        post({ type: "export", reqId, format, quality, time, transparent });
+        exports.current.set(reqId, { resolve, reject, onLinks, cleanup: () => clearTimeout(timer) });
+        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {
