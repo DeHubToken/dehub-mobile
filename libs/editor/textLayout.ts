@@ -1,3 +1,4 @@
+import { wrapTextParagraph } from "./textParagraphWrap";
 import { formatTextList, type TextListStyle } from "./textList";
 import { curvedTextLayout } from "./curvedText";
 export interface MeasuredTextStyle {
@@ -41,30 +42,21 @@ export function measuredTextLayout(
     const echoPad = Math.max(0, ...(text.echo ?? []).slice(0, 3).map(layer => Math.max(Math.abs(layer.x), Math.abs(layer.y)) / 1080 * H * scale));
     const pad = Math.max(0, padding, echoPad, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
     const available = Math.max(0.1, widthLimit - pad * 2);
-    const lines: string[] = [];
+    const lines: string[] = [], offsets: number[] = [];
     const width = (line: string) => measure(line, size, spacing);
-    raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
-      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); return; }
-      let line = "";
-      paragraph.trim().split(/\s+/).forEach(word => {
-        const candidate = line ? line + " " + word : word;
-        if (width(candidate) <= available) { line = candidate; return; }
-        if (line) { lines.push(line); line = ""; }
-        if (width(word) <= available) { line = word; return; }
-        const Segmenter = (Intl as unknown as { Segmenter?: new (locale?: string, options?: { granularity: string }) => { segment(value: string): Iterable<{ segment: string }> } }).Segmenter;
-        const parts = Segmenter ? Array.from(new Segmenter(undefined, { granularity: "grapheme" }).segment(word), part => part.segment) : Array.from(word);
-        parts.forEach(part => {
-          if (line && width(line + part) > available) { lines.push(line); line = ""; }
-          line += part;
-        });
-      });
-      lines.push(line);
+    raw.replace(/
+?/g, "
+").split("
+").forEach(paragraph => {
+      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
+      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && text.align === "left" && Math.abs(text.curve ?? 0) < 0.01);
+      lines.push(...wrapped.lines); offsets.push(...wrapped.offsets);
     });
     const widths = lines.map(width);
     const lh = size * (text.lineHeight ?? 1.2);
-    const maxW = Math.max(0.1, ...widths);
+    const maxW = Math.max(0.1, ...widths.map((value, index) => value + offsets[index]));
     const curve = curvedTextLayout(lines, size, lh, text.curve ?? 0, width);
-    return { size, scale, spacing, lh, lines, widths, maxW, pad, curve };
+    return { size, scale, spacing, lh, lines, offsets, widths, maxW, pad, curve };
   }
 
   const fits = (value: ReturnType<typeof layout>) => (value.curve?.width ?? value.maxW) + value.pad * 2 <= widthLimit + 0.01
