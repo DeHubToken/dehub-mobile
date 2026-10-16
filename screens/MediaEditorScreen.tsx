@@ -1974,10 +1974,11 @@ function TextPrompt(props: {
 }) {
   const { t } = useTranslation();
   const [value, setValue] = useDraftState(props.draftScope, props.initial);
-  const history = useTextDraftHistory(`${props.draftScope}:${props.visible}`, value, setValue);
+  const accountScope = useAccountDraftKey(props.draftScope);
+  const history = useTextDraftHistory(`${accountScope}:${props.visible}`, value, setValue);
   const inputRef = useRef<TextInput>(null);
   const selection = useRef({ start: 0, end: 0 });
-  useEffect(() => { selection.current = { start: 0, end: 0 }; }, [props.draftScope, props.visible]);
+  useEffect(() => { selection.current = { start: 0, end: 0 }; }, [accountScope, props.visible]);
   const applyCase = (mode: TextCase) => {
     const next = changeSelectedTextCase(value, selection.current, mode);
     history.change(next.value); selection.current = next.selection;

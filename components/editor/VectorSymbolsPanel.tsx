@@ -1,3 +1,4 @@
+import { useEditorLibrary } from "../../libs/editor/useEditorLibrary";
 import ColourPickerButton from "./ColourPickerButton";
 import React, { useEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -9,19 +10,22 @@ import { VECTOR_SYMBOLS, putVectorSymbol, searchVectorSymbols, vectorSymbolSvg }
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
-const CATEGORY_NAMES: Record<string, string> = { all: "All", essentials: "Essentials", communication: "Communication", media: "Media and games", people: "People", objects: "Objects", nature: "Nature", commerce: "Commerce", learning: "Learning", travel: "Travel", technology: "Technology", food: "Food and drink" };
+const CATEGORY_NAMES: Record<string, string> = { all: "All", saved: "Saved", recent: "Recent", essentials: "Essentials", communication: "Communication", media: "Media and games", people: "People", objects: "Objects", nature: "Nature", commerce: "Commerce", learning: "Learning", travel: "Travel", technology: "Technology", food: "Food and drink" };
 
 export default function VectorSymbolsPanel({ project, time, selectedId, current, commit, select }: {
   project: ProjectSnapshot; time: number; selectedId: string | null; current: () => ProjectSnapshot | null;
   commit: (next: ProjectSnapshot) => void; select: (id: string) => void;
 }) {
   const { t } = useTranslation();
+  const library = useEditorLibrary("symbols");
   const selected = project.clips.find(clip => clip.id === selectedId);
   const existing = selected?.kind === "shape" && selected.symbol ? selected : undefined;
   const [symbol, setSymbol] = useState("check-circle"), [query, setQuery] = useState(""), [category, setCategory] = useState("all"), [page, setPage] = useState(0);
   const [colour, setColour] = useState("#ffffff"), [weight, setWeight] = useState(8);
   useEffect(() => { if (existing) { setSymbol(existing.symbol!); setColour(existing.stroke?.color ?? "#ffffff"); setWeight(existing.stroke?.width ?? 8); } }, [existing?.id, existing?.symbol, existing?.stroke]);
-  const matches = useMemo(() => searchVectorSymbols(query, category), [query, category]);
+  const matches = useMemo(() => searchVectorSymbols(query, category === "saved" || category === "recent" ? "all" : category)
+    .filter(item => category !== "saved" && category !== "recent" || library[category].includes(item.id))
+    .sort((a, b) => category === "recent" ? library.recent.indexOf(a.id) - library.recent.indexOf(b.id) : 0), [query, category, library.saved, library.recent]);
   const index = Math.min(page, Math.max(0, Math.ceil(matches.length / 24) - 1)), chosen = VECTOR_SYMBOLS.find(item => item.id === symbol), validColour = /^#[\da-f]{6}$/i.test(colour);
   const chip = (label: string, onPress: () => void, active = false, disabled = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active, disabled }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white/15" : "border-white/20"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
   return <View className="px-3" style={{ gap: 10 }}>
@@ -34,7 +38,8 @@ export default function VectorSymbolsPanel({ project, time, selectedId, current,
     <View className="flex-row items-center border-t border-white/10 pt-3" style={{ gap: 12 }}><Svg width={40} height={40} viewBox="-1 -1 26 26"><Path d={vectorSymbolSvg(symbol)} fill="none" stroke={validColour ? colour : "#ffffff"} strokeWidth={Math.max(0.5, weight / 6)} strokeLinecap="round" strokeLinejoin="round" /></Svg><Text className="text-xs text-white/75">{chosen && t(`editor.symbols.item.${chosen.id}`, { defaultValue: chosen.label })}</Text></View>
     <Text className="text-xs text-white/60">{t("editor.symbols.colour", { defaultValue: "Colour" })}</Text><TextInput value={colour} onChangeText={setColour} maxLength={7} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.symbols.colour", { defaultValue: "Colour" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
     <Text className="text-xs text-white/60">{t("editor.symbols.weight", { defaultValue: "Line weight" })}: {weight}</Text><Slider minimumValue={1} maximumValue={40} step={1} value={weight} onValueChange={setWeight} accessibilityLabel={t("editor.symbols.weight", { defaultValue: "Line weight" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" />
-    <Pressable accessibilityRole="button" disabled={!!existing?.locked || !validColour} onPress={() => { const latest = current(); if (!latest || latest.id !== project.id) return; const result = putVectorSymbol(latest, time, symbol, colour, weight, () => newId(10), existing?.id); if (result) { commit(result.project); select(result.id); } }} className="min-h-[40px] items-center justify-center rounded-lg bg-white px-3" style={{ opacity: existing?.locked || !validColour ? 0.35 : 1 }}><Text className="text-xs font-medium text-black">{t(existing ? "editor.symbols.update" : "editor.symbols.insert", { defaultValue: existing ? "Update symbol" : "Insert symbol" })}</Text></Pressable>
+    {chip(t(library.saved.includes(symbol) ? "editor.symbols.unsave" : "editor.symbols.save", { defaultValue: library.saved.includes(symbol) ? "Remove from saved symbols" : "Save symbol" }), () => library.toggle(symbol), library.saved.includes(symbol))}
+    <Pressable accessibilityRole="button" disabled={!!existing?.locked || !validColour} onPress={() => { const latest = current(); if (!latest || latest.id !== project.id) return; const result = putVectorSymbol(latest, time, symbol, colour, weight, () => newId(10), existing?.id); if (result) { commit(result.project); library.record(symbol); select(result.id); } }} className="min-h-[40px] items-center justify-center rounded-lg bg-white px-3" style={{ opacity: existing?.locked || !validColour ? 0.35 : 1 }}><Text className="text-xs font-medium text-black">{t(existing ? "editor.symbols.update" : "editor.symbols.insert", { defaultValue: existing ? "Update symbol" : "Insert symbol" })}</Text></Pressable>
     <Text className="text-xs text-white/45">{t("editor.symbols.hint", { defaultValue: "Symbols stay editable. Recolour, resize, rotate, group, or add effects using the layer controls." })}</Text>
   </View>;
 }
