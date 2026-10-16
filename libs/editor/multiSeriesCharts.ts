@@ -66,7 +66,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       if (showGrid) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
       ctx.fillStyle = chart.textColour;
       if (showScale) { ctx.textAlign = "right"; label(labelValue(Number((minimum + span * tick / 4).toPrecision(3))), x0 - font / 2, y, font * 2.5); }
-      if (chart.showLabels) { ctx.textAlign = "center"; label(chartValueLabel(Number((minX + spanX * tick / 4).toPrecision(3)), undefined), x, y1 + font * 1.2, plotWidth / 4 * 0.95); }
+      if (chart.showLabels) { ctx.textAlign = "center"; label(chartValueLabel(Number((minX + spanX * tick / 4).toPrecision(3)), chart.xValueFormat), x, y1 + font * 1.2, plotWidth / 4 * 0.95); }
     }
     ctx.strokeStyle = chart.textColour; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
     if (!bubble && chart.scatterLines) series.forEach((_, set) => {
@@ -82,7 +82,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       ctx.fillStyle = bubble ? pointColour + Math.round((chart.areaOpacity ?? 0.55) * 255).toString(16).padStart(2, "0") : pointColour;
       ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill();
       if (bubble) { ctx.strokeStyle = pointColour; ctx.lineWidth = Math.max(1, width / 900) * (chart.lineWidth ?? 1); ctx.stroke(); }
-      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(bubble ? labelValue(value) + " / " + chartValueLabel(sizes[index], undefined) : labelValue(value), x, y - (bubble ? radius + font * 0.6 : font * 0.8), Math.max(font * 3, plotWidth / rows.length)); }
+      if (chart.showValues) { const pointLabel = chart.pointLabelMode === "coordinates" ? "(" + chartValueLabel(xs[index], chart.xValueFormat) + ", " + labelValue(value) + ")" : labelValue(value); ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(bubble ? pointLabel + " / " + chartValueLabel(sizes[index], undefined) : pointLabel, x, y - (bubble ? radius + font * 0.6 : font * 0.8), Math.max(font * 3, plotWidth / rows.length)); }
     }));
     drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font);
     return true;
