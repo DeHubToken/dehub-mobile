@@ -1,6 +1,7 @@
 export interface MeasuredTextStyle {
   text: string;
   uppercase?: boolean;
+  list?: "none" | "bullet" | "number";
   fontSize: number;
   lineHeight?: number;
   letterSpacing?: number;
@@ -18,7 +19,10 @@ export function measuredTextLayout(
   text: MeasuredTextStyle, W: number, H: number,
   measure: (line: string, size: number, spacing: number) => number,
 ) {
-  const raw = text.uppercase ? text.text.toUpperCase() : text.text;
+  const source = text.uppercase ? text.text.toUpperCase() : text.text;
+  let item = 0;
+  const raw = text.list === "bullet" || text.list === "number" ? source.replace(/\r\n?/g, "\n").split("\n")
+    .map(line => line.trim() ? (text.list === "bullet" ? "• " : String(++item) + ". ") + line : line).join("\n") : source;
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth! > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight! > 0;

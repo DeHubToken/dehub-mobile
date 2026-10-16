@@ -598,17 +598,24 @@ canvas{display:block;width:100%;height:100%;}
     } else {
       applyShadow(c, text, H);
     }
-    if (text.stroke && text.stroke.width > 0) {
-      c.setLineDash((Array.isArray(text.stroke.dash) ? text.stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
-      c.lineWidth = (text.stroke.width / 1080) * H * l.scale;
-      c.strokeStyle = text.stroke.color;
+    var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
+    if (textStroke && textStroke.width > 0) {
+      c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.lineWidth = (textStroke.width / 1080) * H * l.scale;
+      c.strokeStyle = textStroke.color;
       c.lineJoin = "round";
       l.lines.forEach(function (ln, i) { c.strokeText(ln, ax, startY + i * l.lh); });
       clearShadow(c);
     }
     c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
-    l.lines.forEach(function (ln, i) { c.fillText(ln, ax, startY + i * l.lh); });
+    if (!text.hollow) l.lines.forEach(function (ln, i) { c.fillText(ln, ax, startY + i * l.lh); });
     clearShadow(c);
+    if (text.strikethrough) {
+      l.lines.forEach(function(line, i) {
+        var width = l.widths[i], left = text.align === "centre" ? ax - width / 2 : text.align === "left" ? ax : ax - width;
+        c.fillRect(left, startY + i * l.lh, width, Math.max(1, l.size * 0.055));
+      });
+    }
     if (text.underline) {
       var thick = Math.max(1, l.size * 0.06);
       l.lines.forEach(function (_, i) {

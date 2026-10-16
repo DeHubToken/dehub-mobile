@@ -43,6 +43,7 @@ import ExportSheet from "../components/editor/ExportSheet";
 import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
 import { exportPageArchive } from "../libs/editor/exportPageArchive";
 import { exportPdf } from "../libs/editor/exportPdf";
+import { replaceDesignMedia } from "../libs/editor/replaceMedia";
 import { pageExportFrames, type PageExportScope } from "../libs/editor/pageExports";
 import { saveGif } from "../libs/editor/saveGif";
 import { exportBaseName, exportFilename } from "../libs/editor/exportName";
@@ -354,7 +355,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
-  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
   icon: IconName;
   label: string;
 }
@@ -572,8 +573,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     else h.commit(next);
   };
 
-  const addPhoto = async () => {
-    if (!project) return;
+  const addPhoto = async (replaceId?: string) => {
+    if (!project || (replaceId && getClip(project, replaceId)?.locked)) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
     if (!task) return;
     try {
@@ -584,6 +585,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const a = res.assets[0];
         const meta = await importPicture({ uri: a.uri, width: a.width, height: a.height, mimeType: a.mimeType, fileName: a.fileName });
         if (!task.isCurrent()) return;
+        if (replaceId) {
+          const target = project.clips.find(c => c.id === replaceId);
+          const previous = target && "mediaId" in target ? await getMedia(target.mediaId) : null;
+          if (!task.isCurrent()) return;
+          const next = replaceDesignMedia(project, replaceId, meta, previous);
+          if (next !== project) { h.commit(next); select(replaceId); }
+          return;
+        }
         const { project: next, clipId } = addImage(project, meta.id);
         h.commit(atPlayhead(next, clipId));
         select(clipId);
@@ -604,15 +613,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     return updateClip(p, clipId, { start: page.start, duration: page.end - page.start });
   };
 
-  const addVideos = async () => {
-    if (!project) return;
+  const addVideos = async (replaceId?: string) => {
+    if (!project || (replaceId && getClip(project, replaceId)?.locked)) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
     if (!task) return;
     try {
       const res = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ["videos"],
-        allowsMultipleSelection: true,
-        selectionLimit: 20,
+        allowsMultipleSelection: !replaceId,
+        selectionLimit: replaceId ? 1 : 20,
         orderedSelection: true,
         quality: 1,
         // iPhone HEVC and slow-mo come back as plain H.264 the canvas can decode.
@@ -635,6 +644,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
               duration: a.duration ? a.duration / 1000 : null,
             });
             if (!task.isCurrent()) return;
+            if (replaceId) {
+              const target = project.clips.find(c => c.id === replaceId);
+              const previous = target && "mediaId" in target ? await getMedia(target.mediaId) : null;
+              if (!task.isCurrent()) return;
+              next = replaceDesignMedia(project, replaceId, meta, previous); lastId = replaceId;
+              break;
+            }
             // The first video of a new design sets the page shape.
             if (!next.clips.length && meta.width && meta.height) next = setAspect(next, nearestAspect(meta.width / meta.height));
             const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 }, project.settings.pages?.length ? time : 0);
@@ -1063,6 +1079,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (!project) return;
     if (id === "ai") { setChatOpen(true); return; }
     if (id === "photo") { void addPhoto(); return; }
+    if (id === "replacePhoto" && selectedId) { void addPhoto(selectedId); return; }
+    if (id === "replaceVideo" && selectedId) { void addVideos(selectedId); return; }
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
@@ -1124,6 +1142,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
+        { id: "replaceVideo", icon: "Film", label: t("editor.media.replaceVideo", { defaultValue: "Replace video" }) },
         { id: "removeBg", icon: "Scissors", label: t(selected.videoMatte ? "editor.videoMatte.restore" : "editor.bgRemove.action") },
         { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
         { id: "highlights", icon: "Sparkles", label: t("editor.highlights.title") },
@@ -1173,6 +1192,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       ];
     }
     return [
+      { id: "replacePhoto", icon: "Image", label: t("editor.media.replacePhoto", { defaultValue: "Replace photo" }) },
       { id: "removeBg", icon: "Scissors", label: t("editor.bgRemove.action") },
       { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
       { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },

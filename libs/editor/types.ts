@@ -248,6 +248,9 @@ export interface TextClip extends BaseClip {
   italic?: boolean;
   uppercase?: boolean;
   underline?: boolean;
+  strikethrough?: boolean;
+  hollow?: boolean;
+  list?: "none" | "bullet" | "number";
   /** Extra space between letters, in px relative to 1080p. */
   letterSpacing?: number;
   /** Line height as a multiple of font size. Default 1.2. */
