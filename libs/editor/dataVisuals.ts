@@ -1,3 +1,4 @@
+import { chartXValue, CHART_DATE_MIN, CHART_DATE_MAX, type ChartDateFormat } from "./chartDateAxis";
 import { drawGraphicText } from "./graphicText";
 import { drawChartMarker, strokeChartPattern, type ChartPointShape, type ChartLinePattern } from "./chartMarks";
 import { validPictogramSymbol } from "./pictogramSymbol";
@@ -13,7 +14,7 @@ import { graphicFontCss, validGraphicFont } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
 import { traceChartLine, type ChartLineStyle } from "./chartLineStyle";
 import { drawChartLegend, type ChartLegendPosition } from "./chartLegend";
-import { chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
+import { CHART_NUMBER_LOCALES, chartValueLabel, validChartValueFormat, type ChartValueFormat } from "./chartValueFormat";
 import { validTableCellStyles, type TableCellStyles } from "./tableCellStyles";
 import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
@@ -22,6 +23,9 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  xAxisMode?: "number" | "date";
+  xDateFormat?: ChartDateFormat;
+  xDateLocale?: import("./chartValueFormat").ChartValueFormat["locale"];
   pointShape?: ChartPointShape;
   linePattern?: ChartLinePattern;
   seriesPatterns?: boolean;
@@ -303,7 +307,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
     if ((chart.kind === "treemap" || chart.kind === "packed-circles") && treemapDataError(chart.rows as { label: string; value: number }[])) return false;
     if (chart.kind === "funnel" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
-    if ((chart.kind === "scatter" || chart.kind === "bubble") && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
+    if ((chart.kind === "scatter" || chart.kind === "bubble") && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(chartXValue(row.label, String(chart.xAxisMode ?? "number"))))) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
     if (chart.kind === "bubble" && Array.isArray(chart.series)) { const size = (chart.series as { values: number[] }[])[Number(chart.bubbleSizeSeries ?? 1)]; if (size && (size.values.some(value => value < 0) || !size.values.some(value => value > 0))) return false; }
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
@@ -340,12 +344,15 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;
+    if (chart.xAxisMode !== undefined && !["number", "date"].includes(String(chart.xAxisMode))) return false;
+    if (chart.xDateFormat !== undefined && !["short", "month", "year", "time", "datetime"].includes(String(chart.xDateFormat))) return false;
+    if (chart.xDateLocale !== undefined && !(CHART_NUMBER_LOCALES as readonly string[]).includes(String(chart.xDateLocale))) return false;
     if (chart.pointShape !== undefined && !["circle", "square", "diamond", "triangle", "cross"].includes(String(chart.pointShape))) return false;
     if (chart.linePattern !== undefined && !["solid", "dashed", "dotted", "dash-dot"].includes(String(chart.linePattern))) return false;
     if (chart.seriesPatterns !== undefined && typeof chart.seriesPatterns !== "boolean") return false;
     if (chart.lineStyle !== undefined && !["straight", "step", "smooth"].includes(String(chart.lineStyle))) return false;
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
-    for (const key of ["scaleMin", "scaleMax", "scaleXMin", "scaleXMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
+    for (const key of ["scaleMin", "scaleMax", "scaleXMin", "scaleXMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || (chart.xAxisMode === "date" && (key === "scaleXMin" || key === "scaleXMax") ? value < CHART_DATE_MIN || value > CHART_DATE_MAX : Math.abs(value) > 1e12))) return false; }
     if (typeof chart.scaleMin === "number" && typeof chart.scaleMax === "number" && chart.scaleMin >= chart.scaleMax) return false;
     if (typeof chart.scaleXMin === "number" && typeof chart.scaleXMax === "number" && chart.scaleXMin >= chart.scaleXMax) return false;
     if (chart.showAxisValues !== undefined && typeof chart.showAxisValues !== "boolean") return false;
