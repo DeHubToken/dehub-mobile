@@ -1,11 +1,11 @@
 import { getPages } from "./pages";
 import type { ProjectSnapshot } from "./types";
 
-export interface PageDetails { title: string; notes: string; presentationHidden?: boolean }
+export interface PageDetails { title: string; notes: string; section?: string; presentationHidden?: boolean }
 
 export function pageDetails(project: ProjectSnapshot, index: number): PageDetails {
   const value = project.settings.pageDetails?.[index];
-  return { title: typeof value?.title === "string" ? value.title.slice(0, 200) : "", notes: typeof value?.notes === "string" ? value.notes.slice(0, 10000) : "", ...(value?.presentationHidden === true ? { presentationHidden: true } : {}) };
+  return { section: typeof value?.section === "string" ? value.section.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, 80) || undefined : undefined, title: typeof value?.title === "string" ? value.title.slice(0, 200) : "", notes: typeof value?.notes === "string" ? value.notes.slice(0, 10000) : "", ...(value?.presentationHidden === true ? { presentationHidden: true } : {}) };
 }
 
 /** Page names and presenter notes travel with the design and stay out of its artwork. */
@@ -13,8 +13,8 @@ export function setPageDetails(project: ProjectSnapshot, index: number, value: P
   const pages = getPages(project.settings, project.clips);
   if (!Number.isInteger(index) || !pages[index]) return project;
   const details = pages.map(page => pageDetails(project, page.index));
-  const next = { ...details[index], title: value.title.trim().slice(0, 200), notes: value.notes.slice(0, 10000), ...(typeof value.presentationHidden === "boolean" ? { presentationHidden: value.presentationHidden } : {}) };
-  if (details[index].title === next.title && details[index].notes === next.notes && !!details[index].presentationHidden === !!next.presentationHidden) return project;
+  const next = { ...details[index], ...(typeof value.section === "string" ? { section: value.section.trim().slice(0, 80) || undefined } : {}), title: value.title.trim().slice(0, 200), notes: value.notes.slice(0, 10000), ...(typeof value.presentationHidden === "boolean" ? { presentationHidden: value.presentationHidden } : {}) };
+  if (details[index].title === next.title && details[index].notes === next.notes && details[index].section === next.section && !!details[index].presentationHidden === !!next.presentationHidden) return project;
   details[index] = next;
   return { ...project, settings: { ...project.settings, pageDetails: details } };
 }
@@ -50,4 +50,18 @@ export function nameDesignPagesFromHeadings(project: ProjectSnapshot, indexes: r
     if (title !== details[page.index].title) { details[page.index] = { ...details[page.index], title }; count++; }
   }
   return { project: count ? { ...project, settings: { ...project.settings, pageDetails: details } } : project, count, missing };
+}
+
+export function setDesignPageSections(project: ProjectSnapshot, indexes: readonly number[], name: string) {
+  const pages = getPages(project.settings, project.clips), chosen = new Set(indexes);
+  if (!chosen.size || [...chosen].some(index => !Number.isInteger(index) || !pages[index])) throw new Error("Choose existing pages to organize");
+  if (name.length > 80) throw new Error("Keep section names within 80 characters");
+  const section = name.replace(/[\u0000-\u001f\u007f]/g, " ").trim() || undefined;
+  const details = pages.map(page => pageDetails(project, page.index)); let count = 0;
+  const next = details.map((detail, index) => { if (!chosen.has(index) || detail.section === section) return detail; count++; return { ...detail, section }; });
+  if (!count) return { project, count };
+  const updated = { ...project, settings: { ...project.settings, pageDetails: next } };
+  let bytes = 0; for (const char of JSON.stringify(updated)) { const value = char.codePointAt(0)!; bytes += value < 128 ? 1 : value < 2048 ? 2 : value < 65536 ? 3 : 4; }
+  if (bytes > 6 * 1024 * 1024) throw new Error("This section change would make the design too large to save");
+  return { project: updated, count };
 }
