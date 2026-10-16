@@ -1,3 +1,4 @@
+import RepeatGridPanel from "./RepeatGridPanel";
 import SelectionTransformControls from "./SelectionTransformControls";
 import React, { useState } from "react";
 import { Pressable, Text, View } from "react-native";
@@ -14,6 +15,7 @@ export default function DesignLayoutPanel({ project, ids, current, commit, boxes
   commit: (next: ProjectSnapshot) => void; boxes: () => DesignLayoutBox[]; time: number; recording?: boolean;
 }) {
   const { t } = useTranslation();
+  const [repeatOpen, setRepeatOpen] = useState(false);
   const [reference, setReference] = useState<"page" | "selection">("selection");
   const [columns, setColumns] = useState("0"), [gap, setGap] = useState("24");
   const apply = (action: LayoutAction) => {
@@ -44,5 +46,6 @@ export default function DesignLayoutPanel({ project, ids, current, commit, boxes
       <View className="flex-1" style={{ gap: 6 }}><Text className="text-xs text-white/60">{t("editor.layout.columns", { defaultValue: "Grid columns (0 = auto)" })}</Text><TextInput accessibilityLabel={t("editor.layout.columns", { defaultValue: "Grid columns (0 = auto)" })} value={columns} onChangeText={setColumns} keyboardType="number-pad" maxLength={2} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View>
       <View className="flex-1" style={{ gap: 6 }}><Text className="text-xs text-white/60">{t("editor.layout.gap", { defaultValue: "Grid gap in pixels" })}</Text><TextInput accessibilityLabel={t("editor.layout.gap", { defaultValue: "Grid gap in pixels" })} value={gap} onChangeText={setGap} keyboardType="number-pad" maxLength={4} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View>
     </View>
+    <View className="border-t border-white/10 pt-3" style={{ gap: 8 }}><Pressable accessibilityRole="button" accessibilityState={{ expanded: repeatOpen }} onPress={() => setRepeatOpen(!repeatOpen)} className="min-h-[40px] justify-center"><Text className="text-xs font-semibold text-white/75">{t("editor.repeat.multiSelection", { defaultValue: "Repeat selected artwork as one tile" })} {repeatOpen ? "−" : "+"}</Text></Pressable>{repeatOpen && <RepeatGridPanel project={project} selectedId={null} selectedIds={ids} time={time} current={current} commit={commit} boxes={boxes} />}</View>
   </View>;
 }
