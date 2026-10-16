@@ -1,3 +1,4 @@
+import ChartScaleControls from "./ChartScaleControls";
 import ChartGeometryControls from "./ChartGeometryControls";
 import React from "react";
 import { Pressable, Switch, Text, View } from "react-native";
@@ -5,7 +6,7 @@ import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { chartValueLabel, type ChartValueFormat } from "../../libs/editor/chartValueFormat";
 import type { ChartData } from "../../libs/editor/dataVisuals";
-export type ChartAppearance = Pick<ChartData, "valueFormat" | "donutHole" | "lineWidth" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition">;
+export type ChartAppearance = Pick<ChartData, "valueFormat" | "donutHole" | "lineWidth" | "pointSize" | "areaOpacity" | "barGap" | "showGrid" | "showAxisValues" | "legendPosition" | "scaleMin" | "scaleMax">;
 export default function ChartFormattingPanel({ kind, value, onChange, multiple = false }: { kind: ChartData["kind"]; multiple?: boolean; value: ChartAppearance; onChange: (value: ChartAppearance) => void }) {
   const { t } = useTranslation(), format = value.valueFormat;
   const change = (patch: Partial<ChartValueFormat>) => onChange({ ...value, valueFormat: { style: "number", currency: "USD", decimals: 0, compact: false, ...format, ...patch } });
@@ -15,6 +16,7 @@ export default function ChartFormattingPanel({ kind, value, onChange, multiple =
     {format?.style === "percent" && <Text className="text-xs text-white/45">{t("editor.charts.percentHint", { defaultValue: "Enter percentage points: a value of 25 displays as 25%." })}</Text>}
     {kind === "donut" && <View><Text className="text-xs text-white/65">{t("editor.charts.donutHole", { defaultValue: "Donut hole" })}: {Math.round((value.donutHole ?? 0.57) * 100)}%</Text><Slider minimumValue={20} maximumValue={85} step={1} value={Math.round((value.donutHole ?? 0.57) * 100)} onValueChange={size => onChange({ ...value, donutHole: size / 100 })} accessibilityLabel={t("editor.charts.donutHole", { defaultValue: "Donut hole" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>}
     {(multiple || kind === "pie" || kind === "donut") && <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.charts.legendPosition", { defaultValue: "Legend position" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["top", "bottom", "left", "right"] as const).map(position => chip(t(`editor.charts.legend.${position}`, { defaultValue: ({ top: "Top", bottom: "Bottom", left: "Left", right: "Right" })[position] }), (value.legendPosition ?? (kind === "pie" || kind === "donut" ? "right" : "bottom")) === position, () => onChange({ ...value, legendPosition: position })))}</View></View>}
+    {kind !== "pie" && kind !== "donut" && <ChartScaleControls value={value} onChange={scale => onChange({ ...value, ...scale })} />}
     <ChartGeometryControls value={value} kind={kind} multiple={multiple} onChange={geometry => onChange({ ...value, ...geometry })} />
   </View>;
 }
