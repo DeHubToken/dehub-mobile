@@ -82,7 +82,7 @@ function curvedTextLayout(lines, size, lineHeight, amount, measure) {
 
 function measuredTextLayout(text, W, H, measure) {
   const source = text.uppercase ? text.text.toUpperCase() : text.text;
-  const raw = formatTextList(source, text.list, text.listStyle);
+  const raw = formatTextList(source, text.list, text.listStyle), rtl = resolvedTextDirection(source, text.direction) === "rtl";
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight > 0;
@@ -102,12 +102,12 @@ function measuredTextLayout(text, W, H, measure) {
     const width = (line) => measure(line, size, spacing);
     raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
       if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
-      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && text.align === "left" && Math.abs(text.curve ?? 0) < 0.01);
-      lines.push(...wrapped.lines); offsets.push(...wrapped.offsets);
+      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
+      lines.push(...wrapped.lines); offsets.push(...wrapped.offsets.map(offset => rtl && text.align === "right" ? -offset : offset));
     });
     const widths = lines.map(width);
     const lh = size * (text.lineHeight == null ? 1.2 : text.lineHeight);
-    const maxW = Math.max(0.1, ...widths.map((value, index) => value + offsets[index]));
+    const maxW = Math.max(0.1, ...widths.map((value, index) => value + Math.abs(offsets[index])));
     const curve = curvedTextLayout(lines, size, lh, text.curve || 0, width);
     return { size, scale, spacing, lh, lines, offsets, widths, maxW, pad, curve };
   }

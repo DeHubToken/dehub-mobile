@@ -252,6 +252,7 @@ export interface TextStroke {
 }
 
 export interface TextClip extends BaseClip {
+  direction?: import("./textDirection").TextDirection;
   listStyle?: import("./textList").TextListStyle;
   fillOpacity?: number;
   pageNumber?: import("./pageNumbering").PageNumberFormat;
