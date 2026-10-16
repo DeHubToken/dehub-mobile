@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
 import { groupedSelection } from "../../libs/editor/designGroups";
+import { getDesignGuides } from "../../libs/editor/designGuides";
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
@@ -152,7 +153,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const [webKey, setWebKey] = useState(0);
   const [area, setArea] = useState({ w: 0, h: 0 });
   const [layers, setLayers] = useState<LayerBox[]>([]);
-  const [guides, setGuides] = useState({ v: false, h: false });
+  const [guides, setGuides] = useState<{ v: number | null; h: number | null }>({ v: null, h: null });
+  const layoutGuides = getDesignGuides(project.settings.guides);
   // Stroke being drawn, in page pixels (preview only; committed on release).
   const [stroke, setStroke] = useState<[number, number][] | null>(null);
   const strokeRef = useRef<[number, number][] | null>(null);
@@ -795,12 +797,34 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tr = getTransform(resolveClipAt(base, now));
     let dx = d.dx / scaleK;
     let dy = d.dy / scaleK;
-    let v = false;
-    let h = false;
-    if (d.box) {
-      const snap = SNAP_PT / scaleK;
-      if (Math.abs(d.box.cx + dx - PW / 2) < snap) { dx = PW / 2 - d.box.cx; v = true; }
-      if (Math.abs(d.box.cy + dy - PH / 2) < snap) { dy = PH / 2 - d.box.cy; h = true; }
+    let v: number | null = null;
+    let h: number | null = null;
+    if (d.box && (d.dx || d.dy)) {
+      const threshold = SNAP_PT / scaleK, xs = [0, PW / 2, PW], ys = [0, PH / 2, PH];
+      const persistent = getDesignGuides(d.before.settings.guides);
+      if (persistent.snap) {
+        xs.push(...persistent.vertical.map(n => n * PW)); ys.push(...persistent.horizontal.map(n => n * PH));
+        if (persistent.margin) { const margin = persistent.margin * Math.min(PW, PH); xs.push(margin, PW - margin); ys.push(margin, PH - margin); }
+      }
+      const moving = new Set(groupedSelection(d.before.clips, [d.clipId], now));
+      for (const other of live.current.layers) {
+        if (moving.has(other.id)) continue;
+        const radians = other.rotation * Math.PI / 180, cos = Math.abs(Math.cos(radians)), sin = Math.abs(Math.sin(radians));
+        const hw = (other.w * cos + other.h * sin) / 2, hh = (other.w * sin + other.h * cos) / 2;
+        xs.push(other.cx - hw, other.cx, other.cx + hw); ys.push(other.cy - hh, other.cy, other.cy + hh);
+      }
+      const radians = d.box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(radians)), sin = Math.abs(Math.sin(radians));
+      const hw = (d.box.w * cos + d.box.h * sin) / 2, hh = (d.box.w * sin + d.box.h * cos) / 2;
+      const snap = (centre: number, half: number, lines: number[]) => {
+        let best: { distance: number; shift: number; line: number } | null = null;
+        for (const edge of [centre - half, centre, centre + half]) for (const line of lines) {
+          const distance = Math.abs(edge - line);
+          if (distance <= threshold && (!best || distance < best.distance)) best = { distance, shift: line - edge, line };
+        }
+        return best;
+      };
+      const sx = snap(d.box.cx + dx, hw, xs), sy = snap(d.box.cy + dy, hh, ys);
+      if (sx) { dx += sx.shift; v = sx.line; } if (sy) { dy += sy.shift; h = sy.line; }
     }
     let rotation = normaliseDeg(tr.rotation + d.rotation);
     const nearest = Math.round(rotation / 45) * 45;
@@ -846,7 +870,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     d.active -= 1;
     if (d.active > 0) return;
     drag.current = null;
-    setGuides({ v: false, h: false });
+    setGuides({ v: null, h: null });
     try { if (!d.lease || d.lease.isCurrent()) d.finish(); } finally { d.lease?.release(); }
   };
 
@@ -1038,8 +1062,11 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
-            {guides.v && <View pointerEvents="none" style={[styles.guideV, { left: viewW / 2 - 0.5 }]} />}
-            {guides.h && <View pointerEvents="none" style={[styles.guideH, { top: viewH / 2 - 0.5 }]} />}
+            {layoutGuides.visible && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
+            {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 }]} />}
+            {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 }]} />}
             {sel && (
               <View
                 pointerEvents="none"
