@@ -1,5 +1,5 @@
 export const MULTI_SERIES_CHARTS_RUNTIME = String.raw`function drawMultiSeriesChart(ctx, width, height, chart) {
-  if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut") return false;
+  if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut" || chart.kind === "funnel") return false;
   const family = graphicFontCss(chart.fontFamily);
   const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   if (!rows.length) return false;
