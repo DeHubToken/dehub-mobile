@@ -1,3 +1,4 @@
+import { validShapeGeometry } from "./shapeGeometry";
 import { validPageNumberFormat } from "./pageNumbering";
 import { VECTOR_SYMBOLS } from "./vectorSymbols";
 import { MEDIA_FRAMES, type MediaFrame } from "./mediaFrames";
@@ -96,6 +97,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.kind === "shape" && clip.symbol !== undefined && (typeof clip.symbol !== "string" || !VECTOR_SYMBOLS.some(symbol => symbol.id === clip.symbol) || clip.shape !== "rect" || clip.connector !== undefined || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined || clip.photoFrame)) fail();
     if (clip.kind === "shape" && (!validConnector(clip.connector) || (clip.connector !== undefined && (clip.shape !== "line" || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined)))) fail();
     if (clip.kind === "shape") {
+      if (!validShapeGeometry(clip.geometry)) fail();
       if (clip.pathSmoothing !== undefined && (typeof clip.pathSmoothing !== "number" || !Number.isFinite(clip.pathSmoothing) || clip.pathSmoothing < 0 || clip.pathSmoothing > 1)) fail();
       if (clip.closedPath !== undefined && typeof clip.closedPath !== "boolean") fail();
       if (clip.strokeCap !== undefined && !["round", "butt", "square"].includes(String(clip.strokeCap))) fail();

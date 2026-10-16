@@ -16,7 +16,7 @@ import { Chip, ChipRow, Range, Swatches, Toggle, StrokePattern, type LayerClip, 
 import { BLEND_MODES, SHAPE_KINDS, type BlendMode, type Clip, type ShapeClip, type ShapeKind } from "../../libs/editor/types";
 import type { Arrange } from "../../libs/editor/project";
 import Svg, { Polygon } from "react-native-svg";
-import { shapePolygon, SHAPE_NAMES } from "../../libs/editor/shapeGeometry";
+import { shapeGeometryParameters, shapePolygon, SHAPE_NAMES } from "../../libs/editor/shapeGeometry";
 
 const SHAPE_ICONS: Partial<Record<ShapeKind, IconName>> = {
   rect: "Square",
@@ -56,6 +56,8 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
   const s = clip.stroke;
   return (
     <View>
+      {shapeGeometryParameters(clip.shape, clip.geometry).map(parameter => <Range key={parameter.key} label={t(`editor.shape.geometry.${parameter.key}`, { defaultValue: parameter.label }) + ": " + (parameter.step < 1 ? Math.round(parameter.value * 100) + "%" : Math.round(parameter.value))} value={parameter.value} min={parameter.min} max={parameter.max} step={parameter.step} onLive={value => { if (!clip.locked) live({ geometry: { ...clip.geometry, [parameter.key]: value } }); }} onDone={settle} />)}
+      {clip.geometry && !clip.locked && <Pressable accessibilityRole="button" onPress={() => commit({ geometry: undefined })} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.shape.resetGeometry", { defaultValue: "Reset shape geometry" })}</Text></Pressable>}
       {!open && (
         <>
           <Toggle label={t("editor.shape.fillOn")} value={!!clip.fill} onChange={(on) => commit({ fill: on ? "#7c5cff" : null })} />

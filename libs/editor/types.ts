@@ -281,13 +281,14 @@ export interface TextClip extends BaseClip {
   maxHeight?: number;
 }
 
-export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow", "diamond", "pentagon", "octagon", "parallelogram", "trapezoid", "chevron", "cross", "speech-bubble"] as const;
+export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow", "diamond", "pentagon", "octagon", "polygon", "parallelogram", "trapezoid", "chevron", "cross", "speech-bubble"] as const;
 /** "path" is a freehand drawing; it is not offered in the shapes grid. */
 export type ShapeKindAll = (typeof SHAPE_KINDS)[number] | "path";
 export type ShapeKind = (typeof SHAPE_KINDS)[number];
 
 /** A vector shape. Size is a fraction of the page, before transform.scale. */
 export interface ShapeClip extends BaseClip {
+  geometry?: import("./shapeGeometry").ShapeGeometryOptions;
   kind: "shape";
   gradient?: import("./gradientFill").GradientFill | null;
   shape: ShapeKindAll;
