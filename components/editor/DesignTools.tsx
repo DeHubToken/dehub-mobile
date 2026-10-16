@@ -1,3 +1,4 @@
+import { DESIGN_PANEL_NAMES, designSelectionAction } from "../../libs/editor/designPanels";
 import VectorSymbolsPanel from "./VectorSymbolsPanel";
 import DesignClipboardControls from "./DesignClipboardControls";
 import ConnectorsPanel from "./ConnectorsPanel";
@@ -7,7 +8,7 @@ import { DesignDraftContext } from "./DesignDraftInput";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import React, { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Keyboard, Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { applyDesignPalette, applyDesignStyle, copyDesignStyle, designColours, DESIGN_PALETTES, DESIGN_SIZES, replaceDesignColour, resizeDesign, type DesignStyle } from "../../libs/editor/designTools";
 import type { ProjectSnapshot } from "../../libs/editor/types";
@@ -23,8 +24,8 @@ import DesignLinkPanel from "./DesignLinkPanel";
 import PageNotesPanel from "./PageNotesPanel";
 import GuidesPanel from "./GuidesPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent }: {
-  onPresent?: () => void;
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent, onEditContent }: {
+  onPresent?: () => void; onEditContent?: (id: string) => void;
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
   current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
@@ -38,6 +39,14 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
+  const contextual = selected ? designSelectionAction(selected) : null;
+  const panelTitle = panel ? t(`editor.designTools.panel.${panel}`, { defaultValue: DESIGN_PANEL_NAMES[panel] }) : "";
+  const editSelected = () => {
+    if (!contextual || !selected || selected.locked) return;
+    Keyboard.dismiss();
+    if (contextual.panel) setPanel(contextual.panel);
+    else { setPanel(null); onEditContent?.(selected.id); }
+  };
   const style = clipboard?.projectId === project.id ? clipboard.style : null;
   const apply = (operation: (value: ProjectSnapshot) => ProjectSnapshot) => {
     const latest = current();
@@ -49,6 +58,8 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
       {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
+      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? ""))}
+      {contextual && action(t(`editor.selectionAction.${contextual.id}`, { defaultValue: contextual.label }), editSelected, !!selected?.locked || (!contextual.panel && !onEditContent))}
       <DesignClipboardControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
       {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => { setWidth(String(project.settings.width)); setHeight(String(project.settings.height)); setPanel(panel === "resize" ? null : "resize"); }, false, panel === "resize")}
       {action(t("editor.designTools.colours", { defaultValue: "Document colours" }), () => setPanel(panel === "colours" ? null : "colours"), false, panel === "colours")}
@@ -60,13 +71,13 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       }, !selected || selected.kind === "audio")}
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
-      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? ""))}
       {action(t("editor.links.title", { defaultValue: "Link" }), () => setPanel(panel === "link" ? null : "link"), !selected || selected.kind === "audio", panel === "link")}
       {action(t("editor.pageAnimation.title", { defaultValue: "Animate page" }), () => setPanel(panel === "animate" ? null : "animate"), false, panel === "animate")}
       {action(t("editor.notes.title", { defaultValue: "Page notes" }), () => setPanel(panel === "notes" ? null : "notes"), false, panel === "notes")}
       {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
-    {panel && <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
+    {panel && <ScrollView stickyHeaderIndices={[0]} nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
+    <View className="flex-row items-center justify-between border-b border-white/10 px-3 py-2" style={{ backgroundColor: "#0a0a0a", gap: 10 }}><Text className="flex-1 text-xs font-semibold text-white/75">{panelTitle}</Text><Pressable accessibilityRole="button" onPress={() => { Keyboard.dismiss(); setPanel(null); }} className="min-h-[40px] justify-center rounded-lg px-3"><Text className="text-xs text-white/50">{t("editor.designTools.closePanel", { defaultValue: "Close panel" })}</Text></Pressable></View>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
       {action(t("editor.symbols.title", { defaultValue: "Vector symbols" }), () => setPanel("symbols"))}
       {action(t("editor.connectors.title", { defaultValue: "Lines and connectors" }), () => setPanel("connectors"))}
