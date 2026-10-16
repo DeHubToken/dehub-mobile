@@ -1,3 +1,4 @@
+import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { graphicFontCss } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
 import { percentStackedSeries } from "./percentStackedSeries";
@@ -87,7 +88,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font);
     return true;
   }
-  const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * 2.5) : font;
+  const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * (chart.labelWrap ? 4.5 : 2.5)) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues !== false ? 3 : 1)), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (horizontal ? chart.showAxisValues !== false ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const xFor = (value: number) => x0 + (value - minimum) / span * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
@@ -124,7 +125,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       }
     });
   });
-  if (chart.showLabels) rows.forEach((row, index) => { ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; label(row.label, x0 - font / 2, y0 + (index + 0.5) / rows.length * plotHeight, labelSpace - font); } else { ctx.textAlign = "center"; label(row.label, x0 + (index + 0.5) / rows.length * plotWidth, y1 + font * 1.2, plotWidth / rows.length * 0.95); } });
+  if (chart.showLabels) rows.forEach((row, index) => { ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; const y = y0 + (index + 0.5) / rows.length * plotHeight; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font / 2, y, labelSpace - font, Math.min(font, plotHeight / rows.length * 0.4), 2, true); else label(row.label, x0 - font / 2, y, labelSpace - font); } else { ctx.textAlign = "center"; const x = x0 + (index + 0.5) / rows.length * plotWidth; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, plotWidth / rows.length * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, plotWidth / rows.length * 0.95); } });
   drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font, percentStack);
   return true;
 }

@@ -1,3 +1,4 @@
+import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { drawPackedCirclesChart } from "./packedCirclesChart";
 import { drawProgressChart, isProgressChart } from "./progressCharts";
 import { drawChartRace } from "./chartRace";
@@ -18,6 +19,7 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  labelWrap?: boolean;
   xValueFormat?: ChartValueFormat;
   pointLabelMode?: "value" | "coordinates";
   bubbleYSeries?: number;
@@ -213,7 +215,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (xTitle) label(xTitle, 0, height / 2 - font * 0.6, width - font * 2);
   if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, top + font * 0.6, width - font * 2); }
   const horizontal = chart.kind === "bar";
-  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * 2.5) : font;
+  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * (chart.labelWrap ? 4.5 : 2.5)) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
   const y0 = top + font * (yTitle ? 3 : 1.5), y1 = height / 2 - (xTitle ? font * 1.6 : 0) - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
@@ -248,7 +250,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       const slot = plotHeight / rows.length, y = y0 + slot * (index + 0.5), x = x0 + (row.value - min) / span * plotWidth;
       ctx.fillRect(Math.min(zeroX, x), y - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.abs(x - zeroX), slot * (1 - (chart.barGap ?? 0.34)));
       ctx.fillStyle = chart.textColour; ctx.textAlign = "right";
-      if (chart.showLabels) label(row.label, x0 - font * 0.5, y, labelSpace - font);
+      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font * 0.5, y, labelSpace - font, Math.min(font, slot * 0.4), 2, true); else label(row.label, x0 - font * 0.5, y, labelSpace - font); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x1, y - slot * 0.35, plotWidth);
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
@@ -257,7 +259,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
         if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
         ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill(); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
-      if (chart.showLabels) label(row.label, x, y1 + font * 1.2, slot * 0.95);
+      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, slot * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, slot * 0.95); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
@@ -314,6 +316,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.xValueFormat)) return false;
+    if (chart.labelWrap !== undefined && typeof chart.labelWrap !== "boolean") return false;
     if (chart.pointLabelMode !== undefined && !["value", "coordinates"].includes(String(chart.pointLabelMode))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
