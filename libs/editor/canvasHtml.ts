@@ -1,3 +1,4 @@
+import { DESIGN_LINKS_RUNTIME } from "./designLinksRuntime";
 import { TEXT_REVEAL_RUNTIME } from "./textRevealRuntime";
 import { ENCODER_QUEUE_RUNTIME } from "./encoderQueue";
 import { VIDEO_MATTE_PAGE_CACHE_RUNTIME } from "./videoMattePageCache";
@@ -129,6 +130,7 @@ canvas{display:block;width:100%;height:100%;}
   })();
 
   // ── animationPresets.ts ──
+  __DESIGN_LINKS_RUNTIME__
   __TEXT_REVEAL_RUNTIME__
   var IDENTITY = { alpha: 1, scale: 1, dx: 0, dy: 0, blurPx: 0 };
   function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
@@ -1361,7 +1363,15 @@ canvas{display:block;width:100%;height:100%;}
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
       if (!(m.format === "png" && m.transparent)) { g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H); }
       drawOps(g, W, H, ops, t); check();
-      post({ type: "exported", reqId: m.reqId, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
+      var links = m.links ? ops.flatMap(function(op) {
+        if (!op.clip.href || op.alpha <= 0.001) return [];
+        var clip = resolveClipAt(op.clip, t);
+        if (getTransform(clip).opacity === 0) return [];
+        var box = clipBox(g, clip, W, H);
+        var link = box ? designPdfLink(clip.href, box, W, H, computeClipAnimation(clip, t), op.translateX, op.clipRect) : null;
+        return link ? [link] : [];
+      }) : [];
+      post({ type: "exported", reqId: m.reqId, links: links, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
     } catch (error) { post({ type: "exportFailed", reqId: m.reqId, error: String(error.message || error) }); }
     finally {
       clearTimeout(fontTimer);
@@ -1941,4 +1951,4 @@ canvas{display:block;width:100%;height:100%;}
 })();
 </script>
 </body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME);
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME);
