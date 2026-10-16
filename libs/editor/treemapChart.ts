@@ -3,12 +3,12 @@ import { graphicFontCss } from "./graphicFonts";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
 type TreemapNode = { name: string; weight: number; index: number; children: TreemapNode[] };
 export function treemapDataError(rows: readonly { label: string; value: number }[]): string {
-  if (!rows.length || rows.some(row => !Number.isFinite(row.value) || row.value < 0) || !rows.some(row => row.value > 0)) return "Treemap values must be nonnegative, with at least one positive value";
+  if (!rows.length || rows.some(row => !Number.isFinite(row.value) || row.value < 0) || !rows.some(row => row.value > 0)) return "Hierarchy values must be nonnegative, with at least one positive value";
   const paths = rows.map(row => row.label.split("/").map(part => part.trim()));
   if (paths.some(path => path.length > 6 || path.some(part => !part))) return "Use one to six nonempty path names separated by /";
   const keys = paths.map(path => JSON.stringify(path));
-  if (new Set(keys).size !== keys.length) return "Give each treemap leaf a unique path";
-  if (paths.some((path, index) => paths.some((other, next) => index !== next && path.length < other.length && path.every((part, depth) => other[depth] === part)))) return "A treemap path cannot be both a leaf and a group. Put each value in its own leaf";
+  if (new Set(keys).size !== keys.length) return "Give each hierarchy leaf a unique path";
+  if (paths.some((path, index) => paths.some((other, next) => index !== next && path.length < other.length && path.every((part, depth) => other[depth] === part)))) return "A hierarchy path cannot be both a leaf and a group. Put each value in its own leaf";
   return "";
 }
 export function drawTreemapChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): void {

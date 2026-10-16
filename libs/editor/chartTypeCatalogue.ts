@@ -16,6 +16,7 @@ export const CHART_TYPE_DETAILS: Record<ChartKind, { label: string; group: Chart
   bubble: { label: "Bubble", group: "relationship", hint: "Plot X, Y and a separate size value", path: "M4 3V29H37M12 25A3 3 0 1 0 12 19A3 3 0 1 0 12 25M23 18A6 6 0 1 0 23 6A6 6 0 1 0 23 18M33 25A4 4 0 1 0 33 17A4 4 0 1 0 33 25" },
   funnel: { label: "Funnel", group: "composition", hint: "Compare stages in their data-row order", path: "M3 4H37L32 11H8ZM9 14H31L27 21H13ZM14 24H26L23 30H17Z" },
   histogram: { label: "Histogram", group: "distribution", hint: "Group raw observations into frequency bins", path: "M4 28V20H12V28ZM12 28V10H20V28ZM20 28V4H28V28ZM28 28V15H36V28Z" },
+  "packed-circles": { label: "Packed circles", group: "hierarchy", hint: "Group proportional leaf circles inside nested outlines", path: "M20 3A14 14 0 1 0 20 31A14 14 0 1 0 20 3M14 10A6 6 0 1 0 14 22A6 6 0 1 0 14 10M26 8A4 4 0 1 0 26 16A4 4 0 1 0 26 8M25 19A4 4 0 1 0 25 27A4 4 0 1 0 25 19" },
   "progress-bar": { label: "Progress bar", group: "composition", hint: "Show a single completion percentage on a horizontal track", path: "M3 10H37V24H3ZM3 10H25V24H3ZM7 14V20M11 14V20M15 14V20M19 14V20" },
   "progress-ring": { label: "Progress ring", group: "composition", hint: "Show completion with a thin circular ring", path: "M20 3A14 14 0 1 0 34 17M20 7A10 10 0 1 0 30 17M20 3V7M30 17H34" },
   "radial-progress": { label: "Radial progress", group: "composition", hint: "Highlight a percentage with a bold circular band", path: "M20 3A14 14 0 1 0 34 17H27A7 7 0 1 1 20 10ZM20 3V10" },

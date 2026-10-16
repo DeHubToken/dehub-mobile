@@ -1,3 +1,4 @@
+import { drawPackedCirclesChart } from "./packedCirclesChart";
 import { drawProgressChart, isProgressChart } from "./progressCharts";
 import { drawChartRace } from "./chartRace";
 import { drawPictogramChart } from "./pictogramChart";
@@ -14,7 +15,7 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   progressThickness?: number;
@@ -134,6 +135,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (isProgressChart(chart.kind)) { drawProgressChart(ctx, width, height, chart); return; }
   if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
+  if (chart.kind === "packed-circles") { drawPackedCirclesChart(ctx, width, height, chart); return; }
   if (chart.kind === "treemap") { drawTreemapChart(ctx, width, height, chart); return; }
   if (chart.kind === "funnel") { drawFunnelChart(ctx, width, height, chart, font); return; }
   if (drawMultiSeriesChart(ctx, width, height, chart)) return;
@@ -282,7 +284,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       !chart.colours.length || chart.colours.length > 50 || !chart.colours.every(colour) || !colour(chart.textColour) ||
       typeof chart.showLabels !== "boolean" || typeof chart.showValues !== "boolean" ||
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
-    if (chart.kind === "treemap" && treemapDataError(chart.rows as { label: string; value: number }[])) return false;
+    if ((chart.kind === "treemap" || chart.kind === "packed-circles") && treemapDataError(chart.rows as { label: string; value: number }[])) return false;
     if (chart.kind === "funnel" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
     if ((chart.kind === "scatter" || chart.kind === "bubble") && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
