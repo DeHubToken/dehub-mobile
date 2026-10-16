@@ -10,7 +10,7 @@ import { validTableMerges, type TableMerge } from "./tableMerges";
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
 import { drawEditableTable } from "./tableRendering";
-export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter", "funnel", "histogram"] as const;
+export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
   histogramBins?: number;
@@ -251,8 +251,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       typeof chart.showLabels !== "boolean" || typeof chart.showValues !== "boolean" ||
       chart.rows.some(row => !object(row) || typeof row.label !== "string" || row.label.length > 200 || typeof row.value !== "number" || !Number.isFinite(row.value) || Math.abs(row.value) > 1e12)) return false;
     if (chart.kind === "funnel" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
-    if (chart.kind === "scatter" && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
+    if ((chart.kind === "scatter" || chart.kind === "bubble") && chart.rows.some(row => !object(row) || typeof row.label !== "string" || !row.label.trim() || !Number.isFinite(Number(row.label)) || Math.abs(Number(row.label)) > 1e12)) return false;
     if (chart.series !== undefined && (!Array.isArray(chart.series) || !chart.series.length || chart.series.length > 6 || chart.series.some(series => !object(series) || typeof series.label !== "string" || !series.label || series.label.length > 200 || !Array.isArray(series.values) || series.values.length !== (chart.rows as unknown[]).length || series.values.some(value => typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)))) return false;
+    if (chart.kind === "bubble" && Array.isArray(chart.series) && chart.series.length > 1 && ((chart.series as { values: number[] }[])[1].values.some(value => value < 0) || !(chart.series as { values: number[] }[])[1].values.some(value => value > 0))) return false;
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
     if (chart.histogramBins !== undefined && (typeof chart.histogramBins !== "number" || !Number.isInteger(chart.histogramBins) || chart.histogramBins < 1 || chart.histogramBins > 20)) return false;
