@@ -1432,7 +1432,7 @@ canvas{display:block;width:100%;height:100%;}
       prepareVideoSources(ops);
       await Promise.all([prepareMatteOps(ops, t, false)].concat(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })));
       check();
-      var previewScale = m.maxEdge === undefined ? 1 : Math.min(1, Math.max(256, Math.min(2048, Number(m.maxEdge) || 2048)) / Math.max(W, H));
+      var previewScale = m.maxEdge === undefined ? 1 : Math.min(1, Math.max(256, Math.min(4096, Number(m.maxEdge) || 2048)) / Math.max(W, H));
       var cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(W * previewScale)); cv.height = Math.max(1, Math.round(H * previewScale));
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
       g.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0);

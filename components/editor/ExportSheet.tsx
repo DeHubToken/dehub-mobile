@@ -1,3 +1,5 @@
+import DocumentImageQualityControls from "./DocumentImageQualityControls";
+import { documentImageScale, type DocumentImageProfile } from "../../libs/editor/documentImageProfile";
 import JpegQualityControl from "./JpegQualityControl";
 import SectionExportPicker from "./SectionExportPicker";
 import type { DesignPageSection } from "../../libs/editor/pageDetails";
@@ -28,9 +30,9 @@ export default function ExportSheet(props: {
   onExport: (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope, transparent?: boolean, filenamePattern?: string, jpegQuality?: number) => void;
   onExportVideo: (quality: "720" | "1080", target: "photos" | "post", scope: ExportScope) => void;
   onExportGif: (scope: ExportScope) => void;
-  onExportPdf?: (scope: PageExportScope, cropMarks?: boolean, bookmarks?: boolean) => void;
+  onExportPdf?: (scope: PageExportScope, cropMarks?: boolean, bookmarks?: boolean, quality?: DocumentImageProfile) => void;
   onExportNotes?: (scope: PageExportScope) => void;
-  onExportPresentation?: (scope: PageExportScope) => void;
+  onExportPresentation?: (scope: PageExportScope, quality?: DocumentImageProfile) => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -39,6 +41,7 @@ export default function ExportSheet(props: {
   const [pageScope, setPageScope] = useState<"all" | "current" | "custom" | "section">("all");
   const [sectionName, setSectionName] = useState("");
   const [pageSelection, setPageSelection] = useState("1");
+  const [documentQuality, setDocumentQuality] = useState<DocumentImageProfile>("standard");
   const [jpegQuality, setJpegQuality] = useState(0.92);
   const [filenamePattern, setFilenamePattern] = useState("");
   const [transparent, setTransparent] = useState(false);
@@ -50,7 +53,7 @@ export default function ExportSheet(props: {
   const isPdf = format === "pdf";
   const isNotes = format === "notes";
   const isPptx = format === "pptx";
-  const slideScale = Math.min(1, 2048 / Math.max(props.width, props.height));
+  const slideScale = documentImageScale(props.width, props.height, 1, documentQuality);
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
   useEffect(() => { if (props.visible) { setFilenamePattern(""); setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
@@ -67,8 +70,8 @@ export default function ExportSheet(props: {
   const go = (target: "photos" | "post") => {
     if (props.busy || gifTooLong || invalidPages || (separate && !ranges.length)) return;
     if (isNotes) props.onExportNotes?.(effectivePageScope);
-    else if (isPptx) props.onExportPresentation?.(effectivePageScope);
-    else if (isPdf) props.onExportPdf?.(effectivePageScope, cropMarks, bookmarks);
+    else if (isPptx) props.onExportPresentation?.(effectivePageScope, documentQuality);
+    else if (isPdf) props.onExportPdf?.(effectivePageScope, cropMarks, bookmarks, documentQuality);
     else if (isGif) props.onExportGif(scope);
     else if (isVideo) props.onExportVideo(quality, target, scope);
     else props.onExport(format === "jpeg" ? "jpeg" : "png", target, effectivePageScope, format === "png" && transparent, filenamePattern, jpegQuality);
@@ -94,6 +97,7 @@ export default function ExportSheet(props: {
         </View>
         {isPdf && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={cropMarks} onValueChange={setCropMarks} accessibilityLabel={t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })}</Text></View>{cropMarks && <Text className="text-xs text-white/45">{t("editor.export.cropMarkHint", { defaultValue: "Adds cutting marks outside the artwork. The saved print resolution sets the finished page size." })}</Text>}</View>}
         {isPdf && props.pageCount > 1 && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={bookmarks} onValueChange={setBookmarks} accessibilityLabel={t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.pageBookmarks", { defaultValue: "Page-name bookmarks" })}</Text></View>}
+        {(isPdf || isPptx) && <DocumentImageQualityControls value={documentQuality} onChange={setDocumentQuality} />}
         {format === "jpeg" && <JpegQualityControl value={jpegQuality} onChange={setJpegQuality} />}
         {(format === "png" || format === "jpeg") && <View style={{ gap: 8 }}><Text className="text-xs text-white/65">{t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })}</Text><TextInput value={filenamePattern} onChangeText={setFilenamePattern} maxLength={160} autoCorrect={false} autoCapitalize="none" placeholder="{title}-{page:2}-{name}" placeholderTextColor="#888" accessibilityLabel={t("editor.export.filenamePattern", { defaultValue: "Page filename pattern" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" /><View className="flex-row flex-wrap" style={{ gap: 8 }}>{[["", "Default"], ["{title}-{page:2}", "Title and number"], ["{page:2}-{name}", "Page names"]].map(([pattern, label]) => <Chip key={label} label={t(`editor.export.filenamePreset.${label}`, { defaultValue: label })} active={filenamePattern === pattern} onPress={() => setFilenamePattern(pattern)} />)}</View><Text className="text-[10px] text-white/45">{t("editor.export.filenameHint", { defaultValue: "Leave blank for default names. Use {title}, {name}, {section}, {page}, or {page:3}. Add a prefix as plain text. Duplicate names receive a page-number suffix." })}</Text>{!!filenameError && <Text accessibilityRole="alert" className="text-xs text-red-300">{filenameError}</Text>}</View>}
         {!isVideo && !isGif && pageScope === "custom" && <Text className="text-[10px] text-white/45">{t("editor.export.pageOrderHint", { defaultValue: "Pages follow the order entered. Use 3,1-2 to start with page 3, or 5-1 to reverse a range. Repeated page numbers appear once." })}</Text>}
@@ -129,7 +133,7 @@ export default function ExportSheet(props: {
         <Text className="text-theme-neutrals-400 text-xs">
           {isNotes ? t("editor.export.notesTextHint", { defaultValue: "Downloads section headings, original page numbers, page names, and presenter notes as a text file." }) : separate ? t("editor.export.rangeHint") : isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
             ? `${t("editor.export.outputVideo", { width: Math.round(props.width * k) & ~1, height: Math.round(props.height * k) & ~1, fps: props.video!.fps })} · ${t("editor.export.duration", { value: props.video!.duration.toFixed(1) })}`
-            : format === "mp4" ? "" : t("editor.export.outputStill", { width: Math.round(props.width * (isPptx ? slideScale : 1)), height: Math.round(props.height * (isPptx ? slideScale : 1)) })}
+            : format === "mp4" ? "" : t("editor.export.outputStill", { width: Math.round(props.width * (isPptx || isPdf ? slideScale : 1)), height: Math.round(props.height * (isPptx || isPdf ? slideScale : 1)) })}
         </Text>
         {isVideo && <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.exportHint")}</Text>}
         {isGif && <Text className="text-theme-neutrals-400 text-xs">{t(gifTooLong ? "editor.export.gifTooLong" : "editor.export.gifHint")}</Text>}
