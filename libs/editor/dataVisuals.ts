@@ -18,6 +18,8 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  xValueFormat?: ChartValueFormat;
+  pointLabelMode?: "value" | "coordinates";
   bubbleYSeries?: number;
   bubbleSizeSeries?: number;
   progressThickness?: number;
@@ -311,6 +313,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.histogramBins !== undefined && (typeof chart.histogramBins !== "number" || !Number.isInteger(chart.histogramBins) || chart.histogramBins < 1 || chart.histogramBins > 20)) return false;
     for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
+    if (!validChartValueFormat(chart.xValueFormat)) return false;
+    if (chart.pointLabelMode !== undefined && !["value", "coordinates"].includes(String(chart.pointLabelMode))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
     for (const key of ["xAxisTitle", "yAxisTitle"] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > 100)) return false;
     if (chart.donutLabel !== undefined && (typeof chart.donutLabel !== "string" || chart.donutLabel.length > 80)) return false;
