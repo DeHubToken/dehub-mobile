@@ -1,3 +1,4 @@
+import PresentationStopwatch from "./PresentationStopwatch";
 import { presentationPages } from "../../libs/editor/pageDetails";
 import { usePresentationAutoAdvance } from "../../libs/editor/usePresentationAutoAdvance";
 import PresentationMarkup, { PresentationMarkupTools } from "./PresentationMarkup";
@@ -55,6 +56,7 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   return <Modal visible animationType="fade" presentationStyle="fullScreen" supportedOrientations={["portrait", "landscape"]} onRequestClose={onClose}>
     <SafeAreaView edges={["top", "bottom", "left", "right"]} style={{ flex: 1, backgroundColor: "#000000" }}>
       <View className="flex-row items-center px-3 py-2" style={{ gap: 10 }}><Text accessibilityLiveRegion="polite" numberOfLines={1} className="flex-1 text-sm text-white">{details?.title || t("editor.pages.page", { number: page.index + 1 })}</Text>{button(t("editor.present.close", { defaultValue: "Close presentation" }), onClose)}</View>
+      <PresentationStopwatch foreground={foreground} />
       {allHidden && <Text accessibilityLiveRegion="polite" className="px-4 py-2 text-center text-xs text-amber-200">{t("editor.present.allHidden", { defaultValue: "All pages are hidden. Showing the first page for this presentation." })}</Text>}
       <View onLayout={event => setArea({ w: event.nativeEvent.layout.width, h: event.nativeEvent.layout.height })} style={{ flex: 1, minHeight: 0, alignItems: "center", justifyContent: "center" }}>
         {uri && <Image source={{ uri }} resizeMode="contain" accessibilityLabel={details?.title || t("editor.pages.page", { number: page.index + 1 })} style={{ width: "100%", height: "100%" }} />}
