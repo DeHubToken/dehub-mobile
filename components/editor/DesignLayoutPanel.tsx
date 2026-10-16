@@ -1,3 +1,4 @@
+import SelectionTransformControls from "./SelectionTransformControls";
 import React, { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -36,6 +37,7 @@ export default function DesignLayoutPanel({ project, ids, current, commit, boxes
     commit(next);
   };
   return <View style={{ gap: 10 }}>
+    <SelectionTransformControls project={project} ids={ids} current={current} commit={commit} boxes={boxes} time={time} recording={recording} />
     <View className="flex-row" style={{ gap: 8 }}>{(["selection", "page"] as const).map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: value === reference }} onPress={() => setReference(value)} className={`min-h-[40px] justify-center rounded-lg border px-3 ${value === reference ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t(`editor.layout.reference.${value}`, { defaultValue: value === "page" ? "Align to page" : "Align to selection" })}</Text></Pressable>)}</View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>{LAYOUT_ACTIONS.map(({ action, label }) => <Pressable key={action} accessibilityRole="button" disabled={!ids.length} onPress={() => apply(action)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: ids.length ? 1 : 0.35 }}><Text className="text-xs text-white">{t(`editor.layout.${action}`, { defaultValue: label })}</Text></Pressable>)}</View>
     <View className="flex-row" style={{ gap: 10 }}>
