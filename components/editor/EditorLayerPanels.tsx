@@ -131,6 +131,7 @@ export function LayersPanel(props: {
   if (!props.layers.length) return <Text className="text-theme-neutrals-400 text-sm">{t("editor.layers.empty")}</Text>;
   const label = (c: Clip) =>
     c.kind === "text" ? c.text.split("\n")[0] || t("editor.layers.text")
+    : c.kind === "shape" && c.photoFrame ? t("editor.grids.frame", { defaultValue: "Photo frame" })
     : c.kind === "shape" && c.qr ? t("editor.qr.title", { defaultValue: "QR code" })
     : c.kind === "shape" && c.chart ? t("editor.dataVisual.chart", { defaultValue: "Chart" })
     : c.kind === "shape" && c.table ? t("editor.dataVisual.table", { defaultValue: "Table" })

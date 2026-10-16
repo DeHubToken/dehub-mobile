@@ -25,8 +25,11 @@ export function ungroupDesignLayers(project: ProjectSnapshot, ids: readonly stri
 /** Duplicates get their own groups; copying never links new layers back to the originals. */
 export function remapDesignGroups(clips: Clip[], makeId: () => string): Clip[] {
   const groups = new Map<string, string>();
+  const counts = new Map<string, number>();
+  for (const clip of clips) if (clip.groupId) counts.set(clip.groupId, (counts.get(clip.groupId) ?? 0) + 1);
   return clips.map(clip => {
     if (!clip.groupId) return clip;
+    if (counts.get(clip.groupId) === 1) return { ...clip, groupId: undefined } as Clip;
     if (!groups.has(clip.groupId)) groups.set(clip.groupId, makeId());
     return { ...clip, groupId: groups.get(clip.groupId)! } as Clip;
   });
