@@ -1,9 +1,23 @@
-import type { ProjectSnapshot } from "./types";
+import type { Clip, ProjectSnapshot } from "./types";
 export interface DesignPdfLink { url: string; x: number; y: number; width: number; height: number }
+
+export function designPageLinkIndex(value: string): number | null {
+  const match = value.trim().match(/^#page=([1-9]\d{0,2})$/);
+  return match && Number(match[1]) <= 500 ? Number(match[1]) - 1 : null;
+}
+export function remapDesignPageLinks(clips: Clip[], order: readonly number[]): Clip[] {
+  return clips.map(clip => {
+    const target = clip.href ? designPageLinkIndex(clip.href) : null;
+    if (target === null) return clip;
+    const index = order.indexOf(target), href = index < 0 ? undefined : `#page=${index + 1}`;
+    return href === clip.href ? clip : { ...clip, href };
+  });
+}
 
 export function normaliseDesignLink(value: string): string | null {
   const text = value.trim();
   if (!text || text.length > 2048 || /[\u0000-\u0020\u007f]/.test(text)) return null;
+  if (text.startsWith("#")) return designPageLinkIndex(text) === null ? null : text;
   try {
     const url = new URL(/^[a-z][a-z\d+.-]*:/i.test(text) ? text : `https://${text}`);
     if (!["https:", "http:", "mailto:", "tel:"].includes(url.protocol)) return null;

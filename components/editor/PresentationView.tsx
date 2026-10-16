@@ -1,5 +1,6 @@
+import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "../../libs/editor/designLinks";
 import React, { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Image, Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { getPages, pageAt } from "../../libs/editor/pages";
@@ -7,7 +8,7 @@ import type { ProjectSnapshot } from "../../libs/editor/types";
 
 export default function PresentationView({ project, time, renderPage, onClose, onPage }: {
   onPage: (time: number) => void;
-  project: ProjectSnapshot; time: number; renderPage: (time: number) => Promise<string>; onClose: () => void;
+  project: ProjectSnapshot; time: number; renderPage: (time: number) => Promise<{ dataUrl: string; links: DesignPdfLink[] }>; onClose: () => void;
 }) {
   const { t } = useTranslation();
   const pages = getPages(project.settings, project.clips);
@@ -15,22 +16,25 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   const [notes, setNotes] = useState(false), [black, setBlack] = useState(false), [auto, setAuto] = useState(false), [seconds, setSeconds] = useState(5);
   const [uri, setUri] = useState<string | null>(null), [loading, setLoading] = useState(true), [error, setError] = useState(""), [attempt, setAttempt] = useState(0);
   const page = pages[Math.min(index, pages.length - 1)], details = project.settings.pageDetails?.[page.index];
-  const cache = useRef(new Map<number, string>()), renderer = useRef(renderPage); renderer.current = renderPage;
+  const [links, setLinks] = useState<DesignPdfLink[]>([]), [area, setArea] = useState({ w: 0, h: 0 });
+  const displayScale = Math.min(area.w / project.settings.width, area.h / project.settings.height);
+  const imageW = project.settings.width * displayScale, imageH = project.settings.height * displayScale;
+  const cache = useRef(new Map<number, { dataUrl: string; links: DesignPdfLink[] }>()), renderer = useRef(renderPage); renderer.current = renderPage;
   const pageChanged = useRef(onPage); pageChanged.current = onPage;
   useEffect(() => () => { cache.current.clear(); }, []);
   useEffect(() => {
     let active = true;
     const at = page.start + Math.min(0.6, (page.end - page.start) / 2);
     pageChanged.current(at);
-    setBlack(false); setError(""); setUri(null);
+    setBlack(false); setError(""); setUri(null); setLinks([]);
     const cached = cache.current.get(page.index);
-    if (cached) { setUri(cached); setLoading(false); return; }
+    if (cached) { setUri(cached.dataUrl); setLinks(cached.links); setLoading(false); return; }
     setLoading(true);
     void renderer.current(at).then(value => {
       if (!active) return;
       cache.current.set(page.index, value);
       while (cache.current.size > 3) cache.current.delete(cache.current.keys().next().value!);
-      setUri(value); setLoading(false);
+      setUri(value.dataUrl); setLinks(value.links); setLoading(false);
     }).catch(value => { if (active) { setError(value instanceof Error ? value.message : "Could not load this page"); setLoading(false); setAuto(false); } });
     return () => { active = false; };
   }, [page.index, page.start, page.end, attempt]);
@@ -44,8 +48,9 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   return <Modal visible animationType="fade" presentationStyle="fullScreen" supportedOrientations={["portrait", "landscape"]} onRequestClose={onClose}>
     <SafeAreaView edges={["top", "bottom", "left", "right"]} style={{ flex: 1, backgroundColor: "#000000" }}>
       <View className="flex-row items-center px-3 py-2" style={{ gap: 10 }}><Text accessibilityLiveRegion="polite" numberOfLines={1} className="flex-1 text-sm text-white">{details?.title || t("editor.pages.page", { number: page.index + 1 })}</Text>{button(t("editor.present.close", { defaultValue: "Close presentation" }), onClose)}</View>
-      <View style={{ flex: 1, minHeight: 0, alignItems: "center", justifyContent: "center" }}>
+      <View onLayout={event => setArea({ w: event.nativeEvent.layout.width, h: event.nativeEvent.layout.height })} style={{ flex: 1, minHeight: 0, alignItems: "center", justifyContent: "center" }}>
         {uri && <Image source={{ uri }} resizeMode="contain" accessibilityLabel={details?.title || t("editor.pages.page", { number: page.index + 1 })} style={{ width: "100%", height: "100%" }} />}
+        {!black && !loading && uri && imageW > 0 && <View pointerEvents="box-none" style={{ position: "absolute", left: (area.w - imageW) / 2, top: (area.h - imageH) / 2, width: imageW, height: imageH }}>{links.map((link, linkIndex) => <Pressable key={`${page.index}:${linkIndex}`} accessibilityRole="link" accessibilityLabel={designPageLinkIndex(link.url) === null ? link.url : t("editor.links.openPage", { defaultValue: "Go to page {{number}}", number: designPageLinkIndex(link.url)! + 1 })} onPress={() => { const target = designPageLinkIndex(link.url); if (target !== null) { if (pages[target]) { setAuto(false); setIndex(target); } } else { const url = normaliseDesignLink(link.url); if (url) void Linking.openURL(url).catch(() => { setError(t("editor.links.openFailed", { defaultValue: "Could not open this link" })); }); } }} style={{ position: "absolute", left: link.x * imageW, top: link.y * imageH, width: link.width * imageW, height: link.height * imageH }} />)}</View>}
         {loading && <ActivityIndicator color="#ffffff" size="large" accessibilityLabel={t("editor.present.loading", { defaultValue: "Loading page" })} />}
         {error !== "" && <View className="items-center px-4" style={{ gap: 12 }}><Text accessibilityRole="alert" className="text-center text-sm text-red-300">{error}</Text>{button(t("editor.present.retry", { defaultValue: "Retry page" }), () => setAttempt(value => value + 1))}</View>}
         {black && <View accessibilityLabel={t("editor.present.blackout", { defaultValue: "Blackout" })} style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#000000" }} />}

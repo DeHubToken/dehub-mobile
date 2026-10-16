@@ -18,7 +18,7 @@ export async function exportPdf(snapshot: ProjectSnapshot, time: number, scope: 
       const { dataUrl, links } = await capture(frames[index].time);
       if (!dataUrl.startsWith("data:image/jpeg;base64,")) throw new Error("PDF page capture failed");
       return { jpeg: base64ToBytes(dataUrl.slice(dataUrl.indexOf(",") + 1)), width: snapshot.settings.width, height: snapshot.settings.height, dpi: snapshot.settings.printDpi, links };
-    }, bytes => out.append(Buffer.from(bytes).toString("base64")), signal);
+    }, bytes => out.append(Buffer.from(bytes).toString("base64")), signal, frames.map(frame => frame.index));
     out.close(); progress?.(1);
     await saveEditorDownload(out.uri, snapshot.title || "design", "pdf", "application/pdf", signal);
   } finally {
