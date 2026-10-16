@@ -1507,7 +1507,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     const ctl = new AbortController(); downloadController.current = ctl;
     setPlaying(false); setExportOpen(false); setRendering(0);
     try {
-      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }); return { dataUrl, links }; }, ctl.signal, setRendering);
+      await exportPdf(current, canvasTime, scope, async time => { let links: DesignPdfLink[] = []; const dataUrl = await canvas.exportImage("jpeg", 0.95, time, false, value => { links = value; }, true); return { dataUrl, links }; }, ctl.signal, setRendering);
     } catch (error) {
       if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
     } finally {
@@ -1581,7 +1581,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       const canvas = canvasRef.current;
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
-        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent), ctl.signal,
+        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent, undefined, true), ctl.signal,
           (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope);
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
@@ -1594,7 +1594,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
       const frame = frames[0];
-      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent);
+      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent, undefined, getPages(project.settings, project.clips).length > 1);
       const uri = await writeExport(dataUrl, format, project.title);
       setExportOpen(false);
       if (target === "photos") {

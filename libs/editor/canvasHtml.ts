@@ -1351,6 +1351,7 @@ canvas{display:block;width:100%;height:100%;}
       var W = snap.settings.width, H = snap.settings.height;
       var t = Math.max(0, Math.min(at, timelineEnd(snap.clips, snap.settings) - 1 / Math.max(1, snap.settings.fps)));
       var ops = computeRenderOps(snap, t, W, false);
+      if (m.settled) ops = ops.map(function(op) { return Object.assign({}, op, { clip: Object.assign({}, op.clip, { animateIn: undefined, animateOut: undefined }) }); });
       ops.forEach(function (op) {
         if (op.clip.kind === "image" && !images.has(op.clip.mediaId)) throw new Error("Page media is still loading");
         if (op.clip.kind === "video" && !videos.has(op.clip.mediaId)) throw new Error("Page media is still loading");
