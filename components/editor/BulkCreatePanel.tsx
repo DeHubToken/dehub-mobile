@@ -1,3 +1,5 @@
+import BulkConnectionFileControls from "./BulkConnectionFileControls";
+import BulkAutoConnectControls from "./BulkAutoConnectControls";
 import BulkPlaceholderControls from "./BulkPlaceholderControls";
 import BulkPagePreview from "./BulkPagePreview";
 import DataImportMappingControls from "./DataImportMappingControls";
@@ -54,6 +56,7 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
   const selectedRows = useMemo(() => { try { return data ? bulkSelectedRows(data, Number(first), end, rowFilter) : []; } catch { return []; } }, [data, first, end, rowFilter]);
   const previewIncluded = selectedRows.includes(Math.min(rowIndex, (data?.rows.length ?? 1) - 1));
   const pagePreviewOptions = useMemo(() => data ? { data, row: previewIndex, time, connections, pageFields, linkConnections, imageConnections } : null, [data, rowIndex, time, connections, pageFields, linkConnections, imageConnections]);
+  const connectionContext = useMemo(() => data ? { headers: data.headers, fields, images: imageFields, links: linkFields, connections, imageConnections, linkConnections, pageFields } : null, [data, fields, imageFields, linkFields, connections, imageConnections, linkConnections, pageFields]);
   const changeSource = (value: string) => { request.current++; setPendingImport(null); setFirst("1"); setSource(value); setMessage(""); setError(""); setRowIndex(0); setLast(""); setRowFilter({}); };
   const importFile = async () => {
     const token = ++request.current;
@@ -102,6 +105,8 @@ export default function BulkCreatePanel({ project, time, current, commit, seek }
       <Text className="text-xs text-white/60">{data.rows.length} {t("editor.bulk.rows", { defaultValue: "data rows" })}</Text>
       <View className="flex-row" style={{ gap: 10 }}><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.first", { defaultValue: "From row" })}</Text><TextInput value={first} onChangeText={setFirst} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.first", { defaultValue: "From row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View><View className="flex-1" style={{ gap: 4 }}><Text className="text-xs text-white/60">{t("editor.bulk.last", { defaultValue: "To row" })}</Text><TextInput value={last || String(data.rows.length)} onChangeText={setLast} keyboardType="number-pad" accessibilityLabel={t("editor.bulk.last", { defaultValue: "To row" })} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" /></View></View>
       <BulkDataExportControls key={project.id} source={source} first={Number(first)} last={end} filter={rowFilter} title={project.title} count={selectedRows.length} />
+      {connectionContext && <BulkConnectionFileControls key={project.id} context={connectionContext} title={project.title} onApply={value => { setConnections(value.connections); setImageConnections(value.imageConnections); setLinkConnections(value.linkConnections); setPageFields(value.pageFields); setMessage(""); setError(""); }} />}
+      <BulkAutoConnectControls headers={data.headers} fields={fields} images={imageFields} connections={connections} imageConnections={imageConnections} onApply={value => { setConnections(value.connections); setImageConnections(value.images); setMessage(""); setError(""); }} />
       <BulkPlaceholderControls headers={data.headers} row={previewRow} />
       <BulkRowFilterControls headers={data.headers} value={rowFilter} onChange={value => { setRowFilter(value); setMessage(""); }} />
       <BulkPhotoConnectionsControls fields={imageFields} headers={data.headers} row={previewRow} value={imageConnections} onChange={value => { setImageConnections(value); setMessage(""); }} />
