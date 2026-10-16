@@ -1,3 +1,4 @@
+import ChartCategoryColours from "./ChartCategoryColours";
 import DataExportControls from "./DataExportControls";
 import ColourPickerButton from "./ColourPickerButton";
 import ChartFormattingPanel, { type ChartAppearance } from "./ChartFormattingPanel";
@@ -76,6 +77,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     if (!multiple) return [];
     try { return parseChartSource(data, true).series?.map(series => series.label) ?? []; } catch { return []; }
   }, [data, multiple]);
+  const categoryLabels = useMemo(() => { if (multiple || mode !== "chart" || kind === "radar") return []; try { return parseChartSource(data, false).rows.map(row => row.label); } catch { return []; } }, [data, multiple, mode, kind]);
   const seriesColour = (index: number) => index === 0 ? accent : chartPalette[index % chartPalette.length] ?? DEFAULT_CHART.colours[index % DEFAULT_CHART.colours.length];
   const setSeriesColour = (index: number, colour: string) => {
     if (index === 0) { setAccent(colour); return; }
@@ -97,6 +99,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   };
   const chip = (label: string, active: boolean, onPress: () => void) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active }} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white" : "border-white/20"}`}><Text className={`text-xs ${active ? "text-black" : "text-white"}`}>{label}</Text></Pressable>;
   return <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 270 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+    {mode === "chart" && !multiple && kind !== "radar" && <ChartCategoryColours key={project.id + ":" + (selected?.id ?? "new")} labels={categoryLabels} colours={[accent, ...chartPalette.slice(1)]} onChange={colours => { setChartPalette(colours); setAccent(colours[0]); }} projectId={project.id} />}
     <DataExportControls source={data} mode={mode} multiple={multiple} title={project.title} />
     {mode === "chart" && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={multiple} onValueChange={changeMultiple} accessibilityLabel={t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.multipleSeries", { defaultValue: "Multiple data series" })}</Text></View>{multiple && <><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={showLegend} onValueChange={setShowLegend} accessibilityLabel={t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.showLegend", { defaultValue: "Show legend" })}</Text></View>{(kind === "bar" || kind === "column") && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={stacked} onValueChange={setStacked} accessibilityLabel={t("editor.dataVisual.stacked", { defaultValue: "Stack series" })} /><Text className="text-xs text-white/70">{t("editor.dataVisual.stacked", { defaultValue: "Stack series" })}</Text></View>}{(kind === "pie" || kind === "donut") && <Text className="text-xs text-white/45">{t("editor.dataVisual.pieSeriesHint", { defaultValue: "Pie and donut charts display the first data series." })}</Text>}</>}</View>}
     <View className="flex-row" style={{ gap: 8 }}>{chip(t("editor.dataVisual.chart", { defaultValue: "Chart" }), mode === "chart", () => choose("chart"))}{chip(t("editor.dataVisual.table", { defaultValue: "Table" }), mode === "table", () => choose("table"))}</View>
