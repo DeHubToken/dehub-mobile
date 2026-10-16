@@ -1,3 +1,4 @@
+import { validConnector } from "./connectors";
 import { validPhotoTone } from "./photoTone";
 import { validBrandStyles } from "./brandStyles";
 import { normaliseDesignLink } from "./designLinks";
@@ -87,6 +88,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
         }
       }
     }
+    if (clip.kind === "shape" && (!validConnector(clip.connector) || (clip.connector !== undefined && (clip.shape !== "line" || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined)))) fail();
     if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
     if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
