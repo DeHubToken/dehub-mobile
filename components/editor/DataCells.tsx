@@ -1,3 +1,4 @@
+import type { TableAxis, TableStructureAction } from "../../libs/editor/tableStructure";
 import type { TextInput as NativeTextInput } from "react-native";
 import DataPastePanel from "./DataPastePanel";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -6,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import { formatDelimitedData, parseDelimitedData } from "../../libs/editor/delimitedData";
 
-export default function DataCells({ value, onChange, chart, multiSeries = false }: { value: string; onChange: (value: string) => void; chart: boolean; multiSeries?: boolean }) {
+export default function DataCells({ value, onChange, chart, multiSeries = false, onCellFocus, onStructure }: { value: string; onChange: (value: string) => void; chart: boolean; multiSeries?: boolean; onCellFocus?: (address: string) => void; onStructure?: (axis: TableAxis, index: number, action: TableStructureAction) => void }) {
   const { t } = useTranslation();
   const [offset, setOffset] = useState(0), [address, setAddress] = useState("A1");
   const inputRefs = useRef(new Map<string, NativeTextInput>()), pendingFocus = useRef<{ row: number; column: number } | null>(null), horizontal = useRef<ScrollView>(null);
@@ -19,7 +20,7 @@ export default function DataCells({ value, onChange, chart, multiSeries = false 
   const nextCell = (row: number, column: number) => {
     const position = row * columns + column + 1, nextRow = Math.floor(position / columns), nextColumn = position % columns, limit = chart ? multiSeries ? 51 : 50 : 20;
     if (nextRow >= limit) return;
-    if (nextRow >= rows.length) update([...rows, Array(columns).fill("")]);
+    if (nextRow >= rows.length) { if (onStructure && parsed.rows.length) onStructure("row", rows.length - 1, "after"); else update([...rows, Array(columns).fill("")]); }
     pendingFocus.current = { row: nextRow, column: nextColumn }; setOffset(Math.floor(nextRow / 5) * 5);
     const element = inputRefs.current.get(`${nextRow}:${nextColumn}`); if (element) { element.focus(); horizontal.current?.scrollTo({ x: nextColumn * 120, animated: true }); pendingFocus.current = null; }
   };
@@ -29,13 +30,13 @@ export default function DataCells({ value, onChange, chart, multiSeries = false 
     <ScrollView ref={horizontal} horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator>
       <View className="overflow-hidden rounded-lg border border-white/20">
         <View className="flex-row bg-white/5"><Text style={{ width: 28 }} className="py-2 text-center text-xs text-white/40">#</Text>{Array.from({ length: columns }, (_, c) => <Text key={c} style={{ width: 120 }} className="border-l border-white/10 px-2 py-2 text-xs text-white/60">{chart && !multiSeries ? t(c === 0 ? "editor.dataVisual.label" : "editor.dataVisual.value", { defaultValue: c === 0 ? "Label" : "Value" }) : String.fromCharCode(65 + c)}</Text>)}</View>
-        {rows.slice(start, start + 5).map((row, r) => <View key={start + r} className="flex-row border-t border-white/10"><Text style={{ width: 28 }} className="self-center text-center text-xs text-white/40">{start + r + 1}</Text>{Array.from({ length: columns }, (_, c) => <TextInput key={c} ref={element => { const key = `${start + r}:${c}`; if (element) inputRefs.current.set(key, element); else inputRefs.current.delete(key); }} selectTextOnFocus returnKeyType="next" blurOnSubmit={false} onSubmitEditing={() => nextCell(start + r, c)} style={{ width: 120 }} value={row[c] ?? ""} onFocus={() => setAddress(`${String.fromCharCode(65 + c)}${start + r + 1}`)} accessibilityLabel={t("editor.dataVisual.cell", { defaultValue: "Row {{row}}, column {{column}}", row: start + r + 1, column: c + 1 })} onChangeText={text => update(rows.map((cells, index) => index === start + r ? Array.from({ length: columns }, (_, col) => col === c ? text : cells[col] ?? "") : cells))} maxLength={200} autoCorrect={false} className="min-h-[40px] border-l border-white/10 px-2 text-xs text-white" />)}<Pressable accessibilityRole="button" accessibilityLabel={t("editor.dataVisual.removeRow", { defaultValue: "Remove row {{row}}", row: start + r + 1 })} onPress={() => update(rows.filter((_, index) => index !== start + r))} className="min-h-[40px] min-w-[40px] items-center justify-center"><Text className="text-base text-white/50">×</Text></Pressable></View>)}
+        {rows.slice(start, start + 5).map((row, r) => <View key={start + r} className="flex-row border-t border-white/10"><Text style={{ width: 28 }} className="self-center text-center text-xs text-white/40">{start + r + 1}</Text>{Array.from({ length: columns }, (_, c) => <TextInput key={c} ref={element => { const key = `${start + r}:${c}`; if (element) inputRefs.current.set(key, element); else inputRefs.current.delete(key); }} selectTextOnFocus returnKeyType="next" blurOnSubmit={false} onSubmitEditing={() => nextCell(start + r, c)} style={{ width: 120 }} value={row[c] ?? ""} onFocus={() => { const address = `${String.fromCharCode(65 + c)}${start + r + 1}`; setAddress(address); onCellFocus?.(address); }} accessibilityLabel={t("editor.dataVisual.cell", { defaultValue: "Row {{row}}, column {{column}}", row: start + r + 1, column: c + 1 })} onChangeText={text => update(rows.map((cells, index) => index === start + r ? Array.from({ length: columns }, (_, col) => col === c ? text : cells[col] ?? "") : cells))} maxLength={200} autoCorrect={false} className="min-h-[40px] border-l border-white/10 px-2 text-xs text-white" />)}<Pressable accessibilityRole="button" disabled={!!onStructure && rows.length <= 1} accessibilityState={{ disabled: !!onStructure && rows.length <= 1 }} style={{ opacity: onStructure && rows.length <= 1 ? 0.35 : 1 }} accessibilityLabel={t("editor.dataVisual.removeRow", { defaultValue: "Remove row {{row}}", row: start + r + 1 })} onPress={() => onStructure && parsed.rows.length ? onStructure("row", start + r, "delete") : update(rows.filter((_, index) => index !== start + r))} className="min-h-[40px] min-w-[40px] items-center justify-center"><Text className="text-base text-white/50">×</Text></Pressable></View>)}
       </View>
     </ScrollView>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
-      {button(t("editor.dataVisual.addRow", { defaultValue: "Add row" }), () => { update([...rows, Array(columns).fill("")]); setOffset(Math.floor(rows.length / 5) * 5); }, rows.length >= (chart ? multiSeries ? 51 : 50 : 20))}
-      {(!chart || multiSeries) && button(t("editor.dataVisual.addColumn", { defaultValue: "Add column" }), () => update(rows.map(row => [...Array.from({ length: columns }, (_, i) => row[i] ?? ""), ""])), columns >= (chart ? 7 : 12))}
-      {(!chart || multiSeries) && button(t("editor.dataVisual.removeColumn", { defaultValue: "Remove last column" }), () => update(rows.map(row => row.slice(0, columns - 1))), columns <= (chart ? 2 : 1))}
+      {button(t("editor.dataVisual.addRow", { defaultValue: "Add row" }), () => { if (onStructure && parsed.rows.length) onStructure("row", rows.length - 1, "after"); else update([...rows, Array(columns).fill("")]); setOffset(Math.floor(rows.length / 5) * 5); }, rows.length >= (chart ? multiSeries ? 51 : 50 : 20))}
+      {(!chart || multiSeries) && button(t("editor.dataVisual.addColumn", { defaultValue: "Add column" }), () => onStructure && parsed.rows.length ? onStructure("column", columns - 1, "after") : update(rows.map(row => [...Array.from({ length: columns }, (_, i) => row[i] ?? ""), ""])), columns >= (chart ? 7 : 12))}
+      {(!chart || multiSeries) && button(t("editor.dataVisual.removeColumn", { defaultValue: "Remove last column" }), () => onStructure && parsed.rows.length ? onStructure("column", columns - 1, "delete") : update(rows.map(row => row.slice(0, columns - 1))), columns <= (chart ? 2 : 1))}
     </View>
     <View className="flex-row flex-wrap items-center" style={{ gap: 8 }}>
       {button(t("editor.dataVisual.previousRows", { defaultValue: "Previous rows" }), () => setOffset(Math.max(0, start - 5)), start === 0)}

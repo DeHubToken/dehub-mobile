@@ -1,15 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { parseTableData, type TableData } from "../../libs/editor/dataVisuals";
 import { editTableStructure, type TableAxis, type TableStructureAction } from "../../libs/editor/tableStructure";
 
-export default function TableStructureControls({ value, source, onChange, onSource }: {
-  value: Omit<TableData, "rows">; source: string; onChange: (value: Omit<TableData, "rows">) => void; onSource: (source: string) => void;
+export default function TableStructureControls({ value, source, onChange, onSource, focusedCell }: {
+  value: Omit<TableData, "rows">; source: string; focusedCell?: string; onChange: (value: Omit<TableData, "rows">) => void; onSource: (source: string) => void;
 }) {
   const { t } = useTranslation();
   const [axis, setAxis] = useState<TableAxis>("row"), [index, setIndex] = useState(0), [error, setError] = useState("");
   const dimensions = useMemo(() => { try { const rows = parseTableData(source); return { row: rows.length, column: Math.max(0, ...rows.map(row => row.length)) }; } catch { return { row: 0, column: 0 }; } }, [source]);
+  useEffect(() => {
+    const match = focusedCell?.match(/^([A-L])(\d+)$/);
+    if (match) { setIndex(axis === "row" ? Number(match[2]) - 1 : match[1].charCodeAt(0) - 65); setError(""); }
+  }, [axis, focusedCell]);
   const total = dimensions[axis], selected = Math.min(index, Math.max(0, total - 1));
   const labels = { before: axis === "row" ? "Insert above" : "Insert left", after: axis === "row" ? "Insert below" : "Insert right", duplicate: "Duplicate", delete: "Delete", earlier: axis === "row" ? "Move up" : "Move left", later: axis === "row" ? "Move down" : "Move right" };
   const disabled = (action: TableStructureAction) => !total || (["before", "after", "duplicate"].includes(action) && total >= (axis === "row" ? 20 : 12)) || action === "delete" && total <= 1 || action === "earlier" && selected === 0 || action === "later" && selected === total - 1;

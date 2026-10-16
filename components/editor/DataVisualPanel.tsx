@@ -1,3 +1,4 @@
+import { editTableStructure, type TableAxis, type TableStructureAction } from "../../libs/editor/tableStructure";
 import ChartCategoryColours from "./ChartCategoryColours";
 import DataExportControls from "./DataExportControls";
 import ColourPickerButton from "./ColourPickerButton";
@@ -29,6 +30,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [mode, setMode] = useState<"chart" | "table">("chart");
   const [kind, setKind] = useState<ChartKind>("column");
   const [data, setData] = useState("");
+  const [focusedCell, setFocusedCell] = useState("");
   const [dataView, setDataView] = useState<"cells" | "source">("cells");
   const [foreground, setForeground] = useState("#ffffff");
   const [accent, setAccent] = useState("#38bdf8");
@@ -40,7 +42,7 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
   const [showValues, setShowValues] = useState(true);
   const [error, setError] = useState("");
   const importRequest = useRef(0);
-  useEffect(() => { importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
+  useEffect(() => { setFocusedCell(""); importRequest.current++; return () => { importRequest.current++; }; }, [project.id, selectedId, mode]);
   const importFile = async () => {
     const request = ++importRequest.current;
     try {
@@ -83,6 +85,10 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     if (index === 0) { setAccent(colour); return; }
     setChartPalette(previous => { const next = Array.from({ length: 6 }, (_, i) => previous[i % previous.length] ?? DEFAULT_CHART.colours[i % DEFAULT_CHART.colours.length]); next[index] = colour; return next; });
   };
+  const changeTableStructure = (axis: TableAxis, index: number, action: TableStructureAction) => {
+    try { const next = editTableStructure(data, { ...tableFormat, header: showLabels }, axis, index, action); setTableFormat(next.format); setData(next.source); setFocusedCell(axis === "row" ? `A${next.selected + 1}` : `${String.fromCharCode(65 + next.selected)}1`); setError(""); }
+    catch (reason) { setError(reason instanceof Error ? reason.message : "Could not change this table"); }
+  };
   const apply = () => {
     if (!/^#[0-9a-f]{6}$/i.test(foreground) || !/^#[0-9a-f]{6}$/i.test(accent)) { setError(t("editor.dataVisual.invalidColour", { defaultValue: "Use a six-digit hex colour" })); return; }
     try {
@@ -116,10 +122,10 @@ export default function DataVisualPanel({ project, selectedId, current, commit, 
     <Text className="text-xs text-white/60">{t(mode === "chart" ? multiple ? "editor.dataVisual.seriesHint" : "editor.dataVisual.chartHint" : "editor.dataVisual.tableHint", { defaultValue: mode === "chart" ? multiple ? "First row: Label, followed by series names. Then one label and a number for each series per row. Up to 50 data rows and six series. Turning multiple series off keeps the first series." : "One label,value pair per line. Up to 50 rows. Paste tab-separated spreadsheet data too." : "One row per line. Separate cells with commas or tabs. Up to 20 rows and 12 columns." })}</Text>
     <Pressable accessibilityRole="button" onPress={() => { void importFile(); }} className="min-h-[40px] items-center justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.dataVisual.import", { defaultValue: "Import CSV or TSV" })}</Text></Pressable>
     <View className="flex-row" style={{ gap: 8 }}>{(["cells", "source"] as const).map(view => chip(t(`editor.dataVisual.view.${view}`, { defaultValue: view === "cells" ? "Edit cells" : "Source data" }), dataView === view, () => setDataView(view)))}</View>
-    {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} multiSeries={multiple} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
+    {dataView === "cells" ? <DataCells value={data} onChange={setData} chart={mode === "chart"} multiSeries={multiple} onCellFocus={mode === "table" ? setFocusedCell : undefined} onStructure={mode === "table" ? changeTableStructure : undefined} /> : <TextInput multiline accessibilityLabel={t("editor.dataVisual.data", { defaultValue: "Data" })} value={data} onChangeText={setData} autoCorrect={false} textAlignVertical="top" className="min-h-[90px] rounded-lg border border-white/20 px-3 py-2 text-sm text-white" />}
     {mode === "chart" && <ChartFormattingPanel kind={kind} value={chartAppearance} onChange={setChartAppearance} />}
     <View className="flex-row flex-wrap" style={{ gap: 8 }}><ColourPickerButton projectId={project.id} onPick={setAccent} label={t("editor.colourPicker.accent", { defaultValue: "Pick accent from canvas" })} /><ColourPickerButton projectId={project.id} onPick={setForeground} label={t("editor.colourPicker.ink", { defaultValue: "Pick text colour from canvas" })} /></View>
-    {mode === "table" && <TableFormattingPanel value={{ ...tableFormat, header: showLabels }} source={data} onChange={setTableFormat} onSource={setData} />}
+    {mode === "table" && <TableFormattingPanel focusedCell={focusedCell} value={{ ...tableFormat, header: showLabels }} source={data} onChange={setTableFormat} onSource={setData} />}
     <View className="flex-row items-center" style={{ gap: 8 }}>
       <Text className="text-xs text-white/60">{t("editor.dataVisual.textColour", { defaultValue: "Text" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.textColour", { defaultValue: "Text" })} value={foreground} onChangeText={setForeground} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
       <Text className="text-xs text-white/60">{t("editor.dataVisual.accent", { defaultValue: "Accent" })}</Text><TextInput accessibilityLabel={t("editor.dataVisual.accent", { defaultValue: "Accent" })} value={accent} onChangeText={setAccent} maxLength={7} autoCapitalize="none" autoCorrect={false} className="min-h-[40px] flex-1 rounded-lg border border-white/20 px-2 text-xs text-white" />
