@@ -4,7 +4,7 @@ import type { ClipCrop, MediaClip, ProjectSnapshot } from "./types";
 export interface ReplacementMedia { id: string; kind: "image" | "video" | "audio"; width?: number; height?: number; duration?: number }
 
 /** Replace the source while retaining the layer's visible aspect, placement, frame and styling. */
-export function replaceDesignMedia(project: ProjectSnapshot, id: string, source: ReplacementMedia, previous?: { width?: number; height?: number } | null): ProjectSnapshot {
+export function replaceDesignMedia(project: ProjectSnapshot, id: string, source: ReplacementMedia, previous?: { width?: number; height?: number } | null, force = false): ProjectSnapshot {
   const clip = project.clips.find(c => c.id === id);
   if (clip?.kind === "shape" && clip.photoFrame && !clip.locked && source.kind !== "audio") {
     const { width: W, height: H } = project.settings;
@@ -20,7 +20,7 @@ export function replaceDesignMedia(project: ProjectSnapshot, id: string, source:
       transitionOut: clip.transitionOut, keyframes: clip.keyframes ? { ...clip.keyframes, ...(clip.keyframes.scale ? { scale: clip.keyframes.scale.map(key => ({ ...key, v: key.v * fitScale })) } : {}) } : undefined };
     return { ...project, clips: project.clips.map(c => c.id === id ? next : c) };
   }
-  if (!clip || clip.locked || (clip.kind !== "image" && clip.kind !== "video" && clip.kind !== "audio") || clip.mediaId === source.id) return project;
+  if (!clip || clip.locked || (clip.kind !== "image" && clip.kind !== "video" && clip.kind !== "audio") || (!force && clip.mediaId === source.id)) return project;
   if (clip.kind === "audio" ? source.kind === "image" : source.kind === "audio") return project;
   let crop: ClipCrop | null = null;
   if (clip.kind !== "audio" && previous?.width && previous?.height && source.width && source.height) {
