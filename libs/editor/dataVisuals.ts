@@ -1,5 +1,6 @@
 import { parseDelimitedData } from "./delimitedData";
 import { drawMultiSeriesChart } from "./multiSeriesCharts";
+import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "pie", "donut", "radar"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
@@ -24,6 +25,12 @@ export interface TableData {
   stripeColour?: string | null;
   align?: "left" | "centre" | "right";
   borderWidth?: number;
+  columnWidths?: number[];
+  rowHeights?: number[];
+  padding?: number;
+  fontScale?: number;
+  verticalAlign?: "top" | "middle" | "bottom";
+  wrap?: boolean;
 }
 export interface DataVisualContext {
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
@@ -45,27 +52,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
     ctx.fillText(value, x, y);
   }
-  if (table && Array.isArray(table.rows)) {
-    const rows = table.rows.filter(Array.isArray).slice(0, 20);
-    const columns = Math.min(12, Math.max(1, ...rows.map(row => row.length)));
-    const cellWidth = width / columns, cellHeight = height / Math.max(1, rows.length);
-    ctx.lineWidth = Math.max(1, width / 700) * (table.borderWidth ?? 1);
-    rows.forEach((row, r) => {
-      for (let c = 0; c < columns; c++) {
-        const x = left + c * cellWidth, y = top + r * cellHeight;
-        ctx.fillStyle = table.header && r === 0 ? table.headerColour : table.stripeColour && r % 2 === (table.header ? 0 : 1) ? table.stripeColour : table.cellColour;
-        ctx.fillRect(x, y, cellWidth, cellHeight);
-        ctx.strokeStyle = table.borderColour;
-        if ((table.borderWidth ?? 1) > 0) ctx.strokeRect(x, y, cellWidth, cellHeight);
-        ctx.fillStyle = table.header && r === 0 ? table.headerTextColour : table.textColour;
-        ctx.textAlign = table.align === "centre" ? "center" : table.align ?? "left";
-        ctx.font = (table.header && r === 0 ? "700 " : "500 ") + font + "px Inter, sans-serif";
-        const anchor = table.align === "centre" ? x + cellWidth / 2 : table.align === "right" ? x + cellWidth - font * 0.5 : x + font * 0.5;
-        label(row[c] || "", anchor, y + cellHeight / 2, Math.max(1, cellWidth - font));
-      }
-    });
-    return;
-  }
+  if (table && Array.isArray(table.rows)) { drawEditableTable(ctx, width, height, table); return; }
   if (!chart || !Array.isArray(chart.rows)) return;
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
@@ -205,6 +192,11 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (table.stripeColour !== undefined && table.stripeColour !== null && !colour(table.stripeColour)) return false;
     if (table.align !== undefined && !["left", "centre", "right"].includes(String(table.align))) return false;
     if (table.borderWidth !== undefined && (typeof table.borderWidth !== "number" || !Number.isFinite(table.borderWidth) || table.borderWidth < 0 || table.borderWidth > 8)) return false;
+    for (const key of ["columnWidths", "rowHeights"] as const) { const weights = table[key]; if (weights !== undefined && (!Array.isArray(weights) || weights.length > (key === "columnWidths" ? 12 : 20) || weights.some(value => typeof value !== "number" || !Number.isFinite(value) || value < 0.1 || value > 10))) return false; }
+    if (table.padding !== undefined && (typeof table.padding !== "number" || !Number.isFinite(table.padding) || table.padding < 0 || table.padding > 80)) return false;
+    if (table.fontScale !== undefined && (typeof table.fontScale !== "number" || !Number.isFinite(table.fontScale) || table.fontScale < 0.5 || table.fontScale > 3)) return false;
+    if (table.verticalAlign !== undefined && !["top", "middle", "bottom"].includes(String(table.verticalAlign))) return false;
+    if (table.wrap !== undefined && typeof table.wrap !== "boolean") return false;
   }
   return true;
 }
