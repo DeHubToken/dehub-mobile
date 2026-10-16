@@ -102,7 +102,7 @@ function measuredTextLayout(text, W, H, measure) {
     const width = (line) => measure(line, size, spacing);
     raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
       if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
-      const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
+      const wrapped = text.balance && (!text.list || text.list === "none") ? balancedTextParagraph(paragraph, available, width) : wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
       lines.push(...wrapped.lines); offsets.push(...wrapped.offsets.map(offset => rtl && text.align === "right" ? -offset : offset));
     });
     const widths = lines.map(width);
