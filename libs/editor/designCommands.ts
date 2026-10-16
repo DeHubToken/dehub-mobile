@@ -7,7 +7,7 @@ export const DESIGN_COMMANDS: DesignCommand[] = [
   { id: "repeat", category: "create", detail: "Repeat selected artwork with precise rows, columns, and gaps", keywords: "duplicate repeat sticker pattern grid sheet badge card" },
   { id: "symbols", category: "create", detail: "Search editable vector symbols and pictograms", keywords: "icons arrows pictograms illustrations vector saved recent favourites favorites" },
   { id: "connectors", category: "create", detail: "Create straight, curved, and elbow connectors", keywords: "line arrow diagram flowchart bend stroke" },
-  { id: "data", category: "create", detail: "Create and edit charts and tables from data", keywords: "graph spreadsheet csv table cells merge pie donut bar insert delete row column" },
+  { id: "data", category: "create", detail: "Create and edit charts and tables from data", keywords: "graph spreadsheet csv table cells merge pie donut bar insert delete row column series reorder duplicate order scale legend" },
   { id: "qr", category: "create", detail: "Generate an editable QR code", keywords: "link scan barcode code" },
   { id: "grid", category: "create", detail: "Arrange photos in frames and collage layouts", keywords: "frame mask photo collage grid swap shuffle rearrange rotate order" },
   { id: "compositions", category: "create", detail: "Add coordinated headings and text combinations", keywords: "typography font heading subtitle title pairing" },
