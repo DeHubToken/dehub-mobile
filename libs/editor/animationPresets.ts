@@ -27,6 +27,7 @@ export const ANIMATION_PRESETS: AnimationPreset[] = [
   { kind: "wipe-right", label: "Wipe right" },
   { kind: "wipe-up", label: "Wipe up" },
   { kind: "wipe-down", label: "Wipe down" },
+  { kind: "typewriter", label: "Typewriter" },
 ];
 
 export const DEFAULT_ANIM_DURATION = 0.4;
@@ -38,6 +39,7 @@ export interface ClipAnimState {
   dy: number; // fraction of canvas height
   blurPx: number;
   rotation?: number;
+  textProgress?: number;
   reveals?: Array<{ axis: "x" | "y"; from: "start" | "end"; progress: number }>;
 }
 
@@ -72,6 +74,8 @@ function stateFor(kind: ClipAnimationKind, p: number, direction: "in" | "out"): 
       return { ...IDENTITY, alpha: t, scale: 0.4 + t * (1.05 - 0.4) - (t > 0.85 ? (t - 0.85) * 0.33 : 0) };
     case "rise":
       return { ...IDENTITY, alpha: t, dy: inv * 0.06, scale: 0.95 + t * 0.05 };
+    case "typewriter":
+      return { ...IDENTITY, textProgress: direction === "in" ? p : 1 - p };
     case "spin":
       return { ...IDENTITY, alpha: t, rotation: -180 * inv };
     case "bounce":
@@ -116,6 +120,7 @@ function merge(a: ClipAnimState, b: ClipAnimState): ClipAnimState {
     dx: a.dx + b.dx,
     dy: a.dy + b.dy,
     blurPx: Math.max(a.blurPx, b.blurPx),
+    ...((a.textProgress !== undefined || b.textProgress !== undefined) ? { textProgress: Math.min(a.textProgress ?? 1, b.textProgress ?? 1) } : {}),
     ...((a.rotation !== undefined || b.rotation !== undefined) ? { rotation: (a.rotation ?? 0) + (b.rotation ?? 0) } : {}),
     ...((a.reveals || b.reveals) ? { reveals: [...(a.reveals ?? []), ...(b.reveals ?? [])] } : {}),
   };

@@ -234,6 +234,12 @@ export function CornersPanel({ clip, live, settle, commit }: PanelProps<MediaCli
       <View>
       <Text className="mb-2 text-xs text-white/60">{t("editor.frames.title", { defaultValue: "Photo frame" })}</Text>
       <ChipRow>{(["rect", "ellipse", "triangle", "star", "heart", "hexagon"] as const).map(frame => <Chip key={frame} label={t(`editor.frames.${frame}`, { defaultValue: ({ rect: "Rectangle", ellipse: "Oval", triangle: "Triangle", star: "Star", heart: "Heart", hexagon: "Hexagon" })[frame] })} active={(clip.frame ?? "rect") === frame} onPress={() => { if (!clip.locked) commit({ frame }); }} />)}</ChipRow>
+        <Toggle label={t("editor.outline.border", { defaultValue: "Photo border" })} value={!!clip.border} onChange={value => commit({ border: value ? { color: "#ffffff", width: 6 } : null })} />
+        {clip.border && <>
+          <Swatches label={t("editor.outline.colour", { defaultValue: "Border colour" })} value={clip.border.color} onPick={color => commit({ border: { ...clip.border!, color } })} />
+          <Range label={t("editor.outline.width", { defaultValue: "Border width: {{value}}", value: Math.round(clip.border.width) })} value={clip.border.width} min={1} max={80} step={1} onLive={width => live({ border: { ...clip.border!, width } })} onDone={settle} />
+          <StrokePattern stroke={clip.border} onChange={border => commit({ border })} />
+        </>}
       <Range
       label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })}
       value={clip.radius ?? 0}
@@ -301,12 +307,6 @@ export function PositionPanel({ clip, live, commit, settle, time, record }: Pane
         <Chip icon="RotateCcw" label={t("editor.layer.resetPosition")} onPress={reset} />
       </ChipRow>
       <View className="mt-2">
-        <Toggle label={t("editor.outline.border", { defaultValue: "Photo border" })} value={!!clip.border} onChange={value => commit({ border: value ? { color: "#ffffff", width: 6 } : null })} />
-        {clip.border && <>
-          <Swatches label={t("editor.outline.colour", { defaultValue: "Border colour" })} value={clip.border.color} onPick={color => commit({ border: { ...clip.border!, color } })} />
-          <Range label={t("editor.outline.width", { defaultValue: "Border width: {{value}}", value: Math.round(clip.border.width) })} value={clip.border.width} min={1} max={80} step={1} onLive={width => live({ border: { ...clip.border!, width } })} onDone={settle} />
-          <StrokePattern stroke={clip.border} onChange={border => commit({ border })} />
-        </>}
         <Range
           label={t("editor.layer.rotation", { value: Math.round(tr.rotation) })}
           value={tr.rotation}
@@ -410,6 +410,7 @@ export function TextStylePanel({ clip, live, commit, settle, onFitCaptions, capt
         <View className="mt-2">
         <Range label={t("editor.app.fontSize", { value: Math.round(clip.fontSize) })} value={clip.fontSize} min={12} max={400} step={1} onLive={(v) => live({ fontSize: v })} onDone={settle} />
         <Range label={t("editor.layer.letterSpacing", { value: Math.round(clip.letterSpacing ?? 0) })} value={clip.letterSpacing ?? 0} min={-10} max={80} step={1} onLive={(v) => live({ letterSpacing: v })} onDone={settle} />
+        <Range label={t("editor.text.curve", { defaultValue: "Curve {{value}}", value: Math.round(clip.curve ?? 0) })} value={clip.curve ?? 0} min={-100} max={100} step={1} onLive={curve => live({ curve })} onDone={settle} />
         <Range label={t("editor.layer.lineSpacing", { value: (clip.lineHeight ?? 1.2).toFixed(1) })} value={clip.lineHeight ?? 1.2} min={0.7} max={3} step={0.05} onLive={(v) => live({ lineHeight: v })} onDone={settle} />
         <Toggle label={t("editor.textFit.wrap", { defaultValue: "Wrap lines" })} value={wrapping} onChange={on => commit(textWrapPatch(clip, on))} />
         {wrapping && <Range label={`${t("editor.textFit.width", { defaultValue: "Text width" })} · ${Math.round(clip.maxWidth! * 100)}%`} value={clip.maxWidth!} min={0.05} max={1} step={0.01} onLive={value => live({ maxWidth: value })} onDone={settle} />}

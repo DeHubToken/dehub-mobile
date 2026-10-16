@@ -1,6 +1,8 @@
+import { curvedTextLayout } from "./curvedText";
 export interface MeasuredTextStyle {
   text: string;
   uppercase?: boolean;
+  curve?: number;
   list?: "none" | "bullet" | "number";
   fontSize: number;
   lineHeight?: number;
@@ -59,11 +61,12 @@ export function measuredTextLayout(
     const widths = lines.map(width);
     const lh = size * (text.lineHeight ?? 1.2);
     const maxW = Math.max(0.1, ...widths);
-    return { size, scale, spacing, lh, lines, widths, maxW, pad };
+    const curve = curvedTextLayout(lines, size, lh, text.curve ?? 0, width);
+    return { size, scale, spacing, lh, lines, widths, maxW, pad, curve };
   }
 
-  const fits = (value: ReturnType<typeof layout>) => value.maxW + value.pad * 2 <= widthLimit + 0.01
-    && value.lines.length * value.lh + value.pad * 2 <= heightLimit + 0.01;
+  const fits = (value: ReturnType<typeof layout>) => (value.curve?.width ?? value.maxW) + value.pad * 2 <= widthLimit + 0.01
+    && (value.curve?.height ?? value.lines.length * value.lh) + value.pad * 2 <= heightLimit + 0.01;
   let result = layout(requested);
   if (!fitting || fits(result)) return result;
   let low = 0.01, high = requested;

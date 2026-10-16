@@ -151,7 +151,7 @@ export function AnimatePanel({ clip, commit }: PanelProps<LayerClip>) {
       <Labeled label={label}>
         <ChipRow>
           <Chip label={t("editor.video.none")} active={!cur} onPress={() => commit({ [which]: undefined })} />
-          {ANIMATIONS.map((k) => (
+          {ANIMATIONS.filter(k => k !== "typewriter" || clip.kind === "text").map((k) => (
             <Chip key={k} label={t(ANIMATION_KEYS[k] ?? `editor.video.animation.${k}`, { defaultValue: ANIMATION_PRESETS.find((preset) => preset.kind === k)?.label ?? k })} active={cur?.kind === k} onPress={() => commit({ [which]: { kind: k, duration: cur?.duration ?? len(clip.duration) } })} />
           ))}
         </ChipRow>

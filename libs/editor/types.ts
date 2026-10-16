@@ -173,7 +173,8 @@ export type ClipAnimationKind =
   | "wipe-left"
   | "wipe-right"
   | "wipe-up"
-  | "wipe-down";
+  | "wipe-down"
+  | "typewriter";
 
 export interface ClipAnimation {
   kind: ClipAnimationKind;
@@ -255,6 +256,8 @@ export interface TextClip extends BaseClip {
   uppercase?: boolean;
   underline?: boolean;
   strikethrough?: boolean;
+  /** Text arc amount, from -100 to 100. Zero preserves straight text. */
+  curve?: number;
   hollow?: boolean;
   list?: "none" | "bullet" | "number";
   /** Extra space between letters, in px relative to 1080p. */
