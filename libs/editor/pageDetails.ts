@@ -70,3 +70,13 @@ export function designPageSectionIndexes(project: ProjectSnapshot, name: string)
   const section = name.trim(); if (!section) return [];
   return getPages(project.settings, project.clips).filter(page => pageDetails(project, page.index).section === section).map(page => page.index);
 }
+
+export interface DesignPageSection { name: string; indexes: number[] }
+export function designPageSections(project: ProjectSnapshot): DesignPageSection[] {
+  const sections = new Map<string, DesignPageSection>();
+  for (const page of getPages(project.settings, project.clips)) {
+    const name = pageDetails(project, page.index).section; if (!name) continue;
+    const section = sections.get(name) ?? { name, indexes: [] }; section.indexes.push(page.index); sections.set(name, section);
+  }
+  return [...sections.values()];
+}
