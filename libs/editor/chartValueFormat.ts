@@ -1,9 +1,9 @@
-export interface ChartValueFormat { style: "number" | "percent" | "currency"; currency: "USD" | "EUR" | "GBP" | "JPY"; decimals: number; compact: boolean }
+export interface ChartValueFormat { prefix?: string; suffix?: string; style: "number" | "percent" | "currency"; currency: "USD" | "EUR" | "GBP" | "JPY"; decimals: number; compact: boolean }
 export function validChartValueFormat(value: unknown): value is ChartValueFormat | undefined {
   if (value === undefined) return true;
-  if (!value || typeof value !== "object") return false;
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const v = value as ChartValueFormat;
-  return ["number", "percent", "currency"].includes(v.style) && ["USD", "EUR", "GBP", "JPY"].includes(v.currency) && Number.isInteger(v.decimals) && v.decimals >= 0 && v.decimals <= 4 && typeof v.compact === "boolean";
+  return ["number", "percent", "currency"].includes(v.style) && ["USD", "EUR", "GBP", "JPY"].includes(v.currency) && Number.isInteger(v.decimals) && v.decimals >= 0 && v.decimals <= 4 && typeof v.compact === "boolean" && [v.prefix, v.suffix].every(value => value === undefined || typeof value === "string" && value.length <= 24 && !/[\u0000-\u001f\u007f]/.test(value));
 }
 const chartNumberFormatters = new Map<string, Intl.NumberFormat>();
 export function chartValueLabel(value: number, format?: ChartValueFormat): string {
@@ -18,5 +18,6 @@ export function chartValueLabel(value: number, format?: ChartValueFormat): strin
     if (chartNumberFormatters.size >= 128) chartNumberFormatters.clear();
     chartNumberFormatters.set(key, formatter);
   }
-  return formatter.format(value) + (format.style === "percent" ? "%" : "");
+  const prefix = typeof format.prefix === "string" ? format.prefix.replace(/[\u0000-\u001f\u007f]/g, "").slice(0, 24) : "", suffix = typeof format.suffix === "string" ? format.suffix.replace(/[\u0000-\u001f\u007f]/g, "").slice(0, 24) : "";
+  return prefix + formatter.format(value) + (format.style === "percent" ? "%" : "") + suffix;
 }
