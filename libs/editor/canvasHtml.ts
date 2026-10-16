@@ -144,12 +144,21 @@ canvas{display:block;width:100%;height:100%;}
       case "zoom-out": return assign(IDENTITY, { alpha: t, scale: 1 + inv * 0.4 });
       case "pop": return assign(IDENTITY, { alpha: t, scale: 0.4 + t * (1.05 - 0.4) - (t > 0.85 ? (t - 0.85) * 0.33 : 0) });
       case "rise": return assign(IDENTITY, { alpha: t, dy: inv * 0.06, scale: 0.95 + t * 0.05 });
+      case "spin": return assign(IDENTITY, { alpha: t, rotation: -180 * inv });
+      case "bounce": return assign(IDENTITY, { alpha: t, dy: -Math.abs(Math.sin(t * Math.PI * 2.5)) * inv * 0.13 });
+      case "wipe-left": return assign(IDENTITY, { reveals: [{ axis: "x", from: "end", progress: t }] });
+      case "wipe-right": return assign(IDENTITY, { reveals: [{ axis: "x", from: "start", progress: t }] });
+      case "wipe-up": return assign(IDENTITY, { reveals: [{ axis: "y", from: "end", progress: t }] });
+      case "wipe-down": return assign(IDENTITY, { reveals: [{ axis: "y", from: "start", progress: t }] });
       case "blur": return assign(IDENTITY, { alpha: t, blurPx: inv * 12 });
     }
     return assign(IDENTITY, {});
   }
   function merge(a, b) {
-    return { alpha: a.alpha * b.alpha, scale: a.scale * b.scale, dx: a.dx + b.dx, dy: a.dy + b.dy, blurPx: Math.max(a.blurPx, b.blurPx) };
+    var result = { alpha: a.alpha * b.alpha, scale: a.scale * b.scale, dx: a.dx + b.dx, dy: a.dy + b.dy, blurPx: Math.max(a.blurPx, b.blurPx) };
+    if (a.rotation != null || b.rotation != null) result.rotation = (a.rotation || 0) + (b.rotation || 0);
+    if (a.reveals || b.reveals) result.reveals = (a.reveals || []).concat(b.reveals || []);
+    return result;
   }
   function computeClipAnimation(clip, t) {
     var local = t - clip.start;
@@ -387,6 +396,17 @@ canvas{display:block;width:100%;height:100%;}
     c.translate(box.cx, box.cy);
     if (tr.rotation) c.rotate((tr.rotation * Math.PI) / 180);
     if (tr.flipH || tr.flipV) c.scale(tr.flipH ? -1 : 1, tr.flipV ? -1 : 1);
+    if (anim.rotation) c.rotate(anim.rotation * Math.PI / 180);
+    for (const reveal of anim.reveals ?? []) {
+      const progress = Math.max(0, Math.min(1, reveal.progress));
+      const width = reveal.axis === "x" ? box.w * progress : box.w;
+      const height = reveal.axis === "y" ? box.h * progress : box.h;
+      const x = -box.w / 2 + (reveal.axis === "x" && reveal.from === "end" ? box.w - width : 0);
+      const y = -box.h / 2 + (reveal.axis === "y" && reveal.from === "end" ? box.h - height : 0);
+      c.beginPath();
+      c.rect(x, y, width, height);
+      c.clip();
+    }
     // Text no longer fades in by default (web render.ts): a fade is an explicit animation.
     c.globalAlpha = baseAlpha * anim.alpha * (tr.opacity == null ? 1 : tr.opacity);
     var filter = cssFilterFor(clip, anim.blurPx);
