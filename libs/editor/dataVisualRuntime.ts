@@ -1,5 +1,6 @@
 /** Chart and table drawing shared with the web compositor. */
 export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width, height, chart, table, progress) {
+  ctx.setLineDash?.([]);
   const graphic = table ?? chart, family = graphicFontCss(graphic?.fontFamily);
   let font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic?.fontScale || 1));
   ctx.font = "500 " + font + "px " + family;
@@ -93,7 +94,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
     });
     ctx.beginPath();
     rows.forEach((row, index) => { const p = point(index, (row.value - min) / ceiling); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
-    ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.stroke();
+    ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); strokeChartPattern(ctx, chart.linePattern);
     return;
   }
   const xTitle = (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
@@ -128,7 +129,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (chart.kind === "line" || chart.kind === "area") {
     ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath();
     traceChartLine(ctx, rows.map((row, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: y1 - (row.value - min) / span * plotHeight })), chart.lineStyle);
-    ctx.stroke();
+    strokeChartPattern(ctx, chart.linePattern);
   }
   rows.forEach((row, index) => {
     ctx.fillStyle = colour(index);
@@ -142,8 +143,8 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
       if (chart.kind === "column") ctx.fillRect(x - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.min(zeroY, y), slot * (1 - (chart.barGap ?? 0.34)), Math.abs(y - zeroY));
       else {
-        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
-        ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill(); }
+        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); strokeChartPattern(ctx, chart.linePattern); }
+        drawChartMarker(ctx, x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), chart.pointShape); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
       if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, slot * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, slot * 0.95); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);

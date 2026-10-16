@@ -1,3 +1,4 @@
+import { drawChartMarker, strokeChartPattern, type ChartPointShape, type ChartLinePattern } from "./chartMarks";
 import { validPictogramSymbol } from "./pictogramSymbol";
 import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { drawPackedCirclesChart } from "./packedCirclesChart";
@@ -20,6 +21,9 @@ import { drawEditableTable } from "./tableRendering";
 export const CHART_KINDS = ["column", "bar", "line", "area", "lollipop", "dot", "pie", "donut", "radar", "scatter", "bubble", "funnel", "histogram", "treemap", "pictogram", "race", "progress-bar", "progress-ring", "radial-progress", "progress-dial", "packed-circles"] as const;
 export type ChartKind = typeof CHART_KINDS[number];
 export interface ChartData {
+  pointShape?: ChartPointShape;
+  linePattern?: ChartLinePattern;
+  seriesPatterns?: boolean;
   labelWrap?: boolean;
   xValueFormat?: ChartValueFormat;
   pointLabelMode?: "value" | "coordinates";
@@ -106,6 +110,7 @@ export interface TableData {
 }
 export interface DataVisualContext {
   lineCap?: string; lineJoin?: string;
+  setLineDash?(segments: number[]): void;
   fillStyle: unknown; strokeStyle: unknown; font: string; textAlign: string; textBaseline: string; lineWidth: number;
   bezierCurveTo?(x1: number, y1: number, x2: number, y2: number, x: number, y: number): void;
   beginPath(): void; closePath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
@@ -117,6 +122,7 @@ export interface DataVisualContext {
 
 /** Data is bounded before rendering so imported projects cannot create an unbounded draw loop. */
 export function drawDataVisual(ctx: DataVisualContext, width: number, height: number, chart?: ChartData, table?: TableData, progress?: number): void {
+  ctx.setLineDash?.([]);
   const graphic = table ?? chart, family = graphicFontCss(graphic?.fontFamily);
   let font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, graphic?.fontScale || 1));
   ctx.font = "500 " + font + "px " + family;
@@ -210,7 +216,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
     });
     ctx.beginPath();
     rows.forEach((row, index) => { const p = point(index, (row.value - min) / ceiling); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
-    ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.stroke();
+    ctx.closePath(); ctx.fillStyle = colour(0) + Math.round((chart.areaOpacity ?? 0.267) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); strokeChartPattern(ctx, chart.linePattern);
     return;
   }
   const xTitle = (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
@@ -245,7 +251,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (chart.kind === "line" || chart.kind === "area") {
     ctx.strokeStyle = colour(0); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath();
     traceChartLine(ctx, rows.map((row, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: y1 - (row.value - min) / span * plotHeight })), chart.lineStyle);
-    ctx.stroke();
+    strokeChartPattern(ctx, chart.linePattern);
   }
   rows.forEach((row, index) => {
     ctx.fillStyle = colour(index);
@@ -259,8 +265,8 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
       if (chart.kind === "column") ctx.fillRect(x - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.min(zeroY, y), slot * (1 - (chart.barGap ?? 0.34)), Math.abs(y - zeroY));
       else {
-        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); ctx.stroke(); }
-        ctx.beginPath(); ctx.arc(x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill(); }
+        if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); strokeChartPattern(ctx, chart.linePattern); }
+        drawChartMarker(ctx, x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), chart.pointShape); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
       if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, slot * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, slot * 0.95); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
@@ -332,6 +338,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;
+    if (chart.pointShape !== undefined && !["circle", "square", "diamond", "triangle", "cross"].includes(String(chart.pointShape))) return false;
+    if (chart.linePattern !== undefined && !["solid", "dashed", "dotted", "dash-dot"].includes(String(chart.linePattern))) return false;
+    if (chart.seriesPatterns !== undefined && typeof chart.seriesPatterns !== "boolean") return false;
     if (chart.lineStyle !== undefined && !["straight", "step", "smooth"].includes(String(chart.lineStyle))) return false;
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
     for (const key of ["scaleMin", "scaleMax", "scaleXMin", "scaleXMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }

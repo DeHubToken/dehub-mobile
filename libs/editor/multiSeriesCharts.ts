@@ -1,3 +1,4 @@
+import { chartSeriesPattern, drawChartMarker, strokeChartPattern } from "./chartMarks";
 import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { graphicFontCss } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
@@ -25,7 +26,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const reference = chart.kind === "radar" ? 0 : chart.referenceLine?.value ?? 0;
   const minimum = percentStack ? negative.some(value => value < 0) || reference < 0 ? -100 : 0 : Math.min(0, reference, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = percentStack ? positive.some(value => value > 0) || reference > 0 || !negative.some(value => value < 0) ? 100 : 0 : Math.max(0, reference, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const labelValue = (value: number) => chartValueLabel(value, percentStack ? { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale, prefix: chart.valueFormat?.prefix, suffix: chart.valueFormat?.suffix } : chart.valueFormat);
-  const legend = drawChartLegend(ctx, width, height, chart.kind !== "bubble" && chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour, family);
+  const legend = drawChartLegend(ctx, width, height, chart.kind !== "bubble" && chart.series?.length && chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index), ...(["line", "area", "dot", "lollipop", "scatter", "radar"].includes(chart.kind) ? { marker: chart.kind !== "radar" && (chart.pointSize ?? 1) > 0 ? chartSeriesPattern(chart, index).marker : undefined, linePattern: chart.kind !== "dot" && (chart.kind !== "scatter" || chart.scatterLines) ? chartSeriesPattern(chart, index).linePattern : undefined } : {}) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour, family);
   const xTitle = chart.kind === "radar" ? "" : (chart.xAxisTitle ?? "").replace(/\s+/g, " ").trim(), yTitle = chart.kind === "radar" ? "" : (chart.yAxisTitle ?? "").replace(/\s+/g, " ").trim();
   const left = legend.left, top = legend.top + (yTitle ? font * 1.6 : 0), frameWidth = legend.width, frameHeight = Math.max(1, legend.height - (yTitle ? font * 1.6 : 0) - (xTitle ? font * 1.6 : 0)), centreX = left + frameWidth / 2;
   ctx.font = "500 " + font + "px " + family; ctx.textBaseline = "middle";
@@ -46,7 +47,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     rows.forEach((row, index) => { const p = point(index, 1); if (chart.showGrid !== false) { ctx.beginPath(); ctx.moveTo(centreX, cy); ctx.lineTo(p.x, p.y); ctx.stroke(); } if (chart.showLabels) { const q = point(index, 1.18); ctx.fillStyle = chart.textColour; ctx.textAlign = Math.abs(q.x - centreX) < font ? "center" : q.x < centreX ? "right" : "left"; label(row.label, q.x, q.y, Math.max(font, frameWidth / 2 - radius)); } });
     series.forEach((_, set) => {
       ctx.beginPath(); values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
-      ctx.closePath(); ctx.fillStyle = colour(set) + Math.round((chart.areaOpacity ?? 0.149) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350) * (chart.lineWidth ?? 1); ctx.stroke();
+      ctx.closePath(); ctx.fillStyle = colour(set) + Math.round((chart.areaOpacity ?? 0.149) * 255).toString(16).padStart(2, "0"); ctx.fill(); ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350) * (chart.lineWidth ?? 1); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern);
       if (chart.showValues) values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); ctx.fillStyle = colour(set); ctx.textAlign = "center"; label(labelValue(value), p.x, p.y - font * (0.8 + set * 0.7), Math.max(font * 2, width / rows.length)); });
     });
     return true;
@@ -72,7 +73,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     ctx.strokeStyle = chart.textColour; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
     if (!bubble && chart.scatterLines) series.forEach((_, set) => {
       ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 350) * (chart.lineWidth ?? 1);
-      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: xFor(xs[index]), y: yFor(value) })), chart.lineStyle); ctx.stroke();
+      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: xFor(xs[index]), y: yFor(value) })), chart.lineStyle); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern);
     });
     const pointOrder = rows.map((_, index) => index);
     if (bubble) pointOrder.sort((a, b) => sizes[b] - sizes[a]);
@@ -81,7 +82,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       const radius = bubble ? bubbleRadius * Math.sqrt(sizes[index] / maxSize) : Math.max(2, width / 220) * (chart.pointSize ?? 1);
       if (radius <= 0) return;
       ctx.fillStyle = bubble ? pointColour + Math.round((chart.areaOpacity ?? 0.55) * 255).toString(16).padStart(2, "0") : pointColour;
-      ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill();
+      if (bubble) { ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill(); } else drawChartMarker(ctx, x, y, radius, chartSeriesPattern(chart, set).marker);
       if (bubble) { ctx.strokeStyle = pointColour; ctx.lineWidth = Math.max(1, width / 900) * (chart.lineWidth ?? 1); ctx.stroke(); }
       if (chart.showValues) { const pointLabel = chart.pointLabelMode === "coordinates" ? "(" + chartValueLabel(xs[index], chart.xValueFormat) + ", " + labelValue(value) + ")" : labelValue(value); ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(bubble ? pointLabel + " / " + chartValueLabel(sizes[index], undefined) : pointLabel, x, y - (bubble ? radius + font * 0.6 : font * 0.8), Math.max(font * 3, plotWidth / rows.length)); }
     }));
@@ -104,7 +105,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   series.forEach((_, set) => {
     const colourValue = colour(set); ctx.fillStyle = colourValue; ctx.strokeStyle = colourValue; ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1);
     if (chart.kind === "line" || chart.kind === "area") {
-      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: yFor(value) })), chart.lineStyle); ctx.stroke();
+      ctx.beginPath(); traceChartLine(ctx, values[set].map((value, index) => ({ x: x0 + (index + 0.5) / rows.length * plotWidth, y: yFor(value) })), chart.lineStyle); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern);
       if (chart.kind === "area") { ctx.lineTo(x0 + (rows.length - 0.5) / rows.length * plotWidth, zeroY); ctx.lineTo(x0 + 0.5 / rows.length * plotWidth, zeroY); ctx.closePath(); ctx.fillStyle = colourValue + Math.round((chart.areaOpacity ?? 0.149) * 255).toString(16).padStart(2, "0"); ctx.fill(); }
     }
     values[set].forEach((value, index) => {
@@ -120,7 +121,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
         const slot = plotWidth / rows.length, grouped = chart.kind === "column" || chart.kind === "lollipop", band = slot * (1 - (chart.barGap ?? 0.24)), thickness = stacked || !grouped ? band : band / series.length;
         const x = x0 + slot * (index + 0.5) + (grouped && !stacked ? -band / 2 + (set + 0.5) * thickness : 0), from = yFor(base), to = yFor(base + value);
         if (chart.kind === "column") ctx.fillRect(x - thickness * 0.46, Math.min(from, to), Math.max(0.1, thickness * 0.92), Math.abs(to - from));
-        else { if (chart.kind === "lollipop") { ctx.strokeStyle = colourValue; ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, to); ctx.stroke(); } ctx.beginPath(); ctx.arc(x, to, Math.max(2, width / 220) * (chart.pointSize ?? 1), 0, Math.PI * 2); ctx.fill(); }
+        else { if (chart.kind === "lollipop") { ctx.strokeStyle = colourValue; ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, to); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern); } drawChartMarker(ctx, x, to, Math.max(2, width / 220) * (chart.pointSize ?? 1), chartSeriesPattern(chart, set).marker); }
         if (chart.showValues) { ctx.textAlign = "center"; ctx.fillStyle = chart.textColour; label(labelValue(value), x, stacked ? (from + to) / 2 : Math.max(top + font / 2, to - font * 0.7), Math.max(1, thickness)); }
       }
     });
