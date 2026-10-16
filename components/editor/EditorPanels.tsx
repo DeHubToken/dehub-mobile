@@ -1,3 +1,4 @@
+import { useEditorLibrary } from "../../libs/editor/useEditorLibrary";
 import { MEDIA_FRAMES, MEDIA_FRAME_NAMES } from "../../libs/editor/mediaFrames";
 import CropPresets from "./CropPresets";
 import { DUOTONE_PRESETS } from "../../libs/editor/photoTone";
@@ -364,32 +365,24 @@ export function ShadowPanel({ clip, live, commit, settle }: PanelProps<LayerClip
 // ── text layers ──
 
 export function FontPanel({ clip, commit }: PanelProps<TextClip>) {
-  const { t } = useTranslation();
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all");
-  const filtered = useMemo(() => EDITOR_FONTS.filter(font => (category === "all" || font.category === category) &&
-    font.family.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [query, category]);
-  const current = primaryFamily(clip.fontFamily).toLowerCase();
-  return (
-    <View style={{ gap: 10 }}>
-    <TextInput value={query} onChangeText={setQuery} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholder={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholderTextColor="#888" className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
-    <ChipRow>{(["all", "sans-serif", "serif", "display", "handwriting", "monospace"] as const).map(value => <Chip key={value} label={t(`editor.fonts.category.${value}`, { defaultValue: ({ all: "All", "sans-serif": "Sans serif", serif: "Serif", display: "Display", handwriting: "Handwriting", monospace: "Monospace" })[value] })} active={category === value} onPress={() => setCategory(value)} />)}</ChipRow>
-    <View className="flex-row flex-wrap" style={{ gap: 8 }}>
-      {filtered.slice(0, 40).map((f) => (
-        <Chip
-          key={f.family}
-          label={f.family}
-          active={current === f.family.toLowerCase()}
-          onPress={() => {
-            const css = fontFamilyCss(f);
-            commit({ fontFamily: css, fontWeight: nearestWeight(css, clip.fontWeight) });
-          }}
-        />
-      ))}
-    </View>
+  const { t } = useTranslation(), library = useEditorLibrary("fonts");
+  const [query, setQuery] = useState(""), [category, setCategory] = useState("all");
+  const [collection, setCollection] = useState<"all" | "saved" | "recent">("all"), [offset, setOffset] = useState(0);
+  const filtered = useMemo(() => EDITOR_FONTS.filter(font => (category === "all" || font.category === category)
+    && (collection === "all" || library[collection].includes(font.family))
+    && font.family.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()))
+    .sort((a, b) => collection === "recent" ? library.recent.indexOf(a.family) - library.recent.indexOf(b.family) : 0), [query, category, collection, library.saved, library.recent]);
+  const current = primaryFamily(clip.fontFamily).toLowerCase(), currentFont = EDITOR_FONTS.find(font => font.family.toLowerCase() === current);
+  const first = Math.min(offset, Math.max(0, Math.floor((filtered.length - 1) / 24) * 24));
+  return <View style={{ gap: 10 }}>
+    <TextInput value={query} onChangeText={value => { setQuery(value); setOffset(0); }} autoCapitalize="none" autoCorrect={false} accessibilityLabel={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholder={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholderTextColor="#888" className="min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
+    <ChipRow>{(["all", "sans-serif", "serif", "display", "handwriting", "monospace"] as const).map(value => <Chip key={value} label={t(`editor.fonts.category.${value}`, { defaultValue: ({ all: "All", "sans-serif": "Sans serif", serif: "Serif", display: "Display", handwriting: "Handwriting", monospace: "Monospace" })[value] })} active={category === value} onPress={() => { setCategory(value); setOffset(0); }} />)}</ChipRow>
+    <ChipRow>{(["all", "saved", "recent"] as const).map(value => <Chip key={value} label={t(`editor.library.${value}`, { defaultValue: ({ all: "All", saved: "Saved", recent: "Recent" })[value] })} active={collection === value} onPress={() => { setCollection(value); setOffset(0); }} />)}</ChipRow>
+    {currentFont && <Pressable accessibilityRole="button" accessibilityState={{ selected: library.saved.includes(currentFont.family) }} onPress={() => library.toggle(currentFont.family)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/75">{t(library.saved.includes(currentFont.family) ? "editor.fonts.unsave" : "editor.fonts.save", { defaultValue: library.saved.includes(currentFont.family) ? "Remove {{font}} from saved fonts" : "Save {{font}}", font: currentFont.family })}</Text></Pressable>}
+    <View className="flex-row flex-wrap" style={{ gap: 8 }}>{filtered.slice(first, first + 24).map(font => <Chip key={font.family} label={`${library.saved.includes(font.family) ? "★ " : ""}${font.family}`} active={current === font.family.toLowerCase()} onPress={() => { const css = fontFamilyCss(font); commit({ fontFamily: css, fontWeight: nearestWeight(css, clip.fontWeight) }); library.record(font.family); }} />)}</View>
     <Text className="text-xs text-white/50">{t("editor.fonts.count", { defaultValue: "{{count}} fonts found. Search to narrow the list.", count: filtered.length })}</Text>
-    </View>
-  );
+    {filtered.length > 24 && <View className="flex-row items-center justify-between" style={{ gap: 8 }}><Pressable accessibilityRole="button" disabled={!first} onPress={() => setOffset(first - 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first ? 1 : 0.35 }}><Text className="text-xs text-white/75">{t("editor.fonts.previous", { defaultValue: "Previous fonts" })}</Text></Pressable><Text className="text-xs text-white/45">{Math.floor(first / 24) + 1} / {Math.ceil(filtered.length / 24)}</Text><Pressable accessibilityRole="button" disabled={first + 24 >= filtered.length} onPress={() => setOffset(first + 24)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: first + 24 < filtered.length ? 1 : 0.35 }}><Text className="text-xs text-white/75">{t("editor.fonts.next", { defaultValue: "Next fonts" })}</Text></Pressable></View>}
+  </View>;
 }
 
 export function TextColourPanel({ clip, commit }: PanelProps<TextClip>) {

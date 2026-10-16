@@ -1,3 +1,4 @@
+import OverlapLayerPicker from "./OverlapLayerPicker";
 import SpacingGuides from "./SpacingGuides";
 import { smartSpacingSnap, type SpacingGuide } from "../../libs/editor/smartSpacing";
 import { beginDesignColourSample, cancelDesignColourPick, finishDesignColourSample, getDesignColourPick, useDesignColourPick } from "../../libs/editor/designColourPicker";
@@ -162,6 +163,8 @@ interface Drag {
 const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas(props, ref) {
   const { t } = useTranslation();
   const { project, time, fontCss, selectedId } = props;
+  const [overlapIds, setOverlapIds] = useState<string[] | null>(null);
+  useEffect(() => setOverlapIds(null), [project.id, time]);
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
   const colourPick = useDesignColourPick(), sampling = colourPick?.projectId === project.id;
@@ -1199,9 +1202,11 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomOut", { defaultValue: "Zoom canvas out" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom / 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">−</Text></Pressable>
         <Text className="min-w-[36px] text-center text-xs text-white/60">{Math.round(k * viewport.zoom * 100)}%</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomIn", { defaultValue: "Zoom canvas in" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom * 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">+</Text></Pressable>
+        <Pressable accessibilityRole="button" disabled={!selectedId || sampling || editingGuides || !!props.pen} onPress={() => { const box = boxOf(selectedId); if (!box) return; endDrag(); if (props.playing) props.onEnded?.(time); const candidates = [...live.current.layers].reverse().filter(layer => !getClip(project, layer.id)?.locked && pointInBox(layer, box.cx, box.cy, 0)).map(layer => layer.id); setOverlapIds(candidates); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: selectedId && !sampling && !editingGuides && !props.pen ? 1 : 0.35 }}><Text className="text-xs text-white">{t("editor.layers.overlapping", { defaultValue: "Overlapping layers" })}</Text></Pressable>
         <Pressable accessibilityRole="button" disabled={!selectedId || !memberBoxes.length} onPress={() => { const next = focusDesignSelection(memberBoxes, project.settings, k, { width: viewportSize.w, height: viewportSize.h }); if (next) { endDrag(); viewportDrag.current = null; if (props.playing) props.onEnded?.(time); setEditingGuides(false); setViewport(next); } }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: selectedId && memberBoxes.length ? 1 : 0.35 }}><Text className="text-xs text-white">{t("editor.viewport.selection", { defaultValue: "Selection" })}</Text></Pressable>
         <Pressable accessibilityRole="button" onPress={() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.viewport.fit", { defaultValue: "Fit" })}</Text></Pressable>
       </ScrollView>
+      {overlapIds && <OverlapLayerPicker project={project} ids={overlapIds} selectedId={selectedId} onSelect={props.onSelect} onClose={() => setOverlapIds(null)} />}
     </View>
   );
 });
