@@ -9,11 +9,13 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
-import { Chip, ChipRow, Range, Swatches, Toggle, type LayerClip, type PanelProps } from "./EditorPanels";
+import { Chip, ChipRow, Range, Swatches, Toggle, StrokePattern, type LayerClip, type PanelProps } from "./EditorPanels";
 import { BLEND_MODES, SHAPE_KINDS, type BlendMode, type Clip, type ShapeClip, type ShapeKind } from "../../libs/editor/types";
 import type { Arrange } from "../../libs/editor/project";
+import Svg, { Polygon } from "react-native-svg";
+import { shapePolygon, SHAPE_NAMES } from "../../libs/editor/shapeGeometry";
 
-const SHAPE_ICONS: Record<ShapeKind, IconName> = {
+const SHAPE_ICONS: Partial<Record<ShapeKind, IconName>> = {
   rect: "Square",
   ellipse: "Circle",
   triangle: "Triangle",
@@ -33,12 +35,12 @@ export function ShapesPanel({ onAdd }: { onAdd: (shape: ShapeKind) => void }) {
           key={shape}
           onPress={() => onAdd(shape)}
           accessibilityRole="button"
-          accessibilityLabel={t(`editor.shape.${shape}`)}
+          accessibilityLabel={t(`editor.shape.${shape}`, { defaultValue: SHAPE_NAMES[shape] })}
           className="items-center justify-center rounded-xl bg-white/10 border border-white/15"
           style={{ width: 64, height: 64, gap: 4 }}
         >
-          <Icon name={SHAPE_ICONS[shape]} size={26} color="#fff" />
-          <Text className="text-white text-[10px]" numberOfLines={1}>{t(`editor.shape.${shape}`)}</Text>
+          {shapePolygon(shape, 26, 26) ? <Svg width={30} height={30} viewBox="-15 -15 30 30"><Polygon points={shapePolygon(shape, 26, 26)!.map(point => point.join(",")).join(" ")} fill="#fff" /></Svg> : <Icon name={SHAPE_ICONS[shape] ?? "Shapes"} size={26} color="#fff" />}
+          <Text className="text-white text-[10px]" numberOfLines={1}>{t(`editor.shape.${shape}`, { defaultValue: SHAPE_NAMES[shape] })}</Text>
         </Pressable>
       ))}
     </View>
@@ -68,6 +70,7 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
           <Range label={t("editor.shape.outlineWidth", { value: Math.round(s.width) })} value={s.width} min={1} max={60} step={1} onLive={(v) => live({ stroke: { ...s, width: v } })} onDone={settle} />
         </>
       )}
+      {s && <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />}
       {clip.shape === "rect" && (
         <Range label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })} value={clip.radius ?? 0} min={0} max={540} step={1} onLive={(v) => live({ radius: v })} onDone={settle} />
       )}
@@ -131,7 +134,7 @@ export function LayersPanel(props: {
     : c.kind === "shape" && c.qr ? t("editor.qr.title", { defaultValue: "QR code" })
     : c.kind === "shape" && c.chart ? t("editor.dataVisual.chart", { defaultValue: "Chart" })
     : c.kind === "shape" && c.table ? t("editor.dataVisual.table", { defaultValue: "Table" })
-    : c.kind === "shape" ? t(`editor.shape.${c.shape}`)
+    : c.kind === "shape" ? t(`editor.shape.${c.shape}`, { defaultValue: SHAPE_NAMES[c.shape] })
     : t("editor.layers.media");
   return (
     <View style={{ gap: 6 }}>

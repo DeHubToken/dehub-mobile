@@ -48,6 +48,12 @@ const DEFAULT_SHADOW: ClipShadow = { color: "#000000", opacity: 0.5, blur: 24, o
 const DEFAULT_LABEL: TextBackground = { color: "#000000", opacity: 0.6, padding: 24, radius: 16 };
 const DEFAULT_OUTLINE: TextStroke = { color: "#000000", width: 6 };
 
+export function StrokePattern({ stroke, onChange }: { stroke: TextStroke; onChange: (value: TextStroke) => void }) {
+  const { t } = useTranslation();
+  const pattern = !stroke.dash?.length ? "solid" : stroke.dash[0] <= 1 ? "dotted" : "dashed";
+  return <ChipRow>{(["solid", "dashed", "dotted"] as const).map(value => <Chip key={value} active={pattern === value} label={t(`editor.outline.${value}`, { defaultValue: value === "solid" ? "Solid" : value === "dashed" ? "Dashed" : "Dotted" })} onPress={() => onChange({ ...stroke, dash: value === "solid" ? undefined : value === "dotted" ? [1, 12] : [16, 12] })} />)}</ChipRow>;
+}
+
 // ── building blocks ──
 
 export function Labeled({ label, children }: { label: string; children: React.ReactNode }) {
@@ -294,6 +300,12 @@ export function PositionPanel({ clip, live, commit, settle, time, record }: Pane
         <Chip icon="RotateCcw" label={t("editor.layer.resetPosition")} onPress={reset} />
       </ChipRow>
       <View className="mt-2">
+        <Toggle label={t("editor.outline.border", { defaultValue: "Photo border" })} value={!!clip.border} onChange={value => commit({ border: value ? { color: "#ffffff", width: 6 } : null })} />
+        {clip.border && <>
+          <Swatches label={t("editor.outline.colour", { defaultValue: "Border colour" })} value={clip.border.color} onPick={color => commit({ border: { ...clip.border!, color } })} />
+          <Range label={t("editor.outline.width", { defaultValue: "Border width: {{value}}", value: Math.round(clip.border.width) })} value={clip.border.width} min={1} max={80} step={1} onLive={width => live({ border: { ...clip.border!, width } })} onDone={settle} />
+          <StrokePattern stroke={clip.border} onChange={border => commit({ border })} />
+        </>}
         <Range
           label={t("editor.layer.rotation", { value: Math.round(tr.rotation) })}
           value={tr.rotation}

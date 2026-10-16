@@ -1,5 +1,5 @@
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
-export interface PdfPage { jpeg: Uint8Array; width: number; height: number }
+export interface PdfPage { jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
 const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255);
 
@@ -30,8 +30,10 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
       page.width > 32768 || page.height > 32768 || page.jpeg.length < 4 || page.jpeg[0] !== 255 || page.jpeg[1] !== 216) throw new Error("Invalid PDF page image");
     const id = 3 + index * 3;
     // A4's print preset is 300 dpi; screen designs use 96 dpi.
-    const dpi = (page.width === 2480 && page.height === 3508) || (page.height === 2480 && page.width === 3508) ? 300 : 96;
-    const width = Number((page.width * 72 / dpi).toFixed(3)), height = Number((page.height * 72 / dpi).toFixed(3));
+    const designWidth = page.designWidth ?? page.width, designHeight = page.designHeight ?? page.height;
+    if (!Number.isFinite(designWidth) || !Number.isFinite(designHeight) || designWidth <= 0 || designHeight <= 0) throw new Error("Invalid PDF page size");
+    const dpi = (designWidth === 2480 && designHeight === 3508) || (designHeight === 2480 && designWidth === 3508) ? 300 : 96;
+    const width = Number((designWidth * 72 / dpi).toFixed(3)), height = Number((designHeight * 72 / dpi).toFixed(3));
     await object(id, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /XObject << /Im0 ${id + 1} 0 R >> >> /Contents ${id + 2} 0 R >>`);
     offsets[id + 1] = position;
     await text(`${id + 1} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${page.width} /Height ${page.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${page.jpeg.length} >>\nstream\n`);
