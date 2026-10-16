@@ -103,6 +103,7 @@ import StockPanel from "../components/editor/StockPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
 import DesignTools from "../components/editor/DesignTools";
+import PresentationView from "../components/editor/PresentationView";
 import { appendPage, getPages, pageAt, removePage, reorderPage, setPageDuration } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
@@ -386,6 +387,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [missing, setMissing] = useState(false);
   const drafts = useEditorProjectDraft({ rendered: project, current: h.latest, holdEdits: h.holdEdits, commit: h.commit });
   const [exportOpen, setExportOpen] = useState(false);
+  const [presentation, setPresentation] = useState<{ project: ProjectSnapshot; time: number } | null>(null);
+  useEffect(() => setPresentation(null), [project?.id]);
   const [cloudOpen, setCloudOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
@@ -1667,7 +1670,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
-      <DesignTools boxes={() => canvasRef.current?.layoutBoxes() ?? []} recording={recording} key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
+      <DesignTools onPresent={rendering !== null || mediaLoading > 0 ? undefined : () => { h.settle(); setPlaying(false); setPen(null); setTool(null); const latest = h.latest(); if (latest) setPresentation({ project: latest, time: canvasTime }); }} boxes={() => canvasRef.current?.layoutBoxes() ?? []} recording={recording} key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
+      {presentation && presentation.project.id === project.id && <PresentationView project={presentation.project} time={presentation.time} onPage={setTime} onClose={() => setPresentation(null)} renderPage={at => {
+        const canvas = canvasRef.current;
+        if (!canvas) return Promise.reject(new Error("The canvas is not ready"));
+        return canvas.exportImage("jpeg", 0.9, at, false, undefined, true, 2048, presentation.project);
+      }} />}
       <LiveProjectSession projectId={project.id} editor={cloudDraftHistoryEditor(h)} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
