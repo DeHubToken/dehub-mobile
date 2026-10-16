@@ -248,6 +248,7 @@ export function CornersPanel({ clip, live, settle, commit }: PanelProps<MediaCli
         {clip.border && <>
           <Swatches label={t("editor.outline.colour", { defaultValue: "Border colour" })} value={clip.border.color} onPick={color => commit({ border: { ...clip.border!, color } })} />
           <Range label={t("editor.outline.width", { defaultValue: "Border width: {{value}}", value: Math.round(clip.border.width) })} value={clip.border.width} min={1} max={80} step={1} onLive={width => live({ border: { ...clip.border!, width } })} onDone={settle} />
+          <Range label={t("editor.paint.borderOpacity", { defaultValue: "Border opacity: {{value}}%", value: Math.round((clip.border.opacity ?? 1) * 100) })} value={clip.border.opacity ?? 1} min={0} max={1} step={0.01} onLive={opacity => live({ border: { ...clip.border!, opacity } })} onDone={settle} />
           <StrokePattern stroke={clip.border} onChange={border => commit({ border })} />
         </>}
       <Range
@@ -385,9 +386,9 @@ export function FontPanel({ clip, commit }: PanelProps<TextClip>) {
   </View>;
 }
 
-export function TextColourPanel({ clip, commit }: PanelProps<TextClip>) {
+export function TextColourPanel({ clip, commit, live, settle }: PanelProps<TextClip>) {
   const { t } = useTranslation();
-  return <Swatches label={t("editor.layer.colour")} value={clip.color} onPick={(c) => commit({ color: c })} />;
+  return <View><Swatches label={t("editor.layer.colour")} value={clip.color} onPick={(c) => commit({ color: c })} /><Range label={t("editor.paint.fillOpacity", { defaultValue: "Fill opacity: {{value}}%", value: Math.round((clip.fillOpacity ?? 1) * 100) })} value={clip.fillOpacity ?? 1} min={0} max={1} step={0.01} onLive={value => live({ fillOpacity: value })} onDone={settle} /></View>;
 }
 
 export function TextStylePanel({ clip, live, commit, settle, onFitCaptions, captionsFitted }: PanelProps<TextClip> & { onFitCaptions?: () => void; captionsFitted?: boolean }) {
@@ -452,6 +453,7 @@ export function OutlinePanel({ clip, live, commit, settle }: PanelProps<TextClip
       <Toggle label={t("editor.app.outline")} value={!!s} onChange={(on) => commit({ stroke: on ? (s ?? DEFAULT_OUTLINE) : null })} />
       {s && (
         <>
+          <Range label={t("editor.paint.strokeOpacity", { defaultValue: "Outline opacity: {{value}}%", value: Math.round((s.opacity ?? 1) * 100) })} value={s.opacity ?? 1} min={0} max={1} step={0.01} onLive={opacity => live({ stroke: { ...s, opacity } })} onDone={settle} />
           <Swatches label={t("editor.layer.colour")} value={s.color} onPick={(c) => commit({ stroke: { ...s, color: c } })} />
           <Range label={t("editor.app.thickness", { value: Math.round(s.width) })} value={s.width} min={1} max={40} step={1} onLive={(v) => live({ stroke: { ...s, width: v } })} onDone={settle} />
         </>

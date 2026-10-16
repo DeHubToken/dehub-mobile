@@ -18,8 +18,8 @@ export function sampleStroke(points: [number, number][]): [number, number][] {
   return Array.from({ length: count }, (_, index) => points[Math.round(index * (points.length - 1) / Math.max(1, count - 1))]).filter(point => point && point.length === 2 && point.every(Number.isFinite));
 }
 
-export function penShapeStyle(pen: PenSettings): Pick<ShapeClip, "stroke" | "pathSmoothing" | "strokeCap" | "strokeJoin" | "closedPath"> {
-  return { stroke: { color: pen.color, width: pen.width, dash: pen.dash ? [...pen.dash] : undefined }, pathSmoothing: pen.smoothing ?? 1, strokeCap: pen.cap ?? "round", strokeJoin: pen.join ?? "round", closedPath: !!pen.closed };
+export function penShapeStyle(pen: PenSettings, opacity?: number): Pick<ShapeClip, "stroke" | "pathSmoothing" | "strokeCap" | "strokeJoin" | "closedPath"> {
+  return { stroke: { ...(opacity !== undefined ? { opacity } : {}), color: pen.color, width: pen.width, dash: pen.dash ? [...pen.dash] : undefined }, pathSmoothing: pen.smoothing ?? 1, strokeCap: pen.cap ?? "round", strokeJoin: pen.join ?? "round", closedPath: !!pen.closed };
 }
 
 type StrokeCommand = ["M" | "L", number, number] | ["Q", number, number, number, number] | ["Z"];

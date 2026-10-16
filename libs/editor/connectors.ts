@@ -66,7 +66,7 @@ export function putConnector(project: ProjectSnapshot, time: number, connector: 
   const selected = project.clips.find(clip => clip.id === selectedId);
   const existing = selected?.kind === "shape" && (selected.connector || selected.shape === "line" || selected.shape === "arrow") ? selected : undefined;
   if (existing?.locked) return null;
-  if (existing) return { project: { ...project, clips: project.clips.map(clip => clip.id === existing.id ? { ...existing, connector, shape: "line", fill: null, stroke: { color: colour, width, dash } } as ShapeClip : clip) }, id: existing.id };
+  if (existing) return { project: { ...project, clips: project.clips.map(clip => clip.id === existing.id ? { ...existing, connector, shape: "line", fill: null, stroke: { opacity: existing.stroke?.opacity, color: colour, width, dash } } as ShapeClip : clip) }, id: existing.id };
   const page = pageAt(getPages(project.settings, project.clips), time);
   const track: Track = { id: makeId(), kind: "video", name: "Connector", muted: false, hidden: false };
   const clip: ShapeClip = { id: makeId(), trackId: track.id, kind: "shape", shape: "line", start: page.start, duration: page.end - page.start, trimIn: 0, w: 0.45, h: 0.18, fill: null, stroke: { color: colour, width, dash }, connector };
