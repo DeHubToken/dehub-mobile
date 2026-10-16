@@ -25,6 +25,7 @@ export interface ChartData {
   raceTop?: number;
   racePoster?: number;
   raceAnimate?: boolean;
+  pictogramMode?: "shares" | "progress";
   pictogramCount?: number;
   pictogramColumns?: number;
   pictogramShape?: "circle" | "square" | "diamond" | "star" | "person";
@@ -288,7 +289,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.kind === "bubble" && Array.isArray(chart.series) && chart.series.length > 1 && ((chart.series as { values: number[] }[])[1].values.some(value => value < 0) || !(chart.series as { values: number[] }[])[1].values.some(value => value > 0))) return false;
     if (chart.referenceLine !== undefined && (!object(chart.referenceLine) || typeof chart.referenceLine.value !== "number" || !Number.isFinite(chart.referenceLine.value) || Math.abs(chart.referenceLine.value) > 1e12 || !colour(chart.referenceLine.colour) || chart.referenceLine.label !== undefined && (typeof chart.referenceLine.label !== "string" || chart.referenceLine.label.length > 80))) return false;
     if (chart.stackPercent && chart.stacked && (chart.kind === "bar" || chart.kind === "column") && object(chart.referenceLine) && Math.abs(Number(chart.referenceLine.value)) > 100) return false;
-    if (chart.kind === "pictogram" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
+    if (chart.kind === "pictogram" && chart.pictogramMode !== "progress" && (chart.rows.some(row => row.value < 0) || !chart.rows.some(row => row.value > 0))) return false;
     if (chart.kind === "race" && (!Array.isArray(chart.series) || chart.series.length < 2 || (chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value < 0)) || !(chart.series as { values: number[] }[]).some(frame => frame.values.some(value => value > 0)))) return false;
     if (isProgressChart(String(chart.kind)) && (chart.rows[0].value < 0 || chart.rows[0].value > 100)) return false;
     if (chart.progressThickness !== undefined && (typeof chart.progressThickness !== "number" || !Number.isFinite(chart.progressThickness) || chart.progressThickness < 0.04 || chart.progressThickness > 0.5)) return false;
@@ -296,6 +297,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.raceTop !== undefined && (typeof chart.raceTop !== "number" || !Number.isInteger(chart.raceTop) || chart.raceTop < 1 || chart.raceTop > 20)) return false;
     if (chart.racePoster !== undefined && (typeof chart.racePoster !== "number" || !Number.isFinite(chart.racePoster) || chart.racePoster < 0 || chart.racePoster > 1)) return false;
     if (chart.raceAnimate !== undefined && typeof chart.raceAnimate !== "boolean") return false;
+    if (chart.pictogramMode !== undefined && !["shares", "progress"].includes(String(chart.pictogramMode))) return false;
+    if (chart.kind === "pictogram" && chart.pictogramMode === "progress" && (!Number.isInteger(chart.rows[0].value) || chart.rows[0].value < 0 || chart.rows[0].value > Number(chart.pictogramCount ?? 100))) return false;
     if (chart.pictogramCount !== undefined && (typeof chart.pictogramCount !== "number" || !Number.isInteger(chart.pictogramCount) || chart.pictogramCount < 10 || chart.pictogramCount > 100)) return false;
     if (chart.pictogramColumns !== undefined && (typeof chart.pictogramColumns !== "number" || !Number.isInteger(chart.pictogramColumns) || chart.pictogramColumns < 2 || chart.pictogramColumns > 20)) return false;
     if (chart.pictogramShape !== undefined && !["circle", "square", "diamond", "star", "person"].includes(String(chart.pictogramShape))) return false;

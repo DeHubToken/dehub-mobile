@@ -13,22 +13,28 @@ export function pictogramAllocation(values: readonly number[], count: number): n
 }
 export function drawPictogramChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): void {
   const rows = chart.rows.slice(0, 50), count = Math.max(10, Math.min(100, Math.round(chart.pictogramCount ?? 100)));
+  const progress = chart.pictogramMode === "progress", filled = Math.max(0, Math.min(count, Math.round(rows[0]?.value ?? 0)));
   const total = rows.reduce((sum, row) => sum + Math.max(0, row.value), 0);
-  if (!total) return;
+  if (!progress && !total) return;
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index: number) => colours[index % colours.length];
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1)), family = graphicFontCss(chart.fontFamily);
-  const entries = rows.map((row, index) => ({ row, index })).filter(item => item.row.value > 0).map(({ row, index }) => {
+  let entries = rows.map((row, index) => ({ row, index })).filter(item => item.row.value > 0).map(({ row, index }) => {
     const actual = chartValueLabel(row.value, chart.valueFormat), share = chartValueLabel(row.value / total * 100, { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 1, compact: false, locale: chart.valueFormat?.locale });
     const value = chart.pieValueMode === "percent" ? share : chart.pieValueMode === "both" ? actual + " (" + share + ")" : actual;
     return { colour: colour(index), label: [chart.showLabels ? row.label : "", chart.showValues ? value : ""].filter(Boolean).join("  ") };
   });
+  if (progress) {
+    const share = chartValueLabel(filled / count * 100, { style: "percent", currency: "USD", decimals: chart.valueFormat?.decimals ?? 0, compact: false, locale: chart.valueFormat?.locale });
+    const actual = chartValueLabel(filled, undefined) + " / " + chartValueLabel(count, undefined), value = chart.pieValueMode === "percent" ? share : chart.pieValueMode === "both" ? actual + " (" + share + ")" : actual;
+    entries = [{ colour: colour(0), label: [chart.showLabels ? rows[0]?.label ?? "" : "", chart.showValues ? value : ""].filter(Boolean).join("  ") }];
+  }
   const frame = drawChartLegend(ctx, width, height, chart.showLegend !== false && (chart.showLabels || chart.showValues) ? entries : [], chart.legendPosition ?? "bottom", font, chart.textColour, family);
   const columns = Math.max(2, Math.min(20, chart.pictogramColumns ?? 10, count)), rowCount = Math.ceil(count / columns);
   const cell = Math.max(0, Math.min((frame.width - font * 2) / columns, (frame.height - font * 2) / rowCount));
   if (cell < 1) return;
   const x0 = frame.left + (frame.width - columns * cell) / 2, y0 = frame.top + (frame.height - rowCount * cell) / 2;
   const spacing = Math.max(0.08, Math.min(0.8, chart.barGap ?? 0.22)), size = cell * (1 - spacing), half = size / 2;
-  const allocation = pictogramAllocation(rows.map(row => row.value), count);
+  const allocation = progress ? [filled, count - filled] : pictogramAllocation(rows.map(row => row.value), count);
   let icon = 0;
   allocation.forEach((amount, index) => {
     ctx.fillStyle = colour(index);
