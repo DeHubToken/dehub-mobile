@@ -1,3 +1,4 @@
+import { mediaFrame } from "./mediaFrames";
 import type { ClipCrop, MediaClip, ProjectSnapshot } from "./types";
 
 export interface ReplacementMedia { id: string; kind: "image" | "video" | "audio"; width?: number; height?: number; duration?: number }
@@ -13,7 +14,7 @@ export function replaceDesignMedia(project: ProjectSnapshot, id: string, source:
     const tr = { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform };
     const fitScale = clip.w * W / Math.min(W, H * aspect);
     const next: MediaClip = { id: clip.id, groupId: clip.groupId, trackId: clip.trackId, start: clip.start, duration: source.duration && source.kind === "video" ? Math.min(clip.duration, source.duration) : clip.duration,
-      trimIn: 0, kind: source.kind, mediaId: source.id, sourceDuration: source.duration, crop, fit: "contain", frame: "rect", radius: clip.radius,
+      trimIn: 0, kind: source.kind, mediaId: source.id, sourceDuration: source.duration, crop, fit: "contain", frame: mediaFrame(clip.shape), radius: clip.radius, label: clip.label, href: clip.href,
       transform: { ...tr, scale: tr.scale * fitScale }, border: clip.stroke,
       shadow: clip.shadow, blend: clip.blend, hidden: clip.hidden, locked: clip.locked, animateIn: clip.animateIn, animateOut: clip.animateOut,
       transitionOut: clip.transitionOut, keyframes: clip.keyframes ? { ...clip.keyframes, ...(clip.keyframes.scale ? { scale: clip.keyframes.scale.map(key => ({ ...key, v: key.v * fitScale })) } : {}) } : undefined };
