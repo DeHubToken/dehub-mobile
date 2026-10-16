@@ -138,6 +138,7 @@ export interface ClipCrop {
 
 
 export interface ClipEffects {
+  vibrance?: number;
   highlights?: number;
   shadows?: number;
   fade?: number;
