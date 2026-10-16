@@ -203,6 +203,8 @@ export interface MediaClip extends BaseClip {
   crop?: ClipCrop | null;
   /** Corner radius in px relative to 1080p. */
   radius?: number;
+  /** Clip the media into an editable frame while preserving its original source. */
+  frame?: "rect" | "ellipse" | "triangle" | "star" | "heart" | "hexagon";
 }
 
 export interface TextBackground {
@@ -224,6 +226,7 @@ export interface TextStroke {
 
 export interface TextClip extends BaseClip {
   kind: "text";
+  gradient?: import("./gradientFill").GradientFill | null;
   text: string;
   fontFamily: string;
   fontSize: number; // px relative to canvas height
@@ -258,7 +261,9 @@ export type ShapeKind = (typeof SHAPE_KINDS)[number];
 /** A vector shape. Size is a fraction of the page, before transform.scale. */
 export interface ShapeClip extends BaseClip {
   kind: "shape";
+  gradient?: import("./gradientFill").GradientFill | null;
   shape: ShapeKindAll;
+  isPageBackground?: boolean;
   /** Data-backed graphics remain editable after insertion and across devices. */
   chart?: import("./dataVisuals").ChartData;
   table?: import("./dataVisuals").TableData;

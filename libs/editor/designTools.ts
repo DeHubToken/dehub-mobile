@@ -12,6 +12,8 @@ export interface DesignStyle {
   radius?: number;
   chartStyle?: Omit<import("./dataVisuals").ChartData, "rows" | "kind">;
   tableStyle?: Omit<import("./dataVisuals").TableData, "rows">;
+  gradient?: import("./gradientFill").GradientFill | null;
+  frame?: import("./types").MediaClip["frame"];
 }
 
 export function copyDesignStyle(clip: Clip): DesignStyle | null {
@@ -21,15 +23,18 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
     blend: clip.blend ?? "normal", shadow: clip.shadow ? { ...clip.shadow } : null,
   };
   if (clip.kind === "text") {
+    style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     const { fontFamily, fontSize, fontWeight, color, align, italic, uppercase, underline, letterSpacing, lineHeight } = clip;
     style.text = { fontFamily, fontSize, fontWeight, color, align, italic: !!italic, uppercase: !!uppercase,
       underline: !!underline, letterSpacing: letterSpacing ?? 0, lineHeight: lineHeight ?? 1.2,
       background: clip.background ? { ...clip.background } : null, stroke: clip.stroke ? { ...clip.stroke } : null };
   } else if (clip.kind === "shape") {
+    style.gradient = clip.gradient ? { ...clip.gradient, stops: clip.gradient.stops.map(stop => ({ ...stop })) } : null;
     style.shape = { fill: clip.fill, stroke: clip.stroke ? { ...clip.stroke } : null, radius: clip.radius ?? 0 };
     if (clip.chart) { const { rows: _rows, kind: _kind, ...format } = clip.chart; style.chartStyle = { ...format, colours: [...format.colours] }; }
     if (clip.table) { const { rows: _rows, ...format } = clip.table; style.tableStyle = { ...format }; }
   } else {
+    style.frame = clip.frame ?? "rect";
     style.effects = { ...clip.effects };
     style.radius = clip.radius ?? 0;
   }
@@ -40,12 +45,13 @@ export function pasteDesignStyle(clip: Clip, style: DesignStyle): Clip {
   if (clip.locked || clip.kind === "audio") return clip;
   const common = { ...clip, blend: style.blend, shadow: style.shadow ? { ...style.shadow } : null,
     transform: { x: 0.5, y: 0.5, scale: 1, rotation: 0, ...clip.transform, opacity: style.opacity } };
-  if (clip.kind === "text" && style.text) return { ...common, ...style.text } as TextClip;
+  if (clip.kind === "text" && style.text) return { ...common, ...style.text, gradient: style.gradient } as TextClip;
   if (clip.kind === "shape" && style.shape) return { ...common, ...style.shape,
+    gradient: style.gradient,
     ...(clip.chart && style.chartStyle ? { chart: { ...clip.chart, ...style.chartStyle, colours: [...style.chartStyle.colours] } } : {}),
     ...(clip.table && style.tableStyle ? { table: { ...clip.table, ...style.tableStyle } } : {}) } as ShapeClip;
   if ((clip.kind === "image" || clip.kind === "video") && style.effects) {
-    return { ...common, effects: { ...style.effects }, radius: style.radius } as Clip;
+    return { ...common, effects: { ...style.effects }, radius: style.radius, frame: style.frame } as Clip;
   }
   return common as Clip;
 }
@@ -65,6 +71,7 @@ export function designColours(project: ProjectSnapshot): string[] {
   const add = (value: string | null | undefined) => { if (value && /^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(value)) colours.add(colourKey(value)); };
   add(project.settings.background);
   for (const clip of project.clips) {
+    if ((clip.kind === "text" || clip.kind === "shape") && clip.gradient) clip.gradient.stops.forEach(stop => add(stop.colour));
     if (clip.kind === "text") { add(clip.color); add(clip.background?.color); add(clip.stroke?.color); }
     if (clip.kind === "shape") {
       add(clip.fill); add(clip.stroke?.color);
@@ -84,6 +91,7 @@ export function replaceDesignColour(project: ProjectSnapshot, from: string, to: 
     clips: project.clips.map(clip => {
       if (clip.locked) return clip;
       const next = { ...clip };
+      if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: replace(stop.colour) })) };
       if (next.shadow) next.shadow = { ...next.shadow, color: replace(next.shadow.color) };
       if (next.kind === "text") {
         next.color = replace(next.color);
@@ -159,6 +167,7 @@ export function applyDesignPalette(project: ProjectSnapshot, colours: readonly s
   return { ...project, settings: { ...project.settings, background: recolour(project.settings.background) }, clips: project.clips.map(clip => {
     if (clip.locked) return clip;
     const next = { ...clip };
+    if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: recolour(stop.colour) })) };
     if (next.shadow) next.shadow = { ...next.shadow, color: recolour(next.shadow.color) };
     if (next.kind === "text") {
       next.color = recolour(next.color);

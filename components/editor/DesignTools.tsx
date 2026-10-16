@@ -5,6 +5,7 @@ import { applyDesignPalette, applyDesignStyle, copyDesignStyle, designColours, D
 import type { ProjectSnapshot } from "../../libs/editor/types";
 import DesignTextSearch from "./DesignTextSearch";
 import DataVisualPanel from "./DataVisualPanel";
+import FillPanel from "./FillPanel";
 
 export default function DesignTools({ project, selectedId, current, commit, seek, time, select }: {
   project: ProjectSnapshot; selectedId: string | null;
@@ -13,7 +14,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | null>(null);
   const [width, setWidth] = useState(String(project.settings.width));
   const [height, setHeight] = useState(String(project.settings.height));
   const [colour, setColour] = useState<string | null>(null);
@@ -40,7 +41,9 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.designTools.pasteStyle", { defaultValue: "Paste style" }), () => style && selectedId && apply(p => applyDesignStyle(p, [selectedId], style)), !style || !selected || selected.kind === "audio" || !!selected.locked)}
       {action(t("editor.designTools.findReplace", { defaultValue: "Find and replace" }), () => setPanel(panel === "search" ? null : "search"), false, panel === "search")}
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel(panel === "data" ? null : "data"), false, panel === "data")}
+      {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel(panel === "fill" ? null : "fill"), false, panel === "fill")}
     </ScrollView>
+    {panel === "fill" && <FillPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "data" && <DataVisualPanel project={project} selectedId={selectedId} current={current} commit={commit} time={time} select={select} />}
     {panel === "search" && <DesignTextSearch project={project} apply={apply} seek={seek} />}
     {panel === "resize" && <View style={{ gap: 8 }}><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}>
