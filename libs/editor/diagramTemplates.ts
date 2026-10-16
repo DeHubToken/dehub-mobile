@@ -1,3 +1,4 @@
+import { graphicFontCss, validGraphicFont } from "./graphicFonts";
 import { getPages, pageAt } from "./pages";
 import type { Clip, ProjectSnapshot, ShapeClip, TextClip, Track } from "./types";
 export type DiagramNode = { label: string; x: number; y: number; w: number; h: number; shape: "rect" | "ellipse" | "hexagon" };
@@ -8,7 +9,7 @@ export const DIAGRAM_TEMPLATES = [
   { id: "mindmap", name: "Mind map", description: "A central idea with six connected topics", nodes: [{ label: "Central idea", x: 0.5, y: 0.5, w: 0.24, h: 0.18, shape: "ellipse" as const }, ...["Audience", "Purpose", "Resources", "Ideas", "Actions", "Outcomes"].map((label, index) => ({ label, x: 0.5 + Math.cos(index / 6 * Math.PI * 2) * 0.34, y: 0.5 + Math.sin(index / 6 * Math.PI * 2) * 0.34, w: 0.21, h: 0.14, shape: "rect" as const }))], edges: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]] },
 ] as const;
 export type DiagramTemplateId = typeof DIAGRAM_TEMPLATES[number]["id"];
-export interface DiagramContent { labels: string[]; fill: string; ink: string; accent: string; vertical: boolean }
+export interface DiagramContent { labels: string[]; fill: string; ink: string; accent: string; vertical: boolean; fontFamily?: string }
 export function diagramNodes(id: DiagramTemplateId, labels: readonly string[], vertical = false): DiagramNode[] {
   const preset = DIAGRAM_TEMPLATES.find(preset => preset.id === id);
   if (!preset) return [];
@@ -17,6 +18,7 @@ export function diagramNodes(id: DiagramTemplateId, labels: readonly string[], v
 export function putDiagramTemplate(project: ProjectSnapshot, time: number, id: DiagramTemplateId, content: DiagramContent, makeId: () => string) {
   const preset = DIAGRAM_TEMPLATES.find(preset => preset.id === id);
   if (!preset || ![content.fill, content.ink, content.accent].every(value => /^#[a-f\d]{6}$/i.test(value)) || content.labels.length > 10 || content.labels.some(value => value.length > 120)) throw new Error("Use valid colours and node labels up to 120 characters");
+  if (!validGraphicFont(content.fontFamily)) throw new Error("Choose an available diagram font");
   const nodes = diagramNodes(id, content.labels, content.vertical), page = pageAt(getPages(project.settings, project.clips), time);
   const tracks: Track[] = [], clips: Clip[] = [], timing = { start: page.start, duration: page.end - page.start, trimIn: 0 };
   const W = project.settings.width, H = project.settings.height;
@@ -36,7 +38,7 @@ export function putDiagramTemplate(project: ProjectSnapshot, time: number, id: D
     shape(node.label, { groupId, shape: node.shape, w: node.w, h: node.h, fill: content.fill, stroke: { color: content.accent, width: 3, dash: [] }, radius: node.shape === "rect" ? 18 : undefined, transform: { x: node.x, y: node.y, rotation: 0, scale: 1 } });
     const track: Track = { id: makeId(), kind: "text", name: node.label.slice(0, 40), muted: false, hidden: false };
     const fontSize = Math.max(12, Math.min(42, node.w * W / H * 1080 / Math.max(5, Math.sqrt(node.label.length) * 1.4), node.h * 1080 / 3));
-    const text: TextClip = { ...timing, id: makeId(), trackId: track.id, groupId, kind: "text", text: node.label, x: node.x, y: node.y, align: "centre", fontFamily: "Inter, sans-serif", fontSize, fontWeight: 600, color: content.ink, lineHeight: 1.2, maxWidth: node.w * (node.shape === "hexagon" ? 0.58 : 0.8), maxHeight: node.h * 0.72 };
+    const text: TextClip = { ...timing, id: makeId(), trackId: track.id, groupId, kind: "text", text: node.label, x: node.x, y: node.y, align: "centre", fontFamily: graphicFontCss(content.fontFamily), fontSize, fontWeight: 600, color: content.ink, lineHeight: 1.2, maxWidth: node.w * (node.shape === "hexagon" ? 0.58 : 0.8), maxHeight: node.h * 0.72 };
     tracks.push(track); clips.push(text);
   }
   if (project.tracks.length + tracks.length > 200 || project.clips.length + clips.length > 10000 || JSON.stringify(project).length + JSON.stringify(clips).length > 6 * 1024 * 1024) throw new Error("This diagram exceeds the design’s layer or size limits");
