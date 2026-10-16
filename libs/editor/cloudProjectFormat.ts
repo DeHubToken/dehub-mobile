@@ -1,3 +1,4 @@
+import { validPhotoTone } from "./photoTone";
 import { validBrandStyles } from "./brandStyles";
 import { normaliseDesignLink } from "./designLinks";
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
@@ -96,6 +97,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
       !object(layer) || typeof layer.colour !== "string" || !/^#[\da-f]{6}$/i.test(layer.colour) ||
       typeof layer.x !== "number" || Math.abs(layer.x) > 100 || typeof layer.y !== "number" || Math.abs(layer.y) > 100 ||
       typeof layer.opacity !== "number" || layer.opacity < 0 || layer.opacity > 1))) fail();
+    if ((clip.kind === "image" || clip.kind === "video") && clip.effects !== undefined && (!object(clip.effects) || !validPhotoTone(clip.effects as import("./photoTone").PhotoTone))) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

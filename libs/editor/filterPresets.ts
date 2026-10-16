@@ -1,3 +1,4 @@
+import { matchesFilterPreset } from "./filterMatching";
 /**
  * Filter presets, the same values as dehubweb src/lib/editor/filterPresets.ts.
  * Each one is a set of ClipEffects, so a filter picked here renders the same on
@@ -37,14 +38,5 @@ export function applyFilterPreset(id: string): ClipEffects | undefined {
 
 /** The preset whose effects match exactly, so the picker can show the current one. */
 export function matchPreset(effects: ClipEffects | undefined): string | null {
-  const e = effects ?? {};
-  const keys = (x: ClipEffects) => Object.keys(x).filter((k) => x[k as keyof ClipEffects] !== undefined).sort();
-  for (const p of FILTER_PRESETS) {
-    const a = keys(e);
-    const b = keys(p.effects);
-    if (a.length === b.length && a.every((k, i) => k === b[i] && e[k as keyof ClipEffects] === p.effects[k as keyof ClipEffects])) {
-      return p.id;
-    }
-  }
-  return null;
+  return FILTER_PRESETS.find(preset => matchesFilterPreset(effects, preset.effects))?.id ?? null;
 }

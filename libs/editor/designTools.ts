@@ -40,7 +40,7 @@ export function copyDesignStyle(clip: Clip): DesignStyle | null {
   } else {
     style.frame = clip.frame ?? "rect";
     style.border = clip.border ? { ...clip.border, dash: clip.border.dash ? [...clip.border.dash] : undefined } : null;
-    style.effects = { ...clip.effects };
+    style.effects = { ...clip.effects, ...(clip.effects?.duotone ? { duotone: { ...clip.effects.duotone } } : {}) };
     style.radius = clip.radius ?? 0;
   }
   return style;
@@ -78,7 +78,7 @@ export function designColours(project: ProjectSnapshot): string[] {
   add(project.settings.background);
   for (const clip of project.clips) {
     if ((clip.kind === "text" || clip.kind === "shape") && clip.gradient) clip.gradient.stops.forEach(stop => add(stop.colour));
-    if (clip.kind === "image" || clip.kind === "video") add(clip.border?.color);
+    if (clip.kind === "image" || clip.kind === "video") { add(clip.border?.color); add(clip.effects?.duotone?.dark); add(clip.effects?.duotone?.light); }
     if (clip.kind === "text") { add(clip.color); clip.echo?.forEach(layer => add(layer.colour)); add(clip.background?.color); add(clip.stroke?.color); }
     if (clip.kind === "shape") {
       add(clip.fill); add(clip.stroke?.color);
@@ -99,6 +99,7 @@ export function replaceDesignColour(project: ProjectSnapshot, from: string, to: 
     clips: project.clips.map(clip => {
       if (clip.locked) return clip;
       const next = { ...clip };
+      if ((next.kind === "image" || next.kind === "video") && next.effects?.duotone) next.effects = { ...next.effects, duotone: { ...next.effects.duotone, dark: replace(next.effects.duotone.dark), light: replace(next.effects.duotone.light) } };
       if ((next.kind === "image" || next.kind === "video") && next.border) next.border = { ...next.border, color: replace(next.border.color) };
       if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: replace(stop.colour) })) };
       if (next.shadow) next.shadow = { ...next.shadow, color: replace(next.shadow.color) };
@@ -177,6 +178,7 @@ export function applyDesignPalette(project: ProjectSnapshot, colours: readonly s
   return { ...project, settings: { ...project.settings, background: recolour(project.settings.background) }, clips: project.clips.map(clip => {
     if (clip.locked) return clip;
     const next = { ...clip };
+    if ((next.kind === "image" || next.kind === "video") && next.effects?.duotone) next.effects = { ...next.effects, duotone: { ...next.effects.duotone, dark: recolour(next.effects.duotone.dark), light: recolour(next.effects.duotone.light) } };
     if ((next.kind === "image" || next.kind === "video") && next.border) next.border = { ...next.border, color: recolour(next.border.color) };
     if ((next.kind === "text" || next.kind === "shape") && next.gradient) next.gradient = { ...next.gradient, stops: next.gradient.stops.map(stop => ({ ...stop, colour: recolour(stop.colour) })) };
     if (next.shadow) next.shadow = { ...next.shadow, color: recolour(next.shadow.color) };

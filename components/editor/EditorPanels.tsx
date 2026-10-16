@@ -1,3 +1,5 @@
+import { DUOTONE_PRESETS } from "../../libs/editor/photoTone";
+import DuotoneColours from "./DuotoneColours";
 /**
  * The controls that sit above the editor toolbar, one panel per tool. Ranges
  * and defaults match the web inspector (dehubweb
@@ -178,7 +180,7 @@ export function FiltersPanel({ clip, commit }: PanelProps<MediaClip>) {
   );
 }
 
-export function AdjustPanel({ clip, live, settle, onAutoEnhance }: PanelProps<MediaClip> & { onAutoEnhance?: () => void }) {
+export function AdjustPanel({ clip, live, commit, settle, onAutoEnhance }: PanelProps<MediaClip> & { onAutoEnhance?: () => void }) {
   const { t } = useTranslation();
   const e = clip.effects ?? {};
   const set = (k: keyof NonNullable<MediaClip["effects"]>) => (v: number) => live({ effects: { ...e, [k]: v } });
@@ -191,6 +193,10 @@ export function AdjustPanel({ clip, live, settle, onAutoEnhance }: PanelProps<Me
       <Range label={t("editor.layer.shadowBlur", { value: (e.blur ?? 0).toFixed(1) })} value={e.blur ?? 0} min={0} max={20} step={0.5} onLive={set("blur")} onDone={settle} />
       <Range label={t("editor.adjust.warmth", { value: Math.round((e.warmth ?? 0) * 100) })} value={e.warmth ?? 0} min={-1} max={1} step={0.01} onLive={set("warmth")} onDone={settle} />
       <Range label={t("editor.adjust.tint", { value: Math.round((e.tint ?? 0) * 100) })} value={e.tint ?? 0} min={-1} max={1} step={0.01} onLive={set("tint")} onDone={settle} />
+      {(["highlights", "shadows", "fade"] as const).map(key => <Range key={key} label={t(`editor.photoTone.${key}`, { defaultValue: ({ highlights: "Highlights", shadows: "Shadows", fade: "Fade" })[key] })} value={e[key] ?? 0} min={key === "fade" ? 0 : -1} max={1} step={0.01} onLive={set(key)} onDone={settle} />)}
+      <Text className="mb-2 text-xs text-white/60">{t("editor.photoTone.duotone", { defaultValue: "Duotone" })}</Text>
+      <ChipRow><Chip label={t("editor.photoTone.original", { defaultValue: "Original colours" })} active={!e.duotone} onPress={() => { if (!clip.locked) commit({ effects: { ...e, duotone: null } }); }} />{DUOTONE_PRESETS.map(preset => <Chip key={preset.id} label={t(`editor.photoTone.preset.${preset.id}`, { defaultValue: preset.label })} active={e.duotone?.dark === preset.dark && e.duotone?.light === preset.light} onPress={() => { if (!clip.locked) commit({ effects: { ...e, duotone: { dark: preset.dark, light: preset.light, amount: 1 } } }); }} />)}</ChipRow>
+      {e.duotone && <><DuotoneColours key={clip.id} value={e.duotone} onChange={duotone => { if (!clip.locked) commit({ effects: { ...e, duotone } }); }} /><Range label={t("editor.photoTone.strength", { defaultValue: "Duotone strength" })} value={e.duotone.amount} min={0} max={1} step={0.01} onLive={amount => live({ effects: { ...e, duotone: { ...e.duotone!, amount } } })} onDone={settle} /></>}
       <Range label={t("editor.adjust.vignette", { value: Math.round((e.vignette ?? 0) * 100) })} value={e.vignette ?? 0} min={0} max={1} step={0.01} onLive={set("vignette")} onDone={settle} />
       {onAutoEnhance && (
         <View className="mt-1 mb-2 flex-row">
