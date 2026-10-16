@@ -60,7 +60,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel && <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
       {action(t("editor.dataVisual.title", { defaultValue: "Charts and tables" }), () => setPanel("data"))}
-      {action(t("editor.fills.title", { defaultValue: "Gradient fills" }), () => setPanel("fill"))}
+      {action(t("editor.fills.heading", { defaultValue: "Fills and backgrounds" }), () => setPanel("fill"))}
       {action(t("editor.guides.title", { defaultValue: "Guides and margins" }), () => setPanel("guides"))}
       {action(t("editor.compositions.title", { defaultValue: "Text combinations" }), () => setPanel("compositions"))}
       {action(t("editor.grids.title", { defaultValue: "Photo grids" }), () => setPanel("grid"))}

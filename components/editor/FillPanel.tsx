@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { GRADIENT_PRESETS, gradientFromColours, type GradientFill } from "../../libs/editor/gradientFill";
-import { fillDesignLayers, putGradientBackground } from "../../libs/editor/fillProject";
+import { fillDesignLayers, putGradientBackground, putSolidBackground, solidDesignLayers, removePageBackground } from "../../libs/editor/fillProject";
 import { newId } from "../../libs/editor/project";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
@@ -18,7 +18,7 @@ export default function FillPanel({ project, selectedId, current, commit, select
   const [angle, setAngle] = useState("45");
   const [first, setFirst] = useState("#2563eb"), [last, setLast] = useState("#22d3ee");
   useEffect(() => {
-    if (!gradient?.stops?.length) return;
+    if (!gradient?.stops?.length) { if (selected?.kind === "text") setFirst(selected.color); else if (selected?.kind === "shape" && selected.fill) setFirst(selected.fill); return; }
     setType(gradient.type); setAngle(String(gradient.angle)); setFirst(gradient.stops[0].colour); setLast(gradient.stops[gradient.stops.length - 1].colour);
   }, [selected?.id, gradient]);
   const valid = /^#[0-9a-f]{6}$/i.test(first) && /^#[0-9a-f]{6}$/i.test(last) && Number.isFinite(Number(angle)) && Number(angle) >= 0 && Number(angle) <= 360;
@@ -30,8 +30,14 @@ export default function FillPanel({ project, selectedId, current, commit, select
     const next = background ? result?.project : fillDesignLayers(latest, selectedId ? [selectedId] : [], value);
     if (next && next !== latest) { commit(next); if (result) select(result.id); }
   };
+  const applySolid = (background = false) => {
+    const latest = current(); if (!latest || latest.id !== project.id) return;
+    const result = background ? putSolidBackground(latest, time, first, () => newId(10)) : null;
+    const next = background ? result?.project : solidDesignLayers(latest, selectedId ? [selectedId] : [], first);
+    if (next && next !== latest) { commit(next); if (result) select(result.id); }
+  };
   const button = (text: string, onPress: () => void, disabled = false) => <Pressable key={text} accessibilityRole="button" disabled={disabled} onPress={onPress} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white">{text}</Text></Pressable>;
-  return <ScrollView keyboardShouldPersistTaps="handled" style={{ maxHeight: 240 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
+  return <ScrollView nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 240 }} contentContainerStyle={{ gap: 10, paddingHorizontal: 12 }}>
     <Text className="text-xs text-white/60">{t("editor.fills.hint", { defaultValue: "Apply a gradient to selected text or shapes, or add it behind this page." })}</Text>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>{GRADIENT_PRESETS.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => { setFirst(preset.colours[0]); setLast(preset.colours[preset.colours.length - 1]); apply(gradientFromColours(preset.colours, type, Number(angle) || 0), !canFill); }} className="rounded-lg border border-white/15 p-2" style={{ gap: 6 }}>
       <View className="flex-row overflow-hidden rounded">{preset.colours.map(colour => <View key={colour} style={{ width: 25, height: 24, backgroundColor: colour }} />)}</View><Text className="text-xs text-white">{t(`editor.fills.preset.${preset.id}`, { defaultValue: preset.label })}</Text>
@@ -45,6 +51,9 @@ export default function FillPanel({ project, selectedId, current, commit, select
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
       {button(t("editor.fills.apply", { defaultValue: "Apply fill" }), () => apply(gradientFromColours([first, last], type, Number(angle))), !valid || !canFill)}
       {button(t("editor.fills.background", { defaultValue: "Use as page background" }), () => apply(gradientFromColours([first, last], type, Number(angle)), true), !valid)}
+      {button(t("editor.fills.applySolid", { defaultValue: "Apply first colour as solid" }), () => applySolid(), !canFill || !/^#[\da-f]{6}$/i.test(first))}
+      {button(t("editor.fills.solidBackground", { defaultValue: "Use first colour as page background" }), () => applySolid(true), !/^#[\da-f]{6}$/i.test(first))}
+      {button(t("editor.fills.resetBackground", { defaultValue: "Reset page background" }), () => { const latest = current(); if (latest?.id !== project.id) return; const next = removePageBackground(latest, time); if (next !== latest) commit(next); })}
       {button(t("editor.fills.solid", { defaultValue: "Restore solid fill" }), () => apply(null), !canFill)}
     </View>
   </ScrollView>;
