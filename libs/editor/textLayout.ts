@@ -44,10 +44,7 @@ export function measuredTextLayout(
     const available = Math.max(0.1, widthLimit - pad * 2);
     const lines: string[] = [], offsets: number[] = [];
     const width = (line: string) => measure(line, size, spacing);
-    raw.replace(/
-?/g, "
-").split("
-").forEach(paragraph => {
+    raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
       if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
       const wrapped = wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && text.align === "left" && Math.abs(text.curve ?? 0) < 0.01);
       lines.push(...wrapped.lines); offsets.push(...wrapped.offsets);
