@@ -35,6 +35,16 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       ctx.closePath(); ctx.fill();
       start = end;
     });
+    if (chart.kind === "donut") {
+      const caption = typeof chart.donutLabel === "string" ? chart.donutLabel.replace(/\s+/g, " ").trim().slice(0, 80) : "", total = chart.donutTotal ? chartValueLabel(sum, chart.valueFormat) : "";
+      const labels = [total, caption].filter(Boolean), hole = radius * Math.max(0.2, Math.min(0.85, chart.donutHole ?? 0.57));
+      if (labels.length) {
+        let size = Math.max(1, Math.min(font * 1.8, hole * (labels.length > 1 ? 0.45 : 0.7)));
+        while (size > 1) { ctx.font = "700 " + size + "px Inter, sans-serif"; if (labels.every(value => ctx.measureText(value).width <= hole * 1.65)) break; size = Math.max(1, size - 1); }
+        ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        labels.forEach((value, index) => { ctx.font = (total && index === 0 ? "700 " : "500 ") + (total && index > 0 ? size * 0.75 : size) + "px Inter, sans-serif"; ctx.fillText(value, cx, cy + (index - (labels.length - 1) / 2) * size * 1.25); });
+      }
+    }
     return;
   }
   if (chart.kind === "radar") {
