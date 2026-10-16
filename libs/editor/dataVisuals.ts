@@ -17,6 +17,8 @@ export interface ChartData {
   barGap?: number;
   showGrid?: boolean;
   showAxisValues?: boolean;
+  scaleMin?: number;
+  scaleMax?: number;
   kind: ChartKind;
   rows: { label: string; value: number }[];
   series?: { label: string; values: number[] }[];
@@ -76,8 +78,8 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (drawMultiSeriesChart(ctx, width, height, chart)) return;
   const colours = Array.isArray(chart.colours) && chart.colours.length ? chart.colours.slice(0, 50) : ["#38bdf8"];
   const colour = (index: number) => colours[index % colours.length];
-  const max = Math.max(0, ...rows.map(row => row.value));
-  const min = Math.min(0, ...rows.map(row => row.value));
+  const max = Math.max(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0);
+  const min = Math.min(0, ...rows.map(row => row.value), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0);
   const span = max - min || 1;
   if (chart.kind === "pie" || chart.kind === "donut") {
     const positive = rows.map((row, colourIndex) => ({ ...row, colourIndex })).filter(row => row.value > 0), sum = positive.reduce((n, row) => n + row.value, 0);
@@ -209,6 +211,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
+    for (const key of ["scaleMin", "scaleMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
+    if (typeof chart.scaleMin === "number" && typeof chart.scaleMax === "number" && chart.scaleMin >= chart.scaleMax) return false;
     if (chart.showAxisValues !== undefined && typeof chart.showAxisValues !== "boolean") return false;
     if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
     if (chart.stacked !== undefined && typeof chart.stacked !== "boolean") return false;

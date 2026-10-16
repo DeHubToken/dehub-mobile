@@ -13,7 +13,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const stacked = !!chart.stacked && (chart.kind === "column" || chart.kind === "bar");
   const positive = rows.map((_, index) => values.reduce((sum, set) => sum + Math.max(0, set[index]), 0));
   const negative = rows.map((_, index) => values.reduce((sum, set) => sum + Math.min(0, set[index]), 0));
-  const minimum = Math.min(0, ...(stacked ? negative : values.flat())), maximum = Math.max(0, ...(stacked ? positive : values.flat())), span = maximum - minimum || 1;
+  const minimum = Math.min(0, ...(stacked ? negative : values.flat()), Number.isFinite(chart.scaleMin) ? Number(chart.scaleMin) : 0), maximum = Math.max(0, ...(stacked ? positive : values.flat()), Number.isFinite(chart.scaleMax) ? Number(chart.scaleMax) : 0), span = maximum - minimum || 1;
   const legend = drawChartLegend(ctx, width, height, chart.showLegend !== false ? series.map((item, index) => ({ label: item.label, colour: colour(index) })) : [], chart.legendPosition ?? "bottom", font, chart.textColour);
   const left = legend.left, top = legend.top, frameWidth = legend.width, frameHeight = legend.height, centreX = left + frameWidth / 2;
   ctx.font = "500 " + font + "px Inter, sans-serif"; ctx.textBaseline = "middle";
