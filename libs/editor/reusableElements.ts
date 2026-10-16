@@ -57,12 +57,18 @@ function parse(raw: string | null | undefined): ReusableDesignElement[] {
   } catch { return EMPTY; }
 }
 export function createReusableElementStore(read: (key: string) => string | null | undefined, write: (key: string, value: string) => void) {
+  const undoHistory = new Map<string, ReusableDesignElement[][]>(), redoHistory = new Map<string, ReusableDesignElement[][]>();
+  const remember = (history: Map<string, ReusableDesignElement[][]>, key: string, value: ReusableDesignElement[]) => history.set(key, [...(history.get(key) ?? []), value].slice(-5));
   const cache = new Map<string, ReusableDesignElement[]>(), listeners = new Set<() => void>();
   const notify = () => { for (const listener of listeners) listener(); };
   const get = (key: string) => { if (!cache.has(key)) { let value = EMPTY; try { value = parse(read(key)); } catch { /* Keep preferences available for this visit. */ } cache.set(key, value); } return cache.get(key)!; };
-  const save = (key: string, value: ReusableDesignElement[]) => { const text = JSON.stringify(value); if (text.length > 1024 * 1024) throw new Error("The saved element library is full. Remove an element before adding another"); let persisted = true; try { write(key, text); } catch { persisted = false; } cache.set(key, value); notify(); return persisted; };
+  const save = (key: string, value: ReusableDesignElement[], record = true) => { const text = JSON.stringify(value); if (text.length > 1024 * 1024) throw new Error("The saved element library is full. Remove an element before adding another"); if (record && JSON.stringify(get(key)) !== text) { remember(undoHistory, key, get(key)); redoHistory.delete(key); } let persisted = true; try { write(key, text); } catch { persisted = false; } cache.set(key, value); notify(); return persisted; };
   return {
     get, empty: EMPTY,
+    canUndo: (key: string) => !!undoHistory.get(key)?.length,
+    canRedo: (key: string) => !!redoHistory.get(key)?.length,
+    undo: (key: string) => { const history = undoHistory.get(key), previous = history?.[history.length - 1]; if (!previous) throw new Error("No library change to undo"); history!.pop(); remember(redoHistory, key, get(key)); return save(key, previous, false); },
+    redo: (key: string) => { const history = redoHistory.get(key), next = history?.[history.length - 1]; if (!next) throw new Error("No library change to redo"); history!.pop(); remember(undoHistory, key, get(key)); return save(key, next, false); },
     create: (key: string, name: string, input: DesignClipboard) => {
       const elements = get(key), trimmed = name.trim().slice(0, 60); if (!trimmed) throw new Error("Give this element a name");
       if (elements.length >= 20) throw new Error("Keep up to 20 saved elements. Remove one before adding another");
@@ -84,7 +90,7 @@ export function createReusableElementStore(read: (key: string) => string | null 
     },
     remove: (key: string, id: string) => save(key, get(key).filter(element => element.id !== id)),
     subscribe: (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; },
-    reload: (key: string) => { const previous = cache.get(key); cache.delete(key); if (JSON.stringify(previous) !== JSON.stringify(get(key))) notify(); },
+    reload: (key: string) => { const previous = cache.get(key); cache.delete(key); if (JSON.stringify(previous) !== JSON.stringify(get(key))) { undoHistory.delete(key); redoHistory.delete(key); notify(); } },
   };
 }
 
