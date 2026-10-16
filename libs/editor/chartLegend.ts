@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { drawChartMarker, strokeChartPattern, type ChartPointShape, type ChartLinePattern } from "./chartMarks";
 import type { DataVisualContext } from "./dataVisuals";
 export type ChartLegendPosition = "top" | "bottom" | "left" | "right";
@@ -17,7 +18,7 @@ export function drawChartLegend(ctx: DataVisualContext, width: number, height: n
   if (!capacity) return bounds;
   const shown = entries.length > capacity ? Math.max(0, capacity - 1) : entries.length, cellWidth = legend.width / columns;
   ctx.font = "500 " + font + "px " + fontFamily; ctx.textAlign = "left"; ctx.textBaseline = "middle";
-  const label = (value: string, x: number, y: number, max: number) => { let text = value.slice(0, 240); while (text.length > 1 && ctx.measureText(text).width > max) text = text.slice(0, -2) + "…"; if (max >= font) ctx.fillText(text, x, y); };
+  const label = (value: string, x: number, y: number, max: number) => { let text = value.slice(0, 240); while (text.length > 1 && ctx.measureText(text).width > max) text = text.slice(0, -2) + "…"; if (max >= font) drawGraphicText(ctx,text, x, y); };
   for (let index = 0; index < shown; index++) {
     const entry = entries[index], x = legend.left + (index % columns) * cellWidth + padding, y = legend.top + padding + (Math.floor(index / columns) + 0.5) * rowHeight;
     const keyWidth = entry.marker || entry.linePattern ? font * 2.2 : font;

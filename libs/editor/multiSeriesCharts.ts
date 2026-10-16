@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { chartSeriesPattern, drawChartMarker, strokeChartPattern } from "./chartMarks";
 import { drawChartCategoryLabel } from "./chartCategoryLabel";
 import { graphicFontCss } from "./graphicFonts";
@@ -34,7 +35,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     if (max < font) return;
     let value = String(text).slice(0, 200);
     while (value.length > 1 && ctx.measureText(value).width > max) value = value.slice(0, -2) + "…";
-    ctx.fillText(value, x, y);
+    drawGraphicText(ctx,value, x, y);
   }
   ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
   if (xTitle) label(xTitle, centreX, legend.top + legend.height - font * 0.6, frameWidth - font * 2);

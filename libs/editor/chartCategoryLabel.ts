@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { tableTextLines } from "./tableTextLayout";
 import type { DataVisualContext } from "./dataVisuals";
 export function drawChartCategoryLabel(ctx: DataVisualContext, text: string, x: number, y: number, width: number, font: number, lineLimit: number, centred = false): void {
@@ -10,7 +11,7 @@ export function drawChartCategoryLabel(ctx: DataVisualContext, text: string, x: 
   lines.forEach((line, index) => {
     let value = line;
     while (Array.from(value).length > 1 && ctx.measureText(value).width > width) value = Array.from(value).slice(0, -2).join("") + "…";
-    if (ctx.measureText(value).width <= width) ctx.fillText(value, x, top + index * gap);
+    if (ctx.measureText(value).width <= width) drawGraphicText(ctx,value, x, top + index * gap);
   });
   ctx.font = previous; ctx.textBaseline = baseline;
 }

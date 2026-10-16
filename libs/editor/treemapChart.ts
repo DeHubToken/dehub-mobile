@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { chartValueLabel } from "./chartValueFormat";
 import { graphicFontCss } from "./graphicFonts";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
@@ -32,7 +33,7 @@ export function drawTreemapChart(ctx: DataVisualContext, width: number, height: 
     ctx.font = "500 " + size + "px " + family;
     let label = text.slice(0, 200);
     while (label.length > 1 && ctx.measureText(label).width > available) label = label.slice(0, -2) + "…";
-    if (ctx.measureText(label).width <= available) ctx.fillText(label, x, y);
+    if (ctx.measureText(label).width <= available) drawGraphicText(ctx,label, x, y);
   };
   const tile = (node: TreemapNode, x: number, y: number, w: number, h: number): void => {
     if (w < 1 || h < 1) return;

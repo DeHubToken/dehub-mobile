@@ -1,3 +1,4 @@
+import { drawGraphicText } from "./graphicText";
 import { chartValueLabel } from "./chartValueFormat";
 import { graphicFontCss } from "./graphicFonts";
 import type { ChartData, DataVisualContext } from "./dataVisuals";
@@ -14,7 +15,7 @@ export function drawProgressChart(ctx: DataVisualContext, width: number, height:
     ctx.font = weight + " " + size + "px " + family; ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; ctx.textBaseline = "middle";
     let label = value.slice(0, 200);
     while (label.length > 1 && ctx.measureText(label).width > available) label = label.slice(0, -2) + "…";
-    if (ctx.measureText(label).width <= available) ctx.fillText(label, x, y);
+    if (ctx.measureText(label).width <= available) drawGraphicText(ctx,label, x, y);
   };
   const bar = (x: number, y: number, w: number, h: number) => {
     if (w <= 0 || h <= 0) return;
