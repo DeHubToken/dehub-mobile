@@ -1929,7 +1929,7 @@ canvas{display:block;width:100%;height:100%;}
         var pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
         var colour = "#" + Array.from(pixel.slice(0, 3)).map(function(value) { return value.toString(16).padStart(2, "0"); }).join("");
         post({ type: "colourSampled", token: m.token, colour: colour });
-      } catch (error) { post({ type: "colourSampled", token: m.token, error: error.message || "Could not sample this colour" }); }
+      } catch (error) { post({ type: "colourSampled", token: m.token, error: "Could not read the canvas colour. Try again or enter a colour value." }); }
     } else if (m.type === "stats") {
       // Picture statistics for Auto enhance, from a 64x64 sample (web autoEnhance.ts).
       var src = images.get(m.mediaId);
