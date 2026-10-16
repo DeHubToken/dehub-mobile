@@ -5,7 +5,8 @@
  * src/components/editor/inspector/LayerSection.tsx, panels/ElementsPanel.tsx,
  * panels/LayersPanel.tsx), so a value set in one app reads the same in the other.
  */
-import React from "react";
+import React, { useState } from "react";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
 import { Pressable, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
@@ -209,9 +210,13 @@ export function BrandPanel(props: {
   onUseSelectedAsLogo: () => void;
   onApply: () => void;
   onAddLogo: () => void;
+  onSaveStyles?: () => void;
+  onLoadStyles?: () => void;
 }) {
   const { t } = useTranslation();
   const { kit } = props;
+  const [fontQuery, setFontQuery] = useState("");
+  const matchingFonts = props.fonts.filter(font => font.family.toLocaleLowerCase().includes(fontQuery.trim().toLocaleLowerCase()));
   const toggleColor = (c: string) => {
     const lc = c.toLowerCase();
     const has = kit.colors.includes(lc);
@@ -220,7 +225,7 @@ export function BrandPanel(props: {
   const candidates = [...new Set([...props.designColors.map((c) => c.toLowerCase()), ...props.palette.map((c) => c.toLowerCase())])];
   const fontRow = (value: string | null, onPick: (css: string) => void) => (
     <ChipRow>
-      {props.fonts.map((f) => (
+      {matchingFonts.slice(0, 30).map((f) => (
         <Chip key={f.family} label={f.family} active={value === f.css} onPress={() => onPick(f.css)} />
       ))}
     </ChipRow>
@@ -246,6 +251,7 @@ export function BrandPanel(props: {
         </View>
       </View>
       <View>
+        <TextInput accessibilityLabel={t("editor.fonts.search", { defaultValue: "Search fonts" })} value={fontQuery} onChangeText={setFontQuery} autoCapitalize="none" autoCorrect={false} placeholder={t("editor.fonts.search", { defaultValue: "Search fonts" })} placeholderTextColor="#888" className="mb-2 min-h-[40px] rounded-lg border border-white/20 px-3 text-white" />
         <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.headingFont")}</Text>
         {fontRow(kit.headingFont, (css) => props.onChange({ ...kit, headingFont: css }))}
       </View>
@@ -264,6 +270,8 @@ export function BrandPanel(props: {
         )}
       </View>
       <ChipRow>
+        {props.onSaveStyles && <Chip label={t("editor.brand.saveStyles", { defaultValue: "Save styles with design" })} onPress={props.onSaveStyles} />}
+        {props.onLoadStyles && <Chip label={t("editor.brand.loadStyles", { defaultValue: "Use design's brand styles" })} onPress={props.onLoadStyles} />}
         <Chip icon="WandSparkles" label={t("editor.brand.apply")} active onPress={props.onApply} />
         {kit.logoMediaId && <Chip icon="Stamp" label={t("editor.brand.addLogo")} onPress={props.onAddLogo} />}
       </ChipRow>
