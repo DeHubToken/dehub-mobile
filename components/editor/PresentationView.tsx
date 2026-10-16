@@ -12,7 +12,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, AppState, Image, Keyboard, Linking, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
-import { pageAt } from "../../libs/editor/pages";
+import { pageAt, pagePreviewTime } from "../../libs/editor/pages";
 import type { ProjectSnapshot } from "../../libs/editor/types";
 
 export default function PresentationView({ project, time, renderPage, onClose, onPage, onApplyTimings }: {
@@ -30,6 +30,7 @@ export default function PresentationView({ project, time, renderPage, onClose, o
   const [notes, setNotes] = useState(false), [black, setBlack] = useState(false), [white, setWhite] = useState(false), [auto, setAuto] = useState(false), [seconds, setSeconds] = useState(5);
   const [uri, setUri] = useState<string | null>(null), [loading, setLoading] = useState(true), [error, setError] = useState(""), [attempt, setAttempt] = useState(0);
   const position = Math.min(index, pages.length - 1), page = pages[position], details = project.settings.pageDetails?.[page.index];
+  const nextPage = pages[position + 1] ?? (loop ? pages[0] : null);
   const [controlsVisible, setControlsVisible] = useState(true);
   const markup = usePresentationMarkup(String(page.index));
   useEffect(() => { if (notes || pagePicker || markup.tool !== "none") setControlsVisible(true); }, [notes, pagePicker, markup.tool]);
@@ -74,7 +75,7 @@ export default function PresentationView({ project, time, renderPage, onClose, o
         {(black || white) && <View accessibilityLabel={t(white ? "editor.present.whiteScreen" : "editor.present.blackout", { defaultValue: white ? "White screen" : "Blackout" })} style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: white ? "#ffffff" : "#000000" }} />}
       </View>
       {controlsVisible && pagePicker && <PresentationPagePicker count={allPages.length} allowedIndexes={pages.map(page => page.index)} current={page.index} details={project.settings.pageDetails} onPick={index => { Keyboard.dismiss(); setAuto(false); const destination = pages.findIndex(page => page.index === index); if (destination >= 0) setIndex(destination); setPagePicker(false); }} />}
-      {controlsVisible && notes && <PresentationNotes active={foreground} notes={details?.notes || ""} pageKey={String(page.index)} onClose={() => setNotes(false)} />}
+      {controlsVisible && notes && <PresentationNotes upcoming={nextPage ? { project, time: pagePreviewTime(nextPage), index: nextPage.index, title: project.settings.pageDetails?.[nextPage.index]?.title ?? "" } : null} active={foreground} notes={details?.notes || ""} pageKey={String(page.index)} onClose={() => setNotes(false)} />}
       {controlsVisible && auto && <View className="flex-row items-center border-t border-white/10 px-4 py-2" style={{ gap: 12 }}><View accessibilityRole="progressbar" accessibilityLabel={t("editor.present.pageProgress", { defaultValue: "Page progress" })} accessibilityValue={{ min: 0, max: 100, now: Math.round(clock.progress * 100) }} style={{ height: 3, flex: 1, borderRadius: 2, backgroundColor: "#ffffff26", overflow: "hidden" }}><View style={{ width: `${clock.progress * 100}%`, height: 3, backgroundColor: "#67e8f9" }} /></View><Text className="text-right text-xs text-white/55" style={{ minWidth: 36, fontVariant: ["tabular-nums"] }}>{Math.ceil(clock.remaining)}s</Text></View>}
       {controlsVisible && !notes && <PresentationMarkupTools markup={markup} onStart={() => setAuto(false)} />}
       {controlsVisible && <View className="border-t border-white/10 px-3 py-2" style={{ gap: 8 }}>
