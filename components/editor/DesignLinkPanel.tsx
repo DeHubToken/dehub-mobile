@@ -8,22 +8,22 @@ import { applyDesignLink, designPageLinkIndex, normaliseDesignLink } from "../..
 import { getPages } from "../../libs/editor/pages";
 import { groupedSelection } from "../../libs/editor/designGroups";
 import type { ProjectSnapshot } from "../../libs/editor/types";
-type Props = { project: ProjectSnapshot; selectedId: string | null; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void; time: number };
+type Props = { project: ProjectSnapshot; selectedId: string | null; selectedIds?: readonly string[]; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void; time: number };
 export default function DesignLinkPanel(props: Props) {
-  return <LinkDraft key={`${props.project.id}:${props.selectedId}`} {...props} />;
+  return <LinkDraft key={`${props.project.id}:${props.selectedIds?.join(",") ?? props.selectedId}`} {...props} />;
 }
-function LinkDraft({ project, selectedId, current, commit, time }: Props) {
+function LinkDraft({ project, selectedId, selectedIds, current, commit, time }: Props) {
   const { t } = useTranslation();
-  const initialIds = new Set(groupedSelection(project.clips, selectedId ? [selectedId] : [], time)), links = project.clips.filter(clip => initialIds.has(clip.id) && clip.kind !== "audio").map(clip => clip.href || ""), mixed = new Set(links).size > 1;
+  const initialIds = new Set(groupedSelection(project.clips, selectedIds ?? (selectedId ? [selectedId] : []), time)), links = project.clips.filter(clip => initialIds.has(clip.id) && clip.kind !== "audio").map(clip => clip.href || ""), mixed = new Set(links).size > 1;
   const [value, setValue] = useState(mixed ? "" : links[0] ?? "");
   const [mode, setMode] = useState<"url" | "page">(designPageLinkIndex(value) === null ? "url" : "page");
   const [pageNumber, setPageNumber] = useState(String((designPageLinkIndex(value) ?? 0) + 1));
   const pages = getPages(project.settings, project.clips), target = Number(pageNumber) - 1;
-  const ids = groupedSelection(project.clips, selectedId ? [selectedId] : [], time);
+  const ids = groupedSelection(project.clips, selectedIds ?? (selectedId ? [selectedId] : []), time);
   const disabled = !ids.length || project.clips.some(c => ids.includes(c.id) && c.locked);
   const apply = (href: string | null) => {
     const latest = current(); if (!latest || latest.id !== project.id || disabled) return;
-    const chosen = groupedSelection(latest.clips, selectedId ? [selectedId] : [], time);
+    const chosen = groupedSelection(latest.clips, selectedIds ?? (selectedId ? [selectedId] : []), time);
     const next = applyDesignLink(latest, chosen, href); if (next !== latest) commit(next);
     if (href === null) setValue("");
   };
