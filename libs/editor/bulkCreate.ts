@@ -1,3 +1,4 @@
+import { bulkSelectedRows, type BulkRowFilter } from "./bulkRowFilter";
 import { refreshPageNumberClips } from "./pageNumbering";
 import { parseDelimitedData } from "./delimitedData";
 import { getPages, pageAt } from "./pages";
@@ -50,9 +51,11 @@ export function bulkConnected(clip: BulkField, headers: string[], connections: B
 }
 
 /** Append one independent copy of the current page for every selected data row. */
-export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}): { project: ProjectSnapshot; start: number; count: number } {
+export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}, rowFilter: BulkRowFilter = {}): { project: ProjectSnapshot; start: number; count: number } {
   if (!Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last > data.rows.length || last < first || last - first >= 50) throw new Error("Choose a valid range of up to 50 data rows");
-  const pages = getPages(project.settings, project.clips), template = pageAt(pages, time), count = last - first + 1;
+  const rows = bulkSelectedRows(data, first, last, rowFilter);
+  if (!rows.length) throw new Error("No rows match this filter in the selected range");
+  const pages = getPages(project.settings, project.clips), template = pageAt(pages, time), count = rows.length;
   const duration = template.end - template.start;
   if (!Number.isFinite(duration) || duration < 0.05) throw new Error("Give the template page a duration before generating pages");
   const source = project.clips.filter(clip => clip.start < template.end && clip.start + clip.duration > template.start);
@@ -62,8 +65,8 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
   const start = pages[pages.length - 1].end, copies: Clip[] = [], starts = pages.map(page => page.start);
   if (start + count * duration > 86400) throw new Error("This batch exceeds the design’s 24-hour timeline limit. Choose fewer rows");
   const details = pages.map(page => pageDetails(project, page.index)), original = pageDetails(project, template.index);
-  for (let index = first - 1; index < last; index++) {
-    const at = start + (index - first + 1) * duration, row = data.rows[index];
+  for (const [offset, index] of rows.entries()) {
+    const at = start + offset * duration, row = data.rows[index];
     starts.push(at);
     const copied = source.flatMap<Clip>(clip => {
       const from = Math.max(clip.start, template.start), to = Math.min(clip.start + clip.duration, template.end);
