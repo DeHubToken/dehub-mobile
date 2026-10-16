@@ -1,3 +1,4 @@
+import { scaleStrokePaint } from "./strokePatterns";
 import { getDesignGuides } from "./designGuides";
 import type { Clip, ClipKeyframes, ProjectSnapshot } from "./types";
 export type ResizeContentMode = "relative" | "fit" | "fill";
@@ -48,16 +49,16 @@ export function resizeComposition(before: ProjectSnapshot, resized: ProjectSnaps
       if (clip.maxWidth !== undefined) next.maxWidth = safe(clip.maxWidth * kx, 0.0001, 1, "text width");
       if (clip.maxHeight !== undefined) next.maxHeight = safe(clip.maxHeight * ky, 0.0001, 1, "text height");
       if (clip.letterSpacing !== undefined) next.letterSpacing = clip.letterSpacing * ky;
-      if (clip.stroke) next.stroke = { ...clip.stroke, width: clip.stroke.width * ky, dash: clip.stroke.dash?.map(value => value * ky) };
+      if (clip.stroke) next.stroke = scaleStrokePaint(clip.stroke, ky);
       if (clip.background) next.background = { ...clip.background, padding: clip.background.padding * ky, radius: clip.background.radius * ky };
       if (clip.echo) next.echo = clip.echo.map(layer => ({ ...layer, x: safe(layer.x * ky, -100, 100, "text echo"), y: safe(layer.y * ky, -100, 100, "text echo") }));
     } else if (next.kind === "shape" && clip.kind === "shape") {
       next.w = safe(clip.w * kx, 0.0001, 20, "shape width"); next.h = safe(clip.h * ky, 0.0001, 20, "shape height");
       if (clip.radius !== undefined) next.radius = clip.radius * ky;
-      if (clip.stroke) next.stroke = { ...clip.stroke, width: clip.stroke.width * ky, dash: clip.stroke.dash?.map(value => value * ky) };
+      if (clip.stroke) next.stroke = scaleStrokePaint(clip.stroke, ky);
     } else if ((next.kind === "image" || next.kind === "video") && (clip.kind === "image" || clip.kind === "video")) {
       if (clip.radius !== undefined) next.radius = clip.radius * ky;
-      if (clip.border) next.border = { ...clip.border, width: clip.border.width * ky, dash: clip.border.dash?.map(value => value * ky) };
+      if (clip.border) next.border = scaleStrokePaint(clip.border, ky);
     }
     return next;
   });

@@ -239,6 +239,8 @@ export interface TextBackground {
 }
 
 export interface TextStroke {
+  /** Offset along the dash pattern, relative to a 1080p canvas. */
+  dashOffset?: number;
   /** Paint opacity, independent of layer transparency. */
   opacity?: number;
   color: string;

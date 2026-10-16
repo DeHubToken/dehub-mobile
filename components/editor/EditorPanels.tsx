@@ -1,3 +1,5 @@
+import StrokePattern from "./StrokePatternControls";
+export { StrokePattern };
 import { useEditorLibrary } from "../../libs/editor/useEditorLibrary";
 import { MEDIA_FRAMES, MEDIA_FRAME_NAMES } from "../../libs/editor/mediaFrames";
 import CropPresets from "./CropPresets";
@@ -54,11 +56,6 @@ const DEFAULT_SHADOW: ClipShadow = { color: "#000000", opacity: 0.5, blur: 24, o
 const DEFAULT_LABEL: TextBackground = { color: "#000000", opacity: 0.6, padding: 24, radius: 16 };
 const DEFAULT_OUTLINE: TextStroke = { color: "#000000", width: 6 };
 
-export function StrokePattern({ stroke, onChange }: { stroke: TextStroke; onChange: (value: TextStroke) => void }) {
-  const { t } = useTranslation();
-  const pattern = !stroke.dash?.length ? "solid" : stroke.dash[0] <= 1 ? "dotted" : "dashed";
-  return <ChipRow>{(["solid", "dashed", "dotted"] as const).map(value => <Chip key={value} active={pattern === value} label={t(`editor.outline.${value}`, { defaultValue: value === "solid" ? "Solid" : value === "dashed" ? "Dashed" : "Dotted" })} onPress={() => onChange({ ...stroke, dash: value === "solid" ? undefined : value === "dotted" ? [1, 12] : [16, 12] })} />)}</ChipRow>;
-}
 
 // ── building blocks ──
 
@@ -454,6 +451,7 @@ export function OutlinePanel({ clip, live, commit, settle }: PanelProps<TextClip
       {s && (
         <>
           <Range label={t("editor.paint.strokeOpacity", { defaultValue: "Outline opacity: {{value}}%", value: Math.round((s.opacity ?? 1) * 100) })} value={s.opacity ?? 1} min={0} max={1} step={0.01} onLive={opacity => live({ stroke: { ...s, opacity } })} onDone={settle} />
+          <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />
           <Swatches label={t("editor.layer.colour")} value={s.color} onPick={(c) => commit({ stroke: { ...s, color: c } })} />
           <Range label={t("editor.app.thickness", { value: Math.round(s.width) })} value={s.width} min={1} max={40} step={1} onLive={(v) => live({ stroke: { ...s, width: v } })} onDone={settle} />
         </>

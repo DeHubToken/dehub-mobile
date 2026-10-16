@@ -1,3 +1,4 @@
+import { scaleStrokePaint } from "./strokePatterns";
 import { groupedSelection } from "./designGroups";
 import { resolveClipAt } from "./keyframes";
 import type { DesignLayoutBox } from "./designLayout";
@@ -13,13 +14,13 @@ function scaledAppearance(clip: Clip, factor: number): Record<string, unknown> {
     if (clip.maxWidth !== undefined) extra.maxWidth = clip.maxWidth * factor;
     if (clip.maxHeight !== undefined) extra.maxHeight = clip.maxHeight * factor;
     if (clip.letterSpacing !== undefined) extra.letterSpacing = clip.letterSpacing * factor;
-    if (clip.stroke) extra.stroke = { ...clip.stroke, width: clip.stroke.width * factor, dash: clip.stroke.dash?.map(value => value * factor) };
+    if (clip.stroke) extra.stroke = scaleStrokePaint(clip.stroke, factor);
     if (clip.background) extra.background = { ...clip.background, padding: clip.background.padding * factor, radius: clip.background.radius * factor };
     if (clip.echo) { if (clip.echo.some(layer => Math.abs(layer.x * factor) > 100 || Math.abs(layer.y * factor) > 100)) throw new Error("This size would exceed the supported text echo distance"); extra.echo = clip.echo.map(layer => ({ ...layer, x: layer.x * factor, y: layer.y * factor })); }
   } else {
-    if (clip.kind === "shape" && clip.stroke) extra.stroke = { ...clip.stroke, width: clip.stroke.width * factor, dash: clip.stroke.dash?.map(value => value * factor) };
+    if (clip.kind === "shape" && clip.stroke) extra.stroke = scaleStrokePaint(clip.stroke, factor);
     if (clip.kind !== "audio" && clip.radius !== undefined) extra.radius = clip.radius * factor;
-    if (clip.kind !== "shape" && clip.border) extra.border = { ...clip.border, width: clip.border.width * factor, dash: clip.border.dash?.map(value => value * factor) };
+    if (clip.kind !== "shape" && clip.border) extra.border = scaleStrokePaint(clip.border, factor);
   }
   return extra;
 }
