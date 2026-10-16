@@ -3,7 +3,7 @@ import { designPageLinkIndex, normaliseDesignLink, type DesignPdfLink } from "./
 /** Image-backed PDF pages preserve the editor's composited appearance without external services. */
 export interface PdfPage { cropMarks?: boolean; dpi?: number; jpeg: Uint8Array; width: number; height: number; designWidth?: number; designHeight?: number; links?: DesignPdfLink[] }
 export const PDF_DOCUMENT_LIMIT = 256 * 1024 * 1024;
-export interface PdfDocumentOptions { title?: string; pageTitles?: readonly string[]; pageLabels?: readonly string[]; bookmarks?: boolean }
+export interface PdfDocumentOptions { title?: string; pageTitles?: readonly string[]; pageSections?: readonly string[]; pageLabels?: readonly string[]; bookmarks?: boolean }
 const bytes = (text: string) => Uint8Array.from(text, c => c.charCodeAt(0) & 255);
 function pdfUnicode(value: string, limit = 500): string {
   let result = "<FEFF";
@@ -26,6 +26,16 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
   let nextObject = 3 + count * 3;
   const outlineRoot = options.bookmarks && count > 1 ? nextObject++ : null;
   const outlineItems = outlineRoot ? Array.from({ length: count }, () => nextObject++) : [];
+  const outlineGroups: { id: number; title: string; indexes: number[] }[] = [], topLevel: number[] = [], parents = new Map<number, number>();
+  if (outlineRoot) {
+    let group: typeof outlineGroups[number] | null = null;
+    for (let index = 0; index < count; index++) {
+      const section = typeof options.pageSections?.[index] === "string" ? options.pageSections[index].trim().slice(0, 80) : "";
+      if (!section) { topLevel.push(outlineItems[index]); group = null; continue; }
+      if (!group || group.title !== section) { group = { id: nextObject++, title: section, indexes: [] }; outlineGroups.push(group); topLevel.push(group.id); }
+      group.indexes.push(index); parents.set(index, group.id);
+    }
+  }
   const info = typeof options.title === "string" && options.title.trim() ? nextObject++ : null;
   const check = () => { if (signal?.aborted) { const e = new Error("PDF export cancelled"); e.name = "AbortError"; throw e; } };
   const emit = async (value: Uint8Array) => {
@@ -81,11 +91,17 @@ export async function writePdfDocument(count: number, pageAt: (index: number) =>
     for (const link of links) await object(link.id, `<< /Type /Annot /Subtype /Link /Rect [${link.rect}] /Border [0 0 0] /A << ${link.action} >> >>`);
   }
   if (outlineRoot) {
-    await object(outlineRoot, `<< /Type /Outlines /First ${outlineItems[0]} 0 R /Last ${outlineItems[outlineItems.length - 1]} 0 R /Count ${count} >>`);
+    const siblingLinks = (id: number, siblings: readonly number[]) => { const position = siblings.indexOf(id); return `${position > 0 ? ` /Prev ${siblings[position - 1]} 0 R` : ""}${position + 1 < siblings.length ? ` /Next ${siblings[position + 1]} 0 R` : ""}`; };
+    await object(outlineRoot, `<< /Type /Outlines /First ${topLevel[0]} 0 R /Last ${topLevel[topLevel.length - 1]} 0 R /Count ${count + outlineGroups.length} >>`);
+    for (const group of outlineGroups) {
+      const children = group.indexes.map(index => outlineItems[index]);
+      await object(group.id, `<< /Title ${pdfUnicode(group.title, 80)} /Parent ${outlineRoot} 0 R /Dest [${3 + group.indexes[0] * 3} 0 R /Fit] /First ${children[0]} 0 R /Last ${children[children.length - 1]} 0 R /Count ${children.length}${siblingLinks(group.id, topLevel)} >>`);
+    }
     for (let index = 0; index < count; index++) {
       const candidate = options.pageTitles?.[index];
       const title = typeof candidate === "string" && candidate.trim() ? candidate.trim() : `Page ${(pageIndexes?.[index] ?? index) + 1}`;
-      await object(outlineItems[index], `<< /Title ${pdfUnicode(title, 200)} /Parent ${outlineRoot} 0 R /Dest [${3 + index * 3} 0 R /Fit]${index > 0 ? ` /Prev ${outlineItems[index - 1]} 0 R` : ""}${index + 1 < count ? ` /Next ${outlineItems[index + 1]} 0 R` : ""} >>`);
+      const parent = parents.get(index) ?? outlineRoot, group = outlineGroups.find(group => group.id === parent), siblings = group ? group.indexes.map(index => outlineItems[index]) : topLevel;
+      await object(outlineItems[index], `<< /Title ${pdfUnicode(title, 200)} /Parent ${parent} 0 R /Dest [${3 + index * 3} 0 R /Fit]${siblingLinks(outlineItems[index], siblings)} >>`);
     }
   }
   if (info) await object(info, `<< /Title ${pdfUnicode(options.title!.trim())} >>`);
