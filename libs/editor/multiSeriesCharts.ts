@@ -8,7 +8,7 @@ import type { ChartData, DataVisualContext } from "./dataVisuals";
 
 /** Grouped and stacked charts use the same numeric scale for every series. */
 export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, height: number, chart: ChartData): boolean {
-  if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut") return false;
+  if ((!chart.series?.length && chart.kind !== "scatter") || chart.kind === "pie" || chart.kind === "donut" || chart.kind === "funnel") return false;
   const family = graphicFontCss(chart.fontFamily);
   const rows = chart.rows.slice(0, 50), series = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   if (!rows.length) return false;
