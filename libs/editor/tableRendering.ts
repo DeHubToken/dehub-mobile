@@ -1,3 +1,4 @@
+import { chartValueLabel } from "./chartValueFormat";
 import { tableTextLines } from "./tableTextLayout";
 import type { DataVisualContext, TableData } from "./dataVisuals";
 
@@ -15,7 +16,8 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
         if ((table.merges ?? []).some(merge => merge.columnSpan > 1 && index >= merge.row && index < merge.row + merge.rowSpan && column >= merge.column && column < merge.column + merge.columnSpan)) return;
         const style = table.cellStyles?.[index + ":" + column], header = table.header && index === 0 || table.headerColumn && column === 0;
         ctx.font = (style?.italic ? "italic " : "") + (style?.bold === true ? "700 " : style?.bold === false ? "400 " : header ? "700 " : "500 ") + font + "px Inter, sans-serif";
-        const text = String(row[column] ?? "").slice(0, 200);
+        const raw = String(row[column] ?? "");
+        const text = (style?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), style.numberFormat) : raw).slice(0, 200);
         for (const line of text.split(/\r?\n/)) measured = Math.max(measured, ctx.measureText(line).width + padding * 2);
       });
       columnWeights[column] = Math.max(1, Math.min(8, measured / (font * 3)));
@@ -44,7 +46,8 @@ export function drawEditableTable(ctx: DataVisualContext, width: number, height:
       ctx.font = fontStyle + size + "px Inter, sans-serif";
       ctx.fillStyle = cellStyle?.colour ?? (header ? table.headerTextColour : table.textColour);
       ctx.textAlign = alignment === "centre" ? "center" : alignment;
-      const text = String(row[c] ?? "").slice(0, 200), measure = (value: string) => ctx.measureText(value).width;
+      const raw = String(row[c] ?? "");
+      const text = (cellStyle?.numberFormat && raw.trim() && Number.isFinite(Number(raw)) ? chartValueLabel(Number(raw), cellStyle.numberFormat) : raw).slice(0, 200), measure = (value: string) => ctx.measureText(value).width;
       let fullLines = tableTextLines(text, maxWidth, measure, !!table.wrap);
       if (table.fitText) {
         const minimumSize = Math.max(1, size * 0.35);
