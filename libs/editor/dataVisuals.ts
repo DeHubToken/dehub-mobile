@@ -51,6 +51,7 @@ export interface TableData {
   stripeColour?: string | null;
   align?: "left" | "centre" | "right";
   borderWidth?: number;
+  fitColumns?: boolean;
   columnWidths?: number[];
   rowHeights?: number[];
   padding?: number;
@@ -248,6 +249,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (!object(table) || !Array.isArray(table.rows) || !table.rows.length || table.rows.length > 20 ||
       table.rows.some(row => !Array.isArray(row) || !row.length || row.length > 12 || row.some(cell => typeof cell !== "string" || cell.length > 200)) ||
       typeof table.header !== "boolean" || ![table.headerColour, table.headerTextColour, table.cellColour, table.textColour, table.borderColour].every(colour)) return false;
+    if (table.fitColumns !== undefined && typeof table.fitColumns !== "boolean") return false;
     if (table.headerColumn !== undefined && typeof table.headerColumn !== "boolean") return false;
     if (table.stripeAxis !== undefined && !["row", "column"].includes(String(table.stripeAxis))) return false;
     if (table.stripeColour !== undefined && table.stripeColour !== null && !colour(table.stripeColour)) return false;
