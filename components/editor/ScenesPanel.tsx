@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import type { Page } from "../../libs/editor/pages";
-export default function ScenesPanel({ pages, current, onPick, onAdd, onDelete, onMove, onDuration }: { pages: Page[]; current: number; onPick: (start: number) => void; onAdd: (duplicate: boolean) => void; onDelete: (index: number) => void; onMove?: (from: number, to: number) => void; onDuration?: (index: number, seconds: number) => void }) {
+export default function ScenesPanel({ pages, current, onPick, onAdd, onDelete, onMove, onDuration, details }: { details?: import("../../libs/editor/pageDetails").PageDetails[]; pages: Page[]; current: number; onPick: (start: number) => void; onAdd: (duplicate: boolean) => void; onDelete: (index: number) => void; onMove?: (from: number, to: number) => void; onDuration?: (index: number, seconds: number) => void }) {
   const { t } = useTranslation();
   const seconds = pages[current].end - pages[current].start;
   const [duration, setDuration] = useState(String(Number(seconds.toFixed(2))));
@@ -17,7 +17,7 @@ export default function ScenesPanel({ pages, current, onPick, onAdd, onDelete, o
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>
       {pages.map(page => <Pressable key={page.index} accessibilityRole="button" accessibilityState={{ selected: page.index === current }}
         onPress={() => onPick(page.start)} className={`rounded-xl px-4 py-3 ${page.index === current ? "bg-white" : "bg-white/10"}`}>
-        <Text className={page.index === current ? "text-black" : "text-white"}>{t("editor.pages.page", { number: page.index + 1 })}</Text>
+        <Text className={page.index === current ? "text-black" : "text-white"}>{details?.[page.index]?.title || t("editor.pages.page", { number: page.index + 1 })}</Text>
       </Pressable>)}
     </View>
     <View className="flex-row flex-wrap" style={{ gap: 8 }}>

@@ -326,6 +326,8 @@ export interface ProjectSettings {
   pages?: number[];
   /** Explicit end of the last page, including blank time and short still pages. */
   pageEnd?: number;
+  /** Page names and presenter notes, indexed by page order. */
+  pageDetails?: import("./pageDetails").PageDetails[];
 }
 
 export interface ProjectSnapshot {
