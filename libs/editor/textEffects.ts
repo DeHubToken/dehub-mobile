@@ -17,3 +17,9 @@ export function textEffectPatch(clip: TextClip, effect: TextEffect): Partial<Tex
   if (effect === "label") return { ...reset, background: { color: "#000000", opacity: 0.8, padding: 24, radius: 12 } };
   return reset;
 }
+
+export function matchesTextEffect(clip: TextClip, effect: TextEffect): boolean {
+  const expected = { ...clip, ...textEffectPatch(clip, effect) };
+  const key = (value: TextClip) => JSON.stringify([value.echo?.length ? value.echo : null, !!value.hollow, value.shadow ?? null, value.stroke ?? null, value.background ?? null]);
+  return key(clip) === key(expected);
+}
