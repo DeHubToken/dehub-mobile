@@ -32,6 +32,7 @@ export interface Transition {
 }
 
 interface BaseClip {
+  isPageBackground?: boolean;
   id: string;
   /** Persistent selection group; members retain independent content and styling. */
   groupId?: string;
@@ -291,7 +292,6 @@ export interface ShapeClip extends BaseClip {
   shape: ShapeKindAll;
   symbol?: string;
   connector?: import("./connectors").ConnectorStyle;
-  isPageBackground?: boolean;
   /** An empty photo-grid cell, replaced in place when a picture is chosen. */
   photoFrame?: boolean;
   /** Data-backed graphics remain editable after insertion and across devices. */

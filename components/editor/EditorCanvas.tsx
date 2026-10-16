@@ -778,6 +778,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const beginDrag = (clipId: string) => {
     if (drag.current) { drag.current.active += 1; return true; }
     const current = live.current.props;
+    if (!current.cropping && getClip(current.project, clipId)?.isPageBackground) return false;
     const memberIds = current.cropping ? [clipId] : groupedSelection(current.project.clips, [clipId], current.time);
     if (current.project.clips.some(c => memberIds.includes(c.id) && c.locked)) return false;
     const boxes = live.current.layers.filter(layer => memberIds.includes(layer.id));
@@ -948,7 +949,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         }
         const x = e.x - e.translationX;
         const y = e.y - e.translationY;
-        const current = getClip(p.project, p.selectedId)?.locked ? null : boxOf(p.selectedId);
+        const currentClip = getClip(p.project, p.selectedId);
+        const current = currentClip?.locked || (currentClip?.isPageBackground && !p.cropping) ? null : boxOf(p.selectedId);
         let target = current && pointInBox(current, (x - live.current.origin.x) / live.current.k, (y - live.current.origin.y) / live.current.k, HIT_SLOP_PT / live.current.k)
           ? current
           : hitTest(x, y);
@@ -1041,7 +1043,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
   const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
-  const sel = selectedId && !selected?.locked && !props.pen && !navigating ? (memberBoxes.length > 1 ? (() => {
+  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating ? (memberBoxes.length > 1 ? (() => {
     const extents = memberBoxes.map(box => {
       const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
       return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };

@@ -96,6 +96,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
     if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
     if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
+    if (clip.isPageBackground !== undefined && (typeof clip.isPageBackground !== "boolean" || (clip.kind !== "shape" && clip.kind !== "image"))) fail();
     if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
     if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
     if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
