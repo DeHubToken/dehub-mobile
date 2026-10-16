@@ -18,6 +18,7 @@ export interface ChartData {
   legendPosition?: ChartLegendPosition;
   lineWidth?: number;
   lineStyle?: ChartLineStyle;
+  scatterLines?: boolean;
   pointSize?: number;
   areaOpacity?: number;
   barGap?: number;
@@ -235,6 +236,7 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, minimum, maximum] of [["lineWidth", 0.25, 5], ["pointSize", 0, 4], ["areaOpacity", 0, 1], ["barGap", 0, 0.9]] as const) {
       const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum)) return false;
     }
+    if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;
     if (chart.lineStyle !== undefined && !["straight", "step", "smooth"].includes(String(chart.lineStyle))) return false;
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
     for (const key of ["scaleMin", "scaleMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
