@@ -1,3 +1,4 @@
+import EditorGuidePanel from "./EditorGuidePanel";
 import ReusableElementsPanel from "./ReusableElementsPanel";
 import PagePaletteControls from "./PagePaletteControls";
 import ColourPickerButton from "./ColourPickerButton";
@@ -41,7 +42,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | "elements" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | "elements" | "help" | null>(null);
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
@@ -82,6 +83,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.pageAnimation.title", { defaultValue: "Animate page" }), () => setPanel(panel === "animate" ? null : "animate"), false, panel === "animate")}
       {action(t("editor.pageManager.title", { defaultValue: "Manage pages" }), () => { onPageChange?.(time); setPanel(panel === "pages" ? null : "pages"); }, false, panel === "pages")}
       {action(t("editor.notes.title", { defaultValue: "Page notes" }), () => setPanel(panel === "notes" ? null : "notes"), false, panel === "notes")}
+      {action(t("editor.help.title", { defaultValue: "Editor guide" }), () => setPanel(panel === "help" ? null : "help"), false, panel === "help")}
       {action(t("editor.layout.positionGroups", { defaultValue: "Position and groups" }), () => setPanel(panel === "groups" ? null : "groups"), false, panel === "groups")}
     </ScrollView>
     {panel && <ScrollView stickyHeaderIndices={[0]} nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
@@ -101,6 +103,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
     {["elements", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document", "repeat"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "help" && <EditorGuidePanel onOpen={id => setPanel(id === "layout" ? "groups" : id)} />}
     {panel === "elements" && <ReusableElementsPanel key={project.id} project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />}
     {panel === "repeat" && <RepeatGridPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} boxes={boxes} />}
     {panel === "document" && <DocumentElementsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
