@@ -4,7 +4,7 @@ import { getPages, pageAt } from "./pages";
 import { sliceTimelineClip } from "./timelineAgent";
 import type { DesignLayoutBox } from "./designLayout";
 import type { Clip, ProjectSnapshot, Track } from "./types";
-export interface RepeatGridOptions { columns: number; rows: number; gapX: number; gapY: number; allowOverflow: boolean; stagger?: "none" | "rows" | "columns" }
+export interface RepeatGridOptions { columns: number; rows: number; gapX: number; gapY: number; allowOverflow: boolean; groupCopies?: boolean; stagger?: "none" | "rows" | "columns" }
 function repeatGridExtent(project: ProjectSnapshot, ids: readonly string[], time: number, measured: readonly DesignLayoutBox[]) {
   const chosen = new Set(groupedSelection(project.clips, ids, time)), hidden = new Set(project.tracks.filter(track => track.hidden).map(track => track.id));
   const source = project.clips.filter(clip => chosen.has(clip.id) && !clip.hidden && !clip.isPageBackground && !hidden.has(clip.trackId) && time >= clip.start && time < clip.start + clip.duration);
@@ -35,6 +35,7 @@ export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[
   const stepX = right - left + options.gapX, stepY = bottom - top + options.gapY;
   const offsetX = options.stagger === "rows" && options.rows > 1 ? stepX / 2 : 0, offsetY = options.stagger === "columns" && options.columns > 1 ? stepY / 2 : 0;
   if (!options.allowOverflow && (left < -0.01 || top < -0.01 || right + stepX * (options.columns - 1) + offsetX > project.settings.width + 0.01 || bottom + stepY * (options.rows - 1) + offsetY > project.settings.height + 0.01)) throw new Error("This grid extends beyond the page. Resize or move the selection, use fewer cells, or allow artwork outside the page");
+  if (options.groupCopies !== undefined && typeof options.groupCopies !== "boolean") throw new Error("Choose whether copied tiles should be grouped");
   const count = options.rows * options.columns - 1;
   if (project.clips.length + source.length * count > 10000) throw new Error("This grid would exceed the design's layer limit");
   const page = pageAt(getPages(project.settings, project.clips), time), trackIds = new Map<string, string>(), tracks: Track[] = [];
@@ -50,7 +51,8 @@ export function repeatDesignGrid(project: ProjectSnapshot, ids: readonly string[
       budget += JSON.stringify(copy).length; if (budget > 2 * 1024 * 1024) throw new Error("This grid would make the design too large. Choose fewer cells or simpler artwork");
       return copy;
     });
-    clips.push(...remapDesignGroups(copies, makeId));
+    const tile = remapDesignGroups(copies, makeId), tileGroup = options.groupCopies && tile.length > 1 ? makeId() : null;
+    clips.push(...(tileGroup ? tile.map(clip => ({ ...clip, groupId: tileGroup })) : tile));
   }
   return { project: { ...project, tracks: [...project.tracks, ...tracks], clips: [...project.clips, ...clips] }, ids: clips.map(clip => clip.id), count };
 }
