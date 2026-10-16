@@ -50,7 +50,10 @@ export function applyBrandStyles(project: ProjectSnapshot, input: BrandStyles): 
     const color = brand.colors[shapeIndex++ % brand.colors.length];
     if (clip.kind !== "shape") return clip.border ? { ...clip, border: { ...clip.border, color } } : clip;
     if (clip.chart) return { ...clip, chart: { ...clip.chart, colours: [...brand.colors], textColour: readableColour(brand.colors, project.settings.background, 0) } };
-    if (clip.table) return { ...clip, table: { ...clip.table, headerColour: color, headerTextColour: readableColour(brand.colors, color, 0), textColour: readableColour(brand.colors, clip.table.cellColour, 0) } };
+    if (clip.table) return { ...clip, table: { ...clip.table, headerColour: color, headerTextColour: readableColour(brand.colors, color, 0), textColour: readableColour(brand.colors, clip.table.cellColour, 0), cellStyles: clip.table.cellStyles ? Object.fromEntries(Object.entries(clip.table.cellStyles).map(([key, style]) => {
+      const fill = style.fill ? color : undefined, row = Number(key.split(":")[0]), background = fill ?? (clip.table!.header && row === 0 ? color : clip.table!.stripeColour && row % 2 === (clip.table!.header ? 0 : 1) ? clip.table!.stripeColour : clip.table!.cellColour);
+      return [key, { ...style, ...(fill ? { fill } : {}), ...(style.colour || fill ? { colour: readableColour(brand.colors, background, 0) } : {}) }];
+    })) : undefined } };
     if (clip.qr) {
       const candidates = brand.colors.filter(value => contrast(value, clip.qr!.background) >= 4.5);
       const foreground = (candidates.length ? candidates : ["#000000", "#ffffff"]).sort((a, b) => contrast(b, clip.qr!.background) - contrast(a, clip.qr!.background))[0];

@@ -1,3 +1,4 @@
+import { mapTableCellColours } from "./tableCellStyles";
 import { findLiteralTextIndex, replaceLiteralText } from "./designTextMatching";
 import type { Clip, ClipEffects, ClipShadow, ProjectSnapshot, ShapeClip, TextClip } from "./types";
 
@@ -85,7 +86,7 @@ export function designColours(project: ProjectSnapshot): string[] {
       add(clip.fill); add(clip.stroke?.color);
       if (clip.chart) { clip.chart.colours.forEach(add); add(clip.chart.textColour); }
       if (clip.qr) { add(clip.qr.foreground); add(clip.qr.background); }
-      if (clip.table) { add(clip.table.headerColour); add(clip.table.headerTextColour); add(clip.table.cellColour); add(clip.table.textColour); add(clip.table.borderColour); if (clip.table.stripeColour) add(clip.table.stripeColour); }
+      if (clip.table) { add(clip.table.headerColour); add(clip.table.headerTextColour); add(clip.table.cellColour); add(clip.table.textColour); add(clip.table.borderColour); if (clip.table.stripeColour) add(clip.table.stripeColour); Object.values(clip.table.cellStyles ?? {}).forEach(style => { add(style.fill); add(style.colour); }); }
     }
     add(clip.shadow?.color);
   }
@@ -111,7 +112,7 @@ export function replaceDesignColour(project: ProjectSnapshot, from: string, to: 
       if (next.kind === "shape" && next.fill) next.fill = replace(next.fill);
       if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(replace), textColour: replace(next.chart.textColour) };
       if (next.kind === "shape" && next.qr) next.qr = { ...next.qr, foreground: replace(next.qr.foreground), background: replace(next.qr.background) };
-      if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: replace(next.table.headerColour), headerTextColour: replace(next.table.headerTextColour), cellColour: replace(next.table.cellColour), textColour: replace(next.table.textColour), borderColour: replace(next.table.borderColour), stripeColour: next.table.stripeColour ? replace(next.table.stripeColour) : next.table.stripeColour };
+      if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: replace(next.table.headerColour), headerTextColour: replace(next.table.headerTextColour), cellColour: replace(next.table.cellColour), textColour: replace(next.table.textColour), borderColour: replace(next.table.borderColour), stripeColour: next.table.stripeColour ? replace(next.table.stripeColour) : next.table.stripeColour, cellStyles: mapTableCellColours(next.table.cellStyles, replace) };
       if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: replace(next.stroke.color) };
       return next;
     }) };
@@ -185,7 +186,7 @@ export function applyDesignPalette(project: ProjectSnapshot, colours: readonly s
     if (next.kind === "shape" && next.fill) next.fill = recolour(next.fill);
     if (next.kind === "shape" && next.chart) next.chart = { ...next.chart, colours: next.chart.colours.map(recolour), textColour: recolour(next.chart.textColour) };
     if (next.kind === "shape" && next.qr) next.qr = { ...next.qr, foreground: recolour(next.qr.foreground), background: recolour(next.qr.background) };
-    if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: recolour(next.table.headerColour), headerTextColour: recolour(next.table.headerTextColour), cellColour: recolour(next.table.cellColour), textColour: recolour(next.table.textColour), borderColour: recolour(next.table.borderColour), stripeColour: next.table.stripeColour ? recolour(next.table.stripeColour) : next.table.stripeColour };
+    if (next.kind === "shape" && next.table) next.table = { ...next.table, headerColour: recolour(next.table.headerColour), headerTextColour: recolour(next.table.headerTextColour), cellColour: recolour(next.table.cellColour), textColour: recolour(next.table.textColour), borderColour: recolour(next.table.borderColour), stripeColour: next.table.stripeColour ? recolour(next.table.stripeColour) : next.table.stripeColour, cellStyles: mapTableCellColours(next.table.cellStyles, recolour) };
     if ((next.kind === "text" || next.kind === "shape") && next.stroke) next.stroke = { ...next.stroke, color: recolour(next.stroke.color) };
     return next;
   }) };
