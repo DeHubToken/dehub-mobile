@@ -1,3 +1,4 @@
+import BrandPresetLibrary from "./BrandPresetLibrary";
 import PenControls from "./PenControls";
 import { DEFAULT_PEN, penShapeStyle, type PenSettings } from "../../libs/editor/freehand";
 /**
@@ -244,6 +245,7 @@ export function BrandPanel(props: {
   );
   return (
     <View style={{ gap: 10 }}>
+      <BrandPresetLibrary value={kit} onLoad={styles => props.onChange({ ...kit, ...styles })} />
       <View>
         <Text className="text-theme-neutrals-300 text-xs mb-1">{t("editor.brand.colors")}</Text>
         <View className="flex-row flex-wrap" style={{ gap: 8 }}>

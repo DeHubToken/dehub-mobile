@@ -39,6 +39,7 @@ export default function ExportSheet(props: {
   const isGif = format === "gif";
   const isPdf = format === "pdf";
   const isPptx = format === "pptx";
+  const slideScale = Math.min(1, 2048 / Math.max(props.width, props.height));
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
   useEffect(() => { if (props.visible) { setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
   const ranges = scope === "selection" ? props.ranges.selected : props.ranges.all;
@@ -107,7 +108,7 @@ export default function ExportSheet(props: {
         <Text className="text-theme-neutrals-400 text-xs">
           {separate ? t("editor.export.rangeHint") : isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
             ? `${t("editor.export.outputVideo", { width: Math.round(props.width * k) & ~1, height: Math.round(props.height * k) & ~1, fps: props.video!.fps })} · ${t("editor.export.duration", { value: props.video!.duration.toFixed(1) })}`
-            : format === "mp4" ? "" : t("editor.export.outputStill", { width: props.width, height: props.height })}
+            : format === "mp4" ? "" : t("editor.export.outputStill", { width: Math.round(props.width * (isPptx ? slideScale : 1)), height: Math.round(props.height * (isPptx ? slideScale : 1)) })}
         </Text>
         {isVideo && <Text className="text-theme-neutrals-400 text-xs">{t("editor.video.exportHint")}</Text>}
         {isGif && <Text className="text-theme-neutrals-400 text-xs">{t(gifTooLong ? "editor.export.gifTooLong" : "editor.export.gifHint")}</Text>}

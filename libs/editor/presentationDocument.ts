@@ -4,7 +4,7 @@ export const PRESENTATION_MIME = "application/vnd.openxmlformats-officedocument.
 export const PRESENTATION_IMAGE_LIMIT = 256 * 1024 * 1024;
 export interface PresentationSlide { index: number; title?: string; notes?: string; hidden?: boolean; links?: readonly DesignPdfLink[] }
 const P = "http://schemas.openxmlformats.org/presentationml/2006/main", A = "http://schemas.openxmlformats.org/drawingml/2006/main", R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
-const xml = (value: string) => value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\ud800-\udfff]/gu, "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+const xml = (value: string) => value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\ud800-\udfff\ufffe\uffff]/gu, "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 const header = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 type Relationship = { id: string; type: string; target: string; external?: boolean };
 const relationships = (items: Relationship[]) => `${header}<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${items.map(item => `<Relationship Id="${xml(item.id)}" Type="${R}/${item.type}" Target="${xml(item.target)}"${item.external ? ' TargetMode="External"' : ""}/>`).join("")}</Relationships>`;
