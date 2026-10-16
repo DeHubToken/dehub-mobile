@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { requestDesignPagePreview } from "./designPagePreviews";
 import { putTextComposition, type TextCompositionId } from "./textCompositions";
 import { DEFAULT_SETTINGS, type ProjectSnapshot } from "./types";
-export type CompositionContent = { title: string; subtitle: string; eyebrow: string; colour: string; accent: string };
+export type CompositionContent = { title: string; subtitle: string; eyebrow: string; colour: string; accent: string; headingFont?: string | null; bodyFont?: string | null };
 export function useTextCompositionPreview(projectId: string, preset: TextCompositionId, value: CompositionContent | null, width: number, height: number, background: string, enabled: boolean) {
   const [result, setResult] = useState<{ image: string | null; busy: boolean; unavailable: boolean }>({ image: null, busy: false, unavailable: false });
   useEffect(() => {
