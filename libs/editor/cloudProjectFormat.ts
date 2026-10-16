@@ -1,3 +1,4 @@
+import { validPageNumberFormat } from "./pageNumbering";
 import { VECTOR_SYMBOLS } from "./vectorSymbols";
 import { MEDIA_FRAMES, type MediaFrame } from "./mediaFrames";
 import { validConnector } from "./connectors";
@@ -106,6 +107,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.isPageBackground !== undefined && (typeof clip.isPageBackground !== "boolean" || (clip.kind !== "shape" && clip.kind !== "image"))) fail();
     if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
     if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
+    if (clip.pageNumber !== undefined && (clip.kind !== "text" || !validPageNumberFormat(clip.pageNumber))) fail();
     if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
     if (clip.kind === "text" && clip.echo !== undefined && (!Array.isArray(clip.echo) || clip.echo.length > 3 || clip.echo.some(layer =>
       !object(layer) || typeof layer.colour !== "string" || !/^#[\da-f]{6}$/i.test(layer.colour) ||

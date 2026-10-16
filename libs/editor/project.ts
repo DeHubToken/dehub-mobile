@@ -207,7 +207,7 @@ export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {
 }
 
 export function updateClip(p: ProjectSnapshot, id: string, patch: ClipPatch): ProjectSnapshot {
-  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...(c.kind === "video" && "mediaId" in patch && patch.mediaId !== undefined && patch.mediaId !== c.mediaId ? { videoMatte: null } : {}), ...patch } as Clip) : c)) };
+  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...(c.kind === "text" && "text" in patch && patch.text !== undefined && patch.text !== c.text ? { pageNumber: undefined } : {}), ...(c.kind === "video" && "mediaId" in patch && patch.mediaId !== undefined && patch.mediaId !== c.mediaId ? { videoMatte: null } : {}), ...patch } as Clip) : c)) };
 }
 
 /** Placement with defaults filled in; text reads its anchor from x/y. */

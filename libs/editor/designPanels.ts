@@ -1,7 +1,7 @@
 import type { Clip } from "./types";
 
 export const DESIGN_PANEL_NAMES = {
-  pages: "Manage pages", resize: "Resize", search: "Find and replace", colours: "Document colours", data: "Charts and tables", fill: "Fills and backgrounds", qr: "QR code", grid: "Photo grids", guides: "Guides and margins", layout: "Position and spacing", groups: "Position and groups", notes: "Page notes", link: "Link", compositions: "Text combinations", bulk: "Bulk create", animate: "Animate page", connectors: "Lines and connectors", symbols: "Vector symbols", insert: "Insert",
+  document: "Page numbers and repeated elements", pages: "Manage pages", resize: "Resize", search: "Find and replace", colours: "Document colours", data: "Charts and tables", fill: "Fills and backgrounds", qr: "QR code", grid: "Photo grids", guides: "Guides and margins", layout: "Position and spacing", groups: "Position and groups", notes: "Page notes", link: "Link", compositions: "Text combinations", bulk: "Bulk create", animate: "Animate page", connectors: "Lines and connectors", symbols: "Vector symbols", insert: "Insert",
 } as const;
 export type DesignPanelId = keyof typeof DESIGN_PANEL_NAMES;
 export interface DesignSelectionAction { id: string; label: string; panel?: "data" | "fill" | "qr" | "connectors" | "symbols"; edit?: "text" | "crop" | "shape" }

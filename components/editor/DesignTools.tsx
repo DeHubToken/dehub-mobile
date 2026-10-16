@@ -1,3 +1,4 @@
+import DocumentElementsPanel from "./DocumentElementsPanel";
 import PagesManagerPanel from "./PagesManagerPanel";
 import ResizeDesignPanel from "./ResizeDesignPanel";
 import { DESIGN_PANEL_NAMES, designSelectionAction } from "../../libs/editor/designPanels";
@@ -35,7 +36,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | null>(null);
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
@@ -58,7 +59,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
   return <DesignDraftContext.Provider value={holdEdits}><View className="border-b border-white/10 py-2" style={{ gap: 10 }}>
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
       {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
-      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? ""))}
+      {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document"].includes(panel ?? ""))}
       {contextual && action(t(`editor.selectionAction.${contextual.id}`, { defaultValue: contextual.label }), editSelected, !!selected?.locked || (!contextual.panel && !onEditContent))}
       <DesignClipboardControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
       {action(t("editor.designTools.resize", { defaultValue: "Resize" }), () => setPanel(panel === "resize" ? null : "resize"), false, panel === "resize")}
@@ -80,6 +81,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     {panel && <ScrollView stickyHeaderIndices={[0]} nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
     <View className="flex-row items-center justify-between border-b border-white/10 px-3 py-2" style={{ backgroundColor: "#0a0a0a", gap: 10 }}><Text className="flex-1 text-xs font-semibold text-white/75">{panelTitle}</Text><Pressable accessibilityRole="button" onPress={() => { Keyboard.dismiss(); setPanel(null); }} className="min-h-[40px] justify-center rounded-lg px-3"><Text className="text-xs text-white/50">{t("editor.designTools.closePanel", { defaultValue: "Close panel" })}</Text></Pressable></View>
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
+      {action(t("editor.document.title", { defaultValue: "Page numbers and repeated elements" }), () => setPanel("document"))}
       {action(t("editor.symbols.title", { defaultValue: "Vector symbols" }), () => setPanel("symbols"))}
       {action(t("editor.connectors.title", { defaultValue: "Lines and connectors" }), () => setPanel("connectors"))}
       {action(t("editor.bulk.title", { defaultValue: "Bulk create" }), () => setPanel("bulk"))}
@@ -90,7 +92,8 @@ export default function DesignTools({ project, selectedId, current, commit, seek
       {action(t("editor.grids.title", { defaultValue: "Photo grids" }), () => setPanel("grid"))}
       {action(t("editor.qr.title", { defaultValue: "QR code" }), () => setPanel("qr"))}
     </View>}
-    {["data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {["data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document"].includes(panel ?? "") && <View className="px-3">{action(t("editor.designTools.backInsert", { defaultValue: "Back to Insert" }), () => setPanel("insert"))}</View>}
+    {panel === "document" && <DocumentElementsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} />}
     {panel === "pages" && <PagesManagerPanel key={project.id} project={project} time={time} current={current} commit={commit} select={select} onPick={onPageChange} />}
     {panel === "symbols" && <VectorSymbolsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
     {panel === "connectors" && <ConnectorsPanel key={project.id} project={project} time={time} selectedId={selectedId} current={current} commit={commit} select={select} />}
