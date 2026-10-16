@@ -9,6 +9,9 @@ import type { Clip, ProjectSnapshot, ShapeClip, TextClip } from "./types";
 
 export interface BulkData { headers: string[]; rows: string[][] }
 export type BulkConnections = Record<string, string>;
+export interface BulkPageFields { titleColumn?: string; notesColumn?: string; sectionColumn?: string }
+export function bulkPageFieldsConnected(headers: string[], fields: BulkPageFields): boolean { return [fields.titleColumn, fields.notesColumn, fields.sectionColumn].some(name => !!name && headers.includes(name)); }
+
 export type BulkField = TextClip | (ShapeClip & { qr: QrGraphic });
 const TOKEN = /\{\{\s*([^{}]+?)\s*\}\}/g;
 
@@ -47,14 +50,14 @@ export function bulkConnected(clip: BulkField, headers: string[], connections: B
 }
 
 /** Append one independent copy of the current page for every selected data row. */
-export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string): { project: ProjectSnapshot; start: number; count: number } {
+export function createBulkPages(project: ProjectSnapshot, time: number, data: BulkData, connections: BulkConnections, first: number, last: number, makeId: () => string, pageFields: BulkPageFields = {}): { project: ProjectSnapshot; start: number; count: number } {
   if (!Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last > data.rows.length || last < first || last - first >= 50) throw new Error("Choose a valid range of up to 50 data rows");
   const pages = getPages(project.settings, project.clips), template = pageAt(pages, time), count = last - first + 1;
   const duration = template.end - template.start;
   if (!Number.isFinite(duration) || duration < 0.05) throw new Error("Give the template page a duration before generating pages");
   const source = project.clips.filter(clip => clip.start < template.end && clip.start + clip.duration > template.start);
   const fields = bulkTemplateFields(project, time);
-  if (!fields.some(clip => bulkConnected(clip, data.headers, connections))) throw new Error("Connect a text or QR layer, or add a matching {{column}} placeholder");
+  if (!fields.some(clip => bulkConnected(clip, data.headers, connections)) && !bulkPageFieldsConnected(data.headers, pageFields)) throw new Error("Connect text, a QR code, or a page field to a column, or add a matching {{column}} placeholder");
   if (pages.length + count > 500 || project.clips.length + source.length * count > 10000) throw new Error("This batch exceeds the design’s page or layer limit. Choose fewer rows");
   const start = pages[pages.length - 1].end, copies: Clip[] = [], starts = pages.map(page => page.start);
   if (start + count * duration > 86400) throw new Error("This batch exceeds the design’s 24-hour timeline limit. Choose fewer rows");
@@ -76,8 +79,11 @@ export function createBulkPages(project: ProjectSnapshot, time: number, data: Bu
       return [copy.kind === "text" && clip.kind === "text" && !clip.locked ? { ...copy, text: bulkTextValue(clip, data.headers, row, connections) } : copy];
     });
     copies.push(...remapDesignGroups(copied, makeId));
-    const title = bulkReplaceTokens(original.title, data.headers, row);
-    details.push({ ...original, title: (title !== original.title ? title : `${title || "Page"} · ${index + 1}`).slice(0, 200), notes: bulkReplaceTokens(original.notes, data.headers, row).slice(0, 10000) });
+    const field = (column: string | undefined, template: string) => { const position = column ? data.headers.indexOf(column) : -1; return position >= 0 ? row[position] ?? "" : bulkReplaceTokens(template, data.headers, row); };
+    const title = field(pageFields.titleColumn, original.title).trim();
+    const section = field(pageFields.sectionColumn, original.section ?? "").replace(/\s+/g, " ").trim().slice(0, 80);
+
+    details.push({ ...original, title: (title && ((pageFields.titleColumn && data.headers.includes(pageFields.titleColumn)) || title !== original.title) ? title : `${title || "Page"} · ${index + 1}`).slice(0, 200), section: section || undefined, notes: field(pageFields.notesColumn, original.notes).slice(0, 10000) });
   }
   const next = { ...project, settings: { ...project.settings, pages: starts, pageEnd: start + count * duration, pageDetails: details }, clips: refreshPageNumberClips([...project.clips, ...copies], starts) };
   let bytes = 0;
