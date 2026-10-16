@@ -1600,17 +1600,18 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } finally { setRendering(null); }
   };
 
-  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false) => {
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false, filenamePattern = "") => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
-    const frames = pageExportFrames(project, canvasTime, scope, format === "jpeg" ? "jpg" : "png");
+    let frames: ReturnType<typeof pageExportFrames>;
+    try { frames = pageExportFrames(project, canvasTime, scope, format === "jpeg" ? "jpg" : "png", filenamePattern); } catch (error) { toastError(error instanceof Error ? error.message : t("editor.app.exportFailed")); return; }
     if (frames.length > 1 && target === "photos") {
       const ctl = new AbortController(); downloadController.current = ctl;
       const canvas = canvasRef.current;
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
         await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent, undefined, true), ctl.signal,
-          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope);
+          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope, filenamePattern);
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
       return;
@@ -1623,7 +1624,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       }
       const frame = frames[0];
       const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time, transparent, undefined, getPages(project.settings, project.clips).length > 1);
-      const uri = await writeExport(dataUrl, format, project.title);
+      const uri = await writeExport(dataUrl, format, frame.filename.slice(0, -4));
       setExportOpen(false);
       if (target === "photos") {
         await MediaLibrary.saveToLibraryAsync(uri);
