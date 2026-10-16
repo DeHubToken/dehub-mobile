@@ -1,7 +1,7 @@
 import { parseCloudProjectDocument } from "./cloudProjectFormat";
 import { captureDesignSelection, pasteDesignSelection, type DesignClipboard } from "./designClipboard";
 import { getPages, pageAt } from "./pages";
-import { DEFAULT_SETTINGS, type ProjectSnapshot } from "./types";
+import { DEFAULT_SETTINGS, SHAPE_KINDS, type ProjectSnapshot } from "./types";
 
 export interface ReusableDesignElement { id: string; name: string; source: DesignClipboard; updatedAt: number }
 const EMPTY: ReusableDesignElement[] = [];
@@ -10,6 +10,13 @@ function validateSource(value: unknown): DesignClipboard {
   const input = value as DesignClipboard;
   if (!Array.isArray(input.layers) || !input.layers.length || input.layers.length > 100 || JSON.stringify(input).length > 200000) throw new Error("Save up to 100 text and vector layers per element, within 200 KB");
   if (input.layers.some(layer => !layer || !layer.clip || !["text", "shape"].includes(layer.clip.kind) || !layer.track || typeof layer.offset !== "number" || !Number.isFinite(layer.offset) || layer.offset < 0 || layer.offset > 86400 || typeof layer.fillPage !== "boolean")) throw new Error("Saved elements support text and vector artwork");
+  const colour = (value: unknown) => typeof value === "string" && /^#(?:[a-f0-9]{3}|[a-f0-9]{6})$/i.test(value);
+  for (const layer of input.layers) {
+    const clip = layer.clip;
+    if (clip.kind === "text" && (typeof clip.text !== "string" || clip.text.length > 100000 || typeof clip.fontFamily !== "string" || clip.fontFamily.length > 500 || !Number.isFinite(clip.fontSize) || clip.fontSize < 6 || clip.fontSize > 1000 || !Number.isFinite(clip.fontWeight) || clip.fontWeight < 100 || clip.fontWeight > 1000 || !["left", "centre", "right"].includes(clip.align) || !colour(clip.color) || !Number.isFinite(clip.x) || !Number.isFinite(clip.y))) throw new Error("This element contains unsupported text formatting");
+    if (clip.kind === "shape" && (![...SHAPE_KINDS, "path"].includes(clip.shape) || !Number.isFinite(clip.w) || !Number.isFinite(clip.h) || clip.w <= 0 || clip.h <= 0 || clip.fill !== null && !colour(clip.fill))) throw new Error("This element contains unsupported vector artwork");
+    if (clip.kind === "shape" && clip.shape === "path" && (!Array.isArray(clip.points) || clip.points.length > 12000 || clip.points.some(point => !Array.isArray(point) || point.length !== 2 || !point.every(Number.isFinite)))) throw new Error("This element contains an unsupported drawing path");
+  }
   const source = JSON.parse(JSON.stringify(input)) as DesignClipboard;
   source.projectId = "saved-elements";
   source.layers = source.layers.map(layer => ({ ...layer, clip: { ...layer.clip, href: layer.clip.href?.startsWith("#page=") ? undefined : layer.clip.href, ...(layer.clip.kind === "text" ? { pageNumber: undefined } : {}) } }));
@@ -65,4 +72,24 @@ export function createReusableElementStore(read: (key: string) => string | null 
     subscribe: (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; },
     reload: (key: string) => { const previous = cache.get(key); cache.delete(key); if (JSON.stringify(previous) !== JSON.stringify(get(key))) notify(); },
   };
+}
+
+export function reusableElementFile(name: string, source: DesignClipboard): string {
+  const safe = validateSource(source), trimmed = name.trim().slice(0, 60);
+  if (!trimmed) throw new Error("Give this element a name");
+  return JSON.stringify({ kind: "dehub-design-element", version: 1, name: trimmed, source: safe }) + "\n";
+}
+export function parseReusableElementFile(text: string): { name: string; source: DesignClipboard } {
+  if (text.length > 800000) throw new Error("Choose an element file smaller than 800 KB");
+  let input: unknown; try { input = JSON.parse(text.replace(/^\uFEFF/, "")); } catch { throw new Error("This file does not contain a valid saved element"); }
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Choose an exported DeHub element file");
+  const file = input as Record<string, unknown>;
+  if (file.kind !== "dehub-design-element" || file.version !== 1 || typeof file.name !== "string" || !file.name.trim()) throw new Error("Choose a supported DeHub element file");
+  return { name: file.name.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, 60) || "Saved element", source: validateSource(file.source) };
+}
+export function uniqueReusableElementName(name: string, elements: readonly ReusableDesignElement[]): string {
+  const names = new Set(elements.map(element => element.name.toLocaleLowerCase()));
+  if (!names.has(name.toLocaleLowerCase())) return name;
+  for (let index = 2; index <= 22; index++) { const candidate = `${name.slice(0, 55)} (${index})`; if (!names.has(candidate.toLocaleLowerCase())) return candidate; }
+  throw new Error("Choose a different element name");
 }
