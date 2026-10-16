@@ -1,3 +1,4 @@
+import { TEXT_DIRECTION_RUNTIME } from "./textDirectionRuntime";
 import { PICTOGRAM_SYMBOL_RUNTIME } from "./pictogramSymbolRuntime";
 import { CHART_CATEGORY_LABEL_RUNTIME } from "./chartCategoryLabelRuntime";
 import { PACKED_CIRCLES_CHART_RUNTIME } from "./packedCirclesChartRuntime";
@@ -339,6 +340,7 @@ canvas{display:block;width:100%;height:100%;}
   function setLetterSpacing(c, px) { c.letterSpacing = px + "px"; }
   function layoutText(c, text, W, H) {
     c.save();
+    c.direction = resolvedTextDirection(text.text, text.direction);
     var result = measuredTextLayout(text, W, H, function(line, size, spacing) {
       c.font = fontFor(text, size);
       setLetterSpacing(c, spacing);
@@ -669,6 +671,8 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   function drawText(c, text, box, W, H, progress) {
+    c.direction = resolvedTextDirection(text.text, text.direction);
+    var rtl = c.direction === "rtl";
     var textAlpha = c.globalAlpha, fillAlpha = paintOpacity(text.fillOpacity);
     var l = layoutText(c, text, W, H);
     c.font = fontFor(text, l.size);
@@ -678,9 +682,9 @@ canvas{display:block;width:100%;height:100%;}
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
     var startY = -((l.lines.length - 1) * l.lh) / 2;
     var lines = progress == null ? l.lines : textRevealLines(l.lines, progress);
-    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax + (l.offsets?.[i] ?? 0) : ax - l.widths[i]; };
-    var drawX = function(i) { return progress == null ? ax + (l.offsets?.[i] ?? 0) : leftFor(i); };
-    if (progress != null) c.textAlign = "left";
+    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax + (l.offsets?.[i] ?? 0) : ax + (l.offsets?.[i] ?? 0) - l.widths[i]; };
+    var drawX = function(i) { return progress == null ? ax + (l.offsets?.[i] ?? 0) : rtl ? leftFor(i) + l.widths[i] : leftFor(i); };
+    if (progress != null) c.textAlign = rtl ? "right" : "left";
     if (text.background && text.background.opacity > 0) {
       var radius = Math.max(0, (text.background.radius / 1080) * H);
       var a = c.globalAlpha;
@@ -757,7 +761,7 @@ canvas{display:block;width:100%;height:100%;}
     clearShadow(c);
     if (text.strikethrough) {
       l.lines.forEach(function(line, i) {
-        var width = progress == null ? l.widths[i] : c.measureText(lines[i]).width, left = leftFor(i);
+        var width = progress == null ? l.widths[i] : c.measureText(lines[i]).width, left = rtl && progress != null ? leftFor(i) + l.widths[i] - width : leftFor(i);
         c.fillRect(left, startY + i * l.lh, width, Math.max(1, l.size * 0.055));
       });
     }
@@ -765,7 +769,7 @@ canvas{display:block;width:100%;height:100%;}
       var thick = Math.max(1, l.size * 0.06);
       l.lines.forEach(function (_, i) {
         var w = progress == null ? l.widths[i] : c.measureText(lines[i]).width;
-        var left = leftFor(i);
+        var left = rtl && progress != null ? leftFor(i) + l.widths[i] - w : leftFor(i);
         c.fillRect(left, startY + i * l.lh + l.size * 0.45, w, thick);
       });
     }
@@ -2069,5 +2073,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+</body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_DIRECTION_RUNTIME + "\n" + TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
   .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", PERCENT_STACKED_SERIES_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + GRAPHIC_FONT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + FUNNEL_CHART_RUNTIME + "\n" + HISTOGRAM_CHART_RUNTIME + "\n" + TREEMAP_CHART_RUNTIME + "\n" + PACKED_CIRCLES_CHART_RUNTIME + "\n" + PICTOGRAM_SYMBOL_RUNTIME + "\n" + PICTOGRAM_CHART_RUNTIME + "\n" + CHART_RACE_RUNTIME + "\n" + PROGRESS_CHARTS_RUNTIME + "\n" + CHART_CATEGORY_LABEL_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
