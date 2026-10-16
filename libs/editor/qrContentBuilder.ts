@@ -1,7 +1,8 @@
-export type QrContentKind = "wifi" | "email" | "phone" | "contact";
+export type QrContentKind = "wifi" | "email" | "phone" | "contact" | "sms";
 export interface QrContentDetails { ssid: string; password: string; email: string; subject: string; body: string; phone: string; firstName: string; lastName: string; company: string; jobTitle: string; website: string }
 export const EMPTY_QR_DETAILS: QrContentDetails = { ssid: "", password: "", email: "", subject: "", body: "", phone: "", firstName: "", lastName: "", company: "", jobTitle: "", website: "" };
 export function qrContentFields(kind: QrContentKind): { key: keyof QrContentDetails; label: string; limit: number; multiline?: boolean; secret?: boolean }[] {
+  if (kind === "sms") return [{ key: "phone", label: "Recipient phone with country code", limit: 60 }, { key: "body", label: "Message (optional)", limit: 800, multiline: true }];
   if (kind === "contact") return [{ key: "firstName", label: "First name", limit: 80 }, { key: "lastName", label: "Last name", limit: 80 }, { key: "company", label: "Company (optional)", limit: 100 }, { key: "jobTitle", label: "Job title (optional)", limit: 100 }, { key: "email", label: "Email address (optional)", limit: 254 }, { key: "phone", label: "Phone with country code (optional)", limit: 60 }, { key: "website", label: "Website URL (optional)", limit: 300 }];
   return kind === "wifi" ? [{ key: "ssid", label: "Network name", limit: 128 }, { key: "password", label: "Network password", limit: 128, secret: true }] : kind === "email" ? [{ key: "email", label: "Email address", limit: 254 }, { key: "subject", label: "Subject", limit: 200 }, { key: "body", label: "Message", limit: 800, multiline: true }] : [{ key: "phone", label: "Phone number with country code", limit: 60 }];
 }
@@ -30,7 +31,8 @@ export function buildQrContent(kind: QrContentKind, value: QrContentDetails, wif
     result = "mailto:" + encodeURIComponent(address).replace(/%40/gi, "@") + (parameters.length ? "?" + parameters.join("&") : "");
   } else {
     const phone = value.phone.replace(/[\s().-]/g, ""); if (!/^\+?\d{3,20}$/.test(phone)) throw new Error("Use a phone number with digits and an optional leading country-code plus sign");
-    result = "tel:" + phone;
+    if (kind === "sms" && value.body.length > 800) throw new Error("Keep the SMS message within 800 characters");
+    result = kind === "sms" ? "sms:" + phone + (value.body ? "?body=" + encodeURIComponent(value.body) : "") : "tel:" + phone;
   }
   if (result.length > 1500) throw new Error("Shorten these details to fit within the QR content limit");
   return result;
