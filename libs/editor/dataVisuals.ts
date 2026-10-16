@@ -19,6 +19,8 @@ export interface ChartData {
   lineWidth?: number;
   lineStyle?: ChartLineStyle;
   scatterLines?: boolean;
+  scaleXMin?: number;
+  scaleXMax?: number;
   pointSize?: number;
   areaOpacity?: number;
   barGap?: number;
@@ -239,8 +241,9 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     if (chart.scatterLines !== undefined && typeof chart.scatterLines !== "boolean") return false;
     if (chart.lineStyle !== undefined && !["straight", "step", "smooth"].includes(String(chart.lineStyle))) return false;
     if (chart.legendPosition !== undefined && !["top", "bottom", "left", "right"].includes(String(chart.legendPosition))) return false;
-    for (const key of ["scaleMin", "scaleMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
+    for (const key of ["scaleMin", "scaleMax", "scaleXMin", "scaleXMax"] as const) { const value = chart[key]; if (value !== undefined && (typeof value !== "number" || !Number.isFinite(value) || Math.abs(value) > 1e12)) return false; }
     if (typeof chart.scaleMin === "number" && typeof chart.scaleMax === "number" && chart.scaleMin >= chart.scaleMax) return false;
+    if (typeof chart.scaleXMin === "number" && typeof chart.scaleXMax === "number" && chart.scaleXMin >= chart.scaleXMax) return false;
     if (chart.showAxisValues !== undefined && typeof chart.showAxisValues !== "boolean") return false;
     if (chart.showGrid !== undefined && typeof chart.showGrid !== "boolean") return false;
     if (chart.stackPercent !== undefined && typeof chart.stackPercent !== "boolean") return false;
