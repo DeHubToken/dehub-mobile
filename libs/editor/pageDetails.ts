@@ -65,3 +65,8 @@ export function setDesignPageSections(project: ProjectSnapshot, indexes: readonl
   if (bytes > 6 * 1024 * 1024) throw new Error("This section change would make the design too large to save");
   return { project: updated, count };
 }
+
+export function designPageSectionIndexes(project: ProjectSnapshot, name: string): number[] {
+  const section = name.trim(); if (!section) return [];
+  return getPages(project.settings, project.clips).filter(page => pageDetails(project, page.index).section === section).map(page => page.index);
+}
