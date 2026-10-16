@@ -1,3 +1,4 @@
+import ShapeStrokeEdges from "./ShapeStrokeEdges";
 import BrandPresetLibrary from "./BrandPresetLibrary";
 import PenControls from "./PenControls";
 import { DEFAULT_PEN, penShapeStyle, type PenSettings } from "../../libs/editor/freehand";
@@ -78,8 +79,9 @@ export function ShapeStylePanel({ clip, live, commit, settle }: PanelProps<Shape
           <Range label={t("editor.shape.outlineWidth", { value: Math.round(s.width) })} value={s.width} min={1} max={60} step={1} onLive={(v) => live({ stroke: { ...s, width: v } })} onDone={settle} />
         </>
       )}
+      <ShapeStrokeEdges value={clip} onChange={commit} />
       {s && <StrokePattern stroke={s} onChange={stroke => commit({ stroke })} />}
-      {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value, clip.stroke?.opacity)); }} />}
+      {clip.shape === "path" && <PenControls refineOnly value={{ color: clip.stroke?.color ?? "#ffffff", width: clip.stroke?.width ?? 8, smoothing: clip.pathSmoothing, cap: clip.strokeCap, join: clip.strokeJoin, closed: clip.closedPath, dash: clip.stroke?.dash }} onChange={value => { if (!clip.locked) commit(penShapeStyle(value, clip.stroke?.opacity, clip.stroke?.dashOffset)); }} />}
       {clip.shape === "rect" && (
         <Range label={t("editor.layer.cornerRounding", { value: Math.round(clip.radius ?? 0) })} value={clip.radius ?? 0} min={0} max={540} step={1} onLive={(v) => live({ radius: v })} onDone={settle} />
       )}

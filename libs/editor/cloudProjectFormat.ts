@@ -114,6 +114,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
     if (clip.pageNumber !== undefined && (clip.kind !== "text" || !validPageNumberFormat(clip.pageNumber))) fail();
     if (clip.fillOpacity !== undefined && (!["text", "shape"].includes(String(clip.kind)) || typeof clip.fillOpacity !== "number" || !Number.isFinite(clip.fillOpacity) || clip.fillOpacity < 0 || clip.fillOpacity > 1)) fail();
     for (const paint of [clip.stroke, clip.border]) if (object(paint) && paint.opacity !== undefined && (typeof paint.opacity !== "number" || !Number.isFinite(paint.opacity) || paint.opacity < 0 || paint.opacity > 1)) fail();
+    for (const paint of [clip.stroke, clip.border]) if (object(paint) && paint.dashOffset !== undefined && (typeof paint.dashOffset !== "number" || !Number.isFinite(paint.dashOffset) || Math.abs(paint.dashOffset) > 1000000)) fail();
     if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
     if (clip.kind === "text" && clip.echo !== undefined && (!Array.isArray(clip.echo) || clip.echo.length > 3 || clip.echo.some(layer =>
       !object(layer) || typeof layer.colour !== "string" || !/^#[\da-f]{6}$/i.test(layer.colour) ||

@@ -497,6 +497,7 @@ canvas{display:block;width:100%;height:100%;}
     if (clip.border && clip.border.width > 0) {
       c.save(); framePath(); c.globalAlpha *= paintOpacity(clip.border.opacity); c.lineWidth = clip.border.width * H / 1080; c.strokeStyle = clip.border.color;
       c.setLineDash((Array.isArray(clip.border.dash) ? clip.border.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.lineDashOffset = strokeDashOffset(clip.border.dashOffset) * H / 1080;
       c.stroke(); c.restore();
     }
   }
@@ -609,6 +610,7 @@ canvas{display:block;width:100%;height:100%;}
     }
     c.closePath();
   }
+  function strokeDashOffset(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(-1000000, Math.min(1000000, value)) : 0; }
   function paintOpacity(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 1; }
   function drawShape(c, clip, box, H) {
     if (clip.photoFrame) {
@@ -627,6 +629,7 @@ canvas{display:block;width:100%;height:100%;}
       c.lineWidth = connectorStroke.width * k;
       c.strokeStyle = createGradientFill(c, box.w, box.h, clip.gradient) || connectorStroke.color;
       c.setLineDash((connectorStroke.dash || []).filter(Number.isFinite).slice(0, 8).map(function(value) { return Math.max(0, value) * k; }));
+      c.lineDashOffset = strokeDashOffset(connectorStroke.dashOffset) * H / 1080;
       var connectorAlpha = c.globalAlpha; c.globalAlpha *= paintOpacity(connectorStroke.opacity); applyShadow(c, clip, H); drawConnector(c, box.w, box.h, clip.connector); clearShadow(c); c.globalAlpha = connectorAlpha; return;
     }
     if (clip.symbol) vectorSymbolPath(c, box.w, box.h, clip.symbol);
@@ -638,6 +641,7 @@ canvas{display:block;width:100%;height:100%;}
     var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
     if (stroke && stroke.width > 0) {
       c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
+      c.lineDashOffset = strokeDashOffset(stroke.dashOffset) * H / 1080;
       c.lineWidth = stroke.width * k;
       c.strokeStyle = (open || clip.symbol) && gradient ? gradient : stroke.color;
       c.lineJoin = clip.strokeJoin || "round";
@@ -699,6 +703,7 @@ canvas{display:block;width:100%;height:100%;}
         c.lineWidth = outline.width / 1080 * H * l.scale;
         c.lineJoin = "round";
         c.setLineDash((Array.isArray(outline.dash) ? outline.dash : []).filter(n => Number.isFinite(n) && n >= 0).slice(0, 8).map(n => n * H / 1080));
+        c.lineDashOffset = strokeDashOffset(outline.dashOffset) * H / 1080;
       }
       glyphs.slice(0, visible).forEach(glyph => {
         c.save();
@@ -720,6 +725,7 @@ canvas{display:block;width:100%;height:100%;}
     var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
     if (textStroke && textStroke.width > 0) {
       c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.lineDashOffset = strokeDashOffset(textStroke.dashOffset) * H / 1080;
       c.lineWidth = (textStroke.width / 1080) * H * l.scale;
       c.strokeStyle = textStroke.color;
       c.lineJoin = "round";
