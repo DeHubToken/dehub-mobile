@@ -393,6 +393,7 @@
     "compactMode": "Yığcam Rejim",
     "compactModeDesc": "Daha çox məzmun üçün boşluğu azalt",
     "autoPlay": "Videoları Avto-oynat",
+    "autoplayPausePrompt": "Avto-oynatma ayarı",
     "autoPlayDesc": "Lentdə videoları avtomatik oynat",
     "autoPlayMuted": "Avtomatik oynatmanı səssiz başlat",
     "autoPlayMutedDesc": "Özü oynayan videolar həmişə səssiz başlayır",

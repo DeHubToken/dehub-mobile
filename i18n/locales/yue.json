@@ -393,6 +393,7 @@
     "compactMode": "緊湊模式",
     "compactModeDesc": "縮小間距睇多啲內容",
     "autoPlay": "自動播放影片",
+    "autoplayPausePrompt": "自動播放設定",
     "autoPlayDesc": "動態入面嘅影片自動播放",
     "autoPlayMuted": "自動播放時靜音開始",
     "autoPlayMutedDesc": "自己播放嘅影片一律靜音開始",

@@ -393,6 +393,7 @@
     "compactMode": "حالت فشرده",
     "compactModeDesc": "کاهش فاصله‌گذاری برای محتوای بیشتر",
     "autoPlay": "پخش خودکار ویدیوها",
+    "autoplayPausePrompt": "تنظیم پخش خودکار",
     "autoPlayDesc": "پخش خودکار ویدیوها در فید",
     "autoPlayMuted": "شروع پخش خودکار بدون صدا",
     "autoPlayMutedDesc": "ویدیوهایی که خودکار پخش می‌شوند همیشه بدون صدا شروع می‌شوند",

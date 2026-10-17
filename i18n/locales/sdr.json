@@ -393,6 +393,7 @@
     "compactMode": "سمٹا ہوا موڈ",
     "compactModeDesc": "زیادہ مواد کے لیے فاصلہ کم کرو",
     "autoPlay": "خودکار ویڈیو چلاؤ",
+    "autoplayPausePrompt": "آٹو پلے سیٹنگ",
     "autoPlayDesc": "فیڈ میں ویڈیو خودکار چلائی جائیں",
     "autoPlayMuted": "ऑटोप्ले बिना आवाज से शुरू करा",
     "autoPlayMutedDesc": "अपने से चलेक वाला वीडियो हमेशा बिना आवाज से शुरू होवी",

@@ -393,6 +393,7 @@
     "compactMode": "સંક્ષિપ્ત મોડ",
     "compactModeDesc": "વધુ સામગ્રી માટે જગ્યા ઓછી કરો",
     "autoPlay": "વીડિયો ઓટો-પ્લે",
+    "autoplayPausePrompt": "ઓટો પ્લે સેટિંગ",
     "autoPlayDesc": "ફીડમાં વીડિયો ઓટોમેટિક ચલાવો",
     "autoPlayMuted": "ઑટોપ્લે મ્યૂટ કરીને શરૂ કરો",
     "autoPlayMutedDesc": "પોતાની મેળે ચાલતા વિડિયો હંમેશા અવાજ બંધ રાખીને શરૂ થશે",
