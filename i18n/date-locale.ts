@@ -1,4 +1,4 @@
-import { setDefaultOptions } from 'date-fns';
+import { formatDistance, setDefaultOptions } from 'date-fns';
 import { ar, es, fr, nl, tr, enUS } from 'date-fns/locale';
 
 const locales = { ar, es, fr, nl, tr };
@@ -14,8 +14,14 @@ export function formatRelativeTime(input: string | number | Date | null | undefi
     ['day', 86400000], ['hour', 3600000], ['minute', 60000],
   ];
   const [unit, size] = units.find(([, duration]) => elapsed >= duration) || ['second', Infinity];
-  let formatter: Intl.RelativeTimeFormat;
-  try { formatter = new Intl.RelativeTimeFormat(language.replace('_', '-'), { numeric: 'auto', style }); }
-  catch { formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto', style }); }
-  return formatter.format(-Math.floor(elapsed / size), unit);
+  try {
+    return new Intl.RelativeTimeFormat(language.replace('_', '-'), { numeric: 'auto', style })
+      .format(-Math.floor(elapsed / size), unit);
+  } catch {
+    // Hermes builds can omit RelativeTimeFormat entirely. Retrying it in
+    // English throws again and takes down every translated conversation row.
+    const locale = locales[language.split(/[-_]/)[0] as keyof typeof locales] || enUS;
+    const now = Date.now();
+    return formatDistance(new Date(now - elapsed), new Date(now), { locale, addSuffix: true });
+  }
 }
