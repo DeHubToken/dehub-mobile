@@ -393,6 +393,7 @@
     "compactMode": "Tiivis tila",
     "compactModeDesc": "Pienennä välistystä enemmän sisältöä varten",
     "autoPlay": "Automaattinen toisto",
+    "autoplayPausePrompt": "Automaattisen toiston asetus",
     "autoPlayDesc": "Toista videot automaattisesti",
     "autoPlayMuted": "Aloita automaattinen toisto mykistettynä",
     "autoPlayMutedDesc": "Itsestään alkavat videot alkavat aina ilman ääntä",

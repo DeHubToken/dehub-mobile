@@ -393,6 +393,7 @@
     "compactMode": "紧凑模式",
     "compactModeDesc": "减少间距看更多内容",
     "autoPlay": "自动播放视频",
+    "autoplayPausePrompt": "自动播放设置",
     "autoPlayDesc": "在信息流中自动播放视频",
     "autoPlayMuted": "自動播放時靜音開始",
     "autoPlayMutedDesc": "自家播放个視頻總是靜音開始",

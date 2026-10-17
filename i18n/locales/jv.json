@@ -393,6 +393,7 @@
     "compactMode": "Mode Kompak",
     "compactModeDesc": "Cilikake jarak kanggo ndeleng luwih akeh konten",
     "autoPlay": "Putar Otomatis Video",
+    "autoplayPausePrompt": "Setelan putar otomatis",
     "autoPlayDesc": "Video ing feed diputer otomatis",
     "autoPlayMuted": "Wiwiti puter otomatis tanpa swara",
     "autoPlayMutedDesc": "Video sing muter dhewe tansah diwiwiti kanthi swara mati",

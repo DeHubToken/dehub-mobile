@@ -386,6 +386,7 @@
     "compactMode": "فشرده حالت",
     "compactModeDesc": "د ډیرې منځپانګې لپاره فاصله کمه کړئ",
     "autoPlay": "آتومات ویډیو پلی",
+    "autoplayPausePrompt": "د اتومات پلې تنظیم",
     "autoPlayDesc": "په فیډ کې ویډیوګانې آتومات پلی کړئ",
     "autoPlayMuted": "اتومات غږول بې غږه پيل کړئ",
     "autoPlayMutedDesc": "هغه ویډیوګانې چې پخپله غږېږي تل بې غږه پيلېږي",

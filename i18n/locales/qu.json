@@ -393,6 +393,7 @@
     "compactMode": "Taqsqa kay",
     "compactModeDesc": "K'itikuna pisiyachiy aswan imaymana kananpaq",
     "autoPlay": "Kikin kuyuriy videokuna",
+    "autoplayPausePrompt": "Kikin kuyuriy churana",
     "autoPlayDesc": "Videokuna kikin kuyurichiy feed kaqpi",
     "autoPlayMuted": "Kikinmanta pukllachiyta mana uyarisqa qallariy",
     "autoPlayMutedDesc": "Kikinmanta pukllaq vidiyokunaqa sapa kuti mana uyarisqa qallarinku",

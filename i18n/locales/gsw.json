@@ -393,6 +393,7 @@
     "compactMode": "Kompakt-Modus",
     "compactModeDesc": "Weniger Abstand für meh Inhalt",
     "autoPlay": "Videos automatisch abspile",
+    "autoplayPausePrompt": "Iistellig für automatischs Abspile",
     "autoPlayDesc": "Videos im Feed automatisch abspile",
     "autoPlayMuted": "Autoplay stumm starte",
     "autoPlayMutedDesc": "Videos, wo vo sälber laufe, fanged immer ohni Ton aa",

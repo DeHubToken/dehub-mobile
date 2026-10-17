@@ -393,6 +393,7 @@
     "compactMode": "Kompaktne režiim",
     "compactModeDesc": "Vähenda vahesid rohkema sisu jaoks",
     "autoPlay": "Videode automaatesitus",
+    "autoplayPausePrompt": "Automaatesituse seade",
     "autoPlayDesc": "Mängi videoid voos automaatselt",
     "autoPlayMuted": "Alusta automaatesitust vaigistatult",
     "autoPlayMutedDesc": "Iseenesest mängivad videod algavad alati ilma helita",

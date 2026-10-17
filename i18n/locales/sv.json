@@ -393,6 +393,7 @@
     "compactMode": "Kompakt läge",
     "compactModeDesc": "Minska avstånd för att visa mer innehåll",
     "autoPlay": "Automatisk uppspelning av videor",
+    "autoplayPausePrompt": "Inställning för automatisk uppspelning",
     "autoPlayDesc": "Videor spelas upp automatiskt",
     "autoPlayMuted": "Starta autouppspelning utan ljud",
     "autoPlayMutedDesc": "Videor som spelas upp av sig själva startar alltid utan ljud",

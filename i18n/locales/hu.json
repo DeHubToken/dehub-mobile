@@ -393,6 +393,7 @@
     "compactMode": "Kompakt mód",
     "compactModeDesc": "Csökkentse a térközt több tartalom megjelenítéséhez",
     "autoPlay": "Videók automatikus lejátszása",
+    "autoplayPausePrompt": "Automatikus lejátszás beállítása",
     "autoPlayDesc": "Videók automatikusan lejátszódnak",
     "autoPlayMuted": "Automatikus lejátszás némítva",
     "autoPlayMutedDesc": "A maguktól induló videók mindig hang nélkül kezdődnek",

@@ -393,6 +393,7 @@
     "compactMode": "Modaliteti Kompakt",
     "compactModeDesc": "Redukto hapësirën për më shumë përmbajtje",
     "autoPlay": "Luaj automatikisht Videot",
+    "autoplayPausePrompt": "Cilësimi i luajtjes automatike",
     "autoPlayDesc": "Luaj automatikisht videot në feed",
     "autoPlayMuted": "Nis luajtjen automatike pa zë",
     "autoPlayMutedDesc": "Videot që luhen vetë nisin gjithmonë me zërin të fikur",

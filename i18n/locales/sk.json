@@ -397,6 +397,7 @@
     "compactMode": "Kompaktný režim",
     "compactModeDesc": "Zmenšiť medzery pre viac obsahu",
     "autoPlay": "Automatické prehrávanie",
+    "autoplayPausePrompt": "Nastavenie automatického prehrávania",
     "autoPlayDesc": "Automaticky prehrávať videá",
     "autoPlayMuted": "Spúšťať automatické prehrávanie stlmene",
     "autoPlayMutedDesc": "Videá, ktoré sa prehrajú samé, vždy začnú bez zvuku",

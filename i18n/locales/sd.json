@@ -393,6 +393,7 @@
     "compactMode": "مختصر موڊ",
     "compactModeDesc": "وڌيڪ مواد لاءِ جاءِ گهٽ ڪريو",
     "autoPlay": "وڊيو آٽو-پلي",
+    "autoplayPausePrompt": "آٽو پلي سيٽنگ",
     "autoPlayDesc": "فيڊ ۾ وڊيو خودڪار هلايو",
     "autoPlayMuted": "آٽو پلي آواز کان سواءِ شروع ڪريو",
     "autoPlayMutedDesc": "پاڻمرادو هلندڙ وڊيوز هميشه آواز بند سان شروع ٿينديون",

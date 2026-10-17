@@ -393,6 +393,7 @@
     "compactMode": "ጥቅጥቅ ያለ ሁነታ",
     "compactModeDesc": "ለተጨማሪ ይዘት ክፍተት ቀንስ",
     "autoPlay": "ቪዲዮዎችን ራስ-ሰር አጫውት",
+    "autoplayPausePrompt": "የራስ-ሰር አጫውት ቅንብር",
     "autoPlayDesc": "በፊድ ውስጥ ቪዲዮዎችን ራስ-ሰር አጫውት",
     "autoPlayMuted": "ራስ-አጫውትን ድምፅ አጥፍቶ ጀምር",
     "autoPlayMutedDesc": "በራሳቸው የሚጫወቱ ቪዲዮዎች ሁልጊዜ ድምፅ ጠፍቶ ይጀምራሉ",

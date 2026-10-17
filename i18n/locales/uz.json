@@ -393,6 +393,7 @@
     "compactMode": "Ixcham rejim",
     "compactModeDesc": "Koʻproq kontent uchun intervalni kamaytiring",
     "autoPlay": "Avtomatik ijro",
+    "autoplayPausePrompt": "Avtomatik ijro sozlamasi",
     "autoPlayDesc": "Lentada videolarni avtomatik ijro etish",
     "autoPlayMuted": "Avtomatik ijroni ovozsiz boshlash",
     "autoPlayMutedDesc": "O'zi ijro etiladigan videolar har doim ovozsiz boshlanadi",

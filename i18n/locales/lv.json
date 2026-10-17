@@ -393,6 +393,7 @@
     "compactMode": "Kompaktais režīms",
     "compactModeDesc": "Samazināt atstarpes vairāk saturam",
     "autoPlay": "Video automātiskā atskaņošana",
+    "autoplayPausePrompt": "Automātiskās atskaņošanas iestatījums",
     "autoPlayDesc": "Automātiski atskaņot video plūsmā",
     "autoPlayMuted": "Sākt automātisko atskaņošanu bez skaņas",
     "autoPlayMutedDesc": "Video, kas atskaņojas paši, vienmēr sākas ar izslēgtu skaņu",

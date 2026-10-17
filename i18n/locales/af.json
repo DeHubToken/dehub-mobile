@@ -393,6 +393,7 @@
     "compactMode": "Kompakmodus",
     "compactModeDesc": "Verminder spasiëring vir meer inhoud",
     "autoPlay": "Outo-speel Video's",
+    "autoplayPausePrompt": "Outospeel-instelling",
     "autoPlayDesc": "Speel video's outomaties in die voer",
     "autoPlayMuted": "Begin outospeel sonder klank",
     "autoPlayMutedDesc": "Video's wat vanself speel, begin altyd met die klank af",

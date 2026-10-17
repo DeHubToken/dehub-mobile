@@ -393,6 +393,7 @@
     "compactMode": "מצב קומפקטי",
     "compactModeDesc": "הקטן ריווח להצגת יותר תוכן",
     "autoPlay": "הפעלה אוטומטית של סרטונים",
+    "autoplayPausePrompt": "הגדרת הפעלה אוטומטית",
     "autoPlayDesc": "סרטונים מתחילים לפעול אוטומטית",
     "autoPlayMuted": "הפעלה אוטומטית ללא קול",
     "autoPlayMutedDesc": "סרטונים שמתנגנים מעצמם תמיד מתחילים עם הקול כבוי",
