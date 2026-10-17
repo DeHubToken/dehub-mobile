@@ -1,6 +1,6 @@
 import type React from "react";
 import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Dimensions, Keyboard, Platform, View, useWindowDimensions, type KeyboardEvent } from "react-native";
+import { Dimensions, Keyboard, Platform, StatusBar, View, useWindowDimensions, type KeyboardEvent } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { initialSafeAreaMetrics } from "../libs/initialSafeAreaMetrics";
 import { keyboardComposerLift, keyboardTopFromEvent } from "../libs/keyboard-composer";
@@ -80,7 +80,12 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         applyFallback();
         return;
       }
-      const next = keyboardComposerLift(y + measuredHeight, appliedLift, top, settings.current.gap);
+      // Android's measureInWindow subtracts the visible display frame's top
+      // (the status bar) while the keyboard's top is in screen coordinates,
+      // so the box measured a status bar higher than it sat and stopped that
+      // far under the keys (34dp on a Galaxy S24+). Bring it to screen space.
+      const windowTop = Platform.OS === "android" ? StatusBar?.currentHeight ?? 0 : 0;
+      const next = keyboardComposerLift(y + windowTop + measuredHeight, appliedLift, top, settings.current.gap);
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },
       );
