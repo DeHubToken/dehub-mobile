@@ -10,6 +10,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
+import { FEED_SIDE } from "../Home/feedLayout";
 import Icon, { type IconName } from "../ui/Icon";
 
 const SectionHeader: React.FC<{
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
     marginBottom: 10,
   },
   left: {

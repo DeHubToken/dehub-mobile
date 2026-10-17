@@ -45,6 +45,7 @@ import CompactVideoCard from "../Home/CompactVideoCard";
 import AudioPostPlayer from "../Home/AudioPostPlayer";
 import MusicVideoCard, { MUSIC_CARD_WIDTH } from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
+import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
 import StagesCarousel from "./StagesCarousel";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
@@ -681,12 +682,12 @@ const styles = StyleSheet.create({
   },
   shelfContent: {
     gap: 12,
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
   },
   shelfNote: {
     color: "rgba(255,255,255,0.4)",
     fontSize: 13,
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
   },
   skeleton: {
     borderRadius: 14,
@@ -697,11 +698,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   rowWrap: {
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
   },
   subTabRow: {
     gap: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
     paddingTop: 4,
     paddingBottom: 10,
   },
@@ -732,7 +733,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
   },
   searchWrap: {
-    marginHorizontal: 12,
+    marginHorizontal: FEED_SIDE,
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
@@ -752,7 +753,7 @@ const styles = StyleSheet.create({
   },
   genreRow: {
     gap: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
     paddingVertical: 10,
   },
   genrePill: {
