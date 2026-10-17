@@ -818,7 +818,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
-    if (!isActuallyGated && !matureGate.isGated && tokenId != null) {
+    // Only photos with a song continue in the shorts viewer; plain photos open the image viewer.
+    if (soundtrack?.url && !isActuallyGated && !matureGate.isGated && tokenId != null) {
       rememberGalleryIndex(String(tokenId), index);
       onBeforeNavigate?.();
       hideUserProfile();

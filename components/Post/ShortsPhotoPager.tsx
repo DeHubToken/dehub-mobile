@@ -12,6 +12,9 @@ export function ShortsPhotoPager({ images, width, pagerGesture, galleryKey = '' 
   const { t } = useTranslation();
   const [index, setIndex] = useState(() => Math.min(galleryIndex(galleryKey), images.length - 1));
   useEffect(() => { if (galleryKey) rememberGalleryIndex(galleryKey, index); }, [galleryKey, index]);
+  // Tall photos fill the screen; wide and square ones fit whole on the plain backdrop.
+  const [tall, setTall] = useState<Record<string, boolean>>({});
+  const url = images[index];
   const pan = useMemo(() => Gesture.Pan()
     .enabled(images.length > 1)
     .activeOffsetX([-15, 15])
@@ -25,7 +28,9 @@ export function ShortsPhotoPager({ images, width, pagerGesture, galleryKey = '' 
     }), [images.length, width, pagerGesture]);
   return <GestureDetector gesture={pan}>
     <View style={StyleSheet.absoluteFill}>
-      <Image source={images[index]} style={StyleSheet.absoluteFill} contentFit="contain"
+      <Image source={url} style={StyleSheet.absoluteFill} contentFit={tall[url] ? 'cover' : 'contain'}
+        onLoad={event => { const { width: w, height: h } = event.source;
+          if (w && h) setTall(value => value[url] === h > w ? value : { ...value, [url]: h > w }); }}
         accessibilityLabel={`${t('dm.photo')} ${index + 1} / ${images.length}`} accessible
         accessibilityActions={[{ name: 'increment', label: t('dex.next') }, { name: 'decrement', label: t('dex.previous') }]}
         onAccessibilityAction={event => setIndex(current => Math.max(0, Math.min(images.length - 1,
