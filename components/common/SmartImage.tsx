@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, type ImageProps, type ImageContentFit } from "expo-image";
 import type { ImageStyle, StyleProp } from "react-native";
-import { cdnImageSource, withStorageImageHeaders } from "../../libs/cdnImage";
+import { cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
 
+const TRANSFORM_PREFIX = "https://dehub.io/cdn-cgi/image/";
 const warmed = new Set<string>();
 /** Warm one neighbour into the same native cache the visible image uses. */
 export function warmFeedImage(uri: string): void {
@@ -82,14 +83,23 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   const uri = typeof source === 'string' ? source : source && typeof source === 'object' && 'uri' in source ? source.uri : undefined;
   const [failedUri, setFailedUri] = useState<string>();
   const original = uri ? cdnImageSource(uri) : undefined;
-  const useOriginal = !!uri && failedUri === uri && original !== uri;
+  // A source built while dehub.io still looked reachable switches to the
+  // original as soon as it is known not to be, rather than waiting out a timeout.
+  const transformReachable = useTransformReachable();
+  const viaTransform = !!uri && uri.startsWith(TRANSFORM_PREFIX);
+  const useOriginal = !!uri && original !== uri && (failedUri === uri || (viaTransform && !transformReachable));
   const resolvedSource = useMemo(() => withStorageImageHeaders(useOriginal
     ? typeof source === 'object' ? { ...source, uri: original } : { uri: original }
     : source), [source, useOriginal, original]);
   const handleError = useCallback(() => {
-    if (uri && original !== uri && !useOriginal) { setFailedUri(uri); return; }
+    if (uri && original !== uri && !useOriginal) {
+      // One bad file is a 404; a blocked dehub.io fails them all. Let the probe decide.
+      if (viaTransform) void probeTransformOrigin();
+      setFailedUri(uri);
+      return;
+    }
     onError?.();
-  }, [uri, original, useOriginal, onError]);
+  }, [uri, original, useOriginal, viaTransform, onError]);
   const animatedRef = useRef(false);
   const syncAnimation = useCallback(() => {
     if (!animatedRef.current || autoplay === undefined) return;

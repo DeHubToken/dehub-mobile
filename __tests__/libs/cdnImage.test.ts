@@ -162,3 +162,30 @@ describe('libs/cdnImage', () => {
     });
   });
 });
+
+describe('libs/cdnImage transform reachability', () => {
+  const { markTransformReachable, markTransformUnreachable, isTransformReachable, probeTransformOrigin } =
+    require('../../libs/cdnImage');
+  const realFetch = global.fetch;
+  afterEach(() => {
+    global.fetch = realFetch;
+    markTransformReachable();
+  });
+
+  it('serves originals while dehub.io is unreachable', () => {
+    markTransformUnreachable();
+    expect(isTransformReachable()).toBe(false);
+    expect(cdnImage(CDN, { width: 100 })).toBe(CDN);
+    markTransformReachable();
+    expect(cdnImage(CDN, { width: 100 })).toMatch(/^https:\/\/dehub\.io\/cdn-cgi\/image\//);
+  });
+
+  it('a failed probe marks transforms unreachable, any answer marks them reachable', async () => {
+    global.fetch = jest.fn(() => Promise.reject(new Error('timeout'))) as any;
+    await probeTransformOrigin();
+    expect(isTransformReachable()).toBe(false);
+    global.fetch = jest.fn(() => Promise.resolve({ status: 404 })) as any;
+    await probeTransformOrigin();
+    expect(isTransformReachable()).toBe(true);
+  });
+});
