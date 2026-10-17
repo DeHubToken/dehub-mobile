@@ -11,6 +11,7 @@ import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MONO_TEXT } from "../../theme/skins";
+import { useIsUserLive } from "../../hooks/useIsUserLive";
 
 /** Glass squares: rounded rectangles, never circles. */
 export const STAGE_SQUARE = 40;
@@ -111,6 +112,7 @@ type CreatorProps = {
   avatarUrl?: string;
   displayName: string;
   username?: string;
+  address?: string;
   followers?: number;
   badgeImage?: any;
   onUserPress: () => void;
@@ -127,6 +129,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   avatarUrl,
   displayName,
   username,
+  address,
   followers,
   badgeImage,
   onUserPress,
@@ -139,6 +142,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   const { t } = useTranslation();
   const { skin } = useAppTheme();
   const badgeRef = useRef<View>(null);
+  const live = useIsUserLive(address, username);
   const mono = skin?.mono ? MONO_TEXT : null;
   const sub = [
     username ? `@${username}` : null,
@@ -148,7 +152,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   return (
     <View style={styles.creator} testID="post-stage-creator">
       <Pressable onPress={onUserPress} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
-        <Avatar uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined} size={40} name={displayName || username} />
+        <Avatar uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined} size={40} name={displayName || username} live={live} />
         <View style={styles.identityText}>
           <View style={styles.nameRow}>
             <Text numberOfLines={1} style={[styles.name, mono]}>{displayName}</Text>

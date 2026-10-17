@@ -7,6 +7,7 @@ import Icon from "../ui/Icon";
 import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
+import { useIsUserLive } from "../../hooks/useIsUserLive";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
@@ -50,6 +51,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const badgeRef = useRef<View>(null);
+  const live = useIsUserLive(address, username);
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
       <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
@@ -58,6 +60,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           size={avatarSize}
           className="mr-2"
           name={displayName || username}
+          live={live}
         />
       </Pressable>
 
