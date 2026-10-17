@@ -112,7 +112,7 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         // for it, so the box sat half under the taller keys. Keep checking the
         // keyboard's latest frame for as long as it is up.
         const poll = setInterval(() => {
-          const latest = Keyboard.metrics();
+          const latest = typeof Keyboard.metrics === "function" ? Keyboard.metrics() : undefined;
           if (latest && keyboardTop.current != null) keyboardTop.current = readTop(latest);
           measure();
         }, KEEP_MEASURING_MS);
