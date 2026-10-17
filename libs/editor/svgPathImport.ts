@@ -1,12 +1,11 @@
-import { svgGeometryPathData } from "./svgGeometrySource";
+import { svgGeometrySources } from "./svgGeometrySource";
 import { getPages, pageAt } from "./pages";
 import type { ProjectSnapshot, ShapeClip, Track } from "./types";
 type Point = [number, number];
 export interface ImportedPathPart { points: Point[]; closed: boolean; left: number; top: number; width: number; height: number }
-export interface ImportedPath { points: Point[]; closed: boolean; width: number; height: number; parts: ImportedPathPart[] }
-export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
+export interface ImportedPath { points: Point[]; closed: boolean; width: number; height: number; left: number; top: number; parts: ImportedPathPart[] }
+function parseSvgPathData(input: string, steps = 24): ImportedPath {
   if (!input.trim() || input.length > 32768) throw new Error("Paste SVG path data up to 32,768 characters");
-  input = svgGeometryPathData(input);
   const tokens: string[] = [], pattern = /[a-zA-Z]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/gy;
   let offset = 0;
   while (offset < input.length) {
@@ -71,6 +70,11 @@ export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
     if (cursor < tokens.length && !numeric() && !/^[a-z]$/i.test(tokens[cursor])) throw new Error("This path contains an invalid command");
   }
   finish();
+  return normaliseImportedPaths(paths);
+}
+function normaliseImportedPaths(paths: { points: Point[]; closed: boolean }[], independentFills = false): ImportedPath {
+  if (paths.length > 100 || paths.reduce((total, path) => total + path.points.length, 0) > 4096) throw new Error("Import up to one hundred subpaths sharing four thousand drawing points");
+  if (paths.some(path => path.points.some(point => point.some(value => !Number.isFinite(value) || Math.abs(value) > 2000000)))) throw new Error("The transformed SVG exceeds supported coordinates");
   const all = paths.flatMap(path => path.points);
   if (all.length < 2) throw new Error("Use a path with at least two distinct points");
   const xs = all.map(point => point[0]), ys = all.map(point => point[1]), left = Math.min(...xs), top = Math.min(...ys), width = Math.max(0.001, Math.max(...xs) - left), height = Math.max(0.001, Math.max(...ys) - top);
@@ -78,14 +82,33 @@ export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
     const px = path.points.map(point => point[0]), py = path.points.map(point => point[1]), x = Math.min(...px), y = Math.min(...py), w = Math.max(0.001, Math.max(...px) - x), h = Math.max(0.001, Math.max(...py) - y);
     return { points: path.points.map(point => [(point[0] - x) / w - 0.5, (point[1] - y) / h - 0.5] as Point), closed: path.closed, left: x - left, top: y - top, width: w, height: h };
   });
-  return { points: all.map(point => [(point[0] - left) / width - 0.5, (point[1] - top) / height - 0.5] as Point), closed: parts.length === 1 && parts[0].closed, width, height, parts };
+  return { points: all.map(point => [(point[0] - left) / width - 0.5, (point[1] - top) / height - 0.5] as Point), closed: (parts.length === 1 || independentFills) && parts.every(part => part.closed), width, height, left, top, parts };
+}
+
+export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
+  if (!input.trim() || input.length > 32768) throw new Error("Choose SVG geometry up to 32,768 characters");
+  if (!input.includes("<")) return parseSvgPathData(input, steps);
+  const paths: { points: Point[]; closed: boolean }[] = [];
+  let independentFills = true;
+  for (const source of svgGeometrySources(input)) {
+    const drawing = parseSvgPathData(source.data, steps), matrix = source.matrix;
+    if (drawing.parts.length !== 1 || !drawing.closed) independentFills = false;
+    for (const part of drawing.parts) {
+      const points = part.points.map(([px, py]): Point => {
+        const x = drawing.left + part.left + (px + 0.5) * part.width, y = drawing.top + part.top + (py + 0.5) * part.height;
+        return [matrix[0] * x + matrix[2] * y + matrix[4], matrix[1] * x + matrix[3] * y + matrix[5]];
+      });
+      paths.push({ points, closed: part.closed });
+      if (paths.length > 100 || paths.reduce((total, path) => total + path.points.length, 0) > 4096) throw new Error("Simplify the SVG to one hundred subpaths and four thousand drawing points");
+    }
+  }
+  return normaliseImportedPaths(paths, independentFills);
 }
 
 export function insertSvgPathDrawing(project: ProjectSnapshot, time: number, drawing: ImportedPath, options: { name: string; colour: string; fill: boolean; weight: number }, makeId: () => string) {
   if (!/^#[\da-f]{6}$/i.test(options.colour) || !Number.isFinite(options.weight) || options.weight < 0.1 || options.weight > 80 || !options.name.trim() || options.name.length > 100) throw new Error("Choose a path name, colour and line weight from 0.1 to 80");
-  if (options.fill && !drawing.closed) throw new Error("Close the path with Z before importing a filled shape");
   const page = pageAt(getPages(project.settings, project.clips), time), factor = Math.min(project.settings.width * 0.6 / drawing.width, project.settings.height * 0.6 / drawing.height);
-  if (options.fill && drawing.parts.length !== 1) throw new Error("Use outline mode for multiple subpaths; filled compound holes are unsupported");
+  if (options.fill && !drawing.closed) throw new Error("Use outline mode for open or compound paths; independent closed SVG elements can be filled");
   const groupId = drawing.parts.length > 1 ? makeId() : undefined, tracks: Track[] = [], clips: ShapeClip[] = [];
   drawing.parts.forEach((part, index) => {
     const label = options.name.trim() + (drawing.parts.length > 1 ? " " + (index + 1) : "");
