@@ -1,3 +1,4 @@
+import { resolvedTextDirection } from "./textDirection";
 import { filterChartData } from "./chartRowFilters";
 import { drawDataVisual, validDataVisuals, type ChartData, type TableData, type DataVisualContext } from "./dataVisuals";
 export type SvgDataVisual = { chart: ChartData } | { table: TableData };
@@ -40,6 +41,11 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     fillRect(x: number, y: number, w: number, h: number) { parts.push(`<rect x="${n(x + Math.min(0, w))}" y="${n(y + Math.min(0, h))}" width="${n(Math.abs(w))}" height="${n(Math.abs(h))}" ${paint(context.fillStyle, "fill")}/>`); },
     strokeRect(x: number, y: number, w: number, h: number) { parts.push(`<rect x="${n(x + Math.min(0, w))}" y="${n(y + Math.min(0, h))}" width="${n(Math.abs(w))}" height="${n(Math.abs(h))}" fill="none" ${stroke()}/>`); },
     measureText(text: string) { const measured = measure(text, context.font); return { width: Number.isFinite(measured) ? Math.max(0, measured) : 0 }; },
+    fillTextRotated(text: string, x: number, y: number, degrees: number) {
+      const previousDirection = context.direction; context.direction = resolvedTextDirection(text, "auto");
+      context.fillText(text, x, y); context.direction = previousDirection;
+      parts[parts.length - 1] = parts[parts.length - 1].replace("<text ", `<text transform="rotate(${n(degrees)} ${n(x)} ${n(y)})" `);
+    },
     fillText(text: string, x: number, y: number) {
       const size = Number(context.font.match(/([\d.]+)px/)?.[1] ?? 16), weight = context.font.match(/(?:^|\s)([1-9]00)(?:\s|$)/)?.[1] ?? "500", italic = /(?:^|\s)italic(?:\s|$)/.test(context.font);
       const rtl = context.direction === "rtl", anchor = context.textAlign === "center" ? "middle" : context.textAlign === "right" ? rtl ? "start" : "end" : rtl ? "end" : "start", baseline = context.textBaseline === "middle" ? "central" : context.textBaseline === "top" ? "hanging" : context.textBaseline === "bottom" ? "text-after-edge" : "alphabetic";
