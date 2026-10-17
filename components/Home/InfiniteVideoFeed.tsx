@@ -1,5 +1,4 @@
 import { useTranslation as _useCopy } from 'react-i18next';
-import { FEED_SIDE } from "./feedLayout";
 import React, {
   memo,
   useCallback,
@@ -216,7 +215,7 @@ const SUGGEST_AFTER_INDEX = 4;
 const HEADER_ROW = { __listKey: "__feed-header", __synthetic: "header" } as FeedRow;
 const SUGGESTED_ROW = { __listKey: "__suggested-accounts", __synthetic: "suggested" } as FeedRow;
 
-const DEFAULT_CONTENT_STYLE = { paddingHorizontal: FEED_SIDE, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
+const DEFAULT_CONTENT_STYLE = { paddingHorizontal: 8, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
 const FLUSH_CONTENT_STYLE = { ...DEFAULT_CONTENT_STYLE, paddingTop: 0 };
 
 // A cell is only reused for a row of the same type, so a video card is never
