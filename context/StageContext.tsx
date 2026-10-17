@@ -5,6 +5,7 @@ import { supabase } from "../services/supabase";
 import { setStageDeepLinkHandler } from "../libs/deeplink.events";
 import { createLogger } from "../libs/logger";
 import { useStageAlerts } from "../hooks/useStageAlerts";
+import { setLiveStageHosts } from "../hooks/useIsUserLive";
 
 const log = createLogger("StageDeepLink");
 
@@ -19,6 +20,16 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   // It raises alerts through the same deep-link bus registered below, so the
   // toast's action lands in exactly the same place an invite link does.
   useStageAlerts();
+
+  // Hosts of live stages get the live ripple on their avatar everywhere.
+  // Handed to a store rather than read from this context, which changes far
+  // too often for every avatar on screen to subscribe to it.
+  const { liveSpaces } = stages;
+  useEffect(() => {
+    setLiveStageHosts(
+      liveSpaces.map((space) => ({ address: space.host_wallet_address, username: space.host_username })),
+    );
+  }, [liveSpaces]);
 
   /**
    * Open whatever a stage invite link points at.

@@ -7,6 +7,7 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import SmartImage from "./SmartImage";
+import LiveRipple from "./LiveRipple";
 
 interface AvatarProps {
   uri?: string | null;
@@ -18,6 +19,8 @@ interface AvatarProps {
   borderColor?: string;
   className?: string;
   name?: string;
+  /** On air right now: red outlines ripple out from behind the avatar. */
+  live?: boolean;
 }
 
 const INITIAL_BG = "#2A2C2E";
@@ -44,6 +47,7 @@ const Avatar: React.FC<AvatarProps> = ({
   borderColor = "#000",
   className,
   name,
+  live = false,
 }) => {
   // There used to be a `loaded` flag set from the Image's onLoad, purely to
   // decide whether to show the initial behind it. That was a guaranteed extra
@@ -66,9 +70,11 @@ const Avatar: React.FC<AvatarProps> = ({
   const initial = useMemo(() => getInitial(name), [name]);
   const fontSize = Math.max(10, Math.round(size * 0.42));
 
+  // When live, the className (usually a margin) moves to the ripple's wrapper
+  // so the rings stay centred on the box itself.
   const content = (
     <View
-      className={!onPress ? className : undefined}
+      className={!onPress && !live ? className : undefined}
       style={[
         {
           width: size,
@@ -116,15 +122,21 @@ const Avatar: React.FC<AvatarProps> = ({
     </View>
   );
 
+  const box = live ? (
+    <LiveRipple size={size} radius={radius} className={!onPress ? className : undefined}>
+      {content}
+    </LiveRipple>
+  ) : content;
+
   if (onPress) {
     return (
       <TouchableOpacity activeOpacity={0.8} onPress={onPress} className={className}>
-        {content}
+        {box}
       </TouchableOpacity>
     );
   }
 
-  return content;
+  return box;
 };
 
 export default React.memo(Avatar);
