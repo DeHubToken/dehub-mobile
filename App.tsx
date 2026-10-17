@@ -94,6 +94,7 @@ import { AppThemeProvider, useAppTheme, useThemeRootStyle } from "./context/Them
 import ThemeBackdrop from "./components/theme/ThemeBackdrop";
 import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
+import { watchTransformOrigin } from "./libs/cdnImage";
 
 const logger = createLogger("App");
 markLaunchPhase('appModuleReady');
@@ -135,6 +136,8 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [fontsLoaded, fontError]);
   const fontsSettled = fontsLoaded || !!fontError || fontDeadlineReached;
+  // Sized images go through dehub.io; fall back to originals on networks that block it.
+  useEffect(() => watchTransformOrigin(), []);
   // Capped: a stuck load must never hold the splash. Icons just stay SVG.
   const [iconFontSettled, setIconFontSettled] = useState(false);
   useEffect(() => {
