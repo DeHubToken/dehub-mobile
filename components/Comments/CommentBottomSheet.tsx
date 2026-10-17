@@ -30,6 +30,12 @@ import {
 
 const SHEET_FRACTION = 0.82;
 
+// Use the same list boundary as React Native's Modal. The inline Shorts
+// sheet is inside a vertical pager: without resetting its list context RN
+// replaces each nested vertical list's ScrollView with a non-scrolling View.
+const ListContextResetter = require('@react-native/virtualized-lists').default
+  .VirtualizedListContextResetter as React.ComponentType<{ children: React.ReactNode }>;
+
 // No likes tab: who reacted is the author's to see, and it lives behind the ⓘ
 // in the reaction tray (ReactionInfoSheet) rather than in this public sheet.
 type SheetTab = "comments" | "quotes" | "reposts";
@@ -339,7 +345,9 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   );
 
   if (inline) {
-    return <View style={{ position: "absolute", left: 0, right: 0, bottom: bottomOffset, height: SHEET_HEIGHT, overflow: "hidden" }}>{content}</View>;
+    return <View style={{ position: "absolute", left: 0, right: 0, bottom: bottomOffset, height: SHEET_HEIGHT, overflow: "hidden" }}>
+      <ListContextResetter>{content}</ListContextResetter>
+    </View>;
   }
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={requestClose}>
