@@ -1,0 +1,10 @@
+import React from "react";
+import { Pressable, Text, View } from "react-native";
+import Slider from "@react-native-community/slider";
+import { useTranslation } from "react-i18next";
+import type { ChartData } from "../../libs/editor/dataVisuals";
+type Intervals = Pick<ChartData, "scaleIntervals" | "scaleXIntervals">;
+export default function ChartIntervalControls({ value, coordinate, radar, onChange }: { value: Intervals; coordinate: boolean; radar: boolean; onChange: (value: Intervals) => void }) {
+  const { t } = useTranslation();
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 12 }}>{([{ key: "scaleIntervals" as const, label: radar ? t("editor.charts.radarRings", { defaultValue: "Radar grid rings" }) : t("editor.charts.valueIntervals", { defaultValue: "Value-axis intervals" }) }, ...(coordinate ? [{ key: "scaleXIntervals" as const, label: t("editor.charts.xIntervals", { defaultValue: "Horizontal-axis intervals" }) }] : [])]).map(field => <View key={field.key} style={{ gap: 4 }}><Text className="text-xs text-white/65">{field.label}: {value[field.key] ?? 4}</Text><Slider minimumValue={1} maximumValue={20} step={1} value={value[field.key] ?? 4} onValueChange={amount => onChange({ ...value, [field.key]: amount })} accessibilityLabel={field.label} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /></View>)}<Pressable accessibilityRole="button" onPress={() => onChange({ ...value, scaleIntervals: undefined, scaleXIntervals: undefined })} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white/65">{t("editor.charts.resetIntervals", { defaultValue: "Reset scale intervals" })}</Text></Pressable><Text className="text-[10px] text-white/45">{t("editor.charts.intervalsHint", { defaultValue: "More intervals give finer scale labels; fewer make a cleaner plot. Scatter and bubble charts can adjust the horizontal and vertical scales independently." })}</Text></View>;
+}

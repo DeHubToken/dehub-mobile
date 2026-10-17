@@ -18,6 +18,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const rows = chart.rows.slice(0, 50), availableSeries = chart.series?.length ? chart.series.slice(0, 6) : [{ label: "Series 1", values: chart.rows.slice(0, 50).map(row => row.value) }];
   const series = chart.kind === "bubble" ? [availableSeries[chart.bubbleYSeries ?? 0] ?? availableSeries[0]] : availableSeries;
   if (!rows.length) return false;
+  const intervals = Math.max(1, Math.min(20, Math.round(chart.scaleIntervals ?? 4))), xIntervals = Math.max(1, Math.min(20, Math.round(chart.scaleXIntervals ?? 4)));
   const font = Math.max(8, Math.min(24, height / 18, width / 28)) * Math.max(0.5, Math.min(3, chart.fontScale || 1));
   const colours = chart.colours.length ? chart.colours : ["#38bdf8"], colour = (index: number) => colours[index % colours.length];
   let values = series.map(item => rows.map((_, index) => Number.isFinite(item.values[index]) ? item.values[index] : 0));
@@ -48,7 +49,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     const radius = Math.max(1, Math.min(frameWidth, frameHeight) * (chart.showLabels ? 0.32 : 0.43)), cy = top + frameHeight / 2;
     const point = (index: number, value: number) => { const angle = index / rows.length * Math.PI * 2 - Math.PI / 2; return { x: centreX + Math.cos(angle) * radius * value, y: cy + Math.sin(angle) * radius * value }; };
     ctx.strokeStyle = chart.textColour + "66"; ctx.lineWidth = Math.max(1, width / 900);
-    for (let ring = 1; chart.showGrid !== false && ring <= 4; ring++) { ctx.beginPath(); rows.forEach((_, index) => { const p = point(index, ring / 4); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); }); ctx.closePath(); ctx.stroke(); }
+    for (let ring = 1; chart.showGrid !== false && ring <= intervals; ring++) { ctx.beginPath(); rows.forEach((_, index) => { const p = point(index, ring / intervals); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); }); ctx.closePath(); ctx.stroke(); }
     rows.forEach((row, index) => { const p = point(index, 1); if (chart.showGrid !== false) { ctx.beginPath(); ctx.moveTo(centreX, cy); ctx.lineTo(p.x, p.y); ctx.stroke(); } if (chart.showLabels) { const q = point(index, 1.18); ctx.fillStyle = chart.textColour; ctx.textAlign = Math.abs(q.x - centreX) < font ? "center" : q.x < centreX ? "right" : "left"; label(row.label, q.x, q.y, Math.max(font, frameWidth / 2 - radius)); } });
     series.forEach((_, set) => {
       ctx.beginPath(); values[set].forEach((value, index) => { const p = point(index, (value - minimum) / span); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
@@ -68,12 +69,17 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     const x0 = left + font * (showScale ? 3 : 1) + bubbleRadius, x1 = left + frameWidth - font - bubbleRadius, y0 = top + font * 1.5 + bubbleRadius, y1 = top + frameHeight - (chart.showLabels ? font * 2.5 : font) - bubbleRadius;
     const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0), xFor = (value: number) => x0 + (value - minX) / spanX * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
     ctx.lineWidth = Math.max(1, width / 900);
-    for (let tick = 0; tick <= 4; tick++) {
-      const x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
-      if (showGrid) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
+    for (let tick = 0; tick <= intervals; tick++) {
+      const y = y1 - plotHeight * tick / intervals;
+      if (showGrid) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); }
       ctx.fillStyle = chart.textColour;
-      if (showScale) { ctx.textAlign = "right"; label(labelValue(Number((minimum + span * tick / 4).toPrecision(3))), x0 - font / 2, y, font * 2.5); }
-      if (chart.showLabels) { ctx.textAlign = "center"; label(chartXLabel(chart.xAxisMode === "date" ? minX + spanX * tick / 4 : Number((minX + spanX * tick / 4).toPrecision(3)), chart), x, y1 + font * 1.2, plotWidth / 4 * 0.95); }
+      if (showScale) { ctx.textAlign = "right"; label(labelValue(Number((minimum + span * tick / intervals).toPrecision(3))), x0 - font / 2, y, font * 2.5); }
+    }
+    for (let tick = 0; tick <= xIntervals; tick++) {
+      const x = x0 + plotWidth * tick / xIntervals;
+      if (showGrid) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke(); }
+      ctx.fillStyle = chart.textColour;
+      if (chart.showLabels) { ctx.textAlign = "center"; label(chartXLabel(chart.xAxisMode === "date" ? minX + spanX * tick / xIntervals : Number((minX + spanX * tick / xIntervals).toPrecision(3)), chart), x, y1 + font * 1.2, plotWidth / xIntervals * 0.95); }
     }
     ctx.strokeStyle = chart.textColour; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
     if (!bubble && chart.scatterLines) series.forEach((_, set) => {
@@ -100,10 +106,10 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
   const xFor = (value: number) => x0 + (value - minimum) / span * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
   const zeroX = xFor(0), zeroY = yFor(0);
   ctx.lineWidth = Math.max(1, width / 900);
-  for (let tick = 0; tick <= 4; tick++) {
-    const value = minimum + span * tick / 4, x = xFor(value), y = yFor(value);
+  for (let tick = 0; tick <= intervals; tick++) {
+    const value = minimum + span * tick / intervals, x = xFor(value), y = yFor(value);
     if (chart.showGrid !== false) { ctx.strokeStyle = chart.textColour + "33"; ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke(); }
-    if (chart.showAxisValues !== false) { ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right"; label(labelValue(Number(value.toPrecision(3))), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / 4 * 0.95 : font * 2.5); }
+    if (chart.showAxisValues !== false) { ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right"; label(labelValue(Number(value.toPrecision(3))), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / intervals * 0.95 : font * 2.5); }
   }
   ctx.strokeStyle = chart.textColour; ctx.beginPath(); if (horizontal) { ctx.moveTo(zeroX, y0); ctx.lineTo(zeroX, y1); } else { ctx.moveTo(x0, zeroY); ctx.lineTo(x1, zeroY); } ctx.stroke();
   if (areaStack) {
