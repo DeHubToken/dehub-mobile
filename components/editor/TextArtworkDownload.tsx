@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 import { saveEditorDownload } from "../../libs/editor/saveEditorDownload";
-export default function TextArtworkDownload({ getContent, disabled = false, title, label, hint, suffix = "", extension, mime }: { getContent: (signal: AbortSignal) => string | Promise<string>; disabled?: boolean; title: string; label: string; hint: string; suffix?: string; extension: "svg" | "vcf"; mime: string }) {
+export default function TextArtworkDownload({ getContent, disabled = false, title, label, hint, suffix = "", extension, mime }: { getContent: (signal: AbortSignal) => string | Promise<string>; disabled?: boolean; title: string; label: string; hint: string; suffix?: string; extension: "svg" | "vcf" | "ics"; mime: string }) {
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), working = useRef(false), controller = useRef<AbortController | null>(null), mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; controller.current?.abort(); }; }, []);
   const download = async () => {
