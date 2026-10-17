@@ -26,6 +26,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
+  const intervals = Math.max(1, Math.min(20, Math.round(chart.scaleIntervals ?? 4)));
   if (isProgressChart(chart.kind)) { drawProgressChart(ctx, width, height, chart); return; }
   if (chart.kind === "race") { drawChartRace(ctx, width, height, chart, progress); return; }
   if (chart.kind === "pictogram") { drawPictogramChart(ctx, width, height, chart); return; }
@@ -79,11 +80,11 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       return { x: Math.cos(angle) * radius * value, y: Math.sin(angle) * radius * value };
     };
     ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 900);
-    for (let ring = 1; chart.showGrid !== false && ring <= 4; ring++) {
+    for (let ring = 1; chart.showGrid !== false && ring <= intervals; ring++) {
       ctx.beginPath();
-      rows.forEach((row, index) => { const p = point(index, ring / 4); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
+      rows.forEach((row, index) => { const p = point(index, ring / intervals); if (index) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.stroke();
-      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(chartValueLabel(Number((min + span * ring / 4).toFixed(2)), chart.valueFormat), font * 0.3, -radius * ring / 4, radius); }
+      if (chart.showValues) { ctx.fillStyle = chart.textColour; ctx.textAlign = "left"; label(chartValueLabel(Number((min + span * ring / intervals).toFixed(2)), chart.valueFormat), font * 0.3, -radius * ring / intervals, radius); }
     }
     rows.forEach((row, index) => {
       const p = point(index, 1); if (chart.showGrid !== false) { ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p.x, p.y); ctx.stroke(); }
@@ -109,15 +110,15 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const zeroX = x0 + (0 - min) / span * plotWidth;
   const zeroY = y1 - (0 - min) / span * plotHeight;
-  if (chart.showGrid) for (let tick = 0; tick <= 4; tick++) {
-    const x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
+  if (chart.showGrid) for (let tick = 0; tick <= intervals; tick++) {
+    const x = x0 + plotWidth * tick / intervals, y = y1 - plotHeight * tick / intervals;
     ctx.strokeStyle = chart.textColour + "33"; ctx.lineWidth = Math.max(1, width / 900);
     ctx.beginPath(); ctx.moveTo(horizontal ? x : x0, horizontal ? y0 : y); ctx.lineTo(horizontal ? x : x1, horizontal ? y1 : y); ctx.stroke();
   }
-  if (chart.showAxisValues) for (let tick = 0; tick <= 4; tick++) {
-    const value = min + span * tick / 4, x = x0 + plotWidth * tick / 4, y = y1 - plotHeight * tick / 4;
+  if (chart.showAxisValues) for (let tick = 0; tick <= intervals; tick++) {
+    const value = min + span * tick / intervals, x = x0 + plotWidth * tick / intervals, y = y1 - plotHeight * tick / intervals;
     ctx.fillStyle = chart.textColour; ctx.textAlign = horizontal ? "center" : "right";
-    label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / 4 * 0.95 : font * 3.5);
+    label(chartValueLabel(Number(value.toPrecision(3)), chart.valueFormat), horizontal ? x : x0 - font / 2, horizontal ? y1 + font * 1.2 : y, horizontal ? plotWidth / intervals * 0.95 : font * 3.5);
   }
   ctx.strokeStyle = chart.textColour; ctx.lineWidth = Math.max(1, width / 700);
   ctx.beginPath(); ctx.moveTo(horizontal ? zeroX : x0, y0); ctx.lineTo(horizontal ? zeroX : x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
