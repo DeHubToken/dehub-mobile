@@ -1,3 +1,4 @@
+import { literalTextReplacementPlan } from "./designTextMatching";
 import { captureChartStyle, type PortableChartStyle } from "./chartStyleFile";
 import { captureTableStyle, type PortableTableStyle } from "./tableStyleFile";
 import { validDataVisuals } from "./dataVisuals";
@@ -164,11 +165,24 @@ export function replaceDesignText(project: ProjectSnapshot, query: string, repla
   let changed = false;
   const clips = project.clips.map(clip => {
     if (clip.kind !== "text" || clip.locked || (selected && !selected.has(clip.id))) return clip;
+    const plan = literalTextReplacementPlan(clip.text, query, replacement, matchCase, wholeWords);
+    if (plan.outputLength > 100000) throw new Error("Shorten the replacement to keep each text layer within 100,000 characters");
     const text = replaceLiteralText(clip.text, query, replacement, matchCase, wholeWords);
     if (text === clip.text) return clip;
     changed = true; return { ...clip, text, pageNumber: undefined };
   });
   return changed ? { ...project, clips } : project;
+}
+
+export function replaceFirstDesignText(project: ProjectSnapshot, id: string, query: string, replacement: string, matchCase = false, wholeWords = false): ProjectSnapshot {
+  const clip = project.clips.find(clip => clip.id === id);
+  if (!query || !clip || clip.kind !== "text" || clip.locked) return project;
+  const plan = literalTextReplacementPlan(clip.text, query, replacement, matchCase, wholeWords);
+  if (!plan.count) return project;
+  if (clip.text.length - plan.firstLength + replacement.length > 100000) throw new Error("Shorten the replacement to keep the text layer within 100,000 characters");
+  const text = clip.text.slice(0, plan.firstIndex) + replacement + clip.text.slice(plan.firstIndex + plan.firstLength);
+  if (text === clip.text) return project;
+  return { ...project, clips: project.clips.map(value => value.id === id ? { ...clip, text, pageNumber: undefined } : value) };
 }
 
 export const DESIGN_PALETTES = [
