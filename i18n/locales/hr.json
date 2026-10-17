@@ -393,6 +393,7 @@
     "compactMode": "Kompaktni način",
     "compactModeDesc": "Smanjite razmak za više sadržaja",
     "autoPlay": "Automatsko pokretanje videa",
+    "autoplayPausePrompt": "Postavka automatske reprodukcije",
     "autoPlayDesc": "Automatski pokreni videozapise u feedu",
     "autoPlayMuted": "Pokreni automatsku reprodukciju bez zvuka",
     "autoPlayMutedDesc": "Videozapisi koji se sami pokreću uvijek počinju bez zvuka",

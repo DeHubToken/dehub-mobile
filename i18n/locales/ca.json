@@ -393,6 +393,7 @@
     "compactMode": "Mode compacte",
     "compactModeDesc": "Reduir espaiat per a més contingut",
     "autoPlay": "Reproducció automàtica de vídeos",
+    "autoplayPausePrompt": "Configuració de reproducció automàtica",
     "autoPlayDesc": "Reproduir automàticament els vídeos al feed",
     "autoPlayMuted": "Inicia la reproducció automàtica sense so",
     "autoPlayMutedDesc": "Els vídeos que es reprodueixen sols sempre comencen amb el so apagat",

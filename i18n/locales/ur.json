@@ -393,6 +393,7 @@
     "compactMode": "مختصر موڈ",
     "compactModeDesc": "زیادہ مواد دکھانے کے لیے فاصلہ کم کریں",
     "autoPlay": "خودکار ویڈیو چلائیں",
+    "autoplayPausePrompt": "آٹو پلے سیٹنگ",
     "autoPlayDesc": "ویڈیوز خود بخود چلائیں",
     "autoPlayMuted": "آٹو پلے خاموش حالت میں شروع کریں",
     "autoPlayMutedDesc": "خود بخود چلنے والی ویڈیوز ہمیشہ آواز بند کے ساتھ شروع ہوں گی",

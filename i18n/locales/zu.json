@@ -393,6 +393,7 @@
     "compactMode": "Imodi Yokuhlangana",
     "compactModeDesc": "Nciphisa isikhala sokuqukethwe okuningi",
     "autoPlay": "Dlala Amavidiyo Ngokuzenzakalelayo",
+    "autoplayPausePrompt": "Isilungiselelo sokudlala ngokuzenzakalelayo",
     "autoPlayDesc": "Dlala amavidiyo ngokuzenzakalelayo efidini",
     "autoPlayMuted": "Qala ukudlala okuzenzakalelayo ngaphandle komsindo",
     "autoPlayMutedDesc": "Amavidiyo azidlalelayo ahlala eqala umsindo uvaliwe",

@@ -392,6 +392,7 @@
     "compactMode": "Cogo dɔgɔyalen",
     "compactModeDesc": "Yɔrɔ gansan dɔgɔya walasa kow ka caya",
     "autoPlay": "Video yɛrɛ ka daminɛ",
+    "autoplayPausePrompt": "Video yɛrɛ ka daminɛ labɛnni",
     "autoPlayDesc": "Videow daminɛ u yɛrɛ ma feed kɔnɔ",
     "autoPlayMuted": "Autoplay daminɛ kumakan tɛ",
     "autoPlayMutedDesc": "Widewo minnu bɛ tɔgɔla u yɛrɛ ma, olu bɛ daminɛ tuma bɛɛ kumakan tɛ",

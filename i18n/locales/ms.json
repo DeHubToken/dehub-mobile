@@ -393,6 +393,7 @@
     "compactMode": "Mod Padat",
     "compactModeDesc": "Kurangkan jarak untuk lebih banyak kandungan",
     "autoPlay": "Main Auto Video",
+    "autoplayPausePrompt": "Tetapan main automatik",
     "autoPlayDesc": "Mainkan video secara automatik dalam suapan",
     "autoPlayMuted": "Mulakan main automatik tanpa bunyi",
     "autoPlayMutedDesc": "Video yang dimainkan sendiri sentiasa bermula dengan bunyi dimatikan",
