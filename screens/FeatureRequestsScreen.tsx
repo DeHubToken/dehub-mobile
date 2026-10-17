@@ -53,6 +53,7 @@ import GlassModal from "../components/ui/GlassModal";
 import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
 import { localFileSize } from "../libs/storage-upload";
+import { featurePromptFields } from "../libs/feature-prompt";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
@@ -572,7 +573,7 @@ const FeatureCard: React.FC<{
       ) : (
         <View style={{ paddingTop: 4, gap: 8 }}>
           <Text style={styles.cardTitle}>{feature.title}</Text>
-          {!!feature.description && <Text style={styles.cardDesc}>{feature.description}</Text>}
+          {!!feature.description && feature.description !== feature.title && <Text style={styles.cardDesc}>{feature.description}</Text>}
 
           <Attachments feature={feature} />
 
@@ -629,239 +630,115 @@ const FeatureCard: React.FC<{
 
 // ── Submit sheet ────────────────────────────────────────────────────────────
 
-const SubmitSheet: React.FC<{
-  visible: boolean;
-  onClose: () => void;
-  onSubmit: (v: {
-    title: string;
-    description: string;
-    category: FeatureCategory;
-    attachments: FeatureAttachment[];
-  }) => Promise<unknown>;
+const PromptComposer: React.FC<{
+  focusRequest: number;
+  onSubmit: (v: { title: string; description: string; category: FeatureCategory; attachments: FeatureAttachment[] }) => Promise<unknown>;
   submitting: boolean;
-  initialCategory?: FeatureCategory;
-}> = ({ visible, onClose, onSubmit, submitting, initialCategory }) => {
-  const { t: _copy } = _useCopy();
+}> = ({ focusRequest, onSubmit, submitting }) => {
   const { t } = useTranslation();
+  const { skin, isMinimal } = useAppTheme();
   const [title, setTitle] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:title", "");
   const [description, setDescription] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:description", "");
   const [device, setDevice] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:device", "");
-  const [category, setCategory] = useState<FeatureCategory>(initialCategory || "new_feature");
+  const [category, setCategory] = useState<FeatureCategory>("new_feature");
   const [attachments, setAttachments] = useState<FeatureAttachment[]>([]);
-
-  // The sheet stays mounted between opens, so the category has to be re-seeded
-  // when it opens — otherwise it keeps whatever the last submission chose.
-  React.useEffect(() => {
-    if (visible) setCategory(initialCategory || "new_feature");
-  }, [visible, initialCategory]);
-
-  const valid = title.trim().length > 0 && description.trim().length > 0;
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const inputRef = React.useRef<TextInput>(null);
+  React.useEffect(() => { if (focusRequest) inputRef.current?.focus(); }, [focusRequest]);
+  const { isSignedIn, needsUsername } = useAuthState();
+  const navigation = useNavigation<any>();
+  const valid = description.trim().length > 0;
 
   const pickMedia = useCallback(async () => {
+    if (submitting || attachments.length >= MAX_FEATURE_ATTACHMENTS) return;
     await runWithPermissions(["photos"], async () => {
       const pick = await ImagePicker.launchImageLibraryAsync({
-        // String literals, not `MediaType.image`: `MediaType` is a TypeScript
-        // union with no runtime object behind it, so reaching into it throws.
-        mediaTypes: ["images", "videos"],
-        quality: 0.85,
-        allowsMultipleSelection: true,
-        selectionLimit: MAX_FEATURE_ATTACHMENTS - attachments.length,
+        mediaTypes: ["images", "videos"], quality: 0.85,
+        allowsMultipleSelection: true, selectionLimit: MAX_FEATURE_ATTACHMENTS - attachments.length,
       });
       if (pick.canceled) return;
-
       const assets = pick.assets ?? [];
-      // Same per-file ceiling web enforces. On Android the picker often
-      // reports no fileSize for a content:// asset, so ask the file system
-      // before deciding; a file whose size stays unknown goes through and the
-      // upload is the judge.
       const accepted: FeatureAttachment[] = [];
-      for (const a of assets) {
-        if (!a.uri) continue;
-        const size = typeof a.fileSize === "number" ? a.fileSize : await localFileSize(a.uri);
+      for (const asset of assets) {
+        if (!asset.uri) continue;
+        const size = typeof asset.fileSize === "number" ? asset.fileSize : await localFileSize(asset.uri);
         if (size !== null && size > MAX_FEATURE_ATTACHMENT_BYTES) continue;
-        accepted.push({ uri: a.uri, mimeType: a.mimeType, fileName: a.fileName });
+        accepted.push({ uri: asset.uri, mimeType: asset.mimeType, fileName: asset.fileName });
       }
-      if (accepted.length < assets.length) {
-        toastWarning(t("features.attachmentTooLarge", "Each file must be under 20MB"));
-      }
-      setAttachments((prev) => [...prev, ...accepted].slice(0, MAX_FEATURE_ATTACHMENTS));
+      if (accepted.length < assets.length) toastWarning(t("features.attachmentTooLarge", "Each file must be under 20MB"));
+      setAttachments(prev => [...prev, ...accepted].slice(0, MAX_FEATURE_ATTACHMENTS));
     });
-  }, [attachments.length, t]);
+  }, [attachments.length, submitting, t]);
 
-  const reset = useCallback(() => {
-    setTitle.complete(title, "");
-    setDescription.complete(description, "");
-    setDevice.complete(device, "");
-    setCategory(initialCategory || "new_feature");
-    setAttachments([]);
-  }, [initialCategory, setDescription, setDevice, setTitle, description, device, title]);
-
-  const handleClose = useCallback(() => {
-    onClose();
-  }, [reset, onClose]);
-
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = async () => {
     if (!valid || submitting) return;
-    // Web appends the device line to the description rather than storing it in
-    // its own column — keep the two boards' rows identical.
-    const fullDescription = device.trim()
-      ? `${description.trim()}\n\n📱 Device & OS: ${device.trim()}`
-      : description.trim();
+    if (!isSignedIn || needsUsername) { navigation.navigate(ScreenNames.SignIn); return; }
+    const prompt = description.trim();
     try {
-      await onSubmit({ title, description: fullDescription, category, attachments });
-      reset();
-      onClose();
-    } catch { /* Mutation reports the failure; retain the form. */ }
-  }, [valid, submitting, device, description, title, category, attachments, onSubmit, reset]);
+      await onSubmit({
+        ...featurePromptFields(prompt, title, device),
+        category, attachments,
+      });
+      setTitle.complete(title, "");
+      setDescription.complete(description, "");
+      setDevice.complete(device, "");
+      setAttachments([]); setCategory("new_feature");
+    } catch { /* Keep the prompt and attachments available for retry. */ }
+  };
 
   return (
-    // On the shared drawer so it swipes down to close, closes on a backdrop
-    // tap, and gets the same keyboard handling as every other sheet.
-    <GlassModal visible={visible} onClose={handleClose} presentation="bottom">
-      <View style={styles.sheet}>
-        <View style={styles.sheetHeader}>
-          <Text style={styles.sheetTitle}>{t("features.submitDrawerTitle")}</Text>
-          <Pressable
-            onPress={handleClose}
-            hitSlop={10}
-            style={styles.sheetClose}
-            accessibilityRole="button"
-            accessibilityLabel={t("common.close")}
-          >
-            <Icon name="X" size={16} color="#A1A1AA" />
-          </Pressable>
-        </View>
-
-        <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-          <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
-          <TextInput
-            value={title}
-            onChangeText={(v) => setTitle(v.slice(0, TITLE_MAX))}
-            placeholder={t("features.titlePlaceholder")}
-            placeholderTextColor="#52525B"
-            style={styles.input}
-          />
-          <Text style={styles.counter}>
-            {title.length}/{TITLE_MAX}
-          </Text>
-
-          <Text style={styles.fieldLabel}>{t("features.descriptionLabel")}</Text>
-          <TextInput
-            value={description}
-            onChangeText={(v) => setDescription(v.slice(0, DESC_MAX))}
-            placeholder={t("features.descriptionPlaceholder")}
-            placeholderTextColor="#52525B"
-            multiline
-            style={[styles.input, styles.textarea]}
-          />
-          <Text style={styles.counter}>
-            {description.length}/{DESC_MAX}
-          </Text>
-
-          <Text style={styles.fieldLabel}>
-            {t("features.deviceLabel", "Device & OS Details (optional)")}
-          </Text>
-          <TextInput
-            value={device}
-            onChangeText={(v) => setDevice(v.slice(0, DEVICE_MAX))}
-            placeholder={t(
-              "features.devicePlaceholder",
-              "e.g. iPhone 15 Pro, iOS 18.2 / Samsung S24, Android 15…",
-            )}
-            placeholderTextColor="#52525B"
-            multiline
-            style={[styles.input, styles.textareaSm]}
-          />
-          <Text style={styles.counter}>
-            {device.length}/{DEVICE_MAX}
-          </Text>
-
-          <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
-          <View style={styles.catWrap}>
-            {CATEGORY_KEYS.map((key) => {
-              const active = category === key;
-              return (
-                <Pressable
-                  key={key}
-                  onPress={() => setCategory(key)}
-                  accessibilityRole="button"
-                  accessibilityLabel={t(CATEGORY_I18N[key])}
-                  accessibilityState={{ selected: active }}
-                  style={[styles.sheetChip, active && styles.sheetChipActive]}
-                >
-                  <Text style={[styles.sheetChipText, active && styles.sheetChipTextActive]}>
-                    {active ? "✓ " : ""}
-                    {t(CATEGORY_I18N[key])}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-
-          <Text style={styles.fieldLabel}>
-            {t("features.attachLabel", "Attach Images or Videos (optional)")}
-            <Text style={styles.fieldLabelMuted}>
-              {" "}
-              — {t("features.upTo", "up to {{max}}", { max: MAX_FEATURE_ATTACHMENTS })}
-            </Text>
-          </Text>
-
-          {attachments.length > 0 && (
-            <View style={styles.pickGrid}>
-              {attachments.map(({ uri }, i) => (
-                <ThemePanel key={`${uri}-${i}`} style={styles.pickTile}>
-                  <Image
-                    source={{ uri }}
-                    style={StyleSheet.absoluteFill}
-                    contentFit="cover"
-                  />
-                  <Pressable
-                    style={styles.pickRemove}
-                    onPress={() => setAttachments((p) => p.filter((_, idx) => idx !== i))}
-                    hitSlop={6}
-                    accessibilityRole="button"
-                    accessibilityLabel={_copy("copy.58e271dd9ad8", { defaultValue: "Remove attachment {{value1}}", value1: i + 1 })}
-                  >
-                    <Icon name="X" size={12} color="#FFFFFF" />
-                  </Pressable>
-                </ThemePanel>
-              ))}
-            </View>
-          )}
-
-          {attachments.length < MAX_FEATURE_ATTACHMENTS && (
-            <Pressable style={styles.mediaAdd} onPress={pickMedia}>
-              <Icon name="ImagePlus" size={20} color="#808089" />
-              <Text style={styles.mediaAddText}>
-                {attachments.length === 0
-                  ? t("features.clickToUpload", "Tap to upload")
-                  : t("features.addAnother", "Add another")}
-              </Text>
+    <ThemePanel style={[styles.promptPanel, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
+      <Text style={styles.promptHeading}>{t("features.promptHeading", "What should we build next?")}</Text>
+      <Text style={styles.promptHint}>{t("features.promptHint", "Describe it. Drop in a screenshot. Make it happen.")}</Text>
+      <TextInput ref={inputRef} value={description} onChangeText={setDescription}
+        accessibilityLabel={t("features.promptLabel", "Your prompt")}
+        placeholder={t("features.promptPlaceholder", "Describe an idea, improvement, or bug…")}
+        placeholderTextColor="#808089" multiline maxLength={DESC_MAX} editable={!submitting}
+        style={[styles.input, styles.promptInput]} textAlignVertical="top" />
+      {attachments.length > 0 && <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={styles.promptPreviews}>
+        {attachments.map((attachment, index) => <View key={`${attachment.uri}-${index}`} style={styles.promptAttachment}>
+          <ThemePanel style={styles.promptThumbnail}>
+            <Image source={{ uri: attachment.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
+            <Pressable style={styles.pickRemove} disabled={submitting} hitSlop={8}
+              onPress={() => setAttachments(prev => prev.filter((_, i) => i !== index))}
+              accessibilityRole="button" accessibilityLabel={t("features.removePromptAttachment", "Remove {{name}}", { name: attachment.fileName || String(index + 1) })}>
+              <Icon name="X" size={12} color="#FFFFFF" />
             </Pressable>
-          )}
-        </ScrollView>
-
-        <Pressable
-          onPress={handleSubmit}
-          style={[styles.glassBtn, (!valid || submitting) && styles.disabled]}
-          disabled={!valid || submitting}
-        >
-          {submitting ? (
-            <ActivityIndicator color="#FFFFFF" />
-          ) : (
-            <>
-              <Icon name="Sparkles" size={16} color="#FFFFFF" />
-              <Text style={styles.glassBtnText}>{t("features.submitRequest")}</Text>
-            </>
-          )}
+          </ThemePanel>
+          <Text numberOfLines={1} style={styles.promptFilename}>{attachment.fileName || t("features.promptAttachment", "Attachment {{number}}", { number: index + 1 })}</Text>
+        </View>)}
+      </ScrollView>}
+      <View style={styles.promptToolbar}>
+        <Pressable onPress={pickMedia} disabled={submitting || attachments.length >= MAX_FEATURE_ATTACHMENTS}
+          accessibilityRole="button" style={[styles.promptAttach, (submitting || attachments.length >= MAX_FEATURE_ATTACHMENTS) && styles.disabled]}>
+          <Icon name="ImagePlus" size={18} color="#A1A1AA" />
+          <Text style={styles.promptAttachText}>{t("features.promptAttach", "Attach images")}</Text>
         </Pressable>
+        <Text style={styles.promptCount}>{description.length}/{DESC_MAX}</Text>
       </View>
-    </GlassModal>
+      <Pressable onPress={handleSubmit} disabled={!valid || submitting} accessibilityRole="button"
+        style={[styles.glassBtn, (!valid || submitting) && styles.disabled]}>
+        {submitting ? <ActivityIndicator color="#FFFFFF" /> : <Icon name="ArrowUp" size={16} color="#FFFFFF" />}
+        <Text style={styles.glassBtnText}>{t("features.promptPost", "Post prompt")}</Text>
+      </Pressable>
+      <Pressable onPress={() => setDetailsOpen(value => !value)} accessibilityRole="button" accessibilityState={{ expanded: detailsOpen }} style={styles.promptDetails}>
+        <Text style={styles.promptHint}>{t("features.promptDetails", "Optional details")}</Text>
+        <Icon name={detailsOpen ? "ChevronUp" : "ChevronDown"} size={14} color="#808089" />
+      </Pressable>
+      {detailsOpen && <View>
+        <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
+        <TextInput value={title} onChangeText={setTitle} maxLength={TITLE_MAX} editable={!submitting} style={styles.input} />
+        <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
+        <View style={styles.catWrap}>{CATEGORY_KEYS.map(key => <Pressable key={key} onPress={() => setCategory(key)} disabled={submitting}
+          accessibilityRole="button" accessibilityState={{ selected: category === key }} style={[styles.sheetChip, category === key && styles.sheetChipActive]}>
+          <Text style={[styles.sheetChipText, category === key && styles.sheetChipTextActive]}>{t(CATEGORY_I18N[key])}</Text>
+        </Pressable>)}</View>
+        <Text style={styles.fieldLabel}>{t("features.promptDevice", "Device & OS (for bugs)")}</Text>
+        <TextInput value={device} onChangeText={setDevice} maxLength={DEVICE_MAX} editable={!submitting} style={styles.input} />
+      </View>}
+    </ThemePanel>
   );
 };
-
-// ── Screen ──────────────────────────────────────────────────────────────────
-
 export default function FeatureRequestsScreen() {
   const { t } = useTranslation();
   // Minimal: the header bento and request cards become edge-to-edge hairline
@@ -878,11 +755,13 @@ export default function FeatureRequestsScreen() {
   const isAuthed = isSignedIn && !needsUsername;
 
   const [tab, setTab] = useState<PageTab>("requests");
-  const [sort, setSort] = useState<FeatureSort>("most_voted");
+  const [sort, setSort] = useState<FeatureSort>("newest");
   const [category, setCategory] = useState<FeatureCategory | "all">("all");
   const [search, setSearch] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:search", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [composerFocus, setComposerFocus] = useState(0);
+  const [showFilters, setShowFilters] = useState(false);
+  const listRef = React.useRef<FlatList<FeatureRequest>>(null);
   const [iconFailed, setIconFailed] = useState(false);
 
   // 300ms to match web's useDebouncedValue(searchInput, 300) on FeaturesPage.
@@ -948,7 +827,7 @@ export default function FeatureRequestsScreen() {
     [rawItems, focusedRequest],
   );
 
-  const totalCount = counts?.total ?? requestItems.length;
+
   const openCount = counts?.open ?? requestItems.length;
   const shippedCount = shipped.data?.length ?? 0;
   const inProgressCount = inProgress.data?.length ?? 0;
@@ -993,8 +872,11 @@ export default function FeatureRequestsScreen() {
   const onRefresh =
     tab === "shipped" ? shipped.refetch : tab === "shipping" ? inProgress.refetch : refetch;
 
-  const openSheet = () =>
-    isAuthed ? setSheetOpen(true) : navigation.navigate(ScreenNames.SignIn);
+  const openSheet = () => {
+    setTab("requests");
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    setComposerFocus(value => value + 1);
+  };
 
   /**
    * One tab's width: screen − 16 page gutter − 32 bento padding − 8 strip
@@ -1006,8 +888,8 @@ export default function FeatureRequestsScreen() {
   const showTabIcons = tabWidth >= 96;
 
   const TABS: { key: PageTab; label: string; icon?: React.ComponentProps<typeof Icon>["name"]; count: number }[] = [
-    { key: "requests", label: t("features.requests"), count: openCount },
-    { key: "shipping", label: t("features.shipping", "Shipping"), icon: "Loader", count: inProgressCount },
+    { key: "requests", label: t("features.prompts", "Prompts"), count: openCount },
+    { key: "shipping", label: t("features.queued", "Queued"), icon: "Loader", count: inProgressCount },
     { key: "shipped", label: t("features.shipped"), icon: "CircleCheck", count: shippedCount },
   ];
 
@@ -1071,12 +953,10 @@ export default function FeatureRequestsScreen() {
           )}
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={styles.pageTitle} numberOfLines={1}>
-              {t("features.title")}
+              {t("features.promptPageTitle", "Requests")}
             </Text>
             <Text style={styles.pageSubtitle} numberOfLines={1}>
-              {totalCount === 1
-                ? t("features.ideaSubmitted")
-                : t("features.ideasSubmitted", { count: totalCount })}
+              {t("features.promptSubtitle", "Build DeHub with a prompt")}
             </Text>
           </View>
           <Pressable
@@ -1096,7 +976,7 @@ export default function FeatureRequestsScreen() {
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder={t("features.searchPlaceholder")}
+            placeholder={t("features.promptSearch", "Search prompts…")}
             placeholderTextColor="#808089"
             style={styles.searchInput}
             returnKeyType="search"
@@ -1148,6 +1028,11 @@ export default function FeatureRequestsScreen() {
           })}
         </View>
 
+        <Pressable onPress={() => setShowFilters(value => !value)} accessibilityRole="button" accessibilityState={{ expanded: showFilters }} style={styles.promptFilter}>
+          <Text style={styles.chipText}>{t("features.promptFilters", "Filter by category")}{category !== "all" ? ` · ${categoryLabel(t, category)}` : ""}</Text>
+          <Icon name={showFilters ? "ChevronUp" : "ChevronDown"} size={14} color="#808089" />
+        </Pressable>
+        {showFilters && <>
         {/* Category chips filter every tab: Shipped holds most of the board
             and had no way to narrow it. Sort stays Requests-only -- the other
             two are ordered by ship date. Mirrors web (dehubweb#1427). */}
@@ -1185,6 +1070,7 @@ export default function FeatureRequestsScreen() {
           ))}
         </ScrollView>
 
+        </>}
         {tab === "requests" && (
           <>
             <ScrollView
@@ -1211,20 +1097,11 @@ export default function FeatureRequestsScreen() {
       </View>
 
       {/* Content */}
-      {loading ? (
-        <View style={styles.center}>
-          <DeHubLoader size={56} />
-        </View>
-      ) : isError && tab === "requests" ? (
-        <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
-          <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
-          <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
-            <Text style={styles.glassBtnText}>{t("common.retry")}</Text>
-          </Pressable>
-        </ThemePanel>
-      ) : (
         <FlatList
-          data={items}
+          ref={listRef}
+          automaticallyAdjustKeyboardInsets
+          keyboardDismissMode="on-drag"
+          data={loading || (isError && tab === "requests") ? [] : items}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           // Minimal: rows run edge to edge and butt up — the hairline is the gap.
@@ -1234,17 +1111,17 @@ export default function FeatureRequestsScreen() {
             paddingTop: isMinimal ? 0 : 8,
             gap: isMinimal ? 0 : 12,
           }}
-          ListHeaderComponent={
-            focusedRequest ? (
-              <FeatureCard
-                feature={focusedRequest}
-                myVote={votes?.[focusedRequest.id]}
-                onVote={(v) => handleVote(focusedRequest, v)}
-                isAuthed={isAuthed}
-                defaultCommentsOpen={!!focusedCommentId}
-              />
-            ) : null
-          }
+          ListHeaderComponent={<>
+            <View style={tab !== "requests" ? { display: "none" } : undefined}>
+              <PromptComposer focusRequest={composerFocus} submitting={submitMutation.isPending} onSubmit={async v => {
+                const result = await submitMutation.mutateAsync(v);
+                setCategory("all"); setSearch.complete(search, ""); setSort("newest");
+                return result;
+              }} />
+            </View>
+            {focusedRequest && <FeatureCard feature={focusedRequest} myVote={votes?.[focusedRequest.id]}
+              onVote={v => handleVote(focusedRequest, v)} isAuthed={isAuthed} defaultCommentsOpen={!!focusedCommentId} />}
+          </>}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           refreshControl={
@@ -1263,8 +1140,14 @@ export default function FeatureRequestsScreen() {
               <ActivityIndicator color="#808089" style={{ marginVertical: 16 }} />
             ) : null
           }
-          ListEmptyComponent={
+          ListEmptyComponent={loading ? <View style={styles.center}><DeHubLoader size={56} /></View> : isError && tab === "requests" ? (
             <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
+              <Text style={styles.emptyTitle}>{t("features.loadFailed")}</Text>
+              <Pressable onPress={() => refetch()} style={styles.glassBtnSm}>
+                <Text style={styles.glassBtnText}>{t("common.retry")}</Text>
+              </Pressable>
+            </ThemePanel>
+          ) : <ThemePanel style={[styles.emptyBento, Platform.OS === "android" && skin?.card, isMinimal && minimalFlat]}>
               <Icon name="Lightbulb" size={44} color="#3F3F46" />
               <Text style={styles.emptyTitle}>{emptyCopy.title}</Text>
               {!!emptyCopy.body && <Text style={styles.emptyBody}>{emptyCopy.body}</Text>}
@@ -1277,15 +1160,6 @@ export default function FeatureRequestsScreen() {
             </ThemePanel>
           }
         />
-      )}
-
-      <SubmitSheet
-        visible={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        submitting={submitMutation.isPending}
-        initialCategory={category !== "all" ? category : undefined}
-        onSubmit={(v) => submitMutation.mutateAsync(v)}
-      />
       <DeHubRefreshMark refreshing={refreshing} />
     </View>
   );
@@ -1301,6 +1175,20 @@ const GLASS_BORDER = "rgba(255,255,255,0.30)";
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  promptPanel: { padding: 16, borderRadius: 16, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)", backgroundColor: "#18181B", marginBottom: 12 },
+  promptHeading: { color: "#FAFAFA", fontSize: 18, fontWeight: "700", marginBottom: 4 },
+  promptHint: { color: "#A1A1AA", fontSize: 12, lineHeight: 18 },
+  promptInput: { minHeight: 112, maxHeight: 240, marginTop: 12, fontSize: 15, lineHeight: 22 },
+  promptPreviews: { flexGrow: 0, marginTop: 12 },
+  promptAttachment: { width: 112, marginRight: 8 },
+  promptThumbnail: { height: 80, borderRadius: 10, overflow: "hidden" },
+  promptFilename: { fontSize: 10, color: "#A1A1AA", marginTop: 4 },
+  promptToolbar: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginVertical: 12, gap: 8 },
+  promptAttach: { flexDirection: "row", alignItems: "center", gap: 6, paddingVertical: 8 },
+  promptAttachText: { color: "#A1A1AA", fontSize: 13 },
+  promptCount: { color: "#808089", fontSize: 11 },
+  promptDetails: { flexDirection: "row", alignItems: "center", gap: 6, paddingTop: 12 },
+  promptFilter: { flexDirection: "row", alignItems: "center", gap: 6, paddingVertical: 8 },
 
   // Header bento — zinc-900, 16pt radius, 16pt padding, 8pt page gutter.
   bento: {
