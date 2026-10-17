@@ -127,30 +127,37 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
 
   const rimColor = notice || busy ? CARD_BORDER_EMPTY : CARD_BORDER;
 
-  // Its border and fill ARE the socket — one element, so the ring cannot drift
-  // off the orb, and the opaque disc erases the card edges and the seam it
-  // covers, the way web's mask does.
+  // The disc's border and fill ARE the socket, so the ring cannot drift off
+  // the orb, and the opaque disc erases the card edges and the seam it covers,
+  // the way web's mask does. The disc is a plain View inside an unfilled
+  // button: a filled button is repainted with the theme's control glass
+  // (libs/jsx/controls.js), which turned the disc see-through and let the seam
+  // run straight through the orb.
   const orbButton = (
     <TouchableOpacity
       onPress={onGenerate}
       disabled={busy}
       activeOpacity={0.7}
       hitSlop={8}
-      style={{
-        width: SOCKET,
-        height: SOCKET,
-        borderRadius: SOCKET / 2,
-        borderWidth: 1,
-        borderColor: rimColor,
-        backgroundColor: skin?.page ?? colors.background,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      style={{ width: SOCKET, height: SOCKET }}
       accessibilityRole="button"
       accessibilityLabel={busy ? _copy("copy.b79dd4557485", { defaultValue: "Drafting replies" }) : _copy("copy.26c4675bcba1", { defaultValue: "Draft new replies" })}
       accessibilityState={{ disabled: busy }}
     >
-      <ReplyOrb state={busy ? "thinking" : "idle"} size={ORB} />
+      <View
+        style={{
+          width: SOCKET,
+          height: SOCKET,
+          borderRadius: SOCKET / 2,
+          borderWidth: 1,
+          borderColor: rimColor,
+          backgroundColor: skin?.page ?? colors.background,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <ReplyOrb state={busy ? "thinking" : "idle"} size={ORB} />
+      </View>
     </TouchableOpacity>
   );
 
