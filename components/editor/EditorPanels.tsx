@@ -1,3 +1,4 @@
+import SavedPhotoLooks from "./SavedPhotoLooks";
 import { inferFilterStrength, scaledFilterEffects } from "../../libs/editor/filterStrength";
 import TextListControls from "./TextListControls";
 import StrokePattern from "./StrokePatternControls";
@@ -172,7 +173,7 @@ export { ASPECTS };
 
 export function FiltersPanel({ clip, live, commit, settle }: PanelProps<MediaClip>) {
   const { t } = useTranslation(), current = inferFilterStrength(clip.effects);
-  return <View><ChipRow>{FILTER_PRESETS.map(preset => <Chip key={preset.id} disabled={clip.locked} label={t(`editor.filters.${preset.id}`, { defaultValue: preset.label })} active={current?.id === preset.id} onPress={() => { if (!clip.locked) commit({ effects: { ...preset.effects } }); }} />)}</ChipRow>{current && current.id !== "none" && <Range label={t("editor.filters.strength", { defaultValue: "Filter strength: {{value}}%", value: Math.round(current.strength * 100) })} value={current.strength} min={0.01} max={1} step={0.01} onLive={strength => { if (!clip.locked) live({ effects: scaledFilterEffects(current.id, strength) }); }} onDone={settle} />}</View>;
+  return <View><ChipRow>{FILTER_PRESETS.map(preset => <Chip key={preset.id} disabled={clip.locked} label={t(`editor.filters.${preset.id}`, { defaultValue: preset.label })} active={current?.id === preset.id} onPress={() => { if (!clip.locked) commit({ effects: { ...preset.effects } }); }} />)}</ChipRow>{current && current.id !== "none" && <Range label={t("editor.filters.strength", { defaultValue: "Filter strength: {{value}}%", value: Math.round(current.strength * 100) })} value={current.strength} min={0.01} max={1} step={0.01} onLive={strength => { if (!clip.locked) live({ effects: scaledFilterEffects(current.id, strength) }); }} onDone={settle} />}<SavedPhotoLooks key={clip.id} value={clip.effects ?? {}} disabled={!!clip.locked} onApply={effects => { if (!clip.locked) commit({ effects }); }} /></View>;
 }
 
 export function AdjustPanel({ clip, live, commit, settle, onAutoEnhance }: PanelProps<MediaClip> & { onAutoEnhance?: () => void }) {
