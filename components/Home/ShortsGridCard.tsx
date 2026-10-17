@@ -309,8 +309,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     columnGap: 4,
-    borderRadius: 5,
-    backgroundColor: "rgba(0,0,0,0.45)",
     padding: 3,
   },
   metadataRow: {
