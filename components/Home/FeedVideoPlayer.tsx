@@ -530,7 +530,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const measuredAspect = videoAspect ?? posterAspect;
   const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage,
     measuredAspect == null ? undefined : clampAspect(measuredAspect, THIN_MIN_RATIO));
-  const { isMinimal: minimalTheme, isLight } = useAppTheme();
+  const { isMinimal: minimalTheme } = useAppTheme();
   // The cinematic system feed runs media edge to edge exactly like minimal,
   // with its own chrome over the top and bottom bands.
   const bleed = useFeedBleed();
@@ -1432,7 +1432,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                         <View style={styles.volumeTrackInner}><View style={[styles.volumeFill, { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` }]} /></View>
                       </View>}
                     </View>
-                    {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime, isLight && { color: 'hsl(240,8%,5%)' }]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
+                    {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
                 {tokenId != null && (
@@ -1455,7 +1455,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
                 >
-                  <Text style={[styles.bareSpeedText, isLight && { color: 'hsl(240,8%,5%)' }]}>{playbackRate}x</Text>
+                  <Text style={styles.bareSpeedText}>{playbackRate}x</Text>
                 </VideoScrubButton>
                 <VideoScrubButton
                   onPress={handleToggleLoop}

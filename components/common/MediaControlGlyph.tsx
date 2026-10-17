@@ -1,18 +1,15 @@
 import Svg, { Rect, Path } from 'react-native-svg';
-import React, { createContext, useContext } from "react";
+import React from "react";
 import { View, Text, StyleSheet, type StyleProp, type TextStyle } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
 import { renderCutIconOutline } from "../ui/cut-icons";
 
-export const VideoStripForeground = createContext("#FFFFFF");
-
 // Active controls invert the white glyph and dark outline, with no button frame.
 export function MediaControlIcon({ name, size = 18, active = false, plain = false }: { name: IconName; size?: number; active?: boolean; plain?: boolean }) {
-  const stripForeground = useContext(VideoStripForeground);
   if (plain) {
     return <View style={{ width: size, height: size }}>
-      <Icon name={name} size={size} color={stripForeground} strokeWidth={1.75} />
-      {active && <View testID="video-active-dot" pointerEvents="none" style={{ position: 'absolute', bottom: -5, left: (size - 3) / 2, width: 3, height: 3, borderRadius: 1.5, backgroundColor: stripForeground }} />}
+      <Icon name={name} size={size} color="#FFFFFF" strokeWidth={1.75} />
+      {active && <View testID="video-active-dot" pointerEvents="none" style={{ position: 'absolute', bottom: -5, left: (size - 3) / 2, width: 3, height: 3, borderRadius: 1.5, backgroundColor: '#FFFFFF' }} />}
     </View>;
   }
   const foreground = active ? "#000000" : "#FFFFFF";
