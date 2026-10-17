@@ -28,9 +28,11 @@ export function useImageAspect(uri: string) {
   const currentUri = useRef(uri);
   currentUri.current = uri;
   const [measurement, setMeasurement] = useState<{ uri: string; ratio: number }>();
-  const ratio = measurement?.uri === uri
+  /** The image's real shape, once loaded now or before; null while it is only the placeholder. */
+  const measured = measurement?.uri === uri
     ? measurement.ratio
-    : aspectRatioCache.get(uri) ?? FEED_IMAGE_FALLBACK_ASPECT;
+    : aspectRatioCache.get(uri) ?? null;
+  const ratio = measured ?? FEED_IMAGE_FALLBACK_ASPECT;
 
   const onLoad = useCallback((event: ImageLoadEventData) => {
     const { width, height } = event.source;
@@ -51,5 +53,5 @@ export function useImageAspect(uri: string) {
       : { uri, ratio: measured });
   }, [uri]);
 
-  return { ratio, onLoad };
+  return { ratio, measured, onLoad };
 }

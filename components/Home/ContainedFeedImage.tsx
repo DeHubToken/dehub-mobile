@@ -49,8 +49,11 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
-  const { ratio: measuredAspect, onLoad } = useImageAspect(uri);
-  const aspectRatio = useFeedFrameAspect(`image:${uri}`, measuredAspect, active, !postPage);
+  const { ratio: measuredAspect, measured, onLoad } = useImageAspect(uri);
+  // Pass the real shape as `measured` so a frame held at the placeholder shape
+  // while the card scrolled in is corrected once the photo loads; without it
+  // the 4:3 guess stuck and the photo sat inside it with panels around it.
+  const aspectRatio = useFeedFrameAspect(`image:${uri}`, measuredAspect, active, !postPage, measured);
   const { isMinimal } = useAppTheme();
   // Minimal and the cinematic system feed both run the image edge to edge.
   const bleed = !!useFeedBleed();
