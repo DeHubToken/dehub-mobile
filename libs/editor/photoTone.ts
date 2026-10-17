@@ -1,4 +1,7 @@
+import { applyPhotoSharpen } from "./photoDetail";
 export interface PhotoTone {
+  sharpen?: number;
+  grain?: number;
   vibrance?: number;
   highlights?: number;
   shadows?: number;
@@ -17,16 +20,18 @@ export const DUOTONE_PRESETS = [
 export function validPhotoTone(value: PhotoTone): boolean {
   const bounded = (value: unknown, min: number, max: number) => value === undefined || (typeof value === "number" && Number.isFinite(value) && value >= min && value <= max);
   const duo = value.duotone;
-  return bounded(value.vibrance, -1, 1) && bounded(value.highlights, -1, 1) && bounded(value.shadows, -1, 1) && bounded(value.fade, 0, 1) &&
+  return bounded(value.sharpen, 0, 1) && bounded(value.grain, 0, 1) && bounded(value.vibrance, -1, 1) && bounded(value.highlights, -1, 1) && bounded(value.shadows, -1, 1) && bounded(value.fade, 0, 1) &&
     (duo === undefined || duo === null || (typeof duo === "object" && /^#[\da-f]{6}$/i.test(duo.dark) && /^#[\da-f]{6}$/i.test(duo.light) && typeof duo.amount === "number" && Number.isFinite(duo.amount) && duo.amount >= 0 && duo.amount <= 1));
 }
 
 export function needsPhotoTone(value: PhotoTone): boolean {
-  return !!(value.vibrance || value.highlights || value.shadows || value.fade || (value.duotone && value.duotone.amount > 0));
+  return !!(value.sharpen || value.grain || value.vibrance || value.highlights || value.shadows || value.fade || (value.duotone && value.duotone.amount > 0));
 }
 
 /** Process a bounded crop once; the compositor caches still-image results by source and style. */
-export function applyPhotoTone(pixels: Uint8ClampedArray, value: PhotoTone, opaque = false): void {
+export function applyPhotoTone(pixels: Uint8ClampedArray, value: PhotoTone, opaque = false, width = 0, height = 0): void {
+  if (value.sharpen) applyPhotoSharpen(pixels, width, height, value.sharpen);
+  const grain = Math.max(0, Math.min(1, Number.isFinite(value.grain) ? value.grain ?? 0 : 0));
   const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, Number.isFinite(v) ? v : 0));
   const highlights = clamp(value.highlights ?? 0, -1, 1), shadows = clamp(value.shadows ?? 0, -1, 1), fade = clamp(value.fade ?? 0, 0, 1);
   const vibrance = clamp(value.vibrance ?? 0, -1, 1);
@@ -50,9 +55,11 @@ export function applyPhotoTone(pixels: Uint8ClampedArray, value: PhotoTone, opaq
       g += (dg + (lg - dg) * level - g) * amount;
       b += (db + (lb - db) * level - b) * amount;
     }
-    pixels[index] = r * (1 - fade * 0.3) + fade * 48;
-    pixels[index + 1] = g * (1 - fade * 0.3) + fade * 48;
-    pixels[index + 2] = b * (1 - fade * 0.3) + fade * 48;
+    let noise = 0;
+    if (grain) { let seed = Math.imul((index >>> 2) ^ 0x9e3779b9, 0x85ebca6b); seed = Math.imul(seed ^ (seed >>> 16), 0xc2b2ae35); noise = (((seed ^ (seed >>> 16)) >>> 0) / 4294967295 - 0.5) * grain * 48; }
+    pixels[index] = noise + r * (1 - fade * 0.3) + fade * 48;
+    pixels[index + 1] = noise + g * (1 - fade * 0.3) + fade * 48;
+    pixels[index + 2] = noise + b * (1 - fade * 0.3) + fade * 48;
     if (opaque) pixels[index + 3] = 255;
   }
 }

@@ -138,6 +138,8 @@ export interface ClipCrop {
 
 
 export interface ClipEffects {
+  sharpen?: number;
+  grain?: number;
   vibrance?: number;
   highlights?: number;
   shadows?: number;
