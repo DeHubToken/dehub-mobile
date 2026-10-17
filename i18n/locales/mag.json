@@ -310,6 +310,8 @@
     "showAsNewMemberDesc": "दोसर सदस्य देख सकतै कि अहाँ अखने जुड़ल छी आर स्वागत क' सकतै। पंजीकरण के 30 दिन बाद अपने आप खतम भ' जेतै।",
     "postVisibility": "पोस्ट दृश्यता",
     "defaultPostVisibility": "डिफ़ॉल्ट पोस्ट दृश्यता",
+    "defaultProfileTab": "डिफॉल्ट प्रोफाइल टैब",
+    "defaultProfileTabDesc": "चुनूँ कि अहाँक प्रोफाइल पर आवे वाला सबस' पहिने कोन टैब देखतै",
     "defaultPostVisibilityDesc": "सब वर्तमान आ भविष्य के पोस्ट पर लागू",
     "public": "पब्लिक",
     "publicDesc": "कोई भी तोहर पोस्ट देख सके",

@@ -49,6 +49,7 @@ import {
 import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
 import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
+import { DEFAULT_PROFILE_TAB, PROFILE_DEFAULT_TAB_OPTIONS, parseDefaultProfileTab, type ProfileDefaultTab } from '../libs/profile-default-tab';
 
 const logger = createLogger('PrivacySettings');
 
@@ -104,6 +105,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const [hideBadgeAndBalance, setHideBadgeAndBalance] = useState(false);
   const [followerVisibility, setFollowerVisibility] = useState<FollowerVisibility>('public');
   const [defaultPostVisibility, setDefaultPostVisibility] = useState<PostVisibility>('public');
+  const [defaultProfileTab, setDefaultProfileTab] = useState<ProfileDefaultTab>(DEFAULT_PROFILE_TAB);
   const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('allow');
   const [showOnline, setShowOnline] = useState(false);
 
@@ -121,6 +123,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
   // Post visibility modal
   const [showPostVisModal, setShowPostVisModal] = useState(false);
+
+  // Landing tab modal
+  const [showProfileTabModal, setShowProfileTabModal] = useState(false);
 
   // Blocked accounts (web keeps this on the Privacy tab — `BlockedUsersSection`)
   const [blockedModalVisible, setBlockedModalVisible] = useState(false);
@@ -163,10 +168,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       'public') as PostVisibility),
     aiScraping: getAiScrapingPreference(customs),
     showOnline: getShowOnline(customs),
+    defaultProfileTab: parseDefaultProfileTab(customs.defaultProfileTab),
   }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}`;
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}|${customs.defaultProfileTab}`;
   }, [user, customs]);
 
   useEffect(() => {
@@ -178,6 +184,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setDefaultPostVisibility(initial.defaultPostVisibility);
     setAiScraping(initial.aiScraping);
     setShowOnline(initial.showOnline);
+    setDefaultProfileTab(initial.defaultProfileTab);
     if (user) setLoading(false);
   }, [userKey, saving]);
 
@@ -230,6 +237,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setDefaultPostVisibility(initial.defaultPostVisibility);
       setAiScraping(initial.aiScraping);
       setShowOnline(initial.showOnline);
+      setDefaultProfileTab(initial.defaultProfileTab);
     } finally {
       setSaving(false);
     }
@@ -269,6 +277,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setDefaultPostVisibility(vis);
     setShowPostVisModal(false);
     saveSetting({}, { defaultPostVisibility: vis });
+  }, [saveSetting]);
+
+  const handleProfileTabChange = useCallback((tab: ProfileDefaultTab) => {
+    setDefaultProfileTab(tab);
+    setShowProfileTabModal(false);
+    saveSetting({}, { defaultProfileTab: tab });
   }, [saveSetting]);
 
   const handleToggleAiScraping = useCallback((value: boolean) => {
@@ -507,6 +521,39 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 </View>
                 <View className="flex-row items-center">
                   <Text className="text-theme-neutrals-400 text-xs mr-2">{postVisLabel[defaultPostVisibility]}</Text>
+                  <Icon name="ChevronRight" size={18} color="#6b7280" />
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </SettingsAnchor>
+
+        {/* Landing tab: which profile tab visitors see first */}
+        <SettingsAnchor id="default-profile-tab">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-2">
+              {t('settings.profile')}
+            </Text>
+            <View className="-mx-4">
+              <TouchableOpacity
+                onPress={() => setShowProfileTabModal(true)}
+                activeOpacity={0.7}
+                className="px-4 py-2 flex-row items-center"
+                disabled={saving}
+              >
+                <View className="mr-3 w-5 h-5 items-center justify-center">
+                  <Icon name="LayoutGrid" size={20} color="#8B8D90" />
+                </View>
+                <View className="flex-1 mr-2">
+                  <Text className="text-white text-base leading-5 font-medium">{t('settings.defaultProfileTab')}</Text>
+                  <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
+                    {t('settings.defaultProfileTabDesc')}
+                  </Text>
+                </View>
+                <View className="flex-row items-center">
+                  <Text className="text-theme-neutrals-400 text-xs mr-2">
+                    {PROFILE_DEFAULT_TAB_OPTIONS.find((o) => o.value === defaultProfileTab)?.label}
+                  </Text>
                   <Icon name="ChevronRight" size={18} color="#6b7280" />
                 </View>
               </TouchableOpacity>
@@ -893,6 +940,37 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">{opt.desc}</Text>
               </View>
               {defaultPostVisibility === opt.value && (
+                <Icon name="Check" size={18} color="#D4D4D8" />
+              )}
+            </TouchableOpacity>
+          ))}
+        </View>
+      </GlassModal>
+
+      {/* Landing Tab Picker */}
+      <GlassModal scrollable
+        visible={showProfileTabModal}
+        onClose={() => setShowProfileTabModal(false)}
+        presentation="bottom"
+        maxHeight="70%"
+        blurIntensity={30}
+      >
+        <View className="pb-4 pt-2">
+          <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
+            {t('settings.defaultProfileTab')}
+          </Text>
+          {PROFILE_DEFAULT_TAB_OPTIONS.map(opt => (
+            <TouchableOpacity
+              key={opt.value}
+              onPress={() => handleProfileTabChange(opt.value)}
+              activeOpacity={0.7}
+              className="flex-row items-center px-5 py-3.5"
+            >
+              <View className="mr-3 w-5 h-5 items-center justify-center">
+                <Icon name={opt.icon} size={18} color="#8B8D90" />
+              </View>
+              <Text className="flex-1 text-white text-[15px] font-medium">{opt.label}</Text>
+              {defaultProfileTab === opt.value && (
                 <Icon name="Check" size={18} color="#D4D4D8" />
               )}
             </TouchableOpacity>

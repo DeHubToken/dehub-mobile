@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Miseensonni biroo akka ati amma makamte akka arganii si simataniif hayyama. Erga galmooftee guyyaa 30 booda ofumaan dhaabata.",
     "postVisibility": "Mul'ata Barreeffamaa",
     "defaultPostVisibility": "Mul'ata Barreeffamaa Durtii",
+    "defaultProfileTab": "Tab profaayilii durtii",
+    "defaultProfileTabDesc": "Daawwattoonni profaayilii kee irratti tab kam jalqaba akka arganu filadhu",
     "defaultPostVisibilityDesc": "Barreeffamoota ammaa fi gara fuulduraa hundaaf hojiirra oola",
     "public": "Ummataa",
     "publicDesc": "Namni kamiyyuu barreeffamoota kee ilaaluu danda'a",

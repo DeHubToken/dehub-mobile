@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Membolehkan ahli lain melihat anda baru menyertai supaya mereka boleh mengalu-alukan anda. Tamat secara automatik 30 hari selepas anda mendaftar.",
     "postVisibility": "Kebolehlihatan Siaran",
     "defaultPostVisibility": "Kebolehlihatan Siaran Lalai",
+    "defaultProfileTab": "Tab profil lalai",
+    "defaultProfileTabDesc": "Pilih tab yang pelawat lihat dahulu pada profil anda",
     "defaultPostVisibilityDesc": "Digunakan untuk semua siaran semasa dan masa hadapan",
     "public": "Awam",
     "publicDesc": "Sesiapa sahaja boleh melihat siaran anda",

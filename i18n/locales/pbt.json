@@ -304,6 +304,8 @@
     "showAsNewMemberDesc": "نورو غړو ته اجازه ورکوي چې وګوري تاسو تازه ګډون کړی ترڅو ښه راغلاست ووایي. له ثبت څخه 30 ورځې وروسته پخپله پای ته رسیږي.",
     "postVisibility": "د پوسټ لیدنه",
     "defaultPostVisibility": "اصلي د پوسټ لیدنه",
+    "defaultProfileTab": "اصلي پروفایل ټب",
+    "defaultProfileTabDesc": "وټاکئ چې لیدونکي ستاسو په پروفایل کې لومړی کوم ټب ویني",
     "defaultPostVisibilityDesc": "ټولو اوسنیو او راتلونکو پوسټونو ته پلي کیږي",
     "public": "عامه",
     "publicDesc": "هرڅوک ستاسو پوسټونه ګوري",

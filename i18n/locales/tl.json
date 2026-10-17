@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Ipinapakita sa ibang miyembro na kasasali mo lang para mabati ka nila. Awtomatikong nagtatapos 30 araw pagkatapos mong mag-sign up.",
     "postVisibility": "Pagiging Nakikita ng Post",
     "defaultPostVisibility": "Default na Pagiging Nakikita ng Post",
+    "defaultProfileTab": "Default na tab ng profile",
+    "defaultProfileTabDesc": "Piliin kung aling tab ang unang makikita ng mga bisita sa profile mo",
     "defaultPostVisibilityDesc": "Nalalapat sa lahat ng kasalukuyan at hinaharap na mga post",
     "public": "Pampubliko",
     "publicDesc": "Sinuman ay maaaring makita ang iyong mga post",

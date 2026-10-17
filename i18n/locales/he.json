@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "מאפשר לחברים אחרים לראות שהצטרפתם עכשיו כדי שיוכלו לקבל את פניכם. מסתיים אוטומטית 30 יום אחרי ההרשמה.",
     "postVisibility": "נראות פוסטים",
     "defaultPostVisibility": "נראות ברירת מחדל",
+    "defaultProfileTab": "לשונית ברירת המחדל בפרופיל",
+    "defaultProfileTabDesc": "בחרו איזו לשונית מבקרים רואים ראשונה בפרופיל שלכם",
     "defaultPostVisibilityDesc": "חל על כל הפוסטים הנוכחיים והעתידיים",
     "public": "ציבורי",
     "publicDesc": "כולם יכולים לראות את הפוסטים שלך",

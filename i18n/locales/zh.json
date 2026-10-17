@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "让其他成员看到你刚加入，方便他们欢迎你。注册 30 天后自动结束。",
     "postVisibility": "帖子可见性",
     "defaultPostVisibility": "默认帖子可见性",
+    "defaultProfileTab": "默认档案标签",
+    "defaultProfileTabDesc": "选择访客在你的主页上首先看到哪个标签",
     "defaultPostVisibilityDesc": "适用于所有当前和未来的帖子",
     "public": "公开",
     "publicDesc": "任何人都可以看到你的帖子",

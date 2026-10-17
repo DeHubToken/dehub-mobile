@@ -308,6 +308,8 @@
     "showAsNewMemberDesc": "دوسرے رکن دیکھ سکیں گے کہ تم ابھی شامل ہوئے ہو تاکہ وہ خوش آمدید بول سکیں۔ رجسٹر ہونے کے 30 دن بعد خود بخود ختم ہو جاتا ہے۔",
     "postVisibility": "پوسٹ دیکھنا",
     "defaultPostVisibility": "ڈیفالٹ پوسٹ دیکھنا",
+    "defaultProfileTab": "ڈیفالٹ پروفائل ٹیب",
+    "defaultProfileTabDesc": "چنو کون سا ٹیب دیکھنے والے پہلے دیکھیں تمہارے پروفائل پر",
     "defaultPostVisibilityDesc": "سب موجودہ اور مستقبل کی پوسٹوں پہ لاگو",
     "public": "پبلک",
     "publicDesc": "کوئی بھی تمہاری پوسٹ دیکھ سکے",

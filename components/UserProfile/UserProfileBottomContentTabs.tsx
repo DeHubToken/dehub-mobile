@@ -61,6 +61,7 @@ import { getPlans, type SubscriptionPlan } from "../../services/subscription.ser
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
+import { DEFAULT_PROFILE_TAB, type ProfileDefaultTab } from "../../libs/profile-default-tab";
 
 interface UserProfileBottomContentTabsProps {
   pinnedIdentity?: ProfilePinnedIdentity;
@@ -88,6 +89,8 @@ interface UserProfileBottomContentTabsProps {
   /** One-shot tab request from the header (the Subscribe CTA). */
   pendingTab?: string | null;
   onPendingTabConsumed?: () => void;
+  /** The tab the owner chose for visitors to land on (`customs.defaultProfileTab`). */
+  defaultTab?: ProfileDefaultTab;
   /** Back-to-top button's distance from the bottom; the host knows what sits there. */
   backToTopBottom?: number;
 }
@@ -150,6 +153,7 @@ const UserProfileBottomContentTabs: React.FC<
   blockedYou = false,
   pendingTab = null,
   onPendingTabConsumed,
+  defaultTab = DEFAULT_PROFILE_TAB,
   backToTopBottom,
 }) => {
   const { t } = useTranslation();
@@ -160,7 +164,17 @@ const UserProfileBottomContentTabs: React.FC<
   const counts = useProfileContentCounts(address);
 
   // Active content tab
-  const [activeTab, setActiveTab] = useState<ContentTab>("home");
+  const [activeTab, setActiveTab] = useState<ContentTab>(defaultTab);
+
+  // Open each profile on the tab its owner picked. Applied once per address:
+  // one sheet instance is reused for every profile, and a visitor's own tab
+  // taps afterwards must not be undone when the account record refreshes.
+  const appliedDefaultFor = useRef<string | null>(null);
+  useEffect(() => {
+    if (!address || appliedDefaultFor.current === address) return;
+    appliedDefaultFor.current = address;
+    setActiveTab(defaultTab);
+  }, [address, defaultTab]);
 
   // The header's Subscribe CTA lives one level up, so it asks for a tab rather
   // than owning one. Cleared immediately so a second press still works.

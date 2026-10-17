@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Membuat anggota lain melihat Anda baru bergabung sehingga bisa menyambut. Berakhir otomatis 30 hari setelah Anda mendaftar.",
     "postVisibility": "Visibilitas Postingan",
     "defaultPostVisibility": "Visibilitas Default",
+    "defaultProfileTab": "Tab profil bawaan",
+    "defaultProfileTabDesc": "Pilih tab mana yang pertama dilihat pengunjung di profil Anda",
     "defaultPostVisibilityDesc": "Berlaku untuk semua postingan saat ini dan yang akan datang",
     "public": "Publik",
     "publicDesc": "Siapa saja dapat melihat postingan Anda",

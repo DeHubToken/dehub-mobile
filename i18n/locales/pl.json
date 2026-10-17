@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Pozwala innym zobaczyć, że dopiero dołączyłeś, żeby mogli Cię powitać. Kończy się automatycznie 30 dni po rejestracji.",
     "postVisibility": "Widoczność postów",
     "defaultPostVisibility": "Domyślna widoczność postów",
+    "defaultProfileTab": "Domyślna zakładka profilu",
+    "defaultProfileTabDesc": "Wybierz, którą zakładkę odwiedzający zobaczą najpierw na Twoim profilu",
     "defaultPostVisibilityDesc": "Dotyczy wszystkich obecnych i przyszłych postów",
     "public": "Publiczny",
     "publicDesc": "Każdy może zobaczyć Twoje posty",

@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Ngidini anggota liya ndeleng sampeyan lagi wae gabung supaya bisa nyambut sampeyan. Rampung otomatis 30 dina sawise sampeyan ndhaftar.",
     "postVisibility": "Visibilitas Kiriman",
     "defaultPostVisibility": "Visibilitas Kiriman Default",
+    "defaultProfileTab": "Tab profil gawan",
+    "defaultProfileTabDesc": "Pilih tab endi sing dideleng dhisik dening tamu ing profilmu",
     "defaultPostVisibilityDesc": "Ditrapake kanggo kabeh kiriman saiki lan mangsa ngarep",
     "public": "Umum",
     "publicDesc": "Sapa wae bisa ndeleng kirimanmu",

@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Ostatní členové uvidí, že jsi právě přibyl, a můžou tě přivítat. Automaticky skončí 30 dní po registraci.",
     "postVisibility": "Viditelnost příspěvků",
     "defaultPostVisibility": "Výchozí viditelnost",
+    "defaultProfileTab": "Výchozí karta profilu",
+    "defaultProfileTabDesc": "Vyber, kterou kartu uvidí návštěvníci na tvém profilu jako první",
     "defaultPostVisibilityDesc": "Platí pro všechny současné i budoucí příspěvky",
     "public": "Veřejné",
     "publicDesc": "Kdokoli může vidět vaše příspěvky",

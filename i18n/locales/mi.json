@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Ka taea e ētahi atu mema te kite kua uru hou mai koe kia mihi ai rātou ki a koe. Ka mutu aunoa i te 30 rā i muri i tō rēhitatanga.",
     "postVisibility": "Kitea o ngā pānui",
     "defaultPostVisibility": "Kitea taunoa",
+    "defaultProfileTab": "Ripa kōtaha taunoa",
+    "defaultProfileTabDesc": "Tīpakohia ko tēhea ripa ka kite tuatahi ngā manuhiri i tō kōtaha",
     "defaultPostVisibilityDesc": "Ka pā ki ngā pānui katoa o nāianei me ngā mea hou",
     "public": "Tūmatanui",
     "publicDesc": "Ka taea e te katoa te kite i ō pānui",

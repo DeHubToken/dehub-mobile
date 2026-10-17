@@ -4,7 +4,7 @@ import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './
 import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import ProfilePinnedBar from './ProfilePinnedBar';
 import { useTranslation as _useCopy } from 'react-i18next';
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View } from "react-native";
 import Animated, { runOnJS, useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
@@ -32,6 +32,7 @@ import {
 import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
+import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
 
@@ -53,7 +54,18 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   // Keep the header's layout for scroll position, but stop drawing its masked
   // artwork once the joined navigation fully covers it.
   const expandedHeaderStyle = useAnimatedStyle(() => ({ opacity: tabsStuck.value ? 0 : 1 }));
-  const [activeKey, setActiveKey] = useState("home");
+  const ownDefaultTab = getDefaultProfileTab(user);
+  const [activeKey, setActiveKey] = useState<string>(ownDefaultTab);
+  // Your own profile opens on the tab you picked for visitors, so you see it
+  // the way they do. Re-applied only when the account or the choice changes,
+  // so tapping other tabs afterwards sticks.
+  const appliedDefaultFor = useRef<string | null>(null);
+  useEffect(() => {
+    const key = `${address}|${ownDefaultTab}`;
+    if (!address || appliedDefaultFor.current === key) return;
+    appliedDefaultFor.current = key;
+    setActiveKey(ownDefaultTab);
+  }, [address, ownDefaultTab]);
   const { drive } = useTabBarScrollHide();
   const driveProfile = useCallback((y: number) => {
     'worklet';

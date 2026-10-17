@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Lader andre medlemmer se, at du lige er kommet til, så de kan byde dig velkommen. Slutter automatisk 30 dage efter, du meldte dig til.",
     "postVisibility": "Opslagssynlighed",
     "defaultPostVisibility": "Standard opslagssynlighed",
+    "defaultProfileTab": "Standardfane på profilen",
+    "defaultProfileTabDesc": "Vælg, hvilken fane besøgende ser først på din profil",
     "defaultPostVisibilityDesc": "Gælder for alle nuværende og fremtidige opslag",
     "public": "Offentlig",
     "publicDesc": "Alle kan se dine opslag",

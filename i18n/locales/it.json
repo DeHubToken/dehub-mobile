@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Fa vedere agli altri membri che sei appena arrivato, così possono darti il benvenuto. Finisce automaticamente 30 giorni dopo l'iscrizione.",
     "postVisibility": "Visibilità post",
     "defaultPostVisibility": "Visibilità predefinita",
+    "defaultProfileTab": "Scheda profilo predefinita",
+    "defaultProfileTabDesc": "Scegli quale scheda vedono per prima i visitatori sul tuo profilo",
     "defaultPostVisibilityDesc": "Si applica a tutti i post attuali e futuri",
     "public": "Pubblico",
     "publicDesc": "Chiunque può vedere i tuoi post",

@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Lejon anëtarët e tjerë të shohin se sapo je bashkuar që të të mirëpresin. Përfundon automatikisht 30 ditë pas regjistrimit.",
     "postVisibility": "Dukshmëria e Postimeve",
     "defaultPostVisibility": "Dukshmëria e Parazgjedhur e Postimeve",
+    "defaultProfileTab": "Skeda e parazgjedhur e profilit",
+    "defaultProfileTabDesc": "Zgjidh cilën skedë shohin të parën vizitorët në profilin tënd",
     "defaultPostVisibilityDesc": "Zbatohet për të gjitha postimet aktuale dhe të ardhshme",
     "public": "Publik",
     "publicDesc": "Kushdo mund t'i shohë postimet tuaja",

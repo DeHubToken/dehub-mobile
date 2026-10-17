@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Mamela ny mpikambana hafa hahita fa vao niditra ianao mba hahafahan'izy ireo mandray anao. Mifarana ho azy 30 andro aorian'ny fisoratana anarana.",
     "postVisibility": "Fahitana ny lahatsoratra",
     "defaultPostVisibility": "Fahitana voalohany",
+    "defaultProfileTab": "Vakizoro mombamomba mahazatra",
+    "defaultProfileTabDesc": "Fidio hoe vakizoro inona no hitan'ny mpitsidika voalohany ao amin'ny mombamomba anao",
     "defaultPostVisibilityDesc": "Mihatra amin'ny lahatsoratra rehetra ankehitriny sy ho avy",
     "public": "Ho an'ny rehetra",
     "publicDesc": "Na iza na iza afaka mahita ny lahatsoratrao",

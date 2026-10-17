@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Hagyja, hogy a többi tag lássa, most csatlakoztál, és köszönthessenek. A regisztráció után 30 nappal automatikusan lejár.",
     "postVisibility": "Bejegyzés láthatósága",
     "defaultPostVisibility": "Alapértelmezett láthatóság",
+    "defaultProfileTab": "Alapértelmezett profillap",
+    "defaultProfileTabDesc": "Válaszd ki, melyik lapot lássák először a látogatók a profilodon",
     "defaultPostVisibilityDesc": "Minden jelenlegi és jövőbeli bejegyzésre vonatkozik",
     "public": "Nyilvános",
     "publicDesc": "Bárki láthatja bejegyzéseit",
