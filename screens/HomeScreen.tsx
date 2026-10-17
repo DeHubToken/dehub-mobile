@@ -27,7 +27,7 @@ import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
-import FeedNavBar, { NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
+import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
@@ -493,9 +493,10 @@ export default function HomeScreen() {
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
     setNavOverlap(e.nativeEvent.layout.height - NAV_PILL_TOP_INSET);
     setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4);
-    // Match web's full-width cutoff just inside the upper rim. Both layers
-    // follow the header on the UI thread, even while JavaScript is busy.
-    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4;
+    // Match web's full-width cutoff below the rounded top corners, so nothing
+    // peeks past them on any tab. Both layers follow the header on the UI
+    // thread, even while JavaScript is busy.
+    navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + NAV_PILL_RADIUS;
     // Minimal's tab bar sits flush; the pill themes keep 2pt under the pill.
     navPillBottom.value = e.nativeEvent.layout.y + e.nativeEvent.layout.height - (theme === 'minimal' ? 0 : 2);
   }, [navPillTop, navPillBottom, theme]);
