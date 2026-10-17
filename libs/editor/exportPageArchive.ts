@@ -1,6 +1,7 @@
+import { imageJpegQuality } from "./imageExportOptions";
 import * as FileSystem from "expo-file-system/legacy";
 import { exportBaseName } from "./exportName";
-import { pageExportFrames } from "./pageExports";
+import { pageExportFrames, type PageExportScope } from "./pageExports";
 import { saveEditorDownload } from "./saveEditorDownload";
 import { writeExport } from "./storage";
 import type { ProjectSnapshot } from "./types";
@@ -9,15 +10,15 @@ import { zipDownloadFiles } from "./zipDownloadFiles";
 /** Capture one page at a time and stream the archive, cleaning every temporary file. */
 export async function exportPageArchive(snapshot: ProjectSnapshot, time: number, format: "png" | "jpeg",
   capture: (format: "png" | "jpeg", quality: number, time: number) => Promise<string>,
-  signal?: AbortSignal, onProgress?: (fraction: number, current: number, total: number) => void): Promise<void> {
+  signal?: AbortSignal, onProgress?: (fraction: number, current: number, total: number) => void, scope: PageExportScope = "all", filenamePattern = "", jpegQuality = 0.92): Promise<void> {
   const check = () => { if (signal?.aborted) { const error = new Error("Export cancelled"); error.name = "AbortError"; throw error; } };
-  const frames = pageExportFrames(snapshot, time, "all", format === "jpeg" ? "jpg" : "png");
+  const frames = pageExportFrames(snapshot, time, scope, format === "jpeg" ? "jpg" : "png", filenamePattern);
   const files: { name: string; uri: string }[] = [];
   let archive: string | undefined;
   try {
     for (const [index, frame] of frames.entries()) {
       check(); onProgress?.(index / frames.length * 0.95, index + 1, frames.length);
-      const dataUrl = await capture(format, 0.92, frame.time);
+      const dataUrl = await capture(format, imageJpegQuality(jpegQuality), frame.time);
       check();
       const uri = await writeExport(dataUrl, format, frame.filename.slice(0, -4));
       files.push({ name: frame.filename, uri });

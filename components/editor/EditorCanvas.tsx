@@ -1,3 +1,19 @@
+import { clipFontFamilies, graphicFontCss } from "../../libs/editor/graphicFonts";
+import { fontStylesheet } from "../../libs/editor/fonts";
+import { registerDataVisualSvgRenderer } from "../../libs/editor/dataVisualSvgRenderer";
+import { registerPaletteImageDecoder } from "../../libs/editor/paletteImageDecoder";
+import { nextDesignLayer } from "../../libs/editor/layerNavigation";
+import OverlapLayerPicker from "./OverlapLayerPicker";
+import SpacingGuides from "./SpacingGuides";
+import { smartSpacingSnap, type SpacingGuide } from "../../libs/editor/smartSpacing";
+import { beginDesignColourSample, cancelDesignColourPick, finishDesignColourSample, getDesignColourPick, useDesignColourPick } from "../../libs/editor/designColourPicker";
+import { designPrintDpi } from "../../libs/editor/documentDimensions";
+import { freehandSvg, type PenSettings } from "../../libs/editor/freehand";
+import { FIT_VIEWPORT, focusDesignSelection, zoomDesignViewport, type DesignViewport } from "../../libs/editor/designViewport";
+import { panMediaCrop, zoomMediaCrop } from "../../libs/editor/mediaCrop";
+import GuideEditorOverlay from "./GuideEditorOverlay";
+import DesignRulers from "./DesignRulers";
+import type { DesignPdfLink } from "../../libs/editor/designLinks";
 import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
 /**
  * The editor page: a WebView that draws the design (see libs/editor/canvasHtml)
@@ -13,13 +29,15 @@ import type { ProjectEditLease } from "../../libs/editor/projectEditGate";
  * and it is drawn here, over the page, with a diamond at each key.
  */
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Pressable, ScrollView, Text, View } from "react-native";
 import { WebView, type WebViewMessageEvent } from "react-native-webview";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Svg, { Polygon, Polyline } from "react-native-svg";
+import Svg, { Path, Polygon, Polyline } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { getClip, getTransform, mediaIds, placementPatchAt, updateClip } from "../../libs/editor/project";
+import { groupedSelection } from "../../libs/editor/designGroups";
+import { getDesignGuides } from "../../libs/editor/designGuides";
 import { isAnimated, keyTimes, resolveClipAt } from "../../libs/editor/keyframes";
 import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
@@ -45,6 +63,7 @@ export interface LayerBox {
 }
 
 export interface EditorCanvasHandle {
+  layoutBoxes: () => LayerBox[];
   removeVideoBackground: (clip: MediaClip, fps: number, onProgress?: (p: VideoMatteProgress) => void, signal?: AbortSignal, storePage?: VideoMattePageSink) => Promise<VideoMatteResult>;
   transcribe: (clip: MediaClip, onProgress?: (progress: CaptionProgress) => void, signal?: AbortSignal) => Promise<CaptionWord[]>;
   sampleVisual: (clip: MediaClip, windows: VisualWindow[], signal: AbortSignal, progress: (fraction: number) => void) => Promise<VisualFrame[]>;
@@ -52,7 +71,7 @@ export interface EditorCanvasHandle {
   detectBeats: (clip: MediaClip, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<BeatAnalysis>;
   processAudio: (clip: MediaClip, mode: AudioToolMode, signal?: AbortSignal, onProgress?: (fraction: number) => void) => Promise<{ uri: string; duration: number }>;
   /** Render the page at full size and return it as a data URL. */
-  exportImage: (format: "png" | "jpeg", quality?: number, time?: number) => Promise<string>;
+  exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean, onLinks?: (links: DesignPdfLink[]) => void, settled?: boolean, maxEdge?: number, snapshot?: ProjectSnapshot) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
   /**
@@ -83,11 +102,13 @@ interface Props {
   /** Called once when a started gesture finishes, including a return to its origin. */
   onGestureEnd: () => void;
   onEditText: (id: string) => void;
+  cropping?: boolean;
+  onEditCrop?: (id: string) => void;
   onMissingMedia?: (ids: string[]) => void;
   /** Freehand pen; while set, one finger draws instead of moving layers. */
-  pen?: { color: string; width: number } | null;
+  pen?: PenSettings | null;
   /** A finished stroke, in page pixels. */
-  onStroke?: (points: [number, number][]) => void;
+  onStroke?: (points: [number, number][], time?: number, pen?: PenSettings) => void;
   /** Playing the timeline; the page runs the clock and reports it in onTime. */
   playing?: boolean;
   onTime?: (time: number) => void;
@@ -131,6 +152,7 @@ function normaliseDeg(d: number): number {
 }
 
 interface Drag {
+  cropping: boolean;
   lease: ProjectEditLease | null;
   finish: () => void;
   before: ProjectSnapshot;
@@ -146,17 +168,33 @@ interface Drag {
 const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas(props, ref) {
   const { t } = useTranslation();
   const { project, time, fontCss, selectedId } = props;
+  const [overlapIds, setOverlapIds] = useState<string[] | null>(null);
+  useEffect(() => setOverlapIds(null), [project.id, time]);
   const webRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
+  const colourPick = useDesignColourPick(), sampling = colourPick?.projectId === project.id;
+  const dataVisualSvgRequests = useRef(new Map<string, { resolve: (svg: string) => void; reject: (error: Error) => void; cleanup: () => void }>());
+  const paletteRequests = useRef(new Map<string, { resolve: (colours: string[]) => void; reject: (error: Error) => void; cleanup: () => void }>());
+  const colourTimers = useRef(new Map<number, ReturnType<typeof setTimeout>>());
+  useEffect(() => () => { for (const timer of colourTimers.current.values()) clearTimeout(timer); colourTimers.current.clear(); if (getDesignColourPick()?.projectId === project.id) cancelDesignColourPick(); }, [project.id]);
   const [webKey, setWebKey] = useState(0);
   const [area, setArea] = useState({ w: 0, h: 0 });
+  const [viewport, setViewport] = useState<DesignViewport>(FIT_VIEWPORT);
+  const [navigating, setNavigating] = useState(false);
+  const [editingGuides, setEditingGuides] = useState(false);
+  const viewportDrag = useRef<{ before: DesignViewport; dx: number; dy: number; factor: number; anchor: { x: number; y: number }; active: Set<"pan" | "pinch"> } | null>(null);
+  useEffect(() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); setNavigating(false); setEditingGuides(false); }, [project.id, project.settings.width, project.settings.height]);
+  useEffect(() => { if (props.cropping) { viewportDrag.current = null; setNavigating(false); } }, [props.cropping]);
+
   const [layers, setLayers] = useState<LayerBox[]>([]);
-  const [guides, setGuides] = useState({ v: false, h: false });
+  const [spacingGuides, setSpacingGuides] = useState<SpacingGuide[]>([]);
+  const [guides, setGuides] = useState<{ v: number | null; h: number | null }>({ v: null, h: null });
+  const layoutGuides = getDesignGuides(project.settings.guides);
   // Stroke being drawn, in page pixels (preview only; committed on release).
   const [stroke, setStroke] = useState<[number, number][] | null>(null);
   const strokeRef = useRef<[number, number][] | null>(null);
   const sentMedia = useRef(new Set<string>());
-  const exports = useRef(new Map<string, { resolve: (v: string) => void; reject: (e: Error) => void; cleanup: () => void }>());
+  const exports = useRef(new Map<string, { resolve: (v: string) => void; onLinks?: (links: DesignPdfLink[]) => void; reject: (e: Error) => void; cleanup: () => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
@@ -184,16 +222,20 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const W = project.settings.width;
   const H = project.settings.height;
   // Largest page of the project's shape that fits the space we were given.
-  const k = area.w && area.h ? Math.min(area.w / W, area.h / H) : 0;
+  const k = area.w && area.h ? Math.min(Math.max(1, area.w - 36) / W, Math.max(1, area.h - 48 - 36) / H) : 0;
   const viewW = W * k;
   const viewH = H * k;
+  const viewportSize = { w: area.w, h: Math.max(1, area.h - 48) };
+  const origin = { x: (viewportSize.w - viewW * viewport.zoom) / 2 + viewport.x, y: (viewportSize.h - viewH * viewport.zoom) / 2 + viewport.y };
+
 
   // Everything the gesture callbacks read, kept current without rebuilding them.
-  const live = useRef({ props, layers, k });
-  live.current = { props, layers, k };
+  const live = useRef({ props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, sampling, origin, viewportSize });
+  live.current = { props, layers, k: k * viewport.zoom, viewport, navigating, editingGuides, sampling, origin, viewportSize };
   const drag = useRef<Drag | null>(null);
   const strokeLease = useRef<ProjectEditLease | null>(null);
   const strokeOwner = useRef<string | null>(null);
+  const strokeAt = useRef(0), strokePen = useRef<PenSettings | null>(null);
   useEffect(() => () => {
     const previous = drag.current; drag.current = null;
     try { if (previous && (!previous.lease || previous.lease.isCurrent())) previous.finish(); } finally { previous?.lease?.release(); }
@@ -203,6 +245,27 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const post = useCallback((msg: unknown) => {
     webRef.current?.postMessage(JSON.stringify(msg));
   }, []);
+  useEffect(() => {
+    const unregister = registerDataVisualSvgRenderer(project.id, (value, width, height, signal) => new Promise<string>((resolve, reject) => {
+      if (dataVisualSvgRequests.current.size >= 10) { reject(new Error("The design canvas is busy")); return; }
+      const reqId = `graphic-svg-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => { const request = dataVisualSvgRequests.current.get(reqId); if (!request) return; dataVisualSvgRequests.current.delete(reqId); request.cleanup(); reject(new Error("Vector export cancelled")); };
+      const timer = setTimeout(cancel, 15000), cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
+      dataVisualSvgRequests.current.set(reqId, { resolve, reject, cleanup }); signal.addEventListener("abort", cancel, { once: true });
+      if (signal.aborted) cancel(); else post({ type: "dataVisualSvg", reqId, value, width, height, fontCss: [fontStylesheet(graphicFontCss("chart" in value ? value.chart.fontFamily : value.table.fontFamily))].filter(Boolean) });
+    }));
+    return () => { unregister(); for (const request of dataVisualSvgRequests.current.values()) { request.cleanup(); request.reject(new Error("The design canvas closed")); } dataVisualSvgRequests.current.clear(); };
+  }, [project.id, post, webKey]);
+  useEffect(() => {
+    const unregister = registerPaletteImageDecoder(project.id, (source, signal) => new Promise<string[]>((resolve, reject) => {
+      const reqId = `palette-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const cancel = () => { const request = paletteRequests.current.get(reqId); if (!request) return; paletteRequests.current.delete(reqId); request.cleanup(); reject(new Error("Palette extraction cancelled")); };
+      const timer = setTimeout(cancel, 15000), cleanup = () => { clearTimeout(timer); signal.removeEventListener("abort", cancel); };
+      paletteRequests.current.set(reqId, { resolve, reject, cleanup }); signal.addEventListener("abort", cancel, { once: true });
+      if (signal.aborted) cancel(); else post({ type: "paletteImage", reqId, source });
+    }));
+    return () => { unregister(); for (const request of paletteRequests.current.values()) { request.cleanup(); request.reject(new Error("The design canvas closed")); } paletteRequests.current.clear(); };
+  }, [project.id, post, webKey]);
   useEffect(() => () => {
     for (const [reqId, request] of videoMatteReqs.current) { request.cleanup(); request.reject(new Error("canvas closed")); post({ type: "videoMatteCancel", reqId }); }
     videoMatteReqs.current.clear();
@@ -392,8 +455,30 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         }
         break;
       }
+      case "dataVisualSvg": {
+        const request = dataVisualSvgRequests.current.get(msg.reqId); if (!request) break;
+        dataVisualSvgRequests.current.delete(msg.reqId); request.cleanup();
+        if (typeof msg.error === "string") request.reject(new Error(msg.error));
+        else if (typeof msg.svg === "string" && msg.svg.startsWith("<?xml") && msg.svg.length <= 2 * 1024 * 1024) request.resolve(msg.svg);
+        else request.reject(new Error("Could not render vector graphic"));
+        break;
+      }
+      case "paletteImage": {
+        const request = paletteRequests.current.get(msg.reqId); if (!request) break;
+        paletteRequests.current.delete(msg.reqId); request.cleanup();
+        if (typeof msg.error === "string") request.reject(new Error(msg.error));
+        else if (Array.isArray(msg.colours) && msg.colours.length > 0 && msg.colours.length <= 8 && msg.colours.every((colour: unknown) => typeof colour === "string" && /^#[a-f0-9]{6}$/i.test(colour))) request.resolve(msg.colours);
+        else request.reject(new Error("Could not extract page colours"));
+        break;
+      }
+      case "colourSampled": {
+        const token = Number(msg.token), timer = colourTimers.current.get(token);
+        if (timer !== undefined) { clearTimeout(timer); colourTimers.current.delete(token); finishDesignColourSample(token, typeof msg.colour === "string" ? msg.colour : null, typeof msg.error === "string" ? msg.error : ""); }
+        break;
+      }
       case "exported":
         exports.current.get(msg.reqId)?.cleanup();
+        exports.current.get(msg.reqId)?.onLinks?.(Array.isArray(msg.links) ? msg.links : []);
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
         break;
@@ -557,6 +642,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   }, []);
 
   useImperativeHandle(ref, () => ({
+    layoutBoxes: () => live.current.layers.map(box => ({ ...box })),
     cancelExport: () => {
       post({ type: "exportAbort" });
       const error = new Error("export cancelled"); error.name = "AbortError";
@@ -662,7 +748,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       signal?.addEventListener("abort", cancel, { once: true });
       post({ type: "captions", reqId, clip });
     }),
-    exportImage: (format, quality = 0.92, time) =>
+    exportImage: (format, quality = 0.92, time, transparent = false, onLinks, settled = false, maxEdge, snapshot) =>
       new Promise<string>((resolve, reject) => {
         const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const timer = setTimeout(() => {
@@ -672,8 +758,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
             reject(new Error("export timed out"));
           }
         }, 30000);
-        exports.current.set(reqId, { resolve, reject, cleanup: () => clearTimeout(timer) });
-        post({ type: "export", reqId, format, quality, time });
+        exports.current.set(reqId, { resolve, reject, onLinks, cleanup: () => clearTimeout(timer) });
+        post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks, settled, maxEdge, snapshot, fontCss: snapshot ? clipFontFamilies(snapshot.clips).flatMap(family => { const href = fontStylesheet(family); return href ? [href] : []; }) : undefined });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {
@@ -739,8 +825,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const hitTest = (x: number, y: number): LayerBox | null => {
     const { layers: ls, k: scale } = live.current;
     if (!scale) return null;
-    const px = x / scale;
-    const py = y / scale;
+    const px = (x - live.current.origin.x) / scale;
+    const py = (y - live.current.origin.y) / scale;
     const slop = HIT_SLOP_PT / scale;
     const project = live.current.props.project;
     for (let i = ls.length - 1; i >= 0; i--) {
@@ -755,13 +841,24 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   const beginDrag = (clipId: string) => {
     if (drag.current) { drag.current.active += 1; return true; }
+    const current = live.current.props;
+    if (!current.cropping && getClip(current.project, clipId)?.isPageBackground) return false;
+    const memberIds = current.cropping ? [clipId] : groupedSelection(current.project.clips, [clipId], current.time);
+    if (current.project.clips.some(c => memberIds.includes(c.id) && c.locked)) return false;
+    const boxes = live.current.layers.filter(layer => memberIds.includes(layer.id));
+    const groupBox = boxes.length > 1 ? (() => {
+      const left = Math.min(...boxes.map(box => box.cx - box.w / 2)), right = Math.max(...boxes.map(box => box.cx + box.w / 2));
+      const top = Math.min(...boxes.map(box => box.cy - box.h / 2)), bottom = Math.max(...boxes.map(box => box.cy + box.h / 2));
+      return { ...boxes[0], cx: (left + right) / 2, cy: (top + bottom) / 2, w: right - left, h: bottom - top, rotation: 0 };
+    })() : boxOf(clipId);
     const callback = live.current.props.onGestureStart, lease = callback?.() ?? null;
     if (callback && !lease) return false;
     drag.current = {
+      cropping: !!current.cropping,
       lease, finish: live.current.props.onGestureEnd,
       before: live.current.props.project,
       clipId,
-      box: boxOf(clipId),
+      box: groupBox,
       dx: 0,
       dy: 0,
       scale: 1,
@@ -777,6 +874,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     if (!d || !scaleK || (d.lease && !d.lease.isCurrent()) || d.before.id !== live.current.props.project.id) return;
     const base = getClip(d.before, d.clipId);
     if (!base) return;
+    if (d.cropping && d.box && (base.kind === "image" || base.kind === "video")) {
+      const zoomed = zoomMediaCrop(base, d.scale), media = { ...base, ...zoomed } as MediaClip;
+      const patch = panMediaCrop(media, d.box, d.dx / scaleK, d.dy / scaleK) ?? zoomed;
+      if (patch) live.current.props.onLiveChange(updateClip(d.before, base.id, patch));
+      return;
+    }
     const { width: PW, height: PH } = d.before.settings;
     // Keyed layers start from where they are at the playhead, and write a key there.
     // Record mode does the same for layers that are not keyed yet.
@@ -785,12 +888,37 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tr = getTransform(resolveClipAt(base, now));
     let dx = d.dx / scaleK;
     let dy = d.dy / scaleK;
-    let v = false;
-    let h = false;
-    if (d.box) {
-      const snap = SNAP_PT / scaleK;
-      if (Math.abs(d.box.cx + dx - PW / 2) < snap) { dx = PW / 2 - d.box.cx; v = true; }
-      if (Math.abs(d.box.cy + dy - PH / 2) < snap) { dy = PH / 2 - d.box.cy; h = true; }
+    let spacing: SpacingGuide[] = [];
+    let v: number | null = null;
+    let h: number | null = null;
+    if (d.box && (d.dx || d.dy)) {
+      const threshold = SNAP_PT / scaleK, xs = [0, PW / 2, PW], ys = [0, PH / 2, PH];
+      const persistent = getDesignGuides(d.before.settings.guides);
+      if (persistent.snap) {
+        xs.push(...persistent.vertical.map(n => n * PW)); ys.push(...persistent.horizontal.map(n => n * PH));
+        if (persistent.margin) { const margin = persistent.margin * Math.min(PW, PH); xs.push(margin, PW - margin); ys.push(margin, PH - margin); }
+      }
+      const moving = new Set(groupedSelection(d.before.clips, [d.clipId], now));
+      const backgrounds = new Set(d.before.clips.filter(clip => clip.isPageBackground).map(clip => clip.id));
+      const otherBoxes = live.current.layers.filter(other => !moving.has(other.id) && !backgrounds.has(other.id));
+      for (const other of otherBoxes) {
+        const radians = other.rotation * Math.PI / 180, cos = Math.abs(Math.cos(radians)), sin = Math.abs(Math.sin(radians));
+        const hw = (other.w * cos + other.h * sin) / 2, hh = (other.w * sin + other.h * cos) / 2;
+        xs.push(other.cx - hw, other.cx, other.cx + hw); ys.push(other.cy - hh, other.cy, other.cy + hh);
+      }
+      const radians = d.box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(radians)), sin = Math.abs(Math.sin(radians));
+      const hw = (d.box.w * cos + d.box.h * sin) / 2, hh = (d.box.w * sin + d.box.h * cos) / 2;
+      const snap = (centre: number, half: number, lines: number[]) => {
+        let best: { distance: number; shift: number; line: number } | null = null;
+        for (const edge of [centre - half, centre, centre + half]) for (const line of lines) {
+          const distance = Math.abs(edge - line);
+          if (distance <= threshold && (!best || distance < best.distance)) best = { distance, shift: line - edge, line };
+        }
+        return best;
+      };
+      const sx = snap(d.box.cx + dx, hw, xs), sy = snap(d.box.cy + dy, hh, ys);
+      if (sx) { dx += sx.shift; v = sx.line; } if (sy) { dy += sy.shift; h = sy.line; }
+      if (persistent.spacing) { const result = smartSpacingSnap({ ...d.box, cx: d.box.cx + dx, cy: d.box.cy + dy }, otherBoxes, threshold, { horizontal: !sx, vertical: !sy }); dx += result.dx; dy += result.dy; spacing = result.guides; }
     }
     let rotation = normaliseDeg(tr.rotation + d.rotation);
     const nearest = Math.round(rotation / 45) * 45;
@@ -807,8 +935,28 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       if (d.scale !== 1) place.scale = Math.max(0.05, Math.min(20, tr.scale * d.scale));
       patch = placementPatchAt(base, place, now, { record });
     }
+    setSpacingGuides(spacing);
     setGuides((g) => (g.v === v && g.h === h ? g : { v, h }));
-    live.current.props.onLiveChange(updateClip(d.before, d.clipId, patch));
+    const memberIds = groupedSelection(d.before.clips, [d.clipId], now);
+    let next = updateClip(d.before, d.clipId, patch);
+    if (memberIds.length > 1) {
+      const pivotX = d.box?.cx ?? tr.x * PW, pivotY = d.box?.cy ?? tr.y * PH;
+      const radians = (rotation - tr.rotation) * Math.PI / 180, cos = Math.cos(radians), sin = Math.sin(radians);
+      const shiftX = d.dx || d.dy ? dx : 0, shiftY = d.dx || d.dy ? dy : 0;
+      next = d.before;
+      for (const member of d.before.clips.filter(c => memberIds.includes(c.id) && c.kind !== "audio")) {
+        const mt = getTransform(resolveClipAt(member, now));
+        const x = (mt.x * PW - pivotX) * d.scale, y = (mt.y * PH - pivotY) * d.scale;
+        const position: Record<string, number> = {};
+        if (d.dx || d.dy || d.scale !== 1 || d.rotation) { position.x = (pivotX + x * cos - y * sin + shiftX) / PW; position.y = (pivotY + x * sin + y * cos + shiftY) / PH; }
+        if (d.rotation) position.rotation = normaliseDeg(mt.rotation + rotation - tr.rotation);
+        if (member.kind !== "text" && d.scale !== 1) position.scale = Math.max(0.05, Math.min(20, mt.scale * d.scale));
+        const change = { ...placementPatchAt(member, position, now, { record }),
+          ...(member.kind === "text" && d.scale !== 1 ? { fontSize: Math.max(6, Math.min(1000, member.fontSize * d.scale)) } : {}) };
+        next = updateClip(next, member.id, change);
+      }
+    }
+    live.current.props.onLiveChange(next);
   };
 
   const endDrag = () => {
@@ -817,7 +965,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     d.active -= 1;
     if (d.active > 0) return;
     drag.current = null;
-    setGuides({ v: false, h: false });
+    setGuides({ v: null, h: null }); setSpacingGuides([]);
     try { if (!d.lease || d.lease.isCurrent()) d.finish(); } finally { d.lease?.release(); }
   };
 
@@ -834,37 +982,60 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       endDrag();
     };
 
+    const joinViewport = (kind: "pan" | "pinch", point?: { x: number; y: number }) => {
+      const current = live.current;
+      if (!viewportDrag.current) viewportDrag.current = { before: current.viewport, dx: 0, dy: 0, factor: 1, anchor: { x: current.viewport.x, y: current.viewport.y }, active: new Set() };
+      const gesture = viewportDrag.current;
+      gesture.active.add(kind);
+      if (kind === "pinch" && point) gesture.anchor = { x: point.x - current.viewportSize.w / 2, y: point.y - current.viewportSize.h / 2 };
+    };
+    const applyViewport = () => {
+      const gesture = viewportDrag.current; if (!gesture) return;
+      const next = zoomDesignViewport(gesture.before, gesture.before.zoom * gesture.factor, gesture.anchor);
+      setViewport({ ...next, x: next.x + gesture.dx, y: next.y + gesture.dy });
+    };
+    const leaveViewport = (kind: "pan" | "pinch") => {
+      const gesture = viewportDrag.current; if (!gesture?.active.has(kind)) return false;
+      gesture.active.delete(kind); if (!gesture.active.size) viewportDrag.current = null;
+      return true;
+    };
+
     const pan = Gesture.Pan()
       .runOnJS(true)
       .maxPointers(2)
       .onStart((e) => {
         const { props: p } = live.current;
+        if (live.current.editingGuides || live.current.sampling) return;
+        if (live.current.navigating) { joinViewport("pan"); return; }
         if (p.pen) {
           const lease = p.onGestureStart?.() ?? null;
           if (p.onGestureStart && !lease) return;
-          strokeLease.current = lease; strokeOwner.current = p.project.id;
+          strokeLease.current = lease; strokeOwner.current = p.project.id; strokeAt.current = p.time; strokePen.current = { ...p.pen, dash: p.pen.dash ? [...p.pen.dash] : undefined };
           const kk = live.current.k || 1;
-          strokeRef.current = [[(e.x - e.translationX) / kk, (e.y - e.translationY) / kk], [e.x / kk, e.y / kk]];
+          strokeRef.current = [[(e.x - e.translationX - live.current.origin.x) / kk, (e.y - e.translationY - live.current.origin.y) / kk], [(e.x - live.current.origin.x) / kk, (e.y - live.current.origin.y) / kk]];
           setStroke(strokeRef.current);
           return;
         }
         const x = e.x - e.translationX;
         const y = e.y - e.translationY;
-        const current = getClip(p.project, p.selectedId)?.locked ? null : boxOf(p.selectedId);
-        let target = current && pointInBox(current, x / live.current.k, y / live.current.k, HIT_SLOP_PT / live.current.k)
+        const currentClip = getClip(p.project, p.selectedId);
+        const current = currentClip?.locked || (currentClip?.isPageBackground && !p.cropping) ? null : boxOf(p.selectedId);
+        let target = current && pointInBox(current, (x - live.current.origin.x) / live.current.k, (y - live.current.origin.y) / live.current.k, HIT_SLOP_PT / live.current.k)
           ? current
           : hitTest(x, y);
         // Two fingers anywhere still move the selected layer.
         if (!target && e.numberOfPointers > 1 && current) target = current;
         if (!target) return;
+        if (p.cropping && target.id !== p.selectedId) { p.onSelect(target.id); return; }
         if (target.id !== p.selectedId) p.onSelect(target.id);
         join("pan", target.id);
       })
       .onUpdate((e) => {
+        if (viewportDrag.current?.active.has("pan")) { viewportDrag.current.dx = e.translationX; viewportDrag.current.dy = e.translationY; applyViewport(); return; }
         if (strokeRef.current) {
           if ((strokeLease.current && !strokeLease.current.isCurrent()) || strokeOwner.current !== live.current.props.project.id) return;
           const kk = live.current.k || 1;
-          const pt: [number, number] = [e.x / kk, e.y / kk];
+          const pt: [number, number] = [(e.x - live.current.origin.x) / kk, (e.y - live.current.origin.y) / kk];
           const last = strokeRef.current[strokeRef.current.length - 1];
           // Skip samples closer than 2 page px: smoother curve, smaller layer.
           if (Math.hypot(pt[0] - last[0], pt[1] - last[1]) >= 2) {
@@ -879,13 +1050,14 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         applyDrag();
       })
       .onFinalize(() => {
+        if (leaveViewport("pan")) return;
         if (strokeRef.current) {
           const pts = strokeRef.current;
           strokeRef.current = null;
           setStroke(null);
           const lease = strokeLease.current; strokeLease.current = null;
           try {
-            if ((!lease || lease.isCurrent()) && strokeOwner.current === live.current.props.project.id) live.current.props.onStroke?.(pts);
+            if ((!lease || lease.isCurrent()) && strokeOwner.current === live.current.props.project.id) live.current.props.onStroke?.(pts, strokeAt.current, strokePen.current ?? undefined);
           } finally { lease?.release(); }
           return;
         }
@@ -894,17 +1066,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
     const pinch = Gesture.Pinch()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
+      .onStart((event) => { if (live.current.editingGuides || live.current.sampling) return; if (live.current.navigating) { joinViewport("pinch", { x: event.focalX, y: event.focalY }); return; } if (!live.current.props.pen) join("pinch", live.current.props.selectedId); })
       .onUpdate((e) => {
+        if (viewportDrag.current?.active.has("pinch")) { viewportDrag.current.factor = e.scale; applyViewport(); return; }
         if (!drag.current) return;
         drag.current.scale = e.scale;
         applyDrag();
       })
-      .onFinalize(() => leave("pinch"));
+      .onFinalize(() => { if (!leaveViewport("pinch")) leave("pinch"); });
 
     const rotate = Gesture.Rotation()
       .runOnJS(true)
-      .onStart(() => { if (!live.current.props.pen) join("rotate", live.current.props.selectedId); })
+      .onStart(() => { if (!live.current.props.pen && !live.current.navigating && !live.current.editingGuides && !live.current.sampling) join("rotate", live.current.props.selectedId); })
       .onUpdate((e) => {
         if (!drag.current) return;
         drag.current.rotation = (e.rotation * 180) / Math.PI;
@@ -915,28 +1088,41 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     const tap = Gesture.Tap()
       .runOnJS(true)
       .onEnd((e) => {
-        if (live.current.props.pen) return;
+        if (live.current.props.pen || live.current.navigating || live.current.editingGuides || live.current.sampling) return;
         const hit = hitTest(e.x, e.y);
-        live.current.props.onSelect(hit ? hit.id : null);
+        if (!live.current.props.cropping || hit?.id !== live.current.props.selectedId) live.current.props.onSelect(hit ? hit.id : null);
       });
 
     const doubleTap = Gesture.Tap()
       .runOnJS(true)
       .numberOfTaps(2)
       .onEnd((e) => {
+        if (live.current.editingGuides || live.current.sampling) return;
+        if (live.current.navigating) { viewportDrag.current = null; setViewport(FIT_VIEWPORT); return; }
         const hit = hitTest(e.x, e.y);
         if (!hit) return;
         const clip = getClip(live.current.props.project, hit.id);
         live.current.props.onSelect(hit.id);
         if (clip?.kind === "text") live.current.props.onEditText(hit.id);
+        else if (clip?.kind === "image" || clip?.kind === "video") live.current.props.onEditCrop?.(hit.id);
       });
 
     return Gesture.Race(Gesture.Simultaneous(pan, pinch, rotate), Gesture.Exclusive(doubleTap, tap));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sel = selectedId && !selected?.locked && !props.pen ? layers.find((l) => l.id === selectedId) : null;
-  const showPath = path && pathClip && path.id === pathClip.id && !props.pen ? path : null;
+  const selectedMembers = selectedId ? groupedSelection(project.clips, [selectedId], time) : [];
+  const memberBoxes = layers.filter(layer => props.cropping ? layer.id === selectedId : selectedMembers.includes(layer.id));
+  const sel = selectedId && !selected?.locked && (!selected?.isPageBackground || props.cropping) && !props.pen && !navigating && !editingGuides && !sampling ? (memberBoxes.length > 1 ? (() => {
+    const extents = memberBoxes.map(box => {
+      const angle = box.rotation * Math.PI / 180, cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
+      return { box, hw: (box.w * cos + box.h * sin) / 2, hh: (box.w * sin + box.h * cos) / 2 };
+    });
+    const left = Math.min(...extents.map(e => e.box.cx - e.hw)), right = Math.max(...extents.map(e => e.box.cx + e.hw));
+    const top = Math.min(...extents.map(e => e.box.cy - e.hh)), bottom = Math.max(...extents.map(e => e.box.cy + e.hh));
+    return { ...memberBoxes[0], cx: (left + right) / 2, cy: (top + bottom) / 2, w: right - left, h: bottom - top, rotation: 0 };
+  })() : layers.find(l => l.id === selectedId)) : null;
+  const showPath = path && pathClip && path.id === pathClip.id && !props.pen && !editingGuides ? path : null;
 
   return (
     <View
@@ -945,7 +1131,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
     >
       {k > 0 && (
         <GestureDetector gesture={gesture}>
-          <View style={{ width: viewW, height: viewH }} collapsable={false}>
+          <View style={{ position: "absolute", left: 0, top: 0, width: viewportSize.w, height: viewportSize.h }} collapsable={false}>
+          <View style={{ position: "absolute", left: (viewportSize.w - viewW) / 2 + viewport.x, top: (viewportSize.h - viewH) / 2 + viewport.y, width: viewW, height: viewH, transform: [{ scale: viewport.zoom }] }} collapsable={false}>
             <View pointerEvents="none" style={StyleSheet.absoluteFill}>
               <WebView
                 key={webKey}
@@ -969,13 +1156,15 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
             </View>
             {stroke && props.pen && (
               <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width={viewW} height={viewH}>
-                <Polyline
-                  points={stroke.map(([x, y]) => `${x * k},${y * k}`).join(" ")}
+                <Path
+                  d={freehandSvg(stroke, k, k, props.pen.smoothing ?? 1, !!props.pen.closed)}
+                  opacity={props.pen.opacity ?? 1}
+                  strokeDasharray={props.pen.dash?.map(value => value * H / 1080 * k)}
                   fill="none"
                   stroke={props.pen.color}
-                  strokeWidth={Math.max(1, (props.pen.width / 1080) * H * k)}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeWidth={Math.max(0.1, (props.pen.width / 1080) * H * k)}
+                  strokeLinecap={stroke.length === 1 ? "round" : props.pen.cap ?? "round"}
+                  strokeLinejoin={props.pen.join ?? "round"}
                 />
               </Svg>
             )}
@@ -999,8 +1188,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                 ))}
               </Svg>
             )}
-            {guides.v && <View pointerEvents="none" style={[styles.guideV, { left: viewW / 2 - 0.5 }]} />}
-            {guides.h && <View pointerEvents="none" style={[styles.guideH, { top: viewH / 2 - 0.5 }]} />}
+            {(layoutGuides.rulers || editingGuides) && <DesignRulers width={W} height={H} viewWidth={viewW} viewHeight={viewH} zoom={viewport.zoom} rulerUnit={layoutGuides.unit} dpi={designPrintDpi(project.settings)} />}
+            {layoutGuides.visible && !editingGuides && layoutGuides.vertical.map(x => <View key={`layout-v${x}`} pointerEvents="none" style={{ position: "absolute", left: x * viewW, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && !editingGuides && layoutGuides.horizontal.map(y => <View key={`layout-h${y}`} pointerEvents="none" style={{ position: "absolute", top: y * viewH, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#22d3ee", opacity: 0.65 }} />)}
+            {layoutGuides.visible && layoutGuides.margin > 0 && <View pointerEvents="none" style={{ position: "absolute", top: layoutGuides.margin * Math.min(viewW, viewH), bottom: layoutGuides.margin * Math.min(viewW, viewH), left: layoutGuides.margin * Math.min(viewW, viewH), right: layoutGuides.margin * Math.min(viewW, viewH), borderWidth: 1 / viewport.zoom, borderStyle: "dashed", borderColor: "#67e8f9" }} />}
+            {guides.v !== null && <View pointerEvents="none" style={[styles.guideV, { left: guides.v * k - 0.5 / viewport.zoom, width: 1 / viewport.zoom }]} />}
+            {guides.h !== null && <View pointerEvents="none" style={[styles.guideH, { top: guides.h * k - 0.5 / viewport.zoom, height: 1 / viewport.zoom }]} />}
+            <SpacingGuides guides={spacingGuides} scale={k} zoom={viewport.zoom} />
             {sel && (
               <View
                 pointerEvents="none"
@@ -1010,15 +1204,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
                     left: (sel.cx - sel.w / 2) * k,
                     top: (sel.cy - sel.h / 2) * k,
                     width: sel.w * k,
+                    borderWidth: 1.5 / viewport.zoom,
                     height: sel.h * k,
                     transform: [{ rotate: `${sel.rotation}deg` }],
                   },
                 ]}
               >
-                <View style={[styles.corner, styles.tl]} />
-                <View style={[styles.corner, styles.tr]} />
-                <View style={[styles.corner, styles.bl]} />
-                <View style={[styles.corner, styles.br]} />
+                {props.cropping ? [1 / 3, 2 / 3].map(n => <View key={n} pointerEvents="none" style={StyleSheet.absoluteFill}><View style={{ position: "absolute", left: `${n * 100}%`, top: 0, bottom: 0, width: 1 / viewport.zoom, backgroundColor: "#ffffff88" }} /><View style={{ position: "absolute", top: `${n * 100}%`, left: 0, right: 0, height: 1 / viewport.zoom, backgroundColor: "#ffffff88" }} /></View>) : <>
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, left: -CORNER / (2 * viewport.zoom), top: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, right: -CORNER / (2 * viewport.zoom), top: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, left: -CORNER / (2 * viewport.zoom), bottom: -CORNER / (2 * viewport.zoom) }]} />
+                <View style={[styles.corner, { width: CORNER / viewport.zoom, height: CORNER / viewport.zoom, borderRadius: CORNER / (2 * viewport.zoom), borderWidth: 1 / viewport.zoom, right: -CORNER / (2 * viewport.zoom), bottom: -CORNER / (2 * viewport.zoom) }]} />
+                </>}
               </View>
             )}
             {props.recording && (
@@ -1031,8 +1228,30 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
               </>
             )}
           </View>
+          </View>
         </GestureDetector>
       )}
+      {k > 0 && <GuideEditorOverlay project={project} active={editingGuides} rulers={layoutGuides.rulers || editingGuides} disabled={sampling || (!editingGuides && (!!props.pen || !!props.cropping || navigating || !!props.playing))} page={{ ...origin, w: viewW * viewport.zoom, h: viewH * viewport.zoom }} viewport={viewportSize} onActivate={() => { endDrag(); if (props.playing) props.onEnded?.(time); setEditingGuides(true); }} onBegin={props.onGestureStart} onCommit={next => { props.onLiveChange(next); props.onGestureEnd(); }} />}
+      {sampling && k > 0 && <View pointerEvents="box-none" style={{ position: "absolute", left: 0, top: 0, width: viewportSize.w, height: viewportSize.h }}><Pressable accessibilityRole="button" accessibilityLabel={t("editor.colourPicker.canvasHint", { defaultValue: "Tap a colour on the page" })} style={{ position: "absolute", left: origin.x, top: origin.y, width: viewW * viewport.zoom, height: viewH * viewport.zoom }} onPress={event => {
+        const token = beginDesignColourSample(project.id); if (token === null) return;
+        if (!ready) { finishDesignColourSample(token, null, "The canvas is not ready"); return; }
+        if (props.playing) props.onEnded?.(time);
+        const timer = setTimeout(() => { colourTimers.current.delete(token); finishDesignColourSample(token, null, "Colour sampling timed out. Try again"); }, 10000); colourTimers.current.set(token, timer);
+        post({ type: "sampleColour", token, projectId: project.id, x: event.nativeEvent.locationX / (viewW * viewport.zoom), y: event.nativeEvent.locationY / (viewH * viewport.zoom) });
+      }} /><View className="absolute left-2 right-2 top-2 flex-row items-center rounded-lg bg-black/90 px-3 py-2" style={{ gap: 10 }}><Text accessibilityLiveRegion="polite" className="flex-1 text-xs text-cyan-100">{colourPick.error || t(colourPick.pending ? "editor.colourPicker.pending" : "editor.colourPicker.canvasHint", { defaultValue: colourPick.pending ? "Sampling colour…" : "Tap a colour on the page" })}</Text><Pressable accessibilityRole="button" onPress={() => cancelDesignColourPick(colourPick.token)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("common.cancel", { defaultValue: "Cancel" })}</Text></Pressable></View></View>}
+            {props.cropping && !editingGuides && <View pointerEvents="none" style={{ position: "absolute", left: 6, top: 6, right: 6, alignItems: "center" }}><Text className="rounded-lg bg-black/75 px-3 py-2 text-xs text-white">{t("editor.crop.touchHint", { defaultValue: "Drag to reposition · pinch to zoom" })}</Text></View>}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/90" style={{ height: 44 }} contentContainerStyle={{ alignItems: "center", justifyContent: "flex-end", flexGrow: 1, paddingHorizontal: 8, gap: 6 }}>
+        <Pressable accessibilityRole="button" accessibilityState={{ selected: editingGuides }} onPress={() => { endDrag(); viewportDrag.current = null; setNavigating(false); if (props.playing) props.onEnded?.(time); setEditingGuides(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${editingGuides ? "border-cyan-300 bg-cyan-300/15" : "border-white/20"}`}><Text className="text-xs text-white">{t(editingGuides ? "editor.guides.done" : "editor.guides.edit", { defaultValue: editingGuides ? "Done guides" : "Edit guides" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" accessibilityState={{ selected: navigating }} onPress={() => { endDrag(); viewportDrag.current = null; setEditingGuides(false); setNavigating(value => !value); }} className={`min-h-[36px] justify-center rounded-lg border px-2 ${navigating ? "border-white bg-white/15" : "border-white/20"}`}><Text className="text-xs text-white">{t("editor.viewport.pan", { defaultValue: "Pan canvas" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomOut", { defaultValue: "Zoom canvas out" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom / 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">−</Text></Pressable>
+        <Text className="min-w-[36px] text-center text-xs text-white/60">{Math.round(k * viewport.zoom * 100)}%</Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("editor.viewport.zoomIn", { defaultValue: "Zoom canvas in" })} onPress={() => setViewport(before => zoomDesignViewport(before, before.zoom * 1.2))} className="min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border border-white/20"><Text className="text-white">+</Text></Pressable>
+        {([-1, 1] as const).map(direction => <Pressable key={direction} accessibilityRole="button" disabled={sampling || editingGuides || !!props.pen || !!props.cropping} onPress={() => { endDrag(); const next = nextDesignLayer(project, time, selectedId ? [selectedId] : [], direction); if (next) { if (props.playing) props.onEnded?.(time); props.onSelect(next); } }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: sampling || editingGuides || props.pen || props.cropping ? 0.35 : 1 }}><Text className="text-xs text-white">{t(direction === -1 ? "editor.layers.previousLayer" : "editor.layers.nextLayer", { defaultValue: direction === -1 ? "Previous layer" : "Next layer" })}</Text></Pressable>)}
+        <Pressable accessibilityRole="button" disabled={!selectedId || sampling || editingGuides || !!props.pen} onPress={() => { const box = boxOf(selectedId); if (!box) return; endDrag(); if (props.playing) props.onEnded?.(time); const candidates = [...live.current.layers].reverse().filter(layer => !getClip(project, layer.id)?.locked && pointInBox(layer, box.cx, box.cy, 0)).map(layer => layer.id); setOverlapIds(candidates); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: selectedId && !sampling && !editingGuides && !props.pen ? 1 : 0.35 }}><Text className="text-xs text-white">{t("editor.layers.overlapping", { defaultValue: "Overlapping layers" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" disabled={!selectedId || !memberBoxes.length} onPress={() => { const next = focusDesignSelection(memberBoxes, project.settings, k, { width: viewportSize.w, height: viewportSize.h }); if (next) { endDrag(); viewportDrag.current = null; if (props.playing) props.onEnded?.(time); setEditingGuides(false); setViewport(next); } }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: selectedId && memberBoxes.length ? 1 : 0.35 }}><Text className="text-xs text-white">{t("editor.viewport.selection", { defaultValue: "Selection" })}</Text></Pressable>
+        <Pressable accessibilityRole="button" onPress={() => { viewportDrag.current = null; setViewport(FIT_VIEWPORT); }} className="min-h-[36px] justify-center rounded-lg border border-white/20 px-3"><Text className="text-xs text-white">{t("editor.viewport.fit", { defaultValue: "Fit" })}</Text></Pressable>
+      </ScrollView>
+      {overlapIds && <OverlapLayerPicker project={project} ids={overlapIds} selectedId={selectedId} onSelect={props.onSelect} onClose={() => setOverlapIds(null)} />}
     </View>
   );
 });
@@ -1042,7 +1261,7 @@ export default EditorCanvas;
 const CORNER = 10;
 
 const styles = StyleSheet.create({
-  area: { flex: 1, alignItems: "center", justifyContent: "center" },
+  area: { flex: 1, alignItems: "center", justifyContent: "center", overflow: "hidden" },
   web: { flex: 1, backgroundColor: "transparent" },
   selection: { position: "absolute", borderWidth: 1.5, borderColor: "#ffffff" },
   corner: {

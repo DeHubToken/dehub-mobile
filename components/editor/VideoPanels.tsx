@@ -3,6 +3,7 @@
  * Same fields as the web inspector (dehubweb src/components/editor/Inspector.tsx).
  */
 import React from "react";
+import { ANIMATION_PRESETS } from "../../libs/editor/animationPresets";
 import { Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Chip, ChipRow, Labeled, Range, type LayerClip, type Patch } from "./EditorPanels";
@@ -127,8 +128,8 @@ export function TransitionPanel(props: {
   );
 }
 
-const ANIMATIONS: ClipAnimationKind[] = ["fade", "slide-up", "slide-down", "slide-left", "slide-right", "zoom-in", "zoom-out", "pop", "rise", "blur"];
-const ANIMATION_KEYS: Record<ClipAnimationKind, string> = {
+const ANIMATIONS = ANIMATION_PRESETS.map((preset) => preset.kind);
+const ANIMATION_KEYS: Partial<Record<ClipAnimationKind, string>> = {
   fade: "editor.video.aFade",
   "slide-up": "editor.video.aSlideUp",
   "slide-down": "editor.video.aSlideDown",
@@ -150,8 +151,8 @@ export function AnimatePanel({ clip, commit }: PanelProps<LayerClip>) {
       <Labeled label={label}>
         <ChipRow>
           <Chip label={t("editor.video.none")} active={!cur} onPress={() => commit({ [which]: undefined })} />
-          {ANIMATIONS.map((k) => (
-            <Chip key={k} label={t(ANIMATION_KEYS[k])} active={cur?.kind === k} onPress={() => commit({ [which]: { kind: k, duration: cur?.duration ?? len(clip.duration) } })} />
+          {ANIMATIONS.filter(k => k !== "typewriter" || clip.kind === "text").map((k) => (
+            <Chip key={k} label={t(ANIMATION_KEYS[k] ?? `editor.video.animation.${k}`, { defaultValue: ANIMATION_PRESETS.find((preset) => preset.kind === k)?.label ?? k })} active={cur?.kind === k} onPress={() => commit({ [which]: { kind: k, duration: cur?.duration ?? len(clip.duration) } })} />
           ))}
         </ChipRow>
       </Labeled>

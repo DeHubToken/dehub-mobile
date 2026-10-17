@@ -1,4 +1,7 @@
+import { insertFreehandStroke } from "./freehandProject";
+import type { PenSettings } from "./freehand";
 import { videoMatteMediaIds } from "./videoMatte";
+import { groupedSelection, remapDesignGroups } from "./designGroups";
 /**
  * Editing operations on a ProjectSnapshot.
  *
@@ -84,6 +87,8 @@ export function setBackground(p: ProjectSnapshot, background: string): ProjectSn
 /** End of the last clip, so a layer added to a web timeline spans all of it. */
 export function timelineEnd(p: ProjectSnapshot): number {
   const end = p.clips.reduce((end, c) => Math.max(end, c.start + c.duration), 0);
+  const lastStart = p.settings.pages?.[p.settings.pages.length - 1] ?? 0;
+  if (Number.isFinite(p.settings.pageEnd) && p.settings.pageEnd! > lastStart) return Math.max(end, p.settings.pageEnd!);
   return p.settings.pages?.length ? Math.max(end, p.settings.pages[p.settings.pages.length - 1] + 5) : end;
 }
 
@@ -193,30 +198,8 @@ export function addShape(
  * Turn a finished finger stroke (page pixels) into a freehand path layer,
  * the same shape the web's Draw tool makes.
  */
-export function addStroke(
-  p: ProjectSnapshot,
-  pts: [number, number][],
-  pen: { color: string; width: number },
-): { project: ProjectSnapshot; clipId: string } | null {
-  if (!pts.length) return null;
-  const W = p.settings.width;
-  const H = p.settings.height;
-  const xs = pts.map((q) => q[0]);
-  const ys = pts.map((q) => q[1]);
-  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
-  // A straight or tiny stroke still needs a real box so its points stay finite.
-  const w = Math.max(maxX - minX, 4);
-  const h = Math.max(maxY - minY, 4);
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  return addShape(p, "path", {
-    fill: null,
-    stroke: { color: pen.color, width: pen.width },
-    w: w / W,
-    h: h / H,
-    points: pts.map(([x, y]) => [(x - cx) / w, (y - cy) / h] as [number, number]),
-    transform: { x: cx / W, y: cy / H, scale: 1, rotation: 0 },
-  });
+export function addStroke(p: ProjectSnapshot, pts: [number, number][], pen: PenSettings, time = 0): { project: ProjectSnapshot; clipId: string } | null {
+  return insertFreehandStroke(p, time, pts, pen, () => newId(10));
 }
 
 export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {
@@ -224,7 +207,7 @@ export function getClip(p: ProjectSnapshot, id: string | null): Clip | null {
 }
 
 export function updateClip(p: ProjectSnapshot, id: string, patch: ClipPatch): ProjectSnapshot {
-  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...(c.kind === "video" && "mediaId" in patch && patch.mediaId !== undefined && patch.mediaId !== c.mediaId ? { videoMatte: null } : {}), ...patch } as Clip) : c)) };
+  return { ...p, clips: p.clips.map((c) => (c.id === id ? ({ ...c, ...(c.kind === "text" && "text" in patch && patch.text !== undefined && patch.text !== c.text ? { pageNumber: undefined } : {}), ...(c.kind === "video" && "mediaId" in patch && patch.mediaId !== undefined && patch.mediaId !== c.mediaId ? { videoMatte: null } : {}), ...patch } as Clip) : c)) };
 }
 
 /** Placement with defaults filled in; text reads its anchor from x/y. */
@@ -281,18 +264,34 @@ export function placementPatchAt(clip: Clip, patch: Partial<ClipTransform>, t: n
 }
 
 export function removeClip(p: ProjectSnapshot, id: string): ProjectSnapshot {
-  return { ...p, clips: p.clips.filter((c) => c.id !== id) };
+  const ids = new Set(groupedSelection(p.clips, [id]));
+  if (p.clips.some(c => ids.has(c.id) && c.groupId && c.locked)) return p;
+  return { ...p, clips: p.clips.filter((c) => !ids.has(c.id)) };
 }
 
 export function duplicateClip(p: ProjectSnapshot, id: string): { project: ProjectSnapshot; clipId: string } | null {
   const src = getClip(p, id);
   if (!src) return null;
+  const memberIds = groupedSelection(p.clips, [id]);
+  if (memberIds.length > 1) {
+    const tracks = [...p.tracks], copies: Clip[] = [];
+    for (const member of p.clips.filter(c => memberIds.includes(c.id))) {
+      const kind: TrackKind = member.kind === "text" ? "text" : member.kind === "audio" ? "audio" : "video";
+      const track: Track = { id: newId(8), kind, name: trackName({ ...p, tracks }, kind), muted: false, hidden: false };
+      tracks.push(track);
+      const tr = getTransform(member);
+      copies.push({ ...member, id: newId(10), trackId: track.id, isPageBackground: undefined, ...placementPatch(member, { x: tr.x + 0.04, y: tr.y + 0.04 }) } as Clip);
+    }
+    const cloned = remapDesignGroups(copies, () => newId(10));
+    const sourceIndex = p.clips.filter(c => memberIds.includes(c.id)).findIndex(c => c.id === id);
+    return { project: { ...p, tracks, clips: [...p.clips, ...cloned] }, clipId: cloned[Math.max(0, sourceIndex)].id };
+  }
   const kind: TrackKind = src.kind === "text" ? "text" : src.kind === "audio" ? "audio" : "video";
   const { tracks, trackId } = topTrack(p, kind);
   const tr = getTransform(src);
   // Nudged down and right so the copy is visibly a second layer.
   const nudge = { x: Math.min(1, tr.x + 0.04), y: Math.min(1, tr.y + 0.04) };
-  const copy = { ...src, id: newId(10), trackId, ...placementPatch(src, nudge) } as Clip;
+  const copy = { ...src, id: newId(10), trackId, groupId: undefined, isPageBackground: undefined, ...placementPatch(src, nudge) } as Clip;
   return { project: { ...p, tracks, clips: [...p.clips, copy] }, clipId: copy.id };
 }
 

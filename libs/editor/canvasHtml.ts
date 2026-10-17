@@ -1,3 +1,35 @@
+import { CHART_ROW_FILTERS_RUNTIME } from "./chartRowFiltersRuntime";
+import { STACKED_AREA_BANDS_RUNTIME } from "./stackedAreaBandsRuntime";
+import { CHART_DATE_AXIS_RUNTIME } from "./chartDateAxisRuntime";
+import { GRAPHIC_TEXT_RUNTIME } from "./graphicTextRuntime";
+import { CHART_MARKS_RUNTIME } from "./chartMarksRuntime";
+import { BALANCED_TEXT_WRAP_RUNTIME } from "./balancedTextWrapRuntime";
+import { TEXT_DIRECTION_RUNTIME } from "./textDirectionRuntime";
+import { PICTOGRAM_SYMBOL_RUNTIME } from "./pictogramSymbolRuntime";
+import { CHART_CATEGORY_LABEL_RUNTIME } from "./chartCategoryLabelRuntime";
+import { PACKED_CIRCLES_CHART_RUNTIME } from "./packedCirclesChartRuntime";
+import { PROGRESS_CHARTS_RUNTIME } from "./progressChartsRuntime";
+import { CHART_RACE_RUNTIME } from "./chartRaceRuntime";
+import { PICTOGRAM_CHART_RUNTIME } from "./pictogramChartRuntime";
+import { TREEMAP_CHART_RUNTIME } from "./treemapChartRuntime";
+import { HISTOGRAM_CHART_RUNTIME } from "./histogramChartRuntime";
+import { FUNNEL_CHART_RUNTIME } from "./funnelChartRuntime";
+import { GRAPHIC_FONT_RUNTIME } from "./graphicFontsRuntime";
+import { CHART_REFERENCE_RUNTIME } from "./chartReferenceRuntime";
+import { DATA_VISUAL_SVG_RUNTIME } from "./dataVisualSvgRuntime";
+import { PERCENT_STACKED_SERIES_RUNTIME } from "./percentStackedSeriesRuntime";
+import { CHART_LINE_STYLE_RUNTIME } from "./chartLineStyleRuntime";
+import { CHART_LEGEND_RUNTIME } from "./chartLegendRuntime";
+import { PALETTE_QUANTIZATION_RUNTIME } from "./paletteQuantizationRuntime";
+import { CHART_VALUE_FORMAT_RUNTIME } from "./chartValueFormatRuntime";
+import { FREEHAND_RUNTIME } from "./freehandRuntime";
+import { TABLE_RENDERING_RUNTIME } from "./tableRenderingRuntime";
+import { MULTI_SERIES_CHARTS_RUNTIME } from "./multiSeriesChartsRuntime";
+import { VECTOR_SYMBOLS_RUNTIME } from "./vectorSymbolsRuntime";
+import { CONNECTORS_RUNTIME } from "./connectorsRuntime";
+import { PHOTO_TONE_RUNTIME } from "./photoToneRuntime";
+import { DESIGN_LINKS_RUNTIME } from "./designLinksRuntime";
+import { TEXT_REVEAL_RUNTIME } from "./textRevealRuntime";
 import { ENCODER_QUEUE_RUNTIME } from "./encoderQueue";
 import { VIDEO_MATTE_PAGE_CACHE_RUNTIME } from "./videoMattePageCache";
 import { VIDEO_FRAME_RUNTIME } from "./videoFrame";
@@ -45,6 +77,10 @@ import { SHOT_RUNTIME } from "./shotRuntime";
 import { EXPORT_RANGES_RUNTIME } from "./exportRangesRuntime";
 import { VIDEO_MATTE_RUNTIME } from "./videoMatteRuntime";
 import { TEXT_LAYOUT_RUNTIME } from "./textLayoutRuntime";
+import { DATA_VISUAL_RUNTIME } from "./dataVisualRuntime";
+import { GRADIENT_FILL_RUNTIME } from "./gradientFillRuntime";
+import { QR_GRAPHIC_RUNTIME } from "./qrGraphicRuntime";
+import { SHAPE_GEOMETRY_RUNTIME } from "./shapeGeometryRuntime";
 
 export const EDITOR_CANVAS_HTML = String.raw`<!doctype html>
 <html><head>
@@ -71,6 +107,16 @@ canvas{display:block;width:100%;height:100%;}
   __SHOT_RUNTIME__
   __VISUAL_FRAME_RUNTIME__
   __VIDEO_MATTE_RUNTIME__
+  __MULTI_SERIES_CHARTS_RUNTIME__
+  __TABLE_RENDERING_RUNTIME__
+  __PALETTE_QUANTIZATION_RUNTIME__
+  __DATA_VISUAL_RUNTIME__
+  __GRADIENT_FILL_RUNTIME__
+  __QR_GRAPHIC_RUNTIME__
+  __SHAPE_GEOMETRY_RUNTIME__
+  __FREEHAND_RUNTIME__
+  __VECTOR_SYMBOLS_RUNTIME__
+  __CONNECTORS_RUNTIME__
   var canvas = document.getElementById("c");
   var ctx = canvas.getContext("2d");
   var images = new Map();
@@ -120,6 +166,8 @@ canvas{display:block;width:100%;height:100%;}
   })();
 
   // ── animationPresets.ts ──
+  __DESIGN_LINKS_RUNTIME__
+  __TEXT_REVEAL_RUNTIME__
   var IDENTITY = { alpha: 1, scale: 1, dx: 0, dy: 0, blurPx: 0 };
   function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
   function assign(a, b) { var o = {}; var k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
@@ -136,12 +184,23 @@ canvas{display:block;width:100%;height:100%;}
       case "zoom-out": return assign(IDENTITY, { alpha: t, scale: 1 + inv * 0.4 });
       case "pop": return assign(IDENTITY, { alpha: t, scale: 0.4 + t * (1.05 - 0.4) - (t > 0.85 ? (t - 0.85) * 0.33 : 0) });
       case "rise": return assign(IDENTITY, { alpha: t, dy: inv * 0.06, scale: 0.95 + t * 0.05 });
+      case "typewriter": return assign(IDENTITY, { textProgress: direction === "in" ? p : 1 - p });
+      case "spin": return assign(IDENTITY, { alpha: t, rotation: -180 * inv });
+      case "bounce": return assign(IDENTITY, { alpha: t, dy: -Math.abs(Math.sin(t * Math.PI * 2.5)) * inv * 0.13 });
+      case "wipe-left": return assign(IDENTITY, { reveals: [{ axis: "x", from: "end", progress: t }] });
+      case "wipe-right": return assign(IDENTITY, { reveals: [{ axis: "x", from: "start", progress: t }] });
+      case "wipe-up": return assign(IDENTITY, { reveals: [{ axis: "y", from: "end", progress: t }] });
+      case "wipe-down": return assign(IDENTITY, { reveals: [{ axis: "y", from: "start", progress: t }] });
       case "blur": return assign(IDENTITY, { alpha: t, blurPx: inv * 12 });
     }
     return assign(IDENTITY, {});
   }
   function merge(a, b) {
-    return { alpha: a.alpha * b.alpha, scale: a.scale * b.scale, dx: a.dx + b.dx, dy: a.dy + b.dy, blurPx: Math.max(a.blurPx, b.blurPx) };
+    var result = { alpha: a.alpha * b.alpha, scale: a.scale * b.scale, dx: a.dx + b.dx, dy: a.dy + b.dy, blurPx: Math.max(a.blurPx, b.blurPx) };
+    if (a.textProgress != null || b.textProgress != null) result.textProgress = Math.min(a.textProgress == null ? 1 : a.textProgress, b.textProgress == null ? 1 : b.textProgress);
+    if (a.rotation != null || b.rotation != null) result.rotation = (a.rotation || 0) + (b.rotation || 0);
+    if (a.reveals || b.reveals) result.reveals = (a.reveals || []).concat(b.reveals || []);
+    return result;
   }
   function computeClipAnimation(clip, t) {
     var local = t - clip.start;
@@ -287,6 +346,7 @@ canvas{display:block;width:100%;height:100%;}
   function setLetterSpacing(c, px) { c.letterSpacing = px + "px"; }
   function layoutText(c, text, W, H) {
     c.save();
+    c.direction = resolvedTextDirection(text.text, text.direction);
     var result = measuredTextLayout(text, W, H, function(line, size, spacing) {
       c.font = fontFor(text, size);
       setLetterSpacing(c, spacing);
@@ -299,10 +359,10 @@ canvas{display:block;width:100%;height:100%;}
     var tr = getTransform(clip);
     if (clip.kind === "text") {
       var l = layoutText(c, clip, W, H);
-      var w = l.maxW + l.pad * 2;
-      var h = l.lines.length * l.lh + l.pad * 2;
+      var w = (l.curve ? l.curve.width : l.maxW) + l.pad * 2;
+      var h = (l.curve ? l.curve.height : l.height) + l.pad * 2;
       var ax = clip.x * W;
-      var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + l.maxW / 2 : ax - l.maxW / 2;
+      var cx = clip.align === "centre" ? ax : clip.align === "left" ? ax + (l.curve ? l.curve.width : l.maxW) / 2 : ax - (l.curve ? l.curve.width : l.maxW) / 2;
       return { cx: cx, cy: clip.y * H, w: w, h: h, rotation: tr.rotation };
     }
     if (clip.kind === "shape") {
@@ -352,9 +412,9 @@ canvas{display:block;width:100%;height:100%;}
     c.shadowOffsetY = s.offsetY * k;
   }
   function clearShadow(c) { c.shadowColor = "transparent"; c.shadowBlur = 0; c.shadowOffsetX = 0; c.shadowOffsetY = 0; }
-  function roundRectPath(c, x, y, w, h, r) {
+  function roundRectPath(c, x, y, w, h, r, append) {
     var rr = Math.max(0, Math.min(r, w / 2, h / 2));
-    c.beginPath();
+    if (!append) c.beginPath();
     c.moveTo(x + rr, y);
     c.arcTo(x + w, y, x + w, y + h, rr);
     c.arcTo(x + w, y + h, x, y + h, rr);
@@ -379,13 +439,24 @@ canvas{display:block;width:100%;height:100%;}
     c.translate(box.cx, box.cy);
     if (tr.rotation) c.rotate((tr.rotation * Math.PI) / 180);
     if (tr.flipH || tr.flipV) c.scale(tr.flipH ? -1 : 1, tr.flipV ? -1 : 1);
+    if (anim.rotation) c.rotate(anim.rotation * Math.PI / 180);
+    for (const reveal of anim.reveals || []) {
+      const progress = Math.max(0, Math.min(1, reveal.progress));
+      const width = reveal.axis === "x" ? box.w * progress : box.w;
+      const height = reveal.axis === "y" ? box.h * progress : box.h;
+      const x = -box.w / 2 + (reveal.axis === "x" && reveal.from === "end" ? box.w - width : 0);
+      const y = -box.h / 2 + (reveal.axis === "y" && reveal.from === "end" ? box.h - height : 0);
+      c.beginPath();
+      c.rect(x, y, width, height);
+      c.clip();
+    }
     // Text no longer fades in by default (web render.ts): a fade is an explicit animation.
     c.globalAlpha = baseAlpha * anim.alpha * (tr.opacity == null ? 1 : tr.opacity);
     var filter = cssFilterFor(clip, anim.blurPx);
     if (SUPPORTS_FILTER) c.filter = filter;
     if (clip.blend && clip.blend !== "normal") c.globalCompositeOperation = clip.blend;
-    if (clip.kind === "text") drawText(c, clip, box, W, H);
-    else if (clip.kind === "shape") drawShape(c, clip, box, H);
+    if (clip.kind === "text") drawText(c, clip, box, W, H, anim.textProgress);
+    else if (clip.kind === "shape") drawShape(c, clip, box, H, t);
     else drawMedia(c, clip, box, H, sourceTime == null ? clip.trimIn + (t - clip.start) * speedOf(clip) : sourceTime);
     c.restore();
   }
@@ -425,17 +496,21 @@ canvas{display:block;width:100%;height:100%;}
     }
     var x = -box.w / 2, y = -box.h / 2;
     var r = ((clip.radius || 0) / 1080) * H;
-    if (r > 0) {
+    function framePath() {
+      if (clip.frame && clip.frame !== "rect") shapePath(c, clip.frame, box.w, box.h, 0);
+      else roundRectPath(c, x, y, box.w, box.h, r);
+    }
+    if (r > 0 || (clip.frame && clip.frame !== "rect")) {
       if (clip.shadow && clip.shadow.opacity > 0) {
         c.save();
         applyShadow(c, clip, H);
         c.fillStyle = "#000";
-        roundRectPath(c, x, y, box.w, box.h, r);
+        framePath();
         c.fill();
         c.restore();
       }
       c.save();
-      roundRectPath(c, x, y, box.w, box.h, r);
+      framePath();
       c.clip();
       c.drawImage(el, sx, sy, sw, sh, x, y, box.w, box.h);
       c.restore();
@@ -444,15 +519,27 @@ canvas{display:block;width:100%;height:100%;}
       c.drawImage(el, sx, sy, sw, sh, x, y, box.w, box.h);
       clearShadow(c);
     }
+    if (clip.border && clip.border.width > 0) {
+      c.save(); framePath(); c.globalAlpha *= paintOpacity(clip.border.opacity); c.lineWidth = clip.border.width * H / 1080; c.strokeStyle = clip.border.color;
+      c.setLineDash((Array.isArray(clip.border.dash) ? clip.border.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.lineDashOffset = strokeDashOffset(clip.border.dashOffset) * H / 1080;
+      c.stroke(); c.restore();
+    }
   }
 
   // ── colour grading: warmth, tint, vignette (web render.ts grade) ──
+  __PHOTO_TONE_RUNTIME__
   var scratch = null;
-  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette); }
+  var stillGradeCache = new WeakMap();
+  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette || needsPhotoTone(e)); }
   function grade(el, sx, sy, sw, sh, w, h, e) {
     var k = Math.min(1, 1600 / Math.max(w, h));
     var cw = Math.max(1, Math.round(w * k));
     var ch = Math.max(1, Math.round(h * k));
+    var still = el instanceof HTMLImageElement ? el : null;
+    var cacheKey = still ? [still.currentSrc || still.src, sx, sy, sw, sh, cw, ch, JSON.stringify(e)].join("|") : "";
+    var cached = still ? stillGradeCache.get(still) : null;
+    if (cached && cached.key === cacheKey) return cached;
     if (!scratch) scratch = document.createElement("canvas");
     if (scratch.width !== cw) scratch.width = cw;
     if (scratch.height !== ch) scratch.height = ch;
@@ -463,6 +550,10 @@ canvas{display:block;width:100%;height:100%;}
     if (SUPPORTS_FILTER) g.filter = "none";
     g.globalCompositeOperation = "copy";
     g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
+    if (needsPhotoTone(e)) {
+      var image = g.getImageData(0, 0, cw, ch);
+      applyPhotoTone(image.data, e, true, cw, ch); g.putImageData(image, 0, 0);
+    }
     function fillBlend(colour, alpha, mode) {
       g.globalCompositeOperation = mode;
       g.globalAlpha = alpha;
@@ -488,13 +579,20 @@ canvas{display:block;width:100%;height:100%;}
     g.globalAlpha = 1;
     g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
     g.globalCompositeOperation = "source-over";
+    if (still) {
+      var copy = document.createElement("canvas"); copy.width = cw; copy.height = ch;
+      var context = copy.getContext("2d");
+      if (context) { context.drawImage(scratch, 0, 0); var result = { key: cacheKey, el: copy, w: cw, h: ch }; stillGradeCache.set(still, result); return result; }
+    }
     return { el: scratch, w: cw, h: ch };
   }
 
   // ── shapes (web render.ts shapePath / drawShape) ──
-  function shapePath(c, shape, w, h, radius, points) {
+  function shapePath(c, shape, w, h, radius, points, geometry) {
     var hw = w / 2, hh = h / 2, i, a, x, y;
     c.beginPath();
+    var polygon = shapePolygon(shape, w, h, geometry);
+    if (polygon) { polygon.forEach(function(point, index) { if (index === 0) c.moveTo(point[0], point[1]); else c.lineTo(point[0], point[1]); }); c.closePath(); return; }
     switch (shape) {
       case "path": {
         // Midpoint quadratic smoothing through the stroke's samples.
@@ -537,62 +635,151 @@ canvas{display:block;width:100%;height:100%;}
     }
     c.closePath();
   }
-  function drawShape(c, clip, box, H) {
+  function strokeDashOffset(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(-1000000, Math.min(1000000, value)) : 0; }
+  function paintOpacity(value) { return typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 1; }
+  function drawShape(c, clip, box, H, time) {
+    if (clip.photoFrame) {
+      drawShape(c, Object.assign({}, clip, { photoFrame: false }), box, H, time);
+      var size = Math.min(box.w, box.h) * 0.35;
+      c.fillStyle = "#94a3b8"; c.beginPath(); c.moveTo(-size, size * 0.65); c.lineTo(-size * 0.2, -size * 0.45); c.lineTo(size * 0.25, size * 0.2); c.lineTo(size * 0.55, -size * 0.2); c.lineTo(size, size * 0.65); c.closePath(); c.fill();
+      c.beginPath(); c.arc(size * 0.55, -size * 0.65, size * 0.18, 0, Math.PI * 2); c.fill(); return;
+    }
+    if (clip.qr) { drawQrGraphic(c, box.w, box.h, clip.qr); return; }
+    if (clip.chart || clip.table) { drawDataVisual(c, box.w, box.h, clip.chart, clip.table, time == null ? undefined : (time - clip.start) / Math.max(0.001, clip.duration)); return; }
     var k = H / 1080;
-    var open = clip.shape === "line" || clip.shape === "arrow" || clip.shape === "path";
-    shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points);
+    var open = clip.shape === "line" || clip.shape === "arrow" || (clip.shape === "path" && !clip.closedPath);
+    if (clip.connector) {
+      var connectorStroke = clip.stroke || { color: clip.fill || "#ffffff", width: 8 };
+      if (connectorStroke.width <= 0) return;
+      c.lineWidth = connectorStroke.width * k;
+      c.strokeStyle = createGradientFill(c, box.w, box.h, clip.gradient) || connectorStroke.color;
+      c.setLineDash((connectorStroke.dash || []).filter(Number.isFinite).slice(0, 8).map(function(value) { return Math.max(0, value) * k; }));
+      c.lineDashOffset = strokeDashOffset(connectorStroke.dashOffset) * H / 1080;
+      var connectorAlpha = c.globalAlpha; c.globalAlpha *= paintOpacity(connectorStroke.opacity); applyShadow(c, clip, H); drawConnector(c, box.w, box.h, clip.connector); clearShadow(c); c.globalAlpha = connectorAlpha; return;
+    }
+    if (clip.symbol) vectorSymbolPath(c, box.w, box.h, clip.symbol);
+    else if (clip.shape === "path") freehandPath(c, box.w, box.h, clip.points || [], clip.pathSmoothing == null ? 1 : clip.pathSmoothing, !!clip.closedPath);
+    else shapePath(c, clip.shape, box.w, box.h, (clip.radius || 0) * k, clip.points, clip.geometry);
     applyShadow(c, clip, H);
-    if (!open && clip.fill) { c.fillStyle = clip.fill; c.fill(); clearShadow(c); }
+    var gradient = createGradientFill(c, box.w, box.h, clip.gradient);
+    if (!open && (clip.fill || (!clip.symbol && gradient))) { c.fillStyle = gradient || clip.fill; var fillAlpha = c.globalAlpha; c.globalAlpha *= paintOpacity(clip.fillOpacity); c.fill(); c.globalAlpha = fillAlpha; clearShadow(c); }
     var stroke = clip.stroke || (open ? { color: clip.fill || "#ffffff", width: 8 } : null);
     if (stroke && stroke.width > 0) {
+      c.setLineDash((Array.isArray(stroke.dash) ? stroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * k; }));
+      c.lineDashOffset = strokeDashOffset(stroke.dashOffset) * H / 1080;
       c.lineWidth = stroke.width * k;
-      c.strokeStyle = stroke.color;
-      c.lineJoin = "round";
-      c.lineCap = "round";
-      c.stroke();
+      c.strokeStyle = (open || clip.symbol && !clip.fill) && gradient ? gradient : stroke.color;
+      c.lineJoin = clip.strokeJoin || "round";
+      c.lineCap = clip.shape === "path" && clip.points && clip.points.length === 1 ? "round" : clip.strokeCap || "round";
+      var strokeAlpha = c.globalAlpha; c.globalAlpha *= paintOpacity(stroke.opacity); c.stroke(); c.globalAlpha = strokeAlpha;
     }
     clearShadow(c);
   }
 
-  function drawText(c, text, box, W, H) {
+  function drawText(c, text, box, W, H, progress) {
+    c.direction = resolvedTextDirection(text.text, text.direction);
+    var rtl = c.direction === "rtl";
+    var textAlpha = c.globalAlpha, fillAlpha = paintOpacity(text.fillOpacity);
     var l = layoutText(c, text, W, H);
     c.font = fontFor(text, l.size);
     setLetterSpacing(c, l.spacing);
     c.textBaseline = "middle";
     c.textAlign = text.align === "centre" ? "center" : text.align;
     var ax = text.align === "centre" ? 0 : text.align === "left" ? -l.maxW / 2 : l.maxW / 2;
-    var startY = -((l.lines.length - 1) * l.lh) / 2;
+    var startY = -(l.height - l.lh) / 2;
+    var lines = progress == null ? l.lines : textRevealLines(l.lines, progress);
+    var leftFor = function(i) { return text.align === "centre" ? ax - l.widths[i] / 2 : text.align === "left" ? ax + (l.offsets?.[i] ?? 0) : ax + (l.offsets?.[i] ?? 0) - l.widths[i]; };
+    var drawX = function(i) { return progress == null ? ax + (l.offsets?.[i] ?? 0) : rtl ? leftFor(i) + l.widths[i] : leftFor(i); };
+    if (progress != null) c.textAlign = rtl ? "right" : "left";
     if (text.background && text.background.opacity > 0) {
       var radius = Math.max(0, (text.background.radius / 1080) * H);
       var a = c.globalAlpha;
       c.globalAlpha = a * text.background.opacity;
       c.fillStyle = text.background.color;
       applyShadow(c, text, H);
-      roundRectPath(c, -box.w / 2, -box.h / 2, box.w, box.h, radius);
+      if (text.background.perLine && !l.curve) {
+        var padding = Math.max(0, text.background.padding / 1080 * H * l.scale);
+        c.beginPath();
+        l.lines.forEach(function(line, index) { if (line.trim()) roundRectPath(c, leftFor(index) - padding, startY + l.lineY[index] - l.size / 2 - padding, l.widths[index] + padding * 2, l.size + padding * 2, radius * l.scale, true); });
+      } else roundRectPath(c, -box.w / 2, -box.h / 2, box.w, box.h, radius);
       c.fill();
       clearShadow(c);
       c.globalAlpha = a;
     } else {
       applyShadow(c, text, H);
     }
-    if (text.stroke && text.stroke.width > 0) {
-      c.lineWidth = (text.stroke.width / 1080) * H * l.scale;
-      c.strokeStyle = text.stroke.color;
+    const drawEcho = (value, x, y) => {
+      const alpha = c.globalAlpha, fill = c.fillStyle;
+      for (const layer of (text.echo || []).slice(0, 3)) {
+        if (!/^#[\da-f]{6}$/i.test(layer.colour) || ![layer.x, layer.y, layer.opacity].every(Number.isFinite)) continue;
+        c.globalAlpha = alpha * fillAlpha * Math.max(0, Math.min(1, layer.opacity));
+        c.fillStyle = layer.colour;
+        c.fillText(value, x + Math.max(-100, Math.min(100, layer.x)) / 1080 * H * l.scale, y + Math.max(-100, Math.min(100, layer.y)) / 1080 * H * l.scale);
+      }
+      c.globalAlpha = alpha; c.fillStyle = fill;
+    };
+    if (l.curve) {
+      c.textAlign = "center";
+      setLetterSpacing(c, 0);
+      const glyphs = l.curve.glyphs;
+      const visible = progress == null ? glyphs.length : Math.floor(glyphs.length * Math.max(0, Math.min(1, progress)) + 1e-7);
+      const outline = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
+      c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
+      if (outline) {
+        c.strokeStyle = outline.color;
+        c.lineWidth = outline.width / 1080 * H * l.scale;
+        c.lineJoin = "round";
+        c.setLineDash((Array.isArray(outline.dash) ? outline.dash : []).filter(n => Number.isFinite(n) && n >= 0).slice(0, 8).map(n => n * H / 1080));
+        c.lineDashOffset = strokeDashOffset(outline.dashOffset) * H / 1080;
+      }
+      glyphs.slice(0, visible).forEach(glyph => {
+        c.save();
+        c.translate(glyph.x, glyph.y);
+        c.rotate(glyph.rotation);
+        drawEcho(glyph.text, 0, 0);
+        if (outline && outline.width > 0) { c.globalAlpha = textAlpha * paintOpacity(outline.opacity); c.strokeText(glyph.text, 0, 0); }
+        c.globalAlpha = textAlpha * fillAlpha;
+        if (!text.hollow) c.fillText(glyph.text, 0, 0);
+        clearShadow(c);
+        if (text.strikethrough) c.fillRect(-glyph.width / 2, 0, glyph.width, Math.max(1, l.size * 0.055));
+        if (text.underline) c.fillRect(-glyph.width / 2, l.size * 0.45, glyph.width, Math.max(1, l.size * 0.06));
+        c.restore();
+      });
+      clearShadow(c);
+      return;
+    }
+    lines.forEach((line, index) => drawEcho(line, drawX(index), startY + l.lineY[index]));
+    var textStroke = text.stroke || (text.hollow ? { color: text.color, width: 3 } : null);
+    if (textStroke && textStroke.width > 0) {
+      c.setLineDash((Array.isArray(textStroke.dash) ? textStroke.dash : []).filter(function(n) { return Number.isFinite(n) && n >= 0; }).slice(0, 8).map(function(n) { return n * H / 1080; }));
+      c.lineDashOffset = strokeDashOffset(textStroke.dashOffset) * H / 1080;
+      c.lineWidth = (textStroke.width / 1080) * H * l.scale;
+      c.strokeStyle = textStroke.color;
       c.lineJoin = "round";
-      l.lines.forEach(function (ln, i) { c.strokeText(ln, ax, startY + i * l.lh); });
+      c.globalAlpha = textAlpha * paintOpacity(textStroke.opacity);
+      lines.forEach(function (ln, i) { c.strokeText(ln, drawX(i), startY + l.lineY[i]); });
+      c.globalAlpha = textAlpha;
       clearShadow(c);
     }
-    c.fillStyle = text.color;
-    l.lines.forEach(function (ln, i) { c.fillText(ln, ax, startY + i * l.lh); });
+    c.fillStyle = createGradientFill(c, box.w, box.h, text.gradient) || text.color;
+    c.globalAlpha = textAlpha * fillAlpha;
+    if (!text.hollow) lines.forEach(function (ln, i) { c.fillText(ln, drawX(i), startY + l.lineY[i]); });
     clearShadow(c);
+    if (text.strikethrough) {
+      l.lines.forEach(function(line, i) {
+        var width = progress == null ? l.widths[i] : c.measureText(lines[i]).width, left = rtl && progress != null ? leftFor(i) + l.widths[i] - width : leftFor(i);
+        c.fillRect(left, startY + l.lineY[i], width, Math.max(1, l.size * 0.055));
+      });
+    }
     if (text.underline) {
       var thick = Math.max(1, l.size * 0.06);
       l.lines.forEach(function (_, i) {
-        var w = l.widths[i];
-        var left = text.align === "centre" ? ax - w / 2 : text.align === "left" ? ax : ax - w;
-        c.fillRect(left, startY + i * l.lh + l.size * 0.45, w, thick);
+        var w = progress == null ? l.widths[i] : c.measureText(lines[i]).width;
+        var left = rtl && progress != null ? leftFor(i) + l.widths[i] - w : leftFor(i);
+        c.fillRect(left, startY + l.lineY[i] + l.size * 0.45, w, thick);
       });
     }
+    c.globalAlpha = textAlpha;
   }
 
   // ── colour maths for engines without ctx.filter (CSS Filter Effects spec) ──
@@ -656,28 +843,47 @@ canvas{display:block;width:100%;height:100%;}
   }
 
   // ── fonts: stylesheets chosen app-side (libs/editor/fonts.ts), as the web picks them ──
-  var fontLinks = new Set();
-  function addFontCss(hrefs) {
+  var fontLinks = new Map();
+  var activeFontCss = [];
+  function addFontCss(hrefs, active) {
+    if (active !== false) activeFontCss = (hrefs || []).slice();
     (hrefs || []).forEach(function (href) {
       if (fontLinks.has(href)) return;
-      fontLinks.add(href);
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = href;
+      var promise = new Promise(function(resolve, reject) {
+        var timer = setTimeout(function() { link.onload = null; link.onerror = null; reject(new Error("A design font could not be loaded")); }, 8000);
+        link.onload = function() { clearTimeout(timer); requestedFaces.clear(); if (state) ensureFonts(state.snapshot); schedule(); resolve(); };
+        link.onerror = function() { clearTimeout(timer); reject(new Error("A design font could not be loaded")); };
+      });
+      promise.catch(function() {});
+      fontLinks.set(href, promise);
       document.head.appendChild(link);
     });
   }
   var requestedFaces = new Set();
+  function designFontFaces(snapshot) {
+    var faces = new Map();
+    function add(face, sample) { var previous = faces.get(face); faces.set(face, { face: face, sample: ((previous ? previous.sample : "") + " " + sample).slice(0, 1000) }); }
+    snapshot.clips.forEach(function(c) {
+      if (c.kind === "text" && !c.hidden) add((c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily, c.text.slice(0, 1000) || "Design");
+      else if (c.kind === "shape" && !c.hidden && (c.chart || c.table)) { var graphic = c.table || c.chart, family = graphicFontCss(graphic.fontFamily), sample = graphicFontSample(graphic); [400, 500, 600, 700].forEach(function(weight) { add(weight + " 48px " + family, sample); }); }
+    });
+    return Array.from(faces.values());
+  }
   function ensureFonts(snapshot) {
     if (!document.fonts || !document.fonts.load) return;
-    snapshot.clips.forEach(function (c) {
-      if (c.kind !== "text") return;
-      var face = (c.italic ? "italic " : "") + c.fontWeight + " 48px " + c.fontFamily;
-      if (requestedFaces.has(face)) return;
-      requestedFaces.add(face);
-      // Redraw once the face arrives; text measured with a fallback font is the wrong size.
-      document.fonts.load(face).then(schedule, function () {});
+    designFontFaces(snapshot).forEach(function(item) { var key = item.face + ":" + item.sample; if (requestedFaces.has(key)) return; if (requestedFaces.size >= 512) requestedFaces.clear(); requestedFaces.add(key); document.fonts.load(item.face, item.sample).then(schedule, function() {}); });
+  }
+  function waitForDesignFonts(snapshot, extraCss) {
+    var timer;
+    if (extraCss) addFontCss(extraCss, false);
+    var ready = Promise.all((extraCss || activeFontCss).map(function(href) { return fontLinks.get(href); }).filter(Boolean)).then(function() {
+      if (!document.fonts || !document.fonts.load) return;
+      return Promise.all(designFontFaces(snapshot).map(function(item) { return document.fonts.load(item.face, item.sample); }));
     });
+    return Promise.race([ready, new Promise(function(resolve, reject) { timer = setTimeout(function() { reject(new Error("A design font could not be loaded")); }, 8000); })]).finally(function() { clearTimeout(timer); });
   }
 
   // ── video and audio (web Compositor.tsx and exporter.ts) ──
@@ -752,6 +958,8 @@ canvas{display:block;width:100%;height:100%;}
 
   function timelineEnd(clips, settings) {
     var end = clips.reduce(function (m, c) { return Math.max(m, c.start + c.duration); }, 0);
+    var lastStart = settings && settings.pages && settings.pages.length ? settings.pages[settings.pages.length - 1] : 0;
+    if (settings && Number.isFinite(settings.pageEnd) && settings.pageEnd > lastStart) return Math.max(end, settings.pageEnd);
     return settings && settings.pages && settings.pages.length ? Math.max(end, settings.pages[settings.pages.length - 1] + 5) : end;
   }
   function speedOf(c) { return c.speed && c.speed > 0 ? c.speed : 1; }
@@ -1224,19 +1432,19 @@ canvas{display:block;width:100%;height:100%;}
 
   async function exportImage(m) {
     if (!state || exporting) { post({ type: "exportFailed", reqId: m.reqId, error: "busy" }); return; }
-    var snap = state.snapshot;
+    var snap = m.snapshot || state.snapshot;
     var at = m.time === undefined ? currentTime() : Number(m.time);
     if (!Number.isFinite(at) || at < 0) { post({ type: "exportFailed", reqId: m.reqId, error: "Invalid frame time" }); return; }
     stopPlaying(); exporting = true; exportAborted = false; videoJobId = m.reqId;
     var fontTimer;
     var check = function () { if (exportAborted || videoJobId !== m.reqId) throw new Error("Export cancelled"); };
     try {
-      var ready = document.fonts && document.fonts.ready ? document.fonts.ready.catch(function () {}) : Promise.resolve();
-      await Promise.race([ready, new Promise(function (resolve) { fontTimer = setTimeout(resolve, 3000); })]);
+      await waitForDesignFonts(snap, m.fontCss);
       clearTimeout(fontTimer); check();
       var W = snap.settings.width, H = snap.settings.height;
       var t = Math.max(0, Math.min(at, timelineEnd(snap.clips, snap.settings) - 1 / Math.max(1, snap.settings.fps)));
       var ops = computeRenderOps(snap, t, W, false);
+      if (m.settled) ops = ops.map(function(op) { return Object.assign({}, op, { clip: Object.assign({}, op.clip, { animateIn: undefined, animateOut: undefined }) }); });
       ops.forEach(function (op) {
         if (op.clip.kind === "image" && !images.has(op.clip.mediaId)) throw new Error("Page media is still loading");
         if (op.clip.kind === "video" && !videos.has(op.clip.mediaId)) throw new Error("Page media is still loading");
@@ -1245,11 +1453,21 @@ canvas{display:block;width:100%;height:100%;}
       prepareVideoSources(ops);
       await Promise.all([prepareMatteOps(ops, t, false)].concat(ops.filter(function (op) { return op.clip.kind === "video"; }).map(function (op) { return seekVideo(videoAliases.get(op.clip.id), localTimeOf(op, t)); })));
       check();
-      var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+      var previewScale = m.maxEdge === undefined ? 1 : Math.min(1, Math.max(256, Math.min(4096, Number(m.maxEdge) || 2048)) / Math.max(W, H));
+      var cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(W * previewScale)); cv.height = Math.max(1, Math.round(H * previewScale));
       var g = cv.getContext("2d"); if (!g) throw new Error("Image canvas");
-      g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H);
+      g.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0);
+      if (!(m.format === "png" && m.transparent)) { g.fillStyle = snap.settings.background; g.fillRect(0, 0, W, H); }
       drawOps(g, W, H, ops, t); check();
-      post({ type: "exported", reqId: m.reqId, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
+      var links = m.links ? ops.flatMap(function(op) {
+        if (!op.clip.href || op.alpha <= 0.001) return [];
+        var clip = resolveClipAt(op.clip, t);
+        if (getTransform(clip).opacity === 0) return [];
+        var box = clipBox(g, clip, W, H);
+        var link = box ? designPdfLink(clip.href, box, W, H, computeClipAnimation(clip, t), op.translateX, op.clipRect) : null;
+        return link ? [link] : [];
+      }) : [];
+      post({ type: "exported", reqId: m.reqId, links: links, dataUrl: cv.toDataURL(m.format === "png" ? "image/png" : "image/jpeg", m.quality || 0.92) });
     } catch (error) { post({ type: "exportFailed", reqId: m.reqId, error: String(error.message || error) }); }
     finally {
       clearTimeout(fontTimer);
@@ -1313,8 +1531,8 @@ canvas{display:block;width:100%;height:100%;}
       if (r !== lastP) { lastP = r; post({ type: "videoProgress", reqId: m.reqId, progress: p }); }
     };
     progress(0);
-    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    Promise.all([logoReady, Promise.race([ready, new Promise(function (r) { setTimeout(r, 3000); })])])
+    var ready = waitForDesignFonts(snap);
+    Promise.all([logoReady, ready])
       .then(function () { return m.format === "gif" ? null : mixAudio(snap, duration, range); })
       .then(function (mixed) {
         if (exportAborted) throw new Error("aborted");
@@ -1744,6 +1962,39 @@ canvas{display:block;width:100%;height:100%;}
       };
       img.onerror = function () { if (imageLoads.get(m.id) !== img) return; imageLoads.delete(m.id); post({ type: "mediaFailed", id: m.id }); };
       img.src = m.src;
+    } else if (m.type === "dataVisualSvg") {
+      (async function(message) { try {
+        if (!message.value || JSON.stringify(message.value).length > 250000) throw new Error("Invalid graphic data");
+        await waitForDesignFonts({ clips: [Object.assign({ kind: "shape" }, message.value)] }, message.fontCss);
+        var metricCanvas = document.createElement("canvas"), metricContext = metricCanvas.getContext("2d");
+        if (!metricContext) throw new Error("Text measurement is unavailable");
+        var svg = drawDataVisualSvg(message.value, Number(message.width), Number(message.height), function(text, font) { metricContext.font = font; return metricContext.measureText(text).width; });
+        post({ type: "dataVisualSvg", reqId: message.reqId, svg: svg });
+      } catch (error) { post({ type: "dataVisualSvg", reqId: message.reqId, error: error && error.message || "Could not render vector graphic" }); } })(m);
+    } else if (m.type === "paletteImage") {
+      (function(message) {
+        if (typeof message.source !== "string" || message.source.length > 1024 * 1024 || !/^data:image\/(jpeg|png);base64,/.test(message.source)) { post({ type: "paletteImage", reqId: message.reqId, error: "Invalid page preview" }); return; }
+        var image = new Image(), finished = false;
+        var cleanup = function() { clearTimeout(timer); image.onload = null; image.onerror = null; image.src = ""; };
+        var fail = function() { if (finished) return; finished = true; cleanup(); post({ type: "paletteImage", reqId: message.reqId, error: "Could not read page colours" }); };
+        var timer = setTimeout(fail, 12000);
+        image.onload = function() { if (finished) return; try {
+          var preview = document.createElement("canvas"), ratio = Math.min(1, 128 / Math.max(image.naturalWidth, image.naturalHeight));
+          preview.width = Math.max(1, Math.round(image.naturalWidth * ratio)); preview.height = Math.max(1, Math.round(image.naturalHeight * ratio));
+          var context = preview.getContext("2d"); context.drawImage(image, 0, 0, preview.width, preview.height);
+          var colours = extractDominantColours(context.getImageData(0, 0, preview.width, preview.height).data);
+          finished = true; cleanup(); post({ type: "paletteImage", reqId: message.reqId, colours: colours });
+        } catch (error) { fail(); } };
+        image.onerror = fail; image.src = message.source;
+      })(m);
+    } else if (m.type === "sampleColour") {
+      try {
+        if (!state || !state.snapshot || state.snapshot.id !== m.projectId || !Number.isFinite(m.x) || !Number.isFinite(m.y)) throw new Error("The design changed before sampling");
+        var sampleX = Math.max(0, Math.min(canvas.width - 1, Math.floor(m.x * canvas.width))), sampleY = Math.max(0, Math.min(canvas.height - 1, Math.floor(m.y * canvas.height)));
+        var pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
+        var colour = "#" + Array.from(pixel.slice(0, 3)).map(function(value) { return value.toString(16).padStart(2, "0"); }).join("");
+        post({ type: "colourSampled", token: m.token, colour: colour });
+      } catch (error) { post({ type: "colourSampled", token: m.token, error: "Could not read the canvas colour. Try again or enter a colour value." }); }
     } else if (m.type === "stats") {
       // Picture statistics for Auto enhance, from a 64x64 sample (web autoEnhance.ts).
       var src = images.get(m.mediaId);
@@ -1828,5 +2079,5 @@ canvas{display:block;width:100%;height:100%;}
   post({ type: "ready" });
 })();
 </script>
-</body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
-  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME);
+</body></html>`.replace("__ENCODER_QUEUE_RUNTIME__", ENCODER_QUEUE_RUNTIME).replace("__VIDEO_MATTE_PAGE_CACHE_RUNTIME__", VIDEO_MATTE_PAGE_CACHE_RUNTIME).replace("__VIDEO_MATTE_RUNTIME__", VIDEO_MATTE_RUNTIME).replace("__TEXT_LAYOUT_RUNTIME__", TEXT_DIRECTION_RUNTIME + "\n" + BALANCED_TEXT_WRAP_RUNTIME + "\n" + TEXT_LAYOUT_RUNTIME).replace("__ENDING_VISUAL_RUNTIME__", ENDING_VISUAL_RUNTIME).replace("__ENDING_FILE_RUNTIME__", ENDING_FILE_RUNTIME).replace("__SHOT_RUNTIME__", SHOT_RUNTIME).replace("__VISUAL_FRAME_RUNTIME__", VISUAL_FRAME_RUNTIME).replace("__CAPTIONS_WORKER_SOURCE__", JSON.stringify(CAPTIONS_WORKER)).replace("__BRAND_OUTRO_RUNTIME__", BRAND_OUTRO_RUNTIME + "; var brandOutroDuration = " + BRAND_OUTRO_DURATION + "; var BRAND_OUTRO_SOURCES = " + JSON.stringify(BRAND_OUTRO_SOURCES) + ";").replace("__MEDIA_LEASES_RUNTIME__", MEDIA_LEASES_RUNTIME).replace("__EXPORT_RANGES_RUNTIME__", EXPORT_RANGES_RUNTIME)
+  .replace("__VIDEO_FRAME_RUNTIME__", VIDEO_FRAME_RUNTIME).replace("__AUDIO_TOOLS_RUNTIME__", AUDIO_TOOLS_RUNTIME).replace("__AUDIO_TOOLS_WORKER__", JSON.stringify(AUDIO_TOOLS_WORKER)).replace("__GIF_RUNTIME__", GIF_RUNTIME + "; var gifWorkerSource = " + JSON.stringify(GIF_WORKER) + ";").replace("__GIF_TIMELINE_RUNTIME__", GIF_TIMELINE_RUNTIME).replace("__MULTI_SERIES_CHARTS_RUNTIME__", CHART_ROW_FILTERS_RUNTIME + "\n" + GRAPHIC_TEXT_RUNTIME + "\n" + CHART_MARKS_RUNTIME + "\n" + PERCENT_STACKED_SERIES_RUNTIME + "\n" + STACKED_AREA_BANDS_RUNTIME + "\n" + CHART_LINE_STYLE_RUNTIME + "\n" + CHART_LEGEND_RUNTIME + "\n" + CHART_VALUE_FORMAT_RUNTIME + "\n" + CHART_DATE_AXIS_RUNTIME + "\n" + GRAPHIC_FONT_RUNTIME + "\n" + CHART_REFERENCE_RUNTIME + "\n" + FUNNEL_CHART_RUNTIME + "\n" + HISTOGRAM_CHART_RUNTIME + "\n" + TREEMAP_CHART_RUNTIME + "\n" + PACKED_CIRCLES_CHART_RUNTIME + "\n" + PICTOGRAM_SYMBOL_RUNTIME + "\n" + PICTOGRAM_CHART_RUNTIME + "\n" + CHART_RACE_RUNTIME + "\n" + PROGRESS_CHARTS_RUNTIME + "\n" + CHART_CATEGORY_LABEL_RUNTIME + "\n" + MULTI_SERIES_CHARTS_RUNTIME).replace("__TABLE_RENDERING_RUNTIME__", TABLE_RENDERING_RUNTIME).replace("__PALETTE_QUANTIZATION_RUNTIME__", PALETTE_QUANTIZATION_RUNTIME).replace("__DATA_VISUAL_RUNTIME__", DATA_VISUAL_RUNTIME + "\n" + DATA_VISUAL_SVG_RUNTIME).replace("__GRADIENT_FILL_RUNTIME__", GRADIENT_FILL_RUNTIME).replace("__QR_GRAPHIC_RUNTIME__", QR_GRAPHIC_RUNTIME).replace("__SHAPE_GEOMETRY_RUNTIME__", SHAPE_GEOMETRY_RUNTIME).replace("__FREEHAND_RUNTIME__", FREEHAND_RUNTIME).replace("__VECTOR_SYMBOLS_RUNTIME__", VECTOR_SYMBOLS_RUNTIME).replace("__CONNECTORS_RUNTIME__", CONNECTORS_RUNTIME).replace("__TEXT_REVEAL_RUNTIME__", TEXT_REVEAL_RUNTIME).replace("__DESIGN_LINKS_RUNTIME__", DESIGN_LINKS_RUNTIME).replace("__PHOTO_TONE_RUNTIME__", PHOTO_TONE_RUNTIME);
