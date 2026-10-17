@@ -552,7 +552,7 @@ canvas{display:block;width:100%;height:100%;}
     g.drawImage(el, sx, sy, sw, sh, 0, 0, cw, ch);
     if (needsPhotoTone(e)) {
       var image = g.getImageData(0, 0, cw, ch);
-      applyPhotoTone(image.data, e, true); g.putImageData(image, 0, 0);
+      applyPhotoTone(image.data, e, true, cw, ch); g.putImageData(image, 0, 0);
     }
     function fillBlend(colour, alpha, mode) {
       g.globalCompositeOperation = mode;

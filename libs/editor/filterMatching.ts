@@ -1,7 +1,7 @@
 import type { ClipEffects } from "./types";
 const FIELDS: Array<Exclude<keyof ClipEffects, "duotone">> = [
   "brightness", "contrast", "saturation", "blur", "grayscale", "sepia", "hueRotate", "invert",
-  "warmth", "tint", "vignette", "highlights", "shadows", "fade", "vibrance",
+  "sharpen", "grain", "warmth", "tint", "vignette", "highlights", "shadows", "fade", "vibrance",
 ];
 
 /** Neutral explicit values and omitted values describe the same filter. */
