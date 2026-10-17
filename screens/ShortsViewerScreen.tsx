@@ -1631,7 +1631,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 The first and last cell align to their outer edges, so the row
                 still starts and ends flush with the caption above it exactly as
                 web's does. */}
-            <View style={styles.actionBar}>
+            <View testID="shorts-actions" className="dark-surface" style={styles.actionBar}>
               {/* Views — a readout, not a button, as on web. */}
               <View style={[styles.actionCell, styles.actionCellFirst]}>
                 <Icon name="Eye" size={20} color={ICON_COLOR} strokeWidth={1.8} />
@@ -2578,6 +2578,7 @@ const styles = StyleSheet.create({
   // No wrapper and no fixed height any more: without a slab to fill, the row
   // is exactly as tall as its tallest cell.
   actionBar: {
+    backgroundColor: "transparent",
     flexDirection: "row",
     alignItems: "center",
   },
