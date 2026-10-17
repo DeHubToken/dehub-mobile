@@ -5,7 +5,6 @@ import {
   Text,
   TextInput,
   Pressable,
-  FlatList,
   ActivityIndicator,
   Keyboard,
   Platform,
@@ -13,6 +12,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
@@ -1581,6 +1581,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         </View>
       ) : (
         <FlatList
+          nestedScrollEnabled
+          disallowInterruption
           data={visibleComments}
           renderItem={renderComment}
           keyExtractor={keyExtractor}

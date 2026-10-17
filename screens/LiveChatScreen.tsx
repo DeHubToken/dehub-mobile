@@ -197,10 +197,10 @@ const LiveChatScreen: React.FC = () => {
   // Mirrors isAtBottomRef for the jump-to-latest button: a ref alone never
   // re-renders, so scrolling up did not show the button until something else did.
   const [atBottom, setAtBottom] = useState(true);
-  const prevMessageCountRef = useRef(0);
   const messagesRef = useRef<LiveChatMessageData[]>([]);
   messagesRef.current = messages;
   const contentHeightRef = useRef(0);
+  const measuredFirstMessage = useRef<string | undefined>(undefined);
   const layoutHeightRef = useRef(0);
   const scrollOffsetRef = useRef(0);
   const hasInitialScrolledRef = useRef(false);
@@ -224,20 +224,17 @@ const LiveChatScreen: React.FC = () => {
     }
   }, []);
 
-  // Auto-scroll to bottom when new messages arrive (only if user is at bottom)
-  useEffect(() => {
-    const prevCount = prevMessageCountRef.current;
-    const newCount = messages.length;
-    prevMessageCountRef.current = newCount;
-    if (prevCount === 0) return;
-    if (newCount > prevCount && isAtBottomRef.current) {
-      setTimeout(() => scrollToBottom(true), 150);
-    }
-  }, [messages.length, scrollToBottom]);
+  // Content measurement owns following the tail. A second delayed animated
+  // scroll here used to race it when cached and server history both arrived.
+  useEffect(() => () => clearTimeout(initialRevealTimer.current), []);
 
   const handleContentSizeChange = useCallback((_w: number, h: number) => {
     const prevH = contentHeightRef.current;
     contentHeightRef.current = h;
+    const firstId = messagesRef.current[0]?._id;
+    const prepended = measuredFirstMessage.current !== undefined &&
+      measuredFirstMessage.current !== firstId;
+    measuredFirstMessage.current = firstId;
 
     // ── Phase 1: initial setup (list hidden via opacity 0) ──
     if (!hasInitialScrolledRef.current) {
@@ -268,13 +265,13 @@ const LiveChatScreen: React.FC = () => {
 
     // ── Phase 2: normal operation ──
     const delta = h - prevH;
-    if (!isAtBottomRef.current && delta !== 0 && prevH > layoutHeightRef.current) {
+    if (!isAtBottomRef.current && prepended && delta !== 0 && prevH > layoutHeightRef.current) {
       // Content changed while user is scrolled up — adjust offset to maintain visual position
       const adjusted = Math.max(0, scrollOffsetRef.current + delta);
       flatListRef.current?.scrollToOffset({ offset: adjusted, animated: false });
       scrollOffsetRef.current = adjusted;
     } else if (isAtBottomRef.current) {
-      setTimeout(() => scrollToBottom(false), 30);
+      scrollToBottom(false);
     }
   }, [scrollToBottom]);
 
@@ -284,6 +281,9 @@ const LiveChatScreen: React.FC = () => {
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      // Programmatic positioning during the hidden initial render is not a
+      // reader scrolling up. In particular, it must not fetch older history.
+      if (!hasInitialScrolledRef.current) return;
       const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
       scrollOffsetRef.current = contentOffset.y;
       const distanceFromBottom = contentSize.height - layoutMeasurement.height - contentOffset.y;
