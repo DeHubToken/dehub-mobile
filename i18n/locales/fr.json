@@ -386,6 +386,8 @@
     "showAsNewMemberDesc": "Permet aux autres membres de voir que vous venez d'arriver pour vous accueillir. Se termine automatiquement 30 jours après votre inscription.",
     "postVisibility": "Visibilité des publications",
     "defaultPostVisibility": "Visibilité par défaut",
+    "defaultProfileTab": "Onglet de profil par défaut",
+    "defaultProfileTabDesc": "Choisissez l'onglet que les visiteurs voient en premier sur votre profil",
     "defaultPostVisibilityDesc": "S'applique à toutes les publications actuelles et futures",
     "public": "Public",
     "publicDesc": "Tout le monde peut voir vos publications",

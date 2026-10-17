@@ -309,6 +309,8 @@
     "showAsNewMemberDesc": "Dihêle endamên din bibînin ku tu nû beşdar bûyî da ku bi xêr hatî bêjin. 30 roj piştî tomarkirinê bixweber diqede.",
     "postVisibility": "Dîtina Şandiyê",
     "defaultPostVisibility": "Dîtina Şandiyê ya Pêşnumayî",
+    "defaultProfileTab": "Taba profîla xwerû",
+    "defaultProfileTabDesc": "Hilbijêre bê serdanker di profîla te de pêşî kîjan tabê dibînin",
     "defaultPostVisibilityDesc": "Ji bo hemû şandiyên niha û yên pêşerojê derbas dibe",
     "public": "Giştî",
     "publicDesc": "Her kes dikare şandiyên te bibîne",

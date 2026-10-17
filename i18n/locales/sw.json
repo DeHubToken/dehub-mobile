@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Huwawezesha wanachama wengine kuona kwamba umejiunga hivi punde ili wakukaribishe. Huisha kiotomatiki siku 30 baada ya kujisajili.",
     "postVisibility": "Kuonekana kwa Machapisho",
     "defaultPostVisibility": "Kuonekana kwa Machapisho kwa Chaguo-msingi",
+    "defaultProfileTab": "Kichupo chaguo-msingi cha wasifu",
+    "defaultProfileTabDesc": "Chagua kichupo ambacho wageni huona kwanza kwenye wasifu wako",
     "defaultPostVisibilityDesc": "Inatumika kwa machapisho yote ya sasa na ya baadaye",
     "public": "Umma",
     "publicDesc": "Mtu yeyote anaweza kuona machapisho yako",

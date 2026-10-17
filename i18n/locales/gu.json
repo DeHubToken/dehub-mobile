@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "અન્ય સભ્યો જોઈ શકે કે તમે હમણાં જ જોડાયા છો જેથી તેઓ તમારું સ્વાગત કરી શકે. નોંધણી પછી 30 દિવસે આપોઆપ સમાપ્ત થાય છે.",
     "postVisibility": "પોસ્ટ દૃશ્યતા",
     "defaultPostVisibility": "ડિફૉલ્ટ દૃશ્યતા",
+    "defaultProfileTab": "ડિફોલ્ટ પ્રોફાઇલ ટેબ",
+    "defaultProfileTabDesc": "મુલાકાતીઓ તમારી પ્રોફાઇલ પર પહેલાં કયો ટેબ જુએ તે પસંદ કરો",
     "defaultPostVisibilityDesc": "બધી હાલની અને નવી પોસ્ટ્સ પર લાગુ થાય",
     "public": "જાહેર",
     "publicDesc": "બધા તમારી પોસ્ટ્સ જોઈ શકે",

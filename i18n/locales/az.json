@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Digər üzvlərin yeni qoşulduğunu görüb səni qarşılamasına imkan verir. Qeydiyyatdan 30 gün sonra avtomatik bitir.",
     "postVisibility": "Paylaşım Görünürlüyü",
     "defaultPostVisibility": "Standart Paylaşım Görünürlüyü",
+    "defaultProfileTab": "Standart profil vərəqi",
+    "defaultProfileTabDesc": "Ziyarətçilərin profilinizdə ilk hansı vərəqi görəcəyini seçin",
     "defaultPostVisibilityDesc": "Bütün mövcud və gələcək paylaşımlara tətbiq olunur",
     "public": "Açıq",
     "publicDesc": "Hər kəs paylaşımlarınızı görə bilər",

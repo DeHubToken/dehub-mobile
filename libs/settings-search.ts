@@ -72,6 +72,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   // Privacy
   { tab: 'privacy', anchor: 'account-visibility', label: 'Account Visibility', labelKey: 'settings.accountVisibility', keywords: 'private account lock approve requests' },
   { tab: 'privacy', anchor: 'post-visibility', label: 'Post Visibility', labelKey: 'settings.postVisibility', keywords: 'default public private posts' },
+  { tab: 'privacy', anchor: 'default-profile-tab', label: 'Default profile tab', labelKey: 'settings.defaultProfileTab', keywords: 'landing tab visitors profile open first' },
   { tab: 'privacy', anchor: 'show-online', label: "Show when I'm online", labelKey: 'settings.showOnline', keywords: 'online status presence green dot active messages' },
   { tab: 'privacy', anchor: 'ai-scraping', label: 'Allow AI training', labelKey: 'settings.aiScraping.label', keywords: 'ai scraping training llm crawler bot noai' },
   { tab: 'privacy', anchor: 'follower-visibility', label: 'Follower Visibility', labelKey: 'settings.followerVisibilitySection', keywords: 'followers following hide counts' },

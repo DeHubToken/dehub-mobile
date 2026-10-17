@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Deixa os outros membros verem que acabou de chegar para lhe darem as boas-vindas. Termina automaticamente 30 dias após o registo.",
     "postVisibility": "Visibilidade de publicações",
     "defaultPostVisibility": "Visibilidade padrão",
+    "defaultProfileTab": "Separador de perfil padrão",
+    "defaultProfileTabDesc": "Escolha que separador os visitantes veem primeiro no seu perfil",
     "defaultPostVisibilityDesc": "Aplica-se a todas as publicações atuais e futuras",
     "public": "Público",
     "publicDesc": "Qualquer pessoa pode ver suas publicações",

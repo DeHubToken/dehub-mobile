@@ -386,6 +386,8 @@
     "showAsNewMemberDesc": "Laat andere leden zien dat je er net bij bent, zodat ze je kunnen verwelkomen. Stopt automatisch 30 dagen na je aanmelding.",
     "postVisibility": "Berichtzichtbaarheid",
     "defaultPostVisibility": "Standaard berichtzichtbaarheid",
+    "defaultProfileTab": "Standaard profieltabblad",
+    "defaultProfileTabDesc": "Kies welk tabblad bezoekers als eerste zien op je profiel",
     "defaultPostVisibilityDesc": "Geldt voor alle huidige en toekomstige berichten",
     "public": "Openbaar",
     "publicDesc": "Iedereen kan je berichten zien",

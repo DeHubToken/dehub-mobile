@@ -356,6 +356,8 @@
     "showAsNewMemberDesc": "Zeigt anderen Mitgliedern, dass du gerade dazugekommen bist, damit sie dich begrüßen können. Endet automatisch 30 Tage nach deiner Anmeldung.",
     "postVisibility": "Beitragssichtbarkeit",
     "defaultPostVisibility": "Standard-Sichtbarkeit",
+    "defaultProfileTab": "Standard-Profiltab",
+    "defaultProfileTabDesc": "Wähle, welchen Tab Besucher auf deinem Profil zuerst sehen",
     "defaultPostVisibilityDesc": "Gilt für alle aktuellen und zukünftigen Beiträge",
     "public": "Öffentlich",
     "publicDesc": "Jeder kann deine Beiträge sehen",

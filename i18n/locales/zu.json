@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Kuvumela amanye amalungu abone ukuthi usanda kujoyina ukuze akwamukele. Kuphela ngokuzenzakalela ezinsukwini ezingu-30 ngemva kokubhalisa.",
     "postVisibility": "Ukubonakala Kokuthunyelwe",
     "defaultPostVisibility": "Ukubonakala Kokuthunyelwe Okuzenzakalelayo",
+    "defaultProfileTab": "Ithebhu yephrofayela ezenzakalelayo",
+    "defaultProfileTabDesc": "Khetha ukuthi iyiphi ithebhu izivakashi ezizoyibona kuqala kuphrofayela yakho",
     "defaultPostVisibilityDesc": "Kusebenza kukho konke okuthunyelwe kwamanje nokwesikhathi esizayo",
     "public": "Umphakathi",
     "publicDesc": "Noma ubani angabona okuthunyelwe kwakho",

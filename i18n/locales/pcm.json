@@ -304,6 +304,8 @@
     "showAsNewMemberDesc": "E dey make other members see say you just join so dem fit welcome you. E dey stop by itself 30 days after you register.",
     "postVisibility": "Post visibility",
     "defaultPostVisibility": "Default post visibility",
+    "defaultProfileTab": "Default profile tab",
+    "defaultProfileTabDesc": "Choose which tab visitors go see first for your profile",
     "defaultPostVisibilityDesc": "E go apply to all current and future posts",
     "public": "Public",
     "publicDesc": "Anybody fit see your posts",

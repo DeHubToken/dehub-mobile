@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Laat ander lede sien dat jy pas aangesluit het sodat hulle jou kan verwelkom. Eindig outomaties 30 dae ná jy geregistreer het.",
     "postVisibility": "Pos Sigbaarheid",
     "defaultPostVisibility": "Verstek Pos Sigbaarheid",
+    "defaultProfileTab": "Verstek profieloortjie",
+    "defaultProfileTabDesc": "Kies watter oortjie besoekers eerste op jou profiel sien",
     "defaultPostVisibilityDesc": "Geldig vir alle huidige en toekomstige poste",
     "public": "Publiek",
     "publicDesc": "Enigiemand kan jou poste sien",

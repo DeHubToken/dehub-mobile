@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "等其他成員睇到你啱啱加入，可以歡迎你。註冊之後 30 日自動結束。",
     "postVisibility": "帖文可見度",
     "defaultPostVisibility": "預設帖文可見度",
+    "defaultProfileTab": "預設檔案分頁",
+    "defaultProfileTabDesc": "揀訪客喺你檔案上最先睇到邊個分頁",
     "defaultPostVisibilityDesc": "適用於所有現有同未來嘅帖文",
     "public": "公開",
     "publicDesc": "任何人都可以睇你嘅帖文",
