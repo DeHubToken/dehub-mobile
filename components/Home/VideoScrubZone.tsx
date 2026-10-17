@@ -4,6 +4,8 @@ import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useScrubGesture } from '../../hooks/useScrubGesture';
 import { FeedScrubContext, SCRUB_HIT_HEIGHT } from '../../hooks/useFeedScrubBoundary';
+import { useAppTheme } from '../../context/ThemeContext';
+import { VideoStripForeground } from '../common/MediaControlGlyph';
 
 const ScrubbedTouch = createContext<React.MutableRefObject<boolean> | null>(null);
 export const VIDEO_CONTROL_STRIP_HEIGHT = 47;
@@ -42,6 +44,9 @@ type Props = {
 };
 
 export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false }: Props) {
+  const { isLight, colors, pageColors } = useAppTheme();
+  const lightStrip = plainStrip && isLight;
+  const foreground = lightStrip ? colors.foreground : '#FFFFFF';
   const boundary = useContext(FeedScrubContext);
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
@@ -88,7 +93,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           onTouchEnd={event => event.stopPropagation()}
           onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
-          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={styles.stripSurface} />}
+          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, lightStrip && { backgroundColor: pageColors.background }]} />}
           <Pressable
             testID="video-scrub-tap"
             style={StyleSheet.absoluteFill}
@@ -102,11 +107,11 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
               onCommit(Math.max(0, Math.min(1, event.nativeEvent.locationX / width.current)));
             }}
           />
-          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, { opacity }]}>
-            {line ?? <View style={[styles.played, { width: `${progress}%` }]} />}
+          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, lightStrip && { backgroundColor: colors.neutrals[700] }, { opacity }]}>
+            {line ?? <View style={[styles.played, { width: `${progress}%`, backgroundColor: foreground }]} />}
           </Animated.View>
           <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, plainStrip && { bottom: 9 }, { opacity }]}>
-            {children}
+            <VideoStripForeground.Provider value={foreground}>{children}</VideoStripForeground.Provider>
           </Animated.View>
         </View>
       </GestureDetector>
