@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Omogućuje drugim članovima da vide da si tek stigao kako bi te mogli pozdraviti. Automatski završava 30 dana nakon registracije.",
     "postVisibility": "Vidljivost objava",
     "defaultPostVisibility": "Zadana vidljivost objava",
+    "defaultProfileTab": "Zadana kartica profila",
+    "defaultProfileTabDesc": "Odaberite koju karticu posjetitelji prvo vide na vašem profilu",
     "defaultPostVisibilityDesc": "Primjenjuje se na sve trenutne i buduće objave",
     "public": "Javno",
     "publicDesc": "Svatko može vidjeti vaše objave",

@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Låter andra medlemmar se att du precis kommit hit så att de kan välkomna dig. Slutar automatiskt 30 dagar efter att du registrerade dig.",
     "postVisibility": "Inläggssynlighet",
     "defaultPostVisibility": "Standardsynlighet",
+    "defaultProfileTab": "Standardflik på profilen",
+    "defaultProfileTabDesc": "Välj vilken flik besökare ser först på din profil",
     "defaultPostVisibilityDesc": "Gäller alla nuvarande och framtida inlägg",
     "public": "Offentlig",
     "publicDesc": "Alla kan se dina inlägg",

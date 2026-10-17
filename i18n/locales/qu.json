@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Huk runakuna qanpa musuqmanta yaykusqaykita rikunanpaq, napaykusunaykipaq. Qillqasqaykimanta 30 punchaw qhipaman kikinmanta tukun.",
     "postVisibility": "Churasqa rikuchiy",
     "defaultPostVisibility": "Ñawpaq churasqa rikuchiy",
+    "defaultProfileTab": "Ñawpaq willakuy pestaña",
+    "defaultProfileTabDesc": "Willakuyniykipi, watukuqkuna mayqin pestañata ñawpaqta rikunanta akllay",
     "defaultPostVisibilityDesc": "Tukuy kunan churasqakunapaq hamuq churasqakunapaqpas",
     "public": "Tukuypaq",
     "publicDesc": "Pipas churasqaykikunata rikuyta atin",

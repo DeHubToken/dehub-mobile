@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Lar andre medlemmer se at du nettopp kom, så de kan ønske deg velkommen. Slutter automatisk 30 dager etter at du registrerte deg.",
     "postVisibility": "Innleggssynlighet",
     "defaultPostVisibility": "Standard synlighet",
+    "defaultProfileTab": "Standardfane på profilen",
+    "defaultProfileTabDesc": "Velg hvilken fane besøkende ser først på profilen din",
     "defaultPostVisibilityDesc": "Gjelder alle nåværende og fremtidige innlegg",
     "public": "Offentlig",
     "publicDesc": "Hvem som helst kan se innleggene dine",

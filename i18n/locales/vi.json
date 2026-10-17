@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Cho các thành viên khác thấy bạn vừa tham gia để họ chào đón bạn. Tự kết thúc sau 30 ngày kể từ khi đăng ký.",
     "postVisibility": "Chế độ hiển thị bài viết",
     "defaultPostVisibility": "Chế độ hiển thị mặc định",
+    "defaultProfileTab": "Tab hồ sơ mặc định",
+    "defaultProfileTabDesc": "Chọn tab mà khách xem đầu tiên trên hồ sơ của bạn",
     "defaultPostVisibilityDesc": "Áp dụng cho mọi bài viết hiện tại và sau này",
     "public": "Công khai",
     "publicDesc": "Ai cũng xem được bài viết của bạn",

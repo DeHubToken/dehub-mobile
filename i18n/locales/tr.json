@@ -386,6 +386,8 @@
     "showAsNewMemberDesc": "Diğer üyelerin yeni katıldığınızı görüp sizi karşılamasını sağlar. Kaydolduktan 30 gün sonra otomatik olarak sona erer.",
     "postVisibility": "Gönderi Görünürlüğü",
     "defaultPostVisibility": "Varsayılan Görünürlük",
+    "defaultProfileTab": "Varsayılan profil sekmesi",
+    "defaultProfileTabDesc": "Ziyaretçilerin profilinizde ilk hangi sekmeyi göreceğini seçin",
     "defaultPostVisibilityDesc": "Tüm mevcut ve gelecek gönderilere uygulanır",
     "public": "Herkese Açık",
     "publicDesc": "Herkes gönderilerinizi görebilir",

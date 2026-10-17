@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Permet que altres membres vegin que acabes d'arribar per donar-te la benvinguda. Acaba automàticament 30 dies després de registrar-te.",
     "postVisibility": "Visibilitat de publicacions",
     "defaultPostVisibility": "Visibilitat per defecte",
+    "defaultProfileTab": "Pestanya de perfil per defecte",
+    "defaultProfileTabDesc": "Tria quina pestanya veuen primer els visitants al teu perfil",
     "defaultPostVisibilityDesc": "S'aplica a totes les publicacions actuals i futures",
     "public": "Públic",
     "publicDesc": "Qualsevol pot veure les teves publicacions",

@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Ļauj citiem dalībniekiem redzēt, ka tikko pievienojies, lai viņi varētu tevi sveikt. Automātiski beidzas 30 dienas pēc reģistrēšanās.",
     "postVisibility": "Ierakstu redzamība",
     "defaultPostVisibility": "Noklusējuma redzamība",
+    "defaultProfileTab": "Noklusējuma profila cilne",
+    "defaultProfileTabDesc": "Izvēlieties, kuru cilni apmeklētāji jūsu profilā redz vispirms",
     "defaultPostVisibilityDesc": "Attiecas uz visiem esošajiem un nākotnes ierakstiem",
     "public": "Publisks",
     "publicDesc": "Jebkurš var redzēt jūsu ierakstus",

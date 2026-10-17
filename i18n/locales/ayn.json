@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "بيخلي باقي الأعضاء يشوفوا إنك لسع انضميت عشان يرحبوا بك. بينتهي أوتوماتيك بعد 30 يوم من التسجيل.",
     "postVisibility": "ظهور المنشورات",
     "defaultPostVisibility": "ظهور المنشورات الافتراضي",
+    "defaultProfileTab": "التبويب الافتراضي للبروفايل",
+    "defaultProfileTabDesc": "اختر أي تبويب يشوفه الزوار أول شي في بروفايلك",
     "defaultPostVisibilityDesc": "ينطبق على كل المنشورات الحالية والمستقبلية",
     "public": "عام",
     "publicDesc": "أي أحد يقدر يشوف منشوراتك",

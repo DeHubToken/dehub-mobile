@@ -306,6 +306,8 @@
     "showAsNewMemberDesc": "I di mek oda member dem si sei yu jos join so dat dem fit welkom yu. I di stop bai isef 30 dei afta yu register.",
     "postVisibility": "Hu fit si post",
     "defaultPostVisibility": "Hu fit si post fo nomal",
+    "defaultProfileTab": "Default profile tab",
+    "defaultProfileTabDesc": "Choose wich tab visitor dem go si fes fo yua profile",
     "defaultPostVisibilityDesc": "E dey apply for all current and future posts",
     "public": "Fo ol pipo",
     "publicDesc": "Anybody fit see your posts",

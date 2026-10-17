@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Le arată celorlalți membri că tocmai ai venit, ca să te poată întâmpina. Se încheie automat la 30 de zile după înscriere.",
     "postVisibility": "Vizibilitate postări",
     "defaultPostVisibility": "Vizibilitate implicită postări",
+    "defaultProfileTab": "Fila implicită a profilului",
+    "defaultProfileTabDesc": "Alege ce filă văd prima vizitatorii pe profilul tău",
     "defaultPostVisibilityDesc": "Se aplică tuturor postărilor curente și viitoare",
     "public": "Public",
     "publicDesc": "Oricine poate vedea postările tale",

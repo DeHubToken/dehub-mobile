@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "让其他成员看得出侬刚刚加入，好欢迎侬。注册之后 30 日自家结束。",
     "postVisibility": "帖子可见度",
     "defaultPostVisibility": "默认帖子可见度",
+    "defaultProfileTab": "默认档案标签",
+    "defaultProfileTabDesc": "拣访客勒侬个主页浪先看着啥个标签",
     "defaultPostVisibilityDesc": "适用于所有现有搭未来个帖子",
     "public": "公开",
     "publicDesc": "随便啥人好看侬个帖子",

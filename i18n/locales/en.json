@@ -386,6 +386,8 @@
     "showAsNewMemberDesc": "Lets other members see you just joined so they can welcome you. Ends automatically 30 days after you signed up.",
     "postVisibility": "Post Visibility",
     "defaultPostVisibility": "Default Post Visibility",
+    "defaultProfileTab": "Default profile tab",
+    "defaultProfileTabDesc": "Choose which tab visitors see first on your profile",
     "defaultPostVisibilityDesc": "Applies to all current and future posts",
     "public": "Public",
     "publicDesc": "Anyone can see your posts",

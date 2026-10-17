@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "ሌሎች አባላት አሁን እንደተቀላቀሉ አይተው እንኳን ደህና መጡ እንዲሉዎት ያስችላል። ከተመዘገቡ ከ30 ቀናት በኋላ በራስ-ሰር ያበቃል።",
     "postVisibility": "የልጥፍ ታይነት",
     "defaultPostVisibility": "ነባሪ የልጥፍ ታይነት",
+    "defaultProfileTab": "ነባሪ የመገለጫ ትር",
+    "defaultProfileTabDesc": "ጎብኚዎች በመገለጫዎ ላይ መጀመሪያ የሚያዩትን ትር ይምረጡ",
     "defaultPostVisibilityDesc": "ለሁሉም ያሉና ለወደፊት ልጥፎች ይተገበራል",
     "public": "ይፋ",
     "publicDesc": "ማንም ልጥፎችህን ማየት ይችላል",

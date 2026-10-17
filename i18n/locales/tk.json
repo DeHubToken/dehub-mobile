@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Beýleki agzalara ýaňy goşulandygyňyzy görmäge we sizi garşylamaga mümkinçilik berýär. Bellige alnandan 30 gün soň awtomatiki tamamlanýar.",
     "postVisibility": "Ýazgy görünmegi",
     "defaultPostVisibility": "Deslapky görünme",
+    "defaultProfileTab": "Adaty profil bukjasy",
+    "defaultProfileTabDesc": "Myhmanlaryň profiliňizde ilki görjek bukjasyny saýlaň",
     "defaultPostVisibilityDesc": "Ähli häzirki we geljekki ýazgylara degişli",
     "public": "Açyk",
     "publicDesc": "Hemmeler ýazgylaryňyzy görüp biler",

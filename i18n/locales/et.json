@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Laseb teistel liikmetel näha, et sa just liitusid, et nad saaksid sind tervitada. Lõpeb automaatselt 30 päeva pärast registreerimist.",
     "postVisibility": "Postituste nähtavus",
     "defaultPostVisibility": "Vaikimisi nähtavus",
+    "defaultProfileTab": "Profiili vaikevahekaart",
+    "defaultProfileTabDesc": "Vali, millist vahekaarti külastajad sinu profiilil esimesena näevad",
     "defaultPostVisibilityDesc": "Kehtib kõigile olemasolevatele ja tulevastele postitustele",
     "public": "Avalik",
     "publicDesc": "Igaüks saab sinu postitusi näha",

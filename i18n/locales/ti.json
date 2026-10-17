@@ -307,6 +307,8 @@
     "showAsNewMemberDesc": "ካልኦት ኣባላት ሓድሽ ምጽንባርካ ርእዮም ክቕበሉኻ የኽእሎም። ድሕሪ ምዝገባ ኣብ 30 መዓልታት ባዕሉ ይውዳእ።",
     "postVisibility": "ምርኣይ ጽሑፍ",
     "defaultPostVisibility": "ነባሪ ምርኣይ ጽሑፍ",
+    "defaultProfileTab": "ቀዋሚ ናይ መለለዪ ታብ",
+    "defaultProfileTabDesc": "በጻሕቲ ኣብ መለለዪኻ ቀዳማይ እትርእዮም ታብ ምረጽ",
     "defaultPostVisibilityDesc": "ንኹሎም ህሉዋትን መጻእትን ጽሑፋት ይምልከት",
     "public": "ህዝባዊ",
     "publicDesc": "ዝኾነ ሰብ ጽሑፋትካ ክርኢ ይኽእል",

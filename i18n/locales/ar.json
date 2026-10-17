@@ -386,6 +386,8 @@
     "showAsNewMemberDesc": "يتيح للأعضاء الآخرين رؤية أنك انضممت للتو كي يرحبوا بك. ينتهي تلقائيًا بعد 30 يومًا من التسجيل.",
     "postVisibility": "ظهور المنشورات",
     "defaultPostVisibility": "الظهور الافتراضي",
+    "defaultProfileTab": "تبويب الملف الشخصي الافتراضي",
+    "defaultProfileTabDesc": "اختر التبويب الذي يراه الزوار أولًا في ملفك الشخصي",
     "defaultPostVisibilityDesc": "ينطبق على جميع المنشورات الحالية والمستقبلية",
     "public": "عام",
     "publicDesc": "يمكن لأي شخص رؤية منشوراتك",

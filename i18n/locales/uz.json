@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Boshqa a'zolar endigina qo'shilganingizni ko'rib, sizni kutib olishlariga imkon beradi. Ro'yxatdan o'tganingizdan 30 kun keyin avtomatik tugaydi.",
     "postVisibility": "Post koʻrinishi",
     "defaultPostVisibility": "Standart post koʻrinishi",
+    "defaultProfileTab": "Standart profil varag'i",
+    "defaultProfileTabDesc": "Tashrif buyuruvchilar profilingizda birinchi qaysi varaqni ko'rishini tanlang",
     "defaultPostVisibilityDesc": "Barcha joriy va kelgusi postlarga qoʻllaniladi",
     "public": "Ommaviy",
     "publicDesc": "Har kim postlaringizni koʻra oladi",

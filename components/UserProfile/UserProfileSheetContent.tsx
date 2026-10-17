@@ -22,6 +22,7 @@ import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
+import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -423,6 +424,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         youBlocked={youBlocked}
         blockedYou={blockedYou}
         pendingTab={pendingTab}
+        defaultTab={getDefaultProfileTab(data)}
         onPendingTabConsumed={handlePendingTabConsumed}
         backToTopBottom={backToTopBottom}
       />

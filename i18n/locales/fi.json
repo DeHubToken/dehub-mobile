@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Antaa muiden jäsenten nähdä, että liityit juuri, jotta he voivat toivottaa sinut tervetulleeksi. Päättyy automaattisesti 30 päivää rekisteröitymisen jälkeen.",
     "postVisibility": "Julkaisun näkyvyys",
     "defaultPostVisibility": "Oletusnäkyvyys",
+    "defaultProfileTab": "Profiilin oletusvälilehti",
+    "defaultProfileTabDesc": "Valitse, minkä välilehden kävijät näkevät ensin profiilissasi",
     "defaultPostVisibilityDesc": "Koskee kaikkia nykyisiä ja tulevia julkaisuja",
     "public": "Julkinen",
     "publicDesc": "Kuka tahansa voi nähdä julkaisusi",

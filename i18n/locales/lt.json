@@ -311,6 +311,8 @@
     "showAsNewMemberDesc": "Leidžia kitiems nariams matyti, kad ką tik prisijungėte, kad galėtų pasveikinti. Automatiškai baigiasi praėjus 30 dienų po registracijos.",
     "postVisibility": "Įrašų matomumas",
     "defaultPostVisibility": "Numatytasis matomumas",
+    "defaultProfileTab": "Numatytoji profilio kortelė",
+    "defaultProfileTabDesc": "Pasirinkite, kurią kortelę lankytojai jūsų profilyje mato pirmiausia",
     "defaultPostVisibilityDesc": "Taikoma visiems esamiems ir būsimiems įrašams",
     "public": "Viešas",
     "publicDesc": "Bet kas gali matyti jūsų įrašus",
