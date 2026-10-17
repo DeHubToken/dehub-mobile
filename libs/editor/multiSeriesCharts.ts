@@ -2,7 +2,7 @@ import { stackedAreaBands, traceStackedAreaBoundary } from "./stackedAreaBands";
 import { chartXValue, chartXLabel, CHART_DATE_MIN, CHART_DATE_MAX } from "./chartDateAxis";
 import { drawGraphicText } from "./graphicText";
 import { chartSeriesPattern, drawChartMarker, strokeChartPattern } from "./chartMarks";
-import { drawChartCategoryLabel } from "./chartCategoryLabel";
+import { drawChartCategoryLabel, showChartCategoryLabel, chartCategoryLabelSpace, chartCategoryLabelWidth, drawAngledCategoryLabel } from "./chartCategoryLabel";
 import { graphicFontCss } from "./graphicFonts";
 import { drawChartReference } from "./chartReference";
 import { percentStackedSeries } from "./percentStackedSeries";
@@ -100,7 +100,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font);
     return true;
   }
-  const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : font * (chart.labelWrap ? 4.5 : 2.5)) : font;
+  const horizontal = chart.kind === "bar", labelSpace = chart.showLabels ? (horizontal ? frameWidth * 0.25 : chartCategoryLabelSpace(chart, font, frameHeight)) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues !== false ? 3 : 1)), x1 = left + frameWidth - font, y0 = top + font * 1.5, y1 = top + frameHeight - (horizontal ? chart.showAxisValues !== false ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
   const xFor = (value: number) => x0 + (value - minimum) / span * plotWidth, yFor = (value: number) => y1 - (value - minimum) / span * plotHeight;
@@ -119,7 +119,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
       ctx.fillStyle = colour(set) + Math.round((chart.areaOpacity ?? 0.8) * 255).toString(16).padStart(2, "0"); ctx.beginPath();
       traceStackedAreaBoundary(ctx, upper, chart.lineStyle); traceStackedAreaBoundary(ctx, [...lower].reverse(), chart.lineStyle, true); ctx.closePath(); ctx.fill();
       ctx.strokeStyle = colour(set); ctx.lineWidth = Math.max(2, width / 300) * (chart.lineWidth ?? 1); ctx.beginPath(); traceStackedAreaBoundary(ctx, upper, chart.lineStyle); strokeChartPattern(ctx, chartSeriesPattern(chart, set).linePattern);
-      upper.forEach((point, index) => { ctx.fillStyle = colour(set); drawChartMarker(ctx, point.x, point.y, Math.max(2, width / 220) * (chart.pointSize ?? 1), chartSeriesPattern(chart, set).marker); if (chart.showValues && values[set][index] > 0) { ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(labelValue(values[set][index]), point.x, yFor((band.upper[index] + band.lower[index]) / 2), plotWidth / rows.length * 0.95); } });
+      upper.forEach((point, index) => { ctx.fillStyle = colour(set); drawChartMarker(ctx, point.x, point.y, Math.max(2, width / 220) * (chart.pointSize ?? 1), chartSeriesPattern(chart, set).marker); if (chart.showValues && values[set][index] > 0) { ctx.fillStyle = chart.textColour; ctx.textAlign = "center"; label(labelValue(values[set][index]), point.x, yFor((band.upper[index] + band.lower[index]) / 2), chartCategoryLabelWidth(chart, index, rows.length, plotWidth / rows.length)); } });
     });
   } else {
   const up = rows.map(() => 0), down = rows.map(() => 0);
@@ -148,7 +148,7 @@ export function drawMultiSeriesChart(ctx: DataVisualContext, width: number, heig
     });
   });
   }
-  if (chart.showLabels) rows.forEach((row, index) => { ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; const y = y0 + (index + 0.5) / rows.length * plotHeight; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font / 2, y, labelSpace - font, Math.min(font, plotHeight / rows.length * 0.4), 2, true); else label(row.label, x0 - font / 2, y, labelSpace - font); } else { ctx.textAlign = "center"; const x = x0 + (index + 0.5) / rows.length * plotWidth; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, plotWidth / rows.length * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, plotWidth / rows.length * 0.95); } });
+  if (chart.showLabels) rows.forEach((row, index) => { if (!showChartCategoryLabel(chart, index, rows.length)) return; ctx.fillStyle = chart.textColour; if (horizontal) { ctx.textAlign = "right"; const y = y0 + (index + 0.5) / rows.length * plotHeight; if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font / 2, y, labelSpace - font, Math.min(font, plotHeight / rows.length * 0.4), 2, true); else label(row.label, x0 - font / 2, y, labelSpace - font); } else { ctx.textAlign = "center"; const x = x0 + (index + 0.5) / rows.length * plotWidth; if (chart.labelAngle) drawAngledCategoryLabel(ctx, row.label, x, y1 + font, Math.max(font, labelSpace - font * 2), x0, x1, font, chart.labelAngle); else if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, chartCategoryLabelWidth(chart, index, rows.length, plotWidth / rows.length), font, 3); else label(row.label, x, y1 + font * 1.2, chartCategoryLabelWidth(chart, index, rows.length, plotWidth / rows.length)); } });
   if (!stream) drawChartReference(ctx, chart, x0, y0, x1, y1, minimum, maximum, font, percentStack);
   return true;
 }

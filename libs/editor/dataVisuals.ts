@@ -4,7 +4,7 @@ import { chartXValue, CHART_DATE_MIN, CHART_DATE_MAX, type ChartDateFormat } fro
 import { drawGraphicText } from "./graphicText";
 import { drawChartMarker, strokeChartPattern, type ChartPointShape, type ChartLinePattern } from "./chartMarks";
 import { validPictogramSymbol } from "./pictogramSymbol";
-import { drawChartCategoryLabel } from "./chartCategoryLabel";
+import { drawChartCategoryLabel, showChartCategoryLabel, chartCategoryLabelSpace, chartCategoryLabelWidth, drawAngledCategoryLabel } from "./chartCategoryLabel";
 import { drawPackedCirclesChart } from "./packedCirclesChart";
 import { drawProgressChart, isProgressChart } from "./progressCharts";
 import { drawChartRace } from "./chartRace";
@@ -35,6 +35,8 @@ export interface ChartData {
   pointShape?: ChartPointShape;
   linePattern?: ChartLinePattern;
   seriesPatterns?: boolean;
+  labelEvery?: number;
+  labelAngle?: number;
   labelWrap?: boolean;
   xValueFormat?: ChartValueFormat;
   pointLabelMode?: "value" | "coordinates";
@@ -120,6 +122,8 @@ export interface TableData {
   wrap?: boolean;
 }
 export interface DataVisualContext {
+  save?(): void; restore?(): void; translate?(x: number, y: number): void; rotate?(angle: number): void;
+  fillTextRotated?(text: string, x: number, y: number, degrees: number): void;
   direction?: string;
   lineCap?: string; lineJoin?: string;
   setLineDash?(segments: number[]): void;
@@ -238,7 +242,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
   if (xTitle) label(xTitle, 0, height / 2 - font * 0.6, width - font * 2);
   if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, top + font * 0.6, width - font * 2); }
   const horizontal = chart.kind === "bar";
-  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * (chart.labelWrap ? 4.5 : 2.5)) : font;
+  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : chartCategoryLabelSpace(chart, font, height)) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
   const y0 = top + font * (yTitle ? 3 : 1.5), y1 = height / 2 - (xTitle ? font * 1.6 : 0) - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
@@ -273,7 +277,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
       const slot = plotHeight / rows.length, y = y0 + slot * (index + 0.5), x = x0 + (row.value - min) / span * plotWidth;
       ctx.fillRect(Math.min(zeroX, x), y - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.abs(x - zeroX), slot * (1 - (chart.barGap ?? 0.34)));
       ctx.fillStyle = chart.textColour; ctx.textAlign = "right";
-      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font * 0.5, y, labelSpace - font, Math.min(font, slot * 0.4), 2, true); else label(row.label, x0 - font * 0.5, y, labelSpace - font); }
+      if (chart.showLabels && showChartCategoryLabel(chart, index, rows.length)) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font * 0.5, y, labelSpace - font, Math.min(font, slot * 0.4), 2, true); else label(row.label, x0 - font * 0.5, y, labelSpace - font); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x1, y - slot * 0.35, plotWidth);
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
@@ -282,7 +286,7 @@ export function drawDataVisual(ctx: DataVisualContext, width: number, height: nu
         if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); strokeChartPattern(ctx, chart.linePattern); }
         drawChartMarker(ctx, x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), chart.pointShape); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
-      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, slot * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, slot * 0.95); }
+      if (chart.showLabels && showChartCategoryLabel(chart, index, rows.length)) { if (chart.labelAngle) drawAngledCategoryLabel(ctx, row.label, x, y1 + font, Math.max(font, labelSpace - font * 2), x0, x1, font, chart.labelAngle); else if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, chartCategoryLabelWidth(chart, index, rows.length, slot), font, 3); else label(row.label, x, y1 + font * 1.2, chartCategoryLabelWidth(chart, index, rows.length, slot)); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
@@ -344,6 +348,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.xValueFormat)) return false;
+    if (chart.labelEvery !== undefined && (!Number.isInteger(chart.labelEvery) || chart.labelEvery < 1 || chart.labelEvery > 10)) return false;
+    if (chart.labelAngle !== undefined && (!Number.isFinite(chart.labelAngle) || chart.labelAngle < -90 || chart.labelAngle > 90)) return false;
     if (chart.labelWrap !== undefined && typeof chart.labelWrap !== "boolean") return false;
     if (chart.pointLabelMode !== undefined && !["value", "coordinates"].includes(String(chart.pointLabelMode))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;

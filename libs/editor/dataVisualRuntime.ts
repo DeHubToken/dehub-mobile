@@ -104,7 +104,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   if (xTitle) label(xTitle, 0, height / 2 - font * 0.6, width - font * 2);
   if (yTitle) { ctx.textAlign = "left"; label(yTitle, left + font, top + font * 0.6, width - font * 2); }
   const horizontal = chart.kind === "bar";
-  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : font * (chart.labelWrap ? 4.5 : 2.5)) : font;
+  const labelSpace = chart.showLabels ? (horizontal ? width * 0.25 : chartCategoryLabelSpace(chart, font, height)) : font;
   const x0 = left + (horizontal ? labelSpace : font * (chart.showAxisValues ? 4 : 2)), x1 = width / 2 - font;
   const y0 = top + font * (yTitle ? 3 : 1.5), y1 = height / 2 - (xTitle ? font * 1.6 : 0) - (horizontal ? chart.showAxisValues ? font * 2.5 : font : labelSpace);
   const plotWidth = Math.max(1, x1 - x0), plotHeight = Math.max(1, y1 - y0);
@@ -139,7 +139,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
       const slot = plotHeight / rows.length, y = y0 + slot * (index + 0.5), x = x0 + (row.value - min) / span * plotWidth;
       ctx.fillRect(Math.min(zeroX, x), y - slot * (1 - (chart.barGap ?? 0.34)) / 2, Math.abs(x - zeroX), slot * (1 - (chart.barGap ?? 0.34)));
       ctx.fillStyle = chart.textColour; ctx.textAlign = "right";
-      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font * 0.5, y, labelSpace - font, Math.min(font, slot * 0.4), 2, true); else label(row.label, x0 - font * 0.5, y, labelSpace - font); }
+      if (chart.showLabels && showChartCategoryLabel(chart, index, rows.length)) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x0 - font * 0.5, y, labelSpace - font, Math.min(font, slot * 0.4), 2, true); else label(row.label, x0 - font * 0.5, y, labelSpace - font); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x1, y - slot * 0.35, plotWidth);
     } else {
       const slot = plotWidth / rows.length, x = x0 + slot * (index + 0.5), y = y1 - (row.value - min) / span * plotHeight;
@@ -148,7 +148,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
         if (chart.kind === "lollipop") { ctx.strokeStyle = colour(index); ctx.lineWidth = Math.max(2, width / 250) * (chart.lineWidth ?? 1); ctx.beginPath(); ctx.moveTo(x, zeroY); ctx.lineTo(x, y); strokeChartPattern(ctx, chart.linePattern); }
         drawChartMarker(ctx, x, y, Math.max(2, width / 180) * (chart.pointSize ?? 1), chart.pointShape); }
       ctx.fillStyle = chart.textColour; ctx.textAlign = "center";
-      if (chart.showLabels) { if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, slot * 0.95, font, 3); else label(row.label, x, y1 + font * 1.2, slot * 0.95); }
+      if (chart.showLabels && showChartCategoryLabel(chart, index, rows.length)) { if (chart.labelAngle) drawAngledCategoryLabel(ctx, row.label, x, y1 + font, Math.max(font, labelSpace - font * 2), x0, x1, font, chart.labelAngle); else if (chart.labelWrap) drawChartCategoryLabel(ctx, row.label, x, y1 + font, chartCategoryLabelWidth(chart, index, rows.length, slot), font, 3); else label(row.label, x, y1 + font * 1.2, chartCategoryLabelWidth(chart, index, rows.length, slot)); }
       if (chart.showValues) label(chartValueLabel(row.value, chart.valueFormat), x, Math.max(top + font * 0.5, y - font * 0.7), slot);
     }
   });
