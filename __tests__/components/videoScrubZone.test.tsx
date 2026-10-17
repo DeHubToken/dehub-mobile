@@ -4,6 +4,9 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { VideoScrubButton, VideoScrubZone } from '../../components/Home/VideoScrubZone';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+let mockIsLight = false;
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: mockIsLight }) }));
+jest.mock('../../components/common/MediaControlGlyph', () => ({ VideoStripForeground: require('react').createContext('#FFFFFF') }));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable',
   StyleSheet: {
@@ -29,9 +32,9 @@ jest.mock('../../hooks/useFeedScrubBoundary', () => ({
   SCRUB_HIT_HEIGHT: 64,
 }));
 
-function setup(showControls = true) {
+function setup(showControls = true, plainStrip = false) {
   const onStart = jest.fn(), onScrub = jest.fn(), onCommit = jest.fn(), onCancel = jest.fn(), buttonPress = jest.fn();
-  const view = render(<VideoScrubZone enabled opacity={new Animated.Value(1)} showControls={showControls} label="Progress" progress={0} onStart={onStart} onScrub={onScrub} onCommit={onCommit} onCancel={onCancel}>
+  const view = render(<VideoScrubZone enabled opacity={new Animated.Value(1)} showControls={showControls} plainStrip={plainStrip} label="Progress" progress={0} onStart={onStart} onScrub={onScrub} onCommit={onCommit} onCancel={onCancel}>
     <VideoScrubButton style={{ width: 32, height: 32 }} onPress={buttonPress} accessibilityRole="button" accessibilityLabel="Play"><Text>Play</Text></VideoScrubButton>
   </VideoScrubZone>);
   const zone = view.getByTestId('video-scrub-zone');
@@ -40,6 +43,17 @@ function setup(showControls = true) {
 }
 
 describe('video scrub zone', () => {
+  afterEach(() => { mockIsLight = false; });
+
+  it('uses a light surface only for the separate transport strip', () => {
+    mockIsLight = true;
+    const strip = setup(true, true);
+    expect(StyleSheet.flatten(strip.getByTestId('video-control-strip').props.style).backgroundColor).toBe('hsl(0,0%,100%)');
+    strip.unmount();
+    const overlay = setup();
+    expect(overlay.queryByTestId('video-control-strip')).toBeNull();
+  });
+
   it('enlarges only the invisible target while keeping the rail and button row anchored', () => {
     const s = setup();
     expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64, backgroundColor: 'transparent' });

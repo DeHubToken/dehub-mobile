@@ -44,9 +44,10 @@ type Props = {
 };
 
 export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false }: Props) {
-  const { isLight, colors, pageColors } = useAppTheme();
+  const { isLight } = useAppTheme();
   const lightStrip = plainStrip && isLight;
-  const foreground = lightStrip ? colors.foreground : '#FFFFFF';
+  // HSL colours are already resolved and bypass the global grey tone pass.
+  const foreground = lightStrip ? 'hsl(240,8%,5%)' : '#FFFFFF';
   const boundary = useContext(FeedScrubContext);
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
@@ -93,7 +94,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           onTouchEnd={event => event.stopPropagation()}
           onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
-          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, lightStrip && { backgroundColor: pageColors.background }]} />}
+          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, lightStrip && { backgroundColor: 'hsl(0,0%,100%)' }]} />}
           <Pressable
             testID="video-scrub-tap"
             style={StyleSheet.absoluteFill}
@@ -107,7 +108,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
               onCommit(Math.max(0, Math.min(1, event.nativeEvent.locationX / width.current)));
             }}
           />
-          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, lightStrip && { backgroundColor: colors.neutrals[700] }, { opacity }]}>
+          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, lightStrip && { backgroundColor: 'hsl(240,5%,84%)' }, { opacity }]}>
             {line ?? <View style={[styles.played, { width: `${progress}%`, backgroundColor: foreground }]} />}
           </Animated.View>
           <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, plainStrip && { bottom: 9 }, { opacity }]}>
