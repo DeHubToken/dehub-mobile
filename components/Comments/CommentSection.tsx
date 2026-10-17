@@ -1864,6 +1864,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 Send Pressable as GIF would deliver that release to the picker. */}
             {inputText.trim() || editingComment ? (
               <View key="text-actions" style={{ flexDirection: "row", alignItems: "flex-end", gap: COMPOSER.gap / 2 }}>
+              {/* Two columns: Attach over Emoji, AI over Send, so the corner
+                  is an even block of four equal buttons. */}
+              <View style={{ alignItems: "center", gap: 4 }}>
+                {!editingComment && (
+                  <Pressable
+                    onPress={handlePickImage}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addImage")}
+                    style={composerStyles.iconControl}
+                  >
+                    <Icon name="Image" size={20} color="#8B8D90" />
+                  </Pressable>
+                )}
               <Pressable
                   onPress={handleEmojiPress}
                   onTouchStart={handleEmojiTouchStart}
@@ -1874,6 +1888,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 >
                 <Text style={{ fontSize: 18 }}>🙂</Text>
               </Pressable>
+              </View>
               <View style={{ alignItems: "center", gap: 4 }}>
                 {!editingComment && inputText.trim().length > 0 && (
                   <Pressable
@@ -1884,9 +1899,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                     accessibilityLabel={t("conversation.coach.aiMenu")}
                     testID="comment-ai-menu"
                     className="flex-row items-center"
-                    style={[composerStyles.iconControl, { width: 32, height: 32 }]}
+                    style={composerStyles.iconControl}
                   >
-                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={15} color="#A6A9AC" />}
+                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={18} color="#8B8D90" />}
                   </Pressable>
                 )}
               <Pressable
