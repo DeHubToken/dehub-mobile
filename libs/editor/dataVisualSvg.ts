@@ -1,3 +1,4 @@
+import { filterChartData } from "./chartRowFilters";
 import { drawDataVisual, validDataVisuals, type ChartData, type TableData, type DataVisualContext } from "./dataVisuals";
 export type SvgDataVisual = { chart: ChartData } | { table: TableData };
 export function dataVisualSvgDocument(value: SvgDataVisual, width: number, height: number, measure: (text: string, font: string) => number): string {
@@ -46,8 +47,8 @@ export function drawDataVisualSvg(value: SvgDataVisual, width: number, height: n
     },
   };
   drawDataVisual(context, width, height, "chart" in value ? value.chart : undefined, "table" in value ? value.table : undefined);
-  const graphic = "chart" in value ? value.chart : value.table;
-  const fallback = "chart" in value ? value.chart.kind + " chart with " + value.chart.rows.length + " categories and " + (value.chart.series?.length ?? 1) + " numeric series. " + value.chart.rows.slice(0, 5).map(row => row.label).join(", ") : "Table with " + value.table.rows.length + " rows and " + (value.table.rows[0]?.length ?? 0) + " columns. " + (value.table.header ? value.table.rows[0]?.join(", ") : "");
+  const graphic = "chart" in value ? value.chart : value.table, renderedChart = "chart" in value ? filterChartData(value.chart) : undefined;
+  const fallback = "chart" in value ? value.chart.kind + " chart with " + renderedChart!.rows.length + " displayed categories from " + value.chart.rows.length + " source categories and " + (value.chart.series?.length ?? 1) + " numeric series. " + renderedChart!.rows.slice(0, 5).map(row => row.label).join(", ") : "Table with " + value.table.rows.length + " rows and " + (value.table.rows[0]?.length ?? 0) + " columns. " + (value.table.header ? value.table.rows[0]?.join(", ") : "");
   const description = [graphic.caption, graphic.description || fallback].filter(Boolean).join(". ");
   const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${n(width)}" height="${n(height)}" viewBox="0 0 ${n(width)} ${n(height)}" xml:space="preserve" role="img" aria-labelledby="graphic-title" aria-describedby="graphic-description"><title id="graphic-title">${xml(graphic.title || ("chart" in value ? "Chart" : "Table"))}</title><desc id="graphic-description">${xml(description)}</desc><g transform="translate(${n(width / 2)} ${n(height / 2)})">${parts.join("")}</g></svg>\n`;
   if (svg.length > 2 * 1024 * 1024) throw new Error("Choose a smaller data graphic for vector export");

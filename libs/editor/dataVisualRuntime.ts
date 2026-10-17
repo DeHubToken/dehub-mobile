@@ -22,6 +22,7 @@ export const DATA_VISUAL_RUNTIME = String.raw`function drawDataVisual(ctx, width
   const left = -width / 2, top = -height / 2;
   if (table && Array.isArray(table.rows)) { drawEditableTable(ctx, width, height, table); return; }
   if (!chart || !Array.isArray(chart.rows)) return;
+  chart = filterChartData(chart);
   if (chart.kind === "histogram") chart = histogramChartData(chart);
   const rows = chart.rows.slice(0, 50).filter(row => row && typeof row.label === "string" && Number.isFinite(row.value));
   if (!rows.length) return;
