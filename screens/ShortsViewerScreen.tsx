@@ -71,6 +71,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { shortsPhotoMedia } from "../libs/shortsPhotos";
 import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
+import { useAppTheme } from "../context/ThemeContext";
 import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
 import { useSettledPagerIndex } from "../hooks/useSettledPagerIndex";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
@@ -354,6 +355,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
+  // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
+  const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
   const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     p.staysActiveInBackground = activeItem && playbackAllowed;
@@ -1348,13 +1351,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
       <GestureDetector gesture={screenGesture}>
         <Reanimated.View
-          style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, playerStyle]}
+          style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, photoMedia && { backgroundColor: photoBackdrop }, playerStyle]}
         >
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
-        {thumbnail && (!firstFrameRendered || !isActive) ? (
+        {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
           <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
