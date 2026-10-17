@@ -24,6 +24,7 @@ import { useStages } from "../../context/StageContext";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { getAvatarUrl } from "../../libs/misc";
 import type { AudioSpace } from "../../hooks/useStages";
+import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
 
 const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space, onPress }) => {
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     gap: 12,
-    paddingHorizontal: 12,
+    paddingHorizontal: FEED_SIDE,
   },
   card: {
     width: 260,
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   empty: {
-    marginHorizontal: 12,
+    marginHorizontal: FEED_SIDE,
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
