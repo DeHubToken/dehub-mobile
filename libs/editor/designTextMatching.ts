@@ -28,3 +28,20 @@ export function designTextSnippet(text: string, query: string, matchCase = false
   const start = Math.max(0, index - 45), end = Math.min(text.length, index + query.length + 45);
   return { before: (start ? "…" : "") + text.slice(start, index), match: text.slice(index, index + query.length), after: text.slice(index + query.length, end) + (end < text.length ? "…" : "") };
 }
+export function literalTextReplacementPlan(text: string, query: string, replacement: string, matchCase = false, wholeWords = false, previewLimit = 180) {
+  const pattern = literalPattern(query, matchCase), limit = Math.max(20, Math.min(500, Math.round(previewLimit)));
+  let count = 0, matchedLength = 0, firstIndex = -1, firstLength = 0, cursor = 0, preview = "";
+  const append = (value: string) => { if (preview.length < limit) preview += value.slice(0, limit - preview.length); };
+  if (pattern) {
+    let match: RegExpExecArray | null;
+    while ((match = pattern.exec(text))) {
+      if (wholeWords && !wholeWordAt(text, match.index, match[0].length)) continue;
+      if (firstIndex < 0) { firstIndex = match.index; firstLength = match[0].length; }
+      count++; matchedLength += match[0].length;
+      append(text.slice(cursor, match.index)); append(replacement); cursor = match.index + match[0].length;
+    }
+  }
+  append(text.slice(cursor));
+  const outputLength = text.length - matchedLength + count * replacement.length;
+  return { count, firstIndex, firstLength, outputLength, preview: preview + (outputLength > limit ? "…" : "") };
+}
