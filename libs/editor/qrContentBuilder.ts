@@ -1,14 +1,17 @@
-export type QrContentKind = "wifi" | "email" | "phone" | "contact" | "sms";
-export interface QrContentDetails { ssid: string; password: string; email: string; subject: string; body: string; phone: string; firstName: string; lastName: string; company: string; jobTitle: string; website: string }
-export const EMPTY_QR_DETAILS: QrContentDetails = { ssid: "", password: "", email: "", subject: "", body: "", phone: "", firstName: "", lastName: "", company: "", jobTitle: "", website: "" };
-export function qrContentFields(kind: QrContentKind): { key: keyof QrContentDetails; label: string; limit: number; multiline?: boolean; secret?: boolean }[] {
+import { calendarQrContent, type CalendarQrDetails } from "./calendarQr";
+export type QrContentKind = "wifi" | "email" | "phone" | "contact" | "sms" | "calendar";
+export interface QrContentDetails extends CalendarQrDetails { ssid: string; password: string; email: string; subject: string; body: string; phone: string; firstName: string; lastName: string; company: string; jobTitle: string; website: string }
+export const EMPTY_QR_DETAILS: QrContentDetails = { eventTitle: "", eventStart: "", eventEnd: "", eventLocation: "", eventNotes: "", ssid: "", password: "", email: "", subject: "", body: "", phone: "", firstName: "", lastName: "", company: "", jobTitle: "", website: "" };
+export function qrContentFields(kind: QrContentKind, allDay = false): { key: keyof QrContentDetails; label: string; limit: number; multiline?: boolean; secret?: boolean }[] {
+  if (kind === "calendar") return [{ key: "eventTitle", label: "Event title", limit: 120 }, { key: "eventStart", label: allDay ? "First day (YYYY-MM-DD)" : "Start (UTC, YYYY-MM-DDTHH:mm)", limit: 19 }, { key: "eventEnd", label: allDay ? "Last day, inclusive (YYYY-MM-DD)" : "End (UTC, YYYY-MM-DDTHH:mm)", limit: 19 }, { key: "eventLocation", label: "Location (optional)", limit: 200 }, { key: "eventNotes", label: "Event notes (optional)", limit: 500, multiline: true }];
   if (kind === "sms") return [{ key: "phone", label: "Recipient phone with country code", limit: 60 }, { key: "body", label: "Message (optional)", limit: 800, multiline: true }];
   if (kind === "contact") return [{ key: "firstName", label: "First name", limit: 80 }, { key: "lastName", label: "Last name", limit: 80 }, { key: "company", label: "Company (optional)", limit: 100 }, { key: "jobTitle", label: "Job title (optional)", limit: 100 }, { key: "email", label: "Email address (optional)", limit: 254 }, { key: "phone", label: "Phone with country code (optional)", limit: 60 }, { key: "website", label: "Website URL (optional)", limit: 300 }];
   return kind === "wifi" ? [{ key: "ssid", label: "Network name", limit: 128 }, { key: "password", label: "Network password", limit: 128, secret: true }] : kind === "email" ? [{ key: "email", label: "Email address", limit: 254 }, { key: "subject", label: "Subject", limit: 200 }, { key: "body", label: "Message", limit: 800, multiline: true }] : [{ key: "phone", label: "Phone number with country code", limit: 60 }];
 }
-export function buildQrContent(kind: QrContentKind, value: QrContentDetails, wifi: { security: "WPA" | "WEP" | "nopass"; hidden: boolean }): string {
+export function buildQrContent(kind: QrContentKind, value: QrContentDetails, wifi: { security: "WPA" | "WEP" | "nopass"; hidden: boolean }, calendar: { allDay?: boolean } = {}): string {
   let result = "";
-  if (kind === "contact") {
+  if (kind === "calendar") result = calendarQrContent(value, calendar.allDay);
+  else if (kind === "contact") {
     for (const field of qrContentFields(kind)) if (value[field.key].length > field.limit || /[\u0000-\u001f\u007f]/.test(value[field.key])) throw new Error("Shorten contact fields and remove line breaks");
     const first = value.firstName.trim(), last = value.lastName.trim(), address = value.email.trim(), phone = value.phone.replace(/[\s().-]/g, ""), website = value.website.trim();
     if (!first && !last) throw new Error("Enter a first or last name for this contact");
