@@ -1,9 +1,12 @@
+import { svgGeometryPathData } from "./svgGeometrySource";
 import { getPages, pageAt } from "./pages";
 import type { ProjectSnapshot, ShapeClip, Track } from "./types";
 type Point = [number, number];
-export interface ImportedPath { points: Point[]; closed: boolean; width: number; height: number }
+export interface ImportedPathPart { points: Point[]; closed: boolean; left: number; top: number; width: number; height: number }
+export interface ImportedPath { points: Point[]; closed: boolean; width: number; height: number; parts: ImportedPathPart[] }
 export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
   if (!input.trim() || input.length > 32768) throw new Error("Paste SVG path data up to 32,768 characters");
+  input = svgGeometryPathData(input);
   const tokens: string[] = [], pattern = /[a-zA-Z]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/gy;
   let offset = 0;
   while (offset < input.length) {
@@ -15,22 +18,25 @@ export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
   }
   let cursor = 0, command = "", previous = "", x = 0, y = 0, startX = 0, startY = 0, moved = false, closed = false;
   let control: Point | null = null;
-  const points: Point[] = [], samples = Math.max(8, Math.min(64, Math.round(Number.isFinite(steps) ? steps : 24)));
+  let points: Point[] = [], total = 0;
+  const paths: { points: Point[]; closed: boolean }[] = [];
+  const finish = () => { if (points.length >= 2) { if (paths.length >= 100) throw new Error("Import up to one hundred outlined subpaths at a time"); paths.push({ points, closed }); } points = []; };
+  const samples = Math.max(8, Math.min(64, Math.round(Number.isFinite(steps) ? steps : 24)));
   const numeric = () => cursor < tokens.length && !/^[a-z]$/i.test(tokens[cursor]);
   const number = () => { if (!numeric()) throw new Error("This SVG path is missing coordinates"); const value = Number(tokens[cursor++]); if (!Number.isFinite(value) || Math.abs(value) > 1000000) throw new Error("Keep SVG coordinates within one million units"); return value; };
-  const append = (px: number, py: number) => { if (![px, py].every(Number.isFinite) || Math.abs(px) > 2000000 || Math.abs(py) > 2000000) throw new Error("The SVG path extends beyond supported coordinates"); if (points.length >= 4096) throw new Error("Simplify this path or choose fewer curve samples"); if (!points.length || Math.hypot(px - points[points.length - 1][0], py - points[points.length - 1][1]) > 1e-10) points.push([px, py]); };
+  const append = (px: number, py: number) => { if (![px, py].every(Number.isFinite) || Math.abs(px) > 2000000 || Math.abs(py) > 2000000) throw new Error("The SVG path extends beyond supported coordinates"); if (total >= 4096) throw new Error("Simplify this path or choose fewer curve samples"); if (!points.length || Math.hypot(px - points[points.length - 1][0], py - points[points.length - 1][1]) > 1e-10) { points.push([px, py]); total++; } };
   while (cursor < tokens.length) {
     if (/^[a-z]$/i.test(tokens[cursor])) command = tokens[cursor++];
     else if (!command) throw new Error("Begin the SVG path with a move command");
     if (!/^[mlhvcsqtaz]$/i.test(command)) throw new Error("Use SVG move, line, curve, arc and close commands");
     const kind = command.toUpperCase(), relative = command !== kind;
-    if (closed) throw new Error("Import one continuous path at a time; compound paths need separate layers");
+    if (closed && kind !== "M") throw new Error("Start the next subpath with M or m after closing with Z");
     if (!moved && kind !== "M") throw new Error("Begin the SVG path with M or m");
     if (kind === "Z") { closed = true; x = startX; y = startY; control = null; previous = kind; command = ""; continue; }
     const oldX = x, oldY = y;
     const point = (): Point => { const px = number(), py = number(); return [px + (relative ? oldX : 0), py + (relative ? oldY : 0)]; };
     if (kind === "M") {
-      if (moved) throw new Error("Import one continuous path at a time; compound paths need separate layers");
+      if (moved) finish(); closed = false;
       [x, y] = point(); startX = x; startY = y; append(x, y); moved = true; control = null; command = relative ? "l" : "L";
     } else if (kind === "L") { [x, y] = point(); append(x, y); control = null; }
     else if (kind === "H") { x = number() + (relative ? oldX : 0); append(x, y); control = null; }
@@ -64,15 +70,28 @@ export function parseSvgPathDrawing(input: string, steps = 24): ImportedPath {
     previous = kind;
     if (cursor < tokens.length && !numeric() && !/^[a-z]$/i.test(tokens[cursor])) throw new Error("This path contains an invalid command");
   }
-  if (points.length < 2) throw new Error("Use a path with at least two distinct points");
-  const xs = points.map(point => point[0]), ys = points.map(point => point[1]), left = Math.min(...xs), top = Math.min(...ys), width = Math.max(0.001, Math.max(...xs) - left), height = Math.max(0.001, Math.max(...ys) - top);
-  return { points: points.map(point => [(point[0] - left) / width - 0.5, (point[1] - top) / height - 0.5]), closed, width, height };
+  finish();
+  const all = paths.flatMap(path => path.points);
+  if (all.length < 2) throw new Error("Use a path with at least two distinct points");
+  const xs = all.map(point => point[0]), ys = all.map(point => point[1]), left = Math.min(...xs), top = Math.min(...ys), width = Math.max(0.001, Math.max(...xs) - left), height = Math.max(0.001, Math.max(...ys) - top);
+  const parts: ImportedPathPart[] = paths.map(path => {
+    const px = path.points.map(point => point[0]), py = path.points.map(point => point[1]), x = Math.min(...px), y = Math.min(...py), w = Math.max(0.001, Math.max(...px) - x), h = Math.max(0.001, Math.max(...py) - y);
+    return { points: path.points.map(point => [(point[0] - x) / w - 0.5, (point[1] - y) / h - 0.5] as Point), closed: path.closed, left: x - left, top: y - top, width: w, height: h };
+  });
+  return { points: all.map(point => [(point[0] - left) / width - 0.5, (point[1] - top) / height - 0.5] as Point), closed: parts.length === 1 && parts[0].closed, width, height, parts };
 }
+
 export function insertSvgPathDrawing(project: ProjectSnapshot, time: number, drawing: ImportedPath, options: { name: string; colour: string; fill: boolean; weight: number }, makeId: () => string) {
   if (!/^#[\da-f]{6}$/i.test(options.colour) || !Number.isFinite(options.weight) || options.weight < 0.1 || options.weight > 80 || !options.name.trim() || options.name.length > 100) throw new Error("Choose a path name, colour and line weight from 0.1 to 80");
   if (options.fill && !drawing.closed) throw new Error("Close the path with Z before importing a filled shape");
   const page = pageAt(getPages(project.settings, project.clips), time), factor = Math.min(project.settings.width * 0.6 / drawing.width, project.settings.height * 0.6 / drawing.height);
-  const track: Track = { id: makeId(), kind: "video", name: options.name.trim(), muted: false, hidden: false };
-  const clip: ShapeClip = { id: makeId(), trackId: track.id, label: options.name.trim(), kind: "shape", shape: "path", start: page.start, duration: page.end - page.start, trimIn: 0, w: Math.max(0.00001, drawing.width * factor / project.settings.width), h: Math.max(0.00001, drawing.height * factor / project.settings.height), points: drawing.points, pathSmoothing: 0, closedPath: drawing.closed, fill: options.fill ? options.colour : null, stroke: options.fill ? null : { color: options.colour, width: options.weight }, strokeCap: "round", strokeJoin: "round" };
-  return { project: { ...project, tracks: [...project.tracks, track], clips: [...project.clips, clip] }, id: clip.id };
+  if (options.fill && drawing.parts.length !== 1) throw new Error("Use outline mode for multiple subpaths; filled compound holes are unsupported");
+  const groupId = drawing.parts.length > 1 ? makeId() : undefined, tracks: Track[] = [], clips: ShapeClip[] = [];
+  drawing.parts.forEach((part, index) => {
+    const label = options.name.trim() + (drawing.parts.length > 1 ? " " + (index + 1) : "");
+    const track: Track = { id: makeId(), kind: "video", name: label, muted: false, hidden: false };
+    const clip: ShapeClip = { id: makeId(), trackId: track.id, groupId, label, kind: "shape", shape: "path", start: page.start, duration: page.end - page.start, trimIn: 0, w: Math.max(0.00001, part.width * factor / project.settings.width), h: Math.max(0.00001, part.height * factor / project.settings.height), transform: { x: 0.5 + ((part.left + part.width / 2) - drawing.width / 2) * factor / project.settings.width, y: 0.5 + ((part.top + part.height / 2) - drawing.height / 2) * factor / project.settings.height, scale: 1, rotation: 0 }, points: part.points, pathSmoothing: 0, closedPath: part.closed, fill: options.fill ? options.colour : null, stroke: options.fill ? null : { color: options.colour, width: options.weight }, strokeCap: "round", strokeJoin: "round" };
+    tracks.push(track); clips.push(clip);
+  });
+  return { project: { ...project, tracks: [...project.tracks, ...tracks], clips: [...project.clips, ...clips] }, id: clips[0].id };
 }
