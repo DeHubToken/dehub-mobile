@@ -1476,20 +1476,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // One "joined" per viewer, and it is the FIRST one. The socket re-emits
     // JoinStream on every reconnect and every background/foreground, and
     // keeping the latest copy moved a viewer's arrival below the tip they
-    // sent minutes earlier. A LEFT in between clears the slot so a real
-    // return still shows.
+    // sent minutes earlier. Each reconnect also sends a LEFT first, so a LEFT
+    // must not clear the slot either, or every network blip shows the same
+    // viewer joining again.
     const arrivals = new Set<string>();
     const moments = activities.filter((a) => {
       if (a.status === StreamActivityType.MESSAGE) return false;
-      const address = (a.address || a.user?.address || "").toLowerCase();
-      if (!address) return true;
-      if (a.status === StreamActivityType.LEFT) {
-        arrivals.delete(address);
-        return true;
-      }
       if (a.status !== StreamActivityType.JOINED) return true;
-      if (arrivals.has(address)) return false;
-      arrivals.add(address);
+      const who = (a.address || a.user?.address || a.user?.username || a.meta?.username || "").toLowerCase();
+      if (!who) return true;
+      if (arrivals.has(who)) return false;
+      arrivals.add(who);
       return true;
     });
     if ((isLiveEffective || isEndedEffective) && !moments.some((a) => a.status === StreamActivityType.START)) {

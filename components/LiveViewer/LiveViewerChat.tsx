@@ -251,16 +251,26 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities }) => {
     [showUserProfile]
   );
 
-  // Keep viewer arrivals alongside messages and stream milestones.
+  // Keep viewer arrivals alongside messages and stream milestones. A viewer's
+  // arrival shows once: reconnects re-send JoinStream (after a LEFT), and both
+  // the viewer and the producer screen feed this list.
   const filteredActivities = useMemo(() => {
-    return activities.filter(
-      (a) =>
+    const arrivals = new Set<string>();
+    return activities.filter((a) => {
+      if (a.status === StreamActivityType.JOINED) {
+        const who = (a.address || a.user?.address || a.user?.username || a.meta?.username || "").toLowerCase();
+        if (!who) return true;
+        if (arrivals.has(who)) return false;
+        arrivals.add(who);
+        return true;
+      }
+      return (
         a.status === StreamActivityType.MESSAGE ||
-        a.status === StreamActivityType.JOINED ||
         a.status === StreamActivityType.TIP ||
         a.status === StreamActivityType.START ||
         a.status === StreamActivityType.END
-    );
+      );
+    });
   }, [activities]);
 
   const reversed = useMemo(
