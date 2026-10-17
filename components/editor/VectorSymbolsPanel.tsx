@@ -1,3 +1,4 @@
+import SvgPathImportControls from "./SvgPathImportControls";
 import SvgArtworkDownload from "./SvgArtworkDownload";
 import { vectorSymbolSvgDocument } from "../../libs/editor/vectorSymbolSvgDocument";
 import { useEditorLibrary } from "../../libs/editor/useEditorLibrary";
@@ -31,6 +32,7 @@ export default function VectorSymbolsPanel({ project, time, selectedId, current,
   const index = Math.min(page, Math.max(0, Math.ceil(matches.length / 24) - 1)), chosen = VECTOR_SYMBOLS.find(item => item.id === symbol), validColour = /^#[\da-f]{6}$/i.test(colour);
   const chip = (label: string, onPress: () => void, active = false, disabled = false) => <Pressable key={label} accessibilityRole="button" accessibilityState={{ selected: active, disabled }} disabled={disabled} onPress={onPress} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-white bg-white/15" : "border-white/20"}`} style={{ opacity: disabled ? 0.35 : 1 }}><Text className="text-xs text-white/75">{label}</Text></Pressable>;
   return <View className="px-3" style={{ gap: 10 }}>
+    <SvgPathImportControls key={project.id} projectId={project.id} time={time} current={current} commit={commit} select={select} />
     <ColourPickerButton projectId={project.id} onPick={setColour} />
     <TextInput value={query} onChangeText={value => { setQuery(value); setPage(0); }} accessibilityLabel={t("editor.symbols.search", { defaultValue: "Search vector symbols" })} placeholder={t("editor.symbols.search", { defaultValue: "Search vector symbols" })} placeholderTextColor="#888888" autoCorrect={false} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-sm text-white" />
     <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>{Object.entries(CATEGORY_NAMES).map(([value, label]) => chip(t(`editor.symbols.category.${value}`, { defaultValue: label }), () => { setCategory(value); setPage(0); }, category === value))}</ScrollView>
