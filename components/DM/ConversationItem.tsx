@@ -17,6 +17,7 @@ import { dmDraftKey } from "../../libs/draft-cache";
 import { useTranslation } from "react-i18next";
 import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
 import { useDraftText } from "../../hooks/useDraft";
+import { useIsUserLive } from "../../hooks/useIsUserLive";
 import SwipeableRow, { type SwipeAction } from "../common/SwipeableRow";
 import { useAppTheme } from "../../context/ThemeContext";
 
@@ -62,6 +63,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
   const badgeImg = getBadgeUrlFor(other as any);
+  const live = useIsUserLive(other?.address, username);
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {
@@ -214,6 +216,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             }
             size={48}
             name={displayName}
+            live={live}
           />
         </TouchableOpacity>
 

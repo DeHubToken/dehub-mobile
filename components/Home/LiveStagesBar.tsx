@@ -46,6 +46,7 @@ const LiveStagesBar: React.FC = () => {
             uri={space.host_avatar ? getAvatarUrl(space.host_avatar, 24) : null}
             size={24}
             name={space.host_username || space.host_wallet_address}
+            live
           />
           <View style={styles.text}>
             <Text style={styles.title} numberOfLines={1}>

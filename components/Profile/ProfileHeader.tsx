@@ -54,6 +54,7 @@ import TotalReachPill from "./TotalReachPill";
 import ProfileLinksPill from "./ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useCinematicPhone } from "../../hooks/useCinematicPhone";
+import { useIsUserLive } from "../../hooks/useIsUserLive";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import type { Community } from "../../types/community";
 import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
@@ -100,6 +101,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   const ensName = user?.ensName || "";
 
   const shortAddr = truncateAddress(address, 5, 5);
+  const live = useIsUserLive(address, user?.username);
   // Explicit sizes: this avatar renders at 88pt, well above the 48pt default
   // getAvatarUrl assumes for feed and comment rows, and the cover is full-bleed.
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl, PROFILE_AVATAR_PT);
@@ -334,6 +336,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               name={displayName}
               size={88}
               style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
+              live={live}
               onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl
