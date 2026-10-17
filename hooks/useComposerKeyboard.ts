@@ -20,6 +20,7 @@ type ComposerKeyboardOptions = {
  * slide), so measure again a few times after the first one.
  */
 const SETTLE_MS = [120, 350, 700, 1000];
+const KEEP_MEASURING_MS = 400;
 
 /**
  * Composers that lift themselves. KeyboardPanView leaves fields inside these
@@ -80,7 +81,6 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         return;
       }
       const next = keyboardComposerLift(y + measuredHeight, appliedLift, top, settings.current.gap);
-      if (Platform.OS === "android") console.info("[kb] measure", JSON.stringify({ y, h: measuredHeight, applied: appliedLift, top, next }));
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },
       );
@@ -88,29 +88,36 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   }, []);
 
   const clearTimers = () => {
-    timers.current.forEach(clearTimeout);
+    timers.current.forEach((timer) => {
+      clearTimeout(timer);
+      clearInterval(timer);
+    });
     timers.current = [];
   };
 
   useEffect(() => {
     if (!enabled) return;
+    const readTop = (coords: KeyboardEvent["endCoordinates"]) =>
+      keyboardTopFromEvent(coords, Platform.OS, Dimensions.get("screen")?.height ?? 0, navBar.current);
     const show = (event: KeyboardEvent) => {
-      keyboardTop.current = keyboardTopFromEvent(
-        event.endCoordinates,
-        Platform.OS,
-        Dimensions.get("screen")?.height ?? 0,
-        navBar.current,
-      );
-      if (Platform.OS === "android") {
-        // One line per keyboard open, read over adb (logcat ReactNativeJS) when a
-        // phone still shows a box under the keys.
-        console.info("[kb]", JSON.stringify({ e: event.endCoordinates, screen: Dimensions.get("screen"), window: Dimensions.get("window"), nav: navBar.current, top: keyboardTop.current }));
-      }
+      keyboardTop.current = readTop(event.endCoordinates);
       // Only used when the composer cannot be measured.
       fallback.current = Math.max(event.endCoordinates.height ?? 0, 0);
       measure();
       clearTimers();
       timers.current = SETTLE_MS.map((ms) => setTimeout(measure, ms));
+      if (Platform.OS === "android") {
+        // Samsung Keyboard changes height after it opens (its toolbar and
+        // suggestion strip come and go as you type) and Android sends no event
+        // for it, so the box sat half under the taller keys. Keep checking the
+        // keyboard's latest frame for as long as it is up.
+        const poll = setInterval(() => {
+          const latest = Keyboard.metrics();
+          if (latest && keyboardTop.current != null) keyboardTop.current = readTop(latest);
+          measure();
+        }, KEEP_MEASURING_MS);
+        timers.current.push(poll as unknown as ReturnType<typeof setTimeout>);
+      }
     };
     const hide = () => {
       keyboardTop.current = null;
