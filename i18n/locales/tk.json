@@ -393,6 +393,7 @@
     "compactMode": "Ykjam tertip",
     "compactModeDesc": "Has köp mazmun üçin aralygy azaltmak",
     "autoPlay": "Awtomatik oýnamak",
+    "autoplayPausePrompt": "Awtomatik oýnatmak sazlamasy",
     "autoPlayDesc": "Wideolary awtomatik oýnamak",
     "autoPlayMuted": "Awtomatik oýnatmany sessiz başla",
     "autoPlayMutedDesc": "Özbaşdak oýnaýan wideolar hemişe sessiz başlaýar",

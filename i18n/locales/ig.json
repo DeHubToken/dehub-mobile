@@ -393,6 +393,7 @@
     "compactMode": "Ụdị nkenke",
     "compactModeDesc": "Belata oghere maka ọdịnaya karịa",
     "autoPlay": "Kpọọ vidio na-akpaghị aka",
+    "autoplayPausePrompt": "Ntọala ịkpọ na-akpaghị aka",
     "autoPlayDesc": "Kpọọ vidio na-akpaghị aka na nri",
     "autoPlayMuted": "Malite ịkpọ akpaaka na-enweghị ụda",
     "autoPlayMutedDesc": "Vidiyo na-akpọ onwe ha ga-amalite mgbe niile na-enweghị ụda",

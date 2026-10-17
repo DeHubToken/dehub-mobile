@@ -391,6 +391,7 @@
     "compactMode": "Moda Piçûk",
     "compactModeDesc": "Cihê kêm bike ji bo naveroka zêdetir",
     "autoPlay": "Vîdyoyan bixweber bilîze",
+    "autoplayPausePrompt": "Mîhenga lîstina bixweber",
     "autoPlayDesc": "Di feedê de vîdyoyan bixweber bilîze",
     "autoPlayMuted": "Lêdana xweber bê deng dest pê bike",
     "autoPlayMutedDesc": "Vîdyoyên ku bi xwe dilîzin her tim bê deng dest pê dikin",

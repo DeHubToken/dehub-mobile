@@ -393,6 +393,7 @@
     "compactMode": "Kompaktiškas režimas",
     "compactModeDesc": "Sumažinti tarpą daugiau turiniui",
     "autoPlay": "Automatinis vaizdo įrašų paleidimas",
+    "autoplayPausePrompt": "Automatinio paleidimo nustatymas",
     "autoPlayDesc": "Automatiškai paleisti vaizdo įrašus sraute",
     "autoPlayMuted": "Automatinį paleidimą pradėti be garso",
     "autoPlayMutedDesc": "Savaime paleidžiami vaizdo įrašai visada prasideda be garso",

@@ -393,6 +393,7 @@
     "compactMode": "Hali ya Kushikana",
     "compactModeDesc": "Punguza nafasi kwa maudhui zaidi",
     "autoPlay": "Cheza Video Kiotomatiki",
+    "autoplayPausePrompt": "Mpangilio wa kucheza kiotomatiki",
     "autoPlayDesc": "Cheza video kiotomatiki kwenye mlisho",
     "autoPlayMuted": "Anza kucheza kiotomatiki bila sauti",
     "autoPlayMutedDesc": "Video zinazocheza zenyewe huanza bila sauti kila wakati",

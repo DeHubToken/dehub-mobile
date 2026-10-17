@@ -392,6 +392,7 @@
     "compactMode": "संक्षिप्त मोड",
     "compactModeDesc": "अधिक सामग्री देखे खातिर अंतर कम करीं",
     "autoPlay": "वीडियो ऑटो प्ले",
+    "autoplayPausePrompt": "ऑटो प्ले सेटिंग",
     "autoPlayDesc": "फीड में वीडियो स्वतः चालू होखे",
     "autoPlayMuted": "ऑटोप्ले बिना आवाज के शुरू करीं",
     "autoPlayMutedDesc": "अपने से चले वाला वीडियो हमेशा बिना आवाज के शुरू होई",

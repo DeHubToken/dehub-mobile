@@ -393,6 +393,7 @@
     "compactMode": "Kompakt tilstand",
     "compactModeDesc": "Reducer afstand for at vise mere indhold",
     "autoPlay": "Automatisk afspilning af videoer",
+    "autoplayPausePrompt": "Indstilling for automatisk afspilning",
     "autoPlayDesc": "Videoer afspilles automatisk",
     "autoPlayMuted": "Start automatisk afspilning uden lyd",
     "autoPlayMutedDesc": "Videoer, der afspilles af sig selv, starter altid med lyden slået fra",
