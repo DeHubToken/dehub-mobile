@@ -339,7 +339,10 @@ const ImageViewerScreen = () => {
       const ext = urlPath.match(/\.(png|jpe?g|gif|webp)/i)?.[1] || "jpg";
       const localPath = `${FileSystem.cacheDirectory ?? FileSystem.documentDirectory}dehub_download_${Date.now()}.${ext}`;
 
-      if (uri.startsWith("data:")) {
+      if (uri.startsWith("file://")) {
+        // Already on the device (an opened encrypted attachment).
+        await MediaLibrary.saveToLibraryAsync(uri);
+      } else if (uri.startsWith("data:")) {
         const base64 = uri.split(",")[1];
         if (!base64) throw new Error("Invalid data URI");
         await FileSystem.writeAsStringAsync(localPath, base64, {
