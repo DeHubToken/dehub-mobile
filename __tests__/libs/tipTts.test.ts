@@ -6,13 +6,29 @@
  * broadcast, so a message one of them trims and the other does not is one the
  * room hears differently depending on what they are watching on.
  */
+import * as Speech from "expo-speech";
+import i18n from "i18next";
 import {
   sanitiseTtsText,
   speakTipMessage,
-  registerTipSpeaker,
   setTipTtsEnabled,
+  tipVoiceLang,
   MAX_TTS_CHARS,
 } from "../../libs/tipTts";
+
+jest.mock("expo-speech", () => ({
+  speak: jest.fn((_text: string, opts: { onDone?: () => void }) => opts.onDone?.()),
+  stop: jest.fn(() => Promise.resolve()),
+  getAvailableVoicesAsync: jest.fn(() =>
+    Promise.resolve([
+      { identifier: "en-us-x-iol-local", language: "en-US", quality: "Enhanced" },
+      { identifier: "ru-ru-x-ruf-local", language: "ru-RU", quality: "Default" },
+    ])
+  ),
+  VoiceQuality: { Enhanced: "Enhanced" },
+}), { virtual: true });
+
+const flush = () => new Promise((r) => setTimeout(r, 0));
 
 describe("sanitiseTtsText", () => {
   it("keeps an ordinary message intact", () => {
@@ -54,41 +70,50 @@ describe("sanitiseTtsText", () => {
   });
 });
 
+describe("tipVoiceLang", () => {
+  it("reads Latin text in a Latin-script viewer language", () => {
+    expect(tipVoiceLang("hola amigos", "es")).toBe("es");
+  });
+
+  it("reads Latin text in English for a non-Latin viewer", () => {
+    expect(tipVoiceLang("hello stream", "ru")).toBe("en");
+  });
+
+  it("follows the script of the message", () => {
+    expect(tipVoiceLang("привет", "en")).toBe("ru");
+    expect(tipVoiceLang("привіт", "uk")).toBe("uk");
+    expect(tipVoiceLang("こんにちは", "en")).toBe("ja");
+  });
+});
+
 describe("speakTipMessage", () => {
-  afterEach(() => {
-    registerTipSpeaker(null);
+  const speak = Speech.speak as jest.Mock;
+  beforeEach(() => {
+    speak.mockClear();
     setTipTtsEnabled(true);
+    (i18n as { language?: string }).language = "en";
   });
 
-  it("sends a sanitised line to the mounted speaker", () => {
-    const spoken: string[] = [];
-    registerTipSpeaker((t) => spoken.push(t));
+  it("reads a sanitised line in the phone's own voice", async () => {
     speakTipMessage("say  this   out loud");
-    expect(spoken).toEqual(["say this out loud"]);
+    await flush();
+    await flush();
+    expect(speak).toHaveBeenCalledTimes(1);
+    expect(speak.mock.calls[0][0]).toBe("say this out loud");
+    expect(speak.mock.calls[0][1]).toMatchObject({ language: "en", voice: "en-us-x-iol-local" });
   });
 
-  it("does not queue a gift with no message", () => {
-    const spoken: string[] = [];
-    registerTipSpeaker((t) => spoken.push(t));
+  it("does not queue a gift with no message", async () => {
     speakTipMessage(undefined);
     speakTipMessage("https://only-a-link.example");
-    expect(spoken).toEqual([]);
+    await flush();
+    expect(speak).not.toHaveBeenCalled();
   });
 
-  it("flushes what arrived before the WebView finished loading", () => {
-    // A gift can land in the gap between the player mounting and the engine
-    // being ready; that first message must not be the one that is swallowed.
-    speakTipMessage("early bird");
-    const spoken: string[] = [];
-    registerTipSpeaker((t) => spoken.push(t));
-    expect(spoken).toEqual(["early bird"]);
-  });
-
-  it("says nothing while readings are switched off", () => {
-    const spoken: string[] = [];
+  it("says nothing while readings are switched off", async () => {
     setTipTtsEnabled(false);
-    registerTipSpeaker((t) => spoken.push(t));
     speakTipMessage("should stay quiet");
-    expect(spoken).toEqual([]);
+    await flush();
+    expect(speak).not.toHaveBeenCalled();
   });
 });
