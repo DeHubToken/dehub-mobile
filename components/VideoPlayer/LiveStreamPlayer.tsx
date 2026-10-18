@@ -72,7 +72,6 @@ import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
-import { TipSpeaker } from "../Live/TipSpeaker";
 import ViewerScrubBar from "../common/ViewerScrubBar";
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
@@ -1273,10 +1272,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // ever muted a feed card got a silent stream and nothing to press.
   const [isMuted, setIsMuted] = useState(false);
 
-  // Muting the stream mutes the tip readings with it. They are synthesised in
-  // a WebView, so the player own volume does not reach them — a viewer who
-  // muted a stream in a quiet room would otherwise have had an old man start
-  // shouting tip messages at them.
+  // Muting the stream mutes the tip readings with it. They are spoken by the
+  // phone's speech engine, so the player's own volume does not reach them; a
+  // viewer who muted a stream in a quiet room would otherwise have tip
+  // messages read out loud at them.
   useEffect(() => {
     setTipTtsEnabled(!isMuted);
   }, [isMuted]);
@@ -1553,8 +1552,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   return (
     <View className="flex-1 dark-surface bg-black"
       onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}>
-      {/* Reads tip messages out loud. Zero-size, no chrome, no layout. */}
-      <TipSpeaker />
       {/* Full-screen video player as background */}
       <View className="absolute inset-0">
         {whepLive.stream ? (
