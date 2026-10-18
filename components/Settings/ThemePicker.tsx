@@ -47,6 +47,29 @@ const GLASS = {
   accent: '#ffffff',
 };
 
+/**
+ * The real home feed under each theme (top pill, a photo post, the shorts row),
+ * captured from the app itself. The first-run setup shows these instead of the
+ * drawn miniature so every theme reads as the app it will become.
+ */
+const SCREENS: Record<AppThemeName, number> = {
+  system: require('../../assets/theme-shots/system.webp'),
+  'system-light': require('../../assets/theme-shots/system-light.webp'),
+  immersive: require('../../assets/theme-shots/immersive.webp'),
+  minimal: require('../../assets/theme-shots/minimal.webp'),
+  cosmic: require('../../assets/theme-shots/cosmic.webp'),
+  hazy: require('../../assets/theme-shots/hazy.webp'),
+  swarms: require('../../assets/theme-shots/swarms.webp'),
+  lavalamp: require('../../assets/theme-shots/lavalamp.webp'),
+  winter: require('../../assets/theme-shots/winter.webp'),
+  war: require('../../assets/theme-shots/war.webp'),
+  osaka: require('../../assets/theme-shots/osaka.webp'),
+  jungle: require('../../assets/theme-shots/jungle.webp'),
+  island: require('../../assets/theme-shots/island.webp'),
+  hacker: require('../../assets/theme-shots/hacker.webp'),
+  horror: require('../../assets/theme-shots/horror.webp'),
+};
+
 const SWATCHES: Record<AppThemeName, Swatch> = {
   system: { page: '#000000', bento: '#18181b', border: 'rgba(255,255,255,0.06)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff' },
   'system-light': { page: '#ffffff', bento: 'transparent', border: 'rgba(11,11,13,0.09)', line: '#0b0b0d', faint: 'rgba(11,11,13,0.18)', accent: '#0b0b0d', flat: true },
@@ -109,22 +132,25 @@ export const ThemeSample: React.FC<{
   /** Defaults to the Settings row's size; the first-run grid sizes to its columns. */
   width?: number;
   height?: number;
-}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H }) => {
+  /** Show the real app screen in this theme instead of the drawn miniature. */
+  screen?: boolean;
+}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H, screen }) => {
   const s = SWATCHES[value];
+  const picture = screen ? SCREENS[value] : s.image;
   const [previewUri, setPreviewUri] = useState<string>();
   useEffect(() => {
-    if (Platform.OS !== 'android' || !s.image) return;
+    if (Platform.OS !== 'android' || !picture) return;
     let cancelled = false;
     // Resolve the update's hashed asset file rather than an older APK drawable.
     // Theme previews can change in an OTA while the installed binary stays put.
-    const asset = Asset.fromModule(s.image);
+    const asset = Asset.fromModule(picture);
     void asset.downloadAsync().then(() => {
       if (!cancelled) setPreviewUri(asset.localUri ?? asset.uri);
     }).catch(() => {
       // Keep the bundled preview available if the update asset cannot load.
     });
     return () => { cancelled = true; };
-  }, [s.image]);
+  }, [picture]);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -158,13 +184,15 @@ export const ThemeSample: React.FC<{
           backgroundColor: s.page,
         }}
       >
-        {s.image ? (
+        {picture ? (
           <Image
-            source={previewUri ? { uri: previewUri } : s.image}
+            source={previewUri ? { uri: previewUri } : picture}
             contentFit="cover"
+            contentPosition="top"
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           />
         ) : null}
+        {screen ? null : (
         <View style={{ flex: 1, padding: 7, gap: 6 }} pointerEvents="none">
           <View
             style={{
@@ -205,6 +233,7 @@ export const ThemeSample: React.FC<{
             <View style={{ width: 10, height: 6, borderRadius: s.square ? 0 : 2, backgroundColor: s.accent }} />
           </View>
         </View>
+        )}
       </View>
       </KeepDarkScope>
       </View>
