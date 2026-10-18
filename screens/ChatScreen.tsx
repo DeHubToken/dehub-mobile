@@ -1220,6 +1220,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         mimeType: attachment.mimeType,
         fileName: attachment.name,
         fileSize: attachment.size,
+        duration: attachment.duration,
         caption: caption?.trim(),
         replyTo,
         dmFee,
@@ -1313,6 +1314,21 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const onForwardSelect = useCallback(
     (targetConvId: ID) => {
       if (!forwardMessage) return;
+      if (forwardMessage.encMedia) {
+        const original = forwardMessage;
+        setForwardVisible(false);
+        setForwardMessage(null);
+        dmSendQueue
+          .forwardEncryptedMedia({
+            message: original,
+            targetConversationId: targetConvId,
+            userId: userId || "me",
+            address,
+          })
+          .then(() => toastSuccess(t("dm.messageForwarded")))
+          .catch(() => toastWarning(t("dm.cantForwardFromDevice")));
+        return;
+      }
       if (forwardMessage.encrypted) {
         // The server cannot re-encrypt for another conversation, so an
         // encrypted line is re-sent from here: plaintext from the store,

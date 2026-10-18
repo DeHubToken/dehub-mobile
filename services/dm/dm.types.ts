@@ -1,5 +1,7 @@
 
 
+import type { MediaDescriptor } from "../../libs/dm-e2ee/media";
+
 export type ID = string;
 
 
@@ -55,6 +57,8 @@ export interface ReplyPreview {
   msgType: DmMsgType;
   mediaUrls: DmMediaUrl[]; // first item only
   voiceDuration: number | null;
+  /** Set client-side when the replied-to line is an encrypted attachment. */
+  encMedia?: MediaDescriptor | null;
   sender: {
     _id: ID;
     username: string;
@@ -112,6 +116,8 @@ export interface DmMediaUrl {
   name?: string;
   /** Documents only — bytes. */
   size?: number;
+  /** End-to-end encrypted blob; the key and real type live in the message's `encMedia`. */
+  encrypted?: boolean;
   _id?: ID;
 }
 
@@ -131,6 +137,11 @@ export interface DmMessage {
   encrypted?: boolean;
   /** Encrypted, but this device holds no key for it — render a placeholder, never the envelope. */
   undecryptable?: boolean;
+  /**
+   * Opened client-side from an encrypted attachment's descriptor: the file
+   * key, real type and layout. `content` then holds only its caption.
+   */
+  encMedia?: MediaDescriptor | null;
   msgType?: DmMsgType;
   mediaUrls?: DmMediaUrl[];
   uploadStatus?: "pending" | "complete" | "failed";
@@ -288,6 +299,8 @@ export interface UploadDmMediaParams {
   txHash?: string;
   tipTxHash?: string; // voluntary tip tx hash
   replyTo?: ID; // Message._id being replied to
+  /** The file is an end-to-end encrypted blob of this kind; `content` must then be an envelope. */
+  encryptedKind?: "image" | "video" | "audio" | "file";
 }
 
 
