@@ -2,7 +2,7 @@
 
 Reference set: [Canva video editor](https://www.canva.com/video-editor/), [video tools](https://www.canva.com/video-editor/ai/), [Beat Sync](https://www.canva.com/features/beat-sync/), and [mobile editing](https://www.canva.com/video-editor/mobile-app/), reviewed 7 October 2026.
 
-“Implemented” describes code support, not a blanket claim of feature parity. Each release still needs cloud checks, staging verification, and native publication. Work through the gaps in both repositories; do not advertise an unsupported operation in the client's capability list.
+“Implemented” describes code support, not a blanket claim of feature parity. Each release still needs cloud checks, verification on dehub.io, and native publication. Work through the gaps in both repositories; do not advertise an unsupported operation in the client's capability list.
 
 | Capability | Web | Mobile | Acceptance condition / remaining work |
 | --- | --- | --- | --- |
@@ -91,7 +91,7 @@ The ending lasts 2.2 seconds. MP4/WebM retains an original short sweep and resol
 
 - Beat synchronization: web PR 2315 and mobile PR 1693 merged after cloud checks passed. Staging on web commit 58a14d15 detected all 20 onsets in a 120 BPM fixture. Nine internal cuts aligned to 0.75 through 8.75 seconds while the 0 and 10 second outer edges stayed fixed. The first clip played at 1.33x to preserve its source range. Undo restored the original cuts; Redo restored the synchronized boundaries. Native publication run 37669325724 was dispatched from exact merge 54326bffe; publication and physical-device verification remain separate.
 
-- Shot detection: both clients use the same bounded sampler and visual-change detector. Suggested cuts are reviewable before applying one source-aware split. Exact requests such as `split this video by scenes` run locally. Cloud checks, staging video evidence and native publication remain pending.
+- Shot detection: both clients use the same bounded sampler and visual-change detector. Suggested cuts are reviewable before applying one source-aware split. Exact requests such as `split this video by scenes` run locally. Cloud checks, video evidence on dehub.io and native publication remain pending.
 
 
 ### Feed download ending
@@ -102,21 +102,21 @@ Beat-sync OTA run 37669325724 completed successfully for mobile merge 54326bffe3
 
 Universal download PRs web #2320 and mobile #1698 passed cloud checks and merged. Web production and staging published commit 173d0d246d9020653d1162e5eef4133b923f7ab4. Mobile OTA run 37678803251 was dispatched from exact merge 51743509474f93bebc9d3c69b47f837839e6de5b. Actual feed-download and physical-device evidence remain separate.
 
-Live scene analysis found that the hidden decoder did not start when its HTML was navigated as a blob URL. The browser now loads the same bounded scanner through the iframe's inline document; the native WebView already embeds that scanner inline. Both clients retain diagnostic errors on failed analysis. Browser handshake isolation, cancellation and startup-timeout cleanup are covered in cloud tests. Staging hard-cut verification remains pending.
+Live scene analysis found that the hidden decoder did not start when its HTML was navigated as a blob URL. The browser now loads the same bounded scanner through the iframe's inline document; the native WebView already embeds that scanner inline. Both clients retain diagnostic errors on failed analysis. Browser handshake isolation, cancellation and startup-timeout cleanup are covered in cloud tests. Hard-cut verification on dehub.io remains pending.
 
 
 ### Speech highlights
 
 The selected video can be ranked for useful spoken moments at a 15, 30 or 60 second target length. Speech is transcribed on the device; an explicit option can reuse current timed captions. The action explains that transcript text is sent to the existing text planning route. Raw media remains on the device. Complete sentence boundaries and pauses define the available source ranges; fabricated, weak, overlapping and out-of-range suggestions are rejected. Long transcripts are sent in complete bounded groups rather than silently discarded by scene compaction.
 
-Each suggestion shows its actual transcript, source times, selection control and a bounded playback preview. Creating the selected edit saves a separate project and retains the original. Every intersecting video, caption and soundtrack is copied with source-aware trims and motion. The edit uses the normal export ending. Speech-free action footage still needs visual highlight analysis; this release does not claim that capability. Cloud checks, staging highlight review/export and native publication remain pending.
+Each suggestion shows its actual transcript, source times, selection control and a bounded playback preview. Creating the selected edit saves a separate project and retains the original. Every intersecting video, caption and soundtrack is copied with source-aware trims and motion. The edit uses the normal export ending. Speech-free action footage still needs visual highlight analysis; this release does not claim that capability. Cloud checks, highlight review/export on dehub.io and native publication remain pending.
 
 The preceding universal ending update published mobile commit 51743509474f93bebc9d3c69b47f837839e6de5b successfully to production and preview on Android and iOS (OTA run 37678803251). The actual staging feed file retained the original 56.730333 seconds of pictures and sound, then added the 2.2-second icon ending with dehub.io/algiers. Scene cuts verified on staging commit 5967f773: cuts at 2.016 and 4.016 seconds produced three clips, retained six seconds total, and passed one Undo/Redo. Physical-device verification remains separate.
 
 
 ### Caption paragraph layout
 
-New imported SRT/VTT cues and automatic captions wrap within 90% of the page width and fit within a 28% height box at their existing anchor. The requested font size is the upper bound; longer paragraphs shrink to fit. Manual line breaks, complete Unicode text and subtitle timestamps are retained. The same measured layout drives preview geometry and downloaded frames on both clients. Existing ordinary text layers keep their manual layout. Earlier caption projects without wrapping bounds retain their saved layout; reimporting subtitles creates fitted captions. Cloud checks, staging exports and mobile publication remain pending.
+New imported SRT/VTT cues and automatic captions wrap within 90% of the page width and fit within a 28% height box at their existing anchor. The requested font size is the upper bound; longer paragraphs shrink to fit. Manual line breaks, complete Unicode text and subtitle timestamps are retained. The same measured layout drives preview geometry and downloaded frames on both clients. Existing ordinary text layers keep their manual layout. Earlier caption projects without wrapping bounds retain their saved layout; reimporting subtitles creates fitted captions. Cloud checks, exports on dehub.io and mobile publication remain pending.
 
 Speech highlights passed web cloud checks and published to staging and production at afafe7ead4aaeb95105487df6a4309136bc737d4. Staging selected the backup and restore tips, skipped filler, stopped preview at the selected endpoint, retained the original project, and passed one Undo/Redo. The downloaded 18.837-second H.264/AAC file retained 16.637 seconds of selected pictures and sound, then the accepted ending. Mobile cloud checks passed and merge 2dc84335e1df3dd9e7465858c5d5b823938b823c is publishing through OTA run 37684534858. Physical-device evidence remains separate.
 
@@ -127,7 +127,7 @@ Selected video layers can generate saved source-timed subject masks on the devic
 
 The 512-pixel general-subject model uses WebGPU when available and the same model on WASM after one GPU failure. Each source frame at the project frame rate is processed sequentially, with cancellation and progress. A job supports up to 600 source frames (20 source seconds at 30 fps). Stored alpha frames use at most 64 MiB of decoded canvas pixels, in a PNG no larger than 4096 per edge. Masks retain their source clock across trim, speed, duplication and slicing. Extending beyond processed frames requires regenerating or restoring the background; exports report a missing or invalid mask instead of silently returning the old background.
 
-Cloud checks cover source-clock addressing, canvas and memory bounds, invalid/missing masks, source replacement, decoder cancellation and program syntax. Actual moving-subject segmentation quality and downloaded compositing require staging verification after publication. Phone execution requires a physical device; publishing an update alone does not establish that verification.
+Cloud checks cover source-clock addressing, canvas and memory bounds, invalid/missing masks, source replacement, decoder cancellation and program syntax. Actual moving-subject segmentation quality and downloaded compositing require verification on dehub.io after publication. Phone execution requires a physical device; publishing an update alone does not establish that verification.
 
 Caption fitting and focused speech fixes are published on web and through Android/iOS production and preview updates. Mobile run 37687104064 passed configuration preflight and published the exact merged commit 0f1a1a46df36d2bf37d4d0e023715e3f57c92ecf.
 
@@ -139,4 +139,4 @@ Trims, splits, scene and highlight cuts keep a clip-local piecewise gain curve, 
 
 ## Review highlight selections in conversation
 
-After finding spoken highlights, the review panel accepts requests about the suggested moments. Explicit numbered selection commands run locally; topic requests send only the existing suggestions and checked selection to the current text planner. Only existing suggestion ids can be selected. Source clips, timestamps and the original project cannot be edited by this review request. The result updates the visible checkboxes, reports the selected count and offers Undo selection before creating the separate edit. Failed, cancelled and stale requests retain the previous choices. This flow refines the available suggestions; finding additional moments still uses Find highlights. Cloud checks, staging review and native publication remain pending.
+After finding spoken highlights, the review panel accepts requests about the suggested moments. Explicit numbered selection commands run locally; topic requests send only the existing suggestions and checked selection to the current text planner. Only existing suggestion ids can be selected. Source clips, timestamps and the original project cannot be edited by this review request. The result updates the visible checkboxes, reports the selected count and offers Undo selection before creating the separate edit. Failed, cancelled and stale requests retain the previous choices. This flow refines the available suggestions; finding additional moments still uses Find highlights. Cloud checks, review on dehub.io and native publication remain pending.
