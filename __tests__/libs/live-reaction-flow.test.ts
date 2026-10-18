@@ -1,11 +1,11 @@
 
-import { ReactionFlowQueue, liveReactionType, REACTION_STEP_MS } from '../../libs/live-reaction-flow';
+import { ReactionFlowQueue, liveReactionType, REACTION_STEP_MS, LIVE_REACTION_EMOJI, REACTION_MOTION, reactionPose, type LiveReactionType } from '../../libs/live-reaction-flow';
 
 function drain(queue: ReactionFlowQueue) {
   const seen = new Map<string, string>();
   for (let now = 0; queue.busy && now < 120000; now += REACTION_STEP_MS) {
     const particles = queue.tick(now);
-    expect(particles.length).toBeLessThanOrEqual(24);
+    expect(particles.length).toBeLessThanOrEqual(30);
     particles.forEach(item => seen.set(item.id, item.type));
   }
   expect(queue.busy).toBe(false);
@@ -51,4 +51,24 @@ describe('live reaction flow', () => {
     queue.enqueue('CRY', NaN);
     expect(drain(queue)).toHaveLength(3);
   });
+  it('gives every reaction a climb that pops in, rises and fades out', () => {
+    for (const type of Object.keys(LIVE_REACTION_EMOJI) as LiveReactionType[]) {
+      expect(REACTION_MOTION[type].duration).toBeGreaterThanOrEqual(2000);
+      const start = reactionPose(type, 3, 0);
+      const pop = reactionPose(type, 3, 0.07);
+      const end = reactionPose(type, 3, 1);
+      expect(start.rise).toBe(0);
+      expect(start.opacity).toBe(0);
+      expect(pop.scale).toBeGreaterThan(1.1);
+      expect(end.rise).toBe(1);
+      expect(end.opacity).toBe(0);
+    }
+  });
+  it('keeps a particle alive for its own reaction\'s duration', () => {
+    const queue = new ReactionFlowQueue();
+    queue.enqueue('SAD');
+    const [first] = queue.tick(0);
+    expect(first.expiresAt).toBe(REACTION_MOTION.SAD.duration);
+  });
 });
+
