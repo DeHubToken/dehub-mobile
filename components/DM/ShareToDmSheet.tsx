@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";

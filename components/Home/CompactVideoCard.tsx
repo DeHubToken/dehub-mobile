@@ -5,7 +5,7 @@ import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import StatusBadge from "./StatusBadge";
 import env from "../../config/env"; // kept if needed for other props
 import VideoPreview from "./VideoPreview";

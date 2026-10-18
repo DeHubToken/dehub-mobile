@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator } from 'react-native';
 import GlassModal from '../ui/GlassModal';
 import ThemePanel from '../ui/ThemePanel';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useUser, useAuthActions } from '../../context/AuthContext';
 import { toastError, toastWarning } from '../../libs/toast';
 import { updateDmUserStatus } from '../../services/dm/dm.api';

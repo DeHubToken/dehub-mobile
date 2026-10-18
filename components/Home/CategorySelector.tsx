@@ -1,7 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useMemo } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { theme } from "../../theme";
 
 type CategorySelectorProps = {

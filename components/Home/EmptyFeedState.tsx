@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { theme } from '../../theme';
 import { useAppTheme } from '../../context/ThemeContext';
 import { MINIMAL_TAB_LINE } from '../../theme/minimal';

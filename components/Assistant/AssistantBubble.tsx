@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";

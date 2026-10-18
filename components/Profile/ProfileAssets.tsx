@@ -2,7 +2,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import InfoTooltip from "../ui/InfoTooltip";
 import dhbIcon from "../../assets/web-icons/dehub-coin.png";
 import usdcIcon from "../../assets/tokens/USDC.png";

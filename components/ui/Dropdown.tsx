@@ -2,7 +2,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, TouchableOpacity, TextInput, FlatList } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import GlassModal from "./GlassModal";
 import { colors } from "../../theme/colors";
 import { FIELD_TEXT } from "../../theme/inputs";
