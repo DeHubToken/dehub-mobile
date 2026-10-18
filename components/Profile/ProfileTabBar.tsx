@@ -66,7 +66,7 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
         accessibilityState={{ selected: focused }}
         onPress={() => onChange(item.key)}
         activeOpacity={0.72}
-        style={[styles.tab, !compact && styles.expandedTab, !isMinimal && !skin && !focused && styles.tabIdle, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
+        style={[styles.tab, !compact && styles.expandedTab, !isMinimal && !focused && styles.tabIdle, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
       >
         {/* "Beam": a short glowing line under the selected tab, in the tab's
             own ink, instead of a box behind it. Minimal keeps its folder tab. */}
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   expandedRow: { width: '100%' },
   tab: { width: TAB_WIDTH, height: TAB_HEIGHT, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
   expandedTab: { flex: 1, width: undefined },
-  tabIdle: { opacity: 0.5 },
+  tabIdle: { opacity: 0.6 },
   beam: { position: 'absolute', bottom: 2, left: '30%', right: '30%', height: 3, borderRadius: 3, shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 } },
   count: { textAlign: 'center', fontSize: 10, lineHeight: 12, marginTop: 1, fontWeight: '500' },
   minimalOuterWrap: { paddingHorizontal: 0 },
