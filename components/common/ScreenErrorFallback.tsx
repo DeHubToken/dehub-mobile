@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useCallback, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { useNavigation, type ScreenLayoutArgs } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import ErrorBoundary from "../ErrorBoundary";
 import { restartApp } from "../../libs/crashRecovery";
 import { ScreenNames } from "../../navigation/ScreenNames";

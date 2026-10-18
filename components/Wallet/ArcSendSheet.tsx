@@ -1,7 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import { ethers } from "ethers";
 import GlassModal from "../ui/GlassModal";

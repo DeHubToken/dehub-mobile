@@ -3,7 +3,7 @@ import { Animated, FlatList, Modal, Pressable, ScrollView, Text, TextInput, View
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
 import { VideoView, useVideoPlayer } from 'expo-video';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/registerMotionLibrary';
 import SmartImage from '../common/SmartImage';

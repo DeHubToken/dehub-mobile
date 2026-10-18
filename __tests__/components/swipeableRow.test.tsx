@@ -5,7 +5,7 @@ import SwipeableRow from '../../components/common/SwipeableRow';
 const mockHandlers: Record<string, (...args: any[]) => void> = {};
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable' }));
-jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Icon' }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Icon');
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../libs/haptics', () => ({ haptic: { select: jest.fn() } }));
 jest.mock('react-native-reanimated', () => ({

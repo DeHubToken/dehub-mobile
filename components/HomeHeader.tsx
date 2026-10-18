@@ -2,7 +2,7 @@ import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text, I18nManager, useWindowDimensions } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import { CINEMATIC_PHONE_MAX_WIDTH } from "../hooks/useCinematicPhone";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import ElectricLogo from "./common/ElectricLogo";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
 import Avatar from "./common/Avatar";

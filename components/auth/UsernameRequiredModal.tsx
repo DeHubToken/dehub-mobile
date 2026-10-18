@@ -2,7 +2,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import GlassModal from '../ui/GlassModal';
 import { AuthButton, AuthErrorNotice, AuthField, authColors, authText } from './AuthControls';
 import { AuthService } from '../../services/auth.service';

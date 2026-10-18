@@ -13,7 +13,7 @@
  */
 import React, { memo } from "react";
 import { View, Text, Linking, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useBannedAccount } from "../../hooks/useBannedAccount";

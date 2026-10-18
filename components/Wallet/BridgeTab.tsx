@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import * as Clipboard from "expo-clipboard";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
 import { getSigningProvider } from "../../libs/provider.registry";

@@ -46,7 +46,7 @@ import {
   configureForBackgroundPlayback,
   releaseBackgroundPlayback,
 } from '../../libs/audioSession';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TopControls from './TopControls';
 import PictureInPictureButton from '../common/PictureInPictureButton';
 import CenterControls from './CenterControls';

@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import VideoPlayerCore from "../VideoPlayerCore";
 import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";

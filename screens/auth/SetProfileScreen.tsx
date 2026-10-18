@@ -13,7 +13,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import SmartImage from "../../components/common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, CommonActions } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";

@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import AnimatedCheck from "../common/AnimatedCheck";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import {

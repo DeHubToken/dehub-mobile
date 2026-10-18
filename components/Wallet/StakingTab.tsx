@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { useTranslation } from "react-i18next";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
 import { useFocusedInterval } from "../../hooks/useFocusedInterval";

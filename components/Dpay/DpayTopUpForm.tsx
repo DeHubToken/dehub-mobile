@@ -4,7 +4,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import { Trans, useTranslation } from "react-i18next";
 import React, { useEffect, useCallback, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, Linking } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useUser } from "../../context/AuthContext";
 import { miniAddress } from "../../libs/strings.util";
 import PrimaryButton from "../ui/PrimaryButton";

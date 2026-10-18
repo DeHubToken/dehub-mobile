@@ -2,7 +2,7 @@ import MessageSurface from "../DM/MessageSurface";
 import React from 'react';
 import { Modal, TouchableOpacity, View, Text, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '../../context/ThemeContext';
 
