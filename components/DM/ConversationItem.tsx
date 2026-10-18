@@ -17,7 +17,8 @@ import { dmDraftKey } from "../../libs/draft-cache";
 import { useTranslation } from "react-i18next";
 import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
 import { useDraftText } from "../../hooks/useDraft";
-import { useIsUserLive } from "../../hooks/useIsUserLive";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 import SwipeableRow, { type SwipeAction } from "../common/SwipeableRow";
 import { useAppTheme } from "../../context/ThemeContext";
 
@@ -63,7 +64,8 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
   const badgeImg = getBadgeUrlFor(other as any);
-  const live = useIsUserLive(other?.address, username);
+  const liveTarget = useLiveTarget(other?.address, username);
+  const live = !!liveTarget;
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {
@@ -204,7 +206,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         className="flex-row items-center px-4 py-4 gap-3"
       >
         <TouchableOpacity
-          onPress={handleAvatarPress}
+          onPress={liveTarget ? () => openLiveTarget(liveTarget) : handleAvatarPress}
           activeOpacity={0.8}
           className="relative"
         >

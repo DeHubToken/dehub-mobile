@@ -7,7 +7,8 @@ import Icon from "../ui/Icon";
 import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
-import { useIsUserLive } from "../../hooks/useIsUserLive";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
@@ -51,10 +52,17 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const badgeRef = useRef<View>(null);
-  const live = useIsUserLive(address, username);
+  // While they are live the avatar opens the stream; name and @handle
+  // still open the profile.
+  const liveTarget = useLiveTarget(address, username);
+  const live = !!liveTarget;
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
-      <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
+      <Pressable
+        onPress={liveTarget ? () => openLiveTarget(liveTarget) : onUserPress}
+        style={{ flexShrink: 0 }}
+        hitSlop={IDENTITY_HIT_SLOP}
+      >
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={avatarSize}

@@ -27,7 +27,7 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { liveSpaces } = stages;
   useEffect(() => {
     setLiveStageHosts(
-      liveSpaces.map((space) => ({ address: space.host_wallet_address, username: space.host_username })),
+      liveSpaces.map((space) => ({ address: space.host_wallet_address, username: space.host_username, id: space.id })),
     );
   }, [liveSpaces]);
 
