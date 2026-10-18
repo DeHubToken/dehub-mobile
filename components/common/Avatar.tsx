@@ -21,6 +21,8 @@ interface AvatarProps {
   name?: string;
   /** On air right now: red outlines ripple out from behind the avatar. */
   live?: boolean;
+  /** Profile-sized avatars: a much quieter ripple (see LiveRipple `quiet`). */
+  liveQuiet?: boolean;
 }
 
 const INITIAL_BG = "#2A2C2E";
@@ -48,6 +50,7 @@ const Avatar: React.FC<AvatarProps> = ({
   className,
   name,
   live = false,
+  liveQuiet = false,
 }) => {
   // There used to be a `loaded` flag set from the Image's onLoad, purely to
   // decide whether to show the initial behind it. That was a guaranteed extra
@@ -123,7 +126,7 @@ const Avatar: React.FC<AvatarProps> = ({
   );
 
   const box = live ? (
-    <LiveRipple size={size} radius={radius} className={!onPress ? className : undefined}>
+    <LiveRipple size={size} radius={radius} quiet={liveQuiet} className={!onPress ? className : undefined}>
       {content}
     </LiveRipple>
   ) : content;

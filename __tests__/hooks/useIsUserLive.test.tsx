@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 jest.mock("react-native-css-interop", () => ({ createInteropElement: require("react")["createElement"] }));
 const mockGetLiveVideos = jest.fn();
 jest.mock("../../services/live.service", () => ({ getLiveVideos: (...args: unknown[]) => mockGetLiveVideos(...args) }));
-import { setLiveStageHosts, useIsUserLive } from "../../hooks/useIsUserLive";
+import { setLiveStageHosts, useIsUserLive, useLiveTarget } from "../../hooks/useIsUserLive";
 
 let client: QueryClient;
 const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(QueryClientProvider, { client }, children);
@@ -42,5 +42,16 @@ it("marks hosts of live stages", async () => {
   expect(result.current).toBe(true);
   act(() => setLiveStageHosts([]));
   expect(result.current).toBe(false);
+  unmount();
+});
+
+it("says where a tap on a live avatar goes: the stream, or the hosted stage", async () => {
+  mockGetLiveVideos.mockResolvedValue([{ _id: "s1", tokenId: 42, address: "0xAAA", status: "LIVE" }]);
+  const { result, unmount } = renderHook(() => [useLiveTarget("0xaaa"), useLiveTarget("0xeee"), useLiveTarget("0xfff")], { wrapper });
+  await waitFor(() => expect(result.current[0]).toEqual({ kind: "stream", streamId: "s1", tokenId: 42 }));
+  expect(result.current[1]).toBeNull();
+  act(() => setLiveStageHosts([{ address: "0xeee", id: "stage-1" }]));
+  expect(result.current[1]).toEqual({ kind: "stage", id: "stage-1" });
+  expect(result.current[2]).toBeNull();
   unmount();
 });
