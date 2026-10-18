@@ -66,7 +66,7 @@ const SWATCHES: Record<AppThemeName, Swatch> = {
 };
 
 /** The selection ring in the active theme's own language, as web's picker rules draw it. */
-const RING: Partial<Record<AppThemeName, string>> = {
+export const RING: Partial<Record<AppThemeName, string>> = {
   war: '#4fe3e0',
   osaka: 'rgba(255,111,181,0.8)',
   jungle: 'rgba(140,190,90,0.8)',
@@ -100,13 +100,16 @@ const MockPost: React.FC<{ s: Swatch; media?: boolean }> = ({ s, media }) => {
   );
 };
 
-const ThemeSample: React.FC<{
+export const ThemeSample: React.FC<{
   value: AppThemeName;
   label: string;
   active: boolean;
   ring: string;
   onPress: () => void;
-}> = ({ value, label, active, ring, onPress }) => {
+  /** Defaults to the Settings row's size; the first-run grid sizes to its columns. */
+  width?: number;
+  height?: number;
+}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H }) => {
   const s = SWATCHES[value];
   const [previewUri, setPreviewUri] = useState<string>();
   useEffect(() => {
@@ -129,15 +132,15 @@ const ThemeSample: React.FC<{
       accessibilityRole="button"
       accessibilityState={{ selected: active }}
       accessibilityLabel={label}
-      style={{ alignItems: 'center', width: CARD_W }}
+      style={{ alignItems: 'center', width }}
     >
       {/* The ring sits outside the sample with a gap, as web's ring-offset
           does, so the backdrop fills the sample edge to edge instead of
           stopping short of a transparent border. */}
       <View
         style={{
-          width: CARD_W,
-          height: CARD_H,
+          width,
+          height,
           padding: 2,
           borderRadius: s.square ? 0 : 14,
           borderWidth: 2,

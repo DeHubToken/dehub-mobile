@@ -57,7 +57,7 @@ export default function AuthNavigator() {
   }
 
   // An options object, which System Light's colour pass never sees.
-  const { isLight } = useAppTheme();
+  const { isLight, skin } = useAppTheme();
   return (
     <Stack.Navigator
       initialRouteName={initialRouteRef.current}
@@ -71,6 +71,9 @@ export default function AuthNavigator() {
       <Stack.Screen
         name={ScreenNames.Onboarding}
         getComponent={() => require("../screens/auth/OnboardingScreen").default}
+        // The first-run setup is where a theme gets picked, and the app itself
+        // is the preview: a canvas theme's live backdrop shows through it.
+        options={{ cardStyle: { backgroundColor: skin ? 'transparent' : isLight ? '#FFFFFF' : '#000' } }}
       />
       <Stack.Screen
         name={ScreenNames.SignIn}

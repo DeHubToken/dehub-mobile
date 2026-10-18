@@ -7059,6 +7059,40 @@
     "withdrawFailed": "Withdrawal failed"
   },
   "onboarding": {
+    "setup": {
+      "continue": "Continue",
+      "skip": "Skip",
+      "back": "Back",
+      "stepOf": "Step {{current}} of {{total}}",
+      "language": {
+        "title": "Choose your language",
+        "subtitle": "We picked the one your phone uses. Tap another to switch.",
+        "fromPhone": "Your phone's language"
+      },
+      "theme": {
+        "title": "Pick your look",
+        "subtitle": "Tap a theme to try it. You can change it any time in Settings."
+      },
+      "audience": {
+        "title": "Who's using DeHub?",
+        "subtitle": "We'll set up your feed to match. You can change this later in Settings.",
+        "recommended": "Recommended",
+        "setPin": "Set a PIN",
+        "confirmAdult": "I'm 18 or over",
+        "kids": {
+          "title": "Kids",
+          "body": "Only posts made for children. A grown-up sets a PIN to leave Kids Mode."
+        },
+        "everyone": {
+          "title": "Everyone",
+          "body": "The full app. Mature posts stay hidden."
+        },
+        "mature": {
+          "title": "Mature 18+",
+          "body": "Also show posts marked as mature. Only choose this if you are 18 or over."
+        }
+      }
+    },
     "optIn": {
       "title": "New here? Want a short guided tour?",
       "body": "We can walk you through DeHub one step at a time, and ask how each step went so we can fix whatever is confusing.",
