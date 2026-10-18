@@ -207,8 +207,10 @@ export const PostStageCreator = memo(function PostStageCreator({
 const styles = StyleSheet.create({
   square: { alignItems: "center", justifyContent: "center", borderWidth: 1, overflow: "hidden" },
   chromeOver: {
+    // Same inset from the top as from the sides, so the corner buttons sit
+    // evenly in the media's corners.
     position: "absolute",
-    top: 10,
+    top: 12,
     left: 12,
     right: 12,
     flexDirection: "row",
