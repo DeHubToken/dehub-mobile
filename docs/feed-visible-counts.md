@@ -18,7 +18,7 @@ the head uses a cached random order. Head rows are not queried twice. The extra
 indexed lookup runs only when requested rows are absent from the head; no full
 page count, media, access key or client-specific interaction flags are added.
 
-Deploy the backend before verifying both clients on staging and the connected
+Deploy the backend before verifying both clients on dehub.io and the connected
 phone. Check an older visible post, count updates, stable scroll and unchanged
 new-post signaling. Byte reduction measurements for the twenty-row head do not
 measure the combined response size or prove a monthly invoice saving.

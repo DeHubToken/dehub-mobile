@@ -1,6 +1,6 @@
 # Cost reduction rollout
 
-Ship each stage through PRs. Verify browser behavior on staging.dehub.io and native behavior on the connected Android test device before marking a stage complete. Record merged, published and verified separately.
+Ship each stage through PRs. Verify browser behavior on dehub.io and native behavior on the connected Android test device before marking a stage complete. Record merged, published and verified separately.
 
 ## Subscription offers
 
@@ -19,7 +19,7 @@ Annual invoices deliver twelve months of the selected allowance. Full-period all
 
 The server and web read `supabase/functions/_shared/ai-plan-offers.json`. Mobile carries the same catalog in `config/ai-plan-offers.json`. Update both repositories together. Checkout validates amount, currency, recurrence and the offer version before creating a customer or session. Previously cached pricing pages must refresh before buying a new offer.
 
-Required verification: hosted tests for grant compatibility, annual quantities, provider budget and price mismatches; matching monthly/annual cards on staging and Android; checkout initialization without completing a payment; deployment of `create-checkout` and `payments-webhook` from the merged source. A frontend publication alone does not deploy these functions.
+Required verification: hosted tests for grant compatibility, annual quantities, provider budget and price mismatches; matching monthly/annual cards on dehub.io and Android; checkout initialization without completing a payment; deployment of `create-checkout` and `payments-webhook` from the merged source. A frontend publication alone does not deploy these functions.
 
 ## Remaining stages
 
@@ -47,7 +47,7 @@ Web refreshes the newest 30 messages every 15 seconds while a thread is visible,
 
 Mobile already fetches a bounded newest page. It now recovers that page on screen focus, foreground and actual DM transport reconnection, coalescing simultaneous recovery triggers and rejecting responses after the thread is replaced. Existing socket delivery, older-message paging and encrypted storage remain in place. No recurring native message timer is added.
 
-Required verification: hosted tests for one-page polling with loaded history, optimistic sends/read flags, deletions, pagination offsets, burst recovery, focus/foreground/reconnect coalescing and stale response guards; then a real thread on staging and Android. Older edits/deletions outside the head still rely on their socket events or an explicit history refresh; server change cursors remain a follow-up.
+Required verification: hosted tests for one-page polling with loaded history, optimistic sends/read flags, deletions, pagination offsets, burst recovery, focus/foreground/reconnect coalescing and stale response guards; then a real thread on dehub.io and Android. Older edits/deletions outside the head still rely on their socket events or an explicit history refresh; server change cursors remain a follow-up.
 
 1. Compact feed head and visible engagement updates instead of full feed polling.
 2. Persistent avatar/cover revisions that change on upload.
@@ -61,7 +61,7 @@ Keep translation caches, existing payment checks, private-content constraints, r
 
 An account with `showOnline` off joins `online-users` only while an active Messages page or open chat needs online dots. An opted-in account continues publishing without visible dots. Web releases this channel when its tab is hidden, matching mobile's foreground behavior; mobile dots on unfocused cached screens add no reader demand. Opening the surface restores the channel immediately. Reader demand is reference counted, so closing one of several visible dots cannot disconnect the others.
 
-Keep the existing topic and wallet keys during this rollout so older mobile/web clients remain compatible. Publishing stays opt-in, and presence from another active device remains visible. This reduces the global channel's receiver audience; it is not a per-contact protocol migration. Test opt-in privacy, multiple readers, hidden/focused screens and publisher foreground transitions in hosted CI, then verify real dots on staging and Android before marking complete.
+Keep the existing topic and wallet keys during this rollout so older mobile/web clients remain compatible. Publishing stays opt-in, and presence from another active device remains visible. This reduces the global channel's receiver audience; it is not a per-contact protocol migration. Test opt-in privacy, multiple readers, hidden/focused screens and publisher foreground transitions in hosted CI, then verify real dots on dehub.io and Android before marking complete.
 
 ### Incoming call checks
 
