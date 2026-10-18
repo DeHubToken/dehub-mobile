@@ -9,6 +9,7 @@ import {
   type DmMsgType,
   type DmUser,
   type UploadDmMediaParams,
+  type ID,
 } from "./dm.types";
 
 function firstBadgeBalance(...values: unknown[]): number | string | null | undefined {
@@ -138,7 +139,7 @@ export async function getMessages(
 export async function uploadDmMedia(
   params: UploadDmMediaParams,
 ): Promise<DmMessage> {
-  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo } =
+  const { conversationId, senderId, files, msgType, voiceDuration, content, txHash, tipTxHash, replyTo, encryptedKind } =
     params;
 
   const form = new FormData();
@@ -160,10 +161,27 @@ export async function uploadDmMedia(
   if (txHash) form.append("txHash", txHash);
   if (tipTxHash) form.append("tipTxHash", tipTxHash);
   if (replyTo) form.append("replyTo", String(replyTo));
+  if (encryptedKind) form.append("encryptedKind", encryptedKind);
 
   return apiClient.post<DmMessage>("/dm/upload", form, {
     isAuthRequired: true,
   });
+}
+
+/**
+ * Forward an existing DM message into another conversation. `content` is a
+ * re-sealed `e2e:` envelope for the target (used for encrypted attachments:
+ * the server copies the ciphertext's URL, the new envelope carries its key).
+ */
+export async function forwardDmMessage(params: {
+  conversationId: ID;
+  messageId: ID;
+  content?: string;
+}): Promise<DmMessage | null> {
+  const res = await apiClient.post<{ status?: boolean; result?: DmMessage }>("/dm/forward", params, {
+    isAuthRequired: true,
+  });
+  return res?.result ?? null;
 }
 
 

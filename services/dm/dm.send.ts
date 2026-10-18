@@ -1,6 +1,6 @@
 import { dmActions } from "../../store/dm.store";
 import { DMSocketEvent } from "../enums/dm-socket-events.enum";
-import { uploadDmMedia, tipNotify } from "./dm.api";
+import { uploadDmMedia, tipNotify, forwardDmMessage } from "./dm.api";
 import { guessMime } from "../../libs/assets.util";
 import { createLogger } from "../../libs/logger";
 import { supportedTokens } from "../../config/constants";
@@ -15,7 +15,10 @@ import type {
 } from "./dm.types";
 import { DM_VIDEO_MAX_SIZE } from "./dm.types";
 import * as FileSystem from "expo-file-system/legacy";
-import { prepareOutgoing } from "../../libs/dm-e2ee/keys";
+import { prepareOutgoing, prepareSession } from "../../libs/dm-e2ee/keys";
+import { encodeMediaDescriptor, type MediaDescriptor, type MediaKind } from "../../libs/dm-e2ee/media";
+import { prepareMediaDescriptor } from "../../libs/dm-e2ee/media-send";
+import { deleteQuietly, encryptFileToCache, encryptedMediaUrl, openEncryptedMedia, rememberLocalPlaintext } from "../../libs/dm-e2ee/media-files";
 import { peerAddressForConversation } from "../../libs/dm-e2ee/peer";
 import { confirmDmSend, type DmSendPayload } from "../../libs/dm-send-confirmation";
 
@@ -81,6 +84,8 @@ interface MediaSendJob extends BaseSendJob {
    */
   fileName?: string;
   fileSize?: number;
+  /** Video length in seconds, when the picker reported one. */
+  duration?: number;
 }
 
 interface TipSendJob extends BaseSendJob {
@@ -265,6 +270,7 @@ class DmSendQueue {
     voiceDuration?: number;
     fileName?: string;
     fileSize?: number;
+    duration?: number;
   }): string {
     const tempId = this.makeTempId();
     const {
@@ -323,6 +329,7 @@ class DmSendQueue {
       voiceDuration: params.voiceDuration,
       fileName: params.fileName,
       fileSize: params.fileSize,
+      duration: params.duration,
     });
 
     return tempId;
@@ -360,6 +367,66 @@ class DmSendQueue {
     });
 
     return tempId;
+  }
+
+
+  /**
+   * Forward an encrypted attachment. Its descriptor is sealed to the source
+   * conversation, so it is re-sealed for the target and handed to the server,
+   * which copies the ciphertext's URL — nothing is re-uploaded. When the
+   * target cannot be encrypted, the file is opened here and sent to it as an
+   * ordinary attachment, the way an encrypted text forwards as plain text.
+   */
+  async forwardEncryptedMedia(params: {
+    message: DmMessage;
+    targetConversationId: ID;
+    userId: string;
+    address: string;
+  }): Promise<void> {
+    const { message, targetConversationId, userId, address } = params;
+    const d = message.encMedia;
+    if (!d) throw new Error("Not an encrypted attachment");
+    const peer = peerAddressForConversation(targetConversationId, address);
+    const sealed = peer ? await prepareOutgoing(peer, encodeMediaDescriptor(d)) : null;
+    if (sealed?.encrypted) {
+      const res = await forwardDmMessage({
+        conversationId: targetConversationId,
+        messageId: message._id,
+        content: sealed.content,
+      });
+      if (res?._id) {
+        dmActions.upsertMessages(targetConversationId, [{
+          ...res,
+          content: d.caption || "",
+          encrypted: true,
+          undecryptable: false,
+          encMedia: d,
+          author: "me",
+          isRead: false,
+        }]);
+      }
+      return;
+    }
+
+    const entry = message.mediaUrls?.find((mu) => typeof mu === "object" && mu.encrypted);
+    if (!entry?.url) throw new Error("Attachment not available");
+    const url = encryptedMediaUrl(entry.url);
+    if (!url) throw new Error("Attachment not available");
+    const file = await openEncryptedMedia({ url, descriptor: d, messageId: message._id });
+    this.sendMedia({
+      conversationId: targetConversationId,
+      userId,
+      address,
+      uri: file,
+      mediaType: d.kind === "video" ? "video" : d.kind === "file" ? "file" : "image",
+      mimeType: d.mime,
+      caption: d.caption,
+      msgType: d.kind === "audio" ? "voice" : undefined,
+      voiceDuration: d.kind === "audio" && d.dur ? Math.round(d.dur) : undefined,
+      fileName: d.name,
+      fileSize: d.size,
+      duration: d.dur,
+    });
   }
 
 
@@ -599,6 +666,8 @@ class DmSendQueue {
       }
     }
 
+    if (await this.uploadMediaEncrypted(job, convId, txHash, tipTxHash)) return;
+
     const isVoice = job.msgType === "voice";
     const ext = isVoice ? "m4a" : job.mediaType === "video" ? "mp4" : "jpg";
     const file = {
@@ -653,6 +722,105 @@ class DmSendQueue {
     log.debug("uploadMedia complete:", convId, serverMsg?._id);
   }
 
+  /**
+   * End-to-end encrypted attachment, when the conversation encrypts text.
+   *
+   * The file is sealed with a fresh key and uploaded as opaque bytes; the key,
+   * real type, layout, placeholder and caption go in a descriptor sealed into
+   * `content` exactly like a text message. Returns false — and the caller
+   * sends the plain upload it always has — whenever the chat cannot be
+   * encrypted or anything before the upload fails. A descriptor is never sent
+   * unless it came back sealed.
+   */
+  private async uploadMediaEncrypted(
+    job: MediaSendJob,
+    convId: ID,
+    txHash?: string,
+    tipTxHash?: string,
+  ): Promise<boolean> {
+    const peer = peerAddressForConversation(convId, job.address);
+    if (!peer) return false;
+    try {
+      if (!(await prepareSession(peer))) return false;
+    } catch {
+      return false;
+    }
+
+    const isVoice = job.msgType === "voice";
+    const kind: MediaKind = isVoice ? "audio" : job.mediaType;
+    let cipher: { uri: string; size: number; plainSize: number } | null = null;
+    let wire: string;
+    let plainUri: string;
+    let descriptor: MediaDescriptor;
+    try {
+      const prepared = await prepareMediaDescriptor({
+        uri: job.uri,
+        kind,
+        mime: job.mimeType,
+        caption: job.caption || undefined,
+        name: job.mediaType === "file" ? job.fileName || "file" : undefined,
+        duration: isVoice ? job.voiceDuration : job.duration,
+        thumbnailUri: job.thumbnailUri,
+      });
+      plainUri = prepared.plainUri;
+      cipher = await encryptFileToCache(prepared.plainUri, prepared.fileKey);
+      descriptor = { ...prepared.descriptor, size: cipher.plainSize };
+      const sealed = await prepareOutgoing(peer, encodeMediaDescriptor(descriptor));
+      if (!sealed.encrypted) {
+        await deleteQuietly(cipher.uri);
+        return false;
+      }
+      wire = sealed.content;
+    } catch (e: any) {
+      log.warn("encrypted media: falling back to plain upload:", e?.message || e);
+      await deleteQuietly(cipher?.uri);
+      return false;
+    }
+
+    const timeout = job.mediaType === "image" && !isVoice ? UPLOAD_TIMEOUT_IMAGE : UPLOAD_TIMEOUT_VIDEO;
+    let serverMsg: DmMessage;
+    try {
+      serverMsg = await withRetry(
+        () =>
+          withTimeout(
+            uploadDmMedia({
+              conversationId: convId,
+              senderId: job.address,
+              files: [{ uri: cipher!.uri, name: "media.bin", type: "application/octet-stream" }],
+              msgType: isVoice ? "voice" : "media",
+              voiceDuration: isVoice ? job.voiceDuration : undefined,
+              content: wire,
+              replyTo: job.replyTo?._id,
+              txHash,
+              tipTxHash,
+              encryptedKind: kind,
+            }),
+            timeout,
+            `${kind} upload`,
+          ),
+        MAX_UPLOAD_RETRIES,
+        `${kind} upload`,
+      );
+    } finally {
+      await deleteQuietly(cipher.uri);
+    }
+
+    if (serverMsg?._id) {
+      rememberLocalPlaintext(serverMsg._id, plainUri);
+      dmActions.upsertMessages(convId, [{
+        ...serverMsg,
+        content: job.caption || "",
+        encrypted: true,
+        undecryptable: false,
+        encMedia: descriptor,
+        author: "me",
+        isRead: false,
+      }]);
+    }
+    log.debug("uploadMedia (encrypted) complete:", convId, serverMsg?._id);
+    return true;
+  }
+
 
   private makeTempId(): string {
     this.counter += 1;
@@ -680,6 +848,7 @@ class DmSendQueue {
           msgType: (params.replyTo.msgType as DmMsgType) || "msg",
           mediaUrls: params.replyTo.mediaUrls?.slice(0, 1) || [],
           voiceDuration: params.replyTo.voiceDuration || null,
+          encMedia: params.replyTo.encMedia ?? null,
           sender:
             typeof params.replyTo.sender === "object"
               ? (params.replyTo.sender as any)
