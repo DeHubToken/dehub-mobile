@@ -59,7 +59,7 @@ interface LiveViewerHeaderProps {
   viewerAddress?: string;
   /** When the broadcast started, for "Started 12 minutes ago". */
   startedAt?: Date | null;
-  /** Draws the red live ring round the face. */
+  /** Sends the live ripple out from behind the face. */
   isLive?: boolean;
   fallbackMinter?: string | number;
   /** Opens the shared post options sheet — the same one every other post has. */
@@ -157,7 +157,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
 
   return (
     <View style={styles.bar} pointerEvents="box-none">
-      {/* One capsule for who started this: face with a live ring, name and
+      {/* One capsule for who started this: face with the live ripple, name and
           badge, when they went live, and Follow inside it so the row reads
           as one thing about one person. */}
       <Pressable
@@ -167,12 +167,15 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
         accessibilityLabel={t("liveViewer.openProfileOf", { name: displayName })}
       >
         <ChromeFill glass radius={CHROME_RADIUS + 2} />
-        <View style={[styles.avatarRing, isLive ? styles.avatarRingLive : null]}>
+        {/* Same broadcast ripple every other live avatar wears. The margin
+            keeps the spacing the old ring took up. */}
+        <View style={styles.avatarSlot}>
           <Avatar
             uri={avatarUrl}
             size={32}
             onPress={handleOpenProfile}
             name={displayName}
+            live={!!isLive}
           />
         </View>
         <View style={styles.creatorText}>
@@ -263,14 +266,8 @@ const styles = StyleSheet.create({
     gap: 8,
     overflow: "hidden",
   },
-  avatarRing: {
-    borderRadius: 999,
-    borderWidth: 2,
-    borderColor: "transparent",
-    padding: 1,
-  },
-  avatarRingLive: {
-    borderColor: "#EF4444",
+  avatarSlot: {
+    margin: 3,
   },
   creatorText: {
     flex: 1,
