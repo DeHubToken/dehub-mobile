@@ -12,7 +12,7 @@
 import React, { memo } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import type { DmEncryptionStatus } from "../../libs/dm-e2ee/setup";
 

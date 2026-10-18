@@ -1,7 +1,7 @@
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React from "react";
 import { View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export type StreamStatus = "OFFLINE" | "LIVE" | "ENDED" | "SCHEDULED" | string;
 

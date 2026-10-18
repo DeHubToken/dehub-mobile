@@ -4,7 +4,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import GlassModal from "../ui/GlassModal";
 import {
   AUTH_CONTROL_HEIGHT,

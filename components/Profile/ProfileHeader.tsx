@@ -4,7 +4,7 @@ import React, { useState, useMemo, useCallback, useEffect, useRef } from "react"
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";

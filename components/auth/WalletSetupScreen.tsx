@@ -1,7 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Trans, useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";

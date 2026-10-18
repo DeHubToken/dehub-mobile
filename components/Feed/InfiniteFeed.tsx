@@ -15,7 +15,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "./DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { theme } from "../../theme";
 import { getFeedNFTs, type GetNFTsResult, type GetNFTsResponse, type SearchParams } from "../../services";
 import FeedCardSkeleton from "./FeedCardSkeleton";

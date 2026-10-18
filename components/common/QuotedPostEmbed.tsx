@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import SmartImage from "./SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";

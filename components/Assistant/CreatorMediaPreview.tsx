@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { getThumbnailAsync } from 'expo-video-thumbnails';
 import SmartImage from '../common/SmartImage';
 import type { CreatorAsset } from '../../services/creator.service';

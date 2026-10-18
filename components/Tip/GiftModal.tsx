@@ -19,7 +19,7 @@ import {
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Gem } from "../ui/cut-icons";
 import { GIFT_TIERS } from "../../config/gift-tiers";
 import { useUser, useAuthActions } from "../../context/AuthContext";

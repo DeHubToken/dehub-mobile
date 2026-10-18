@@ -4,7 +4,7 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, TextInput} from "react-native";
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import GlassModal from "../ui/GlassModal";

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, DeviceEventEmitter } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as VideoThumbnails from 'expo-video-thumbnails';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import SmartImage from './SmartImage';
 import { getNFT, replaceVideoCover } from '../../services/nft.service';
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
