@@ -48,6 +48,8 @@ import {
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import { haptic } from "../../libs/haptics";
 import { TipGemIcon } from "../Home/TipGemIcon";
+import EncryptedMedia from "./EncryptedMedia";
+import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
 
 
 const resolveUrl = (path: string): string => {
@@ -367,6 +369,14 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   const isVoice = msgType === "voice";
   const isGif = msgType === "gif";
   const isMedia = msgType === "media";
+  // End-to-end encrypted attachment: rendered from its descriptor, never from
+  // the ciphertext URL directly.
+  const encMedia = message.encMedia || null;
+  const encUrl = useMemo(() => {
+    const first = message.mediaUrls?.find((mu) => typeof mu === "object" && mu.encrypted);
+    return first ? first.url : null;
+  }, [message.mediaUrls]);
+  const encVisual = !!encMedia && (encMedia.kind === "image" || encMedia.kind === "video");
   const hasText = !!message.content?.trim() && !isGif;
   const isUploading = message.uploadStatus === "pending";
   const isUploadFailed = message.uploadStatus === "failed";
@@ -385,12 +395,16 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       const gifUrl = resolveUrl(gifRaw);
       return [{ url: gifUrl, kind: "gif" as const }];
     }
-    if (!message.mediaUrls?.length) {
+    // Encrypted entries render through EncryptedMedia (or not at all, when
+    // this device cannot open them).
+    if (encMedia) return [];
+    const plainUrls = message.mediaUrls?.filter((mu) => !(typeof mu === "object" && mu.encrypted));
+    if (!plainUrls?.length) {
       if (localMediaUri) return [{ url: localMediaUri, kind: "image" as const }];
       return [];
     }
 
-    const items = message.mediaUrls.map((mu) => {
+    const items = plainUrls.map((mu) => {
       const raw = typeof mu === "string" ? mu : mu.url;
       const mime = typeof mu === "object" ? mu.mimeType || mu.type : undefined;
       // A document is flagged by the entry's own type, and must be checked
@@ -413,7 +427,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     });
 
     return items;
-  }, [message.mediaUrls, message.content, isGif, isMedia, msgType, message._id, localMediaUri]);
+  }, [message.mediaUrls, message.content, isGif, isMedia, msgType, message._id, localMediaUri, encMedia]);
 
 
   // A shared thing arrives as text containing a link to it (optionally with a
@@ -424,7 +438,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   // community, an event or a profile — all of which the web app renders as a
   // card when you send them — landed here as a bare URL.
   const sharedLink = useMemo(() => {
-    if (isVoice || isGif || mediaItems.length > 0) return null;
+    if (isVoice || isGif || encMedia || mediaItems.length > 0) return null;
     const link = findDehubLink(message.content ?? "");
     if (!link) return null;
     // Everything except the carded link itself is the caption.
@@ -436,7 +450,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     // link instead of as debris.
     const caption = stripDehubLinkMatches(message.content ?? "", [link]).trim();
     return { link, caption };
-  }, [message.content, isVoice, isGif, mediaItems.length]);
+  }, [message.content, isVoice, isGif, encMedia, mediaItems.length]);
 
   // Market references in a plain message. Skipped when the message is an entity
   // share, which has its own card.
@@ -558,7 +572,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     ? "bg-white/[0.11] rounded-xl rounded-br-sm"
     : "border border-white/[0.16] rounded-xl rounded-bl-sm";
 
-  const isMediaOnly = mediaItems.length > 0 && !hasText && !isVoice;
+  const isMediaOnly = (mediaItems.length > 0 || encVisual) && !hasText && !isVoice;
   // Media-only paid msgs need a background for PaymentBadge; plain media-only don't
   const activeBubbleBg = isMediaOnly
     ? (isPaidMsg
@@ -747,6 +761,35 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                         GIF
                       </Text>
                     </View>
+                  ) : message.replyTo.encMedia || message.replyTo.mediaUrls?.[0]?.encrypted ? (
+                    <View className="flex-row items-center gap-1.5">
+                      {message.replyTo.encMedia?.thumb ? (
+                        <SmartImage
+                          source={{ uri: message.replyTo.encMedia.thumb }}
+                          style={{ width: 32, height: 32, borderRadius: 4 }}
+                          contentFit="cover"
+                          cachePolicy="none"
+                          blurRadius={4}
+                        />
+                      ) : (
+                        <Icon
+                          name={message.replyTo.encMedia?.kind === "file" ? "FileText" : "Image"}
+                          size={14}
+                          color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"}
+                        />
+                      )}
+                      <Text
+                        className={`text-[12px] flex-1 ${
+                          isMine ? "text-white/50" : "text-theme-neutrals-400"
+                        }`}
+                        numberOfLines={1}
+                      >
+                        {message.replyTo.content ||
+                          (message.replyTo.encMedia
+                            ? encryptedMediaLabel(message.replyTo.encMedia, t)
+                            : t("dm.attachment"))}
+                      </Text>
+                    </View>
                   ) : message.replyTo.mediaUrls?.length ? (
                     <View className="flex-row items-center gap-1.5">
                       <SmartImage
@@ -776,6 +819,28 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   )}
                 </View>
               </TouchableOpacity>
+            )}
+
+            {/* End-to-end encrypted attachment */}
+            {encMedia && (
+              <View>
+                <EncryptedMedia
+                  descriptor={encMedia}
+                  rawUrl={encUrl}
+                  messageId={message._id}
+                  isMine={isMine}
+                  onVideoPress={handleVideoTap}
+                  onLongPress={handleLongPress}
+                />
+                {isUploadFailed && encVisual && (
+                  <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
+                    <Icon name="CircleAlert" size={28} color="#F4F4F5" />
+                    <Text className="text-[11px] text-white/80 mt-1 font-medium">
+                      {t("dm.failedToSend")}
+                    </Text>
+                  </View>
+                )}
+              </View>
             )}
 
             {/* Media (images / video / GIF) */}
@@ -860,8 +925,10 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             )}
 
             {/* Voice note */}
-            {isVoice && (() => {
-              const raw = message.mediaUrls?.[0];
+            {isVoice && !encMedia && (() => {
+              const first = message.mediaUrls?.[0];
+              // Ciphertext this device cannot open is not playable audio.
+              const raw = typeof first === "object" && first?.encrypted ? undefined : first;
               const voiceUrl = raw
                 ? resolveUrl(typeof raw === "string" ? raw : raw.url)
                 : undefined;

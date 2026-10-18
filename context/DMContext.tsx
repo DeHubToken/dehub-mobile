@@ -33,7 +33,8 @@ import type {
 } from "../services/dm/dm.types";
 import { createLogger } from "../libs/logger";
 import { isEncryptedContent } from "../libs/dm-e2ee/crypto";
-import { decryptFromPeer, loadIdentity, onIdentityChange, syncPublishedKey } from "../libs/dm-e2ee/keys";
+import { decryptFromPeer, loadIdentity, onIdentityChange, splitOpenedContent, syncPublishedKey } from "../libs/dm-e2ee/keys";
+import { clearDecryptedMediaCache } from "../libs/dm-e2ee/media-files";
 import { decryptIncoming, peerAddressForConversation } from "../libs/dm-e2ee/peer";
 
 /** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
@@ -91,6 +92,18 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   useEffect(() => { userIdRef.current = userId; }, [userId]);
   useEffect(() => { addressRef.current = address; }, [address]);
 
+
+  // Decrypted attachments are plaintext on disk: drop them when the account
+  // that opened them signs out or another one signs in. Not on a cold start
+  // (no account yet), or every launch would re-download them all.
+  const mediaOwnerRef = useRef<string | null>(null);
+  useEffect(() => {
+    const owner = isSignedIn && address ? address : null;
+    if (mediaOwnerRef.current && mediaOwnerRef.current !== owner) {
+      clearDecryptedMediaCache().catch(() => {});
+    }
+    mediaOwnerRef.current = owner;
+  }, [isSignedIn, address]);
 
   useEffect(() => {
     if (!isSignedIn || !address) {
@@ -178,7 +191,8 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
           if (isEncryptedContent(payload?.content)) {
             const peer = peerAddressForConversation(payload.dmId, addressRef.current);
             void (peer ? decryptFromPeer(peer, payload.content) : Promise.resolve(null)).then((plain) => {
-              dmActions.applyEdit({ ...payload, content: plain ?? "" });
+              // An edit never carries an attachment's descriptor; never show one.
+              dmActions.applyEdit({ ...payload, content: plain === null ? "" : splitOpenedContent(plain).content });
             });
             return;
           }

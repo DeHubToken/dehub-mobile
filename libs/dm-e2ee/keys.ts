@@ -30,6 +30,7 @@ import {
   toBase64,
   type IdentityKeyPair,
 } from "./crypto";
+import { decodeMediaDescriptor, isMediaDescriptor, type MediaDescriptor } from "./media";
 
 /**
  * No wallet has been offered to sign with yet — the session is still coming
@@ -395,7 +396,20 @@ export interface DecryptableMessage {
   content?: string;
   encrypted?: boolean;
   undecryptable?: boolean;
-  replyTo?: { content?: string } | null;
+  encMedia?: MediaDescriptor | null;
+  replyTo?: { content?: string; encMedia?: MediaDescriptor | null } | null;
+}
+
+/**
+ * Split an opened plaintext into what the UI shows: an encrypted
+ * attachment's descriptor (holding its key) never reaches `content` — only its
+ * caption does. A malformed descriptor comes back as unreadable rather than
+ * as raw JSON.
+ */
+export function splitOpenedContent(plain: string): { content: string; encMedia?: MediaDescriptor; broken?: boolean } {
+  if (!isMediaDescriptor(plain)) return { content: plain };
+  const media = decodeMediaDescriptor(plain);
+  return media ? { content: media.caption || "", encMedia: media } : { content: "", broken: true };
 }
 
 export async function decryptMessageInPlace<T extends DecryptableMessage>(
@@ -405,13 +419,28 @@ export async function decryptMessageInPlace<T extends DecryptableMessage>(
   let out = msg;
   if (isEncryptedContent(msg.content)) {
     const plain = peerAddress ? await decryptFromPeer(peerAddress, msg.content as string) : null;
-    out = plain !== null
-      ? { ...out, content: plain, encrypted: true, undecryptable: false }
+    const opened = plain !== null ? splitOpenedContent(plain) : null;
+    out = opened && !opened.broken
+      ? {
+          ...out,
+          content: opened.content,
+          encrypted: true,
+          undecryptable: false,
+          ...(opened.encMedia ? { encMedia: opened.encMedia } : {}),
+        }
       : { ...out, content: "", encrypted: true, undecryptable: true };
   }
   if (msg.replyTo && isEncryptedContent(msg.replyTo.content)) {
     const plain = peerAddress ? await decryptFromPeer(peerAddress, msg.replyTo.content as string) : null;
-    out = { ...out, replyTo: { ...msg.replyTo, content: plain ?? "" } };
+    const opened = plain !== null ? splitOpenedContent(plain) : null;
+    out = {
+      ...out,
+      replyTo: {
+        ...msg.replyTo,
+        content: opened?.content ?? "",
+        ...(opened?.encMedia ? { encMedia: opened.encMedia } : {}),
+      },
+    };
   }
   return out;
 }
