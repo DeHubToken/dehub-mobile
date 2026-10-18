@@ -14,8 +14,11 @@ const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
 const HEADER_ICON_SIZE = 22;
 const HEADER_ICON_PAD = 4;
-// Lucide's vertical dots end at x=14, including stroke, on a 24-unit grid.
-const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (10 / 24);
+// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them
+// right and up by that spare room so they sit on the card's inset from both
+// the side and the top: the corner reads evenly padded, like the web bento.
+const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32);
+const MENU_ICON_TOP_SPACE = HEADER_ICON_SIZE * (4 / 32);
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -175,7 +178,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
-            <View style={{ left: MENU_ICON_END_SPACE }}>
+            <View style={{ left: MENU_ICON_END_SPACE, top: -MENU_ICON_TOP_SPACE }}>
               <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
             </View>
           </Pressable>
