@@ -23,10 +23,14 @@ interface UseTranslationResult {
 const MIN_TRANSLATABLE_LENGTH = 1;
 
 // Auto-translate leaves unlabelled Latin text under 15 characters alone, since a
-// word or two cannot be told apart from the reader's own language. Live chat is
-// the exception: nearly every line is that short ("hoş geldiniz.", "turn it
-// up"), so chat never auto-translated at all. A chat line only needs a few
-// letters; "gm", "ok" and "lol" stay as written.
+// word or two cannot be told apart from the reader's own language.
+//
+// Live chat goes further: a Latin-script chat line is never translated without
+// being asked. Chat is slang, names and in-jokes ("hiya bashmo bro"), and the
+// translator turns those into a confident sentence nobody wrote ("its basmati
+// my friend"), shown in place of what the sender typed. Only scripts that
+// identify themselves on sight (Arabic, Cyrillic, kana, hangul...) are
+// auto-translated in chat; everything else keeps its translate button.
 const MIN_AUTO_LENGTH = 15;
 const MIN_CHAT_AUTO_LETTERS = 4;
 
@@ -267,6 +271,7 @@ export function useTranslation(
       ? combinedProse.length < MIN_CHAT_AUTO_LETTERS
       : Object.values(texts).join(' ').trim().length < MIN_AUTO_LENGTH;
     if (!reliableBackendLang && tooShort && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
+    if (auto === 'chat' && /^[\p{Script=Latin}]*$/u.test(combinedProse)) return;
 
     const key = translationKey;
     if (autoDoneRef.current === key) return;
