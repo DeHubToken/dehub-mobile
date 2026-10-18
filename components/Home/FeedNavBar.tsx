@@ -233,8 +233,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     transform: [{ translateX: (progress.value + 1) * buttonWidth }],
     width: buttonWidth,
   }));
-  // Web's glass indicator: 95% of the tab, centred, 35pt tall in the 36pt row,
-  // so its top rim sits just inside the pill instead of on its clipped edge.
+  // Web's glass indicator: 95% of the tab, 35pt tall, centred in the row so its
+  // rims sit an equal step inside the pill's top and bottom edges.
   const glassIndicatorStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: LEAD_SLOT_WIDTH + (progress.value + INDICATOR_SIDE_GAP) * buttonWidth }],
     width: buttonWidth * (1 - INDICATOR_SIDE_GAP * 2),
@@ -441,7 +441,10 @@ const styles = StyleSheet.create({
   },
   glassIndicator: {
     position: "absolute",
-    top: 0.5,
+    // Centred on the row, not pinned under its top: the House icon makes the
+    // row 38pt, so a fixed top left the box riding high in the pill.
+    top: "50%",
+    marginTop: -INDICATOR_HEIGHT / 2,
     left: 0,
     height: INDICATOR_HEIGHT,
     borderRadius: 12,
