@@ -337,6 +337,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               size={88}
               style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
               live={live}
+              liveQuiet
               onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl

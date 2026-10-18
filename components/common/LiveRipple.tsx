@@ -21,6 +21,14 @@ const STAGGER = 1100;
 const EASING = Easing.bezier(0.2, 0.6, 0.3, 1);
 
 /**
+ * The feed ripple, sized for a 40pt avatar. A profile avatar is twice that
+ * and more, so there the same motion (4pt rings out to 1.6x) looked wild:
+ * `quiet` is one thin, faint ring that drifts a few points out, slower.
+ */
+const LOUD = { rings: 2, duration: DURATION, from: 0.95, scale: 1.6 };
+const QUIET = { rings: 1, duration: 3200, from: 0.55, scale: 1.1 };
+
+/**
  * Two outlines of the avatar's own shape drifting outward and fading, like a
  * signal going out, for someone who is live right now. Wraps the avatar box.
  *
@@ -33,50 +41,69 @@ const LiveRipple: React.FC<{
   size: number;
   radius: number;
   className?: string;
+  /** Profile pages: one faint thin ring instead of the feed's two. */
+  quiet?: boolean;
   children: React.ReactNode;
-}> = ({ size, radius, className, children }) => {
+}> = ({ size, radius, className, quiet = false, children }) => {
   const reduced = useReducedMotion();
+  const tone = quiet ? QUIET : LOUD;
   const first = useSharedValue(0);
   const second = useSharedValue(0);
 
   useEffect(() => {
     if (reduced) return;
-    const loop = () => withRepeat(withTiming(1, { duration: DURATION, easing: EASING }), -1, false);
+    const easing = quiet ? Easing.out(Easing.quad) : EASING;
+    const loop = () => withRepeat(withTiming(1, { duration: tone.duration, easing }), -1, false);
     first.value = loop();
-    second.value = withDelay(STAGGER, loop());
+    if (tone.rings > 1) second.value = withDelay(STAGGER, loop());
     return () => {
       cancelAnimation(first);
       cancelAnimation(second);
       first.value = 0;
       second.value = 0;
     };
-  }, [reduced, first, second]);
+  }, [reduced, first, second, quiet, tone.duration, tone.rings]);
 
   const ring = {
     width: size,
     height: size,
     borderRadius: radius,
-    borderWidth: Math.max(1.5, size * 0.05),
+    borderWidth: quiet ? 1.5 : Math.max(1.5, size * 0.05),
     borderColor: LIVE_RED,
   };
 
   return (
     // No overflow clipping here: the rings grow to 1.6x the avatar.
     <View className={className}>
-      {!reduced && <Ring progress={first} style={ring} />}
-      {!reduced && <Ring progress={second} style={ring} />}
+      {!reduced && <Ring progress={first} style={ring} from={tone.from} scale={tone.scale} />}
+      {!reduced && tone.rings > 1 && <Ring progress={second} style={ring} from={tone.from} scale={tone.scale} />}
       {children}
       {/* Reduce motion: one still ring instead of the loop. At the avatar's
           own size it would be hidden behind it, so it goes on the edge. */}
-      {reduced && <View pointerEvents="none" style={[styles.ring, ring, { opacity: 0.9 }]} />}
+      {reduced && (
+        <View
+          pointerEvents="none"
+          style={[styles.ring, ring, { opacity: quiet ? 0.6 : 0.9, transform: [{ scale: quiet ? 1.04 : 1.12 }] }]}
+        />
+      )}
     </View>
   );
 };
 
-function Ring({ progress, style }: { progress: SharedValue<number>; style: object }) {
+function Ring({
+  progress,
+  style,
+  from,
+  scale,
+}: {
+  progress: SharedValue<number>;
+  style: object;
+  from: number;
+  scale: number;
+}) {
   const animated = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 1], [0.95, 0]),
-    transform: [{ scale: interpolate(progress.value, [0, 1], [1, 1.6]) }],
+    opacity: interpolate(progress.value, [0, 1], [from, 0]),
+    transform: [{ scale: interpolate(progress.value, [0, 1], [1, scale]) }],
   }));
   return <Animated.View pointerEvents="none" style={[styles.ring, style, animated]} />;
 }
