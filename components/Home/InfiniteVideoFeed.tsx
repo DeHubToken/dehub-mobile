@@ -23,19 +23,16 @@ import {
 import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
 import { DeHubLoader } from "../DeHubLoader";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated, { FadeIn, FadeOut, useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
-import NavPillSurface from "../ui/NavPillSurface";
-import FrostedPill from "../ui/FrostedPill";
-import HudBrackets from "../theme/HudBrackets";
-import { GRAIN, glassTint } from "../../theme/skins";
-import { ISLAND_CAPSULE_WIDTH, ISLAND_CAPSULE_GAP, ISLAND_BAR_HEIGHT } from "./IslandTopBar";
+import { ISLAND_CAPSULE_GAP, ISLAND_BAR_HEIGHT } from "./IslandTopBar";
 import { useTranslation } from "react-i18next";
 import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
+import NewPostsBead from "./NewPostsBead";
 import { useAuthState } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
@@ -75,24 +72,6 @@ import { getNFT } from "../../services/nft.service";
 import { useBoostQueue } from "../../hooks/useSuperpowers";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
-
-/** Match the feed nav's finish, including each skin's tint and texture. */
-function NewPostsMaterial({ radius, islandChrome, brackets = false }: { radius: number; islandChrome: boolean; brackets?: boolean }) {
-  const { isMinimal, skin } = useAppTheme();
-  if (islandChrome) return <NavPillSurface borderRadius={radius} />;
-  if (isMinimal) return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000", borderColor: MINIMAL_TAB_LINE, borderWidth: 1, borderRadius: 0 }]} />;
-  return (
-    <>
-      <FrostedPill
-        tint={skin ? glassTint(String(skin.strip.backgroundColor), 0.22) : "rgba(20, 20, 24, 0.18)"}
-        borderRadius={radius}
-      />
-      {skin ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, skin.strip, { backgroundColor: "transparent", borderRadius: radius }]} /> : null}
-      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
-      {skin?.brackets && brackets ? <HudBrackets color={skin.brackets} /> : null}
-    </>
-  );
-}
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -1091,7 +1070,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [liveStreams],
   );
 
-  const { newPostCount, atCap: newPostsAtCap, flushLiveCounts } = useNewPostsSignal({
+  const { newPostCount, newPostAuthors, flushLiveCounts } = useNewPostsSignal({
     enabled: active && isFocused,
     scrolling: scrollingRef,
     visibleTokenIds: visibleCountIdsRef,
@@ -1294,7 +1273,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const newPostsPillStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: headerTranslateY ? headerTranslateY.value : 0 }],
   }));
-  const [newPostsHovered, setNewPostsHovered] = useState(false);
 
   // Both guards count ORGANIC rows. A live boost is one item in the list, so
   // measuring `feedItems` let a boost mask a completely failed feed — the
@@ -1338,43 +1316,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       {active && !refreshing && !hideNewPosts && newPostCount > 0 && (
         <Animated.View
           pointerEvents="box-none"
+          entering={FadeIn.duration(160)}
+          exiting={FadeOut.duration(120)}
           style={[
-            { position: "absolute", top: islandChrome ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP - 4 : chromeInset - 3, left: 0, right: 0, alignItems: "center", zIndex: 20 },
+            // Just under the pill's bottom edge, overlapping it by a point.
+            { position: "absolute", top: islandChrome ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP - 1 : chromeInset - 1, left: 0, right: 0, alignItems: "center", zIndex: 20 },
             newPostsPillStyle,
           ]}
         >
-          <View pointerEvents="none" style={{ width: 36, height: 14, marginBottom: -2, borderRadius: skin?.square || isMinimal ? 0 : 4, overflow: "hidden" }}>
-            <NewPostsMaterial radius={skin?.square || isMinimal ? 0 : 4} islandChrome={islandChrome} />
-          </View>
-          <Pressable
-            onPress={() => {
-              setNewPostsHovered(false);
-              showNewPosts();
-            }}
-            onHoverIn={() => setNewPostsHovered(true)}
-            onHoverOut={() => setNewPostsHovered(false)}
-            accessibilityRole="button"
-            accessibilityLabel={_copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount })}
-            className="flex-row items-center justify-center gap-1.5 px-2 py-2"
-            style={{ minWidth: ISLAND_CAPSULE_WIDTH - 12, minHeight: 36, borderRadius: skin?.square || isMinimal ? 0 : 15, overflow: "hidden" }}
-          >
-            {({ pressed }) => (
-              <>
-                <NewPostsMaterial radius={skin?.square || isMinimal ? 0 : 15} islandChrome={islandChrome} brackets />
-                <Icon name="ArrowUp" size={14} color={skin?.tabIconActive ?? "#E5E7EB"} />
-                <Text
-                  className="text-xs font-semibold"
-                  style={{
-                    flexShrink: 1,
-                    color: pressed || newPostsHovered ? skin?.tabIconActive ?? "#FFFFFF" : skin?.tabIcon ?? "rgba(255,255,255,0.7)",
-                  }}
-                >
-                  {t("feed.newPosts", { count: newPostCount })}
-                  {newPostsAtCap ? "+" : ""}
-                </Text>
-              </>
-            )}
-          </Pressable>
+          <NewPostsBead
+            count={newPostCount}
+            authors={newPostAuthors}
+            islandChrome={islandChrome}
+            onPress={showNewPosts}
+            label={_copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount })}
+          />
         </Animated.View>
       )}
       <AnimatedFlashList

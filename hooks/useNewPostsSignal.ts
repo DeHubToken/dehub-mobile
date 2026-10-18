@@ -77,6 +77,15 @@ interface UseNewPostsSignalOptions {
   visibleTokenIds?: RefObject<readonly number[]>;
 }
 
+export interface NewPostAuthor {
+  address: string;
+  name: string;
+  /** Raw avatar path or URL; resolve with getAvatarUrl. */
+  avatar?: string;
+}
+
+const NO_AUTHORS: NewPostAuthor[] = [];
+
 /** The identity a feed row is known by, across both queries. */
 export function feedRowId(row: any): string | undefined {
   const id = row?.tokenId ?? row?.id ?? row?.stream?.tokenId;
@@ -153,7 +162,7 @@ export function useNewPostsSignal({
 
   const signal = useMemo(() => {
     const newest = chronological && newestCreatedAt ? Date.parse(newestCreatedAt) : NaN;
-    if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false };
+    if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false, newPostAuthors: NO_AUTHORS };
 
     const newer = (data.result || []).filter((item: any) => {
       const raw = item?.createdAt || item?.created_at || item?.stream?.createdAt;
@@ -165,10 +174,24 @@ export function useNewPostsSignal({
       return true;
     });
 
+    // The faces on the pill: the newest few distinct authors, newest first.
+    const newPostAuthors: NewPostAuthor[] = [];
+    for (const item of newer as any[]) {
+      const address = String(item?.minter || item?.minterUser?.address || "").toLowerCase();
+      if (!address || newPostAuthors.some((a) => a.address === address)) continue;
+      newPostAuthors.push({
+        address,
+        name: item?.minterUser?.displayName || item?.minterDisplayName || item?.minterUser?.username || item?.minterUsername || "",
+        avatar: item?.minterUser?.avatarImageUrl || item?.avatarImageUrl || item?.minterAvatarUrl || undefined,
+      });
+      if (newPostAuthors.length === 3) break;
+    }
+
     return {
       newPostCount: newer.length,
       // Every row came back newer, so there are likely more than were fetched.
       atCap: newer.length >= HEAD_SIZE,
+      newPostAuthors,
     };
   }, [data, newestCreatedAt, chronological, knownIds, isRenderable]);
 
