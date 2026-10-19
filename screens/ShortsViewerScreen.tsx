@@ -363,8 +363,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
   const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
-    p.staysActiveInBackground = activeItem && playbackAllowed;
-    p.showNowPlayingNotification = activeItem && playbackAllowed;
+    // Shorts pause when the app is left; only a PiP window keeps them going.
+    p.staysActiveInBackground = false;
+    p.showNowPlayingNotification = false;
     p.loop = getIsLooping();
     p.muted = isMuted;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
@@ -654,8 +655,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   useEffect(() => {
     if (!player || !ownsPlayerRef.current()) return;
-    player.staysActiveInBackground = isActive || isPictureInPicturePlayer(player);
-    player.showNowPlayingNotification = isActive || isPictureInPicturePlayer(player);
+    player.staysActiveInBackground = isPictureInPicturePlayer(player);
+    player.showNowPlayingNotification = isPictureInPicturePlayer(player);
     if (isActive) {
       // The same callback identity must be used for request and release. The
       // old anonymous callbacks could never release either global focus slot.
@@ -1379,13 +1380,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
-        {/* Only the current short owns a native view: preloaded neighbours must
-            not overwrite the activity's automatic PiP configuration. */}
+        {/* Leaving the app from Shorts never starts PiP; the PiP button still does. */}
         {player && isActive && ownsVideo && !photoMedia ? (
           <PersistentVideoView
             ref={activeVideoRef}
             allowsPictureInPicture
-            startsPictureInPictureAutomatically={isPlaying}
+            startsPictureInPictureAutomatically={false}
             player={player}
             style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"

@@ -1047,6 +1047,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer, dubAvailable],
   );
 
+  // Feed autoplay pauses when the app is left; the post page keeps playing (PiP).
+  useEffect(() => {
+    if (!ownsVideo || !player) return;
+    const keep = postPage || isPictureInPicturePlayer(player);
+    player.staysActiveInBackground = keep;
+    player.showNowPlayingNotification = keep;
+  }, [player, ownsVideo, postPage]);
+
   const isLooping = useMediaLooping();
   useEffect(() => {
     if (ownsVideo) player.loop = isLooping;
@@ -1283,7 +1291,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
           onPictureInPictureStop={() => onPictureInPictureChange?.(false)}
-          startsPictureInPictureAutomatically={isPlaying}
+          // Leaving the app only starts PiP from the post page, never from feed autoplay.
+          startsPictureInPictureAutomatically={postPage && isPlaying}
           // Android defaults to a SurfaceView, which renders in its own window
           // layer and can punch through / appear on top of other feed cards
           // while scrolling and recycling. A TextureView renders inside the
