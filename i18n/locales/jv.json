@@ -6722,7 +6722,41 @@
         "body": "Temokake carane tip, lencana, lan SuperPowers ngowahi apa sing sampeyan lakoni ing kene dadi apa sing sampeyan entuk."
       }
     },
-    "swipeToStart": "Geser kanggo miwiti"
+    "swipeToStart": "Geser kanggo miwiti",
+    "setup": {
+      "continue": "Continue",
+      "skip": "Skip",
+      "back": "Back",
+      "stepOf": "Langkah {{current}} saka {{total}}",
+      "language": {
+        "title": "Pilih basa sampeyan",
+        "subtitle": "Kita milih sing digunakake telponmu. Tutul liyane kanggo ngalih.",
+        "fromPhone": "Basa ponselmu"
+      },
+      "theme": {
+        "title": "Pilih tampilanmu",
+        "subtitle": "Tap tema kanggo nyoba. Sampeyan bisa ngganti kapan wae ing Setelan."
+      },
+      "audience": {
+        "title": "Who's using DeHub?",
+        "subtitle": "Kita bakal nyetel feedmu supaya cocok. Kowe bisa ngowahi iki mengko ing Setelan.",
+        "recommended": "Recommended",
+        "setPin": "Set a PIN",
+        "confirmAdult": "I'm 18 or over",
+        "kids": {
+          "title": "Kids",
+          "body": "Mung kiriman kanggo bocah. Wong diwasa nyetel PIN kanggo metu saka Mode Anak."
+        },
+        "everyone": {
+          "title": "Everyone",
+          "body": "Aplikasi lengkap. Kiriman dewasa tetep disumputake."
+        },
+        "mature": {
+          "title": "Mature 18+",
+          "body": "Uga tampilkaké kiriman sing ditandhani minangka dewasa. Mung pilih iki yen sampeyan umur 18 taun utawa luwih."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

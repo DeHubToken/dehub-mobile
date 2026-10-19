@@ -6721,7 +6721,41 @@
         "body": "Tirohia me pehea te huri i nga tohutohu, nga tohu me nga SuperPowers i nga mea e mahi ana koe i konei ki tetahi mea e whiwhi ana koe."
       }
     },
-    "swipeToStart": "Panuku hei tīmata"
+    "swipeToStart": "Panuku hei tīmata",
+    "setup": {
+      "continue": "Haere tonu",
+      "skip": "Kaipuke",
+      "back": "Hoki",
+      "stepOf": "Hipanga {{current}} {{total}}",
+      "language": {
+        "title": "Kōwhiria tō reo",
+        "subtitle": "I whiriwhiria e matou te mea e whakamahia ana e to waea. Pāwhiritia tetahi atu ki te huri.",
+        "fromPhone": "Te reo o tō waea"
+      },
+      "theme": {
+        "title": "Pāwhiritia tō tirohanga",
+        "subtitle": "Pāwhiritia he kaupapa ki te tamata i te reira. Ka taea e koe te huri i nga wa katoa i roto i nga tautuhinga."
+      },
+      "audience": {
+        "title": "Ko wai e whakamahi ana i te DeHub?",
+        "subtitle": "Ka whakaturia e matou to koutou kai ki te whakarite. Ka taea e koe te huri i tenei i muri mai i roto i nga tautuhinga.",
+        "recommended": "Whakapā mai",
+        "setPin": "Whakaritea he PIN",
+        "confirmAdult": "E 18 ahau neke atu ranei",
+        "kids": {
+          "title": "Ngā tamariki",
+          "body": "Ko nga pou anake i hangaia mo nga tamariki. Ka whakaturia e te pakeke he pene ki te waiho i te tikanga tamariki."
+        },
+        "everyone": {
+          "title": "Katoa",
+          "body": "Ko te taupānga katoa. pou Mature noho huna."
+        },
+        "mature": {
+          "title": "Te pakeke 18+",
+          "body": "E whakaatu ana hoki i ngā pou e tohu ana i te pakeke. Kōwhiria anake mēnā he 18 tau koe, neke atu rānei."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

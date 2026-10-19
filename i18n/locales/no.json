@@ -6738,7 +6738,41 @@
         "body": "Finn ut hvordan tips, merker og superkrefter gjør det du gjør her til noe du tjener penger på."
       }
     },
-    "swipeToStart": "Sveip for å starte"
+    "swipeToStart": "Sveip for å starte",
+    "setup": {
+      "continue": "Fortsett",
+      "skip": "Hopp over",
+      "back": "Tilbake",
+      "stepOf": "Trinn {{current}} av {{total}}",
+      "language": {
+        "title": "Velg ditt språk",
+        "subtitle": "Vi valgte det som telefonen din bruker. Trykk på et annet for å bytte.",
+        "fromPhone": "Språket på telefonen din"
+      },
+      "theme": {
+        "title": "Velg ditt utseende",
+        "subtitle": "Trykk på et tema for å prøve det. Du kan endre det når som helst i Innstillinger."
+      },
+      "audience": {
+        "title": "Hvem bruker DeHub?",
+        "subtitle": "Vi vil sette opp nyhetsstrømmen din slik at den passer. Du kan endre dette senere i Innstillinger.",
+        "recommended": "Anbefalt",
+        "setPin": "Sett en PIN",
+        "confirmAdult": "Jeg er 18 eller eldre",
+        "kids": {
+          "title": "Barn",
+          "body": "Kun innlegg laget for barn. En voksen setter en PIN for å forlate Barn-modus."
+        },
+        "everyone": {
+          "title": "Alle",
+          "body": "Den fulle appen. Voksne innlegg forblir skjult."
+        },
+        "mature": {
+          "title": "Voksne 18+",
+          "body": "Vis også innlegg merket som voksne. Velg dette bare hvis du er 18 eller eldre."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

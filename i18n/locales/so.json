@@ -6720,7 +6720,41 @@
         "body": "Ogow sida talooyinka, calaamadaha iyo SuperPowers u beddelaan waxa aad halkan ku samayso wax aad ka kasbato."
       }
     },
-    "swipeToStart": "U soo jiid si aad u bilowdo"
+    "swipeToStart": "U soo jiid si aad u bilowdo",
+    "setup": {
+      "continue": "Sii wad",
+      "skip": "Ka bood.",
+      "back": "Dib u noqo",
+      "stepOf": "Tallaabada {{current}} ee {{total}}",
+      "language": {
+        "title": "Xulo luqaddaada",
+        "subtitle": "Waxaan dooranay mid ka mid ah taleefankaaga isticmaalaya. Taabo mid kale si aad u bedesho.",
+        "fromPhone": "Luqadda taleefankaaga"
+      },
+      "theme": {
+        "title": "Soo qaado muuqaalkaaga",
+        "subtitle": "Taabo mawduuc si aad u tijaabiso. Waad ka beddeli kartaa wakhti kasta goobaha."
+      },
+      "audience": {
+        "title": "Yaa isticmaalaya DeHub?",
+        "subtitle": "Waxaan diyaarineynaa cuntadaada si aan ula jaan qaadno. Waad ka beddeli kartaa tan waqti dambe Settings.",
+        "recommended": "Lasoo jeediyay",
+        "setPin": "Deji PIN",
+        "confirmAdult": "Waxaan ahay 18 ama ka weyn",
+        "kids": {
+          "title": "Carruurta",
+          "body": "Kaliya qoraallada loogu talagalay carruurta. Waayeelku wuxuu dhigayaa PIN si uu uga tago Habka Carruurta."
+        },
+        "everyone": {
+          "title": "Qofkasta",
+          "body": "Appka oo buuxa. posts Mature stay hidden."
+        },
+        "mature": {
+          "title": "Muunad 18+",
+          "body": "Sidoo kale muujiyaan posts calaamadeeyay sida qaangaar ah. Kaliya dooro tan haddii aad tahay 18 ama ka weyn."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

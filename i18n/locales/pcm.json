@@ -6615,6 +6615,32 @@
       "easy": "Yes, e easy",
       "hard": "No, e hard",
       "thanks": "Thank you, e help."
+    },
+    "setup": {
+      "continue": "Continue",
+      "skip": "Skip",
+      "back": "Back",
+      "language": {
+        "title": "Pick ya language"
+      },
+      "theme": {
+        "subtitle": "Tap one theme make you try am. You fit change am anytime for Settings."
+      },
+      "audience": {
+        "title": "Who's using DeHub?",
+        "recommended": "Recommended",
+        "setPin": "Set a PIN",
+        "confirmAdult": "I'm 18 or over",
+        "kids": {
+          "title": "Kids"
+        },
+        "everyone": {
+          "title": "Everyone"
+        },
+        "mature": {
+          "title": "Mature 18+"
+        }
+      }
     }
   },
   "conversation": {

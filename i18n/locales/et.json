@@ -6739,7 +6739,41 @@
         "body": "Vaata, kuidas nõuanded, märgid ja SuperPowers muudavad selle, mida sa siin teed, millekski, millega sa teenid."
       }
     },
-    "swipeToStart": "Pühkige alustamiseks"
+    "swipeToStart": "Pühkige alustamiseks",
+    "setup": {
+      "continue": "Jätka",
+      "skip": "Jäta vahele",
+      "back": "Tagasi",
+      "stepOf": "Samm {{current}} / {{total}}",
+      "language": {
+        "title": "Vali oma keel",
+        "subtitle": "Valisime telefoni keele. Puuduta teist, et vahetada.",
+        "fromPhone": "Sinu telefoni keel"
+      },
+      "theme": {
+        "title": "Vali oma välimus",
+        "subtitle": "Puuduta teemat, et seda proovida. Saad seda igal ajal seadetes muuta."
+      },
+      "audience": {
+        "title": "Kes kasutab DeHubi?",
+        "subtitle": "Seadistame sinu voogu vastavaks. Saad seda hiljem seadetes muuta.",
+        "recommended": "Soovitatud",
+        "setPin": "Määra PIN-kood",
+        "confirmAdult": "Mina olen 18+ või vanem",
+        "kids": {
+          "title": "Lapsed",
+          "body": "Ainult lastele mõeldud postitused. Täiskasvanu määrab PIN-koodi, et Laste režiimist väljuda."
+        },
+        "everyone": {
+          "title": "Kõik",
+          "body": "Täielik rakendus. Täiskasvanutele mõeldud postitused on peidetud."
+        },
+        "mature": {
+          "title": "Täiskasvanud 18+",
+          "body": "Näita ka täiskasvanutele märgitud postitusi. Vali see ainult siis, kui oled 18+ või vanem."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

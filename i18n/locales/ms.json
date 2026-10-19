@@ -6997,7 +6997,41 @@
         "body": "Ketahui bagaimana tip, lencana dan SuperPower mengubah apa yang anda lakukan di sini menjadi sesuatu yang anda perolehi."
       }
     },
-    "swipeToStart": "Leret untuk mula"
+    "swipeToStart": "Leret untuk mula",
+    "setup": {
+      "continue": "Teruskan",
+      "skip": "Langkau",
+      "back": "Kembali",
+      "stepOf": "Langkah {{current}} daripada {{total}}",
+      "language": {
+        "title": "Pilih bahasa anda",
+        "subtitle": "Kami memilih telefon yang anda gunakan. Ketik yang lain untuk menukar.",
+        "fromPhone": "Bahasa telefon anda"
+      },
+      "theme": {
+        "title": "Pilih penampilan anda",
+        "subtitle": "Ketik tema untuk mencubanya. Anda boleh mengubahnya pada bila-bila masa dalam Tetapan."
+      },
+      "audience": {
+        "title": "Siapa yang menggunakan DeHub?",
+        "subtitle": "Kami akan menyediakan suapan anda untuk dipadankan. Anda boleh mengubahnya kemudian dalam Tetapan.",
+        "recommended": "Disyorkan",
+        "setPin": "Tetapkan PIN",
+        "confirmAdult": "Saya berumur 18 tahun ke atas",
+        "kids": {
+          "title": "Kanak-Kanak",
+          "body": "Hanya hantaran yang dibuat untuk kanak-kanak. Seorang dewasa menetapkan PIN untuk meninggalkan Mod Kanak-kanak."
+        },
+        "everyone": {
+          "title": "Semua Orang",
+          "body": "Aplikasi penuh. Hantaran matang kekal tersembunyi."
+        },
+        "mature": {
+          "title": "Matang 18+",
+          "body": "Tunjukkan juga hantaran yang ditandakan sebagai matang. Hanya pilih ini jika anda berumur 18 tahun ke atas."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

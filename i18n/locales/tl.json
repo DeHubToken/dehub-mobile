@@ -6786,7 +6786,41 @@
         "body": "Alamin kung paano ginagawa ng mga tip, badge, at SuperPower ang ginagawa mo rito bilang isang bagay na kinikita mo."
       }
     },
-    "swipeToStart": "Mag-swipe para magsimula"
+    "swipeToStart": "Mag-swipe para magsimula",
+    "setup": {
+      "continue": "Magpatuloy",
+      "skip": "Laktawan",
+      "back": "pabalik",
+      "stepOf": "Hakbang {{current}} ng {{total}}",
+      "language": {
+        "title": "Piliin ang iyong Wika",
+        "subtitle": "Pinili namin ang ginagamit ng iyong telepono. I - tap ang isa pa para lumipat.",
+        "fromPhone": "Wika ng iyong telepono"
+      },
+      "theme": {
+        "title": "Piliin ang hitsura mo",
+        "subtitle": "Mag - tap ng tema para subukan ito. Maaari mo itong baguhin anumang oras sa Mga Setting."
+      },
+      "audience": {
+        "title": "Sino ang gumagamit ng DeHub?",
+        "subtitle": "Ise - set up namin ang iyong feed para tumugma. Maaari mo itong baguhin sa ibang pagkakataon sa Mga Setting.",
+        "recommended": "Inirerekomenda",
+        "setPin": "Magtakda ng PIN",
+        "confirmAdult": "Ako ay 18 o higit pa",
+        "kids": {
+          "title": "Pambata",
+          "body": "Tanging mga post na ginawa para sa mga bata. Nagtatakda ang isang adulto ng PIN para umalis sa Kids Mode."
+        },
+        "everyone": {
+          "title": "Lahat",
+          "body": "Ang buong app. Mature post manatiling nakatago."
+        },
+        "mature": {
+          "title": "Matanda na, 18+",
+          "body": "Ipakita din ang mga post na minarkahan bilang mature. Piliin lamang ito kung ikaw ay 18 o higit pa."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

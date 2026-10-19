@@ -6743,7 +6743,41 @@
         "body": "Tudd meg, hogy a borravalók, a jelvények és a szuperképességek hogyan alakítják a munkádat olyanná, amiből pénzt kereshetsz."
       }
     },
-    "swipeToStart": "Húzd el az indításhoz"
+    "swipeToStart": "Húzd el az indításhoz",
+    "setup": {
+      "continue": "Folytatás",
+      "skip": "Kihagyás",
+      "back": "Vissza",
+      "stepOf": "Lépés {{current}} / {{total}}",
+      "language": {
+        "title": "Válaszd ki a nyelved",
+        "subtitle": "Mi a telefonod nyelvét választottuk. Koppints egy másikra a váltáshoz.",
+        "fromPhone": "A telefonod nyelve"
+      },
+      "theme": {
+        "title": "Válaszd ki a megjelenést",
+        "subtitle": "Koppints egy témára, hogy kipróbáld. Bármikor megváltoztathatod a Beállításokban."
+      },
+      "audience": {
+        "title": "Ki használja a DeHub-ot?",
+        "subtitle": "Beállítjuk a hírfolyamodat, hogy illeszkedjen. Ezt később a Beállításokban módosíthatod.",
+        "recommended": "Ajánlott",
+        "setPin": "PIN beállítása",
+        "confirmAdult": "18 éves vagy idősebb vagyok",
+        "kids": {
+          "title": "Gyerekek",
+          "body": "Csak a gyerekeknek szánt bejegyzések. Egy felnőtt beállít egy PIN-t a Gyerek mód elhagyásához."
+        },
+        "everyone": {
+          "title": "Mindenki",
+          "body": "Az egész alkalmazás. A felnőtt tartalmak rejtve maradnak."
+        },
+        "mature": {
+          "title": "Felnőtt 18+",
+          "body": "Továbbá megjelenítjük a felnőttként jelölt bejegyzéseket. Csak akkor válaszd ezt, ha 18 éves vagy idősebb vagy."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {
