@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Jos tämä jatkuu, käytä alla olevaa lompakkosi salasanaa tai \"Tuo avaimet\".",
     "deviceBoundKey": "Tämä lompakko avautuu <em>yhdellä laitteella olevilla biometrisillä tiedoilla</em> – puhelimella tai selaimella, jolla se on luotu. Tässä puhelimessa ei ole kyseistä avainta, eikä dehub.io:ssakaan: avain ei koskaan poistu laitteesta, jolla se luotiin.",
     "unlockPasskeyOnly": "Tämä lompakko suojattiin verkkoselaimessa passkeyllä, eikä pilvessä ole vielä salasanan varmuuskopiota. Jos asetit lompakkosalasana dehub.io:ssa, syötä se tähän – muuten käytä alla olevaa Tuo avaimet.",
-    "unlockWithPasswordExplainer": "Tällä tilillä on jo lompakko, joka on suojattu salasanalla. Syötä se palauttaaksesi lompakkosi tälle laitteelle."
+    "unlockWithPasswordExplainer": "Tällä tilillä on jo lompakko, joka on suojattu salasanalla. Syötä se palauttaaksesi lompakkosi tälle laitteelle.",
+    "deviceTab": "Tämä laite",
+    "deviceExplainer": "Ei mitään kirjoitettavaa tai muistettavaa — avain pysyy tällä laitteella. Tarjoamme sinulle 12 sanan varmuuskopion, jonka voit kirjoittaa muistiin. Se on ainoa tapa palata toiselta laitteelta, verkkosivustolta tai uudelleenasennuksen jälkeen. Valitse sen sijaan salasana, ja salasana itse tekee tämän työn.",
+    "secureOnDevice": "Pidä avain tässä laitteessa"
   },
   "transcript": {
     "title": "Litterointi",

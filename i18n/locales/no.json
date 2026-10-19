@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Hvis dette fortsetter å feile, bruk lommebokpassordet ditt nedenfor eller \"Importer nøkler\".",
     "deviceBoundKey": "Denne lommeboken låses opp med <em>biometri lagret på én spesifikk enhet</em> — telefonen eller nettleseren den ble satt opp på. Denne telefonen har ikke den nøkkelen, og det har heller ikke dehub.io: nøkkelen forlater aldri enheten som opprettet den.",
     "unlockPasskeyOnly": "Denne lommeboken ble sikret med en passnøkkel på nettet og har ennå ingen passord-sikkerhetskopi i skyen. Hvis du setter et lommebokpassord på dehub.io, skriv det inn her — ellers bruk Importer nøkler nedenfor.",
-    "unlockWithPasswordExplainer": "Denne kontoen har allerede en lommebok, beskyttet av et passord. Skriv det inn for å gjenopprette lommeboken din på denne enheten."
+    "unlockWithPasswordExplainer": "Denne kontoen har allerede en lommebok, beskyttet av et passord. Skriv det inn for å gjenopprette lommeboken din på denne enheten.",
+    "deviceTab": "Denne enheten",
+    "deviceExplainer": "Ingenting å skrive eller huske – nøkkelen forblir på denne enheten. Vi tilbyr deg en sikkerhetskopi på 12 ord du kan skrive ned. Det er den eneste måten å komme tilbake på fra en annen enhet, fra nettstedet eller etter en ny installasjon. Velg Passord i stedet, så gjør selve passordet den jobben.",
+    "secureOnDevice": "Behold nøkkelen på denne enheten"
   },
   "transcript": {
     "title": "Utskrift",

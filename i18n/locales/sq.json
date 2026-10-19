@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Nëse kjo vazhdon të dështojë, përdorni fjalëkalimin e portofolit tuaj më poshtë ose \"Importo portofolin e jashtëm\".",
     "deviceBoundKey": "Ky portofol zhbllokohet me <em>biometrikë të mbajtur në një pajisje specifike</em> — telefoni ose shfletuesi ku është vendosur. Ky telefon nuk e ka këtë çelës, dhe as dehub.io: çelësi nuk largohet kurrë nga pajisja që e ka krijuar.",
     "unlockPasskeyOnly": "Ky portofol u siguruar me një passkey në internet dhe ende nuk ka një kopje rezervë të fjalëkalimit në cloud. Nëse vendosni një fjalëkalim portofoli në dehub.io, futeni këtu — përndryshe përdorni Importo portofolin e jashtëm më poshtë.",
-    "unlockWithPasswordExplainer": "Ky llogari tashmë ka një portofol, të mbrojtur me një fjalëkalim. Futeni atë për të rikuperuar portofolin tuaj në këtë pajisje."
+    "unlockWithPasswordExplainer": "Ky llogari tashmë ka një portofol, të mbrojtur me një fjalëkalim. Futeni atë për të rikuperuar portofolin tuaj në këtë pajisje.",
+    "deviceTab": "Kjo pajisje",
+    "deviceExplainer": "Asgjë për t 'u shkruar ose për t' u mbajtur mend. Çelësi qëndron në këtë pajisje. Do të të ofrojmë një kopje rezervë me 12 fjalë për të shkruar; është e vetmja mënyrë për t 'u kthyer nga një pajisje tjetër, nga faqja e internetit ose pas riinstalimit. Zgjidh fjalëkalimin më mirë dhe vetë fjalëkalimi e bën atë punë.",
+    "secureOnDevice": "Mbani çelësin në këtë pajisje"
   },
   "transcript": {
     "title": "Transkript",

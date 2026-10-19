@@ -5049,7 +5049,10 @@
     "biometricKeepsFailing": "{{error}} እዚ ጸገም እንተቐጸለ፡ ብታሕቲ እዚኣ  \"Import external wallet\"  ብምጥቃም  \"password\"  ኣብ  \"wallet\"  ኣይትጥቀሙ።",
     "deviceBoundKey": "እዚ  \"wallet\"  ብ  <em>biometrics held on one specific device</em>  ይኽፈት፡ እዚ ድማ እቲ  \"phone\"  ወይ  \"browser\"  ኣብቲ  \"wallet\"  ዝተመስረተሉ እዩ። እዚ  \"phone\"  እዚ  \"key\"  የብሉን፡ dehub.io ድማ የብሉን፡ እቲ  \"key\"  ካብቲ  \"device\"  ኣይወጽእን።",
     "unlockPasskeyOnly": "እዚ  \"wallet\"  ብ  \"passkey\"  ኣብ  \"web\"  ተሓልዩ እዩ፡  \"password backup\"  ኣብ  \"cloud\"  ገና የብሉን። ኣብ dehub.io  \"wallet password\"  እንተኣቘሚርኩም፡ ኣብዚ ኣእትዉዎ፡ እንተዘይኮይኑ ድማ  \"Import external wallet\"  ብታሕቲ እዚኣ ተጠቐሙ።",
-    "unlockWithPasswordExplainer": "እዚ  \"account\"  \"wallet\"  ብ  \"password\"  ተሓልዩ ኣለዎ። ን  \"wallet\"  ኣብዚ  \"device\"  ኣይትመልስዎ።"
+    "unlockWithPasswordExplainer": "እዚ  \"account\"  \"wallet\"  ብ  \"password\"  ተሓልዩ ኣለዎ። ን  \"wallet\"  ኣብዚ  \"device\"  ኣይትመልስዎ።",
+    "deviceTab": "እዚ መሳርሒ እዚ",
+    "deviceExplainer": "ዝኾነ ነገር ክትጽሕፍ ወይ ክትዝክሮ ኣይትኽእልን ኢኻ — እቲ ቁልፊ ኣብዚ መሳርሒ እዚ ይጸንሕ ። ንምጽሓፍ 12 ቃላት ክንህበካ ኢና ፤ ካብ ካልእ መሳርሒ ፡ ካብ መርበብ ሓበሬታ ፡ ወይ ድሕሪ ምትካል ጥራይ እዩ ዚምለስ ። ኣብ ክንዳኡስ ፡ ቃል-ምስጢር ሕረጽ ፡ እቲ ቃል-ምስጢር ባዕሉ ድማ ነቲ ስራሕ ይሰርሕ ።",
+    "secureOnDevice": "ነቲ መፍትሕ ኣብዚ መሳርሒ እዚ ሓልዎ"
   },
   "transcript": {
     "title": "ጽሑፍ ቃል",

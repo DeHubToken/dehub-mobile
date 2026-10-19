@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Si això continua fallant, utilitza la contrasenya de la teva cartera a continuació o \"Importa cartera externa\".",
     "deviceBoundKey": "Aquesta cartera es desbloqueja amb <em>dades biomètriques emmagatzemades en un dispositiu específic</em>: el telèfon o navegador amb què es va configurar. Aquest telèfon no té aquesta clau, i dehub.io tampoc: la clau mai surt del dispositiu que la va crear.",
     "unlockPasskeyOnly": "Aquesta cartera es va protegir amb una passkey al web i encara no té cap còpia de seguretat de la contrasenya al núvol. Si has establert una contrasenya de cartera a dehub.io, introdueix-la aquí; en cas contrari, utilitza \"Importa cartera externa\" a continuació.",
-    "unlockWithPasswordExplainer": "Aquest compte ja té una cartera, protegida per una contrasenya. Introdueix-la per recuperar la teva cartera en aquest dispositiu."
+    "unlockWithPasswordExplainer": "Aquest compte ja té una cartera, protegida per una contrasenya. Introdueix-la per recuperar la teva cartera en aquest dispositiu.",
+    "deviceTab": "Aquest dispositiu",
+    "deviceExplainer": "No hi ha res que puguis escriure o recordar: la clau es queda en aquest dispositiu. T'oferirem una còpia de seguretat de 12 paraules per escriure; és l'única manera d'entrar des d'un altre dispositiu, des del lloc web o després de tornar a instal·lar-lo. Tria la contrasenya i la contrasenya en si mateixa farà aquesta feina.",
+    "secureOnDevice": "Guarda la clau en aquest dispositiu"
   },
   "transcript": {
     "title": "Transcripció",

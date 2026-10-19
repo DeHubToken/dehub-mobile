@@ -5102,7 +5102,10 @@
     "biometricKeepsFailing": "{{error}} Uma lokhu kuqhubeka nokuhluleka, sebenzisa iphasiwedi yakho ye-wallet ngezansi noma u-\"Ngenisa i-wallet yangaphandle\".",
     "deviceBoundKey": "Le wallet ivulwa nge-<em>biometrics egcinwe kudivayisi eyodwa ethize</em> — ifoni noma isiphequluli lapho yasetshenziswa khona. Le foni ayinawo lowo okhiye, futhi ne-dehub.io ayinawo: okhiye abaphumi kudivayisi eyawenzayo.",
     "unlockPasskeyOnly": "Le wallet yavikelwa nge-passkey kuwebhu futhi ayikabi nayo isipele sephasiwedi efwini. Uma usetha iphasiwedi ye-wallet ku-dehub.io, uyifake lapha — kungenjalo sebenzisa i-Ngenisa i-wallet yangaphandle ngezansi.",
-    "unlockWithPasswordExplainer": "Le akhawunti isivele inayo i-wallet, evikelwe ngephasiwedi. Yifake ukuze ubuyise i-wallet yakho kule divayisi."
+    "unlockWithPasswordExplainer": "Le akhawunti isivele inayo i-wallet, evikelwe ngephasiwedi. Yifake ukuze ubuyise i-wallet yakho kule divayisi.",
+    "deviceTab": "Le divayisi",
+    "deviceExplainer": "Akukho ongakuthayipha noma ukukukhumbula — ukuhlala kokhiye kule divayisi. Sizokunikeza isipele esinamagama angu-12 ukuze usibhale phansi; ukuphela kwendlela yokungena kusuka kwenye idivayisi, kusuka kuwebhusayithi, noma ngemva kokufaka kabusha. Khetha Iphasiwedi kunalokho bese iphasiwedi ngokwayo yenza lowo msebenzi.",
+    "secureOnDevice": "Gcina ukhiye kule divayisi"
   },
   "transcript": {
     "title": "Umbhalo wokukhulunywayo",

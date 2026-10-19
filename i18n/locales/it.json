@@ -5129,7 +5129,10 @@
     "biometricKeepsFailing": "{{error}} Se continua a fallire, usa la password del tuo portafoglio qui sotto o \"Importa portafoglio esterno\".",
     "deviceBoundKey": "Questo portafoglio si sblocca con <em>biometria memorizzata su un dispositivo specifico</em> — il telefono o il browser su cui è stato configurato. Questo telefono non ha quella chiave, e nemmeno dehub.io: la chiave non lascia mai il dispositivo che l'ha creata.",
     "unlockPasskeyOnly": "Questo portafoglio è stato protetto con una passkey sul web e non ha ancora un backup della password nel cloud. Se hai impostato una password del portafoglio su dehub.io, inseriscila qui — altrimenti usa Importa portafoglio esterno qui sotto.",
-    "unlockWithPasswordExplainer": "Questo account ha già un portafoglio, protetto da una password. Inseriscila per recuperare il tuo portafoglio su questo dispositivo."
+    "unlockWithPasswordExplainer": "Questo account ha già un portafoglio, protetto da una password. Inseriscila per recuperare il tuo portafoglio su questo dispositivo.",
+    "deviceTab": "Questo dispositivo",
+    "deviceExplainer": "Niente da digitare o ricordare: la chiave rimane su questo dispositivo. Ti offriremo un backup di 12 parole da scrivere; è l'unico modo per tornare da un altro dispositivo, dal sito web o dopo la reinstallazione. Scegli invece la password e la password stessa fa quel lavoro.",
+    "secureOnDevice": "Tieni la chiave su questo dispositivo"
   },
   "walletBackup": {
     "title": "Esegui il backup del wallet",

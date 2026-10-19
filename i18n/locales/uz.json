@@ -5098,7 +5098,10 @@
     "biometricKeepsFailing": "{{error}} Agar bu ish bermasa, quyida hamyon parolingizdan foydalaning yoki \"Kalitlarni import qilish\" tugmasini bosing.",
     "deviceBoundKey": "Ushbu hamyon <em>faqat bitta qurilmadagi biometrik ma'lumotlar</em> bilan ochiladi — ya'ni u yaratilgan telefon yoki brauzerda. Bu telefon bu kalitga ega emas, dehub.io ham ega emas: kalit hech qachon uni yaratgan qurilmani tark etmaydi.",
     "unlockPasskeyOnly": "Ushbu hamyon veb-saytda parol bilan himoyalangan va hali bulutda parolni tiklash imkoniyati mavjud emas. Agar siz dehub.io saytida hamyon parolini o'rnatsangiz, uni shu yerga kiriting — aks holda quyida \"Kalitlarni import qilish\" tugmasini bosing.",
-    "unlockWithPasswordExplainer": "Ushbu hisobda allaqachon parol bilan himoyalangan hamyon mavjud. Ushbu qurilmada hamyoningizni tiklash uchun parolni kiriting."
+    "unlockWithPasswordExplainer": "Ushbu hisobda allaqachon parol bilan himoyalangan hamyon mavjud. Ushbu qurilmada hamyoningizni tiklash uchun parolni kiriting.",
+    "deviceTab": "Ushbu qurilma",
+    "deviceExplainer": "Yozish yoki eslab qolish uchun hech narsa yo'q — kalit ushbu qurilmada qoladi. Sizga yozib olish uchun 12 so'zdan iborat zaxira nusxasini taklif qilamiz; bu boshqa qurilmadan, veb-saytdan yoki qayta o'rnatgandan so'ng kirishning yagona yo'li. Buning o'rniga Parolni tanlang, shunda parolning o'zi bu ishni bajaradi.",
+    "secureOnDevice": "Kalitni ushbu qurilmada saqlang"
   },
   "transcript": {
     "title": "Transkript",
