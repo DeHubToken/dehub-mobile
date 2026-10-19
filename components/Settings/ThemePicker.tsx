@@ -37,6 +37,8 @@ type Swatch = {
   square?: boolean;
   /** Minimal: bentos dissolve into the canvas, hairlines separate. */
   flat?: boolean;
+  /** Immersive: media runs edge to edge with the post under it, no box. */
+  edge?: boolean;
 };
 
 const GLASS = {
@@ -47,33 +49,10 @@ const GLASS = {
   accent: '#ffffff',
 };
 
-/**
- * The real home feed under each theme (top pill, a photo post, the shorts row),
- * captured from the app itself. The first-run setup shows these instead of the
- * drawn miniature so every theme reads as the app it will become.
- */
-const SCREENS: Record<AppThemeName, number> = {
-  system: require('../../assets/theme-shots/system.webp'),
-  'system-light': require('../../assets/theme-shots/system-light.webp'),
-  immersive: require('../../assets/theme-shots/immersive.webp'),
-  minimal: require('../../assets/theme-shots/minimal.webp'),
-  cosmic: require('../../assets/theme-shots/cosmic.webp'),
-  hazy: require('../../assets/theme-shots/hazy.webp'),
-  swarms: require('../../assets/theme-shots/swarms.webp'),
-  lavalamp: require('../../assets/theme-shots/lavalamp.webp'),
-  winter: require('../../assets/theme-shots/winter.webp'),
-  war: require('../../assets/theme-shots/war.webp'),
-  osaka: require('../../assets/theme-shots/osaka.webp'),
-  jungle: require('../../assets/theme-shots/jungle.webp'),
-  island: require('../../assets/theme-shots/island.webp'),
-  hacker: require('../../assets/theme-shots/hacker.webp'),
-  horror: require('../../assets/theme-shots/horror.webp'),
-};
-
 const SWATCHES: Record<AppThemeName, Swatch> = {
   system: { page: '#000000', bento: '#18181b', border: 'rgba(255,255,255,0.06)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff' },
   'system-light': { page: '#ffffff', bento: 'transparent', border: 'rgba(11,11,13,0.09)', line: '#0b0b0d', faint: 'rgba(11,11,13,0.18)', accent: '#0b0b0d', flat: true },
-  immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true },
+  immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true, edge: true },
   minimal: { page: '#000000', bento: 'transparent', border: 'rgba(255,255,255,0.1)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', square: true, flat: true },
   cosmic: { page: '#040407', image: require('../../assets/theme-previews/cosmic.webp'), ...GLASS },
   hazy: { page: '#0a0714', image: require('../../assets/theme-previews/hazy.webp'), ...GLASS },
@@ -103,6 +82,21 @@ const GAP = 12;
 const BENTO_PAD = 16;
 
 const MockPost: React.FC<{ s: Swatch; media?: boolean }> = ({ s, media }) => {
+  if (s.edge) {
+    // The sample's 7pt padding is cancelled so the media meets both edges.
+    return (
+      <View style={{ marginHorizontal: -7 }}>
+        {media ? <View style={{ height: 44, backgroundColor: s.faint }} /> : null}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 7, paddingTop: 5 }}>
+          <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: s.faint, marginRight: 5 }} />
+          <View style={{ flex: 1 }}>
+            <View style={{ height: 3, width: '60%', borderRadius: 2, backgroundColor: s.line }} />
+            <View style={{ height: 3, width: '38%', marginTop: 3, borderRadius: 2, backgroundColor: s.faint }} />
+          </View>
+        </View>
+      </View>
+    );
+  }
   const r = s.square ? 0 : 6;
   const frame: ViewStyle = s.flat
     ? { borderBottomWidth: 1, borderColor: s.border, paddingVertical: 6, paddingHorizontal: 2 }
@@ -132,25 +126,22 @@ export const ThemeSample: React.FC<{
   /** Defaults to the Settings row's size; the first-run grid sizes to its columns. */
   width?: number;
   height?: number;
-  /** Show the real app screen in this theme instead of the drawn miniature. */
-  screen?: boolean;
-}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H, screen }) => {
+}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H }) => {
   const s = SWATCHES[value];
-  const picture = screen ? SCREENS[value] : s.image;
   const [previewUri, setPreviewUri] = useState<string>();
   useEffect(() => {
-    if (Platform.OS !== 'android' || !picture) return;
+    if (Platform.OS !== 'android' || !s.image) return;
     let cancelled = false;
     // Resolve the update's hashed asset file rather than an older APK drawable.
     // Theme previews can change in an OTA while the installed binary stays put.
-    const asset = Asset.fromModule(picture);
+    const asset = Asset.fromModule(s.image);
     void asset.downloadAsync().then(() => {
       if (!cancelled) setPreviewUri(asset.localUri ?? asset.uri);
     }).catch(() => {
       // Keep the bundled preview available if the update asset cannot load.
     });
     return () => { cancelled = true; };
-  }, [picture]);
+  }, [s.image]);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -184,15 +175,13 @@ export const ThemeSample: React.FC<{
           backgroundColor: s.page,
         }}
       >
-        {picture ? (
+        {s.image ? (
           <Image
-            source={previewUri ? { uri: previewUri } : picture}
+            source={previewUri ? { uri: previewUri } : s.image}
             contentFit="cover"
-            contentPosition="top"
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           />
         ) : null}
-        {screen ? null : (
         <View style={{ flex: 1, padding: 7, gap: 6 }} pointerEvents="none">
           <View
             style={{
@@ -233,7 +222,6 @@ export const ThemeSample: React.FC<{
             <View style={{ width: 10, height: 6, borderRadius: s.square ? 0 : 2, backgroundColor: s.accent }} />
           </View>
         </View>
-        )}
       </View>
       </KeepDarkScope>
       </View>

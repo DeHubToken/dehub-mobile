@@ -56,7 +56,7 @@ type Nav = StackNavigationProp<AuthStackParamList, typeof ScreenNames.Onboarding
 const STEPS = 3;
 const PAD = 20;
 const GRID_GAP = 10;
-const GRID_COLUMNS = 2;
+const GRID_COLUMNS = 3;
 
 const INK = "#FFFFFF";
 const MUTED = "rgba(255,255,255,0.66)";
@@ -292,8 +292,7 @@ const ThemeStep: React.FC<{ current: string; ring: string; onPick: (theme: any) 
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const cardW = Math.floor((width - PAD * 2 - GRID_GAP * (GRID_COLUMNS - 1)) / GRID_COLUMNS);
-  // The shots are the top of a phone screen: pill, a photo post, shorts row.
-  const cardH = Math.round(cardW * 1.44);
+  const cardH = Math.round(cardW * 1.42);
   return (
     <View style={{ flex: 1 }}>
       <StepTitle title={t("onboarding.setup.theme.title")} subtitle={t("onboarding.setup.theme.subtitle")} />
@@ -313,7 +312,6 @@ const ThemeStep: React.FC<{ current: string; ring: string; onPick: (theme: any) 
             ring={ring}
             width={cardW}
             height={cardH}
-            screen
             onPress={() => onPick(item)}
           />
         )}
