@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
+import { render, waitFor, act } from '@testing-library/react-native';
 import WalletSetupScreen from '../../components/auth/WalletSetupScreen';
 import { isBiometricUnlockAvailable } from '../../libs/wallet-core/biometric-unlock';
 
@@ -67,7 +67,7 @@ it('offers the device key on a device with no biometrics or passcode', async () 
   expect(screen.UNSAFE_queryAllByType('Field' as any)).toHaveLength(0);
 
   await act(async () => {
-    fireEvent.press(buttonLabelled(screen, 'walletSetup.secureOnDevice')!);
+    await buttonLabelled(screen, 'walletSetup.secureOnDevice')!.props.onPress();
   });
   expect(onCreate).toHaveBeenCalledWith({ kind: 'biometric' });
 });
@@ -93,7 +93,7 @@ it('does not let a stray dismiss drop a new sign-in back at the login screen', a
 
   // Once the wallet is saved, a dismiss is "Skip for now" and may close.
   await act(async () => {
-    fireEvent.press(buttonLabelled(screen, 'walletSetup.secureOnDevice')!);
+    await buttonLabelled(screen, 'walletSetup.secureOnDevice')!.props.onPress();
   });
   expect(screen.UNSAFE_getByType('NativeSheet' as any).props.dismissible).toBe(true);
   expect(onClose).not.toHaveBeenCalled();
