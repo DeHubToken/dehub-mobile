@@ -18,6 +18,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  Pressable,
   TouchableOpacity,
   View,
   useWindowDimensions,
@@ -385,21 +386,23 @@ const OptionFrame: React.FC<{
   tall?: boolean;
   children: React.ReactNode;
 }> = ({ active, onPress, label, tall, children }) => (
-  <TouchableOpacity
+  // Pressable and a fixed tree: the chrome layer is always mounted and only
+  // shown when picked. Inserting it on tap inside a TouchableOpacity left the
+  // whole picked card blank on Android.
+  <Pressable
     onPress={onPress}
-    activeOpacity={0.85}
     accessibilityRole="radio"
     accessibilityState={{ selected: active, checked: active }}
     accessibilityLabel={label}
-    style={[styles.option, tall && styles.optionTall, !active && styles.optionIdle]}
+    style={({ pressed }) => [styles.option, tall && styles.optionTall, !active && styles.optionIdle, pressed && { opacity: 0.85 }]}
   >
-    {active ? (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: active ? 1 : 0 }]}>
       <AccentButtonGradient borderRadius={16} style={StyleSheet.absoluteFill}>
         <View />
       </AccentButtonGradient>
-    ) : null}
+    </View>
     {children}
-  </TouchableOpacity>
+  </Pressable>
 );
 
 const styles = StyleSheet.create({
