@@ -11,6 +11,7 @@ import Reanimated, {
   useAnimatedStyle,
   withTiming,
   withSpring,
+  withDelay,
   Easing,
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
@@ -80,6 +81,14 @@ const UploadProgressPill: React.FC = () => {
     }
   }, [recentlyDone, currentJob, failedJobs.length]);
 
+  // Once the post is up the bar reads full, then fades out under the pill.
+  const barDone = video ? video.stage === "ready" : !!recentlyDone && !currentJob && failedJobs.length === 0;
+  const barOpacity = useSharedValue(1);
+  useEffect(() => {
+    barOpacity.value = barDone ? withDelay(600, withTiming(0, { duration: 400 })) : 1;
+  }, [barDone]);
+  const barStyle = useAnimatedStyle(() => ({ opacity: barOpacity.value }));
+
   const animStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
     opacity: opacity.value,
@@ -109,7 +118,7 @@ const UploadProgressPill: React.FC = () => {
   const videoReady = video?.stage === "ready";
   const isFailed = videoFailed || (!video && failedJobs.length > 0 && !currentJob);
   const isDone = videoReady || (!video && !!recentlyDone && !currentJob && failedJobs.length === 0);
-  const progress = video ? video.progress / 100 : currentJob?.progress ?? (isDone ? 1 : 0);
+  const progress = isDone ? 1 : video ? video.progress / 100 : currentJob?.progress ?? 0;
   const progressPercent = Math.min(Math.round(progress * 100), 100);
 
   let statusText = "";
@@ -260,7 +269,7 @@ const UploadProgressPill: React.FC = () => {
             <Icon name="ChevronRight" size={16} color="rgba(255,255,255,0.4)" />
           </View>
 
-          <View style={styles.progressTrack}>
+          <Reanimated.View style={[styles.progressTrack, barStyle]}>
             <View
               style={[
                 styles.progressFill,
@@ -268,7 +277,7 @@ const UploadProgressPill: React.FC = () => {
                 isFailed && styles.progressFillFailed,
               ]}
             />
-          </View>
+          </Reanimated.View>
         </View>
       </Pressable>
     </Reanimated.View>
