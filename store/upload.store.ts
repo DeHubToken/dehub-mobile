@@ -144,6 +144,28 @@ export interface UploadJob {
     amountDhb: number;
     recipient?: string | null;
   };
+  /**
+   * The video uploaded from the composer while the post was being written
+   * (services/draftVideo). `draftVideoKey` finds it in this process;
+   * `draftVideoId` is the server's id once that upload finished, and survives
+   * a restart. Neither is required — payload.video is always the fallback.
+   */
+  draftVideoKey?: string;
+  draftVideoId?: string;
+  /**
+   * The post's video being prepared on the server after the post went up.
+   * Followed by services/post-video-watch for the upload pill; in memory only.
+   */
+  video?: PostVideoState;
+}
+
+export interface PostVideoState {
+  tokenId: number;
+  stage: "processing" | "ready" | "failed";
+  /** 0–100. */
+  progress: number;
+  /** The pill has finished showing the outcome. */
+  dismissed?: boolean;
 }
 
 interface UploadStoreState {
@@ -218,7 +240,8 @@ export const hydrateUploadStore = async (): Promise<void> => {
     if (Array.isArray(data.jobs)) {
       // Reset any in-flight jobs to "queued" on restart (file might still be valid)
       uploadState.jobs = data.jobs.map((j) => {
-        const base = { ...j, retryCount: j.retryCount ?? 0 };
+        // Nothing follows a post's video across a restart.
+        const base = { ...j, retryCount: j.retryCount ?? 0, video: undefined };
         if (base.status === "uploading" || base.status === "processing") {
           return { ...base, status: "queued" as const, progress: 0 };
         }
@@ -265,11 +288,33 @@ export const uploadActions = {
     return true;
   },
 
-  updateProgress(id: string, progress: number): void {
+  /** Progress only moves forward, unless `force` (an upload starting over). */
+  updateProgress(id: string, progress: number, force = false): void {
     const job = uploadState.jobs.find((j) => j.id === id);
     if (!job) return;
     const clamped = Math.min(Math.max(progress, 0), 1);
-    if (clamped >= job.progress) job.progress = clamped;
+    if (force || clamped >= job.progress) job.progress = clamped;
+  },
+
+  setDraftVideo(id: string, draft: { key?: string; draftId?: string }): void {
+    const job = uploadState.jobs.find((j) => j.id === id);
+    if (!job) return;
+    job.draftVideoKey = draft.key;
+    job.draftVideoId = draft.draftId;
+  },
+
+  setVideoState(id: string, video: PostVideoState | undefined): void {
+    const job = uploadState.jobs.find((j) => j.id === id);
+    if (!job) return;
+    job.video = video;
+  },
+
+  /** The pill is done with this post's video; a finished job goes with it. */
+  dismissVideo(id: string): void {
+    const job = uploadState.jobs.find((j) => j.id === id);
+    if (!job?.video) return;
+    job.video.dismissed = true;
+    if (job.status === "done") uploadState.jobs.splice(uploadState.jobs.indexOf(job), 1);
   },
 
   updateStage(id: string, status: UploadJobStatus, mintParams?: MintParams): void {
@@ -320,8 +365,11 @@ export const uploadActions = {
     return true;
   },
 
-  clearCompleted(): void {
-    uploadState.jobs = uploadState.jobs.filter((j) => j.status !== "done");
+  /** Finished jobs go, except one whose video the pill is still showing (unless `all`). */
+  clearCompleted(all = false): void {
+    uploadState.jobs = uploadState.jobs.filter(
+      (j) => j.status !== "done" || (!all && !!j.video && !j.video.dismissed),
+    );
   },
 
   getActiveJobs(): UploadJob[] {
