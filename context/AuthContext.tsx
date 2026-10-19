@@ -22,6 +22,19 @@ import {
   getAuthMethod,
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
+import { getSavedSetupStep } from "../libs/onboarding-choices";
+
+/**
+ * A signed-out device part way through the first-run setup goes back to it on
+ * launch, even if it has been through the auth screens before. Switching to
+ * System Light can rebuild the whole app on Android, and a guest who opened
+ * the setup from dehub://welcome was dropped on the feed instead.
+ */
+async function hasSeenAuthOutsideSetup(): Promise<boolean> {
+  if (!(await hasSeenAuth())) return false;
+  if ((await getSavedSetupStep()) <= 0) return true;
+  return !!(await getAuthToken());
+}
 import { setLogUserAddress } from "../libs/errorReporter";
 import { clearEoaSigningProvider, getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
@@ -498,7 +511,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useAuthBoot<User>({
     getAuthUser,
     getAuthToken,
-    hasSeenAuth,
+    hasSeenAuth: hasSeenAuthOutsideSetup,
     setUser,
     setIsSignedIn,
     setIsFirstTimeUser,
