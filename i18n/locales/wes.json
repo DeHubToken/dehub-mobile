@@ -6682,6 +6682,34 @@
       "easy": "Yes, e easy",
       "hard": "No, e hard",
       "thanks": "Thank you, e help."
+    },
+    "setup": {
+      "continue": "Continue",
+      "skip": "Skip",
+      "back": "Back",
+      "language": {
+        "title": "Pik yu lanwis",
+        "subtitle": "We don pick di one wey your phone dey use. Tap another one to switch."
+      },
+      "theme": {
+        "subtitle": "Tap one theme make you try am. You fit change am any time for Settings."
+      },
+      "audience": {
+        "title": "Who's using DeHub?",
+        "recommended": "Recommended",
+        "setPin": "Set a PIN",
+        "confirmAdult": "I'm 18 or over",
+        "kids": {
+          "title": "Kids",
+          "body": "Na only posts wey dem do for pikin dem. One adult go set PIN make e comot Kids Mode."
+        },
+        "everyone": {
+          "title": "Everyone"
+        },
+        "mature": {
+          "title": "Mature 18+"
+        }
+      }
     }
   },
   "conversation": {

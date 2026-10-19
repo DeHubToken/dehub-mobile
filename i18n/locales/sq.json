@@ -6739,7 +6739,41 @@
         "body": "Zbulo se si sugjerimet, distinktivët dhe Superfuqitë e kthejnë atë që bën këtu në diçka nga e cila fiton."
       }
     },
-    "swipeToStart": "Rrëshqit për të filluar"
+    "swipeToStart": "Rrëshqit për të filluar",
+    "setup": {
+      "continue": "Vazhdo",
+      "skip": "Kalo",
+      "back": "Prapa",
+      "stepOf": "Hapi {{current}} i {{total}}",
+      "language": {
+        "title": "Zgjidh gjuhën tënde",
+        "subtitle": "Zgjodhëm atë që përdor telefoni yt. Prekni një tjetër për të kaluar.",
+        "fromPhone": "Gjuha e telefonit tënd"
+      },
+      "theme": {
+        "title": "Zgjidh pamjen tënde",
+        "subtitle": "Shtyp një temë për ta provuar. Mund ta ndryshosh në çdo kohë te Cilësimet."
+      },
+      "audience": {
+        "title": "Kush po e përdor DeHub?",
+        "subtitle": "Do ta konfigurojmë burimin tënd që të përputhet. Këtë mund ta ndryshosh më vonë te Cilësimet.",
+        "recommended": "Rekomanduar",
+        "setPin": "Vendos një SHËNJUES",
+        "confirmAdult": "Jam 18 vjeç e lart",
+        "kids": {
+          "title": "Fëmijët.",
+          "body": "Vetëm postimet e bëra për fëmijë. Një i rritur vendos një SHËNJUES për të lënë modalitetin e fëmijëve."
+        },
+        "everyone": {
+          "title": "Të gjithë",
+          "body": "Aplikacioni i plotë. Postimet e pjekura mbeten të fshehura."
+        },
+        "mature": {
+          "title": "Moshë e pjekur 18+",
+          "body": "Shfaq gjithashtu postimet e shënuara si të pjekura. Zgjidh vetëm këtë nëse je mbi 18 vjeç."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

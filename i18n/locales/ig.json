@@ -6719,7 +6719,41 @@
         "body": "Chọpụta ka ndụmọdụ, baajị na SuperPower si gbanwee ihe ị na-eme ebe a ka ọ bụrụ ihe ị na-enweta site na ya."
       }
     },
-    "swipeToStart": "Mee ka ọsọ iji malite"
+    "swipeToStart": "Mee ka ọsọ iji malite",
+    "setup": {
+      "continue": "Gaa n'ihu",
+      "skip": "Kwụpụ",
+      "back": "Weghachi",
+      "stepOf": "Nzọụkwụ {{current}} nke {{total}}",
+      "language": {
+        "title": "Họrọ asụsụ gị",
+        "subtitle": "Anyị họọrọ nke a na-eji ekwentị gị. Pịa ọzọ ka ị gbanwee.",
+        "fromPhone": "Asụsụ ekwentị gị"
+      },
+      "theme": {
+        "title": "Họrọ ụdị gị",
+        "subtitle": "Pịa isiokwu ka ị nwalee ya. Ị nwere ike gbanwee ya n'oge ọ bụla na Settings."
+      },
+      "audience": {
+        "title": "Ònye na-eji DeHub?",
+        "subtitle": "Anyị ga-eme ka feed gị dabara. Ị nwere ike gbanwee nke a mgbe e mesịrị na Settings.",
+        "recommended": "Ekwenyere",
+        "setPin": "Tọọ PIN",
+        "confirmAdult": "A bụ m 18 ma ọ bụ karịa",
+        "kids": {
+          "title": "Ụmụaka",
+          "body": "Ndị post naanị maka ụmụaka. Onye okenye tọọ PIN ka ha hapụ Mmode Ụmụaka."
+        },
+        "everyone": {
+          "title": "Onye ọ bụla",
+          "body": "Ngwa niile. Post ndị dị elu ka ha dị n’ime."
+        },
+        "mature": {
+          "title": "Mature 18+",
+          "body": "Gosi post ndị a na-akọwa dị ka mature. Họrọ nke a naanị ma ọ bụrụ na ị bụ 18 ma ọ bụ karịa."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

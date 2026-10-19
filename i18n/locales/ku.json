@@ -6625,7 +6625,41 @@
         "body": "Bibîne ka çawa serişte, nîşan û Hêzên Super tiştê ku hûn li vir dikin vediguherînin tiştek ku hûn jê qezenc dikin."
       }
     },
-    "swipeToStart": "Ji bo destpêkirinê bihejînin"
+    "swipeToStart": "Ji bo destpêkirinê bihejînin",
+    "setup": {
+      "continue": "Bidomîne",
+      "skip": "Derbas",
+      "back": "پشت",
+      "stepOf": "Gava {{current}} ji {{total}}",
+      "language": {
+        "title": "Zimanê xwe hilbijêre",
+        "subtitle": "Me ew hilbijart ku telefona te bikar tîne. Ji bo guhertinê li yekî din bikirtînin.",
+        "fromPhone": "Zimanê telefona te"
+      },
+      "theme": {
+        "title": "Şêwazê xwe hilbijêre",
+        "subtitle": "Ji bo ceribandinê li ser mijarekê bitikîne. Hûn dikarin her dem di Mîhengan de biguherînin."
+      },
+      "audience": {
+        "title": "Kî DeHub bikar tîne?",
+        "subtitle": "Em ê feed-a we li gorî we saz bikin. Hûn dikarin vê paşê di Mîhengan de biguherînin.",
+        "recommended": "پێشنیارکراوە",
+        "setPin": "PINek saz bike",
+        "confirmAdult": "Ez 18 salî an jî mezintir im",
+        "kids": {
+          "title": "Zarokan",
+          "body": "Tenê nivîsên ji bo zarokan hatine çêkirin. Mezinek PIN-ek datîne da ku ji Moda Zarokan derkeve."
+        },
+        "everyone": {
+          "title": "Her kes",
+          "body": "Serlêdana tevahî. Nivîsên mezinan veşartî dimînin."
+        },
+        "mature": {
+          "title": "Mezinan 18+",
+          "body": "Her wiha nivîsên ku wekî mezinan hatine nîşankirin nîşan bide. Tenê vê yekê hilbijêre ger tu 18 salî an jî mezintir bî."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

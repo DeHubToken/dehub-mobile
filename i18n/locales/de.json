@@ -1,34 +1,33 @@
 {
   "viralTemplates": {
-    "title":  "Dein nächster viraler Moment.",
-    "intro":  "Schau dir ein Beispiel an. Wähle einen Effekt oder Charakter. Füge dein Foto hinzu.",
-    "browse":  "Alle {{count}} Vorlagen ansehen",
-    "featured":  "Zurück zur Auswahl",
-    "useNamed":  "{{name}} verwenden",
-    "preview":  "Vorschau für {{name}} abspielen",
-    "previewUnavailable":  "Vorschau nicht verfügbar",
-    "search":  "Effekte, Charaktere und Tänze suchen",
-    "all":  "Alle",
-    "effects":  "Effekte",
-    "characters":  "Charaktere",
-    "dance":  "Tanz",
-    "sports":  "Sport",
-    "products":  "Produkte",
-    "seasonal":  "Saisonal",
-    "results":  "{{count}} Vorlagen",
-    "empty":  "Keine passenden Vorlagen. Versuche eine andere Suche oder Kategorie.",
-    "more":  "Mehr anzeigen",
-    "source":  "Beispielvideos von",
-    "ready":  "{{name}} ausgewählt. Füge ein Foto für ein 5-Sekunden-Video hinzu. Der Bildausschnitt folgt deinem Foto.",
-    "chooseFirst":  "Wähle vor dem Erstellen einen Effekt.",
-    "back":  "Zurück zu Vorlagen",
-    "close":  "Vorlagen schließen",
-    "eyebrow":  "{{count}} Videovorlagen",
-    "use":  "Diese Vorlage verwenden",
-    "motion":  "Diese Bewegung übernehmen",
-    "motionReady":  "{{name}} ausgewählt. Füge dein Foto hinzu, um die Bewegungen dieses Clips zu übernehmen."
-},
-
+    "title": "Dein nächster viraler Moment.",
+    "intro": "Schau dir ein Beispiel an. Wähle einen Effekt oder Charakter. Füge dein Foto hinzu.",
+    "browse": "Alle {{count}} Vorlagen ansehen",
+    "featured": "Zurück zur Auswahl",
+    "useNamed": "{{name}} verwenden",
+    "preview": "Vorschau für {{name}} abspielen",
+    "previewUnavailable": "Vorschau nicht verfügbar",
+    "search": "Effekte, Charaktere und Tänze suchen",
+    "all": "Alle",
+    "effects": "Effekte",
+    "characters": "Charaktere",
+    "dance": "Tanz",
+    "sports": "Sport",
+    "products": "Produkte",
+    "seasonal": "Saisonal",
+    "results": "{{count}} Vorlagen",
+    "empty": "Keine passenden Vorlagen. Versuche eine andere Suche oder Kategorie.",
+    "more": "Mehr anzeigen",
+    "source": "Beispielvideos von",
+    "ready": "{{name}} ausgewählt. Füge ein Foto für ein 5-Sekunden-Video hinzu. Der Bildausschnitt folgt deinem Foto.",
+    "chooseFirst": "Wähle vor dem Erstellen einen Effekt.",
+    "back": "Zurück zu Vorlagen",
+    "close": "Vorlagen schließen",
+    "eyebrow": "{{count}} Videovorlagen",
+    "use": "Diese Vorlage verwenden",
+    "motion": "Diese Bewegung übernehmen",
+    "motionReady": "{{name}} ausgewählt. Füge dein Foto hinzu, um die Bewegungen dieses Clips zu übernehmen."
+  },
   "maboroshiShowcase": {
     "title": "Deine Szene. Ein anderes Ich.",
     "intro": "180 Charakterlooks, von weichem Plüsch bis zu flüssigem Chrom.",
@@ -6875,7 +6874,41 @@
         "body": "Finde heraus, wie Trinkgelder, Abzeichen und Superkräfte das, was du hier tust, in etwas verwandeln, mit dem du dir etwas dazuverdienst."
       }
     },
-    "swipeToStart": "Wischen, um zu starten"
+    "swipeToStart": "Wischen, um zu starten",
+    "setup": {
+      "continue": "Fortfahren",
+      "skip": "Überspringen",
+      "back": "Zurück",
+      "stepOf": "Schritt {{current}} von {{total}}",
+      "language": {
+        "title": "Wähle Deine Sprache",
+        "subtitle": "Wir haben diejenige ausgewählt, die Ihr Telefon verwendet. Tippen Sie auf einen anderen, um zu wechseln.",
+        "fromPhone": "Sprache Ihres Telefons"
+      },
+      "theme": {
+        "title": "Wählen Sie Ihren Look",
+        "subtitle": "Tippe auf ein Design, um es auszuprobieren. Sie können es jederzeit in den Einstellungen ändern."
+      },
+      "audience": {
+        "title": "Wer verwendet DeHub?",
+        "subtitle": "Wir richten deinen Feed passend ein. Sie können dies später in den Einstellungen ändern.",
+        "recommended": "Empfohlen",
+        "setPin": "PIN FESTLEGEN",
+        "confirmAdult": "Ich bin 18 Jahre oder älter",
+        "kids": {
+          "title": "Kinder",
+          "body": "Nur Beiträge für Kinder. Ein Erwachsener legt eine PIN fest, um den Kindermodus zu verlassen."
+        },
+        "everyone": {
+          "title": "Jeden",
+          "body": "Die vollständige App. Ältere Beiträge bleiben verborgen."
+        },
+        "mature": {
+          "title": "Für Erwachsene ab 18Jahren",
+          "body": "Zeige auch Beiträge, die als ausgereift markiert sind. Wählen Sie diese Option nur, wenn Sie 18 Jahre oder älter sind."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

@@ -6739,7 +6739,41 @@
         "body": "Sužinokite, kaip patarimai, ženkleliai ir supergalios paverčia tai, ką čia darote, tuo, iš ko uždirbate."
       }
     },
-    "swipeToStart": "Braukite, kad pradėtumėte"
+    "swipeToStart": "Braukite, kad pradėtumėte",
+    "setup": {
+      "continue": "Tęsti",
+      "skip": "Praleisti",
+      "back": "Atgal",
+      "stepOf": "Žingsnis {{current}} iš {{total}}",
+      "language": {
+        "title": "Pasirinkite kalbą",
+        "subtitle": "Pasirinkome tą, kurį naudoja jūsų telefonas. Bakstelėkite kitą, kad perjungtumėte.",
+        "fromPhone": "Jūsų telefono kalba"
+      },
+      "theme": {
+        "title": "Išsirinkite savo išvaizdą",
+        "subtitle": "Bakstelėkite temą, kad ją išbandytumėte. Jį galite bet kada pakeisti skiltyje „Nustatymai“."
+      },
+      "audience": {
+        "title": "Kas naudoja „DeHub“?",
+        "subtitle": "Pasirūpinsime, kad jūsų sklaidos kanalas atitiktų. Tai galite pakeisti vėliau skiltyje „Nustatymai“.",
+        "recommended": "Rekomenduojama",
+        "setPin": "Nustatyti SMEIGTUKĄ",
+        "confirmAdult": "Man 18 metų arba daugiau",
+        "kids": {
+          "title": "Vaikams",
+          "body": "Tik vaikams skirti įrašai. Suaugęs žmogus nustato SMEIGTUKĄ, kad išeitų iš vaikų režimo."
+        },
+        "everyone": {
+          "title": "Visi",
+          "body": "Visa programėlė. Suaugusiųjų įrašai lieka paslėpti."
+        },
+        "mature": {
+          "title": "Suaugę 18+",
+          "body": "Taip pat rodyti įrašus, pažymėtus kaip subrendę. Šią parinktį rinkitės tik tuo atveju, jei esate 18 metų ar vyresnis."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

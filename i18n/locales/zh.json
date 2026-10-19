@@ -6807,7 +6807,41 @@
         "body": "了解小费、徽章和超级大国如何将您在这里所做的工作转化为您从中赚取的收入。"
       }
     },
-    "swipeToStart": "滑动开始"
+    "swipeToStart": "滑动开始",
+    "setup": {
+      "continue": "继续",
+      "skip": "跳过",
+      "back": "回到",
+      "stepOf": "第{{current}}步，共{{total}}步",
+      "language": {
+        "title": "请选择您的语言",
+        "subtitle": "我们选择了您的手机使用的那个。轻触另一个以切换。",
+        "fromPhone": "您手机的语言"
+      },
+      "theme": {
+        "title": "挑选您的造型",
+        "subtitle": "轻触主题即可试用。您可以随时在“设置”中进行更改。"
+      },
+      "audience": {
+        "title": "谁在使用DeHub ？",
+        "subtitle": "我们会将您的动态设置为匹配。您可以稍后在“设置”中更改此设置。",
+        "recommended": "推荐AI",
+        "setPin": "设置PIN码",
+        "confirmAdult": "我已年满18周岁",
+        "kids": {
+          "title": "儿童",
+          "body": "仅为儿童撰写的帖子。一个成年人设置了一个PIN码以退出儿童模式。"
+        },
+        "everyone": {
+          "title": "所有人",
+          "body": "完整的应用程序。成人帖子将保持隐藏状态。"
+        },
+        "mature": {
+          "title": "成人18 +",
+          "body": "同时显示标记为成人的帖子。请仅在年满18周岁时选择此选项。"
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

@@ -6848,7 +6848,41 @@
         "body": "Zistite, ako rady, odznaky a SuperPowers premenia to, čo tu robíte, na niečo, z čoho si zarobíte."
       }
     },
-    "swipeToStart": "Potiahnite pre začatie"
+    "swipeToStart": "Potiahnite pre začatie",
+    "setup": {
+      "continue": "Pokračovať",
+      "skip": "Preskočiť",
+      "back": "Späť",
+      "stepOf": "Krok {{current}} z {{total}}",
+      "language": {
+        "title": "Zvoľte si svoj jazyk",
+        "subtitle": "Vybrali sme ten, ktorý používa váš telefón. Ťuknutím na ďalšie prepnete.",
+        "fromPhone": "Jazyk vášho telefónu"
+      },
+      "theme": {
+        "title": "Vyberte si svoj vzhľad",
+        "subtitle": "Ťuknite na motív a skúste to. Môžete ho kedykoľvek zmeniť v Nastaveniach."
+      },
+      "audience": {
+        "title": "Kto používa DeHub?",
+        "subtitle": "Nastavíme váš informačný kanál tak, aby zodpovedal. Neskôr to môžete zmeniť v Nastaveniach.",
+        "recommended": "Odporúčam",
+        "setPin": "Nastaviť PIN",
+        "confirmAdult": "Mám 18 alebo viac rokov",
+        "kids": {
+          "title": "Deti",
+          "body": "Iba príspevky vytvorené pre deti. Dospelý nastaví ŠPENDLÍK, aby opustil detský režim."
+        },
+        "everyone": {
+          "title": "Každý",
+          "body": "Celá aplikácia. Zrelé príspevky zostanú skryté."
+        },
+        "mature": {
+          "title": "Dospelí 18+",
+          "body": "Zobraziť aj príspevky označené ako dospelé. Túto možnosť vyberte len vtedy, ak máte 18 alebo viac rokov."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

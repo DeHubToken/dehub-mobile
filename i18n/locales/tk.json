@@ -6719,7 +6719,41 @@
         "body": "Bu ýerde edýän işleriňizi gazanç edýän zadyňyza öwrüp biljekdigiňizi görüň."
       }
     },
-    "swipeToStart": "Başlamak üçin süýşüriň"
+    "swipeToStart": "Başlamak üçin süýşüriň",
+    "setup": {
+      "continue": "Daryylap",
+      "skip": "Skip",
+      "back": "Geri",
+      "stepOf": "{{current}} of {{total}}",
+      "language": {
+        "title": "Dil saýlaň",
+        "subtitle": "Telefonuňuzda ulanylýan dildi saýladik. Başga birini basyp üýtgetiň.",
+        "fromPhone": "Telefonuňuzun dili"
+      },
+      "theme": {
+        "title": "Görünüşüňizi saýlaň",
+        "subtitle": "Bir temany synap görüp bilersiňiz. Herhangi bir wagtda Sazlamalarda üýtgedip bilersiňiz."
+      },
+      "audience": {
+        "title": "Kim DeHub ulanyp bilýär?",
+        "subtitle": "Feediňizi laýyklykda sazlap bileris. Sazlamalarda soňra üýtgedip bilersiňiz.",
+        "recommended": "Töwerek",
+        "setPin": "PIN goýuň",
+        "confirmAdult": "Men 18 ýa-da üstü",
+        "kids": {
+          "title": "Çagalar",
+          "body": "Çagalar üçin döredilen postlar. Gowy adam Çagalar Rejiminden çykmak üçin PIN goýýar."
+        },
+        "everyone": {
+          "title": "Halkam",
+          "body": "Tam programma. Gowy postlar gizli kalýar."
+        },
+        "mature": {
+          "title": "Gowy 18+",
+          "body": "Gowy hökmünde işaretlenýän postlary hem görkez. Bu opsiýany diňe 18 ýa-da üstü bolsaňyz saýlaň."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

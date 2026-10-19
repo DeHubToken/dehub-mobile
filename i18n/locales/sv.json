@@ -6743,7 +6743,41 @@
         "body": "Ta reda på hur tips, märken och superkrafter förvandlar det du gör här till något du tjänar på."
       }
     },
-    "swipeToStart": "Svep för att starta"
+    "swipeToStart": "Svep för att starta",
+    "setup": {
+      "continue": "Fortsätt",
+      "skip": "Hoppa över",
+      "back": "Bakåt",
+      "stepOf": "Steg {{current}} av {{total}}",
+      "language": {
+        "title": "Välj ditt språk",
+        "subtitle": "Vi valde den som din telefon använder. Tryck på en annan för att växla.",
+        "fromPhone": "Telefonens språk"
+      },
+      "theme": {
+        "title": "Välj din look",
+        "subtitle": "Tryck på ett tema för att prova det. Du kan ändra det när som helst i Inställningar."
+      },
+      "audience": {
+        "title": "Vem använder DeHub?",
+        "subtitle": "Vi ställer in ditt flöde så att det matchar. Du kan ändra detta senare i Inställningar.",
+        "recommended": "Rekommenderad",
+        "setPin": "Ställ in en PIN-KOD",
+        "confirmAdult": "Ja, jag är över 18 år",
+        "kids": {
+          "title": "Barn",
+          "body": "Endast inlägg gjorda för barn. En vuxen ställer in en PIN-KOD för att lämna barnläget."
+        },
+        "everyone": {
+          "title": "Alla",
+          "body": "Hela appen. Äldre inlägg förblir dolda."
+        },
+        "mature": {
+          "title": "Mogen 18+",
+          "body": "Visa även inlägg som är markerade som mogna. Välj endast detta om du är 18 år eller äldre."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

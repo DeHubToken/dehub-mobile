@@ -6771,7 +6771,41 @@
         "body": "Dowiedz się, jak wskazówki, odznaki i supermocarstwa zamieniają to, co tutaj robisz, w coś, na czym zarabiasz."
       }
     },
-    "swipeToStart": "Przesuń, aby rozpocząć"
+    "swipeToStart": "Przesuń, aby rozpocząć",
+    "setup": {
+      "continue": "Kontynuuj",
+      "skip": "Pomiń",
+      "back": "Wstecz",
+      "stepOf": "Krok {{current}} z {{total}}",
+      "language": {
+        "title": "Wybierz swój język",
+        "subtitle": "Wybraliśmy ten, którego używa Twój telefon. Dotknij innego, aby przełączyć.",
+        "fromPhone": "Język telefonu"
+      },
+      "theme": {
+        "title": "Wybierz swój wygląd",
+        "subtitle": "Dotknij motywu, aby go wypróbować. Możesz go zmienić w dowolnym momencie w Ustawieniach."
+      },
+      "audience": {
+        "title": "Kto korzysta z DeHub?",
+        "subtitle": "Ustawimy Twój kanał, aby pasował. Możesz to zmienić później w Ustawieniach.",
+        "recommended": "Polecane",
+        "setPin": "Ustaw PIN",
+        "confirmAdult": "Mam 18 lat lub więcej",
+        "kids": {
+          "title": "Dzieci",
+          "body": "Tylko posty przeznaczone dla dzieci. Dorosły ustawia PIN, aby wyjść z trybu Dzieci."
+        },
+        "everyone": {
+          "title": "Wszyscy",
+          "body": "Pełna aplikacja. Posty dla dorosłych pozostają ukryte."
+        },
+        "mature": {
+          "title": "Dorosłe 18+",
+          "body": "Pokaż także posty oznaczone jako dla dorosłych. Wybierz to tylko, jeśli masz 18 lat lub więcej."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

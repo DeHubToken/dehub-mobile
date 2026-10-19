@@ -6744,7 +6744,41 @@
         "body": "Find ud af, hvordan tips, badges og superkræfter forvandler det, du gør her, til noget, du tjener penge på."
       }
     },
-    "swipeToStart": "Swipe for at starte"
+    "swipeToStart": "Swipe for at starte",
+    "setup": {
+      "continue": "Fortsæt",
+      "skip": "Spring over",
+      "back": "Tilbage",
+      "stepOf": "Trin {{current}} af {{total}}",
+      "language": {
+        "title": "Vælg dit sprog",
+        "subtitle": "Vi har valgt den, din telefon bruger. Tryk på en anden for at skifte.",
+        "fromPhone": "Din telefons sprog"
+      },
+      "theme": {
+        "title": "Vælg dit look",
+        "subtitle": "Tryk på et tema for at prøve det. Du kan ændre det når som helst i Indstillinger."
+      },
+      "audience": {
+        "title": "Hvem bruger DeHub?",
+        "subtitle": "Vi konfigurerer dit feed, så det matcher. Du kan ændre dette senere i Indstillinger.",
+        "recommended": "Anbefalet",
+        "setPin": "Indstil en PINKODE",
+        "confirmAdult": "Jeg er 18 år eller derover",
+        "kids": {
+          "title": "Børn",
+          "body": "Kun opslag lavet til børn. En voksen sætter en NÅL for at forlade Kids Mode."
+        },
+        "everyone": {
+          "title": "Alle",
+          "body": "Den fulde app. Voksne opslag forbliver skjulte."
+        },
+        "mature": {
+          "title": "Moden 18+",
+          "body": "Vis også indlæg, der er markeret som modne. Vælg kun dette, hvis du er 18 år eller derover."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

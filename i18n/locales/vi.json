@@ -6782,7 +6782,41 @@
         "body": "Tìm hiểu cách các mẹo, huy hiệu và Siêu năng lực biến những gì bạn làm ở đây thành thứ bạn kiếm được từ đó."
       }
     },
-    "swipeToStart": "Vuốt để bắt đầu"
+    "swipeToStart": "Vuốt để bắt đầu",
+    "setup": {
+      "continue": "Tiếp tục",
+      "skip": "Bỏ qua",
+      "back": "Quay lại",
+      "stepOf": "Bước {{current}} trên {{total}}",
+      "language": {
+        "title": "Chọn ngôn ngữ của bạn",
+        "subtitle": "Chúng tôi đã chọn điện thoại bạn sử dụng. Nhấn nút khác để chuyển đổi.",
+        "fromPhone": "Ngôn ngữ trên điện thoại của bạn"
+      },
+      "theme": {
+        "title": "Chọn diện mạo của bạn",
+        "subtitle": "Nhấn vào một chủ đề để thử. Bạn có thể thay đổi nó bất cứ lúc nào trong Cài đặt."
+      },
+      "audience": {
+        "title": "Ai đang sử dụng DeHub?",
+        "subtitle": "Chúng tôi sẽ thiết lập nguồn cấp dữ liệu của bạn cho phù hợp. Bạn có thể thay đổi điều này sau trong Cài đặt.",
+        "recommended": "Được đề xuất",
+        "setPin": "Đặt mã PIN",
+        "confirmAdult": "Tôi từ 18 tuổi trở lên",
+        "kids": {
+          "title": "Trẻ em",
+          "body": "Chỉ các bài đăng dành cho trẻ em. Một người lớn đặt GHIM để rời khỏi Chế độ trẻ em."
+        },
+        "everyone": {
+          "title": "Tất cả mọi người",
+          "body": "Toàn bộ ứng dụng. Các bài đăng trưởng thành luôn bị ẩn."
+        },
+        "mature": {
+          "title": "Trưởng thành từ 18 tuổi trởlên",
+          "body": "Đồng thời hiển thị các bài đăng được đánh dấu là trưởng thành. Chỉ chọn mục này nếu bạn từ 18 tuổi trở lên."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {
