@@ -6831,7 +6831,41 @@
         "body": "Descubra como gratificações, emblemas e SuperPoderes transformam o que faz aqui em algo com que ganha."
       }
     },
-    "swipeToStart": "Deslize para começar"
+    "swipeToStart": "Deslize para começar",
+    "setup": {
+      "continue": "Continuar",
+      "skip": "Pular",
+      "back": "Voltar",
+      "stepOf": "Passo {{current}} de {{total}}",
+      "language": {
+        "title": "Escolha a sua língua",
+        "subtitle": "Escolhemos a que o seu telemóvel usa. Toque em outro para alternar.",
+        "fromPhone": "Idioma do seu telefone"
+      },
+      "theme": {
+        "title": "Escolha o seu visual",
+        "subtitle": "Toque num tema para experimentá-lo. Pode alterá-lo a qualquer momento nas Definições."
+      },
+      "audience": {
+        "title": "Quem está a usar o DeHub?",
+        "subtitle": "Vamos configurar o seu feed para corresponder. Pode alterar isto mais tarde em Definições.",
+        "recommended": "Recomendado",
+        "setPin": "Definir um PIN",
+        "confirmAdult": "Tenho 18 anos ou mais",
+        "kids": {
+          "title": "Crianças",
+          "body": "Apenas posts feitos para crianças. Um adulto define um MARCADOR para sair do Modo Infantil."
+        },
+        "everyone": {
+          "title": "Todos",
+          "body": "O aplicativo completo. Posts maduros ficam escondidos."
+        },
+        "mature": {
+          "title": "Maduro 18+",
+          "body": "Mostrar também postagens marcadas como maduras. Escolha esta opção apenas se tiver 18 anos ou mais."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

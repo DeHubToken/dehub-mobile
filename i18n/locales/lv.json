@@ -6739,7 +6739,41 @@
         "body": "Uzziniet, kā padomi, nozīmītes un superspējas pārvērš to, ko šeit darāt, par kaut ko, no kā nopelnāt."
       }
     },
-    "swipeToStart": "Velciet, lai sāktu"
+    "swipeToStart": "Velciet, lai sāktu",
+    "setup": {
+      "continue": "Turpināt",
+      "skip": "Izlaist",
+      "back": "Atpakaļ",
+      "stepOf": "Soļa {{current}} no {{total}}",
+      "language": {
+        "title": "Izvēlieties savu valodu",
+        "subtitle": "Mēs izvēlējāmies valodu, ko izmanto jūsu telefons. Noklikšķiniet uz cita, lai pārslēgtos.",
+        "fromPhone": "Jūsu telefona valoda"
+      },
+      "theme": {
+        "title": "Izvēlieties savu izskatu",
+        "subtitle": "Noklikšķiniet uz tēmas, lai to izmēģinātu. Jūs varat to mainīt jebkurā laikā iestatījumos."
+      },
+      "audience": {
+        "title": "Kas izmanto DeHub?",
+        "subtitle": "Mēs iestatīsim jūsu plūsmu, lai atbilstu. Jūs varat to mainīt vēlāk iestatījumos.",
+        "recommended": "Ieteicams",
+        "setPin": "Iestatīt PIN",
+        "confirmAdult": "Es esmu 18 vai vecāks",
+        "kids": {
+          "title": "Bērni",
+          "body": "Tikai ziņojumi, kas paredzēti bērniem. Uzaugšņam jāiestata PIN, lai izietu no Bērnu režīma."
+        },
+        "everyone": {
+          "title": "Visi",
+          "body": "Pilns lietotne. Aizsargāti ziņojumi paliek paslēpti."
+        },
+        "mature": {
+          "title": "Aizsargāti 18+",
+          "body": "Tāpat parādīt ziņojumus, kas atzīmēti kā aizsargātus. Izvēlieties šo tikai tad, ja esat 18 vai vecāks."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

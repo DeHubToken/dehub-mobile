@@ -6773,7 +6773,41 @@
         "body": "Vind uit hoe wenke, kentekens en Super Powers verander wat jy hier doen in iets wat jy verdien uit."
       }
     },
-    "swipeToStart": "Vee om te begin"
+    "swipeToStart": "Vee om te begin",
+    "setup": {
+      "continue": "Continue",
+      "skip": "Skip",
+      "back": "Back",
+      "stepOf": "Step {{current}} van {{total}}",
+      "language": {
+        "title": "Kies jou taal",
+        "subtitle": "Ons het die een wat jou telefoon gebruik gekies. Tik 'n ander om te skakel.",
+        "fromPhone": "Jou telefoon se taal"
+      },
+      "theme": {
+        "title": "Kies jou voorkoms",
+        "subtitle": "Tik 'n tema om dit te probeer. Jy kan dit enige tyd in Instellings verander."
+      },
+      "audience": {
+        "title": "Wie gebruik DeHub?",
+        "subtitle": "Ons sal jou voeden opstel om te pas. Jy kan dit later in Instellings verander.",
+        "recommended": "Aanbevole",
+        "setPin": "Stel 'n PIN",
+        "confirmAdult": "Ek is 18 of ouder",
+        "kids": {
+          "title": "Kinders",
+          "body": "Slegs posse vir kinders. 'n Volwasse stel 'n PIN in om Kindermodus te verlaat."
+        },
+        "everyone": {
+          "title": "Almal",
+          "body": "Die volledige app. Volwasse posse bly versteek."
+        },
+        "mature": {
+          "title": "Volwasse 18+",
+          "body": "Vertoon ook posse gemerk as volwasse. Kies dit slegs as jy 18 of ouder is."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

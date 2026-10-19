@@ -6740,7 +6740,41 @@
         "body": "Descobreix com els consells, les insígnies i els Superpoders converteixen el que fas aquí en una cosa per la qual guanyes diners."
       }
     },
-    "swipeToStart": "Llisca per començar"
+    "swipeToStart": "Llisca per començar",
+    "setup": {
+      "continue": "Continua",
+      "skip": "Omet",
+      "back": "Enrere",
+      "stepOf": "Pas {{current}} de {{total}}",
+      "language": {
+        "title": "Tria la teva llengua",
+        "subtitle": "Hem triat el que utilitza el teu telèfon. Toca un altre per canviar.",
+        "fromPhone": "L'idioma del teu telèfon"
+      },
+      "theme": {
+        "title": "Tria el teu aspecte",
+        "subtitle": "Toca un tema per provar-lo. Pots canviar-lo en qualsevol moment a Configuració."
+      },
+      "audience": {
+        "title": "Qui utilitza DeHub?",
+        "subtitle": "Configurarem el teu canal per que coincideixi. Pots canviar-ho més endavant a Configuració.",
+        "recommended": "Recomanat",
+        "setPin": "Estableix un MARCADOR",
+        "confirmAdult": "Tinc 18 anys o més",
+        "kids": {
+          "title": "Nens",
+          "body": "Només entrades fetes per a nens. Un adult posa un PIN per sortir del mode nens."
+        },
+        "everyone": {
+          "title": "Tots",
+          "body": "L'aplicació completa. Les publicacions madures romanen ocultes."
+        },
+        "mature": {
+          "title": "Madura 18+",
+          "body": "Mostra també les publicacions marcades com a madures. Tria aquesta opció només si tens 18 anys o més."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

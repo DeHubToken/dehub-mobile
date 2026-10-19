@@ -6740,7 +6740,41 @@
         "body": "Află cum recompensele, insignele și superputerile transformă ceea ce faci aici în ceva din care câștigi bani."
       }
     },
-    "swipeToStart": "Glisează pentru a începe"
+    "swipeToStart": "Glisează pentru a începe",
+    "setup": {
+      "continue": "Continuare",
+      "skip": "Ignoră",
+      "back": "Înapoi",
+      "stepOf": "Pasul {{current}} din {{total}}",
+      "language": {
+        "title": "Alegeți limba maternă",
+        "subtitle": "Am ales-o pe cea pe care o folosește telefonul tău. Atinge altul pentru a comuta.",
+        "fromPhone": "Limba telefonului tău"
+      },
+      "theme": {
+        "title": "Alege-ți look-ul",
+        "subtitle": "Atinge o temă pentru a o încerca. O poți modifica oricând în Setări."
+      },
+      "audience": {
+        "title": "Cine folosește DeHub?",
+        "subtitle": "Îți vom configura feed-ul pentru a se potrivi. Poți schimba acest lucru mai târziu în Setări.",
+        "recommended": "Recomandată",
+        "setPin": "Setează un COD PIN",
+        "confirmAdult": "Am cel puțin 18 ani",
+        "kids": {
+          "title": "Copii",
+          "body": "Numai postări făcute pentru copii. Un adult setează un COD PIN pentru a ieși din modul Copii."
+        },
+        "everyone": {
+          "title": "Toată lumea",
+          "body": "Aplicația completă. Postările pentru adulți rămân ascunse."
+        },
+        "mature": {
+          "title": "Matur 18+",
+          "body": "De asemenea, afișează postările marcate ca fiind mature. Alege această opțiune numai dacă ai cel puțin 18 ani."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

@@ -6721,7 +6721,41 @@
         "body": "Ṣàwárí bí àwọn ìmọ̀ràn, àmì ẹ̀yẹ àti SuperPowers ṣe yí ohun tí ò ń ṣe níbí padà sí nǹkan tí ò ń rí owó gbà."
       }
     },
-    "swipeToStart": "Farawe lati bẹrẹ"
+    "swipeToStart": "Farawe lati bẹrẹ",
+    "setup": {
+      "continue": "Tẹsiwaju",
+      "skip": "Foju kọ",
+      "back": "Pada",
+      "stepOf": "Igbesẹ {{current}} ti {{total}}",
+      "language": {
+        "title": "Yan èdè rẹ",
+        "subtitle": "A ti yan èdè tí fónú rẹ ń lò. Tẹ èlò míì láti yí padà.",
+        "fromPhone": "Èdè fónú rẹ"
+      },
+      "theme": {
+        "title": "Yan irisi rẹ",
+        "subtitle": "Tẹ àkóónú kan láti gbìmọ̀ rẹ. O lè yí i padà nígbàkúgbà nínú Ètò."
+      },
+      "audience": {
+        "title": "Ta ni ń lò DeHub?",
+        "subtitle": "A ó ṣètò àkóónú rẹ kí ó bá a mu. O lè yí i padà lẹ́yìn nínú Ètò.",
+        "recommended": "Àwọn tó ń ṣàbẹ̀wò",
+        "setPin": "Ṣètò PIN",
+        "confirmAdult": "Mo jẹ́ ọmọ ọdún 18 tàbí ju bẹẹ lọ",
+        "kids": {
+          "title": "Ọmọde",
+          "body": "Àwọn ìfìkún tó ṣe fún àwọn ọmọde nìkan. Ọmọde àgbà kan ṣètò PIN láti fi kúrò nínú Ìpinnu Ọmọde."
+        },
+        "everyone": {
+          "title": "Gbogbo ènìyàn",
+          "body": "Àpẹrẹ àpẹrẹ gbogbo. Àwọn ìfìkún tó péye máa farasin."
+        },
+        "mature": {
+          "title": "Tó péye 18+",
+          "body": "Ṣe àfihàn àwọn ìfìkún tó ṣe àfihàn gẹ́gẹ́ bí tó péye. Yàn èyí nìkan bí o bá jẹ́ ọmọ ọdún 18 tàbí ju bẹẹ lọ."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

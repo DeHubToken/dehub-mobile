@@ -6734,7 +6734,41 @@
         "body": "Akkamitti gargaarsi, mallattooleen fi \"SuperPowers\" hojii kee as irratti taasistu gara wantoota irraa argachuu dandeessutti jijjiiruuf gargaaran hubadhu."
       }
     },
-    "swipeToStart": "Jalqabuuf swipe godhi"
+    "swipeToStart": "Jalqabuuf swipe godhi",
+    "setup": {
+      "continue": "Itti fufuu",
+      "skip": "Irra darbuu",
+      "back": "Dugda",
+      "stepOf": "Tarkaanfii {{current}} kan {{total}}",
+      "language": {
+        "title": "Afaan kee filadhu",
+        "subtitle": "Kan bilbilli keessan itti fayyadamu fudhanne. Jijjiiruuf kan biraa tuqi.",
+        "fromPhone": "Afaan bilbila keessanii"
+      },
+      "theme": {
+        "title": "Ilaalcha kee filadhu",
+        "subtitle": "Mata duree tokko tuqi yaaluun. Yeroo barbaaddetti Settings keessatti jijjiiruu dandeessa."
+      },
+      "audience": {
+        "title": "DeHub eenyutu fayyadamaa jira?",
+        "subtitle": "Feed keessan akka walsimuuf ni qopheessina. Kana booda Sajoo keessatti jijjiiruu dandeessa.",
+        "recommended": "Yaada gorsaa dhiyeesse",
+        "setPin": "PIN tokko saagi",
+        "confirmAdult": "Umuriin koo waggaa 18 fi isaa ol ta'eera",
+        "kids": {
+          "title": "Daa'imman",
+          "body": "Maxxansa daa'immaniif hojjetame qofa. Namni guddaan tokko Kids Mode keessaa ba'uuf PIN saaga."
+        },
+        "everyone": {
+          "title": "Nama hundumaa",
+          "body": "Appii guutuu. Maxxansi bilchaataa dhokatee hafa."
+        },
+        "mature": {
+          "title": "Bilchaataa 18+",
+          "body": "Akkasumas barreeffamoota bilchaataa jedhamanii mallatteeffaman agarsiisi. Kana filadhu yoo umuriin kee 18 fi isaa ol ta'e qofa."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

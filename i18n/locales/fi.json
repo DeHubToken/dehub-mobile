@@ -6739,7 +6739,41 @@
         "body": "Lue, miten vinkit, merkit ja SuperPowerit muuttavat täällä tekemäsi asiat joksikin, josta ansaitset."
       }
     },
-    "swipeToStart": "Pyyhkäise aloittaaksesi"
+    "swipeToStart": "Pyyhkäise aloittaaksesi",
+    "setup": {
+      "continue": "Jatka",
+      "skip": "Ohita",
+      "back": "Takaisin",
+      "stepOf": "Vaihe {{current}}/{{total}}",
+      "language": {
+        "title": "Valitse kielesi",
+        "subtitle": "Valitsimme sen, jota puhelimesi käyttää. Vaihda napauttamalla toista.",
+        "fromPhone": "Puhelimesi kieli"
+      },
+      "theme": {
+        "title": "Valitse tyylisi",
+        "subtitle": "Napauta teemaa kokeillaksesi sitä. Voit muuttaa sitä milloin tahansa asetuksissa."
+      },
+      "audience": {
+        "title": "Kuka käyttää DeHubia?",
+        "subtitle": "Määritämme syötteesi vastaamaan sitä. Voit muuttaa tätä myöhemmin asetuksissa.",
+        "recommended": "Suositellut",
+        "setPin": "Aseta PIN-KOODI",
+        "confirmAdult": "Olen vähintään 18-vuotias",
+        "kids": {
+          "title": "Lapset",
+          "body": "Vain lapsille tehdyt julkaisut. Aikuinen asettaa PIN-KOODIN poistuakseen lasten tilasta."
+        },
+        "everyone": {
+          "title": "Kaikki",
+          "body": "Koko sovellus. Aikuisten julkaisut pysyvät piilossa."
+        },
+        "mature": {
+          "title": "Aikuiset 18+",
+          "body": "Näytä myös julkaisut, jotka on merkitty kypsiksi. Valitse tämä vain, jos olet vähintään 18-vuotias."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

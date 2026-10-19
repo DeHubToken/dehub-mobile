@@ -6726,7 +6726,41 @@
         "body": "了解一下小费、徽章和超级能力是怎么把你在上面做的事变成收入的。"
       }
     },
-    "swipeToStart": "滑動開始"
+    "swipeToStart": "滑動開始",
+    "setup": {
+      "continue": "继续",
+      "skip": "跳过",
+      "back": "返回",
+      "stepOf": "步骤 {{current}} / {{total}}",
+      "language": {
+        "title": "选择语言",
+        "subtitle": "我们已选取您手机使用的语言。点击其他语言可切换。",
+        "fromPhone": "手机语言"
+      },
+      "theme": {
+        "title": "选择外观",
+        "subtitle": "点击主题进行预览。您可随时在设置中更改。"
+      },
+      "audience": {
+        "title": "谁在使用 DeHub？",
+        "subtitle": "我们会根据您的使用情况设置信息流。您可稍后在设置中更改。",
+        "recommended": "推荐",
+        "setPin": "设置 PIN 码",
+        "confirmAdult": "我已年满 18 岁",
+        "kids": {
+          "title": "儿童模式",
+          "body": "仅显示为儿童制作的帖子。成人需设置 PIN 码以退出儿童模式。"
+        },
+        "everyone": {
+          "title": "全部用户",
+          "body": "完整应用。成熟内容将被隐藏。"
+        },
+        "mature": {
+          "title": "成熟 18+",
+          "body": "同时显示标记为成熟的帖子。仅在您已年满 18 岁时选择此项。"
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

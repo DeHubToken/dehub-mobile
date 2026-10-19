@@ -6721,7 +6721,41 @@
         "body": "Gano yadda tukwici, badges da SuperPowers ke juya abin da kuke yi a nan zuwa wani abu da kuka samu daga."
       }
     },
-    "swipeToStart": "Gungura don farawa"
+    "swipeToStart": "Gungura don farawa",
+    "setup": {
+      "continue": "Cigaba",
+      "skip": "Tsallake",
+      "back": "Baya",
+      "stepOf": "Mataki {{current}} na {{total}}",
+      "language": {
+        "title": "Zaɓi harshenka",
+        "subtitle": "Mun zabi wanda wayarka ke amfani da shi. Tap wani don canzawa.",
+        "fromPhone": "Harshen wayarka"
+      },
+      "theme": {
+        "title": "Zaɓi kallon ku",
+        "subtitle": "Tap wani jigo don gwada shi. Kuna iya canza shi kowane lokaci a cikin Saituna."
+      },
+      "audience": {
+        "title": "Wanene ke amfani da DeHub?",
+        "subtitle": "Za mu saita abincin ku don daidaitawa. Zaka iya canza wannan daga baya a Saituna.",
+        "recommended": "An ba da shawarar",
+        "setPin": "Sanya PIN",
+        "confirmAdult": "Ina da shekaru 18 ko sama da haka",
+        "kids": {
+          "title": "Yara",
+          "body": "Kawai posts da aka yi wa yara. Girma mai girma ya kafa fil don barin Yanayin Kids."
+        },
+        "everyone": {
+          "title": "Kowa da kowa",
+          "body": "Cikakken app. Mature posts zauna boye."
+        },
+        "mature": {
+          "title": "Matsakaici 18+",
+          "body": "Har ila yau nuna posts alama a matsayin balaga. Kawai zabi wannan idan kana da shekaru 18 ko fiye."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

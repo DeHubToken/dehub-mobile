@@ -6740,7 +6740,41 @@
         "body": "Saznajte kako savjeti, značke i SuperPowers pretvaraju ono što ovdje radite u nešto od čega zarađujete."
       }
     },
-    "swipeToStart": "Prijeđite prstom za početak"
+    "swipeToStart": "Prijeđite prstom za početak",
+    "setup": {
+      "continue": "Nastavi",
+      "skip": "Preskoči",
+      "back": "Natrag",
+      "stepOf": "Korak {{current}} od {{total}}",
+      "language": {
+        "title": "Odaberite jezik",
+        "subtitle": "Odabrali smo onaj kojim se koristi tvoj telefon. Dodirni drugi za prebacivanje.",
+        "fromPhone": "Jezik vašeg telefona"
+      },
+      "theme": {
+        "title": "Odaberite svoj izgled",
+        "subtitle": "Dodirni temu i isprobaj je. Možete ga promijeniti u bilo kojem trenutku u Postavkama."
+      },
+      "audience": {
+        "title": "Tko koristi DeHub?",
+        "subtitle": "Postavit ćemo da se tvoj feed podudara. Kasnije to možete promijeniti u Postavkama.",
+        "recommended": "Preporučeni",
+        "setPin": "Postavi PIN",
+        "confirmAdult": "Imam 18 ili više godina",
+        "kids": {
+          "title": "Djeca",
+          "body": "Samo objave za djecu. Odrasla osoba postavlja PRIBADAČU kako bi napustila način rada za djecu."
+        },
+        "everyone": {
+          "title": "Svi",
+          "body": "Cijela aplikacija. Objave za odrasle ostaju skrivene."
+        },
+        "mature": {
+          "title": "Zrele 18+",
+          "body": "Prikaži i objave označene kao zrele. Odaberi ovu opciju samo ako imaš 18 ili više godina."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {
