@@ -94,9 +94,13 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
           <View className="flex-row items-center mt-0.5">
             <Icon name={config.icon as any} size={12} color={config.color} />
             <Text style={{ color: config.color }} className="text-xs ml-1">
-              {(job.status === "uploading" || job.status === "processing" || job.status === "minting")
-                ? `${progressPercent}%`
-                : t(config.labelKey)}
+              {job.video?.stage === "failed"
+                ? t("upload.pillVideoFailed")
+                : job.status === "done" && job.video?.stage === "processing"
+                  ? `${t("upload.pillPreparingVideo")} · ${job.video.progress}%`
+                  : (job.status === "uploading" || job.status === "processing" || job.status === "minting")
+                    ? `${progressPercent}%`
+                    : t(config.labelKey)}
             </Text>
           </View>
           {job.error && (
@@ -198,7 +202,7 @@ const UploadQueueScreen: React.FC<any> = () => {
   const hasCompleted = snap.jobs.some((j) => j.status === "done");
 
   const handleClearCompleted = useCallback(() => {
-    uploadActions.clearCompleted();
+    uploadActions.clearCompleted(true);
   }, []);
 
   return (
