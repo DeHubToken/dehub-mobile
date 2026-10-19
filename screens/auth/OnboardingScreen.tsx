@@ -38,7 +38,7 @@ import { APP_THEMES } from "../../theme/colors";
 import { RING, ThemeSample } from "../../components/Settings/ThemePicker";
 import KidsModePad from "../../components/Settings/KidsModePad";
 import PrimaryButton from "../../components/ui/PrimaryButton";
-import AccentButtonGradient from "../../components/ui/AccentButtonGradient";
+import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import Icon from "../../components/ui/Icon";
 import { MATURE_CONTENT_ENABLED } from "../../config/storefront";
 import { setKidsModeLocked } from "../../libs/kids-mode-lock";
@@ -67,7 +67,7 @@ const FIELD = "rgba(255,255,255,0.06)";
 const OnboardingScreen: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigation = useNavigation<Nav>();
-  const { skin, theme, themeChoice, setTheme } = useAppTheme();
+  const { skin, theme, themeChoice, setTheme, colors } = useAppTheme();
   const [step, setStep] = useState(0);
   const [needsReload, setNeedsReload] = useState(false);
   const [audience, setAudience] = useState<OnboardingAudience>("everyone");
@@ -151,7 +151,9 @@ const OnboardingScreen: React.FC = () => {
           : t("onboarding.setup.continue");
 
   return (
-    <View style={styles.root}>
+    // The page colour is authored dark and System Light turns it white; left
+    // unpainted, Android showed black behind dark System Light text.
+    <View style={[styles.root, { backgroundColor: skin ? undefined : colors.background }]}>
       {/* A canvas theme's live backdrop shows through this screen (the auth
           stack leaves it see-through), with a veil so text stays readable. */}
       {skin ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.veil]} /> : null}
@@ -277,7 +279,9 @@ const LanguageStep: React.FC<{ current: string; onPick: (code: string) => void }
                     {fromPhone ? t("onboarding.setup.language.fromPhone") : item.name}
                   </Text>
                 </View>
-                {active ? <Icon name="Check" size={20} color={INK} /> : null}
+                <View style={{ opacity: active ? 1 : 0 }}>
+                  <Icon name="Check" size={20} color={INK} />
+                </View>
               </View>
             </OptionFrame>
           );
@@ -362,8 +366,8 @@ const AudienceStep: React.FC<{ value: OnboardingAudience; onChange: (v: Onboardi
                   </View>
                   <Text style={styles.audienceBody}>{t(`onboarding.setup.audience.${option}.body`)}</Text>
                 </View>
-                <View style={[styles.radio, active && styles.radioOn]}>
-                  {active ? <View style={styles.radioDot} /> : null}
+                <View style={[styles.radio, { borderColor: active ? INK : LINE }]}>
+                  <View style={[styles.radioDot, { opacity: active ? 1 : 0 }]} />
                 </View>
               </View>
             </OptionFrame>
@@ -376,8 +380,12 @@ const AudienceStep: React.FC<{ value: OnboardingAudience; onChange: (v: Onboardi
 
 /**
  * One choosable row. The picked one wears the theme's own button chrome (the
- * same material as the Continue button), the rest a faint glass, so the
+ * same colours as the Continue button), the rest a faint glass, so the
  * selection reads in every theme without a new colour.
+ *
+ * Every row keeps the same style keys and children whether picked or not;
+ * only colour values change. Adding or dropping a layer or a border on tap
+ * left the picked card blank on Android.
  */
 const OptionFrame: React.FC<{
   active: boolean;
@@ -385,25 +393,33 @@ const OptionFrame: React.FC<{
   label: string;
   tall?: boolean;
   children: React.ReactNode;
-}> = ({ active, onPress, label, tall, children }) => (
-  // Pressable and a fixed tree: the chrome layer is always mounted and only
-  // shown when picked. Inserting it on tap inside a TouchableOpacity left the
-  // whole picked card blank on Android.
-  <Pressable
-    onPress={onPress}
-    accessibilityRole="radio"
-    accessibilityState={{ selected: active, checked: active }}
-    accessibilityLabel={label}
-    style={({ pressed }) => [styles.option, tall && styles.optionTall, !active && styles.optionIdle, pressed && { opacity: 0.85 }]}
-  >
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: active ? 1 : 0 }]}>
-      <AccentButtonGradient borderRadius={16} style={StyleSheet.absoluteFill}>
-        <View />
-      </AccentButtonGradient>
-    </View>
-    {children}
-  </Pressable>
-);
+}> = ({ active, onPress, label, tall, children }) => {
+  const { skin, isMinimal } = useAppTheme();
+  const picked = isMinimal
+    ? { backgroundColor: "#000", borderColor: MINIMAL_HAIRLINE }
+    : skin
+      ? { backgroundColor: skin.centre.backgroundColor, borderColor: skin.centre.borderColor }
+      : { backgroundColor: "rgba(255,255,255,0.14)", borderColor: "rgba(255,255,255,0.30)" };
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="radio"
+      accessibilityState={{ selected: active, checked: active }}
+      accessibilityLabel={label}
+      style={({ pressed }) => [
+        styles.option,
+        tall && styles.optionTall,
+        {
+          backgroundColor: active ? picked.backgroundColor : FIELD,
+          borderColor: active ? picked.borderColor : LINE,
+          opacity: pressed ? 0.85 : 1,
+        },
+      ]}
+    >
+      {children}
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
@@ -431,9 +447,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   searchInput: { flex: 1, color: INK, fontSize: 15, paddingVertical: 0 },
-  option: { borderRadius: 16, overflow: "hidden", minHeight: 56, justifyContent: "center", paddingHorizontal: 16 },
+  option: { borderRadius: 16, borderWidth: 1, minHeight: 56, justifyContent: "center", paddingHorizontal: 16 },
   optionTall: { paddingVertical: 16 },
-  optionIdle: { borderWidth: 1, borderColor: LINE, backgroundColor: FIELD },
   languageRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 8 },
   // "left" is the start edge, so a right-to-left layout flips it; without it
   // Arabic and Hebrew names sat right-aligned in a left-aligned list.
@@ -457,12 +472,10 @@ const styles = StyleSheet.create({
     height: 22,
     borderRadius: 11,
     borderWidth: 2,
-    borderColor: LINE,
     marginTop: 2,
     alignItems: "center",
     justifyContent: "center",
   },
-  radioOn: { borderColor: INK },
   radioDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: INK },
   footer: { paddingTop: 12, paddingBottom: 8 },
 });
