@@ -4,7 +4,7 @@ import { applyVideoVolume } from '../../libs/dub-mix';
 import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
 import { useMediaVolume, getIsLooping, setIsLooping as persistLooping, useMediaLooping } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useFeedSurfaceActive, useCallInProgress, visualActivity } from "../../libs/visualActivity";
-import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
+import { MediaControlIcon as BareIcon, MediaControlLabel, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
 import { useQueryClient } from "@tanstack/react-query";
@@ -1432,7 +1432,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                         <View style={styles.volumeTrackInner}><View style={[styles.volumeFill, { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` }]} /></View>
                       </View>}
                     </View>
-                    {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
+                    {windowSize.width >= 360 && <MediaControlLabel style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlLabel>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
                 {tokenId != null && (
@@ -1455,7 +1455,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
                 >
-                  <Text style={styles.bareSpeedText}>{playbackRate}x</Text>
+                  <MediaControlLabel style={styles.bareSpeedText}>{playbackRate}x</MediaControlLabel>
                 </VideoScrubButton>
                 <VideoScrubButton
                   onPress={handleToggleLoop}

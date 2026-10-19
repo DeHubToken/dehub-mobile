@@ -19,6 +19,9 @@ jest.mock('../../components/ui/FrostedBackdrop', () => ({
   useFrostedSource: () => mockTarget,
 }));
 
+let mockLight = false;
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: mockLight }) }));
+
 let tree: ReactTestRenderer;
 beforeEach(() => { mockSurfaceActive = true; });
 afterEach(() => { act(() => tree?.unmount()); });
@@ -63,4 +66,17 @@ it.each([
   act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
   expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
   expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === '#18181B')).toBe(true);
+});
+
+it('System Light draws the pale frost, with no flipped highlight band', () => {
+  mockSupported = true;
+  mockTarget = { current: {} };
+  mockLight = true;
+  try {
+    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+    expect(tree.root.findAllByType('LinearGradient' as any)).toHaveLength(0);
+    expect(tree.root.findByType('BlurView' as any).props.tint).toBe('light');
+  } finally {
+    mockLight = false;
+  }
 });
