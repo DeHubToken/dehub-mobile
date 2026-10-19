@@ -12,10 +12,13 @@
  * Google's Noto Animated Emoji (CC BY 4.0), cut to 72px animated WebP in
  * `assets/emoji/animated/`. expo-image plays animated WebP on both platforms.
  * Reduced-motion users, and any failed load, get the still emoji instead.
+ *
+ * The still emoji stays on screen until the moving file has drawn its first
+ * frame, so switching to the animation never blinks to an empty box.
  */
 
-import React, { memo, useState } from "react";
-import { Text, type TextStyle } from "react-native";
+import React, { memo, useEffect, useState } from "react";
+import { StyleSheet, Text, View, type TextStyle } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useReducedMotion } from "react-native-reanimated";
 import { reactionMeta, type PostReaction } from "../../libs/reactions";
@@ -57,19 +60,32 @@ export const ReactionEmoji = memo(function ReactionEmoji({
 }: ReactionEmojiProps) {
   const reduceMotion = useReducedMotion();
   const [failed, setFailed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [reaction]);
 
   if (!animate || reduceMotion || failed) {
     return <Text style={textStyle}>{reactionMeta(reaction).emoji}</Text>;
   }
 
   return (
-    <SmartImage
-      source={ANIMATED[reaction]}
-      style={{ width: size, height: size }}
-      contentFit="contain"
-      autoplay={playing}
-      accessible={false}
-      onError={() => setFailed(true)}
-    />
+    <View style={[styles.box, { width: size, height: size }]}>
+      <SmartImage
+        source={ANIMATED[reaction]}
+        style={[StyleSheet.absoluteFill, { opacity: loaded ? 1 : 0 }]}
+        contentFit="contain"
+        autoplay={playing}
+        accessible={false}
+        onLoad={() => setLoaded(true)}
+        onError={() => setFailed(true)}
+      />
+      {!loaded && <Text style={textStyle}>{reactionMeta(reaction).emoji}</Text>}
+    </View>
   );
+});
+
+const styles = StyleSheet.create({
+  box: { alignItems: "center", justifyContent: "center" },
 });
