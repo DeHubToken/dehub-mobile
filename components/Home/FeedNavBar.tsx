@@ -17,7 +17,7 @@ import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
-import FrostedPill from "../ui/FrostedPill";
+import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 
@@ -142,7 +142,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
 }) => {
   useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, isLight } = useAppTheme();
   const tint = useMemo(
     () => (skin ? { on: skin.tabIconActive, off: skin.tabIcon } : undefined),
     [skin],
@@ -295,7 +295,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       ) : (
       <View style={styles.outerWrap}>
         <View
-          style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : null]}
+          style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : isLight ? LIGHT_PILL_SHADOW : null]}
           onLayout={handleLayout}
         >
           {skin ? (
