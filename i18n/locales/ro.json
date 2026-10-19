@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Dacă acest lucru continuă să eșueze, folosiți parola portofelului de mai jos sau \"Importă chei\".",
     "deviceBoundKey": "Acest portofel se deblochează cu <em>date biometrice deținute pe un dispozitiv specific</em> — telefonul sau browserul pe care a fost configurat. Acest telefon nu are acea cheie, și nici dehub.io: cheia nu părăsește niciodată dispozitivul care a creat-o.",
     "unlockPasskeyOnly": "Acest portofel a fost securizat cu o parolă pe web și nu are încă o copie de rezervă a parolei în cloud. Dacă ați setat o parolă pentru portofel pe dehub.io, introduceți-o aici — altfel folosiți Importă chei de mai jos.",
-    "unlockWithPasswordExplainer": "Acest cont are deja un portofel, protejat de o parolă. Introduceți-o pentru a vă recupera portofelul pe acest dispozitiv."
+    "unlockWithPasswordExplainer": "Acest cont are deja un portofel, protejat de o parolă. Introduceți-o pentru a vă recupera portofelul pe acest dispozitiv.",
+    "deviceTab": "Acest dispozitiv",
+    "deviceExplainer": "Nimic de tastat sau de reținut — cheia rămâne pe acest dispozitiv. Îți vom oferi un backup de 12 cuvinte pentru a scrie; este singura modalitate de a reveni de pe alt dispozitiv, de pe site sau după reinstalare. Alegeți în schimb parola, iar parola în sine va face treaba respectivă.",
+    "secureOnDevice": "Păstrați cheia pe acest dispozitiv"
   },
   "transcript": {
     "title": "Transcriere",

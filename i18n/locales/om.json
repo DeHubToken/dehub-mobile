@@ -5083,7 +5083,10 @@
     "unlockPasskeyOnly": "Saalli kun paasqiin weeb irratti itti tikfameera, ammas paaswordii galmee qilleensa irratti hin qabu. Yoo dehub.io irratti paaswordii saalaa kaayite, as galchi — yoo kana malee gadii \"Saala alaa galchi\" jedhu fayyadami.",
     "unlockWithPasswordExplainer": "Kontaaktiin kun duraan saalaa qaba, paaswordiin itti tikfame. Paaswordii kana galchi si'a ta'u, saala kee bilbila kana irratti deebifachuuf.",
     "recoveryRecordNotice": "Akkasii kun dehub.io irraa <em>dhaabbii herreegaa herreegaa</em> qaba. Koodii herreegaa jechoota 24 kan siif kennamee sanaan walitti qabamuun isaa wallettii isaa banuu danda'a. dehub.io kompyuutara irratti banuu, akkasumaan seenuu fi akaakuu isaa wajjin, koodii sana fayyadami—isheenis wallettii fi akaakuu kee akkuma durii turteetti deebisuuf jira.",
-    "loseFundsBody": "Mootummaan isaa blockchain irratti {{address}}itti fufa—waanti tokko illee hin gurguramu yookiin hin fudhatamu—garuu isaan dabarsuuf jechoota herreegaa herreegaa sanaa yookiin sa’aatii dhoksaa sanaa barbaada. Isaan malee, namni tokko illee isaanitti hin ga'u: ati miti, nuti miti. Akkuma isaan isaa sana irraa argachuu dandeessan malee, isaan keessatti argaman akka badaniitti ilaali."
+    "loseFundsBody": "Mootummaan isaa blockchain irratti {{address}}itti fufa—waanti tokko illee hin gurguramu yookiin hin fudhatamu—garuu isaan dabarsuuf jechoota herreegaa herreegaa sanaa yookiin sa’aatii dhoksaa sanaa barbaada. Isaan malee, namni tokko illee isaanitti hin ga'u: ati miti, nuti miti. Akkuma isaan isaa sana irraa argachuu dandeessan malee, isaan keessatti argaman akka badaniitti ilaali.",
+    "deviceTab": "Meeshaan kun",
+    "deviceExplainer": "Waan barreessinu ykn yaadatamu hin jiru — furtuun meeshaa kana irratti hafa. Barreessuudhaaf jechoota 12 kan qabu bakka bu'iinsa isiniif dhiheessina; meeshaa biraa irraa, marsariitii irraa, ykn erga deebi'ee fe'amee booda karaa itti deebi'u qofaadha. Bakka isaa Password filadhu password ofii isaatii hojii sana hojjeta.",
+    "secureOnDevice": "Furtuu meeshaa kana irratti kaa'i"
   },
   "transcript": {
     "title": "Barreeffama sagalee",

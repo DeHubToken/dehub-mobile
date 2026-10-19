@@ -5070,7 +5070,10 @@
     "biometricKeepsFailing": "{{error}} Ki te kore tonu e angitu, whakamahia tō kupuhipo pēke i raro nei, tērā rānei ko te \"Whakauru pēke o waho\".",
     "deviceBoundKey": "Ka whakatuwheratia tēnei pēke mā te <em>matimati, kanohi rānei kei tētahi pūrere motuhake</em> — te waea, te pūtiroti rānei i whakamahia ai. Kāore tēnei waea e mau ana i taua kī, ā, kāore hoki a dehub.io: kāore rawa te kī e wehe atu i te pūrere nāna i hanga.",
     "unlockPasskeyOnly": "I tiakina tēnei pēke mā te kī-arohanga i runga i te paetukutuku, ā, kāore anō kia whai tārua kupuhipo i roto i te kapua. Ki te whakatika koe i tētahi kupuhipo pēke i runga i te dehub.io, whakaurua ki konei — ki te kore, whakamahia te Whakauru pēke o waho i raro nei.",
-    "unlockWithPasswordExplainer": "Kua whai pēke kē tēnei pūkete, ā, kei te tiakina e te kupuhipo. Whakaurua kia ora ai tō pēke i runga i tēnei pūrere."
+    "unlockWithPasswordExplainer": "Kua whai pēke kē tēnei pūkete, ā, kei te tiakina e te kupuhipo. Whakaurua kia ora ai tō pēke i runga i tēnei pūrere.",
+    "deviceTab": "Ko tenei taputapu",
+    "deviceExplainer": "Kaore he mea hei tuhi, hei mahara ranei — ko te kī e noho ana i runga i tenei taputapu. Ka tukuna atu e matou ki a koe he taapiri 12 kupu hei tuhi; koinei anake te huarahi ki te hoki mai i tetahi atu taputapu, mai i te paetukutuku, i muri ranei i te whakauru ano. Kōwhiria te kupuhipa hei utu, a ka mahi te kupuhipa i taua mahi.",
+    "secureOnDevice": "Kia mau ki te kī i runga i tenei pūrere"
   },
   "transcript": {
     "title": "Tuhinga",

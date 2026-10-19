@@ -351,6 +351,19 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         />
       </SettingsSection>
 
+      {/* On the tab Settings opens on. At the foot of Support, the last tab in
+          the strip, App Review did not find it and rejected the app for
+          having no account deletion (Guideline 5.1.1(v)). */}
+      <SettingsSection label={t("settings.account")} icon="UserMinus" anchor="delete-account">
+        <SettingsLinkRow
+          icon="Trash2"
+          destructive
+          label={t("accountDeletion.title")}
+          description={t(deletingAccount ? "accountDeletion.busy" : "accountDeletion.description")}
+          onPress={handleDeleteAccount}
+        />
+      </SettingsSection>
+
       <Text className="text-center text-theme-neutrals-500 text-xs mt-6">{_copy("copy.1f185710f28a", { defaultValue: "DeHub v" })}{APP_VERSION}
       </Text>
     </SettingsScrollView>
@@ -393,6 +406,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           onPress={() => openInApp(PRIVACY_POLICY_LINK)}
         />
         <Divider />
+        {/* Also on the Profile tab. Kept here because the deletion recording
+            attached to the App Review notes walks this path. */}
         <SettingsLinkRow
           icon="Trash2"
           destructive
