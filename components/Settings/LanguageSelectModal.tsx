@@ -5,11 +5,8 @@ import * as Updates from "expo-updates";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
-import i18n, { SUPPORTED_LANGUAGES, loadLanguage, applyLayoutDirection } from "../../i18n";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SUPPORTED_LANGUAGES, chooseLanguage } from "../../i18n";
 import { toastError } from "../../libs/toast";
-
-const STORAGE_KEY = "user-preferred-language";
 
 export type LanguageSelectModalProps = {
   visible: boolean;
@@ -44,20 +41,9 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         onClose();
         return;
       }
-      let needsReload = false;
-      try {
-        // Load before persisting: a locale that fails to load must not be
-        // saved as the preference, or every launch comes up in English.
-        const loaded = await loadLanguage(code);
-        if (!loaded) throw new Error(`locale ${code} failed to load`);
-        await AsyncStorage.setItem(STORAGE_KEY, code);
-        await i18n.changeLanguage(code);
-        needsReload = applyLayoutDirection(code);
-      } catch {
-        toastError(t("settings.languageLoadFailed"));
-      } finally {
-        onClose();
-      }
+      const { ok, needsReload } = await chooseLanguage(code);
+      if (!ok) toastError(t("settings.languageLoadFailed"));
+      onClose();
       // Switching between a left-to-right and a right-to-left language only
       // takes effect after a restart; do it now rather than leave the screens
       // mirrored the wrong way until the next launch.

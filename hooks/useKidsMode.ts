@@ -23,6 +23,12 @@ import {
   onKidsModeChange,
   setKidsModeLocked,
 } from '../libs/kids-mode-lock';
+import {
+  clearPendingKidsPin,
+  getPendingKidsPin,
+  hasPendingKidsPin,
+  onboardingChoicesReady,
+} from '../libs/onboarding-choices';
 
 export function useKidsMode() {
   const user = useUser() as any;
@@ -43,11 +49,22 @@ export function useKidsMode() {
   // — Kids Mode armed from the website, or turned off somewhere else. The
   // account wins in both directions; it is the half a client cannot fake.
   const accountEnabled = user?.kidsMode?.enabled === true;
+  // Except while a Kids Mode picked on the first-run setup is still on its way
+  // to the account (OnboardingChoicesApplier): the device was locked before
+  // there was an account to flag, and unlocking it here would drop a child
+  // out of Kids Mode the moment a grown-up signed in.
   useEffect(() => {
     if (!user) return;
-    if (accountEnabled !== isKidsModeLocked()) {
-      void setKidsModeLocked(accountEnabled);
-    }
+    let cancelled = false;
+    void onboardingChoicesReady.then(() => {
+      if (cancelled || hasPendingKidsPin()) return;
+      if (accountEnabled !== isKidsModeLocked()) {
+        void setKidsModeLocked(accountEnabled);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [user, accountEnabled]);
 
   const enable = useCallback(async (pin: string) => {
@@ -61,6 +78,14 @@ export function useKidsMode() {
   }, []);
 
   const disable = useCallback(async (pin: string) => {
+    // A guest who picked Kids on the first-run setup has no account to ask, so
+    // the PIN they set there is the one that lets them out.
+    if (!user && hasPendingKidsPin()) {
+      if (pin !== getPendingKidsPin()) throw new Error('That PIN is not right.');
+      await clearPendingKidsPin();
+      await setKidsModeLocked(false);
+      return;
+    }
     setSaving(true);
     try {
       await KidsModeService.disable(pin);
@@ -68,7 +93,7 @@ export function useKidsMode() {
     } finally {
       setSaving(false);
     }
-  }, []);
+  }, [user]);
 
   return { isKidsMode: locked, enable, disable, saving };
 }

@@ -7207,6 +7207,40 @@
     "buyWithBnbNote": "BNB Chain-handel is gesloten. Heeft u BNB? Gebruik het om DeHub-tokens op Base te kopen."
   },
   "onboarding": {
+    "setup": {
+      "continue": "Doorgaan",
+      "skip": "Overslaan",
+      "back": "Terug",
+      "stepOf": "Stap {{current}} van {{total}}",
+      "language": {
+        "title": "Kies je taal",
+        "subtitle": "We hebben de taal van je telefoon gekozen. Tik op een andere om te wisselen.",
+        "fromPhone": "De taal van je telefoon"
+      },
+      "theme": {
+        "title": "Kies je stijl",
+        "subtitle": "Tik op een thema om het te proberen. Je kunt het altijd wijzigen in Instellingen."
+      },
+      "audience": {
+        "title": "Wie gebruikt DeHub?",
+        "subtitle": "We stemmen je feed hierop af. Je kunt dit later wijzigen in Instellingen.",
+        "recommended": "Aanbevolen",
+        "setPin": "Pincode instellen",
+        "confirmAdult": "Ik ben 18 of ouder",
+        "kids": {
+          "title": "Kinderen",
+          "body": "Alleen berichten gemaakt voor kinderen. Een volwassene stelt een pincode in om de kindermodus te verlaten."
+        },
+        "everyone": {
+          "title": "Iedereen",
+          "body": "De volledige app. Berichten voor volwassenen blijven verborgen."
+        },
+        "mature": {
+          "title": "Volwassenen 18+",
+          "body": "Toon ook berichten die als volwassen zijn gemarkeerd. Kies dit alleen als je 18 of ouder bent."
+        }
+      }
+    },
     "optIn": {
       "title": "Nieuw hier? Wil je een korte rondleiding?",
       "body": "We kunnen je stap voor stap door DeHub leiden en vragen hoe elke stap ging, zodat we alles wat verwarrend is kunnen oplossen.",

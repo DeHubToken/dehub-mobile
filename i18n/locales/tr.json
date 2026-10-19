@@ -7066,6 +7066,40 @@
     "buyWithBnbNote": "BNB Chain ticareti kapalı. BNB mi var? DeHub tokenleri satın almak için Base'de kullanın."
   },
   "onboarding": {
+    "setup": {
+      "continue": "Devam",
+      "skip": "Atla",
+      "back": "Geri",
+      "stepOf": "Adım {{current}} / {{total}}",
+      "language": {
+        "title": "Dilini seç",
+        "subtitle": "Telefonunun kullandığı dili seçtik. Değiştirmek için başka birine dokun.",
+        "fromPhone": "Telefonunun dili"
+      },
+      "theme": {
+        "title": "Görünümünü seç",
+        "subtitle": "Denemek için bir temaya dokun. İstediğin zaman Ayarlar'dan değiştirebilirsin."
+      },
+      "audience": {
+        "title": "DeHub'ı kim kullanıyor?",
+        "subtitle": "Akışını buna göre ayarlayacağız. Bunu daha sonra Ayarlar'dan değiştirebilirsin.",
+        "recommended": "Önerilen",
+        "setPin": "PIN belirle",
+        "confirmAdult": "18 yaşında veya daha büyüğüm",
+        "kids": {
+          "title": "Çocuklar",
+          "body": "Yalnızca çocuklar için yapılmış gönderiler. Çocuk Modundan çıkmak için bir yetişkin PIN belirler."
+        },
+        "everyone": {
+          "title": "Herkes",
+          "body": "Uygulamanın tamamı. Yetişkin gönderileri gizli kalır."
+        },
+        "mature": {
+          "title": "Yetişkin 18+",
+          "body": "Yetişkin olarak işaretlenen gönderileri de göster. Bunu yalnızca 18 yaşında veya daha büyüksen seç."
+        }
+      }
+    },
     "optIn": {
       "title": "Yeni misiniz? Kısa bir rehberli tur ister misiniz?",
       "body": "DeHub'da size adım adım rehberlik edebiliriz ve her adımın nasıl gittiğini sorarak kafa karıştırıcı olan her şeyi düzeltebiliriz.",
