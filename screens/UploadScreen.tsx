@@ -96,6 +96,8 @@ import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
 import VideoCoverFrames from "../components/Upload/VideoCoverFrames";
+import DraftVideoProgress from "../components/Upload/DraftVideoProgress";
+import { startDraftVideo, cancelDraftVideo } from "../services/draftVideo";
 import type { ImageEditMode, ImageEditResult } from "../components/Upload/ImageEditSheet";
 import type { FilterSettings } from "../libs/imageFilters";
 import { optionalSkia } from "../libs/skia";
@@ -1628,6 +1630,26 @@ export default function UploadScreen() {
     [generateThumbnail, movePendingBodyToTitle, mediaUploadLimitBytes, mediaUploadLimitLabel, postQuota?.tier],
   );
 
+  // Upload the attached video while the post is being written, so it is on
+  // the server (and transcoding) by the time Post is tapped. Replacing or
+  // removing the video, or leaving without posting, drops it; once a post has
+  // claimed it, cancelling is a no-op.
+  const [draftVideoKey, setDraftVideoKey] = useState<string | null>(null);
+  const draftVideoUri = !isLiveMode && !isStageMode && !isQuoteMode ? pickedVideo?.uri : undefined;
+  useEffect(() => {
+    if (!draftVideoUri) {
+      setDraftVideoKey(null);
+      return;
+    }
+    const key = startDraftVideo({
+      uri: draftVideoUri,
+      name: getFileName(draftVideoUri, "video.mp4"),
+      mimeType: guessMime(draftVideoUri, "video/mp4"),
+    });
+    setDraftVideoKey(key);
+    return () => cancelDraftVideo(key);
+  }, [draftVideoUri]);
+
   // A video handed over by another surface, e.g. one finished in the editor.
   // Like pictures, it only fills an empty composer.
   useEffect(() => {
@@ -2727,6 +2749,10 @@ export default function UploadScreen() {
                   </View>
                 )}
               </View>
+            )}
+
+            {!isLiveMode && mediaMode === "video" && pickedVideo && (
+              <DraftVideoProgress draftKey={draftVideoKey} />
             )}
 
             {!isLiveMode && mediaMode === "video" && pickedVideo && (

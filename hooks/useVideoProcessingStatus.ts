@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AppState } from "react-native";
 import { useQuery, useQueryClient, type QueryClient } from "@tanstack/react-query";
 import { getNFT } from "../services/nft.service";
+import { onSocketEvent } from "../libs/socket-events";
 
 export type VideoProcessingStatus = "pending" | "on" | "done" | "failed";
 const POLL_MS = 5_000;
@@ -30,6 +31,16 @@ export function useVideoProcessingStatus(
   const canFollow = isPending(initialStatus) || initialStatus === "failed";
   const cached = client.getQueryData<VideoProcessingStatus>(key);
   const active = tokenId != null && visible && foreground && canFollow && isPending(cached ?? initialStatus);
+  const waiting = tokenId != null && canFollow && isPending(cached ?? initialStatus);
+  // The token's socket channel says when the video is ready, so the card flips
+  // the moment it is; the visible-only poll below stays as the fallback.
+  useEffect(() => {
+    if (!waiting) return;
+    return onSocketEvent(String(tokenId), (data) => {
+      if (data?.stage === "done") client.setQueryData(processingKey(tokenId), "done");
+      else if (data?.stage === "failed") client.setQueryData(processingKey(tokenId), "failed");
+    });
+  }, [waiting, tokenId, client]);
   const query = useQuery<VideoProcessingStatus>({
     queryKey: key,
     queryFn: async () => {
