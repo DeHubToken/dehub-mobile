@@ -37,6 +37,8 @@ type Swatch = {
   square?: boolean;
   /** Minimal: bentos dissolve into the canvas, hairlines separate. */
   flat?: boolean;
+  /** Immersive: media runs edge to edge with the post under it, no box. */
+  edge?: boolean;
 };
 
 const GLASS = {
@@ -50,7 +52,7 @@ const GLASS = {
 const SWATCHES: Record<AppThemeName, Swatch> = {
   system: { page: '#000000', bento: '#18181b', border: 'rgba(255,255,255,0.06)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff' },
   'system-light': { page: '#ffffff', bento: 'transparent', border: 'rgba(11,11,13,0.09)', line: '#0b0b0d', faint: 'rgba(11,11,13,0.18)', accent: '#0b0b0d', flat: true },
-  immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true },
+  immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true, edge: true },
   minimal: { page: '#000000', bento: 'transparent', border: 'rgba(255,255,255,0.1)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', square: true, flat: true },
   cosmic: { page: '#040407', image: require('../../assets/theme-previews/cosmic.webp'), ...GLASS },
   hazy: { page: '#0a0714', image: require('../../assets/theme-previews/hazy.webp'), ...GLASS },
@@ -66,7 +68,7 @@ const SWATCHES: Record<AppThemeName, Swatch> = {
 };
 
 /** The selection ring in the active theme's own language, as web's picker rules draw it. */
-const RING: Partial<Record<AppThemeName, string>> = {
+export const RING: Partial<Record<AppThemeName, string>> = {
   war: '#4fe3e0',
   osaka: 'rgba(255,111,181,0.8)',
   jungle: 'rgba(140,190,90,0.8)',
@@ -80,6 +82,21 @@ const GAP = 12;
 const BENTO_PAD = 16;
 
 const MockPost: React.FC<{ s: Swatch; media?: boolean }> = ({ s, media }) => {
+  if (s.edge) {
+    // The sample's 7pt padding is cancelled so the media meets both edges.
+    return (
+      <View style={{ marginHorizontal: -7 }}>
+        {media ? <View style={{ height: 44, backgroundColor: s.faint }} /> : null}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 7, paddingTop: 5 }}>
+          <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: s.faint, marginRight: 5 }} />
+          <View style={{ flex: 1 }}>
+            <View style={{ height: 3, width: '60%', borderRadius: 2, backgroundColor: s.line }} />
+            <View style={{ height: 3, width: '38%', marginTop: 3, borderRadius: 2, backgroundColor: s.faint }} />
+          </View>
+        </View>
+      </View>
+    );
+  }
   const r = s.square ? 0 : 6;
   const frame: ViewStyle = s.flat
     ? { borderBottomWidth: 1, borderColor: s.border, paddingVertical: 6, paddingHorizontal: 2 }
@@ -100,13 +117,16 @@ const MockPost: React.FC<{ s: Swatch; media?: boolean }> = ({ s, media }) => {
   );
 };
 
-const ThemeSample: React.FC<{
+export const ThemeSample: React.FC<{
   value: AppThemeName;
   label: string;
   active: boolean;
   ring: string;
   onPress: () => void;
-}> = ({ value, label, active, ring, onPress }) => {
+  /** Defaults to the Settings row's size; the first-run grid sizes to its columns. */
+  width?: number;
+  height?: number;
+}> = ({ value, label, active, ring, onPress, width = CARD_W, height = CARD_H }) => {
   const s = SWATCHES[value];
   const [previewUri, setPreviewUri] = useState<string>();
   useEffect(() => {
@@ -129,15 +149,15 @@ const ThemeSample: React.FC<{
       accessibilityRole="button"
       accessibilityState={{ selected: active }}
       accessibilityLabel={label}
-      style={{ alignItems: 'center', width: CARD_W }}
+      style={{ alignItems: 'center', width }}
     >
       {/* The ring sits outside the sample with a gap, as web's ring-offset
           does, so the backdrop fills the sample edge to edge instead of
           stopping short of a transparent border. */}
       <View
         style={{
-          width: CARD_W,
-          height: CARD_H,
+          width,
+          height,
           padding: 2,
           borderRadius: s.square ? 0 : 14,
           borderWidth: 2,

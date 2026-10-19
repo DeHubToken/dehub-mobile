@@ -7070,6 +7070,40 @@
     "buyWithBnbNote": "Le trading sur BNB Chain est fermé. Vous avez du BNB ? Utilisez-le pour acheter des tokens DeHub sur Base."
   },
   "onboarding": {
+    "setup": {
+      "continue": "Continuer",
+      "skip": "Passer",
+      "back": "Retour",
+      "stepOf": "Étape {{current}} sur {{total}}",
+      "language": {
+        "title": "Choisissez votre langue",
+        "subtitle": "Nous avons choisi celle de votre téléphone. Touchez-en une autre pour changer.",
+        "fromPhone": "La langue de votre téléphone"
+      },
+      "theme": {
+        "title": "Choisissez votre style",
+        "subtitle": "Touchez un thème pour l'essayer. Vous pourrez le changer à tout moment dans les Paramètres."
+      },
+      "audience": {
+        "title": "Qui utilise DeHub ?",
+        "subtitle": "Nous adapterons votre fil en conséquence. Vous pourrez changer cela plus tard dans les Paramètres.",
+        "recommended": "Recommandé",
+        "setPin": "Définir un code",
+        "confirmAdult": "J'ai 18 ans ou plus",
+        "kids": {
+          "title": "Enfants",
+          "body": "Uniquement des publications faites pour les enfants. Un adulte définit un code pour quitter le mode Enfants."
+        },
+        "everyone": {
+          "title": "Tout le monde",
+          "body": "L'application complète. Les publications pour adultes restent masquées."
+        },
+        "mature": {
+          "title": "Adultes 18+",
+          "body": "Affiche aussi les publications marquées comme réservées aux adultes. Choisissez ceci seulement si vous avez 18 ans ou plus."
+        }
+      }
+    },
     "optIn": {
       "title": "Nouveau ici ? Vous voulez une courte visite guidée ?",
       "body": "Nous pouvons vous guider à travers DeHub étape par étape, et vous demander comment chaque étape s'est déroulée afin que nous puissions corriger tout ce qui est confus.",

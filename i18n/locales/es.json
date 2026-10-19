@@ -7066,6 +7066,40 @@
     "buyWithBnbNote": "El trading en BNB Chain está cerrado. ¿Tienes BNB? Úsalo para comprar tokens DeHub en Base."
   },
   "onboarding": {
+    "setup": {
+      "continue": "Continuar",
+      "skip": "Omitir",
+      "back": "Atrás",
+      "stepOf": "Paso {{current}} de {{total}}",
+      "language": {
+        "title": "Elige tu idioma",
+        "subtitle": "Elegimos el que usa tu teléfono. Toca otro para cambiarlo.",
+        "fromPhone": "El idioma de tu teléfono"
+      },
+      "theme": {
+        "title": "Elige tu estilo",
+        "subtitle": "Toca un tema para probarlo. Puedes cambiarlo cuando quieras en Ajustes."
+      },
+      "audience": {
+        "title": "¿Quién usa DeHub?",
+        "subtitle": "Ajustaremos tu feed a tu elección. Puedes cambiarlo más tarde en Ajustes.",
+        "recommended": "Recomendado",
+        "setPin": "Crear un PIN",
+        "confirmAdult": "Tengo 18 años o más",
+        "kids": {
+          "title": "Niños",
+          "body": "Solo publicaciones hechas para niños. Un adulto crea un PIN para salir del modo Niños."
+        },
+        "everyone": {
+          "title": "Todos",
+          "body": "La app completa. Las publicaciones para adultos siguen ocultas."
+        },
+        "mature": {
+          "title": "Adultos 18+",
+          "body": "Muestra también las publicaciones marcadas para adultos. Elige esto solo si tienes 18 años o más."
+        }
+      }
+    },
     "optIn": {
       "title": "¿Nuevo aquí? ¿Quieres un breve recorrido guiado?",
       "body": "Podemos guiarte por DeHub paso a paso y preguntarte cómo fue cada paso para poder solucionar cualquier cosa que sea confusa.",

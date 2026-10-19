@@ -255,6 +255,26 @@ export async function loadLanguage(lang: string): Promise<boolean> {
   return results[groups.indexOf('core')] ?? false;
 }
 /**
+ * Switch the app to `code` and remember it.
+ *
+ * Loads before persisting: a locale that fails to load must not be saved as
+ * the preference, or every launch comes up in English. Returns whether the
+ * layout direction changed, which only takes effect after a restart; the
+ * caller decides when to reload.
+ */
+export async function chooseLanguage(code: string): Promise<{ ok: boolean; needsReload: boolean }> {
+  try {
+    const loaded = await loadLanguage(code);
+    if (!loaded) return { ok: false, needsReload: false };
+    await AsyncStorage.setItem(STORAGE_KEY, code);
+    await i18n.changeLanguage(code);
+    return { ok: true, needsReload: applyLayoutDirection(code) };
+  } catch {
+    return { ok: false, needsReload: false };
+  }
+}
+
+/**
  * Detect the best language from device locale, falling back to stored preference.
  */
 export function detectLanguage(): string {
