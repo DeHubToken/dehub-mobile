@@ -6779,7 +6779,7 @@
         "setPin": "PIN-kod o'rnating",
         "confirmAdult": "Men 18 yoshda yoki undan kattaman",
         "kids": {
-          "title": "OÊ»tName",
+          "title": "Bolalar",
           "body": "Faqat bolalar uchun yozilgan postlar. Voyaga yetgan shaxs Bolalar rejimidan chiqish uchun PIN kod o'rnatadi."
         },
         "everyone": {
