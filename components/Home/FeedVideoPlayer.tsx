@@ -1659,9 +1659,12 @@ const POST_PAGE_MEDIA = { marginTop: 0 } as const;
 const MINIMAL_EDGE = 16;
 
 const styles = StyleSheet.create({
+  // Every box sets its own width and height from the clip's shape. No
+  // aspectRatio here: Yoga sizes the cross axis from aspectRatio over an
+  // explicit width, which stretched portrait clips to full card width with
+  // grey side panels.
   container: {
     width: "100%",
-    aspectRatio: 16 / 9,
     backgroundColor: "#27272a",
     borderRadius: 8,
     overflow: "hidden",

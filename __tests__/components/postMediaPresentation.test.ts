@@ -142,6 +142,8 @@ describe('post media presentation', () => {
     expect(video).toContain('win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
     expect(video).toContain('width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls)');
     expect(video).toContain('alignSelf: "flex-start"');
+    // aspectRatio on the sized box makes Yoga widen a portrait clip to the card.
+    expect(video).not.toMatch(/container: \{[^}]*aspectRatio/);
   });
 
   it('keeps post action controls evenly inset from every bento edge', () => {
