@@ -405,6 +405,16 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           external
           onPress={() => openInApp(PRIVACY_POLICY_LINK)}
         />
+        <Divider />
+        {/* Also on the Profile tab. Kept here because the deletion recording
+            attached to the App Review notes walks this path. */}
+        <SettingsLinkRow
+          icon="Trash2"
+          destructive
+          label={t("accountDeletion.title")}
+          description={t(deletingAccount ? "accountDeletion.busy" : "accountDeletion.description")}
+          onPress={handleDeleteAccount}
+        />
       </SettingsSection>
 
       <SettingsSection label={t("settings.about")} icon="Info" anchor="about">
