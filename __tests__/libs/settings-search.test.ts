@@ -109,4 +109,9 @@ describe('searchSettings', () => {
     expect(top('report bug')?.tab).toBe('support');
     expect(top('auto-play')?.tab).toBe('appearance');
   });
+
+  it('lands account deletion on the tab Settings opens on', () => {
+    expect(top('delete account')).toMatchObject({ tab: 'profile', anchor: 'delete-account' });
+    expect(top('erase data')?.anchor).toBe('delete-account');
+  });
 });
