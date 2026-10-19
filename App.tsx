@@ -324,6 +324,9 @@ const REVEAL_FAILSAFE_MS = 5000;
 // A first launch keeps the logo animation up at least this long from boot, so
 // a new user sees it play before the setup instead of a flicker of it.
 const FIRST_RUN_INTRO_MS = 2000;
+// Once per process: switching to System Light during the setup remounts the
+// tree, and that must not replay the intro.
+let firstRunIntroPlayed = false;
 // Long enough that a slow network boot is not reported as a stall.
 const BOOT_STALL_MS = 15000;
 
@@ -419,12 +422,14 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (!staged || !navReady) return;
     let cancelled = false;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;
-    const introLeft = isFirstTimeUser && !isSignedIn ? FIRST_RUN_INTRO_MS - (Date.now() - bootStartedAt) : 0;
+    const introLeft = isFirstTimeUser && !isSignedIn && !firstRunIntroPlayed ? FIRST_RUN_INTRO_MS - (Date.now() - bootStartedAt) : 0;
     // First painted frame proves the shell composited; the short tail covers
     // the header-measurement commit without being perceptible.
     const frame = requestAnimationFrame(() => {
       settleTimer = setTimeout(() => {
-        if (!cancelled) beginReveal();
+        if (cancelled) return;
+        firstRunIntroPlayed = true;
+        beginReveal();
       }, Math.max(40, introLeft));
     });
     return () => {
