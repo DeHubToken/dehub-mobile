@@ -4,6 +4,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { VideoScrubButton, VideoScrubZone } from '../../components/Home/VideoScrubZone';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable',
   StyleSheet: {
@@ -27,6 +28,13 @@ jest.mock('react-native-gesture-handler', () => ({
 jest.mock('../../hooks/useFeedScrubBoundary', () => ({
   FeedScrubContext: require('react').createContext(null),
   SCRUB_HIT_HEIGHT: 64,
+}));
+
+let mockLight = false;
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: mockLight }) }));
+jest.mock('../../components/common/MediaControlGlyph', () => ({
+  MediaControlGroundProvider: require('react').createContext('picture').Provider,
+  PAPER_INK: '#0B0B0D',
 }));
 
 function setup(showControls = true) {
@@ -88,4 +96,14 @@ describe('video scrub zone', () => {
     expect(s.onCommit).not.toHaveBeenCalled();
     expect(s.buttonPress).not.toHaveBeenCalled();
   });
+});
+
+it('turns the plain strip to paper in System Light', () => {
+  mockLight = true;
+  try {
+    const view = render(<VideoScrubZone enabled opacity={new Animated.Value(1)} showControls plainStrip label="Progress" progress={0} onStart={jest.fn()} onScrub={jest.fn()} onCommit={jest.fn()} onCancel={jest.fn()}>{null}</VideoScrubZone>);
+    expect(StyleSheet.flatten(view.getByTestId('video-control-strip').props.style).backgroundColor).toBe('#FFFFFF');
+  } finally {
+    mockLight = false;
+  }
 });
