@@ -5031,7 +5031,10 @@
     "biometricKeepsFailing": "{{error}} If e still di fail, use ya wallet password weh e dey below or \"Import external wallet\".",
     "deviceBoundKey": "Dis wallet di open wit <em>biometrics weh dey only one particular device</em> — di phone or browser weh dem be set am up. Dis phone no get dat key, and dehub.io no get am too: di key no di ever comot for di device weh e make am.",
     "unlockPasskeyOnly": "Dem be secure dis wallet wit passkey for web and e never get password backup for cloud. If you be set wallet password for dehub.io, enter am here — if no be so, use Import external wallet weh e dey below.",
-    "unlockWithPasswordExplainer": "Dis account don already get wallet weh password di protect. Enter di password for recover ya wallet for dis device."
+    "unlockWithPasswordExplainer": "Dis account don already get wallet weh password di protect. Enter di password for recover ya wallet for dis device.",
+    "deviceTab": "Dis device",
+    "deviceExplainer": "Nothin wey you go type or remember — di key de stay for dis device. We go give you one 12‑word backup wey you fit write down; na di only way to get back in from another device, from di website, or after reinstall. Choose Password instead and di password itself go do di work.",
+    "secureOnDevice": "Make you keep di key for dis device"
   },
   "transcript": {
     "title": "Transcript",

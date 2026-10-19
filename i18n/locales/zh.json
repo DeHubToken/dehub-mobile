@@ -5121,7 +5121,10 @@
     "biometricKeepsFailing": "{{error}} 如果一直失败，请在下方使用您的钱包密码或“导入密钥”。",
     "deviceBoundKey": "此钱包使用您在特定设备上存储的<em>生物识别信息</em>解锁——即设置钱包时使用的手机或浏览器。此手机没有该密钥，dehub.io 也没有：密钥永远不会离开创建它的设备。",
     "unlockPasskeyOnly": "此钱包已在网上通过通行密钥保护，目前云端没有密码备份。如果您在 dehub.io 上设置了钱包密码，请在此处输入——否则请使用下方的“导入密钥”。",
-    "unlockWithPasswordExplainer": "此账户已有一个钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。"
+    "unlockWithPasswordExplainer": "此账户已有一个钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。",
+    "deviceTab": "此设备",
+    "deviceExplainer": "无需输入或记住—钥匙留在此设备上。我们将为您提供一个12字的备份来写下来；这是从另一台设备、网站或重新安装后返回的唯一途径。取而代之的是选择密码，密码本身就可以完成这项工作。",
+    "secureOnDevice": "将密钥保留在此设备上"
   },
   "walletBackup": {
     "title": "备份钱包",

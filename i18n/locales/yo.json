@@ -5071,7 +5071,10 @@
     "deviceBoundKey": "Àpamọ́wó yìí máa ń ṣí pẹ̀lú <em> àwọn ohun tí ara máa ń gbà láti fi ẹ̀rí hàn tí wọ́n wà lórí ẹ̀rọ̀ kan pàtó</em> — fóònù tàbí àwòrán tí wọ́n ti fi kalẹ̀ sí. Fóònù yìí kò ní kókó náà, bẹ́ẹ̀ náà ni dehub.io kò ní: kókó náà kì í jáde kúrò ní ẹ̀rọ̀ tí ó ṣe é.",
     "unlockPasskeyOnly": "Àpamọ́wó yìí ni wọ́n fi àṣẹ́ ọ̀rọ̀ pamọ́ sí lórí ayélujára, kò sì tíì ní àtìlẹ́yìn àṣẹ́ ọ̀rọ̀ kan nínú àwọ̀kọ̀ títí. Tí o bá fi àṣẹ́ ọ̀rọ̀ àpamọ́wó kan sílẹ̀ lórí dehub.io, fi wọlé sí ibí yìí — bí kò bá rí bẹ́ẹ̀, lo Gbé àpamọ́wó alátòkè wọle ní ìsàlẹ̀.",
     "unlockWithPasswordExplainer": "Ìwọ̀nyí ti ní àpamọ́wó kan, tí àṣẹ́ ọ̀rọ̀ dáàbò bo. Fi wọlé láti gba àpamọ́wó rẹ padà lórí ẹ̀rọ́ yìí.",
-    "keepMessagesBody": "Ìjíròrò, ìkéde, àmì-ìwé, àwọn àtẹ̀jíṣẹ́ tí a fi pamọ́ àti wíwo ìtàn wá pẹ̀lú rẹ. Kò sí ohun tí a pa run àti pé kò sí ẹlòmíràn tí ó lè ka èyíkéyìí nínú rẹ̀."
+    "keepMessagesBody": "Ìjíròrò, ìkéde, àmì-ìwé, àwọn àtẹ̀jíṣẹ́ tí a fi pamọ́ àti wíwo ìtàn wá pẹ̀lú rẹ. Kò sí ohun tí a pa run àti pé kò sí ẹlòmíràn tí ó lè ka èyíkéyìí nínú rẹ̀.",
+    "deviceTab": "Ẹrọ yìí",
+    "deviceExplainer": "Kò sí nǹkankan láti kọ tàbí láti rántí — kókó náà dúró lórí ẹ̀rọ yìí. A máa fún ọ ní àtìlẹyìn ọ̀rọ̀ 12 láti kọ sílẹ̀; ọ̀nà kan ṣoṣo ni láti padà láti orí ẹ̀rọ mìíràn, láti orí ẹ̀rọ ayélujára, tàbí lẹ́yìn tí a bá tún un ṣe. Yan ọ̀rọ̀ ìgbaniwọlé dípò ọ̀rọ̀ ìgbaniwọlé náà fúnra rẹ̀ sì ṣe iṣẹ́ yẹn.",
+    "secureOnDevice": "Fi kọ́kọ́rọ́ pamọ́ sórí ẹ̀rọ yìí."
   },
   "transcript": {
     "title": "Àkọsílẹ̀ ọ̀rọ̀",

@@ -5084,7 +5084,10 @@
     "biometricKeepsFailing": "{{error}} Ha ez továbbra is sikertelen, használd az alábbi tárca jelszavadat, vagy az \"Importálás külső tárcából\" opciót.",
     "deviceBoundKey": "Ez a tárca a <em>egy adott eszközön tárolt biometrikus adatokkal</em> oldható fel – azon a telefonon vagy böngészőn, amelyen beállítottad. Ez a telefon nem rendelkezik ezzel a kulccsal, és a dehub.io sem: a kulcs soha nem hagyja el azt az eszközt, amelyik létrehozta.",
     "unlockPasskeyOnly": "Ez a tárca egy webes passkey-vel lett biztosítva, és még nincs felhőben tárolt jelszavas biztonsági mentése. Ha beállítasz egy tárca jelszót a dehub.io oldalon, add meg itt – ellenkező esetben használd az alábbi \"Importálás külső tárcából\" opciót.",
-    "unlockWithPasswordExplainer": "Ez a fiók már rendelkezik egy tárcával, amelyet jelszó véd. Add meg azt a tárca visszaállításához ezen az eszközön."
+    "unlockWithPasswordExplainer": "Ez a fiók már rendelkezik egy tárcával, amelyet jelszó véd. Add meg azt a tárca visszaállításához ezen az eszközön.",
+    "deviceTab": "Ez az eszköz",
+    "deviceExplainer": "Nincs mit beírni vagy megjegyezni — a kulcs az eszközön marad. Kínálunk Önnek egy 12 szavas biztonsági másolatot, amelyet leírhat; ez az egyetlen módja annak, hogy egy másik eszközről, a webhelyről vagy az újratelepítés után visszatérjen. Válassza inkább a Jelszó lehetőséget, és maga a jelszó elvégzi ezt a feladatot.",
+    "secureOnDevice": "Tartsa a kulcsot ezen az eszközön"
   },
   "transcript": {
     "title": "Átirat",

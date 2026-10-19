@@ -5071,7 +5071,10 @@
     "biometricKeepsFailing": "{{error}} Haddii ay sii fashilanto, isticmaal furaha kaydkaaga hoose ama \"Import external wallet\".",
     "deviceBoundKey": "Kaydkan waxa lagu furaa <em>biometrics-ka lagu hayo hal qalab oo gaar ah</em> — telefoonka ama browserka lagu sameeyay. Telefoonkanu ma hayo furahaas, dehub.io-na ma hayo: furaha marnaba kama baxo qalabkii sameeyay.",
     "unlockPasskeyOnly": "Kaydkan waxa lagu xaqiijiyay passkey webka waxana uusan weli lahayn kayd furaha ah oo daruuraha ku jira. Haddii aad dejiso furaha kaydka dehub.io, halkan geli — haddii kale isticmaal Import external wallet hoose.",
-    "unlockWithPasswordExplainer": "Koontadan horeyba waxay leedahay kayd, oo lagu ilaaliyo furaha. Geli si aad u soo ceshato kaydkaaga qalabkan."
+    "unlockWithPasswordExplainer": "Koontadan horeyba waxay leedahay kayd, oo lagu ilaaliyo furaha. Geli si aad u soo ceshato kaydkaaga qalabkan.",
+    "deviceTab": "Qalabkan",
+    "deviceExplainer": "Ma jiraan wax la qoro ama la xasuusto — furaha ayaa ku jira qalabkan. Waxaan ku siin doonaa 12 eray gurmad ah si aad u qorto hoos; waa habka kaliya ee ka soo noqoshada aalad kale, laga bilaabo websaydhka, ama ka dib markaad dib u rakibto. Dooro Password halkii iyo password laftiisa sameeyo shaqadaas.",
+    "secureOnDevice": "Furaha ku hay qalabkan"
   },
   "transcript": {
     "title": "Qoraal hadal",

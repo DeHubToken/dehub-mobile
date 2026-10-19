@@ -5084,7 +5084,10 @@
     "biometricKeepsFailing": "{{error}} Om detta fortsätter att misslyckas, använd ditt plånbokslösenord nedan eller \"Importera nycklar\".",
     "deviceBoundKey": "Denna plånbok låses upp med <em>biometri som lagras på en specifik enhet</em> — telefonen eller webbläsaren den ställdes in på. Den här telefonen har inte den nyckeln, och det har inte heller dehub.io: nyckeln lämnar aldrig enheten som skapade den.",
     "unlockPasskeyOnly": "Den här plånboken säkrades med en passkey på webben och har ännu ingen lösenordsbackup i molnet. Om du ställer in ett plånbokslösenord på dehub.io, ange det här — annars använd Importera nycklar nedan.",
-    "unlockWithPasswordExplainer": "Det här kontot har redan en plånbok, skyddad av ett lösenord. Ange det för att återställa din plånbok på den här enheten."
+    "unlockWithPasswordExplainer": "Det här kontot har redan en plånbok, skyddad av ett lösenord. Ange det för att återställa din plånbok på den här enheten.",
+    "deviceTab": "Denna enhet",
+    "deviceExplainer": "Inget att skriva eller komma ihåg — nyckeln stannar på den här enheten. Vi erbjuder dig en säkerhetskopia på 12 ord att skriva ner; det är den enda vägen tillbaka från en annan enhet, från webbplatsen eller efter ominstallation. Välj Lösenord istället och själva lösenordet gör det jobbet.",
+    "secureOnDevice": "Behåll nyckeln på den här enheten"
   },
   "transcript": {
     "title": "Transkription",

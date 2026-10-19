@@ -5094,7 +5094,10 @@
     "biometricKeepsFailing": "{{error}} Raha mbola tsy mandeha foana izany, ampiasao ny tenimiafinao eto ambany na ny \"Import external wallet\".",
     "deviceBoundKey": "Ity wallet ity dia hidina amin'ny alalan'ny <em>biometrics voatahiry ao amin'ny fitaovana iray manokana</em> — ny telefaona na ny browser izay nametrahana azy. Tsy manana io lakile io ity telefaona ity, ary tsy manana izany koa ny dehub.io: tsy miala amin'ny fitaovana namorona azy mihitsy ilay lakile.",
     "unlockPasskeyOnly": "Ity wallet ity dia voaro tamin'ny passkey tao amin'ny web ary mbola tsy manana backup tenimiafina ao amin'ny cloud. Raha nametraka tenimiafina wallet tao amin'ny dehub.io ianao, ampidiro eto izany — raha tsy izany dia ampiasao ny Import external wallet eto ambany.",
-    "unlockWithPasswordExplainer": "Ity kaonty ity dia efa manana wallet, voaro amin'ny tenimiafina. Ampidiro izany mba hamerenana ny wallet-nao amin'ity fitaovana ity."
+    "unlockWithPasswordExplainer": "Ity kaonty ity dia efa manana wallet, voaro amin'ny tenimiafina. Ampidiro izany mba hamerenana ny wallet-nao amin'ity fitaovana ity.",
+    "deviceTab": "Ity fitaovana ity",
+    "deviceExplainer": "Tsy misy ny mitendry na mitadidy — ny fanalahidy dia mijanona eo amin'ity fitaovana ity. Hanome anao teny backup 12 izahay mba hanoratana; Io no hany fomba hiverenana any amin'ny fitaovana hafa, avy amin'ny tranonkala, na aorian'ny fametrahana azy. Fidio ny tenimiafinao ary ny teny fanalahidy ihany no manao io asa io.",
+    "secureOnDevice": "Ataovy ity periferika ity ilay famaha"
   },
   "transcript": {
     "title": "Fandikana an-tsoratra",

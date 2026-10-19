@@ -5102,7 +5102,10 @@
     "biometricKeepsFailing": "{{error}} Sichus kay mana allintachu ruwan, billetera contraseñaykita uraypi utaq \"Hawa billeterata apamuy\" llamk'achiy.",
     "deviceBoundKey": "Kay billetera kichakun <em>biometrics kaqwan huk sapanchasqa dispositivopi hap'isqa</em> — telefono utaq navegador kaqpi churasqa. Kay telefonoqa mana chay llaveyuqchu, nitaq dehub.io: llaveqa mana hayk'aqpas chay ruwaq dispositivomanta lluqsinchu.",
     "unlockPasskeyOnly": "Kay billetera web kaqpi huk llave de acceso kaqwan waqaychasqa karqa chaymanta manaraq contraseña waqaychasqa puyu kaqpi kanraqchu. Sichus huk billetera contraseña dehub.io kaqpi churanki, kaypi qillqay — mana hina kaqtinqa Uraypi hawa billetera hawaman apamuy llamk'achiy.",
-    "unlockWithPasswordExplainer": "Kay yupayqa billeterayuqñam, contraseñawan waqaychasqa. Chayta yaykuy kay dispositivopi billeteraykita kutichipunaykipaq."
+    "unlockWithPasswordExplainer": "Kay yupayqa billeterayuqñam, contraseñawan waqaychasqa. Chayta yaykuy kay dispositivopi billeteraykita kutichipunaykipaq.",
+    "deviceTab": "Kay aparato",
+    "deviceExplainer": "Mana imapas qillqanapaq utaq yuyarinapaq — llaveqa kay dispositivopi qhipan. 12 simiyuq yanapakuyta qusqaykiku qillqanaykipaq; huk dispositivomanta, web kitimanta utaq wakmanta churasqamanta kutimuylla. Aswanpas Contraseña akllay chaymanta kikin contraseña chay llamk'ayta ruwan.",
+    "secureOnDevice": "Kay aparatopi llaveta waqaychay"
   },
   "transcript": {
     "title": "Qillqasqa rimay",

@@ -5188,7 +5188,10 @@
     "biometricKeepsFailing": "{{error}} Ak to bude naďalej zlyhávať, použite nižšie heslo k vašej peňaženke alebo \"Importovať kľúče\".",
     "deviceBoundKey": "Táto peňaženka sa odomyká pomocou <em>biometrických údajov uložených na jednom konkrétnom zariadení</em> — telefóne alebo prehliadači, na ktorom bola nastavená. Tento telefón nemá tento kľúč a ani dehub.io: kľúč nikdy neopustí zariadenie, ktoré ho vytvorilo.",
     "unlockPasskeyOnly": "Táto peňaženka bola zabezpečená pomocou passkey na webe a zatiaľ nemá zálohu hesla v cloude. Ak ste si nastavili heslo k peňaženke na dehub.io, zadajte ho sem — inak použite nižšie možnosť Importovať kľúče.",
-    "unlockWithPasswordExplainer": "Tento účet už má peňaženku chránenú heslom. Zadajte ho na obnovenie vašej peňaženky na tomto zariadení."
+    "unlockWithPasswordExplainer": "Tento účet už má peňaženku chránenú heslom. Zadajte ho na obnovenie vašej peňaženky na tomto zariadení.",
+    "deviceTab": "Toto zariadenie",
+    "deviceExplainer": "Nič na napísanie alebo zapamätanie — kľúč zostáva na tomto zariadení. Ponúkneme vám 12‑slovný záložný kód na zapísanie; je to jediný spôsob, ako sa dostať späť z iného zariadenia, z webovej stránky alebo po preinštalovaní. Vyberte namiesto toho Heslo a samotné heslo vykoná túto úlohu.",
+    "secureOnDevice": "Ponechať kľúč na tomto zariadení"
   },
   "transcript": {
     "title": "Prepis",
