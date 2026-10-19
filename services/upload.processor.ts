@@ -9,7 +9,7 @@ import {
   type UploadJob,
   type MintParams,
 } from "../store/upload.store";
-import { unwrapUploadResponse, xhrUploadFormData, isRateLimitUploadError } from "../libs/xhr-upload";
+import { unwrapUploadResponse, xhrUploadFormData, isRateLimitUploadError, type XhrUploadError } from "../libs/xhr-upload";
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
 import { mintNftOnChainWithFee, mintWithBounty } from "../services/mint.service";
@@ -24,6 +24,8 @@ import type { MintNftResponse } from "../services/nft.service";
 import type { CreateQuotePostResponse } from "../services/repost.service";
 import { createPoll } from "../services/polls.service";
 import { prepareWalletForQueuedMint } from "../libs/wallet-signing-preflight";
+import { getDraftVideo, releaseDraftVideo, waitForDraftVideo } from "./draftVideo";
+import { watchPostVideo } from "./post-video-watch";
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
@@ -99,7 +101,36 @@ export function cancelJob(jobId: string) {
   uploadActions.fail(jobId, "Upload cancelled");
 }
 
-function rebuildFormData(job: UploadJob): FormData {
+const isVideoPost = (job: UploadJob) =>
+  !job.isQuote && (job.payload.postType === "video" || job.payload.postType === "short");
+
+/**
+ * The draft upload this job can post with, or null to send the file itself.
+ *
+ * Waits for the composer's upload when it is still running in this process,
+ * reporting it as the job's own upload. After a restart that upload is gone,
+ * so only an id it had already finished with is used — and the server answers
+ * 409 for one that has expired, which falls back to the file.
+ */
+async function resolveDraftVideo(job: UploadJob, abortRef: { current: boolean }): Promise<string | null> {
+  if (!isVideoPost(job) || !job.payload.video) return null;
+  // A video post needs its thumbnail, and with a draft that is the only file sent.
+  if (job.payload.postType === "video" && !job.payload.thumbnailUri) return null;
+  const key = job.draftVideoKey;
+  if (key && getDraftVideo(key)) {
+    const draftId = await waitForDraftVideo(
+      key,
+      (frac) => uploadActions.updateProgress(job.id, frac * 0.8),
+      abortRef,
+    );
+    if (abortRef.current) throw new Error("Upload cancelled");
+    uploadActions.setDraftVideo(job.id, { key, draftId: draftId ?? undefined });
+    return draftId;
+  }
+  return job.draftVideoId ?? null;
+}
+
+function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): FormData {
   const { payload, walletAddress } = job;
   const fd = new FormData();
 
@@ -124,7 +155,10 @@ function rebuildFormData(job: UploadJob): FormData {
   // "short" is no longer produced — the composer posts every video as `video`
   // — but a job queued by an older build can still be sitting in storage.
   if (payload.postType === "video" || payload.postType === "short") {
-    if (payload.video) {
+    if (draftVideoId) {
+      // Already on the server: only the thumbnail rides along.
+      fd.append("draftVideoId", draftVideoId);
+    } else if (payload.video) {
       // @ts-ignore RN FormData file shape
       fd.append("files", {
         uri: payload.video.uri,
@@ -238,16 +272,31 @@ async function processJob(job: UploadJob): Promise<void> {
   if (!mintParams) {
     uploadActions.updateStage(job.id, "uploading");
 
-    const fd = rebuildFormData(job);
     const endpoint = job.isQuote ? "/quote_post" : "/user_mint";
+    const onProgress = (frac: number) => uploadActions.updateProgress(job.id, frac * 0.8);
 
-    const res = await uploadMintFormData(
-      job,
-      fd,
-      endpoint,
-      abortRef,
-      (frac) => uploadActions.updateProgress(job.id, frac * 0.8),
-    );
+    const draftVideoId = await resolveDraftVideo(job, abortRef);
+    let res: any;
+    if (draftVideoId) {
+      // The video went up while the post was being written; what is left is
+      // the thumbnail and the fields, so the bar skips past the upload.
+      uploadActions.updateProgress(job.id, 0.8);
+      try {
+        res = await uploadMintFormData(job, rebuildFormData(job, draftVideoId), endpoint, abortRef, () => {});
+      } catch (e) {
+        const err = e as XhrUploadError;
+        if (err.status !== 409 || err.code !== "DRAFT_UNAVAILABLE") throw e;
+        // Expired, failed or already used: send the file the old way, once.
+        console.warn("[upload.processor] draft video unavailable — uploading the file instead");
+        uploadActions.setDraftVideo(job.id, {});
+        uploadActions.updateProgress(job.id, 0, true);
+        res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
+      }
+    } else {
+      res = await uploadMintFormData(job, rebuildFormData(job), endpoint, abortRef, onProgress);
+    }
+    // The server has the video either way now.
+    releaseDraftVideo(job.draftVideoKey);
 
     uploadActions.updateProgress(job.id, 0.82);
     uploadActions.updateStage(job.id, "processing");
@@ -352,6 +401,15 @@ async function processJob(job: UploadJob): Promise<void> {
      *
      * Skipped for a duplicate, whose original send already attached them.
      */
+    // The post exists from here on — the mint is a separate leg — so the
+    // feeds can show it now, and the pill follows its video being prepared.
+    if (!mintParams.scheduled) {
+      feedEvents.requestRefresh();
+      if (isVideoPost(job) && Number.isFinite(mintParams.createdTokenId)) {
+        watchPostVideo(job.id, mintParams.createdTokenId);
+      }
+    }
+
     const listingIds = job.payload.shopListingIds;
     if (listingIds?.length && !result?.duplicate) {
       void attachShopListings(mintParams.createdTokenId, listingIds, job.walletAddress ?? null).then(

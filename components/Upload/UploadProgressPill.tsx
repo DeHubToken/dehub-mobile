@@ -17,7 +17,8 @@ import Svg, { Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSnapshot } from "valtio";
 import Icon from "../ui/Icon";
-import { uploadState, type UploadJob, MAX_RETRIES } from "../../store/upload.store";
+import SmartImage from "../common/SmartImage";
+import { uploadState, uploadActions, type UploadJob, MAX_RETRIES } from "../../store/upload.store";
 import { navigationRef } from "../../App";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
@@ -48,7 +49,12 @@ const UploadProgressPill: React.FC = () => {
     (j) => j.status !== "done" && j.status !== "failed",
   ).length;
 
-  const shouldShow = !!(currentJob || failedJobs.length > 0 || recentlyDone);
+  // A posted video still being prepared, or the outcome of one, leads the pill
+  // whatever the job itself is still doing (the mint, the payment).
+  const videoJob = snap.jobs.find((j) => j.video && !j.video.dismissed) as UploadJob | undefined;
+  const video = videoJob?.video;
+
+  const shouldShow = !!(videoJob || currentJob || failedJobs.length > 0 || recentlyDone);
 
   const translateY = useSharedValue(100);
   const opacity = useSharedValue(0);
@@ -80,10 +86,14 @@ const UploadProgressPill: React.FC = () => {
   }));
 
   const handlePressPill = useCallback(() => {
-    if (navigationRef.isReady()) {
-      navigationRef.navigate(ScreenNames.UploadQueue as never);
+    if (!navigationRef.isReady()) return;
+    if (videoJob && video?.stage === "ready") {
+      uploadActions.dismissVideo(videoJob.id);
+      (navigationRef.navigate as any)(ScreenNames.PostResolver, { tokenId: String(video.tokenId) });
+      return;
     }
-  }, []);
+    navigationRef.navigate(ScreenNames.UploadQueue as never);
+  }, [videoJob, video?.stage, video?.tokenId]);
 
   const handleMinimize = useCallback(() => {
     setMinimized(true);
@@ -95,13 +105,26 @@ const UploadProgressPill: React.FC = () => {
 
   if (!shouldShow) return null;
 
-  const isFailed = failedJobs.length > 0 && !currentJob;
-  const isDone = !!recentlyDone && !currentJob && failedJobs.length === 0;
-  const progress = currentJob?.progress ?? (isDone ? 1 : 0);
+  const videoFailed = video?.stage === "failed";
+  const videoReady = video?.stage === "ready";
+  const isFailed = videoFailed || (!video && failedJobs.length > 0 && !currentJob);
+  const isDone = videoReady || (!video && !!recentlyDone && !currentJob && failedJobs.length === 0);
+  const progress = video ? video.progress / 100 : currentJob?.progress ?? (isDone ? 1 : 0);
   const progressPercent = Math.min(Math.round(progress * 100), 100);
 
   let statusText = "";
-  if (isDone) {
+  let headline: string | null = null;
+  if (video) {
+    if (videoReady) headline = t("upload.pillPostedView");
+    else if (videoFailed) headline = t("upload.pillVideoFailed");
+    else {
+      headline = t("upload.pillPreparingVideo");
+      statusText = videoJob?.status === "minting"
+        ? `${progressPercent}% · ${t("upload.stageMinting")}`
+        : `${progressPercent}%`;
+    }
+    if (!statusText) statusText = videoJob?.title || t("upload.pillDefaultTitle");
+  } else if (isDone) {
     statusText = t("upload.pillPosted");
   } else if (isFailed) {
     const retriable = failedJobs.filter((j) => j.retryCount < MAX_RETRIES);
@@ -116,9 +139,10 @@ const UploadProgressPill: React.FC = () => {
     statusText = `${progressPercent}%`;
   }
 
-  const title = currentJob?.title || failedJobs[0]?.title || recentlyDone?.title || t("upload.pillDefaultTitle");
-  const truncatedTitle = title.length > 26 ? title.slice(0, 26) + "…" : title;
+  const title = headline || currentJob?.title || failedJobs[0]?.title || recentlyDone?.title || t("upload.pillDefaultTitle");
+  const truncatedTitle = !headline && title.length > 26 ? title.slice(0, 26) + "…" : title;
   const iconName = isDone ? "CircleCheck" : isFailed ? "CircleAlert" : "Upload";
+  const thumbnailUri = (videoJob ?? currentJob)?.thumbnailUri;
 
   if (minimized) {
     return (
@@ -188,7 +212,23 @@ const UploadProgressPill: React.FC = () => {
         <View style={styles.pill}>
           <View style={styles.inner}>
             <View style={styles.iconWrap}>
-              <Icon name={iconName} size={18} color={isFailed ? "#F4F4F5" : "#fff"} />
+              {thumbnailUri ? (
+                <>
+                  <SmartImage
+                    source={{ uri: thumbnailUri }}
+                    recyclingKey={thumbnailUri}
+                    style={StyleSheet.absoluteFill}
+                    contentFit="cover"
+                  />
+                  {(isDone || isFailed) && (
+                    <View style={styles.thumbBadge}>
+                      <Icon name={iconName} size={14} color={isFailed ? "#F4F4F5" : "#fff"} />
+                    </View>
+                  )}
+                </>
+              ) : (
+                <Icon name={iconName} size={18} color={isFailed ? "#F4F4F5" : "#fff"} />
+              )}
             </View>
             <View style={styles.textWrap}>
               <View style={styles.titleRow}>
@@ -263,10 +303,17 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 10,
+    overflow: "hidden",
     backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
+  },
+  thumbBadge: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.45)",
+    alignItems: "center",
+    justifyContent: "center",
   },
   textWrap: {
     flex: 1,

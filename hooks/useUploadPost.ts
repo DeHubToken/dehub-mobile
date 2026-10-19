@@ -28,6 +28,7 @@ import {
   type BountyConfig,
   MAX_QUEUE_SIZE,
 } from "../store/upload.store";
+import { claimDraftVideo } from "../services/draftVideo";
 
 
 export type UploadStage =
@@ -369,6 +370,11 @@ export function useUploadPost() {
         toastError(`Queue full (max ${MAX_QUEUE_SIZE}). Wait for current uploads to finish.`);
         return false;
       }
+
+      // The composer has usually been uploading this video since it was
+      // attached; the job posts with that upload instead of sending it again.
+      const draft = video ? claimDraftVideo(video.uri, job.id) : null;
+      if (draft) uploadActions.setDraftVideo(job.id, draft);
 
       return true;
     },
