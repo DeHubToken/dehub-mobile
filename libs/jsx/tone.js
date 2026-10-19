@@ -189,9 +189,12 @@ function toneProps(props) {
 const DARK_SURFACE = /(?:^|\s)dark-surface(?=\s|$)/;
 
 const ToneFill = React.forwardRef(function ToneFill(props, ref) {
-  const { __toneType: type, __toned: toned, ...rest } = props;
+  const { __toneType: type, __toned: _toned, ...rest } = props;
   const dark = React.useContext(KeepDark);
-  const chosen = dark ? rest : { ...toned, children: rest.children };
+  // Toned from the props as they arrive here, not as they were when the
+  // element was made: a parent can clone in more (ScrollView hands its
+  // refreshControl a `style`), and the earlier copy would drop them.
+  const chosen = dark ? rest : toneProps(rest);
   return jsxAny(type, ref ? { ...chosen, ref } : chosen);
 });
 
@@ -212,6 +215,9 @@ function isMediaType(type) {
     add(() => require("react-native").ImageBackground);
     add(() => require("expo-image").Image);
     add(() => require("expo-video").VideoView);
+    // The app's own wrappers around those two.
+    add(() => require("../../components/common/SmartImage").SmartImage);
+    add(() => require("../../components/common/PersistentVideoView").PersistentVideoView);
   }
   return mediaTypes.has(type);
 }
