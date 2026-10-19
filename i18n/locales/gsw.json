@@ -6768,7 +6768,41 @@
         "body": "Findi us, wie Trinkgeld, Abzeiche und SuperPowers das, wo du do machsch, zu öppis machä, wo du us em verdienst."
       }
     },
-    "swipeToStart": "Wisch zum starte"
+    "swipeToStart": "Wisch zum starte",
+    "setup": {
+      "continue": "Witer",
+      "skip": "Überspringe",
+      "back": "Zurück",
+      "stepOf": "Schritt {{current}} vo {{total}}",
+      "language": {
+        "title": "Wähl dini Sproch us",
+        "subtitle": "Mir händ d' Sproch gno, wo dis Handy bruucht. Tippe uf e anderi zum wächsle.",
+        "fromPhone": "D'Sproch vom Handy"
+      },
+      "theme": {
+        "title": "Wähl din Look us",
+        "subtitle": "Tippe uf e Theme zum usprobe. Du chasch das jederziit i de Iistellige ändere."
+      },
+      "audience": {
+        "title": "Wär nutzt DeHub?",
+        "subtitle": "Mir stelle din Feed uf di abgläiche. Du chasch das spöter i de Iistellige ändere.",
+        "recommended": "Empfohlen",
+        "setPin": "Setz e PIN",
+        "confirmAdult": "Ich bi 18 oder älter",
+        "kids": {
+          "title": "Kids",
+          "body": "Nur Beiträge für Chind. En Erwachseni setz e PIN zum d'Kids-Mode uszschalte."
+        },
+        "everyone": {
+          "title": "Alli",
+          "body": "D'vollständigi App. Reife Beiträge bliibe versteckt."
+        },
+        "mature": {
+          "title": "Reif 18+",
+          "body": "Au Beiträge, wo als reif markiert sind, aazeige. Nur wähle, wenn du 18 oder älter bisch."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

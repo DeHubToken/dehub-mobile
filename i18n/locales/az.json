@@ -6739,7 +6739,41 @@
         "body": "İpucları, nişanlar və Super Güclərin burada etdiklərinizi necə qazandığınız bir şeyə çevirdiyini öyrənin."
       }
     },
-    "swipeToStart": "Başlamaq üçün sürüşdürün"
+    "swipeToStart": "Başlamaq üçün sürüşdürün",
+    "setup": {
+      "continue": "Davam et",
+      "skip": "Atlamaq",
+      "back": "Geriyə",
+      "stepOf": "Addım {{current}} {{total}}",
+      "language": {
+        "title": "Dilinizi seçin",
+        "subtitle": "Telefonunuzun istifadə etdiyi nömrəni seçdik. Dəyişmək üçün başqasına basın.",
+        "fromPhone": "Telefonunuzun dili"
+      },
+      "theme": {
+        "title": "Görünüşünüzü seçin",
+        "subtitle": "Bunu sınamaq üçün mövzu üzərinə basın. İstənilən vaxt Parametrlərdə dəyişə bilərsiniz."
+      },
+      "audience": {
+        "title": "DeHub-dan kimlər istifadə edir?",
+        "subtitle": "Yeminizi uyğun şəkildə quracağıq. Bunu daha sonra Parametrlərdə dəyişə bilərsiniz.",
+        "recommended": "Tövsiyə olunanlar",
+        "setPin": "PİN kod təyin edin",
+        "confirmAdult": "18 və ya daha çox yaşım var",
+        "kids": {
+          "title": "Çocuk",
+          "body": "Yalnız uşaqlar üçün hazırlanmış postlar. Yetişmiş nəsil Uşaqlar Rejimini tərk etmək üçün SANCAQ təyin edir."
+        },
+        "everyone": {
+          "title": "Hər kəs",
+          "body": "Tam tətbiq. Yetkin ismarıclar gizli qalır."
+        },
+        "mature": {
+          "title": "Yetkin 18+",
+          "body": "Həmçinin yetkin olaraq işarələnmiş yazıları da göstərin. Bunu yalnız 18 və ya daha çox yaşınız olduqda seçin."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

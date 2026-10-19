@@ -6688,6 +6688,39 @@
       "easy": "Awɔ, o nɔgɔyara",
       "hard": "Ayi, o gɛlɛyara",
       "thanks": "I ni ce, o bɛ an dɛmɛ."
+    },
+    "setup": {
+      "continue": "Ka to ka taga",
+      "skip": "Kɔgɔji kan",
+      "back": "Ka segi ka na",
+      "language": {
+        "title": "I ka kaan sugandi",
+        "subtitle": "I ka telefɔni ka baara kɛcogo sugandi. O kɔ, a ye dɔ wɛrɛ ta ka yɛlɛma.",
+        "fromPhone": "I ka kaan be fɔ yɔrɔ min na"
+      },
+      "theme": {
+        "title": "I ka filɛli kɛ",
+        "subtitle": "N'a sɔrɔ i be se k'a ɲini k'a lɔn. I be se k'a yɛlɛma tuma o tuma i ka ladɛrɛsiw kɔnɔ."
+      },
+      "audience": {
+        "title": "Jɔn lo be DeHub ta?",
+        "subtitle": "An bena i ka dumuni labɛn walisa i ka se ka dɔ kɛ dɔ ye. I be se k'o yɛlɛma kɔfɛ.",
+        "recommended": "Ne b'i ladi",
+        "setPin": "I ka pin dɔ ta",
+        "confirmAdult": "Ne be ni saan 18 ye wala ka tɛmɛ o kan",
+        "kids": {
+          "title": "Denmisɛnw",
+          "body": "Denmisɛnw dɔrɔn lo ka kan ka sɛbɛri kɛ. Mɔgɔkɔrɔba dɔ be pin dɔ sigi walisa ka denmisɛnw to yen."
+        },
+        "everyone": {
+          "title": "U bɛɛ",
+          "body": "Mɔgɔkɔrɔbaw ka baaraw be to ka dogo."
+        },
+        "mature": {
+          "title": "Mɔgɔkɔrɔbaw 18+",
+          "body": "O kɔ, a ye mɔgɔ dɔw weele ka na a ka soo. N'i be ni saan 18 ye wala ka tɛmɛ o kan, i ka ɲi k'o kɛ."
+        }
+      }
     }
   },
   "conversation": {

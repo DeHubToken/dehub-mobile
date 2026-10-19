@@ -6731,7 +6731,41 @@
         "body": "睇下貼士、徽章同超級力量點樣將你喺呢度做嘅嘢變成你賺錢嘅嘢。"
       }
     },
-    "swipeToStart": "滑動開始"
+    "swipeToStart": "滑動開始",
+    "setup": {
+      "continue": "繼續",
+      "skip": "跳過",
+      "back": "返回",
+      "stepOf": "步驟 {{current}} 嘅 {{total}}",
+      "language": {
+        "title": "揀你嘅語言",
+        "subtitle": "我哋揀咗你部手機用緊嗰部。㩒另一個嚟切換。",
+        "fromPhone": "你部電話嘅語言"
+      },
+      "theme": {
+        "title": "揀你個樣",
+        "subtitle": "㩒一個主題嚟試下。你可以隨時喺「設定」入面改佢。"
+      },
+      "audience": {
+        "title": "邊個用緊 DeHub ？",
+        "subtitle": "我哋會設定你嘅資訊提供嚟配合。你遲啲可以喺「設定」入面改呢個設定。",
+        "recommended": "建議",
+        "setPin": "設定個 PIN 碼",
+        "confirmAdult": "我18歲或以上",
+        "kids": {
+          "title": "幾個細路仔",
+          "body": "只係為小朋友而設嘅帖子。大人設定咗個 PIN 嚟離開兒童模式。"
+        },
+        "everyone": {
+          "title": "所有人",
+          "body": "完整嘅應用程式。成熟嘅帖子會保持隱藏。"
+        },
+        "mature": {
+          "title": "成熟嘅18歲以上",
+          "body": "同埋顯示標記為成熟嘅帖子。只有你18歲或以上先可以揀呢個。"
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

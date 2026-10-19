@@ -6753,7 +6753,41 @@
         "body": "Yachay imaynatas consejos, insignias chaymanta SuperPowers kaypi ruwasqaykita imamanta ganasqaykiman tikranku."
       }
     },
-    "swipeToStart": "Puriyta qallariyta munaykuy"
+    "swipeToStart": "Puriyta qallariyta munaykuy",
+    "setup": {
+      "continue": "Qatiy",
+      "skip": "Paway",
+      "back": "Wasa",
+      "stepOf": "Paso {{current}} nisqamanta {{total}} nisqamanta.",
+      "language": {
+        "title": "Simiykita akllay",
+        "subtitle": "Telefonoykipa servichikusqantam akllarqaniku. Hukninta ñit’iy cambianaykipaq.",
+        "fromPhone": "Telefonoykipa rimaynin"
+      },
+      "theme": {
+        "title": "Rikchaykita akllay",
+        "subtitle": "Huk temata ñit’iy chayta pruebanaykipaq. Chayta mayk'aqllapas tikrayta atikunki Ajustes kaqpi."
+      },
+      "audience": {
+        "title": "¿Pitaq DeHub nisqawan llamk'achkan?",
+        "subtitle": "Mikhunaykita churasaqku tupananpaq. Kayta qhipaman tikrayta atikunki Ajustes kaqpi.",
+        "recommended": "Kunasqa",
+        "setPin": "PIN nisqa churay",
+        "confirmAdult": "Ñuqaqa 18 watayuqmanta aswan watayuqñam kani",
+        "kids": {
+          "title": "Warmakuna",
+          "body": "Wawakunapaq ruwasqa postkunalla. Huk wiñasqa runaqa huk PIN nisqatam churan Modo Niños nisqamanta lluqsinanpaq."
+        },
+        "everyone": {
+          "title": "pillapis",
+          "body": "Chay hunt’asqa app. Puqusqa postekunaqa pakasqallam qipanku."
+        },
+        "mature": {
+          "title": "Puqusqa 18+",
+          "body": "Hinallataq rikuchiy postes nisqakunata marcasqa puqusqa hina. Kayta akllay 18 watayuq utaq aswan watayuq kaspalla."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

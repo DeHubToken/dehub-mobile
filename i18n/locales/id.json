@@ -6818,7 +6818,41 @@
         "body": "Cari tahu bagaimana tips, lencana, dan SuperPower mengubah apa yang Anda lakukan di sini menjadi sesuatu yang Anda peroleh."
       }
     },
-    "swipeToStart": "Geser untuk memulai"
+    "swipeToStart": "Geser untuk memulai",
+    "setup": {
+      "continue": "Lanjutkan",
+      "skip": "Lewati",
+      "back": "Kembali",
+      "stepOf": "Langkah {{current}} dari {{total}}",
+      "language": {
+        "title": "Pilih bahasa Anda",
+        "subtitle": "Kami memilih yang digunakan ponsel Anda. Ketuk yang lain untuk beralih.",
+        "fromPhone": "Bahasa ponsel Anda"
+      },
+      "theme": {
+        "title": "Pilih tampilan Anda",
+        "subtitle": "Ketuk tema untuk mencobanya. Anda dapat mengubahnya kapan saja di Pengaturan."
+      },
+      "audience": {
+        "title": "Siapa yang menggunakan DeHub?",
+        "subtitle": "Kami akan menyiapkan umpan Anda untuk dicocokkan. Anda dapat mengubahnya nanti di Pengaturan.",
+        "recommended": "Direkomendasikan",
+        "setPin": "Atur PIN",
+        "confirmAdult": "Saya berusia 18 tahun ke atas",
+        "kids": {
+          "title": "Anak-anak",
+          "body": "Hanya postingan yang dibuat untuk anak - anak. Seorang dewasa menetapkan PIN untuk keluar dari Mode Anak - Anak."
+        },
+        "everyone": {
+          "title": "Semuanya",
+          "body": "Aplikasi lengkap. Postingan dewasa tetap tersembunyi."
+        },
+        "mature": {
+          "title": "Dewasa 18+",
+          "body": "Tampilkan juga postingan yang ditandai sebagai dewasa. Pilih ini hanya jika Anda berusia 18 tahun atau lebih."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

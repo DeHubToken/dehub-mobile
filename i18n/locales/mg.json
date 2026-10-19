@@ -6744,7 +6744,41 @@
         "body": "Fantaro ny fomba toro-hevitra, karatra ary SuperPowers mitodika ny zavatra ataonao eto ho zavatra azonao avy."
       }
     },
-    "swipeToStart": "Sintomy mba hanombohana"
+    "swipeToStart": "Sintomy mba hanombohana",
+    "setup": {
+      "continue": "Sehon'ny mpiaty",
+      "skip": "Dingano",
+      "back": "_Mihemotra",
+      "stepOf": "Dingana {{current}} {{total}}",
+      "language": {
+        "title": "Mametraha ho Default teny",
+        "subtitle": "Miantso ny antso finday mandritra ity fotoana ity izahay. Tsindrio ny iray hafa hifindra.",
+        "fromPhone": "Ny tenimiafinao"
+      },
+      "theme": {
+        "title": "Misafidiana ny fijerinao",
+        "subtitle": "Makà foto-kevitra iray hanandramana izany. Azonao atao ny manova azy ireo amin'ny fotoana rehetra."
+      },
+      "audience": {
+        "title": "Iza no mampiasa DeHub?",
+        "subtitle": "Izahay no hanome anareo ny soso-kevitra araka ny requirments manokana. Azonao atao ny manova izany rehefa avy eo.",
+        "recommended": "Soso-Kevitra",
+        "setPin": "Mametraha PIN",
+        "confirmAdult": "Efa mihoatra ny 18 taona ve ianao?",
+        "kids": {
+          "title": "Ankizy",
+          "body": "Fa lahatsoratra iray monja amin'ny ankizy. Ny olon-dehibe iray dia mametraka PIN mba handao ny ankizy Mode."
+        },
+        "everyone": {
+          "title": "Ny rehetra!",
+          "body": "Ny fampiharana feno. Lahatsoratra matotra miafina."
+        },
+        "mature": {
+          "title": "Avy scott 18+",
+          "body": "Asehoy ihany koa ny lahatsoratra voamarika hoe matotra. Tokony ho fantatrareo koa anefa fa mbola tsy ampy taona ianao."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

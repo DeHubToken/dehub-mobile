@@ -6752,7 +6752,41 @@
         "body": "Thola indlela amacebiso, amabheji ne-SuperPower okuguqula ngayo lokho okwenzayo lapha kube yinto oyitholayo."
       }
     },
-    "swipeToStart": "Swayipha ukuze uqale"
+    "swipeToStart": "Swayipha ukuze uqale",
+    "setup": {
+      "continue": "Qhubeka",
+      "skip": "Weqe",
+      "back": "Emuva",
+      "stepOf": "Isinyathelo {{current}} se {{total}}",
+      "language": {
+        "title": "Khetha ulimi lwakho",
+        "subtitle": "Sikhethe leyo esetshenziswa ucingo lwakho. Thepha enye ukuze ushintshe.",
+        "fromPhone": "Ulimi locingo lwakho"
+      },
+      "theme": {
+        "title": "Khetha ukubukeka kwakho",
+        "subtitle": "Thepha itimu ukuze uyizame. Ungayishintsha noma nini kokuthi Amasethingi."
+      },
+      "audience": {
+        "title": "Ubani osebenzisa i-DeHub?",
+        "subtitle": "Sizosetha i-feed yakho ukuze ifane. Ungakushintsha lokhu kamuva kokuthi Amasethingi.",
+        "recommended": "Kuyatuswa",
+        "setPin": "Setha IPHINI",
+        "confirmAdult": "Ngineminyaka engu-18 noma ngaphezulu",
+        "kids": {
+          "title": "Izingane",
+          "body": "Amaphosti enzelwe izingane kuphela. Umuntu omdala ubeka IPHINI lokushiya Imodi Yezingane."
+        },
+        "everyone": {
+          "title": "Wonke umuntu",
+          "body": "I-app ephelele. Amaphosti avuthiwe ahlala efihlekile."
+        },
+        "mature": {
+          "title": "Iminyaka engu-18+ evuthiwe",
+          "body": "Bonisa namaphosti abhalwe ukuthi avuthiwe. Khetha lokhu kuphela uma uneminyaka engu-18 noma ngaphezulu."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {

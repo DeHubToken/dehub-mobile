@@ -6827,7 +6827,41 @@
         "body": "Scopri come suggerimenti, badge e Superpoteri trasformano ciò che fai qui in qualcosa da cui guadagni."
       }
     },
-    "swipeToStart": "Scorri per iniziare"
+    "swipeToStart": "Scorri per iniziare",
+    "setup": {
+      "continue": "Continua",
+      "skip": "Salta",
+      "back": "Indietro",
+      "stepOf": "Passaggio {{current}} di {{total}}",
+      "language": {
+        "title": "Scegli la lingua",
+        "subtitle": "Abbiamo scelto quello utilizzato dal tuo telefono. Toccane un altro per cambiare.",
+        "fromPhone": "La lingua del tuo telefono"
+      },
+      "theme": {
+        "title": "Scegli il tuo look",
+        "subtitle": "Tocca un tema per provarlo. Puoi modificarlo in qualsiasi momento nelle Impostazioni."
+      },
+      "audience": {
+        "title": "Chi sta usando DeHub?",
+        "subtitle": "Configureremo il tuo feed in modo che corrisponda. Puoi modificarlo in seguito in Impostazioni.",
+        "recommended": "Consigliato",
+        "setPin": "Imposta un PIN",
+        "confirmAdult": "Ho almeno 18 anni",
+        "kids": {
+          "title": "Bambini",
+          "body": "Solo post pensati per i bambini. Un adulto imposta uno SPILLO per uscire dalla modalità Bambini."
+        },
+        "everyone": {
+          "title": "Tutti",
+          "body": "L'app completa. I post per adulti rimangono nascosti."
+        },
+        "mature": {
+          "title": "Matura 18+",
+          "body": "Mostra anche i post contrassegnati come maturi. Scegli questa opzione solo se hai almeno 18 anni."
+        }
+      }
+    }
   },
   "conversation": {
     "commonGround": {
