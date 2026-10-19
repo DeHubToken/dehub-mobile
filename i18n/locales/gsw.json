@@ -5109,7 +5109,10 @@
     "deviceBoundKey": "Dises Wallet wird mit <em>Biometrie, wo uf dim spezifische Gerät gspeichret isch</em> freigschaltet – also uf dim Handy oder Browser, wo du's druf igrichtet hesch. Dises Handy hät de Schlüssel nid, und dehub.io au nid: De Schlüssel verlaht s'Gerät, wo ihn erstellt hät, nie.",
     "unlockPasskeyOnly": "Dises Wallet isch mit sim Passkey im Web gichert worde und hät no kei Cloud-Passwort-Backup. Wenn du uf dehub.io es Wallet-Passwort igrichtet hesch, gibs do ii – susch bruchsch \"External Wallet importiere\" dunter.",
     "unlockWithPasswordExplainer": "Dises Konto hät scho es Wallet, wo mit sim Passwort gichert isch. Gibs ii, zum din Wallet uf dim Gerät wiederherstelle.",
-    "loseFundsBody": "Dini Saldo bliebed uf de Blockchain bi {{address}} – nüt wird usgä oder gno – aber zum si z'bewege bruucht's die Recovery-Phrase oder de Private Key vo dem Wallet. Ohni das chan niemer druf zuegriffe: weder du, weder mir. Solang du de Key nöd vom Gerät, wo-n-en gmacht het, abchunsch, gsehn was döt drin isch als verlore."
+    "loseFundsBody": "Dini Saldo bliebed uf de Blockchain bi {{address}} – nüt wird usgä oder gno – aber zum si z'bewege bruucht's die Recovery-Phrase oder de Private Key vo dem Wallet. Ohni das chan niemer druf zuegriffe: weder du, weder mir. Solang du de Key nöd vom Gerät, wo-n-en gmacht het, abchunsch, gsehn was döt drin isch als verlore.",
+    "deviceTab": "Das Gerät",
+    "deviceExplainer": "Nüt zum iigäh oder merke — de Schlüsse blibt uf däm Gerät. Mir biete dir e 12-Wort-Backup zum ufschriebe; das isch dr einzigi Wäg zrugg i vo enem andere Gerät, vo dr Websiite, oder nach em Wiederinstalliere. Nimm Password statt und s'Passwort selber macht das.",
+    "secureOnDevice": "Behalte de Schlüssel uf dem Gerät"
   },
   "transcript": {
     "title": "Transkript",

@@ -5071,7 +5071,10 @@
     "biometricKeepsFailing": "{{error}} Yen iki terus gagal, gunakake sandhi dompetmu ing ngisor iki utawa \"Impor dompet eksternal\".",
     "deviceBoundKey": "Dompet iki mbukak nganggo <em>biometrik sing disimpen ing siji piranti tartamtu</em> — telpon utawa browser sing digunakake kanggo nyiyapake. Telpon iki ora duwe kunci kasebut, lan dehub.io uga ora: kunci kasebut ora bakal metu saka piranti sing nggawe.",
     "unlockPasskeyOnly": "Dompet iki diamanke nganggo passkey ing web lan durung duwe cadangan sandhi ing cloud. Yen sampeyan nyiyapake sandhi dompet ing dehub.io, lebokake ing kene — yen ora, gunakake Impor dompet eksternal ing ngisor iki.",
-    "unlockWithPasswordExplainer": "Akun iki wis duwe dompet, dilindhungi nganggo sandhi. Lebokake kanggo mulihake dompetmu ing piranti iki."
+    "unlockWithPasswordExplainer": "Akun iki wis duwe dompet, dilindhungi nganggo sandhi. Lebokake kanggo mulihake dompetmu ing piranti iki.",
+    "deviceTab": "Piranti iki",
+    "deviceExplainer": "Ora ana sing kudu diketik utawa dielingi — kunci tetep ana ing piranti iki. Kita bakal menehi sampeyan cadangan 12 tembung kanggo ditulis; iku siji-sijine cara kanggo mlebu maneh saka piranti liya, saka situs web, utawa sawise nginstal maneh. Pilih Password lan tembung sandhi kasebut dhewe sing nindakake tugas kasebut.",
+    "secureOnDevice": "Tansah simpen kunci ing piranti iki"
   },
   "transcript": {
     "title": "Transkrip",

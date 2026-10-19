@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Jei tai ir toliau nepavyks, naudokite savo piniginės slaptažodį toliau arba „Importuoti raktus“.",
     "deviceBoundKey": "Ši piniginė atrakinama su <em>biometriniais duomenimis, saugomais konkrečiame įrenginyje</em> – telefone ar naršyklėje, kurioje ji buvo nustatyta. Šiame telefone nėra to rakto, kaip ir dehub.io: raktas niekada nepalieka įrenginio, kuriame jis buvo sukurtas.",
     "unlockPasskeyOnly": "Ši piniginė buvo apsaugota slaptažodžiu žiniatinklyje ir dar neturi slaptažodžio atsarginės kopijos debesyje. Jei nustatėte piniginės slaptažodį dehub.io, įveskite jį čia – kitu atveju naudokite „Importuoti raktus“ toliau.",
-    "unlockWithPasswordExplainer": "Ši paskyra jau turi piniginę, apsaugotą slaptažodžiu. Įveskite jį, kad atkurtumėte savo piniginę šiame įrenginyje."
+    "unlockWithPasswordExplainer": "Ši paskyra jau turi piniginę, apsaugotą slaptažodžiu. Įveskite jį, kad atkurtumėte savo piniginę šiame įrenginyje.",
+    "deviceTab": "Šis įrenginys",
+    "deviceExplainer": "Nėra ko rašyti ar prisiminti — raktas lieka šiame įrenginyje. Siūlome 12 žodžių atsarginę kopiją, kurią galėsite užsirašyti; tai yra vienintelis būdas grįžti iš kito įrenginio, iš svetainės arba iš naujo įdiegus. Vietoj to pasirinkite Slaptažodį ir pats slaptažodis atliks šį darbą.",
+    "secureOnDevice": "Laikykite raktą šiame įrenginyje"
   },
   "transcript": {
     "title": "Transkripcija",

@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Kui see jätkuvalt ebaõnnestub, kasutage allpool oma rahakoti parooli või valikut \"Import external wallet\".",
     "deviceBoundKey": "See rahakott avaneb <em>biomeetriliste andmetega, mis on salvestatud ühel kindlal seadmel</em> – telefonis või brauseris, kus see seadistati. Sellel telefonil pole seda võtit ja dehub.io-l samuti mitte: võti ei lahku kunagi seadmest, mis selle lõi.",
     "unlockPasskeyOnly": "See rahakott turvati veebis paroolivõtmega ja sellel pole veel pilves parooli varukoopiat. Kui seadistate dehub.io-s rahakoti parooli, sisestage see siia – vastasel juhul kasutage allpool valikut \"Import external wallet\".",
-    "unlockWithPasswordExplainer": "Sellel kontol on juba parooliga kaitstud rahakott. Sisestage see, et oma rahakott sellel seadmel taastada."
+    "unlockWithPasswordExplainer": "Sellel kontol on juba parooliga kaitstud rahakott. Sisestage see, et oma rahakott sellel seadmel taastada.",
+    "deviceTab": "See seade",
+    "deviceExplainer": "Pole midagi sisestada ega meeles pidada — võti jääb sellesse seadmesse. Pakume sulle üleskirjutamiseks 12-sõnalist varukoopiat; see on ainus tagasitee teisest seadmest, veebisaidilt või pärast uuesti installimist. Vali selle asemel parool ja parool ise teeb seda tööd.",
+    "secureOnDevice": "Hoidke võtit selles seadmes"
   },
   "transcript": {
     "title": "Transkriptsioon",

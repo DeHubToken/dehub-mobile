@@ -5127,7 +5127,10 @@
     "biometricKeepsFailing": "{{error}} Kung patuloy itong nabibigo, gamitin ang iyong wallet password sa ibaba o \"Import external wallet\".",
     "deviceBoundKey": "Ang wallet na ito ay nabubuksan gamit ang <em>biometrics na nakaimbak sa isang partikular na device</em> — ang telepono o browser kung saan ito unang ginawa. Ang teleponong ito ay walang susi, at gayundin ang dehub.io: ang susi ay hindi umaalis sa device kung saan ito ginawa.",
     "unlockPasskeyOnly": "Ang wallet na ito ay sinigurado gamit ang passkey sa web at wala pang cloud backup ng password. Kung nagtakda ka ng wallet password sa dehub.io, ilagay ito dito — kung hindi, gamitin ang Import external wallet sa ibaba.",
-    "unlockWithPasswordExplainer": "Ang account na ito ay mayroon nang wallet, na protektado ng password. Ilagay ito upang ma-recover ang iyong wallet sa device na ito."
+    "unlockWithPasswordExplainer": "Ang account na ito ay mayroon nang wallet, na protektado ng password. Ilagay ito upang ma-recover ang iyong wallet sa device na ito.",
+    "deviceTab": "Ang device na ito",
+    "deviceExplainer": "Walang dapat i - type o tandaan — ang susi ay nananatili sa device na ito. Mag - aalok kami sa iyo ng 12 - word backup upang isulat; ito ay ang tanging paraan pabalik sa mula sa isa pang aparato, mula sa website, o pagkatapos ng muling pag - install. Pumili ng Password sa halip at ang password mismo ang gumagawa ng trabahong iyon.",
+    "secureOnDevice": "Panatilihin ang susi sa device na ito"
   },
   "transcript": {
     "title": "Transkripsyon",

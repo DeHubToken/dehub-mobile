@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Bu uğursuz olarsa, aşağıdakı cüzdan şifrənizdən və ya \"Xarici cüzdanı idxal et\" düyməsindən istifadə edin.",
     "deviceBoundKey": "Bu cüzdan <em>yalnız müəyyən bir cihazda saxlanılan biometrik məlumatlarla</em> açılır — yəni yaradıldığı telefon və ya brauzerlə. Bu telefonda həmin açar yoxdur, dehub.io saytında da yoxdur: açar heç vaxt onu yaradan cihazı tərk etmir.",
     "unlockPasskeyOnly": "Bu cüzdan veb-də parolsuz açarla təmin edilib və hələlik buludda parol ehtiyat nüsxəsi yoxdur. Əgər dehub.io saytında cüzdan şifrəsi təyin etmisinizsə, onu burada daxil edin — əks halda aşağıdakı \"Xarici cüzdanı idxal et\" düyməsindən istifadə edin.",
-    "unlockWithPasswordExplainer": "Bu hesabda artıq şifrə ilə qorunan bir cüzdan var. Bu cihazda cüzdanınızı bərpa etmək üçün onu daxil edin."
+    "unlockWithPasswordExplainer": "Bu hesabda artıq şifrə ilə qorunan bir cüzdan var. Bu cihazda cüzdanınızı bərpa etmək üçün onu daxil edin.",
+    "deviceTab": "Bu cihaz",
+    "deviceExplainer": "Bu cihazda əsas qonaqlamalar — yazmaq və ya yadda saxlamaq üçün heç nə yoxdur. Yazmaq üçün sizə 12 sözdən ibarət ehtiyat nüsxə təklif edəcəyik; bu, başqa bir cihazdan, veb-saytdan və ya yenidən quraşdırıldıqdan sonra yeganə çıxış yoludur. Əvəzinə Parol seçin və parol özü bu işi görür.",
+    "secureOnDevice": "Açarı bu cihazda saxlayın"
   },
   "transcript": {
     "title": "Transkript",

@@ -5176,7 +5176,10 @@
     "biometricKeepsFailing": "{{error}} Wenn dies weiterhin fehlschlägt, verwenden Sie unten Ihr Wallet-Passwort oder \"Schlüssel importieren\".",
     "deviceBoundKey": "Dieses Wallet wird mit <em>Biometrie, die auf einem bestimmten Gerät gespeichert ist</em> – dem Telefon oder Browser, auf dem es eingerichtet wurde – entsperrt. Dieses Telefon hat diesen Schlüssel nicht, und dehub.io auch nicht: Der Schlüssel verlässt niemals das Gerät, das ihn erstellt hat.",
     "unlockPasskeyOnly": "Dieses Wallet wurde im Web mit einem Passkey gesichert und hat noch kein Passwort-Backup in der Cloud. Wenn Sie ein Wallet-Passwort auf dehub.io eingerichtet haben, geben Sie es hier ein – andernfalls verwenden Sie unten \"Schlüssel importieren\".",
-    "unlockWithPasswordExplainer": "Dieses Konto hat bereits ein Wallet, das durch ein Passwort geschützt ist. Geben Sie es ein, um Ihr Wallet auf diesem Gerät wiederherzustellen."
+    "unlockWithPasswordExplainer": "Dieses Konto hat bereits ein Wallet, das durch ein Passwort geschützt ist. Geben Sie es ein, um Ihr Wallet auf diesem Gerät wiederherzustellen.",
+    "deviceTab": "Dieses Gerät",
+    "deviceExplainer": "Nichts zu tippen oder zu merken — der Schlüssel bleibt auf diesem Gerät. Wir bieten Ihnen ein 12-Wort-Backup zum Aufschreiben; es ist der einzige Weg zurück von einem anderen Gerät, von der Website oder nach der Neuinstallation. Wählen Sie stattdessen Passwort und das Passwort selbst erledigt diese Aufgabe.",
+    "secureOnDevice": "Bewahren Sie den Schlüssel auf diesem Gerät auf"
   },
   "walletBackup": {
     "title": "Wallet sichern",

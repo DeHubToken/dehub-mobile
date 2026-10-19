@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Jeśli to nadal nie działa, użyj poniżej hasła do swojego portfela lub opcji \"Importuj klucze\".",
     "deviceBoundKey": "Ten portfel odblokowuje się za pomocą <em>danych biometrycznych zapisanych na konkretnym urządzeniu</em> — telefonie lub przeglądarce, na której został skonfigurowany. Ten telefon nie posiada tego klucza, tak samo jak dehub.io: klucz nigdy nie opuszcza urządzenia, które go utworzyło.",
     "unlockPasskeyOnly": "Ten portfel został zabezpieczony kluczem dostępu w sieci i nie posiada jeszcze kopii zapasowej hasła w chmurze. Jeśli ustawiłeś hasło do portfela na dehub.io, wprowadź je tutaj — w przeciwnym razie użyj poniższej opcji \"Importuj klucze\".",
-    "unlockWithPasswordExplainer": "To konto ma już portfel, zabezpieczony hasłem. Wprowadź je, aby odzyskać swój portfel na tym urządzeniu."
+    "unlockWithPasswordExplainer": "To konto ma już portfel, zabezpieczony hasłem. Wprowadź je, aby odzyskać swój portfel na tym urządzeniu.",
+    "deviceTab": "To urządzenie",
+    "deviceExplainer": "Nie ma nic do wpisania lub zapamiętania — klucz pozostaje na tym urządzeniu. Oferujemy 12-wyrazową kopię zapasową do zapisania; jest to jedyny sposób, aby wrócić z innego urządzenia, ze strony internetowej lub po ponownej instalacji. Zamiast tego wybierz Hasło, a samo hasło wykona tę pracę.",
+    "secureOnDevice": "Trzymaj klucz na tym urządzeniu"
   },
   "walletBackup": {
     "title": "Kopia zapasowa portfela",

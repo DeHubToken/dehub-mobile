@@ -5133,7 +5133,10 @@
     "biometricKeepsFailing": "{{error}} Se isso continuar falhando, use a senha da sua carteira abaixo ou \"Importar chaves\".",
     "deviceBoundKey": "Esta carteira é desbloqueada com <em>biometria armazenada em um dispositivo específico</em> — o telefone ou navegador em que foi configurada. Este telefone não possui essa chave, e nem o dehub.io: a chave nunca sai do dispositivo que a criou.",
     "unlockPasskeyOnly": "Esta carteira foi protegida com uma passkey na web e ainda não possui backup de senha na nuvem. Se você definiu uma senha de carteira no dehub.io, insira-a aqui — caso contrário, use Importar chaves abaixo.",
-    "unlockWithPasswordExplainer": "Esta conta já possui uma carteira, protegida por senha. Insira-a para recuperar sua carteira neste dispositivo."
+    "unlockWithPasswordExplainer": "Esta conta já possui uma carteira, protegida por senha. Insira-a para recuperar sua carteira neste dispositivo.",
+    "deviceTab": "Este dispositivo",
+    "deviceExplainer": "Nada para digitar ou lembrar — a chave permanece neste dispositivo. Ofereceremos um backup de 12 palavras para anotar; é a única maneira de voltar a partir de outro dispositivo, do site ou após a reinstalação. Em vez disso, escolha a palavra-passe e a própria palavra-passe faz esse trabalho.",
+    "secureOnDevice": "Mantenha a chave neste dispositivo"
   },
   "walletBackup": {
     "title": "Fazer backup da carteira",

@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Ja tas turpinās neizdoties, izmantojiet savu maka paroli zemāk vai \"Importēt atslēgas\".",
     "deviceBoundKey": "Šis maks tiek atbloķēts ar <em>biometriskiem datiem, kas glabājas vienā konkrētā ierīcē</em> — tālrunī vai pārlūkprogrammā, kurā tas tika iestatīts. Šim tālrunim nav šīs atslēgas, un arī dehub.io nav: atslēga nekad neatstāj ierīci, kas to izveidoja.",
     "unlockPasskeyOnly": "Šis maks tika nodrošināts ar piekļuves atslēgu tīmeklī, un tam vēl nav paroles rezerves kopijas mākonī. Ja iestatāt maka paroli vietnē dehub.io, ievadiet to šeit — pretējā gadījumā izmantojiet \"Importēt atslēgas\" zemāk.",
-    "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē."
+    "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē.",
+    "deviceTab": "Šī ierīce",
+    "deviceExplainer": "Nav ko rakstīt vai atcerēties — atslēga paliek šajā ierīcē. Mēs jums piedāvāsim 12 vārdu dublējumu, ko pierakstīt; tas ir vienīgais veids, kā atgriezties no citas ierīces, no vietnes vai pēc atkārtotas instalēšanas. Tā vietā izvēlieties Password (Parole), un parole pati veic šo darbu.",
+    "secureOnDevice": "Turiet atslēgu šajā ierīcē"
   },
   "transcript": {
     "title": "Transkripcija",

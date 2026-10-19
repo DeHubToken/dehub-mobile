@@ -5092,7 +5092,10 @@
     "biometricKeepsFailing": "{{error}} Nếu việc này tiếp tục thất bại, hãy sử dụng mật khẩu ví của bạn bên dưới hoặc \"Nhập khóa\".",
     "deviceBoundKey": "Ví này được mở khóa bằng <em>dữ liệu sinh trắc học trên một thiết bị cụ thể</em> — điện thoại hoặc trình duyệt mà bạn đã thiết lập nó. Điện thoại này không có khóa đó, và dehub.io cũng vậy: khóa không bao giờ rời khỏi thiết bị đã tạo ra nó.",
     "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập khóa bên dưới.",
-    "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này."
+    "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này.",
+    "deviceTab": "Thiết bị này",
+    "deviceExplainer": "Không có gì để nhập hoặc ghi nhớ — các chỗ ở quan trọng trên thiết bị này. Chúng tôi sẽ cung cấp cho bạn bản sao lưu 12 từ để ghi lại; đó là cách duy nhất để quay lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Thay vào đó, hãy chọn Mật khẩu và chính mật khẩu sẽ thực hiện công việc đó.",
+    "secureOnDevice": "Giữ chìa khóa trên thiết bị này"
   },
   "walletBackup": {
     "title": "Sao lưu ví",
