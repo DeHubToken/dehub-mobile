@@ -5084,7 +5084,10 @@
     "biometricKeepsFailing": "{{error}} Hvis dette bliver ved med at fejle, skal du bruge din wallet-adgangskode nedenfor eller \"Importer ekstern wallet\".",
     "deviceBoundKey": "Denne wallet låses op med <em>biometri gemt på én specifik enhed</em> — den telefon eller browser, den blev sat op på. Denne telefon har ikke den nøgle, og det har dehub.io heller ikke: nøglen forlader aldrig den enhed, der oprettede den.",
     "unlockPasskeyOnly": "Denne wallet blev sikret med en adgangsnøgle på nettet og har endnu ingen adgangskode-backup i skyen. Hvis du indstiller en wallet-adgangskode på dehub.io, skal du indtaste den her — ellers brug \"Importer ekstern wallet\" nedenfor.",
-    "unlockWithPasswordExplainer": "Denne konto har allerede en wallet, beskyttet af en adgangskode. Indtast den for at gendanne din wallet på denne enhed."
+    "unlockWithPasswordExplainer": "Denne konto har allerede en wallet, beskyttet af en adgangskode. Indtast den for at gendanne din wallet på denne enhed.",
+    "deviceTab": "Denne enhed",
+    "deviceExplainer": "Intet at skrive eller huske — nøglen forbliver på denne enhed. Vi tilbyder dig en sikkerhedskopi på 12 ord, som du kan skrive ned. Det er den eneste vej tilbage fra en anden enhed, fra hjemmesiden eller efter geninstallation. Vælg Adgangskode i stedet, og adgangskoden selv gør det job.",
+    "secureOnDevice": "Behold nøglen på denne enhed"
   },
   "transcript": {
     "title": "Udskrift",

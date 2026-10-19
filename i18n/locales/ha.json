@@ -5070,7 +5070,10 @@
     "biometricKeepsFailing": "{{error}} Idan wannan ya ci gaba da kasa, yi amfani da kalmar sirri ta wallet ɗinka a ƙasa ko \"Import external wallet\".",
     "deviceBoundKey": "Wannan wallet ɗin yana buɗewa tare da <em>biometrics da ke kan wata na'ura ta musamman</em> — wayar ko burauzar da aka saita ta. Wannan wayar ba ta da wannan maɓalli, kuma dehub.io ba shi da shi: maɓallin ba ya barin na'urar da ta yi shi.",
     "unlockPasskeyOnly": "An amintar da wannan wallet ɗin tare da kalmar sirri a yanar gizo kuma ba shi da madogara ta kalmar sirri a girgije tukuna. Idan ka saita kalmar sirri ta wallet a dehub.io, shigar da ita anan — in ba haka ba yi amfani da Import external wallet a ƙasa.",
-    "unlockWithPasswordExplainer": "Wannan asusun yana da wallet a yanzu, wanda kalmar sirri ke karewa. Shigar da ita don dawo da wallet ɗinka a wannan na'urar."
+    "unlockWithPasswordExplainer": "Wannan asusun yana da wallet a yanzu, wanda kalmar sirri ke karewa. Shigar da ita don dawo da wallet ɗinka a wannan na'urar.",
+    "deviceTab": "Wannan na'urar",
+    "deviceExplainer": "Babu wani abu da za a rubuta ko tuna — maɓallin ya kasance a kan wannan na'urar. Za mu ba ku madadin kalmomi 12 don rubutawa; ita ce kawai hanyar dawowa daga wani na'ura, daga gidan yanar gizon, ko bayan sake shigarwa. Zaɓi Kalmar wucewa maimakon kuma kalmar sirri kanta tana yin wannan aikin.",
+    "secureOnDevice": "Ci gaba da maɓallin a kan wannan na'urar"
   },
   "transcript": {
     "title": "Rubutaccen magana",

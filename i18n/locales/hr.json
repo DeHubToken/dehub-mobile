@@ -5080,7 +5080,10 @@
     "biometricKeepsFailing": "{{error}} Ako ovo nastavi ne uspijevati, upotrijebite lozinku za svoj novčanik ispod ili \"Uvezi ključeve\".",
     "deviceBoundKey": "Ovaj novčanik otključava se pomoću <em>biometrije pohranjene na jednom specifičnom uređaju</em> — telefonu ili pregledniku na kojem je postavljen. Ovaj telefon nema taj ključ, kao ni dehub.io: ključ nikada ne napušta uređaj koji ga je stvorio.",
     "unlockPasskeyOnly": "Ovaj novčanik je osiguran lozinkom na webu i još nema sigurnosnu kopiju lozinke u oblaku. Ako postavite lozinku za novčanik na dehub.io, unesite je ovdje — inače upotrijebite Uvezi ključeve ispod.",
-    "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju."
+    "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju.",
+    "deviceTab": "Ovaj uređaj",
+    "deviceExplainer": "Ništa za upisivanje ili pamćenje — ključ ostaje na ovom uređaju. Ponudit ćemo vam sigurnosnu kopiju od 12 riječi koju možete zapisati; to je jedini način da se vratite s drugog uređaja, s web-mjesta ili nakon ponovne instalacije. Umjesto toga odaberite lozinku, a sama lozinka obavlja taj posao.",
+    "secureOnDevice": "Držite ključ na ovom uređaju"
   },
   "transcript": {
     "title": "Transkript",

@@ -5048,7 +5048,10 @@
     "phraseInvalidHint": "O tɛ laseginni kuma tilennen ye — daɲɛ 12, u jirala cogo min na o bolodacogo la, sɛbɛnni fitinin na bɛɛ.",
     "privateKeyHint": "Konnɛgɛ gundo ye hex sɛbɛnden 64 ye 0x kɔfɛ.",
     "noUsableBackup": "Wari maralan adrɛsi sɛbɛnnen bɛ nin jate ye, nka maracogo si t'a la nin telefɔni bɛ se ka min kɛ — a lakananna ni <em>bolonɔ walima passkey ye web kan</em> (o da wulili bɛ to navigatɛri kɔnɔ, a tɛ na yan), walima donni kɔrɔ dɔ nin telefɔni kan jɔra sani a ka ban.",
-    "addPasswordOnWeb": "N'i ye dehub.io kɛ ka kɔrɔ, a da wuli i ka ɔridinatɛri kan, i don cogo kelen na ni jate kelen ye, ka <em>wari maralan tɛmɛsira dɔ fara a kan</em> — o bɛ maracogo dogolen dɔ mara nuwaji la. O kɔ, segin yan ka a lajɛ kokura."
+    "addPasswordOnWeb": "N'i ye dehub.io kɛ ka kɔrɔ, a da wuli i ka ɔridinatɛri kan, i don cogo kelen na ni jate kelen ye, ka <em>wari maralan tɛmɛsira dɔ fara a kan</em> — o bɛ maracogo dogolen dɔ mara nuwaji la. O kɔ, segin yan ka a lajɛ kokura.",
+    "deviceTab": "O ye fɛɛrɛ ye",
+    "deviceExplainer": "O tɛ se ka sɛbɛri kɛ wala k'a hakili to a la. An b'a fɛ ka kuma 12 sɛbɛ ka bɔ a kɔnɔ. O le ye sira kelen ye ka segi ka bɔ a yɔrɔ wɛrɛ la, ka bɔ a yɔrɔ la, walima ka segi ka bɔ a yɔrɔ la. I ka tɛmɛsira sugandi ani i ka tɛmɛsira yɛrɛ lo b'o baara kɛ.",
+    "secureOnDevice": "I ka mansinw mara o masini kan"
   },
   "transcript": {
     "title": "Sɛbɛnni",

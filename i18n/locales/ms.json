@@ -5339,7 +5339,10 @@
     "biometricKeepsFailing": "{{error}} Jika ini terus gagal, gunakan kata laluan dompet anda di bawah atau \"Import kunci\".",
     "deviceBoundKey": "Dompet ini dibuka dengan <em>biometrik yang disimpan pada satu peranti khusus</em> — telefon atau pelayar tempat ia disediakan. Telefon ini tidak mempunyai kunci tersebut, begitu juga dehub.io: kunci tidak pernah meninggalkan peranti yang menciptanya.",
     "unlockPasskeyOnly": "Dompet ini dilindungi dengan passkey di web dan belum mempunyai sandaran kata laluan di awan. Jika anda menetapkan kata laluan dompet pada dehub.io, masukkan di sini — jika tidak, gunakan Import kunci di bawah.",
-    "unlockWithPasswordExplainer": "Akaun ini sudah mempunyai dompet, dilindungi oleh kata laluan. Masukkannya untuk memulihkan dompet anda pada peranti ini."
+    "unlockWithPasswordExplainer": "Akaun ini sudah mempunyai dompet, dilindungi oleh kata laluan. Masukkannya untuk memulihkan dompet anda pada peranti ini.",
+    "deviceTab": "Peranti ini",
+    "deviceExplainer": "Tiada apa yang perlu ditaip atau diingati — kekunci kekal pada peranti ini. Kami akan menawarkan sandaran 12 perkataan kepada anda untuk ditulis; ia adalah satu-satunya cara untuk masuk semula dari peranti lain, dari laman web, atau selepas pemasangan semula. Pilih Kata Laluan dan kata laluan itu sendiri berfungsi dengan baik.",
+    "secureOnDevice": "Simpan kunci pada peranti ini"
   },
   "transcript": {
     "title": "Transkrip",

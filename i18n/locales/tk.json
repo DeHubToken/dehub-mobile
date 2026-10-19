@@ -5069,7 +5069,10 @@
     "biometricKeepsFailing": "{{error}} Bu dowamly ýagdaýda üstünliksiz bolsa, aşakdaky portmone şifrňizi ýa-da \"Daşarky portmone import et\" düwmesini ulanyň.",
     "deviceBoundKey": "Bu portmone, ol ýerleşdirilen bir aýratyn enjamda saklanýan <em>biometriýa</em> bilen açylýar — ol enjam, ol döredilen telefon ýa-da brauzerdir. Bu telefonda şol açar ýok, dehub.io-da-da ýok: açar ony döreden enjamdan hiç haçan çykmaýar.",
     "unlockPasskeyOnly": "Bu portmone webde passkey bilen goraldy we heniz bulutda şifr ätiýaçlygy ýok. Eger dehub.io-da portmone şifrňizi goýan bolsaňyz, ony şu ýere giriziň — ýogsam aşakdaky \"Daşarky portmone import et\" düwmesini ulanyň.",
-    "unlockWithPasswordExplainer": "Bu hasapda eýýäm şifr bilen goralýan portmone bar. Bu enjamda portmoneňizi dikeltmek üçin ony giriziň."
+    "unlockWithPasswordExplainer": "Bu hasapda eýýäm şifr bilen goralýan portmone bar. Bu enjamda portmoneňizi dikeltmek üçin ony giriziň.",
+    "deviceTab": "Bu gural",
+    "deviceExplainer": "Ýadyňyzdamy ýa-da ýadyňyzdamy — açar bu esbapda galýar. Biz size ýazmak üçin 12 sözüň gaýtargy nusgasyny hödürleýäris; bu başga esbapdan, web-saytdan ýa-da gaýtargylanandan soň gaýtargylanmagyň ýeke-täk ýoly. Gaýtam, paroluny saýlaň we parolyň özi bu işi edýär.",
+    "secureOnDevice": "Bu esbapda açary saklaň"
   },
   "transcript": {
     "title": "Transkript",

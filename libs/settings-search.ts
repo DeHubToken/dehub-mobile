@@ -46,6 +46,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'stream-key', label: 'Stream key', labelKey: 'settings.streamKey.section', keywords: 'obs encoder rtmp stream key ingest server xbox twitch aircast go live broadcast' },
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },
   { tab: 'profile', anchor: 'profiles', label: 'Profiles', labelKey: 'settings.profiles', keywords: 'accounts switch add account multiple' },
+  { tab: 'profile', anchor: 'delete-account', label: 'Delete account', labelKey: 'accountDeletion.title', keywords: 'delete remove close erase account data personal information' },
 
   // Appearance
   { tab: 'appearance', anchor: 'theme', label: 'Theme', labelKey: 'settings.theme', keywords: 'minimal look style dark black square flat cosmic hazy nights swarms lava lamp winter war osaka jungle background animated' },
@@ -107,7 +108,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'multipost', anchor: 'multipost', label: 'Multi-posting', labelKey: 'multiPost.title', keywords: 'cross post crosspost share x twitter youtube facebook instagram tiktok linkedin threads pinterest reddit schedule credits' },
 
   // Support
-  { tab: 'support', anchor: 'support', label: 'Support', labelKey: 'settings.support', keywords: 'report bug help terms privacy policy delete account rate review' },
+  { tab: 'support', anchor: 'support', label: 'Support', labelKey: 'settings.support', keywords: 'report bug help terms privacy policy rate review' },
   { tab: 'support', anchor: 'about', label: 'About', labelKey: 'settings.about', keywords: 'version build' },
 ];
 

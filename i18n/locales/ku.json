@@ -5057,7 +5057,10 @@
     "keepAccountBody": "Navê bikarhêner, profîl, şandî, şîrove, şopîner, nîşan û dîrok hemû derbasî berîka nû dibin. Ew heman hesab e — kes ne hewce ye ku te dîsa bibîne.",
     "keepSignInBody": "Heman hejmara telefonê, e-name an hesabê Google, heman yek pêlêkirin. Ya ku tê guhertin berîka li pişt têketinê ye, ne têketin bi xwe.",
     "noUsableBackup": "Vî hesabî navnîşaneke berîkê ya tomarkirî heye, lê paşkeftineke ku ev telefon bikaribe bi kar bîne tune — an ew bi <em>biyometrîk an passkeyek li ser webê</em> hatibû parastin (ew vekirin di gerokê de dimîne û li vir hevdem nabe), an jî tomarbûneke berê ya li ser vê telefonê berî ku biqede hatibû qutkirin.",
-    "addPasswordOnWeb": "Heke te berê dehub.io bi kar anîbe, wê li ser komputera xwe veke, bi heman awayî û bi heman hesabî têkeve, û <em>şîfreyeke berîkê lê zêde bike</em> — ew paşkeftineke şîfrekirî li ewrê tomar dike. Paşê vegere vir û dîsa biceribîne."
+    "addPasswordOnWeb": "Heke te berê dehub.io bi kar anîbe, wê li ser komputera xwe veke, bi heman awayî û bi heman hesabî têkeve, û <em>şîfreyeke berîkê lê zêde bike</em> — ew paşkeftineke şîfrekirî li ewrê tomar dike. Paşê vegere vir û dîsa biceribîne.",
+    "deviceTab": "Ev cîhaz",
+    "deviceExplainer": "Tiştek tune ku were nivîsandin an bîranîn - mifte li ser vê cîhazê dimîne. Em ê ji we re kopiyek 12-peyvî pêşkêş bikin ku hûn binivîsin; ew tenê rêya vegerê ye ji cîhazek din, ji malperê, an piştî ji nû ve sazkirinê. Li şûna wê Şîfre hilbijêrin û şîfre bi xwe vî karî dike.",
+    "secureOnDevice": "Mifteyê li ser vê cîhazê bihêle"
   },
   "transcript": {
     "title": "Nivîsandin",

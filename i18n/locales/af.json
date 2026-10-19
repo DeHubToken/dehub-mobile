@@ -5113,7 +5113,10 @@
     "biometricKeepsFailing": "{{error}} As dit steeds misluk, gebruik jou borsie-wagwoord hieronder of \"Voer eksterne borsie in\".",
     "deviceBoundKey": "Hierdie borsie ontsluit met <em>biometrie wat op een spesifieke toestel gehou word</em> — die foon of blaaier waarop dit opgestel is. Hierdie foon het nie daardie sleutel nie, en dehub.io ook nie: die sleutel verlaat nooit die toestel wat dit geskep het nie.",
     "unlockPasskeyOnly": "Hierdie borsie is met 'n passleutel op die web beveilig en het nog geen wagwoordrugsteun in die wolk nie. As jy 'n borsie-wagwoord op dehub.io opstel, voer dit hier in — anders gebruik Voer eksterne borsie in hieronder.",
-    "unlockWithPasswordExplainer": "Hierdie rekening het reeds 'n borsie, beskerm deur 'n wagwoord. Voer dit in om jou borsie op hierdie toestel te herstel."
+    "unlockWithPasswordExplainer": "Hierdie rekening het reeds 'n borsie, beskerm deur 'n wagwoord. Voer dit in om jou borsie op hierdie toestel te herstel.",
+    "deviceTab": "Hierdie toestel",
+    "deviceExplainer": "Niks om te tik of te onthou nie — die sleutel bly op hierdie toestel. Ons bied u 'n rugsteun van 12 woorde om neer te skryf; dit is die enigste manier om terug te keer vanaf 'n ander toestel, vanaf die webwerf of nadat u dit weer geïnstalleer het. Kies eerder wagwoord en die wagwoord self doen die werk.",
+    "secureOnDevice": "Hou die sleutel op hierdie toestel"
   },
   "transcript": {
     "title": "Transkripsie",
