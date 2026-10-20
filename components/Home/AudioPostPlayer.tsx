@@ -1169,7 +1169,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <Text numberOfLines={1} style={styles.glassTitle}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={styles.glassArtist}>{resolvedArtist}</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
-        <View style={{ height: 74, marginTop: 8, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={74} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(74)}</View>
+        <View style={{ height: 44, marginTop: 8, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={44} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(44)}</View>
         <View style={styles.glassDeck}>
           <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.12)', 'rgba(0,20,24,.28)']} style={StyleSheet.absoluteFill} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
@@ -1240,11 +1240,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 };
 
 const styles = StyleSheet.create({
-  glassWindow: { borderRadius: 28, padding: 16, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', overflow: 'hidden' },
+  glassWindow: { borderRadius: 28, paddingTop: 12, borderWidth: 1, borderColor: 'rgba(225,255,255,.65)', borderTopColor: 'rgba(255,255,255,.95)', overflow: 'hidden' },
   glassTitle: { color: '#efffff', fontSize: 17, fontWeight: '600', textAlign: 'center', marginHorizontal: 32 },
   glassArtist: { color: '#c3e8e9', fontSize: 11, letterSpacing: 1, textAlign: 'center', marginTop: 3 },
   glassOptions: { position: 'absolute', top: 12, right: 12, padding: 6, zIndex: 2 },
-  glassDeck: { borderRadius: 36, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', paddingHorizontal: 16, paddingVertical: 10, overflow: 'hidden' },
+  glassDeck: { borderRadius: 48, borderWidth: 1, borderColor: 'rgba(225,255,255,.65)', borderTopColor: 'rgba(255,255,255,.95)', paddingHorizontal: 16, paddingVertical: 10, overflow: 'hidden' },
   glassTime: { color: '#efffff', fontSize: 10, fontVariant: ['tabular-nums'] },
   glassTransport: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 22 },
   glassControl: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.65)', backgroundColor: 'rgba(200,255,255,.07)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
