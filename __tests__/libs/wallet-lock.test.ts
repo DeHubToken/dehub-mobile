@@ -2,6 +2,8 @@ import {
   registerWalletUnlockHandler,
   requestWalletUnlock,
   hasWalletUnlockHandler,
+  registerWalletSecureHandler,
+  requestWalletSecure,
   WalletLockedError,
 } from "../../libs/wallet-lock";
 const mockError = jest.fn();
@@ -102,5 +104,38 @@ describe("wallet-lock", () => {
     const e = new WalletLockedError();
     expect(e).toBeInstanceOf(Error);
     expect(e.name).toBe("WalletLockedError");
+  });
+
+  describe("secure offer", () => {
+    let unregisterSecure: (() => void) | null = null;
+    afterEach(() => {
+      unregisterSecure?.();
+      unregisterSecure = null;
+    });
+
+    it("lets the action go on when nothing is mounted to ask", async () => {
+      await expect(requestWalletSecure("personal_sign")).resolves.toBe(true);
+    });
+
+    it("refuses only when the person backs out", async () => {
+      unregisterSecure = registerWalletSecureHandler(async () => false);
+      await expect(requestWalletSecure("personal_sign")).resolves.toBe(false);
+    });
+
+    it("never fails an action because the offer broke", async () => {
+      unregisterSecure = registerWalletSecureHandler(async () => {
+        throw new Error("storage");
+      });
+      await expect(requestWalletSecure("personal_sign")).resolves.toBe(true);
+    });
+
+    it("asks once for calls that arrive together", async () => {
+      const handler = jest.fn(async () => true);
+      unregisterSecure = registerWalletSecureHandler(handler);
+      await expect(
+        Promise.all([requestWalletSecure("eth_estimate"), requestWalletSecure("eth_sendTransaction")]),
+      ).resolves.toEqual([true, true]);
+      expect(handler).toHaveBeenCalledTimes(1);
+    });
   });
 });
