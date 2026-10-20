@@ -17,6 +17,7 @@ import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from '../../context/ThemeContext';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getCachedHue, setHueState } from "../../libs/audioHueState";
 import Animated, {
@@ -388,6 +389,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   postPage = false,
 }) => {
   const { t } = useTranslation();
+  const { theme, skin, accent } = useAppTheme();
+  const [glassOptions, setGlassOptions] = useState(false);
   const insets = useSafeAreaInsets();
   const playerRef = useRef<AudioPlayer | null>(null);
   /** The card's status subscription, so it can be dropped when the player moves. */
@@ -1160,6 +1163,37 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
      in the fullscreen modal it is the whole screen. */
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
+    if (theme === 'glass') return (
+      <View style={[styles.glassWindow, { backgroundColor: skin?.card.backgroundColor }]}>
+        <LinearGradient pointerEvents="none" colors={['rgba(210,255,255,.16)', 'transparent', 'rgba(0,25,30,.2)']} style={StyleSheet.absoluteFill} />
+        <Text numberOfLines={1} style={styles.glassTitle}>{resolvedTitle}</Text>
+        <Text numberOfLines={1} style={styles.glassArtist}>{resolvedArtist}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
+        <View style={{ height: 74, marginTop: 8 }}>{renderVisualizer(74)}</View>
+        <View style={styles.glassDeck}>
+          <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.12)', 'rgba(0,20,24,.28)']} style={StyleSheet.absoluteFill} />
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
+          <PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="#d7ffff" maximumTrackTintColor="rgba(225,255,255,.2)" thumbTintColor="#efffff" style={{ height: 18 }} /></PagerSafe>
+          <View style={styles.glassTransport}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)} style={styles.glassControl}><Text style={styles.glassSkip}>−10</Text></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.3)` }]}>
+              <LinearGradient pointerEvents="none" colors={['rgba(230,255,255,.35)', 'transparent']} style={StyleSheet.absoluteFill} />
+              <MediaControlIcon name={shownLoading ? 'Loader' : shownPlaying ? 'Pause' : 'Play'} />
+            </TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)} style={styles.glassControl}><Text style={styles.glassSkip}>+10</Text></TouchableOpacity>
+          </View>
+        </View>
+        {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
+          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <HueSlider hue={hue} onHueChange={handleHueChange} />
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.glassControl}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.glassControl}><MediaControlIcon name="PictureInPicture2" /></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.glassControl}><MediaControlIcon name={isFullscreen ? 'Minimize' : 'Maximize'} /></TouchableOpacity>
+          </View>
+        </View>}
+      </View>
+    );
     return (
       <View
         style={mode === "inline" ? styles.windowInline : styles.windowFull}
@@ -1173,7 +1207,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   };
 
   return (
-    <View style={[styles.card, edgeToEdge && styles.cardEdge]}>
+    <View style={[styles.card, edgeToEdge && styles.cardEdge, theme === 'glass' && { backgroundColor: 'transparent', borderRadius: 28 }]}>
       {renderWindow("inline")}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
@@ -1206,6 +1240,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 };
 
 const styles = StyleSheet.create({
+  glassWindow: { borderRadius: 28, padding: 16, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', overflow: 'hidden' },
+  glassTitle: { color: '#efffff', fontSize: 17, fontWeight: '600', textAlign: 'center', marginHorizontal: 32 },
+  glassArtist: { color: '#c3e8e9', fontSize: 11, letterSpacing: 1, textAlign: 'center', marginTop: 3 },
+  glassOptions: { position: 'absolute', top: 12, right: 12, padding: 6, zIndex: 2 },
+  glassDeck: { borderRadius: 36, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', paddingHorizontal: 16, paddingVertical: 10, overflow: 'hidden' },
+  glassTime: { color: '#efffff', fontSize: 10, fontVariant: ['tabular-nums'] },
+  glassTransport: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 22 },
+  glassControl: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.65)', backgroundColor: 'rgba(200,255,255,.07)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  glassPlay: { width: 64, height: 64, borderRadius: 32 },
+  glassSkip: { color: '#efffff', fontSize: 13, fontWeight: '500' },
   card: {
     marginTop: 12,
     borderRadius: 12,
