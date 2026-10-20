@@ -54,6 +54,7 @@ const SWATCHES: Record<AppThemeName, Swatch> = {
   'system-light': { page: '#ffffff', bento: 'transparent', border: 'rgba(11,11,13,0.09)', line: '#0b0b0d', faint: 'rgba(11,11,13,0.18)', accent: '#0b0b0d', flat: true },
   immersive: { page: '#000000', bento: 'rgba(16,16,18,0.9)', border: 'rgba(255,255,255,0.12)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', flat: true, edge: true },
   minimal: { page: '#000000', bento: 'transparent', border: 'rgba(255,255,255,0.1)', line: 'rgba(255,255,255,0.8)', faint: 'rgba(255,255,255,0.22)', accent: '#ffffff', square: true, flat: true },
+  glass: { page: '#10434b', bento: 'rgba(8,49,56,0.58)', border: 'rgba(225,255,255,0.55)', line: '#f2ffff', faint: 'rgba(210,255,255,0.3)', accent: '#d7ffff' },
   cosmic: { page: '#040407', image: require('../../assets/theme-previews/cosmic.webp'), ...GLASS },
   hazy: { page: '#0a0714', image: require('../../assets/theme-previews/hazy.webp'), ...GLASS },
   swarms: { page: '#03080d', image: require('../../assets/theme-previews/swarms.webp'), ...GLASS },
