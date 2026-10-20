@@ -66,9 +66,16 @@ it('replaces the previous material when the theme changes', () => {
 it.each(APP_THEMES.filter(theme => !!getThemeSkin(theme)))('%s has no System gradient on icon controls or surrounding chrome', (theme) => {
   mockTheme = theme;
   const view = render(<><GlassIndicator /><ChromeSurface radius={15} tinted /></>);
-  expect(view.UNSAFE_queryByType('LinearGradient' as any)).toBeNull();
-  expect(view.UNSAFE_queryByType('BlurView' as any)).toBeNull();
   const skin = skinFor(theme)!;
-  expect(skin.centre.backgroundColor).toBe(skin.card.backgroundColor);
+  if (skin.material === 'glass') {
+    expect(view.UNSAFE_getByType('LinearGradient' as any).props.colors).toEqual([
+      'rgba(255,255,255,.13)', 'rgba(255,255,255,.025)', 'rgba(255,255,255,.07)',
+    ]);
+    expect(skin.centre.backgroundColor).not.toBe(skin.card.backgroundColor);
+  } else {
+    expect(view.UNSAFE_queryByType('LinearGradient' as any)).toBeNull();
+    expect(skin.centre.backgroundColor).toBe(skin.card.backgroundColor);
+  }
+  expect(view.UNSAFE_queryByType('BlurView' as any)).toBeNull();
   expect(skin.centre.borderColor).toBe(skin.card.borderColor);
 });

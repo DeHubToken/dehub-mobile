@@ -97,7 +97,7 @@ const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
   glass: {
     ...glass,
     material: 'glass',
-    page: '#082A30',
+    page: '#082a30',
     card: { ...glass.card, borderRadius: 24, borderColor: 'rgba(225,255,255,0.4)', borderTopColor: 'rgba(255,255,255,0.65)', borderBottomColor: 'rgba(225,255,255,0.22)' },
     strip: { ...glass.strip, borderRadius: 24, borderColor: 'rgba(225,255,255,0.4)', borderTopColor: 'rgba(255,255,255,0.65)' },
     stripActive: { ...glass.stripActive, borderRadius: 20, borderColor: 'rgba(225,255,255,0.5)', backgroundColor: 'rgba(210,255,255,0.18)' },
