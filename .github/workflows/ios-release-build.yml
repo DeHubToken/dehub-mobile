@@ -65,6 +65,9 @@ jobs:
           }, null, 2));
           NODE
       - name: Upload build to App Store Connect
+        # bash rather than the default so pipefail is on: through tee, a
+        # refused upload otherwise left this step green.
+        shell: bash
         env:
           BUILD_ID: ${{ steps.build.outputs.id }}
         run: eas submit --platform ios --profile production --id "$BUILD_ID" --non-interactive --wait | tee ios-submit.log
