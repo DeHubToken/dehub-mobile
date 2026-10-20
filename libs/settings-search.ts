@@ -44,6 +44,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'sign-in', label: 'Sign-in email', labelKey: 'settings.emailSignIn', keywords: 'email login log in sign in code password without wallet' },
   { tab: 'profile', anchor: 'ens',label: 'ENS name', labelKey: 'settings.ensHandle', keywords: 'ens domain eth alias verified handle' },
   { tab: 'profile', anchor: 'stream-key', label: 'Stream key', labelKey: 'settings.streamKey.section', keywords: 'obs encoder rtmp stream key ingest server xbox twitch aircast go live broadcast' },
+  { tab: 'profile', anchor: 'twitch-mirror', label: 'Twitch mirroring', labelKey: 'twitchMirror.title', keywords: 'twitch mirror relay console xbox ps5 playstation aircast automatic stream broadcast' },
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },
   { tab: 'profile', anchor: 'profiles', label: 'Profiles', labelKey: 'settings.profiles', keywords: 'accounts switch add account multiple' },
   { tab: 'profile', anchor: 'delete-account', label: 'Delete account', labelKey: 'accountDeletion.title', keywords: 'delete remove close erase account data personal information' },
