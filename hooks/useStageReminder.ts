@@ -23,6 +23,7 @@ import { useAuth } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
+import { getAccountSummaries } from "../services/user.service";
 
 const log = createLogger("useStageReminder");
 
@@ -98,4 +99,60 @@ export function useStageReminder(spaceId: string | undefined) {
     toggleReminder: () => toggle.mutate(),
     isToggling: toggle.isPending,
   };
+}
+
+/** Reminder rows pulled per stage; the total comes from the same query's count. */
+const FACE_CANDIDATES = 16;
+/** Avatars drawn on a card; anyone beyond this lands in the trailing +N. */
+const FACES_SHOWN = 10;
+
+export interface StageReminderFace {
+  address: string;
+  username?: string;
+  avatarUrl?: string;
+}
+
+/**
+ * Who is waiting on a stage: a few faces plus the true total. Mirrors web's
+ * `useStageReminderFaces`, but resolves every face with one
+ * `/account_info/batch` call instead of a request per address. Order is the
+ * order people pressed the bell. A failed lookup keeps the count and drops
+ * the faces.
+ */
+export function useStageReminderFaces(spaceId: string | undefined) {
+  const query = useQuery({
+    queryKey: [...stageReminderKeys.all, "faces", spaceId ?? ""] as const,
+    enabled: !!spaceId,
+    staleTime: 60_000,
+    queryFn: async () => {
+      const { data, count, error } = await supabase
+        .from("stage_reminders")
+        .select("wallet_address", { count: "exact" })
+        .eq("space_id", spaceId!)
+        .order("created_at", { ascending: true })
+        .limit(FACE_CANDIDATES);
+      if (error) throw error;
+      const addresses: string[] = (data ?? [])
+        .map((row: { wallet_address: string | null }) => row.wallet_address)
+        .filter((address): address is string => !!address);
+      let faces: StageReminderFace[] = [];
+      try {
+        const summaries = await getAccountSummaries(addresses);
+        const byAddress = new Map(summaries.map((s) => [s.address.toLowerCase(), s]));
+        faces = addresses
+          .map((address) => byAddress.get(address.toLowerCase()))
+          .filter((s): s is NonNullable<typeof s> => !!s && !s.isBanned)
+          .map((s) => ({
+            address: s.address,
+            username: s.username?.replace(/^@+/, "") || undefined,
+            avatarUrl: s.avatarImageUrl || undefined,
+          }));
+      } catch (err) {
+        log.warn("Could not resolve stage reminder faces:", err);
+      }
+      return { faces: faces.slice(0, FACES_SHOWN), total: count ?? 0 };
+    },
+  });
+
+  return { faces: query.data?.faces ?? [], total: query.data?.total ?? 0 };
 }
