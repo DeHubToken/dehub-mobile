@@ -109,6 +109,10 @@ export function themeColorAccent(value: number, brandColors: string[] = []): Rgb
 
 /** The colour the active theme's glass is tinted with, following its Theme Color. */
 export function themeAccent(theme: AppThemeName, hues: Record<string, number>, brandColors: string[]): Rgb {
+  if (theme === 'glass') {
+    const hue = hues.glass ?? DEFAULT_THEME_HUES.glass;
+    if (hue >= 0) return hslToRgb(((Math.round(hue) % 360) + 360) % 360 / 360, 1, .45);
+  }
   if (hasThemeColor(theme)) return themeColorAccent(hues[theme] ?? DEFAULT_THEME_HUES[theme], brandColors);
   return THEME_ACCENTS[theme] ?? [161, 161, 170];
 }
