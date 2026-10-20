@@ -5,6 +5,7 @@ import FrostedPill from "./FrostedPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { GRAIN } from "../../theme/skins";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
+import { LinearGradient } from 'expo-linear-gradient';
 
 /** Wash over the blur: dark enough that white text reads on a bright photo. */
 const IOS_DARK_TINT = "rgba(8,8,10,0.46)";
@@ -53,6 +54,7 @@ export default function ChromeSurface({ radius, tinted = false }: { radius: numb
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: corner, overflow: "hidden" }]}>
         {Platform.OS === "ios" ? <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} /> : null}
         <View style={[StyleSheet.absoluteFill, material, { borderRadius: corner }]} />
+        {skin.material === 'glass' ? <LinearGradient colors={['rgba(255,255,255,.13)', 'rgba(255,255,255,.025)', 'rgba(255,255,255,.07)']} locations={[0, .4, 1]} style={[StyleSheet.absoluteFill, { borderRadius: corner }]} /> : null}
         {skin.grain ? <Image source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} /> : null}
       </View>
     );

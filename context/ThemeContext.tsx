@@ -181,9 +181,10 @@ function hexTriplet(hex: string): string {
  * A canvas theme's variables: its page colour on the background tokens, and
  * War's square corners. Same keys as SYSTEM_ROOT_VARS, for the reason above.
  */
-const SKIN_ROOT_VARS = new Map<AppThemeName, ReturnType<typeof vars>>();
+const SKIN_ROOT_VARS = new Map<string, ReturnType<typeof vars>>();
 function skinRootVars(theme: AppThemeName, skin: ThemeSkin) {
-  let v = SKIN_ROOT_VARS.get(theme);
+  const key = `${theme}:${skin.page}`;
+  let v = SKIN_ROOT_VARS.get(key);
   if (!v) {
     const page = hexTriplet(skin.page);
     const r = skin.square;
@@ -201,7 +202,8 @@ function skinRootVars(theme: AppThemeName, skin: ThemeSkin) {
       '--color-theme-neutrals-900': page,
       '--color-zinc-950': page,
     });
-    SKIN_ROOT_VARS.set(theme, v);
+    if (SKIN_ROOT_VARS.size > 40) SKIN_ROOT_VARS.clear();
+    SKIN_ROOT_VARS.set(key, v);
   }
   return v;
 }
@@ -266,7 +268,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Android page wrappers stay clear, so nested headers and lists cannot
   // stack dark rectangles over the scene. Cards keep their own materials;
   // modal surfaces retain their solid fill (libs/jsx/surface.js).
-  else if (skin) setThemePass(skin.square, canvasPageBackground(skin.page, Platform.OS), true, skin.page);
+  else if (skin) setThemePass(skin.square, skin.material === 'glass' ? 'transparent' : canvasPageBackground(skin.page, Platform.OS), true, skin.page);
   else setThemePass(false, null);
 
   useEffect(() => {
