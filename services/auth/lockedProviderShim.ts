@@ -21,7 +21,7 @@
  */
 import { ethersService } from "../ethers.service";
 import { defaultChainId } from "../../config/constants";
-import { requestWalletUnlock, takeWalletUnlockRefusal, WalletLockedError } from "../../libs/wallet-lock";
+import { requestWalletSecure, requestWalletUnlock, takeWalletUnlockRefusal, WalletLockedError } from "../../libs/wallet-lock";
 import { OPEN_WALLET_METHOD } from "../../libs/provider.registry";
 import { createLogger } from "../../libs/logger";
 
@@ -106,6 +106,10 @@ export function createLockedEip1193(
       //
       // A declined fingerprint propagates out of here rather than falling
       // through to the sheet: "no" to signing means no, not "try a password".
+      //
+      // A wallet made silently at sign-up is offered "Secure your wallet"
+      // first, here, at the first action that uses it rather than at the door.
+      if (!(await requestWalletSecure(reason))) return null;
       let built = await rebuild();
       if (!built) {
         // Nothing on this device. Now the sheet is the only way forward.

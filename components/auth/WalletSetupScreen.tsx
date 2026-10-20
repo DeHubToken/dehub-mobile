@@ -69,6 +69,13 @@ export type WalletSetupRequest =
        * people who just lost a device-bound key.
        */
       replacing?: { address: string; clearOtherSeedCopies: boolean };
+      /**
+       * Set by WalletUnlockHost at the first wallet action after a silent
+       * sign-up: the wallet already exists under this device's key, and this
+       * sheet only lets the person keep that (Face ID / device) or add a
+       * password. Backing up is the Wallet tab's reminder afterwards.
+       */
+      securing?: { address: string };
     };
 
 export type CreateProtection = { kind: "password"; password: string } | { kind: "biometric" };
