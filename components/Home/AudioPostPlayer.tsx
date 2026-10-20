@@ -1169,7 +1169,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <Text numberOfLines={1} style={styles.glassTitle}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={styles.glassArtist}>{resolvedArtist}</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
-        <View style={{ height: 74, marginTop: 8 }}>{renderVisualizer(74)}</View>
+        <View style={{ height: 74, marginTop: 8, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={74} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(74)}</View>
         <View style={styles.glassDeck}>
           <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.12)', 'rgba(0,20,24,.28)']} style={StyleSheet.absoluteFill} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
