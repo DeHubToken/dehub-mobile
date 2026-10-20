@@ -13,26 +13,27 @@ function GlassBackdrop() {
   const [reduced, setReduced] = useState(true);
   useEffect(() => {
     let alive = true;
-    void AccessibilityInfo.isReduceMotionEnabled().then(value => { if (alive) setReduced(value); });
+    void AccessibilityInfo.isReduceMotionEnabled().then(value => { if (alive) setReduced(value); }).catch(() => {});
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduced);
     return () => { alive = false; sub.remove(); };
   }, []);
   useEffect(() => {
-    const loop = Animated.loop(Animated.sequence([
+    const makeLoop = () => Animated.loop(Animated.sequence([
       Animated.timing(progress, { toValue: 1, duration: 36000, easing: Easing.inOut(Easing.sin), useNativeDriver: true, isInteraction: false }),
       Animated.timing(progress, { toValue: 0, duration: 36000, easing: Easing.inOut(Easing.sin), useNativeDriver: true, isInteraction: false }),
     ]), { resetBeforeIteration: false });
+    let loop: Animated.CompositeAnimation | undefined;
     let running = false;
     const sync = () => {
       const next = !reduced && visualActivity.isVisualActive() && isThemeBackdropVisible() && !isFeedScrolling();
       if (next === running) return;
       running = next;
-      if (next) loop.start();
-      else loop.stop();
+      if (next) { loop = makeLoop(); loop.start(); }
+      else { loop?.stop(); loop = undefined; }
     };
     sync();
     const subscriptions = [visualActivity.subscribe(sync), subscribeThemeBackdrop(sync), subscribeFeedScrollStart(sync), subscribeFeedSettled(sync)];
-    return () => { loop.stop(); subscriptions.forEach(unsubscribe => unsubscribe()); };
+    return () => { loop?.stop(); subscriptions.forEach(unsubscribe => unsubscribe()); };
   }, [progress, reduced]);
   const tint = (alpha: number) => `rgba(${accent.join(',')},${alpha})`;
   return <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { backgroundColor: skin?.page ?? '#082a30', overflow: 'hidden' }]}>
