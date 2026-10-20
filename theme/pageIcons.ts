@@ -1,5 +1,6 @@
 /** Page identities bundled from the same original packs as web. */
 const PAGE_ICONS: Record<string, { settings: number; features: number }> = {
+  glass: { settings: require('../assets/theme-icons/settings-glass.svg'), features: require('../assets/theme-icons/features-glass.svg') },
   system: { settings: require('../assets/theme-icons/settings-system.webp'), features: require('../assets/theme-icons/features-system.webp') },
   minimal: { settings: require('../assets/theme-icons/settings-minimal.webp'), features: require('../assets/theme-icons/features-minimal.webp') },
   cosmic: { settings: require('../assets/theme-icons/settings-cosmic.webp'), features: require('../assets/theme-icons/features-cosmic.webp') },
