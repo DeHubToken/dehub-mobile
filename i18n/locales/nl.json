@@ -3215,6 +3215,7 @@
     "dhb_staked_on_chain": "{{amount}} tokens gestaked op {{chain}}."
   },
   "staking": {
+    "pendingRetired": "Deze storting staat niet meer in behandeling op het netwerk. De tracking is gewist; controleer je walletactiviteit voordat je opnieuw stort.",
     "title": "Uitzetten",
     "subtitle": "Leg in en ontgrendel winstdeling, lagere kosten, superkrachten en meer!",
     "stakeDhb": "Inleggen",
