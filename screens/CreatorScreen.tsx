@@ -84,6 +84,7 @@ export default function CreatorScreen() {
     { key: '3d', icon: 'fractions', label: t('creator.door3d'), note: t('creator.door3dNote'), open: () => openStudio('3d') },
   ];
   const tools = [
+    { key: 'remake', icon: 'videos', label: t('creator.toolRemake'), note: t('creator.toolMaboroshiDesc'), open: () => nav.navigate(ScreenNames.CreatorRemake) },
     { key: 'agents', icon: 'assistant', label: t('creator.navAgents'), note: t('creator.doorAgentsNote'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', icon: 'tv', label: t('creator.editor'), note: t('creator.editorNote'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', icon: 'command', label: t('creator.flow'), note: t('creator.flowNote'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
