@@ -1165,6 +1165,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     const height = mode === "inline" ? inlineHeight : fullHeight;
     if (theme === 'glass') return (
       <View style={[styles.glassWindow, { backgroundColor: skin?.card.backgroundColor }]}>
+        <View pointerEvents="none" style={{ position: 'absolute', top: 38, left: '8%', right: '8%', height: 52, borderTopLeftRadius: 100, borderTopRightRadius: 100, backgroundColor: `rgba(${accent.join(',')},.09)` }} />
         <LinearGradient pointerEvents="none" colors={['rgba(210,255,255,.16)', 'transparent', 'rgba(0,25,30,.2)']} style={StyleSheet.absoluteFill} />
         <Text numberOfLines={1} style={styles.glassTitle}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={styles.glassArtist}>{resolvedArtist}</Text>
@@ -1240,7 +1241,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 };
 
 const styles = StyleSheet.create({
-  glassWindow: { borderRadius: 28, paddingTop: 12, borderWidth: 1, borderColor: 'rgba(225,255,255,.65)', borderTopColor: 'rgba(255,255,255,.95)', overflow: 'hidden' },
+  glassWindow: { borderRadius: 32, borderBottomLeftRadius: 48, borderBottomRightRadius: 48, paddingTop: 12, borderWidth: 1, borderColor: 'rgba(225,255,255,.65)', borderTopColor: 'rgba(255,255,255,.95)', overflow: 'hidden' },
   glassTitle: { color: '#efffff', fontSize: 17, fontWeight: '600', textAlign: 'center', marginHorizontal: 32 },
   glassArtist: { color: '#c3e8e9', fontSize: 11, letterSpacing: 1, textAlign: 'center', marginTop: 3 },
   glassOptions: { position: 'absolute', top: 12, right: 12, padding: 6, zIndex: 2 },
