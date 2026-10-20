@@ -3028,6 +3028,7 @@
     "failedToUnfollowUser": "Failed to unfollow user"
   },
   "staking": {
+    "pendingRetired": "This deposit is no longer pending on the network. Tracking cleared; check your wallet activity before depositing again.",
     "title": "Staking",
     "subtitle": "Deposit to unlock profit share, lower fees, superpowers and more!",
     "stakeDhb": "Deposit",
