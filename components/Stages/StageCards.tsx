@@ -34,7 +34,8 @@ import StageRecordingPlayer from "./StageRecordingPlayer";
 import { getAvatarUrl } from "../../libs/misc";
 import { radius } from "../../theme/radius";
 import { ShareLinks } from "../../navigation/linking.config";
-import { useStageReminder } from "../../hooks/useStageReminder";
+import { useStageReminder, useStageReminderFaces } from "../../hooks/useStageReminder";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import type { AudioSpace } from "../../hooks/useStages";
 import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -129,6 +130,54 @@ export const StageReminderBell: React.FC<{ spaceId: string }> = ({ spaceId }) =>
         color={hasReminder ? "#FAFAFA" : "rgba(255,255,255,0.6)"}
       />
     </TouchableOpacity>
+  );
+};
+
+/**
+ * Who said they're coming: a facepile of the people holding a reminder plus
+ * the total, the same row web shows under a stage. Each face opens that
+ * person's profile; the press stays on the face, so on the live card it
+ * never also opens the room. Renders nothing when nobody has reminded.
+ */
+export const StageReminderFaces: React.FC<{ spaceId: string }> = ({ spaceId }) => {
+  const { t } = useTranslation();
+  const { showUserProfile } = useUserProfileSheet();
+  const { faces, total } = useStageReminderFaces(spaceId);
+  if (total === 0) return null;
+  const hidden = Math.max(0, total - faces.length);
+  return (
+    <View style={styles.facesRow}>
+      {faces.length > 0 && (
+        <View style={styles.faces}>
+          {faces.map((face, i) => (
+            <TouchableOpacity
+              key={face.address}
+              // By address: it cannot drift the way a username can.
+              onPress={() => showUserProfile(face.address, { source: "stage-reminders" })}
+              hitSlop={{ top: 8, bottom: 8 }}
+              activeOpacity={0.7}
+              style={[styles.face, i > 0 && styles.faceOverlap, { zIndex: faces.length - i }]}
+              accessibilityRole="link"
+              accessibilityLabel={t("liveViewer.openProfileOf", {
+                name: face.username ? `@${face.username}` : face.address.slice(0, 6),
+              })}
+            >
+              <Avatar
+                uri={face.avatarUrl ? getAvatarUrl(face.avatarUrl, 24) : null}
+                size={22}
+                name={face.username || face.address}
+                borderWidth={1}
+                borderColor="rgba(0,0,0,0.4)"
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
+      <View style={styles.facesCount}>
+        <Icon name="Bell" size={12} color="#A1A1AA" />
+        <Text style={styles.facesCountText}>{hidden > 0 ? `+${hidden}` : total}</Text>
+      </View>
+    </View>
   );
 };
 
@@ -242,6 +291,7 @@ export const LiveStageCard: React.FC<{
             {space.description}
           </Text>
         )}
+        <StageReminderFaces spaceId={space.id} />
       </View>
     </TouchableOpacity>
     </PageSection>
@@ -316,6 +366,8 @@ export const ScheduledStageCard: React.FC<{
             {space.description}
           </Text>
         )}
+
+        <StageReminderFaces spaceId={space.id} />
 
         {isMine && (
           <View style={styles.actions}>
@@ -566,6 +618,32 @@ const styles = StyleSheet.create({
     color: "#A1A1AA",
     fontSize: 12,
     lineHeight: 17,
+  },
+  facesRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  faces: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  face: {
+    borderRadius: 6,
+    overflow: "hidden",
+  },
+  faceOverlap: {
+    marginLeft: -7,
+  },
+  facesCount: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  facesCountText: {
+    color: "#A1A1AA",
+    fontSize: 11,
+    fontWeight: "500",
   },
   metaRow: {
     flexDirection: "row",
