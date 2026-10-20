@@ -16,7 +16,7 @@ import LiquidGlass from "../components/ui/LiquidGlass";
 import ScreenHeader from "../components/ScreenHeader";
 import { openExternalLink } from "../libs/links.utils";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { AI_APPS } from "../config/connect-ai";
+import { ACCOUNT_CONNECTIONS_URL, AI_APPS } from "../config/connect-ai";
 
 export default function ConnectGuideScreen() {
   const { t } = useTranslation();
@@ -30,16 +30,16 @@ export default function ConnectGuideScreen() {
 
   const steps = [
     { title: t("connect.step1Title", { app }), body: t("connect.step1Body", { app }) },
-    { title: t("connect.step2Title"), body: t("connect.step2Body", { app }) },
+    { title: t("connect.step2Title"), body: t('accountConnect.step') },
     { title: t("connect.step3Title"), body: t("connect.step3Body", { app }) },
   ];
-  const prompts = [t("connect.prompt1"), t("connect.prompt2"), t("connect.prompt3")];
+  const prompts = [t("connect.prompt1"), t("connect.prompt2"), t("connect.prompt3"), t('accountConnect.profilePrompt'), t('accountConnect.generatePrompt'), t('accountConnect.libraryPrompt')];
   const faqs = [
     { q: t("connect.faqFreeQ", { app }), a: t("connect.faqFreeA", { app }) },
-    { q: t("connect.faqWhatQ"), a: t("connect.faqWhatA") },
+    { q: t("connect.faqWhatQ"), a: t('accountConnect.what') },
     {
       q: t("connect.faqAccountQ"),
-      a: t(isClaude ? "connect.claudeFaqAccount" : "connect.chatgptFaqAccount"),
+      a: t('accountConnect.account'),
     },
   ];
 
@@ -66,8 +66,11 @@ export default function ConnectGuideScreen() {
           <Text style={styles.badgeText}>{`DeHub × ${app}`}</Text>
         </View>
         <Text style={styles.title}>{t("connect.guideTitle", { app })}</Text>
-        <Text style={styles.subtitle}>{t("connect.guideIntro", { app })}</Text>
+        <Text style={styles.subtitle}>{t('accountConnect.intro')}</Text>
         {openButton}
+        <Pressable onPress={() => openExternalLink(ACCOUNT_CONNECTIONS_URL)} accessibilityRole="link" style={styles.otherBtn}>
+          <Text style={styles.otherText}>{t('accountConnect.manage')}</Text>
+        </Pressable>
 
         <Text style={styles.sectionTitle}>{t("connect.setupSteps")}</Text>
         <View style={{ gap: 10 }}>
