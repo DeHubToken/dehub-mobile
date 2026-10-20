@@ -7,13 +7,21 @@ import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
 
-const ribbons = [
-  'M-240 150 C120 -180 250 460 630 190 S1030 -140 1450 210',
-  'M-180 650 C120 270 410 990 740 570 S1060 310 1480 620',
-  'M-140 1080 C200 720 350 1300 760 990 S1180 740 1480 1120',
-  'M100 -240 C480 100 -100 420 300 780 S580 1060 360 1480',
-  'M970 -220 C640 130 1270 450 950 790 S620 1180 1090 1490',
-];
+const ribbons = Array.from({ length: 14 }, (_, index) => {
+  const vertical = index >= 7;
+  const lane = index % 7;
+  const points = Array.from({ length: 10 }, (_, step) => {
+    const along = step * 200 - 300;
+    const across = lane * 240 - 120 + Math.sin(step * 1.37 + lane * 1.8) * 115 + Math.cos(step * .71 - lane) * 65;
+    return vertical ? [across, along] : [along, across];
+  });
+  let d = `M${points[0].join(' ')}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const a = points[Math.max(0, i - 1)], b = points[i], c = points[i + 1], e = points[Math.min(points.length - 1, i + 2)];
+    d += ` C${b[0] + (c[0] - a[0]) / 6} ${b[1] + (c[1] - a[1]) / 6} ${c[0] - (e[0] - b[0]) / 6} ${c[1] - (e[1] - b[1]) / 6} ${c.join(' ')}`;
+  }
+  return d;
+});
 function LightRibbons({ color }: { color: string }) {
   return <Svg width="100%" height="100%" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice" fill="none">
     {ribbons.map((d, i) => <G key={i}>

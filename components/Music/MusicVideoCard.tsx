@@ -21,10 +21,12 @@ import { getAvatarUrl, getImageUrl } from "../../libs/misc";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import type { GetNFTsResult } from "../../services/nft.service";
+import { useAppTheme } from '../../context/ThemeContext';
 
 export const MUSIC_CARD_WIDTH = 240;
 
 const MusicVideoCard: React.FC<{ nft: GetNFTsResult }> = ({ nft }) => {
+  const { theme, skin } = useAppTheme();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
 
@@ -54,7 +56,7 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult }> = ({ nft }) => {
   }, [handle, showUserProfile]);
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, theme === 'glass' && skin?.card]}>
       <TouchableOpacity onPress={openPost} activeOpacity={0.85} style={styles.thumbWrap}>
         {thumb ? (
           <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" transition={150} />
