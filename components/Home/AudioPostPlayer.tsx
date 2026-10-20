@@ -1006,7 +1006,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   if (compact) {
     return (
       <View className="rounded-xl overflow-hidden">
-        <View className="px-3 py-2.5" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+        <View className="px-3 py-2.5" style={{ backgroundColor: theme === 'glass' ? skin?.card.backgroundColor : "rgba(0,0,0,0.6)" }}>
           <View className="flex-row items-center gap-2.5">
             <TouchableOpacity
               onPress={handlePlayPause}
