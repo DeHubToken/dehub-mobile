@@ -3237,6 +3237,7 @@
     "dhb_staked_on_chain": "{{amount}} tokens en staking en {{chain}}."
   },
   "staking": {
+    "pendingRetired": "Este depósito ya no está pendiente en la red. Se ha borrado el seguimiento; revisa la actividad de tu cartera antes de volver a depositar.",
     "title": "Estaking",
     "subtitle": "¡Haz staking para desbloquear participación en ganancias, tarifas más bajas, superpoderes y más!",
     "stakeDhb": "Staking tokens",
