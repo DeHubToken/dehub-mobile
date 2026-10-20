@@ -80,6 +80,9 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
   const ink = skin?.tabIconActive ?? "#FFFFFF";
   return (
     <View pointerEvents="box-none" style={{ width, height: BEAD_HEIGHT + 1 }}>
+      <Svg pointerEvents="none" width={width} height={BEAD_HEIGHT + 1} style={StyleSheet.absoluteFill}>
+        <Path d={beadPath(width, square)} fill={solid} />
+      </Svg>
       {Platform.OS === "ios" && !isMinimal ? (
         <MaskedView
           pointerEvents="none"
@@ -90,7 +93,6 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
         </MaskedView>
       ) : null}
       <Svg pointerEvents="none" width={width} height={BEAD_HEIGHT + 1} style={StyleSheet.absoluteFill}>
-        {Platform.OS !== "ios" || isMinimal ? <Path d={beadPath(width, square)} fill={solid} /> : null}
         <Path d={beadPath(width, square, true)} fill="none" stroke={rim} strokeWidth={1} />
       </Svg>
       <Pressable
@@ -112,7 +114,7 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
                   style={{
                     width: BEAD_FACE, height: BEAD_FACE, borderRadius: 6, overflow: "hidden",
                     marginLeft: i ? -BEAD_FACE_OVERLAP : 0, zIndex: 3 - i,
-                    borderWidth: 1.5, borderColor: solid, backgroundColor: "rgba(255,255,255,0.2)",
+                    borderWidth: 1.5, borderColor: solid, backgroundColor: solid,
                     alignItems: "center", justifyContent: "center",
                   }}
                 >
