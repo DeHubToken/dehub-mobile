@@ -72,10 +72,11 @@ it.each(APP_THEMES.filter(theme => !!getThemeSkin(theme)))('%s has no System gra
       'rgba(255,255,255,.13)', 'rgba(255,255,255,.025)', 'rgba(255,255,255,.07)',
     ]);
     expect(skin.centre.backgroundColor).not.toBe(skin.card.backgroundColor);
+    expect(skin.centre.borderColor).toBe(getThemeSkin(theme)!.centre.borderColor);
   } else {
     expect(view.UNSAFE_queryByType('LinearGradient' as any)).toBeNull();
     expect(skin.centre.backgroundColor).toBe(skin.card.backgroundColor);
+    expect(skin.centre.borderColor).toBe(skin.card.borderColor);
   }
   expect(view.UNSAFE_queryByType('BlurView' as any)).toBeNull();
-  expect(skin.centre.borderColor).toBe(skin.card.borderColor);
 });

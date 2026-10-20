@@ -13,7 +13,7 @@ it('restores Glass and its custom colour as a complete native skin', () => {
   expect(teal.card.backgroundColor).not.toBe(rose.card.backgroundColor);
   expect(rose.card.borderRadius).toBe(24);
   expect(rose.card.borderTopColor).toBe(teal.card.borderTopColor);
-  expect(base.page).toBe('#082A30');
+  expect(base.page).toBe('#082a30');
 });
 
 it('uses the Glass line family for every page and power without System fallbacks', () => {
