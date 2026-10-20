@@ -1,4 +1,5 @@
 {
+  "twitchMirror": {"title":"Twitch yayınını yansıtma","intro":"Twitch’te her zamanki gibi yayın yapın. Yayınınız ek araçlara gerek kalmadan DeHub’da otomatik olarak görünebilir.","unavailable":"Twitch yayını yansıtma henüz kullanılamıyor.","connect":"Twitch’i bağla","auto":"Twitch yayınlarımı otomatik olarak yansıt","waiting":"Sonraki Twitch yayınınız için hazır","starting":"Canlı video bağlanıyor","live":"DeHub’da canlı","error":"Yayın yansıtma ilgilenmenizi gerektiriyor","refresh":"Durumu yenile","disconnect":"Twitch bağlantısını kes","open":"DeHub’da izle","retry":"Yansıtmayı yeniden dene","consent":"Yalnızca size ait bir kanalı bağlayın. Yansıtmayı etkinleştirerek DeHub’ın yayınlarınızı iletmesine ve mevcut kayıt kotanız dahilinde tekrarları kaydetmesine izin verirsiniz.","disabled":"Otomatik yansıtma kapalı","failed":"Twitch yansıtma güncellenemedi. Lütfen tekrar deneyin."},
   "maintenance": {
     "brand": "DeHub",
     "mode": "Bakım modu",

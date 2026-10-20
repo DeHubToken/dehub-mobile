@@ -65,6 +65,7 @@ import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import EmailSignInSection from "../components/Settings/EmailSignInSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
+import { TwitchMirrorSection } from "../components/Settings/TwitchMirrorSection";
 import GettingStartedRow from "../components/Settings/GettingStartedRow";
 import {
   SettingsSection,
@@ -330,6 +331,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           up once and never re-key it again. Under the profile rows because it
           is an account-level credential, not a per-broadcast one. */}
       {isSignedIn ? <StreamKeySection /> : null}
+      {isSignedIn ? <TwitchMirrorSection /> : null}
 
       <SettingsSection label={t("settings.yourContent")} icon="Film" anchor="your-content">
         <SettingsLinkRow
