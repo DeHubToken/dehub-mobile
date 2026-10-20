@@ -42,6 +42,7 @@ function GlassBackdrop() {
       { translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-24, 32] }) },
       { translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-16, 36] }) },
       { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-12deg', '12deg'] }) },
+      { scale: 1.1 },
     ] }]}>
       <Image source={require('../../assets/themes/glass/caustics.png')} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: .9, tintColor: `rgb(${accent.map(c => Math.round(c * .7 + 255 * .3)).join(',')})` }]} />
       <LinearGradient colors={['transparent', tint(.16), 'rgba(210,255,250,.1)', 'transparent']} locations={[0, .3, .5, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
