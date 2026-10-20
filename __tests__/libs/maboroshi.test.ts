@@ -1,6 +1,14 @@
 import { isMaboroshiStudio, isMaboroshiDownload, maboroshiSessionScript, maboroshiPaymentResultScript, maboroshiStudioUrl } from '../../libs/maboroshi';
 
 describe('Maboroshi session and downloads', () => {
+  it('opens Remake in the same private studio and downloads its assembled edit', () => {
+    expect(maboroshiStudioUrl(undefined, true)).toBe('https://live.dehub.io/maboroshi/?workflow=remake');
+    expect(maboroshiStudioUrl('plushie-takeover', true)).toBe('https://live.dehub.io/maboroshi/?preset=plushie-takeover&workflow=remake');
+    expect(isMaboroshiStudio(maboroshiStudioUrl(undefined, true))).toBe(true);
+    const result = `https://live.dehub.io/maboroshi/media/${'a'.repeat(32)}/remake-result.mp4?expires=123456&signature=${'b'.repeat(64)}`;
+    expect(isMaboroshiDownload(result)).toBe(true);
+    expect(isMaboroshiDownload(result.replace('live.dehub.io', 'evil.test'))).toBe(false);
+  });
   it('passes a preset without widening the trusted studio origin', () => {
     expect(maboroshiStudioUrl('plushie-takeover')).toBe('https://live.dehub.io/maboroshi/?preset=plushie-takeover');
     expect(isMaboroshiStudio(maboroshiStudioUrl('plushie-takeover'))).toBe(true);

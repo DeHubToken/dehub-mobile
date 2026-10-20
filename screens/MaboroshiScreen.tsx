@@ -20,9 +20,11 @@ import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
 
 export default function MaboroshiScreen() {
-  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Maboroshi>>();
-  const STUDIO = maboroshiStudioUrl(route.params?.preset);
+  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Maboroshi | ScreenNames.CreatorRemake>>();
+  const remake = route.name === ScreenNames.CreatorRemake;
+  const STUDIO = maboroshiStudioUrl(route.params?.preset, remake);
   const { t } = useTranslation();
+  const studioName = t(remake ? 'creator.toolRemake' : 'creator.toolMaboroshi');
   const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
   const user = useUser();
   const wallet = (user?.walletAddress || user?.address || '').toLowerCase();
@@ -102,7 +104,7 @@ export default function MaboroshiScreen() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t('creator.toolMaboroshi')} />
+      <ScreenHeader title={studioName} />
       <MotionLibraryShowcase compact onPick={clip => setSelectedClip(clip)} />
       {saving && <View accessibilityLiveRegion="polite" className="flex-row items-center gap-2 px-4 py-2"><ActivityIndicator /><Text className="text-theme-neutrals-100">{t('common.saving')}</Text></View>}
       {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('common.signIn')}</Text></Pressable>}
