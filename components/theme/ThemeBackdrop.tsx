@@ -8,6 +8,7 @@ import { isThemeBackdropVisible, subscribeThemeBackdrop } from "../../libs/theme
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
 import { createLogger } from "../../libs/logger";
 import { visualActivity } from "../../libs/visualActivity";
+import GlassBackdrop from './GlassBackdrop';
 
 const log = createLogger("ThemeBackdrop");
 
@@ -52,6 +53,7 @@ function loadPage(): Promise<string> {
 
 const ThemeBackdrop: React.FC = () => {
   const { skin, theme, themeHues, brandColors } = useAppTheme();
+  const usesWebScene = !!skin && theme !== 'glass';
   // Theme Color is read when the page loads, and pushed live after that
   // (see the effect below), so changing it never reloads the scene.
   const colorsRef = useRef({ themeHues, brandColors });
@@ -64,7 +66,7 @@ const ThemeBackdrop: React.FC = () => {
 
   useEffect(() => {
     setFailed(false);
-    if (!skin) {
+    if (!usesWebScene) {
       setHtml(null);
       return;
     }
@@ -95,7 +97,7 @@ const ThemeBackdrop: React.FC = () => {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [skin, theme]);
+  }, [usesWebScene, theme]);
 
   useEffect(() => {
     webRef.current?.injectJavaScript(
@@ -138,6 +140,7 @@ const ThemeBackdrop: React.FC = () => {
   }, []);
 
   if (!skin) return null;
+  if (theme === 'glass') return <GlassBackdrop />;
 
   return (
     <View

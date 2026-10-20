@@ -20,6 +20,7 @@ export const THEME_COLOR = {
 
 /** What each customisable theme ships with. Same values as web. */
 export const DEFAULT_THEME_HUES: Record<string, number> = {
+  glass: 185,
   cosmic: THEME_COLOR.WHITE,
   hazy: 260,
   swarms: 200,
@@ -128,6 +129,18 @@ const WHITE: Rgb = [255, 255, 255];
  * cards keep their see-through veil but lighter and tinted.
  */
 export function tintSkin(skin: ThemeSkin, accent: Rgb): ThemeSkin {
+  if (skin.material === 'glass') {
+    const base = mix([4, 18, 22], accent, .22);
+    const fill = mix([4, 24, 28], accent, .32);
+    const page = `#${base.map(c => c.toString(16).padStart(2, '0')).join('')}`;
+    return {
+      ...skin, page,
+      card: { ...skin.card, backgroundColor: rgba(fill, .62) },
+      strip: { ...skin.strip, backgroundColor: rgba(fill, .74) },
+      barFill: { ...skin.barFill, backgroundColor: rgba(fill, .74) },
+      centre: { ...skin.centre, backgroundColor: rgba(mix(fill, WHITE, .1), .76) },
+    };
+  }
   const base = parseRgb(skin.card.backgroundColor);
   const pill = mix(mix(base, accent, 0.22), WHITE, 0.06);
   const card = mix(mix(base, accent, 0.28), WHITE, 0.04);
