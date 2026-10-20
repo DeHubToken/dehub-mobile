@@ -1,4 +1,5 @@
 {
+  "twitchMirror": {"title":"Retransmisión de Twitch","intro":"Transmite en Twitch como siempre. Tu directo puede aparecer automáticamente en DeHub, sin herramientas adicionales.","unavailable":"La retransmisión de Twitch aún no está disponible.","connect":"Conectar Twitch","auto":"Retransmitir automáticamente mis directos de Twitch","waiting":"Listo para tu próximo directo de Twitch","starting":"Conectando el vídeo en directo","live":"En directo en DeHub","error":"La retransmisión necesita atención","refresh":"Actualizar estado","disconnect":"Desconectar Twitch","open":"Ver en DeHub","retry":"Reintentar retransmisión","consent":"Conecta solo un canal propio. Al activar la retransmisión autorizas a DeHub a retransmitir tus directos y guardar repeticiones dentro de tu límite de grabación actual.","disabled":"La retransmisión automática está desactivada","failed":"No se pudo actualizar la retransmisión de Twitch. Inténtalo de nuevo."},
   "maintenance": {
     "brand": "DeHub",
     "mode": "Modo de mantenimiento",
