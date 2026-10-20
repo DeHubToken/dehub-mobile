@@ -1,4 +1,5 @@
 {
+  "twitchMirror": {"title":"Rediffusion Twitch","intro":"Diffusez sur Twitch comme d’habitude. Votre direct peut apparaître automatiquement sur DeHub, sans outil supplémentaire.","unavailable":"La rediffusion Twitch n’est pas encore disponible.","connect":"Connecter Twitch","auto":"Rediffuser automatiquement mes directs Twitch","waiting":"Prêt pour votre prochain direct Twitch","starting":"Connexion de la vidéo en direct","live":"En direct sur DeHub","error":"La rediffusion nécessite votre attention","refresh":"Actualiser le statut","disconnect":"Déconnecter Twitch","open":"Regarder sur DeHub","retry":"Réessayer la rediffusion","consent":"Connectez uniquement un canal qui vous appartient. L’activation autorise DeHub à retransmettre vos directs et à conserver les rediffusions dans votre quota d’enregistrement actuel.","disabled":"La rediffusion automatique est désactivée","failed":"Impossible de mettre à jour la rediffusion Twitch. Réessayez."},
   "maintenance": {
     "brand": "DeHub",
     "mode": "Mode maintenance",

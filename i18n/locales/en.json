@@ -1,4 +1,5 @@
 {
+  "twitchMirror": {"title":"Twitch mirroring","intro":"Stream on Twitch as usual. Your broadcast can appear on DeHub automatically, with no extra streaming tools.","unavailable":"Twitch mirroring is not available yet.","connect":"Connect Twitch","auto":"Automatically mirror my Twitch streams","waiting":"Ready for your next Twitch broadcast","starting":"Connecting the live video","live":"Live on DeHub","error":"Mirroring needs attention","refresh":"Refresh status","disconnect":"Disconnect Twitch","open":"Watch on DeHub","retry":"Retry mirroring","consent":"Connect only a channel you own. Enabling mirroring authorizes DeHub to relay your broadcasts and save replays under your existing recording allowance.","disabled":"Automatic mirroring is off","failed":"Could not update Twitch mirroring. Please try again."},
   "maintenance": {
     "brand": "DeHub",
     "mode": "Maintenance mode",

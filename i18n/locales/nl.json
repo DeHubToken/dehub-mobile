@@ -1,4 +1,5 @@
 {
+  "twitchMirror": {"title":"Twitch doorsturen","intro":"Stream op Twitch zoals je gewend bent. Je uitzending kan automatisch op DeHub verschijnen, zonder extra streamingtools.","unavailable":"Twitch doorsturen is nog niet beschikbaar.","connect":"Twitch verbinden","auto":"Mijn Twitch-streams automatisch doorsturen","waiting":"Klaar voor je volgende Twitch-uitzending","starting":"Livevideo verbinden","live":"Live op DeHub","error":"Het doorsturen heeft aandacht nodig","refresh":"Status vernieuwen","disconnect":"Twitch ontkoppelen","open":"Bekijken op DeHub","retry":"Doorsturen opnieuw proberen","consent":"Verbind alleen een kanaal dat van jou is. Door doorsturen in te schakelen geef je DeHub toestemming je uitzendingen door te sturen en herhalingen binnen je huidige opnamelimiet op te slaan.","disabled":"Automatisch doorsturen staat uit","failed":"Twitch doorsturen kon niet worden bijgewerkt. Probeer het opnieuw."},
   "maintenance": {
     "brand": "DeHub",
     "mode": "Onderhoudsmodus",
