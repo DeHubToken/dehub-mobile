@@ -1,5 +1,5 @@
 import { createLockedEip1193, isSigningMethod } from "../../services/auth/lockedProviderShim";
-import { requestWalletUnlock, WalletLockedError } from "../../libs/wallet-lock";
+import { requestWalletSecure, requestWalletUnlock, WalletLockedError } from "../../libs/wallet-lock";
 
 const mockSend = jest.fn(async (_method: string, _params: any[]) => "0xrpc");
 
@@ -22,6 +22,7 @@ jest.mock("../../libs/wallet-lock", () => {
   return {
     WalletLockedError,
     requestWalletUnlock: jest.fn(),
+    requestWalletSecure: jest.fn(),
     takeWalletUnlockRefusal: () => null,
   };
 });
@@ -38,9 +39,43 @@ const askUnlock = requestWalletUnlock as jest.MockedFunction<typeof requestWalle
 
 const ADDRESS = "0xc2d2316df4fbcae45a8d9fb3bcb4f36af7c55e4e";
 
+const askSecure = requestWalletSecure as jest.MockedFunction<typeof requestWalletSecure>;
+
 describe("lockedProviderShim", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    askSecure.mockResolvedValue(true);
+  });
+
+  it("offers to secure a silently made wallet before the first signature", async () => {
+    const order: string[] = [];
+    askSecure.mockImplementation(async () => {
+      order.push("secure");
+      return true;
+    });
+    const real = { request: jest.fn(async () => "0xsigned") };
+    const rebuild = jest.fn(async () => {
+      order.push("rebuild");
+      return real;
+    });
+
+    const shim = createLockedEip1193(ADDRESS, 8453, rebuild as any);
+    await expect(shim.request({ method: "personal_sign", params: [] })).resolves.toBe("0xsigned");
+    await expect(shim.request({ method: "personal_sign", params: [] })).resolves.toBe("0xsigned");
+
+    expect(order).toEqual(["secure", "rebuild"]);
+    expect(askUnlock).not.toHaveBeenCalled();
+  });
+
+  it("refuses the signature when the person backs out of securing", async () => {
+    askSecure.mockResolvedValue(false);
+    const rebuild = jest.fn();
+
+    const shim = createLockedEip1193(ADDRESS, 8453, rebuild as any);
+    await expect(shim.request({ method: "personal_sign", params: [] })).rejects.toBeInstanceOf(
+      WalletLockedError,
+    );
+    expect(rebuild).not.toHaveBeenCalled();
   });
 
   it("classifies only the methods that genuinely need the key", () => {
