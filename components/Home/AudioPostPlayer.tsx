@@ -258,16 +258,17 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
             paddingHorizontal: 10,
             paddingVertical: 5,
             borderRadius: 999,
-            overflow: "hidden",
             // Faint dark backing so labels stay readable over white-heavy themes.
-            backgroundColor: isActive ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.28)",
-            borderWidth: 1,
-            borderColor: isActive ? "rgba(255,255,255,0.15)" : "transparent",
+            backgroundColor: "rgba(0,0,0,0.28)",
+            opacity: isActive ? 1 : 0.6,
           }}
         >
+          {/* "Beam", like the profile tabs: a short glowing line under the
+              selected style instead of a filled pill. */}
+          {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
           <Text
             style={{
-              color: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.7)",
+              color: "#fff",
               fontSize: 10,
               fontWeight: "600",
             }}
@@ -280,6 +281,22 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
   </ScrollView>
   </PagerSafe>
   );
+});
+
+const pickerStyles = StyleSheet.create({
+  beam: {
+    position: "absolute",
+    bottom: 2,
+    left: "30%",
+    right: "30%",
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: "#fff",
+    shadowColor: "#fff",
+    shadowOpacity: 0.9,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 0 },
+  },
 });
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
