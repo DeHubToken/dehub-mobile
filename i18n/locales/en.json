@@ -7831,6 +7831,7 @@
     }
   },
   "creator": {
+    "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
     "toolMaboroshiDesc": "Replace characters and objects, review a draft, then export with your original soundtrack.",
     "editInTimeline": "Edit in timeline",

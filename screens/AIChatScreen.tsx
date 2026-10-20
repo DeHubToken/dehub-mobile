@@ -1940,6 +1940,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           setStudioSettings(next);
         }}
           onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
+          onRemake={() => navigation.navigate(ScreenNames.CreatorRemake)}
           onMode={changeStudioMode} onPresets={() => setTemplatesVisible(true)}
           onAttach={studioSettings.mode === 'audio' ? undefined : () => setAssetPickerVisible(true)} disabled={isLoading}
           onWorkflow={workflow => { const preset = getTemplate(workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion'); if (preset) handlePickTemplate(preset); }} />

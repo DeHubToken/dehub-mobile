@@ -1,8 +1,11 @@
 import type { MotionClip } from './motionLibrary';
 
-export function maboroshiStudioUrl(preset?: string): string {
+export function maboroshiStudioUrl(preset?: string, remake = false): string {
   const base = 'https://live.dehub.io/maboroshi/';
-  return preset && /^[a-z0-9-]{1,80}$/.test(preset) ? `${base}?preset=${encodeURIComponent(preset)}` : base;
+  const query: string[] = [];
+  if (preset && /^[a-z0-9-]{1,80}$/.test(preset)) query.push(`preset=${encodeURIComponent(preset)}`);
+  if (remake) query.push('workflow=remake');
+  return query.length ? `${base}?${query.join('&')}` : base;
 }
 
 export function isMaboroshiStudio(value: string): boolean {

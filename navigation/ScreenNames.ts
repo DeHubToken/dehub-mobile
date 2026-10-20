@@ -49,6 +49,7 @@ export enum ScreenNames {
   AIChat = 'AIChat',
   Creator = 'Creator',
   Maboroshi = 'Maboroshi',
+  CreatorRemake = 'CreatorRemake',
   CreatorStudio = 'CreatorStudio',
   // Creator Flow — your flows (/creator/flow) and one flow (/creator/flow/:id).
   CreatorFlow = 'CreatorFlow',
