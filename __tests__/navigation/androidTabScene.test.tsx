@@ -50,6 +50,13 @@ it('updates visibility from focus events without remounting the saved tab', () =
   expect(scene().props.style).toContainEqual({ opacity: 0 });
   expect(scene().props.pointerEvents).toBe('none');
   expect(scene().props.importantForAccessibility).toBe('no-hide-descendants');
+  // Native keeps the full scene geometry while hidden. Do not collapse its
+  // glass headers to a zero-width box as the web route cache previously did.
+  const hiddenStyle = Object.assign({}, ...scene().props.style.filter(Boolean));
+  expect(hiddenStyle.flex).toBe(1);
+  expect(hiddenStyle.width).toBeUndefined();
+  expect(hiddenStyle.height).toBeUndefined();
+  expect(hiddenStyle.display).toBeUndefined();
   act(() => {
     focused = true;
     listeners.get('focus')?.forEach(listener => listener());
