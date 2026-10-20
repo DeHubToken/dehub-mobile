@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Easing, StyleSheet, View } from 'react-native';
+import { AccessibilityInfo, Animated, Easing, Image, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppTheme } from '../../context/ThemeContext';
 import { visualActivity } from '../../libs/visualActivity';
@@ -43,6 +43,7 @@ function GlassBackdrop() {
       { translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-16, 36] }) },
       { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-12deg', '12deg'] }) },
     ] }]}>
+      <Image source={require('../../assets/themes/glass/caustics.png')} resizeMode="cover" style={[StyleSheet.absoluteFill, { opacity: .9, tintColor: `rgb(${accent.map(c => Math.round(c * .7 + 255 * .3)).join(',')})` }]} />
       <LinearGradient colors={['transparent', tint(.16), 'rgba(210,255,250,.1)', 'transparent']} locations={[0, .3, .5, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
     </Animated.View>
     <Animated.View style={[styles.light, { opacity: .6, transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [30, -25] }) }, { rotate: '-35deg' }] }]}>
