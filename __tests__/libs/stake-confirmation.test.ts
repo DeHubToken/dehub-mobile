@@ -1,4 +1,4 @@
-import { classifyStakeReceipt, confirmStake, recoverStake, STAKE_MISSING_GRACE_MS, type StakeEvidence, refreshConfirmedStake, stakeFromReplacement, type StakeAttempt } from '../../libs/stake-confirmation';
+import { classifyStakeReceipt, confirmStake, recoverStake, readStakeEvidence, STAKE_MISSING_GRACE_MS, type StakeEvidence, refreshConfirmedStake, stakeFromReplacement, type StakeAttempt } from '../../libs/stake-confirmation';
 
 const attempt: StakeAttempt = {
   hash: `0x${'a'.repeat(64)}`, wallet: `0x${'1'.repeat(40)}`,
@@ -112,5 +112,29 @@ describe('pending stake recovery after a reload', () => {
     const reverted = { ...missing, receipt: { ...receipt(), status: '0x0' } };
     expect((await recover(old, [reverted, missing])).outcome).toBe('reverted');
     expect((await recover(old, [{ ...missing, receipt: receipt() }, reverted])).outcome).toBe('pending');
+  });
+});
+
+describe('staking recovery RPC evidence', () => {
+  it('only reads the hash and wallet nonces when retiring an old missing attempt', async () => {
+    const savedFetch = globalThis.fetch;
+    const calls: string[] = [];
+    globalThis.fetch = (async (_url: unknown, init: any) => {
+      const request = JSON.parse(init.body);
+      calls.push(request.method);
+      return { ok: true, json: async () => ({ result: request.method === 'eth_getTransactionCount' ? '0x6' : null }) } as Response;
+    }) as typeof fetch;
+    try {
+      const evidence = await readStakeEvidence('https://rpc.example', { ...attempt, submittedAt: Date.now() - STAKE_MISSING_GRACE_MS });
+      expect(evidence).toEqual({ receipt: null, transaction: null, latestNonce: '0x6', pendingNonce: '0x6' });
+      expect(calls).toEqual(['eth_getTransactionReceipt', 'eth_getTransactionByHash', 'eth_getTransactionCount', 'eth_getTransactionCount']);
+    } finally { globalThis.fetch = savedFetch; }
+  });
+  it('rejects an RPC error instead of treating it as a missing transaction', async () => {
+    const savedFetch = globalThis.fetch;
+    globalThis.fetch = (async () => ({ ok: true, json: async () => ({ error: { code: -32000 } }) }) as Response) as typeof fetch;
+    try {
+      await expect(readStakeEvidence('https://rpc.example', attempt)).rejects.toThrow('Stake RPC unavailable');
+    } finally { globalThis.fetch = savedFetch; }
   });
 });
