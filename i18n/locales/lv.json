@@ -8984,7 +8984,7 @@
   "accountDeletion": {
     "title": "Dzēst kontu",
     "description": "Neatgriezeniski dzēst savu kontu un personas datus",
-    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus materiālus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
+    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus aktīvus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
     "cancel": "Atcelt",
     "confirm": "Neatgriezeniski dzēst kontu",
     "busy": "Iesniedz dzēšanas pieprasījumu...",

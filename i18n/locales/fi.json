@@ -8993,7 +8993,7 @@
     "done": "Valmis",
     "error": "Poistamispyyntöä ei voitu lähettää. Tiliäsi ei ole vahvistettu poistettavaksi. Yritä uudelleen.",
     "back": "Takaisin asetukset -sivulle",
-    "signIn": "Kirjaudu tilillesi",
+    "signIn": "Kirjaudu sisään poistaaksesi tilisi",
     "acknowledge": "Olen tallentanut lompakkoni palautustiedot ja ymmärrän, että poistaminen on pysyvää."
   },
   "miniApps": {

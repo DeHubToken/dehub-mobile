@@ -9110,7 +9110,7 @@
     "update": "Buyekeza manje"
   },
   "walletBackup": {
-    "title": "Buyela emuva esikhwameni semali",
+    "title": "Yenza isipele sesikhwama semali",
     "rowDesc": "Bona amagama akho angu-12 noma ukhiye wangasese",
     "backedUpOn": "Isipele {{date}}",
     "offerTitle": "Buyela emuva esikhwameni sakho semali?",

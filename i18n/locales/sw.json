@@ -8988,7 +8988,7 @@
     "description": "Futa kabisa akaunti yako na data binafsi",
     "warning": "Hii hufuta kabisa wasifu wako wa DeHub, machapisho, maoni, ujumbe na chelezo ya pochi iliyohifadhiwa. Hifadhi maelezo yako ya kurejesha mkoba na uhamishe mali yoyote kwanza. Miamala ya blockchain ya umma na rekodi za malipo zinazohitajika kisheria haziwezi kufutwa. Wasifu wako umefichwa mara moja; kufutwa kunakamilika ndani ya siku 30. Hii haiwezi kutenduliwa.",
     "cancel": "Sitisha",
-    "confirm": "Kwa Ujumla ifute Akaunti",
+    "confirm": "Futa akaunti yangu kabisa",
     "busy": "Inawasilisha ombi la kufuta...",
     "accepted": "Ufutaji wa akaunti umeombwa",
     "receipt": "Ombi lako la kufuta limehifadhiwa. Wasifu wako umefichwa na akaunti yako itafutwa kabisa ndani ya siku 30. Kuingia katika akaunti hakuwezi kughairi ombi hili.",
@@ -9101,7 +9101,7 @@
     "update": "Sasisha sasa"
   },
   "walletBackup": {
-    "title": "Rejesha pochi",
+    "title": "Hifadhi nakala ya pochi",
     "rowDesc": "Angalia maneno yako 12 au ufunguo wa faragha",
     "backedUpOn": "Imehifadhiwa {{date}}",
     "offerTitle": "Ungependa kurejesha pochi yako?",

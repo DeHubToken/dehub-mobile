@@ -8997,7 +8997,7 @@
     "done": "Färdig",
     "error": "Det gick inte att skicka din begäran om radering. Ditt konto har inte bekräftats för radering. Vänligen försök igen.",
     "back": "Tillbaka till inställningar",
-    "signIn": "Logga in på ditt konto",
+    "signIn": "Logga in för att radera ditt konto",
     "acknowledge": "Jag har sparat mina återställningsuppgifter för plånboken och förstår att raderingen är permanent."
   },
   "miniApps": {

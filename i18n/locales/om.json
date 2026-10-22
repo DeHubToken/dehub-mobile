@@ -9013,17 +9013,17 @@
   "accountDeletion": {
     "title": "Akkaawuntii haquu",
     "description": "Akkaawuntii fi daataa dhuunfaa keessan dhaabbataadhaan haquu",
-    "warning": "Kunis dhaabbataadhaan piroofaayilii DeHub, maxxansa, yaada, ergaa fi duwwaa boorsaa kuufame haqa. Bal&#39;ina deebisanii dhaabuu boorsaa keessanii save gochuun qabeenya kamiyyuu dursaa sochoosaa. Daldalli bilookicheenii ummataa fi galmee kaffaltii seeraan barbaadamu haqamuu hin danda’u. Profaayilli kee battalumatti dhokata; haquun guyyoota 30 keessatti xumurama. Kun duubatti deebi’uu hin danda’u.",
-    "cancel": "Haquu",
+    "warning": "Kun piroofaayilii DeHub keessanii, maxxansaalee, yaadota, ergaawwan fi garagalcha boorsaa kuufame dhaabbataadhaan haqa. Dursitanii odeeffannoo deebisanii argachuu boorsaa keessanii kuusaa, qabeenya kamiyyuu socho'saa. Daldalli bilookicheenii ummataa fi galmeen kaffaltii seeraan barbaadamu haqamuu hin danda'u. Profaayilli keessan battalumatti dhokata; haquun guyyoota 30 keessatti xumurama. Kun duubatti deebi'uu hin danda'u.",
+    "cancel": "Dhiisi",
     "confirm": "Akkaawuntii koo dhaabbataadhaan haqi",
     "busy": "Gaaffii haquu dhiyeessuun...",
     "accepted": "Akkaawuntii akka haqamu gaafatame",
-    "receipt": "Gaaffiin haquu kee qusatameera. Profaayilli keessan dhokatee waan jiruuf guyyoota 30 keessatti akkaawuntiin keessan dhaabbataadhaan ni haqama. Galmaa&#39;uun gaaffii kana haquu hin danda&#39;u.",
+    "receipt": "Gaaffiin haquu kee qusatameera. Profaayilli keessan dhokatee waan jiruuf guyyoota 30 keessatti akkaawuntiin keessan dhaabbataadhaan ni haqama. Seenuun gaaffii kana haquu hin danda'u.",
     "done": "Raawwatame",
-    "error": "Gaaffii haquu kee dhiyeessuu hin dandeenye. Akkaawuntii keessan haqamuuf hin mirkanoofne. Mee irra deebi&#39;ii yaalaa.",
-    "back": "Gara Sajootti deebi&#39;aa",
+    "error": "Gaaffii haquu kee dhiyeessuu hin dandeenye. Akkaawuntii keessan haqamuuf hin mirkanoofne. Mee irra deebi'ii yaalaa.",
+    "back": "Gara Qindaa'inaatti deebi'aa",
     "signIn": "Akkaawuntii keessan haquuf seena",
-    "acknowledge": "Bal&#39;ina boorsaa koo deebisuu save godheera, haquun dhaabbataa akka ta&#39;e hubadheera."
+    "acknowledge": "Odeeffannoo deebisanii argachuu boorsaa koo kuuseera, haquun dhaabbataa akka ta'e hubadheera."
   },
   "miniApps": {
     "badge": {
@@ -9128,7 +9128,7 @@
     "update": "Amma haaromsi"
   },
   "walletBackup": {
-    "title": "Boorsaa duubatti deebi'aa",
+    "title": "Garagalcha boorsaa kuusi",
     "rowDesc": "Jechoota 12 ykn furtuu dhuunfaa kee ilaali",
     "backedUpOn": "Duubatti deebi'ee {{date}}",
     "offerTitle": "Borsaa keessan duubatti deebisuu?",

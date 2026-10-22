@@ -8954,7 +8954,7 @@
   "accountDeletion": {
     "title": "Hichaa akaụntụ",
     "description": "Na-adịgide adịgide ihichapụ akaụntụ gị na onye data",
-    "warning": "Nke a na-ehichapụ profaịlụ DeHub gị kpamkpam, posts, comments, ozi na echekwara obere akpa ndabere. Zọpụta gị obere akpa mgbake nkọwa na ịkpali ọ bụla akụ mbụ. Public blockchain azụmahịa na iwu chọrọ ugwo ndia ike-ehichapụ. A na-ezobe profaịlụ gị ozugbo; nhichapụ ga-agwụ n 'ime ụbọchị 30. Agaghị emezigharị ihe a.",
+    "warning": "Nke a ga-ehichapụ profaịlụ DeHub gị, ihe ndị i bipụtara, nkọwa, ozi na ndabere obere akpa echekwara kpamkpam. Chekwaa nkọwa mgbake obere akpa gị ma bufee akụ ọ bụla na mbụ. Enweghị ike ihichapụ azụmahịa blockchain ọha na ndekọ ịkwụ ụgwọ nke iwu chọrọ. A na-ezobe profaịlụ gị ozugbo; nhichapụ ga-agwụ n'ime ụbọchị 30. Agaghị emezigharị ihe a.",
     "cancel": "Kagbuo",
     "confirm": "Hichaa akaụntụ m ruo mgbe ebighị ebi",
     "busy": "Na-edebata arịrịọ nhichapụ...",
