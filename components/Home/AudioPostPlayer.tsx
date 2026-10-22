@@ -1168,7 +1168,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
     if (theme === 'glass') return (
-      <View style={styles.glassWindow} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+      <View style={[styles.glassWindow, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <View style={styles.glassCrown}>
         <GlassAudioShoulder />
         <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 10 }]}>{resolvedTitle}</Text>
@@ -1230,6 +1230,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <View
           style={[
             styles.fullscreenRoot,
+            theme === 'glass' && { justifyContent: 'center', paddingHorizontal: 24, backgroundColor: '#04181c' },
             {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
