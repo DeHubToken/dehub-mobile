@@ -347,7 +347,7 @@ export const ScheduledStageCard: React.FC<{
                 accessibilityRole="button"
                 accessibilityLabel={t("stages.addToCalendar")}
               >
-                <Icon name="CalendarPlus" size={15} color="rgba(255,255,255,0.6)" />
+                <Icon name="CalendarDays" size={15} color="rgba(255,255,255,0.6)" />
               </TouchableOpacity>
             )}
             <TouchableOpacity

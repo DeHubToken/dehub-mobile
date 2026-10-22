@@ -3,6 +3,7 @@
 // Only these icons are bundled. Importing each icon's own file, rather than
 // anything from the package root, keeps the other ~1,600 out of the bundle.
 import type { LucideIcon } from "lucide-react-native";
+import ActivityIcon from "lucide-react-native/dist/esm/icons/activity";
 import AlignCenterIcon from "lucide-react-native/dist/esm/icons/align-center";
 import AlignLeftIcon from "lucide-react-native/dist/esm/icons/align-left";
 import AlignRightIcon from "lucide-react-native/dist/esm/icons/align-right";
@@ -41,7 +42,6 @@ import BugIcon from "lucide-react-native/dist/esm/icons/bug";
 import CalendarIcon from "lucide-react-native/dist/esm/icons/calendar";
 import CalendarClockIcon from "lucide-react-native/dist/esm/icons/calendar-clock";
 import CalendarDaysIcon from "lucide-react-native/dist/esm/icons/calendar-days";
-import CalendarPlusIcon from "lucide-react-native/dist/esm/icons/calendar-plus";
 import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
 import CaptionsIcon from "lucide-react-native/dist/esm/icons/captions";
 import CaseUpperIcon from "lucide-react-native/dist/esm/icons/case-upper";
@@ -104,6 +104,7 @@ import FolderInputIcon from "lucide-react-native/dist/esm/icons/folder-input";
 import FolderPlusIcon from "lucide-react-native/dist/esm/icons/folder-plus";
 import ForwardIcon from "lucide-react-native/dist/esm/icons/forward";
 import FuelIcon from "lucide-react-native/dist/esm/icons/fuel";
+import FullscreenIcon from "lucide-react-native/dist/esm/icons/fullscreen";
 import FunnelIcon from "lucide-react-native/dist/esm/icons/funnel";
 import Gamepad2Icon from "lucide-react-native/dist/esm/icons/gamepad-2";
 import GaugeIcon from "lucide-react-native/dist/esm/icons/gauge";
@@ -158,7 +159,9 @@ import MailOpenIcon from "lucide-react-native/dist/esm/icons/mail-open";
 import MapIcon from "lucide-react-native/dist/esm/icons/map";
 import MapPinIcon from "lucide-react-native/dist/esm/icons/map-pin";
 import MaximizeIcon from "lucide-react-native/dist/esm/icons/maximize";
+import Maximize2Icon from "lucide-react-native/dist/esm/icons/maximize-2";
 import MegaphoneIcon from "lucide-react-native/dist/esm/icons/megaphone";
+import MenuIcon from "lucide-react-native/dist/esm/icons/menu";
 import MessageCircleIcon from "lucide-react-native/dist/esm/icons/message-circle";
 import MessageCircleWarningIcon from "lucide-react-native/dist/esm/icons/message-circle-warning";
 import MessageSquareIcon from "lucide-react-native/dist/esm/icons/message-square";
@@ -168,6 +171,7 @@ import MicIcon from "lucide-react-native/dist/esm/icons/mic";
 import MicOffIcon from "lucide-react-native/dist/esm/icons/mic-off";
 import MicVocalIcon from "lucide-react-native/dist/esm/icons/mic-vocal";
 import MinimizeIcon from "lucide-react-native/dist/esm/icons/minimize";
+import Minimize2Icon from "lucide-react-native/dist/esm/icons/minimize-2";
 import MinusIcon from "lucide-react-native/dist/esm/icons/minus";
 import MonitorIcon from "lucide-react-native/dist/esm/icons/monitor";
 import MonitorPlayIcon from "lucide-react-native/dist/esm/icons/monitor-play";
@@ -209,7 +213,6 @@ import RefreshCwIcon from "lucide-react-native/dist/esm/icons/refresh-cw";
 import RepeatIcon from "lucide-react-native/dist/esm/icons/repeat";
 import Repeat2Icon from "lucide-react-native/dist/esm/icons/repeat-2";
 import ReplyIcon from "lucide-react-native/dist/esm/icons/reply";
-import RewindIcon from "lucide-react-native/dist/esm/icons/rewind";
 import RocketIcon from "lucide-react-native/dist/esm/icons/rocket";
 import RotateCcwIcon from "lucide-react-native/dist/esm/icons/rotate-ccw";
 import RotateCwIcon from "lucide-react-native/dist/esm/icons/rotate-cw";
@@ -237,7 +240,6 @@ import SlidersHorizontalIcon from "lucide-react-native/dist/esm/icons/sliders-ho
 import SmartphoneIcon from "lucide-react-native/dist/esm/icons/smartphone";
 import SmileIcon from "lucide-react-native/dist/esm/icons/smile";
 import SparklesIcon from "lucide-react-native/dist/esm/icons/sparkles";
-import SpeakerIcon from "lucide-react-native/dist/esm/icons/speaker";
 import SpellCheckIcon from "lucide-react-native/dist/esm/icons/spell-check";
 import SquareIcon from "lucide-react-native/dist/esm/icons/square";
 import SquarePenIcon from "lucide-react-native/dist/esm/icons/square-pen";
@@ -294,6 +296,7 @@ import ZoomInIcon from "lucide-react-native/dist/esm/icons/zoom-in";
 import ZoomOutIcon from "lucide-react-native/dist/esm/icons/zoom-out";
 
 export const iconRegistry = {
+  Activity: ActivityIcon,
   AlignCenter: AlignCenterIcon,
   AlignLeft: AlignLeftIcon,
   AlignRight: AlignRightIcon,
@@ -332,7 +335,6 @@ export const iconRegistry = {
   Calendar: CalendarIcon,
   CalendarClock: CalendarClockIcon,
   CalendarDays: CalendarDaysIcon,
-  CalendarPlus: CalendarPlusIcon,
   Camera: CameraIcon,
   Captions: CaptionsIcon,
   CaseUpper: CaseUpperIcon,
@@ -395,6 +397,7 @@ export const iconRegistry = {
   FolderPlus: FolderPlusIcon,
   Forward: ForwardIcon,
   Fuel: FuelIcon,
+  Fullscreen: FullscreenIcon,
   Funnel: FunnelIcon,
   Gamepad2: Gamepad2Icon,
   Gauge: GaugeIcon,
@@ -449,7 +452,9 @@ export const iconRegistry = {
   Map: MapIcon,
   MapPin: MapPinIcon,
   Maximize: MaximizeIcon,
+  Maximize2: Maximize2Icon,
   Megaphone: MegaphoneIcon,
+  Menu: MenuIcon,
   MessageCircle: MessageCircleIcon,
   MessageCircleWarning: MessageCircleWarningIcon,
   MessageSquare: MessageSquareIcon,
@@ -459,6 +464,7 @@ export const iconRegistry = {
   MicOff: MicOffIcon,
   MicVocal: MicVocalIcon,
   Minimize: MinimizeIcon,
+  Minimize2: Minimize2Icon,
   Minus: MinusIcon,
   Monitor: MonitorIcon,
   MonitorPlay: MonitorPlayIcon,
@@ -500,7 +506,6 @@ export const iconRegistry = {
   Repeat: RepeatIcon,
   Repeat2: Repeat2Icon,
   Reply: ReplyIcon,
-  Rewind: RewindIcon,
   Rocket: RocketIcon,
   RotateCcw: RotateCcwIcon,
   RotateCw: RotateCwIcon,
@@ -528,7 +533,6 @@ export const iconRegistry = {
   Smartphone: SmartphoneIcon,
   Smile: SmileIcon,
   Sparkles: SparklesIcon,
-  Speaker: SpeakerIcon,
   SpellCheck: SpellCheckIcon,
   Square: SquareIcon,
   SquarePen: SquarePenIcon,

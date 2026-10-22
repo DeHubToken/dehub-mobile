@@ -79,7 +79,7 @@ const StageCaptions: React.FC<{ spaceId: string; speakerWallets: string[] }> = (
             const text = (language && line.translations?.[language]) || line.text;
             return (
               <Text key={line.id} style={{ color: line.final ? "#FFFFFF" : "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 20 }}>
-                <Text style={{ fontWeight: "700", color: "rgba(255,255,255,0.6)" }}>{line.name}: </Text>
+                <Text style={{ fontWeight: "700", color: "rgba(255,255,255,0.6)" }}>{line.name || t("stages.roleStageSpeaker")}: </Text>
                 {text}
               </Text>
             );
