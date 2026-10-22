@@ -9366,5 +9366,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Rekapitulace streamu",
+    "justEnded": "Rekapitulace vašeho streamu",
+    "lastStream": "Váš poslední stream",
+    "none": "Zatím žádné dokončené streamy. Vaše rekapitulace se zde objeví po první rekapitulaci.",
+    "share": "Sdílejte",
+    "shareText": "Právě jsem vysílal „{{title}}“ na DeHubu: {{duration}} live, {{peak}} sledování na vrcholu a {{followers}} nových sledujících.",
+    "untitled": "Stream bez názvu",
+    "loadFailed": "Rekapitulace se nenačetla. Zkuste to znovu za chvíli.",
+    "duration": "Čas živě",
+    "peakViewers": "Nejsledovanější najednou",
+    "gifts_one": "Od {{count}} dárek",
+    "gifts_other": "Od {{count}} dárků",
+    "newFollowers": "Noví sledující",
+    "chatMessages": "Zprávy z chatu",
+    "chatters": "Chatování s lidmi",
+    "reactions": "Reakce",
+    "shares": "Sdílení lidí",
+    "topSupporters": "Nejlepší podporovatelé",
+    "polls": "Ankety",
+    "pollWinner": "{{option}} vyhrál",
+    "stillCounting": "Stále se počítá: potvrzení dárků může chvíli trvat."
   }
 }

@@ -9421,5 +9421,28 @@
         "shhh": "Jim bo'l"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Strim xulosasi",
+    "justEnded": "Strimingiz xulosasi",
+    "lastStream": "Oxirgi translatsiyangiz",
+    "none": "Hali tugallangan strimlar yo'q. Sizning xulosangiz birinchisidan keyin shu yerda ko'rsatiladi.",
+    "share": "Ulashish",
+    "shareText": "Men hozirgina DeHub’da \"{{title}}\" ni striming qildim: {{duration}} jonli efirda, {{peak}} eng yuqori cho‘qqida tomosha qilyapman va {{followers}} yangi obunachilar.",
+    "untitled": "Nomsiz oqim",
+    "loadFailed": "Xulosa yuklanmadi. Birozdan keyin qayta urinib ko'ring.",
+    "duration": "Vaqt jonli",
+    "peakViewers": "Bir vaqtning o'zida ko'pchilik tomosha qiladi",
+    "gifts_one": "{{count}} sovg'asidan",
+    "gifts_other": "{{count}} sovg'alaridan",
+    "newFollowers": "Yangi izdoshlar",
+    "chatMessages": "Chat xabarlari",
+    "chatters": "Odamlar suhbatlashmoqda",
+    "reactions": "Reaksiyalar",
+    "shares": "Odamlar almashishmoqda",
+    "topSupporters": "Eng yaxshi tarafdorlar",
+    "polls": "So'rovnomalar",
+    "pollWinner": "{{option}} yutdi",
+    "stillCounting": "Hali ham sanalmoqda: sovg'alarni tasdiqlash bir daqiqa vaqt olishi mumkin."
   }
 }

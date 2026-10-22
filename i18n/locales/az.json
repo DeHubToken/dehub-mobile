@@ -9364,5 +9364,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Axının xülasəsi",
+    "justEnded": "Axınının xülasəsi",
+    "lastStream": "Son axınınız",
+    "none": "Hələ heç bir bitmiş axın yoxdur. Rezervasiyanız burada birinci olduqdan sonra görünür.",
+    "share": "Paylaşın",
+    "shareText": "İndicə DeHub-da \"{{title}}\" yayımladım: {{duration}} canlı, {{peak}} zirvədə seyr və {{followers}} yeni izləyicilər.",
+    "untitled": "Adsız axın",
+    "loadFailed": "Xülasə yüklənmədi. Bir an sonra yenidən cəhd edin.",
+    "duration": "Canlı vaxt",
+    "peakViewers": "Eyni anda ən çox izlənənlər",
+    "gifts_one": "{{count}} hədiyyəsindən başlayaraq",
+    "gifts_other": "{{count}} hədiyyələr",
+    "newFollowers": "Yeni izləyicilər",
+    "chatMessages": "Söhbət mesajları",
+    "chatters": "Söhbət edən insanlar",
+    "reactions": "Reaksiyalar",
+    "shares": "İnsanlar paylaşır",
+    "topSupporters": "Ən yaxşı dəstəkçilər",
+    "polls": "Sorğular",
+    "pollWinner": "{{option}} qalib gəldi",
+    "stillCounting": "Hələ də hesablama aparılır: hədiyyələrin təsdiqlənməsi bir dəqiqə çəkə bilər."
   }
 }

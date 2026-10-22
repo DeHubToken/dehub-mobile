@@ -9344,5 +9344,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Te whakahoutanga o te awa",
+    "lastStream": "Ko tō awa whakamutunga",
+    "none": "Kaore ano kia oti nga awa. Ka puta mai to koutou pūkete i konei i muri i to koutou tuatahi.",
+    "share": "Tiritiri",
+    "shareText": "I rere noa ahau \"{{title}}\" i runga i DeHub: {{duration}} ora, {{peak}} matakitaki i te tihi me {{followers}} kaitautoko hou.",
+    "untitled": "Te rere kore-whakaputa",
+    "loadFailed": "Kaore i te utaina te ripa. Whakamātauria ano i roto i te wa.",
+    "duration": "Te ora o te wā",
+    "peakViewers": "Ko te nuinga o te hunga e titiro ana i te wa kotahi",
+    "gifts_one": "Mai i {{count}} koha",
+    "gifts_other": "Mai i {{count}} koha",
+    "newFollowers": "Ngā kaiwhaiwhai hou",
+    "chatMessages": "Ngā karere kōrerorero",
+    "chatters": "Te iwi kōrerorero",
+    "reactions": "Ngā urupare",
+    "shares": "Ka tohaina e te iwi",
+    "topSupporters": "Ko nga kaitautoko nui",
+    "polls": "Ngā pōtae",
+    "pollWinner": "{{option}} i riro",
+    "stillCounting": "Kei te tatau tonu: Ka taea e nga taonga te tango i te meneti ki te whakapumautia."
   }
 }

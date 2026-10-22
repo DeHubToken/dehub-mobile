@@ -9164,5 +9164,21 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Stream recap",
+    "none": "Wetin no finish stream yet. Yous recap go come here after first one finish.",
+    "share": "Share",
+    "untitled": "Untitled stream",
+    "loadFailed": "Na dee load no go well. Try again after a while.",
+    "duration": "Time live",
+    "newFollowers": "New followers",
+    "chatMessages": "Chat messages",
+    "chatters": "People chatting",
+    "reactions": "Reactions",
+    "shares": "People sharing",
+    "topSupporters": "Top supporters",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won"
   }
 }

@@ -9366,5 +9366,28 @@
         "shhh": "Shhhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Përmbledhje e rrjedhës",
+    "justEnded": "Përmbledhja jote e rrjedhës",
+    "lastStream": "Transmetimi yt i fundit",
+    "none": "Nuk ka ende transmetime të përfunduara. Përmbledhja jote shfaqet këtu pas përmbledhjes tënde të parë.",
+    "share": "Shpërndaj",
+    "shareText": "Sapo transmetova \"{{title}}\" në DeHub: {{duration}} live, {{peak}} duke parë në kulmin dhe {{followers}} ndjekësit e rinj.",
+    "untitled": "Rrjedhë pa titull",
+    "loadFailed": "Përmbledhja nuk u ngarkua. Provo përsëri pas një çasti.",
+    "duration": "Koha live",
+    "peakViewers": "Shumica shikojnë njëherësh",
+    "gifts_one": "Nga {{count}} dhuratë",
+    "gifts_other": "Nga {{count}} dhurata",
+    "newFollowers": "Ndjekës të rinj",
+    "chatMessages": "Mesazhe Chat",
+    "chatters": "Njerëz që bisedojnë",
+    "reactions": "Reagimet",
+    "shares": "Ndarja e njerëzve",
+    "topSupporters": "Mbështetësit më të mirë",
+    "polls": "Sondazhet",
+    "pollWinner": "{{option}} win",
+    "stillCounting": "Ende duke numëruar: dhuratat mund të duhen një minutë për t 'u konfirmuar."
   }
 }

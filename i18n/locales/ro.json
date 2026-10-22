@@ -9380,5 +9380,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Recapitulare flux",
+    "justEnded": "Recapitularea fluxului tău",
+    "lastStream": "Ultimul tău flux",
+    "none": "Încă nu există fluxuri finalizate. Recapitularea ta apare aici după prima.",
+    "share": "Cotă",
+    "shareText": "Tocmai am difuzat „{{title}}” pe DeHub: {{duration}} live, {{peak}} vizionând la vârf și {{followers}} noi urmăritori.",
+    "untitled": "Flux fără titlu",
+    "loadFailed": "Recapitularea nu s-a încărcat. Încearcă din nou peste un moment.",
+    "duration": "Timp live",
+    "peakViewers": "Cele mai multe vizionări simultan",
+    "gifts_one": "De la {{count}} cadou",
+    "gifts_other": "De la {{count}} cadouri",
+    "newFollowers": "Urmăritori noi",
+    "chatMessages": "Mesaje chat",
+    "chatters": "Oamenii discută pe chat",
+    "reactions": "Reacţii",
+    "shares": "Distribuirea de către persoane",
+    "topSupporters": "Susținători de top",
+    "polls": "Sondaje de opinie",
+    "stillCounting": "Încă se numără: confirmarea cadourilor poate dura un minut."
   }
 }

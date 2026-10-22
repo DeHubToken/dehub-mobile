@@ -9445,5 +9445,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Avereno alefa",
+    "justEnded": "Famerenana ny tosakao",
+    "lastStream": "Ny tosaka farany nataonao",
+    "none": "Tsy mbola misy mangana mangirana aloha hatreto. Miseho eto ny fitsingerenan'ny andro nahaterahanao voalohany.",
+    "share": "Atomboy",
+    "untitled": "Tsy misy anarana ilay tosaka",
+    "loadFailed": "Tsy naherisetra ny fakana an-tsokosoko. Miverena ao anatin'ny iray minitra.",
+    "duration": "Time velona",
+    "peakViewers": "Ny tena mijery avy hatrany",
+    "gifts_one": "Avy amin'i{{count}} gift",
+    "gifts_other": "Avy {{count}} gift",
+    "newFollowers": "Mpanara-dia vaovao",
+    "chatMessages": "Karajia hafatra",
+    "chatters": "Olona mifampiresaka",
+    "reactions": "Fanehoan-kevitra",
+    "shares": "Olona mizara",
+    "topSupporters": "TOP mpanohana",
+    "polls": "Fitsapan-kevitra",
+    "pollWinner": "{{option}} Won",
+    "stillCounting": "Mbola manisa: Afaka maka minitra iray ny fanomezam-pahasoavana mba hanamarinana."
   }
 }

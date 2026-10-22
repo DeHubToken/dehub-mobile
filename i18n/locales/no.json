@@ -9362,5 +9362,28 @@
         "shhh": "Ssjh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Strømmeoppsummering",
+    "justEnded": "Oppsummeringen av strømmen din",
+    "lastStream": "Din siste strømming",
+    "none": "Ingen ferdige strømmer ennå. Sammendraget ditt vises her etter det første.",
+    "share": "Del",
+    "shareText": "Jeg strømmet nettopp «{{title}}» på DeHub: {{duration}} direkte, {{peak}} så på på det meste og {{followers}} nye følgere.",
+    "untitled": "Unavngitt strøm",
+    "loadFailed": "Sammendraget lastet ikke inn. Prøv igjen om et øyeblikk.",
+    "duration": "Tid live",
+    "peakViewers": "De fleste ser på samtidig",
+    "gifts_one": "Fra en {{count}}-gave",
+    "gifts_other": "Fra {{count}} gaver",
+    "newFollowers": "Nye følgere",
+    "chatMessages": "Chat-meldinger",
+    "chatters": "Folk som chatter",
+    "reactions": "Reaksjon",
+    "shares": "Folk som deler",
+    "topSupporters": "Toppstøttespillere",
+    "polls": "Poll",
+    "pollWinner": "{{option}} vant",
+    "stillCounting": "Fortsatt telling: det kan ta et minutt å bekrefte gaver."
   }
 }

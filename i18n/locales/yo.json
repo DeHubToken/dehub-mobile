@@ -9343,5 +9343,26 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Àkójú ìtẹ̀síwájú",
+    "justEnded": "Recap ṣiṣan rẹ",
+    "lastStream": "Sisanwọle ikẹhin rẹ",
+    "none": "Kò sí ìsun omi tí ó ti parí. Àtúnṣe rẹ farahàn níbí lẹ́yìn èyí àkọ́kọ́ rẹ.",
+    "share": "Pin",
+    "shareText": "Mo ṣẹ̀ṣẹ̀ gbé \"{{title}}\" jáde lórí DeHub: {{duration}} LIVE, {{peak}} wíwo ní orí òkè àti {{followers}} àwọn ọmọlẹ́yìn tuntun.",
+    "untitled": "Sisanwọle ti ko ni akọle",
+    "loadFailed": "Àtúnṣe náà kò gbé ẹrù. Gbiyanju lẹẹkansi ni akoko kan.",
+    "peakViewers": "Èyí tó pọ̀ jù nínú wíwo lẹ́ẹ̀kan ṣoṣo",
+    "gifts_one": "Láti {{count}} ẹ̀bùn",
+    "gifts_other": "Láti {{count}} ẹ̀bùn",
+    "newFollowers": "Àwọn ọmọlẹ́yìn tuntun",
+    "chatMessages": "Awọn ifiranṣẹ iwiregbe",
+    "chatters": "Àwọn ènìyàn ń sọ̀rọ̀",
+    "reactions": "Ìdáhùn",
+    "shares": "Àwọn ènìyàn pínpín",
+    "polls": "Ìbò",
+    "pollWinner": "{{option}} gba",
+    "stillCounting": "Síbẹ̀ wí pé: ẹ̀bùn lè gba ìṣẹ́jú kan láti fìdí rẹ̀ múlẹ̀."
   }
 }

@@ -9307,5 +9307,11 @@
         "ba-dum-tish": "Ba dum tish"
       }
     }
+  },
+  "liveRecap": {
+    "justEnded": "आपके स्ट्रीम का सारांश",
+    "none": "نوشته‌ای بعد از اولین پخش شما نمایش داده می‌شود.",
+    "shareText": "{{title}} را در DeHub استریم کردم: {{duration}} زنده، {{peak}} تماشاگر در اوج و {{followers}} دنبال کننده جدید.",
+    "shares": "लोग बाँटत"
   }
 }

@@ -9371,5 +9371,25 @@
         "magic-spell": "मैजिक स्पेल"
       }
     }
+  },
+  "liveRecap": {
+    "title": "स्ट्रीम रिकाप",
+    "justEnded": "आप मन के स्ट्रीम रिप करव",
+    "lastStream": "आखरी स्ट्रीम",
+    "none": "अभी तक पूरा नी करे गे हे । अपन रिज्यूमे ल अपन पहिली रिज्यूमे के बाद इहां देखा जात हवय ।",
+    "share": "साझेदारी",
+    "shareText": "मैं केवल DeHub म \"{{title}}\" स्ट्रीमिंग करत हंव: {{duration}} live, {{peak}} watch at the peak अउ {{followers}} new followers.",
+    "untitled": "बेनाम स्ट्रीम",
+    "loadFailed": "पुनरुत्थान ल लोड नी करे गइस । कृपया कुछ देर बाद फिर से प्रयास करे ।",
+    "duration": "समय लाइव",
+    "peakViewers": "जब ले रूप तोर देखे,",
+    "newFollowers": "नवा अनुयायी",
+    "chatMessages": "चैट संदेस",
+    "chatters": "चैट करे वाले मनखे",
+    "reactions": "प्रतिक्रिया",
+    "shares": "साझा करे वाले मनखे",
+    "topSupporters": "सर्वश्रेष्ठ समर्थक",
+    "polls": "पोल्स",
+    "stillCounting": "अभी घलो गिनती: उपहारों के पुष्टि करे बर एक मिनट लग सकत हवय ।"
   }
 }

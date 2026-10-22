@@ -9308,5 +9308,24 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "justEnded": "Ringkesan aliran mu",
+    "lastStream": "Kulon streammu kanggo ngahapal.",
+    "none": "Gak ada stream yang udah selesai. Recapmu bakal kelar di sini setelah stream pertama mu.",
+    "share": "Bareng",
+    "untitled": "Kuliyaran streaming ngarso",
+    "loadFailed": "Gak bisa nge-load recapnya. Coba lagi nggih nganti-anti.",
+    "duration": "Waktu nyata",
+    "peakViewers": "Kanggo ngaweni ngisorake pike pisan.",
+    "gifts_one": "Kanggo {{count}} nganti",
+    "gifts_other": "Kanggo {{count}} hadiah",
+    "chatMessages": "Chat messages",
+    "chatters": "Nggih orawe pikeun ngobrol-ngobrol",
+    "shares": "Nggih orawe pikeun ngarani",
+    "topSupporters": "Pendukung paling dhuwur",
+    "polls": "Pilihan-pilihan",
+    "pollWinner": "{{option}} ngoko won",
+    "stillCounting": "Kudu dhuwur: hadiah bisa nganggo waktu sebentar guna dikonfirmasi."
   }
 }

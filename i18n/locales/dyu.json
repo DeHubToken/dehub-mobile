@@ -9282,5 +9282,26 @@
         "shhh": "O ye n ka miiriya ye."
       }
     }
+  },
+  "liveRecap": {
+    "title": "O kɔ, a ye n' ka soow lɔ.",
+    "lastStream": "Ani k'a kɛ i yɛrɛ ta ye, i ka mɔgɔ",
+    "none": "A ma ban fɔlɔ. I ka sɛbɛ be sɔrɔ yan i ka sɛbɛ fɔlɔ kɔfɛ.",
+    "share": "Ka dɔ fara a kan",
+    "shareText": "N' tun be \"{{title}}\" lo fɔra DeHub kan: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
+    "loadFailed": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+    "duration": "Ɲɛnamaya",
+    "peakViewers": "Mɔgɔ caaman be filɛli kɛ sisan yɛrɛ",
+    "gifts_one": "Ka bɔ {{count}} gift",
+    "gifts_other": "Ka bɔ {{count}} gifts",
+    "newFollowers": "New uwuwuwuwuwu",
+    "chatMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+    "chatters": "Mɔgɔ minw be baro kɛra",
+    "reactions": "O kama, a ka ɲi ka kɛ ni",
+    "shares": "Mɔgɔ minw be jɛnsɛn",
+    "topSupporters": "Mɔgɔ minw be dɛmɛ don",
+    "polls": "Fɛɛn minw be se ka kɛ",
+    "pollWinner": "{{option}} win",
+    "stillCounting": "O kɔ, a be se ka kɛ ko a ye fɛɛn dɔ di a ma min be se k'a bali ka baara kɛ."
   }
 }

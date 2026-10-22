@@ -9205,5 +9205,28 @@
         "shhh": "شوش"
       }
     }
+  },
+  "liveRecap": {
+    "title": "ملخص البث",
+    "justEnded": "ملخص البث بتاعك",
+    "lastStream": "آخر بث ليك",
+    "none": "ما في بث مكتمل لسه. الملخص بتاعك حيظهر هنا بعد البث الأول.",
+    "share": "شارك",
+    "shareText": "أنا بس بثت \"{{title}}\" على DeHub: {{duration}} مباشر، {{peak}} يشوف في القمة و {{followers}} متابعين جدد.",
+    "untitled": "بث بدون عنوان",
+    "loadFailed": "الملخص ما شحّال. حاول تاني بعد شوية.",
+    "duration": "الوقت المباشر",
+    "peakViewers": "أكثر مشاهدة مرة واحدة",
+    "gifts_one": "من {{count}} هدية",
+    "gifts_other": "من {{count}} هدايا",
+    "newFollowers": "متابعين جدد",
+    "chatMessages": "رسائل الدردشة",
+    "chatters": "ناس بتتحدّث",
+    "reactions": "تفاعلات",
+    "shares": "ناس بتشارك",
+    "topSupporters": "أعلى داعمين",
+    "polls": "استطلاعات",
+    "pollWinner": "{{option}} فاز",
+    "stillCounting": "لسه بنعد: الهدايا ممكن تاخد دقيقة للتأكيد."
   }
 }

@@ -9367,5 +9367,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Resum de la transmissió",
+    "justEnded": "Resum de la teva transmissió",
+    "lastStream": "La teva última transmissió",
+    "none": "Encara no s'han acabat els fluxos. El resum apareix aquí després del primer.",
+    "share": "Compartir",
+    "shareText": "Acabo de transmetre \"{{title}}\" a DeHub: {{duration}} en directe, {{peak}} mirant al cim i {{followers}} nous seguidors.",
+    "untitled": "Flux sense títol",
+    "loadFailed": "El resum no s'ha carregat. Torna-ho a provar en un moment.",
+    "duration": "Temps en viu",
+    "peakViewers": "La majoria ho veuen a la vegada",
+    "gifts_one": "De regal de {{count}}",
+    "gifts_other": "De {{count}} regals",
+    "newFollowers": "Nous seguidors",
+    "chatMessages": "Missatges de xat",
+    "chatters": "Persones que xategen",
+    "reactions": "Reaccions",
+    "shares": "Persones que comparteixen",
+    "topSupporters": "Els millors seguidors",
+    "polls": "Enquestes / votacions",
+    "pollWinner": "{{option}} guanyats",
+    "stillCounting": "Segueix comptant: els regals poden trigar un minut a confirmar-se."
   }
 }

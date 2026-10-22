@@ -9327,5 +9327,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Stream sake kunnawa",
+    "justEnded": "Your rafi recap",
+    "lastStream": "Rafin ku na ƙarshe",
+    "none": "Babu koguna da aka gama har yanzu. Your recap bayyana a nan bayan na farko daya.",
+    "share": "Raba",
+    "shareText": "Na kawai yawo \"{{title}}\" a kan DeHub: {{duration}} live, {{peak}} kallon a saman da {{followers}} sabon mabiya.",
+    "untitled": "Rafin da ba a kira shi ba",
+    "loadFailed": "Maimaitawa bai ɗora ba. Ka sake gwadawa a cikin wani lokaci.",
+    "duration": "Lokaci kai tsaye",
+    "peakViewers": "Mafi yawan kallo a lokaci guda",
+    "gifts_one": "Daga {{count}} kyauta",
+    "gifts_other": "Daga {{count}} kyauta",
+    "newFollowers": "Sabbin mabiya",
+    "chatMessages": "Saƙonnin hira",
+    "chatters": "Mutane suna hira",
+    "reactions": "Ra'ayoyi",
+    "shares": "Mutane suna rabawa",
+    "topSupporters": "Manyan magoya baya",
+    "pollWinner": "{{option}} ya lashe",
+    "stillCounting": "Har yanzu ƙidaya: kyaututtuka na iya ɗaukar minti ɗaya don tabbatarwa."
   }
 }

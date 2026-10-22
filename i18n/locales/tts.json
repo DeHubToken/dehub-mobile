@@ -9269,5 +9269,13 @@
         "spooky": "สะพรึงขวัญ"
       }
     }
+  },
+  "liveRecap": {
+    "share": "แชร์",
+    "shareText": "จัดสตรีม \"{{title}}\" บน DeHub: {{duration}} live, {{peak}} คนดูถึงจุดสูงสุด และ {{followers}} ผู้ติดตามใหม่",
+    "gifts_one": "จาก {{count}} เลยกิฟ",
+    "gifts_other": "จาก {{count}} ของขวัญ",
+    "pollWinner": "{{option}} หน้าตาไร้สาระ",
+    "stillCounting": "ยังคิดอยู่: ของขวัญอาจจะใช้เวลาตรวจสอบนิดหน่อย"
   }
 }

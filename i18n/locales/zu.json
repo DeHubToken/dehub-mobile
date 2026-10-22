@@ -9378,5 +9378,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Ukudlala kabusha kokusakaza",
+    "justEnded": "Ukubuyekezwa kokusakaza kwakho",
+    "lastStream": "Ukusakaza kwakho kokugcina",
+    "none": "Akukho ukusakaza okuqediwe okwamanje. Isibuyekezo sakho sivela lapha ngemva kwesakho sokuqala.",
+    "share": "Yabelana",
+    "shareText": "Ngisanda kusakaza i- \"{{title}}\" ku-DeHub: {{duration}} live, {{peak}} ebuka inani eliphakeme futhi {{followers}} abalandeli abasha.",
+    "untitled": "Ukusakaza okungenasihloko",
+    "loadFailed": "Ukubuyekezwa akuzange kulayishwe. Zama futhi ngomzuzwana.",
+    "duration": "Isikhathi sisebenza bukhoma",
+    "peakViewers": "Okuningi ukubuka ngasikhathi sinye",
+    "gifts_one": "Kusuka ku- {{count}} gift",
+    "gifts_other": "Kusuka ku-{{count}} izipho",
+    "newFollowers": "Abalandeli abasha",
+    "chatMessages": "Imiyalezo yokuxoxa",
+    "chatters": "Abantu abaxoxayo",
+    "reactions": "Ukusabela",
+    "shares": "Abantu abahlanganyela nabanye",
+    "topSupporters": "Abasekeli abahamba phambili",
+    "polls": "Amavoti",
+    "pollWinner": "{{option}} won",
+    "stillCounting": "Kusabalwa: izipho zingathatha umzuzu ukuqinisekisa."
   }
 }

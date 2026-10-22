@@ -9367,5 +9367,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Rekapitulacija streama",
+    "justEnded": "Sažetak vašeg streama",
+    "lastStream": "Vaš posljednji stream",
+    "none": "Još nema dovršenih streamova. Sažetak se prikazuje ovdje nakon prvog.",
+    "share": "Podijeli",
+    "shareText": "Upravo sam emitirao \"{{title}}\" na DeHubu: {{duration}} uživo, {{peak}} gledajući na vrhuncu i {{followers}} novih pratitelja.",
+    "untitled": "Stream bez naslova",
+    "loadFailed": "Rekapitulacija se nije učitala. Pokušajte ponovno za nekoliko trenutaka.",
+    "duration": "Vrijeme uživo",
+    "peakViewers": "Većina gledatelja gleda odjednom",
+    "gifts_one": "Od dara {{count}}",
+    "gifts_other": "Od {{count}} darova",
+    "newFollowers": "Novi pratitelji",
+    "chatMessages": "Poruke razgovora",
+    "chatters": "Ljudi razgovaraju",
+    "reactions": "Reakcija",
+    "shares": "Dijeljenje sadržaja s drugima",
+    "topSupporters": "Najpopularniji podržavatelji",
+    "polls": "Ankete",
+    "stillCounting": "Još uvijek se broji: potvrda darova može potrajati minutu."
   }
 }
