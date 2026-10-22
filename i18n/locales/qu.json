@@ -4793,7 +4793,7 @@
     "usernameReserved": "Kay sutiqa waqaychasqa",
     "profileSet": "Perfil allinta churasqa!",
     "profileFailed": "Perfilta mana churayta atikunchu",
-    "displayNameHint": "Perfilniykipi rikuchikuq sutiyki."
+    "displayNameHint": "Perfilniykipi rikuchikuq sutiyki. Munaspallam — ch'usaqta saqiptiykiqa runa sutiykitam llamkachisaqku."
   },
   "events": {
     "mine": "Ñuqap",
@@ -5034,6 +5034,7 @@
     "accountHasA": "Kay cuentaqa kapun",
     "ifYouUsedDehub": "Ñawpaqta dehub.io llamkachisqaykiqa, computadoraykipi kichay, kaqlla ñanninta hinaspa kaqlla cuentawan yaykuy, hinaspa",
     "biometricExplainer": "Ruk'anaykip unanchanwan icha uyaykiwan kicharinki — mana imapas qillqanapaq nitaq yuyananpaq. Llaveqa kay celularpim qhipan, chayrayku 12 simiyuq kutichina simita rikuchisqayki qillqanaykipaq; chaymi sapallan ñan huk celularmanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunapaq. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
+    "biometricExplainerSecuring": "Ruk'anaykip unanchanwan icha uyaykiwan kicharinki — mana imapas qillqanapaq nitaq yuyananpaq. Llaveqa kay celularpim qhipan. Huk celularmanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunaykipaq, qhipamanqa Churanapi 12 simiyuq kutichina simita waqaychay. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
     "biometricPrompt": "Kay qullqi waqaychanaqa kay antap biometricanwan amachasqa. Qatinaykipaq ruk'anayki unanchanwan icha uyaykiwan takyachiy.",
     "enterRecoveryPhrase": "Kay qullqi waqaychanata kamaspa waqaychasqayki 12 simiyuq kutichina simita qillqay (icha sapan llavinta, sichus horqumurqanki). Chayqa kaqlla cuentaman kutichin, uraypi churasqayki yaykuna simitaq kunanmanta pacha maypipas llamkaq yanapaq tukun.",
     "copyPhrase": "Simi huñuta kikinchay",
@@ -5106,6 +5107,7 @@
     "unlockWithPasswordExplainer": "Kay yupayqa billeterayuqñam, contraseñawan waqaychasqa. Chayta yaykuy kay dispositivopi billeteraykita kutichipunaykipaq.",
     "deviceTab": "Kay aparato",
     "deviceExplainer": "Mana imapas qillqanapaq utaq yuyarinapaq — llaveqa kay dispositivopi qhipan. 12 simiyuq yanapakuyta qusqaykiku qillqanaykipaq; huk dispositivomanta, web kitimanta utaq wakmanta churasqamanta kutimuylla. Aswanpas Contraseña akllay chaymanta kikin contraseña chay llamk'ayta ruwan.",
+    "deviceExplainerSecuring": "Mana imapas qillqanapaq nitaq yuyananpaq — llaveqa kay aparatopim qhipan. Huk aparatomanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunaykipaq, qhipamanqa Churanapi 12 simiyuq kutichina simita waqaychay. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
     "secureOnDevice": "Kay aparatopi llaveta waqaychay"
   },
   "transcript": {
@@ -8998,10 +9000,10 @@
     "confirm": "Cuentayta wiñaypaq chinkachiy",
     "busy": "Qulluy mañakuyta apachispa...",
     "accepted": "Cuenta chinkachiy mañasqa",
-    "receipt": "Qulluy mañakuyniykiqa waqaychasqañam. Perfilniyki pakasqa kachkan chaymanta yupayniyki wiñaypaq qullusqa kanqa 30 p&#39;unchawkunapi. Yaykuyqa manam kay mañakuyta qulluyta atinchu.",
+    "receipt": "Qulluy mañakuyniykiqa waqaychasqañam. Perfilniyki pakasqa kachkan chaymanta yupayniyki wiñaypaq qullusqa kanqa 30 p'unchawkunapi. Yaykuyqa manam kay mañakuyta qulluyta atinchu.",
     "done": "Ñam",
     "error": "Mana qulluy mañakuyniyki apachiyta atirqanchu. Yupayniykiqa manam qulluypaq takyachisqachu. Ama hina kaspa, hukmanta kallpachakuy.",
-    "back": "Ajustes nisqaman kutiy",
+    "back": "Churanaman kutiy",
     "signIn": "Yaykuy yupayniyki chinkachinaykipaq",
     "acknowledge": "Billetera recuperación detallesniyta waqaychani chaymanta entiendeni qulluyqa wiñaypaq kasqanmanta."
   },
@@ -9108,7 +9110,7 @@
     "update": "Kunan musuqchay"
   },
   "walletBackup": {
-    "title": "Billetera de respaldo",
+    "title": "Billeterata waqaychay",
     "rowDesc": "Qaway 12 simiykikunata utaq llave privadaykita",
     "backedUpOn": "Yanapasqa {{date}}",
     "offerTitle": "¿Billeteraykita copia de seguridadta ruwankichu?",
@@ -9203,7 +9205,8 @@
       "reaction_counter": "Reacción nisqa yupay",
       "event_feed": "Kunan pacha ruray",
       "chat_box": "Chat nisqa cuadro",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Alerta kaynin"
     },
     "hints": {
       "tip_alert": "Sapa puntata raymichan, pataman hina sayayniyuq",
@@ -9220,7 +9223,8 @@
       "reaction_counter": "Yupan sapa reacción difusiónniyki chaskisqanmanta",
       "event_feed": "Qhipa quykuna, qatiqninkuna, suscriptores chaymanta runakuna transmisiónniykimanta rakiqkuna",
       "chat_box": "Pantallapi difusión nisqaykipa rimanakuy willakuykunata qawachin",
-      "ticker": "Kikin qillqasqaykimanta chiru, pantallapi puriq"
+      "ticker": "Kikin qillqasqaykimanta chiru, pantallapi puriq",
+      "rule_alert": "Maypin alerta kaykunayki rikurinman"
     },
     "fields": {
       "style": "Rikchay",
@@ -9277,6 +9281,103 @@
       "rotateConfirm": "¿Huk musuq linkta ruway? Ñawpa kaqtaq chaylla manaña llamk’anchu, chayrayku musuq kaqta OBS kaqman k’askanayki tiyan.",
       "rotated": "Musuq link listoña. OBS nisqaman k’askachiy.",
       "rotateFailed": "Mana musuq t'inki ruwayta atirqanchu. Huk ratullapi hukmanta kallpanchakuy."
+    },
+    "rules": {
+      "title": "Kaynin",
+      "intro": "Ima sutin llaqtaypi pasakunaptin, DeHub imayna akllaykunki: alerta rikuchin, sonido sonqoychin, ima niwita uyariwachin, chat llaqtaypi willakuychik o Discord willakuychik.",
+      "add": "Kayna yapay",
+      "limit": "Kayna {{count}} limitiman chayamunki.",
+      "loadFailed": "Kaynakunayki cargana allinchu. Página ama llaqtaypi yapay.",
+      "empty": "Kaynachu mana. Huk yapay propinakuq, seguikuq o chat kamandokuq.",
+      "saved": "Kaynakuna grabada. Chay propina, segui o willaykuq ñawpaqpi llaqtarinqa.",
+      "saveFailed": "Kaynakunayki grabana allinchu.",
+      "testFailed": "Prueba kaychu. Huk ratukama yapay.",
+      "saveToTest": "Kaynakunayki grabay pruebaykunata.",
+      "test": "Prueba",
+      "enabled": "Kayna prindida",
+      "remove": "Kayna llaqtay",
+      "save": "Kaynakunayki grabay",
+      "needsAlertWidget": "Kaynakunayki alerta rikuchinkuna. Alerta widget yapay kaynakunayki rikurinampaq.",
+      "name": "Sutiyoq",
+      "when": "Maytan",
+      "then": "Chaysi",
+      "minAmount": "Propina chiqitaña (DHB)",
+      "command": "Kamando",
+      "keyword": "Rimay o rimaykunaqa",
+      "audience": "Mayqin atipanman",
+      "blockedWords": "Llaqtasqa rimaykunaqa",
+      "blockedWordsHint": "Coma kaq. Rimaykunaqa kaykunawan kayniyuq mana uyariwachinchu.",
+      "cooldown": "Espera llaqtaypi (segundu)",
+      "userCooldown": "Espera rikuq (segundu)",
+      "addAction": "Aksyon yapay",
+      "removeAction": "Aksyon llaqtay",
+      "placeholders": "Qillqasqaykipi {name}, {amount}, {message} nisqakunata llamk'achiy. Willakuykunapi t'inkikuna hurqusqa.",
+      "alertText": "Alerta texto",
+      "sound": "Qapariy",
+      "sayText": "Kunkawan leenapaq texto",
+      "chatText": "Willakuy churanapaq",
+      "chatHint": "Yupayniykimanta mayuykipa rimanakuyninman churasqa. Qhawaqpa willakuynintaqa manam yapamanta ruwayta atinchu.",
+      "webhookUrl": "Webhook nisqap direccionnin",
+      "webhookHint": "Huk Discord utaq Slack webhook, utaq mayqin https direccionpas huk POST chaskiq.",
+      "webhookText": "Willakuy apachinapaq",
+      "triggers": {
+        "tip": "Huk propina chayamun",
+        "follow": "Pipas qatin",
+        "subscribe": "Pipas suscribikun",
+        "share": "Pipas chay mayutam rakinakunku",
+        "command": "Huk rimanakuy kamachiymi llamk'achisqa",
+        "keyword": "Huk rimanakuy willakuypiqa huk simim kachkan",
+        "chat": "Ima rimanakuy willakuypas"
+      },
+      "audiences": {
+        "everyone": "Llapan",
+        "followers": "Qatiqninkuna",
+        "subscribers": "Suscriptores nisqakuna"
+      },
+      "actionTypes": {
+        "alert": "Huk alertata qawachiy",
+        "sound": "Huk t’uqyayta tocay",
+        "say": "Sinchita leey",
+        "chat": "Chat nisqapi qillqay",
+        "webhook": "Huk webhook nisqaman apachiy"
+      },
+      "summary": {
+        "tip": "Consejo de {{amount}} DHB o más"
+      },
+      "presets": {
+        "blank": "Ch’usaq kamachiy",
+        "readChat": "Chat nisqa rimayta kallpawan ñawinchay",
+        "bigTip": "Hatun puntakunapaq wayra waqra",
+        "thankFollowers": "Musuq qatiqninkunaman gracias",
+        "command": "Chat kamachiy"
+      },
+      "presetHints": {
+        "blank": "Mana imamanta qallariy",
+        "readChat": "Qatiqniykikunap willayta kallpawan ñawirin, sapa qhawaqpaq huk sapa 30 segundos kaqpi",
+        "bigTip": "Wayra bocinata tocan chaymanta huk alerta rikuchin 100.000 DHB utaq aswan consejokuna kaqpaq",
+        "thankFollowers": "Pipas qatiptinqa rimanakuynikipi agradecekuytam churan",
+        "command": "Huk !kamachiyta kutichin rimanakuyniykipi"
+      },
+      "presetText": {
+        "readChat": "{name} nin {message}",
+        "bigTip": "{name} apachisqa {amount} DHB!",
+        "thankFollowers": "Gracias qatipasqaykimanta, {name}!",
+        "command": "Allinllachu {name}, allin hamusqaykichik chay mayuman!"
+      },
+      "sounds": {
+        "airhorn": "Wayra waqra",
+        "applause": "Aplausos",
+        "cricket": "Grillokuna",
+        "drumroll": "Tambor rollo",
+        "lol": "Asiykuna",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (runa) .",
+        "ohh-girl": "Ohh (warmi) .",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Manchakuypaq",
+        "magic-spell": "Magia hechizo",
+        "shhh": "Shhh"
+      }
     }
   }
 }

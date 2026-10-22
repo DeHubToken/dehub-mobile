@@ -1061,6 +1061,8 @@
     "payFailed": "No se pudieron convertir {{symbol}} a tokens DeHub",
     "stageDelivering": "DeHub Pay está enviando tus tokens…",
     "payViaDpay": "Pagado a DeHub Pay, los tokens llegan en aproximadamente 30s",
+    "payDirect": "Enviado directamente a {{name}} en {{symbol}} en {{chain}}. Sin swap.",
+    "payDirectNoName": "Enviado directamente al creador en {{symbol}} en {{chain}}. Sin swap.",
     "payViaBridgeDpay": "Movido a Base y pagado a DeHub Pay, los tokens llegan en aproximadamente un minuto",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
@@ -5094,7 +5096,7 @@
     "usernameReserved": "Este nombre de usuario está reservado",
     "profileSet": "¡Perfil configurado correctamente!",
     "profileFailed": "No se pudo configurar el perfil",
-    "displayNameHint": "Tu nombre público que aparece en tu perfil."
+    "displayNameHint": "Tu nombre público en tu perfil. Opcional: déjalo en blanco para usar tu nombre de usuario."
   },
   "events": {
     "mine": "Míos",
@@ -5360,7 +5362,9 @@
     "lowTopUp": "¿Poco de {{symbol}}? Te repondremos antes de desbloquear.",
     "unlockedSuccess": "Desbloqueado con éxito",
     "otherChain": "Esta publicación se resuelve en otra cadena, por lo que necesita tokens DeHub en su billetera allí.",
-    "payHint": "Paga con cualquier cosa en tu billetera. Se convierte en tokens DeHub y se desbloquea de inmediato."
+    "payHint": "Paga con cualquier cosa en tu billetera. Se convierte en tokens DeHub y se desbloquea de inmediato.",
+    "switchTo": "Esta publicación se paga en {{chain}}. Cambia a {{chain}} en Ajustes e inténtalo de nuevo.",
+    "notEnoughToken": "Necesitas {{amount}} {{symbol}} para desbloquear esto. Tienes {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Usa esto si configuraste esta billetera en este teléfono y ya debería tener la clave",
@@ -5395,6 +5399,7 @@
     "accountHasA": "Esta cuenta tiene una",
     "ifYouUsedDehub": "Si ya has usado dehub.io antes, ábrelo en tu ordenador, inicia sesión de la misma forma y con la misma cuenta, y",
     "biometricExplainer": "Desbloquea con tu huella o tu cara: nada que escribir ni recordar. La clave se queda en este teléfono, así que te mostraremos una frase de recuperación de 12 palabras para que la apuntes; es la única vía de vuelta desde otro móvil, desde la web o tras reinstalar. Elige Contraseña y será la contraseña la que haga ese trabajo.",
+    "biometricExplainerSecuring": "Desbloquea con tu huella o tu cara: nada que escribir ni recordar. La clave se queda en este teléfono. Para volver a entrar desde otro móvil, desde la web o tras reinstalar, guarda más adelante una copia de seguridad de 12 palabras en Ajustes. Elige Contraseña y será la contraseña la que haga ese trabajo.",
     "biometricPrompt": "Esta billetera está protegida por la biometría de este dispositivo. Confirma con huella o cara para continuar.",
     "enterRecoveryPhrase": "Introduce la frase de recuperación de 12 palabras que guardaste al crear esta billetera (o su clave privada, si exportaste una). Te devuelve a la misma cuenta, y la contraseña que establezcas abajo pasa a ser un respaldo que funciona en todas partes a partir de ahora.",
     "copyPhrase": "Copiar frase",
@@ -5467,6 +5472,7 @@
     "unlockWithPasswordExplainer": "Esta cuenta ya tiene una billetera, protegida por una contraseña. Ingresa tu contraseña para recuperar tu billetera en este dispositivo.",
     "deviceTab": "Este dispositivo",
     "deviceExplainer": "No hay nada que escribir o recordar: la clave permanece en este dispositivo. Le ofreceremos una copia de seguridad de 12 palabras para escribir; es la única forma de regresar desde otro dispositivo, desde el sitio web o después de reinstalarlo. Elija Contraseña en su lugar y la contraseña en sí misma hace ese trabajo.",
+    "deviceExplainerSecuring": "Nada que escribir ni recordar: la clave se queda en este dispositivo. Para volver a entrar desde otro dispositivo, desde la web o tras reinstalar, guarda más adelante una copia de seguridad de 12 palabras en Ajustes. Elige Contraseña y será la contraseña la que haga ese trabajo.",
     "secureOnDevice": "Mantenga la llave en este dispositivo"
   },
   "walletBackup": {
@@ -5776,6 +5782,7 @@
     "contractPlaceholder": "Dirección del contrato (0x…)",
     "symbolPlaceholder": "Símbolo (p. ej., PEPE)",
     "paymentsBase": "Los pagos son en tokens DeHub en la cadena Base",
+    "paymentsStable": "Los compradores pagan en {{symbol}}, directo a ti",
     "tokensUnit": "tokens",
     "minimumRequired": "Se requiere un mínimo de {{currency}}"
   },
@@ -10779,7 +10786,8 @@
       "reaction_counter": "Contador de reacciones",
       "event_feed": "Actividad reciente",
       "chat_box": "Cuadro de chat",
-      "ticker": "Marquesina"
+      "ticker": "Marquesina",
+      "rule_alert": "Alertas de reglas"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada a su nivel",
@@ -10796,7 +10804,8 @@
       "reaction_counter": "Cuenta cada reacción que recibe tu transmisión",
       "event_feed": "Los últimos regalos, seguidores, suscriptores y personas que comparten tu transmisión",
       "chat_box": "Muestra los mensajes de chat de tu transmisión en la pantalla",
-      "ticker": "Una línea de tu propio texto que se desplaza por la pantalla"
+      "ticker": "Una línea de tu propio texto que se desplaza por la pantalla",
+      "rule_alert": "¿Dónde aparecen las alertas de tus reglas?"
     },
     "fields": {
       "style": "Estilo",
@@ -10853,6 +10862,103 @@
       "rotateConfirm": "¿Quieres crear un nuevo enlace? El antiguo deja de funcionar de inmediato, por lo que tendrás que pegar el nuevo en OBS.",
       "rotated": "Nuevo enlace listo. Pégalo en OBS.",
       "rotateFailed": "No se ha podido crear un nuevo enlace. Inténtalo de nuevo en un momento."
+    },
+    "rules": {
+      "title": "Normas",
+      "intro": "Cuando sucede algo en su transmisión, DeHub hace lo que usted elige: muestra una alerta, reproduce un sonido, lee algo en voz alta, publica en su chat o le dice a su Discord.",
+      "add": "Añade una regla",
+      "limit": "Has alcanzado el límite de {{count}} reglas.",
+      "loadFailed": "No se han podido cargar las normas. Actualiza la página para volver a intentarlo.",
+      "empty": "Aún no hay reglas. Añade una para reaccionar a las sugerencias, los seguimientos o los comandos de chat.",
+      "saved": "Reglas guardadas. Se ejecutan en tu próximo consejo, seguimiento o mensaje.",
+      "saveFailed": "No se han podido guardar tus normas.",
+      "testFailed": "Esa prueba no pasó. Inténtalo de nuevo en un momento.",
+      "saveToTest": "Guarda tus reglas para ponerlas a prueba",
+      "test": "Probar",
+      "enabled": "Regla sobre",
+      "remove": "Eliminar regla",
+      "save": "Guardar reglas",
+      "needsAlertWidget": "Algunas reglas muestran una alerta. Añade el widget de alertas de regla para que tenga un lugar donde aparecer.",
+      "name": "Nombre",
+      "when": "Cuándo",
+      "then": "Entonces",
+      "minAmount": "Punta más pequeña (DHB)",
+      "command": "Comando",
+      "keyword": "Palabra o frase",
+      "audience": "¿Quién puede activarlo?",
+      "blockedWords": "Palabras bloqueadas",
+      "blockedWordsHint": "Separa con comas. Los mensajes que los contengan se ignoran y nunca se leen en voz alta.",
+      "cooldown": "Esperar entre usos (segundos)",
+      "userCooldown": "Espera por espectador (segundos)",
+      "addAction": "Añadir una acción",
+      "removeAction": "Eliminar acción",
+      "placeholders": "Utiliza {name}, {amount} y {message} en tu texto. Los enlaces en los mensajes se eliminan.",
+      "alertText": "Texto de alerta",
+      "sound": "Sonido",
+      "sayText": "Texto para leer en voz alta",
+      "chatText": "Mensaje para publicar",
+      "chatHint": "Publicado desde tu cuenta en el chat de tu stream. No puede repetir el mensaje del espectador.",
+      "webhookUrl": "Dirección del webhook",
+      "webhookHint": "Un webhook de Discord o Slack, o cualquier dirección https que acepte una PUBLICACIÓN.",
+      "webhookText": "Mensaje a enviar",
+      "triggers": {
+        "tip": "Llega una propina",
+        "follow": "Alguien sigue",
+        "subscribe": "Alguien se suscribe",
+        "share": "Alguien comparte la transmisión",
+        "command": "Se utiliza un comando de chat",
+        "keyword": "Un mensaje de chat contiene una palabra",
+        "chat": "Cualquier mensaje de chat"
+      },
+      "audiences": {
+        "everyone": "Todos",
+        "followers": "Seguidores",
+        "subscribers": "Suscriptores"
+      },
+      "actionTypes": {
+        "alert": "Mostrar una alerta",
+        "sound": "Reproducir un sonido",
+        "say": "Leer en voz alta",
+        "chat": "Publicar en el chat",
+        "webhook": "Enviar a un webhook"
+      },
+      "summary": {
+        "tip": "Propina de {{amount}} DHB o más"
+      },
+      "presets": {
+        "blank": "Regla en blanco",
+        "readChat": "Leer el chat en voz alta",
+        "bigTip": "Bocina de aire para puntas grandes",
+        "thankFollowers": "Agradecer a los nuevos seguidores",
+        "command": "Comando de chat"
+      },
+      "presetHints": {
+        "blank": "Empezar de la nada",
+        "readChat": "Lee los mensajes de tus seguidores en voz alta, uno por espectador cada 30 segundos",
+        "bigTip": "Toca una bocina de aire y muestra una alerta de propinas de 100.000 DHB o más",
+        "thankFollowers": "Publica un agradecimiento en tu chat cuando alguien te sigue",
+        "command": "Responde a un comando! en su chat"
+      },
+      "presetText": {
+        "readChat": "{name} dice {message}",
+        "bigTip": "¡{name} ha enviado {amount} DHB!",
+        "thankFollowers": "¡Gracias por seguirnos, {name}!",
+        "command": "Hola {name}, ¡bienvenido a la transmisión!"
+      },
+      "sounds": {
+        "airhorn": "Bocina de aire",
+        "applause": "Aplausos",
+        "cricket": "Grillos",
+        "drumroll": "Rollo de tambor",
+        "lol": "Risa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (hombre)",
+        "ohh-girl": "Ohh (mujer)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Espeluznante",
+        "magic-spell": "Hechizo mágico",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -991,6 +991,8 @@
     "payFailed": "Konnte {{symbol}} nicht in DeHub-Tokens umwandeln",
     "stageDelivering": "DeHub Pay sendet Ihre Tokens…",
     "payViaDpay": "An DeHub Pay bezahlt, Tokens kommen in ca. 30s an",
+    "payDirect": "Direkt an {{name}} in {{symbol}} auf {{chain}} gesendet. Kein Swap.",
+    "payDirectNoName": "Direkt an den Creator in {{symbol}} auf {{chain}} gesendet. Kein Swap.",
     "payViaBridgeDpay": "Auf Base verschoben und an DeHub Pay bezahlt, Tokens kommen in ca. einer Minute an",
     "tokensUnit": "Tokens",
     "tokenAmount": "{{amount}} Tokens"
@@ -4867,7 +4869,7 @@
     "usernameReserved": "Dieser Nutzername ist reserviert",
     "profileSet": "Profil erfolgreich eingerichtet!",
     "profileFailed": "Profil konnte nicht eingerichtet werden",
-    "displayNameHint": "Dein öffentlicher Name, der in deinem Profil erscheint."
+    "displayNameHint": "Dein öffentlicher Name in deinem Profil. Optional — lass das Feld leer, um deinen Benutzernamen zu verwenden."
   },
   "events": {
     "mine": "Meine",
@@ -5073,7 +5075,9 @@
     "lowTopUp": "Wenig {{symbol}}? Wir füllen auf, bevor wir entsperren.",
     "unlockedSuccess": "Erfolgreich entsperrt",
     "otherChain": "Dieser Beitrag wird auf einer anderen Kette abgewickelt, daher werden DeHub-Token in Ihrer Wallet dort benötigt.",
-    "payHint": "Bezahlen Sie mit allem in Ihrer Wallet. Es wird zu DeHub-Token und wird sofort freigeschaltet."
+    "payHint": "Bezahlen Sie mit allem in Ihrer Wallet. Es wird zu DeHub-Token und wird sofort freigeschaltet.",
+    "switchTo": "Dieser Beitrag wird auf {{chain}} bezahlt. Wechsle in den Einstellungen zu {{chain}} und versuche es erneut.",
+    "notEnoughToken": "Du brauchst {{amount}} {{symbol}} zum Freischalten. Du hast {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Nutze dies, wenn du diese Wallet auf diesem Telefon eingerichtet hast und der Schlüssel bereits hier sein sollte",
@@ -5108,6 +5112,7 @@
     "accountHasA": "Dieses Konto hat eine",
     "ifYouUsedDehub": "Wenn du dehub.io schon einmal genutzt hast, öffne es auf deinem Computer, melde dich auf dieselbe Weise und mit demselben Konto an, und",
     "biometricExplainer": "Entsperre mit Fingerabdruck oder Gesicht — nichts zu tippen oder zu merken. Der Schlüssel bleibt auf diesem Telefon, deshalb zeigen wir dir eine 12-Wörter-Wiederherstellungsphrase zum Aufschreiben; sie ist der einzige Weg zurück von einem anderen Gerät, von der Website oder nach einer Neuinstallation. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
+    "biometricExplainerSecuring": "Entsperre mit Fingerabdruck oder Gesicht — nichts zu tippen oder zu merken. Der Schlüssel bleibt auf diesem Telefon. Um von einem anderen Handy, über die Website oder nach einer Neuinstallation wieder Zugriff zu bekommen, speichere später in den Einstellungen ein Backup aus 12 Wörtern. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
     "biometricPrompt": "Diese Wallet ist durch die Biometrie dieses Geräts geschützt. Bestätige mit Fingerabdruck oder Gesicht, um fortzufahren.",
     "enterRecoveryPhrase": "Gib die 12-Wörter-Wiederherstellungsphrase ein, die du beim Erstellen dieser Wallet gespeichert hast (oder ihren privaten Schlüssel, falls du einen exportiert hast). Sie führt zum selben Konto zurück, und das Passwort, das du unten festlegst, wird von jetzt an zu einem überall funktionierenden Ersatzweg.",
     "copyPhrase": "Phrase kopieren",
@@ -5180,6 +5185,7 @@
     "unlockWithPasswordExplainer": "Dieses Konto hat bereits ein Wallet, das durch ein Passwort geschützt ist. Geben Sie es ein, um Ihr Wallet auf diesem Gerät wiederherzustellen.",
     "deviceTab": "Dieses Gerät",
     "deviceExplainer": "Nichts zu tippen oder zu merken — der Schlüssel bleibt auf diesem Gerät. Wir bieten Ihnen ein 12-Wort-Backup zum Aufschreiben; es ist der einzige Weg zurück von einem anderen Gerät, von der Website oder nach der Neuinstallation. Wählen Sie stattdessen Passwort und das Passwort selbst erledigt diese Aufgabe.",
+    "deviceExplainerSecuring": "Nichts zu tippen oder zu merken — der Schlüssel bleibt auf diesem Gerät. Um von einem anderen Gerät, über die Website oder nach einer Neuinstallation wieder Zugriff zu bekommen, speichere später in den Einstellungen ein Backup aus 12 Wörtern. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
     "secureOnDevice": "Bewahren Sie den Schlüssel auf diesem Gerät auf"
   },
   "walletBackup": {
@@ -5489,6 +5495,7 @@
     "contractPlaceholder": "Vertragsadresse (0x…)",
     "symbolPlaceholder": "Symbol (z. B. PEPE)",
     "paymentsBase": "Zahlungen erfolgen in DeHub-Token auf der Base-Kette",
+    "paymentsStable": "Käufer zahlen in {{symbol}}, direkt an dich",
     "tokensUnit": "Token",
     "minimumRequired": "Mindestens {{currency}} erforderlich"
   },
@@ -9191,14 +9198,14 @@
     "description": "Löschen Sie Ihr Konto und Ihre persönlichen Daten dauerhaft",
     "warning": "Dadurch werden dein DeHub-Profil, Posts, Kommentare, Nachrichten und das gespeicherte Wallet-Backup dauerhaft gelöscht. Speichern Sie Ihre Wallet-Wiederherstellungsdetails und verschieben Sie zuerst alle Assets. Öffentliche Blockchain-Transaktionen und gesetzlich vorgeschriebene Zahlungsaufzeichnungen können nicht gelöscht werden. Ihr Profil wird sofort ausgeblendet; die Löschung ist innerhalb von 30 Tagen abgeschlossen. Dies kann nicht rückgängig gemacht werden.",
     "cancel": "Abbrechen",
-    "confirm": "Konto löschen",
+    "confirm": "Mein Konto dauerhaft löschen",
     "busy": "Löschanfrage wird gesendet...",
     "accepted": "Kontolöschung angefordert",
     "receipt": "Ihre Löschanfrage wurde gespeichert. Dein Profil ist ausgeblendet und dein Konto wird innerhalb von 30 Tagen endgültig gelöscht. Die Anmeldung kann diese Anfrage nicht stornieren.",
     "done": "Erledigt",
     "error": "Ihre Löschanfrage konnte nicht gesendet werden. Ihr Konto wurde nicht zum Löschen bestätigt. Bitte versuchen Sie es erneut.",
     "back": "Zurück zu den Einstellungen",
-    "signIn": "Melden Sie sich bei Ihrem Konto an",
+    "signIn": "Melden Sie sich an, um Ihr Konto zu löschen",
     "acknowledge": "Ich habe meine Daten zur Wiederherstellung der Brieftasche gespeichert und verstehe, dass die Löschung dauerhaft ist."
   },
   "miniApps": {
@@ -9383,7 +9390,8 @@
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Letzte Aktivität",
       "chat_box": "Chat-Box",
-      "ticker": "Laufschrift"
+      "ticker": "Laufschrift",
+      "rule_alert": "Regelwarnungen"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
@@ -9400,7 +9408,8 @@
       "reaction_counter": "Zählt jede Reaktion, die Ihre Sendung erhält",
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Personen, die Ihre Sendung teilen",
       "chat_box": "Zeigt die Chat-Nachrichten Ihrer Sendung auf dem Bildschirm an",
-      "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt"
+      "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt",
+      "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden"
     },
     "fields": {
       "style": "Stil",
@@ -9457,6 +9466,103 @@
       "rotateConfirm": "Einen neuen Link erstellen? Der alte funktioniert nicht mehr sofort, daher müssen Sie den neuen in OBS einfügen.",
       "rotated": "Neuer Link bereit. Fügen Sie ihn in OBS ein.",
       "rotateFailed": "Es konnte kein neuer Link erstellt werden. Versuchen Sie es gleich noch einmal."
+    },
+    "rules": {
+      "test": "Testen",
+      "title": "Regeln",
+      "intro": "Wenn etwas in Ihrem Stream passiert, tut DeHub, was Sie möchten: Zeigt eine Warnung an, spielt einen Ton ab, liest etwas laut vor, postet in Ihrem Chat oder teilt es Ihrem Discord mit.",
+      "add": "Eine Regel hinzufügen",
+      "limit": "Sie haben das Limit von {{count}} Regeln erreicht.",
+      "loadFailed": "Ihre Regeln konnten nicht geladen werden. Aktualisieren Sie die Seite, um es erneut zu versuchen.",
+      "empty": "Noch keine Regeln. Fügen Sie eine hinzu, um auf Tipps, Follows oder Chat-Befehle zu reagieren.",
+      "saved": "Regeln gespeichert. Sie werden bei deinem nächsten Tipp, deiner nächsten Nachricht oder deinem nächsten Follow ausgeführt.",
+      "saveFailed": "Deine Regeln konnten nicht gespeichert werden.",
+      "testFailed": "Dieser Test wurde nicht bestanden. Versuchen Sie es gleich noch einmal.",
+      "saveToTest": "Speichern Sie Ihre Regeln, um sie zu testen",
+      "enabled": "Regel über",
+      "remove": "Regel löschen",
+      "save": "Regeln speichern",
+      "needsAlertWidget": "Einige Regeln zeigen eine Warnung an. Fügen Sie das Regelwarnungs-Widget hinzu, damit es irgendwo angezeigt werden kann.",
+      "name": "Name",
+      "when": "Wann",
+      "then": "Dann",
+      "minAmount": "Kleinste Spitze (DHB)",
+      "command": "Befehl",
+      "keyword": "Wort oder Phrase",
+      "audience": "Wer kann es auslösen",
+      "blockedWords": "Blockierte Wörter",
+      "blockedWordsHint": "Mit Kommas trennen. Nachrichten, die sie enthalten, werden ignoriert und nie laut vorgelesen.",
+      "cooldown": "Zwischen den Verwendungen warten (Sekunden)",
+      "userCooldown": "Warten pro Betrachter (Sekunden)",
+      "addAction": "Aktion hinzufügen",
+      "removeAction": "Aktion entfernen",
+      "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
+      "alertText": "Benachrichtigungstext",
+      "sound": "Ton",
+      "sayText": "Vorzulesender Text",
+      "chatText": "Nachricht an Post",
+      "chatHint": "Von deinem Konto in den Chat deines Streams gepostet. Es kann die Nachricht des Betrachters nicht wiederholen.",
+      "webhookUrl": "Webhook-Adresse",
+      "webhookHint": "Ein Discord- oder Slack-Webhook oder eine https-Adresse, die einen BEITRAG akzeptiert.",
+      "webhookText": "Zu sendende Nachricht",
+      "triggers": {
+        "tip": "Ein Trinkgeld kommt",
+        "follow": "Jemand folgt",
+        "subscribe": "Jemand abonniert",
+        "share": "Jemand teilt den Stream",
+        "command": "Ein Chat-Befehl wird verwendet",
+        "keyword": "Eine Chat-Nachricht enthält ein Wort",
+        "chat": "Jede Chat-Nachricht"
+      },
+      "audiences": {
+        "everyone": "Alle",
+        "followers": "Anhänger",
+        "subscribers": "Abonnenten"
+      },
+      "actionTypes": {
+        "alert": "Eine Benachrichtigung anzeigen",
+        "sound": "Einen Ton abspielen",
+        "say": "Vorlesen",
+        "chat": "Im Chat posten",
+        "webhook": "An einen Webhook senden"
+      },
+      "summary": {
+        "tip": "Tipp von {{amount}} DHB oder mehr"
+      },
+      "presets": {
+        "blank": "Leere Regel",
+        "readChat": "Chat vorlesen",
+        "bigTip": "Lufthorn für große Spitzen",
+        "thankFollowers": "Vielen Dank an neue Follower",
+        "command": "Chat-Befehl"
+      },
+      "presetHints": {
+        "blank": "Beginnen Sie aus dem Nichts",
+        "readChat": "Liest die Nachrichten Ihrer Follower laut vor, alle 30 Sekunden eine pro Zuschauer",
+        "bigTip": "Spielt eine Lufthupe und zeigt eine Warnung für Trinkgelder von 100.000 DHB oder mehr an",
+        "thankFollowers": "Schreibt ein Dankeschön in Ihren Chat, wenn jemand folgt",
+        "command": "Beantwortet einen !-Befehl in Ihrem Chat"
+      },
+      "presetText": {
+        "readChat": "{name} sagt {message}",
+        "bigTip": "{name} gesendet {amount} DHB!",
+        "thankFollowers": "Vielen Dank für deine Nachricht, {name}!",
+        "command": "Hallo {name}, willkommen im Stream!"
+      },
+      "sounds": {
+        "airhorn": "Lufthorn",
+        "applause": "Applaus",
+        "cricket": "Grillen",
+        "drumroll": "Trommelrolle",
+        "lol": "Lachen",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (Frau)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Gruselig",
+        "magic-spell": "Zauberspruch",
+        "shhh": "Pssst."
+      }
     }
   }
 }

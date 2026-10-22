@@ -946,6 +946,8 @@
     "payFailed": "无法将 {{symbol}} 兑换为 DeHub 代币",
     "stageDelivering": "DeHub Pay 正在发送您的代币…",
     "payViaDpay": "已支付给 DeHub Pay，代币约 30 秒后到账",
+    "payDirect": "以 {{chain}} 上的 {{symbol}} 直接发送给 {{name}}，无需兑换。",
+    "payDirectNoName": "以 {{chain}} 上的 {{symbol}} 直接发送给创作者，无需兑换。",
     "payViaBridgeDpay": "已移至 Base 并支付给 DeHub Pay，代币约一分钟后到账",
     "tokensUnit": "代币",
     "tokenAmount": "{{amount}} 代币"
@@ -4812,7 +4814,7 @@
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
     "profileFailed": "无法设置资料",
-    "displayNameHint": "显示在你个人资料上的公开名称。"
+    "displayNameHint": "显示在你个人资料上的公开名称。选填——留空则使用你的用户名。"
   },
   "events": {
     "mine": "我的",
@@ -5018,7 +5020,9 @@
     "lowTopUp": "{{symbol}} 不足？解锁前我们会为您补足。",
     "unlockedSuccess": "已成功解锁",
     "otherChain": "此帖子已在另一个链上结算，因此您需要在该链的钱包中拥有 DeHub 代币。",
-    "payHint": "使用钱包中的任何内容付款。它将转换为 DeHub 代币并立即解锁。"
+    "payHint": "使用钱包中的任何内容付款。它将转换为 DeHub 代币并立即解锁。",
+    "switchTo": "此帖子在 {{chain}} 上支付。请在设置中切换到 {{chain}} 后重试。",
+    "notEnoughToken": "解锁需要 {{amount}} {{symbol}}，你有 {{held}}。"
   },
   "walletSetup": {
     "tryBiometricsHint": "如果你是在这部手机上设置的这个钱包，密钥应该已经在这里，请使用此项",
@@ -5053,6 +5057,7 @@
     "accountHasA": "该账户拥有",
     "ifYouUsedDehub": "如果你以前用过 dehub.io，请在电脑上打开它，用相同方式和相同账户登录，然后",
     "biometricExplainer": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上，因此我们会显示一组 12 个词的恢复助记词供你抄下；这是从另一部手机、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "biometricExplainerSecuring": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上。若要从另一部手机、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "biometricPrompt": "此钱包受本设备的生物识别保护。请用指纹或人脸确认以继续。",
     "enterRecoveryPhrase": "请输入你创建这个钱包时保存的 12 个词恢复助记词（若导出过私钥，也可用私钥）。它会回到同一个账户，而你在下面设置的密码将成为从此处处可用的备用方式。",
     "copyPhrase": "复制助记词",
@@ -5124,7 +5129,8 @@
     "unlockPasskeyOnly": "此钱包已在网上通过通行密钥保护，目前云端没有密码备份。如果您在 dehub.io 上设置了钱包密码，请在此处输入——否则请使用下方的“导入密钥”。",
     "unlockWithPasswordExplainer": "此账户已有一个钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。",
     "deviceTab": "此设备",
-    "deviceExplainer": "无需输入或记住—钥匙留在此设备上。我们将为您提供一个12字的备份来写下来；这是从另一台设备、网站或重新安装后返回的唯一途径。取而代之的是选择密码，密码本身就可以完成这项工作。",
+    "deviceExplainer": "无需输入或记忆任何东西——密钥保存在这台设备上。我们会提供一组 12 个词的备份供你抄下；这是从另一台设备、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "deviceExplainerSecuring": "无需输入或记忆任何东西——密钥保存在这台设备上。若要从另一台设备、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "secureOnDevice": "将密钥保留在此设备上"
   },
   "walletBackup": {
@@ -5427,6 +5433,7 @@
     "contractPlaceholder": "合约地址（0x…）",
     "symbolPlaceholder": "代号（例如 PEPE）",
     "paymentsBase": "在 Base 链上使用 DeHub 代币付款",
+    "paymentsStable": "买家以 {{symbol}} 支付，直接发送给你",
     "tokensUnit": "代币",
     "minimumRequired": "最少需要 {{currency}} 个"
   },
@@ -9114,7 +9121,7 @@
     "done": "完成",
     "error": "无法提交您的删除请求。您的账号尚未确认删除。请重试。",
     "back": "返回设置",
-    "signIn": "登录",
+    "signIn": "登录以删除您的账户",
     "acknowledge": "我已保存钱包恢复详细信息，并了解删除是永久性的。"
   },
   "miniApps": {
@@ -9285,7 +9292,8 @@
       "reaction_counter": "反应计数器",
       "event_feed": "近期活动",
       "chat_box": "聊天框",
-      "ticker": "股票代码"
+      "ticker": "股票代码",
+      "rule_alert": "规则警报"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小根据等级",
@@ -9302,7 +9310,8 @@
       "reaction_counter": "计算您的广播得到的每个反应",
       "event_feed": "分享您直播的最新礼物、关注者、订阅者和人员",
       "chat_box": "在屏幕上显示直播的聊天消息",
-      "ticker": "在屏幕上滚动的一行您自己的文本"
+      "ticker": "在屏幕上滚动的一行您自己的文本",
+      "rule_alert": "规则提醒的显示位置"
     },
     "fields": {
       "style": "样式",
@@ -9359,6 +9368,103 @@
       "rotateConfirm": "创建新链接？旧的立即停止工作，因此您需要将新的粘贴到OBS中。",
       "rotated": "新链接已准备就绪。将其粘贴到OBS。",
       "rotateFailed": "无法创建新链接。请稍后重试。"
+    },
+    "rules": {
+      "sound": "声音",
+      "title": "规则",
+      "intro": "当你的直播中发生某事时，DeHub 会根据你的选择进行操作：显示警报、播放声音、朗读内容、在聊天室发帖或通知你的 Discord。",
+      "add": "添加规则",
+      "limit": "您已达到{{count}}规则的限制。",
+      "loadFailed": "无法加载您的规则。请刷新页面以重试。",
+      "empty": "还没有规则。添加一个以响应提示、关注或聊天命令。",
+      "saved": "规则已保存。它们会在您的下一次小费、关注或消息中运行。",
+      "saveFailed": "无法保存您的规则。",
+      "testFailed": "该测试未通过。请稍后重试。",
+      "saveToTest": "保存您的规则以测试它们。",
+      "test": "测试",
+      "enabled": "规则开启",
+      "remove": "删除规则",
+      "save": "保存规则",
+      "needsAlertWidget": "有些规则会显示警报。添加规则提醒小部件，以便它在某处显示。",
+      "name": "名称",
+      "when": "时间",
+      "then": "然后",
+      "minAmount": "最小尖端（ DHB ）",
+      "command": "命令",
+      "keyword": "单词或短语",
+      "audience": "谁可以引爆它",
+      "blockedWords": "已屏蔽的字词",
+      "blockedWordsHint": "用逗号分隔。包含它们的消息将被忽略，并且永远不会大声朗读。",
+      "cooldown": "使用次数之间的等待时间（秒）",
+      "userCooldown": "等待每位观众（秒）",
+      "addAction": "添加操作",
+      "removeAction": "删除操作",
+      "placeholders": "在文本中使用{name}、{amount}和{message}。消息中的链接将被删除。",
+      "alertText": "警报文本",
+      "sayText": "朗读文本",
+      "chatText": "要发布的消息",
+      "chatHint": "从您的帐户发布到您的信息流聊天中。它不能重复查看者的消息。",
+      "webhookUrl": "Webhook地址",
+      "webhookHint": "Discord或Slack网络钩子，或接受帖子的任何https地址。",
+      "webhookText": "要发送的消息",
+      "triggers": {
+        "tip": "小费已到账",
+        "follow": "有人关注",
+        "subscribe": "有人订阅",
+        "share": "有人分享了信息流",
+        "command": "使用聊天命令",
+        "keyword": "聊天消息包含一个单词",
+        "chat": "任何聊天消息"
+      },
+      "audiences": {
+        "everyone": "所有人",
+        "followers": "关注者",
+        "subscribers": "订阅者"
+      },
+      "actionTypes": {
+        "alert": "显示提醒",
+        "sound": "播放声音",
+        "say": "朗读",
+        "chat": "在聊天中发布",
+        "webhook": "发送到Webhook"
+      },
+      "summary": {
+        "tip": "小费{{amount}} DHB或以上"
+      },
+      "presets": {
+        "blank": "空白规则",
+        "readChat": "大声朗读聊天记录",
+        "bigTip": "大尖头气喇叭",
+        "thankFollowers": "感谢新粉丝",
+        "command": "聊天命令"
+      },
+      "presetHints": {
+        "blank": "从无到有",
+        "readChat": "大声朗读您的关注者的消息，每30秒一个查看者",
+        "bigTip": "播放气喇叭并显示100,000 DHB或以上小费的警报",
+        "thankFollowers": "当有人关注时，在聊天中发感谢信",
+        "command": "在聊天中回答a!命令"
+      },
+      "presetText": {
+        "readChat": "{name}说{message}",
+        "bigTip": "{name}已发送{amount} DHB ！",
+        "thankFollowers": "{name} ，感谢您的关注！",
+        "command": "您好{name} ，欢迎来到直播！"
+      },
+      "sounds": {
+        "airhorn": "气喇叭",
+        "applause": "掌声",
+        "cricket": "蟋蟀",
+        "drumroll": "滚筒",
+        "lol": "笑声",
+        "ooh-ahh": "哦哦啊啊",
+        "ooh-man": "呦（哥们儿）",
+        "ohh-girl": "Ohh （女性）",
+        "ba-dum-tish": "嘭！",
+        "spooky": "诡异",
+        "magic-spell": "魔法咒语",
+        "shhh": "嘘"
+      }
     }
   }
 }

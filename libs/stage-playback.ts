@@ -40,6 +40,7 @@
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
 import i18n from "i18next";
 import { useEffect, useState } from "react";
+import { Platform } from "react-native";
 
 import { configureForBackgroundPlayback } from "./audioSession";
 import { claimLockScreen, releaseLockScreen } from "./lockScreen";
@@ -387,6 +388,61 @@ export function stopStageRecording() {
   publish(IDLE);
 }
 
+// ── Old browser recordings on iPhone ─────────────────────────────────────────
+//
+// Browsers record stages as WebM, and an iPhone cannot play WebM at all:
+// AVPlayer has no demuxer for it, so every stage hosted from the web was a
+// play button that spun forever on iOS. finalize-stage-recording now files new
+// recordings as MP4 from the start (the same Opus audio, re-wrapped); a
+// recording made before that is converted the first time anyone plays it, and
+// the stage is repointed at the copy for everybody after.
+
+const isWebm = (url: string) => /\.webm(?:[?#]|$)/i.test(url);
+
+/** Stages already sent off for their MP4 this session, so a replay does not ask again. */
+const playableCopyRequested = new Set<string>();
+
+function requestPlayableCopy(stageId: string) {
+  if (playableCopyRequested.has(stageId)) return;
+  playableCopyRequested.add(stageId);
+  void supabase.functions
+    .invoke("finalize-stage-recording", { body: { stageId, transcribe: false } })
+    .then(
+      ({ error }) => {
+        if (error) {
+          log.warn("Asking for a playable copy failed", error);
+          playableCopyRequested.delete(stageId);
+        }
+      },
+      (e) => {
+        log.warn("Asking for a playable copy failed", e);
+        playableCopyRequested.delete(stageId);
+      },
+    );
+}
+
+/** Polls until the stage points at its converted copy; null if it never does in time. */
+async function waitForPlayableCopy(stageId: string, timeoutMs = 90_000): Promise<string | null> {
+  const until = Date.now() + timeoutMs;
+  while (Date.now() < until) {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Moved on to something else, or stopped: stop asking.
+    if (state.spaceId !== stageId) return null;
+    const { data } = await supabase
+      .from("audio_spaces")
+      .select("recording_url")
+      .eq("id", stageId)
+      .maybeSingle();
+    const url = (data as { recording_url?: string | null } | null)?.recording_url;
+    if (url && !isWebm(url)) return url;
+  }
+  return null;
+}
+
+function couldNotPlay(e: unknown) {
+  toastError(e, "That recording could not be played");
+}
+
 /**
  * Start a recording, optionally at a position. Replaces whatever was playing.
  *
@@ -434,10 +490,27 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
     timeLeft: "",
   });
 
+  const webm = isWebm(space.recording_url);
+  if (webm) requestPlayableCopy(space.id);
+
   void (async () => {
     try {
+      let uri = space.recording_url!;
+      // Android plays the WebM while the copy is made. An iPhone never will,
+      // so it holds on the loading state until the MP4 is there.
+      if (webm && Platform.OS === "ios") {
+        const copy = await waitForPlayableCopy(space.id);
+        if (state.spaceId !== space.id) return;
+        if (!copy) {
+          log.warn("No playable copy of this recording arrived in time");
+          couldNotPlay(null);
+          stopStageRecording();
+          return;
+        }
+        uri = copy;
+      }
       await configureForBackgroundPlayback();
-      p.replace({ uri: space.recording_url! });
+      p.replace({ uri });
       // A fresh source starts at the persisted rate.
       try {
         p.shouldCorrectPitch = true;
@@ -455,7 +528,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
       });
     } catch (e) {
       log.error("Could not start the recording", e);
-      toastError(e, "That recording could not be played");
+      couldNotPlay(e);
       stopStageRecording();
     }
   })();

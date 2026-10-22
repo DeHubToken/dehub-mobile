@@ -4771,7 +4771,7 @@
     "usernameReserved": "Dette brukernavnet er reservert",
     "profileSet": "Profilen ble satt opp!",
     "profileFailed": "Kunne ikke sette opp profilen",
-    "displayNameHint": "Det offentlige navnet ditt som vises på profilen."
+    "displayNameHint": "Det offentlige navnet ditt som vises på profilen. Valgfritt — la feltet stå tomt for å bruke brukernavnet ditt."
   },
   "events": {
     "mine": "Mine",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Denne kontoen har en",
     "ifYouUsedDehub": "Hvis du har brukt dehub.io før, åpne det på datamaskinen din, logg inn på samme måte og med samme konto, og",
     "biometricExplainer": "Lås opp med fingeravtrykk eller ansikt — ingenting å taste eller huske. Nøkkelen blir på denne telefonen, så vi viser deg en gjenopprettingsfrase på 12 ord du skal skrive ned; det er den eneste veien tilbake fra en annen telefon, fra nettstedet eller etter ny installasjon. Velg Passord i stedet, så gjør passordet selv den jobben.",
+    "biometricExplainerSecuring": "Lås opp med fingeravtrykk eller ansikt — ingenting å taste eller huske. Nøkkelen blir på denne telefonen. For å komme inn igjen fra en annen telefon, fra nettstedet eller etter ny installasjon, lagrer du en sikkerhetskopi på 12 ord senere i Innstillinger. Velg Passord i stedet, så gjør passordet selv den jobben.",
     "biometricPrompt": "Denne lommeboken er beskyttet av enhetens biometri. Bekreft med fingeravtrykk eller ansikt for å fortsette.",
     "enterRecoveryPhrase": "Skriv inn gjenopprettingsfrasen på 12 ord som du lagret da du opprettet denne lommeboken (eller den private nøkkelen, hvis du eksporterte en). Den fører tilbake til samme konto, og passordet du angir nedenfor blir en reserve som fra nå av fungerer overalt.",
     "copyPhrase": "Kopier frase",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Denne kontoen har allerede en lommebok, beskyttet av et passord. Skriv det inn for å gjenopprette lommeboken din på denne enheten.",
     "deviceTab": "Denne enheten",
     "deviceExplainer": "Ingenting å skrive eller huske – nøkkelen forblir på denne enheten. Vi tilbyr deg en sikkerhetskopi på 12 ord du kan skrive ned. Det er den eneste måten å komme tilbake på fra en annen enhet, fra nettstedet eller etter en ny installasjon. Velg Passord i stedet, så gjør selve passordet den jobben.",
+    "deviceExplainerSecuring": "Ingenting å taste eller huske — nøkkelen blir på denne enheten. For å komme inn igjen fra en annen enhet, fra nettstedet eller etter ny installasjon, lagrer du en sikkerhetskopi på 12 ord senere i Innstillinger. Velg Passord i stedet, så gjør passordet selv den jobben.",
     "secureOnDevice": "Behold nøkkelen på denne enheten"
   },
   "transcript": {
@@ -9188,7 +9190,8 @@
       "reaction_counter": "Reaksjonsteller",
       "event_feed": "Nylig aktivitet",
       "chat_box": "Chatboks",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Regelvarsler"
     },
     "hints": {
       "tip_alert": "Feirer hvert tips, tilpasset nivået",
@@ -9205,7 +9208,8 @@
       "reaction_counter": "Teller alle reaksjoner sendingen din får",
       "event_feed": "De nyeste gavene, følgerne, abonnentene og personene som deler sendingen din",
       "chat_box": "Viser chatmeldingene fra kringkastingen din på skjermen",
-      "ticker": "En linje med din egen tekst som ruller over skjermen"
+      "ticker": "En linje med din egen tekst som ruller over skjermen",
+      "rule_alert": "Hvor varslene fra reglene dine vises"
     },
     "fields": {
       "style": "Stil",
@@ -9262,6 +9266,103 @@
       "rotateConfirm": "Lage en ny lenke? Den gamle slutter å virke med en gang, så du må lime inn den nye i OBS.",
       "rotated": "Ny lenke klar. Lim den inn i OBS.",
       "rotateFailed": "Kunne ikke lage en ny lenke. Prøv igjen om et øyeblikk."
+    },
+    "rules": {
+      "title": "Regler",
+      "intro": "Når noe skjer på strømmen din, gjør DeHub det du velger: viser et varsel, spiller av en lyd, leser noe høyt, legger ut innlegg i chatten din eller forteller det til Discord-brukeren din.",
+      "add": "Legg til en regel",
+      "limit": "Du har nådd grensen for {{count}}-regler.",
+      "loadFailed": "Dine regler kunne ikke lastes. Oppfrisk siden for å prøve på nytt.",
+      "empty": "Ingen regler ennå. Legg til en for å reagere på tips, følgere eller chatkommandoer.",
+      "saved": "Regler lagret. De kjører på ditt neste tips, følger eller melding.",
+      "saveFailed": "Reglene dine kunne ikke lagres.",
+      "testFailed": "Den testen gikk ikke gjennom. Prøv igjen om et øyeblikk.",
+      "saveToTest": "Lagre reglene dine for å teste dem",
+      "test": "Test",
+      "enabled": "Regel om",
+      "remove": "Slett regel",
+      "save": "Lagre regler",
+      "needsAlertWidget": "Noen regler viser et varsel. Legg til regelvarsler-widgeten slik at den har et sted å vises.",
+      "name": "navn",
+      "when": "Når",
+      "then": "Da",
+      "minAmount": "Minste spiss (DHB)",
+      "command": "Kommando",
+      "keyword": "Ordet eller uttrykket",
+      "audience": "Hvem kan sette den i gang",
+      "blockedWords": "Blokkerte ord",
+      "blockedWordsHint": "Skill med komma. Meldinger som inneholder dem ignoreres og leses aldri høyt.",
+      "cooldown": "Vent mellom bruk (sekunder)",
+      "userCooldown": "Ventetid per seer (sekunder)",
+      "addAction": "Legg til en handling",
+      "removeAction": "Fjern handling",
+      "placeholders": "Bruk {name}, {amount} og {message} i teksten din. Lenker i meldinger fjernes.",
+      "alertText": "Varseltekst",
+      "sound": "Lyd",
+      "sayText": "Tekst som skal leses høyt",
+      "chatText": "Melding til innlegg",
+      "chatHint": "Publisert fra kontoen din i chatten i strømmen din. Den kan ikke gjenta seerens melding.",
+      "webhookUrl": "Webhook-adresse",
+      "webhookHint": "En Discord- eller Slack-webhook, eller en hvilken som helst https-adresse som godtar en POST.",
+      "webhookText": "Melding som skal sendes",
+      "triggers": {
+        "tip": "Et tips kommer inn",
+        "follow": "Noen følger",
+        "subscribe": "Noen abonnerer",
+        "share": "Noen deler strømmen",
+        "command": "En chat-kommando brukes",
+        "keyword": "En chatmelding inneholder et ord",
+        "chat": "Enhver chatmelding"
+      },
+      "audiences": {
+        "everyone": "Alle",
+        "followers": "Følgere",
+        "subscribers": "Abonnentene"
+      },
+      "actionTypes": {
+        "alert": "Vis et varsel",
+        "sound": "Spill av en lyd",
+        "say": "Les høyt",
+        "chat": "Legg ut innlegg i chatten",
+        "webhook": "Send til en webhook"
+      },
+      "summary": {
+        "tip": "Tips på {{amount}} DHB eller mer"
+      },
+      "presets": {
+        "blank": "Tom regel",
+        "readChat": "Les chatten høyt",
+        "bigTip": "Lufthorn for store tips",
+        "thankFollowers": "Takk nye følgere",
+        "command": "Chat-kommando"
+      },
+      "presetHints": {
+        "blank": "Start fra ingenting",
+        "readChat": "Leser meldingene til følgerne dine høyt, én per seer hvert 30. sekund",
+        "bigTip": "Spiller et lufthorn og viser et varsel for tips på 100 000 DHB eller mer",
+        "thankFollowers": "Legger ut en takk i chatten din når noen følger deg",
+        "command": "Svarer på en !kommando i chatten din"
+      },
+      "presetText": {
+        "readChat": "{name} sier {message}",
+        "bigTip": "{name} sendte {amount} DHB!",
+        "thankFollowers": "Takk for at du fulgte, {name}!",
+        "command": "Hallo {name}, velkommen til strømmen!"
+      },
+      "sounds": {
+        "airhorn": "Lufthorn",
+        "applause": "Bifall",
+        "cricket": "Sirisser",
+        "drumroll": "Trommevirvel",
+        "lol": "Latter",
+        "ooh-ahh": "Ååååh",
+        "ooh-man": "Åh (mann)",
+        "ohh-girl": "Åh (kvinne)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Skummel",
+        "magic-spell": "Magisk trylleformel",
+        "shhh": "Ssjh"
+      }
     }
   }
 }

@@ -947,6 +947,8 @@
     "payFailed": "Tidak dapat mengonversi {{symbol}} ke token DeHub",
     "stageDelivering": "DeHub Pay sedang mengirim token Anda…",
     "payViaDpay": "Dibayar ke DeHub Pay, token tiba dalam waktu sekitar 30 detik",
+    "payDirect": "Dikirim langsung ke {{name}} dalam {{symbol}} di {{chain}}. Tanpa swap.",
+    "payDirectNoName": "Dikirim langsung ke kreator dalam {{symbol}} di {{chain}}. Tanpa swap.",
     "payViaBridgeDpay": "Dipindahkan ke Base dan dibayar ke DeHub Pay, token tiba dalam waktu sekitar satu menit",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4820,7 +4822,7 @@
     "usernameReserved": "Nama pengguna ini dicadangkan",
     "profileSet": "Profil berhasil diatur!",
     "profileFailed": "Gagal mengatur profil",
-    "displayNameHint": "Nama publik yang tampil di profilmu."
+    "displayNameHint": "Nama publik di profilmu. Opsional — kosongkan saja untuk memakai nama penggunamu."
   },
   "events": {
     "mine": "Milik saya",
@@ -5026,7 +5028,9 @@
     "lowTopUp": "Kehabisan {{symbol}}? Kami akan mengisinya sebelum membuka kunci.",
     "unlockedSuccess": "Berhasil dibuka",
     "otherChain": "Postingan ini diselesaikan di rantai lain, jadi memerlukan token DeHub di dompet Anda di sana.",
-    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka."
+    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka.",
+    "switchTo": "Postingan ini dibayar di {{chain}}. Beralih ke {{chain}} di Pengaturan, lalu coba lagi.",
+    "notEnoughToken": "Kamu butuh {{amount}} {{symbol}} untuk membuka ini. Kamu punya {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gunakan ini jika Anda menyiapkan dompet ini di ponsel ini dan kuncinya seharusnya sudah ada di sini",
@@ -5061,6 +5065,7 @@
     "accountHasA": "Akun ini memiliki",
     "ifYouUsedDehub": "Jika kamu pernah memakai dehub.io, buka di komputermu, masuk dengan cara dan akun yang sama, lalu",
     "biometricExplainer": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini, jadi kami akan menunjukkan frasa pemulihan 12 kata untuk kamu catat; itulah satu-satunya jalan kembali dari ponsel lain, dari situs web, atau setelah memasang ulang. Pilih Kata Sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
+    "biometricExplainerSecuring": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini. Untuk kembali masuk dari ponsel lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "biometricPrompt": "Dompet ini dilindungi biometrik perangkat ini. Konfirmasi dengan sidik jari atau wajah untuk melanjutkan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 kata yang kamu simpan saat membuat dompet ini (atau kunci privatnya, jika kamu mengekspornya). Ini kembali ke akun yang sama, dan kata sandi yang kamu atur di bawah menjadi cadangan yang mulai sekarang berfungsi di mana saja.",
     "copyPhrase": "Salin frasa",
@@ -5133,6 +5138,7 @@
     "unlockWithPasswordExplainer": "Akun ini sudah memiliki dompet, yang dilindungi oleh kata sandi. Masukkan untuk memulihkan dompet Anda di perangkat ini.",
     "deviceTab": "Perangkat ini",
     "deviceExplainer": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap ada di perangkat ini. Kami akan menawarkan Anda cadangan 12 kata untuk dituliskan; ini adalah satu - satunya cara kembali dari perangkat lain, dari situs web, atau setelah menginstal ulang. Pilih Kata Sandi sebagai gantinya dan kata sandi itu sendiri melakukan pekerjaan itu.",
+    "deviceExplainerSecuring": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap di perangkat ini. Untuk kembali masuk dari perangkat lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "secureOnDevice": "Simpan kunci di perangkat ini"
   },
   "walletBackup": {
@@ -5434,6 +5440,7 @@
     "contractPlaceholder": "Alamat kontrak (0x…)",
     "symbolPlaceholder": "Simbol (mis. PEPE)",
     "paymentsBase": "Pembayaran dalam token DeHub di rantai Base",
+    "paymentsStable": "Pembeli membayar dengan {{symbol}}, langsung dikirim ke kamu",
     "tokensUnit": "token",
     "minimumRequired": "Minimum {{currency}} diperlukan"
   },
@@ -9020,7 +9027,7 @@
     "done": "Selesai",
     "error": "Tidak dapat mengirimkan permohonan penghapusan Anda. Akun Anda belum dikonfirmasi untuk dihapus. Silakan coba lagi.",
     "back": "Kembali ke Pengaturan",
-    "signIn": "Masuk Akun Anda",
+    "signIn": "Masuk untuk menghapus akun Anda",
     "acknowledge": "Saya telah menyimpan detail pemulihan dompet saya dan memahami bahwa penghapusan bersifat permanen."
   },
   "miniApps": {
@@ -9191,7 +9198,8 @@
       "reaction_counter": "Penghitung reaksi",
       "event_feed": "Aktivitas terbaru",
       "chat_box": "Kotak obrolan",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Peringatan aturan"
     },
     "hints": {
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
@@ -9208,7 +9216,8 @@
       "reaction_counter": "Menghitung setiap reaksi yang diterima siaran Anda",
       "event_feed": "Hadiah, pengikut, pelanggan, dan orang terbaru yang membagikan siaran Anda",
       "chat_box": "Menampilkan pesan obrolan siaran Anda di layar",
-      "ticker": "Baris teks Anda sendiri yang bergulir di layar"
+      "ticker": "Baris teks Anda sendiri yang bergulir di layar",
+      "rule_alert": "Di mana pemberitahuan peraturan Anda muncul"
     },
     "fields": {
       "style": "Gaya",
@@ -9265,6 +9274,103 @@
       "rotateConfirm": "Buat tautan baru? Yang lama langsung berhenti bekerja, jadi Anda harus menempelkan yang baru ke OBS.",
       "rotated": "Tautan baru siap. Tempelkan ke OBS.",
       "rotateFailed": "Tidak dapat membuat tautan baru. Coba lagi sebentar lagi."
+    },
+    "rules": {
+      "title": "Peraturan",
+      "intro": "Ketika sesuatu terjadi di streaming Anda, DeHub melakukan apa yang Anda pilih: menunjukkan peringatan, memutar suara, membaca sesuatu dengan keras, memposting di obrolan Anda, atau memberi tahu Discord Anda.",
+      "add": "Tambahkan aturan",
+      "limit": "Anda telah mencapai batas {{count}} aturan.",
+      "loadFailed": "Aturan Anda tidak dapat dimuat. Segarkan halaman untuk mencoba lagi.",
+      "empty": "Belum ada aturan. Tambahkan satu untuk bereaksi terhadap tips, mengikuti, atau perintah obrolan.",
+      "saved": "Aturan disimpan. Mereka berjalan pada tip berikutnya, follow atau pesanmu.",
+      "saveFailed": "Aturan Anda tidak dapat disimpan.",
+      "testFailed": "Tes itu tidak berhasil. Coba lagi sebentar lagi.",
+      "saveToTest": "Simpan aturan Anda untuk mengujinya",
+      "test": "Tes",
+      "enabled": "Aturan tentang",
+      "remove": "Hapus aturan",
+      "save": "Simpan aturan",
+      "needsAlertWidget": "Beberapa aturan menunjukkan peringatan. Tambahkan widget Lansiran aturan sehingga ada tempat untuk ditampilkan.",
+      "name": "Nama",
+      "when": "Kapan",
+      "then": "Kemudian",
+      "minAmount": "Smallest tip (DHB)",
+      "command": "Perintah",
+      "keyword": "Kata atau frasa",
+      "audience": "Siapa yang dapat menyetelnya",
+      "blockedWords": "Kata - kata yang diblokir",
+      "blockedWordsHint": "Pisahkan dengan koma. Pesan yang mengandungnya diabaikan dan jangan pernah dibaca keras - keras.",
+      "cooldown": "Tunggu di antara penggunaan (detik)",
+      "userCooldown": "Tunggu per penampil (detik)",
+      "addAction": "Tambahkan tindakan",
+      "removeAction": "Hapus tindakan",
+      "placeholders": "Gunakan {name}, {amount}, dan {message} dalam SMS Anda. Tautan dalam pesan dihapus.",
+      "alertText": "Teks peringatan",
+      "sound": "Suara",
+      "sayText": "Teks untuk dibaca dengan suara keras",
+      "chatText": "Pesan untuk diposting",
+      "chatHint": "Diposting dari akun Anda ke obrolan streaming Anda. Tidak dapat mengulangi pesan pemirsa.",
+      "webhookUrl": "Alamat webhook",
+      "webhookHint": "Webhook Discord atau Slack, atau alamat https apa pun yang menerima POSTINGAN.",
+      "webhookText": "Pesan untuk dikirim",
+      "triggers": {
+        "tip": "Tips sudah tiba",
+        "follow": "Seseorang mengikuti",
+        "subscribe": "Seseorang berlangganan",
+        "share": "Seseorang membagikan streaming",
+        "command": "Perintah obrolan digunakan",
+        "keyword": "Pesan obrolan berisi kata",
+        "chat": "Pesan obrolan apa saja"
+      },
+      "audiences": {
+        "everyone": "Semua orang",
+        "followers": "Pengikut",
+        "subscribers": "Pelanggan"
+      },
+      "actionTypes": {
+        "alert": "Tampilkan pemberitahuan",
+        "sound": "Putar suara",
+        "say": "Baca dengan suara keras",
+        "chat": "Posting di obrolan",
+        "webhook": "Kirim ke webhook"
+      },
+      "summary": {
+        "tip": "Tips dari {{amount}} DHB atau lebih"
+      },
+      "presets": {
+        "blank": "Aturan kosong",
+        "readChat": "Baca obrolan dengan lantang",
+        "bigTip": "Klakson udara untuk tip besar",
+        "thankFollowers": "Ucapkan terima kasih kepada pengikut baru",
+        "command": "Perintah obrolan"
+      },
+      "presetHints": {
+        "blank": "Mulai dari nol",
+        "readChat": "Membaca pesan pengikut Anda dengan keras, satu per pemirsa setiap 30 detik",
+        "bigTip": "Memainkan klakson udara dan menunjukkan peringatan untuk tip 100.000 DHB atau lebih",
+        "thankFollowers": "Mengirimkan ucapan terima kasih di obrolan Anda ketika seseorang mengikuti",
+        "command": "Menjawab perintah! di obrolan Anda"
+      },
+      "presetText": {
+        "readChat": "{name} mengatakan {message}",
+        "bigTip": "{name} mengirim {amount} DHB!",
+        "thankFollowers": "Terima kasih atas pengikutnya, {name}!",
+        "command": "Halo {name}, selamat datang di streaming!"
+      },
+      "sounds": {
+        "airhorn": "Klakson udara",
+        "applause": "Tepuk tangan",
+        "cricket": "Jangkrik",
+        "drumroll": "Gulungan drum",
+        "lol": "Tawa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (pria)",
+        "ohh-girl": "Ohh (wanita)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Seram",
+        "magic-spell": "Mantra sihir",
+        "shhh": "Shhh"
+      }
     }
   }
 }

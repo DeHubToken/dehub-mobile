@@ -5030,7 +5030,7 @@
     "usernameReserved": "Nama pengguna ini dikhaskan",
     "profileSet": "Profil berjaya ditetapkan!",
     "profileFailed": "Gagal menetapkan profil",
-    "displayNameHint": "Nama awam anda yang dipaparkan pada profil."
+    "displayNameHint": "Nama awam anda yang dipaparkan pada profil. Pilihan — biarkan kosong untuk menggunakan nama pengguna anda."
   },
   "events": {
     "mine": "Milik saya",
@@ -5271,6 +5271,7 @@
     "accountHasA": "Akaun ini mempunyai",
     "ifYouUsedDehub": "Jika anda pernah menggunakan dehub.io sebelum ini, bukanya pada komputer anda, log masuk dengan cara dan akaun yang sama, dan",
     "biometricExplainer": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini, jadi kami akan menunjukkan frasa pemulihan 12 perkataan untuk anda catat; itulah satu-satunya jalan kembali dari telefon lain, dari laman web, atau selepas memasang semula. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
+    "biometricExplainerSecuring": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini. Untuk masuk semula dari telefon lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "biometricPrompt": "Dompet ini dilindungi oleh biometrik peranti ini. Sahkan dengan cap jari atau wajah untuk meneruskan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 perkataan yang anda simpan semasa mencipta dompet ini (atau kunci peribadinya, jika anda pernah mengeksportnya). Ia kembali ke akaun yang sama, dan kata laluan yang anda tetapkan di bawah menjadi sandaran yang mulai sekarang berfungsi di mana-mana.",
     "copyPhrase": "Salin frasa",
@@ -5343,6 +5344,7 @@
     "unlockWithPasswordExplainer": "Akaun ini sudah mempunyai dompet, dilindungi oleh kata laluan. Masukkannya untuk memulihkan dompet anda pada peranti ini.",
     "deviceTab": "Peranti ini",
     "deviceExplainer": "Tiada apa yang perlu ditaip atau diingati — kekunci kekal pada peranti ini. Kami akan menawarkan sandaran 12 perkataan kepada anda untuk ditulis; ia adalah satu-satunya cara untuk masuk semula dari peranti lain, dari laman web, atau selepas pemasangan semula. Pilih Kata Laluan dan kata laluan itu sendiri berfungsi dengan baik.",
+    "deviceExplainerSecuring": "Tiada apa yang perlu ditaip atau diingat — kunci kekal pada peranti ini. Untuk masuk semula dari peranti lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "secureOnDevice": "Simpan kunci pada peranti ini"
   },
   "transcript": {
@@ -9449,7 +9451,8 @@
       "reaction_counter": "Kaunter tindak balas",
       "event_feed": "Aktiviti terkini",
       "chat_box": "Kotak sembang",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Makluman peraturan"
     },
     "hints": {
       "tip_alert": "Meraikan setiap tip, bersaiz mengikut peringkatnya",
@@ -9466,7 +9469,8 @@
       "reaction_counter": "Mengira setiap reaksi yang diterima oleh siaran anda",
       "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
       "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
-      "ticker": "Baris teks anda sendiri yang menatal merentasi skrin"
+      "ticker": "Baris teks anda sendiri yang menatal merentasi skrin",
+      "rule_alert": "Di mana makluman peraturan anda dipaparkan"
     },
     "fields": {
       "style": "Gaya",
@@ -9523,6 +9527,103 @@
       "rotateConfirm": "Buat pautan baharu? Yang lama berhenti berfungsi serta-merta, jadi anda perlu menampal yang baharu ke dalam OBS.",
       "rotated": "Pautan baharu sedia. Tampalkannya ke dalam OBS.",
       "rotateFailed": "Tidak dapat membuat pautan baharu. Cuba lagi sebentar lagi."
+    },
+    "rules": {
+      "title": "Peraturan",
+      "intro": "Apabila sesuatu berlaku pada strim anda, DeHub melakukan apa yang anda pilih: menunjukkan amaran, memainkan bunyi, membaca sesuatu dengan kuat, menyiarkan dalam sembang anda atau memberitahu Discord anda.",
+      "add": "Tambah peraturan",
+      "limit": "Anda telah mencapai had {{count}} peraturan.",
+      "loadFailed": "Peraturan anda tidak dapat dimuatkan. Muat semula halaman untuk mencuba lagi.",
+      "empty": "Belum ada peraturan. Tambah satu untuk bertindak balas terhadap petua, pengikut atau arahan sembang.",
+      "saved": "Peraturan disimpan. Ia dijalankan pada tip, ikut atau mesej anda yang seterusnya.",
+      "saveFailed": "Peraturan anda tidak dapat disimpan.",
+      "testFailed": "Ujian itu tidak berjaya. Cuba lagi sebentar lagi.",
+      "saveToTest": "Simpan peraturan anda untuk mengujinya",
+      "test": "Ujian",
+      "enabled": "Peraturan mengenai",
+      "remove": "Hapuskan peraturan",
+      "save": "Simpan peraturan",
+      "needsAlertWidget": "Sesetengah peraturan menunjukkan amaran. Tambah widget Amaran peraturan supaya ia mempunyai tempat untuk dipaparkan.",
+      "name": "Nama",
+      "when": "Apabila",
+      "then": "Kemudian",
+      "command": "Perintah",
+      "keyword": "Perkataan atau frasa",
+      "audience": "Siapa yang boleh menetapkannya",
+      "blockedWords": "Perkataan yang disekat",
+      "blockedWordsHint": "Asingkan dengan koma. Mesej yang mengandungi mereka diabaikan dan jangan sekali-kali dibaca dengan kuat.",
+      "cooldown": "Tunggu antara penggunaan (saat)",
+      "userCooldown": "Tunggu setiap penonton (saat)",
+      "addAction": "Tambah tindakan",
+      "removeAction": "Buang tindakan",
+      "placeholders": "Gunakan {name}, {amount} dan {message} dalam teks anda. Pautan dalam mesej dibuang.",
+      "alertText": "Teks amaran",
+      "sound": "Bunyi",
+      "sayText": "Teks untuk dibaca dengan kuat",
+      "chatText": "Mesej untuk disiarkan",
+      "chatHint": "Disiarkan daripada akaun anda ke dalam sembang strim anda. Ia tidak boleh mengulangi mesej penonton.",
+      "webhookUrl": "Alamat webhook",
+      "webhookHint": "Webhook Discord atau Slack, atau mana-mana alamat https yang menerima HANTARAN.",
+      "webhookText": "Mesej untuk dihantar",
+      "triggers": {
+        "tip": "Tip akan tiba",
+        "follow": "Seseorang mengikuti",
+        "subscribe": "Seseorang melanggan",
+        "share": "Seseorang berkongsi strim",
+        "command": "Perintah sembang digunakan",
+        "keyword": "Mesej sembang mengandungi perkataan",
+        "chat": "Sebarang mesej sembang"
+      },
+      "audiences": {
+        "everyone": "Semua orang",
+        "followers": "Pengikut",
+        "subscribers": "Pelanggan"
+      },
+      "actionTypes": {
+        "alert": "Tunjukkan makluman",
+        "sound": "Mainkan bunyi",
+        "say": "Baca dengan suara keras.",
+        "chat": "Siarkan dalam sembang",
+        "webhook": "Hantar ke webhook"
+      },
+      "summary": {
+        "tip": "Tip {{amount}} DHB atau lebih"
+      },
+      "presets": {
+        "blank": "Peraturan kosong",
+        "readChat": "Baca sembang dengan kuat",
+        "bigTip": "Tanduk udara untuk petua besar",
+        "thankFollowers": "Terima kasih kepada pengikut baharu",
+        "command": "Arahan sembang"
+      },
+      "presetHints": {
+        "blank": "Mula dari tiada",
+        "readChat": "Membaca pesan pengikut anda secara lisan, satu demi peminat setiap 30 saat",
+        "bigTip": "Memainkan seruling udara dan menampilkan peringatan untuk tip sebanyak 100,000 DHB atau lebih",
+        "thankFollowers": "Menyampaikan ucapan terima kasih di chat anda apabila seseorang mengikuti",
+        "command": "Menjawab perintah ! di chat anda"
+      },
+      "presetText": {
+        "readChat": "{name} berkata {message}",
+        "bigTip": "{name} menghantar {amount} DHB!",
+        "thankFollowers": "Terima kasih kerana mengikuti, {name}!",
+        "command": "Halo {name}, selamat datang ke siaran!"
+      },
+      "sounds": {
+        "airhorn": "Seruling udara",
+        "applause": "Applause",
+        "cricket": "Kumbang",
+        "drumroll": "Gendang",
+        "lol": "Tawa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (lelaki)",
+        "ohh-girl": "Ohh (wanita)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Menggoda",
+        "magic-spell": "Sihir",
+        "shhh": "Shhh"
+      },
+      "minAmount": "Smallest tip (DHB)"
     }
   }
 }

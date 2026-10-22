@@ -4762,7 +4762,7 @@
     "usernameReserved": "Jeneng pangguna iki dicadhangake",
     "profileSet": "Profil kasil disetel!",
     "profileFailed": "Gagal nyetel profil",
-    "displayNameHint": "Jeneng umum sing katon ing profilmu."
+    "displayNameHint": "Jeneng umummu ing profil. Ora wajib — kosongna wae yen arep nganggo jeneng panggunamu."
   },
   "events": {
     "mine": "Duwekku",
@@ -5003,6 +5003,7 @@
     "accountHasA": "Akun iki duwe",
     "ifYouUsedDehub": "Yen sampeyan wis tau nganggo dehub.io, bukak ing komputermu, mlebu kanthi cara lan akun sing padha, banjur",
     "biometricExplainer": "Bukak nganggo sidik jari utawa rai — ora ana sing kudu diketik utawa diapalake. Kuncine tetep ing HP iki, mula awake dhewe bakal nuduhake frasa pemulihan 12 tembung kanggo ditulis; iku siji-sijine dalan bali saka HP liya, saka situs web, utawa sawise instal maneh. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
+    "biometricExplainerSecuring": "Bukak nganggo sidik jari utawa rai — ora ana sing kudu diketik utawa diapalake. Kuncine tetep ing HP iki. Supaya bisa mlebu maneh saka HP liya, saka situs web, utawa sawise instal maneh, simpen cadangan 12 tembung mengko ing Setelan. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
     "biometricPrompt": "Dompet iki dilindhungi biometrik piranti iki. Konfirmasi nganggo sidik jari utawa rai kanggo nerusake.",
     "enterRecoveryPhrase": "Lebokna frasa pemulihan 12 tembung sing sampeyan simpen nalika nggawe dompet iki (utawa kunci pribadine, yen sampeyan wis ngekspor). Iki bali menyang akun sing padha, lan sandhi sing sampeyan setel ing ngisor dadi cadangan sing wiwit saiki bisa nang endi wae.",
     "copyPhrase": "Salin frasa",
@@ -5075,6 +5076,7 @@
     "unlockWithPasswordExplainer": "Akun iki wis duwe dompet, dilindhungi nganggo sandhi. Lebokake kanggo mulihake dompetmu ing piranti iki.",
     "deviceTab": "Piranti iki",
     "deviceExplainer": "Ora ana sing kudu diketik utawa dielingi — kunci tetep ana ing piranti iki. Kita bakal menehi sampeyan cadangan 12 tembung kanggo ditulis; iku siji-sijine cara kanggo mlebu maneh saka piranti liya, saka situs web, utawa sawise nginstal maneh. Pilih Password lan tembung sandhi kasebut dhewe sing nindakake tugas kasebut.",
+    "deviceExplainerSecuring": "Ora ana sing kudu diketik utawa diapalake — kuncine tetep ing piranti iki. Supaya bisa mlebu maneh saka piranti liya, saka situs web, utawa sawise instal maneh, simpen cadangan 12 tembung mengko ing Setelan. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
     "secureOnDevice": "Tansah simpen kunci ing piranti iki"
   },
   "transcript": {
@@ -9156,6 +9158,7 @@
       "join": "Ndhuwur"
     },
     "kinds": {
+      "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",
       "follow_alert": "Ngikul alert",
       "subscribe_alert": "Subscriber alert",
@@ -9182,7 +9185,8 @@
       "frame": "Border saking streammu",
       "stream_timer": "Kanggo ngerti ngampi ngenteni wong ngajeng streaming.",
       "reaction_counter": "Kanggo ngitung reaksi-ngenine ngoko broadcast mo.",
-      "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo."
+      "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo.",
+      "rule_alert": "Endi aturan-aturan penting mu katon"
     },
     "fields": {
       "style": "Style",
@@ -9237,6 +9241,103 @@
       "rotateConfirm": "Gawe pranala anyar? Pranala lawas mandheg langsung, dadi sampeyan kudu nempel pranala anyar menyang OBS.",
       "rotated": "Link baru udah siap. Paste ke OBS.",
       "rotateFailed": "Ora bisa nggawe tautan anyar. Coba maneh sakmenit."
+    },
+    "rules": {
+      "title": "Rules",
+      "intro": "Nalika ana sing kedadeyan ing streammu, DeHub nindakake apa sing kowe pilih: nampilake alert, muter swara, maca bab-bab kanthi swara, ngirim ing chatmu utawa ngandhani Discord-mu.",
+      "add": "Tambah aturan",
+      "limit": "Kamu udh capai batas aturan {{count}} ini.",
+      "loadFailed": "Kloe atur-aturan ingkang ngajadi gak bisa ditulung. Klik \"Refresh\" gunae ngulik.",
+      "saved": "Kebijakan ini disimpan. Mereka berjalan di waktu tipmu selanjutnya, ikuti atau kirim pesan.",
+      "saveFailed": "Klo atur-aturmu ga bisa disimpen.",
+      "testFailed": "Kanggo uji coba ingkang kudu dijalani, nganggo gini nganggo gini. Coba lagi nglakoni ing ngantenan.",
+      "remove": "Kudu aturan-aturan.",
+      "name": "Name",
+      "when": "Kadha ngkapa",
+      "then": "Kulon.",
+      "minAmount": "Kecil-kecil tip (DHB)",
+      "keyword": "Kata atau ungkapan",
+      "audience": "Kénggo manéné kanggo ngaraniya?",
+      "blockedWords": "Blocked words",
+      "blockedWordsHint": ",",
+      "cooldown": "Waktu tunggu antar pakai (detik)",
+      "userCooldown": "Waktu tunggu per penonton (detik)",
+      "addAction": "Tambah sawijining aksi",
+      "placeholders": "Gunakake {name}, {amount} lan {message} ing teksmu. Link ing pesen dibusak.",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "Sampiran sing ngarani.",
+        "share": "Kang ngarani stream dhuwur.",
+        "command": "Kanggo ngerti perintah chat, nganti dipake.",
+        "chat": "Sembarang pesen obrolan",
+        "follow": "Sapa nang nderek",
+        "subscribe": "Sapa nang subscribe",
+        "keyword": "Pesan chat ngemot tembung"
+      },
+      "audiences": {
+        "everyone": "Kabeh",
+        "followers": "pengikut",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "say": "Waca kanthi swara",
+        "chat": "Post in chat",
+        "alert": "Tuduhake alert",
+        "sound": "Mainake swara",
+        "webhook": "Kirim menyang webhook"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Waca obrolan kanthi swara",
+        "command": "Kode pesan nganti-nganti (chat command)",
+        "bigTip": "Air horn kanggo tips gedhe",
+        "thankFollowers": "Matur nuwun followers anyar"
+      },
+      "presetHints": {
+        "readChat": "Manggojek pesen pengikutmu ngajog, siji per pengliwat tiworo 30 detik",
+        "bigTip": "Ngepang air horn lan ngelukis peringatan buat tip 100.000 DHB lan ati",
+        "thankFollowers": "Ngepost pesan ngrejek di chatmu kalau pengikut",
+        "command": "Ngebalikan perintah `!command` di chatmu",
+        "blank": "Mulai saka kosong"
+      },
+      "presetText": {
+        "readChat": "{name} ngomong: {message}",
+        "bigTip": "{name} ngirim {amount} DHB!",
+        "thankFollowers": "Ngrejek follow, {name}!",
+        "command": "Halo {name}, selamat datang di stream!"
+      },
+      "sounds": {
+        "airhorn": "Air horn",
+        "applause": "Applause",
+        "cricket": "Ketuk-ketuk (kumbang)",
+        "drumroll": "Drum roll",
+        "lol": "Tawa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (pria)",
+        "ohh-girl": "Ohh (wanita)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Sajen",
+        "shhh": "Shhh"
+      },
+      "empty": "Ora ana aturan liyane. Tambah siji kanggo tumugon tips, follows utawa chat commands.",
+      "saveToTest": "Simpen aturan mu kanggo test",
+      "test": "Test",
+      "enabled": "Aturan aktif",
+      "save": "Simpen aturan",
+      "needsAlertWidget": "Sawetara aturan nuduhake alert. Tambah widget Rule alerts supaya ana panggonan kanggo katon.",
+      "command": "Perintah",
+      "removeAction": "Busak aksi",
+      "alertText": "Teks alert",
+      "sound": "Swara",
+      "sayText": "Teks kanggo dibacakake",
+      "chatText": "Pesan kanggo diposting",
+      "chatHint": "Diposting saka akun mu menyang chat stream. Ora bisa mbaleni pesan sing dideleng.",
+      "webhookUrl": "Alamat Webhook",
+      "webhookHint": "Discord utawa Slack webhook, utawa alamat https apa wae sing nampa POST.",
+      "summary": {
+        "tip": "Tip saka {{amount}} DHB utawa luwih"
+      }
     }
   }
 }

@@ -4771,7 +4771,7 @@
     "usernameReserved": "Ovo korisničko ime je rezervirano",
     "profileSet": "Profil je uspješno postavljen!",
     "profileFailed": "Postavljanje profila nije uspjelo",
-    "displayNameHint": "Tvoje javno ime prikazano na profilu."
+    "displayNameHint": "Tvoje javno ime na profilu. Nije obavezno — ostavi prazno i koristit će se tvoje korisničko ime."
   },
   "events": {
     "mine": "Moji",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Ovaj račun ima",
     "ifYouUsedDehub": "Ako si već koristio dehub.io, otvori ga na računalu, prijavi se na isti način i s istim računom, i",
     "biometricExplainer": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu, pa ćemo ti pokazati frazu za oporavak od 12 riječi da je zapišeš; to je jedini put natrag s drugog uređaja, s web-stranice ili nakon ponovne instalacije. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
+    "biometricExplainerSecuring": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu. Da se vratiš s drugog telefona, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "biometricPrompt": "Ovaj novčanik zaštićen je biometrijom ovog uređaja. Potvrdi otiskom prsta ili licem za nastavak.",
     "enterRecoveryPhrase": "Unesi frazu za oporavak od 12 riječi koju si spremio kad si stvorio ovaj novčanik (ili njegov privatni ključ, ako si ga izvezao). Vodi natrag na isti račun, a lozinka koju postaviš ispod postaje rezerva koja od sada radi svugdje.",
     "copyPhrase": "Kopiraj frazu",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju.",
     "deviceTab": "Ovaj uređaj",
     "deviceExplainer": "Ništa za upisivanje ili pamćenje — ključ ostaje na ovom uređaju. Ponudit ćemo vam sigurnosnu kopiju od 12 riječi koju možete zapisati; to je jedini način da se vratite s drugog uređaja, s web-mjesta ili nakon ponovne instalacije. Umjesto toga odaberite lozinku, a sama lozinka obavlja taj posao.",
+    "deviceExplainerSecuring": "Ništa za upisivati ni pamtiti — ključ ostaje na ovom uređaju. Da se vratiš s drugog uređaja, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "secureOnDevice": "Držite ključ na ovom uređaju"
   },
   "transcript": {
@@ -8981,7 +8983,7 @@
     "topUpEmptyHint": "Dodajte tokene za generiranje pomoću umjetne inteligencije"
   },
   "accountDeletion": {
-    "title": "Obrisati nalog",
+    "title": "Izbriši račun",
     "description": "Trajno izbrišite svoj račun i osobne podatke",
     "warning": "Time se trajno brišu tvoj DeHub profil, objave, komentari, poruke i pohranjena sigurnosna kopija novčanika. Spremite pojedinosti o oporavku novčanika i najprije premjestite sredstva. Javne transakcije u lancu blokova i zakonski obvezni zapisi o plaćanju ne mogu se izbrisati. Vaš je profil odmah skriven; brisanje se dovršava u roku od 30 dana. To se ne može poništiti.",
     "cancel": "Odustani",
@@ -8989,10 +8991,10 @@
     "busy": "Slanje zahtjeva za brisanje...",
     "accepted": "Zatraženo je brisanje računa",
     "receipt": "Vaš je zahtjev za brisanje spremljen. Tvoj je profil skriven i tvoj ćemo račun trajno izbrisati u roku od 30 dana. Prijava ne može poništiti ovaj zahtjev.",
-    "done": "Želimo vam ugodan dan!",
+    "done": "Gotovo",
     "error": "Slanje zahtjeva za brisanje nije uspjelo. Vaš račun nije potvrđen za brisanje. Pokušajte ponovno.",
     "back": "Natrag na postavke",
-    "signIn": "Prijavite se na svoj račun",
+    "signIn": "Prijavite se kako biste izbrisali račun",
     "acknowledge": "Spremio/la sam podatke o oporavku novčanika i razumijem da je brisanje trajno."
   },
   "miniApps": {
@@ -9098,7 +9100,7 @@
     "update": "Ažuriraj sada"
   },
   "walletBackup": {
-    "title": "Rezerviraj novčanik",
+    "title": "Sigurnosna kopija novčanika",
     "rowDesc": "Pogledaj svoje 12 riječi ili privatni ključ",
     "backedUpOn": "Rezervirano {{date}}",
     "offerTitle": "Rezerviraj svoj novčanik?",
@@ -9194,7 +9196,8 @@
       "reaction_counter": "Brojač reakcija",
       "event_feed": "Nedavna aktivnost",
       "chat_box": "Okvir za razgovor",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Obavijesti o pravilima"
     },
     "hints": {
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
@@ -9211,7 +9214,8 @@
       "reaction_counter": "Broji svaku reakciju koju vaše emitiranje dobije",
       "event_feed": "Najnoviji darovi, pratitelji, pretplatnici i osobe koje dijele vašu emisiju",
       "chat_box": "Prikazuje poruke chata vašeg emitiranja na zaslonu",
-      "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu"
+      "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu",
+      "rule_alert": "Gdje se prikazuju obavijesti o pravilima"
     },
     "fields": {
       "style": "Stil",
@@ -9268,6 +9272,103 @@
       "rotateConfirm": "Želite li napraviti novu poveznicu? Stari odmah prestaje raditi, pa ćete morati zalijepiti novi u OBS.",
       "rotated": "Spremna je nova poveznica. Zalijepite je u OBS.",
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
+    },
+    "rules": {
+      "test": "Testiraj",
+      "title": "Pravila",
+      "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
+      "add": "Dodajte pravilo",
+      "limit": "Dosegli ste ograničenje od {{count}} pravila.",
+      "loadFailed": "Učitavanje pravila nije uspjelo. Osvježite stranicu i pokušajte ponovno.",
+      "empty": "Još nema pravila. Dodajte jedno da biste reagirali na savjete, naredbe za praćenje ili chat.",
+      "saved": "Pravila su spremljena. Pokreću se na temelju vaše sljedeće napojnice, praćenja ili poruke.",
+      "saveFailed": "Vaše pravila nisu uspjela biti sačuvana.",
+      "testFailed": "Taj test nije prošao. Pokušajte ponovno za nekoliko trenutaka.",
+      "saveToTest": "Spremite pravila kako biste ih testirali",
+      "enabled": "Pravilo o",
+      "remove": "Izbriši pravilo",
+      "save": "Spremi pravila",
+      "needsAlertWidget": "Neka pravila prikazuju upozorenje. Dodajte widget s upozorenjima o pravilima kako bi se imao gdje pojaviti.",
+      "name": "Ime",
+      "when": "Kada",
+      "then": "Zatim",
+      "minAmount": "Najmanji vrh (DHB)",
+      "command": "Naredba",
+      "keyword": "Riječ ili fraza",
+      "audience": "Tko ga može aktivirati",
+      "blockedWords": "Blokirane riječi",
+      "blockedWordsHint": "Odvojite zarezima. Poruke koje ih sadrže zanemaruju se i nikada se ne čitaju naglas.",
+      "cooldown": "Pričekajte između korištenja (sekunde)",
+      "userCooldown": "Pričekajte po gledatelju (sekunde)",
+      "addAction": "Dodajte radnju",
+      "removeAction": "Ukloni radnju",
+      "placeholders": "Upotrijebite {name}, {amount} i {message} u svom tekstu. Uklanjaju se poveznice u porukama.",
+      "alertText": "Tekst upozorenja",
+      "sound": "Zvuk",
+      "sayText": "Tekst za čitanje naglas",
+      "chatText": "Poruka za objavu",
+      "chatHint": "Objavljen s tvog računa u chatu na tvom streamu. Ne može ponoviti poruku gledatelja.",
+      "webhookUrl": "Adresa web-dojavnika",
+      "webhookHint": "Web-dojavnik na Discordu ili Slacku ili bilo koja https adresa koja prihvaća OBJAVU.",
+      "webhookText": "Poruka za slanje",
+      "triggers": {
+        "tip": "Stiže napojnica",
+        "follow": "Netko prati",
+        "subscribe": "Netko se pretplatio",
+        "share": "Netko dijeli stream",
+        "command": "Koristi se naredba za chat",
+        "keyword": "Poruka u chatu sadrži riječ",
+        "chat": "Svaka poruka u čatu"
+      },
+      "audiences": {
+        "everyone": "Svi",
+        "followers": "Pratitelji",
+        "subscribers": "Pretplatnici"
+      },
+      "actionTypes": {
+        "alert": "Prikaži obavijest",
+        "sound": "Reproduciraj zvuk",
+        "say": "Čitajte naglas",
+        "chat": "Objavi u chatu",
+        "webhook": "Pošalji u webhook"
+      },
+      "summary": {
+        "tip": "Napojnica od {{amount}} DHB ili više"
+      },
+      "presets": {
+        "blank": "Prazno pravilo",
+        "readChat": "Čitajte chat naglas",
+        "bigTip": "Truba za velike savjete",
+        "thankFollowers": "Zahvali novim pratiteljima",
+        "command": "Naredba za razgovor"
+      },
+      "presetHints": {
+        "blank": "Krenite od ničega",
+        "readChat": "Čita poruke vaših pratitelja naglas, jedan po gledatelju svakih 30 sekundi",
+        "bigTip": "Svira zračna truba i prikazuje upozorenje za napojnice od 100 000 DHB ili više",
+        "thankFollowers": "Objavljuje zahvalnicu u svom chatu kad netko prati",
+        "command": "Odgovara na naredbu! u vašem chatu"
+      },
+      "presetText": {
+        "readChat": "{name} kaže {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Hvala na praćenju, {name}!",
+        "command": "Pozdrav {name}, dobro došli u stream!"
+      },
+      "sounds": {
+        "airhorn": "Zračna sirena",
+        "applause": "Pljesak",
+        "cricket": "Cvrčci",
+        "drumroll": "Bubanj",
+        "lol": "Smijeh",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (žena)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Sablasno",
+        "magic-spell": "Čarolija",
+        "shhh": "Shhh"
+      }
     }
   }
 }

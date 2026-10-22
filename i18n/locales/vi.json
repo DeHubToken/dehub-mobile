@@ -959,6 +959,8 @@
     "payFailed": "Không thể chuyển đổi {{symbol}} sang token DeHub",
     "stageDelivering": "DeHub Pay đang gửi token của bạn…",
     "payViaDpay": "Đã thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng 30 giây",
+    "payDirect": "Gửi thẳng cho {{name}} bằng {{symbol}} trên {{chain}}. Không swap.",
+    "payDirectNoName": "Gửi thẳng cho nhà sáng tạo bằng {{symbol}} trên {{chain}}. Không swap.",
     "payViaBridgeDpay": "Đã chuyển sang Base và thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng một phút",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4783,7 +4785,7 @@
     "usernameReserved": "Tên người dùng này được dành riêng",
     "profileSet": "Đã thiết lập hồ sơ thành công!",
     "profileFailed": "Không thiết lập được hồ sơ",
-    "displayNameHint": "Tên công khai hiển thị trên hồ sơ của bạn."
+    "displayNameHint": "Tên công khai trên hồ sơ của bạn. Không bắt buộc — để trống để dùng tên người dùng của bạn."
   },
   "events": {
     "mine": "Của tôi",
@@ -4989,7 +4991,9 @@
     "lowTopUp": "Hết {{symbol}}? Chúng tôi sẽ nạp thêm cho bạn trước khi mở khóa.",
     "unlockedSuccess": "Đã mở khóa thành công",
     "otherChain": "Bài đăng này được đặt trên một chuỗi khác, vì vậy bạn cần có token DeHub trong ví của mình ở đó.",
-    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức."
+    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức.",
+    "switchTo": "Bài này được thanh toán trên {{chain}}. Chuyển sang {{chain}} trong Cài đặt rồi thử lại.",
+    "notEnoughToken": "Bạn cần {{amount}} {{symbol}} để mở khóa. Bạn có {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Dùng cách này nếu bạn đã tạo ví này trên chính điện thoại này và khóa lẽ ra đã có ở đây",
@@ -5024,6 +5028,7 @@
     "accountHasA": "Tài khoản này có",
     "ifYouUsedDehub": "Nếu bạn từng dùng dehub.io, hãy mở nó trên máy tính, đăng nhập theo cùng cách và cùng tài khoản, rồi",
     "biometricExplainer": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa vẫn nằm trên điện thoại này, nên chúng tôi sẽ hiển thị một cụm từ khôi phục gồm 12 từ để bạn chép lại; đó là cách duy nhất để quay lại từ một máy khác, từ trang web, hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "biometricExplainerSecuring": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa riêng tư vẫn nằm trên điện thoại này. Để vào lại từ một máy khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
     "biometricPrompt": "Ví này được bảo vệ bằng sinh trắc học của thiết bị này. Xác nhận bằng vân tay hoặc khuôn mặt để tiếp tục.",
     "enterRecoveryPhrase": "Nhập cụm từ khôi phục gồm 12 từ mà bạn đã lưu khi tạo ví này (hoặc khóa riêng tư của nó, nếu bạn từng xuất ra). Nó đưa bạn về đúng tài khoản cũ, và mật khẩu bạn đặt bên dưới sẽ trở thành phương án dự phòng hoạt động ở mọi nơi kể từ giờ.",
     "copyPhrase": "Sao chép cụm từ",
@@ -5095,8 +5100,9 @@
     "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập khóa bên dưới.",
     "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này.",
     "deviceTab": "Thiết bị này",
-    "deviceExplainer": "Không có gì để nhập hoặc ghi nhớ — các chỗ ở quan trọng trên thiết bị này. Chúng tôi sẽ cung cấp cho bạn bản sao lưu 12 từ để ghi lại; đó là cách duy nhất để quay lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Thay vào đó, hãy chọn Mật khẩu và chính mật khẩu sẽ thực hiện công việc đó.",
-    "secureOnDevice": "Giữ chìa khóa trên thiết bị này"
+    "deviceExplainer": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Chúng tôi sẽ đưa cho bạn một bản sao lưu 12 từ để chép lại; đó là cách duy nhất để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "deviceExplainerSecuring": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "secureOnDevice": "Giữ khóa riêng tư trên thiết bị này"
   },
   "walletBackup": {
     "title": "Sao lưu ví",
@@ -5398,6 +5404,7 @@
     "contractPlaceholder": "Địa chỉ hợp đồng (0x…)",
     "symbolPlaceholder": "Ký hiệu (vd. PEPE)",
     "paymentsBase": "Thanh toán bằng token DeHub trên chuỗi Base",
+    "paymentsStable": "Người mua trả bằng {{symbol}}, gửi thẳng cho bạn",
     "tokensUnit": "token",
     "minimumRequired": "Yêu cầu tối thiểu {{currency}}"
   },
@@ -9109,7 +9116,7 @@
     "done": "Hoàn thành",
     "error": "Không thể gửi yêu cầu xóa của bạn. Tài khoản của bạn chưa được xác nhận xóa. Vui lòng thử lại.",
     "back": "Quay lại Cài đặt",
-    "signIn": "ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN",
+    "signIn": "Đăng nhập để xóa tài khoản của bạn",
     "acknowledge": "Tôi đã lưu chi tiết khôi phục ví của mình và hiểu rằng việc xóa là vĩnh viễn."
   },
   "miniApps": {
@@ -9280,7 +9287,8 @@
       "reaction_counter": "Bộ đếm phản ứng",
       "event_feed": "Hoạt động gần đây",
       "chat_box": "Hộp trò chuyện",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Cảnh báo quy tắc"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9297,7 +9305,8 @@
       "reaction_counter": "Đếm mọi phản ứng mà chương trình phát sóng của bạn nhận được",
       "event_feed": "Quà tặng, người theo dõi, người đăng ký và những người mới nhất chia sẻ nội dung phát sóng của bạn",
       "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
-      "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình"
+      "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình",
+      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn"
     },
     "fields": {
       "style": "Phong cách",
@@ -9354,6 +9363,103 @@
       "rotateConfirm": "Tạo liên kết mới? Cái cũ ngừng hoạt động ngay lập tức, vì vậy bạn sẽ cần dán cái mới vào OBS.",
       "rotated": "Liên kết mới đã sẵn sàng. Dán nó vào OBS.",
       "rotateFailed": "Không thể tạo liên kết mới. Hãy thử lại sau ít phút."
+    },
+    "rules": {
+      "title": "Quy tắc",
+      "intro": "Khi có điều gì xảy ra trên luồng trực tiếp của bạn, DeHub sẽ thực hiện theo yêu cầu của bạn: hiển thị cảnh báo, phát âm thanh, đọc aloud, đăng lên chat của bạn hoặc thông báo cho Discord của bạn.",
+      "add": "Thêm quy tắc",
+      "limit": "Bạn đã đạt đến giới hạn {{count}} quy tắc.",
+      "loadFailed": "Quy tắc của bạn không thể được tải. Hãy tải lại trang để thử lại.",
+      "empty": "Chưa có quy tắc nào. Thêm một quy tắc để phản ứng với tips, theo dõi hoặc lệnh chat.",
+      "saved": "Quy tắc đã được lưu. Chúng sẽ hoạt động với tip, theo dõi hoặc tin nhắn tiếp theo của bạn.",
+      "saveFailed": "Quy tắc của bạn không thể được lưu.",
+      "testFailed": "Kiểm tra này không thành công. Hãy thử lại sau một lúc.",
+      "saveToTest": "Lưu quy tắc của bạn để kiểm tra",
+      "test": "Kiểm tra",
+      "enabled": "Quy tắc về",
+      "remove": "Xóa quy tắc này.",
+      "save": "Lưu quy tắc",
+      "needsAlertWidget": "Một số quy tắc hiển thị cảnh báo. Thêm tiện ích cảnh báo Quy tắc để tiện ích này có thể xuất hiện ở đâu đó.",
+      "name": "Tên",
+      "when": "Thời gian",
+      "then": "Sau đó",
+      "minAmount": "Mẹo nhỏ nhất (DHB)",
+      "command": "Lệnh",
+      "keyword": "Từ hoặc cụm từ",
+      "audience": "Ai có thể tắt nó đi",
+      "blockedWords": "Từ bị chặn",
+      "blockedWordsHint": "Nhập bằng dấu phẩy. Tin nhắn chứa chúng sẽ bị bỏ qua và không bao giờ được đọc aloud.",
+      "cooldown": "Chờ giữa các lần sử dụng (giây)",
+      "userCooldown": "Chờ trên mỗi người xem (giây)",
+      "addAction": "Thêm một hành động",
+      "removeAction": "Xóa hành động",
+      "placeholders": "Sử dụng {name}, {amount} và {message} trong tin nhắn. Các liên kết trong tin nhắn sẽ bị xóa.",
+      "alertText": "Văn bản cảnh báo",
+      "sound": "Âm thanh",
+      "sayText": "Văn bản để đọc to",
+      "chatText": "Tin nhắn đến bài đăng",
+      "chatHint": "Được đăng từ tài khoản của bạn vào phần trò chuyện của luồng. Nó không thể lặp lại tin nhắn của người xem.",
+      "webhookUrl": "Địa chỉ webhook",
+      "webhookHint": "Một webhook Discord hoặc Slack hoặc bất kỳ địa chỉ https nào chấp nhận bài ĐĂNG.",
+      "webhookText": "Tin nhắn cần gửi",
+      "triggers": {
+        "tip": "Tiền boa đã đến",
+        "follow": "Có người theo dõi",
+        "subscribe": "Có người đăng ký",
+        "share": "Ai đó chia sẻ luồng",
+        "command": "Một lệnh trò chuyện được sử dụng",
+        "keyword": "Một tin nhắn trò chuyện có chứa một từ",
+        "chat": "Bất kỳ tin nhắn trò chuyện nào"
+      },
+      "audiences": {
+        "everyone": "Mọi người",
+        "followers": "Người theo dõi",
+        "subscribers": "Người đăng ký"
+      },
+      "actionTypes": {
+        "alert": "Hiển thị cảnh báo",
+        "sound": "Phát âm thanh",
+        "say": "Đọc to",
+        "chat": "Đăng trong trò chuyện",
+        "webhook": "Gửi đến một webhook"
+      },
+      "summary": {
+        "tip": "Tiền boa từ {{amount}} DHB trở lên"
+      },
+      "presets": {
+        "blank": "Quy tắc để trống",
+        "readChat": "Đọc to cuộc trò chuyện",
+        "bigTip": "Còi hơi cho đầu lớn",
+        "thankFollowers": "Cảm ơn những người theo dõi mới",
+        "command": "Lệnh trò chuyện"
+      },
+      "presetHints": {
+        "blank": "Bắt đầu từ con số không",
+        "readChat": "Đọc to tin nhắn của người theo dõi, cứ 30 giây lại có một tin nhắn cho mỗi người xem",
+        "bigTip": "Phát còi không khí và hiển thị cảnh báo về các mẹo từ 100.000 DHB trở lên",
+        "thankFollowers": "Đăng lời cảm ơn trong cuộc trò chuyện của bạn khi có người theo dõi",
+        "command": "Trả lời lệnh a ! trong cuộc trò chuyện của bạn"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} đã gửi {amount} DHB!",
+        "thankFollowers": "Cảm ơn bạn đã theo dõi {name}!",
+        "command": "Xin chào {name}, chào mừng bạn đến với buổi phát trực tuyến!"
+      },
+      "sounds": {
+        "airhorn": "Còi hơi",
+        "applause": "Vỗ tay",
+        "cricket": "Dế",
+        "drumroll": "Trục trống",
+        "lol": "Tiếng cười",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (nữ)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Ma quái",
+        "magic-spell": "Bùa chú",
+        "shhh": "Shhh"
+      }
     }
   }
 }

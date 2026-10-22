@@ -4771,7 +4771,7 @@
     "usernameReserved": "Šis lietotājvārds ir rezervēts",
     "profileSet": "Profils veiksmīgi iestatīts!",
     "profileFailed": "Neizdevās iestatīt profilu",
-    "displayNameHint": "Tavs publiskais vārds, kas redzams profilā."
+    "displayNameHint": "Tavs publiskais vārds profilā. Nav obligāts — atstāj tukšu, lai izmantotu savu lietotājvārdu."
   },
   "events": {
     "mine": "Mani",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Šim kontam ir",
     "ifYouUsedDehub": "Ja esi jau lietojis dehub.io, atver to datorā, pieraksties tādā pašā veidā un ar to pašu kontu, un",
     "biometricExplainer": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī, tāpēc parādīsim 12 vārdu atkopšanas frāzi, ko pierakstīt; tas ir vienīgais ceļš atpakaļ no cita tālruņa, no vietnes vai pēc pārinstalēšanas. Izvēlies Paroli, un šo darbu paveic pati parole.",
+    "biometricExplainerSecuring": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī. Lai atgrieztos no cita tālruņa, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "biometricPrompt": "Šis maks ir aizsargāts ar šīs ierīces biometriju. Lai turpinātu, apstiprini ar pirksta nospiedumu vai seju.",
     "enterRecoveryPhrase": "Ievadi 12 vārdu atkopšanas frāzi, ko saglabāji, izveidojot šo maku (vai tā privāto atslēgu, ja to eksportēji). Tā atgriež tajā pašā kontā, un zemāk iestatītā parole no šī brīža kļūst par rezerves ceļu, kas darbojas visur.",
     "copyPhrase": "Kopēt frāzi",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē.",
     "deviceTab": "Šī ierīce",
     "deviceExplainer": "Nav ko rakstīt vai atcerēties — atslēga paliek šajā ierīcē. Mēs jums piedāvāsim 12 vārdu dublējumu, ko pierakstīt; tas ir vienīgais veids, kā atgriezties no citas ierīces, no vietnes vai pēc atkārtotas instalēšanas. Tā vietā izvēlieties Password (Parole), un parole pati veic šo darbu.",
+    "deviceExplainerSecuring": "Nekas nav jāraksta vai jāatceras — atslēga paliek šajā ierīcē. Lai atgrieztos no citas ierīces, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "secureOnDevice": "Turiet atslēgu šajā ierīcē"
   },
   "transcript": {
@@ -8982,7 +8984,7 @@
   "accountDeletion": {
     "title": "Dzēst kontu",
     "description": "Neatgriezeniski dzēst savu kontu un personas datus",
-    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus materiālus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
+    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus aktīvus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
     "cancel": "Atcelt",
     "confirm": "Neatgriezeniski dzēst kontu",
     "busy": "Iesniedz dzēšanas pieprasījumu...",
@@ -9192,7 +9194,8 @@
       "reaction_counter": "Reakciju skaitītājs",
       "event_feed": "Jaunākās aktivitātes",
       "chat_box": "Tērzēšanas lodziņš",
-      "ticker": "Atzīme"
+      "ticker": "Atzīme",
+      "rule_alert": "Noteikumu brīdinājumi"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9209,7 +9212,8 @@
       "reaction_counter": "Skaita katru jūsu apraides reakciju",
       "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
-      "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu"
+      "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
+      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi"
     },
     "fields": {
       "style": "Stils",
@@ -9266,6 +9270,103 @@
       "rotateConfirm": "Vai izveidot jaunu saiti? Vecais uzreiz pārstāj darboties, tāpēc jums būs jāielīmē jaunais obs.",
       "rotated": "Jauna saite ir gatava. Ielīmējiet to OBS.",
       "rotateFailed": "Nevarēja izveidot jaunu saiti. Pēc brīža mēģiniet vēlreiz."
+    },
+    "rules": {
+      "title": "Noteikumi",
+      "intro": "Kad jūsu straumē kaut kas notiek, DeHub dara to, ko jūs izvēlaties: parāda brīdinājumu, atskaņo skaņu, lasa kaut ko skaļi, publicē jūsu tērzēšanā vai stāsta jūsu Discord.",
+      "add": "Pievienot noteikumu",
+      "limit": "Jūs esat sasniedzis {{count}} noteikumu ierobežojumu.",
+      "loadFailed": "Jūsu noteikumus nevarēja ielādēt. Atsvaidziniet lapu, lai mēģinātu vēlreiz.",
+      "empty": "Pagaidām nav noteikumu. Pievienojiet kādu, lai reaģētu uz padomiem, sekošanu vai tērzēšanas komandām.",
+      "saved": "Noteikumi ir saglabāti. Tie attiecas uz nākamo dzeramnaudu, sekošanu vai ziņojumu.",
+      "saveFailed": "Jūsu noteikumus nevarēja saglabāt.",
+      "testFailed": "Šis tests netika veikts. Pēc brīža mēģiniet vēlreiz.",
+      "saveToTest": "Saglabājiet noteikumus, lai tos pārbaudītu",
+      "test": "Tests",
+      "enabled": "Noteikums par",
+      "remove": "Dzēst noteikumu",
+      "save": "Saglabāt noteikumus",
+      "needsAlertWidget": "Dažos noteikumos ir redzams brīdinājums. Pievienojiet logrīku Noteikumu paziņojumi, lai tas varētu parādīties.",
+      "name": "Nosaukums",
+      "when": "Kad",
+      "then": "Tad",
+      "minAmount": "Mazākā dzeramnauda (DHB)",
+      "command": "Komanda",
+      "keyword": "Vārds vai frāze",
+      "audience": "Kurš to var iestatīt",
+      "blockedWords": "Bloķētie vārdi",
+      "blockedWordsHint": "Atdaliet ar komatiem. Ziņojumi, kas tos satur, tiek ignorēti un nekad netiek lasīti skaļi.",
+      "cooldown": "Uzgaidiet starp lietošanas reizēm (sekundes)",
+      "userCooldown": "Gaidīt katram skatītājam (sekundes)",
+      "addAction": "Pievienot darbību",
+      "removeAction": "Noņemt darbību",
+      "placeholders": "Tekstā izmantojiet {name}, {amount} un {message}. Saites ziņojumos ir noņemtas.",
+      "alertText": "Brīdinājuma teksts",
+      "sound": "Skaņa",
+      "sayText": "Skaļi lasāms teksts",
+      "chatText": "Ziņojums publicēšanai",
+      "chatHint": "Publicēts no jūsu konta jūsu straumes tērzēšanā. Tas nevar atkārtot skatītāja ziņojumu.",
+      "webhookUrl": "Tīmekļa āķa adrese",
+      "webhookHint": "Discord vai Slack tīmekļa āķis vai jebkura https adrese, kas pieņem ZIŅU.",
+      "webhookText": "Nosūtāmais ziņojums",
+      "triggers": {
+        "tip": "Pienāk dzeramnauda",
+        "follow": "Kāds seko",
+        "subscribe": "Kāds abonē",
+        "share": "Kāds dalās ar straumi",
+        "command": "Tiek izmantota tērzēšanas komanda",
+        "keyword": "Tērzēšanas ziņojumā ir vārds",
+        "chat": "Jebkurš tērzēšanas ziņojums"
+      },
+      "audiences": {
+        "everyone": "Visi",
+        "followers": "Sekotāji",
+        "subscribers": "Abonenti"
+      },
+      "actionTypes": {
+        "alert": "Rādīt paziņojumu",
+        "sound": "Atskaņot skaņu",
+        "say": "Lasīt skaļi",
+        "chat": "Publicēt tērzēšanā",
+        "webhook": "Nosūtīt uz tīmekļa āķi"
+      },
+      "summary": {
+        "tip": "Padoms: {{amount}} DHB vai vairāk"
+      },
+      "presets": {
+        "blank": "Tukšs noteikums",
+        "readChat": "Lasīt tērzēšanu skaļi",
+        "bigTip": "Pneimatiskais skaņas signāls lieliem padomiem",
+        "thankFollowers": "Paldies jaunajiem sekotājiem",
+        "command": "Tērzēšanas komanda"
+      },
+      "presetHints": {
+        "blank": "Sāciet no nekā",
+        "readChat": "Skaļi lasa jūsu sekotāju ziņojumus - pa vienam katram skatītājam ik pēc 30 sekundēm",
+        "bigTip": "Atskaņo skaņas signālu un parāda brīdinājumu par dzeramnaudu 100 000 DHB vai vairāk",
+        "thankFollowers": "Publicē pateicību tērzēšanā, kad kāds seko",
+        "command": "Atbild uz komandu! tērzēšanā"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} nosūtīts {amount} DHB!",
+        "thankFollowers": "Paldies par sekošanu, {name}!",
+        "command": "Sveicināti {name}! Laipni lūdzam straumē!"
+      },
+      "sounds": {
+        "airhorn": "Pneimatiskais skaņas signāls",
+        "applause": "Aplausi",
+        "cricket": "Krikets",
+        "drumroll": "Bungu rullis",
+        "lol": "Smiekli",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooo (vīrietis)",
+        "ohh-girl": "Ohh (sieviete)",
+        "ba-dum-tish": "Baum Tiša",
+        "spooky": "Spocīgs",
+        "magic-spell": "Burvestību burvestība",
+        "shhh": "Shhh"
+      }
     }
   }
 }

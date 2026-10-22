@@ -947,6 +947,8 @@
     "payFailed": "Nie udało się zamienić {{symbol}} na tokeny DeHub",
     "stageDelivering": "DeHub Pay wysyła Twoje tokeny…",
     "payViaDpay": "Zapłacono do DeHub Pay, tokeny dotrą za około 30 s",
+    "payDirect": "Wysłane bezpośrednio do {{name}} w {{symbol}} w sieci {{chain}}. Bez wymiany.",
+    "payDirectNoName": "Wysłane bezpośrednio do twórcy w {{symbol}} w sieci {{chain}}. Bez wymiany.",
     "payViaBridgeDpay": "Przeniesiono do Base i zapłacono do DeHub Pay, tokeny dotrą za około minutę",
     "tokensUnit": "tokeny",
     "tokenAmount": "{{amount}} tokenów"
@@ -4771,7 +4773,7 @@
     "usernameReserved": "Ta nazwa użytkownika jest zarezerwowana",
     "profileSet": "Profil ustawiony pomyślnie!",
     "profileFailed": "Nie udało się ustawić profilu",
-    "displayNameHint": "Twoja publiczna nazwa widoczna w profilu."
+    "displayNameHint": "Twoja publiczna nazwa widoczna w profilu. Opcjonalnie — zostaw puste, aby używać nazwy użytkownika."
   },
   "events": {
     "mine": "Moje",
@@ -4977,7 +4979,9 @@
     "lowTopUp": "Brakuje Ci {{symbol}}? Uzupełnimy je przed odblokowaniem.",
     "unlockedSuccess": "Pomyślnie odblokowano",
     "otherChain": "Ten post jest rozliczany na innym łańcuchu, więc potrzebujesz tokenów DeHub w swoim portfelu tam.",
-    "payHint": "Płać czymkolwiek ze swojego portfela. Stanie się to tokenami DeHub i odblokuje się natychmiast."
+    "payHint": "Płać czymkolwiek ze swojego portfela. Stanie się to tokenami DeHub i odblokuje się natychmiast.",
+    "switchTo": "Ten post jest opłacany w {{chain}}. Przełącz się na {{chain}} w Ustawieniach i spróbuj ponownie.",
+    "notEnoughToken": "Potrzebujesz {{amount}} {{symbol}}, aby to odblokować. Masz {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Użyj tego, jeśli skonfigurowano ten portfel na tym telefonie i klucz powinien już tu być",
@@ -5012,6 +5016,7 @@
     "accountHasA": "To konto ma",
     "ifYouUsedDehub": "Jeśli korzystałeś już z dehub.io, otwórz go na komputerze, zaloguj się w ten sam sposób i na to samo konto, a następnie",
     "biometricExplainer": "Odblokowuj odciskiem palca lub twarzą — nic nie trzeba wpisywać ani pamiętać. Klucz zostaje na tym telefonie, więc pokażemy ci 12-wyrazową frazę odzyskiwania do zapisania; to jedyna droga powrotu z innego telefonu, ze strony lub po ponownej instalacji. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
+    "biometricExplainerSecuring": "Odblokowuj odciskiem palca lub twarzą — nic nie trzeba wpisywać ani pamiętać. Klucz zostaje na tym telefonie. Aby wrócić z innego telefonu, ze strony lub po ponownej instalacji, zapisz później w Ustawieniach 12-wyrazową kopię zapasową. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
     "biometricPrompt": "Ten portfel jest chroniony biometrią tego urządzenia. Potwierdź odciskiem palca lub twarzą, aby kontynuować.",
     "enterRecoveryPhrase": "Wprowadź 12-wyrazową frazę odzyskiwania zapisaną przy tworzeniu tego portfela (albo jego klucz prywatny, jeśli go wyeksportowałeś). Wraca do tego samego konta, a hasło ustawione poniżej staje się od teraz zapasowym sposobem działającym wszędzie.",
     "copyPhrase": "Kopiuj frazę",
@@ -5084,6 +5089,7 @@
     "unlockWithPasswordExplainer": "To konto ma już portfel, zabezpieczony hasłem. Wprowadź je, aby odzyskać swój portfel na tym urządzeniu.",
     "deviceTab": "To urządzenie",
     "deviceExplainer": "Nie ma nic do wpisania lub zapamiętania — klucz pozostaje na tym urządzeniu. Oferujemy 12-wyrazową kopię zapasową do zapisania; jest to jedyny sposób, aby wrócić z innego urządzenia, ze strony internetowej lub po ponownej instalacji. Zamiast tego wybierz Hasło, a samo hasło wykona tę pracę.",
+    "deviceExplainerSecuring": "Nic nie trzeba wpisywać ani pamiętać — klucz zostaje na tym urządzeniu. Aby wrócić z innego urządzenia, ze strony lub po ponownej instalacji, zapisz później w Ustawieniach 12-wyrazową kopię zapasową. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
     "secureOnDevice": "Trzymaj klucz na tym urządzeniu"
   },
   "walletBackup": {
@@ -5386,6 +5392,7 @@
     "contractPlaceholder": "Adres kontraktu (0x…)",
     "symbolPlaceholder": "Symbol (np. PEPE)",
     "paymentsBase": "Płatności w tokenach DeHub na łańcuchu Base",
+    "paymentsStable": "Kupujący płacą w {{symbol}}, prosto do ciebie",
     "tokensUnit": "tokenów",
     "minimumRequired": "Wymagane minimum {{currency}}"
   },
@@ -9091,7 +9098,7 @@
     "done": "Gotowe",
     "error": "Nie można przesłać prośby o usunięcie. Twoje konto nie zostało potwierdzone do usunięcia. Spróbuj ponownie.",
     "back": "Wróć do Ustawień",
-    "signIn": "Zaloguj się",
+    "signIn": "Zaloguj się, aby usunąć konto",
     "acknowledge": "Zapisałem szczegóły odzyskiwania portfela i rozumiem, że usunięcie jest trwałe."
   },
   "miniApps": {
@@ -9262,7 +9269,8 @@
       "reaction_counter": "Licznik reakcji",
       "event_feed": "Ostatnia aktywność",
       "chat_box": "Pole czatu",
-      "ticker": "Pasek informacyjny"
+      "ticker": "Pasek informacyjny",
+      "rule_alert": "Powiadomienia o regułach"
     },
     "hints": {
       "tip_alert": "Świętuje każdą wskazówkę, dostosowaną do jej progu",
@@ -9279,7 +9287,8 @@
       "reaction_counter": "Liczy każdą reakcję na transmisję",
       "event_feed": "Najnowsze prezenty, obserwujący, subskrybenci i osoby udostępniające transmisję",
       "chat_box": "Wyświetla wiadomości na czacie Twojej transmisji na ekranie",
-      "ticker": "Linia własnego tekstu, która przewija się po ekranie"
+      "ticker": "Linia własnego tekstu, która przewija się po ekranie",
+      "rule_alert": "Gdzie pojawiają się twoje alerty z zasad"
     },
     "fields": {
       "style": "Styl",
@@ -9336,6 +9345,103 @@
       "rotateConfirm": "Utworzyć nowy link? Stary przestaje działać od razu, więc musisz wkleić nowy do OBS.",
       "rotated": "Nowy link gotowy. Wklej go do OBS.",
       "rotateFailed": "Nie można utworzyć nowego linku. Spróbuj ponownie za chwilę."
+    },
+    "rules": {
+      "test": "Testuj",
+      "title": "Zasady",
+      "intro": "Kiedy coś się dzieje na twoim strumieniu, DeHub robi to, co wybierzesz: pokazuje alert, odtwarza dźwięk, czyta coś na głos, publikuje w twoim czacie lub informuje w Discordzie.",
+      "add": "Dodaj regułę",
+      "limit": "Osiągnąłeś limit {{count}} zasad.",
+      "loadFailed": "Twoje zasady nie mogły zostać załadowane. Odśwież stronę, aby spróbować ponownie.",
+      "empty": "Nie ma jeszcze reguł. Dodaj jedną, aby reagować na wskazówki, obserwować lub czatować polecenia.",
+      "saved": "Zasady zostały zapisane. Będą działać przy następnym tipie, followu lub wiadomości.",
+      "saveFailed": "Twoje zasady nie zostały zapisane.",
+      "testFailed": "Ten test nie przeszedł. Spróbuj ponownie za chwilę.",
+      "saveToTest": "Zapisz swoje zasady, aby je przetestować",
+      "enabled": "Reguła dotycząca",
+      "remove": "Usuń regułę",
+      "save": "Zapisz zasady",
+      "needsAlertWidget": "Niektóre zasady wyświetlają alert. Dodaj widżet Alerty reguł, aby miał gdzie się pojawić.",
+      "name": "Imię i nazwisko",
+      "when": "Kiedy",
+      "then": "Następnie",
+      "minAmount": "Najmniejszy tip (DHB)",
+      "command": "Polecenie",
+      "keyword": "Słowo lub zwrot",
+      "audience": "Kto może go uruchomić",
+      "blockedWords": "Zablokowane słowa",
+      "blockedWordsHint": "Oddziel przecinkami. Wiadomości zawierające je są ignorowane i nigdy nie są czytałe na głos.",
+      "cooldown": "Poczekaj między użyciem (sekundy)",
+      "userCooldown": "Czekaj na widza (sekundy)",
+      "addAction": "Dodaj akcję",
+      "removeAction": "Usuń działanie",
+      "placeholders": "Użyj {name}, {amount} i {message} w tekście. Linki w wiadomościach są usuwane.",
+      "alertText": "Tekst alertu",
+      "sound": "Dźwięk",
+      "sayText": "Tekst do przeczytania na głos",
+      "chatText": "Wiadomość do opublikowania",
+      "chatHint": "Opublikowane z Twojego konta na czacie strumieniowym. Nie może powtarzać przekazu widza.",
+      "webhookUrl": "Adres webhooka",
+      "webhookHint": "Element webhook Discord lub Slack lub dowolny adres https, który akceptuje POST.",
+      "webhookText": "Wiadomość do wysłania",
+      "triggers": {
+        "tip": "Napływa prośba o podpowiedź.",
+        "follow": "Ktoś obserwuje",
+        "subscribe": "Ktoś subskrybuje",
+        "share": "Ktoś udostępnia strumień",
+        "command": "Używane jest polecenie czatu",
+        "keyword": "Wiadomość na czacie zawiera słowo",
+        "chat": "Dowolna wiadomość na czacie"
+      },
+      "audiences": {
+        "everyone": "Wszyscy",
+        "followers": "Obserwujący",
+        "subscribers": "Subskrybenci"
+      },
+      "actionTypes": {
+        "alert": "Pokaż alert",
+        "sound": "Odtwórz dźwięk",
+        "say": "Czytaj na głos",
+        "chat": "Opublikuj na czacie",
+        "webhook": "Wyślij do webhooka"
+      },
+      "summary": {
+        "tip": "Napiwek w wysokości co najmniej {{amount}} DHB"
+      },
+      "presets": {
+        "blank": "Pusta reguła",
+        "readChat": "Czytaj czat na głos",
+        "bigTip": "Klakson z dużymi wskazówkami",
+        "thankFollowers": "Podziękuj nowym obserwującym",
+        "command": "Polecenie czatu"
+      },
+      "presetHints": {
+        "blank": "Zacznij od zera",
+        "readChat": "Odczytuje na głos wiadomości obserwujących, po jednej na widza co 30 sekund",
+        "bigTip": "Włącza sygnał dźwiękowy i wyświetla ostrzeżenie o napiwkach wynoszących 100 000 DHB lub więcej",
+        "thankFollowers": "Publikuje podziękowanie na czacie, gdy ktoś obserwuje",
+        "command": "Odpowiada na polecenie a ! w czacie"
+      },
+      "presetText": {
+        "readChat": "{name} mówi {message}",
+        "bigTip": "{name} wysłano {amount} DHB!",
+        "thankFollowers": "Dziękujemy za obserwację, {name}!",
+        "command": "Witaj {name}, witaj w strumieniu!"
+      },
+      "sounds": {
+        "airhorn": "Sygnał dźwiękowy",
+        "applause": "Oklaski",
+        "cricket": "Świerszcze",
+        "drumroll": "Rolka bębna",
+        "lol": "Śmiech",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (męskie)",
+        "ohh-girl": "Ohh (kobieta)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Upiorny",
+        "magic-spell": "Magiczne zaklęcie",
+        "shhh": "Ciii"
+      }
     }
   }
 }

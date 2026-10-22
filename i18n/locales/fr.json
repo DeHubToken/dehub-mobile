@@ -1061,6 +1061,8 @@
     "payFailed": "Impossible de convertir {{symbol}} en jetons DeHub",
     "stageDelivering": "DeHub Pay envoie vos jetons…",
     "payViaDpay": "Payé à DeHub Pay, les jetons arrivent dans environ 30s",
+    "payDirect": "Envoyé directement à {{name}} en {{symbol}} sur {{chain}}. Sans swap.",
+    "payDirectNoName": "Envoyé directement au créateur en {{symbol}} sur {{chain}}. Sans swap.",
     "payViaBridgeDpay": "Déplacé vers Base et payé à DeHub Pay, les jetons arrivent dans environ une minute",
     "tokensUnit": "jetons",
     "tokenAmount": "{{amount}} jetons"
@@ -5098,7 +5100,7 @@
     "usernameReserved": "Ce nom d'utilisateur est réservé",
     "profileSet": "Profil configuré avec succès !",
     "profileFailed": "Impossible de configurer le profil",
-    "displayNameHint": "Votre nom public affiché sur votre profil."
+    "displayNameHint": "Votre nom public sur votre profil. Facultatif — laissez-le vide pour utiliser votre nom d'utilisateur."
   },
   "events": {
     "mine": "Les miens",
@@ -5364,7 +5366,9 @@
     "lowTopUp": "À court de {{symbol}} ? Nous vous réapprovisionnerons avant le déverrouillage.",
     "unlockedSuccess": "Déverrouillé avec succès",
     "otherChain": "Ce post est réglé sur une autre chaîne, il faut donc des jetons DeHub dans votre portefeuille là-bas.",
-    "payHint": "Payez avec n'importe quoi dans votre portefeuille. Cela devient des jetons DeHub et se débloque immédiatement."
+    "payHint": "Payez avec n'importe quoi dans votre portefeuille. Cela devient des jetons DeHub et se débloque immédiatement.",
+    "switchTo": "Cette publication se paie sur {{chain}}. Passez sur {{chain}} dans les Réglages, puis réessayez.",
+    "notEnoughToken": "Il vous faut {{amount}} {{symbol}} pour débloquer ceci. Vous avez {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Utilisez ceci si vous avez configuré ce portefeuille sur ce téléphone et qu'il devrait déjà avoir la clé",
@@ -5399,6 +5403,7 @@
     "accountHasA": "Ce compte possède un",
     "ifYouUsedDehub": "Si vous avez déjà utilisé dehub.io, ouvrez-le sur votre ordinateur, connectez-vous de la même manière et avec le même compte, puis",
     "biometricExplainer": "Déverrouillez avec votre empreinte ou votre visage — rien à taper ni à retenir. La clé reste sur ce téléphone, nous vous montrerons donc une phrase de récupération de 12 mots à noter ; c'est le seul moyen de revenir depuis un autre appareil, depuis le site ou après une réinstallation. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
+    "biometricExplainerSecuring": "Déverrouillez avec votre empreinte ou votre visage — rien à taper ni à retenir. La clé reste sur ce téléphone. Pour revenir depuis un autre téléphone, depuis le site ou après une réinstallation, enregistrez plus tard une sauvegarde de 12 mots dans Paramètres. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
     "biometricPrompt": "Ce portefeuille est protégé par la biométrie de cet appareil. Confirmez avec l'empreinte ou le visage pour continuer.",
     "enterRecoveryPhrase": "Saisissez la phrase de récupération de 12 mots que vous avez enregistrée lors de la création de ce portefeuille (ou sa clé privée, si vous l'avez exportée). Elle ramène au même compte, et le mot de passe que vous définissez ci-dessous devient une sauvegarde qui fonctionne partout désormais.",
     "copyPhrase": "Copier la phrase",
@@ -5471,6 +5476,7 @@
     "unlockWithPasswordExplainer": "Ce compte possède déjà un portefeuille, protégé par un mot de passe. Entrez-le pour récupérer votre portefeuille sur cet appareil.",
     "deviceTab": "Cet appareil",
     "deviceExplainer": "Rien à taper ou à retenir — la clé reste sur cet appareil. Nous vous proposerons une sauvegarde de 12 mots à écrire ; c'est le seul moyen de revenir d'un autre appareil, du site Web ou après la réinstallation. Choisissez le mot de passe à la place et le mot de passe lui-même fait ce travail.",
+    "deviceExplainerSecuring": "Rien à taper ni à retenir — la clé reste sur cet appareil. Pour revenir depuis un autre appareil, depuis le site ou après une réinstallation, enregistrez plus tard une sauvegarde de 12 mots dans Paramètres. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
     "secureOnDevice": "Gardez la clé sur cet appareil"
   },
   "walletBackup": {
@@ -5780,6 +5786,7 @@
     "contractPlaceholder": "Adresse du contrat (0x…)",
     "symbolPlaceholder": "Symbole (ex. PEPE)",
     "paymentsBase": "Les paiements sont en jetons DeHub sur la chaîne Base",
+    "paymentsStable": "Les acheteurs paient en {{symbol}}, envoyé directement à vous",
     "tokensUnit": "jetons",
     "minimumRequired": "Minimum de {{currency}} requis"
   },
@@ -9789,7 +9796,7 @@
     "receipt": "Votre demande de suppression a été enregistrée. Votre profil est masqué et votre compte sera définitivement supprimé dans les 30 jours. La connexion ne peut pas annuler cette demande.",
     "done": "Effectué",
     "error": "Impossible d'envoyer votre demande de suppression. La suppression de votre compte n'a pas été confirmée. Veuillez réessayer.",
-    "back": "Revenir aux paramètres par défaut",
+    "back": "Retour aux paramètres",
     "signIn": "Connectez-vous pour supprimer votre compte",
     "acknowledge": "J'ai enregistré les détails de récupération de mon portefeuille et je comprends que la suppression est permanente."
   },
@@ -10783,7 +10790,8 @@
       "reaction_counter": "Compteur de réaction",
       "event_feed": "Activité récente",
       "chat_box": "Boîte de discussion",
-      "ticker": "Bandeau défilant"
+      "ticker": "Bandeau défilant",
+      "rule_alert": "Alertes de règle"
     },
     "hints": {
       "tip_alert": "Célèbre chaque pourboire, dimensionné à son niveau",
@@ -10800,7 +10808,8 @@
       "reaction_counter": "Compte chaque réaction que votre émission reçoit",
       "event_feed": "Les derniers cadeaux, followers, abonnés et personnes partageant votre émission",
       "chat_box": "Affiche les messages de chat de votre diffusion à l'écran",
-      "ticker": "Une ligne de votre propre texte qui défile sur l'écran"
+      "ticker": "Une ligne de votre propre texte qui défile sur l'écran",
+      "rule_alert": "Où les alertes de vos règles apparaissent"
     },
     "fields": {
       "style": "Style",
@@ -10857,6 +10866,103 @@
       "rotateConfirm": "Créer un nouveau lien ? L'ancien cesse de fonctionner immédiatement, vous devrez donc coller le nouveau dans OBS.",
       "rotated": "Nouveau lien prêt. Collez-le dans OBS.",
       "rotateFailed": "Impossible de créer un nouveau lien. Réessayez dans un instant."
+    },
+    "rules": {
+      "test": "Tester",
+      "title": "Règles",
+      "intro": "Lorsque quelque chose se passe sur votre flux, DeHub fait ce que vous choisissez : affiche une alerte, émet un son, lit quelque chose à haute voix, publie dans votre chat ou le dit à votre Discord.",
+      "add": "Ajouter une règle",
+      "limit": "Vous avez atteint la limite de {{count}} règles.",
+      "loadFailed": "Vos règles n'ont pas pu être chargées. Actualisez la page pour réessayer.",
+      "empty": "Pas encore de règles. Ajoutez-en une pour réagir aux conseils, aux suivis ou aux commandes de chat.",
+      "saved": "Règles enregistrées. Elles s'exécutent sur votre prochain pourboire, suivi ou message.",
+      "saveFailed": "Vos règles n'ont pas pu être enregistrées.",
+      "testFailed": "Ce test n'est pas passé. Réessayez dans un instant.",
+      "saveToTest": "Enregistrez vos règles pour les tester",
+      "enabled": "Statuer sur",
+      "remove": "Supprimer la règle",
+      "save": "Enregistrer les règles",
+      "needsAlertWidget": "Certaines règles affichent une alerte. Ajoutez le widget Alertes de règle pour qu'il apparaisse quelque part.",
+      "name": "Nom",
+      "when": "Quand",
+      "then": "Alors",
+      "minAmount": "Embout le plus petit (DHB)",
+      "command": "Commande",
+      "keyword": "Mot ou phrase",
+      "audience": "Qui peut le déclencher",
+      "blockedWords": "Mots bloqués",
+      "blockedWordsHint": "Séparez-les par des virgules. Les messages qui les contiennent sont ignorés et ne sont jamais lus à haute voix.",
+      "cooldown": "Attendre entre les utilisations (secondes)",
+      "userCooldown": "Attendre par spectateur (secondes)",
+      "addAction": "Ajouter une action",
+      "removeAction": "Supprimer l'action",
+      "placeholders": "Utilisez {name}, {amount} et {message} dans votre texte. Les liens dans les messages sont supprimés.",
+      "alertText": "Texte d'alerte",
+      "sound": "Son",
+      "sayText": "Texte à lire à haute voix",
+      "chatText": "Message à publier",
+      "chatHint": "Publié à partir de votre compte dans le chat de votre flux. Il ne peut pas répéter le message du spectateur.",
+      "webhookUrl": "Adresse Webhook",
+      "webhookHint": "Un webhook Discord ou Slack, ou toute adresse https qui accepte une PUBLICATION.",
+      "webhookText": "Message à envoyer",
+      "triggers": {
+        "tip": "Un pourboire arrive",
+        "follow": "Quelqu'un suit",
+        "subscribe": "Quelqu'un s'abonne",
+        "share": "Quelqu'un partage le flux",
+        "command": "Une commande de chat est utilisée",
+        "keyword": "Un message de chat contient un mot",
+        "chat": "Tout message de chat"
+      },
+      "audiences": {
+        "everyone": "Tout le monde",
+        "followers": "Suivez-moi",
+        "subscribers": "Abonnés"
+      },
+      "actionTypes": {
+        "alert": "Afficher une alerte",
+        "sound": "Jouer un son",
+        "say": "Lire à haute voix",
+        "chat": "Publier dans le chat",
+        "webhook": "Envoyer à un webhook"
+      },
+      "summary": {
+        "tip": "Conseil de {{amount}} DHB ou plus"
+      },
+      "presets": {
+        "blank": "Règle vide",
+        "readChat": "Lire le chat à haute voix",
+        "bigTip": "Klaxon pneumatique pour gros embouts",
+        "thankFollowers": "Remercier les nouveaux abonnés",
+        "command": "Commande de chat"
+      },
+      "presetHints": {
+        "blank": "Partir de rien",
+        "readChat": "Lit les messages de vos abonnés à haute voix, un par téléspectateur toutes les 30 secondes",
+        "bigTip": "Joue un klaxon pneumatique et affiche une alerte pour des pourboires de 100 000 DHB ou plus",
+        "thankFollowers": "Poste un remerciement dans votre chat quand quelqu'un suit",
+        "command": "Répond à une !commande dans votre chat"
+      },
+      "presetText": {
+        "readChat": "{name} dit {message}",
+        "bigTip": "{name} sent {amount} DHB !",
+        "thankFollowers": "Merci de nous avoir suivis, {name} !",
+        "command": "Bonjour {name}, bienvenue sur la chaîne !"
+      },
+      "sounds": {
+        "airhorn": "Klaxon pneumatique",
+        "applause": "Applaudissements",
+        "cricket": "Grillons",
+        "drumroll": "Rouleau de tambour",
+        "lol": "Rire",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (homme)",
+        "ohh-girl": "Ohh (femme)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Effrayant",
+        "magic-spell": "Sort magique",
+        "shhh": "Chut"
+      }
     }
   }
 }

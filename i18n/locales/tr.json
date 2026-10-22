@@ -1061,6 +1061,8 @@
     "payFailed": "{{symbol}} DeHub tokenlarına dönüştürülemedi",
     "stageDelivering": "DeHub Pay tokenlarınızı gönderiyor…",
     "payViaDpay": "DeHub Pay'e ödendi, tokenlar yaklaşık 30 saniyede gelir",
+    "payDirect": "{{chain}} üzerinde {{symbol}} olarak doğrudan {{name}} kişisine gönderilir. Takas yok.",
+    "payDirectNoName": "{{chain}} üzerinde {{symbol}} olarak doğrudan içerik üreticisine gönderilir. Takas yok.",
     "payViaBridgeDpay": "Base'e taşındı ve DeHub Pay'e ödendi, tokenlar yaklaşık bir dakikada gelir",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -5094,7 +5096,7 @@
     "usernameReserved": "Bu kullanıcı adı ayrılmış",
     "profileSet": "Profil başarıyla oluşturuldu!",
     "profileFailed": "Profil oluşturulamadı",
-    "displayNameHint": "Profilinde görünen herkese açık adın."
+    "displayNameHint": "Profilindeki herkese açık adın. İsteğe bağlı — boş bırakırsan kullanıcı adın kullanılır."
   },
   "events": {
     "mine": "Benimkiler",
@@ -5360,7 +5362,9 @@
     "lowTopUp": "{{symbol}}'nız mı azaldı? Kilidi açmadan önce tamamlayacağız.",
     "unlockedSuccess": "Başarıyla kilidi açıldı",
     "otherChain": "Bu gönderi başka bir zincirde yer alıyor, bu nedenle orada cüzdanınızda DeHub jetonlarına ihtiyacınız var.",
-    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır."
+    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır.",
+    "switchTo": "Bu gönderi {{chain}} üzerinde ödenir. Ayarlar'dan {{chain}} ağına geçip tekrar deneyin.",
+    "notEnoughToken": "Bunu açmak için {{amount}} {{symbol}} gerekiyor. Sende {{held}} var."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu cüzdanı bu telefonda kurduysan ve anahtar zaten burada olmalıysa bunu kullan",
@@ -5395,6 +5399,7 @@
     "accountHasA": "Bu hesapta bir",
     "ifYouUsedDehub": "Daha önce dehub.io kullandıysan, bilgisayarında aç, aynı şekilde ve aynı hesapla oturum aç ve",
     "biometricExplainer": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır, bu yüzden yazman için 12 kelimelik bir kurtarma ifadesi göstereceğiz; başka bir telefondan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "biometricExplainerSecuring": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır. Başka bir telefondan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
     "biometricPrompt": "Bu cüzdan bu cihazın biyometrisiyle korunuyor. Devam etmek için parmak izi veya yüzle onayla.",
     "enterRecoveryPhrase": "Bu cüzdanı oluştururken kaydettiğin 12 kelimelik kurtarma ifadesini gir (ya da dışa aktardıysan özel anahtarını). Aynı hesaba geri götürür ve aşağıda belirlediğin parola bundan sonra her yerde çalışan bir yedek hâline gelir.",
     "copyPhrase": "İfadeyi kopyala",
@@ -5466,8 +5471,9 @@
     "unlockPasskeyOnly": "Bu cüzdan web'de bir geçiş anahtarıyla güvence altına alındı ve henüz bulutta bir şifre yedeği bulunmuyor. dehub.io'da bir cüzdan şifresi ayarladıysanız, onu buraya girin — aksi takdirde aşağıdaki Anahtarları içe aktar seçeneğini kullanın.",
     "unlockWithPasswordExplainer": "Bu hesaba ait bir cüzdan zaten var ve bir şifre ile korunuyor. Cüzdanınızı bu cihazda kurtarmak için şifreyi girin.",
     "deviceTab": "Bu cihaz",
-    "deviceExplainer": "Yazılacak veya hatırlanacak bir şey yok — tuş bu cihazda kalıyor. Yazmanız için size 12 kelimelik bir yedekleme sunacağız; başka bir cihazdan, web sitesinden veya yeniden yükledikten sonra geri dönmenin tek yolu budur. Bunun yerine Parola seçin ve parolanın kendisi bu işi yapar.",
-    "secureOnDevice": "Anahtarı bu cihazda tutun"
+    "deviceExplainer": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Yazman için sana 12 kelimelik bir yedek sunacağız; başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "deviceExplainerSecuring": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "secureOnDevice": "Anahtarı bu cihazda tut"
   },
   "walletBackup": {
     "title": "Cüzdanı yedekle",
@@ -5776,6 +5782,7 @@
     "contractPlaceholder": "Sözleşme adresi (0x…)",
     "symbolPlaceholder": "Sembol (örn. PEPE)",
     "paymentsBase": "Ödemeler Base zincirinde DeHub jetonlarıyla yapılıyor",
+    "paymentsStable": "Alıcılar {{symbol}} ile öder, doğrudan size gönderilir",
     "tokensUnit": "jetonlar",
     "minimumRequired": "Minimum {{currency}} gerekli"
   },
@@ -9786,7 +9793,7 @@
     "done": "Bitti",
     "error": "Silme isteğiniz gönderilemedi. Hesabınızın silinmesi onaylanmadı. Lütfen tekrar deneyin.",
     "back": "Ayarlara Dön",
-    "signIn": "Hesabınızda oturum açın",
+    "signIn": "Hesabınızı silmek için oturum açın",
     "acknowledge": "Cüzdan kurtarma bilgilerimi kaydettim ve silmenin kalıcı olduğunu anladım."
   },
   "miniApps": {
@@ -10779,7 +10786,8 @@
       "reaction_counter": "Reaksiyon sayacı",
       "event_feed": "Son etkinlikler",
       "chat_box": "Sohbet kutusu",
-      "ticker": "Kayan yazı"
+      "ticker": "Kayan yazı",
+      "rule_alert": "Kural uyarıları"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10796,7 +10804,8 @@
       "reaction_counter": "Yayınınızın aldığı her tepkiyi sayar",
       "event_feed": "En son hediyeler, takipçiler, aboneler ve yayınınızı paylaşan kişiler",
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
-      "ticker": "Ekranda kayan kendi metninizin bir satırı"
+      "ticker": "Ekranda kayan kendi metninizin bir satırı",
+      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer"
     },
     "fields": {
       "banner": "Afiş",
@@ -10853,6 +10862,103 @@
       "rotateConfirm": "Yeni bir bağlantı oluşturulsun mu? Eskisi hemen çalışmayı durdurur, bu yüzden yenisini OBS'ye yapıştırmanız gerekir.",
       "rotated": "Yeni bağlantı hazır. OBS'ye yapıştırın.",
       "rotateFailed": "Yeni bir bağlantı oluşturulamadı. Birazdan tekrar deneyin."
+    },
+    "rules": {
+      "enabled": "Kural açık",
+      "test": "Dene",
+      "title": "Kurallar",
+      "intro": "Bir şeyin canlı yayınınızda olması durumunda, DeHub sizin seçtiğiniz gibi davranır: uyarı gösterir, bir ses çalır, bir şeyi okur, chat'inize yazı yazdırır veya Discord'unuza söyler.",
+      "add": "Kural ekle",
+      "limit": "{{count}} kural sınırına ulaştınız.",
+      "loadFailed": "Kurallarınız yüklenemedi. Tekrar denemek için sayfayı yenileyin.",
+      "empty": "Henüz kural yok. İpuçlarına, takiplere veya sohbet komutlarına yanıt vermek için bir tane ekleyin.",
+      "saved": "Kurallar kaydedildi. Kurallar bir sonraki ipucunuzda, uygulamanızda veya mesajınızda çalışır.",
+      "saveFailed": "Kurallarınız kaydedilemedi.",
+      "testFailed": "O test geçmedi. Birazdan tekrar deneyin.",
+      "saveToTest": "Test etmek için kurallarınızı kaydedin",
+      "remove": "Kuralı sil",
+      "save": "Kuralları kaydet",
+      "needsAlertWidget": "Bazı kurallar bir uyarı gösterir. Kural uyarıları widget'ını ekleyin, böylece görünecek bir yeri olur.",
+      "name": "Adı",
+      "when": "Ne zaman",
+      "then": "Sonra",
+      "minAmount": "En küçük uç (DHB)",
+      "command": "Komut",
+      "keyword": "Kelime veya ifade",
+      "audience": "Kimler ayarlayabilir?",
+      "blockedWords": "Engellenen kelimeler",
+      "blockedWordsHint": "Virgülle ayırın. Bunları içeren mesajlar göz ardı edilir ve asla yüksek sesle okunmaz.",
+      "cooldown": "Kullanımlar arasında bekle (saniye)",
+      "userCooldown": "İzleyici başına bekleme (saniye)",
+      "addAction": "Eylem ekle",
+      "removeAction": "Eylemi kaldır",
+      "placeholders": "Mesajınızda {name}, {amount} ve {message} kullanın. Mesajlardaki bağlantılar kaldırılır.",
+      "alertText": "Uyarı metni",
+      "sound": "Ses",
+      "sayText": "Yüksek sesle okunacak metin",
+      "chatText": "Gönderilecek mesaj",
+      "chatHint": "Yanıtınızın hesabınızdan akışınızın chat’ına gönderildi. İzleyici mesajını tekrar edemez.",
+      "webhookUrl": "Webhook adresi",
+      "webhookHint": "Bir Discord veya Slack web kancası veya bir GÖNDERİYİ kabul eden herhangi bir https adresi.",
+      "webhookText": "Gönderilecek mesaj",
+      "triggers": {
+        "tip": "Bir bahşiş gelir",
+        "follow": "Biri takip ediyor",
+        "subscribe": "Birisi abone oluyor",
+        "share": "Biri akışı paylaşıyor",
+        "command": "Bir sohbet komutu kullanılır.",
+        "keyword": "Bir sohbet mesajı bir kelime içeriyor",
+        "chat": "Herhangi bir sohbet mesajı"
+      },
+      "audiences": {
+        "everyone": "Herkes",
+        "followers": "Takipçiler",
+        "subscribers": "Aboneler"
+      },
+      "actionTypes": {
+        "alert": "Uyarı göster",
+        "sound": "Ses çal",
+        "say": "Yüksek sesle oku",
+        "chat": "Sohbete gönder",
+        "webhook": "Bir web kancasına gönder"
+      },
+      "summary": {
+        "tip": "{{amount}} DHB veya daha fazlasının bahşişi"
+      },
+      "presets": {
+        "blank": "Boş kural",
+        "readChat": "Sohbeti yüksek sesle okuyun",
+        "bigTip": "Büyük ipuçları için havalı korna",
+        "thankFollowers": "Yeni takipçilere teşekkür et",
+        "command": "Sohbet komutu"
+      },
+      "presetHints": {
+        "blank": "Sıfırdan başla",
+        "readChat": "Takipçilerinizin mesajlarını yüksek sesle okur, her 30 saniyede bir izleyici başına bir tane",
+        "bigTip": "Havalı korna çalar ve 100.000 DHB veya daha fazla ipucu için uyarı gösterir",
+        "thankFollowers": "Birisi sizi takip ettiğinde sohbetinize bir teşekkür mesajı gönderir",
+        "command": "Sohbetinizde a !komutunu yanıtlar"
+      },
+      "presetText": {
+        "readChat": "{name} diyor ki: {message}",
+        "bigTip": "{name},{amount} DHB gönderdi!",
+        "thankFollowers": "Takip için teşekkürler, {name}!",
+        "command": "Merhaba {name}, yayına hoş geldiniz!"
+      },
+      "sounds": {
+        "airhorn": "Havalı korna",
+        "applause": "Alkış",
+        "cricket": "Cırcır böcekleri",
+        "drumroll": "Tambur rulosu",
+        "lol": "Kahkaha",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (adam)",
+        "ohh-girl": "Ohh (kadın)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Ürkütücü",
+        "magic-spell": "Büyü",
+        "shhh": "Şşşt"
+      }
     }
   }
 }

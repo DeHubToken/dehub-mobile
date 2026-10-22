@@ -4771,7 +4771,7 @@
     "usernameReserved": "See kasutajanimi on reserveeritud",
     "profileSet": "Profiil edukalt seadistatud!",
     "profileFailed": "Profiili seadistamine ebaõnnestus",
-    "displayNameHint": "Sinu avalik nimi, mis kuvatakse profiilil."
+    "displayNameHint": "Sinu avalik nimi profiilil. Valikuline — jäta tühjaks, et kasutada oma kasutajanime."
   },
   "events": {
     "mine": "Minu omad",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Sellel kontol on",
     "ifYouUsedDehub": "Kui oled dehub.io varem kasutanud, ava see arvutis, logi sisse samal viisil ja sama kontoga ning",
     "biometricExplainer": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni, seega näitame sulle 12-sõnalist taastefraasi, mille üles kirjutad; see on ainus tee tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist. Vali selle asemel Parool ja seda tööd teeb parool ise.",
+    "biometricExplainerSecuring": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni. Et pääseda tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "biometricPrompt": "See rahakott on kaitstud selle seadme biomeetriaga. Jätkamiseks kinnita sõrmejälje või näoga.",
     "enterRecoveryPhrase": "Sisesta 12-sõnaline taastefraas, mille salvestasid selle rahakoti loomisel (või selle privaatvõti, kui eksportisid). See viib tagasi samale kontole ja parool, mille allpool määrad, muutub varuvariandiks, mis toimib nüüdsest igal pool.",
     "copyPhrase": "Kopeeri fraas",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Sellel kontol on juba parooliga kaitstud rahakott. Sisestage see, et oma rahakott sellel seadmel taastada.",
     "deviceTab": "See seade",
     "deviceExplainer": "Pole midagi sisestada ega meeles pidada — võti jääb sellesse seadmesse. Pakume sulle üleskirjutamiseks 12-sõnalist varukoopiat; see on ainus tagasitee teisest seadmest, veebisaidilt või pärast uuesti installimist. Vali selle asemel parool ja parool ise teeb seda tööd.",
+    "deviceExplainerSecuring": "Midagi pole vaja kirjutada ega meelde jätta — võti jääb sellesse seadmesse. Et pääseda tagasi teisest seadmest, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "secureOnDevice": "Hoidke võtit selles seadmes"
   },
   "transcript": {
@@ -8982,15 +8984,15 @@
   "accountDeletion": {
     "title": "Kustuta konto",
     "description": "Kustuta jäädavalt oma konto ja isikuandmed",
-    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik kasulikud asjad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
-    "cancel": "Saab sisse lülitada",
+    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik varad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
+    "cancel": "Tühista",
     "confirm": "Kustuta minu konto jäädavalt",
     "busy": "Kustutamistaotluse esitamine…",
     "accepted": "Konto kustutamine on taotletud",
     "receipt": "Sinu kustutamistaotlus on salvestatud. Sinu profiil on peidetud ja sinu konto kustutatakse jäädavalt 30 päeva jooksul. Sisselogimine ei saa seda taotlust tühistada.",
     "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
     "back": "Mine tagasi seadistuste juurde",
-    "signIn": "Logi oma kontole sisse",
+    "signIn": "Logi sisse, et oma konto kustutada",
     "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik.",
     "done": "Valmis"
   },
@@ -9193,7 +9195,8 @@
       "reaction_counter": "Reaktsiooniloendur",
       "event_feed": "Hiljutine tegevus",
       "chat_box": "Vestluskast",
-      "ticker": "Tiksuja"
+      "ticker": "Tiksuja",
+      "rule_alert": "Reeglite märguanded"
     },
     "hints": {
       "tip_alert": "Täidab iga tippu tema taseme järgi",
@@ -9210,7 +9213,8 @@
       "reaction_counter": "Loendab iga reaktsiooni, mille saade saab",
       "event_feed": "Viimased kingitused, jälgijad, tellijad ja inimesed, kes jagavad sinu saadet",
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
-      "ticker": "Sinu enda teksti rida, mis kerib üle ekraani"
+      "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
+      "rule_alert": "Kus kuvatakse sinu reeglite märguanded"
     },
     "fields": {
       "style": "Stiil",
@@ -9267,6 +9271,103 @@
       "rotateConfirm": "Kas luua uus link? Vana lõpetab kohe töötamise, seega pead uue OBS-i kleepima.",
       "rotated": "Uus link on valmis. Kleebi see OBS-I.",
       "rotateFailed": "Uut linki ei saanud luua. Proovi mõne hetke pärast uuesti."
+    },
+    "rules": {
+      "title": "Reeglid",
+      "intro": "Kui teie voos juhtub midagi, teeb DeHub seda, mida soovite: kuvab märguande, esitab heli, loeb midagi valjusti, postitab teie vestlusesse või räägib teie ebakõlast.",
+      "add": "Lisa reegel",
+      "limit": "Oled saavutanud {{count}} reegli limiidi.",
+      "loadFailed": "Sinu reegleid ei saanud laadida. Uuesti proovimiseks värskenda lehte.",
+      "empty": "Reegleid veel pole. Lisa reegel, et reageerida nõuannetele, järgmisele või vestluse käskudele.",
+      "saved": "Reeglid on salvestatud. Need töötavad Sinu järgmise jootraha, jälgimise või sõnumiga.",
+      "saveFailed": "Sinu reegleid ei saanud salvestada.",
+      "testFailed": "See test ei läinud läbi. Proovi mõne hetke pärast uuesti.",
+      "saveToTest": "Salvesta reeglid nende testimiseks",
+      "test": "Test",
+      "enabled": "Reegel on",
+      "remove": "Kustuta reegel",
+      "save": "Salvesta reeglid",
+      "needsAlertWidget": "Mõned reeglid näitavad hoiatust. Lisa reegliteavituste vidin, et see kuhugi ilmuks.",
+      "name": "Nimi",
+      "when": "Millal",
+      "then": "Siis",
+      "minAmount": "Väikseim otsak (DHB)",
+      "command": "Käsk",
+      "keyword": "Sõna või fraas",
+      "audience": "Kes saab selle välja lülitada",
+      "blockedWords": "Blokeeritud sõnad",
+      "blockedWordsHint": "Eralda komadega. Neid sisaldavaid sõnumeid eiratakse ja neid ei loeta kunagi valjusti.",
+      "cooldown": "Oodake kasutuskordade vahel (sekundites)",
+      "userCooldown": "Oodake vaataja kohta (sekundites)",
+      "addAction": "Lisa toiming",
+      "removeAction": "Eemalda toiming",
+      "placeholders": "Kasuta tekstis {name}, {amount} ja {message}. Sõnumites olevad lingid eemaldatakse.",
+      "alertText": "Teatise tekst",
+      "sound": "Heli",
+      "sayText": "Tekst valjusti lugemiseks",
+      "chatText": "Postitatav sõnum",
+      "chatHint": "Postitatud sinu kontolt sinu voo vestlusesse. See ei saa vaataja sõnumit korrata.",
+      "webhookUrl": "Veebihaagi aadress",
+      "webhookHint": "Ebakõla või Slacki veebihaak või mis tahes https-aadress, mis POSTITUST aktsepteerib.",
+      "webhookText": "Saada sõnum",
+      "triggers": {
+        "tip": "Saabub jootraha",
+        "follow": "Keegi jälgib",
+        "subscribe": "Keegi tellib",
+        "share": "Keegi jagab voogu",
+        "command": "Kasutatakse vestluse käsku",
+        "keyword": "Vestlussõnum sisaldab sõna",
+        "chat": "Mis tahes vestlussõnum"
+      },
+      "audiences": {
+        "everyone": "Kõik",
+        "followers": "Jälgijad",
+        "subscribers": "Tellijad"
+      },
+      "actionTypes": {
+        "alert": "Kuva teade",
+        "sound": "Esita heli",
+        "say": "Loe valjusti",
+        "chat": "Postita vestlusesse",
+        "webhook": "Saada veebihaakile"
+      },
+      "summary": {
+        "tip": "Jootraha vähemalt {{amount}} DHB"
+      },
+      "presets": {
+        "blank": "Tühi reegel",
+        "readChat": "Loe vestlust valjusti",
+        "bigTip": "Õhusignaal suurte näpunäidete jaoks",
+        "thankFollowers": "Täname uusi jälgijaid",
+        "command": "Vestluse käsk"
+      },
+      "presetHints": {
+        "blank": "Alusta mitte millestki",
+        "readChat": "Loeb teie jälgijate sõnumeid valjusti, üks iga vaataja kohta iga 30 sekundi järel",
+        "bigTip": "Esitab helisignaali ja kuvab hoiatuse 100 000 DHB või suurema jootraha kohta",
+        "thankFollowers": "Postitab sinu vestlusesse tänusõnumi, kui keegi sind jälgib",
+        "command": "Vastab sinu vestluses käsule a !"
+      },
+      "presetText": {
+        "readChat": "{name} ütleb {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Aitäh järgneva eest, {name}!",
+        "command": "Tere, {name}! Tere tulemast voogu!"
+      },
+      "sounds": {
+        "airhorn": "Õhusignaal",
+        "applause": "Aplaus",
+        "cricket": "Kriketid",
+        "drumroll": "Trummelrull",
+        "lol": "Naer",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mees)",
+        "ohh-girl": "Ohh (naine)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Õudne",
+        "magic-spell": "Maagiline loits",
+        "shhh": "Shhh"
+      }
     }
   }
 }

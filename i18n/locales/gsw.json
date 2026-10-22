@@ -4800,7 +4800,7 @@
     "usernameReserved": "Dä Benutzername isch reserviert",
     "profileSet": "Profil erfolgriich iigrichtet!",
     "profileFailed": "S Profil het nid chönne iigrichtet wärde",
-    "displayNameHint": "Din öffentliche Name, wo im Profil aagzeigt wird."
+    "displayNameHint": "Din öffentliche Name im Profil. Freiwillig — lahn s Fäld leer, denn wird din Benutzername bruucht."
   },
   "events": {
     "mine": "Mini",
@@ -5041,6 +5041,7 @@
     "accountHasA": "Das Konto het e",
     "ifYouUsedDehub": "Wenn du dehub.io scho mal bruucht häsch, mach's uf dim Computer uuf, mäld dich gliich aa und mit em gliiche Konto, und",
     "biometricExplainer": "Entsperr mit dim Fingerabdruck oder Gsicht — nüt z tippe oder z merke. De Schlüssel bliibt uf dem Telefon, drum zeiged mir dir e 12-Wörter-Widerherstellungsphrase zum Uufschriibe; das isch de einzig Wäg zrugg vo mene andere Grät, vo dr Website oder nach ere Neuinstallation. Wähl statt dem Passwort, denn macht das Passwort die Ufgab.",
+    "biometricExplainerSecuring": "Entsperr mit dim Fingerabdruck oder Gsicht — nüt z tippe oder z merke. De Schlüssel bliibt uf dem Telefon. Damit du vo mene andere Telefon, vo dr Website oder nach ere Neuinstallation wieder inechunsch, speicher spöter i de Istelligä es 12-Wörter-Backup. Wähl stattdesse Passwort, denn übernimmt s Passwort sälber die Ufgab.",
     "biometricPrompt": "Die Wallet isch dur d Biometrie vo dem Grät gschützt. Bestätig mit Fingerabdruck oder Gsicht zum wiitermache.",
     "enterRecoveryPhrase": "Gib d 12-Wörter-Widerherstellungsphrase ii, wo du bim Erstelle vo dere Wallet gspeicheret häsch (oder ihre privati Schlüssel, wenn du eine exportiert häsch). Sie füehrt zum gliiche Konto zrugg, und s Passwort, wo du unte festleisch, wird ab jetz e Ersatzwäg, wo überall funktioniert.",
     "copyPhrase": "Phrase kopiere",
@@ -5113,6 +5114,7 @@
     "loseFundsBody": "Dini Saldo bliebed uf de Blockchain bi {{address}} – nüt wird usgä oder gno – aber zum si z'bewege bruucht's die Recovery-Phrase oder de Private Key vo dem Wallet. Ohni das chan niemer druf zuegriffe: weder du, weder mir. Solang du de Key nöd vom Gerät, wo-n-en gmacht het, abchunsch, gsehn was döt drin isch als verlore.",
     "deviceTab": "Das Gerät",
     "deviceExplainer": "Nüt zum iigäh oder merke — de Schlüsse blibt uf däm Gerät. Mir biete dir e 12-Wort-Backup zum ufschriebe; das isch dr einzigi Wäg zrugg i vo enem andere Gerät, vo dr Websiite, oder nach em Wiederinstalliere. Nimm Password statt und s'Passwort selber macht das.",
+    "deviceExplainerSecuring": "Nüt z tippe oder z merke — de Schlüssel bliibt uf dem Grät. Damit du vo mene andere Grät, vo dr Website oder nach ere Neuinstallation wieder inechunsch, speicher spöter i de Istelligä es 12-Wörter-Backup. Wähl stattdesse Passwort, denn übernimmt s Passwort sälber die Ufgab.",
     "secureOnDevice": "Behalte de Schlüssel uf dem Gerät"
   },
   "transcript": {
@@ -9006,11 +9008,12 @@
     "title": "Konto lösche",
     "description": "Lösch dis Konto und dini persöndliche Date dauerhaft",
     "warning": "Das löscht dis DeHub-Profil, d'Posts, d'Kommentarä, d'Nachrichte und d'sicherti Wallet-Backup für immer. Sichere dini Wallet-Wiederherstellungsdetails und verschieb alli Assetz zerscht. Öffentlechi Blockchain-Transaktione und gesetzlich erforderligi Zahltagsrekord chöi nöd glöscht werde. Dis Profil wird sofort versteckt; d'Löschung isch innerhalb vo 30 Täg fertig. Das cha nöd rückgängig gmacht werde.",
+    "cancel": "Abbräche",
     "confirm": "Lösch mis Konto für immer",
     "busy": "Löschantrag abschicke…",
     "accepted": "Konto-Löschung aagforderet",
     "receipt": "Dini Löschigsaag isch gspeicheret worde. Dini Profil isch versteckt und din Account wird innerhalb vo 30 Täg permanent glöscht. Ilogge chas die Aafrog nöd zruggzoge.",
-    "done": "Done",
+    "done": "Fertig",
     "error": "Chönnt dini Löschig‑Aafrog nöd abschicke. Dini Konto isch nöd für d’Löschig bestätigt worde. Bitte probier’s nomal.",
     "back": "Zrugg zu de Iistellige",
     "signIn": "Melde dich a, um din Account z'lösche",
@@ -9206,7 +9209,8 @@
       "frame": "Untertitel",
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Aktuelle Aktivität",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Regel-Warnungen"
     },
     "hints": {
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
@@ -9223,7 +9227,8 @@
       "reaction_counter": "Zählt jede Reaktion, die dein Live-Stream bekommt",
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
-      "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt"
+      "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
     },
     "fields": {
       "style": "Stil",
@@ -9279,6 +9284,103 @@
       "rotateConfirm": "Möchtest du einen neuen Link erstellen? Der alte funktioniert direkt nach dem Erstellen nicht mehr, also musst du den neuen in OBS einfügen.",
       "rotated": "Neuer Link fertig. Einfügen in OBS.",
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
+    },
+    "rules": {
+      "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
+      "alertText": "Benachrichtigungstext",
+      "sound": "Ton",
+      "sayText": "Vorzulesender Text",
+      "chatText": "Nachricht an Post",
+      "webhookText": "Zu sendende Nachricht",
+      "summary": {
+        "tip": "Tipp von {{amount}} DHB oder mehr"
+      },
+      "title": "Regeln",
+      "intro": "Wenn etwas auf deinem Stream passiert, macht DeHub, was du möchtest: zeigt eine Warnung, spielt ein Geräusch, liest etwas vor, postet in deinem Chat oder sagt etwas in deinem Discord.",
+      "add": "Regel hinzufügen",
+      "limit": "Du hast die maximale Anzahl von {{count}} Regeln erreicht.",
+      "loadFailed": "Deine Regeln konnten nicht geladen werden. Aktualisiere die Seite und versuche es erneut.",
+      "empty": "Noch keine Regeln. Füge eine hinzu, um auf Tips, Follows oder Chat-Befehle zu reagieren.",
+      "saved": "Regeln gespeichert. Sie laufen beim nächsten Tip, Follow oder Nachricht.",
+      "saveFailed": "Deine Regeln konnten nicht gespeichert werden.",
+      "testFailed": "Dieser Test ist nicht durchgegangen. Versuche es in Kürze erneut.",
+      "saveToTest": "Speichere deine Regeln, um sie zu testen",
+      "test": "Test",
+      "enabled": "Regel aktivieren",
+      "remove": "Regel löschen",
+      "save": "Regeln speichern",
+      "needsAlertWidget": "Etliche Regeln zeigä a Warnung. Fügä d’Widget «Regel-Warnungen» hinzu, wo’s erscheinen kann.",
+      "name": "Name",
+      "when": "Wann",
+      "then": "Dann",
+      "minAmount": "Kleinster Tip (DHB)",
+      "command": "Befehl",
+      "keyword": "Wort oder Phrase",
+      "audience": "Wer kann sie auslösen",
+      "blockedWords": "Blockierte Wörter",
+      "blockedWordsHint": "Trenne mit Kommas. Nachrichten, die sie enthalten, werden ignoriert und nie vorgelesen.",
+      "cooldown": "Wartezeit zwischen Benutzungen (Sekunden)",
+      "userCooldown": "Wartezeit pro Zuschauer (Sekunden)",
+      "addAction": "Aktion hinzufügen",
+      "removeAction": "Aktion entfernen",
+      "chatHint": "Geschrieben von deinem Konto in den Chat deiner Stream-Liveübertragung. Es darf nicht die Nachricht des Zuschauers wiederholen.",
+      "webhookUrl": "Webhook-Adresse",
+      "webhookHint": "Einer Discord- oder Slack-Webhook, oder ei Webadress (HTTPS) wo ei POST-Aufruf funktioniert.",
+      "triggers": {
+        "tip": "Eini Tipp kommt an.",
+        "follow": "Jemänd follows dir.",
+        "subscribe": "Jemand abonniert.",
+        "share": "Jemand teilt den Stream.",
+        "command": "E chattbefehl wird gnutzt.",
+        "keyword": "A Chatnachricht enthält ein Wort.",
+        "chat": "Any Chatnachricht"
+      },
+      "audiences": {
+        "everyone": "Alle",
+        "subscribers": "Abonnenten",
+        "followers": "Follower"
+      },
+      "actionTypes": {
+        "sound": "Einen Ton abspielen",
+        "say": "Vorlesen",
+        "chat": "Im Chat posten",
+        "alert": "Zeig a Alert.",
+        "webhook": "Send zu einem Webhook."
+      },
+      "presets": {
+        "readChat": "Chat vorlesen",
+        "thankFollowers": "Vielen Dank an neue Follower",
+        "command": "Chat-Befehl",
+        "blank": "Blank rule",
+        "bigTip": "Lufthorn für grosse Trinkgeldbeträge"
+      },
+      "presetHints": {
+        "bigTip": "Spielt eine Lufthupe und zeigt eine Warnung für Trinkgelder von 100.000 DHB oder mehr an",
+        "blank": "Start mit nix.",
+        "readChat": "Liest die Nachrichten deiner Follower laut vor, je eine pro Zuschauer alle 30 Sekunden.",
+        "thankFollowers": "Gschiib a Dankeschön in de Chat, wenn mer wer folgt.",
+        "command": "Antworte auf ein `!command` in unserem Chat."
+      },
+      "presetText": {
+        "readChat": "{name} sagt {message}",
+        "bigTip": "{name} schick{amount} DHB!",
+        "thankFollowers": "Merci fürs Follow, {name}!",
+        "command": "Grüezi {name}, willkommen beim Stream!"
+      },
+      "sounds": {
+        "cricket": "Grillen",
+        "drumroll": "Trommelrolle",
+        "spooky": "Gruselig",
+        "airhorn": "Airhorn",
+        "applause": "Applaus",
+        "lol": "Lachen",
+        "ooh-ahh": "Ooh äh",
+        "ooh-man": "Ooh (Mensch)",
+        "ohh-girl": "Ohh (Frau)",
+        "ba-dum-tish": "Ba dum tish",
+        "magic-spell": "Mägi Zauberformel",
+        "shhh": "Shhh"
+      }
     }
   }
 }

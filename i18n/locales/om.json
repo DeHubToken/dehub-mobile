@@ -4774,7 +4774,7 @@
     "usernameReserved": "Maqaan fayyadamaa kun qabameera",
     "profileSet": "Piroofaayiliin milkaa'inaan qophaa'eera!",
     "profileFailed": "Piroofaayilii qopheessuun hin milkoofne",
-    "displayNameHint": "Maqaa kee uummataa kan piroofaayilii kee irratti mul'atu."
+    "displayNameHint": "Maqaa kee uummataa kan piroofaayilii kee irratti mul'atu. Dirqama miti — maqaa fayyadamaa kee akka fayyadamnuuf duwwaa dhiisi."
   },
   "events": {
     "mine": "Kan koo",
@@ -5015,6 +5015,7 @@
     "accountHasA": "Herregni kun qaba",
     "ifYouUsedDehub": "Yoo duraan dehub.io fayyadamtee jiraatte, kompiitera kee irratti bani, karaa walfakkaatuun fi herrega walfakkaatuun seeni, itti aansuun",
     "biometricExplainer": "Mallattoo quba keetiin ykn fuula keetiin bani — wanti barreessitu ykn yaadattu hin jiru. Furtuun bilbila kana irra turti, kanaaf hiikkaa deebisuu jecha 12 qabu akka barreessituuf si agarsiifna; karaa qofa bilbila biraa irraa, weebsaayitii irraa, ykn erga irra deebiʼanii hojiirra oolchanii booda ittiin deebiʼan kanuma. Qooda isaa Jecha darbii filadhu, hojii sana jechi darbii mataan isaa ni raawwata.",
+    "biometricExplainerSecuring": "Mallattoo quba keetiin ykn fuula keetiin bani — wanti barreessitu ykn yaadattu hin jiru. Furtuun bilbila kana irra turti. Bilbila biraa irraa, weebsaayitii irraa, ykn erga irra deebiʼanii hojiirra oolchanii booda deebiʼuuf, booda Qindaa'ina keessatti kuusaa jecha 12 qabu olkaa'i. Qooda isaa Jecha darbii filadhu, hojii sana jechi darbii mataan isaa ni raawwata.",
     "biometricPrompt": "Boorsaan kun baayoomeetirikii meeshaa kanaatiin eegama. Itti fufuuf mallattoo qubaa ykn fuulaan mirkaneessi.",
     "enterRecoveryPhrase": "Hiikkaa deebisuu jecha 12 qabu kan yeroo boorsaa kana uumtetti olkeesse galchi (ykn furtuu dhuunfaa isaa, yoo alatti ergitee jiraatte). Gara herrega walfakkaatuutti si deebisa, jechi darbii armaan gaditti qindeessitus kanaa achi bakka hundatti kan hojjetu duubbee taʼa.",
     "copyPhrase": "Hiikkaa garagalchi",
@@ -5087,6 +5088,7 @@
     "loseFundsBody": "Mootummaan isaa blockchain irratti {{address}}itti fufa—waanti tokko illee hin gurguramu yookiin hin fudhatamu—garuu isaan dabarsuuf jechoota herreegaa herreegaa sanaa yookiin sa’aatii dhoksaa sanaa barbaada. Isaan malee, namni tokko illee isaanitti hin ga'u: ati miti, nuti miti. Akkuma isaan isaa sana irraa argachuu dandeessan malee, isaan keessatti argaman akka badaniitti ilaali.",
     "deviceTab": "Meeshaan kun",
     "deviceExplainer": "Waan barreessinu ykn yaadatamu hin jiru — furtuun meeshaa kana irratti hafa. Barreessuudhaaf jechoota 12 kan qabu bakka bu'iinsa isiniif dhiheessina; meeshaa biraa irraa, marsariitii irraa, ykn erga deebi'ee fe'amee booda karaa itti deebi'u qofaadha. Bakka isaa Password filadhu password ofii isaatii hojii sana hojjeta.",
+    "deviceExplainerSecuring": "Wanti barreessitu ykn yaadattu hin jiru — furtuun meeshaa kana irra turti. Meeshaa biraa irraa, weebsaayitii irraa, ykn erga irra deebiʼanii hojiirra oolchanii booda deebiʼuuf, booda Qindaa'ina keessatti kuusaa jecha 12 qabu olkaa'i. Qooda isaa Jecha darbii filadhu, hojii sana jechi darbii mataan isaa ni raawwata.",
     "secureOnDevice": "Furtuu meeshaa kana irratti kaa'i"
   },
   "transcript": {
@@ -9011,17 +9013,17 @@
   "accountDeletion": {
     "title": "Akkaawuntii haquu",
     "description": "Akkaawuntii fi daataa dhuunfaa keessan dhaabbataadhaan haquu",
-    "warning": "Kunis dhaabbataadhaan piroofaayilii DeHub, maxxansa, yaada, ergaa fi duwwaa boorsaa kuufame haqa. Bal&#39;ina deebisanii dhaabuu boorsaa keessanii save gochuun qabeenya kamiyyuu dursaa sochoosaa. Daldalli bilookicheenii ummataa fi galmee kaffaltii seeraan barbaadamu haqamuu hin danda’u. Profaayilli kee battalumatti dhokata; haquun guyyoota 30 keessatti xumurama. Kun duubatti deebi’uu hin danda’u.",
-    "cancel": "Haquu",
+    "warning": "Kun piroofaayilii DeHub keessanii, maxxansaalee, yaadota, ergaawwan fi garagalcha boorsaa kuufame dhaabbataadhaan haqa. Dursitanii odeeffannoo deebisanii argachuu boorsaa keessanii kuusaa, qabeenya kamiyyuu socho'saa. Daldalli bilookicheenii ummataa fi galmeen kaffaltii seeraan barbaadamu haqamuu hin danda'u. Profaayilli keessan battalumatti dhokata; haquun guyyoota 30 keessatti xumurama. Kun duubatti deebi'uu hin danda'u.",
+    "cancel": "Dhiisi",
     "confirm": "Akkaawuntii koo dhaabbataadhaan haqi",
     "busy": "Gaaffii haquu dhiyeessuun...",
     "accepted": "Akkaawuntii akka haqamu gaafatame",
-    "receipt": "Gaaffiin haquu kee qusatameera. Profaayilli keessan dhokatee waan jiruuf guyyoota 30 keessatti akkaawuntiin keessan dhaabbataadhaan ni haqama. Galmaa&#39;uun gaaffii kana haquu hin danda&#39;u.",
+    "receipt": "Gaaffiin haquu kee qusatameera. Profaayilli keessan dhokatee waan jiruuf guyyoota 30 keessatti akkaawuntiin keessan dhaabbataadhaan ni haqama. Seenuun gaaffii kana haquu hin danda'u.",
     "done": "Raawwatame",
-    "error": "Gaaffii haquu kee dhiyeessuu hin dandeenye. Akkaawuntii keessan haqamuuf hin mirkanoofne. Mee irra deebi&#39;ii yaalaa.",
-    "back": "Gara Sajootti deebi&#39;aa",
+    "error": "Gaaffii haquu kee dhiyeessuu hin dandeenye. Akkaawuntii keessan haqamuuf hin mirkanoofne. Mee irra deebi'ii yaalaa.",
+    "back": "Gara Qindaa'inaatti deebi'aa",
     "signIn": "Akkaawuntii keessan haquuf seena",
-    "acknowledge": "Bal&#39;ina boorsaa koo deebisuu save godheera, haquun dhaabbataa akka ta&#39;e hubadheera."
+    "acknowledge": "Odeeffannoo deebisanii argachuu boorsaa koo kuuseera, haquun dhaabbataa akka ta'e hubadheera."
   },
   "miniApps": {
     "badge": {
@@ -9126,7 +9128,7 @@
     "update": "Amma haaromsi"
   },
   "walletBackup": {
-    "title": "Boorsaa duubatti deebi'aa",
+    "title": "Garagalcha boorsaa kuusi",
     "rowDesc": "Jechoota 12 ykn furtuu dhuunfaa kee ilaali",
     "backedUpOn": "Duubatti deebi'ee {{date}}",
     "offerTitle": "Borsaa keessan duubatti deebisuu?",
@@ -9222,7 +9224,8 @@
       "reaction_counter": "Lakkaawwii deebii kennuu",
       "event_feed": "Sochii dhiheenya kanaa",
       "chat_box": "Sanduuqa marii",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Ogeeyyii Seera"
     },
     "hints": {
       "tip_alert": "Gorsa hunda kabaja, hamma sadarkaa isaatti",
@@ -9239,7 +9242,8 @@
       "reaction_counter": "Deebiin tamsaasa kee argatu hunda lakkaa'a",
       "event_feed": "Kennaawwan haaraa, hordoftoota, subscribers fi namoota tamsaasa keessan qooddatan",
       "chat_box": "Ergaawwan marii tamsaasa keessanii iskiriinii irratti agarsiisa",
-      "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru"
+      "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru",
+      "rule_alert": "Bakka ogeeyyii seera keessan mul'atu"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9295,6 +9299,103 @@
       "rotateConfirm": "Link haaraa tolchuu? Inni durii kallattiin hojii dhaaba, kanaaf isa haaraa OBS keessatti maxxansuu si barbaachisa.",
       "rotated": "Link haaraa qophaa'eera. OBS keessa maxxansi.",
       "rotateFailed": "Link haaraa hojjechuu hin dandeenye. Yeroo muraasa booda irra deebi'ii yaali."
+    },
+    "rules": {
+      "placeholders": "Barreeffama kee keessatti {name}, {amount} fi {message} fayyadami. Liinkiiwwan ergaa keessaa ni haqamu.",
+      "title": "Seerota",
+      "intro": "Wanti tokko yeroo dhuma keessan keessa ta'e, DeHub waan ati filatte hojjeta: ogeeyyii mul'isa, sagalee facaasa, wanti tokko afaan dubbisaa, chaatii keessan keessa barreessa ykn Discord keessan jedha.",
+      "add": "Seera dabalaa",
+      "limit": "Daangaa seera {{count}} gaadhee jirta.",
+      "loadFailed": "Seerota keessan fe'uu hin dandeenye. Fuula irra haaromsa itti yaaliif.",
+      "empty": "Seera tokko iyyuu hin jiru. Tokko dabalaa gorsaa, hordofaa ykn ajajaa chaatii irratti deebii kennuuf.",
+      "saved": "Seerota kuufame. Isaan gorsaa, hordofaa ykn ergaa itti aaniin ni hojjatu.",
+      "saveFailed": "Seerota keessan kuufuu hin dandeenye.",
+      "testFailed": "Yaali kun hin gale. Yeroo muraasa booda yaaliif.",
+      "saveToTest": "Seerota keessan kuufa itti yaaliif",
+      "test": "Yaali",
+      "enabled": "Seera on",
+      "remove": "Seera haqaa",
+      "save": "Seerota kuufa",
+      "needsAlertWidget": "Seera tokko tokko ogeeyyii mul'isa. Widget Rule alerts dabalaa akka bakka mul'atu qabu.",
+      "name": "Maqaa",
+      "when": "Yeroo",
+      "then": "Sana booda",
+      "minAmount": "Gorsaa xiqqaa (DHB)",
+      "command": "Ajaja",
+      "keyword": "Jecha ykn ibsa",
+      "audience": "Eenyu isaa on gochuu danda'a",
+      "blockedWords": "Jechota marfamte",
+      "blockedWordsHint": "Komaa waliin gargar baasaa. Ergaan isaan of keessaa qabu ilaalame hin barreeffamne afaan dubbisuu hin dandeenye.",
+      "cooldown": "Eegaa gidduutti fayyadama (sekondii)",
+      "userCooldown": "Eegaa mul'ataa tokkoon tokkoon (sekondii)",
+      "addAction": "Wanti dabalaa",
+      "removeAction": "Wanti haqaa",
+      "alertText": "Barreeffama akeekkachiisaa",
+      "sound": "Sagalee",
+      "sayText": "Barreeffama sagalee ol kaastee dubbisuuf",
+      "chatText": "Ergaa maxxansuuf",
+      "chatHint": "Akkaawuntii keessan irraa gara chat stream keessaniitti maxxanfame. Ergaa nama ilaalu irra deebi'uu hin danda'u.",
+      "webhookUrl": "Teessoo Webhook",
+      "webhookHint": "Webhook Discord ykn Slack, ykn teessoo https kamiyyuu kan POST fudhatu.",
+      "webhookText": "Ergaa erguuf",
+      "triggers": {
+        "tip": "Gorsi tokko ni dhufa",
+        "follow": "Namni tokko hordofa",
+        "subscribe": "Namni tokko subscribe godha",
+        "share": "Namni tokko sulula sana qooddata",
+        "command": "Ajajni chaatii fayyadama",
+        "keyword": "Ergaan chat jecha tokko of keessaa qaba",
+        "chat": "Ergaa chat kamiyyuu"
+      },
+      "audiences": {
+        "everyone": "Nama hundumaa",
+        "followers": "Hordoftoota",
+        "subscribers": "Maamiltoota"
+      },
+      "actionTypes": {
+        "alert": "Akeekkachiisa agarsiisi",
+        "sound": "Sagalee tokko taphachiisi",
+        "say": "Sagalee ol kaastee dubbisi",
+        "chat": "Chat keessatti maxxansaa",
+        "webhook": "Gara webhook tokkotti ergaa"
+      },
+      "summary": {
+        "tip": "Gorsa {{amount}} DHB fi isaa ol"
+      },
+      "presets": {
+        "blank": "Seera duwwaa",
+        "readChat": "Sagalee ol kaastee chat dubbisi",
+        "bigTip": "Gaanfa qilleensaa gorsa gurguddoof",
+        "thankFollowers": "Hordoftoota haaraa galatoomaa",
+        "command": "Ajaja chat"
+      },
+      "presetHints": {
+        "blank": "Homaa irraa jalqabi",
+        "readChat": "Ergaa hordoftoota keessanii sagalee ol kaasee dubbisa, daawwataa tokkoof sekondii 30 keessatti tokko",
+        "bigTip": "Gaanfa qilleensaa taphachuun gorsa DHB 100,000 fi isaa ol ta'eef akeekkachiisa agarsiisa",
+        "thankFollowers": "Yeroo namni tokko hordofu chat keessan irratti galateeffannaa maxxansa",
+        "command": "Chat keessan keessatti ajaja !deebisa"
+      },
+      "presetText": {
+        "readChat": "{name} jedha {message}",
+        "bigTip": "{name} erge {amount} DHB!",
+        "thankFollowers": "Hordoffii keessaniif galatoomaa, {name}!",
+        "command": "Akkam jirtu {name}, baga gara stream dhuftan!"
+      },
+      "sounds": {
+        "airhorn": "Gaanfa qilleensaa",
+        "applause": "Harka rukutuu",
+        "cricket": "Kirikeeti",
+        "drumroll": "Drum roll",
+        "lol": "Kolfa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (nama) .",
+        "ohh-girl": "Ohh (dubartii) .",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky jechuun ni danda'ama",
+        "magic-spell": "Sihrii falfalaa",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -4772,7 +4772,7 @@
     "usernameReserved": "Jina hili la mtumiaji limehifadhiwa",
     "profileSet": "Wasifu umewekwa kwa mafanikio!",
     "profileFailed": "Imeshindwa kuweka wasifu",
-    "displayNameHint": "Jina lako la umma linaloonyeshwa kwenye wasifu."
+    "displayNameHint": "Jina lako la umma kwenye wasifu wako. Si lazima — ukiliacha wazi, tutatumia jina lako la mtumiaji."
   },
   "events": {
     "mine": "Zangu",
@@ -5013,6 +5013,7 @@
     "accountHasA": "Akaunti hii ina",
     "ifYouUsedDehub": "Ikiwa umewahi kutumia dehub.io, ifungue kwenye kompyuta yako, ingia kwa njia ile ile na kwa akaunti ile ile, kisha",
     "biometricExplainer": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii, kwa hivyo tutakuonyesha kifungu cha kurejesha chenye maneno 12 uandike; hiyo ndiyo njia pekee ya kurudi kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "biometricExplainerSecuring": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii. Ili kurudi ndani kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "biometricPrompt": "Pochi hii inalindwa na biometriki ya kifaa hiki. Thibitisha kwa alama ya kidole au uso ili kuendelea.",
     "enterRecoveryPhrase": "Weka kifungu cha kurejesha chenye maneno 12 ulichohifadhi ulipounda pochi hii (au ufunguo wake wa faragha, ikiwa ulisafirisha mmoja). Kinarudisha kwenye akaunti ile ile, na nenosiri utakaloweka hapa chini linakuwa nakala rudufu inayofanya kazi kila mahali kuanzia sasa.",
     "copyPhrase": "Nakili kifungu",
@@ -5075,7 +5076,7 @@
     "passwordBreached": "Nenosiri hili limeonekana katika uvunjaji wa data — chagua lingine",
     "phraseInvalidHint": "Hiyo haikubaliani kama kifungu cha urejeshaji — maneno 12, kwa mpangilio walioonyeshwa, yote kwa herufi ndogo.",
     "privateKeyHint": "Ufunguo wa kibinafsi ni herufi 64 za hex baada ya 0x.",
-    "biometricTab": "Biolojia",
+    "biometricTab": "Bayometriki",
     "noUsableBackup": "Akaunti hii ina anwani ya mkoba kwenye faili, lakini hakuna chelezo ambacho simu hii inaweza kutumia — ama ililindwa na <em>biometria au kitufe cha kupitisha kwenye wavuti</em> (ambacho hufungua hubaki kwenye kivinjari na haisawazishi hapa), au usajili wa awali kwenye simu hii ulisitishwa kabla ya kumalizika.",
     "addPasswordOnWeb": "Ikiwa umewahi kutumia dehub.io hapo awali, ifungue kwenye kompyuta yako, ingia kwa njia sawa na kwa akaunti sawa, na <em>ongeza nenosiri la mkoba</em> — hiyo huhifadhi chelezo kilichosimbwa kwa njia fiche kwenye wingu. Kisha urudi hapa na ujaribu tena.",
     "walletAddress": "Mkoba: {{address}}",
@@ -5084,7 +5085,8 @@
     "unlockPasskeyOnly": "Mkoba huu ulilindwa kwa nenosiri la kuingia kwenye wavuti na bado hauna nakala rudufu ya nenosiri kwenye wingu. Ukiweka nenosiri la mkoba kwenye dehub.io, liingize hapa — vinginevyo tumia Ingiza mkoba wa nje hapa chini.",
     "unlockWithPasswordExplainer": "Akaunti hii tayari ina mkoba, uliolindwa na nenosiri. Ingiza ili urejeshe mkoba wako kwenye kifaa hiki.",
     "deviceTab": "Kifaa hiki",
-    "deviceExplainer": "Hakuna cha kuandika au kukumbuka — sehemu muhimu za kukaa kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 ili uandike; ndiyo njia pekee ya kuingia kutoka kwenye kifaa kingine, kutoka kwenye tovuti, au baada ya kusakinisha tena. Chagua Nywila badala yake na nywila yenyewe inafanya kazi hiyo.",
+    "deviceExplainer": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 uiandike; hiyo ndiyo njia pekee ya kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "deviceExplainerSecuring": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Ili kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "secureOnDevice": "Weka ufunguo kwenye kifaa hiki"
   },
   "transcript": {
@@ -8986,7 +8988,7 @@
     "description": "Futa kabisa akaunti yako na data binafsi",
     "warning": "Hii hufuta kabisa wasifu wako wa DeHub, machapisho, maoni, ujumbe na chelezo ya pochi iliyohifadhiwa. Hifadhi maelezo yako ya kurejesha mkoba na uhamishe mali yoyote kwanza. Miamala ya blockchain ya umma na rekodi za malipo zinazohitajika kisheria haziwezi kufutwa. Wasifu wako umefichwa mara moja; kufutwa kunakamilika ndani ya siku 30. Hii haiwezi kutenduliwa.",
     "cancel": "Sitisha",
-    "confirm": "Kwa Ujumla ifute Akaunti",
+    "confirm": "Futa akaunti yangu kabisa",
     "busy": "Inawasilisha ombi la kufuta...",
     "accepted": "Ufutaji wa akaunti umeombwa",
     "receipt": "Ombi lako la kufuta limehifadhiwa. Wasifu wako umefichwa na akaunti yako itafutwa kabisa ndani ya siku 30. Kuingia katika akaunti hakuwezi kughairi ombi hili.",
@@ -9099,7 +9101,7 @@
     "update": "Sasisha sasa"
   },
   "walletBackup": {
-    "title": "Rejesha pochi",
+    "title": "Hifadhi nakala ya pochi",
     "rowDesc": "Angalia maneno yako 12 au ufunguo wa faragha",
     "backedUpOn": "Imehifadhiwa {{date}}",
     "offerTitle": "Ungependa kurejesha pochi yako?",
@@ -9195,7 +9197,8 @@
       "reaction_counter": "Kaunta ya majibu",
       "event_feed": "Shughuli za hivi karibuni",
       "chat_box": "Sanduku la gumzo",
-      "ticker": "Kileta tiketi"
+      "ticker": "Kileta tiketi",
+      "rule_alert": "Arifa za sheria"
     },
     "hints": {
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
@@ -9211,7 +9214,8 @@
       "reaction_counter": "Inakadiri kila kazi ya kufanikiwa katika kurekodi yako",
       "event_feed": "Hali ya kazi ya kipindi cha kati ya heshima, wafuasi, wazazi na watu wanaoshirikiana na kurekodi yako",
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
-      "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale"
+      "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
+      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako"
     },
     "fields": {
       "style": "Mtindo",
@@ -9268,6 +9272,103 @@
       "rotateConfirm": "Unda kiunganishi kipya? Ya zamani huacha kufanya kazi mara moja, kwa hivyo utahitaji kubandika mpya kuwa ya KAWAIDA.",
       "rotated": "Kiunganishi kipya kiko tayari. Kiambatishe kwenye OBS.",
       "rotateFailed": "Imeshindwa kuunda kiunganishi kipya. Jaribu tena baada ya muda mfupi."
+    },
+    "rules": {
+      "title": "Kawaida",
+      "intro": "Kwa kuwa kitu kinachofanyika katika stream yako, DeHub inafanya kitu kinachojitokeza: inashona matatizo, inatoa sauti, inafanya kitu kama kurejea, inapostia katika chat yako au inafundisha katika Discord yako.",
+      "add": "Pata kawaida mpya",
+      "limit": "Unafikia hadi hivi ya {{count}} kawaida.",
+      "loadFailed": "Kawaida zako hazikujali. Angalia tena ukurasa ili kusaidia.",
+      "empty": "Hainakuwa kawaida bado. Pata moja ili kuondoa tipi, kuondoa mfuzo au komanda za chat.",
+      "saved": "Kawaida zimehifadhiwa. Zitaenda katika tipi, mfuzo au habari yako ya baadaye.",
+      "saveFailed": "Kawaida zako hazikujali.",
+      "testFailed": "Hiki kazi hili halijafanyika. Usaidia baadaye katika dakika.",
+      "saveToTest": "Hifadhi kawaida zako ili kuonyesha zao",
+      "test": "Kuthibitisha",
+      "enabled": "Kawaida ya kuwa na matatizo",
+      "remove": "Kufuta kawaida",
+      "save": "Hifadhi kawaida",
+      "needsAlertWidget": "Kawaida zinaonyesha matatizo. Pata widget ya matatizo ya kawaida ili kuwa na nafasi ya kuonyeshwa.",
+      "name": "Jina",
+      "when": "Kipindi",
+      "then": "Baadaye",
+      "minAmount": "Tipi ndogo (DHB)",
+      "command": "Komanda",
+      "keyword": "Neno au jina la maneno",
+      "audience": "Mtu aliyewezi kuondoa",
+      "blockedWords": "Maneno ya kutoa",
+      "blockedWordsHint": "Angalia kwa koma. Habari zinazokaa zinaweza kuathiriwa na kuwa nafasi ya kuondoa na hawajuiwe kama zinawezeshwa kurejea.",
+      "cooldown": "Kutoka kati ya kutumia (sekunde)",
+      "userCooldown": "Kutoka kati kwa mtu mmoja (sekunde)",
+      "addAction": "Pata kazi",
+      "removeAction": "Kufuta kazi",
+      "placeholders": "Tumia {name}, {amount} na {message} katika maandishi yako. Viunganishi katika ujumbe vinaondolewa.",
+      "alertText": "Maandishi ya arifa",
+      "sound": "Sauti",
+      "sayText": "Maandishi ya kusoma kwa sauti",
+      "chatText": "Ujumbe wa kuchapisha",
+      "chatHint": "Imechapishwa kutoka kwenye akaunti yako kwenye gumzo la mkondo wako. Haiwezi kurudia ujumbe wa mtazamaji.",
+      "webhookUrl": "Anwani ya Webhook",
+      "webhookHint": "Discord au Slack webhook, au anwani yoyote ya https inayokubali CHAPISHO.",
+      "webhookText": "Ujumbe wa kutuma",
+      "triggers": {
+        "tip": "Kidokezi kinawasili",
+        "follow": "Mtu anamfuata",
+        "subscribe": "Mtu anajisajili",
+        "share": "Mtu anashiriki mkondo huo",
+        "command": "Amri ya gumzo inatumika",
+        "keyword": "Ujumbe wa gumzo una neno",
+        "chat": "Ujumbe wowote wa gumzo"
+      },
+      "audiences": {
+        "everyone": "Kila mtu",
+        "followers": "Wafuasi",
+        "subscribers": "Wasajili"
+      },
+      "actionTypes": {
+        "alert": "Onyesha arifa",
+        "sound": "Piga sauti",
+        "say": "Soma kwa sauti",
+        "chat": "Chapisha kwenye gumzo",
+        "webhook": "Tuma kwenye tovuti"
+      },
+      "summary": {
+        "tip": "Kidokezi cha {{amount}} DHB au zaidi"
+      },
+      "presets": {
+        "blank": "Sheria tupu",
+        "readChat": "Soma mazungumzo kwa sauti",
+        "bigTip": "Pembe ya hewa kwa vidokezi vikubwa",
+        "thankFollowers": "Shukuru wafuasi wapya",
+        "command": "Amri ya gumzo"
+      },
+      "presetHints": {
+        "blank": "Anza kutoka bure",
+        "readChat": "Husoma ujumbe wa wafuasi wako kwa sauti, moja kwa kila mtazamaji kila sekunde 30",
+        "bigTip": "Inacheza pembe ya hewa na inaonyesha arifa kwa vidokezo vya DHB 100,000 au zaidi",
+        "thankFollowers": "Chapisha ujumbe wa shukrani kwenye gumzo lako mtu anapofuata",
+        "command": "Majibu ya !amri katika gumzo lako"
+      },
+      "presetText": {
+        "readChat": "{name} anasema {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Asante kwa kufuata, {name}!",
+        "command": "Habari {name}, karibu kwenye mkondo!"
+      },
+      "sounds": {
+        "airhorn": "Pembe ya hewa",
+        "applause": "Makofi",
+        "cricket": "Kriketi",
+        "drumroll": "Mkunjo wa ngoma",
+        "lol": "Kicheko",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mtu)",
+        "ohh-girl": "Ohh (mwanamke)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Uchawi wa kichawi",
+        "shhh": "Shhh"
+      }
     }
   }
 }

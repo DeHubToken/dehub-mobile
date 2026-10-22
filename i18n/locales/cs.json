@@ -4774,7 +4774,7 @@
     "usernameReserved": "Toto uživatelské jméno je vyhrazené",
     "profileSet": "Profil byl úspěšně nastaven!",
     "profileFailed": "Profil se nepodařilo nastavit",
-    "displayNameHint": "Vaše veřejné jméno zobrazené v profilu."
+    "displayNameHint": "Vaše veřejné jméno v profilu. Nepovinné — když ho necháte prázdné, použije se vaše uživatelské jméno."
   },
   "events": {
     "mine": "Moje",
@@ -5015,6 +5015,7 @@
     "accountHasA": "Tento účet má",
     "ifYouUsedDehub": "Pokud jste dehub.io už používali, otevřete jej v počítači, přihlaste se stejným způsobem a stejným účtem a",
     "biometricExplainer": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu, proto vám ukážeme 12slovnou obnovovací frázi, kterou si zapíšete; je to jediná cesta zpět z jiného přístroje, z webu nebo po přeinstalaci. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
+    "biometricExplainerSecuring": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu. Pro návrat z jiného telefonu, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "biometricPrompt": "Tato peněženka je chráněna biometrikou tohoto zařízení. Pokračujte potvrzením otiskem prstu nebo obličejem.",
     "enterRecoveryPhrase": "Zadejte 12slovnou obnovovací frázi, kterou jste si uložili při vytvoření této peněženky (nebo její soukromý klíč, pokud jste jej exportovali). Vrátí vás ke stejnému účtu a heslo, které nastavíte níže, se stane záložní cestou fungující odteď všude.",
     "copyPhrase": "Kopírovat frázi",
@@ -5087,6 +5088,7 @@
     "unlockWithPasswordExplainer": "Tento účet již má peněženku chráněnou heslem. Zadejte jej pro obnovení své peněženky na tomto zařízení.",
     "deviceTab": "Toto zařízení",
     "deviceExplainer": "Nic k zadání ani zapamatování — klíč zůstane na tomto zařízení. Nabízíme vám zálohu 12 slov, kterou si můžete zapsat. Je to jediná cesta zpět z jiného zařízení, z webu nebo po přeinstalaci. Místo toho vyberte heslo a heslo samo o sobě tuto práci provede.",
+    "deviceExplainerSecuring": "Nic se nepíše ani nepamatuje — klíč zůstává v tomto zařízení. Pro návrat z jiného zařízení, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "secureOnDevice": "Ponechat klíč na tomto zařízení"
   },
   "transcript": {
@@ -8992,7 +8994,7 @@
     "done": "Hotovo",
     "error": "Žádost o odstranění se nepodařilo odeslat. Smazání vašeho účtu nebylo potvrzeno. Zkuste to prosím znovu.",
     "back": "Zpět na nastavení",
-    "signIn": "Přihlašte se do svého účtu",
+    "signIn": "Přihlaste se, abyste mohli smazat svůj účet",
     "acknowledge": "Uložil (a) jsem si podrobnosti o obnovení peněženky a chápu, že smazání je trvalé."
   },
   "miniApps": {
@@ -9193,7 +9195,8 @@
       "reaction_counter": "Počítadlo reakcí",
       "event_feed": "Nedávná aktivita",
       "chat_box": "Chat box",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Přidávám upozornění na pravidla."
     },
     "hints": {
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
@@ -9210,7 +9213,8 @@
       "reaction_counter": "Počítá každou reakci, kterou vaše vysílání dostane",
       "event_feed": "Nejnovější dárky, následovníci, odběratelé a lidé sdílející vaše vysílání",
       "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
-      "ticker": "Řádek vlastního textu, který se posouvá po obrazovce"
+      "ticker": "Řádek vlastního textu, který se posouvá po obrazovce",
+      "rule_alert": "Kde se zobrazují upozornění na tvá pravidla"
     },
     "fields": {
       "style": "Styl",
@@ -9267,6 +9271,103 @@
       "rotateConfirm": "Vytvořit nový odkaz? Ten starý přestane okamžitě fungovat, takže budete muset vložit nový do OBS.",
       "rotated": "Nový odkaz připraven. Vložte jej do OBS.",
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
+    },
+    "rules": {
+      "title": "Pravidla",
+      "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
+      "add": "Přidat pravidlo",
+      "limit": "Dosáhli jste limitu {{count}} pravidel.",
+      "loadFailed": "Pravidla se nepodařilo načíst. Obnov stránku a zkus to znovu.",
+      "empty": "Zatím žádná pravidla. Přidej je a reaguj na tipy, následování nebo příkazy k chatu.",
+      "saved": "Pravidla uložena. Spouštějí se při dalším spropitném, následování nebo odeslání zprávy.",
+      "saveFailed": "Pravidla se nepodařilo uložit.",
+      "testFailed": "Tento test neprošel. Zkuste to znovu za chvíli.",
+      "saveToTest": "Uložte si pravidla a vyzkoušejte je",
+      "test": "Test",
+      "enabled": "Pravidlo pro",
+      "remove": "Smazat pravidlo",
+      "save": "Uložit pravidla",
+      "needsAlertWidget": "Některá pravidla zobrazují upozornění. Přidejte widget Upozornění na pravidla, aby se někde objevil.",
+      "name": "Jméno",
+      "when": "Kdy",
+      "then": "Pak",
+      "minAmount": "Nejmenší hrot (DHB)",
+      "command": "Příkaz",
+      "keyword": "Slovo nebo fráze",
+      "audience": "Kdo ho může spustit?",
+      "blockedWords": "Blokovaná slova",
+      "blockedWordsHint": "Oddělte čárkami. Zprávy, které je obsahují, jsou ignorovány a nikdy nečtou nahlas.",
+      "cooldown": "Počkejte mezi použitím (sekundy)",
+      "userCooldown": "Počkat na diváka (sekundy)",
+      "addAction": "Přidat akci",
+      "removeAction": "Odstranit akci",
+      "placeholders": "V textu použij {name}, {amount} a {message}. Odkazy ve zprávách jsou odstraněny.",
+      "alertText": "Text upozornění",
+      "sound": "Zvuk",
+      "sayText": "Text k přečtení nahlas",
+      "chatText": "Zpráva k odeslání",
+      "chatHint": "Publikováno z vašeho účtu do chatu vašeho streamu. Nelze opakovat zprávu diváka.",
+      "webhookUrl": "Adresa webhooku",
+      "webhookHint": "Webhook Discord nebo Slack nebo jakákoli adresa https, která přijímá PŘÍSPĚVEK.",
+      "webhookText": "Zpráva k odeslání",
+      "triggers": {
+        "tip": "Dostaneš spropitné",
+        "follow": "Někdo sleduje",
+        "subscribe": "Někdo se přihlásí k odběru",
+        "share": "Někdo sdílí stream",
+        "command": "Používá se příkaz chatu",
+        "keyword": "Chatová zpráva obsahuje slovo",
+        "chat": "Jakýkoli zprávový chatový příspěvek"
+      },
+      "audiences": {
+        "everyone": "Všichni",
+        "followers": "Sledující",
+        "subscribers": "Odběratelé"
+      },
+      "actionTypes": {
+        "alert": "Zobrazit upozornění",
+        "sound": "Přehrát zvuk",
+        "say": "Číst nahlas",
+        "chat": "Zveřejnit v chatu",
+        "webhook": "Odeslat na webhook"
+      },
+      "summary": {
+        "tip": "Tip na {{amount}} DHB nebo víc"
+      },
+      "presets": {
+        "blank": "Prázdné pravidlo",
+        "readChat": "Číst chat nahlas",
+        "bigTip": "Vzduchová houkačka pro velké hroty",
+        "thankFollowers": "Poděkování novým sledujícím",
+        "command": "Příkaz konverzace"
+      },
+      "presetHints": {
+        "blank": "Začít z ničeho",
+        "readChat": "Čte zprávy vašich sledujících nahlas, jeden na diváka každých 30 sekund",
+        "bigTip": "Přehraje klakson a zobrazí upozornění na spropitné 100 000 DHB nebo více",
+        "thankFollowers": "Zveřejní poděkování ve vašem chatu, když vás někdo sleduje",
+        "command": "Odpovědi na příkaz a ! ve vašem chatu"
+      },
+      "presetText": {
+        "readChat": "{name} říká {message}",
+        "bigTip": "{name} odesláno {amount} DHB!",
+        "thankFollowers": "Děkujeme za sledování, {name}!",
+        "command": "Dobrý den, {name}, vítejte ve streamu!"
+      },
+      "sounds": {
+        "airhorn": "Vzduchová houkačka",
+        "applause": "Potlesk",
+        "cricket": "Cvrčci",
+        "drumroll": "Bubnový válec",
+        "lol": "Smích",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (žena)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Strašidelné",
+        "magic-spell": "Kouzlo",
+        "shhh": "Shhh"
+      }
     }
   }
 }

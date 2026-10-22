@@ -85,9 +85,12 @@ import { fundingErrorText } from "../../libs/tip-funding-error";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
 import CreatorSupportAd from './CreatorSupportAd';
+import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs/direct-tip-tokens";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
+const USDC_COIN = require("../../assets/tokens/USDC.png");
+const USDT_COIN = require("../../assets/tokens/USDT.png");
 
 // ── Quick-amount presets ─────────────────────────────────────────────────────
 const QUICK_AMOUNTS = [500, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 1_000_000] as const;
@@ -281,10 +284,18 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   }, [visible, toAddress]);
 
   const isSolanaTip = isSolanaChain(paymentChainId);
-  const tipCurrency = isSolanaTip ? "SOL" : "DHB";
+  // Tips can be paid in USDC/USDT on the wallet's chain (Base or BNB Chain),
+  // straight to the creator through the tip contract. The typed amount is
+  // then in that token.
+  const canPayWithOther = !isSolanaTip && !isLocked && (chainId === 8453 || chainId === 56) && !!account;
+  const directToken = canPayWithOther && payWith?.chainId === chainId ? directTipToken(payWith) : null;
+  const directBalance = directToken && payWith ? Number(((ethersImport as any).ethers || ethersImport).utils.formatUnits(payWith.balance.toString(), payWith.decimals)) : null;
+  const coinImage = directToken ? (directToken.symbol === "USDT" ? USDT_COIN : USDC_COIN) : DEHUB_COIN;
+  const tipCurrency = isSolanaTip ? "SOL" : directToken?.symbol ?? "DHB";
   const numericAmount = Number(amount) || 0;
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
-  const overLimit = !isSolanaTip && numericAmount > limitTip;
+  const overLimit = !isSolanaTip && !directToken && numericAmount > limitTip;
+  const belowDirectMin = !!directToken && numericAmount > 0 && numericAmount < MIN_DIRECT_TIP;
   // Solana balance is enforced on-chain by the transfer itself.
   //
   // `balance` is the cached figure and it is routinely stale -- it is fetched once
@@ -292,22 +303,22 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   // as a hint, but it must not be the thing that refuses a tip: when it reads
   // low the owner is blocked from spending DHB they actually hold. The real
   // refusal is prepareDhbSpend, which reads the chain at send time.
-  const insufficient = !isSolanaTip && !payWith && numericAmount > balance;
-  // Funding lands DHB on Base, so it is offered only when the tip goes out on Base.
-  const canPayWithOther = !isSolanaTip && !isLocked && chainId === 8453 && !!account;
+  const insufficient = !isSolanaTip && (directBalance != null ? numericAmount > directBalance : !payWith && numericAmount > balance);
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
   const isBusy = phase === "funding" || phase === "approving" || phase === "sending";
   const disableSend =
-    isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf;
+    isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf || belowDirectMin
+    || (directBalance != null && numericAmount > directBalance);
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
+    if (directToken) return { address: directToken.address, decimals: directToken.decimals };
     return supportedTokens.find(
       (t) => t.chainId === chainId && t.symbol === "DHB",
     );
-  }, [chainId]);
+  }, [chainId, directToken]);
 
   const tokenAddress = tokenMeta?.address;
   const controllerAddress = chainId
@@ -324,6 +335,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     const pending = pendingConfirmation.current;
     setAmount.initialize(pending ? String(pending.amount) : isLocked ? String(lockedAmount) : "");
     setSelectedPreset(null);
+    // Every open starts in DHB. A stablecoin picked last time would otherwise
+    // reinterpret this creator's saved DHB draft as USDC.
+    if (!pending) setPayWith(null);
     setPhase(pending ? 'pending' : 'idle');
     setTipError(pending ? t('staking.pendingSubmitted', { amount: pending.amount.toLocaleString() }) + '\n' + (pending.hash ?? '') : null);
     setLastAmount(null);
@@ -338,13 +352,22 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
   const handleInputChange = useCallback((val: string) => {
     if (isLocked || pendingConfirmation.current) return;
-    // Allow decimals for SOL tips; integer-only for tokens.
+    // Allow decimals for SOL tips and cents for stablecoins; integer-only for DHB.
     const cleaned = isSolanaTip
       ? sanitizeAmountInput(val, 9)
-      : sanitizeAmountInput(val, 0);
+      : sanitizeAmountInput(val, directToken ? 2 : 0);
     setAmount(cleaned);
     setSelectedPreset(null);
-  }, [isSolanaTip, isLocked, setAmount]);
+  }, [isSolanaTip, isLocked, setAmount, directToken]);
+
+  // 5,000 DHB is not 5,000 USDC: a new unit clears the typed amount.
+  const changePayWith = useCallback((source: TipFundingSource | null) => {
+    if (directTipToken(source) || directToken) {
+      setAmount("");
+      setSelectedPreset(null);
+    }
+    setPayWith(source);
+  }, [directToken, setAmount]);
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
@@ -453,7 +476,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           tokenMeta.decimals || 18,
         );
 
-        if (payWith && canPayWithOther) {
+        if (payWith && canPayWithOther && !directToken) {
           setPhase("funding");
           try {
             await fundTip({
@@ -525,7 +548,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             // the DHB sums this table feeds.
             const txHash: string =
               receipt?.transactionHash || res.hash || "";
-            if (txHash && account) {
+            // A stablecoin tip is not DHB: it stays out of tip_records and the
+            // DHB balance; the backend records it with its own ticker.
+            if (txHash && account && !directToken) {
               void persistTipRecord({
                 senderAddress: account,
                 receiverAddress: toAddress,
@@ -538,7 +563,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             }
 
             // Optimistic balance patch
-            try {
+            if (!directToken) try {
               await patchUser((prev) => ({
                 tokenBalances: {
                   ...(prev.tokenBalances || {}),
@@ -595,6 +620,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     paymentChainId,
     payWith,
     canPayWithOther,
+    directToken,
     t, setAmount, amount]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
@@ -687,7 +713,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 )}
                 {!isSolanaTip && !isLocked && (
                 <View style={styles.presetsGrid}>
-                  {QUICK_AMOUNTS.map((preset) => {
+                  {(directToken ? DIRECT_QUICK_AMOUNTS : QUICK_AMOUNTS).map((preset) => {
                     const isSelected = selectedPreset === preset;
                     return (
                       <TouchableOpacity
@@ -708,7 +734,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                           {formatPreset(preset)}
                         </Text>
                         <Image
-                          source={DEHUB_COIN}
+                          source={coinImage}
                           style={styles.coinIcon}
                           resizeMode="contain"
                         />
@@ -731,7 +757,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 <View style={styles.inputRow}>
                   {!isSolanaTip && (
                     <Image
-                      source={DEHUB_COIN}
+                      source={coinImage}
                       style={styles.inputCoinIcon}
                       resizeMode="contain"
                     />
@@ -744,7 +770,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                       isSolanaTip ? "0.0" : t("tip.enterAmount", "Enter amount")
                     }
                     placeholderTextColor="#6F7174"
-                    keyboardType={isSolanaTip ? "decimal-pad" : "number-pad"}
+                    keyboardType={isSolanaTip || directToken ? "decimal-pad" : "number-pad"}
                     style={styles.textInput}
                   />
                 </View>
@@ -754,7 +780,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <Text style={styles.balanceText}>
                     {isSolanaTip
                       ? t("tip.paidInSol", "Paid in SOL on Solana")
-                      : t("tip.balance", "Balance: {{amount}} tokens", {
+                      : directBalance != null
+                        ? `${directBalance.toLocaleString(undefined, { maximumFractionDigits: 2 })} ${directToken?.symbol}`
+                        : t("tip.balance", "Balance: {{amount}} tokens", {
                           amount: formatCompactNumber(balance),
                         })}
                   </Text>
@@ -779,10 +807,13 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 {canPayWithOther ? (
                   <TipPayWith
                     visible={visible}
-                    amountDhb={numericAmount}
+                    amountDhb={directToken ? 0 : numericAmount}
                     walletAddress={account || undefined}
                     value={payWith}
-                    onChange={setPayWith}
+                    onChange={changePayWith}
+                    direct
+                    directChainId={chainId}
+                    recipientName={recipientName}
                   />
                 ) : null}
                 {tipError && <Text style={styles.errorText}>{tipError}</Text>}
@@ -857,7 +888,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   entering={FadeInDown.delay(300).duration(350)}
                   style={styles.successAmount}
                 >
-                  {isSolanaTip
+                  {isSolanaTip || directToken
                     ? `${lastAmount?.toLocaleString()} ${tipCurrency}`
                     : t("tip.tokenAmount", { amount: lastAmount?.toLocaleString() })}
                 </Animated.Text>
@@ -877,7 +908,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                       setPhase("idle");
                       setAmount(lastAmount ? String(lastAmount) : "");
                       setSelectedPreset(
-                        lastAmount && (QUICK_AMOUNTS as readonly number[]).includes(lastAmount)
+                        lastAmount && ((directToken ? DIRECT_QUICK_AMOUNTS : QUICK_AMOUNTS) as readonly number[]).includes(lastAmount)
                           ? lastAmount
                           : null,
                       );

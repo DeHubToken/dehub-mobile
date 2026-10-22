@@ -4757,7 +4757,7 @@
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
     "profileFailed": "无法设置资料",
-    "displayNameHint": "显示在你个人资料上的公开名称。"
+    "displayNameHint": "显示在你个人资料上的公开名称。可选——留空则使用你的用户名。"
   },
   "events": {
     "mine": "我的",
@@ -4998,6 +4998,7 @@
     "accountHasA": "该账户拥有",
     "ifYouUsedDehub": "如果你以前用过 dehub.io，请在电脑上打开它，用相同方式和相同账户登录，然后",
     "biometricExplainer": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上，因此我们会显示一组 12 个词的恢复助记词供你抄下；这是从另一部手机、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "biometricExplainerSecuring": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上。若要从另一部手机、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "biometricPrompt": "此钱包受本设备的生物识别保护。请用指纹或人脸确认以继续。",
     "enterRecoveryPhrase": "请输入你创建这个钱包时保存的 12 个词恢复助记词（若导出过私钥，也可用私钥）。它会回到同一个账户，而你在下面设置的密码将成为从此处处可用的备用方式。",
     "copyPhrase": "复制助记词",
@@ -5070,6 +5071,7 @@
     "unlockWithPasswordExplainer": "此账户已有钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。",
     "deviceTab": "这个设备",
     "deviceExplainer": "没有需要输入或记住的内容——密钥保存在此设备上。我们会提供一个12个单词的备份供您手写；这是唯一可以从其他设备、网站或重新安装后恢复的方法。选择“密码”而不是密钥，密码本身即可完成此功能。",
+    "deviceExplainerSecuring": "无需输入或记忆任何东西——密钥保存在这台设备上。若要从另一台设备、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "secureOnDevice": "将钥匙保留在此设备上"
   },
   "transcript": {
@@ -9209,7 +9211,8 @@
       "text": "文本",
       "frame": "画面",
       "stream_timer": "直播倒计时",
-      "reaction_counter": "反应计数器"
+      "reaction_counter": "反应计数器",
+      "rule_alert": "规则提醒"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小依提示等级而定",
@@ -9225,7 +9228,8 @@
       "stream_timer": "展示你直播的时长。",
       "reaction_counter": "每次你的直播收到的每一个反应都会被计数。",
       "event_feed": "最新的礼物、粉丝、订阅者和分享直播的人数",
-      "chat_box": "实时在屏幕上显示直播聊天消息"
+      "chat_box": "实时在屏幕上显示直播聊天消息",
+      "rule_alert": "您的规则提醒出现位置"
     },
     "fields": {
       "style": "样式",
@@ -9281,6 +9285,103 @@
       "rotateConfirm": "新链接呢？旧的链接一放上去就不行了，你需要把新的链接粘贴到OBS里。",
       "rotated": "新链接已准备好。将其粘贴到OBS中。",
       "rotateFailed": "无法创建新链接。稍后再试。"
+    },
+    "rules": {
+      "placeholders": "在文本中使用{name}、{amount}和{message}。消息中的链接将被删除。",
+      "sayText": "朗读文本",
+      "chatText": "要发布的消息",
+      "webhookText": "要发送的消息",
+      "actionTypes": {
+        "alert": "显示提醒",
+        "sound": "播放声音",
+        "say": "朗读",
+        "chat": "在聊天中发布",
+        "webhook": "发送到Webhook"
+      },
+      "title": "规则",
+      "intro": "当您的直播中发生某些事情时，DeHub 会执行您选择的操作：显示提醒、播放声音、朗读文字、在聊天中发送或通知您的 Discord。",
+      "add": "添加规则",
+      "limit": "您已达到 {{count}} 条规则的上限。",
+      "loadFailed": "无法加载您的规则。请刷新页面重试。",
+      "empty": "暂无规则。添加一个以响应打赏、关注或聊天指令。",
+      "saved": "规则已保存。它们将在您下次收到打赏、关注或消息时生效。",
+      "saveFailed": "无法保存规则。",
+      "testFailed": "该测试未通过。请稍后再试。",
+      "saveToTest": "保存规则以进行测试",
+      "test": "测试",
+      "enabled": "规则已开启",
+      "remove": "删除规则",
+      "save": "保存规则",
+      "needsAlertWidget": "某些规则会显示提醒。添加“规则提醒”小部件，以便它有显示位置。",
+      "name": "名称",
+      "when": "何时",
+      "then": "然后",
+      "minAmount": "最小打赏 (DHB)",
+      "command": "指令",
+      "keyword": "单词或短语",
+      "audience": "谁可以触发",
+      "blockedWords": "屏蔽词",
+      "blockedWordsHint": "用逗号分隔。包含这些词的消息将被忽略，且永不朗读。",
+      "cooldown": "使用间隔（秒）",
+      "userCooldown": "每位观众间隔（秒）",
+      "addAction": "添加动作",
+      "removeAction": "移除动作",
+      "alertText": "警报文本",
+      "sound": "声音",
+      "chatHint": "发布到你的账户并进入你的直播聊天中。它不能重复观众的消息。",
+      "webhookUrl": "网址钩子地址",
+      "webhookHint": "一个 Discord 或 Slack 的 Webhook 地址，或者任何接受 POST 请求的 HTTPS 地址。",
+      "triggers": {
+        "tip": "小费已到账",
+        "share": "有人分享了信息流",
+        "command": "使用聊天命令",
+        "follow": "有人跟你了",
+        "subscribe": "有人订阅了",
+        "keyword": "你想要翻译的消息内容是什么？请提供完整的文本。",
+        "chat": "任何聊天信息"
+      },
+      "audiences": {
+        "everyone": "每个人",
+        "followers": "粉丝",
+        "subscribers": "订阅者"
+      },
+      "summary": {
+        "tip": "提示：{{amount}} DHB 或以上"
+      },
+      "presets": {
+        "blank": "空白规则",
+        "readChat": "大声朗读聊天记录",
+        "thankFollowers": "感谢新粉丝",
+        "command": "聊天命令",
+        "bigTip": "空气喇叭（用于大额小费）"
+      },
+      "presetHints": {
+        "blank": "开始于无",
+        "readChat": "逐一朗读粉丝的消息，每位观众每30秒一次",
+        "bigTip": "当有10万DHB或以上的打赏时，吹响空气喇叭并显示警报",
+        "thankFollowers": "有人关注你时，在聊天室发送感谢消息",
+        "command": "回应聊天室中的 `!command`"
+      },
+      "presetText": {
+        "readChat": "{name} 说 {message}",
+        "bigTip": "{name} 送出 {amount} DHB！",
+        "thankFollowers": "感谢关注，{name}！",
+        "command": "欢迎来到直播，{name}！"
+      },
+      "sounds": {
+        "airhorn": "空气喇叭",
+        "applause": "掌声",
+        "cricket": "蟋蟀声",
+        "drumroll": "鼓声",
+        "lol": "笑声",
+        "ooh-ahh": "哦哦（赞叹）",
+        "ooh-man": "哦（男性赞叹）",
+        "ohh-girl": "哦（女性赞叹）",
+        "ba-dum-tish": "巴达姆提什",
+        "spooky": "恐怖",
+        "magic-spell": "魔法咒语",
+        "shhh": "嘘"
+      }
     }
   }
 }
