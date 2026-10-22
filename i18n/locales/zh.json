@@ -9292,7 +9292,8 @@
       "reaction_counter": "反应计数器",
       "event_feed": "近期活动",
       "chat_box": "聊天框",
-      "ticker": "股票代码"
+      "ticker": "股票代码",
+      "rule_alert": "规则警报"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小根据等级",
@@ -9309,7 +9310,8 @@
       "reaction_counter": "计算您的广播得到的每个反应",
       "event_feed": "分享您直播的最新礼物、关注者、订阅者和人员",
       "chat_box": "在屏幕上显示直播的聊天消息",
-      "ticker": "在屏幕上滚动的一行您自己的文本"
+      "ticker": "在屏幕上滚动的一行您自己的文本",
+      "rule_alert": "规则提醒的显示位置"
     },
     "fields": {
       "style": "样式",
@@ -9366,6 +9368,103 @@
       "rotateConfirm": "创建新链接？旧的立即停止工作，因此您需要将新的粘贴到OBS中。",
       "rotated": "新链接已准备就绪。将其粘贴到OBS。",
       "rotateFailed": "无法创建新链接。请稍后重试。"
+    },
+    "rules": {
+      "sound": "声音",
+      "title": "规则",
+      "intro": "当你的直播中发生某事时，DeHub 会根据你的选择进行操作：显示警报、播放声音、朗读内容、在聊天室发帖或通知你的 Discord。",
+      "add": "添加规则",
+      "limit": "您已达到{{count}}规则的限制。",
+      "loadFailed": "无法加载您的规则。请刷新页面以重试。",
+      "empty": "还没有规则。添加一个以响应提示、关注或聊天命令。",
+      "saved": "规则已保存。它们会在您的下一次小费、关注或消息中运行。",
+      "saveFailed": "无法保存您的规则。",
+      "testFailed": "该测试未通过。请稍后重试。",
+      "saveToTest": "保存您的规则以测试它们。",
+      "test": "测试",
+      "enabled": "规则开启",
+      "remove": "删除规则",
+      "save": "保存规则",
+      "needsAlertWidget": "有些规则会显示警报。添加规则提醒小部件，以便它在某处显示。",
+      "name": "名称",
+      "when": "时间",
+      "then": "然后",
+      "minAmount": "最小尖端（ DHB ）",
+      "command": "命令",
+      "keyword": "单词或短语",
+      "audience": "谁可以引爆它",
+      "blockedWords": "已屏蔽的字词",
+      "blockedWordsHint": "用逗号分隔。包含它们的消息将被忽略，并且永远不会大声朗读。",
+      "cooldown": "使用次数之间的等待时间（秒）",
+      "userCooldown": "等待每位观众（秒）",
+      "addAction": "添加操作",
+      "removeAction": "删除操作",
+      "placeholders": "在文本中使用{name}、{amount}和{message}。消息中的链接将被删除。",
+      "alertText": "警报文本",
+      "sayText": "朗读文本",
+      "chatText": "要发布的消息",
+      "chatHint": "从您的帐户发布到您的信息流聊天中。它不能重复查看者的消息。",
+      "webhookUrl": "Webhook地址",
+      "webhookHint": "Discord或Slack网络钩子，或接受帖子的任何https地址。",
+      "webhookText": "要发送的消息",
+      "triggers": {
+        "tip": "小费已到账",
+        "follow": "有人关注",
+        "subscribe": "有人订阅",
+        "share": "有人分享了信息流",
+        "command": "使用聊天命令",
+        "keyword": "聊天消息包含一个单词",
+        "chat": "任何聊天消息"
+      },
+      "audiences": {
+        "everyone": "所有人",
+        "followers": "关注者",
+        "subscribers": "订阅者"
+      },
+      "actionTypes": {
+        "alert": "显示提醒",
+        "sound": "播放声音",
+        "say": "朗读",
+        "chat": "在聊天中发布",
+        "webhook": "发送到Webhook"
+      },
+      "summary": {
+        "tip": "小费{{amount}} DHB或以上"
+      },
+      "presets": {
+        "blank": "空白规则",
+        "readChat": "大声朗读聊天记录",
+        "bigTip": "大尖头气喇叭",
+        "thankFollowers": "感谢新粉丝",
+        "command": "聊天命令"
+      },
+      "presetHints": {
+        "blank": "从无到有",
+        "readChat": "大声朗读您的关注者的消息，每30秒一个查看者",
+        "bigTip": "播放气喇叭并显示100,000 DHB或以上小费的警报",
+        "thankFollowers": "当有人关注时，在聊天中发感谢信",
+        "command": "在聊天中回答a!命令"
+      },
+      "presetText": {
+        "readChat": "{name}说{message}",
+        "bigTip": "{name}已发送{amount} DHB ！",
+        "thankFollowers": "{name} ，感谢您的关注！",
+        "command": "您好{name} ，欢迎来到直播！"
+      },
+      "sounds": {
+        "airhorn": "气喇叭",
+        "applause": "掌声",
+        "cricket": "蟋蟀",
+        "drumroll": "滚筒",
+        "lol": "笑声",
+        "ooh-ahh": "哦哦啊啊",
+        "ooh-man": "呦（哥们儿）",
+        "ohh-girl": "Ohh （女性）",
+        "ba-dum-tish": "嘭！",
+        "spooky": "诡异",
+        "magic-spell": "魔法咒语",
+        "shhh": "嘘"
+      }
     }
   }
 }

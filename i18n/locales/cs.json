@@ -9195,7 +9195,8 @@
       "reaction_counter": "Počítadlo reakcí",
       "event_feed": "Nedávná aktivita",
       "chat_box": "Chat box",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Přidávám upozornění na pravidla."
     },
     "hints": {
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
@@ -9212,7 +9213,8 @@
       "reaction_counter": "Počítá každou reakci, kterou vaše vysílání dostane",
       "event_feed": "Nejnovější dárky, následovníci, odběratelé a lidé sdílející vaše vysílání",
       "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
-      "ticker": "Řádek vlastního textu, který se posouvá po obrazovce"
+      "ticker": "Řádek vlastního textu, který se posouvá po obrazovce",
+      "rule_alert": "Kde se zobrazují upozornění na tvá pravidla"
     },
     "fields": {
       "style": "Styl",
@@ -9269,6 +9271,103 @@
       "rotateConfirm": "Vytvořit nový odkaz? Ten starý přestane okamžitě fungovat, takže budete muset vložit nový do OBS.",
       "rotated": "Nový odkaz připraven. Vložte jej do OBS.",
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
+    },
+    "rules": {
+      "title": "Pravidla",
+      "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
+      "add": "Přidat pravidlo",
+      "limit": "Dosáhli jste limitu {{count}} pravidel.",
+      "loadFailed": "Pravidla se nepodařilo načíst. Obnov stránku a zkus to znovu.",
+      "empty": "Zatím žádná pravidla. Přidej je a reaguj na tipy, následování nebo příkazy k chatu.",
+      "saved": "Pravidla uložena. Spouštějí se při dalším spropitném, následování nebo odeslání zprávy.",
+      "saveFailed": "Pravidla se nepodařilo uložit.",
+      "testFailed": "Tento test neprošel. Zkuste to znovu za chvíli.",
+      "saveToTest": "Uložte si pravidla a vyzkoušejte je",
+      "test": "Test",
+      "enabled": "Pravidlo pro",
+      "remove": "Smazat pravidlo",
+      "save": "Uložit pravidla",
+      "needsAlertWidget": "Některá pravidla zobrazují upozornění. Přidejte widget Upozornění na pravidla, aby se někde objevil.",
+      "name": "Jméno",
+      "when": "Kdy",
+      "then": "Pak",
+      "minAmount": "Nejmenší hrot (DHB)",
+      "command": "Příkaz",
+      "keyword": "Slovo nebo fráze",
+      "audience": "Kdo ho může spustit?",
+      "blockedWords": "Blokovaná slova",
+      "blockedWordsHint": "Oddělte čárkami. Zprávy, které je obsahují, jsou ignorovány a nikdy nečtou nahlas.",
+      "cooldown": "Počkejte mezi použitím (sekundy)",
+      "userCooldown": "Počkat na diváka (sekundy)",
+      "addAction": "Přidat akci",
+      "removeAction": "Odstranit akci",
+      "placeholders": "V textu použij {name}, {amount} a {message}. Odkazy ve zprávách jsou odstraněny.",
+      "alertText": "Text upozornění",
+      "sound": "Zvuk",
+      "sayText": "Text k přečtení nahlas",
+      "chatText": "Zpráva k odeslání",
+      "chatHint": "Publikováno z vašeho účtu do chatu vašeho streamu. Nelze opakovat zprávu diváka.",
+      "webhookUrl": "Adresa webhooku",
+      "webhookHint": "Webhook Discord nebo Slack nebo jakákoli adresa https, která přijímá PŘÍSPĚVEK.",
+      "webhookText": "Zpráva k odeslání",
+      "triggers": {
+        "tip": "Dostaneš spropitné",
+        "follow": "Někdo sleduje",
+        "subscribe": "Někdo se přihlásí k odběru",
+        "share": "Někdo sdílí stream",
+        "command": "Používá se příkaz chatu",
+        "keyword": "Chatová zpráva obsahuje slovo",
+        "chat": "Jakýkoli zprávový chatový příspěvek"
+      },
+      "audiences": {
+        "everyone": "Všichni",
+        "followers": "Sledující",
+        "subscribers": "Odběratelé"
+      },
+      "actionTypes": {
+        "alert": "Zobrazit upozornění",
+        "sound": "Přehrát zvuk",
+        "say": "Číst nahlas",
+        "chat": "Zveřejnit v chatu",
+        "webhook": "Odeslat na webhook"
+      },
+      "summary": {
+        "tip": "Tip na {{amount}} DHB nebo víc"
+      },
+      "presets": {
+        "blank": "Prázdné pravidlo",
+        "readChat": "Číst chat nahlas",
+        "bigTip": "Vzduchová houkačka pro velké hroty",
+        "thankFollowers": "Poděkování novým sledujícím",
+        "command": "Příkaz konverzace"
+      },
+      "presetHints": {
+        "blank": "Začít z ničeho",
+        "readChat": "Čte zprávy vašich sledujících nahlas, jeden na diváka každých 30 sekund",
+        "bigTip": "Přehraje klakson a zobrazí upozornění na spropitné 100 000 DHB nebo více",
+        "thankFollowers": "Zveřejní poděkování ve vašem chatu, když vás někdo sleduje",
+        "command": "Odpovědi na příkaz a ! ve vašem chatu"
+      },
+      "presetText": {
+        "readChat": "{name} říká {message}",
+        "bigTip": "{name} odesláno {amount} DHB!",
+        "thankFollowers": "Děkujeme za sledování, {name}!",
+        "command": "Dobrý den, {name}, vítejte ve streamu!"
+      },
+      "sounds": {
+        "airhorn": "Vzduchová houkačka",
+        "applause": "Potlesk",
+        "cricket": "Cvrčci",
+        "drumroll": "Bubnový válec",
+        "lol": "Smích",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (žena)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Strašidelné",
+        "magic-spell": "Kouzlo",
+        "shhh": "Shhh"
+      }
     }
   }
 }

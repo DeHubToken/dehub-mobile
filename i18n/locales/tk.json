@@ -9163,7 +9163,8 @@
       "reaction_counter": "Reaksiýa kalkulatory",
       "event_feed": "Soňky wakalar",
       "chat_box": "Çat sandygy",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Kanun Alarmlary"
     },
     "hints": {
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
@@ -9180,7 +9181,8 @@
       "reaction_counter": "Öwrenýän her bir reaksiýany hasapla",
       "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
       "chat_box": "Çat habarlaryny ekranda görkeziň",
-      "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar"
+      "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
+      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär"
     },
     "fields": {
       "style": "Şablony",
@@ -9236,6 +9238,103 @@
       "rotateConfirm": "Men ýene-de bir baglanyşdyrmak isleýärinmi? Öňki işden dessine çykýar, şol sebäpli täze işden çykmaly.",
       "rotated": "Täze baglaýyş taýýar. OBS-a goý.",
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
+    },
+    "rules": {
+      "test": "Synag",
+      "title": "Kanunlar",
+      "intro": "Eger siz akmaňyzda bir zat bolanda, DeHub saýlan zadyňyzy edýär: duýduryş görkezip, ses çalýar, sesli bir zat okaýar, gürrüňdeşligiňizi goýýar ýa-da Discord-a habar berýär.",
+      "add": "Ol bir düzgüni goýdy",
+      "limit": "Siz {{count}}Rulesçäkine ýetdiňiz.",
+      "loadFailed": "Dur, aýyplama haty taýýar däl. Sahypa täzeden täzeden synalýar.",
+      "empty": "Häzir hiç hili düzgün ýok. Birini goşup, maslahatlara, yzygiderli ýa-da gürrüňdeşlik tabşyryklaryna seslen.",
+      "saved": "Kanunlar saklanýar. Olar siziň indiki maslahatyňyzda, yzyňyzda ýa-da habaryňyzda ýöräp barýar.",
+      "saveFailed": "Siziň düzgünleriňiz halas bolmady.",
+      "testFailed": "Bu synag geçmedi. Gaýtalaň",
+      "saveToTest": "Kanunlaryňyzy synamak üçin saklaň",
+      "enabled": "Ýolbaşçylyk",
+      "remove": "Bu düzgüni silmek",
+      "save": "Kanunlary Gaýd Et",
+      "needsAlertWidget": "Käbir kanunlar duýduryş berýär. Bu düzgüni goşup, bir ýerde görünmek üçin duýduryşlar berýär.",
+      "name": "Ad",
+      "when": "Emma haçan",
+      "then": "Soňra",
+      "minAmount": "Iň kiçijik ujypsyz (DHB)",
+      "command": "Komandan",
+      "keyword": "Söz ýa-da jümle",
+      "audience": "Kim çykaryp biler?",
+      "blockedWords": "Bloklanýan sözler",
+      "blockedWordsHint": "Komalar bilen aýrylyşyň. Olaryň içindäki habarlar äsgermezlik edilýär we hiç haçan ses bilen okalmaýar.",
+      "cooldown": "Ulyjalar arasyndaky garaşyş (sekundlar)",
+      "userCooldown": "Wagtyň geçmegi bilen (sekundlar)",
+      "addAction": "Bir hereket goş",
+      "removeAction": "Ähliňi Ewez Et",
+      "placeholders": "{name}, {amount} we {message} öz metinde ulan. Meselem, habar beriş baglaýyşlary aýrylypdyr.",
+      "alertText": "Alarm metni",
+      "sound": "Ses",
+      "sayText": "Sesli okamak üçin metin",
+      "chatText": "Posta ibermek",
+      "chatHint": "Bu siziň hasabatyňyzdan öz akymyňyzyň çatyna goýuldy. Ol diňleýjiniň habaryny gaýtalap bilmeýär.",
+      "webhookUrl": "Webhook adresi",
+      "webhookHint": "Discord ýa-da Slack webhook, ýa-da bir hat kabul edýän her bir https adres.",
+      "webhookText": "Ýolbaşçylyk maslahatynyň habar bermegi",
+      "triggers": {
+        "tip": "Devanagari: Bir adam geldi.",
+        "follow": "Kimdir biri onuň yzyna düşýär",
+        "subscribe": "Kimdir biri gol çekýär",
+        "share": "Kimdir biri akymy paýlaşýar",
+        "command": "Çat tabşyrygy ulanylýar",
+        "keyword": "Çat habarynda bir söz bar",
+        "chat": "Çat habary"
+      },
+      "audiences": {
+        "everyone": "Hemmeler",
+        "followers": "Galyberse-de,",
+        "subscribers": "Abonentler"
+      },
+      "actionTypes": {
+        "alert": "Bir duýduryş ber",
+        "sound": "Gel bir ses çykarar",
+        "say": "Sesli okamak",
+        "chat": "Çatyň içindäki post",
+        "webhook": "WEB Hook-a habar beriň"
+      },
+      "summary": {
+        "tip": "{{amount}}DHB ýa-da ondan köp"
+      },
+      "presets": {
+        "blank": "Açyk düzgün",
+        "readChat": "Çat sesli okamak",
+        "bigTip": "Beýik maslahatlar üçin Air Horn",
+        "thankFollowers": "Täze şägirtlere minnetdarlyk",
+        "command": "Çat Komandasy"
+      },
+      "presetHints": {
+        "blank": "Hiç zatdan başlamak",
+        "readChat": "Siz öz diňleýjileriňiziň habarlaryny her 30 saniýede bir gezek sesli okap bilersiňiz",
+        "bigTip": "Haýy şah oýnaýar we 100 müň DHB ýa-da ondan artyk maslahatlar üçin duýduryş berýär",
+        "thankFollowers": "Kimdir biri yzyna düşende, gürrüňdeşlige minnetdarlyk bildir",
+        "command": "Çatyňda buýruk ber"
+      },
+      "presetText": {
+        "bigTip": "{name} {amount} DHB iberdi!",
+        "command": "Salam {name}, göni efire hoş geldiň!",
+        "readChat": "{name} diýýär{message}",
+        "thankFollowers": "Çykyşyň üçin sag bol, {name}!"
+      },
+      "sounds": {
+        "airhorn": "Haý Horn",
+        "applause": "Çakylyklar",
+        "cricket": "Kriket",
+        "drumroll": "Drum Roll",
+        "lol": "Gülüş",
+        "ooh-ahh": "Aý, aý",
+        "ooh-man": "Adam (adam)",
+        "ohh-girl": "Aýal (Aýal)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Jadygöýlik jadygöý",
+        "shhh": "ŞHH"
+      }
     }
   }
 }

@@ -9199,7 +9199,8 @@
       "reaction_counter": "Reaktionsräknare",
       "event_feed": "Senaste aktivitet",
       "chat_box": "Chattruta",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Regelvarningar"
     },
     "hints": {
       "tip_alert": "Firar varje tips, anpassat efter dess nivå",
@@ -9216,7 +9217,8 @@
       "reaction_counter": "Räknar varje reaktion din sändning får",
       "event_feed": "De senaste gåvorna, följarna, prenumeranterna och personerna som delar din sändning",
       "chat_box": "Visar din sändnings chattmeddelanden på skärmen",
-      "ticker": "En rad med din egen text som rullar över skärmen"
+      "ticker": "En rad med din egen text som rullar över skärmen",
+      "rule_alert": "Där dina regler visas"
     },
     "fields": {
       "style": "Stil",
@@ -9273,6 +9275,103 @@
       "rotateConfirm": "Skapa en ny länk? Den gamla slutar fungera direkt, så du måste klistra in den nya i OBS.",
       "rotated": "Ny länk klar. Klistra in den i OBS.",
       "rotateFailed": "Det gick inte att skapa en ny länk. Försök igen om en stund."
+    },
+    "rules": {
+      "test": "Testa",
+      "title": "Regler",
+      "intro": "När något händer i din ström gör DeHub vad du väljer: visar en varning, spelar upp ett ljud, läser något högt, lägger upp inlägg i din chatt eller berättar för din Discord.",
+      "add": "Lägg till en regel",
+      "limit": "Du har nått gränsen för {{count}} regler.",
+      "loadFailed": "Dina regler kunde inte laddas. Uppdatera sidan för att försöka igen.",
+      "empty": "Inga regler ännu. Lägg till en för att reagera på tips, följare eller chattkommandon.",
+      "saved": "Regler sparade. De körs på ditt nästa tips, följ eller meddelande.",
+      "saveFailed": "Dina regler kunde inte sparas.",
+      "testFailed": "Det testet gick inte igenom. Försök igen om en stund.",
+      "saveToTest": "Spara dina regler för att testa dem",
+      "enabled": "Regel om",
+      "remove": "Ta bort regel",
+      "save": "Spara regler",
+      "needsAlertWidget": "Vissa regler visar en varning. Lägg till regelvarningswidgeten så att den har någonstans att visas.",
+      "name": "Namn",
+      "when": "När",
+      "then": "Sedan",
+      "minAmount": "Minsta spets (DHB)",
+      "command": "Kommando",
+      "keyword": "Ord eller fras",
+      "audience": "Vem kan aktivera det",
+      "blockedWords": "Blockerade ord",
+      "blockedWordsHint": "Separera med kommatecken. Meddelanden som innehåller dem ignoreras och läses aldrig upp.",
+      "cooldown": "Vänta mellan användningarna (sekunder)",
+      "userCooldown": "Vänta per tittare (sekunder)",
+      "addAction": "Lägg till en åtgärd",
+      "removeAction": "Ta bort åtgärd",
+      "placeholders": "Använd {name}, {amount} och {message} i din text. Länkar i meddelanden tas bort.",
+      "alertText": "Varningstext",
+      "sound": "Ljud",
+      "sayText": "Text att läsa högt",
+      "chatText": "Meddelande att publicera",
+      "chatHint": "Publicerat från ditt konto i din streams chatt. Det kan inte upprepa tittarens meddelande.",
+      "webhookUrl": "Webhook-adress",
+      "webhookHint": "En Discord- eller Slack-webhook, eller någon https-adress som accepterar ett INLÄGG.",
+      "webhookText": "Meddelande att skicka",
+      "triggers": {
+        "tip": "Ett tips kommer",
+        "follow": "Någon följer",
+        "subscribe": "Någon prenumererar",
+        "share": "Någon delar flödet",
+        "command": "Ett chattkommando används",
+        "keyword": "Ett chattmeddelande innehåller ett ord",
+        "chat": "Alla chattmeddelanden"
+      },
+      "audiences": {
+        "everyone": "Alla",
+        "followers": "Följare",
+        "subscribers": "Prenumeranter"
+      },
+      "actionTypes": {
+        "alert": "Visa en varning",
+        "sound": "Spela upp ett ljud",
+        "say": "Läs högt",
+        "chat": "Publicera i chatten",
+        "webhook": "Skicka till en webhook"
+      },
+      "summary": {
+        "tip": "Tips på {{amount}} DHB eller mer"
+      },
+      "presets": {
+        "blank": "Tom regel",
+        "readChat": "Läs chatten högt",
+        "bigTip": "Tryckluftshorn för stora spetsar",
+        "thankFollowers": "Tacka nya följare",
+        "command": "Chattkommando"
+      },
+      "presetHints": {
+        "blank": "Börja från ingenting",
+        "readChat": "Läser dina följares meddelanden högt, en per tittare var 30: e sekund",
+        "bigTip": "Spelar upp ett lufthorn och visar en varning för tips på 100 000 DHB eller mer",
+        "thankFollowers": "Publicerar ett tack i din chatt när någon följer",
+        "command": "Svarar på ett !kommando i din chatt"
+      },
+      "presetText": {
+        "readChat": "{name} säger {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Tack för följaren, {name}!",
+        "command": "Hej {name}, välkommen till strömmen!"
+      },
+      "sounds": {
+        "airhorn": "Tryckluftshorn",
+        "applause": "Applåder",
+        "cricket": "Syrsor",
+        "drumroll": "Trumrulle",
+        "lol": "Skratt",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (kvinna)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spöklikt",
+        "magic-spell": "Magisk trollformel",
+        "shhh": "Shhh"
+      }
     }
   }
 }

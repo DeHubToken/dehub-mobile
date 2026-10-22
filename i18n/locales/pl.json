@@ -9269,7 +9269,8 @@
       "reaction_counter": "Licznik reakcji",
       "event_feed": "Ostatnia aktywność",
       "chat_box": "Pole czatu",
-      "ticker": "Pasek informacyjny"
+      "ticker": "Pasek informacyjny",
+      "rule_alert": "Powiadomienia o regułach"
     },
     "hints": {
       "tip_alert": "Świętuje każdą wskazówkę, dostosowaną do jej progu",
@@ -9286,7 +9287,8 @@
       "reaction_counter": "Liczy każdą reakcję na transmisję",
       "event_feed": "Najnowsze prezenty, obserwujący, subskrybenci i osoby udostępniające transmisję",
       "chat_box": "Wyświetla wiadomości na czacie Twojej transmisji na ekranie",
-      "ticker": "Linia własnego tekstu, która przewija się po ekranie"
+      "ticker": "Linia własnego tekstu, która przewija się po ekranie",
+      "rule_alert": "Gdzie pojawiają się twoje alerty z zasad"
     },
     "fields": {
       "style": "Styl",
@@ -9343,6 +9345,103 @@
       "rotateConfirm": "Utworzyć nowy link? Stary przestaje działać od razu, więc musisz wkleić nowy do OBS.",
       "rotated": "Nowy link gotowy. Wklej go do OBS.",
       "rotateFailed": "Nie można utworzyć nowego linku. Spróbuj ponownie za chwilę."
+    },
+    "rules": {
+      "test": "Testuj",
+      "title": "Zasady",
+      "intro": "Kiedy coś się dzieje na twoim strumieniu, DeHub robi to, co wybierzesz: pokazuje alert, odtwarza dźwięk, czyta coś na głos, publikuje w twoim czacie lub informuje w Discordzie.",
+      "add": "Dodaj regułę",
+      "limit": "Osiągnąłeś limit {{count}} zasad.",
+      "loadFailed": "Twoje zasady nie mogły zostać załadowane. Odśwież stronę, aby spróbować ponownie.",
+      "empty": "Nie ma jeszcze reguł. Dodaj jedną, aby reagować na wskazówki, obserwować lub czatować polecenia.",
+      "saved": "Zasady zostały zapisane. Będą działać przy następnym tipie, followu lub wiadomości.",
+      "saveFailed": "Twoje zasady nie zostały zapisane.",
+      "testFailed": "Ten test nie przeszedł. Spróbuj ponownie za chwilę.",
+      "saveToTest": "Zapisz swoje zasady, aby je przetestować",
+      "enabled": "Reguła dotycząca",
+      "remove": "Usuń regułę",
+      "save": "Zapisz zasady",
+      "needsAlertWidget": "Niektóre zasady wyświetlają alert. Dodaj widżet Alerty reguł, aby miał gdzie się pojawić.",
+      "name": "Imię i nazwisko",
+      "when": "Kiedy",
+      "then": "Następnie",
+      "minAmount": "Najmniejszy tip (DHB)",
+      "command": "Polecenie",
+      "keyword": "Słowo lub zwrot",
+      "audience": "Kto może go uruchomić",
+      "blockedWords": "Zablokowane słowa",
+      "blockedWordsHint": "Oddziel przecinkami. Wiadomości zawierające je są ignorowane i nigdy nie są czytałe na głos.",
+      "cooldown": "Poczekaj między użyciem (sekundy)",
+      "userCooldown": "Czekaj na widza (sekundy)",
+      "addAction": "Dodaj akcję",
+      "removeAction": "Usuń działanie",
+      "placeholders": "Użyj {name}, {amount} i {message} w tekście. Linki w wiadomościach są usuwane.",
+      "alertText": "Tekst alertu",
+      "sound": "Dźwięk",
+      "sayText": "Tekst do przeczytania na głos",
+      "chatText": "Wiadomość do opublikowania",
+      "chatHint": "Opublikowane z Twojego konta na czacie strumieniowym. Nie może powtarzać przekazu widza.",
+      "webhookUrl": "Adres webhooka",
+      "webhookHint": "Element webhook Discord lub Slack lub dowolny adres https, który akceptuje POST.",
+      "webhookText": "Wiadomość do wysłania",
+      "triggers": {
+        "tip": "Napływa prośba o podpowiedź.",
+        "follow": "Ktoś obserwuje",
+        "subscribe": "Ktoś subskrybuje",
+        "share": "Ktoś udostępnia strumień",
+        "command": "Używane jest polecenie czatu",
+        "keyword": "Wiadomość na czacie zawiera słowo",
+        "chat": "Dowolna wiadomość na czacie"
+      },
+      "audiences": {
+        "everyone": "Wszyscy",
+        "followers": "Obserwujący",
+        "subscribers": "Subskrybenci"
+      },
+      "actionTypes": {
+        "alert": "Pokaż alert",
+        "sound": "Odtwórz dźwięk",
+        "say": "Czytaj na głos",
+        "chat": "Opublikuj na czacie",
+        "webhook": "Wyślij do webhooka"
+      },
+      "summary": {
+        "tip": "Napiwek w wysokości co najmniej {{amount}} DHB"
+      },
+      "presets": {
+        "blank": "Pusta reguła",
+        "readChat": "Czytaj czat na głos",
+        "bigTip": "Klakson z dużymi wskazówkami",
+        "thankFollowers": "Podziękuj nowym obserwującym",
+        "command": "Polecenie czatu"
+      },
+      "presetHints": {
+        "blank": "Zacznij od zera",
+        "readChat": "Odczytuje na głos wiadomości obserwujących, po jednej na widza co 30 sekund",
+        "bigTip": "Włącza sygnał dźwiękowy i wyświetla ostrzeżenie o napiwkach wynoszących 100 000 DHB lub więcej",
+        "thankFollowers": "Publikuje podziękowanie na czacie, gdy ktoś obserwuje",
+        "command": "Odpowiada na polecenie a ! w czacie"
+      },
+      "presetText": {
+        "readChat": "{name} mówi {message}",
+        "bigTip": "{name} wysłano {amount} DHB!",
+        "thankFollowers": "Dziękujemy za obserwację, {name}!",
+        "command": "Witaj {name}, witaj w strumieniu!"
+      },
+      "sounds": {
+        "airhorn": "Sygnał dźwiękowy",
+        "applause": "Oklaski",
+        "cricket": "Świerszcze",
+        "drumroll": "Rolka bębna",
+        "lol": "Śmiech",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (męskie)",
+        "ohh-girl": "Ohh (kobieta)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Upiorny",
+        "magic-spell": "Magiczne zaklęcie",
+        "shhh": "Ciii"
+      }
     }
   }
 }

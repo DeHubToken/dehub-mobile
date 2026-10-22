@@ -9195,7 +9195,8 @@
       "reaction_counter": "Reakcijų skaitiklis",
       "event_feed": "Naujausia veikla",
       "chat_box": "Pokalbio laukelis",
-      "ticker": "Žymeklis"
+      "ticker": "Žymeklis",
+      "rule_alert": "Pranešimai apie taisyklę"
     },
     "hints": {
       "tip_alert": "Pagerbia kiekvieną patarimą, prilygstantį jo lygiui",
@@ -9212,7 +9213,8 @@
       "reaction_counter": "Skaičiuoja kiekvieną jūsų transliacijos reakciją",
       "event_feed": "Naujausios dovanos, sekėjai, prenumeratoriai ir žmonės, kurie dalijasi jūsų transliacija",
       "chat_box": "Rodo transliacijos pokalbių žinutes ekrane",
-      "ticker": "Jūsų teksto eilutė, slenkanti per ekraną"
+      "ticker": "Jūsų teksto eilutė, slenkanti per ekraną",
+      "rule_alert": "Kur rodomi jūsų taisyklių pranešimai"
     },
     "fields": {
       "style": "Stilius",
@@ -9269,6 +9271,103 @@
       "rotateConfirm": "Sukurti naują nuorodą? Senasis iš karto nustoja veikti, todėl turėsite įklijuoti naująjį į OBS.",
       "rotated": "Paruošta nauja nuoroda. Įklijuokite ją į OBS.",
       "rotateFailed": "Nepavyko sukurti naujos nuorodos. Netrukus bandykite dar kartą."
+    },
+    "rules": {
+      "title": "Taisyklės",
+      "intro": "Kai kas nors nutinka jūsų sraute, „DeHub“ daro tai, ką pasirenkate: rodo įspėjimą, leidžia garsą, skaito kažką garsiai, skelbia pokalbyje arba pasako „Discord“.",
+      "add": "Pridėti taisyklę",
+      "limit": "Pasiekėte {{count}} taisyklių limitą.",
+      "loadFailed": "Nepavyko įkelti jūsų taisyklių. Atnaujinkite puslapį ir bandykite dar kartą.",
+      "empty": "Taisyklių dar nėra. Pridėkite vieną, kad galėtumėte reaguoti į patarimus, sekimą ar pokalbių komandas.",
+      "saved": "Taisyklės išsaugotos. Jos taikomos kitam jūsų arbatpinigiui, sekimui arba žinutei.",
+      "saveFailed": "Nepavyko išsaugoti jūsų taisyklių.",
+      "testFailed": "Šis testas nebuvo atliktas. Netrukus bandykite dar kartą.",
+      "saveToTest": "Išsaugokite taisykles ir išbandykite jas",
+      "test": "Bandymas",
+      "enabled": "Taisyklė dėl",
+      "remove": "Ištrinti taisyklę",
+      "save": "Išsaugoti taisykles",
+      "needsAlertWidget": "Kai kuriose taisyklėse rodomas įspėjimas. Pridėkite Taisyklių pranešimų valdiklį, kad jis galėtų kur nors pasirodyti.",
+      "name": "Pavadinimas",
+      "when": "Kada",
+      "then": "Tada",
+      "minAmount": "Mažiausias antgalis (DHB)",
+      "command": "Komanda",
+      "keyword": "Žodis ar frazė",
+      "audience": "Kas gali jį išjungti",
+      "blockedWords": "Užblokuoti žodžiai",
+      "blockedWordsHint": "Atskirkite kableliais. Žinutės su jais ignoruojamos ir niekada neskaitomos garsiai.",
+      "cooldown": "Palaukite tarp naudojimo kartų (sekundėmis)",
+      "userCooldown": "Laukti kiekvienam žiūrovui (sekundėmis)",
+      "addAction": "Pridėti veiksmą",
+      "removeAction": "Pašalinti veiksmą",
+      "placeholders": "Tekste naudokite {name}, {amount} ir {message}. Žinutėse esančios nuorodos pašalintos.",
+      "alertText": "Įspėjimo tekstas",
+      "sound": "Garsas",
+      "sayText": "Garsiai skaitomas tekstas",
+      "chatText": "Rašyti žinutę",
+      "chatHint": "Paskelbta iš jūsų paskyros į jūsų srauto pokalbį. Jis negali pakartoti žiūrovo žinutės.",
+      "webhookUrl": "„Webhook“ adresas",
+      "webhookHint": "Discord arba Slack webhook arba bet kuris https adresas, priimantis ĮRAŠĄ.",
+      "webhookText": "Siunčiama žinutė",
+      "triggers": {
+        "tip": "Gaunama arbatpinigių",
+        "follow": "Kažkas seka",
+        "subscribe": "Kažkas užsiprenumeruoja",
+        "share": "Kažkas dalijasi srautu",
+        "command": "Naudojama pokalbio komanda",
+        "keyword": "Pokalbio žinutėje yra žodis",
+        "chat": "Bet kokia pokalbio žinutė"
+      },
+      "audiences": {
+        "everyone": "Visi",
+        "followers": "Sekėjai",
+        "subscribers": "Prenumeratoriai"
+      },
+      "actionTypes": {
+        "alert": "Rodyti pranešimą",
+        "sound": "Paleisti garsą",
+        "say": "Skaityti garsiai",
+        "chat": "Paskelbti pokalbyje",
+        "webhook": "Siųsti į žiniatinklio kablį"
+      },
+      "summary": {
+        "tip": "{{amount}} DHB ar daugiau patarimų"
+      },
+      "presets": {
+        "blank": "Tuščia taisyklė",
+        "readChat": "Skaityti pokalbį garsiai",
+        "bigTip": "Pneumatinis garso signalas dideliems patarimams",
+        "thankFollowers": "Dėkoti naujiems sekėjams",
+        "command": "Pokalbio komanda"
+      },
+      "presetHints": {
+        "blank": "Pradėkite nuo nieko",
+        "readChat": "Garsiai skaito jūsų sekėjų žinutes, po vieną kiekvienam žiūrovui kas 30 sekundžių",
+        "bigTip": "Groja garsinį signalą ir rodo įspėjimą apie 100 000 DHB ar daugiau arbatpinigių",
+        "thankFollowers": "Paskelbia padėką pokalbyje, kai kas nors seka",
+        "command": "Atsako į komandą ! pokalbyje"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} išsiųsta {amount} DHB!",
+        "thankFollowers": "Dėkojame už sekimą, {name}!",
+        "command": "Sveiki {name}, sveiki atvykę į srautą!"
+      },
+      "sounds": {
+        "airhorn": "Pneumatinis garso signalas",
+        "applause": "Plojimai",
+        "cricket": "Kriketas",
+        "drumroll": "Būgno ritinys",
+        "lol": "Juokas",
+        "ooh-ahh": "Oooohhh",
+        "ooh-man": "Vyras:",
+        "ohh-girl": "Ohh (moteris)",
+        "ba-dum-tish": "Baum tišas",
+        "spooky": "Baisu",
+        "magic-spell": "Magijos burtai",
+        "shhh": "Ššš"
+      }
     }
   }
 }

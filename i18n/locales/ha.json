@@ -9164,7 +9164,8 @@
       "stream_timer": "Mai watsa shirye-shirye lokaci",
       "event_feed": "Ayyukan kwanan nan",
       "chat_box": "Akwatin tattaunawa",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Gargajiya na Dokoki"
     },
     "hints": {
       "follow_alert": "Nuna kowane sabon mabiya",
@@ -9180,7 +9181,8 @@
       "reaction_counter": "Lissafi kowane martani da watsa shirye-shiryenku ke samu",
       "event_feed": "Sabbin kyaututtuka, mabiya, masu biyan kuɗi da mutane suna raba watsa shirye-shiryen ku",
       "chat_box": "Nuna saƙonnin tattaunawar watsa shirye-shiryenku akan allon",
-      "ticker": "Layin rubutunku wanda ke gungurawa a duk faɗin allon"
+      "ticker": "Layin rubutunku wanda ke gungurawa a duk faɗin allon",
+      "rule_alert": "Inda gargajiyar dokoki ta bayyana"
     },
     "fields": {
       "style": "Salo",
@@ -9231,6 +9233,103 @@
       "rotateConfirm": "Yi sabon mahada? Tsohon ya daina aiki nan da nan, don haka za ku buƙaci liƙa sabon a cikin lura.",
       "rotated": "Sabuwar hanyar haɗi a shirye. Manna shi a cikin OBS.",
       "rotateFailed": "Ba zan iya yin sabon hanyar haɗi ba. Ka sake gwadawa a cikin wani lokaci."
+    },
+    "rules": {
+      "chatHint": "Ana aikawa daga asusunka zuwa hirar watsa shirinka. Ba zai iya maimaita saƙon mai kallo ba.",
+      "title": "Dokoki",
+      "intro": "Lokacin da wani abu ya faru akan rafin ku, DeHub yana yin abin da kuke zaɓa: nuna gargajiya, kunna sauti, karanta wani abu a jiya, aika a chat ku ko gaya wa Discord ku.",
+      "add": "Ƙara dokoki",
+      "limit": "Kun isa iyaka na {{count}} dokoki.",
+      "loadFailed": "Dokoki ku ba za su iya lodata ba. Sake juyar da shafi don gwada gida.",
+      "empty": "Babu dokoki har yanzu. Ƙara ɗaya don amsa ga tips, follows ko umarni na chat.",
+      "saved": "Dokoki an ajiye su. Suna aiki akan tip, follow ko saƙo na gida.",
+      "saveFailed": "Dokoki ku ba za su iya ajiye ba.",
+      "testFailed": "Gwajin nan bai wuce ba. Gwada gida a cikin lokaci.",
+      "saveToTest": "Ajiye dokoki ku don gwada su",
+      "test": "Gwaji",
+      "enabled": "Dokoki a banza",
+      "remove": "Soke dokoki",
+      "save": "Ajiye dokoki",
+      "needsAlertWidget": "Wasu dokoki suna nuna gargajiya. Ƙara widget na Rule alerts don ya sami wuri da zai bayyana.",
+      "name": "Suna",
+      "when": "Lokacin",
+      "then": "Sannan",
+      "minAmount": "Mafi ƙarancin tip (DHB)",
+      "command": "Umarni",
+      "keyword": "Kalma ko jumla",
+      "audience": "Wanda zai iya bugi shi",
+      "blockedWords": "Kalmomin da aka toshe",
+      "blockedWordsHint": "Raba da alamar ƙoma. Saƙo da ke da su ana watse su kuma ba za a karanta su a jiya ba.",
+      "cooldown": "Jira tsakanin amfani (sekonda)",
+      "userCooldown": "Jira ga mai kallo (sekonda)",
+      "addAction": "Ƙara aiki",
+      "removeAction": "Cire aiki",
+      "placeholders": "Yi amfani da {name}, {amount} da {message} a cikin rubutunku. Ana cire hanyoyin haɗi a cikin saƙonni.",
+      "alertText": "Alert text",
+      "sound": "Sound",
+      "sayText": "Rubutun da za a karanta da ƙarfi",
+      "chatText": "Message to post",
+      "webhookUrl": "Webhook address",
+      "webhookHint": "A Discord ko Slack webhook, ko wani https address cewa yarda da wani POST.",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "A tip arrives",
+        "follow": "Someone follows",
+        "subscribe": "Someone subscribes",
+        "share": "Wani ya raba rafi",
+        "command": "Ana amfani da umarnin hira",
+        "keyword": "Saƙon hira ya ƙunshi kalma",
+        "chat": "Any chat message"
+      },
+      "audiences": {
+        "everyone": "Everyone",
+        "followers": "Followers",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "alert": "Show an alert",
+        "sound": "Play a sound",
+        "say": "Read aloud",
+        "chat": "Post in chat",
+        "webhook": "Send to a webhook"
+      },
+      "summary": {
+        "tip": "Tukwici na {{amount}} DHB ko fiye"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Read chat aloud",
+        "bigTip": "Air ƙaho don manyan nasihu",
+        "thankFollowers": "Na gode da sababbin mabiya",
+        "command": "Chat command"
+      },
+      "presetHints": {
+        "blank": "Fara daga kome ba",
+        "readChat": "Karanta saƙonnin mabiyanku da ƙarfi, ɗaya ga kowane mai kallo kowane sakan 30",
+        "bigTip": "Plays wani iska ƙaho da kuma nuna wani faɗakarwa ga tips na 100,000 DHB ko fiye",
+        "thankFollowers": "Posts a godiya ku a cikin tattaunawar ku lokacin da wani ya bi",
+        "command": "Amsoshi a !umurnin a cikin tattaunawar ku"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} aika {amount} DHB!",
+        "thankFollowers": "Godiya ga bin, {name}!",
+        "command": "Barka dai {name}, barka da gudana!"
+      },
+      "sounds": {
+        "cricket": "Kukan ƙwari",
+        "airhorn": "Air ƙaho",
+        "applause": "Yabba Dabba Doo",
+        "drumroll": "Drum mirgina",
+        "lol": "Dariya",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Yah (mutum)",
+        "ohh-girl": "Ohh (mace)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

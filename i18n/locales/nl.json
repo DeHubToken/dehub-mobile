@@ -11040,7 +11040,8 @@
       "reaction_counter": "Reactieteller",
       "event_feed": "Recente activiteit",
       "chat_box": "Chatbox",
-      "ticker": "Lichtkrant"
+      "ticker": "Lichtkrant",
+      "rule_alert": "Regelwaarschuwingen"
     },
     "hints": {
       "tip_alert": "Vier elke tip, afgestemd op zijn niveau",
@@ -11057,7 +11058,8 @@
       "reaction_counter": "Telt elke reactie die je uitzending krijgt",
       "event_feed": "De nieuwste cadeaus, volgers, abonnees en mensen die je uitzending delen",
       "chat_box": "Toont de chatberichten van uw uitzending op het scherm",
-      "ticker": "Een regel van je eigen tekst die over het scherm scrolt"
+      "ticker": "Een regel van je eigen tekst die over het scherm scrolt",
+      "rule_alert": "Waar de waarschuwingen van je regels verschijnen"
     },
     "fields": {
       "style": "Stijl",
@@ -11114,6 +11116,103 @@
       "rotateConfirm": "Een nieuwe link maken? De oude stopt meteen met werken, dus je moet de nieuwe in OBS plakken.",
       "rotated": "Nieuwe link klaar. Plak deze in OBS.",
       "rotateFailed": "Kon geen nieuwe link maken. Probeer het zo opnieuw."
+    },
+    "rules": {
+      "chatText": "Bericht om te plaatsen",
+      "test": "Testen",
+      "title": "Regels",
+      "intro": "Wanneer er iets gebeurt tijdens je stream, doet DeHub wat jij kiest: toont een alert, speelt een geluid af, leest iets hardop voor, post in je chat of vertelt het aan je Discord.",
+      "add": "Een regel toevoegen",
+      "limit": "U hebt de limiet van {{count}} regels bereikt.",
+      "loadFailed": "Uw regels konden niet worden geladen. Vernieuw de pagina om het opnieuw te proberen.",
+      "empty": "Nog geen regels. Voeg er een toe om te reageren op tips, volgt of chatopdrachten.",
+      "saved": "Regels opgeslagen. Ze worden uitgevoerd op je volgende fooi, volg of bericht.",
+      "saveFailed": "Uw regels konden niet worden opgeslagen.",
+      "testFailed": "Die test is niet doorgegaan. Probeer het zo opnieuw.",
+      "saveToTest": "Sla je regels op om ze te testen",
+      "enabled": "Regel op",
+      "remove": "Regel verwijderen",
+      "save": "Regels opslaan",
+      "needsAlertWidget": "Sommige regels tonen een waarschuwing. Voeg de widget Regelwaarschuwingen toe, zodat deze ergens kan worden weergegeven.",
+      "name": "Naam",
+      "when": "Wanneer",
+      "then": "Dan",
+      "minAmount": "Kleinste tip (DHB)",
+      "command": "Opdracht",
+      "keyword": "Woord of zin",
+      "audience": "Wie kan het laten afgaan",
+      "blockedWords": "Blokkerende woorden",
+      "blockedWordsHint": "Scheid met komma's. Berichten die ze bevatten worden genegeerd en nooit hardop voorgelezen.",
+      "cooldown": "Wacht tussen gebruik (seconden)",
+      "userCooldown": "Wacht per kijker (seconden)",
+      "addAction": "Een actie toevoegen",
+      "removeAction": "Actie verwijderen",
+      "placeholders": "Gebruik {name}, {amount} en {message} in je sms. Links in berichten worden verwijderd.",
+      "alertText": "Alert tekst",
+      "sound": "Geluid",
+      "sayText": "Tekst om voor te lezen",
+      "chatHint": "Gepost vanuit je account in de chat van je stream. Het kan het bericht van de kijker niet herhalen.",
+      "webhookUrl": "Webhook-adres",
+      "webhookHint": "Een Discord- of Slack-webhook of een https-adres dat een BERICHT accepteert.",
+      "webhookText": "Bericht om te verzenden",
+      "triggers": {
+        "tip": "Er komt een fooi aan",
+        "follow": "Iemand volgt",
+        "subscribe": "Iemand schrijft zich in",
+        "share": "Iemand deelt de stream",
+        "command": "Er wordt een chatopdracht gebruikt",
+        "keyword": "Een chatbericht bevat een woord",
+        "chat": "Elk chatbericht"
+      },
+      "audiences": {
+        "everyone": "Iedereen",
+        "followers": "Volgers",
+        "subscribers": "Abonnees"
+      },
+      "actionTypes": {
+        "chat": "Plaatsen in de chat",
+        "alert": "Toon een melding",
+        "sound": "Een geluid afspelen",
+        "say": "Lees dit hardop voor.",
+        "webhook": "Naar een webhook sturen"
+      },
+      "summary": {
+        "tip": "Tip van {{amount}} DHB of meer"
+      },
+      "presets": {
+        "blank": "Blanco regel",
+        "readChat": "Chat hardop voorlezen",
+        "bigTip": "Luchthoorn voor grote tips",
+        "thankFollowers": "Bedank nieuwe volgers",
+        "command": "Chatopdracht"
+      },
+      "presetHints": {
+        "blank": "Begin met niets",
+        "readChat": "Leest de berichten van je volgers hardop voor, één per kijker per 30 seconden",
+        "bigTip": "Speelt een luchthoorn en toont een waarschuwing voor tips van 100.000 DHB of meer",
+        "thankFollowers": "Plaatst een bedankje in je chat wanneer iemand volgt",
+        "command": "Beantwoordt een !-opdracht in je chat"
+      },
+      "presetText": {
+        "readChat": "{name} zegt {message}",
+        "bigTip": "{name} verzonden {amount} DHB!",
+        "thankFollowers": "Bedankt voor het volgen, {name}!",
+        "command": "Hallo {name}, welkom bij de stream!"
+      },
+      "sounds": {
+        "airhorn": "Luchthoorn",
+        "applause": "Applaus",
+        "cricket": "Krekels",
+        "drumroll": "Trommelrol",
+        "lol": "Lachen",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (vrouw)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spookachtig",
+        "magic-spell": "Magische spreuk",
+        "shhh": "Shhh"
+      }
     }
   }
 }

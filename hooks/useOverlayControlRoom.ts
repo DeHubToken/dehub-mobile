@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useWebSocket } from "../context/WebSocketContext";
 import { roomUser, type LiveRoomEvent } from "../components/LiveOverlay/overlayEvents";
+import { parseRuleFired, type RuleFired } from "../libs/live-overlay/rules";
 
 /**
  * A creator's overlay control room, `overlay:<token>`. The twin of dehubweb's
@@ -13,10 +14,17 @@ import { roomUser, type LiveRoomEvent } from "../components/LiveOverlay/overlayE
  * Joined again on every core reconnect: a reconnected socket is a new socket to
  * the server, and its rooms are gone until it asks.
  */
-export function useOverlayControlRoom(token: string | null | undefined, onTest: (events: LiveRoomEvent[]) => void) {
+export function useOverlayControlRoom(
+  token: string | null | undefined,
+  onTest: (events: LiveRoomEvent[]) => void,
+  /** A stream rule tested from Live Studio: what it shows, plays and reads. */
+  onRule?: (fired: RuleFired) => void,
+) {
   const { emit, on } = useWebSocket();
   const handler = useRef(onTest);
   handler.current = onTest;
+  const ruleHandler = useRef(onRule);
+  ruleHandler.current = onRule;
 
   useEffect(() => {
     if (!token) return;
@@ -48,11 +56,16 @@ export function useOverlayControlRoom(token: string | null | undefined, onTest: 
           return;
       }
     });
+    const offRule = on("overlay.rule", (data: any) => {
+      const fired = parseRuleFired(data);
+      if (fired) ruleHandler.current?.(fired);
+    });
     const offConnected = on("connected", join);
     join();
 
     return () => {
       offTest();
+      offRule();
       offConnected();
       emit("overlay.leave", { token });
     };

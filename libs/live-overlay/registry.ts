@@ -26,6 +26,7 @@ export const OVERLAY_KINDS = [
   "event_feed",
   "chat_box",
   "ticker",
+  "rule_alert",
 ] as const;
 
 export type OverlayKind = (typeof OVERLAY_KINDS)[number];
@@ -117,6 +118,11 @@ export const WIDGET_TEMPLATES: Record<OverlayKind, WidgetTemplate> = {
     landscape: { x: 0.36, y: 0.03, w: 0.38, h: 0.06 },
     portrait: { x: 0.05, y: 0.74, w: 0.9, h: 0.04 },
     settings: { text: "", speed: "normal", accent: "#ffffff" },
+  },
+  rule_alert: {
+    landscape: { x: 0.3, y: 0.17, w: 0.4, h: 0.1 },
+    portrait: { x: 0.08, y: 0.32, w: 0.84, h: 0.07 },
+    settings: {},
   },
 };
 

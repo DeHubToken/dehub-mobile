@@ -9196,7 +9196,8 @@
       "reaction_counter": "Comptador de reaccions",
       "event_feed": "Activitat recent",
       "chat_box": "Quadre de xat",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Alertes de regles"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada al seu nivell",
@@ -9213,7 +9214,8 @@
       "reaction_counter": "Compta cada reacció que rep la teva emissió",
       "event_feed": "Els últims regals, seguidors, subscriptors i persones que comparteixen la teva retransmissió",
       "chat_box": "Mostra els missatges de xat de la teva emissió a la pantalla",
-      "ticker": "Una línia del teu propi text que es desplaça per la pantalla"
+      "ticker": "Una línia del teu propi text que es desplaça per la pantalla",
+      "rule_alert": "On apareixen les alertes de les teves normes"
     },
     "fields": {
       "style": "Estil",
@@ -9270,6 +9272,103 @@
       "rotateConfirm": "Vols crear un enllaç nou? L'antiga deixa de funcionar immediatament, de manera que hauràs d'enganxar la nova en OBS.",
       "rotated": "Nou enllaç a punt. Enganxa'l a OBS.",
       "rotateFailed": "No s'ha pogut crear un enllaç nou. Torna-ho a provar en un moment."
+    },
+    "rules": {
+      "add": "Afegeix una regla",
+      "title": "Normes",
+      "intro": "Quan passa alguna cosa al teu flux, DeHub fa el que tu triïs: mostra una alerta, reprodueix un so, llegeix alguna cosa en veu alta, publica al teu xat o diu al teu Discord.",
+      "limit": "Has arribat al límit de {{count}} normes.",
+      "loadFailed": "No s'han pogut carregar les normes. Actualitza la pàgina per tornar-ho a provar.",
+      "empty": "Encara no hi ha cap regla. Afegeix-ne una per respondre a suggeriments, seguiments o ordres de xat.",
+      "saved": "Regles desades. S'executen en el teu proper consell, seguiment o missatge.",
+      "saveFailed": "No s'han pogut desar les normes.",
+      "testFailed": "Aquesta prova no ha passat. Torna-ho a provar en un moment.",
+      "saveToTest": "Desa les teves regles per posar-les a prova",
+      "test": "Prova",
+      "enabled": "Regla sobre",
+      "remove": "No hi ha text per traduir.",
+      "save": "Desa les normes",
+      "needsAlertWidget": "Algunes normes mostren una alerta. Afegeix el giny Regla d'alertes perquè tingui un lloc on aparèixer.",
+      "name": "Nom",
+      "when": "Quan",
+      "then": "Llavors",
+      "minAmount": "Suggeriment més petit (DHB)",
+      "command": "Ordre",
+      "keyword": "Paraula o frase",
+      "audience": "Qui pot activar-lo",
+      "blockedWords": "Paraules bloquejades",
+      "blockedWordsHint": "Separeu amb comes. Els missatges que els contenen s'ignoren i mai es llegeixen en veu alta.",
+      "cooldown": "Espera entre usos (segons)",
+      "userCooldown": "Espera per espectador (segons)",
+      "addAction": "Afegeix una acció",
+      "removeAction": "Elimina l'acció",
+      "placeholders": "Fes servir {name}, {amount} i {message} al text. S'han eliminat els enllaços dels missatges.",
+      "alertText": "Text d'alerta",
+      "sound": "So",
+      "sayText": "Text per llegir en veu alta",
+      "chatText": "Missatge per publicar",
+      "chatHint": "S'ha publicat des del teu compte al xat del teu flux. No pot repetir el missatge de l'espectador.",
+      "webhookUrl": "Adreça del webhook",
+      "webhookHint": "Un webhook de Discord o Slack, o qualsevol adreça https que accepti una PUBLICACIÓ.",
+      "webhookText": "Missatge per enviar",
+      "triggers": {
+        "tip": "Arriba un suggeriment",
+        "follow": "Algú segueix",
+        "subscribe": "Algú s'hi subscriu",
+        "share": "Algú comparteix el flux",
+        "command": "S'utilitza una ordre de xat",
+        "keyword": "Un missatge de xat conté una paraula",
+        "chat": "Qualsevol missatge de xat"
+      },
+      "audiences": {
+        "everyone": "Tothom",
+        "followers": "Seguidors",
+        "subscribers": "Subscriptors"
+      },
+      "actionTypes": {
+        "alert": "Mostra un avís",
+        "sound": "Reprodueix un so",
+        "say": "Llegir en veu alta",
+        "chat": "Publicar al xat",
+        "webhook": "Envia a un webhook"
+      },
+      "summary": {
+        "tip": "Suggeriment de {{amount}} DHB o més"
+      },
+      "presets": {
+        "blank": "Regla en blanc",
+        "readChat": "Llegeix el xat en veu alta",
+        "bigTip": "Bocina d'aire per a consells grans",
+        "thankFollowers": "Agraeix als nous seguidors",
+        "command": "Ordre de xat"
+      },
+      "presetHints": {
+        "blank": "Comença de no res",
+        "readChat": "Llegeix els missatges dels teus seguidors en veu alta, un per espectador cada 30 segons",
+        "bigTip": "Toca una bocina d'aire i mostra una alerta per a suggeriments de 100.000 DHB o més",
+        "thankFollowers": "Publica un agraïment al teu xat quan algú et segueix",
+        "command": "Respon a l'ordre! al xat"
+      },
+      "presetText": {
+        "readChat": "{name} diu {message}",
+        "bigTip": "{name} ha enviat {amount} DHB!",
+        "thankFollowers": "Gràcies per seguir-nos, {name}!",
+        "command": "Hola {name}, et donem la benvinguda al flux!"
+      },
+      "sounds": {
+        "airhorn": "Bocina d'aire",
+        "applause": "Aplaudiments",
+        "cricket": "Grills",
+        "drumroll": "Rodet de tambor",
+        "lol": "Rialles",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (home)",
+        "ohh-girl": "Ohh (dona)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Espeluznant",
+        "magic-spell": "Encantament màgic",
+        "shhh": "Shhh"
+      }
     }
   }
 }
