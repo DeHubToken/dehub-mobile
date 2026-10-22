@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Srauto apibendrinimas",
+    "justEnded": "Srauto apibendrinimas",
+    "lastStream": "Jūsų paskutinis srautas",
+    "none": "Dar nėra baigtų srautų. Jūsų santrauka pasirodys čia po pirmosios.",
+    "share": "Dalytis",
+    "shareText": "Ką tik transliavau „{{title}}“ per DeHub: {{duration}} live, {{peak}} žiūri piko metu ir {{followers}} naujų sekėjų.",
+    "untitled": "Srautas be pavadinimo",
+    "loadFailed": "Dangtelis neįkraunamas. Netrukus bandykite dar kartą.",
+    "duration": "Tiesioginė transliacija laiku",
+    "peakViewers": "Daugiausia žiūrima vienu metu",
+    "gifts_one": "Nuo {{count}} dovana",
+    "gifts_other": "Nuo {{count}} dovanos",
+    "newFollowers": "Nauji sekėjai",
+    "chatMessages": "Pokalbio žinutės",
+    "chatters": "Žmonės kalbasi",
+    "reactions": "Reakcijos",
+    "shares": "Žmonės dalijasi",
+    "topSupporters": "Geriausi rėmėjai",
+    "polls": "Apklausos",
+    "pollWinner": "{{option}} laimėjo",
+    "stillCounting": "Vis dar skaičiuojama: dovanų patvirtinimas gali užtrukti minutę."
+  },
   "articles": {
     "articleImage": "Straipsnio vaizdas",
     "socialImage": "Socialinio bendrinimo vaizdas",
@@ -4771,7 +4794,7 @@
     "usernameReserved": "Šis naudotojo vardas rezervuotas",
     "profileSet": "Profilis sėkmingai nustatytas!",
     "profileFailed": "Nepavyko nustatyti profilio",
-    "displayNameHint": "Jūsų viešas vardas, rodomas profilyje."
+    "displayNameHint": "Jūsų viešas vardas profilyje. Neprivaloma — palikite tuščią, kad būtų naudojamas jūsų naudotojo vardas."
   },
   "events": {
     "mine": "Mano",
@@ -5012,6 +5035,7 @@
     "accountHasA": "Ši paskyra turi",
     "ifYouUsedDehub": "Jei anksčiau naudojotės dehub.io, atidarykite jį kompiuteryje, prisijunkite tuo pačiu būdu ir ta pačia paskyra, ir",
     "biometricExplainer": "Atrakinkite pirštų atspaudu arba veidu — nieko nereikia rašyti ar prisiminti. Raktas lieka šiame telefone, todėl parodysime 12 žodžių atkūrimo frazę, kurią užsirašysite; tai vienintelis kelias grįžti iš kito telefono, iš svetainės arba po perdiegimo. Vietoj to pasirinkite Slaptažodį — tą darbą atliks pats slaptažodis.",
+    "biometricExplainerSecuring": "Atrakinkite pirštų atspaudu arba veidu — nieko nereikia rašyti ar prisiminti. Raktas lieka šiame telefone. Kad galėtumėte grįžti iš kito telefono, iš svetainės arba po perdiegimo, vėliau Nustatymuose išsaugokite 12 žodžių atsarginę kopiją. Vietoj to pasirinkite Slaptažodį — tą darbą atliks pats slaptažodis.",
     "biometricPrompt": "Ši piniginė apsaugota šio įrenginio biometrija. Norėdami tęsti, patvirtinkite pirštų atspaudu arba veidu.",
     "enterRecoveryPhrase": "Įveskite 12 žodžių atkūrimo frazę, kurią išsaugojote kurdami šią piniginę (arba jos privatų raktą, jei jį eksportavote). Ji grąžina į tą pačią paskyrą, o žemiau nustatytas slaptažodis nuo šiol tampa atsargine priemone, veikiančia visur.",
     "copyPhrase": "Kopijuoti frazę",
@@ -5084,6 +5108,7 @@
     "unlockWithPasswordExplainer": "Ši paskyra jau turi piniginę, apsaugotą slaptažodžiu. Įveskite jį, kad atkurtumėte savo piniginę šiame įrenginyje.",
     "deviceTab": "Šis įrenginys",
     "deviceExplainer": "Nėra ko rašyti ar prisiminti — raktas lieka šiame įrenginyje. Siūlome 12 žodžių atsarginę kopiją, kurią galėsite užsirašyti; tai yra vienintelis būdas grįžti iš kito įrenginio, iš svetainės arba iš naujo įdiegus. Vietoj to pasirinkite Slaptažodį ir pats slaptažodis atliks šį darbą.",
+    "deviceExplainerSecuring": "Nieko nereikia rašyti ar prisiminti — raktas lieka šiame įrenginyje. Kad galėtumėte grįžti iš kito įrenginio, iš svetainės arba po perdiegimo, vėliau Nustatymuose išsaugokite 12 žodžių atsarginę kopiją. Vietoj to pasirinkite Slaptažodį — tą darbą atliks pats slaptažodis.",
     "secureOnDevice": "Laikykite raktą šiame įrenginyje"
   },
   "transcript": {
@@ -8980,7 +9005,7 @@
     "topUpEmptyHint": "Pridėk žetonų, kuriuos galėtum sugeneruoti dirb"
   },
   "accountDeletion": {
-    "title": "Nauja sąskaita...",
+    "title": "Ištrinti paskyrą",
     "description": "Visam laikui ištrinkite savo paskyrą ir asmens duomenis",
     "warning": "Taip visam laikui ištrinsite savo „DeHub“ profilį, įrašus, komentarus, žinutes ir išsaugotą piniginės atsarginę kopiją. Išsaugokite piniginės atkūrimo informaciją ir pirmiausia perkelkite visus išteklius. Viešų blokų grandinės operacijų ir teisiškai privalomų mokėjimų įrašų ištrinti negalima. Jūsų profilis iš karto paslėptas; ištrynimas baigiamas per 30 dienų. Tai negali būti anuliuota.",
     "cancel": "Atšaukti",
@@ -9138,7 +9163,17 @@
     "followersUnit": "sekėjai",
     "topSupporters": "Geriausi rėmėjai",
     "tipped": "{{name}} išsiuntė dovaną",
-    "chatPreview": "Pokalbio žinutės rodomos čia"
+    "chatPreview": "Pokalbio žinutės rodomos čia",
+    "poll": {
+      "closed": "Balsavimas baigtas",
+      "voteFor": "Balsuokite už {{option}}",
+      "signIn": "Prisijunkite, kad balsuotumėte",
+      "failed": "Jūsų balsas neįskaičiuotas. Bandykite dar kartą.",
+      "voted_one": "Balsavote · {{count}} vote",
+      "voted_other": "Balsavote · {{count}} balsų",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} balsai"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9194,7 +9229,8 @@
       "event_feed": "Naujausia veikla",
       "chat_box": "Pokalbio laukelis",
       "ticker": "Žymeklis",
-      "rule_alert": "Pranešimai apie taisyklę"
+      "rule_alert": "Pranešimai apie taisyklę",
+      "poll": "Apklausa"
     },
     "hints": {
       "tip_alert": "Pagerbia kiekvieną patarimą, prilygstantį jo lygiui",
@@ -9212,7 +9248,8 @@
       "event_feed": "Naujausios dovanos, sekėjai, prenumeratoriai ir žmonės, kurie dalijasi jūsų transliacija",
       "chat_box": "Rodo transliacijos pokalbių žinutes ekrane",
       "ticker": "Jūsų teksto eilutė, slenkanti per ekraną",
-      "rule_alert": "Kur rodomi jūsų taisyklių pranešimai"
+      "rule_alert": "Kur rodomi jūsų taisyklių pranešimai",
+      "poll": "Jūsų tiesioginė apklausa su balsavimo mygtuku kiekvienai parinkčiai"
     },
     "fields": {
       "style": "Stilius",
@@ -9315,7 +9352,8 @@
         "share": "Kažkas dalijasi srautu",
         "command": "Naudojama pokalbio komanda",
         "keyword": "Pokalbio žinutėje yra žodis",
-        "chat": "Bet kokia pokalbio žinutė"
+        "chat": "Bet kokia pokalbio žinutė",
+        "live": "Pradedate transliuoti"
       },
       "audiences": {
         "everyone": "Visi",
@@ -9365,30 +9403,98 @@
         "spooky": "Baisu",
         "magic-spell": "Magijos burtai",
         "shhh": "Ššš"
+      },
+      "placeholdersLive": "Tekste naudokite {name}, {title} ir {link}: savo vardą, transliacijos pavadinimą ir nuorodą, kad jį peržiūrėtumėte."
+    },
+    "polls": {
+      "title": "Apklausos",
+      "intro": "Užduokite klausimą žmonėms, žiūrintiems jūsų transliaciją. Jie atsako mygtuku DeHub programėlėje arba įrašydami {{command}} ir parinkties numerį pokalbyje.",
+      "question": "Klausimas",
+      "questionPlaceholder": "Ką turėčiau žaisti toliau?",
+      "option": "Parinktis {{n}}",
+      "addOption": "Pridėti parinktį",
+      "removeOption": "Pašalinti parinktį {{n}}",
+      "duration": "Kiek laiko galima balsuoti",
+      "seconds_one": "{{count}} sekundė",
+      "seconds_other": "{{count}} sekundės",
+      "minutes_one": "{{count}} minutė",
+      "minutes_other": "{{count}} min.",
+      "start": "Pradėti apklausą",
+      "end": "Baigti balsuoti dabar",
+      "started": "Jūsų apklausa atidaryta. Dabar žiūrovai gali balsuoti.",
+      "notLive": "Pirmiausia pradėkite tiesioginę transliaciją. Apklausa vyksta transliacijoje, kurią šiuo metu transliuojate.",
+      "startFailed": "Apklausa neprasidėjo. Bandykite dar kartą.",
+      "closeFailed": "Balsavimas nesibaigė. Bandykite dar kartą.",
+      "live": "Balsavimas atidarytas · {{time}} kairėje",
+      "ended": "Balsavimas baigtas",
+      "votes_one": "{{count}} balsuokite",
+      "votes_other": "{{count}} balsai",
+      "replaceHint": "Pradėjus naują apklausą uždaroma atidaryta apklausa.",
+      "widgetHint": "Parodo jūsų tiesioginę apklausą. „DeHub“ programėlės peržiūrėtojai palieskite parinktį balsuoti; OBS ji nurodo žmonėms įvesti {{command}} ir numerį pokalbyje.",
+      "sample": {
+        "a": "Kažkas naujo",
+        "b": "Senas mėgstamiausias",
+        "c": "Jūs pasirenkate"
+      }
+    },
+    "moderation": {
+      "title": "Kalbos moderavimas",
+      "intro": "Kalbos tinklalapyje visose jūsų straumėse. Jie niekada nepateka į DeHub pagrindinę kalbą: žmogus, kurį jūs čia išblokuojate, gali vis dar kalbėtis visur kitur.",
+      "loadFailed": "Jūsų moderavimo nustatymai negalėjo būti įkrauti. Atnaujinkite puslapį ir bandykite dar kartą.",
+      "save": "Išsaugoti kalbos tinklalapį",
+      "saved": "Kalbos tinklalapis išsaugotas.",
+      "saveFailed": "Šis keitimas negalėjo būti išsaugotas.",
+      "slowMode": "Lentelės režimas",
+      "slowModeHint": "Kiek laiko žiūrovai laukia tarp pranešimų. Jūs ir jūsų moderatoriai niekada netrukdami.",
+      "off": "Išjungta",
+      "seconds_one": "{{count}} sekundė",
+      "seconds_other": "{{count}} sekundės",
+      "followersOnly": "Tik sekėtojai",
+      "subscribersOnly": "Tik abonentai",
+      "subscribersOnlyHint": "Pakeičia tik sekėtojų režimą",
+      "bannedWords": "Blokuoti žodžiai",
+      "bannedWordsHint": "Skirstykite kableliais. Žodžio išraiška raide po raides neapsieina.",
+      "wordAction": "Kadangi kas nors naudojasi vienu",
+      "wordBlock": "Nutraukti pranešimą",
+      "wordTimeout": "Sustabdykite ir minutei skirkite laiko",
+      "moderators": "Moderatorius",
+      "moderatorsHint": "Jie gali praleisti laiką ir užblokuoti žiūrovus tavo srautuose. Jie negali veikti nei jūsų, nei vienas kito.",
+      "addModerator": "Pridėti",
+      "usernamePlaceholder": "Naudotojo vardas",
+      "moderatorAdded": "Moderatorius pridėtas.",
+      "moderatorNotFound": "Nėra paskyros su tokiu vartotojo vardu.",
+      "removeModerator": "Pašalinti moderatorių",
+      "noModerators": "Moderatorių dar nėra.",
+      "banned": "Uždraustas jūsų srautuose",
+      "unban": "Atšaukti draudimą",
+      "noBans": "Niekas nėra uždraustas.",
+      "log": "Naujausi veiksmai",
+      "noLog": "Kol kas nieko.",
+      "actions": {
+        "timeout_one": "{{actor}} skirtasis laikas baigėsi {{target}} {{count}} sekundei",
+        "timeout_other": "{{actor}} baigėsi {{target}} laikas {{count}} sekundėms",
+        "ban": "{{actor}} uždrausta {{target}}",
+        "unban": "{{actor}} nebaudžiamas {{target}}",
+        "moderator-added": "{{target}} tapo moderatoriumi",
+        "moderator-removed": "{{target}} nebėra moderatorius",
+        "word-blocked": "Nustojau pranešimą iš {{target}} už \"{{word}}\".",
+        "word-timeout_one": "{{target}} skirtas laikas baigėsi {{count}} sekundei „{{word}}“",
+        "word-timeout_other": "{{target}} skirtas laikas baigėsi {{count}} sekundėms „{{word}}“"
       }
     }
   },
-  "liveRecap": {
-    "title": "Srauto apibendrinimas",
-    "justEnded": "Srauto apibendrinimas",
-    "lastStream": "Jūsų paskutinis srautas",
-    "none": "Dar nėra baigtų srautų. Jūsų santrauka pasirodys čia po pirmosios.",
-    "share": "Dalytis",
-    "shareText": "Ką tik transliavau „{{title}}“ per DeHub: {{duration}} live, {{peak}} žiūri piko metu ir {{followers}} naujų sekėjų.",
-    "untitled": "Srautas be pavadinimo",
-    "loadFailed": "Dangtelis neįkraunamas. Netrukus bandykite dar kartą.",
-    "duration": "Tiesioginė transliacija laiku",
-    "peakViewers": "Daugiausia žiūrima vienu metu",
-    "gifts_one": "Nuo {{count}} dovana",
-    "gifts_other": "Nuo {{count}} dovanos",
-    "newFollowers": "Nauji sekėjai",
-    "chatMessages": "Pokalbio žinutės",
-    "chatters": "Žmonės kalbasi",
-    "reactions": "Reakcijos",
-    "shares": "Žmonės dalijasi",
-    "topSupporters": "Geriausi rėmėjai",
-    "polls": "Apklausos",
-    "pollWinner": "{{option}} laimėjo",
-    "stillCounting": "Vis dar skaičiuojama: dovanų patvirtinimas gali užtrukti minutę."
+  "liveChatModeration": {
+    "timeout1m": "Laikas nutrauktas 1 minutę",
+    "timeout10m": "Laikas nutrauktas 10 minučių",
+    "timeout1h": "Laikas nutrauktas 1 valandą",
+    "ban": "Išblokuota nuo šių straumėjų",
+    "makeModerator": "Padaryti moderatoriumi",
+    "timedOut": "Nutraukta laiko riba.",
+    "banned": "Išblokuota nuo šių straumėjų.",
+    "madeModerator": "Jie dabar yra moderatorius.",
+    "failed": "Tai nepavyko. Bandykite dar kartą.",
+    "youAreBanned": "Negalite kalbėtis šio kūrėjo straumėjuose",
+    "youAreTimedOut": "Jūs nutraukti laiko ribą akimirką",
+    "title": "Moderuoti"
   }
 }

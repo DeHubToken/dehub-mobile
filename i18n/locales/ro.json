@@ -1,4 +1,26 @@
 {
+  "liveRecap": {
+    "title": "Recapitulare flux",
+    "justEnded": "Recapitularea fluxului tău",
+    "lastStream": "Ultimul tău flux",
+    "none": "Încă nu există fluxuri finalizate. Recapitularea ta apare aici după prima.",
+    "share": "Cotă",
+    "shareText": "Tocmai am difuzat „{{title}}” pe DeHub: {{duration}} live, {{peak}} vizionând la vârf și {{followers}} noi urmăritori.",
+    "untitled": "Flux fără titlu",
+    "loadFailed": "Recapitularea nu s-a încărcat. Încearcă din nou peste un moment.",
+    "duration": "Timp live",
+    "peakViewers": "Cele mai multe vizionări simultan",
+    "gifts_one": "De la {{count}} cadou",
+    "gifts_other": "De la {{count}} cadouri",
+    "newFollowers": "Urmăritori noi",
+    "chatMessages": "Mesaje chat",
+    "chatters": "Oamenii discută pe chat",
+    "reactions": "Reacţii",
+    "shares": "Distribuirea de către persoane",
+    "topSupporters": "Susținători de top",
+    "polls": "Sondaje de opinie",
+    "stillCounting": "Încă se numără: confirmarea cadourilor poate dura un minut."
+  },
   "articles": {
     "articleImage": "Imagine articol",
     "socialImage": "Imagine partajare socială",
@@ -4771,7 +4793,7 @@
     "usernameReserved": "Acest nume de utilizator este rezervat",
     "profileSet": "Profil configurat cu succes!",
     "profileFailed": "Profilul nu a putut fi configurat",
-    "displayNameHint": "Numele tău public afișat pe profil."
+    "displayNameHint": "Numele tău public afișat pe profil. Opțional — lasă câmpul gol ca să se folosească numele de utilizator."
   },
   "events": {
     "mine": "Ale mele",
@@ -5012,6 +5034,7 @@
     "accountHasA": "Acest cont are un",
     "ifYouUsedDehub": "Dacă ai mai folosit dehub.io, deschide-l pe calculatorul tău, conectează-te în același fel și cu același cont, și",
     "biometricExplainer": "Deblochează cu amprenta sau fața — nimic de tastat sau de ținut minte. Cheia rămâne pe acest telefon, așa că îți vom arăta o frază de recuperare din 12 cuvinte pe care să o notezi; este singura cale de întoarcere de pe alt telefon, de pe site sau după o reinstalare. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
+    "biometricExplainerSecuring": "Deblochează cu amprenta sau fața — nimic de tastat sau de ținut minte. Cheia rămâne pe acest telefon. Ca să revii de pe alt telefon, de pe site sau după o reinstalare, salvează mai târziu o copie de rezervă din 12 cuvinte în Setări. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
     "biometricPrompt": "Acest portofel este protejat de biometria acestui dispozitiv. Confirmă cu amprenta sau fața pentru a continua.",
     "enterRecoveryPhrase": "Introdu fraza de recuperare din 12 cuvinte pe care ai salvat-o când ai creat acest portofel (sau cheia sa privată, dacă ai exportat una). Te duce înapoi la același cont, iar parola pe care o setezi mai jos devine de acum o rezervă care funcționează peste tot.",
     "copyPhrase": "Copiază fraza",
@@ -5084,6 +5107,7 @@
     "unlockWithPasswordExplainer": "Acest cont are deja un portofel, protejat de o parolă. Introduceți-o pentru a vă recupera portofelul pe acest dispozitiv.",
     "deviceTab": "Acest dispozitiv",
     "deviceExplainer": "Nimic de tastat sau de reținut — cheia rămâne pe acest dispozitiv. Îți vom oferi un backup de 12 cuvinte pentru a scrie; este singura modalitate de a reveni de pe alt dispozitiv, de pe site sau după reinstalare. Alegeți în schimb parola, iar parola în sine va face treaba respectivă.",
+    "deviceExplainerSecuring": "Nimic de tastat sau de ținut minte — cheia rămâne pe acest dispozitiv. Ca să revii de pe alt dispozitiv, de pe site sau după o reinstalare, salvează mai târziu o copie de rezervă din 12 cuvinte în Setări. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
     "secureOnDevice": "Păstrați cheia pe acest dispozitiv"
   },
   "transcript": {
@@ -9006,7 +9030,7 @@
     "done": "Terminat",
     "error": "Cererea de ștergere nu a putut fi trimisă. Contul tău nu a fost confirmat pentru ștergere. Te rugăm să încerci din nou.",
     "back": "Înapoi la Setări",
-    "signIn": "Conectează-te la contul tău",
+    "signIn": "Conectează-te pentru a-ți șterge contul",
     "acknowledge": "Am salvat detaliile de recuperare a portofelului și înțeleg că ștergerea este permanentă."
   },
   "miniApps": {
@@ -9152,7 +9176,17 @@
     "followersUnit": "urmăritori",
     "topSupporters": "Susținători de top",
     "tipped": "{{name}} a trimis un cadou",
-    "chatPreview": "Mesajele de chat apar aici"
+    "chatPreview": "Mesajele de chat apar aici",
+    "poll": {
+      "voted_one": "Ai votat · {{count}} vot",
+      "voted_other": "Ai votat · {{count}} voturi",
+      "closed": "Votare închisă",
+      "voteFor": "Votează pentru {{option}}",
+      "signIn": "Conectează-te pentru a vota",
+      "failed": "Votul dvs. nu a fost luat în considerare. Încercați din nou.",
+      "votes_one": "{{count}} vot",
+      "votes_other": "{{count}} voturi"
+    }
   },
   "liveStudio": {
     "title": "Studio live",
@@ -9208,7 +9242,8 @@
       "event_feed": "Activitate recentă",
       "chat_box": "Casetă de chat",
       "ticker": "Indicativ",
-      "rule_alert": "Alerte privind regulile"
+      "rule_alert": "Alerte privind regulile",
+      "poll": "Sondaj"
     },
     "hints": {
       "tip_alert": "Celebrează fiecare sugestie, proporțională cu nivelul ei",
@@ -9226,7 +9261,8 @@
       "event_feed": "Cele mai recente cadouri, adepți, abonați și persoane care vă împărtășesc difuzarea",
       "chat_box": "Afișează mesajele de chat ale difuzării pe ecran",
       "ticker": "Un rând din propriul text care se derulează pe ecran",
-      "rule_alert": "Unde apar alertele regulilor tale"
+      "rule_alert": "Unde apar alertele regulilor tale",
+      "poll": "Sondajul dvs. live, cu un buton de vot pentru fiecare opțiune"
     },
     "fields": {
       "style": "Stil",
@@ -9285,6 +9321,7 @@
       "rotateFailed": "Nu s-a putut crea un link nou. Încearcă din nou peste un moment."
     },
     "rules": {
+      "test": "Testează",
       "title": "Reguli",
       "intro": "Când se întâmplă ceva în fluxul dvs., DeHub face ceea ce alegeți: afișează o alertă, redă un sunet, citește ceva cu voce tare, postează în chat sau vă spune Discord.",
       "add": "Adaugă o regulă",
@@ -9328,7 +9365,8 @@
         "share": "Cineva partajează fluxul",
         "command": "Este utilizată o comandă de chat",
         "keyword": "Un mesaj de chat conține un cuvânt",
-        "chat": "Orice mesaj de chat"
+        "chat": "Orice mesaj de chat",
+        "live": "Începeți să difuzați"
       },
       "audiences": {
         "everyone": "Toată lumea",
@@ -9378,29 +9416,98 @@
         "spooky": "Înfricoșător",
         "magic-spell": "Vraja magică",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Folosește {name}, {title} și {link} în textul tău: numele tău, titlul emisiunii și un link pentru a o viziona."
+    },
+    "polls": {
+      "title": "Sondaje",
+      "intro": "Adresați o întrebare persoanelor care vă urmăresc difuzarea. Răspund cu un buton în aplicația DeHub sau tastând {{command}} și numărul opțiunii în chat.",
+      "question": "Întrebare",
+      "questionPlaceholder": "Ce ar trebui să joc în continuare?",
+      "option": "Opțiunea {{n}}",
+      "addOption": "Adaugă o opțiune",
+      "removeOption": "Elimină opțiunea {{n}}",
+      "duration": "Cât timp rămâne deschis votul",
+      "seconds_one": "{{count}} secundă",
+      "seconds_other": "{{count}} secunde",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minute",
+      "start": "Începe sondajul",
+      "end": "Încheie votarea acum",
+      "started": "Sondajul tău este deschis. Spectatorii pot vota acum.",
+      "notLive": "Intrați mai întâi în direct. Un sondaj rulează pe difuzarea pe care o difuzați chiar acum.",
+      "startFailed": "Sondajul nu a început. Încearcă din nou.",
+      "closeFailed": "Votul nu s-a încheiat. Încearcă din nou.",
+      "live": "Vot deschis · {{time}} rămas",
+      "ended": "Votare închisă",
+      "votes_one": "{{count}} vot",
+      "votes_other": "{{count}} voturi",
+      "replaceHint": "Începerea unui nou sondaj îl închide pe cel deschis.",
+      "widgetHint": "Afișează sondajul live. În aplicația DeHub, spectatorii ating o opțiune de vot; în OBS le spune oamenilor să tasteze {{command}} și un număr în chat.",
+      "sample": {
+        "a": "Ceva nou",
+        "b": "Un vechi favorit",
+        "c": "Tu alegi"
+      }
+    },
+    "moderation": {
+      "title": "Moderarea chatului",
+      "intro": "Reguli pentru chat sub toate difuziunile tale. Ele nu ajung niciodată în chat-ul principal DeHub: cineva pe care îl interziici aici poate încă să vorbească oriunde altundeva.",
+      "loadFailed": "Setările tale de moderare nu au putut fi încărcate. Reîncărcă pagina pentru a încerca din nou.",
+      "save": "Salvează regulile chatului",
+      "saved": "Regulile chatului au fost salvate.",
+      "saveFailed": "Această schimbare nu a putut fi salvată.",
+      "slowMode": "Mod slow",
+      "slowModeHint": "Cât de mult trebuie să aștepte fiecare vizionare între mesaje. Tu și moderatorii tăi nu așteptați.",
+      "off": "Oprit",
+      "seconds_one": "{{count}} secundă",
+      "seconds_other": "{{count}} secunde",
+      "followersOnly": "Doar abonați",
+      "subscribersOnly": "Doar abonați",
+      "subscribersOnlyHint": "Suprascrie \"doar abonați\".",
+      "bannedWords": "Cuvinte interzise",
+      "bannedWordsHint": "Separați cu virgule. Scrie un cuvânt literă cu literă nu îl ocolește.",
+      "wordAction": "Când cineva folosește unul",
+      "wordBlock": "Oprește mesajul",
+      "wordTimeout": "Opriți-l și cronometrați-l pentru un minut",
+      "moderators": "Moderator",
+      "moderatorsHint": "Aceștia pot lua o pauză și pot interzice accesul spectatorilor în fluxurile tale. Nu pot acționa asupra ta sau a celuilalt.",
+      "addModerator": "Adaugă",
+      "usernamePlaceholder": "Nume de utilizator",
+      "moderatorAdded": "Moderator adăugat.",
+      "moderatorNotFound": "Niciun cont cu acel nume de utilizator.",
+      "removeModerator": "Eliminați moderatorul",
+      "noModerators": "Încă nu există moderatori.",
+      "banned": "Interzis în fluxurile tale",
+      "unban": "Deblochează",
+      "noBans": "Nimeni nu este interzis.",
+      "log": "Acțiuni recente",
+      "noLog": "Nimic încă.",
+      "actions": {
+        "moderator-added": "{{target}} a devenit moderator",
+        "timeout_one": "{{actor}} a expirat {{target}} pentru {{count}} secunde",
+        "timeout_other": "{{actor}} a expirat {{target}} timp de {{count}} secunde",
+        "ban": "{{actor}} interzis {{target}}",
+        "unban": "{{actor}} nebănuit {{target}}",
+        "moderator-removed": "{{target}} nu mai este moderator",
+        "word-blocked": "S-a oprit un mesaj de la {{target}} pentru „{{word}}”",
+        "word-timeout_one": "Timp expirat {{target}} pentru {{count}} secundă pentru „{{word}}”",
+        "word-timeout_other": "Timp expirat {{target}} pentru {{count}} secunde pentru \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Recapitulare flux",
-    "justEnded": "Recapitularea fluxului tău",
-    "lastStream": "Ultimul tău flux",
-    "none": "Încă nu există fluxuri finalizate. Recapitularea ta apare aici după prima.",
-    "share": "Cotă",
-    "shareText": "Tocmai am difuzat „{{title}}” pe DeHub: {{duration}} live, {{peak}} vizionând la vârf și {{followers}} noi urmăritori.",
-    "untitled": "Flux fără titlu",
-    "loadFailed": "Recapitularea nu s-a încărcat. Încearcă din nou peste un moment.",
-    "duration": "Timp live",
-    "peakViewers": "Cele mai multe vizionări simultan",
-    "gifts_one": "De la {{count}} cadou",
-    "gifts_other": "De la {{count}} cadouri",
-    "newFollowers": "Urmăritori noi",
-    "chatMessages": "Mesaje chat",
-    "chatters": "Oamenii discută pe chat",
-    "reactions": "Reacţii",
-    "shares": "Distribuirea de către persoane",
-    "topSupporters": "Susținători de top",
-    "polls": "Sondaje de opinie",
-    "stillCounting": "Încă se numără: confirmarea cadourilor poate dura un minut."
+  "liveChatModeration": {
+    "timeout1m": "Timp de pauză pentru 1 minut",
+    "timeout10m": "Timp de pauză pentru 10 minute",
+    "timeout1h": "Timp de pauză pentru 1 oră",
+    "ban": "Interzis din aceste difuziuni",
+    "makeModerator": "Face moderator",
+    "timedOut": "A fost pus în pauză.",
+    "banned": "Interzis din aceste difuziuni.",
+    "madeModerator": "Acum este un moderator.",
+    "failed": "Nu a funcționat. Încercați din nou.",
+    "youAreBanned": "Nu puteți chatea în difuziunile acestui creator",
+    "youAreTimedOut": "Ați fost pus în pauză pentru un moment",
+    "title": "Moderează"
   }
 }

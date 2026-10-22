@@ -25,7 +25,10 @@ jest.mock('../../components/Stages/StageMiniPlayer', () => 'StageMiniPlayer');
 jest.mock('../../context/StageContext', () => ({ useStages: () => mockStage }));
 jest.mock('../../context/PagerGestureContext', () => ({ useHorizontalScrollGuard: () => null }));
 jest.mock('../../hooks/useKidsMode', () => ({ useKidsMode: () => ({ isKidsMode: false }) }));
-jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '' }));
+jest.mock('../../libs/misc', () => ({
+  getAvatarUrl: () => '',
+  storedAvatarSources: () => ({ uri: null, fallbackUri: null }),
+}));
 
 import StagesCarousel from '../../components/Music/StagesCarousel';
 import StageNavFallback from '../../components/Stages/StageNavFallback';

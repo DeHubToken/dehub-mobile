@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Stroom samenvatting",
+    "justEnded": "Je stroom samenvatting",
+    "lastStream": "Je laatste stroom",
+    "none": "Nog geen afgeronde streams. Je samenvatting verschijnt hier na je eerste.",
+    "share": "Delen",
+    "shareText": "Ik heb net gestreamd \"{{title}}\" op DeHub: {{duration}} live, {{peak}} kijkers op het hoogtepunt en {{followers}} nieuwe volgers.",
+    "untitled": "Ongedetailleerde stroom",
+    "loadFailed": "De samenvatting is niet geladen. Probeer het over een moment opnieuw.",
+    "duration": "Tijd live",
+    "peakViewers": "Meeste kijkers tegelijk",
+    "gifts_one": "Van {{count}} cadeau",
+    "gifts_other": "Van {{count}} cadeaus",
+    "newFollowers": "Nieuwe volgers",
+    "chatMessages": "Chatberichten",
+    "chatters": "Mensen die praten",
+    "reactions": "Reacties",
+    "shares": "Mensen die delen",
+    "topSupporters": "Topsteuners",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won",
+    "stillCounting": "Nog steeds tellen: cadeaus kunnen een minuut duren om te bevestigen."
+  },
   "accountConnect": {
     "title": "Koppel je DeHub-account",
     "body": "Koppel je account om je profiel te beheren, berichten te plaatsen en inhoud te maken vanuit de chat. Verbindingen verlopen binnen 24 uur. Je kunt ze altijd verbreken.",
@@ -1251,6 +1274,8 @@
     "payFailed": "Kon {{symbol}} niet converteren naar DeHub-tokens",
     "stageDelivering": "DeHub Pay stuurt uw tokens…",
     "payViaDpay": "Betaald aan DeHub Pay, tokens arriveren in ongeveer 30s",
+    "payDirect": "Rechtstreeks naar {{name}} gestuurd in {{symbol}} op {{chain}}. Geen swap.",
+    "payDirectNoName": "Rechtstreeks naar de maker gestuurd in {{symbol}} op {{chain}}. Geen swap.",
     "payViaBridgeDpay": "Verplaatst naar Base en betaald aan DeHub Pay, tokens arriveren in ongeveer een minuut",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
@@ -5235,7 +5260,7 @@
     "usernameReserved": "Deze gebruikersnaam is gereserveerd",
     "profileSet": "Profiel succesvol ingesteld!",
     "profileFailed": "Kon profiel niet instellen",
-    "displayNameHint": "Je openbare naam die op je profiel staat."
+    "displayNameHint": "Je openbare naam die op je profiel staat. Optioneel — laat leeg om je gebruikersnaam te gebruiken."
   },
   "events": {
     "mine": "Mijne",
@@ -5501,7 +5526,9 @@
     "lowTopUp": "Weinig {{symbol}}? We vullen het aan voordat we ontgrendelen.",
     "unlockedSuccess": "Succesvol ontgrendeld",
     "otherChain": "Dit bericht wordt op een andere keten geplaatst, dus je hebt DeHub tokens nodig in je wallet daar.",
-    "payHint": "Betaal met alles in je wallet. Het wordt DeHub tokens en ontgrendelt direct."
+    "payHint": "Betaal met alles in je wallet. Het wordt DeHub tokens en ontgrendelt direct.",
+    "switchTo": "Deze post wordt betaald op {{chain}}. Schakel in Instellingen over naar {{chain}} en probeer het opnieuw.",
+    "notEnoughToken": "Je hebt {{amount}} {{symbol}} nodig om dit te ontgrendelen. Je hebt {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gebruik dit als je deze wallet op deze telefoon hebt ingesteld en de sleutel er al zou moeten zijn",
@@ -5536,6 +5563,7 @@
     "accountHasA": "Dit account heeft een",
     "ifYouUsedDehub": "Als je dehub.io eerder hebt gebruikt, open het dan op je computer, log op dezelfde manier en met hetzelfde account in, en",
     "biometricExplainer": "Ontgrendel met je vingerafdruk of gezicht — niets te typen of te onthouden. De sleutel blijft op deze telefoon, dus tonen we je een herstelzin van 12 woorden om op te schrijven; dat is de enige weg terug vanaf een ander toestel, vanaf de website of na een herinstallatie. Kies in plaats daarvan Wachtwoord, dan doet het wachtwoord zelf dat werk.",
+    "biometricExplainerSecuring": "Ontgrendel met je vingerafdruk of gezicht — niets te typen of te onthouden. De sleutel blijft op deze telefoon. Om weer toegang te krijgen vanaf een ander toestel, vanaf de website of na een herinstallatie, sla je later in Instellingen een back-up van 12 woorden op. Kies in plaats daarvan Wachtwoord, dan doet het wachtwoord zelf dat werk.",
     "biometricPrompt": "Deze wallet wordt beschermd door de biometrie van dit apparaat. Bevestig met vingerafdruk of gezicht om door te gaan.",
     "enterRecoveryPhrase": "Voer de herstelzin van 12 woorden in die je hebt opgeslagen toen je deze wallet aanmaakte (of de privésleutel, als je die hebt geëxporteerd). Het leidt terug naar hetzelfde account, en het wachtwoord dat je hieronder instelt wordt vanaf nu een back-up die overal werkt.",
     "copyPhrase": "Zin kopiëren",
@@ -5608,6 +5636,7 @@
     "unlockWithPasswordExplainer": "Dit account heeft al een portemonnee, beveiligd met een wachtwoord. Voer dit in om uw portemonnee op dit apparaat te herstellen.",
     "deviceTab": "Dit apparaat",
     "deviceExplainer": "Niets om te typen of te onthouden — de sleutel blijft op dit apparaat staan. We bieden je een back-up van 12 woorden om op te schrijven; het is de enige manier om terug te komen vanaf een ander apparaat, vanaf de website of na opnieuw installeren. Kies in plaats daarvan een wachtwoord en het wachtwoord zelf doet dat werk.",
+    "deviceExplainerSecuring": "Niets te typen of te onthouden — de sleutel blijft op dit apparaat. Om weer toegang te krijgen vanaf een ander apparaat, vanaf de website of na een herinstallatie, sla je later in Instellingen een back-up van 12 woorden op. Kies in plaats daarvan Wachtwoord, dan doet het wachtwoord zelf dat werk.",
     "secureOnDevice": "Bewaar de sleutel op dit apparaat"
   },
   "walletBackup": {
@@ -5917,6 +5946,7 @@
     "contractPlaceholder": "Contractadres (0x…)",
     "symbolPlaceholder": "Symbool (bijv. PEPE)",
     "paymentsBase": "Betalingen zijn in DeHub tokens op de Base keten",
+    "paymentsStable": "Kopers betalen in {{symbol}}, direct naar jou",
     "tokensUnit": "tokens",
     "minimumRequired": "Minimaal {{currency}} vereist"
   },
@@ -10040,7 +10070,7 @@
     "done": "Klaar",
     "error": "Kon uw verwijderingsverzoek niet indienen. Je account is niet bevestigd voor verwijdering. Probeer het opnieuw.",
     "back": "Terug naar instellingen",
-    "signIn": "Log in bij uw account",
+    "signIn": "Log in om je account te verwijderen",
     "acknowledge": "Ik heb de herstelgegevens van mijn portemonnee opgeslagen en begrijp dat het verwijderen permanent is."
   },
   "miniApps": {
@@ -10978,7 +11008,17 @@
     "followersUnit": "volgers",
     "topSupporters": "Topsupporters",
     "tipped": "{{name}} heeft een cadeau gestuurd",
-    "chatPreview": "Chatberichten worden hier weergegeven"
+    "chatPreview": "Chatberichten worden hier weergegeven",
+    "poll": {
+      "closed": "Stemming gesloten",
+      "voteFor": "Stem op {{option}}",
+      "signIn": "Log in om te stemmen",
+      "failed": "Uw stem heeft niet geteld. Probeer het opnieuw.",
+      "voted_one": "U hebt gestemd · {{count}} vote",
+      "voted_other": "U hebt op · {{count}} stemmen gestemd",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} stemmen"
+    }
   },
   "liveStudio": {
     "title": "Livestudio",
@@ -11019,6 +11059,7 @@
       "join": "Aanmelden"
     },
     "kinds": {
+      "poll": "Peiling",
       "tip_alert": "Tip-alert",
       "follow_alert": "Volg-alert",
       "subscribe_alert": "Abonneer-alert",
@@ -11052,7 +11093,8 @@
       "event_feed": "De nieuwste cadeaus, volgers, abonnees en mensen die je uitzending delen",
       "chat_box": "Toont de chatberichten van uw uitzending op het scherm",
       "ticker": "Een regel van je eigen tekst die over het scherm scrolt",
-      "rule_alert": "Waar de waarschuwingen van je regels verschijnen"
+      "rule_alert": "Waar de waarschuwingen van je regels verschijnen",
+      "poll": "Uw live poll, met een stemknop voor elke optie"
     },
     "fields": {
       "style": "Stijl",
@@ -11155,7 +11197,8 @@
         "share": "Iemand deelt de stream",
         "command": "Er wordt een chatopdracht gebruikt",
         "keyword": "Een chatbericht bevat een woord",
-        "chat": "Elk chatbericht"
+        "chat": "Elk chatbericht",
+        "live": "Je begint met uitzenden"
       },
       "audiences": {
         "everyone": "Iedereen",
@@ -11205,30 +11248,98 @@
         "spooky": "Spookachtig",
         "magic-spell": "Magische spreuk",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Gebruik {name}, {title} en {link} in je tekst: je naam, de titel van de uitzending en een link om deze te bekijken."
+    },
+    "polls": {
+      "title": "Peilingen",
+      "intro": "Stel de mensen die je uitzending bekijken een vraag. Ze antwoorden met een knop in de DeHub-app of door {{command}} en het nummer van de optie in de chat te typen.",
+      "question": "Vraag",
+      "questionPlaceholder": "Wat moet ik nu spelen?",
+      "option": "Optie {{n}}",
+      "addOption": "Voeg een optie toe",
+      "removeOption": "Optie {{n}} verwijderen",
+      "duration": "Hoe lang de stemming open blijft",
+      "seconds_one": "{{count}} seconde",
+      "seconds_other": "{{count}} seconden",
+      "minutes_one": "{{count}} minuut",
+      "minutes_other": "{{count}} minuten",
+      "start": "Start de poll",
+      "end": "Stemmen nu beëindigen",
+      "started": "Je poll is geopend. Kijkers kunnen nu stemmen.",
+      "notLive": "Ga eerst live. Er loopt een peiling over de uitzending die je nu streamt.",
+      "startFailed": "De peiling is niet gestart. Probeer het opnieuw.",
+      "closeFailed": "Het stemmen is niet beëindigd. Probeer het opnieuw.",
+      "live": "Stemmen open · {{time}} links",
+      "ended": "Stemming gesloten",
+      "votes_one": "{{count}} stem",
+      "votes_other": "{{count}} stemmen",
+      "replaceHint": "Het starten van een nieuwe peiling sluit degene die open is.",
+      "widgetHint": "Toont uw live poll. In de DeHub-app tikken kijkers op een optie om te stemmen; in OBS vertelt het mensen om {{command}} en een nummer in de chat te typen.",
+      "sample": {
+        "a": "Iets nieuws",
+        "b": "Een oude favoriet",
+        "c": "U kiest"
+      }
+    },
+    "moderation": {
+      "title": "Chatmoderatietaken",
+      "intro": "Regels voor de chat onder alle je streams. Ze komen nooit in de hoofdchat van DeHub: iemand die je hier bant kan nog steeds overal anders praten.",
+      "loadFailed": "Je moderatie-instellingen konden niet worden geladen. Ververs de pagina om het opnieuw te proberen.",
+      "save": "Opslaan van chatregels",
+      "saved": "Chatregels opgeslagen.",
+      "saveFailed": "Die verandering kon niet worden opgeslagen.",
+      "slowMode": "Langzaam modus",
+      "slowModeHint": "Hoe lang elk kijker moet wachten tussen berichten. Jij en je moderatoren wachten nooit.",
+      "off": "Uit",
+      "seconds_one": "{{count}} seconde",
+      "seconds_other": "{{count}} seconden",
+      "followersOnly": "Liefhebbers alleen",
+      "subscribersOnly": "Abonnementhouders alleen",
+      "subscribersOnlyHint": "Overschrijdt liefhebbers alleen.",
+      "bannedWords": "Gebannen woorden",
+      "bannedWordsHint": "Scheid met komma’s. Het letterlijk uitspreken van een woord werkt niet om het te omzeilen.",
+      "wordAction": "Wanneer iemand er een gebruikt",
+      "wordBlock": "Stop het bericht",
+      "wordTimeout": "Stop het en tijd ze uit voor een minuut",
+      "moderators": "Moderators",
+      "moderatorsHint": "Ze kunnen tijdelijk uitschakelen en bannen van kijkers tijdens je streams. Ze kunnen niet optreden tegen jou of tegen elkaar.",
+      "addModerator": "Toevoegen",
+      "usernamePlaceholder": "Gebruikersnaam",
+      "moderatorAdded": "Moderator toegevoegd.",
+      "moderatorNotFound": "Geen account met die gebruikersnaam.",
+      "removeModerator": "Moderator verwijderen",
+      "noModerators": "Nog geen moderators.",
+      "banned": "Gebannen van je streams",
+      "unban": "Ontbannen",
+      "noBans": "Niemand is gebannen.",
+      "log": "Recente acties",
+      "noLog": "Nog niets.",
+      "actions": {
+        "timeout_one": "{{actor}} time-out {{target}} voor {{count}} seconde",
+        "timeout_other": "{{actor}} time-out {{target}} gedurende {{count}} seconden",
+        "ban": "{{actor}} bannende {{target}}",
+        "unban": "{{actor}} ontbannende {{target}}",
+        "moderator-added": "{{target}} werd moderator",
+        "moderator-removed": "{{target}} is niet langer moderator",
+        "word-blocked": "Stopte een bericht van {{target}} voor \"{{word}}\"",
+        "word-timeout_one": "Tijdelijk uitgeschakeld {{target}} voor {{count}} seconde voor \"{{word}}\"",
+        "word-timeout_other": "Tijdelijk uitgeschakeld {{target}} voor {{count}} seconden voor \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Stroom samenvatting",
-    "justEnded": "Je stroom samenvatting",
-    "lastStream": "Je laatste stroom",
-    "none": "Nog geen afgeronde streams. Je samenvatting verschijnt hier na je eerste.",
-    "share": "Delen",
-    "shareText": "Ik heb net gestreamd \"{{title}}\" op DeHub: {{duration}} live, {{peak}} kijkers op het hoogtepunt en {{followers}} nieuwe volgers.",
-    "untitled": "Ongedetailleerde stroom",
-    "loadFailed": "De samenvatting is niet geladen. Probeer het over een moment opnieuw.",
-    "duration": "Tijd live",
-    "peakViewers": "Meeste kijkers tegelijk",
-    "gifts_one": "Van {{count}} cadeau",
-    "gifts_other": "Van {{count}} cadeaus",
-    "newFollowers": "Nieuwe volgers",
-    "chatMessages": "Chatberichten",
-    "chatters": "Mensen die praten",
-    "reactions": "Reacties",
-    "shares": "Mensen die delen",
-    "topSupporters": "Topsteuners",
-    "polls": "Polls",
-    "pollWinner": "{{option}} won",
-    "stillCounting": "Nog steeds tellen: cadeaus kunnen een minuut duren om te bevestigen."
+  "liveChatModeration": {
+    "timeout1m": "Tijdelijke uitschakeling voor 1 minuut",
+    "timeout10m": "Tijdelijke uitschakeling voor 10 minuten",
+    "timeout1h": "Tijdelijke uitschakeling voor 1 uur",
+    "ban": "Gebannen van deze streams",
+    "makeModerator": "Maak tot moderator",
+    "timedOut": "Tijdelijk uitgeschakeld.",
+    "banned": "Gebannen van deze streams.",
+    "madeModerator": "Ze zijn nu een moderator.",
+    "failed": "Dat heeft niet gewerkt. Probeer het opnieuw.",
+    "youAreBanned": "Je kunt niet chatten in de streams van deze creator.",
+    "youAreTimedOut": "Je bent even tijdelijk uitgeschakeld.",
+    "title": "Modereer"
   }
 }

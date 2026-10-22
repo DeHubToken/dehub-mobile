@@ -1,4 +1,19 @@
 {
+  "liveRecap": {
+    "title": "Stream-Rückblick",
+    "justEnded": "De Stream-Zusammenfassung.",
+    "lastStream": "Dei letze Stream",
+    "none": "Kei abgschlossene Streams no. Deine Zusammenfassung erscheint hier nach deinem ersten.",
+    "untitled": "Untitled Stream",
+    "loadFailed": "Der Recap hat sich nicht geladen. Versuchs nochmal in einer Weile.",
+    "duration": "Zeit live",
+    "peakViewers": "Meist gsiht amol zamm.",
+    "gifts_one": "Von {{count}} Geschenk",
+    "gifts_other": "Von {{count}} Geschenke",
+    "chatters": "Menschli chätta",
+    "topSupporters": "Top-Unterstützer",
+    "stillCounting": "Zäme noch am Zählä: Geschenke brauchä et Wile, bis se bestäät sünd."
+  },
   "articles": {
     "articleImage": "Artikelsbild",
     "socialImage": "Social-Share-Bild",
@@ -4800,7 +4815,7 @@
     "usernameReserved": "Dä Benutzername isch reserviert",
     "profileSet": "Profil erfolgriich iigrichtet!",
     "profileFailed": "S Profil het nid chönne iigrichtet wärde",
-    "displayNameHint": "Din öffentliche Name, wo im Profil aagzeigt wird."
+    "displayNameHint": "Din öffentliche Name im Profil. Freiwillig — lahn s Fäld leer, denn wird din Benutzername bruucht."
   },
   "events": {
     "mine": "Mini",
@@ -5041,6 +5056,7 @@
     "accountHasA": "Das Konto het e",
     "ifYouUsedDehub": "Wenn du dehub.io scho mal bruucht häsch, mach's uf dim Computer uuf, mäld dich gliich aa und mit em gliiche Konto, und",
     "biometricExplainer": "Entsperr mit dim Fingerabdruck oder Gsicht — nüt z tippe oder z merke. De Schlüssel bliibt uf dem Telefon, drum zeiged mir dir e 12-Wörter-Widerherstellungsphrase zum Uufschriibe; das isch de einzig Wäg zrugg vo mene andere Grät, vo dr Website oder nach ere Neuinstallation. Wähl statt dem Passwort, denn macht das Passwort die Ufgab.",
+    "biometricExplainerSecuring": "Entsperr mit dim Fingerabdruck oder Gsicht — nüt z tippe oder z merke. De Schlüssel bliibt uf dem Telefon. Damit du vo mene andere Telefon, vo dr Website oder nach ere Neuinstallation wieder inechunsch, speicher spöter i de Istelligä es 12-Wörter-Backup. Wähl stattdesse Passwort, denn übernimmt s Passwort sälber die Ufgab.",
     "biometricPrompt": "Die Wallet isch dur d Biometrie vo dem Grät gschützt. Bestätig mit Fingerabdruck oder Gsicht zum wiitermache.",
     "enterRecoveryPhrase": "Gib d 12-Wörter-Widerherstellungsphrase ii, wo du bim Erstelle vo dere Wallet gspeicheret häsch (oder ihre privati Schlüssel, wenn du eine exportiert häsch). Sie füehrt zum gliiche Konto zrugg, und s Passwort, wo du unte festleisch, wird ab jetz e Ersatzwäg, wo überall funktioniert.",
     "copyPhrase": "Phrase kopiere",
@@ -5113,6 +5129,7 @@
     "loseFundsBody": "Dini Saldo bliebed uf de Blockchain bi {{address}} – nüt wird usgä oder gno – aber zum si z'bewege bruucht's die Recovery-Phrase oder de Private Key vo dem Wallet. Ohni das chan niemer druf zuegriffe: weder du, weder mir. Solang du de Key nöd vom Gerät, wo-n-en gmacht het, abchunsch, gsehn was döt drin isch als verlore.",
     "deviceTab": "Das Gerät",
     "deviceExplainer": "Nüt zum iigäh oder merke — de Schlüsse blibt uf däm Gerät. Mir biete dir e 12-Wort-Backup zum ufschriebe; das isch dr einzigi Wäg zrugg i vo enem andere Gerät, vo dr Websiite, oder nach em Wiederinstalliere. Nimm Password statt und s'Passwort selber macht das.",
+    "deviceExplainerSecuring": "Nüt z tippe oder z merke — de Schlüssel bliibt uf dem Grät. Damit du vo mene andere Grät, vo dr Website oder nach ere Neuinstallation wieder inechunsch, speicher spöter i de Istelligä es 12-Wörter-Backup. Wähl stattdesse Passwort, denn übernimmt s Passwort sälber die Ufgab.",
     "secureOnDevice": "Behalte de Schlüssel uf dem Gerät"
   },
   "transcript": {
@@ -9006,11 +9023,12 @@
     "title": "Konto lösche",
     "description": "Lösch dis Konto und dini persöndliche Date dauerhaft",
     "warning": "Das löscht dis DeHub-Profil, d'Posts, d'Kommentarä, d'Nachrichte und d'sicherti Wallet-Backup für immer. Sichere dini Wallet-Wiederherstellungsdetails und verschieb alli Assetz zerscht. Öffentlechi Blockchain-Transaktione und gesetzlich erforderligi Zahltagsrekord chöi nöd glöscht werde. Dis Profil wird sofort versteckt; d'Löschung isch innerhalb vo 30 Täg fertig. Das cha nöd rückgängig gmacht werde.",
+    "cancel": "Abbräche",
     "confirm": "Lösch mis Konto für immer",
     "busy": "Löschantrag abschicke…",
     "accepted": "Konto-Löschung aagforderet",
     "receipt": "Dini Löschigsaag isch gspeicheret worde. Dini Profil isch versteckt und din Account wird innerhalb vo 30 Täg permanent glöscht. Ilogge chas die Aafrog nöd zruggzoge.",
-    "done": "Done",
+    "done": "Fertig",
     "error": "Chönnt dini Löschig‑Aafrog nöd abschicke. Dini Konto isch nöd für d’Löschig bestätigt worde. Bitte probier’s nomal.",
     "back": "Zrugg zu de Iistellige",
     "signIn": "Melde dich a, um din Account z'lösche",
@@ -9147,6 +9165,16 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Abstimmig schtössi",
+      "voteFor": "Stimm für {{option}}",
+      "signIn": "Logg dich ein, um abzustimmä",
+      "failed": "Deine Stimm zähl nüt. Versuchs no ämols.",
+      "voted_one": "Du häst abgestimmt · {{count}} Stimm",
+      "voted_other": "Du häst abgestimmt · {{count}} Stimmä",
+      "votes_one": "{{count}} Stimm",
+      "votes_other": "{{count}} Stimmä"
+    },
     "someone": "Öpper",
     "newFollower": "Neuer Follower: {{name}}",
     "newSubscriber": "Neuer Abonnent: {{name}}",
@@ -9160,6 +9188,37 @@
     "chatPreview": "Chat-Nachrichten erscheinen hier"
   },
   "liveStudio": {
+    "polls": {
+      "title": "Umfragen",
+      "question": "Frage",
+      "addOption": "Option hinzufügen",
+      "removeOption": "Option {{n}}entfernen",
+      "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
+      "questionPlaceholder": "Was soll ich als Nächstes spielen?",
+      "option": "Option {{n}}",
+      "duration": "Wos lang d’Stimmabgabe offen blit?",
+      "seconds_one": "{{count}} zwoite",
+      "seconds_other": "{{count}} Sekundä",
+      "minutes_one": "{{count}} Minute",
+      "minutes_other": "{{count}} Minuten",
+      "start": "Start de Umfrage",
+      "end": "Endet jetzt mit dem Abstimmungsprozess!",
+      "started": "De Umfrage is offen. Schauä schtämmig ab, wä de Lesä abstimmä kännt.",
+      "notLive": "Geh live als Erstes. Es läuft eine Umfrage im Stream, den du gerade machst.",
+      "startFailed": "De Umfrage isch net gestartet. Versuchs noa.",
+      "closeFailed": "Stimmabgabe isch nocht fertig. Versuche’s noochmäl.",
+      "live": "Stimmabgabe offen · {{time}} noch übrig",
+      "ended": "Stimmabgabe geschlossen",
+      "votes_one": "{{count}} stimme ab",
+      "votes_other": "{{count}} Stimmä",
+      "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
+      "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
+      "sample": {
+        "c": "Sie wählen",
+        "a": "Etwas Neues",
+        "b": "Ei e chlii Altbekanntes"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alarm und Widgets für dini Streams",
     "intro": "Alles, was du hier hinzufügst, erscheint über deinen Streams für alle Zuschauer in der DeHub-App – egal ob du live von deinem Handy, dem Browser, einer Capture-Karte oder einem Encoder streamst.",
@@ -9194,6 +9253,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
       "subscribe_alert": "Abonnenten-Benachrichtigung",
@@ -9210,6 +9270,7 @@
       "rule_alert": "Regel-Warnungen"
     },
     "hints": {
+      "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
       "follow_alert": "Zeigt jeden neuen Follower",
       "subscribe_alert": "Zeigt jeden neuen Abonnenten",
@@ -9283,6 +9344,16 @@
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
     },
     "rules": {
+      "placeholdersLive": "Verwenden Sie {name}, {title} und {link} in Ihrem Text: Ihren Namen, den Titel der Sendung und einen Link, um sie anzusehen.",
+      "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
+      "alertText": "Benachrichtigungstext",
+      "sound": "Ton",
+      "sayText": "Vorzulesender Text",
+      "chatText": "Nachricht an Post",
+      "webhookText": "Zu sendende Nachricht",
+      "summary": {
+        "tip": "Tipp von {{amount}} DHB oder mehr"
+      },
       "title": "Regeln",
       "intro": "Wenn etwas auf deinem Stream passiert, macht DeHub, was du möchtest: zeigt eine Warnung, spielt ein Geräusch, liest etwas vor, postet in deinem Chat oder sagt etwas in deinem Discord.",
       "add": "Regel hinzufügen",
@@ -9315,6 +9386,7 @@
       "webhookUrl": "Webhook-Adresse",
       "webhookHint": "Einer Discord- oder Slack-Webhook, oder ei Webadress (HTTPS) wo ei POST-Aufruf funktioniert.",
       "triggers": {
+        "live": "Du startscht mit dem Sendä",
         "tip": "Eini Tipp kommt an.",
         "follow": "Jemänd follows dir.",
         "subscribe": "Jemand abonniert.",
@@ -9324,17 +9396,26 @@
         "chat": "Any Chatnachricht"
       },
       "audiences": {
+        "everyone": "Alle",
+        "subscribers": "Abonnenten",
         "followers": "Follower"
       },
       "actionTypes": {
+        "sound": "Einen Ton abspielen",
+        "say": "Vorlesen",
+        "chat": "Im Chat posten",
         "alert": "Zeig a Alert.",
         "webhook": "Send zu einem Webhook."
       },
       "presets": {
+        "readChat": "Chat vorlesen",
+        "thankFollowers": "Vielen Dank an neue Follower",
+        "command": "Chat-Befehl",
         "blank": "Blank rule",
         "bigTip": "Lufthorn für grosse Trinkgeldbeträge"
       },
       "presetHints": {
+        "bigTip": "Spielt eine Lufthupe und zeigt eine Warnung für Trinkgelder von 100.000 DHB oder mehr an",
         "blank": "Start mit nix.",
         "readChat": "Liest die Nachrichten deiner Follower laut vor, je eine pro Zuschauer alle 30 Sekunden.",
         "thankFollowers": "Gschiib a Dankeschön in de Chat, wenn mer wer folgt.",
@@ -9347,6 +9428,9 @@
         "command": "Grüezi {name}, willkommen beim Stream!"
       },
       "sounds": {
+        "cricket": "Grillen",
+        "drumroll": "Trommelrolle",
+        "spooky": "Gruselig",
         "airhorn": "Airhorn",
         "applause": "Applaus",
         "lol": "Lachen",
@@ -9357,21 +9441,65 @@
         "magic-spell": "Mägi Zauberformel",
         "shhh": "Shhh"
       }
+    },
+    "moderation": {
+      "title": "Chat-Moderation",
+      "save": "Regeln für den Chat speichern",
+      "off": "Aus",
+      "followersOnly": "Nur Follower",
+      "wordAction": "Wenn jemand eines verwendet",
+      "addModerator": "Hinzufügen",
+      "removeModerator": "Moderator entfernen",
+      "noModerators": "Noch keine Moderatoren.",
+      "log": "Letze Änderungen",
+      "intro": "Regeln fürs Chat unter allen meinen Streams. Die kommen nie in den DeHub-Hauptchat: Wenn i dich hier banne, kannst du trotzdem überall anders reden.",
+      "loadFailed": "De Moderations-Einstellungen konntä niicht geläät. Läät d’Seite neu lädä, um’s no’chmäl zu versuche.",
+      "saved": "Chatregeln gespeichert.",
+      "saveFailed": "Däse Ändära gfällt net z’ speichern.",
+      "slowMode": "Langsam-Modus",
+      "slowModeHint": "Wie lang jeder Zuschauer zwischen den Nachrichten wartet. Du und deine Moderatoren wartet nie.",
+      "seconds_one": "{{count}} zwoite",
+      "seconds_other": "{{count}} Sekundä",
+      "subscribersOnly": "Abonnenten nur",
+      "subscribersOnlyHint": "Übernimmt nur Follower.",
+      "bannedWords": "Bannierte Wörter",
+      "bannedWordsHint": "Separate mit Kommas. Buchstaben für Buchstaben aussprechen bringt nichts.",
+      "wordBlock": "Stoppe die Nachricht.",
+      "wordTimeout": "Hör auf und schick sie für eine Minute raus.",
+      "moderators": "Moderatoren",
+      "moderatorsHint": "Sie können Zuschauer in deinen Streams zeitlich begrenzen und sperren. Sie können aber niht auf dich oder aufeinander reagieren.",
+      "usernamePlaceholder": "Benutzername",
+      "moderatorAdded": "Beauftragter für die Moderation hinzugefügt.",
+      "moderatorNotFound": "Keini Account mit dem Namen.",
+      "banned": "Verboten von deinen Streams",
+      "unban": "Unban",
+      "noBans": "Niemand is gesperrt.",
+      "noLog": "Noch nix.",
+      "actions": {
+        "word-blocked": "Eine Nachricht von {{target}} für \"{{word}}\" wurde gestoppt",
+        "word-timeout_other": "Zeitüberschreitung {{target}} für {{count}} Sekunden für \"{{word}}\"",
+        "timeout_one": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä",
+        "timeout_other": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä.",
+        "ban": "{{actor}} gschmäht {{target}}",
+        "unban": "{{actor}} unbanned {{target}}",
+        "moderator-added": "{{target}} isch nocht zu Moderator gsi.",
+        "moderator-removed": "{{target}} isch mer no mehr Moderator.",
+        "word-timeout_one": "Timed out nach {{target}} Sekunde für {{count}} Sekunde für \"{{word}}\""
+      }
     }
   },
-  "liveRecap": {
-    "title": "Stream-Rückblick",
-    "justEnded": "De Stream-Zusammenfassung.",
-    "lastStream": "Dei letze Stream",
-    "none": "Kei abgschlossene Streams no. Deine Zusammenfassung erscheint hier nach deinem ersten.",
-    "untitled": "Untitled Stream",
-    "loadFailed": "Der Recap hat sich nicht geladen. Versuchs nochmal in einer Weile.",
-    "duration": "Zeit live",
-    "peakViewers": "Meist gsiht amol zamm.",
-    "gifts_one": "Von {{count}} Geschenk",
-    "gifts_other": "Von {{count}} Geschenke",
-    "chatters": "Menschli chätta",
-    "topSupporters": "Top-Unterstützer",
-    "stillCounting": "Zäme noch am Zählä: Geschenke brauchä et Wile, bis se bestäät sünd."
+  "liveChatModeration": {
+    "timeout1m": "Zeit aus für 1 Minute",
+    "timeout10m": "Zeit aus für 10 Minuti.",
+    "timeout1h": "Pause für 1 Stund",
+    "ban": "Verbann von diesen Streams.",
+    "makeModerator": "Mach Moderator",
+    "timedOut": "Zeit abgelaufen.",
+    "banned": "Verboten für diese Streams.",
+    "madeModerator": "Sie sünd no a Moderator.",
+    "failed": "Das hat net funktioniert. Versuchs no wieder.",
+    "youAreBanned": "Du kannst net in deim Creator-Streams chattaa.",
+    "youAreTimedOut": "Du bisch für e Moment zu langsam.",
+    "title": "Mässige"
   }
 }

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Virran yhteenveto",
+    "justEnded": "Suoratoistosi yhteenveto",
+    "lastStream": "Viimeinen suoratoistosi",
+    "none": "Ei vielä valmiita striimejä. Yhteenvetosi näkyy tässä ensimmäisen yhteenvetosi jälkeen.",
+    "share": "Jaa",
+    "shareText": "Striimasin juuri \"{{title}}\" DeHubissa: {{duration}} live, {{peak}} katselu huipulla ja {{followers}} uutta seuraajaa.",
+    "untitled": "Nimetön stream",
+    "loadFailed": "Yhteenveto ei latautunut. Yritä hetken kuluttua uudelleen.",
+    "duration": "Live-aika",
+    "peakViewers": "Useimmat katsovat kerralla",
+    "gifts_one": "Lähettäjä:{{count}} Gift",
+    "gifts_other": "Lahjoista {{count}}",
+    "newFollowers": "Uudet seuraajat",
+    "chatMessages": "Chat-viestit",
+    "chatters": "Ihmiset juttelevat",
+    "reactions": "Reaktiot",
+    "shares": "Henkilöiden jakaminen",
+    "topSupporters": "Parhaat kannattajat",
+    "polls": "Kyselyt",
+    "pollWinner": "{{option}} voitti",
+    "stillCounting": "Vielä lasketaan: lahjojen vahvistaminen voi kestää hetken."
+  },
   "articles": {
     "articleImage": "Artikkelikuva",
     "socialImage": "Sosiaalisen jaon kuva",
@@ -4771,7 +4794,7 @@
     "usernameReserved": "Tämä käyttäjänimi on varattu",
     "profileSet": "Profiili määritetty onnistuneesti!",
     "profileFailed": "Profiilin määritys epäonnistui",
-    "displayNameHint": "Julkinen nimesi, joka näkyy profiilissasi."
+    "displayNameHint": "Julkinen nimesi profiilissasi. Valinnainen — jätä tyhjäksi, niin käytetään käyttäjätunnustasi."
   },
   "events": {
     "mine": "Omat",
@@ -5012,6 +5035,7 @@
     "accountHasA": "Tällä tilillä on",
     "ifYouUsedDehub": "Jos olet käyttänyt dehub.io:ta aiemmin, avaa se tietokoneellasi, kirjaudu sisään samalla tavalla ja samalla tilillä, ja",
     "biometricExplainer": "Avaa sormenjäljellä tai kasvoilla — mitään ei tarvitse kirjoittaa tai muistaa. Avain pysyy tässä puhelimessa, joten näytämme sinulle 12 sanan palautuslauseen, jonka kirjoitat ylös; se on ainoa tie takaisin toisesta puhelimesta, verkkosivustolta tai uudelleenasennuksen jälkeen. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
+    "biometricExplainerSecuring": "Avaa sormenjäljellä tai kasvoilla — mitään ei tarvitse kirjoittaa tai muistaa. Avain pysyy tässä puhelimessa. Jos haluat päästä takaisin toisesta puhelimesta, verkkosivustolta tai uudelleenasennuksen jälkeen, tallenna myöhemmin 12 sanan varmuuskopio Asetuksissa. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
     "biometricPrompt": "Tämä lompakko on suojattu tämän laitteen biometrialla. Vahvista sormenjäljellä tai kasvoilla jatkaaksesi.",
     "enterRecoveryPhrase": "Syötä 12 sanan palautuslause, jonka tallensit luodessasi tämän lompakon (tai sen yksityinen avain, jos veit sellaisen). Se palauttaa samalle tilille, ja alla asettamastasi salasanasta tulee varakeino, joka toimii tästä lähtien kaikkialla.",
     "copyPhrase": "Kopioi lause",
@@ -5084,6 +5108,7 @@
     "unlockWithPasswordExplainer": "Tällä tilillä on jo lompakko, joka on suojattu salasanalla. Syötä se palauttaaksesi lompakkosi tälle laitteelle.",
     "deviceTab": "Tämä laite",
     "deviceExplainer": "Ei mitään kirjoitettavaa tai muistettavaa — avain pysyy tällä laitteella. Tarjoamme sinulle 12 sanan varmuuskopion, jonka voit kirjoittaa muistiin. Se on ainoa tapa palata toiselta laitteelta, verkkosivustolta tai uudelleenasennuksen jälkeen. Valitse sen sijaan salasana, ja salasana itse tekee tämän työn.",
+    "deviceExplainerSecuring": "Mitään ei tarvitse kirjoittaa tai muistaa — avain pysyy tässä laitteessa. Jos haluat päästä takaisin toisesta laitteesta, verkkosivustolta tai uudelleenasennuksen jälkeen, tallenna myöhemmin 12 sanan varmuuskopio Asetuksissa. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
     "secureOnDevice": "Pidä avain tässä laitteessa"
   },
   "transcript": {
@@ -8991,7 +9016,7 @@
     "done": "Valmis",
     "error": "Poistamispyyntöä ei voitu lähettää. Tiliäsi ei ole vahvistettu poistettavaksi. Yritä uudelleen.",
     "back": "Takaisin asetukset -sivulle",
-    "signIn": "Kirjaudu tilillesi",
+    "signIn": "Kirjaudu sisään poistaaksesi tilisi",
     "acknowledge": "Olen tallentanut lompakkoni palautustiedot ja ymmärrän, että poistaminen on pysyvää."
   },
   "miniApps": {
@@ -9138,7 +9163,17 @@
     "followersUnit": "seuraajat",
     "topSupporters": "Parhaat kannattajat",
     "tipped": "{{name}} lähetti lahjan",
-    "chatPreview": "Chat-viestit näkyvät tässä"
+    "chatPreview": "Chat-viestit näkyvät tässä",
+    "poll": {
+      "closed": "Äänestys suljettu",
+      "voteFor": "Äänestä {{option}}",
+      "signIn": "Kirjaudu sisään äänestääksesi",
+      "failed": "Ääntäsi ei laskettu. Yritä uudelleen.",
+      "voted_one": "Äänestit · {{count}} äänestystä",
+      "voted_other": "Äänestit · {{count}} ääntä",
+      "votes_one": "{{count}} äänestys",
+      "votes_other": "{{count}} ääntä"
+    }
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9194,7 +9229,8 @@
       "event_feed": "Viimeaikainen toiminta",
       "chat_box": "Keskusteluruutu",
       "ticker": "Ticker",
-      "rule_alert": "Sääntöhälytykset"
+      "rule_alert": "Sääntöhälytykset",
+      "poll": "Kysely"
     },
     "hints": {
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
@@ -9212,7 +9248,8 @@
       "event_feed": "Uusimmat lahjat, seuraajat, tilaajat ja ihmiset, jotka jakavat lähetyksesi",
       "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
       "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki",
-      "rule_alert": "Missä sääntöjesi hälytykset näkyvät"
+      "rule_alert": "Missä sääntöjesi hälytykset näkyvät",
+      "poll": "Livekyselysi, jossa on äänestyspainike jokaiselle vaihtoehdolle"
     },
     "fields": {
       "style": "Tyyli",
@@ -9315,7 +9352,8 @@
         "share": "Joku jakaa streamin",
         "command": "Chat-komentoa käytetään",
         "keyword": "Chat-viesti sisältää sanan",
-        "chat": "Mikä tahansa chat-viesti"
+        "chat": "Mikä tahansa chat-viesti",
+        "live": "Aloitat lähetyksen"
       },
       "audiences": {
         "everyone": "Kaikki",
@@ -9340,6 +9378,7 @@
         "command": "Chat-komento"
       },
       "presetHints": {
+        "thankFollowers": "Lähettää kiitoksen chattiisi, kun joku alkaa seurata sinua",
         "blank": "Aloita tyhjästä",
         "readChat": "Lukee seuraajiesi viestit ääneen, yksi per katsoja 30 sekunnin välein",
         "bigTip": "Soittaa äänitorvea ja näyttää hälytyksen vähintään 100 000 DHB: n tipeistä",
@@ -9364,30 +9403,98 @@
         "spooky": "Pelottava",
         "magic-spell": "Taikaloitsu",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Käytä {name}, {title} ja {link} tekstissäsi: nimesi, lähetyksen otsikko ja linkki sen katseluun."
+    },
+    "polls": {
+      "title": "Kyselyt",
+      "intro": "Kysy lähetystäsi katsovilta ihmisiltä kysymys. Hän vastaa painikkeella DeHub-sovelluksessa tai kirjoittamalla {{command}} ja vaihtoehdon numeron chatissa.",
+      "question": "Kysymys",
+      "questionPlaceholder": "Mitä minun pitäisi pelata seuraavaksi?",
+      "option": "Vaihtoehto {{n}}",
+      "addOption": "Lisää vaihtoehto",
+      "removeOption": "Poista vaihtoehto {{n}}",
+      "duration": "Kuinka kauan äänestys on auki",
+      "seconds_one": "{{count}} sekunti",
+      "seconds_other": "{{count}} sekuntia",
+      "minutes_one": "{{count}} minuuttia",
+      "minutes_other": "{{count}} minuuttia",
+      "start": "Aloita kysely",
+      "end": "Lopeta äänestys nyt",
+      "started": "Kyselysi on avoinna. Katsojat voivat äänestää nyt.",
+      "notLive": "Elä suoraan ensiksi. Kysely on juuri tällä hetkellä lähetetyssäsi lähetyksessä.",
+      "startFailed": "Kysely ei alkanut. Yritä uudelleen.",
+      "closeFailed": "Äänestys ei päättynyt. Yritä uudelleen.",
+      "live": "Äänestys auki · {{time}} jäljellä",
+      "ended": "Äänestys suljettu",
+      "votes_one": "{{count}} äänestys",
+      "votes_other": "{{count}} ääntä",
+      "replaceHint": "Uuden kyselyn aloittaminen sulkee avoimen kyselyn.",
+      "widgetHint": "Näyttää livekyselysi. DeHub-sovelluksen katsojat napauttavat äänestysvaihtoehtoa; OBS: ssä se kehottaa ihmisiä kirjoittamaan {{command}} ja numeron chatissa.",
+      "sample": {
+        "a": "Jotain uutta",
+        "b": "Vanha suosikki",
+        "c": "Sinä valitset"
+      }
+    },
+    "moderation": {
+      "title": "Chat-moderointi",
+      "intro": "Sääntöjä chattiin kaikkien suoratoistojesi alla. Ne eivät koskaan pääse DeHubin päächattiin: ketä sinä kiellet täältä, voi puhua kaikkialla muualla.",
+      "loadFailed": "Moderointiasetuksiasi ei voitu ladata. Palauta sivu ja yritä uudelleen.",
+      "save": "Tallenna chat-säännöt",
+      "saved": "Chat-säännöt tallennettu.",
+      "saveFailed": "Muutos ei voinut tallentua.",
+      "slowMode": "Hidas tila",
+      "slowModeHint": "Kuinka kauan katsojat odottavat viestien välillä. Sinä ja moderaattorisi eivät koskaan odota.",
+      "off": "Pois päältä",
+      "seconds_one": "{{count}} sekuntia",
+      "seconds_other": "{{count}} sekuntia",
+      "followersOnly": "Ainoastaan seuraajat",
+      "subscribersOnly": "Ainoastaan tilanneet",
+      "subscribersOnlyHint": "Ohittaa seuraajien ainoan tilan.",
+      "bannedWords": "Kielletyt sanat",
+      "bannedWordsHint": "Erillään pilkulla. Kirjoittamalla sana kirjaimittain ei ohiteta sitä.",
+      "wordAction": "Kun joku käyttää yhtä",
+      "wordBlock": "Estä viesti",
+      "wordTimeout": "Lopeta ja aikakarsinoi heitä minuutiksi",
+      "moderators": "Moderaattorit",
+      "moderatorsHint": "He voivat aikakarsinoida ja kieltää katsojat suoratoistossasi. He eivät voi toimia sinusta tai toisistaan.",
+      "addModerator": "Lisää",
+      "usernamePlaceholder": "Käyttäjänimi",
+      "moderatorAdded": "Moderaattori lisätty.",
+      "moderatorNotFound": "Ei tällaisella käyttäjätunnuksella ole tiliä.",
+      "removeModerator": "Poista moderaattori",
+      "noModerators": "Ei moderaattoreita vielä.",
+      "banned": "Kielletty suoratoistossasi",
+      "unban": "Poista kieltäminen",
+      "noBans": "Ei ketään kiellettyä.",
+      "log": "Viimeaikaiset toimet",
+      "noLog": "Ei vielä mitään.",
+      "actions": {
+        "timeout_one": "{{actor}} aikakatkaistu {{target}} ajaksi {{count}} sekuntia",
+        "timeout_other": "{{actor}} aikakatkaistu {{target}} ajaksi {{count}} sekuntia",
+        "ban": "{{actor}} kiellettiin {{target}}",
+        "unban": "{{actor}} kiellettäminen poistettiin {{target}}:sta",
+        "moderator-added": "{{target}} tuli moderaattoriksi",
+        "moderator-removed": "{{target}} ei enää ole moderaattori",
+        "word-blocked": "Estettiin viesti {{target}}:lta: \"{{word}}\"",
+        "word-timeout_one": "Aikakarsinoitiin {{target}} {{count}} sekunniksi: \"{{word}}\"",
+        "word-timeout_other": "Aikakarsinoitiin {{target}} {{count}} sekuntia: \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Virran yhteenveto",
-    "justEnded": "Suoratoistosi yhteenveto",
-    "lastStream": "Viimeinen suoratoistosi",
-    "none": "Ei vielä valmiita striimejä. Yhteenvetosi näkyy tässä ensimmäisen yhteenvetosi jälkeen.",
-    "share": "Jaa",
-    "shareText": "Striimasin juuri \"{{title}}\" DeHubissa: {{duration}} live, {{peak}} katselu huipulla ja {{followers}} uutta seuraajaa.",
-    "untitled": "Nimetön stream",
-    "loadFailed": "Yhteenveto ei latautunut. Yritä hetken kuluttua uudelleen.",
-    "duration": "Live-aika",
-    "peakViewers": "Useimmat katsovat kerralla",
-    "gifts_one": "Lähettäjä:{{count}} Gift",
-    "gifts_other": "Lahjoista {{count}}",
-    "newFollowers": "Uudet seuraajat",
-    "chatMessages": "Chat-viestit",
-    "chatters": "Ihmiset juttelevat",
-    "reactions": "Reaktiot",
-    "shares": "Henkilöiden jakaminen",
-    "topSupporters": "Parhaat kannattajat",
-    "polls": "Kyselyt",
-    "pollWinner": "{{option}} voitti",
-    "stillCounting": "Vielä lasketaan: lahjojen vahvistaminen voi kestää hetken."
+  "liveChatModeration": {
+    "timeout1m": "Aika ulos 1 minuutiksi",
+    "timeout10m": "Aika ulos 10 minuutiksi",
+    "timeout1h": "Aika ulos 1 tunniksi",
+    "ban": "Kielletty näistä suoratoistoista",
+    "makeModerator": "Tehdään moderaattoriksi",
+    "timedOut": "Aika ulos.",
+    "banned": "Kielletty näistä suoratoistoista.",
+    "madeModerator": "He ovat nyt moderaattoreita.",
+    "failed": "Se ei toiminut. Yritä uudelleen.",
+    "youAreBanned": "Et voi chattailla tässä luovan suoratoiston aikana",
+    "youAreTimedOut": "Olet hetkellisesti aika ulos",
+    "title": "Moderoi"
   }
 }

@@ -12,3 +12,23 @@ export function confirmEndStage(t: TFunction, title: string | undefined, onEnd: 
     { text: t("stages.end"), style: "destructive", onPress: onEnd },
   ]);
 }
+
+/**
+ * The same prompt, answered as a promise: true to end the stage, false to keep
+ * it on the air. For a host walking into another room, which cannot happen
+ * without their own stage coming down first.
+ */
+export function askToEndStage(t: TFunction, title: string | undefined): Promise<boolean> {
+  return new Promise((resolve) => {
+    Alert.alert(
+      t("stages.endThisStage"),
+      t("stages.endSpaceConfirm", { title: title || "" }),
+      [
+        { text: t("common.cancel"), style: "cancel", onPress: () => resolve(false) },
+        { text: t("stages.end"), style: "destructive", onPress: () => resolve(true) },
+      ],
+      // Android closes an alert on a tap outside it; that is a no.
+      { cancelable: true, onDismiss: () => resolve(false) },
+    );
+  });
+}

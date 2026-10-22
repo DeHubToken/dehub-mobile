@@ -31,7 +31,7 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import StageCoverArt from "./StageCoverArt";
 import StageRecordingPlayer from "./StageRecordingPlayer";
-import { getAvatarUrl } from "../../libs/misc";
+import { storedAvatarSources } from "../../libs/misc";
 import { radius } from "../../theme/radius";
 import { ShareLinks } from "../../navigation/linking.config";
 import { useStageReminder, useStageReminderFaces } from "../../hooks/useStageReminder";
@@ -163,7 +163,7 @@ export const StageReminderFaces: React.FC<{ spaceId: string }> = ({ spaceId }) =
               })}
             >
               <Avatar
-                uri={face.avatarUrl ? getAvatarUrl(face.avatarUrl, 24) : null}
+                {...storedAvatarSources(face.avatarUrl, face.address, 24)}
                 size={22}
                 name={face.username || face.address}
                 borderWidth={1}
@@ -186,7 +186,7 @@ const HostRow: React.FC<{ space: AudioSpace }> = ({ space }) => {
   return (
     <View style={styles.hostRow}>
       <Avatar
-        uri={space.host_avatar ? getAvatarUrl(space.host_avatar, 40) : null}
+        {...storedAvatarSources(space.host_avatar, space.host_wallet_address, 40)}
         size={40}
         name={space.host_username || space.host_wallet_address}
         borderWidth={2}

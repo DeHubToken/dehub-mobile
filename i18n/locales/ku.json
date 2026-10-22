@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Kurteya weşana zindî",
+    "justEnded": "Kurteya weşana we",
+    "lastStream": "Weşana te ya dawî",
+    "none": "Hîn weşanên qediyayî tune ne. Kurteya we piştî weşana we ya yekem li vir xuya dibe.",
+    "share": "Par",
+    "shareText": "Min tenê \"{{title}}\" li ser DeHub weşand: {{duration}} zindî, {{peak}} li lûtkeyê temaşekirin û {{followers}} şopînerên nû.",
+    "untitled": "Herikîna bêsernav",
+    "loadFailed": "Kurteya daneyan nehat barkirin. Piştî demekê dîsa biceribînin.",
+    "duration": "Demjimêr zindî",
+    "peakViewers": "Piraniya temaşekirinê di carekê de",
+    "gifts_one": "Ji diyariya {{count}}",
+    "gifts_other": "Ji diyariyên {{count}}",
+    "newFollowers": "Şopînerên nû",
+    "chatMessages": "Peyamên sohbetê",
+    "chatters": "Xelk sohbet dikin",
+    "reactions": "Bertekên",
+    "shares": "Parvekirina mirovan",
+    "topSupporters": "Piştgirên herî jor",
+    "polls": "ڕاپرسییەکان",
+    "pollWinner": "{{option}} qezenc kir",
+    "stillCounting": "Hîn jî hejmartin: piştrastkirina diyariyan dikare deqeyek bidome."
+  },
   "articles": {
     "articleImage": "Wêneya gotarê",
     "socialImage": "Wêneya parvekirina civakî",
@@ -4755,7 +4778,7 @@
     "usernameReserved": "Ev navê bikarhêner veqetandî ye",
     "profileSet": "Profîl bi serkeftî hat sazkirin!",
     "profileFailed": "Profîl nehat sazkirin",
-    "displayNameHint": "Navê te yê giştî ku li ser profîla te xuya dibe."
+    "displayNameHint": "Navê te yê giştî li ser profîla te. Ne mecbûrî ye — vala bihêle da ku navê te yê bikarhêner were bikaranîn."
   },
   "events": {
     "mine": "Yên min",
@@ -4989,6 +5012,7 @@
     "accountHasA": "Ev hesab xwedî",
     "ifYouUsedDehub": "Eger berê te dehub.io bikar aniye, wê li ser kompîtera xwe veke, bi heman awayî û bi heman hesabê têkeve, û",
     "biometricExplainer": "Bi şopa tiliya xwe an rûyê xwe veke — tiştek nayê nivîsandin an bîranîn. Mifte li vê telefonê dimîne, ji ber vê em ê hevoka vegerandinê ya 12 peyvî nîşanî te bidin da ku binivîsî; ew tenê rêya vegerê ye ji telefoneke din, ji malperê, an piştî sazkirina nû. Li şûna wê Şîfre hilbijêre û ew kar bi xwe şîfre dike.",
+    "biometricExplainerSecuring": "Bi şopa tiliya xwe an rûyê xwe veke — tiştek nayê nivîsandin an bîranîn. Mifte li vê telefonê dimîne. Ji bo ku ji telefoneke din, ji malperê an piştî sazkirina nû vegerî hundir, paşê di Mîhengan de paşekefteke 12 peyvî tomar bike. Li şûna wê Şîfre hilbijêre û ew kar bi xwe şîfre dike.",
     "biometricPrompt": "Ev berîk bi biyometrîka vê amûrê tê parastin. Ji bo berdewamkirinê bi şopa tiliyê an rû piştrast bike.",
     "enterRecoveryPhrase": "Hevoka vegerandinê ya 12 peyvî binivîse ku te dema çêkirina vê berîkê tomar kir (an mifteya wê ya taybet, heke te yek derxistibe). Ew vedigere heman hesabê, û şîfreya ku tu li jêr saz dikî ji niha û pê ve dibe alternatîfek ku li her derê dixebite.",
     "copyPhrase": "Hevokê kopî bike",
@@ -5061,6 +5085,7 @@
     "addPasswordOnWeb": "Heke te berê dehub.io bi kar anîbe, wê li ser komputera xwe veke, bi heman awayî û bi heman hesabî têkeve, û <em>şîfreyeke berîkê lê zêde bike</em> — ew paşkeftineke şîfrekirî li ewrê tomar dike. Paşê vegere vir û dîsa biceribîne.",
     "deviceTab": "Ev cîhaz",
     "deviceExplainer": "Tiştek tune ku were nivîsandin an bîranîn - mifte li ser vê cîhazê dimîne. Em ê ji we re kopiyek 12-peyvî pêşkêş bikin ku hûn binivîsin; ew tenê rêya vegerê ye ji cîhazek din, ji malperê, an piştî ji nû ve sazkirinê. Li şûna wê Şîfre hilbijêrin û şîfre bi xwe vî karî dike.",
+    "deviceExplainerSecuring": "Tiştek nayê nivîsandin an bîranîn — mifte li vê cîhazê dimîne. Ji bo ku ji cîhazeke din, ji malperê an piştî sazkirina nû vegerî hundir, paşê di Mîhengan de paşekefteke 12 peyvî tomar bike. Li şûna wê Şîfre hilbijêre û ew kar bi xwe şîfre dike.",
     "secureOnDevice": "Mifteyê li ser vê cîhazê bihêle"
   },
   "transcript": {
@@ -8893,19 +8918,19 @@
     "topUpEmptyHint": "تۆکن زیاد بکە بۆ دروستکردن بە AI"
   },
   "accountDeletion": {
-    "title": "حیسابی بەکارهێنەر بسڕەوە",
+    "title": "Hesabê jê bibe",
     "warning": "Ev profîla we ya DeHub, post, şîrove, peyam û kopiya hilanînê ya berîka we bi awayekî mayînde jê dibe. Agahiyên vegerandina berîka xwe hilînin û pêşî her mal û milkê xwe veguhezînin. Muameleyên zincîra blokê yên giştî û tomarên dravdanê yên ku ji hêla qanûnî ve hewce ne nayên jêbirin. Profîla we tavilê tê veşartin; jêbirin di nav 30 rojan de qediya. Ev nayê vegerandin.",
     "cancel": "Betal bike",
     "done": "Biqedîne",
-    "description": "هەموو هەژمار و زانیاری کەسییەکانت بە شێوەیەکی هەمیشەیی سڕینەوە",
-    "confirm": "هەژمارم بە شێوەیەکی هەمیشەیی سڕینەوە",
-    "busy": "پێشکەشکردنی داواکاری سڕینەوە…",
-    "accepted": "داواکاری سڕینەوەی هەژمار داواکرا",
-    "receipt": "داواکاری سڕینەوەی تۆ هەڵگیرا. پرۆفایلی تۆ شاراوە و هەژمارەکەت لە ماوەی 30 ڕۆژدا بە شێوەیەکی هەمیشەیی سڕدرێت. چوونەژوورەوە ناتوانێت ئەم داواکارییە هەڵبژاردن.",
-    "error": "ناتوانرا داواکاری سڕینەوەی تۆ پێشکەش بکرێت. هەژمارەکەت بۆ سڕینەوە پشتڕاست نەکراوە. تکایە دووبارە هەوڵبدە.",
-    "back": "گەڕانەوە بۆ ڕێکخستنەکان",
-    "signIn": "چوونەژوورەوە بۆ سڕینەوەی هەژمارەکەت",
-    "acknowledge": "من زانیارییەکانی گەڕاندنەوەی جیابەجێی خۆم هەڵگرتووە و تێگەیشتم کە سڕینەوە هەمیشەییە."
+    "description": "Hesab û daneyên xwe yên kesane bi awayekî mayînde jê bibe",
+    "confirm": "Hesabê min bi awayekî mayînde jê bibe",
+    "busy": "Daxwaza jêbirinê tê şandin…",
+    "accepted": "Jêbirina hesabê hate xwestin",
+    "receipt": "Daxwaza te ya jêbirinê hate tomarkirin. Profîla te veşartî ye û hesabê te dê di nav 30 rojan de bi awayekî mayînde were jêbirin. Têketin nikare vê daxwazê betal bike.",
+    "error": "Daxwaza te ya jêbirinê nehat şandin. Hesabê te ji bo jêbirinê nehatiye pejirandin. Ji kerema xwe dîsa biceribîne.",
+    "back": "Vegere Mîhengan",
+    "signIn": "Ji bo jêbirina hesabê xwe têkeve",
+    "acknowledge": "Min agahiyên vegerandina berîka xwe tomar kirin û ez fêm dikim ku jêbirin mayînde ye."
   },
   "miniApps": {
     "host": {
@@ -9010,7 +9035,7 @@
     "update": "Niha nû bike"
   },
   "walletBackup": {
-    "title": "پشتیوانی بکە لە جێبەجێ",
+    "title": "Kopiya hilanînê ya berîkê çêke",
     "rowDesc": "١٢ وشە یان کلیلی تایبەتی خۆت ببینە",
     "backedUpOn": "پشتیوانی کرا {{date}}",
     "offerTitle": "پشتیوانی بکە لە جێبەجێ؟",
@@ -9051,7 +9076,17 @@
     "followersUnit": "şopîner",
     "topSupporters": "Piştgirên herî jor",
     "tipped": "{{name}} diyariyek şand",
-    "chatPreview": "Peyamên sohbetê li vir xuya dibin"
+    "chatPreview": "Peyamên sohbetê li vir xuya dibin",
+    "poll": {
+      "closed": "Dengdan qediya",
+      "voteFor": "Dengê xwe bide {{option}}",
+      "signIn": "Ji bo dengdanê têkeve hesabê xwe",
+      "failed": "Dengê te nehat jimartin. Dîsa biceribîne.",
+      "voted_one": "Te deng da · {{count}} deng",
+      "voted_other": "Te deng da · {{count}} deng",
+      "votes_one": "Dengê {{count}}",
+      "votes_other": "Dengên {{count}}"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9107,7 +9142,8 @@
       "event_feed": "Çalakiya dawî",
       "chat_box": "Qutiya sohbetê",
       "ticker": "Tîker",
-      "rule_alert": "Hişyariyên qaîdeyan"
+      "rule_alert": "Hişyariyên qaîdeyan",
+      "poll": "Gelpisî"
     },
     "hints": {
       "tip_alert": "Her serişteyê, bi mezinahiya wê, pîroz dike",
@@ -9125,7 +9161,8 @@
       "event_feed": "Diyariyên herî dawî, şopîner, abone û kesên ku weşana we parve dikin",
       "chat_box": "Peyamên sohbeta weşana we li ser ekranê nîşan dide",
       "ticker": "Rêzek ji nivîsa we ku li ser ekranê digere",
-      "rule_alert": "Jêrê ku pêşengên rêziman de hene"
+      "rule_alert": "Jêrê ku pêşengên rêziman de hene",
+      "poll": "Anketa we ya zindî, bi bişkojkek dengdanê ji bo her vebijarkê"
     },
     "fields": {
       "style": "Awayî",
@@ -9228,7 +9265,8 @@
         "share": "Kesek weşanê parve dike",
         "command": "Fermana sohbetê tê bikaranîn",
         "keyword": "Peyama sohbetê peyvekê dihewîne",
-        "chat": "Her peyama sohbetê"
+        "chat": "Her peyama sohbetê",
+        "live": "Tu dest bi weşanê dikî"
       },
       "audiences": {
         "everyone": "Her kes",
@@ -9236,9 +9274,11 @@
         "subscribers": "Abone"
       },
       "actionTypes": {
+        "chat": "Di sohbetê de biweşîne",
         "alert": "Hişyariyekê nîşan bide",
         "say": "Bi dengekî bilind bixwîne",
-        "webhook": "Bişîne bo webhookekê"
+        "webhook": "Bişîne bo webhookekê",
+        "sound": "Dengekî lêbide"
       },
       "summary": {
         "tip": "Serişteya {{amount}} DHB an jî zêdetir"
@@ -9276,30 +9316,98 @@
         "spooky": "Tirsnak",
         "magic-spell": "Sêrbaziya efsûnî",
         "shhh": "Şşş"
+      },
+      "placeholdersLive": "Di nivîsa xwe de {name}, {title} û {link} bi kar bîne: navê te, sernavê weşanê û lînka temaşekirina wê."
+    },
+    "polls": {
+      "started": "Rapirsiya te vekirî ye. Temaşevan niha dikarin deng bidin.",
+      "title": "Anket",
+      "intro": "Ji kesên ku weşana te temaşe dikin pirsek bipirse. Ew bi bişkojkek di sepana DeHub de, an jî bi nivîsandina {{command}} û jimareya vebijarkê di sohbetê de bersiv didin.",
+      "question": "Pirs",
+      "questionPlaceholder": "Divê ez çi bilîzim paşê?",
+      "option": "Vebijêrk {{n}}",
+      "addOption": "Vebijêrkek lê zêde bike",
+      "removeOption": "Vebijêrka {{n}} jê bibe",
+      "duration": "Hilbijartin heta kengî vekirî dimîne",
+      "seconds_one": "{{count}} çirke",
+      "seconds_other": "{{count}} çirke",
+      "minutes_one": "{{count}} deqîqe",
+      "minutes_other": "{{count}} deqîqe",
+      "start": "Anketê dest pê bike",
+      "end": "Niha dengdanê biqedîne",
+      "notLive": "Pêşî zindî weşanê bikin. Anketek li ser weşana ku hûn niha diweşînin tê lidarxistin.",
+      "startFailed": "Anket dest pê nekir. Dîsa biceribîne.",
+      "closeFailed": "Dengdan bi dawî nebû. Dîsa biceribîne.",
+      "live": "Dengdan vekiriye · {{time}} maye",
+      "ended": "Dengdan qediya",
+      "votes_one": "Dengê {{count}}",
+      "votes_other": "Dengên {{count}}",
+      "replaceHint": "Destpêkirina anketeke nû ya vekirî digire.",
+      "widgetHint": "Anketa we ya zindî nîşan dide. Di sepana DeHub de temaşevan ji bo dengdanê vebijarkekê bitikînin; di OBS de ew ji mirovan re dibêje ku di sohbetê de {{command}} û hejmarek binivîsin.",
+      "sample": {
+        "a": "Tiştekî nû",
+        "b": "bijareyek kevin",
+        "c": "Tu hildibijêrî"
+      }
+    },
+    "moderation": {
+      "title": "Moderasyona sohbetê",
+      "intro": "Rêgezên ji bo sohbeta di bin hemû weşanên te de. Ew qet nagihîjin sohbeta sereke ya DeHub: kesekî ku tu li vir qedexe dikî hîn jî dikare li her derê din biaxive.",
+      "loadFailed": "Mîhengên moderasyona te nehatin barkirin. Ji bo ceribandina dîsa rûpelê nûve bike.",
+      "save": "Rêgezên sohbetê tomar bike",
+      "saved": "Rêgezên sohbetê hatin tomarkirin.",
+      "saveFailed": "Ew guhertin nehat tomarkirin.",
+      "slowMode": "Moda Hêdî",
+      "slowModeHint": "Her temaşevan çiqas li bendê dimîne di navbera peyamên xwe de. Tu û moderatorên te qet li bendê namînî.",
+      "off": "Ji",
+      "seconds_one": "{{count}} çirke",
+      "seconds_other": "{{count}} çirke",
+      "followersOnly": "Tenê şopîner",
+      "subscribersOnly": "Tenê aboneyan",
+      "subscribersOnlyHint": "Tenê şopîneran red dike.",
+      "bannedWords": "Peyvên qedexekirî",
+      "bannedWordsHint": "Bi viran ji hev veqetînin. Nivîsandina peyvekê tîp bi tîp rê li ber wê nagire.",
+      "wordAction": "Dema ku kesek yekê bikar tîne",
+      "wordBlock": "Peyamê rawestîne",
+      "wordTimeout": "Rawestîne û wan ji bo deqeyekê dem bigire",
+      "moderators": "Moderator",
+      "moderatorsHint": "Ew dikarin temaşevanan di weşanên te de demkî bikin û qedexe bikin. Ew nikarin li ser te an li ser hev tevbigerin.",
+      "addModerator": "Lê zêde bike",
+      "usernamePlaceholder": "Navê bikarhêner",
+      "moderatorAdded": "Moderator lê zêde kir.",
+      "moderatorNotFound": "Hesab bi wî navê bikarhêner tune ye.",
+      "removeModerator": "Rakirina moderatorê",
+      "noModerators": "Hîn moderator tune ne.",
+      "banned": "Ji weşanên te hat qedexekirin",
+      "unban": "Qedexekirin bê rakirin",
+      "noBans": "Kesek nayê qedexekirin.",
+      "log": "Çalakiyên dawî",
+      "noLog": "Hîn tiştek tune.",
+      "actions": {
+        "timeout_one": "Demjimêra {{actor}} ya {{target}} ji bo {{count}} saniyeyan bi dawî bû",
+        "timeout_other": "Demjimêra {{actor}} ya {{target}} ji bo {{count}} saniyeyan bi dawî bû",
+        "ban": "{{actor}} {{target}} qedexe kir",
+        "unban": "{{actor}} qedexekirî {{target}}",
+        "moderator-added": "{{target}} bû moderator",
+        "moderator-removed": "{{target}} êdî moderator nîne",
+        "word-blocked": "Peyamek ji {{target}} ji bo \"{{word}}\" hate rawestandin",
+        "word-timeout_one": "Demjimêra {{target}} ji bo {{count}} saniye ji bo \"{{word}}\" bi dawî bû.",
+        "word-timeout_other": "Demjimêra {{target}} ji bo {{count}} saniyeyan ji bo \"{{word}}\" bi dawî bû."
       }
     }
   },
-  "liveRecap": {
-    "title": "Kurteya weşana zindî",
-    "justEnded": "Kurteya weşana we",
-    "lastStream": "Weşana te ya dawî",
-    "none": "Hîn weşanên qediyayî tune ne. Kurteya we piştî weşana we ya yekem li vir xuya dibe.",
-    "share": "Par",
-    "shareText": "Min tenê \"{{title}}\" li ser DeHub weşand: {{duration}} zindî, {{peak}} li lûtkeyê temaşekirin û {{followers}} şopînerên nû.",
-    "untitled": "Herikîna bêsernav",
-    "loadFailed": "Kurteya daneyan nehat barkirin. Piştî demekê dîsa biceribînin.",
-    "duration": "Demjimêr zindî",
-    "peakViewers": "Piraniya temaşekirinê di carekê de",
-    "gifts_one": "Ji diyariya {{count}}",
-    "gifts_other": "Ji diyariyên {{count}}",
-    "newFollowers": "Şopînerên nû",
-    "chatMessages": "Peyamên sohbetê",
-    "chatters": "Xelk sohbet dikin",
-    "reactions": "Bertekên",
-    "shares": "Parvekirina mirovan",
-    "topSupporters": "Piştgirên herî jor",
-    "polls": "ڕاپرسییەکان",
-    "pollWinner": "{{option}} qezenc kir",
-    "stillCounting": "Hîn jî hejmartin: piştrastkirina diyariyan dikare deqeyek bidome."
+  "liveChatModeration": {
+    "youAreTimedOut": "Tu ji bo demekê hatî bêdengkirin",
+    "timeout1m": "Demjimêr ji bo 1 deqîqeyê bêhnvedan",
+    "timeout10m": "Demjimêr bêhnvedan ji bo 10 deqîqeyan",
+    "timeout1h": "Demjimêr bêhnvedan ji bo 1 saetê",
+    "ban": "Ji van herikan qedexe bikin",
+    "makeModerator": "Moderator bike",
+    "timedOut": "Dem derbas bû.",
+    "banned": "Ji van çeman qedexe kirin.",
+    "madeModerator": "Ew êdî moderator in.",
+    "failed": "Ew nexebitî. Dîsa biceribîne.",
+    "youAreBanned": "Tu nikarî di weşanên vê afirîner de sohbet bikî",
+    "title": "Navînî"
   }
 }

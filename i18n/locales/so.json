@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Dib-u-cusboonaysiinta qulqulka",
+    "justEnded": "Dib u soo celi durdurkaaga",
+    "lastStream": "Daadkaaga ugu dambeeya",
+    "none": "No durdurro dhameystiran weli. Dib-u-soo-celintaadu waxay u muuqataa halkan ka dib midkii ugu horreeyay.",
+    "share": "La wadaag",
+    "shareText": "Waxaan kaliya daadihin \"{{title}}\" on DeHub: {{duration}} live, {{peak}} daawashada sare iyo {{followers}} raacayaal cusub.",
+    "untitled": "Durdur aan la magacaabin",
+    "loadFailed": "Dib-u-soo-celintu ma cuslayn. Isku day mar kale in daqiiqad ah.",
+    "duration": "Waqtiga nool",
+    "peakViewers": "Inta badan hal mar ayey daawanayaan",
+    "gifts_one": "Laga soo bilaabo {{count}} hadiya",
+    "gifts_other": "Laga soo bilaabo {{count}} hadiyado",
+    "newFollowers": "Taageerayaal cusub",
+    "chatMessages": "Farriimaha sheekaysiga",
+    "chatters": "Dad wada sheekeysanaya",
+    "reactions": "Falcelinta",
+    "shares": "Dadka la wadaago",
+    "topSupporters": "Taageerayaasha ugu sareeya",
+    "polls": "Codadka",
+    "pollWinner": "{{option}} Guuleystay",
+    "stillCounting": "Weli tirinta: hadiyadaha waxay qaadan karaan daqiiqad si loo xaqiijiyo."
+  },
   "articles": {
     "articleImage": "Sawirka maqaalka",
     "socialImage": "Sawirka wadaagista bulshada",
@@ -4762,7 +4785,7 @@
     "usernameReserved": "Magacan isticmaale waa la kaydiyay",
     "profileSet": "Astaanta si guul leh ayaa loo dejiyay!",
     "profileFailed": "Lama dejin karin astaanta",
-    "displayNameHint": "Magacaaga dadweynaha ee ka muuqda boggaaga."
+    "displayNameHint": "Magacaaga dadweynaha ee boggaaga. Waa ikhtiyaari — haddii aad bannaan ka tagto, waxaa la isticmaalayaa magaca isticmaalahaaga."
   },
   "events": {
     "mine": "Kayga",
@@ -5003,6 +5026,7 @@
     "accountHasA": "Akoonkan wuxuu leeyahay",
     "ifYouUsedDehub": "Haddii aad hore u isticmaashay dehub.io, ka fur kombiyuutarkaaga, si isku mid ah oo akoon isku mid ah ku gal, ka dibna",
     "biometricExplainer": "Ku fur farahaaga ama wejigaaga — waxba lama qorayo lamana xasuusanayo. Furahu wuxuu ku sii jiraa taleefankan, sidaas darteed waxaan ku tusi doonaa weedh soo celin ah oo 12 eray ah oo aad qorto; waa habka kaliya ee aad kaga soo noqon karto taleefan kale, websaydka, ama ka dib markii aad dib u rakibto. Beddelkeeda dooro Erey sir ah, eraygu isagaa qaban doona shaqadaas.",
+    "biometricExplainerSecuring": "Ku fur farahaaga ama wejigaaga — waxba lama qorayo lamana xasuusanayo. Furahu wuxuu ku sii jiraa taleefankan. Si aad dib ugu soo gasho adoo isticmaalaya taleefan kale, websaydka, ama ka dib markaad dib u rakibto, mar dambe Dejinta ka samee nuqul kayd ah oo 12 eray ah. Beddelkeeda dooro Erayga sirta ah, erayga sirta ahna isagaa qabanaya shaqadaas.",
     "biometricPrompt": "Boorsadan waxaa ilaaliya biometrics-ka qalabkan. Ku xaqiiji farahaaga ama wejigaaga si aad u sii wadato.",
     "enterRecoveryPhrase": "Geli weedhaha soo celinta ee 12-ka eray ah ee aad kaydisay markaad abuurtay boorsadan (ama furaha gaarka ah, haddii aad mid dhoofisay). Waxay ku celinaysaa isla akoonkii, erayga sirta ah ee aad hoos u dejinaysona wuxuu noqonayaa kaabe meel kasta ka shaqeeya laga bilaabo hadda.",
     "copyPhrase": "Koobi weedha",
@@ -5075,6 +5099,7 @@
     "unlockWithPasswordExplainer": "Koontadan horeyba waxay leedahay kayd, oo lagu ilaaliyo furaha. Geli si aad u soo ceshato kaydkaaga qalabkan.",
     "deviceTab": "Qalabkan",
     "deviceExplainer": "Ma jiraan wax la qoro ama la xasuusto — furaha ayaa ku jira qalabkan. Waxaan ku siin doonaa 12 eray gurmad ah si aad u qorto hoos; waa habka kaliya ee ka soo noqoshada aalad kale, laga bilaabo websaydhka, ama ka dib markaad dib u rakibto. Dooro Password halkii iyo password laftiisa sameeyo shaqadaas.",
+    "deviceExplainerSecuring": "Waxba lama qorayo lamana xasuusanayo — furahu wuxuu ku sii jiraa qalabkan. Si aad dib ugu soo gasho adoo isticmaalaya qalab kale, websaydka, ama ka dib markaad dib u rakibto, mar dambe Dejinta ka samee nuqul kayd ah oo 12 eray ah. Beddelkeeda dooro Erayga sirta ah, erayga sirta ahna isagaa qabanaya shaqadaas.",
     "secureOnDevice": "Furaha ku hay qalabkan"
   },
   "transcript": {
@@ -8956,17 +8981,17 @@
     "topUpEmptyHint": "Ku dar calaamadaha si aad u soo saarto AI"
   },
   "accountDeletion": {
-    "title": "Delete account",
+    "title": "Tirtir akoonka",
     "description": "Si joogto ah u tirtir akoonkaaga iyo xogtaada shakhsiyeed",
     "warning": "Tani waxay si joogto ah u tirtiraysaa profile-kaaga DeHub, qoraallada, faallooyinka, farriimaha iyo nuqulka kaydka jeebka. Kaydi faahfaahinta soo kabashada jeebkaaga oo marka hore u wareeji hanti kasta. Hawlgallada blockchain-ka ee dadweynaha iyo diiwaanada lacag bixinta ee sharciga ah lama tirtiri karo. Profile-kaaga si degdeg ah ayaa loo qariyaa; tirtirida waxay dhamaataa 30 maalmood gudahood. Tani lama celin karo.",
-    "cancel": "Cancel",
+    "cancel": "Jooji",
     "confirm": "Si joogto ah u tirtir akoonkeyga",
     "busy": "Soo gudbin codsiga tirtirida…",
     "accepted": "Codsiga tirtirida akoonka waa la codsaday",
     "receipt": "Codsigaaga tirtirida waa la keydiyay. Profile-kaaga waa la qariyay waxaana akoonkaaga si joogto ah loo tirtiri doonaa 30 maalmood gudahood. Galitaanka dib looma joojin karo codsigan.",
-    "done": "Done",
+    "done": "Dhammaatay",
     "error": "Lama soo gudbin karin codsigaaga tirtirida. Akoonkaaga lama xaqiijinin in la tirtiro. Fadlan isku day mar kale.",
-    "back": "Back to Settings",
+    "back": "Ku noqo Dejinta",
     "signIn": "Soo gal si aad u tirtirto akoonkaaga",
     "acknowledge": "Waxaan kaydiyay faahfaahinta soo kabashada jeebkayga oo waxaan fahamsanahay in tirtiridu ay tahay mid joogto ah."
   },
@@ -9073,7 +9098,7 @@
     "update": "Hadda cusboonaysii"
   },
   "walletBackup": {
-    "title": "Dib u soo celi boorsada",
+    "title": "Kaydi jeebka",
     "rowDesc": "Eeg 12 erayadaada ama furahaaga gaarka ah",
     "backedUpOn": "Badiyadka to{{date}}",
     "offerTitle": "Dib u soo celi boorsadaada?",
@@ -9114,7 +9139,17 @@
     "followersUnit": "kuwa raacsan",
     "topSupporters": "Taageerayaasha ugu sareeya",
     "tipped": "{{name}} soo diray hadiyad",
-    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda"
+    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda",
+    "poll": {
+      "closed": "Codbixinta oo xiran",
+      "voteFor": "Codee {{option}}",
+      "signIn": "Gal si aad u codeyso",
+      "failed": "Codkaaga ma tirin ee isku day mar kale.",
+      "voted_one": "Waxaad codaysay · {{count}} codka",
+      "voted_other": "Waxaad codaysay · {{count}} codadka",
+      "votes_one": "{{count}} codka",
+      "votes_other": "{{count}} codadka"
+    }
   },
   "liveStudio": {
     "subtitle": "Digniinta iyo widget-yada durdurradaada",
@@ -9165,7 +9200,8 @@
       "event_feed": "Dhawaan waxqabadka",
       "chat_box": "Sanduuqa sheekaysiga",
       "ticker": "Ticker",
-      "rule_alert": "Digniinta xeerka"
+      "rule_alert": "Digniinta xeerka",
+      "poll": "Codad"
     },
     "hints": {
       "tip_alert": "Waxay u dabaaldegtaa talooyin kasta, oo si weyn loo cabbiray heerarkeeda",
@@ -9183,7 +9219,8 @@
       "event_feed": "Hadiyadihii ugu dambeeyay, kuwa raacsan, macaamiisha iyo dadka la wadaagaya baahintaada",
       "chat_box": "Muuji farriimaha sheekaysiga ee baahintaada shaashadda",
       "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan",
-      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato"
+      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato",
+      "poll": "Codadkaaga siidaadka ah, oo leh buton codad oo kasta filah"
     },
     "fields": {
       "style": "Qaabka",
@@ -9284,7 +9321,8 @@
         "share": "Qof ayaa la wadaagaya qulqulka",
         "command": "Amarka wada sheekaysiga ayaa loo adeegsadaa",
         "keyword": "Farriinta sheekada waxaa ku jira erayga",
-        "chat": "Fariin kasta oo sheeko ah"
+        "chat": "Fariin kasta oo sheeko ah",
+        "live": "Waxaad bilaabeysaa baahinta"
       },
       "audiences": {
         "everyone": "Qof walba",
@@ -9292,6 +9330,7 @@
         "subscribers": "Macaamiisha"
       },
       "actionTypes": {
+        "sound": "Shid cod",
         "alert": "Muuji digniin",
         "say": "Si weyn u akhri",
         "chat": "Ku dhaji sheekaysiga",
@@ -9321,6 +9360,7 @@
         "command": "Waad salaaman tahay {name}, soo dhawow qulqulka!"
       },
       "sounds": {
+        "ohh-girl": "Ohh (naag)",
         "airhorn": "Hordhaca Hawada",
         "applause": "Raali Gelinta",
         "cricket": "Crickets",
@@ -9332,30 +9372,98 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Isticmaal {name}, {title} iyo {link} qoraalkaaga: magacaaga, cinwaanka siidaadka, iyo link-ka daawashada."
+    },
+    "polls": {
+      "title": "Polls",
+      "intro": "Waxaa ku weydii dadka daawanaya siidaadkaaga su'aal. Waxay ku jawaabaan buton ku yaal DeHub app-ka, ama waxay qoraan {{command}} iyo lambar-ka filaha ku chat-ka.",
+      "question": "Su'aal",
+      "questionPlaceholder": "Maxaan ciyaari karaa xiga?",
+      "option": "Filaha {{n}}",
+      "addOption": "Ku dar filah",
+      "removeOption": "Tirtir filaha {{n}}",
+      "duration": "Mudada codadka ay furan tahay",
+      "seconds_one": "{{count}} ilbiriqsi",
+      "seconds_other": "{{count}} ilbiriqsi",
+      "minutes_one": "{{count}} daqiiqad",
+      "minutes_other": "{{count}} daqiiqad",
+      "start": "Bilow codadka",
+      "end": "Jooji codadka hadda",
+      "started": "Codadkaagu waa furan. Daawayaashu waxay codayn karaan hadda.",
+      "notLive": "Halkaa oo hore u sii. Codadka wuxuu ku socdaa siidaadka aad hadda ku sii daatay.",
+      "startFailed": "Codadka uma bilaabmin. Isku day mar kale.",
+      "closeFailed": "Codadka uma joojin. Isku day mar kale.",
+      "live": "Codad furan · {{time}} oo hadhow",
+      "ended": "Codad xiran",
+      "votes_one": "{{count}} cod",
+      "votes_other": "{{count}} cod",
+      "replaceHint": "Codad cusub bilaabista wuxuu xiraa kan furan.",
+      "widgetHint": "Waxaa lagu tusaya codadkaaga siidaadka ah. DeHub app-ka daawayaashu waxay gacan ku dhigaan filah; OBS-ka waxaa lagu sheegaa inay qoraan {{command}} iyo lambar ku chat-ka.",
+      "sample": {
+        "a": "Wax cusub",
+        "b": "Wax duwan oo gaarka ah",
+        "c": "Adiga ayaa dooranaya"
+      }
+    },
+    "moderation": {
+      "noModerators": "Weli ma jiraan maamulayaal.",
+      "title": "Ilaalinta hadalkaan",
+      "intro": "Xeerarka hadalkaan hoose hadalkaan buuxa. Waxay mar walba gaadhin DeHub's hadalkaan guud: qof aad xad ka dhigtid halkan weli kara hadal meel kasta.",
+      "loadFailed": "Xeerarka ilaalinta hadalkaan lama soo qaadi karin. Dib u celceliso bogga si aad isku day mar kale.",
+      "save": "Kaydi xeerarka hadalkaan",
+      "saved": "Xeerarka hadalkaan waa la kaydiyey.",
+      "saveFailed": "Isbeddel taasi lama kaydin karin.",
+      "slowMode": "Habka joojiinta",
+      "slowModeHint": "Mudada ay ilaaliyaha kasta u sugto inta u dhexeeya hadalkaan. Adiga iyo moderators-kaaga waxay mar walba sugaan.",
+      "off": "Dhameystir",
+      "seconds_one": "{{count}} ilbiriqsi",
+      "seconds_other": "{{count}} ilbiriqsi",
+      "followersOnly": "Ardayda kaliya",
+      "subscribersOnly": "Subscribers kaliya",
+      "subscribersOnlyHint": "Waxay ka dhaafisaa ardayda kaliya.",
+      "bannedWords": "Ereyada xad lagu dhigay",
+      "bannedWordsHint": "Kala sooc komma. Ereyga qofka u silsilaysa xarf xarf lama gudbiso.",
+      "wordAction": "Markay qof mid isticmaalo",
+      "wordBlock": "Jooji fariinta",
+      "wordTimeout": "Jooji oo daqiiqad ku sii daa.",
+      "moderators": "Moderator",
+      "moderatorsHint": "Waxay waqti ka bixi karaan oo ka mamnuuci karaan daawadayaasha durdurradaada. Ma awoodaan inay ku dhaqmaan adiga ama midba midka kale.",
+      "addModerator": "Ku dar",
+      "usernamePlaceholder": "Magaca isticmaalaha",
+      "moderatorAdded": "Moderator ayaa intaa ku daray.",
+      "moderatorNotFound": "Xisaab la ma leh magacaas isticmaale.",
+      "removeModerator": "Ka saar moderator",
+      "banned": "Laga mamnuuco durdurradaada",
+      "unban": "Jinsi la 'aan",
+      "noBans": "Qofna waa la mamnuucay.",
+      "log": "Tallaabooyinkii ugu dambeeyay",
+      "noLog": "Waxba weli.",
+      "actions": {
+        "unban": "{{actor}} wuxuu ka qaaday mamnuucida {{target}}",
+        "timeout_other": "{{actor}} wuxuu {{target}} aamusiyay {{count}} ilbiriqsi",
+        "word-blocked": "Jooji fariin ka timid {{target}} for \"{{word}}\"",
+        "timeout_one": "{{actor}} timed out {{target}} for {{count}} labaad",
+        "ban": "{{actor}} mamnuuca {{target}}",
+        "moderator-added": "{{target}} wuxuu noqday moderator",
+        "moderator-removed": "{{target}} mar dambe ma aha moderator",
+        "word-timeout_one": "Waqtiga ka baxay {{target}} for {{count}} labaad for \"{{word}}\"",
+        "word-timeout_other": "Waqtiga ka baxay {{target}} for {{count}} seconds for \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Dib-u-cusboonaysiinta qulqulka",
-    "justEnded": "Dib u soo celi durdurkaaga",
-    "lastStream": "Daadkaaga ugu dambeeya",
-    "none": "No durdurro dhameystiran weli. Dib-u-soo-celintaadu waxay u muuqataa halkan ka dib midkii ugu horreeyay.",
-    "share": "La wadaag",
-    "shareText": "Waxaan kaliya daadihin \"{{title}}\" on DeHub: {{duration}} live, {{peak}} daawashada sare iyo {{followers}} raacayaal cusub.",
-    "untitled": "Durdur aan la magacaabin",
-    "loadFailed": "Dib-u-soo-celintu ma cuslayn. Isku day mar kale in daqiiqad ah.",
-    "duration": "Waqtiga nool",
-    "peakViewers": "Inta badan hal mar ayey daawanayaan",
-    "gifts_one": "Laga soo bilaabo {{count}} hadiya",
-    "gifts_other": "Laga soo bilaabo {{count}} hadiyado",
-    "newFollowers": "Taageerayaal cusub",
-    "chatMessages": "Farriimaha sheekaysiga",
-    "chatters": "Dad wada sheekeysanaya",
-    "reactions": "Falcelinta",
-    "shares": "Dadka la wadaago",
-    "topSupporters": "Taageerayaasha ugu sareeya",
-    "polls": "Codadka",
-    "pollWinner": "{{option}} Guuleystay",
-    "stillCounting": "Weli tirinta: hadiyadaha waxay qaadan karaan daqiiqad si loo xaqiijiyo."
+  "liveChatModeration": {
+    "timeout1m": "Joojin 1 daqiiqad",
+    "timeout10m": "Joojin 10 daqiiqad",
+    "timeout1h": "Joojin 1 saac",
+    "ban": "Xad ka dhig ka hadalkaan",
+    "makeModerator": "Dhig moderator",
+    "timedOut": "Waxaa joojiyey.",
+    "banned": "Waxaa xad ka dhigey ka hadalkaan.",
+    "madeModerator": "Waxay hadda yihiin moderator.",
+    "failed": "Taasi ma shaqeyn. Isku day mar kale.",
+    "youAreBanned": "Kuma karto hadal ku hadal hadalkaan abuuraha",
+    "youAreTimedOut": "Waxaa joojiyey daqiiqad yar",
+    "title": "Dhig"
   }
 }

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Resumen de la transmisión",
+    "justEnded": "Recapitulación de tu transmisión",
+    "lastStream": "Tu última transmisión",
+    "none": "Todavía no hay transmisiones terminadas. Tu resumen aparece aquí después del primero.",
+    "share": "Compartir",
+    "shareText": "Acabo de transmitir \"{{title}}\" en DeHub: {{duration}} en vivo, {{peak}} viendo en la cima y {{followers}} nuevos seguidores.",
+    "untitled": "Transmisión sin título",
+    "loadFailed": "El resumen no se cargó. Inténtalo de nuevo en un momento.",
+    "duration": "Tiempo en vivo",
+    "peakViewers": "La mayoría viendo a la vez",
+    "gifts_one": "De {{count}} regalo",
+    "gifts_other": "De {{count}} regalos",
+    "newFollowers": "Nuevos seguidores",
+    "chatMessages": "Mensajes de chat",
+    "chatters": "Gente chateando",
+    "reactions": "Reacciones",
+    "shares": "Personas compartiendo",
+    "topSupporters": "Principales simpatizantes",
+    "polls": "Encuestas",
+    "pollWinner": "{{option}} ganó",
+    "stillCounting": "Aún contando: los regalos pueden tardar un minuto en confirmarse."
+  },
   "accountConnect": {
     "title": "Conecta tu cuenta de DeHub",
     "body": "Conecta tu cuenta para gestionar tu perfil, publicar y crear contenido desde el chat. Las conexiones caducan en 24 horas. Puedes desconectarlas cuando quieras.",
@@ -1061,6 +1084,8 @@
     "payFailed": "No se pudieron convertir {{symbol}} a tokens DeHub",
     "stageDelivering": "DeHub Pay está enviando tus tokens…",
     "payViaDpay": "Pagado a DeHub Pay, los tokens llegan en aproximadamente 30s",
+    "payDirect": "Enviado directamente a {{name}} en {{symbol}} en {{chain}}. Sin swap.",
+    "payDirectNoName": "Enviado directamente al creador en {{symbol}} en {{chain}}. Sin swap.",
     "payViaBridgeDpay": "Movido a Base y pagado a DeHub Pay, los tokens llegan en aproximadamente un minuto",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
@@ -5094,7 +5119,7 @@
     "usernameReserved": "Este nombre de usuario está reservado",
     "profileSet": "¡Perfil configurado correctamente!",
     "profileFailed": "No se pudo configurar el perfil",
-    "displayNameHint": "Tu nombre público que aparece en tu perfil."
+    "displayNameHint": "Tu nombre público en tu perfil. Opcional: déjalo en blanco para usar tu nombre de usuario."
   },
   "events": {
     "mine": "Míos",
@@ -5360,7 +5385,9 @@
     "lowTopUp": "¿Poco de {{symbol}}? Te repondremos antes de desbloquear.",
     "unlockedSuccess": "Desbloqueado con éxito",
     "otherChain": "Esta publicación se resuelve en otra cadena, por lo que necesita tokens DeHub en su billetera allí.",
-    "payHint": "Paga con cualquier cosa en tu billetera. Se convierte en tokens DeHub y se desbloquea de inmediato."
+    "payHint": "Paga con cualquier cosa en tu billetera. Se convierte en tokens DeHub y se desbloquea de inmediato.",
+    "switchTo": "Esta publicación se paga en {{chain}}. Cambia a {{chain}} en Ajustes e inténtalo de nuevo.",
+    "notEnoughToken": "Necesitas {{amount}} {{symbol}} para desbloquear esto. Tienes {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Usa esto si configuraste esta billetera en este teléfono y ya debería tener la clave",
@@ -5395,6 +5422,7 @@
     "accountHasA": "Esta cuenta tiene una",
     "ifYouUsedDehub": "Si ya has usado dehub.io antes, ábrelo en tu ordenador, inicia sesión de la misma forma y con la misma cuenta, y",
     "biometricExplainer": "Desbloquea con tu huella o tu cara: nada que escribir ni recordar. La clave se queda en este teléfono, así que te mostraremos una frase de recuperación de 12 palabras para que la apuntes; es la única vía de vuelta desde otro móvil, desde la web o tras reinstalar. Elige Contraseña y será la contraseña la que haga ese trabajo.",
+    "biometricExplainerSecuring": "Desbloquea con tu huella o tu cara: nada que escribir ni recordar. La clave se queda en este teléfono. Para volver a entrar desde otro móvil, desde la web o tras reinstalar, guarda más adelante una copia de seguridad de 12 palabras en Ajustes. Elige Contraseña y será la contraseña la que haga ese trabajo.",
     "biometricPrompt": "Esta billetera está protegida por la biometría de este dispositivo. Confirma con huella o cara para continuar.",
     "enterRecoveryPhrase": "Introduce la frase de recuperación de 12 palabras que guardaste al crear esta billetera (o su clave privada, si exportaste una). Te devuelve a la misma cuenta, y la contraseña que establezcas abajo pasa a ser un respaldo que funciona en todas partes a partir de ahora.",
     "copyPhrase": "Copiar frase",
@@ -5467,6 +5495,7 @@
     "unlockWithPasswordExplainer": "Esta cuenta ya tiene una billetera, protegida por una contraseña. Ingresa tu contraseña para recuperar tu billetera en este dispositivo.",
     "deviceTab": "Este dispositivo",
     "deviceExplainer": "No hay nada que escribir o recordar: la clave permanece en este dispositivo. Le ofreceremos una copia de seguridad de 12 palabras para escribir; es la única forma de regresar desde otro dispositivo, desde el sitio web o después de reinstalarlo. Elija Contraseña en su lugar y la contraseña en sí misma hace ese trabajo.",
+    "deviceExplainerSecuring": "Nada que escribir ni recordar: la clave se queda en este dispositivo. Para volver a entrar desde otro dispositivo, desde la web o tras reinstalar, guarda más adelante una copia de seguridad de 12 palabras en Ajustes. Elige Contraseña y será la contraseña la que haga ese trabajo.",
     "secureOnDevice": "Mantenga la llave en este dispositivo"
   },
   "walletBackup": {
@@ -5776,6 +5805,7 @@
     "contractPlaceholder": "Dirección del contrato (0x…)",
     "symbolPlaceholder": "Símbolo (p. ej., PEPE)",
     "paymentsBase": "Los pagos son en tokens DeHub en la cadena Base",
+    "paymentsStable": "Los compradores pagan en {{symbol}}, directo a ti",
     "tokensUnit": "tokens",
     "minimumRequired": "Se requiere un mínimo de {{currency}}"
   },
@@ -10724,7 +10754,17 @@
     "followersUnit": "seguidores",
     "topSupporters": "Principales simpatizantes",
     "tipped": "{{name}} ha enviado un regalo",
-    "chatPreview": "Los mensajes de chat aparecen aquí"
+    "chatPreview": "Los mensajes de chat aparecen aquí",
+    "poll": {
+      "closed": "Votación cerrada",
+      "voteFor": "Vota por {{option}}",
+      "signIn": "Inicia sesión para votar",
+      "failed": "Tu voto no ha contado. Inténtalo de nuevo.",
+      "voted_one": "Has votado · {{count}} voto",
+      "voted_other": "Has votado · {{count}} votos",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votos"
+    }
   },
   "liveStudio": {
     "title": "Estudio en directo",
@@ -10780,7 +10820,8 @@
       "event_feed": "Actividad reciente",
       "chat_box": "Cuadro de chat",
       "ticker": "Marquesina",
-      "rule_alert": "Alertas de reglas"
+      "rule_alert": "Alertas de reglas",
+      "poll": "Poll"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada a su nivel",
@@ -10798,7 +10839,8 @@
       "event_feed": "Los últimos regalos, seguidores, suscriptores y personas que comparten tu transmisión",
       "chat_box": "Muestra los mensajes de chat de tu transmisión en la pantalla",
       "ticker": "Una línea de tu propio texto que se desplaza por la pantalla",
-      "rule_alert": "¿Dónde aparecen las alertas de tus reglas?"
+      "rule_alert": "¿Dónde aparecen las alertas de tus reglas?",
+      "poll": "Tu encuesta en vivo, con un botón de voto para cada opción"
     },
     "fields": {
       "style": "Estilo",
@@ -10901,7 +10943,8 @@
         "share": "Alguien comparte la transmisión",
         "command": "Se utiliza un comando de chat",
         "keyword": "Un mensaje de chat contiene una palabra",
-        "chat": "Cualquier mensaje de chat"
+        "chat": "Cualquier mensaje de chat",
+        "live": "Empiezas a transmitir"
       },
       "audiences": {
         "everyone": "Todos",
@@ -10951,30 +10994,98 @@
         "spooky": "Espeluznante",
         "magic-spell": "Hechizo mágico",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Utiliza {name}, {title} y {link} en tu texto: tu nombre, el título de la retransmisión y un enlace para verla."
+    },
+    "polls": {
+      "title": "Encuestas",
+      "intro": "Haga una pregunta a las personas que ven su transmisión. Responden con un botón en la aplicación DeHub o escribiendo {{command}} y el número de la opción en el chat.",
+      "question": "Pregunta",
+      "questionPlaceholder": "¿Qué debo jugar a continuación?",
+      "option": "Opción {{n}}",
+      "addOption": "Añadir una opción",
+      "removeOption": "Eliminar opción {{n}}",
+      "duration": "Cuánto tiempo permanece abierta la votación",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundos",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minutos",
+      "start": "Iniciar la encuesta",
+      "end": "Finalizar votación ahora",
+      "started": "Tu encuesta está abierta. Los espectadores pueden votar ahora.",
+      "notLive": "Entra en vivo primero. Se ejecuta una encuesta en la transmisión que estás transmitiendo en este momento.",
+      "startFailed": "La encuesta no ha comenzado. Inténtalo de nuevo.",
+      "closeFailed": "La votación no ha terminado. Inténtalo de nuevo.",
+      "live": "Votación abierta · {{time}} left",
+      "ended": "Votación cerrada",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votos",
+      "replaceHint": "Comenzar una nueva encuesta cierra la que está abierta.",
+      "widgetHint": "Muestra tu encuesta en directo. En los visores de la aplicación DeHub, toque una opción para votar; en OBS, le dice a la gente que escriba {{command}} y un número en el chat.",
+      "sample": {
+        "a": "Algo nuevo",
+        "b": "Un viejo favorito",
+        "c": "Tú eliges"
+      }
+    },
+    "moderation": {
+      "title": "Moderación del chat",
+      "intro": "Reglas para el chat bajo todos tus streams. Nunca llegan al chat principal de DeHub: alguien a quien banees aquí aún puede hablar en todas partes.",
+      "loadFailed": "No se pudieron cargar tus ajustes de moderación. Recarga la página para intentar de nuevo.",
+      "save": "Guardar reglas del chat",
+      "saved": "Reglas del chat guardadas.",
+      "saveFailed": "Ese cambio no pudo guardarse.",
+      "slowMode": "Modo lento",
+      "slowModeHint": "Cuánto tiempo debe esperar cada espectador entre mensajes. Tú y tus moderadores nunca esperan.",
+      "off": "Apagado",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundos",
+      "followersOnly": "Solo seguidores",
+      "subscribersOnly": "Solo suscriptores",
+      "subscribersOnlyHint": "Sobrescribe \"solo seguidores\".",
+      "bannedWords": "Palabras prohibidas",
+      "bannedWordsHint": "Sepáralas con comas. Escribir una palabra letra por letra no la evita.",
+      "wordAction": "Cuando alguien usa una",
+      "wordBlock": "Detener el mensaje",
+      "wordTimeout": "Deténganse y esperen un minuto",
+      "moderators": "Moderador",
+      "moderatorsHint": "Pueden agotar el tiempo de espera y prohibir a los espectadores en tus transmisiones. No pueden actuar sobre ti ni sobre los demás.",
+      "addModerator": "Añadir",
+      "usernamePlaceholder": "Nombre de usuario",
+      "moderatorAdded": "Moderador añadido.",
+      "moderatorNotFound": "No hay cuenta con ese nombre de usuario.",
+      "removeModerator": "Eliminar moderador",
+      "noModerators": "Aún no hay moderadores.",
+      "banned": "Prohibido en tus transmisiones",
+      "unban": "Unban",
+      "noBans": "Nadie está prohibido.",
+      "log": "Acciones recientes",
+      "noLog": "Nada todavía.",
+      "actions": {
+        "timeout_one": "{{actor}} agotó el tiempo de espera {{target}} por {{count}} segundos",
+        "timeout_other": "{{actor}} agotó el tiempo de espera {{target}} durante {{count}} segundos",
+        "ban": "{{actor}} prohibido {{target}}",
+        "unban": "{{actor}} no prohibido {{target}}",
+        "moderator-added": "{{target}} se convirtió en moderador",
+        "moderator-removed": "{{target}} ya no es moderador",
+        "word-blocked": "Se detuvo un mensaje de {{target}} para \"{{word}}\"",
+        "word-timeout_one": "Se agotó el tiempo de espera de {{target}} para {{count}} segundo para \"{{word}}\"",
+        "word-timeout_other": "Se agotó el tiempo de espera de {{target}} para {{count}} segundos para \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Resumen de la transmisión",
-    "justEnded": "Recapitulación de tu transmisión",
-    "lastStream": "Tu última transmisión",
-    "none": "Todavía no hay transmisiones terminadas. Tu resumen aparece aquí después del primero.",
-    "share": "Compartir",
-    "shareText": "Acabo de transmitir \"{{title}}\" en DeHub: {{duration}} en vivo, {{peak}} viendo en la cima y {{followers}} nuevos seguidores.",
-    "untitled": "Transmisión sin título",
-    "loadFailed": "El resumen no se cargó. Inténtalo de nuevo en un momento.",
-    "duration": "Tiempo en vivo",
-    "peakViewers": "La mayoría viendo a la vez",
-    "gifts_one": "De {{count}} regalo",
-    "gifts_other": "De {{count}} regalos",
-    "newFollowers": "Nuevos seguidores",
-    "chatMessages": "Mensajes de chat",
-    "chatters": "Gente chateando",
-    "reactions": "Reacciones",
-    "shares": "Personas compartiendo",
-    "topSupporters": "Principales simpatizantes",
-    "polls": "Encuestas",
-    "pollWinner": "{{option}} ganó",
-    "stillCounting": "Aún contando: los regalos pueden tardar un minuto en confirmarse."
+  "liveChatModeration": {
+    "timeout1m": "Tiempo de espera de 1 minuto",
+    "timeout10m": "Tiempo de espera de 10 minutos",
+    "timeout1h": "Tiempo de espera de 1 hora",
+    "ban": "Prohibido en estos streams",
+    "makeModerator": "Hacer moderador",
+    "timedOut": "Tiempo de espera.",
+    "banned": "Prohibido en estos streams.",
+    "madeModerator": "Ahora son moderador.",
+    "failed": "Eso no funcionó. Inténtalo de nuevo.",
+    "youAreBanned": "No puedes chatear en los streams de este creador",
+    "youAreTimedOut": "Estás en tiempo de espera por un momento",
+    "title": "Moderar"
   }
 }

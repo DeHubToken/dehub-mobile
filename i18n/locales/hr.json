@@ -1,4 +1,26 @@
 {
+  "liveRecap": {
+    "title": "Rekapitulacija streama",
+    "justEnded": "Sažetak vašeg streama",
+    "lastStream": "Vaš posljednji stream",
+    "none": "Još nema dovršenih streamova. Sažetak se prikazuje ovdje nakon prvog.",
+    "share": "Podijeli",
+    "shareText": "Upravo sam emitirao \"{{title}}\" na DeHubu: {{duration}} uživo, {{peak}} gledajući na vrhuncu i {{followers}} novih pratitelja.",
+    "untitled": "Stream bez naslova",
+    "loadFailed": "Rekapitulacija se nije učitala. Pokušajte ponovno za nekoliko trenutaka.",
+    "duration": "Vrijeme uživo",
+    "peakViewers": "Većina gledatelja gleda odjednom",
+    "gifts_one": "Od dara {{count}}",
+    "gifts_other": "Od {{count}} darova",
+    "newFollowers": "Novi pratitelji",
+    "chatMessages": "Poruke razgovora",
+    "chatters": "Ljudi razgovaraju",
+    "reactions": "Reakcija",
+    "shares": "Dijeljenje sadržaja s drugima",
+    "topSupporters": "Najpopularniji podržavatelji",
+    "polls": "Ankete",
+    "stillCounting": "Još uvijek se broji: potvrda darova može potrajati minutu."
+  },
   "articles": {
     "articleImage": "Slika članka",
     "socialImage": "Slika za dijeljenje na društvenim mrežama",
@@ -4771,7 +4793,7 @@
     "usernameReserved": "Ovo korisničko ime je rezervirano",
     "profileSet": "Profil je uspješno postavljen!",
     "profileFailed": "Postavljanje profila nije uspjelo",
-    "displayNameHint": "Tvoje javno ime prikazano na profilu."
+    "displayNameHint": "Tvoje javno ime na profilu. Nije obavezno — ostavi prazno i koristit će se tvoje korisničko ime."
   },
   "events": {
     "mine": "Moji",
@@ -5012,6 +5034,7 @@
     "accountHasA": "Ovaj račun ima",
     "ifYouUsedDehub": "Ako si već koristio dehub.io, otvori ga na računalu, prijavi se na isti način i s istim računom, i",
     "biometricExplainer": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu, pa ćemo ti pokazati frazu za oporavak od 12 riječi da je zapišeš; to je jedini put natrag s drugog uređaja, s web-stranice ili nakon ponovne instalacije. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
+    "biometricExplainerSecuring": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu. Da se vratiš s drugog telefona, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "biometricPrompt": "Ovaj novčanik zaštićen je biometrijom ovog uređaja. Potvrdi otiskom prsta ili licem za nastavak.",
     "enterRecoveryPhrase": "Unesi frazu za oporavak od 12 riječi koju si spremio kad si stvorio ovaj novčanik (ili njegov privatni ključ, ako si ga izvezao). Vodi natrag na isti račun, a lozinka koju postaviš ispod postaje rezerva koja od sada radi svugdje.",
     "copyPhrase": "Kopiraj frazu",
@@ -5084,6 +5107,7 @@
     "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju.",
     "deviceTab": "Ovaj uređaj",
     "deviceExplainer": "Ništa za upisivanje ili pamćenje — ključ ostaje na ovom uređaju. Ponudit ćemo vam sigurnosnu kopiju od 12 riječi koju možete zapisati; to je jedini način da se vratite s drugog uređaja, s web-mjesta ili nakon ponovne instalacije. Umjesto toga odaberite lozinku, a sama lozinka obavlja taj posao.",
+    "deviceExplainerSecuring": "Ništa za upisivati ni pamtiti — ključ ostaje na ovom uređaju. Da se vratiš s drugog uređaja, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "secureOnDevice": "Držite ključ na ovom uređaju"
   },
   "transcript": {
@@ -8981,7 +9005,7 @@
     "topUpEmptyHint": "Dodajte tokene za generiranje pomoću umjetne inteligencije"
   },
   "accountDeletion": {
-    "title": "Obrisati nalog",
+    "title": "Izbriši račun",
     "description": "Trajno izbrišite svoj račun i osobne podatke",
     "warning": "Time se trajno brišu tvoj DeHub profil, objave, komentari, poruke i pohranjena sigurnosna kopija novčanika. Spremite pojedinosti o oporavku novčanika i najprije premjestite sredstva. Javne transakcije u lancu blokova i zakonski obvezni zapisi o plaćanju ne mogu se izbrisati. Vaš je profil odmah skriven; brisanje se dovršava u roku od 30 dana. To se ne može poništiti.",
     "cancel": "Odustani",
@@ -8989,10 +9013,10 @@
     "busy": "Slanje zahtjeva za brisanje...",
     "accepted": "Zatraženo je brisanje računa",
     "receipt": "Vaš je zahtjev za brisanje spremljen. Tvoj je profil skriven i tvoj ćemo račun trajno izbrisati u roku od 30 dana. Prijava ne može poništiti ovaj zahtjev.",
-    "done": "Želimo vam ugodan dan!",
+    "done": "Gotovo",
     "error": "Slanje zahtjeva za brisanje nije uspjelo. Vaš račun nije potvrđen za brisanje. Pokušajte ponovno.",
     "back": "Natrag na postavke",
-    "signIn": "Prijavite se na svoj račun",
+    "signIn": "Prijavite se kako biste izbrisali račun",
     "acknowledge": "Spremio/la sam podatke o oporavku novčanika i razumijem da je brisanje trajno."
   },
   "miniApps": {
@@ -9098,7 +9122,7 @@
     "update": "Ažuriraj sada"
   },
   "walletBackup": {
-    "title": "Rezerviraj novčanik",
+    "title": "Sigurnosna kopija novčanika",
     "rowDesc": "Pogledaj svoje 12 riječi ili privatni ključ",
     "backedUpOn": "Rezervirano {{date}}",
     "offerTitle": "Rezerviraj svoj novčanik?",
@@ -9139,7 +9163,17 @@
     "followersUnit": "pratitelji",
     "topSupporters": "Najpopularniji podržavatelji",
     "tipped": "{{name}} šalje dar",
-    "chatPreview": "Ovdje se prikazuju poruke putem chata"
+    "chatPreview": "Ovdje se prikazuju poruke putem chata",
+    "poll": {
+      "closed": "Glasanje je zatvoreno",
+      "voteFor": "Glasajte za {{option}}",
+      "signIn": "Prijavite se i glasajte",
+      "failed": "Vaš se glas ne računa. Pokušajte ponovno.",
+      "voted_one": "Glasali ste · {{count}}",
+      "voted_other": "Glasali ste · {{count}}",
+      "votes_one": "{{count}} glas",
+      "votes_other": "{{count}} glasova"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9195,7 +9229,8 @@
       "event_feed": "Nedavna aktivnost",
       "chat_box": "Okvir za razgovor",
       "ticker": "Ticker",
-      "rule_alert": "Obavijesti o pravilima"
+      "rule_alert": "Obavijesti o pravilima",
+      "poll": "Anketa"
     },
     "hints": {
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
@@ -9213,7 +9248,8 @@
       "event_feed": "Najnoviji darovi, pratitelji, pretplatnici i osobe koje dijele vašu emisiju",
       "chat_box": "Prikazuje poruke chata vašeg emitiranja na zaslonu",
       "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu",
-      "rule_alert": "Gdje se prikazuju obavijesti o pravilima"
+      "rule_alert": "Gdje se prikazuju obavijesti o pravilima",
+      "poll": "Vaša anketa uživo, s gumbom za glasanje za svaku opciju"
     },
     "fields": {
       "style": "Stil",
@@ -9272,6 +9308,7 @@
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
     },
     "rules": {
+      "test": "Testiraj",
       "title": "Pravila",
       "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
       "add": "Dodajte pravilo",
@@ -9315,7 +9352,8 @@
         "share": "Netko dijeli stream",
         "command": "Koristi se naredba za chat",
         "keyword": "Poruka u chatu sadrži riječ",
-        "chat": "Svaka poruka u čatu"
+        "chat": "Svaka poruka u čatu",
+        "live": "Počinjete emitirati"
       },
       "audiences": {
         "everyone": "Svi",
@@ -9365,29 +9403,98 @@
         "spooky": "Sablasno",
         "magic-spell": "Čarolija",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Upotrijebite {name}, {title} i {link} u svom tekstu: svoje ime, naslov emisije i poveznicu za gledanje."
+    },
+    "polls": {
+      "title": "Ankete",
+      "intro": "Postavite pitanje ljudima koji gledaju vašu emisiju. Oni odgovaraju tipkom u aplikaciji DeHub ili upisivanjem {{command}} i broja opcije u chat.",
+      "question": "Pitanje",
+      "questionPlaceholder": "Što trebam igrati sljedeće?",
+      "option": "Opcija {{n}}",
+      "addOption": "Dodajte opciju",
+      "removeOption": "Ukloni opciju {{n}}",
+      "duration": "Koliko dugo ostaje otvoreno glasanje",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} s",
+      "minutes_one": "{{count}} min",
+      "minutes_other": "{{count}} min",
+      "start": "Pokreni anketu",
+      "end": "Završi glasanje sada",
+      "started": "Vaša je anketa otvorena. Gledatelji sada mogu glasati.",
+      "notLive": "Idi prvi uživo. Anketa se provodi na prijenosu koji upravo emitiraš.",
+      "startFailed": "Anketa nije započela. Pokušajte ponovno.",
+      "closeFailed": "Glasanje nije završilo. Pokušajte ponovno.",
+      "live": "Glasanje je otvoreno · {{time}} lijevo",
+      "ended": "Glasanje je zatvoreno",
+      "votes_one": "{{count}} glas",
+      "votes_other": "{{count}} glasova",
+      "replaceHint": "Pokretanjem nove ankete zatvara se otvorena anketa.",
+      "widgetHint": "Prikazuje vašu anketu uživo. U aplikaciji DeHub gledatelji dodiruju opciju za glasovanje; u opsu se ljudima govori da upišu {{command}} i broj u razgovoru.",
+      "sample": {
+        "a": "Nešto novo",
+        "b": "Stari favorit",
+        "c": "Vi birate"
+      }
+    },
+    "moderation": {
+      "title": "Moderacija čata",
+      "intro": "Pravila za čat pod svim vašim streamovima. Nikad ne dosegnu glavni čat DeHuba: osoba koju zabranite ovdje može još uvijek govoriti svugdje drugdje.",
+      "loadFailed": "Vaša postavka moderacije nije uspjela učitati. Osvježite stranicu i pokušajte ponovno.",
+      "save": "Spremi pravila čata",
+      "saved": "Pravila čata uspješno spremljena.",
+      "saveFailed": "Ova promjena nije uspjela spremiti.",
+      "slowMode": "Spori način",
+      "slowModeHint": "Koliko dugo gledatelji čekaju između poruka. Vi i vaši moderatori nikad ne čekate.",
+      "off": "Isključeno",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekunde",
+      "followersOnly": "Samo pretplatnici",
+      "subscribersOnly": "Sam samo pretplatnici",
+      "subscribersOnlyHint": "Prebacuje pretplatnike samo.",
+      "bannedWords": "Zabranjene riječi",
+      "bannedWordsHint": "Odvojite zarezima. Pisanje riječi slovo po slovo neće je izbjeći.",
+      "wordAction": "Kad netko koristi jednu",
+      "wordBlock": "Zaustavi poruku",
+      "wordTimeout": "Zaustavi i isključi ih za minutu",
+      "moderators": "Umjeritelji",
+      "moderatorsHint": "Mogu isključiti i zabraniti gledatelje u vašim streamovima. Ne mogu djelovati na vas ili jedan na drugog.",
+      "addModerator": "Dodaj",
+      "usernamePlaceholder": "Korisničko ime",
+      "moderatorAdded": "Dodano umjeritelja.",
+      "moderatorNotFound": "Nema računa s tim korisničkim imenom.",
+      "removeModerator": "Ukloni umjeritelja",
+      "noModerators": "Još uvijek nema umjeritelja.",
+      "banned": "Zabranjeno u vašim streamovima",
+      "unban": "Označaj kao dopušteno",
+      "noBans": "Niko nije zabranjen.",
+      "log": "Nedavne radnje",
+      "noLog": "Još ništa.",
+      "actions": {
+        "timeout_one": "{{actor}} je isključen {{target}} za {{count}} sekundu",
+        "timeout_other": "{{actor}} je isključen {{target}} za {{count}} sekunde",
+        "ban": "{{actor}} je zabranjen {{target}}",
+        "unban": "{{actor}} je dozvoljen {{target}}",
+        "moderator-added": "{{target}} postao je umjeritelj",
+        "moderator-removed": "{{target}} više nije umjeritelj",
+        "word-blocked": "Zaustavio je poruku od {{target}} zbog: \"{{word}}\"",
+        "word-timeout_one": "Isključio je {{target}} za {{count}} sekundu zbog: \"{{word}}\"",
+        "word-timeout_other": "Isključio je {{target}} za {{count}} sekunde zbog: \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Rekapitulacija streama",
-    "justEnded": "Sažetak vašeg streama",
-    "lastStream": "Vaš posljednji stream",
-    "none": "Još nema dovršenih streamova. Sažetak se prikazuje ovdje nakon prvog.",
-    "share": "Podijeli",
-    "shareText": "Upravo sam emitirao \"{{title}}\" na DeHubu: {{duration}} uživo, {{peak}} gledajući na vrhuncu i {{followers}} novih pratitelja.",
-    "untitled": "Stream bez naslova",
-    "loadFailed": "Rekapitulacija se nije učitala. Pokušajte ponovno za nekoliko trenutaka.",
-    "duration": "Vrijeme uživo",
-    "peakViewers": "Većina gledatelja gleda odjednom",
-    "gifts_one": "Od dara {{count}}",
-    "gifts_other": "Od {{count}} darova",
-    "newFollowers": "Novi pratitelji",
-    "chatMessages": "Poruke razgovora",
-    "chatters": "Ljudi razgovaraju",
-    "reactions": "Reakcija",
-    "shares": "Dijeljenje sadržaja s drugima",
-    "topSupporters": "Najpopularniji podržavatelji",
-    "polls": "Ankete",
-    "stillCounting": "Još uvijek se broji: potvrda darova može potrajati minutu."
+  "liveChatModeration": {
+    "timeout1m": "Vrijeme je isteklo za 1 minuutu",
+    "timeout10m": "Vrijeme je isteklo za 10 minuta",
+    "timeout1h": "Vrijeme je isteklo za 1 sat",
+    "ban": "Zabranjen od ovih streamova",
+    "makeModerator": "Postavi kao moderatora",
+    "timedOut": "Izbacen iz čata.",
+    "banned": "Zabranjen od ovih streamova.",
+    "madeModerator": "Sada su moderator.",
+    "failed": "To nije uspjelo. Pokusaj ponovno.",
+    "youAreBanned": "Nemate mogućnost čatiranja u streamovima ovog kreatora.",
+    "youAreTimedOut": "Trenutno ste izbačeni iz čata.",
+    "title": "Moderiraj"
   }
 }

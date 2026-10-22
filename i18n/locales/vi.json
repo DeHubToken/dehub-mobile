@@ -1,4 +1,26 @@
 {
+  "liveRecap": {
+    "title": "Tóm tắt luồng",
+    "justEnded": "Bản tóm tắt luồng của bạn",
+    "lastStream": "Phát trực tuyến cuối cùng của bạn",
+    "none": "Chưa có luồng nào đã hoàn tất. Bản tóm tắt của bạn xuất hiện ở đây sau bản tóm tắt đầu tiên.",
+    "share": "Chia sẻ màn hình",
+    "shareText": "Tôi vừa phát trực tuyến \"{{title}}\" trên DeHub: {{duration}} trực tiếp, {{peak}} đang xem ở mức cao nhất và {{followers}} người theo dõi mới.",
+    "untitled": "Luồng chưa có tiêu đề",
+    "loadFailed": "Bản tóm tắt không được tải. Hãy thử lại sau ít phút.",
+    "duration": "Thời gian sống",
+    "peakViewers": "Xem nhiều nhất cùng một lúc",
+    "gifts_one": "Từ quà tặng của {{count}}",
+    "gifts_other": "Từ {{count}} quà tặng",
+    "newFollowers": "người theo dõi mới",
+    "chatMessages": "Tin nhắn trò chuyện",
+    "chatters": "Trò chuyện với mọi người",
+    "reactions": "Cảm xúc",
+    "shares": "Chia sẻ với mọi người",
+    "topSupporters": "Người ủng hộ chính",
+    "polls": "Thăm dò ý kiến",
+    "stillCounting": "Vẫn đang đếm: quà tặng có thể mất một phút để xác nhận."
+  },
   "articles": {
     "articleImage": "Ảnh bài viết",
     "socialImage": "Ảnh chia sẻ mạng xã hội",
@@ -959,6 +981,8 @@
     "payFailed": "Không thể chuyển đổi {{symbol}} sang token DeHub",
     "stageDelivering": "DeHub Pay đang gửi token của bạn…",
     "payViaDpay": "Đã thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng 30 giây",
+    "payDirect": "Gửi thẳng cho {{name}} bằng {{symbol}} trên {{chain}}. Không swap.",
+    "payDirectNoName": "Gửi thẳng cho nhà sáng tạo bằng {{symbol}} trên {{chain}}. Không swap.",
     "payViaBridgeDpay": "Đã chuyển sang Base và thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng một phút",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4783,7 +4807,7 @@
     "usernameReserved": "Tên người dùng này được dành riêng",
     "profileSet": "Đã thiết lập hồ sơ thành công!",
     "profileFailed": "Không thiết lập được hồ sơ",
-    "displayNameHint": "Tên công khai hiển thị trên hồ sơ của bạn."
+    "displayNameHint": "Tên công khai trên hồ sơ của bạn. Không bắt buộc — để trống để dùng tên người dùng của bạn."
   },
   "events": {
     "mine": "Của tôi",
@@ -4989,7 +5013,9 @@
     "lowTopUp": "Hết {{symbol}}? Chúng tôi sẽ nạp thêm cho bạn trước khi mở khóa.",
     "unlockedSuccess": "Đã mở khóa thành công",
     "otherChain": "Bài đăng này được đặt trên một chuỗi khác, vì vậy bạn cần có token DeHub trong ví của mình ở đó.",
-    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức."
+    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức.",
+    "switchTo": "Bài này được thanh toán trên {{chain}}. Chuyển sang {{chain}} trong Cài đặt rồi thử lại.",
+    "notEnoughToken": "Bạn cần {{amount}} {{symbol}} để mở khóa. Bạn có {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Dùng cách này nếu bạn đã tạo ví này trên chính điện thoại này và khóa lẽ ra đã có ở đây",
@@ -5024,6 +5050,7 @@
     "accountHasA": "Tài khoản này có",
     "ifYouUsedDehub": "Nếu bạn từng dùng dehub.io, hãy mở nó trên máy tính, đăng nhập theo cùng cách và cùng tài khoản, rồi",
     "biometricExplainer": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa vẫn nằm trên điện thoại này, nên chúng tôi sẽ hiển thị một cụm từ khôi phục gồm 12 từ để bạn chép lại; đó là cách duy nhất để quay lại từ một máy khác, từ trang web, hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "biometricExplainerSecuring": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa riêng tư vẫn nằm trên điện thoại này. Để vào lại từ một máy khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
     "biometricPrompt": "Ví này được bảo vệ bằng sinh trắc học của thiết bị này. Xác nhận bằng vân tay hoặc khuôn mặt để tiếp tục.",
     "enterRecoveryPhrase": "Nhập cụm từ khôi phục gồm 12 từ mà bạn đã lưu khi tạo ví này (hoặc khóa riêng tư của nó, nếu bạn từng xuất ra). Nó đưa bạn về đúng tài khoản cũ, và mật khẩu bạn đặt bên dưới sẽ trở thành phương án dự phòng hoạt động ở mọi nơi kể từ giờ.",
     "copyPhrase": "Sao chép cụm từ",
@@ -5095,8 +5122,9 @@
     "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập khóa bên dưới.",
     "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này.",
     "deviceTab": "Thiết bị này",
-    "deviceExplainer": "Không có gì để nhập hoặc ghi nhớ — các chỗ ở quan trọng trên thiết bị này. Chúng tôi sẽ cung cấp cho bạn bản sao lưu 12 từ để ghi lại; đó là cách duy nhất để quay lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Thay vào đó, hãy chọn Mật khẩu và chính mật khẩu sẽ thực hiện công việc đó.",
-    "secureOnDevice": "Giữ chìa khóa trên thiết bị này"
+    "deviceExplainer": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Chúng tôi sẽ đưa cho bạn một bản sao lưu 12 từ để chép lại; đó là cách duy nhất để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "deviceExplainerSecuring": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "secureOnDevice": "Giữ khóa riêng tư trên thiết bị này"
   },
   "walletBackup": {
     "title": "Sao lưu ví",
@@ -5398,6 +5426,7 @@
     "contractPlaceholder": "Địa chỉ hợp đồng (0x…)",
     "symbolPlaceholder": "Ký hiệu (vd. PEPE)",
     "paymentsBase": "Thanh toán bằng token DeHub trên chuỗi Base",
+    "paymentsStable": "Người mua trả bằng {{symbol}}, gửi thẳng cho bạn",
     "tokensUnit": "token",
     "minimumRequired": "Yêu cầu tối thiểu {{currency}}"
   },
@@ -9109,7 +9138,7 @@
     "done": "Hoàn thành",
     "error": "Không thể gửi yêu cầu xóa của bạn. Tài khoản của bạn chưa được xác nhận xóa. Vui lòng thử lại.",
     "back": "Quay lại Cài đặt",
-    "signIn": "ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN",
+    "signIn": "Đăng nhập để xóa tài khoản của bạn",
     "acknowledge": "Tôi đã lưu chi tiết khôi phục ví của mình và hiểu rằng việc xóa là vĩnh viễn."
   },
   "miniApps": {
@@ -9225,7 +9254,17 @@
     "followersUnit": "người theo dõi",
     "topSupporters": "Những người ủng hộ hàng đầu",
     "tipped": "{{name}} đã gửi một món quà",
-    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây"
+    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây",
+    "poll": {
+      "closed": "Đã đóng bỏ phiếu",
+      "voteFor": "Bình chọn cho {{option}}",
+      "signIn": "Đăng nhập để bỏ phiếu",
+      "failed": "Phiếu bầu của bạn không được tính. Hãy thử lại.",
+      "voted_one": "Bạn đã bình chọn · {{count}} bình chọn",
+      "voted_other": "Bạn đã bình chọn · {{count}} phiếu bầu",
+      "votes_one": "{{count}} bình chọn",
+      "votes_other": "{{count}} phiếu"
+    }
   },
   "liveStudio": {
     "title": "Phòng thu trực tiếp",
@@ -9281,7 +9320,8 @@
       "event_feed": "Hoạt động gần đây",
       "chat_box": "Hộp trò chuyện",
       "ticker": "Ticker",
-      "rule_alert": "Cảnh báo quy tắc"
+      "rule_alert": "Cảnh báo quy tắc",
+      "poll": "Thăm dò ý kiến"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9299,7 +9339,8 @@
       "event_feed": "Quà tặng, người theo dõi, người đăng ký và những người mới nhất chia sẻ nội dung phát sóng của bạn",
       "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
       "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình",
-      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn"
+      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn",
+      "poll": "Cuộc thăm dò trực tiếp của bạn, với nút bỏ phiếu cho mọi lựa chọn"
     },
     "fields": {
       "style": "Phong cách",
@@ -9402,7 +9443,8 @@
         "share": "Ai đó chia sẻ luồng",
         "command": "Một lệnh trò chuyện được sử dụng",
         "keyword": "Một tin nhắn trò chuyện có chứa một từ",
-        "chat": "Bất kỳ tin nhắn trò chuyện nào"
+        "chat": "Bất kỳ tin nhắn trò chuyện nào",
+        "live": "Bạn bắt đầu phát sóng"
       },
       "audiences": {
         "everyone": "Mọi người",
@@ -9452,29 +9494,98 @@
         "spooky": "Ma quái",
         "magic-spell": "Bùa chú",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Sử dụng {name}, {title} và {link} trong tin nhắn: tên của bạn, tiêu đề chương trình phát sóng và liên kết để xem."
+    },
+    "polls": {
+      "title": "Thăm dò ý kiến",
+      "intro": "Hỏi những người đang xem chương trình phát sóng của bạn một câu hỏi. Họ trả lời bằng một nút trong ứng dụng DeHub hoặc bằng cách nhập {{command}} và số điện thoại của tùy chọn trong trò chuyện.",
+      "question": "Câu hỏi",
+      "questionPlaceholder": "Tôi nên chơi gì tiếp theo?",
+      "option": "Tùy chọn {{n}}",
+      "addOption": "Thêm tùy chọn",
+      "removeOption": "Xóa tùy chọn {{n}}",
+      "duration": "Thời gian bỏ phiếu mở cửa là bao lâu",
+      "seconds_one": "{{count}} lần thứ hai",
+      "seconds_other": "{{count}} giây",
+      "minutes_one": "{{count}} phút",
+      "minutes_other": "{{count}} phút",
+      "start": "Bắt đầu cuộc thăm dò ý kiến",
+      "end": "Kết thúc bình chọn ngay",
+      "started": "Cuộc thăm dò ý kiến của bạn đang mở. Người xem có thể bỏ phiếu ngay bây giờ.",
+      "notLive": "Đang phát trực tiếp. Một cuộc thăm dò ý kiến đang chạy trên phát sóng bạn đang trực tiếp hiện tại.",
+      "startFailed": "Cuộc thăm dò ý kiến chưa bắt đầu. Hãy thử lại.",
+      "closeFailed": "Bình chọn chưa kết thúc. Hãy thử lại.",
+      "live": "Bỏ phiếu mở · {{time}} còn lại",
+      "ended": "Đã đóng bỏ phiếu",
+      "votes_one": "{{count}} bình chọn",
+      "votes_other": "{{count}} phiếu",
+      "replaceHint": "Bắt đầu một cuộc thăm dò mới sẽ đóng cuộc thăm dò đang mở.",
+      "widgetHint": "Hiển thị cuộc thăm dò ý kiến trực tiếp của bạn. Trong ứng dụng DeHub, người xem nhấn vào một tùy chọn để bỏ phiếu; trong OBS, nó thông báo cho mọi người gõ {{command}} và một số trong chat.",
+      "sample": {
+        "a": "Thông tin mới",
+        "b": "Một yêu thích cũ",
+        "c": "Bạn chọn"
+      }
+    },
+    "moderation": {
+      "title": "Quản lý chat",
+      "intro": "Quy tắc cho chat dưới tất cả các stream của bạn. Chúng không bao giờ đến được chat chính của DeHub: ai bạn cấm ở đây vẫn có thể nói ở mọi nơi khác.",
+      "loadFailed": "Cài đặt quản lý của bạn không thể được tải. Để tải lại trang để thử lại.",
+      "save": "Lưu quy tắc chat",
+      "saved": "Quy tắc chat đã được lưu.",
+      "saveFailed": "Thay đổi này không thể được lưu.",
+      "slowMode": "Chế độ chậm",
+      "slowModeHint": "Thời gian mỗi người xem phải chờ giữa các tin nhắn. Bạn và các quản trị viên của bạn không cần chờ.",
+      "off": "Tắt",
+      "seconds_one": "{{count}} giây",
+      "seconds_other": "{{count}} giây",
+      "followersOnly": "Chỉ người theo dõi",
+      "subscribersOnly": "Chỉ người đăng ký",
+      "subscribersOnlyHint": "Vượt qua chế độ chỉ người theo dõi.",
+      "bannedWords": "Từ khóa bị cấm",
+      "bannedWordsHint": "Nhập bằng dấu phẩy. Gõ từ một cách từng chữ không tránh được.",
+      "wordAction": "Khi ai đó sử dụng một từ đó",
+      "wordBlock": "Dừng tin nhắn",
+      "wordTimeout": "Dừng lại và thời gian chờ họ một phút",
+      "moderators": "Người điều hành",
+      "moderatorsHint": "Họ có thể thời gian chờ và cấm người xem trong stream của bạn. Họ không thể hành động với bạn hoặc với nhau.",
+      "addModerator": "Thêm",
+      "usernamePlaceholder": "Tên tài khoản",
+      "moderatorAdded": "Moderator đã được thêm.",
+      "moderatorNotFound": "Không có tài khoản với tên đó.",
+      "removeModerator": "Xóa người kiểm duyệt",
+      "noModerators": "Chưa có moderator nào.",
+      "banned": "Cấm phát trực tuyến của bạn",
+      "unban": "Bỏ cấm",
+      "noBans": "Không ai bị cấm.",
+      "log": "Hành động gần đây",
+      "noLog": "Chưa có gì.",
+      "actions": {
+        "timeout_one": "{{actor}} đã bị thời gian chờ {{target}} trong {{count}} giây",
+        "timeout_other": "{{actor}} đã bị thời gian chờ {{target}} trong {{count}} giây (số nhiều)",
+        "ban": "{{actor}} đã bị cấm {{target}}",
+        "unban": "{{actor}} đã được bỏ cấm {{target}}",
+        "moderator-added": "{{target}} trở thành một moderator",
+        "moderator-removed": "{{target}} không còn là moderator",
+        "word-blocked": "Người đó đã dừng tin nhắn từ {{target}} vì \"{{word}}\"",
+        "word-timeout_one": "Thời gian chờ {{target}} trong {{count}} giây vì \"{{word}}\"",
+        "word-timeout_other": "Thời gian chờ {{target}} trong {{count}} giây (số nhiều) vì \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Tóm tắt luồng",
-    "justEnded": "Bản tóm tắt luồng của bạn",
-    "lastStream": "Phát trực tuyến cuối cùng của bạn",
-    "none": "Chưa có luồng nào đã hoàn tất. Bản tóm tắt của bạn xuất hiện ở đây sau bản tóm tắt đầu tiên.",
-    "share": "Chia sẻ màn hình",
-    "shareText": "Tôi vừa phát trực tuyến \"{{title}}\" trên DeHub: {{duration}} trực tiếp, {{peak}} đang xem ở mức cao nhất và {{followers}} người theo dõi mới.",
-    "untitled": "Luồng chưa có tiêu đề",
-    "loadFailed": "Bản tóm tắt không được tải. Hãy thử lại sau ít phút.",
-    "duration": "Thời gian sống",
-    "peakViewers": "Xem nhiều nhất cùng một lúc",
-    "gifts_one": "Từ quà tặng của {{count}}",
-    "gifts_other": "Từ {{count}} quà tặng",
-    "newFollowers": "người theo dõi mới",
-    "chatMessages": "Tin nhắn trò chuyện",
-    "chatters": "Trò chuyện với mọi người",
-    "reactions": "Cảm xúc",
-    "shares": "Chia sẻ với mọi người",
-    "topSupporters": "Người ủng hộ chính",
-    "polls": "Thăm dò ý kiến",
-    "stillCounting": "Vẫn đang đếm: quà tặng có thể mất một phút để xác nhận."
+  "liveChatModeration": {
+    "timeout1m": "Thời gian chờ 1 phút",
+    "timeout10m": "Thời gian chờ 10 phút",
+    "timeout1h": "Thời gian chờ 1 giờ",
+    "ban": "Cấm khỏi các stream này",
+    "makeModerator": "Bổ nhiệm làm quản trị viên",
+    "timedOut": "Đã bị time out.",
+    "banned": "Đã bị cấm khỏi các stream này.",
+    "madeModerator": "Họ hiện là một quản trị viên.",
+    "failed": "Đó không thành công. Thử lại.",
+    "youAreBanned": "Bạn không thể chat trong các stream của người tạo nội dung này.",
+    "youAreTimedOut": "Bạn đang bị time out một lúc.",
+    "title": "Quản lý"
   }
 }

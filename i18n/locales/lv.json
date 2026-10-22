@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Straumes kopsavilkums",
+    "justEnded": "Jūsu straumes kopsavilkums",
+    "lastStream": "Jūsu pēdējā straume",
+    "none": "Vēl nav pabeigtu straumju. Kopsavilkums tiek parādīts šeit pēc pirmā.",
+    "share": "Daļas",
+    "shareText": "Es tikko straumēju \"{{title}}\" DeHub: {{duration}} tiešraidē, {{peak}} skatoties virsotnē un {{followers}} jaunus sekotājus.",
+    "untitled": "Straume bez nosaukuma",
+    "loadFailed": "Kopsavilkums netika ielādēts. Pēc brīža mēģiniet vēlreiz.",
+    "duration": "Tiešraides laiks",
+    "peakViewers": "Visvairāk skatīšanās reizē",
+    "gifts_one": "No {{count}} dāvana",
+    "gifts_other": "No {{count}} dāvanas",
+    "newFollowers": "Jauni sekotāji",
+    "chatMessages": "Tērzēšanas ziņojumi",
+    "chatters": "Personas tērzē",
+    "reactions": "Atbildes",
+    "shares": "Personas, kas dalās pieredz",
+    "topSupporters": "Populārākie atbalstītāji",
+    "polls": "Aptaujas",
+    "pollWinner": "{{option}} uzvarēja",
+    "stillCounting": "Joprojām tiek skaitīts: dāvanu apstiprināšana var aizņemt kādu brīdi."
+  },
   "articles": {
     "articleImage": "Raksta attēls",
     "socialImage": "Sociālais kopīgošanas attēls",
@@ -4771,7 +4794,7 @@
     "usernameReserved": "Šis lietotājvārds ir rezervēts",
     "profileSet": "Profils veiksmīgi iestatīts!",
     "profileFailed": "Neizdevās iestatīt profilu",
-    "displayNameHint": "Tavs publiskais vārds, kas redzams profilā."
+    "displayNameHint": "Tavs publiskais vārds profilā. Nav obligāts — atstāj tukšu, lai izmantotu savu lietotājvārdu."
   },
   "events": {
     "mine": "Mani",
@@ -5012,6 +5035,7 @@
     "accountHasA": "Šim kontam ir",
     "ifYouUsedDehub": "Ja esi jau lietojis dehub.io, atver to datorā, pieraksties tādā pašā veidā un ar to pašu kontu, un",
     "biometricExplainer": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī, tāpēc parādīsim 12 vārdu atkopšanas frāzi, ko pierakstīt; tas ir vienīgais ceļš atpakaļ no cita tālruņa, no vietnes vai pēc pārinstalēšanas. Izvēlies Paroli, un šo darbu paveic pati parole.",
+    "biometricExplainerSecuring": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī. Lai atgrieztos no cita tālruņa, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "biometricPrompt": "Šis maks ir aizsargāts ar šīs ierīces biometriju. Lai turpinātu, apstiprini ar pirksta nospiedumu vai seju.",
     "enterRecoveryPhrase": "Ievadi 12 vārdu atkopšanas frāzi, ko saglabāji, izveidojot šo maku (vai tā privāto atslēgu, ja to eksportēji). Tā atgriež tajā pašā kontā, un zemāk iestatītā parole no šī brīža kļūst par rezerves ceļu, kas darbojas visur.",
     "copyPhrase": "Kopēt frāzi",
@@ -5084,6 +5108,7 @@
     "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē.",
     "deviceTab": "Šī ierīce",
     "deviceExplainer": "Nav ko rakstīt vai atcerēties — atslēga paliek šajā ierīcē. Mēs jums piedāvāsim 12 vārdu dublējumu, ko pierakstīt; tas ir vienīgais veids, kā atgriezties no citas ierīces, no vietnes vai pēc atkārtotas instalēšanas. Tā vietā izvēlieties Password (Parole), un parole pati veic šo darbu.",
+    "deviceExplainerSecuring": "Nekas nav jāraksta vai jāatceras — atslēga paliek šajā ierīcē. Lai atgrieztos no citas ierīces, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "secureOnDevice": "Turiet atslēgu šajā ierīcē"
   },
   "transcript": {
@@ -8982,7 +9007,7 @@
   "accountDeletion": {
     "title": "Dzēst kontu",
     "description": "Neatgriezeniski dzēst savu kontu un personas datus",
-    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus materiālus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
+    "warning": "Tādējādi tiek neatgriezeniski izdzēsts jūsu DeHub profils, ziņas, komentāri, ziņojumi un saglabātā maka dublējumkopija. Saglabājiet informāciju par maka atkopšanu un vispirms pārvietojiet visus aktīvus. Publiskos blokķēdes darījumus un likumā noteiktos maksājumu ierakstus nevar dzēst. Jūsu profils tiek nekavējoties paslēpts; dzēšana tiek pabeigta 30 dienu laikā. Šo darbību nevar atsaukt.",
     "cancel": "Atcelt",
     "confirm": "Neatgriezeniski dzēst kontu",
     "busy": "Iesniedz dzēšanas pieprasījumu...",
@@ -9138,7 +9163,17 @@
     "followersUnit": "sekotāji",
     "topSupporters": "Populārākie atbalstītāji",
     "tipped": "{{name}} nosūtīja dāvanu",
-    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit"
+    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit",
+    "poll": {
+      "closed": "Balsošana slēgta",
+      "voteFor": "Balsojiet par {{option}}",
+      "signIn": "Pierakstieties, lai balsotu",
+      "failed": "Jūsu balss netika ieskaitīta. Mēģiniet vēlreiz.",
+      "voted_one": "Jūs balsojāt · {{count}} vote",
+      "voted_other": "Jūs balsojāt · {{count}} balsis",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} balsis"
+    }
   },
   "liveStudio": {
     "title": "Tiešraides studija",
@@ -9193,7 +9228,8 @@
       "event_feed": "Jaunākās aktivitātes",
       "chat_box": "Tērzēšanas lodziņš",
       "ticker": "Atzīme",
-      "rule_alert": "Noteikumu brīdinājumi"
+      "rule_alert": "Noteikumu brīdinājumi",
+      "poll": "Aptauja"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9211,7 +9247,8 @@
       "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
       "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
-      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi"
+      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi",
+      "poll": "Jūsu tiešsaistes aptauja ar balsošanas pogu katrai opcijai"
     },
     "fields": {
       "style": "Stils",
@@ -9314,7 +9351,8 @@
         "share": "Kāds dalās ar straumi",
         "command": "Tiek izmantota tērzēšanas komanda",
         "keyword": "Tērzēšanas ziņojumā ir vārds",
-        "chat": "Jebkurš tērzēšanas ziņojums"
+        "chat": "Jebkurš tērzēšanas ziņojums",
+        "live": "Jūs sākat apraidi"
       },
       "audiences": {
         "everyone": "Visi",
@@ -9364,30 +9402,98 @@
         "spooky": "Spocīgs",
         "magic-spell": "Burvestību burvestība",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Izmantojiet {name}, {title} un {link} savā tekstā: savu vārdu, raidījuma nosaukumu un saiti, lai to skatītos."
+    },
+    "polls": {
+      "title": "Aptaujas",
+      "intro": "Uzdodiet jautājumu cilvēkiem, kuri skatās jūsu raidījumu. Viņi atbild ar pogu DeHub lietotnē vai ierakstot {{command}} un opcijas numuru tērzēšanā.",
+      "question": "Jautājums",
+      "questionPlaceholder": "Ko man spēlēt tālāk?",
+      "option": "Opcija {{n}}",
+      "addOption": "Pievienot opciju",
+      "removeOption": "Noņemt opciju {{n}}",
+      "duration": "Cik ilgi ir atvērta balsošana",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekundes",
+      "minutes_one": "{{count}} minūte",
+      "minutes_other": "{{count}} minūtes",
+      "start": "Sākt aptauju",
+      "end": "Beigt balsošanu tūlīt",
+      "started": "Jūsu aptauja ir atvērta. Skatītāji var balsot tagad.",
+      "notLive": "Vispirms ieslēdziet tiešraidi. Tiek veikta aptauja par apraidi, kuru pašlaik straumējat.",
+      "startFailed": "Aptauja nesākās. Mēģiniet vēlreiz.",
+      "closeFailed": "Balsošana nebeidzās. Mēģiniet vēlreiz.",
+      "live": "Balsošana atvērta · {{time}} pa kreisi",
+      "ended": "Balsošana slēgta",
+      "votes_one": "{{count}} balsoti",
+      "votes_other": "{{count}} balsis",
+      "replaceHint": "Jaunas aptaujas sākšana aizver atvērto aptauju.",
+      "widgetHint": "Parāda jūsu tiešraides aptauju. DeHub lietotnes skatītājos pieskarieties opcijai balsot; OBS tas liek cilvēkiem ierakstīt {{command}} un numuru tērzēšanā.",
+      "sample": {
+        "a": "Kaut kas jauns",
+        "b": "Vecs favorīts",
+        "c": "Jūs izvēlaties"
+      }
+    },
+    "moderation": {
+      "title": "Tērzēšanas regulēšana",
+      "intro": "Noteikumi tērzēšanai visās jūsu straumēs. Viņi nekad nesaskaras ar DeHub galveno tērzēšanu: kāds, kuru jūs šeit aizliedzat, joprojām var runāt visur citur.",
+      "loadFailed": "Jūsu moderācijas iestatījumus nevarēja ielādēt. Atsvaidziniet lapu, lai mēģinātu vēlreiz.",
+      "save": "Saglabāt tērzēšanas noteikumus",
+      "saved": "Tērzēšanas noteikumi ir saglabāti.",
+      "saveFailed": "Šīs izmaiņas nevarēja saglabāt.",
+      "slowMode": "Lēnais režīms",
+      "slowModeHint": "Cik ilgi katrs skatītājs gaida starp ziņojumiem. Jūs un jūsu moderatori nekad negaida.",
+      "off": "Izslēgts",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekundes",
+      "followersOnly": "Tikai sekotāji",
+      "subscribersOnly": "Tikai abonentiem",
+      "subscribersOnlyHint": "Ignorē tikai sekotājus.",
+      "bannedWords": "Aizliegtie vārdi",
+      "bannedWordsHint": "Atdaliet ar komatiem. Izrunājot burtu pa burtam, tas netiek noapaļots.",
+      "wordAction": "Kad kāds to izmanto",
+      "wordBlock": "Pārtraukt ziņojumu",
+      "wordTimeout": "Aizstāpt un izslēgt viņus uz minūti",
+      "moderators": "Moderatori",
+      "moderatorsHint": "Viņi var izslēgt un aizliegt skatītājus jūsu straumēs. Viņi nevar darboties pret jums vai pret saviem.",
+      "addModerator": "Pievienot",
+      "usernamePlaceholder": "Vārdi",
+      "moderatorAdded": "Moderators pievienots.",
+      "moderatorNotFound": "Nav konta ar šādu vārdu.",
+      "removeModerator": "Noņemt moderatoru",
+      "noModerators": "Joprojām nav moderatoru.",
+      "banned": "Aizliegts no jūsu straumēm",
+      "unban": "Atļaut",
+      "noBans": "Nav aizliegtu.",
+      "log": "Pēdējās darbības",
+      "noLog": "Joprojām nav.",
+      "actions": {
+        "timeout_one": "{{actor}} izslēgts {{target}} par {{count}} sekundi",
+        "timeout_other": "{{actor}} izslēgts {{target}} par {{count}} sekundēm",
+        "ban": "{{actor}} aizliedza {{target}}",
+        "unban": "{{actor}} atļāva {{target}}",
+        "moderator-added": "{{target}} kļuva par moderatoru",
+        "moderator-removed": "{{target}} nav vairāk moderators",
+        "word-blocked": "Aizturēja ziņu no {{target}} par: \"{{word}}\"",
+        "word-timeout_one": "Izslēgts {{target}} par {{count}} sekundi par: \"{{word}}\"",
+        "word-timeout_other": "Izslēgts {{target}} par {{count}} sekundēm par: \"{{word}}\""
       }
     }
   },
-  "liveRecap": {
-    "title": "Straumes kopsavilkums",
-    "justEnded": "Jūsu straumes kopsavilkums",
-    "lastStream": "Jūsu pēdējā straume",
-    "none": "Vēl nav pabeigtu straumju. Kopsavilkums tiek parādīts šeit pēc pirmā.",
-    "share": "Daļas",
-    "shareText": "Es tikko straumēju \"{{title}}\" DeHub: {{duration}} tiešraidē, {{peak}} skatoties virsotnē un {{followers}} jaunus sekotājus.",
-    "untitled": "Straume bez nosaukuma",
-    "loadFailed": "Kopsavilkums netika ielādēts. Pēc brīža mēģiniet vēlreiz.",
-    "duration": "Tiešraides laiks",
-    "peakViewers": "Visvairāk skatīšanās reizē",
-    "gifts_one": "No {{count}} dāvana",
-    "gifts_other": "No {{count}} dāvanas",
-    "newFollowers": "Jauni sekotāji",
-    "chatMessages": "Tērzēšanas ziņojumi",
-    "chatters": "Personas tērzē",
-    "reactions": "Atbildes",
-    "shares": "Personas, kas dalās pieredz",
-    "topSupporters": "Populārākie atbalstītāji",
-    "polls": "Aptaujas",
-    "pollWinner": "{{option}} uzvarēja",
-    "stillCounting": "Joprojām tiek skaitīts: dāvanu apstiprināšana var aizņemt kādu brīdi."
+  "liveChatModeration": {
+    "timeout1m": "Taimauts 1 minūtei",
+    "timeout10m": "10 minūšu noildze",
+    "timeout1h": "Taimauts 1 stundai",
+    "ban": "Aizliegt no šīm straumēm",
+    "makeModerator": "Padarīt moderatoru",
+    "timedOut": "Iestājies taimauts.",
+    "banned": "Aizliegts no šīm straumēm.",
+    "madeModerator": "Tagad viņi ir moderatori.",
+    "failed": "Tas neizdevās. Mēģiniet vēlreiz.",
+    "youAreBanned": "Tu nevari tērzēt šī radītāja straumēs",
+    "youAreTimedOut": "Jums uz brīdi ir iestājies taimauts",
+    "title": "Vidēji"
   }
 }

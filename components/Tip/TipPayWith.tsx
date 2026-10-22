@@ -23,6 +23,7 @@ import {
   type TipFundingSource,
 } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
+import { directTipToken } from "../../libs/direct-tip-tokens";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
 
@@ -37,9 +38,18 @@ interface Props {
   onChange: (source: TipFundingSource | null) => void;
   /** Only other tokens: for a surface that already knows the DHB is short. */
   requireSource?: boolean;
+  /**
+   * Tips: offer only USDC/USDT the tip contract on `directChainId` takes as
+   * they are, paid straight to the creator with no swap. The amount is then in
+   * that token, so nothing is picked for the tipper — switching the unit under
+   * a typed amount would turn 5,000 DHB into 5,000 USDC.
+   */
+  direct?: boolean;
+  directChainId?: number | null;
+  recipientName?: string;
 }
 
-export default function TipPayWith({ visible, amountDhb, walletAddress, value, onChange, requireSource = false }: Props) {
+export default function TipPayWith({ visible, amountDhb, walletAddress, value, onChange, requireSource = false, direct = false, directChainId, recipientName }: Props) {
   const { t, i18n } = useTranslation();
   const [sources, setSources] = useState<TipFundingSource[]>([]);
   const [dhbOnBase, setDhbOnBase] = useState<bigint>(0n);
@@ -51,15 +61,19 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
     userPicked.current = false;
     let cancelled = false;
     loadTipSources(walletAddress)
-      .then(r => { if (!cancelled) { setSources(r.sources); setDhbOnBase(r.dhbOnBase); } })
+      .then(r => {
+        if (cancelled) return;
+        setSources(direct ? r.sources.filter(s => s.chainId === directChainId && !!directTipToken(s)) : r.sources);
+        setDhbOnBase(r.dhbOnBase);
+      })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [visible, walletAddress]);
+  }, [visible, walletAddress, direct, directChainId]);
 
   const dhbHeld = Number(ethers.utils.formatUnits(dhbOnBase.toString(), 18));
   const short = requireSource || (amountDhb > 0 && amountDhb > dhbHeld);
   useEffect(() => {
-    if (userPicked.current) return;
+    if (userPicked.current || direct) return;
     if (short && !value && sources.length) onChange(sources[0]);
     if (!short && value) onChange(null);
   }, [short, sources, value, onChange]);
@@ -76,7 +90,7 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
   useEffect(() => {
     setPlan(null);
     setPlanError(null);
-    if (!value || !walletAddress || !(debounced > 0)) return;
+    if (direct || !value || !walletAddress || !(debounced > 0)) return;
     let cancelled = false;
     setQuoting(true);
     planTipFunding({ source: value, amountDhb: debounced, dhbOnBase, walletAddress })
@@ -112,7 +126,19 @@ export default function TipPayWith({ visible, amountDhb, walletAddress, value, o
         </View>
       </TouchableOpacity>
 
-      {value ? (
+      {value && direct ? (
+        <View style={styles.quote}>
+          <Text style={styles.quoteText}>
+            {recipientName
+              ? t("tip.payDirect", "Sent straight to {{name}} in {{symbol}} on {{chain}}. No swap.", {
+                name: recipientName, symbol: value.symbol, chain: TIP_CHAIN_NAMES[value.chainId] ?? "",
+              })
+              : t("tip.payDirectNoName", "Sent straight to the creator in {{symbol}} on {{chain}}. No swap.", {
+                symbol: value.symbol, chain: TIP_CHAIN_NAMES[value.chainId] ?? "",
+              })}
+          </Text>
+        </View>
+      ) : value ? (
         <View style={styles.quote}>
           {quoting ? (
             <View style={styles.quoteRow}>
