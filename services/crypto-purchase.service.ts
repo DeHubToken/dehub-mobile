@@ -2,6 +2,7 @@ import { apiClient } from '../libs/api.client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { PurchaseApi } from '../hooks/useCryptoPurchase';
 import type { PaymentAsset, Purchase } from '../libs/crypto-purchase';
+import { DHB_SALES_PAUSED, DHB_SALES_PAUSED_MESSAGE } from '../libs/dhb-sales';
 
 const pendingPayments = new Map<string, string>();
 
@@ -18,7 +19,9 @@ async function confirm(id: string, txHash: string): Promise<Purchase> {
 export const cryptoPurchaseApi: PurchaseApi = {
   assets: async () => (await apiClient.get<{ tokens: PaymentAsset[] }>('/dpay/crypto/payment-options')).tokens,
   quote: params => apiClient.post('/dpay/crypto/quote', params, { timeoutMs: 40_000 }),
-  create: params => apiClient.post('/dpay/crypto/intent', params, { isAuthRequired: true, timeoutMs: 40_000 }),
+  create: params => DHB_SALES_PAUSED
+    ? Promise.reject(new Error(DHB_SALES_PAUSED_MESSAGE))
+    : apiClient.post('/dpay/crypto/intent', params, { isAuthRequired: true, timeoutMs: 40_000 }),
   list: async () => (await apiClient.get<{ intents: Purchase[] }>('/dpay/crypto/intents', { isAuthRequired: true })).intents,
   confirm,
   status: async id => {
