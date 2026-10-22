@@ -4771,7 +4771,7 @@
     "usernameReserved": "Acest nume de utilizator este rezervat",
     "profileSet": "Profil configurat cu succes!",
     "profileFailed": "Profilul nu a putut fi configurat",
-    "displayNameHint": "Numele tău public afișat pe profil."
+    "displayNameHint": "Numele tău public afișat pe profil. Opțional — lasă câmpul gol ca să se folosească numele de utilizator."
   },
   "events": {
     "mine": "Ale mele",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Acest cont are un",
     "ifYouUsedDehub": "Dacă ai mai folosit dehub.io, deschide-l pe calculatorul tău, conectează-te în același fel și cu același cont, și",
     "biometricExplainer": "Deblochează cu amprenta sau fața — nimic de tastat sau de ținut minte. Cheia rămâne pe acest telefon, așa că îți vom arăta o frază de recuperare din 12 cuvinte pe care să o notezi; este singura cale de întoarcere de pe alt telefon, de pe site sau după o reinstalare. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
+    "biometricExplainerSecuring": "Deblochează cu amprenta sau fața — nimic de tastat sau de ținut minte. Cheia rămâne pe acest telefon. Ca să revii de pe alt telefon, de pe site sau după o reinstalare, salvează mai târziu o copie de rezervă din 12 cuvinte în Setări. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
     "biometricPrompt": "Acest portofel este protejat de biometria acestui dispozitiv. Confirmă cu amprenta sau fața pentru a continua.",
     "enterRecoveryPhrase": "Introdu fraza de recuperare din 12 cuvinte pe care ai salvat-o când ai creat acest portofel (sau cheia sa privată, dacă ai exportat una). Te duce înapoi la același cont, iar parola pe care o setezi mai jos devine de acum o rezervă care funcționează peste tot.",
     "copyPhrase": "Copiază fraza",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Acest cont are deja un portofel, protejat de o parolă. Introduceți-o pentru a vă recupera portofelul pe acest dispozitiv.",
     "deviceTab": "Acest dispozitiv",
     "deviceExplainer": "Nimic de tastat sau de reținut — cheia rămâne pe acest dispozitiv. Îți vom oferi un backup de 12 cuvinte pentru a scrie; este singura modalitate de a reveni de pe alt dispozitiv, de pe site sau după reinstalare. Alegeți în schimb parola, iar parola în sine va face treaba respectivă.",
+    "deviceExplainerSecuring": "Nimic de tastat sau de ținut minte — cheia rămâne pe acest dispozitiv. Ca să revii de pe alt dispozitiv, de pe site sau după o reinstalare, salvează mai târziu o copie de rezervă din 12 cuvinte în Setări. Alege în schimb Parolă, iar parola însăși îndeplinește acel rol.",
     "secureOnDevice": "Păstrați cheia pe acest dispozitiv"
   },
   "transcript": {
@@ -9006,7 +9008,7 @@
     "done": "Terminat",
     "error": "Cererea de ștergere nu a putut fi trimisă. Contul tău nu a fost confirmat pentru ștergere. Te rugăm să încerci din nou.",
     "back": "Înapoi la Setări",
-    "signIn": "Conectează-te la contul tău",
+    "signIn": "Conectează-te pentru a-ți șterge contul",
     "acknowledge": "Am salvat detaliile de recuperare a portofelului și înțeleg că ștergerea este permanentă."
   },
   "miniApps": {
@@ -9285,6 +9287,7 @@
       "rotateFailed": "Nu s-a putut crea un link nou. Încearcă din nou peste un moment."
     },
     "rules": {
+      "test": "Testează",
       "title": "Reguli",
       "intro": "Când se întâmplă ceva în fluxul dvs., DeHub face ceea ce alegeți: afișează o alertă, redă un sunet, citește ceva cu voce tare, postează în chat sau vă spune Discord.",
       "add": "Adaugă o regulă",

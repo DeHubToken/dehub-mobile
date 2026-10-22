@@ -1,3 +1,5 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
+import { useAppTheme } from '../../context/ThemeContext';
 import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * Player for generated audio (music, TTS).
@@ -68,6 +70,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
   const soundRef = useRef<AudioPlayer | null>(null);
   const listenerRef = useRef<{ remove: () => void } | null>(null);
   const generationRef = useRef(0);
@@ -153,19 +156,19 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
   const playedBars = Math.round(progress * BAR_COUNT);
 
   return (
-    <View style={s.card}>
+    <View style={[s.card, theme === 'glass' && skin?.card]}>
       <View style={s.row}>
         <TouchableOpacity
-          style={s.playBtn}
+          style={[s.playBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           onPress={toggle}
           activeOpacity={0.8}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? _copy("copy.858e4ba7a29f", { defaultValue: "Pause" }) : _copy("copy.436e61016e26", { defaultValue: "Play" })}
         >
           {isLoading ? (
-            <ActivityIndicator size="small" color="#09090B" />
+            <ActivityIndicator size="small" color={theme === 'glass' ? '#efffff' : '#09090B'} />
           ) : (
-            <Icon name={isPlaying ? 'Pause' : 'Play'} size={16} color="#09090B" />
+            <Icon name={isPlaying ? 'Pause' : 'Play'} size={16} color={theme === 'glass' ? '#efffff' : '#09090B'} />
           )}
         </TouchableOpacity>
 
@@ -193,7 +196,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
         <View style={s.actions}>
           {onEdit && (
             <TouchableOpacity onPress={() => { soundRef.current?.pause(); setIsPlaying(false); onEdit(audioUrl); }}
-              disabled={editDisabled || editing} style={s.actionBtn} activeOpacity={0.7}
+              disabled={editDisabled || editing} style={[s.actionBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]} activeOpacity={0.7}
               accessibilityRole="button" accessibilityLabel={t('creator.editInTimeline')}>
               {editing ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name="Scissors" size={16} color="#A6A9AC" />}
             </TouchableOpacity>
@@ -201,7 +204,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
           {onSave && (
             <TouchableOpacity
               onPress={() => onSave(audioUrl)}
-              style={s.actionBtn}
+              style={[s.actionBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
               activeOpacity={0.7}
               accessibilityRole="button"
               accessibilityLabel={t('assistant.saveAudio')}
@@ -212,7 +215,7 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
           {onPost && (
             <TouchableOpacity
               onPress={() => onPost(audioUrl)}
-              style={s.actionBtn}
+              style={[s.actionBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
               activeOpacity={0.7}
               accessibilityRole="button"
               accessibilityLabel={t('assistant.postAudio')}

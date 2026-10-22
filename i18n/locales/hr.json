@@ -4771,7 +4771,7 @@
     "usernameReserved": "Ovo korisničko ime je rezervirano",
     "profileSet": "Profil je uspješno postavljen!",
     "profileFailed": "Postavljanje profila nije uspjelo",
-    "displayNameHint": "Tvoje javno ime prikazano na profilu."
+    "displayNameHint": "Tvoje javno ime na profilu. Nije obavezno — ostavi prazno i koristit će se tvoje korisničko ime."
   },
   "events": {
     "mine": "Moji",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Ovaj račun ima",
     "ifYouUsedDehub": "Ako si već koristio dehub.io, otvori ga na računalu, prijavi se na isti način i s istim računom, i",
     "biometricExplainer": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu, pa ćemo ti pokazati frazu za oporavak od 12 riječi da je zapišeš; to je jedini put natrag s drugog uređaja, s web-stranice ili nakon ponovne instalacije. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
+    "biometricExplainerSecuring": "Otključaj otiskom prsta ili licem — ništa za upisivati ni pamtiti. Ključ ostaje na ovom telefonu. Da se vratiš s drugog telefona, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "biometricPrompt": "Ovaj novčanik zaštićen je biometrijom ovog uređaja. Potvrdi otiskom prsta ili licem za nastavak.",
     "enterRecoveryPhrase": "Unesi frazu za oporavak od 12 riječi koju si spremio kad si stvorio ovaj novčanik (ili njegov privatni ključ, ako si ga izvezao). Vodi natrag na isti račun, a lozinka koju postaviš ispod postaje rezerva koja od sada radi svugdje.",
     "copyPhrase": "Kopiraj frazu",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Ovaj račun već ima novčanik zaštićen lozinkom. Unesite je kako biste vratili svoj novčanik na ovom uređaju.",
     "deviceTab": "Ovaj uređaj",
     "deviceExplainer": "Ništa za upisivanje ili pamćenje — ključ ostaje na ovom uređaju. Ponudit ćemo vam sigurnosnu kopiju od 12 riječi koju možete zapisati; to je jedini način da se vratite s drugog uređaja, s web-mjesta ili nakon ponovne instalacije. Umjesto toga odaberite lozinku, a sama lozinka obavlja taj posao.",
+    "deviceExplainerSecuring": "Ništa za upisivati ni pamtiti — ključ ostaje na ovom uređaju. Da se vratiš s drugog uređaja, s web-stranice ili nakon ponovne instalacije, kasnije u Postavkama spremi sigurnosnu kopiju od 12 riječi. Odaberi umjesto toga Lozinku i taj posao obavlja sama lozinka.",
     "secureOnDevice": "Držite ključ na ovom uređaju"
   },
   "transcript": {
@@ -8981,7 +8983,7 @@
     "topUpEmptyHint": "Dodajte tokene za generiranje pomoću umjetne inteligencije"
   },
   "accountDeletion": {
-    "title": "Obrisati nalog",
+    "title": "Izbriši račun",
     "description": "Trajno izbrišite svoj račun i osobne podatke",
     "warning": "Time se trajno brišu tvoj DeHub profil, objave, komentari, poruke i pohranjena sigurnosna kopija novčanika. Spremite pojedinosti o oporavku novčanika i najprije premjestite sredstva. Javne transakcije u lancu blokova i zakonski obvezni zapisi o plaćanju ne mogu se izbrisati. Vaš je profil odmah skriven; brisanje se dovršava u roku od 30 dana. To se ne može poništiti.",
     "cancel": "Odustani",
@@ -8989,10 +8991,10 @@
     "busy": "Slanje zahtjeva za brisanje...",
     "accepted": "Zatraženo je brisanje računa",
     "receipt": "Vaš je zahtjev za brisanje spremljen. Tvoj je profil skriven i tvoj ćemo račun trajno izbrisati u roku od 30 dana. Prijava ne može poništiti ovaj zahtjev.",
-    "done": "Želimo vam ugodan dan!",
+    "done": "Gotovo",
     "error": "Slanje zahtjeva za brisanje nije uspjelo. Vaš račun nije potvrđen za brisanje. Pokušajte ponovno.",
     "back": "Natrag na postavke",
-    "signIn": "Prijavite se na svoj račun",
+    "signIn": "Prijavite se kako biste izbrisali račun",
     "acknowledge": "Spremio/la sam podatke o oporavku novčanika i razumijem da je brisanje trajno."
   },
   "miniApps": {
@@ -9098,7 +9100,7 @@
     "update": "Ažuriraj sada"
   },
   "walletBackup": {
-    "title": "Rezerviraj novčanik",
+    "title": "Sigurnosna kopija novčanika",
     "rowDesc": "Pogledaj svoje 12 riječi ili privatni ključ",
     "backedUpOn": "Rezervirano {{date}}",
     "offerTitle": "Rezerviraj svoj novčanik?",
@@ -9272,6 +9274,7 @@
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
     },
     "rules": {
+      "test": "Testiraj",
       "title": "Pravila",
       "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
       "add": "Dodajte pravilo",

@@ -4785,7 +4785,7 @@
     "usernameReserved": "Voatokana io anaran'ny mpampiasa io",
     "profileSet": "Voapetraka soa aman-tsara ny mombamomba!",
     "profileFailed": "Tsy voapetraka ny mombamomba",
-    "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao."
+    "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao. Tsy voatery — avelao ho banga mba hampiasana ny anaram-pikambanao."
   },
   "events": {
     "mine": "Ahy",
@@ -5026,6 +5026,7 @@
     "accountHasA": "Manana ity kaonty ity",
     "ifYouUsedDehub": "Raha efa nampiasa dehub.io ianao teo aloha, sokafy amin'ny solosainao izy, midira amin'ny fomba mitovy sy amin'ny kaonty mitovy, ary",
     "biometricExplainer": "Sokafy amin'ny dian-tananao na ny tarehinao — tsy misy soratana na tadidiana. Mijanona amin'ity finday ity ny lakile, ka hasehonay anao andianteny famerenana misy teny 12 hosoratanao; io no hany lalana hiverenana avy amin'ny finday hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
+    "biometricExplainerSecuring": "Sokafy amin'ny dian-tananao na ny tarehinao — tsy misy soratana na tadidiana. Mijanona amin'ity finday ity ny lakile. Mba hidirana indray avy amin'ny finday hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray, tehirizo any aoriana ao amin'ny Fikirana ny andianteny famerenana misy teny 12. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
     "biometricPrompt": "Arovan'ny biometrika an'ity fitaovana ity ity poketra ity. Hamarino amin'ny dian-tanana na tarehy mba hanohizana.",
     "enterRecoveryPhrase": "Ampidiro ny andianteny famerenana misy teny 12 izay notehirizinao rehefa namorona ity poketra ity (na ny lakile manokana, raha nanondrana iray ianao). Miverina amin'ilay kaonty ihany izy io, ary ny tenimiafina apetrakao etsy ambany dia lasa tahiry miasa na aiza na aiza manomboka izao.",
     "copyPhrase": "Adikao ny andianteny",
@@ -5098,6 +5099,7 @@
     "unlockWithPasswordExplainer": "Ity kaonty ity dia efa manana wallet, voaro amin'ny tenimiafina. Ampidiro izany mba hamerenana ny wallet-nao amin'ity fitaovana ity.",
     "deviceTab": "Ity fitaovana ity",
     "deviceExplainer": "Tsy misy ny mitendry na mitadidy — ny fanalahidy dia mijanona eo amin'ity fitaovana ity. Hanome anao teny backup 12 izahay mba hanoratana; Io no hany fomba hiverenana any amin'ny fitaovana hafa, avy amin'ny tranonkala, na aorian'ny fametrahana azy. Fidio ny tenimiafinao ary ny teny fanalahidy ihany no manao io asa io.",
+    "deviceExplainerSecuring": "Tsy misy soratana na tadidiana — mijanona amin'ity fitaovana ity ny lakile. Mba hidirana indray avy amin'ny fitaovana hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray, tehirizo any aoriana ao amin'ny Fikirana ny andianteny famerenana misy teny 12. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
     "secureOnDevice": "Ataovy ity periferika ity ilay famaha"
   },
   "transcript": {
@@ -9063,17 +9065,17 @@
   "accountDeletion": {
     "title": "Fafana ny kaonty",
     "description": "Hamafa hatrany ny kaontinao sy ny mombamomba anao manokana",
-    "warning": "Izany dia mamafa tanteraka ny mombamomba anao ao amin'ny DeHub, ny lahatsoratra, ny fanehoan-kevitra, ny hafatra ary ny tahirin-tsakafo. Vonjeo ny kitapom-batsy fanarenana tsipiriany ary hifindra misy fananana aloha. Public blockchain varotra sy ny fandoavam-bola takiana ara-dalàna ny firaketana dia tsy azo fafàna. Ny mombamomba anao dia miafina avy hatrany; Ny famafana dia mamarana ao anatin'ny 30 andro. Voavaha io taratasin-tadidy io.",
+    "warning": "Hofafana tanteraka ny mombamomba anao ao amin'ny DeHub, ny lahatsoratrao, ny fanehoan-kevitrao, ny hafatrao ary ny tahiry fiarovana voatahiry amin'ny kitapom-bolanao. Tehirizo ny antsipirian'ny famerenana ny kitapom-bolanao ary afindrao aloha ny fananana rehetra. Tsy azo fafana ny fifanakalozana blockchain ho an'ny daholobe sy ny firaketana fandoavam-bola takian'ny lalàna. Miafina avy hatrany ny mombamomba anao; vita ao anatin'ny 30 andro ny famafana. Tsy azo averina intsony izany.",
     "cancel": "Hanajanona",
     "confirm": "Hamafa hatrany ny kaonty",
-    "busy": "Famafana fangatahana...",
-    "accepted": "Fafàna ny kaonty",
-    "receipt": "Voavonjy ny fangatahanao famafàna. Ny mombamomba anao dia miafina ary ho voafafa tanteraka ny kaontinao ao anatin'ny 30 andro. Ny fisoratana anarana dia tsy afaka hanafoana ny fangatahana toy izany.",
-    "done": "GameTextFile",
-    "error": "Tsy afaka namaritra ny fangatahana famafana ianao. Tsy voamarina ny kaontinao noho ny famafana azy. Avereno andramana azafady.",
-    "back": "Makany amin'ny fandrindrana",
-    "signIn": "Hiditra ao amin'ny kaontinao.",
-    "acknowledge": "Izaho no namonjy ny kitapom-batsy fanarenana antsipirihany sy hahatakatra fa famafana maharitra."
+    "busy": "Mandefa ny fangatahana famafana…",
+    "accepted": "Nangatahina ny famafana ny kaonty",
+    "receipt": "Voatahiry ny fangatahanao famafana. Ny mombamomba anao dia miafina ary ho voafafa tanteraka ny kaontinao ao anatin'ny 30 andro. Ny fidirana dia tsy afaka hanafoana io fangatahana io.",
+    "done": "Vita",
+    "error": "Tsy afaka nandefa ny fangatahanao famafana. Tsy voamarina ho fafana ny kaontinao. Avereno andramana azafady.",
+    "back": "Hiverina any amin'ny Fikirana",
+    "signIn": "Midira mba hamafa ny kaontinao",
+    "acknowledge": "Efa notehiriziko ny antsipirian'ny famerenana ny kitapom-bolako ary azoko fa maharitra ny famafana."
   },
   "miniApps": {
     "badge": {
@@ -9178,7 +9180,7 @@
     "update": "Havaozy izao"
   },
   "walletBackup": {
-    "title": "Mamerina tahiry ny kitapo",
+    "title": "Tahiry fiarovana ny kitapom-bola",
     "rowDesc": "Jereo ny teny 12 na lakile manokana",
     "backedUpOn": "Naverina tahiry {{date}}",
     "offerTitle": "Mamerina tahiry ny kitapo?",
@@ -9351,6 +9353,7 @@
       "rotateFailed": "Tsy afaka namorona rohy vaovao. Miverena ao anatin'ny iray minitra."
     },
     "rules": {
+      "blockedWords": "Teny voarara",
       "title": "Fitsipika",
       "intro": "Raha misy zavatra mitranga eo amin'ny renirano, DeHub dia manao izay safidinao: maneho fanairana, mitendry feo, mamaky zavatra mafy, lahatsoratra ao amin'ny chat na milaza ny Discord anao.",
       "add": "Manampia fitsipika iray",
@@ -9426,6 +9429,7 @@
         "command": "Mamaly ny !baiko ao amin'ny chat"
       },
       "presetText": {
+        "thankFollowers": "Misaotra tamin'ny fanarahana, {name}!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!",
         "command": "Miarahaba ny {name} 0, tongasoa ato amin'ny onja!"

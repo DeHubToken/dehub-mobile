@@ -17,6 +17,9 @@
 import { supportedTokens, streamInfoKeys } from "../config/constants";
 import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
+import { DIRECT_TIP_TOKENS } from "./direct-tip-tokens";
+
+const isStableSymbol = (s?: string) => s === "USDC" || s === "USDT";
 
 export const parsePositiveNumber = (v: string): number | undefined => {
   if (!v) return undefined;
@@ -32,6 +35,13 @@ export function validateMonetization(
 ): string | null {
   if (m.ppvEnabled && !parsePositiveNumber(m.ppvData.price)) {
     return "PPV price must be a valid positive number.";
+  }
+  // Never quietly reprice 5 USDC as 5 DHB after a chain switch.
+  if (
+    m.ppvEnabled && postChainId && !isSolanaChain(postChainId) && isStableSymbol(m.ppvData.tokenSymbol) &&
+    !DIRECT_TIP_TOKENS.some((tk) => tk.chainId === postChainId && tk.symbol === m.ppvData.tokenSymbol)
+  ) {
+    return `${m.ppvData.tokenSymbol} pay-per-view is only available on Base and BNB Chain.`;
   }
   if (m.bountyEnabled) {
     if (!parsePositiveNumber(m.bountyData.viewers)) {
@@ -78,7 +88,13 @@ export function buildStreamInfo(
       info[streamInfoKeys.payPerViewContractAddress] = tok?.address;
       info[streamInfoKeys.payPerViewChainIds] = postChainId;
     } else {
-      info[streamInfoKeys.payPerViewTokenSymbol] = "DHB";
+      // DHB, or USDC/USDT where the chain's controller accepts them (the
+      // backend checks the buyer paid in this contract).
+      const stable = isStableSymbol(m.ppvData.tokenSymbol)
+        ? DIRECT_TIP_TOKENS.find((tk) => tk.chainId === evmChainId && tk.symbol === m.ppvData.tokenSymbol)
+        : undefined;
+      info[streamInfoKeys.payPerViewTokenSymbol] = stable?.symbol ?? "DHB";
+      if (stable) info[streamInfoKeys.payPerViewContractAddress] = stable.address;
       info[streamInfoKeys.payPerViewChainIds] = evmChainId;
     }
   }

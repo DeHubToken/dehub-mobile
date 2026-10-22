@@ -4,7 +4,7 @@ import {
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
   resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
-  getBadgeOpticalStyle, badgeImageFor,
+  getBadgeOpticalStyle, badgeImageFor, getWalletAvatarUrl, storedAvatarSources,
 } from '../../libs/misc';
 
 jest.mock('../../config/env', () => ({
@@ -109,6 +109,54 @@ describe('libs/misc', () => {
     it('leaves an /avatars/ path on a third-party host alone', () => {
       const external = 'https://xyz.supabase.co/avatars/johncena.png';
       expect(getAvatarUrl(external, 0)).toBe(external);
+    });
+  });
+
+  // Stage rows store the picture a person had when they took the seat or
+  // scheduled the stage. The wallet's own file on the CDN is the backstop when
+  // that path has gone stale, or when the row never stored one.
+  describe('getWalletAvatarUrl', () => {
+    const wallet = '0xAbCdEf0123456789abcdef0123456789ABCDEF01';
+    it('points at the wallet file, lower-cased and sized', () => {
+      expect(getWalletAvatarUrl(wallet)).toBe(
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/0xabcdef0123456789abcdef0123456789abcdef01.jpg'
+      );
+      expect(getWalletAvatarUrl(wallet, 0)).toBe(
+        'https://cdn.test.dehub.io/avatars/0xabcdef0123456789abcdef0123456789abcdef01.jpg'
+      );
+    });
+    it('asks for the animated file when the stored picture was animated', () => {
+      expect(getWalletAvatarUrl(wallet, 0, `avatars/${wallet}-0123.webp`)).toBe(
+        'https://cdn.test.dehub.io/avatars/0xabcdef0123456789abcdef0123456789abcdef01.webp'
+      );
+    });
+    it('has nothing for a missing or malformed address', () => {
+      expect(getWalletAvatarUrl(null)).toBeNull();
+      expect(getWalletAvatarUrl('')).toBeNull();
+      expect(getWalletAvatarUrl('0x123')).toBeNull();
+      expect(getWalletAvatarUrl('guest_42')).toBeNull();
+    });
+  });
+
+  describe('storedAvatarSources', () => {
+    const wallet = '0xabcdef0123456789abcdef0123456789abcdef01';
+    it('tries the stored picture first, then the wallet file', () => {
+      expect(storedAvatarSources(`avatars/${wallet}-0123.webp`, wallet, 0)).toEqual({
+        uri: `https://cdn.test.dehub.io/avatars/${wallet}-0123.webp`,
+        fallbackUri: `https://cdn.test.dehub.io/avatars/${wallet}.webp`,
+      });
+    });
+    it('goes straight to the wallet file when the row stored nothing usable', () => {
+      const walletOnly = { uri: `https://cdn.test.dehub.io/avatars/${wallet}.jpg`, fallbackUri: null };
+      expect(storedAvatarSources(null, wallet, 0)).toEqual(walletOnly);
+      expect(storedAvatarSources('blob:https://dehub.io/abc', wallet, 0)).toEqual(walletOnly);
+    });
+    it('keeps a stored picture for a seat with no wallet (a guest)', () => {
+      expect(storedAvatarSources('guest.png', null, 0)).toEqual({
+        uri: 'https://cdn.test.dehub.io/avatars/guest.png',
+        fallbackUri: null,
+      });
+      expect(storedAvatarSources(null, null)).toEqual({ uri: null, fallbackUri: null });
     });
   });
 

@@ -4743,7 +4743,7 @@
     "usernameReserved": "Nin tɔgɔ marala",
     "profileSet": "Profili labɛnna ka ɲɛ!",
     "profileFailed": "Profili ma se ka labɛn",
-    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan."
+    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan. A tɛ wajibi ye — n'i y'a to lankolon, i ka baarakɛla tɔgɔ de bɛna ta."
   },
   "events": {
     "mine": "N ta",
@@ -4980,6 +4980,7 @@
     "accountHasA": "Nin jate bɛ ni",
     "ifYouUsedDehub": "N'i delila ka baara kɛ ni dehub.io ye, a da wuli i ka ɔridinatɛri kan, don o cogo kelen na ni jate kelen na, ani",
     "biometricExplainer": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan, o la an bɛna laseginni kuma daɲɛ 12 jira i la walasa i k'u sɛbɛn; o de ye sira kelen ye ka segin ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
+    "biometricExplainerSecuring": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan. Walasa ka segin ka don ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "biometricPrompt": "Nin wari maralan lakananen don ni nin minɛn bolonɔ ye. I bolonɔ walima i ɲɛda sɛmɛntiya walasa ka taa ɲɛ.",
     "enterRecoveryPhrase": "Laseginni kuma daɲɛ 12 sɛbɛn, i ye min mara tuma min na i ye nin wari maralan dilan (walima a konnɛgɛ gundo, n'i y'a labɔ). A bɛ segin jate kelen kan, ani tɛmɛsira min b'i sigi duguma, o bɛ kɛ nɔɲɔgɔnna ye min bɛ baara kɛ yɔrɔ bɛɛ kabini sisan.",
     "copyPhrase": "Kuma kopi",
@@ -5052,6 +5053,7 @@
     "addPasswordOnWeb": "N'i ye dehub.io kɛ ka kɔrɔ, a da wuli i ka ɔridinatɛri kan, i don cogo kelen na ni jate kelen ye, ka <em>wari maralan tɛmɛsira dɔ fara a kan</em> — o bɛ maracogo dogolen dɔ mara nuwaji la. O kɔ, segin yan ka a lajɛ kokura.",
     "deviceTab": "O ye fɛɛrɛ ye",
     "deviceExplainer": "O tɛ se ka sɛbɛri kɛ wala k'a hakili to a la. An b'a fɛ ka kuma 12 sɛbɛ ka bɔ a kɔnɔ. O le ye sira kelen ye ka segi ka bɔ a yɔrɔ wɛrɛ la, ka bɔ a yɔrɔ la, walima ka segi ka bɔ a yɔrɔ la. I ka tɛmɛsira sugandi ani i ka tɛmɛsira yɛrɛ lo b'o baara kɛ.",
+    "deviceExplainerSecuring": "Foyi tɛ sɛbɛn walima ka hakili la — konnɛgɛ bɛ to nin minɛn kan. Walasa ka segin ka don ka bɔ minɛn wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "secureOnDevice": "I ka mansinw mara o masini kan"
   },
   "transcript": {
@@ -8910,19 +8912,19 @@
     "topUpEmptyHint": "Token fara a kan walasa ka baara kɛ ni AI ye"
   },
   "accountDeletion": {
-    "title": "Ka kunnafoniw bɔ",
-    "description": "I ka kunnafoniw ani i ka kunnafoniw bɛɛ bɔ kɛnɛ kan",
-    "warning": "O be i ka DeHub kunnafoniw, i ka lɛtɛrɛw, i ka kumadenw, i ka lɛtɛrɛw ani i ka warifaniw bɛɛ ban pewu. I ka wari sɔrɔli kunnafoniw mara ani i ka wari bɛɛ ta fɔlɔ. O kama, a ka ɲi ka to ka kuma ni mɔgɔ wɛrɛw ye. I ka kunnafoniw be dogo joona joona. I ka kunnafoniw be tunu tile 30 kɔnɔ. O tɛ se ka ban.",
-    "cancel": "Kanali",
-    "confirm": "Ka n ka wari di n ma tuma bɛɛ",
-    "busy": "O kama, n' tun b'a fɛ ka min fɔ, n' tun b'o le fɔra.",
-    "accepted": "N'i ye mɔgɔ dɔ weele ka na i ka banki la",
-    "receipt": "I ka deliliw kisira. I ka kunnafoniw dogonin lo ani i ka kunnafoniw bena tunu pewu tile 30 kɔnɔ. Aw kana siginidenw bali ka sɛbɛ nin ci.",
-    "done": "Mun lo kɛra?",
-    "error": "Aw kana siginidenw bali ka sɛbɛ nin ci. I ka ladɛrɛsi ma kɛ ka ban. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
-    "back": "An ka segi an ka ladɛrɛsiw kan",
-    "signIn": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
-    "acknowledge": "Ne ye n ka wari sɔrɔli kunnafoniw mara ani n' y'a faamu ko n' ka wari bɔli ye kudayi ye."
+    "title": "Kɔnti jɔsi",
+    "description": "I ka kɔnti ni i yɛrɛ ka kunnafoniw jɔsi pewu",
+    "warning": "Nin bɛ i ka DeHub profil, i ka sɛbɛnw, i ka hakilinaw, i ka cikanw ani i ka wariminɛn kopi maralen jɔsi pewu. I ka wariminɛn segincogo kunnafoniw mara, ka i ka nafolow bɛɛ bɔ a la fɔlɔ. Blockchain kan jago minnu bɛ bɛɛ ɲɛ na ani sariya ye sara sɛbɛn minnu wajibiya, olu tɛ se ka jɔsi. I ka profil bɛ dogo o yɔrɔnin bɛɛ; jɔsili bɛ ban tile 30 kɔnɔ. O tɛ se ka segin kɔ.",
+    "cancel": "Dabila",
+    "confirm": "N ka kɔnti jɔsi pewu",
+    "busy": "Jɔsili ɲinini bɛ ka ci…",
+    "accepted": "Kɔnti jɔsili ɲinini cira",
+    "receipt": "I ka jɔsili ɲinini marala. I ka profil dogolen don, i ka kɔnti bɛna jɔsi pewu tile 30 kɔnɔ. Ni i donna, o tɛ nin ɲinini dabila.",
+    "done": "A banna",
+    "error": "An ma se ka i ka jɔsili ɲinini ci. I ka kɔnti jɔsili ma sɛmɛntiya. Segi k'a lajɛ tugun.",
+    "back": "Segi Labɛnw ma",
+    "signIn": "Don walasa ka i ka kɔnti jɔsi",
+    "acknowledge": "N ye n ka wariminɛn segincogo kunnafoniw mara, ani n y'a faamu ko jɔsili tɛ se ka segin kɔ."
   },
   "miniApps": {
     "badge": {
@@ -9027,7 +9029,7 @@
     "update": "Kuraya sisan"
   },
   "walletBackup": {
-    "title": "Ka segi ka taga ni wari ye",
+    "title": "Wariminɛn kopi mara",
     "rowDesc": "A filɛ i ka kumaden 12 wala i ka jɔnjɔn",
     "backedUpOn": "Baa kɛ {{date}}",
     "offerTitle": "Yala i b'a fɛ ka segi ka na n'i ye wa?",
@@ -9192,6 +9194,7 @@
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
     },
     "rules": {
+      "cooldown": "Attendre entre les utilisations (secondes)",
       "title": "Sariya",
       "intro": "Ni koo dɔ kɛra i ka site web kan, DeHub b'a fɛ ka min kɛ, a b'o kɛ: a be lasɔmini dɔ yira, a be mankan dɔ bɔ, a be fɛɛn dɔ kalan ni kaanba ye, a be kuma i ka site web kɔnɔ wala a be kuma i ka Discord koo la.",
       "add": "A ka sariya sigi",
@@ -9265,10 +9268,13 @@
         "command": "I ka kan ka min fɔ, o ye tiɲɛ ye."
       },
       "presetText": {
+        "thankFollowers": "Merci de nous avoir suivis, {name} !",
+        "command": "Bonjour {name}, bienvenue sur la chaîne !",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
       "sounds": {
+        "spooky": "Effrayant",
         "airhorn": "Fanga min be fɔɲɔ kan",
         "applause": "Ne b'i fo kosɔbɛ",
         "cricket": "Kɛlɛkɛyɔrɔ",
@@ -9280,7 +9286,9 @@
         "ba-dum-tish": "O ye ne ka koo ye.",
         "magic-spell": "O ye kabako ye.",
         "shhh": "O ye n ka miiriya ye."
-      }
+      },
+      "audience": "Jɔn tun be se k'a miiri ko a bena bɔ?",
+      "webhookHint": "Webhook min be weele ko Discord wala Slack, walima https ka ladɛrɛsi min be sɔn ka baara dɔ kɛ."
     }
   }
 }

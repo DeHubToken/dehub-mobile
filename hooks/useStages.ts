@@ -29,6 +29,7 @@ import { deleteStageRecordings } from "../libs/stage-recording-delete";
 import { openStagesHub } from "../libs/openStagesHub";
 import { watchStages, type StageChange } from "../libs/stage-broadcast";
 import { useFrontRow } from './useSuperpowers';
+import { askToEndStage } from "../components/Stages/confirmEndStage";
 
 const log = createLogger("useStages");
 
@@ -402,6 +403,8 @@ export function useStages(): UseStagesReturn {
   const [isTranscriptLoading, setIsTranscriptLoading] = useState(false);
 
   const recordingPathRef = useRef<string | null>(null);
+  /** A join or start in progress; a second tap must not start another. */
+  const roomSwitchInFlightRef = useRef(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialModalView, setInitialModalView] = useState<"browse" | "create" | "live">("browse");
@@ -661,7 +664,14 @@ export function useStages(): UseStagesReturn {
         // video setup in initStageEngine. Nothing else ever publishes video.
         autoSubscribeVideo: true,
       };
-      engine.joinChannel(tokenData.token, channelName, tokenData.uid ?? 0, options);
+      // The return code is the only word on whether the SDK took the join. It
+      // used to be ignored, so a refused join (already in another channel, a
+      // bad token) still set isConnected and the room sat there silent.
+      const joined = engine.joinChannel(tokenData.token, channelName, tokenData.uid ?? 0, options);
+      if (joined < 0) {
+        log.error("Stage joinChannel refused. Error code:", joined);
+        return false;
+      }
       setIsConnected(true);
 
       // Host records the mixed channel audio for later transcription
@@ -730,6 +740,11 @@ export function useStages(): UseStagesReturn {
   const upgradeSpeakerRef = useRef<() => Promise<void>>(async () => {});
   /** startScheduledSpace falls back to a plain rejoin, and is defined above joinSpace. */
   const joinSpaceRef = useRef<(spaceId: string) => Promise<boolean>>(async () => false);
+  /** Leaving and ending are defined below the joins that have to call them. */
+  const leaveSpaceRef = useRef<() => Promise<void>>(async () => {});
+  const endSpaceRef = useRef<() => Promise<void>>(async () => {});
+  /** Upload a finished host recording; every way out of a room hands it here. */
+  const uploadRecordingRef = useRef<(recPath: string, spaceId: string) => Promise<void>>(async () => {});
 
   const upgradeSpeaker = useCallback(async () => {
     const engine = getStageEngine();
@@ -749,7 +764,9 @@ export function useStages(): UseStagesReturn {
         publishMicrophoneTrack: true,
         publishCameraTrack: false,
         autoSubscribeAudio: true,
-        autoSubscribeVideo: false,
+        // Still watching the host's shared screen: false here blanked it the
+        // moment a listener was brought up to speak.
+        autoSubscribeVideo: true,
       });
       // Start muted — speaker must press unmute button to talk
       engine.muteLocalAudioStream(true);
@@ -1027,7 +1044,10 @@ export function useStages(): UseStagesReturn {
                 description: t("stages.autoEnd.description", { title: updated.title }),
               });
             }
-            await leaveStageChannel();
+            // A host still in the room when the server closes it (30 silent
+            // minutes) was recording; the file used to be dropped right here.
+            const recPath = await leaveStageChannel();
+            if (recPath) void uploadRecordingRef.current(recPath, spaceId);
             setCurrentSpace(null);
             setMyRole(null);
             setParticipants([]);
@@ -1061,10 +1081,41 @@ export function useStages(): UseStagesReturn {
 
   // ── Actions ───────────────────────────────────────────────────────────────
 
+  /**
+   * Make way for another room before entering one.
+   *
+   * Every way into a stage (the home rail, the carousel, a link card, the
+   * list) called straight into join with no thought for the room already
+   * open. Agora refused the second join, the app carried on as if it had
+   * worked, and the old seat was never given up. Tapping your own live stage
+   * again was worse for a host: the join ran a second time, muted them and
+   * restarted the recorder, throwing away everything recorded so far.
+   *
+   * 'same' when already seated in `nextSpaceId` (nothing to do), false when
+   * the move is off, true once the old room is left. A host is asked first,
+   * because leaving takes their stage off the air for everyone.
+   */
+  const vacateCurrentRoom = useCallback(async (nextSpaceId: string | null): Promise<boolean | "same"> => {
+    const current = currentSpaceRef.current;
+    if (!current) return true;
+    // A guest listener holds no seat, so signing in to the same room is a real join.
+    if (current.id === nextSpaceId && myRoleRef.current) return "same";
+    if (myRoleRef.current === "host") {
+      if (!(await askToEndStage(t, current.title))) return false;
+      await endSpaceRef.current();
+      return true;
+    }
+    await leaveSpaceRef.current();
+    return true;
+  }, []);
+
   const createSpace = useCallback(async (title: string, description?: string, coverImageUrl?: string | null): Promise<AudioSpace | null> => {
     if (!userAddress) return null;
+    if (roomSwitchInFlightRef.current) return null;
+    roomSwitchInFlightRef.current = true;
     setIsLoading(true);
     try {
+      if (!(await vacateCurrentRoom(null))) return null;
       const channelName = `stage_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
       const { data, error } = await signed(
         supabase
@@ -1125,9 +1176,10 @@ export function useStages(): UseStagesReturn {
       log.error("Failed to create space:", err);
       return null;
     } finally {
+      roomSwitchInFlightRef.current = false;
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel, refreshSpaces, signed]);
+  }, [userAddress, user, joinStageChannel, refreshSpaces, signed, vacateCurrentRoom]);
 
   // ── Scheduling ────────────────────────────────────────────────────────────
 
@@ -1176,7 +1228,9 @@ export function useStages(): UseStagesReturn {
   /** Take a stage that was scheduled earlier live now. Host only. */
   const startScheduledSpace = useCallback(async (spaceId: string): Promise<boolean> => {
     if (!userAddress) return false;
+    if (roomSwitchInFlightRef.current) return false;
     setIsLoading(true);
+    let claimed = false;
     try {
       const { data: existing, error: readErr } = await supabase
         .from("audio_spaces")
@@ -1188,8 +1242,14 @@ export function useStages(): UseStagesReturn {
       // depended on the auth layer normalising, and a row carrying a
       // checksummed address refused its own host.
       if (!sameWallet(existing.host_wallet_address, userAddress)) return false;
+      // joinSpace takes the in-flight claim itself, so hand over before taking it.
       if (existing.status === "live") return await joinSpaceRef.current(spaceId);
       if (existing.status !== "scheduled") return false;
+      if (roomSwitchInFlightRef.current) return false;
+      roomSwitchInFlightRef.current = claimed = true;
+      // Starting your own stage from inside someone else's room: leave it
+      // first, so the two do not play at once.
+      if (!(await vacateCurrentRoom(spaceId))) return false;
 
       const { data, error } = await signed(
         supabase
@@ -1240,9 +1300,10 @@ export function useStages(): UseStagesReturn {
       log.error("Failed to start scheduled space:", err);
       return false;
     } finally {
+      if (claimed) roomSwitchInFlightRef.current = false;
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel, refreshSpaces, signed]);
+  }, [userAddress, user, joinStageChannel, refreshSpaces, signed, vacateCurrentRoom]);
 
   /** Call off a scheduled stage. Host only; the row is removed outright. */
   const cancelScheduledSpace = useCallback(async (spaceId: string): Promise<boolean> => {
@@ -1298,8 +1359,14 @@ export function useStages(): UseStagesReturn {
 
   const joinSpace = useCallback(async (spaceId: string): Promise<boolean> => {
     if (!userAddress) return false;
+    // Two taps, or two cards, must not race two joins.
+    if (roomSwitchInFlightRef.current) return false;
+    roomSwitchInFlightRef.current = true;
     setIsLoading(true);
     try {
+      const vacated = await vacateCurrentRoom(spaceId);
+      if (vacated === "same") return true;
+      if (!vacated) return false;
       const { data, error } = await supabase
         .from("audio_spaces")
         .select("*")
@@ -1366,9 +1433,10 @@ export function useStages(): UseStagesReturn {
       log.error("Failed to join space:", err);
       return false;
     } finally {
+      roomSwitchInFlightRef.current = false;
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel, signed]);
+  }, [userAddress, user, joinStageChannel, signed, vacateCurrentRoom]);
 
   joinSpaceRef.current = joinSpace;
 
@@ -1377,8 +1445,16 @@ export function useStages(): UseStagesReturn {
   // already only attach auth headers for the publisher role, so a subscriber
   // request here needs no wallet at all -- nothing server-side to change.
   const guestListenSpace = useCallback(async (spaceId: string): Promise<boolean> => {
+    if (roomSwitchInFlightRef.current) return false;
+    const current = currentSpaceRef.current;
+    if (current?.id === spaceId) return true;
+    // Every caller tries joinSpace first, which has already asked a host
+    // about their own stage; this must not slip them into a second room.
+    if (current && myRoleRef.current === "host") return false;
+    roomSwitchInFlightRef.current = true;
     setIsLoading(true);
     try {
+      if (current) await leaveSpaceRef.current();
       const { data, error } = await supabase
         .from("audio_spaces")
         .select("*")
@@ -1400,6 +1476,7 @@ export function useStages(): UseStagesReturn {
       log.error("Failed to join space as guest:", err);
       return false;
     } finally {
+      roomSwitchInFlightRef.current = false;
       setIsLoading(false);
     }
   }, [joinStageChannel]);
@@ -1417,7 +1494,16 @@ export function useStages(): UseStagesReturn {
 
       await recountSpace(space.id);
     }
-    await leaveStageChannel();
+    // A host leaving ends the stage (the seat release above is what fires the
+    // auto-end), so whatever they recorded is the only copy of it. This used
+    // to be dropped unless they had pressed End; Leave, the mini-player's
+    // close and an end from the stage list all lost it.
+    const recPath = await leaveStageChannel();
+    if (recPath && space) void uploadRecordingRef.current(recPath, space.id);
+    // Cleared now rather than on the next render, so a join that follows this
+    // straight away does not think it is still in the old room.
+    currentSpaceRef.current = null;
+    myRoleRef.current = null;
     setCurrentSpace(null);
     setMyRole(null);
     setParticipants([]);
@@ -1516,9 +1602,6 @@ export function useStages(): UseStagesReturn {
 
   const endSpace = useCallback(async () => {
     const space = currentSpaceRef.current;
-    const spaceId = space?.id;
-    // Capture recording path before leaveSpace() nulls it out
-    const recPath = recordingPathRef.current;
     if (space && myRoleRef.current === "host") {
       await signed(
         supabase.from("audio_spaces")
@@ -1526,12 +1609,13 @@ export function useStages(): UseStagesReturn {
           .eq("id", space.id),
       );
     }
+    // Uploads the recording on the way out, in the background.
     await leaveSpace();
-    // Upload recording in background after leaving (non-blocking)
-    if (recPath && spaceId) {
-      uploadAndTranscribe(recPath, spaceId);
-    }
-  }, [leaveSpace, uploadAndTranscribe, signed]);
+  }, [leaveSpace, signed]);
+
+  leaveSpaceRef.current = leaveSpace;
+  endSpaceRef.current = endSpace;
+  uploadRecordingRef.current = uploadAndTranscribe;
 
   /**
    * Close a stage you host but are not standing in.
@@ -1607,7 +1691,7 @@ export function useStages(): UseStagesReturn {
   const raiseHand = useCallback(async () => {
     const space = currentSpaceRef.current;
     if (!space || !userAddress || myRole !== "listener" || hasRaisedHand) return;
-    await signed(
+    const { error } = await signed(
       supabase.from("raise_hand_requests").insert({
         space_id: space.id,
         wallet_address: userAddress,
@@ -1616,6 +1700,15 @@ export function useStages(): UseStagesReturn {
         status: "pending",
       }),
     );
+    // The table is unique on (space, wallet, status), and a pending row
+    // outlives a dropped connection while this state does not: a duplicate is
+    // the hand already being up, as on web. Anything else never reached the
+    // host, and the button must not light up as if it had.
+    if (error && error.code !== "23505") {
+      log.error("Failed to raise hand:", error);
+      toastError(null, t("common.somethingWentWrong"));
+      return;
+    }
     setHasRaisedHand(true);
   }, [userAddress, user, myRole, hasRaisedHand, signed]);
 

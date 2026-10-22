@@ -4729,7 +4729,7 @@
     "usernameReserved": "Dem reserve dis username",
     "profileSet": "Profile don set well well!",
     "profileFailed": "We no fit set di profile",
-    "displayNameHint": "Your public name wey dey show for your profile."
+    "displayNameHint": "Your public nem for your profile. You no must put am — leave am empty and we go use your username."
   },
   "events": {
     "mine": "Ma own",
@@ -4963,6 +4963,7 @@
     "accountHasA": "Dis account get",
     "ifYouUsedDehub": "If you don use dehub.io before, open am for your computer, sign in di same way and with di same account, and",
     "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. Di key dey stay for dis phone, so we go show you 12-word recovery phrase make you write am down; na di only way to enter back from anoda phone, from di website, or after you reinstall. Choose Password instead and di password go do dat work.",
+    "biometricExplainerSecuring": "Open am with your fingerprint or your face — nothing for type or remember. Di key di stay for dis phone. For enter back from another phone, from di website, or after you reinstall am, save one 12-word backup for Setin dem later. Choose Password instead and di password self go do dat work.",
     "biometricPrompt": "Dis wallet dey protected by dis device biometrics. Confirm with fingerprint or face make you continue.",
     "enterRecoveryPhrase": "Enter di 12-word recovery phrase wey you save wen you create dis wallet (or im private key, if you export one). E go carry you back go di same account, and di password wey you set for below go turn backup wey go work everywhere from now.",
     "copyPhrase": "Copy di phrase",
@@ -5035,6 +5036,7 @@
     "unlockWithPasswordExplainer": "Dis account don already get wallet weh password di protect. Enter di password for recover ya wallet for dis device.",
     "deviceTab": "Dis device",
     "deviceExplainer": "Nothin wey you go type or remember — di key de stay for dis device. We go give you one 12‑word backup wey you fit write down; na di only way to get back in from another device, from di website, or after reinstall. Choose Password instead and di password itself go do di work.",
+    "deviceExplainerSecuring": "Nothing for type or remember — di key di stay for dis device. For enter back from another device, from di website, or after you reinstall am, save one 12-word backup for Setin dem later. Choose Password instead and di password self go do dat work.",
     "secureOnDevice": "Make you keep di key for dis device"
   },
   "transcript": {
@@ -8847,14 +8849,17 @@
     "topUpEmptyHint": "Add tokens make you fit generate with AI"
   },
   "accountDeletion": {
-    "title": "Delete account",
+    "title": "Delete your account",
+    "description": "Delete your account and your personal data for good",
     "cancel": "Cancel",
-    "confirm": "Permanently delete my account",
-    "busy": "Submitting deletion request…",
-    "accepted": "Account deletion requested",
+    "confirm": "Delete my account for good",
+    "busy": "We di send your delete request…",
+    "accepted": "We don receive your delete request",
     "done": "Done",
-    "back": "Back to Settings",
-    "warning": "\"Dis wey fo' long long, dis a go delete yu DeHub profile, yu posts, comments, messages, na yu wallet backup wey yu save. Save yu wallet recovery details na move any asset wey yu have first. Transaction wey go on blockchain na record wey law say must keep, dem cannot delete. Yu profile go hide straight away; deletion go finish inside 30 days. Dis cannot reverse.",
+    "error": "We no fit send your delete request. Your account never confirm for delete. Abeg try again.",
+    "back": "Go back for Setin dem",
+    "signIn": "Sign in for delete your account",
+    "warning": "Dis one go delete yu DeHub profile, yu posts, comments, messages an di wallet backup weh yu don save, fo ever. Save yu wallet recovery details an move any asset weh yu get first. Public blockchain transaction dem an payment record weh law say make we keep, dem no fit delete. Yu profile go hide one time; di deletion go finish inside 30 days. Yu no fit undo dis one.",
     "receipt": "Yas, your delete request wey you make, we save for you. Your profile now hide, and your account go delete for good after 30 days. Na no way you go sign in again, no cancel dis request.",
     "acknowledge": "Mi save my wallet recovery details, and mi know dat delete go be permanent."
   },
@@ -9039,6 +9044,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
@@ -9089,6 +9095,16 @@
       "rotateFailed": "No fit make new link. Try again in small time."
     },
     "rules": {
+      "limit": "You have reached the limit of {{count}} rules.",
+      "saveToTest": "Save your rules to test them",
+      "blockedWordsHint": "Separate with commas. Messages containing them are ignored and never read aloud.",
+      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
+      "sayText": "Text to read aloud",
+      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
+      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
+      "summary": {
+        "tip": "Tip of {{amount}} DHB or more"
+      },
       "title": "Rules",
       "intro": "Wen something happen on your stream, DeHub go do what you say: show alert, play sound, read something out loud, post in your chat, or tell your Discord.",
       "add": "Add a rule",
@@ -9120,10 +9136,13 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "share": "Someone shares the stream",
+        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
-        "chat": "Any chat message"
+        "chat": "Any chat message",
+        "command": "E chat command na use wey a go dey use fo chat"
       },
       "audiences": {
         "everyone": "Everyone",
@@ -9138,14 +9157,22 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
+        "bigTip": "Air horn for big tips",
+        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetHints": {
+        "blank": "Start from nothing",
+        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
+        "thankFollowers": "Posts a thank-you in your chat when someone follows",
+        "command": "Answers a !command in your chat",
         "readChat": "Reads yu followers messages out loud, one for each person, every 30 seconds."
       },
       "presetText": {
+        "thankFollowers": "Thanks for the follow, {name}!",
+        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },

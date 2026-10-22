@@ -4771,7 +4771,7 @@
     "usernameReserved": "Dette brukernavnet er reservert",
     "profileSet": "Profilen ble satt opp!",
     "profileFailed": "Kunne ikke sette opp profilen",
-    "displayNameHint": "Det offentlige navnet ditt som vises på profilen."
+    "displayNameHint": "Det offentlige navnet ditt som vises på profilen. Valgfritt — la feltet stå tomt for å bruke brukernavnet ditt."
   },
   "events": {
     "mine": "Mine",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Denne kontoen har en",
     "ifYouUsedDehub": "Hvis du har brukt dehub.io før, åpne det på datamaskinen din, logg inn på samme måte og med samme konto, og",
     "biometricExplainer": "Lås opp med fingeravtrykk eller ansikt — ingenting å taste eller huske. Nøkkelen blir på denne telefonen, så vi viser deg en gjenopprettingsfrase på 12 ord du skal skrive ned; det er den eneste veien tilbake fra en annen telefon, fra nettstedet eller etter ny installasjon. Velg Passord i stedet, så gjør passordet selv den jobben.",
+    "biometricExplainerSecuring": "Lås opp med fingeravtrykk eller ansikt — ingenting å taste eller huske. Nøkkelen blir på denne telefonen. For å komme inn igjen fra en annen telefon, fra nettstedet eller etter ny installasjon, lagrer du en sikkerhetskopi på 12 ord senere i Innstillinger. Velg Passord i stedet, så gjør passordet selv den jobben.",
     "biometricPrompt": "Denne lommeboken er beskyttet av enhetens biometri. Bekreft med fingeravtrykk eller ansikt for å fortsette.",
     "enterRecoveryPhrase": "Skriv inn gjenopprettingsfrasen på 12 ord som du lagret da du opprettet denne lommeboken (eller den private nøkkelen, hvis du eksporterte en). Den fører tilbake til samme konto, og passordet du angir nedenfor blir en reserve som fra nå av fungerer overalt.",
     "copyPhrase": "Kopier frase",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Denne kontoen har allerede en lommebok, beskyttet av et passord. Skriv det inn for å gjenopprette lommeboken din på denne enheten.",
     "deviceTab": "Denne enheten",
     "deviceExplainer": "Ingenting å skrive eller huske – nøkkelen forblir på denne enheten. Vi tilbyr deg en sikkerhetskopi på 12 ord du kan skrive ned. Det er den eneste måten å komme tilbake på fra en annen enhet, fra nettstedet eller etter en ny installasjon. Velg Passord i stedet, så gjør selve passordet den jobben.",
+    "deviceExplainerSecuring": "Ingenting å taste eller huske — nøkkelen blir på denne enheten. For å komme inn igjen fra en annen enhet, fra nettstedet eller etter ny installasjon, lagrer du en sikkerhetskopi på 12 ord senere i Innstillinger. Velg Passord i stedet, så gjør passordet selv den jobben.",
     "secureOnDevice": "Behold nøkkelen på denne enheten"
   },
   "transcript": {

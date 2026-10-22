@@ -947,6 +947,8 @@
     "payFailed": "Impossibile convertire {{symbol}} in token DeHub",
     "stageDelivering": "DeHub Pay sta inviando i tuoi token…",
     "payViaDpay": "Pagato a DeHub Pay, i token arrivano in circa 30s",
+    "payDirect": "Inviato direttamente a {{name}} in {{symbol}} su {{chain}}. Nessuno swap.",
+    "payDirectNoName": "Inviato direttamente al creator in {{symbol}} su {{chain}}. Nessuno swap.",
     "payViaBridgeDpay": "Spostato su Base e pagato a DeHub Pay, i token arrivano in circa un minuto",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4820,7 +4822,7 @@
     "usernameReserved": "Questo nome utente è riservato",
     "profileSet": "Profilo impostato con successo!",
     "profileFailed": "Impossibile impostare il profilo",
-    "displayNameHint": "Il tuo nome pubblico mostrato nel profilo."
+    "displayNameHint": "Il tuo nome pubblico sul profilo. Facoltativo: lascialo vuoto per usare il tuo nome utente."
   },
   "events": {
     "mine": "I miei",
@@ -5026,7 +5028,9 @@
     "lowTopUp": "A corto di {{symbol}}? Ti ricaricheremo prima di sbloccare.",
     "unlockedSuccess": "Sbloccato con successo",
     "otherChain": "Questo post viene pubblicato su un'altra catena, quindi necessita di token DeHub nel tuo wallet lì.",
-    "payHint": "Paga con qualsiasi cosa nel tuo wallet. Diventa token DeHub e si sblocca subito."
+    "payHint": "Paga con qualsiasi cosa nel tuo wallet. Diventa token DeHub e si sblocca subito.",
+    "switchTo": "Questo post si paga su {{chain}}. Passa a {{chain}} nelle Impostazioni e riprova.",
+    "notEnoughToken": "Ti servono {{amount}} {{symbol}} per sbloccarlo. Hai {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Usa questa opzione se hai configurato questo wallet su questo telefono e dovrebbe già avere la chiave",
@@ -5061,6 +5065,7 @@
     "accountHasA": "Questo account ha un",
     "ifYouUsedDehub": "Se hai già usato dehub.io, aprilo sul tuo computer, accedi nello stesso modo e con lo stesso account, e",
     "biometricExplainer": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono, quindi ti mostreremo una frase di recupero di 12 parole da annotare; è l'unico modo per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione. Scegli Password e sarà la password stessa a svolgere quel compito.",
+    "biometricExplainerSecuring": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono. Per rientrare da un altro telefono, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "biometricPrompt": "Questo wallet è protetto dalla biometria di questo dispositivo. Conferma con impronta o volto per continuare.",
     "enterRecoveryPhrase": "Inserisci la frase di recupero di 12 parole che hai salvato quando hai creato questo wallet (o la sua chiave privata, se ne hai esportata una). Riporta allo stesso account, e la password che imposti sotto diventa da ora un backup che funziona ovunque.",
     "copyPhrase": "Copia frase",
@@ -5133,6 +5138,7 @@
     "unlockWithPasswordExplainer": "Questo account ha già un portafoglio, protetto da una password. Inseriscila per recuperare il tuo portafoglio su questo dispositivo.",
     "deviceTab": "Questo dispositivo",
     "deviceExplainer": "Niente da digitare o ricordare: la chiave rimane su questo dispositivo. Ti offriremo un backup di 12 parole da scrivere; è l'unico modo per tornare da un altro dispositivo, dal sito web o dopo la reinstallazione. Scegli invece la password e la password stessa fa quel lavoro.",
+    "deviceExplainerSecuring": "Niente da digitare o ricordare: la chiave resta su questo dispositivo. Per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "secureOnDevice": "Tieni la chiave su questo dispositivo"
   },
   "walletBackup": {
@@ -5442,6 +5448,7 @@
     "contractPlaceholder": "Indirizzo del contratto (0x…)",
     "symbolPlaceholder": "Simbolo (es. PEPE)",
     "paymentsBase": "I pagamenti sono in token DeHub sulla catena Base",
+    "paymentsStable": "Gli acquirenti pagano in {{symbol}}, inviato direttamente a te",
     "tokensUnit": "token",
     "minimumRequired": "Minimo {{currency}} richiesto"
   },
@@ -9059,7 +9066,7 @@
     "done": "Fine",
     "error": "Impossibile inviare la richiesta di eliminazione. Il tuo account non è stato confermato per l'eliminazione. Riprova.",
     "back": "Torna alle Impostazioni",
-    "signIn": "Accedi al tuo account",
+    "signIn": "Accedi per eliminare il tuo account",
     "acknowledge": "Ho salvato i dettagli di recupero del mio portafoglio e capisco che l'eliminazione è permanente."
   },
   "miniApps": {
@@ -9306,6 +9313,7 @@
       "rotateFailed": "Impossibile creare un nuovo link. Riprova tra un momento."
     },
     "rules": {
+      "test": "Prova",
       "title": "Regole",
       "intro": "Quando succede qualcosa sul tuo stream, DeHub fa ciò che scegli: mostra un avviso, riproduce un suono, legge qualcosa ad alta voce, pubblica nella tua chat o informa il tuo Discord.",
       "add": "Aggiungi una regola",

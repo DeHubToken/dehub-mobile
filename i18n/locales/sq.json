@@ -4771,7 +4771,7 @@
     "usernameReserved": "Ky emër përdoruesi është i rezervuar",
     "profileSet": "Profili u vendos me sukses!",
     "profileFailed": "Profili nuk u vendos dot",
-    "displayNameHint": "Emri yt publik që shfaqet në profil."
+    "displayNameHint": "Emri yt publik në profil. Opsional — lëre bosh dhe do të përdoret emri yt i përdoruesit."
   },
   "events": {
     "mine": "Të miat",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Kjo llogari ka një",
     "ifYouUsedDehub": "Nëse e ke përdorur dehub.io më parë, hape në kompjuterin tënd, hyr në të njëjtën mënyrë dhe me të njëjtën llogari, dhe",
     "biometricExplainer": "Shkyç me gjurmën e gishtit ose fytyrën — asgjë për të shkruar apo për të mbajtur mend. Çelësi mbetet në këtë telefon, prandaj do të të tregojmë një frazë rikuperimi me 12 fjalë për ta shënuar; është e vetmja rrugë kthimi nga një telefon tjetër, nga faqja e internetit, ose pas riinstalimit. Zgjidh Fjalëkalim në vend të kësaj dhe atë punë e bën vetë fjalëkalimi.",
+    "biometricExplainerSecuring": "Shkyç me gjurmën e gishtit ose fytyrën — asgjë për të shkruar apo për të mbajtur mend. Çelësi mbetet në këtë telefon. Për t'u rikthyer nga një telefon tjetër, nga faqja e internetit ose pas riinstalimit, ruaj më vonë një kopje rezervë me 12 fjalë te Cilësimet. Zgjidh Fjalëkalimin në vend të kësaj dhe atë punë e bën vetë fjalëkalimi.",
     "biometricPrompt": "Ky portofol mbrohet nga biometria e kësaj pajisjeje. Konfirmo me gjurmë gishti ose fytyrë për të vazhduar.",
     "enterRecoveryPhrase": "Fut frazën e rikuperimit me 12 fjalë që ruajte kur e krijove këtë portofol (ose çelësin e tij privat, nëse e ke eksportuar). Të kthen te e njëjta llogari, dhe fjalëkalimi që vendos më poshtë bëhet një rezervë që nga tani funksionon kudo.",
     "copyPhrase": "Kopjo frazën",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Ky llogari tashmë ka një portofol, të mbrojtur me një fjalëkalim. Futeni atë për të rikuperuar portofolin tuaj në këtë pajisje.",
     "deviceTab": "Kjo pajisje",
     "deviceExplainer": "Asgjë për t 'u shkruar ose për t' u mbajtur mend. Çelësi qëndron në këtë pajisje. Do të të ofrojmë një kopje rezervë me 12 fjalë për të shkruar; është e vetmja mënyrë për t 'u kthyer nga një pajisje tjetër, nga faqja e internetit ose pas riinstalimit. Zgjidh fjalëkalimin më mirë dhe vetë fjalëkalimi e bën atë punë.",
+    "deviceExplainerSecuring": "Asgjë për të shkruar apo për të mbajtur mend — çelësi mbetet në këtë pajisje. Për t'u rikthyer nga një pajisje tjetër, nga faqja e internetit ose pas riinstalimit, ruaj më vonë një kopje rezervë me 12 fjalë te Cilësimet. Zgjidh Fjalëkalimin në vend të kësaj dhe atë punë e bën vetë fjalëkalimi.",
     "secureOnDevice": "Mbani çelësin në këtë pajisje"
   },
   "transcript": {
@@ -8991,7 +8993,7 @@
     "done": "Sukses",
     "error": "Kërkesa për fshirje nuk u dërgua dot. Llogaria jote nuk është konfirmuar për fshirje. Provo përsëri.",
     "back": "Kthehu te Cilësimet",
-    "signIn": "Hyr në llogarinë tënde",
+    "signIn": "Hyr për të fshirë llogarinë tënde",
     "acknowledge": "Kam ruajtur detajet e rimëkëmbjes së portofolit dhe e kuptoj se fshirja është e përhershme."
   },
   "miniApps": {
@@ -9364,7 +9366,8 @@
         "spooky": "Drithëruese",
         "magic-spell": "Magji magjike",
         "shhh": "Shhhh"
-      }
+      },
+      "alertText": "Teksti i paralajmërimit"
     }
   }
 }

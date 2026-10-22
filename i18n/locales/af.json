@@ -4804,7 +4804,7 @@
     "usernameReserved": "Hierdie gebruikersnaam is gereserveer",
     "profileSet": "Profiel suksesvol opgestel!",
     "profileFailed": "Kon nie profiel opstel nie",
-    "displayNameHint": "Jou openbare naam wat op jou profiel wys."
+    "displayNameHint": "Jou openbare naam op jou profiel. Opsioneel — laat dit leeg om jou gebruikernaam te gebruik."
   },
   "events": {
     "mine": "Myne",
@@ -5045,6 +5045,7 @@
     "accountHasA": "Hierdie rekening het 'n",
     "ifYouUsedDehub": "As jy dehub.io al voorheen gebruik het, maak dit op jou rekenaar oop, meld op dieselfde manier en met dieselfde rekening aan, en",
     "biometricExplainer": "Ontsluit met jou vingerafdruk of gesig — niks om te tik of te onthou nie. Die sleutel bly op hierdie foon, so ons wys jou 'n 12-woord-herstelfrase om neer te skryf; dit is die enigste pad terug vanaf 'n ander toestel, vanaf die webwerf, of ná herinstallasie. Kies eerder Wagwoord en die wagwoord doen daardie werk.",
+    "biometricExplainerSecuring": "Ontsluit met jou vingerafdruk of gesig — niks om te tik of te onthou nie. Die sleutel bly op hierdie foon. Om van 'n ander foon, van die webwerf of ná herinstallasie weer in te kom, stoor later 'n 12-woord-rugsteun in Instellings. Kies eerder Wagwoord en die wagwoord self doen daardie werk.",
     "biometricPrompt": "Hierdie beursie word deur hierdie toestel se biometrie beskerm. Bevestig met vingerafdruk of gesig om voort te gaan.",
     "enterRecoveryPhrase": "Voer die 12-woord-herstelfrase in wat jy gestoor het toe jy hierdie beursie geskep het (of die private sleutel, as jy een uitgevoer het). Dit gaan terug na dieselfde rekening, en die wagwoord wat jy hieronder stel word 'n rugsteun wat van nou af oral werk.",
     "copyPhrase": "Kopieer frase",
@@ -5117,6 +5118,7 @@
     "unlockWithPasswordExplainer": "Hierdie rekening het reeds 'n borsie, beskerm deur 'n wagwoord. Voer dit in om jou borsie op hierdie toestel te herstel.",
     "deviceTab": "Hierdie toestel",
     "deviceExplainer": "Niks om te tik of te onthou nie — die sleutel bly op hierdie toestel. Ons bied u 'n rugsteun van 12 woorde om neer te skryf; dit is die enigste manier om terug te keer vanaf 'n ander toestel, vanaf die webwerf of nadat u dit weer geïnstalleer het. Kies eerder wagwoord en die wagwoord self doen die werk.",
+    "deviceExplainerSecuring": "Niks om te tik of te onthou nie — die sleutel bly op hierdie toestel. Om van 'n ander toestel, van die webwerf of ná herinstallasie weer in te kom, stoor later 'n 12-woord-rugsteun in Instellings. Kies eerder Wagwoord en die wagwoord self doen daardie werk.",
     "secureOnDevice": "Hou die sleutel op hierdie toestel"
   },
   "transcript": {
@@ -9106,14 +9108,14 @@
     "topUpEmptyHint": "Voeg tekens by om met AI te genereer"
   },
   "accountDeletion": {
-    "title": "Sluit profiel",
+    "title": "Skrap rekening",
     "description": "Skrap jou rekening en persoonlike data permanent",
     "warning": "Dit verwyder permanent jou DeHub profiel, plasings, kommentaar, boodskappe en gestoor beursie rugsteun. Stoor jou beursie herstel besonderhede en beweeg enige bates eerste. Openbare blokkettingtransaksies en wetlik vereiste betalingsrekords kan nie verwyder word nie. Jou profiel is onmiddellik weggesteek; skrapping voltooi binne 30 dae. Dit kan nie ongedaan gemaak word nie.",
     "cancel": "Kanselleer",
     "confirm": "Skrap my rekening permanent",
     "busy": "Indiening van skrapversoek...",
     "accepted": "Rekening skrap versoek",
-    "receipt": "Jou uitvee-versoek is gestoor. Jou profiel is weggesteek en jou rekening sal permanent verwyder word binne 30 dae. Ondertekening kan nie hierdie versoek kanselleer nie.",
+    "receipt": "Jou uitvee-versoek is gestoor. Jou profiel is weggesteek en jou rekening sal permanent verwyder word binne 30 dae. Om in te teken kan nie hierdie versoek kanselleer nie.",
     "done": "Klaar",
     "error": "Kon nie jou uitvee-versoek indien nie. Jou rekening is nie bevestig om uitgevee te word nie. Probeer asseblief weer.",
     "back": "Terug na Instellings",
@@ -9459,6 +9461,7 @@
         "tip": "Wenk van {{amount}} DHB of meer"
       },
       "presets": {
+        "command": "Kletsopdrag",
         "blank": "Leë reël",
         "readChat": "Lees hardop klets",
         "bigTip": "Lug horing vir groot wenke",

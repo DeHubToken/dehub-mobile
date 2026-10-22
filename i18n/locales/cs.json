@@ -4774,7 +4774,7 @@
     "usernameReserved": "Toto uživatelské jméno je vyhrazené",
     "profileSet": "Profil byl úspěšně nastaven!",
     "profileFailed": "Profil se nepodařilo nastavit",
-    "displayNameHint": "Vaše veřejné jméno zobrazené v profilu."
+    "displayNameHint": "Vaše veřejné jméno v profilu. Nepovinné — když ho necháte prázdné, použije se vaše uživatelské jméno."
   },
   "events": {
     "mine": "Moje",
@@ -5015,6 +5015,7 @@
     "accountHasA": "Tento účet má",
     "ifYouUsedDehub": "Pokud jste dehub.io už používali, otevřete jej v počítači, přihlaste se stejným způsobem a stejným účtem a",
     "biometricExplainer": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu, proto vám ukážeme 12slovnou obnovovací frázi, kterou si zapíšete; je to jediná cesta zpět z jiného přístroje, z webu nebo po přeinstalaci. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
+    "biometricExplainerSecuring": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu. Pro návrat z jiného telefonu, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "biometricPrompt": "Tato peněženka je chráněna biometrikou tohoto zařízení. Pokračujte potvrzením otiskem prstu nebo obličejem.",
     "enterRecoveryPhrase": "Zadejte 12slovnou obnovovací frázi, kterou jste si uložili při vytvoření této peněženky (nebo její soukromý klíč, pokud jste jej exportovali). Vrátí vás ke stejnému účtu a heslo, které nastavíte níže, se stane záložní cestou fungující odteď všude.",
     "copyPhrase": "Kopírovat frázi",
@@ -5087,6 +5088,7 @@
     "unlockWithPasswordExplainer": "Tento účet již má peněženku chráněnou heslem. Zadejte jej pro obnovení své peněženky na tomto zařízení.",
     "deviceTab": "Toto zařízení",
     "deviceExplainer": "Nic k zadání ani zapamatování — klíč zůstane na tomto zařízení. Nabízíme vám zálohu 12 slov, kterou si můžete zapsat. Je to jediná cesta zpět z jiného zařízení, z webu nebo po přeinstalaci. Místo toho vyberte heslo a heslo samo o sobě tuto práci provede.",
+    "deviceExplainerSecuring": "Nic se nepíše ani nepamatuje — klíč zůstává v tomto zařízení. Pro návrat z jiného zařízení, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "secureOnDevice": "Ponechat klíč na tomto zařízení"
   },
   "transcript": {
@@ -8992,7 +8994,7 @@
     "done": "Hotovo",
     "error": "Žádost o odstranění se nepodařilo odeslat. Smazání vašeho účtu nebylo potvrzeno. Zkuste to prosím znovu.",
     "back": "Zpět na nastavení",
-    "signIn": "Přihlašte se do svého účtu",
+    "signIn": "Přihlaste se, abyste mohli smazat svůj účet",
     "acknowledge": "Uložil (a) jsem si podrobnosti o obnovení peněženky a chápu, že smazání je trvalé."
   },
   "miniApps": {
@@ -9271,6 +9273,7 @@
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
     },
     "rules": {
+      "title": "Pravidla",
       "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
       "add": "Přidat pravidlo",
       "limit": "Dosáhli jste limitu {{count}} pravidel.",

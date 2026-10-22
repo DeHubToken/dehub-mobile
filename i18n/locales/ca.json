@@ -4771,7 +4771,7 @@
     "usernameReserved": "Aquest nom d'usuari està reservat",
     "profileSet": "Perfil configurat correctament!",
     "profileFailed": "No s'ha pogut configurar el perfil",
-    "displayNameHint": "El teu nom públic que es mostra al perfil."
+    "displayNameHint": "El teu nom públic al perfil. Opcional: deixa'l en blanc per fer servir el teu nom d'usuari."
   },
   "events": {
     "mine": "Meus",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Aquest compte té una",
     "ifYouUsedDehub": "Si ja has fet servir dehub.io, obre'l a l'ordinador, inicia sessió de la mateixa manera i amb el mateix compte, i",
     "biometricExplainer": "Desbloqueja amb l'empremta o la cara: res per escriure ni recordar. La clau es queda en aquest telèfon, així que et mostrarem una frase de recuperació de 12 paraules per apuntar; és l'única via de tornada des d'un altre mòbil, des del web o després de reinstal·lar. Tria Contrasenya i serà la contrasenya la que faci aquesta feina.",
+    "biometricExplainerSecuring": "Desbloqueja amb l'empremta o la cara: res per escriure ni recordar. La clau es queda en aquest telèfon. Per tornar a entrar des d'un altre mòbil, des del web o després de reinstal·lar, desa més endavant una còpia de seguretat de 12 paraules a Configuració. Tria Contrasenya i serà la contrasenya la que faci aquesta feina.",
     "biometricPrompt": "Aquesta cartera està protegida per la biometria d'aquest dispositiu. Confirma amb empremta o cara per continuar.",
     "enterRecoveryPhrase": "Introdueix la frase de recuperació de 12 paraules que vas desar quan vas crear aquesta cartera (o la seva clau privada, si en vas exportar una). Torna al mateix compte, i la contrasenya que estableixis a sota es converteix en una còpia de seguretat que funciona a tot arreu a partir d'ara.",
     "copyPhrase": "Copia la frase",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Aquest compte ja té una cartera, protegida per una contrasenya. Introdueix-la per recuperar la teva cartera en aquest dispositiu.",
     "deviceTab": "Aquest dispositiu",
     "deviceExplainer": "No hi ha res que puguis escriure o recordar: la clau es queda en aquest dispositiu. T'oferirem una còpia de seguretat de 12 paraules per escriure; és l'única manera d'entrar des d'un altre dispositiu, des del lloc web o després de tornar a instal·lar-lo. Tria la contrasenya i la contrasenya en si mateixa farà aquesta feina.",
+    "deviceExplainerSecuring": "Res per escriure ni recordar: la clau es queda en aquest dispositiu. Per tornar a entrar des d'un altre dispositiu, des del web o després de reinstal·lar, desa més endavant una còpia de seguretat de 12 paraules a Configuració. Tria Contrasenya i serà la contrasenya la que faci aquesta feina.",
     "secureOnDevice": "Guarda la clau en aquest dispositiu"
   },
   "transcript": {
@@ -8987,7 +8989,7 @@
     "cancel": "Cancel·la",
     "confirm": "Suprimeix el meu compte de forma permanent",
     "busy": "Enviant sol·licitud d'eliminació...",
-    "accepted": "S'ha sol·licitat l'eliminació del comp",
+    "accepted": "S'ha sol·licitat l'eliminació del compte",
     "receipt": "S'ha desat la sol·licitud d'eliminació. El teu perfil s'ha amagat i el teu compte s'eliminarà definitivament en un termini de 30 dies. L'inici de sessió no pot cancel·lar aquesta sol·licitud.",
     "done": "Fet",
     "error": "No s'ha pogut enviar la sol·licitud d'eliminació. No s'ha confirmat l'eliminació del teu compte. Torna-ho a provar.",
@@ -9272,6 +9274,7 @@
       "rotateFailed": "No s'ha pogut crear un enllaç nou. Torna-ho a provar en un moment."
     },
     "rules": {
+      "add": "Afegeix una regla",
       "title": "Normes",
       "intro": "Quan passa alguna cosa al teu flux, DeHub fa el que tu triïs: mostra una alerta, reprodueix un so, llegeix alguna cosa en veu alta, publica al teu xat o diu al teu Discord.",
       "limit": "Has arribat al límit de {{count}} normes.",

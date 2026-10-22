@@ -1,3 +1,5 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
+import { useAppTheme } from '../../context/ThemeContext';
 /**
  * StageRecordingMiniPlayer — the corner player for a stage recording
  * ==================================================================
@@ -37,6 +39,7 @@ import {
 
 const StageRecordingMiniPlayer: React.FC = () => {
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
   const { spaceId, title, loading, paused, popout, progress, seekable, timeLeft } =
     useStagePlayback();
   const { currentSpace, isConnected } = useStages();
@@ -47,7 +50,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
 
   return (
     <View
-      style={[styles.container, liveBarShowing && styles.aboveLiveBar]}
+      style={[styles.container, theme === 'glass' && skin?.card, liveBarShowing && styles.aboveLiveBar]}
       accessibilityLabel={t("stages.recordingPlayback")}
     >
       <View style={styles.titleRow}>
@@ -60,7 +63,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
             closeStagePopout();
           }}
           hitSlop={8}
-          style={styles.closeBtn}
+          style={[styles.closeBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           accessibilityRole="button"
           accessibilityLabel={t("stages.stopAndClose")}
         >
@@ -71,7 +74,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
       <View style={styles.controlRow}>
         <TouchableOpacity
           onPress={togglePauseStageRecording}
-          style={styles.playBtn}
+          style={[styles.playBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           accessibilityRole="button"
           accessibilityLabel={paused ? t("stages.resumeRecording") : t("stages.pauseRecording")}
         >
