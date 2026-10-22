@@ -27,6 +27,7 @@ export enum ScreenNames {
   LiveProducer = 'LiveProducer',
   LiveViewer = 'LiveViewer',
   AccountSettings = 'AccountSettings',
+  LiveStudio = 'LiveStudio',
   YourVideos = 'YourVideos',
   LikedVideos = 'LikedVideos',
   SavedPosts = 'SavedPosts',

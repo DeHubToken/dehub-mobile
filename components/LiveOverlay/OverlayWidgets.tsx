@@ -18,6 +18,7 @@ import { DhbCoin } from "../common/DhbCoin";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useLiveAudience } from "../../hooks/useLiveAudience";
+import type { LiveAudience } from "../../services/live.service";
 import { tierFromGift } from "../../config/gift-tiers";
 import { getAvatarUrl } from "../../libs/misc";
 import { setting, type OverlayKind } from "../../libs/live-overlay/registry";
@@ -272,6 +273,10 @@ function GoalBar({ settings, stats, box }: WidgetProps) {
 
 // ─── Top supporters ───────────────────────────────────────────────────────────
 
+const PREVIEW_SUPPORTERS: LiveAudience["topTippers"] = [
+  500_000, 250_000, 100_000, 50_000, 25_000, 10_000, 5_000, 2_500, 1_000, 500,
+].map((total, i) => ({ address: `preview-${i}`, displayName: "—", total, count: 1 }));
+
 function TopSupporters({ settings, streamId, box }: WidgetProps) {
   const { t } = useTranslation();
   const count = Math.min(10, Math.max(1, setting(settings, "count", 3)));
@@ -291,7 +296,9 @@ function TopSupporters({ settings, streamId, box }: WidgetProps) {
     }, 1500);
   });
 
-  const rows = (data?.topTippers ?? []).slice(0, count);
+  // With no stream behind it (Live Studio's preview) the board shows the shape
+  // it will have, so a creator can size it before anyone has tipped.
+  const rows = (streamId ? data?.topTippers ?? [] : PREVIEW_SUPPORTERS).slice(0, count);
   return (
     <View style={[GLASS, { flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.3, borderRadius: row * 0.4 }]}>
       <Text style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.42, marginBottom: row * 0.15 }} numberOfLines={1}>

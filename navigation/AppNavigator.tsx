@@ -528,6 +528,10 @@ function AppNavigatorContent() {
               getComponent={() => require("../screens/AccountSettingsScreen").default}
             />
             <Stack.Screen
+              name={ScreenNames.LiveStudio}
+              getComponent={() => require("../screens/LiveStudioScreen").default}
+            />
+            <Stack.Screen
               name={ScreenNames.ActiveSessions}
               getComponent={() => require("../screens/ActiveSessionsScreen").default}
             />
