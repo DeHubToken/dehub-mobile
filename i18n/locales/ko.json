@@ -5030,7 +5030,9 @@
     "lowTopUp": "{{symbol}}이(가) 부족하신가요? 잠금 해제 전에 채워드리겠습니다.",
     "unlockedSuccess": "성공적으로 잠금 해제됨",
     "otherChain": "이 게시물은 다른 체인에 게시되므로 해당 체인에서 DeHub 토큰이 필요합니다.",
-    "payHint": "지갑에 있는 어떤 것으로든 결제하세요. DeHub 토큰으로 전환되며 즉시 잠금 해제됩니다."
+    "payHint": "지갑에 있는 어떤 것으로든 결제하세요. DeHub 토큰으로 전환되며 즉시 잠금 해제됩니다.",
+    "switchTo": "이 게시물은 {{chain}}에서 결제됩니다. 설정에서 {{chain}}(으)로 전환한 후 다시 시도하세요.",
+    "notEnoughToken": "잠금 해제에 {{amount}} {{symbol}}이(가) 필요합니다. 보유: {{held}}"
   },
   "walletSetup": {
     "tryBiometricsHint": "이 휴대폰에서 이 지갑을 설정했고 키가 이미 여기 있어야 한다면 이 옵션을 사용하세요",
@@ -5441,6 +5443,7 @@
     "contractPlaceholder": "컨트랙트 주소 (0x…)",
     "symbolPlaceholder": "심볼 (예: PEPE)",
     "paymentsBase": "Base에서 DeHub 토큰으로 결제",
+    "paymentsStable": "구매자는 {{symbol}}(으)로 결제하며 바로 받게 됩니다",
     "tokensUnit": "토큰",
     "minimumRequired": "최소 {{currency}} 개 필요"
   },

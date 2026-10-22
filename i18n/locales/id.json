@@ -5028,7 +5028,9 @@
     "lowTopUp": "Kehabisan {{symbol}}? Kami akan mengisinya sebelum membuka kunci.",
     "unlockedSuccess": "Berhasil dibuka",
     "otherChain": "Postingan ini diselesaikan di rantai lain, jadi memerlukan token DeHub di dompet Anda di sana.",
-    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka."
+    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka.",
+    "switchTo": "Postingan ini dibayar di {{chain}}. Beralih ke {{chain}} di Pengaturan, lalu coba lagi.",
+    "notEnoughToken": "Kamu butuh {{amount}} {{symbol}} untuk membuka ini. Kamu punya {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gunakan ini jika Anda menyiapkan dompet ini di ponsel ini dan kuncinya seharusnya sudah ada di sini",
@@ -5438,6 +5440,7 @@
     "contractPlaceholder": "Alamat kontrak (0x…)",
     "symbolPlaceholder": "Simbol (mis. PEPE)",
     "paymentsBase": "Pembayaran dalam token DeHub di rantai Base",
+    "paymentsStable": "Pembeli membayar dengan {{symbol}}, langsung dikirim ke kamu",
     "tokensUnit": "token",
     "minimumRequired": "Minimum {{currency}} diperlukan"
   },

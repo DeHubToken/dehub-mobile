@@ -5366,7 +5366,9 @@
     "lowTopUp": "À court de {{symbol}} ? Nous vous réapprovisionnerons avant le déverrouillage.",
     "unlockedSuccess": "Déverrouillé avec succès",
     "otherChain": "Ce post est réglé sur une autre chaîne, il faut donc des jetons DeHub dans votre portefeuille là-bas.",
-    "payHint": "Payez avec n'importe quoi dans votre portefeuille. Cela devient des jetons DeHub et se débloque immédiatement."
+    "payHint": "Payez avec n'importe quoi dans votre portefeuille. Cela devient des jetons DeHub et se débloque immédiatement.",
+    "switchTo": "Cette publication se paie sur {{chain}}. Passez sur {{chain}} dans les Réglages, puis réessayez.",
+    "notEnoughToken": "Il vous faut {{amount}} {{symbol}} pour débloquer ceci. Vous avez {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Utilisez ceci si vous avez configuré ce portefeuille sur ce téléphone et qu'il devrait déjà avoir la clé",
@@ -5784,6 +5786,7 @@
     "contractPlaceholder": "Adresse du contrat (0x…)",
     "symbolPlaceholder": "Symbole (ex. PEPE)",
     "paymentsBase": "Les paiements sont en jetons DeHub sur la chaîne Base",
+    "paymentsStable": "Les acheteurs paient en {{symbol}}, envoyé directement à vous",
     "tokensUnit": "jetons",
     "minimumRequired": "Minimum de {{currency}} requis"
   },

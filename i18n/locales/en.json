@@ -5325,7 +5325,9 @@
     "tokenBalance": "Token Balance",
     "lowTopUp": "Low on {{symbol}}? We'll top you up before unlocking.",
     "unlockedSuccess": "Unlocked successfully",
-    "payHint": "Pay with anything in your wallet. It becomes DeHub tokens and unlocks straight away."
+    "payHint": "Pay with anything in your wallet. It becomes DeHub tokens and unlocks straight away.",
+    "switchTo": "This post is paid on {{chain}}. Switch to {{chain}} in Settings, then try again.",
+    "notEnoughToken": "You need {{amount}} {{symbol}} to unlock this. You have {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Use this if you set this wallet up on this phone and it should already have the key",
@@ -5738,6 +5740,7 @@
     "price": "Price ({{currency}})",
     "paymentsSolana": "Payments are in {{currency}} on Solana",
     "paymentsBase": "Payments are in DeHub tokens on Base chain",
+    "paymentsStable": "Buyers pay in {{symbol}}, sent straight to you",
     "requiresSpl": "Requires an SPL token on Solana to view",
     "mustHoldOn": "Viewers must hold this token on {{chain}}",
     "custom": "Custom",

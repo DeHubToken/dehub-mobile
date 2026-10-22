@@ -4991,7 +4991,9 @@
     "lowTopUp": "Hết {{symbol}}? Chúng tôi sẽ nạp thêm cho bạn trước khi mở khóa.",
     "unlockedSuccess": "Đã mở khóa thành công",
     "otherChain": "Bài đăng này được đặt trên một chuỗi khác, vì vậy bạn cần có token DeHub trong ví của mình ở đó.",
-    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức."
+    "payHint": "Thanh toán bằng bất kỳ thứ gì trong ví của bạn. Nó sẽ trở thành token DeHub và được mở khóa ngay lập tức.",
+    "switchTo": "Bài này được thanh toán trên {{chain}}. Chuyển sang {{chain}} trong Cài đặt rồi thử lại.",
+    "notEnoughToken": "Bạn cần {{amount}} {{symbol}} để mở khóa. Bạn có {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Dùng cách này nếu bạn đã tạo ví này trên chính điện thoại này và khóa lẽ ra đã có ở đây",
@@ -5402,6 +5404,7 @@
     "contractPlaceholder": "Địa chỉ hợp đồng (0x…)",
     "symbolPlaceholder": "Ký hiệu (vd. PEPE)",
     "paymentsBase": "Thanh toán bằng token DeHub trên chuỗi Base",
+    "paymentsStable": "Người mua trả bằng {{symbol}}, gửi thẳng cho bạn",
     "tokensUnit": "token",
     "minimumRequired": "Yêu cầu tối thiểu {{currency}}"
   },

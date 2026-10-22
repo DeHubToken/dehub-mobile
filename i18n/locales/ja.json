@@ -5019,7 +5019,9 @@
     "lowTopUp": "{{symbol}}が足りませんか？解除前に補充します。",
     "unlockedSuccess": "正常に解除されました",
     "otherChain": "この投稿は別のチェーンに記録されるため、そこにあるウォレットに DeHub トークンが必要です。",
-    "payHint": "ウォレット内のものでお支払いください。DeHub トークンに変換され、すぐにアンロックされます。"
+    "payHint": "ウォレット内のものでお支払いください。DeHub トークンに変換され、すぐにアンロックされます。",
+    "switchTo": "この投稿は{{chain}}で支払います。設定で{{chain}}に切り替えてから、もう一度お試しください。",
+    "notEnoughToken": "解除には{{amount}} {{symbol}}が必要です。保有: {{held}}"
   },
   "walletSetup": {
     "tryBiometricsHint": "このウォレットをこの端末で設定し、鍵がすでにここにあるはずの場合に使用してください",
@@ -5430,6 +5432,7 @@
     "contractPlaceholder": "コントラクトアドレス（0x…）",
     "symbolPlaceholder": "シンボル（例: PEPE）",
     "paymentsBase": "Base の DeHub トークンでの支払い",
+    "paymentsStable": "購入者は{{symbol}}で支払い、あなたに直接届きます",
     "tokensUnit": "トークン",
     "minimumRequired": "最低 {{currency}} が必要です"
   },

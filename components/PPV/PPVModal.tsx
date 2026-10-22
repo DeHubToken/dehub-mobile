@@ -34,6 +34,8 @@ import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 
+const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
+
 export interface PPVModalProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -211,6 +213,12 @@ const PPVModal: React.FC<PPVModalProps> = ({
         setPpvError(t("ppv.missingWeb3"));
         return;
       }
+      // USDC/USDT posts are paid on the post's own chain: the same token on
+      // another chain pays the creator but never unlocks the post.
+      if (tokenSymbol !== "DHB" && paymentChainId && chainId !== paymentChainId) {
+        setPpvError(t("ppv.switchTo", { chain: PPV_CHAIN_NAMES[paymentChainId] || `chain ${paymentChainId}` }));
+        return;
+      }
       if (isSelf) {
         setPpvError(t("ppv.cantPaySelf"));
         return;
@@ -227,6 +235,12 @@ const PPVModal: React.FC<PPVModalProps> = ({
         const dhbBalance = await tokenContract.balanceOf(account);
         if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
           const heldHuman = Number(ethers.utils.formatUnits(dhbBalance, tokenDecimals));
+          // USDC/USDT have no top-up step (it buys DHB); the viewer brings them.
+          if (tokenSymbol !== "DHB") {
+            setPhase("idle");
+            setPpvError(t("ppv.notEnoughToken", { amount: numericAmount, symbol: tokenSymbol, held: heldHuman }));
+            return;
+          }
 
           // Every branch from here down that cannot pay hands the gap to the
           // top-up step instead of dead-ending on a red line. `canTopUpInApp`
@@ -426,7 +440,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       the balance here is the cached one, and the real check
                       happens on-chain and offers a top-up when it comes back
                       short. */}
-                  {insufficient && phase === "idle" && (
+                  {insufficient && phase === "idle" && tokenSymbol === "DHB" && (
                     <Text className="text-xs text-white/60 mt-2">
                       {t("ppv.lowTopUp", { symbol: tokenSymbol })}
                     </Text>
