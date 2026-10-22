@@ -209,7 +209,8 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
   // bare /stages is the hub page, and anything else under it has no route.
   if (scoped[0] === 'stages' && scoped[1]) {
     if (!/^\d+$/.test(scoped[1])) return null;
-    return { ...base, kind: 'stage', stageShortId: scoped[1] };
+    // Stage 15 was replaced by stage 18; old links card the new one.
+    return { ...base, kind: 'stage', stageShortId: scoped[1] === '15' ? '18' : scoped[1] };
   }
 
   // ── /cinema/:type/:id — one film or series ──
