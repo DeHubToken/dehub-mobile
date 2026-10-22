@@ -4820,7 +4820,7 @@
     "usernameReserved": "Questo nome utente è riservato",
     "profileSet": "Profilo impostato con successo!",
     "profileFailed": "Impossibile impostare il profilo",
-    "displayNameHint": "Il tuo nome pubblico mostrato nel profilo."
+    "displayNameHint": "Il tuo nome pubblico sul profilo. Facoltativo: lascialo vuoto per usare il tuo nome utente."
   },
   "events": {
     "mine": "I miei",
@@ -5061,6 +5061,7 @@
     "accountHasA": "Questo account ha un",
     "ifYouUsedDehub": "Se hai già usato dehub.io, aprilo sul tuo computer, accedi nello stesso modo e con lo stesso account, e",
     "biometricExplainer": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono, quindi ti mostreremo una frase di recupero di 12 parole da annotare; è l'unico modo per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione. Scegli Password e sarà la password stessa a svolgere quel compito.",
+    "biometricExplainerSecuring": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono. Per rientrare da un altro telefono, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "biometricPrompt": "Questo wallet è protetto dalla biometria di questo dispositivo. Conferma con impronta o volto per continuare.",
     "enterRecoveryPhrase": "Inserisci la frase di recupero di 12 parole che hai salvato quando hai creato questo wallet (o la sua chiave privata, se ne hai esportata una). Riporta allo stesso account, e la password che imposti sotto diventa da ora un backup che funziona ovunque.",
     "copyPhrase": "Copia frase",
@@ -5133,6 +5134,7 @@
     "unlockWithPasswordExplainer": "Questo account ha già un portafoglio, protetto da una password. Inseriscila per recuperare il tuo portafoglio su questo dispositivo.",
     "deviceTab": "Questo dispositivo",
     "deviceExplainer": "Niente da digitare o ricordare: la chiave rimane su questo dispositivo. Ti offriremo un backup di 12 parole da scrivere; è l'unico modo per tornare da un altro dispositivo, dal sito web o dopo la reinstallazione. Scegli invece la password e la password stessa fa quel lavoro.",
+    "deviceExplainerSecuring": "Niente da digitare o ricordare: la chiave resta su questo dispositivo. Per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "secureOnDevice": "Tieni la chiave su questo dispositivo"
   },
   "walletBackup": {
@@ -9059,7 +9061,7 @@
     "done": "Fine",
     "error": "Impossibile inviare la richiesta di eliminazione. Il tuo account non è stato confermato per l'eliminazione. Riprova.",
     "back": "Torna alle Impostazioni",
-    "signIn": "Accedi al tuo account",
+    "signIn": "Accedi per eliminare il tuo account",
     "acknowledge": "Ho salvato i dettagli di recupero del mio portafoglio e capisco che l'eliminazione è permanente."
   },
   "miniApps": {

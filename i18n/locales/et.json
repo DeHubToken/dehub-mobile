@@ -4771,7 +4771,7 @@
     "usernameReserved": "See kasutajanimi on reserveeritud",
     "profileSet": "Profiil edukalt seadistatud!",
     "profileFailed": "Profiili seadistamine ebaõnnestus",
-    "displayNameHint": "Sinu avalik nimi, mis kuvatakse profiilil."
+    "displayNameHint": "Sinu avalik nimi profiilil. Valikuline — jäta tühjaks, et kasutada oma kasutajanime."
   },
   "events": {
     "mine": "Minu omad",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Sellel kontol on",
     "ifYouUsedDehub": "Kui oled dehub.io varem kasutanud, ava see arvutis, logi sisse samal viisil ja sama kontoga ning",
     "biometricExplainer": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni, seega näitame sulle 12-sõnalist taastefraasi, mille üles kirjutad; see on ainus tee tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist. Vali selle asemel Parool ja seda tööd teeb parool ise.",
+    "biometricExplainerSecuring": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni. Et pääseda tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "biometricPrompt": "See rahakott on kaitstud selle seadme biomeetriaga. Jätkamiseks kinnita sõrmejälje või näoga.",
     "enterRecoveryPhrase": "Sisesta 12-sõnaline taastefraas, mille salvestasid selle rahakoti loomisel (või selle privaatvõti, kui eksportisid). See viib tagasi samale kontole ja parool, mille allpool määrad, muutub varuvariandiks, mis toimib nüüdsest igal pool.",
     "copyPhrase": "Kopeeri fraas",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Sellel kontol on juba parooliga kaitstud rahakott. Sisestage see, et oma rahakott sellel seadmel taastada.",
     "deviceTab": "See seade",
     "deviceExplainer": "Pole midagi sisestada ega meeles pidada — võti jääb sellesse seadmesse. Pakume sulle üleskirjutamiseks 12-sõnalist varukoopiat; see on ainus tagasitee teisest seadmest, veebisaidilt või pärast uuesti installimist. Vali selle asemel parool ja parool ise teeb seda tööd.",
+    "deviceExplainerSecuring": "Midagi pole vaja kirjutada ega meelde jätta — võti jääb sellesse seadmesse. Et pääseda tagasi teisest seadmest, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "secureOnDevice": "Hoidke võtit selles seadmes"
   },
   "transcript": {
@@ -8982,15 +8984,15 @@
   "accountDeletion": {
     "title": "Kustuta konto",
     "description": "Kustuta jäädavalt oma konto ja isikuandmed",
-    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik kasulikud asjad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
-    "cancel": "Saab sisse lülitada",
+    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik varad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
+    "cancel": "Tühista",
     "confirm": "Kustuta minu konto jäädavalt",
     "busy": "Kustutamistaotluse esitamine…",
     "accepted": "Konto kustutamine on taotletud",
     "receipt": "Sinu kustutamistaotlus on salvestatud. Sinu profiil on peidetud ja sinu konto kustutatakse jäädavalt 30 päeva jooksul. Sisselogimine ei saa seda taotlust tühistada.",
     "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
     "back": "Mine tagasi seadistuste juurde",
-    "signIn": "Logi oma kontole sisse",
+    "signIn": "Logi sisse, et oma konto kustutada",
     "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik.",
     "done": "Valmis"
   },

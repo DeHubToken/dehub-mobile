@@ -4760,7 +4760,7 @@
     "usernameReserved": "Edobere aha njirimara a",
     "profileSet": "Ahazila profaịlụ nke ọma!",
     "profileFailed": "Ọ daghị ịhazi profaịlụ",
-    "displayNameHint": "Aha ọha gị na-egosi na profaịlụ gị."
+    "displayNameHint": "Aha ọha gị na profaịlụ gị. Ọ bụ nhọrọ — hapụ ya oghere ka e jiri aha onye ọrụ gị."
   },
   "events": {
     "mine": "Nke m",
@@ -5001,6 +5001,7 @@
     "accountHasA": "Akaụntụ a nwere",
     "ifYouUsedDehub": "Ọ bụrụ na ị jirila dehub.io na mbụ, mepee ya na kọmpụta gị, jiri otu ụzọ na otu akaụntụ banye, ma",
     "biometricExplainer": "Jiri mkpịsị aka gị ma ọ bụ ihu gị mepee — ọ dịghị ihe ị ga-apị ma ọ bụ cheta. Igodo ahụ na-anọ n'ekwentị a, ya mere anyị ga-egosi gị nkebiokwu mgbake nke okwu 12 ka i dee; ọ bụ naanị ụzọ isi laghachi site na ekwentị ọzọ, site na weebụsaịtị, ma ọ bụ mgbe i wughachiri ya. Họrọ Okwuntughe kama, okwuntughe n'onwe ya ga-arụ ọrụ ahụ.",
+    "biometricExplainerSecuring": "Jiri mkpịsị aka gị ma ọ bụ ihu gị mepee — ọ dịghị ihe ị ga-apị ma ọ bụ cheta. Igodo ahụ na-anọ n'ekwentị a. Iji laghachi site na ekwentị ọzọ, site na weebụsaịtị, ma ọ bụ mgbe i wughachiri ya, chekwaa ndabere nke okwu 12 ma emechaa na Ntọala. Họrọ Okwuntughe kama, okwuntughe n'onwe ya ga-arụ ọrụ ahụ.",
     "biometricPrompt": "Echedoro obere akpa a site na biometrics nke ngwaọrụ a. Jiri mkpịsị aka ma ọ bụ ihu kwado iji gaa n'ihu.",
     "enterRecoveryPhrase": "Tinye nkebiokwu mgbake nke okwu 12 nke i chekwara mgbe ị mepụtara obere akpa a (ma ọ bụ igodo nzuzo ya, ma ọ bụrụ na ị bupụrụ otu). Ọ na-alaghachi n'otu akaụntụ ahụ, okwuntughe ị ga-edozi n'okpuru na-aghọkwa nkwado na-arụ ọrụ ebe niile site ugbu a.",
     "copyPhrase": "Detuo nkebiokwu",
@@ -5073,6 +5074,7 @@
     "unlockWithPasswordExplainer": "Akaụntụ a enweelarị akpa, nke paswọdụ chebere. Tinye ya iji weghachite akpa gị na ngwaọrụ a.",
     "deviceTab": "Ngwaọrụ a",
     "deviceExplainer": "Onweghi ihe ị ga-ede ma ọ bụ cheta — igodo ahụ nọ na ngwaọrụ a. Anyị ga-enye gị a 12-okwu ndabere dee ala; ọ bụ nanị ụzọ azụ na site na ngwaọrụ ọzọ, si website, ma ọ bụ mgbe reinstalling. Họrọ okwuntughe kama ma okwuntughe n 'onwe ya na-arụ ọrụ ahụ.",
+    "deviceExplainerSecuring": "Ọ dịghị ihe ị ga-apị ma ọ bụ cheta — igodo ahụ na-anọ na ngwaọrụ a. Iji laghachi site na ngwaọrụ ọzọ, site na weebụsaịtị, ma ọ bụ mgbe i wughachiri ya, chekwaa ndabere nke okwu 12 ma emechaa na Ntọala. Họrọ Okwuntughe kama, okwuntughe n'onwe ya ga-arụ ọrụ ahụ.",
     "secureOnDevice": "Debe igodo na ngwaọrụ a"
   },
   "transcript": {
@@ -8952,7 +8954,7 @@
   "accountDeletion": {
     "title": "Hichaa akaụntụ",
     "description": "Na-adịgide adịgide ihichapụ akaụntụ gị na onye data",
-    "warning": "Nke a na-ehichapụ profaịlụ DeHub gị kpamkpam, posts, comments, ozi na echekwara obere akpa ndabere. Zọpụta gị obere akpa mgbake nkọwa na ịkpali ọ bụla akụ mbụ. Public blockchain azụmahịa na iwu chọrọ ugwo ndia ike-ehichapụ. A na-ezobe profaịlụ gị ozugbo; nhichapụ ga-agwụ n 'ime ụbọchị 30. Agaghị emezigharị ihe a.",
+    "warning": "Nke a ga-ehichapụ profaịlụ DeHub gị, ihe ndị i bipụtara, nkọwa, ozi na ndabere obere akpa echekwara kpamkpam. Chekwaa nkọwa mgbake obere akpa gị ma bufee akụ ọ bụla na mbụ. Enweghị ike ihichapụ azụmahịa blockchain ọha na ndekọ ịkwụ ụgwọ nke iwu chọrọ. A na-ezobe profaịlụ gị ozugbo; nhichapụ ga-agwụ n'ime ụbọchị 30. Agaghị emezigharị ihe a.",
     "cancel": "Kagbuo",
     "confirm": "Hichaa akaụntụ m ruo mgbe ebighị ebi",
     "busy": "Na-edebata arịrịọ nhichapụ...",
