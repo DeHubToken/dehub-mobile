@@ -40,6 +40,7 @@ import {
   type RoomUser,
 } from "./overlayEvents";
 import { useAlertQueue } from "./useAlertQueue";
+import { useRuleFired } from "./ruleBus";
 
 export interface WidgetProps {
   settings: Record<string, unknown>;
@@ -692,6 +693,34 @@ function Ticker({ settings, box }: WidgetProps) {
   );
 }
 
+// ─── Rule alerts ──────────────────────────────────────────────────────────────
+
+interface RuleAlertItem {
+  text: string;
+  user: RoomUser;
+  durationMs: number;
+}
+
+/** Where a fired stream rule's alert text appears. Sounds and read-aloud need no place. */
+function RuleAlert({ box }: WidgetProps) {
+  const queue = useAlertQueue<RuleAlertItem>((item) => item.durationMs);
+  useRuleFired((fired) => {
+    for (const alert of fired.alerts) queue.push({ text: alert.text, user: fired.user, durationMs: alert.durationMs });
+  });
+  const name = useName(queue.current?.item.user);
+  const current = queue.current;
+  if (!current || current.leaving) return null;
+  const avatar = getAvatarUrl(current.item.user.avatarImageUrl) || undefined;
+  return (
+    <Banner key={current.id} box={box}>
+      <Avatar uri={avatar} size={Math.max(16, box.height * 0.6)} name={name} />
+      <Text style={{ flex: 1, color: "#fff", fontWeight: "700", fontSize: box.height * 0.26 }} numberOfLines={2}>
+        {current.item.text}
+      </Text>
+    </Banner>
+  );
+}
+
 // ─── Registry ─────────────────────────────────────────────────────────────────
 
 export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...props }: WidgetProps & { kind: OverlayKind }) {
@@ -723,6 +752,8 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <ChatBox {...props} />;
     case "ticker":
       return <Ticker {...props} />;
+    case "rule_alert":
+      return <RuleAlert {...props} />;
     default:
       return null;
   }

@@ -20,6 +20,8 @@ import { containedPicture, drawOrder, isPortraitPicture, placeWidget, rectFor } 
 import { isKnownKind, type OverlayKind } from "../../libs/live-overlay/registry";
 import type { PublicOverlay } from "../../libs/live-overlay/types";
 import { OverlayWidgetView } from "./OverlayWidgets";
+import { createRuleBus, RuleAudio, RuleBusContext } from "./ruleBus";
+import { parseRuleFired } from "../../libs/live-overlay/rules";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { createOverlayEventBus, OverlayChatContext, OverlayEventContext, roomUser, type OverlayChatLine } from "./overlayEvents";
 
@@ -64,6 +66,7 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
   const { on } = useWebSocket();
   const queryClient = useQueryClient();
   const bus = useMemo(() => createOverlayEventBus(), []);
+  const rules = useMemo(() => createRuleBus(), []);
   const [frame, setFrame] = useState({ width: 0, height: 0 });
 
   const visible = useMemo(
@@ -136,12 +139,19 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
     };
     bind(LivestreamEvents.ViewCountUpdate, onCount);
     bind(LivestreamEvents.LeaveStream, onCount);
+    // A fired stream rule. Played here only while the overlay is drawn in the
+    // app; when OBS burns it into the video, the OBS page plays it.
+    bind("stream.rule.fired", (payload) => {
+      if (!mine(payload)) return;
+      const fired = parseRuleFired(payload);
+      if (fired) rules.publish(fired);
+    });
     bind(LivestreamEvents.OverlayUpdated, (payload) => {
       if (mine(payload)) void queryClient.invalidateQueries({ queryKey: streamOverlayKey(streamId) });
     });
 
     return () => offs.forEach((off) => off());
-  }, [on, streamId, bus, queryClient]);
+  }, [on, streamId, bus, rules, queryClient]);
 
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
@@ -157,27 +167,30 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
   return (
     <OverlayEventContext.Provider value={bus}>
       <OverlayChatContext.Provider value={chat}>
-        <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
-          {picture.width > 0 &&
-            visible.map((widget) => {
-              const box = placeWidget(rectFor(widget, portrait), picture);
-              return (
-                <View
-                  key={widget.id}
-                  style={{ position: "absolute", left: box.left, top: box.top, width: box.width, height: box.height, overflow: "hidden" }}
-                >
-                  <OverlayWidgetView
-                    kind={widget.kind as OverlayKind}
-                    settings={widget.settings || {}}
-                    streamId={streamId}
-                    stats={overlay.stats}
-                    initialViewers={initialViewers}
-                    box={{ width: box.width, height: box.height }}
-                  />
-                </View>
-              );
-            })}
-        </View>
+        <RuleBusContext.Provider value={rules}>
+          {overlay.renderIn === "app" ? <RuleAudio playLive /> : null}
+          <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
+            {picture.width > 0 &&
+              visible.map((widget) => {
+                const box = placeWidget(rectFor(widget, portrait), picture);
+                return (
+                  <View
+                    key={widget.id}
+                    style={{ position: "absolute", left: box.left, top: box.top, width: box.width, height: box.height, overflow: "hidden" }}
+                  >
+                    <OverlayWidgetView
+                      kind={widget.kind as OverlayKind}
+                      settings={widget.settings || {}}
+                      streamId={streamId}
+                      stats={overlay.stats}
+                      initialViewers={initialViewers}
+                      box={{ width: box.width, height: box.height }}
+                    />
+                  </View>
+                );
+              })}
+          </View>
+        </RuleBusContext.Provider>
       </OverlayChatContext.Provider>
     </OverlayEventContext.Provider>
   );
