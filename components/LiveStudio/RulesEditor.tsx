@@ -376,7 +376,6 @@ function ActionForm({ action, onChange }: { action: RuleAction; onChange: (next:
             multiline
             textAlignVertical="top"
             style={{ minHeight: 96 }}
-            placeholder={t("liveStudio.rules.wheelPlaceholder")}
             placeholderTextColor="#71717a"
             value={action.segments.join("\n")}
             onChangeText={(v) => onChange({ ...action, segments: v.split("\n").slice(0, WHEEL_MAX_SEGMENTS).map((s) => s.slice(0, 30)) })}

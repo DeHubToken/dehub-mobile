@@ -6916,7 +6916,6 @@
       "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
       "wheelSegments": "Wheel segments, one per line",
       "wheelHint": "Between 2 and 12. DeHub picks where the wheel stops, so everyone watching sees the same result. Use {result} in an alert, read-aloud or chat action to name it.",
-      "wheelPlaceholder": "Sing a song\nDo 10 push-ups\nPick the next game",
       "alertText": "Alert text",
       "sound": "Sound",
       "sayText": "Text to read aloud",

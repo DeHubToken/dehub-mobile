@@ -8809,6 +8809,7 @@
     "notNow": "Not now"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "joined": "{{name}} joined",
     "goalReached": "Goal reach!",
     "topSupporters": "Top supporters",
@@ -8844,6 +8845,7 @@
       "join": "Join"
     },
     "kinds": {
+      "spin_wheel": "Spin wheel",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -8862,6 +8864,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "spin_wheel": "Where the wheels in your rules spin",
       "tip_alert": "Celebrate every tip, e size according to e tier",
       "join_alert": "Welcomes each viewer as they arrive"
     },
@@ -8944,6 +8947,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Spin a wheel",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",
@@ -8977,6 +8981,12 @@
       "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it."
     },
     "controls": {
+      "title": "Quick controls",
+      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
+      "alertsPaused": "Pause alerts",
+      "soundsMuted": "Mute alert sounds",
+      "readAloudMuted": "Stop read-aloud",
+      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
       "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
       "soundsMutedHint": "Yours rules dey stop play sound wey.",
       "failed": "Na di switch no dey change. Try again."

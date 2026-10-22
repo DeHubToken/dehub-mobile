@@ -9117,6 +9117,7 @@
     "notNow": "දැන් නොවේ"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} කැරකෙව්වා: {{result}}",
     "someone": "යමෙකු",
     "newFollower": "නව අනුගාමිකයා: {{name}}",
     "newSubscriber": "නව ග් ‍ රාහකයා: {{name}}",

@@ -9241,6 +9241,7 @@
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
     },
     "rules": {
+      "wheelHint": "2-den 12-ä çenli. Tigirin nirede duruljakdygyny DeHub saýlaýar, şonuň üçin tomaşa edýänleriň hemmesi şol bir netijäni görýär. Ony atlandyrmak üçin duýduryşda, sesli okamakda ýa-da çat hereketinde {result} ulanyň.",
       "title": "Kanunlar",
       "intro": "Eger siz akmaňyzda bir zat bolanda, DeHub saýlan zadyňyzy edýär: duýduryş görkezip, ses çalýar, sesli bir zat okaýar, gürrüňdeşligiňizi goýýar ýa-da Discord-a habar berýär.",
       "add": "Ol bir düzgüni goýdy",

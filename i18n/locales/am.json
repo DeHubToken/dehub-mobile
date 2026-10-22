@@ -9122,6 +9122,7 @@
     "notNow": "አሁን አይደለም"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} አሽከረከረ፦ {{result}}",
     "someone": "የሆነ ሰው",
     "newFollower": "አዲስ ተከታይ: {{name}}",
     "newSubscriber": "አዲስ ተመዝጋቢ: {{name}}",

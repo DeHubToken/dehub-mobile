@@ -9101,6 +9101,7 @@
     "notNow": "ಈಗ ಬೇಡ"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ತಿರುಗಿಸಿದರು: {{result}}",
     "someone": "ಯಾರಾದರೂ",
     "newFollower": "ಹೊಸ ಅನುಯಾಯಿ: {{name}}",
     "newSubscriber": "ಹೊಸ ಚಂದಾದಾರರು: {{name}}",

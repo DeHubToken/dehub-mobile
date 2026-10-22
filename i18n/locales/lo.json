@@ -9082,6 +9082,7 @@
     "notNow": "ບໍ່ແມ່ນຕອນນີ້"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ໝຸນ: {{result}}",
     "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ",
     "newFollower": "ຜູ້ຕິດຕາມ ໃຫມ່: {{name}}",
     "newSubscriber": "ຜູ້ຈອງ ໃຫມ່: {{name}}",

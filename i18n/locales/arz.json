@@ -9119,6 +9119,7 @@
     "notNow": "ليس الآن"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} قام بتدوير: {{result}}",
     "someone": "شخص ما",
     "newFollower": "متابع جديد: {{name}}",
     "newSubscriber": "مشترك جديد: {{name}}",

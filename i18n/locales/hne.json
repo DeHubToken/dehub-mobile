@@ -9149,6 +9149,7 @@
     "notNow": "अभी नइ"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} स्पून: {{result}}",
     "someone": "केकरो",
     "newFollower": "नवा अनुयायी: {{name}} action: inmenu",
     "newSubscriber": "नवा सब्सक्राइबर: {{name}}label",

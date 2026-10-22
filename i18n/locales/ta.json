@@ -9120,6 +9120,7 @@
     "notNow": "இப்போது வேண்டாம்"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} சுழற்றினார்: {{result}}",
     "someone": "யாரோ",
     "newFollower": "புதிய பின்பற்றுபவர்: {{name}}",
     "newSubscriber": "புதிய சந்தாதாரர்: {{name}}",

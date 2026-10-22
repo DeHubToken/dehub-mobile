@@ -9102,6 +9102,7 @@
     "notNow": "هاڻي نه"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ڦيرايو: {{result}}",
     "someone": "ڪو ماڻهو",
     "newFollower": "نئون پيروڪار: {{name}}",
     "newSubscriber": "نئون سبسڪرائبر: {{name}}",

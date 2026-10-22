@@ -9168,6 +9168,7 @@
     "notNow": "Не сейчас"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} айналдырды: {{result}}",
     "someone": "Біреу",
     "newFollower": "Жаңа ізбасар: {{name}}",
     "newSubscriber": "Жаңа жазылушы: {{name}}",

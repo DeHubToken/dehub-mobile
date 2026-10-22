@@ -9158,6 +9158,7 @@
     "update": "지금 업데이트"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}님이 돌렸어요: {{result}}",
     "someone": "누군가",
     "newFollower": "새 팔로워: {{name}}",
     "newSubscriber": "신규 구독자: {{name}}",

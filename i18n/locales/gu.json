@@ -9110,6 +9110,7 @@
     "notNow": "હમણાં નહીં"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} એ ફેરવ્યું: {{result}}",
     "someone": "કોઈક",
     "newFollower": "નવા અનુયાયી: {{name}}",
     "newSubscriber": "નવા સબ્સ્ક્રાઇબર: {{name}}",

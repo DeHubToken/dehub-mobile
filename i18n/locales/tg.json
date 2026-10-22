@@ -9050,6 +9050,7 @@
     "notNow": "Ҳоло не"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} чарх зад: {{result}}",
     "someone": "Касе",
     "newFollower": "Пайравони нав: {{name}}",
     "newSubscriber": "Муштарии нав: {{name}}",
@@ -9249,6 +9250,9 @@
       "wheelHint": "Байни 2 ва 12. DeHub дар куҷое, ки чарх қатъ мешавад, интихоб мекунад, аз ин рӯ ҳама тамошо мекунанд, ки ҳамон натиҷаро мебинанд. {result} in a alert, read-aloud or chat action to name it."
     },
     "controls": {
+      "title": "Kontrola mabilis",
+      "alertsPausedHint": "Walang gift, sundin o patakaran ang mga alerto sa screen. Nagpatuloy ang mga konsulta, layunin at kahon ng chat.",
+      "readAloudMuted": "QShortcut",
       "intro": "Барои ҷараёни миёна. Ҳар як гузариш барои ҳамаи тамошобинон, дар барнома ва дар OBS, то он даме, ки шумо онро баргардонед.",
       "alertsPaused": "Таваққуфи хотиррасонӣ",
       "soundsMuted": "Овозҳои ҳушдор",

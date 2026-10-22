@@ -9121,6 +9121,17 @@
     "wheelLanded": "{{name}} 吾𠀀{{result}}"
   },
   "liveStudio": {
+    "controls": {
+      "title": "快速控制",
+      "intro": "对于中间流。在应用程序和OBS中，每个开关都适用于所有观看者，直到您将其翻转回来。",
+      "alertsPaused": "暂停提醒",
+      "alertsPausedHint": "屏幕上没有礼品、关注或规则警报。计数器、目标和聊天框仍在继续。",
+      "soundsMuted": "将警报声音设为静音",
+      "soundsMutedHint": "您的规则停止播放声音。",
+      "readAloudMuted": "停止朗读",
+      "readAloudMutedHint": "礼品消息和规则行不再被读出。",
+      "failed": "该开关未更改。请重试。"
+    },
     "title": "Live 工作室",
     "settingsLinkBody": "提示警报、目标等，全部在 Live Studio 中设置，覆盖你的直播。",
     "landscape": "风景",
@@ -9144,6 +9155,7 @@
       "share": "分享"
     },
     "kinds": {
+      "spin_wheel": "旋转转盘",
       "tip_alert": "提示警报",
       "share_alert": "分享提醒",
       "join_alert": "加入警报",
@@ -9152,6 +9164,7 @@
       "frame": "框架"
     },
     "hints": {
+      "spin_wheel": "规则中的车轮在哪里旋转",
       "follow_alert": "显示每个新关注者",
       "subscribe_alert": "显示每个新订阅者",
       "join_alert": "欢迎每位观众的到来",
@@ -9196,6 +9209,10 @@
       "rotated": "新連結準備好囉，貼到OBS裡面就好囉。"
     },
     "rules": {
+      "wheelHint": "2至12人。DeHub选择车轮停止的位置，因此每个观看者都会看到相同的结果。在提醒、朗读或聊天操作中使用{result}来命名它。",
+      "actionTypes": {
+        "wheel": "旋转转盘"
+      },
       "testFailed": "𠮷𠮷，那個測試沒過。過一陣子再試一次。",
       "minAmount": "小小提醒 (DHB)",
       "cooldown": "等一下用 (秒)",

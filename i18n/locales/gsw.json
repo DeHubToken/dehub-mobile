@@ -9195,6 +9195,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "spin_wheel": "Schleuderrad",
       "tip_alert": "Tipp-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
       "subscribe_alert": "Abonnenten-Benachrichtigung",
@@ -9364,6 +9365,7 @@
       "wheelHint": "Zwiisch 2 un 12. DeHub bestiimm, wo’s Rad stoppt, so sieht’s alle gleich. Nutzi `{result}` in eime Alert, eime Vorlesung oder eime Chat-Aktion, um’s zu benämmi."
     },
     "controls": {
+      "alertsPaused": "Warnungen pausieren",
       "title": "Schnellsteuerung",
       "intro": "Fürs Live-Streaming. Jeder Schalter gilt für alle Zuschauer, sowohl in der App als auch in OBS, bis du ihn wieder umlegst.",
       "alertsPausedHint": "Keini Geschenk-, Follow- oder Regel-Benachrichtigungen auf dem Bildschirm. Die Zähler, Tore und die Chatbox laufen weiter.",

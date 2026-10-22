@@ -9128,6 +9128,7 @@
     "notNow": "មិនមែនឥឡូវនេះទេ"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} បានបង្វិល៖ {{result}}",
     "someone": "នរណាម្នាក់",
     "newFollower": "អ្នកតាមដានថ្មី: {{name}}",
     "newSubscriber": "អ្នកជាវថ្មី៖ {{name}}",

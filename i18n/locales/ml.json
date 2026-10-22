@@ -9113,6 +9113,7 @@
     "notNow": "ഇപ്പോൾ വേണ്ട"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} കറക്കി: {{result}}",
     "someone": "ആരെങ്കിലും",
     "newFollower": "പുതിയ അനുയായി: {{name}}",
     "newSubscriber": "പുതിയ സബ്‌സ്‌ക്രൈബർ: {{name}}",

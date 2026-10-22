@@ -9090,6 +9090,7 @@
     "notNow": "Хойд"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} эргүүллээ: {{result}}",
     "someone": "Хэн нэгэн",
     "newFollower": "Шинэ дагагч: {{name}}",
     "newSubscriber": "Шинэ хэрэглэгч: {{name}}",

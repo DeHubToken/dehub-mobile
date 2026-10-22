@@ -9139,6 +9139,7 @@
     "notNow": "Hhayi manje"
   },
   "liveOverlay": {
+    "wheelLanded": "U-{{name}} uphendule: {{result}}",
     "someone": "Othile",
     "newFollower": "Umlandeli omusha: {{name}}",
     "newSubscriber": "Umbhalisi omusha: {{name}}",

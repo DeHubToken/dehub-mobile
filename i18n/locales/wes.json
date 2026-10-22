@@ -8983,6 +8983,7 @@
     "notNow": "No now"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Wetin dem say?",
     "subscribedTo": "{{name}} subscribe to {{plan}}",
     "followersUnit": "fɔlɔwɔs",
@@ -9021,6 +9022,7 @@
       "join": "Join"
     },
     "kinds": {
+      "spin_wheel": "Spin wheel",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -9039,6 +9041,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "spin_wheel": "Where the wheels in your rules spin",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
@@ -9131,6 +9134,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Spin a wheel",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",
@@ -9167,6 +9171,10 @@
       "wheelHint": "Bai 2 na bai 12. DeHub go pick whey de wheel stop, so ebi de watch see same result. Use {result} in alert, read-out or chat action go name it."
     },
     "controls": {
+      "title": "Quick controls",
+      "alertsPaused": "Pause alerts",
+      "soundsMuted": "Mute alert sounds",
+      "readAloudMuted": "Stop read-aloud",
       "intro": "\"Mid-stream\" no. Each switch wey you flip, dem stay for everybody wey see you, both in app and in OBS, until you flip back again.",
       "alertsPausedHint": "No gift, no follow, no rule alert wey come o screen. Counter, goal, an chat box still dey move.",
       "soundsMutedHint": "Yous rules no dey play sound wey.",

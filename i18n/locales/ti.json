@@ -9074,6 +9074,7 @@
     "notNow": "ሕጂ ኣይኰንኩን"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ኣዝዩሩ፦ {{result}}",
     "someone": "ሓደ ሰብ",
     "newFollower": "ሓድሽ ተኸታሊ ፦ {{name}}",
     "newSubscriber": "ሓድሽ ኣባል ፦ {{name}}",

@@ -9199,6 +9199,7 @@
       "join": "加入"
     },
     "kinds": {
+      "spin_wheel": "旋转转盘",
       "tip_alert": "提示警报",
       "follow_alert": "关注警报",
       "subscribe_alert": "订阅者警报",
@@ -9287,6 +9288,9 @@
       "rotateFailed": "无法创建新链接。稍后再试。"
     },
     "rules": {
+      "actionTypes": {
+        "wheel": "旋转转盘"
+      },
       "title": "规则",
       "intro": "当您的直播中发生某些事情时，DeHub 会执行您选择的操作：显示提醒、播放声音、朗读文字、在聊天中发送或通知您的 Discord。",
       "add": "添加规则",
