@@ -143,7 +143,8 @@ export async function readStakeEvidence(url: string, attempt: StakeAttempt): Pro
   // A visible transaction remains pending. Save its actual nonce for recovery
   // after a restart; never guess a nonce from the wallet's current count.
   if (transaction !== null) return { receipt, transaction };
-  if (attempt.nonce === undefined && Date.now() - (attempt.submittedAt ?? Date.now()) < STAKE_MISSING_GRACE_MS) {
+  // Only attempts saved before submittedAt existed lack one; those are days old.
+  if (attempt.nonce === undefined && Date.now() - (attempt.submittedAt ?? 0) < STAKE_MISSING_GRACE_MS) {
     return { receipt, transaction };
   }
   const [latestNonce, pendingNonce] = await Promise.all([
@@ -161,7 +162,9 @@ export async function recoverStake(
   onReadError: (error: unknown) => void = () => {},
   now = Date.now(),
 ): Promise<StakeRecovery> {
-  const attempt = { ...original, submittedAt: original.submittedAt ?? now };
+  // No submittedAt means it was saved before Oct 2026 tracking began, so the
+  // grace period has long passed. Restarting the clock kept those notices up.
+  const attempt = { ...original, submittedAt: original.submittedAt ?? 0 };
   const evidence = await Promise.all(readers.map(async read => {
     try { return await read(); }
     catch (error) { try { onReadError(error); } catch {} return null; }
