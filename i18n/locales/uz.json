@@ -220,7 +220,7 @@
   },
   "settings": {
     "postingChain": "Postlar blokcheyni",
-    "showOnline": "Onlayn bo&#39;lganimda ko&#39;rsatilsin",
+    "showOnline": "Onlayn bo'lganimda ko'rsatilsin",
     "showOnlineDesc": "DeHub’dan foydalanayotganingizda xabar yuborgan odamlaringiz ismingiz yonida yashil nuqta ko‘rishadi",
     "smartReplies": "Tavsiya etilgan javoblar",
     "smartRepliesDesc": "Suhbatda bosishingiz mumkin bo'lgan ikkita javob tayyorlaydi. Tavsiyalardagi × buni o'chiradi.",
@@ -919,7 +919,7 @@
     "translate": "Tarjima qilish",
     "paste": "Qo’shish",
     "scanQr": "QR kodini skanerlang",
-    "scanQrHint": "Kamerani hamyon manzilining QR kodiga yo&#39;naltiring",
+    "scanQrHint": "Kamerani hamyon manzilining QR kodiga yo'naltiring",
     "allowCameraForQr": "QR kodini skanerlash uchun kameraga kirishga ruxsat bering",
     "undo": "Bekor qilish"
   },
@@ -2370,7 +2370,7 @@
     "privateHint": "Faqat siz bu oqimni ochishingiz mumkin",
     "makePublic": "Ommaviy qiling",
     "makePrivate": "Shaxsiy qiling",
-    "shareFailed": "Ulashishni yangilab bo&#39;lmadi.",
+    "shareFailed": "Ulashishni yangilab bo'lmadi.",
     "close": "Yopish",
     "cancel": "Bekor qilish",
     "save": "Saqlash",
@@ -4399,7 +4399,7 @@
     "pinMessage": "Xabarni qadash",
     "unpinMessage": "Xabarni olib tashlash",
     "reply": "Ответить",
-    "jumpToLatest": "So&#39;nggi xabarlarga o&#39;tish",
+    "jumpToLatest": "So'nggi xabarlarga o'tish",
     "ban": "Taqiqlash",
     "banConfirm": "{{name}} ni taqiqlashga ishonchingiz komilmi?",
     "banFailed": "Foydalanuvchini taqiqlashda xatolik yuz berdi"
@@ -4692,9 +4692,9 @@
       "importSelected": "{{n}} epizodlarni import qilish",
       "importing": "Import qilinmoqda",
       "done": "Navbat",
-      "emptyFeed": "Biz o&#39;sha tasmada hech qanday epizod topa olmadik.",
-      "badFeed": "Bu havola podkast tasmasi kabi ko&#39;rinmaydi.",
-      "tooMany": "Bir vaqtning o&#39;zida 20 tagacha epizodni import qiling."
+      "emptyFeed": "Biz o'sha tasmada hech qanday epizod topa olmadik.",
+      "badFeed": "Bu havola podkast tasmasi kabi ko'rinmaydi.",
+      "tooMany": "Bir vaqtning o'zida 20 tagacha epizodni import qiling."
     }
   },
   "earnings": {
@@ -5454,9 +5454,9 @@
     "tokenPrice": "{{amount}} token",
     "tokensUnit": "tokenlar",
     "atPreListingRate": "{{amount}} ro'yxatga olishdan oldingi narxda",
-    "paidToCreatorWallet": "To&#39;g&#39;ridan-to&#39;g&#39;ri ijodkorning hamyoniga tushadi",
-    "creatorPaidDirectNote": "Obuna bo&#39;lishingiz bilan ijodkorning ulushi to&#39;g&#39;ridan-to&#39;g&#39;ri ularning hamyoniga tushadi. DeHub kichik platforma to&#39;lovini ushlab qoladi.",
-    "creatorEarnsDirect": "Obunachilar DeHub tokenlarida to&#39;lov qilishadi. Ular obuna bo&#39;lgan zahoti sizning ulushingiz hamyoningizga tushadi, nishon darajangiz uchun platforma to&#39;lovi chegiriladi."
+    "paidToCreatorWallet": "To'g'ridan-to'g'ri ijodkorning hamyoniga tushadi",
+    "creatorPaidDirectNote": "Obuna bo'lishingiz bilan ijodkorning ulushi to'g'ridan-to'g'ri ularning hamyoniga tushadi. DeHub kichik platforma to'lovini ushlab qoladi.",
+    "creatorEarnsDirect": "Obunachilar DeHub tokenlarida to'lov qilishadi. Ular obuna bo'lgan zahoti sizning ulushingiz hamyoningizga tushadi, nishon darajangiz uchun platforma to'lovi chegiriladi."
   },
   "live": {
     "notSet": "Belgilanmagan",
@@ -6214,12 +6214,12 @@
     "minimize": "Yigʻish",
     "expand": "Kengaytirish",
     "tapToEnableAudio": "Audioni yoqish uchun bosing",
-    "offlineTitle": "Foydalanuvchi oflayn ko&#39;rinadi",
-    "failedTitle": "Qo&#39;ng&#39;iroq amalga oshmadi",
-    "offlineDesc": "{{name}} hozirda qo&#39;ng&#39;iroqlar uchun mavjud emas. Qayta qo&#39;ng&#39;iroq qilish so&#39;rovini yuboring, shunda ular onlayn bo&#39;lganlarida sizga qayta qo&#39;ng&#39;iroq qilishlari mumkin.",
-    "failedDesc": "Qo&#39;ng&#39;iroqni yakunlab bo&#39;lmadi. Internet aloqangizni tekshiring va qaytadan urinib ko&#39;ring.",
+    "offlineTitle": "Foydalanuvchi oflayn ko'rinadi",
+    "failedTitle": "Qo'ng'iroq amalga oshmadi",
+    "offlineDesc": "{{name}} hozirda qo'ng'iroqlar uchun mavjud emas. Qayta qo'ng'iroq qilish so'rovini yuboring, shunda ular onlayn bo'lganlarida sizga qayta qo'ng'iroq qilishlari mumkin.",
+    "failedDesc": "Qo'ng'iroqni yakunlab bo'lmadi. Internet aloqangizni tekshiring va qaytadan urinib ko'ring.",
     "close": "Yopish",
-    "callbackRequest": "Qayta qo&#39;ng&#39;iroq qilish so&#39;rovi",
+    "callbackRequest": "Qayta qo'ng'iroq qilish so'rovi",
     "tryAgain": "Qayta urinish",
     "startVoice": "Ovozli qo'ng'iroqni boshlang",
     "startVideo": "Видео қўнғироқни бошлаш",
@@ -6967,8 +6967,8 @@
       "denoise": "Shovqinni kamaytiring",
       "voice": "Ovozni yaxshilash",
       "working": "Ovoz qayta ishlanmoqda... {{percent}}%",
-      "done": "Qayta ishlangan ovoz qo&#39;shildi. Bekor qilish asl tovushni tiklaydi.",
-      "failed": "Bu tovushni qayta ishlab bo&#39;lmadi. Asl nusxasi o&#39;zgartirilmagan.",
+      "done": "Qayta ishlangan ovoz qo'shildi. Bekor qilish asl tovushni tiklaydi.",
+      "failed": "Bu tovushni qayta ishlab bo'lmadi. Asl nusxasi o'zgartirilmagan.",
       "hint": "Kliplarni 10 daqiqagacha qayta ishlang. Shovqinni kamaytirish barqaror fon shovqini bilan eng yaxshi ishlaydi."
     },
     "pages": {
@@ -7443,7 +7443,7 @@
     "presetOrbitHint": "Chuqurlikni ochib beradigan aylana harakati",
     "presetOrbitName": "Orbita",
     "presetPlaceholder": "{{name}}: mavzuni tavsiflang, masalan \"{{sample}}\"",
-    "presetPosterTypeHint": "O&#39;qiladigan displey turiga ega tartib",
+    "presetPosterTypeHint": "O'qiladigan displey turiga ega tartib",
     "presetPosterTypeName": "Poster turi",
     "presetProductReviewHint": "Ta'qdimotchi halol fikr bildiradi",
     "presetProductReviewName": "Mahsulot sharhi",
@@ -7451,7 +7451,7 @@
     "presetProductTurnName": "Mahsulot Burish",
     "presetSeasonalRestyleHint": "Bir xil mahsulot, yangi sahna va kayfiyat. Qo'shilgan rasm kerak",
     "presetSeasonalRestyleName": "Mavsumiy qayta uslublash",
-    "presetSlowPushHint": "Qo&#39;g&#39;irchoq obyekt tomon barqaror harakatlanmoqda",
+    "presetSlowPushHint": "Qo'g'irchoq obyekt tomon barqaror harakatlanmoqda",
     "presetSlowPushName": "Sekin itarish",
     "presetStorybookGouacheHint": "Issiq bo'yalgan rasmli kitob uslubi",
     "presetStorybookGouacheName": "Storybook Gouache",
@@ -7459,7 +7459,7 @@
     "presetStudioProductName": "Studiya mahsuloti",
     "presetTalkingPortraitHint": "Vertikal kamera bilan gaplashish",
     "presetTalkingPortraitName": "Sohib qilib gaplashish",
-    "presetThumbnailPunchHint": "200 piksel kenglikda o&#39;qiydi",
+    "presetThumbnailPunchHint": "200 piksel kenglikda o'qiydi",
     "presetThumbnailPunchName": "Eskiz zarbi",
     "presetTvSpotHint": "Sayqallangan radioeshittirish uslubidagi reklama",
     "presetTvSpotName": "TV Spot",
@@ -7470,17 +7470,17 @@
     "presetUgcUnboxingHint": "Qutidan to'g'ridan-to'g'ri qo'lda ochish",
     "presetUgcUnboxingName": "UGC Unboxing",
     "presets": "Standartlar",
-    "presetAdBulletsHint": "Uchta qisqa foyda haqida ma&#39;lumot beruvchi mahsulot",
-    "presetAdBulletsName": "Foyda o&#39;qlari reklamasi",
-    "presetAdHeadlineHint": "Katta da&#39;vo, mahsulot old va markazda",
+    "presetAdBulletsHint": "Uchta qisqa foyda haqida ma'lumot beruvchi mahsulot",
+    "presetAdBulletsName": "Foyda o'qlari reklamasi",
+    "presetAdHeadlineHint": "Katta da'vo, mahsulot old va markazda",
     "presetAdHeadlineName": "Bosh Sahifa",
     "presetAdUsVsThemHint": "Raqib bilan yonma-yon taqqoslash",
     "presetAdUsVsThemName": "Biz va ularga qarshi reklama",
-    "presetAnimeStillHint": "Qo&#39;lda chizilgan anime filmidan kadr",
+    "presetAnimeStillHint": "Qo'lda chizilgan anime filmidan kadr",
     "presetAnimeStillName": "Anime harakatsiz",
     "presetBulletTimeHint": "Muhrlangan moment bilan kamera aylana-yuradi",
     "presetBulletTimeName": "Bullet Time",
-    "presetClay3dHint": "Yoqimli yumshoq 3D loyqalanish ko&#39;rinishi",
+    "presetClay3dHint": "Yoqimli yumshoq 3D loyqalanish ko'rinishi",
     "presetClay3dName": "Gil rang berish",
     "presetCrashZoomHint": "Tez kirish uchun dramatik ritm",
     "presetCrashZoomName": "Crash Zoom",
@@ -7503,17 +7503,17 @@
     "presetLogoMarkName": "Logotip belgisi",
     "presetMeltHint": "Mavzu qaynoq shakar kabi eriydi",
     "presetMeltName": "Melt",
-    "presetMerchMockupHint": "Futbolka, kapshonli ko&#39;ylak yoki kepkadagi dizayningiz",
+    "presetMerchMockupHint": "Futbolka, kapshonli ko'ylak yoki kepkadagi dizayningiz",
     "presetMerchMockupName": "Tovarlar maketi",
     "presetPackagingHint": "Studiyada suratga olingan quti, shisha yoki sumka dizayni",
     "presetPackagingName": "Qadoqlash",
-    "presetPixelArtHint": "Retro 16-bitli o&#39;yin sahnasi",
-    "presetPixelArtName": "Piksel san&#39;ati",
+    "presetPixelArtHint": "Retro 16-bitli o'yin sahnasi",
+    "presetPixelArtName": "Piksel san'ati",
     "presetProductShowcaseHint": "Toza, polir qilingan mahsulot qahramonligi",
     "presetProductShowcaseName": "Mahsulot Koʻrinishi",
     "presetSetAblazeHint": "Ochlar va mavzuni oʻraladi",
     "presetSetAblazeName": "Set Ablaze",
-    "presetSocialCarouselHint": "Surish mumkin bo&#39;lgan postning bitta slaydi",
+    "presetSocialCarouselHint": "Surish mumkin bo'lgan postning bitta slaydi",
     "presetSocialCarouselName": "Karusel slaydi",
     "presetStorefrontSignHint": "Haqiqiy dunyodagi belgidagi brendingiz",
     "presetStorefrontSignName": "Vitrina belgisi",
@@ -7547,15 +7547,15 @@
     "referenceInsert": "Promptga {{tag}} ni qo‘shing",
     "referenceLibrary": "Kutubxonadan foydalanish",
     "referenceUpload": "Yuklash",
-    "referenceSingle": "Ob&#39;ektni qayta tiklash uchun bitta rasmdan foydalaning.",
-    "referenceHint": "So&#39;rovnomangizda unga havola qilish uchun obyekt nomiga teging. To&#39;rttagacha rasm va bitta klip qo&#39;shing.",
-    "referenceOneClip": "Bitta ma&#39;lumotnoma qisqichini biriktiring.",
+    "referenceSingle": "Ob'ektni qayta tiklash uchun bitta rasmdan foydalaning.",
+    "referenceHint": "So'rovnomangizda unga havola qilish uchun obyekt nomiga teging. To'rttagacha rasm va bitta klip qo'shing.",
+    "referenceOneClip": "Bitta ma'lumotnoma qisqichini biriktiring.",
     "referenceClipLength": "3 dan 15 soniyagacha bo‘lgan MP4 yoki MOV klipni almashtirish uchun, harakat uchun esa 30 soniyagacha ishlating.",
-    "referenceFourImages": "To&#39;rttagacha mos yozuvlar rasmini biriktiring.",
+    "referenceFourImages": "To'rttagacha mos yozuvlar rasmini biriktiring.",
     "referenceMultiModel": "Ko'p rasmlarni qo‘llab-quvvatlaydigan modelni tanlang, masalan FLUX 3 Image.",
     "referenceNeedsClip": "Belgilangan obrazingizni va havola klipini qo‘shing.",
     "referenceVideoModel": "Klipni ishlatish uchun Character swap yoki Copy motion ni tanlang.",
-    "referenceTooMany": "Bu model barcha biriktirilgan rasmlardan foydalana olmaydi. Qo&#39;shimchalarni olib tashlang yoki boshqa modelni tanlang.",
+    "referenceTooMany": "Bu model barcha biriktirilgan rasmlardan foydalana olmaydi. Qo'shimchalarni olib tashlang yoki boshqa modelni tanlang.",
     "referenceClipSeconds": "Klip uzunligi: {{seconds}}s",
     "referenceUploadClip": "Malumotnoma klipini yuklash",
     "characterSwap": "Belgilar almashinuvi",
@@ -7564,7 +7564,7 @@
     "referenceSwapHint": "Asl sahna va harakatni saqlab qolgan holda, odamni almashtiring.",
     "referenceMotionName": "Harakatni belgingizga nusxalash",
     "referenceMotionHint": "Klipdagi harakatlar va ifodalar yordamida belgi tasvirini animatsiya qiling.",
-    "referenceOutfitName": "Klipdagi kiyimni sinab ko&#39;ring",
+    "referenceOutfitName": "Klipdagi kiyimni sinab ko'ring",
     "referenceOutfitHint": "Yuz, harakat va fonni saqlab, kiyimni o'zgartiring.",
     "referenceProductName": "Mahsulingizni klipga qo'ying",
     "referenceProductHint": "Tanlangan mahsulotni almashtiring va asl sahnani saqlang.",
@@ -7975,8 +7975,8 @@
       "mediumDark": "Oʻrtacha toʻq teri rangi",
       "dark": "Toʻq teri rangi"
     },
-    "addCustom": "Maxsus emoji qo&#39;shish",
-    "customEmpty": "Hali maxsus emoji yo&#39;q. Fayl, havola, Discord, Slack, 7TV yoki Mastodon serveridan bittasini qo&#39;shing.",
+    "addCustom": "Maxsus emoji qo'shish",
+    "customEmpty": "Hali maxsus emoji yo'q. Fayl, havola, Discord, Slack, 7TV yoki Mastodon serveridan bittasini qo'shing.",
     "back": "Orqaga",
     "modeSingle": "Bitta emoji",
     "modePack": "Paketni import qiling",
@@ -7985,7 +7985,7 @@
     "namePlaceholder": "nom",
     "singleHint": "PNG, GIF, WebP yoki JPEG 2 MB gacha. Discord, Slack, 7TV, BetterTTV, FrankerFaceZ, emoji.gg saytlaridan yoki har qanday rasmdan havolalar ham ishlaydi.",
     "add": "emoji qo'shish",
-    "addedName": "{{name}} qo&#39;shildi",
+    "addedName": "{{name}} qo'shildi",
     "packPlaceholder": "mastodon.social, misskey.io yoki JSON havola",
     "packHint": "Mastodon, Pleroma, Akkoma yoki Misskey serveridan yoki har qanday emoji JSON ro'yxatidan har bir emojini import qiladi. Ishlatilayotgan nomlar o'tkazib yuboriladi.",
     "importPack": "Import",
@@ -8308,54 +8308,54 @@
         "intro": "Bosqichlar DeHubga o'rnatilgan jonli audio xonalardir. Xost xonani ochadi, spikerlarni taklif qiladi va har kim Bosqichlar sahifasidan yoki ulashilgan havola orqali tinglash uchun kirishi mumkin.",
         "steps": {
           "1": "Hozirda jonli efirda nimalar borligini va nimalar rejalashtirilganligini ko'rish uchun yon panelda \"Bosqichlar\"ni oching.",
-          "2": "Jonli sahnaga tinglovchi sifatida qo&#39;shilish uchun bosing yoki rejalashtirilgan sahnaga eslatma o&#39;rnating va u qachon boshlanishini bilib oling.",
-          "3": "O&#39;zingizning sahifangizni xuddi shu sahifadan boshlang — siz to&#39;g&#39;ridan-to&#39;g&#39;ri brauzerdan, OBS yoki strim kalitisiz jonli efirga chiqishingiz mumkin.",
+          "2": "Jonli sahnaga tinglovchi sifatida qo'shilish uchun bosing yoki rejalashtirilgan sahnaga eslatma o'rnating va u qachon boshlanishini bilib oling.",
+          "3": "O'zingizning sahifangizni xuddi shu sahifadan boshlang — siz to'g'ridan-to'g'ri brauzerdan, OBS yoki strim kalitisiz jonli efirga chiqishingiz mumkin.",
           "4": "Mezbon sifatida spikerlarni sahnaga olib chiqing, ularni jim qiling yoki olib tashlang, ekraningizni ulashing va ovoz paneli bilan ishlating.",
           "5": "Tinglovchilar sahnaga chiqmasdan jonli efirda reaksiya bildirishadi va xonada suhbatlashishadi.",
-          "6": "Har bir sahna yozib olinadi va yozuv keyinroq u ko&#39;rsatilgan kartadan ijro etiladi."
+          "6": "Har bir sahna yozib olinadi va yozuv keyinroq u ko'rsatilgan kartadan ijro etiladi."
         },
         "tips": {
-          "1": "Jonli subtitrlar har bir ma&#39;ruzachiga sarlavha qo&#39;ying va o&#39;qiyotgan tilingizga tarjima qiling.",
-          "2": "Jonli dublyaj xonada boshlovchining o&#39;zining klonlangan ovozida, DeHub tokenlarida daqiqalar bo&#39;yicha hisoblab chiqiladigan ovozda ovoz chiqarib gapirishi mumkin.",
-          "3": "Boshlovchilar suhbatlar oralig&#39;ida radiostansiyani efirga uzatishlari yoki o&#39;zlarining musiqiy kliplarini ijro etishlari mumkin.",
-          "4": "Ilovaning qolgan qismini ko&#39;rib chiqayotganingizda mini-pleyer xonani burchakda ushlab turadi."
+          "1": "Jonli subtitrlar har bir ma'ruzachiga sarlavha qo'ying va o'qiyotgan tilingizga tarjima qiling.",
+          "2": "Jonli dublyaj xonada boshlovchining o'zining klonlangan ovozida, DeHub tokenlarida daqiqalar bo'yicha hisoblab chiqiladigan ovozda ovoz chiqarib gapirishi mumkin.",
+          "3": "Boshlovchilar suhbatlar oralig'ida radiostansiyani efirga uzatishlari yoki o'zlarining musiqiy kliplarini ijro etishlari mumkin.",
+          "4": "Ilovaning qolgan qismini ko'rib chiqayotganingizda mini-pleyer xonani burchakda ushlab turadi."
         }
       },
       "communities": {
         "title": "Jamiyatlar va tadbirlar",
-        "intro": "Hamjamiyatlar - bu o&#39;z tasmasi, a&#39;zolari va faoliyatiga ega a&#39;zolar tomonidan boshqariladigan makonlar. Tadbirlar ularga vaqt bilan chegaralangan dasturlarni qo&#39;shadi.",
+        "intro": "Hamjamiyatlar - bu o'z tasmasi, a'zolari va faoliyatiga ega a'zolar tomonidan boshqariladigan makonlar. Tadbirlar ularga vaqt bilan chegaralangan dasturlarni qo'shadi.",
         "steps": {
-          "1": "Yon panelda &quot;Hamjamiyatlar&quot; ni oching va ommaviylarini ko&#39;rib chiqing.",
-          "2": "Bir marta bosish bilan qo&#39;shiling. Yangi faollik navigatsiyada o&#39;qilmagan nishon sifatida ko&#39;rsatiladi.",
-          "3": "Jamiyatning o&#39;z tasmasida joylashtiring, muhokama qiling, so&#39;rovnomalar o&#39;tkazing va maslahatlar bering.",
-          "4": "Jamiyat egalari o&#39;z maydonlarini moderatsiya qilishadi va boshqalarga administrator huquqlarini berishlari mumkin.",
-          "5": "Rejalashtirilgan dasturlar uchun &quot;Tadbirlar&quot; ni oching, har bir tadbir uchun to&#39;liq sahifani jonli efirda kuzatib borishingiz mumkin."
+          "1": "Yon panelda \"Hamjamiyatlar\" ni oching va ommaviylarini ko'rib chiqing.",
+          "2": "Bir marta bosish bilan qo'shiling. Yangi faollik navigatsiyada o'qilmagan nishon sifatida ko'rsatiladi.",
+          "3": "Jamiyatning o'z tasmasida joylashtiring, muhokama qiling, so'rovnomalar o'tkazing va maslahatlar bering.",
+          "4": "Jamiyat egalari o'z maydonlarini moderatsiya qilishadi va boshqalarga administrator huquqlarini berishlari mumkin.",
+          "5": "Rejalashtirilgan dasturlar uchun \"Tadbirlar\" ni oching, har bir tadbir uchun to'liq sahifani jonli efirda kuzatib borishingiz mumkin."
         },
         "tips": {
           "1": "Hamjamiyat chati @mentions va @here’ni qo‘llab-quvvatlaydi, shuning uchun post xonaga yetib borishi mumkin.",
-          "2": "Taklifnoma havolasi sizga odamlarni to&#39;g&#39;ridan-to&#39;g&#39;ri hamjamiyatga jalb qilish imkonini beradi."
+          "2": "Taklifnoma havolasi sizga odamlarni to'g'ridan-to'g'ri hamjamiyatga jalb qilish imkonini beradi."
         }
       },
       "arcade": {
         "title": "Arkada",
         "intro": "Beshta oʻyin DeHub ichida brauzer yorligʻida ishlaydi — oʻrnatish uchun hech narsa yoʻq, sotib olish uchun hech narsa yoʻq.",
         "steps": {
-          "1": "Yon panelda &quot;Arcade&quot; ni oching.",
-          "2": "Oʻyin tanlang: King&#39;s Gambit (onlayn Elo narvonli 3D shaxmat), Claude of Duty (yuklanayotganda oʻz sanʼatini yaratadigan otishma), Jungle Trail (yomgʻir oʻrmonida sayr qilish), Street Slayer (DeHub uchun yaratilgan beat-up) yoki Chartopia (piyoda yurish mumkin boʻlgan savdo maydonchasi).",
-          "3": "Yorliqda o&#39;ynang. King&#39;s Gambit va Street Slayer peshqadamlar jadvalida o&#39;z o&#39;rnini saqlab qoladi.",
+          "1": "Yon panelda \"Arcade\" ni oching.",
+          "2": "Oʻyin tanlang: King's Gambit (onlayn Elo narvonli 3D shaxmat), Claude of Duty (yuklanayotganda oʻz sanʼatini yaratadigan otishma), Jungle Trail (yomgʻir oʻrmonida sayr qilish), Street Slayer (DeHub uchun yaratilgan beat-up) yoki Chartopia (piyoda yurish mumkin boʻlgan savdo maydonchasi).",
+          "3": "Yorliqda o'ynang. King's Gambit va Street Slayer peshqadamlar jadvalida o'z o'rnini saqlab qoladi.",
           "4": "Chartopia shuningdek, WebXR orqali VR garniturasida ishlaydi."
         },
         "tips": {
-          "1": "Ulardan ikkitasi tashqi ko&#39;rinish mavzulari ichida yashiringan — ilovani Claude of Duty uchun War yoki Jungle Trail uchun Jungle ga sozlang.",
-          "2": "Har bir o&#39;yinning o&#39;z ulashish kartasi bor, shuning uchun uni qayerga joylashtirsangiz ham, unga havola to&#39;g&#39;ri ochiladi."
+          "1": "Ulardan ikkitasi tashqi ko'rinish mavzulari ichida yashiringan — ilovani Claude of Duty uchun War yoki Jungle Trail uchun Jungle ga sozlang.",
+          "2": "Har bir o'yinning o'z ulashish kartasi bor, shuning uchun uni qayerga joylashtirsangiz ham, unga havola to'g'ri ochiladi."
         }
       },
       "bounties-stores": {
         "title": "Sovg'alar va do'konlar",
-        "intro": "Platformani daromadga aylantirishning ikki yo&#39;li: mukofotni joylashtirish yoki talab qilish yoki do&#39;kon ochish va auditoriyangizga sotish.",
+        "intro": "Platformani daromadga aylantirishning ikki yo'li: mukofotni joylashtirish yoki talab qilish yoki do'kon ochish va auditoriyangizga sotish.",
         "steps": {
-          "1": "Kategoriya yoki valyuta bo&#39;yicha filtrlangan ochiq ishlarni ko&#39;rib chiqish uchun &quot;Bonties&quot; ni oching.",
-          "2": "Bittasini oling, ishni bajaring va mukofotni olish uchun topshiring — istalgan kishi ovchi bo&#39;lishi mumkin, ariza berish shart emas.",
+          "1": "Kategoriya yoki valyuta bo'yicha filtrlangan ochiq ishlarni ko'rib chiqish uchun \"Bonties\" ni oching.",
+          "2": "Bittasini oling, ishni bajaring va mukofotni olish uchun topshiring — istalgan kishi ovchi bo'lishi mumkin, ariza berish shart emas.",
           "3": "O'z \"bounty\"ni qisqa tavsif va DeHub tokenlari yoki USDC mukofoti bilan joylashtiring. U joylashtirilgan zahoti escrowga tushadi.",
           "4": "O'z sahifasi, brending va ro'yxatlari bilan do'konni sozlash uchun \"Do'konlar\"ni oching.",
           "5": "Mahsulotlar tashqi to'lov tizimisiz, o'rnatilgan hamyon orqali DeHub tokenlarida narxlanadi va hisob-kitob qilinadi."
@@ -8456,13 +8456,13 @@
         "intro": "Fraksiyalar savdosi — roʻyxatlarni koʻrib chiqish, takliflar berish, oʻzingiznikini roʻyxatga olish — dehub.io veb-ilovasida, har bir postning Post haqida maʼlumot sahifasida joylashgan.",
         "steps": {
           "1": "Brauzerda dehub.io faylini oching va xuddi shu hisob qaydnomasi bilan tizimga kiring.",
-          "2": "Postning Post haqida ma&#39;lumot sahifasini oching va uning Marketplace yorlig&#39;iga o&#39;ting.",
-          "3": "E&#39;lonlarni ko&#39;rib chiqing, o&#39;z narxingizda taklif bering yoki ushlab turgan kasrlaringizni ro&#39;yxatlang.",
-          "4": "Savdo tugagandan so&#39;ng, o&#39;zgarish mobil qurilmangizdagi Kasrlar yorlig&#39;ida ko&#39;rsatiladi."
+          "2": "Postning Post haqida ma'lumot sahifasini oching va uning Marketplace yorlig'iga o'ting.",
+          "3": "E'lonlarni ko'rib chiqing, o'z narxingizda taklif bering yoki ushlab turgan kasrlaringizni ro'yxatlang.",
+          "4": "Savdo tugagandan so'ng, o'zgarish mobil qurilmangizdagi Kasrlar yorlig'ida ko'rsatiladi."
         },
         "tips": {
           "1": "Postning kasrlariga egalik qilish, siz ushbu zanjirdagi NFT ulushiga egalik qilishingizni anglatadi.",
-          "2": "Sotib olishdan oldin egalik taqsimotini ko&#39;rish uchun veb-bozorda post egalarini tekshiring.",
+          "2": "Sotib olishdan oldin egalik taqsimotini ko'rish uchun veb-bozorda post egalarini tekshiring.",
           "3": "Ijodkor sifatida, kasrlarni sotish muxlislarga sizning kontentingizga birgalikda egalik qilish imkonini beradi."
         }
       },
@@ -8473,29 +8473,29 @@
           "1": "Yon panelda 'Post' (Post) tugmasini (ish stoli) yoki + tugmasini (mobil) bosing.",
           "2": "Matningizni yozing, media (rasmlar, videolar, audio) qo'shing va kategoriyalarni kiriting.",
           "3": "Zanjirdan tashqarida joylashtirish uchun 'Postni chiqarish' (Mint post) opsiyasini o'chirilgan holda qoldiring yoki joylashtirish vaqtida chiqarish uchun uni yoqing.",
-          "4": "Nashr hech qachon zanjirda kutib turmaydi: post har qanday holatda ham lentada paydo bo&#39;ladi.",
-          "5": "Keyinroq ishga tushirish uchun postning &quot;ⓘ&quot; ma&#39;lumot sahifasini oching va u yerda &quot;Mint&quot; amalidan foydalaning.",
-          "6": "Bir marta nashr etilgandan so&#39;ng, postga Token identifikatori va zanjirda tekshirishingiz mumkin bo&#39;lgan tranzaksiya xeshi beriladi va siz uning barcha 1000 ta kasrini saqlaysiz."
+          "4": "Nashr hech qachon zanjirda kutib turmaydi: post har qanday holatda ham lentada paydo bo'ladi.",
+          "5": "Keyinroq ishga tushirish uchun postning \"ⓘ\" ma'lumot sahifasini oching va u yerda \"Mint\" amalidan foydalaning.",
+          "6": "Bir marta nashr etilgandan so'ng, postga Token identifikatori va zanjirda tekshirishingiz mumkin bo'lgan tranzaksiya xeshi beriladi va siz uning barcha 1000 ta kasrini saqlaysiz."
         },
         "tips": {
-          "1": "Ijtimoiy tarmoqlar, elektron pochta va SMS orqali kirish uchun benzin to&#39;lovi nolga teng — DeHub to&#39;lovlarni homiylik qiladi.",
+          "1": "Ijtimoiy tarmoqlar, elektron pochta va SMS orqali kirish uchun benzin to'lovi nolga teng — DeHub to'lovlarni homiylik qiladi.",
           "2": "Tashqi hamyon foydalanuvchilari gaz uchun bazaviy ETH yoki BNB Chaindagi BNB ga muhtoj.",
-          "3": "Zarbxona postlarni savdoga qodir va royalti keltiradigan narsadir. Zarbxonaga qo&#39;yilmagan postlar baribir ko&#39;proq pul va ko&#39;rishlarga ega bo&#39;ladi.",
-          "4": "Zanjir ichidagi yozuv, hatto post keyinchalik lentadan o&#39;chirilgan bo&#39;lsa ham, yaratilgandan so&#39;ng doimiy bo&#39;ladi."
+          "3": "Zarbxona postlarni savdoga qodir va royalti keltiradigan narsadir. Zarbxonaga qo'yilmagan postlar baribir ko'proq pul va ko'rishlarga ega bo'ladi.",
+          "4": "Zanjir ichidagi yozuv, hatto post keyinchalik lentadan o'chirilgan bo'lsa ham, yaratilgandan so'ng doimiy bo'ladi."
         }
       },
       "glossary": {
         "title": "Glossariy",
-        "intro": "Web3 da harakatlanishingizga yordam beradigan kripto va platforma terminologiyasining keng qamrovli lug&#39;ati.",
+        "intro": "Web3 da harakatlanishingizga yordam beradigan kripto va platforma terminologiyasining keng qamrovli lug'ati.",
         "steps": {
-          "1": "Yon paneldan &quot;Lug&#39;at&quot; ga o&#39;ting.",
-          "2": "Alifbo tartibida atamalarni ko&#39;rib chiqing yoki ma&#39;lum atamalarni topish uchun qidiruvdan foydalaning.",
-          "3": "To&#39;liq ta&#39;rifi va tushuntirishini ko&#39;rish uchun atama ustiga bosing.",
+          "1": "Yon paneldan \"Lug'at\" ga o'ting.",
+          "2": "Alifbo tartibida atamalarni ko'rib chiqing yoki ma'lum atamalarni topish uchun qidiruvdan foydalaning.",
+          "3": "To'liq ta'rifi va tushuntirishini ko'rish uchun atama ustiga bosing.",
           "4": "Atamalar kripto tushunchalarini, DeFi terminologiyasini va DeHubga xos xususiyatlarni qamrab oladi."
         },
         "tips": {
           "1": "Kripto va Web3 ga yangi kelganlar uchun ajoyib resurs.",
-          "2": "Lug&#39;at muntazam ravishda yangi atamalar bilan yangilanadi."
+          "2": "Lug'at muntazam ravishda yangi atamalar bilan yangilanadi."
         }
       }
     }
@@ -8564,18 +8564,18 @@
     "linkPlaceholder": "Rasm yoki GIF havolasini joylashtiring",
     "addFromLink": "Havoladan qo'shish",
     "uploadFiles": "Rasmlarni yuklash",
-    "uploadHint": "PNG, GIF, WebP yoki JPEG formatlarining har biri 2 MB gacha. Bir vaqtning o&#39;zida bir nechtasini tanlashingiz mumkin.",
-    "uploadHintGif": "GIF, PNG, WebP yoki JPEG formatlarining har biri 8 MB gacha. Bir vaqtning o&#39;zida bir nechtasini tanlashingiz mumkin.",
-    "itemsAdded": "{{count}} qo&#39;shildi ({{skipped}} o&#39;tkazib yuborildi)",
+    "uploadHint": "PNG, GIF, WebP yoki JPEG formatlarining har biri 2 MB gacha. Bir vaqtning o'zida bir nechtasini tanlashingiz mumkin.",
+    "uploadHintGif": "GIF, PNG, WebP yoki JPEG formatlarining har biri 8 MB gacha. Bir vaqtning o'zida bir nechtasini tanlashingiz mumkin.",
+    "itemsAdded": "{{count}} qo'shildi ({{skipped}} o'tkazib yuborildi)",
     "removeItem": "Olib tashlash",
-    "packEmpty": "Bu paketda hali hech narsa yo&#39;q.",
+    "packEmpty": "Bu paketda hali hech narsa yo'q.",
     "errors": {
       "noBadge": "Paketlarni yaratish uchun sizga staking nishoni kerak.",
-      "packLimit": "Siz nishon darajangiz ushbu turdagi ruxsat bergan barcha to&#39;plam uyalaridan foydalangansiz.",
-      "itemLimit": "Bu to&#39;plam sizning nishon darajangiz uchun to&#39;la.",
+      "packLimit": "Siz nishon darajangiz ushbu turdagi ruxsat bergan barcha to'plam uyalaridan foydalangansiz.",
+      "itemLimit": "Bu to'plam sizning nishon darajangiz uchun to'la.",
       "fileType": "PNG, GIF, WebP yoki JPEG rasmidan foydalaning",
-      "fileSize": "Fayllar hajmi {{mb}} MB yoki undan kichikroq bo&#39;lishi kerak",
-      "generic": "Nimadir noto&#39;g&#39;ri ketdi. Qaytadan urinib ko&#39;ring."
+      "fileSize": "Fayllar hajmi {{mb}} MB yoki undan kichikroq bo'lishi kerak",
+      "generic": "Nimadir noto'g'ri ketdi. Qaytadan urinib ko'ring."
     }
   },
   "multiPost": {
@@ -8607,24 +8607,24 @@
     "alsoPostTo": "Shuningdek, post qiling",
     "creditsUsed": "{{balance}} kreditlaridan {{count}} foydalanadi",
     "manage": "Boshqarish",
-    "setUp": "Ko&#39;p postlarni joylashtirishni sozlash",
+    "setUp": "Ko'p postlarni joylashtirishni sozlash",
     "postingToast": "{{count}} platformalariga yuborilmoqda…",
     "payingToast": "Ushbu postni tugatish uchun {{count}} kreditlarini sotib olish…",
     "postedToast": "{{count}} platformalariga joylashtirildi",
     "scheduledToast": "{{count}} platformalarida rejalashtirilgan",
     "partialToast": "{{sent}} platformalariga joylashtirildi. {{failed}} bajarilmadi va ushbu kreditlar qaytarildi.",
     "failedToast": "Xabar almashish amalga oshmadi: {{error}}",
-    "skippedToast": "{{platforms}} o&#39;tkazib yuborildi: bu postda kerakli rasm yoki video yo&#39;q.",
-    "uploadFailed": "Media faylingizni kross-post uchun yuklab bo&#39;lmadi.",
+    "skippedToast": "{{platforms}} o'tkazib yuborildi: bu postda kerakli rasm yoki video yo'q.",
+    "uploadFailed": "Media faylingizni kross-post uchun yuklab bo'lmadi.",
     "creditRules": "Har bir post uchun platformaga qarab kreditlar olinadi: X uchun {{x}}, Farcaster uchun {{farcaster}} va boshqa har bir platforma uchun {{other}}. Rejalashtirilgan postlar uchun kreditlar ishlatiladi.",
-    "payAsYouGoCredits": "Tugab qoldingizmi? Yo&#39;qotilgan kreditlar DHBda har bir post joylashtirganingizda ${{price}} evaziga sotib olinadi.",
+    "payAsYouGoCredits": "Tugab qoldingizmi? Yo'qotilgan kreditlar DHBda har bir post joylashtirganingizda ${{price}} evaziga sotib olinadi.",
     "topUpCredits": "{{count}} kreditlar",
     "perCredit": "har bir kredit uchun ${{price}}",
     "pendingApproval": "Farcaster ilovasida dehubni tasdiqlashingizni kutmoqdamiz",
     "approve": "Tasdiqlash",
-    "farcasterNote": "Farcaster sizdan Farcaster ilovasida dehubni tasdiqlashingizni so&#39;raydi va u hali rejalashtirilgan postlarni qabul qila olmaydi.",
-    "skippedScheduleToast": "{{platforms}} o&#39;tkazib yuborildi: rejalashtirilgan postlar u yerda hali qo&#39;llab-quvvatlanmaydi.",
-    "skippedOtherToast": "{{platforms}} o&#39;tkazib yuborildi: ular bu postni ololmaydilar."
+    "farcasterNote": "Farcaster sizdan Farcaster ilovasida dehubni tasdiqlashingizni so'raydi va u hali rejalashtirilgan postlarni qabul qila olmaydi.",
+    "skippedScheduleToast": "{{platforms}} o'tkazib yuborildi: rejalashtirilgan postlar u yerda hali qo'llab-quvvatlanmaydi.",
+    "skippedOtherToast": "{{platforms}} o'tkazib yuborildi: ular bu postni ololmaydilar."
   },
   "builder": {
     "stakeForAllowance": "Kunlik qurish chegarangizni oshirish uchun DeHub tokenlarini stake qiling",
@@ -9037,27 +9037,27 @@
     "percentUsed": "{{percent}}% ishlatilgan",
     "spentOfTotal": "{{spent}} ning {{total}}",
     "subscriptionTokens": "Obuna tokenlari",
-    "topUp": "Tokenlarni qo&#39;shish",
-    "topUpTitle": "Obuna tokenlarini qo&#39;shish",
+    "topUp": "Tokenlarni qo'shish",
+    "topUpTitle": "Obuna tokenlarini qo'shish",
     "topUpCustom": "Boshqa miqdor (AQSh dollari)",
     "topUpYouSend": "Siz yuborasiz",
-    "topUpYouGet": "Balansingizga qo&#39;shildi",
-    "topUpConfirm": "{{amount}} qo&#39;shing",
+    "topUpYouGet": "Balansingizga qo'shildi",
+    "topUpConfirm": "{{amount}} qo'shing",
     "topUpRange": "{{min}} dan {{max}} gacha kiriting",
-    "topUpDone": "Obuna tokenlaringizga {{amount}} qo&#39;shildi",
-    "topUpPending": "Hisobingizni to&#39;ldirish tasdiqlanmoqda. Tez orada hisobingizda paydo bo&#39;ladi.",
-    "topUpFailed": "Obuna tokenlarini qo&#39;shib bo&#39;lmadi",
+    "topUpDone": "Obuna tokenlaringizga {{amount}} qo'shildi",
+    "topUpPending": "Hisobingizni to'ldirish tasdiqlanmoqda. Tez orada hisobingizda paydo bo'ladi.",
+    "topUpFailed": "Obuna tokenlarini qo'shib bo'lmadi",
     "topUpStageFunding": "Tokenlar olinmoqda…",
     "topUpStageWallet": "Hamyoningizda tasdiqlang…",
     "topUpStageConfirming": "Tranzaksiya kutilmoqda…",
     "topUpStageCrediting": "Balansingizga qoʻshilmoqda…",
-    "untradableTokens": "Bular savdo qilib bo&#39;lmaydigan obuna tokenlari",
+    "untradableTokens": "Bular savdo qilib bo'lmaydigan obuna tokenlari",
     "withdraw": "Yechib olish",
     "close": "Yopish",
     "tokenAmount": "{{amount}} token",
     "subscriptionTokensOnly": "Faqat AI yaratish uchun",
-    "subscriptionTokensValueNote": "Obuna tokenlari o&#39;zlarining dollar qiymatini saqlab qoladi. Agar token narxi siz ulardan foydalanishdan oldin o&#39;zgarsa, siz ko&#39;proq yoki kamroq tokenlarni ko&#39;rasiz, lekin ular har doim bir xil miqdorda sun&#39;iy intellekt ishlab chiqarishni sotib olishadi. Ularni qaytarib olish, yuborish yoki sotish mumkin emas.",
-    "topUpEmptyHint": "Sun&#39;iy intellekt yordamida yaratish uchun tokenlarni qo&#39;shing"
+    "subscriptionTokensValueNote": "Obuna tokenlari o'zlarining dollar qiymatini saqlab qoladi. Agar token narxi siz ulardan foydalanishdan oldin o'zgarsa, siz ko'proq yoki kamroq tokenlarni ko'rasiz, lekin ular har doim bir xil miqdorda sun'iy intellekt ishlab chiqarishni sotib olishadi. Ularni qaytarib olish, yuborish yoki sotish mumkin emas.",
+    "topUpEmptyHint": "Sun'iy intellekt yordamida yaratish uchun tokenlarni qo'shing"
   },
   "accountDeletion": {
     "title": "Akkauntni o`chirish",
@@ -9077,31 +9077,31 @@
   "miniApps": {
     "badge": {
       "verified": "Tasdiqlangan",
-      "unreviewed": "Ko&#39;rib chiqilmagan",
-      "dev": "Dasturchi uchun oldindan ko&#39;rish"
+      "unreviewed": "Ko'rib chiqilmagan",
+      "dev": "Dasturchi uchun oldindan ko'rish"
     },
     "host": {
       "close": "Ilovani yopish",
       "backToStore": "Ilovalarga qaytish",
       "notFound": "Bu ilova DeHub App Store’da yo‘q yoki olib tashlangan.",
-      "badUrl": "Bu manzilni mini-ilova sifatida ochib bo&#39;lmaydi. U https:// bilan boshlanishi yoki dasturchi rejimida localhost manzili bo&#39;lishi kerak.",
+      "badUrl": "Bu manzilni mini-ilova sifatida ochib bo'lmaydi. U https:// bilan boshlanishi yoki dasturchi rejimida localhost manzili bo'lishi kerak.",
       "readyTimeout": "Bu ilova hech qachon dehub.ready() ni chaqirmagan, shuning uchun ekran 8 soniyadan keyin yashirilgan."
     },
     "signIn": {
       "title": "{{name}} ga kirish?",
-      "body": "Ushbu ilova sizning DeHub hamyoningiz manzilini va faqat ushbu ilova uchun ishlaydigan kirish tokenini oladi. U hamyoningizga, mablag&#39;laringizga yoki DeHub hisobingizga kira olmaydi.",
+      "body": "Ushbu ilova sizning DeHub hamyoningiz manzilini va faqat ushbu ilova uchun ishlaydigan kirish tokenini oladi. U hamyoningizga, mablag'laringizga yoki DeHub hisobingizga kira olmaydi.",
       "cancel": "Hozir emas",
       "confirm": "tizimga kirish"
     },
     "store": {
       "title": "Ilovalar",
-      "intro": "DeHub uchun har kim tomonidan yaratilgan mini-ilovalar. Ular DeHub ichida ochiladi, siz allaqachon tizimga kirgansiz va har bir ilova o&#39;zining haqiqiy veb-manzilini ko&#39;rsatadi.",
+      "intro": "DeHub uchun har kim tomonidan yaratilgan mini-ilovalar. Ular DeHub ichida ochiladi, siz allaqachon tizimga kirgansiz va har bir ilova o'zining haqiqiy veb-manzilini ko'rsatadi.",
       "buildCta": "Ilova yarating",
-      "emptyTitle": "Hali hech qanday ilova ro&#39;yxatda yo&#39;q",
-      "emptyBody": "Birinchi ilovalar ko&#39;rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo&#39;lishi mumkin.",
+      "emptyTitle": "Hali hech qanday ilova ro'yxatda yo'q",
+      "emptyBody": "Birinchi ilovalar ko'rib chiqilmoqda. Bittasini yarating, shunda u shu yerda bo'lishi mumkin.",
       "search": "Ilovalarni qidirish",
       "all": "Hammasi",
-      "fromDehub": "DeHub&#39;dan",
+      "fromDehub": "DeHub'dan",
       "noMatch": "Bu qidiruvga hech qanday ilova mos kelmadi.",
       "yourApps": "Ilovalaringiz",
       "remove": "Olib tashlash",
@@ -9113,7 +9113,7 @@
       "open": "Ochiq"
     },
     "category": {
-      "games": "O&#39;yinlar",
+      "games": "O'yinlar",
       "social": "Ijtimoiy",
       "finance": "Moliya",
       "utility": "Kommunal xizmatlar",
@@ -9122,16 +9122,16 @@
       "news-media": "Yangiliklar va ommaviy axborot vositalari",
       "music": "Musiqa",
       "shopping": "Xarid qilish",
-      "education": "Ta&#39;lim",
+      "education": "Ta'lim",
       "developer-tools": "Dasturchi vositalari",
-      "entertainment": "Ko&#39;ngilochar",
-      "art-creativity": "San&#39;at va ijodkorlik"
+      "entertainment": "Ko'ngilochar",
+      "art-creativity": "San'at va ijodkorlik"
     },
     "pay": {
       "body": "tokenlar toʻgʻridan-toʻgʻri ilovaning pul xazinasi (wallet) ga yetadi, {{wallet}}. Toʻlovlar qaytarib olinmaydi.",
       "sent": "Tozalanmagan {{amount}} tokenlar ni {{name}}ga sotib oldim.",
-      "title": "To&#39;lov {{name}}?",
-      "confirm": "To&#39;lov {{amount}} tokenlar"
+      "title": "To'lov {{name}}?",
+      "confirm": "To'lov {{amount}} tokenlar"
     },
     "add": {
       "title": "{{name}}?",
