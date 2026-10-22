@@ -9207,7 +9207,8 @@
     "followersUnit": "obserwujący",
     "topSupporters": "Najlepsi kibice",
     "tipped": "{{name}} wysłał prezent",
-    "chatPreview": "Tutaj pojawiają się wiadomości na czacie"
+    "chatPreview": "Tutaj pojawiają się wiadomości na czacie",
+    "wheelLanded": "{{name}} wirował: {{result}}"
   },
   "liveStudio": {
     "title": "Studio na żywo",
@@ -9263,7 +9264,8 @@
       "event_feed": "Ostatnia aktywność",
       "chat_box": "Pole czatu",
       "ticker": "Pasek informacyjny",
-      "rule_alert": "Powiadomienia o regułach"
+      "rule_alert": "Powiadomienia o regułach",
+      "spin_wheel": "Wirujące koło"
     },
     "hints": {
       "tip_alert": "Świętuje każdą wskazówkę, dostosowaną do jej progu",
@@ -9281,7 +9283,8 @@
       "event_feed": "Najnowsze prezenty, obserwujący, subskrybenci i osoby udostępniające transmisję",
       "chat_box": "Wyświetla wiadomości na czacie Twojej transmisji na ekranie",
       "ticker": "Linia własnego tekstu, która przewija się po ekranie",
-      "rule_alert": "Gdzie pojawiają się twoje alerty z zasad"
+      "rule_alert": "Gdzie pojawiają się twoje alerty z zasad",
+      "spin_wheel": "Gdzie kręcą się koła w Twoich zasadach"
     },
     "fields": {
       "style": "Styl",
@@ -9395,7 +9398,8 @@
         "sound": "Odtwórz dźwięk",
         "say": "Czytaj na głos",
         "chat": "Opublikuj na czacie",
-        "webhook": "Wyślij do webhooka"
+        "webhook": "Wyślij do webhooka",
+        "wheel": "Zakręć kołem"
       },
       "summary": {
         "tip": "Napiwek w wysokości co najmniej {{amount}} DHB"
@@ -9433,7 +9437,20 @@
         "spooky": "Upiorny",
         "magic-spell": "Magiczne zaklęcie",
         "shhh": "Ciii"
-      }
+      },
+      "wheelSegments": "Segmenty kół, jeden na linię",
+      "wheelHint": "Między 2 a 12. DeHub wybiera miejsce, w którym zatrzymuje się koło, więc wszyscy oglądający widzą ten sam wynik. Użyj {result} w alercie, na głos lub na czacie, aby nadać mu nazwę."
+    },
+    "controls": {
+      "title": "Szybkie sterowanie",
+      "intro": "Do środkowego strumienia. Każdy przełącznik jest dostępny dla wszystkich oglądających, w aplikacji i obs, dopóki go nie przełączysz.",
+      "alertsPaused": "Wstrzymaj alerty",
+      "alertsPausedHint": "Brak powiadomień o prezentach, śledzeniu lub regułach na ekranie. Liczniki, bramki i pole czatu kontynuują.",
+      "soundsMuted": "Wycisz dźwięki alertów",
+      "soundsMutedHint": "Twoje zasady przestają odtwarzać dźwięki.",
+      "readAloudMuted": "Zatrzymaj odczyt na głos",
+      "readAloudMutedHint": "Wiadomości prezentowe i linie reguł nie są już odczytywane.",
+      "failed": "Ten przełącznik się nie zmienił. Spróbuj ponownie."
     }
   }
 }

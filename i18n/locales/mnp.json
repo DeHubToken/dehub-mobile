@@ -9117,7 +9117,8 @@
     "goalReached": "目標達成！",
     "followersUnit": "粉絲數",
     "topSupporters": "贊助排行",
-    "tipped": "{{name}} 送咱一份禮物"
+    "tipped": "{{name}} 送咱一份禮物",
+    "wheelLanded": "{{name}} 吾𠀀{{result}}"
   },
   "liveStudio": {
     "title": "Live 工作室",
@@ -9212,7 +9213,8 @@
       "sounds": {
         "ooh-man": "Ooh (阿𠊎)",
         "ohh-girl": "Ohh (女仔)"
-      }
+      },
+      "wheelSegments": "轮子段，一行一个"
     }
   }
 }

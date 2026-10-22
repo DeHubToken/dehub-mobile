@@ -9110,7 +9110,8 @@
     "goalReached": "Goý, maksat amala aşsyn!",
     "followersUnit": "şägirtler",
     "topSupporters": "Ýolbaşçylyk maslahaty",
-    "chatPreview": "Çat habarlary bu ýerde görünýär"
+    "chatPreview": "Çat habarlary bu ýerde görünýär",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Öýlü Studio",
@@ -9162,7 +9163,8 @@
       "event_feed": "Soňky wakalar",
       "chat_box": "Çat sandygy",
       "ticker": "Ticker",
-      "rule_alert": "Kanun Alarmlary"
+      "rule_alert": "Kanun Alarmlary",
+      "spin_wheel": "Garawul diňi"
     },
     "hints": {
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
@@ -9180,7 +9182,8 @@
       "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
       "chat_box": "Çat habarlaryny ekranda görkeziň",
       "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
-      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär"
+      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär",
+      "spin_wheel": "Kanunlaryňyzyň tigirleri nirede döwülýär"
     },
     "fields": {
       "style": "Şablony",
@@ -9293,7 +9296,8 @@
         "sound": "Gel bir ses çykarar",
         "say": "Sesli okamak",
         "chat": "Çatyň içindäki post",
-        "webhook": "WEB Hook-a habar beriň"
+        "webhook": "WEB Hook-a habar beriň",
+        "wheel": "Garawul diňi"
       },
       "summary": {
         "tip": "{{amount}}DHB ýa-da ondan köp"
@@ -9329,7 +9333,19 @@
         "spooky": "Spooky",
         "magic-spell": "Jadygöýlik jadygöý",
         "shhh": "ŞHH"
-      }
+      },
+      "wheelSegments": "Ýolbaşçylyk maslahatynyň (Ýolbaşçylyk maslahaty)"
+    },
+    "controls": {
+      "title": "Tizden seret",
+      "intro": "Her bir üýtgeşik her kes üçin saklanýar, siz ony yzyna öwrüp barýançaňyz, ulagda we OBS-de.",
+      "alertsPaused": "Ägälikleri sakla",
+      "alertsPausedHint": "Ekranda hiç hili sowgat, yzygiderli ýa-da düzgünli duýduryş ýok. Çatmaçlar, maksatlar we çatmaçlar dowam edýär.",
+      "soundsMuted": "Ýuwaş duýduryş sesleri",
+      "soundsMutedHint": "Siziň kanunlaryňyz sesleri çalmagy bes edýär.",
+      "readAloudMuted": "Sesli okamakdan saklaň",
+      "readAloudMutedHint": "Hediýeler we düzgünler indi okalmaýar.",
+      "failed": "Bu üýtgeşik üýtgemeýär, ýene synanyň."
     }
   }
 }

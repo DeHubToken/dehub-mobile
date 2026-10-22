@@ -9118,7 +9118,8 @@
     "followersUnit": "ngā kaiwhaiwhai",
     "topSupporters": "Ko nga kaitautoko nui",
     "tipped": "{{name}} i tukuna he koha",
-    "chatPreview": "Ka puta mai ngā karere kōrerorero i konei"
+    "chatPreview": "Ka puta mai ngā karere kōrerorero i konei",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9173,7 +9174,8 @@
       "event_feed": "Ngā mahi hou",
       "chat_box": "Pouaka kōrerorero",
       "ticker": "Ticker",
-      "rule_alert": "Onagrams Ture"
+      "rule_alert": "Onagrams Ture",
+      "spin_wheel": "Whero Spin"
     },
     "hints": {
       "tip_alert": "E whakanui ana i nga tohu katoa, e whakanuia ana ki tona taumata",
@@ -9191,7 +9193,8 @@
       "event_feed": "Ko nga taonga hou, nga kaiwhaiwhai, nga kaiohauru me nga tangata e tohatoha ana i to whakaaturanga",
       "chat_box": "Whakaatuhia nga karere korerorero o to whakaaturanga i runga i te mata",
       "ticker": "He raina o to tuhinga ake e rere ana puta noa i te mata",
-      "rule_alert": "Kei hea te putanga o ō ture onagrams"
+      "rule_alert": "Kei hea te putanga o ō ture onagrams",
+      "spin_wheel": "Kei hea nga wira i roto i o ture e huri ana"
     },
     "fields": {
       "style": "Kāhua",
@@ -9304,7 +9307,8 @@
         "sound": "Tākaro i te tangi",
         "say": "Pānuihia te reo nui",
         "chat": "Post i roto i te kōrerorero",
-        "webhook": "Tukuna he paetukutuku"
+        "webhook": "Tukuna he paetukutuku",
+        "wheel": "Whakanohoia he wira"
       },
       "summary": {
         "tip": "Tohu o {{amount}} DHB neke atu ranei"
@@ -9342,7 +9346,20 @@
         "spooky": "Spooky",
         "magic-spell": "Ko te karaihe makutu",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Nga waahanga wira, kotahi ia raina",
+      "wheelHint": "I waenganui i te 2 me te 12. DeHub tango i te wahi e mutu te wira, kia kite katoa i te hua ano. Whakamahia {result} i roto i te whakatupato, pānui-ake ranei mahi kōrerorero ki te whakahua i te reira."
+    },
+    "controls": {
+      "title": "Whakahaere Tere",
+      "intro": "Mo te hongere waenganui. pupuri ia huringa mo te katoa e mātakitaki ana, i roto i te taupānga me i roto i OBS, tae noa ki te tahuri koe i te reira hoki.",
+      "alertsPaused": "Nga whakatupato mo te tuku",
+      "alertsPausedHint": "Kaore he taonga, he whai, he whakatupato ture ranei i runga i te mata. Ka haere tonu nga kaitohutohu, nga whaainga me te pouaka korerorero.",
+      "soundsMuted": "Ngā tangi o te whakatupato",
+      "soundsMutedHint": "Ka mutu o koutou ture ki te tākaro i te tangi.",
+      "readAloudMuted": "Whakamutua te pānui-a-ringa",
+      "readAloudMutedHint": "Ko nga karere tuku me nga raina ture kaore ano kia panuihia.",
+      "failed": "Kaore i huri taua huringa. Whakamātauria ano."
     }
   }
 }

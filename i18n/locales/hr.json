@@ -9139,7 +9139,8 @@
     "followersUnit": "pratitelji",
     "topSupporters": "Najpopularniji podržavatelji",
     "tipped": "{{name}} šalje dar",
-    "chatPreview": "Ovdje se prikazuju poruke putem chata"
+    "chatPreview": "Ovdje se prikazuju poruke putem chata",
+    "wheelLanded": "{{name}} spin: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9195,7 +9196,8 @@
       "event_feed": "Nedavna aktivnost",
       "chat_box": "Okvir za razgovor",
       "ticker": "Ticker",
-      "rule_alert": "Obavijesti o pravilima"
+      "rule_alert": "Obavijesti o pravilima",
+      "spin_wheel": "Okretni kotač"
     },
     "hints": {
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
@@ -9213,7 +9215,8 @@
       "event_feed": "Najnoviji darovi, pratitelji, pretplatnici i osobe koje dijele vašu emisiju",
       "chat_box": "Prikazuje poruke chata vašeg emitiranja na zaslonu",
       "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu",
-      "rule_alert": "Gdje se prikazuju obavijesti o pravilima"
+      "rule_alert": "Gdje se prikazuju obavijesti o pravilima",
+      "spin_wheel": "Gdje se okreću kotači u vašim pravilima"
     },
     "fields": {
       "style": "Stil",
@@ -9327,7 +9330,8 @@
         "sound": "Reproduciraj zvuk",
         "say": "Čitajte naglas",
         "chat": "Objavi u chatu",
-        "webhook": "Pošalji u webhook"
+        "webhook": "Pošalji u webhook",
+        "wheel": "Zavrti kotač"
       },
       "summary": {
         "tip": "Napojnica od {{amount}} DHB ili više"
@@ -9365,7 +9369,20 @@
         "spooky": "Sablasno",
         "magic-spell": "Čarolija",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmenti kotača, jedan po liniji",
+      "wheelHint": "Između 2 i 12. DeHub odabire gdje se kotač zaustavlja, tako da svi koji gledaju vide isti rezultat. Upotrijebite {result} u upozorenju, glasnom čitanju ili čavrljanju kako biste ga imenovali."
+    },
+    "controls": {
+      "title": "Brze kontrole",
+      "intro": "Za srednji stream. Svaki prekidač vrijedi za sve koji gledaju, u aplikaciji i u ops, dok ga ne okrenete natrag.",
+      "alertsPaused": "Pauziraj obavijesti",
+      "alertsPausedHint": "Na zaslonu nema obavijesti o darovima, praćenju ili pravilima. Brojači, ciljevi i okvir za razgovor se nastavljaju.",
+      "soundsMuted": "Isključenje zvuka upozorenja",
+      "soundsMutedHint": "Vaša pravila prestaju reproducirati zvukove.",
+      "readAloudMuted": "Zaustavi čitanje naglas",
+      "readAloudMutedHint": "Darovne poruke i pravila više se ne čitaju.",
+      "failed": "Taj se prekidač nije promijenio. Pokušajte ponovno."
     }
   }
 }

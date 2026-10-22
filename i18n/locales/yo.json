@@ -9116,7 +9116,8 @@
     "followersUnit": "àwọn ọmọ-ẹ̀yìn",
     "topSupporters": "Awọn alatilẹyin ti o ga julọ",
     "tipped": "{{name}} fi ẹ̀bùn ránṣẹ́",
-    "chatPreview": "Awọn ifiranṣẹ iwiregbe han nibi"
+    "chatPreview": "Awọn ifiranṣẹ iwiregbe han nibi",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9172,7 +9173,8 @@
       "event_feed": "Iṣẹ́ àìpẹ́ yìí",
       "chat_box": "Apoti Iwiregbe",
       "ticker": "Ticker",
-      "rule_alert": "Ìkìlọ̀ Ofin"
+      "rule_alert": "Ìkìlọ̀ Ofin",
+      "spin_wheel": "Yí kẹ̀kẹ́ yípo"
     },
     "hints": {
       "tip_alert": "Ṣe ayẹyẹ gbogbo awọn imọran, iwọn si ipele rẹ.",
@@ -9190,7 +9192,8 @@
       "event_feed": "Awọn ẹbun tuntun, awọn ọmọlẹyin, awọn alabapin ati awọn eniyan ti o pin igbohunsafefe rẹ",
       "chat_box": "Ṣe afihan awọn ifiranṣẹ iwiregbe igbohunsafefe rẹ loju iboju",
       "ticker": "Òpó ọ̀rọ̀ tìrẹ tí ó ń lọ káàkiri mànàárà.",
-      "rule_alert": "Níbi tí ìkìlọ̀ ofin rẹ̀ máa ń hàn"
+      "rule_alert": "Níbi tí ìkìlọ̀ ofin rẹ̀ máa ń hàn",
+      "spin_wheel": "Níbo ni àwọn kẹ̀kẹ́ tí ó wà nínú òfin rẹ ti ń yípo"
     },
     "fields": {
       "style": "Style",
@@ -9303,7 +9306,8 @@
         "sound": "Play a sound",
         "say": "Read aloud",
         "chat": "Post in chat",
-        "webhook": "Send to a webhook"
+        "webhook": "Send to a webhook",
+        "wheel": "Yipada kẹkẹ kan"
       },
       "summary": {
         "tip": "Ìmọ̀ràn {{amount}} DHB tàbí jù bẹ́ẹ̀ lọ"
@@ -9341,7 +9345,20 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Awọn apa kẹkẹ, ọkan fun ila",
+      "wheelHint": "Láàárín 2 sí 12. DeHub máa ń yan ibi tí kẹ̀kẹ́ náà ti dúró, kí gbogbo ènìyàn tó ń wò ó lè rí èsì kan náà. Lo {result} nínú ìkìlọ̀, ìró ìkàwé tàbí ìgbésẹ̀ ìjíròrò láti dárúkọ rẹ̀."
+    },
+    "controls": {
+      "title": "Àwọn ìṣàkóso kíákíá",
+      "intro": "Fún àtẹ̀jísẹ́ àárín. Ìyípadà kọ̀ọ̀kan dúró fún gbogbo ènìyàn tí ó ń wo, nínú ohun èlò àti nínú OBS, títí tí o ó fi yí i padà.",
+      "alertsPaused": "Àwọn ìkìlọ̀ dídúró",
+      "alertsPausedHint": "Kò sí ẹ̀bùn, tẹ̀lé tàbí ìlànà ìkìlọ̀ lórí mànàárà. Àwọn alátakò, àwọn àfojúsùn àti àpótí ìbánisọ̀rọ̀ ń tẹ̀síwájú.",
+      "soundsMuted": "Àwọn ìró ìkìlọ̀ díẹ̀",
+      "soundsMutedHint": "Àwọn òfin rẹ dẹ́kun ṣíṣe ìró.",
+      "readAloudMuted": "Dúró kíkà-aloud",
+      "readAloudMutedHint": "Àwọn àtẹ̀jísẹ́ ẹ̀bùn àti àwọn ìlànà òfin kò sí ní ìkàwé mọ́.",
+      "failed": "Ìyípadà yẹn kò yí padà. Gbìyànjú lẹ́ẹ̀kan síi."
     }
   }
 }

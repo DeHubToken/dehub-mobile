@@ -9219,7 +9219,8 @@
     "followersUnit": "mpanara-dia",
     "topSupporters": "TOP mpanohana",
     "tipped": "{{name}} nandefa fanomezana",
-    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
+    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto.",
+    "wheelLanded": "{{name}} Spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9275,7 +9276,8 @@
       "event_feed": "Hetsika vao haingana",
       "chat_box": "Efitrano firesahana",
       "ticker": "Ticker",
-      "rule_alert": "Fampilazan'ny fitsipika"
+      "rule_alert": "Fampilazan'ny fitsipika",
+      "spin_wheel": "Kofehy ireny kodia"
     },
     "hints": {
       "tip_alert": "Mankalaza ny torohevitra rehetra, ny salantsalany",
@@ -9292,7 +9294,8 @@
       "event_feed": "Ny fanomezam-pahasoavana farany, ny mpanaraka, ny mpanjifany ary ny olona mizara ny fampielezam-peo",
       "chat_box": "Mampiseho ny hafatra amin'ny chat alefanao amin'ny efijery",
       "ticker": "Tsipika avy amin'ny andinin-teninao manokana izay manavatsava ny fàfana",
-      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana"
+      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana",
+      "spin_wheel": "Aiza ny kodiarana ao amin'ny fitsipika mihodina"
     },
     "fields": {
       "style": "Endrika",
@@ -9406,7 +9409,8 @@
         "sound": "Mamaky feo",
         "say": "Vakio mafy",
         "chat": "Alefaso mailaka amin'ny chat",
-        "webhook": "Alefaso any amin'ny webhook"
+        "webhook": "Alefaso any amin'ny webhook",
+        "wheel": "Mihodina ny kodia"
       },
       "summary": {
         "tip": "Torohevitra avy amin'ny {{amount}} DHB na mihoatra"
@@ -9443,7 +9447,20 @@
         "spooky": "Spooky",
         "magic-spell": "Magic tsipelina",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Kodiarana fizarana, iray isaky ny tsipika",
+      "wheelHint": "2 noho ny 0 indray ny baolina. DeHub dia maka ny toerana hijanonan'ny kodiarana, ka mahita ny valiny mitovy ny rehetra. Ampiasao ny {result} ao anaty fanairana, vakio-herisetra na karajia mba hanononana ny anarany."
+    },
+    "controls": {
+      "title": "Fifehezana haingana",
+      "intro": "Ho an'ny onjam-peo. Ny jiro tsirairay dia mitazona ny rehetra mijery, ao amin'ny app sy ao amin'ny OBS, mandra-piverinao azy.",
+      "alertsPaused": "Fampilazana fiatoana",
+      "alertsPausedHint": "Tsy misy fanomezana, araho na manapaka fampandrenesana eo amin'ny efijery. Mitoetra hatrany ny Counters, ny tanjona ary ny boaty amin'ny chat.",
+      "soundsMuted": "Manajanona ny feo fanairana",
+      "soundsMutedHint": "Ajanony ny milalao ny feo.",
+      "readAloudMuted": "Ajanony vakiana-foana",
+      "readAloudMutedHint": "Ny fanomezana ny hafatra sy fitsipika dia tsy atao intsony.",
+      "failed": "Tsy niova izany fanovana izany. Andramo indray."
     }
   }
 }

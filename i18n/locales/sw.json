@@ -9140,7 +9140,8 @@
     "followersUnit": "wafuasi",
     "topSupporters": "Wafuasi wakuu",
     "tipped": "{{name}} alituma zawadi",
-    "chatPreview": "Ujumbe wa gumzo unaonekana hapa"
+    "chatPreview": "Ujumbe wa gumzo unaonekana hapa",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Studio ya Moja kwa Moja",
@@ -9196,7 +9197,8 @@
       "event_feed": "Shughuli za hivi karibuni",
       "chat_box": "Sanduku la gumzo",
       "ticker": "Kileta tiketi",
-      "rule_alert": "Arifa za sheria"
+      "rule_alert": "Arifa za sheria",
+      "spin_wheel": "Gurudumu la mzunguko"
     },
     "hints": {
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
@@ -9213,7 +9215,8 @@
       "event_feed": "Hali ya kazi ya kipindi cha kati ya heshima, wafuasi, wazazi na watu wanaoshirikiana na kurekodi yako",
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
       "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
-      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako"
+      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako",
+      "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka"
     },
     "fields": {
       "style": "Mtindo",
@@ -9328,7 +9331,8 @@
         "sound": "Piga sauti",
         "say": "Soma kwa sauti",
         "chat": "Chapisha kwenye gumzo",
-        "webhook": "Tuma kwenye tovuti"
+        "webhook": "Tuma kwenye tovuti",
+        "wheel": "Zungusha gurudumu"
       },
       "summary": {
         "tip": "Kidokezi cha {{amount}} DHB au zaidi"
@@ -9366,7 +9370,20 @@
         "spooky": "Spooky",
         "magic-spell": "Uchawi wa kichawi",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Sehemu za magurudumu, moja kwa kila mstari",
+      "wheelHint": "Kati ya 2 na 12. DeHub huchagua mahali ambapo gurudumu linasimama, kwa hivyo kila mtu anayetazama anaona matokeo sawa. Tumia {result} katika arifa, soma kwa sauti au gumzo ili uitaje."
+    },
+    "controls": {
+      "title": "Vidhibiti vya haraka",
+      "intro": "Kwa mkondo wa katikati. Kila swichi hushikilia kila mtu anayetazama, kwenye programu na katika OBS, hadi uirudishe nyuma.",
+      "alertsPaused": "Arifa za kusitisha",
+      "alertsPausedHint": "Hakuna zawadi, fuata au tahadhari za sheria kwenye skrini. Kaunta, malengo na sanduku la gumzo linaendelea.",
+      "soundsMuted": "Nyamazisha sauti za arifa",
+      "soundsMutedHint": "Sheria zako huacha kucheza sauti.",
+      "readAloudMuted": "Simamisha usome kwa sauti",
+      "readAloudMutedHint": "Ujumbe wa zawadi na mistari ya sheria haisomeki tena.",
+      "failed": "Kubadilisha huko hakukubadilika. Jaribu tena."
     }
   }
 }

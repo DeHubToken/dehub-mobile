@@ -9124,7 +9124,8 @@
     "followersUnit": "追隨者",
     "topSupporters": "頂級支持者",
     "tipped": "{{name}} 送咗份禮物",
-    "chatPreview": "即時通訊訊息會喺呢度出現"
+    "chatPreview": "即時通訊訊息會喺呢度出現",
+    "wheelLanded": "{{name}} 旋轉： {{result}}"
   },
   "liveStudio": {
     "title": "現場工作室",
@@ -9180,7 +9181,8 @@
       "event_feed": "最近嘅活動",
       "chat_box": "聊天框",
       "ticker": "股票",
-      "rule_alert": "規則警示"
+      "rule_alert": "規則警示",
+      "spin_wheel": "旋轉輪"
     },
     "hints": {
       "tip_alert": "慶祝每一個提示，按等級大小",
@@ -9197,7 +9199,8 @@
       "reaction_counter": "計你個廣播得到嘅每個反應",
       "event_feed": "最新嘅禮物、追蹤者、訂閱者同埋分享你廣播嘅人",
       "chat_box": "喺螢幕上面顯示你嘅廣播嘅即時通訊訊息",
-      "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動"
+      "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動",
+      "spin_wheel": "你規則入面嘅輪子喺邊度旋轉"
     },
     "fields": {
       "style": "風格",
@@ -9311,7 +9314,8 @@
         "sound": "播一個聲音",
         "say": "大聲讀",
         "chat": "喺即時通訊度發帖",
-        "webhook": "傳送去網絡鉤"
+        "webhook": "傳送去網絡鉤",
+        "wheel": "旋轉一個輪子"
       },
       "summary": {
         "tip": "{{amount}} DHB 或以上嘅提示"
@@ -9349,7 +9353,20 @@
         "spooky": "好鬼怪",
         "magic-spell": "魔法咒語",
         "shhh": "噓"
-      }
+      },
+      "wheelSegments": "輪段，每行一個",
+      "wheelHint": "至 12 之間。 DeHub 會揀車輪停喺邊，所以所有睇緊嘅人都會見到相同嘅結果。喺警示、朗讀或者即時通訊動作入面用 {result} 嚟命名佢。"
+    },
+    "controls": {
+      "title": "快速控制",
+      "intro": "用嚟中流。每個開關都可以喺應用程式同 OBS 入面，適合所有睇緊嘅人，直至你將佢翻返轉頭。",
+      "alertsPaused": "暫停警示",
+      "alertsPausedHint": "無禮物、無追隨者或規則通知顯示。計數器、進度和聊天框繼續更新。",
+      "soundsMuted": "靜音警報聲",
+      "soundsMutedHint": "你嘅規則停止播放聲音。",
+      "readAloudMuted": "唔好再大聲讀",
+      "readAloudMutedHint": "禮物訊息同規則行唔會再讀出嚟。",
+      "failed": "嗰個開關冇變。再試多次。"
     }
   }
 }

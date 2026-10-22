@@ -9394,7 +9394,8 @@
     "followersUnit": "pengikut",
     "topSupporters": "Penyokong utama",
     "tipped": "{{name}} menghantar hadiah",
-    "chatPreview": "Mesej sembang muncul di sini"
+    "chatPreview": "Mesej sembang muncul di sini",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Studio Langsung",
@@ -9450,7 +9451,8 @@
       "event_feed": "Aktiviti terkini",
       "chat_box": "Kotak sembang",
       "ticker": "Ticker",
-      "rule_alert": "Makluman peraturan"
+      "rule_alert": "Makluman peraturan",
+      "spin_wheel": "Roda berputar"
     },
     "hints": {
       "tip_alert": "Meraikan setiap tip, bersaiz mengikut peringkatnya",
@@ -9468,7 +9470,8 @@
       "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
       "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
       "ticker": "Baris teks anda sendiri yang menatal merentasi skrin",
-      "rule_alert": "Di mana makluman peraturan anda dipaparkan"
+      "rule_alert": "Di mana makluman peraturan anda dipaparkan",
+      "spin_wheel": "Tempat roda dalam peraturan anda berputar"
     },
     "fields": {
       "style": "Gaya",
@@ -9582,7 +9585,8 @@
         "sound": "Mainkan bunyi",
         "say": "Baca dengan suara keras.",
         "chat": "Siarkan dalam sembang",
-        "webhook": "Hantar ke webhook"
+        "webhook": "Hantar ke webhook",
+        "wheel": "Putar roda"
       },
       "summary": {
         "tip": "Tip {{amount}} DHB atau lebih"
@@ -9620,7 +9624,20 @@
         "spooky": "Menggoda",
         "magic-spell": "Sihir",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmen roda, satu setiap baris",
+      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, jadi semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam makluman, baca dengan kuat atau tindakan sembang untuk menamakannya."
+    },
+    "controls": {
+      "title": "Kawalan pantas",
+      "intro": "Untuk aliran pertengahan. Setiap suis tahan untuk semua orang menonton, dalam aplikasi dan dalam OBS, sehingga anda membaliknya kembali.",
+      "alertsPaused": "Jeda makluman",
+      "alertsPausedHint": "Tiada peringatan hadiah, ikut atau peraturan pada skrin. Kaunter, matlamat dan kotak sembang terus berjalan.",
+      "soundsMuted": "Bunyi amaran bisu",
+      "soundsMutedHint": "Peraturan anda berhenti memainkan bunyi.",
+      "readAloudMuted": "Berhenti membaca dengan kuat",
+      "readAloudMutedHint": "Mesej hadiah dan garis peraturan tidak lagi dibaca.",
+      "failed": "Suis itu tidak berubah. Cuba lagi."
     }
   }
 }

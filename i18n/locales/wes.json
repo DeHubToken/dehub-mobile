@@ -9162,7 +9162,16 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Bai 2 na bai 12. DeHub go pick whey de wheel stop, so ebi de watch see same result. Use {result} in alert, read-out or chat action go name it."
+    },
+    "controls": {
+      "intro": "\"Mid-stream\" no. Each switch wey you flip, dem stay for everybody wey see you, both in app and in OBS, until you flip back again.",
+      "alertsPausedHint": "No gift, no follow, no rule alert wey come o screen. Counter, goal, an chat box still dey move.",
+      "soundsMutedHint": "Yous rules no dey play sound wey.",
+      "readAloudMutedHint": "\"Gift message\" na \"rule line\" no go dey read out a di radio anymore.",
+      "failed": "Na di switch dat no change. Try again."
     }
   }
 }

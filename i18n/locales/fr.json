@@ -10728,7 +10728,8 @@
     "followersUnit": "abonnés",
     "topSupporters": "Meilleurs supporters",
     "tipped": "{{name}} a envoyé un cadeau",
-    "chatPreview": "Les messages de chat apparaissent ici"
+    "chatPreview": "Les messages de chat apparaissent ici",
+    "wheelLanded": "{{name}} spun : {{result}}"
   },
   "liveStudio": {
     "title": "Studio en direct",
@@ -10784,7 +10785,8 @@
       "event_feed": "Activité récente",
       "chat_box": "Boîte de discussion",
       "ticker": "Bandeau défilant",
-      "rule_alert": "Alertes de règle"
+      "rule_alert": "Alertes de règle",
+      "spin_wheel": "Roue rotative"
     },
     "hints": {
       "tip_alert": "Célèbre chaque pourboire, dimensionné à son niveau",
@@ -10802,7 +10804,8 @@
       "event_feed": "Les derniers cadeaux, followers, abonnés et personnes partageant votre émission",
       "chat_box": "Affiche les messages de chat de votre diffusion à l'écran",
       "ticker": "Une ligne de votre propre texte qui défile sur l'écran",
-      "rule_alert": "Où les alertes de vos règles apparaissent"
+      "rule_alert": "Où les alertes de vos règles apparaissent",
+      "spin_wheel": "Où tournent les roues de vos règles"
     },
     "fields": {
       "style": "Style",
@@ -10917,7 +10920,8 @@
         "sound": "Jouer un son",
         "say": "Lire à haute voix",
         "chat": "Publier dans le chat",
-        "webhook": "Envoyer à un webhook"
+        "webhook": "Envoyer à un webhook",
+        "wheel": "Faire tourner une roue"
       },
       "summary": {
         "tip": "Conseil de {{amount}} DHB ou plus"
@@ -10955,7 +10959,20 @@
         "spooky": "Effrayant",
         "magic-spell": "Sort magique",
         "shhh": "Chut"
-      }
+      },
+      "wheelSegments": "Segments de roue, un par ligne",
+      "wheelHint": "Entre 2 et 12. DeHub choisit l'endroit où la roue s'arrête, de sorte que tous ceux qui regardent voient le même résultat. Utilisez {result} dans une action d'alerte, de lecture à voix haute ou de clavardage pour le nommer."
+    },
+    "controls": {
+      "title": "Contrôles rapides",
+      "intro": "Pour le milieu du flux. Chaque commutateur tient pour tous ceux qui regardent, dans l'application et dans OBS, jusqu'à ce que vous le retourniez.",
+      "alertsPaused": "Suspendre les alertes",
+      "alertsPausedHint": "Aucune alerte de cadeau, de suivi ou de règle à l'écran. Les compteurs, les objectifs et la boîte de discussion continuent.",
+      "soundsMuted": "Mise en sourdine des sons d'alerte",
+      "soundsMutedHint": "Vos règles cessent de jouer des sons.",
+      "readAloudMuted": "Arrêter la lecture à voix haute",
+      "readAloudMutedHint": "Les messages de cadeau et les lignes de règle ne sont plus lus.",
+      "failed": "Ce commutateur n'a pas changé. Réessayez."
     }
   }
 }

@@ -10724,7 +10724,8 @@
     "followersUnit": "takipçiler",
     "topSupporters": "En iyi destekçiler",
     "tipped": "{{name}} bir hediye gönderdi",
-    "chatPreview": "Sohbet mesajları burada görünür"
+    "chatPreview": "Sohbet mesajları burada görünür",
+    "wheelLanded": "{{name}} spun :{{result}}"
   },
   "liveStudio": {
     "title": "Canlı Stüdyo",
@@ -10780,7 +10781,8 @@
       "event_feed": "Son etkinlikler",
       "chat_box": "Sohbet kutusu",
       "ticker": "Kayan yazı",
-      "rule_alert": "Kural uyarıları"
+      "rule_alert": "Kural uyarıları",
+      "spin_wheel": "Döner çark"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10798,7 +10800,8 @@
       "event_feed": "En son hediyeler, takipçiler, aboneler ve yayınınızı paylaşan kişiler",
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
       "ticker": "Ekranda kayan kendi metninizin bir satırı",
-      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer"
+      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer",
+      "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer"
     },
     "fields": {
       "banner": "Afiş",
@@ -10913,7 +10916,8 @@
         "sound": "Ses çal",
         "say": "Yüksek sesle oku",
         "chat": "Sohbete gönder",
-        "webhook": "Bir web kancasına gönder"
+        "webhook": "Bir web kancasına gönder",
+        "wheel": "Tekerleği döndür"
       },
       "summary": {
         "tip": "{{amount}} DHB veya daha fazlasının bahşişi"
@@ -10951,7 +10955,20 @@
         "spooky": "Ürkütücü",
         "magic-spell": "Büyü",
         "shhh": "Şşşt"
-      }
+      },
+      "wheelSegments": "Tekerlek segmentleri, hat başına bir adet",
+      "wheelHint": "2 ile 12 arasında. DeHub tekerleğin durduğu yeri seçer, böylece izleyen herkes aynı sonucu görür. Bir uyarı, sesli okuma veya sohbet eyleminde {result} kullanın."
+    },
+    "controls": {
+      "title": "Hızlı kontroller",
+      "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
+      "alertsPaused": "Uyarıları duraklat",
+      "alertsPausedHint": "Ekranda hediye, takip veya kural uyarısı yok. Sayaçlar, hedefler ve sohbet kutusu devam eder.",
+      "soundsMuted": "Uyarı seslerini sessize al",
+      "soundsMutedHint": "Kurallarınız sesleri çalmayı bırakır.",
+      "readAloudMuted": "Sesli okumayı durdur",
+      "readAloudMutedHint": "Hediye mesajları ve kural satırları artık okunmuyor.",
+      "failed": "Bu anahtar değişmedi. Tekrar deneyin."
     }
   }
 }

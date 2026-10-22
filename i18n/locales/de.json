@@ -9329,7 +9329,8 @@
     "followersUnit": "follower",
     "topSupporters": "Top-Unterstützer",
     "tipped": "{{name}} hat ein Geschenk gesendet",
-    "chatPreview": "Chat-Nachrichten werden hier angezeigt"
+    "chatPreview": "Chat-Nachrichten werden hier angezeigt",
+    "wheelLanded": "{{name}} gesponnen: {{result}}"
   },
   "liveStudio": {
     "title": "Live-Studio",
@@ -9384,7 +9385,8 @@
       "event_feed": "Letzte Aktivität",
       "chat_box": "Chat-Box",
       "ticker": "Laufschrift",
-      "rule_alert": "Regelwarnungen"
+      "rule_alert": "Regelwarnungen",
+      "spin_wheel": "Schleuderrad"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
@@ -9402,7 +9404,8 @@
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Personen, die Ihre Sendung teilen",
       "chat_box": "Zeigt die Chat-Nachrichten Ihrer Sendung auf dem Bildschirm an",
       "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt",
-      "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden"
+      "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden",
+      "spin_wheel": "Wo sich die Räder in deinen Regeln drehen"
     },
     "fields": {
       "style": "Stil",
@@ -9516,7 +9519,8 @@
         "sound": "Einen Ton abspielen",
         "say": "Vorlesen",
         "chat": "Im Chat posten",
-        "webhook": "An einen Webhook senden"
+        "webhook": "An einen Webhook senden",
+        "wheel": "Dreh ein Rad"
       },
       "summary": {
         "tip": "Tipp von {{amount}} DHB oder mehr"
@@ -9554,7 +9558,20 @@
         "spooky": "Gruselig",
         "magic-spell": "Zauberspruch",
         "shhh": "Pssst."
-      }
+      },
+      "wheelSegments": "Radsegmente, eines pro Linie",
+      "wheelHint": "Zwischen 2 und 12. DeHub wählt aus, wo das Rad stoppt, so dass jeder, der zuschaut, das gleiche Ergebnis sieht. Verwenden Sie {result} in einer Alarm-, Vorlese- oder Chat-Aktion, um es zu benennen."
+    },
+    "controls": {
+      "title": "Schnellbedienung",
+      "intro": "Für den Mid-Stream. Jeder Schalter hält für alle, die zuschauen, in der App und im OBS, bis Sie ihn zurückdrehen.",
+      "alertsPaused": "Warnungen pausieren",
+      "alertsPausedHint": "Keine Geschenk-, Folge- oder Regelbenachrichtigungen auf dem Bildschirm. Zähler, Ziele und die Chat-Box gehen weiter.",
+      "soundsMuted": "Alarmgeräusche stummschalten",
+      "soundsMutedHint": "Deine Regeln hören auf, Geräusche abzuspielen",
+      "readAloudMuted": "Vorlesen stoppen",
+      "readAloudMutedHint": "Geschenknachrichten und Regelzeilen werden nicht mehr ausgelesen.",
+      "failed": "Dieser Schalter hat sich nicht geändert. Versuchen Sie es erneut."
     }
   }
 }

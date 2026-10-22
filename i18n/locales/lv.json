@@ -9138,7 +9138,8 @@
     "followersUnit": "sekotāji",
     "topSupporters": "Populārākie atbalstītāji",
     "tipped": "{{name}} nosūtīja dāvanu",
-    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit"
+    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit",
+    "wheelLanded": "{{name}} iedarbināja: {{result}}"
   },
   "liveStudio": {
     "title": "Tiešraides studija",
@@ -9193,7 +9194,8 @@
       "event_feed": "Jaunākās aktivitātes",
       "chat_box": "Tērzēšanas lodziņš",
       "ticker": "Atzīme",
-      "rule_alert": "Noteikumu brīdinājumi"
+      "rule_alert": "Noteikumu brīdinājumi",
+      "spin_wheel": "Griezējripa"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9211,7 +9213,8 @@
       "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
       "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
-      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi"
+      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi",
+      "spin_wheel": "Kur griežas jūsu noteikumu riteņi"
     },
     "fields": {
       "style": "Stils",
@@ -9326,7 +9329,8 @@
         "sound": "Atskaņot skaņu",
         "say": "Lasīt skaļi",
         "chat": "Publicēt tērzēšanā",
-        "webhook": "Nosūtīt uz tīmekļa āķi"
+        "webhook": "Nosūtīt uz tīmekļa āķi",
+        "wheel": "Pagrieziet riteni"
       },
       "summary": {
         "tip": "Padoms: {{amount}} DHB vai vairāk"
@@ -9364,7 +9368,20 @@
         "spooky": "Spocīgs",
         "magic-spell": "Burvestību burvestība",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Riteņu segmenti, viens rindā",
+      "wheelHint": "No 2 līdz 12. DeHub izvēlas vietu, kur ritenis apstājas, tāpēc visi skatītāji redz vienu un to pašu rezultātu. Izmantojiet {result} brīdinājumā, lasīšanas vai tērzēšanas darbībā, lai to nosauktu."
+    },
+    "controls": {
+      "title": "Ātrā vadība",
+      "intro": "Vidējai straumei. Katrs slēdzis tiek turēts visiem, kas skatās, lietotnē un OBS, līdz jūs to apgriežat atpakaļ.",
+      "alertsPaused": "Apturēt paziņojumus",
+      "alertsPausedHint": "Ekrānā nav neviena dāvanas, sekošanas vai noteikumu brīdinājuma. Skaitītāji, mērķi un tērzēšanas lodziņš turpina darboties.",
+      "soundsMuted": "Izslēgt brīdinājuma skaņas",
+      "soundsMutedHint": "Jūsu noteikumi pārtrauc atskaņot skaņas.",
+      "readAloudMuted": "Apturēt audio lasīšanu",
+      "readAloudMutedHint": "Dāvanu ziņojumi un noteikumu rindas vairs netiek nolasītas.",
+      "failed": "Šis slēdzis nemainījās. Mēģiniet vēlreiz."
     }
   }
 }

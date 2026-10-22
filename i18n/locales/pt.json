@@ -9262,7 +9262,8 @@
     "followersUnit": "seguidores",
     "topSupporters": "Principais apoiadores",
     "tipped": "{{name}} enviou um presente",
-    "chatPreview": "As mensagens de chat aparecem aqui"
+    "chatPreview": "As mensagens de chat aparecem aqui",
+    "wheelLanded": "{{name}} rodado: {{result}}"
   },
   "liveStudio": {
     "title": "Estúdio ao Vivo",
@@ -9318,7 +9319,8 @@
       "event_feed": "Atividade recente",
       "chat_box": "Caixa de chat",
       "ticker": "Faixa de texto",
-      "rule_alert": "Alertas de regra"
+      "rule_alert": "Alertas de regra",
+      "spin_wheel": "Roda giratória"
     },
     "hints": {
       "tip_alert": "Celebra cada dica, dimensionada de acordo com seu nível",
@@ -9336,7 +9338,8 @@
       "event_feed": "Os últimos presentes, seguidores, subscritores e pessoas que partilham a sua transmissão",
       "chat_box": "Mostra as mensagens de chat da sua transmissão no ecrã",
       "ticker": "Uma linha do seu próprio texto que percorre a tela",
-      "rule_alert": "Onde aparecem os alertas das suas regras"
+      "rule_alert": "Onde aparecem os alertas das suas regras",
+      "spin_wheel": "Onde as rodas das suas regras giram"
     },
     "fields": {
       "style": "Estilo",
@@ -9451,7 +9454,8 @@
         "sound": "Tocar um som",
         "say": "Ler em voz alta",
         "chat": "Publicar no chat",
-        "webhook": "Enviar para um webhook"
+        "webhook": "Enviar para um webhook",
+        "wheel": "Gire uma roda"
       },
       "summary": {
         "tip": "Dica de {{amount}} DHB ou mais"
@@ -9489,7 +9493,20 @@
         "spooky": "Assustador",
         "magic-spell": "Magia",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmentos de roda, um por linha",
+      "wheelHint": "Entre 2 e 12. O DeHub escolhe onde a roda para, para que todos os espectadores vejam o mesmo resultado. Utilize {result} numa ação de alerta, leitura em voz alta ou chat para lhe dar um nome."
+    },
+    "controls": {
+      "title": "Controles rápidos",
+      "intro": "Para mid-stream. Cada interruptor é válido para todos que estão assistindo, no aplicativo e no Obs, até que você o vire de volta.",
+      "alertsPaused": "Pausar alertas",
+      "alertsPausedHint": "Nenhum alerta de presente, seguir ou regra na tela. Contadores, metas e a caixa de bate-papo continuam.",
+      "soundsMuted": "Silenciar sons de alerta",
+      "soundsMutedHint": "As suas regras param de reproduzir sons.",
+      "readAloudMuted": "Parar leitura em voz alta",
+      "readAloudMutedHint": "Mensagens de presente e linhas de regra não são mais lidas.",
+      "failed": "Essa opção não mudou. Tente novamente."
     }
   }
 }

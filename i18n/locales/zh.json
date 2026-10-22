@@ -9230,7 +9230,8 @@
     "followersUnit": "关注者",
     "topSupporters": "顶级支持者",
     "tipped": "{{name}}送了礼物",
-    "chatPreview": "此处显示聊天消息"
+    "chatPreview": "此处显示聊天消息",
+    "wheelLanded": "{{name}}旋转： {{result}}"
   },
   "liveStudio": {
     "title": "现场演播室",
@@ -9286,7 +9287,8 @@
       "event_feed": "近期活动",
       "chat_box": "聊天框",
       "ticker": "股票代码",
-      "rule_alert": "规则警报"
+      "rule_alert": "规则警报",
+      "spin_wheel": "旋转转盘"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小根据等级",
@@ -9304,7 +9306,8 @@
       "event_feed": "分享您直播的最新礼物、关注者、订阅者和人员",
       "chat_box": "在屏幕上显示直播的聊天消息",
       "ticker": "在屏幕上滚动的一行您自己的文本",
-      "rule_alert": "规则提醒的显示位置"
+      "rule_alert": "规则提醒的显示位置",
+      "spin_wheel": "规则中的车轮在哪里旋转"
     },
     "fields": {
       "style": "样式",
@@ -9418,7 +9421,8 @@
         "sound": "播放声音",
         "say": "朗读",
         "chat": "在聊天中发布",
-        "webhook": "发送到Webhook"
+        "webhook": "发送到Webhook",
+        "wheel": "旋转转盘"
       },
       "summary": {
         "tip": "小费{{amount}} DHB或以上"
@@ -9456,7 +9460,20 @@
         "spooky": "诡异",
         "magic-spell": "魔法咒语",
         "shhh": "嘘"
-      }
+      },
+      "wheelSegments": "车轮段，每行一个",
+      "wheelHint": "2至12人。DeHub选择车轮停止的位置，因此每个观看者都会看到相同的结果。在提醒、朗读或聊天操作中使用{result}来命名它。"
+    },
+    "controls": {
+      "title": "快速控制",
+      "intro": "对于中间流。在应用程序和OBS中，每个开关都适用于所有观看者，直到您将其翻转回来。",
+      "alertsPaused": "暂停提醒",
+      "alertsPausedHint": "屏幕上没有礼品、关注或规则警报。计数器、目标和聊天框仍在继续。",
+      "soundsMuted": "将警报声音设为静音",
+      "soundsMutedHint": "您的规则停止播放声音。",
+      "readAloudMuted": "停止朗读",
+      "readAloudMutedHint": "礼品消息和规则行不再被读出。",
+      "failed": "该开关未更改。请重试。"
     }
   }
 }

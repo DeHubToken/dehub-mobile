@@ -9319,7 +9319,8 @@
     "followersUnit": "mga tagasunod",
     "topSupporters": "Mga nangungunang tagasuporta",
     "tipped": "Nagpadala ng regalo si {{name}}",
-    "chatPreview": "Lilitaw ang mga mensahe ng chat dito"
+    "chatPreview": "Lilitaw ang mga mensahe ng chat dito",
+    "wheelLanded": "{{name}}spun:{{result}}"
   },
   "liveStudio": {
     "title": "Instagram",
@@ -9375,7 +9376,8 @@
       "event_feed": "Kamakailang aktibidad",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Mga alerto sa panuntunan"
+      "rule_alert": "Mga alerto sa panuntunan",
+      "spin_wheel": "Paikutin ang gulong"
     },
     "hints": {
       "tip_alert": "Pagpupugay sa bawat tip ayon sa kanilang antas",
@@ -9393,7 +9395,8 @@
       "event_feed": "Ang pinakabagong mga regalo, mga tagasunod, mga tagasuskribi at mga taong nagbabahagi ng iyong broadcast",
       "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
       "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen",
-      "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan"
+      "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan",
+      "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot"
     },
     "fields": {
       "style": "Estilo",
@@ -9506,7 +9509,8 @@
         "sound": "Magpatugtog ng tunog",
         "say": "Magbasa nang malakas",
         "chat": "Mag - post sa chat",
-        "webhook": "Ipadala sa isang webhook"
+        "webhook": "Ipadala sa isang webhook",
+        "wheel": "Paikutin ang isang wheel"
       },
       "summary": {
         "tip": "Tip na {{amount}} DHB o higit pa"
@@ -9544,7 +9548,20 @@
         "spooky": "Nakakatakot",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Mga segment ng gulong, isa bawat linya",
+      "wheelHint": "Sa pagitan ng 2 at 12. Pinipili ng DeHub kung saan humihinto ang gulong, kaya nakikita ng lahat ng nanonood ang parehong resulta. Gamitin ang {result} sa isang alerto, read - loud o chat action para pangalanan ito."
+    },
+    "controls": {
+      "title": "Mga mabilisang kontrol",
+      "intro": "Para sa mid - stream. Ang bawat switch ay humahawak para sa lahat ng nanonood, sa app at sa OBS, hanggang sa i - flip mo ito pabalik.",
+      "alertsPaused": "I - pause ang mga alerto",
+      "alertsPausedHint": "Walang regalo, sundin o panuntunan ang mga alerto sa screen. Ang mga counter, mga layunin at ang chat box ay patuloy na nagpapatuloy.",
+      "soundsMuted": "I - mute ang mga tunog ng alerto",
+      "soundsMutedHint": "Tumigil sa pagtugtog ng mga tunog ang iyong mga alituntunin.",
+      "readAloudMuted": "Itigil ang read - loud",
+      "readAloudMutedHint": "Hindi na nababasa ang mga mensahe ng regalo at mga linya ng panuntunan.",
+      "failed": "Hindi nagbago ang switch na iyon. Subukan muli."
     }
   }
 }

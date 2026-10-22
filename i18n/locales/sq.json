@@ -9138,7 +9138,8 @@
     "followersUnit": "ndjekësit",
     "topSupporters": "Mbështetësit më të mirë",
     "tipped": "{{name}} dërgoi një dhuratë",
-    "chatPreview": "Mesazhet e bisedës shfaqen këtu"
+    "chatPreview": "Mesazhet e bisedës shfaqen këtu",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9194,7 +9195,8 @@
       "event_feed": "Aktiviteti i fundit",
       "chat_box": "Kutia e bisedës",
       "ticker": "Ticker",
-      "rule_alert": "Lajmërime për rregullat"
+      "rule_alert": "Lajmërime për rregullat",
+      "spin_wheel": "Rrota e centrifugimit"
     },
     "hints": {
       "tip_alert": "Feston çdo bakshish, të madhësisë sipas nivelit të tij",
@@ -9212,7 +9214,8 @@
       "event_feed": "Dhuratat më të fundit, ndjekësit, abonentët dhe njerëzit që ndajnë transmetimin tënd",
       "chat_box": "Shfaq mesazhet e bisedës së transmetimit tënd në ekran",
       "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
-      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja"
+      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja",
+      "spin_wheel": "Ku rrotullohen rrotat në rregullat e tua"
     },
     "fields": {
       "style": "Stili",
@@ -9326,7 +9329,8 @@
         "sound": "Lësho një tingull",
         "say": "Lexo me zë të lartë",
         "chat": "Posto në chat",
-        "webhook": "Dërgoja një webhook-u"
+        "webhook": "Dërgoja një webhook-u",
+        "wheel": "Rrotullo një rrotë"
       },
       "summary": {
         "tip": "Sugjerim nga {{amount}} DHB ose më shumë"
@@ -9364,7 +9368,20 @@
         "spooky": "Drithëruese",
         "magic-spell": "Magji magjike",
         "shhh": "Shhhh"
-      }
+      },
+      "wheelSegments": "Segmentet e rrotave, një për rresht",
+      "wheelHint": "Midis 2 dhe 12. DeHub zgjedh vendin ku ndalet rrota, kështu që të gjithë që shikojnë shohin të njëjtin rezultat. Përdor {result} në një lajmërim, lexim me zë ose bisedë për ta emëruar atë."
+    },
+    "controls": {
+      "title": "Kontrolle të shpejta",
+      "intro": "Për rrjedhën e mesme. Çdo ndërprerës mban për të gjithë që shikojnë, në aplikacion dhe në OBS, derisa ta ktheni mbrapsht.",
+      "alertsPaused": "Pezullo lajmërimet",
+      "alertsPausedHint": "Nuk ka lajmërime për dhurata, ndjekje ose rregulla në ekran. Numëratorët, golat dhe kutia e bisedës vazhdojnë.",
+      "soundsMuted": "Tingujt e alarmit të heshtur",
+      "soundsMutedHint": "Rregullat e tua ndalojnë së luajturi tinguj.",
+      "readAloudMuted": "Ndalo leximin me zë",
+      "readAloudMutedHint": "Mesazhet e dhuratave dhe rregullat nuk lexohen më.",
+      "failed": "Ky çelës nuk ndryshoi. Provo përsëri."
     }
   }
 }

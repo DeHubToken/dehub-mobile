@@ -9158,7 +9158,8 @@
     "followersUnit": "粉丝",
     "topSupporters": "顶级支持者",
     "tipped": "{{name}} 送了一份礼物",
-    "chatPreview": "聊天消息会出现在这里"
+    "chatPreview": "聊天消息会出现在这里",
+    "wheelLanded": "{{name}} 转动了：{{result}}"
   },
   "liveStudio": {
     "subtitle": "直播提醒与小部件",
@@ -9227,7 +9228,8 @@
       "reaction_counter": "每次你的直播收到的每一个反应都会被计数。",
       "event_feed": "最新的礼物、粉丝、订阅者和分享直播的人数",
       "chat_box": "实时在屏幕上显示直播聊天消息",
-      "rule_alert": "您的规则提醒出现位置"
+      "rule_alert": "您的规则提醒出现位置",
+      "spin_wheel": "在你的规则中，哪里有轮子转动？"
     },
     "fields": {
       "style": "样式",
@@ -9361,7 +9363,20 @@
         "spooky": "恐怖",
         "magic-spell": "魔法咒语",
         "shhh": "嘘"
-      }
+      },
+      "wheelSegments": "车轮段，每行一个",
+      "wheelHint": "2到12之间。DeHub决定轮盘停止的位置，所有人观看的结果都相同。在警报、朗读或聊天动作中使用{result}来命名它。"
+    },
+    "controls": {
+      "title": "快速操作",
+      "intro": "中间流程时，每个开关在应用和OBS中对所有人观看者生效，直到你再次翻转它。",
+      "alertsPaused": "暂停通知",
+      "alertsPausedHint": "没有礼物、关注或规则提示。计分器、进球数和聊天框仍在持续更新。",
+      "soundsMuted": "静音提示音",
+      "soundsMutedHint": "你的规则停止播放声音了。",
+      "readAloudMuted": "停止朗读",
+      "readAloudMutedHint": "赠送信息和规则行不再朗读。",
+      "failed": "那个开关没有变化。再试一次。"
     }
   }
 }

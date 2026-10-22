@@ -9167,7 +9167,8 @@
     "followersUnit": "hordoftoota",
     "topSupporters": "Deeggartoota olaanoo",
     "tipped": "{{name}} kennaa erge",
-    "chatPreview": "Ergaawwan chaatii asitti mul'atu"
+    "chatPreview": "Ergaawwan chaatii asitti mul'atu",
+    "wheelLanded": "{{name}} kan naanna'e: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9223,7 +9224,8 @@
       "event_feed": "Sochii dhiheenya kanaa",
       "chat_box": "Sanduuqa marii",
       "ticker": "Ticker",
-      "rule_alert": "Ogeeyyii Seera"
+      "rule_alert": "Ogeeyyii Seera",
+      "spin_wheel": "Wiil naanna'uu"
     },
     "hints": {
       "tip_alert": "Gorsa hunda kabaja, hamma sadarkaa isaatti",
@@ -9241,7 +9243,8 @@
       "event_feed": "Kennaawwan haaraa, hordoftoota, subscribers fi namoota tamsaasa keessan qooddatan",
       "chat_box": "Ergaawwan marii tamsaasa keessanii iskiriinii irratti agarsiisa",
       "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru",
-      "rule_alert": "Bakka ogeeyyii seera keessan mul'atu"
+      "rule_alert": "Bakka ogeeyyii seera keessan mul'atu",
+      "spin_wheel": "Bakka girgiddaan seera kee keessa jiru itti naanna'u"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9354,7 +9357,8 @@
         "sound": "Sagalee tokko taphachiisi",
         "say": "Sagalee ol kaastee dubbisi",
         "chat": "Chat keessatti maxxansaa",
-        "webhook": "Gara webhook tokkotti ergaa"
+        "webhook": "Gara webhook tokkotti ergaa",
+        "wheel": "Gingilchaan tokko naannessi"
       },
       "summary": {
         "tip": "Gorsa {{amount}} DHB fi isaa ol"
@@ -9392,7 +9396,20 @@
         "spooky": "Spooky jechuun ni danda'ama",
         "magic-spell": "Sihrii falfalaa",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Kutaalee wiilii, sarara tokkoof tokko",
+      "wheelHint": "Between 2 and 12. DeHub bakka wiiliin dhaabbatu waan filatuuf namni ilaalu hundi bu'aa wal fakkaatu arga. Maqaa itti moggaasuuf tarkaanfii akeekkachiisaa, sagalee ol kaastee dubbisuu ykn marii keessatti {result} fayyadami."
+    },
+    "controls": {
+      "title": "To'annoo saffisaa",
+      "intro": "Walakkaa sululaaf. Tokkoon tokkoon switch nama ilaalu hundaaf, appii keessatti fi OBS keessatti, hanga duubatti garagalchitanitti qabata.",
+      "alertsPaused": "Akeekkachiisa dhaabbii",
+      "alertsPausedHint": "Kenna, hordoffii ykn seera akeekkachiisa iskiriinii irratti hin jiru. Lakkaawwattoota, goolii fi saanduqa marii itti fufa.",
+      "soundsMuted": "Sagalee akeekkachiisa afaan qabachiisu",
+      "soundsMutedHint": "Seerri kee sagalee taphachuu dhiisa.",
+      "readAloudMuted": "Sagalee ol kaastee dubbisuu dhiisi",
+      "readAloudMutedHint": "Ergaan kennaa fi sararoonni seeraa kana booda hin dubbifaman.",
+      "failed": "Jijjiirraan sun hin jijjiiramne. Ammas yaalaa."
     }
   }
 }

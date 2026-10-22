@@ -9149,7 +9149,8 @@
     "followersUnit": "qatiqninkuna",
     "topSupporters": "Hatun yanapaqkuna",
     "tipped": "{{name}} huk regalota apachirqan",
-    "chatPreview": "Kaypim rikurin rimanakuy willakuykuna"
+    "chatPreview": "Kaypim rikurin rimanakuy willakuykuna",
+    "wheelLanded": "{{name}} muyuchisqa: {{result}}"
   },
   "liveStudio": {
     "title": "Kawsaq Estudio",
@@ -9204,7 +9205,8 @@
       "event_feed": "Kunan pacha ruray",
       "chat_box": "Chat nisqa cuadro",
       "ticker": "Ticker",
-      "rule_alert": "Alerta kaynin"
+      "rule_alert": "Alerta kaynin",
+      "spin_wheel": "Rueda de giro"
     },
     "hints": {
       "tip_alert": "Sapa puntata raymichan, pataman hina sayayniyuq",
@@ -9222,7 +9224,8 @@
       "event_feed": "Qhipa quykuna, qatiqninkuna, suscriptores chaymanta runakuna transmisiónniykimanta rakiqkuna",
       "chat_box": "Pantallapi difusión nisqaykipa rimanakuy willakuykunata qawachin",
       "ticker": "Kikin qillqasqaykimanta chiru, pantallapi puriq",
-      "rule_alert": "Maypin alerta kaykunayki rikurinman"
+      "rule_alert": "Maypin alerta kaykunayki rikurinman",
+      "spin_wheel": "Maypichus kamachiyniykipi ruedakuna muyurinku"
     },
     "fields": {
       "style": "Rikchay",
@@ -9337,7 +9340,8 @@
         "sound": "Huk t’uqyayta tocay",
         "say": "Sinchita leey",
         "chat": "Chat nisqapi qillqay",
-        "webhook": "Huk webhook nisqaman apachiy"
+        "webhook": "Huk webhook nisqaman apachiy",
+        "wheel": "Huk rueda muyuchiy"
       },
       "summary": {
         "tip": "Consejo de {{amount}} DHB o más"
@@ -9375,7 +9379,20 @@
         "spooky": "Manchakuypaq",
         "magic-spell": "Magia hechizo",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Rueda segmentos, sapa chirupi huk",
+      "wheelHint": "2manta 12kama.DeHub maypi rueda sayan chayta akllan, chayrayku llapa qhawaqkuna kikin ruwayta rikunku. {result} llamk'achiy huk alerta, kallpawan ñawiriy utaq rimanakuy ruwaypi sutichaypaq."
+    },
+    "controls": {
+      "title": "Utqaylla kamachinakuna",
+      "intro": "Chawpi mayupaq. Sapa interruptor llapa qhawaqkunapaq hap'in, app kaqpi chaymanta OBS kaqpi, qhipaman tikranaykikama.",
+      "alertsPaused": "Alertas de pausa",
+      "alertsPausedHint": "Pantallapi mana regalo, qatiy nitaq kamachiy alertakuna. Yupaqkuna, metakuna chaymanta chat box nisqa purichkanku.",
+      "soundsMuted": "Mute alerta nisqa t’uqyaykuna",
+      "soundsMutedHint": "Kamachiyniykikunaqa manañam t’uqyaykunata tocankuchu.",
+      "readAloudMuted": "Amaña kallpawan leeychu",
+      "readAloudMutedHint": "Regalo willakuykunapas kamachikuy chirukunapas manañam ñawinchasqañachu.",
+      "failed": "Chay cambioqa manan cambiarqanchu. Hukmanta kallpachakuy."
     }
   }
 }
