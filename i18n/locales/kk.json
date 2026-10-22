@@ -4150,6 +4150,14 @@
     "noVoice": "Құрылғыңызда бұл тілге арналған дауыс жоқ."
   },
   "stages": {
+    "addToCalendar": "Күнтізбеге қосу",
+    "nowPlaying": "Қазір ойнатылуда",
+    "onTheRadio": "Радиода",
+    "subtitles": "Субтитрлер",
+    "subtitlesIn": "Субтитрлер · {{language}}",
+    "showSubtitles": "Субтитрлерді көрсету",
+    "language": "Тіл",
+    "asSpoken": "Айтылғандай",
     "cancelConfirm": "«{{title}}» бас тартылсын ба? Сілтеме жұмысын тоқтатады.",
     "deleteRecordingConfirm": "Осы аудио бөлменің жазбасын жою керек пе?",
     "deleteStage": "Аудио бөлмені жою",

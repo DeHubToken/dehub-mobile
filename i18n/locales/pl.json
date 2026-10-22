@@ -4142,6 +4142,14 @@
     "noVoice": "Twoje urządzenie nie ma głosu dla tego języka."
   },
   "stages": {
+    "addToCalendar": "Dodaj do kalendarza",
+    "nowPlaying": "Teraz odtwarzane",
+    "onTheRadio": "W radiu",
+    "subtitles": "Napisy",
+    "subtitlesIn": "Napisy · {{language}}",
+    "showSubtitles": "Pokaż napisy",
+    "language": "Język",
+    "asSpoken": "Tak jak mówione",
     "cancelConfirm": "Anulować \"{{title}}\"? Link przestanie działać.",
     "deleteRecordingConfirm": "Usunąć to nagranie pokoju audio?",
     "deleteStage": "Usuń pokój audio",

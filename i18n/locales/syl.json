@@ -4307,6 +4307,13 @@
     "noVoice": "আপনার ডিভাইসো এই ভাষার লাগি কোনো আওয়াজ নাই।"
   },
   "stages": {
+    "nowPlaying": "বর্তমানে চলছে",
+    "onTheRadio": "রেডিওতে",
+    "subtitles": "সাবটাইটেল",
+    "subtitlesIn": "সাবটাইটলস · {{language}}",
+    "showSubtitles": "সাবটাইটল দেখাও",
+    "language": "ভাষা",
+    "asSpoken": "কথিত ভাষা",
     "cancelConfirm": "“{{title}}” বাতিল খরবা নি? লিংকটা আর খাম খরতো নায়।",
     "deleteRecordingConfirm": "ইতা অডিও রুমর রেকর্ডিং মুছবা নি?",
     "deleteStage": "অডিও রুম মুছউকা",

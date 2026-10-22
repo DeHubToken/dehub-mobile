@@ -4144,6 +4144,14 @@
     "noVoice": "Din enhed har ingen stemme til dette sprog."
   },
   "stages": {
+    "addToCalendar": "Tilføj til kalender",
+    "nowPlaying": "Afspilles nu",
+    "onTheRadio": "På radioen",
+    "subtitles": "Undertekster",
+    "subtitlesIn": "Undertekster · {{language}}",
+    "showSubtitles": "Vis undertekster",
+    "language": "Sprog",
+    "asSpoken": "Som talt",
     "cancelConfirm": "Annuller \"{{title}}\"? Linket holder op med at fungere.",
     "deleteRecordingConfirm": "Slet denne optagelse af lydrummet?",
     "deleteStage": "Slet lydrum",

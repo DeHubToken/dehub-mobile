@@ -4137,6 +4137,14 @@
     "noVoice": "तोहर डिवाइस में ई भाषा ला कोनो आवाज न हे।"
   },
   "stages": {
+    "addToCalendar": "कैलेंडर में जोड़ें",
+    "nowPlaying": "अब चलिरहेको छ",
+    "onTheRadio": "रेडियोमा",
+    "subtitles": "सबटाइटल",
+    "subtitlesIn": "सबटाइटल · {{language}}",
+    "showSubtitles": "सबटाइटल देखाउनुहोस्",
+    "language": "भाषा",
+    "asSpoken": "जसरी बोलिएको छ",
     "cancelConfirm": "“{{title}}” के रद्द करूँ? लिंक काम करना बंद हो जइतै.",
     "deleteRecordingConfirm": "ई ऑडियो रूम के रिकॉर्डिंग मिटाऊँ?",
     "deleteStage": "ऑडियो रूम मिटाओ",

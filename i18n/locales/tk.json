@@ -4129,6 +4129,14 @@
     "noVoice": "Enjamyňyzda bu dil üçin ses ýok."
   },
   "stages": {
+    "addToCalendar": "Kalendara goşuň",
+    "nowPlaying": "Halda oýnattyr",
+    "onTheRadio": "Radio da",
+    "subtitles": "Alt yazýlar",
+    "subtitlesIn": "Alt yazýlar · {{language}}",
+    "showSubtitles": "Alt yazýlarý göster",
+    "language": "Dil",
+    "asSpoken": "Sözlenný",
     "cancelConfirm": "“{{title}}” ýatyrylsynmy? Baglanyşyk işlemesini goýar.",
     "deleteRecordingConfirm": "Bu ses otagynyň ýazgysy pozulsynmy?",
     "deleteStage": "Ses otagyny poz",

@@ -4193,6 +4193,14 @@
     "filedOn": "{{date}} 접수"
   },
   "stages": {
+    "addToCalendar": "캘린더에 추가",
+    "nowPlaying": "현재 재생 중",
+    "onTheRadio": "라디오에서",
+    "subtitles": "자막",
+    "subtitlesIn": "자막 · {{language}}",
+    "showSubtitles": "자막 표시",
+    "language": "언어",
+    "asSpoken": "말한 그대로",
     "cancelConfirm": "\"{{title}}\" 취소하시겠어요? 링크가 작동하지 않습니다.",
     "deleteRecordingConfirm": "이 오디오 룸 녹음을 삭제하시겠습니까?",
     "deleteStage": "오디오 룸 삭제",

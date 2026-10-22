@@ -4139,6 +4139,14 @@
     "noVoice": "อุปกรณ์ของเจ้าบ่มีเสียงสำหรับภาษานี้"
   },
   "stages": {
+    "addToCalendar": "เพิ่มลงในปฏิทิน",
+    "nowPlaying": "กำลังเล่นอยู่ตอนนี้",
+    "onTheRadio": "อยู่ในวิทยุ",
+    "subtitles": "คำอ่าน",
+    "subtitlesIn": "คำอ่าน · {{language}}",
+    "showSubtitles": "แสดงคำอ่าน",
+    "language": "ภาษา",
+    "asSpoken": "ดังที่พูด",
     "cancelConfirm": "ยกเลิก “{{title}}” บ่? ลิงก์สิใช้บ่ได้แล้ว",
     "deleteRecordingConfirm": "ลบไฟล์อัดของห้องเสียงนี้บ่?",
     "deleteStage": "ลบห้องเสียง",

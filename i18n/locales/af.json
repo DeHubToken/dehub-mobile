@@ -4173,6 +4173,14 @@
     "noVoice": "Jou toestel het geen stem vir hierdie taal nie."
   },
   "stages": {
+    "addToCalendar": "Voeg by kalender",
+    "nowPlaying": "Speel nou",
+    "onTheRadio": "Op die radio",
+    "subtitles": "Onderskrifte",
+    "subtitlesIn": "Onderskrifte · {{language}}",
+    "showSubtitles": "Wys onderskrifte",
+    "language": "Taal",
+    "asSpoken": "Soos gespreek",
     "cancelConfirm": "Kanselleer \"{{title}}\"? Die skakel hou op werk.",
     "deleteRecordingConfirm": "Skrap hierdie oudiokamer-opname?",
     "deleteStage": "Skrap oudiokamer",

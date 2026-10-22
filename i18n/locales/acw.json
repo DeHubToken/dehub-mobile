@@ -4134,6 +4134,14 @@
     "noVoice": "جهازك ما فيه صوت لهذي اللغة."
   },
   "stages": {
+    "addToCalendar": "أضفه إلى التقويم",
+    "nowPlaying": "جاري اللعب الآن",
+    "onTheRadio": "في الراديو",
+    "subtitles": "الترجمة",
+    "subtitlesIn": "الترجمة · {{language}}",
+    "showSubtitles": "أظهر الترجمة",
+    "language": "لغة",
+    "asSpoken": "كالمتحدث",
     "cancelConfirm": "تلغي “{{title}}”؟ الرابط ما بيشتغل بعدها.",
     "deleteRecordingConfirm": "تحذف تسجيل هذي الغرفة الصوتية؟",
     "deleteStage": "حذف الغرفة الصوتية",

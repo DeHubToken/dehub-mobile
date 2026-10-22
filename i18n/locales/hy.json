@@ -4140,6 +4140,14 @@
     "noVoice": "Ձեր սարքը այս լեզվի համար ձայն չունի։"
   },
   "stages": {
+    "addToCalendar": "Ավելացնել օրացույցում",
+    "nowPlaying": "Այժմ նվագարկվում է",
+    "onTheRadio": "Ռադիոյում",
+    "subtitles": "Ենթագրեր",
+    "subtitlesIn": "Ենթագրեր · {{language}}",
+    "showSubtitles": "Ցույց տալ ենթագրերը",
+    "language": "Լեզու",
+    "asSpoken": "Ինչպես խոսված",
     "cancelConfirm": "Չեղարկե՞լ \"{{title}}\"-ը: Հղումը կդադարի աշխատել:",
     "deleteRecordingConfirm": "Ջնջե՞լ այս ձայնային սենյակի ձայնագրությունը:",
     "deleteStage": "Ջնջել ձայնային սենյակը",

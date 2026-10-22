@@ -4140,6 +4140,14 @@
     "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
+    "addToCalendar": "Shtoni në kalendar",
+    "nowPlaying": "Tani në lojë",
+    "onTheRadio": "Në radio",
+    "subtitles": "Subtitrat",
+    "subtitlesIn": "Subtitrat · {{language}}",
+    "showSubtitles": "Shfaq subtitrat",
+    "language": "Gjuha",
+    "asSpoken": "Si flitet",
     "cancelConfirm": "Ta anulosh “{{title}}”? Lidhja nuk do të funksionojë më.",
     "deleteRecordingConfirm": "Ta fshish regjistrimin e kësaj dhome audio?",
     "deleteStage": "Fshi dhomën audio",

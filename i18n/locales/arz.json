@@ -4137,6 +4137,14 @@
     "noVoice": "جهازك مفيهوش صوت للغة دي."
   },
   "stages": {
+    "addToCalendar": "إضافة إلى التقويم",
+    "nowPlaying": "قيد التشغيل الآن",
+    "onTheRadio": "على الراديو",
+    "subtitles": "الترجمات",
+    "subtitlesIn": "الترجمة ·{{language}}",
+    "showSubtitles": "عرض الترجمات",
+    "language": "لغة",
+    "asSpoken": "كالمتحدث",
     "cancelConfirm": "تلغي “{{title}}”؟ اللينك مش حيشتغل تاني.",
     "deleteRecordingConfirm": "تمسح تسجيل الغرفة الصوتية دي؟",
     "deleteStage": "مسح الغرفة الصوتية",

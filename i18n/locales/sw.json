@@ -4141,6 +4141,14 @@
     "noVoice": "Kifaa chako hakina sauti ya lugha hii."
   },
   "stages": {
+    "addToCalendar": "Ongeza kwenye kalenda",
+    "nowPlaying": "Inacheza sasa",
+    "onTheRadio": "Kwenye redio",
+    "subtitles": "Manukuu",
+    "subtitlesIn": "Manukuu · {{language}}",
+    "showSubtitles": "Onyesha manukuu",
+    "language": "Lugha",
+    "asSpoken": "Kama ilivyosemwa",
     "cancelConfirm": "Ghairi \"{{title}}\"? Kiungo kitaacha kufanya kazi.",
     "deleteRecordingConfirm": "Futa rekodi hii ya chumba cha sauti?",
     "deleteStage": "Futa chumba cha sauti",

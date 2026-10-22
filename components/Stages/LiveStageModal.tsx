@@ -19,6 +19,8 @@ import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import TVChatPanel from "../TV/TVChatPanel";
+import StageCaptions from "./StageCaptions";
+import StageRadioNowPlaying from "./StageRadioNowPlaying";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -34,6 +36,7 @@ import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { toastError, toastSuccess } from "../../libs";
 import { useTranslation } from "react-i18next";
 import { confirmEndStage } from "./confirmEndStage";
+import { useStageReminderFaces } from "../../hooks/useStageReminder";
 
 /**
  * Ceiling for a shared screen inside the sheet. A 16:9 box off the full width
@@ -94,14 +97,38 @@ const FloatingEmoji: React.FC<FloatingEmojiProps> = ({ reaction, onDone }) => {
 
 // ── SpeakerCard ────────────────────────────────────────────────────────────
 
+/** The last emoji someone sent, pinned to their avatar while it floats (web does the same). */
+const AvatarReaction: React.FC<{ emoji?: string; size: number }> = ({ emoji, size }) =>
+  emoji ? (
+    <View
+      pointerEvents="none"
+      style={{
+        position: "absolute",
+        top: -6,
+        right: -6,
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        backgroundColor: "#18181B",
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.18)",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Text style={{ fontSize: size * 0.55 }}>{emoji}</Text>
+    </View>
+  ) : null;
+
 interface SpeakerCardProps {
   participant: SpaceParticipant;
   isHost: boolean;
   isSpeaking: boolean;
   onRemove?: (addr: string) => void;
+  reaction?: string;
 }
 
-const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove }) => {
+const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaking, onRemove, reaction }) => {
   const { t } = useTranslation();
   const { width: SW } = useWindowDimensions();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
@@ -166,6 +193,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
           </View>
         )}
       </View>
+      <AvatarReaction emoji={reaction} size={26} />
       </Animated.View>
       <Text style={{ color: "#fff", fontSize: 12, marginTop: 6, textAlign: "center" }} numberOfLines={1}>
         {name}
@@ -253,19 +281,23 @@ interface ListenerCardProps {
   participant: SpaceParticipant;
   /** Host only: bring this listener up on stage. */
   onInvite?: (addr: string) => void;
+  reaction?: string;
 }
 
-const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite }) => {
+const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite, reaction }) => {
   const { t } = useTranslation();
   const { width: SW } = useWindowDimensions();
   const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
   return (
     <View style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 16 }}>
-      <Avatar
-        {...storedAvatarSources(participant.avatar, participant.wallet_address, 48)}
-        size={48}
-        name={participant.username || participant.wallet_address}
-      />
+      <View>
+        <Avatar
+          {...storedAvatarSources(participant.avatar, participant.wallet_address, 48)}
+          size={48}
+          name={participant.username || participant.wallet_address}
+        />
+        <AvatarReaction emoji={reaction} size={22} />
+      </View>
       <Text style={{ color: "rgba(255,255,255,0.8)", fontSize: 11, marginTop: 5, textAlign: "center" }} numberOfLines={1}>
         {name}
       </Text>
@@ -353,6 +385,8 @@ const LiveStageModal: React.FC = () => {
   // deliberately over-reports, so a local answer would offer a control the
   // server refuses.
   const { data: superpowerStatus } = useSuperpowers();
+  // People who set a reminder, shown behind the listeners like web does.
+  const { faces: reminderFaces, total: reminderTotal } = useStageReminderFaces(currentSpace?.id);
   const bookFrontRow = useBookBoost();
 
   if (!isModalOpen || initialModalView !== "live" || !currentSpace) return null;
@@ -384,8 +418,13 @@ const LiveStageModal: React.FC = () => {
 
   const speakers = participants.filter(p => p.role === "host" || p.role === "speaker");
   const listeners = participants.filter(p => p.role === "listener");
+  // Latest emoji per sender among the ones still floating.
+  const avatarReactions: Record<string, string> = {};
+  for (const r of floatingReactions) if (r.wallet) avatarReactions[r.wallet] = r.emoji;
   const listenerCount = listeners.length;
   const moreListeners = listenerCount - LISTENERS_SHOWN;
+  const inRoom = new Set(participants.map(p => p.wallet_address.toLowerCase()));
+  const waitingFaces = reminderFaces.filter(f => !inRoom.has(f.address.toLowerCase()));
 
   // Who is talking. Agora reports levels by uid, and stages join with uid 0 so
   // the server hands each client a random one: a remote uid cannot be traced
@@ -629,6 +668,9 @@ const LiveStageModal: React.FC = () => {
             maxHeight={screenShareMaxH(windowHeight)}
           />
 
+          {/* What the host is airing on the room's radio (set from web). */}
+          <StageRadioNowPlaying spaceId={currentSpace.id} />
+
           {/* Speakers grid */}
           <Text
             style={{
@@ -651,6 +693,7 @@ const LiveStageModal: React.FC = () => {
                 isHost={isHostRole}
                 isSpeaking={isSpeaking(p)}
                 onRemove={isHostRole ? removeSpeaker : undefined}
+                reaction={avatarReactions[p.wallet_address.toLowerCase()]}
               />
             ))}
             {speakers.length === 0 && (
@@ -662,7 +705,7 @@ const LiveStageModal: React.FC = () => {
 
           {/* Listeners. A host had no way to see who was in the room, or to
               bring anyone up who had not raised a hand; web shows both. */}
-          {listeners.length > 0 && (
+          {(listeners.length > 0 || waitingFaces.length > 0) && (
             <>
               <Text
                 style={{
@@ -677,6 +720,7 @@ const LiveStageModal: React.FC = () => {
                 }}
               >
                 {t("stages.listeners", { count: listeners.length })}
+                {reminderTotal > 0 ? ` · ${t("events.goingCount", { count: reminderTotal })}` : ""}
               </Text>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {listeners.slice(0, LISTENERS_SHOWN).map(p => (
@@ -684,6 +728,7 @@ const LiveStageModal: React.FC = () => {
                     key={p.wallet_address}
                     participant={p}
                     onInvite={isHostRole ? inviteSpeaker : undefined}
+                    reaction={avatarReactions[p.wallet_address.toLowerCase()]}
                   />
                 ))}
               </View>
@@ -692,9 +737,34 @@ const LiveStageModal: React.FC = () => {
                   +{moreListeners}
                 </Text>
               )}
+              {/* Reminder holders who haven't arrived: dimmed, with a bell, so
+                  the room never claims they can hear it. */}
+              {waitingFaces.length > 0 && (
+                <View style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 8, opacity: 0.45 }}>
+                  {waitingFaces.map(face => (
+                    <View key={face.address} style={{ alignItems: "center", width: "33.33%", marginBottom: 16 }}>
+                      <View>
+                        <Avatar {...storedAvatarSources(face.avatarUrl, face.address, 48)} size={48} name={face.username || face.address} />
+                        <View style={{ position: "absolute", bottom: -2, right: -2, width: 18, height: 18, borderRadius: 9, backgroundColor: "#27272A", alignItems: "center", justifyContent: "center" }}>
+                          <Icon name="Bell" size={10} color="#D4D4D8" />
+                        </View>
+                      </View>
+                      <Text style={{ color: "rgba(255,255,255,0.8)", fontSize: 11, marginTop: 5 }} numberOfLines={1}>
+                        {face.username || `${face.address.slice(0, 6)}...`}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </>
           )}
         </ScrollView>
+
+        {/* Live subtitles, right above the chat and controls as on web. */}
+        <StageCaptions
+          spaceId={currentSpace.id}
+          speakerWallets={[currentSpace.host_wallet_address, ...speakers.map(p => p.wallet_address)]}
+        />
 
         {/* The audience's own channel, as on web: a listener can say something
             without asking for the mic. Same table as web's StageChat, so
@@ -703,7 +773,7 @@ const LiveStageModal: React.FC = () => {
             keyboard squeezes the speaker list, not the chat. */}
         <View
           style={{
-            height: Math.max(200, Math.round(windowHeight * 0.32)),
+            height: Math.max(180, Math.round(windowHeight * 0.28)),
             borderTopWidth: 1,
             borderTopColor: "rgba(255,255,255,0.06)",
           }}

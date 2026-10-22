@@ -4140,6 +4140,14 @@
     "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
+    "addToCalendar": "Dodajte u kalendar",
+    "nowPlaying": "Sada se reproducira",
+    "onTheRadio": "Na radiju",
+    "subtitles": "Titlovi",
+    "subtitlesIn": "Titlovi · {{language}}",
+    "showSubtitles": "Prikaži titlove",
+    "language": "Jezik",
+    "asSpoken": "Kako je izgovoreno",
     "cancelConfirm": "Otkaži \"{{title}}\"? Veza prestaje raditi.",
     "deleteRecordingConfirm": "Obrisati ovu snimku audio sobe?",
     "deleteStage": "Obriši audio sobu",

@@ -4137,6 +4137,14 @@
     "noVoice": "আপনার ডিভাইসে এই ভাষার কোনো ভয়েস নেই।"
   },
   "stages": {
+    "addToCalendar": "ক্যালেন্ডারে যোগ করুন",
+    "nowPlaying": "এখন চলছে",
+    "onTheRadio": "রেডিওতে",
+    "subtitles": "সাবটাইটেল",
+    "subtitlesIn": "সাবটাইটেল · {{language}}",
+    "showSubtitles": "সাবটাইটেল দেখান",
+    "language": "ভাষা",
+    "asSpoken": "যেভাবে বলা হয়েছে",
     "cancelConfirm": "“{{title}}” বাতিল করবেন? লিংকটি আর কাজ করবে না।",
     "deleteRecordingConfirm": "এই অডিও রুমের রেকর্ডিং মুছে ফেলবেন?",
     "deleteStage": "অডিও রুম মুছুন",

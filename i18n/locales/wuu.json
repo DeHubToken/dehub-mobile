@@ -4129,6 +4129,14 @@
     "noVoice": "侬个设备呒没迭种语言个语音。"
   },
   "stages": {
+    "addToCalendar": "加入日曆",
+    "nowPlaying": "正在播放",
+    "onTheRadio": "在廣播中",
+    "subtitles": "字幕",
+    "subtitlesIn": "字幕 · {{language}}",
+    "showSubtitles": "顯示字幕",
+    "language": "語言",
+    "asSpoken": "如同說出來的",
     "cancelConfirm": "取消“{{title}}”？链接就用勿着了。",
     "deleteRecordingConfirm": "删脱搿个语音房个录音？",
     "deleteStage": "删除语音房",

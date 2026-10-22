@@ -4183,6 +4183,14 @@
     "filedOn": "{{date}} に作成"
   },
   "stages": {
+    "addToCalendar": "カレンダーに追加",
+    "nowPlaying": "現在再生中",
+    "onTheRadio": "ラジオで放送中",
+    "subtitles": "字幕",
+    "subtitlesIn": "字幕・{{language}}",
+    "showSubtitles": "字幕を表示",
+    "language": "言語",
+    "asSpoken": "話されたとおり",
     "cancelConfirm": "「{{title}}」をキャンセルしますか？リンクが機能しなくなります。",
     "deleteRecordingConfirm": "この音声ルームの録音を削除しますか？",
     "deleteStage": "音声ルームを削除",

@@ -4140,6 +4140,14 @@
     "noVoice": "Laitteessasi ei ole ääntä tälle kielelle."
   },
   "stages": {
+    "addToCalendar": "Lisää kalenteriin",
+    "nowPlaying": "Nyt soi",
+    "onTheRadio": "Radiossa",
+    "subtitles": "Tekstitykset",
+    "subtitlesIn": "Tekstitykset · {{language}}",
+    "showSubtitles": "Näytä tekstitykset",
+    "language": "Kieli",
+    "asSpoken": "Kuten puhuttu",
     "cancelConfirm": "Peruuta \"{{title}}\"? Linkki lakkaa toimimasta.",
     "deleteRecordingConfirm": "Poistetaanko tämän äänihuoneen tallenne?",
     "deleteStage": "Poista äänihuone",

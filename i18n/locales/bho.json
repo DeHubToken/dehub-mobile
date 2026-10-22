@@ -4136,6 +4136,14 @@
     "noVoice": "रउरा डिवाइस में एह भाषा खातिर कवनो आवाज़ नइखे।"
   },
   "stages": {
+    "addToCalendar": "कैलेंडर में जोड़ें",
+    "nowPlaying": "खेला करेनीं",
+    "onTheRadio": "रेडियो खातिर",
+    "subtitles": "उपशीर्षक सबमिट करें",
+    "subtitlesIn": "सबटाइटल्स · {{language}}",
+    "showSubtitles": "उपशीर्षक समायोजित करें",
+    "language": "भाषा",
+    "asSpoken": "जैसा बोला गया है",
     "cancelConfirm": "“{{title}}” रद्द करीं? लिंक काम करल बंद हो जाई.",
     "deleteRecordingConfirm": "ई ऑडियो रूम के रिकॉर्डिंग हटाईं?",
     "deleteStage": "ऑडियो रूम हटाईं",

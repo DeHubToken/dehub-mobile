@@ -4272,6 +4272,10 @@
     "noVoice": "তোমার ডিভাইসত এই ভাষার কোনো আওয়াজ নাই।"
   },
   "stages": {
+    "addToCalendar": "ক্যালেন্ডারে যোগ করুন",
+    "nowPlaying": "এখন চলছে",
+    "onTheRadio": "রেডিওতে",
+    "subtitles": "সাবটাইটেল",
     "cancelConfirm": "“{{title}}” বাতিল করবেন? লিংকখান আর কাম করবার নয়।",
     "deleteRecordingConfirm": "এই অডিও রুমের রেকর্ডিং মুছবেন?",
     "deleteStage": "অডিও রুম মুছেন",

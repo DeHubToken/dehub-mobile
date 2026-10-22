@@ -4140,6 +4140,14 @@
     "noVoice": "Jūsų įrenginyje nėra balso šiai kalbai."
   },
   "stages": {
+    "addToCalendar": "Pridėti į kalendorių",
+    "nowPlaying": "Dabar groja",
+    "onTheRadio": "Per radiją",
+    "subtitles": "Subtitrai",
+    "subtitlesIn": "Subtitrai · {{language}}",
+    "showSubtitles": "Rodyti subtitrus",
+    "language": "Kalba",
+    "asSpoken": "Kaip kalbėta",
     "cancelConfirm": "Atšaukti „{{title}}“? Nuoroda nustos veikti.",
     "deleteRecordingConfirm": "Ištrinti šio garso kambario įrašą?",
     "deleteStage": "Ištrinti garso kambarį",

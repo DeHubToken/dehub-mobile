@@ -4152,6 +4152,12 @@
     "noVoice": "तोहर डिवाइस में ई भाषा ले कोनो आवाज़ नखे।"
   },
   "stages": {
+    "addToCalendar": "به تقویم اضافه کن",
+    "subtitles": "Subtitles",
+    "subtitlesIn": "Subtitles · {{language}}",
+    "showSubtitles": "Show subtitles",
+    "language": "Language",
+    "asSpoken": "As spoken",
     "cancelConfirm": "“{{title}}” رد کرنا ہے؟ لنک کام کرنا بند ہو جائے گا۔",
     "deleteRecordingConfirm": "ای آڈیو روم کی ریکارڈنگ مٹانی ہے؟",
     "deleteStage": "آڈیو روم مٹاؤ",

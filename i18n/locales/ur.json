@@ -4141,6 +4141,14 @@
     "noVoice": "آپ کے آلے میں اس زبان کے لیے کوئی آواز نہیں ہے۔"
   },
   "stages": {
+    "addToCalendar": "کیلنڈر میں شامل کریں",
+    "nowPlaying": "اب چل رہا ہے",
+    "onTheRadio": "ریڈیو پر",
+    "subtitles": "سب ٹائٹلز",
+    "subtitlesIn": "سب ٹائٹلز · {{language}}",
+    "showSubtitles": "سب ٹائٹلز دکھائیں",
+    "language": "زبان",
+    "asSpoken": "جیسے بولا گیا ہے",
     "cancelConfirm": "\"{{title}}\" منسوخ کریں؟ لنک کام کرنا بند ہو جائے گا۔",
     "deleteRecordingConfirm": "اس آڈیو روم کی ریکارڈنگ حذف کریں؟",
     "deleteStage": "آڈیو روم حذف کریں",
