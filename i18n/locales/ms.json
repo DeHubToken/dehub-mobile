@@ -9392,7 +9392,9 @@
     "joined": "{{name}} menyertai",
     "goalReached": "Matlamat tercapai!",
     "followersUnit": "pengikut",
-    "topSupporters": "Penyokong utama"
+    "topSupporters": "Penyokong utama",
+    "tipped": "{{name}} menghantar hadiah",
+    "chatPreview": "Mesej sembang muncul di sini"
   },
   "liveStudio": {
     "title": "Studio Langsung",
@@ -9442,7 +9444,12 @@
       "top_supporters": "Penyokong utama",
       "viewer_count": "Kiraan penonton",
       "text": "Teks",
-      "frame": "Bingkai"
+      "frame": "Bingkai",
+      "stream_timer": "Pemasa siaran",
+      "reaction_counter": "Kaunter tindak balas",
+      "event_feed": "Aktiviti terkini",
+      "chat_box": "Kotak sembang",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Meraikan setiap tip, bersaiz mengikut peringkatnya",
@@ -9454,7 +9461,12 @@
       "top_supporters": "Penjepit terbesar anda dalam strim ini",
       "viewer_count": "Berapa ramai orang yang menonton",
       "text": "Baris teks atau sepertiga bawah",
-      "frame": "Sempadan di sekitar strim anda"
+      "frame": "Sempadan di sekitar strim anda",
+      "stream_timer": "Menunjukkan berapa lama anda telah bersiaran",
+      "reaction_counter": "Mengira setiap reaksi yang diterima oleh siaran anda",
+      "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
+      "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
+      "ticker": "Baris teks anda sendiri yang menatal merentasi skrin"
     },
     "fields": {
       "style": "Gaya",
@@ -9481,7 +9493,14 @@
       "accent": "Warna",
       "size": "Saiz",
       "smaller": "Kecil",
-      "larger": "Besar"
+      "larger": "Besar",
+      "label": "Label",
+      "lines": "Baris yang ditunjukkan",
+      "showAvatars": "Tunjukkan gambar profil",
+      "speed": "Kelajuan",
+      "slow": "Perlahan",
+      "normal": "Normal",
+      "fast": "Pantas"
     },
     "obs": {
       "title": "Guna dengan OBS",

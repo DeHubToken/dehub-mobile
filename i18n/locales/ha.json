@@ -9110,7 +9110,9 @@
     "joined": "{{name}} shiga",
     "goalReached": "Manufar ta kai!",
     "followersUnit": "mabiya",
-    "topSupporters": "Manyan magoya baya"
+    "topSupporters": "Manyan magoya baya",
+    "tipped": "{{name}} aika kyauta",
+    "chatPreview": "Saƙonnin hira sun bayyana a nan"
   },
   "liveStudio": {
     "intro": "Duk abin da kuka ƙara a nan ya bayyana a kan kogunan ku ga kowane mai kallo a cikin aikace-aikacen DeHub — ko kuna tafiya kai tsaye daga wayarku, mai bincike, katin kamawa ko encoder.",
@@ -9156,7 +9158,11 @@
       "goal_bar": "Mini bar",
       "top_supporters": "Manyan magoya baya",
       "viewer_count": "Ƙididdigar mai kallo",
-      "text": "Rubutun rubutu"
+      "text": "Rubutun rubutu",
+      "stream_timer": "Mai watsa shirye-shirye lokaci",
+      "event_feed": "Ayyukan kwanan nan",
+      "chat_box": "Akwatin tattaunawa",
+      "ticker": "Ticker"
     },
     "hints": {
       "follow_alert": "Nuna kowane sabon mabiya",
@@ -9167,7 +9173,12 @@
       "top_supporters": "Your manyan tippers wannan rafi",
       "viewer_count": "Mutane nawa ne suke kallo",
       "text": "Layin rubutu ko ƙananan na uku",
-      "frame": "Iyakar da ke kewaye da raƙuman ku"
+      "frame": "Iyakar da ke kewaye da raƙuman ku",
+      "stream_timer": "Nuna tsawon lokacin da kake watsa shirye-shirye",
+      "reaction_counter": "Lissafi kowane martani da watsa shirye-shiryenku ke samu",
+      "event_feed": "Sabbin kyaututtuka, mabiya, masu biyan kuɗi da mutane suna raba watsa shirye-shiryen ku",
+      "chat_box": "Nuna saƙonnin tattaunawar watsa shirye-shiryenku akan allon",
+      "ticker": "Layin rubutunku wanda ke gungurawa a duk faɗin allon"
     },
     "fields": {
       "style": "Salo",
@@ -9189,7 +9200,13 @@
       "accent": "Launi",
       "size": "Girman",
       "smaller": "Ƙananan",
-      "larger": "Mafi Girma"
+      "larger": "Mafi Girma",
+      "label": "Alamar",
+      "lines": "Lines da aka nuna",
+      "showAvatars": "Nuna hotunan bayanan martaba",
+      "speed": "Saurin sauri",
+      "slow": "A hankali",
+      "fast": "Yo Gabba Gabba"
     },
     "obs": {
       "title": "Yi amfani da OBS",

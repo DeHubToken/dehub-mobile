@@ -9122,7 +9122,9 @@
     "joined": "{{name}} 加入咗",
     "goalReached": "目標達到喇！",
     "followersUnit": "追隨者",
-    "topSupporters": "頂級支持者"
+    "topSupporters": "頂級支持者",
+    "tipped": "{{name}} 送咗份禮物",
+    "chatPreview": "即時通訊訊息會喺呢度出現"
   },
   "liveStudio": {
     "title": "現場工作室",
@@ -9172,7 +9174,12 @@
       "top_supporters": "最大支持者",
       "viewer_count": "觀看人數",
       "text": "文字",
-      "frame": "畫面"
+      "frame": "畫面",
+      "stream_timer": "廣播計時器",
+      "reaction_counter": "反應計數器",
+      "event_feed": "最近嘅活動",
+      "chat_box": "聊天框",
+      "ticker": "股票"
     },
     "hints": {
       "tip_alert": "慶祝每一個提示，按等級大小",
@@ -9184,7 +9191,12 @@
       "top_supporters": "這次直播最大的捐贈者",
       "viewer_count": "有多少人正在觀看",
       "text": "一行文字或下方文字",
-      "frame": "直播畫面的邊框"
+      "frame": "直播畫面的邊框",
+      "stream_timer": "顯示你播咗幾耐",
+      "reaction_counter": "計你個廣播得到嘅每個反應",
+      "event_feed": "最新嘅禮物、追蹤者、訂閱者同埋分享你廣播嘅人",
+      "chat_box": "喺螢幕上面顯示你嘅廣播嘅即時通訊訊息",
+      "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動"
     },
     "fields": {
       "style": "風格",
@@ -9211,7 +9223,14 @@
       "accent": "顏色",
       "size": "大小",
       "smaller": "較小",
-      "larger": "較大"
+      "larger": "較大",
+      "label": "標籤",
+      "lines": "顯示咗嘅行",
+      "showAvatars": "顯示個人檔案相片",
+      "speed": "速度",
+      "slow": "慢",
+      "normal": "正常",
+      "fast": "快"
     },
     "obs": {
       "title": "與OBS使用",

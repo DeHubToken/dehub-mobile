@@ -9137,7 +9137,9 @@
     "joined": "{{name}} s'ha unit",
     "goalReached": "Objectiu assolit!",
     "followersUnit": "seguidors",
-    "topSupporters": "Els millors seguidors"
+    "topSupporters": "Els millors seguidors",
+    "tipped": "{{name}}ha enviat un regal",
+    "chatPreview": "Els missatges de xat apareixen aquí"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9187,7 +9189,12 @@
       "top_supporters": "Supports principals",
       "viewer_count": "Comptador de espectadors",
       "text": "Text",
-      "frame": "Marc"
+      "frame": "Marc",
+      "stream_timer": "Temporitzador de difusió",
+      "reaction_counter": "Comptador de reaccions",
+      "event_feed": "Activitat recent",
+      "chat_box": "Quadre de xat",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada al seu nivell",
@@ -9199,7 +9206,12 @@
       "top_supporters": "Els teus majors donants en aquest flux",
       "viewer_count": "Quant de persones estan veient",
       "text": "Una línia de text o un tercer inferior",
-      "frame": "Un marc al voltant del teu flux"
+      "frame": "Un marc al voltant del teu flux",
+      "stream_timer": "Mostra quant de temps portes emetent",
+      "reaction_counter": "Compta cada reacció que rep la teva emissió",
+      "event_feed": "Els últims regals, seguidors, subscriptors i persones que comparteixen la teva retransmissió",
+      "chat_box": "Mostra els missatges de xat de la teva emissió a la pantalla",
+      "ticker": "Una línia del teu propi text que es desplaça per la pantalla"
     },
     "fields": {
       "style": "Estil",
@@ -9226,7 +9238,14 @@
       "accent": "Color",
       "size": "Mida",
       "smaller": "Més petita",
-      "larger": "Més gran"
+      "larger": "Més gran",
+      "label": "Etiqueta",
+      "lines": "Línies mostrades",
+      "showAvatars": "Mostra les fotos del perfil",
+      "speed": "Velocitat",
+      "slow": "Lent",
+      "normal": "Normal",
+      "fast": "Ràpid"
     },
     "obs": {
       "title": "Usar amb OBS",

@@ -9165,7 +9165,9 @@
     "joined": "{{name}} itti makame",
     "goalReached": "Galma gahe!",
     "followersUnit": "hordoftoota",
-    "topSupporters": "Deeggartoota olaanoo"
+    "topSupporters": "Deeggartoota olaanoo",
+    "tipped": "{{name}} kennaa erge",
+    "chatPreview": "Ergaawwan chaatii asitti mul'atu"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9215,7 +9217,12 @@
       "top_supporters": "Deeggartoota olaanoo",
       "viewer_count": "Lakkoofsa daawwattootaa",
       "text": "Barreeffama",
-      "frame": "Caasaa wayitti marsee taa'uu"
+      "frame": "Caasaa wayitti marsee taa'uu",
+      "stream_timer": "Sa'aatii tamsaasaa",
+      "reaction_counter": "Lakkaawwii deebii kennuu",
+      "event_feed": "Sochii dhiheenya kanaa",
+      "chat_box": "Sanduuqa marii",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Gorsa hunda kabaja, hamma sadarkaa isaatti",
@@ -9227,7 +9234,12 @@
       "top_supporters": "Tippers keessan gurguddoon sulula kana",
       "viewer_count": "Namoonni meeqa ilaalaa jiru",
       "text": "Sarara barruu ykn sadaffaa gadii",
-      "frame": "Daangaa naannoo sulula keetii"
+      "frame": "Daangaa naannoo sulula keetii",
+      "stream_timer": "Yeroo hangamii akka tamsaasaa turte agarsiisa",
+      "reaction_counter": "Deebiin tamsaasa kee argatu hunda lakkaa'a",
+      "event_feed": "Kennaawwan haaraa, hordoftoota, subscribers fi namoota tamsaasa keessan qooddatan",
+      "chat_box": "Ergaawwan marii tamsaasa keessanii iskiriinii irratti agarsiisa",
+      "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9253,7 +9265,14 @@
       "accent": "Halluu",
       "size": "Hamma ga'u",
       "smaller": "Xiqqaa",
-      "larger": "Guddaa"
+      "larger": "Guddaa",
+      "label": "Mallattoo itti gochuu",
+      "lines": "Sararoota agarsiifaman",
+      "showAvatars": "Suuraa piroofaayilii agarsiisi",
+      "speed": "Saffisa",
+      "slow": "Suuta",
+      "normal": "Baratamaa",
+      "fast": "Ariifataa"
     },
     "obs": {
       "title": "OBS waliin fayyadamaa",

@@ -10722,7 +10722,9 @@
     "joined": "{{name}} se unió",
     "goalReached": "¡Objetivo alcanzado!",
     "followersUnit": "seguidores",
-    "topSupporters": "Principales simpatizantes"
+    "topSupporters": "Principales simpatizantes",
+    "tipped": "{{name}} ha enviado un regalo",
+    "chatPreview": "Los mensajes de chat aparecen aquí"
   },
   "liveStudio": {
     "title": "Estudio en directo",
@@ -10772,7 +10774,12 @@
       "top_supporters": "Apoyos principales",
       "viewer_count": "Contador de espectadores",
       "text": "Texto",
-      "frame": "Marco"
+      "frame": "Marco",
+      "stream_timer": "Temporizador de difusión",
+      "reaction_counter": "Contador de reacciones",
+      "event_feed": "Actividad reciente",
+      "chat_box": "Cuadro de chat",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada a su nivel",
@@ -10784,7 +10791,12 @@
       "top_supporters": "Tus mayores donantes en esta transmisión",
       "viewer_count": "¿Cuántas personas están viendo?",
       "text": "Una línea de texto o un *lower third*",
-      "frame": "Un borde alrededor de tu transmisión"
+      "frame": "Un borde alrededor de tu transmisión",
+      "stream_timer": "Muestra cuánto tiempo ha estado transmitiendo",
+      "reaction_counter": "Cuenta cada reacción que recibe tu transmisión",
+      "event_feed": "Los últimos regalos, seguidores, suscriptores y personas que comparten tu transmisión",
+      "chat_box": "Muestra los mensajes de chat de tu transmisión en la pantalla",
+      "ticker": "Una línea de tu propio texto que se desplaza por la pantalla"
     },
     "fields": {
       "style": "Estilo",
@@ -10811,7 +10823,14 @@
       "accent": "Color",
       "size": "Tamaño",
       "smaller": "Más pequeño",
-      "larger": "Más grande"
+      "larger": "Más grande",
+      "label": "Etiqueta",
+      "lines": "Líneas mostradas",
+      "showAvatars": "Mostrar fotos de perfil",
+      "speed": "Rapidez",
+      "slow": "Lento",
+      "normal": "Normal",
+      "fast": "Rápido"
     },
     "obs": {
       "title": "Usar con OBS",

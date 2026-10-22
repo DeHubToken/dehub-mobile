@@ -9137,7 +9137,9 @@
     "joined": "Připojil se uživatel {{name}}",
     "goalReached": "Cíl dosažen!",
     "followersUnit": "následovníci",
-    "topSupporters": "Nejlepší podporovatelé"
+    "topSupporters": "Nejlepší podporovatelé",
+    "tipped": "{{name}} poslal/a dárek",
+    "chatPreview": "Zde se zobrazují zprávy z chatu"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9186,7 +9188,12 @@
       "top_supporters": "Nejlepší podporovatelé",
       "viewer_count": "Počet diváků",
       "text": "Text",
-      "frame": "Rám"
+      "frame": "Rám",
+      "stream_timer": "Časovač vysílání",
+      "reaction_counter": "Počítadlo reakcí",
+      "event_feed": "Nedávná aktivita",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
@@ -9198,7 +9205,12 @@
       "top_supporters": "Vaše největší spropitné v tomto streamu",
       "viewer_count": "Kolik lidí se dívá",
       "text": "Řádek textu nebo dolní třetina",
-      "frame": "Hranice kolem vašeho streamu"
+      "frame": "Hranice kolem vašeho streamu",
+      "stream_timer": "Zobrazuje, jak dlouho vysíláte",
+      "reaction_counter": "Počítá každou reakci, kterou vaše vysílání dostane",
+      "event_feed": "Nejnovější dárky, následovníci, odběratelé a lidé sdílející vaše vysílání",
+      "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
+      "ticker": "Řádek vlastního textu, který se posouvá po obrazovce"
     },
     "fields": {
       "style": "Styl",
@@ -9225,7 +9237,14 @@
       "accent": "Barva",
       "size": "Velikost",
       "smaller": "Menší",
-      "larger": "Větší"
+      "larger": "Větší",
+      "label": "Štítek",
+      "lines": "Zobrazené řádky",
+      "showAvatars": "Zobrazit profilové obrázky",
+      "speed": "Rychlost",
+      "slow": "Pomalý",
+      "normal": "Normální",
+      "fast": "Rychle"
     },
     "obs": {
       "title": "Použití s OBS",

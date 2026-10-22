@@ -9134,7 +9134,9 @@
     "joined": "{{name}} qoşuldu",
     "goalReached": "Hədəfə çatdınız!",
     "followersUnit": "izləyicilər",
-    "topSupporters": "Ən yaxşı dəstəkçilər"
+    "topSupporters": "Ən yaxşı dəstəkçilər",
+    "tipped": "{{name}} hədiyyə göndərdi",
+    "chatPreview": "Söhbət mesajları burada görünür"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9184,7 +9186,12 @@
       "top_supporters": "Ən yaxşı dəstəkçilər",
       "viewer_count": "Baxıcı sayı",
       "text": "Mətn",
-      "frame": "Çərçivə"
+      "frame": "Çərçivə",
+      "stream_timer": "Yayım taymeri",
+      "reaction_counter": "Reaksiya sayğacı",
+      "event_feed": "Son fəaliyyət",
+      "chat_box": "Söhbət qutusu",
+      "ticker": "Etiketçi"
     },
     "hints": {
       "tip_alert": "Hər bir təklifə təşəkkür edir, boyu təyinatına görə dəyişir.",
@@ -9196,7 +9203,12 @@
       "top_supporters": "Bu axınla ən böyük ipucularınız",
       "viewer_count": "Neçə nəfər izləyir",
       "text": "Mətn xətti və ya daha aşağı üçüncü xətt",
-      "frame": "Axınınızın ətrafında sərhəd"
+      "frame": "Axınınızın ətrafında sərhəd",
+      "stream_timer": "Yayımlandığınız müddətin nə qədər olduğunu göstərir",
+      "reaction_counter": "Yayımınızın göstərdiyi hər reaksiyanı sayır",
+      "event_feed": "Yayımınızı paylaşan ən son hədiyyələr, izləyicilər, abunəçilər və insanlar",
+      "chat_box": "Yayımınızın söhbət mesajlarını ekranda göstərir",
+      "ticker": "Ekranda sürüşdürülən öz mətninizin sətri"
     },
     "fields": {
       "style": "Üslub",
@@ -9222,7 +9234,14 @@
       "accent": "Rəng",
       "size": "Ölçü",
       "smaller": "Kiçik",
-      "larger": "Daha böyük"
+      "larger": "Daha böyük",
+      "label": "Yarlıq",
+      "lines": "Göstərilən sətirlər",
+      "showAvatars": "Profil şəkillərini göstər",
+      "speed": "Sürət",
+      "slow": "Yavaş",
+      "normal": "Normal",
+      "fast": "Sürətli"
     },
     "obs": {
       "title": "OBS ilə istifadə edin",
