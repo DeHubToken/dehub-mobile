@@ -42,7 +42,7 @@ import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-quer
 
 import Icon, { type IconName } from "../ui/Icon";
 import CompactVideoCard from "../Home/CompactVideoCard";
-import AudioPostPlayer from "../Home/AudioPostPlayer";
+import AudioPostPlayer from "../Home/ProtectedAudioPostPlayer";
 import MusicVideoCard, { MUSIC_CARD_WIDTH } from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
@@ -61,7 +61,8 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAudioUrl, getAvatarUrl } from "../../libs/misc";
+import { isHoldGated } from "../../libs/content-gate";
 import { useTranslation } from "react-i18next";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
@@ -636,7 +637,15 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
 }) => {
   const { t } = useTranslation();
   const tokenId = nft.tokenId ?? nft.id;
-  const audioUrl = (nft as any).audioUrl as string | undefined;
+  // The API hands back the storage key ("feeds-audio/123-audio.mp3"), not a
+  // link: the player needs the CDN host in front, the same as the feed card.
+  const rawAudioUrl = (nft as any).audioUrl as string | undefined;
+  const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
+  const streamInfo = (nft as any).streamInfo;
+  // Paid and gated tracks are private on the CDN; fetch a signed link first.
+  const requiresAccess = !!streamInfo?.isPayPerView
+    || isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount)
+    || !!(nft as any).plansDetails?.length;
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
@@ -657,6 +666,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
       )}
       {audioUrl && tokenId != null ? (
         <AudioPostPlayer
+          requiresAccess={requiresAccess}
           audioUrl={audioUrl}
           duration={(nft as any).audioDuration || 0}
           tokenId={tokenId}
