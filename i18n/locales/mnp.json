@@ -9207,7 +9207,8 @@
       },
       "presetText": {
         "readChat": "{name}講{message}喔",
-        "bigTip": "{name} 送 {amount} DHB!"
+        "bigTip": "{name} 送 {amount} DHB!",
+        "command": "喔{name}，歡迎來到直播間！"
       },
       "sounds": {
         "ooh-man": "Ooh (阿𠊎)",

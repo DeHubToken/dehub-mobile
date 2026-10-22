@@ -9280,7 +9280,9 @@
         "ba-dum-tish": "O ye ne ka koo ye.",
         "magic-spell": "O ye kabako ye.",
         "shhh": "O ye n ka miiriya ye."
-      }
+      },
+      "audience": "Jɔn tun be se k'a miiri ko a bena bɔ?",
+      "webhookHint": "Webhook min be weele ko Discord wala Slack, walima https ka ladɛrɛsi min be sɔn ka baara dɔ kɛ."
     }
   }
 }

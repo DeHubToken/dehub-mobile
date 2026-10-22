@@ -9238,7 +9238,8 @@
       "actionTypes": {
         "alert": "Hişyariyekê nîşan bide",
         "say": "Bi dengekî bilind bixwîne",
-        "webhook": "Bişîne bo webhookekê"
+        "webhook": "Bişîne bo webhookekê",
+        "sound": "Dengekî lêbide"
       },
       "summary": {
         "tip": "Serişteya {{amount}} DHB an jî zêdetir"

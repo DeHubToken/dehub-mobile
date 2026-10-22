@@ -9123,7 +9123,8 @@
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
-        "chat": "Any chat message"
+        "chat": "Any chat message",
+        "command": "E chat command na use wey a go dey use fo chat"
       },
       "audiences": {
         "everyone": "Everyone",

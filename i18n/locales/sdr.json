@@ -9282,17 +9282,29 @@
       "webhookText": "भेजेक ले संदेश",
       "audiences": {
         "followers": "फॉलोअर्स",
-        "subscribers": "सदस्य"
+        "subscribers": "सदस्य",
+        "everyone": "همه"
       },
       "actionTypes": {
-        "alert": "Alert दिखाओ"
+        "alert": "Alert दिखाओ",
+        "sound": "صدای تکرار کن",
+        "say": "خواندن صدا",
+        "chat": "پست کردن در چت",
+        "webhook": "فرستادن به وب هوک"
       },
       "presets": {
-        "blank": "Blank rule"
+        "blank": "Blank rule",
+        "readChat": "خواندن چت صدا",
+        "bigTip": "صدای هواپیما برای تپ‌های بزرگ",
+        "thankFollowers": "مرسی به دنبال کننده‌های جدید",
+        "command": "کمانده چت"
       },
       "presetHints": {
         "blank": "किछु नाइँ स' शुरू कर",
-        "command": "Tor chat me ek !command ke jawab dewe hai"
+        "command": "Tor chat me ek !command ke jawab dewe hai",
+        "readChat": "پیام‌های دنبال کننده‌هایت رو صدا می‌کنه، یک نفر برای هر بیننده هر ۳۰ ثانیه",
+        "bigTip": "صدای هواپیما و نمایش آلرت برای تپ‌های ۱۰۰٬۰۰۰ DHB یا بیشتر",
+        "thankFollowers": "پست کردن تشکر در چت تو وقتی که کسی دنبال کننده بشه"
       },
       "presetText": {
         "readChat": "{name} می‌گوید: {message}",
@@ -9304,7 +9316,25 @@
         "ooh-ahh": "Ooh ahh",
         "ooh-man": "ओह (मन)",
         "ohh-girl": "Ohh (زنی)",
-        "ba-dum-tish": "Ba dum tish"
+        "ba-dum-tish": "Ba dum tish",
+        "airhorn": "صدای هواپیما",
+        "applause": "آپلود",
+        "cricket": "کیکری",
+        "drumroll": "درام رول",
+        "lol": "خندیدن",
+        "spooky": "اسپوکی",
+        "magic-spell": "جادوی ماجیک",
+        "shhh": "ششش"
+      },
+      "saveToTest": "قوانین‌تو ذخیره کن تا امتحانشون کنم.",
+      "triggers": {
+        "share": "بعضی اونلاین کننده اینستاگرام یا یوتیوب یا توییچ رو شریک می‌کنه",
+        "command": "کمانده ای در چت استفاده می‌شه",
+        "keyword": "پیام چت کلمه ای رو داره",
+        "chat": "هر پیام چت"
+      },
+      "summary": {
+        "tip": "تیپ {{amount}} DHB یا بیشتر"
       }
     }
   }

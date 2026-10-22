@@ -9236,7 +9236,8 @@
       "presetText": {
         "readChat": "{name} بقال {message}",
         "bigTip": "{name} بعتك {amount} دُهْب!",
-        "command": "مرحبا {name}، بيحياك في الاستريم!"
+        "command": "مرحبا {name}، بيحياك في الاستريم!",
+        "thankFollowers": "شكراً على المتابعة، {name}!"
       },
       "sounds": {
         "ooh-man": "ووو (يا عايز)",
