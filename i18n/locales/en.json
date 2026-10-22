@@ -6736,7 +6736,12 @@
       "top_supporters": "Top supporters",
       "viewer_count": "Viewer count",
       "text": "Text",
-      "frame": "Frame"
+      "frame": "Frame",
+      "stream_timer": "Broadcast timer",
+      "reaction_counter": "Reaction counter",
+      "event_feed": "Recent activity",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebrates every tip, sized to its tier",
@@ -6748,7 +6753,12 @@
       "top_supporters": "Your biggest tippers this stream",
       "viewer_count": "How many people are watching",
       "text": "A line of text or a lower third",
-      "frame": "A border around your stream"
+      "frame": "A border around your stream",
+      "stream_timer": "Shows how long you have been broadcasting",
+      "reaction_counter": "Counts every reaction your broadcast gets",
+      "event_feed": "The latest gifts, followers, subscribers and people sharing your broadcast",
+      "chat_box": "Shows your broadcast's chat messages on screen",
+      "ticker": "A line of your own text that scrolls across the screen"
     },
     "fields": {
       "style": "Style",
@@ -6773,6 +6783,13 @@
       "glow": "Glow",
       "thickness": "Thickness",
       "accent": "Colour",
+      "label": "Label",
+      "lines": "Lines shown",
+      "showAvatars": "Show profile pictures",
+      "speed": "Speed",
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast",
       "size": "Size",
       "smaller": "Smaller",
       "larger": "Larger"
@@ -6809,7 +6826,9 @@
     "joined": "{{name}} joined",
     "goalReached": "Goal reached!",
     "followersUnit": "followers",
-    "topSupporters": "Top supporters"
+    "topSupporters": "Top supporters",
+    "tipped": "{{name}} sent a gift",
+    "chatPreview": "Chat messages appear here"
   },
   "liveGift": {
     "buyTokens": "Buy tokens",

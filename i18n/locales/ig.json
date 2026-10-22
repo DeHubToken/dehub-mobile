@@ -9108,7 +9108,9 @@
     "joined": "{{name}} sonyere",
     "goalReached": "Ihe mgbaru ọsọ ruru!",
     "followersUnit": "na-eso ụzọ",
-    "topSupporters": "Top akwado"
+    "topSupporters": "Top akwado",
+    "tipped": "{{name}} zitere onyinye",
+    "chatPreview": "Chat ozi egosi ebe a"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9158,7 +9160,12 @@
       "top_supporters": "Top akwado",
       "viewer_count": "Viewer agụta",
       "text": "Ngwe",
-      "frame": "akara"
+      "frame": "akara",
+      "stream_timer": "Mgbasa ozi ngụ oge",
+      "reaction_counter": "Mmeghachi omume counter",
+      "event_feed": "Omume ọfụụ",
+      "chat_box": "Igbe nkata",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Na-eme ememe ọ bụla n 'ọnụ, size ya tier",
@@ -9170,7 +9177,12 @@
       "top_supporters": "Gị nnukwu tippers a iyi",
       "viewer_count": "Mmadụ ole na-ekiri",
       "text": "A akara nke ederede ma ọ bụ a ala atọ",
-      "frame": "Ókè gbara iyi gị gburugburu"
+      "frame": "Ókè gbara iyi gị gburugburu",
+      "stream_timer": "Na-egosi oge ole ị nọ na-agbasa ozi",
+      "reaction_counter": "Na-agụta mmeghachi omume ọ bụla mgbasa ozi gị na-enweta",
+      "event_feed": "Onyinye kachasị ọhụrụ, ndị na-eso ụzọ, ndị debanyere aha na ndị mmadụ na-ekerịta mgbasa ozi gị",
+      "chat_box": "Egosi gị agbasa ozi n 'ikuku chat ozi na ihuenyo",
+      "ticker": "Ahịrị nke ederede nke gị nke na-agagharị na ihuenyo"
     },
     "fields": {
       "style": "Ụdị",
@@ -9192,7 +9204,14 @@
       "accent": "Ụcha",
       "size": "Ụhara",
       "smaller": "Obere",
-      "larger": "Ukwuu"
+      "larger": "Ukwuu",
+      "label": "Akara",
+      "lines": "Ahịrị egosila",
+      "showAvatars": "Gosi foto profaịlụ",
+      "speed": "Ọsọ",
+      "slow": "Nwayọọ",
+      "normal": "Nkịtị",
+      "fast": "Ọsọ"
     },
     "obs": {
       "title": "Jiri na OBS",

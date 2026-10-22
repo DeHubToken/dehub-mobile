@@ -9082,7 +9082,9 @@
     "joined": "{{name}} ተጸምቢሩ",
     "goalReached": "ሸቶታት በጺሑ!",
     "followersUnit": "ተኸታተልቲ",
-    "topSupporters": "ላዕለዎት ደገፍቲ"
+    "topSupporters": "ላዕለዎት ደገፍቲ",
+    "tipped": "{{name}} ህያብ ልኢኹ",
+    "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ"
   },
   "liveStudio": {
     "title": "ህያው ስቱዲዮ",
@@ -9132,7 +9134,12 @@
       "top_supporters": "ላዕለዎት ደገፍቲ",
       "viewer_count": "ናይ ተመልካቲ ቆጸራ",
       "text": "ጽሑፍ",
-      "frame": "ክፈፍ"
+      "frame": "ክፈፍ",
+      "stream_timer": "ሰዓት ስርሒት",
+      "reaction_counter": "ናይ ግብረ መልሲ ተጻዋታይ",
+      "event_feed": "ናይ ቀረባ ንጥፈታት",
+      "chat_box": "ናይ ቻት ሳጹን",
+      "ticker": "ቲከር"
     },
     "hints": {
       "tip_alert": "ኣብ ነፍሲ ወከፍ ጫፍ ፡ ኣብ ደረጃኡ እተመዝገበ",
@@ -9144,7 +9151,12 @@
       "top_supporters": "እዚ ዥረት እዚ ዝዓበየ ዥረትካ",
       "viewer_count": "ክንደይ ሰባት ይርእዩ",
       "text": "ሓደ መስመር ጽሑፍ ወይ ሓደ ታሕተዋይ ሳልሳይ",
-      "frame": "ኣብ ዙርያ ዥረትካ ዘሎ ዶብ"
+      "frame": "ኣብ ዙርያ ዥረትካ ዘሎ ዶብ",
+      "stream_timer": "ክንደይ ግዜ ከም ዝወሰደካ ርኣዮ",
+      "reaction_counter": "ነቲ ስርሒትካ ዝረኽቦ ኩሉ ግብረ መልሲ ኣቑጺሩ",
+      "event_feed": "ናይ መወዳእታ ህያባት ፡ ተኸታተልቲ ፡ ተመዝጋቢታትን ሰባት ነቲ ስርሒትካ ይካፈሉ",
+      "chat_box": "ኣብ ገጽካ ናይ ዝርርብ መልእኽትታት ኣርኢ",
+      "ticker": "ሓደ መስመር ናይ ገዛእ ርእስኻ ጽሑፍ ኣብ ልዕሊ እቲ ስክሪን ዝዞር"
     },
     "fields": {
       "style": "ቅጥዒ",
@@ -9171,7 +9183,14 @@
       "accent": "ቀለም",
       "size": "መጠን",
       "smaller": "ንእሽቶ",
-      "larger": "ዝዓበየ"
+      "larger": "ዝዓበየ",
+      "label": "መለያ",
+      "lines": "መስመራት ተራእዩ",
+      "showAvatars": "ናይ መገለጺ ስእልታት ኣርኢ",
+      "speed": "ፍጥነት",
+      "slow": "ቀስ ኢልካ",
+      "normal": "ልሙድ",
+      "fast": "ቀልጢፍካ"
     },
     "obs": {
       "title": "ምስ OBS ተጠቐም",

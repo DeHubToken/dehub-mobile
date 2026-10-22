@@ -9138,7 +9138,9 @@
     "joined": "{{name}} pievienojās",
     "goalReached": "Mērķis sasniegts!",
     "followersUnit": "sekotāji",
-    "topSupporters": "Populārākie atbalstītāji"
+    "topSupporters": "Populārākie atbalstītāji",
+    "tipped": "{{name}} nosūtīja dāvanu",
+    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit"
   },
   "liveStudio": {
     "title": "Tiešraides studija",
@@ -9187,7 +9189,12 @@
       "top_supporters": "Lielākie atbalstītāji",
       "viewer_count": "Skatītāju skaits",
       "text": "Teksts",
-      "frame": "Kadrs"
+      "frame": "Kadrs",
+      "stream_timer": "Apraides taimeris",
+      "reaction_counter": "Reakciju skaitītājs",
+      "event_feed": "Jaunākās aktivitātes",
+      "chat_box": "Tērzēšanas lodziņš",
+      "ticker": "Atzīme"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9199,7 +9206,12 @@
       "top_supporters": "Jūsu lielākie atbalstītāji šajā straumē",
       "viewer_count": "Cik cilvēku skata",
       "text": "Teksta rinda vai zemāka trešā daļa",
-      "frame": "Robaina apkārt jūsu straumē"
+      "frame": "Robaina apkārt jūsu straumē",
+      "stream_timer": "Parāda, cik ilgi esat veicis apraidi",
+      "reaction_counter": "Skaita katru jūsu apraides reakciju",
+      "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
+      "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
+      "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu"
     },
     "fields": {
       "style": "Stils",
@@ -9226,7 +9238,14 @@
       "accent": "Krāsa",
       "size": "Mērs",
       "smaller": "Mazāks",
-      "larger": "Lielāks"
+      "larger": "Lielāks",
+      "label": "Etiķete",
+      "lines": "Parādītās rindas",
+      "showAvatars": "Rādīt profila bildes",
+      "speed": "Ātrums",
+      "slow": "Lēns",
+      "normal": "Normāls",
+      "fast": "Ātrs"
     },
     "obs": {
       "title": "Lieto ar OBS",

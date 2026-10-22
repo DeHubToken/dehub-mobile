@@ -263,6 +263,68 @@ export function WidgetSettingsForm({ widget, portrait, onSettings, onRect }: Pro
         </>
       );
       break;
+    case "stream_timer":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.label")}</Label>
+            {text("label", 30)}
+          </View>
+          {accentRow}
+        </>
+      );
+      break;
+    case "reaction_counter":
+      body = accentRow;
+      break;
+    case "event_feed":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.lines")}</Label>
+            {number("count", 4, 1, 8)}
+          </View>
+          <View>
+            <Label>{t("liveStudio.fields.title")}</Label>
+            {text("title", 40)}
+          </View>
+        </>
+      );
+      break;
+    case "chat_box":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.lines")}</Label>
+            {number("count", 6, 1, 12)}
+          </View>
+          <Toggle label={t("liveStudio.fields.showAvatars")} value={setting(s, "showAvatars", true)} onChange={(v) => set("showAvatars", v)} />
+        </>
+      );
+      break;
+    case "ticker":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.text")}</Label>
+            {text("text", 200)}
+          </View>
+          <View>
+            <Label>{t("liveStudio.fields.speed")}</Label>
+            <Chips
+              value={setting(s, "speed", "normal")}
+              options={[
+                { value: "slow", label: t("liveStudio.fields.slow") },
+                { value: "normal", label: t("liveStudio.fields.normal") },
+                { value: "fast", label: t("liveStudio.fields.fast") },
+              ]}
+              onChange={(v) => set("speed", v)}
+            />
+          </View>
+          {accentRow}
+        </>
+      );
+      break;
     default:
       body = null;
   }

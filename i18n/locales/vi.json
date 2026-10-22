@@ -9227,7 +9227,9 @@
     "joined": "Đã tham gia {{name}}",
     "goalReached": "Đã đạt được mục tiêu!",
     "followersUnit": "người theo dõi",
-    "topSupporters": "Những người ủng hộ hàng đầu"
+    "topSupporters": "Những người ủng hộ hàng đầu",
+    "tipped": "{{name}} đã gửi một món quà",
+    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây"
   },
   "liveStudio": {
     "title": "Phòng thu trực tiếp",
@@ -9277,7 +9279,12 @@
       "top_supporters": "Người ủng hộ hàng đầu",
       "viewer_count": "Số lượng người xem",
       "text": "Văn bản",
-      "frame": "Khung hình"
+      "frame": "Khung hình",
+      "stream_timer": "Bộ hẹn giờ phát sóng",
+      "reaction_counter": "Bộ đếm phản ứng",
+      "event_feed": "Hoạt động gần đây",
+      "chat_box": "Hộp trò chuyện",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9289,7 +9296,12 @@
       "top_supporters": "Người ủng hộ lớn nhất trong luồng này",
       "viewer_count": "Số lượng người đang xem",
       "text": "Một dòng văn bản hoặc phần dưới dưới hình ảnh",
-      "frame": "Một viền xung quanh luồng của bạn"
+      "frame": "Một viền xung quanh luồng của bạn",
+      "stream_timer": "Hiển thị thời gian bạn đã phát sóng",
+      "reaction_counter": "Đếm mọi phản ứng mà chương trình phát sóng của bạn nhận được",
+      "event_feed": "Quà tặng, người theo dõi, người đăng ký và những người mới nhất chia sẻ nội dung phát sóng của bạn",
+      "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
+      "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình"
     },
     "fields": {
       "style": "Phong cách",
@@ -9316,7 +9328,14 @@
       "accent": "Màu sắc",
       "size": "Kích thước",
       "smaller": "Nhỏ hơn",
-      "larger": "Lớn hơn"
+      "larger": "Lớn hơn",
+      "label": "Nhãn",
+      "lines": "Các dòng được hiển thị",
+      "showAvatars": "Hiển thị ảnh đại diện",
+      "speed": "Tốc độ",
+      "slow": "Chậm",
+      "normal": "Bình thường",
+      "fast": "Nhanh"
     },
     "obs": {
       "title": "Sử dụng với OBS",

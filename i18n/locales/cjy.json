@@ -9158,7 +9158,9 @@
     "joined": "{{name}} 加入了",
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
-    "topSupporters": "顶级支持者"
+    "topSupporters": "顶级支持者",
+    "tipped": "{{name}} 送了一份礼物",
+    "chatPreview": "聊天消息会出现在这里"
   },
   "liveStudio": {
     "subtitle": "直播提醒与小部件",
@@ -9207,7 +9209,9 @@
       "top_supporters": "顶部支持者",
       "viewer_count": "观众人数",
       "text": "文本",
-      "frame": "画面"
+      "frame": "画面",
+      "stream_timer": "直播倒计时",
+      "reaction_counter": "反应计数器"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小依提示等级而定",
@@ -9219,7 +9223,11 @@
       "top_supporters": "本次直播最大捐赠者",
       "viewer_count": "当前观看人数",
       "text": "一行文本或下方字幕",
-      "frame": "直播画面周围的边框"
+      "frame": "直播画面周围的边框",
+      "stream_timer": "展示你直播的时长。",
+      "reaction_counter": "每次你的直播收到的每一个反应都会被计数。",
+      "event_feed": "最新的礼物、粉丝、订阅者和分享直播的人数",
+      "chat_box": "实时在屏幕上显示直播聊天消息"
     },
     "fields": {
       "style": "样式",
@@ -9246,7 +9254,14 @@
       "accent": "颜色",
       "size": "大小",
       "smaller": "更小",
-      "larger": "更大"
+      "larger": "更大",
+      "label": "标签",
+      "lines": "行显示的行数",
+      "showAvatars": "展示个人资料照片",
+      "speed": "速度",
+      "slow": "慢一点",
+      "normal": "正常",
+      "fast": "快速"
     },
     "obs": {
       "title": "与OBS使用",

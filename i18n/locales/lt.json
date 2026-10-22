@@ -9138,7 +9138,9 @@
     "joined": "{{name}} prisijungė",
     "goalReached": "Tikslas pasiektas!",
     "followersUnit": "sekėjai",
-    "topSupporters": "Geriausi rėmėjai"
+    "topSupporters": "Geriausi rėmėjai",
+    "tipped": "{{name}} išsiuntė dovaną",
+    "chatPreview": "Pokalbio žinutės rodomos čia"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9188,7 +9190,12 @@
       "top_supporters": "Geriausi rėmėjai",
       "viewer_count": "Žiūrinčiųjų skaičius",
       "text": "Tekstas",
-      "frame": "Rėmas"
+      "frame": "Rėmas",
+      "stream_timer": "Transliavimo laikmatis",
+      "reaction_counter": "Reakcijų skaitiklis",
+      "event_feed": "Naujausia veikla",
+      "chat_box": "Pokalbio laukelis",
+      "ticker": "Žymeklis"
     },
     "hints": {
       "tip_alert": "Pagerbia kiekvieną patarimą, prilygstantį jo lygiui",
@@ -9200,7 +9207,12 @@
       "top_supporters": "Didžiausi šio srauto arbatpinigiai",
       "viewer_count": "Kiek žmonių žiūri",
       "text": "Teksto eilutė arba apatinis trečdalis",
-      "frame": "Riba aplink jūsų srautą"
+      "frame": "Riba aplink jūsų srautą",
+      "stream_timer": "Rodo, kiek laiko transliuojate",
+      "reaction_counter": "Skaičiuoja kiekvieną jūsų transliacijos reakciją",
+      "event_feed": "Naujausios dovanos, sekėjai, prenumeratoriai ir žmonės, kurie dalijasi jūsų transliacija",
+      "chat_box": "Rodo transliacijos pokalbių žinutes ekrane",
+      "ticker": "Jūsų teksto eilutė, slenkanti per ekraną"
     },
     "fields": {
       "style": "Stilius",
@@ -9227,7 +9239,14 @@
       "accent": "Spalva",
       "size": "Dydis",
       "smaller": "Mažesnis",
-      "larger": "Didesnis"
+      "larger": "Didesnis",
+      "label": "Etiketė",
+      "lines": "Rodomos eilutės",
+      "showAvatars": "Rodyti profilio nuotraukas",
+      "speed": "Greitis",
+      "slow": "Lėtai",
+      "normal": "Įprastas",
+      "fast": "Greitas"
     },
     "obs": {
       "title": "Naudoti su OBS",

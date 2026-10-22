@@ -9140,7 +9140,9 @@
     "joined": "{{name}} amejiunga",
     "goalReached": "Lengo limefikiwa!",
     "followersUnit": "wafuasi",
-    "topSupporters": "Wafuasi wakuu"
+    "topSupporters": "Wafuasi wakuu",
+    "tipped": "{{name}} alituma zawadi",
+    "chatPreview": "Ujumbe wa gumzo unaonekana hapa"
   },
   "liveStudio": {
     "title": "Studio ya Moja kwa Moja",
@@ -9190,7 +9192,12 @@
       "top_supporters": "Wafuasi wakuu",
       "viewer_count": "Hesabu ya mtazamaji",
       "text": "Maandishi",
-      "frame": "Fremu"
+      "frame": "Fremu",
+      "stream_timer": "Kipima muda cha utangazaji",
+      "reaction_counter": "Kaunta ya majibu",
+      "event_feed": "Shughuli za hivi karibuni",
+      "chat_box": "Sanduku la gumzo",
+      "ticker": "Kileta tiketi"
     },
     "hints": {
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
@@ -9201,7 +9208,12 @@
       "top_supporters": "Vidokezi vyako vikubwa zaidi kwenye mkondo huu",
       "viewer_count": "Ni watu wangapi wanaotazama",
       "text": "Mstari wa maandishi au theluthi ya chini",
-      "frame": "Mpaka karibu na mkondo wako"
+      "frame": "Mpaka karibu na mkondo wako",
+      "stream_timer": "Inashirikisha kuona muda mzuri uliofanya kurekodi",
+      "reaction_counter": "Inakadiri kila kazi ya kufanikiwa katika kurekodi yako",
+      "event_feed": "Hali ya kazi ya kipindi cha kati ya heshima, wafuasi, wazazi na watu wanaoshirikiana na kurekodi yako",
+      "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
+      "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale"
     },
     "fields": {
       "style": "Mtindo",
@@ -9228,7 +9240,14 @@
       "accent": "Rangi",
       "size": "Ukubwa",
       "smaller": "Kidogo zaidi",
-      "larger": "Kubwa zaidi"
+      "larger": "Kubwa zaidi",
+      "label": "Lebo",
+      "lines": "Mistari imeonyeshwa",
+      "showAvatars": "Onyesha picha za wasifu",
+      "speed": "Kasi",
+      "slow": "Polepole",
+      "normal": "Kawaida",
+      "fast": "Haraka"
     },
     "obs": {
       "title": "Tumia kwa kutumia OBS",

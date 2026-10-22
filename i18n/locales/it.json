@@ -9177,7 +9177,9 @@
     "joined": "{{name}} iscritti",
     "goalReached": "Obiettivo raggiunto!",
     "followersUnit": "followers",
-    "topSupporters": "I migliori sostenitori"
+    "topSupporters": "I migliori sostenitori",
+    "tipped": "{{name}} ha inviato un regalo",
+    "chatPreview": "I messaggi della chat vengono visualizzati qui"
   },
   "liveStudio": {
     "subtitle": "Avvisi e widget per i tuoi stream",
@@ -9226,7 +9228,12 @@
       "top_supporters": "I migliori sostenitori",
       "viewer_count": "Conteggio visualizzatori",
       "text": "Testo",
-      "frame": "Telaio"
+      "frame": "Telaio",
+      "stream_timer": "Timer di trasmissione",
+      "reaction_counter": "Contatore di reazione",
+      "event_feed": "Attività recente",
+      "chat_box": "Chat box",
+      "ticker": "Testo scorrevole"
     },
     "hints": {
       "tip_alert": "Celebra ogni suggerimento, in base al suo livello",
@@ -9238,7 +9245,12 @@
       "top_supporters": "I tuoi più grandi mance in questo stream",
       "viewer_count": "Quante persone stanno guardando",
       "text": "Una riga di testo o un terzo inferiore",
-      "frame": "Un bordo attorno al tuo stream"
+      "frame": "Un bordo attorno al tuo stream",
+      "stream_timer": "Mostra da quanto tempo trasmetti",
+      "reaction_counter": "Conta ogni reazione che ottiene la tua trasmissione",
+      "event_feed": "Gli ultimi regali, follower, abbonati e persone che condividono la tua trasmissione",
+      "chat_box": "Mostra i messaggi di chat della trasmissione sullo schermo",
+      "ticker": "Una riga del tuo testo che scorre sullo schermo"
     },
     "fields": {
       "style": "Stile",
@@ -9264,7 +9276,14 @@
       "accent": "Colore",
       "size": "Dimensione",
       "smaller": "Più piccolo",
-      "larger": "Più grande"
+      "larger": "Più grande",
+      "label": "Etichetta",
+      "lines": "Linee mostrate",
+      "showAvatars": "Mostra immagini del profilo",
+      "speed": "Velocità",
+      "slow": "Lento",
+      "normal": "Normale",
+      "fast": "Veloce"
     },
     "obs": {
       "title": "Usa con OBS",
