@@ -93,9 +93,13 @@ describe('pending stake recovery after a reload', () => {
     expect(await recover(old, [visible, missing])).toMatchObject({ outcome: 'pending', attempt: { nonce: '0x5' } });
     expect((await recover(old, [{ ...visible, transaction: { ...visible.transaction, from: attempt.pool } }, missing])).attempt.nonce).toBeUndefined();
   });
-  it('does not expire new transactions or legacy records without a timestamp', async () => {
+  it('does not expire new transactions', async () => {
     expect((await recover({ ...old, submittedAt: now - STAKE_MISSING_GRACE_MS + 1 }, [missing, missing])).outcome).toBe('pending');
-    expect(await recover(attempt, [missing, missing])).toMatchObject({ outcome: 'pending', attempt: { submittedAt: now } });
+  });
+  it('retires a missing legacy record saved before timestamps without waiting again', async () => {
+    const { submittedAt: _, ...legacy } = { ...attempt, amount: '330000' } as StakeAttempt;
+    expect((await recover(legacy, [missing, missing])).outcome).toBe('not-found');
+    expect((await recover(legacy, [missing, { ...missing, pendingNonce: '0x7' }])).outcome).toBe('pending');
   });
   it('keeps visible transactions and mined receipts with an unexpected transfer unresolved', async () => {
     expect((await recover(old, [{ ...missing, transaction: { hash: attempt.hash } }, missing])).outcome).toBe('pending');
