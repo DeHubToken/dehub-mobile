@@ -135,6 +135,7 @@ export type AppStackParamList = {
     section?: "newMembers";
   } | undefined;
   [ScreenNames.AccountSettings]: { initialTab?: string } | undefined;
+  [ScreenNames.LiveStudio]: undefined;
   [ScreenNames.ActiveSessions]: undefined;
   [ScreenNames.TvRequests]: undefined;
   [ScreenNames.SignInTv]: undefined;

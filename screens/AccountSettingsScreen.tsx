@@ -332,6 +332,16 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           is an account-level credential, not a per-broadcast one. */}
       {isSignedIn ? <StreamKeySection /> : null}
       {isSignedIn ? <TwitchMirrorSection /> : null}
+      {isSignedIn ? (
+        <SettingsSection label={t("liveStudio.settingsLinkTitle")} icon="Radio" anchor="live-studio">
+          <SettingsLinkRow
+            icon="Radio"
+            label={t("liveStudio.open")}
+            description={t("liveStudio.settingsLinkBody")}
+            onPress={() => navigation.navigate(ScreenNames.LiveStudio)}
+          />
+        </SettingsSection>
+      ) : null}
 
       <SettingsSection label={t("settings.yourContent")} icon="Film" anchor="your-content">
         <SettingsLinkRow

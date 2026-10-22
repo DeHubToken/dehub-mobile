@@ -400,6 +400,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
           [ScreenNames.Feedback]: 'feedback',
+          // dehub.io/live-studio — the same page on the web.
+          [ScreenNames.LiveStudio]: 'live-studio',
 
           [ScreenNames.GovernanceProposal]: {
             path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
