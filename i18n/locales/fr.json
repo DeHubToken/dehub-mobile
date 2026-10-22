@@ -10861,6 +10861,7 @@
       "rotateFailed": "Impossible de créer un nouveau lien. Réessayez dans un instant."
     },
     "rules": {
+      "test": "Tester",
       "title": "Règles",
       "intro": "Lorsque quelque chose se passe sur votre flux, DeHub fait ce que vous choisissez : affiche une alerte, émet un son, lit quelque chose à haute voix, publie dans votre chat ou le dit à votre Discord.",
       "add": "Ajouter une règle",

@@ -10857,6 +10857,8 @@
       "rotateFailed": "Yeni bir bağlantı oluşturulamadı. Birazdan tekrar deneyin."
     },
     "rules": {
+      "enabled": "Kural açık",
+      "test": "Dene",
       "title": "Kurallar",
       "intro": "Bir şeyin canlı yayınınızda olması durumunda, DeHub sizin seçtiğiniz gibi davranır: uyarı gösterir, bir ses çalır, bir şeyi okur, chat'inize yazı yazdırır veya Discord'unuza söyler.",
       "add": "Kural ekle",

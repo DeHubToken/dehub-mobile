@@ -11111,6 +11111,8 @@
       "rotateFailed": "Kon geen nieuwe link maken. Probeer het zo opnieuw."
     },
     "rules": {
+      "chatText": "Bericht om te plaatsen",
+      "test": "Testen",
       "title": "Regels",
       "intro": "Wanneer er iets gebeurt tijdens je stream, doet DeHub wat jij kiest: toont een alert, speelt een geluid af, leest iets hardop voor, post in je chat of vertelt het aan je Discord.",
       "add": "Een regel toevoegen",
@@ -11161,6 +11163,7 @@
         "subscribers": "Abonnees"
       },
       "actionTypes": {
+        "chat": "Plaatsen in de chat",
         "alert": "Toon een melding",
         "sound": "Een geluid afspelen",
         "say": "Lees dit hardop voor.",
