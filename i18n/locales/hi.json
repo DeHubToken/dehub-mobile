@@ -947,6 +947,8 @@
     "payFailed": "{{symbol}} को DeHub टोकन में परिवर्तित नहीं किया जा सका",
     "stageDelivering": "DeHub Pay आपके टोकन भेज रहा है…",
     "payViaDpay": "DeHub Pay को भुगतान किया गया, टोकन लगभग 30 सेकंड में आते हैं",
+    "payDirect": "{{chain}} पर {{symbol}} में सीधे {{name}} को भेजा गया। कोई स्वैप नहीं।",
+    "payDirectNoName": "{{chain}} पर {{symbol}} में सीधे क्रिएटर को भेजा गया। कोई स्वैप नहीं।",
     "payViaBridgeDpay": "बेस पर ले जाया गया और DeHub Pay को भुगतान किया गया, टोकन लगभग एक मिनट में आते हैं",
     "tokensUnit": "टोकन",
     "tokenAmount": "{{amount}} टोकन"

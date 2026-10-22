@@ -1061,6 +1061,8 @@
     "payFailed": "تعذر تحويل {{symbol}} إلى رموز DeHub",
     "stageDelivering": "DeHub Pay يرسل رموزك…",
     "payViaDpay": "تم الدفع إلى DeHub Pay، تصل الرموز في حوالي 30 ثانية",
+    "payDirect": "يُرسل مباشرة إلى {{name}} بعملة {{symbol}} على {{chain}}. بدون مبادلة.",
+    "payDirectNoName": "يُرسل مباشرة إلى صانع المحتوى بعملة {{symbol}} على {{chain}}. بدون مبادلة.",
     "payViaBridgeDpay": "تم النقل إلى Base والدفع إلى DeHub Pay، تصل الرموز في حوالي دقيقة",
     "tokensUnit": "رموز",
     "tokenAmount": "{{amount}} رموز"

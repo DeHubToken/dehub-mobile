@@ -947,6 +947,8 @@
     "payFailed": "Не удалось конвертировать {{symbol}} в токены DeHub",
     "stageDelivering": "DeHub Pay отправляет ваши токены…",
     "payViaDpay": "Оплачено в DeHub Pay, токены прибудут примерно через 30 секунд",
+    "payDirect": "Отправляется напрямую {{name}} в {{symbol}} в сети {{chain}}. Без обмена.",
+    "payDirectNoName": "Отправляется напрямую автору в {{symbol}} в сети {{chain}}. Без обмена.",
     "payViaBridgeDpay": "Перемещено в Base и оплачено в DeHub Pay, токены прибудут примерно через минуту",
     "tokensUnit": "токены",
     "tokenAmount": "{{amount}} токенов"

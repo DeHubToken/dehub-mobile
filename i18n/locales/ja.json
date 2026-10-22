@@ -946,6 +946,8 @@
     "payFailed": "{{symbol}} をDeHubトークンに変換できませんでした",
     "stageDelivering": "DeHub Pay がトークンを送信しています…",
     "payViaDpay": "DeHub Pay に支払い済み、トークンは約 30 秒で到着します",
+    "payDirect": "{{chain}}上の{{symbol}}で{{name}}に直接送られます。スワップなし。",
+    "payDirectNoName": "{{chain}}上の{{symbol}}でクリエイターに直接送られます。スワップなし。",
     "payViaBridgeDpay": "Base に移動し、DeHub Pay に支払い済み、トークンは約 1 分で到着します",
     "tokensUnit": "トークン",
     "tokenAmount": "{{amount}} トークン"

@@ -959,6 +959,8 @@
     "payFailed": "Không thể chuyển đổi {{symbol}} sang token DeHub",
     "stageDelivering": "DeHub Pay đang gửi token của bạn…",
     "payViaDpay": "Đã thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng 30 giây",
+    "payDirect": "Gửi thẳng cho {{name}} bằng {{symbol}} trên {{chain}}. Không swap.",
+    "payDirectNoName": "Gửi thẳng cho nhà sáng tạo bằng {{symbol}} trên {{chain}}. Không swap.",
     "payViaBridgeDpay": "Đã chuyển sang Base và thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng một phút",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
