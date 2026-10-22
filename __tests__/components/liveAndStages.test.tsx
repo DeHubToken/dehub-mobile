@@ -187,3 +187,25 @@ describe('live stage modal in long languages', () => {
     expect(source).toContain('flexDirection: "row", flexWrap: "wrap", alignItems: "center", marginTop: 3, columnGap: 8, rowGap: 4');
   });
 });
+
+describe('live stage room chat and layout', () => {
+  const source = readSource('components', 'Stages', 'LiveStageModal.tsx');
+  const chat = readSource('hooks', 'useTvChat.ts');
+  const transcript = readSource('components', 'Stages', 'StageTranscriptSheet.tsx');
+
+  it('gives listeners the same stage chat as web', () => {
+    expect(source).toContain('table: "stage_chat_messages"');
+    expect(source).toContain('column: "space_id"');
+    expect(source).toContain('hostWallet: currentSpace.host_wallet_address');
+    expect(chat).toContain('isHost ? base.eq(column, channelId) : base.eq("wallet_address", walletAddress.toLowerCase())');
+  });
+
+  it('keeps the header below the status bar with real insets', () => {
+    expect(source).not.toContain('<SafeAreaView');
+    expect(source).toContain('paddingTop: insets.top, paddingBottom: insets.bottom');
+  });
+
+  it('opens the transcript at a real height instead of a strip', () => {
+    expect(transcript).toContain('maxHeight="90%" panelHeight="90%"');
+  });
+});
