@@ -10727,7 +10727,7 @@
   "liveStudio": {
     "subtitle": "Alertas y widgets para tus transmisiones",
     "intro": "Todo lo que añadas aquí aparecerá en tus transmisiones para cada espectador en la aplicación DeHub, ya sea que lo publiques desde tu teléfono, el navegador, una tarjeta de captura o un codificador.",
-    "open": "Open Live Studio",
+    "open": "Abrir Live Studio",
     "settingsLinkTitle": "Alertas y widgets",
     "settingsLinkBody": "Alertas de propinas, objetivos y más a través de sus transmisiones, configuradas en Live Studio.",
     "preview": "Vista previa",
@@ -10754,7 +10754,7 @@
     "loadFailed": "No se han podido cargar los widgets. Vuelve atrás e inténtalo de nuevo.",
     "limit": "Has alcanzado el límite de 40 widgets.",
     "tests": {
-      "tip": "Tip",
+      "tip": "Propina",
       "follow": "Seguir",
       "subscribe": "Suscribirse",
       "share": "Compartir",
@@ -10766,7 +10766,7 @@
       "subscribe_alert": "Aviso de suscriptor",
       "share_alert": "Aviso de compartir",
       "join_alert": "Aviso de unirse",
-      "goal_bar": "Barrera de meta",
+      "goal_bar": "Barra de meta",
       "top_supporters": "Apoyos principales",
       "viewer_count": "Contador de espectadores",
       "text": "Texto",

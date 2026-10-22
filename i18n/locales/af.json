@@ -9268,7 +9268,7 @@
     "title": "Live Studio",
     "subtitle": "Waarskuwings en widgets vir jou stroom",
     "intro": "Alles wat jy hier byvoeg, verskyn oor jou strome vir elke kyker in die DeHub‑app — of jy nou regstreeks vanaf jou foon, die blaaier, 'n capture‑kaart of 'n enkodeerder gaan.",
-    "open": "Open Live Studio",
+    "open": "Maak Live Studio oop",
     "settingsLinkTitle": "Waarskuwings en widgets",
     "settingsLinkBody": "Fooitwaarskuwings, doelwitte en meer oor jou strome, opgestel in Live Studio.",
     "preview": "Voorskou",
@@ -9296,7 +9296,7 @@
     "loadFailed": "Kon nie jou widgets laai nie. Gaan terug en probeer weer.",
     "limit": "Jy het die limiet van 40 widgets bereik.",
     "tests": {
-      "tip": "Tip",
+      "tip": "Fooi",
       "follow": "Volg",
       "subscribe": "Abonneer",
       "share": "Deel",
