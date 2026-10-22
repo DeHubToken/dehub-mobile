@@ -9394,6 +9394,7 @@
       "placeholdersLive": "Qillqasqaykipi {name}, {title} hinaspa {link} nisqawan yanapachikuy: sutiyki, willakuypa titulon hinaspa huk link nisqa qawanaykipaq."
     },
     "polls": {
+      "question": "Tapuy",
       "title": "Encuestas nisqamanta",
       "intro": "Difusión nisqayki qhawaq runakunata tapuy. DeHub app kaqpi huk botón kaqwan kutichinku, utaq {{command}} chaymanta akllana yupayta rimanakuypi qillqaspa.",
       "questionPlaceholder": "¿Imatataq qatiqninpi pukllanay?",

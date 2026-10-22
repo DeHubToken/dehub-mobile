@@ -9395,6 +9395,7 @@
       "placeholdersLive": "Sebenzisa i-{name}, {title} no- {link} embhalweni wakho: igama lakho, isihloko sokusakaza nelinki yokuyibuka."
     },
     "polls": {
+      "closeFailed": "Ukuvota akuphelanga. Zama futhi.",
       "title": "Amavoti",
       "intro": "Buza abantu ababukela ukusakaza kwakho umbuzo. Baphendula ngenkinobho ku-app ye-DeHub, noma ngokuthayipha okuthi {{command}} nenombolo yenketho engxoxweni.",
       "question": "Umbuzo",

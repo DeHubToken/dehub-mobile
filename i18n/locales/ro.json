@@ -9156,6 +9156,8 @@
     "tipped": "{{name}} a trimis un cadou",
     "chatPreview": "Mesajele de chat apar aici",
     "poll": {
+      "voted_one": "Ai votat · {{count}} vot",
+      "voted_other": "Ai votat · {{count}} voturi",
       "closed": "Votare închisă",
       "voteFor": "Votează pentru {{option}}",
       "signIn": "Conectează-te pentru a vota",

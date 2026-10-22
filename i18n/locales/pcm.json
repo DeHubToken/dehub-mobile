@@ -8819,6 +8819,10 @@
     "topSupporters": "Top supporters",
     "chatPreview": "Chat messages appear here",
     "poll": {
+      "voteFor": "Vote for {{option}}",
+      "failed": "Your vote did not count. Try again.",
+      "voted_one": "You voted · {{count}} vote",
+      "voted_other": "You voted · {{count}} votes",
       "closed": "Voting closed",
       "signIn": "Sign in to vote",
       "votes_one": "{{count}} vote",
@@ -8874,6 +8878,7 @@
       "poll": "Poll"
     },
     "hints": {
+      "poll": "Your live poll, with a vote button for every option",
       "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate every tip, e size according to e tier",
       "join_alert": "Welcomes each viewer as they arrive"
@@ -8968,6 +8973,7 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "You start broadcasting",
         "share": "Someone shares the stream",
         "command": "A chat command is used",
         "keyword": "A chat message contains a word",
@@ -9018,6 +9024,13 @@
       "placeholdersLive": "Wetin you dey look for? {name} don land for this one. {title}: \"How to Translate Any Text to Nigerian Pidgin\". Watch {link}: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     "polls": {
+      "intro": "Ask the people watching your broadcast a question. They answer with a button in the DeHub app, or by typing {{command}} and the option's number in chat.",
+      "questionPlaceholder": "What should I play next?",
+      "duration": "How long voting stays open",
+      "start": "Start the poll",
+      "end": "End voting now",
+      "started": "Your poll is open. Viewers can vote now.",
+      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
       "title": "Polls",
       "question": "Question",
       "option": "Option {{n}}",

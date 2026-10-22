@@ -9069,6 +9069,8 @@
     "tipped": "{{name}}Add a gift",
     "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan",
     "poll": {
+      "voted_one": "Vous avez voté · {{count}} vote",
+      "voted_other": "Vous avez voté · {{count}} votes",
       "closed": "Ɲɛnamaya banna",
       "voteFor": "Add {{option}}",
       "signIn": "N'i be se ka ladɛrɛsi kɛ",
@@ -9303,6 +9305,8 @@
       "placeholdersLive": "I ka barokun kɔnɔ, i ka {name}, {title} ani {link}: i tɔgɔ, i ka kunnafoni tɔgɔ ani i ka link dɔ kɛ k'a filɛ."
     },
     "polls": {
+      "seconds_one": "{{count}} seconde",
+      "notLive": "Passez d'abord en direct. Un sondage s'exécute sur l'émission que vous diffusez en ce moment.",
       "title": "Fɛɛn minw be se ka kɛ",
       "intro": "Mɔgɔ minw be i ka kalan lamɛnna, i ka ɲiningali dɔ kɛ u ye. U be se k'o jaabi ni tuguni ye DeHub ka porogramu kɔnɔ, walima ka {{command}} sɛbɛn ani ka kumaɲɔgɔnya kɛ n'o ye.",
       "question": "Ɲiningali dɔ",

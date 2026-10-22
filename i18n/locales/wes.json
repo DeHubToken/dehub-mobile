@@ -9107,6 +9107,7 @@
       "rotateFailed": "No fit make new link. Try again in small time."
     },
     "rules": {
+      "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
       "limit": "You have reached the limit of {{count}} rules.",
       "saveToTest": "Save your rules to test them",
       "blockedWordsHint": "Separate with commas. Messages containing them are ignored and never read aloud.",
@@ -9205,6 +9206,12 @@
       }
     },
     "polls": {
+      "questionPlaceholder": "What should I play next?",
+      "duration": "How long voting stays open",
+      "start": "Start the poll",
+      "end": "End voting now",
+      "started": "Your poll is open. Viewers can vote now.",
+      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
       "title": "Polls",
       "intro": "Ask dem people watchin’ yu broadcast one question. Dem answer wit’ button in DeHub app, or by type \"{{command}}\" and number of option in chat.",
       "question": "Question",

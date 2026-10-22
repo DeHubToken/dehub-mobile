@@ -9386,6 +9386,7 @@
       "join": "Beitreten"
     },
     "kinds": {
+      "poll": "Umfrage",
       "tip_alert": "Spenden-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
       "subscribe_alert": "Abonnenten-Benachrichtigung",

@@ -9232,6 +9232,7 @@
       "join": "Partecipa"
     },
     "kinds": {
+      "poll": "Sondaggio",
       "tip_alert": "Avviso mancia",
       "follow_alert": "Segui avviso",
       "subscribe_alert": "Avviso abbonato",

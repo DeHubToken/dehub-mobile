@@ -9272,6 +9272,7 @@
       "join": "Hiditra"
     },
     "kinds": {
+      "poll": "Fitsapan-kevitra",
       "tip_alert": "Soso-kevitra fanairana",
       "follow_alert": "Araho ny fanairana",
       "subscribe_alert": "Subscriber fanairana",
@@ -9364,6 +9365,7 @@
       "rotateFailed": "Tsy afaka namorona rohy vaovao. Miverena ao anatin'ny iray minitra."
     },
     "rules": {
+      "placeholdersLive": "Ampiasao ny {name}, {title} sy {link} ao amin'ny lahatsoratrao: ny anaranao, ny lohatenin'ny fahitalavitra ary ny rohy hijerena azy.",
       "blockedWords": "Teny voarara",
       "title": "Fitsipika",
       "intro": "Raha misy zavatra mitranga eo amin'ny renirano, DeHub dia manao izay safidinao: maneho fanairana, mitendry feo, mamaky zavatra mafy, lahatsoratra ao amin'ny chat na milaza ny Discord anao.",

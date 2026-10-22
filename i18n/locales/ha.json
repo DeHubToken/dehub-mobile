@@ -9346,6 +9346,7 @@
       "placeholdersLive": "Yi amfani da {name}, {title} da {link} a cikin rubutunku: sunanka, taken watsa shirye-shirye da hanyar haɗi don kallon shi."
     },
     "polls": {
+      "title": "Kuri'u",
       "intro": "Tambayi mutanen da ke kallon watsa shirye-shiryenku wata tambaya. Suna amsawa tare da maɓallin a cikin aikace-aikacen DeHub, ko ta hanyar buga {{command}} da lambar zaɓi a cikin hira.",
       "question": "Tambaya",
       "questionPlaceholder": "Me ya kamata in yi wasa na gaba?",
@@ -9370,6 +9371,7 @@
       "replaceHint": "Fara sabon zabe ya rufe wanda yake buɗewa.",
       "widgetHint": "Nuna kuri'unku na kai tsaye. A cikin masu kallo na aikace-aikacen DeHub suna buga wani zaɓi don jefa kuri'a; a cikin OBS yana gaya wa mutane su rubuta {{command}} da lambar a cikin hira.",
       "sample": {
+        "b": "Tsohon da aka fi so",
         "a": "Wani sabon abu",
         "c": "Kuna zaɓar"
       }

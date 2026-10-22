@@ -9372,6 +9372,7 @@
       "join": "Pagkakalaban"
     },
     "kinds": {
+      "poll": "Botohan",
       "tip_alert": "Alerta sa tip",
       "follow_alert": "Alerta sa pagsumunod",
       "subscribe_alert": "Alerta sa suskriber",

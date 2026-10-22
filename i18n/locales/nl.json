@@ -11036,6 +11036,7 @@
       "join": "Aanmelden"
     },
     "kinds": {
+      "poll": "Peiling",
       "tip_alert": "Tip-alert",
       "follow_alert": "Volg-alert",
       "subscribe_alert": "Abonneer-alert",

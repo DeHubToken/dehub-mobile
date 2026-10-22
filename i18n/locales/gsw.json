@@ -9207,6 +9207,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
       "subscribe_alert": "Abonnenten-Benachrichtigung",
@@ -9297,6 +9298,7 @@
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
     },
     "rules": {
+      "placeholdersLive": "Verwenden Sie {name}, {title} und {link} in Ihrem Text: Ihren Namen, den Titel der Sendung und einen Link, um sie anzusehen.",
       "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
       "alertText": "Benachrichtigungstext",
       "sound": "Ton",
@@ -9395,6 +9397,10 @@
       }
     },
     "polls": {
+      "title": "Umfragen",
+      "question": "Frage",
+      "addOption": "Option hinzufügen",
+      "removeOption": "Option {{n}}entfernen",
       "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
       "questionPlaceholder": "Was soll ich als Nächstes spielen?",
       "option": "Option {{n}}",
@@ -9416,6 +9422,7 @@
       "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
       "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
       "sample": {
+        "c": "Sie wählen",
         "a": "Etwas Neues",
         "b": "Ei e chlii Altbekanntes"
       }

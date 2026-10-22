@@ -9297,6 +9297,7 @@
       "placeholdersLive": "Di nivîsa xwe de {name}, {title} û {link} bi kar bîne: navê te, sernavê weşanê û lînka temaşekirina wê."
     },
     "polls": {
+      "started": "Rapirsiya te vekirî ye. Temaşevan niha dikarin deng bidin.",
       "title": "Anket",
       "intro": "Ji kesên ku weşana te temaşe dikin pirsek bipirse. Ew bi bişkojkek di sepana DeHub de, an jî bi nivîsandina {{command}} û jimareya vebijarkê di sohbetê de bersiv didin.",
       "question": "Pirs",

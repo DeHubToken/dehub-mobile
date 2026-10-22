@@ -10786,6 +10786,7 @@
       "join": "Rejoindre"
     },
     "kinds": {
+      "poll": "Sondage",
       "tip_alert": "Alerte de pourboire",
       "follow_alert": "Suivre l'alerte",
       "subscribe_alert": "Alerte abonné",
@@ -10978,6 +10979,7 @@
       "placeholdersLive": "Utilisez {name}, {title} et {link} dans votre texte : votre nom, le titre de l'émission et un lien pour la regarder."
     },
     "polls": {
+      "question": "Question",
       "title": "Sondages",
       "intro": "Posez une question aux personnes qui regardent votre émission. Ils répondent avec un bouton dans l'application DeHub, ou en tapant {{command}} et le numéro de l'option dans le chat.",
       "questionPlaceholder": "À quoi dois-je jouer ensuite ?",

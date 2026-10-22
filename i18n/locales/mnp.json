@@ -9165,6 +9165,7 @@
       "poll": "投票"
     },
     "hints": {
+      "poll": "您的实时投票，每个选项都有投票按钮",
       "rule_alert": "规则提醒的显示位置",
       "follow_alert": "显示每个新关注者",
       "subscribe_alert": "显示每个新订阅者",
@@ -9309,6 +9310,28 @@
       "placeholdersLive": "我个名号叫 {name}，欢迎收看《{title}》，请点击这里观看：{link}"
     },
     "polls": {
+      "title": "投票",
+      "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
+      "question": "问题",
+      "questionPlaceholder": "接下来我应该玩什么？",
+      "option": "选项{{n}}",
+      "addOption": "添加选项",
+      "removeOption": "删除选项{{n}}",
+      "duration": "投票时间持续多久？",
+      "seconds_one": "{{count}}秒",
+      "start": "开始投票",
+      "end": "立即停止投票",
+      "started": "您的投票已开放。观众现在可以投票了。",
+      "notLive": "先上线。民意调查将在您目前正在流式传输的广播上运行。",
+      "startFailed": "投票未开始。请重试。",
+      "ended": "投票已关闭",
+      "replaceHint": "开始新的投票将关闭打开的投票。",
+      "widgetHint": "显示您的实时投票。在DeHub应用程序中，查看者点击一个投票选项；在OBS中，它告诉人们在聊天中输入{{command}}和一个数字。",
+      "sample": {
+        "a": "新事物",
+        "b": "古老的最爱",
+        "c": "您选择"
+      },
       "seconds_other": "{{count}} 秒",
       "minutes_one": "{{count}} 分錶",
       "minutes_other": "{{count}} 分錘",

@@ -9381,6 +9381,7 @@
       "placeholdersLive": "Mətninizdə {name}, {title} və {link} istifadə edin: adınız, yayımın başlığı və onu izləmək üçün link."
     },
     "polls": {
+      "removeOption": "Seçənək {{n}}-ni sil",
       "title": "Sorğular",
       "intro": "Yayımınızın sualını izləyən insanlardan soruşun. Onlar DeHub tətbiqində bir düymə ilə və ya {{command}} və söhbət zamanı seçimin nömrəsini yazmaqla cavab verir.",
       "question": "Sual",

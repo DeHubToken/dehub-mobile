@@ -9160,6 +9160,7 @@
       "join": "Gir"
     },
     "kinds": {
+      "poll": "Ses berişlik",
       "tip_alert": "Tip Alarm",
       "follow_alert": "Ägä boluň",
       "subscribe_alert": "Abonent duýduryşy",
@@ -9251,6 +9252,7 @@
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
     },
     "rules": {
+      "placeholdersLive": "Tekstiňizde {name}, {title} we {link} ulanyň: adyňyz, ýaýlymyň ady we tomaşa etmek üçin baglanyşyk.",
       "test": "Synag",
       "title": "Kanunlar",
       "intro": "Eger siz akmaňyzda bir zat bolanda, DeHub saýlan zadyňyzy edýär: duýduryş görkezip, ses çalýar, sesli bir zat okaýar, gürrüňdeşligiňizi goýýar ýa-da Discord-a habar berýär.",
@@ -9349,6 +9351,7 @@
       }
     },
     "polls": {
+      "votes_other": "{{count}} ses",
       "title": "Saýlamalar",
       "intro": "Siziň telegepleşikleriňizi görýän adamlara bir sorag beriň. Olar DeHub-da bir düýş bilen jogap berýärler ýa-da {{command}} we çatda saýlama sanyny ýazýarlar.",
       "question": "Soru",

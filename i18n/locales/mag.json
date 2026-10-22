@@ -9112,6 +9112,11 @@
     "topSupporters": "बड़े पैमाने पर, बड़े पैमान",
     "chatPreview": "Whatsapp मैसेज करे अभी",
     "poll": {
+      "voteFor": "{{option}} के लिए वोट करें",
+      "voted_one": "आपने वोट दिया · {{count}} वोट",
+      "voted_other": "आपने वोट दिया · {{count}} वोट",
+      "votes_one": "{{count}} वोट",
+      "votes_other": "{{count}} वोट",
       "closed": "मतदान के पिछे जाई छई जान",
       "signIn": "मतदान के पिछे जाई छई जान",
       "failed": "किरपा करके, फिकिर नयँ करथिन, ई अइसीं... फेर से घुम्मब करऽ हइ ।"
@@ -9347,6 +9352,16 @@
       "placeholdersLive": "अपने पाठ में {name},{title} और {link} का उपयोग करेंः अपना नाम, प्रसारण का शीर्षक और इसे देखने के लिए एक कड़ी ।"
     },
     "polls": {
+      "title": "पोल",
+      "option": "विकल्प {{n}}",
+      "removeOption": "{{n}} विकल्प हटाएँ",
+      "seconds_one": "{{count}} सेकंड",
+      "seconds_other": "{{count}} सेकंड",
+      "minutes_one": "{{count}} मिनट",
+      "minutes_other": "{{count}} मिनट",
+      "live": "मतदान खुला · {{time}} बाएँ",
+      "votes_one": "{{count}} वोट",
+      "votes_other": "{{count}} वोट",
       "intro": "अपने के टेलीविजन देखे वाला लोग के एगो सवाल पूछथिन । DeHub ऐप में एक बटन के साथ, या {{command}} टाइप करके और चैट में विकल्प के नंबर के माध्यम से उत्तर दें ।",
       "question": "पूछना कउन जरूरी हइ ।",
       "questionPlaceholder": "अब हम की करे के चाही?",
