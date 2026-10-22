@@ -301,7 +301,7 @@ export const WaveformBars: React.FC<WaveformBarsProps> = memo(
           key={i}
           style={{
             width: bw,
-            height: Math.max(2, h * wHeight * 0.85),
+            height: Math.max(2, h * wHeight * 0.85 * (glass ? .16 + .84 * Math.pow(Math.sin(Math.PI * i / Math.max(1, count - 1)), .8) : 1)),
             borderRadius: bw / 2,
             marginRight: i < count - 1 ? bg : 0,
             backgroundColor: color,

@@ -45,7 +45,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
 
@@ -165,16 +165,17 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       className="w-[150px] items-center rounded-xl py-3.5 px-3 mr-2.5"
       // Minimal: no box — just avatar, name and the Follow button standing
       // on the black, the column itself is the card.
-      style={isMinimal ? minimalFlat : { backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+      style={isMinimal ? minimalFlat : skin?.material === 'glass' ? skin.card : { backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
     >
       {/* Dismiss (X) button */}
       <TouchableOpacity
         onPress={handleDismiss}
         activeOpacity={0.6}
         className="absolute top-2 right-2 w-5 h-5 items-center justify-center rounded-lg bg-theme-neutrals-700/60"
+        style={skin?.material === 'glass' ? { backgroundColor: 'transparent' } : undefined}
         hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
       >
-        <Icon name="X" size={12} color="#9CA3AF" />
+        <Icon name="X" size={12} color={skin?.material === 'glass' ? '#B8D5D8' : '#9CA3AF'} />
       </TouchableOpacity>
 
       <Avatar uri={displayAvatar} size={72} name={displayName} />

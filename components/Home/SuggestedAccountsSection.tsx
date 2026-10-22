@@ -222,7 +222,7 @@ const SuggestedAccountsSection: React.FC = () => {
         paddingBottom: 12,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: CINEMATIC_HAIRLINE,
-      } : undefined]}
+      } : skin?.material === 'glass' ? { ...skin.card, paddingVertical: 16 } : undefined]}
     >
       {/* Header row */}
       <View
@@ -237,7 +237,7 @@ const SuggestedAccountsSection: React.FC = () => {
           activeOpacity={0.7}
           hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
         >
-          <Icon name="X" size={18} color="#6F7174" />
+          <Icon name="X" size={18} color={skin?.material === 'glass' ? '#B8D5D8' : '#6F7174'} />
         </TouchableOpacity>
       </View>
 
