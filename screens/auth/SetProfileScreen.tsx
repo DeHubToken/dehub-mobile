@@ -288,6 +288,10 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
+          // On iPad this iPhone-only app runs scaled up, and the iPad keyboard
+          // covers most of it: a drag must always be able to put it away so
+          // Continue is reachable.
+          keyboardDismissMode={Platform.OS === "ios" ? "interactive" : "on-drag"}
           className="px-6"
         >
           {/* Header */}
@@ -382,6 +386,8 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
             autoCapitalize="words"
             autoCorrect={false}
             placeholder={t("setProfile.displayNamePlaceholder")}
+            returnKeyType="done"
+            onSubmitEditing={handleSubmit}
           />
           <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
             <Text style={authText.caption}>{t("setProfile.displayNameHint")}</Text>
