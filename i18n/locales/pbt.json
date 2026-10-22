@@ -4120,6 +4120,14 @@
     "noVoice": "ستاسو وسیله د دې ژبې لپاره غږ نه لري."
   },
   "stages": {
+    "addToCalendar": "د کالېنډر ته وړاندې کړئ",
+    "nowPlaying": "اوس لوبې وکړئ",
+    "onTheRadio": "په رادیو کې",
+    "subtitles": "فرعي سرلیکونه",
+    "subtitlesIn": "پوښتنې · {{language}}",
+    "showSubtitles": "د فرعي سرلیکونو ښودنه",
+    "language": "په پښتو ژبه",
+    "asSpoken": "لکه څنګه چې خبرې کیږي",
     "cancelConfirm": "“{{title}}” لغوه کړئ؟ لینک به نور کار ونه کړي.",
     "deleteRecordingConfirm": "د دې غږیزې خونې ثبت حذف کړئ؟",
     "deleteStage": "غږیزه خونه حذف کړئ",

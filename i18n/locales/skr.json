@@ -4133,6 +4133,14 @@
     "noVoice": "تہاڈے ڈیوائس وچ ایں زبان کیتے کوئی آواز کائنی۔"
   },
   "stages": {
+    "addToCalendar": "کالنڈر میں شامل کروئں",
+    "nowPlaying": "ابھی چل رہی ہے",
+    "onTheRadio": "رڈیو پر",
+    "subtitles": "ساب ٹائٹل",
+    "subtitlesIn": "ساب ٹائٹلز · {{language}}",
+    "showSubtitles": "ساب ٹائٹل دکھائیں",
+    "language": "زبان",
+    "asSpoken": "جیسے کہ بولی جاتی ہے",
     "cancelConfirm": "“{{title}}” رد کرݨا ہے؟ لنک کم کرݨا بند تھی ویسی۔",
     "deleteRecordingConfirm": "ایہ آڈیو روم دی ریکارڈنگ مٹاوݨی ہے؟",
     "deleteStage": "آڈیو روم مٹاؤ",

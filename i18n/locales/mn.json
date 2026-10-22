@@ -4119,6 +4119,14 @@
     "noVoice": "Таны төхөөрөмжид энэ хэлний дуу хоолой байхгүй байна."
   },
   "stages": {
+    "addToCalendar": "Календарт нэмэх",
+    "nowPlaying": "Одоо тоглож байна",
+    "onTheRadio": "Радио дээр",
+    "subtitles": "ХАДМАЛ",
+    "subtitlesIn": "Хадмал · {{language}}",
+    "showSubtitles": "Хадмалуудыг харуулах",
+    "language": "Хэл судлал",
+    "asSpoken": "Ярианы дагуу",
     "cancelConfirm": "«{{title}}»-г цуцлах уу? Холбоос ажиллахаа болино.",
     "deleteRecordingConfirm": "Энэ аудио өрөөний бичлэгийг устгах уу?",
     "deleteStage": "Аудио өрөөг устгах",

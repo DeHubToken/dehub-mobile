@@ -4154,6 +4154,14 @@
     "noVoice": "Tsy manana feo ho an'ity fiteny ity ny fitaovanao."
   },
   "stages": {
+    "addToCalendar": "Ampidiro ao amin'ny kalandrie",
+    "nowPlaying": "Mandeha izao",
+    "onTheRadio": "Ao amin'ny radio",
+    "subtitles": "Dikanteny",
+    "subtitlesIn": "Fampandrosoana: {{language}}",
+    "showSubtitles": "Asehoy ny dikanteny",
+    "language": "Fiteny",
+    "asSpoken": "Araka ny nitenenana azy",
     "cancelConfirm": "Hofoanana ny “{{title}}”? Tsy handeha intsony ilay rohy.",
     "deleteRecordingConfirm": "Hofafana ve ny rakitry ity efitrano feo ity?",
     "deleteStage": "Fafao ny efitrano feo",

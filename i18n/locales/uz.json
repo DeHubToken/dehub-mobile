@@ -4158,6 +4158,14 @@
     "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
+    "addToCalendar": "Kalendarga qoʻshing",
+    "nowPlaying": "Hozir oʻynayotgan",
+    "onTheRadio": "Radio orqali",
+    "subtitles": "Yozuvlar",
+    "subtitlesIn": "Yozuvlar · {{language}}",
+    "showSubtitles": "Yozuvlarni koʻrish",
+    "language": "Til",
+    "asSpoken": "Oʻylab gapirgan",
     "cancelConfirm": "“{{title}}” bekor qilinsinmi? Havola ishlashdan to'xtaydi.",
     "deleteRecordingConfirm": "Bu audio xona yozuvi o'chirilsinmi?",
     "deleteStage": "Audio xonani o'chirish",

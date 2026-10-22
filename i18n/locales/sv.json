@@ -4144,6 +4144,14 @@
     "noVoice": "Din enhet har ingen röst för det här språket."
   },
   "stages": {
+    "addToCalendar": "Lägg till i kalender",
+    "nowPlaying": "Spelar nu",
+    "onTheRadio": "På radion",
+    "subtitles": "Undertexter",
+    "subtitlesIn": "Undertexter · {{language}}",
+    "showSubtitles": "Visa undertexter",
+    "language": "Språk",
+    "asSpoken": "Som talat",
     "cancelConfirm": "Avbryt \"{{title}}\"? Länken slutar fungera.",
     "deleteRecordingConfirm": "Radera den här inspelningen av ljudrummet?",
     "deleteStage": "Ta bort ljudrum",

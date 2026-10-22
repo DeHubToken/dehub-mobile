@@ -4150,6 +4150,14 @@
     "noVoice": "तपाईंको यन्त्रमा यो भाषाको लागि आवाज छैन।"
   },
   "stages": {
+    "addToCalendar": "क्यालेन्डरमा थप्नुहोस्",
+    "nowPlaying": "अहिले बजिरहेको छ",
+    "onTheRadio": "रेडियोमा",
+    "subtitles": "उपशीर्षकहरू",
+    "subtitlesIn": "उपशीर्षकहरू · {{language}}",
+    "showSubtitles": "उपशीर्षकहरू देखाउनुहोस्",
+    "language": "भाषा",
+    "asSpoken": "बोलिएको अनुसार",
     "cancelConfirm": "\"{{title}}\" रद्द गर्नुहोस्? लिङ्क काम गर्न बन्द हुन्छ।",
     "deleteRecordingConfirm": "यो अडियो कोठाको रेकर्डिङ मेटाउने?",
     "deleteStage": "अडियो कोठा मेटाउनुहोस्",

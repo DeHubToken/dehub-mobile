@@ -4130,6 +4130,12 @@
     "noVoice": "Na'urarka ba ta da murya don wannan harshe."
   },
   "stages": {
+    "addToCalendar": "Ƙara zuwa kalanda",
+    "nowPlaying": "Yanzu wasa",
+    "onTheRadio": "A kan rediyo",
+    "showSubtitles": "Nuna subtitles",
+    "language": "Harshe",
+    "asSpoken": "Kamar yadda aka yi magana",
     "cancelConfirm": "A soke “{{title}}”? Hanyar haɗin ba za ta ƙara aiki ba.",
     "deleteRecordingConfirm": "A share rikodin wannan ɗakin sauti?",
     "deleteStage": "Share ɗakin sauti",

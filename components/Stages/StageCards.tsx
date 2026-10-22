@@ -36,6 +36,7 @@ import { storedAvatarSources } from "../../libs/misc";
 import { radius } from "../../theme/radius";
 import { ShareLinks } from "../../navigation/linking.config";
 import { useStageReminder, useStageReminderFaces } from "../../hooks/useStageReminder";
+import { addStageToCalendar } from "../../libs/stage-calendar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import type { AudioSpace } from "../../hooks/useStages";
 import { appLocale } from "../../libs/date.util";
@@ -338,6 +339,17 @@ export const ScheduledStageCard: React.FC<{
           <View style={styles.topActions}>
             {/* The host is already going; a bell on your own stage is noise. */}
             {!isMine && <StageReminderBell spaceId={space.id} />}
+            {!!space.scheduled_at && (
+              <TouchableOpacity
+                onPress={() => void addStageToCalendar(space).catch(() => {})}
+                hitSlop={8}
+                style={[styles.iconBtn, isMinimal && m.outline]}
+                accessibilityRole="button"
+                accessibilityLabel={t("stages.addToCalendar")}
+              >
+                <Icon name="CalendarPlus" size={15} color="rgba(255,255,255,0.6)" />
+              </TouchableOpacity>
+            )}
             <TouchableOpacity
               onPress={() => shareStage(space, when)}
               hitSlop={8}

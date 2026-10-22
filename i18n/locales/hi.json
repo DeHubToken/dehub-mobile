@@ -4197,6 +4197,14 @@
     "filedOn": "{{date}} को दर्ज किया गया"
   },
   "stages": {
+    "addToCalendar": "कैलेंडर में जोड़ें",
+    "nowPlaying": "अभी चल रहा है",
+    "onTheRadio": "रेडियो पर",
+    "subtitles": "सबटाइटल",
+    "subtitlesIn": "सबटाइटल · {{language}}",
+    "showSubtitles": "सबटाइटल दिखाएँ",
+    "language": "भाषा",
+    "asSpoken": "जैसा बोला गया",
     "cancelConfirm": "\"{{title}}\" रद्द करें? लिंक काम करना बंद कर देगा।",
     "deleteRecordingConfirm": "इस ऑडियो रूम की रिकॉर्डिंग हटाएँ?",
     "deleteStage": "ऑडियो रूम हटाएँ",

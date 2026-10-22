@@ -4123,6 +4123,14 @@
     "noVoice": "Түзмөгүңүздө бул тил үчүн үн жок."
   },
   "stages": {
+    "addToCalendar": "Календарга кошуу",
+    "nowPlaying": "Азыр ойноп жатат",
+    "onTheRadio": "Радиодо",
+    "subtitles": "Субтитрлар",
+    "subtitlesIn": "Субтитрлар · {{language}}",
+    "showSubtitles": "Субтитрларды көрсөтүү",
+    "language": "Тил",
+    "asSpoken": "Айтылгандай",
     "cancelConfirm": "«{{title}}» жокко чыгарылсынбы? Шилтеме иштебей калат.",
     "deleteRecordingConfirm": "Бул аудио бөлмөнүн жазуусу өчүрүлсүнбү?",
     "deleteStage": "Аудио бөлмөнү өчүрүү",

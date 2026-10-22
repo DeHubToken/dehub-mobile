@@ -4154,6 +4154,14 @@
     "noVoice": "መሣሪያዎ ለዚህ ቋንቋ ድምፅ የለውም።"
   },
   "stages": {
+    "addToCalendar": "ወደ የቀን መቁጠሪያ ያክሉ",
+    "nowPlaying": "አሁን በመጫወት ላይ",
+    "onTheRadio": "በሬዲዮ ላይ",
+    "subtitles": "ንዑስ ርዕሶች",
+    "subtitlesIn": "ንዑስ ርዕሶች · {{language}}",
+    "showSubtitles": "ንዑስ ርዕሶችን አሳይ",
+    "language": "ቋንቋ",
+    "asSpoken": "እንደተነገረው",
     "cancelConfirm": "“{{title}}” ይሰረዝ? አገናኙ መስራት ያቆማል።",
     "deleteRecordingConfirm": "የዚህ የድምፅ ክፍል ቅጂ ይሰረዝ?",
     "deleteStage": "የድምፅ ክፍሉን ሰርዝ",

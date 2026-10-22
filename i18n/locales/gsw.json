@@ -4169,6 +4169,14 @@
     "noVoice": "Dis Grät het kei Stimm für die Sprach."
   },
   "stages": {
+    "addToCalendar": "Zum Kalender hinzufügen",
+    "nowPlaying": "Jetzt läuft",
+    "onTheRadio": "Auf dem Radio",
+    "subtitles": "Untertitel",
+    "subtitlesIn": "Subtitel · {{language}}",
+    "showSubtitles": "Untertitel anzeigen",
+    "language": "Sprache",
+    "asSpoken": "Wie gesproche",
     "cancelConfirm": "„{{title}}“ absäge? De Link gaht dänn nüme.",
     "deleteRecordingConfirm": "D Ufnahm vo dem Audioruum lösche?",
     "deleteStage": "Audioruum lösche",

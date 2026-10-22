@@ -4138,6 +4138,14 @@
     "noVoice": "మీ పరికరంలో ఈ భాషకు వాయిస్ లేదు."
   },
   "stages": {
+    "addToCalendar": "కాలెండర్‌కు జోడించండి",
+    "nowPlaying": "ఇప్పుడు ప్లే చేస్తున్నారు",
+    "onTheRadio": "రేడియోలో",
+    "subtitles": "సబ్‌టైటిల్‌లు",
+    "subtitlesIn": "సబ్‌టైటిల్‌లు · {{language}}",
+    "showSubtitles": "సబ్‌టైటిల్‌లను చూపించండి",
+    "language": "భాష",
+    "asSpoken": "మాట్లాడిన విధంగా",
     "cancelConfirm": "“{{title}}” రద్దు చేయాలా? లింక్ పని చేయడం ఆగిపోతుంది.",
     "deleteRecordingConfirm": "ఈ ఆడియో రూమ్ రికార్డింగ్‌ను తొలగించాలా?",
     "deleteStage": "ఆడియో రూమ్‌ను తొలగించండి",

@@ -4606,6 +4606,14 @@
     "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
+    "addToCalendar": "Toevoegen aan agenda",
+    "nowPlaying": "Nu aan het spelen",
+    "onTheRadio": "Op de radio",
+    "subtitles": "Ondertitels",
+    "subtitlesIn": "Ondertitels · {{language}}",
+    "showSubtitles": "Ondertitels weergeven",
+    "language": "Taal",
+    "asSpoken": "Zoals gesproken",
     "cancelConfirm": "\"{{title}}\" annuleren? De link werkt niet meer.",
     "deleteRecordingConfirm": "Deze opname van de audioruimte verwijderen?",
     "deleteStage": "Audioruimte verwijderen",

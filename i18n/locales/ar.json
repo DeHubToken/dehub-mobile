@@ -4469,6 +4469,14 @@
     "filedOn": "فُتحت في {{date}}"
   },
   "stages": {
+    "addToCalendar": "إضافة إلى التقويم",
+    "nowPlaying": "يُشغَّل الآن",
+    "onTheRadio": "على الراديو",
+    "subtitles": "الترجمة النصية",
+    "subtitlesIn": "الترجمة النصية · {{language}}",
+    "showSubtitles": "إظهار الترجمة النصية",
+    "language": "اللغة",
+    "asSpoken": "كما تُقال",
     "cancelConfirm": "إلغاء «{{title}}»؟ سيتوقف الرابط عن العمل.",
     "deleteRecordingConfirm": "حذف تسجيل هذه الغرفة الصوتية؟",
     "deleteStage": "حذف الغرفة الصوتية",

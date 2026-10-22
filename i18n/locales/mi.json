@@ -4130,6 +4130,14 @@
     "noVoice": "Kāore he reo i tō pūrere mō tēnei reo."
   },
   "stages": {
+    "addToCalendar": "Tāpirihia ki te maramataka",
+    "nowPlaying": "I tenei wa ka takaro ahau",
+    "onTheRadio": "I runga i te reo irirangi",
+    "subtitles": "Ngā taitara",
+    "subtitlesIn": "Tuhinga o mua · {{language}}",
+    "showSubtitles": "Whakaaturia ngā taitara",
+    "language": "Reo",
+    "asSpoken": "Ka rite ki te korero",
     "cancelConfirm": "Whakakorea “{{title}}”? Ka mutu te mahi o te hono.",
     "deleteRecordingConfirm": "Mukua te hopunga o tēnei rūma ororongo?",
     "deleteStage": "Mukua te rūma ororongo",

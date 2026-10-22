@@ -4132,6 +4132,14 @@
     "noVoice": "ឧបករណ៍របស់អ្នកមិនមានសំឡេងសម្រាប់ភាសានេះទេ។"
   },
   "stages": {
+    "addToCalendar": "បន្ថែមទៅប្រតិទិន",
+    "nowPlaying": "កំពុងចាក់",
+    "onTheRadio": "តាមវិទ្យុ",
+    "subtitles": "ចំណងជើងរង",
+    "subtitlesIn": "ចំណងជើងរង · {{language}}",
+    "showSubtitles": "បង្ហាញចំណងជើងរង",
+    "language": "ភាសា",
+    "asSpoken": "ដូចដែលបាននិយាយ",
     "cancelConfirm": "បោះបង់ “{{title}}” ឬ? តំណនឹងលែងដំណើរការ។",
     "deleteRecordingConfirm": "លុបការថតបន្ទប់សំឡេងនេះ?",
     "deleteStage": "លុបបន្ទប់សំឡេង",

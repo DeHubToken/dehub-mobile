@@ -4136,6 +4136,14 @@
     "audio": "ஆடியோ"
   },
   "stages": {
+    "addToCalendar": "நாட்காட்டியில் சேர்க்கவும்",
+    "nowPlaying": "இப்போது இயக்கப்படுகிறது",
+    "onTheRadio": "வானொலியில்",
+    "subtitles": "வசனங்கள்",
+    "subtitlesIn": "வசனங்கள் · {{language}}",
+    "showSubtitles": "வசனங்களைக் காட்டு",
+    "language": "மொழி",
+    "asSpoken": "பேசப்பட்டபடி",
     "cancelConfirm": "\"{{title}}\" ரத்து செய்யவா? இணைப்பு செயல்படுவதை நிறுத்துகிறது.",
     "deleteRecordingConfirm": "இந்த ஆடியோ அறைப் பதிவை நீக்கவா?",
     "deleteStage": "ஆடியோ அறையை நீக்கு",

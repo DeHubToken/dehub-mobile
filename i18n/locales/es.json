@@ -4465,6 +4465,14 @@
     "filedOn": "Abierto el {{date}}"
   },
   "stages": {
+    "addToCalendar": "Añadir al calendario",
+    "nowPlaying": "Sonando ahora",
+    "onTheRadio": "En la radio",
+    "subtitles": "Subtítulos",
+    "subtitlesIn": "Subtítulos · {{language}}",
+    "showSubtitles": "Mostrar subtítulos",
+    "language": "Idioma",
+    "asSpoken": "Como se habla",
     "cancelConfirm": "¿Cancelar «{{title}}»? El enlace dejará de funcionar.",
     "deleteRecordingConfirm": "¿Eliminar esta grabación de la sala de audio?",
     "deleteStage": "Eliminar sala de audio",

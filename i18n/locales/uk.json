@@ -4497,6 +4497,14 @@
     "noVoice": "На вашому пристрої немає голосу для цієї мови."
   },
   "stages": {
+    "addToCalendar": "Додати до календаря",
+    "nowPlaying": "Зараз відтворюється",
+    "onTheRadio": "На радіо",
+    "subtitles": "Субтитри",
+    "subtitlesIn": "Субтитри · {{language}}",
+    "showSubtitles": "Показати субтитри",
+    "language": "Мова",
+    "asSpoken": "Як вимовляється",
     "cancelConfirm": "Скасувати \"{{title}}\"? Посилання перестане працювати.",
     "deleteRecordingConfirm": "Видалити запис цієї аудіокімнати?",
     "deleteStage": "Видалити аудіокімнату",

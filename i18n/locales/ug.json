@@ -4131,6 +4131,14 @@
     "noVoice": "ئۈسكۈنىڭىزدە بۇ تىل ئۈچۈن ئاۋاز يوق."
   },
   "stages": {
+    "addToCalendar": "Takvimga qo'shing",
+    "nowPlaying": "ھازىر ئوينىماقتا",
+    "onTheRadio": "رادىيودا",
+    "subtitles": "Yozuvlar",
+    "subtitlesIn": "باش بەتتىكى تېما:{{language}}",
+    "showSubtitles": "باش ئاتالغۇلارنى كۆرسىتىش",
+    "language": "تىل",
+    "asSpoken": "سۆزلەنگەندەك",
     "cancelConfirm": "«{{title}}» بىكار قىلىنسۇنمۇ؟ ئۇلانما ئىشلىمەيدىغان بولىدۇ.",
     "deleteRecordingConfirm": "بۇ ئاۋازلىق ئۆينىڭ خاتىرىسى ئۆچۈرۈلسۇنمۇ؟",
     "deleteStage": "ئاۋازلىق ئۆينى ئۆچۈرۈش",

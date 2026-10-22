@@ -4140,6 +4140,14 @@
     "noVoice": "Dispozitivul tău nu are o voce pentru această limbă."
   },
   "stages": {
+    "addToCalendar": "Adaugă în calendar",
+    "nowPlaying": "Se redă acum",
+    "onTheRadio": "La radio",
+    "subtitles": "Subtitrări",
+    "subtitlesIn": "Subtitrări · {{language}}",
+    "showSubtitles": "Afișează subtitrări",
+    "language": "Limbă",
+    "asSpoken": "Așa cum se vorbește",
     "cancelConfirm": "Anulezi \"{{title}}\"? Linkul nu mai funcționează.",
     "deleteRecordingConfirm": "Ștergi această înregistrare a camerei audio?",
     "deleteStage": "Șterge camera audio",

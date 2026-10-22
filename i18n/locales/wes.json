@@ -4112,6 +4112,14 @@
     "noVoice": "Ya phone no get voice for dis language."
   },
   "stages": {
+    "addToCalendar": "Add to calendar",
+    "nowPlaying": "Now playing",
+    "onTheRadio": "On the radio",
+    "subtitles": "Subtitles",
+    "subtitlesIn": "Subtitles · {{language}}",
+    "showSubtitles": "Show subtitles",
+    "language": "Language",
+    "asSpoken": "As spoken",
     "cancelConfirm": "You wan cancel “{{title}}”? Di link no go work again.",
     "deleteRecordingConfirm": "You wan delete di recording fo dis audio room?",
     "deleteStage": "Delete audio room",

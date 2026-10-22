@@ -4128,6 +4128,14 @@
     "noVoice": "你的设备没有这种语言的语音。"
   },
   "stages": {
+    "addToCalendar": "添加到日历",
+    "nowPlaying": "正在播放",
+    "onTheRadio": "在广播中",
+    "subtitles": "字幕",
+    "subtitlesIn": "字幕 · {{language}}",
+    "showSubtitles": "显示字幕",
+    "language": "语言",
+    "asSpoken": "如实播放",
     "cancelConfirm": "取消“{{title}}”？链接就不能用咧。",
     "deleteRecordingConfirm": "删了这个语音房的录音？",
     "deleteStage": "删除语音房",

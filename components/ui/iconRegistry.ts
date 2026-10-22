@@ -42,6 +42,7 @@ import BugIcon from "lucide-react-native/dist/esm/icons/bug";
 import CalendarIcon from "lucide-react-native/dist/esm/icons/calendar";
 import CalendarClockIcon from "lucide-react-native/dist/esm/icons/calendar-clock";
 import CalendarDaysIcon from "lucide-react-native/dist/esm/icons/calendar-days";
+import CalendarPlusIcon from "lucide-react-native/dist/esm/icons/calendar-plus";
 import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
 import CaptionsIcon from "lucide-react-native/dist/esm/icons/captions";
 import CaseUpperIcon from "lucide-react-native/dist/esm/icons/case-upper";
@@ -335,6 +336,7 @@ export const iconRegistry = {
   Calendar: CalendarIcon,
   CalendarClock: CalendarClockIcon,
   CalendarDays: CalendarDaysIcon,
+  CalendarPlus: CalendarPlusIcon,
   Camera: CameraIcon,
   Captions: CaptionsIcon,
   CaseUpper: CaseUpperIcon,

@@ -4238,6 +4238,14 @@
     "filedOn": "Eingereicht am {{date}}"
   },
   "stages": {
+    "addToCalendar": "Zum Kalender hinzufügen",
+    "nowPlaying": "Wird gerade abgespielt",
+    "onTheRadio": "Im Radio",
+    "subtitles": "Untertitel",
+    "subtitlesIn": "Untertitel · {{language}}",
+    "showSubtitles": "Untertitel anzeigen",
+    "language": "Sprache",
+    "asSpoken": "Wie gesprochen",
     "cancelConfirm": "\"{{title}}\" abbrechen? Der Link funktioniert nicht mehr.",
     "deleteRecordingConfirm": "Diese Audioraum-Aufzeichnung löschen?",
     "deleteStage": "Audioraum löschen",

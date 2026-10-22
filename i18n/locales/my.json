@@ -4138,6 +4138,14 @@
     "noVoice": "သင့်စက်တွင် ဤဘာသာစကားအတွက် အသံမရှိပါ။"
   },
   "stages": {
+    "addToCalendar": "ပြက္ခဒိန်ထဲသို့ ပေါင်းထည့်ပါ",
+    "nowPlaying": "အခုတော့ Play",
+    "onTheRadio": "ရေဒီယိုပေါ်မှာ",
+    "subtitles": "ခေါင်းစဉ်ခွဲများ",
+    "subtitlesIn": "ခေါင်းစဉ်ခွဲများ · {{language}}",
+    "showSubtitles": "ခေါင်းစဉ်ခွဲများကို ပြပါ",
+    "language": "ဘာသာစကား",
+    "asSpoken": "ပြောခဲ့သကဲ့သို့",
     "cancelConfirm": "“{{title}}” ကို ပယ်ဖျက်မလား။ လင့်ခ် အလုပ်မလုပ်တော့ပါ။",
     "deleteRecordingConfirm": "ဤအသံခန်း၏ အသံဖမ်းချက်ကို ဖျက်မလား။",
     "deleteStage": "အသံခန်း ဖျက်ရန်",

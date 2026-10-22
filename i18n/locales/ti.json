@@ -4111,6 +4111,14 @@
     "noVoice": "መሳርሒኻ ነዚ ቋንቋ ዝኸውን ድምጺ የብሉን።"
   },
   "stages": {
+    "addToCalendar": "ናብ ኣቆጣጠር ኣክል",
+    "nowPlaying": "ሕጂ ድማ ክጻወት እየ ።",
+    "onTheRadio": "ኣብ ሬድዮ",
+    "subtitles": "ንኡስ ዓንቀጻት",
+    "subtitlesIn": "ንኡስ ዓንቀጻት · {{language}}",
+    "showSubtitles": "ንኡስ ኣርእስትታት ኣርኢ",
+    "language": "ቋንቋ",
+    "asSpoken": "ከም እተዛረበ",
     "cancelConfirm": "“{{title}}” ይሰረዝ ድዩ? እቲ መላግቦ ደጊም ኣይሰርሕን።",
     "deleteRecordingConfirm": "ናይዚ ናይ ድምጺ ክፍሊ ቅዳሕ ይደምሰስ ድዩ?",
     "deleteStage": "ናይ ድምጺ ክፍሊ ደምስስ",

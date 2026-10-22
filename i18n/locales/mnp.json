@@ -4127,6 +4127,11 @@
     "noVoice": "你的设备无此语言的语音。"
   },
   "stages": {
+    "addToCalendar": "加入日曆",
+    "subtitles": "字幕",
+    "subtitlesIn": "字幕 · {{language}}",
+    "showSubtitles": "顯示字幕",
+    "language": "語言",
     "cancelConfirm": "取消“{{title}}”？链接就用弗了。",
     "deleteRecordingConfirm": "删掉这个语音房其录音？",
     "deleteStage": "删除语音房",
