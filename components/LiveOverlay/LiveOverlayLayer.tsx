@@ -22,6 +22,7 @@ import type { PublicOverlay } from "../../libs/live-overlay/types";
 import { OverlayWidgetView } from "./OverlayWidgets";
 import { createRuleBus, RuleAudio, RuleBusContext } from "./ruleBus";
 import { PollContext, PollWidget, useStreamPoll } from "./poll";
+import { OverlayCreatorContext, SubathonContext, useStreamSubathon } from "./subathon";
 import { parseRuleFired } from "../../libs/live-overlay/rules";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { createOverlayEventBus, OverlayChatContext, OverlayEventContext, roomUser, type OverlayChatLine } from "./overlayEvents";
@@ -32,6 +33,8 @@ interface Props {
   /** The picture's own size, as the player reports it. Zero until the first frame. */
   videoSize: { width: number; height: number };
   initialViewers: number;
+  /** The creator's address, for widgets that read the creator's own data (points). */
+  creator?: string | null;
   /** The stream chat the player already holds, for a chat box widget. */
   chatMessages?: LiveChatMessageData[];
 }
@@ -63,7 +66,7 @@ function payloadStreamId(payload: any): string | undefined {
   return id == null ? undefined : String(id);
 }
 
-export default function LiveOverlayLayer({ streamId, overlay, videoSize, initialViewers, chatMessages }: Props) {
+export default function LiveOverlayLayer({ streamId, overlay, videoSize, initialViewers, chatMessages, creator }: Props) {
   const { on } = useWebSocket();
   const queryClient = useQueryClient();
   const bus = useMemo(() => createOverlayEventBus(), []);
@@ -86,6 +89,7 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
   // says: over an OBS stream it lands on the burned-in copy and covers it with
   // buttons. Where the creator placed it, or the default spot.
   const polls = useStreamPoll(streamId, true);
+  const subathon = useStreamSubathon(streamId, overlay.subathon);
   const pollWidget = useMemo(
     () => overlay.widgets.find((w) => w.enabled && w.kind === "poll") ?? newWidget("poll", []),
     [overlay],
@@ -183,6 +187,8 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
 
   return (
     <OverlayEventContext.Provider value={bus}>
+    <SubathonContext.Provider value={subathon}>
+    <OverlayCreatorContext.Provider value={creator ?? ""}>
       <OverlayChatContext.Provider value={chat}>
         <RuleBusContext.Provider value={rules}>
           {overlay.renderIn === "app" ? <RuleAudio playLive /> : null}
@@ -223,6 +229,8 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
           ) : null}
         </RuleBusContext.Provider>
       </OverlayChatContext.Provider>
+    </OverlayCreatorContext.Provider>
+    </SubathonContext.Provider>
     </OverlayEventContext.Provider>
   );
 }

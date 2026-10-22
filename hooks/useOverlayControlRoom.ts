@@ -3,6 +3,7 @@ import { useWebSocket } from "../context/WebSocketContext";
 import { roomUser, type LiveRoomEvent } from "../components/LiveOverlay/overlayEvents";
 import { parseRuleFired, type RuleFired } from "../libs/live-overlay/rules";
 import { parsePoll, type LivePoll } from "../libs/live-overlay/polls";
+import { parseSubathonUpdate, type SubathonUpdate } from "../components/LiveOverlay/subathon";
 
 /**
  * A creator's overlay control room, `overlay:<token>`. The twin of dehubweb's
@@ -22,6 +23,8 @@ export function useOverlayControlRoom(
   onRule?: (fired: RuleFired) => void,
   /** A live poll moved. The socket is shared, so the caller checks it is theirs. */
   onPoll?: (poll: LivePoll) => void,
+  /** The creator's subathon started, moved or stopped. */
+  onSubathon?: (update: SubathonUpdate) => void,
 ) {
   const { emit, on } = useWebSocket();
   const handler = useRef(onTest);
@@ -30,6 +33,8 @@ export function useOverlayControlRoom(
   ruleHandler.current = onRule;
   const pollHandler = useRef(onPoll);
   pollHandler.current = onPoll;
+  const subathonHandler = useRef(onSubathon);
+  subathonHandler.current = onSubathon;
 
   useEffect(() => {
     if (!token) return;
@@ -69,6 +74,10 @@ export function useOverlayControlRoom(
       const poll = parsePoll(data);
       if (poll) pollHandler.current?.(poll);
     });
+    // The control room's copy has no stream id; the stream room's copy (for viewers) does.
+    const offSubathon = on("stream.subathon", (data: any) => {
+      if (data?.streamId == null) subathonHandler.current?.(parseSubathonUpdate(data));
+    });
     const offConnected = on("connected", join);
     join();
 
@@ -76,6 +85,7 @@ export function useOverlayControlRoom(
       offTest();
       offRule();
       offPoll();
+      offSubathon();
       offConnected();
       emit("overlay.leave", { token });
     };

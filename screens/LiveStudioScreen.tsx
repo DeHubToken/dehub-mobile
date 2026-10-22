@@ -28,6 +28,9 @@ import { RulesEditor } from "../components/LiveStudio/RulesEditor";
 import { PollEditor } from "../components/LiveStudio/PollEditor";
 import { RecapSection } from "../components/LiveStudio/RecapSection";
 import { QuickControls } from "../components/LiveStudio/QuickControls";
+import { SubathonEditor } from "../components/LiveStudio/SubathonEditor";
+import { PointsSection } from "../components/LiveStudio/PointsSection";
+import { OverlayCreatorContext, SubathonContext } from "../components/LiveOverlay/subathon";
 import { PollContext } from "../components/LiveOverlay/poll";
 import { samplePoll, type LivePoll } from "../libs/live-overlay/polls";
 import { ModerationEditor } from "../components/LiveStudio/ModerationEditor";
@@ -39,6 +42,8 @@ import type { OverlayRect, OverlayWidget } from "../libs/live-overlay/types";
 import {
   getMyOverlay,
   getMyPoll,
+  getMySubathon,
+  type MySubathon,
   rotateOverlayToken,
   saveMyOverlay,
   sendOverlayTest,
@@ -164,6 +169,28 @@ export default function LiveStudioScreen() {
       cancelled = true;
     };
   }, []);
+  // The creator's subathon, kept current by the control room. The preview runs
+  // a stand-in countdown so the timer can be placed offline.
+  const [subathon, setSubathon] = useState<MySubathon | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    getMySubathon()
+      .then((s) => {
+        if (!cancelled) setSubathon(s);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const previewSubathon = useMemo(
+    () =>
+      subathon?.running && subathon.endsAt
+        ? { running: true, endsAt: subathon.endsAt, lastAdd: null }
+        : { running: true, endsAt: new Date(Date.now() + 3_600_000).toISOString(), lastAdd: null },
+    [subathon],
+  );
+
   const previewPoll = useMemo(
     () =>
       poll ??
@@ -189,6 +216,7 @@ export default function LiveStudioScreen() {
           .then(setPoll)
           .catch(() => undefined);
     },
+    (update) => setSubathon((prev) => (prev ? { ...prev, running: update.running, endsAt: update.endsAt } : prev)),
   );
 
   if (isLoading) {
@@ -252,6 +280,8 @@ export default function LiveStudioScreen() {
             <RuleBusContext.Provider value={ruleBus}>
               <RuleAudio playLive={false} />
               <PollContext.Provider value={{ poll: previewPoll, myVote: null, interactive: false }}>
+              <SubathonContext.Provider value={previewSubathon}>
+              <OverlayCreatorContext.Provider value={myAddress ?? ""}>
                 <StudioStage
                   widgets={widgets}
                   portrait={portrait}
@@ -260,6 +290,8 @@ export default function LiveStudioScreen() {
                   onSelect={setSelectedId}
                   onMove={move}
                 />
+              </OverlayCreatorContext.Provider>
+              </SubathonContext.Provider>
               </PollContext.Provider>
             </RuleBusContext.Provider>
           </OverlayEventContext.Provider>
@@ -331,6 +363,14 @@ export default function LiveStudioScreen() {
 
         <Section title={t("liveStudio.polls.title")}>
           <PollEditor poll={poll} onPoll={setPoll} />
+        </Section>
+
+        <Section title={t("liveStudio.subathon.title")}>
+          <SubathonEditor subathon={subathon} onChange={setSubathon} />
+        </Section>
+
+        <Section title={t("liveStudio.points.title")}>
+          <PointsSection address={myAddress} />
         </Section>
 
         <Section title={t("liveStudio.rules.title")}>

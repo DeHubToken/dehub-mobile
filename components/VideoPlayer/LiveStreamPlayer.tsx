@@ -1862,6 +1862,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             videoSize={videoSize}
             initialViewers={liveViewers ?? 0}
             chatMessages={liveChat.messages}
+            creator={creator?.walletAddress || creator?.address}
           />
         ) : null}
 
