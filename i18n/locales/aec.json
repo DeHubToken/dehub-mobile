@@ -9341,6 +9341,34 @@
       "webhookUrl": "عنوان ويب هوك",
       "webhookHint": "ويب هوك من ديسكورد أو سلاك، أو أي عنوان https بيمتقبل POST.",
       "webhookText": "نص يرسل"
+    },
+    "moderation": {
+      "intro": "قواعد تفاعل في استرييماتك كلها. ما بتصلش ل تفاعل ديهوب الرئيسي: لو تمنعهم هنا، ممكن يتكلموا في كل مكان تاني.",
+      "loadFailed": "لا يمكن تحميل إعدادات الإدارة. حاول إعادة تحميل الصفحة.",
+      "saved": "قواعد التفاعل محفوظة",
+      "saveFailed": "لما بتحفظ التغير ده مش ممكن",
+      "slowMode": "النمط السريع",
+      "slowModeHint": "كم دقيقة بين كل رسالة. انت ومديريك ما بتتوقفش",
+      "seconds_one": "{{count}} ثانية",
+      "seconds_other": "{{count}} ثواني",
+      "subscribersOnly": "المشتركين بس",
+      "bannedWordsHint": "فصل بالفراغات. كتابتها حرف حرف ما بتغلبها",
+      "wordAction": "لو شخص يستخدم واحدة",
+      "wordBlock": "توقف الرسالة",
+      "moderatorNotFound": "لش مفيش حساب باسم ده",
+      "log": "الإجراءات الأخيرة",
+      "noLog": "شوفنا بعدين",
+      "actions": {
+        "timeout_one": "{{actor}} بقت مشغولة {{target}} ل{{count}} ثانية",
+        "timeout_other": "{{actor}} مَشَغَلَ{{target}} ل{{count}} دَقَائِقْ",
+        "unban": "{{actor}} مَش مَغْبَنَ {{target}}",
+        "word-blocked": "قفلت رسالة من \"{{target}}\" عن \"{{word}}\"",
+        "word-timeout_other": "تغيبت {{target}} ل{{count}} ثانية من \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "failed": "لما عملش. حاول تاني.",
+    "title": "معتدل"
   }
 }

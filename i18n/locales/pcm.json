@@ -9008,6 +9008,44 @@
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
       }
+    },
+    "moderation": {
+      "title": "Chat moderation",
+      "intro": "Wahala na dem rule for chat under all my stream. Na dem never go reach DeHub main chat: any person you ban here still go talk anywhere else.",
+      "save": "Save chat rules",
+      "saved": "Chat rules saved.",
+      "saveFailed": "Na dem change no go save for you.",
+      "slowMode": "Slow mode",
+      "slowModeHint": "How long each person dey wait for message. You and your moderators no dey wait at all.",
+      "off": "Off",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "followersOnly": "Followers only",
+      "subscribersOnly": "Subscribers only",
+      "subscribersOnlyHint": "Overrides followers only.",
+      "bannedWords": "Banned words",
+      "moderators": "Moderators",
+      "moderatorsHint": "Dem can time out and ban people watchin' your stream. Dem can't do anything to you or to each other.",
+      "addModerator": "Add",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator added.",
+      "removeModerator": "Remove moderator",
+      "noModerators": "No moderators yet.",
+      "unban": "Unban",
+      "noBans": "Nobody is banned.",
+      "log": "Recent actions",
+      "noLog": "Nothing yet.",
+      "actions": {
+        "ban": "{{actor}} banned {{target}}",
+        "unban": "{{actor}} unbanned {{target}}"
+      }
     }
+  },
+  "liveChatModeration": {
+    "makeModerator": "Make moderator",
+    "timedOut": "Timed out.",
+    "failed": "Na dey go wrong. Try again.",
+    "youAreBanned": "Wahala! You no go chat inside dis creator's stream.",
+    "title": "Moderate"
   }
 }

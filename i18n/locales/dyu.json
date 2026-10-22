@@ -9289,6 +9289,57 @@
       },
       "audience": "Jɔn tun be se k'a miiri ko a bena bɔ?",
       "webhookHint": "Webhook min be weele ko Discord wala Slack, walima https ka ladɛrɛsi min be sɔn ka baara dɔ kɛ."
+    },
+    "moderation": {
+      "loadFailed": "I nin ka sɛbɛn tɛ se ka dɔn. Fɔ̀li jɔ̀ kɔ̀nɔ̀ ka ɲɛ̀nɛ̀.",
+      "save": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+      "saved": "O kama, an ka kan ka baro kɛ ni ɲɔgɔn ye.",
+      "saveFailed": "O yɛlɛmani tun tɛ se ka kisi.",
+      "slowMode": "Modɛli min be yɛlɛma dɔɔni dɔɔni",
+      "slowModeHint": "Mɔgɔ minw be to ka kuma, olu be kɔnɔni kɛ fɔɔ tuma juman? Aw ni aw ka lasigidenw tɛna kɔnɔni kɛ abada.",
+      "off": "O kɔ, a bɔra",
+      "seconds_other": "{{count}} segɔn",
+      "followersOnly": "Mɔgɔ minw be tugu u kɔ",
+      "subscribersOnlyHint": "Mɔgɔ minw be tugu a kɔ, olu dɔrɔn lo ka kan ka tugu a kɔ.",
+      "bannedWords": "Kuma minw man kan ka fɔ",
+      "bannedWordsHint": "Ka kuma dɔ sɛbɛ ka bɔ bataki dɔ kɔnɔ, o tɛ se ka yɛlɛma.",
+      "wordAction": "Ni mɔgɔ dɔ ye dɔ ta",
+      "wordBlock": "A ka kuma to yen",
+      "wordTimeout": "Aw ye aw yɛrɛ kɔrɔsi, aw ye aw yɛrɛ kɔrɔsi.",
+      "moderators": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
+      "moderatorsHint": "U be se ka wagati ta ka ban i ka filɛli la. U tɛ se ka baara kɛ aw ni ɲɔgɔn cɛ.",
+      "addModerator": "O kɔ,",
+      "usernamePlaceholder": "Mɔgɔ tɔgɔ",
+      "moderatorAdded": "A ye yɛlɛmanibaw kɛ.",
+      "moderatorNotFound": "A ma foyi fɔ o tɔgɔ koo la.",
+      "removeModerator": "Modèle: Modèle",
+      "noModerators": "O tɛ se ka kɛ halibi.",
+      "banned": "I ka fɔɲɔ ɲimi, i ka fɔɲɔ ɲimi,",
+      "unban": "O ye kooba ye.",
+      "noBans": "Mɔgɔ si man kan ka ban.",
+      "log": "Sanni dɔɔni, u ye koo dɔw kɛ.",
+      "noLog": "O tɛ foyi ye tugun.",
+      "actions": {
+        "timeout_other": "{{actor}} timed out{{target}} for {{count}} segindi",
+        "ban": "{{actor}} banned {{target}}",
+        "unban": "{{actor}} unbanned {{target}}",
+        "moderator-added": "{{target}}Becoming a Moderator ka ɲɛsin mɔgɔ wɛrɛw ma",
+        "moderator-removed": "{{target}} No longer a moderator"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Dɔɔni fɔlɔ",
+    "timeout10m": "Dakun 10 tɛmɛna.",
+    "timeout1h": "A ka kan ka lɛri kelen kɛ",
+    "ban": "O kɔ, a ye sira di a ma ko a ka taga.",
+    "makeModerator": "Moderna ka baara",
+    "timedOut": "O ye wagati ɲuman ye.",
+    "banned": "O kɔ, u y'a fɔ a ye ko a ka taga n'a ye.",
+    "madeModerator": "Sisan, a ye mɔgɔ dɔ ye min be koow ɲɛnabɔ.",
+    "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+    "youAreBanned": "I ka tɛ sɛbɛn cɛ ni creator ye stream la",
+    "youAreTimedOut": "I be bɔ waati dɔ la",
+    "title": "Ka kɛ mɔgɔ majiginin ye"
   }
 }

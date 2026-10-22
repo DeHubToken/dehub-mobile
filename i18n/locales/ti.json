@@ -9311,6 +9311,59 @@
         "magic-spell": "ናይ ማግኛ ፊደል",
         "shhh": "ኣብራህ"
       }
+    },
+    "moderation": {
+      "title": "ናይ ቻት ሚዛናዊነት",
+      "intro": "ኣብ ትሕቲ ኩሉ ጅረታትካ ናይ ቻት ሕግታት ። ናብ ቀንዲ ቻት DeHub ኣይበጽሑን እዮም ፦ ኣብዚ እትእግድ ሰብ ፡ ኣብ ካልእ ቦታታት ኪዛረብ ይኽእል እዩ ።",
+      "loadFailed": "እቲ ናይ ምትዕርራይ ኣቀማምጣኻ ክስረዝ ኣይከኣለን ። ነቲ ገጽ ደጊምካ ፈትኖ ።",
+      "save": "ናይ ቻት ሕግታት ኣድሕን",
+      "saved": "ናይ ቻት ሕግታት ተድሕን ።",
+      "saveFailed": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ።",
+      "slowMode": "ቀስ ብቐስ ኣገባብ",
+      "slowModeHint": "ነፍሲ ወከፍ ተመልካች ኣብ መንጎ መልእኽትታት ክሳዕ ክንደይ እዩ ዚጽበ ፧ ንስኻን መምህራንካን ፈጺምኩም ኣይትጸበዩ ።",
+      "off": "ወጺእካ",
+      "seconds_one": "{{count}} ካልኣይቲ",
+      "seconds_other": "{{count}} ሰከንድ",
+      "followersOnly": "ተኸታተልቲ ጥራይ",
+      "subscribersOnly": "ተመዝጋቢታት ጥራይ",
+      "subscribersOnlyHint": "ሰዓብቲ ጥራይ እዮም ዚሓልፉ ።",
+      "bannedWords": "እተኸልከለ ቓላት",
+      "bannedWordsHint": "ምስ ኮምፓስ ተፈልዩ ፡ ደብዳበ ብጽሑፍ ምጽሓፍ ፡ ኣብ ዙርያኡ ኣይርከብን እዩ ።",
+      "wordAction": "ሓደ ሰብ ምስ ዚጥቀመሉ",
+      "wordBlock": "መልእኽቲ ደው በል",
+      "wordTimeout": "ንነዊሕ እዋን ተጸበዩ",
+      "moderators": "ሞዴራተራት",
+      "moderatorsHint": "ኣብ ገማግም ባሕሪኻ ንተዓዘብቲ ግዜ ክገድፉ ይኽእሉ እዮም ። ኣብ ልዕሊኻ ወይ ኣብ ልዕሊኻ ኺንቀሳቐሱ ኣይክእሉን እዮም ።",
+      "addModerator": "ኣክሊል",
+      "usernamePlaceholder": "ስም ተጠቃሚ",
+      "moderatorAdded": "እቲ ኣሰናዳኢ ወሲኹ ።",
+      "moderatorNotFound": "ብዛዕባ እቲ ናይ ተጠቃሚ ስም ዝኾነ ሕሳብ የለን ።",
+      "removeModerator": "መለለዪ ኣወግድ",
+      "noModerators": "እቲ ዝተዋሃበ ቁጽሪ ገና ኣይተገለጸን ።",
+      "banned": "ካብ ፈሳሲኻ ተፈልዩ",
+      "unban": "ዘይተፈልጠ",
+      "noBans": "ሓደ እኳ ኣይእገድን እዩ ።",
+      "log": "ናይ ቀረባ ስጉምቲታት",
+      "noLog": "ገና ገለ ነገር የለን ።",
+      "actions": {
+        "ban": "{{actor}} ክልኩል {{target}}",
+        "moderator-added": "{{target}} መማህረሪ ኮይኑ",
+        "moderator-removed": "{{target}} ሕጂ ኣማሓዳሪ ኣይኮነን"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "ቅድሚ ምኻድኩም ክልተ ደቒቕ ተቐመጥዎ ።",
+    "timeout10m": "10 ደቓይቕ ሓሊፉ",
+    "timeout1h": "ኣብ ውሽጢ ሓደ ሰዓት ጥራይ እዩ እቲ ጽርግያ ተኸፊቱ ።",
+    "ban": "ካብ'ዚ ዥረት'ዚ ተኣጊዱ",
+    "makeModerator": "ኣስተማቕራ ግበር",
+    "timedOut": "ግዜ ኣኺሉ እዩ ።",
+    "banned": "ካብዞም ሩባታት እዚኣቶም ተፈልዮም እዮም ።",
+    "madeModerator": "ሕጂ ድማ ኣማሓዳሪ እዩ ።",
+    "failed": "በጃኻ ኣይትጨነቕ ፡ ከም'ዚ... እንደገና ይዞር ኣሎ ።",
+    "youAreBanned": "ኣብዚ ፈጣሪ ዥረት ክትዘራረብ ኣይትኽእልን ኢኻ",
+    "youAreTimedOut": "ንነዊሕ እዋን ተጸሚድካ",
+    "title": "ሚዛናዊ"
   }
 }

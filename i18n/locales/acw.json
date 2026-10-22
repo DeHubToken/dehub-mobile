@@ -9308,6 +9308,51 @@
         "ba-dum-tish": "بام ديم تيش",
         "shhh": "ششش"
       }
+    },
+    "moderation": {
+      "title": "إدارة الدردشة",
+      "intro": "قواعد الدردشة تحت كل ستريماتك، ما بتصلش لدهوب الرئيسية، لو حبطك شخص هنا ممكن يتكلم في كل مكان تاني.",
+      "loadFailed": "الاعدادات دي مش بتحمّلش، تحديث الصفحة عشان تجرب تاني",
+      "saved": "قواعد الدردشة محفوظة.",
+      "saveFailed": "ما بقتش تبقى كده.",
+      "slowMode": "النمط السريع",
+      "slowModeHint": "كده الوقت ما بين الرسائل بين كل مشاهد، انت ومتوسطيك مش عايزين تروحوا على الانتظار.",
+      "seconds_one": "{{count}} دقيقه تانيه",
+      "seconds_other": "{{count}} ثانية",
+      "bannedWordsHint": "فَسْفِطِهْ بِفَاسِلَةِ عَامَّةٍ، وَلاَ يُسْتَغْنَى بِتَفْسِيرِ حَرْفٍ حَرْفًا عَنِّهَا.",
+      "wordAction": "إِذا ماَ يُستَخدِمَ أَحَدُكُم وَاحِدَةً",
+      "wordTimeout": "اوقفوا و عزلواهم دقيقة",
+      "moderators": "مُعتدِلين",
+      "moderatorsHint": "بيلقوا عزلوا و يحرموا المشاهدين في ستريماتك. ما بيشتغلوا علىك ولا على بعضهم",
+      "addModerator": "إضيف",
+      "usernamePlaceholder": "اسم المستخدم",
+      "moderatorAdded": "معتدل مضافة.",
+      "moderatorNotFound": "ما فية حساب باسم ده.",
+      "removeModerator": "إزالة معتدل",
+      "noModerators": "ما فية معتدلين بعد",
+      "banned": "محروم من ستريماتك",
+      "unban": "إلغاء الحظر",
+      "noBans": "ما فية محظورين.",
+      "log": "أعمال حديثة",
+      "noLog": "ما فية شي بعد",
+      "actions": {
+        "timeout_one": "{{actor}} عزل {{target}} ل{{count}} ثانية",
+        "timeout_other": "{{actor}} عزل {{target}} ل{{count}} ثواني",
+        "ban": "{{actor}} حرم {{target}}",
+        "unban": "{{actor}} رفع الحظر عن {{target}}",
+        "moderator-added": "{{target}} أصبح معتدل",
+        "moderator-removed": "{{target}} ما هو معتدلش",
+        "word-blocked": "وقف رسالة من {{target}} عن \"{{word}}\"",
+        "word-timeout_one": "عزل {{target}} ل{{count}} ثانية عن \"{{word}}\"",
+        "word-timeout_other": "عزل {{target}} ل{{count}} ثواني عن \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "دقيقه زى ما",
+    "timeout10m": "زمن عطله 10 دقايق",
+    "timeout1h": "زمن عطله ساعة واحدة",
+    "failed": "ما عملش. حاول من جديد.",
+    "youAreBanned": "ما بتستطيعش تتكلمش في ستريمات المبدع ده"
   }
 }

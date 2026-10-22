@@ -9294,6 +9294,31 @@
         "ooh-man": "Ooh (阿𠊎)",
         "ohh-girl": "Ohh (女仔)"
       }
+    },
+    "moderation": {
+      "saveFailed": "𠮷𠮷，你的改動無法儲存喔。",
+      "seconds_other": "{{count}} 秒",
+      "subscribersOnlyHint": "過濾追蹤者喔。",
+      "wordTimeout": "停下來，先罰他們一分鐘。",
+      "moderatorAdded": "監察員被添加。",
+      "moderatorNotFound": "没有这个用户名的账户。",
+      "noModerators": "還無版主",
+      "noLog": "啥都沒有喔。",
+      "actions": {
+        "timeout_one": "{{actor}} 過時{{target}} 了{{count}} 秒",
+        "timeout_other": "{{actor}} 過時{{target}} 了{{count}} 秒",
+        "unban": "{{actor}} 禁言前 {{target}}",
+        "moderator-added": "{{target}} 成了个管理员。",
+        "word-timeout_other": "Timed out {{target}} 經過 {{count}} 秒鐘，{{word}}"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "超时1分钟",
+    "timeout10m": "10分錶停下來。",
+    "timeout1h": "1個鐘頭超時囉",
+    "ban": "禁止这些流媒体",
+    "failed": "那个没有工作。再试一次。",
+    "youAreTimedOut": "你剛剛超時一陣子"
   }
 }

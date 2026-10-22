@@ -9190,6 +9190,58 @@
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
       }
+    },
+    "moderation": {
+      "title": "Chat moderation",
+      "intro": "Rulz fo chat unda all of my streamz: dem no go reach DeHub main chat: if you ban here, you still go fit talk everywia.",
+      "loadFailed": "Na my moderation settings no go load wey. Come back page wey, try again.",
+      "save": "Save chat rules",
+      "saved": "Chat rules saved.",
+      "saveFailed": "Wetin you try save no go save wey.",
+      "slowMode": "Slow mode",
+      "slowModeHint": "Wetin time each viewer go wait for message come. You and your moderators no go wait at all.",
+      "off": "Off",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "followersOnly": "Followers only",
+      "subscribersOnly": "Subscribers only",
+      "subscribersOnlyHint": "Overrides followers only.",
+      "bannedWords": "Banned words",
+      "wordTimeout": "Stop dem now and time dem out fo’ one minute",
+      "moderators": "Moderator",
+      "moderatorsHint": "Dem can time out and ban viewer fo’ your stream. Dem no go act on you or on each other.",
+      "addModerator": "Add",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator add.",
+      "moderatorNotFound": "No account wit’ dat username.",
+      "removeModerator": "Remove moderator",
+      "noModerators": "No moderator yet.",
+      "banned": "Ban fo’ your stream",
+      "unban": "Unban",
+      "noBans": "Nobody ban yet.",
+      "log": "Recent action",
+      "noLog": "Nothing yet.",
+      "actions": {
+        "timeout_one": "{{actor}} time out {{target}} fo’ {{count}} second",
+        "timeout_other": "{{actor}} time out {{target}} fo’ {{count}} seconds",
+        "ban": "{{actor}} ban {{target}}",
+        "unban": "{{actor}} unban {{target}}",
+        "moderator-added": "{{target}} become a moderator",
+        "moderator-removed": "{{target}} no longer a moderator",
+        "word-blocked": "Stop message fo’ {{target}} fo’ \"{{word}}\"",
+        "word-timeout_one": "Time out {{target}} fo’ {{count}} second fo’ \"{{word}}\"",
+        "word-timeout_other": "Time out {{target}} fo’ {{count}} seconds fo’ \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1h": "Tym out fo 1 hour.",
+    "makeModerator": "Make moderator",
+    "timedOut": "Timed out.",
+    "madeModerator": "E go be moderator now.",
+    "failed": "Na go no dey work. Try again.",
+    "youAreBanned": "Wah you no go chat wey dis creator dey stream, eh?",
+    "youAreTimedOut": "Mun ya na time out for a moment.",
+    "title": "Moderate"
   }
 }
