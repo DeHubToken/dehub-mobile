@@ -30,6 +30,7 @@ import { ChainId } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import type { AppStackParamList } from "../navigation/types";
+import { DHB_SALES_PAUSED } from "../libs/dhb-sales";
 
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
@@ -102,7 +103,8 @@ const DpayScreen: React.FC = () => {
       const baseMap = baseKey != null ? balanceRoot?.[baseKey] : null;
       const dhbKey = baseMap ? (baseMap['DHB'] !== undefined ? 'DHB' : (baseMap['dhb'] !== undefined ? 'dhb' : undefined)) : undefined;
       const supVal = dhbKey ? Number(baseMap[dhbKey]) : undefined;
-      if (Number.isFinite(supVal as number)) setSupplyAmount(supVal as number);
+      if (DHB_SALES_PAUSED) setSupplyAmount(0);
+      else if (Number.isFinite(supVal as number)) setSupplyAmount(supVal as number);
       else if (supVal === 0) setSupplyAmount(0);
     } catch {}
   };
