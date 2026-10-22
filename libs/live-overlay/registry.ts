@@ -34,12 +34,21 @@ export function isKnownKind(kind: string): kind is OverlayKind {
  */
 export const REPLACES_BUILT_IN_CELEBRATION: readonly OverlayKind[] = ["tip_alert"];
 
-/** Read a setting, falling back when it is missing or the wrong type. */
-export function setting<T extends string | number | boolean>(
+/**
+ * Read a setting, falling back when it is missing or the wrong type.
+ *
+ * Overloaded rather than generic so the result is `string`, not the literal
+ * type of the fallback: `setting(s, "style", "celebration")` must be allowed to
+ * come back as "banner".
+ */
+export function setting(settings: Record<string, unknown> | undefined, key: string, fallback: string): string;
+export function setting(settings: Record<string, unknown> | undefined, key: string, fallback: number): number;
+export function setting(settings: Record<string, unknown> | undefined, key: string, fallback: boolean): boolean;
+export function setting(
   settings: Record<string, unknown> | undefined,
   key: string,
-  fallback: T,
-): T {
+  fallback: string | number | boolean,
+): string | number | boolean {
   const value = settings?.[key];
-  return typeof value === typeof fallback ? (value as T) : fallback;
+  return typeof value === typeof fallback ? (value as string | number | boolean) : fallback;
 }
