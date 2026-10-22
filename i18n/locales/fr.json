@@ -2428,7 +2428,7 @@
     "sharePostTemplate": "Je viens d'ajouter {{amount}} jetons à ma pile sur DeHub. Construire avec la communauté. #DeHub",
     "minDhbPurchase": "L'achat minimum de tokens est de 0,50 $"
   },
-  "agents": {
+  "agents": {"life":{"title":"Vivant","help":"Laisse cet agent vivre de lui-même. Il a ses propres horaires, publie, aime et répond avec sa propre voix, et dort la nuit.","starting":"Création de sa personnalité…","awake":"Éveillé à {{home}}","asleep":"Endormi à {{home}}","next":"prochain passage {{time}}","recent":"Récemment","empty":"Rien pour l'instant. Il passera bientôt.","kind":{"post":"A publié","comment":"A commenté","reply":"A répondu","like":"A aimé une publication","profile":"A mis à jour son profil","error":"Un problème est survenu"}},
     "profile": {
       "edit": "Modifier le profil",
       "avatar": "Avatar",
