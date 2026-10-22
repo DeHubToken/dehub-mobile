@@ -45,6 +45,7 @@ import Svg, { G, Path, Text as SvgText } from "react-native-svg";
 import { WHEEL_SPIN_MS } from "../../libs/live-overlay/rules";
 import { PollWidget } from "./poll";
 import { PointsBoard, SubathonTimer } from "./subathon";
+import { StreamerLevel, TipJar } from "./levelAndJar";
 
 export interface WidgetProps {
   settings: Record<string, unknown>;
@@ -881,6 +882,10 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <SubathonTimer settings={props.settings} box={props.box} />;
     case "points_board":
       return <PointsBoard settings={props.settings} box={props.box} />;
+    case "streamer_level":
+      return <StreamerLevel settings={props.settings} box={props.box} />;
+    case "tip_jar":
+      return <TipJar settings={props.settings} stats={props.stats} box={props.box} />;
     default:
       return null;
   }

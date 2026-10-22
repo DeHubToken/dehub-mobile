@@ -6851,7 +6851,9 @@
       "poll": "Poll",
       "spin_wheel": "Spin wheel",
       "subathon_timer": "Subathon timer",
-      "points_board": "Loyal viewers"
+      "points_board": "Loyal viewers",
+      "streamer_level": "Streamer level",
+      "tip_jar": "Gift jar"
     },
     "hints": {
       "tip_alert": "Celebrates every tip, sized to its tier",
@@ -6873,12 +6875,15 @@
       "poll": "Your live poll, with a vote button for every option",
       "spin_wheel": "Where the wheels in your rules spin",
       "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
-      "points_board": "Your top viewers by points from watching and gifting"
+      "points_board": "Your top viewers by points from watching and gifting",
+      "streamer_level": "Your streamer level and weekly streak, from your profile",
+      "tip_jar": "A jar that fills up as paid gifts come in"
     },
     "fields": {
       "style": "Style",
       "celebration": "Celebration",
       "banner": "Banner",
+      "showStreak": "Show the weekly streak",
       "minAmount": "Smallest tip to show (DHB)",
       "showMessage": "Show the tip message",
       "confirmedOnly": "Only after the payment confirms",
@@ -7097,6 +7102,10 @@
     "pointsTitle": "Most loyal viewers",
     "points_one": "{{formatted}} point",
     "points_other": "{{formatted}} points",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Gift jar",
     "poll": {
       "closed": "Voting closed",
       "voteFor": "Vote for {{option}}",

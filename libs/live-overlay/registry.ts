@@ -31,6 +31,8 @@ export const OVERLAY_KINDS = [
   "spin_wheel",
   "subathon_timer",
   "points_board",
+  "streamer_level",
+  "tip_jar",
 ] as const;
 
 export type OverlayKind = (typeof OVERLAY_KINDS)[number];
@@ -154,6 +156,16 @@ export const WIDGET_TEMPLATES: Record<OverlayKind, WidgetTemplate> = {
     landscape: { x: 0.76, y: 0.4, w: 0.22, h: 0.3 },
     portrait: { x: 0.05, y: 0.22, w: 0.45, h: 0.18 },
     settings: { count: 5, title: "" },
+  },
+  streamer_level: {
+    landscape: { x: 0.36, y: 0.12, w: 0.22, h: 0.08 },
+    portrait: { x: 0.05, y: 0.11, w: 0.5, h: 0.04 },
+    settings: { showStreak: true, accent: "#ffffff" },
+  },
+  tip_jar: {
+    landscape: { x: 0.86, y: 0.6, w: 0.12, h: 0.3 },
+    portrait: { x: 0.75, y: 0.5, w: 0.2, h: 0.18 },
+    settings: { target: 100000, title: "", accent: "#facc15" },
   },
 };
 
