@@ -15,6 +15,7 @@ import { supportedNetworks } from "../../config/web3.constants";
 import GlassModal from "../ui/GlassModal";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import { dpayCreateOrder, getDpayPrice } from "../../services";
+import { DHB_SALES_PAUSED } from "../../libs/dhb-sales";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { WEBSITE_LINK, TERMS_OF_SERVICE_LINK, LEGACY_WEBSITE_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
@@ -274,6 +275,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   }, []);
 
   const onBuyNow = React.useCallback(() => {
+    if (DHB_SALES_PAUSED) return;
     onOpenConfirm();
   }, [onOpenConfirm]);
 
@@ -503,17 +505,17 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         <TouchableOpacity
           onPress={onBuyNow}
           disabled={
-            loadingCheckout || !!amountValidationError || !address || loadingPrice
+            DHB_SALES_PAUSED || loadingCheckout || !!amountValidationError || !address || loadingPrice
           }
           activeOpacity={0.8}
           className={`py-3 rounded-xl items-center ${
-            loadingCheckout || !!amountValidationError || !address || loadingPrice
+            DHB_SALES_PAUSED || loadingCheckout || !!amountValidationError || !address || loadingPrice
               ? "opacity-50"
               : ""
           }`}
         >
           <Text className="text-white font-semibold">
-            {loadingCheckout ? t("buyCoins.processing") : t("liveShop.buyNow")}
+            {DHB_SALES_PAUSED ? t("stores.soldOut") : loadingCheckout ? t("buyCoins.processing") : t("liveShop.buyNow")}
           </Text>
         </TouchableOpacity>
       </AccentButtonGradient>
