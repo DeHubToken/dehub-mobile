@@ -259,3 +259,83 @@ export async function uploadLiveChatImage(
   }
   return { url: data.url as string };
 }
+
+// ─── A creator's moderation of their own stream chats ─────────────────────────
+// The twin of dehubweb src/lib/api/dehub/livechat.ts. Never the platform chat.
+
+/** Time someone out of this creator's stream chats. The creator, their moderators and staff only. */
+export async function timeOutInStream(tokenId: string | number, address: string, seconds: number): Promise<void> {
+  await apiClient.post(`/livechat/stream/${encodeURIComponent(String(tokenId))}/timeout`, { address: address.toLowerCase(), seconds }, { isAuthRequired: true });
+}
+
+/** Ban someone from every stream chat of this creator. */
+export async function banFromStreams(tokenId: string | number, address: string): Promise<void> {
+  await apiClient.post(`/livechat/stream/${encodeURIComponent(String(tokenId))}/ban`, { address: address.toLowerCase() }, { isAuthRequired: true });
+}
+
+export interface StreamModerationSettings {
+  slowModeSeconds: number;
+  followersOnly: boolean;
+  subscribersOnly: boolean;
+  bannedWords: string[];
+  wordAction: "block" | "timeout";
+}
+
+export interface StreamModerationPerson {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+}
+
+export interface StreamModerationLogEntry {
+  actor: string;
+  target: string;
+  action: "timeout" | "ban" | "unban" | "moderator-added" | "moderator-removed" | "word-blocked" | "word-timeout";
+  seconds?: number;
+  word?: string;
+  at: string;
+}
+
+export interface MyStreamModeration {
+  settings: StreamModerationSettings;
+  moderators: StreamModerationPerson[];
+  banned: StreamModerationPerson[];
+  log: StreamModerationLogEntry[];
+}
+
+function myModeration(res: any): MyStreamModeration {
+  const body = res?.result ?? res?.data ?? res;
+  return {
+    settings: {
+      slowModeSeconds: Number(body?.settings?.slowModeSeconds) || 0,
+      followersOnly: !!body?.settings?.followersOnly,
+      subscribersOnly: !!body?.settings?.subscribersOnly,
+      bannedWords: Array.isArray(body?.settings?.bannedWords) ? body.settings.bannedWords : [],
+      wordAction: body?.settings?.wordAction === "timeout" ? "timeout" : "block",
+    },
+    moderators: Array.isArray(body?.moderators) ? body.moderators : [],
+    banned: Array.isArray(body?.banned) ? body.banned : [],
+    log: Array.isArray(body?.log) ? body.log : [],
+  };
+}
+
+export async function getMyStreamModeration(): Promise<MyStreamModeration> {
+  return myModeration(await apiClient.get<any>("/livechat/moderation/mine", { isAuthRequired: true }));
+}
+
+export async function saveMyStreamModeration(settings: StreamModerationSettings): Promise<MyStreamModeration> {
+  return myModeration(await apiClient.put<any>("/livechat/moderation/mine", settings, { isAuthRequired: true }));
+}
+
+export async function addStreamModerator(address: string): Promise<MyStreamModeration> {
+  return myModeration(await apiClient.post<any>("/livechat/moderation/mine/moderators", { address: address.toLowerCase() }, { isAuthRequired: true }));
+}
+
+export async function removeStreamModerator(address: string): Promise<MyStreamModeration> {
+  return myModeration(await apiClient.delete<any>(`/livechat/moderation/mine/moderators/${address.toLowerCase()}`, { isAuthRequired: true }));
+}
+
+export async function unbanFromStreams(address: string): Promise<MyStreamModeration> {
+  return myModeration(await apiClient.delete<any>(`/livechat/moderation/mine/bans/${address.toLowerCase()}`, { isAuthRequired: true }));
+}

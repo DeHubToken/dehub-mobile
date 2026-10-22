@@ -1,6 +1,6 @@
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, Pressable, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -57,6 +57,11 @@ export interface ChatActivity {
 }
 
 interface LiveViewerChatProps {
+  /**
+   * Set only for the stream's creator and the moderators they appointed: a
+   * long press on someone else's line opens the moderation actions.
+   */
+  onModerate?: (activity: ChatActivity) => void;
   activities: ChatActivity[];
 }
 
@@ -115,9 +120,10 @@ const resolveProfileId = (a: ChatActivity): string | undefined =>
 interface ChatBubbleProps {
   a: ChatActivity;
   onUserPress: (identifier: string) => void;
+  onModerate?: (activity: ChatActivity) => void;
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
+const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate }) => {
   const { t } = useI18n();
   const displayName = resolveDisplayName(a);
   const avatarUrl = resolveAvatarUrl(a);
@@ -132,7 +138,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-2 self-start max-w-[92%] flex-row items-start">
+        <Pressable
+          onLongPress={onModerate ? () => onModerate(a) : undefined}
+          delayLongPress={350}
+          disabled={!onModerate}
+          className="mb-2 self-start max-w-[92%] flex-row items-start"
+        >
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
@@ -158,7 +169,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             />
           )}
           </View>
-        </View>
+        </Pressable>
       );
 
     case StreamActivityType.JOINED:
@@ -240,7 +251,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   }
 });
 
-const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities }) => {
+const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onModerate }) => {
   const listRef = useRef<FlatList<ChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
 
@@ -279,8 +290,8 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities }) => {
   );
 
   const renderItem = useCallback(
-    ({ item }: { item: ChatActivity }) => <ChatBubble a={item} onUserPress={handleUserPress} />,
-    [handleUserPress]
+    ({ item }: { item: ChatActivity }) => <ChatBubble a={item} onUserPress={handleUserPress} onModerate={onModerate} />,
+    [handleUserPress, onModerate]
   );
 
   const keyExtractor = useCallback((a: ChatActivity, idx: number) => {
