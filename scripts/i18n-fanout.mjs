@@ -110,6 +110,11 @@ function setDeep(root, dottedKey, val) {
  */
 function reorderLike(template, filled) {
   if (Array.isArray(template) || typeof template !== 'object' || template === null) return filled;
+  // The locale holds a plain value where English now has a group of keys — an
+  // old string English has since split into a namespace. Keep what the locale
+  // has: there is nothing to reorder inside a string, and walking into one
+  // threw for every such file (the same fix as dehubweb's copy of this script).
+  if (!filled || typeof filled !== 'object' || Array.isArray(filled)) return filled;
   const out = {};
   for (const k of Object.keys(template)) {
     if (!(k in filled)) continue;
