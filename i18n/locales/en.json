@@ -6708,6 +6708,17 @@
     "stillCounting": "Still counting: gifts can take a minute to confirm."
   },
   "liveStudio": {
+    "controls": {
+      "title": "Quick controls",
+      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
+      "alertsPaused": "Pause alerts",
+      "alertsPausedHint": "No gift, follow or rule alerts on screen. Counters, goals and the chat box keep going.",
+      "soundsMuted": "Mute alert sounds",
+      "soundsMutedHint": "Your rules stop playing sounds.",
+      "readAloudMuted": "Stop read-aloud",
+      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
+      "failed": "That switch did not change. Try again."
+    },
     "polls": {
       "title": "Polls",
       "intro": "Ask the people watching your broadcast a question. They answer with a button in the DeHub app, or by typing {{command}} and the option's number in chat.",
@@ -6793,7 +6804,8 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Rule alerts",
-      "poll": "Poll"
+      "poll": "Poll",
+      "spin_wheel": "Spin wheel"
     },
     "hints": {
       "tip_alert": "Celebrates every tip, sized to its tier",
@@ -6812,7 +6824,8 @@
       "chat_box": "Shows your broadcast's chat messages on screen",
       "ticker": "A line of your own text that scrolls across the screen",
       "rule_alert": "Where your rules' alerts appear",
-      "poll": "Your live poll, with a vote button for every option"
+      "poll": "Your live poll, with a vote button for every option",
+      "spin_wheel": "Where the wheels in your rules spin"
     },
     "fields": {
       "style": "Style",
@@ -6901,6 +6914,9 @@
       "removeAction": "Remove action",
       "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
       "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Between 2 and 12. DeHub picks where the wheel stops, so everyone watching sees the same result. Use {result} in an alert, read-aloud or chat action to name it.",
+      "wheelPlaceholder": "Sing a song\nDo 10 push-ups\nPick the next game",
       "alertText": "Alert text",
       "sound": "Sound",
       "sayText": "Text to read aloud",
@@ -6929,7 +6945,8 @@
         "sound": "Play a sound",
         "say": "Read aloud",
         "chat": "Post in chat",
-        "webhook": "Send to a webhook"
+        "webhook": "Send to a webhook",
+        "wheel": "Spin a wheel"
       },
       "summary": {
         "tip": "Tip of {{amount}} DHB or more"
@@ -6982,6 +6999,7 @@
     "topSupporters": "Top supporters",
     "tipped": "{{name}} sent a gift",
     "chatPreview": "Chat messages appear here",
+    "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Voting closed",
       "voteFor": "Vote for {{option}}",

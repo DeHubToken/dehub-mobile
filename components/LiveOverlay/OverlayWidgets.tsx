@@ -41,6 +41,8 @@ import {
 } from "./overlayEvents";
 import { useAlertQueue } from "./useAlertQueue";
 import { useRuleFired } from "./ruleBus";
+import Svg, { G, Path, Text as SvgText } from "react-native-svg";
+import { WHEEL_SPIN_MS } from "../../libs/live-overlay/rules";
 import { PollWidget } from "./poll";
 
 export interface WidgetProps {
@@ -706,7 +708,12 @@ interface RuleAlertItem {
 function RuleAlert({ box }: WidgetProps) {
   const queue = useAlertQueue<RuleAlertItem>((item) => item.durationMs);
   useRuleFired((fired) => {
-    for (const alert of fired.alerts) queue.push({ text: alert.text, user: fired.user, durationMs: alert.durationMs });
+    const show = () => {
+      for (const alert of fired.alerts) queue.push({ text: alert.text, user: fired.user, durationMs: alert.durationMs });
+    };
+    // An alert that names where a wheel stopped waits until it has stopped.
+    if (fired.wheels.length) setTimeout(show, WHEEL_SPIN_MS);
+    else show();
   });
   const name = useName(queue.current?.item.user);
   const current = queue.current;
@@ -719,6 +726,116 @@ function RuleAlert({ box }: WidgetProps) {
         {current.item.text}
       </Text>
     </Banner>
+  );
+}
+
+// ─── Spin wheel ───────────────────────────────────────────────────────────────
+
+const WHEEL_COLORS = ["#f43f5e", "#f59e0b", "#22c55e", "#3b82f6", "#a855f7", "#14b8a6", "#ec4899", "#eab308", "#6366f1", "#10b981", "#ef4444", "#0ea5e9"];
+const WHEEL_HOLD_MS = 4000;
+const shortLabel = (s: string) => (s.slice(0, 14) === s ? s : `${s.slice(0, 13)}…`);
+
+interface SpinItem {
+  segments: string[];
+  result: number;
+  user: RoomUser;
+}
+
+/**
+ * A stream rule's wheel. The server already chose where it stops; this only
+ * turns it there, so every viewer lands on the same answer. The twin of
+ * dehubweb's SpinWheel.
+ */
+function SpinWheel({ box }: WidgetProps) {
+  const queue = useAlertQueue<SpinItem>(() => WHEEL_SPIN_MS + WHEEL_HOLD_MS);
+  useRuleFired((fired) => {
+    for (const wheel of fired.wheels) queue.push({ ...wheel, user: fired.user });
+  });
+  const current = queue.current;
+  if (!current || current.leaving) return null;
+  return <WheelFace key={current.id} item={current.item} box={box} />;
+}
+
+function WheelFace({ item, box }: { item: SpinItem; box: WidgetProps["box"] }) {
+  const { t } = useTranslation();
+  const name = useName(item.user);
+  const n = item.segments.length;
+  const slice = 360 / n;
+  const d = Math.min(box.width, box.height * 0.82);
+  const r = d / 2;
+  const target = 360 * 5 + (360 - (item.result + 0.5) * slice);
+  const angle = useSharedValue(0);
+  const [landed, setLanded] = useState(false);
+  useEffect(() => {
+    angle.value = withTiming(target, { duration: WHEEL_SPIN_MS, easing: Easing.bezier(0.12, 0.8, 0.12, 1) });
+    const done = setTimeout(() => setLanded(true), WHEEL_SPIN_MS);
+    return () => {
+      clearTimeout(done);
+      cancelAnimation(angle);
+    };
+  }, [angle, target]);
+  const spinStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${angle.value}deg` }] }));
+
+  // One pie slice per segment, starting at the top and going clockwise.
+  const point = (deg: number) => {
+    const rad = ((deg - 90) * Math.PI) / 180;
+    return `${r + r * Math.cos(rad)} ${r + r * Math.sin(rad)}`;
+  };
+  return (
+    <Animated.View entering={FadeInDown.duration(250)} exiting={FadeOutUp.duration(300)} style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: d * 0.04 }}>
+      <View style={{ width: d, height: d }}>
+        <Animated.View style={[{ width: d, height: d }, spinStyle]}>
+          <Svg width={d} height={d}>
+            {item.segments.map((segment, i) => {
+              const from = i * slice;
+              const to = (i + 1) * slice;
+              // A slice is never more than half the wheel (two segments at least).
+              const large = 0;
+              const mid = ((from + to) / 2 - 90) * (Math.PI / 180);
+              return (
+                <G key={i}>
+                  <Path d={`M ${r} ${r} L ${point(from)} A ${r} ${r} 0 ${large} 1 ${point(to)} Z`} fill={WHEEL_COLORS[i % WHEEL_COLORS.length]} />
+                  <SvgText
+                    x={r + r * 0.62 * Math.cos(mid)}
+                    y={r + r * 0.62 * Math.sin(mid)}
+                    fill="#ffffff"
+                    fontSize={Math.max(8, d * 0.055)}
+                    fontWeight="700"
+                    textAnchor="middle"
+                    alignmentBaseline="middle"
+                    transform={`rotate(${(from + to) / 2}, ${r + r * 0.62 * Math.cos(mid)}, ${r + r * 0.62 * Math.sin(mid)})`}
+                  >
+                    {shortLabel(segment)}
+                  </SvgText>
+                </G>
+              );
+            })}
+          </Svg>
+        </Animated.View>
+        <View
+          style={{
+            position: "absolute",
+            top: -d * 0.02,
+            left: d / 2 - d * 0.05,
+            width: 0,
+            height: 0,
+            borderLeftWidth: d * 0.05,
+            borderRightWidth: d * 0.05,
+            borderTopWidth: d * 0.09,
+            borderLeftColor: "transparent",
+            borderRightColor: "transparent",
+            borderTopColor: "#ffffff",
+          }}
+        />
+      </View>
+      {landed ? (
+        <View style={[GLASS, { borderRadius: 999, paddingHorizontal: d * 0.05, paddingVertical: d * 0.02, maxWidth: box.width }]}>
+          <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "700", fontSize: Math.max(10, d * 0.06) }}>
+            {t("liveOverlay.wheelLanded", { name, result: item.segments[item.result] })}
+          </Text>
+        </View>
+      ) : null}
+    </Animated.View>
   );
 }
 
@@ -757,6 +874,8 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <RuleAlert {...props} />;
     case "poll":
       return <PollWidget settings={props.settings} box={props.box} />;
+    case "spin_wheel":
+      return <SpinWheel {...props} />;
     default:
       return null;
   }

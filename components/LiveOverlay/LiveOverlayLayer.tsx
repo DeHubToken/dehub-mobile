@@ -17,7 +17,7 @@ import { useWebSocket } from "../../context/WebSocketContext";
 import { streamOverlayKey } from "../../hooks/useStreamOverlay";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { containedPicture, drawOrder, isPortraitPicture, placeWidget, rectFor } from "../../libs/live-overlay/layout";
-import { isKnownKind, newWidget, type OverlayKind } from "../../libs/live-overlay/registry";
+import { isAlertKind, isKnownKind, newWidget, type OverlayKind } from "../../libs/live-overlay/registry";
 import type { PublicOverlay } from "../../libs/live-overlay/types";
 import { OverlayWidgetView } from "./OverlayWidgets";
 import { createRuleBus, RuleAudio, RuleBusContext } from "./ruleBus";
@@ -73,7 +73,11 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
   const visible = useMemo(
     () =>
       overlay.renderIn === "app"
-        ? drawOrder(overlay.widgets.filter((w) => w.enabled && w.kind !== "poll" && isKnownKind(w.kind)))
+        ? drawOrder(
+            overlay.widgets.filter(
+              (w) => w.enabled && w.kind !== "poll" && isKnownKind(w.kind) && !(overlay.controls?.alertsPaused && isAlertKind(w.kind)),
+            ),
+          )
         : [],
     [overlay],
   );

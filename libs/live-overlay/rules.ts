@@ -8,7 +8,7 @@
 export const RULE_TRIGGERS = ['tip', 'follow', 'subscribe', 'share', 'live', 'command', 'keyword', 'chat'] as const;
 export type RuleTriggerType = (typeof RULE_TRIGGERS)[number];
 
-export const RULE_ACTION_TYPES = ['alert', 'sound', 'say', 'chat', 'webhook'] as const;
+export const RULE_ACTION_TYPES = ['alert', 'sound', 'say', 'chat', 'webhook', 'wheel'] as const;
 export type RuleActionType = (typeof RULE_ACTION_TYPES)[number];
 
 export const RULE_AUDIENCES = ['everyone', 'followers', 'subscribers'] as const;
@@ -33,6 +33,10 @@ export const RULE_SOUNDS = Object.keys(RULE_SOUND_FILES);
 
 export const MAX_RULES = 30;
 export const MAX_ACTIONS = 5;
+export const WHEEL_MIN_SEGMENTS = 2;
+export const WHEEL_MAX_SEGMENTS = 12;
+/** How long a wheel spins before it lands. Alerts and read-aloud about the result wait for it. */
+export const WHEEL_SPIN_MS = 5000;
 
 export interface RuleTrigger {
   type: RuleTriggerType;
@@ -46,7 +50,8 @@ export type RuleAction =
   | { type: 'sound'; sound: string }
   | { type: 'say'; text: string }
   | { type: 'chat'; text: string }
-  | { type: 'webhook'; url: string; text: string };
+  | { type: 'webhook'; url: string; text: string }
+  | { type: 'wheel'; segments: string[] };
 
 export interface LiveRule {
   id: string;
@@ -78,6 +83,8 @@ export function blankAction(type: RuleActionType): RuleAction {
       return { type, sound: 'airhorn' };
     case 'webhook':
       return { type, url: '', text: '' };
+    case 'wheel':
+      return { type, segments: [] };
     default:
       return { type, text: '' };
   }
@@ -147,6 +154,8 @@ export interface RuleFired {
   alerts: Array<{ text: string; durationMs: number }>;
   sounds: string[];
   say: string[];
+  /** Wheels to spin, each with the segment the server picked. */
+  wheels: Array<{ segments: string[]; result: number }>;
   test?: boolean;
 }
 
@@ -164,6 +173,11 @@ export function parseRuleFired(data: any): RuleFired | null {
     alerts,
     sounds: strings(data.sounds).filter((id) => id in RULE_SOUND_FILES),
     say: strings(data.say),
+    wheels: Array.isArray(data.wheels)
+      ? data.wheels
+          .map((w: any) => ({ segments: strings(w?.segments).slice(0, WHEEL_MAX_SEGMENTS), result: Number(w?.result) }))
+          .filter((w: { segments: string[]; result: number }) => w.segments.length >= WHEEL_MIN_SEGMENTS && Number.isInteger(w.result) && w.result >= 0 && w.result < w.segments.length)
+      : [],
     test: !!data.test,
   };
 }

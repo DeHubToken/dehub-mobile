@@ -24,6 +24,7 @@ import {
   RULE_PRESETS,
   RULE_SOUNDS,
   RULE_TRIGGERS,
+  WHEEL_MAX_SEGMENTS,
   type LiveRule,
   type RuleAction,
   type RulePreset,
@@ -365,6 +366,23 @@ function ActionForm({ action, onChange }: { action: RuleAction; onChange: (next:
           </View>
           {text(t("liveStudio.rules.webhookText"), action.text, (v) => onChange({ ...action, text: v }))}
         </>
+      );
+    case "wheel":
+      return (
+        <View>
+          <Label>{t("liveStudio.rules.wheelSegments")}</Label>
+          <TextInput
+            className={`${FIELD} h-auto py-2`}
+            multiline
+            textAlignVertical="top"
+            style={{ minHeight: 96 }}
+            placeholder={t("liveStudio.rules.wheelPlaceholder")}
+            placeholderTextColor="#71717a"
+            value={action.segments.join("\n")}
+            onChangeText={(v) => onChange({ ...action, segments: v.split("\n").slice(0, WHEEL_MAX_SEGMENTS).map((s) => s.slice(0, 30)) })}
+          />
+          <Text className="text-theme-neutrals-500 text-xs mt-1.5">{t("liveStudio.rules.wheelHint")}</Text>
+        </View>
       );
     default:
       return null;

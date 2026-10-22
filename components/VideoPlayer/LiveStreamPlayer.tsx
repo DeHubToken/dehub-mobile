@@ -504,9 +504,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
    * OBS has already burned it into the picture — never both.
    */
   const { data: streamOverlay } = useStreamOverlay(streamId, isLiveEffective);
-  const overlayOwnsCelebration = !!streamOverlay?.widgets.some(
+  // Paused alerts silence the built-in celebration too.
+  const overlayOwnsCelebration = !!streamOverlay?.controls?.alertsPaused || !!streamOverlay?.widgets.some(
     (w) => w.enabled && (REPLACES_BUILT_IN_CELEBRATION as readonly string[]).includes(w.kind),
   );
+  // The creator stopped read-aloud for everyone (quick controls). A ref: the
+  // room handlers below are bound once per stream.
+  const readAloudMutedRef = useRef(false);
+  readAloudMutedRef.current = !!streamOverlay?.controls?.readAloudMuted;
   // The picture's own size, from whichever surface is playing it, so widgets
   // land on the picture and not in the letterbox around it.
   const [videoSize, setVideoSize] = useState({ width: 0, height: 0 });
@@ -934,7 +939,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       const txHash = String(payload?.transactionHash || "").toLowerCase();
       const sender = String(payload?.address || "").toLowerCase();
       const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
-      if ((txHash && ownGiftHashesRef.current.has(txHash)) || (!!me && sender === me)) return;
+      if ((txHash && ownGiftHashesRef.current.has(txHash)) || (!!me && sender === me) || readAloudMutedRef.current) return;
       speakTipMessage(typeof payload?.message === "string" ? payload.message : undefined);
     });
     // Reaction events from other viewers. The viewer's own thumb is played on
