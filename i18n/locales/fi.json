@@ -9138,7 +9138,9 @@
     "joined": "{{name}} liittyi",
     "goalReached": "Tavoite saavutettu!",
     "followersUnit": "seuraajat",
-    "topSupporters": "Parhaat kannattajat"
+    "topSupporters": "Parhaat kannattajat",
+    "tipped": "{{name}} lähetti lahjan",
+    "chatPreview": "Chat-viestit näkyvät tässä"
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9188,7 +9190,12 @@
       "top_supporters": "Parhaat kannattajat",
       "viewer_count": "Katsojien määrä",
       "text": "Teksti",
-      "frame": "Runko"
+      "frame": "Runko",
+      "stream_timer": "Lähetysajastin",
+      "reaction_counter": "Reaktiolaskuri",
+      "event_feed": "Viimeaikainen toiminta",
+      "chat_box": "Keskusteluruutu",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
@@ -9200,7 +9207,12 @@
       "top_supporters": "Suurimmat tippaajasi tässä suoratoistossa",
       "viewer_count": "Kuinka monta ihmistä katselee",
       "text": "Tekstirivi tai alempi kolmasosa",
-      "frame": "Raja virran ympärillä"
+      "frame": "Raja virran ympärillä",
+      "stream_timer": "Näyttää, kuinka kauan olet lähettänyt",
+      "reaction_counter": "Laskee jokaisen lähetyksesi saaman reaktion",
+      "event_feed": "Uusimmat lahjat, seuraajat, tilaajat ja ihmiset, jotka jakavat lähetyksesi",
+      "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
+      "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki"
     },
     "fields": {
       "style": "Tyyli",
@@ -9227,7 +9239,14 @@
       "accent": "Väri",
       "size": "Koko",
       "smaller": "Pienempi",
-      "larger": "Suurempi"
+      "larger": "Suurempi",
+      "label": "Tunniste",
+      "lines": "Näytetyt rivit",
+      "showAvatars": "Näytä profiilikuvat",
+      "speed": "Nopeus",
+      "slow": "Hidas",
+      "normal": "Normaali",
+      "fast": "Nopea"
     },
     "obs": {
       "title": "Käytä OBS: n kanssa",

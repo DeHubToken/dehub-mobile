@@ -9158,7 +9158,9 @@
     "joined": "{{name}} joined",
     "goalReached": "Ziel erreicht!",
     "followersUnit": "Follower",
-    "topSupporters": "Top-Unterstützer"
+    "topSupporters": "Top-Unterstützer",
+    "tipped": "{{name}} hat ein Geschenk geschickt",
+    "chatPreview": "Chat-Nachrichten erscheinen hier"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9204,7 +9206,10 @@
       "top_supporters": "Top-Unterstützer",
       "viewer_count": "Zuschauerzahl",
       "text": "Text",
-      "frame": "Untertitel"
+      "frame": "Untertitel",
+      "reaction_counter": "Reaktionszähler",
+      "event_feed": "Aktuelle Aktivität",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
@@ -9216,7 +9221,12 @@
       "top_supporters": "Deine grössten Tippgeber in diesem Stream",
       "viewer_count": "Wie viele Leute zuschauen",
       "text": "Eine Textzeile oder Untertitel",
-      "frame": "Ein Rahmen um deinen Stream"
+      "frame": "Ein Rahmen um deinen Stream",
+      "stream_timer": "Zeigt an, wie lange du schon live bist",
+      "reaction_counter": "Zählt jede Reaktion, die dein Live-Stream bekommt",
+      "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
+      "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
+      "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt"
     },
     "fields": {
       "style": "Stil",
@@ -9243,7 +9253,13 @@
       "accent": "Farbe",
       "size": "Grösse",
       "smaller": "Kleiner",
-      "larger": "Grösser"
+      "larger": "Grösser",
+      "label": "Label",
+      "lines": "Linien, wie gezeigt",
+      "showAvatars": "Zeig Profilbilder",
+      "speed": "Gschwindigkeet",
+      "slow": "Langsam",
+      "fast": "Fascht"
     },
     "obs": {
       "title": "Mit OBS verwenden",

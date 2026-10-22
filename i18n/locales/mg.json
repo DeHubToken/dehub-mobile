@@ -9219,7 +9219,9 @@
     "joined": "{{name}} nandray anjara",
     "goalReached": "Tratra ny tanjona!",
     "followersUnit": "mpanara-dia",
-    "topSupporters": "TOP mpanohana"
+    "topSupporters": "TOP mpanohana",
+    "tipped": "{{name}} nandefa fanomezana",
+    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9269,7 +9271,12 @@
       "top_supporters": "TOP mpanohana",
       "viewer_count": "Fanisana ny mpijery",
       "text": "Lahatsoratra",
-      "frame": "rafitra"
+      "frame": "rafitra",
+      "stream_timer": "Fampielezana fameram-potoana",
+      "reaction_counter": "Fanehoan-kevitra manohitra",
+      "event_feed": "Hetsika vao haingana",
+      "chat_box": "Efitrano firesahana",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Mankalaza ny torohevitra rehetra, ny salantsalany",
@@ -9280,7 +9287,12 @@
       "top_supporters": "Ny lehibe indrindra tippers io renirano",
       "viewer_count": "Firy ny olona mijery",
       "text": "Lahatsoratra na ampahatelony ambany",
-      "frame": "Ny sisin-tany manodidina ny renirano"
+      "frame": "Ny sisin-tany manodidina ny renirano",
+      "stream_timer": "Mampiseho ny halavan'ny fotoana nandefasanao",
+      "reaction_counter": "Manisa ny fanehoan-kevitra rehetra ataon'ny fampielezam-peo",
+      "event_feed": "Ny fanomezam-pahasoavana farany, ny mpanaraka, ny mpanjifany ary ny olona mizara ny fampielezam-peo",
+      "chat_box": "Mampiseho ny hafatra amin'ny chat alefanao amin'ny efijery",
+      "ticker": "Tsipika avy amin'ny andinin-teninao manokana izay manavatsava ny fàfana"
     },
     "fields": {
       "style": "Endrika",
@@ -9307,7 +9319,14 @@
       "accent": "Loko",
       "size": "Habe",
       "smaller": "Kely kokoa",
-      "larger": "Lehibe kokoa"
+      "larger": "Lehibe kokoa",
+      "label": "Mari-tsoratra",
+      "lines": "Andalana aseho",
+      "showAvatars": "Asehoy ny sarin'ny profil",
+      "speed": "Hafaingana",
+      "slow": "Meda",
+      "normal": "Tokony ho izy",
+      "fast": "Faingana"
     },
     "obs": {
       "title": "Ampiasao miaraka amin'ny OBS",

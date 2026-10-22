@@ -9118,7 +9118,8 @@
     "joined": "{{name}} 加入了",
     "goalReached": "目標達成！",
     "followersUnit": "粉絲數",
-    "topSupporters": "贊助排行"
+    "topSupporters": "贊助排行",
+    "tipped": "{{name}} 送咱一份禮物"
   },
   "liveStudio": {
     "title": "Live 工作室",
@@ -9178,7 +9179,9 @@
       "accent": "顏色",
       "size": "大小",
       "smaller": "較小",
-      "larger": "較大"
+      "larger": "較大",
+      "showAvatars": "顯示個人資料照片",
+      "fast": "快快快"
     },
     "obs": {
       "title": "與OBS一起使用",

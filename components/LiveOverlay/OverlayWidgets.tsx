@@ -7,12 +7,21 @@
  * placed small on a phone stream and large on a desktop one keeps its
  * proportions. Nothing a creator typed is rendered as anything but text.
  */
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { Text, View, type ViewStyle } from "react-native";
-import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
+import Animated, {
+  cancelAnimation,
+  Easing,
+  FadeInDown,
+  FadeOutUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
-import { Eye } from "../ui/cut-icons";
+import { Eye, ThumbsUp } from "../ui/cut-icons";
 import Avatar from "../common/Avatar";
 import { DhbCoin } from "../common/DhbCoin";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
@@ -23,7 +32,13 @@ import { tierFromGift } from "../../config/gift-tiers";
 import { getAvatarUrl } from "../../libs/misc";
 import { setting, type OverlayKind } from "../../libs/live-overlay/registry";
 import type { OverlayStats } from "../../libs/live-overlay/types";
-import { useOverlayEvent, type LiveRoomEvent, type RoomUser } from "./overlayEvents";
+import {
+  OverlayChatContext,
+  useOverlayEvent,
+  type LiveRoomEvent,
+  type OverlayChatLine,
+  type RoomUser,
+} from "./overlayEvents";
 import { useAlertQueue } from "./useAlertQueue";
 
 export interface WidgetProps {
@@ -182,7 +197,7 @@ function PersonAlert({ settings, kind, box }: WidgetProps & { kind: OverlayKind 
   const wanted = PERSON_EVENT[kind];
 
   useOverlayEvent((event: LiveRoomEvent) => {
-    if (event.type !== wanted || !("user" in event)) return;
+    if (event.type !== wanted || !("user" in event) || !event.user) return;
     if (event.type === "join") {
       const key = event.user.address;
       if (!key || seen.current.has(key)) return;
@@ -414,6 +429,269 @@ function Frame({ settings, box }: WidgetProps) {
   );
 }
 
+// ─── Stream timer ─────────────────────────────────────────────────────────────
+
+function formatElapsed(ms: number): string {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = String(total % 60).padStart(2, "0");
+  return h ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
+}
+
+function Pill({ box, children }: { box: WidgetProps["box"]; children: React.ReactNode }) {
+  const font = box.height * 0.42;
+  return (
+    <View
+      style={[
+        GLASS,
+        {
+          alignSelf: "flex-start",
+          height: "100%",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: font * 0.35,
+          paddingHorizontal: box.height * 0.25,
+          borderRadius: 999,
+        },
+      ]}
+    >
+      {children}
+    </View>
+  );
+}
+
+function StreamTimer({ settings, stats, box }: WidgetProps) {
+  const label = setting(settings, "label", "");
+  // The stream's own start, so a refresh does not restart the clock. A
+  // preview has none and counts from when it was drawn.
+  const [drawnAt] = useState(() => Date.now());
+  const startedAt = stats.startedAt ? Date.parse(stats.startedAt) : NaN;
+  const from = Number.isFinite(startedAt) ? startedAt : drawnAt;
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const font = box.height * 0.42;
+  return (
+    <Pill box={box}>
+      <View style={{ width: font * 0.45, height: font * 0.45, borderRadius: 999, backgroundColor: accent(settings) }} />
+      {label ? (
+        <Text style={{ color: "rgba(255,255,255,0.8)", fontWeight: "600", fontSize: font }} numberOfLines={1}>
+          {label}
+        </Text>
+      ) : null}
+      <Text style={{ color: "#fff", fontWeight: "700", fontSize: font, fontVariant: ["tabular-nums"] }}>
+        {formatElapsed(now - from)}
+      </Text>
+    </Pill>
+  );
+}
+
+// ─── Reaction counter ─────────────────────────────────────────────────────────
+
+function ReactionCounter({ settings, stats, box }: WidgetProps) {
+  const base = Number(stats.reactions) || 0;
+  // Counted on top of the server's figure until a fresh one replaces it.
+  const [delta, setDelta] = useState(0);
+  useEffect(() => setDelta(0), [base]);
+  useOverlayEvent((event: LiveRoomEvent) => {
+    if (event.type === "reaction") setDelta((d) => d + 1);
+  });
+  const font = box.height * 0.42;
+  return (
+    <Pill box={box}>
+      <ThumbsUp color={accent(settings)} size={font} />
+      <Text style={{ color: "#fff", fontWeight: "700", fontSize: font, fontVariant: ["tabular-nums"] }}>
+        {(base + delta).toLocaleString()}
+      </Text>
+    </Pill>
+  );
+}
+
+// ─── Event feed ───────────────────────────────────────────────────────────────
+
+interface FeedItem {
+  id: number;
+  kind: "tip" | "follow" | "subscribe" | "share";
+  user: RoomUser;
+  amount?: number;
+  planName?: string;
+}
+
+function EventFeed({ settings, box }: WidgetProps) {
+  const count = Math.min(8, Math.max(1, setting(settings, "count", 4)));
+  const title = setting(settings, "title", "");
+  const [items, setItems] = useState<FeedItem[]>([]);
+  const seq = useRef(0);
+  // Tips are listed once PAID. The paid event names its sender on a current
+  // API; the claim that came first is the fallback for the name.
+  const tippers = useRef(new Map<string, RoomUser>());
+
+  useOverlayEvent((event: LiveRoomEvent) => {
+    let item: Omit<FeedItem, "id"> | null = null;
+    if (event.type === "tip" && event.transactionHash) {
+      tippers.current.set(event.transactionHash, event.user);
+      if (tippers.current.size > 50) tippers.current.delete(tippers.current.keys().next().value as string);
+    } else if (event.type === "tipConfirmed") {
+      const user = event.user ?? tippers.current.get(event.transactionHash) ?? { address: event.address };
+      item = { kind: "tip", user, amount: event.paidAmount };
+    } else if (event.type === "follow" || event.type === "share") {
+      item = { kind: event.type, user: event.user };
+    } else if (event.type === "subscribe") {
+      item = { kind: "subscribe", user: event.user, planName: event.planName };
+    }
+    if (!item) return;
+    seq.current += 1;
+    const next = { ...item, id: seq.current };
+    setItems((prev) => [next, ...prev].slice(0, count));
+  });
+
+  const row = box.height / (count + (title ? 1 : 0));
+  return (
+    <View style={[GLASS, { flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.3, borderRadius: row * 0.4 }]}>
+      {title ? (
+        <Text style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.42, marginBottom: row * 0.15 }} numberOfLines={1}>
+          {title}
+        </Text>
+      ) : null}
+      {items.map((item) => (
+        <FeedRow key={item.id} item={item} row={row} />
+      ))}
+    </View>
+  );
+}
+
+function FeedRow({ item, row }: { item: FeedItem; row: number }) {
+  const { t } = useTranslation();
+  const name = useName(item.user);
+  const line =
+    item.kind === "tip"
+      ? t("liveOverlay.tipped", { name })
+      : item.kind === "follow"
+        ? t("liveOverlay.newFollower", { name })
+        : item.kind === "subscribe"
+          ? item.planName
+            ? t("liveOverlay.subscribedTo", { name, plan: item.planName })
+            : t("liveOverlay.newSubscriber", { name })
+          : t("liveOverlay.shared", { name });
+  return (
+    <Animated.View
+      entering={FadeInDown.duration(260)}
+      style={{ height: row, flexDirection: "row", alignItems: "center", gap: row * 0.3 }}
+    >
+      <Text style={{ flex: 1, color: "#fff", fontSize: row * 0.4 }} numberOfLines={1}>
+        {line}
+      </Text>
+      {item.kind === "tip" ? (
+        <Text style={{ color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>
+          {Math.floor(item.amount ?? 0).toLocaleString()} <DhbCoin size={Math.max(10, row * 0.4)} />
+        </Text>
+      ) : null}
+    </Animated.View>
+  );
+}
+
+// ─── Chat box ─────────────────────────────────────────────────────────────────
+
+function ChatBox({ settings, streamId, box }: WidgetProps) {
+  const { t } = useTranslation();
+  const count = Math.min(12, Math.max(1, setting(settings, "count", 6)));
+  const showAvatars = setting(settings, "showAvatars", true);
+  const lines = useContext(OverlayChatContext).slice(-count);
+  const row = box.height / count;
+
+  return (
+    <View style={{ flex: 1, justifyContent: "flex-end", gap: row * 0.08 }}>
+      {lines.length === 0 && !streamId ? (
+        <View style={[chatLineStyle(row), { backgroundColor: "rgba(10,10,12,0.62)" }]}>
+          <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: row * 0.4 }} numberOfLines={1}>
+            {t("liveOverlay.chatPreview")}
+          </Text>
+        </View>
+      ) : null}
+      {lines.map((line) => (
+        <ChatLine key={line.id} line={line} row={row} showAvatar={showAvatars} />
+      ))}
+    </View>
+  );
+}
+
+function chatLineStyle(row: number): ViewStyle {
+  return {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-start",
+    maxWidth: "100%",
+    gap: row * 0.25,
+    minHeight: row * 0.9,
+    paddingHorizontal: row * 0.3,
+    borderRadius: row * 0.45,
+    backgroundColor: "rgba(10,10,12,0.62)",
+  };
+}
+
+function ChatLine({ line, row, showAvatar }: { line: OverlayChatLine; row: number; showAvatar: boolean }) {
+  const name = useName(line.user);
+  const avatar = getAvatarUrl(line.user.avatarImageUrl) || undefined;
+  return (
+    <Animated.View entering={FadeInDown.duration(260)} style={chatLineStyle(row)}>
+      {showAvatar ? <Avatar uri={avatar} size={Math.max(12, row * 0.6)} name={name} /> : null}
+      <Text style={{ flexShrink: 1, color: "#fff", fontSize: row * 0.4 }} numberOfLines={1}>
+        <Text style={{ fontWeight: "700", color: "rgba(255,255,255,0.75)" }}>{name} </Text>
+        {line.text}
+      </Text>
+    </Animated.View>
+  );
+}
+
+// ─── Ticker ───────────────────────────────────────────────────────────────────
+
+const TICKER_SECONDS: Record<string, number> = { slow: 30, normal: 18, fast: 10 };
+
+function Ticker({ settings, box }: WidgetProps) {
+  const text = setting(settings, "text", "");
+  const seconds = TICKER_SECONDS[setting(settings, "speed", "normal")] ?? TICKER_SECONDS.normal;
+  const color = accent(settings);
+  const [trackWidth, setTrackWidth] = useState(0);
+  const x = useSharedValue(0);
+
+  // Two copies side by side, moved by half the track: the second copy is
+  // exactly where the first began when the loop restarts, so it never jumps.
+  useEffect(() => {
+    if (!trackWidth) return;
+    x.value = 0;
+    x.value = withRepeat(withTiming(-trackWidth / 2, { duration: seconds * 1000, easing: Easing.linear }), -1, false);
+    return () => cancelAnimation(x);
+  }, [trackWidth, seconds, x]);
+  const moving = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
+
+  if (!text) return null;
+  const font = box.height * 0.48;
+  const copy = { color: "#fff", fontWeight: "700" as const, fontSize: font, paddingRight: font * 4, flexShrink: 0 };
+  return (
+    <View
+      style={{
+        flex: 1,
+        overflow: "hidden",
+        justifyContent: "center",
+        backgroundColor: "rgba(10,10,12,0.72)",
+        borderTopWidth: Math.max(1, box.height * 0.06),
+        borderTopColor: color,
+      }}
+    >
+      <Animated.View
+        style={[{ position: "absolute", left: 0, flexDirection: "row" }, moving]}
+        onLayout={(e) => setTrackWidth(e.nativeEvent.layout.width)}
+      >
+        <Text style={copy}>{text}</Text>
+        <Text style={copy}>{text}</Text>
+      </Animated.View>
+    </View>
+  );
+}
+
 // ─── Registry ─────────────────────────────────────────────────────────────────
 
 export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...props }: WidgetProps & { kind: OverlayKind }) {
@@ -435,6 +713,16 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <TextWidget {...props} />;
     case "frame":
       return <Frame {...props} />;
+    case "stream_timer":
+      return <StreamTimer {...props} />;
+    case "reaction_counter":
+      return <ReactionCounter {...props} />;
+    case "event_feed":
+      return <EventFeed {...props} />;
+    case "chat_box":
+      return <ChatBox {...props} />;
+    case "ticker":
+      return <Ticker {...props} />;
     default:
       return null;
   }

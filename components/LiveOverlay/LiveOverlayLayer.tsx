@@ -20,7 +20,8 @@ import { containedPicture, drawOrder, isPortraitPicture, placeWidget, rectFor } 
 import { isKnownKind, type OverlayKind } from "../../libs/live-overlay/registry";
 import type { PublicOverlay } from "../../libs/live-overlay/types";
 import { OverlayWidgetView } from "./OverlayWidgets";
-import { createOverlayEventBus, OverlayEventContext, roomUser } from "./overlayEvents";
+import type { LiveChatMessageData } from "../../services/livechat.service";
+import { createOverlayEventBus, OverlayChatContext, OverlayEventContext, roomUser, type OverlayChatLine } from "./overlayEvents";
 
 interface Props {
   streamId: string;
@@ -28,6 +29,29 @@ interface Props {
   /** The picture's own size, as the player reports it. Zero until the first frame. */
   videoSize: { width: number; height: number };
   initialViewers: number;
+  /** The stream chat the player already holds, for a chat box widget. */
+  chatMessages?: LiveChatMessageData[];
+}
+
+/** Text messages only, newest last, as the chat box shows them. */
+function chatLines(messages: LiveChatMessageData[] | undefined): OverlayChatLine[] {
+  if (!messages?.length) return [];
+  const lines: OverlayChatLine[] = [];
+  for (const m of messages.slice(-24)) {
+    const text = typeof m?.content === "string" ? m.content.trim() : "";
+    if (!text || m.isDeleted || (m.messageType && m.messageType !== "text")) continue;
+    lines.push({
+      id: String(m._id),
+      text,
+      user: roomUser({
+        address: m.sender?.address || m.senderAddress,
+        username: m.sender?.username,
+        displayName: m.sender?.displayName,
+        avatarImageUrl: m.sender?.avatarUrl,
+      }),
+    });
+  }
+  return lines.slice(-12);
 }
 
 /** Tips carry their stream on the row; every other room event carries it beside the payload. */
@@ -36,7 +60,7 @@ function payloadStreamId(payload: any): string | undefined {
   return id == null ? undefined : String(id);
 }
 
-export default function LiveOverlayLayer({ streamId, overlay, videoSize, initialViewers }: Props) {
+export default function LiveOverlayLayer({ streamId, overlay, videoSize, initialViewers, chatMessages }: Props) {
   const { on } = useWebSocket();
   const queryClient = useQueryClient();
   const bus = useMemo(() => createOverlayEventBus(), []);
@@ -83,7 +107,15 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
         paidAmount,
         address: String(payload?.address || "").toLowerCase(),
         transactionHash: String(payload?.transactionHash || "").toLowerCase(),
+        user: payload?.user ? roomUser(payload.user) : undefined,
+        selectedTier: payload?.selectedTier || undefined,
+        message: payload?.message || undefined,
       });
+    });
+    bind(LivestreamEvents.StreamReaction, (payload) => {
+      if (mine(payload) && typeof payload?.reactionType === "string") {
+        bus.publish({ type: "reaction", reactionType: payload.reactionType, user: roomUser(payload?.user) });
+      }
     });
     bind(LivestreamEvents.Follow, (payload) => {
       if (mine(payload)) bus.publish({ type: "follow", user: roomUser(payload?.user) });
@@ -116,32 +148,37 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
     setFrame((prev) => (prev.width === width && prev.height === height ? prev : { width, height }));
   };
 
+  const hasChatBox = visible.some((w) => w.kind === "chat_box");
+  const chat = useMemo(() => (hasChatBox ? chatLines(chatMessages) : []), [hasChatBox, chatMessages]);
+
   const picture = containedPicture(frame.width, frame.height, videoSize.width, videoSize.height);
   const portrait = isPortraitPicture(videoSize.width, videoSize.height);
 
   return (
     <OverlayEventContext.Provider value={bus}>
-      <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
-        {picture.width > 0 &&
-          visible.map((widget) => {
-            const box = placeWidget(rectFor(widget, portrait), picture);
-            return (
-              <View
-                key={widget.id}
-                style={{ position: "absolute", left: box.left, top: box.top, width: box.width, height: box.height, overflow: "hidden" }}
-              >
-                <OverlayWidgetView
-                  kind={widget.kind as OverlayKind}
-                  settings={widget.settings || {}}
-                  streamId={streamId}
-                  stats={overlay.stats}
-                  initialViewers={initialViewers}
-                  box={{ width: box.width, height: box.height }}
-                />
-              </View>
-            );
-          })}
-      </View>
+      <OverlayChatContext.Provider value={chat}>
+        <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
+          {picture.width > 0 &&
+            visible.map((widget) => {
+              const box = placeWidget(rectFor(widget, portrait), picture);
+              return (
+                <View
+                  key={widget.id}
+                  style={{ position: "absolute", left: box.left, top: box.top, width: box.width, height: box.height, overflow: "hidden" }}
+                >
+                  <OverlayWidgetView
+                    kind={widget.kind as OverlayKind}
+                    settings={widget.settings || {}}
+                    streamId={streamId}
+                    stats={overlay.stats}
+                    initialViewers={initialViewers}
+                    box={{ width: box.width, height: box.height }}
+                  />
+                </View>
+              );
+            })}
+        </View>
+      </OverlayChatContext.Provider>
     </OverlayEventContext.Provider>
   );
 }

@@ -219,6 +219,8 @@ export async function getStreamOverlay(streamId: string): Promise<PublicOverlay>
     stats: {
       totalTips: Number(body?.stats?.totalTips) || 0,
       followers: Number(body?.stats?.followers) || 0,
+      startedAt: typeof body?.stats?.startedAt === "string" ? body.stats.startedAt : null,
+      reactions: Number(body?.stats?.reactions) || 0,
     },
   };
 }

@@ -9086,7 +9086,9 @@
     "joined": "{{name}} انضم",
     "goalReached": "وصلنا الهدف!",
     "followersUnit": "متابعين",
-    "topSupporters": "أعلى الداعمين"
+    "topSupporters": "أعلى الداعمين",
+    "tipped": "{{name}} بعت هدية",
+    "chatPreview": "الرسائل بتظهر هنا"
   },
   "liveStudio": {
     "title": "ستوديو مباشر",
@@ -9125,7 +9127,8 @@
       "goal_bar": "بار الهدف",
       "top_supporters": "أقوى الداعمين",
       "viewer_count": "عدد المشاهدين",
-      "frame": "فريم"
+      "frame": "فريم",
+      "stream_timer": "برودكاست تايمر"
     },
     "hints": {
       "tip_alert": "يحتفل بكل نصيحة، مقاسها حسب المستوى",
@@ -9149,7 +9152,9 @@
       "solid": "صلب",
       "glow": "تلمّع",
       "thickness": "سُمك",
-      "accent": "لون"
+      "accent": "لون",
+      "showAvatars": "أظهر صور الملف الشخصي",
+      "speed": "سُرْعَة"
     },
     "obs": {
       "connected": "OBS متصل",

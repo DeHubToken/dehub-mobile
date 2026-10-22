@@ -9264,7 +9264,9 @@
     "joined": "{{name}} aangesluit",
     "goalReached": "Doel bereik!",
     "followersUnit": "volgers",
-    "topSupporters": "Top ondersteuners"
+    "topSupporters": "Top ondersteuners",
+    "tipped": "{{name}} stuur 'n geskenk",
+    "chatPreview": "Geselsboodskappe verskyn hier"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9314,7 +9316,12 @@
       "top_supporters": "Hoofste steuners",
       "viewer_count": "Kykersaantal",
       "text": "Tekst",
-      "frame": "Rame"
+      "frame": "Rame",
+      "stream_timer": "Uitsending tydhouer",
+      "reaction_counter": "Reaksie toonbank",
+      "event_feed": "Onlangse aktiwiteite",
+      "chat_box": "Geselsdoos",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Vier elke tip, aangepas na sy vlak",
@@ -9326,7 +9333,12 @@
       "top_supporters": "Jou grootste tippeurs tydens hierdie stroom",
       "viewer_count": "Hoeveel mense kyk",
       "text": "’n Reël van tekst of ’n laerderder",
-      "frame": "’n Rand om jou stroom"
+      "frame": "’n Rand om jou stroom",
+      "stream_timer": "Wys hoe lank jy al uitgesaai het",
+      "reaction_counter": "Tel elke reaksie wat jou uitsending kry",
+      "event_feed": "Die nuutste geskenke, volgelinge, intekenare en mense wat jou uitsending deel",
+      "chat_box": "Wys jou uitsending se kletsboodskappe op die skerm",
+      "ticker": "'n Reël van jou eie teks wat oor die skerm blaai"
     },
     "fields": {
       "style": "Styl",
@@ -9353,7 +9365,14 @@
       "accent": "Kleur",
       "size": "Grootte",
       "smaller": "Kleiner",
-      "larger": "Groter"
+      "larger": "Groter",
+      "label": "Etiket",
+      "lines": "Lyne vertoon",
+      "showAvatars": "Wys profielfoto's",
+      "speed": "Spoed",
+      "slow": "Stadig",
+      "normal": "Normaal",
+      "fast": "Vinnig"
     },
     "obs": {
       "title": "Gebruik met OBS",

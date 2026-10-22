@@ -9331,7 +9331,9 @@
     "joined": "{{name}} beigetreten",
     "goalReached": "Ziel erreicht!",
     "followersUnit": "follower",
-    "topSupporters": "Top-Unterstützer"
+    "topSupporters": "Top-Unterstützer",
+    "tipped": "{{name}} hat ein Geschenk gesendet",
+    "chatPreview": "Chat-Nachrichten werden hier angezeigt"
   },
   "liveStudio": {
     "title": "Live-Studio",
@@ -9380,7 +9382,12 @@
       "top_supporters": "Top-Unterstützer",
       "viewer_count": "Zuschauerzahl",
       "text": "Text",
-      "frame": "Untertitel"
+      "frame": "Untertitel",
+      "stream_timer": "Sendungs-Timer",
+      "reaction_counter": "Reaktionszähler",
+      "event_feed": "Letzte Aktivität",
+      "chat_box": "Chat-Box",
+      "ticker": "Laufschrift"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
@@ -9392,7 +9399,12 @@
       "top_supporters": "Deine größten Spender in diesem Stream",
       "viewer_count": "Wie viele Leute zuschauen",
       "text": "Eine Zeile Text oder ein Untertitel",
-      "frame": "Ein Rahmen um deinen Stream"
+      "frame": "Ein Rahmen um deinen Stream",
+      "stream_timer": "Zeigt an, wie lange Sie ausgestrahlt haben",
+      "reaction_counter": "Zählt jede Reaktion, die Ihre Sendung erhält",
+      "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Personen, die Ihre Sendung teilen",
+      "chat_box": "Zeigt die Chat-Nachrichten Ihrer Sendung auf dem Bildschirm an",
+      "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt"
     },
     "fields": {
       "style": "Stil",
@@ -9419,7 +9431,14 @@
       "accent": "Farbe",
       "size": "Größe",
       "smaller": "Kleiner",
-      "larger": "Größer"
+      "larger": "Größer",
+      "label": "Beschriftung",
+      "lines": "Angezeigte Linien",
+      "showAvatars": "Profilbilder anzeigen",
+      "speed": "Geschwindigkeit",
+      "slow": "Langsam",
+      "normal": "Normal",
+      "fast": "Schnell"
     },
     "obs": {
       "title": "Verwendung mit OBS",
