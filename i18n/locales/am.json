@@ -9147,6 +9147,8 @@
     "notNow": "አሁን አይደለም"
   },
   "liveOverlay": {
+    "streak_one": "የ{{count}} ሳምንት ተከታታይ",
+    "streak_other": "የ{{count}} ሳምንታት ተከታታይ",
     "wheelLanded": "{{name}} አሽከረከረ፦ {{result}}",
     "someone": "የሆነ ሰው",
     "newFollower": "አዲስ ተከታይ: {{name}}",

@@ -9236,6 +9236,8 @@
       "share": "分享"
     },
     "kinds": {
+      "streamer_level": "主播级别",
+      "tip_jar": "礼品罐",
       "subathon_timer": "Subathon计时器",
       "points_board": "忠实观众",
       "spin_wheel": "旋转转盘",
@@ -9249,6 +9251,7 @@
       "frame": "框架"
     },
     "hints": {
+      "streamer_level": "您的个人资料中的流媒体播放器级别和每周连续播放次数",
       "subathon_timer": "一个倒计时，礼物、关注和订阅都被推迟了。",
       "spin_wheel": "规则中的车轮在哪里旋转",
       "poll": "您的实时投票，每个选项都有投票按钮",
@@ -9262,6 +9265,7 @@
       "tip_jar": "一個罐子，隨著付費禮物進來而漸漸裝滿"
     },
     "fields": {
+      "showStreak": "显示每周连胜记录",
       "style": "风格",
       "confirmedOnlyHint": "等幾秒鐘鏈式確認，所以永遠不會付的小費就不會顯示。",
       "duration": "螢幕上的秒數",

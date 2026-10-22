@@ -9234,6 +9234,7 @@
     "notNow": "Tsy hita"
   },
   "liveOverlay": {
+    "level": "Ambaratonga {{level}}",
     "subathon": "Subathon",
     "wheelLanded": "{{name}} Spun: {{result}}",
     "poll": {

@@ -9131,6 +9131,8 @@
     "notNow": "Gwé nggoje."
   },
   "liveOverlay": {
+    "streak_one": "{{count}}-minggu beruntun",
+    "streak_other": "{{count}}-minggu beruntun",
     "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}",
     "someone": "Sapa wae",
     "newFollower": "Pengikut anyar: {{name}}",
@@ -9210,6 +9212,7 @@
       "join": "Ndhuwur"
     },
     "kinds": {
+      "streamer_level": "Level streamer",
       "spin_wheel": "Roda putar",
       "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",

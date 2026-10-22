@@ -9211,6 +9211,10 @@
     "backUp": "पीछे हट"
   },
   "liveOverlay": {
+    "level": "स्तर {{level}}",
+    "streak_one": "{{count}}-हफ़्ते का सिलसिला",
+    "streak_other": "{{count}}-हफ़्ते का सिलसिला",
+    "tipJar": "गिफ़्ट जार",
     "subathon": "सुबाथन",
     "subathonOver": "समय पूरा हो गया है",
     "pointsTitle": "सबसे वफादार दर्शक",
@@ -9295,6 +9299,8 @@
       "subscribe": "सबस्क्राइब करो"
     },
     "kinds": {
+      "streamer_level": "स्ट्रीमर लेवल",
+      "tip_jar": "गिफ़्ट जार",
       "subathon_timer": "सबथॉन टाइमर",
       "points_board": "वफादार दर्शक",
       "spin_wheel": "स्पिन व्हील",

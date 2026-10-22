@@ -9183,6 +9183,8 @@
     "testFailed": "阿拉个测试提醒发勿出。等一会儿再试。",
     "saved": "保存啦。侬个流马上显示新布局。",
     "kinds": {
+      "streamer_level": "主播级别",
+      "tip_jar": "礼品罐",
       "subathon_timer": "Subathon计时器",
       "points_board": "忠实观众",
       "spin_wheel": "旋转转盘",

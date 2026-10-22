@@ -9115,6 +9115,9 @@
     "notNow": "اوس نه"
   },
   "liveOverlay": {
+    "level": "کچه {{level}}",
+    "streak_one": "{{count}} اونۍ پرله پسې",
+    "streak_other": "{{count}} اونۍ پرله پسې",
     "points_one": "{{formatted}} نمره",
     "points_other": "{{formatted}} نمرې",
     "wheelLanded": "{{name}} وګرځاوه: {{result}}",

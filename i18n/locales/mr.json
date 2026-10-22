@@ -9142,6 +9142,8 @@
     "notNow": "आता नाही"
   },
   "liveOverlay": {
+    "streak_one": "{{count}} आठवड्यांची मालिका",
+    "streak_other": "{{count}} आठवड्यांची मालिका",
     "wheelLanded": "{{name}} ने घुमवले: {{result}}",
     "someone": "कोणीतरी",
     "newFollower": "नवीन अनुयायी: {{name}}",

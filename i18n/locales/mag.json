@@ -9129,6 +9129,9 @@
     "notNow": "आज तलक होलइ नञ"
   },
   "liveOverlay": {
+    "level": "स्तर {{level}}",
+    "streak_one": "{{count}}-हफ़्ते का सिलसिला",
+    "streak_other": "{{count}}-हफ़्ते का सिलसिला",
     "points_one": "{{formatted}} पॉइंट",
     "points_other": "{{formatted}} पॉइंट",
     "wheelLanded": "{{name}} स्पून: {{result}}",

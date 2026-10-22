@@ -9107,6 +9107,8 @@
     "notNow": "ບໍ່ແມ່ນຕອນນີ້"
   },
   "liveOverlay": {
+    "streak_one": "ຕໍ່ເນື່ອງ {{count}} ອາທິດ",
+    "streak_other": "ຕໍ່ເນື່ອງ {{count}} ອາທິດ",
     "wheelLanded": "{{name}} ໝຸນ: {{result}}",
     "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ",
     "newFollower": "ຜູ້ຕິດຕາມ ໃຫມ່: {{name}}",
