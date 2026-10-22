@@ -9130,5 +9130,16 @@
     "reminderBody": "Säkerhetskopiera din plånbok — 12 ord som återställer den om du förlorar din telefon.",
     "backUp": "Säkerhetskopiera",
     "notNow": "Inte nu"
+  },
+  "liveOverlay": {
+    "someone": "Någon",
+    "newFollower": "Ny följare: {{name}}",
+    "newSubscriber": "Ny prenumerant: {{name}}",
+    "subscribedTo": "{{name}} prenumererar på {{plan}}",
+    "shared": "{{name}} delade flödet",
+    "joined": "{{name}} gick med",
+    "goalReached": "Målet har uppnåtts!",
+    "followersUnit": "följare",
+    "topSupporters": "Toppanhängare"
   }
 }

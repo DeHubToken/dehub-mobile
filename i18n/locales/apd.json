@@ -9057,5 +9057,11 @@
     "advanced": "متقدم",
     "showWords": "أظهر الكلمات",
     "reminderBody": "يخزنوا كيسكوا - 12 كلمة تيجي تاخدها لو تفتري هاتفك"
+  },
+  "liveOverlay": {
+    "someone": "مَن",
+    "newSubscriber": "مشترك جديد: {{name}}",
+    "joined": "الانضمام إلى {{name}}",
+    "followersUnit": "تابعين"
   }
 }

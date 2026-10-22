@@ -9140,5 +9140,16 @@
     "reminderBody": "Fă o copie de rezervă a portofelului — 12 cuvinte care îl aduc înapoi dacă îți pierzi telefonul.",
     "backUp": "Copie de rezervă",
     "notNow": "Nu acum"
+  },
+  "liveOverlay": {
+    "someone": "Cineva",
+    "newFollower": "Urmăritor nou: {{name}}",
+    "newSubscriber": "Abonat nou: {{name}}",
+    "subscribedTo": "{{name}} s-a abonat la {{plan}}",
+    "shared": "{{name}} a distribuit fluxul",
+    "joined": "{{name}} s-au alăturat",
+    "goalReached": "Obiectiv atins!",
+    "followersUnit": "urmăritori",
+    "topSupporters": "Susținători de top"
   }
 }

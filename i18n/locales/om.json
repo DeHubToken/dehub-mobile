@@ -9155,5 +9155,16 @@
     "reminderBody": "Boorsaa keessan duubatti deebi'aa — jechoota 12 kanneen yoo bilbila keessan dhabdan deebisan.",
     "backUp": "Duubatti deebi'aa",
     "notNow": "Amma miti"
+  },
+  "liveOverlay": {
+    "someone": "Nama ta'e",
+    "newFollower": "Hordofaa haaraa: {{name}}",
+    "newSubscriber": "Maamiltoonni haaraan: {{name}}",
+    "subscribedTo": "{{name}} {{plan}} irratti subscribe godhaniiru.",
+    "shared": "{{name}} jechuun tamsaasa kana qoodeera",
+    "joined": "{{name}} itti makame",
+    "goalReached": "Galma gahe!",
+    "followersUnit": "hordoftoota",
+    "topSupporters": "Deeggartoota olaanoo"
   }
 }

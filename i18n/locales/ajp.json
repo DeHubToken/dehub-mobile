@@ -9074,5 +9074,16 @@
     "tabPrivateKey": "مفتاح خاص",
     "reminderBody": "خزن كودك - 12 كلمة بتخليك تعيدها لو فقدت هاتفك",
     "notNow": "شوف بعدين"
+  },
+  "liveOverlay": {
+    "someone": "حد",
+    "newFollower": "متابع جديد: {{name}}",
+    "newSubscriber": "مشترك جديد: {{name}}",
+    "subscribedTo": "{{name}} اشترك بـ {{plan}}",
+    "shared": "{{name}} شارك البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "وصلنا الهدف!",
+    "followersUnit": "متابعين",
+    "topSupporters": "أعلى الداعمين"
   }
 }

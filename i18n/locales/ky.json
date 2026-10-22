@@ -9094,5 +9094,16 @@
     "reminderBody": "Кошумчаны бекемдөө — 12 сөз, телефонунуз жоголсо, аны кайра кайтаруу үчүн.",
     "backUp": "Бекемдөө",
     "notNow": "Эми эмес"
+  },
+  "liveOverlay": {
+    "someone": "Кимдир бирөө",
+    "newFollower": "Жаңы жолдоочусу: {{name}}",
+    "newSubscriber": "Жаңы жазылуучу: {{name}}",
+    "subscribedTo": "{{name}} {{plan}} катталган",
+    "shared": "{{name}} агым менен бөлүштү",
+    "joined": "{{name}} кошулду",
+    "goalReached": "Максатка жетүү!",
+    "followersUnit": "жолдоочулар",
+    "topSupporters": "Top жактоочулары"
   }
 }

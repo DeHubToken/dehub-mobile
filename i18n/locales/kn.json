@@ -9099,5 +9099,16 @@
     "reminderBody": "ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿ — ನಿಮ್ಮ ಫೋನ್ ಕಳೆದುಹೋದರೆ ಅದನ್ನು ಮರಳಿ ತರುವ 12 ಪದಗಳು.",
     "backUp": "ಬ್ಯಾಕಪ್",
     "notNow": "ಈಗ ಬೇಡ"
+  },
+  "liveOverlay": {
+    "someone": "ಯಾರಾದರೂ",
+    "newFollower": "ಹೊಸ ಅನುಯಾಯಿ: {{name}}",
+    "newSubscriber": "ಹೊಸ ಚಂದಾದಾರರು: {{name}}",
+    "subscribedTo": "{{name}} {{plan}} ಗೆ ಚಂದಾದಾರರಾಗಿದ್ದಾರೆ",
+    "shared": "{{name}} ಸ್ಟ್ರೀಮ್ ಅನ್ನು ಹಂಚಿಕೊಂಡಿದ್ದಾರೆ",
+    "joined": "{{name}} ಸೇರಿಕೊಂಡಿದ್ದಾರೆ",
+    "goalReached": "ಗುರಿ ತಲುಪಿದೆ!",
+    "followersUnit": "ಅನುಯಾಯಿಗಳು",
+    "topSupporters": "ಉನ್ನತ ಬೆಂಬಲಿಗರು"
   }
 }

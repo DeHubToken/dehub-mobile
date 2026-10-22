@@ -9137,5 +9137,16 @@
     "reminderBody": "Billeteraykimanta copia de seguridad ruway — 12 simikuna kutichimunku sichus telefonoykita chinkachinki.",
     "backUp": "Kutichiy",
     "notNow": "Kunan manam"
+  },
+  "liveOverlay": {
+    "someone": "Pipas",
+    "newFollower": "Musuq qatiq: {{name}}",
+    "newSubscriber": "Musuq suscriptor: {{name}}",
+    "subscribedTo": "{{name}} {{plan}} nisqaman suscribisqa.",
+    "shared": "{{name}} chay mayumanta rakinakurqan",
+    "joined": "{{name}} hukllawakurqa",
+    "goalReached": "¡Meta alcanzado!",
+    "followersUnit": "qatiqninkuna",
+    "topSupporters": "Hatun yanapaqkuna"
   }
 }
