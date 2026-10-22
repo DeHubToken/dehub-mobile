@@ -9174,7 +9174,12 @@
     "followersUnit": "ndjekësit",
     "topSupporters": "Mbështetësit më të mirë",
     "tipped": "{{name}} dërgoi një dhuratë",
-    "chatPreview": "Mesazhet e bisedës shfaqen këtu"
+    "chatPreview": "Mesazhet e bisedës shfaqen këtu",
+    "subathon": "Nënaton",
+    "subathonOver": "Koha mbaroi",
+    "pointsTitle": "Shikuesit më besnikë",
+    "points_one": "{{formatted}} pikë",
+    "points_other": "{{formatted}} pikë"
   },
   "liveStudio": {
     "controls": {
@@ -9274,7 +9279,9 @@
       "event_feed": "Aktiviteti i fundit",
       "chat_box": "Kutia e bisedës",
       "ticker": "Ticker",
-      "rule_alert": "Lajmërime për rregullat"
+      "rule_alert": "Lajmërime për rregullat",
+      "subathon_timer": "Kohëmatësi i subatonit",
+      "points_board": "Shikues besnikë"
     },
     "hints": {
       "spin_wheel": "Ku rrotullohen rrotat në rregullat e tua",
@@ -9294,7 +9301,9 @@
       "event_feed": "Dhuratat më të fundit, ndjekësit, abonentët dhe njerëzit që ndajnë transmetimin tënd",
       "chat_box": "Shfaq mesazhet e bisedës së transmetimit tënd në ekran",
       "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
-      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja"
+      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja",
+      "subathon_timer": "Një numërim mbrapsht që dhuratat, ndjekjet dhe abonimet shtyjnë prapa",
+      "points_board": "Shikuesit e tu më të mirë sipas pikëve nga shikimi dhe dhurimi"
     },
     "fields": {
       "style": "Stili",
@@ -9498,6 +9507,29 @@
         "word-timeout_one": "Bani timeout {{target}} për {{count}} sekondë për \"{{word}}\"",
         "word-timeout_other": "Bani timeout {{target}} për {{count}} sekonda për \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Nënaton",
+      "intro": "Një numërim mbrapsht në rrjedhën tënde. Çdo dhuratë, ndjekje dhe abonim i paguar shton kohë, kështu që dhoma të mban gjallë.",
+      "secondsPerThousand": "Sekonda të shtuara për 1,000 DHB të dhuruara",
+      "secondsPerFollow": "Sekonda të shtuara për ndjekje",
+      "secondsPerSubscribe": "Sekonda të shtuara për abonim",
+      "capHours": "Sa më gjatë që mund të funksionojë (orë)",
+      "save": "Ruaj shumat",
+      "saved": "Shumat e nënkatonit të ruajtura.",
+      "startMinutes": "Fillo me (minuta)",
+      "start": "Fillo numërimin mbrapsht",
+      "stop": "Ndalo",
+      "addFive": "Shto 5 minuta",
+      "removeFive": "Largohu 5 minuta",
+      "failed": "Kjo nuk funksionoi. Provo përsëri.",
+      "widgetHint": "Shfaq numërimin mbrapsht të subatonit tënd. Nise nga paneli Subathon në Live Studio."
+    },
+    "points": {
+      "title": "Shikues besnikë",
+      "intro": "Shikuesit fitojnë një pikë për çdo minutë që të shikojnë dhe një për çdo 100 DHB që dhurojnë. Biseda dhe reagimet nuk fitojnë asgjë, kështu që pikët nuk mund të kultivohen.",
+      "empty": "Ende nuk ka pikë. Ata ndërtohen ndërsa njerëzit shikojnë dhe dhurojnë.",
+      "widgetHint": "Shto widget-in e shikuesve besnikë për ta shfaqur këtë listë në transmetim."
     }
   },
   "liveChatModeration": {

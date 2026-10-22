@@ -9248,7 +9248,11 @@
       "voted_other": "Głosowałeś · {{count}} głosów",
       "votes_one": "{{count}} głos",
       "votes_other": "{{count}} głosów"
-    }
+    },
+    "subathonOver": "Czas minął",
+    "pointsTitle": "Najbardziej lojalni widzowie",
+    "points_one": "Punkt {{formatted}}",
+    "points_other": "{{formatted}} pkt"
   },
   "liveStudio": {
     "controls": {
@@ -9317,7 +9321,9 @@
       "chat_box": "Pole czatu",
       "ticker": "Pasek informacyjny",
       "rule_alert": "Powiadomienia o regułach",
-      "poll": "Ankieta"
+      "poll": "Ankieta",
+      "subathon_timer": "Timer podturnieju",
+      "points_board": "Lojalni widzowie"
     },
     "hints": {
       "spin_wheel": "Gdzie kręcą się koła w Twoich zasadach",
@@ -9337,7 +9343,9 @@
       "chat_box": "Wyświetla wiadomości na czacie Twojej transmisji na ekranie",
       "ticker": "Linia własnego tekstu, która przewija się po ekranie",
       "rule_alert": "Gdzie pojawiają się twoje alerty z zasad",
-      "poll": "Twoja ankieta na żywo, z przyciskiem głosowania dla każdej opcji"
+      "poll": "Twoja ankieta na żywo, z przyciskiem głosowania dla każdej opcji",
+      "subathon_timer": "Odliczanie, które powoduje, że prezenty, obserwacje i subskrypcje cofają się",
+      "points_board": "Twoi najlepsi widzowie według punktów za oglądanie i prezentowanie"
     },
     "fields": {
       "style": "Styl",
@@ -9572,6 +9580,28 @@
         "word-timeout_one": "Przekroczono limit czasu {{target}} na {{count}} sekundę dla „{{word}}”",
         "word-timeout_other": "Przekroczono limit czasu {{target}} na {{count}} sekund dla „{{word}}”"
       }
+    },
+    "subathon": {
+      "intro": "Odliczanie w strumieniu. Każdy płatny prezent, obserwowanie i subskrypcja dodają czasu, dzięki czemu pokój utrzymuje Cię na żywo.",
+      "secondsPerThousand": "Dodane sekundy na 1000 DHB podarowanych",
+      "secondsPerFollow": "Dodane sekundy na obserwację",
+      "secondsPerSubscribe": "Dodane sekundy na subskrypcję",
+      "capHours": "Najdłuższy czas pracy (godziny)",
+      "save": "Zaoszczędź kwoty",
+      "saved": "Kwoty z subatonu zaoszczędzone.",
+      "startMinutes": "Zacznij od (minuty)",
+      "start": "Rozpocznij odliczanie",
+      "stop": "Stop",
+      "addFive": "Dodaj 5 minut",
+      "removeFive": "Start 5 minut",
+      "failed": "To nie zadziałało. Spróbuj ponownie.",
+      "widgetHint": "Pokazuje odliczanie do podturnieju. Uruchom go z panelu Subathon w Live Studio."
+    },
+    "points": {
+      "title": "Lojalni widzowie",
+      "intro": "Widzowie zdobywają punkt za każdą minutę oglądania i jeden za każde 100 DHB, które podarują. Czat i reakcje nic nie zarabiają, więc punktów nie można zdobyć.",
+      "empty": "Nie ma jeszcze punktów. Narastają, gdy ludzie patrzą i dają prezenty.",
+      "widgetHint": "Dodaj widżet Lojalni widzowie, aby wyświetlić tę listę w strumieniu."
     }
   },
   "liveChatModeration": {

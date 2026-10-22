@@ -9194,7 +9194,11 @@
     "followersUnit": "粉丝",
     "topSupporters": "顶级支持者",
     "tipped": "{{name}} 送了一份礼物",
-    "chatPreview": "聊天消息会出现在这里"
+    "chatPreview": "聊天消息会出现在这里",
+    "subathonOver": "时间到",
+    "pointsTitle": "最忠实的观众",
+    "points_one": "{{formatted}}点",
+    "points_other": "{{formatted}} 分"
   },
   "liveStudio": {
     "controls": {
@@ -9290,7 +9294,8 @@
       "frame": "画面",
       "stream_timer": "直播倒计时",
       "reaction_counter": "反应计数器",
-      "rule_alert": "规则提醒"
+      "rule_alert": "规则提醒",
+      "points_board": "忠诚的观众"
     },
     "hints": {
       "spin_wheel": "在你的规则中，哪里有轮子转动？",
@@ -9309,7 +9314,9 @@
       "reaction_counter": "每次你的直播收到的每一个反应都会被计数。",
       "event_feed": "最新的礼物、粉丝、订阅者和分享直播的人数",
       "chat_box": "实时在屏幕上显示直播聊天消息",
-      "rule_alert": "您的规则提醒出现位置"
+      "rule_alert": "您的规则提醒出现位置",
+      "subathon_timer": "一个倒计时，礼物、关注和订阅都被推迟了。",
+      "points_board": "您的观看和打赏积分排行榜前列观众"
     },
     "fields": {
       "style": "样式",
@@ -9512,6 +9519,25 @@
         "word-timeout_one": "暂停{{target}} {{count}} 秒 因为 \"{{word}}\"",
         "word-timeout_other": "暂停{{target}} {{count}} 秒 因为 \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "直播间倒计时！每个付费礼物、关注和订阅都会增加时间，让房间为你保持直播。",
+      "secondsPerFollow": "秒数每追随一次增加的数量",
+      "secondsPerSubscribe": "订阅每次增加的秒数",
+      "capHours": "最长可运行时间（小时）",
+      "save": "存储金额",
+      "saved": "存款利息节省金额。",
+      "startMinutes": "(分钟)",
+      "stop": "停止",
+      "addFive": "加上五分钟",
+      "removeFive": "取下五分钟",
+      "failed": "那次没有成功。再试一次。"
+    },
+    "points": {
+      "title": "忠诚的观众",
+      "intro": "观众每看你一分钟赚一分，每赠送100 DHB赚一分。聊天和反应不计分，因此无法通过作弊赚取分数。",
+      "empty": "还没有积分。观众观看和赠送礼物后会累积积分。",
+      "widgetHint": "添加忠实观众小部件，在直播中显示此列表。"
     }
   },
   "liveChatModeration": {

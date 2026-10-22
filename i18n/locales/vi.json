@@ -9266,7 +9266,12 @@
       "voted_other": "Bạn đã bình chọn · {{count}} phiếu bầu",
       "votes_one": "{{count}} bình chọn",
       "votes_other": "{{count}} phiếu"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Thời gian đã hết",
+    "pointsTitle": "Người xem trung thành nhất",
+    "points_one": "{{formatted}} điểm",
+    "points_other": "{{formatted}} điểm"
   },
   "liveStudio": {
     "controls": {
@@ -9335,7 +9340,9 @@
       "chat_box": "Hộp trò chuyện",
       "ticker": "Ticker",
       "rule_alert": "Cảnh báo quy tắc",
-      "poll": "Thăm dò ý kiến"
+      "poll": "Thăm dò ý kiến",
+      "subathon_timer": "Bộ hẹn giờ Subathon",
+      "points_board": "Người xem trung thành"
     },
     "hints": {
       "spin_wheel": "Khi các bánh xe trong quy tắc của bạn quay",
@@ -9355,7 +9362,9 @@
       "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
       "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình",
       "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn",
-      "poll": "Cuộc thăm dò trực tiếp của bạn, với nút bỏ phiếu cho mọi lựa chọn"
+      "poll": "Cuộc thăm dò trực tiếp của bạn, với nút bỏ phiếu cho mọi lựa chọn",
+      "subathon_timer": "Một đếm ngược mà món quà, người theo dõi và đăng ký đẩy lại",
+      "points_board": "Người xem hàng đầu của bạn theo điểm từ việc xem và tặng quà"
     },
     "fields": {
       "style": "Phong cách",
@@ -9590,6 +9599,29 @@
         "word-timeout_one": "Thời gian chờ {{target}} trong {{count}} giây vì \"{{word}}\"",
         "word-timeout_other": "Thời gian chờ {{target}} trong {{count}} giây (số nhiều) vì \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Một đếm ngược trên stream của bạn. Mỗi món quà trả tiền, người theo dõi và đăng ký sẽ thêm thời gian, giúp phòng chat giữ bạn online.",
+      "secondsPerThousand": "Giây được thêm mỗi 1.000 DHB được tặng",
+      "secondsPerFollow": "Giây được thêm mỗi người theo dõi",
+      "secondsPerSubscribe": "Giây được thêm mỗi đăng ký",
+      "capHours": "Thời gian dài nhất có thể chạy (giờ)",
+      "save": "Lưu số lượng",
+      "saved": "Số lượng Subathon được lưu",
+      "startMinutes": "Bắt đầu với (phút)",
+      "start": "Bắt đầu đếm ngược",
+      "stop": "Dừng",
+      "addFive": "Thêm 5 phút",
+      "removeFive": "Trừ 5 phút",
+      "failed": "Đó không hoạt động. Hãy thử lại.",
+      "widgetHint": "Hiển thị đếm ngược Subathon của bạn. Bắt đầu từ bảng Subathon trong Live Studio."
+    },
+    "points": {
+      "title": "Người xem trung thành",
+      "intro": "Người xem kiếm được một điểm cho mỗi phút họ xem bạn và một điểm cho mỗi 100 DHB họ tặng. Chat và phản ứng không kiếm được điểm, vì vậy điểm không thể được \"nông\" (làm giả).",
+      "empty": "Chưa có điểm nào. Chúng tích lũy khi người xem và tặng quà.",
+      "widgetHint": "Thêm tiện ích Người xem trung thành để hiển thị danh sách này trên luồng."
     }
   },
   "liveChatModeration": {

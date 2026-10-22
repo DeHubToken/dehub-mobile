@@ -9026,7 +9026,12 @@
     "subscribedTo": "{{name}} subscribe to {{plan}}",
     "followersUnit": "fɔlɔwɔs",
     "tipped": "{{name}} send goody",
-    "chatPreview": "Chat messages appear here"
+    "chatPreview": "Chat messages appear here",
+    "subathon": "Subathon",
+    "subathonOver": "Time's up",
+    "pointsTitle": "Most loyal viewers",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9119,7 +9124,9 @@
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Rule alerts"
+      "rule_alert": "Rule alerts",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
       "spin_wheel": "Where the wheels in your rules spin",
@@ -9320,6 +9327,22 @@
         "word-timeout_one": "Time out {{target}} fo’ {{count}} second fo’ \"{{word}}\"",
         "word-timeout_other": "Time out {{target}} fo’ {{count}} seconds fo’ \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
+      "secondsPerFollow": "Seconds added per follow",
+      "secondsPerSubscribe": "Seconds added per subscription",
+      "save": "Save amounts",
+      "saved": "Subathon amounts saved.",
+      "stop": "Stop",
+      "addFive": "Add 5 minutes",
+      "failed": "Na go no dey work. Try again."
+    },
+    "points": {
+      "title": "Loyal viewers",
+      "intro": "Wot watcha see, dem get one point fo every minute dem watch you, an one point fo every 100 DHB dem give you as gift. Chat an reaction no get point, so point no be fo farming.",
+      "empty": "Na dey no point yet. Dem go add up when people watch and give gift."
     }
   },
   "liveChatModeration": {

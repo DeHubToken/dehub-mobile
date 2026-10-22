@@ -9209,7 +9209,12 @@
     "followersUnit": "팔로워",
     "topSupporters": "최고의 서포터",
     "tipped": "{{name}} 님이 선물을 보냈습니다",
-    "chatPreview": "채팅 메시지가 여기에 표시됩니다"
+    "chatPreview": "채팅 메시지가 여기에 표시됩니다",
+    "subathon": "수바톤",
+    "subathonOver": "시간 종료",
+    "pointsTitle": "가장 충성도 높은 시청자",
+    "points_one": "{{formatted}} 포인트",
+    "points_other": "{{formatted}} 포인트"
   },
   "liveStudio": {
     "controls": {
@@ -9309,7 +9314,8 @@
       "event_feed": "최근 활동",
       "chat_box": "채팅창",
       "ticker": "티커",
-      "rule_alert": "규칙 경고"
+      "rule_alert": "규칙 경고",
+      "subathon_timer": "서브아톤 타이머"
     },
     "hints": {
       "spin_wheel": "규칙의 바퀴가 회전하는 곳",
@@ -9329,7 +9335,9 @@
       "event_feed": "최신 선물, 팔로워, 구독자 및 방송 공유자",
       "chat_box": "브로드캐스트의 채팅 메시지를 화면에 표시합니다.",
       "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄",
-      "rule_alert": "규칙 알림이 표시되는 위치"
+      "rule_alert": "규칙 알림이 표시되는 위치",
+      "subathon_timer": "선물, 팔로우 및 구독이 뒤로 밀리는 카운트다운",
+      "points_board": "시청 및 선물의 포인트로 최고 시청자"
     },
     "fields": {
       "style": "스타일",
@@ -9533,6 +9541,28 @@
         "word-timeout_one": "\"{{word}}\" 에 대해 {{count}} 초 동안 {{target}} 시간 초과",
         "word-timeout_other": "\"{{word}}\" 의 {{count}} 초 동안 {{target}} 시간 초과"
       }
+    },
+    "subathon": {
+      "title": "수바톤",
+      "intro": "스트리밍 중 카운트다운이 진행됩니다. 모든 유료 선물, 팔로우, 구독이 시간 추가로 연결되니 방이 당신을 유지해줍니다.",
+      "secondsPerThousand": "선물받은 DHB 1,000개당 초 추가됨",
+      "secondsPerFollow": "팔로우당 초 추가됨",
+      "secondsPerSubscribe": "구독당 초 추가됨",
+      "capHours": "실행 가능한 최장 시간 (시간)",
+      "save": "금액 저장",
+      "saved": "Subathon 금액이 절약되었습니다.",
+      "startMinutes": "(분) 으로 시작",
+      "start": "카운트다운 시작",
+      "stop": "중지",
+      "addFive": "5분 추가",
+      "removeFive": "5분 이동",
+      "failed": "실패했습니다. 다시 시도하세요.",
+      "widgetHint": "서브아톤 카운트다운을 표시합니다. Live Studio의 Subathon 패널에서 시작하세요."
+    },
+    "points": {
+      "intro": "시청자는 1분마다 포인트를 적립하고 100 DHB를 선물할 때마다 포인트를 적립합니다. 채팅과 반응은 수익이 없으므로 포인트를 적립할 수 없습니다.",
+      "empty": "아직 포인트가 없습니다. 사람들이 보고 선물할 때 쌓입니다.",
+      "widgetHint": "충성도 높은 시청자 위젯을 추가하여 이 목록을 스트림에 표시합니다."
     }
   },
   "liveChatModeration": {

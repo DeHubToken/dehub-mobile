@@ -9177,7 +9177,12 @@
       "voted_other": "Ön · {{count}} szavazattal szavazott",
       "votes_one": "{{count}} szavazat",
       "votes_other": "{{count}} szavazat"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Lejárt az idő",
+    "pointsTitle": "Leghűségesebb nézők",
+    "points_one": "{{formatted}} pont",
+    "points_other": "{{formatted}} pont"
   },
   "liveStudio": {
     "controls": {
@@ -9246,7 +9251,9 @@
       "chat_box": "Csevegőmező",
       "ticker": "Ticker",
       "rule_alert": "Szabályriasztások",
-      "poll": "Szavazás"
+      "poll": "Szavazás",
+      "subathon_timer": "Subathon időzítő",
+      "points_board": "Hűséges nézők"
     },
     "hints": {
       "spin_wheel": "Ahol a szabályaid kerekei forognak",
@@ -9266,7 +9273,9 @@
       "chat_box": "Megjeleníti az adás csevegési üzeneteit a képernyőn",
       "ticker": "A saját szöveged egy sora, amely végiggörgeti a képernyőt",
       "rule_alert": "Itt jelennek meg a szabályaidra vonatkozó értesítések",
-      "poll": "Élő szavazásod, szavazógombbal minden opcióhoz"
+      "poll": "Élő szavazásod, szavazógombbal minden opcióhoz",
+      "subathon_timer": "A visszaszámlálás, amely az ajándékokat, a követéseket és az előfizetéseket visszaszorítja",
+      "points_board": "A legjobb nézők pontonként a nézésből és az ajándékozásból"
     },
     "fields": {
       "style": "Stílus",
@@ -9501,6 +9510,29 @@
         "word-timeout_one": "Időzött ki {{target}}-t {{count}} másodpercre: \"{{word}}\"",
         "word-timeout_other": "Időzött ki {{target}}-t {{count}} másodpercig: \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Visszaszámlálás a patakodon. Minden fizetett ajándék, követés és előfizetés időt ad, így a szoba életben tart.",
+      "secondsPerThousand": "Hozzáadott másodpercek száma 1000 ajándékozott DHB után",
+      "secondsPerFollow": "Hozzáadott másodpercek száma követésenként",
+      "secondsPerSubscribe": "Másodperc hozzáadva előfizetésenként",
+      "capHours": "Leghosszabb üzemidő (óra)",
+      "save": "Összegek mentése",
+      "saved": "Subathon-összegek mentve.",
+      "startMinutes": "Kezdés ezzel: (perc)",
+      "start": "Indítsa el a visszaszámlálást",
+      "stop": "Stop",
+      "addFive": "Adj hozzá 5 percet",
+      "removeFive": "Felszállás 5 perc múlva",
+      "failed": "Ez nem sikerült. Próbálkozz újra.",
+      "widgetHint": "Megjeleníti a subathon visszaszámlálását. Indítsd el a Live Studio Subathon paneléről."
+    },
+    "points": {
+      "title": "Hűséges nézők",
+      "intro": "A nézők egy pontot kapnak minden percért, amit néznek, és egyet minden 100 DHB után, amit ajándékba adnak. A csevegés és a reakciók nem keresnek semmit, így a pontokat nem lehet előállítani.",
+      "empty": "Még nincs pont. Úgy épülnek fel, ahogy az emberek nézik és ajándékozzák.",
+      "widgetHint": "Adja hozzá a Hűséges nézők widgetet, hogy megjelenítse ezt a listát az adatfolyamban."
     }
   },
   "liveChatModeration": {

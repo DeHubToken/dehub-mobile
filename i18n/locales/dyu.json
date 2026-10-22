@@ -9101,7 +9101,12 @@
     "followersUnit": "uwuwuwuwuwuuw",
     "topSupporters": "Mɔgɔ minw be dɛmɛ don",
     "tipped": "{{name}}Add a gift",
-    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
+    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan",
+    "subathon": "O kɔ, a ye mɔgɔ dɔ weele ka",
+    "subathonOver": "Wagati ka baara",
+    "pointsTitle": "I ka mɔgɔ kantigiw",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9199,7 +9204,9 @@
       "event_feed": "Sanni dɔɔni, u ye baara kɛ",
       "chat_box": "Kala Lagaw Ya",
       "ticker": "Fɛɛn minw be sɔrɔ o la",
-      "rule_alert": "Kɔrɔbɔli sariya"
+      "rule_alert": "Kɔrɔbɔli sariya",
+      "subathon_timer": "O ye wagati ta ye",
+      "points_board": "Mɔgɔ minw be kantigiya kɛ"
     },
     "hints": {
       "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye.",
@@ -9217,7 +9224,9 @@
       "event_feed": "I ka kalan labanw, i ka kalandenw, i ka sɛbɛw ani i ka kalanw jɛnsɛnbagaw",
       "chat_box": "- I ka videokalanw yira i ka filɛli la",
       "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye.",
-      "rule_alert": "I ka sariyaw be yɔrɔ min na"
+      "rule_alert": "I ka sariyaw be yɔrɔ min na",
+      "subathon_timer": "O la, mɔgɔ minw be sɔn ka fɛɛn dɔ di, olu be sɔn ka fɛɛn dɔ di.",
+      "points_board": "I ka mɔgɔ minw ye mɔgɔbabaw ye, i ka olu filɛ ani k'u ka nilifɛnw di u ma"
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9419,6 +9428,29 @@
         "moderator-added": "{{target}}Becoming a Moderator ka ɲɛsin mɔgɔ wɛrɛw ma",
         "moderator-removed": "{{target}} No longer a moderator"
       }
+    },
+    "subathon": {
+      "title": "O kɔ, a ye mɔgɔ dɔ weele ka",
+      "intro": "O kɔ, a ye dɔ fara a ka fanga kan. N'i ye fɛɛn dɔ di, i ka tugu a kɔ ani i ka sɛbɛri kɛ, o be dɔ fara i ka wagati kan walisa i ka to i ka soo.",
+      "secondsPerThousand": "O kɔ, a ye dɔ fara a ka wari kan.",
+      "secondsPerFollow": "O kɔ, a ye dɔ fara a kan",
+      "secondsPerSubscribe": "Siginiden kelen kelen bɛɛ ka kan ka kɛ siginiden ye",
+      "capHours": "A be se ka boli fɔɔ ka se a daan na.",
+      "save": "Ka wari mara",
+      "saved": "O kama, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye",
+      "startMinutes": "Ka daminɛ (miniti)",
+      "start": "Aw ka jatiminɛ daminɛ",
+      "stop": "Aw kana aw yɛrɛ minɛ",
+      "addFive": "Dakun duuru tɛmɛna.",
+      "removeFive": "Aw ka miniti fila kɛ sani aw ka taga.",
+      "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+      "widgetHint": "I ka jatiminɛ kɛcogo yira. I ka kan ka bɔ o yɔrɔ la ka bɔ o yɔrɔ la."
+    },
+    "points": {
+      "title": "Mɔgɔ minw be kantigiya kɛ",
+      "intro": "Mɔgɔ minw be filɛli kɛ, olu be pikiri kɛ miniti o miniti ani u be pikiri kɛ DHB 100 o miniti. O kama, u tɛ se ka pikiri kɛ.",
+      "empty": "O tɛ foyi ye halibi. U be lɔ i n'a fɔ mɔgɔw be filɛli kɛ cogo min na ani ka nilifɛn dɔ di u ma.",
+      "widgetHint": "I ka kan ka mɔgɔ kantigiw ka widget dɔ fara a kan walisa k'a yira ko i ye mɔgɔ kantigiw ye."
     }
   },
   "liveChatModeration": {

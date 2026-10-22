@@ -11019,7 +11019,11 @@
       "voted_other": "U hebt op · {{count}} stemmen gestemd",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} stemmen"
-    }
+    },
+    "subathonOver": "De tijd is om",
+    "pointsTitle": "Meest loyale kijkers",
+    "points_one": "{{formatted}} punt",
+    "points_other": "{{formatted}} punten"
   },
   "liveStudio": {
     "controls": {
@@ -11088,7 +11092,8 @@
       "event_feed": "Recente activiteit",
       "chat_box": "Chatbox",
       "ticker": "Lichtkrant",
-      "rule_alert": "Regelwaarschuwingen"
+      "rule_alert": "Regelwaarschuwingen",
+      "points_board": "Trouwe kijkers"
     },
     "hints": {
       "spin_wheel": "Waar de wielen in je regels draaien",
@@ -11108,7 +11113,9 @@
       "chat_box": "Toont de chatberichten van uw uitzending op het scherm",
       "ticker": "Een regel van je eigen tekst die over het scherm scrolt",
       "rule_alert": "Waar de waarschuwingen van je regels verschijnen",
-      "poll": "Uw live poll, met een stemknop voor elke optie"
+      "poll": "Uw live poll, met een stemknop voor elke optie",
+      "subathon_timer": "Een aftelling die geschenken, volgers en abonnementen terugduwen",
+      "points_board": "Je beste kijkers op punten van kijken en schenken"
     },
     "fields": {
       "style": "Stijl",
@@ -11343,6 +11350,28 @@
         "word-timeout_one": "Tijdelijk uitgeschakeld {{target}} voor {{count}} seconde voor \"{{word}}\"",
         "word-timeout_other": "Tijdelijk uitgeschakeld {{target}} voor {{count}} seconden voor \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "Aftellen op je stream. Elk betaald geschenk, volg- en abonnement voegt tijd toe, zodat de kamer je in leven houdt.",
+      "secondsPerThousand": "Seconden toegevoegd per 1.000 DHB begaafd",
+      "secondsPerFollow": "Seconden toegevoegd per follow",
+      "secondsPerSubscribe": "Seconden toegevoegd per abonnement",
+      "capHours": "Langst kan draaien (uren)",
+      "save": "Bedragen opslaan",
+      "saved": "Subathonbedragen opgeslagen.",
+      "startMinutes": "Begin met (minuten)",
+      "start": "Start het aftellen",
+      "stop": "Stop",
+      "addFive": "Voeg 5 minuten toe",
+      "removeFive": "Take off 5 minuten",
+      "failed": "Dat werkte niet. Probeer het opnieuw.",
+      "widgetHint": "Toont uw subathon countdown. Start het vanuit het Subathon-paneel in Live Studio."
+    },
+    "points": {
+      "title": "Trouwe kijkers",
+      "intro": "Kijkers verdienen een punt voor elke minuut die ze naar je kijken en een voor elke 100 DHB die ze geven. Chat en reacties verdienen niets, dus punten kunnen niet worden gekweekt.",
+      "empty": "Nog geen punten. Ze bouwen op terwijl mensen toekijken en schenken.",
+      "widgetHint": "Voeg de widget Loyale kijkers toe om deze lijst op stream weer te geven."
     }
   },
   "liveChatModeration": {

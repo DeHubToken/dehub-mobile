@@ -9171,7 +9171,11 @@
       "voted_other": "Du har avstemt · {{count}} avstemninger",
       "votes_one": "{{count}} avstemme",
       "votes_other": "{{count}} avstemninger"
-    }
+    },
+    "subathonOver": "Tiden er ute",
+    "pointsTitle": "De mest lojale seerne",
+    "points_one": "{{formatted}} poeng",
+    "points_other": "{{formatted}} poeng"
   },
   "liveStudio": {
     "controls": {
@@ -9238,7 +9242,9 @@
       "chat_box": "Chatboks",
       "ticker": "Ticker",
       "rule_alert": "Regelvarsler",
-      "poll": "Avstemning"
+      "poll": "Avstemning",
+      "subathon_timer": "Subathon-timer",
+      "points_board": "Lojale seere"
     },
     "hints": {
       "spin_wheel": "Der hjulene i reglene dine snurrer",
@@ -9258,7 +9264,9 @@
       "chat_box": "Viser chatmeldingene fra kringkastingen din på skjermen",
       "ticker": "En linje med din egen tekst som ruller over skjermen",
       "rule_alert": "Hvor varslene fra reglene dine vises",
-      "poll": "Din direkteavstemning, med en stemmeknapp for hvert alternativ"
+      "poll": "Din direkteavstemning, med en stemmeknapp for hvert alternativ",
+      "subathon_timer": "En nedtelling som gir gaver, følgere og abonnementer utfordrer",
+      "points_board": "Dine toppseere etter poeng fra seing og gaver"
     },
     "fields": {
       "style": "Stil",
@@ -9493,6 +9501,28 @@
         "word-timeout_one": "Tidsavbrutt {{target}} for {{count}} sekund for \"{{word}}\"",
         "word-timeout_other": "Tidsavbrutt {{target}} i {{count}} sekunder for \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "En nedtelling på strømmen din. Hver betalt gave, følger og abonnement legger til tid, slik at rommet holder deg i live.",
+      "secondsPerThousand": "Sekunder lagt til per 1000 DHB gitt",
+      "secondsPerFollow": "Sekunder lagt til per følger",
+      "secondsPerSubscribe": "Sekunder lagt til per abonnement",
+      "capHours": "Lengste den kan kjøre (timer)",
+      "save": "Spar beløp",
+      "saved": "Sparte beløp for subathon.",
+      "startMinutes": "Start med (minutter)",
+      "start": "Start nedtellingen",
+      "stop": "Stoppe",
+      "addFive": "Legg til 5 minutter",
+      "removeFive": "Ta av i 5 minutter",
+      "failed": "Det fungerte ikke. Prøv igjen.",
+      "widgetHint": "Viser nedtellingen til subathonet ditt. Start den fra Subathon-panelet i Live Studio."
+    },
+    "points": {
+      "title": "Lojale seere",
+      "intro": "Seere tjener et poeng for hvert minutt de ser deg, og ett for hver 100 DHB de gir bort. Chat og reaksjoner gir ingenting, så poeng kan ikke opptjenes.",
+      "empty": "Ingen poeng ennå. De bygger seg opp etter hvert som folk ser på og gir gaver.",
+      "widgetHint": "Legg til Lojale seere-widgeten for å vise denne listen på strømming."
     }
   },
   "liveChatModeration": {

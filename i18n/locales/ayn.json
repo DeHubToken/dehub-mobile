@@ -9152,7 +9152,11 @@
     "shared": "{{name}} قايل البث",
     "joined": "{{name}} انضم",
     "followersUnit": "متابعين",
-    "topSupporters": "أقوى الداعمين"
+    "topSupporters": "أقوى الداعمين",
+    "subathon": "سوباثون",
+    "subathonOver": "زمنك خت",
+    "points_one": "{{formatted}} نقطة",
+    "points_other": "{{formatted}} نقاط"
   },
   "liveStudio": {
     "controls": {
@@ -9420,6 +9424,17 @@
         "word-timeout_one": "زال الوقت ل{{target}} بعد {{count}} ثانية لـ \"{{word}}\"",
         "word-timeout_other": "زال الوقت ل{{target}} بعد {{count}} ثانية من \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "سوباثون",
+      "secondsPerThousand": "ثواني مضافة لكل 1,000 دينار هندي هديّة",
+      "secondsPerFollow": "ثواني مضافة لكل متابع",
+      "secondsPerSubscribe": "ثواني مضافة لكل اشتراك",
+      "start": "ابدأ العد التنازلي",
+      "failed": "لما عملش. حاول تاني."
+    },
+    "points": {
+      "empty": "ما عندي نقاط بعد. بتتجمع مع ما يشوف الناس و بيهدو."
     }
   },
   "liveChatModeration": {
