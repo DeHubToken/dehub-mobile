@@ -22,7 +22,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
-import { getAvatarUrl } from "../../libs/misc";
+import { storedAvatarSources } from "../../libs/misc";
 import type { AudioSpace } from "../../hooks/useStages";
 import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
@@ -47,7 +47,7 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
 
       <View style={styles.hostRow}>
         <Avatar
-          uri={space.host_avatar ? getAvatarUrl(space.host_avatar, 40) : null}
+          {...storedAvatarSources(space.host_avatar, space.host_wallet_address, 40)}
           size={40}
           name={space.host_username || space.host_wallet_address}
           borderWidth={2}
