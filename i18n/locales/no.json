@@ -9137,7 +9137,17 @@
     "followersUnit": "følgere",
     "topSupporters": "Toppstøttespillere",
     "tipped": "{{name}} sendte en gave",
-    "chatPreview": "Chatmeldinger vises her"
+    "chatPreview": "Chatmeldinger vises her",
+    "poll": {
+      "closed": "Avstemningen er lukket",
+      "voteFor": "Avstem for {{option}}",
+      "signIn": "Logg inn for å avstemme",
+      "failed": "Din avstemning ble ikke registrert. Prøv på nytt.",
+      "voted_one": "Du har avstemt · {{count}} avstemme",
+      "voted_other": "Du har avstemt · {{count}} avstemninger",
+      "votes_one": "{{count}} avstemme",
+      "votes_other": "{{count}} avstemninger"
+    }
   },
   "liveStudio": {
     "title": "Livestudio",
@@ -9191,7 +9201,8 @@
       "event_feed": "Nylig aktivitet",
       "chat_box": "Chatboks",
       "ticker": "Ticker",
-      "rule_alert": "Regelvarsler"
+      "rule_alert": "Regelvarsler",
+      "poll": "Avstemning"
     },
     "hints": {
       "tip_alert": "Feirer hvert tips, tilpasset nivået",
@@ -9209,7 +9220,8 @@
       "event_feed": "De nyeste gavene, følgerne, abonnentene og personene som deler sendingen din",
       "chat_box": "Viser chatmeldingene fra kringkastingen din på skjermen",
       "ticker": "En linje med din egen tekst som ruller over skjermen",
-      "rule_alert": "Hvor varslene fra reglene dine vises"
+      "rule_alert": "Hvor varslene fra reglene dine vises",
+      "poll": "Din direkteavstemning, med en stemmeknapp for hvert alternativ"
     },
     "fields": {
       "style": "Stil",
@@ -9312,7 +9324,8 @@
         "share": "Noen deler strømmen",
         "command": "En chat-kommando brukes",
         "keyword": "En chatmelding inneholder et ord",
-        "chat": "Enhver chatmelding"
+        "chat": "Enhver chatmelding",
+        "live": "Du starter med å sende direkte"
       },
       "audiences": {
         "everyone": "Alle",
@@ -9362,6 +9375,38 @@
         "spooky": "Skummel",
         "magic-spell": "Magisk trylleformel",
         "shhh": "Ssjh"
+      },
+      "placeholdersLive": "Bruk {name}, {title} og {link} i teksten din: navnet ditt, tittelen på sendingen og en lenke for å se den."
+    },
+    "polls": {
+      "title": "Meningsmålinger",
+      "intro": "Still et spørsmål til de som ser på sendingen din. De svarer med en knapp i DeHub-appen, eller ved å skrive {{command}} og nummeret til alternativet i chatten.",
+      "question": "Spørsmål",
+      "questionPlaceholder": "Hva bør jeg spille videre?",
+      "option": "Alternativ {{n}}",
+      "addOption": "Legg til et alternativ",
+      "removeOption": "Fjern alternativet {{n}}",
+      "duration": "Hvor lenge avstemningen er åpen",
+      "seconds_one": "{{count}} sekund",
+      "seconds_other": "{{count}} sekunder",
+      "minutes_one": "{{count}} minutt",
+      "minutes_other": "{{count}} minutter",
+      "start": "Start avstemningen",
+      "end": "Avslutt avstemningen nå",
+      "started": "Avstemningen din er åpen. Seerne kan stemme nå.",
+      "notLive": "Gå direkte først. En avstemning kjører på sendingen du strømmer akkurat nå.",
+      "startFailed": "Avstemningen startet ikke. Prøv på nytt.",
+      "closeFailed": "Avstemningen ble ikke avsluttet. Prøv på nytt.",
+      "live": "Avstemningen er åpen · {{time}} venstre",
+      "ended": "Avstemningen er avsluttet",
+      "votes_one": "{{count}} stemme",
+      "votes_other": "{{count}} stemmer",
+      "replaceHint": "Å starte en ny avstemning lukker den som er åpen.",
+      "widgetHint": "Viser din direkteavstemning. I DeHub-appen trykker seerne på et alternativ for å stemme; i OBS blir folk bedt om å skrive {{command}} og et tall i chatten.",
+      "sample": {
+        "a": "Noe nytt",
+        "b": "En gammel favoritt",
+        "c": "Du velger"
       }
     }
   }

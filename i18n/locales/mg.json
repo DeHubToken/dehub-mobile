@@ -9221,7 +9221,17 @@
     "followersUnit": "mpanara-dia",
     "topSupporters": "TOP mpanohana",
     "tipped": "{{name}} nandefa fanomezana",
-    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
+    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto.",
+    "poll": {
+      "closed": "Mikatona ny fandrotsaham-bato",
+      "voteFor": "Mifidiana ny {{option}}",
+      "signIn": "Hiditra hifidy",
+      "failed": "Tsy voaisa ny vatonao. Andramo indray.",
+      "voted_one": "Nifidy? {{count}} vote",
+      "voted_other": "Nifidy? {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} Vato"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9294,7 +9304,8 @@
       "event_feed": "Ny fanomezam-pahasoavana farany, ny mpanaraka, ny mpanjifany ary ny olona mizara ny fampielezam-peo",
       "chat_box": "Mampiseho ny hafatra amin'ny chat alefanao amin'ny efijery",
       "ticker": "Tsipika avy amin'ny andinin-teninao manokana izay manavatsava ny fàfana",
-      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana"
+      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana",
+      "poll": "Ny fifidianana mivantana, amin'ny bokotra fifidianana ho an'ny safidy tsirairay"
     },
     "fields": {
       "style": "Endrika",
@@ -9397,7 +9408,8 @@
         "share": "Nisy olona nizara ny renirano",
         "command": "Misy baikom-piresahana ampiasaina",
         "keyword": "Misy teny iray ao amin'ny hafatra amin'ny chat",
-        "chat": "Izay mety ho hafatra amin'ny chat"
+        "chat": "Izay mety ho hafatra amin'ny chat",
+        "live": "Manomboka mandefa ny onjam-peo"
       },
       "audiences": {
         "everyone": "Ny rehetra",
@@ -9447,6 +9459,37 @@
         "spooky": "Spooky",
         "magic-spell": "Magic tsipelina",
         "shhh": "Shhh"
+      }
+    },
+    "polls": {
+      "title": "Fitsapan-kevitra",
+      "intro": "Anontanio ny olona izay mijery ny fandaharany amin'ny fanontaniana. Mamaly amin'ny bokotra ao amin'ny fampiharana DeHub izy ireo, na amin'ny alalan'ny fanoratana ny {{command}} sy ny laharan'ny safidy amin'ny karajia.",
+      "question": "Fanontaniana",
+      "questionPlaceholder": "Inona no tokony hilalao?",
+      "option": "Safidy {{n}}",
+      "addOption": "Hanampy safidy",
+      "removeOption": "Esory safidy {{n}}",
+      "duration": "Mandra-pahoviana no hisokatra ny fandrotsaham-bato",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} segondra",
+      "minutes_one": "{{count}} minitra",
+      "minutes_other": "{{count}} minutes",
+      "start": "Manomboha ny fifidianana",
+      "end": "Mifarana ny fandrotsaham-bato izao",
+      "started": "Misokatra ny fandatsaham-bato. Nanomboka tamin'izany fotoana izany dia afaka mifidy ny vahoaka.",
+      "notLive": "Mandehana mivantana aloha. Ny fitsapan-kevitra dia mandeha amin'ny fandaharana izay alefanao amin'izao fotoana izao.",
+      "startFailed": "Tsy nandeha ny fifidianana. Andramo indray.",
+      "closeFailed": "Tsy nifarana ny fifidianana. Andramo indray.",
+      "live": "Vato misokatra? {{time}} left",
+      "ended": "Mikatona ny fandrotsaham-bato",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} Vato",
+      "replaceHint": "Nakatona ny birao fandatsaham-bato izay misokatra.",
+      "widgetHint": "Mampiseho ny fandrotsaham-bato mivantana nataonao izany. Ao amin'ny fampiharana DeHub, mahita safidy iray hifidianana ny mpijery; ao amin'ny OBS, milaza amin'ny vahoaka izy mba hitendry ny {{command}} sy ny maro amin'ny karajia.",
+      "sample": {
+        "a": "Zava-baovao",
+        "b": "Fa Andriamanitra tia mpanome amim-pifaliana.",
+        "c": "Misafidy ianao"
       }
     }
   }

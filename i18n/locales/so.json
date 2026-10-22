@@ -9116,7 +9116,17 @@
     "followersUnit": "kuwa raacsan",
     "topSupporters": "Taageerayaasha ugu sareeya",
     "tipped": "{{name}} soo diray hadiyad",
-    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda"
+    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda",
+    "poll": {
+      "closed": "Codbixinta oo xiran",
+      "voteFor": "Codee {{option}}",
+      "signIn": "Gal si aad u codeyso",
+      "failed": "Codkaaga ma tirin ee isku day mar kale.",
+      "voted_one": "Waxaad codaysay · {{count}} codka",
+      "voted_other": "Waxaad codaysay · {{count}} codadka",
+      "votes_one": "{{count}} codka",
+      "votes_other": "{{count}} codadka"
+    }
   },
   "liveStudio": {
     "subtitle": "Digniinta iyo widget-yada durdurradaada",
@@ -9167,7 +9177,8 @@
       "event_feed": "Dhawaan waxqabadka",
       "chat_box": "Sanduuqa sheekaysiga",
       "ticker": "Ticker",
-      "rule_alert": "Digniinta xeerka"
+      "rule_alert": "Digniinta xeerka",
+      "poll": "Codad"
     },
     "hints": {
       "tip_alert": "Waxay u dabaaldegtaa talooyin kasta, oo si weyn loo cabbiray heerarkeeda",
@@ -9185,7 +9196,8 @@
       "event_feed": "Hadiyadihii ugu dambeeyay, kuwa raacsan, macaamiisha iyo dadka la wadaagaya baahintaada",
       "chat_box": "Muuji farriimaha sheekaysiga ee baahintaada shaashadda",
       "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan",
-      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato"
+      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato",
+      "poll": "Codadkaaga siidaadka ah, oo leh buton codad oo kasta filah"
     },
     "fields": {
       "style": "Qaabka",
@@ -9286,7 +9298,8 @@
         "share": "Qof ayaa la wadaagaya qulqulka",
         "command": "Amarka wada sheekaysiga ayaa loo adeegsadaa",
         "keyword": "Farriinta sheekada waxaa ku jira erayga",
-        "chat": "Fariin kasta oo sheeko ah"
+        "chat": "Fariin kasta oo sheeko ah",
+        "live": "Waxaad bilaabeysaa baahinta"
       },
       "audiences": {
         "everyone": "Qof walba",
@@ -9336,6 +9349,38 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Isticmaal {name}, {title} iyo {link} qoraalkaaga: magacaaga, cinwaanka siidaadka, iyo link-ka daawashada."
+    },
+    "polls": {
+      "title": "Polls",
+      "intro": "Waxaa ku weydii dadka daawanaya siidaadkaaga su'aal. Waxay ku jawaabaan buton ku yaal DeHub app-ka, ama waxay qoraan {{command}} iyo lambar-ka filaha ku chat-ka.",
+      "question": "Su'aal",
+      "questionPlaceholder": "Maxaan ciyaari karaa xiga?",
+      "option": "Filaha {{n}}",
+      "addOption": "Ku dar filah",
+      "removeOption": "Tirtir filaha {{n}}",
+      "duration": "Mudada codadka ay furan tahay",
+      "seconds_one": "{{count}} ilbiriqsi",
+      "seconds_other": "{{count}} ilbiriqsi",
+      "minutes_one": "{{count}} daqiiqad",
+      "minutes_other": "{{count}} daqiiqad",
+      "start": "Bilow codadka",
+      "end": "Jooji codadka hadda",
+      "started": "Codadkaagu waa furan. Daawayaashu waxay codayn karaan hadda.",
+      "notLive": "Halkaa oo hore u sii. Codadka wuxuu ku socdaa siidaadka aad hadda ku sii daatay.",
+      "startFailed": "Codadka uma bilaabmin. Isku day mar kale.",
+      "closeFailed": "Codadka uma joojin. Isku day mar kale.",
+      "live": "Codad furan · {{time}} oo hadhow",
+      "ended": "Codad xiran",
+      "votes_one": "{{count}} cod",
+      "votes_other": "{{count}} cod",
+      "replaceHint": "Codad cusub bilaabista wuxuu xiraa kan furan.",
+      "widgetHint": "Waxaa lagu tusaya codadkaaga siidaadka ah. DeHub app-ka daawayaashu waxay gacan ku dhigaan filah; OBS-ka waxaa lagu sheegaa inay qoraan {{command}} iyo lambar ku chat-ka.",
+      "sample": {
+        "a": "Wax cusub",
+        "b": "Wax duwan oo gaarka ah",
+        "c": "Adiga ayaa dooranaya"
       }
     }
   }

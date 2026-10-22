@@ -9175,7 +9175,17 @@
     "followersUnit": "팔로워",
     "topSupporters": "최고의 서포터",
     "tipped": "{{name}} 님이 선물을 보냈습니다",
-    "chatPreview": "채팅 메시지가 여기에 표시됩니다"
+    "chatPreview": "채팅 메시지가 여기에 표시됩니다",
+    "poll": {
+      "closed": "투표 종료됨",
+      "voteFor": "{{option}} 에 투표하기",
+      "signIn": "투표하려면 로그인하세요",
+      "failed": "귀하의 투표가 집계되지 않았습니다. 다시 시도하십시오.",
+      "voted_one": "투표하셨습니다 · {{count}} 투표",
+      "voted_other": "투표하셨습니다 · {{count}} 표",
+      "votes_one": "{{count}} 투표",
+      "votes_other": "{{count}} 표"
+    }
   },
   "liveStudio": {
     "title": "라이브 스튜디오",
@@ -9231,7 +9241,8 @@
       "event_feed": "최근 활동",
       "chat_box": "채팅창",
       "ticker": "티커",
-      "rule_alert": "규칙 경고"
+      "rule_alert": "규칙 경고",
+      "poll": "설문조사"
     },
     "hints": {
       "tip_alert": "등급에 맞게 조정된 모든 팁을 축하하세요",
@@ -9249,7 +9260,8 @@
       "event_feed": "최신 선물, 팔로워, 구독자 및 방송 공유자",
       "chat_box": "브로드캐스트의 채팅 메시지를 화면에 표시합니다.",
       "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄",
-      "rule_alert": "규칙 알림이 표시되는 위치"
+      "rule_alert": "규칙 알림이 표시되는 위치",
+      "poll": "모든 옵션에 투표 버튼이 있는 실시간 투표"
     },
     "fields": {
       "style": "스타일",
@@ -9351,7 +9363,8 @@
         "share": "누군가가 스트림을 공유합니다",
         "command": "채팅 명령이 사용됩니다",
         "keyword": "채팅 메시지에는 단어가 포함되어 있습니다.",
-        "chat": "모든 채팅 메시지"
+        "chat": "모든 채팅 메시지",
+        "live": "방송을 시작합니다."
       },
       "audiences": {
         "everyone": "모든 사람",
@@ -9402,7 +9415,39 @@
         "magic-spell": "마법 주문",
         "shhh": "쉿"
       },
-      "enabled": "규칙입니다."
+      "enabled": "규칙입니다.",
+      "placeholdersLive": "텍스트에 {name}, {title} 및 {link} 을 (를) 사용하세요. 이름, 브로드캐스트 제목 및 링크를 사용하여 시청할 수 있습니다."
+    },
+    "polls": {
+      "title": "투표",
+      "intro": "방송을 시청하는 사람들에게 질문을 하세요. DeHub 앱에서 버튼을 누르거나 채팅에 {{command}} 과 옵션 번호를 입력하여 응답합니다.",
+      "question": "질문",
+      "questionPlaceholder": "다음에는 무엇을 플레이해야 하나요?",
+      "option": "옵션 {{n}}",
+      "addOption": "옵션 추가",
+      "removeOption": "{{n}} 옵션 제거",
+      "duration": "투표가 진행되는 기간",
+      "seconds_one": "{{count}} 초",
+      "seconds_other": "{{count}} 초",
+      "minutes_one": "{{count}} 분",
+      "minutes_other": "{{count}} 분",
+      "start": "설문조사 시작",
+      "end": "지금 투표 종료",
+      "started": "설문조사가 진행 중입니다. 시청자는 지금 투표할 수 있습니다.",
+      "notLive": "먼저 생방송을 시작하세요. 현재 스트리밍 중인 방송에서 설문 조사가 진행됩니다.",
+      "startFailed": "설문 조사가 시작되지 않았습니다. 다시 시도하십시오.",
+      "closeFailed": "투표가 종료되지 않았습니다. 다시 시도하세요.",
+      "live": "투표 열림 · {{time}} 남음",
+      "ended": "투표 종료됨",
+      "votes_one": "{{count}} 투표",
+      "votes_other": "{{count}} 표",
+      "replaceHint": "새 설문조사를 시작하면 열려 있는 설문조사가 닫힙니다.",
+      "widgetHint": "실시간 설문조사를 표시합니다. DeHub 앱에서 시청자는 투표 옵션을 누릅니다. OBS에서는 사람들에게 {{command}} 과 채팅에 숫자를 입력하도록 지시합니다.",
+      "sample": {
+        "a": "새로운 기능",
+        "b": "오래된 즐겨찾기",
+        "c": "선택"
+      }
     }
   }
 }

@@ -10731,7 +10731,17 @@
     "followersUnit": "seguidores",
     "topSupporters": "Principales simpatizantes",
     "tipped": "{{name}} ha enviado un regalo",
-    "chatPreview": "Los mensajes de chat aparecen aquí"
+    "chatPreview": "Los mensajes de chat aparecen aquí",
+    "poll": {
+      "closed": "Votación cerrada",
+      "voteFor": "Vota por {{option}}",
+      "signIn": "Inicia sesión para votar",
+      "failed": "Tu voto no ha contado. Inténtalo de nuevo.",
+      "voted_one": "Has votado · {{count}} voto",
+      "voted_other": "Has votado · {{count}} votos",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votos"
+    }
   },
   "liveStudio": {
     "title": "Estudio en directo",
@@ -10787,7 +10797,8 @@
       "event_feed": "Actividad reciente",
       "chat_box": "Cuadro de chat",
       "ticker": "Marquesina",
-      "rule_alert": "Alertas de reglas"
+      "rule_alert": "Alertas de reglas",
+      "poll": "Poll"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada a su nivel",
@@ -10805,7 +10816,8 @@
       "event_feed": "Los últimos regalos, seguidores, suscriptores y personas que comparten tu transmisión",
       "chat_box": "Muestra los mensajes de chat de tu transmisión en la pantalla",
       "ticker": "Una línea de tu propio texto que se desplaza por la pantalla",
-      "rule_alert": "¿Dónde aparecen las alertas de tus reglas?"
+      "rule_alert": "¿Dónde aparecen las alertas de tus reglas?",
+      "poll": "Tu encuesta en vivo, con un botón de voto para cada opción"
     },
     "fields": {
       "style": "Estilo",
@@ -10908,7 +10920,8 @@
         "share": "Alguien comparte la transmisión",
         "command": "Se utiliza un comando de chat",
         "keyword": "Un mensaje de chat contiene una palabra",
-        "chat": "Cualquier mensaje de chat"
+        "chat": "Cualquier mensaje de chat",
+        "live": "Empiezas a transmitir"
       },
       "audiences": {
         "everyone": "Todos",
@@ -10958,6 +10971,38 @@
         "spooky": "Espeluznante",
         "magic-spell": "Hechizo mágico",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Utiliza {name}, {title} y {link} en tu texto: tu nombre, el título de la retransmisión y un enlace para verla."
+    },
+    "polls": {
+      "title": "Encuestas",
+      "intro": "Haga una pregunta a las personas que ven su transmisión. Responden con un botón en la aplicación DeHub o escribiendo {{command}} y el número de la opción en el chat.",
+      "question": "Pregunta",
+      "questionPlaceholder": "¿Qué debo jugar a continuación?",
+      "option": "Opción {{n}}",
+      "addOption": "Añadir una opción",
+      "removeOption": "Eliminar opción {{n}}",
+      "duration": "Cuánto tiempo permanece abierta la votación",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundos",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minutos",
+      "start": "Iniciar la encuesta",
+      "end": "Finalizar votación ahora",
+      "started": "Tu encuesta está abierta. Los espectadores pueden votar ahora.",
+      "notLive": "Entra en vivo primero. Se ejecuta una encuesta en la transmisión que estás transmitiendo en este momento.",
+      "startFailed": "La encuesta no ha comenzado. Inténtalo de nuevo.",
+      "closeFailed": "La votación no ha terminado. Inténtalo de nuevo.",
+      "live": "Votación abierta · {{time}} left",
+      "ended": "Votación cerrada",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votos",
+      "replaceHint": "Comenzar una nueva encuesta cierra la que está abierta.",
+      "widgetHint": "Muestra tu encuesta en directo. En los visores de la aplicación DeHub, toque una opción para votar; en OBS, le dice a la gente que escriba {{command}} y un número en el chat.",
+      "sample": {
+        "a": "Algo nuevo",
+        "b": "Un viejo favorito",
+        "c": "Tú eliges"
       }
     }
   }

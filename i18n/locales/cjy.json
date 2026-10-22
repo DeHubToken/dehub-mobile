@@ -9160,7 +9160,17 @@
     "followersUnit": "粉丝",
     "topSupporters": "顶级支持者",
     "tipped": "{{name}} 送了一份礼物",
-    "chatPreview": "聊天消息会出现在这里"
+    "chatPreview": "聊天消息会出现在这里",
+    "poll": {
+      "closed": "投票已关闭",
+      "voteFor": "为 {{option}} 投票",
+      "signIn": "登录以投票",
+      "failed": "您的投票无效。再试一次。",
+      "voted_one": "您投票了 · {{count}} 投票",
+      "voted_other": "您投票了 · {{count}} 票",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票"
+    }
   },
   "liveStudio": {
     "subtitle": "直播提醒与小部件",
@@ -9212,7 +9222,8 @@
       "frame": "画面",
       "stream_timer": "直播倒计时",
       "reaction_counter": "反应计数器",
-      "rule_alert": "规则提醒"
+      "rule_alert": "规则提醒",
+      "poll": "民调"
     },
     "hints": {
       "tip_alert": "庆祝每一笔提示，大小依提示等级而定",
@@ -9338,7 +9349,8 @@
         "follow": "有人跟你了",
         "subscribe": "有人订阅了",
         "keyword": "你想要翻译的消息内容是什么？请提供完整的文本。",
-        "chat": "任何聊天信息"
+        "chat": "任何聊天信息",
+        "live": "你开始直播"
       },
       "audiences": {
         "everyone": "每个人",
@@ -9381,6 +9393,32 @@
         "spooky": "恐怖",
         "magic-spell": "魔法咒语",
         "shhh": "嘘"
+      }
+    },
+    "polls": {
+      "title": "民意调查",
+      "question": "问题",
+      "questionPlaceholder": "你下一部电影或游戏应该是什么呢？",
+      "option": "选项{{n}}",
+      "addOption": "添加一个选项",
+      "duration": "投票时间持续多久？",
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分钟",
+      "minutes_other": "{{count}} 分钟",
+      "end": "结束投票现在",
+      "started": "您的投票已经开放。观众可以现在投票。",
+      "notLive": "直播前先上线。在你现在正在直播的直播间里有一个投票活动。",
+      "startFailed": "投票尚未开始。请稍后再试。",
+      "closeFailed": "投票还没有结束。再试一次。",
+      "ended": "投票已关闭",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 张票数",
+      "replaceHint": "开始新的投票将关闭当前的投票。",
+      "widgetHint": "展示您的实时投票结果。在 DeHub 应用中，观众点击选项投票；在 OBS 中，会提示观众在聊天栏输入 `{{command}}` 并加上一个数字。",
+      "sample": {
+        "a": "什么新鲜事？",
+        "b": "一个老朋友",
+        "c": "你选择。"
       }
     }
   }

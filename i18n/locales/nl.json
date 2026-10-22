@@ -10985,7 +10985,17 @@
     "followersUnit": "volgers",
     "topSupporters": "Topsupporters",
     "tipped": "{{name}} heeft een cadeau gestuurd",
-    "chatPreview": "Chatberichten worden hier weergegeven"
+    "chatPreview": "Chatberichten worden hier weergegeven",
+    "poll": {
+      "closed": "Stemming gesloten",
+      "voteFor": "Stem op {{option}}",
+      "signIn": "Log in om te stemmen",
+      "failed": "Uw stem heeft niet geteld. Probeer het opnieuw.",
+      "voted_one": "U hebt gestemd · {{count}} vote",
+      "voted_other": "U hebt op · {{count}} stemmen gestemd",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} stemmen"
+    }
   },
   "liveStudio": {
     "title": "Livestudio",
@@ -11059,7 +11069,8 @@
       "event_feed": "De nieuwste cadeaus, volgers, abonnees en mensen die je uitzending delen",
       "chat_box": "Toont de chatberichten van uw uitzending op het scherm",
       "ticker": "Een regel van je eigen tekst die over het scherm scrolt",
-      "rule_alert": "Waar de waarschuwingen van je regels verschijnen"
+      "rule_alert": "Waar de waarschuwingen van je regels verschijnen",
+      "poll": "Uw live poll, met een stemknop voor elke optie"
     },
     "fields": {
       "style": "Stijl",
@@ -11162,7 +11173,8 @@
         "share": "Iemand deelt de stream",
         "command": "Er wordt een chatopdracht gebruikt",
         "keyword": "Een chatbericht bevat een woord",
-        "chat": "Elk chatbericht"
+        "chat": "Elk chatbericht",
+        "live": "Je begint met uitzenden"
       },
       "audiences": {
         "everyone": "Iedereen",
@@ -11212,6 +11224,38 @@
         "spooky": "Spookachtig",
         "magic-spell": "Magische spreuk",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Gebruik {name}, {title} en {link} in je tekst: je naam, de titel van de uitzending en een link om deze te bekijken."
+    },
+    "polls": {
+      "title": "Peilingen",
+      "intro": "Stel de mensen die je uitzending bekijken een vraag. Ze antwoorden met een knop in de DeHub-app of door {{command}} en het nummer van de optie in de chat te typen.",
+      "question": "Vraag",
+      "questionPlaceholder": "Wat moet ik nu spelen?",
+      "option": "Optie {{n}}",
+      "addOption": "Voeg een optie toe",
+      "removeOption": "Optie {{n}} verwijderen",
+      "duration": "Hoe lang de stemming open blijft",
+      "seconds_one": "{{count}} seconde",
+      "seconds_other": "{{count}} seconden",
+      "minutes_one": "{{count}} minuut",
+      "minutes_other": "{{count}} minuten",
+      "start": "Start de poll",
+      "end": "Stemmen nu beëindigen",
+      "started": "Je poll is geopend. Kijkers kunnen nu stemmen.",
+      "notLive": "Ga eerst live. Er loopt een peiling over de uitzending die je nu streamt.",
+      "startFailed": "De peiling is niet gestart. Probeer het opnieuw.",
+      "closeFailed": "Het stemmen is niet beëindigd. Probeer het opnieuw.",
+      "live": "Stemmen open · {{time}} links",
+      "ended": "Stemming gesloten",
+      "votes_one": "{{count}} stem",
+      "votes_other": "{{count}} stemmen",
+      "replaceHint": "Het starten van een nieuwe peiling sluit degene die open is.",
+      "widgetHint": "Toont uw live poll. In de DeHub-app tikken kijkers op een optie om te stemmen; in OBS vertelt het mensen om {{command}} en een nummer in de chat te typen.",
+      "sample": {
+        "a": "Iets nieuws",
+        "b": "Een oude favoriet",
+        "c": "U kiest"
       }
     }
   }

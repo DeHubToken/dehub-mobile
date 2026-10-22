@@ -9119,7 +9119,17 @@
     "goalReached": "目標達成！",
     "followersUnit": "粉絲數",
     "topSupporters": "贊助排行",
-    "tipped": "{{name}} 送咱一份禮物"
+    "tipped": "{{name}} 送咱一份禮物",
+    "poll": {
+      "closed": "投票已關閉",
+      "voteFor": "投票給 {{option}}",
+      "signIn": "登入投票",
+      "failed": "你的投票沒算數，再試一次",
+      "voted_one": "你投票了 · {{count}} 票",
+      "voted_other": "你投票了 · {{count}} 票",
+      "votes_one": "{{count}} 票",
+      "votes_other": "{{count}} 票"
+    }
   },
   "liveStudio": {
     "title": "Live 工作室",
@@ -9151,7 +9161,8 @@
       "join_alert": "加入警报",
       "goal_bar": "目标栏",
       "top_supporters": "顶级支持者",
-      "frame": "框架"
+      "frame": "框架",
+      "poll": "投票"
     },
     "hints": {
       "rule_alert": "规则提醒的显示位置",
@@ -9239,7 +9250,8 @@
         "share": "有人分享了信息流",
         "command": "使用聊天命令",
         "keyword": "聊天消息包含一个单词",
-        "chat": "任何聊天消息"
+        "chat": "任何聊天消息",
+        "live": "你啥時候開始直播？"
       },
       "actionTypes": {
         "alert": "显示提醒",
@@ -9293,7 +9305,17 @@
         "shhh": "嘘",
         "ooh-man": "Ooh (阿𠊎)",
         "ohh-girl": "Ohh (女仔)"
-      }
+      },
+      "placeholdersLive": "我个名号叫 {name}，欢迎收看《{title}》，请点击这里观看：{link}"
+    },
+    "polls": {
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分錶",
+      "minutes_other": "{{count}} 分錘",
+      "closeFailed": "投票还未完喔，再試一次喔。",
+      "live": "投票開啟 · {{time}} 分鐘左邊",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票"
     }
   }
 }

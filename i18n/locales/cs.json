@@ -9141,7 +9141,17 @@
     "followersUnit": "následovníci",
     "topSupporters": "Nejlepší podporovatelé",
     "tipped": "{{name}} poslal/a dárek",
-    "chatPreview": "Zde se zobrazují zprávy z chatu"
+    "chatPreview": "Zde se zobrazují zprávy z chatu",
+    "poll": {
+      "closed": "Hlasování bylo ukončeno",
+      "voteFor": "Hlasujte pro {{option}}",
+      "signIn": "Pro hlasování se přihlaste",
+      "failed": "Váš hlas se nepočítá. Zkuste to znovu.",
+      "voted_one": "Hlasovali jste · {{count}}",
+      "voted_other": "Hlasovali jste · {{count}} hlasů",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasů"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9196,7 +9206,8 @@
       "event_feed": "Nedávná aktivita",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Přidávám upozornění na pravidla."
+      "rule_alert": "Přidávám upozornění na pravidla.",
+      "poll": "Průzkum"
     },
     "hints": {
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
@@ -9214,7 +9225,8 @@
       "event_feed": "Nejnovější dárky, následovníci, odběratelé a lidé sdílející vaše vysílání",
       "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
       "ticker": "Řádek vlastního textu, který se posouvá po obrazovce",
-      "rule_alert": "Kde se zobrazují upozornění na tvá pravidla"
+      "rule_alert": "Kde se zobrazují upozornění na tvá pravidla",
+      "poll": "Váš živý průzkum, s tlačítkem pro hlasování pro každou variantu"
     },
     "fields": {
       "style": "Styl",
@@ -9317,7 +9329,8 @@
         "share": "Někdo sdílí stream",
         "command": "Používá se příkaz chatu",
         "keyword": "Chatová zpráva obsahuje slovo",
-        "chat": "Jakýkoli zprávový chatový příspěvek"
+        "chat": "Jakýkoli zprávový chatový příspěvek",
+        "live": "Začínáte vysílat"
       },
       "audiences": {
         "everyone": "Všichni",
@@ -9367,6 +9380,38 @@
         "spooky": "Strašidelné",
         "magic-spell": "Kouzlo",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Použijte {name}, {title} a {link} ve svém textu: vaše jméno, název přenosu a odkaz na sledování."
+    },
+    "polls": {
+      "title": "Přehlasování",
+      "intro": "Zeptá se lidí sledujících váš přenos na otázku. Odpovídají tlačítkem v aplikaci DeHub nebo psaním {{command}} a čísla varianty v čatu.",
+      "question": "Otázka",
+      "questionPlaceholder": "Co bych měl hrát další?",
+      "option": "Varianta {{n}}",
+      "addOption": "Přidat variantu",
+      "removeOption": "Odstranit variantu {{n}}",
+      "duration": "Jak dlouho bude hlasování otevřené",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekundy",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minuty",
+      "start": "Spustit průzkum",
+      "end": "Ukončit hlasování teď",
+      "started": "Vaše hlasování je otevřené. Diváci mohou hlasovat nyní.",
+      "notLive": "Přejděte nejprve naživo. Průzkum se provádí během přenosu, který právě streamujete.",
+      "startFailed": "Průzkum se nezačal. Zkuste to znovu.",
+      "closeFailed": "Hlasování ještě neskončilo. Zkuste to znovu.",
+      "live": "Hlasování otevřeno · {{time}} zbývá",
+      "ended": "Hlasování uzavřeno",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasy",
+      "replaceHint": "Začátek nového průzkumu ukončí ten, který je otevřený.",
+      "widgetHint": "Zobrazuje váš živý průzkum. V aplikaci DeHub diváci klepnou na variantu pro hlasování; v OBS se lidem říká, aby napsali {{command}} a číslo v čatu.",
+      "sample": {
+        "a": "Něco nového",
+        "b": "Starý oblíbenec",
+        "c": "Vy si vyberete"
       }
     }
   }

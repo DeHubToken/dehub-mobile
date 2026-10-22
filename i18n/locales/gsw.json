@@ -9160,7 +9160,17 @@
     "followersUnit": "Follower",
     "topSupporters": "Top-Unterstützer",
     "tipped": "{{name}} hat ein Geschenk geschickt",
-    "chatPreview": "Chat-Nachrichten erscheinen hier"
+    "chatPreview": "Chat-Nachrichten erscheinen hier",
+    "poll": {
+      "closed": "Abstimmig schtössi",
+      "voteFor": "Stimm für {{option}}",
+      "signIn": "Logg dich ein, um abzustimmä",
+      "failed": "Deine Stimm zähl nüt. Versuchs no ämols.",
+      "voted_one": "Du häst abgestimmt · {{count}} Stimm",
+      "voted_other": "Du häst abgestimmt · {{count}} Stimmä",
+      "votes_one": "{{count}} Stimm",
+      "votes_other": "{{count}} Stimmä"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9228,7 +9238,8 @@
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
       "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
-      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen",
+      "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option"
     },
     "fields": {
       "style": "Stil",
@@ -9333,7 +9344,8 @@
         "share": "Jemand teilt den Stream.",
         "command": "E chattbefehl wird gnutzt.",
         "keyword": "A Chatnachricht enthält ein Wort.",
-        "chat": "Any Chatnachricht"
+        "chat": "Any Chatnachricht",
+        "live": "Du startscht mit dem Sendä"
       },
       "audiences": {
         "everyone": "Alle",
@@ -9380,6 +9392,32 @@
         "ba-dum-tish": "Ba dum tish",
         "magic-spell": "Mägi Zauberformel",
         "shhh": "Shhh"
+      }
+    },
+    "polls": {
+      "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
+      "questionPlaceholder": "Was soll ich als Nächstes spielen?",
+      "option": "Option {{n}}",
+      "duration": "Wos lang d’Stimmabgabe offen blit?",
+      "seconds_one": "{{count}} zwoite",
+      "seconds_other": "{{count}} Sekundä",
+      "minutes_one": "{{count}} Minute",
+      "minutes_other": "{{count}} Minuten",
+      "start": "Start de Umfrage",
+      "end": "Endet jetzt mit dem Abstimmungsprozess!",
+      "started": "De Umfrage is offen. Schauä schtämmig ab, wä de Lesä abstimmä kännt.",
+      "notLive": "Geh live als Erstes. Es läuft eine Umfrage im Stream, den du gerade machst.",
+      "startFailed": "De Umfrage isch net gestartet. Versuchs noa.",
+      "closeFailed": "Stimmabgabe isch nocht fertig. Versuche’s noochmäl.",
+      "live": "Stimmabgabe offen · {{time}} noch übrig",
+      "ended": "Stimmabgabe geschlossen",
+      "votes_one": "{{count}} stimme ab",
+      "votes_other": "{{count}} Stimmä",
+      "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
+      "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
+      "sample": {
+        "a": "Etwas Neues",
+        "b": "Ei e chlii Altbekanntes"
       }
     }
   }

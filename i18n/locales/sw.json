@@ -9142,7 +9142,17 @@
     "followersUnit": "wafuasi",
     "topSupporters": "Wafuasi wakuu",
     "tipped": "{{name}} alituma zawadi",
-    "chatPreview": "Ujumbe wa gumzo unaonekana hapa"
+    "chatPreview": "Ujumbe wa gumzo unaonekana hapa",
+    "poll": {
+      "closed": "Upigaji kura umefungwa",
+      "voteFor": "Mpigie kura {{option}}",
+      "signIn": "Ingia ili upige kura",
+      "failed": "Kura yako haikuhesabiwa. Jaribu tena.",
+      "voted_one": "Umepiga kura · {{count}} kura",
+      "voted_other": "Umepiga kura · {{count}} kura",
+      "votes_one": "{{count}} kura",
+      "votes_other": "{{count}} kura"
+    }
   },
   "liveStudio": {
     "title": "Studio ya Moja kwa Moja",
@@ -9198,7 +9208,8 @@
       "event_feed": "Shughuli za hivi karibuni",
       "chat_box": "Sanduku la gumzo",
       "ticker": "Kileta tiketi",
-      "rule_alert": "Arifa za sheria"
+      "rule_alert": "Arifa za sheria",
+      "poll": "Kura"
     },
     "hints": {
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
@@ -9215,7 +9226,8 @@
       "event_feed": "Hali ya kazi ya kipindi cha kati ya heshima, wafuasi, wazazi na watu wanaoshirikiana na kurekodi yako",
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
       "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
-      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako"
+      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako",
+      "poll": "Kura yako ya moja kwa moja, ikiwa na kitufe cha kupiga kura kwa kila chaguo"
     },
     "fields": {
       "style": "Mtindo",
@@ -9318,7 +9330,8 @@
         "share": "Mtu anashiriki mkondo huo",
         "command": "Amri ya gumzo inatumika",
         "keyword": "Ujumbe wa gumzo una neno",
-        "chat": "Ujumbe wowote wa gumzo"
+        "chat": "Ujumbe wowote wa gumzo",
+        "live": "Unaanza kutangaza"
       },
       "audiences": {
         "everyone": "Kila mtu",
@@ -9368,6 +9381,38 @@
         "spooky": "Spooky",
         "magic-spell": "Uchawi wa kichawi",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Tumia {name}, {title} na {link} katika maandishi yako: jina lako, kichwa cha matangazo na kiunganishi cha kuitazama."
+    },
+    "polls": {
+      "title": "Kura",
+      "intro": "Waulize watu wanaotazama matangazo yako swali. Wanajibu kwa kutumia kitufe kwenye programu ya DeHub au kwa kuandika {{command}} na nambari ya chaguo kwenye gumzo.",
+      "question": "Swali",
+      "questionPlaceholder": "Nicheze nini baadaye?",
+      "option": "Chaguo {{n}}",
+      "addOption": "Weka chaguo",
+      "removeOption": "Ondoa chaguo {{n}}",
+      "duration": "Ukaaji wa kupiga kura umefunguliwa kwa muda",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekunde",
+      "minutes_one": "{{count}} dakika",
+      "minutes_other": "Dakika {{count}}",
+      "start": "Anza kupiga kura",
+      "end": "Maliza kupiga kura sasa",
+      "started": "Kura yako iko wazi. Watazamaji wanaweza kupiga kura sasa.",
+      "notLive": "Nenda moja kwa moja kwanza. Kura itaendeshwa kwenye matangazo unayotiririsha sasa hivi.",
+      "startFailed": "Kura haikuanza. Jaribu tena.",
+      "closeFailed": "Upigaji kura haukukamilika. Jaribu tena.",
+      "live": "Upigaji kura umefunguliwa · {{time}} kushoto",
+      "ended": "Upigaji kura umefungwa",
+      "votes_one": "{{count}} kura",
+      "votes_other": "{{count}} kura",
+      "replaceHint": "Kuanzisha uchaguzi mpya kunafunga ule ulio wazi.",
+      "widgetHint": "Inaonyesha kura yako ya moja kwa moja. Katika watazamaji wa programu ya DeHub bofya chaguo la kupiga kura; katika OBS inawaambia watu kuandika {{command}} na nambari kwenye gumzo.",
+      "sample": {
+        "a": "Kitu kipya",
+        "b": "Kipendwa cha zamani",
+        "c": "Unachagua"
       }
     }
   }

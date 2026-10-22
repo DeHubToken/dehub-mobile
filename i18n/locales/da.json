@@ -9142,7 +9142,17 @@
     "followersUnit": "følgere",
     "topSupporters": "Toptilhængere",
     "tipped": "{{name}} har sendt en gave",
-    "chatPreview": "Chatbeskeder vises her"
+    "chatPreview": "Chatbeskeder vises her",
+    "poll": {
+      "closed": "Afstemningen lukket",
+      "voteFor": "Stem på{{option}}",
+      "signIn": "Log ind for at stemme",
+      "failed": "Din stemme tæller ikke. Prøv igen.",
+      "voted_one": "Du stemte · {{count}} stemme",
+      "voted_other": "Du stemte ·{{count}} stemmer",
+      "votes_one": "{{count}}stemme",
+      "votes_other": "{{count}} stemmer"
+    }
   },
   "liveStudio": {
     "title": "Live-studie",
@@ -9216,7 +9226,8 @@
       "event_feed": "De seneste gaver, følgere, abonnenter og personer, der deler din udsendelse",
       "chat_box": "Viser din udsendelses chatbeskeder på skærmen",
       "ticker": "En linje med din egen tekst, der ruller hen over skærmen",
-      "rule_alert": "Hvor dine reglers påmindelser vises"
+      "rule_alert": "Hvor dine reglers påmindelser vises",
+      "poll": "Din live-afstemning med en stemmeknap for hver mulighed"
     },
     "fields": {
       "style": "Stil",
@@ -9318,7 +9329,8 @@
         "share": "Nogen deler strømmen",
         "command": "Der bruges en chatkommando",
         "keyword": "En chatbesked indeholder et ord",
-        "chat": "Enhver chatbesked"
+        "chat": "Enhver chatbesked",
+        "live": "Du begynder at sende"
       },
       "audiences": {
         "everyone": "Alle",
@@ -9368,6 +9380,38 @@
         "spooky": "Uhyggelig",
         "magic-spell": "Magisk besværgelse",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Brug {name}, {title} og {link} i din tekst: dit navn, udsendelsens titel og et link til at se den."
+    },
+    "polls": {
+      "title": "Polls",
+      "intro": "Stil et spørgsmål til de personer, der ser din udsendelse. De svarer med en knap i DeHub-appen eller ved at skrive {{command}} og valgmulighedens nummer i chatten.",
+      "question": "Spørgsmål",
+      "questionPlaceholder": "Hvad skal jeg spille nu?",
+      "option": "Mulighed {{n}}",
+      "addOption": "Tilføj en mulighed",
+      "removeOption": "Fjern valgmulighed {{n}}",
+      "duration": "Hvor længe afstemningen er åben",
+      "seconds_one": "{{count}}sekund",
+      "seconds_other": "{{count}} sekunder",
+      "minutes_one": "{{count}}minut",
+      "minutes_other": "{{count}} minutter",
+      "start": "Start afstemningen",
+      "end": "Afslut afstemning nu",
+      "started": "Din afstemning er åben. Seerne kan stemme nu.",
+      "notLive": "Gå live først. En afstemning kører på den udsendelse, du streamer lige nu.",
+      "startFailed": "Afstemningen startede ikke. Prøv igen.",
+      "closeFailed": "Afstemningen sluttede ikke. Prøv igen.",
+      "live": "Afstemningen er åben ·{{time}} tilbage",
+      "ended": "Afstemningen lukket",
+      "votes_one": "{{count}}stemme",
+      "votes_other": "{{count}} stemmer",
+      "replaceHint": "Når du starter en ny afstemning, lukkes den, der er åben.",
+      "widgetHint": "Viser din live-afstemning. I DeHub-appens seere trykker du på en mulighed for at stemme; i OBS fortæller den folk at skrive {{command}} og et nummer i chatten.",
+      "sample": {
+        "a": "Noget nyt",
+        "b": "En gammel favorit",
+        "c": "Du vælger"
       }
     }
   }

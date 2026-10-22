@@ -9053,7 +9053,17 @@
     "followersUnit": "şopîner",
     "topSupporters": "Piştgirên herî jor",
     "tipped": "{{name}} diyariyek şand",
-    "chatPreview": "Peyamên sohbetê li vir xuya dibin"
+    "chatPreview": "Peyamên sohbetê li vir xuya dibin",
+    "poll": {
+      "closed": "Dengdan qediya",
+      "voteFor": "Dengê xwe bide {{option}}",
+      "signIn": "Ji bo dengdanê têkeve hesabê xwe",
+      "failed": "Dengê te nehat jimartin. Dîsa biceribîne.",
+      "voted_one": "Te deng da · {{count}} deng",
+      "voted_other": "Te deng da · {{count}} deng",
+      "votes_one": "Dengê {{count}}",
+      "votes_other": "Dengên {{count}}"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9109,7 +9119,8 @@
       "event_feed": "Çalakiya dawî",
       "chat_box": "Qutiya sohbetê",
       "ticker": "Tîker",
-      "rule_alert": "Hişyariyên qaîdeyan"
+      "rule_alert": "Hişyariyên qaîdeyan",
+      "poll": "Gelpisî"
     },
     "hints": {
       "tip_alert": "Her serişteyê, bi mezinahiya wê, pîroz dike",
@@ -9127,7 +9138,8 @@
       "event_feed": "Diyariyên herî dawî, şopîner, abone û kesên ku weşana we parve dikin",
       "chat_box": "Peyamên sohbeta weşana we li ser ekranê nîşan dide",
       "ticker": "Rêzek ji nivîsa we ku li ser ekranê digere",
-      "rule_alert": "Jêrê ku pêşengên rêziman de hene"
+      "rule_alert": "Jêrê ku pêşengên rêziman de hene",
+      "poll": "Anketa we ya zindî, bi bişkojkek dengdanê ji bo her vebijarkê"
     },
     "fields": {
       "style": "Awayî",
@@ -9230,7 +9242,8 @@
         "share": "Kesek weşanê parve dike",
         "command": "Fermana sohbetê tê bikaranîn",
         "keyword": "Peyama sohbetê peyvekê dihewîne",
-        "chat": "Her peyama sohbetê"
+        "chat": "Her peyama sohbetê",
+        "live": "Tu dest bi weşanê dikî"
       },
       "audiences": {
         "everyone": "Her kes",
@@ -9280,6 +9293,37 @@
         "spooky": "Tirsnak",
         "magic-spell": "Sêrbaziya efsûnî",
         "shhh": "Şşş"
+      },
+      "placeholdersLive": "Di nivîsa xwe de {name}, {title} û {link} bi kar bîne: navê te, sernavê weşanê û lînka temaşekirina wê."
+    },
+    "polls": {
+      "title": "Anket",
+      "intro": "Ji kesên ku weşana te temaşe dikin pirsek bipirse. Ew bi bişkojkek di sepana DeHub de, an jî bi nivîsandina {{command}} û jimareya vebijarkê di sohbetê de bersiv didin.",
+      "question": "Pirs",
+      "questionPlaceholder": "Divê ez çi bilîzim paşê?",
+      "option": "Vebijêrk {{n}}",
+      "addOption": "Vebijêrkek lê zêde bike",
+      "removeOption": "Vebijêrka {{n}} jê bibe",
+      "duration": "Hilbijartin heta kengî vekirî dimîne",
+      "seconds_one": "{{count}} çirke",
+      "seconds_other": "{{count}} çirke",
+      "minutes_one": "{{count}} deqîqe",
+      "minutes_other": "{{count}} deqîqe",
+      "start": "Anketê dest pê bike",
+      "end": "Niha dengdanê biqedîne",
+      "notLive": "Pêşî zindî weşanê bikin. Anketek li ser weşana ku hûn niha diweşînin tê lidarxistin.",
+      "startFailed": "Anket dest pê nekir. Dîsa biceribîne.",
+      "closeFailed": "Dengdan bi dawî nebû. Dîsa biceribîne.",
+      "live": "Dengdan vekiriye · {{time}} maye",
+      "ended": "Dengdan qediya",
+      "votes_one": "Dengê {{count}}",
+      "votes_other": "Dengên {{count}}",
+      "replaceHint": "Destpêkirina anketeke nû ya vekirî digire.",
+      "widgetHint": "Anketa we ya zindî nîşan dide. Di sepana DeHub de temaşevan ji bo dengdanê vebijarkekê bitikînin; di OBS de ew ji mirovan re dibêje ku di sohbetê de {{command}} û hejmarek binivîsin.",
+      "sample": {
+        "a": "Tiştekî nû",
+        "b": "bijareyek kevin",
+        "c": "Tu hildibijêrî"
       }
     }
   }
