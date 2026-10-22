@@ -36,6 +36,7 @@ import {
   fetchCustomNotifications,
   isCustomNotificationId,
   markCustomNotificationRead,
+  markAllCustomNotificationsRead,
   type CustomNotificationItem,
 } from "../libs/custom-notifications";
 import { supabase } from "../services/supabase";
@@ -1513,6 +1514,11 @@ const NotificationScreen = () => {
 
     markAllNotificationsAsRead().catch((e) => {
       log.error("markAllRead error", e);
+    });
+    // Supabase-side rows (stage alerts, community joins, store orders...) live
+    // in their own table; without this they came back unread next launch.
+    markAllCustomNotificationsRead(walletAddressRef.current).catch((e) => {
+      log.error("markAllCustomRead error", e);
     });
   }, []);
 

@@ -822,3 +822,81 @@ export function useDeleteFeatureRequest() {
     },
   });
 }
+
+export interface ShippedFeatureNotice {
+  id: string;
+  title: string;
+  category: FeatureCategory;
+}
+
+/**
+ * The caller's own requests that shipped and that they have not been told
+ * about yet. Same two reads as web's useUnnotifiedShippedFeatures, against
+ * the same `feature_shipped_notifications` table, so a thank-you seen on one
+ * client is never shown again on the other. Before this the app had no notice
+ * at all and an app-only author only heard about it by logging in on web.
+ */
+export function useUnnotifiedShippedFeatures() {
+  const wallet = useWallet();
+
+  return useQuery({
+    queryKey: ["feature-requests-unnotified-shipped", wallet?.toLowerCase() ?? null],
+    queryFn: async () => {
+      const addr = wallet!.toLowerCase();
+      const [shippedRes, notifiedRes] = await Promise.all([
+        supabase
+          .from("feature_requests")
+          .select("id, title, category")
+          .eq("author_wallet_address", addr)
+          .in("status", SHIPPED_STATUSES),
+        withWalletHeader(
+          supabase
+            .from("feature_shipped_notifications")
+            .select("feature_request_id")
+            .eq("wallet_address", addr),
+          addr,
+        ),
+      ]);
+      // A failed read shows nothing rather than a notice the user already saw.
+      if (shippedRes.error || notifiedRes.error) return [];
+      const notified = new Set(
+        ((notifiedRes.data || []) as { feature_request_id: string }[]).map((n) => n.feature_request_id),
+      );
+      return ((shippedRes.data || []) as ShippedFeatureNotice[]).filter((f) => !notified.has(f.id));
+    },
+    enabled: !!wallet,
+    staleTime: 60_000,
+    retry: false,
+  });
+}
+
+/** Record the notice as seen for these requests (idempotent, like web's). */
+export function useMarkShippedNotified() {
+  const queryClient = useQueryClient();
+  const wallet = useWallet();
+
+  return useMutation({
+    mutationFn: async (featureRequestIds: string[]) => {
+      if (!wallet || featureRequestIds.length === 0) return;
+      const addr = wallet.toLowerCase();
+      const { error } = await withWalletHeader(
+        supabase
+          .from("feature_shipped_notifications")
+          .upsert(
+            featureRequestIds.map((feature_request_id) => ({ wallet_address: addr, feature_request_id })),
+            { onConflict: "wallet_address,feature_request_id", ignoreDuplicates: true },
+          ),
+        addr,
+      );
+      if (error) throw error;
+    },
+    onMutate: (featureRequestIds) => {
+      // Drop them at once so the notice cannot reopen while the write is in flight.
+      queryClient.setQueryData<ShippedFeatureNotice[]>(
+        ["feature-requests-unnotified-shipped", wallet?.toLowerCase() ?? null],
+        (old) => old?.filter((f) => !featureRequestIds.includes(f.id)),
+      );
+    },
+    onError: (err) => log.error("mark shipped notified failed", err),
+  });
+}

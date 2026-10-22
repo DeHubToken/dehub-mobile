@@ -300,3 +300,26 @@ export async function markCustomNotificationRead(
   );
   if (error) throw error;
 }
+
+/**
+ * Mark every unread Supabase-side row read for this wallet.
+ *
+ * The bell's "Mark all read" used to reach only the DeHub API, so these rows
+ * stayed unread in the table and came back lit on the next app open, which
+ * read as some notifications flipping back to unread at random. Web's bell
+ * does both writes; this is the second one.
+ */
+export async function markAllCustomNotificationsRead(
+  walletAddress: string | null | undefined,
+): Promise<void> {
+  if (!walletAddress) return;
+  const { error } = await withWalletHeader(
+    supabase
+      .from("custom_notifications")
+      .update({ read: true })
+      .eq("recipient_address", walletAddress.toLowerCase())
+      .eq("read", false),
+    walletAddress,
+  );
+  if (error) throw error;
+}
