@@ -9272,6 +9272,7 @@
       "rotateFailed": "No s'ha pogut crear un enllaç nou. Torna-ho a provar en un moment."
     },
     "rules": {
+      "add": "Afegeix una regla",
       "title": "Normes",
       "intro": "Quan passa alguna cosa al teu flux, DeHub fa el que tu triïs: mostra una alerta, reprodueix un so, llegeix alguna cosa en veu alta, publica al teu xat o diu al teu Discord.",
       "limit": "Has arribat al límit de {{count}} normes.",

@@ -9367,6 +9367,7 @@
         "command": "Адказы!каманда ў чаце"
       },
       "presetText": {
+        "bigTip": "{name} даслаў {amount} DHB!",
         "readChat": "{name} кажа {message}",
         "thankFollowers": "Дзякуй за наступнае, {name}!",
         "command": "Добры дзень {name}, сардэчна запрашаем у паток!"

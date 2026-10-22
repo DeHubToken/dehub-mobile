@@ -9340,6 +9340,7 @@
       "rotateFailed": "Nie można utworzyć nowego linku. Spróbuj ponownie za chwilę."
     },
     "rules": {
+      "test": "Testuj",
       "title": "Zasady",
       "intro": "Kiedy coś się dzieje na twoim strumieniu, DeHub robi to, co wybierzesz: pokazuje alert, odtwarza dźwięk, czyta coś na głos, publikuje w twoim czacie lub informuje w Discordzie.",
       "add": "Dodaj regułę",

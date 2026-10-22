@@ -9183,6 +9183,7 @@
       "rule_alert": "規則警示"
     },
     "hints": {
+      "rule_alert": "你啲規則嘅提示喺邊度出現",
       "tip_alert": "慶祝每一個提示，按等級大小",
       "follow_alert": "顯示每一個新追蹤者",
       "subscribe_alert": "顯示每一個新訂閱者",
@@ -9256,6 +9257,7 @@
       "rotateFailed": "建立唔到新連結。一陣再試下。"
     },
     "rules": {
+      "intro": "當你嘅直播有嘢發生，DeHub 會照你揀嘅去做：顯示提示、播聲音、讀出內容、喺你嘅聊天室發訊息，或者通知你嘅 Discord。",
       "title": "規矩",
       "add": "加個規則",
       "limit": "你已經達到 {{count}} 規則嘅極限。",

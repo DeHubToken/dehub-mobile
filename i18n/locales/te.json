@@ -9340,6 +9340,7 @@
         "command": "మీ చాట్ ‌ లో a !ఆదేశానికి ప్రత్యుత్తరం ఇవ్వండి"
       },
       "presetText": {
+        "readChat": "{name} అంటున్నారు {message}",
         "bigTip": "{name} పంపిన {amount} DHB!",
         "thankFollowers": "అనుసరించినందుకు ధన్యవాదాలు, {name}!",
         "command": "హలో {name}, స్ట్రీమ్ ‌ కు స్వాగతం!"

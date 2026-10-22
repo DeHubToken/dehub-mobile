@@ -9292,6 +9292,7 @@
         "subscribers": "Macaamiisha"
       },
       "actionTypes": {
+        "sound": "Shid cod",
         "alert": "Muuji digniin",
         "say": "Si weyn u akhri",
         "chat": "Ku dhaji sheekaysiga",
@@ -9321,6 +9322,7 @@
         "command": "Waad salaaman tahay {name}, soo dhawow qulqulka!"
       },
       "sounds": {
+        "ohh-girl": "Ohh (naag)",
         "airhorn": "Hordhaca Hawada",
         "applause": "Raali Gelinta",
         "cricket": "Crickets",

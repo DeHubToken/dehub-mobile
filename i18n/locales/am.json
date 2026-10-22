@@ -9314,6 +9314,7 @@
         "subscribers": "ተመዝጋቢዎች"
       },
       "actionTypes": {
+        "webhook": "ወደ webhook ላክ",
         "alert": "ማንቂያ አሳይ",
         "sound": "ድምፅ አጫውት",
         "say": "ጮክ ብለህ አንብብ",
@@ -9343,6 +9344,7 @@
         "command": "ጤና ይስጥልኝ {name}, ወደ ዥረት እንኳን በደህና መጡ!"
       },
       "sounds": {
+        "ooh-ahh": "ኡ አህ",
         "airhorn": "የአየር ቀንድ",
         "applause": "ማመስገን",
         "cricket": "ክሪኬቶች",

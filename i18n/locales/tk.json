@@ -9238,6 +9238,7 @@
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
     },
     "rules": {
+      "test": "Synag",
       "title": "Kanunlar",
       "intro": "Eger siz akmaňyzda bir zat bolanda, DeHub saýlan zadyňyzy edýär: duýduryş görkezip, ses çalýar, sesli bir zat okaýar, gürrüňdeşligiňizi goýýar ýa-da Discord-a habar berýär.",
       "add": "Ol bir düzgüni goýdy",
@@ -9313,6 +9314,8 @@
         "command": "Çatyňda buýruk ber"
       },
       "presetText": {
+        "bigTip": "{name} {amount} DHB iberdi!",
+        "command": "Salam {name}, göni efire hoş geldiň!",
         "readChat": "{name} diýýär{message}",
         "thankFollowers": "Çykyşyň üçin sag bol, {name}!"
       },

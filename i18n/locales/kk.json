@@ -9386,11 +9386,13 @@
         "command": "Чатыңыздағы a !командасына жауап береді"
       },
       "presetText": {
+        "bigTip": "{name} {amount} DHB жіберді!",
         "readChat": "{name} дейді {message}",
         "thankFollowers": "Қатысқаныңыз үшін рахмет, {name}!",
         "command": "Сәлем {name}, ағынға қош келдіңіз!"
       },
       "sounds": {
+        "ba-dum-tish": "Ба дум тыш",
         "airhorn": "Ауа мүйізі",
         "applause": "Қол шапалақтау",
         "cricket": "Крикет",

@@ -9271,6 +9271,7 @@
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
     },
     "rules": {
+      "title": "Pravidla",
       "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
       "add": "Přidat pravidlo",
       "limit": "Dosáhli jste limitu {{count}} pravidel.",

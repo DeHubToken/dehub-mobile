@@ -9312,6 +9312,8 @@
         "command": "Azịza a !iwu gị chat"
       },
       "presetText": {
+        "bigTip": "{name} zitere {amount} DHB!",
+        "readChat": "{name} na-ekwu {message}",
         "thankFollowers": "Daalụ maka na-eso, {name}!",
         "command": "Ndewo {name}, nabata na iyi!"
       },

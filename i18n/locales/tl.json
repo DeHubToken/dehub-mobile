@@ -9452,6 +9452,8 @@
       "rotateFailed": "Hindi makagawa ng bagong link. Subukan muli sa ilang sandali."
     },
     "rules": {
+      "removeAction": "Alisin ang aksyon",
+      "test": "Subukan",
       "title": "Mga Panuntunan",
       "intro": "Kapag may nangyari sa iyong stream, ginagawa ng DeHub ang iyong pinili: nagpapakita ng alerto, nagpe - play ng tunog, nagbabasa ng isang bagay nang malakas, mga post sa iyong chat o nagsasabi sa iyong Discord.",
       "add": "Magdagdag ng alituntunin",

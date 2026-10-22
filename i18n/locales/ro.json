@@ -9285,6 +9285,7 @@
       "rotateFailed": "Nu s-a putut crea un link nou. Încearcă din nou peste un moment."
     },
     "rules": {
+      "test": "Testează",
       "title": "Reguli",
       "intro": "Când se întâmplă ceva în fluxul dvs., DeHub face ceea ce alegeți: afișează o alertă, redă un sunet, citește ceva cu voce tare, postează în chat sau vă spune Discord.",
       "add": "Adaugă o regulă",

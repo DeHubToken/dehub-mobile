@@ -9351,6 +9351,7 @@
       "rotateFailed": "Tsy afaka namorona rohy vaovao. Miverena ao anatin'ny iray minitra."
     },
     "rules": {
+      "blockedWords": "Teny voarara",
       "title": "Fitsipika",
       "intro": "Raha misy zavatra mitranga eo amin'ny renirano, DeHub dia manao izay safidinao: maneho fanairana, mitendry feo, mamaky zavatra mafy, lahatsoratra ao amin'ny chat na milaza ny Discord anao.",
       "add": "Manampia fitsipika iray",
@@ -9426,6 +9427,7 @@
         "command": "Mamaly ny !baiko ao amin'ny chat"
       },
       "presetText": {
+        "thankFollowers": "Misaotra tamin'ny fanarahana, {name}!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!",
         "command": "Miarahaba ny {name} 0, tongasoa ato amin'ny onja!"

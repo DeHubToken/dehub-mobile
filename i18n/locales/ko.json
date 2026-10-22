@@ -9376,6 +9376,7 @@
         "command": "채팅에서 a! 명령에 응답합니다"
       },
       "presetText": {
+        "readChat": "{name}: {message}",
         "bigTip": "{name} 님이 {amount} DHB를 보냈습니다!",
         "thankFollowers": "{name} 님, 팔로우해 주셔서 감사합니다!",
         "command": "{name} 님, 안녕하세요. 스트림에 오신 것을 환영합니다!"

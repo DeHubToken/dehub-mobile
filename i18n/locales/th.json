@@ -9373,11 +9373,14 @@
         "thankFollowers": "โพสต์ขอบคุณในแชทเมื่อมีคนติดตาม"
       },
       "presetText": {
+        "readChat": "{name} พูดว่า {message}",
         "bigTip": "{name} ส่งแล้ว {amount} DHB!",
         "thankFollowers": "ขอบคุณที่ติดตาม {name}!",
         "command": "สวัสดี {name} ยินดีต้อนรับสู่สตรีม!"
       },
       "sounds": {
+        "ba-dum-tish": "บา ดุม ทิช",
+        "shhh": "ชู่ว์",
         "airhorn": "แตรลม",
         "applause": "เสียงปรบมือ",
         "cricket": "คริกเก็ต",

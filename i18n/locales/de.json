@@ -9461,6 +9461,7 @@
       "rotateFailed": "Es konnte kein neuer Link erstellt werden. Versuchen Sie es gleich noch einmal."
     },
     "rules": {
+      "test": "Testen",
       "title": "Regeln",
       "intro": "Wenn etwas in Ihrem Stream passiert, tut DeHub, was Sie möchten: Zeigt eine Warnung an, spielt einen Ton ab, liest etwas laut vor, postet in Ihrem Chat oder teilt es Ihrem Discord mit.",
       "add": "Eine Regel hinzufügen",

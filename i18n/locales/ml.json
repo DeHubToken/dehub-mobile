@@ -9332,11 +9332,13 @@
         "command": "ഉത്തരം a ! നിങ്ങളുടെ ചാറ്റിൽ കമാൻഡ് ചെയ്യുക"
       },
       "presetText": {
+        "bigTip": "{name} {amount} DHB അയച്ചു!",
         "readChat": "{name}{message}എന്ന്പറയുന്നു",
         "thankFollowers": "ഫോളോ ചെയ്തതിന് നന്ദി, {name}!",
         "command": "ഹലോ {name}, സ്ട്രീമിലേക്ക് സ്വാഗതം!"
       },
       "sounds": {
+        "shhh": "ശ്ശ്",
         "airhorn": "എയർ ഹോൺ",
         "applause": "കയ്യടി",
         "cricket": "ക്രിക്കറ്റ്",

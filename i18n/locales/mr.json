@@ -9335,6 +9335,8 @@
         "command": "आपल्या गप्पा मध्ये एक !आदेश उत्तरे"
       },
       "presetText": {
+        "readChat": "{name} म्हणतात {message}",
+        "thankFollowers": "फॉलो केल्याबद्दल धन्यवाद, {name}!",
         "bigTip": "{name} पाठविले {amount} DHB!",
         "command": "नमस्कार {name}, प्रवाहात आपले स्वागत आहे!"
       },

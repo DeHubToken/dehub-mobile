@@ -9275,6 +9275,7 @@
       "rotateFailed": "Det gick inte att skapa en ny länk. Försök igen om en stund."
     },
     "rules": {
+      "test": "Testa",
       "title": "Regler",
       "intro": "När något händer i din ström gör DeHub vad du väljer: visar en varning, spelar upp ett ljud, läser något högt, lägger upp inlägg i din chatt eller berättar för din Discord.",
       "add": "Lägg till en regel",

@@ -9233,6 +9233,7 @@
       "rotateFailed": "Ba zan iya yin sabon hanyar haɗi ba. Ka sake gwadawa a cikin wani lokaci."
     },
     "rules": {
+      "chatHint": "Ana aikawa daga asusunka zuwa hirar watsa shirinka. Ba zai iya maimaita saƙon mai kallo ba.",
       "title": "Dokoki",
       "intro": "Lokacin da wani abu ya faru akan rafin ku, DeHub yana yin abin da kuke zaɓa: nuna gargajiya, kunna sauti, karanta wani abu a jiya, aika a chat ku ko gaya wa Discord ku.",
       "add": "Ƙara dokoki",
@@ -9314,6 +9315,7 @@
         "command": "Barka dai {name}, barka da gudana!"
       },
       "sounds": {
+        "cricket": "Kukan ƙwari",
         "airhorn": "Air ƙaho",
         "applause": "Yabba Dabba Doo",
         "drumroll": "Drum mirgina",

@@ -9299,6 +9299,7 @@
       "rotateFailed": "Link haaraa hojjechuu hin dandeenye. Yeroo muraasa booda irra deebi'ii yaali."
     },
     "rules": {
+      "placeholders": "Barreeffama kee keessatti {name}, {amount} fi {message} fayyadami. Liinkiiwwan ergaa keessaa ni haqamu.",
       "title": "Seerota",
       "intro": "Wanti tokko yeroo dhuma keessan keessa ta'e, DeHub waan ati filatte hojjeta: ogeeyyii mul'isa, sagalee facaasa, wanti tokko afaan dubbisaa, chaatii keessan keessa barreessa ykn Discord keessan jedha.",
       "add": "Seera dabalaa",

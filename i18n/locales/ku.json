@@ -9236,6 +9236,7 @@
         "subscribers": "Abone"
       },
       "actionTypes": {
+        "chat": "Di sohbetê de biweşîne",
         "alert": "Hişyariyekê nîşan bide",
         "say": "Bi dengekî bilind bixwîne",
         "webhook": "Bişîne bo webhookekê",

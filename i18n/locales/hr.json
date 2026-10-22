@@ -9272,6 +9272,7 @@
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
     },
     "rules": {
+      "test": "Testiraj",
       "title": "Pravila",
       "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
       "add": "Dodajte pravilo",

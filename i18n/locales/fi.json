@@ -9340,6 +9340,7 @@
         "command": "Chat-komento"
       },
       "presetHints": {
+        "thankFollowers": "Lähettää kiitoksen chattiisi, kun joku alkaa seurata sinua",
         "blank": "Aloita tyhjästä",
         "readChat": "Lukee seuraajiesi viestit ääneen, yksi per katsoja 30 sekunnin välein",
         "bigTip": "Soittaa äänitorvea ja näyttää hälytyksen vähintään 100 000 DHB: n tipeistä",
