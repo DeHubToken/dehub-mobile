@@ -453,7 +453,7 @@ jobs:
       - run: npx patch-package --error-on-fail
       - name: Resolve native pods
         working-directory: ios
-        run: pod install --deployment
+        run: pod install
       - name: Build a simulator release with the iOS 27 SDK
         run: |
           set -o pipefail
