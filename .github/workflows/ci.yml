@@ -492,8 +492,13 @@ jobs:
             xcrun simctl boot "$udid" || true
             xcrun simctl bootstatus "$udid" -b
             xcrun simctl install "$udid" "$app"
+            xcrun simctl spawn "$udid" log stream --style compact --level debug --predicate 'process == "DeHub"' > "release-launch/$slug-log.txt" 2>&1 &
+            logger=$!
+            sleep 3
             pid=$(xcrun simctl launch "$udid" io.dehub.mobile | awk '{print $NF}')
             sleep 40
+            kill "$logger" 2>/dev/null || true
+            grep -i -E "exception|error|fatal|ErrorRecovery|EXUpdates|launch" "release-launch/$slug-log.txt" | tail -60 || true
             if kill -0 "$pid" 2>/dev/null; then echo "PASS $name stayed up (pid $pid)"; else echo "FAIL $name exited"; failed=1; fi
             xcrun simctl io "$udid" screenshot "release-launch/$slug.png" || true
             xcrun simctl shutdown "$udid" || true
