@@ -1,5 +1,10 @@
 {
   "liveRecap": {
+    "copied": "सारांशः प्रतिलिखितः। यत्र कुत्रापि स्थापयतु।",
+    "shareText": "अहं DeHub इत्यत्र \"{{title}}\" प्रसारितवान्: {{duration}} सजीवम्, अधिकतमं {{peak}} दर्शकाः, {{followers}} नूतनाः अनुसर्तारः च।",
+    "gifts_one": "{{count}} उपहारात्",
+    "gifts_other": "{{count}} उपहारेभ्यः",
+    "pollWinner": "{{option}} विजितवान्",
     "title": "प्रवाहितः recap",
     "justEnded": "तुम्हारे पुनः प्रवाहन",
     "lastStream": "तुम्हारे अंतिम प्रवाहन",

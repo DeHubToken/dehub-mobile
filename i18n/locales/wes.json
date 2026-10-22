@@ -1,5 +1,12 @@
 {
   "liveRecap": {
+    "justEnded": "Your stream recap",
+    "lastStream": "Your last stream",
+    "shareText": "I just streamed \"{{title}}\" on DeHub: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
+    "peakViewers": "Most watching at once",
+    "gifts_one": "From {{count}} gift",
+    "gifts_other": "From {{count}} gifts",
+    "stillCounting": "Still counting: gifts can take a minute to confirm.",
     "title": "Stream recap",
     "none": "Wetin no finish stream yet. Yous recap go come here after first one finish.",
     "share": "Share",

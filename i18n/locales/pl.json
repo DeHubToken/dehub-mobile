@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "Wygrywa: {{option}}",
     "title": "Streszczenie strumienia",
     "justEnded": "Podsumowanie Twojego strumienia",
     "lastStream": "Twój ostatni strumień",

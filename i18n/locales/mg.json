@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "shareText": "Vao avy nandefa \"{{title}}\" tao amin'ny DeHub aho: {{duration}} mivantana, mpijery {{peak}} indrindra ary mpanaraka vaovao {{followers}}.",
     "title": "Avereno alefa",
     "justEnded": "Famerenana ny tosakao",
     "lastStream": "Ny tosaka farany nataonao",

@@ -1,5 +1,7 @@
 {
   "liveRecap": {
+    "shareText": "මම DeHub හි \"{{title}}\" විකාශය කළා: සජීවීව {{duration}}, උපරිම නරඹන්නන් {{peak}} සහ නව අනුගාමිකයන් {{followers}}.",
+    "pollWinner": "{{option}} ජයග්‍රහණය කළා",
     "title": "ප් ‍ රවාහ ප් ‍ රතිරාවය",
     "justEnded": "ඔබේ ප් ‍ රවාහ පුනරාවර්තනය",
     "lastStream": "ඔබේ අවසන් ප් ‍ රවාහය",

@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "{{option}} thắng",
     "title": "Tóm tắt luồng",
     "justEnded": "Bản tóm tắt luồng của bạn",
     "lastStream": "Phát trực tuyến cuối cùng của bạn",

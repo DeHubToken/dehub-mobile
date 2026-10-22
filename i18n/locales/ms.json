@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "{{option}} menang",
     "title": "Ringkasan strim",
     "justEnded": "Ringkasan strim anda",
     "lastStream": "Strim terakhir anda",

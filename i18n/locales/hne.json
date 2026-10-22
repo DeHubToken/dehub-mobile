@@ -1,5 +1,8 @@
 {
   "liveRecap": {
+    "gifts_one": "{{count}} गिफ़्ट से",
+    "gifts_other": "{{count}} गिफ़्ट से",
+    "pollWinner": "{{option}} जीते",
     "title": "स्ट्रीम रिकाप",
     "justEnded": "आप मन के स्ट्रीम रिप करव",
     "lastStream": "आखरी स्ट्रीम",

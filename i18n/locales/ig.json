@@ -1,5 +1,9 @@
 {
   "liveRecap": {
+    "pollWinner": "{{option}} meriri",
+    "title": "Nchịkọta mgbasa ozi",
+    "untitled": "Mgbasa ozi enweghị aha",
+    "gifts_other": "Site na onyinye {{count}}",
     "justEnded": "Gị iyi recap",
     "lastStream": "Ikpeazụ gị iyi",
     "none": "Enweghi iyi ndị e mechara emecha. Ntughari gị na-apụta ebe a ka nke mbụ gị gachara.",

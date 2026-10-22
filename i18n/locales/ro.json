@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "A câștigat {{option}}",
     "title": "Recapitulare flux",
     "justEnded": "Recapitularea fluxului tău",
     "lastStream": "Ultimul tău flux",

@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "Nanalo ang {{option}}",
     "title": "I - recap ang stream",
     "justEnded": "I - recap ang iyong stream",
     "lastStream": "Huling stream mo",

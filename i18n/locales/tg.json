@@ -1,5 +1,11 @@
 {
   "liveRecap": {
+    "share": "Ibahagi",
+    "gifts_other": "{{count}} gift",
+    "chatters": "Mga tao na chat",
+    "shares": "Mga ibahagi ng",
+    "pollWinner": "{{option}} WIND",
+    "stillCounting": "Huling bilang: ang mga gift ay maaaring magtatagal ng isang minuto upang",
     "title": "Барқарор кардани ҷараён",
     "justEnded": "Аз нав бор кардани ҷараён",
     "lastStream": "Ҷараёни охирин",

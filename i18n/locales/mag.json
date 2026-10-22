@@ -1,5 +1,9 @@
 {
   "liveRecap": {
+    "shareText": "मैंने अभी - अभी DeHub पर \"{{title}}\" स्ट्रीम किया है: {{duration}} live, {{peak}} चरम पर देख रहे हैं और {{followers}} नए फ़ॉलोअर हैं।",
+    "gifts_one": "{{count}} गिफ़्ट से",
+    "gifts_other": "{{count}} गिफ़्ट से",
+    "pollWinner": "{{option}} जीते",
     "title": "स्ट्रिंग दोहराएं, सेट करें",
     "justEnded": "अपना रिज्यूमे सेट करे",
     "lastStream": "आउ अपने, अंतिम भेंटकर्ता के रूप में.",

@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "pollWinner": "{{option}} je pobijedio",
     "title": "Rekapitulacija streama",
     "justEnded": "Sažetak vašeg streama",
     "lastStream": "Vaš posljednji stream",

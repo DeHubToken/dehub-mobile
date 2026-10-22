@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "duration": "방송 시간",
     "title": "스트림 요약",
     "justEnded": "스트림 요약",
     "lastStream": "마지막 스트림",

@@ -1,5 +1,9 @@
 {
   "liveRecap": {
+    "title": "Rekap streaming",
+    "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
+    "newFollowers": "Pengikut baru",
+    "reactions": "Tanggapan",
     "justEnded": "Ringkesan aliran mu",
     "lastStream": "Kulon streammu kanggo ngahapal.",
     "none": "Gak ada stream yang udah selesai. Recapmu bakal kelar di sini setelah stream pertama mu.",

@@ -1,5 +1,6 @@
 {
   "liveRecap": {
+    "shareText": "ኣብ DeHub \"{{title}}\" ፈኒወ: {{duration}} ብቐጥታ፣ ብዝበዝሐ {{peak}} ተዓዘብቲ ከምኡውን {{followers}} ሓደሽቲ ሰዓብቲ።",
     "title": "ናይ ዥረት ዳግመ-ምግቢ",
     "justEnded": "እቲ ዥረትካ እንደገና ይዕምብብብ",
     "lastStream": "ናይ መወዳእታ ዥረትካ",
