@@ -45,7 +45,7 @@ final class ScreenCaptureHost {
       let legacyDriver = { () throws -> CaptureDriver in
         guard var root = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).flatMap({ $0.windows }).first(where: { $0.isKeyWindow })?.rootViewController else { throw CaptureLedgerError.unavailable }
         while let presented = root.presentedViewController { root = presented }
-        return LegacyCaptureDriver(ticket: ticket, ledger: ledger, presenter: root, changed: changed)
+        return LegacyCaptureDriver(ticket: ticket, ledger: self.ledger, presenter: root, changed: changed)
       }
 #if canImport(ScreenCaptureKit)
       if #available(iOS 27.0, *) { driver = try ModernCaptureDriver(ticket: ticket, ledger: ledger, changed: changed) }
