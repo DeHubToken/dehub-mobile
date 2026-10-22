@@ -50,6 +50,7 @@ import SectionHeader from "./SectionHeader";
 import StagesCarousel from "./StagesCarousel";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
+import { useAppTheme } from '../../context/ThemeContext';
 import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
 import {
   RADIO_GENRES,
@@ -636,11 +637,13 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   isVisible,
 }) => {
   const { t } = useTranslation();
+  const { theme } = useAppTheme();
   const tokenId = nft.tokenId ?? nft.id;
   // The API hands back the storage key ("feeds-audio/123-audio.mp3"), not a
   // link: the player needs the CDN host in front, the same as the feed card.
   const rawAudioUrl = (nft as any).audioUrl as string | undefined;
   const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
+  const glass = theme === 'glass' && !!audioUrl && tokenId != null;
   const streamInfo = (nft as any).streamInfo;
   // Paid and gated tracks are private on the CDN; fetch a signed link first.
   const requiresAccess = !!streamInfo?.isPayPerView
@@ -655,11 +658,11 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   );
 
   return (
-    <View style={styles.audioCard}>
-      <Text style={styles.audioTitle} numberOfLines={1}>
+    <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }]}>
+      {!glass && <Text style={styles.audioTitle} numberOfLines={1}>
         {title}
-      </Text>
-      {!!creator && (
+      </Text>}
+      {!glass && !!creator && (
         <Text style={styles.audioCreator} numberOfLines={1}>
           {creator}
         </Text>
@@ -674,7 +677,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
           title={title}
           artist={creator || undefined}
           artworkUrl={creatorAvatar === "default-avatar" ? undefined : creatorAvatar}
-          compact
+          compact={!glass}
         />
       ) : (
         <Text style={styles.shelfNote}>{t("music.noAudio")}</Text>

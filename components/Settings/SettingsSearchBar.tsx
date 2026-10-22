@@ -17,6 +17,7 @@ import { View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { useTranslation } from 'react-i18next';
 
 import Icon from '../ui/Icon';
+import { useAppTheme } from '../../context/ThemeContext';
 import { searchSettings, type SettingsSearchHit } from '../../libs/settings-search';
 
 const TAB_KEYS: Record<string, string> = {
@@ -34,6 +35,7 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
   onSelect,
 }) => {
   const { t } = useTranslation();
+  const { skin } = useAppTheme();
   const [query, setQuery] = useSurfaceDraft("components/Settings/SettingsSearchBar.tsx:query", '');
 
   const results = useMemo(() => searchSettings(query, t), [query, t]);
@@ -47,10 +49,11 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
 
   return (
     <View className="mb-4">
-      <View className="h-10 flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3">
+      <View className="h-10 flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3" style={skin?.material === 'glass' ? skin.card : undefined}>
         <Icon name="Search" size={16} color="#8B8D90" />
         <TextInput
           className="flex-1 text-white py-0 px-2 text-sm"
+          style={skin?.material === 'glass' ? { backgroundColor: 'transparent', borderWidth: 0 } : undefined}
           placeholder={t('settings.searchPlaceholder', 'Search settings')}
           placeholderTextColor="#8B8D90"
           value={query}
@@ -73,7 +76,7 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
       </View>
 
       {open ? (
-        <View className="mt-2 bg-theme-neutrals-900 border border-white/10 rounded-xl overflow-hidden">
+        <View className="mt-2 bg-theme-neutrals-900 border border-white/10 rounded-xl overflow-hidden" style={skin?.material === 'glass' ? skin.card : undefined}>
           {results.length ? (
             results.map((hit) => (
               <TouchableOpacity
