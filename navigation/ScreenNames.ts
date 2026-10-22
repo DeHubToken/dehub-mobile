@@ -67,6 +67,9 @@ export enum ScreenNames {
   // modals (StagesModalsHost in App.tsx), the same split web has between
   // /stages and its persistent AudioSpacesModal.
   Stages = 'Stages',
+  // An ended stage's own page: art, details and the recording. Where a tap on
+  // a recorded card, or a link to an ended stage, lands.
+  StageRecording = 'StageRecording',
   // Calls are presented as an app-wide modal (CallModalsHost in App.tsx), not a
   // route — they deliberately have no ScreenNames entry. Navigating to an
   // unregistered name throws at runtime.

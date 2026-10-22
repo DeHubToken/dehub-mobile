@@ -1,3 +1,4 @@
+import type { AudioSpace } from "../hooks/useStages";
 
 import type { StackScreenProps } from '@react-navigation/stack';
 import type {
@@ -227,6 +228,8 @@ export type AppStackParamList = {
   [ScreenNames.MiniAppDev]: { url: string; name?: string };
   [ScreenNames.Events]: undefined;
   [ScreenNames.Stages]: undefined;
+  /** `space` paints the page at once; the row is still re-read by `spaceId`. */
+  [ScreenNames.StageRecording]: { spaceId: string; space?: AudioSpace };
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Raffle]: undefined;
   /** With no `filmId` the search hub; with one, that title (`filmType` is `film` or `series`). */
