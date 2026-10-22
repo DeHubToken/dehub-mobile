@@ -1,5 +1,6 @@
 import { apiClient } from "../libs";
 import type { PublicOverlay } from "../libs/live-overlay/types";
+import type { LiveRule } from "../libs/live-overlay/rules";
 
 // Live posts are CREATED through POST /user_mint with postType=live (see
 // hooks/useUploadLive.ts) — the mint response carries the stream entity.
@@ -266,6 +267,30 @@ export type OverlayTestKind = "tip" | "follow" | "subscribe" | "share" | "join";
 /** A pretend alert for the creator's own screens. Never reaches viewers. */
 export async function sendOverlayTest(kind: OverlayTestKind, extra: { amount?: number; message?: string } = {}): Promise<void> {
   await apiClient.post<any>("/live-overlay/mine/test", { kind, ...extra }, { isAuthRequired: true });
+}
+
+export interface MyRules {
+  rules: LiveRule[];
+  version: number;
+}
+
+function myRules(res: any): MyRules {
+  const body = res?.result ?? res?.data ?? res;
+  return { rules: Array.isArray(body?.rules) ? body.rules : [], version: Number(body?.version) || 0 };
+}
+
+/** The creator's stream rules. Webhook addresses are in here, so this is never public. */
+export async function getMyRules(): Promise<MyRules> {
+  return myRules(await apiClient.get<any>("/live-overlay/mine/rules", { isAuthRequired: true }));
+}
+
+export async function saveMyRules(rules: LiveRule[]): Promise<MyRules> {
+  return myRules(await apiClient.put<any>("/live-overlay/mine/rules", { rules }, { isAuthRequired: true }));
+}
+
+/** Plays one saved rule's alerts, sounds and read-aloud on the creator's own screens. */
+export async function testRule(ruleId: string): Promise<void> {
+  await apiClient.post<any>(`/live-overlay/mine/rules/${encodeURIComponent(ruleId)}/test`, {}, { isAuthRequired: true });
 }
 
 /** GET /live/:streamId/audience — host, who is watching, top tippers, most active chatters. */

@@ -9390,7 +9390,8 @@
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Letzte Aktivität",
       "chat_box": "Chat-Box",
-      "ticker": "Laufschrift"
+      "ticker": "Laufschrift",
+      "rule_alert": "Regelwarnungen"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
@@ -9407,7 +9408,8 @@
       "reaction_counter": "Zählt jede Reaktion, die Ihre Sendung erhält",
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Personen, die Ihre Sendung teilen",
       "chat_box": "Zeigt die Chat-Nachrichten Ihrer Sendung auf dem Bildschirm an",
-      "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt"
+      "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt",
+      "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden"
     },
     "fields": {
       "style": "Stil",
@@ -9464,6 +9466,103 @@
       "rotateConfirm": "Einen neuen Link erstellen? Der alte funktioniert nicht mehr sofort, daher müssen Sie den neuen in OBS einfügen.",
       "rotated": "Neuer Link bereit. Fügen Sie ihn in OBS ein.",
       "rotateFailed": "Es konnte kein neuer Link erstellt werden. Versuchen Sie es gleich noch einmal."
+    },
+    "rules": {
+      "test": "Testen",
+      "title": "Regeln",
+      "intro": "Wenn etwas in Ihrem Stream passiert, tut DeHub, was Sie möchten: Zeigt eine Warnung an, spielt einen Ton ab, liest etwas laut vor, postet in Ihrem Chat oder teilt es Ihrem Discord mit.",
+      "add": "Eine Regel hinzufügen",
+      "limit": "Sie haben das Limit von {{count}} Regeln erreicht.",
+      "loadFailed": "Ihre Regeln konnten nicht geladen werden. Aktualisieren Sie die Seite, um es erneut zu versuchen.",
+      "empty": "Noch keine Regeln. Fügen Sie eine hinzu, um auf Tipps, Follows oder Chat-Befehle zu reagieren.",
+      "saved": "Regeln gespeichert. Sie werden bei deinem nächsten Tipp, deiner nächsten Nachricht oder deinem nächsten Follow ausgeführt.",
+      "saveFailed": "Deine Regeln konnten nicht gespeichert werden.",
+      "testFailed": "Dieser Test wurde nicht bestanden. Versuchen Sie es gleich noch einmal.",
+      "saveToTest": "Speichern Sie Ihre Regeln, um sie zu testen",
+      "enabled": "Regel über",
+      "remove": "Regel löschen",
+      "save": "Regeln speichern",
+      "needsAlertWidget": "Einige Regeln zeigen eine Warnung an. Fügen Sie das Regelwarnungs-Widget hinzu, damit es irgendwo angezeigt werden kann.",
+      "name": "Name",
+      "when": "Wann",
+      "then": "Dann",
+      "minAmount": "Kleinste Spitze (DHB)",
+      "command": "Befehl",
+      "keyword": "Wort oder Phrase",
+      "audience": "Wer kann es auslösen",
+      "blockedWords": "Blockierte Wörter",
+      "blockedWordsHint": "Mit Kommas trennen. Nachrichten, die sie enthalten, werden ignoriert und nie laut vorgelesen.",
+      "cooldown": "Zwischen den Verwendungen warten (Sekunden)",
+      "userCooldown": "Warten pro Betrachter (Sekunden)",
+      "addAction": "Aktion hinzufügen",
+      "removeAction": "Aktion entfernen",
+      "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
+      "alertText": "Benachrichtigungstext",
+      "sound": "Ton",
+      "sayText": "Vorzulesender Text",
+      "chatText": "Nachricht an Post",
+      "chatHint": "Von deinem Konto in den Chat deines Streams gepostet. Es kann die Nachricht des Betrachters nicht wiederholen.",
+      "webhookUrl": "Webhook-Adresse",
+      "webhookHint": "Ein Discord- oder Slack-Webhook oder eine https-Adresse, die einen BEITRAG akzeptiert.",
+      "webhookText": "Zu sendende Nachricht",
+      "triggers": {
+        "tip": "Ein Trinkgeld kommt",
+        "follow": "Jemand folgt",
+        "subscribe": "Jemand abonniert",
+        "share": "Jemand teilt den Stream",
+        "command": "Ein Chat-Befehl wird verwendet",
+        "keyword": "Eine Chat-Nachricht enthält ein Wort",
+        "chat": "Jede Chat-Nachricht"
+      },
+      "audiences": {
+        "everyone": "Alle",
+        "followers": "Anhänger",
+        "subscribers": "Abonnenten"
+      },
+      "actionTypes": {
+        "alert": "Eine Benachrichtigung anzeigen",
+        "sound": "Einen Ton abspielen",
+        "say": "Vorlesen",
+        "chat": "Im Chat posten",
+        "webhook": "An einen Webhook senden"
+      },
+      "summary": {
+        "tip": "Tipp von {{amount}} DHB oder mehr"
+      },
+      "presets": {
+        "blank": "Leere Regel",
+        "readChat": "Chat vorlesen",
+        "bigTip": "Lufthorn für große Spitzen",
+        "thankFollowers": "Vielen Dank an neue Follower",
+        "command": "Chat-Befehl"
+      },
+      "presetHints": {
+        "blank": "Beginnen Sie aus dem Nichts",
+        "readChat": "Liest die Nachrichten Ihrer Follower laut vor, alle 30 Sekunden eine pro Zuschauer",
+        "bigTip": "Spielt eine Lufthupe und zeigt eine Warnung für Trinkgelder von 100.000 DHB oder mehr an",
+        "thankFollowers": "Schreibt ein Dankeschön in Ihren Chat, wenn jemand folgt",
+        "command": "Beantwortet einen !-Befehl in Ihrem Chat"
+      },
+      "presetText": {
+        "readChat": "{name} sagt {message}",
+        "bigTip": "{name} gesendet {amount} DHB!",
+        "thankFollowers": "Vielen Dank für deine Nachricht, {name}!",
+        "command": "Hallo {name}, willkommen im Stream!"
+      },
+      "sounds": {
+        "airhorn": "Lufthorn",
+        "applause": "Applaus",
+        "cricket": "Grillen",
+        "drumroll": "Trommelrolle",
+        "lol": "Lachen",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (Frau)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Gruselig",
+        "magic-spell": "Zauberspruch",
+        "shhh": "Pssst."
+      }
     }
   }
 }

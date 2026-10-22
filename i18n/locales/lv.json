@@ -9194,7 +9194,8 @@
       "reaction_counter": "Reakciju skaitītājs",
       "event_feed": "Jaunākās aktivitātes",
       "chat_box": "Tērzēšanas lodziņš",
-      "ticker": "Atzīme"
+      "ticker": "Atzīme",
+      "rule_alert": "Noteikumu brīdinājumi"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9211,7 +9212,8 @@
       "reaction_counter": "Skaita katru jūsu apraides reakciju",
       "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
-      "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu"
+      "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
+      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi"
     },
     "fields": {
       "style": "Stils",
@@ -9268,6 +9270,103 @@
       "rotateConfirm": "Vai izveidot jaunu saiti? Vecais uzreiz pārstāj darboties, tāpēc jums būs jāielīmē jaunais obs.",
       "rotated": "Jauna saite ir gatava. Ielīmējiet to OBS.",
       "rotateFailed": "Nevarēja izveidot jaunu saiti. Pēc brīža mēģiniet vēlreiz."
+    },
+    "rules": {
+      "title": "Noteikumi",
+      "intro": "Kad jūsu straumē kaut kas notiek, DeHub dara to, ko jūs izvēlaties: parāda brīdinājumu, atskaņo skaņu, lasa kaut ko skaļi, publicē jūsu tērzēšanā vai stāsta jūsu Discord.",
+      "add": "Pievienot noteikumu",
+      "limit": "Jūs esat sasniedzis {{count}} noteikumu ierobežojumu.",
+      "loadFailed": "Jūsu noteikumus nevarēja ielādēt. Atsvaidziniet lapu, lai mēģinātu vēlreiz.",
+      "empty": "Pagaidām nav noteikumu. Pievienojiet kādu, lai reaģētu uz padomiem, sekošanu vai tērzēšanas komandām.",
+      "saved": "Noteikumi ir saglabāti. Tie attiecas uz nākamo dzeramnaudu, sekošanu vai ziņojumu.",
+      "saveFailed": "Jūsu noteikumus nevarēja saglabāt.",
+      "testFailed": "Šis tests netika veikts. Pēc brīža mēģiniet vēlreiz.",
+      "saveToTest": "Saglabājiet noteikumus, lai tos pārbaudītu",
+      "test": "Tests",
+      "enabled": "Noteikums par",
+      "remove": "Dzēst noteikumu",
+      "save": "Saglabāt noteikumus",
+      "needsAlertWidget": "Dažos noteikumos ir redzams brīdinājums. Pievienojiet logrīku Noteikumu paziņojumi, lai tas varētu parādīties.",
+      "name": "Nosaukums",
+      "when": "Kad",
+      "then": "Tad",
+      "minAmount": "Mazākā dzeramnauda (DHB)",
+      "command": "Komanda",
+      "keyword": "Vārds vai frāze",
+      "audience": "Kurš to var iestatīt",
+      "blockedWords": "Bloķētie vārdi",
+      "blockedWordsHint": "Atdaliet ar komatiem. Ziņojumi, kas tos satur, tiek ignorēti un nekad netiek lasīti skaļi.",
+      "cooldown": "Uzgaidiet starp lietošanas reizēm (sekundes)",
+      "userCooldown": "Gaidīt katram skatītājam (sekundes)",
+      "addAction": "Pievienot darbību",
+      "removeAction": "Noņemt darbību",
+      "placeholders": "Tekstā izmantojiet {name}, {amount} un {message}. Saites ziņojumos ir noņemtas.",
+      "alertText": "Brīdinājuma teksts",
+      "sound": "Skaņa",
+      "sayText": "Skaļi lasāms teksts",
+      "chatText": "Ziņojums publicēšanai",
+      "chatHint": "Publicēts no jūsu konta jūsu straumes tērzēšanā. Tas nevar atkārtot skatītāja ziņojumu.",
+      "webhookUrl": "Tīmekļa āķa adrese",
+      "webhookHint": "Discord vai Slack tīmekļa āķis vai jebkura https adrese, kas pieņem ZIŅU.",
+      "webhookText": "Nosūtāmais ziņojums",
+      "triggers": {
+        "tip": "Pienāk dzeramnauda",
+        "follow": "Kāds seko",
+        "subscribe": "Kāds abonē",
+        "share": "Kāds dalās ar straumi",
+        "command": "Tiek izmantota tērzēšanas komanda",
+        "keyword": "Tērzēšanas ziņojumā ir vārds",
+        "chat": "Jebkurš tērzēšanas ziņojums"
+      },
+      "audiences": {
+        "everyone": "Visi",
+        "followers": "Sekotāji",
+        "subscribers": "Abonenti"
+      },
+      "actionTypes": {
+        "alert": "Rādīt paziņojumu",
+        "sound": "Atskaņot skaņu",
+        "say": "Lasīt skaļi",
+        "chat": "Publicēt tērzēšanā",
+        "webhook": "Nosūtīt uz tīmekļa āķi"
+      },
+      "summary": {
+        "tip": "Padoms: {{amount}} DHB vai vairāk"
+      },
+      "presets": {
+        "blank": "Tukšs noteikums",
+        "readChat": "Lasīt tērzēšanu skaļi",
+        "bigTip": "Pneimatiskais skaņas signāls lieliem padomiem",
+        "thankFollowers": "Paldies jaunajiem sekotājiem",
+        "command": "Tērzēšanas komanda"
+      },
+      "presetHints": {
+        "blank": "Sāciet no nekā",
+        "readChat": "Skaļi lasa jūsu sekotāju ziņojumus - pa vienam katram skatītājam ik pēc 30 sekundēm",
+        "bigTip": "Atskaņo skaņas signālu un parāda brīdinājumu par dzeramnaudu 100 000 DHB vai vairāk",
+        "thankFollowers": "Publicē pateicību tērzēšanā, kad kāds seko",
+        "command": "Atbild uz komandu! tērzēšanā"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} nosūtīts {amount} DHB!",
+        "thankFollowers": "Paldies par sekošanu, {name}!",
+        "command": "Sveicināti {name}! Laipni lūdzam straumē!"
+      },
+      "sounds": {
+        "airhorn": "Pneimatiskais skaņas signāls",
+        "applause": "Aplausi",
+        "cricket": "Krikets",
+        "drumroll": "Bungu rullis",
+        "lol": "Smiekli",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooo (vīrietis)",
+        "ohh-girl": "Ohh (sieviete)",
+        "ba-dum-tish": "Baum Tiša",
+        "spooky": "Spocīgs",
+        "magic-spell": "Burvestību burvestība",
+        "shhh": "Shhh"
+      }
     }
   }
 }

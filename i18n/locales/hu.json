@@ -9198,7 +9198,8 @@
       "reaction_counter": "Reakciószámláló",
       "event_feed": "Legutóbbi tevékenység",
       "chat_box": "Csevegőmező",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Szabályriasztások"
     },
     "hints": {
       "tip_alert": "Mindent megünnepel a tip, méretétől függően",
@@ -9215,7 +9216,8 @@
       "reaction_counter": "Minden reakciót megszámol, amit az adásod kap",
       "event_feed": "A legújabb ajándékok, követők, előfizetők és az adásodat megosztó emberek",
       "chat_box": "Megjeleníti az adás csevegési üzeneteit a képernyőn",
-      "ticker": "A saját szöveged egy sora, amely végiggörgeti a képernyőt"
+      "ticker": "A saját szöveged egy sora, amely végiggörgeti a képernyőt",
+      "rule_alert": "Itt jelennek meg a szabályaidra vonatkozó értesítések"
     },
     "fields": {
       "style": "Stílus",
@@ -9272,6 +9274,103 @@
       "rotateConfirm": "Létrehoz egy új linket? A régi azonnal leáll, ezért be kell illesztenie az újat az OBSZCÉNBA.",
       "rotated": "Új hivatkozás kész. Illessze be az OBSZ.",
       "rotateFailed": "Nem sikerült új hivatkozást létrehozni. Próbálkozz újra egy pillanat múlva."
+    },
+    "rules": {
+      "title": "Szabályok",
+      "intro": "Amikor valami történik az adatfolyamodban, a DeHub azt teszi, amit te választasz: figyelmeztetést jelenít meg, hangot játszik le, hangosan felolvas valamit, bejegyzéseket tesz közzé a csevegésedben, vagy elmondja a Discordnak.",
+      "add": "Szabály hozzáadása",
+      "limit": "Elérted a {{count}} szabályban meghatározott korlátot.",
+      "loadFailed": "A szabályaidat nem sikerült betölteni. Frissítsd az oldalt az újabb próbálkozáshoz.",
+      "empty": "Még nincsenek szabályok. Adj hozzá egyet, hogy reagálhass a tippekre, a követésekre vagy a csevegési parancsokra.",
+      "saved": "Szabályok mentve. A következő tippnél, követésnél vagy üzenetnél jelennek meg.",
+      "saveFailed": "A szabályaidat nem sikerült menteni.",
+      "testFailed": "Ez a teszt nem ment át. Próbálkozz újra egy pillanat múlva.",
+      "saveToTest": "Mentsd el a szabályaidat, hogy tesztelhes",
+      "test": "Teszt",
+      "enabled": "Szabály be",
+      "remove": "Szabály törlése",
+      "save": "Szabályok mentése",
+      "needsAlertWidget": "Néhány szabály figyelmeztetést jelenít meg. Add hozzá a Szabályriasztások widgetet, hogy legyen hol megjelennie.",
+      "name": "Név",
+      "when": "Mikor",
+      "then": "Akkor",
+      "minAmount": "Legkisebb csúcs (DHB)",
+      "command": "Parancs",
+      "keyword": "Szó vagy kifejezés",
+      "audience": "Ki kapcsolhatja be",
+      "blockedWords": "Letiltott szavak",
+      "blockedWordsHint": "Válaszd el vesszővel. Az ezeket tartalmazó üzeneteket a rendszer figyelmen kívül hagyja, és soha nem olvassa fel hangosan.",
+      "cooldown": "Várjon a felhasználások között (másodperc)",
+      "userCooldown": "Várakozás megjelenítőnként (másodperc)",
+      "addAction": "Művelet hozzáadása",
+      "removeAction": "Művelet eltávolítása",
+      "placeholders": "{name}, {amount} és {message} használata a szövegben. Az üzenetekben lévő hivatkozások eltávolításra kerülnek.",
+      "alertText": "Figyelmeztető szöveg",
+      "sound": "Hang",
+      "sayText": "Hangosan felolvasandó szöveg",
+      "chatText": "Üzenet a bejegyzéshez",
+      "chatHint": "Közzétéve a fiókodból a falad csevegésébe. Nem tudja megismételni a néző üzenetét.",
+      "webhookUrl": "Webhook cím",
+      "webhookHint": "Discord vagy Slack webhook, vagy bármilyen https cím, amely elfogad egy BEJEGYZÉST.",
+      "webhookText": "Elküldendő üzenet",
+      "triggers": {
+        "tip": "Borravaló érkezik",
+        "follow": "Valaki követi",
+        "subscribe": "Valaki feliratkozott",
+        "share": "Valaki megosztja a streamet",
+        "command": "Csevegési parancs van használatban",
+        "keyword": "A csevegőüzenet egy szót tartalmaz",
+        "chat": "Bármilyen csevegési üzenet"
+      },
+      "audiences": {
+        "everyone": "Mindenki",
+        "followers": "Követők",
+        "subscribers": "Feliratkozók"
+      },
+      "actionTypes": {
+        "alert": "Értesítés megjelenítése",
+        "sound": "Hang lejátszása",
+        "say": "Olvasd fel hangosan",
+        "chat": "Közzététel csevegésben",
+        "webhook": "Küldés webhookba"
+      },
+      "summary": {
+        "tip": "Legalább {{amount}} DHB borravaló"
+      },
+      "presets": {
+        "blank": "Üres szabály",
+        "readChat": "Olvasd fel hangosan a csevegést",
+        "bigTip": "Légkürt a nagy tippekért",
+        "thankFollowers": "Köszönet az új követőknek",
+        "command": "Csevegés parancs"
+      },
+      "presetHints": {
+        "blank": "Kezdd a semmiből",
+        "readChat": "30 másodpercenként felolvassa a követőid üzeneteit, nézőnként egyet",
+        "bigTip": "Lejátszik egy légkürtöt, és figyelmeztetést jelenít meg a 100 000 DHB vagy annál nagyobb borravaló esetén",
+        "thankFollowers": "Köszönetet tesz közzé a csevegésben, amikor valaki követi",
+        "command": "Válaszol egy !parancsra a csevegésben"
+      },
+      "presetText": {
+        "readChat": "{name} szerint {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Köszönjük a követést, {name}!",
+        "command": "Szia {name}! Üdvözlünk az adatfolyamban!"
+      },
+      "sounds": {
+        "airhorn": "Légkürt",
+        "applause": "Taps",
+        "cricket": "Tücskök",
+        "drumroll": "Dobhenger",
+        "lol": "Nevetés",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (férfi)",
+        "ohh-girl": "Ohh (nő)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Kísérteties",
+        "magic-spell": "Varázslat varázslat",
+        "shhh": "Shhh"
+      }
     }
   }
 }

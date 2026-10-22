@@ -9197,7 +9197,8 @@
       "reaction_counter": "Kaunta ya majibu",
       "event_feed": "Shughuli za hivi karibuni",
       "chat_box": "Sanduku la gumzo",
-      "ticker": "Kileta tiketi"
+      "ticker": "Kileta tiketi",
+      "rule_alert": "Arifa za sheria"
     },
     "hints": {
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
@@ -9213,7 +9214,8 @@
       "reaction_counter": "Inakadiri kila kazi ya kufanikiwa katika kurekodi yako",
       "event_feed": "Hali ya kazi ya kipindi cha kati ya heshima, wafuasi, wazazi na watu wanaoshirikiana na kurekodi yako",
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
-      "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale"
+      "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
+      "rule_alert": "Hapa ni jina la matatizo ya kawaida yako"
     },
     "fields": {
       "style": "Mtindo",
@@ -9270,6 +9272,103 @@
       "rotateConfirm": "Unda kiunganishi kipya? Ya zamani huacha kufanya kazi mara moja, kwa hivyo utahitaji kubandika mpya kuwa ya KAWAIDA.",
       "rotated": "Kiunganishi kipya kiko tayari. Kiambatishe kwenye OBS.",
       "rotateFailed": "Imeshindwa kuunda kiunganishi kipya. Jaribu tena baada ya muda mfupi."
+    },
+    "rules": {
+      "title": "Kawaida",
+      "intro": "Kwa kuwa kitu kinachofanyika katika stream yako, DeHub inafanya kitu kinachojitokeza: inashona matatizo, inatoa sauti, inafanya kitu kama kurejea, inapostia katika chat yako au inafundisha katika Discord yako.",
+      "add": "Pata kawaida mpya",
+      "limit": "Unafikia hadi hivi ya {{count}} kawaida.",
+      "loadFailed": "Kawaida zako hazikujali. Angalia tena ukurasa ili kusaidia.",
+      "empty": "Hainakuwa kawaida bado. Pata moja ili kuondoa tipi, kuondoa mfuzo au komanda za chat.",
+      "saved": "Kawaida zimehifadhiwa. Zitaenda katika tipi, mfuzo au habari yako ya baadaye.",
+      "saveFailed": "Kawaida zako hazikujali.",
+      "testFailed": "Hiki kazi hili halijafanyika. Usaidia baadaye katika dakika.",
+      "saveToTest": "Hifadhi kawaida zako ili kuonyesha zao",
+      "test": "Kuthibitisha",
+      "enabled": "Kawaida ya kuwa na matatizo",
+      "remove": "Kufuta kawaida",
+      "save": "Hifadhi kawaida",
+      "needsAlertWidget": "Kawaida zinaonyesha matatizo. Pata widget ya matatizo ya kawaida ili kuwa na nafasi ya kuonyeshwa.",
+      "name": "Jina",
+      "when": "Kipindi",
+      "then": "Baadaye",
+      "minAmount": "Tipi ndogo (DHB)",
+      "command": "Komanda",
+      "keyword": "Neno au jina la maneno",
+      "audience": "Mtu aliyewezi kuondoa",
+      "blockedWords": "Maneno ya kutoa",
+      "blockedWordsHint": "Angalia kwa koma. Habari zinazokaa zinaweza kuathiriwa na kuwa nafasi ya kuondoa na hawajuiwe kama zinawezeshwa kurejea.",
+      "cooldown": "Kutoka kati ya kutumia (sekunde)",
+      "userCooldown": "Kutoka kati kwa mtu mmoja (sekunde)",
+      "addAction": "Pata kazi",
+      "removeAction": "Kufuta kazi",
+      "placeholders": "Tumia {name}, {amount} na {message} katika maandishi yako. Viunganishi katika ujumbe vinaondolewa.",
+      "alertText": "Maandishi ya arifa",
+      "sound": "Sauti",
+      "sayText": "Maandishi ya kusoma kwa sauti",
+      "chatText": "Ujumbe wa kuchapisha",
+      "chatHint": "Imechapishwa kutoka kwenye akaunti yako kwenye gumzo la mkondo wako. Haiwezi kurudia ujumbe wa mtazamaji.",
+      "webhookUrl": "Anwani ya Webhook",
+      "webhookHint": "Discord au Slack webhook, au anwani yoyote ya https inayokubali CHAPISHO.",
+      "webhookText": "Ujumbe wa kutuma",
+      "triggers": {
+        "tip": "Kidokezi kinawasili",
+        "follow": "Mtu anamfuata",
+        "subscribe": "Mtu anajisajili",
+        "share": "Mtu anashiriki mkondo huo",
+        "command": "Amri ya gumzo inatumika",
+        "keyword": "Ujumbe wa gumzo una neno",
+        "chat": "Ujumbe wowote wa gumzo"
+      },
+      "audiences": {
+        "everyone": "Kila mtu",
+        "followers": "Wafuasi",
+        "subscribers": "Wasajili"
+      },
+      "actionTypes": {
+        "alert": "Onyesha arifa",
+        "sound": "Piga sauti",
+        "say": "Soma kwa sauti",
+        "chat": "Chapisha kwenye gumzo",
+        "webhook": "Tuma kwenye tovuti"
+      },
+      "summary": {
+        "tip": "Kidokezi cha {{amount}} DHB au zaidi"
+      },
+      "presets": {
+        "blank": "Sheria tupu",
+        "readChat": "Soma mazungumzo kwa sauti",
+        "bigTip": "Pembe ya hewa kwa vidokezi vikubwa",
+        "thankFollowers": "Shukuru wafuasi wapya",
+        "command": "Amri ya gumzo"
+      },
+      "presetHints": {
+        "blank": "Anza kutoka bure",
+        "readChat": "Husoma ujumbe wa wafuasi wako kwa sauti, moja kwa kila mtazamaji kila sekunde 30",
+        "bigTip": "Inacheza pembe ya hewa na inaonyesha arifa kwa vidokezo vya DHB 100,000 au zaidi",
+        "thankFollowers": "Chapisha ujumbe wa shukrani kwenye gumzo lako mtu anapofuata",
+        "command": "Majibu ya !amri katika gumzo lako"
+      },
+      "presetText": {
+        "readChat": "{name} anasema {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Asante kwa kufuata, {name}!",
+        "command": "Habari {name}, karibu kwenye mkondo!"
+      },
+      "sounds": {
+        "airhorn": "Pembe ya hewa",
+        "applause": "Makofi",
+        "cricket": "Kriketi",
+        "drumroll": "Mkunjo wa ngoma",
+        "lol": "Kicheko",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mtu)",
+        "ohh-girl": "Ohh (mwanamke)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Uchawi wa kichawi",
+        "shhh": "Shhh"
+      }
     }
   }
 }

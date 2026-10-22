@@ -17,15 +17,15 @@ interface Props {
   onRect: (rect: OverlayRect) => void;
 }
 
-const FIELD = "rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-3 h-10 text-white text-sm";
+export const FIELD = "rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-3 h-10 text-white text-sm";
 
 const ACCENTS = ["#ffffff", "#f43f5e", "#f59e0b", "#22c55e", "#3b82f6", "#a855f7"];
 
-function Label({ children }: { children: string }) {
+export function Label({ children }: { children: string }) {
   return <Text className="text-white text-sm font-medium mb-1.5">{children}</Text>;
 }
 
-function Chips<T extends string>({ value, options, onChange }: { value: string; options: { value: T; label: string }[]; onChange: (v: T) => void }) {
+export function Chips<T extends string>({ value, options, onChange }: { value: string; options: { value: T; label: string }[]; onChange: (v: T) => void }) {
   return (
     <View className="flex-row flex-wrap gap-2">
       {options.map((o) => (
@@ -43,7 +43,7 @@ function Chips<T extends string>({ value, options, onChange }: { value: string; 
   );
 }
 
-function Toggle({ label, hint, value, onChange }: { label: string; hint?: string; value: boolean; onChange: (v: boolean) => void }) {
+export function Toggle({ label, hint, value, onChange }: { label: string; hint?: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
     <View className="flex-row items-center justify-between gap-4">
       <View className="flex-1">

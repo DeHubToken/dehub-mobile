@@ -9209,7 +9209,8 @@
       "reaction_counter": "Contor de reacție",
       "event_feed": "Activitate recentă",
       "chat_box": "Casetă de chat",
-      "ticker": "Indicativ"
+      "ticker": "Indicativ",
+      "rule_alert": "Alerte privind regulile"
     },
     "hints": {
       "tip_alert": "Celebrează fiecare sugestie, proporțională cu nivelul ei",
@@ -9226,7 +9227,8 @@
       "reaction_counter": "Contorizează fiecare reacție pe care o primește difuzarea dvs.",
       "event_feed": "Cele mai recente cadouri, adepți, abonați și persoane care vă împărtășesc difuzarea",
       "chat_box": "Afișează mesajele de chat ale difuzării pe ecran",
-      "ticker": "Un rând din propriul text care se derulează pe ecran"
+      "ticker": "Un rând din propriul text care se derulează pe ecran",
+      "rule_alert": "Unde apar alertele regulilor tale"
     },
     "fields": {
       "style": "Stil",
@@ -9283,6 +9285,103 @@
       "rotateConfirm": "Creați un link nou? Cel vechi nu mai funcționează imediat, așa că va trebui să-l lipiți pe cel nou în OBS.",
       "rotated": "Link nou pregătit. Lipiți-l în OBS.",
       "rotateFailed": "Nu s-a putut crea un link nou. Încearcă din nou peste un moment."
+    },
+    "rules": {
+      "test": "Testează",
+      "title": "Reguli",
+      "intro": "Când se întâmplă ceva în fluxul dvs., DeHub face ceea ce alegeți: afișează o alertă, redă un sunet, citește ceva cu voce tare, postează în chat sau vă spune Discord.",
+      "add": "Adaugă o regulă",
+      "limit": "Ai atins limita de {{count}} reguli.",
+      "loadFailed": "Regulile tale nu au putut fi încărcate. Reîmprospătează pagina pentru a încerca din nou.",
+      "empty": "Încă nu există reguli. Adaugă una pentru a reacționa la recompense, urmăriri sau comenzi de chat.",
+      "saved": "Reguli salvate. Acestea rulează la următoarea recompensă, la următoarea urmărire sau la următorul mesaj.",
+      "saveFailed": "Regulile tale nu au putut fi salvate.",
+      "testFailed": "Acel test nu a trecut. Încearcă din nou peste un moment.",
+      "saveToTest": "Păstrează-ți regulile pentru a le testa",
+      "enabled": "Regulă privind",
+      "remove": "Ștergeți regula",
+      "save": "Salvează regulile",
+      "needsAlertWidget": "Unele reguli afișează o alertă. Adăugați widgetul Alerte reguli, astfel încât să aibă unde să apară.",
+      "name": "Nume",
+      "when": "Când",
+      "then": "Și atunci.",
+      "minAmount": "Cel mai mic vârf (DHB)",
+      "command": "Comandă",
+      "keyword": "Cuvânt sau expresie",
+      "audience": "Cine o poate declanșa",
+      "blockedWords": "Cuvinte blocate",
+      "blockedWordsHint": "Separați prin virgule. Mesajele care le conțin sunt ignorate și nu sunt citite niciodată cu voce tare.",
+      "cooldown": "Așteptați între utilizări (secunde)",
+      "userCooldown": "Așteptați per spectator (secunde)",
+      "addAction": "Adaugă o acțiune",
+      "removeAction": "Elimină acțiunea",
+      "placeholders": "Folosește {name}, {amount} și {message} în textul tău. Linkurile din mesaje sunt eliminate.",
+      "alertText": "Text alertă",
+      "sound": "Sunet",
+      "sayText": "Text de citit cu voce tare",
+      "chatText": "Mesaj de postat",
+      "chatHint": "Postat din contul tău în chatul fluxului tău. Nu poate repeta mesajul privitorului.",
+      "webhookUrl": "Adresa Webhook",
+      "webhookHint": "Un webhook Discord sau Slack sau orice adresă https care acceptă o POSTARE.",
+      "webhookText": "Mesaj de trimis",
+      "triggers": {
+        "tip": "Sosește o recompensă",
+        "follow": "Cineva urmărește",
+        "subscribe": "Cineva se abonează",
+        "share": "Cineva partajează fluxul",
+        "command": "Este utilizată o comandă de chat",
+        "keyword": "Un mesaj de chat conține un cuvânt",
+        "chat": "Orice mesaj de chat"
+      },
+      "audiences": {
+        "everyone": "Toată lumea",
+        "followers": "Urmăritori",
+        "subscribers": "Abonați"
+      },
+      "actionTypes": {
+        "alert": "Afișează o alertă",
+        "sound": "Redă un sunet",
+        "say": "Citește cu voce tare",
+        "chat": "Postează în chat",
+        "webhook": "Trimiteți către un webhook"
+      },
+      "summary": {
+        "tip": "Sugestie de {{amount}} DHB sau mai mult"
+      },
+      "presets": {
+        "blank": "Regulă necompletată",
+        "readChat": "Citește chat-ul cu voce tare",
+        "bigTip": "Claxon pentru bacșișuri mari",
+        "thankFollowers": "Mulțumim noilor urmăritori",
+        "command": "Comandă chat"
+      },
+      "presetHints": {
+        "blank": "Începe de la zero",
+        "readChat": "Citește mesajele urmăritorilor cu voce tare, câte unul pentru fiecare spectator la fiecare 30 de secunde",
+        "bigTip": "Redă un claxon și afișează o alertă pentru sfaturi de 100.000 DHB sau mai mult",
+        "thankFollowers": "Postează un mesaj de mulțumire în chat atunci când cineva te urmărește",
+        "command": "Răspunde la o comandă! în chat-ul dvs."
+      },
+      "presetText": {
+        "readChat": "{name} spune {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Mulțumim pentru răspuns, {name}!",
+        "command": "Bună ziua {name}, bine ați venit la flux!"
+      },
+      "sounds": {
+        "airhorn": "Claxon de aer",
+        "applause": "Aplauze",
+        "cricket": "Greieri",
+        "drumroll": "Rolă tambur",
+        "lol": "Râsete",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (om)",
+        "ohh-girl": "Ohh (femeie)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Înfricoșător",
+        "magic-spell": "Vraja magică",
+        "shhh": "Shhh"
+      }
     }
   }
 }

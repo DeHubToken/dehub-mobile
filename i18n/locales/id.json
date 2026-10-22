@@ -9198,7 +9198,8 @@
       "reaction_counter": "Penghitung reaksi",
       "event_feed": "Aktivitas terbaru",
       "chat_box": "Kotak obrolan",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Peringatan aturan"
     },
     "hints": {
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
@@ -9215,7 +9216,8 @@
       "reaction_counter": "Menghitung setiap reaksi yang diterima siaran Anda",
       "event_feed": "Hadiah, pengikut, pelanggan, dan orang terbaru yang membagikan siaran Anda",
       "chat_box": "Menampilkan pesan obrolan siaran Anda di layar",
-      "ticker": "Baris teks Anda sendiri yang bergulir di layar"
+      "ticker": "Baris teks Anda sendiri yang bergulir di layar",
+      "rule_alert": "Di mana pemberitahuan peraturan Anda muncul"
     },
     "fields": {
       "style": "Gaya",
@@ -9272,6 +9274,103 @@
       "rotateConfirm": "Buat tautan baru? Yang lama langsung berhenti bekerja, jadi Anda harus menempelkan yang baru ke OBS.",
       "rotated": "Tautan baru siap. Tempelkan ke OBS.",
       "rotateFailed": "Tidak dapat membuat tautan baru. Coba lagi sebentar lagi."
+    },
+    "rules": {
+      "title": "Peraturan",
+      "intro": "Ketika sesuatu terjadi di streaming Anda, DeHub melakukan apa yang Anda pilih: menunjukkan peringatan, memutar suara, membaca sesuatu dengan keras, memposting di obrolan Anda, atau memberi tahu Discord Anda.",
+      "add": "Tambahkan aturan",
+      "limit": "Anda telah mencapai batas {{count}} aturan.",
+      "loadFailed": "Aturan Anda tidak dapat dimuat. Segarkan halaman untuk mencoba lagi.",
+      "empty": "Belum ada aturan. Tambahkan satu untuk bereaksi terhadap tips, mengikuti, atau perintah obrolan.",
+      "saved": "Aturan disimpan. Mereka berjalan pada tip berikutnya, follow atau pesanmu.",
+      "saveFailed": "Aturan Anda tidak dapat disimpan.",
+      "testFailed": "Tes itu tidak berhasil. Coba lagi sebentar lagi.",
+      "saveToTest": "Simpan aturan Anda untuk mengujinya",
+      "test": "Tes",
+      "enabled": "Aturan tentang",
+      "remove": "Hapus aturan",
+      "save": "Simpan aturan",
+      "needsAlertWidget": "Beberapa aturan menunjukkan peringatan. Tambahkan widget Lansiran aturan sehingga ada tempat untuk ditampilkan.",
+      "name": "Nama",
+      "when": "Kapan",
+      "then": "Kemudian",
+      "minAmount": "Smallest tip (DHB)",
+      "command": "Perintah",
+      "keyword": "Kata atau frasa",
+      "audience": "Siapa yang dapat menyetelnya",
+      "blockedWords": "Kata - kata yang diblokir",
+      "blockedWordsHint": "Pisahkan dengan koma. Pesan yang mengandungnya diabaikan dan jangan pernah dibaca keras - keras.",
+      "cooldown": "Tunggu di antara penggunaan (detik)",
+      "userCooldown": "Tunggu per penampil (detik)",
+      "addAction": "Tambahkan tindakan",
+      "removeAction": "Hapus tindakan",
+      "placeholders": "Gunakan {name}, {amount}, dan {message} dalam SMS Anda. Tautan dalam pesan dihapus.",
+      "alertText": "Teks peringatan",
+      "sound": "Suara",
+      "sayText": "Teks untuk dibaca dengan suara keras",
+      "chatText": "Pesan untuk diposting",
+      "chatHint": "Diposting dari akun Anda ke obrolan streaming Anda. Tidak dapat mengulangi pesan pemirsa.",
+      "webhookUrl": "Alamat webhook",
+      "webhookHint": "Webhook Discord atau Slack, atau alamat https apa pun yang menerima POSTINGAN.",
+      "webhookText": "Pesan untuk dikirim",
+      "triggers": {
+        "tip": "Tips sudah tiba",
+        "follow": "Seseorang mengikuti",
+        "subscribe": "Seseorang berlangganan",
+        "share": "Seseorang membagikan streaming",
+        "command": "Perintah obrolan digunakan",
+        "keyword": "Pesan obrolan berisi kata",
+        "chat": "Pesan obrolan apa saja"
+      },
+      "audiences": {
+        "everyone": "Semua orang",
+        "followers": "Pengikut",
+        "subscribers": "Pelanggan"
+      },
+      "actionTypes": {
+        "alert": "Tampilkan pemberitahuan",
+        "sound": "Putar suara",
+        "say": "Baca dengan suara keras",
+        "chat": "Posting di obrolan",
+        "webhook": "Kirim ke webhook"
+      },
+      "summary": {
+        "tip": "Tips dari {{amount}} DHB atau lebih"
+      },
+      "presets": {
+        "blank": "Aturan kosong",
+        "readChat": "Baca obrolan dengan lantang",
+        "bigTip": "Klakson udara untuk tip besar",
+        "thankFollowers": "Ucapkan terima kasih kepada pengikut baru",
+        "command": "Perintah obrolan"
+      },
+      "presetHints": {
+        "blank": "Mulai dari nol",
+        "readChat": "Membaca pesan pengikut Anda dengan keras, satu per pemirsa setiap 30 detik",
+        "bigTip": "Memainkan klakson udara dan menunjukkan peringatan untuk tip 100.000 DHB atau lebih",
+        "thankFollowers": "Mengirimkan ucapan terima kasih di obrolan Anda ketika seseorang mengikuti",
+        "command": "Menjawab perintah! di obrolan Anda"
+      },
+      "presetText": {
+        "readChat": "{name} mengatakan {message}",
+        "bigTip": "{name} mengirim {amount} DHB!",
+        "thankFollowers": "Terima kasih atas pengikutnya, {name}!",
+        "command": "Halo {name}, selamat datang di streaming!"
+      },
+      "sounds": {
+        "airhorn": "Klakson udara",
+        "applause": "Tepuk tangan",
+        "cricket": "Jangkrik",
+        "drumroll": "Gulungan drum",
+        "lol": "Tawa",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (pria)",
+        "ohh-girl": "Ohh (wanita)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Seram",
+        "magic-spell": "Mantra sihir",
+        "shhh": "Shhh"
+      }
     }
   }
 }

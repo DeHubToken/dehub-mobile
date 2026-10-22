@@ -9206,7 +9206,8 @@
       "reaction_counter": "Ikhawunta yokusabela",
       "event_feed": "Okwenziwayo kwakamuva",
       "chat_box": "Ibhokisi lengxoxo",
-      "ticker": "Umthumeli wamathikithi"
+      "ticker": "Umthumeli wamathikithi",
+      "rule_alert": "Izikhalo Zemithetho"
     },
     "hints": {
       "tip_alert": "Kusebenzisa umthetho we-tier, kuthokozele umthetho ngamunye",
@@ -9223,7 +9224,8 @@
       "reaction_counter": "Kubala konke ukusabela okusakazwayo kwakho",
       "event_feed": "Izipho zakamuva, abalandeli, ababhalisile nabantu ababelana ngokusakaza kwakho",
       "chat_box": "Ibonisa imiyalezo yengxoxo yokusakaza kwakho esikrinini",
-      "ticker": "Umugqa wombhalo wakho siqu oskrola esikrinini"
+      "ticker": "Umugqa wombhalo wakho siqu oskrola esikrinini",
+      "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona"
     },
     "fields": {
       "style": "Isitayela",
@@ -9280,6 +9282,103 @@
       "rotateConfirm": "Yenza ilinki entsha? Elidala liyayeka ukusebenza ngaso leso sikhathi, ngakho kuzodingeka unamathisele elisha ukuze ULITHANDE.",
       "rotated": "Ilinki entsha isilungile. Yinamathisele KU-OBS.",
       "rotateFailed": "Ayikwazanga ukwenza ilinki entsha. Zama futhi ngomzuzwana."
+    },
+    "rules": {
+      "title": "Imithetho",
+      "intro": "Lapho kwenzeka okuthile ku-stream yakho, i-DeHub yenza lokho okukhethe: ikhombisa isikhazo, idlale umsindo, ifunde okuthile ngaphakathi, ifake ekusulwaneni kwakho noma itshele i-Discord yakho.",
+      "add": "Engeza umthetho",
+      "limit": "Ufikie umkhawulo we-{{count}} imithetho.",
+      "loadFailed": "Imithetho yakho ayikwazanga ukuloada. Vuselela ikhasi ukuze uzame futhi.",
+      "empty": "Ayikho imithetho okwamanje. Engeza enye ukuze uphendule amathiphu, ukubalandela noma amakomanzi ekusulwaneni.",
+      "saved": "Imithetho igcinwe. Ibaleka ku-tip, follow noma umyalezo wakho olandelayo.",
+      "saveFailed": "Imithetho yakho ayikwazanga ukugcinwa.",
+      "testFailed": "Lokhu kuhlola akuqedile. Zama futhi emomenti.",
+      "saveToTest": "Gcina imithetho yakho ukuze uyihlole",
+      "test": "Hlola",
+      "enabled": "Umthetho uvuliwe",
+      "remove": "Susa umthetho",
+      "save": "Gcina imithetho",
+      "needsAlertWidget": "Eminye imithetho ikhombisa isikhazo. Engeza i-Rule alerts widget ukuze ibe nendawo yokuvela.",
+      "name": "Igama",
+      "when": "Nini",
+      "then": "Ngemuva kwalokho",
+      "minAmount": "Umtiphu omncane (DHB)",
+      "command": "Umamanda",
+      "keyword": "Igama noma inkulumo",
+      "audience": "Ngubani ongakwazi ukuyivala",
+      "blockedWords": "Amagama avaliwe",
+      "blockedWordsHint": "Hlukanisa ngokhoma. Imilayezo equkethe ayibalwa futhi ayikho nokubalwa ngaphakathi.",
+      "cooldown": "Linde phakathi kokusetshenziswa (amasekhondi)",
+      "userCooldown": "Linde ngomukhangeli (amasekhondi)",
+      "addAction": "Engeza isenzo",
+      "removeAction": "Susa isenzo",
+      "placeholders": "Sebenzisa {name}, {amount} no {message} embhalweni wakho. Amalinki emiyalezweni ayasuswa.",
+      "alertText": "Umbhalo wesixwayiso",
+      "sound": "Umsindo",
+      "sayText": "Umbhalo wokufunda ngokuzwakalayo",
+      "chatText": "Umlayezo wokuphosta",
+      "chatHint": "Kuthunyelwe kusuka ku-akhawunti yakho engxoxweni yokusakaza kwakho. Ayikwazi ukuphinda umyalezo wesibukeli.",
+      "webhookUrl": "Ikheli le-Webhook",
+      "webhookHint": "I-Discord noma i-Slack webhook, noma yiliphi ikheli le-https elamukela IPHOSTI.",
+      "webhookText": "Umlayezo okufanele uwuthumele",
+      "triggers": {
+        "tip": "Icebiso lifika",
+        "follow": "Kukhona olandelayo",
+        "subscribe": "Othile uyabhalisa",
+        "share": "Othile wabelana ngokusakaza",
+        "command": "Umyalo wengxoxo uyasetshenziswa",
+        "keyword": "Umlayezo wengxoxo uqukethe igama",
+        "chat": "Noma yimuphi umyalezo wengxoxo"
+      },
+      "audiences": {
+        "everyone": "Wonke umuntu",
+        "followers": "Abalandeli",
+        "subscribers": "Ababhalisile"
+      },
+      "actionTypes": {
+        "alert": "Bonisa umyalezo",
+        "sound": "Dlala umsindo",
+        "say": "Funda ngokuzwakalayo",
+        "chat": "Phosta engxoxweni",
+        "webhook": "Thumela ku-webhook"
+      },
+      "summary": {
+        "tip": "Icebiso lika- {{amount}} DHB noma ngaphezulu"
+      },
+      "presets": {
+        "blank": "Umthetho ongenalutho",
+        "readChat": "Funda ingxoxo ngokuzwakalayo",
+        "bigTip": "Uphondo lomoya lwamacebiso amakhulu",
+        "thankFollowers": "Bonga abalandeli abasha",
+        "command": "Umyalo wengxoxo"
+      },
+      "presetHints": {
+        "blank": "Qala kusuka kokungabi nalutho",
+        "readChat": "Ufunda imilayezo yabalandeli bakho ngokuzwakalayo, eyodwa ngesibukeli ngasinye njalo ngemizuzwana engu-30",
+        "bigTip": "Udlala uphondo lomoya futhi ubonisa umyalezo wamacebiso angu-100,000 DHB noma ngaphezulu",
+        "thankFollowers": "Phosta ukubonga engxoxweni yakho lapho othile elandela",
+        "command": "Uphendula u- !umyalo engxoxweni yakho"
+      },
+      "presetText": {
+        "readChat": "{name} uthi {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Siyabonga ngokulandela, {name}!",
+        "command": "Sawubona {name}, wamukelekile ekusakazeni!"
+      },
+      "sounds": {
+        "airhorn": "Uphondo lomoya",
+        "applause": "Ukushaya ihlombe",
+        "cricket": "Amakhilikithi",
+        "drumroll": "Umqulu wesigubhu",
+        "lol": "Ukuhleka",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (indoda)",
+        "ohh-girl": "Ohh (owesifazane)",
+        "ba-dum-tish": "I-Ba dum tish",
+        "spooky": "I-Spooky",
+        "magic-spell": "I-magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

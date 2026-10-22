@@ -19,6 +19,8 @@ import { SettingsOptionModal } from "../components/Settings/SettingsPrimitives";
 import { StudioStage } from "../components/LiveStudio/StudioStage";
 import { WidgetSettingsForm } from "../components/LiveStudio/WidgetSettingsForm";
 import { OverlayEventContext, createOverlayEventBus } from "../components/LiveOverlay/overlayEvents";
+import { createRuleBus, RuleAudio, RuleBusContext } from "../components/LiveOverlay/ruleBus";
+import { RulesEditor } from "../components/LiveStudio/RulesEditor";
 import { useOverlayControlRoom } from "../hooks/useOverlayControlRoom";
 import { copyToClipboard, toastError, toastSuccess } from "../libs";
 import { OVERLAY_LINK_BASE } from "../config/links";
@@ -131,7 +133,12 @@ export default function LiveStudioScreen() {
   });
 
   const bus = useMemo(() => createOverlayEventBus(), []);
-  useOverlayControlRoom(data?.token, (events) => events.forEach((event) => bus.publish(event)));
+  const ruleBus = useMemo(() => createRuleBus(), []);
+  useOverlayControlRoom(
+    data?.token,
+    (events) => events.forEach((event) => bus.publish(event)),
+    (fired) => ruleBus.publish(fired),
+  );
 
   if (isLoading) {
     return (
@@ -181,14 +188,17 @@ export default function LiveStudioScreen() {
           }
         >
           <OverlayEventContext.Provider value={bus}>
-            <StudioStage
-              widgets={widgets}
-              portrait={portrait}
-              selectedId={selectedId}
-              stats={PREVIEW_STATS}
-              onSelect={setSelectedId}
-              onMove={move}
-            />
+            <RuleBusContext.Provider value={ruleBus}>
+              <RuleAudio playLive={false} />
+              <StudioStage
+                widgets={widgets}
+                portrait={portrait}
+                selectedId={selectedId}
+                stats={PREVIEW_STATS}
+                onSelect={setSelectedId}
+                onMove={move}
+              />
+            </RuleBusContext.Provider>
           </OverlayEventContext.Provider>
           <Text className="text-theme-neutrals-500 text-xs">{t("liveStudio.layoutHintPhone")}</Text>
         </Section>
@@ -248,6 +258,10 @@ export default function LiveStudioScreen() {
           ) : (
             <Text className="text-theme-neutrals-500 text-sm">{t("liveStudio.selectHint")}</Text>
           )}
+        </Section>
+
+        <Section title={t("liveStudio.rules.title")}>
+          <RulesEditor hasAlertWidget={widgets.some((w) => w.kind === "rule_alert" && w.enabled)} />
         </Section>
 
         <Section

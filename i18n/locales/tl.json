@@ -9376,7 +9376,8 @@
       "reaction_counter": "Reaksyon counter",
       "event_feed": "Kamakailang aktibidad",
       "chat_box": "Chat box",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Mga alerto sa panuntunan"
     },
     "hints": {
       "tip_alert": "Pagpupugay sa bawat tip ayon sa kanilang antas",
@@ -9393,7 +9394,8 @@
       "reaction_counter": "Binibilang ang bawat reaksyon na nakukuha ng iyong broadcast",
       "event_feed": "Ang pinakabagong mga regalo, mga tagasunod, mga tagasuskribi at mga taong nagbabahagi ng iyong broadcast",
       "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
-      "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen"
+      "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen",
+      "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan"
     },
     "fields": {
       "style": "Estilo",
@@ -9450,6 +9452,103 @@
       "rotateConfirm": "Gumawa ng bagong link? Ang lumang isa ay tumitigil sa pagtatrabaho kaagad, kaya kakailanganin mong i - paste ang bago sa OBS.",
       "rotated": "Handa na ang bagong link. I - paste ito sa OBS.",
       "rotateFailed": "Hindi makagawa ng bagong link. Subukan muli sa ilang sandali."
+    },
+    "rules": {
+      "removeAction": "Alisin ang aksyon",
+      "test": "Subukan",
+      "title": "Mga Panuntunan",
+      "intro": "Kapag may nangyari sa iyong stream, ginagawa ng DeHub ang iyong pinili: nagpapakita ng alerto, nagpe - play ng tunog, nagbabasa ng isang bagay nang malakas, mga post sa iyong chat o nagsasabi sa iyong Discord.",
+      "add": "Magdagdag ng alituntunin",
+      "limit": "Naabot mo na ang limitasyon ng {{count}} na mga alituntunin.",
+      "loadFailed": "Hindi ma - load ang iyong mga alituntunin. I - refresh ang page para subukang muli.",
+      "empty": "Wala pang mga panuntunan. Magdagdag ng isa upang tumugon sa mga tip, sumusunod o mga utos sa chat.",
+      "saved": "Na - save ang mga alituntunin. Tumatakbo ang mga ito sa iyong susunod na tip, sundin o mensahe.",
+      "saveFailed": "Hindi mase - save ang iyong mga alituntunin.",
+      "testFailed": "Ang pagsusulit na iyon ay hindi dumaan. Subukan muli sa ilang sandali.",
+      "saveToTest": "I - save ang iyong mga alituntunin para subukan ang mga ito",
+      "enabled": "Panuntunan sa",
+      "remove": "Tanggalin ang panuntunan",
+      "save": "I - save ang mga alituntunin",
+      "needsAlertWidget": "Ang ilang mga panuntunan ay nagpapakita ng alerto. Idagdag ang widget ng Mga Alerto sa Panuntunan upang magkaroon ito ng isang lugar upang lumitaw.",
+      "name": "Pangalan",
+      "when": "Kailan",
+      "then": "Pagkatapos »",
+      "minAmount": "Pinakamaliit na tip (DHB)",
+      "command": "Utos",
+      "keyword": "Salita o parirala",
+      "audience": "Sino ang maaaring mag - set off nito",
+      "blockedWords": "Mga naka - block na salita",
+      "blockedWordsHint": "Maghiwalay gamit ang mga kuwit. Binabalewala ang mga mensaheng naglalaman ng mga ito at hindi kailanman nagbabasa nang malakas.",
+      "cooldown": "Maghintay sa pagitan ng paggamit (segundo)",
+      "userCooldown": "Maghintay sa bawat viewer (segundo)",
+      "addAction": "Magdagdag ng aksyon",
+      "placeholders": "Gamitin ang {name}, {amount} at {message} sa iyong text. Tinanggal ang mga link sa mga mensahe.",
+      "alertText": "Teksto ng alerto",
+      "sound": "Tunog",
+      "sayText": "Tekstong babasahin nang malakas",
+      "chatText": "Email *",
+      "chatHint": "Nai - post mula sa iyong account sa chat ng iyong stream. Hindi nito maulit ang mensahe ng manonood.",
+      "webhookUrl": "Address ng webhook",
+      "webhookHint": "Isang webhook ng Discord o Slack, o anumang https address na tumatanggap ng isang POST.",
+      "webhookText": "Mensahe na ipapadala",
+      "triggers": {
+        "tip": "Dumating ang isang tip",
+        "follow": "Sinusundan ng isang tao",
+        "subscribe": "May nag - subscribe",
+        "share": "May nagbabahagi ng stream",
+        "command": "Ginagamit ang isang chat command",
+        "keyword": "Ang isang mensahe sa chat ay naglalaman ng isang salita",
+        "chat": "Anumang mensahe sa chat"
+      },
+      "audiences": {
+        "everyone": "Lahat",
+        "followers": "Mga tagasunod",
+        "subscribers": "Mga Subscriber"
+      },
+      "actionTypes": {
+        "alert": "Magpakita ng alerto",
+        "sound": "Magpatugtog ng tunog",
+        "say": "Magbasa nang malakas",
+        "chat": "Mag - post sa chat",
+        "webhook": "Ipadala sa isang webhook"
+      },
+      "summary": {
+        "tip": "Tip na {{amount}} DHB o higit pa"
+      },
+      "presets": {
+        "blank": "Blangko na panuntunan",
+        "readChat": "Basahin nang malakas ang chat",
+        "bigTip": "Air sungay para sa mga malalaking tip",
+        "thankFollowers": "Salamat sa mga bagong tagasunod",
+        "command": "Chat"
+      },
+      "presetHints": {
+        "blank": "Magsimula sa wala",
+        "readChat": "Binabasa nang malakas ang mga mensahe ng iyong mga tagasunod, isa bawat manonood bawat 30 segundo",
+        "bigTip": "Nagpe - play ang isang air sungay at nagpapakita ng isang alerto para sa mga tip ng 100,000 DHB o higit pa",
+        "thankFollowers": "Mag - post ng pasasalamat sa iyong chat kapag may sumusunod",
+        "command": "Sagot a !utos sa iyong chat"
+      },
+      "presetText": {
+        "readChat": "{name} sabi ni {message}",
+        "bigTip": "{name}send{amount} DHB!",
+        "thankFollowers": "Salamat sa follow, {name}!",
+        "command": "Kumusta{name}, maligayang pagdating sa stream!"
+      },
+      "sounds": {
+        "airhorn": "Sungay na himpapawid",
+        "applause": "Palakpakan",
+        "cricket": "Mga Cricket",
+        "drumroll": "Drum roll",
+        "lol": "Pagtawanang:: 0",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (tao)",
+        "ohh-girl": "Ohh (babae)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Nakakatakot",
+        "magic-spell": "Magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -9181,9 +9181,11 @@
       "reaction_counter": "反應計數器",
       "event_feed": "最近嘅活動",
       "chat_box": "聊天框",
-      "ticker": "股票"
+      "ticker": "股票",
+      "rule_alert": "規則警示"
     },
     "hints": {
+      "rule_alert": "你啲規則嘅提示喺邊度出現",
       "tip_alert": "慶祝每一個提示，按等級大小",
       "follow_alert": "顯示每一個新追蹤者",
       "subscribe_alert": "顯示每一個新訂閱者",
@@ -9255,6 +9257,103 @@
       "rotateConfirm": "開個新連結？舊嘅即刻停止運作，所以你需要將新嘅貼入 OBS 。",
       "rotated": "新連結準備好喇。將佢貼喺 OBS 度。",
       "rotateFailed": "建立唔到新連結。一陣再試下。"
+    },
+    "rules": {
+      "intro": "當你嘅直播有嘢發生，DeHub 會照你揀嘅去做：顯示提示、播聲音、讀出內容、喺你嘅聊天室發訊息，或者通知你嘅 Discord。",
+      "title": "規矩",
+      "add": "加個規則",
+      "limit": "你已經達到 {{count}} 規則嘅極限。",
+      "loadFailed": "你嘅規則載入唔到。重新整理頁面，再試一次。",
+      "empty": "仲未有規則。加一個就可以對提示、追蹤或者即時通訊指令作出反應。",
+      "saved": "規則儲存咗。佢哋會喺你嘅下一個提示、追蹤或者訊息上面執行。",
+      "saveFailed": "你嘅規則儲存唔到。",
+      "testFailed": "嗰個測試冇通過。一陣再試下。",
+      "saveToTest": "儲存你嘅規則嚟測試佢哋",
+      "test": "測驗",
+      "enabled": "繼續規則",
+      "remove": "刪除規則",
+      "save": "儲存規則",
+      "needsAlertWidget": "有啲規則會顯示警示。加入規則警示小工具，等佢有地方顯示。",
+      "name": "名字",
+      "when": "幾時",
+      "then": "然後",
+      "minAmount": "最細小費（ DHB ）",
+      "command": "指令",
+      "keyword": "字或者詞組",
+      "audience": "邊個可以引爆佢",
+      "blockedWords": "封鎖咗嘅字詞",
+      "blockedWordsHint": "用逗號分隔。包含呢啲訊息嘅訊息會被忽略，亦都唔會大聲讀。",
+      "cooldown": "喺使用之間等待（幾秒）",
+      "userCooldown": "每位觀眾等待（秒）",
+      "addAction": "加入一個動作",
+      "removeAction": "移除動作",
+      "placeholders": "喺你嘅文字入面用 {name} 、 {amount} 同 {message} 。訊息入面嘅連結已經移除。",
+      "alertText": "警示文字",
+      "sound": "聲",
+      "sayText": "要大聲讀嘅文字",
+      "chatText": "要發佈嘅訊息",
+      "chatHint": "由你嘅帳戶發佈到你嘅串流即時通訊。佢重複唔到觀眾嘅訊息。",
+      "webhookUrl": "網絡鉤地址",
+      "webhookHint": "Discord 或者 Slack 網絡鉤，或者任何接受 POST 嘅 https 地址。",
+      "webhookText": "要發送嘅訊息",
+      "triggers": {
+        "tip": "有個貼士到咗",
+        "follow": "有人跟住",
+        "subscribe": "有人訂閱",
+        "share": "有人分享咗個串流",
+        "command": "用咗個即時通訊指令",
+        "keyword": "即時通訊訊息包含一個字",
+        "chat": "任何即時通訊訊息"
+      },
+      "audiences": {
+        "everyone": "所有人",
+        "followers": "追隨者",
+        "subscribers": "訂閱者"
+      },
+      "actionTypes": {
+        "alert": "顯示警示",
+        "sound": "播一個聲音",
+        "say": "大聲讀",
+        "chat": "喺即時通訊度發帖",
+        "webhook": "傳送去網絡鉤"
+      },
+      "summary": {
+        "tip": "{{amount}} DHB 或以上嘅提示"
+      },
+      "presets": {
+        "blank": "空白規則",
+        "readChat": "大聲讀即時通訊",
+        "bigTip": "氣喇叭用嚟做大貼士",
+        "thankFollowers": "多謝新追蹤者",
+        "command": "即時通訊指令"
+      },
+      "presetHints": {
+        "blank": "由冇嘢開始",
+        "readChat": "大聲讀你啲追蹤者嘅訊息，每個觀眾每30秒就有一個",
+        "bigTip": "播放空氣喇叭，並顯示提示，如果有 10 萬 DHB 或以上嘅小費",
+        "thankFollowers": "當有人追蹤你嘅時候，喺你嘅即時通訊度發佈一個多謝",
+        "command": "喺你嘅即時通訊入面回答一個！指令"
+      },
+      "presetText": {
+        "readChat": "{name} 話 {message}",
+        "bigTip": "{name} 發送咗 {amount} DHB ！",
+        "thankFollowers": "多謝你嘅追蹤， {name} ！",
+        "command": "你好 {name} ，歡迎你嚟串流！"
+      },
+      "sounds": {
+        "airhorn": "空氣喇叭",
+        "applause": "掌聲",
+        "cricket": "蟋蟀",
+        "drumroll": "鼓滾",
+        "lol": "笑",
+        "ooh-ahh": "哦啊啊",
+        "ooh-man": "哦 ( 男人 )",
+        "ohh-girl": "哦（女人）",
+        "ba-dum-tish": "巴杜姆蒂什",
+        "spooky": "好鬼怪",
+        "magic-spell": "魔法咒語",
+        "shhh": "噓"
+      }
     }
   }
 }

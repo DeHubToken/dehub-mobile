@@ -9195,7 +9195,8 @@
       "reaction_counter": "Numëratori i reagimit",
       "event_feed": "Aktiviteti i fundit",
       "chat_box": "Kutia e bisedës",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Lajmërime për rregullat"
     },
     "hints": {
       "tip_alert": "Feston çdo bakshish, të madhësisë sipas nivelit të tij",
@@ -9212,7 +9213,8 @@
       "reaction_counter": "Numëron çdo reagim që merr transmetimi yt",
       "event_feed": "Dhuratat më të fundit, ndjekësit, abonentët dhe njerëzit që ndajnë transmetimin tënd",
       "chat_box": "Shfaq mesazhet e bisedës së transmetimit tënd në ekran",
-      "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran"
+      "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
+      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja"
     },
     "fields": {
       "style": "Stili",
@@ -9269,6 +9271,103 @@
       "rotateConfirm": "Do të krijosh një link të ri? E vjetra ndalon së funksionuari menjëherë, kështu që duhet ta ngjisësh të renë në OBS.",
       "rotated": "Linku i ri gati. Ngjite në OBS.",
       "rotateFailed": "Nuk munda të krijoj një link të ri. Provo përsëri pas një çasti."
+    },
+    "rules": {
+      "title": "Rregullat",
+      "intro": "Kur ndodh një gjë në stream-in tuaj, DeHub bëhet çfarë e keni zgjedhur: shfaqet një alert, luhet një zëri, lexohet një gjë në shpremë, postohet në chat-in tuaj ose i thotë Discord-it.",
+      "add": "Shto një rregull",
+      "limit": "Ke arritur kufirin e rregullave {{count}}.",
+      "loadFailed": "Regujt tuaja nuk u shfrytëzuan. Rifreshoni faqen për të provuar përsëri.",
+      "empty": "Ende nuk ka rregulla. Shto një për të reaguar ndaj sugjerimeve, ndjekjeve ose komandave të bisedës.",
+      "saved": "Regujt ruhen. Ata punojnë në donacionin e ardhshëm, ndjekjen ose mesazhin.",
+      "saveFailed": "Regujt tuaja nuk u ruajtën.",
+      "testFailed": "Kjo probe nuk u krye. Përcakto në një moment.",
+      "saveToTest": "Ruaj regujt për të testuar ata",
+      "test": "Testi",
+      "enabled": "Regull i ndeshur",
+      "remove": "Fshi regullë",
+      "save": "Ruaj regujt",
+      "needsAlertWidget": "Disa rregulla shfaqin një lajmërim. Shto widget-in e lajmërimeve të rregullit në mënyrë që të shfaqet diku.",
+      "name": "Emri",
+      "when": "Kur",
+      "then": "Pastaj",
+      "minAmount": "Donacion më i vogël (DHB)",
+      "command": "Komanda",
+      "keyword": "Fjalë ose frazë",
+      "audience": "Cilët mund të aktivizojnë",
+      "blockedWords": "Fjalët e blokuar",
+      "blockedWordsHint": "Përshkoni me virgula. Mesazhet që përmbajnë ato ignorohen dhe nuk lexohen asnjëherë.",
+      "cooldown": "Përputhje mes përdorimeve (sekonda)",
+      "userCooldown": "Përputhje për shikues (sekonda)",
+      "addAction": "Shto një veprim",
+      "removeAction": "Fshi një veprim",
+      "placeholders": "Përdor {name}, {amount} dhe {message} në tekstin tënd. Lidhjet në mesazhe janë hequr.",
+      "sound": "Tingull",
+      "sayText": "Tekst për t 'u lexuar me zë të lartë",
+      "chatText": "Mesazh për të postuar",
+      "chatHint": "Postuar nga llogaria jote në bisedën e rrjedhës tënde. Nuk mund të përsërisë mesazhin e shikuesit.",
+      "webhookUrl": "Adresa e Webhook",
+      "webhookHint": "Një webhook Discord ose Slack, ose ndonjë adresë https që pranon një POSTIM.",
+      "webhookText": "Mesazh për t 'u dërguar",
+      "triggers": {
+        "tip": "Mbërrin një sugjerim",
+        "follow": "Dikush të ndjek",
+        "subscribe": "Dikush abonohet",
+        "share": "Dikush ndan rrjedhën",
+        "command": "Përdoret një komandë bisede",
+        "keyword": "Mesazhi i bisedës përmban një fjalë",
+        "chat": "Çdo mesazh bisede"
+      },
+      "audiences": {
+        "everyone": "Të gjithë",
+        "followers": "Ndjekësit",
+        "subscribers": "Abonentët"
+      },
+      "actionTypes": {
+        "alert": "Shfaq një lajmërim",
+        "sound": "Lësho një tingull",
+        "say": "Lexo me zë të lartë",
+        "chat": "Posto në chat",
+        "webhook": "Dërgoja një webhook-u"
+      },
+      "summary": {
+        "tip": "Sugjerim nga {{amount}} DHB ose më shumë"
+      },
+      "presets": {
+        "blank": "Rregulli i zbrazët",
+        "readChat": "Lexo bisedën me zë të lartë",
+        "bigTip": "Briri i ajrit për sugjerime të mëdha",
+        "thankFollowers": "Falëndero ndjekësit e rinj",
+        "command": "Komanda e bisedës"
+      },
+      "presetHints": {
+        "blank": "Fillo nga asgjëja",
+        "readChat": "Lexon mesazhet e ndjekësve të tu me zë të lartë, një për shikues çdo 30 sekonda",
+        "bigTip": "Luan një bri ajri dhe tregon një lajmërim për sugjerime prej 100,000 DHB ose më shumë",
+        "thankFollowers": "Poston një falënderim në bisedën tënde kur dikush të ndjek",
+        "command": "Përgjigjet a !komanda në bisedën tuaj"
+      },
+      "presetText": {
+        "readChat": "{name} thotë {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Faleminderit për ndjekjen, {name}!",
+        "command": "Përshëndetje {name}, mirë se erdhe në transmetim!"
+      },
+      "sounds": {
+        "airhorn": "Briri i ajrit",
+        "applause": "Duartrokitje",
+        "cricket": "Kriket",
+        "drumroll": "Rrotullim daulleje",
+        "lol": "Të qeshura",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (grua)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Drithëruese",
+        "magic-spell": "Magji magjike",
+        "shhh": "Shhhh"
+      },
+      "alertText": "Teksti i paralajmërimit"
     }
   }
 }
