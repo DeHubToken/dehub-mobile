@@ -394,7 +394,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       </View>
       <ExpandableSection
         expanded={expandedSection === "ppv"}
-        maxHeight={SECTION_HEIGHT_PPV + (isSolana ? 48 : evmPpvSymbols.length > 1 ? 44 : 0)}
+        maxHeight={SECTION_HEIGHT_PPV + (isSolana ? 48 : evmPpvSymbols.length > 1 ? 56 : 0)}
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-3">
