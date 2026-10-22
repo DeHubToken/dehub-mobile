@@ -9264,7 +9264,8 @@
     "followersUnit": "volgers",
     "topSupporters": "Top ondersteuners",
     "tipped": "{{name}} stuur 'n geskenk",
-    "chatPreview": "Geselsboodskappe verskyn hier"
+    "chatPreview": "Geselsboodskappe verskyn hier",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9320,7 +9321,8 @@
       "event_feed": "Onlangse aktiwiteite",
       "chat_box": "Geselsdoos",
       "ticker": "Ticker",
-      "rule_alert": "Reël waarskuwings"
+      "rule_alert": "Reël waarskuwings",
+      "spin_wheel": "Spin wiel"
     },
     "hints": {
       "tip_alert": "Vier elke tip, aangepas na sy vlak",
@@ -9338,7 +9340,8 @@
       "event_feed": "Die nuutste geskenke, volgelinge, intekenare en mense wat jou uitsending deel",
       "chat_box": "Wys jou uitsending se kletsboodskappe op die skerm",
       "ticker": "'n Reël van jou eie teks wat oor die skerm blaai",
-      "rule_alert": "Waar jou reëls se waarskuwings verskyn"
+      "rule_alert": "Waar jou reëls se waarskuwings verskyn",
+      "spin_wheel": "Waar die wiele in jou reëls draai"
     },
     "fields": {
       "style": "Styl",
@@ -9453,7 +9456,8 @@
         "sound": "Speel 'n klank",
         "say": "Lees hardop",
         "chat": "Skryf berig in die gespreksvenster.",
-        "webhook": "Stuur na 'n webhaak"
+        "webhook": "Stuur na 'n webhaak",
+        "wheel": "Draai 'n wiel"
       },
       "summary": {
         "tip": "Wenk van {{amount}} DHB of meer"
@@ -9490,7 +9494,20 @@
         "spooky": "Spooky",
         "magic-spell": "Magiese spel",
         "shhh": "SHH"
-      }
+      },
+      "wheelSegments": "Wielsegmente, een per lyn",
+      "wheelHint": "Tussen twee en twaalf. DeHub kies waar die wiel stop, sodat almal wat kyk dieselfde resultaat sien. Gebruik {result} in 'n waarskuwing, lees hardop of gesels aksie om dit te noem."
+    },
+    "controls": {
+      "title": "Vinnige kontroles",
+      "intro": "Vir middelstroom. Elke skakelaar hou vir almal wat kyk, in die app en in OBS, totdat jy dit terugdraai.",
+      "alertsPaused": "Pouseer waarskuwings",
+      "alertsPausedHint": "Geen geskenk, volg of reël waarskuwings op die skerm nie. Telers, doelwitte en die kletsboks gaan voort.",
+      "soundsMuted": "Doof alarmgeluide",
+      "soundsMutedHint": "Jou reëls hou op om geluide te speel.",
+      "readAloudMuted": "Hou op om hardop te lees",
+      "readAloudMutedHint": "Geskenkboodskappe en reëllyne word nie meer gelees nie.",
+      "failed": "Die skakelaar het nie verander nie. Probeer weer."
     }
   }
 }

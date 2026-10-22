@@ -9114,7 +9114,8 @@
     "followersUnit": "kuwa raacsan",
     "topSupporters": "Taageerayaasha ugu sareeya",
     "tipped": "{{name}} soo diray hadiyad",
-    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda"
+    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "subtitle": "Digniinta iyo widget-yada durdurradaada",
@@ -9165,7 +9166,8 @@
       "event_feed": "Dhawaan waxqabadka",
       "chat_box": "Sanduuqa sheekaysiga",
       "ticker": "Ticker",
-      "rule_alert": "Digniinta xeerka"
+      "rule_alert": "Digniinta xeerka",
+      "spin_wheel": "Giraangiraha wareejinaya"
     },
     "hints": {
       "tip_alert": "Waxay u dabaaldegtaa talooyin kasta, oo si weyn loo cabbiray heerarkeeda",
@@ -9183,7 +9185,8 @@
       "event_feed": "Hadiyadihii ugu dambeeyay, kuwa raacsan, macaamiisha iyo dadka la wadaagaya baahintaada",
       "chat_box": "Muuji farriimaha sheekaysiga ee baahintaada shaashadda",
       "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan",
-      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato"
+      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato",
+      "spin_wheel": "Halka giraangiraha ku jira xeerarkaaga ay wareegaan"
     },
     "fields": {
       "style": "Qaabka",
@@ -9295,7 +9298,8 @@
         "alert": "Muuji digniin",
         "say": "Si weyn u akhri",
         "chat": "Ku dhaji sheekaysiga",
-        "webhook": "U dir websaydhka"
+        "webhook": "U dir websaydhka",
+        "wheel": "Ku wareeji giraangiraha"
       },
       "summary": {
         "tip": "Tip ee {{amount}} DHB ama ka badan"
@@ -9332,7 +9336,20 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Qaybaha Wheel, hal xariiq",
+      "wheelHint": "Inta u dhaxaysa 2 iyo 12. DeHub wuxuu doortaa meesha giraangiraha uu istaago, sidaa darteed qof kasta oo daawanaya wuxuu arkaa natiijo isku mid ah. Isticmaal {result} in digniin ah, akhri-aloud ama ficil wada sheekaysi si aad u magacawdo."
+    },
+    "controls": {
+      "title": "Xakamaynta degdegga ah",
+      "intro": "Wixii badhtamihii. Beddel kasta wuxuu u hayaa qof kasta oo daawanaya, barnaamijka iyo OBS, ilaa aad dib u rogto.",
+      "alertsPaused": "Jooji digniinta",
+      "alertsPausedHint": "Ma jiro hadiyad, raac ama xeer digniino shaashadda. La-taliyayaasha, yoolalka iyo sanduuqa sheekaysiga ayaa sii socda.",
+      "soundsMuted": "Codadka digniinta Mute",
+      "soundsMutedHint": "Qawaaniintaadu waxay joojiyaan inay ku ciyaaraan dhawaaqyada.",
+      "readAloudMuted": "Jooji akhriska-aloud",
+      "readAloudMutedHint": "Farriimaha hadiyadaha iyo khadadka xeerka mar dambe lama akhriyo.",
+      "failed": "Beddelkaas isma beddelin ee isku day mar kale."
     }
   }
 }

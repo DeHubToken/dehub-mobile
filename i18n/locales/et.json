@@ -9138,7 +9138,8 @@
     "followersUnit": "jälgijad",
     "topSupporters": "Parimad toetajad",
     "tipped": "{{name}} saatis kingituse",
-    "chatPreview": "Vestlussõnumid kuvatakse siin"
+    "chatPreview": "Vestlussõnumid kuvatakse siin",
+    "wheelLanded": "{{name}} pööras: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9194,7 +9195,8 @@
       "event_feed": "Hiljutine tegevus",
       "chat_box": "Vestluskast",
       "ticker": "Tiksuja",
-      "rule_alert": "Reeglite märguanded"
+      "rule_alert": "Reeglite märguanded",
+      "spin_wheel": "Tsentrifuugiratas"
     },
     "hints": {
       "tip_alert": "Täidab iga tippu tema taseme järgi",
@@ -9212,7 +9214,8 @@
       "event_feed": "Viimased kingitused, jälgijad, tellijad ja inimesed, kes jagavad sinu saadet",
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
       "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
-      "rule_alert": "Kus kuvatakse sinu reeglite märguanded"
+      "rule_alert": "Kus kuvatakse sinu reeglite märguanded",
+      "spin_wheel": "Kus sinu reeglite rattad pöörlevad"
     },
     "fields": {
       "style": "Stiil",
@@ -9327,7 +9330,8 @@
         "sound": "Esita heli",
         "say": "Loe valjusti",
         "chat": "Postita vestlusesse",
-        "webhook": "Saada veebihaakile"
+        "webhook": "Saada veebihaakile",
+        "wheel": "Keeruta ratast"
       },
       "summary": {
         "tip": "Jootraha vähemalt {{amount}} DHB"
@@ -9365,7 +9369,20 @@
         "spooky": "Õudne",
         "magic-spell": "Maagiline loits",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Ratta segmendid, üks rea kohta",
+      "wheelHint": "2 ja 12 vahel. DeHub valib, kus ratas peatub, nii et kõik vaatajad näevad sama tulemust. Kasuta märguandes, valjuhäälses lugemises või vestlustoimingus märguannet {result}."
+    },
+    "controls": {
+      "title": "Kiirkontrollid",
+      "intro": "Keskpaigaks. Iga lüliti hoiab kõigile, kes seda vaatavad, rakenduses ja OBS-is, kuni seda tagasi keerad.",
+      "alertsPaused": "Peata teavitused",
+      "alertsPausedHint": "Ekraanil ei kuvata kingitusi, jälgita ega juhita teavitusi. Loendurid, eesmärgid ja vestlusboks jätkuvad.",
+      "soundsMuted": "Vaigista hoiatussignaalid",
+      "soundsMutedHint": "Sinu reeglid lõpetavad helide mängimise.",
+      "readAloudMuted": "Peata valjusti lugemine",
+      "readAloudMutedHint": "Kinkekaarte ja reegliridu enam ette ei loeta.",
+      "failed": "Lüliti ei muutunud. Proovi uuesti."
     }
   }
 }

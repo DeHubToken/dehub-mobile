@@ -9152,7 +9152,8 @@
     "followersUnit": "urmăritori",
     "topSupporters": "Susținători de top",
     "tipped": "{{name}} a trimis un cadou",
-    "chatPreview": "Mesajele de chat apar aici"
+    "chatPreview": "Mesajele de chat apar aici",
+    "wheelLanded": "{{name}} spin: {{result}}"
   },
   "liveStudio": {
     "title": "Studio live",
@@ -9208,7 +9209,8 @@
       "event_feed": "Activitate recentă",
       "chat_box": "Casetă de chat",
       "ticker": "Indicativ",
-      "rule_alert": "Alerte privind regulile"
+      "rule_alert": "Alerte privind regulile",
+      "spin_wheel": "Roată de rotire"
     },
     "hints": {
       "tip_alert": "Celebrează fiecare sugestie, proporțională cu nivelul ei",
@@ -9226,7 +9228,8 @@
       "event_feed": "Cele mai recente cadouri, adepți, abonați și persoane care vă împărtășesc difuzarea",
       "chat_box": "Afișează mesajele de chat ale difuzării pe ecran",
       "ticker": "Un rând din propriul text care se derulează pe ecran",
-      "rule_alert": "Unde apar alertele regulilor tale"
+      "rule_alert": "Unde apar alertele regulilor tale",
+      "spin_wheel": "Unde se învârt roțile din regulile tale"
     },
     "fields": {
       "style": "Stil",
@@ -9340,7 +9343,8 @@
         "sound": "Redă un sunet",
         "say": "Citește cu voce tare",
         "chat": "Postează în chat",
-        "webhook": "Trimiteți către un webhook"
+        "webhook": "Trimiteți către un webhook",
+        "wheel": "Învârtiți o roată"
       },
       "summary": {
         "tip": "Sugestie de {{amount}} DHB sau mai mult"
@@ -9378,7 +9382,20 @@
         "spooky": "Înfricoșător",
         "magic-spell": "Vraja magică",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmente de roți, câte una pe linie",
+      "wheelHint": "Între 2 și 12. DeHub alege unde se oprește roata, astfel încât toți cei care urmăresc să vadă același rezultat. Utilizați {result} într-o alertă, citire cu voce tare sau acțiune de chat pentru a o numi."
+    },
+    "controls": {
+      "title": "Comenzi rapide",
+      "intro": "Pentru mijlocul fluxului. Fiecare comutator este valabil pentru toată lumea care urmărește, în aplicație și în OBS, până când îl întoarceți.",
+      "alertsPaused": "Întrerupe alertele",
+      "alertsPausedHint": "Nu există alerte privind cadourile, respectarea sau regulile pe ecran. Contoarele, obiectivele și caseta de chat continuă.",
+      "soundsMuted": "Dezactivați sunetul alertei",
+      "soundsMutedHint": "Regulile tale nu mai redă sunete.",
+      "readAloudMuted": "Oprire citire cu voce tare",
+      "readAloudMutedHint": "Mesajele cadou și liniile de reguli nu mai sunt citite.",
+      "failed": "Comutatorul nu s-a schimbat. Încearcă din nou."
     }
   }
 }

@@ -9175,7 +9175,8 @@
     "followersUnit": "followers",
     "topSupporters": "I migliori sostenitori",
     "tipped": "{{name}} ha inviato un regalo",
-    "chatPreview": "I messaggi della chat vengono visualizzati qui"
+    "chatPreview": "I messaggi della chat vengono visualizzati qui",
+    "wheelLanded": "{{name}} filato: {{result}}"
   },
   "liveStudio": {
     "subtitle": "Avvisi e widget per i tuoi stream",
@@ -9230,7 +9231,8 @@
       "event_feed": "Attività recente",
       "chat_box": "Chat box",
       "ticker": "Testo scorrevole",
-      "rule_alert": "Avvisi delle regole"
+      "rule_alert": "Avvisi delle regole",
+      "spin_wheel": "Ruota girevole"
     },
     "hints": {
       "tip_alert": "Celebra ogni suggerimento, in base al suo livello",
@@ -9248,7 +9250,8 @@
       "event_feed": "Gli ultimi regali, follower, abbonati e persone che condividono la tua trasmissione",
       "chat_box": "Mostra i messaggi di chat della trasmissione sullo schermo",
       "ticker": "Una riga del tuo testo che scorre sullo schermo",
-      "rule_alert": "Dove vengono visualizzati gli avvisi delle tue regole"
+      "rule_alert": "Dove vengono visualizzati gli avvisi delle tue regole",
+      "spin_wheel": "Dove girano le ruote nelle tue regole"
     },
     "fields": {
       "style": "Stile",
@@ -9361,7 +9364,8 @@
         "sound": "Riproduci un suono",
         "say": "Leggi ad alta voce",
         "chat": "Post in chat",
-        "webhook": "Invia a un webhook"
+        "webhook": "Invia a un webhook",
+        "wheel": "Gira una ruota"
       },
       "summary": {
         "tip": "Mancia di {{amount}} DHB o superiore"
@@ -9399,7 +9403,20 @@
         "spooky": "Spettrale",
         "magic-spell": "Incantesimo magico",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmenti ruota, uno per riga",
+      "wheelHint": "Tra 2 e 12. DeHub sceglie dove si ferma la ruota, in modo che tutti gli spettatori vedano lo stesso risultato. Usa {result} in un'azione di avviso, lettura ad alta voce o chat per assegnargli un nome."
+    },
+    "controls": {
+      "title": "Controlli rapidi",
+      "intro": "Per il mid-stream. Ogni interruttore è valido per tutti gli utenti che guardano, nell'app e in OBS, fino a quando non lo capovolgi.",
+      "alertsPaused": "Sospendi avvisi",
+      "alertsPausedHint": "Nessun avviso di regalo, follow o regola sullo schermo. I contatori, gli obiettivi e la chat box continuano.",
+      "soundsMuted": "Disattiva i suoni di avviso",
+      "soundsMutedHint": "Le tue regole smettono di suonare.",
+      "readAloudMuted": "Interrompi lettura ad alta voce",
+      "readAloudMutedHint": "I messaggi regalo e le righe regola non vengono più letti.",
+      "failed": "L'interruttore non è cambiato. Riprova."
     }
   }
 }

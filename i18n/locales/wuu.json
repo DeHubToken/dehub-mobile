@@ -9077,7 +9077,8 @@
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
     "topSupporters": "最高支持者",
-    "tipped": "{{name}} 送咱个礼物"
+    "tipped": "{{name}} 送咱个礼物",
+    "wheelLanded": "{{name}} 吾𠀀{{result}}"
   },
   "liveStudio": {
     "landscape": "风景",

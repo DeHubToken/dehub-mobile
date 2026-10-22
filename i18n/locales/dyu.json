@@ -9065,7 +9065,8 @@
     "followersUnit": "uwuwuwuwuwuuw",
     "topSupporters": "Mɔgɔ minw be dɛmɛ don",
     "tipped": "{{name}}Add a gift",
-    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
+    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan",
+    "wheelLanded": "{{name}} spun: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9119,7 +9120,8 @@
       "event_feed": "Sanni dɔɔni, u ye baara kɛ",
       "chat_box": "Kala Lagaw Ya",
       "ticker": "Fɛɛn minw be sɔrɔ o la",
-      "rule_alert": "Kɔrɔbɔli sariya"
+      "rule_alert": "Kɔrɔbɔli sariya",
+      "spin_wheel": "O ye nɛgɛso ye"
     },
     "hints": {
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
@@ -9135,7 +9137,8 @@
       "event_feed": "I ka kalan labanw, i ka kalandenw, i ka sɛbɛw ani i ka kalanw jɛnsɛnbagaw",
       "chat_box": "- I ka videokalanw yira i ka filɛli la",
       "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye.",
-      "rule_alert": "I ka sariyaw be yɔrɔ min na"
+      "rule_alert": "I ka sariyaw be yɔrɔ min na",
+      "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye."
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9245,7 +9248,8 @@
         "sound": "Play a sound",
         "say": "Read aloud",
         "chat": "Post in chat",
-        "webhook": "Send to a webhook"
+        "webhook": "Send to a webhook",
+        "wheel": "A be wotoro nin yɛlɛma"
       },
       "summary": {
         "tip": "{{amount}}DHB wala ka tɛmɛ o kan"
@@ -9280,7 +9284,20 @@
         "ba-dum-tish": "O ye ne ka koo ye.",
         "magic-spell": "O ye kabako ye.",
         "shhh": "O ye n ka miiriya ye."
-      }
+      },
+      "wheelSegments": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ kelen ye.",
+      "wheelHint": "(c) Ni a ye 10 ye, i n'a fɔ 19 ani 29 DeHub be nɛgɛso lɔyɔrɔ sugandi walisa mɔgɔ bɛɛ ka se ka o ɲɔgɔn ye. I ka kan ka {result} kɛ kunnafoni dɔ kɔnɔ, ka kalan kɛ walima ka baro kɛ n'o ye."
+    },
+    "controls": {
+      "title": "Kɔrɔbɔli minw be se ka kɛ joona joona",
+      "intro": "O cogo kelen na, mɔgɔ o mɔgɔ be se k'a filɛ, a be se k'a filɛ, a be se k'a filɛ ani a be se k'a filɛ OBS kɔnɔ, fɔɔ i k'a yɛlɛma.",
+      "alertsPaused": "K'a to a ka baara la",
+      "alertsPausedHint": "Mɔgɔ tɛ sɔn ka sɔn, a tɛ sɔn ka koo dɔ kɛ min be mɔgɔ bali ka sɔn. An ka ladiliw, an ka laɲinitaw ani an ka baro kɛyɔrɔ be to ka taga.",
+      "soundsMuted": "O ye mankanba ye.",
+      "soundsMutedHint": "A tun tɛ se ka to ka mankan kɛ.",
+      "readAloudMuted": "Aw ka to ka kalan kɛ",
+      "readAloudMutedHint": "O kama, a tun man nɔgɔ ka mɔgɔ weele ka na a ka soo.",
+      "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten."
     }
   }
 }

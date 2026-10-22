@@ -9225,7 +9225,8 @@
     "followersUnit": "người theo dõi",
     "topSupporters": "Những người ủng hộ hàng đầu",
     "tipped": "{{name}} đã gửi một món quà",
-    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây"
+    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây",
+    "wheelLanded": "{{name}} đã spin: {{result}}"
   },
   "liveStudio": {
     "title": "Phòng thu trực tiếp",
@@ -9281,7 +9282,8 @@
       "event_feed": "Hoạt động gần đây",
       "chat_box": "Hộp trò chuyện",
       "ticker": "Ticker",
-      "rule_alert": "Cảnh báo quy tắc"
+      "rule_alert": "Cảnh báo quy tắc",
+      "spin_wheel": "Bánh xe quay"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9299,7 +9301,8 @@
       "event_feed": "Quà tặng, người theo dõi, người đăng ký và những người mới nhất chia sẻ nội dung phát sóng của bạn",
       "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
       "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình",
-      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn"
+      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn",
+      "spin_wheel": "Khi các bánh xe trong quy tắc của bạn quay"
     },
     "fields": {
       "style": "Phong cách",
@@ -9414,7 +9417,8 @@
         "sound": "Phát âm thanh",
         "say": "Đọc to",
         "chat": "Đăng trong trò chuyện",
-        "webhook": "Gửi đến một webhook"
+        "webhook": "Gửi đến một webhook",
+        "wheel": "Quay bánh xe"
       },
       "summary": {
         "tip": "Tiền boa từ {{amount}} DHB trở lên"
@@ -9452,7 +9456,20 @@
         "spooky": "Ma quái",
         "magic-spell": "Bùa chú",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Phân khúc bánh xe, một trên mỗi dòng",
+      "wheelHint": "Từ 2 đến 12 tuổi. DeHub chọn nơi bánh xe dừng lại, vì vậy mọi người xem đều thấy kết quả tương tự. Sử dụng {result} trong cảnh báo, đọc to hoặc trò chuyện để đặt tên cho nó."
+    },
+    "controls": {
+      "title": "Điều khiển nhanh",
+      "intro": "Đối với giữa luồng. Mỗi công tắc giữ cho tất cả mọi người đang xem, trong ứng dụng và trong OBS, cho đến khi bạn lật lại.",
+      "alertsPaused": "Thông báo tạm dừng",
+      "alertsPausedHint": "Không có thông báo về quà tặng, tuân thủ hoặc quy tắc trên màn hình. Bộ đếm, mục tiêu và hộp trò chuyện vẫn tiếp tục.",
+      "soundsMuted": "Tắt âm thanh cảnh báo",
+      "soundsMutedHint": "Quy tắc của bạn là ngừng phát âm thanh.",
+      "readAloudMuted": "Dừng đọc to",
+      "readAloudMutedHint": "Tin nhắn quà tặng và dòng quy tắc không còn được đọc ra nữa.",
+      "failed": "Công tắc đó không thay đổi. Hãy thử lại."
     }
   }
 }

@@ -9304,7 +9304,8 @@
     "followersUnit": "sledovatelia",
     "topSupporters": "Najlepší priaznivci",
     "tipped": "{{name}} odoslal/a darček",
-    "chatPreview": "Správy z chatu sa zobrazujú tu"
+    "chatPreview": "Správy z chatu sa zobrazujú tu",
+    "wheelLanded": "{{name}} spôsobil: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9360,7 +9361,8 @@
       "event_feed": "Nedávna aktivita",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Upozornenia na pravidlá"
+      "rule_alert": "Upozornenia na pravidlá",
+      "spin_wheel": "Rotačné koleso"
     },
     "hints": {
       "tip_alert": "Oslavuje každé prepitné vo veľkosti podľa jeho úrovne",
@@ -9378,7 +9380,8 @@
       "event_feed": "Najnovšie dary, sledovatelia, odberatelia a ľudia zdieľajúci vaše vysielanie",
       "chat_box": "Zobrazuje chatové správy vášho vysielania na obrazovke",
       "ticker": "Riadok vlastného textu, ktorý sa posúva po obrazovke",
-      "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá"
+      "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá",
+      "spin_wheel": "Kde sa točia kolesá vo vašich pravidlách"
     },
     "fields": {
       "style": "Štýl",
@@ -9493,7 +9496,8 @@
         "sound": "Prehrať zvuk",
         "say": "Čítať nahlas",
         "chat": "Uverejniť v chate",
-        "webhook": "Odoslať na webhook"
+        "webhook": "Odoslať na webhook",
+        "wheel": "Roztočte koleso"
       },
       "summary": {
         "tip": "Prepitné vo výške {{amount}} DHB alebo viac"
@@ -9531,7 +9535,20 @@
         "spooky": "Strašidelné",
         "magic-spell": "Kúzlo",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segmenty kolies, jeden na riadok",
+      "wheelHint": "Medzi 2 a 12. DeHub vyberá, kde sa koleso zastaví, takže všetci sledujúci vidia rovnaký výsledok. Použite {result} v upozornení, nahlas na čítanie alebo akciu chatu, aby ste ho pomenovali."
+    },
+    "controls": {
+      "title": "Rýchle ovládacie prvky",
+      "intro": "Pre stredný prúd. Každý prepínač drží pre každého, kto sa pozerá, v aplikácii a v OBS, kým ho nevrátite späť.",
+      "alertsPaused": "Pozastaviť upozornenia",
+      "alertsPausedHint": "Na obrazovke nie sú žiadne upozornenia na darčeky, sledovanie alebo pravidlá. Počítadlá, ciele a chatovacie pole pokračujú.",
+      "soundsMuted": "Stlmiť zvuky upozornení",
+      "soundsMutedHint": "Vaše pravidlá prestanú hrať zvuky.",
+      "readAloudMuted": "Zastaviť čítanie nahlas",
+      "readAloudMutedHint": "Darčekové správy a riadky pravidiel sa už nečítajú.",
+      "failed": "Tento prepínač sa nezmenil. Skúste to znova."
     }
   }
 }

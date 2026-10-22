@@ -9193,7 +9193,8 @@
     "followersUnit": "izdoshlar",
     "topSupporters": "Eng yaxshi tarafdorlar",
     "tipped": "{{name}} sovg'a yubordi",
-    "chatPreview": "Chat xabarlari bu yerda ko'rinadi"
+    "chatPreview": "Chat xabarlari bu yerda ko'rinadi",
+    "wheelLanded": "{{name}} aylantirildi: {{result}}"
   },
   "liveStudio": {
     "title": "Jonli studiya",
@@ -9249,7 +9250,8 @@
       "event_feed": "So'nggi faollik",
       "chat_box": "Chat oynasi",
       "ticker": "Ticker",
-      "rule_alert": "Qoida ogohlantirishlari"
+      "rule_alert": "Qoida ogohlantirishlari",
+      "spin_wheel": "Aylanadigan g'ildirak"
     },
     "hints": {
       "tip_alert": "Har bir choychaqani, o'z darajasiga mos ravishda nishonlaydi",
@@ -9267,7 +9269,8 @@
       "event_feed": "Eng so'nggi sovg'alar, izdoshlar, obunachilar va translyatsiyangizni baham ko'rayotgan odamlar",
       "chat_box": "Ekranda eshittirishingizning chat xabarlarini ko'rsatadi",
       "ticker": "Ekran bo'ylab aylantiriladigan o'zingizning matningiz qatori",
-      "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi"
+      "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi",
+      "spin_wheel": "Qoidalaringizdagi g'ildiraklar qayerda aylanadi"
     },
     "fields": {
       "style": "Uslub",
@@ -9381,7 +9384,8 @@
         "sound": "Ovozni ijro etish",
         "say": "Ovoz chiqarib o'qing",
         "chat": "Chatda post qoldiring",
-        "webhook": "Veb-hukka yuborish"
+        "webhook": "Veb-hukka yuborish",
+        "wheel": "G'ildirakni aylantiring"
       },
       "summary": {
         "tip": "{{amount}} DHB yoki undan ko'p choychaqa"
@@ -9419,7 +9423,20 @@
         "spooky": "Dahshatli",
         "magic-spell": "Sehrli sehr",
         "shhh": "Jim bo'l"
-      }
+      },
+      "wheelSegments": "G'ildirak segmentlari, har bir qatorda bittadan",
+      "wheelHint": "2 dan 12 gacha. DeHub g'ildirak qayerda to'xtashini tanlaydi, shuning uchun hamma tomosha qilayotganlar bir xil natijani ko'rishadi. Ogohlantirish, ovoz chiqarib o'qish yoki chat harakatlarida {result} dan foydalaning."
+    },
+    "controls": {
+      "title": "Tezkor boshqaruv elementlari",
+      "intro": "Strim o'rtasida. Har bir tugma ilovada va OBSda tomosha qilayotgan har bir kishi uchun uni orqaga qaytarmaguningizcha ushlab turiladi.",
+      "alertsPaused": "Bildirishnomalarni to'xtatib turish",
+      "alertsPausedHint": "Ekranda sovg'a, amal qilish yoki qoida bo'yicha ogohlantirishlar yo'q. Hisoblagichlar, gollar va chat oynasi ishlashda davom etadi.",
+      "soundsMuted": "Ogohlantirish tovushlarini o'chirish",
+      "soundsMutedHint": "Sizning qoidalaringiz tovushlarni ijro etishni to'xtatadi.",
+      "readAloudMuted": "Ovoz chiqarib o'qishni to'xtating",
+      "readAloudMutedHint": "Sovg'a xabarlari va qoidalar satrlari endi o'qib chiqilmaydi.",
+      "failed": "Bu tugma o'zgarmadi. Qaytadan urinib ko'ring."
     }
   }
 }

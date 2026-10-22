@@ -9051,7 +9051,8 @@
     "followersUnit": "şopîner",
     "topSupporters": "Piştgirên herî jor",
     "tipped": "{{name}} diyariyek şand",
-    "chatPreview": "Peyamên sohbetê li vir xuya dibin"
+    "chatPreview": "Peyamên sohbetê li vir xuya dibin",
+    "wheelLanded": "{{name}} zivirî: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9107,7 +9108,8 @@
       "event_feed": "Çalakiya dawî",
       "chat_box": "Qutiya sohbetê",
       "ticker": "Tîker",
-      "rule_alert": "Hişyariyên qaîdeyan"
+      "rule_alert": "Hişyariyên qaîdeyan",
+      "spin_wheel": "Çerxa zivirandinê"
     },
     "hints": {
       "tip_alert": "Her serişteyê, bi mezinahiya wê, pîroz dike",
@@ -9125,7 +9127,8 @@
       "event_feed": "Diyariyên herî dawî, şopîner, abone û kesên ku weşana we parve dikin",
       "chat_box": "Peyamên sohbeta weşana we li ser ekranê nîşan dide",
       "ticker": "Rêzek ji nivîsa we ku li ser ekranê digere",
-      "rule_alert": "Jêrê ku pêşengên rêziman de hene"
+      "rule_alert": "Jêrê ku pêşengên rêziman de hene",
+      "spin_wheel": "Li ku derê teker di qaîdeyên te de dizivirin"
     },
     "fields": {
       "style": "Awayî",
@@ -9238,7 +9241,8 @@
       "actionTypes": {
         "alert": "Hişyariyekê nîşan bide",
         "say": "Bi dengekî bilind bixwîne",
-        "webhook": "Bişîne bo webhookekê"
+        "webhook": "Bişîne bo webhookekê",
+        "wheel": "Çerxekî bizivirîne"
       },
       "summary": {
         "tip": "Serişteya {{amount}} DHB an jî zêdetir"
@@ -9276,7 +9280,20 @@
         "spooky": "Tirsnak",
         "magic-spell": "Sêrbaziya efsûnî",
         "shhh": "Şşş"
-      }
+      },
+      "wheelSegments": "Beşên çerxê, yek ji bo her rêzê",
+      "wheelHint": "Di navbera 2 û 12an de. DeHub hildibijêre ka çerx li ku disekine, da ku her kesê temaşe dike heman encamê bibîne. Ji bo navlêkirinê di çalakiya hişyariyê, xwendinê bi dengekî bilind an sohbetê de {result} bikar bînin."
+    },
+    "controls": {
+      "title": "Kontrolên bilez",
+      "intro": "Ji bo nîvê weşanê. Her guhêrbar ji bo her kesê ku temaşe dike, di sepanê û di OBS de, heya ku hûn wê paşve bizivirînin, digire.",
+      "alertsPaused": "Hişyariyan rawestîne",
+      "alertsPausedHint": "Hişyariyên diyariyê, şopandinê an jî hukmê li ser ekranê tune ne. Jimartin, gol û qutiya sohbetê berdewam dikin.",
+      "soundsMuted": "Dengên hişyariyê bêdeng bike",
+      "soundsMutedHint": "Rêgezên te dengan nalîzin.",
+      "readAloudMuted": "Dev ji xwendina bi deng berde",
+      "readAloudMutedHint": "Peyamên diyariyê û rêzikên qaîdeyan êdî nayên xwendin.",
+      "failed": "Ew guhêrbar neguherî. Dîsa biceribîne."
     }
   }
 }

@@ -9157,7 +9157,8 @@
     "followersUnit": "Follower",
     "topSupporters": "Top-Unterstützer",
     "tipped": "{{name}} hat ein Geschenk geschickt",
-    "chatPreview": "Chat-Nachrichten erscheinen hier"
+    "chatPreview": "Chat-Nachrichten erscheinen hier",
+    "wheelLanded": "{{name}} hüt: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9225,7 +9226,8 @@
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
       "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
-      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen",
+      "spin_wheel": "Wo die Räder in deinen Regeln dreh’n"
     },
     "fields": {
       "style": "Stil",
@@ -9328,7 +9330,8 @@
       },
       "actionTypes": {
         "alert": "Zeig a Alert.",
-        "webhook": "Send zu einem Webhook."
+        "webhook": "Send zu einem Webhook.",
+        "wheel": "Dreh das Rad!"
       },
       "presets": {
         "blank": "Blank rule",
@@ -9356,7 +9359,19 @@
         "ba-dum-tish": "Ba dum tish",
         "magic-spell": "Mägi Zauberformel",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Radsegment, eis pro Zeile",
+      "wheelHint": "Zwiisch 2 un 12. DeHub bestiimm, wo’s Rad stoppt, so sieht’s alle gleich. Nutzi `{result}` in eime Alert, eime Vorlesung oder eime Chat-Aktion, um’s zu benämmi."
+    },
+    "controls": {
+      "title": "Schnellsteuerung",
+      "intro": "Fürs Live-Streaming. Jeder Schalter gilt für alle Zuschauer, sowohl in der App als auch in OBS, bis du ihn wieder umlegst.",
+      "alertsPausedHint": "Keini Geschenk-, Follow- oder Regel-Benachrichtigungen auf dem Bildschirm. Die Zähler, Tore und die Chatbox laufen weiter.",
+      "soundsMuted": "Stille Benachrichtigungsgeräusche",
+      "soundsMutedHint": "Dei Regeln stoppe mit dem Abspielen vo Klänge.",
+      "readAloudMuted": "Stop Vorlesen",
+      "readAloudMutedHint": "Giftnachrichten und Regeln werden nicht mehr vorgelesen.",
+      "failed": "Dä Schalter isch net umgschaltet worde. Versuche’s nochma."
     }
   }
 }

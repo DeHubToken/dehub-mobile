@@ -9140,7 +9140,8 @@
     "followersUnit": "følgere",
     "topSupporters": "Toptilhængere",
     "tipped": "{{name}} har sendt en gave",
-    "chatPreview": "Chatbeskeder vises her"
+    "chatPreview": "Chatbeskeder vises her",
+    "wheelLanded": "{{name}} spundet:{{result}}"
   },
   "liveStudio": {
     "title": "Live-studie",
@@ -9196,7 +9197,8 @@
       "event_feed": "Seneste aktivitet",
       "chat_box": "Chatboks",
       "ticker": "Ticker",
-      "rule_alert": "Regeladvarsler"
+      "rule_alert": "Regeladvarsler",
+      "spin_wheel": "Spinhjul"
     },
     "hints": {
       "tip_alert": "Fejrer hvert tip, tilpasset dets niveau",
@@ -9214,7 +9216,8 @@
       "event_feed": "De seneste gaver, følgere, abonnenter og personer, der deler din udsendelse",
       "chat_box": "Viser din udsendelses chatbeskeder på skærmen",
       "ticker": "En linje med din egen tekst, der ruller hen over skærmen",
-      "rule_alert": "Hvor dine reglers påmindelser vises"
+      "rule_alert": "Hvor dine reglers påmindelser vises",
+      "spin_wheel": "Hvor hjulene i dine regler drejer"
     },
     "fields": {
       "style": "Stil",
@@ -9328,7 +9331,8 @@
         "sound": "Afspil en lyd",
         "say": "Læs højt",
         "chat": "Slå op i chatten",
-        "webhook": "Send til en webhook"
+        "webhook": "Send til en webhook",
+        "wheel": "Drej et hjul"
       },
       "summary": {
         "tip": "Tip på{{amount}} DHB eller mere"
@@ -9366,7 +9370,20 @@
         "spooky": "Uhyggelig",
         "magic-spell": "Magisk besværgelse",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Hjulsegmenter, en pr. linje",
+      "wheelHint": "Mellem 2 og 12. DeHub vælger, hvor hjulet stopper, så alle, der ser på, ser det samme resultat. Brug {result} i en advarsel, højtlæsning eller chathandling for at navngive den."
+    },
+    "controls": {
+      "title": "Hurtige kontroller",
+      "intro": "Til midtstrøm. Hver knap holder for alle, der ser på, i appen og i OBS, indtil du vender den tilbage.",
+      "alertsPaused": "Sæt alarmer på pause",
+      "alertsPausedHint": "Ingen påmindelser om gaver, følg eller regler på skærmen. Tællere, mål og chatboksen fortsætter.",
+      "soundsMuted": "Slå advarselslyde fra",
+      "soundsMutedHint": "Dine regler holder op med at afspille lyde.",
+      "readAloudMuted": "Stop højtlæsning",
+      "readAloudMutedHint": "Gavebeskeder og regellinjer læses ikke længere op.",
+      "failed": "Denne kontakt blev ikke ændret. Prøv igen."
     }
   }
 }

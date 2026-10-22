@@ -9139,7 +9139,8 @@
     "followersUnit": "seguidors",
     "topSupporters": "Els millors seguidors",
     "tipped": "{{name}}ha enviat un regal",
-    "chatPreview": "Els missatges de xat apareixen aquí"
+    "chatPreview": "Els missatges de xat apareixen aquí",
+    "wheelLanded": "{{name}} girat: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9195,7 +9196,8 @@
       "event_feed": "Activitat recent",
       "chat_box": "Quadre de xat",
       "ticker": "Ticker",
-      "rule_alert": "Alertes de regles"
+      "rule_alert": "Alertes de regles",
+      "spin_wheel": "Roda giratòria"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada al seu nivell",
@@ -9213,7 +9215,8 @@
       "event_feed": "Els últims regals, seguidors, subscriptors i persones que comparteixen la teva retransmissió",
       "chat_box": "Mostra els missatges de xat de la teva emissió a la pantalla",
       "ticker": "Una línia del teu propi text que es desplaça per la pantalla",
-      "rule_alert": "On apareixen les alertes de les teves normes"
+      "rule_alert": "On apareixen les alertes de les teves normes",
+      "spin_wheel": "On giren les rodes de les teves regles"
     },
     "fields": {
       "style": "Estil",
@@ -9327,7 +9330,8 @@
         "sound": "Reprodueix un so",
         "say": "Llegir en veu alta",
         "chat": "Publicar al xat",
-        "webhook": "Envia a un webhook"
+        "webhook": "Envia a un webhook",
+        "wheel": "Fes girar la roda"
       },
       "summary": {
         "tip": "Suggeriment de {{amount}} DHB o més"
@@ -9365,7 +9369,20 @@
         "spooky": "Espeluznant",
         "magic-spell": "Encantament màgic",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Segments de rodes, un per línia",
+      "wheelHint": "Entre 2 i 12. DeHub tria on s'atura la roda per tal que tots els usuaris vegin el mateix resultat. Utilitza {result} en una acció d'alerta, lectura en veu alta o xat per donar-li un nom."
+    },
+    "controls": {
+      "title": "Controls ràpids",
+      "intro": "Per a mid-stream. Cada interruptor es manté per a tothom que ho vegi, a l'aplicació i a OBS, fins que el tornis a girar.",
+      "alertsPaused": "Posa en pausa les alertes",
+      "alertsPausedHint": "No hi ha avisos de regals, seguiment o regles a la pantalla. Els comptadors, els gols i el quadre de xat continuen.",
+      "soundsMuted": "Silencia els sons d'alerta",
+      "soundsMutedHint": "Les teves regles deixen de sonar.",
+      "readAloudMuted": "Atura la lectura en veu alta",
+      "readAloudMutedHint": "Els missatges de regals i les línies de regles ja no es llegeixen.",
+      "failed": "Aquest canvi no ha canviat. Torna-ho a provar."
     }
   }
 }

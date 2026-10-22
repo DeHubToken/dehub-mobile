@@ -9224,7 +9224,8 @@
       "event_feed": "최근 활동",
       "chat_box": "채팅창",
       "ticker": "티커",
-      "rule_alert": "규칙 경고"
+      "rule_alert": "규칙 경고",
+      "spin_wheel": "스핀 룰렛"
     },
     "hints": {
       "tip_alert": "등급에 맞게 조정된 모든 팁을 축하하세요",
@@ -9242,7 +9243,8 @@
       "event_feed": "최신 선물, 팔로워, 구독자 및 방송 공유자",
       "chat_box": "브로드캐스트의 채팅 메시지를 화면에 표시합니다.",
       "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄",
-      "rule_alert": "규칙 알림이 표시되는 위치"
+      "rule_alert": "규칙 알림이 표시되는 위치",
+      "spin_wheel": "규칙의 바퀴가 회전하는 곳"
     },
     "fields": {
       "style": "스타일",
@@ -9356,7 +9358,8 @@
         "sound": "소리 재생",
         "say": "소리내어 읽기",
         "chat": "채팅에 글 올리기",
-        "webhook": "웹훅으로 보내기"
+        "webhook": "웹훅으로 보내기",
+        "wheel": "룰렛 돌리기"
       },
       "summary": {
         "tip": "{{amount}} DHB 이상의 팁"
@@ -9393,7 +9396,20 @@
         "spooky": "으스스한",
         "magic-spell": "마법 주문",
         "shhh": "쉿"
-      }
+      },
+      "wheelSegments": "휠 세그먼트, 라인당 하나",
+      "wheelHint": "2에서 12 사이. DeHub는 휠이 정지하는 위치를 선택하므로 보는 모든 사람이 동일한 결과를 볼 수 있습니다. 알림, 읽기 소리 또는 채팅 동작에서 {result} 을 (를) 사용하여 이름을 지정합니다."
+    },
+    "controls": {
+      "title": "간편한 설정",
+      "intro": "미드스트림용. 각 스위치는 앱과 OBS에서 시청하는 모든 사람이 다시 전환할 때까지 유지됩니다.",
+      "alertsPaused": "경고 일시 중지",
+      "alertsPausedHint": "화면에 선물, 팔로우 또는 규칙 알림이 없습니다. 카운터, 목표 및 채팅 상자는 계속 진행됩니다.",
+      "soundsMuted": "경고음 음소거",
+      "soundsMutedHint": "당신의 규칙은 소리 재생을 멈춥니다.",
+      "readAloudMuted": "소리내어 읽기 중지",
+      "readAloudMutedHint": "선물 메시지와 규칙은 더 이상 읽혀지지 않습니다.",
+      "failed": "스위치가 변경되지 않았습니다. 다시 시도하세요."
     }
   }
 }

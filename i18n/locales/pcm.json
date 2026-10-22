@@ -8972,7 +8972,14 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it."
+    },
+    "controls": {
+      "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
+      "soundsMutedHint": "Yours rules dey stop play sound wey.",
+      "failed": "Na di switch no dey change. Try again."
     }
   }
 }

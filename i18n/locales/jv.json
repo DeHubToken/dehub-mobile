@@ -9115,7 +9115,8 @@
     "goalReached": "Tujuan wis kasil!",
     "followersUnit": "pengikut",
     "topSupporters": "Pangrojong paling dhuwur",
-    "tipped": "{{name}} ngarani nganti"
+    "tipped": "{{name}} ngarani nganti",
+    "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9183,7 +9184,8 @@
       "stream_timer": "Kanggo ngerti ngampi ngenteni wong ngajeng streaming.",
       "reaction_counter": "Kanggo ngitung reaksi-ngenine ngoko broadcast mo.",
       "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo.",
-      "rule_alert": "Endi aturan-aturan penting mu katon"
+      "rule_alert": "Endi aturan-aturan penting mu katon",
+      "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter"
     },
     "fields": {
       "style": "Style",
@@ -9306,7 +9308,17 @@
         "spooky": "Spooky",
         "magic-spell": "Sajen",
         "shhh": "Shhh"
-      }
+      },
+      "wheelHint": "Antara 2 lan 12. DeHub milih ngendi roda mandheg, supaya kabeh sing nonton weruh asil sing padha. Gunakake {result} ing alert, read-aloud utawa chat action kanggo jenenge."
+    },
+    "controls": {
+      "title": "Kontrol cepet",
+      "intro": "Kanggo ngisor-midstream. Tiwa tiwa ngandhok pike pisan kanggo semuanya ngandhok ngliwat di app lan di OBS, sampe kanggo ngelungguh kanggo ngembok.",
+      "alertsPausedHint": "Gak ada pemberian hadiah, notifikasi follow, atau peringatan aturan di layar. Angka-angka counter, tujuan, dan kotak obrolan tetap berjalan.",
+      "soundsMutedHint": "Aturan mu mandheg main swara.",
+      "readAloudMuted": "Gak usah baca ngelantur.",
+      "readAloudMutedHint": "Pesen hadiah lan baris aturan ora maneh diwaca.",
+      "failed": "Gwé switch ini gak nganti. Coba lanang."
     }
   }
 }

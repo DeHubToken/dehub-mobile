@@ -9135,7 +9135,8 @@
     "followersUnit": "følgere",
     "topSupporters": "Toppstøttespillere",
     "tipped": "{{name}} sendte en gave",
-    "chatPreview": "Chatmeldinger vises her"
+    "chatPreview": "Chatmeldinger vises her",
+    "wheelLanded": "{{name}} spunnet: {{result}}"
   },
   "liveStudio": {
     "title": "Livestudio",
@@ -9189,7 +9190,8 @@
       "event_feed": "Nylig aktivitet",
       "chat_box": "Chatboks",
       "ticker": "Ticker",
-      "rule_alert": "Regelvarsler"
+      "rule_alert": "Regelvarsler",
+      "spin_wheel": "Spinnhjul"
     },
     "hints": {
       "tip_alert": "Feirer hvert tips, tilpasset nivået",
@@ -9207,7 +9209,8 @@
       "event_feed": "De nyeste gavene, følgerne, abonnentene og personene som deler sendingen din",
       "chat_box": "Viser chatmeldingene fra kringkastingen din på skjermen",
       "ticker": "En linje med din egen tekst som ruller over skjermen",
-      "rule_alert": "Hvor varslene fra reglene dine vises"
+      "rule_alert": "Hvor varslene fra reglene dine vises",
+      "spin_wheel": "Der hjulene i reglene dine snurrer"
     },
     "fields": {
       "style": "Stil",
@@ -9322,7 +9325,8 @@
         "sound": "Spill av en lyd",
         "say": "Les høyt",
         "chat": "Legg ut innlegg i chatten",
-        "webhook": "Send til en webhook"
+        "webhook": "Send til en webhook",
+        "wheel": "Snurr et hjul"
       },
       "summary": {
         "tip": "Tips på {{amount}} DHB eller mer"
@@ -9360,7 +9364,20 @@
         "spooky": "Skummel",
         "magic-spell": "Magisk trylleformel",
         "shhh": "Ssjh"
-      }
+      },
+      "wheelSegments": "Hjulsegmenter, ett per linje",
+      "wheelHint": "Mellom 2 og 12. DeHub velger hvor hjulet stopper, slik at alle som ser på ser det samme resultatet. Bruk {result} i en varsling, høytlesning eller chat-handling for å navngi den."
+    },
+    "controls": {
+      "title": "Hurtigkontroller",
+      "intro": "For midtstrømming. Hver bryter holder for alle som ser på, i appen og i OBS, helt til du slår den tilbake.",
+      "alertsPaused": "Sett varsler på pause",
+      "alertsPausedHint": "Ingen gave-, følge- eller regelvarsler på skjermen. Tellere, mål og chatteboksen fortsetter å gå.",
+      "soundsMuted": "Demp varsellyder",
+      "soundsMutedHint": "Reglene dine stopper avspilling av lyder.",
+      "readAloudMuted": "Stopp høytlesningen",
+      "readAloudMutedHint": "Gavemeldinger og regellinjer leses ikke lenger opp.",
+      "failed": "Den bryteren endret seg ikke. Prøv på nytt."
     }
   }
 }

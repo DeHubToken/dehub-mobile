@@ -9138,7 +9138,8 @@
     "followersUnit": "seuraajat",
     "topSupporters": "Parhaat kannattajat",
     "tipped": "{{name}} lähetti lahjan",
-    "chatPreview": "Chat-viestit näkyvät tässä"
+    "chatPreview": "Chat-viestit näkyvät tässä",
+    "wheelLanded": "{{name}} pyöritti: {{result}}"
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9194,7 +9195,8 @@
       "event_feed": "Viimeaikainen toiminta",
       "chat_box": "Keskusteluruutu",
       "ticker": "Ticker",
-      "rule_alert": "Sääntöhälytykset"
+      "rule_alert": "Sääntöhälytykset",
+      "spin_wheel": "Pyöräytyspyörä"
     },
     "hints": {
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
@@ -9212,7 +9214,8 @@
       "event_feed": "Uusimmat lahjat, seuraajat, tilaajat ja ihmiset, jotka jakavat lähetyksesi",
       "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
       "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki",
-      "rule_alert": "Missä sääntöjesi hälytykset näkyvät"
+      "rule_alert": "Missä sääntöjesi hälytykset näkyvät",
+      "spin_wheel": "Sääntöjesi pyörät pyörivät"
     },
     "fields": {
       "style": "Tyyli",
@@ -9327,7 +9330,8 @@
         "sound": "Toista ääni",
         "say": "Lue ääneen",
         "chat": "Julkaise chatissa",
-        "webhook": "Lähetä webhookiin"
+        "webhook": "Lähetä webhookiin",
+        "wheel": "Pyöräytä pyörää"
       },
       "summary": {
         "tip": "Vihje: {{amount}} DHB tai enemmän"
@@ -9364,7 +9368,20 @@
         "spooky": "Pelottava",
         "magic-spell": "Taikaloitsu",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Pyörän segmentit, yksi per rivi",
+      "wheelHint": "2 ja 12 välillä. DeHub valitsee, mihin pyörä pysähtyy, joten kaikki katsojat näkevät saman tuloksen. Käytä {result} -toimintoa hälytyksessä, ääneenluku- tai keskustelutoiminnossa sen nimeämiseen."
+    },
+    "controls": {
+      "title": "Pikaohjaimet",
+      "intro": "Keskilähetykseen. Jokainen kytkin pitää kaikille katsojille, sovelluksessa ja OBS: ssä, kunnes käännät sen takaisin.",
+      "alertsPaused": "Keskeytä hälytykset",
+      "alertsPausedHint": "Ei lahja-, seuranta- tai sääntöhälytyksiä näytöllä. Laskurit, tavoitteet ja chat-ruutu jatkavat toimintaansa.",
+      "soundsMuted": "Mykistä hälytysäänet",
+      "soundsMutedHint": "Sääntösi lakkaavat soittamasta ääniä.",
+      "readAloudMuted": "Lopeta ääneen lukeminen",
+      "readAloudMutedHint": "Lahjaviestejä ja sääntörivejä ei enää lueta ääneen.",
+      "failed": "Kytkin ei muuttunut. Yritä uudelleen."
     }
   }
 }

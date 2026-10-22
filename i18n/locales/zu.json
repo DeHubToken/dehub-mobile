@@ -9205,7 +9205,8 @@
       "event_feed": "Okwenziwayo kwakamuva",
       "chat_box": "Ibhokisi lengxoxo",
       "ticker": "Umthumeli wamathikithi",
-      "rule_alert": "Izikhalo Zemithetho"
+      "rule_alert": "Izikhalo Zemithetho",
+      "spin_wheel": "Isondo lokuphotha"
     },
     "hints": {
       "tip_alert": "Kusebenzisa umthetho we-tier, kuthokozele umthetho ngamunye",
@@ -9223,7 +9224,8 @@
       "event_feed": "Izipho zakamuva, abalandeli, ababhalisile nabantu ababelana ngokusakaza kwakho",
       "chat_box": "Ibonisa imiyalezo yengxoxo yokusakaza kwakho esikrinini",
       "ticker": "Umugqa wombhalo wakho siqu oskrola esikrinini",
-      "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona"
+      "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona",
+      "spin_wheel": "Lapho amasondo emithethweni yakho ephotha khona"
     },
     "fields": {
       "style": "Isitayela",
@@ -9338,7 +9340,8 @@
         "sound": "Dlala umsindo",
         "say": "Funda ngokuzwakalayo",
         "chat": "Phosta engxoxweni",
-        "webhook": "Thumela ku-webhook"
+        "webhook": "Thumela ku-webhook",
+        "wheel": "Zungeza umjikelezo"
       },
       "summary": {
         "tip": "Icebiso lika- {{amount}} DHB noma ngaphezulu"
@@ -9376,7 +9379,20 @@
         "spooky": "I-Spooky",
         "magic-spell": "I-magic spell",
         "shhh": "Shhh"
-      }
+      },
+      "wheelSegments": "Izingxenye zamasondo, eyodwa ngomugqa ngamunye",
+      "wheelHint": "Phakathi kuka-2 no-12. I-DeHub ikhetha lapho isondo limile khona, ukuze wonke umuntu obukayo abone umphumela ofanayo. Sebenzisa i-{result} kumyalezo, ukufunda ngokuzwakalayo noma isenzo sokuxoxa ukuze uyiqambe."
+    },
+    "controls": {
+      "title": "Izilawuli ezisheshayo",
+      "intro": "Phakathi nokusakaza. Inkinobho ngayinye ibamba wonke umuntu obukayo, ku-app naku-OBS, uze uyibuyisele emuva.",
+      "alertsPaused": "Misa imiyalezo okwesikhashana",
+      "alertsPausedHint": "Asikho isipho, landela noma ulawule imiyalezo esikrinini. Amakhawunta, imigomo nebhokisi lengxoxo kuyaqhubeka.",
+      "soundsMuted": "Thulisa imisindo yemiyalezo",
+      "soundsMutedHint": "Imithetho yakho iyeka ukudlala imisindo.",
+      "readAloudMuted": "Misa ukufunda ngokuzwakalayo",
+      "readAloudMutedHint": "Imiyalezo yezipho nemigqa yemithetho ayisafundiwe.",
+      "failed": "Lolo shintsho alushintshanga. Zama futhi."
     }
   }
 }
