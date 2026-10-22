@@ -3,6 +3,7 @@ import { View, Text, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 import baseIcon from "../../assets/chains/base-icon.png";
 import dhbIcon from "../../assets/web-icons/dehub-coin.png";
+import { DHB_SALES_PAUSED } from "../../libs/dhb-sales";
 
 type Props = {
   transfersTotal?: number | null;
@@ -57,7 +58,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
           <Text className="text-zinc-300 text-lg font-semibold ml-2">{t("dpay.tokensLabel")}</Text>
         </View>
         {typeof supplyAmount === "number" ? (
-          supplyAmount === 0 ? (
+          supplyAmount === 0 && !DHB_SALES_PAUSED ? (
             <Text className="text-zinc-300 text-sm">
               <Text className="text-[#F4F4F5]">{t("dpay.noSupplyShort")}</Text>
             </Text>
