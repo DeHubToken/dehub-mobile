@@ -9266,26 +9266,36 @@
         "tip": "Sampiran sing ngarani.",
         "share": "Kang ngarani stream dhuwur.",
         "command": "Kanggo ngerti perintah chat, nganti dipake.",
-        "chat": "Sembarang pesen obrolan"
+        "chat": "Sembarang pesen obrolan",
+        "follow": "Sapa nang nderek",
+        "subscribe": "Sapa nang subscribe",
+        "keyword": "Pesan chat ngemot tembung"
       },
       "audiences": {
         "everyone": "Kabeh",
-        "followers": "pengikut"
+        "followers": "pengikut",
+        "subscribers": "Subscribers"
       },
       "actionTypes": {
         "say": "Waca kanthi swara",
-        "chat": "Post in chat"
+        "chat": "Post in chat",
+        "alert": "Tuduhake alert",
+        "sound": "Mainake swara",
+        "webhook": "Kirim menyang webhook"
       },
       "presets": {
         "blank": "Blank rule",
         "readChat": "Waca obrolan kanthi swara",
-        "command": "Kode pesan nganti-nganti (chat command)"
+        "command": "Kode pesan nganti-nganti (chat command)",
+        "bigTip": "Air horn kanggo tips gedhe",
+        "thankFollowers": "Matur nuwun followers anyar"
       },
       "presetHints": {
         "readChat": "Manggojek pesen pengikutmu ngajog, siji per pengliwat tiworo 30 detik",
         "bigTip": "Ngepang air horn lan ngelukis peringatan buat tip 100.000 DHB lan ati",
         "thankFollowers": "Ngepost pesan ngrejek di chatmu kalau pengikut",
-        "command": "Ngebalikan perintah `!command` di chatmu"
+        "command": "Ngebalikan perintah `!command` di chatmu",
+        "blank": "Mulai saka kosong"
       },
       "presetText": {
         "readChat": "{name} ngomong: {message}",
@@ -9306,6 +9316,24 @@
         "spooky": "Spooky",
         "magic-spell": "Sajen",
         "shhh": "Shhh"
+      },
+      "empty": "Ora ana aturan liyane. Tambah siji kanggo tumugon tips, follows utawa chat commands.",
+      "saveToTest": "Simpen aturan mu kanggo test",
+      "test": "Test",
+      "enabled": "Aturan aktif",
+      "save": "Simpen aturan",
+      "needsAlertWidget": "Sawetara aturan nuduhake alert. Tambah widget Rule alerts supaya ana panggonan kanggo katon.",
+      "command": "Perintah",
+      "removeAction": "Busak aksi",
+      "alertText": "Teks alert",
+      "sound": "Swara",
+      "sayText": "Teks kanggo dibacakake",
+      "chatText": "Pesan kanggo diposting",
+      "chatHint": "Diposting saka akun mu menyang chat stream. Ora bisa mbaleni pesan sing dideleng.",
+      "webhookUrl": "Alamat Webhook",
+      "webhookHint": "Discord utawa Slack webhook, utawa alamat https apa wae sing nampa POST.",
+      "summary": {
+        "tip": "Tip saka {{amount}} DHB utawa luwih"
       }
     }
   }

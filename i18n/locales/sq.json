@@ -9364,7 +9364,8 @@
         "spooky": "Drithëruese",
         "magic-spell": "Magji magjike",
         "shhh": "Shhhh"
-      }
+      },
+      "alertText": "Teksti i paralajmërimit"
     }
   }
 }

@@ -9209,7 +9209,8 @@
         "keyword": "اے چٹ چٹ میں ایک لفظ ہوے"
       },
       "actionTypes": {
-        "alert": "الرٹ دکھاؤ"
+        "alert": "الرٹ دکھاؤ",
+        "webhook": "Webhook نوں بھیجو"
       },
       "presets": {
         "bigTip": "ہوا کی ہون جو بڑے ٹپس کے لیے ہو"
@@ -9224,7 +9225,8 @@
         "ooh-ahh": "اے اے",
         "ohh-girl": "اے (مردہ)",
         "spooky": "سپوکی",
-        "magic-spell": "جادو دا منتر"
+        "magic-spell": "جادو دا منتر",
+        "ba-dum-tish": "بہ دُم تیش"
       }
     }
   }

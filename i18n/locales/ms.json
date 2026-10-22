@@ -9620,7 +9620,8 @@
         "spooky": "Menggoda",
         "magic-spell": "Sihir",
         "shhh": "Shhh"
-      }
+      },
+      "minAmount": "Smallest tip (DHB)"
     }
   }
 }

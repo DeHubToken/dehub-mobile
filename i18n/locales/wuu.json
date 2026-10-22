@@ -9152,23 +9152,56 @@
       "removeAction": "移除动作",
       "sayText": "要读出来的文本",
       "triggers": {
-        "command": "一个聊天指令被用"
+        "command": "一个聊天指令被用",
+        "keyword": "聊天訊息包含某個字",
+        "chat": "任何聊天訊息"
       },
       "presets": {
-        "thankFollowers": "歡迎新粉絲！"
+        "thankFollowers": "歡迎新粉絲！",
+        "blank": "空白規則",
+        "readChat": "朗讀聊天訊息",
+        "bigTip": "大打賞時放空氣槍聲",
+        "command": "聊天指令"
       },
       "presetHints": {
         "blank": "啥都無，從零開始",
         "readChat": "朗读你粉丝的消息，每30秒对每位观众朗读一条",
-        "thankFollowers": "有人关注时，在你个聊天里发个感谢。"
+        "thankFollowers": "有人关注时，在你个聊天里发个感谢。",
+        "bigTip": "當打賞 DHB 10 萬或以上時，放空氣槍聲並顯示警告",
+        "command": "回應聊天中的 !command"
       },
       "presetText": {
         "readChat": "{name} 吾𠀀{message}",
-        "bigTip": "{name} 送 {amount} DHB!"
+        "bigTip": "{name} 送 {amount} DHB!",
+        "thankFollowers": "{name}，謝謝你追蹤我！",
+        "command": "{name}，歡迎來到直播間！"
       },
       "sounds": {
         "ooh-man": "Ooh (阿𠀀)",
-        "ohh-girl": "Ohh (女仔)"
+        "ohh-girl": "Ohh (女仔)",
+        "airhorn": "空氣槍聲",
+        "applause": "鼓掌聲",
+        "cricket": "蟋蟀聲",
+        "drumroll": "鼓聲",
+        "lol": "笑聲",
+        "ooh-ahh": "喔阿聲",
+        "ba-dum-tish": "巴杜姆提什",
+        "spooky": "嚇人的聲音"
+      },
+      "audiences": {
+        "everyone": "所有人",
+        "followers": "追蹤者",
+        "subscribers": "訂閱者"
+      },
+      "actionTypes": {
+        "alert": "顯示警告",
+        "sound": "播放聲音",
+        "say": "朗讀出來",
+        "chat": "在聊天區發文",
+        "webhook": "傳送到網路鉤子"
+      },
+      "summary": {
+        "tip": "{{amount}} 打賞 DHB 或以上"
       }
     }
   }
