@@ -10779,7 +10779,7 @@
       "reaction_counter": "Reaksiyon sayacı",
       "event_feed": "Son etkinlikler",
       "chat_box": "Sohbet kutusu",
-      "ticker": "Ticker"
+      "ticker": "Kayan yazı"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10828,7 +10828,7 @@
       "lines": "Gösterilen satırlar",
       "showAvatars": "Profil resimlerini göster",
       "speed": "Hız",
-      "slow": "Yavaşlatma",
+      "slow": "Yavaş",
       "normal": "Normal",
       "fast": "Hızlı"
     },

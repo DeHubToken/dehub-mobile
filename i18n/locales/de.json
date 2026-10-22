@@ -9379,11 +9379,11 @@
       "viewer_count": "Zuschauerzahl",
       "text": "Text",
       "frame": "Untertitel",
-      "stream_timer": "BROADCAST-TIMER",
+      "stream_timer": "Sendungs-Timer",
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Letzte Aktivität",
       "chat_box": "Chat-Box",
-      "ticker": "Ticker"
+      "ticker": "Laufschrift"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
