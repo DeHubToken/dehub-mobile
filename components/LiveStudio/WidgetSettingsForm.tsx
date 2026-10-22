@@ -325,6 +325,14 @@ export function WidgetSettingsForm({ widget, portrait, onSettings, onRect }: Pro
         </>
       );
       break;
+    case "poll":
+      body = (
+        <>
+          <Text className="text-theme-neutrals-500 text-xs">{t("liveStudio.polls.widgetHint", { command: "!vote" })}</Text>
+          {accentRow}
+        </>
+      );
+      break;
     default:
       body = null;
   }

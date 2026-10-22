@@ -1,6 +1,7 @@
 import { apiClient } from "../libs";
 import type { PublicOverlay } from "../libs/live-overlay/types";
 import type { LiveRule } from "../libs/live-overlay/rules";
+import { parsePoll, type LivePoll } from "../libs/live-overlay/polls";
 
 // Live posts are CREATED through POST /user_mint with postType=live (see
 // hooks/useUploadLive.ts) — the mint response carries the stream entity.
@@ -313,4 +314,40 @@ export async function getStreamAudience(streamId: string): Promise<LiveAudience>
     topTippers: Array.isArray(body?.topTippers) ? body.topTippers : [],
     mostActive: Array.isArray(body?.mostActive) ? body.mostActive : [],
   };
+}
+
+function pollOf(res: any): LivePoll | null {
+  const body = res?.result ?? res?.data ?? res;
+  return parsePoll(body?.poll);
+}
+
+/** The poll a viewer opening the stream should see: an open one, or a result that just finished. */
+export async function getStreamPoll(streamId: string): Promise<LivePoll | null> {
+  if (!streamId) return null;
+  return pollOf(await apiClient.get<any>(`/live-overlay/stream/${encodeURIComponent(streamId)}/poll`, { isAuthRequired: false }));
+}
+
+/** One vote per person. Voting again answers with the first choice, which is the one that counts. */
+export async function voteInPoll(streamId: string, pollId: string, option: number): Promise<{ poll: LivePoll | null; myVote: number }> {
+  const res: any = await apiClient.post<any>(
+    `/live-overlay/stream/${encodeURIComponent(streamId)}/poll/vote`,
+    { pollId, option },
+    { isAuthRequired: true },
+  );
+  const body = res?.result ?? res?.data ?? res;
+  return { poll: parsePoll(body?.poll), myVote: Number.isInteger(body?.myVote) ? Number(body.myVote) : option };
+}
+
+/** The creator's latest poll, open or finished. */
+export async function getMyPoll(): Promise<LivePoll | null> {
+  return pollOf(await apiClient.get<any>("/live-overlay/mine/poll", { isAuthRequired: true }));
+}
+
+/** Asks the room a question on the creator's live stream. Replaces a poll that is still open. */
+export async function startPoll(draft: { question: string; options: string[]; durationSec: number }): Promise<LivePoll | null> {
+  return pollOf(await apiClient.post<any>("/live-overlay/mine/poll", draft, { isAuthRequired: true }));
+}
+
+export async function closePoll(): Promise<LivePoll | null> {
+  return pollOf(await apiClient.post<any>("/live-overlay/mine/poll/close", {}, { isAuthRequired: true }));
 }

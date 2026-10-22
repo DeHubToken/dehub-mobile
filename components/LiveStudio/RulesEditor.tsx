@@ -293,7 +293,9 @@ function RuleForm({ rule, onChange }: { rule: LiveRule; onChange: (change: Parti
             />
           </View>
         ) : null}
-        <Text className="text-theme-neutrals-500 text-xs">{t("liveStudio.rules.placeholders")}</Text>
+        <Text className="text-theme-neutrals-500 text-xs">
+          {t(rule.trigger.type === "live" ? "liveStudio.rules.placeholdersLive" : "liveStudio.rules.placeholders")}
+        </Text>
       </View>
     </View>
   );
