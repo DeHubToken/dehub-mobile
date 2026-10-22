@@ -9134,7 +9134,9 @@
     "joined": "{{name}} bergabung",
     "goalReached": "Gol tercapai!",
     "followersUnit": "pengikut",
-    "topSupporters": "Pendukung teratas"
+    "topSupporters": "Pendukung teratas",
+    "tipped": "{{name}} memberi tip",
+    "chatPreview": "Pesan obrolan muncul di sini"
   },
   "liveStudio": {
     "title": "Studio Langsung",
@@ -9184,7 +9186,12 @@
       "top_supporters": "Pendukung utama",
       "viewer_count": "Jumlah penonton",
       "text": "Teks",
-      "frame": "Frame"
+      "frame": "Frame",
+      "stream_timer": "Pengatur waktu streaming",
+      "reaction_counter": "Penghitung reaksi",
+      "event_feed": "Aktivitas terbaru",
+      "chat_box": "Kotak obrolan",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
@@ -9196,7 +9203,12 @@
       "top_supporters": "Pemberi tip terbesar dalam siaran ini",
       "viewer_count": "Berapa banyak orang yang menonton",
       "text": "Sebaris teks atau lower third",
-      "frame": "Batasan sekitar siaran Anda"
+      "frame": "Batasan sekitar siaran Anda",
+      "stream_timer": "Berapa lama Anda telah hidup",
+      "reaction_counter": "Menghitung setiap reaksi di stream",
+      "event_feed": "Kiat, pengikut, langganan, dan pembagian terbaru",
+      "chat_box": "Obrolan streaming Anda, di layar",
+      "ticker": "Baris teks Anda sendiri yang bergulir"
     },
     "fields": {
       "style": "Gaya",
@@ -9223,7 +9235,14 @@
       "accent": "Warna",
       "size": "Ukuran",
       "smaller": "Kecil",
-      "larger": "Besar"
+      "larger": "Besar",
+      "label": "Label",
+      "lines": "Baris ditampilkan",
+      "showAvatars": "Tampilkan foto profil",
+      "speed": "Kecepatan",
+      "slow": "Lambat",
+      "normal": "Normal",
+      "fast": "Cepat"
     },
     "obs": {
       "title": "Gunakan dengan OBS",

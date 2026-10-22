@@ -9150,7 +9150,9 @@
     "joined": "{{name}} s-au alăturat",
     "goalReached": "Obiectiv atins!",
     "followersUnit": "urmăritori",
-    "topSupporters": "Susținători de top"
+    "topSupporters": "Susținători de top",
+    "tipped": "Recompensă de {{name}}",
+    "chatPreview": "Mesajele de chat apar aici"
   },
   "liveStudio": {
     "title": "Studio live",
@@ -9200,7 +9202,12 @@
       "top_supporters": "Sponsorii principali",
       "viewer_count": "Număr de vizionari",
       "text": "Text",
-      "frame": "Cadru"
+      "frame": "Cadru",
+      "stream_timer": "Temporizator flux",
+      "reaction_counter": "Contor de reacție",
+      "event_feed": "Activitate recentă",
+      "chat_box": "Casetă de chat",
+      "ticker": "Indicativ"
     },
     "hints": {
       "tip_alert": "Celebrează fiecare sugestie, proporțională cu nivelul ei",
@@ -9212,7 +9219,12 @@
       "top_supporters": "Cele mai mari sugestoare din această difuzare",
       "viewer_count": "Câte persoane te privesc",
       "text": "O linie de text sau un subtitlu inferior",
-      "frame": "O margine în jurul difuzării tale"
+      "frame": "O margine în jurul difuzării tale",
+      "stream_timer": "De cât timp sunteți în direct",
+      "reaction_counter": "Contorizează fiecare reacție din flux",
+      "event_feed": "Cele mai recente sugestii, urmăriri, abonamente și acțiuni",
+      "chat_box": "Chat-ul fluxului tău, pe ecran",
+      "ticker": "Un rând din propriul dvs. text derulând peste"
     },
     "fields": {
       "style": "Stil",
@@ -9239,7 +9251,14 @@
       "accent": "Culoare",
       "size": "Mărime",
       "smaller": "Mai mic",
-      "larger": "Mai mare"
+      "larger": "Mai mare",
+      "label": "Etichetă",
+      "lines": "Linii afișate",
+      "showAvatars": "Afișează fotografiile de profil",
+      "speed": "Viteză",
+      "slow": "Încet",
+      "normal": "Normal",
+      "fast": "Rapid"
     },
     "obs": {
       "title": "Folosește cu OBS",

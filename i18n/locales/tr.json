@@ -10722,7 +10722,9 @@
     "joined": "{{name}} katıldı",
     "goalReached": "Hedefe ulaşıldı!",
     "followersUnit": "takipçiler",
-    "topSupporters": "En iyi destekçiler"
+    "topSupporters": "En iyi destekçiler",
+    "tipped": "{{name}} bahşiş",
+    "chatPreview": "Sohbet mesajları burada görünür"
   },
   "liveStudio": {
     "title": "Canlı Stüdyo",
@@ -10772,7 +10774,12 @@
       "top_supporters": "En iyi destekçiler",
       "viewer_count": "Görüntüleyici sayısı",
       "text": "Metin",
-      "frame": "Çerçeve"
+      "frame": "Çerçeve",
+      "stream_timer": "Akış zamanlayıcısı",
+      "reaction_counter": "Reaksiyon sayacı",
+      "event_feed": "Son etkinlikler",
+      "chat_box": "Sohbet kutusu",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10784,7 +10791,12 @@
       "top_supporters": "Bu yayına en çok bahşiş verenler",
       "viewer_count": "Kaç kişi izliyor",
       "text": "Bir metin satırı veya alt üçte bir",
-      "frame": "Akışınızın etrafında bir kenarlık"
+      "frame": "Akışınızın etrafında bir kenarlık",
+      "stream_timer": "Ne kadar süredir hayattasınız?",
+      "reaction_counter": "Akıştaki her reaksiyonu sayar",
+      "event_feed": "En son ipuçları, takipler, abonelikler ve paylaşımlar",
+      "chat_box": "Akışınızın sohbeti, ekranda",
+      "ticker": "Kendi metninizin kaydırılan bir satırı"
     },
     "fields": {
       "banner": "Afiş",
@@ -10811,7 +10823,14 @@
       "accent": "Renk",
       "size": "Boyut",
       "smaller": "Daha küçük",
-      "larger": "Daha büyük"
+      "larger": "Daha büyük",
+      "label": "Etiket",
+      "lines": "Gösterilen satırlar",
+      "showAvatars": "Profil resimlerini göster",
+      "speed": "Hız",
+      "slow": "Yavaşlatma",
+      "normal": "Normal",
+      "fast": "Hızlı"
     },
     "obs": {
       "title": "OBS ile kullanım",

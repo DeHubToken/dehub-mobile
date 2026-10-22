@@ -9223,7 +9223,9 @@
     "joined": "Đã tham gia {{name}}",
     "goalReached": "Đã đạt được mục tiêu!",
     "followersUnit": "người theo dõi",
-    "topSupporters": "Những người ủng hộ hàng đầu"
+    "topSupporters": "Những người ủng hộ hàng đầu",
+    "tipped": "{{name}} đã trả tiền boa",
+    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây"
   },
   "liveStudio": {
     "title": "Phòng thu trực tiếp",
@@ -9273,7 +9275,12 @@
       "top_supporters": "Người ủng hộ hàng đầu",
       "viewer_count": "Số lượng người xem",
       "text": "Văn bản",
-      "frame": "Khung hình"
+      "frame": "Khung hình",
+      "stream_timer": "Bộ hẹn giờ phát trực tuyến",
+      "reaction_counter": "Bộ đếm phản ứng",
+      "event_feed": "Hoạt động gần đây",
+      "chat_box": "Hộp trò chuyện",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9285,7 +9292,12 @@
       "top_supporters": "Người ủng hộ lớn nhất trong luồng này",
       "viewer_count": "Số lượng người đang xem",
       "text": "Một dòng văn bản hoặc phần dưới dưới hình ảnh",
-      "frame": "Một viền xung quanh luồng của bạn"
+      "frame": "Một viền xung quanh luồng của bạn",
+      "stream_timer": "Bạn đã sống được bao lâu",
+      "reaction_counter": "Đếm từng phản ứng trên luồng",
+      "event_feed": "Các mẹo, theo dõi, đăng ký và chia sẻ mới nhất",
+      "chat_box": "Trò chuyện phát trực tuyến của bạn, trên màn hình",
+      "ticker": "Một dòng văn bản của riêng bạn cuộn qua"
     },
     "fields": {
       "style": "Phong cách",
@@ -9312,7 +9324,14 @@
       "accent": "Màu sắc",
       "size": "Kích thước",
       "smaller": "Nhỏ hơn",
-      "larger": "Lớn hơn"
+      "larger": "Lớn hơn",
+      "label": "Nhãn",
+      "lines": "Các dòng được hiển thị",
+      "showAvatars": "Hiển thị ảnh đại diện",
+      "speed": "Tốc độ",
+      "slow": "Chậm",
+      "normal": "Bình thường",
+      "fast": "Nhanh"
     },
     "obs": {
       "title": "Sử dụng với OBS",

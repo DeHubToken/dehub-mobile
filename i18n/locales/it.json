@@ -9173,7 +9173,9 @@
     "joined": "{{name}} iscritti",
     "goalReached": "Obiettivo raggiunto!",
     "followersUnit": "followers",
-    "topSupporters": "I migliori sostenitori"
+    "topSupporters": "I migliori sostenitori",
+    "tipped": "{{name}} mancia",
+    "chatPreview": "I messaggi della chat vengono visualizzati qui"
   },
   "liveStudio": {
     "subtitle": "Avvisi e widget per i tuoi stream",
@@ -9222,7 +9224,12 @@
       "top_supporters": "I migliori sostenitori",
       "viewer_count": "Conteggio visualizzatori",
       "text": "Testo",
-      "frame": "Telaio"
+      "frame": "Telaio",
+      "stream_timer": "Stream timer",
+      "reaction_counter": "Contatore di reazione",
+      "event_feed": "Attività recente",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebra ogni suggerimento, in base al suo livello",
@@ -9234,7 +9241,12 @@
       "top_supporters": "I tuoi più grandi mance in questo stream",
       "viewer_count": "Quante persone stanno guardando",
       "text": "Una riga di testo o un terzo inferiore",
-      "frame": "Un bordo attorno al tuo stream"
+      "frame": "Un bordo attorno al tuo stream",
+      "stream_timer": "Da quanto tempo vivi",
+      "reaction_counter": "Conta ogni reazione sullo stream",
+      "event_feed": "Gli ultimi suggerimenti, i seguenti, le sottoscrizioni e le azioni",
+      "chat_box": "La chat del tuo stream, sullo schermo",
+      "ticker": "Una riga del tuo testo che scorre attraverso"
     },
     "fields": {
       "style": "Stile",
@@ -9260,7 +9272,14 @@
       "accent": "Colore",
       "size": "Dimensione",
       "smaller": "Più piccolo",
-      "larger": "Più grande"
+      "larger": "Più grande",
+      "label": "Etichetta",
+      "lines": "Linee mostrate",
+      "showAvatars": "Mostra immagini del profilo",
+      "speed": "Velocità",
+      "slow": "Lento",
+      "normal": "Normale",
+      "fast": "Veloce"
     },
     "obs": {
       "title": "Usa con OBS",

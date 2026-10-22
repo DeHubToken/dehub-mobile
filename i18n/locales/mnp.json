@@ -9154,7 +9154,9 @@
       "subscribe_alert": "显示每个新订阅者",
       "join_alert": "欢迎每位观众的到来",
       "goal_bar": "追踪小费或关注者到目标",
-      "viewer_count": "有多少人在观看"
+      "viewer_count": "有多少人在观看",
+      "stream_timer": "你幾時開始直播呢？",
+      "chat_box": "你直播間的聊天室，螢幕上頭。"
     },
     "fields": {
       "style": "风格",
@@ -9176,7 +9178,9 @@
       "accent": "顏色",
       "size": "大小",
       "smaller": "較小",
-      "larger": "較大"
+      "larger": "較大",
+      "showAvatars": "顯示個人資料照片",
+      "fast": "快快快"
     },
     "obs": {
       "title": "與OBS一起使用",

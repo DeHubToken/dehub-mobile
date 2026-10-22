@@ -9191,7 +9191,9 @@
     "joined": "{{name}} qo'shildi",
     "goalReached": "Maqsadga erishildi!",
     "followersUnit": "izdoshlar",
-    "topSupporters": "Eng yaxshi tarafdorlar"
+    "topSupporters": "Eng yaxshi tarafdorlar",
+    "tipped": "{{name}} maslahat berildi",
+    "chatPreview": "Chat xabarlari bu yerda ko'rinadi"
   },
   "liveStudio": {
     "title": "Jonli studiya",
@@ -9241,7 +9243,12 @@
       "top_supporters": "Eng yaxshi tarafdorlar",
       "viewer_count": "Tomoshabinlar soni",
       "text": "Matn",
-      "frame": "Ramka"
+      "frame": "Ramka",
+      "stream_timer": "Oqim taymeri",
+      "reaction_counter": "Reaksiya hisoblagichi",
+      "event_feed": "So'nggi faollik",
+      "chat_box": "Chat oynasi",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Har bir choychaqani, o'z darajasiga mos ravishda nishonlaydi",
@@ -9253,7 +9260,12 @@
       "top_supporters": "Bu oqimdagi eng katta chayqovchilaringiz",
       "viewer_count": "Qancha odam tomosha qilmoqda",
       "text": "Matn satri yoki pastki uchdan bir qismi",
-      "frame": "Oqimingiz atrofidagi chegara"
+      "frame": "Oqimingiz atrofidagi chegara",
+      "stream_timer": "Qancha vaqtdan beri yashayapsiz",
+      "reaction_counter": "Oqimdagi har bir reaksiyani hisobga oladi",
+      "event_feed": "Eng so'nggi maslahatlar, kuzatuvlar, obunalar va ulashuvlar",
+      "chat_box": "Ekranda translatsiyangizdagi chat",
+      "ticker": "O'zingizning matningizning bir qatori aylanmoqda"
     },
     "fields": {
       "style": "Uslub",
@@ -9279,7 +9291,14 @@
       "accent": "Rang",
       "size": "Hajmi",
       "smaller": "Kichikroq",
-      "larger": "Kattaroq"
+      "larger": "Kattaroq",
+      "label": "Yorliq",
+      "lines": "Ko'rsatilgan chiziqlar",
+      "showAvatars": "Profil rasmlarini ko'rsatish",
+      "speed": "Tezlik",
+      "slow": "Sekin",
+      "normal": "Oddiy",
+      "fast": "Tez"
     },
     "obs": {
       "title": "OBS bilan foydalaning",

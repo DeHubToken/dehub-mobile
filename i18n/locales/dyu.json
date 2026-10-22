@@ -9063,7 +9063,9 @@
     "joined": "{{name}} join ye",
     "goalReached": "An sera yɔrɔ min na, o ye nin ye!",
     "followersUnit": "uwuwuwuwuwuuw",
-    "topSupporters": "Mɔgɔ minw be dɛmɛ don"
+    "topSupporters": "Mɔgɔ minw be dɛmɛ don",
+    "tipped": "{{name}} tipped",
+    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9111,7 +9113,12 @@
       "top_supporters": "Mɔgɔ minw be dɛmɛ don",
       "viewer_count": "Mɔgɔ min be mɔgɔ filɛ",
       "text": "O ye sɛbɛ ye",
-      "frame": "Fanga be mɔgɔ minw na,"
+      "frame": "Fanga be mɔgɔ minw na,",
+      "stream_timer": "Wagati ka baara",
+      "reaction_counter": "KɔrɔbɔliModifier",
+      "event_feed": "Sanni dɔɔni, u ye baara kɛ",
+      "chat_box": "Kala Lagaw Ya",
+      "ticker": "Fɛɛn minw be sɔrɔ o la"
     },
     "hints": {
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
@@ -9121,7 +9128,12 @@
       "goal_bar": "Ka tugu mɔgɔ dɔ kɔ ka taga a ka koo dɔ la",
       "viewer_count": "Mɔgɔ caaman be filɛli kɛra",
       "text": "A sabanan ye dɔɔnin ye, a sabanan ye dɔɔnin ye.",
-      "frame": "O kɔ, a ye sira ta ka taga n'a ye."
+      "frame": "O kɔ, a ye sira ta ka taga n'a ye.",
+      "stream_timer": "An bena to nii na wagatijan",
+      "reaction_counter": "O la, mɔgɔ kelen kelen bɛɛ ka kan ka sɔn a ka fɔta ma.",
+      "event_feed": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+      "chat_box": "I ka telefɔni ka baara kɛcogo, i ka filɛli kɛcogo",
+      "ticker": "I ka sɛbɛri kɛ ka tɛmɛ o kan"
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9146,7 +9158,14 @@
       "thickness": "Fanga be min na, o ye ka to ka to",
       "accent": "A ka ɲi ka kɛ cogo min na",
       "smaller": "A ka dɔgɔ",
-      "larger": "A ka bon"
+      "larger": "A ka bon",
+      "label": "Labɛnkɛyɔrɔ",
+      "lines": "Liniyaw yiracogo",
+      "showAvatars": "A yira a ka ɲɛyiraliw la",
+      "speed": "Ka to ka taga",
+      "slow": "A be taga dɔɔni dɔɔni",
+      "normal": "O ye koo ɲuman ye.",
+      "fast": "Fanga be min na"
     },
     "obs": {
       "title": "Ka baara kɛ ni OBS ye",

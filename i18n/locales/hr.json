@@ -9137,7 +9137,9 @@
     "joined": "{{name}} se pridružio/la",
     "goalReached": "Cilj je postignut!",
     "followersUnit": "pratitelji",
-    "topSupporters": "Najpopularniji podržavatelji"
+    "topSupporters": "Najpopularniji podržavatelji",
+    "tipped": "Preporučeno: {{name}}",
+    "chatPreview": "Ovdje se prikazuju poruke putem chata"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9187,7 +9189,12 @@
       "top_supporters": "Najveći podržavaoci",
       "viewer_count": "Broj gledatelja",
       "text": "Tekst",
-      "frame": "Okvir"
+      "frame": "Okvir",
+      "stream_timer": "Mjerač vremena za streaming",
+      "reaction_counter": "Brojač reakcija",
+      "event_feed": "Nedavna aktivnost",
+      "chat_box": "Okvir za razgovor",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
@@ -9199,7 +9206,12 @@
       "top_supporters": "Tvoji najveći donatori u ovom streamu",
       "viewer_count": "Koliko ljudi gleda",
       "text": "Linija teksta ili donji treći",
-      "frame": "Okvir oko tvojeg streama"
+      "frame": "Okvir oko tvojeg streama",
+      "stream_timer": "Koliko dugo ste živi",
+      "reaction_counter": "Broji svaku reakciju na streamu",
+      "event_feed": "Najnoviji savjeti, slijedi, upisi i dionice",
+      "chat_box": "Razgovor na tvom streamu, na zaslonu",
+      "ticker": "Redak vlastitog teksta koji se pomiče"
     },
     "fields": {
       "style": "Stil",
@@ -9226,7 +9238,14 @@
       "accent": "Boja",
       "size": "Velicina",
       "smaller": "Manji",
-      "larger": "Veći"
+      "larger": "Veći",
+      "label": "Oznaka",
+      "lines": "Prikazane linije",
+      "showAvatars": "Prikaži profilne fotografije",
+      "speed": "Brzina",
+      "slow": "Sporo",
+      "normal": "Normalno",
+      "fast": "Brzo"
     },
     "obs": {
       "title": "Koristi s OBS",

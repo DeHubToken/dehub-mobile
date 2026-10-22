@@ -9049,7 +9049,9 @@
     "joined": "{{name}} tevlî bû",
     "goalReached": "Armanc gihîşt!",
     "followersUnit": "şopîner",
-    "topSupporters": "Piştgirên herî jor"
+    "topSupporters": "Piştgirên herî jor",
+    "tipped": "{{name}} bahşiş hat dayîn",
+    "chatPreview": "Peyamên sohbetê li vir xuya dibin"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9099,7 +9101,12 @@
       "top_supporters": "Piştgirên herî jor",
       "viewer_count": "Hejmara temaşevanan",
       "text": "Nivîstok",
-      "frame": "Çarçove"
+      "frame": "Çarçove",
+      "stream_timer": "Demjimêra weşanê",
+      "reaction_counter": "Jimareya reaksiyonê",
+      "event_feed": "Çalakiya dawî",
+      "chat_box": "Qutiya sohbetê",
+      "ticker": "Tîker"
     },
     "hints": {
       "tip_alert": "Her serişteyê, bi mezinahiya wê, pîroz dike",
@@ -9111,7 +9118,12 @@
       "top_supporters": "Serişteyên te yên herî mezin di vê weşanê de",
       "viewer_count": "Çend kes temaşe dikin",
       "text": "Rêzek nivîsê an sêyeka jêrîn",
-      "frame": "Sînorek li dora çemê te"
+      "frame": "Sînorek li dora çemê te",
+      "stream_timer": "Tu çend sal e dijî?",
+      "reaction_counter": "Her reaksiyonek li ser herikê dihejmêre",
+      "event_feed": "Serişteyên herî dawî, şopandin, abonetî û parvekirin",
+      "chat_box": "Sohbeta weşana te, li ser ekranê",
+      "ticker": "Rêzek ji nivîsa te li seranserê digere"
     },
     "fields": {
       "style": "Awayî",
@@ -9138,7 +9150,14 @@
       "accent": "Reng",
       "size": "Mezinayî",
       "smaller": "Biçûktir",
-      "larger": "Mezintir"
+      "larger": "Mezintir",
+      "label": "Awanasî",
+      "lines": "Xetên nîşankirî",
+      "showAvatars": "Wêneyên profîlê nîşan bide",
+      "speed": "Zûbûnî",
+      "slow": "Hêdî",
+      "normal": "Normal",
+      "fast": "Zû"
     },
     "obs": {
       "title": "Bi OBS re bikar bînin",

@@ -9112,7 +9112,9 @@
     "joined": "{{name}} ku biiray",
     "goalReached": "Hadafka la gaaray!",
     "followersUnit": "kuwa raacsan",
-    "topSupporters": "Taageerayaasha ugu sareeya"
+    "topSupporters": "Taageerayaasha ugu sareeya",
+    "tipped": "{{name}} tipped",
+    "chatPreview": "Fariimaha sheekaysiga ayaa halkan ka muuqda"
   },
   "liveStudio": {
     "subtitle": "Digniinta iyo widget-yada durdurradaada",
@@ -9157,7 +9159,12 @@
       "goal_bar": "Gool bar",
       "top_supporters": "Taageerayaasha ugu sareeya",
       "viewer_count": "Tirinta daawadayaasha",
-      "text": "Qoraalka"
+      "text": "Qoraalka",
+      "stream_timer": "Jadwalka Stream",
+      "reaction_counter": "Ka soo horjeeda falcelinta",
+      "event_feed": "Dhawaan waxqabadka",
+      "chat_box": "Sanduuqa sheekaysiga",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Waxay u dabaaldegtaa talooyin kasta, oo si weyn loo cabbiray heerarkeeda",
@@ -9169,7 +9176,12 @@
       "top_supporters": "Tiippers-kaaga ugu weyn ee qulqulkan",
       "viewer_count": "Imisa qof ayaa daawanaya",
       "text": "Khadka qoraalka ama saddex meelood oo ka hooseeya",
-      "frame": "Xuduud ku wareegsan durdurkaaga"
+      "frame": "Xuduud ku wareegsan durdurkaaga",
+      "stream_timer": "Mudo intee le 'eg ayaad ku nooshahay",
+      "reaction_counter": "Qiyaasta falcelin kasta oo ku saabsan qulqulka",
+      "event_feed": "Talooyinka ugu dambeeyay, raac, subscriptions iyo saamiyada",
+      "chat_box": "Wadahadalka durdurkaaga, shaashadda",
+      "ticker": "Halkan Hoose Ka Daawo Muuqaalka Warkaaga oo Dhamaystiran"
     },
     "fields": {
       "style": "Qaabka",
@@ -9195,7 +9207,14 @@
       "accent": "Midab",
       "size": "Cabbirka",
       "smaller": "Yar",
-      "larger": "Waaweyn"
+      "larger": "Waaweyn",
+      "label": "Calaamad",
+      "lines": "Khadadka la muujiyey",
+      "showAvatars": "Muuji sawirrada astaanta",
+      "speed": "Xawaaraha",
+      "slow": "Si tartiib ah",
+      "normal": "Caadi ah",
+      "fast": "Si dhakhso ah"
     },
     "obs": {
       "title": "Isticmaal OBS",

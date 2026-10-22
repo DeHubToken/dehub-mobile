@@ -9138,7 +9138,9 @@
     "joined": "{{name}} tilmeldte sig",
     "goalReached": "Målet er nået!",
     "followersUnit": "følgere",
-    "topSupporters": "Toptilhængere"
+    "topSupporters": "Toptilhængere",
+    "tipped": "{{name}} tippet",
+    "chatPreview": "Chatbeskeder vises her"
   },
   "liveStudio": {
     "title": "Live-studie",
@@ -9188,7 +9190,12 @@
       "top_supporters": "Topstøttere",
       "viewer_count": "Tilsynelatende antal seere",
       "text": "Tekst",
-      "frame": "Rammer"
+      "frame": "Rammer",
+      "stream_timer": "Streamtimer",
+      "reaction_counter": "Reaktionstæller",
+      "event_feed": "Seneste aktivitet",
+      "chat_box": "Chatboks",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Fejrer hvert tip, tilpasset dets niveau",
@@ -9200,7 +9207,12 @@
       "top_supporters": "Dine største tippende i denne stream",
       "viewer_count": "Hvor mange der ser på",
       "text": "En linje tekst eller en lavere tredjedel",
-      "frame": "En ramme omkring din stream"
+      "frame": "En ramme omkring din stream",
+      "stream_timer": "Hvor længe du har levet",
+      "reaction_counter": "Tæller alle reaktioner på strømmen",
+      "event_feed": "De seneste tips, følger, tegninger og aktier",
+      "chat_box": "Din streams chat, på skærmen",
+      "ticker": "En linje med din egen tekst, der ruller hen over"
     },
     "fields": {
       "style": "Stil",
@@ -9226,7 +9238,14 @@
       "accent": "Farve",
       "size": "Størrelse",
       "smaller": "Mindre",
-      "larger": "Større"
+      "larger": "Større",
+      "label": "Etiket",
+      "lines": "Linjer vist",
+      "showAvatars": "Vis profilbilleder",
+      "speed": "Hastighed",
+      "slow": "Langsom",
+      "normal": "Normal",
+      "fast": "Hurtig"
     },
     "obs": {
       "title": "Brug med OBS",

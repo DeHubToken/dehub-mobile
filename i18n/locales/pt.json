@@ -9260,7 +9260,9 @@
     "joined": "{{name}} entrou",
     "goalReached": "Meta alcançada!",
     "followersUnit": "seguidores",
-    "topSupporters": "Principais apoiadores"
+    "topSupporters": "Principais apoiadores",
+    "tipped": "{{name}} com gorjeta",
+    "chatPreview": "As mensagens de chat aparecem aqui"
   },
   "liveStudio": {
     "title": "Estúdio ao Vivo",
@@ -9310,7 +9312,12 @@
       "top_supporters": "Principais apoiadores",
       "viewer_count": "Contagem de espectadores",
       "text": "Texto",
-      "frame": "Quadro"
+      "frame": "Quadro",
+      "stream_timer": "Temporizador de transmissão",
+      "reaction_counter": "Contador de reacções",
+      "event_feed": "Atividade recente",
+      "chat_box": "Caixa de chat",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebra cada dica, dimensionada de acordo com seu nível",
@@ -9322,7 +9329,12 @@
       "top_supporters": "Seus maiores doadores neste stream",
       "viewer_count": "Quantas pessoas estão assistindo",
       "text": "Uma linha de texto ou um *lower third*",
-      "frame": "Uma borda ao redor do seu stream"
+      "frame": "Uma borda ao redor do seu stream",
+      "stream_timer": "Há quanto tempo vive",
+      "reaction_counter": "Conta todas as reações no fluxo",
+      "event_feed": "As últimas dicas, seguidores, subscrições e partilhas",
+      "chat_box": "Chat do seu stream, na tela",
+      "ticker": "Uma linha do seu próprio texto percorrendo"
     },
     "fields": {
       "style": "Estilo",
@@ -9349,7 +9361,14 @@
       "accent": "Cor",
       "size": "Tamanho",
       "smaller": "Menor",
-      "larger": "Maior"
+      "larger": "Maior",
+      "label": "Etiqueta",
+      "lines": "Linhas mostradas",
+      "showAvatars": "Mostrar imagens de perfil",
+      "speed": "Velocidade",
+      "slow": "Lento",
+      "normal": "Normal",
+      "fast": "Rápido"
     },
     "obs": {
       "title": "Uso com Obs",

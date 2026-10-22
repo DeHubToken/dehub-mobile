@@ -9147,7 +9147,9 @@
     "joined": "{{name}} ujoyine",
     "goalReached": "Umgomo ufinyelelwe!",
     "followersUnit": "abalandeli",
-    "topSupporters": "Abasekeli abahamba phambili"
+    "topSupporters": "Abasekeli abahamba phambili",
+    "tipped": "{{name}} ithiphu",
+    "chatPreview": "Imiyalezo yokuxoxa iyavela lapha"
   },
   "liveStudio": {
     "title": "I-Live Studio",
@@ -9197,7 +9199,12 @@
       "top_supporters": "Abasekeli abahamba phambili",
       "viewer_count": "Isibalo sababukeli",
       "text": "Umbhalo",
-      "frame": "Ifreyimu"
+      "frame": "Ifreyimu",
+      "stream_timer": "I-timer yokusakaza",
+      "reaction_counter": "Ikhawunta yokusabela",
+      "event_feed": "Okwenziwayo kwakamuva",
+      "chat_box": "Ibhokisi lengxoxo",
+      "ticker": "Umthumeli wamathikithi"
     },
     "hints": {
       "tip_alert": "Kusebenzisa umthetho we-tier, kuthokozele umthetho ngamunye",
@@ -9209,7 +9216,12 @@
       "top_supporters": "Amacebiso akho amakhulu kulokhu kusakazwa",
       "viewer_count": "Bangaki abantu ababukayo",
       "text": "Umugqa wombhalo noma ingxenye yesithathu engaphansi",
-      "frame": "Umngcele ozungeze umfudlana wakho"
+      "frame": "Umngcele ozungeze umfudlana wakho",
+      "stream_timer": "Uhlale isikhathi esingakanani",
+      "reaction_counter": "Ibala konke ukusabela ekusakazweni",
+      "event_feed": "Amacebiso akamuva, alandelayo, okubhaliselwe nokwabelana",
+      "chat_box": "Ingxoxo yokusakaza kwakho, esikrinini",
+      "ticker": "Umugqa wombhalo wakho uskrola ngaphesheya"
     },
     "fields": {
       "style": "Isitayela",
@@ -9236,7 +9248,14 @@
       "accent": "Umbala",
       "size": "Usayizi",
       "smaller": "Okuncane",
-      "larger": "Enkulu"
+      "larger": "Enkulu",
+      "label": "Ilebula",
+      "lines": "Imigqa ibonisiwe",
+      "showAvatars": "Bonisa izithombe zephrofayili",
+      "speed": "Ijubane",
+      "slow": "Kancane",
+      "normal": "Okuvamile",
+      "fast": "Kuyashesha"
     },
     "obs": {
       "title": "Sebenzisa nge-OBS",

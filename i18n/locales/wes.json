@@ -8985,7 +8985,9 @@
   "liveOverlay": {
     "someone": "Wetin dem say?",
     "subscribedTo": "{{name}} subscribe to {{plan}}",
-    "followersUnit": "fɔlɔwɔs"
+    "followersUnit": "fɔlɔwɔs",
+    "tipped": "{{name}} tipped",
+    "chatPreview": "Chat messages appear here"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9028,13 +9030,19 @@
       "top_supporters": "Top supporters",
       "viewer_count": "Viewer count",
       "text": "Text",
-      "frame": "Frame"
+      "frame": "Frame",
+      "stream_timer": "Stream timer",
+      "reaction_counter": "Reaction counter",
+      "event_feed": "Recent activity",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
-      "join_alert": "Welcomes each viewer as they arrive"
+      "join_alert": "Welcomes each viewer as they arrive",
+      "event_feed": "De latest tip, follow, subscribe, share, wey go dey now."
     },
     "fields": {
       "style": "Style",
@@ -9058,7 +9066,14 @@
       "accent": "Colour",
       "size": "Size",
       "smaller": "Smaller",
-      "larger": "Larger"
+      "larger": "Larger",
+      "label": "Label",
+      "lines": "Lines shown",
+      "showAvatars": "Show profile pictures",
+      "speed": "Speed",
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast"
     },
     "obs": {
       "connected": "OBS connected",

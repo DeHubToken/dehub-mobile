@@ -9147,7 +9147,9 @@
     "joined": "{{name}} hukllawakurqa",
     "goalReached": "¡Meta alcanzado!",
     "followersUnit": "qatiqninkuna",
-    "topSupporters": "Hatun yanapaqkuna"
+    "topSupporters": "Hatun yanapaqkuna",
+    "tipped": "{{name}} nisqa",
+    "chatPreview": "Kaypim rikurin rimanakuy willakuykuna"
   },
   "liveStudio": {
     "title": "Kawsaq Estudio",
@@ -9196,7 +9198,12 @@
       "top_supporters": "Hatun yanapaqkuna",
       "viewer_count": "Qhawaq yupay",
       "text": "Qillqa",
-      "frame": "Tawa kuchu"
+      "frame": "Tawa kuchu",
+      "stream_timer": "Mayu pacha yupay",
+      "reaction_counter": "Reacción nisqa yupay",
+      "event_feed": "Kunan pacha ruray",
+      "chat_box": "Chat nisqa cuadro",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Sapa puntata raymichan, pataman hina sayayniyuq",
@@ -9208,7 +9215,12 @@
       "top_supporters": "Aswan hatun tippersniyki kay mayu",
       "viewer_count": "Hayka runakunam qawachkanku",
       "text": "Qillqasqa chiru utaq uray kimsa kaq",
-      "frame": "Mayuykipa muyuriqninpi huk frontera"
+      "frame": "Mayuykipa muyuriqninpi huk frontera",
+      "stream_timer": "Hayka unaytaq kawsachkanki",
+      "reaction_counter": "Mayupi sapa reaccionta yupan",
+      "event_feed": "Qhipa yuyaychaykuna, qatiq, suscripcionkuna chaymanta rakiykuna",
+      "chat_box": "Mayuykipa rimanakuynin, pantallapi",
+      "ticker": "Kikin qillqasqaykimanta chiru chimpaman kuyuriq"
     },
     "fields": {
       "style": "Rikchay",
@@ -9235,7 +9247,14 @@
       "accent": "Llinpi",
       "size": "Sayay",
       "smaller": "Aswan huchuy",
-      "larger": "Aswan hatun"
+      "larger": "Aswan hatun",
+      "label": "Suti",
+      "lines": "Chirukuna rikuchisqa",
+      "showAvatars": "Perfilpi siq’ikunata rikuchiy",
+      "speed": "Paway",
+      "slow": "Allillamanta",
+      "normal": "Kaqlla",
+      "fast": "Utqay"
     },
     "obs": {
       "title": "OBS nisqawan llamk’achiy",

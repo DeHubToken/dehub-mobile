@@ -10976,7 +10976,9 @@
     "joined": "{{name}} is lid geworden",
     "goalReached": "Doel bereikt!",
     "followersUnit": "volgers",
-    "topSupporters": "Topsupporters"
+    "topSupporters": "Topsupporters",
+    "tipped": "{{name}} tip",
+    "chatPreview": "Chatberichten worden hier weergegeven"
   },
   "liveStudio": {
     "title": "Livestudio",
@@ -11026,7 +11028,12 @@
       "top_supporters": "Topsteuners",
       "viewer_count": "Kijkersaantal",
       "text": "Tekst",
-      "frame": "Ramen"
+      "frame": "Ramen",
+      "stream_timer": "Stream timer",
+      "reaction_counter": "Reactieteller",
+      "event_feed": "Recente activiteit",
+      "chat_box": "Chatbox",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Vier elke tip, afgestemd op zijn niveau",
@@ -11038,7 +11045,12 @@
       "top_supporters": "Je grootste tipgers tijdens deze stream",
       "viewer_count": "Hoeveel mensen kijken",
       "text": "Een regel tekst of een laagderder",
-      "frame": "Een rand om je stream"
+      "frame": "Een rand om je stream",
+      "stream_timer": "Hoe lang je al leeft",
+      "reaction_counter": "Telt elke reactie op de stream",
+      "event_feed": "De laatste tips, volgers, abonnementen en shares",
+      "chat_box": "De chat van je stream, op het scherm",
+      "ticker": "Een regel van je eigen tekst die over"
     },
     "fields": {
       "style": "Stijl",
@@ -11065,7 +11077,14 @@
       "accent": "Kleur",
       "size": "Grootte",
       "smaller": "Kleiner",
-      "larger": "Groter"
+      "larger": "Groter",
+      "label": "Label",
+      "lines": "Getoonde regels",
+      "showAvatars": "Profielfoto's weergeven",
+      "speed": "Snelheid",
+      "slow": "Langzaam",
+      "normal": "Normaal",
+      "fast": "Snel"
     },
     "obs": {
       "title": "Gebruik met OBS",

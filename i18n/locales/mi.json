@@ -9116,7 +9116,9 @@
     "joined": "{{name}} hono",
     "goalReached": "Kua tae mai te whāinga!",
     "followersUnit": "ngā kaiwhaiwhai",
-    "topSupporters": "Ko nga kaitautoko nui"
+    "topSupporters": "Ko nga kaitautoko nui",
+    "tipped": "{{name}} tipped",
+    "chatPreview": "Ka puta mai ngā karere kōrerorero i konei"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9165,7 +9167,12 @@
       "top_supporters": "Ko nga kaitautoko nui",
       "viewer_count": "Te tatau o te kaitirotiro",
       "text": "Tuhinga",
-      "frame": "rahua"
+      "frame": "rahua",
+      "stream_timer": "Timer Stream",
+      "reaction_counter": "Te whakahe i te urupare",
+      "event_feed": "Ngā mahi hou",
+      "chat_box": "Pouaka kōrerorero",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "E whakanui ana i nga tohu katoa, e whakanuia ana ki tona taumata",
@@ -9177,7 +9184,12 @@
       "top_supporters": "Ko o koutou tippers nui rawa atu tenei awa",
       "viewer_count": "E hia nga tangata e matakitaki ana",
       "text": "He rārangi o te kuputuhi, he iti iho rānei te toru",
-      "frame": "He rohe e karapoti ana i to awa"
+      "frame": "He rohe e karapoti ana i to awa",
+      "stream_timer": "Kia pehea te roa o to oranga",
+      "reaction_counter": "E pā ana ki nga urupare katoa i runga i te awa",
+      "event_feed": "Ko nga tohutohu hou, e whai ake nei, nga ohaurunga me nga hea",
+      "chat_box": "Te kōrerorero o tō awa, i runga i te mata",
+      "ticker": "He rārangi o to koutou ake tuhinga huri noa"
     },
     "fields": {
       "style": "Kāhua",
@@ -9202,7 +9214,14 @@
       "accent": "Tae",
       "size": "Rahi",
       "smaller": "He iti ake",
-      "larger": "Nui ake"
+      "larger": "Nui ake",
+      "label": "Label",
+      "lines": "Nga raina e whakaatuhia ana",
+      "showAvatars": "Whakaatu whakaahua kōtaha",
+      "speed": "Tere",
+      "slow": "He puhoi",
+      "normal": "He mea noa",
+      "fast": "Tere"
     },
     "obs": {
       "title": "Whakamahia ki te OBS",

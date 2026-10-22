@@ -9225,7 +9225,9 @@
     "joined": "{{name}}が参加しました",
     "goalReached": "目標に到達しました！",
     "followersUnit": "フォロワー",
-    "topSupporters": "トップサポーター"
+    "topSupporters": "トップサポーター",
+    "tipped": "{{name}}のチップ",
+    "chatPreview": "チャットメッセージがここに表示されます"
   },
   "liveStudio": {
     "title": "ライブスタジオ",
@@ -9275,7 +9277,12 @@
       "top_supporters": "トップサポーター",
       "viewer_count": "閲覧者数",
       "text": "テキスト",
-      "frame": "フレーム"
+      "frame": "フレーム",
+      "stream_timer": "ストリームタイマー",
+      "reaction_counter": "リアクションカウンター",
+      "event_feed": "最近のアクティビティ",
+      "chat_box": "チャットボックス",
+      "ticker": "ティッカー"
     },
     "hints": {
       "tip_alert": "ランクに応じたすべてのチップを祝います",
@@ -9287,7 +9294,12 @@
       "top_supporters": "このストリームで最大のチッパー",
       "viewer_count": "視聴者数",
       "text": "テキストの行または下3分の1",
-      "frame": "ストリームの周りの境界線"
+      "frame": "ストリームの周りの境界線",
+      "stream_timer": "生存期間",
+      "reaction_counter": "ストリーム上のすべての反応をカウントします",
+      "event_feed": "最新のヒント、フォロー、サブスクリプションとシェア",
+      "chat_box": "画面上のストリームのチャット",
+      "ticker": "独自のテキストの行をスクロールして横切る"
     },
     "fields": {
       "style": "スタイル",
@@ -9314,7 +9326,14 @@
       "accent": "色",
       "size": "サイズ",
       "smaller": "より小さい",
-      "larger": "大"
+      "larger": "大",
+      "label": "ラベル",
+      "lines": "表示された線",
+      "showAvatars": "プロフィール写真を表示",
+      "speed": "速度",
+      "slow": "遅い",
+      "normal": "ノーマル",
+      "fast": "高速"
     },
     "obs": {
       "title": "OBSとの併用",

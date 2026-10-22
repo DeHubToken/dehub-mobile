@@ -9217,7 +9217,9 @@
     "joined": "{{name}} nandray anjara",
     "goalReached": "Tratra ny tanjona!",
     "followersUnit": "mpanara-dia",
-    "topSupporters": "TOP mpanohana"
+    "topSupporters": "TOP mpanohana",
+    "tipped": "{{name}} tipped",
+    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9267,7 +9269,12 @@
       "top_supporters": "TOP mpanohana",
       "viewer_count": "Fanisana ny mpijery",
       "text": "Lahatsoratra",
-      "frame": "rafitra"
+      "frame": "rafitra",
+      "stream_timer": "Fotoam-piroboroboana",
+      "reaction_counter": "Fanehoan-kevitra manohitra",
+      "event_feed": "Hetsika vao haingana",
+      "chat_box": "Efitrano firesahana",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Mankalaza ny torohevitra rehetra, ny salantsalany",
@@ -9278,7 +9285,12 @@
       "top_supporters": "Ny lehibe indrindra tippers io renirano",
       "viewer_count": "Firy ny olona mijery",
       "text": "Lahatsoratra na ampahatelony ambany",
-      "frame": "Ny sisin-tany manodidina ny renirano"
+      "frame": "Ny sisin-tany manodidina ny renirano",
+      "stream_timer": "Hafiriana ianao no niaina",
+      "reaction_counter": "Manisa ny fanehoan-kevitra rehetra ao amin'ny renirano",
+      "event_feed": "Ireto torohevitra farany, manaraka, famandrihana ary fizarana",
+      "chat_box": "Ny renirano amin'ny chat, eo amin'ny efijery",
+      "ticker": "Tsipika iray amin'ny horonan-tsarinao manokana"
     },
     "fields": {
       "style": "Endrika",
@@ -9305,7 +9317,14 @@
       "accent": "Loko",
       "size": "Habe",
       "smaller": "Kely kokoa",
-      "larger": "Lehibe kokoa"
+      "larger": "Lehibe kokoa",
+      "label": "Mari-tsoratra",
+      "lines": "Andalana aseho",
+      "showAvatars": "Asehoy ny sarin'ny profil",
+      "speed": "Hafaingana",
+      "slow": "Meda",
+      "normal": "Tokony ho izy",
+      "fast": "Faingana"
     },
     "obs": {
       "title": "Ampiasao miaraka amin'ny OBS",

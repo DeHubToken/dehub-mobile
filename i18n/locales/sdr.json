@@ -9214,7 +9214,8 @@
     "kinds": {
       "follow_alert": "फोल्लो अलर्ट",
       "subscribe_alert": "सब्सक्राइबर अलर्ट",
-      "share_alert": "साझा चेतावनी"
+      "share_alert": "साझा चेतावनी",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "हर टिप मनाता है, अपने स्तर के अनुसार आकार दिया गया",
@@ -9243,7 +9244,9 @@
       "accent": "رنگ",
       "size": "اندازه",
       "smaller": "کوچیک‌تر",
-      "larger": "بزرگ‌تر"
+      "larger": "بزرگ‌تر",
+      "label": "Label",
+      "lines": "لاین‌های نمایش داده‌شده"
     },
     "obs": {
       "title": "با OBS استفاده کن",

@@ -10726,7 +10726,9 @@
     "joined": "{{name}} a rejoint",
     "goalReached": "Objectif atteint !",
     "followersUnit": "abonnés",
-    "topSupporters": "Meilleurs supporters"
+    "topSupporters": "Meilleurs supporters",
+    "tipped": "{{name}} pourboire",
+    "chatPreview": "Les messages de chat apparaissent ici"
   },
   "liveStudio": {
     "title": "Studio en direct",
@@ -10776,7 +10778,12 @@
       "top_supporters": "Meilleurs supporters",
       "viewer_count": "Nombre de téléspectateurs",
       "text": "Texte",
-      "frame": "Cadre"
+      "frame": "Cadre",
+      "stream_timer": "Minuterie de flux",
+      "reaction_counter": "Compteur de réaction",
+      "event_feed": "Activité récente",
+      "chat_box": "Boîte de discussion",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Célèbre chaque pourboire, dimensionné à son niveau",
@@ -10788,7 +10795,12 @@
       "top_supporters": "Vos plus grands basculeurs ce flux",
       "viewer_count": "Combien de personnes regardent",
       "text": "Une ligne de texte ou un tiers inférieur",
-      "frame": "Une frontière autour de votre ruisseau"
+      "frame": "Une frontière autour de votre ruisseau",
+      "stream_timer": "Depuis combien de temps vous êtes en vie",
+      "reaction_counter": "Compte chaque réaction sur le flux",
+      "event_feed": "Les dernières astuces, suivis, souscriptions et actions",
+      "chat_box": "Le chat de votre flux, à l'écran",
+      "ticker": "Une ligne de votre propre texte défilant à travers"
     },
     "fields": {
       "style": "Style",
@@ -10815,7 +10827,14 @@
       "accent": "Couleur",
       "size": "Taille",
       "smaller": "Plus petit",
-      "larger": "Plus grand"
+      "larger": "Plus grand",
+      "label": "Étiquette",
+      "lines": "Lignes affichées",
+      "showAvatars": "Afficher les photos de profil",
+      "speed": "Vitesse",
+      "slow": "Lent",
+      "normal": "Normal",
+      "fast": "Rapide"
     },
     "obs": {
       "title": "Utiliser avec OBS",

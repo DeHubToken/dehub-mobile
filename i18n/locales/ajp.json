@@ -9084,7 +9084,9 @@
     "joined": "{{name}} انضم",
     "goalReached": "وصلنا الهدف!",
     "followersUnit": "متابعين",
-    "topSupporters": "أعلى الداعمين"
+    "topSupporters": "أعلى الداعمين",
+    "tipped": "{{name}} دفع إكرامية",
+    "chatPreview": "الرسائل بتظهر هنا"
   },
   "liveStudio": {
     "title": "ستوديو مباشر",
@@ -9132,7 +9134,8 @@
       "share_alert": "بيظهر لما حد يشارك بثك",
       "join_alert": "يستقبل كل مشاهد لما ييجي",
       "viewer_count": "كم الناس بتشوف؟",
-      "frame": "حدود حوالين الستريم تبعك"
+      "frame": "حدود حوالين الستريم تبعك",
+      "stream_timer": "مدة ما كنت على الهواء؟"
     },
     "fields": {
       "showMessage": "ورّي رسالة النصيحة",
@@ -9147,7 +9150,9 @@
       "solid": "صلب",
       "glow": "تلمّع",
       "thickness": "سُمك",
-      "accent": "لون"
+      "accent": "لون",
+      "showAvatars": "أظهر صور الملف الشخصي",
+      "speed": "سُرْعَة"
     },
     "obs": {
       "connected": "OBS متصل",

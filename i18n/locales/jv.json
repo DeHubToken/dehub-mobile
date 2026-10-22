@@ -9114,7 +9114,8 @@
     "joined": "{{name}} melu",
     "goalReached": "Tujuan wis kasil!",
     "followersUnit": "pengikut",
-    "topSupporters": "Pangrojong paling dhuwur"
+    "topSupporters": "Pangrojong paling dhuwur",
+    "tipped": "{{name}} ngoko ngisor"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9164,7 +9165,10 @@
       "top_supporters": "Top supporters",
       "viewer_count": "Jumlah penonton",
       "text": "Teks",
-      "frame": "Frame"
+      "frame": "Frame",
+      "stream_timer": "Sangga waktu streaming",
+      "chat_box": "Kotak obrolan",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Ngaweni tiap tip, saking ukuran tiernya",
@@ -9176,7 +9180,10 @@
       "top_supporters": "Top supporters tiap stream",
       "viewer_count": "Berapa orang yang ngeliat",
       "text": "Baris teks atau lower third",
-      "frame": "Border saking streammu"
+      "frame": "Border saking streammu",
+      "reaction_counter": "Kanggo ngitung semuanya reaksi di stream.",
+      "event_feed": "Kanggo ngarani tips, followers, suskripsi, dan shares lanjaran.",
+      "chat_box": "Klo streammu, chat lan ngarani, lan nglayang di layar."
     },
     "fields": {
       "style": "Style",
@@ -9203,7 +9210,13 @@
       "accent": "Warna",
       "size": "Ukuran",
       "smaller": "Luwih cilik",
-      "larger": "Luwih gedhe"
+      "larger": "Luwih gedhe",
+      "label": "Label",
+      "lines": "Garis-garis yén ditunuk",
+      "showAvatars": "Gambar profil ditampilkan",
+      "speed": "Sangga",
+      "normal": "Normal",
+      "fast": "Cepet"
     },
     "obs": {
       "title": "Gunakake karo OBS",

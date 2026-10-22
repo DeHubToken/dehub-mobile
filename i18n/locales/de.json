@@ -9327,7 +9327,9 @@
     "joined": "{{name}} beigetreten",
     "goalReached": "Ziel erreicht!",
     "followersUnit": "follower",
-    "topSupporters": "Top-Unterstützer"
+    "topSupporters": "Top-Unterstützer",
+    "tipped": "{{name}} Trinkgeld",
+    "chatPreview": "Chat-Nachrichten werden hier angezeigt"
   },
   "liveStudio": {
     "title": "Live-Studio",
@@ -9376,7 +9378,12 @@
       "top_supporters": "Top-Unterstützer",
       "viewer_count": "Zuschauerzahl",
       "text": "Text",
-      "frame": "Untertitel"
+      "frame": "Untertitel",
+      "stream_timer": "Stream-Timer",
+      "reaction_counter": "Reaktionszähler",
+      "event_feed": "Letzte Aktivität",
+      "chat_box": "Chat-Box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Feiert jede Spende, angepasst an ihre Stufe",
@@ -9388,7 +9395,12 @@
       "top_supporters": "Deine größten Spender in diesem Stream",
       "viewer_count": "Wie viele Leute zuschauen",
       "text": "Eine Zeile Text oder ein Untertitel",
-      "frame": "Ein Rahmen um deinen Stream"
+      "frame": "Ein Rahmen um deinen Stream",
+      "stream_timer": "Wie lange du schon lebst",
+      "reaction_counter": "Zählt jede Reaktion im Stream",
+      "event_feed": "Die neuesten Tipps, Folgen, Zeichnungen und Aktien",
+      "chat_box": "Der Chat deines Streams auf dem Bildschirm",
+      "ticker": "Eine Zeile Ihres eigenen Textes, der über"
     },
     "fields": {
       "style": "Stil",
@@ -9415,7 +9427,14 @@
       "accent": "Farbe",
       "size": "Größe",
       "smaller": "Kleiner",
-      "larger": "Größer"
+      "larger": "Größer",
+      "label": "Beschriftung",
+      "lines": "Angezeigte Linien",
+      "showAvatars": "Profilbilder anzeigen",
+      "speed": "Geschwindigkeit",
+      "slow": "Langsam",
+      "normal": "Normal",
+      "fast": "Schnell"
     },
     "obs": {
       "title": "Verwendung mit OBS",
