@@ -54,6 +54,7 @@ import { DMProvider } from "./context/DMContext";
 import { OnboardingChecklistProvider } from "./context/OnboardingChecklistContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
+import ShippedFeatureNotice from "./components/FeatureRequests/ShippedFeatureNotice";
 import OnlinePresenceHost from "./components/common/OnlinePresenceHost";
 import RootNavigator from "./navigation/RootNavigator";
 import StageNavFallback from "./components/Stages/StageNavFallback";
@@ -520,6 +521,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                         </KeyboardPanView>
                         <PictureInPictureHost />
                         <NewMemberRegistrar />
+                        <ShippedFeatureNotice />
                         <OnlinePresenceHost />
                         <CallModalsHost />
                         <CallMiniPlayer />

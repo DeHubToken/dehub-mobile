@@ -796,6 +796,11 @@ export default function FeatureRequestsScreen() {
   const focusedRequestId: string | undefined = route.params?.requestId;
   const focusedCommentId: string | undefined = route.params?.commentId;
   const { data: focusedRequest } = useFeatureRequest(focusedRequestId);
+  // "View shipped requests" on the shipped-feedback notice opens on that tab.
+  const initialTab: PageTab | undefined = route.params?.tab;
+  React.useEffect(() => {
+    if (initialTab) setTab(initialTab);
+  }, [initialTab]);
 
   const requestItems = useMemo(() => data?.pages.flat() ?? [], [data]);
   // Shipped and Shipping arrive as whole arrays rather than a paged query, so
