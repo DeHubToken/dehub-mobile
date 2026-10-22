@@ -9042,5 +9042,15 @@
     "showWords": "إظهر الكلمات",
     "reminderBody": "احفظ نسخة احتياطية من محفظتك — 12 كلمة ترجعها إذا ضيعت جوالك.",
     "backUp": "رجّع"
+  },
+  "liveOverlay": {
+    "someone": "حد",
+    "newFollower": "متابع جديد: {{name}}",
+    "newSubscriber": "مشترك جديد: {{name}}",
+    "subscribedTo": "{{name}} اشترك في {{plan}}",
+    "shared": "{{name}} شارك البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "وصلنا الهدف!",
+    "followersUnit": "المتابعين"
   }
 }

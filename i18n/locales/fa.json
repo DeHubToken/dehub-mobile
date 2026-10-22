@@ -9152,5 +9152,16 @@
     "reminderBody": "از کیف پولتان پشتیبان بگیرید - ۱۲ کلمه که اگر گوشی‌تان را گم کردید، آن را به شما برمی‌گرداند.",
     "backUp": "پشتیبان گیری",
     "notNow": "الان نه"
+  },
+  "liveOverlay": {
+    "someone": "کسی",
+    "newFollower": "فالوور جدید: {{name}}",
+    "newSubscriber": "مشترک جدید: {{name}}",
+    "subscribedTo": "{{name}} مشترک {{plan}} شد",
+    "shared": "{{name}} پخش زنده را به اشتراک گذاشت",
+    "joined": "{{name}} عضو شد",
+    "goalReached": "به هدف رسید!",
+    "followersUnit": "پیروان",
+    "topSupporters": "حامیان برتر"
   }
 }

@@ -9129,5 +9129,16 @@
     "reminderBody": "Tárca mentése — 12 szó, ami visszahozza, ha elveszíted a telefonod.",
     "backUp": "Biztonsági mentés",
     "notNow": "Most nem"
+  },
+  "liveOverlay": {
+    "someone": "Valaki",
+    "newFollower": "Új követő: {{name}}",
+    "newSubscriber": "Új előfizető: {{name}}",
+    "subscribedTo": "{{name}} feliratkozott erre: {{plan}}",
+    "shared": "{{name}} megosztotta a falat",
+    "joined": "{{name}} csatlakozott",
+    "goalReached": "Cél elérve!",
+    "followersUnit": "követők",
+    "topSupporters": "Kiemelt támogatók"
   }
 }

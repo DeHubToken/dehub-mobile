@@ -8807,5 +8807,10 @@
     "showWords": "Show words",
     "backUp": "Back up",
     "notNow": "Not now"
+  },
+  "liveOverlay": {
+    "joined": "{{name}} joined",
+    "goalReached": "Goal reach!",
+    "topSupporters": "Top supporters"
   }
 }

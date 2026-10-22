@@ -9100,5 +9100,16 @@
     "reminderBody": "Kara bayanin kuɗin ku — kalma 12 da za su dawo da shi idan kun rasa wayarku.",
     "backUp": "Kara bayanin",
     "notNow": "Ba yanzu"
+  },
+  "liveOverlay": {
+    "someone": "Wani",
+    "newFollower": "Sabon mabiya: {{name}}",
+    "newSubscriber": "Sabuwar mai biyan kuɗi: {{name}}",
+    "subscribedTo": "{{name}} rajista zuwa {{plan}}",
+    "shared": "{{name}} shared da rafi",
+    "joined": "{{name}} shiga",
+    "goalReached": "Manufar ta kai!",
+    "followersUnit": "mabiya",
+    "topSupporters": "Manyan magoya baya"
   }
 }

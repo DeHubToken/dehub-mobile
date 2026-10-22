@@ -9039,5 +9039,16 @@
     "reminderBody": "پشتیوانی بکە لە جێبەجێ — ١٢ وشەیەک کە ئەگەر تەلەفۆنەکەت لەدەست بدەیت جێبەجێی گەڕانەوە دەدات.",
     "backUp": "پشتیوانی بکە",
     "notNow": "نەک ئێستا"
+  },
+  "liveOverlay": {
+    "someone": "Kesek",
+    "newFollower": "Şopînerê nû: {{name}}",
+    "newSubscriber": "Abonetiya nû: {{name}}",
+    "subscribedTo": "{{name}} aboneyê {{plan}} bû",
+    "shared": "{{name}} weşanê parve kir",
+    "joined": "{{name}} tevlî bû",
+    "goalReached": "Armanc gihîşt!",
+    "followersUnit": "şopîner",
+    "topSupporters": "Piştgirên herî jor"
   }
 }

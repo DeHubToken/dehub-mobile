@@ -9111,5 +9111,16 @@
     "reminderBody": "גבה את הארנק שלך — 12 מילים שמחזירות אותו אם איבדת את הטלפון שלך.",
     "backUp": "גיבוי",
     "notNow": "לא עכשיו"
+  },
+  "liveOverlay": {
+    "someone": "מישהו",
+    "newFollower": "עוקב חדש: {{name}}",
+    "newSubscriber": "מנוי חדש: {{name}}",
+    "subscribedTo": "{{name}} נרשמו ל -{{plan}}",
+    "shared": "{{name}} שיתפו את הזרם",
+    "joined": "{{name}} הצטרפו",
+    "goalReached": "הגעת ליעד!",
+    "followersUnit": "עוקבים",
+    "topSupporters": "תומכים מובילים"
   }
 }

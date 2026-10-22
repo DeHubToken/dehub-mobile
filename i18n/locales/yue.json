@@ -9112,5 +9112,16 @@
     "reminderBody": "備份你嘅銀包 — 12個字，如果你唔見咗你部手機，就可以將佢帶返嚟。",
     "backUp": "備份",
     "notNow": "而家唔得"
+  },
+  "liveOverlay": {
+    "someone": "有人",
+    "newFollower": "新追隨者： {{name}}",
+    "newSubscriber": "新訂閱者： {{name}}",
+    "subscribedTo": "{{name}} 訂閱咗 {{plan}}",
+    "shared": "{{name}} 分享咗個串流",
+    "joined": "{{name}} 加入咗",
+    "goalReached": "目標達到喇！",
+    "followersUnit": "追隨者",
+    "topSupporters": "頂級支持者"
   }
 }

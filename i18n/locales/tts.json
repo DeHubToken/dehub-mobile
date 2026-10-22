@@ -9119,5 +9119,16 @@
     "reminderBody": "สำรองกระเป๋าตังของคุณ — 12 คำที่จะช่วยคืนคืนกระเป๋าตังได้ถ้าคุณสูญหายโทรศัพท์",
     "backUp": "สำรอง",
     "notNow": "ไม่ตอนนี้"
+  },
+  "liveOverlay": {
+    "someone": "คนหนึ่ง",
+    "newFollower": "ผู้ติดตามใหม่: {{name}}",
+    "newSubscriber": "ผู้สมัครสมาชิกใหม่: {{name}}",
+    "subscribedTo": "{{name}} สมัครสมาชิกกับ {{plan}}",
+    "shared": "{{name}} แชร์สตรีม",
+    "joined": "{{name}} เข้าร่วม",
+    "goalReached": "บรรลุเป้าหมายแล้ว!",
+    "followersUnit": "ผู้ติดตาม",
+    "topSupporters": "ผู้สนับสนุนอันดับต้น"
   }
 }
