@@ -9371,6 +9371,7 @@
       "log": "Tallaabooyinkii ugu dambeeyay",
       "noLog": "Waxba weli.",
       "actions": {
+        "timeout_one": "{{actor}} timed out {{target}} for {{count}} labaad",
         "ban": "{{actor}} mamnuuca {{target}}",
         "moderator-added": "{{target}} wuxuu noqday moderator",
         "moderator-removed": "{{target}} mar dambe ma aha moderator",

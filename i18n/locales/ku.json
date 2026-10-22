@@ -9329,6 +9329,7 @@
     }
   },
   "liveChatModeration": {
+    "youAreTimedOut": "Tu ji bo demekê hatî bêdengkirin",
     "timeout1m": "Demjimêr ji bo 1 deqîqeyê bêhnvedan",
     "timeout10m": "Demjimêr bêhnvedan ji bo 10 deqîqeyan",
     "timeout1h": "Demjimêr bêhnvedan ji bo 1 saetê",

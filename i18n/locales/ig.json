@@ -9368,6 +9368,7 @@
       "log": "Omume ndị na-adịbeghị anya",
       "noLog": "Ọ dịghị ihe ka ọ dị ugbu a.",
       "actions": {
+        "timeout_one": "{{actor}} kwụsịrị {{target}} maka {{count}} nkeji",
         "timeout_other": "{{actor}} tụrụ {{target}} {{count}} nkeji",
         "ban": "{{actor}} mara {{target}}",
         "unban": "{{actor}} wepụrụ ịma {{target}}",

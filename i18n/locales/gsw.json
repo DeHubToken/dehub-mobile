@@ -9383,6 +9383,15 @@
       }
     },
     "moderation": {
+      "title": "Chat-Moderation",
+      "save": "Regeln für den Chat speichern",
+      "off": "Aus",
+      "followersOnly": "Nur Follower",
+      "wordAction": "Wenn jemand eines verwendet",
+      "addModerator": "Hinzufügen",
+      "removeModerator": "Moderator entfernen",
+      "noModerators": "Noch keine Moderatoren.",
+      "log": "Letze Änderungen",
       "intro": "Regeln fürs Chat unter allen meinen Streams. Die kommen nie in den DeHub-Hauptchat: Wenn i dich hier banne, kannst du trotzdem überall anders reden.",
       "loadFailed": "De Moderations-Einstellungen konntä niicht geläät. Läät d’Seite neu lädä, um’s no’chmäl zu versuche.",
       "saved": "Chatregeln gespeichert.",
@@ -9407,6 +9416,8 @@
       "noBans": "Niemand is gesperrt.",
       "noLog": "Noch nix.",
       "actions": {
+        "word-blocked": "Eine Nachricht von {{target}} für \"{{word}}\" wurde gestoppt",
+        "word-timeout_other": "Zeitüberschreitung {{target}} für {{count}} Sekunden für \"{{word}}\"",
         "timeout_one": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä",
         "timeout_other": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä.",
         "ban": "{{actor}} gschmäht {{target}}",

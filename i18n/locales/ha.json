@@ -9362,6 +9362,7 @@
       "log": "Ayyukan kwanan nan",
       "noLog": "Babu wani abu har yanzu.",
       "actions": {
+        "timeout_other": "{{actor}} Timed fita {{target}} for {{count}} seconds",
         "timeout_one": "{{actor}} Timed fita {{target}} for {{count}} na biyu",
         "ban": "{{actor}} haram {{target}}",
         "unban": "{{actor}} unbanned {{target}}",

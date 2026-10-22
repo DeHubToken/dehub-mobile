@@ -9271,6 +9271,10 @@
       }
     },
     "moderation": {
+      "loadFailed": "Hindi mai-load ang iyong mga setting ng moderasyon. I-refresh ang pahina upang subukan muli.",
+      "wordAction": "Kapag gumagamit ng isang ta",
+      "wordTimeout": "Ito at oras ang mga ito para sa isang minuto",
+      "moderatorNotFound": "Walang account na may gumagamit na pangalan.",
       "title": "Мудирияти чат",
       "intro": "Mga patakaran para sa chat sa ilalim ng lahat ng iyong mga stream. Онҳо ҳеҷ гоҳ ба сӯҳбати асосии DeHub намерасанд: касе, ки шумо дар ин ҷо манъ мекунед, метавонад дар ҳама ҷо гап занад.",
       "save": "Нигоҳ доштани қоидаҳои чат",
@@ -9295,6 +9299,9 @@
       "log": "Амалҳои охирин",
       "noLog": "Чизе ҳанӯз нест.",
       "actions": {
+        "timeout_one": "{{actor}} timed out {{target}} {{count}} second",
+        "unban": "{{actor}} unbanned{{target}}",
+        "moderator-removed": "{{target}}info: whatsthis",
         "word-blocked": "Иттилоотро аз {{target}} барои \"{{word}}\" боздошта шуд"
       }
     }

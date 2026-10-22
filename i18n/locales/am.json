@@ -9361,6 +9361,7 @@
       }
     },
     "moderation": {
+      "moderators": "አስተዳዳሪዎች",
       "title": "የውይይት ሚዛናዊነት",
       "intro": "በሁሉም ጅረቶችዎ ስር ለውይይት ደንቦች ። ወደ DeHub ዋና ውይይት በጭራሽ አይደርሱም- እዚህ የሚከለክሉት ሰው አሁንም በየትኛውም ቦታ ሊናገር ይችላል ።",
       "loadFailed": "የእርስዎ የመጠባበቂያ ቅንብሮች መጫን አልተቻለም. እንደገና ለመሞከር ገጹን ያድሱ ።",
@@ -9393,6 +9394,9 @@
       "log": "የቅርብ ጊዜ እርምጃዎች",
       "noLog": "እስካሁን ምንም ነገር የለም.",
       "actions": {
+        "timeout_one": "{{actor}} {{target}} ለ {{count}} ሰከንድ ጊዜ ማቆም",
+        "timeout_other": "{{actor}} {{target}} ለ {{count}} ሰከንዶች ጊዜ ማቆም",
+        "unban": "{{actor}} {{target}} ከመከልከል ተወግዷል",
         "ban": "{{actor}} ታግዷል {{target}}",
         "moderator-added": "{{target}} አስተላላፊ ሆነ",
         "moderator-removed": "{{target}} ከአሁን በኋላ አስተላላፊ አይደለም",

@@ -9286,6 +9286,15 @@
       }
     },
     "moderation": {
+      "addModerator": "شامل کریں",
+      "usernamePlaceholder": "صارف نام",
+      "removeModerator": "ماڈریٹر ہٹائیں",
+      "noModerators": "ابھی تک کوئی ماڈریٹر نہیں ہے ۔",
+      "banned": "آپ کے اسٹریمز پر پابندی عائد ہے",
+      "unban": "پابندی ختم کریں",
+      "noBans": "کسی پر بھی پابندی نہیں ہے ۔",
+      "log": "حالیہ کارروائیاں",
+      "noLog": "ابھی تک کچھ نہیں ۔",
       "title": "چیٹ ماڈریشن",
       "intro": "تمام سٹریمز ہیٹھ چیٹ لئی اصول۔ اوہ DeHub دی مین چیٹ تک نئیں پہنچدے: کوئی جو تسیں ایتھے بند کردو اوہ ہور جگہ بول سکدا اے۔",
       "loadFailed": "تمہاری ماڈریشن سیٹنگز لوڈ نئیں ہو سکیاں۔ دوبارہ کوشش کرن لئی صفحہ ریفریش کرو۔",
@@ -9310,6 +9319,11 @@
       "moderatorAdded": "مُڈیرٹر اڈ کیا گیا۔",
       "moderatorNotFound": "چو ایسی اکاؤنٹ نیہے۔",
       "actions": {
+        "timeout_one": "{{actor}} ٹائم آؤٹ {{target}} برائے {{count}} سیکنڈ",
+        "timeout_other": "{{actor}} ٹائم آؤٹ {{target}} برائے {{count}} سیکنڈز",
+        "ban": "{{actor}} ممنوع {{target}}",
+        "moderator-added": "{{target}} ماڈریٹر بن گئے",
+        "word-timeout_one": "\"{{word}}\" کے لیے {{count}} سیکنڈ کے لیے {{target}} وقت ختم ہو گیا",
         "unban": "{{actor}} باند نہیں {{target}}",
         "moderator-removed": "{{target}} اب ابھی مڈریٹر نہیں رہی ہے۔",
         "word-blocked": "چھٹ کر دیا ایک پیغام \"{{target}}\" لئے \"{{word}}\" لئے",

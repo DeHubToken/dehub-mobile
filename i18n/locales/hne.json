@@ -9387,6 +9387,9 @@
       }
     },
     "moderation": {
+      "seconds_one": "{{count}} सेकंड",
+      "seconds_other": "{{count}} सेकंड",
+      "unban": "अप्रतिबंधित करें",
       "title": "चैट मॉडरेसन",
       "intro": "अपन जम्मो धारा के नीचे चैट बर नियम । ओमन DeHub के मुख्य चैट म कभू नइ पहुंचंय: कोनो मनखे जऊन ल आप इहां मना करथव, ओहर अभी घलो हर जगह बात कर सकत हवय ।",
       "loadFailed": "आप मन के मध्यमता सेटिंग लोड नइ कर सकिस. पृष्ठ ल ताजा करे बर",
@@ -9417,6 +9420,14 @@
       "log": "हालिया काम",
       "noLog": "अभी तक नी ।",
       "actions": {
+        "timeout_one": "{{actor}} समय समाप्त {{count}} सेकंड के लिए {{target}}",
+        "timeout_other": "{{actor}} समय समाप्त {{count}} सेकंड के लिए {{target}}",
+        "ban": "{{actor}} प्रतिबंधित {{target}}",
+        "unban": "{{actor}} प्रतिबंधित {{target}}",
+        "moderator-added": "{{target}} मॉडरेटर बन गए",
+        "word-blocked": "\"{{word}}\" के लिए {{target}} का मैसेज रोका गया",
+        "word-timeout_one": "\"{{word}}\" के लिए {{count}} सेकंड के लिए {{target}} समय समाप्त हो गया",
+        "word-timeout_other": "\"{{word}}\" के लिए {{count}} सेकंड के लिए {{target}} समय समाप्त हो गया",
         "moderator-removed": "{{target}} अब एक मॉडिटर नी हवय"
       }
     }

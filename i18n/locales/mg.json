@@ -9483,6 +9483,7 @@
       "log": "Asa Vao Haingana",
       "noLog": "Tsy mbola misy.",
       "actions": {
+        "timeout_one": "{{actor}} timed {{target}} for {{count}} second",
         "timeout_other": "{{actor}} timed Tapitra {{target}} for {{count}} segondra",
         "ban": "{{actor}}FANTARO {{target}}",
         "unban": "{{actor}} tsy nanana fanaovana ny fanampiny {{target}}",

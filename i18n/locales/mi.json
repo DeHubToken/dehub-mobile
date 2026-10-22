@@ -9347,6 +9347,7 @@
       }
     },
     "moderation": {
+      "unban": "Whakahuihui",
       "title": "Whakawhitiwhiti kōrerorero",
       "intro": "Ngā ture mō te kōrerorero i raro i ō awa katoa. Kaore ratou e tae ki te korerorero matua a DeHub: ka taea e tetahi e aukati ana koe i konei te korero i nga waahi katoa.",
       "loadFailed": "Kaore e taea te utaina i o tautuhinga whakaiti. Whakahoutia te whārangi ki te tamata ano.",
@@ -9379,6 +9380,11 @@
       "log": "Ngā mahi hou",
       "noLog": "Kaore ano kia tae mai tetahi mea.",
       "actions": {
+        "timeout_one": "I whakatupurangia {{actor}} ki a {{target}} mō {{count}} hēkona",
+        "timeout_other": "I whakatupurangia {{actor}} ki a {{target}} mō {{count}} hēkona",
+        "word-blocked": "I aukati i te karere mai i a {{target}} mō \"{{word}}\"",
+        "word-timeout_one": "I whakatupurangia {{target}} mō {{count}} hēkona mō \"{{word}}\"",
+        "word-timeout_other": "I whakatupurangia {{target}} mō {{count}} hēkona mō \"{{word}}\"",
         "ban": "{{actor}} kua aukatihia {{target}}",
         "unban": "{{actor}} unbanned {{target}}",
         "moderator-added": "{{target}} ka riro hei kaitautoko",

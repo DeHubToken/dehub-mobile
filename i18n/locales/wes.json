@@ -9192,6 +9192,9 @@
       }
     },
     "moderation": {
+      "bannedWordsHint": "Separate with commas. Spelling a word out letter by letter does not get round it.",
+      "wordAction": "When someone uses one",
+      "wordBlock": "Stop the message",
       "title": "Chat moderation",
       "intro": "Rulz fo chat unda all of my streamz: dem no go reach DeHub main chat: if you ban here, you still go fit talk everywia.",
       "loadFailed": "Na my moderation settings no go load wey. Come back page wey, try again.",
@@ -9235,6 +9238,10 @@
     }
   },
   "liveChatModeration": {
+    "timeout1m": "Time out for 1 minute",
+    "timeout10m": "Time out for 10 minutes",
+    "ban": "Ban from these streams",
+    "banned": "Banned from these streams.",
     "timeout1h": "Tym out fo 1 hour.",
     "makeModerator": "Make moderator",
     "timedOut": "Timed out.",

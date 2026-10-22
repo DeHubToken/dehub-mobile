@@ -9417,6 +9417,7 @@
       "log": "Acțiuni recente",
       "noLog": "Nimic încă.",
       "actions": {
+        "moderator-added": "{{target}} a devenit moderator",
         "timeout_one": "{{actor}} a expirat {{target}} pentru {{count}} secunde",
         "timeout_other": "{{actor}} a expirat {{target}} timp de {{count}} secunde",
         "ban": "{{actor}} interzis {{target}}",

@@ -9291,6 +9291,10 @@
       "webhookHint": "Webhook min be weele ko Discord wala Slack, walima https ka ladɛrɛsi min be sɔn ka baara dɔ kɛ."
     },
     "moderation": {
+      "title": "Modération de chat",
+      "intro": "Règles pour le chat sous tous vos streams. Ils n'atteignent jamais le chat principal de DeHub : quelqu'un que vous bannissez ici peut toujours parler ailleurs.",
+      "seconds_one": "{{count}} seconde",
+      "subscribersOnly": "Abonnés uniquement",
       "loadFailed": "I nin ka sɛbɛn tɛ se ka dɔn. Fɔ̀li jɔ̀ kɔ̀nɔ̀ ka ɲɛ̀nɛ̀.",
       "save": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
       "saved": "O kama, an ka kan ka baro kɛ ni ɲɔgɔn ye.",
@@ -9320,6 +9324,10 @@
       "log": "Sanni dɔɔni, u ye koo dɔw kɛ.",
       "noLog": "O tɛ foyi ye tugun.",
       "actions": {
+        "timeout_one": "{{actor}} a expiré {{target}} pendant {{count}} seconde",
+        "word-blocked": "Arrêt d'un message de {{target}} pour \"{{word}}\"",
+        "word-timeout_one": "Temporisé {{target}} pour {{count}} seconde pour \"{{word}}\"",
+        "word-timeout_other": "Temporisé {{target}} pour {{count}} secondes pour \"{{word}}\"",
         "timeout_other": "{{actor}} timed out{{target}} for {{count}} segindi",
         "ban": "{{actor}} banned {{target}}",
         "unban": "{{actor}} unbanned {{target}}",
