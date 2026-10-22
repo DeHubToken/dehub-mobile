@@ -9180,7 +9180,11 @@
     "subathonOver": "S'ha acabat el temps",
     "pointsTitle": "Els espectadors més lleials",
     "points_one": "{{formatted}} punt",
-    "points_other": "{{formatted}} punts"
+    "points_other": "{{formatted}} punts",
+    "level": "Nivell {{level}}",
+    "streak_one": "{{count}}-setmanes de ratxa",
+    "streak_other": "{{count}}-setmanes de ratxa",
+    "tipJar": "Pot de regals"
   },
   "liveStudio": {
     "controls": {
@@ -9251,7 +9255,9 @@
       "rule_alert": "Alertes de regles",
       "poll": "Enquesta",
       "subathon_timer": "Temporitzador Subathon",
-      "points_board": "Espectadors lleials"
+      "points_board": "Espectadors lleials",
+      "streamer_level": "Nivell de streamer",
+      "tip_jar": "Pot de regals"
     },
     "hints": {
       "spin_wheel": "On giren les rodes de les teves regles",
@@ -9273,7 +9279,9 @@
       "rule_alert": "On apareixen les alertes de les teves normes",
       "poll": "La teva enquesta en directe, amb un botó de vot per a cada opció",
       "subathon_timer": "Un compte enrere que regala, segueix i les subscripcions fan retrocedir",
-      "points_board": "Els teus millors espectadors per punts de visualització i regals"
+      "points_board": "Els teus millors espectadors per punts de visualització i regals",
+      "streamer_level": "El teu nivell de streamer i la teva ratxa setmanal, del teu perfil",
+      "tip_jar": "Un pot que s'omple a mesura que arriben regals pagats"
     },
     "fields": {
       "style": "Estil",
@@ -9307,7 +9315,8 @@
       "speed": "Velocitat",
       "slow": "Lent",
       "normal": "Normal",
-      "fast": "Ràpid"
+      "fast": "Ràpid",
+      "showStreak": "Mostra la ratxa setmanal"
     },
     "obs": {
       "title": "Usar amb OBS",

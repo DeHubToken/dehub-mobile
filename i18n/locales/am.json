@@ -9147,6 +9147,8 @@
     "notNow": "አሁን አይደለም"
   },
   "liveOverlay": {
+    "streak_one": "የ{{count}} ሳምንት ተከታታይ",
+    "streak_other": "የ{{count}} ሳምንታት ተከታታይ",
     "wheelLanded": "{{name}} አሽከረከረ፦ {{result}}",
     "someone": "የሆነ ሰው",
     "newFollower": "አዲስ ተከታይ: {{name}}",
@@ -9173,7 +9175,9 @@
     "subathonOver": "ጊዜ ያበቃል",
     "pointsTitle": "በጣም ታማኝ ተመልካቾች",
     "points_one": "{{formatted}} ነጥብ",
-    "points_other": "{{formatted}} ነጥቦች"
+    "points_other": "{{formatted}} ነጥቦች",
+    "level": "ደረጃ {{level}}",
+    "tipJar": "የስጦታ ማሰሮ"
   },
   "liveStudio": {
     "controls": {
@@ -9243,7 +9247,9 @@
       "rule_alert": "ደንብ ማንቂያዎች",
       "poll": "ድምጽ",
       "subathon_timer": "ሱባቶን ታይመር",
-      "points_board": "ታማኝ ተመልካቾች"
+      "points_board": "ታማኝ ተመልካቾች",
+      "streamer_level": "የዥረት ደረጃ",
+      "tip_jar": "የስጦታ ማሰሮ"
     },
     "hints": {
       "spin_wheel": "በእርስዎ ደንቦች ውስጥ ጎማዎች የሚሽከረከሩበት ቦታ",
@@ -9265,7 +9271,9 @@
       "rule_alert": "ደንብ ማንቂያዎችዎ የሚታዩበት ቦታ",
       "poll": "የእርስዎ የቀጥታ ምርጫ, ለእያንዳንዱ አማራጭ የድምጽ አዝራር ጋር",
       "subathon_timer": "ስጦታዎች ፣ መከተል እና ምዝገባዎች ወደ ኋላ የሚገፋፉበት ቆጠራ",
-      "points_board": "ከመመልከት እና ከስጦታ ነጥቦች ሊገኙ የሚችሉ ከፍተኛ ተመልካቾች"
+      "points_board": "ከመመልከት እና ከስጦታ ነጥቦች ሊገኙ የሚችሉ ከፍተኛ ተመልካቾች",
+      "streamer_level": "የእርስዎ ዥረት ደረጃ እና ሳምንታዊ ቁልል ፣ ከመገለጫዎ",
+      "tip_jar": "የተከፈለ ስጦታዎች ሲገቡ የሚሞላ ማሰሮ"
     },
     "fields": {
       "style": "ቅጥ",
@@ -9297,7 +9305,8 @@
       "speed": "ፍጥነት",
       "slow": "ቀርፋፋ",
       "normal": "መደበኛ",
-      "fast": "ፈጣን"
+      "fast": "ፈጣን",
+      "showStreak": "የሳምንቱን ስክሪፕት አሳይ"
     },
     "obs": {
       "title": "ከ OBS ጋር ይጠቀሙ",

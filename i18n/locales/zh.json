@@ -9276,7 +9276,11 @@
     "subathonOver": "时间已到",
     "pointsTitle": "最忠实的观众",
     "points_one": "{{formatted}}点",
-    "points_other": "{{formatted}}积分"
+    "points_other": "{{formatted}}积分",
+    "level": "等级{{level}}",
+    "streak_one": "{{count}}周连胜",
+    "streak_other": "{{count}}周连胜",
+    "tipJar": "礼品罐"
   },
   "liveStudio": {
     "controls": {
@@ -9347,7 +9351,9 @@
       "rule_alert": "规则警报",
       "poll": "投票",
       "subathon_timer": "Subathon计时器",
-      "points_board": "忠实观众"
+      "points_board": "忠实观众",
+      "streamer_level": "主播级别",
+      "tip_jar": "礼品罐"
     },
     "hints": {
       "spin_wheel": "规则中的车轮在哪里旋转",
@@ -9369,7 +9375,9 @@
       "rule_alert": "规则提醒的显示位置",
       "poll": "您的实时投票，每个选项都有投票按钮",
       "subathon_timer": "一个倒计时，礼物、关注和订阅都被推迟了。",
-      "points_board": "您的观看和打赏积分最高的观众列表"
+      "points_board": "您的观看和打赏积分最高的观众列表",
+      "streamer_level": "您的个人资料中的流媒体播放器级别和每周连续播放次数",
+      "tip_jar": "当有偿礼物进来时，一个罐子会装满"
     },
     "fields": {
       "style": "样式",
@@ -9403,7 +9411,8 @@
       "speed": "速度",
       "slow": "慢",
       "normal": "正常",
-      "fast": "快"
+      "fast": "快",
+      "showStreak": "显示每周连胜记录"
     },
     "obs": {
       "title": "与OBS使用",

@@ -9190,7 +9190,11 @@
     "subathonOver": "Isikhathi siphelile",
     "pointsTitle": "Ababukeli abaningi abathembekile",
     "points_one": "{{formatted}} ngokothi",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Izinga {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Imbiza yezipho"
   },
   "liveStudio": {
     "controls": {
@@ -9261,7 +9265,9 @@
       "rule_alert": "Izikhalo Zemithetho",
       "poll": "Inhlolovo",
       "subathon_timer": "I-subathon timer",
-      "points_board": "Ababukeli abathembekile"
+      "points_board": "Ababukeli abathembekile",
+      "streamer_level": "Izinga lokusakaza",
+      "tip_jar": "Imbiza yezipho"
     },
     "hints": {
       "spin_wheel": "Lapho amasondo emithethweni yakho ephotha khona",
@@ -9283,7 +9289,9 @@
       "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona",
       "poll": "Ukuvota kwakho bukhoma, okunenkinobho yokuvota kukho konke ongakhetha kukho",
       "subathon_timer": "Ukubala okubuyiselwa emuva, okulandelwayo nokubhaliselwe",
-      "points_board": "Ababukeli bakho abahamba phambili ngamaphuzu okubuka nokuphana"
+      "points_board": "Ababukeli bakho abahamba phambili ngamaphuzu okubuka nokuphana",
+      "streamer_level": "Izinga lakho lokusakaza kanye nochungechunge lwamasonto onke, oluvela kuphrofayili yakho",
+      "tip_jar": "Imbiza egcwalisa njengezipho ezikhokhelwayo"
     },
     "fields": {
       "style": "Isitayela",
@@ -9317,7 +9325,8 @@
       "speed": "Ijubane",
       "slow": "Kancane",
       "normal": "Okuvamile",
-      "fast": "Kuyashesha"
+      "fast": "Kuyashesha",
+      "showStreak": "Bonisa umlando wamaviki onke"
     },
     "obs": {
       "title": "Sebenzisa nge-OBS",

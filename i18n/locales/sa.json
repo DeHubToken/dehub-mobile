@@ -9070,6 +9070,9 @@
     "notNow": "नैव"
   },
   "liveOverlay": {
+    "level": "स्तरः {{level}}",
+    "streak_one": "{{count}} सप्ताहस्य क्रमः",
+    "streak_other": "{{count}} सप्ताहानां क्रमः",
     "wheelLanded": "{{name}} भ्रामितवान्: {{result}}",
     "poll": {
       "voteFor": "{{option}} के लिए मतदान करें",
@@ -9092,7 +9095,8 @@
     "subathonOver": "समयावधिः उभे",
     "pointsTitle": "अधिक वफादार व्यूअर",
     "points_one": "{{formatted}} प्वाइंट",
-    "points_other": "{{formatted}} पॉइंट्स"
+    "points_other": "{{formatted}} पॉइंट्स",
+    "tipJar": "उपहारः jar"
   },
   "liveStudio": {
     "controls": {
@@ -9189,9 +9193,12 @@
       "ticker": "Ticker",
       "rule_alert": "नियम सावधानियां",
       "subathon_timer": "Subathon घंटा",
-      "points_board": "निष्ठावान दर्शक"
+      "points_board": "निष्ठावान दर्शक",
+      "streamer_level": "Streamer level",
+      "tip_jar": "उपहारः jar"
     },
     "hints": {
+      "tip_jar": "दत्तेषु उपहारेषु आगच्छत्सु पूर्यमाणः कलशः",
       "subathon_timer": "एक गणना जो उपहारों, अनुसरणों और सदस्यताओं को पीछे धकेलती है।",
       "spin_wheel": "जहां तेरे चरणो मे धावूं",
       "poll": "मतदान केन्द्रः प्रत्येक मतदान केन्द्रमा एक मतदान केन्द्र",
@@ -9207,7 +9214,8 @@
       "chat_box": "अपने संदेश स्क्रीन पर धुआं धुआं",
       "ticker": "तेरे चरणो मे, तेरे चरणो मे...",
       "rule_alert": "जहां तुम्हारे निहितार्थ",
-      "points_board": "शीर्ष दृश्यः दृश्य और दृश्य"
+      "points_board": "शीर्ष दृश्यः दृश्य और दृश्य",
+      "streamer_level": "तेरे दरम्यां, मेरे दरम्यां, तेरे दरम्यां"
     },
     "fields": {
       "style": "शैलम्",
@@ -9241,7 +9249,8 @@
       "speed": "वेगः",
       "slow": "धीमतः",
       "normal": "सामान्यम्",
-      "fast": "त्वरितम्"
+      "fast": "त्वरितम्",
+      "showStreak": "Tag: सप्ताहांत स्पेशल"
     },
     "obs": {
       "title": "उपयोगः OBS",

@@ -9131,6 +9131,8 @@
     "notNow": "Gwé nggoje."
   },
   "liveOverlay": {
+    "streak_one": "{{count}}-minggu beruntun",
+    "streak_other": "{{count}}-minggu beruntun",
     "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}",
     "someone": "Sapa wae",
     "newFollower": "Pengikut anyar: {{name}}",
@@ -9156,7 +9158,9 @@
     "subathonOver": "Wektune wis entek",
     "pointsTitle": "Penonton paling setya",
     "points_one": "{{formatted}} poin",
-    "points_other": "{{formatted}} poin"
+    "points_other": "{{formatted}} poin",
+    "level": "Level {{level}}",
+    "tipJar": "Kotak hadiah"
   },
   "liveStudio": {
     "controls": {
@@ -9208,6 +9212,7 @@
       "join": "Ndhuwur"
     },
     "kinds": {
+      "streamer_level": "Level streamer",
       "spin_wheel": "Roda putar",
       "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",
@@ -9224,7 +9229,8 @@
       "ticker": "Ticker",
       "poll": "Pemilihan",
       "subathon_timer": "Timer subathon",
-      "points_board": "Penonton setya"
+      "points_board": "Penonton setya",
+      "tip_jar": "Kotak hadiah"
     },
     "hints": {
       "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter",
@@ -9244,7 +9250,9 @@
       "rule_alert": "Endi aturan-aturan penting mu katon",
       "poll": "Pemilihan live kamu, dengan tombol suara untuk tiap opsi",
       "subathon_timer": "Hitung mundur sing hadiah, follow lan subscription mundur maneh",
-      "points_board": "Penonton paling dhuwur mu miturut poin saka nonton lan hadiah"
+      "points_board": "Penonton paling dhuwur mu miturut poin saka nonton lan hadiah",
+      "streamer_level": "Level streamer dan *streak* mingguan dari profilmu",
+      "tip_jar": "Satu kandang yang penuh karena hadiah yang dibayar masuk"
     },
     "fields": {
       "style": "Style",
@@ -9277,7 +9285,8 @@
       "showAvatars": "Gambar profil ditampilkan",
       "speed": "Sangga",
       "normal": "Normal",
-      "fast": "Cepet"
+      "fast": "Cepet",
+      "showStreak": "Tampilkan *streak* mingguan"
     },
     "obs": {
       "title": "Gunakake karo OBS",

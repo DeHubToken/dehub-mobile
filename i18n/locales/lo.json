@@ -9107,6 +9107,8 @@
     "notNow": "ບໍ່ແມ່ນຕອນນີ້"
   },
   "liveOverlay": {
+    "streak_one": "ຕໍ່ເນື່ອງ {{count}} ອາທິດ",
+    "streak_other": "ຕໍ່ເນື່ອງ {{count}} ອາທິດ",
     "wheelLanded": "{{name}} ໝຸນ: {{result}}",
     "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ",
     "newFollower": "ຜູ້ຕິດຕາມ ໃຫມ່: {{name}}",
@@ -9133,7 +9135,9 @@
     "subathonOver": "ເຖິງເວລາແລ້ວ",
     "pointsTitle": "ຜູ້ຊົມທີ່ຊື່ສັດທີ່ສຸດ",
     "points_one": "{{formatted}} ຈຸດ",
-    "points_other": "{{formatted}} ຈຸດ"
+    "points_other": "{{formatted}} ຈຸດ",
+    "level": "ລະດັບ {{level}}",
+    "tipJar": "ຂວດຂອງຂວັນ"
   },
   "liveStudio": {
     "controls": {
@@ -9203,7 +9207,9 @@
       "rule_alert": "ການແຈ້ງເຕືອນກົດລະບຽບ",
       "poll": "ການສຳຫຼວດ",
       "subathon_timer": "ເຄື່ອງຈັບເວລາ Subathon",
-      "points_board": "ຜູ້ຊົມທີ່ຊື່ສັດ"
+      "points_board": "ຜູ້ຊົມທີ່ຊື່ສັດ",
+      "streamer_level": "ລະດັບ Streamer",
+      "tip_jar": "ຂວດຂອງຂວັນ"
     },
     "hints": {
       "spin_wheel": "ບ່ອນທີ່ລໍ້ໃນກົດລະບຽບຂອງທ່ານ ຫມູນ ວຽນ",
@@ -9225,7 +9231,9 @@
       "rule_alert": "ບ່ອນທີ່ການແຈ້ງເຕືອນຂອງກົດລະບຽບຂອງທ່ານປະກົດຂື້ນ",
       "poll": "ການ ປ່ອນ ບັດ ດໍາ ລົງ ຊີ ວິດ ຂອງ ທ່ານ, ພ້ອມ ດ້ວຍ ປຸ່ມ ລົງ ຄະ ແນນ ສຽງ ສໍາ ລັບ ທຸກໆ ທາງ ເລືອກ",
       "subathon_timer": "ການນັບຖອຍຫຼັງທີ່ຂອງຂວັນ, ຕິດຕາມ ແລະ ການຈອງຊຸກຍູ້ຄືນ",
-      "points_board": "ຜູ້ຊົມສູງສຸດຂອງທ່ານໂດຍຈຸດຈາກການເບິ່ງແລະ gifting"
+      "points_board": "ຜູ້ຊົມສູງສຸດຂອງທ່ານໂດຍຈຸດຈາກການເບິ່ງແລະ gifting",
+      "streamer_level": "ລະດັບ streamer ຂອງທ່ານແລະ streak ປະຈໍາອາທິດ, ຈາກໂປຣໄຟລ໌ຂອງທ່ານ",
+      "tip_jar": "ຂີ້ເຫຍື້ອທີ່ຂີ້ເຫຍື້ອທີ່ຂີ້ເຫຍື້ອ"
     },
     "fields": {
       "style": "ແບບ",
@@ -9259,7 +9267,8 @@
       "speed": "ຄວາມໄວ",
       "slow": "ຊ້າ",
       "normal": "ປົກກະຕິ",
-      "fast": "ໄວ"
+      "fast": "ໄວ",
+      "showStreak": "ສະແດງ Streak ປະຈໍາອາທິດ"
     },
     "obs": {
       "title": "ໃຊ້ກັບ OBS",

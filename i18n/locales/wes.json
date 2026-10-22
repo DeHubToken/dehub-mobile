@@ -9011,6 +9011,10 @@
     "notNow": "No now"
   },
   "liveOverlay": {
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Gift jar",
     "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Vote close",
@@ -9107,6 +9111,8 @@
       "join": "Join"
     },
     "kinds": {
+      "streamer_level": "Streamer level",
+      "tip_jar": "Gift jar",
       "spin_wheel": "Spin wheel",
       "poll": "Poll",
       "tip_alert": "Tip alert",
@@ -9129,6 +9135,8 @@
       "points_board": "Loyal viewers"
     },
     "hints": {
+      "streamer_level": "Your streamer level and weekly streak, from your profile",
+      "tip_jar": "A jar that fills up as paid gifts come in",
       "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
       "points_board": "Your top viewers by points from watching and gifting",
       "spin_wheel": "Where the wheels in your rules spin",
@@ -9141,6 +9149,7 @@
       "reaction_counter": "Count all di reaction di get fo di broadcast yu do"
     },
     "fields": {
+      "showStreak": "Show the weekly streak",
       "style": "Style",
       "celebration": "Celebration",
       "banner": "Banner",

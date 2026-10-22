@@ -9181,7 +9181,11 @@
     "subathonOver": "Muda umekwisha",
     "pointsTitle": "Watazamaji waaminifu zaidi",
     "points_one": "{{formatted}} pointi",
-    "points_other": "{{formatted}} pointi"
+    "points_other": "{{formatted}} pointi",
+    "level": "Ngazi {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Chombo cha zawadi"
   },
   "liveStudio": {
     "controls": {
@@ -9252,7 +9256,9 @@
       "rule_alert": "Arifa za sheria",
       "poll": "Kura",
       "subathon_timer": "Kipima muda cha mbio ndogo",
-      "points_board": "Watazamaji waaminifu"
+      "points_board": "Watazamaji waaminifu",
+      "streamer_level": "Kiwango cha mtiririko",
+      "tip_jar": "Chombo cha zawadi"
     },
     "hints": {
       "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka",
@@ -9273,7 +9279,9 @@
       "rule_alert": "Hapa ni jina la matatizo ya kawaida yako",
       "poll": "Kura yako ya moja kwa moja, ikiwa na kitufe cha kupiga kura kwa kila chaguo",
       "subathon_timer": "Hesabu ambayo inatoa, kufuata na usajili inarudi nyuma",
-      "points_board": "Watazamaji wako maarufu kulingana na pointi za kutazama na kutoa vipawa"
+      "points_board": "Watazamaji wako maarufu kulingana na pointi za kutazama na kutoa vipawa",
+      "streamer_level": "Kiwango chako cha mtiririko na mfululizo wa kila wiki, kutoka kwenye wasifu wako",
+      "tip_jar": "Chupa inayojaza kama zawadi zinazolipwa zinaingia"
     },
     "fields": {
       "style": "Mtindo",
@@ -9307,7 +9315,8 @@
       "speed": "Kasi",
       "slow": "Polepole",
       "normal": "Kawaida",
-      "fast": "Haraka"
+      "fast": "Haraka",
+      "showStreak": "Onyesha safu ya kila wiki"
     },
     "obs": {
       "title": "Tumia kwa kutumia OBS",

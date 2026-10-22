@@ -9129,6 +9129,7 @@
     "notNow": "ہن نہیں"
   },
   "liveOverlay": {
+    "tipJar": "گفٹ جار",
     "subathon": "سباتھون",
     "subathonOver": "وقت ختم ہو گیا ہے",
     "pointsTitle": "سب سے زیادہ وفادار ناظرین",
@@ -9153,7 +9154,10 @@
     "followersUnit": "فالوورز",
     "topSupporters": "ٹاپ سپورٹرز",
     "points_one": "{{formatted}} پونٹ",
-    "points_other": "{{formatted}} پوائنٹس"
+    "points_other": "{{formatted}} پوائنٹس",
+    "level": "لۏول {{level}}",
+    "streak_one": "{{count}}-ہفتہ کا چیلنج",
+    "streak_other": "{{count}}-ہفتہ کا چیلنج"
   },
   "liveStudio": {
     "controls": {
@@ -9222,6 +9226,7 @@
       "tip": "ٹپ"
     },
     "kinds": {
+      "tip_jar": "گفٹ جار",
       "subathon_timer": "سباتھن ٹائمر",
       "spin_wheel": "گھومنے والا پہیہ",
       "poll": "رائے شماری",
@@ -9229,9 +9234,12 @@
       "top_supporters": "اُپَرِ پُجِیَارَان",
       "stream_timer": "براڈکاسٹ ٹائمر",
       "chat_box": "چٹ بکس",
-      "points_board": "لویال دکھنے والوں!"
+      "points_board": "لویال دکھنے والوں!",
+      "streamer_level": "ستریمر لویل"
     },
     "hints": {
+      "streamer_level": "آپ کے پروفائل سے، آپ کے اسٹریمر کا لیول اور ہفتہ وار سلسلہ",
+      "tip_jar": "بامعاوضہ تحائف آتے ہی بھرنے والا برتن",
       "points_board": "دیکھنے اور تحفے دینے کے پوائنٹس کے لحاظ سے آپ کے اعلی ناظرین",
       "spin_wheel": "جہاں آپ کے اصولوں میں پہیے گھومتے ہیں",
       "poll": "ہر آپشن کے لیے ووٹ کے بٹن کے ساتھ آپ کا لائیو پول",
@@ -9253,7 +9261,8 @@
       "smaller": "چوٹا",
       "lines": "لائناں دکھائی گئیں",
       "showAvatars": "پروفائل کی تصاویر دکھاوے",
-      "speed": "سرعت"
+      "speed": "سرعت",
+      "showStreak": "ہفتہ وار سٹریک دکھاؤ"
     },
     "obs": {
       "title": "OBS نال استعمال کرو",

@@ -9193,7 +9193,11 @@
     "subathonOver": "Timpul a expirat",
     "pointsTitle": "Cei mai fideli spectatori",
     "points_one": "{{formatted}} punct",
-    "points_other": "{{formatted}} puncte"
+    "points_other": "{{formatted}} puncte",
+    "level": "Nivel {{level}}",
+    "streak_one": "{{count}}- serie de săptămâni",
+    "streak_other": "{{count}}- serie de săptămâni",
+    "tipJar": "Borcan de cadouri"
   },
   "liveStudio": {
     "controls": {
@@ -9264,7 +9268,9 @@
       "rule_alert": "Alerte privind regulile",
       "poll": "Sondaj",
       "subathon_timer": "Temporizator subaton",
-      "points_board": "Spectatori fideli"
+      "points_board": "Spectatori fideli",
+      "streamer_level": "Nivel streamer",
+      "tip_jar": "Borcan de cadouri"
     },
     "hints": {
       "spin_wheel": "Unde se învârt roțile din regulile tale",
@@ -9286,7 +9292,9 @@
       "rule_alert": "Unde apar alertele regulilor tale",
       "poll": "Sondajul dvs. live, cu un buton de vot pentru fiecare opțiune",
       "subathon_timer": "O numărătoare inversă pe care cadourile, abonamentele și abonamentele o resping",
-      "points_board": "Spectatorii dvs. de top după puncte de la vizionarea și oferirea de cadouri"
+      "points_board": "Spectatorii dvs. de top după puncte de la vizionarea și oferirea de cadouri",
+      "streamer_level": "Nivelul dvs. de streamer și dunga săptămânală, din profilul dvs.",
+      "tip_jar": "Un borcan care se umple pe măsură ce cadourile plătite vin"
     },
     "fields": {
       "style": "Stil",
@@ -9320,7 +9328,8 @@
       "speed": "Viteză",
       "slow": "Încet",
       "normal": "Normal",
-      "fast": "Rapid"
+      "fast": "Rapid",
+      "showStreak": "Afișează seria săptămânală"
     },
     "obs": {
       "title": "Folosește cu OBS",

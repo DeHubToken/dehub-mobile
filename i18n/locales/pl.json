@@ -9253,7 +9253,11 @@
     "subathonOver": "Czas minął",
     "pointsTitle": "Najbardziej lojalni widzowie",
     "points_one": "Punkt {{formatted}}",
-    "points_other": "{{formatted}} pkt"
+    "points_other": "{{formatted}} pkt",
+    "level": "Poziom {{level}}",
+    "streak_one": "{{count}}-tygodniowa seria",
+    "streak_other": "{{count}}-tygodniowa seria",
+    "tipJar": "Słoik na prezenty"
   },
   "liveStudio": {
     "controls": {
@@ -9324,7 +9328,9 @@
       "rule_alert": "Powiadomienia o regułach",
       "poll": "Ankieta",
       "subathon_timer": "Timer podturnieju",
-      "points_board": "Lojalni widzowie"
+      "points_board": "Lojalni widzowie",
+      "streamer_level": "Poziom streamera",
+      "tip_jar": "Słoik na prezenty"
     },
     "hints": {
       "spin_wheel": "Gdzie kręcą się koła w Twoich zasadach",
@@ -9346,7 +9352,9 @@
       "rule_alert": "Gdzie pojawiają się twoje alerty z zasad",
       "poll": "Twoja ankieta na żywo, z przyciskiem głosowania dla każdej opcji",
       "subathon_timer": "Odliczanie, które powoduje, że prezenty, obserwacje i subskrypcje cofają się",
-      "points_board": "Twoi najlepsi widzowie według punktów za oglądanie i prezentowanie"
+      "points_board": "Twoi najlepsi widzowie według punktów za oglądanie i prezentowanie",
+      "streamer_level": "Twój poziom streamera i cotygodniowa seria z Twojego profilu",
+      "tip_jar": "Słoik, który napełnia się w formie płatnych prezentów"
     },
     "fields": {
       "style": "Styl",
@@ -9380,7 +9388,8 @@
       "speed": "Prędkość",
       "slow": "Wolno",
       "normal": "Normalny",
-      "fast": "Szybko"
+      "fast": "Szybko",
+      "showStreak": "Pokaż tygodniową serię"
     },
     "obs": {
       "title": "Użyj z OBS",

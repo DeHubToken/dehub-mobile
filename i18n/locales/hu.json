@@ -9182,7 +9182,11 @@
     "subathonOver": "Lejárt az idő",
     "pointsTitle": "Leghűségesebb nézők",
     "points_one": "{{formatted}} pont",
-    "points_other": "{{formatted}} pont"
+    "points_other": "{{formatted}} pont",
+    "level": "Szint {{level}}",
+    "streak_one": "{{count}}hetes sorozat",
+    "streak_other": "{{count}}hetes sorozat",
+    "tipJar": "Ajándékdoboz"
   },
   "liveStudio": {
     "controls": {
@@ -9253,7 +9257,9 @@
       "rule_alert": "Szabályriasztások",
       "poll": "Szavazás",
       "subathon_timer": "Subathon időzítő",
-      "points_board": "Hűséges nézők"
+      "points_board": "Hűséges nézők",
+      "streamer_level": "Streamer szint",
+      "tip_jar": "Ajándékdoboz"
     },
     "hints": {
       "spin_wheel": "Ahol a szabályaid kerekei forognak",
@@ -9275,7 +9281,9 @@
       "rule_alert": "Itt jelennek meg a szabályaidra vonatkozó értesítések",
       "poll": "Élő szavazásod, szavazógombbal minden opcióhoz",
       "subathon_timer": "A visszaszámlálás, amely az ajándékokat, a követéseket és az előfizetéseket visszaszorítja",
-      "points_board": "A legjobb nézők pontonként a nézésből és az ajándékozásból"
+      "points_board": "A legjobb nézők pontonként a nézésből és az ajándékozásból",
+      "streamer_level": "A streamer szinted és a heti csíkszámod a profilodból",
+      "tip_jar": "Egy befőttesüveg, ami megtelik, ahogy a fizetett ajándékok beérkeznek"
     },
     "fields": {
       "style": "Stílus",
@@ -9309,7 +9317,8 @@
       "speed": "Sebesség",
       "slow": "Lassú",
       "normal": "Normál",
-      "fast": "Gyors"
+      "fast": "Gyors",
+      "showStreak": "Heti sorozat megjelenítése"
     },
     "obs": {
       "title": "OBS használatával",

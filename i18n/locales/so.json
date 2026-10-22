@@ -9155,7 +9155,11 @@
     "subathonOver": "Waqtiga dhammaatay",
     "pointsTitle": "Daawayaashaada ugu sadiqada leh",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Heerka {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Jar hadiyad ah"
   },
   "liveStudio": {
     "controls": {
@@ -9221,7 +9225,9 @@
       "rule_alert": "Digniinta xeerka",
       "poll": "Codad",
       "subathon_timer": "Subathon timer",
-      "points_board": "Loyal viewers"
+      "points_board": "Loyal viewers",
+      "streamer_level": "Heerka Streamer",
+      "tip_jar": "Jar hadiyad ah"
     },
     "hints": {
       "spin_wheel": "Halka giraangiraha ku jira xeerarkaaga ay wareegaan",
@@ -9243,7 +9249,9 @@
       "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato",
       "poll": "Codadkaaga siidaadka ah, oo leh buton codad oo kasta filah",
       "subathon_timer": "Countdown oo gift, follow iyo subscription-ka dib u celiya",
-      "points_board": "Daawayaashaada ugu sarreeya points-ka oo ka yimid daawista iyo bixinta"
+      "points_board": "Daawayaashaada ugu sarreeya points-ka oo ka yimid daawista iyo bixinta",
+      "streamer_level": "Heerkaaga qulqulka iyo isbuuclaha, laga soo bilaabo astaantaada",
+      "tip_jar": "Dheriga oo buuxiya sida hadiyadaha la bixiyo ay u soo galaan"
     },
     "fields": {
       "style": "Qaabka",
@@ -9276,7 +9284,8 @@
       "speed": "Xawaaraha",
       "slow": "Si tartiib ah",
       "normal": "Caadi ah",
-      "fast": "Si dhakhso ah"
+      "fast": "Si dhakhso ah",
+      "showStreak": "Muuji streak-ka toddobaadlaha ah"
     },
     "obs": {
       "title": "Isticmaal OBS",

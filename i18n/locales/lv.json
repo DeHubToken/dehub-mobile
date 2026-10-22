@@ -9179,7 +9179,11 @@
     "subathonOver": "Laiks beidzās",
     "pointsTitle": "Augstākais uzticīgais skatītājs",
     "points_one": "{{formatted}} punkts",
-    "points_other": "{{formatted}} punkti"
+    "points_other": "{{formatted}} punkti",
+    "level": "Līmenis {{level}}",
+    "streak_one": "{{count}}-nedēļu sērija",
+    "streak_other": "{{count}}-nedēļu sērija",
+    "tipJar": "Dāvanu trauciņš"
   },
   "liveStudio": {
     "controls": {
@@ -9249,7 +9253,9 @@
       "rule_alert": "Noteikumu brīdinājumi",
       "poll": "Aptauja",
       "subathon_timer": "Subathon laiks",
-      "points_board": "Uzticīgie skatītāji"
+      "points_board": "Uzticīgie skatītāji",
+      "streamer_level": "Straumētāja līmenis",
+      "tip_jar": "Dāvanu trauciņš"
     },
     "hints": {
       "spin_wheel": "Kur griežas jūsu noteikumu riteņi",
@@ -9271,7 +9277,9 @@
       "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi",
       "poll": "Jūsu tiešsaistes aptauja ar balsošanas pogu katrai opcijai",
       "subathon_timer": "Skaitītājs, kuru dāvanas, sekotāji un abonementi atgrūž atpakaļ",
-      "points_board": "Jūsu augstākā skatītāji pēc punktiem no skatīšanas un dāvināšanas"
+      "points_board": "Jūsu augstākā skatītāji pēc punktiem no skatīšanas un dāvināšanas",
+      "streamer_level": "Jūsu straumētāja līmenis un iknedēļas sērija no jūsu profila",
+      "tip_jar": "Burka, kas piepildās, kad ienāk apmaksātas dāvanas"
     },
     "fields": {
       "style": "Stils",
@@ -9305,7 +9313,8 @@
       "speed": "Ātrums",
       "slow": "Lēns",
       "normal": "Normāls",
-      "fast": "Ātrs"
+      "fast": "Ātrs",
+      "showStreak": "Rādīt iknedēļas sēriju"
     },
     "obs": {
       "title": "Lieto ar OBS",

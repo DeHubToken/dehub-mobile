@@ -9179,7 +9179,11 @@
     "subathonOver": "Aika loppui",
     "pointsTitle": "Uskollisimmat katsojat",
     "points_one": "{{formatted}} piste",
-    "points_other": "{{formatted}} pistettä"
+    "points_other": "{{formatted}} pistettä",
+    "level": "Taso {{level}}",
+    "streak_one": "{{count}}viikon putki",
+    "streak_other": "{{count}}viikon putki",
+    "tipJar": "Lahjapurkki"
   },
   "liveStudio": {
     "controls": {
@@ -9250,7 +9254,9 @@
       "rule_alert": "Sääntöhälytykset",
       "poll": "Kysely",
       "subathon_timer": "Subathon-ajastin",
-      "points_board": "Uskolliset katsojat"
+      "points_board": "Uskolliset katsojat",
+      "streamer_level": "Suoratoistotaso",
+      "tip_jar": "Lahjapurkki"
     },
     "hints": {
       "spin_wheel": "Sääntöjesi pyörät pyörivät",
@@ -9272,7 +9278,9 @@
       "rule_alert": "Missä sääntöjesi hälytykset näkyvät",
       "poll": "Livekyselysi, jossa on äänestyspainike jokaiselle vaihtoehdolle",
       "subathon_timer": "Lähtölaskenta, joka antaa lahjoja, seuraa ja tilaukset työntävät takaisin",
-      "points_board": "Suosituimmat katsojasi katsomalla ja lahjoittamalla saatujen pisteiden mukaan"
+      "points_board": "Suosituimmat katsojasi katsomalla ja lahjoittamalla saatujen pisteiden mukaan",
+      "streamer_level": "Suoratoistotasosi ja viikoittainen putkesi profiilistasi",
+      "tip_jar": "Purkki, joka täyttyy maksettujen lahjojen tullessa"
     },
     "fields": {
       "style": "Tyyli",
@@ -9306,7 +9314,8 @@
       "speed": "Nopeus",
       "slow": "Hidas",
       "normal": "Normaali",
-      "fast": "Nopea"
+      "fast": "Nopea",
+      "showStreak": "Näytä viikoittainen putki"
     },
     "obs": {
       "title": "Käytä OBS: n kanssa",

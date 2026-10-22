@@ -9360,7 +9360,11 @@
     "subathonOver": "Tapos na ang oras",
     "pointsTitle": "Karamihan sa mga tapat na manonood",
     "points_one": "{{formatted}}point",
-    "points_other": "{{formatted}} puntos"
+    "points_other": "{{formatted}} puntos",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-linggo ng streak",
+    "streak_other": "{{count}}-linggo ng streak",
+    "tipJar": "Garapon na regalo"
   },
   "liveStudio": {
     "controls": {
@@ -9431,7 +9435,9 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Mga alerto sa panuntunan",
-      "points_board": "Mga tapat na manonood"
+      "points_board": "Mga tapat na manonood",
+      "streamer_level": "Antas ng streamer",
+      "tip_jar": "Garapon na regalo"
     },
     "hints": {
       "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot",
@@ -9453,7 +9459,9 @@
       "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan",
       "poll": "Ang iyong live poll, na may isang pindutan ng boto para sa bawat pagpipilian",
       "subathon_timer": "Ang isang countdown na mga regalo, mga sumusunod at mga subscription itulak pabalik",
-      "points_board": "Ang iyong mga nangungunang manonood ayon sa mga puntos mula sa panonood at pagbibigay ng regalo"
+      "points_board": "Ang iyong mga nangungunang manonood ayon sa mga puntos mula sa panonood at pagbibigay ng regalo",
+      "streamer_level": "Ang iyong antas ng streamer at lingguhang streak, mula sa iyong profile",
+      "tip_jar": "Ang isang garapon na pumupuno bilang bayad na mga regalo ay pumapasok"
     },
     "fields": {
       "style": "Estilo",
@@ -9487,7 +9495,8 @@
       "speed": "Bilis",
       "slow": "Mabagal",
       "normal": "Normal",
-      "fast": "Mabilis"
+      "fast": "Mabilis",
+      "showStreak": "Ipakita ang weekly streak"
     },
     "obs": {
       "title": "Gamitin sa OBS",

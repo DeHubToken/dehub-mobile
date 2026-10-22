@@ -9153,7 +9153,11 @@
     "subathonOver": "Lokaci ya ƙare",
     "pointsTitle": "Masu aminci mafi girma",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Mataki {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Kyauta jar"
   },
   "liveStudio": {
     "controls": {
@@ -9219,7 +9223,9 @@
       "rule_alert": "Gargajiya na Dokoki",
       "poll": "Kuri'a",
       "subathon_timer": "Subathon timer",
-      "points_board": "Masu aminci na jama'a"
+      "points_board": "Masu aminci na jama'a",
+      "streamer_level": "Streamer matakin",
+      "tip_jar": "Kyauta jar"
     },
     "hints": {
       "spin_wheel": "Inda ƙafafun da ke cikin dokokinku ke juyawa",
@@ -9240,7 +9246,9 @@
       "rule_alert": "Inda gargajiyar dokoki ta bayyana",
       "poll": "Zaben ku na rayuwa, tare da maɓallin jefa kuri'a ga kowane zaɓi",
       "subathon_timer": "Countdown da kyauta, bin jiya da subscriptions suna tura baya",
-      "points_board": "Masu kallo mafi girma ta points daga kallo da ba da kyauta"
+      "points_board": "Masu kallo mafi girma ta points daga kallo da ba da kyauta",
+      "streamer_level": "Your streamer matakin da mako-mako streak, daga your profile",
+      "tip_jar": "Gwangwani da ke cikawa yayin da aka biya kyauta ya shigo"
     },
     "fields": {
       "style": "Salo",
@@ -9268,7 +9276,8 @@
       "showAvatars": "Nuna hotunan bayanan martaba",
       "speed": "Saurin sauri",
       "slow": "A hankali",
-      "fast": "Yo Gabba Gabba"
+      "fast": "Yo Gabba Gabba",
+      "showStreak": "Nuna streak na mako-mako"
     },
     "obs": {
       "title": "Yi amfani da OBS",

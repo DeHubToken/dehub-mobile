@@ -9208,7 +9208,11 @@
     "subathonOver": "Yeroon darbeera",
     "pointsTitle": "Daawwattoota amanamoo ta'an irra caalaan",
     "points_one": "{{formatted}} qabxii",
-    "points_other": "{{formatted}} qabxii"
+    "points_other": "{{formatted}} qabxii",
+    "level": "Sadarkaa {{level}}",
+    "streak_one": "{{count}}-torban walitti aansuun",
+    "streak_other": "{{count}}-torban walitti aansuun",
+    "tipJar": "Jaarsa kennaa"
   },
   "liveStudio": {
     "controls": {
@@ -9279,7 +9283,9 @@
       "rule_alert": "Ogeeyyii Seera",
       "poll": "Gaaffii",
       "subathon_timer": "Sa'aatii subathon",
-      "points_board": "Daawwattoota amanamoo"
+      "points_board": "Daawwattoota amanamoo",
+      "streamer_level": "Sadarkaa Streamer",
+      "tip_jar": "Jaarsa kennaa"
     },
     "hints": {
       "spin_wheel": "Bakka girgiddaan seera kee keessa jiru itti naanna'u",
@@ -9301,7 +9307,9 @@
       "rule_alert": "Bakka ogeeyyii seera keessan mul'atu",
       "poll": "Gaaffii live kee, buutina jiddaa filannoo tokkoon tokkoon irratti",
       "subathon_timer": "Lakkoofsa duubatti deebi'uu kan kennaa, hordofuu fi maallaqa galchuun duubatti dhiibu",
-      "points_board": "Daawwattoota kee olaanoo qabxii ilaaluu fi kennaa kennuu irraa"
+      "points_board": "Daawwattoota kee olaanoo qabxii ilaaluu fi kennaa kennuu irraa",
+      "streamer_level": "Sadarkaa streamer keessanii fi streak torban torbaniin, profile keessan irraa",
+      "tip_jar": "Jaarsi akka kennaa kaffaltii qabuutti guutu ni seena"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9334,7 +9342,8 @@
       "speed": "Saffisa",
       "slow": "Suuta",
       "normal": "Baratamaa",
-      "fast": "Ariifataa"
+      "fast": "Ariifataa",
+      "showStreak": "Tartiiba torbanitti agarsiisi"
     },
     "obs": {
       "title": "OBS waliin fayyadamaa",

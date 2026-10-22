@@ -9093,7 +9093,11 @@
     "subathonOver": "Demê hatibû.",
     "pointsTitle": "Temaşevanên herî dilsoz",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Asta {{level}}",
+    "streak_one": "{{count}}-hefteya rêze",
+    "streak_other": "{{count}}-hefteya rêze",
+    "tipJar": "Qedeha diyariyê"
   },
   "liveStudio": {
     "controls": {
@@ -9164,7 +9168,9 @@
       "rule_alert": "Hişyariyên qaîdeyan",
       "poll": "Gelpisî",
       "subathon_timer": "Demjimêrê Subathonê",
-      "points_board": "Temaşevanên dilsoz"
+      "points_board": "Temaşevanên dilsoz",
+      "streamer_level": "Asta Streamer",
+      "tip_jar": "Qedeha diyariyê"
     },
     "hints": {
       "spin_wheel": "Li ku derê teker di qaîdeyên te de dizivirin",
@@ -9186,7 +9192,9 @@
       "rule_alert": "Jêrê ku pêşengên rêziman de hene",
       "poll": "Anketa we ya zindî, bi bişkojkek dengdanê ji bo her vebijarkê",
       "subathon_timer": "Yek countdown ku wekiftin, follow û aboneman (subscription) li ser xwe didin.",
-      "points_board": "Kesên herî herîm li ser pointan ji bo dîtin û wekiftin."
+      "points_board": "Kesên herî herîm li ser pointan ji bo dîtin û wekiftin.",
+      "streamer_level": "Asta weşana we û rêza heftane, ji profîla we",
+      "tip_jar": "Qedehek ku dema diyariyên dayîn tên tijî dibe"
     },
     "fields": {
       "style": "Awayî",
@@ -9220,7 +9228,8 @@
       "speed": "Zûbûnî",
       "slow": "Hêdî",
       "normal": "Normal",
-      "fast": "Zû"
+      "fast": "Zû",
+      "showStreak": "Rêza heftane nîşan bide"
     },
     "obs": {
       "title": "Bi OBS re bikar bînin",
