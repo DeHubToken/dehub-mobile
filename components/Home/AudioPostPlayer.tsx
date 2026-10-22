@@ -431,6 +431,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   // The media window is measured, not fixed: the visualizer needs a height to
   // draw into, and the inline card and the fullscreen modal have different ones.
   const [inlineHeight, setInlineHeight] = useState(0);
+  const [glassWidth, setGlassWidth] = useState(390);
+  const compactGlass = glassWidth < 330;
+  const glassWaveHeight = compactGlass ? 18 : 24;
   const [fullHeight, setFullHeight] = useState(0);
   const listenRecordedRef = useRef(false);
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -1165,25 +1168,25 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
     if (theme === 'glass') return (
-      <View style={styles.glassWindow}>
+      <View style={styles.glassWindow} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <View style={styles.glassCrown}>
         <GlassAudioShoulder />
-        <Text numberOfLines={1} style={styles.glassTitle}>{resolvedTitle}</Text>
-        <Text numberOfLines={1} style={styles.glassArtist}>{resolvedArtist}</Text>
+        <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 10 }]}>{resolvedTitle}</Text>
+        <Text numberOfLines={1} style={[styles.glassArtist, compactGlass && { fontSize: 8 }]}>{resolvedArtist}</Text>
         <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
-        <View style={{ height: 24, marginTop: 6, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={24} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(24)}</View>
+        <View style={{ height: glassWaveHeight, marginTop: 6, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={glassWaveHeight} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(glassWaveHeight)}</View>
         </View>
-        <View style={[styles.glassDeck, { backgroundColor: `rgba(${accent.join(',')},.06)` }]}>
+        <View style={[styles.glassDeck, { backgroundColor: `rgba(${accent.join(',')},.06)` }, compactGlass && { paddingTop: 20, paddingBottom: 8 }]}>
           <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.07)', 'rgba(0,20,24,.16)']} style={[StyleSheet.absoluteFill, { borderRadius: 48 }]} />
           <View style={{ position: 'absolute', top: -10, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="#d7ffff" maximumTrackTintColor="rgba(225,255,255,.2)" thumbTintColor="#efffff" style={{ height: 12 }} /></PagerSafe></View>
-          <View style={styles.glassTransport}>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)} style={styles.glassControl}><Text style={styles.glassSkip}>−10</Text></TouchableOpacity>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.12)` }]}>
+          <View style={[styles.glassTransport, compactGlass && { gap: 12 }]}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)} style={[styles.glassControl, compactGlass && { width: 28, height: 28 }]}><Text style={styles.glassSkip}>−10</Text></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.12)` }, compactGlass && { width: 36, height: 36 }]}>
               <LinearGradient pointerEvents="none" colors={['rgba(230,255,255,.35)', 'transparent']} style={StyleSheet.absoluteFill} />
               <MediaControlIcon name={shownLoading ? 'Loader' : shownPlaying ? 'Pause' : 'Play'} />
             </TouchableOpacity>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)} style={styles.glassControl}><Text style={styles.glassSkip}>+10</Text></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)} style={[styles.glassControl, compactGlass && { width: 28, height: 28 }]}><Text style={styles.glassSkip}>+10</Text></TouchableOpacity>
           </View>
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
