@@ -1230,12 +1230,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <View
           style={[
             styles.fullscreenRoot,
-            theme === 'glass' && { justifyContent: 'center', paddingHorizontal: 24, backgroundColor: '#04181c' },
+            theme === 'glass' && { justifyContent: 'center', backgroundColor: '#04181c' },
             {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
-              paddingLeft: insets.left,
-              paddingRight: insets.right,
+              paddingLeft: Math.max(insets.left, theme === 'glass' ? 24 : 0),
+              paddingRight: Math.max(insets.right, theme === 'glass' ? 24 : 0),
             },
           ]}
         >
