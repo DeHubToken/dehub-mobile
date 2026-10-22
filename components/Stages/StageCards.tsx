@@ -26,6 +26,7 @@ import {
   View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -41,6 +42,7 @@ import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_WASH } from "../../theme/minimal";
 import { PageSection } from "../page/PageKit";
+import { ScreenNames } from "../../navigation/ScreenNames";
 
 /** How long the stage ran, from its own timestamps. Mirrors web's row. */
 export function stageDuration(space: AudioSpace): string | null {
@@ -89,7 +91,7 @@ function formatScheduledFor(dateStr?: string | null): string {
   }
 }
 
-const shareStage = (space: AudioSpace, when?: string) => {
+export const shareStage = (space: AudioSpace, when?: string) => {
   const whenPart = when ? ` ${when}` : "";
   Share.share({
     message: `🎙️ ${space.title} — live on Stages${whenPart}\n\n${ShareLinks.stage(space)}`,
@@ -181,7 +183,7 @@ export const StageReminderFaces: React.FC<{ spaceId: string }> = ({ spaceId }) =
   );
 };
 
-const HostRow: React.FC<{ space: AudioSpace }> = ({ space }) => {
+export const HostRow: React.FC<{ space: AudioSpace }> = ({ space }) => {
   const { t } = useTranslation();
   return (
     <View style={styles.hostRow}>
@@ -415,6 +417,7 @@ export const RecordedStageCard: React.FC<{
   const duration = stageDuration(space);
   const hasRecording = !!space.recording_url;
   const meta = [formatStageDate(space.ended_at), duration].filter(Boolean).join(" · ");
+  const navigation = useNavigation<any>();
 
   const confirmDelete = useCallback(() => {
     Alert.alert(t("stages.deleteStage"), t("stages.deleteRecordingConfirm"), [
@@ -423,35 +426,49 @@ export const RecordedStageCard: React.FC<{
     ]);
   }, [onDelete, t]);
 
+  // The art and details open the stage's own page. The player below sits
+  // outside this touchable on purpose: a drag on the bar is a scrub, never a
+  // tap that leaves the list.
+  const openStage = useCallback(
+    () => navigation.navigate(ScreenNames.StageRecording, { spaceId: space.id, space }),
+    [navigation, space],
+  );
+
   return (
     <PageSection flush>
-      {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
+      <TouchableOpacity onPress={openStage} activeOpacity={0.85} accessibilityRole="button" accessibilityLabel={space.title}>
+        {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
-      <View style={[styles.body, isMinimal && m.body]}>
-        <View style={styles.topRow}>
-          <View style={[styles.chip, isMinimal && m.outline]}>
-            <Icon name="Clock" size={12} color="#D4D4D8" />
-            <Text style={styles.chipText}>{t("stages.ended")}</Text>
-          </View>
-          <View style={styles.topActions}>
-            <View style={styles.countRow}>
-              <Icon name="Users" size={13} color="rgba(255,255,255,0.5)" />
-              <Text style={styles.countText}>{heads}</Text>
+        <View style={[styles.body, isMinimal && m.body, (hasRecording || isMine) && styles.bodyTop]}>
+          <View style={styles.topRow}>
+            <View style={[styles.chip, isMinimal && m.outline]}>
+              <Icon name="Clock" size={12} color="#D4D4D8" />
+              <Text style={styles.chipText}>{t("stages.ended")}</Text>
+            </View>
+            <View style={styles.topActions}>
+              <View style={styles.countRow}>
+                <Icon name="Users" size={13} color="rgba(255,255,255,0.5)" />
+                <Text style={styles.countText}>{heads}</Text>
+              </View>
+              <Icon name="ChevronRight" size={16} color="rgba(255,255,255,0.45)" />
             </View>
           </View>
-        </View>
 
-        <Text style={styles.title} numberOfLines={2}>
-          {space.title}
-        </Text>
-
-        <HostRow space={space} />
-
-        {!!meta && (
-          <Text style={styles.metaText} numberOfLines={1}>
-            {meta}
+          <Text style={styles.title} numberOfLines={2}>
+            {space.title}
           </Text>
-        )}
+
+          <HostRow space={space} />
+
+          {!!meta && (
+            <Text style={styles.metaText} numberOfLines={1}>
+              {meta}
+            </Text>
+          )}
+        </View>
+      </TouchableOpacity>
+
+      <View style={[styles.body, isMinimal && m.body, styles.bodyBottom, !(hasRecording || isMine) && styles.bodyNone]}>
 
         {/* The player is its own line rather than a chip in the title row: web
             stacks the same way at phone widths, and a 90-bar scrub bar needs
@@ -514,6 +531,16 @@ const styles = StyleSheet.create({
   body: {
     padding: 16,
     gap: 10,
+  },
+  /** The recorded card splits its body in two (details / player); these close the seam. */
+  bodyTop: {
+    paddingBottom: 0,
+  },
+  bodyBottom: {
+    paddingTop: 10,
+  },
+  bodyNone: {
+    padding: 0,
   },
   topRow: {
     flexDirection: "row",
