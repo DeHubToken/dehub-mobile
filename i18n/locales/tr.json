@@ -10732,7 +10732,7 @@
     "settingsLinkTitle": "Uyarılar ve widget'lar",
     "settingsLinkBody": "Canlı Stüdyo'da kurduğunuz akışlarınız üzerinden bahşiş uyarıları, hedefler ve daha fazlası.",
     "preview": "Ön izleme",
-    "landscape": "Manzara",
+    "landscape": "Yatay",
     "portrait": "Dikey",
     "stageLabel": "Akışınız",
     "layoutHintPhone": "Taşımak için bir widget'ı sürükleyin ve ayarlarından boyutunu değiştirin. Manzara ve portre akışlarının her biri kendi düzenini korur.",
@@ -10766,7 +10766,7 @@
       "tip_alert": "Bahşiş uyarısı",
       "follow_alert": "Takip uyarısı",
       "subscribe_alert": "Abone uyarısı",
-      "share_alert": "Uyarıyı paylaş",
+      "share_alert": "Paylaşım uyarısı",
       "join_alert": "Katılma uyarısı",
       "goal_bar": "Gol çubuğu",
       "top_supporters": "En iyi destekçiler",
@@ -10787,6 +10787,7 @@
       "frame": "Akışınızın etrafında bir kenarlık"
     },
     "fields": {
+      "banner": "Afiş",
       "style": "Stil",
       "celebration": "Tören / Kutlama",
       "minAmount": "Gösterilecek en küçük bahşiş (DHB)",

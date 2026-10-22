@@ -10725,14 +10725,16 @@
     "topSupporters": "Principales simpatizantes"
   },
   "liveStudio": {
+    "title": "Estudio en directo",
+    "widgets": "Elementos en pantalla",
     "subtitle": "Alertas y widgets para tus transmisiones",
     "intro": "Todo lo que añadas aquí aparecerá en tus transmisiones para cada espectador en la aplicación DeHub, ya sea que lo publiques desde tu teléfono, el navegador, una tarjeta de captura o un codificador.",
     "open": "Abrir Live Studio",
     "settingsLinkTitle": "Alertas y widgets",
     "settingsLinkBody": "Alertas de propinas, objetivos y más a través de sus transmisiones, configuradas en Live Studio.",
     "preview": "Vista previa",
-    "landscape": "Paisaje",
-    "portrait": "Retrato",
+    "landscape": "Horizontal",
+    "portrait": "Vertical",
     "stageLabel": "Tu transmisión",
     "layoutHintPhone": "Arrastra un widget para moverlo y cambia su tamaño en su configuración. Los flujos de paisajes y retratos mantienen cada uno su propio diseño.",
     "addWidget": "Añadir widget",

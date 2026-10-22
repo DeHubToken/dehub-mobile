@@ -10767,6 +10767,7 @@
       "join": "انضمام"
     },
     "kinds": {
+      "share_alert": "تنبيه المشاركة",
       "tip_alert": "تنبيه بشأن الإكرامية",
       "follow_alert": "اتبع التنبيه",
       "subscribe_alert": "تنبيه المشترك",

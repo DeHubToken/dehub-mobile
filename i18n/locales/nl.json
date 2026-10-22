@@ -10979,6 +10979,8 @@
     "topSupporters": "Topsupporters"
   },
   "liveStudio": {
+    "title": "Livestudio",
+    "widgets": "Onderdelen",
     "subtitle": "Waarschuwingen en widgets voor je streams",
     "intro": "Alles wat je hier toevoegt, verschijnt in je streams voor elke kijker in de DeHub-app — of je nu live gaat vanaf je telefoon, de browser, een opnamekaart of een encoder.",
     "open": "Live Studio openen",
