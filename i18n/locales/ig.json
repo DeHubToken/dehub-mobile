@@ -4129,6 +4129,14 @@
     "noVoice": "Ngwaọrụ gị enweghị olu maka asụsụ a."
   },
   "stages": {
+    "addToCalendar": "Tinye na kalenda",
+    "nowPlaying": "Ugbu a na-akpọ",
+    "onTheRadio": "Na redio",
+    "subtitles": "Ndesịta",
+    "subtitlesIn": "Ndepụta okwu · {{language}}",
+    "showSubtitles": "Gosi ndepụta okwu",
+    "language": "Asụsụ",
+    "asSpoken": "As spoken",
     "cancelConfirm": "Kagbuo “{{title}}”? Njikọ ahụ agaghị arụkwa ọrụ.",
     "deleteRecordingConfirm": "Hichapụ ndekọ ọnụ ụlọ olu a?",
     "deleteStage": "Hichapụ ọnụ ụlọ olu",

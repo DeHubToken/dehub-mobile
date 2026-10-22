@@ -4165,6 +4165,14 @@
     "noVoice": "الجهاز ديالك ماعندوش صوت لهاد اللغة."
   },
   "stages": {
+    "addToCalendar": "إضافة إلى التقويم",
+    "nowPlaying": "قيد التشغيل الآن",
+    "onTheRadio": "على الراديو",
+    "subtitles": "الترجمة",
+    "subtitlesIn": "الترجمة · {{language}}",
+    "showSubtitles": "عرض الترجمة",
+    "language": "اللغة",
+    "asSpoken": "كالمتحدث",
     "cancelConfirm": "بغيتي تلغي “{{title}}”؟ اللينك غادي يوقف.",
     "deleteRecordingConfirm": "تمسح تسجيل هاد الغرفة الصوتية؟",
     "deleteStage": "مسح الغرفة الصوتية",

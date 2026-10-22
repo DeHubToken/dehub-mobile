@@ -16,7 +16,7 @@
  */
 
 import React, { useCallback, useState } from "react";
-import { ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { KeyboardAvoidingView, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -30,6 +30,7 @@ import StageCoverArt from "../components/Stages/StageCoverArt";
 import StageRecordingPlayer from "../components/Stages/StageRecordingPlayer";
 import { HostRow, formatStageDate, stageDuration } from "../components/Stages/StageCards";
 import { StageTranscriptSheet } from "../components/Stages/StageTranscriptSheet";
+import TVChatPanel from "../components/TV/TVChatPanel";
 import { useAppTheme } from "../context/ThemeContext";
 import { ShareLinks } from "../navigation/linking.config";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -86,7 +87,11 @@ export default function StageRecordingScreen() {
   return (
     <View className="bg-theme-neutrals-900" style={styles.root}>
       <ScreenHeader icon="stages" title={t("stages.stageRecording")} />
+      {/* Edge-to-edge Android doesn't resize for the keyboard; the comment
+          box at the bottom would sit under it. */}
+      <KeyboardAvoidingView behavior="padding" style={styles.root}>
       <ScrollView
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 40 }}
         showsVerticalScrollIndicator={false}
       >
@@ -162,7 +167,26 @@ export default function StageRecordingScreen() {
             </View>
           </View>
         </PageSection>
+
+        {/* What the room said stays as the recording's comments, the same
+            stage chat web shows under an ended stage. */}
+        <PageSection flush>
+          <View style={styles.comments}>
+            <TVChatPanel
+              channelId={space.id}
+              room={{ table: "stage_chat_messages", column: "space_id", id: space.id, hostWallet: space.host_wallet_address }}
+              transparent
+              labels={{
+                title: t("settings.comments"),
+                placeholder: t("features.addComment"),
+                empty: t("features.noComments"),
+                signIn: t("features.signInToComment"),
+              }}
+            />
+          </View>
+        </PageSection>
       </ScrollView>
+      </KeyboardAvoidingView>
 
       <StageTranscriptSheet space={transcriptOpen ? space : null} visible={transcriptOpen} onClose={() => setTranscriptOpen(false)} />
     </View>
@@ -192,6 +216,7 @@ const styles = StyleSheet.create({
   stat: { flexDirection: "row", alignItems: "center", gap: 6 },
   statValue: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   player: { marginTop: 4 },
+  comments: { height: 440 },
   actions: { flexDirection: "row", gap: 8 },
   wideBtn: {
     flex: 1,

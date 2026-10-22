@@ -4104,6 +4104,14 @@
     "noVoice": "Дастгоҳи шумо барои ин забон овоз надорад."
   },
   "stages": {
+    "addToCalendar": "Ба календар дода кардан",
+    "nowPlaying": "Ҳозир бозӣ кардан",
+    "onTheRadio": "Дар радио",
+    "subtitles": "Сарлавҳаҳо",
+    "subtitlesIn": "Зерсарлавҳа {{language}}",
+    "showSubtitles": "Намоиши субтитрҳо",
+    "language": "Забон",
+    "asSpoken": "Тавре ки гуфта шуд",
     "cancelConfirm": "«{{title}}» бекор карда шавад? Пайванд аз кор мемонад.",
     "deleteRecordingConfirm": "Сабти ин утоқи аудиоӣ нест карда шавад?",
     "deleteStage": "Утоқи аудиоиро нест кардан",

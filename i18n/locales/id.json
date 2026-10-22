@@ -4191,6 +4191,14 @@
     "filedOn": "Dikirim {{date}}"
   },
   "stages": {
+    "addToCalendar": "Tambahkan ke kalender",
+    "nowPlaying": "Sedang diputar",
+    "onTheRadio": "Di radio",
+    "subtitles": "Subtitel",
+    "subtitlesIn": "Subtitel · {{language}}",
+    "showSubtitles": "Tampilkan subtitel",
+    "language": "Bahasa",
+    "asSpoken": "Sesuai ucapan",
     "cancelConfirm": "Batalkan \"{{title}}\"? Tautannya akan berhenti berfungsi.",
     "deleteRecordingConfirm": "Hapus rekaman ruang audio ini?",
     "deleteStage": "Hapus ruang audio",

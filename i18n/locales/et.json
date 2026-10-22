@@ -4140,6 +4140,14 @@
     "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
+    "addToCalendar": "Lisa kalendrisse",
+    "nowPlaying": "Nüüd mängitakse",
+    "onTheRadio": "Raadios",
+    "subtitles": "Subtiitrid",
+    "subtitlesIn": "Subtiitrid · {{language}}",
+    "showSubtitles": "Kuva subtiitrid",
+    "language": "Keel",
+    "asSpoken": "Nagu räägitud",
     "cancelConfirm": "Tühista \"{{title}}\"? Link lakkab töötamast.",
     "deleteRecordingConfirm": "Kas kustutada selle helitoa salvestis?",
     "deleteStage": "Kustuta helituba",

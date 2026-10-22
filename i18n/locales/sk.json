@@ -4248,6 +4248,14 @@
     "noVoice": "Vaše zariadenie nemá hlas pre tento jazyk."
   },
   "stages": {
+    "addToCalendar": "Pridať do kalendára",
+    "nowPlaying": "Hralo sa",
+    "onTheRadio": "Na rádií",
+    "subtitles": "Nadpisy",
+    "subtitlesIn": "Nadpisy · {{language}}",
+    "showSubtitles": "Zobraziť nadpisy",
+    "language": "Jazyk",
+    "asSpoken": "Tak ako sa hovorí",
     "cancelConfirm": "Zrušiť „{{title}}“? Odkaz prestane fungovať.",
     "deleteRecordingConfirm": "Vymazať nahrávku tejto audio miestnosti?",
     "deleteStage": "Vymazať audio miestnosť",

@@ -129,6 +129,8 @@ export interface FloatingReaction {
   id: number;
   emoji: string;
   x: number;
+  /** Who sent it, lowercased, so the room can show it on their avatar (web does). */
+  wallet?: string;
 }
 
 export interface TtsVoice {
@@ -783,10 +785,10 @@ export function useStages(): UseStagesReturn {
 
   // ── Floating reactions ─────────────────────────────────────────────────────
 
-  const spawnFloatingReaction = useCallback((emoji: string) => {
+  const spawnFloatingReaction = useCallback((emoji: string, wallet?: string | null) => {
     const id = ++reactionCounterRef.current;
     const x = 8 + Math.random() * 70; // 8–78% so emoji stays on screen
-    setFloatingReactions(prev => [...prev, { id, emoji, x }]);
+    setFloatingReactions(prev => [...prev, { id, emoji, x, wallet: wallet ? wallet.toLowerCase() : undefined }]);
   }, []);
 
   const dismissFloatingReaction = useCallback((id: number) => {
@@ -950,7 +952,7 @@ export function useStages(): UseStagesReturn {
         payload: { emoji, wallet: userAddress },
       });
     }
-    spawnFloatingReaction(emoji);
+    spawnFloatingReaction(emoji, userAddress);
   }, [spawnFloatingReaction, userAddress]);
 
   // ── Realtime subscriptions for current space ──────────────────────────────
@@ -1065,7 +1067,7 @@ export function useStages(): UseStagesReturn {
       .channel(`stage-reactions:${spaceId}`)
       .on("broadcast", { event: "reaction" }, (payload: any) => {
         const emoji = payload?.payload?.emoji;
-        if (emoji) spawnFloatingReaction(emoji);
+        if (emoji) spawnFloatingReaction(emoji, payload?.payload?.wallet);
       })
       .subscribe();
     reactionsChannelRef.current = reactChan;

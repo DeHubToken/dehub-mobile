@@ -4154,6 +4154,14 @@
     "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
+    "addToCalendar": "Thêm vào lịch",
+    "nowPlaying": "Đang phát",
+    "onTheRadio": "Trên đài phát thanh",
+    "subtitles": "Phụ đề",
+    "subtitlesIn": "Phụ đề · {{language}}",
+    "showSubtitles": "Hiển thị phụ đề",
+    "language": "Ngôn ngữ",
+    "asSpoken": "Như được phát âm",
     "cancelConfirm": "Hủy \"{{title}}\"? Liên kết sẽ không còn hoạt động.",
     "deleteRecordingConfirm": "Xóa bản ghi âm của phòng âm thanh này?",
     "deleteStage": "Xóa phòng âm thanh",

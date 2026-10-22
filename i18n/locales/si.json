@@ -4128,6 +4128,14 @@
     "noVoice": "ඔබේ උපාංගයේ මෙම භාෂාව සඳහා හඬක් නැත."
   },
   "stages": {
+    "addToCalendar": "කැලෙන්ඩරයට එක් කරන්න",
+    "nowPlaying": "දැන් ධාවනය වෙමින් පවතී",
+    "onTheRadio": "ගුවන් විදුලියේ",
+    "subtitles": "උපසිරැසි",
+    "subtitlesIn": "උපසිරැසි · {{language}}",
+    "showSubtitles": "උපසිරැසි පෙන්වන්න",
+    "language": "භාෂාව",
+    "asSpoken": "කතා කරන ලද ආකාරයට",
     "cancelConfirm": "\"{{title}}\" අවලංගු කරන්න? සබැඳිය ක්‍රියා කිරීම නතර කරයි.",
     "deleteRecordingConfirm": "මෙම ශ්‍රව්‍ය කාමරයේ පටිගත කිරීම මකන්නද?",
     "deleteStage": "ශ්‍රව්‍ය කාමරය මකන්න",

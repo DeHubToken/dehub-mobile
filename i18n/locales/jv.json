@@ -4131,6 +4131,13 @@
     "noVoice": "Piranti sampeyan ora duwe swara kanggo basa iki."
   },
   "stages": {
+    "addToCalendar": "Tambah ke kalender",
+    "onTheRadio": "Di radio",
+    "subtitles": "Subtitul",
+    "subtitlesIn": "Subtitul · {{language}}",
+    "showSubtitles": "Kanggo ngelmu subtitel",
+    "language": "Bahasa",
+    "asSpoken": "Kanggo ngoko",
     "cancelConfirm": "Batalake “{{title}}”? Tautane ora bakal mlaku maneh.",
     "deleteRecordingConfirm": "Busak rekaman ruang swara iki?",
     "deleteStage": "Busak ruang swara",

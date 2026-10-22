@@ -215,6 +215,8 @@ interface TVChatPanelProps {
   room?: ChatRoom;
   /** Clear root so the room behind (stage cover art) shows through. */
   transparent?: boolean;
+  /** Labels for a room that isn't live chat (a recording's comments). */
+  labels?: { title?: string; placeholder?: string; empty?: string; signIn?: string };
 }
 
 const TVChatPanel: React.FC<TVChatPanelProps> = ({
@@ -224,6 +226,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   onClosePlayer,
   room,
   transparent = false,
+  labels,
 }) => {
   const { t } = useTranslation();
   const user = useUser();
@@ -311,7 +314,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
     <View style={[styles.root, transparent && { backgroundColor: "transparent" }]}>
       <View style={styles.header}>
         <Icon name="MessageSquare" size={13} color="#A1A1AA" />
-        <Text style={styles.headerText}>{t("tv.liveChat")}</Text>
+        <Text style={styles.headerText}>{labels?.title ?? t("tv.liveChat")}</Text>
       </View>
 
       {isLoading ? (
@@ -328,6 +331,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
             messages.length === 0 ? { flex: 1 } : { paddingVertical: 6 }
           }
           showsVerticalScrollIndicator={false}
+          nestedScrollEnabled
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="interactive"
           initialNumToRender={20}
@@ -344,7 +348,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           ListEmptyComponent={
             <View style={styles.center}>
               <Icon name="MessageSquare" size={26} color="#3F3F46" />
-              <Text style={styles.dim}>{t("tv.noMessages")}</Text>
+              <Text style={styles.dim}>{labels?.empty ?? t("tv.noMessages")}</Text>
             </View>
           }
         />
@@ -378,7 +382,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
             <TextInput
               value={text}
               onChangeText={(v) => v.length <= MAX_LEN && setText(v)}
-              placeholder={t("tv.typeHere")}
+              placeholder={labels?.placeholder ?? t("tv.typeHere")}
               placeholderTextColor="#8B8D90"
               style={styles.input}
               multiline
@@ -402,7 +406,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         ) : (
           <Pressable onPress={() => requireAuth(() => {})} style={styles.signInBtn}>
             <Icon name="LogIn" size={14} color="#A1A1AA" />
-            <Text style={styles.signInText}>{t("tv.signInToChat")}</Text>
+            <Text style={styles.signInText}>{labels?.signIn ?? t("tv.signInToChat")}</Text>
           </Pressable>
         )}
       </View>

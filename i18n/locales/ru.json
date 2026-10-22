@@ -4195,6 +4195,14 @@
     "filedOn": "Создано {{date}}"
   },
   "stages": {
+    "addToCalendar": "Добавить в календарь",
+    "nowPlaying": "Сейчас играет",
+    "onTheRadio": "На радио",
+    "subtitles": "Субтитры",
+    "subtitlesIn": "Субтитры · {{language}}",
+    "showSubtitles": "Показать субтитры",
+    "language": "Язык",
+    "asSpoken": "Как произносится",
     "cancelConfirm": "Отменить \"{{title}}\"? Ссылка перестанет работать.",
     "deleteRecordingConfirm": "Удалить запись этой аудиокомнаты?",
     "deleteStage": "Удалить аудиокомнату",

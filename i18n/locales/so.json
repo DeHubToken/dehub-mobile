@@ -4131,6 +4131,13 @@
     "noVoice": "Qalabkaagu ma laha cod luqaddan."
   },
   "stages": {
+    "addToCalendar": "Ku dar kalandarka",
+    "nowPlaying": "Hadda ciyaaraya",
+    "onTheRadio": "Raadiyaha",
+    "subtitles": "Qoraallo hoose",
+    "showSubtitles": "Muuji subtitles",
+    "language": "Luuqadda",
+    "asSpoken": "Sida hadalka loo dhigay",
     "cancelConfirm": "Ma joojinaysaa “{{title}}”? Linkigu wuu shaqayn doonin.",
     "deleteRecordingConfirm": "Ma tirtiraysaa duubista qolkan codka?",
     "deleteStage": "Tirtir qolka codka",

@@ -4399,6 +4399,14 @@
     "noVoice": "Peranti anda tiada suara untuk bahasa ini."
   },
   "stages": {
+    "addToCalendar": "Tambah ke kalendar",
+    "nowPlaying": "Sedang dimainkan",
+    "onTheRadio": "Di radio",
+    "subtitles": "Sarikata",
+    "subtitlesIn": "Sarikata · {{language}}",
+    "showSubtitles": "Tunjukkan sarikata",
+    "language": "Bahasa",
+    "asSpoken": "Seperti yang diucapkan",
     "cancelConfirm": "Batalkan \"{{title}}\"? Pautan berhenti berfungsi.",
     "deleteRecordingConfirm": "Padam rakaman bilik audio ini?",
     "deleteStage": "Padam bilik audio",

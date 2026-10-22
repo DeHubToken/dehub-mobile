@@ -4143,6 +4143,14 @@
     "noVoice": "Vaše zařízení nemá hlas pro tento jazyk."
   },
   "stages": {
+    "addToCalendar": "Přidat do kalendáře",
+    "nowPlaying": "Nyní se přehrává",
+    "onTheRadio": "V rádiu",
+    "subtitles": "Titulky",
+    "subtitlesIn": "Titulky · {{language}}",
+    "showSubtitles": "Zobrazit titulky",
+    "language": "Jazyk",
+    "asSpoken": "Jak je vysloveno",
     "cancelConfirm": "Zrušit \"{{title}}\"? Odkaz přestane fungovat.",
     "deleteRecordingConfirm": "Smazat tuto nahrávku audio místnosti?",
     "deleteStage": "Smazat audio místnost",

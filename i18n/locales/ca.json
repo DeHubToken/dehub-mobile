@@ -4140,6 +4140,14 @@
     "noVoice": "El teu dispositiu no té cap veu per a aquest idioma."
   },
   "stages": {
+    "addToCalendar": "Afegeix al calendari",
+    "nowPlaying": "Reproduint-se ara",
+    "onTheRadio": "A la ràdio",
+    "subtitles": "Subtítols",
+    "subtitlesIn": "Subtítols · {{language}}",
+    "showSubtitles": "Mostrar subtítols",
+    "language": "Idioma",
+    "asSpoken": "Tal com es parla",
     "cancelConfirm": "Cancel·lar «{{title}}»? L'enllaç deixarà de funcionar.",
     "deleteRecordingConfirm": "Eliminar aquesta gravació de la sala d'àudio?",
     "deleteStage": "Elimina la sala d'àudio",

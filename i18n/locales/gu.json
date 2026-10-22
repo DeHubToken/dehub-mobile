@@ -4133,6 +4133,14 @@
     "noVoice": "તમારા ડિવાઇસમાં આ ભાષા માટે કોઈ અવાજ નથી."
   },
   "stages": {
+    "addToCalendar": "કેલેન્ડરમાં ઉમેરો",
+    "nowPlaying": "આજે ચાલુ છે",
+    "onTheRadio": "રેડિયો પર",
+    "subtitles": "સબટાઇટલ્સ",
+    "subtitlesIn": "સબટાઇટલ્સ · {{language}}",
+    "showSubtitles": "સબટાઇટલ્સ દેખાવો",
+    "language": "ભાષા",
+    "asSpoken": "જેવી રીતે બોલાય છે",
     "cancelConfirm": "“{{title}}” રદ કરવું છે? લિંક કામ કરવાનું બંધ થઈ જશે.",
     "deleteRecordingConfirm": "આ ઑડિયો રૂમનું રેકોર્ડિંગ કાઢી નાખવું છે?",
     "deleteStage": "ઑડિયો રૂમ કાઢી નાખો",

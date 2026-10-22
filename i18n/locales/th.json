@@ -4160,6 +4160,14 @@
     "noVoice": "อุปกรณ์ของคุณไม่มีเสียงสำหรับภาษานี้"
   },
   "stages": {
+    "addToCalendar": "เพิ่มไปยังปฏิทิน",
+    "nowPlaying": "กำลังเล่น",
+    "onTheRadio": "อยู่ในวิทยุ",
+    "subtitles": "คำอธิบาย",
+    "subtitlesIn": "คำอธิบาย · {{language}}",
+    "showSubtitles": "แสดงคำอธิบาย",
+    "language": "ภาษา",
+    "asSpoken": "ตามที่พูด",
     "cancelConfirm": "ยกเลิก \"{{title}}\" หรือไม่? ลิงก์หยุดทำงาน",
     "deleteRecordingConfirm": "ลบการบันทึกห้องเสียงนี้หรือไม่",
     "deleteStage": "ลบห้องเสียง",

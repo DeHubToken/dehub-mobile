@@ -4168,6 +4168,14 @@
     "noVoice": "دستگاه شما صدایی برای این زبان ندارد."
   },
   "stages": {
+    "addToCalendar": "به تقویم اضافه کن",
+    "nowPlaying": "اکنون در حال پخش",
+    "onTheRadio": "در رادیو",
+    "subtitles": "زیرنویس",
+    "subtitlesIn": "زیرنویس · {{language}}",
+    "showSubtitles": "نمایش زیرنویس",
+    "language": "زبان",
+    "asSpoken": "همانطور که تلفظ شده است",
     "cancelConfirm": "«{{title}}» لغو شود؟ لینک دیگر کار نمی‌کند.",
     "deleteRecordingConfirm": "ضبط این اتاق صوتی حذف شود؟",
     "deleteStage": "حذف اتاق صوتی",

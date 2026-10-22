@@ -4140,6 +4140,14 @@
     "noVoice": "ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਵਿੱਚ ਇਸ ਭਾਸ਼ਾ ਲਈ ਕੋਈ ਆਵਾਜ਼ ਨਹੀਂ ਹੈ।"
   },
   "stages": {
+    "addToCalendar": "ਕੈਲੰਡਰ ਵਿੱਚ ਸ਼ਾਮਲ",
+    "nowPlaying": "ਹਾਲ ਹੀ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ",
+    "onTheRadio": "ਰੇਡੀਓ 'ਤੇ",
+    "subtitles": "ਸਬਟਾਈਟਲਜ਼",
+    "subtitlesIn": "ਸਬਟਾਈਟਲਜ਼ · {{language}}",
+    "showSubtitles": "ਸਬਟਾਈਟਲਜ਼ ਦਿਖਾਓ",
+    "language": "ਭਾਸ਼ਾ",
+    "asSpoken": "ਜਿਵੇਂ ਕਿ ਕਹੀ ਗਈ ਹੈ",
     "cancelConfirm": "“{{title}}” ਰੱਦ ਕਰਨਾ ਹੈ? ਲਿੰਕ ਕੰਮ ਕਰਨਾ ਬੰਦ ਹੋ ਜਾਵੇਗਾ।",
     "deleteRecordingConfirm": "ਇਸ ਆਡੀਓ ਰੂਮ ਦੀ ਰਿਕਾਰਡਿੰਗ ਮਿਟਾਉਣੀ ਹੈ?",
     "deleteStage": "ਆਡੀਓ ਰੂਮ ਮਿਟਾਓ",
