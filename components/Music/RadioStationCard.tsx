@@ -1,4 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
+import { useAppTheme } from '../../context/ThemeContext';
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
  * RadioStationCard
  * ================
@@ -33,6 +35,7 @@ export interface RadioStationCardProps {
 }
 
 const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = "row" }) => {
+  const { theme } = useAppTheme();
   const { t: _copy } = _useCopy();
   const { station: current, isPlaying, isLoading } = useRadioPlayer();
   const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
@@ -92,7 +95,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
         {!!bitrate && <Text style={styles.bitrate}>{bitrate}</Text>}
       </View>
 
-      <View style={[styles.playBtn, isCurrent && styles.playBtnOn]}>
+      <View style={[styles.playBtn, isCurrent && styles.playBtnOn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}>
         {isThisLoading ? (
           <ActivityIndicator size="small" color="#FFFFFF" />
         ) : (
