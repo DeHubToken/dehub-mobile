@@ -9139,6 +9139,7 @@
     "notNow": "而家唔得"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} 旋轉： {{result}}",
     "someone": "有人",
     "newFollower": "新追隨者： {{name}}",
     "newSubscriber": "新訂閱者： {{name}}",
@@ -9162,6 +9163,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "快速控制",
+      "intro": "用嚟中流。每個開關都可以喺應用程式同 OBS 入面，適合所有睇緊嘅人，直至你將佢翻返轉頭。",
+      "alertsPaused": "暫停警示",
+      "alertsPausedHint": "無禮物、無追隨者或規則通知顯示。計數器、進度和聊天框繼續更新。",
+      "soundsMuted": "靜音警報聲",
+      "soundsMutedHint": "你嘅規則停止播放聲音。",
+      "readAloudMuted": "唔好再大聲讀",
+      "readAloudMutedHint": "禮物訊息同規則行唔會再讀出嚟。",
+      "failed": "嗰個開關冇變。再試多次。"
+    },
     "title": "現場工作室",
     "subtitle": "你嘅串流嘅警示同小工具",
     "intro": "你喺呢度加入嘅所有內容都會顯示喺 DeHub 應用程式入面每個觀眾嘅串流入面 — 無論你係透過手機、瀏覽器、捕捉卡定係編碼器直播。",
@@ -9200,6 +9212,7 @@
       "join": "加入"
     },
     "kinds": {
+      "spin_wheel": "旋轉輪",
       "tip_alert": "提示提醒",
       "follow_alert": "追蹤提醒",
       "subscribe_alert": "訂閱提醒",
@@ -9219,6 +9232,7 @@
       "poll": "民調"
     },
     "hints": {
+      "spin_wheel": "你規則入面嘅輪子喺邊度旋轉",
       "rule_alert": "你啲規則嘅提示喺邊度出現",
       "tip_alert": "慶祝每一個提示，按等級大小",
       "follow_alert": "顯示每一個新追蹤者",
@@ -9294,6 +9308,8 @@
       "rotateFailed": "建立唔到新連結。一陣再試下。"
     },
     "rules": {
+      "wheelSegments": "輪段，每行一個",
+      "wheelHint": "至 12 之間。 DeHub 會揀車輪停喺邊，所以所有睇緊嘅人都會見到相同嘅結果。喺警示、朗讀或者即時通訊動作入面用 {result} 嚟命名佢。",
       "intro": "當你嘅直播有嘢發生，DeHub 會照你揀嘅去做：顯示提示、播聲音、讀出內容、喺你嘅聊天室發訊息，或者通知你嘅 Discord。",
       "title": "規矩",
       "add": "加個規則",
@@ -9347,6 +9363,7 @@
         "subscribers": "訂閱者"
       },
       "actionTypes": {
+        "wheel": "旋轉一個輪子",
         "alert": "顯示警示",
         "sound": "播一個聲音",
         "say": "大聲讀",

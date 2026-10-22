@@ -9153,6 +9153,7 @@
     "notNow": "Ei nyt"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} pyöritti: {{result}}",
     "someone": "Joku",
     "newFollower": "Uusi seuraaja: {{name}}",
     "newSubscriber": "Uusi tilaaja: {{name}}",
@@ -9176,6 +9177,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Pikaohjaimet",
+      "intro": "Keskilähetykseen. Jokainen kytkin pitää kaikille katsojille, sovelluksessa ja OBS: ssä, kunnes käännät sen takaisin.",
+      "alertsPaused": "Keskeytä hälytykset",
+      "alertsPausedHint": "Ei lahja-, seuranta- tai sääntöhälytyksiä näytöllä. Laskurit, tavoitteet ja chat-ruutu jatkavat toimintaansa.",
+      "soundsMuted": "Mykistä hälytysäänet",
+      "soundsMutedHint": "Sääntösi lakkaavat soittamasta ääniä.",
+      "readAloudMuted": "Lopeta ääneen lukeminen",
+      "readAloudMutedHint": "Lahjaviestejä ja sääntörivejä ei enää lueta ääneen.",
+      "failed": "Kytkin ei muuttunut. Yritä uudelleen."
+    },
     "title": "Live-studio",
     "subtitle": "Hälytykset ja widgetit suoratoistoihisi",
     "intro": "Kaikki tähän lisäämäsi näkyy suoratoistossasi kaikille DeHub-sovelluksen katsojille — olitpa sitten puhelimessa, selaimessa, tallennuskortissa tai kooderissa.",
@@ -9214,6 +9226,7 @@
       "join": "Liity"
     },
     "kinds": {
+      "spin_wheel": "Pyöräytyspyörä",
       "tip_alert": "Vinkkihälytys",
       "follow_alert": "Seuraa hälytystä",
       "subscribe_alert": "Tilaajan hälytys",
@@ -9233,6 +9246,7 @@
       "poll": "Kysely"
     },
     "hints": {
+      "spin_wheel": "Sääntöjesi pyörät pyörivät",
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
       "follow_alert": "Näyttää jokaisen uuden seuraajan",
       "subscribe_alert": "Näyttää jokaisen uuden tilaajan",
@@ -9308,6 +9322,8 @@
       "rotateFailed": "Uutta linkkiä ei voitu luoda. Yritä hetken kuluttua uudelleen."
     },
     "rules": {
+      "wheelSegments": "Pyörän segmentit, yksi per rivi",
+      "wheelHint": "2 ja 12 välillä. DeHub valitsee, mihin pyörä pysähtyy, joten kaikki katsojat näkevät saman tuloksen. Käytä {result} -toimintoa hälytyksessä, ääneenluku- tai keskustelutoiminnossa sen nimeämiseen.",
       "title": "Säännöt",
       "intro": "Kun suoratoistossasi tapahtuu jotain, DeHub tekee mitä haluat: näyttää hälytyksen, soittaa äänen, lukee jotain ääneen, julkaisee viestejä chatissa tai kertoo Discordistasi.",
       "add": "Lisää sääntö",
@@ -9361,6 +9377,7 @@
         "subscribers": "Tilaajat"
       },
       "actionTypes": {
+        "wheel": "Pyöräytä pyörää",
         "alert": "Näytä hälytys",
         "sound": "Toista ääni",
         "say": "Lue ääneen",

@@ -9164,6 +9164,7 @@
     "notNow": "Kunan manam"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} muyuchisqa: {{result}}",
     "someone": "Pipas",
     "newFollower": "Musuq qatiq: {{name}}",
     "newSubscriber": "Musuq suscriptor: {{name}}",
@@ -9187,6 +9188,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Utqaylla kamachinakuna",
+      "intro": "Chawpi mayupaq. Sapa interruptor llapa qhawaqkunapaq hap'in, app kaqpi chaymanta OBS kaqpi, qhipaman tikranaykikama.",
+      "alertsPaused": "Alertas de pausa",
+      "alertsPausedHint": "Pantallapi mana regalo, qatiy nitaq kamachiy alertakuna. Yupaqkuna, metakuna chaymanta chat box nisqa purichkanku.",
+      "soundsMuted": "Mute alerta nisqa t’uqyaykuna",
+      "soundsMutedHint": "Kamachiyniykikunaqa manañam t’uqyaykunata tocankuchu.",
+      "readAloudMuted": "Amaña kallpawan leeychu",
+      "readAloudMutedHint": "Regalo willakuykunapas kamachikuy chirukunapas manañam ñawinchasqañachu.",
+      "failed": "Chay cambioqa manan cambiarqanchu. Hukmanta kallpachakuy."
+    },
     "title": "Kawsaq Estudio",
     "subtitle": "Alertakuna chaymanta widgetkuna mayuykikunapaq",
     "intro": "Tukuy kaypi yapasqayki mayukunayki patapi rikukun sapa qhawaqpaq DeHub ruwanapi — sichus telefonoykimanta, maskaqmanta, hap'ina tarjetamanta utaq huk codificadormanta kawsaq rinki.",
@@ -9224,6 +9236,7 @@
       "join": "Taqruy"
     },
     "kinds": {
+      "spin_wheel": "Rueda de giro",
       "tip_alert": "Alerta de consejo",
       "follow_alert": "Alertata qatipay",
       "subscribe_alert": "Suscriptor nisqamanta willakuy",
@@ -9243,6 +9256,7 @@
       "poll": "Encuesta"
     },
     "hints": {
+      "spin_wheel": "Maypichus kamachiyniykipi ruedakuna muyurinku",
       "tip_alert": "Sapa puntata raymichan, pataman hina sayayniyuq",
       "follow_alert": "Sapa musuq qatiqnintam qawachin",
       "subscribe_alert": "Sapa musuq suscriptor nisqatam qawachin",
@@ -9318,6 +9332,8 @@
       "rotateFailed": "Mana musuq t'inki ruwayta atirqanchu. Huk ratullapi hukmanta kallpanchakuy."
     },
     "rules": {
+      "wheelSegments": "Rueda segmentos, sapa chirupi huk",
+      "wheelHint": "2manta 12kama.DeHub maypi rueda sayan chayta akllan, chayrayku llapa qhawaqkuna kikin ruwayta rikunku. {result} llamk'achiy huk alerta, kallpawan ñawiriy utaq rimanakuy ruwaypi sutichaypaq.",
       "title": "Kaynin",
       "intro": "Ima sutin llaqtaypi pasakunaptin, DeHub imayna akllaykunki: alerta rikuchin, sonido sonqoychin, ima niwita uyariwachin, chat llaqtaypi willakuychik o Discord willakuychik.",
       "add": "Kayna yapay",
@@ -9371,6 +9387,7 @@
         "subscribers": "Suscriptores nisqakuna"
       },
       "actionTypes": {
+        "wheel": "Huk rueda muyuchiy",
         "alert": "Huk alertata qawachiy",
         "sound": "Huk t’uqyayta tocay",
         "say": "Sinchita leey",

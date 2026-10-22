@@ -8,7 +8,7 @@
  */
 import { createContext, useContext, useEffect, useRef } from "react";
 import { createAudioPlayer } from "expo-audio";
-import { RULE_SOUND_FILES, type RuleFired } from "../../libs/live-overlay/rules";
+import { RULE_SOUND_FILES, WHEEL_SPIN_MS, type RuleFired } from "../../libs/live-overlay/rules";
 import { isTipTtsEnabled, speakTipMessage } from "../../libs/tipTts";
 
 export type RuleBus = {
@@ -81,7 +81,10 @@ export function RuleAudio({ playLive }: { playLive: boolean }) {
       const uri = RULE_SOUND_FILES[id];
       if (uri) playSound(uri);
     }
-    for (const line of fired.say) speakTipMessage(line);
+    // A line about where a wheel stopped is read once it has stopped.
+    const say = () => fired.say.forEach((line) => speakTipMessage(line));
+    if (fired.wheels.length) setTimeout(say, WHEEL_SPIN_MS);
+    else say();
   });
   return null;
 }

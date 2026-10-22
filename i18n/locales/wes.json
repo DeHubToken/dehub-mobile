@@ -9011,6 +9011,7 @@
     "notNow": "No now"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Vote close",
       "voteFor": "Vote foe {{option}}",
@@ -9028,6 +9029,17 @@
     "chatPreview": "Chat messages appear here"
   },
   "liveStudio": {
+    "controls": {
+      "title": "Quick controls",
+      "alertsPaused": "Pause alerts",
+      "soundsMuted": "Mute alert sounds",
+      "readAloudMuted": "Stop read-aloud",
+      "intro": "\"Mid-stream\" no. Each switch wey you flip, dem stay for everybody wey see you, both in app and in OBS, until you flip back again.",
+      "alertsPausedHint": "No gift, no follow, no rule alert wey come o screen. Counter, goal, an chat box still dey move.",
+      "soundsMutedHint": "Yous rules no dey play sound wey.",
+      "readAloudMutedHint": "\"Gift message\" na \"rule line\" no go dey read out a di radio anymore.",
+      "failed": "Na di switch dat no change. Try again."
+    },
     "polls": {
       "questionPlaceholder": "What should I play next?",
       "duration": "How long voting stays open",
@@ -9090,6 +9102,7 @@
       "join": "Join"
     },
     "kinds": {
+      "spin_wheel": "Spin wheel",
       "poll": "Poll",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
@@ -9109,6 +9122,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "spin_wheel": "Where the wheels in your rules spin",
       "poll": "Youse live poll, wey go come wit button fo vote fo every option.",
       "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
@@ -9161,6 +9175,8 @@
       "rotateFailed": "No fit make new link. Try again in small time."
     },
     "rules": {
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Bai 2 na bai 12. DeHub go pick whey de wheel stop, so ebi de watch see same result. Use {result} in alert, read-out or chat action go name it.",
       "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
       "limit": "You have reached the limit of {{count}} rules.",
       "saveToTest": "Save your rules to test them",
@@ -9218,6 +9234,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Spin a wheel",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

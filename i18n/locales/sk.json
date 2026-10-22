@@ -9319,6 +9319,7 @@
     "notNow": "Teraz nie"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spôsobil: {{result}}",
     "someone": "Niekto",
     "newFollower": "Nový sledovateľ: {{name}}",
     "newSubscriber": "Nový odberateľ: {{name}}",
@@ -9342,6 +9343,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Rýchle ovládacie prvky",
+      "intro": "Pre stredný prúd. Každý prepínač drží pre každého, kto sa pozerá, v aplikácii a v OBS, kým ho nevrátite späť.",
+      "alertsPaused": "Pozastaviť upozornenia",
+      "alertsPausedHint": "Na obrazovke nie sú žiadne upozornenia na darčeky, sledovanie alebo pravidlá. Počítadlá, ciele a chatovacie pole pokračujú.",
+      "soundsMuted": "Stlmiť zvuky upozornení",
+      "soundsMutedHint": "Vaše pravidlá prestanú hrať zvuky.",
+      "readAloudMuted": "Zastaviť čítanie nahlas",
+      "readAloudMutedHint": "Darčekové správy a riadky pravidiel sa už nečítajú.",
+      "failed": "Tento prepínač sa nezmenil. Skúste to znova."
+    },
     "title": "Live Studio",
     "subtitle": "Upozornenia a miniaplikácie pre vaše streamy",
     "intro": "Všetko, čo sem pridáte, sa zobrazí vo vašich streamoch pre každého diváka v aplikácii DeHub — či už idete naživo zo svojho telefónu, prehliadača, karty na snímanie alebo kodéra.",
@@ -9380,6 +9392,7 @@
       "join": "Pripojiť sa"
     },
     "kinds": {
+      "spin_wheel": "Rotačné koleso",
       "tip_alert": "Upozornenie NA prepitné",
       "follow_alert": "Sledovať upozornenie",
       "subscribe_alert": "Upozornenie účastníka",
@@ -9399,6 +9412,7 @@
       "poll": "Pôl"
     },
     "hints": {
+      "spin_wheel": "Kde sa točia kolesá vo vašich pravidlách",
       "tip_alert": "Oslavuje každé prepitné vo veľkosti podľa jeho úrovne",
       "follow_alert": "Zobrazí každého nového sledovateľa",
       "subscribe_alert": "Zobrazí každého nového odberateľa",
@@ -9474,6 +9488,8 @@
       "rotateFailed": "Nepodarilo sa vytvoriť nový odkaz. Skúste to znova o chvíľu."
     },
     "rules": {
+      "wheelSegments": "Segmenty kolies, jeden na riadok",
+      "wheelHint": "Medzi 2 a 12. DeHub vyberá, kde sa koleso zastaví, takže všetci sledujúci vidia rovnaký výsledok. Použite {result} v upozornení, nahlas na čítanie alebo akciu chatu, aby ste ho pomenovali.",
       "title": "Pravidlá",
       "intro": "Keď sa na vašom streame niečo stane, DeHub urobí to, čo si vyberiete: zobrazí upozornenie, prehrá zvuk, prečíta niečo nahlas, uverejní príspevok vo vašom chate alebo povie vášmu Discordu.",
       "add": "Pridať pravidlo",
@@ -9527,6 +9543,7 @@
         "subscribers": "Odberatelia"
       },
       "actionTypes": {
+        "wheel": "Roztočte koleso",
         "alert": "Zobraziť upozornenie",
         "sound": "Prehrať zvuk",
         "say": "Čítať nahlas",

@@ -9131,6 +9131,7 @@
     "notNow": "Kò ní báyìí"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Ẹnikan",
     "newFollower": "Àwọn ọmọlẹ́yìn tuntun: {{name}}",
     "newSubscriber": "Olùpèsè tuntun: {{name}}",
@@ -9154,6 +9155,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Àwọn ìṣàkóso kíákíá",
+      "intro": "Fún àtẹ̀jísẹ́ àárín. Ìyípadà kọ̀ọ̀kan dúró fún gbogbo ènìyàn tí ó ń wo, nínú ohun èlò àti nínú OBS, títí tí o ó fi yí i padà.",
+      "alertsPaused": "Àwọn ìkìlọ̀ dídúró",
+      "alertsPausedHint": "Kò sí ẹ̀bùn, tẹ̀lé tàbí ìlànà ìkìlọ̀ lórí mànàárà. Àwọn alátakò, àwọn àfojúsùn àti àpótí ìbánisọ̀rọ̀ ń tẹ̀síwájú.",
+      "soundsMuted": "Àwọn ìró ìkìlọ̀ díẹ̀",
+      "soundsMutedHint": "Àwọn òfin rẹ dẹ́kun ṣíṣe ìró.",
+      "readAloudMuted": "Dúró kíkà-aloud",
+      "readAloudMutedHint": "Àwọn àtẹ̀jísẹ́ ẹ̀bùn àti àwọn ìlànà òfin kò sí ní ìkàwé mọ́.",
+      "failed": "Ìyípadà yẹn kò yí padà. Gbìyànjú lẹ́ẹ̀kan síi."
+    },
     "title": "Live Studio",
     "subtitle": "Alẹ́rìtì àti àwọn ìrinwọ̀n fún àwọn ìṣẹ̀lẹ̀ rẹ",
     "intro": "Ohun gbogbo tí o ṣe àfikun níhìn àpẹjọ lórí àwọn ìṣẹ̀lẹ̀ rẹ fún gbogbo onítọ́jú nínú àpò DeHub — bóyá o bá lọ sílẹ̀ láti ọ̀pọ̀lọ́pọ̀ rẹ, ìtáwọ̀, káàdì ìfihàn tàbí ẹnkóòdà.",
@@ -9192,6 +9204,7 @@
       "join": "Join"
     },
     "kinds": {
+      "spin_wheel": "Yí kẹ̀kẹ́ yípo",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -9211,6 +9224,7 @@
       "poll": "Ìbò"
     },
     "hints": {
+      "spin_wheel": "Níbo ni àwọn kẹ̀kẹ́ tí ó wà nínú òfin rẹ ti ń yípo",
       "tip_alert": "Ṣe ayẹyẹ gbogbo awọn imọran, iwọn si ipele rẹ.",
       "follow_alert": "Ṣàfihàn ọmọlẹ́yìn tuntun kọ̀ọ̀kan",
       "subscribe_alert": "Ṣe afihan alabapin tuntun kọọkan",
@@ -9284,6 +9298,8 @@
       "rotateFailed": "N kò lè ṣe àsopọ̀ tuntun. Gbiyanju lẹẹkansi ni akoko kan."
     },
     "rules": {
+      "wheelSegments": "Awọn apa kẹkẹ, ọkan fun ila",
+      "wheelHint": "Láàárín 2 sí 12. DeHub máa ń yan ibi tí kẹ̀kẹ́ náà ti dúró, kí gbogbo ènìyàn tó ń wò ó lè rí èsì kan náà. Lo {result} nínú ìkìlọ̀, ìró ìkàwé tàbí ìgbésẹ̀ ìjíròrò láti dárúkọ rẹ̀.",
       "title": "Àwọn Ofin",
       "intro": "Nígbà tí ohun kan bá ṣẹlẹ̀ lórí ìkòkò rẹ, DeHub ń ṣe ohun tí o yàn: ṣàfihàn ìkìlọ̀, ń sọ ohùn, ń kà ohun kan nípa ẹnu, ń tẹ̀ sínu ìfitónilétí rẹ tàbí ń sọ fún Discord rẹ.",
       "add": "Ṣafikun ofin kan",
@@ -9337,6 +9353,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Yipada kẹkẹ kan",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

@@ -9208,6 +9208,7 @@
     "notNow": "Hozir emas"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} aylantirildi: {{result}}",
     "someone": "Kimdir",
     "newFollower": "Yangi obunachi: {{name}}",
     "newSubscriber": "Yangi obunachi: {{name}}",
@@ -9231,6 +9232,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Tezkor boshqaruv elementlari",
+      "intro": "Strim o'rtasida. Har bir tugma ilovada va OBSda tomosha qilayotgan har bir kishi uchun uni orqaga qaytarmaguningizcha ushlab turiladi.",
+      "alertsPaused": "Bildirishnomalarni to'xtatib turish",
+      "alertsPausedHint": "Ekranda sovg'a, amal qilish yoki qoida bo'yicha ogohlantirishlar yo'q. Hisoblagichlar, gollar va chat oynasi ishlashda davom etadi.",
+      "soundsMuted": "Ogohlantirish tovushlarini o'chirish",
+      "soundsMutedHint": "Sizning qoidalaringiz tovushlarni ijro etishni to'xtatadi.",
+      "readAloudMuted": "Ovoz chiqarib o'qishni to'xtating",
+      "readAloudMutedHint": "Sovg'a xabarlari va qoidalar satrlari endi o'qib chiqilmaydi.",
+      "failed": "Bu tugma o'zgarmadi. Qaytadan urinib ko'ring."
+    },
     "title": "Jonli studiya",
     "subtitle": "Strimlaringiz uchun ogohlantirishlar va vidjetlar",
     "intro": "Bu yerga qo'shgan barcha narsalaringiz DeHub ilovasidagi har bir tomoshabin uchun — telefoningizdan, brauzeringizdan, yozib olish kartasidan yoki kodlovchidan jonli efirga chiqsangiz ham — strimlaringiz orqali ko'rsatiladi.",
@@ -9269,6 +9281,7 @@
       "join": "Qo'shiling"
     },
     "kinds": {
+      "spin_wheel": "Aylanadigan g'ildirak",
       "tip_alert": "Maslahat ogohlantirishi",
       "follow_alert": "Kuzatib borish haqida ogohlantirish",
       "subscribe_alert": "Obunachi ogohlantirishi",
@@ -9288,6 +9301,7 @@
       "poll": "So'rovnoma"
     },
     "hints": {
+      "spin_wheel": "Qoidalaringizdagi g'ildiraklar qayerda aylanadi",
       "tip_alert": "Har bir choychaqani, o'z darajasiga mos ravishda nishonlaydi",
       "follow_alert": "Har bir yangi izdoshni ko'rsatadi",
       "subscribe_alert": "Har bir yangi obunachini ko'rsatadi",
@@ -9362,6 +9376,8 @@
       "rotateFailed": "Yangi havola yaratib bo'lmadi. Birozdan keyin qayta urinib ko'ring."
     },
     "rules": {
+      "wheelSegments": "G'ildirak segmentlari, har bir qatorda bittadan",
+      "wheelHint": "2 dan 12 gacha. DeHub g'ildirak qayerda to'xtashini tanlaydi, shuning uchun hamma tomosha qilayotganlar bir xil natijani ko'rishadi. Ogohlantirish, ovoz chiqarib o'qish yoki chat harakatlarida {result} dan foydalaning.",
       "title": "Qoidalar",
       "intro": "Sizning streamingizda bir narsa sodir boʻlganda, DeHub sizning tanlangichingizga koʻra amalga oshiradi: xabar koʻrsatadi, ovoz oʻynaydi, narsani aytib beradi, chatga yozib yuboradi yoki Discordingizga xabar yuboradi.",
       "add": "Qoidani qoʻshish",
@@ -9415,6 +9431,7 @@
         "subscribers": "Obunachilar"
       },
       "actionTypes": {
+        "wheel": "G'ildirakni aylantiring",
         "alert": "Ogohlantirishni ko'rsatish",
         "sound": "Ovozni ijro etish",
         "say": "Ovoz chiqarib o'qing",

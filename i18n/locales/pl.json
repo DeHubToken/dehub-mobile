@@ -9227,6 +9227,7 @@
     "update": "Zaktualizuj teraz"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} wirował: {{result}}",
     "someone": "Ktoś",
     "newFollower": "Nowy obserwujący: {{name}}",
     "newSubscriber": "Nowy subskrybent: {{name}}",
@@ -9250,6 +9251,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Szybkie sterowanie",
+      "intro": "Do środkowego strumienia. Każdy przełącznik jest dostępny dla wszystkich oglądających, w aplikacji i obs, dopóki go nie przełączysz.",
+      "alertsPaused": "Wstrzymaj alerty",
+      "alertsPausedHint": "Brak powiadomień o prezentach, śledzeniu lub regułach na ekranie. Liczniki, bramki i pole czatu kontynuują.",
+      "soundsMuted": "Wycisz dźwięki alertów",
+      "soundsMutedHint": "Twoje zasady przestają odtwarzać dźwięki.",
+      "readAloudMuted": "Zatrzymaj odczyt na głos",
+      "readAloudMutedHint": "Wiadomości prezentowe i linie reguł nie są już odczytywane.",
+      "failed": "Ten przełącznik się nie zmienił. Spróbuj ponownie."
+    },
     "title": "Studio na żywo",
     "subtitle": "Alerty i widżety dla Twoich strumieni",
     "intro": "Wszystko, co tutaj dodasz, pojawi się w Twoich strumieniach dla każdej przeglądarki w aplikacji DeHub — niezależnie od tego, czy korzystasz z telefonu, przeglądarki, karty przechwytywania, czy enkodera.",
@@ -9288,6 +9300,7 @@
       "join": "Dołącz"
     },
     "kinds": {
+      "spin_wheel": "Wirujące koło",
       "tip_alert": "Powiadomienie o napiwku",
       "follow_alert": "Obserwuj alert",
       "subscribe_alert": "Alert subskrybenta",
@@ -9307,6 +9320,7 @@
       "poll": "Ankieta"
     },
     "hints": {
+      "spin_wheel": "Gdzie kręcą się koła w Twoich zasadach",
       "tip_alert": "Świętuje każdą wskazówkę, dostosowaną do jej progu",
       "follow_alert": "Pokazuje każdego nowego obserwującego",
       "subscribe_alert": "Pokazuje każdego nowego subskrybenta",
@@ -9382,6 +9396,8 @@
       "rotateFailed": "Nie można utworzyć nowego linku. Spróbuj ponownie za chwilę."
     },
     "rules": {
+      "wheelSegments": "Segmenty kół, jeden na linię",
+      "wheelHint": "Między 2 a 12. DeHub wybiera miejsce, w którym zatrzymuje się koło, więc wszyscy oglądający widzą ten sam wynik. Użyj {result} w alercie, na głos lub na czacie, aby nadać mu nazwę.",
       "test": "Testuj",
       "title": "Zasady",
       "intro": "Kiedy coś się dzieje na twoim strumieniu, DeHub robi to, co wybierzesz: pokazuje alert, odtwarza dźwięk, czyta coś na głos, publikuje w twoim czacie lub informuje w Discordzie.",
@@ -9435,6 +9451,7 @@
         "subscribers": "Subskrybenci"
       },
       "actionTypes": {
+        "wheel": "Zakręć kołem",
         "alert": "Pokaż alert",
         "sound": "Odtwórz dźwięk",
         "say": "Czytaj na głos",

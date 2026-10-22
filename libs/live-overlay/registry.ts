@@ -28,6 +28,7 @@ export const OVERLAY_KINDS = [
   "ticker",
   "rule_alert",
   "poll",
+  "spin_wheel",
 ] as const;
 
 export type OverlayKind = (typeof OVERLAY_KINDS)[number];
@@ -42,6 +43,13 @@ export function isKnownKind(kind: string): kind is OverlayKind {
  * or every gift lands twice.
  */
 export const REPLACES_BUILT_IN_CELEBRATION: readonly OverlayKind[] = ["tip_alert"];
+
+/** What quick controls' "pause alerts" hides. Counters, goals and the chat box keep going. */
+export const ALERT_KINDS: readonly OverlayKind[] = ["tip_alert", "follow_alert", "subscribe_alert", "share_alert", "join_alert", "rule_alert", "spin_wheel"];
+
+export function isAlertKind(kind: string): boolean {
+  return (ALERT_KINDS as readonly string[]).includes(kind);
+}
 
 interface WidgetTemplate {
   landscape: OverlayRect;
@@ -129,6 +137,11 @@ export const WIDGET_TEMPLATES: Record<OverlayKind, WidgetTemplate> = {
     landscape: { x: 0.36, y: 0.3, w: 0.28, h: 0.34 },
     portrait: { x: 0.1, y: 0.22, w: 0.8, h: 0.2 },
     settings: { accent: "#ffffff" },
+  },
+  spin_wheel: {
+    landscape: { x: 0.7, y: 0.3, w: 0.28, h: 0.45 },
+    portrait: { x: 0.2, y: 0.24, w: 0.6, h: 0.3 },
+    settings: {},
   },
 };
 

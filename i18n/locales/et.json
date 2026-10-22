@@ -9153,6 +9153,7 @@
     "notNow": "Mitte praegu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} pööras: {{result}}",
     "someone": "Keegi",
     "newFollower": "Uus jälgija: {{name}}",
     "newSubscriber": "Uus abonent: {{name}}",
@@ -9176,6 +9177,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kiirkontrollid",
+      "intro": "Keskpaigaks. Iga lüliti hoiab kõigile, kes seda vaatavad, rakenduses ja OBS-is, kuni seda tagasi keerad.",
+      "alertsPaused": "Peata teavitused",
+      "alertsPausedHint": "Ekraanil ei kuvata kingitusi, jälgita ega juhita teavitusi. Loendurid, eesmärgid ja vestlusboks jätkuvad.",
+      "soundsMuted": "Vaigista hoiatussignaalid",
+      "soundsMutedHint": "Sinu reeglid lõpetavad helide mängimise.",
+      "readAloudMuted": "Peata valjusti lugemine",
+      "readAloudMutedHint": "Kinkekaarte ja reegliridu enam ette ei loeta.",
+      "failed": "Lüliti ei muutunud. Proovi uuesti."
+    },
     "title": "Live Studio",
     "subtitle": "Teavitusid ja vikerkaarte oma streamidele",
     "intro": "Kõik, mida siia lisad, näidatakse oma streamidel kõigile vaatajatele DeHubi rakenduses — kas sa lähed elus kaudu mobiilist, veebileheküljest, kaadripettist või kooderist.",
@@ -9214,6 +9226,7 @@
       "join": "Liitu mine"
     },
     "kinds": {
+      "spin_wheel": "Tsentrifuugiratas",
       "tip_alert": "Tipp-juhtum",
       "follow_alert": "Järgmise juhtum",
       "subscribe_alert": "Aitäh-juhtum",
@@ -9233,6 +9246,7 @@
       "poll": "Küsitlus"
     },
     "hints": {
+      "spin_wheel": "Kus sinu reeglite rattad pöörlevad",
       "tip_alert": "Täidab iga tippu tema taseme järgi",
       "follow_alert": "Näitab iga uut järgijat",
       "subscribe_alert": "Näitab iga uut abonentit",
@@ -9308,6 +9322,8 @@
       "rotateFailed": "Uut linki ei saanud luua. Proovi mõne hetke pärast uuesti."
     },
     "rules": {
+      "wheelSegments": "Ratta segmendid, üks rea kohta",
+      "wheelHint": "2 ja 12 vahel. DeHub valib, kus ratas peatub, nii et kõik vaatajad näevad sama tulemust. Kasuta märguandes, valjuhäälses lugemises või vestlustoimingus märguannet {result}.",
       "title": "Reeglid",
       "intro": "Kui teie voos juhtub midagi, teeb DeHub seda, mida soovite: kuvab märguande, esitab heli, loeb midagi valjusti, postitab teie vestlusesse või räägib teie ebakõlast.",
       "add": "Lisa reegel",
@@ -9361,6 +9377,7 @@
         "subscribers": "Tellijad"
       },
       "actionTypes": {
+        "wheel": "Keeruta ratast",
         "alert": "Kuva teade",
         "sound": "Esita heli",
         "say": "Loe valjusti",

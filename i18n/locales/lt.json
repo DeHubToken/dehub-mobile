@@ -9153,6 +9153,7 @@
     "notNow": "Ne dabar"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} pasukė: {{result}}",
     "someone": "Kažkas",
     "newFollower": "Naujas sekėjas: {{name}}",
     "newSubscriber": "Naujas prenumeratorius: {{name}}",
@@ -9176,6 +9177,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Spartieji valdikliai",
+      "intro": "Skirta viduriniajam srautui. Kiekvienas jungiklis skirtas visiems žiūrintiesiems programėlėje ir OBS, kol jį apversite.",
+      "alertsPaused": "Pristabdyti pranešimus",
+      "alertsPausedHint": "Ekrane nėra pranešimų apie dovanas, sekimą ar taisykles. Skaitikliai, tikslai ir pokalbių dėžutė nesustoja.",
+      "soundsMuted": "Nutildyti įspėjimo garsus",
+      "soundsMutedHint": "Jūsų taisyklės nustoja leisti garsus.",
+      "readAloudMuted": "Stabdyti garsinį skaitymą",
+      "readAloudMutedHint": "Dovanų žinutės ir taisyklių eilutės nebeskaitomos.",
+      "failed": "Šis jungiklis nepasikeitė. Bandykite dar kartą."
+    },
     "title": "Live Studio",
     "subtitle": "Pranešimai ir vienetai tavo transliacijoms",
     "intro": "Visko, ko pridedate čia, matosi virš tavo transliacijų visi žiūrovai DeHub prietaisyje – ar tu eini į gyvą laidą iš telefonų, naršyklės, įvairių įrašų prietaisų ar kodifikatorių.",
@@ -9214,6 +9226,7 @@
       "join": "Prisijungti"
     },
     "kinds": {
+      "spin_wheel": "Sukimo ratas",
       "tip_alert": "Įspėjimas apie arbatpinig",
       "follow_alert": "Sekti įspėjimą",
       "subscribe_alert": "Prenumeratoriaus įspėjimas",
@@ -9233,6 +9246,7 @@
       "poll": "Apklausa"
     },
     "hints": {
+      "spin_wheel": "Kur sukasi jūsų taisyklių ratai",
       "tip_alert": "Pagerbia kiekvieną patarimą, prilygstantį jo lygiui",
       "follow_alert": "Rodo kiekvieną naują sekėją",
       "subscribe_alert": "Rodykimas kiekvienam naujam abonentui.",
@@ -9308,6 +9322,8 @@
       "rotateFailed": "Nepavyko sukurti naujos nuorodos. Netrukus bandykite dar kartą."
     },
     "rules": {
+      "wheelSegments": "Ratų segmentai, po vieną eilutėje",
+      "wheelHint": "Nuo 2 iki 12. „DeHub“ renkasi, kur sustoja ratas, todėl visi žiūrintys mato tą patį rezultatą. Naudokite {result} įspėjime, garso skaitymo ar pokalbio veiksme, kad jį pavadintumėte.",
       "title": "Taisyklės",
       "intro": "Kai kas nors nutinka jūsų sraute, „DeHub“ daro tai, ką pasirenkate: rodo įspėjimą, leidžia garsą, skaito kažką garsiai, skelbia pokalbyje arba pasako „Discord“.",
       "add": "Pridėti taisyklę",
@@ -9361,6 +9377,7 @@
         "subscribers": "Prenumeratoriai"
       },
       "actionTypes": {
+        "wheel": "Pasukite ratą",
         "alert": "Rodyti pranešimą",
         "sound": "Paleisti garsą",
         "say": "Skaityti garsiai",

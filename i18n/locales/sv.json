@@ -9157,6 +9157,7 @@
     "notNow": "Inte nu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spinnade: {{result}}",
     "someone": "Någon",
     "newFollower": "Ny följare: {{name}}",
     "newSubscriber": "Ny prenumerant: {{name}}",
@@ -9180,6 +9181,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Snabbkontroller",
+      "intro": "För mitten av strömmen. Varje strömbrytare håller för alla som tittar, i appen och i OBS, tills du vänder tillbaka den.",
+      "alertsPaused": "Pausa varningar",
+      "alertsPausedHint": "Inga gåvo-, följ- eller regelvarningar på skärmen. Räknare, mål och chattrutan fortsätter.",
+      "soundsMuted": "Stäng av varningsljud",
+      "soundsMutedHint": "Dina regler slutar spela ljud.",
+      "readAloudMuted": "Stoppa uppläsning",
+      "readAloudMutedHint": "Presentmeddelanden och regelrader läses inte längre upp.",
+      "failed": "Den omkopplaren ändrades inte. Försök igen."
+    },
     "title": "Live-studio",
     "subtitle": "Varningar och widgetar för dina flöden",
     "intro": "Allt du lägger till här visas över dina strömmar för varje tittare i DeHub-appen — oavsett om du går live från din telefon, webbläsaren, ett fångstkort eller en kodare.",
@@ -9218,6 +9230,7 @@
       "join": "Gå med"
     },
     "kinds": {
+      "spin_wheel": "Spinnhjul",
       "tip_alert": "Tips-alert",
       "follow_alert": "Följ-alert",
       "subscribe_alert": "Prenumerant-alert",
@@ -9237,6 +9250,7 @@
       "poll": "Omröstning"
     },
     "hints": {
+      "spin_wheel": "Där hjulen i dina regler snurrar",
       "tip_alert": "Firar varje tips, anpassat efter dess nivå",
       "follow_alert": "Visar varje nya följare",
       "subscribe_alert": "Visar varje nya prenumerant",
@@ -9312,6 +9326,8 @@
       "rotateFailed": "Det gick inte att skapa en ny länk. Försök igen om en stund."
     },
     "rules": {
+      "wheelSegments": "Hjulsegment, en per linje",
+      "wheelHint": "Mellan 2 och 12. DeHub väljer var hjulet stannar, så att alla som tittar ser samma resultat. Använd {result} i en varning, högläsning eller chattåtgärd för att namnge den.",
       "test": "Testa",
       "title": "Regler",
       "intro": "När något händer i din ström gör DeHub vad du väljer: visar en varning, spelar upp ett ljud, läser något högt, lägger upp inlägg i din chatt eller berättar för din Discord.",
@@ -9365,6 +9381,7 @@
         "subscribers": "Prenumeranter"
       },
       "actionTypes": {
+        "wheel": "Snurra ett hjul",
         "alert": "Visa en varning",
         "sound": "Spela upp ett ljud",
         "say": "Läs högt",

@@ -9182,6 +9182,7 @@
     "notNow": "Amma miti"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} kan naanna'e: {{result}}",
     "someone": "Nama ta'e",
     "newFollower": "Hordofaa haaraa: {{name}}",
     "newSubscriber": "Maamiltoonni haaraan: {{name}}",
@@ -9205,6 +9206,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "To'annoo saffisaa",
+      "intro": "Walakkaa sululaaf. Tokkoon tokkoon switch nama ilaalu hundaaf, appii keessatti fi OBS keessatti, hanga duubatti garagalchitanitti qabata.",
+      "alertsPaused": "Akeekkachiisa dhaabbii",
+      "alertsPausedHint": "Kenna, hordoffii ykn seera akeekkachiisa iskiriinii irratti hin jiru. Lakkaawwattoota, goolii fi saanduqa marii itti fufa.",
+      "soundsMuted": "Sagalee akeekkachiisa afaan qabachiisu",
+      "soundsMutedHint": "Seerri kee sagalee taphachuu dhiisa.",
+      "readAloudMuted": "Sagalee ol kaastee dubbisuu dhiisi",
+      "readAloudMutedHint": "Ergaan kennaa fi sararoonni seeraa kana booda hin dubbifaman.",
+      "failed": "Jijjiirraan sun hin jijjiiramne. Ammas yaalaa."
+    },
     "title": "Live Studio",
     "subtitle": "Alartii fi widijetii keessan",
     "intro": "Wanti hunduu ati asii dabaltu akka video keessan irra mul'ata, nama ilaaluu hunduu DeHub app keessatti - yoo telefoonka kee, browser, capture card ykn encoder irraa live ta'u.",
@@ -9243,6 +9255,7 @@
       "join": "Itti makamuu"
     },
     "kinds": {
+      "spin_wheel": "Wiil naanna'uu",
       "tip_alert": "Gorsa akeekkachiisa",
       "follow_alert": "Akeekkachiisa hordofaa",
       "subscribe_alert": "Akeekkachiisa maamilootaa",
@@ -9262,6 +9275,7 @@
       "poll": "Gaaffii"
     },
     "hints": {
+      "spin_wheel": "Bakka girgiddaan seera kee keessa jiru itti naanna'u",
       "tip_alert": "Gorsa hunda kabaja, hamma sadarkaa isaatti",
       "follow_alert": "Tokkoon tokkoon hordoftoota haaraa agarsiisa",
       "subscribe_alert": "Tokkoon tokkoon maamiloota haaraa agarsiisa",
@@ -9336,6 +9350,8 @@
       "rotateFailed": "Link haaraa hojjechuu hin dandeenye. Yeroo muraasa booda irra deebi'ii yaali."
     },
     "rules": {
+      "wheelSegments": "Kutaalee wiilii, sarara tokkoof tokko",
+      "wheelHint": "Between 2 and 12. DeHub bakka wiiliin dhaabbatu waan filatuuf namni ilaalu hundi bu'aa wal fakkaatu arga. Maqaa itti moggaasuuf tarkaanfii akeekkachiisaa, sagalee ol kaastee dubbisuu ykn marii keessatti {result} fayyadami.",
       "placeholders": "Barreeffama kee keessatti {name}, {amount} fi {message} fayyadami. Liinkiiwwan ergaa keessaa ni haqamu.",
       "title": "Seerota",
       "intro": "Wanti tokko yeroo dhuma keessan keessa ta'e, DeHub waan ati filatte hojjeta: ogeeyyii mul'isa, sagalee facaasa, wanti tokko afaan dubbisaa, chaatii keessan keessa barreessa ykn Discord keessan jedha.",
@@ -9389,6 +9405,7 @@
         "subscribers": "Maamiltoota"
       },
       "actionTypes": {
+        "wheel": "Gingilchaan tokko naannessi",
         "alert": "Akeekkachiisa agarsiisi",
         "sound": "Sagalee tokko taphachiisi",
         "say": "Sagalee ol kaastee dubbisi",

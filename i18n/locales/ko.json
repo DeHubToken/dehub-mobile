@@ -9188,6 +9188,7 @@
     "update": "지금 업데이트"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}님이 돌렸어요: {{result}}",
     "poll": {
       "closed": "투표 종료됨",
       "voteFor": "{{option}} 에 투표하기",
@@ -9211,6 +9212,17 @@
     "chatPreview": "채팅 메시지가 여기에 표시됩니다"
   },
   "liveStudio": {
+    "controls": {
+      "title": "간편한 설정",
+      "intro": "미드스트림용. 각 스위치는 앱과 OBS에서 시청하는 모든 사람이 다시 전환할 때까지 유지됩니다.",
+      "alertsPaused": "경고 일시 중지",
+      "alertsPausedHint": "화면에 선물, 팔로우 또는 규칙 알림이 없습니다. 카운터, 목표 및 채팅 상자는 계속 진행됩니다.",
+      "soundsMuted": "경고음 음소거",
+      "soundsMutedHint": "당신의 규칙은 소리 재생을 멈춥니다.",
+      "readAloudMuted": "소리내어 읽기 중지",
+      "readAloudMutedHint": "선물 메시지와 규칙은 더 이상 읽혀지지 않습니다.",
+      "failed": "스위치가 변경되지 않았습니다. 다시 시도하세요."
+    },
     "polls": {
       "title": "투표",
       "intro": "방송을 시청하는 사람들에게 질문을 하세요. DeHub 앱에서 버튼을 누르거나 채팅에 {{command}} 과 옵션 번호를 입력하여 응답합니다.",
@@ -9280,6 +9292,7 @@
       "join": "가입하기"
     },
     "kinds": {
+      "spin_wheel": "스핀 룰렛",
       "poll": "설문조사",
       "tip_alert": "팁 알림",
       "follow_alert": "경보 준수",
@@ -9299,6 +9312,7 @@
       "rule_alert": "규칙 경고"
     },
     "hints": {
+      "spin_wheel": "규칙의 바퀴가 회전하는 곳",
       "poll": "모든 옵션에 투표 버튼이 있는 실시간 투표",
       "tip_alert": "등급에 맞게 조정된 모든 팁을 축하하세요",
       "follow_alert": "각 새 팔로워 표시",
@@ -9374,6 +9388,8 @@
       "rotateFailed": "새 링크를 만들 수 없습니다. 잠시 후 다시 시도하세요."
     },
     "rules": {
+      "wheelSegments": "휠 세그먼트, 라인당 하나",
+      "wheelHint": "2에서 12 사이. DeHub는 휠이 정지하는 위치를 선택하므로 보는 모든 사람이 동일한 결과를 볼 수 있습니다. 알림, 읽기 소리 또는 채팅 동작에서 {result} 을 (를) 사용하여 이름을 지정합니다.",
       "placeholdersLive": "텍스트에 {name}, {title} 및 {link} 을 (를) 사용하세요. 이름, 브로드캐스트 제목 및 링크를 사용하여 시청할 수 있습니다.",
       "title": "규칙",
       "intro": "스트리밍에서 어떤 일이 발생하면 DeHub는 알림을 표시하거나, 소리를 재생하거나, 무언가를 소리 내어 읽거나, 채팅에 게시하거나, Discord에 알리는 등 사용자가 선택한 작업을 수행합니다.",
@@ -9427,6 +9443,7 @@
         "subscribers": "구독자"
       },
       "actionTypes": {
+        "wheel": "룰렛 돌리기",
         "alert": "경고 표시",
         "sound": "소리 재생",
         "say": "소리내어 읽기",

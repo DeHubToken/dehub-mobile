@@ -27,6 +27,7 @@ import { createRuleBus, RuleAudio, RuleBusContext } from "../components/LiveOver
 import { RulesEditor } from "../components/LiveStudio/RulesEditor";
 import { PollEditor } from "../components/LiveStudio/PollEditor";
 import { RecapSection } from "../components/LiveStudio/RecapSection";
+import { QuickControls } from "../components/LiveStudio/QuickControls";
 import { PollContext } from "../components/LiveOverlay/poll";
 import { samplePoll, type LivePoll } from "../libs/live-overlay/polls";
 import { ModerationEditor } from "../components/LiveStudio/ModerationEditor";
@@ -222,6 +223,10 @@ export default function LiveStudioScreen() {
             <RecapSection address={myAddress} streamId={justEnded} />
           </Section>
         ) : null}
+
+        <Section title={t("liveStudio.controls.title")}>
+          <QuickControls overlay={data} queryKey={MY_OVERLAY_KEY} />
+        </Section>
 
         <Section
           title={t("liveStudio.preview")}

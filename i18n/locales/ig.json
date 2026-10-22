@@ -9123,6 +9123,7 @@
     "notNow": "Ọ bụghị ugbu a"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}spun: {{result}}",
     "someone": "Mmadụ",
     "newFollower": "Ọhụrụ na-eso ụzọ: {{name}}",
     "newSubscriber": "Onye debanyere aha ọhụrụ: {{name}}",
@@ -9146,6 +9147,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "intro": "Maka n'etiti mgbasa ozi. Mgbanwe ọ bụla na-adịgide maka onye ọ bụla na-ekiri, na ngwa na na OBS, ruo mgbe ị gbanwere ya.",
+      "title": "Njikwa ngwa ngwa",
+      "alertsPaused": "Kwụsị alerts",
+      "alertsPausedHint": "Enweghị onyinye, soro ma ọ bụ chịkwaa ịdọ aka ná ntị na ihuenyo. Counters, ihe mgbaru ọsọ na chat igbe na-aga n 'ihu.",
+      "soundsMuted": "Mechie ụda ịdọ aka na ntị",
+      "soundsMutedHint": "Iwu gị na-akwụsị ịkpọ ụda.",
+      "readAloudMuted": "Kwụsị ịgụ n 'olu dara ụda",
+      "readAloudMutedHint": "A naghị agụzi ozi onyinye na ahịrị iwu.",
+      "failed": "Mgbanwe ahụ agbanweghị. Gbalịa ọzọ."
+    },
     "title": "Live Studio",
     "subtitle": "Ihe ịpụta ọkwa na ihe ngosi maka ọsọ gị",
     "intro": "Ihe niile ị na-agbakwu ebe a na-apụta n'elu ọsọ gị maka onye ọ bụla na-ekiri ya na DeHub app — ma ọ bụrụ na ị na-aga live site na telefọn gị, browser, capture card ma ọ bụ encoder.",
@@ -9184,6 +9196,7 @@
       "join": "Jikọọ"
     },
     "kinds": {
+      "spin_wheel": "Atụ ogho wheel",
       "tip_alert": "NDỤMỌDỤ",
       "follow_alert": "Soro ọkwa",
       "subscribe_alert": "Ịdọ aka ná ntị ndị debanyere aha",
@@ -9203,6 +9216,7 @@
       "poll": "Pọtụfoliyo"
     },
     "hints": {
+      "spin_wheel": "Ebe wiil gị iwu atụ ogho",
       "tip_alert": "Na-eme ememe ọ bụla n 'ọnụ, size ya tier",
       "follow_alert": "Na-egosi ọ bụla ọhụrụ na-eso ụzọ",
       "subscribe_alert": "Na-egosi ọ bụla ọhụrụ ụtụ magazin",
@@ -9273,6 +9287,8 @@
       "rotateFailed": "Agaghị emenwu ụzọ njikọ ọhụrụ. Gbalịa ọzọ n 'otu ntabi anya."
     },
     "rules": {
+      "wheelSegments": "Wheel nkebi, otu kwa akara",
+      "wheelHint": "Nzọụkwụ 2 ruo 12. DeHub na-ahọrọ ebe wiil ahụ na-akwụsị, yabụ onye ọ bụla na-ekiri na-ahụ otu nsonaazụ ahụ. Jiri {result} n 'ime mkpachapụ anya, gụọ-olu dara ụda maọbụ kpaa nkata iji kpọọ ya aha.",
       "title": "Iwu",
       "intro": "Mgbe ihe mere na mgbasa ozi gị, DeHub na-eme ihe ị họọrọ: ọ na-egosi ọkwa, na-akpọ ụda, na-agụ ihe n'olu dara ụda, na-ebipụta na nkata gị ma ọ bụ na-agwa Discord gị.",
       "add": "Tinye iwu",
@@ -9326,6 +9342,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Atụ ogho a wheel",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

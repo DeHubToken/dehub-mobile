@@ -9234,6 +9234,7 @@
     "notNow": "Tsy hita"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} Spun: {{result}}",
     "poll": {
       "closed": "Mikatona ny fandrotsaham-bato",
       "voteFor": "Mifidiana ny {{option}}",
@@ -9257,6 +9258,17 @@
     "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
   },
   "liveStudio": {
+    "controls": {
+      "title": "Fifehezana haingana",
+      "intro": "Ho an'ny onjam-peo. Ny jiro tsirairay dia mitazona ny rehetra mijery, ao amin'ny app sy ao amin'ny OBS, mandra-piverinao azy.",
+      "alertsPaused": "Fampilazana fiatoana",
+      "alertsPausedHint": "Tsy misy fanomezana, araho na manapaka fampandrenesana eo amin'ny efijery. Mitoetra hatrany ny Counters, ny tanjona ary ny boaty amin'ny chat.",
+      "soundsMuted": "Manajanona ny feo fanairana",
+      "soundsMutedHint": "Ajanony ny milalao ny feo.",
+      "readAloudMuted": "Ajanony vakiana-foana",
+      "readAloudMutedHint": "Ny fanomezana ny hafatra sy fitsipika dia tsy atao intsony.",
+      "failed": "Tsy niova izany fanovana izany. Andramo indray."
+    },
     "polls": {
       "title": "Fitsapan-kevitra",
       "intro": "Anontanio ny olona izay mijery ny fandaharany amin'ny fanontaniana. Mamaly amin'ny bokotra ao amin'ny fampiharana DeHub izy ireo, na amin'ny alalan'ny fanoratana ny {{command}} sy ny laharan'ny safidy amin'ny karajia.",
@@ -9326,6 +9338,7 @@
       "join": "Hiditra"
     },
     "kinds": {
+      "spin_wheel": "Kofehy ireny kodia",
       "poll": "Fitsapan-kevitra",
       "tip_alert": "Soso-kevitra fanairana",
       "follow_alert": "Araho ny fanairana",
@@ -9345,6 +9358,7 @@
       "rule_alert": "Fampilazan'ny fitsipika"
     },
     "hints": {
+      "spin_wheel": "Aiza ny kodiarana ao amin'ny fitsipika mihodina",
       "poll": "Ny fifidianana mivantana, amin'ny bokotra fifidianana ho an'ny safidy tsirairay",
       "tip_alert": "Mankalaza ny torohevitra rehetra, ny salantsalany",
       "follow_alert": "Mampiseho ny mpanaraka vaovao tsirairay",
@@ -9419,6 +9433,8 @@
       "rotateFailed": "Tsy afaka namorona rohy vaovao. Miverena ao anatin'ny iray minitra."
     },
     "rules": {
+      "wheelSegments": "Kodiarana fizarana, iray isaky ny tsipika",
+      "wheelHint": "2 noho ny 0 indray ny baolina. DeHub dia maka ny toerana hijanonan'ny kodiarana, ka mahita ny valiny mitovy ny rehetra. Ampiasao ny {result} ao anaty fanairana, vakio-herisetra na karajia mba hanononana ny anarany.",
       "placeholdersLive": "Ampiasao ny {name}, {title} sy {link} ao amin'ny lahatsoratrao: ny anaranao, ny lohatenin'ny fahitalavitra ary ny rohy hijerena azy.",
       "blockedWords": "Teny voarara",
       "title": "Fitsipika",
@@ -9473,6 +9489,7 @@
         "subscribers": "Mpanjifa"
       },
       "actionTypes": {
+        "wheel": "Mihodina ny kodia",
         "alert": "Asehoy ny fampilazana",
         "sound": "Mamaky feo",
         "say": "Vakio mafy",

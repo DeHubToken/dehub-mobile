@@ -1,5 +1,5 @@
 import { apiClient } from "../libs";
-import type { PublicOverlay } from "../libs/live-overlay/types";
+import { parseControls, type OverlayControls, type PublicOverlay } from "../libs/live-overlay/types";
 import type { LiveRule } from "../libs/live-overlay/rules";
 import { parsePoll, type LivePoll } from "../libs/live-overlay/polls";
 
@@ -224,6 +224,7 @@ export async function getStreamOverlay(streamId: string): Promise<PublicOverlay>
       startedAt: typeof body?.stats?.startedAt === "string" ? body.stats.startedAt : null,
       reactions: Number(body?.stats?.reactions) || 0,
     },
+    controls: parseControls(body?.controls),
   };
 }
 
@@ -235,6 +236,7 @@ export interface CreatorOverlay {
   version: number;
   /** An OBS page with this overlay's link checked in within the last ninety seconds. */
   obsConnected: boolean;
+  controls: OverlayControls;
 }
 
 function creatorOverlay(raw: any): CreatorOverlay {
@@ -245,6 +247,7 @@ function creatorOverlay(raw: any): CreatorOverlay {
     widgets: Array.isArray(body?.widgets) ? body.widgets : [],
     version: Number(body?.version) || 0,
     obsConnected: !!body?.obsConnected,
+    controls: parseControls(body?.controls),
   };
 }
 
@@ -432,4 +435,9 @@ export function formatStreamDuration(seconds: number): string {
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
   return `${h ? `${h}:` : ""}${h ? String(m).padStart(2, "0") : String(m)}:${String(sec).padStart(2, "0")}`;
+}
+
+/** Quick controls: only the switches sent change. Every surface drawing the overlay obeys at once. */
+export async function setMyControls(change: Partial<OverlayControls>): Promise<CreatorOverlay> {
+  return creatorOverlay(await apiClient.put<any>("/live-overlay/mine/controls", { ...change }, { isAuthRequired: true }));
 }

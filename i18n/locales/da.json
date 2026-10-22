@@ -9155,6 +9155,7 @@
     "notNow": "Ikke nu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spundet:{{result}}",
     "someone": "Nogen",
     "newFollower": "Ny følger:{{name}}",
     "newSubscriber": "Ny abonnent:{{name}}",
@@ -9178,6 +9179,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Hurtige kontroller",
+      "intro": "Til midtstrøm. Hver knap holder for alle, der ser på, i appen og i OBS, indtil du vender den tilbage.",
+      "alertsPaused": "Sæt alarmer på pause",
+      "alertsPausedHint": "Ingen påmindelser om gaver, følg eller regler på skærmen. Tællere, mål og chatboksen fortsætter.",
+      "soundsMuted": "Slå advarselslyde fra",
+      "soundsMutedHint": "Dine regler holder op med at afspille lyde.",
+      "readAloudMuted": "Stop højtlæsning",
+      "readAloudMutedHint": "Gavebeskeder og regellinjer læses ikke længere op.",
+      "failed": "Denne kontakt blev ikke ændret. Prøv igen."
+    },
     "title": "Live-studie",
     "subtitle": "Advarsler og widgets til dine streams",
     "intro": "Alt, hvad du tilføjer her, vises over dine streams for alle seere i DeHub-appen — uanset om du går live fra din telefon, browseren, et capture-kort eller en encoder.",
@@ -9216,6 +9228,7 @@
       "join": "Slut dig til"
     },
     "kinds": {
+      "spin_wheel": "Spinhjul",
       "poll": "Afstemning",
       "tip_alert": "Tip-alert",
       "follow_alert": "Følg-alert",
@@ -9235,6 +9248,7 @@
       "rule_alert": "Regeladvarsler"
     },
     "hints": {
+      "spin_wheel": "Hvor hjulene i dine regler drejer",
       "tip_alert": "Fejrer hvert tip, tilpasset dets niveau",
       "follow_alert": "Viser hver nye følger",
       "subscribe_alert": "Viser hver nye abonnent",
@@ -9309,6 +9323,8 @@
       "rotateFailed": "Kunne ikke oprette et nyt link. Prøv igen om et øjeblik."
     },
     "rules": {
+      "wheelSegments": "Hjulsegmenter, en pr. linje",
+      "wheelHint": "Mellem 2 og 12. DeHub vælger, hvor hjulet stopper, så alle, der ser på, ser det samme resultat. Brug {result} i en advarsel, højtlæsning eller chathandling for at navngive den.",
       "title": "Regler",
       "intro": "Når der sker noget på din stream, gør DeHub det, du vælger: viser en advarsel, afspiller en lyd, læser noget højt, slår noget op i din chat eller fortæller din Discord.",
       "add": "Tilføj en regel",
@@ -9362,6 +9378,7 @@
         "subscribers": "Abonnenter"
       },
       "actionTypes": {
+        "wheel": "Drej et hjul",
         "alert": "Vis en advarsel",
         "sound": "Afspil en lyd",
         "say": "Læs højt",

@@ -9282,6 +9282,7 @@
     "update": "Atualizar agora"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} rodado: {{result}}",
     "someone": "Alguém",
     "newFollower": "Novo seguidor: {{name}}",
     "newSubscriber": "Novo assinante: {{name}}",
@@ -9305,6 +9306,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Controles rápidos",
+      "intro": "Para mid-stream. Cada interruptor é válido para todos que estão assistindo, no aplicativo e no Obs, até que você o vire de volta.",
+      "alertsPaused": "Pausar alertas",
+      "alertsPausedHint": "Nenhum alerta de presente, seguir ou regra na tela. Contadores, metas e a caixa de bate-papo continuam.",
+      "soundsMuted": "Silenciar sons de alerta",
+      "soundsMutedHint": "As suas regras param de reproduzir sons.",
+      "readAloudMuted": "Parar leitura em voz alta",
+      "readAloudMutedHint": "Mensagens de presente e linhas de regra não são mais lidas.",
+      "failed": "Essa opção não mudou. Tente novamente."
+    },
     "title": "Estúdio ao Vivo",
     "subtitle": "Alertas e widgets para as suas transmissões",
     "intro": "Tudo o que adicionar aqui aparece nas suas transmissões para todos os visualizadores na aplicação DeHub — quer seja ao vivo a partir do seu telemóvel, do navegador, de uma placa de captura ou de um codificador.",
@@ -9343,6 +9355,7 @@
       "join": "Juntar-se"
     },
     "kinds": {
+      "spin_wheel": "Roda giratória",
       "tip_alert": "Aviso de dica",
       "follow_alert": "Aviso de seguir",
       "subscribe_alert": "Aviso de assinante",
@@ -9362,6 +9375,7 @@
       "poll": "Votação"
     },
     "hints": {
+      "spin_wheel": "Onde as rodas das suas regras giram",
       "tip_alert": "Celebra cada dica, dimensionada de acordo com seu nível",
       "follow_alert": "Mostra cada novo seguidor",
       "subscribe_alert": "Mostra cada novo assinante",
@@ -9437,6 +9451,8 @@
       "rotateFailed": "Não foi possível criar um novo link. Tente novamente daqui a pouco."
     },
     "rules": {
+      "wheelSegments": "Segmentos de roda, um por linha",
+      "wheelHint": "Entre 2 e 12. O DeHub escolhe onde a roda para, para que todos os espectadores vejam o mesmo resultado. Utilize {result} numa ação de alerta, leitura em voz alta ou chat para lhe dar um nome.",
       "title": "Regras",
       "intro": "Quando algo acontece no seu stream, o DeHub faz o que você escolhe: mostra um alerta, toca um som, lê algo em voz alta, publica no seu chat ou diz ao seu Discord.",
       "add": "Adicionar uma regra",
@@ -9490,6 +9506,7 @@
         "subscribers": "Subscritores"
       },
       "actionTypes": {
+        "wheel": "Gire uma roda",
         "alert": "Mostrar um alerta",
         "sound": "Tocar um som",
         "say": "Ler em voz alta",

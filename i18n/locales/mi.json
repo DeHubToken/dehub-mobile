@@ -9133,6 +9133,7 @@
     "notNow": "Ehara i te mea i tenei wa"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "He tangata",
     "newFollower": "Tō muri mai: {{name}}",
     "newSubscriber": "Kaihoko hou: {{name}}",
@@ -9156,6 +9157,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Whakahaere Tere",
+      "intro": "Mo te hongere waenganui. pupuri ia huringa mo te katoa e mātakitaki ana, i roto i te taupānga me i roto i OBS, tae noa ki te tahuri koe i te reira hoki.",
+      "alertsPaused": "Nga whakatupato mo te tuku",
+      "alertsPausedHint": "Kaore he taonga, he whai, he whakatupato ture ranei i runga i te mata. Ka haere tonu nga kaitohutohu, nga whaainga me te pouaka korerorero.",
+      "soundsMuted": "Ngā tangi o te whakatupato",
+      "soundsMutedHint": "Ka mutu o koutou ture ki te tākaro i te tangi.",
+      "readAloudMuted": "Whakamutua te pānui-a-ringa",
+      "readAloudMutedHint": "Ko nga karere tuku me nga raina ture kaore ano kia panuihia.",
+      "failed": "Kaore i huri taua huringa. Whakamātauria ano."
+    },
     "title": "Live Studio",
     "subtitle": "Ngā Tohu me ngā Whakaaturanga mō ā koe Haere Kaupapa",
     "intro": "Ko ngā mea katoa e tāpiri ai koe ki konei ka puta ki runga i ā koe haere kaupapa mō ia kaimātakitaki i roto i te taupānga DeHub — ahakoa ka haere koe kaupapa mai i tō wīwī, te pūtirotiro, he kāri hopu, he encoder rānei.",
@@ -9193,6 +9205,7 @@
       "join": "Hono mai"
     },
     "kinds": {
+      "spin_wheel": "Whero Spin",
       "tip_alert": "Whakaaturanga Whakaaturanga",
       "follow_alert": "Te whai i te whakatupato",
       "subscribe_alert": "Whakapā mai",
@@ -9212,6 +9225,7 @@
       "poll": "Pōtitanga"
     },
     "hints": {
+      "spin_wheel": "Kei hea nga wira i roto i o ture e huri ana",
       "tip_alert": "E whakanui ana i nga tohu katoa, e whakanuia ana ki tona taumata",
       "follow_alert": "Whakaatuhia nga akonga hou katoa",
       "subscribe_alert": "Whakaatuhia nga kaiohauru hou katoa",
@@ -9285,6 +9299,8 @@
       "rotateFailed": "Kaore e taea te hanga hononga hou. Whakamātauria ano i roto i te wa."
     },
     "rules": {
+      "wheelSegments": "Nga waahanga wira, kotahi ia raina",
+      "wheelHint": "I waenganui i te 2 me te 12. DeHub tango i te wahi e mutu te wira, kia kite katoa i te hua ano. Whakamahia {result} i roto i te whakatupato, pānui-ake ranei mahi kōrerorero ki te whakahua i te reira.",
       "title": "Ture",
       "intro": "Ka puta he mea ki runga i tō ripa, ka mahi a DeHub i tā koe whiriwhiri: ka whakaatu i te onagrams, ka whakatangi i te oro, ka pānui i te mea, ka tāpui ki tō kōrero, ki a Discord rānei.",
       "add": "Tāpiri i te ture",
@@ -9338,6 +9354,7 @@
         "subscribers": "Kaitohu"
       },
       "actionTypes": {
+        "wheel": "Whakanohoia he wira",
         "alert": "Whakaatuhia he whakatupato",
         "sound": "Tākaro i te tangi",
         "say": "Pānuihia te reo nui",
