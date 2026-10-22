@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import type { PublicOverlay } from "../libs/live-overlay/types";
 
 // Live posts are CREATED through POST /user_mint with postType=live (see
 // hooks/useUploadLive.ts) — the mint response carries the stream entity.
@@ -198,6 +199,28 @@ export interface LiveAudienceAccount {
   avatarImageUrl?: string;
   badgeBalance?: number;
   hideBadgeAndBalance?: boolean;
+}
+
+/**
+ * GET /live-overlay/stream/:streamId — the creator's overlay for a stream: the
+ * widgets to draw over it and the numbers its goals start from. An empty
+ * overlay when the creator set none up.
+ */
+export async function getStreamOverlay(streamId: string): Promise<PublicOverlay> {
+  if (!streamId) throw new Error("streamId required");
+  const res: any = await apiClient.get<any>(`/live-overlay/stream/${encodeURIComponent(streamId)}`, {
+    isAuthRequired: false,
+  });
+  const body = res?.result ?? res?.data ?? res;
+  return {
+    renderIn: body?.renderIn === "video" ? "video" : "app",
+    widgets: Array.isArray(body?.widgets) ? body.widgets : [],
+    version: Number(body?.version) || 0,
+    stats: {
+      totalTips: Number(body?.stats?.totalTips) || 0,
+      followers: Number(body?.stats?.followers) || 0,
+    },
+  };
 }
 
 /** GET /live/:streamId/audience — host, who is watching, top tippers, most active chatters. */

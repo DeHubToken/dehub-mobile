@@ -26,6 +26,9 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import ReactionOverlay from "../LiveProducer/ReactionOverlay";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
+import LiveOverlayLayer from "../LiveOverlay/LiveOverlayLayer";
+import { useStreamOverlay } from "../../hooks/useStreamOverlay";
+import { REPLACES_BUILT_IN_CELEBRATION } from "../../libs/live-overlay/registry";
 import GiftModal from "../Tip/GiftModal";
 import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
 import ShopBoard from "../common/ShopBoard";
@@ -494,6 +497,22 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   useEffect(() => {
     if (!isLiveEffective) clearReactions();
   }, [isLiveEffective, clearReactions]);
+
+  /**
+   * The creator's overlay. A creator who placed their own tip alert gets theirs
+   * instead of the built-in celebration — whether this screen draws it or their
+   * OBS has already burned it into the picture — never both.
+   */
+  const { data: streamOverlay } = useStreamOverlay(streamId, isLiveEffective);
+  const overlayOwnsCelebration = !!streamOverlay?.widgets.some(
+    (w) => w.enabled && (REPLACES_BUILT_IN_CELEBRATION as readonly string[]).includes(w.kind),
+  );
+  // The picture's own size, from whichever surface is playing it, so widgets
+  // land on the picture and not in the letterbox around it.
+  const [videoSize, setVideoSize] = useState({ width: 0, height: 0 });
+  const onVideoSize = useCallback((size: { width: number; height: number }) => {
+    setVideoSize((prev) => (prev.width === size.width && prev.height === size.height ? prev : size));
+  }, []);
   // Effective playback URL, only when playable.
   //
   // The HLS ladder is dead the moment ingest stops, so an ended stream played
@@ -1557,7 +1576,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         {whepLive.stream ? (
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
-          <LiveWebRtcView stream={whepLive.stream} />
+          <LiveWebRtcView stream={whepLive.stream} onVideoSize={onVideoSize} />
         ) : whepLive.pending && !isPausedEffective ? (
           /* An attempt is in flight. The ladder waits rather than starting
              underneath it: on a working network WebRTC arrives before HLS has
@@ -1594,6 +1613,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             fullscreen
             hideTopControls
             muted={isMuted}
+            onVideoSize={onVideoSize}
           />
         ) : (
           <View className="flex-1 dark-surface bg-black" />
@@ -1757,8 +1777,22 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         {/* Floating Reaction Bubbles - right side */}
         <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
 
-        {/* Tip Animations Overlay */}
-        <TipAnimationsOverlay items={tipEffects} />
+        {/* The creator's widgets, placed against the picture. Mounted only for
+            a creator who has saved an overlay at least once (version > 0), so a
+            stream with none binds nothing. Under the cleared state too: the
+            overlay is part of the stream, not the app's chrome. */}
+        {streamOverlay && streamOverlay.version > 0 && streamId && isLiveEffective && !isPlayingReplay ? (
+          <LiveOverlayLayer
+            streamId={streamId}
+            overlay={streamOverlay}
+            videoSize={videoSize}
+            initialViewers={liveViewers ?? 0}
+          />
+        ) : null}
+
+        {/* Tip Animations Overlay — the built-in one, unless the creator's
+            overlay has its own tip alert. */}
+        {!overlayOwnsCelebration && <TipAnimationsOverlay items={tipEffects} />}
 
         {/* Status overlays: paused/ended/scheduled/offline/loading */}
         <LiveViewerStatusOverlay
