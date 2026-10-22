@@ -6733,7 +6733,7 @@
       "viewer_count": "Viewer count",
       "text": "Text",
       "frame": "Frame",
-      "stream_timer": "Stream timer",
+      "stream_timer": "Broadcast timer",
       "reaction_counter": "Reaction counter",
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
@@ -6750,11 +6750,11 @@
       "viewer_count": "How many people are watching",
       "text": "A line of text or a lower third",
       "frame": "A border around your stream",
-      "stream_timer": "How long you have been live",
-      "reaction_counter": "Counts every reaction on the stream",
-      "event_feed": "The latest tips, follows, subscriptions and shares",
-      "chat_box": "Your stream's chat, on screen",
-      "ticker": "A line of your own text scrolling across"
+      "stream_timer": "Shows how long you have been broadcasting",
+      "reaction_counter": "Counts every reaction your broadcast gets",
+      "event_feed": "The latest gifts, followers, subscribers and people sharing your broadcast",
+      "chat_box": "Shows your broadcast's chat messages on screen",
+      "ticker": "A line of your own text that scrolls across the screen"
     },
     "fields": {
       "style": "Style",
@@ -6823,7 +6823,7 @@
     "goalReached": "Goal reached!",
     "followersUnit": "followers",
     "topSupporters": "Top supporters",
-    "tipped": "{{name}} tipped",
+    "tipped": "{{name}} sent a gift",
     "chatPreview": "Chat messages appear here"
   },
   "liveGift": {
