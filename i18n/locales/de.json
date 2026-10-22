@@ -9218,18 +9218,18 @@
   },
   "accountDeletion": {
     "title": "Konto löschen",
-    "description": "Löschen Sie Ihr Konto und Ihre persönlichen Daten dauerhaft",
-    "warning": "Dadurch werden dein DeHub-Profil, Posts, Kommentare, Nachrichten und das gespeicherte Wallet-Backup dauerhaft gelöscht. Speichern Sie Ihre Wallet-Wiederherstellungsdetails und verschieben Sie zuerst alle Assets. Öffentliche Blockchain-Transaktionen und gesetzlich vorgeschriebene Zahlungsaufzeichnungen können nicht gelöscht werden. Ihr Profil wird sofort ausgeblendet; die Löschung ist innerhalb von 30 Tagen abgeschlossen. Dies kann nicht rückgängig gemacht werden.",
+    "description": "Lösche dein Konto und deine persönlichen Daten dauerhaft",
+    "warning": "Dadurch werden dein DeHub-Profil, deine Posts, Kommentare, Nachrichten und das gespeicherte Wallet-Backup dauerhaft gelöscht. Speichere zuerst deine Wallet-Wiederherstellungsdaten und verschiebe alle Assets. Öffentliche Blockchain-Transaktionen und gesetzlich vorgeschriebene Zahlungsbelege können nicht gelöscht werden. Dein Profil wird sofort ausgeblendet; die Löschung ist innerhalb von 30 Tagen abgeschlossen. Das kann nicht rückgängig gemacht werden.",
     "cancel": "Abbrechen",
     "confirm": "Mein Konto dauerhaft löschen",
-    "busy": "Löschanfrage wird gesendet...",
+    "busy": "Löschanfrage wird gesendet…",
     "accepted": "Kontolöschung angefordert",
-    "receipt": "Ihre Löschanfrage wurde gespeichert. Dein Profil ist ausgeblendet und dein Konto wird innerhalb von 30 Tagen endgültig gelöscht. Die Anmeldung kann diese Anfrage nicht stornieren.",
+    "receipt": "Deine Löschanfrage wurde gespeichert. Dein Profil ist ausgeblendet und dein Konto wird innerhalb von 30 Tagen endgültig gelöscht. Eine erneute Anmeldung kann diese Anfrage nicht stornieren.",
     "done": "Erledigt",
-    "error": "Ihre Löschanfrage konnte nicht gesendet werden. Ihr Konto wurde nicht zum Löschen bestätigt. Bitte versuchen Sie es erneut.",
+    "error": "Deine Löschanfrage konnte nicht gesendet werden. Dein Konto wurde nicht zur Löschung vorgemerkt. Bitte versuche es erneut.",
     "back": "Zurück zu den Einstellungen",
-    "signIn": "Melden Sie sich an, um Ihr Konto zu löschen",
-    "acknowledge": "Ich habe meine Daten zur Wiederherstellung der Brieftasche gespeichert und verstehe, dass die Löschung dauerhaft ist."
+    "signIn": "Melde dich an, um dein Konto zu löschen",
+    "acknowledge": "Ich habe meine Wallet-Wiederherstellungsdaten gespeichert und verstehe, dass die Löschung dauerhaft ist."
   },
   "miniApps": {
     "badge": {
