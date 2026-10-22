@@ -9126,5 +9126,16 @@
     "reminderBody": "Sukurk atsarginę kopiją savo piniginės — 12 žodžių, kurie ją atgaivins, jei praras telefoną.",
     "backUp": "Sukurk atsarginę kopiją",
     "notNow": "Ne dabar"
+  },
+  "liveOverlay": {
+    "someone": "Kažkas",
+    "followed": "{{name}} sekė",
+    "subscribed": "{{name}} prenumeruota",
+    "subscribedTo": "{{name}} prenumeravo {{plan}}",
+    "shared": "{{name}} bendrino srautą",
+    "joined": "{{name}} prisijungė",
+    "goalReached": "Tikslas pasiektas!",
+    "followersUnit": "sekėjai",
+    "topSupporters": "Geriausi rėmėjai"
   }
 }

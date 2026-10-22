@@ -9165,5 +9165,16 @@
     "reminderBody": "სარეზერვო თქვენი საფულე — 12 სიტყვა, რომელიც მას დააბრუნებს, თუ დაკარგავთ ტელეფონს.",
     "backUp": "მარქაფი",
     "notNow": "ახლა არა"
+  },
+  "liveOverlay": {
+    "someone": "ვიღაც",
+    "followed": "{{name}} მოჰყვა",
+    "subscribed": "{{name}} გამოწერილია",
+    "subscribedTo": "{{name}} გამოწერილია {{plan}}",
+    "shared": "{{name}} გაზიარებულია ნაკადი",
+    "joined": "{{name}} შეუერთდა",
+    "goalReached": "მიზანი მიღწეულია!",
+    "followersUnit": "მიმდევრები",
+    "topSupporters": "საუკეთესო მხარდამჭერები"
   }
 }

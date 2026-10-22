@@ -9163,5 +9163,16 @@
     "recommendedBody": "È disponibile una versione più recente di DeHub con importanti correzioni di sicurezza. Aggiorna per mantenere protetto il tuo account.",
     "requiredBody": "Questa versione di DeHub non è più supportata. Aggiorna per continuare a usare il tuo account.",
     "update": "Aggiorna ora"
+  },
+  "liveOverlay": {
+    "someone": "Qualcuno",
+    "followed": "{{name}} seguito",
+    "subscribed": "{{name}} iscritti",
+    "subscribedTo": "{{name}} iscritto a {{plan}}",
+    "shared": "{{name}} ha condiviso lo stream",
+    "joined": "{{name}} iscritti",
+    "goalReached": "Obiettivo raggiunto!",
+    "followersUnit": "followers",
+    "topSupporters": "I migliori sostenitori"
   }
 }

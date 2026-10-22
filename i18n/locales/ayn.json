@@ -9108,5 +9108,16 @@
     "reminderBody": "أعد نسخ محفظتك — 12 كلمة تعيدها إذا فقدت هاتفك.",
     "backUp": "نسخ احتياطي",
     "notNow": "ليس الآن"
+  },
+  "liveOverlay": {
+    "someone": "حد",
+    "followed": "{{name}} تابع",
+    "subscribed": "{{name}} اشترك",
+    "subscribedTo": "{{name}} اشترك في {{plan}}",
+    "shared": "{{name}} شارك البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "الهدف وصل!",
+    "followersUnit": "متابعين",
+    "topSupporters": "أعلى الداعمين"
   }
 }

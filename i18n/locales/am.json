@@ -9120,5 +9120,16 @@
     "reminderBody": "የኪስ ቦርሳዎን ምትኬ — ስልክዎን ካጡ መልሰው የሚያመጡ 12 ቃላት ።",
     "backUp": "ወደላይ ተመለስ",
     "notNow": "አሁን አይደለም"
+  },
+  "liveOverlay": {
+    "someone": "የሆነ ሰው",
+    "followed": "{{name}} ተከተለ",
+    "subscribed": "{{name}} ተመዝግበዋል",
+    "subscribedTo": "{{name}} {{plan}} ተመዝግበዋል",
+    "shared": "{{name}} ዥረት አጋርቷል",
+    "joined": "{{name}} ተቀላቀለ",
+    "goalReached": "ግብ ደርሷል!",
+    "followersUnit": "ተከታዮች",
+    "topSupporters": "ከፍተኛ ደጋፊዎች"
   }
 }

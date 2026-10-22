@@ -9100,5 +9100,16 @@
     "reminderBody": "پنهنجو والٽ بیک اپ ڪريو — 12 لفظ جيڪي توهان جو فون وڃائڻ تي واپس آڻيندا.",
     "backUp": "بیک اپ",
     "notNow": "هاڻي نه"
+  },
+  "liveOverlay": {
+    "someone": "ڪو ماڻهو",
+    "followed": "{{name}} جي پيروي ڪئي",
+    "subscribed": "{{name}} رڪنيت حاصل ڪئي",
+    "subscribedTo": "{{name}} رڪنيت حاصل ڪئي {{plan}}",
+    "shared": "{{name}} وهڪرو شيئر ڪيو",
+    "joined": "{{name}} شامل ٿيو",
+    "goalReached": "مقصد پهچي ويو!",
+    "followersUnit": "پوئلڳ",
+    "topSupporters": "مٿيون حامي"
   }
 }

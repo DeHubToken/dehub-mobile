@@ -9096,5 +9096,16 @@
     "reminderBody": "Back elu gị wallet — 12 okwu na-eweghachi ya ma ọ bụrụ na ị hapụ ekwentị gị.",
     "backUp": "Back up",
     "notNow": "Ọ bụghị ugbu a"
+  },
+  "liveOverlay": {
+    "someone": "Mmadụ",
+    "followed": "{{name}} soro",
+    "subscribed": "{{name}} debanyere aha",
+    "subscribedTo": "{{name}} debanyere aha na {{plan}}",
+    "shared": "{{name}} kesara iyi ahụ",
+    "joined": "{{name}} sonyere",
+    "goalReached": "Ihe mgbaru ọsọ ruru!",
+    "followersUnit": "na-eso ụzọ",
+    "topSupporters": "Top akwado"
   }
 }

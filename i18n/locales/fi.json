@@ -9126,5 +9126,16 @@
     "reminderBody": "Varmuuskopioi lompakkosi — 12 sanaa, jotka palauttavat sen, jos kadotat puhelimesi.",
     "backUp": "Varmuuskopioi",
     "notNow": "Ei nyt"
+  },
+  "liveOverlay": {
+    "someone": "Joku",
+    "followed": "{{name}} seurattu",
+    "subscribed": "{{name}} tilasi",
+    "subscribedTo": "{{name}} tilasi {{plan}}",
+    "shared": "{{name}} jakoi streamin",
+    "joined": "{{name}} liittyi",
+    "goalReached": "Tavoite saavutettu!",
+    "followersUnit": "seuraajat",
+    "topSupporters": "Parhaat kannattajat"
   }
 }

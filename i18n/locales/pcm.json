@@ -8807,5 +8807,16 @@
     "showWords": "Show words",
     "backUp": "Back up",
     "notNow": "Not now"
+  },
+  "liveOverlay": {
+    "someone": "Somebodi",
+    "followed": "{{name}} follow",
+    "subscribed": "{{name}} subscribe",
+    "subscribedTo": "{{name}} subscribe to {{plan}}",
+    "shared": "{{name}} share di stream",
+    "joined": "{{name}} join",
+    "goalReached": "Goal don reach!",
+    "followersUnit": "followers",
+    "topSupporters": "Top supporters"
   }
 }

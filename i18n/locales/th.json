@@ -9152,5 +9152,16 @@
     "reminderBody": "สำรองกระเป๋าเงินของคุณ — 12 คำที่ทำให้คุณกู้คืนได้หากคุณทำโทรศัพท์หาย",
     "backUp": "สำรองข้อมูล",
     "notNow": "ไม่ใช่ตอนนี้"
+  },
+  "liveOverlay": {
+    "someone": "ใครบางคน",
+    "followed": "{{name}} ติดตามแล้ว",
+    "subscribed": "สมัครสมาชิกแล้ว {{name}}",
+    "subscribedTo": "{{name}} สมัครสมาชิก {{plan}}",
+    "shared": "{{name}} แชร์สตรีม",
+    "joined": "เข้าร่วม {{name}} แล้ว",
+    "goalReached": "บรรลุเป้าหมายแล้ว!",
+    "followersUnit": "ผู้ติดตาม",
+    "topSupporters": "ผู้สนับสนุนอันดับสูงสุด"
   }
 }

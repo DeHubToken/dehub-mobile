@@ -8981,5 +8981,16 @@
     "showWords": "Show word dem",
     "reminderBody": "Backup yuh wallet — 12 words wey go bring am back if yuh lose yuh phone.",
     "notNow": "No now"
+  },
+  "liveOverlay": {
+    "someone": "Somebodi",
+    "followed": "{{name}} follow",
+    "subscribed": "{{name}} subscribe",
+    "subscribedTo": "{{name}} subscribe to {{plan}}",
+    "shared": "{{name}} share di stream",
+    "joined": "{{name}} join",
+    "goalReached": "Goal reach!",
+    "followersUnit": "followers",
+    "topSupporters": "Top supporters"
   }
 }

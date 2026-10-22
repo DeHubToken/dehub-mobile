@@ -9136,5 +9136,15 @@
     "reminderBody": "Related Article > > > ဖုန်းပျောက်သွားရင် သတိထားရမယ့် အချက် (၁၂) ချက်",
     "backUp": "အောက်သို့သွား",
     "notNow": "ယခုမဟုတ်ပါ"
+  },
+  "liveOverlay": {
+    "someone": "တစ်စုံတစ်ဦး",
+    "followed": "{{name}} နောက်လိုက်",
+    "subscribed": "{{name}} ကိုစာရင်းသွင်းခဲ့သည်",
+    "shared": "{{name}} ရေစီးကြောင်းကိုမျှဝေခဲ့သည်",
+    "joined": "{{name}} ပူးပေါင်းခဲ့သည်",
+    "goalReached": "ပန်းတိုင်ရောက်ပြီ!",
+    "followersUnit": "နောက်လိုက်များ",
+    "topSupporters": "ထိပ်တန်းထောက်ခံသူများ"
   }
 }

@@ -9091,5 +9091,15 @@
     "reminderBody": "ଆପଣଙ୍କର ୱାଲେଟକୁ ବ୍ୟାକଅପ୍ କରନ୍ତୁ — 12 ଟି ଶବ୍ଦ ଯାହା ଆପଣଙ୍କ ଫୋନ୍ ହଜିଗଲେ ଏହାକୁ ଫେରାଇ ଆଣେ ।",
     "backUp": "ପଛକୁ ଯାଆନ୍ତୁ",
     "notNow": "ବର୍ତ୍ତମାନ ନୁହେଁ"
+  },
+  "liveOverlay": {
+    "someone": "କେହି",
+    "followed": "{{name}} ଅନୁସରଣ କରାଗଲା",
+    "subscribed": "{{name}} Subscribe",
+    "shared": "{{name}} ସ୍ରୋତକୁ ସହଭାଗ କରନ୍ତୁ",
+    "joined": "{{name}} join",
+    "goalReached": "ଲକ୍ଷ୍ୟରେ ପହଁଚିଛି!",
+    "followersUnit": "ଅନୁଗାମୀ",
+    "topSupporters": "ଶୀର୍ଷ ପ୍ରଶଂସକ"
   }
 }

@@ -9072,5 +9072,16 @@
     "reminderBody": "ነቲ ቦርሳኻ ንድሕሪት ስዓቦ — 12 ቃላት ፡ ስልኪኻ እንተ ጠፊኡካ ኺመልሶ ይኽእል እዩ ።",
     "backUp": "ንድሕሪት ምልስ ኢልካ",
     "notNow": "ሕጂ ኣይኰንኩን"
+  },
+  "liveOverlay": {
+    "someone": "ሓደ ሰብ",
+    "followed": "{{name}} ተኸተለ",
+    "subscribed": "{{name}} ተመዝገበ",
+    "subscribedTo": "{{name}} ተመዝገበ ናብ {{plan}}",
+    "shared": "{{name}} ስትሪም ኣብልዑ",
+    "joined": "{{name}} ተቐምጦም",
+    "goalReached": "ዕላማ ደርረ!",
+    "followersUnit": "ተከታታይታት",
+    "topSupporters": "ኣብ ልዕሊ ደጋፊታት"
   }
 }

@@ -9128,5 +9128,16 @@
     "reminderBody": "Sikkerhedskopier din wallet — 12 ord der bringer den tilbage, hvis du mister din telefon.",
     "backUp": "Sikkerhedskopier",
     "notNow": "Ikke nu"
+  },
+  "liveOverlay": {
+    "someone": "Nogen",
+    "followed": "{{name}} fulgte",
+    "subscribed": "{{name}} abonnerede",
+    "subscribedTo": "{{name}} abonnerede på{{plan}}",
+    "shared": "{{name}} har delt streamen",
+    "joined": "{{name}} tilmeldte sig",
+    "goalReached": "Målet er nået!",
+    "followersUnit": "følgere",
+    "topSupporters": "Toptilhængere"
   }
 }

@@ -9104,5 +9104,16 @@
     "reminderBody": "Ṣe àtúnṣe àpamọ́ rẹ — 12 ọrọ tó máa tún àpamọ́ rẹ padà bí o bá padanu foonu rẹ.",
     "backUp": "Ṣe àtẹ̀yìnwá",
     "notNow": "Kò ní báyìí"
+  },
+  "liveOverlay": {
+    "someone": "Ẹnikan",
+    "followed": "{{name}} tẹ̀lé",
+    "subscribed": "{{name}} ṣe ìforúkọsílẹ̀",
+    "subscribedTo": "{{name}} ṣe ìforúkọsílẹ̀ sí {{plan}}",
+    "shared": "{{name}} pín ìsọfúnni náà",
+    "joined": "{{name}} darapọ mọ",
+    "goalReached": "Àfojúsùn ti dé!",
+    "followersUnit": "àwọn ọmọ-ẹ̀yìn",
+    "topSupporters": "Awọn alatilẹyin ti o ga julọ"
   }
 }

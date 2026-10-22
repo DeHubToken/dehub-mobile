@@ -9126,5 +9126,16 @@
     "reminderBody": "Kopjo rezervën e portofolit — 12 fjalë që e sjellin nëse humb telefonin.",
     "backUp": "Bëhu rezervë",
     "notNow": "Jo tani"
+  },
+  "liveOverlay": {
+    "someone": "Dikush",
+    "followed": "{{name}} ndjekur",
+    "subscribed": "{{name}} abonuar",
+    "subscribedTo": "{{name}} abonuar në {{plan}}",
+    "shared": "{{name}} ndau rrjedhën",
+    "joined": "{{name}} u bashkua",
+    "goalReached": "Qëllimi u arrit!",
+    "followersUnit": "ndjekësit",
+    "topSupporters": "Mbështetësit më të mirë"
   }
 }

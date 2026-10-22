@@ -9057,5 +9057,16 @@
     "advanced": "متقدم",
     "showWords": "أظهر الكلمات",
     "reminderBody": "يخزنوا كيسكوا - 12 كلمة تيجي تاخدها لو تفتري هاتفك"
+  },
+  "liveOverlay": {
+    "someone": "زول",
+    "followed": "{{name}} تابع",
+    "subscribed": "{{name}} اشترك",
+    "subscribedTo": "{{name}} اشترك في {{plan}}",
+    "shared": "{{name}} شارك البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "الهدف وصل!",
+    "followersUnit": "متابعين",
+    "topSupporters": "أقوى داعمين"
   }
 }

@@ -9207,5 +9207,16 @@
     "reminderBody": "Mamerina tahiry ny kitapo — teny 12 izay mamerina azy raha very finday ianao.",
     "backUp": "Ambatondrazaka",
     "notNow": "Tsy hita"
+  },
+  "liveOverlay": {
+    "someone": "Olona iray",
+    "followed": "{{name}} nanaraka",
+    "subscribed": "{{name}} subscribed",
+    "subscribedTo": "{{name}} subscribed ho {{plan}}",
+    "shared": "{{name}} nizara ilay tosaka",
+    "joined": "{{name}} nandray anjara",
+    "goalReached": "Tratra ny tanjona!",
+    "followersUnit": "mpanara-dia",
+    "topSupporters": "TOP mpanohana"
   }
 }

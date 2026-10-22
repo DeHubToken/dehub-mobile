@@ -9055,5 +9055,14 @@
     "reminderBody": "I ka wari cɛtigɛ — kuma 12 minw bena i dɛmɛ n'i ye i ka telefɔni to yen.",
     "backUp": "O la, an bena segi ka na.",
     "notNow": "O ma kɛ halibi."
+  },
+  "liveOverlay": {
+    "someone": "Mɔgɔ dɔ",
+    "followed": "{{name}}follow uwuwuwuwuwu",
+    "subscribed": "{{name}} subscribed",
+    "joined": "{{name}} join ye",
+    "goalReached": "An sera yɔrɔ min na, o ye nin ye!",
+    "followersUnit": "uwuwuwuwuwuuw",
+    "topSupporters": "Mɔgɔ minw be dɛmɛ don"
   }
 }

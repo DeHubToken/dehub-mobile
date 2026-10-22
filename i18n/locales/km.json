@@ -9126,5 +9126,16 @@
     "reminderBody": "បម្រុងទុកកាបូបរបស់អ្នក — 12 ពាក្យដែលនាំវាមកវិញប្រសិនបើអ្នកបាត់បង់ទូរស័ព្ទរបស់អ្នក ។",
     "backUp": "បម្រុងទុក",
     "notNow": "មិនមែនឥឡូវនេះទេ"
+  },
+  "liveOverlay": {
+    "someone": "នរណាម្នាក់",
+    "followed": "{{name}} បានតាមដាន",
+    "subscribed": "{{name}} បានជាវ",
+    "subscribedTo": "{{name}} ជាវទៅ {{plan}}",
+    "shared": "{{name}} ចែក រំលែក ស្ទ្រីម",
+    "joined": "{{name}} ចូលរួម",
+    "goalReached": "បានឈានដល់គោលដៅហើយ!",
+    "followersUnit": "អ្នកដើរតាម",
+    "topSupporters": "អ្នកគាំទ្រកំពូលៗ"
   }
 }

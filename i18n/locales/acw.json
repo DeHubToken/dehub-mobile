@@ -9100,5 +9100,16 @@
     "reminderBody": "احتفظ بمحفظتك — 12 كلمة تعيدها إذا فقدت هاتفك.",
     "backUp": "احتفظ",
     "notNow": "ليس الآن"
+  },
+  "liveOverlay": {
+    "someone": "شخص",
+    "followed": "{{name}} تابع",
+    "subscribed": "{{name}} اشترك",
+    "subscribedTo": "{{name}} اشترك في {{plan}}",
+    "shared": "{{name}} شارك البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "الهدف وصل!",
+    "followersUnit": "المتابعين",
+    "topSupporters": "أعلى الداعمين"
   }
 }

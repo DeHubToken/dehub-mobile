@@ -9213,5 +9213,16 @@
     "recommendedBody": "Đã có phiên bản DeHub mới hơn với các bản vá bảo mật quan trọng. Hãy cập nhật để giữ tài khoản của bạn an toàn.",
     "requiredBody": "Phiên bản DeHub này không còn được hỗ trợ. Hãy cập nhật để tiếp tục dùng tài khoản của bạn.",
     "update": "Cập nhật ngay"
+  },
+  "liveOverlay": {
+    "someone": "Ai đó",
+    "followed": "Đã theo dõi {{name}}",
+    "subscribed": "{{name}} đã đăng ký",
+    "subscribedTo": "{{name}} đã đăng ký {{plan}}",
+    "shared": "{{name}} đã chia sẻ luồng",
+    "joined": "Đã tham gia {{name}}",
+    "goalReached": "Đã đạt được mục tiêu!",
+    "followersUnit": "người theo dõi",
+    "topSupporters": "Những người ủng hộ hàng đầu"
   }
 }

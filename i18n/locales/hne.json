@@ -9147,5 +9147,11 @@
     "reminderBody": "अपन पर्स ल बैकअप ले — 12 शब्द जो आपके फोन ल खोए के बाद वापस लानत हवय ।",
     "backUp": "बैक अप",
     "notNow": "अभी नइ"
+  },
+  "liveOverlay": {
+    "someone": "केकरो",
+    "goalReached": "लक्ष्य आ गे हवय!",
+    "followersUnit": "अनुयायी",
+    "topSupporters": "सर्वश्रेष्ठ समर्थक"
   }
 }

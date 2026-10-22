@@ -9126,5 +9126,16 @@
     "reminderBody": "Varunda oma rahakott — 12 sõna, mis taastavad selle, kui kaotad telefoni.",
     "backUp": "Varunda",
     "notNow": "Mitte praegu"
+  },
+  "liveOverlay": {
+    "someone": "Keegi",
+    "followed": "{{name}} järgnes",
+    "subscribed": "{{name}} tellitud",
+    "subscribedTo": "{{name}} tellis {{plan}}",
+    "shared": "{{name}} jagas voogu",
+    "joined": "{{name}} liitus",
+    "goalReached": "Eesmärk on saavutatud!",
+    "followersUnit": "jälgijad",
+    "topSupporters": "Parimad toetajad"
   }
 }

@@ -9123,5 +9123,16 @@
     "reminderBody": "اپنا پرس بیک اپ کریں — 12 الفاظ جو آپ کا فون گم ہونے کی صورت میں اسے واپس لاتے ہیں ۔",
     "backUp": "بیک اپ",
     "notNow": "ابھی نہیں"
+  },
+  "liveOverlay": {
+    "someone": "کوئی",
+    "followed": "{{name}} فالو کیا گیا",
+    "subscribed": "{{name}} سبسکرائب ہو گئے",
+    "subscribedTo": "{{name}} نے {{plan}} کو سبسکرائب کیا",
+    "shared": "{{name}} نے سلسلہ شیئر کیا",
+    "joined": "{{name}} شامل ہوئے",
+    "goalReached": "ہدف حاصل ہو گیا!",
+    "followersUnit": "فالوورز",
+    "topSupporters": "سرکردہ حامی"
   }
 }

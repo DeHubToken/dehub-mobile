@@ -9108,5 +9108,16 @@
     "reminderBody": "તમારા વૉલેટનો બેકઅપ લો — જો તમે તમારો ફોન ગુમાવો છો તો 12 શબ્દો જે તેને પાછા લાવે છે.",
     "backUp": "બેક અપ",
     "notNow": "હમણાં નહીં"
+  },
+  "liveOverlay": {
+    "someone": "કોઈક",
+    "followed": "{{name}} અનુસરે છે",
+    "subscribed": "{{name}} સબ્સ્ક્રાઇબ કર્યું",
+    "subscribedTo": "{{name}} પર સબ્સ્ક્રાઇબ કર્યું {{plan}}",
+    "shared": "{{name}} સ્ટ્રીમ શેર કર્યું",
+    "joined": "{{name}} જોડાયા",
+    "goalReached": "ગોલ પહોંચી ગયો!",
+    "followersUnit": "અનુયાયીઓ",
+    "topSupporters": "ટોચના સમર્થકો"
   }
 }

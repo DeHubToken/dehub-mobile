@@ -9082,5 +9082,16 @@
     "reminderBody": "اپنے والیٹ کا بیک اپ لیں — 12 الفاظ جو آپ کا فون کھونے پر اسے واپس لاتے ہیں۔",
     "backUp": "بیک اپ",
     "notNow": "اب نہیں"
+  },
+  "liveOverlay": {
+    "someone": "کوئی",
+    "followed": "{{name}} فالو کیا",
+    "subscribed": "{{name}} سبسکرائب کیا",
+    "subscribedTo": "{{name}} نے {{plan}} کو سبسکرائب کیا",
+    "shared": "{{name}} نے سٹریم شیئر کی",
+    "joined": "{{name}} شامل ہوا",
+    "goalReached": "مقصد حاصل ہوا!",
+    "followersUnit": "فالوورز",
+    "topSupporters": "ٹاپ سپورٹرز"
   }
 }

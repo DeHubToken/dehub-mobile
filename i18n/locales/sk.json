@@ -9292,5 +9292,16 @@
     "reminderBody": "Zálohovať vašu peňaženku — 12 slov, ktoré ju vráti, ak stratíte telefón.",
     "backUp": "Zálohovať",
     "notNow": "Teraz nie"
+  },
+  "liveOverlay": {
+    "someone": "Niekto",
+    "followed": "{{name}} nasledovalo",
+    "subscribed": "{{name}} prihlásený na odber",
+    "subscribedTo": "{{name}} prihlásený na odber {{plan}}",
+    "shared": "{{name}} zdieľal stream",
+    "joined": "Pripojil sa používateľ {{name}}",
+    "goalReached": "Cieľ bol dosiahnutý!",
+    "followersUnit": "sledovatelia",
+    "topSupporters": "Najlepší priaznivci"
   }
 }

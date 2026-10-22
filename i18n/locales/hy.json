@@ -9125,5 +9125,16 @@
     "reminderBody": "Պահուստացրեք ձեր պորտֆելը — 12 բառ, որոնք վերադարձնում են այն, եթե կորցնեք ձեր հեռախոսը:",
     "backUp": "Պահուստացնել",
     "notNow": "Ոչ հիմա"
+  },
+  "liveOverlay": {
+    "someone": "Ինչ - որ մեկը",
+    "followed": "{{name}} follow",
+    "subscribed": "{{name}} բաժանորդագրված է",
+    "subscribedTo": "{{name}} բաժանորդագրված է {{plan}}",
+    "shared": "{{name}} կիսվել է հոսքով",
+    "joined": "{{name}} միացել է",
+    "goalReached": "Նպատակը հասավ:",
+    "followersUnit": "հետևորդներ",
+    "topSupporters": "Լավագույն աջակիցներ"
   }
 }

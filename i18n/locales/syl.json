@@ -9345,5 +9345,16 @@
     "reminderBody": "আপনার ওয়ালেট ব্যাক আপ করুন — 12 শব্দ যা আপনার ফোন হারালে তা ফিরিয়ে আনবে।",
     "backUp": "ব্যাক আপ",
     "notNow": "এখন নয়"
+  },
+  "liveOverlay": {
+    "someone": "কেউ",
+    "followed": "{{name}} অনুসরণ করিল",
+    "subscribed": "{{name}} সাবস্ক্রাইব করিল",
+    "subscribedTo": "{{name}} সাবস্ক্রাইব করিল {{plan}}",
+    "shared": "{{name}} স্ট্রিম শেয়ার করিল",
+    "joined": "{{name}} যোগ দিল",
+    "goalReached": "লক্ষ্য পৌঁছাইল!",
+    "followersUnit": "অনুসারী",
+    "topSupporters": "সর্বোচ্চ সমর্থক"
   }
 }

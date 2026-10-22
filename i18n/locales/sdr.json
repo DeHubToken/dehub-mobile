@@ -9184,5 +9184,16 @@
     "passwordToShowWords": "کد عبور کیف پول خود را وارد کنید تا ۱۲ کلمه خود را نشان دهیم.",
     "reminderBody": "अपना वॉलेट सुरक्षित रखो — 12 शब्द जे अगर फोन खो जाई त वापस लाबे में मदद करै।",
     "backUp": "पीछे हट"
+  },
+  "liveOverlay": {
+    "someone": "कोनो",
+    "followed": "{{name}} फॉलो करलक",
+    "subscribed": "{{name}} सब्सक्राइब करलक",
+    "subscribedTo": "{{name}} के सब्सक्राइब करलक {{plan}}",
+    "shared": "{{name}} स्ट्रीम साझा करलक",
+    "joined": "{{name}} जुड़लक",
+    "goalReached": "लक्ष्य पहुँच गेल!",
+    "followersUnit": "फॉलोअर्स",
+    "topSupporters": "सर्वोच्च समर्थक"
   }
 }

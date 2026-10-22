@@ -9382,5 +9382,16 @@
     "reminderBody": "Sandarkan dompet anda — 12 perkataan yang membawanya kembali jika anda kehilangan telefon anda.",
     "backUp": "Sandarkan",
     "notNow": "Bukan sekarang"
+  },
+  "liveOverlay": {
+    "someone": "Seseorang",
+    "followed": "{{name}} diikuti",
+    "subscribed": "{{name}} melanggan",
+    "subscribedTo": "{{name}} melanggan {{plan}}",
+    "shared": "{{name}} berkongsi strim",
+    "joined": "{{name}} menyertai",
+    "goalReached": "Matlamat tercapai!",
+    "followersUnit": "pengikut",
+    "topSupporters": "Penyokong utama"
   }
 }

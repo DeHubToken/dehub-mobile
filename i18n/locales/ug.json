@@ -9102,5 +9102,16 @@
     "showWords": "سۆزلەرنى كۆرسىتىش پروگراممىسى",
     "backUp": "زاپاسلاش",
     "notNow": "ھازىر ئەمەس"
+  },
+  "liveOverlay": {
+    "someone": "بىرسى",
+    "followed": "{{name}} ئەگەشكەن",
+    "subscribed": "{{name}} ئابونت",
+    "subscribedTo": "{{name}}{{plan}} غا ئىمزا قويدى",
+    "shared": "{{name}} ئېقىمنى ھەمبەھىرلىدى",
+    "joined": "{{name}} join",
+    "goalReached": "نىشان ئەمەلگە ئاشتى!",
+    "followersUnit": "ئەگەشكۈچىلەر",
+    "topSupporters": "ئەڭ يۇقىرى مەدەتكارلار"
   }
 }

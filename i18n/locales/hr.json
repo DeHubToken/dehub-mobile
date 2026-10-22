@@ -9127,5 +9127,16 @@
     "reminderBody": "Rezerviraj svoj novčanik — 12 riječi koje ga vraćaju ako izgubiš telefon.",
     "backUp": "Rezerviraj",
     "notNow": "Ne sada"
+  },
+  "liveOverlay": {
+    "someone": "Netko",
+    "followed": "Pratio korisnik {{name}}",
+    "subscribed": "{{name}} pretplaćen",
+    "subscribedTo": "{{name}} je pretplaćen/a na {{plan}}",
+    "shared": "{{name}} dijeli stream",
+    "joined": "{{name}} se pridružio/la",
+    "goalReached": "Cilj je postignut!",
+    "followersUnit": "pratitelji",
+    "topSupporters": "Najpopularniji podržavatelji"
   }
 }

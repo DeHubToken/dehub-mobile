@@ -9128,5 +9128,16 @@
     "reminderBody": "Rejesha pochi yako — maneno 12 yanayoirudisha ikiwa utapoteza simu yako.",
     "backUp": "Rudisha nyuma",
     "notNow": "Si sasa"
+  },
+  "liveOverlay": {
+    "someone": "Mtu",
+    "followed": "{{name}} ikifuatiwa",
+    "subscribed": "{{name}} iliyosajiliwa",
+    "subscribedTo": "{{name}} amejisajili kwa {{plan}}",
+    "shared": "{{name}} alituma mkondo",
+    "joined": "{{name}} amejiunga",
+    "goalReached": "Lengo limefikiwa!",
+    "followersUnit": "wafuasi",
+    "topSupporters": "Wafuasi wakuu"
   }
 }

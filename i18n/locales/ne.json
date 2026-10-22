@@ -9157,5 +9157,16 @@
     "reminderBody": "तपाईंको वालेट जगेडा गर्नुहोस् — १२ शब्दहरू जसले तपाईंको फोन हराएमा यसलाई फिर्ता ल्याउँछ ।",
     "backUp": "जगेडा गर्नुहोस्",
     "notNow": "अहिले होइन"
+  },
+  "liveOverlay": {
+    "someone": "कोही",
+    "followed": "{{name}} अनुसरण गरियो",
+    "subscribed": "{{name}} सब्सक्राइब गरियो",
+    "subscribedTo": "{{name}}ले {{plan}} को सदस्यता लिए",
+    "shared": "{{name}} स्ट्रिम सेयर गर्नुभयो",
+    "joined": "{{name}} सामेल भए",
+    "goalReached": "गोल पुग्यो!",
+    "followersUnit": "अनुयायीहरू",
+    "topSupporters": "शीर्ष समर्थकहरू"
   }
 }

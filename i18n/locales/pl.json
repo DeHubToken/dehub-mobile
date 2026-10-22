@@ -9195,5 +9195,16 @@
     "recommendedBody": "Dostępna jest nowsza wersja DeHub z ważnymi poprawkami bezpieczeństwa. Zaktualizuj, aby Twoje konto pozostało chronione.",
     "requiredBody": "Ta wersja DeHub nie jest już obsługiwana. Zaktualizuj, aby dalej korzystać z konta.",
     "update": "Zaktualizuj teraz"
+  },
+  "liveOverlay": {
+    "someone": "Ktoś",
+    "followed": "{{name}} obserwował",
+    "subscribed": "{{name}} subskrybuje",
+    "subscribedTo": "{{name}} subskrybuje {{plan}}",
+    "shared": "{{name}} udostępnił strumień",
+    "joined": "{{name}} dołączył",
+    "goalReached": "Osiągnięto cel!",
+    "followersUnit": "obserwujący",
+    "topSupporters": "Najlepsi kibice"
   }
 }

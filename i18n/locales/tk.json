@@ -9101,5 +9101,16 @@
     "reminderBody": "Eger siz telefonuny ýitirseňiz, ony yzyna getirýän 12 sözüňizi gaýtaryp beriň.",
     "backUp": "Ýokarda",
     "notNow": "Häzir däl"
+  },
+  "liveOverlay": {
+    "someone": "Birisi",
+    "followed": "{{name}} yzygiderli",
+    "subscribed": "{{name}} abuna boldy",
+    "subscribedTo": "{{name}} {{plan}}'a abuna boldy",
+    "shared": "{{name}} akymy paýlaşdy",
+    "joined": "{{name}} goşuldy",
+    "goalReached": "Maksat ýetildi!",
+    "followersUnit": "yzygiderçiler",
+    "topSupporters": "Iň ýokary goldawçylary"
   }
 }

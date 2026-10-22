@@ -9106,5 +9106,16 @@
     "reminderBody": "Whakahokia tō putea — 12 kupu e whakahoki mai ana mēnā ka ngaro tō waea.",
     "backUp": "Hoki ki runga",
     "notNow": "Ehara i te mea i tenei wa"
+  },
+  "liveOverlay": {
+    "someone": "He tangata",
+    "followed": "{{name}} whai ake",
+    "subscribed": "{{name}} kua hainahia",
+    "subscribedTo": "{{name}} kua ohauru ki {{plan}}",
+    "shared": "{{name}} tohatoha i te awa",
+    "joined": "{{name}} hono",
+    "goalReached": "Kua tae mai te whāinga!",
+    "followersUnit": "ngā kaiwhaiwhai",
+    "topSupporters": "Ko nga kaitautoko nui"
   }
 }

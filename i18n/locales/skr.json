@@ -9102,5 +9102,16 @@
     "reminderBody": "اپنا بٹوا بیک اپ کرو — 12 لفظ جیہڑے تُہانوں دا بٹوا واپس لیندے نیں جے تُہانوں فون گم ہو جائے۔",
     "backUp": "بیک اپ",
     "notNow": "ہن نہیں"
+  },
+  "liveOverlay": {
+    "someone": "کِسے",
+    "followed": "{{name}} فالو کیتا",
+    "subscribed": "{{name}} سبسکرائب کیتا",
+    "subscribedTo": "{{name}} نے {{plan}} نوں سبسکرائب کیتا",
+    "shared": "{{name}} سٹریم شیئر کیتا",
+    "joined": "{{name}} شامل ہویا",
+    "goalReached": "مقصد حاصل ہو گیا!",
+    "followersUnit": "فالوورز",
+    "topSupporters": "ٹاپ سپورٹرز"
   }
 }

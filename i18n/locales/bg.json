@@ -9119,5 +9119,16 @@
     "reminderBody": "Направете резервно копие на портфейла си — 12 думи, които го връщат, ако загубите телефона си.",
     "backUp": "Архивиране",
     "notNow": "Не сега"
+  },
+  "liveOverlay": {
+    "someone": "Някой",
+    "followed": "Последваха {{name}}",
+    "subscribed": "{{name}} се абонира",
+    "subscribedTo": "{{name}} се абонира за {{plan}}",
+    "shared": "{{name}} сподели потока",
+    "joined": "{{name}} се присъедини",
+    "goalReached": "Целта е постигната!",
+    "followersUnit": "последователи",
+    "topSupporters": "Водещи поддръжници"
   }
 }
