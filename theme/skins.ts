@@ -47,6 +47,15 @@ export interface ThemeSkin {
 /** War's readout type (web: ui-monospace, 0.1em tracking). */
 export const MONO_TEXT = { fontFamily: 'monospace', letterSpacing: 1.2 } as const;
 
+export const GLASS_PLAYBACK_CONTROL: ViewStyle = {
+  backgroundColor: 'rgba(210,255,255,0.12)',
+  borderWidth: 1,
+  borderColor: 'rgba(225,255,255,0.45)',
+  borderTopColor: 'rgba(255,255,255,0.85)',
+  borderBottomColor: 'rgba(180,255,255,0.35)',
+  borderRadius: 999,
+};
+
 /** Cosmic, Hazy Nights, Swarms, Lava Lamp and Winter share one smoked glass. */
 const glass: Omit<ThemeSkin, 'page'> = {
   backdrop: true,
