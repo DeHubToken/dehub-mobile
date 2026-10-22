@@ -9165,6 +9165,16 @@
     "update": "지금 업데이트"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "투표 종료됨",
+      "voteFor": "{{option}} 에 투표하기",
+      "signIn": "투표하려면 로그인하세요",
+      "failed": "귀하의 투표가 집계되지 않았습니다. 다시 시도하십시오.",
+      "voted_one": "투표하셨습니다 · {{count}} 투표",
+      "voted_other": "투표하셨습니다 · {{count}} 표",
+      "votes_one": "{{count}} 투표",
+      "votes_other": "{{count}} 표"
+    },
     "someone": "누군가",
     "newFollower": "새 팔로워: {{name}}",
     "newSubscriber": "신규 구독자: {{name}}",
@@ -9178,6 +9188,37 @@
     "chatPreview": "채팅 메시지가 여기에 표시됩니다"
   },
   "liveStudio": {
+    "polls": {
+      "title": "투표",
+      "intro": "방송을 시청하는 사람들에게 질문을 하세요. DeHub 앱에서 버튼을 누르거나 채팅에 {{command}} 과 옵션 번호를 입력하여 응답합니다.",
+      "question": "질문",
+      "questionPlaceholder": "다음에는 무엇을 플레이해야 하나요?",
+      "option": "옵션 {{n}}",
+      "addOption": "옵션 추가",
+      "removeOption": "{{n}} 옵션 제거",
+      "duration": "투표가 진행되는 기간",
+      "seconds_one": "{{count}} 초",
+      "seconds_other": "{{count}} 초",
+      "minutes_one": "{{count}} 분",
+      "minutes_other": "{{count}} 분",
+      "start": "설문조사 시작",
+      "end": "지금 투표 종료",
+      "started": "설문조사가 진행 중입니다. 시청자는 지금 투표할 수 있습니다.",
+      "notLive": "먼저 생방송을 시작하세요. 현재 스트리밍 중인 방송에서 설문 조사가 진행됩니다.",
+      "startFailed": "설문 조사가 시작되지 않았습니다. 다시 시도하십시오.",
+      "closeFailed": "투표가 종료되지 않았습니다. 다시 시도하세요.",
+      "live": "투표 열림 · {{time}} 남음",
+      "ended": "투표 종료됨",
+      "votes_one": "{{count}} 투표",
+      "votes_other": "{{count}} 표",
+      "replaceHint": "새 설문조사를 시작하면 열려 있는 설문조사가 닫힙니다.",
+      "widgetHint": "실시간 설문조사를 표시합니다. DeHub 앱에서 시청자는 투표 옵션을 누릅니다. OBS에서는 사람들에게 {{command}} 과 채팅에 숫자를 입력하도록 지시합니다.",
+      "sample": {
+        "a": "새로운 기능",
+        "b": "오래된 즐겨찾기",
+        "c": "선택"
+      }
+    },
     "title": "라이브 스튜디오",
     "subtitle": "스트림에 대한 알림 및 위젯",
     "intro": "여기에 추가하는 모든 항목은 DeHub 앱의 모든 뷰어에 대해 스트림 위에 표시됩니다. 휴대전화, 브라우저, 캡처 카드 또는 인코더에서 라이브로 전환할 수 있습니다.",
@@ -9216,6 +9257,7 @@
       "join": "가입하기"
     },
     "kinds": {
+      "poll": "설문조사",
       "tip_alert": "팁 알림",
       "follow_alert": "경보 준수",
       "subscribe_alert": "구독자 경고",
@@ -9234,6 +9276,7 @@
       "rule_alert": "규칙 경고"
     },
     "hints": {
+      "poll": "모든 옵션에 투표 버튼이 있는 실시간 투표",
       "tip_alert": "등급에 맞게 조정된 모든 팁을 축하하세요",
       "follow_alert": "각 새 팔로워 표시",
       "subscribe_alert": "각 신규 가입자를 표시합니다",
@@ -9308,6 +9351,7 @@
       "rotateFailed": "새 링크를 만들 수 없습니다. 잠시 후 다시 시도하세요."
     },
     "rules": {
+      "placeholdersLive": "텍스트에 {name}, {title} 및 {link} 을 (를) 사용하세요. 이름, 브로드캐스트 제목 및 링크를 사용하여 시청할 수 있습니다.",
       "title": "규칙",
       "intro": "스트리밍에서 어떤 일이 발생하면 DeHub는 알림을 표시하거나, 소리를 재생하거나, 무언가를 소리 내어 읽거나, 채팅에 게시하거나, Discord에 알리는 등 사용자가 선택한 작업을 수행합니다.",
       "add": "규칙 추가",
@@ -9345,6 +9389,7 @@
       "webhookHint": "Discord 또는 Slack 웹훅 또는 포스트를 허용하는 모든 https 주소.",
       "webhookText": "보낼 메시지",
       "triggers": {
+        "live": "방송을 시작합니다.",
         "tip": "팁이 도착했습니다",
         "follow": "누군가가 팔로우합니다",
         "subscribe": "누군가가 구독합니다",

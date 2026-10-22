@@ -17,10 +17,11 @@ import { useWebSocket } from "../../context/WebSocketContext";
 import { streamOverlayKey } from "../../hooks/useStreamOverlay";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { containedPicture, drawOrder, isPortraitPicture, placeWidget, rectFor } from "../../libs/live-overlay/layout";
-import { isKnownKind, type OverlayKind } from "../../libs/live-overlay/registry";
+import { isKnownKind, newWidget, type OverlayKind } from "../../libs/live-overlay/registry";
 import type { PublicOverlay } from "../../libs/live-overlay/types";
 import { OverlayWidgetView } from "./OverlayWidgets";
 import { createRuleBus, RuleAudio, RuleBusContext } from "./ruleBus";
+import { PollContext, PollWidget, useStreamPoll } from "./poll";
 import { parseRuleFired } from "../../libs/live-overlay/rules";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { createOverlayEventBus, OverlayChatContext, OverlayEventContext, roomUser, type OverlayChatLine } from "./overlayEvents";
@@ -70,7 +71,19 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
   const [frame, setFrame] = useState({ width: 0, height: 0 });
 
   const visible = useMemo(
-    () => (overlay.renderIn === "app" ? drawOrder(overlay.widgets.filter((w) => w.enabled && isKnownKind(w.kind))) : []),
+    () =>
+      overlay.renderIn === "app"
+        ? drawOrder(overlay.widgets.filter((w) => w.enabled && w.kind !== "poll" && isKnownKind(w.kind)))
+        : [],
+    [overlay],
+  );
+
+  // A poll is the one thing viewers touch, so it is drawn whatever renderIn
+  // says: over an OBS stream it lands on the burned-in copy and covers it with
+  // buttons. Where the creator placed it, or the default spot.
+  const polls = useStreamPoll(streamId, true);
+  const pollWidget = useMemo(
+    () => overlay.widgets.find((w) => w.enabled && w.kind === "poll") ?? newWidget("poll", []),
     [overlay],
   );
 
@@ -190,6 +203,20 @@ export default function LiveOverlayLayer({ streamId, overlay, videoSize, initial
                 );
               })}
           </View>
+          {picture.width > 0 && polls.poll ? (
+            <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+              {(() => {
+                const box = placeWidget(rectFor(pollWidget, portrait), picture);
+                return (
+                  <View style={{ position: "absolute", left: box.left, top: box.top, width: box.width, height: box.height, overflow: "hidden" }}>
+                    <PollContext.Provider value={{ ...polls, interactive: true }}>
+                      <PollWidget settings={pollWidget.settings || {}} box={{ width: box.width, height: box.height }} />
+                    </PollContext.Provider>
+                  </View>
+                );
+              })()}
+            </View>
+          ) : null}
         </RuleBusContext.Provider>
       </OverlayChatContext.Provider>
     </OverlayEventContext.Provider>

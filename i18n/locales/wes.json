@@ -8988,6 +8988,16 @@
     "notNow": "No now"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Vote close",
+      "voteFor": "Vote foe {{option}}",
+      "signIn": "Sign in foe vote",
+      "failed": "Yuh vote no count. Try again.",
+      "voted_one": "Yuh vote · {{count}} vote",
+      "voted_other": "Yuh vote · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes"
+    },
     "someone": "Wetin dem say?",
     "subscribedTo": "{{name}} subscribe to {{plan}}",
     "followersUnit": "fɔlɔwɔs",
@@ -8995,6 +9005,37 @@
     "chatPreview": "Chat messages appear here"
   },
   "liveStudio": {
+    "polls": {
+      "questionPlaceholder": "What should I play next?",
+      "duration": "How long voting stays open",
+      "start": "Start the poll",
+      "end": "End voting now",
+      "started": "Your poll is open. Viewers can vote now.",
+      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
+      "title": "Polls",
+      "intro": "Ask dem people watchin’ yu broadcast one question. Dem answer wit’ button in DeHub app, or by type \"{{command}}\" and number of option in chat.",
+      "question": "Question",
+      "option": "Option {{n}}",
+      "addOption": "Add an option",
+      "removeOption": "Remove option {{n}}",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes",
+      "startFailed": "Poll no dey start yet. Try again.",
+      "closeFailed": "Vote no finish yet. Try again.",
+      "live": "Voting open · {{time}} left",
+      "ended": "Voting closed",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Fo start new poll go close di one wey don open.",
+      "widgetHint": "Yuz show live poll. In DeHub app, pipo dey tap option to vote; in OBS, e tell pipo type {{command}} and number for chat.",
+      "sample": {
+        "a": "Something new",
+        "b": "An old favourite",
+        "c": "You choose"
+      }
+    },
     "title": "Live Studio",
     "open": "Open Live Studio",
     "settingsLinkBody": "Tip alerts, goals, an' more fit go come on yu stream, set up in Live Studio.",
@@ -9026,6 +9067,7 @@
       "join": "Join"
     },
     "kinds": {
+      "poll": "Poll",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -9044,6 +9086,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "poll": "Youse live poll, wey go come wit button fo vote fo every option.",
       "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
@@ -9095,6 +9138,7 @@
       "rotateFailed": "No fit make new link. Try again in small time."
     },
     "rules": {
+      "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
       "limit": "You have reached the limit of {{count}} rules.",
       "saveToTest": "Save your rules to test them",
       "blockedWordsHint": "Separate with commas. Messages containing them are ignored and never read aloud.",
@@ -9136,6 +9180,7 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "You start broadcastin",
         "share": "Someone shares the stream",
         "keyword": "A chat message contains a word",
         "tip": "A tip arrives",

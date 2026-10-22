@@ -9211,6 +9211,16 @@
     "notNow": "Tsy hita"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Mikatona ny fandrotsaham-bato",
+      "voteFor": "Mifidiana ny {{option}}",
+      "signIn": "Hiditra hifidy",
+      "failed": "Tsy voaisa ny vatonao. Andramo indray.",
+      "voted_one": "Nifidy? {{count}} vote",
+      "voted_other": "Nifidy? {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} Vato"
+    },
     "someone": "Olona iray",
     "newFollower": "Mpanara-baovao: {{name}}",
     "newSubscriber": "Mpamandrika vaovao: {{name}}",
@@ -9224,6 +9234,37 @@
     "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
   },
   "liveStudio": {
+    "polls": {
+      "title": "Fitsapan-kevitra",
+      "intro": "Anontanio ny olona izay mijery ny fandaharany amin'ny fanontaniana. Mamaly amin'ny bokotra ao amin'ny fampiharana DeHub izy ireo, na amin'ny alalan'ny fanoratana ny {{command}} sy ny laharan'ny safidy amin'ny karajia.",
+      "question": "Fanontaniana",
+      "questionPlaceholder": "Inona no tokony hilalao?",
+      "option": "Safidy {{n}}",
+      "addOption": "Hanampy safidy",
+      "removeOption": "Esory safidy {{n}}",
+      "duration": "Mandra-pahoviana no hisokatra ny fandrotsaham-bato",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} segondra",
+      "minutes_one": "{{count}} minitra",
+      "minutes_other": "{{count}} minutes",
+      "start": "Manomboha ny fifidianana",
+      "end": "Mifarana ny fandrotsaham-bato izao",
+      "started": "Misokatra ny fandatsaham-bato. Nanomboka tamin'izany fotoana izany dia afaka mifidy ny vahoaka.",
+      "notLive": "Mandehana mivantana aloha. Ny fitsapan-kevitra dia mandeha amin'ny fandaharana izay alefanao amin'izao fotoana izao.",
+      "startFailed": "Tsy nandeha ny fifidianana. Andramo indray.",
+      "closeFailed": "Tsy nifarana ny fifidianana. Andramo indray.",
+      "live": "Vato misokatra? {{time}} left",
+      "ended": "Mikatona ny fandrotsaham-bato",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} Vato",
+      "replaceHint": "Nakatona ny birao fandatsaham-bato izay misokatra.",
+      "widgetHint": "Mampiseho ny fandrotsaham-bato mivantana nataonao izany. Ao amin'ny fampiharana DeHub, mahita safidy iray hifidianana ny mpijery; ao amin'ny OBS, milaza amin'ny vahoaka izy mba hitendry ny {{command}} sy ny maro amin'ny karajia.",
+      "sample": {
+        "a": "Zava-baovao",
+        "b": "Fa Andriamanitra tia mpanome amim-pifaliana.",
+        "c": "Misafidy ianao"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alerts sy widgets ho an'ny iyong streams",
     "intro": "Ny lahat ng idadagdag mo dito ay lilitaw sa iyong streams para sa bawat viewer sa DeHub app — mula pa man sa pagpunta ka live mula sa iyong telepono, sa browser, sa capture card o sa encoder.",
@@ -9262,6 +9303,7 @@
       "join": "Hiditra"
     },
     "kinds": {
+      "poll": "Fitsapan-kevitra",
       "tip_alert": "Soso-kevitra fanairana",
       "follow_alert": "Araho ny fanairana",
       "subscribe_alert": "Subscriber fanairana",
@@ -9280,6 +9322,7 @@
       "rule_alert": "Fampilazan'ny fitsipika"
     },
     "hints": {
+      "poll": "Ny fifidianana mivantana, amin'ny bokotra fifidianana ho an'ny safidy tsirairay",
       "tip_alert": "Mankalaza ny torohevitra rehetra, ny salantsalany",
       "follow_alert": "Mampiseho ny mpanaraka vaovao tsirairay",
       "subscribe_alert": "Mampiseho ny mpanjifa vaovao tsirairay",
@@ -9353,6 +9396,7 @@
       "rotateFailed": "Tsy afaka namorona rohy vaovao. Miverena ao anatin'ny iray minitra."
     },
     "rules": {
+      "placeholdersLive": "Ampiasao ny {name}, {title} sy {link} ao amin'ny lahatsoratrao: ny anaranao, ny lohatenin'ny fahitalavitra ary ny rohy hijerena azy.",
       "blockedWords": "Teny voarara",
       "title": "Fitsipika",
       "intro": "Raha misy zavatra mitranga eo amin'ny renirano, DeHub dia manao izay safidinao: maneho fanairana, mitendry feo, mamaky zavatra mafy, lahatsoratra ao amin'ny chat na milaza ny Discord anao.",
@@ -9391,6 +9435,7 @@
       "webhookHint": "Ny Discord na Slack webhook, na ny HTTPS adiresy izay manaiky ny lahatsoratra.",
       "webhookText": "Ny hafatra ampitaiko",
       "triggers": {
+        "live": "Manomboka mandefa ny onjam-peo",
         "tip": "Tonga ny SOSO-KEVITRA",
         "follow": "Misy ny manaraka",
         "subscribe": "Olona iray subscribes",

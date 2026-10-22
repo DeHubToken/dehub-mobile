@@ -9195,7 +9195,17 @@
     "followersUnit": "izdoshlar",
     "topSupporters": "Eng yaxshi tarafdorlar",
     "tipped": "{{name}} sovg'a yubordi",
-    "chatPreview": "Chat xabarlari bu yerda ko'rinadi"
+    "chatPreview": "Chat xabarlari bu yerda ko'rinadi",
+    "poll": {
+      "closed": "Ovoz berish yopildi",
+      "voteFor": "{{option}} ga ovoz bering",
+      "signIn": "Ovoz berish uchun tizimga kiring",
+      "failed": "Sizning ovozingiz hisobga olinmadi. Qaytadan urinib ko'ring.",
+      "voted_one": "Siz ovoz berdingiz · {{count}} ovoz berish",
+      "voted_other": "Siz ovoz berdingiz · {{count}} ovozlar",
+      "votes_one": "{{count}} ovoz berish",
+      "votes_other": "{{count}} ovozlar"
+    }
   },
   "liveStudio": {
     "title": "Jonli studiya",
@@ -9251,7 +9261,8 @@
       "event_feed": "So'nggi faollik",
       "chat_box": "Chat oynasi",
       "ticker": "Ticker",
-      "rule_alert": "Qoida ogohlantirishlari"
+      "rule_alert": "Qoida ogohlantirishlari",
+      "poll": "So'rovnoma"
     },
     "hints": {
       "tip_alert": "Har bir choychaqani, o'z darajasiga mos ravishda nishonlaydi",
@@ -9269,7 +9280,8 @@
       "event_feed": "Eng so'nggi sovg'alar, izdoshlar, obunachilar va translyatsiyangizni baham ko'rayotgan odamlar",
       "chat_box": "Ekranda eshittirishingizning chat xabarlarini ko'rsatadi",
       "ticker": "Ekran bo'ylab aylantiriladigan o'zingizning matningiz qatori",
-      "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi"
+      "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi",
+      "poll": "Jonli so'rovnomangiz, har bir variant uchun ovoz berish tugmasi bilan"
     },
     "fields": {
       "style": "Uslub",
@@ -9371,7 +9383,8 @@
         "share": "Kimdir oqimni ulashmoqda",
         "command": "Chat buyrug'i ishlatiladi",
         "keyword": "Chat xabarida so'z bor",
-        "chat": "Har qanday chat xabari"
+        "chat": "Har qanday chat xabari",
+        "live": "Siz efirga uzatishni boshlaysiz"
       },
       "audiences": {
         "everyone": "Hamma",
@@ -9421,6 +9434,38 @@
         "spooky": "Dahshatli",
         "magic-spell": "Sehrli sehr",
         "shhh": "Jim bo'l"
+      },
+      "placeholdersLive": "Matningizda {name}, {title} va {link} dan foydalaning: ismingiz, ko'rsatuv sarlavhasi va uni tomosha qilish uchun havola."
+    },
+    "polls": {
+      "title": "So'rovnomalar",
+      "intro": "Ko'rsatuvingizni tomosha qilayotgan odamlarga savol bering. Ular DeHub ilovasidagi tugma orqali yoki chatda {{command}} va parametr raqamini terish orqali javob berishadi.",
+      "question": "Savol",
+      "questionPlaceholder": "Keyin nima o'ynashim kerak?",
+      "option": "Variant {{n}}",
+      "addOption": "Variant qo'shish",
+      "removeOption": "{{n}} parametrini olib tashlash",
+      "duration": "Ovoz berish qancha vaqt ochiq qoladi",
+      "seconds_one": "{{count}} soniya",
+      "seconds_other": "{{count}} soniya",
+      "minutes_one": "{{count}} daqiqa",
+      "minutes_other": "{{count}} daqiqa",
+      "start": "So'rovnomani boshlang",
+      "end": "Ovoz berishni hozir tugating",
+      "started": "So'rovnomangiz ochiq. Tomoshabinlar endi ovoz berishlari mumkin.",
+      "notLive": "Avval jonli efirga chiqing. Hozirda siz translyatsiya qilayotgan ko'rsatuv bo'yicha so'rovnoma o'tkaziladi.",
+      "startFailed": "So'rovnoma boshlanmadi. Qaytadan urinib ko'ring.",
+      "closeFailed": "Ovoz berish tugamadi. Qaytadan urinib ko'ring.",
+      "live": "Ovoz berish ochiq · {{time}} chapga",
+      "ended": "Ovoz berish yopildi",
+      "votes_one": "{{count}} ovoz berish",
+      "votes_other": "{{count}} ovozlar",
+      "replaceHint": "Yangi so'rovnomani boshlash ochiq bo'lgan so'rovnomani yopadi.",
+      "widgetHint": "Jonli soʻrovnomangizni koʻrsatadi. DeHub ilovasida tomoshabinlar ovoz berish uchun variantni bosishadi; OBS ilovasida esa odamlarga chatda {{command}} va raqamni yozishni aytadi.",
+      "sample": {
+        "a": "Yangi narsa",
+        "b": "Eski sevimli",
+        "c": "Siz tanlaysiz"
       }
     },
     "moderation": {

@@ -9269,7 +9269,17 @@
     "followersUnit": "seguidores",
     "topSupporters": "Principais apoiadores",
     "tipped": "{{name}} enviou um presente",
-    "chatPreview": "As mensagens de chat aparecem aqui"
+    "chatPreview": "As mensagens de chat aparecem aqui",
+    "poll": {
+      "closed": "Votação encerrada",
+      "voteFor": "Vote em {{option}}",
+      "signIn": "Inicie sessão para votar",
+      "failed": "O seu voto não contou. Tente novamente.",
+      "voted_one": "Você votou · {{count}} vote",
+      "voted_other": "Votou · {{count}} votos",
+      "votes_one": "Voto de {{count}}",
+      "votes_other": "{{count}} votos"
+    }
   },
   "liveStudio": {
     "title": "Estúdio ao Vivo",
@@ -9325,7 +9335,8 @@
       "event_feed": "Atividade recente",
       "chat_box": "Caixa de chat",
       "ticker": "Faixa de texto",
-      "rule_alert": "Alertas de regra"
+      "rule_alert": "Alertas de regra",
+      "poll": "Votação"
     },
     "hints": {
       "tip_alert": "Celebra cada dica, dimensionada de acordo com seu nível",
@@ -9343,7 +9354,8 @@
       "event_feed": "Os últimos presentes, seguidores, subscritores e pessoas que partilham a sua transmissão",
       "chat_box": "Mostra as mensagens de chat da sua transmissão no ecrã",
       "ticker": "Uma linha do seu próprio texto que percorre a tela",
-      "rule_alert": "Onde aparecem os alertas das suas regras"
+      "rule_alert": "Onde aparecem os alertas das suas regras",
+      "poll": "Sua votação ao vivo, com um botão de voto para cada opção"
     },
     "fields": {
       "style": "Estilo",
@@ -9446,7 +9458,8 @@
         "share": "Alguém partilha a transmissão",
         "command": "Um comando de chat é usado",
         "keyword": "Uma mensagem de chat contém uma palavra",
-        "chat": "Qualquer mensagem de chat"
+        "chat": "Qualquer mensagem de chat",
+        "live": "Você começa a transmitir"
       },
       "audiences": {
         "everyone": "Toda a gente",
@@ -9496,6 +9509,38 @@
         "spooky": "Assustador",
         "magic-spell": "Magia",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Use {name}, {title} e {link} em seu texto: seu nome, o título da transmissão e um link para assistir."
+    },
+    "polls": {
+      "title": "Votações",
+      "intro": "Pergunte aos espectadores assistindo ao seu transmissão uma pergunta. Eles respondem com um botão no aplicativo DeHub, ou digitando {{command}} e o número da opção no chat.",
+      "question": "Pergunta",
+      "questionPlaceholder": "O que eu devo tocar em seguida?",
+      "option": "Opção {{n}}",
+      "addOption": "Adicionar opção",
+      "removeOption": "Remover opção {{n}}",
+      "duration": "Quanto tempo a votação permanece aberta",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundos",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minutos",
+      "start": "Iniciar a votação",
+      "end": "Encerrar votação agora",
+      "started": "Sua votação está aberta. Os espectadores podem votar agora.",
+      "notLive": "Ir ao vivo primeiro. Uma votação ocorre na transmissão que você está transmitindo agora.",
+      "startFailed": "A votação não começou. Tente novamente.",
+      "closeFailed": "A votação não terminou. Tente novamente.",
+      "live": "Votação aberta · {{time}} segundos restantes",
+      "ended": "Votação encerrada",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votos",
+      "replaceHint": "Iniciar uma nova votação fecha a que está aberta.",
+      "widgetHint": "Mostra sua votação ao vivo. Nos aplicativos DeHub, os espectadores tocam em uma opção para votar; no OBS, informa às pessoas para digitar {{command}} e um número no chat.",
+      "sample": {
+        "a": "Algo novo",
+        "b": "Um clássico",
+        "c": "Você escolhe"
       }
     },
     "moderation": {

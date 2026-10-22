@@ -9266,7 +9266,17 @@
     "followersUnit": "volgers",
     "topSupporters": "Top ondersteuners",
     "tipped": "{{name}} stuur 'n geskenk",
-    "chatPreview": "Geselsboodskappe verskyn hier"
+    "chatPreview": "Geselsboodskappe verskyn hier",
+    "poll": {
+      "closed": "Stemming gesluit",
+      "voteFor": "Stem vir {{option}}",
+      "signIn": "Teken in om te stem",
+      "failed": "Jou stem het nie getel nie. Probeer weer.",
+      "voted_one": "Jy het gestem · {{count}} stem",
+      "voted_other": "Jy het gestem · {{count}} stemme",
+      "votes_one": "{{count}} stem",
+      "votes_other": "{{count}} stemme"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9322,7 +9332,8 @@
       "event_feed": "Onlangse aktiwiteite",
       "chat_box": "Geselsdoos",
       "ticker": "Ticker",
-      "rule_alert": "Reël waarskuwings"
+      "rule_alert": "Reël waarskuwings",
+      "poll": "Peiling"
     },
     "hints": {
       "tip_alert": "Vier elke tip, aangepas na sy vlak",
@@ -9340,7 +9351,8 @@
       "event_feed": "Die nuutste geskenke, volgelinge, intekenare en mense wat jou uitsending deel",
       "chat_box": "Wys jou uitsending se kletsboodskappe op die skerm",
       "ticker": "'n Reël van jou eie teks wat oor die skerm blaai",
-      "rule_alert": "Waar jou reëls se waarskuwings verskyn"
+      "rule_alert": "Waar jou reëls se waarskuwings verskyn",
+      "poll": "Jou regstreekse peiling, met 'n stemknoppie vir elke opsie"
     },
     "fields": {
       "style": "Styl",
@@ -9443,7 +9455,8 @@
         "share": "Iemand deel die stroom",
         "command": "'n Geselsopdrag word gebruik",
         "keyword": "Chatboodskap bevat 'n woord",
-        "chat": "Enige kletsboodskap"
+        "chat": "Enige kletsboodskap",
+        "live": "Jy begin uitsaai"
       },
       "audiences": {
         "everyone": "Almal",
@@ -9493,6 +9506,38 @@
         "spooky": "Spooky",
         "magic-spell": "Magiese spel",
         "shhh": "SHH"
+      },
+      "placeholdersLive": "Gebruik {name}, {title} en {link} in jou teks: jou naam, die titel van die uitsending en 'n skakel om dit te kyk."
+    },
+    "polls": {
+      "title": "Stembusse",
+      "intro": "Vra die mense wat na jou uitsending kyk, 'n vraag. Hulle antwoord met 'n knoppie in die DeHub-app, of deur {{command}} en die opsie se nommer in die klets te tik.",
+      "question": "Vraag",
+      "questionPlaceholder": "Wat moet ek volgende speel?",
+      "option": "Opsie {{n}}",
+      "addOption": "Voeg 'n opsie by",
+      "removeOption": "Verwyder opsie {{n}}",
+      "duration": "Hoe lank om te stem",
+      "seconds_one": "{{count}} tweede",
+      "seconds_other": "{{count}} sekondes",
+      "minutes_one": "{{count}} minuut",
+      "minutes_other": "{{count}} minute",
+      "start": "Begin die stembus",
+      "end": "Sluit nou aan om te stem",
+      "started": "Jou stem is oop. Besoekers kan nou stem.",
+      "notLive": "Gaan eers regstreeks. 'N Peiling loop op die uitsending wat jy nou stroom.",
+      "startFailed": "Die meningspeiling het nie begin nie. Probeer weer.",
+      "closeFailed": "Stem het nie geëindig nie. Probeer weer.",
+      "live": "Stem oop · {{time}} links",
+      "ended": "Stemming gesluit",
+      "votes_one": "{{count}} stem",
+      "votes_other": "{{count}} stemme",
+      "replaceHint": "Begin 'n nuwe stembus sluit die een wat oop is.",
+      "widgetHint": "Wys jou live stembus. In die DeHub-app klik kykers op 'n opsie om te stem; in OBS sê dit vir mense om {{command}} en 'n nommer in die klets in te tik.",
+      "sample": {
+        "a": "Iets nuuts",
+        "b": "'n Ou gunsteling",
+        "c": "Jy kies"
       }
     },
     "moderation": {

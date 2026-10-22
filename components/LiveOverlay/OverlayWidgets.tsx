@@ -41,6 +41,7 @@ import {
 } from "./overlayEvents";
 import { useAlertQueue } from "./useAlertQueue";
 import { useRuleFired } from "./ruleBus";
+import { PollWidget } from "./poll";
 
 export interface WidgetProps {
   settings: Record<string, unknown>;
@@ -754,6 +755,8 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <Ticker {...props} />;
     case "rule_alert":
       return <RuleAlert {...props} />;
+    case "poll":
+      return <PollWidget settings={props.settings} box={props.box} />;
     default:
       return null;
   }

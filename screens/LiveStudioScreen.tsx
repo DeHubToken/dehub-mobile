@@ -21,6 +21,9 @@ import { WidgetSettingsForm } from "../components/LiveStudio/WidgetSettingsForm"
 import { OverlayEventContext, createOverlayEventBus } from "../components/LiveOverlay/overlayEvents";
 import { createRuleBus, RuleAudio, RuleBusContext } from "../components/LiveOverlay/ruleBus";
 import { RulesEditor } from "../components/LiveStudio/RulesEditor";
+import { PollEditor } from "../components/LiveStudio/PollEditor";
+import { PollContext } from "../components/LiveOverlay/poll";
+import { samplePoll, type LivePoll } from "../libs/live-overlay/polls";
 import { ModerationEditor } from "../components/LiveStudio/ModerationEditor";
 import { useOverlayControlRoom } from "../hooks/useOverlayControlRoom";
 import { copyToClipboard, toastError, toastSuccess } from "../libs";
@@ -29,6 +32,7 @@ import { MAX_WIDGETS, OVERLAY_KINDS, isKnownKind, newWidget, type OverlayKind } 
 import type { OverlayRect, OverlayWidget } from "../libs/live-overlay/types";
 import {
   getMyOverlay,
+  getMyPoll,
   rotateOverlayToken,
   saveMyOverlay,
   sendOverlayTest,
@@ -133,12 +137,47 @@ export default function LiveStudioScreen() {
     onError: () => toastError(t("liveStudio.testFailed")),
   });
 
+  // The creator's live poll. The preview shows it, or a stand-in so the poll
+  // widget can be placed offline.
+  const [poll, setPoll] = useState<LivePoll | null>(null);
+  const pollRef = useRef<LivePoll | null>(null);
+  pollRef.current = poll;
+  useEffect(() => {
+    let cancelled = false;
+    getMyPoll()
+      .then((p) => {
+        if (!cancelled) setPoll(p);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const previewPoll = useMemo(
+    () =>
+      poll ??
+      samplePoll(t("liveStudio.polls.questionPlaceholder"), [
+        t("liveStudio.polls.sample.a"),
+        t("liveStudio.polls.sample.b"),
+        t("liveStudio.polls.sample.c"),
+      ]),
+    [poll, t],
+  );
+
   const bus = useMemo(() => createOverlayEventBus(), []);
   const ruleBus = useMemo(() => createRuleBus(), []);
   useOverlayControlRoom(
     data?.token,
     (events) => events.forEach((event) => bus.publish(event)),
     (fired) => ruleBus.publish(fired),
+    // The socket also carries any stream the app is watching: only our poll counts.
+    (incoming) => {
+      if (pollRef.current?.id === incoming.id) setPoll(incoming);
+      else
+        getMyPoll()
+          .then(setPoll)
+          .catch(() => undefined);
+    },
   );
 
   if (isLoading) {
@@ -191,14 +230,16 @@ export default function LiveStudioScreen() {
           <OverlayEventContext.Provider value={bus}>
             <RuleBusContext.Provider value={ruleBus}>
               <RuleAudio playLive={false} />
-              <StudioStage
-                widgets={widgets}
-                portrait={portrait}
-                selectedId={selectedId}
-                stats={PREVIEW_STATS}
-                onSelect={setSelectedId}
-                onMove={move}
-              />
+              <PollContext.Provider value={{ poll: previewPoll, myVote: null, interactive: false }}>
+                <StudioStage
+                  widgets={widgets}
+                  portrait={portrait}
+                  selectedId={selectedId}
+                  stats={PREVIEW_STATS}
+                  onSelect={setSelectedId}
+                  onMove={move}
+                />
+              </PollContext.Provider>
             </RuleBusContext.Provider>
           </OverlayEventContext.Provider>
           <Text className="text-theme-neutrals-500 text-xs">{t("liveStudio.layoutHintPhone")}</Text>
@@ -259,6 +300,10 @@ export default function LiveStudioScreen() {
           ) : (
             <Text className="text-theme-neutrals-500 text-sm">{t("liveStudio.selectHint")}</Text>
           )}
+        </Section>
+
+        <Section title={t("liveStudio.polls.title")}>
+          <PollEditor poll={poll} onPoll={setPoll} />
         </Section>
 
         <Section title={t("liveStudio.rules.title")}>

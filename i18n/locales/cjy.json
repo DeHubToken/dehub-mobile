@@ -9151,6 +9151,16 @@
     "notNow": "现在不"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "投票已关闭",
+      "voteFor": "为 {{option}} 投票",
+      "signIn": "登录以投票",
+      "failed": "您的投票无效。再试一次。",
+      "voted_one": "您投票了 · {{count}} 投票",
+      "voted_other": "您投票了 · {{count}} 票",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票"
+    },
     "someone": "有人",
     "newFollower": "新粉丝：{{name}}",
     "newSubscriber": "新订阅用户：{{name}}",
@@ -9163,6 +9173,37 @@
     "chatPreview": "聊天消息会出现在这里"
   },
   "liveStudio": {
+    "polls": {
+      "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
+      "removeOption": "删除选项{{n}}",
+      "seconds_one": "{{count}}秒",
+      "start": "开始投票",
+      "live": "投票开放·剩余{{time}}次",
+      "title": "民意调查",
+      "question": "问题",
+      "questionPlaceholder": "你下一部电影或游戏应该是什么呢？",
+      "option": "选项{{n}}",
+      "addOption": "添加一个选项",
+      "duration": "投票时间持续多久？",
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分钟",
+      "minutes_other": "{{count}} 分钟",
+      "end": "结束投票现在",
+      "started": "您的投票已经开放。观众可以现在投票。",
+      "notLive": "直播前先上线。在你现在正在直播的直播间里有一个投票活动。",
+      "startFailed": "投票尚未开始。请稍后再试。",
+      "closeFailed": "投票还没有结束。再试一次。",
+      "ended": "投票已关闭",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 张票数",
+      "replaceHint": "开始新的投票将关闭当前的投票。",
+      "widgetHint": "展示您的实时投票结果。在 DeHub 应用中，观众点击选项投票；在 OBS 中，会提示观众在聊天栏输入 `{{command}}` 并加上一个数字。",
+      "sample": {
+        "a": "什么新鲜事？",
+        "b": "一个老朋友",
+        "c": "你选择。"
+      }
+    },
     "subtitle": "直播提醒与小部件",
     "intro": "您在此添加的所有内容都会在 DeHub 应用中显示给每位观众——无论您是用手机、浏览器、捕获卡还是编码器直播。",
     "open": "打开 Live Studio",
@@ -9200,6 +9241,7 @@
       "join": "加入"
     },
     "kinds": {
+      "poll": "民调",
       "tip_alert": "提示警报",
       "follow_alert": "关注警报",
       "subscribe_alert": "订阅者警报",
@@ -9215,6 +9257,7 @@
       "rule_alert": "规则提醒"
     },
     "hints": {
+      "poll": "您的实时投票，每个选项都有投票按钮",
       "tip_alert": "庆祝每一笔提示，大小依提示等级而定",
       "follow_alert": "显示每一位新粉丝",
       "subscribe_alert": "显示每一位新订阅者",
@@ -9287,6 +9330,7 @@
       "rotateFailed": "无法创建新链接。稍后再试。"
     },
     "rules": {
+      "placeholdersLive": "在文本中使用{name}、{title}和{link} ：您的姓名、广播标题和观看链接。",
       "placeholders": "在文本中使用{name}、{amount}和{message}。消息中的链接将被删除。",
       "sayText": "朗读文本",
       "chatText": "要发布的消息",
@@ -9332,6 +9376,7 @@
       "webhookUrl": "网址钩子地址",
       "webhookHint": "一个 Discord 或 Slack 的 Webhook 地址，或者任何接受 POST 请求的 HTTPS 地址。",
       "triggers": {
+        "live": "你开始直播",
         "tip": "小费已到账",
         "share": "有人分享了信息流",
         "command": "使用聊天命令",

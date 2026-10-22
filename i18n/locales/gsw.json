@@ -9150,6 +9150,16 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Abstimmig schtössi",
+      "voteFor": "Stimm für {{option}}",
+      "signIn": "Logg dich ein, um abzustimmä",
+      "failed": "Deine Stimm zähl nüt. Versuchs no ämols.",
+      "voted_one": "Du häst abgestimmt · {{count}} Stimm",
+      "voted_other": "Du häst abgestimmt · {{count}} Stimmä",
+      "votes_one": "{{count}} Stimm",
+      "votes_other": "{{count}} Stimmä"
+    },
     "someone": "Öpper",
     "newFollower": "Neuer Follower: {{name}}",
     "newSubscriber": "Neuer Abonnent: {{name}}",
@@ -9163,6 +9173,37 @@
     "chatPreview": "Chat-Nachrichten erscheinen hier"
   },
   "liveStudio": {
+    "polls": {
+      "title": "Umfragen",
+      "question": "Frage",
+      "addOption": "Option hinzufügen",
+      "removeOption": "Option {{n}}entfernen",
+      "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
+      "questionPlaceholder": "Was soll ich als Nächstes spielen?",
+      "option": "Option {{n}}",
+      "duration": "Wos lang d’Stimmabgabe offen blit?",
+      "seconds_one": "{{count}} zwoite",
+      "seconds_other": "{{count}} Sekundä",
+      "minutes_one": "{{count}} Minute",
+      "minutes_other": "{{count}} Minuten",
+      "start": "Start de Umfrage",
+      "end": "Endet jetzt mit dem Abstimmungsprozess!",
+      "started": "De Umfrage is offen. Schauä schtämmig ab, wä de Lesä abstimmä kännt.",
+      "notLive": "Geh live als Erstes. Es läuft eine Umfrage im Stream, den du gerade machst.",
+      "startFailed": "De Umfrage isch net gestartet. Versuchs noa.",
+      "closeFailed": "Stimmabgabe isch nocht fertig. Versuche’s noochmäl.",
+      "live": "Stimmabgabe offen · {{time}} noch übrig",
+      "ended": "Stimmabgabe geschlossen",
+      "votes_one": "{{count}} stimme ab",
+      "votes_other": "{{count}} Stimmä",
+      "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
+      "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
+      "sample": {
+        "c": "Sie wählen",
+        "a": "Etwas Neues",
+        "b": "Ei e chlii Altbekanntes"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alarm und Widgets für dini Streams",
     "intro": "Alles, was du hier hinzufügst, erscheint über deinen Streams für alle Zuschauer in der DeHub-App – egal ob du live von deinem Handy, dem Browser, einer Capture-Karte oder einem Encoder streamst.",
@@ -9197,6 +9238,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
       "subscribe_alert": "Abonnenten-Benachrichtigung",
@@ -9213,6 +9255,7 @@
       "rule_alert": "Regel-Warnungen"
     },
     "hints": {
+      "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
       "follow_alert": "Zeigt jeden neuen Follower",
       "subscribe_alert": "Zeigt jeden neuen Abonnenten",
@@ -9286,6 +9329,7 @@
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
     },
     "rules": {
+      "placeholdersLive": "Verwenden Sie {name}, {title} und {link} in Ihrem Text: Ihren Namen, den Titel der Sendung und einen Link, um sie anzusehen.",
       "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
       "alertText": "Benachrichtigungstext",
       "sound": "Ton",
@@ -9327,6 +9371,7 @@
       "webhookUrl": "Webhook-Adresse",
       "webhookHint": "Einer Discord- oder Slack-Webhook, oder ei Webadress (HTTPS) wo ei POST-Aufruf funktioniert.",
       "triggers": {
+        "live": "Du startscht mit dem Sendä",
         "tip": "Eini Tipp kommt an.",
         "follow": "Jemänd follows dir.",
         "subscribe": "Jemand abonniert.",

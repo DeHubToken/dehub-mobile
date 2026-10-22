@@ -5,7 +5,7 @@
  * the shape Live Studio edits and the names it shows.
  */
 
-export const RULE_TRIGGERS = ['tip', 'follow', 'subscribe', 'share', 'command', 'keyword', 'chat'] as const;
+export const RULE_TRIGGERS = ['tip', 'follow', 'subscribe', 'share', 'live', 'command', 'keyword', 'chat'] as const;
 export type RuleTriggerType = (typeof RULE_TRIGGERS)[number];
 
 export const RULE_ACTION_TYPES = ['alert', 'sound', 'say', 'chat', 'webhook'] as const;

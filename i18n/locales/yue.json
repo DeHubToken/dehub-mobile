@@ -9126,7 +9126,17 @@
     "followersUnit": "追隨者",
     "topSupporters": "頂級支持者",
     "tipped": "{{name}} 送咗份禮物",
-    "chatPreview": "即時通訊訊息會喺呢度出現"
+    "chatPreview": "即時通訊訊息會喺呢度出現",
+    "poll": {
+      "closed": "投票已經結束",
+      "voteFor": "投 {{option}}",
+      "signIn": "登入投票",
+      "failed": "你嘅票唔計再試多次。",
+      "voted_one": "你投票咗 · {{count}} 投票",
+      "voted_other": "你投票咗 · {{count}} 投票",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票數"
+    }
   },
   "liveStudio": {
     "title": "現場工作室",
@@ -9182,7 +9192,8 @@
       "event_feed": "最近嘅活動",
       "chat_box": "聊天框",
       "ticker": "股票",
-      "rule_alert": "規則警示"
+      "rule_alert": "規則警示",
+      "poll": "民調"
     },
     "hints": {
       "rule_alert": "你啲規則嘅提示喺邊度出現",
@@ -9200,7 +9211,8 @@
       "reaction_counter": "計你個廣播得到嘅每個反應",
       "event_feed": "最新嘅禮物、追蹤者、訂閱者同埋分享你廣播嘅人",
       "chat_box": "喺螢幕上面顯示你嘅廣播嘅即時通訊訊息",
-      "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動"
+      "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動",
+      "poll": "你嘅即時民調，每個選項都有投票掣"
     },
     "fields": {
       "style": "風格",
@@ -9303,7 +9315,8 @@
         "share": "有人分享咗個串流",
         "command": "用咗個即時通訊指令",
         "keyword": "即時通訊訊息包含一個字",
-        "chat": "任何即時通訊訊息"
+        "chat": "任何即時通訊訊息",
+        "live": "你開始廣播"
       },
       "audiences": {
         "everyone": "所有人",
@@ -9353,6 +9366,38 @@
         "spooky": "好鬼怪",
         "magic-spell": "魔法咒語",
         "shhh": "噓"
+      },
+      "placeholdersLive": "喺你嘅文字入面用 {name} 、 {title} 同 {link} ：你個名、個廣播嘅標題同埋一個睇廣播嘅連結。"
+    },
+    "polls": {
+      "title": "民調",
+      "intro": "問啲睇緊你廣播嘅人一個問題。佢哋會用 DeHub 應用程式入面嘅掣嚟答，或者喺即時通訊入面輸入 {{command}} 同埋個選項嘅號碼。",
+      "question": "問題",
+      "questionPlaceholder": "我下次應該玩啲咩？",
+      "option": "選項 {{n}}",
+      "addOption": "加個選項",
+      "removeOption": "移除選項 {{n}}",
+      "duration": "投票會開放幾耐",
+      "seconds_one": "{{count}} 秒",
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分鐘",
+      "minutes_other": "{{count}} 分鐘",
+      "start": "開始民調",
+      "end": "而家結束投票",
+      "started": "你嘅民調開放咗。觀眾而家可以投票。",
+      "notLive": "去直播先。民調會喺你而家串流緊嘅廣播上面進行。",
+      "startFailed": "個民調未開始。再試多次。",
+      "closeFailed": "投票未完。再試多次。",
+      "live": "投票開放 · {{time}} 左",
+      "ended": "投票已經結束",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票數",
+      "replaceHint": "開始新嘅民調會關閉開放嘅民調。",
+      "widgetHint": "顯示你嘅即時民調。喺 DeHub 應用程式入面，觀眾撳一個選項嚟投票；喺 OBS 入面，佢會話畀人知喺即時通訊入面輸入 {{command}} 同埋個號碼。",
+      "sample": {
+        "a": "有啲新嘢",
+        "b": "一個舊嘅最愛",
+        "c": "你揀"
       }
     },
     "moderation": {
