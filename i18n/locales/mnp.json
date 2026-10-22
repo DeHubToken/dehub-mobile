@@ -9133,6 +9133,7 @@
     "notNow": "暫時不備份"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} 吾𠀀{{result}}",
     "poll": {
       "closed": "投票已關閉",
       "voteFor": "投票給 {{option}}",
@@ -9155,6 +9156,17 @@
     "tipped": "{{name}} 送咱一份禮物"
   },
   "liveStudio": {
+    "controls": {
+      "title": "快速控制",
+      "intro": "对于中间流。在应用程序和OBS中，每个开关都适用于所有观看者，直到您将其翻转回来。",
+      "alertsPaused": "暂停提醒",
+      "alertsPausedHint": "屏幕上没有礼品、关注或规则警报。计数器、目标和聊天框仍在继续。",
+      "soundsMuted": "将警报声音设为静音",
+      "soundsMutedHint": "您的规则停止播放声音。",
+      "readAloudMuted": "停止朗读",
+      "readAloudMutedHint": "礼品消息和规则行不再被读出。",
+      "failed": "该开关未更改。请重试。"
+    },
     "polls": {
       "title": "投票",
       "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
@@ -9209,6 +9221,7 @@
       "share": "分享"
     },
     "kinds": {
+      "spin_wheel": "旋转转盘",
       "poll": "投票",
       "rule_alert": "规则警报",
       "tip_alert": "提示警报",
@@ -9219,6 +9232,7 @@
       "frame": "框架"
     },
     "hints": {
+      "spin_wheel": "规则中的车轮在哪里旋转",
       "poll": "您的实时投票，每个选项都有投票按钮",
       "rule_alert": "规则提醒的显示位置",
       "follow_alert": "显示每个新关注者",
@@ -9265,6 +9279,8 @@
       "rotated": "新連結準備好囉，貼到OBS裡面就好囉。"
     },
     "rules": {
+      "wheelHint": "2至12人。DeHub选择车轮停止的位置，因此每个观看者都会看到相同的结果。在提醒、朗读或聊天操作中使用{result}来命名它。",
+      "wheelSegments": "轮子段，一行一个",
       "placeholdersLive": "我个名号叫 {name}，欢迎收看《{title}》，请点击这里观看：{link}",
       "sound": "声音",
       "title": "规则",
@@ -9310,6 +9326,7 @@
         "chat": "任何聊天消息"
       },
       "actionTypes": {
+        "wheel": "旋转转盘",
         "alert": "显示提醒",
         "sound": "播放声音",
         "say": "朗读",

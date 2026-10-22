@@ -9127,6 +9127,7 @@
     "notNow": "Ba yanzu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Wani",
     "newFollower": "Sabon mabiya: {{name}}",
     "newSubscriber": "Sabuwar mai biyan kuɗi: {{name}}",
@@ -9150,6 +9151,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Saurin sarrafawa",
+      "intro": "Domin tsakiyar-lokaci. Kowane canji rike ga kowa da kowa kallo, a cikin app da kuma a OBS, har sai ka flip shi baya.",
+      "alertsPaused": "Dakatar da faɗakarwa",
+      "alertsPausedHint": "Babu kyauta, bi ko mulkin faɗakarwa akan allo. Masu ba da shawara, manufofi da akwatin tattaunawa suna ci gaba.",
+      "soundsMuted": "Sautunan faɗakarwa na Mute",
+      "soundsMutedHint": "Ka dokokinka sun daina yin sauti.",
+      "readAloudMuted": "Dakatar da karanta-aloud",
+      "readAloudMutedHint": "Saƙonnin kyauta da layukan mulki ba a sake karantawa ba.",
+      "failed": "Wannan canjin bai canza ba. sake gwadawa."
+    },
     "intro": "Duk abin da kuka ƙara a nan ya bayyana a kan kogunan ku ga kowane mai kallo a cikin aikace-aikacen DeHub — ko kuna tafiya kai tsaye daga wayarku, mai bincike, katin kamawa ko encoder.",
     "settingsLinkTitle": "Faɗakarwa da widgets",
     "settingsLinkBody": "Tip faerts, manufofi da ƙari a kan rafi, kafa a Live Studio.",
@@ -9185,6 +9197,7 @@
       "join": "Shiga"
     },
     "kinds": {
+      "spin_wheel": "Spin dabaran",
       "tip_alert": "Tip faert",
       "follow_alert": "Bi faɗakarwa",
       "subscribe_alert": "Subscriber faɗakarwa",
@@ -9202,6 +9215,7 @@
       "poll": "Kuri'a"
     },
     "hints": {
+      "spin_wheel": "Inda ƙafafun da ke cikin dokokinku ke juyawa",
       "follow_alert": "Nuna kowane sabon mabiya",
       "subscribe_alert": "Nuna kowane sabon mai biyan kuɗi",
       "share_alert": "Nuna lokacin da wani ya raba rafi naka",
@@ -9270,6 +9284,8 @@
       "rotateFailed": "Ba zan iya yin sabon hanyar haɗi ba. Ka sake gwadawa a cikin wani lokaci."
     },
     "rules": {
+      "wheelSegments": "Sassan Wheel, ɗaya ta kowane layi",
+      "wheelHint": "Tsakanin 2 zuwa 12. DeHub yana zaɓar inda dabaran ke tsayawa, don haka kowa da kowa yana kallo yana ganin irin wannan sakamako. Yi amfani da {result} a cikin faɗakarwa, karanta-aloud ko aikin hira don suna shi.",
       "chatHint": "Ana aikawa daga asusunka zuwa hirar watsa shirinka. Ba zai iya maimaita saƙon mai kallo ba.",
       "title": "Dokoki",
       "intro": "Lokacin da wani abu ya faru akan rafin ku, DeHub yana yin abin da kuke zaɓa: nuna gargajiya, kunna sauti, karanta wani abu a jiya, aika a chat ku ko gaya wa Discord ku.",
@@ -9323,6 +9339,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Juya dabaran",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

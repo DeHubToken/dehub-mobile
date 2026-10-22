@@ -9154,6 +9154,7 @@
     "notNow": "Ne sada"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spin: {{result}}",
     "someone": "Netko",
     "newFollower": "Novi pratitelj: {{name}}",
     "newSubscriber": "Novi pretplatnik: {{name}}",
@@ -9177,6 +9178,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Brze kontrole",
+      "intro": "Za srednji stream. Svaki prekidač vrijedi za sve koji gledaju, u aplikaciji i u ops, dok ga ne okrenete natrag.",
+      "alertsPaused": "Pauziraj obavijesti",
+      "alertsPausedHint": "Na zaslonu nema obavijesti o darovima, praćenju ili pravilima. Brojači, ciljevi i okvir za razgovor se nastavljaju.",
+      "soundsMuted": "Isključenje zvuka upozorenja",
+      "soundsMutedHint": "Vaša pravila prestaju reproducirati zvukove.",
+      "readAloudMuted": "Zaustavi čitanje naglas",
+      "readAloudMutedHint": "Darovne poruke i pravila više se ne čitaju.",
+      "failed": "Taj se prekidač nije promijenio. Pokušajte ponovno."
+    },
     "title": "Live Studio",
     "subtitle": "Upozorenja i widgetovi za vaše streamove",
     "intro": "Sve što dodate ovdje pojavljuje se preko vaših streamova za sve gledatelje u DeHub aplikaciji — da li živete s telefona, pretraživača, capture kartice ili enkodera.",
@@ -9215,6 +9227,7 @@
       "join": "Dijeli"
     },
     "kinds": {
+      "spin_wheel": "Okretni kotač",
       "tip_alert": "Tip upozorenje",
       "follow_alert": "Slijedi upozorenje",
       "subscribe_alert": "Prepišeni upozorenje",
@@ -9234,6 +9247,7 @@
       "poll": "Anketa"
     },
     "hints": {
+      "spin_wheel": "Gdje se okreću kotači u vašim pravilima",
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
       "follow_alert": "Prikazuje svakog novog sledbenika",
       "subscribe_alert": "Prikazuje svakog novog pretplatnika",
@@ -9309,6 +9323,8 @@
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
     },
     "rules": {
+      "wheelSegments": "Segmenti kotača, jedan po liniji",
+      "wheelHint": "Između 2 i 12. DeHub odabire gdje se kotač zaustavlja, tako da svi koji gledaju vide isti rezultat. Upotrijebite {result} u upozorenju, glasnom čitanju ili čavrljanju kako biste ga imenovali.",
       "test": "Testiraj",
       "title": "Pravila",
       "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
@@ -9362,6 +9378,7 @@
         "subscribers": "Pretplatnici"
       },
       "actionTypes": {
+        "wheel": "Zavrti kotač",
         "alert": "Prikaži obavijest",
         "sound": "Reproduciraj zvuk",
         "say": "Čitajte naglas",

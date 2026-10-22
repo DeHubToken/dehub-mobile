@@ -8837,6 +8837,7 @@
     "notNow": "Not now"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "joined": "{{name}} joined",
     "goalReached": "Goal reach!",
     "topSupporters": "Top supporters",
@@ -8853,6 +8854,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Quick controls",
+      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
+      "alertsPaused": "Pause alerts",
+      "soundsMuted": "Mute alert sounds",
+      "readAloudMuted": "Stop read-aloud",
+      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
+      "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
+      "soundsMutedHint": "Yours rules dey stop play sound wey.",
+      "failed": "Na di switch no dey change. Try again."
+    },
     "title": "Live Studio",
     "open": "Open Live Studio",
     "preview": "Preview",
@@ -8882,6 +8894,7 @@
       "join": "Join"
     },
     "kinds": {
+      "spin_wheel": "Spin wheel",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -8901,6 +8914,7 @@
       "poll": "Poll"
     },
     "hints": {
+      "spin_wheel": "Where the wheels in your rules spin",
       "poll": "Your live poll, with a vote button for every option",
       "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate every tip, e size according to e tier",
@@ -8948,6 +8962,8 @@
       "rotateFailed": "No go make new link. Try again after a while."
     },
     "rules": {
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it.",
       "intro": "When something happens on your stream, DeHub does what you choose: shows an alert, plays a sound, reads something aloud, posts in your chat or tells your Discord.",
       "limit": "You have reached the limit of {{count}} rules.",
       "loadFailed": "Your rules could not be loaded. Refresh the page to try again.",
@@ -9011,6 +9027,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Spin a wheel",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

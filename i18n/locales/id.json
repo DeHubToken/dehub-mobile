@@ -9156,6 +9156,7 @@
     "update": "Perbarui sekarang"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} berputar: {{result}}",
     "someone": "Seseorang",
     "newFollower": "Pengikut baru: {{name}}",
     "newSubscriber": "Pelanggan baru: {{name}}",
@@ -9179,6 +9180,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kontrol cepat",
+      "intro": "Untuk mid - stream. Setiap sakelar berlaku untuk semua orang yang menonton, di aplikasi dan di OBS, sampai Anda membalikkannya kembali.",
+      "alertsPaused": "Jeda pemberitahuan",
+      "alertsPausedHint": "Tidak ada pemberitahuan hadiah, ikuti, atau aturan di layar. Penghitung, sasaran, dan kotak obrolan terus berjalan.",
+      "soundsMuted": "Bunyi peringatan bisu",
+      "soundsMutedHint": "Aturan Anda berhenti memainkan suara.",
+      "readAloudMuted": "Hentikan pembacaan dengan suara keras",
+      "readAloudMutedHint": "Pesan hadiah dan baris aturan tidak lagi dibaca.",
+      "failed": "Tombol itu tidak berubah. Coba lagi."
+    },
     "title": "Studio Langsung",
     "subtitle": "Peringatan dan widget untuk streaming Anda",
     "intro": "Semua yang Anda tambahkan di sini muncul di streaming Anda untuk setiap pemirsa di aplikasi DeHub — baik Anda tayang langsung dari ponsel, browser, kartu capture, atau enkoder.",
@@ -9217,6 +9229,7 @@
       "join": "Bergabung"
     },
     "kinds": {
+      "spin_wheel": "Roda putar",
       "tip_alert": "Pemberitahuan tip",
       "follow_alert": "Pemberitahuan ikutan",
       "subscribe_alert": "Pemberitahuan berlangganan",
@@ -9236,6 +9249,7 @@
       "poll": "Jajak Pendapat"
     },
     "hints": {
+      "spin_wheel": "Di mana roda dalam aturan Anda berputar",
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
       "follow_alert": "Menampilkan setiap pengikut baru",
       "subscribe_alert": "Menampilkan setiap berlangganan baru",
@@ -9311,6 +9325,8 @@
       "rotateFailed": "Tidak dapat membuat tautan baru. Coba lagi sebentar lagi."
     },
     "rules": {
+      "wheelSegments": "Segmen roda, satu per baris",
+      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, sehingga semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam peringatan, baca dengan keras, atau tindakan obrolan untuk menamainya.",
       "title": "Peraturan",
       "intro": "Ketika sesuatu terjadi di streaming Anda, DeHub melakukan apa yang Anda pilih: menunjukkan peringatan, memutar suara, membaca sesuatu dengan keras, memposting di obrolan Anda, atau memberi tahu Discord Anda.",
       "add": "Tambahkan aturan",
@@ -9364,6 +9380,7 @@
         "subscribers": "Pelanggan"
       },
       "actionTypes": {
+        "wheel": "Putar roda",
         "alert": "Tampilkan pemberitahuan",
         "sound": "Putar suara",
         "say": "Baca dengan suara keras",

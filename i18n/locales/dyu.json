@@ -9082,6 +9082,7 @@
     "notNow": "O ma kɛ halibi."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "voted_one": "Vous avez voté · {{count}} vote",
       "voted_other": "Vous avez voté · {{count}} votes",
@@ -9103,6 +9104,17 @@
     "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kɔrɔbɔli minw be se ka kɛ joona joona",
+      "intro": "O cogo kelen na, mɔgɔ o mɔgɔ be se k'a filɛ, a be se k'a filɛ, a be se k'a filɛ ani a be se k'a filɛ OBS kɔnɔ, fɔɔ i k'a yɛlɛma.",
+      "alertsPaused": "K'a to a ka baara la",
+      "alertsPausedHint": "Mɔgɔ tɛ sɔn ka sɔn, a tɛ sɔn ka koo dɔ kɛ min be mɔgɔ bali ka sɔn. An ka ladiliw, an ka laɲinitaw ani an ka baro kɛyɔrɔ be to ka taga.",
+      "soundsMuted": "O ye mankanba ye.",
+      "soundsMutedHint": "A tun tɛ se ka to ka mankan kɛ.",
+      "readAloudMuted": "Aw ka to ka kalan kɛ",
+      "readAloudMutedHint": "O kama, a tun man nɔgɔ ka mɔgɔ weele ka na a ka soo.",
+      "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten."
+    },
     "polls": {
       "seconds_one": "{{count}} seconde",
       "notLive": "Passez d'abord en direct. Un sondage s'exécute sur l'émission que vous diffusez en ce moment.",
@@ -9170,6 +9182,7 @@
       "join": "I ka kan ka na"
     },
     "kinds": {
+      "spin_wheel": "O ye nɛgɛso ye",
       "poll": "Fanga be mɔgɔ minw na,",
       "tip_alert": "Aw ye aw janto",
       "follow_alert": "Aw ye aw janto",
@@ -9189,6 +9202,7 @@
       "rule_alert": "Kɔrɔbɔli sariya"
     },
     "hints": {
+      "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye.",
       "poll": "I ka ɲɛnamaya kɛcogo ka di i ye, i ka vote tuguni kelen kelen bɛɛ la",
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
       "subscribe_alert": "A ka kan ka kɛ i ka mɔgɔ kuraw bɛɛ ka kan ka kɛ i ka mɔgɔ kuraw ye",
@@ -9260,6 +9274,8 @@
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
     },
     "rules": {
+      "wheelSegments": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ kelen ye.",
+      "wheelHint": "(c) Ni a ye 10 ye, i n'a fɔ 19 ani 29 DeHub be nɛgɛso lɔyɔrɔ sugandi walisa mɔgɔ bɛɛ ka se ka o ɲɔgɔn ye. I ka kan ka {result} kɛ kunnafoni dɔ kɔnɔ, ka kalan kɛ walima ka baro kɛ n'o ye.",
       "placeholdersLive": "I ka barokun kɔnɔ, i ka {name}, {title} ani {link}: i tɔgɔ, i ka kunnafoni tɔgɔ ani i ka link dɔ kɛ k'a filɛ.",
       "cooldown": "Attendre entre les utilisations (secondes)",
       "title": "Sariya",
@@ -9312,6 +9328,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "A be wotoro nin yɛlɛma",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",

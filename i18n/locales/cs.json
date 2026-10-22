@@ -9154,6 +9154,7 @@
     "notNow": "Teď ne"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} přetáčel: {{result}}",
     "someone": "Někdo",
     "newFollower": "Nový sledující: {{name}}",
     "newSubscriber": "Nový odběratel: {{name}}",
@@ -9177,6 +9178,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Rychlé ovládání",
+      "intro": "Pro střední proud. Každý přepínač drží pro každého, kdo sleduje, v aplikaci a v OBS, dokud jej nepřepnete zpět.",
+      "alertsPaused": "Pozastavit upozornění",
+      "alertsPausedHint": "Na obrazovce nejsou žádná upozornění na dárky, sledování nebo pravidla. Počítadla, cíle a chatovací pole pokračují.",
+      "soundsMuted": "Ztlumit zvuky upozornění",
+      "soundsMutedHint": "Vaše pravidla přestanou hrát zvuky.",
+      "readAloudMuted": "Zastavit čtení nahlas",
+      "readAloudMutedHint": "Dárkové zprávy a řádky pravidel se již nečtou.",
+      "failed": "Tento přepínač se nezměnil. Zkuste to znovu."
+    },
     "title": "Live Studio",
     "subtitle": "Upozornění a widgety pro vaše přenosy",
     "intro": "Všechno, co sem přidáte, se zobrazí nad vašimi přenosy pro každého diváka v aplikaci DeHub — ať už přenášíte z telefonu, prohlížeče, capture karty nebo enkodéru.",
@@ -9214,6 +9226,7 @@
       "join": "Přidat se"
     },
     "kinds": {
+      "spin_wheel": "Rotační kolo",
       "tip_alert": "Upozornění NA spropitné",
       "follow_alert": "Sledovat upozornění",
       "subscribe_alert": "Upozornění účastníka",
@@ -9233,6 +9246,7 @@
       "poll": "Průzkum"
     },
     "hints": {
+      "spin_wheel": "Kde se točí kola ve vašich pravidlech",
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
       "follow_alert": "Zobrazí každého nového sledujícího",
       "subscribe_alert": "Zobrazí každého nového odběratele",
@@ -9308,6 +9322,8 @@
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
     },
     "rules": {
+      "wheelSegments": "Segmenty kol, jeden na řádek",
+      "wheelHint": "Mezi 2 a 12. DeHub vybírá, kde se kolo zastaví, takže každý, kdo se dívá, vidí stejný výsledek. K pojmenování použijte {result} v upozornění, nahlas při čtení nebo v chatu.",
       "title": "Pravidla",
       "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
       "add": "Přidat pravidlo",
@@ -9361,6 +9377,7 @@
         "subscribers": "Odběratelé"
       },
       "actionTypes": {
+        "wheel": "Roztočte kolo",
         "alert": "Zobrazit upozornění",
         "sound": "Přehrát zvuk",
         "say": "Číst nahlas",

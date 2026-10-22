@@ -9167,6 +9167,7 @@
     "notNow": "Nu acum"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spin: {{result}}",
     "someone": "Cineva",
     "newFollower": "Urmăritor nou: {{name}}",
     "newSubscriber": "Abonat nou: {{name}}",
@@ -9190,6 +9191,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Comenzi rapide",
+      "intro": "Pentru mijlocul fluxului. Fiecare comutator este valabil pentru toată lumea care urmărește, în aplicație și în OBS, până când îl întoarceți.",
+      "alertsPaused": "Întrerupe alertele",
+      "alertsPausedHint": "Nu există alerte privind cadourile, respectarea sau regulile pe ecran. Contoarele, obiectivele și caseta de chat continuă.",
+      "soundsMuted": "Dezactivați sunetul alertei",
+      "soundsMutedHint": "Regulile tale nu mai redă sunete.",
+      "readAloudMuted": "Oprire citire cu voce tare",
+      "readAloudMutedHint": "Mesajele cadou și liniile de reguli nu mai sunt citite.",
+      "failed": "Comutatorul nu s-a schimbat. Încearcă din nou."
+    },
     "title": "Studio live",
     "subtitle": "Alerte și widget-uri pentru fluxurile dvs.",
     "intro": "Tot ceea ce adăugați aici apare peste fluxurile dvs. pentru fiecare vizualizator din aplicația DeHub — indiferent dacă accesați live de pe telefon, browser, o cartelă de captură sau un codificator.",
@@ -9228,6 +9240,7 @@
       "join": "Alătură-te"
     },
     "kinds": {
+      "spin_wheel": "Roată de rotire",
       "tip_alert": "Alerte pentru sugestii",
       "follow_alert": "Alerte pentru urmărire",
       "subscribe_alert": "Alerte pentru abonați",
@@ -9247,6 +9260,7 @@
       "poll": "Sondaj"
     },
     "hints": {
+      "spin_wheel": "Unde se învârt roțile din regulile tale",
       "tip_alert": "Celebrează fiecare sugestie, proporțională cu nivelul ei",
       "follow_alert": "Arată fiecare nou urător",
       "subscribe_alert": "Arată fiecare nou abonat",
@@ -9322,6 +9336,8 @@
       "rotateFailed": "Nu s-a putut crea un link nou. Încearcă din nou peste un moment."
     },
     "rules": {
+      "wheelSegments": "Segmente de roți, câte una pe linie",
+      "wheelHint": "Între 2 și 12. DeHub alege unde se oprește roata, astfel încât toți cei care urmăresc să vadă același rezultat. Utilizați {result} într-o alertă, citire cu voce tare sau acțiune de chat pentru a o numi.",
       "test": "Testează",
       "title": "Reguli",
       "intro": "Când se întâmplă ceva în fluxul dvs., DeHub face ceea ce alegeți: afișează o alertă, redă un sunet, citește ceva cu voce tare, postează în chat sau vă spune Discord.",
@@ -9375,6 +9391,7 @@
         "subscribers": "Abonați"
       },
       "actionTypes": {
+        "wheel": "Învârtiți o roată",
         "alert": "Afișează o alertă",
         "sound": "Redă un sunet",
         "say": "Citește cu voce tare",

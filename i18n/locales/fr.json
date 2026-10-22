@@ -10748,6 +10748,7 @@
     "1a00975a0ac1": "@channel"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun : {{result}}",
     "someone": "Quelqu'un",
     "newFollower": "Nouveau follower : {{name}}",
     "newSubscriber": "Nouvel abonné : {{name}}",
@@ -10771,6 +10772,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Contrôles rapides",
+      "intro": "Pour le milieu du flux. Chaque commutateur tient pour tous ceux qui regardent, dans l'application et dans OBS, jusqu'à ce que vous le retourniez.",
+      "alertsPaused": "Suspendre les alertes",
+      "alertsPausedHint": "Aucune alerte de cadeau, de suivi ou de règle à l'écran. Les compteurs, les objectifs et la boîte de discussion continuent.",
+      "soundsMuted": "Mise en sourdine des sons d'alerte",
+      "soundsMutedHint": "Vos règles cessent de jouer des sons.",
+      "readAloudMuted": "Arrêter la lecture à voix haute",
+      "readAloudMutedHint": "Les messages de cadeau et les lignes de règle ne sont plus lus.",
+      "failed": "Ce commutateur n'a pas changé. Réessayez."
+    },
     "title": "Studio en direct",
     "subtitle": "Alertes et widgets pour vos flux",
     "intro": "Tout ce que vous ajoutez ici apparaîtra au-dessus de vos streams pour tous les spectateurs dans l'application DeHub — que vous alliez en direct depuis votre téléphone, le navigateur, une carte de capture ou un encodeur.",
@@ -10809,6 +10821,7 @@
       "join": "Rejoindre"
     },
     "kinds": {
+      "spin_wheel": "Roue rotative",
       "poll": "Sondage",
       "tip_alert": "Alerte de pourboire",
       "follow_alert": "Suivre l'alerte",
@@ -10828,6 +10841,7 @@
       "rule_alert": "Alertes de règle"
     },
     "hints": {
+      "spin_wheel": "Où tournent les roues de vos règles",
       "tip_alert": "Célèbre chaque pourboire, dimensionné à son niveau",
       "follow_alert": "Affiche chaque nouvel abonné",
       "subscribe_alert": "Affiche chaque nouvel abonné",
@@ -10903,6 +10917,8 @@
       "rotateFailed": "Impossible de créer un nouveau lien. Réessayez dans un instant."
     },
     "rules": {
+      "wheelSegments": "Segments de roue, un par ligne",
+      "wheelHint": "Entre 2 et 12. DeHub choisit l'endroit où la roue s'arrête, de sorte que tous ceux qui regardent voient le même résultat. Utilisez {result} dans une action d'alerte, de lecture à voix haute ou de clavardage pour le nommer.",
       "test": "Tester",
       "title": "Règles",
       "intro": "Lorsque quelque chose se passe sur votre flux, DeHub fait ce que vous choisissez : affiche une alerte, émet un son, lit quelque chose à haute voix, publie dans votre chat ou le dit à votre Discord.",
@@ -10956,6 +10972,7 @@
         "subscribers": "Abonnés"
       },
       "actionTypes": {
+        "wheel": "Faire tourner une roue",
         "alert": "Afficher une alerte",
         "sound": "Jouer un son",
         "say": "Lire à haute voix",

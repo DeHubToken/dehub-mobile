@@ -9245,6 +9245,7 @@
     "update": "Cập nhật ngay"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} đã spin: {{result}}",
     "someone": "Ai đó",
     "newFollower": "Người theo dõi mới: {{name}}",
     "newSubscriber": "Người đăng ký mới: {{name}}",
@@ -9268,6 +9269,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Điều khiển nhanh",
+      "intro": "Đối với giữa luồng. Mỗi công tắc giữ cho tất cả mọi người đang xem, trong ứng dụng và trong OBS, cho đến khi bạn lật lại.",
+      "alertsPaused": "Thông báo tạm dừng",
+      "alertsPausedHint": "Không có thông báo về quà tặng, tuân thủ hoặc quy tắc trên màn hình. Bộ đếm, mục tiêu và hộp trò chuyện vẫn tiếp tục.",
+      "soundsMuted": "Tắt âm thanh cảnh báo",
+      "soundsMutedHint": "Quy tắc của bạn là ngừng phát âm thanh.",
+      "readAloudMuted": "Dừng đọc to",
+      "readAloudMutedHint": "Tin nhắn quà tặng và dòng quy tắc không còn được đọc ra nữa.",
+      "failed": "Công tắc đó không thay đổi. Hãy thử lại."
+    },
     "title": "Phòng thu trực tiếp",
     "subtitle": "Cảnh báo và tiện ích cho luồng của bạn",
     "intro": "Mọi thứ bạn thêm ở đây sẽ xuất hiện trên luồng của bạn cho mọi người xem trong ứng dụng DeHub — cho dù bạn phát trực tiếp từ điện thoại, trình duyệt, thẻ chụp hay bộ mã hóa.",
@@ -9306,6 +9318,7 @@
       "join": "Gắn"
     },
     "kinds": {
+      "spin_wheel": "Bánh xe quay",
       "tip_alert": "Cảnh báo tips",
       "follow_alert": "Cảnh báo theo dõi",
       "subscribe_alert": "Cảnh báo người đăng ký",
@@ -9325,6 +9338,7 @@
       "poll": "Thăm dò ý kiến"
     },
     "hints": {
+      "spin_wheel": "Khi các bánh xe trong quy tắc của bạn quay",
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
       "follow_alert": "Hiển thị mỗi người theo dõi mới",
       "subscribe_alert": "Hiển thị mỗi người đăng ký mới",
@@ -9400,6 +9414,8 @@
       "rotateFailed": "Không thể tạo liên kết mới. Hãy thử lại sau ít phút."
     },
     "rules": {
+      "wheelSegments": "Phân khúc bánh xe, một trên mỗi dòng",
+      "wheelHint": "Từ 2 đến 12 tuổi. DeHub chọn nơi bánh xe dừng lại, vì vậy mọi người xem đều thấy kết quả tương tự. Sử dụng {result} trong cảnh báo, đọc to hoặc trò chuyện để đặt tên cho nó.",
       "title": "Quy tắc",
       "intro": "Khi có điều gì xảy ra trên luồng trực tiếp của bạn, DeHub sẽ thực hiện theo yêu cầu của bạn: hiển thị cảnh báo, phát âm thanh, đọc aloud, đăng lên chat của bạn hoặc thông báo cho Discord của bạn.",
       "add": "Thêm quy tắc",
@@ -9453,6 +9469,7 @@
         "subscribers": "Người đăng ký"
       },
       "actionTypes": {
+        "wheel": "Quay bánh xe",
         "alert": "Hiển thị cảnh báo",
         "sound": "Phát âm thanh",
         "say": "Đọc to",

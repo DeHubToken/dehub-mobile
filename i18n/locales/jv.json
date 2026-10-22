@@ -9131,6 +9131,7 @@
     "notNow": "Gwé nggoje."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}",
     "someone": "Sapa wae",
     "newFollower": "Pengikut anyar: {{name}}",
     "newSubscriber": "Langganan anyar: {{name}}",
@@ -9153,6 +9154,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "alertsPaused": "Jeda pemberitahuan",
+      "soundsMuted": "Bunyi peringatan bisu",
+      "title": "Kontrol cepet",
+      "intro": "Kanggo ngisor-midstream. Tiwa tiwa ngandhok pike pisan kanggo semuanya ngandhok ngliwat di app lan di OBS, sampe kanggo ngelungguh kanggo ngembok.",
+      "alertsPausedHint": "Gak ada pemberian hadiah, notifikasi follow, atau peringatan aturan di layar. Angka-angka counter, tujuan, dan kotak obrolan tetap berjalan.",
+      "soundsMutedHint": "Aturan mu mandheg main swara.",
+      "readAloudMuted": "Gak usah baca ngelantur.",
+      "readAloudMutedHint": "Pesen hadiah lan baris aturan ora maneh diwaca.",
+      "failed": "Gwé switch ini gak nganti. Coba lanang."
+    },
     "title": "Live Studio",
     "subtitle": "Alerts lan widgets kanggo streams mu",
     "intro": "Kabeh apa sing ditambahake ing kene katon ing streams mu kanggo saben pemirsa ing aplikasi DeHub — apa apa kowe live saka ponsel, browser, capture card utawa encoder.",
@@ -9191,6 +9203,7 @@
       "join": "Ndhuwur"
     },
     "kinds": {
+      "spin_wheel": "Roda putar",
       "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",
       "follow_alert": "Ngikul alert",
@@ -9207,6 +9220,7 @@
       "poll": "Pemilihan"
     },
     "hints": {
+      "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter",
       "tip_alert": "Ngaweni tiap tip, saking ukuran tiernya",
       "follow_alert": "Ndakékan tiap pengikut baru",
       "subscribe_alert": "Ndakékan tiap subscriber baru",
@@ -9278,6 +9292,8 @@
       "rotateFailed": "Ora bisa nggawe tautan anyar. Coba maneh sakmenit."
     },
     "rules": {
+      "wheelSegments": "Segmen roda, satu per baris",
+      "wheelHint": "Antara 2 lan 12. DeHub milih ngendi roda mandheg, supaya kabeh sing nonton weruh asil sing padha. Gunakake {result} ing alert, read-aloud utawa chat action kanggo jenenge.",
       "title": "Rules",
       "intro": "Nalika ana sing kedadeyan ing streammu, DeHub nindakake apa sing kowe pilih: nampilake alert, muter swara, maca bab-bab kanthi swara, ngirim ing chatmu utawa ngandhani Discord-mu.",
       "add": "Tambah aturan",
@@ -9316,6 +9332,7 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "Putar roda",
         "say": "Waca kanthi swara",
         "chat": "Post in chat",
         "alert": "Tuduhake alert",

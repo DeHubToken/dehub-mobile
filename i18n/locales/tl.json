@@ -9334,6 +9334,7 @@
     "notNow": "Hindi ngayon"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}spun:{{result}}",
     "someone": "Isang tao",
     "newFollower": "Bagong tagasunod:{{name}}",
     "newSubscriber": "Bagong subscriber:{{name}}",
@@ -9357,6 +9358,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Mga mabilisang kontrol",
+      "intro": "Para sa mid - stream. Ang bawat switch ay humahawak para sa lahat ng nanonood, sa app at sa OBS, hanggang sa i - flip mo ito pabalik.",
+      "alertsPaused": "I - pause ang mga alerto",
+      "alertsPausedHint": "Walang regalo, sundin o panuntunan ang mga alerto sa screen. Ang mga counter, mga layunin at ang chat box ay patuloy na nagpapatuloy.",
+      "soundsMuted": "I - mute ang mga tunog ng alerto",
+      "soundsMutedHint": "Tumigil sa pagtugtog ng mga tunog ang iyong mga alituntunin.",
+      "readAloudMuted": "Itigil ang read - loud",
+      "readAloudMutedHint": "Hindi na nababasa ang mga mensahe ng regalo at mga linya ng panuntunan.",
+      "failed": "Hindi nagbago ang switch na iyon. Subukan muli."
+    },
     "title": "Instagram",
     "subtitle": "Mga alerto at widget para sa iyong mga stream",
     "intro": "Lumilitaw ang lahat ng iyong idaragdag dito sa iyong mga stream para sa bawat viewer sa DeHub app — live ka man mula sa iyong telepono, browser, capture card o encoder.",
@@ -9395,6 +9407,7 @@
       "join": "Pagkakalaban"
     },
     "kinds": {
+      "spin_wheel": "Paikutin ang gulong",
       "poll": "Botohan",
       "tip_alert": "Alerta sa tip",
       "follow_alert": "Alerta sa pagsumunod",
@@ -9414,6 +9427,7 @@
       "rule_alert": "Mga alerto sa panuntunan"
     },
     "hints": {
+      "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot",
       "tip_alert": "Pagpupugay sa bawat tip ayon sa kanilang antas",
       "follow_alert": "Naririto ang bawat bagong tagasunod",
       "subscribe_alert": "Naririto ang bawat bagong tagasubskriba",
@@ -9489,6 +9503,8 @@
       "rotateFailed": "Hindi makagawa ng bagong link. Subukan muli sa ilang sandali."
     },
     "rules": {
+      "wheelSegments": "Mga segment ng gulong, isa bawat linya",
+      "wheelHint": "Sa pagitan ng 2 at 12. Pinipili ng DeHub kung saan humihinto ang gulong, kaya nakikita ng lahat ng nanonood ang parehong resulta. Gamitin ang {result} sa isang alerto, read - loud o chat action para pangalanan ito.",
       "removeAction": "Alisin ang aksyon",
       "test": "Subukan",
       "title": "Mga Panuntunan",
@@ -9542,6 +9558,7 @@
         "subscribers": "Mga Subscriber"
       },
       "actionTypes": {
+        "wheel": "Paikutin ang isang wheel",
         "alert": "Magpakita ng alerto",
         "sound": "Magpatugtog ng tunog",
         "say": "Magbasa nang malakas",

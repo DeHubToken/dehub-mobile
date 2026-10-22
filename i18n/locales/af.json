@@ -9279,6 +9279,7 @@
     "notNow": "Nie nou nie"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Iemand",
     "newFollower": "Nuwe volgeling: {{name}}",
     "newSubscriber": "Nuwe intekenaar: {{name}}",
@@ -9302,6 +9303,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Vinnige kontroles",
+      "intro": "Vir middelstroom. Elke skakelaar hou vir almal wat kyk, in die app en in OBS, totdat jy dit terugdraai.",
+      "alertsPaused": "Pouseer waarskuwings",
+      "alertsPausedHint": "Geen geskenk, volg of reël waarskuwings op die skerm nie. Telers, doelwitte en die kletsboks gaan voort.",
+      "soundsMuted": "Doof alarmgeluide",
+      "soundsMutedHint": "Jou reëls hou op om geluide te speel.",
+      "readAloudMuted": "Hou op om hardop te lees",
+      "readAloudMutedHint": "Geskenkboodskappe en reëllyne word nie meer gelees nie.",
+      "failed": "Die skakelaar het nie verander nie. Probeer weer."
+    },
     "title": "Live Studio",
     "subtitle": "Waarskuwings en widgets vir jou stroom",
     "intro": "Alles wat jy hier byvoeg, verskyn oor jou strome vir elke kyker in die DeHub‑app — of jy nou regstreeks vanaf jou foon, die blaaier, 'n capture‑kaart of 'n enkodeerder gaan.",
@@ -9340,6 +9352,7 @@
       "join": "Sluipjies"
     },
     "kinds": {
+      "spin_wheel": "Spin wiel",
       "tip_alert": "Volg-alert",
       "follow_alert": "Abonneer-alert",
       "subscribe_alert": "Abonnees-alert",
@@ -9359,6 +9372,7 @@
       "poll": "Peiling"
     },
     "hints": {
+      "spin_wheel": "Waar die wiele in jou reëls draai",
       "tip_alert": "Vier elke tip, aangepas na sy vlak",
       "follow_alert": "Toon elke nuwe volger",
       "subscribe_alert": "Toon elke nuwe abonnee",
@@ -9434,6 +9448,8 @@
       "rotateFailed": "Kon nie 'n nuwe verbinding maak nie. Probeer weer in 'n oomblik."
     },
     "rules": {
+      "wheelSegments": "Wielsegmente, een per lyn",
+      "wheelHint": "Tussen twee en twaalf. DeHub kies waar die wiel stop, sodat almal wat kyk dieselfde resultaat sien. Gebruik {result} in 'n waarskuwing, lees hardop of gesels aksie om dit te noem.",
       "title": "Reëls",
       "intro": "Wanneer iets op jou stroom gebeur, doen DeHub wat jy kies: wys 'n waarskuwing, speel 'n geluid, lees iets hardop, plaas in jou klets of vertel jou Discord.",
       "add": "Voeg 'n reël by",
@@ -9487,6 +9503,7 @@
         "subscribers": "Intekenaars"
       },
       "actionTypes": {
+        "wheel": "Draai 'n wiel",
         "alert": "Wys 'n waarskuwing",
         "sound": "Speel 'n klank",
         "say": "Lees hardop",

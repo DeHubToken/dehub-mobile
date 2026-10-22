@@ -9195,6 +9195,7 @@
     "update": "Aggiorna ora"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} filato: {{result}}",
     "someone": "Qualcuno",
     "newFollower": "Nuovo follower: {{name}}",
     "newSubscriber": "Nuovo abbonato: {{name}}",
@@ -9218,6 +9219,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Controlli rapidi",
+      "intro": "Per il mid-stream. Ogni interruttore è valido per tutti gli utenti che guardano, nell'app e in OBS, fino a quando non lo capovolgi.",
+      "alertsPaused": "Sospendi avvisi",
+      "alertsPausedHint": "Nessun avviso di regalo, follow o regola sullo schermo. I contatori, gli obiettivi e la chat box continuano.",
+      "soundsMuted": "Disattiva i suoni di avviso",
+      "soundsMutedHint": "Le tue regole smettono di suonare.",
+      "readAloudMuted": "Interrompi lettura ad alta voce",
+      "readAloudMutedHint": "I messaggi regalo e le righe regola non vengono più letti.",
+      "failed": "L'interruttore non è cambiato. Riprova."
+    },
     "subtitle": "Avvisi e widget per i tuoi stream",
     "intro": "Tutto ciò che aggiungi qui appare sui tuoi stream per ogni spettatore nell'app DeHub, sia che tu vada in diretta dal tuo telefono, dal browser, da una scheda di acquisizione o da un encoder.",
     "open": "Apri Live Studio",
@@ -9255,6 +9267,7 @@
       "join": "Partecipa"
     },
     "kinds": {
+      "spin_wheel": "Ruota girevole",
       "poll": "Sondaggio",
       "tip_alert": "Avviso mancia",
       "follow_alert": "Segui avviso",
@@ -9274,6 +9287,7 @@
       "rule_alert": "Avvisi delle regole"
     },
     "hints": {
+      "spin_wheel": "Dove girano le ruote nelle tue regole",
       "tip_alert": "Celebra ogni suggerimento, in base al suo livello",
       "follow_alert": "Mostra ogni nuovo follower",
       "subscribe_alert": "Mostra ogni nuovo abbonato",
@@ -9348,6 +9362,8 @@
       "rotateFailed": "Impossibile creare un nuovo link. Riprova tra un momento."
     },
     "rules": {
+      "wheelSegments": "Segmenti ruota, uno per riga",
+      "wheelHint": "Tra 2 e 12. DeHub sceglie dove si ferma la ruota, in modo che tutti gli spettatori vedano lo stesso risultato. Usa {result} in un'azione di avviso, lettura ad alta voce o chat per assegnargli un nome.",
       "test": "Prova",
       "title": "Regole",
       "intro": "Quando succede qualcosa sul tuo stream, DeHub fa ciò che scegli: mostra un avviso, riproduce un suono, legge qualcosa ad alta voce, pubblica nella tua chat o informa il tuo Discord.",
@@ -9401,6 +9417,7 @@
         "subscribers": "Iscritti"
       },
       "actionTypes": {
+        "wheel": "Gira una ruota",
         "alert": "Mostra un avviso",
         "sound": "Riproduci un suono",
         "say": "Leggi ad alta voce",

@@ -10744,6 +10744,7 @@
     "watch": "Bu yaratıcıyı desteklemek için bir reklam izleyin"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun :{{result}}",
     "someone": "Birisi",
     "newFollower": "Yeni takipçi: {{name}}",
     "newSubscriber": "Yeni abone: {{name}}",
@@ -10767,6 +10768,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Hızlı kontroller",
+      "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
+      "alertsPaused": "Uyarıları duraklat",
+      "alertsPausedHint": "Ekranda hediye, takip veya kural uyarısı yok. Sayaçlar, hedefler ve sohbet kutusu devam eder.",
+      "soundsMuted": "Uyarı seslerini sessize al",
+      "soundsMutedHint": "Kurallarınız sesleri çalmayı bırakır.",
+      "readAloudMuted": "Sesli okumayı durdur",
+      "readAloudMutedHint": "Hediye mesajları ve kural satırları artık okunmuyor.",
+      "failed": "Bu anahtar değişmedi. Tekrar deneyin."
+    },
     "title": "Canlı Stüdyo",
     "subtitle": "Akışlarınız için uyarılar ve widget'lar",
     "intro": "Buraya eklediğiniz her şey, telefonunuzdan, tarayıcınızdan, bir yakalama kartından veya bir kodlayıcıdan canlı yayına geçtiğinizde, DeHub uygulamasındaki her izleyici için akışlarınızda görünür.",
@@ -10805,6 +10817,7 @@
       "join": "Katıl"
     },
     "kinds": {
+      "spin_wheel": "Döner çark",
       "tip_alert": "Bahşiş uyarısı",
       "follow_alert": "Takip uyarısı",
       "subscribe_alert": "Abone uyarısı",
@@ -10824,6 +10837,7 @@
       "poll": "Anket"
     },
     "hints": {
+      "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer",
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
       "follow_alert": "Her yeni takipçiyi gösterir",
       "subscribe_alert": "Her yeni aboneyi gösterir",
@@ -10899,6 +10913,8 @@
       "rotateFailed": "Yeni bir bağlantı oluşturulamadı. Birazdan tekrar deneyin."
     },
     "rules": {
+      "wheelSegments": "Tekerlek segmentleri, hat başına bir adet",
+      "wheelHint": "2 ile 12 arasında. DeHub tekerleğin durduğu yeri seçer, böylece izleyen herkes aynı sonucu görür. Bir uyarı, sesli okuma veya sohbet eyleminde {result} kullanın.",
       "enabled": "Kural açık",
       "test": "Dene",
       "title": "Kurallar",
@@ -10952,6 +10968,7 @@
         "subscribers": "Aboneler"
       },
       "actionTypes": {
+        "wheel": "Tekerleği döndür",
         "alert": "Uyarı göster",
         "sound": "Ses çal",
         "say": "Yüksek sesle oku",

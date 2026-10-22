@@ -9173,6 +9173,7 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} hüt: {{result}}",
     "poll": {
       "closed": "Abstimmig schtössi",
       "voteFor": "Stimm für {{option}}",
@@ -9196,6 +9197,17 @@
     "chatPreview": "Chat-Nachrichten erscheinen hier"
   },
   "liveStudio": {
+    "controls": {
+      "alertsPaused": "Warnungen pausieren",
+      "title": "Schnellsteuerung",
+      "intro": "Fürs Live-Streaming. Jeder Schalter gilt für alle Zuschauer, sowohl in der App als auch in OBS, bis du ihn wieder umlegst.",
+      "alertsPausedHint": "Keini Geschenk-, Follow- oder Regel-Benachrichtigungen auf dem Bildschirm. Die Zähler, Tore und die Chatbox laufen weiter.",
+      "soundsMuted": "Stille Benachrichtigungsgeräusche",
+      "soundsMutedHint": "Dei Regeln stoppe mit dem Abspielen vo Klänge.",
+      "readAloudMuted": "Stop Vorlesen",
+      "readAloudMutedHint": "Giftnachrichten und Regeln werden nicht mehr vorgelesen.",
+      "failed": "Dä Schalter isch net umgschaltet worde. Versuche’s nochma."
+    },
     "polls": {
       "title": "Umfragen",
       "question": "Frage",
@@ -9261,6 +9273,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "spin_wheel": "Schleuderrad",
       "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
       "follow_alert": "Folgen-Benachrichtigung",
@@ -9278,6 +9291,7 @@
       "rule_alert": "Regel-Warnungen"
     },
     "hints": {
+      "spin_wheel": "Wo die Räder in deinen Regeln dreh’n",
       "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
       "follow_alert": "Zeigt jeden neuen Follower",
@@ -9352,6 +9366,8 @@
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
     },
     "rules": {
+      "wheelSegments": "Radsegment, eis pro Zeile",
+      "wheelHint": "Zwiisch 2 un 12. DeHub bestiimm, wo’s Rad stoppt, so sieht’s alle gleich. Nutzi `{result}` in eime Alert, eime Vorlesung oder eime Chat-Aktion, um’s zu benämmi.",
       "placeholdersLive": "Verwenden Sie {name}, {title} und {link} in Ihrem Text: Ihren Namen, den Titel der Sendung und einen Link, um sie anzusehen.",
       "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
       "alertText": "Benachrichtigungstext",
@@ -9409,6 +9425,7 @@
         "followers": "Follower"
       },
       "actionTypes": {
+        "wheel": "Dreh das Rad!",
         "sound": "Einen Ton abspielen",
         "say": "Vorlesen",
         "chat": "Im Chat posten",

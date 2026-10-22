@@ -9154,6 +9154,7 @@
     "notNow": "Ara no"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} girat: {{result}}",
     "someone": "Algú",
     "newFollower": "Nou seguidor: {{name}}",
     "newSubscriber": "Subscriptor nou: {{name}}",
@@ -9177,6 +9178,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Controls ràpids",
+      "intro": "Per a mid-stream. Cada interruptor es manté per a tothom que ho vegi, a l'aplicació i a OBS, fins que el tornis a girar.",
+      "alertsPaused": "Posa en pausa les alertes",
+      "alertsPausedHint": "No hi ha avisos de regals, seguiment o regles a la pantalla. Els comptadors, els gols i el quadre de xat continuen.",
+      "soundsMuted": "Silencia els sons d'alerta",
+      "soundsMutedHint": "Les teves regles deixen de sonar.",
+      "readAloudMuted": "Atura la lectura en veu alta",
+      "readAloudMutedHint": "Els missatges de regals i les línies de regles ja no es llegeixen.",
+      "failed": "Aquest canvi no ha canviat. Torna-ho a provar."
+    },
     "title": "Live Studio",
     "subtitle": "Alertes i widgets per a les teves transmissions",
     "intro": "Tot el que afegeixis aquí apareix a les teves transmissions per a cada espectador a l'aplicació DeHub — tant si engega en directe des del teu telèfon, el navegador, una targeta de captura o un codificador.",
@@ -9215,6 +9227,7 @@
       "join": "Unir-se"
     },
     "kinds": {
+      "spin_wheel": "Roda giratòria",
       "tip_alert": "Avis de propina",
       "follow_alert": "Avis de seguiment",
       "subscribe_alert": "Avis de subscriptor",
@@ -9234,6 +9247,7 @@
       "poll": "Enquesta"
     },
     "hints": {
+      "spin_wheel": "On giren les rodes de les teves regles",
       "tip_alert": "Celebra cada propina, ajustada al seu nivell",
       "follow_alert": "Mostra cada nou seguidor",
       "subscribe_alert": "Mostra cada nou subscriptor",
@@ -9309,6 +9323,8 @@
       "rotateFailed": "No s'ha pogut crear un enllaç nou. Torna-ho a provar en un moment."
     },
     "rules": {
+      "wheelSegments": "Segments de rodes, un per línia",
+      "wheelHint": "Entre 2 i 12. DeHub tria on s'atura la roda per tal que tots els usuaris vegin el mateix resultat. Utilitza {result} en una acció d'alerta, lectura en veu alta o xat per donar-li un nom.",
       "add": "Afegeix una regla",
       "title": "Normes",
       "intro": "Quan passa alguna cosa al teu flux, DeHub fa el que tu triïs: mostra una alerta, reprodueix un so, llegeix alguna cosa en veu alta, publica al teu xat o diu al teu Discord.",
@@ -9362,6 +9378,7 @@
         "subscribers": "Subscriptors"
       },
       "actionTypes": {
+        "wheel": "Fes girar la roda",
         "alert": "Mostra un avís",
         "sound": "Reprodueix un so",
         "say": "Llegir en veu alta",

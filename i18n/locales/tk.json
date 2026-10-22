@@ -9128,6 +9128,7 @@
     "notNow": "Häzir däl"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Saýlama ýapyldy",
       "voteFor": "{{option}} üçin seslen",
@@ -9148,6 +9149,17 @@
     "chatPreview": "Çat habarlary bu ýerde görünýär"
   },
   "liveStudio": {
+    "controls": {
+      "title": "Tizden seret",
+      "intro": "Her bir üýtgeşik her kes üçin saklanýar, siz ony yzyna öwrüp barýançaňyz, ulagda we OBS-de.",
+      "alertsPaused": "Ägälikleri sakla",
+      "alertsPausedHint": "Ekranda hiç hili sowgat, yzygiderli ýa-da düzgünli duýduryş ýok. Çatmaçlar, maksatlar we çatmaçlar dowam edýär.",
+      "soundsMuted": "Ýuwaş duýduryş sesleri",
+      "soundsMutedHint": "Siziň kanunlaryňyz sesleri çalmagy bes edýär.",
+      "readAloudMuted": "Sesli okamakdan saklaň",
+      "readAloudMutedHint": "Hediýeler we düzgünler indi okalmaýar.",
+      "failed": "Bu üýtgeşik üýtgemeýär, ýene synanyň."
+    },
     "polls": {
       "votes_other": "{{count}} ses",
       "title": "Saýlamalar",
@@ -9214,6 +9226,7 @@
       "join": "Gir"
     },
     "kinds": {
+      "spin_wheel": "Garawul diňi",
       "poll": "Ses berişlik",
       "tip_alert": "Tip Alarm",
       "follow_alert": "Ägä boluň",
@@ -9232,6 +9245,7 @@
       "rule_alert": "Kanun Alarmlary"
     },
     "hints": {
+      "spin_wheel": "Kanunlaryňyzyň tigirleri nirede döwülýär",
       "poll": "Her bir saýlama üçin bir seslenme tugmasy bilen",
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
       "follow_alert": "Her täze şägirdi görkez",
@@ -9306,6 +9320,8 @@
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
     },
     "rules": {
+      "wheelHint": "2-den 12-ä çenli. Tigirin nirede duruljakdygyny DeHub saýlaýar, şonuň üçin tomaşa edýänleriň hemmesi şol bir netijäni görýär. Ony atlandyrmak üçin duýduryşda, sesli okamakda ýa-da çat hereketinde {result} ulanyň.",
+      "wheelSegments": "Ýolbaşçylyk maslahatynyň (Ýolbaşçylyk maslahaty)",
       "placeholdersLive": "Tekstiňizde {name}, {title} we {link} ulanyň: adyňyz, ýaýlymyň ady we tomaşa etmek üçin baglanyşyk.",
       "test": "Synag",
       "title": "Kanunlar",
@@ -9360,6 +9376,7 @@
         "subscribers": "Abonentler"
       },
       "actionTypes": {
+        "wheel": "Garawul diňi",
         "alert": "Bir duýduryş ber",
         "sound": "Gel bir ses çykarar",
         "say": "Sesli okamak",

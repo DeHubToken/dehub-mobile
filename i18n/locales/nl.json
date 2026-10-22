@@ -10998,6 +10998,7 @@
     "receipt": "${{amount}} toegevoegd aan de advertentie-inkomsten van de maker. tokenafrekening is in behandeling."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Iemand",
     "newFollower": "Nieuwe volger: {{name}}",
     "newSubscriber": "Nieuwe abonnee: {{name}}",
@@ -11021,6 +11022,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Snelle bediening",
+      "intro": "Voor mid-stream. Elke schakelaar houdt vast voor iedereen die kijkt, in de app en in OBS, totdat je hem terugdraait.",
+      "alertsPaused": "Waarschuwingen pauzeren",
+      "alertsPausedHint": "Geen cadeau-, volg- of regelwaarschuwingen op het scherm. Tellers, doelen en de chatbox gaan door.",
+      "soundsMuted": "Waarschuwingsgeluiden dempen",
+      "soundsMutedHint": "Je regels stoppen met het spelen van geluiden.",
+      "readAloudMuted": "Voorlezen stoppen",
+      "readAloudMutedHint": "Geschenkberichten en regelregels worden niet meer voorgelezen.",
+      "failed": "Die schakelaar is niet veranderd. Probeer het opnieuw."
+    },
     "title": "Livestudio",
     "widgets": "Onderdelen",
     "subtitle": "Waarschuwingen en widgets voor je streams",
@@ -11059,6 +11071,7 @@
       "join": "Aanmelden"
     },
     "kinds": {
+      "spin_wheel": "Draaischijf",
       "poll": "Peiling",
       "tip_alert": "Tip-alert",
       "follow_alert": "Volg-alert",
@@ -11078,6 +11091,7 @@
       "rule_alert": "Regelwaarschuwingen"
     },
     "hints": {
+      "spin_wheel": "Waar de wielen in je regels draaien",
       "tip_alert": "Vier elke tip, afgestemd op zijn niveau",
       "follow_alert": "Toont elke nieuwe volger",
       "subscribe_alert": "Toont elke nieuwe abonnee",
@@ -11153,6 +11167,8 @@
       "rotateFailed": "Kon geen nieuwe link maken. Probeer het zo opnieuw."
     },
     "rules": {
+      "wheelSegments": "Wielsegmenten, één per lijn",
+      "wheelHint": "Tussen 2 en 12. DeHub kiest waar het wiel stopt, zodat iedereen hetzelfde resultaat ziet. Gebruik {result} in een waarschuwing, voorlees- of chatactie om het een naam te geven.",
       "chatText": "Bericht om te plaatsen",
       "test": "Testen",
       "title": "Regels",
@@ -11206,6 +11222,7 @@
         "subscribers": "Abonnees"
       },
       "actionTypes": {
+        "wheel": "Draai aan een wiel",
         "chat": "Plaatsen in de chat",
         "alert": "Toon een melding",
         "sound": "Een geluid afspelen",

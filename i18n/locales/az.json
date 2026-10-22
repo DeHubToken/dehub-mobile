@@ -9152,6 +9152,7 @@
     "notNow": "İndi yox"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}spun: {{result}}",
     "someone": "Kimsə",
     "newFollower": "Yeni izləyici: {{name}}",
     "newSubscriber": "Yeni abunəçi: {{name}}",
@@ -9174,6 +9175,17 @@
     }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Cəld nəzarətlər",
+      "intro": "Orta axın üçün. Hər bir keçid onu geri çevirənə qədər tətbiqdə və OBS-də izləyən hər kəs üçün nəzərdə tutulur.",
+      "alertsPaused": "Xəbərdarlıqlara fasilə ver",
+      "alertsPausedHint": "Ekranda hədiyyə, əməl və ya qayda xəbərdarlıqları yoxdur. Sayğaclar, hədəflər və söhbət qutusu davam edir.",
+      "soundsMuted": "Səssiz xəbərdarlıq səsləri",
+      "soundsMutedHint": "Qaydalarınız səsləri səsləndirməyi dayandırır.",
+      "readAloudMuted": "Ucadan oxumağı dayandırın",
+      "readAloudMutedHint": "Hədiyyə mesajları və qayda xətləri artıq oxunmur.",
+      "failed": "Bu keçid dəyişmədi. Yenidən cəhd edin."
+    },
     "title": "Live Studio",
     "subtitle": "Sizning yayımınız üçün xəbərdarlıqlar və vidjetlər",
     "intro": "Burada əlavə etdiyiniz hər şey DeHub tətbiqində hər bir izləyici üçün yayımınızın üstündə görünür — telefonunuzdan, brauzerdən, tutma kartından və ya kodlayıcıdan canlı yayım etdiyiniz halda.",
@@ -9212,6 +9224,7 @@
       "join": "Qoşul"
     },
     "kinds": {
+      "spin_wheel": "Fırlatma çarxı",
       "tip_alert": "İpucu xəbərdarlığı",
       "follow_alert": "Xəbərdarlığa əməl edin",
       "subscribe_alert": "Abunəçi xəbərdarlığı",
@@ -9231,6 +9244,7 @@
       "poll": "Sorğu"
     },
     "hints": {
+      "spin_wheel": "Qaydalarınızdakı təkərlərin fırlandığı yer",
       "tip_alert": "Hər bir təklifə təşəkkür edir, boyu təyinatına görə dəyişir.",
       "follow_alert": "Hər yeni izləyicini göstərir",
       "subscribe_alert": "Hər yeni abunəçini göstərir",
@@ -9305,6 +9319,8 @@
       "rotateFailed": "Yeni link yaratmaq mümkün olmadı. Bir an sonra yenidən cəhd edin."
     },
     "rules": {
+      "wheelSegments": "Hər sətirdə bir təkər seqmentləri",
+      "wheelHint": "2-12 yaş arası. DeHub təkərin dayandığı yeri seçir, buna görə də izləyən hər kəs eyni nəticəni görür. Ad vermək üçün xəbərdarlıq, ucadan oxumaq və ya söhbət hərəkətində {result} istifadə edin.",
       "title": "Quranlar",
       "intro": "Sizin stream-inizdə bir şey baş verdikdə, DeHub sizin seçdiyiniz kimi işləyir: xəbər göstərir, səs çıxarır, bir şeyi səsli oxuyur, sizin çatınızda yazıb yoxsa Discord-ınıza bildirir.",
       "add": "Quran əlavə et",
@@ -9358,6 +9374,7 @@
         "subscribers": "Abunəçilər"
       },
       "actionTypes": {
+        "wheel": "Təkər fırladın",
         "alert": "Xəbərdarlığı göstər",
         "sound": "Səs çalın",
         "say": "Ucadan oxuyun",

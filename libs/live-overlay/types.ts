@@ -46,4 +46,23 @@ export interface PublicOverlay {
   widgets: OverlayWidget[];
   version: number;
   stats: OverlayStats;
+  /** Quick controls. Missing from an older API: read as all off. */
+  controls?: OverlayControls;
+}
+
+/**
+ * Quick controls: switches a creator flips mid-stream that hold for everyone
+ * at once. Off means normal. The twin of dehubweb's OverlayControls.
+ */
+export interface OverlayControls {
+  /** Alerts (gifts, follows, rules, wheels) stop appearing. Counters and the chat box keep going. */
+  alertsPaused: boolean;
+  soundsMuted: boolean;
+  /** Nothing is read aloud: no gift messages, no rule read-aloud. */
+  readAloudMuted: boolean;
+}
+
+export function parseControls(raw: unknown): OverlayControls {
+  const c = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  return { alertsPaused: c.alertsPaused === true, soundsMuted: c.soundsMuted === true, readAloudMuted: c.readAloudMuted === true };
 }
