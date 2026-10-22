@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Straumes kopsavilkums",
+    "justEnded": "Jūsu straumes kopsavilkums",
+    "lastStream": "Jūsu pēdējā straume",
+    "none": "Vēl nav pabeigtu straumju. Kopsavilkums tiek parādīts šeit pēc pirmā.",
+    "share": "Daļas",
+    "shareText": "Es tikko straumēju \"{{title}}\" DeHub: {{duration}} tiešraidē, {{peak}} skatoties virsotnē un {{followers}} jaunus sekotājus.",
+    "untitled": "Straume bez nosaukuma",
+    "loadFailed": "Kopsavilkums netika ielādēts. Pēc brīža mēģiniet vēlreiz.",
+    "duration": "Tiešraides laiks",
+    "peakViewers": "Visvairāk skatīšanās reizē",
+    "gifts_one": "No {{count}} dāvana",
+    "gifts_other": "No {{count}} dāvanas",
+    "newFollowers": "Jauni sekotāji",
+    "chatMessages": "Tērzēšanas ziņojumi",
+    "chatters": "Personas tērzē",
+    "reactions": "Atbildes",
+    "shares": "Personas, kas dalās pieredz",
+    "topSupporters": "Populārākie atbalstītāji",
+    "polls": "Aptaujas",
+    "pollWinner": "{{option}} uzvarēja",
+    "stillCounting": "Joprojām tiek skaitīts: dāvanu apstiprināšana var aizņemt kādu brīdi."
+  },
   "articles": {
     "articleImage": "Raksta attēls",
     "socialImage": "Sociālais kopīgošanas attēls",

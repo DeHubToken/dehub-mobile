@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Riepilogo della diretta",
+    "justEnded": "Riepilogo del tuo stream",
+    "lastStream": "Il tuo ultimo streaming",
+    "none": "Ancora nessun flusso finito. Il riepilogo appare qui dopo il primo.",
+    "share": "Condividi",
+    "shareText": "Ho appena trasmesso in streaming \"{{title}}\" su DeHub: {{duration}} live, {{peak}} watching at the peak e {{followers}} nuovi follower.",
+    "untitled": "Streaming senza titolo",
+    "loadFailed": "Il recap non è stato caricato. Riprova tra un momento.",
+    "duration": "Tempo reale",
+    "peakViewers": "La maggior parte guarda contemporaneamente",
+    "gifts_one": "Da {{count}} regalo",
+    "gifts_other": "Da {{count}} regali",
+    "newFollowers": "Nuovi follower",
+    "chatMessages": "Messaggi di chat",
+    "chatters": "Persone che chattano",
+    "reactions": "Reazioni",
+    "shares": "Persone che condividono",
+    "topSupporters": "I migliori sostenitori",
+    "polls": "Sondaggi",
+    "pollWinner": "{{option}} vinto",
+    "stillCounting": "Sto ancora contando: la conferma dei regali può richiedere un minuto."
+  },
   "articles": {
     "articleImage": "Immagine articolo",
     "socialImage": "Immagine di condivisione social",

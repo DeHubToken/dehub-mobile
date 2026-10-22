@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekapitulácia streamu",
+    "justEnded": "Rekapitulácia vášho streamu",
+    "lastStream": "Váš posledný stream",
+    "none": "Zatiaľ žiadne dokončené streamy. Vaše zhrnutie sa zobrazí tu po prvom zhrnutí.",
+    "share": "Zdieľať",
+    "shareText": "Práve som vysielal „{{title}}“ na DeHub: {{duration}} live, {{peak}} sledovanie na vrchole a {{followers}} nových sledovateľov.",
+    "untitled": "Stream bez názvu",
+    "loadFailed": "Rekapitulácia sa nenačítala. Skúste to znova o chvíľu.",
+    "duration": "Čas naživo",
+    "peakViewers": "Najviac sledovaných naraz",
+    "gifts_one": "Od {{count}} darčeka",
+    "gifts_other": "Od darčekov {{count}}",
+    "newFollowers": "Noví sledovatelia",
+    "chatMessages": "Správy chatu",
+    "chatters": "Ľudia sa rozprávajú",
+    "reactions": "Reakcie",
+    "shares": "Zdieľanie ľudí",
+    "topSupporters": "Najlepší priaznivci",
+    "polls": "Ankety",
+    "pollWinner": "{{option}} vyhral",
+    "stillCounting": "Stále sa počíta: potvrdenie darčekov môže chvíľu trvať."
+  },
   "articles": {
     "articleImage": "Obrázok článku",
     "socialImage": "Obrázok pre sociálne siete",

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Stroom samenvatting",
+    "justEnded": "Je stroom samenvatting",
+    "lastStream": "Je laatste stroom",
+    "none": "Nog geen afgeronde streams. Je samenvatting verschijnt hier na je eerste.",
+    "share": "Delen",
+    "shareText": "Ik heb net gestreamd \"{{title}}\" op DeHub: {{duration}} live, {{peak}} kijkers op het hoogtepunt en {{followers}} nieuwe volgers.",
+    "untitled": "Ongedetailleerde stroom",
+    "loadFailed": "De samenvatting is niet geladen. Probeer het over een moment opnieuw.",
+    "duration": "Tijd live",
+    "peakViewers": "Meeste kijkers tegelijk",
+    "gifts_one": "Van {{count}} cadeau",
+    "gifts_other": "Van {{count}} cadeaus",
+    "newFollowers": "Nieuwe volgers",
+    "chatMessages": "Chatberichten",
+    "chatters": "Mensen die praten",
+    "reactions": "Reacties",
+    "shares": "Mensen die delen",
+    "topSupporters": "Topsteuners",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won",
+    "stillCounting": "Nog steeds tellen: cadeaus kunnen een minuut duren om te bevestigen."
+  },
   "accountConnect": {
     "title": "Koppel je DeHub-account",
     "body": "Koppel je account om je profiel te beheren, berichten te plaatsen en inhoud te maken vanuit de chat. Verbindingen verlopen binnen 24 uur. Je kunt ze altijd verbreken.",

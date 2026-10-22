@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "shareText": "ኣብ DeHub \"{{title}}\" ፈኒወ: {{duration}} ብቐጥታ፣ ብዝበዝሐ {{peak}} ተዓዘብቲ ከምኡውን {{followers}} ሓደሽቲ ሰዓብቲ።",
+    "title": "ናይ ዥረት ዳግመ-ምግቢ",
+    "justEnded": "እቲ ዥረትካ እንደገና ይዕምብብብ",
+    "lastStream": "ናይ መወዳእታ ዥረትካ",
+    "none": "ገና ዘይተዛዘመ ዥረት የለን ። እቲ ናይ መጀመርታ ጽሑፍካ ኣብዚ እዩ ዚርአ ።",
+    "share": "ምዝርጋሕ",
+    "untitled": "ዘይፍለጥ ዥረት",
+    "loadFailed": "እቲ ክሲ ኣብ ጽሑፍካ ኣይተቐመጠን ። ኣብ ሓደ እዋን እንደገና ፈትኖ ።",
+    "duration": "ግዜ ህያው",
+    "peakViewers": "መብዛሕትኦም ሰባት ብሓንሳብ ይርእዩ",
+    "gifts_one": "ካብ {{count}} ህያብ",
+    "gifts_other": "ካብ {{count}} ህያባት",
+    "newFollowers": "ሓድሽ ተኸታተልቲ",
+    "chatMessages": "መልእኽቲ ቻት",
+    "chatters": "ሰባት ይዛረቡ",
+    "reactions": "ግብረ መልሲ",
+    "shares": "ሰባት ይካፈሉ",
+    "topSupporters": "ላዕለዎት ደገፍቲ",
+    "polls": "ድምጺ",
+    "pollWinner": "{{option}} ተዓዊቱ",
+    "stillCounting": "ሕጂ እውን እንተ ዀነ ፡ ህያባት ንምእማን ፡ ሓደ ደቒቕ ኪወስድ ይኽእል እዩ ።"
+  },
   "articles": {
     "articleImage": "ስእሊ ጽሑፍ",
     "socialImage": "ስእሊ ንምክፋል ብዘህላ",

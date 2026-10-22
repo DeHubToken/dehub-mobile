@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "ملخص البث",
+    "justEnded": "ملخص بثك",
+    "lastStream": "آخر بث لك",
+    "none": "لا توجد بثوث مكتملة حتى الآن. يظهر ملخصك هنا بعد أول بث لك.",
+    "share": "مشاركة",
+    "shareText": "قمت بالبث \"{{title}}\" على DeHub: {{duration}} مباشر، {{peak}} يشاهد في القمة و {{followers}} متابعين جدد.",
+    "untitled": "بث بدون عنوان",
+    "loadFailed": "لم يتم تحميل الملخص. حاول مرة أخرى في لحظة.",
+    "duration": "الوقت المباشر",
+    "peakViewers": "أكثر المشاهدين في وقت واحد",
+    "gifts_one": "من {{count}} هدية",
+    "gifts_other": "من {{count}} هدايا",
+    "newFollowers": "متابعون جدد",
+    "chatMessages": "رسائل الدردشة",
+    "chatters": "الناس يتحدثون",
+    "reactions": "التفاعلات",
+    "shares": "الناس يشاركون",
+    "topSupporters": "أعلى الداعمين",
+    "polls": "استطلاعات",
+    "pollWinner": "{{option}} فاز",
+    "stillCounting": "لا يزال يُعدّ: قد تستغرق الهدايا دقيقة للتأكيد."
+  },
   "articles": {
     "articleImage": "صورة المقال",
     "socialImage": "صورة المشاركة الاجتماعية",

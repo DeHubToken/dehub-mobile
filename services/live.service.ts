@@ -351,3 +351,85 @@ export async function startPoll(draft: { question: string; options: string[]; du
 export async function closePoll(): Promise<LivePoll | null> {
   return pollOf(await apiClient.post<any>("/live-overlay/mine/poll/close", {}, { isAuthRequired: true }));
 }
+
+/** GET /live/:streamId/recap — what happened on a stream. Only gifts the chain confirmed count. */
+export interface RecapPerson {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+}
+
+export interface StreamRecap {
+  streamId: string;
+  tokenId: number | null;
+  title: string;
+  startedAt: string | null;
+  endedAt: string | null;
+  durationSec: number;
+  peakViewers: number;
+  tips: { total: number; count: number; supporters: number };
+  topTippers: Array<RecapPerson & { total: number }>;
+  newFollowers: number;
+  chat: { messages: number; chatters: number };
+  reactions: number;
+  /** Null once the server no longer remembers who shared (two days after). */
+  shares: number | null;
+  polls: Array<{ question: string; options: Array<{ text: string; votes: number }>; total: number }>;
+}
+
+const recapNum = (v: unknown) => (Number.isFinite(Number(v)) ? Number(v) : 0);
+
+export async function getStreamRecap(streamId: string): Promise<StreamRecap> {
+  const res: any = await apiClient.get<any>(`/live/${encodeURIComponent(streamId)}/recap`, { isAuthRequired: false });
+  const r = res?.result ?? res?.data ?? res;
+  return {
+    streamId: String(r?.streamId || streamId),
+    tokenId: r?.tokenId == null ? null : recapNum(r.tokenId),
+    title: String(r?.title || ""),
+    startedAt: r?.startedAt || null,
+    endedAt: r?.endedAt || null,
+    durationSec: recapNum(r?.durationSec),
+    peakViewers: recapNum(r?.peakViewers),
+    tips: { total: recapNum(r?.tips?.total), count: recapNum(r?.tips?.count), supporters: recapNum(r?.tips?.supporters) },
+    topTippers: Array.isArray(r?.topTippers)
+      ? r.topTippers.map((t: any) => ({
+          address: String(t?.address || ""),
+          username: t?.username || undefined,
+          displayName: t?.displayName || undefined,
+          avatarImageUrl: t?.avatarImageUrl || undefined,
+          total: recapNum(t?.total),
+        }))
+      : [],
+    newFollowers: recapNum(r?.newFollowers),
+    chat: { messages: recapNum(r?.chat?.messages), chatters: recapNum(r?.chat?.chatters) },
+    reactions: recapNum(r?.reactions),
+    shares: r?.shares == null ? null : recapNum(r.shares),
+    polls: Array.isArray(r?.polls)
+      ? r.polls.map((p: any) => ({
+          question: String(p?.question || ""),
+          options: Array.isArray(p?.options) ? p.options.map((o: any) => ({ text: String(o?.text || ""), votes: recapNum(o?.votes) })) : [],
+          total: recapNum(p?.total),
+        }))
+      : [],
+  };
+}
+
+/** The creator's most recent finished stream, or null if they have not streamed. */
+export async function getLastEndedStreamId(address: string): Promise<string | null> {
+  if (!address) return null;
+  const res: any = await apiClient.get<any>(`/live/user/${encodeURIComponent(address)}`, { isAuthRequired: true });
+  const rows: any[] = Array.isArray(res?.result) ? res.result : Array.isArray(res?.data) ? res.data : Array.isArray(res) ? res : [];
+  const ended = rows.find((s) => String(s?.status || "").toUpperCase() === "ENDED" && !s?.isTest);
+  const id = ended?._id ?? ended?.streamId ?? ended?.id;
+  return id ? String(id) : null;
+}
+
+/** "1:05:09" or "12:40". */
+export function formatStreamDuration(seconds: number): string {
+  const s = Math.max(0, Math.floor(seconds));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return `${h ? `${h}:` : ""}${h ? String(m).padStart(2, "0") : String(m)}:${String(sec).padStart(2, "0")}`;
+}

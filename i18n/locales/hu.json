@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Adatfolyam-összefoglaló",
+    "justEnded": "Adatfolyam-összefoglalód",
+    "lastStream": "Az utolsó adatfolyamod",
+    "none": "Még nincsenek befejezett adatfolyamok. Az összegzés itt jelenik meg az első után.",
+    "share": "Megosztás",
+    "shareText": "„{{title}}” -t közvetítettem a DeHubon: {{duration}} live, {{peak}} nézés a csúcson és {{followers}} új követők.",
+    "untitled": "Névtelen adatfolyam",
+    "loadFailed": "Az újraelosztás nem töltődött be. Próbálkozz újra egy pillanat múlva.",
+    "duration": "Élő idő",
+    "peakViewers": "Legtöbbször egyszerre nézik",
+    "gifts_one": "{{count}} ajándéktól",
+    "gifts_other": "{{count}} ajándéktól",
+    "newFollowers": "Új követés",
+    "chatMessages": "Chat üzenetek",
+    "chatters": "Csevegő emberek",
+    "reactions": "Válaszok:",
+    "shares": "Megosztott személyek",
+    "topSupporters": "Kiemelt támogatók",
+    "polls": "Szavazások",
+    "pollWinner": "{{option}} nyert",
+    "stillCounting": "Még mindig számít: az ajándékok megerősítése eltarthat egy percig."
+  },
   "articles": {
     "articleImage": "Cikk képe",
     "socialImage": "Közösségi megosztás kép",

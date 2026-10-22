@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Resumen de la transmisión",
+    "justEnded": "Recapitulación de tu transmisión",
+    "lastStream": "Tu última transmisión",
+    "none": "Todavía no hay transmisiones terminadas. Tu resumen aparece aquí después del primero.",
+    "share": "Compartir",
+    "shareText": "Acabo de transmitir \"{{title}}\" en DeHub: {{duration}} en vivo, {{peak}} viendo en la cima y {{followers}} nuevos seguidores.",
+    "untitled": "Transmisión sin título",
+    "loadFailed": "El resumen no se cargó. Inténtalo de nuevo en un momento.",
+    "duration": "Tiempo en vivo",
+    "peakViewers": "La mayoría viendo a la vez",
+    "gifts_one": "De {{count}} regalo",
+    "gifts_other": "De {{count}} regalos",
+    "newFollowers": "Nuevos seguidores",
+    "chatMessages": "Mensajes de chat",
+    "chatters": "Gente chateando",
+    "reactions": "Reacciones",
+    "shares": "Personas compartiendo",
+    "topSupporters": "Principales simpatizantes",
+    "polls": "Encuestas",
+    "pollWinner": "{{option}} ganó",
+    "stillCounting": "Aún contando: los regalos pueden tardar un minuto en confirmarse."
+  },
   "accountConnect": {
     "title": "Conecta tu cuenta de DeHub",
     "body": "Conecta tu cuenta para gestionar tu perfil, publicar y crear contenido desde el chat. Las conexiones caducan en 24 horas. Puedes desconectarlas cuando quieras.",

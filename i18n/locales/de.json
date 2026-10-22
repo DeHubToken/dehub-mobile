@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Stream-Zusammenfassung",
+    "justEnded": "Ihre Stream-Zusammenfassung",
+    "lastStream": "Dein letzter Stream",
+    "none": "Noch keine fertigen Streams. Ihre Zusammenfassung erscheint hier nach Ihrer ersten.",
+    "share": "Anteil",
+    "shareText": "Ich habe gerade \"{{title}}\" auf DeHub gestreamt: {{duration}} live, {{peak}} auf dem Gipfel und {{followers}} neue Follower.",
+    "untitled": "Unbenannter Stream",
+    "loadFailed": "Die Zusammenfassung wurde nicht geladen. Versuchen Sie es gleich noch einmal.",
+    "duration": "Live-Zeit",
+    "peakViewers": "Am meisten auf einmal zuschauen",
+    "gifts_one": "Von {{count}} Geschenk",
+    "gifts_other": "Von {{count}} Geschenken",
+    "newFollowers": "Jemand folgt mir",
+    "chatMessages": "Chat-Nachrichten",
+    "chatters": "Leute plaudern",
+    "reactions": "Reaktionen",
+    "shares": "Personen teilen",
+    "topSupporters": "Top-Unterstützer",
+    "polls": "Umfragen",
+    "pollWinner": "{{option}} gewonnen",
+    "stillCounting": "Zählt noch: Die Bestätigung von Geschenken kann eine Minute dauern."
+  },
   "viralTemplates": {
     "title": "Dein nächster viraler Moment.",
     "intro": "Schau dir ein Beispiel an. Wähle einen Effekt oder Charakter. Füge dein Foto hinzu.",

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Recapitulação do fluxo",
+    "justEnded": "Recapitulação da sua transmissão",
+    "lastStream": "A sua última transmissão",
+    "none": "Ainda não há transmissões concluídas. A sua recapitulação aparece aqui após a primeira.",
+    "share": "Compartilhar",
+    "shareText": "Acabei de transmitir \"{{title}}\" no DeHub: {{duration}} ao vivo, {{peak}} assistindo no auge e {{followers}} novos seguidores.",
+    "untitled": "Fluxo sem título",
+    "loadFailed": "A recapitulação não foi carregada. Tente novamente daqui a pouco.",
+    "duration": "Tempo ao vivo",
+    "peakViewers": "A maioria assiste ao mesmo tempo",
+    "gifts_one": "Do presente {{count}}",
+    "gifts_other": "De {{count}} presentes",
+    "newFollowers": "NOVOS SEGUIDORES",
+    "chatMessages": "Mensagens de chat",
+    "chatters": "para bater um papo todo mundo",
+    "reactions": "Reações",
+    "shares": "Partilha de pessoas",
+    "topSupporters": "Principais apoiadores",
+    "polls": "Sondagens",
+    "pollWinner": "{{option}} ganhou",
+    "stillCounting": "Ainda contando: os presentes podem levar um minuto para serem confirmados."
+  },
   "articles": {
     "articleImage": "Imagem do artigo",
     "socialImage": "Imagem de partilha social",

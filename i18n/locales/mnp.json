@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "流程回顾",
+    "justEnded": "你的直播回顾",
+    "lastStream": "你的上一次直播",
+    "none": "尚未完成任何直播。你的回顾将在你的第一次直播后出现。",
+    "loadFailed": "回顾未加载。稍后再试。",
+    "peakViewers": "同时观看最多人数",
+    "gifts_other": "来自{{count}}的礼物",
+    "newFollowers": "新粉丝",
+    "chatMessages": "聊天信息",
+    "chatters": "正在聊天的人",
+    "reactions": "反应",
+    "shares": "分享的人",
+    "polls": "投票",
+    "pollWinner": "{{option}}获胜",
+    "stillCounting": "仍在计算：礼物可能需要一分钟才能确认。",
+    "share": "分享",
+    "shareText": "我剛剛在DeHub直播{{title}}：{{duration}}線上，{{peak}}人同時觀看，{{followers}}新粉絲。",
+    "untitled": "未命名的流",
+    "duration": "時間直播",
+    "gifts_one": "{{count}} 送啥？",
+    "topSupporters": "顶级支持者"
+  },
   "articles": {
     "articleImage": "文章图片",
     "socialImage": "社交分享图片",

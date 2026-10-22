@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Dib-u-cusboonaysiinta qulqulka",
+    "justEnded": "Dib u soo celi durdurkaaga",
+    "lastStream": "Daadkaaga ugu dambeeya",
+    "none": "No durdurro dhameystiran weli. Dib-u-soo-celintaadu waxay u muuqataa halkan ka dib midkii ugu horreeyay.",
+    "share": "La wadaag",
+    "shareText": "Waxaan kaliya daadihin \"{{title}}\" on DeHub: {{duration}} live, {{peak}} daawashada sare iyo {{followers}} raacayaal cusub.",
+    "untitled": "Durdur aan la magacaabin",
+    "loadFailed": "Dib-u-soo-celintu ma cuslayn. Isku day mar kale in daqiiqad ah.",
+    "duration": "Waqtiga nool",
+    "peakViewers": "Inta badan hal mar ayey daawanayaan",
+    "gifts_one": "Laga soo bilaabo {{count}} hadiya",
+    "gifts_other": "Laga soo bilaabo {{count}} hadiyado",
+    "newFollowers": "Taageerayaal cusub",
+    "chatMessages": "Farriimaha sheekaysiga",
+    "chatters": "Dad wada sheekeysanaya",
+    "reactions": "Falcelinta",
+    "shares": "Dadka la wadaago",
+    "topSupporters": "Taageerayaasha ugu sareeya",
+    "polls": "Codadka",
+    "pollWinner": "{{option}} Guuleystay",
+    "stillCounting": "Weli tirinta: hadiyadaha waxay qaadan karaan daqiiqad si loo xaqiijiyo."
+  },
   "articles": {
     "articleImage": "Sawirka maqaalka",
     "socialImage": "Sawirka wadaagista bulshada",
