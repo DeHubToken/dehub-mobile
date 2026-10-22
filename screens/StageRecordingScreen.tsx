@@ -33,12 +33,12 @@ import { StageTranscriptSheet } from "../components/Stages/StageTranscriptSheet"
 import { useAppTheme } from "../context/ThemeContext";
 import { ShareLinks } from "../navigation/linking.config";
 import { ScreenNames } from "../navigation/ScreenNames";
-import type { RootStackParamList } from "../navigation/types";
+import type { AppStackParamList } from "../navigation/types";
 import { supabase } from "../services/supabase";
 import { radius } from "../theme/radius";
 import type { AudioSpace } from "../hooks/useStages";
 
-type Route = RouteProp<RootStackParamList, ScreenNames.StageRecording>;
+type Route = RouteProp<AppStackParamList, ScreenNames.StageRecording>;
 
 export default function StageRecordingScreen() {
   const { t } = useTranslation();
