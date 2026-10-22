@@ -4136,6 +4136,14 @@
     "noVoice": "تمہارے ڈیوائس میں اس زبان کی آواز نہیں ہے۔"
   },
   "stages": {
+    "addToCalendar": "کالینڈر میں جڑیں",
+    "nowPlaying": "ابھی چل رہی ہے",
+    "onTheRadio": "رڈیو پر",
+    "subtitles": "ساب ٹائٹلز",
+    "subtitlesIn": "ساب ٹائٹلز · {{language}}",
+    "showSubtitles": "ساب ٹائٹلز دکھائے",
+    "language": "زبان",
+    "asSpoken": "جیسے بولی گئی",
     "cancelConfirm": "“{{title}}” رد کرنا ہے؟ لنک چلنا بند ہو جائے گا۔",
     "deleteRecordingConfirm": "اس آڈیو روم کی ریکارڈنگ مٹانا ہے؟",
     "deleteStage": "آڈیو روم مٹاؤ",

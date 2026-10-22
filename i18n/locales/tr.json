@@ -4465,6 +4465,14 @@
     "filedOn": "{{date}} tarihinde açıldı"
   },
   "stages": {
+    "addToCalendar": "Takvime ekle",
+    "nowPlaying": "Şimdi çalıyor",
+    "onTheRadio": "Radyoda",
+    "subtitles": "Altyazılar",
+    "subtitlesIn": "Altyazılar · {{language}}",
+    "showSubtitles": "Altyazıları göster",
+    "language": "Dil",
+    "asSpoken": "Konuşulduğu gibi",
     "cancelConfirm": "\"{{title}}\" iptal edilsin mi? Bağlantı çalışmayı bırakır.",
     "deleteRecordingConfirm": "Bu sesli oda kaydı silinsin mi?",
     "deleteStage": "Sesli odayı sil",

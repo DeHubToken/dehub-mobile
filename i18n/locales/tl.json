@@ -4187,6 +4187,14 @@
     "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
+    "addToCalendar": "Idagdag sa kalendaryo",
+    "nowPlaying": "Kasalukuyang tumutugtog",
+    "onTheRadio": "Sa radyo",
+    "subtitles": "Mga subtitle",
+    "subtitlesIn": "Mga subtitle · {{language}}",
+    "showSubtitles": "Ipakita ang mga subtitle",
+    "language": "Wika",
+    "asSpoken": "Tulad ng binigkas",
     "cancelConfirm": "Kanselahin ang \"{{title}}\"? Hindi na gumagana ang link.",
     "deleteRecordingConfirm": "Tanggalin ang recording ng audio room na ito?",
     "deleteStage": "Tanggalin ang audio room",

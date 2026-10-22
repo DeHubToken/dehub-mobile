@@ -4143,6 +4143,14 @@
     "noVoice": "Meeshaan kee afaan kanaaf sagalee hin qabu."
   },
   "stages": {
+    "addToCalendar": "Kaalaandarii irratti dabali",
+    "nowPlaying": "Amma taphachaa jira",
+    "onTheRadio": "Raadiyoo irratti",
+    "subtitles": "Mata duree xiqqaa",
+    "subtitlesIn": "Mata duree xiqqaa · {{language}}",
+    "showSubtitles": "Mata duree xiqqaa agarsiisi",
+    "language": "Afaan",
+    "asSpoken": "Akkuma dubbatame",
     "cancelConfirm": "“{{title}}” haquu? Geessituun sun hojjechuu ni dhaaba.",
     "deleteRecordingConfirm": "Waraabbii kutaa sagalee kanaa haquu?",
     "deleteStage": "Kutaa sagalee haqi",

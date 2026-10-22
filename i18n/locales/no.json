@@ -4140,6 +4140,14 @@
     "noVoice": "Enheten din har ingen stemme for dette språket."
   },
   "stages": {
+    "addToCalendar": "Legg til i kalender",
+    "nowPlaying": "Spiller nå",
+    "onTheRadio": "På radioen",
+    "subtitles": "Titteltekster",
+    "subtitlesIn": "Titteltekster · {{language}}",
+    "showSubtitles": "Vis titteltekster",
+    "language": "Språk",
+    "asSpoken": "Som sagt",
     "cancelConfirm": "Avlyse «{{title}}»? Lenken slutter å virke.",
     "deleteRecordingConfirm": "Slette opptaket fra dette lydrommet?",
     "deleteStage": "Slett lydrom",

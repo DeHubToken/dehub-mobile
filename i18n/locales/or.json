@@ -4127,6 +4127,14 @@
     "noVoice": "ଆପଣଙ୍କ ଡିଭାଇସରେ ଏହି ଭାଷା ପାଇଁ କୌଣସି ସ୍ୱର ନାହିଁ।"
   },
   "stages": {
+    "addToCalendar": "କ୍ୟାଲେଣ୍ଡରରେ ଯୋଗ କରନ୍ତୁ",
+    "nowPlaying": "ବର୍ତ୍ତମାନ ଚାଲୁଅଛି",
+    "onTheRadio": "ରେଡିଓରେ …",
+    "subtitles": "ଉପଶବ୍ଦଗୁଡ଼ିକ",
+    "subtitlesIn": "ସବଟାଇଟଲସ · {{language}}",
+    "showSubtitles": "ଉପ ଶୀର୍ଷକଗୁଡ଼ିକୁ ଦର୍ଶାନ୍ତୁ",
+    "language": "ଭାଷା",
+    "asSpoken": "କୁହାଯାଇଥିବା ପରି",
     "cancelConfirm": "“{{title}}” ବାତିଲ କରିବେ? ଲିଙ୍କ ଆଉ କାମ କରିବ ନାହିଁ।",
     "deleteRecordingConfirm": "ଏହି ଅଡିଓ ରୁମର ରେକର୍ଡିଂ ବାହାର କରିବେ?",
     "deleteStage": "ଅଡିଓ ରୁମ ବାହାର କରନ୍ତୁ",

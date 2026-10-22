@@ -4185,6 +4185,14 @@
     "filedOn": "提交于 {{date}}"
   },
   "stages": {
+    "addToCalendar": "添加到日历",
+    "nowPlaying": "正在播放",
+    "onTheRadio": "电台播放中",
+    "subtitles": "字幕",
+    "subtitlesIn": "字幕 · {{language}}",
+    "showSubtitles": "显示字幕",
+    "language": "语言",
+    "asSpoken": "按原话",
     "cancelConfirm": "取消「{{title}}」？分享链接将失效。",
     "deleteRecordingConfirm": "删除这段语音房录音？",
     "deleteStage": "删除语音房",

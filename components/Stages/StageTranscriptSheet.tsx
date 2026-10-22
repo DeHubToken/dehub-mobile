@@ -27,6 +27,9 @@ import { ButtonLoader, DeHubLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
 import { FIELD_TEXT } from "../../theme/inputs";
 import { useThemeRootStyle } from "../../context/ThemeContext";
+import { ShareLinks } from "../../navigation/linking.config";
+import * as FileSystem from "expo-file-system/legacy";
+import { Alert, Platform } from "react-native";
 
 interface Props {
   space: AudioSpace | null;
@@ -77,6 +80,21 @@ const formatTxt = (segments: Segment[], getSpeakerLabel: (spk: string) => string
     .map((s) => `[${formatTimestamp(s.start)}] ${getSpeakerLabel(s.speaker)}: ${s.text}`)
     .join("\n");
 };
+
+const srtTime = (sec: number): string => {
+  const ms = Math.max(0, Math.round(sec * 1000));
+  const h = Math.floor(ms / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  const pad = (n: number, w = 2) => n.toString().padStart(w, "0");
+  return `${pad(h)}:${pad(m)}:${pad(s)},${pad(ms % 1000, 3)}`;
+};
+
+/** Same cues as web's formatSrt (lib/transcript-format). */
+const formatSrt = (segments: Segment[], getSpeakerLabel: (spk: string) => string): string =>
+  segments
+    .map((s, i) => `${i + 1}\n${srtTime(s.start)} --> ${srtTime(s.end || s.start + 2)}\n${getSpeakerLabel(s.speaker)}: ${s.text}\n`)
+    .join("\n");
 
 // The query is raw search-box text; a lone ? ( + * [ or \ would otherwise
 // make the RegExp constructor throw during render and unmount the app.
@@ -434,8 +452,35 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     toastSuccess(t("transcript.copied"));
   };
 
+  // Save as a file, like web's .txt / .srt download. iOS shares the file
+  // itself (Save to Files, AirDrop); Android's share sheet takes text.
+  const saveAs = async (ext: "txt" | "srt") => {
+    const body = ext === "srt" ? formatSrt(segments, getSpeakerLabel) : formatTxt(segments, getSpeakerLabel);
+    const name = `${(space?.title || "stage").replace(/[^\w\- ]+/g, "").trim().slice(0, 60) || "stage"}.${ext}`;
+    try {
+      if (Platform.OS === "ios" && FileSystem.cacheDirectory) {
+        const uri = `${FileSystem.cacheDirectory}${name}`;
+        await FileSystem.writeAsStringAsync(uri, body);
+        await Share.share({ url: uri, title: name });
+      } else {
+        await Share.share({ message: body, title: name });
+      }
+    } catch {
+      /* dismissed */
+    }
+  };
+  const handleDownload = () => {
+    Alert.alert(t("settings.download"), undefined, [
+      { text: ".txt", onPress: () => void saveAs("txt") },
+      { text: ".srt", onPress: () => void saveAs("srt") },
+      { text: t("common.cancel"), style: "cancel" },
+    ]);
+  };
+
   const handleShare = () => {
-    const url = `https://dehub.io/stages/${stageId}`;
+    // The stage's own link (dehub.io/stages/<n>). A bare uuid after /stages
+    // opened the hub instead of the stage in the app.
+    const url = space ? ShareLinks.stage(space) : `https://dehub.io/stage/${stageId}`;
     Share.share({
       message: `${t("stages.transcriptShare", { title: space?.title || t("stages.audioStage") })}\n\n${t("stages.transcriptLink", { url })}`,
       title: space?.title || t("stages.audioStageTranscript"),
@@ -631,8 +676,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               </View>
             )}
 
-            {/* Toolbar: Search & Language & Actions */}
-            <View className="flex-row items-center gap-2 mb-3">
+            {/* Toolbar: Search, then Language & Actions */}
+            <View className="flex-row items-center mb-2">
               {/* Search bar */}
               <View className="flex-1 flex-row items-center bg-white/5 border border-white/10 rounded-xl h-10 px-2.5">
                 <Icon name="Search" size={14} color="#A6A9AC" />
@@ -650,9 +695,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   </TouchableOpacity>
                 )}
               </View>
+            </View>
 
+            {/* Language and actions on their own row: five controls side by
+                side left the search box a few letters wide on a phone. */}
+            <View className="flex-row items-center gap-2 mb-3">
               {/* Language Selector */}
-              <View className="w-36">
+              <View className="flex-1">
                 <Dropdown
                   options={LANGUAGES.map((l) => (l.value === "original" ? { ...l, label: t("stages.originalLanguage") } : l))}
                   value={language}
@@ -667,6 +716,15 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
               >
                 <Icon name="Copy" size={16} color="#fff" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleDownload}
+                disabled={segments.length === 0}
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
+                accessibilityRole="button"
+                accessibilityLabel={t("settings.download")}
+              >
+                <Icon name="Download" size={16} color="#fff" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleShare}

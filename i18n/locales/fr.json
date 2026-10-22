@@ -4469,6 +4469,14 @@
     "filedOn": "Ouvert le {{date}}"
   },
   "stages": {
+    "addToCalendar": "Ajouter au calendrier",
+    "nowPlaying": "En cours de lecture",
+    "onTheRadio": "À la radio",
+    "subtitles": "Sous-titres",
+    "subtitlesIn": "Sous-titres · {{language}}",
+    "showSubtitles": "Afficher les sous-titres",
+    "language": "Langue",
+    "asSpoken": "Comme parlé",
     "cancelConfirm": "Annuler « {{title}} » ? Le lien cesse de fonctionner.",
     "deleteRecordingConfirm": "Supprimer l'enregistrement de ce salon audio ?",
     "deleteStage": "Supprimer le salon audio",

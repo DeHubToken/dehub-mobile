@@ -4140,6 +4140,14 @@
     "noVoice": "Cihazınızda bu dil üçün səs yoxdur."
   },
   "stages": {
+    "addToCalendar": "Təqvimə əlavə edin",
+    "nowPlaying": "İndi oynatılır",
+    "onTheRadio": "Radioda",
+    "subtitles": "Altyazılar",
+    "subtitlesIn": "Altyazılar · {{language}}",
+    "showSubtitles": "Altyazıları göstər",
+    "language": "Dil",
+    "asSpoken": "Söyləndiyi kimi",
     "cancelConfirm": "“{{title}}” ləğv edilsin? Keçid işləməyi dayandıracaq.",
     "deleteRecordingConfirm": "Bu səsli otağın yazısı silinsin?",
     "deleteStage": "Səsli otağı sil",

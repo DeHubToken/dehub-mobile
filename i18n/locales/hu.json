@@ -4144,6 +4144,14 @@
     "noVoice": "Az eszközödön nincs hang ehhez a nyelvhez."
   },
   "stages": {
+    "addToCalendar": "Hozzáadás a naptárhoz",
+    "nowPlaying": "Jelenleg lejátszás alatt",
+    "onTheRadio": "A rádióban",
+    "subtitles": "Feliratok",
+    "subtitlesIn": "Feliratok · {{language}}",
+    "showSubtitles": "Feliratok megjelenítése",
+    "language": "Nyelv",
+    "asSpoken": "Ahogy beszéltek",
     "cancelConfirm": "Lemondod: \"{{title}}\"? A link nem fog működni.",
     "deleteRecordingConfirm": "Törlöd ezt a hangszoba-felvételt?",
     "deleteStage": "Hangszoba törlése",

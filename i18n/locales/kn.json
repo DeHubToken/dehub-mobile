@@ -4127,6 +4127,14 @@
     "noVoice": "ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಈ ಭಾಷೆಗೆ ಧ್ವನಿ ಇಲ್ಲ."
   },
   "stages": {
+    "addToCalendar": "ಕ್ಯಾಲೆಂಡರ್‌ಗೆ ಸೇರಿಸಿ",
+    "nowPlaying": "ಇದೀಗ ಪ್ರಸಾರವಾಗುತ್ತಿದೆ",
+    "onTheRadio": "ರೇಡಿಯೋದಲ್ಲಿ",
+    "subtitles": "ಉಪಶೀರ್ಷಿಕೆಗಳು",
+    "subtitlesIn": "ಉಪಶೀರ್ಷಿಕೆಗಳು · {{language}}",
+    "showSubtitles": "ಉಪಶೀರ್ಷಿಕೆಗಳನ್ನು ತೋರಿಸಿ",
+    "language": "ಭಾಷೆ",
+    "asSpoken": "ಹೇಳಿದಂತೆ",
     "cancelConfirm": "“{{title}}” ರದ್ದುಮಾಡಬೇಕೆ? ಲಿಂಕ್ ಕೆಲಸ ಮಾಡುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತದೆ.",
     "deleteRecordingConfirm": "ಈ ಆಡಿಯೊ ರೂಮ್ ರೆಕಾರ್ಡಿಂಗ್ ಅಳಿಸಬೇಕೇ?",
     "deleteStage": "ಆಡಿಯೊ ರೂಮ್ ಅಳಿಸಿ",

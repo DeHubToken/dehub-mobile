@@ -4114,6 +4114,14 @@
     "noVoice": "ອຸປະກອນຂອງທ່ານບໍ່ມີສຽງສຳລັບພາສານີ້."
   },
   "stages": {
+    "addToCalendar": "ເພີ່ມໃສ່ປະຕິທິນ",
+    "nowPlaying": "ກຳລັງຫຼິ້ນ",
+    "onTheRadio": "ທາງວິທະຍຸ",
+    "subtitles": "ຄຳບັນຍາຍ",
+    "subtitlesIn": "ຄຳບັນຍາຍ · {{language}}",
+    "showSubtitles": "ສະແດງຄຳບັນຍາຍ",
+    "language": "ພາສາ",
+    "asSpoken": "ຕາມທີ່ເວົ້າ",
     "cancelConfirm": "ຍົກເລີກ “{{title}}” ບໍ? ລິ້ງຈະໃຊ້ບໍ່ໄດ້ອີກ.",
     "deleteRecordingConfirm": "ລຶບການບັນທຶກຫ້ອງສຽງນີ້ບໍ?",
     "deleteStage": "ລຶບຫ້ອງສຽງ",

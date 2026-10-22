@@ -4151,6 +4151,14 @@
     "noVoice": "თქვენს მოწყობილობას ამ ენისთვის ხმა არ აქვს."
   },
   "stages": {
+    "addToCalendar": "დაამატეთ კალენდარში",
+    "nowPlaying": "უკრავს ახლა",
+    "onTheRadio": "რადიოში",
+    "subtitles": "სუბტიტრები",
+    "subtitlesIn": "სუბტიტრები · {{language}}",
+    "showSubtitles": "სუბტიტრების ჩვენება",
+    "language": "ენა",
+    "asSpoken": "როგორც ითქვა",
     "cancelConfirm": "გაუქმდეს \"{{title}}\"? ბმული აღარ იმუშავებს.",
     "deleteRecordingConfirm": "წაიშალოს ამ აუდიო ოთახის ჩანაწერი?",
     "deleteStage": "აუდიო ოთახის წაშლა",

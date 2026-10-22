@@ -4137,6 +4137,14 @@
     "noVoice": "אין במכשיר שלכם קול לשפה הזו."
   },
   "stages": {
+    "addToCalendar": "הוסף ללוח השנה",
+    "nowPlaying": "מתנגן כעת",
+    "onTheRadio": "ברדיו",
+    "subtitles": "כתוביות",
+    "subtitlesIn": "כתוביות · {{language}}",
+    "showSubtitles": "הצג כתוביות",
+    "language": "שפה",
+    "asSpoken": "כפי שנאמר",
     "cancelConfirm": "ביטול \"{{title}}\"? הקישור מפסיק לעבוד.",
     "deleteRecordingConfirm": "למחוק את ההקלטה של חדר האודיו הזה?",
     "deleteStage": "מחק את חדר האודיו",

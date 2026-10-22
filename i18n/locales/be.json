@@ -4141,6 +4141,14 @@
     "noVoice": "На вашай прыладзе няма голасу для гэтай мовы."
   },
   "stages": {
+    "addToCalendar": "Дадаць у календар",
+    "nowPlaying": "Зараз прайграе",
+    "onTheRadio": "На радыё",
+    "subtitles": "Субтытры",
+    "subtitlesIn": "Субтытры · {{language}}",
+    "showSubtitles": "Паказаць субтытры",
+    "language": "Мова",
+    "asSpoken": "Як вымаўляецца",
     "cancelConfirm": "Адмяніць \"{{title}}\"? Спасылка перастане працаваць.",
     "deleteRecordingConfirm": "Выдаліць запіс гэтага галасавога пакоя?",
     "deleteStage": "Выдаліць галасавы пакой",

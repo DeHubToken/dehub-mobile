@@ -4162,6 +4162,14 @@
     "noVoice": "Antaykiqa manam kay simipaq kunkayuqchu."
   },
   "stages": {
+    "addToCalendar": "Calendarioman yapay",
+    "nowPlaying": "Kunanqa pukllachkan",
+    "onTheRadio": "Radiopi",
+    "subtitles": "Subtítulos nisqa",
+    "subtitlesIn": "Subtítulos · {{language}} .",
+    "showSubtitles": "Subtítulos nisqakunata rikuchiy",
+    "language": "Simi",
+    "asSpoken": "Rimasqa hina",
     "cancelConfirm": "“{{title}}” chinkachinachu? T'inkiqa manaña llamk'anqachu.",
     "deleteRecordingConfirm": "Kay uyarina wasip waqaychasqanta pichanachu?",
     "deleteStage": "Uyarina wasita pichay",

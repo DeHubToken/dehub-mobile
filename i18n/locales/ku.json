@@ -4132,6 +4132,14 @@
     "noVoice": "Di cîhaza te de ji bo vî zimanî deng tune."
   },
   "stages": {
+    "addToCalendar": "بۆ ڕۆژژمێر زیاد بکە",
+    "nowPlaying": "ئێستا لێدەدرێت",
+    "onTheRadio": "لە ڕادیۆ",
+    "subtitles": "ژێرنووس",
+    "subtitlesIn": "ژێرنووس · {{language}}",
+    "showSubtitles": "پیشاندانی ژێرنووس",
+    "language": "زمان",
+    "asSpoken": "وەک قسەکراو",
     "cancelConfirm": "“{{title}}” betal bike? Girêdan dê nema bixebite.",
     "deleteRecordingConfirm": "Tomara vê odeya deng jê bibe?",
     "deleteStage": "Odeya deng jê bibe",

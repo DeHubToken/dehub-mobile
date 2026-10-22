@@ -4131,6 +4131,14 @@
     "noVoice": "Ẹ̀rọ rẹ kò ní ohùn fún èdè yìí."
   },
   "stages": {
+    "addToCalendar": "Ṣafikun si kalẹnda",
+    "nowPlaying": "Nisisiyi ti ndun",
+    "onTheRadio": "Lori redio",
+    "subtitles": "Àwọn àkọlé-ẹ̀yìn",
+    "subtitlesIn": "Awọn atunkọ · {{language}}",
+    "showSubtitles": "Fi àwọn àkọlé-ẹ̀yìn hàn",
+    "language": "Èdè",
+    "asSpoken": "Gẹgẹ bi a ti sọ",
     "cancelConfirm": "Fagilé “{{title}}”? Ọ̀nà àsopọ̀ náà kò ní ṣiṣẹ́ mọ́.",
     "deleteRecordingConfirm": "Pa ìgbàsílẹ̀ yàrá ohùn yìí rẹ́?",
     "deleteStage": "Pa yàrá ohùn rẹ́",

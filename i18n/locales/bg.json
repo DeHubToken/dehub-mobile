@@ -4140,6 +4140,14 @@
     "noVoice": "Устройството ви няма глас за този език."
   },
   "stages": {
+    "addToCalendar": "Добави в календар",
+    "nowPlaying": "Сега звучи",
+    "onTheRadio": "По радиото",
+    "subtitles": "Субтитри",
+    "subtitlesIn": "Субтитри · {{language}}",
+    "showSubtitles": "Показване на субтитри",
+    "language": "Език",
+    "asSpoken": "Както се говори",
     "cancelConfirm": "Да се отмени ли „{{title}}“? Връзката спира да работи.",
     "deleteRecordingConfirm": "Да се изтрие ли записът на тази аудио стая?",
     "deleteStage": "Изтрий аудио стаята",

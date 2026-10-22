@@ -4191,6 +4191,14 @@
     "filedOn": "Aperto il {{date}}"
   },
   "stages": {
+    "addToCalendar": "Aggiungi al calendario",
+    "nowPlaying": "In riproduzione",
+    "onTheRadio": "Alla radio",
+    "subtitles": "Sottotitoli",
+    "subtitlesIn": "Sottotitoli · {{language}}",
+    "showSubtitles": "Mostra sottotitoli",
+    "language": "Lingua",
+    "asSpoken": "Come pronunciato",
     "cancelConfirm": "Annulla \"{{title}}\"? Il link smette di funzionare.",
     "deleteRecordingConfirm": "Eliminare la registrazione di questa stanza audio?",
     "deleteStage": "Elimina stanza audio",

@@ -4140,6 +4140,14 @@
     "noVoice": "Jūsu ierīcē nav balss šai valodai."
   },
   "stages": {
+    "addToCalendar": "Pievienot kalendāram",
+    "nowPlaying": "Tagad atskaņo",
+    "onTheRadio": "Radio",
+    "subtitles": "Subtitri",
+    "subtitlesIn": "Subtitri · {{language}}",
+    "showSubtitles": "Rādīt subtitrus",
+    "language": "Valoda",
+    "asSpoken": "Kā runāts",
     "cancelConfirm": "Atcelt “{{title}}”? Saite pārstās darboties.",
     "deleteRecordingConfirm": "Dzēst šīs audio istabas ierakstu?",
     "deleteStage": "Dzēst audio istabu",

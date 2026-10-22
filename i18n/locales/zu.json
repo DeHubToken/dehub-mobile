@@ -4162,6 +4162,14 @@
     "noVoice": "Idivayisi yakho ayinalo izwi lalolu limi."
   },
   "stages": {
+    "addToCalendar": "Faka ekhalendeni",
+    "nowPlaying": "Manje iyadlala",
+    "onTheRadio": "Emsakazweni",
+    "subtitles": "Imibhalo engezansi",
+    "subtitlesIn": "Imibhalo engezansi · {{language}}",
+    "showSubtitles": "Bonisa imibhalo engezansi",
+    "language": "Ulimi",
+    "asSpoken": "Njengoba kukhulunywa",
     "cancelConfirm": "Khansela u-“{{title}}”? Isixhumanisi sizoyeka ukusebenza.",
     "deleteRecordingConfirm": "Susa okuqoshiwe kwaleli gumbi lomsindo?",
     "deleteStage": "Susa igumbi lomsindo",

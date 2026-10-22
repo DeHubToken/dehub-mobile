@@ -4128,6 +4128,14 @@
     "noVoice": "तुंहर डिवाइस म ए भाखा बर कोनो आवाज नइ हे।"
   },
   "stages": {
+    "addToCalendar": "कैलेंडर में जोड़ें",
+    "nowPlaying": "अब बज रही है",
+    "onTheRadio": "रेडियो पर",
+    "subtitles": "सब- टाइटल्स",
+    "subtitlesIn": "सब- टाइटल्स {{language}}label",
+    "showSubtitles": "सब- सीर्सक देखाव",
+    "language": "भाखा",
+    "asSpoken": "जइसे-जइसे बात करे जाथे",
     "cancelConfirm": "“{{title}}” ल रद्द करव? लिंक बंद हो जाही.",
     "deleteRecordingConfirm": "ये ऑडियो रूम के रिकॉर्डिंग ल मिटाव?",
     "deleteStage": "ऑडियो रूम मिटाव",

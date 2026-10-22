@@ -4128,6 +4128,14 @@
     "noVoice": "توهان جي ڊوائيس ۾ هن ٻولي لاءِ ڪو آواز ناهي."
   },
   "stages": {
+    "addToCalendar": "ڪئلينڊر ۾ شامل ڪريو",
+    "nowPlaying": "ھاڻي کيڏڻ",
+    "onTheRadio": "ريڊيو تي",
+    "subtitles": "ذيلي عنوان",
+    "subtitlesIn": "ذيلي عنوان · {{language}}",
+    "showSubtitles": "ذيلي عنوان ڏيکاريو",
+    "language": "ٻولي",
+    "asSpoken": "جيئن ڳالهايو ويو آهي",
     "cancelConfirm": "“{{title}}” رد ڪجي؟ لنڪ ڪم ڪرڻ بند ڪري ڇڏيندو.",
     "deleteRecordingConfirm": "هن آڊيو روم جي رڪارڊنگ ختم ڪجي؟",
     "deleteStage": "آڊيو روم ختم ڪريو",
