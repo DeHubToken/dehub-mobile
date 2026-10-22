@@ -470,33 +470,34 @@ jobs:
           test -d "$app"
           mkdir -p scene-launch
           xcrun simctl list runtimes > scene-launch/runtimes.txt
-          xcrun simctl list devicetypes > scene-launch/devicetypes.txt
-          runtime=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; r=[x for x in json.load(sys.stdin)["runtimes"] if x.get("isAvailable") and x.get("platform")=="iOS"]; r.sort(key=lambda x: [int(p) for p in x["version"].split(".")]); print(r[-1]["identifier"])')
-          echo "runtime: $runtime"
-          types=$(xcrun simctl list devicetypes -j | python3 -c '
+          xcrun simctl list devices available > scene-launch/devices.txt
+          # The runner's own devices for the newest iOS runtime: always compatible.
+          picks=$(xcrun simctl list devices available -j | python3 -c '
           import json, sys
-          names = [d["name"] for d in json.load(sys.stdin)["devicetypes"]]
-          pick = []
-          for want in ("iPhone Duo", "iPad Air"):
-              hit = [n for n in names if n.startswith(want)]
-              if hit: pick.append(hit[-1])
-          phones = [n for n in names if n.startswith("iPhone") and "Duo" not in n]
-          if phones: pick.insert(0, phones[-1])
-          print("\n".join(pick))')
+          data = json.load(sys.stdin)["devices"]
+          ios = [k for k in data if "SimRuntime.iOS-" in k and data[k]]
+          ios.sort(key=lambda k: [int(p) for p in k.split("iOS-")[1].split("-")])
+          devs = data[ios[-1]]
+          phones = [d for d in devs if d["name"].startswith("iPhone") and "Duo" not in d["name"]]
+          duos = [d for d in devs if "Duo" in d["name"]]
+          ipads = [d for d in devs if d["name"].startswith("iPad")]
+          for d in phones[-1:] + duos[-1:] + ipads[-1:]:
+              print(d["udid"] + "|" + d["name"])')
+          echo "$picks"
+          test -n "$picks"
           failed=0
-          while IFS= read -r type; do
-            [ -n "$type" ] || continue
-            slug=$(echo "$type" | tr ' ' '-' | tr -cd 'A-Za-z0-9-')
-            udid=$(xcrun simctl create "scene-$slug" "$type" "$runtime")
-            xcrun simctl boot "$udid"
+          while IFS='|' read -r udid name; do
+            [ -n "$udid" ] || continue
+            slug=$(echo "$name" | tr ' ' '-' | tr -cd 'A-Za-z0-9-')
+            xcrun simctl boot "$udid" || true
             xcrun simctl bootstatus "$udid" -b
             xcrun simctl install "$udid" "$app"
             pid=$(xcrun simctl launch "$udid" io.dehub.mobile | awk '{print $NF}')
             sleep 40
-            if kill -0 "$pid" 2>/dev/null; then echo "PASS $type stayed up (pid $pid)"; else echo "FAIL $type exited"; failed=1; fi
+            if kill -0 "$pid" 2>/dev/null; then echo "PASS $name stayed up (pid $pid)"; else echo "FAIL $name exited"; failed=1; fi
             xcrun simctl io "$udid" screenshot "scene-launch/$slug.png" || true
             xcrun simctl shutdown "$udid" || true
-          done <<< "$types"
+          done <<< "$picks"
           find ~/Library/Logs/DiagnosticReports -name 'DeHub*' -newer "$app" -exec cp {} scene-launch/ \; 2>/dev/null || true
           exit $failed
       - uses: actions/upload-artifact@v4
