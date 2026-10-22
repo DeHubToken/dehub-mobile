@@ -22,10 +22,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
-import { useAuthActions } from "../../context/AuthContext";
-import { getAvatarUrl } from "../../libs/misc";
+import { useAuth, useAuthActions } from "../../context/AuthContext";
+import { storedAvatarSources } from "../../libs/misc";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
-import { VOICE_EFFECTS } from "../../hooks/useStages";
+import { VOICE_EFFECTS, sameWallet } from "../../hooks/useStages";
+import { ShareLinks } from "../../navigation/linking.config";
 import StageSoundboard from "./StageSoundboard";
 import StageScreenShare from "./StageScreenShare";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
@@ -142,7 +143,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
             falls back to the initial, the same as every other avatar in the
             app, and covers the no-avatar case in the same breath. */}
         <Avatar
-          uri={getAvatarUrl(participant.avatar, 64)}
+          {...storedAvatarSources(participant.avatar, participant.wallet_address, 64)}
           size={64}
           name={participant.username || participant.wallet_address}
         />
@@ -221,7 +222,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
         }}
       >
         <Avatar
-          uri={getAvatarUrl(request.avatar, 36)}
+          {...storedAvatarSources(request.avatar, request.wallet_address, 36)}
           size={36}
           name={request.username || request.wallet_address}
         />
@@ -242,6 +243,50 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
   );
 };
 
+// ── ListenerCard ───────────────────────────────────────────────────────────
+
+/** Listeners shown by face; the rest are a count, the way web does it. */
+const LISTENERS_SHOWN = 12;
+
+interface ListenerCardProps {
+  participant: SpaceParticipant;
+  /** Host only: bring this listener up on stage. */
+  onInvite?: (addr: string) => void;
+}
+
+const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite }) => {
+  const { t } = useTranslation();
+  const { width: SW } = useWindowDimensions();
+  const name = participant.username || `${participant.wallet_address.slice(0, 6)}...`;
+  return (
+    <View style={{ alignItems: "center", width: SW / 3 - 16, marginBottom: 16 }}>
+      <Avatar
+        {...storedAvatarSources(participant.avatar, participant.wallet_address, 48)}
+        size={48}
+        name={participant.username || participant.wallet_address}
+      />
+      <Text style={{ color: "rgba(255,255,255,0.8)", fontSize: 11, marginTop: 5, textAlign: "center" }} numberOfLines={1}>
+        {name}
+      </Text>
+      {onInvite && (
+        <TouchableOpacity
+          onPress={() => onInvite(participant.wallet_address)}
+          accessibilityRole="button"
+          style={{
+            marginTop: 4,
+            paddingHorizontal: 8,
+            paddingVertical: 2,
+            borderRadius: 8,
+            backgroundColor: "rgba(255,255,255,0.15)",
+          }}
+        >
+          <Text style={{ color: "#F4F4F5", fontSize: 10 }} numberOfLines={1}>{t("stages.inviteToSpeak")}</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
+
 // ── LiveStageModal ─────────────────────────────────────────────────────────
 
 const LiveStageModal: React.FC = () => {
@@ -258,6 +303,7 @@ const LiveStageModal: React.FC = () => {
     hasRaisedHand,
     isConnected,
     isRecording,
+    activeSpeakerUids,
     floatingReactions,
     voiceEffect,
     ttsVoices,
@@ -270,6 +316,7 @@ const LiveStageModal: React.FC = () => {
     lowerHand,
     approveSpeaker,
     removeSpeaker,
+    inviteSpeaker,
     sendReaction,
     dismissFloatingReaction,
     applyVoiceEffect,
@@ -279,6 +326,8 @@ const LiveStageModal: React.FC = () => {
     joinSpace,
   } = useStages();
   const { requireAuth } = useAuthActions();
+  const { user } = useAuth();
+  const myWallet = user?.walletAddress || user?.address || "";
 
   const [ttsText, setTtsText] = useSurfaceDraft("components/Stages/LiveStageModal.tsx:ttsText", "");
   const [selectedVoiceId, setSelectedVoiceId] = useState("");
@@ -286,8 +335,13 @@ const LiveStageModal: React.FC = () => {
   const spaceTitle = currentSpace?.title ?? "";
   const { t } = useTranslation();
   const handleShare = useCallback(() => {
-    Share.share({ message: t("stages.joinMe", { title: spaceTitle }), title: spaceTitle });
-  }, [spaceTitle, t]);
+    if (!currentSpace) return;
+    // The link is the point. This used to send "Join me on DeHub Stages" and
+    // nothing to tap; it is the same link the stage cards share.
+    Share.share({
+      message: `${t("stages.joinMe", { title: spaceTitle })}\n\n${ShareLinks.stage(currentSpace)}`,
+    }).catch(() => {});
+  }, [currentSpace, spaceTitle, t]);
 
   // Front Row is the Blue Whale rung. `status.powers` decides whether this
   // account has it — the badge the client draws from a live wallet read
@@ -324,7 +378,22 @@ const LiveStageModal: React.FC = () => {
   const canSpeak = isHostRole || isSpeakerRole;
 
   const speakers = participants.filter(p => p.role === "host" || p.role === "speaker");
-  const listenerCount = participants.filter(p => p.role === "listener").length;
+  const listeners = participants.filter(p => p.role === "listener");
+  const listenerCount = listeners.length;
+  const moreListeners = listenerCount - LISTENERS_SHOWN;
+
+  // Who is talking. Agora reports levels by uid, and stages join with uid 0 so
+  // the server hands each client a random one: a remote uid cannot be traced
+  // back to a person. Two cases are certain anyway: uid 0 is this phone, and
+  // when only one other person on stage is unmuted, any remote voice is
+  // theirs (a muted mic sends nothing). Otherwise nobody is lit, rather than
+  // the wrong person.
+  const remoteVoice = activeSpeakerUids.some(uid => uid !== 0);
+  const unmutedOthers = speakers.filter(p => !p.is_muted && !sameWallet(p.wallet_address, myWallet));
+  const isSpeaking = (p: SpaceParticipant) =>
+    sameWallet(p.wallet_address, myWallet)
+      ? !isMuted && activeSpeakerUids.includes(0)
+      : remoteVoice && unmutedOthers.length === 1 && unmutedOthers[0].wallet_address === p.wallet_address;
 
   return (
     <Modal
@@ -336,7 +405,10 @@ const LiveStageModal: React.FC = () => {
       onRequestClose={closeModal}
     >
       <StatusBar barStyle="light-content" backgroundColor="#000" />
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+      {/* The room is a live surface and always dark. Without dark-surface,
+          System Light turned every white label in it to ink on this black
+          backdrop, and the whole room went unreadable. */}
+      <SafeAreaView className="dark-surface" style={{ flex: 1, backgroundColor: "#000" }}>
         {/* Host's cover graphic, behind the room.
             Deliberately faint and heavily scrimmed: this is a listening surface
             with avatars, controls and a TTS input stacked over it, and a
@@ -569,7 +641,7 @@ const LiveStageModal: React.FC = () => {
                 key={p.wallet_address}
                 participant={p}
                 isHost={isHostRole}
-                isSpeaking={false}
+                isSpeaking={isSpeaking(p)}
                 onRemove={isHostRole ? removeSpeaker : undefined}
               />
             ))}
@@ -579,6 +651,41 @@ const LiveStageModal: React.FC = () => {
               </Text>
             )}
           </View>
+
+          {/* Listeners. A host had no way to see who was in the room, or to
+              bring anyone up who had not raised a hand; web shows both. */}
+          {listeners.length > 0 && (
+            <>
+              <Text
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  fontSize: 11,
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                  letterSpacing: 1,
+                  marginTop: 4,
+                  marginBottom: 12,
+                  marginLeft: 4,
+                }}
+              >
+                {t("stages.listeners", { count: listeners.length })}
+              </Text>
+              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                {listeners.slice(0, LISTENERS_SHOWN).map(p => (
+                  <ListenerCard
+                    key={p.wallet_address}
+                    participant={p}
+                    onInvite={isHostRole ? inviteSpeaker : undefined}
+                  />
+                ))}
+              </View>
+              {moreListeners > 0 && (
+                <Text style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, marginLeft: 4 }}>
+                  +{moreListeners}
+                </Text>
+              )}
+            </>
+          )}
         </ScrollView>
 
         {/* Reactions slider — fade masks on both edges hint that it scrolls,
@@ -798,18 +905,25 @@ const LiveStageModal: React.FC = () => {
           {canSpeak && (
             <TouchableOpacity
               onPress={toggleMute}
+              accessibilityRole="button"
+              accessibilityLabel={isMuted ? t("live.unmuteMic") : t("live.muteMic")}
               style={{
                 width: 56,
                 height: 56,
                 borderRadius: 16,
-                backgroundColor: isMuted ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.15)",
+                // Both states were the same key with a different glyph, so
+                // nothing at a glance said whether the room could hear you.
+                // Muted is now red, as on web; live keeps the theme's control
+                // material. Any grey here is repainted with that material
+                // (libs/jsx/controls.js), so the difference has to be a colour.
+                backgroundColor: isMuted ? "rgba(239,68,68,0.85)" : "rgba(255,255,255,0.15)",
                 borderWidth: 1,
-                borderColor: isMuted ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.35)",
+                borderColor: isMuted ? "rgba(239,68,68,0.95)" : "rgba(255,255,255,0.35)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#8B8D90" : "#F4F4F5"} />
+              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color="#F4F4F5" />
             </TouchableOpacity>
           )}
 
